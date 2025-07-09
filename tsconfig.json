@@ -1,0 +1,31 @@
+// tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ESNext", // 最新のECMAScript機能を使用
+    "module": "ESNext", // ESモジュール形式を使用
+    "jsx": "react-jsx", // JSXのトランスパイル方法を指定 (React 17+ の新しいJSX変換を使用する場合)
+    "strict": true, // すべての厳格な型チェックオプションを有効にする
+    "esModuleInterop": true, // CommonJSモジュールとESモesModuleの間での相互運用性を確保
+    "skipLibCheck": true, // 宣言ファイルの型チェックをスキップする（コンパイル速度向上）
+    "forceConsistentCasingInFileNames": true, // ファイル名の大文字小文字の一貫性を強制
+    "moduleResolution": "bundler", // バンドラーに合わせたモジュール解決戦略
+    "allowImportingTsExtensions": true, // .ts, .tsx, .d.ts 拡張子のインポートを許可
+    "resolveJsonModule": true, // .jsonファイルのインポートを許可
+    "isolatedModules": true, // 各ファイルを独立したモジュールとしてコンパイルする (バンドラーで推奨)
+    "noEmit": true, // 型チェックのみ行い、JavaScriptファイルの出力は行わない (Babel/SWCなどでトランスパイルする場合)
+    "paths": {
+      // 例: "@/*": ["./src/*"] など、エイリアスがあればここに追加
+    },
+    "allowJs": true //JavaScriptファイルのコンパイル/型チェックを許可
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "stories/**/*.ts",
+    "stories/**/*.tsx", // LintしたいStorybookファイルのパスを必ず含める
+    "stories/**/*.js"
+  ],
+  "exclude": [
+    "node_modules" // node_modulesは除外
+  ]
+}

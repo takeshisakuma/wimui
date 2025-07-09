@@ -4,6 +4,13 @@ import PropTypes from "prop-types";
 
 import "./button.css";
 
+type ButtonProps =  React.ComponentPropsWithoutRef<'button'> &{
+  primary?: boolean;
+  backgroundColor?: string | null;
+  size?: "small" | "medium" | "large";
+  label: string;
+};
+
 /** Primary UI component for user interaction */
 export const Button = ({
   primary = false,
@@ -11,10 +18,12 @@ export const Button = ({
   size = "medium",
   label,
   ...props
-}) => {
+}: ButtonProps) => {
   const mode = primary
     ? "storybook-button--primary"
     : "storybook-button--secondary";
+
+
   return (
     <button
       type="button"
