@@ -2,7 +2,7 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
-import "./button.css";
+import "./button.scss";
 
 type ButtonProps =  React.ComponentPropsWithoutRef<'button'> &{
   primary?: boolean;

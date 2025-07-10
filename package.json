@@ -10,7 +10,14 @@
     "build-storybook": "storybook build",
     "format": "prettier --write .",
     "lint": "eslint stories/",
-    "lint:fix": "eslint stories/ --fix"
+    "lint:fix": "eslint stories/ --fix",
+
+  "stylelint:css": "stylelint \"stories/**/*.css\"",
+    "stylelint:scss": "stylelint \"stories/**/*.scss\"",
+    "stylelint": "npm run stylelint:css && npm run stylelint:scss",
+    "stylelint:fix": "stylelint \"stories/**/*.{css,scss}\" --fix" 
+
+
   },
   "repository": {
     "type": "git",
@@ -38,7 +45,11 @@
     "playwright": "^1.53.2",
     "prettier": "^3.6.2",
     "prop-types": "^15.8.1",
+    "sass": "^1.89.2",
     "storybook": "^9.0.15",
+    "stylelint": "^16.21.1",
+    "stylelint-config-standard-scss": "^15.0.1",
+    "stylelint-scss": "^6.12.1",
     "vitest": "^3.2.4"
   },
   "dependencies": {
