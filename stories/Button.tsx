@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import "./button.scss";
 
+
 type ButtonProps =  React.ComponentPropsWithoutRef<'button'> &{
   primary?: boolean;
   backgroundColor?: string | null;
@@ -33,8 +34,10 @@ export const Button = ({
       style={backgroundColor ? { backgroundColor } : undefined}
       {...props}
     >
-      {label}
+
+      {label}    
     </button>
+
   );
 };
 

@@ -5,19 +5,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "format": "prettier --write .",
     "lint": "eslint stories/",
     "lint:fix": "eslint stories/ --fix",
-
-  "stylelint:css": "stylelint \"stories/**/*.css\"",
+    "stylelint:css": "stylelint \"stories/**/*.css\"",
     "stylelint:scss": "stylelint \"stories/**/*.scss\"",
     "stylelint": "npm run stylelint:css && npm run stylelint:scss",
-    "stylelint:fix": "stylelint \"stories/**/*.{css,scss}\" --fix" 
-
-
+    "stylelint:fix": "stylelint \"stories/**/*.{css,scss}\" --fix"
   },
   "repository": {
     "type": "git",
@@ -37,11 +37,16 @@
     "@storybook/eslint-config-storybook": "^4.0.0",
     "@storybook/react-vite": "^9.0.15",
     "@types/prop-types": "^15.7.15",
+    "@vitejs/plugin-react": "^4.6.0",
     "@vitest/browser": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-storybook": "^9.0.16",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "imagemin-svgo": "^11.0.1",
     "playwright": "^1.53.2",
     "prettier": "^3.6.2",
     "prop-types": "^15.8.1",
@@ -50,6 +55,7 @@
     "stylelint": "^16.21.1",
     "stylelint-config-standard-scss": "^15.0.1",
     "stylelint-scss": "^6.12.1",
+    "vite-plugin-imagemin": "^0.6.1",
     "vitest": "^3.2.4"
   },
   "dependencies": {
