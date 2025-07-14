@@ -28,7 +28,7 @@
   "homepage": "https://github.com/takeshisakuma/wimui#readme",
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.1",
-    "@storybook/addon-a11y": "^9.0.15",
+    "@storybook/addon-a11y": "^9.0.16",
     "@storybook/addon-docs": "^9.0.15",
     "@storybook/addon-vitest": "^9.0.15",
     "@storybook/eslint-config-storybook": "^4.0.0",
