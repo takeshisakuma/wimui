@@ -44,6 +44,7 @@
     "imagemin-mozjpeg": "^10.0.0",
     "imagemin-pngquant": "^10.0.0",
     "imagemin-svgo": "^11.0.1",
+    "imagemin-webp": "^8.0.0",
     "playwright": "^1.53.2",
     "prettier": "^3.6.2",
     "prop-types": "^15.8.1",

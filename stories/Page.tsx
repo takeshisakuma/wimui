@@ -3,6 +3,7 @@ import React from "react";
 import { Header } from "./Header";
 import "./page.scss";
 
+
 type User = { name: string } | null;
 
 export const Page = () => {
