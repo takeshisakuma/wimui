@@ -3,7 +3,8 @@
 import eslint from '@eslint/js';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import eslintPluginStorybook from 'eslint-plugin-storybook'; 
+import eslintPluginStorybook from 'eslint-plugin-storybook';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default [
   eslint.configs.recommended,
@@ -12,6 +13,7 @@ export default [
     plugins: {
       '@typescript-eslint': tsPlugin,
       storybook: eslintPluginStorybook,
+      'jsx-a11y': jsxA11y,
     },
     languageOptions: {
       parser: tsParser,
@@ -19,10 +21,14 @@ export default [
         project: './tsconfig.json', 
         ecmaVersion: 'latest',
         sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
       },
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
+      ...jsxA11y.configs.recommended.rules,
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
@@ -56,6 +62,8 @@ export default [
   {
     files: ['stories/**/*.ts', 'stories/**/*.tsx'],
     rules: {
+      // Storybookファイル固有のa11yルールの調整（必要に応じて）
+      'jsx-a11y/no-autofocus': 'off', // Storybookでは自動フォーカスが有用な場合がある
     }
   }
 ];
