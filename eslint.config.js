@@ -1,3 +1,7 @@
+//.jsにしている理由
+//Flat Config形式では、まだTypeScriptサポートが完全ではない場合がある
+//一部のプラグインでTypeScript設定ファイルとの互換性問題が発生する可能性がある
+
 // @ts-check
 
 import eslint from '@eslint/js';

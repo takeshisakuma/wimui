@@ -1,5 +1,6 @@
-/** @type { import('@storybook/react-vite').Preview } */
-const preview = {
+import type { Preview } from '@storybook/react'
+
+const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
@@ -15,6 +16,6 @@ const preview = {
       test: "todo",
     },
   },
-};
+}
 
-export default preview;
+export default preview
