@@ -30,20 +30,20 @@ export const Primary = {
 
 export const Secondary = {
   args: {
-    label: "Button",
+     label: 'button_label',
   },
 };
 
 export const Large = {
   args: {
     size: "large",
-    label: "Button",
+     label: 'button_label', 
   },
 };
 
 export const Small = {
   args: {
     size: "small",
-    label: "Button",
+    label: 'button_label',
   },
 };

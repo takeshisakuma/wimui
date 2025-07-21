@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import "./button.scss";
 
+import { useTranslation } from 'react-i18next';
 
 type ButtonProps =  React.ComponentPropsWithoutRef<'button'> &{
   primary?: boolean;
@@ -24,6 +25,7 @@ export const Button = ({
     ? "storybook-button--primary"
     : "storybook-button--secondary";
 
+  const { t } = useTranslation();
 
   return (
     <button
@@ -35,7 +37,7 @@ export const Button = ({
       {...props}
     >
 
-      {label}    
+       {t(label)}
     </button>
 
   );
