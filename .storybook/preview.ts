@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Preview } from '@storybook/react'
 import withI18n from 'storybook-react-i18next'
-import i18n from '../stories/i18n'; // 後で作成するi18n設定ファイルをインポート
+import i18n from '../stories/i18n'; // i18n設定ファイルをインポート
 
 const preview: Preview = {
   parameters: {
