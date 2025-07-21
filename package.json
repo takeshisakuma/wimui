@@ -20,7 +20,7 @@
     "stylelint:scss": "stylelint \"stories/**/*.scss\"",
     "stylelint": "npm run stylelint:css && npm run stylelint:scss",
     "stylelint:fix": "stylelint \"stories/**/*.{css,scss}\" --fix",
-    "predeploy": "build-storybook",
+    "predeploy": "storybook build",
     "deploy": "gh-pages -d storybook-static"
   },
   "repository": {

@@ -20,6 +20,9 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
+
+  staticDirs: ['../public'],//言語ファイル
+
   viteFinal: async (config) => {
     // Viteの設定をマージ
     return mergeConfig(config, {
