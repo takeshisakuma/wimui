@@ -20,7 +20,7 @@
     "stylelint:scss": "stylelint \"stories/**/*.scss\"",
     "stylelint": "npm run stylelint:css && npm run stylelint:scss",
     "stylelint:fix": "stylelint \"stories/**/*.{css,scss}\" --fix",
-    "predeploy": "storybook build",
+    "predeploy": "npm run build-storybook",
     "deploy": "gh-pages -d storybook-static"
   },
   "repository": {
@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/takeshisakuma/wimui/issues"
   },
-  "homepage": "https://github.com/takeshisakuma/wimui#readme",
+  "homepage": "./", 
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.1",
     "@storybook/addon-a11y": "^9.0.16",

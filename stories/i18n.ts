@@ -11,7 +11,7 @@ i18n
   .init({
     // Backendの設定で、ファイルが `/locales/` パス以下にあることを指定します
     backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
+      loadPath: './locales/{{lng}}/{{ns}}.json',
     },
     fallbackLng: 'en', // 翻訳ファイルがない場合のフォールバック言語
     debug: true, // 開発中はtrueにしておくとデバッグ情報が出力されます
