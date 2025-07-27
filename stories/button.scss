@@ -1,3 +1,7 @@
+@use '../src/tokens/semantic-colors' as colors;
+
+
+
 .storybook-button {
   display: inline-block;
   cursor: pointer;
@@ -9,7 +13,9 @@
 }
 
 .storybook-button--primary {
-  background-color: #555ab9;
+  /*background-color: #555ab9;*/
+    background-color: colors.$semantic-danger;
+
   color: white;
 }
 

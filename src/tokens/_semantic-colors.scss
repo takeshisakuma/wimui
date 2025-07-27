@@ -1,0 +1,11 @@
+/* 色の意味の定義 */
+/* このファイルで意味を定義してから各コンポーネントで使用する */
+
+@use '../tokens/pccs-colors' as *;
+
+$semantic-danger: $pccs-v1;
+$semantic-success: $pccs-v12;
+$semantic-warning: $pccs-v8;
+$semantic-primary: $pccs-v16;
+$semantic-secondary:$pccs-gy6_5;
+$semantic-info: $pccs-v18;
