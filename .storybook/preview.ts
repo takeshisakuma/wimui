@@ -2,6 +2,8 @@ import React from 'react';
 import type { Preview } from '@storybook/react'
 import withI18n from 'storybook-react-i18next'
 import i18n from '../stories/i18n'; // i18n設定ファイルをインポート
+import '../src/reset.scss'; // reset.scssをインポート
+import '../src/lang.scss'; // reset.scssをインポート
 
 const preview: Preview = {
   parameters: {

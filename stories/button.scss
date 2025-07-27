@@ -14,7 +14,7 @@
 
 .storybook-button--primary {
   /*background-color: #555ab9;*/
-    background-color: colors.$semantic-danger;
+    background-color: colors.$semantic-primary;
 
   color: white;
 }
@@ -22,9 +22,8 @@
 .storybook-button--secondary {
   //box-shadow: rgba(0, 0, 0 / 0.15) 0 0 0 1px inset;
   box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
-  
-  background-color: transparent;
-  color: #333;
+  background-color: colors.$semantic-secondary;
+  color: white;
 }
 
 .storybook-button--small {

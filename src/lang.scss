@@ -1,0 +1,29 @@
+/* 日本語 */
+body{
+  font-family:
+    system-ui,    /* OSのデフォルトUIフォント */
+    -apple-system, /* AppleデバイスのSan Francisco */
+    BlinkMacSystemFont, /* macOSのChrome */
+    "Segoe UI",    /* Windows */
+    Roboto,         /* Android, Chrome OS */
+    "Helvetica Neue", /* iOS */
+    Arial,          /* fallback */
+    "Noto Sans JP", /* 日本語フォント: Google Noto Sans Japanese */
+    "Yu Gothic",    /* 日本語フォント: Windows/macOS */
+    "Meiryo UI",    /* 日本語フォント: Windows */
+    "MS Gothic",    /* 日本語フォント: Windows */
+    sans-serif;     /* 最終フォールバック */
+  line-height: 1.6; /* body全体の行間を調整し、読みやすくする */
+}
+
+/* 日本語特有の調整 */
+/* 日本語の句読点のぶら下がり処理（禁則処理） */
+/* これにより、行末に句読点や括弧が単独で来るのを防ぎ、より自然な見た目にする */
+p,
+li,
+dd,
+dt {
+  word-break: break-all; /* 単語の途中で改行を許可 */
+  -webkit-line-break: strict; /* Safari/Chromeでの禁則処理 */
+  line-break: strict; /* 標準の禁則処理 */
+}
