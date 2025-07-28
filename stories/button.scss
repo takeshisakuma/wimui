@@ -1,6 +1,7 @@
 @use '../src/tokens/semantic-colors' as colors;
 
 
+@use '../src/tokens/semantic-texts' as texts;
 
 .storybook-button {
   display: inline-block;
@@ -10,6 +11,8 @@
   font-weight: 700;
   line-height: 1;
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
 }
 
 .storybook-button--primary {
@@ -29,14 +32,17 @@
 .storybook-button--small {
   padding: 10px 16px;
   font-size: 12px;
+    font-size:  texts.$button-font-size-small; 
 }
 
 .storybook-button--medium {
   padding: 11px 20px;
-  font-size: 14px;
+  /*font-size: 14px;*/
+  font-size:  texts.$button-font-size-medium; 
 }
 
 .storybook-button--large {
   padding: 12px 24px;
-  font-size: 16px;
+  /*font-size: 16px;*/
+  font-size: texts.$button-font-size-large; 
 }

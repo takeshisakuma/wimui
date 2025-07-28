@@ -1,0 +1,67 @@
+   /* タイプスケール定義 (rem値、小数点第一位で丸め) */
+   $font-size-ms-16: 6.6rem;
+   $font-size-ms-15: 5.9rem;
+   $font-size-ms-14: 5.2rem;
+   $font-size-ms-13: 4.6rem;
+   $font-size-ms-12: 4.1rem;
+   $font-size-ms-11: 3.7rem;
+   $font-size-ms-10: 3.2rem;
+   $font-size-ms-9: 2.9rem;
+   $font-size-ms-8: 2.6rem;
+   $font-size-ms-7: 2.3rem;
+   $font-size-ms-6: 2.0rem;
+   $font-size-ms-5: 1.8rem;
+   $font-size-ms-4: 1.6rem;
+   $font-size-ms-3: 1.4rem;
+   $font-size-ms-2: 1.3rem;
+   $font-size-ms-1: 1.1rem;
+   $font-size-ms-0: 1.0rem; /* 基準サイズ */
+   $font-size-ms-minus-1: 0.9rem;
+   $font-size-ms-minus-2: 0.8rem;
+   $font-size-ms-minus-3: 0.7rem;
+   $font-size-ms-minus-4: 0.6rem;
+   $font-size-ms-minus-5: 0.6rem; /* ms(-4) と同じ値 */
+   $font-size-ms-minus-6: 0.5rem;
+
+
+
+/* モバイルファーストなのでスマホ用の基本フォントサイズを設定 */
+:root {
+   /* ベースフォントサイズ (ユーザー設定を尊重するため100%または16px) */
+   /* タイプスケール「Major Third」(1.25倍ずつフォントが大きくなる。)（小数点は四捨五入）*/
+   /* 多くのブラウザのデフォルトは16pxなので、1rem = 16px */
+   font-size: 100%; /* または html { font-size: 16px; } */
+ 
+
+ }
+ 
+
+
+
+ /* PC用ブレイクポイントでのフォントサイズ調整 */
+ /* 例: 769px以上の画面幅の場合 */
+ @media (min-width: 769px) {
+ :root {
+ /* PC用のベースフォントサイズをスマホより大きくする */
+ font-size: 112.5%; /* 18px 相当に設定 (1rem = 18px) */
+ }
+ }
+
+ /* さらに大きな画面 (例: 1200px以上) 用のブレイクポイント */
+ @media (min-width: 1200px) {
+ :root {
+ font-size: 125%; /* 20px 相当に設定 (1rem = 20px) */
+ }
+ }
+
+
+
+
+
+
+
+
+
+
+
+ 
