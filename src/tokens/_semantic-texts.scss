@@ -1,6 +1,7 @@
 @use '../tokens/measure-scales' as *;
 
-
-$button-font-size-small: $font-size-ms-minus-3; /* 3.2rem */
-$button-font-size-medium: $font-size-ms-minus-2; /* 4.1rem */
-$button-font-size-large: $font-size-ms-0; /* 4.7rem */       
+$button-font-size-ex-small: $font-size-ms-minus-4;
+$button-font-size-small: $font-size-ms-minus-3; 
+$button-font-size-medium: $font-size-ms-minus-2;
+$button-font-size-large: $font-size-ms-0;
+$button-font-size-ex-large: $font-size-ms-0;
