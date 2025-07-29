@@ -1,0 +1,13 @@
+/* bodyタグのlang属性によってフォントを切り替える */
+
+/* デフォルト(lang属性未指定) */
+$lang-default: 'Noto Sans', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+ 
+/* 日本語 */
+$lang-ja: 'Noto Sans JP', '游ゴシック体', 'YuGothic', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', 'Meiryo', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+/* 英語 */
+$lang-en: 'Noto Sans', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial,'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+/* ポルトガル語 */
+$lang-pt: 'Noto Sans', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';

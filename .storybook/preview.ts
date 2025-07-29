@@ -35,18 +35,25 @@ export const globalTypes = {
       items: [
         { value: 'en', right: '🇺🇸', title: 'English' },
         { value: 'ja', right: '🇯🇵', title: '日本語' },
+        { value: 'pt', right: '🇵🇹', title: 'Português' }
       ],
     },
   },
 };
 
+
+
+
+
+
 export const decorators = [
   (Story, context) => {
     const { locale } = context.globals;
     
-    // 言語変更時にi18nのlanguageを更新
+     // 言語変更時にi18nのlanguageを更新し、iframeの中のbodyタグのlang属性も更新
     React.useEffect(() => {
       i18n.changeLanguage(locale);
+      document.body.lang = locale; // ここを追加
     }, [locale]);
 
     return Story(context);
