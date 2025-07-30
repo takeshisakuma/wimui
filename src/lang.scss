@@ -1,68 +1,66 @@
 @use './tokens/fonts' as *;
 
-/* 日本語 */
-body{
-  font-family:
-    system-ui,    /* OSのデフォルトUIフォント */
-    -apple-system, /* AppleデバイスのSan Francisco */
-    BlinkMacSystemFont, /* macOSのChrome */
-    "Segoe UI",    /* Windows */
-    Roboto,         /* Android, Chrome OS */
-    "Helvetica Neue", /* iOS */
-    Arial,          /* fallback */
-    "Noto Sans JP", /* 日本語フォント: Google Noto Sans Japanese */
-    "Yu Gothic",    /* 日本語フォント: Windows/macOS */
-    "Meiryo UI",    /* 日本語フォント: Windows */
-    "MS Gothic",    /* 日本語フォント: Windows */
-    sans-serif;     /* 最終フォールバック */
-}
 
 
-/*
- * または、特定の lang 属性がない場合の共通フォントとして設定します。
- */
+
+/* または、特定の lang 属性がない場合の共通フォントとして設定 */
 body {
   font-family: $lang-default;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  text-wrap: pretty;
+  word-spacing: 0;
+  letter-spacing: 0;
+  font-kerning: auto;
+  text-spacing-trim: normal;
+  font-feature-settings: normal;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-break: normal;
+  font-optical-sizing: auto;
   line-height: 1.6; /* body全体の行間を調整し、読みやすくする */
 }
  
-/*
- * 日本語のコンテンツに対するフォント指定
- * 日本語フォントを最優先し、その後に一般的な日本語OSフォントを続けます。
- */
+/* 日本語のコンテンツに対するフォント指定 */
 body[lang='ja'] {
   font-family: $lang-ja;
   line-height: 1.6; /* body全体の行間を調整し、読みやすくする */
+  font-feature-settings: palt;
+    line-break: auto;
+    hyphens: manual;
+
+  /* 日本語特有の調整 */
+  /* 日本語の句読点のぶら下がり処理（禁則処理） */
+  /* これにより、行末に句読点や括弧が単独で来るのを防ぎ、より自然な見た目にする */
+  p,
+  li,
+  dd,
+  dt {
+    word-break: break-all; /* 単語の途中で改行を許可 */
+    -webkit-line-break: strict; /* Safari/Chromeでの禁則処理 */
+    line-break: strict; /* 標準の禁則処理 */
+  }
+
  }
  
- /*
-  * 英語のコンテンツに対するフォント指定
-  * Noto Sansを最優先し、その後に一般的な英語OSフォントを続けます。
-  * デフォルトとほぼ同じですが、明示的に指定することで意図を明確にできます。
-  */
+/* 英語のコンテンツに対するフォント指定
+  Noto Sansを最優先し、その後に一般的な英語OSフォントを続ける
+  デフォルトとほぼ同じですが、明示的に指定することで意図を明確にできる */
 body[lang='en'] {
   font-family: $lang-en;
   line-height: 1.6; /* body全体の行間を調整し、読みやすくする */
+  hyphens: auto
  }
  
- /*
-  * ポルトガル語のコンテンツに対するフォント指定
-  * 英語と同様にNoto Sansが非常に適していますが、もしポルトガル語圏で
-  * 特定のOSフォントを優先したい場合はここに追加します。
-  */
+  /* ポルトガル語のコンテンツに対するフォント指定
+  英語と同様にNoto Sansが非常に適していますが、もしポルトガル語圏で
+  特定のOSフォントを優先したい場合はここに追加 */
 body[lang='pt'] {
   font-family: $lang-pt;
   line-height: 1.6; /* body全体の行間を調整し、読みやすくする */
+  hyphens: auto
  }
 
-/* 日本語特有の調整 */
-/* 日本語の句読点のぶら下がり処理（禁則処理） */
-/* これにより、行末に句読点や括弧が単独で来るのを防ぎ、より自然な見た目にする */
-p,
-li,
-dd,
-dt {
-  word-break: break-all; /* 単語の途中で改行を許可 */
-  -webkit-line-break: strict; /* Safari/Chromeでの禁則処理 */
-  line-break: strict; /* 標準の禁則処理 */
-}
+

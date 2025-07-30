@@ -37,6 +37,7 @@ body {
   -webkit-tap-highlight-color: transparent; /* モバイルでのタップ時のハイライトを無効化 */
   word-break: break-word; /* 長い単語がはみ出さないように自動で改行 */
   overflow-wrap: break-word; /* オーバーフローする単語の改行 */
+  scrollbar-gutter: stable;/* 常時スクロールバー分の領域を確保 */
 }
 
 /* 画像とメディア要素の応答性 */
@@ -131,3 +132,7 @@ rt {
   width: 1px;
   white-space: nowrap;
 }
+
+
+
+
