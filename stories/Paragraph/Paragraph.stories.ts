@@ -1,9 +1,9 @@
 import { fn } from "storybook/test";
-import { Text } from "./Paragraph";
+import { Paragraph } from "./Paragraph";
 
 export default {
   title: "Component/Paragraph",//左メニューの表示
-  component: Text,
+  component: Paragraph,
   parameters: {
     layout: "centered",
   },
@@ -21,6 +21,7 @@ export const ExLargeParagraph = {
   args: {
     size: 'ex-large',
     content: `ex-large_paragraph`,
+    weight:`normal`,
   },
 }
 
@@ -28,6 +29,7 @@ export const LargeParagraph = {
   args: {
     size: 'large',
     content: `large_paragraph`,
+    weight:`normal`,
   },
 }
 
@@ -35,19 +37,22 @@ export const MediumParagraph = {
   args: {
     size: 'medium',
     content: `medium_paragraph`,
+    weight:`normal`,
   },
 }
 
 export const SmallParagrapht = {
   args: {
     size: "small",
-    content:  `small_paragraph`,
+    content: `small_paragraph`,
+    weight:`normal`,
   },
 };
 
 export const ExSmallParagraph = {
   args: {
     size: "ex-small",
-    content:  `ex-small_paragraph`,
+    content: `ex-small_paragraph`,
+    weight:`normal`,
   },
 };

@@ -7,33 +7,35 @@ import "./button.scss";
 import { useTranslation } from 'react-i18next';
 
 type ButtonProps =  React.ComponentPropsWithoutRef<'button'> &{
-  primary?: boolean;
   backgroundColor?: string | null;
   size?: "small" | "medium" | "large";
   label: string;
+  weight?:"bold"| "normal";
+  kind?:"primary"|"secondary"|"danger";
+  color?:"white"|"black";
+  state?:"abled"|"disabled";
 };
 
-/** Primary UI component for user interaction */
 export const Button = ({
-  primary = false,
-  backgroundColor = null,
   size = "medium",
   label,
+  weight="bold",
+  color="black",
+  kind="secondary",
+  state="abled",
   ...props
 }: ButtonProps) => {
-  const mode = primary
-    ? "storybook-button--primary"
-    : "storybook-button--secondary";
+
 
   const { t } = useTranslation();
 
   return (
     <button
       type="button"
-      className={["storybook-button", `storybook-button--${size}`, mode].join(
+          className={[`wim-button`,`font-color-${color}`, `font-size-${size}`, `font-weight-${weight}`,`button-kind-${kind}`].join(
         " ",
       )}
-      style={backgroundColor ? { backgroundColor } : undefined}
+      disabled={state === 'disabled'} 
       {...props}
     >
 
@@ -44,8 +46,6 @@ export const Button = ({
 };
 
 Button.propTypes = {
-  /** Is this the principal call to action on the page? */
-  primary: PropTypes.bool,
   /** What background color to use */
   backgroundColor: PropTypes.string,
   /** How large should the button be? */
@@ -54,4 +54,8 @@ Button.propTypes = {
   label: PropTypes.string.isRequired,
   /** Optional click handler */
   onClick: PropTypes.func,
-};
+  weight: PropTypes.oneOf(["normal", "bold"]),
+  color: PropTypes.oneOf(["black", "deepgray", "gray", "lightgray", "white", "error"]),
+  kind: PropTypes.oneOf(["primary", "secondary", "danger"]),
+  state: PropTypes.oneOf(["abled", "disabled"])
+}

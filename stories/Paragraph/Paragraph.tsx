@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 
 
-type TextProps =  React.ComponentPropsWithoutRef<'text'> &{
+type ParagraphProps =  React.ComponentPropsWithoutRef<'p'> &{
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
   color?: "black" | "deepgray" | "gray" | "lightgray" | "white" |"error" ;
   weight?: "normal" | "bold";
@@ -19,7 +19,7 @@ type TextProps =  React.ComponentPropsWithoutRef<'text'> &{
 
 
 
-export const Text = ({
+export const Paragraph = ({
 
   size = "medium",
   content = "text",
@@ -27,7 +27,7 @@ export const Text = ({
   weight= "normal",
   lineHeight = "normal-latn",
   ...props
-}: TextProps) => {
+}: ParagraphProps) => {
 
 
   const { t } = useTranslation();
@@ -42,7 +42,7 @@ export const Text = ({
   );
 };
 
-Text.propTypes = {
+Paragraph.propTypes = {
   
   size: PropTypes.oneOf(["ex-small", "small", "medium", "large", "ex-large"]),
       

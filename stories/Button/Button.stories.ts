@@ -3,7 +3,7 @@ import { Button } from "./Button";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 export default {
-  title: "Example/Button",
+  title: "Component/Button",
   component: Button,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
@@ -20,31 +20,35 @@ export default {
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary = {
-  args: {
-    primary: true,
-     label: 'button_label',
-  },
-
-  }
 
 
-export const Secondary = {
-  args: {
-     label: 'button_label',
-  },
-};
-
-export const Large = {
+export const LargeButton = {
   args: {
     size: "large",
-     label: 'button_label', 
+    label: 'button_label', 
+    weight: `bold`,
+    kind:`secondary`,
+    state:`abled`
   },
 };
 
-export const Small = {
+export const MeduimButton = {
+  args: {
+    size: "medium",
+    label: 'button_label',
+    weight: `bold`,
+    kind:`secondary`,
+    state:`abled`
+  },
+};
+
+
+export const SmallButton = {
   args: {
     size: "small",
     label: 'button_label',
+    weight: `bold`,
+    kind:`secondary`,
+    state:`abled`
   },
 };

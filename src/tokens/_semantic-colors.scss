@@ -5,14 +5,14 @@
 @use '../tokens/pccs-colors' as *;
 
 /* --- 色の意味 --- */
-$semantic-danger: $pccs-v1;
-$semantic-success: $pccs-v12;
-$semantic-warning: $pccs-v8;
-$semantic-primary: $pccs-v16;
+$semantic-danger: $pccs-s1;
+$semantic-success: $pccs-s12;
+$semantic-warning: $pccs-s8;
+$semantic-primary: $pccs-s16;
 $semantic-secondary:$pccs-gy6_5;
-$semantic-info: $pccs-v18;
+$semantic-info: $pccs-s18;
 
-
+$semantic-disabled:$pccs-gy7_5;
 
 /* ---- 文字色 ---- */
 /* 無彩色 */

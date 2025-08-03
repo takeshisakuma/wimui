@@ -1,0 +1,56 @@
+@use '../../src/tokens/semantic-colors' as colors;
+
+
+@use '../../src/tokens/semantic-texts' as texts;
+@use '../../src/lang' as lang;
+
+
+
+.wim-button {
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.8em;
+  padding: 0.5rem 1rem;
+
+
+}
+
+
+
+
+
+.button-kind-primary {
+  background-color: colors.$semantic-primary;
+  color: white;
+}
+
+.button-kind-secondary {
+  //box-shadow: rgba(0, 0, 0 / 0.15) 0 0 0 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
+  background-color: colors.$semantic-secondary;
+  color: white;
+}
+
+.button-kind-danger {
+  //box-shadow: rgba(0, 0, 0 / 0.15) 0 0 0 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
+  background-color: colors.$semantic-danger;
+  color: white;
+}
+
+
+.wim-button:disabled {
+  /* disabledの時はカーソル形状変更 */
+  cursor: not-allowed;
+  background-color: colors.$semantic-disabled;
+}
+
+.wim-button:hover{
+opacity: 0.6;
+
+}
+/* disabledの時はhover無効 */
+.wim-button:disabled:hover{
+  opacity: 1;
+}
