@@ -1,6 +1,5 @@
 @use './tokens/fonts' as *;
-
-
+@use './tokens/semantic-texts' as *;
 
 
 /* または、特定の lang 属性がない場合の共通フォントとして設定 */
@@ -20,13 +19,13 @@ body {
   word-break: normal;
   line-break: normal;
   font-optical-sizing: auto;
-  line-height: 1.6; /* body全体の行間を調整し、読みやすくする */
+  line-height: $line-height-normal-latn; /* body全体の行間を調整し、読みやすくする */
 }
  
 /* 日本語のコンテンツに対するフォント指定 */
 body[lang='ja'] {
   font-family: $lang-ja;
-  line-height: 1.6; /* body全体の行間を調整し、読みやすくする */
+  line-height:$line-height-normal-jpan; /* body全体の行間を調整し、読みやすくする */
   font-feature-settings: palt;
     line-break: auto;
     hyphens: manual;
@@ -50,7 +49,7 @@ body[lang='ja'] {
   デフォルトとほぼ同じですが、明示的に指定することで意図を明確にできる */
 body[lang='en'] {
   font-family: $lang-en;
-  line-height: 1.6; /* body全体の行間を調整し、読みやすくする */
+  line-height: $line-height-normal-latn; /* body全体の行間を調整し、読みやすくする */
   hyphens: auto
  }
  
@@ -59,7 +58,7 @@ body[lang='en'] {
   特定のOSフォントを優先したい場合はここに追加 */
 body[lang='pt'] {
   font-family: $lang-pt;
-  line-height: 1.6; /* body全体の行間を調整し、読みやすくする */
+  line-height: $line-height-normal-latn; /* body全体の行間を調整し、読みやすくする */
   hyphens: auto
  }
 

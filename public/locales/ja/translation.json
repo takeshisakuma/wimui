@@ -1,5 +1,10 @@
 {
   "greeting": "こんにちは",
   "welcome": "私たちのアプリへようこそ",
-  "button_label": "ボタン"
+  "button_label": "ボタン",
+  "ex-large_text": "さらに大きなテキスト",
+  "large_text": "大きなテキスト",
+  "medium_text": "通常のテキスト",
+  "small_text": "小さなテキスト",
+  "ex-small_text": "さらに小さなテキスト"
  }

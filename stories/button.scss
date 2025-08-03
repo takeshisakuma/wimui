@@ -32,17 +32,17 @@
 .storybook-button--small {
   padding: 10px 16px;
   font-size: 12px;
-    font-size:  texts.$button-font-size-small; 
+    font-size:  texts.$size-small; 
 }
 
 .storybook-button--medium {
   padding: 11px 20px;
   /*font-size: 14px;*/
-  font-size:  texts.$button-font-size-medium; 
+  font-size:  texts.$size-medium; 
 }
 
 .storybook-button--large {
   padding: 12px 24px;
   /*font-size: 16px;*/
-  font-size: texts.$button-font-size-large; 
+  font-size: texts.$size-large; 
 }

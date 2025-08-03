@@ -9,7 +9,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    // Backendの設定で、ファイルが `/locales/` パス以下にあることを指定します
+    // Backendの設定で、ファイルが `/locales/` パス以下にあることを指定
     backend: {
       loadPath: './locales/{{lng}}/{{ns}}.json',
     },
@@ -18,8 +18,8 @@ i18n
     interpolation: {
       escapeValue: false, // ReactはXSSから保護するため不要
     },
-    // Storybookのi18nパネルと連携するために、サポートする言語と初期言語を設定します
-    supportedLngs: ['en', 'ja'],
+    // Storybookのi18nパネルと連携するために、サポートする言語と初期言語を設定
+    supportedLngs: ['en', 'ja', 'pt'],
     lng: 'en', // 初期言語
   });
 

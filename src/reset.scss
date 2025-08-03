@@ -106,7 +106,7 @@ blockquote {
 
 /* Rubyテキスト（ルビ）の表示を考慮 */
 rt {
-  font-feature-settings: "palt"; /* Proportional Alternative Widths - ルビの文字幅を最適化 */
+  font-feature-settings: "palt"; /* 文字詰め(対応フォントのみ) */
 }
 
 /* フォーカス時のアウトライン表示 */
