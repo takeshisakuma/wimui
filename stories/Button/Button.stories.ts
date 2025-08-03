@@ -26,7 +26,7 @@ export const LargeButton = {
   args: {
     size: "large",
     label: 'button_label', 
-    weight: `bold`,
+    weight: `normal`,
     kind:`secondary`,
     state:`abled`
   },
@@ -36,7 +36,7 @@ export const MeduimButton = {
   args: {
     size: "medium",
     label: 'button_label',
-    weight: `bold`,
+    weight: `normal`,
     kind:`secondary`,
     state:`abled`
   },
@@ -47,7 +47,7 @@ export const SmallButton = {
   args: {
     size: "small",
     label: 'button_label',
-    weight: `bold`,
+    weight: `normal`,
     kind:`secondary`,
     state:`abled`
   },
