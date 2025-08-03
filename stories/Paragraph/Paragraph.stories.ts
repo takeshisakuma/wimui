@@ -1,8 +1,8 @@
 import { fn } from "storybook/test";
-import { Text } from "./Text";
+import { Text } from "./Paragraph";
 
 export default {
-  title: "Component/Text",//左メニューの表示
+  title: "Component/Paragraph",//左メニューの表示
   component: Text,
   parameters: {
     layout: "centered",
@@ -17,37 +17,37 @@ export default {
 
 //コンポーネントに渡す値
 
-export const ExLargeText = {
+export const ExLargeParagraph = {
   args: {
     size: 'ex-large',
-    content: `ex-large_text`,
+    content: `ex-large_paragraph`,
   },
 }
 
-export const LargeText = {
+export const LargeParagraph = {
   args: {
     size: 'large',
-    content: `large_text`,
+    content: `large_paragraph`,
   },
 }
 
-export const MediumText = {
+export const MediumParagraph = {
   args: {
     size: 'medium',
-    content: `medium_text`,
+    content: `medium_paragraph`,
   },
 }
 
-export const SmallText = {
+export const SmallParagrapht = {
   args: {
     size: "small",
-    content:  `small_text`,
+    content:  `small_paragraph`,
   },
 };
 
-export const ExSmallText = {
+export const ExSmallParagraph = {
   args: {
     size: "ex-small",
-    content:  `ex-small_text`,
+    content:  `ex-small_paragraph`,
   },
 };

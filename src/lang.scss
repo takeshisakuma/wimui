@@ -1,5 +1,7 @@
 @use './tokens/fonts' as *;
 @use './tokens/semantic-texts' as *;
+@use './tokens/semantic-colors' as *;
+
 
 
 /* または、特定の lang 属性がない場合の共通フォントとして設定 */
@@ -63,3 +65,91 @@ body[lang='pt'] {
  }
 
 
+
+/* サイズ */
+.font-size-ex-large{
+  font-size: $size-ex-large;
+}
+
+.font-size-large{
+  font-size: $size-large;
+}
+
+.font-size-medium{
+  font-size: $size-medium;
+}
+
+.font-size-small{
+  font-size: $size-small;
+}
+
+.font-size-ex-small{
+  font-size: $size-ex-small;
+}
+
+/* 色 */
+
+.font-color-white {
+  color: $color-font-white;
+}
+
+.font-color-deepgray {
+  color: $color-font-deepgray;
+}
+
+
+.font-color-gray {
+  color: $color-font-gray;
+}
+.font-color-lightgray {
+  color: $color-font-lightgray;
+}
+.font-color-black {
+  color: $color-font-black;
+}
+
+.font-color-deepred {
+  color: $color-font-deepred;
+}
+
+
+.font-color-red {
+  color: $color-font-red;
+}
+.font-color-lightred {
+  color: $color-font-lightred;
+}
+
+/* 太さ */
+.font-weight-normal {
+  font-weight: $weight-normal;
+}
+
+.font-weight-bold {
+  font-weight: $weight-bold;
+}
+
+/* 行間 */
+.font-lines-loose-jpan {
+  line-height: $line-height-loose-jpan;
+}
+.font-lines-normal-jpan{
+  line-height: $line-height-normal-jpan;
+}
+
+.font-lines-tight-jpan {
+  line-height: $line-height-tight-jpan;
+}
+
+
+.font-lines-loose-latn {
+  line-height: $line-height-loose-latn;
+}
+
+.font-lines-normal-latn {
+  line-height: $line-height-normal-latn;
+}
+
+.font-lines-tight-latn{
+  line-height: $line-height-tight-latn;
+}

@@ -2,7 +2,7 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
-import "./text.scss";
+import "./paragraph.scss";
 
 import { useTranslation } from 'react-i18next';
 
