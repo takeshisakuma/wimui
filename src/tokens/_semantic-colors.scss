@@ -16,16 +16,14 @@ $semantic-info: $pccs-v18;
 
 /* ---- 文字色 ---- */
 /* 無彩色 */
-$color-font-black:$pccs-bk;
-$color-font-deepgray:$pccs-gy3_5;
-$color-font-gray:$pccs-gy5_5;
-$color-font-lightgray:$pccs-gy7_5;
-$color-font-white:$pccs-w;
+$font-black:$pccs-bk;
+$font-deepgray:$pccs-gy3_5;
+$font-gray:$pccs-gy5_5;
+$font-lightgray:$pccs-gy7_5;
+$font-white:$pccs-w;
 
 /* 有彩色 */
 /* エラー表示など */
-$color-font-deepred:$pccs-dp2;
-$color-font-red:$pccs-s2;
-$color-font-lightred:$pccs-lt2;
+$font-error:$pccs-sf2;
 
 

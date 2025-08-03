@@ -2,56 +2,51 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
-import "./paragraph.scss";
+import "./span.scss";
 
 import { useTranslation } from 'react-i18next';
 
 
 
-type TextProps =  React.ComponentPropsWithoutRef<'text'> &{
+type SpanProps =  React.ComponentPropsWithoutRef<'span'> &{
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
-  color?: "black" | "deepgray" | "gray" | "lightgray" | "white" |"error" ;
+  color?: "black" | "deepgray" | "gray" | "lightgray" | "white" |"error";
   weight?: "normal" | "bold";
-  lineHeight?: "normal-jpan" | "tight-jpan" | "loose-jpan" | "normal-latn" | "tight-latn" | "loose-latn";
   content: string;
 };
 
 
 
 
-export const Text = ({
+export const Span = ({
 
   size = "medium",
-  content = "text",
+  content = "span",
   color = "black",
   weight= "normal",
-  lineHeight = "normal-latn",
   ...props
-}: TextProps) => {
+}: SpanProps) => {
 
 
   const { t } = useTranslation();
 
   return (
-    <p
-          className={[`font-color-${color}`, `font-size-${size}`, `font-weight-${weight}`, `font-lines-${lineHeight}`].join(
+    <span
+          className={[`font-color-${color}`, `font-size-${size}`, `font-weight-${weight}`].join(
         " ",
       )}
     
-    >{t(content)}</p>
+    >{t(content)}</span>
   );
 };
 
-Text.propTypes = {
+Span.propTypes = {
   
   size: PropTypes.oneOf(["ex-small", "small", "medium", "large", "ex-large"]),
       
   color: PropTypes.oneOf(["black", "deepgray", "gray", "lightgray", "white", "error"]),
 
   weight: PropTypes.oneOf(["normal", "bold"]),  
-
- 
-  lineHeight: PropTypes.oneOf(["normal-jpan", "tight-jpan", "loose-jpan", "normal-latn", "tight-latn", "loose-latn"]),  
 
   content: PropTypes.string.isRequired,
 

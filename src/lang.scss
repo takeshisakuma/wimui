@@ -1,6 +1,6 @@
 @use './tokens/fonts' as *;
 @use './tokens/semantic-texts' as *;
-@use './tokens/semantic-colors' as *;
+@use './tokens/semantic-colors' as color;
 
 
 
@@ -90,35 +90,30 @@ body[lang='pt'] {
 /* 色 */
 
 .font-color-white {
-  color: $color-font-white;
+  color: color.$font-white;
 }
 
 .font-color-deepgray {
-  color: $color-font-deepgray;
+  color: color.$font-deepgray;
 }
 
 
 .font-color-gray {
-  color: $color-font-gray;
+  color: color.$font-gray;
 }
 .font-color-lightgray {
-  color: $color-font-lightgray;
+  color: color.$font-lightgray;
 }
 .font-color-black {
-  color: $color-font-black;
-}
-
-.font-color-deepred {
-  color: $color-font-deepred;
+  color: color.$font-black;
 }
 
 
-.font-color-red {
-  color: $color-font-red;
+
+.font-color-error {
+  color: color.$font-error;
 }
-.font-color-lightred {
-  color: $color-font-lightred;
-}
+
 
 /* 太さ */
 .font-weight-normal {
