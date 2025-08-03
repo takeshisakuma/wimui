@@ -1,5 +1,10 @@
  {
   "greeting": "Hello",
   "welcome": "Welcome to our app",
-  "button_label": "Button"
+  "button_label": "Button",
+  "ex-large_text": "Extra Large Text",
+  "large_text": "Large Text",
+  "medium_text": "Medium Text",
+  "small_text": "Small Text",
+  "ex-small_text": "Extra Small Text"
  }
