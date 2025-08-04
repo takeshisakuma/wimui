@@ -11,8 +11,9 @@ import { useTranslation } from 'react-i18next';
 type ParagraphProps =  React.ComponentPropsWithoutRef<'p'> &{
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
   color?: "black" | "deepgray" | "gray" | "lightgray" | "white" |"error" ;
-  weight?: "normal" | "bold";
+  weight?: "normal" | "bold" ;
   lineHeight?: "normal-jpan" | "tight-jpan" | "loose-jpan" | "normal-latn" | "tight-latn" | "loose-latn";
+  style?:"normal" | "italic";
   content: string;
 };
 
@@ -26,6 +27,7 @@ export const Paragraph = ({
   color = "black",
   weight= "normal",
   lineHeight = "normal-latn",
+  style="normal",
   ...props
 }: ParagraphProps) => {
 
@@ -34,7 +36,7 @@ export const Paragraph = ({
 
   return (
     <p
-          className={[`font-color-${color}`, `font-size-${size}`, `font-weight-${weight}`, `font-lines-${lineHeight}`].join(
+          className={[`wim-paragraph`,`font-color-${color}`, `font-size-${size}`, `font-weight-${weight}`, `font-lines-${lineHeight}`, `font-style-${style}`].join(
         " ",
       )}
     
@@ -50,7 +52,8 @@ Paragraph.propTypes = {
 
   weight: PropTypes.oneOf(["normal", "bold"]),  
 
- 
+  style: PropTypes.oneOf(["normal","italic"]),
+
   lineHeight: PropTypes.oneOf(["normal-jpan", "tight-jpan", "loose-jpan", "normal-latn", "tight-latn", "loose-latn"]),  
 
   content: PropTypes.string.isRequired,

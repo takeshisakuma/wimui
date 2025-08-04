@@ -11,28 +11,35 @@
   cursor: pointer;
   border: 0;
   border-radius: 0.8em;
-  padding: 0.5rem 1rem;
-
-
+  text-box-trim: trim-both;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
 }
 
+.wim-button.font-size-large{
+  padding: 0.8rem 1rem;
+}
+.wim-button.font-size-medium{
+    padding: 0.7rem 0.9rem;
+}
 
+.wim-button.font-size-small{
+    padding: 0.6rem 0.8rem;
+}
 
-
-
-.button-kind-primary {
+.button-role-primary {
   background-color: colors.$semantic-primary;
   color: white;
 }
 
-.button-kind-secondary {
+.button-role-secondary {
   //box-shadow: rgba(0, 0, 0 / 0.15) 0 0 0 1px inset;
   box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
   background-color: colors.$semantic-secondary;
   color: white;
 }
 
-.button-kind-danger {
+.button-role-danger {
   //box-shadow: rgba(0, 0, 0 / 0.15) 0 0 0 1px inset;
   box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
   background-color: colors.$semantic-danger;
@@ -47,7 +54,8 @@
 }
 
 .wim-button:hover{
-opacity: 0.6;
+  opacity: 0.6;
+
 
 }
 /* disabledの時はhover無効 */

@@ -22,7 +22,8 @@ export const ExLargeSpan = {
     size: 'ex-large',
     content: `ex-large_span`,
     weight: `normal`,
-    color: `deepgray`
+    color: `deepgray`,
+    style: `normal`
   },
 }
 
@@ -31,7 +32,8 @@ export const LargeSpan = {
     size: 'large',
     content: `large_span`,
     weight:`normal`,
-    color: `deepgray`
+    color: `deepgray`,
+    style: `normal`
   },
 }
 
@@ -40,7 +42,8 @@ export const MediumSpan = {
     size: 'medium',
     content: `medium_span`,
     weight:`normal`,
-    color: `deepgray`
+    color: `deepgray`,
+    style: `normal`
   },
 }
 
@@ -49,7 +52,8 @@ export const SmallSpan = {
     size: "small",
     content:  `small_span`,
     weight:`normal`,
-    color: `deepgray`
+    color: `deepgray`,
+    style: `normal`
   },
 };
 
@@ -58,6 +62,7 @@ export const ExSmallSpan = {
     size: "ex-small",
     content:  `ex-small_span`,
     weight:`normal`,
-    color: `deepgray`
+    color: `deepgray`,
+    style: `normal`
   },
 };

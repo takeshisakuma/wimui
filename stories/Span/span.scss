@@ -2,3 +2,6 @@
 //@use '../../src/tokens/semantic-texts' as texts;
 //@use '../../src/lang' as lang;
 
+.wim-span{
+  text-box-trim: trim-both;
+}

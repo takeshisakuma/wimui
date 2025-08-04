@@ -11,6 +11,11 @@ $size-ex-large: $font-size-ms-2;
 $weight-normal: 400;
 $weight-bold: 700;
 
+
+/* ウェイトの意味の定義 */
+$style-normal: normal;
+$style-italic: italic;
+
 /* line-heightの意味の定義 */
 /* 日本語のline-height(ISO 15924で日本語を表すコードは「Jpan」) */
 $line-height-loose-jpan: 1.8; /* Large */

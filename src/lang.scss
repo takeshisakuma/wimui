@@ -28,7 +28,7 @@ body {
 body[lang='ja'] {
   font-family: $lang-ja;
   line-height:$line-height-normal-jpan; /* body全体の行間を調整し、読みやすくする */
-  font-feature-settings: palt;
+  font-feature-settings: "palt";
     line-break: auto;
     hyphens: manual;
 
@@ -112,6 +112,7 @@ body[lang='pt'] {
 
 .font-color-error {
   color: color.$font-error;
+  display: none;
 }
 
 
@@ -123,6 +124,17 @@ body[lang='pt'] {
 .font-weight-bold {
   font-weight: $weight-bold;
 }
+
+
+/* スタイル */
+.font-style-normal {
+  font-style: $style-normal;
+}
+
+.font-style-italic {
+  font-style: $style-italic;
+}
+
 
 /* 行間 */
 .font-lines-loose-jpan {

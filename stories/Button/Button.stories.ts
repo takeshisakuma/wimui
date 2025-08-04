@@ -27,7 +27,7 @@ export const LargeButton = {
     size: "large",
     label: 'button_label', 
     weight: `normal`,
-    kind:`secondary`,
+    role:`secondary`,
     state:`abled`
   },
 };
@@ -37,7 +37,7 @@ export const MeduimButton = {
     size: "medium",
     label: 'button_label',
     weight: `normal`,
-    kind:`secondary`,
+    role:`secondary`,
     state:`abled`
   },
 };
@@ -48,7 +48,7 @@ export const SmallButton = {
     size: "small",
     label: 'button_label',
     weight: `normal`,
-    kind:`secondary`,
+    role:`secondary`,
     state:`abled`
   },
 };

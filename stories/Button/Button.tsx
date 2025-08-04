@@ -11,7 +11,7 @@ type ButtonProps =  React.ComponentPropsWithoutRef<'button'> &{
   size?: "small" | "medium" | "large";
   label: string;
   weight?:"bold"| "normal";
-  kind?:"primary"|"secondary"|"danger";
+  role?:"primary"|"secondary"|"danger";
   color?:"white"|"black";
   state?:"abled"|"disabled";
 };
@@ -21,7 +21,7 @@ export const Button = ({
   label,
   weight="bold",
   color="black",
-  kind="secondary",
+  role="secondary",
   state="abled",
   ...props
 }: ButtonProps) => {
@@ -32,7 +32,7 @@ export const Button = ({
   return (
     <button
       type="button"
-          className={[`wim-button`,`font-color-${color}`, `font-size-${size}`, `font-weight-${weight}`,`button-kind-${kind}`].join(
+          className={[`wim-button`, `font-size-${size}`, `font-weight-${weight}`,`button-role-${role}`].join(
         " ",
       )}
       disabled={state === 'disabled'} 
@@ -56,6 +56,6 @@ Button.propTypes = {
   onClick: PropTypes.func,
   weight: PropTypes.oneOf(["normal", "bold"]),
   color: PropTypes.oneOf(["black", "deepgray", "gray", "lightgray", "white", "error"]),
-  kind: PropTypes.oneOf(["primary", "secondary", "danger"]),
+  role: PropTypes.oneOf(["primary", "secondary", "danger"]),
   state: PropTypes.oneOf(["abled", "disabled"])
 }
