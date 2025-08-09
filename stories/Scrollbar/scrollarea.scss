@@ -1,0 +1,10 @@
+.overflow-y-scroll {
+ overflow-y: auto;
+}
+
+.custom-scrollbar {
+  /* FirefoxやEdge、新しいChrome向け */
+  scrollbar-color: #6969dd #e0e0e0; /* ハンドルとトラックの色 */
+  scrollbar-width: thin; /* スクロールバーを細くする */
+}
+

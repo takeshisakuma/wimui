@@ -32,9 +32,7 @@ export const Button = ({
   return (
     <button
       type="button"
-          className={[`wim-button`, `font-size-${size}`, `font-weight-${weight}`,`button-role-${role}`].join(
-        " ",
-      )}
+      className={[`wim-button`, `font-size-${size}`, `font-weight-${weight}`,`button-role-${role}`].join(" ")}
       disabled={state === 'disabled'} 
       {...props}
     >
