@@ -1,10 +1,14 @@
+@use '../../src/tokens/semantic-colors' as colors;
+
 .overflow-y-scroll {
  overflow-y: auto;
 }
 
 .custom-scrollbar {
-  /* FirefoxやEdge、新しいChrome向け */
-  scrollbar-color: #6969dd #e0e0e0; /* ハンドルとトラックの色 */
-  scrollbar-width: thin; /* スクロールバーを細くする */
+  scrollbar-color: colors.$scrollbar-thumb colors.$scrollbar-track; /* サム(つまみ)とトラック(背景)の色 */
+  scrollbar-width: thin; /* スクロールバーを細くする (androidは非対応)*/
+  scrollbar-gutter: stable; /* スクロールバーのスペースを確保 */
+
 }
+
 
