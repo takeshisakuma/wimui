@@ -1,7 +1,0 @@
-import{j as l}from"./jsx-runtime-D_zvdyIk.js";import{u as i,P as r}from"./index-BFktqcFp.js";import"./iframe-BLZf1Q20.js";const s=({text:a,scrollAxis:n="y",maxHeight:o="10rem",...c})=>{const{t}=i();return l.jsx("div",{className:["overflow-y-scroll","custom-scrollbar"].join(" "),style:{maxHeight:o},children:t(a)})};s.propTypes={text:r.string.isRequired,scrollAxis:r.oneOf(["y"]),maxHeight:r.string};s.__docgenInfo={description:"",methods:[],displayName:"Scrollarea",props:{text:{required:!0,tsType:{name:"string"},description:"",type:{name:"string"}},scrollAxis:{required:!1,tsType:{name:"literal",value:'"y"'},description:"",defaultValue:{value:'"y"',computed:!1},type:{name:"enum",value:[{value:'"y"',computed:!1}]}},maxHeight:{required:!1,tsType:{name:"string"},description:"Maximum height of the scroll area",type:{name:"string"}}}};const d={title:"Component/Scrollarea",component:s,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{backgroundColor:{control:"color"}}},e={args:{text:"sampletextforscrollarea",scrollAxis:"y",maxHeight:"10rem"}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
-  args: {
-    text: 'sampletextforscrollarea',
-    scrollAxis: \`y\`,
-    maxHeight: \`10rem\`
-  }
-}`,...e.parameters?.docs?.source}}};const x=["ScrollareaYaxis"];export{e as ScrollareaYaxis,x as __namedExportsOrder,d as default};
