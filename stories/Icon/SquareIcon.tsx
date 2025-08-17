@@ -6,31 +6,26 @@ import PropTypes from "prop-types";
 
 
  const SquareIcon = ({ 
-  size = 24, 
-  color = 'currentColor',
    ...props }
   ) => (
    <svg
      xmlns="http://www.w3.org/2000/svg"
-     width={size}
-     height={size}
      viewBox="0 0 24 24"
-     fill={color}
-     stroke={color}
+     fill="currentColor"
+     stroke="currentColor"
      strokeWidth="2"
      strokeLinecap="round"
-     strokeLinejoin="miter"
+     strokeLinejoin="round"
      {...props}
    >
-<rect x="0" y="0" width="24" height="24"  />
+<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
    </svg>
  );
  
  export default SquareIcon;
 
 
-
 SquareIcon.propTypes = {
-  size: PropTypes.number,
-  color: PropTypes.string,  
+  className: PropTypes.string,
+  style: PropTypes.object,
 };

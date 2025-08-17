@@ -4,6 +4,7 @@ import withI18n from 'storybook-react-i18next'
 import i18n from './i18n'; // i18n設定ファイルをインポート
 import '../src/reset.scss'; // reset.scssをインポート
 import '../src/lang.scss'; // lang.scssをインポート
+//import '../src/tokens/_semantic-colors.scss'; 
 
 const preview: Preview = {
   parameters: {
@@ -53,7 +54,7 @@ export const decorators = [
      // 言語変更時にi18nのlanguageを更新し、iframeの中のbodyタグのlang属性も更新
     React.useEffect(() => {
       i18n.changeLanguage(locale);
-      document.body.lang = locale; // ここを追加
+      document.body.lang = locale; 
     }, [locale]);
 
     return Story(context);

@@ -35,10 +35,18 @@ $scrollbar-track: $pccs-gy8_5; /* スクロールバーのトラック部分の�
 
 /* CSS変数としても使えるようにする (アイコンの色としてSVGに適用するため)*/
 :root {
-  --semantic-danger: $semantic-danger;
-  --semantic-success : $semantic-success;
-  --semantic-warning :$semantic-warning
-  --semantic-primary: $semantic-primary;
-  --semantic-secondary: $semantic-secondary;
+  // --semantic-danger: $semantic-danger;
+  // --semantic-success : $semantic-success;
+  // --semantic-warning :$semantic-warning;
+  // --semantic-primary: $semantic-primary;
+  // --semantic-secondary: $semantic-secondary;
+
+  //SCSSでCSS変数を扱う場合の書き方
+  --semantic-danger: #{$semantic-danger};
+  --semantic-success: #{$semantic-success};
+  --semantic-warning: #{$semantic-warning};
+  --semantic-primary: #{$semantic-primary};
+  --semantic-secondary: #{$semantic-secondary};
+
 }
 

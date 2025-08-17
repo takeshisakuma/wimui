@@ -5,11 +5,9 @@ import PropTypes from "prop-types";
 
 
 
- const CircleIcon = ({ size = 24, ...props }) => (
+ const CircleIcon = ({ ...props }) => (
    <svg
      xmlns="http://www.w3.org/2000/svg"
-     width={size}
-     height={size}
      viewBox="0 0 24 24"
      fill="currentColor"
      stroke="currentColor"
@@ -28,7 +26,9 @@ import PropTypes from "prop-types";
 
 
 CircleIcon.propTypes = {
-  size: PropTypes.number,
-  color: PropTypes.string,  
+ // SVGの標準的なprops
+  className: PropTypes.string,
+  style: PropTypes.object,
+  // その他のSVG属性も受け付ける
 };
 

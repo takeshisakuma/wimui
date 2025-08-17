@@ -12,17 +12,16 @@ import CircleIcon from './CircleIcon';
 import SquareIcon from './SquareIcon';
 
 
-// Map icon names to their components
+// アイコン名をコンポーネントにマッピング
 const icons = {
   CircleIcon: CircleIcon,
   SquareIcon: SquareIcon,
 };
 
-type IconProps =  React.ComponentPropsWithoutRef<'div'> &{
+type IconProps = React.SVGProps<SVGSVGElement> & {
   name: "CircleIcon" | "SquareIcon"; 
-  size?:"small" | "medium" | "large";
+  size?: "small" | "medium" | "large";
   color?: "semantic-danger" | "semantic-success" | "semantic-warning" | "semantic-primary" | "semantic-secondary";
-
 };
 
 const Icon = ({ 
@@ -32,6 +31,8 @@ const Icon = ({
   ...props 
 }: IconProps) => {
 
+
+
    if (!name) {
      return null;
    }
@@ -40,12 +41,15 @@ const Icon = ({
      return null;
    }
 
-  // CSS変数を使用するためのスタイルオブジェクトを作成
-    const iconStyle = color ? { color: `var(--${color})` } : {};
+
+
+  // colorプロパティから"semantic-"を除いてクラス名にする
+  const colorClass = color.replace('semantic-', '');
 
    return <IconComponent 
-    className={[`wim-icon`, `font-size-${size}`].join(" ")}
-    style={iconStyle} 
+    className={[`wim-icon`, `font-size-${size}`,colorClass].join(" ")}
+    
+
    {...props} />;
  };
  

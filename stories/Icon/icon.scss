@@ -3,6 +3,8 @@
 @use '../../src/tokens/semantic-texts' as texts;
 @use '../../src/lang' as lang;
 
+
+
 .wim-icon {
   display: inline-block;
   cursor: pointer;
@@ -10,6 +12,11 @@
   text-box-trim: trim-both;
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
+    svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .wim-icon.font-size-large{
@@ -26,10 +33,13 @@
     height:  texts.$size-small;
 }
 
-.wim-icon.danger {
+svg.wim-icon.danger{
   fill: var(--semantic-danger);
   stroke: var(--semantic-danger);
 }
+
+
+
 
 .wim-icon.success {
   fill: var(--semantic-success);
@@ -48,4 +58,9 @@
 .wim-icon.secondary {
   fill: var(--semantic-secondary);
   stroke: var(--semantic-secondary);
+}
+
+.wim-icon.info {
+  fill: var(--semantic-info);
+  stroke: var(--semantic-info);
 }
