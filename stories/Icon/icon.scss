@@ -1,2 +1,51 @@
 @use '../../src/tokens/semantic-colors' as colors;
 
+@use '../../src/tokens/semantic-texts' as texts;
+@use '../../src/lang' as lang;
+
+.wim-icon {
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+  text-box-trim: trim-both;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.wim-icon.font-size-large{
+    width:  texts.$size-large;
+    height:   texts.$size-large;
+}
+.wim-icon.font-size-medium{
+    width:  texts.$size-medium;
+    height:  texts.$size-medium;
+}
+
+.wim-icon.font-size-small{
+    width:  texts.$size-small;
+    height:  texts.$size-small;
+}
+
+.wim-icon.danger {
+  fill: var(--semantic-danger);
+  stroke: var(--semantic-danger);
+}
+
+.wim-icon.success {
+  fill: var(--semantic-success);
+  stroke: var(--semantic-success);
+}
+
+.wim-icon.warning {
+  fill: var(--semantic-warning);
+  stroke: var(--semantic-warning);
+}
+
+.wim-icon.primary {
+  fill: var(--semantic-primary);
+  stroke: var(--semantic-primary);
+}
+.wim-icon.secondary {
+  fill: var(--semantic-secondary);
+  stroke: var(--semantic-secondary);
+}

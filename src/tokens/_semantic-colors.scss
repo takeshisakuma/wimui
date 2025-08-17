@@ -30,3 +30,15 @@ $font-error:$pccs-sf2;
 /* Scrollareaコンポーネントのスクロールバーの色 */
 $scrollbar-thumb: $pccs-b20; /* スクロールバーのつまみ部分の色 */
 $scrollbar-track: $pccs-gy8_5; /* スクロールバーのトラック部分の色 */  
+
+
+
+/* CSS変数としても使えるようにする (アイコンの色としてSVGに適用するため)*/
+:root {
+  --semantic-danger: $semantic-danger;
+  --semantic-success : $semantic-success;
+  --semantic-warning :$semantic-warning
+  --semantic-primary: $semantic-primary;
+  --semantic-secondary: $semantic-secondary;
+}
+

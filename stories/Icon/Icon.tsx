@@ -20,14 +20,15 @@ const icons = {
 
 type IconProps =  React.ComponentPropsWithoutRef<'div'> &{
   name: "CircleIcon" | "SquareIcon"; 
-  size?:  number; 
-  color?: string;
+  size?:"small" | "medium" | "large";
+  color?: "semantic-danger" | "semantic-success" | "semantic-warning" | "semantic-primary" | "semantic-secondary";
+
 };
 
 const Icon = ({ 
   name,
-  size = 24,
-  color = 'currentColor',
+  size = "medium",
+  color = "semantic-primary",
   ...props 
 }: IconProps) => {
 
@@ -38,7 +39,14 @@ const Icon = ({
    if (!IconComponent) {
      return null;
    }
-   return <IconComponent size={size} color={color} {...props} />;
+
+  // CSS変数を使用するためのスタイルオブジェクトを作成
+    const iconStyle = color ? { color: `var(--${color})` } : {};
+
+   return <IconComponent 
+    className={[`wim-icon`, `font-size-${size}`].join(" ")}
+    style={iconStyle} 
+   {...props} />;
  };
  
  
@@ -48,7 +56,9 @@ const Icon = ({
 Icon.propTypes = {
   name: PropTypes.oneOf(["CircleIcon", "SquareIcon"]),
   /** Icon size */
-  size: PropTypes.oneOfType([PropTypes.number]),
+  size: PropTypes.oneOf(["small", "medium", "large"]),
   /** Icon color */
-  color: PropTypes.string,
+   /* color: PropTypes.oneOf(["semantic-danger", "semantic-success", "semantic-warning", "semantic-primary", "semantic-secondary"]),*/
+  color: PropTypes.oneOf(["semantic-danger", "semantic-success", "semantic-warning", "semantic-primary", "semantic-secondary"]),
+
  }

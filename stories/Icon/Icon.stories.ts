@@ -13,6 +13,10 @@ export default {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
+    color: {
+      control: { type: 'radio' },
+      options: ["semantic-danger", "semantic-success", "semantic-warning", "semantic-primary", "semantic-secondary"],
+},
     backgroundColor: { control: "color" },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
@@ -24,15 +28,15 @@ export default {
 
 export const MediumSquareIcon = {
   args: {
-    name: "CircleIcon",
-    size:24,
-    color:"black"
+    name: "SquareIcon",
+    size:"medium",
+    color: "semantic-primary" // CSS変数名に変更
   },
 };
 export const MediumCircleIcon = {
   args: {
-    name: "SquareIcon",
-    size:24,
-    color:"red"
+    name: "CircleIcon",
+    size:"large",
+  color: "semantic-danger" // CSS変数名に変更
   },
 };

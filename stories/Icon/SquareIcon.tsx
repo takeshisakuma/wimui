@@ -19,10 +19,10 @@ import PropTypes from "prop-types";
      stroke={color}
      strokeWidth="2"
      strokeLinecap="round"
-     strokeLinejoin="round"
+     strokeLinejoin="miter"
      {...props}
    >
-  <circle cx="12" cy="12" r="10"/>
+<rect x="0" y="0" width="24" height="24"  />
    </svg>
  );
  
