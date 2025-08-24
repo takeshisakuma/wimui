@@ -38,29 +38,40 @@ svg.wim-icon.danger{
   stroke: var(--semantic-danger);
 }
 
-
-
-
-.wim-icon.success {
+svg.wim-icon.success {
   fill: var(--semantic-success);
   stroke: var(--semantic-success);
 }
 
-.wim-icon.warning {
+svg.wim-icon.warning {
   fill: var(--semantic-warning);
   stroke: var(--semantic-warning);
 }
 
-.wim-icon.primary {
+svg.wim-icon.primary {
   fill: var(--semantic-primary);
   stroke: var(--semantic-primary);
 }
-.wim-icon.secondary {
+svg.wim-icon.secondary {
   fill: var(--semantic-secondary);
   stroke: var(--semantic-secondary);
 }
 
-.wim-icon.info {
+svg.wim-icon.info {
   fill: var(--semantic-info);
   stroke: var(--semantic-info);
+}
+
+/* ボタン内のアイコンの色 */
+.wim-button.button-role-primary svg.wim-icon{
+  fill: colors.$font-white;
+  stroke: colors.$font-white;
+}
+.wim-button.button-role-secondary svg.wim-icon{
+  fill: colors.$font-white;
+  stroke: colors.$font-white;
+}
+.wim-button.button-role-danger svg.wim-icon{
+  fill: colors.$font-white;
+  stroke: colors.$font-white;
 }

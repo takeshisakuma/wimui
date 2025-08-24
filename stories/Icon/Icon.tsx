@@ -27,7 +27,7 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
 const Icon = ({ 
   name,
   size = "medium",
-  color = "semantic-primary",
+  color = "semantic-primary",// このcolorプロパティは直接使わない
   ...props 
 }: IconProps) => {
 

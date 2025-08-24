@@ -9,8 +9,8 @@ import PropTypes from "prop-types";
    <svg
      xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 24 24"
-     fill="currentColor"
-     stroke="currentColor"
+     fill="currentColor" // 引用符で囲む
+     stroke="currentColor" // 引用符で囲む
      strokeWidth="2"
      strokeLinecap="round"
      strokeLinejoin="round"
