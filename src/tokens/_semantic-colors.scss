@@ -14,6 +14,18 @@ $semantic-info: $pccs-s18;
 
 $semantic-disabled:$pccs-gy7_5;
 
+/* --- セマンティックカラー上のテキスト、アイコンの色 --- */
+
+$semantic-text-on-danger: $pccs-w;
+$semantic-text-on-success: $pccs-w;
+$semantic-text-on-warning: $pccs-w;
+$semantic-text-on-primary: $pccs-w;
+$semantic-text-on-secondary:$pccs-w;
+$semantic-text-on-info: $pccs-w;
+$semantic-text-on-disabled:$pccs-w;
+
+
+
 /* ---- 文字色 ---- */
 /* 無彩色 */
 $font-black:$pccs-bk;

@@ -9,25 +9,25 @@
 .wim-button {
   display: inline-flex;
   align-items: center;
-  gap: 8px; // アイコンとテキストの間隔
+  gap: 0.3rem; // アイコンとテキストの間隔
   cursor: pointer;
   border: 0;
-  border-radius: 0.4em;
+  border-radius: 4px;
   text-box-trim: trim-both;
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
 
-    // テキスト部分にクラスを追加
-  .button-label {
-    display: inherit;
-    // スタイル調整が必要な場合
-  }
+
   // アイコンのみのボタンのスタイル
   &.icon-only {
-    padding: 10px; // アイコンに合わせたパディング
+    padding: 0.5rem!important; // アイコンに合わせたパディング
     width: auto;
     height: auto;
   }
+
+
+
+
 }
 
 .wim-button.font-size-large{
@@ -43,21 +43,27 @@
 
 .button-role-primary {
   background-color: colors.$semantic-primary;
-  color: colors.$font-white; 
+  .button-label {
+    color: colors.$semantic-text-on-primary; 
+  }
 }
 
 .button-role-secondary {
   //box-shadow: rgba(0, 0, 0 / 0.15) 0 0 0 1px inset;
   //box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
   background-color: colors.$semantic-secondary;
-  color: colors.$font-white; 
+  .button-label {
+color: colors.$semantic-text-on-secondary; 
+  }
 }
 
 .button-role-danger {
   //box-shadow: rgba(0, 0, 0 / 0.15) 0 0 0 1px inset;
   //box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
   background-color: colors.$semantic-danger;
-  color: colors.$font-white; 
+  .button-label {
+    color: colors.$semantic-text-on-danger; 
+  }
 }
 
 
@@ -65,6 +71,10 @@
   /* disabledの時はカーソル形状変更 */
   cursor: not-allowed;
   background-color: colors.$semantic-disabled;
+    .button-label {
+  color: colors.$semantic-text-on-disabled; 
+  }
+
 }
 
 .wim-button:hover{
