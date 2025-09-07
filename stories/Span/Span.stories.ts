@@ -66,3 +66,35 @@ export const ExSmallSpan = {
     style: `normal`
   },
 };
+
+export const SmallSpanWithIcon = {
+  args: {
+    size: "small",
+    content: `small_span`,
+    weight: `normal`,
+    color: `deepgray`,
+    style: `normal`,
+    iconName: "SquareIcon", //アイコン名を指定
+    iconPosition: "left" //アイコンの位置を指定
+  },
+};
+
+export const LargeSpanWithIconOnRight = {
+  args: {
+    size: "large",
+    content: `large_span`,
+    weight: "bold",
+    color: "black",
+    style: "italic",
+    iconName: "CircleIcon",
+    iconPosition: "right"
+  }
+};
+
+export const IconOnlySpan = {
+  args: {
+    size: "medium",
+    content: "", // テキストなし
+    iconName: "CircleIcon"
+  }
+};

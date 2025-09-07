@@ -1,7 +1,42 @@
-//@use '../../src/tokens/semantic-colors' as colors;
-//@use '../../src/tokens/semantic-texts' as texts;
-//@use '../../src/lang' as lang;
+@use '../../src/tokens/semantic-colors' as colors;
+@use '../../src/tokens/semantic-texts' as texts;
+@use '../../src/lang' as lang;
 
 .wim-span{
+  // spanをフレックスコンテナにする
+  display: inline-flex; 
+  // 子要素を垂直方向に中央揃え
+  align-items: center; 
+  // 子要素間の間隔
+  gap: 0.3rem; 
+  // カーソル
+  cursor: pointer;
+
+  //テキストの上下トリム
   text-box-trim: trim-both;
+}
+
+.wim-icon.font-size-ex-large{
+    width:  texts.$size-ex-large;
+    height:  texts.$size-ex-large;
+}
+
+
+.wim-icon.font-size-large{
+    width:  texts.$size-large;
+    height:  texts.$size-large;
+}
+.wim-icon.font-size-medium{
+    width:  texts.$size-medium;
+    height: texts.$size-medium;
+}
+
+.wim-icon.font-size-small{
+    width:  texts.$size-small;
+    height:  texts.$size-small;
+}
+
+.wim-icon.font-size-ex-small{
+    width:  texts.$size-ex-small;
+    height:  texts.$size-ex-small;
 }
