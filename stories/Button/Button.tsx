@@ -4,34 +4,35 @@ import "./button.scss";
 import { useTranslation } from 'react-i18next';
 import Icon from "../Icon/Icon";//アイコン用
 
-type ButtonProps =  React.ComponentPropsWithoutRef<'button'> &{
+type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
   backgroundColor?: string | null;
   size?: "small" | "medium" | "large";
   label?: string;//アイコンのみのボタンが作れるように任意にしている
-  weight?:"bold"| "normal";
-  role?:"primary"|"secondary"|"danger";
-  color?:"white"|"black";
-  state?:"abled"|"disabled";
+  weight?: "bold" | "normal";
+  role?: "primary" | "secondary" | "danger";
+  color?: "white" | "black";
+  state?: "abled" | "disabled";
   //以下アイコン用
-  iconName?:"CircleIcon"|"SquareIcon";//Icon.tsxのnameプロパティに対応
-  iconPosition?:"left"|"right";//ボタンのラベルの左か右にアイコンを配置
+  iconName?: "CircleIcon" | "SquareIcon";//Icon.tsxのnameプロパティに対応
+  iconPosition?: "left" | "right";//ボタンのラベルの左か右にアイコンを配置
 };
 
 export const Button = ({
   size = "medium",
   label,
-  weight="bold",
-  color="black",
-  role="secondary",
-  state="abled",
+  weight = "bold",
+  color = "black",
+  role = "secondary",
+  state = "abled",
   //以下アイコン関連のプロパティを分割代入
-  iconName=undefined,//デフォルトはアイコンなし
+  iconName = undefined,//デフォルトはアイコンなし
   iconPosition = "left",
+  backgroundColor,
   ...props
 }: ButtonProps) => {
 
 
- // アイコンの色をボタンの役割(role)に応じて設定
+  // アイコンの色をボタンの役割(role)に応じて設定
   const iconColor = role === 'primary' || role === 'danger' ? 'semantic-secondary' : 'semantic-primary';
 
   // アイコンのコンポーネントを準備
@@ -60,9 +61,9 @@ export const Button = ({
     } else if (label) {
       return <span className="button-label">{t(label)}</span>;
     } else if (iconName) {
-    return iconComponent;
+      return iconComponent;
     }
-      return null;
+    return null;
   })();
 
 
@@ -70,17 +71,18 @@ export const Button = ({
   return (
     <button
       type="button"
+      style={backgroundColor ? { backgroundColor } : undefined}
       className={[
-        `wim-button`, 
+        `wim-button`,
         `font-size-${size}`,
         `font-weight-${weight}`,
         `button-role-${role}`,
         !label && iconName ? `icon-only` : '',//アイコンのみのボタンの場合のクラス
       ].join(" ")}
-      disabled={state === 'disabled'} 
+      disabled={state === 'disabled'}
       {...props}
     >
-       {content}
+      {content}
     </button>
 
   );
