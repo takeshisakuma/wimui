@@ -1,12 +1,19 @@
 import React from 'react';
 import type { Preview } from '@storybook/react'
-import withI18n from 'storybook-react-i18next'
 import i18n from './i18n'; // i18n設定ファイルをインポート
 import '../src/reset.scss'; // reset.scssをインポート
 import '../src/lang.scss'; // lang.scssをインポート
 //import '../src/tokens/_semantic-colors.scss'; 
 
 const preview: Preview = {
+  initialGlobals: {
+    locale: 'en',
+    locales: {
+      en: { title: 'English', right: '🇺🇸' },
+      ja: { title: '日本語', right: '🇯🇵' },
+      pt: { title: 'Português', right: '🇵🇹' },
+    },
+  },
   parameters: {
     controls: {
       matchers: {
@@ -21,44 +28,8 @@ const preview: Preview = {
       // 'off' - skip a11y checks entirely
       test: "todo",
     },
- i18n,
+    i18n,
   },
-
 }
-
-export const globalTypes = {
-  locale: {
-    name: 'Locale',
-    description: 'Internationalization locale',
-    defaultValue: 'en',
-    toolbar: {
-      icon: 'globe',
-      items: [
-        { value: 'en', right: '🇺🇸', title: 'English' },
-        { value: 'ja', right: '🇯🇵', title: '日本語' },
-        { value: 'pt', right: '🇵🇹', title: 'Português' }
-      ],
-    },
-  },
-};
-
-
-
-
-
-
-export const decorators = [
-  (Story, context) => {
-    const { locale } = context.globals;
-    
-     // 言語変更時にi18nのlanguageを更新し、iframeの中のbodyタグのlang属性も更新
-    React.useEffect(() => {
-      i18n.changeLanguage(locale);
-      document.body.lang = locale; 
-    }, [locale]);
-
-    return Story(context);
-  },
-];
 
 export default preview
