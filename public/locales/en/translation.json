@@ -1,4 +1,4 @@
- {
+{
   "greeting": "Hello",
   "welcome": "Welcome to our app",
   "button_label": "Button",
@@ -12,6 +12,9 @@
   "medium_paragraph": "Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph, Medium paragraph",
   "small_paragraph": "Small paragraph, Small paragraph, Small paragraph, Small paragraph, Small paragraph, Small paragraph, Small paragraph, Small paragraph, Small paragraph, Small paragraph",
   "ex-small_paragraph": "Extra Small paragraph, Extra Small paragraph, Extra Small paragraph, Extra Small paragraph, Extra Small paragraph, Extra Small paragraph, Extra Small paragraph, Extra Small paragraph, Extra Small paragraph, Extra Small paragraph",
-  "sampletextforscrollarea":"sample text for scroll area,sample text for scroll area,sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area,sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area,sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area"        
-
+  "sampletextforscrollarea": "sample text for scroll area,sample text for scroll area,sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area,sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area,sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area",
+  "language_support": "Multilingual Support",
+  "planned_for_implementation": "Planned for implementation",
+  "not_planned_for_implementation": "Not planned for implementation",
+  "already_implemented": "Already implemented"
 }
