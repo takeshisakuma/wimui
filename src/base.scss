@@ -19,6 +19,7 @@
         -webkit-tap-highlight-color: transparent;
         word-break: break-word;
         overflow-wrap: break-word;
+        /* 常時スクロールバー分の領域を確保することでガタツキやレイアウトシフト防止 */
         scrollbar-gutter: stable;
     }
 
@@ -33,13 +34,15 @@
         height: auto;
     }
 
-    /* フォーム要素のフォント継承 */
+    /* フォーム要素のフォント継承とインタラクションの最適化 */
     input,
     button,
     textarea,
     select {
         font: inherit;
         line-height: inherit;
+        /* iOSで、ボタンをダブルタップすると意図せず画面が拡大されてしまうのを防ぐ */
+        touch-action: manipulation;
     }
 
     /* textareaのサイズ変更を垂直方向のみに制限 */
@@ -50,6 +53,12 @@
     /* Rubyテキスト（ルビ）の表示を考慮 */
     rt {
         font-feature-settings: "palt";
+    }
+
+    /* ポップオーバーやモーダル内での意図しないスクロール連動を防止 */
+    dialog,
+    [popover] {
+        overscroll-behavior-block: contain;
     }
 
     /* フォーカス時のアウトライン表示 (アクセシビリティ向上) */

@@ -9,14 +9,13 @@ export default {
   },
   tags: ["autodocs"],
   argTypes: {
-    backgroundColor: { control: "color" },
   }
 };
 
 export const ScrollareaYaxis = {
   args: {
-  text: 'sampletextforscrollarea', 
-  scrollAxis:`y`,
-  maxHeight: `10rem`,
+    text: 'sampletextforscrollarea',
+    scrollAxis: `y`,
+    maxHeight: `10rem`,
   },
 };

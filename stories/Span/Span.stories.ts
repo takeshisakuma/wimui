@@ -9,7 +9,6 @@ export default {
   },
   tags: ["autodocs"],//ドキュメント自動生成有効化
   argTypes: {
-    backgroundColor: { control: "color" },//コンポーネントの背景色を自由に設定できるようにする
   },
   args: { onClick: fn() },//`fn` を使用して onClick 引数を監視(呼び出されるとアクションパネルに表示) 
 };
@@ -31,7 +30,7 @@ export const LargeSpan = {
   args: {
     size: 'large',
     content: `large_span`,
-    weight:`normal`,
+    weight: `normal`,
     color: `deepgray`,
     style: `normal`
   },
@@ -41,7 +40,7 @@ export const MediumSpan = {
   args: {
     size: 'medium',
     content: `medium_span`,
-    weight:`normal`,
+    weight: `normal`,
     color: `deepgray`,
     style: `normal`
   },
@@ -50,8 +49,8 @@ export const MediumSpan = {
 export const SmallSpan = {
   args: {
     size: "small",
-    content:  `small_span`,
-    weight:`normal`,
+    content: `small_span`,
+    weight: `normal`,
     color: `deepgray`,
     style: `normal`
   },
@@ -60,8 +59,8 @@ export const SmallSpan = {
 export const ExSmallSpan = {
   args: {
     size: "ex-small",
-    content:  `ex-small_span`,
-    weight:`normal`,
+    content: `ex-small_span`,
+    weight: `normal`,
     color: `deepgray`,
     style: `normal`
   },

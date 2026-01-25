@@ -64,6 +64,18 @@
       color: var(--font-black);
     }
 
+    &--deepgray {
+      color: colors.$font-deepgray;
+    }
+
+    &--gray {
+      color: colors.$font-gray;
+    }
+
+    &--lightgray {
+      color: colors.$font-lightgray;
+    }
+
     &--white {
       color: var(--font-white);
     }

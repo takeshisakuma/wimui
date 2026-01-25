@@ -59,6 +59,14 @@
       color: colors.$semantic-text-on-danger;
     }
 
+    &--bold {
+      font-weight: texts.$weight-bold;
+    }
+
+    &--white {
+      color: var(--font-white);
+    }
+
     &:disabled {
       cursor: not-allowed;
       background-color: colors.$semantic-disabled;

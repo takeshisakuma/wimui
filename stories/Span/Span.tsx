@@ -35,8 +35,8 @@ export const Span = ({
   };
   const sizeClass = `wim-span--${sizeMap[size]}`;
   const colorClass = `wim-span--${color}`;
-  const weightClass = `wim-weight-${weight}`;
-  const styleClass = `wim-style-${style}`;
+  const weightClass = weight === "bold" ? "wim-span--bold" : "";
+  const styleClass = style === "italic" ? "wim-span--italic" : "";
 
   // Icon の size プロパティは "small" | "medium" | "large" のみ許容されているためマッピング
   const iconSizeMap: Record<string, "small" | "medium" | "large"> = {

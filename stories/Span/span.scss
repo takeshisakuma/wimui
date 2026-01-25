@@ -36,6 +36,18 @@
             color: var(--font-black);
         }
 
+        &--deepgray {
+            color: colors.$font-deepgray;
+        }
+
+        &--gray {
+            color: colors.$font-gray;
+        }
+
+        &--lightgray {
+            color: colors.$font-lightgray;
+        }
+
         &--white {
             color: var(--font-white);
         }
@@ -50,6 +62,14 @@
 
         &--danger {
             color: var(--semantic-danger);
+        }
+
+        &--bold {
+            font-weight: texts.$weight-bold;
+        }
+
+        &--italic {
+            font-style: texts.$style-italic;
         }
     }
 }

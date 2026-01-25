@@ -33,6 +33,8 @@ export const Button = ({
   const sizeMap = { small: 'sm', medium: 'md', large: 'lg' };
   const sizeClass = `wim-button--${sizeMap[size]}`;
   const roleClass = `wim-button--${role}`;
+  const weightClass = weight === "bold" ? "wim-button--bold" : "";
+  const colorClass = color === "white" ? "wim-button--white" : "";
   const iconOnlyClass = !label && iconName ? 'wim-button--icon-only' : '';
 
   const iconComponent = iconName ? <Icon name={iconName} size={size} /> : null;
@@ -49,7 +51,7 @@ export const Button = ({
     <button
       type="button"
       style={backgroundColor ? { backgroundColor } : undefined}
-      className={[`wim-button`, sizeClass, roleClass, iconOnlyClass, `wim-weight-${weight}`].filter(Boolean).join(" ")}
+      className={[`wim-button`, sizeClass, roleClass, weightClass, colorClass, iconOnlyClass].filter(Boolean).join(" ")}
       disabled={state === 'disabled'}
       {...props}
     >
