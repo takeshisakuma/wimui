@@ -1,0 +1,66 @@
+@use './tokens/semantic-colors' as colors;
+@use './tokens/measure-scales' as scales;
+
+@layer base {
+    /* Base Styles: 要素へのグローバルなスタイル定義 */
+
+    /* HTML要素の基本的なスタイル調整 */
+    html {
+        -webkit-text-size-adjust: 100%;
+        line-height: 1.15;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* bodyの基本的なスタイル */
+    body {
+        min-height: 100vh;
+        text-rendering: optimizeLegibility;
+        -webkit-tap-highlight-color: transparent;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        scrollbar-gutter: stable;
+    }
+
+    /* 画像とメディア要素の応答性 */
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* フォーム要素のフォント継承 */
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+        line-height: inherit;
+    }
+
+    /* textareaのサイズ変更を垂直方向のみに制限 */
+    textarea {
+        resize: vertical;
+    }
+
+    /* Rubyテキスト（ルビ）の表示を考慮 */
+    rt {
+        font-feature-settings: "palt";
+    }
+
+    /* フォーカス時のアウトライン表示 (アクセシビリティ向上) */
+    :focus-visible {
+        outline: scales.$focus-outline-width solid colors.$semantic-focus-outline-color;
+        outline-offset: scales.$focus-outline-offset;
+    }
+
+    /* コンポーネント共通の基本振る舞い */
+    [class^="wim-"],
+    [class*=" wim-"] {
+        text-box-trim: trim-both;
+    }
+}

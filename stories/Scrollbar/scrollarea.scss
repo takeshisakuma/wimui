@@ -1,14 +1,10 @@
 @use '../../src/tokens/semantic-colors' as colors;
 
-.overflow-y-scroll {
- overflow-y: auto;
+@layer component {
+  .wim-scrollarea {
+    scrollbar-color: colors.$scrollbar-thumb colors.$scrollbar-track;
+    scrollbar-width: thin;
+    scrollbar-gutter: stable;
+    overflow-y: auto;
+  }
 }
-
-.custom-scrollbar {
-  scrollbar-color: colors.$scrollbar-thumb colors.$scrollbar-track; /* サム(つまみ)とトラック(背景)の色 */
-  scrollbar-width: thin; /* スクロールバーを細くする (androidは非対応)*/
-  scrollbar-gutter: stable; /* スクロールバーのスペースを確保 */
-
-}
-
-

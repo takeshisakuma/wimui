@@ -2,7 +2,7 @@
 
 /* --- サイズの意味の定義 --- */
 $size-ex-small: $font-size-ms-minus-2;
-$size-small: $font-size-ms-minus-1; 
+$size-small: $font-size-ms-minus-1;
 $size-medium: $font-size-ms-0;
 $size-large: $font-size-ms-1;
 $size-ex-large: $font-size-ms-2;
@@ -18,11 +18,17 @@ $style-italic: italic;
 
 /* line-heightの意味の定義 */
 /* 日本語のline-height(ISO 15924で日本語を表すコードは「Jpan」) */
-$line-height-loose-jpan: 1.8; /* Large */
-$line-height-normal-jpan: 1.6; /* Medium */
-$line-height-tight-jpan: 1.4; /* Small */
+$line-height-loose-jpan: 1.8;
+/* Large */
+$line-height-normal-jpan: 1.6;
+/* Medium */
+$line-height-tight-jpan: 1.4;
+/* Small */
 
-  /* アルファベットのline-height(ISO 15924でラテン文字を表すコードは「Latn」) */
-$line-height-loose-latn: 1.6; /* Large */
-$line-height-normal-latn: 1.4; /* Lmedium */
-$line-height-tight-latn: 1.2; /* Small */
+/* アルファベットのline-height(ISO 15924でラテン文字を表すコードは「Latn」) */
+$line-height-loose-latn: 1.6;
+/* Large */
+$line-height-normal-latn: 1.4;
+/* Lmedium */
+$line-height-tight-latn: 1.2;
+/* Small */

@@ -1,88 +1,72 @@
 @use '../../src/tokens/semantic-colors' as colors;
-
-
 @use '../../src/tokens/semantic-texts' as texts;
+@use '../../src/tokens/measure-scales' as scales;
 @use '../../src/lang' as lang;
 
+@layer component {
+  .wim-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: scales.$spacing-xs;
+    cursor: pointer;
+    border: 0;
+    border-radius: scales.$radius-md;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+    padding: scales.$spacing-md scales.$spacing-lg;
 
+    &__label {
+      line-height: inherit;
+    }
 
-.wim-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem; // アイコンとテキストの間隔
-  cursor: pointer;
-  border: 0;
-  border-radius: 4px;
-  text-box-trim: trim-both;
-  opacity: 1;
-  transition: opacity 0.2s ease-in-out;
+    &--icon-only {
+      padding: scales.$spacing-sm !important;
+      width: auto;
+      height: auto;
+    }
 
+    &--lg {
+      padding: scales.$spacing-2xl scales.$spacing-5xl;
+      font-size: texts.$size-large;
+    }
 
-  // アイコンのみのボタンのスタイル
-  &.icon-only {
-    padding: 0.5rem!important; // アイコンに合わせたパディング
-    width: auto;
-    height: auto;
+    &--md {
+      padding: scales.$spacing-xl scales.$spacing-4xl;
+      font-size: texts.$size-medium;
+    }
+
+    &--sm {
+      padding: scales.$spacing-lg scales.$spacing-3xl;
+      font-size: texts.$size-small;
+    }
+
+    &--primary {
+      background-color: colors.$semantic-primary;
+      color: colors.$semantic-text-on-primary;
+    }
+
+    &--secondary {
+      background-color: colors.$semantic-secondary;
+      color: colors.$semantic-text-on-secondary;
+    }
+
+    &--danger {
+      background-color: colors.$semantic-danger;
+      color: colors.$semantic-text-on-danger;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: colors.$semantic-disabled;
+      color: colors.$semantic-text-on-disabled;
+    }
+
+    &:hover:not(:disabled) {
+      opacity: 0.6;
+    }
   }
-
-
-
-
-}
-
-.wim-button.font-size-large{
-  padding: 0.7rem 2.2rem;
-}
-.wim-button.font-size-medium{
-    padding: 0.6rem 1.8rem;
-}
-
-.wim-button.font-size-small{
-    padding: 0.5rem 1.4rem;
-}
-
-.button-role-primary {
-  background-color: colors.$semantic-primary;
-  .button-label {
-    color: colors.$semantic-text-on-primary; 
-  }
-}
-
-.button-role-secondary {
-  //box-shadow: rgba(0, 0, 0 / 0.15) 0 0 0 1px inset;
-  //box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
-  background-color: colors.$semantic-secondary;
-  .button-label {
-color: colors.$semantic-text-on-secondary; 
-  }
-}
-
-.button-role-danger {
-  //box-shadow: rgba(0, 0, 0 / 0.15) 0 0 0 1px inset;
-  //box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
-  background-color: colors.$semantic-danger;
-  .button-label {
-    color: colors.$semantic-text-on-danger; 
-  }
-}
-
-
-.wim-button:disabled {
-  /* disabledの時はカーソル形状変更 */
-  cursor: not-allowed;
-  background-color: colors.$semantic-disabled;
-    .button-label {
-  color: colors.$semantic-text-on-disabled; 
-  }
-
-}
-
-.wim-button:hover{
-  opacity: 0.6;
-
-
-}
-/* disabledの時はhover無効 */
-.wim-button:disabled:hover{
-  opacity: 1;
 }

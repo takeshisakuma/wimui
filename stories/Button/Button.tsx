@@ -2,19 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./button.scss";
 import { useTranslation } from 'react-i18next';
-import Icon from "../Icon/Icon";//アイコン用
+import { Icon } from "../Icon/Icon";
 
 type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
   backgroundColor?: string | null;
   size?: "small" | "medium" | "large";
-  label?: string;//アイコンのみのボタンが作れるように任意にしている
+  label?: string;
   weight?: "bold" | "normal";
   role?: "primary" | "secondary" | "danger";
   color?: "white" | "black";
   state?: "abled" | "disabled";
-  //以下アイコン用
-  iconName?: "CircleIcon" | "SquareIcon";//Icon.tsxのnameプロパティに対応
-  iconPosition?: "left" | "right";//ボタンのラベルの左か右にアイコンを配置
+  iconName?: "CircleIcon" | "SquareIcon";
+  iconPosition?: "left" | "right";
 };
 
 export const Button = ({
@@ -24,81 +23,48 @@ export const Button = ({
   color = "black",
   role = "secondary",
   state = "abled",
-  //以下アイコン関連のプロパティを分割代入
-  iconName = undefined,//デフォルトはアイコンなし
+  iconName = undefined,
   iconPosition = "left",
   backgroundColor,
   ...props
 }: ButtonProps) => {
-
-
-  // アイコンの色をボタンの役割(role)に応じて設定
-  const iconColor = role === 'primary' || role === 'danger' ? 'semantic-secondary' : 'semantic-primary';
-
-  // アイコンのコンポーネントを準備
-  const iconComponent = iconName ? <Icon name={iconName} size={size} color={iconColor} /> : null;
-
-
   const { t } = useTranslation();
 
+  const sizeMap = { small: 'sm', medium: 'md', large: 'lg' };
+  const sizeClass = `wim-button--${sizeMap[size]}`;
+  const roleClass = `wim-button--${role}`;
+  const iconOnlyClass = !label && iconName ? 'wim-button--icon-only' : '';
 
+  const iconComponent = iconName ? <Icon name={iconName} size={size} /> : null;
 
-
-  // テキストのみ、アイコンのみ、テキストとアイコン両方のレンダリングを条件分岐
-  const content = (() => {
-    if (label && iconName) {
-      return iconPosition === 'left' ? (
-        <>
-          {iconComponent}
-          <span className="button-label">{t(label)}</span>
-        </>
-      ) : (
-        <>
-          <span className="button-label">{t(label)}</span>
-          {iconComponent}
-        </>
-      );
-    } else if (label) {
-      return <span className="button-label">{t(label)}</span>;
-    } else if (iconName) {
-      return iconComponent;
-    }
-    return null;
-  })();
-
-
+  const content = (
+    <>
+      {iconName && iconPosition === 'left' && iconComponent}
+      {label && <span className="wim-button__label">{t(label)}</span>}
+      {iconName && iconPosition === 'right' && iconComponent}
+    </>
+  );
 
   return (
     <button
       type="button"
       style={backgroundColor ? { backgroundColor } : undefined}
-      className={[
-        `wim-button`,
-        `font-size-${size}`,
-        `font-weight-${weight}`,
-        `button-role-${role}`,
-        !label && iconName ? `icon-only` : '',//アイコンのみのボタンの場合のクラス
-      ].join(" ")}
+      className={[`wim-button`, sizeClass, roleClass, iconOnlyClass, `wim-weight-${weight}`].filter(Boolean).join(" ")}
       disabled={state === 'disabled'}
       {...props}
     >
       {content}
     </button>
-
   );
 };
 
 Button.propTypes = {
-  /** What background color to use */
   backgroundColor: PropTypes.string,
-  /** How large should the button be? */
   size: PropTypes.oneOf(["small", "medium", "large"]),
-  /** Button contents */
   label: PropTypes.string,
-  /** Optional click handler */
   onClick: PropTypes.func,
   weight: PropTypes.oneOf(["normal", "bold"]),
-  color: PropTypes.oneOf(["black", "deepgray", "gray", "lightgray", "white", "error"]),
+  color: PropTypes.oneOf(["black", "white"]),
   role: PropTypes.oneOf(["primary", "secondary", "danger"]),
   state: PropTypes.oneOf(["abled", "disabled"]),
   iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon"]),

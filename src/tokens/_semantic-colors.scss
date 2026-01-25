@@ -1,18 +1,17 @@
-/* 色の意味の定義 */
-/* このファイルで意味を定義してから各コンポーネントで使用する */
-/* @use '../src/tokens/semantic-colors' as colorsのように使用するので変数名にcolorのような色であることを示す文字列は含めていない　*/
-
-@use '../tokens/pccs-colors' as *;
+@use 'pccs-colors' as *;
 
 /* --- 色の意味 --- */
 $semantic-danger: $pccs-s1;
 $semantic-success: $pccs-s12;
 $semantic-warning: $pccs-s8;
 $semantic-primary: $pccs-s16;
-$semantic-secondary:$pccs-gy6_5;
+$semantic-secondary: $pccs-gy6_5;
 $semantic-info: $pccs-s18;
 
-$semantic-disabled:$pccs-gy7_5;
+$semantic-disabled: $pccs-gy7_5;
+
+/* --- フォーカス状態の色 --- */
+$semantic-focus-outline-color: $semantic-primary;
 
 /* --- セマンティックカラー上のテキスト、アイコンの色 --- */
 
@@ -20,28 +19,30 @@ $semantic-text-on-danger: $pccs-w;
 $semantic-text-on-success: $pccs-w;
 $semantic-text-on-warning: $pccs-w;
 $semantic-text-on-primary: $pccs-w;
-$semantic-text-on-secondary:$pccs-w;
+$semantic-text-on-secondary: $pccs-w;
 $semantic-text-on-info: $pccs-w;
-$semantic-text-on-disabled:$pccs-w;
+$semantic-text-on-disabled: $pccs-w;
 
 
 
 /* ---- 文字色 ---- */
 /* 無彩色 */
-$font-black:$pccs-bk;
-$font-deepgray:$pccs-gy3_5;
-$font-gray:$pccs-gy5_5;
-$font-lightgray:$pccs-gy7_5;
-$font-white:$pccs-w;
+$font-black: $pccs-bk;
+$font-deepgray: $pccs-gy3_5;
+$font-gray: $pccs-gy5_5;
+$font-lightgray: $pccs-gy7_5;
+$font-white: $pccs-w;
 
 /* 有彩色 */
 /* エラー表示など */
-$font-error:$pccs-sf2;
+$font-error: $pccs-sf2;
 
 
 /* Scrollareaコンポーネントのスクロールバーの色 */
-$scrollbar-thumb: $pccs-b20; /* スクロールバーのつまみ部分の色 */
-$scrollbar-track: $pccs-gy8_5; /* スクロールバーのトラック部分の色 */  
+$scrollbar-thumb: $pccs-b20;
+/* スクロールバーのつまみ部分の色 */
+$scrollbar-track: $pccs-gy8_5;
+/* スクロールバーのトラック部分の色 */
 
 
 
@@ -61,4 +62,3 @@ $scrollbar-track: $pccs-gy8_5; /* スクロールバーのトラック部分の�
   --semantic-secondary: #{$semantic-secondary};
 
 }
-

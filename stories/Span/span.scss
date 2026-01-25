@@ -1,42 +1,55 @@
 @use '../../src/tokens/semantic-colors' as colors;
 @use '../../src/tokens/semantic-texts' as texts;
+@use '../../src/tokens/measure-scales' as scales;
 @use '../../src/lang' as lang;
 
-.wim-span{
-  // spanをフレックスコンテナにする
-  display: inline-flex; 
-  // 子要素を垂直方向に中央揃え
-  align-items: center; 
-  // 子要素間の間隔
-  gap: 0.3rem; 
-  // カーソル
-  cursor: pointer;
+@layer component {
+    .wim-span {
+        display: inline-flex;
+        align-items: center;
+        gap: scales.$spacing-xs;
+        cursor: pointer;
+        color: inherit;
+        font: inherit;
 
-  //テキストの上下トリム
-  text-box-trim: trim-both;
-}
+        &--xl {
+            font-size: texts.$size-ex-large;
+        }
 
-.wim-icon.font-size-ex-large{
-    width:  texts.$size-ex-large;
-    height:  texts.$size-ex-large;
-}
+        &--lg {
+            font-size: texts.$size-large;
+        }
 
+        &--md {
+            font-size: texts.$size-medium;
+        }
 
-.wim-icon.font-size-large{
-    width:  texts.$size-large;
-    height:  texts.$size-large;
-}
-.wim-icon.font-size-medium{
-    width:  texts.$size-medium;
-    height: texts.$size-medium;
-}
+        &--sm {
+            font-size: texts.$size-small;
+        }
 
-.wim-icon.font-size-small{
-    width:  texts.$size-small;
-    height:  texts.$size-small;
-}
+        &--xs {
+            font-size: texts.$size-ex-small;
+        }
 
-.wim-icon.font-size-ex-small{
-    width:  texts.$size-ex-small;
-    height:  texts.$size-ex-small;
+        &--black {
+            color: var(--font-black);
+        }
+
+        &--white {
+            color: var(--font-white);
+        }
+
+        &--error {
+            color: var(--font-error);
+        }
+
+        &--primary {
+            color: var(--semantic-primary);
+        }
+
+        &--danger {
+            color: var(--semantic-danger);
+        }
+    }
 }

@@ -1,5 +1,5 @@
 import { fn } from "storybook/test";
-import  Icon  from "./Icon";
+import { Icon } from "./Icon";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 export default {
@@ -16,7 +16,7 @@ export default {
     color: {
       control: { type: 'radio' },
       options: ["semantic-danger", "semantic-success", "semantic-warning", "semantic-primary", "semantic-secondary"],
-},
+    },
     backgroundColor: { control: "color" },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
@@ -29,14 +29,14 @@ export default {
 export const MediumSquareIcon = {
   args: {
     name: "SquareIcon",
-    size:"medium",
+    size: "medium",
     color: "semantic-primary" // CSS変数名に変更
   },
 };
 export const MediumCircleIcon = {
   args: {
     name: "CircleIcon",
-    size:"large",
-  color: "semantic-danger" // CSS変数名に変更
+    size: "large",
+    color: "semantic-danger" // CSS変数名に変更
   },
 };

@@ -1,0 +1,77 @@
+@layer utilities {
+    /* 便利なユーティリティ */
+
+    /* 要素を視覚的に隠すが、スクリーンリーダーからはアクセス可能にする */
+    .visually-hidden {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+        white-space: nowrap;
+    }
+
+    /* --- テキスト制御 --- */
+
+    /* テキストを1行で省略（...を表示） */
+    .text-truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* 単語の途中で改行させない */
+    .text-nowrap {
+        white-space: nowrap;
+    }
+
+    /* --- スクロール制御 --- */
+
+    /* スクロール機能を維持したまま、スクロールバー（見た目）を隠す */
+    .no-scrollbar {
+        scrollbar-width: none;
+
+        /* Firefox */
+        &::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari */
+        }
+    }
+
+    /* --- レイアウト補助 --- */
+
+    /* 縦横中央揃え（Flexbox） */
+    .flex-center {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* クリック領域を広げる（擬似要素を使用） */
+    .expand-click-area {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: -10px;
+            /* 周囲10px分クリック判定を広げる */
+        }
+    }
+
+    /* --- インタラクション --- */
+
+    /* テキスト選択を禁止する */
+    .unselectable {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    /* ポインターイベントを無効化（クリックを透過させる） */
+    .pointer-events-none {
+        pointer-events: none;
+    }
+}

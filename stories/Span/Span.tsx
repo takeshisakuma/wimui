@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./span.scss";
 import { useTranslation } from 'react-i18next';
-import Icon from "../Icon/Icon"; // Iconコンポーネントをインポート
+import { Icon } from "../Icon/Icon";
 
 type SpanProps = React.ComponentPropsWithoutRef<'span'> & {
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
@@ -10,8 +10,8 @@ type SpanProps = React.ComponentPropsWithoutRef<'span'> & {
   weight?: "normal" | "bold";
   style?: "normal" | "italic";
   content: string;
-  iconName?: "CircleIcon" | "SquareIcon"; // アイコン名を追加
-  iconPosition?: "left" | "right"; // アイコン位置を追加
+  iconName?: "CircleIcon" | "SquareIcon";
+  iconPosition?: "left" | "right";
 };
 
 export const Span = ({
@@ -20,50 +20,47 @@ export const Span = ({
   color = "black",
   weight = "normal",
   style = "normal",
-  iconName = undefined, // デフォルト値を設定
-  iconPosition = "left", // デフォルト値を設定
+  iconName = undefined,
+  iconPosition = "left",
   ...props
 }: SpanProps) => {
-
   const { t } = useTranslation();
-  
-  // アイコンの色を設定
-  const iconColor = color === 'white' ? 'semantic-secondary' : 'semantic-primary';
 
-  // アイコンコンポーネントを生成
-  const iconComponent = iconName ? <Icon name={iconName} size={size} color={iconColor} /> : null;
+  const sizeMap = {
+    "ex-small": "xs",
+    "small": "sm",
+    "medium": "md",
+    "large": "lg",
+    "ex-large": "xl"
+  };
+  const sizeClass = `wim-span--${sizeMap[size]}`;
+  const colorClass = `wim-span--${color}`;
+  const weightClass = `wim-weight-${weight}`;
+  const styleClass = `wim-style-${style}`;
 
-  // コンテンツのレンダリングを条件分岐
-  const contentToRender = (() => {
-    if (content && iconName) {
-      return iconPosition === 'left' ? (
-        <>
-          {iconComponent}
-          <span>{t(content)}</span>
-        </>
-      ) : (
-        <>
-          <span>{t(content)}</span>
-          {iconComponent}
-        </>
-      );
-    } else if (content) {
-      return <span>{t(content)}</span>;
-    } else if (iconName) {
-      return iconComponent;
-    }
-    return null;
-  })();
+  // Icon の size プロパティは "small" | "medium" | "large" のみ許容されているためマッピング
+  const iconSizeMap: Record<string, "small" | "medium" | "large"> = {
+    "ex-small": "small",
+    "small": "small",
+    "medium": "medium",
+    "large": "large",
+    "ex-large": "large"
+  };
+  const iconSize = iconSizeMap[size] || "medium";
+
+  const iconComponent = iconName ? <Icon name={iconName} size={iconSize} /> : null;
+
+  const contentToRender = (
+    <>
+      {iconName && iconPosition === 'left' && iconComponent}
+      <span>{t(content)}</span>
+      {iconName && iconPosition === 'right' && iconComponent}
+    </>
+  );
 
   return (
     <span
-      className={[
-        `wim-span`,
-        `font-color-${color}`,
-        `font-size-${size}`,
-        `font-weight-${weight}`,
-        `font-style-${style}`,
-      ].join(" ")}
+      className={[`wim-span`, sizeClass, colorClass, weightClass, styleClass].filter(Boolean).join(" ")}
       {...props}
     >
       {contentToRender}

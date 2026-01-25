@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 type ScrollareaProps = React.ComponentPropsWithoutRef<'div'> & {
   text: string;
   scrollAxis?: "y";
-  maxHeight?: string ;//px以外にも対応するため文字列にしている
+  maxHeight?: string;//px以外にも対応するため文字列にしている
 };
 
 export const Scrollarea = ({
@@ -21,11 +21,11 @@ export const Scrollarea = ({
   const style: React.CSSProperties = {};
 
 
-  
+
   return (
     <div
-      className={[`overflow-y-scroll`, 'custom-scrollbar'].join(" ")}
-      style={{maxHeight:maxHeight}}>
+      className="wim-scrollarea"
+      style={{ maxHeight: maxHeight }}>
       {t(text)}
     </div>
   );

@@ -1,138 +1,75 @@
-/* Box Sizing Reset: デフォルトをborder-boxにする */
-/* paddingやborderがwidth/heightに含まれるようになり、レイアウト計算がしやすくなる*/
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@layer reset {
+
+  /* Box Sizing Reset: デフォルトをborder-boxにする */
+  /* paddingやborderがwidth/heightに含まれるようになり、レイアウト計算がしやすくなる*/
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* リセット対象の要素を最小限に抑える */
+  /* margin, paddingをリセットし、ブラウザ間のデフォルト値の差異を吸収 */
+  /* 特に問題を起こしやすい要素に絞って調整 */
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+    padding: 0;
+  }
+
+
+
+
+
+  /* ボタンのスタイルリセット */
+  button {
+    background-color: transparent;
+    /* デフォルトの背景色を削除 */
+    border: none;
+    /* デフォルトの枠線を削除 */
+    cursor: pointer;
+    /* ポインタを表示 */
+    padding: 0;
+    /* デフォルトのpaddingを削除 */
+  }
+
+
+  /* リストのスタイルをリセット */
+  /* リストのデフォルトのマーカーやパディングを削除 */
+  ol,
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* リンクのテキスト装飾をリセット */
+  a {
+    text-decoration: none;
+    /* 下線を削除 */
+    color: inherit;
+    /* 親要素の文字色を継承 */
+  }
+
+  /* テーブルのセルの間隔をリセット */
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  /* 引用ブロックのスタイル */
+  /* blockquoteは適切なmarginを持つよう調整 */
+  blockquote {
+    margin: 0;
+  }
 }
-
-/* リセット対象の要素を最小限に抑える */
-/* margin, paddingをリセットし、ブラウザ間のデフォルト値の差異を吸収 */
-/* 特に問題を起こしやすい要素に絞って調整 */
-body,
-h1, h2, h3, h4, h5, h6,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin: 0;
-  padding: 0;
-}
-
-/* HTML要素の基本的なスタイル調整 */
-/* スクロールバーの挙動、文字のレンダリングを標準化 */
-html {
-  -webkit-text-size-adjust: 100%; /* iOSでの文字サイズ自動調整を防止 */
-  line-height: 1.15; /* デフォルトの行間を少し広げ、可読性を向上 */
-  -webkit-font-smoothing: antialiased; /* フォントのアンチエイリアスを強化 (macOSなど) */
-  -moz-osx-font-smoothing: grayscale; /* フォントのアンチエイリアスを強化 (Firefox on macOSなど) */
-}
-
-/* bodyの基本的なスタイル */
-/* bodyの最小の高さ設定と、柔軟なフォント定義 */
-body {
-  min-height: 100vh; /* ビューポートの高さまでbodyが広がるように */
-  text-rendering: optimizeLegibility; /* テキストの可読性を最適化 */
-  -webkit-tap-highlight-color: transparent; /* モバイルでのタップ時のハイライトを無効化 */
-  word-break: break-word; /* 長い単語がはみ出さないように自動で改行 */
-  overflow-wrap: break-word; /* オーバーフローする単語の改行 */
-  scrollbar-gutter: stable;/* 常時スクロールバー分の領域を確保 */
-}
-
-/* 画像とメディア要素の応答性 */
-/* 画像や動画が親要素からはみ出さないようにし、レスポンシブ対応を容易にする */
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block; /* インライン要素特有の余白を削除 */
-  max-width: 100%; /* 親要素の幅を超えないように */
-  height: auto; /* アスペクト比を維持 */
-}
-
-/* フォーム要素の統一化とアクセシビリティ */
-/* フォーム要素のデフォルトスタイルを統一 */
-input,
-button,
-textarea,
-select {
-  font: inherit; /* 親要素のフォントを継承 */
-  line-height: inherit; /* 親要素の行間を継承 */
-}
-
-/* ボタンのスタイルリセット */
-button {
-  background-color: transparent; /* デフォルトの背景色を削除 */
-  border: none; /* デフォルトの枠線を削除 */
-  cursor: pointer; /* ポインタを表示 */
-  padding: 0; /* デフォルトのpaddingを削除 */
-}
-
-/* textareaのサイズ変更を垂直方向のみに制限 (水平方向の予期せぬレイアウト崩れを防ぐ) */
-textarea {
-  resize: vertical;
-}
-
-/* リストのスタイルをリセット */
-/* リストのデフォルトのマーカーやパディングを削除 */
-ol,
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* リンクのテキスト装飾をリセット */
-a {
-  text-decoration: none; /* 下線を削除 */
-  color: inherit; /* 親要素の文字色を継承 */
-}
-
-/* テーブルのセルの間隔をリセット */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/* 引用ブロックのスタイル */
-/* blockquoteは適切なmarginを持つよう調整 */
-blockquote {
-  margin: 0;
-}
-
-
-
-/* Rubyテキスト（ルビ）の表示を考慮 */
-rt {
-  font-feature-settings: "palt"; /* 文字詰め(対応フォントのみ) */
-}
-
-/* フォーカス時のアウトライン表示 */
-/* アクセシビリティのために、キーボードナビゲーション時のフォーカスは保持する */
-/* デフォルトを少し調整するか、カスタムスタイルで上書きすることを推奨 */
-:focus-visible {
-  outline: 2px solid Highlight; /* ブラウザの強調色でアウトラインを表示 */
-  outline-offset: 2px;
-}
-/* 例: 特定の要素でカスタムしたい場合は以下のように上書き */
-/* button:focus-visible, a:focus-visible { outline: 2px solid var(--your-primary-color); outline-offset: 2px; } */
-
-/* その他、便利なユーティリティ */
-/* 要素を視覚的に隠すが、スクリーンリーダーからはアクセス可能にする */
-.visually-hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  white-space: nowrap;
-}
-
-
-
-
