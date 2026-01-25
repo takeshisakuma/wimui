@@ -10,7 +10,6 @@ export default {
     layout: "centered",
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     backgroundColor: { control: "color" },
@@ -25,10 +24,10 @@ export default {
 export const LargePrimaryButton = {
   args: {
     size: "large",
-    label: 'button_label', 
+    label: 'button_label',
     weight: `normal`,
-    role:`primary`,
-    state:`abled`
+    role: `primary`,
+    state: `abled`
   },
 };
 
@@ -37,8 +36,8 @@ export const MeduimSecondaryButton = {
     size: "medium",
     label: 'button_label',
     weight: `normal`,
-    role:`secondary`,
-    state:`abled`
+    role: `secondary`,
+    state: `abled`
   },
 };
 
@@ -48,8 +47,8 @@ export const SmallSecondaryButton = {
     size: "small",
     label: 'button_label',
     weight: `normal`,
-    role:`secondary`,
-    state:`abled`
+    role: `secondary`,
+    state: `abled`
   },
 };
 
@@ -59,9 +58,9 @@ export const SmallDangerButtonWithCircleIcon = {
     size: "small",
     label: 'button_label',
     weight: `normal`,
-    role:`danger`,
-    state:`abled`,
-    iconName:"CircleIcon",
-    iconPosition:"left"
+    role: `danger`,
+    state: `abled`,
+    iconName: "CircleIcon",
+    iconPosition: "left"
   },
 };

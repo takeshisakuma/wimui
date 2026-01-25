@@ -46,19 +46,22 @@ $scrollbar-track: $pccs-gy8_5;
 
 
 
-/* CSS変数としても使えるようにする (アイコンの色としてSVGに適用するため)*/
+/* --- 変数としての定義 (基本はライトモード) --- */
 :root {
-  // --semantic-danger: $semantic-danger;
-  // --semantic-success : $semantic-success;
-  // --semantic-warning :$semantic-warning;
-  // --semantic-primary: $semantic-primary;
-  // --semantic-secondary: $semantic-secondary;
-
-  //SCSSでCSS変数を扱う場合の書き方
   --semantic-danger: #{$semantic-danger};
   --semantic-success: #{$semantic-success};
   --semantic-warning: #{$semantic-warning};
   --semantic-primary: #{$semantic-primary};
   --semantic-secondary: #{$semantic-secondary};
+  --semantic-info: #{$semantic-info};
+  --semantic-disabled: #{$semantic-disabled};
 
+  --semantic-text-on-primary: #{$semantic-text-on-primary};
+
+  --font-black: #{$font-black};
+  --font-white: #{$font-white};
+  --font-error: #{$font-error};
+
+  --bg-app: #{$pccs-w}; // アプリ全体の背景
+  --bg-component: #{$pccs-w};
 }

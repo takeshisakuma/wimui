@@ -16,5 +16,14 @@
   "language_support": "Suporte multilíngue",
   "planned_for_implementation": "Planejado para implementação",
   "not_planned_for_implementation": "Não planejado para implementação",
-  "already_implemented": "Já implementado"
+  "already_implemented": "Já implementado",
+  "doc_button_title": "Componente de botão de pressão geral",
+  "doc_source": "Código Fonte",
+  "doc_design_tokens": "Tokens de Design",
+  "doc_color_palette": "Paleta de Cores (Color Palette)",
+  "doc_typography": "Tipografia (Typeset)",
+  "doc_icon_gallery": "Galeria de Ícones (Icon Gallery)",
+  "doc_custom_layout": "Layout Personalizado (Unstyled)",
+  "doc_custom_layout_desc": "Dentro do bloco Unstyled, os estilos padrão do Storybook não são aplicados.",
+  "doc_custom_area": "Esta é uma área onde você pode escrever HTML/CSS livremente."
 }

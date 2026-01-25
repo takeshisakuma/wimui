@@ -21,6 +21,8 @@
         overflow-wrap: break-word;
         /* 常時スクロールバー分の領域を確保することでガタツキやレイアウトシフト防止 */
         scrollbar-gutter: stable;
+        background-color: var(--bg-app);
+        color: var(--font-black);
     }
 
     /* 画像とメディア要素の応答性 */

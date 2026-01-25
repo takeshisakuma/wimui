@@ -24,6 +24,11 @@ const config: StorybookConfig = {
   viteFinal: async (config) => {
     // Viteの設定をマージ
     return mergeConfig(config, {
+      resolve: {
+        alias: [
+          { find: 'storybook/internal/theming', replacement: 'C:\\Users\\facto\\Desktop\\github\\wimui\\node_modules\\storybook\\dist\\theming\\index.js' }
+        ]
+      },
       plugins: [
         viteImagemin({
           gifsicle: { optimizationLevel: 7 },
