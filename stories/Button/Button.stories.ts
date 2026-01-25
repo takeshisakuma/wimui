@@ -20,47 +20,44 @@ export default {
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 
-
 export const LargePrimaryButton = {
   args: {
     size: "large",
-    label: 'button_label',
+    label: "button_label",
     weight: `normal`,
     role: `primary`,
-    state: `abled`
+    state: `abled`,
   },
 };
 
 export const MeduimSecondaryButton = {
   args: {
     size: "medium",
-    label: 'button_label',
+    label: "button_label",
     weight: `normal`,
     role: `secondary`,
-    state: `abled`
+    state: `abled`,
   },
 };
-
 
 export const SmallSecondaryButton = {
   args: {
     size: "small",
-    label: 'button_label',
+    label: "button_label",
     weight: `normal`,
     role: `secondary`,
-    state: `abled`
+    state: `abled`,
   },
 };
-
 
 export const SmallDangerButtonWithCircleIcon = {
   args: {
     size: "small",
-    label: 'button_label',
+    label: "button_label",
     weight: `normal`,
     role: `danger`,
     state: `abled`,
     iconName: "CircleIcon",
-    iconPosition: "left"
+    iconPosition: "left",
   },
 };

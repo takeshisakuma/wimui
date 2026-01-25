@@ -1,5 +1,4 @@
 @layer reset {
-
   /* Box Sizing Reset: デフォルトをborder-boxにする */
   /* paddingやborderがwidth/heightに含まれるようになり、レイアウト計算がしやすくなる*/
   *,
@@ -27,10 +26,6 @@
     padding: 0;
   }
 
-
-
-
-
   /* ボタンのスタイルリセット */
   button {
     background-color: transparent;
@@ -42,7 +37,6 @@
     padding: 0;
     /* デフォルトのpaddingを削除 */
   }
-
 
   /* リストのスタイルをリセット */
   /* リストのデフォルトのマーカーやパディングを削除 */

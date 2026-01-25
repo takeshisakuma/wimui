@@ -17,15 +17,16 @@
       // 例: "@/*": ["./src/*"] など、エイリアスがあればここに追加
     },
     "allowJs": true, //JavaScriptファイルのコンパイル/型チェックを許可
-     "types": ["vitest/globals", "@testing-library/jest-dom"]
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "stories/**/*.ts",
     "stories/**/*.tsx", // LintしたいStorybookファイルのパスを必ず含める
-    "stories/**/*.js"
-, ".storybook/i18n.ts"  ],
+    "stories/**/*.js",
+    ".storybook/i18n.ts"
+  ],
   "exclude": [
     "node_modules" // node_modulesは除外
   ]

@@ -2,49 +2,47 @@ import { fn } from "storybook/test";
 import { Span } from "./Span";
 
 export default {
-  title: "Component/Span",//左メニューの表示
+  title: "Component/Span", //左メニューの表示
   component: Span,
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],//ドキュメント自動生成有効化
-  argTypes: {
-  },
-  args: { onClick: fn() },//`fn` を使用して onClick 引数を監視(呼び出されるとアクションパネルに表示) 
+  tags: ["autodocs"], //ドキュメント自動生成有効化
+  argTypes: {},
+  args: { onClick: fn() }, //`fn` を使用して onClick 引数を監視(呼び出されるとアクションパネルに表示)
 };
-
 
 //コンポーネントに渡す値
 
 export const ExLargeSpan = {
   args: {
-    size: 'ex-large',
+    size: "ex-large",
     content: `ex-large_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`
+    style: `normal`,
   },
-}
+};
 
 export const LargeSpan = {
   args: {
-    size: 'large',
+    size: "large",
     content: `large_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`
+    style: `normal`,
   },
-}
+};
 
 export const MediumSpan = {
   args: {
-    size: 'medium',
+    size: "medium",
     content: `medium_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`
+    style: `normal`,
   },
-}
+};
 
 export const SmallSpan = {
   args: {
@@ -52,7 +50,7 @@ export const SmallSpan = {
     content: `small_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`
+    style: `normal`,
   },
 };
 
@@ -62,7 +60,7 @@ export const ExSmallSpan = {
     content: `ex-small_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`
+    style: `normal`,
   },
 };
 
@@ -74,7 +72,7 @@ export const SmallSpanWithIcon = {
     color: `deepgray`,
     style: `normal`,
     iconName: "SquareIcon", //アイコン名を指定
-    iconPosition: "left" //アイコンの位置を指定
+    iconPosition: "left", //アイコンの位置を指定
   },
 };
 
@@ -86,14 +84,14 @@ export const LargeSpanWithIconOnRight = {
     color: "black",
     style: "italic",
     iconName: "CircleIcon",
-    iconPosition: "right"
-  }
+    iconPosition: "right",
+  },
 };
 
 export const IconOnlySpan = {
   args: {
     size: "medium",
     content: "", // テキストなし
-    iconName: "CircleIcon"
-  }
+    iconName: "CircleIcon",
+  },
 };

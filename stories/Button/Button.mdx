@@ -1,20 +1,37 @@
-import { Meta, Title, Subtitle, Description, Primary, Controls, Stories, Canvas, Source, ArgTypes, ColorPalette, ColorItem, IconGallery, IconItem, Typeset, Unstyled } from '@storybook/blocks';
-import * as ButtonStories from './Button.stories';
-import CircleIcon from '../Icon/CircleIcon';
-import SquareIcon from '../Icon/SquareIcon';
-import { T } from '../T';
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+  Source,
+  ArgTypes,
+  ColorPalette,
+  ColorItem,
+  IconGallery,
+  IconItem,
+  Typeset,
+  Unstyled,
+} from "@storybook/blocks";
+import * as ButtonStories from "./Button.stories";
+import CircleIcon from "../Icon/CircleIcon";
+import SquareIcon from "../Icon/SquareIcon";
+import { T } from "../T";
 
 <Meta of={ButtonStories} />
 
 <Title />
-<Subtitle><T k="doc_button_title" /></Subtitle>
+<Subtitle>
+  <T k="doc_button_title" />
+</Subtitle>
 <Description />
 
 <Canvas of={ButtonStories.LargePrimaryButton} />
 
 <Controls />
-
-
 
 ---
 

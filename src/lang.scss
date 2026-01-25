@@ -1,8 +1,6 @@
-@use './tokens/fonts' as *;
-@use './tokens/semantic-texts' as *;
-@use './tokens/semantic-colors' as color;
-
-
+@use "./tokens/fonts" as *;
+@use "./tokens/semantic-texts" as *;
+@use "./tokens/semantic-colors" as color;
 
 /* または、特定の lang 属性がない場合の共通フォントとして設定 */
 body {
@@ -23,14 +21,14 @@ body {
   font-optical-sizing: auto;
   line-height: $line-height-normal-latn; /* body全体の行間を調整し、読みやすくする */
 }
- 
+
 /* 日本語のコンテンツに対するフォント指定 */
-body[lang='ja'] {
+body[lang="ja"] {
   font-family: $lang-ja;
-  line-height:$line-height-normal-jpan; /* body全体の行間を調整し、読みやすくする */
+  line-height: $line-height-normal-jpan; /* body全体の行間を調整し、読みやすくする */
   font-feature-settings: "palt";
-    line-break: auto;
-    hyphens: manual;
+  line-break: auto;
+  hyphens: manual;
 
   /* 日本語特有の調整 */
   /* 日本語の句読点のぶら下がり処理（禁則処理） */
@@ -43,47 +41,44 @@ body[lang='ja'] {
     -webkit-line-break: strict; /* Safari/Chromeでの禁則処理 */
     line-break: strict; /* 標準の禁則処理 */
   }
+}
 
- }
- 
 /* 英語のコンテンツに対するフォント指定
   Noto Sansを最優先し、その後に一般的な英語OSフォントを続ける
   デフォルトとほぼ同じですが、明示的に指定することで意図を明確にできる */
-body[lang='en'] {
+body[lang="en"] {
   font-family: $lang-en;
   line-height: $line-height-normal-latn; /* body全体の行間を調整し、読みやすくする */
-  hyphens: auto
- }
- 
-  /* ポルトガル語のコンテンツに対するフォント指定
+  hyphens: auto;
+}
+
+/* ポルトガル語のコンテンツに対するフォント指定
   英語と同様にNoto Sansが非常に適していますが、もしポルトガル語圏で
   特定のOSフォントを優先したい場合はここに追加 */
-body[lang='pt'] {
+body[lang="pt"] {
   font-family: $lang-pt;
   line-height: $line-height-normal-latn; /* body全体の行間を調整し、読みやすくする */
-  hyphens: auto
- }
-
-
+  hyphens: auto;
+}
 
 /* サイズ */
-.font-size-ex-large{
+.font-size-ex-large {
   font-size: $size-ex-large;
 }
 
-.font-size-large{
+.font-size-large {
   font-size: $size-large;
 }
 
-.font-size-medium{
+.font-size-medium {
   font-size: $size-medium;
 }
 
-.font-size-small{
+.font-size-small {
   font-size: $size-small;
 }
 
-.font-size-ex-small{
+.font-size-ex-small {
   font-size: $size-ex-small;
 }
 
@@ -97,7 +92,6 @@ body[lang='pt'] {
   color: color.$font-deepgray;
 }
 
-
 .font-color-gray {
   color: color.$font-gray;
 }
@@ -108,13 +102,10 @@ body[lang='pt'] {
   color: color.$font-black;
 }
 
-
-
 .font-color-error {
   color: color.$font-error;
   display: none;
 }
-
 
 /* 太さ */
 .font-weight-normal {
@@ -125,7 +116,6 @@ body[lang='pt'] {
   font-weight: $weight-bold;
 }
 
-
 /* スタイル */
 .font-style-normal {
   font-style: $style-normal;
@@ -135,19 +125,17 @@ body[lang='pt'] {
   font-style: $style-italic;
 }
 
-
 /* 行間 */
 .font-lines-loose-jpan {
   line-height: $line-height-loose-jpan;
 }
-.font-lines-normal-jpan{
+.font-lines-normal-jpan {
   line-height: $line-height-normal-jpan;
 }
 
 .font-lines-tight-jpan {
   line-height: $line-height-tight-jpan;
 }
-
 
 .font-lines-loose-latn {
   line-height: $line-height-loose-latn;
@@ -157,6 +145,6 @@ body[lang='pt'] {
   line-height: $line-height-normal-latn;
 }
 
-.font-lines-tight-latn{
+.font-lines-tight-latn {
   line-height: $line-height-tight-latn;
 }

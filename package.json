@@ -16,10 +16,10 @@
     "format": "prettier --write .",
     "lint": "eslint stories/",
     "lint:fix": "eslint stories/ --fix",
-    "stylelint:css": "stylelint \"stories/**/*.css\"",
+    "stylelint:css": "stylelint \"stories/**/*.css\" --allow-empty-input",
     "stylelint:scss": "stylelint \"stories/**/*.scss\"",
     "stylelint": "npm run stylelint:css && npm run stylelint:scss",
-    "stylelint:fix": "stylelint \"stories/**/*.{css,scss}\" --fix",
+    "stylelint:fix": "stylelint \"stories/**/*.{css,scss}\" --fix --allow-empty-input",
     "predeploy": "npm run build-storybook",
     "deploy": "gh-pages -d storybook-static"
   },

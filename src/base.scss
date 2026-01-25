@@ -1,77 +1,78 @@
-@use './tokens/semantic-colors' as colors;
-@use './tokens/measure-scales' as scales;
+@use "./tokens/semantic-colors" as colors;
+@use "./tokens/measure-scales" as scales;
 
 @layer base {
-    /* Base Styles: 要素へのグローバルなスタイル定義 */
+  /* Base Styles: 要素へのグローバルなスタイル定義 */
 
-    /* HTML要素の基本的なスタイル調整 */
-    html {
-        -webkit-text-size-adjust: 100%;
-        line-height: 1.15;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+  /* HTML要素の基本的なスタイル調整 */
+  html {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1.15;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-    /* bodyの基本的なスタイル */
-    body {
-        min-height: 100vh;
-        text-rendering: optimizeLegibility;
-        -webkit-tap-highlight-color: transparent;
-        word-break: break-word;
-        overflow-wrap: break-word;
-        /* 常時スクロールバー分の領域を確保することでガタツキやレイアウトシフト防止 */
-        scrollbar-gutter: stable;
-        background-color: var(--bg-app);
-        color: var(--font-black);
-    }
+  /* bodyの基本的なスタイル */
+  body {
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    /* 常時スクロールバー分の領域を確保することでガタツキやレイアウトシフト防止 */
+    scrollbar-gutter: stable;
+    background-color: var(--bg-app);
+    color: var(--font-black);
+  }
 
-    /* 画像とメディア要素の応答性 */
-    img,
-    picture,
-    video,
-    canvas,
-    svg {
-        display: block;
-        max-width: 100%;
-        height: auto;
-    }
+  /* 画像とメディア要素の応答性 */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
 
-    /* フォーム要素のフォント継承とインタラクションの最適化 */
-    input,
-    button,
-    textarea,
-    select {
-        font: inherit;
-        line-height: inherit;
-        /* iOSで、ボタンをダブルタップすると意図せず画面が拡大されてしまうのを防ぐ */
-        touch-action: manipulation;
-    }
+  /* フォーム要素のフォント継承とインタラクションの最適化 */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    line-height: inherit;
+    /* iOSで、ボタンをダブルタップすると意図せず画面が拡大されてしまうのを防ぐ */
+    touch-action: manipulation;
+  }
 
-    /* textareaのサイズ変更を垂直方向のみに制限 */
-    textarea {
-        resize: vertical;
-    }
+  /* textareaのサイズ変更を垂直方向のみに制限 */
+  textarea {
+    resize: vertical;
+  }
 
-    /* Rubyテキスト（ルビ）の表示を考慮 */
-    rt {
-        font-feature-settings: "palt";
-    }
+  /* Rubyテキスト（ルビ）の表示を考慮 */
+  rt {
+    font-feature-settings: "palt";
+  }
 
-    /* ポップオーバーやモーダル内での意図しないスクロール連動を防止 */
-    dialog,
-    [popover] {
-        overscroll-behavior-block: contain;
-    }
+  /* ポップオーバーやモーダル内での意図しないスクロール連動を防止 */
+  dialog,
+  [popover] {
+    overscroll-behavior-block: contain;
+  }
 
-    /* フォーカス時のアウトライン表示 (アクセシビリティ向上) */
-    :focus-visible {
-        outline: scales.$focus-outline-width solid colors.$semantic-focus-outline-color;
-        outline-offset: scales.$focus-outline-offset;
-    }
+  /* フォーカス時のアウトライン表示 (アクセシビリティ向上) */
+  :focus-visible {
+    outline: scales.$focus-outline-width solid
+      colors.$semantic-focus-outline-color;
+    outline-offset: scales.$focus-outline-offset;
+  }
 
-    /* コンポーネント共通の基本振る舞い */
-    [class^="wim-"],
-    [class*=" wim-"] {
-        text-box-trim: trim-both;
-    }
+  /* コンポーネント共通の基本振る舞い */
+  [class^="wim-"],
+  [class*=" wim-"] {
+    text-box-trim: trim-both;
+  }
 }

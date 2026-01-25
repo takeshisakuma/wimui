@@ -14,8 +14,14 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     color: {
-      control: { type: 'radio' },
-      options: ["semantic-danger", "semantic-success", "semantic-warning", "semantic-primary", "semantic-secondary"],
+      control: { type: "radio" },
+      options: [
+        "semantic-danger",
+        "semantic-success",
+        "semantic-warning",
+        "semantic-primary",
+        "semantic-secondary",
+      ],
     },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
@@ -24,18 +30,17 @@ export default {
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 
-
 export const MediumSquareIcon = {
   args: {
     name: "SquareIcon",
     size: "medium",
-    color: "semantic-primary" // CSS変数名に変更
+    color: "semantic-primary", // CSS変数名に変更
   },
 };
 export const MediumCircleIcon = {
   args: {
     name: "CircleIcon",
     size: "large",
-    color: "semantic-danger" // CSS変数名に変更
+    color: "semantic-danger", // CSS変数名に変更
   },
 };

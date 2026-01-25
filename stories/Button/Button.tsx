@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./button.scss";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 
-type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
+type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   backgroundColor?: string | null;
   size?: "small" | "medium" | "large";
   label?: string;
@@ -30,20 +30,20 @@ export const Button = ({
 }: ButtonProps) => {
   const { t } = useTranslation();
 
-  const sizeMap = { small: 'sm', medium: 'md', large: 'lg' };
+  const sizeMap = { small: "sm", medium: "md", large: "lg" };
   const sizeClass = `wim-button--${sizeMap[size]}`;
   const roleClass = `wim-button--${role}`;
   const weightClass = weight === "bold" ? "wim-button--bold" : "";
   const colorClass = color === "white" ? "wim-button--white" : "";
-  const iconOnlyClass = !label && iconName ? 'wim-button--icon-only' : '';
+  const iconOnlyClass = !label && iconName ? "wim-button--icon-only" : "";
 
   const iconComponent = iconName ? <Icon name={iconName} size={size} /> : null;
 
   const content = (
     <>
-      {iconName && iconPosition === 'left' && iconComponent}
+      {iconName && iconPosition === "left" && iconComponent}
       {label && <span className="wim-button__label">{t(label)}</span>}
-      {iconName && iconPosition === 'right' && iconComponent}
+      {iconName && iconPosition === "right" && iconComponent}
     </>
   );
 
@@ -51,8 +51,17 @@ export const Button = ({
     <button
       type="button"
       style={backgroundColor ? { backgroundColor } : undefined}
-      className={[`wim-button`, sizeClass, roleClass, weightClass, colorClass, iconOnlyClass].filter(Boolean).join(" ")}
-      disabled={state === 'disabled'}
+      className={[
+        `wim-button`,
+        sizeClass,
+        roleClass,
+        weightClass,
+        colorClass,
+        iconOnlyClass,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      disabled={state === "disabled"}
       {...props}
     >
       {content}
@@ -71,4 +80,4 @@ Button.propTypes = {
   state: PropTypes.oneOf(["abled", "disabled"]),
   iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon"]),
   iconPosition: PropTypes.oneOf(["left", "right"]),
-}
+};

@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./span.scss";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 
-type SpanProps = React.ComponentPropsWithoutRef<'span'> & {
+type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
   color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error";
   weight?: "normal" | "bold";
@@ -28,10 +28,10 @@ export const Span = ({
 
   const sizeMap = {
     "ex-small": "xs",
-    "small": "sm",
-    "medium": "md",
-    "large": "lg",
-    "ex-large": "xl"
+    small: "sm",
+    medium: "md",
+    large: "lg",
+    "ex-large": "xl",
   };
   const sizeClass = `wim-span--${sizeMap[size]}`;
   const colorClass = `wim-span--${color}`;
@@ -41,26 +41,30 @@ export const Span = ({
   // Icon の size プロパティは "small" | "medium" | "large" のみ許容されているためマッピング
   const iconSizeMap: Record<string, "small" | "medium" | "large"> = {
     "ex-small": "small",
-    "small": "small",
-    "medium": "medium",
-    "large": "large",
-    "ex-large": "large"
+    small: "small",
+    medium: "medium",
+    large: "large",
+    "ex-large": "large",
   };
   const iconSize = iconSizeMap[size] || "medium";
 
-  const iconComponent = iconName ? <Icon name={iconName} size={iconSize} /> : null;
+  const iconComponent = iconName ? (
+    <Icon name={iconName} size={iconSize} />
+  ) : null;
 
   const contentToRender = (
     <>
-      {iconName && iconPosition === 'left' && iconComponent}
+      {iconName && iconPosition === "left" && iconComponent}
       <span>{t(content)}</span>
-      {iconName && iconPosition === 'right' && iconComponent}
+      {iconName && iconPosition === "right" && iconComponent}
     </>
   );
 
   return (
     <span
-      className={[`wim-span`, sizeClass, colorClass, weightClass, styleClass].filter(Boolean).join(" ")}
+      className={[`wim-span`, sizeClass, colorClass, weightClass, styleClass]
+        .filter(Boolean)
+        .join(" ")}
       {...props}
     >
       {contentToRender}
@@ -70,7 +74,14 @@ export const Span = ({
 
 Span.propTypes = {
   size: PropTypes.oneOf(["ex-small", "small", "medium", "large", "ex-large"]),
-  color: PropTypes.oneOf(["black", "deepgray", "gray", "lightgray", "white", "error"]),
+  color: PropTypes.oneOf([
+    "black",
+    "deepgray",
+    "gray",
+    "lightgray",
+    "white",
+    "error",
+  ]),
   weight: PropTypes.oneOf(["normal", "bold"]),
   style: PropTypes.oneOf(["normal", "italic"]),
   content: PropTypes.string.isRequired,

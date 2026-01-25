@@ -8,13 +8,12 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-  }
+  argTypes: {},
 };
 
 export const ScrollareaYaxis = {
   args: {
-    text: 'sampletextforscrollarea',
+    text: "sampletextforscrollarea",
     scrollAxis: `y`,
     maxHeight: `10rem`,
   },

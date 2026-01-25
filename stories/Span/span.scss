@@ -1,75 +1,75 @@
-@use '../../src/tokens/semantic-colors' as colors;
-@use '../../src/tokens/semantic-texts' as texts;
-@use '../../src/tokens/measure-scales' as scales;
-@use '../../src/lang' as lang;
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/semantic-texts" as texts;
+@use "../../src/tokens/measure-scales" as scales;
+@use "../../src/lang" as lang;
 
 @layer component {
-    .wim-span {
-        display: inline-flex;
-        align-items: center;
-        gap: scales.$spacing-xs;
-        cursor: pointer;
-        color: inherit;
-        font: inherit;
+  .wim-span {
+    display: inline-flex;
+    align-items: center;
+    gap: scales.$spacing-xs;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
 
-        &--xl {
-            font-size: texts.$size-ex-large;
-        }
-
-        &--lg {
-            font-size: texts.$size-large;
-        }
-
-        &--md {
-            font-size: texts.$size-medium;
-        }
-
-        &--sm {
-            font-size: texts.$size-small;
-        }
-
-        &--xs {
-            font-size: texts.$size-ex-small;
-        }
-
-        &--black {
-            color: var(--font-black);
-        }
-
-        &--deepgray {
-            color: colors.$font-deepgray;
-        }
-
-        &--gray {
-            color: colors.$font-gray;
-        }
-
-        &--lightgray {
-            color: colors.$font-lightgray;
-        }
-
-        &--white {
-            color: var(--font-white);
-        }
-
-        &--error {
-            color: var(--font-error);
-        }
-
-        &--primary {
-            color: var(--semantic-primary);
-        }
-
-        &--danger {
-            color: var(--semantic-danger);
-        }
-
-        &--bold {
-            font-weight: texts.$weight-bold;
-        }
-
-        &--italic {
-            font-style: texts.$style-italic;
-        }
+    &--xl {
+      font-size: texts.$size-ex-large;
     }
+
+    &--lg {
+      font-size: texts.$size-large;
+    }
+
+    &--md {
+      font-size: texts.$size-medium;
+    }
+
+    &--sm {
+      font-size: texts.$size-small;
+    }
+
+    &--xs {
+      font-size: texts.$size-ex-small;
+    }
+
+    &--black {
+      color: var(--font-black);
+    }
+
+    &--deepgray {
+      color: colors.$font-deepgray;
+    }
+
+    &--gray {
+      color: colors.$font-gray;
+    }
+
+    &--lightgray {
+      color: colors.$font-lightgray;
+    }
+
+    &--white {
+      color: var(--font-white);
+    }
+
+    &--error {
+      color: var(--font-error);
+    }
+
+    &--primary {
+      color: var(--semantic-primary);
+    }
+
+    &--danger {
+      color: var(--semantic-danger);
+    }
+
+    &--bold {
+      font-weight: texts.$weight-bold;
+    }
+
+    &--italic {
+      font-style: texts.$style-italic;
+    }
+  }
 }

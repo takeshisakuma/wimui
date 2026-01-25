@@ -1,4 +1,4 @@
-@use '../tokens/measure-scales' as *;
+@use "../tokens/measure-scales" as *;
 
 /* --- サイズの意味の定義 --- */
 $size-ex-small: $font-size-ms-minus-2;
@@ -10,7 +10,6 @@ $size-ex-large: $font-size-ms-2;
 /* ウェイトの意味の定義 */
 $weight-normal: 400;
 $weight-bold: 700;
-
 
 /* ウェイトの意味の定義 */
 $style-normal: normal;

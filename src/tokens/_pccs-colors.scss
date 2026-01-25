@@ -4,21 +4,20 @@
 /* RGB値を $pccs-g1-rgb: 107, 69, 90; のようにカンマ区切りの数値で定義しているのは、CSSのrgba()関数での透明度指定を容易にするため */
 /* 例：color: rgba(var(--pccs-g1-rgb), 0.7); */
 
-
 /* Achromatic color */
 $pccs-w: #ffffff; /* = Gy-9.5*/
 $pccs-w-rgb: 255, 255, 255;
 $pccs-w-hsl: hsl(0, 0%, 100%);
 
-$pccs-gy8_5: #E5E5E5;
+$pccs-gy8_5: #e5e5e5;
 $pccs-gy8_5-rgb: 229, 229, 229;
 $pccs-gy8_5-hsl: hsl(0, 0%, 90%);
 
-$pccs-gy7_5: #B6B6B6;
+$pccs-gy7_5: #b6b6b6;
 $pccs-gy7_5-rgb: 182, 182, 182;
 $pccs-gy7_5-hsl: hsl(0, 0%, 71%);
 
-$pccs-gy6_5: #8A8A8A;
+$pccs-gy6_5: #8a8a8a;
 $pccs-gy6_5-rgb: 138, 138, 138;
 $pccs-gy6_5-hsl: hsl(0, 0%, 54%);
 
@@ -26,7 +25,7 @@ $pccs-gy5_5: #646464;
 $pccs-gy5_5-rgb: 100, 100, 100;
 $pccs-gy5_5-hsl: hsl(0, 0%, 39%);
 
-$pccs-gy4_5: #4F4F4F;
+$pccs-gy4_5: #4f4f4f;
 $pccs-gy4_5-rgb: 79, 79, 79;
 $pccs-gy4_5-hsl: hsl(0, 0%, 31%);
 
@@ -42,57 +41,56 @@ $pccs-bk: #000000; /* = Gy-1.5*/
 $pccs-bk-rgb: 0, 0, 0;
 $pccs-bk-hsl: hsl(0, 0%, 0%);
 
-
 /* Vivid Tone */
-$pccs-v1: #D40045;
+$pccs-v1: #d40045;
 $pccs-v1-rgb: 212, 0, 69;
 $pccs-v1-hsl: hsl(340, 100%, 42%);
 
-$pccs-v2: #EE0026;
+$pccs-v2: #ee0026;
 $pccs-v2-rgb: 238, 0, 38;
 $pccs-v2-hsl: hsl(350, 100%, 47%);
 
-$pccs-v3: #FD1A1C;
+$pccs-v3: #fd1a1c;
 $pccs-v3-rgb: 253, 26, 28;
 $pccs-v3-hsl: hsl(359, 98%, 55%);
 
-$pccs-v4: #FE4118;
+$pccs-v4: #fe4118;
 $pccs-v4-rgb: 254, 65, 24;
 $pccs-v4-hsl: hsl(12, 99%, 55%);
 
-$pccs-v5: #FF590B;
+$pccs-v5: #ff590b;
 $pccs-v5-rgb: 255, 89, 11;
 $pccs-v5-hsl: hsl(19, 100%, 52%);
 
-$pccs-v6: #FF7F00;
+$pccs-v6: #ff7f00;
 $pccs-v6-rgb: 255, 127, 0;
 $pccs-v6-hsl: hsl(30, 100%, 50%);
 
-$pccs-v7: #FFCC00;
+$pccs-v7: #ffcc00;
 $pccs-v7-rgb: 255, 204, 0;
 $pccs-v7-hsl: hsl(48, 100%, 50%);
 
-$pccs-v8: #FFE600;
+$pccs-v8: #ffe600;
 $pccs-v8-rgb: 255, 230, 0;
 $pccs-v8-hsl: hsl(54, 100%, 50%);
 
-$pccs-v9: #CCE700;
+$pccs-v9: #cce700;
 $pccs-v9-rgb: 204, 231, 0;
 $pccs-v9-hsl: hsl(66, 100%, 45%);
 
-$pccs-v10: #99CF15;
+$pccs-v10: #99cf15;
 $pccs-v10-rgb: 153, 207, 21;
 $pccs-v10-hsl: hsl(78, 81%, 45%);
 
-$pccs-v11: #66B82B;
+$pccs-v11: #66b82b;
 $pccs-v11-rgb: 102, 184, 43;
 $pccs-v11-hsl: hsl(92, 63%, 45%);
 
-$pccs-v12: #33A23D;
+$pccs-v12: #33a23d;
 $pccs-v12-rgb: 51, 162, 61;
 $pccs-v12-hsl: hsl(126, 54%, 42%);
 
-$pccs-v13: #008F62;
+$pccs-v13: #008f62;
 $pccs-v13-rgb: 0, 143, 98;
 $pccs-v13-hsl: hsl(161, 100%, 28%);
 
@@ -100,23 +98,23 @@ $pccs-v14: #008678;
 $pccs-v14-rgb: 0, 134, 120;
 $pccs-v14-hsl: hsl(174, 100%, 26%);
 
-$pccs-v15: #007A87;
+$pccs-v15: #007a87;
 $pccs-v15-rgb: 0, 122, 135;
 $pccs-v15-hsl: hsl(186, 100%, 26%);
 
-$pccs-v16: #055D87;
+$pccs-v16: #055d87;
 $pccs-v16-rgb: 5, 93, 135;
 $pccs-v16-hsl: hsl(204, 92%, 27%);
 
-$pccs-v17: #093F86;
+$pccs-v17: #093f86;
 $pccs-v17-rgb: 9, 63, 134;
 $pccs-v17-hsl: hsl(214, 87%, 28%);
 
-$pccs-v18: #0F218B;
+$pccs-v18: #0f218b;
 $pccs-v18-rgb: 15, 33, 139;
 $pccs-v18-hsl: hsl(230, 80%, 30%);
 
-$pccs-v19: #1D1A88;
+$pccs-v19: #1d1a88;
 $pccs-v19-rgb: 29, 26, 136;
 $pccs-v19-hsl: hsl(242, 69%, 32%);
 
@@ -124,11 +122,11 @@ $pccs-v20: #281285;
 $pccs-v20-rgb: 40, 18, 133;
 $pccs-v20-hsl: hsl(251, 76%, 29%);
 
-$pccs-v21: #340C81;
+$pccs-v21: #340c81;
 $pccs-v21-rgb: 52, 12, 129;
 $pccs-v21-hsl: hsl(265, 82%, 28%);
 
-$pccs-v22: #56007D;
+$pccs-v22: #56007d;
 $pccs-v22-rgb: 86, 0, 125;
 $pccs-v22-hsl: hsl(281, 100%, 25%);
 
@@ -136,157 +134,157 @@ $pccs-v23: #770071;
 $pccs-v23-rgb: 119, 0, 113;
 $pccs-v23-hsl: hsl(303, 100%, 23%);
 
-$pccs-v24: #AF0065;
+$pccs-v24: #af0065;
 $pccs-v24-rgb: 175, 0, 101;
 $pccs-v24-hsl: hsl(325, 100%, 34%);
 
 /* Bright Tone */
-$pccs-b1: #ED3B6B;
+$pccs-b1: #ed3b6b;
 $pccs-b1-rgb: 237, 59, 107;
 $pccs-b1-hsl: hsl(343, 83%, 58%);
 
-$pccs-b2: #FA344D;
+$pccs-b2: #fa344d;
 $pccs-b2-rgb: 250, 52, 77;
 $pccs-b2-hsl: hsl(350, 94%, 59%);
 
-$pccs-b3: #FC3633;
+$pccs-b3: #fc3633;
 $pccs-b3-rgb: 252, 54, 51;
 $pccs-b3-hsl: hsl(1, 97%, 60%);
 
-$pccs-b4: #FC4E33;
+$pccs-b4: #fc4e33;
 $pccs-b4-rgb: 252, 78, 51;
 $pccs-b4-hsl: hsl(11, 96%, 59%);
 
-$pccs-b5: #FF6E2B;
+$pccs-b5: #ff6e2b;
 $pccs-b5-rgb: 255, 110, 43;
 $pccs-b5-hsl: hsl(23, 100%, 58%);
 
-$pccs-b6: #FF9913;
+$pccs-b6: #ff9913;
 $pccs-b6-rgb: 255, 153, 19;
 $pccs-b6-hsl: hsl(34, 100%, 54%);
 
-$pccs-b7: #FFCB1F;
+$pccs-b7: #ffcb1f;
 $pccs-b7-rgb: 255, 203, 31;
 $pccs-b7-hsl: hsl(45, 100%, 56%);
 
-$pccs-b8: #FFF231;
+$pccs-b8: #fff231;
 $pccs-b8-rgb: 255, 242, 49;
 $pccs-b8-hsl: hsl(56, 100%, 59%);
 
-$pccs-b9: #CDE52F;
+$pccs-b9: #cde52f;
 $pccs-b9-rgb: 205, 229, 47;
 $pccs-b9-hsl: hsl(67, 81%, 54%);
 
-$pccs-b10: #99D02C;
+$pccs-b10: #99d02c;
 $pccs-b10-rgb: 153, 208, 44;
 $pccs-b10-hsl: hsl(81, 65%, 49%);
 
-$pccs-b11: #55A73B;
+$pccs-b11: #55a73b;
 $pccs-b11-rgb: 85, 167, 59;
 $pccs-b11-hsl: hsl(104, 49%, 44%);
 
-$pccs-b12: #32A65D;
+$pccs-b12: #32a65d;
 $pccs-b12-rgb: 50, 166, 93;
 $pccs-b12-hsl: hsl(148, 54%, 42%);
 
-$pccs-b13: #2DA380;
+$pccs-b13: #2da380;
 $pccs-b13-rgb: 45, 163, 128;
 $pccs-b13-hsl: hsl(164, 57%, 41%);
 
-$pccs-b14: #1AA28E;
+$pccs-b14: #1aa28e;
 $pccs-b14-rgb: 26, 162, 142;
 $pccs-b14-hsl: hsl(173, 73%, 37%);
 
-$pccs-b15: #1FB3B3;
+$pccs-b15: #1fb3b3;
 $pccs-b15-rgb: 31, 179, 179;
 $pccs-b15-hsl: hsl(180, 71%, 41%);
 
-$pccs-b16: #1C86AE;
+$pccs-b16: #1c86ae;
 $pccs-b16-rgb: 28, 134, 174;
 $pccs-b16-hsl: hsl(199, 72%, 40%);
 
-$pccs-b17: #2B78B0;
+$pccs-b17: #2b78b0;
 $pccs-b17-rgb: 43, 120, 176;
 $pccs-b17-hsl: hsl(207, 60%, 43%);
 
-$pccs-b18: #396BB0;
+$pccs-b18: #396bb0;
 $pccs-b18-rgb: 57, 107, 176;
 $pccs-b18-hsl: hsl(215, 50%, 46%);
 
-$pccs-b19: #5468AD;
+$pccs-b19: #5468ad;
 $pccs-b19-rgb: 84, 104, 173;
 $pccs-b19-hsl: hsl(228, 45%, 50%);
 
-$pccs-b20: #6A64AE;
+$pccs-b20: #6a64ae;
 $pccs-b20-rgb: 106, 100, 174;
 $pccs-b20-hsl: hsl(244, 38%, 54%);
 
-$pccs-b21: #8561AB;
+$pccs-b21: #8561ab;
 $pccs-b21-rgb: 133, 97, 171;
 $pccs-b21-hsl: hsl(260, 39%, 52%);
 
-$pccs-b22: #A459AB;
+$pccs-b22: #a459ab;
 $pccs-b22-rgb: 164, 89, 171;
 $pccs-b22-hsl: hsl(300, 39%, 51%);
 
-$pccs-b23: #C75BB1;
+$pccs-b23: #c75bb1;
 $pccs-b23-rgb: 199, 91, 177;
 $pccs-b23-hsl: hsl(315, 52%, 57%);
 
-$pccs-b24: #DF4C93;
+$pccs-b24: #df4c93;
 $pccs-b24-rgb: 223, 76, 147;
 $pccs-b24-hsl: hsl(329, 68%, 59%);
 
 /* Strong Tone */
-$pccs-s1: #B01040;
+$pccs-s1: #b01040;
 $pccs-s1-rgb: 176, 16, 64;
 $pccs-s1-hsl: hsl(342, 83%, 38%);
 
-$pccs-s2: #CA1028;
+$pccs-s2: #ca1028;
 $pccs-s2-rgb: 202, 16, 40;
 $pccs-s2-hsl: hsl(350, 84%, 43%);
 
-$pccs-s3: #CC2211;
+$pccs-s3: #cc2211;
 $pccs-s3-rgb: 204, 34, 17;
 $pccs-s3-hsl: hsl(5, 84%, 43%);
 
-$pccs-s4: #CC4613;
+$pccs-s4: #cc4613;
 $pccs-s4-rgb: 204, 70, 19;
 $pccs-s4-hsl: hsl(19, 83%, 44%);
 
-$pccs-s5: #D45F10;
+$pccs-s5: #d45f10;
 $pccs-s5-rgb: 212, 95, 16;
 $pccs-s5-hsl: hsl(25, 86%, 45%);
 
-$pccs-s6: #D97610;
+$pccs-s6: #d97610;
 $pccs-s6-rgb: 217, 118, 16;
 $pccs-s6-hsl: hsl(30, 86%, 46%);
 
-$pccs-s7: #D19711;
+$pccs-s7: #d19711;
 $pccs-s7-rgb: 209, 151, 17;
 $pccs-s7-hsl: hsl(43, 84%, 44%);
 
-$pccs-s8: #CCB914;
+$pccs-s8: #ccb914;
 $pccs-s8-rgb: 204, 185, 20;
 $pccs-s8-hsl: hsl(54, 82%, 44%);
 
-$pccs-s9: #B3B514;
+$pccs-s9: #b3b514;
 $pccs-s9-rgb: 179, 181, 20;
 $pccs-s9-hsl: hsl(61, 79%, 39%);
 
-$pccs-s10: #8CA114;
+$pccs-s10: #8ca114;
 $pccs-s10-rgb: 140, 161, 20;
 $pccs-s10-hsl: hsl(70, 77%, 35%);
 
-$pccs-s11: #41941E;
+$pccs-s11: #41941e;
 $pccs-s11-rgb: 65, 148, 30;
 $pccs-s11-hsl: hsl(100, 66%, 35%);
 
-$pccs-s12: #28853F;
+$pccs-s12: #28853f;
 $pccs-s12-rgb: 40, 133, 63;
 $pccs-s12-hsl: hsl(145, 55%, 34%);
 
-$pccs-s13: #287A52;
+$pccs-s13: #287a52;
 $pccs-s13-rgb: 40, 122, 82;
 $pccs-s13-hsl: hsl(155, 51%, 32%);
 
@@ -294,77 +292,76 @@ $pccs-s14: #297364;
 $pccs-s14-rgb: 41, 115, 100;
 $pccs-s14-hsl: hsl(169, 47%, 31%);
 
-$pccs-s15: #26707B;
+$pccs-s15: #26707b;
 $pccs-s15-rgb: 38, 112, 123;
 $pccs-s15-hsl: hsl(188, 54%, 31%);
 
-$pccs-s16: #205B85;
+$pccs-s16: #205b85;
 $pccs-s16-rgb: 32, 91, 133;
 $pccs-s16-hsl: hsl(207, 62%, 32%);
 
-$pccs-s17: #224A87;
+$pccs-s17: #224a87;
 $pccs-s17-rgb: 34, 74, 135;
 $pccs-s17-hsl: hsl(218, 61%, 33%);
 
-$pccs-s18: #243B8B;
+$pccs-s18: #243b8b;
 $pccs-s18-rgb: 36, 59, 139;
 $pccs-s18-hsl: hsl(229, 61%, 34%);
 
-$pccs-s19: #241F86;
+$pccs-s19: #241f86;
 $pccs-s19-rgb: 36, 31, 134;
 $pccs-s19-hsl: hsl(243, 64%, 32%);
 
-$pccs-s20: #3D1C84;
+$pccs-s20: #3d1c84;
 $pccs-s20-rgb: 61, 28, 132;
 $pccs-s20-hsl: hsl(263, 65%, 31%);
 
-$pccs-s21: #4E2283;
+$pccs-s21: #4e2283;
 $pccs-s21-rgb: 78, 34, 131;
 $pccs-s21-hsl: hsl(270, 58%, 32%);
 
-$pccs-s22: #5F2883;
+$pccs-s22: #5f2883;
 $pccs-s22-rgb: 95, 40, 131;
 $pccs-s22-hsl: hsl(276, 53%, 34%);
 
-$pccs-s23: #8C1D84;
+$pccs-s23: #8c1d84;
 $pccs-s23-rgb: 140, 29, 132;
 $pccs-s23-hsl: hsl(302, 65%, 33%);
 
-$pccs-s24: #9A0F50;
+$pccs-s24: #9a0f50;
 $pccs-s24-rgb: 154, 15, 80;
 $pccs-s24-hsl: hsl(335, 82%, 33%);
-
 
 /* Deep Tone */
 $pccs-dp1: #870042;
 $pccs-dp1-rgb: 135, 0, 66;
 $pccs-dp1-hsl: hsl(329, 100%, 26%);
 
-$pccs-dp2: #9D002B;
+$pccs-dp2: #9d002b;
 $pccs-dp2-rgb: 157, 0, 43;
 $pccs-dp2-hsl: hsl(344, 100%, 31%);
 
-$pccs-dp3: #A20715;
+$pccs-dp3: #a20715;
 $pccs-dp3-rgb: 162, 7, 21;
 $pccs-dp3-hsl: hsl(354, 91%, 33%);
 
-$pccs-dp4: #A51200;
+$pccs-dp4: #a51200;
 $pccs-dp4-rgb: 165, 18, 0;
 $pccs-dp4-hsl: hsl(6, 100%, 32%);
 
-$pccs-dp5: #A42F03;
+$pccs-dp5: #a42f03;
 $pccs-dp5-rgb: 164, 47, 3;
 $pccs-dp5-hsl: hsl(16, 96%, 33%);
 
-$pccs-dp6: #A24A02;
+$pccs-dp6: #a24a02;
 $pccs-dp6-rgb: 162, 74, 2;
 $pccs-dp6-hsl: hsl(27, 97%, 32%);
 
-$pccs-dp7: #A46603;
+$pccs-dp7: #a46603;
 $pccs-dp7-rgb: 164, 102, 3;
 $pccs-dp7-hsl: hsl(37, 95%, 33%);
 
-$pccs-dp8: #A48204;
+$pccs-dp8: #a48204;
 $pccs-dp8-rgb: 164, 130, 4;
 $pccs-dp8-hsl: hsl(47, 95%, 33%);
 
@@ -376,15 +373,15 @@ $pccs-dp10: #518517;
 $pccs-dp10-rgb: 81, 133, 23;
 $pccs-dp10-hsl: hsl(85, 70%, 30%);
 
-$pccs-dp11: #307A25;
+$pccs-dp11: #307a25;
 $pccs-dp11-rgb: 48, 122, 37;
 $pccs-dp11-hsl: hsl(109, 54%, 33%);
 
-$pccs-dp12: #306F42;
+$pccs-dp12: #306f42;
 $pccs-dp12-rgb: 48, 111, 66;
 $pccs-dp12-hsl: hsl(145, 42%, 31%);
 
-$pccs-dp13: #186A53;
+$pccs-dp13: #186a53;
 $pccs-dp13-rgb: 24, 106, 83;
 $pccs-dp13-hsl: hsl(161, 63%, 25%);
 
@@ -392,23 +389,23 @@ $pccs-dp14: #025865;
 $pccs-dp14-rgb: 2, 88, 101;
 $pccs-dp14-hsl: hsl(188, 96%, 20%);
 
-$pccs-dp15: #034F69;
+$pccs-dp15: #034f69;
 $pccs-dp15-rgb: 3, 79, 105;
 $pccs-dp15-hsl: hsl(200, 94%, 21%);
 
-$pccs-dp16: #04436E;
+$pccs-dp16: #04436e;
 $pccs-dp16-rgb: 4, 67, 110;
 $pccs-dp16-hsl: hsl(210, 93%, 22%);
 
-$pccs-dp17: #05426F;
+$pccs-dp17: #05426f;
 $pccs-dp17-rgb: 5, 66, 111;
 $pccs-dp17-hsl: hsl(209, 91%, 23%);
 
-$pccs-dp18: #073E74;
+$pccs-dp18: #073e74;
 $pccs-dp18-rgb: 7, 62, 116;
 $pccs-dp18-hsl: hsl(213, 90%, 24%);
 
-$pccs-dp19: #1D1A88;
+$pccs-dp19: #1d1a88;
 $pccs-dp19-rgb: 29, 26, 136;
 $pccs-dp19-hsl: hsl(242, 69%, 32%);
 
@@ -416,11 +413,11 @@ $pccs-dp20: #281285;
 $pccs-dp20-rgb: 40, 18, 133;
 $pccs-dp20-hsl: hsl(251, 76%, 29%);
 
-$pccs-dp21: #340C81;
+$pccs-dp21: #340c81;
 $pccs-dp21-rgb: 52, 12, 129;
 $pccs-dp21-hsl: hsl(265, 82%, 28%);
 
-$pccs-dp22: #56007D;
+$pccs-dp22: #56007d;
 $pccs-dp22-rgb: 86, 0, 125;
 $pccs-dp22-hsl: hsl(281, 100%, 25%);
 
@@ -428,174 +425,173 @@ $pccs-dp23: #770071;
 $pccs-dp23-rgb: 119, 0, 113;
 $pccs-dp23-hsl: hsl(303, 100%, 23%);
 
-$pccs-dp24: #AF0065;
+$pccs-dp24: #af0065;
 $pccs-dp24-rgb: 175, 0, 101;
 $pccs-dp24-hsl: hsl(325, 100%, 34%);
 
-
 /* Light Tone */
-$pccs-lt1: #EE7296;
+$pccs-lt1: #ee7296;
 $pccs-lt1-rgb: 238, 114, 150;
 $pccs-lt1-hsl: hsl(343, 76%, 69%);
 
-$pccs-lt2: #FB7482;
+$pccs-lt2: #fb7482;
 $pccs-lt2-rgb: 251, 116, 130;
 $pccs-lt2-hsl: hsl(352, 92%, 72%);
 
-$pccs-lt3: #FA7272;
+$pccs-lt3: #fa7272;
 $pccs-lt3-rgb: 250, 114, 114;
 $pccs-lt3-hsl: hsl(0, 92%, 71%);
 
-$pccs-lt4: #FB8071;
+$pccs-lt4: #fb8071;
 $pccs-lt4-rgb: 251, 128, 113;
 $pccs-lt4-hsl: hsl(8, 94%, 71%);
 
-$pccs-lt5: #FA996F;
+$pccs-lt5: #fa996f;
 $pccs-lt5-rgb: 250, 153, 111;
 $pccs-lt5-hsl: hsl(24, 92%, 71%);
 
-$pccs-lt6: #FDB56D;
+$pccs-lt6: #fdb56d;
 $pccs-lt6-rgb: 253, 181, 109;
 $pccs-lt6-hsl: hsl(34, 96%, 71%);
 
-$pccs-lt7: #FCD474;
+$pccs-lt7: #fcd474;
 $pccs-lt7-rgb: 252, 212, 116;
 $pccs-lt7-hsl: hsl(44, 96%, 72%);
 
-$pccs-lt8: #FEF27A;
+$pccs-lt8: #fef27a;
 $pccs-lt8-rgb: 254, 242, 122;
 $pccs-lt8-hsl: hsl(54, 98%, 74%);
 
-$pccs-lt9: #DDED71;
+$pccs-lt9: #dded71;
 $pccs-lt9-rgb: 221, 237, 113;
 $pccs-lt9-hsl: hsl(69, 79%, 69%);
 
-$pccs-lt10: #B3DE6A;
+$pccs-lt10: #b3de6a;
 $pccs-lt10-rgb: 179, 222, 106;
 $pccs-lt10-hsl: hsl(84, 63%, 64%);
 
-$pccs-lt11: #9AD47F;
+$pccs-lt11: #9ad47f;
 $pccs-lt11-rgb: 154, 212, 127;
 $pccs-lt11-hsl: hsl(97, 56%, 76%);
 
-$pccs-lt12: #7FC97E;
+$pccs-lt12: #7fc97e;
 $pccs-lt12-rgb: 127, 201, 126;
 $pccs-lt12-hsl: hsl(119, 44%, 64%);
 
-$pccs-lt13: #72C591;
+$pccs-lt13: #72c591;
 $pccs-lt13-rgb: 114, 197, 145;
 $pccs-lt13-hsl: hsl(150, 48%, 61%);
 
-$pccs-lt14: #66C1AF;
+$pccs-lt14: #66c1af;
 $pccs-lt14-rgb: 102, 193, 175;
 $pccs-lt14-hsl: hsl(172, 49%, 58%);
 
-$pccs-lt15: #66C4C4;
+$pccs-lt15: #66c4c4;
 $pccs-lt15-rgb: 102, 196, 196;
 $pccs-lt15-hsl: hsl(180, 49%, 58%);
 
-$pccs-lt16: #67B1CA;
+$pccs-lt16: #67b1ca;
 $pccs-lt16-rgb: 103, 177, 202;
 $pccs-lt16-hsl: hsl(197, 50%, 60%);
 
-$pccs-lt17: #67A9C9;
+$pccs-lt17: #67a9c9;
 $pccs-lt17-rgb: 103, 169, 201;
 $pccs-lt17-hsl: hsl(207, 49%, 60%);
 
-$pccs-lt18: #689ECA;
+$pccs-lt18: #689eca;
 $pccs-lt18-rgb: 104, 158, 202;
 $pccs-lt18-hsl: hsl(213, 50%, 60%);
 
-$pccs-lt19: #7288C2;
+$pccs-lt19: #7288c2;
 $pccs-lt19-rgb: 114, 136, 194;
 $pccs-lt19-hsl: hsl(223, 44%, 60%);
 
-$pccs-lt20: #817DBA;
+$pccs-lt20: #817dba;
 $pccs-lt20-rgb: 129, 125, 186;
 $pccs-lt20-hsl: hsl(245, 36%, 61%);
 
-$pccs-lt21: #9678B8;
+$pccs-lt21: #9678b8;
 $pccs-lt21-rgb: 150, 120, 184;
 $pccs-lt21-hsl: hsl(273, 39%, 60%);
 
-$pccs-lt22: #B173B6;
+$pccs-lt22: #b173b6;
 $pccs-lt22-rgb: 177, 115, 182;
 $pccs-lt22-hsl: hsl(296, 38%, 58%);
 
-$pccs-lt23: #C972B6;
+$pccs-lt23: #c972b6;
 $pccs-lt23-rgb: 201, 114, 182;
 $pccs-lt23-hsl: hsl(315, 49%, 62%);
 
-$pccs-lt24: #E170A4;
+$pccs-lt24: #e170a4;
 $pccs-lt24-rgb: 225, 112, 164;
 $pccs-lt24-hsl: hsl(331, 62%, 66%);
 
 /* Soft Tone*/
-$pccs-sf1: #BD576F;
+$pccs-sf1: #bd576f;
 $pccs-sf1-rgb: 189, 87, 111;
 $pccs-sf1-hsl: hsl(341, 49%, 54%);
 
-$pccs-sf2: #C95F6B;
+$pccs-sf2: #c95f6b;
 $pccs-sf2-rgb: 201, 95, 107;
 $pccs-sf2-hsl: hsl(352, 51%, 58%);
 
-$pccs-sf3: #CF5E5A;
+$pccs-sf3: #cf5e5a;
 $pccs-sf3-rgb: 207, 94, 90;
 $pccs-sf3-hsl: hsl(2, 53%, 58%);
 
-$pccs-sf4: #D77957;
+$pccs-sf4: #d77957;
 $pccs-sf4-rgb: 215, 121, 87;
 $pccs-sf4-hsl: hsl(18, 62%, 59%);
 
-$pccs-sf5: #D6763A;
+$pccs-sf5: #d6763a;
 $pccs-sf5-rgb: 214, 118, 58;
 $pccs-sf5-hsl: hsl(26, 62%, 53%);
 
-$pccs-sf6: #D89048;
+$pccs-sf6: #d89048;
 $pccs-sf6-rgb: 216, 144, 72;
 $pccs-sf6-hsl: hsl(29, 61%, 56%);
 
-$pccs-sf7: #D29F34;
+$pccs-sf7: #d29f34;
 $pccs-sf7-rgb: 210, 159, 52;
 $pccs-sf7-hsl: hsl(40, 64%, 51%);
 
-$pccs-sf8: #CCBA4C;
+$pccs-sf8: #ccba4c;
 $pccs-sf8-rgb: 204, 186, 76;
 $pccs-sf8-hsl: hsl(49, 58%, 55%);
 
-$pccs-sf9: #C0B647;
+$pccs-sf9: #c0b647;
 $pccs-sf9-rgb: 192, 182, 71;
 $pccs-sf9-hsl: hsl(54, 50%, 52%);
 
-$pccs-sf10: #B3B140;
+$pccs-sf10: #b3b140;
 $pccs-sf10-rgb: 179, 177, 64;
 $pccs-sf10-hsl: hsl(59, 48%, 48%);
 
-$pccs-sf11: #79B055;
+$pccs-sf11: #79b055;
 $pccs-sf11-rgb: 121, 176, 85;
 $pccs-sf11-hsl: hsl(95, 42%, 58%);
 
-$pccs-sf12: #66AC78;
+$pccs-sf12: #66ac78;
 $pccs-sf12-rgb: 102, 172, 120;
 $pccs-sf12-hsl: hsl(146, 38%, 54%);
 
-$pccs-sf13: #5BA37E;
+$pccs-sf13: #5ba37e;
 $pccs-sf13-rgb: 91, 163, 126;
 $pccs-sf13-hsl: hsl(155, 38%, 50%);
 
-$pccs-sf14: #4E9B87;
+$pccs-sf14: #4e9b87;
 $pccs-sf14-rgb: 78, 155, 135;
 $pccs-sf14-hsl: hsl(169, 34%, 46%);
 
-$pccs-sf15: #4E9995;
+$pccs-sf15: #4e9995;
 $pccs-sf15-rgb: 78, 153, 149;
 $pccs-sf15-hsl: hsl(176, 32%, 45%);
 
-$pccs-sf16: #4F8B96;
+$pccs-sf16: #4f8b96;
 $pccs-sf16-rgb: 79, 139, 150;
 $pccs-sf16-hsl: hsl(189, 31%, 45%);
 
-$pccs-sf17: #4E7592;
+$pccs-sf17: #4e7592;
 $pccs-sf17-rgb: 78, 117, 146;
 $pccs-sf17-hsl: hsl(209, 31%, 44%);
 
@@ -603,32 +599,32 @@ $pccs-sf18: #516691;
 $pccs-sf18-rgb: 81, 102, 145;
 $pccs-sf18-hsl: hsl(223, 29%, 44%);
 
-$pccs-sf19: #535A90;
+$pccs-sf19: #535a90;
 $pccs-sf19-rgb: 83, 90, 144;
 $pccs-sf19-hsl: hsl(233, 29%, 45%);
 
-$pccs-sf20: #5C5791;
+$pccs-sf20: #5c5791;
 $pccs-sf20-rgb: 92, 87, 145;
 $pccs-sf20-hsl: hsl(246, 26%, 65%);
 
-$pccs-sf21: #77568F;
+$pccs-sf21: #77568f;
 $pccs-sf21-rgb: 119, 86, 143;
 $pccs-sf21-hsl: hsl(270, 26%, 45%);
 
-$pccs-sf22: #8B5587;
+$pccs-sf22: #8b5587;
 $pccs-sf22-rgb: 139, 85, 135;
 $pccs-sf22-hsl: hsl(305, 26%, 44%);
 
-$pccs-sf23: #9E5485;
+$pccs-sf23: #9e5485;
 $pccs-sf23-rgb: 158, 84, 133;
 $pccs-sf23-hsl: hsl(316, 30%, 47%);
 
-$pccs-sf24: #B05076;
+$pccs-sf24: #b05076;
 $pccs-sf24-rgb: 176, 80, 118;
 $pccs-sf24-hsl: hsl(334, 38%, 50%);
 
 /* Dull Tone */
-$pccs-d1: #8C355F;
+$pccs-d1: #8c355f;
 $pccs-d1-rgb: 140, 53, 95;
 $pccs-d1-hsl: hsl(329, 45%, 38%);
 
@@ -636,35 +632,35 @@ $pccs-d2: #994052;
 $pccs-d2-rgb: 153, 64, 82;
 $pccs-d2-hsl: hsl(346, 40%, 42%);
 
-$pccs-d3: #A6424C;
+$pccs-d3: #a6424c;
 $pccs-d3-rgb: 166, 66, 76;
 $pccs-d3-hsl: hsl(353, 43%, 45%);
 
-$pccs-d4: #B24443;
+$pccs-d4: #b24443;
 $pccs-d4-rgb: 178, 68, 67;
 $pccs-d4-hsl: hsl(1, 47%, 48%);
 
-$pccs-d5: #B34D3E;
+$pccs-d5: #b34d3e;
 $pccs-d5-rgb: 179, 77, 62;
 $pccs-d5-hsl: hsl(8, 49%, 47%);
 
-$pccs-d6: #B25939;
+$pccs-d6: #b25939;
 $pccs-d6-rgb: 178, 89, 57;
 $pccs-d6-hsl: hsl(21, 50%, 46%);
 
-$pccs-d7: #A66E3D;
+$pccs-d7: #a66e3d;
 $pccs-d7-rgb: 166, 110, 61;
 $pccs-d7-hsl: hsl(33, 46%, 45%);
 
-$pccs-d8: #997F42;
+$pccs-d8: #997f42;
 $pccs-d8-rgb: 153, 127, 66;
 $pccs-d8-hsl: hsl(42, 43%, 43%);
 
-$pccs-d9: #8C8946;
+$pccs-d9: #8c8946;
 $pccs-d9-rgb: 140, 137, 70;
 $pccs-d9-hsl: hsl(57, 34%, 41%);
 
-$pccs-d10: #757E47;
+$pccs-d10: #757e47;
 $pccs-d10-rgb: 117, 126, 71;
 $pccs-d10-hsl: hsl(72, 30%, 39%);
 
@@ -672,27 +668,27 @@ $pccs-d11: #678049;
 $pccs-d11-rgb: 103, 128, 73;
 $pccs-d11-hsl: hsl(90, 27%, 39%);
 
-$pccs-d12: #5A814C;
+$pccs-d12: #5a814c;
 $pccs-d12-rgb: 90, 129, 76;
 $pccs-d12-hsl: hsl(103, 28%, 43%);
 
-$pccs-d13: #39764D;
+$pccs-d13: #39764d;
 $pccs-d13-rgb: 57, 118, 77;
 $pccs-d13-hsl: hsl(145, 34%, 34%);
 
-$pccs-d14: #2A6A69;
+$pccs-d14: #2a6a69;
 $pccs-d14-rgb: 42, 106, 105;
 $pccs-d14-hsl: hsl(179, 43%, 29%);
 
-$pccs-d15: #256B75;
+$pccs-d15: #256b75;
 $pccs-d15-rgb: 37, 107, 117;
 $pccs-d15-hsl: hsl(189, 51%, 30%);
 
-$pccs-d16: #1D6283;
+$pccs-d16: #1d6283;
 $pccs-d16-rgb: 29, 98, 131;
 $pccs-d16-hsl: hsl(204, 63%, 31%);
 
-$pccs-d17: #204F79;
+$pccs-d17: #204f79;
 $pccs-d17-rgb: 32, 79, 121;
 $pccs-d17-hsl: hsl(210, 58%, 30%);
 
@@ -700,11 +696,11 @@ $pccs-d18: #214275;
 $pccs-d18-rgb: 33, 66, 117;
 $pccs-d18-hsl: hsl(219, 56%, 29%);
 
-$pccs-d19: #2E3A76;
+$pccs-d19: #2e3a76;
 $pccs-d19-rgb: 46, 58, 118;
 $pccs-d19-hsl: hsl(231, 44%, 32%);
 
-$pccs-d20: #39367B;
+$pccs-d20: #39367b;
 $pccs-d20-rgb: 57, 54, 123;
 $pccs-d20-hsl: hsl(243, 39%, 35%);
 
@@ -712,29 +708,28 @@ $pccs-d21: #493278;
 $pccs-d21-rgb: 73, 50, 120;
 $pccs-d21-hsl: hsl(261, 41%, 33%);
 
-$pccs-d22: #5F3179;
+$pccs-d22: #5f3179;
 $pccs-d22-rgb: 95, 49, 121;
 $pccs-d22-hsl: hsl(282, 43%, 33%);
 
-$pccs-d23: #772D7A;
+$pccs-d23: #772d7a;
 $pccs-d23-rgb: 119, 45, 122;
 $pccs-d23-hsl: hsl(298, 46%, 33%);
 
-$pccs-d24: #802A69;
+$pccs-d24: #802a69;
 $pccs-d24-rgb: 128, 42, 105;
 $pccs-d24-hsl: hsl(319, 50%, 33%);
-
 
 /* Dark Tone */
 $pccs-dk1: #632534;
 $pccs-dk1-rgb: 99, 37, 52;
 $pccs-dk1-hsl: hsl(346, 45%, 27%);
 
-$pccs-dk2: #632A31;
+$pccs-dk2: #632a31;
 $pccs-dk2-rgb: 99, 42, 49;
 $pccs-dk2-hsl: hsl(354, 39%, 27%);
 
-$pccs-dk3: #6B2B29;
+$pccs-dk3: #6b2b29;
 $pccs-dk3-rgb: 107, 43, 41;
 $pccs-dk3-hsl: hsl(3, 43%, 29%);
 
@@ -742,11 +737,11 @@ $pccs-dk4: #743526;
 $pccs-dk4-rgb: 116, 53, 38;
 $pccs-dk4-hsl: hsl(15, 50%, 30%);
 
-$pccs-dk5: #6E3D1F;
+$pccs-dk5: #6e3d1f;
 $pccs-dk5-rgb: 110, 61, 31;
 $pccs-dk5-hsl: hsl(27, 57%, 28%);
 
-$pccs-dk6: #6B4919;
+$pccs-dk6: #6b4919;
 $pccs-dk6-rgb: 107, 73, 25;
 $pccs-dk6-hsl: hsl(37, 65%, 26%);
 
@@ -754,19 +749,19 @@ $pccs-dk7: #695018;
 $pccs-dk7-rgb: 105, 80, 24;
 $pccs-dk7-hsl: hsl(43, 62%, 25%);
 
-$pccs-dk8: #6A5B18;
+$pccs-dk8: #6a5b18;
 $pccs-dk8-rgb: 106, 91, 24;
 $pccs-dk8-hsl: hsl(51, 64%, 25%);
 
-$pccs-dk9: #6E6E26;
+$pccs-dk9: #6e6e26;
 $pccs-dk9-rgb: 110, 110, 38;
 $pccs-dk9-hsl: hsl(60, 48%, 29%);
 
-$pccs-dk10: #56561A;
+$pccs-dk10: #56561a;
 $pccs-dk10-rgb: 86, 86, 26;
 $pccs-dk10-hsl: hsl(60, 54%, 22%);
 
-$pccs-dk11: #506B3E;
+$pccs-dk11: #506b3e;
 $pccs-dk11-rgb: 80, 107, 62;
 $pccs-dk11-hsl: hsl(95, 28%, 33%);
 
@@ -774,23 +769,23 @@ $pccs-dk12: #355935;
 $pccs-dk12-rgb: 53, 89, 53;
 $pccs-dk12-hsl: hsl(120, 25%, 28%);
 
-$pccs-dk13: #28523A;
+$pccs-dk13: #28523a;
 $pccs-dk13-rgb: 40, 82, 58;
 $pccs-dk13-hsl: hsl(150, 34%, 24%);
 
-$pccs-dk14: #1E4B44;
+$pccs-dk14: #1e4b44;
 $pccs-dk14-rgb: 30, 75, 68;
 $pccs-dk14-hsl: hsl(172, 43%, 20%);
 
-$pccs-dk15: #154D4E;
+$pccs-dk15: #154d4e;
 $pccs-dk15-rgb: 21, 77, 78;
 $pccs-dk15-hsl: hsl(182, 56%, 19%);
 
-$pccs-dk16: #0E4250;
+$pccs-dk16: #0e4250;
 $pccs-dk16-rgb: 14, 66, 80;
 $pccs-dk16-hsl: hsl(195, 71%, 18%);
 
-$pccs-dk17: #123B4F;
+$pccs-dk17: #123b4f;
 $pccs-dk17-rgb: 18, 59, 79;
 $pccs-dk17-hsl: hsl(205, 63%, 19%);
 
@@ -798,23 +793,23 @@ $pccs-dk18: #163450;
 $pccs-dk18-rgb: 22, 52, 80;
 $pccs-dk18-hsl: hsl(213, 56%, 20%);
 
-$pccs-dk19: #222A4E;
+$pccs-dk19: #222a4e;
 $pccs-dk19-rgb: 34, 42, 78;
 $pccs-dk19-hsl: hsl(230, 39%, 22%);
 
-$pccs-dk20: #312C4C;
+$pccs-dk20: #312c4c;
 $pccs-dk20-rgb: 49, 44, 76;
 $pccs-dk20-hsl: hsl(249, 29%, 24%);
 
-$pccs-dk21: #3E2E49;
+$pccs-dk21: #3e2e49;
 $pccs-dk21-rgb: 62, 46, 73;
 $pccs-dk21-hsl: hsl(270, 24%, 23%);
 
-$pccs-dk22: #4A304B;
+$pccs-dk22: #4a304b;
 $pccs-dk22-rgb: 74, 48, 75;
 $pccs-dk22-hsl: hsl(303, 22%, 24%);
 
-$pccs-dk23: #57304B;
+$pccs-dk23: #57304b;
 $pccs-dk23-rgb: 87, 48, 75;
 $pccs-dk23-hsl: hsl(324, 29%, 26%);
 
@@ -823,246 +818,245 @@ $pccs-dk24-rgb: 100, 49, 66;
 $pccs-dk24-hsl: hsl(336, 34%, 29%);
 
 /* Pale Tone */
-$pccs-p1: #EEAFCE;
+$pccs-p1: #eeafce;
 $pccs-p1-rgb: 238, 175, 206;
 $pccs-p1-hsl: hsl(329, 61%, 81%);
 
-$pccs-p2: #FBB4C4;
+$pccs-p2: #fbb4c4;
 $pccs-p2-rgb: 251, 180, 196;
 $pccs-p2-hsl: hsl(342, 82%, 85%);
 
-$pccs-p3: #FAB6B5;
+$pccs-p3: #fab6b5;
 $pccs-p3-rgb: 250, 182, 181;
 $pccs-p3-hsl: hsl(1, 81%, 85%);
 
-$pccs-p4: #FDCDB7;
+$pccs-p4: #fdcdb7;
 $pccs-p4-rgb: 253, 205, 183;
 $pccs-p4-hsl: hsl(19, 88%, 85%);
 
-$pccs-p5: #FBD8B0;
+$pccs-p5: #fbd8b0;
 $pccs-p5-rgb: 251, 216, 176;
 $pccs-p5-hsl: hsl(35, 87%, 84%);
 
-$pccs-p6: #FEE6AA;
+$pccs-p6: #fee6aa;
 $pccs-p6-rgb: 254, 230, 170;
 $pccs-p6-hsl: hsl(42, 95%, 83%);
 
-$pccs-p7: #FCF1AF;
+$pccs-p7: #fcf1af;
 $pccs-p7-rgb: 252, 241, 175;
 $pccs-p7-hsl: hsl(52, 92%, 84%);
 
-$pccs-p8: #FEFFB3;
+$pccs-p8: #feffb3;
 $pccs-p8-rgb: 254, 255, 179;
 $pccs-p8-hsl: hsl(61, 100%, 85%);
 
-$pccs-p9: #EEFAB2;
+$pccs-p9: #eefab2;
 $pccs-p9-rgb: 238, 250, 178;
 $pccs-p9-hsl: hsl(71, 87%, 84%);
 
-$pccs-p10: #E6F5B0;
+$pccs-p10: #e6f5b0;
 $pccs-p10-rgb: 230, 245, 176;
 $pccs-p10-hsl: hsl(78, 71%, 83%);
 
-$pccs-p11: #D9F6C0;
+$pccs-p11: #d9f6c0;
 $pccs-p11-rgb: 217, 246, 192;
 $pccs-p11-hsl: hsl(97, 72%, 86%);
 
-$pccs-p12: #CCEAC4;
+$pccs-p12: #cceac4;
 $pccs-p12-rgb: 204, 234, 196;
 $pccs-p12-hsl: hsl(109, 57%, 84%);
 
-$pccs-p13: #C0EBCD;
+$pccs-p13: #c0ebcd;
 $pccs-p13-rgb: 192, 235, 205;
 $pccs-p13-hsl: hsl(150, 56%, 84%);
 
-$pccs-p14: #B3E2D8;
+$pccs-p14: #b3e2d8;
 $pccs-p14-rgb: 179, 226, 216;
 $pccs-p14-hsl: hsl(170, 48%, 80%);
 
-$pccs-p15: #B4DDDF;
+$pccs-p15: #b4dddf;
 $pccs-p15-rgb: 180, 221, 223;
 $pccs-p15-hsl: hsl(183, 38%, 79%);
 
-$pccs-p16: #B4D7DD;
+$pccs-p16: #b4d7dd;
 $pccs-p16-rgb: 180, 215, 221;
 $pccs-p16-hsl: hsl(193, 30%, 79%);
 
-$pccs-p17: #B5D2E0;
+$pccs-p17: #b5d2e0;
 $pccs-p17-rgb: 181, 210, 224;
 $pccs-p17-hsl: hsl(207, 34%, 80%);
 
-$pccs-p18: #B3CEE3;
+$pccs-p18: #b3cee3;
 $pccs-p18-rgb: 179, 206, 227;
 $pccs-p18-hsl: hsl(212, 39%, 80%);
 
-$pccs-p19: #B4C2DD;
+$pccs-p19: #b4c2dd;
 $pccs-p19-rgb: 180, 194, 221;
 $pccs-p19-hsl: hsl(226, 38%, 79%);
 
-$pccs-p20: #B2B6D9;
+$pccs-p20: #b2b6d9;
 $pccs-p20-rgb: 178, 182, 217;
 $pccs-p20-hsl: hsl(235, 39%, 77%);
 
-$pccs-p21: #BCB2D5;
+$pccs-p21: #bcb2d5;
 $pccs-p21-rgb: 188, 178, 213;
 $pccs-p21-hsl: hsl(260, 29%, 77%);
 
-$pccs-p22: #CAB2D6;
+$pccs-p22: #cab2d6;
 $pccs-p22-rgb: 202, 178, 214;
 $pccs-p22-hsl: hsl(279, 31%, 77%);
 
-$pccs-p23: #DAAFDC;
+$pccs-p23: #daafdc;
 $pccs-p23-rgb: 218, 175, 220;
 $pccs-p23-hsl: hsl(297, 34%, 77%);
 
-$pccs-p24: #E4ADD5;
+$pccs-p24: #e4add5;
 $pccs-p24-rgb: 228, 173, 213;
 $pccs-p24-hsl: hsl(316, 40%, 75%);
 
 /* Light Grayish Tone */
-$pccs-ltg1: #C99FB3;
+$pccs-ltg1: #c99fb3;
 $pccs-ltg1-rgb: 201, 159, 179;
 $pccs-ltg1-hsl: hsl(329, 24%, 71%);
 
-$pccs-ltg2: #D7A4B5;
+$pccs-ltg2: #d7a4b5;
 $pccs-ltg2-rgb: 215, 164, 181;
 $pccs-ltg2-hsl: hsl(336, 29%, 74%);
 
-$pccs-ltg3: #D6A9A4;
+$pccs-ltg3: #d6a9a4;
 $pccs-ltg3-rgb: 214, 169, 164;
 $pccs-ltg3-hsl: hsl(7, 26%, 74%);
 
-$pccs-ltg4: #D7AFA7;
+$pccs-ltg4: #d7afa7;
 $pccs-ltg4-rgb: 215, 175, 167;
 $pccs-ltg4-hsl: hsl(16, 29%, 75%);
 
-$pccs-ltg5: #D9B59F;
+$pccs-ltg5: #d9b59f;
 $pccs-ltg5-rgb: 217, 181, 159;
 $pccs-ltg5-hsl: hsl(30, 31%, 74%);
 
-$pccs-ltg6: #D8BA96;
+$pccs-ltg6: #d8ba96;
 $pccs-ltg6-rgb: 216, 186, 150;
 $pccs-ltg6-hsl: hsl(39, 36%, 72%);
 
-$pccs-ltg7: #D9C098;
+$pccs-ltg7: #d9c098;
 $pccs-ltg7-rgb: 217, 192, 152;
 $pccs-ltg7-hsl: hsl(42, 38%, 72%);
 
-$pccs-ltg8: #D9C69B;
+$pccs-ltg8: #d9c69b;
 $pccs-ltg8-rgb: 217, 198, 155;
 $pccs-ltg8-hsl: hsl(47, 39%, 73%);
 
-$pccs-ltg9: #C5CB9B;
+$pccs-ltg9: #c5cb9b;
 $pccs-ltg9-rgb: 197, 203, 155;
 $pccs-ltg9-hsl: hsl(70, 31%, 70%);
 
-$pccs-ltg10: #AAC09A;
+$pccs-ltg10: #aac09a;
 $pccs-ltg10-rgb: 170, 192, 154;
 $pccs-ltg10-hsl: hsl(83, 28%, 68%);
 
-$pccs-ltg11: #A0BD9E;
+$pccs-ltg11: #a0bd9e;
 $pccs-ltg11-rgb: 160, 189, 158;
 $pccs-ltg11-hsl: hsl(109, 23%, 68%);
 
-$pccs-ltg12: #9EBCA4;
+$pccs-ltg12: #9ebca4;
 $pccs-ltg12-rgb: 158, 188, 164;
 $pccs-ltg12-hsl: hsl(140, 20%, 68%);
 
-$pccs-ltg13: #99BAA7;
+$pccs-ltg13: #99baa7;
 $pccs-ltg13-rgb: 153, 186, 167;
 $pccs-ltg13-hsl: hsl(155, 21%, 66%);
 
-$pccs-ltg14: #92B8AD;
+$pccs-ltg14: #92b8ad;
 $pccs-ltg14-rgb: 146, 184, 173;
 $pccs-ltg14-hsl: hsl(165, 24%, 65%);
 
-$pccs-ltg15: #91B8B7;
+$pccs-ltg15: #91b8b7;
 $pccs-ltg15-rgb: 145, 184, 183;
 $pccs-ltg15-hsl: hsl(179, 22%, 64%);
 
-$pccs-ltg16: #91AFBA;
+$pccs-ltg16: #91afba;
 $pccs-ltg16-rgb: 145, 175, 186;
 $pccs-ltg16-hsl: hsl(198, 24%, 65%);
 
-$pccs-ltg17: #92A9B9;
+$pccs-ltg17: #92a9b9;
 $pccs-ltg17-rgb: 146, 169, 185;
 $pccs-ltg17-hsl: hsl(209, 23%, 65%);
 
-$pccs-ltg18: #91A4B5;
+$pccs-ltg18: #91a4b5;
 $pccs-ltg18-rgb: 145, 164, 181;
 $pccs-ltg18-hsl: hsl(215, 22%, 64%);
 
-$pccs-ltg19: #9199B0;
+$pccs-ltg19: #9199b0;
 $pccs-ltg19-rgb: 145, 153, 176;
 $pccs-ltg19-hsl: hsl(229, 22%, 63%);
 
-$pccs-ltg20: #9191AD;
+$pccs-ltg20: #9191ad;
 $pccs-ltg20-rgb: 145, 145, 173;
 $pccs-ltg20-hsl: hsl(240, 20%, 62%);
 
-$pccs-ltg21: #9C93AE;
+$pccs-ltg21: #9c93ae;
 $pccs-ltg21-rgb: 156, 147, 174;
 $pccs-ltg21-hsl: hsl(271, 19%, 63%);
 
-$pccs-ltg22: #A997B1;
+$pccs-ltg22: #a997b1;
 $pccs-ltg22-rgb: 169, 151, 177;
 $pccs-ltg22-hsl: hsl(287, 19%, 64%);
 
-$pccs-ltg23: #B89AB6;
+$pccs-ltg23: #b89ab6;
 $pccs-ltg23-rgb: 184, 154, 182;
 $pccs-ltg23-hsl: hsl(305, 20%, 66%);
 
-$pccs-ltg24: #C09FB4;
+$pccs-ltg24: #c09fb4;
 $pccs-ltg24-rgb: 192, 159, 180;
 $pccs-ltg24-hsl: hsl(327, 22%, 69%);
 
-
 /* Grayish Tone */
-$pccs-g1: #6B455A;
+$pccs-g1: #6b455a;
 $pccs-g1-rgb: 107, 69, 90;
 $pccs-g1-hsl: hsl(332, 22%, 35%);
 
-$pccs-g2: #7D4F5A;
+$pccs-g2: #7d4f5a;
 $pccs-g2-rgb: 125, 79, 90;
 $pccs-g2-hsl: hsl(346, 22%, 40%);
 
-$pccs-g3: #7C575E;
+$pccs-g3: #7c575e;
 $pccs-g3-rgb: 124, 87, 94;
 $pccs-g3-hsl: hsl(345, 17%, 41%);
 
-$pccs-g4: #7D5F61;
+$pccs-g4: #7d5f61;
 $pccs-g4-rgb: 125, 95, 97;
 $pccs-g4-hsl: hsl(353, 12%, 43%);
 
-$pccs-g5: #7E6261;
+$pccs-g5: #7e6261;
 $pccs-g5-rgb: 126, 98, 97;
 $pccs-g5-hsl: hsl(3, 12%, 44%);
 
-$pccs-g6: #7C6764;
+$pccs-g6: #7c6764;
 $pccs-g6-rgb: 124, 103, 100;
 $pccs-g6-hsl: hsl(12, 11%, 44%);
 
-$pccs-g7: #7C6A5E;
+$pccs-g7: #7c6a5e;
 $pccs-g7-rgb: 124, 106, 94;
 $pccs-g7-hsl: hsl(27, 16%, 43%);
 
-$pccs-g8: #7E6F5A;
+$pccs-g8: #7e6f5a;
 $pccs-g8-rgb: 126, 111, 90;
 $pccs-g8-hsl: hsl(36, 18%, 42%);
 
-$pccs-g9: #72755A;
+$pccs-g9: #72755a;
 $pccs-g9-rgb: 114, 117, 90;
 $pccs-g9-hsl: hsl(66, 13%, 41%);
 
-$pccs-g10: #636F5B;
+$pccs-g10: #636f5b;
 $pccs-g10-rgb: 99, 111, 91;
 $pccs-g10-hsl: hsl(86, 11%, 40%);
 
-$pccs-g11: #586E57;
+$pccs-g11: #586e57;
 $pccs-g11-rgb: 88, 110, 87;
 $pccs-g11-hsl: hsl(113, 13%, 39%);
 
-$pccs-g12: #476C5B;
+$pccs-g12: #476c5b;
 $pccs-g12-rgb: 71, 108, 91;
 $pccs-g12-hsl: hsl(156, 21%, 35%);
 
@@ -1070,19 +1064,19 @@ $pccs-g13: #416863;
 $pccs-g13-rgb: 65, 104, 99;
 $pccs-g13-hsl: hsl(172, 23%, 33%);
 
-$pccs-g14: #395B64;
+$pccs-g14: #395b64;
 $pccs-g14-rgb: 57, 91, 100;
 $pccs-g14-hsl: hsl(195, 29%, 31%);
 
-$pccs-g15: #38555D;
+$pccs-g15: #38555d;
 $pccs-g15-rgb: 56, 85, 93;
 $pccs-g15-hsl: hsl(205, 26%, 34%);
 
-$pccs-g16: #384E5C;
+$pccs-g16: #384e5c;
 $pccs-g16-rgb: 56, 78, 92;
 $pccs-g16-hsl: hsl(216, 24%, 31%);
 
-$pccs-g17: #38475A;
+$pccs-g17: #38475a;
 $pccs-g17-rgb: 56, 71, 90;
 $pccs-g17-hsl: hsl(223, 23%, 29%);
 
@@ -1094,7 +1088,7 @@ $pccs-g19: #353654;
 $pccs-g19-rgb: 53, 54, 84;
 $pccs-g19-hsl: hsl(238, 23%, 27%);
 
-$pccs-g20: #3F3051;
+$pccs-g20: #3f3051;
 $pccs-g20-rgb: 63, 48, 81;
 $pccs-g20-hsl: hsl(261, 28%, 25%);
 
@@ -1102,7 +1096,7 @@ $pccs-g21: #463353;
 $pccs-g21-rgb: 70, 51, 83;
 $pccs-g21-hsl: hsl(278, 24%, 26%);
 
-$pccs-g22: #4A3753;
+$pccs-g22: #4a3753;
 $pccs-g22-rgb: 74, 55, 83;
 $pccs-g22-hsl: hsl(286, 20%, 27%);
 
@@ -1110,77 +1104,76 @@ $pccs-g23: #553857;
 $pccs-g23-rgb: 85, 56, 87;
 $pccs-g23-hsl: hsl(324, 21%, 28%);
 
-$pccs-g24: #5B3A55;
+$pccs-g24: #5b3a55;
 $pccs-g24-rgb: 91, 58, 85;
 $pccs-g24-hsl: hsl(316, 22%, 29%);
 
-
 /* Dark Grayish Tone */
-$pccs-dkg1: #3C2D30;
+$pccs-dkg1: #3c2d30;
 $pccs-dkg1-rgb: 60, 45, 48;
 $pccs-dkg1-hsl: hsl(345, 14%, 21%);
 
-$pccs-dkg2: #3A2B2E;
+$pccs-dkg2: #3a2b2e;
 $pccs-dkg2-rgb: 58, 43, 46;
 $pccs-dkg2-hsl: hsl(340, 14%, 20%);
 
-$pccs-dkg3: #3B2B2C;
+$pccs-dkg3: #3b2b2c;
 $pccs-dkg3-rgb: 59, 43, 44;
 $pccs-dkg3-hsl: hsl(345, 14%, 20%);
 
-$pccs-dkg4: #3A2C2B;
+$pccs-dkg4: #3a2c2b;
 $pccs-dkg4-rgb: 58, 44, 43;
 $pccs-dkg4-hsl: hsl(5, 14%, 20%);
 
-$pccs-dkg5: #40322F;
+$pccs-dkg5: #40322f;
 $pccs-dkg5-rgb: 64, 50, 47;
 $pccs-dkg5-hsl: hsl(12, 16%, 22%);
 
-$pccs-dkg6: #463B35;
+$pccs-dkg6: #463b35;
 $pccs-dkg6-rgb: 70, 59, 53;
 $pccs-dkg6-hsl: hsl(23, 17%, 24%);
 
-$pccs-dkg7: #453B31;
+$pccs-dkg7: #453b31;
 $pccs-dkg7-rgb: 69, 59, 49;
 $pccs-dkg7-hsl: hsl(33, 19%, 23%);
 
-$pccs-dkg8: #47402C;
+$pccs-dkg8: #47402c;
 $pccs-dkg8-rgb: 71, 64, 44;
 $pccs-dkg8-hsl: hsl(49, 24%, 23%);
 
-$pccs-dkg9: #42412F;
+$pccs-dkg9: #42412f;
 $pccs-dkg9-rgb: 66, 65, 47;
 $pccs-dkg9-hsl: hsl(57, 18%, 22%);
 
-$pccs-dkg10: #3E3F31;
+$pccs-dkg10: #3e3f31;
 $pccs-dkg10-rgb: 62, 63, 49;
 $pccs-dkg10-hsl: hsl(66, 15%, 22%);
 
-$pccs-dkg11: #2C382A;
+$pccs-dkg11: #2c382a;
 $pccs-dkg11-rgb: 44, 56, 42;
 $pccs-dkg11-hsl: hsl(110, 16%, 19%);
 
-$pccs-dkg12: #24332C;
+$pccs-dkg12: #24332c;
 $pccs-dkg12-rgb: 36, 51, 44;
 $pccs-dkg12-hsl: hsl(150, 19%, 17%);
 
-$pccs-dkg13: #23342E;
+$pccs-dkg13: #23342e;
 $pccs-dkg13-rgb: 35, 52, 46;
 $pccs-dkg13-hsl: hsl(160, 21%, 17%);
 
-$pccs-dkg14: #1E4B44;
+$pccs-dkg14: #1e4b44;
 $pccs-dkg14-rgb: 30, 75, 68;
 $pccs-dkg14-hsl: hsl(172, 43%, 20%);
 
-$pccs-dkg15: #154D4E;
+$pccs-dkg15: #154d4e;
 $pccs-dkg15-rgb: 21, 77, 78;
 $pccs-dkg15-hsl: hsl(182, 56%, 19%);
 
-$pccs-dkg16: #0E4250;
+$pccs-dkg16: #0e4250;
 $pccs-dkg16-rgb: 14, 66, 80;
 $pccs-dkg16-hsl: hsl(195, 71%, 18%);
 
-$pccs-dkg17: #123B4F;
+$pccs-dkg17: #123b4f;
 $pccs-dkg17-rgb: 18, 59, 79;
 $pccs-dkg17-hsl: hsl(205, 63%, 19%);
 
@@ -1188,7 +1181,7 @@ $pccs-dkg18: #163450;
 $pccs-dkg18-rgb: 22, 52, 80;
 $pccs-dkg18-hsl: hsl(213, 56%, 20%);
 
-$pccs-dkg19: #222A4E;
+$pccs-dkg19: #222a4e;
 $pccs-dkg19-rgb: 34, 42, 78;
 $pccs-dkg19-hsl: hsl(230, 39%, 22%);
 
@@ -1196,18 +1189,18 @@ $pccs-dkg20: #282530;
 $pccs-dkg20-rgb: 40, 37, 48;
 $pccs-dkg20-hsl: hsl(257, 13%, 17%);
 
-$pccs-dkg21: #2A2730;
+$pccs-dkg21: #2a2730;
 $pccs-dkg21-rgb: 42, 39, 48;
 $pccs-dkg21-hsl: hsl(260, 10%, 17%);
 
-$pccs-dkg22: #2D2A31;
+$pccs-dkg22: #2d2a31;
 $pccs-dkg22-rgb: 45, 42, 49;
 $pccs-dkg22-hsl: hsl(265, 9%, 18%);
 
-$pccs-dkg23: #362C34;
+$pccs-dkg23: #362c34;
 $pccs-dkg23-rgb: 54, 44, 52;
 $pccs-dkg23-hsl: hsl(324, 11%, 19%);
 
-$pccs-dkg24: #392D31;
+$pccs-dkg24: #392d31;
 $pccs-dkg24-rgb: 57, 45, 49;
 $pccs-dkg24-hsl: hsl(336, 12%, 20%);

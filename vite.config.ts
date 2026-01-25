@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import viteImagemin from 'vite-plugin-imagemin'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import viteImagemin from "vite-plugin-imagemin";
 
 export default defineConfig({
   plugins: [
@@ -14,20 +14,20 @@ export default defineConfig({
       svgo: {
         plugins: [
           {
-            name: 'removeViewBox',
-            active: false
+            name: "removeViewBox",
+            active: false,
           },
           {
-            name: 'removeEmptyAttrs',
-            active: false
-          }
-        ]
-      }
-    })
+            name: "removeEmptyAttrs",
+            active: false,
+          },
+        ],
+      },
+    }),
   ],
   test: {
     globals: true,
-    environment: 'jsdom',
-    setupFiles: './test-setup.ts',
-  }
-})
+    environment: "jsdom",
+    setupFiles: "./test-setup.ts",
+  },
+});

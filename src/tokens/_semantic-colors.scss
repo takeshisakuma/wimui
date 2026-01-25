@@ -1,4 +1,4 @@
-@use 'pccs-colors' as *;
+@use "pccs-colors" as *;
 
 /* --- 色の意味 --- */
 $semantic-danger: $pccs-s1;
@@ -23,8 +23,6 @@ $semantic-text-on-secondary: $pccs-w;
 $semantic-text-on-info: $pccs-w;
 $semantic-text-on-disabled: $pccs-w;
 
-
-
 /* ---- 文字色 ---- */
 /* 無彩色 */
 $font-black: $pccs-bk;
@@ -37,14 +35,11 @@ $font-white: $pccs-w;
 /* エラー表示など */
 $font-error: $pccs-sf2;
 
-
 /* Scrollareaコンポーネントのスクロールバーの色 */
 $scrollbar-thumb: $pccs-b20;
 /* スクロールバーのつまみ部分の色 */
 $scrollbar-track: $pccs-gy8_5;
 /* スクロールバーのトラック部分の色 */
-
-
 
 /* --- 変数としての定義 (基本はライトモード) --- */
 :root {
