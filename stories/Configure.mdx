@@ -2,6 +2,7 @@ import { Meta } from "@storybook/blocks";
 import { T } from "./T";
 
 import Github from "./assets/github.svg";
+import wimLogo from '../src/svg/wimlogo.svg';
 
 export const RightArrow = () => (
   <svg
@@ -25,7 +26,14 @@ export const RightArrow = () => (
 
 <div className="">
 <h2>WIM UI</h2>
-
+<img src={wimLogo} alt="Logo" width="200" height="103"
+  style={{ 
+    display: 'block',
+    animation: 'spin 0.01s linear infinite',
+    filter: 'blur(100px)', /* わずかにぼかすことで回転の筋に見える */
+    transformOrigin: 'center',
+    position: 'absolute',  
+  }}/>
 <ul>
   <li>React</li>
   <li>SCSS</li>
@@ -58,4 +66,12 @@ export const RightArrow = () => (
 
   }
   `}
+
+{`
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+`}
+
 </style>
