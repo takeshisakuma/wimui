@@ -1,4 +1,3 @@
-import { fn } from "storybook/test";
 import { Scrollarea } from "./Scrollarea";
 
 export default {

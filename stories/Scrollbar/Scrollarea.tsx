@@ -11,14 +11,13 @@ type ScrollareaProps = React.ComponentPropsWithoutRef<"div"> & {
 
 export const Scrollarea = ({
   text,
-  scrollAxis = "y",
+  scrollAxis: _scrollAxis = "y",
   maxHeight = `10rem`,
-  ...props
+  ..._props
 }: ScrollareaProps) => {
   const { t } = useTranslation();
 
-  // スタイルを動的に生成
-  const style: React.CSSProperties = {};
+
 
   return (
     <div className="wim-scrollarea" style={{ maxHeight: maxHeight }}>

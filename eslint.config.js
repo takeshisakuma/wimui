@@ -9,6 +9,7 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import eslintPluginStorybook from "eslint-plugin-storybook";
 import jsxA11y from "eslint-plugin-jsx-a11y";
+import globals from "globals";
 
 export default [
   eslint.configs.recommended,
@@ -21,6 +22,9 @@ export default [
     },
     languageOptions: {
       parser: tsParser,
+      globals: {
+        ...globals.browser,
+      },
       parserOptions: {
         project: "./tsconfig.json",
         ecmaVersion: "latest",
