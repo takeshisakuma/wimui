@@ -1,0 +1,28 @@
+/* --- 影 (Shadows) --- */
+$shadow-none: none;
+$shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.1);
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 5px 10px rgba(0, 0, 0, 0.18);
+$shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+
+/* --- 浮き上がり (Elevation / Lift) --- */
+$lift-sm: -1px;
+$lift-md: -1.5px;
+$lift-none: 0;
+
+/* --- アニメーション (Motion) --- */
+$duration-fast: 0.2s;
+$duration-base: 0.3s;
+$easing-base: ease-in-out;
+
+$transition-base: all $duration-fast $easing-base;
+
+/* --- インタラクション (Interaction) --- */
+$scale-active: 0.98;
+
+:root {
+    --shadow-sm: #{$shadow-sm};
+    --shadow-lg: #{$shadow-lg};
+    --transition-base: #{$transition-base};
+}
