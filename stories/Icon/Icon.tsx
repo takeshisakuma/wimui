@@ -29,7 +29,7 @@ export const Icon = ({ name, size = "medium", color, ...props }: IconProps) => {
   if (!IconComponent) return null;
 
   const colorClass = color ? `wim-icon--${color.replace("semantic-", "")}` : "";
-  const sizeMap = { small: "xs", medium: "md", large: "lg" };
+  const sizeMap = { small: "sm", medium: "md", large: "lg" };
   const sizeClass = `wim-icon--${sizeMap[size] || "md"}`;
 
   return (

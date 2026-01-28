@@ -24,8 +24,7 @@ export const LargePrimaryButton = {
   args: {
     size: "large",
     label: "button_label",
-    weight: `normal`,
-    role: `primary`,
+    priority: `primary`,
     state: `abled`,
   },
 };
@@ -34,8 +33,7 @@ export const MeduimSecondaryButton = {
   args: {
     size: "medium",
     label: "button_label",
-    weight: `normal`,
-    role: `secondary`,
+    priority: `secondary`,
     state: `abled`,
   },
 };
@@ -44,17 +42,16 @@ export const SmallSecondaryButton = {
   args: {
     size: "small",
     label: "button_label",
-    weight: `normal`,
-    role: `secondary`,
+    priority: `secondary`,
     state: `abled`,
   },
 };
 
-export const SmallDangerButtonWithCircleIcon = {
+export const SmallTertiaryButtonWithCircleIcon = {
   args: {
     size: "small",
     label: "button_label",
-    weight: `normal`,
+    priority: `tertiary`,
     role: `danger`,
     state: `abled`,
     iconName: "CircleIcon",

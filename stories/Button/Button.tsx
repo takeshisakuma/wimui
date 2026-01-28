@@ -8,9 +8,8 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   backgroundColor?: string | null;
   size?: "small" | "medium" | "large";
   label?: string;
-  weight?: "bold" | "normal";
-  role?: "primary" | "secondary" | "danger";
-  color?: "white" | "black";
+  priority?: "primary" | "secondary" | "tertiary";
+  role?: "default" | "danger" | "success";
   state?: "abled" | "disabled";
   iconName?: "CircleIcon" | "SquareIcon";
   iconPosition?: "left" | "right";
@@ -19,9 +18,8 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
 export const Button = ({
   size = "medium",
   label,
-  weight = "bold",
-  color = "black",
-  role = "secondary",
+  priority = "secondary",
+  role = "default",
   state = "abled",
   iconName = undefined,
   iconPosition = "left",
@@ -30,11 +28,14 @@ export const Button = ({
 }: ButtonProps) => {
   const { t } = useTranslation();
 
-  const sizeMap = { small: "sm", medium: "md", large: "lg" };
+  const sizeMap: Record<"small" | "medium" | "large", string> = {
+    small: "sm",
+    medium: "md",
+    large: "lg",
+  };
   const sizeClass = `wim-button--${sizeMap[size]}`;
+  const priorityClass = `wim-button--${priority}`;
   const roleClass = `wim-button--${role}`;
-  const weightClass = weight === "bold" ? "wim-button--bold" : "";
-  const colorClass = color === "white" ? "wim-button--white" : "";
   const iconOnlyClass = !label && iconName ? "wim-button--icon-only" : "";
 
   const iconComponent = iconName ? <Icon name={iconName} size={size} /> : null;
@@ -54,9 +55,8 @@ export const Button = ({
       className={[
         `wim-button`,
         sizeClass,
+        priorityClass,
         roleClass,
-        weightClass,
-        colorClass,
         iconOnlyClass,
       ]
         .filter(Boolean)
@@ -74,9 +74,8 @@ Button.propTypes = {
   size: PropTypes.oneOf(["small", "medium", "large"]),
   label: PropTypes.string,
   onClick: PropTypes.func,
-  weight: PropTypes.oneOf(["normal", "bold"]),
-  color: PropTypes.oneOf(["black", "white"]),
-  role: PropTypes.oneOf(["primary", "secondary", "danger"]),
+  priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
+  role: PropTypes.oneOf(["default", "danger", "success"]),
   state: PropTypes.oneOf(["abled", "disabled"]),
   iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon"]),
   iconPosition: PropTypes.oneOf(["left", "right"]),

@@ -5,22 +5,30 @@
 
 @layer component {
   .wim-button {
+    box-sizing: border-box;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: scales.$spacing-xs;
     cursor: pointer;
-    border: 0;
+    border: 1px solid transparent;
+    padding: 0;
     border-radius: scales.$radius-md;
     opacity: 1;
-    transition: opacity 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     background-color: transparent;
     color: inherit;
     font: inherit;
-    padding: scales.$spacing-md scales.$spacing-lg;
+    line-height: 1;
 
     &__label {
-      line-height: inherit;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .wim-icon {
+      font-size: 0.7em;
     }
 
     &--icon-only {
@@ -30,47 +38,104 @@
     }
 
     &--lg {
-      padding: scales.$spacing-2xl scales.$spacing-5xl;
+      padding: scales.$spacing-xl scales.$spacing-3xl;
       font-size: texts.$size-large;
+      min-height: calc(texts.$size-large * 1 + 2 * scales.$spacing-xl);
+      min-width: calc(texts.$size-large * 1 + 2 * scales.$spacing-xl);
     }
 
     &--md {
-      padding: scales.$spacing-xl scales.$spacing-4xl;
+      padding: scales.$spacing-lg scales.$spacing-2xl;
       font-size: texts.$size-medium;
+      min-height: calc(texts.$size-medium * 1 + 2 * scales.$spacing-lg);
+      min-width: calc(texts.$size-medium * 1 + 2 * scales.$spacing-lg);
     }
 
     &--sm {
-      padding: scales.$spacing-lg scales.$spacing-3xl;
+      padding: scales.$spacing-sm scales.$spacing-lg;
       font-size: texts.$size-small;
+      min-height: calc(texts.$size-small * 1 + 2 * scales.$spacing-sm);
+      min-width: calc(texts.$size-small * 1 + 2 * scales.$spacing-sm);
     }
 
     &--primary {
-      background-color: colors.$semantic-primary;
-      color: colors.$semantic-text-on-primary;
+      &.wim-button--default {
+        background-color: colors.$semantic-primary;
+        color: colors.$semantic-text-on-primary;
+      }
+
+      &.wim-button--danger {
+        background-color: colors.$semantic-danger;
+        color: colors.$semantic-text-on-danger;
+      }
+
+      &.wim-button--success {
+        background-color: colors.$semantic-success;
+        color: colors.$semantic-text-on-success;
+      }
+
+      &:disabled {
+        background-color: colors.$semantic-disabled;
+        color: colors.$semantic-text-on-disabled;
+        border-color: transparent;
+      }
     }
 
     &--secondary {
-      background-color: colors.$semantic-secondary;
-      color: colors.$semantic-text-on-secondary;
+      &.wim-button--default {
+        border-color: colors.$semantic-primary;
+        color: colors.$semantic-primary;
+        background-color: transparent;
+      }
+
+      &.wim-button--danger {
+        border-color: colors.$semantic-danger;
+        color: colors.$semantic-danger;
+        background-color: transparent;
+      }
+
+      &.wim-button--success {
+        border-color: colors.$semantic-success;
+        color: colors.$semantic-success;
+        background-color: transparent;
+      }
+
+      &:disabled {
+        background-color: transparent;
+        border-color: colors.$semantic-disabled;
+        color: colors.$semantic-disabled;
+      }
     }
 
-    &--danger {
-      background-color: colors.$semantic-danger;
-      color: colors.$semantic-text-on-danger;
-    }
+    &--tertiary {
+      background-color: transparent;
+      border-color: transparent;
 
-    &--bold {
-      font-weight: texts.$weight-bold;
-    }
+      &.wim-button--default {
+        color: colors.$semantic-primary;
+      }
 
-    &--white {
-      color: var(--font-white);
+      &.wim-button--danger {
+        color: colors.$semantic-danger;
+      }
+
+      &.wim-button--success {
+        color: colors.$semantic-success;
+      }
+
+      &:hover:not(:disabled) {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      &:disabled {
+        background-color: transparent;
+        border-color: transparent;
+        color: colors.$semantic-disabled;
+      }
     }
 
     &:disabled {
       cursor: not-allowed;
-      background-color: colors.$semantic-disabled;
-      color: colors.$semantic-text-on-disabled;
     }
 
     &:hover:not(:disabled) {

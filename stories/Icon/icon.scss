@@ -26,28 +26,23 @@
     }
 
     &--xl {
-      width: texts.$size-ex-large;
-      height: texts.$size-ex-large;
+      font-size: texts.$size-ex-large;
     }
 
     &--lg {
-      width: texts.$size-large;
-      height: texts.$size-large;
+      font-size: texts.$size-large;
     }
 
     &--md {
-      width: texts.$size-medium;
-      height: texts.$size-medium;
+      font-size: texts.$size-medium;
     }
 
     &--sm {
-      width: texts.$size-small;
-      height: texts.$size-small;
+      font-size: texts.$size-small;
     }
 
     &--xs {
-      width: texts.$size-ex-small;
-      height: texts.$size-ex-small;
+      font-size: texts.$size-ex-small;
     }
 
     &--danger {
