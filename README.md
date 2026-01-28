@@ -8,8 +8,9 @@ npm run storybook
 
 ### 品質確認
 
-npm run stylelint
-npm run lint
+npm run stylelint // srcのscssの品質確認
+npm run lint // srcのjs,tsの品質確認
+npm run test // stories.tsを使ったテスト
 
 ### 整形
 
