@@ -3,7 +3,7 @@ import { Icon } from "./Icon";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 export default {
-  title: "Component/Icon",
+  title: "Component/Atoms_Typography/Icon",
   component: Icon,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

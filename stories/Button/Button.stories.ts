@@ -3,7 +3,7 @@ import { Button } from "./Button";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 export default {
-  title: "Component/Button",
+  title: "Component/Buttons & Actions/Button",
   component: Button,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
@@ -56,5 +56,15 @@ export const SmallTertiaryButtonWithCircleIcon = {
     state: `abled`,
     iconName: "CircleIcon",
     iconPosition: "left",
+  },
+};
+
+export const LargePrimaryButtonWithSquareIconNoLabel = {
+  args: {
+    size: "large",
+    priority: "primary",
+    role: "default",
+    state: "abled",
+    iconName: "SquareIcon",
   },
 };
