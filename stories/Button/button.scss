@@ -15,7 +15,6 @@
     border: 1px solid transparent;
     padding: 0;
     border-radius: scales.$radius-md;
-    border-radius: scales.$radius-md;
     opacity: 1;
     transition: effects.$transition-base;
     background-color: transparent;
@@ -78,6 +77,13 @@
         color: colors.$semantic-text-on-success;
       }
 
+      &:disabled {
+        background-color: colors.$semantic-disabled;
+        color: colors.$semantic-text-on-disabled;
+        border-color: transparent;
+        box-shadow: none;
+      }
+
       &:hover:not(:disabled) {
         box-shadow: effects.$shadow-lg;
         transform: translateY(effects.$lift-md);
@@ -86,13 +92,6 @@
       &:active:not(:disabled) {
         box-shadow: effects.$shadow-xs;
         transform: translateY(effects.$lift-none);
-      }
-
-      &:disabled {
-        background-color: colors.$semantic-disabled;
-        color: colors.$semantic-text-on-disabled;
-        border-color: transparent;
-        box-shadow: none;
       }
     }
 
@@ -115,6 +114,12 @@
         background-color: #fff;
       }
 
+      &:disabled {
+        background-color: transparent;
+        border-color: colors.$semantic-disabled;
+        color: colors.$semantic-disabled;
+      }
+
       &:hover:not(:disabled) {
         box-shadow: effects.$shadow-md;
         transform: translateY(effects.$lift-sm);
@@ -123,12 +128,6 @@
       &:active:not(:disabled) {
         box-shadow: effects.$shadow-inset;
         transform: translateY(effects.$lift-none);
-      }
-
-      &:disabled {
-        background-color: transparent;
-        border-color: colors.$semantic-disabled;
-        color: colors.$semantic-disabled;
       }
     }
 
@@ -148,14 +147,14 @@
         color: colors.$semantic-success;
       }
 
-      &:hover:not(:disabled) {
-        background-color: rgba(0, 0, 0, 0.05);
-      }
-
       &:disabled {
         background-color: transparent;
         border-color: transparent;
         color: colors.$semantic-disabled;
+      }
+
+      &:hover:not(:disabled) {
+        background-color: rgb(0 0 0 / 0.05);
       }
     }
 
