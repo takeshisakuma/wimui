@@ -17,8 +17,6 @@ export const Scrollarea = ({
 }: ScrollareaProps) => {
   const { t } = useTranslation();
 
-
-
   return (
     <div className="wim-scrollarea" style={{ maxHeight: maxHeight }}>
       {t(text)}

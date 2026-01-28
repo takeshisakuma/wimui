@@ -1,7 +1,3 @@
-//.jsにしている理由
-//Flat Config形式では、まだTypeScriptサポートが完全ではない場合がある
-//一部のプラグインでTypeScript設定ファイルとの互換性問題が発生する可能性がある
-
 // @ts-check
 
 import eslint from "@eslint/js";
@@ -9,16 +5,39 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import eslintPluginStorybook from "eslint-plugin-storybook";
 import jsxA11y from "eslint-plugin-jsx-a11y";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import * as mdx from "eslint-plugin-mdx";
 import globals from "globals";
 
 export default [
   eslint.configs.recommended,
 
+  // MDX configuration
   {
+    ...mdx.flat,
+    files: ["**/*.mdx"],
+    processor: mdx.createRemarkProcessor({
+      lintCodeBlocks: true,
+    }),
+    rules: {
+      ...mdx.flat.rules,
+      "no-unused-vars": "off", // MDX often has false positives for unused vars
+    },
+  },
+  {
+    ...mdx.flatCodeBlocks,
+    files: ["**/*.mdx"],
+  },
+
+  {
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     plugins: {
       "@typescript-eslint": tsPlugin,
       storybook: eslintPluginStorybook,
       "jsx-a11y": jsxA11y,
+      react: reactPlugin,
+      "react-hooks": reactHooksPlugin,
     },
     languageOptions: {
       parser: tsParser,
@@ -34,9 +53,17 @@ export default [
         },
       },
     },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
     rules: {
       ...tsPlugin.configs.recommended.rules,
       ...jsxA11y.configs.recommended.rules,
+      ...reactPlugin.configs.recommended.rules,
+      ...reactHooksPlugin.configs.recommended.rules,
+      "react/react-in-jsx-scope": "off", // Vite based projects don't need React in scope
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
@@ -46,12 +73,11 @@ export default [
     },
   },
 
-  // Storybookの推奨設定をそのまま spread する
+  // Storybook overrides
   ...eslintPluginStorybook.configs.recommended.overrides.map((override) => ({
     ...override,
     rules: {
       ...override.rules,
-      // Prettier と競合する ESLint ルールを無効化する設定
       indent: "off",
       quotes: "off",
       semi: "off",
@@ -64,17 +90,14 @@ export default [
       "space-before-function-paren": "off",
       "space-infix-ops": "off",
       "keyword-spacing": "off",
-
-      // Storybookの個別のルールを調整
-      "storybook/no-stories-of": "error", // storiesOfの使用を禁止
+      "storybook/no-stories-of": "error",
     },
   })),
 
   {
     files: ["stories/**/*.ts", "stories/**/*.tsx"],
     rules: {
-      // Storybookファイル固有のa11yルールの調整（必要に応じて）
-      "jsx-a11y/no-autofocus": "off", // Storybookでは自動フォーカスが有用な場合がある
+      "jsx-a11y/no-autofocus": "off",
     },
   },
 ];

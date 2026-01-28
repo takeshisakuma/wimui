@@ -60,7 +60,7 @@ const startGlobalSync = () => {
           }
         }
       }
-    } catch (e) {
+    } catch {
       // 異なるドメインの iframe などで window.top にアクセスできない場合のセーフティ
     }
   }, 500);

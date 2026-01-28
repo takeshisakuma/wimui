@@ -7,10 +7,12 @@
 npm run storybook
 
 ### 品質確認
+
 npm run stylelint
 npm run lint
 
 ### 整形
+
 npm run format
 
 ### github pagesへのデプロイ

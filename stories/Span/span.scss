@@ -6,11 +6,11 @@
 @layer component {
   .wim-span {
     display: inline-flex;
-    align-items: center;
     gap: scales.$spacing-xs;
-    cursor: pointer;
-    color: inherit;
+    align-items: center;
     font: inherit;
+    color: inherit;
+    cursor: pointer;
 
     &--xl {
       font-size: texts.$size-ex-large;

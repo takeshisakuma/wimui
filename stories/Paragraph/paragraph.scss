@@ -5,8 +5,8 @@
 
 @layer component {
   .wim-paragraph {
-    color: inherit;
     font: inherit;
+    color: inherit;
 
     &--xl {
       font-size: texts.$size-ex-large;

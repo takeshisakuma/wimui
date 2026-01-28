@@ -8,23 +8,23 @@
   .wim-button {
     box-sizing: border-box;
     display: inline-flex;
+    gap: scales.$spacing-xs;
     align-items: center;
     justify-content: center;
-    gap: scales.$spacing-xs;
-    cursor: pointer;
-    border: 1px solid transparent;
     padding: 0;
+    font: inherit;
+    line-height: 1;
+    color: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
     border-radius: scales.$radius-md;
     opacity: 1;
     transition: effects.$transition-base;
-    background-color: transparent;
-    color: inherit;
-    font: inherit;
-    line-height: 1;
 
     &__label {
-      line-height: 1;
       display: inline-block;
+      line-height: 1;
       vertical-align: middle;
     }
 
@@ -33,53 +33,53 @@
     }
 
     &--icon-only {
-      padding: scales.$spacing-sm !important;
       width: auto;
       height: auto;
+      padding: scales.$spacing-sm !important;
     }
 
     &--lg {
+      min-width: calc(texts.$size-large * 1 + 2 * scales.$spacing-xl);
+      min-height: calc(texts.$size-large * 1 + 2 * scales.$spacing-xl);
       padding: scales.$spacing-xl scales.$spacing-3xl;
       font-size: texts.$size-large;
-      min-height: calc(texts.$size-large * 1 + 2 * scales.$spacing-xl);
-      min-width: calc(texts.$size-large * 1 + 2 * scales.$spacing-xl);
     }
 
     &--md {
+      min-width: calc(texts.$size-medium * 1 + 2 * scales.$spacing-lg);
+      min-height: calc(texts.$size-medium * 1 + 2 * scales.$spacing-lg);
       padding: scales.$spacing-lg scales.$spacing-2xl;
       font-size: texts.$size-medium;
-      min-height: calc(texts.$size-medium * 1 + 2 * scales.$spacing-lg);
-      min-width: calc(texts.$size-medium * 1 + 2 * scales.$spacing-lg);
     }
 
     &--sm {
+      min-width: calc(texts.$size-small * 1 + 2 * scales.$spacing-sm);
+      min-height: calc(texts.$size-small * 1 + 2 * scales.$spacing-sm);
       padding: scales.$spacing-sm scales.$spacing-lg;
       font-size: texts.$size-small;
-      min-height: calc(texts.$size-small * 1 + 2 * scales.$spacing-sm);
-      min-width: calc(texts.$size-small * 1 + 2 * scales.$spacing-sm);
     }
 
     &--primary {
       box-shadow: effects.$shadow-sm;
 
       &.wim-button--default {
-        background-color: colors.$semantic-primary;
         color: colors.$semantic-text-on-primary;
+        background-color: colors.$semantic-primary;
       }
 
       &.wim-button--danger {
-        background-color: colors.$semantic-danger;
         color: colors.$semantic-text-on-danger;
+        background-color: colors.$semantic-danger;
       }
 
       &.wim-button--success {
-        background-color: colors.$semantic-success;
         color: colors.$semantic-text-on-success;
+        background-color: colors.$semantic-success;
       }
 
       &:disabled {
-        background-color: colors.$semantic-disabled;
         color: colors.$semantic-text-on-disabled;
+        background-color: colors.$semantic-disabled;
         border-color: transparent;
         box-shadow: none;
       }
@@ -97,27 +97,27 @@
 
     &--secondary {
       &.wim-button--default {
-        border-color: colors.$semantic-primary;
         color: colors.$semantic-primary;
         background-color: #fff;
+        border-color: colors.$semantic-primary;
       }
 
       &.wim-button--danger {
-        border-color: colors.$semantic-danger;
         color: colors.$semantic-danger;
         background-color: #fff;
+        border-color: colors.$semantic-danger;
       }
 
       &.wim-button--success {
-        border-color: colors.$semantic-success;
         color: colors.$semantic-success;
         background-color: #fff;
+        border-color: colors.$semantic-success;
       }
 
       &:disabled {
+        color: colors.$semantic-disabled;
         background-color: transparent;
         border-color: colors.$semantic-disabled;
-        color: colors.$semantic-disabled;
       }
 
       &:hover:not(:disabled) {
@@ -148,9 +148,9 @@
       }
 
       &:disabled {
+        color: colors.$semantic-disabled;
         background-color: transparent;
         border-color: transparent;
-        color: colors.$semantic-disabled;
       }
 
       &:hover:not(:disabled) {
