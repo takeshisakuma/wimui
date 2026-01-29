@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import { Button } from "./Button";
 
@@ -102,12 +102,7 @@ export const InteractiveLoading: Story = {
     };
 
     return (
-      <Button
-        {...args}
-        loading={loading}
-        label={label}
-        onClick={handleClick}
-      />
+      <Button {...args} loading={loading} label={label} onClick={handleClick} />
     );
   },
   args: {

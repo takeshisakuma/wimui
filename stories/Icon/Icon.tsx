@@ -18,14 +18,14 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   name: "CircleIcon" | "SquareIcon" | "LoadingIcon";
   size?: "small" | "medium" | "large";
   color?:
-  | "destructive"
-  | "positive"
-  | "caution"
-  | "informative"
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "disabled";
+    | "destructive"
+    | "positive"
+    | "caution"
+    | "informative"
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "disabled";
 };
 
 export const Icon = ({ name, size = "medium", color, ...props }: IconProps) => {
@@ -39,7 +39,14 @@ export const Icon = ({ name, size = "medium", color, ...props }: IconProps) => {
 
   return (
     <IconComponent
-      className={[`wim-icon`, sizeClass, colorClass, name === "LoadingIcon" ? "wim-icon--loading" : ""].filter(Boolean).join(" ")}
+      className={[
+        `wim-icon`,
+        sizeClass,
+        colorClass,
+        name === "LoadingIcon" ? "wim-icon--loading" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
       {...props}
     />
   );

@@ -41,10 +41,13 @@ export const Button = ({
   const priorityClass = `wim-button--${priority}`;
   const roleClass = `wim-button--${role}`;
   const loadingClass = loading ? "wim-button--loading" : "";
-  const iconOnlyClass = !label && (iconName || loading) ? "wim-button--icon-only" : "";
+  const iconOnlyClass =
+    !label && (iconName || loading) ? "wim-button--icon-only" : "";
 
   const effectiveIconName = loading ? "LoadingIcon" : iconName;
-  const iconComponent = effectiveIconName ? <Icon name={effectiveIconName} size={size} /> : null;
+  const iconComponent = effectiveIconName ? (
+    <Icon name={effectiveIconName} size={size} />
+  ) : null;
 
   const content = (
     <>
@@ -69,7 +72,10 @@ export const Button = ({
         .filter(Boolean)
         .join(" ")}
       disabled={state === "disabled" || loading}
-      aria-label={ariaLabel || (!label && effectiveIconName ? effectiveIconName : undefined)}
+      aria-label={
+        ariaLabel ||
+        (!label && effectiveIconName ? effectiveIconName : undefined)
+      }
       {...props}
     >
       {content}

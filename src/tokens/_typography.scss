@@ -27,20 +27,20 @@ $line-height-normal-latn: 1.4;
 $line-height-tight-latn: 1.2;
 
 :root {
-    --font-size-ex-small: #{$size-ex-small};
-    --font-size-small: #{$size-small};
-    --font-size-medium: #{$size-medium};
-    --font-size-large: #{$size-large};
-    --font-size-ex-large: #{$size-ex-large};
+  --font-size-ex-small: #{$size-ex-small};
+  --font-size-small: #{$size-small};
+  --font-size-medium: #{$size-medium};
+  --font-size-large: #{$size-large};
+  --font-size-ex-large: #{$size-ex-large};
 
-    --font-weight-normal: #{$weight-normal};
-    --font-weight-bold: #{$weight-bold};
+  --font-weight-normal: #{$weight-normal};
+  --font-weight-bold: #{$weight-bold};
 
-    --line-height-loose-jpan: #{$line-height-loose-jpan};
-    --line-height-normal-jpan: #{$line-height-normal-jpan};
-    --line-height-tight-jpan: #{$line-height-tight-jpan};
+  --line-height-loose-jpan: #{$line-height-loose-jpan};
+  --line-height-normal-jpan: #{$line-height-normal-jpan};
+  --line-height-tight-jpan: #{$line-height-tight-jpan};
 
-    --line-height-loose-latn: #{$line-height-loose-latn};
-    --line-height-normal-latn: #{$line-height-normal-latn};
-    --line-height-tight-latn: #{$line-height-tight-latn};
+  --line-height-loose-latn: #{$line-height-loose-latn};
+  --line-height-normal-latn: #{$line-height-normal-latn};
+  --line-height-tight-latn: #{$line-height-tight-latn};
 }
