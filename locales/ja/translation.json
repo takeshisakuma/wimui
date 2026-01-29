@@ -27,5 +27,6 @@
   "doc_custom_layout_desc": "Unstyledブロック内では、Storybookのデフォルトスタイルが適用されません。",
   "doc_custom_area": "ここは自由にHTML/CSSを記述できるエリアです。",
   "processing": "処理中...",
-  "saving": "保存中..."
+  "saving": "保存中...",
+  "heading_text": "見出しテキスト"
 }
