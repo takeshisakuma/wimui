@@ -76,5 +76,19 @@
     &--informative {
       color: var(--color-informative);
     }
+
+    &--loading {
+      animation: wim-rotate 1s linear infinite;
+    }
+  }
+
+  @keyframes wim-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 }

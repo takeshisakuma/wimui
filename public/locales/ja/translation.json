@@ -25,5 +25,7 @@
   "doc_icon_gallery": "使用アイコン (Icon Gallery)",
   "doc_custom_layout": "カスタムレイアウト (Unstyled)",
   "doc_custom_layout_desc": "Unstyledブロック内では、Storybookのデフォルトスタイルが適用されません。",
-  "doc_custom_area": "ここは自由にHTML/CSSを記述できるエリアです。"
+  "doc_custom_area": "ここは自由にHTML/CSSを記述できるエリアです。",
+  "processing": "処理中...",
+  "saving": "保存中..."
 }

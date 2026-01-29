@@ -11,8 +11,9 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   priority?: "primary" | "secondary" | "tertiary";
   role?: "default" | "destructive" | "positive";
   state?: "abled" | "disabled";
-  iconName?: "CircleIcon" | "SquareIcon";
+  iconName?: "CircleIcon" | "SquareIcon" | "LoadingIcon";
   iconPosition?: "left" | "right";
+  loading?: boolean;
   "aria-label"?: string;
 };
 
@@ -24,6 +25,7 @@ export const Button = ({
   state = "abled",
   iconName = undefined,
   iconPosition = "left",
+  loading = false,
   backgroundColor,
   "aria-label": ariaLabel,
   ...props
@@ -38,15 +40,17 @@ export const Button = ({
   const sizeClass = `wim-button--${sizeMap[size]}`;
   const priorityClass = `wim-button--${priority}`;
   const roleClass = `wim-button--${role}`;
-  const iconOnlyClass = !label && iconName ? "wim-button--icon-only" : "";
+  const loadingClass = loading ? "wim-button--loading" : "";
+  const iconOnlyClass = !label && (iconName || loading) ? "wim-button--icon-only" : "";
 
-  const iconComponent = iconName ? <Icon name={iconName} size={size} /> : null;
+  const effectiveIconName = loading ? "LoadingIcon" : iconName;
+  const iconComponent = effectiveIconName ? <Icon name={effectiveIconName} size={size} /> : null;
 
   const content = (
     <>
-      {iconName && iconPosition === "left" && iconComponent}
+      {effectiveIconName && iconPosition === "left" && iconComponent}
       {label && <span className="wim-button__label">{t(label)}</span>}
-      {iconName && iconPosition === "right" && iconComponent}
+      {effectiveIconName && iconPosition === "right" && iconComponent}
     </>
   );
 
@@ -59,12 +63,13 @@ export const Button = ({
         sizeClass,
         priorityClass,
         roleClass,
+        loadingClass,
         iconOnlyClass,
       ]
         .filter(Boolean)
         .join(" ")}
-      disabled={state === "disabled"}
-      aria-label={ariaLabel || (!label && iconName ? iconName : undefined)}
+      disabled={state === "disabled" || loading}
+      aria-label={ariaLabel || (!label && effectiveIconName ? effectiveIconName : undefined)}
       {...props}
     >
       {content}
@@ -80,7 +85,8 @@ Button.propTypes = {
   priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
   role: PropTypes.oneOf(["default", "destructive", "positive"]),
   state: PropTypes.oneOf(["abled", "disabled"]),
-  iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon"]),
+  iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon"]),
   iconPosition: PropTypes.oneOf(["left", "right"]),
+  loading: PropTypes.bool,
   "aria-label": PropTypes.string,
 };

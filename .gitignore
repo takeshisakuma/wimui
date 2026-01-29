@@ -143,4 +143,5 @@ debug-storybook.log
 storybook-static
 lint_unix.txt
 lint_utf8.txt
+lint_error.txt
 lint*.log

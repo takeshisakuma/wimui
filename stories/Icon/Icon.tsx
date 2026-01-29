@@ -5,15 +5,17 @@ import "./icon.scss";
 // SVG
 import CircleIcon from "./CircleIcon";
 import SquareIcon from "./SquareIcon";
+import LoadingIcon from "./LoadingIcon";
 
 // アイコン名をコンポーネントにマッピング
 const icons = {
   CircleIcon: CircleIcon,
   SquareIcon: SquareIcon,
+  LoadingIcon: LoadingIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
-  name: "CircleIcon" | "SquareIcon";
+  name: "CircleIcon" | "SquareIcon" | "LoadingIcon";
   size?: "small" | "medium" | "large";
   color?:
   | "destructive"
@@ -37,14 +39,14 @@ export const Icon = ({ name, size = "medium", color, ...props }: IconProps) => {
 
   return (
     <IconComponent
-      className={[`wim-icon`, sizeClass, colorClass].filter(Boolean).join(" ")}
+      className={[`wim-icon`, sizeClass, colorClass, name === "LoadingIcon" ? "wim-icon--loading" : ""].filter(Boolean).join(" ")}
       {...props}
     />
   );
 };
 
 Icon.propTypes = {
-  name: PropTypes.oneOf(["CircleIcon", "SquareIcon"]),
+  name: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon"]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   color: PropTypes.oneOf([
     "destructive",
