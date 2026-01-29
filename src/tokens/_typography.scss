@@ -9,6 +9,7 @@ $size-ex-large: $font-size-2;
 
 /* ウェイトの意味の定義 */
 $weight-normal: 400;
+$weight-medium: 500; //buttonラベル用
 $weight-bold: 700;
 
 /* スタイルの意味の定義 */
@@ -34,6 +35,7 @@ $line-height-tight-latn: 1.2;
   --font-size-ex-large: #{$size-ex-large};
 
   --font-weight-normal: #{$weight-normal};
+  --font-weight-medium: #{$weight-medium};
   --font-weight-bold: #{$weight-bold};
 
   --line-height-loose-jpan: #{$line-height-loose-jpan};

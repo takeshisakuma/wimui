@@ -32,7 +32,7 @@ export default {
     onClick: fn(),
     name: "CircleIcon",
     size: "medium",
-    color: "destructive", // プレフィックスなしに変更
+    color: "destructive",
   },
 };
 
@@ -42,13 +42,20 @@ export const MediumSquareIcon = {
   args: {
     name: "SquareIcon",
     size: "medium",
-    color: "primary", // プレフィックスなしに変更
+    color: "primary",
   },
 };
 export const MediumCircleIcon = {
   args: {
     name: "CircleIcon",
     size: "large",
-    color: "destructive", // プレフィックスなしに変更
+    color: "destructive",
+  },
+};
+export const MediumLoadingIcon = {
+  args: {
+    name: "LoadingIcon",
+    size: "large",
+    color: "primary",
   },
 };

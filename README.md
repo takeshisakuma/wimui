@@ -6,11 +6,15 @@
 
 npm run storybook
 
+### npmのパッケージのバージョン確認
+
+npm outdated
+
 ### 品質確認
 
 npm run stylelint // srcのscssの品質確認
 npm run lint // srcのjs,tsの品質確認
-npm run test // stories.tsを使ったテスト
+~~npm run test~~ // (故障中)stories.tsを使ったテスト
 
 ### 整形
 
