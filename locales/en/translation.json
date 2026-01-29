@@ -25,5 +25,7 @@
   "doc_icon_gallery": "Icon Gallery",
   "doc_custom_layout": "Custom Layout (Unstyled)",
   "doc_custom_layout_desc": "Inside the Unstyled block, Storybook's default styles are not applied.",
-  "doc_custom_area": "This is an area where you can write raw HTML/CSS."
+  "doc_custom_area": "This is an area where you can write raw HTML/CSS.",
+  "processing": "Processing...",
+  "saving": "Saving..."
 }
