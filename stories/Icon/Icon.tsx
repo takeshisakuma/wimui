@@ -16,11 +16,14 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   name: "CircleIcon" | "SquareIcon";
   size?: "small" | "medium" | "large";
   color?:
-    | "semantic-danger"
-    | "semantic-success"
-    | "semantic-warning"
-    | "semantic-primary"
-    | "semantic-secondary";
+  | "destructive"
+  | "positive"
+  | "caution"
+  | "informative"
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "disabled";
 };
 
 export const Icon = ({ name, size = "medium", color, ...props }: IconProps) => {
@@ -28,7 +31,7 @@ export const Icon = ({ name, size = "medium", color, ...props }: IconProps) => {
   const IconComponent = icons[name];
   if (!IconComponent) return null;
 
-  const colorClass = color ? `wim-icon--${color.replace("semantic-", "")}` : "";
+  const colorClass = color ? `wim-icon--${color}` : "";
   const sizeMap = { small: "sm", medium: "md", large: "lg" };
   const sizeClass = `wim-icon--${sizeMap[size] || "md"}`;
 
@@ -44,10 +47,13 @@ Icon.propTypes = {
   name: PropTypes.oneOf(["CircleIcon", "SquareIcon"]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   color: PropTypes.oneOf([
-    "semantic-danger",
-    "semantic-success",
-    "semantic-warning",
-    "semantic-primary",
-    "semantic-secondary",
+    "destructive",
+    "positive",
+    "caution",
+    "informative",
+    "primary",
+    "secondary",
+    "tertiary",
+    "disabled",
   ]),
 };

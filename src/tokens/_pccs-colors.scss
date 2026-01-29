@@ -5,39 +5,41 @@
 /* 例：color: rgba(var(--pccs-g1-rgb), 0.7); */
 
 /* Achromatic color */
-$pccs-w: #ffffff; /* = Gy-9.5*/
+$pccs-w: #ffffff;
+/* = Gy-9.5*/
 $pccs-w-rgb: 255, 255, 255;
 $pccs-w-hsl: hsl(0, 0%, 100%);
 
-$pccs-gy8_5: #e5e5e5;
-$pccs-gy8_5-rgb: 229, 229, 229;
-$pccs-gy8_5-hsl: hsl(0, 0%, 90%);
+$pccs-gy8-5: #e5e5e5;
+$pccs-gy8-5-rgb: 229, 229, 229;
+$pccs-gy8-5-hsl: hsl(0, 0%, 90%);
 
-$pccs-gy7_5: #b6b6b6;
-$pccs-gy7_5-rgb: 182, 182, 182;
-$pccs-gy7_5-hsl: hsl(0, 0%, 71%);
+$pccs-gy7-5: #b6b6b6;
+$pccs-gy7-5-rgb: 182, 182, 182;
+$pccs-gy7-5-hsl: hsl(0, 0%, 71%);
 
-$pccs-gy6_5: #8a8a8a;
-$pccs-gy6_5-rgb: 138, 138, 138;
-$pccs-gy6_5-hsl: hsl(0, 0%, 54%);
+$pccs-gy6-5: #8a8a8a;
+$pccs-gy6-5-rgb: 138, 138, 138;
+$pccs-gy6-5-hsl: hsl(0, 0%, 54%);
 
-$pccs-gy5_5: #646464;
-$pccs-gy5_5-rgb: 100, 100, 100;
-$pccs-gy5_5-hsl: hsl(0, 0%, 39%);
+$pccs-gy5-5: #646464;
+$pccs-gy5-5-rgb: 100, 100, 100;
+$pccs-gy5-5-hsl: hsl(0, 0%, 39%);
 
-$pccs-gy4_5: #4f4f4f;
-$pccs-gy4_5-rgb: 79, 79, 79;
-$pccs-gy4_5-hsl: hsl(0, 0%, 31%);
+$pccs-gy4-5: #4f4f4f;
+$pccs-gy4-5-rgb: 79, 79, 79;
+$pccs-gy4-5-hsl: hsl(0, 0%, 31%);
 
-$pccs-gy3_5: #393939;
-$pccs-gy3_5-rgb: 57, 57, 57;
-$pccs-gy3_5-hsl: hsl(0, 0%, 22%);
+$pccs-gy3-5: #393939;
+$pccs-gy3-5-rgb: 57, 57, 57;
+$pccs-gy3-5-hsl: hsl(0, 0%, 22%);
 
-$pccs-gy2_5: #262626;
-$pccs-gy2_5-rgb: 38, 38, 38;
-$pccs-gy2_5-hsl: hsl(0, 0%, 15%);
+$pccs-gy2-5: #262626;
+$pccs-gy2-5-rgb: 38, 38, 38;
+$pccs-gy2-5-hsl: hsl(0, 0%, 15%);
 
-$pccs-bk: #000000; /* = Gy-1.5*/
+$pccs-bk: #000000;
+/* = Gy-1.5*/
 $pccs-bk-rgb: 0, 0, 0;
 $pccs-bk-hsl: hsl(0, 0%, 0%);
 

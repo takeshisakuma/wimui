@@ -1,6 +1,6 @@
 @use "../../src/tokens/semantic-colors" as colors;
-@use "../../src/tokens/semantic-texts" as texts;
-@use "../../src/tokens/measure-scales" as scales;
+@use "../../src/tokens/typography" as typography;
+@use "../../src/tokens/spacings" as spacings;
 @use "../../src/tokens/effects" as effects;
 @use "../../src/lang" as lang;
 
@@ -8,7 +8,7 @@
   .wim-button {
     box-sizing: border-box;
     display: inline-flex;
-    gap: scales.$spacing-xs;
+    gap: spacings.$spacing-xs;
     align-items: center;
     justify-content: center;
     padding: 0;
@@ -18,7 +18,7 @@
     cursor: pointer;
     background-color: transparent;
     border: 1px solid transparent;
-    border-radius: scales.$radius-md;
+    border-radius: spacings.$radius-md;
     opacity: 1;
     transition: effects.$transition-base;
 
@@ -35,51 +35,51 @@
     &--icon-only {
       width: auto;
       height: auto;
-      padding: scales.$spacing-sm !important;
+      padding: spacings.$spacing-sm !important;
     }
 
     &--lg {
-      min-width: calc(texts.$size-large * 1 + 2 * scales.$spacing-xl);
-      min-height: calc(texts.$size-large * 1 + 2 * scales.$spacing-xl);
-      padding: scales.$spacing-xl scales.$spacing-3xl;
-      font-size: texts.$size-large;
+      min-width: calc(typography.$size-large * 1 + 2 * spacings.$spacing-xl);
+      min-height: calc(typography.$size-large * 1 + 2 * spacings.$spacing-xl);
+      padding: spacings.$spacing-xl spacings.$spacing-3xl;
+      font-size: typography.$size-large;
     }
 
     &--md {
-      min-width: calc(texts.$size-medium * 1 + 2 * scales.$spacing-lg);
-      min-height: calc(texts.$size-medium * 1 + 2 * scales.$spacing-lg);
-      padding: scales.$spacing-lg scales.$spacing-2xl;
-      font-size: texts.$size-medium;
+      min-width: calc(typography.$size-medium * 1 + 2 * spacings.$spacing-lg);
+      min-height: calc(typography.$size-medium * 1 + 2 * spacings.$spacing-lg);
+      padding: spacings.$spacing-lg spacings.$spacing-2xl;
+      font-size: typography.$size-medium;
     }
 
     &--sm {
-      min-width: calc(texts.$size-small * 1 + 2 * scales.$spacing-sm);
-      min-height: calc(texts.$size-small * 1 + 2 * scales.$spacing-sm);
-      padding: scales.$spacing-sm scales.$spacing-lg;
-      font-size: texts.$size-small;
+      min-width: calc(typography.$size-small * 1 + 2 * spacings.$spacing-sm);
+      min-height: calc(typography.$size-small * 1 + 2 * spacings.$spacing-sm);
+      padding: spacings.$spacing-sm spacings.$spacing-lg;
+      font-size: typography.$size-small;
     }
 
     &--primary {
       box-shadow: effects.$shadow-sm;
 
       &.wim-button--default {
-        color: colors.$semantic-text-on-primary;
-        background-color: colors.$semantic-primary;
+        color: colors.$color-text-on-primary;
+        background-color: colors.$color-primary;
       }
 
-      &.wim-button--danger {
-        color: colors.$semantic-text-on-danger;
-        background-color: colors.$semantic-danger;
+      &.wim-button--destructive {
+        color: colors.$color-text-on-destructive;
+        background-color: colors.$color-destructive;
       }
 
-      &.wim-button--success {
-        color: colors.$semantic-text-on-success;
-        background-color: colors.$semantic-success;
+      &.wim-button--positive {
+        color: colors.$color-text-on-positive;
+        background-color: colors.$color-positive;
       }
 
       &:disabled {
-        color: colors.$semantic-text-on-disabled;
-        background-color: colors.$semantic-disabled;
+        color: colors.$color-text-on-disabled;
+        background-color: colors.$color-disabled;
         border-color: transparent;
         box-shadow: none;
       }
@@ -97,27 +97,27 @@
 
     &--secondary {
       &.wim-button--default {
-        color: colors.$semantic-primary;
+        color: colors.$color-primary;
         background-color: #fff;
-        border-color: colors.$semantic-primary;
+        border-color: colors.$color-primary;
       }
 
-      &.wim-button--danger {
-        color: colors.$semantic-danger;
+      &.wim-button--destructive {
+        color: colors.$color-destructive;
         background-color: #fff;
-        border-color: colors.$semantic-danger;
+        border-color: colors.$color-destructive;
       }
 
-      &.wim-button--success {
-        color: colors.$semantic-success;
+      &.wim-button--positive {
+        color: colors.$color-positive;
         background-color: #fff;
-        border-color: colors.$semantic-success;
+        border-color: colors.$color-positive;
       }
 
       &:disabled {
-        color: colors.$semantic-disabled;
+        color: colors.$color-disabled;
         background-color: transparent;
-        border-color: colors.$semantic-disabled;
+        border-color: colors.$color-disabled;
       }
 
       &:hover:not(:disabled) {
@@ -136,19 +136,21 @@
       border-color: transparent;
 
       &.wim-button--default {
-        color: colors.$semantic-primary;
+        color: colors.$color-primary;
       }
 
-      &.wim-button--danger {
-        color: colors.$semantic-danger;
+      &.wim-button--destructive {
+        color: colors.$color-destructive;
+        background-color: transparent;
       }
 
-      &.wim-button--success {
-        color: colors.$semantic-success;
+      &.wim-button--positive {
+        color: colors.$color-positive;
+        background-color: transparent;
       }
 
       &:disabled {
-        color: colors.$semantic-disabled;
+        color: colors.$color-disabled;
         background-color: transparent;
         border-color: transparent;
       }

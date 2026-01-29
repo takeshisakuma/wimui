@@ -1,0 +1,46 @@
+@use "../tokens/spacings" as *;
+
+/* --- サイズの意味の定義 --- */
+$size-ex-small: $font-size-minus-2;
+$size-small: $font-size-minus-1;
+$size-medium: $font-size-0;
+$size-large: $font-size-1;
+$size-ex-large: $font-size-2;
+
+/* ウェイトの意味の定義 */
+$weight-normal: 400;
+$weight-bold: 700;
+
+/* スタイルの意味の定義 */
+$style-normal: normal;
+$style-italic: italic;
+
+/* line-heightの意味の定義 */
+/* 日本語のline-height(ISO 15924コード: Jpan) */
+$line-height-loose-jpan: 1.8;
+$line-height-normal-jpan: 1.6;
+$line-height-tight-jpan: 1.4;
+
+/* アルファベットのline-height(ISO 15924コード: Latn) */
+$line-height-loose-latn: 1.6;
+$line-height-normal-latn: 1.4;
+$line-height-tight-latn: 1.2;
+
+:root {
+    --font-size-ex-small: #{$size-ex-small};
+    --font-size-small: #{$size-small};
+    --font-size-medium: #{$size-medium};
+    --font-size-large: #{$size-large};
+    --font-size-ex-large: #{$size-ex-large};
+
+    --font-weight-normal: #{$weight-normal};
+    --font-weight-bold: #{$weight-bold};
+
+    --line-height-loose-jpan: #{$line-height-loose-jpan};
+    --line-height-normal-jpan: #{$line-height-normal-jpan};
+    --line-height-tight-jpan: #{$line-height-tight-jpan};
+
+    --line-height-loose-latn: #{$line-height-loose-latn};
+    --line-height-normal-latn: #{$line-height-normal-latn};
+    --line-height-tight-latn: #{$line-height-tight-latn};
+}

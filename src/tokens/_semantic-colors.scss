@@ -1,62 +1,72 @@
 @use "pccs-colors" as *;
 
 /* --- 色の意味 --- */
-$semantic-danger: $pccs-s1;
-$semantic-success: $pccs-s12;
-$semantic-warning: $pccs-s8;
-$semantic-primary: $pccs-s16;
-$semantic-secondary: $pccs-gy6_5;
-$semantic-info: $pccs-s18;
+$color-destructive: $pccs-s1;
+$color-positive: $pccs-s12;
+$color-caution: $pccs-s8;
+$color-primary: $pccs-s16;
+$color-secondary: $pccs-gy6-5;
+$color-informative: $pccs-s18;
 
-$semantic-disabled: $pccs-gy7_5;
+$color-disabled: $pccs-gy7-5;
 
 /* --- フォーカス状態の色 --- */
-$semantic-focus-outline-color: $semantic-primary;
+$color-focus-outline: $color-primary;
 
 /* --- セマンティックカラー上のテキスト、アイコンの色 --- */
-
-$semantic-text-on-danger: $pccs-w;
-$semantic-text-on-success: $pccs-w;
-$semantic-text-on-warning: $pccs-w;
-$semantic-text-on-primary: $pccs-w;
-$semantic-text-on-secondary: $pccs-w;
-$semantic-text-on-info: $pccs-w;
-$semantic-text-on-disabled: $pccs-w;
+$color-text-on-destructive: $pccs-w;
+$color-text-on-positive: $pccs-w;
+$color-text-on-caution: $pccs-w;
+$color-text-on-primary: $pccs-w;
+$color-text-on-secondary: $pccs-w;
+$color-text-on-informative: $pccs-w;
+$color-text-on-disabled: $pccs-w;
 
 /* ---- 文字色 ---- */
 /* 無彩色 */
-$font-black: $pccs-bk;
-$font-deepgray: $pccs-gy3_5;
-$font-gray: $pccs-gy5_5;
-$font-lightgray: $pccs-gy7_5;
-$font-white: $pccs-w;
+$text-black: $pccs-bk;
+$text-deepgray: $pccs-gy3-5;
+$text-gray: $pccs-gy5-5;
+$text-lightgray: $pccs-gy7-5;
+$text-white: $pccs-w;
 
 /* 有彩色 */
 /* エラー表示など */
-$font-error: $pccs-sf2;
+$text-error: $pccs-sf2;
 
 /* Scrollareaコンポーネントのスクロールバーの色 */
 $scrollbar-thumb: $pccs-b20;
 /* スクロールバーのつまみ部分の色 */
-$scrollbar-track: $pccs-gy8_5;
-/* スクロールバーのトラック部分の色 */
+$scrollbar-track: $pccs-gy8-5;
 
 /* --- 変数としての定義 (基本はライトモード) --- */
 :root {
-  --semantic-danger: #{$semantic-danger};
-  --semantic-success: #{$semantic-success};
-  --semantic-warning: #{$semantic-warning};
-  --semantic-primary: #{$semantic-primary};
-  --semantic-secondary: #{$semantic-secondary};
-  --semantic-info: #{$semantic-info};
-  --semantic-disabled: #{$semantic-disabled};
+  --color-destructive: #{$color-destructive};
+  --color-positive: #{$color-positive};
+  --color-caution: #{$color-caution};
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-informative: #{$color-informative};
+  --color-disabled: #{$color-disabled};
 
-  --semantic-text-on-primary: #{$semantic-text-on-primary};
+  --color-text-on-primary: #{$color-text-on-primary};
+  --color-text-on-destructive: #{$color-text-on-destructive};
+  --color-text-on-positive: #{$color-text-on-positive};
+  --color-text-on-caution: #{$color-text-on-caution};
+  --color-text-on-secondary: #{$color-text-on-secondary};
+  --color-text-on-informative: #{$color-text-on-informative};
+  --color-text-on-disabled: #{$color-text-on-disabled};
 
-  --font-black: #{$font-black};
-  --font-white: #{$font-white};
-  --font-error: #{$font-error};
+  --text-primary: #{$text-black};
+  --text-secondary: #{$text-deepgray};
+  --text-tertiary: #{$text-gray};
+  --text-disabled: #{$text-lightgray};
+  --text-white: #{$text-white};
+  --text-error: #{$text-error};
 
   --bg-app: #{$pccs-w}; // アプリ全体の背景
   --bg-component: #{$pccs-w};
+
+  --scrollbar-thumb: #{$scrollbar-thumb};
+  --scrollbar-track: #{$scrollbar-track};
 }

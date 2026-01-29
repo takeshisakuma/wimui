@@ -1,5 +1,5 @@
 @use "./tokens/semantic-colors" as colors;
-@use "./tokens/measure-scales" as scales;
+@use "./tokens/spacings" as scales;
 
 @layer base {
   /* Base Styles: 要素へのグローバルなスタイル定義 */
@@ -22,7 +22,7 @@
     /* 常時スクロールバー分の領域を確保することでガタツキやレイアウトシフト防止 */
     scrollbar-gutter: stable;
     background-color: var(--bg-app);
-    color: var(--font-black);
+    color: var(--text-primary);
   }
 
   /* 画像とメディア要素の応答性 */
@@ -65,8 +65,7 @@
 
   /* フォーカス時のアウトライン表示 (アクセシビリティ向上) */
   :focus-visible {
-    outline: scales.$focus-outline-width solid
-      colors.$semantic-focus-outline-color;
+    outline: scales.$focus-outline-width solid colors.$color-focus-outline;
     outline-offset: scales.$focus-outline-offset;
   }
 

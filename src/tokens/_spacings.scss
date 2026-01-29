@@ -1,0 +1,93 @@
+/* タイプスケール定義 (rem値、小数点第一位で丸め) */
+$font-size-16: 6.6rem;
+$font-size-15: 5.9rem;
+$font-size-14: 5.2rem;
+$font-size-13: 4.6rem;
+$font-size-12: 4.1rem;
+$font-size-11: 3.7rem;
+$font-size-10: 3.2rem;
+$font-size-9: 2.9rem;
+$font-size-8: 2.6rem;
+$font-size-7: 2.3rem;
+$font-size-6: 2rem;
+$font-size-5: 1.8rem;
+$font-size-4: 1.6rem;
+$font-size-3: 1.4rem;
+$font-size-2: 1.3rem;
+$font-size-1: 1.1rem;
+$font-size-0: 1rem;
+
+/* 基準サイズ */
+$font-size-minus-1: 0.9rem;
+$font-size-minus-2: 0.8rem;
+$font-size-minus-3: 0.7rem;
+$font-size-minus-4: 0.6rem;
+$font-size-minus-5: 0.6rem;
+
+/* 旧 ms(-4) と同じ値 */
+$font-size-minus-6: 0.5rem;
+
+/* --- 余白 (Spacing) --- */
+$spacing-3xs: 0.1rem;
+$spacing-2xs: 0.2rem;
+$spacing-xs: 0.3rem;
+$spacing-sm: 0.4rem;
+$spacing-md: 0.5rem;
+$spacing-lg: 0.6rem;
+$spacing-xl: 0.7rem;
+$spacing-2xl: 1rem;
+$spacing-3xl: 1.4rem;
+$spacing-4xl: 1.8rem;
+$spacing-5xl: 2.2rem;
+
+/* --- 角丸 (Border Radius) --- */
+$radius-sm: 2px;
+$radius-md: 4px;
+$radius-lg: 8px;
+$radius-full: 9999px;
+
+/* --- フォーカス状態の寸法 --- */
+$focus-outline-width: 2px;
+$focus-outline-offset: 2px;
+
+/* モバイルファーストなのでスマホ用の基本フォントサイズを設定 */
+:root {
+  /* ベースフォントサイズ (ユーザー設定を尊重するため100%または16px) */
+  /* 多くのブラウザのデフォルトは16pxなので、1rem = 16px */
+  font-size: 100%;
+
+  --spacing-3xs: #{$spacing-3xs};
+  --spacing-2xs: #{$spacing-2xs};
+  --spacing-xs: #{$spacing-xs};
+  --spacing-sm: #{$spacing-sm};
+  --spacing-md: #{$spacing-md};
+  --spacing-lg: #{$spacing-lg};
+  --spacing-xl: #{$spacing-xl};
+  --spacing-2xl: #{$spacing-2xl};
+  --spacing-3xl: #{$spacing-3xl};
+  --spacing-4xl: #{$spacing-4xl};
+  --spacing-5xl: #{$spacing-5xl};
+
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+  --radius-full: #{$radius-full};
+
+  --focus-outline-width: #{$focus-outline-width};
+  --focus-outline-offset: #{$focus-outline-offset};
+}
+
+/* PC用ブレイクポイントでのフォントサイズ調整 */
+@media (min-width: 769px) {
+  :root {
+    font-size: 112.5%;
+    /* 18px 相当 */
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    font-size: 125%;
+    /* 20px 相当 */
+  }
+}

@@ -1,5 +1,5 @@
 @use "./tokens/fonts" as *;
-@use "./tokens/semantic-texts" as *;
+@use "./tokens/typography" as *;
 @use "./tokens/semantic-colors" as color;
 
 /* または、特定の lang 属性がない場合の共通フォントとして設定 */
@@ -19,45 +19,38 @@ body {
   word-break: normal;
   line-break: normal;
   font-optical-sizing: auto;
-  line-height: $line-height-normal-latn; /* body全体の行間を調整し、読みやすくする */
+  line-height: $line-height-normal-latn;
 }
 
 /* 日本語のコンテンツに対するフォント指定 */
 body[lang="ja"] {
   font-family: $lang-ja;
-  line-height: $line-height-normal-jpan; /* body全体の行間を調整し、読みやすくする */
+  line-height: $line-height-normal-jpan;
   font-feature-settings: "palt";
   line-break: auto;
   hyphens: manual;
 
-  /* 日本語特有の調整 */
-  /* 日本語の句読点のぶら下がり処理（禁則処理） */
-  /* これにより、行末に句読点や括弧が単独で来るのを防ぎ、より自然な見た目にする */
   p,
   li,
   dd,
   dt {
-    word-break: break-all; /* 単語の途中で改行を許可 */
-    -webkit-line-break: strict; /* Safari/Chromeでの禁則処理 */
-    line-break: strict; /* 標準の禁則処理 */
+    word-break: break-all;
+    -webkit-line-break: strict;
+    line-break: strict;
   }
 }
 
-/* 英語のコンテンツに対するフォント指定
-  Noto Sansを最優先し、その後に一般的な英語OSフォントを続ける
-  デフォルトとほぼ同じですが、明示的に指定することで意図を明確にできる */
+/* 英語 */
 body[lang="en"] {
   font-family: $lang-en;
-  line-height: $line-height-normal-latn; /* body全体の行間を調整し、読みやすくする */
+  line-height: $line-height-normal-latn;
   hyphens: auto;
 }
 
-/* ポルトガル語のコンテンツに対するフォント指定
-  英語と同様にNoto Sansが非常に適していますが、もしポルトガル語圏で
-  特定のOSフォントを優先したい場合はここに追加 */
+/* ポルトガル語 */
 body[lang="pt"] {
   font-family: $lang-pt;
-  line-height: $line-height-normal-latn; /* body全体の行間を調整し、読みやすくする */
+  line-height: $line-height-normal-latn;
   hyphens: auto;
 }
 
@@ -83,28 +76,28 @@ body[lang="pt"] {
 }
 
 /* 色 */
-
-.font-color-white {
-  color: color.$font-white;
+.text-color-white {
+  color: color.$text-white;
 }
 
-.font-color-deepgray {
-  color: color.$font-deepgray;
+.text-color-deepgray {
+  color: color.$text-deepgray;
 }
 
-.font-color-gray {
-  color: color.$font-gray;
-}
-.font-color-lightgray {
-  color: color.$font-lightgray;
-}
-.font-color-black {
-  color: color.$font-black;
+.text-color-gray {
+  color: color.$text-gray;
 }
 
-.font-color-error {
-  color: color.$font-error;
-  display: none;
+.text-color-lightgray {
+  color: color.$text-lightgray;
+}
+
+.text-color-black {
+  color: color.$text-black;
+}
+
+.text-color-error {
+  color: color.$text-error;
 }
 
 /* 太さ */
@@ -129,6 +122,7 @@ body[lang="pt"] {
 .font-lines-loose-jpan {
   line-height: $line-height-loose-jpan;
 }
+
 .font-lines-normal-jpan {
   line-height: $line-height-normal-jpan;
 }

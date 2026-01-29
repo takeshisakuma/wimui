@@ -9,10 +9,11 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   size?: "small" | "medium" | "large";
   label?: string;
   priority?: "primary" | "secondary" | "tertiary";
-  role?: "default" | "danger" | "success";
+  role?: "default" | "destructive" | "positive";
   state?: "abled" | "disabled";
   iconName?: "CircleIcon" | "SquareIcon";
   iconPosition?: "left" | "right";
+  "aria-label"?: string;
 };
 
 export const Button = ({
@@ -24,6 +25,7 @@ export const Button = ({
   iconName = undefined,
   iconPosition = "left",
   backgroundColor,
+  "aria-label": ariaLabel,
   ...props
 }: ButtonProps) => {
   const { t } = useTranslation();
@@ -62,6 +64,7 @@ export const Button = ({
         .filter(Boolean)
         .join(" ")}
       disabled={state === "disabled"}
+      aria-label={ariaLabel || (!label && iconName ? iconName : undefined)}
       {...props}
     >
       {content}
@@ -75,8 +78,9 @@ Button.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func,
   priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
-  role: PropTypes.oneOf(["default", "danger", "success"]),
+  role: PropTypes.oneOf(["default", "destructive", "positive"]),
   state: PropTypes.oneOf(["abled", "disabled"]),
   iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon"]),
   iconPosition: PropTypes.oneOf(["left", "right"]),
+  "aria-label": PropTypes.string,
 };

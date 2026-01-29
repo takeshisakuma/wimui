@@ -52,7 +52,7 @@ export const SmallTertiaryButtonWithCircleIcon = {
     size: "small",
     label: "button_label",
     priority: `tertiary`,
-    role: `danger`,
+    role: `destructive`,
     state: `abled`,
     iconName: "CircleIcon",
     iconPosition: "left",
@@ -66,5 +66,6 @@ export const LargePrimaryButtonWithSquareIconNoLabel = {
     role: "default",
     state: "abled",
     iconName: "SquareIcon",
+    "aria-label": "Square Icon Button",
   },
 };

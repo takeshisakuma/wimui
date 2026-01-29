@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/react";
 
 import i18n from "./i18n"; // i18n設定ファイルをインポート
-import "../src/layers.css"; // レイヤー定義を最初にインポート
+import "../src/layers.scss"; // レイヤー定義を最初にインポート
 import "../src/reset.scss"; // reset.scssをインポート
 import "../src/base.scss"; // base.scssをインポート
 import "../src/utilities.scss"; // utilities.scssをインポート
