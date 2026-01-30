@@ -42,18 +42,28 @@ export const Button = ({
   const roleClass = `wim-button--${role}`;
   const loadingClass = loading ? "wim-button--loading" : "";
   const iconOnlyClass =
-    !label && (iconName || loading) ? "wim-button--icon-only" : "";
+    !label && iconName ? "wim-button--icon-only" : "";
 
-  const effectiveIconName = loading ? "LoadingIcon" : iconName;
-  const iconComponent = effectiveIconName ? (
-    <Icon name={effectiveIconName} size={size} />
-  ) : null;
 
   const content = (
     <>
-      {effectiveIconName && iconPosition === "left" && iconComponent}
-      {label && <span className="wim-button__label">{t(label)}</span>}
-      {effectiveIconName && iconPosition === "right" && iconComponent}
+      <span
+        className="wim-button__inner"
+        style={loading ? { visibility: "hidden" } : undefined}
+      >
+        {iconName && iconPosition === "left" && (
+          <Icon name={iconName} size={size} />
+        )}
+        {label && <span className="wim-button__label">{t(label)}</span>}
+        {iconName && iconPosition === "right" && (
+          <Icon name={iconName} size={size} />
+        )}
+      </span>
+      {loading && (
+        <span className="wim-button__loader">
+          <Icon name="LoadingIcon" size={size} />
+        </span>
+      )}
     </>
   );
 
@@ -74,7 +84,8 @@ export const Button = ({
       disabled={state === "disabled" || loading}
       aria-label={
         ariaLabel ||
-        (!label && effectiveIconName ? effectiveIconName : undefined)
+        (!label && iconName ? iconName : undefined) ||
+        (loading ? "LoadingIcon" : undefined)
       }
       {...props}
     >

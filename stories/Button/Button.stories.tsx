@@ -27,7 +27,7 @@ export const LargePrimaryButton: Story = {
   },
 };
 
-export const MeduimSecondaryButton: Story = {
+export const MediumSecondaryButton: Story = {
   args: {
     size: "medium",
     label: "button_label",
@@ -36,16 +36,16 @@ export const MeduimSecondaryButton: Story = {
   },
 };
 
-export const SmallSecondaryButton: Story = {
+export const SmallTertiaryButton: Story = {
   args: {
     size: "small",
     label: "button_label",
-    priority: "secondary",
+    priority: "tertiary",
     state: "abled",
   },
 };
 
-export const SmallTertiaryButtonWithCircleIcon: Story = {
+export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
   args: {
     size: "small",
     label: "button_label",
@@ -57,7 +57,7 @@ export const SmallTertiaryButtonWithCircleIcon: Story = {
   },
 };
 
-export const LargePrimaryButtonWithSquareIconNoLabel: Story = {
+export const LargePrimaryNoLabelWithSquareIconButton: Story = {
   args: {
     size: "large",
     priority: "primary",
@@ -68,7 +68,7 @@ export const LargePrimaryButtonWithSquareIconNoLabel: Story = {
   },
 };
 
-export const LoadingProcessing: Story = {
+export const MediumPrimaryLoadingProcessingButton: Story = {
   args: {
     size: "medium",
     priority: "primary",
@@ -77,7 +77,7 @@ export const LoadingProcessing: Story = {
   },
 };
 
-export const LoadingSaving: Story = {
+export const MediumSecondaryLoadingSavingButton: Story = {
   args: {
     size: "medium",
     priority: "secondary",
@@ -86,7 +86,7 @@ export const LoadingSaving: Story = {
   },
 };
 
-export const InteractiveLoading: Story = {
+export const MediumPrimaryInteractiveLoadingButton: Story = {
   render: (args) => {
     const [loading, setLoading] = useState(false);
     const [label, setLabel] = useState(args.label || "button_label");
@@ -94,10 +94,8 @@ export const InteractiveLoading: Story = {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (args.onClick) args.onClick(e);
       setLoading(true);
-      setLabel("saving");
       setTimeout(() => {
         setLoading(false);
-        setLabel(args.label || "button_label");
       }, 2000);
     };
 
@@ -111,4 +109,33 @@ export const InteractiveLoading: Story = {
     label: "button_label",
   },
 };
+export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
+  render: (args) => {
+    const [loading, setLoading] = useState(false);
+    const [label, setLabel] = useState(args.label || "button_label");
 
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (args.onClick) args.onClick(e);
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    };
+
+    return (
+      <Button
+        {...args}
+        loading={loading}
+        label={label}
+        onClick={handleClick}
+      />
+    );
+  },
+  args: {
+    size: "medium",
+    priority: "secondary",
+    label: "button_label",
+    iconName: "CircleIcon",
+    iconPosition: "left",
+  },
+};
