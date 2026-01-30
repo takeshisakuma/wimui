@@ -1,0 +1,48 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as ButtonGroupStories from "./ButtonGroup.stories";
+import { T } from "../T";
+
+<Meta of={ButtonGroupStories} />
+
+<Title />
+<Subtitle>
+  ButtonGroupコンポーネントは、複数のボタンをグループ化して表示するために使用します。
+</Subtitle>
+<Description />
+
+## 基本的な使い方
+
+ボタンを横並びに配置します。`gap`プロパティでボタン間の間隔を調整できます。
+
+<Canvas of={ButtonGroupStories.MediumGroup} />
+
+## サイズ展開
+
+Large, Medium, Smallのボタンをそれぞれ配置した場合の例です。
+
+### Large
+<Canvas of={ButtonGroupStories.LargeGroup} />
+
+### Medium
+<Canvas of={ButtonGroupStories.MediumGroup} />
+
+### Small
+<Canvas of={ButtonGroupStories.SmallGroup} />
+
+## 結合モード
+
+`joined`プロパティを`true`に設定すると、ボタンが隙間なく結合されます。
+このモードでは、中間のボタンの角丸が削除され、一体感のあるデザインになります。
+
+<Canvas of={ButtonGroupStories.JoinedGroup} />
+
+<Controls />

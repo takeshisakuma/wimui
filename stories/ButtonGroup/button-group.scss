@@ -1,0 +1,40 @@
+@use "../../src/tokens/spacings" as spacings;
+
+.wim-button-group {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &.wim-button-group--joined {
+        gap: 0;
+
+        .wim-button {
+            border-radius: 0;
+
+            &:not(:first-child) {
+                margin-left: -2px; // Overlap borders if they are 2px
+            }
+
+            &:first-child {
+                border-top-left-radius: spacings.$radius-md;
+                border-bottom-left-radius: spacings.$radius-md;
+            }
+
+            &:last-child {
+                border-top-right-radius: spacings.$radius-md;
+                border-bottom-right-radius: spacings.$radius-md;
+            }
+
+            // Handle hover/focus state overlap
+            &:hover,
+            &:focus-visible {
+                z-index: 1;
+                transform: none !important;
+            }
+
+            &:active {
+                transform: none !important;
+            }
+        }
+    }
+}

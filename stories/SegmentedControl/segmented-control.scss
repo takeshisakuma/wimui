@@ -1,0 +1,88 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/typography" as typography;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+
+.wim-segmented-control {
+    position: relative;
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: spacings.$radius-md;
+    padding: 2px;
+    user-select: none;
+    overflow: hidden;
+
+    &.wim-segmented-control--full-width {
+        display: grid;
+        width: 100%;
+    }
+
+    .wim-segmented-control__slider {
+        position: absolute;
+        top: 2px;
+        bottom: 2px;
+        left: 0;
+        background-color: #fff;
+        border-radius: calc(spacings.$radius-md - 2px);
+        box-shadow: effects.$shadow-sm;
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1;
+
+
+    }
+
+    .wim-segmented-control__item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        font: inherit;
+        font-weight: typography.$weight-medium;
+        color: colors.$text-deepgray;
+        cursor: pointer;
+        z-index: 2;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+
+        &:hover {
+            color: colors.$text-black;
+        }
+
+        &.wim-segmented-control__item--active {
+            color: colors.$color-primary;
+
+        }
+    }
+
+    &.wim-segmented-control--sm {
+        .wim-segmented-control__item {
+            padding: spacings.$spacing-xs spacings.$spacing-md;
+            font-size: typography.$size-small;
+        }
+    }
+
+    &.wim-segmented-control--md {
+        .wim-segmented-control__item {
+            padding: spacings.$spacing-sm spacings.$spacing-lg;
+            font-size: typography.$size-medium;
+        }
+    }
+
+    &.wim-segmented-control--lg {
+        .wim-segmented-control__item {
+            padding: spacings.$spacing-md spacings.$spacing-xl;
+            font-size: typography.$size-large;
+        }
+    }
+
+    .wim-segmented-control__label {
+        display: block;
+        line-height: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
