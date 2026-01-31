@@ -1,0 +1,70 @@
+import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import * as LinkStories from "./Link.stories";
+
+<Meta of={LinkStories} />
+
+# Link
+
+`Link`コンポーネントは、テキストベースのナビゲーションや外部リソースへのリンクを提供します。
+多言語対応、サイズ変更、アイコンの追加、および3種類の優先度（Priority）をサポートしています。
+
+## Usage
+
+```tsx
+import { Link } from "./Link";
+
+<Link label="ホームへ" href="/" priority="primary" />
+```
+
+## Props
+
+<Controls />
+
+## Variants
+
+### Priority
+
+リンクの重要度に応じて `primary`, `secondary`, `tertiary` から選択できます。
+
+#### Primary
+もっとも視認性の高いスタイルです。
+
+<Canvas of={LinkStories.Primary} />
+
+#### Secondary
+標準的なテキストスタイルです。
+
+<Canvas of={LinkStories.Secondary} />
+
+#### Tertiary
+控えめなスタイルです。
+
+<Canvas of={LinkStories.Tertiary} />
+
+### Icons
+
+アイコンをラベルの左右に配置できます。
+
+#### Left Icon
+
+<Canvas of={LinkStories.WithIconLeft} />
+
+#### Right Icon
+
+<Canvas of={LinkStories.WithIconRight} />
+
+### Sizes
+
+`small`, `medium`, `large` の3つのサイズをサポートしています。
+
+#### Small
+
+<Canvas of={LinkStories.Small} />
+
+#### Medium
+
+<Canvas of={LinkStories.Primary} />
+
+#### Large
+
+<Canvas of={LinkStories.Large} />

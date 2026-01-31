@@ -2,7 +2,7 @@ import { fn } from "storybook/test";
 import { Span } from "./Span";
 
 export default {
-  title: "Component/Typography & Base/Span", //左メニューの表示
+  title: "Component/Typography & Action/Span", //左メニューの表示
   component: Span,
   parameters: {
     layout: "centered",

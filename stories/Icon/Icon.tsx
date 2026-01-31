@@ -6,26 +6,28 @@ import "./icon.scss";
 import CircleIcon from "./CircleIcon";
 import SquareIcon from "./SquareIcon";
 import LoadingIcon from "./LoadingIcon";
+import ExternalIcon from "./ExternalIcon";
 
 // アイコン名をコンポーネントにマッピング
 const icons = {
   CircleIcon: CircleIcon,
   SquareIcon: SquareIcon,
   LoadingIcon: LoadingIcon,
+  ExternalIcon: ExternalIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
-  name: "CircleIcon" | "SquareIcon" | "LoadingIcon";
+  name: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalIcon";
   size?: "small" | "medium" | "large";
   color?:
-    | "destructive"
-    | "positive"
-    | "caution"
-    | "informative"
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "disabled";
+  | "destructive"
+  | "positive"
+  | "caution"
+  | "informative"
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "disabled";
 };
 
 export const Icon = ({ name, size = "medium", color, ...props }: IconProps) => {
