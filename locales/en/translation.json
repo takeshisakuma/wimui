@@ -15,8 +15,6 @@
   "sampletextforscrollarea": "sample text for scroll area,sample text for scroll area,sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area,sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area,sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area, sample text for scroll area",
   "language_support": "Multilingual Support",
   "planned_for_implementation": "Planned for implementation",
-  "not_planned_for_implementation": "Not planned for implementation",
-  "already_implemented": "Implemented",
   "doc_button_title": "General Push Button Component",
   "doc_source": "Source Code",
   "doc_design_tokens": "Design Tokens",
