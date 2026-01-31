@@ -2,7 +2,6 @@
 
 @layer component {
   .wim-scroll-area {
-    overflow-y: auto;
     scrollbar-gutter: stable;
     scrollbar-color: colors.$scrollbar-thumb colors.$scrollbar-track;
     scrollbar-width: thin;

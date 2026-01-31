@@ -156,8 +156,8 @@
     }
 
     &--tertiary {
-      background-color: transparent;
-      border-color: transparent;
+      background-color: rgb(0 0 0 / 0.03);
+      border-color: rgb(0 0 0 / 0.08);
 
       &.wim-button--default {
         color: colors.$color-primary;
@@ -165,12 +165,10 @@
 
       &.wim-button--destructive {
         color: colors.$color-destructive;
-        background-color: transparent;
       }
 
       &.wim-button--positive {
         color: colors.$color-positive;
-        background-color: transparent;
       }
 
       &:disabled {
@@ -180,12 +178,17 @@
       }
 
       &:hover:not(:disabled) {
-        background-color: rgb(0 0 0 / 0.05);
+        background-color: rgb(0 0 0 / 0.06);
+        border-color: rgb(0 0 0 / 0.15);
+        box-shadow: effects.$shadow-sm;
+        transform: translateY(effects.$lift-sm);
       }
 
       &:active:not(:disabled) {
-        background-color: rgb(0 0 0 / 0.1);
-        transform: none;
+        background-color: rgb(0 0 0 / 0.12);
+        border-color: rgb(0 0 0 / 0.25);
+        box-shadow: effects.$shadow-inset;
+        transform: translateY(effects.$lift-none);
       }
     }
 

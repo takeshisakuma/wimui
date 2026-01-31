@@ -19,7 +19,7 @@ export const RightArrow = () => (
   </svg>
 );
 
-<Meta title="To Do" />
+<Meta title="Components" />
 
 <div className="">
 <h2>ToDo</h2>
@@ -28,102 +28,248 @@ export const RightArrow = () => (
   <T k="planned_for_implementation" />
 </h3>
 
-<ul>
-  <li>
-    Atoms / Typography
-    <ul>
-      <li>heading: Headings</li>
-      <li>p: Paragraph text</li>
-      <li>a: Hyperlinks</li>
-      <li>span: Inline text elements</li>
-      <li>icon: Visual symbols</li>
-      <li>image: Image display with optimization</li>
-      <li>video: Video player</li>
-      <li>audio: Audio player</li>
-      <li>divider / separator: Visual section separators</li>
-    </ul>
-  </li>
-  <li>
-    Buttons & Actions
-    <ul>
-      <li>button: Action triggers</li>
-      <li>fab: Floating action button</li>
-      <li>buttonGroup: Group of related buttons</li>
-      <li>link: Enhanced navigation links</li>
-    </ul>
-  </li>
-  <li>
-    Forms & Inputs
-    <ul>
-      <li>label: Form field labels</li>
-      <li>input / textarea: Single and multi-line text fields</li>
-      <li>selectbox / dropdown / combobox: Selection from options (Combobox includes search)</li>
-      <li>checkbox / radio: Multiple or single choice options</li>
-      <li>switch: Toggle on/off settings</li>
-      <li>slider / rangeSlider: Intuitive range or value selection</li>
-      <li>datePicker / timePicker / calendar: Date and time selection</li>
-      <li>segmented control: Toggles between a few options</li>
-      <li>fieldset / legend: Grouping related form elements with labels</li>
-    </ul>
-  </li>
-  <li>
-    Data Display & Status
-    <ul>
-      <li>avatar: Profile pictures or initials</li>
-      <li>badge: Status indicators or notification counts</li>
-      <li>chip / tag: Categories, labels, or selected items</li>
-      <li>progress: Visualizing task completion or loading</li>
-      <li>skeleton: Loading state placeholders</li>
-      <li>spinner / loader: Loading indicators</li>
-      <li>tooltip: Contextual information on hover</li>
-      <li>table: Structured data display in rows and columns</li>
-      <li>list: Organized item lists</li>
-      <li>code: Inline or block code display</li>
-      <li>alert: Important messages and notifications</li>
-    </ul>
-  </li>
-  <li>
-    Navigation & Layout
-    <ul>
-      <li>header: Page header section</li>
-      <li>footer: Page footer section</li>
-      <li>navbar: Navigation bar</li>
-      <li>sidebar: Side navigation panel</li>
-      <li>container: Content wrapper with max-width</li>
-      <li>breadcrumb: Navigation path display</li>
-      <li>menu / contextMenu: Navigation menus and context menus</li>
-      <li>ScrollArea: Custom scrollable containers</li>
-      <li>tab: Content switching within a view</li>
-      <li>pagination: Dividing content into discrete pages</li>
-      <li>card: Flexible containers for grouping related information</li>
-      <li>accordion: Vertically stacked interactive headings to reveal content</li>
-      <li>grid: Responsive grid layout system</li>
-      <li>carousel: Slideshow for cycling through content</li>
-    </ul>
-  </li>
-  <li>
-    Feedback & Overlays
-    <ul>
-      <li>dialog / modal: Interactive windows for focused tasks</li>
-      <li>popover: Contextual overlay panels</li>
-      <li>toast: Brief, non-disruptive notifications</li>
-      <li>bottom sheet: Overlays rising from the bottom (especially for mobile)</li>
-    </ul>
-  </li>
-</ul>
-<h3><T k="not_planned_for_implementation" /></h3> 
-<ul>
 
-</ul>
-<h3><T k="already_implemented" /></h3>
-<ul>
-  <li>Button</li>
-  <li>Icon(3)</li>
-  <li>Paragraph</li>
-  <li>ScrollArea</li>
-  <li>Span</li>
-  <li>ButtonGroup</li>
-  <li>Heading</li>
-  <li>SegmentedControl</li>
-</ul>
+<h4>Typography & Actions</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>heading</td>
+      <td>Headings</td>
+      <td>done</td>
+    </tr>
+    <tr>
+      <td>Paragraph</td>
+      <td>Paragraph text</td>
+      <td>done</td>
+    </tr>
+    <tr>
+      <td>span</td>
+      <td>Inline text elements</td>
+      <td>done</td>
+    </tr>
+    <tr>
+      <td>anchor / link</td>
+      <td>Hyperlinks and enhanced navigation links</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>button</td>
+      <td>Action triggers</td>
+      <td>done</td>
+    </tr>
+    <tr>
+      <td>fab</td>
+      <td>Floating action button</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>buttonGroup</td>
+      <td>Group of related buttons</td>
+      <td>done</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>Visual symbols</td>
+      <td>done</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Forms & Selection</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>Form field labels</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>input / textarea</td>
+      <td>Single and multi-line text fields</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>selection controls</td>
+      <td>checkbox, radio, switch (Multiple or single choice options)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>selectbox / dropdown / combobox</td>
+      <td>Selection from options (Combobox includes search)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>segmented control</td>
+      <td>Toggles between a few options</td>
+      <td>done</td>
+    </tr>
+    <tr>
+      <td>slider / rangeSlider</td>
+      <td>Intuitive range or value selection</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>datePicker / timePicker / calendar</td>
+      <td>Date and time selection</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>fieldset / legend</td>
+      <td>Grouping related form elements with labels</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Data Display</h4>
+<table>
+<thead>
+  <tr>
+    <th>Component</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>avatar</td>
+    <td>Profile pictures or initials</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>badge / chip / tag</td>
+    <td>Status indicators, categories, or selected items</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>table</td>
+    <td>Structured data display in rows and columns</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>list</td>
+    <td>Organized item lists</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>code</td>
+    <td>Inline or block code display</td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
+
+<h4>Feedback & Overlays</h4>
+<table>
+<thead>
+  <tr>
+    <th>Component</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>alert / toast</td>
+    <td>Important messages and brief notifications</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>dialog / modal</td>
+    <td>Interactive windows for focused tasks</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>popover / tooltip</td>
+    <td>Contextual overlay panels and information on hover</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>loading states</td>
+    <td>progress, spinner, loader, skeleton (Loading indicators)</td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
+
+<h4>Navigation & Structure</h4>
+<table>
+<thead>
+  <tr>
+    <th>Component</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>navigation</td>
+    <td>header, footer, navbar, sidebar, breadcrumb, pagination</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>menu / contextMenu</td>
+    <td>Navigation menus and context menus</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>tab</td>
+    <td>Content switching within a view</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>layout helpers</td>
+    <td>container, grid, ScrollArea, divider / separator</td>
+    <td>ScrollArea: done</td>
+  </tr>
+</tbody>
+</table>
+
+<h4>Media & Content</h4>
+<table>
+<thead>
+  <tr>
+    <th>Component</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>card</td>
+    <td>Flexible containers for grouping related information</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>accordion</td>
+    <td>Vertically stacked interactive headings to reveal content</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>carousel</td>
+    <td>Slideshow for cycling through content</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>media</td>
+    <td>image, video, audio</td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
+
 </div>
