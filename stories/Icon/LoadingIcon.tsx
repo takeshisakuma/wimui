@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 const LoadingIcon = ({ ...props }) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 200 200"
     fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <g transform="matrix(0.897448,0,0,0.897448,10.255182,10.255182)">

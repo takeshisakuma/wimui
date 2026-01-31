@@ -81,8 +81,6 @@
 
     .wim-segmented-control__label {
         display: block;
-        line-height: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        line-height: typography.$line-height-normal-latn;
     }
 }

@@ -1,0 +1,151 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { T } from "./T";
+import { Icon } from "./Icon/Icon";
+
+export const RightArrow = () => (
+  <svg
+    viewBox="0 0 14 14"
+    width="8px"
+    height="14px"
+    style={{
+      marginLeft: "4px",
+      display: "inline-block",
+      shapeRendering: "inherit",
+      verticalAlign: "middle",
+      fill: "currentColor",
+      "path fill": "currentColor",
+    }}
+  >
+    <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z" />
+  </svg>
+);
+
+<Meta title="ICON" />
+
+<div className="">
+<h2>ICON</h2>
+
+<h3>
+  <T k="planned_for_implementation" />
+</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Icon</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Circle</td>
+      <td><Icon name="CircleIcon" size="medium" /></td>
+      <td>filled</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Square</td>
+      <td><Icon name="SquareIcon" size="medium" /></td>
+      <td>filled</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Loading</td>
+      <td><Icon name="LoadingIcon" size="medium" /></td>
+      <td>outline</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>
+  線(outline)が向くもの
+</h2>
+<table>
+  <thead>
+    <tr>
+      <th>場所</th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ナビゲーションメニュー(未選択時)（サイドバー・タブバー）</td> 
+      <td> 全てが「塗り」だと画面が重苦しくなるが、「線」にすることでコンテンツ（中身）を主役にできまる<br/>
+      挙動: 普段は「線」、クリックして選択されたら「塗り」に切り替える</td>
+    </tr>
+    <tr>
+      <td>アイコンが密集する場所</td>
+      <td>例：ツールバーなど</td>
+    </tr>
+        <tr>
+      <td>情報の密度が高い場所</td>
+      <td>ツールバーのようにアイコンが横並びで大量に並ぶとき、「塗り」だと視覚的なノイズ(黒い塊)が多くなりすぎて疲れるが、「線」ならスッキリと整列して見える<br/>
+      例：B2Bツールや管理画面、デザインツールやドキュメント作成ソフトの操作パネル</td>
+    </tr>
+    <tr>
+      <td>カードコンポーネント内の補助情報</td>
+      <td>カード内の主役の「画像」や「タイトル」の邪魔をせず、必要な時だけ認識できる控えめな表現になる<br/>
+      「お気に入り（ハート）」や「共有（シェア）」、「時間（時計）」など</td>
+    </tr>
+    <tr>
+      <td>入力フォーム（Input Field）内の装飾</td>
+      <td>アイコンが目立ちすぎると入力の邪魔になるので、細い線で添える<br/>
+      例：検索バーの「虫眼鏡」や、パスワード入力欄の「目（表示/非表示）」アイコン</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>
+  塗りつぶし(filled)が向くもの
+</h2>
+<table>
+  <thead>
+    <tr>
+      <th>場所</th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>選択状態(Active)の表現</td>
+      <td>例：タブバーで今開いている項目</td>
+    </tr>
+    <tr>
+      <td>重要なアクションボタン</td>
+      <td>例：削除、保存、追加など</td>
+    </tr>
+    <tr>
+      <td>複雑な背景の上</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>非常に小さいサイズでの表示</td>
+      <td></td>
+    </tr> 
+    <tr>
+      <td>強いメッセージを持つコンポーネント</td>
+      <td>例：「警告（!）」や「エラー（×）」</td>
+    </tr>
+    <tr>
+      <td>ボタン内のアイコン</td>
+      <td>視覚的なバランスを取りやすく、使い勝手が良いことが多い<br/>
+      視認性の確保: ボタン内は背景色があるため、線の細いアイコンだと色が背景に埋もれたり、文字の太さと喧嘩したりして、認識しづらくなることがある<br/>
+      シルエットの強さ: 塗りのアイコンはシルエットがはっきりしているため、パッと見た瞬間にアイコンの意味を理解するスピードが速い</td>
+    </tr>
+    <tr>
+      <td>テキストの頭（ラベル）に配置するアイコン</td>
+      <td>視覚的なバランスを取りやすく、使い勝手が良いことが多い<br/>
+      アイコンの役割: テキスト（ラベル）が主役であり、アイコンはそれを補強する「補助役」であるため、主役の邪魔をしない控えめな表現が適している<br/>
+      視認性の確保: 線アイコンは背景に溶け込みやすく、テキストの横に並べたときに視認性が低下することがある。塗りアイコンはシルエットがはっきりしているため、テキストと並べても埋もれにくく、アイコンの存在を認識しやすい
+       テキストが太字（Bold）の場合: アイコンも「塗り」にしないと、文字の強さにアイコンが負けて、スカスカした印象になります。
+ テキストが標準（Regular）の場合: 「塗り」でも「線」でも合いますが、アイコンを「塗り」にすると、それが「箇条書きのバレット（点）」のような役割を果たし、視線を誘導するガイドとして機能する</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>

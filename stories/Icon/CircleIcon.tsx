@@ -5,15 +5,16 @@ import PropTypes from "prop-types";
 const CircleIcon = ({ ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor" // 引用符で囲む
-    stroke="currentColor" // 引用符で囲む
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
+    viewBox="0 0 200 200"
+    fill="currentColor"
     {...props}
   >
-    <circle cx="12" cy="12" r="10" />
+    <circle
+      cx="107.588"
+      cy="106.555"
+      r="105.263"
+      transform="matrix(.95 0 0 .95 -2.21 -1.227)"
+    />
   </svg>
 );
 
