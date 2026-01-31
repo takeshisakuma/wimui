@@ -1,0 +1,7 @@
+import{j as l}from"./jsx-runtime-u17CrQMm.js";import{P as r}from"./index-Bc_sEXaH.js";import{u as i}from"./useTranslation-Dq4Fl5Jj.js";import"./iframe-DKu933ra.js";import"./preload-helper-PPVm8Dsz.js";import"./index-BEkOikoo.js";const s=({text:t,scrollAxis:n="y",maxHeight:a="10rem",...m})=>{const{t:o}=i();return l.jsx("div",{className:"wim-scroll-area",style:{maxHeight:a},children:o(t)})};s.propTypes={text:r.string.isRequired,scrollAxis:r.oneOf(["y"]),maxHeight:r.string};s.__docgenInfo={description:"",methods:[],displayName:"ScrollArea",props:{text:{required:!0,tsType:{name:"string"},description:"",type:{name:"string"}},scrollAxis:{required:!1,tsType:{name:"literal",value:'"y"'},description:"",defaultValue:{value:'"y"',computed:!1},type:{name:"enum",value:[{value:'"y"',computed:!1}]}},maxHeight:{required:!1,tsType:{name:"string"},description:"Maximum height of the scroll area",type:{name:"string"}}}};const g={title:"Component/Navigation & Layout/ScrollArea",component:s,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{}},e={args:{text:"sampletextforscrollarea",scrollAxis:"y",maxHeight:"10rem"}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    text: "sampletextforscrollarea",
+    scrollAxis: \`y\`,
+    maxHeight: \`10rem\`
+  }
+}`,...e.parameters?.docs?.source}}};const f=["ScrollAreaYaxis"];export{e as ScrollAreaYaxis,f as __namedExportsOrder,g as default};
