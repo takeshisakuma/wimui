@@ -40,7 +40,7 @@ export const SegmentedControl = ({
     // Calculate the position of the slider
     const selectedIndex = options.findIndex((opt) => opt.value === value);
     const sliderStyle = {
-        width: `${100 / options.length}%`,
+        width: `calc((100% - 4px) / ${options.length})`,
         transform: `translateX(${selectedIndex * 100}%)`,
     };
 
