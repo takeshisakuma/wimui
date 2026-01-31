@@ -1,30 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./scrollarea.scss";
+import "./scroll-area.scss";
 import { useTranslation } from "react-i18next";
 
-type ScrollareaProps = React.ComponentPropsWithoutRef<"div"> & {
+type ScrollAreaProps = React.ComponentPropsWithoutRef<"div"> & {
   text: string;
   scrollAxis?: "y";
   maxHeight?: string; //px以外にも対応するため文字列にしている
 };
 
-export const Scrollarea = ({
+export const ScrollArea = ({
   text,
   scrollAxis: _scrollAxis = "y",
   maxHeight = `10rem`,
   ..._props
-}: ScrollareaProps) => {
+}: ScrollAreaProps) => {
   const { t } = useTranslation();
 
   return (
-    <div className="wim-scrollarea" style={{ maxHeight: maxHeight }}>
+    <div className="wim-scroll-area" style={{ maxHeight: maxHeight }}>
       {t(text)}
     </div>
   );
 };
 
-Scrollarea.propTypes = {
+ScrollArea.propTypes = {
   text: PropTypes.string.isRequired,
   scrollAxis: PropTypes.oneOf(["y"]),
   /** Maximum height of the scroll area */

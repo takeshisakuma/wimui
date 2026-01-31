@@ -17,7 +17,10 @@
       // 例: "@/*": ["./src/*"] など、エイリアスがあればここに追加
     },
     "allowJs": true, //JavaScriptファイルのコンパイル/型チェックを許可
-    "types": ["vitest/globals", "@testing-library/jest-dom"]
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ]
   },
   "include": [
     "src/**/*.ts",
@@ -28,6 +31,8 @@
     ".storybook/i18n.ts"
   ],
   "exclude": [
-    "node_modules" // node_modulesは除外
+    "node_modules",
+    "dist",
+    "storybook-static"
   ]
 }

@@ -1,8 +1,8 @@
-import { Scrollarea } from "./Scrollarea";
+import { ScrollArea } from "./ScrollArea";
 
 export default {
-  title: "Component/Navigation & Layout/Scrollarea",
-  component: Scrollarea,
+  title: "Component/Navigation & Layout/ScrollArea",
+  component: ScrollArea,
   parameters: {
     layout: "centered",
   },
@@ -10,7 +10,7 @@ export default {
   argTypes: {},
 };
 
-export const ScrollareaYaxis = {
+export const ScrollAreaYaxis = {
   args: {
     text: "sampletextforscrollarea",
     scrollAxis: `y`,

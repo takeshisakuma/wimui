@@ -1,7 +1,7 @@
 @use "../../src/tokens/semantic-colors" as colors;
 
 @layer component {
-  .wim-scrollarea {
+  .wim-scroll-area {
     overflow-y: auto;
     scrollbar-gutter: stable;
     scrollbar-color: colors.$scrollbar-thumb colors.$scrollbar-track;
