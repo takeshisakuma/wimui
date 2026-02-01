@@ -20,7 +20,13 @@
         border: 2px solid transparent;
         border-radius: 50%; // デフォルトは円形
         opacity: 1;
-        transition: effects.$transition-base;
+        transition:
+            background-color effects.$transition-base,
+            border-color effects.$transition-base,
+            box-shadow effects.$transition-base,
+            transform effects.$transition-base,
+            width 0.3s ease, // スムーズな伸縮
+            padding 0.3s ease;
         z-index: 1000;
 
         &:active:not(:disabled) {
@@ -35,13 +41,24 @@
             gap: spacings.$spacing-xs;
             width: 100%;
             height: 100%;
+            overflow: hidden; // 縮小時に中身がはみ出さないように
+        }
+
+        &__label-wrapper {
+            display: inline-block;
+            max-width: 200px;
+            overflow: hidden;
+            padding: 4px 0; // 垂直方向の描画範囲を確保
+            vertical-align: middle;
+            transition: max-width 0.3s ease, opacity 0.2s ease, visibility 0.2s ease;
         }
 
         &__label {
             display: inline-block;
-            line-height: 1;
-            vertical-align: middle;
+            line-height: 1.4; // 少し余裕を持たせる
             white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
         .wim-icon {
@@ -53,23 +70,27 @@
             width: spacings.$spacing-5xl;
             height: spacings.$spacing-5xl;
             font-size: typography.$size-large;
+            --fab-shrink-size: #{spacings.$spacing-5xl};
         }
 
         &--md {
             width: spacings.$spacing-4xl;
             height: spacings.$spacing-4xl;
             font-size: typography.$size-medium;
+            --fab-shrink-size: #{spacings.$spacing-4xl};
         }
 
         &--sm {
             width: spacings.$spacing-3xl;
             height: spacings.$spacing-3xl;
             font-size: typography.$size-small;
+            --fab-shrink-size: #{spacings.$spacing-3xl};
         }
 
         // Extended FAB (with label)
         &--extended {
-            width: auto;
+            width: max-content;
+            min-width: var(--fab-shrink-size); // 縮小時の最小サイズを担保
             border-radius: spacings.$radius-full;
             padding: 0 spacings.$spacing-xl;
 
@@ -86,6 +107,25 @@
             &.wim-fab--sm {
                 height: spacings.$spacing-3xl;
                 padding: 0 spacings.$spacing-lg;
+            }
+
+            &.wim-fab--shrink {
+                // width: var(--fab-shrink-size); // コメントアウト：autoからの遷移だと飛ぶため
+                padding: 0;
+
+                .wim-fab__inner {
+                    gap: 0; // ラベルとの隙間をなくす
+                }
+
+                .wim-fab__label-wrapper {
+                    max-width: 0; // 幅をなくす
+                    opacity: 0;
+                    visibility: hidden; // 完全に消す
+                }
+
+                .wim-fab__label {
+                    transform: scale(0.8);
+                }
             }
         }
 
