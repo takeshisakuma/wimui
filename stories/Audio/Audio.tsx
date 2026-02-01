@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import "./audio.scss";
 
@@ -28,6 +28,18 @@ export const Audio = ({
     style,
     ...props
 }: AudioProps) => {
+    const audioRef = useRef<HTMLAudioElement>(null);
+
+    useEffect(() => {
+        if (autoPlay && audioRef.current) {
+            // Browsers often require 'muted' to autoplay
+            // and might need an explicit .play() call if mounting is delayed
+            audioRef.current.play().catch((error) => {
+                console.warn("Autoplay was prevented:", error);
+            });
+        }
+    }, [autoPlay]);
+
     const innerClasses = [
         "wim-audio-inner",
         radius !== "none" && `wim-audio--radius-${radius}`,
@@ -41,6 +53,7 @@ export const Audio = ({
         <figure className={`wim-audio-container ${className || ""}`} style={style}>
             <div className={innerClasses}>
                 <audio
+                    ref={audioRef}
                     src={src}
                     className="wim-audio"
                     autoPlay={autoPlay}

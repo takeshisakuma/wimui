@@ -51,7 +51,7 @@ export const AutoPlay: Story = {
     args: {
         src: audioSample,
         controls: true,
-        autoPlay: false, // ブラウザの制限を考慮してデフォルトはオフ
+        autoPlay: true,
         muted: true,
     },
 };
