@@ -5,7 +5,8 @@
 .wim-audio-container {
     margin: 0;
     padding: 0;
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
     max-width: 100%;
     position: relative;
     line-height: 0; // Remove baseline gap
@@ -14,6 +15,8 @@
 .wim-audio-inner {
     display: flex;
     line-height: 0;
+    width: 300px;
+    max-width: 100%;
     // Fix for Chrome on Android: overflow: hidden with border-radius 
     // can cause rendering glitches on native elements.
     -webkit-mask-image: -webkit-radial-gradient(white, black);
@@ -50,12 +53,8 @@
 
 .wim-audio {
     display: block;
-    width: 300px; // Standard width for audio players
+    width: 100%; // Fill parent (.wim-audio-inner)
     max-width: 100%;
-
-    @media (max-width: 480px) {
-        width: 100%;
-    }
 }
 
 .wim-audio__caption {
