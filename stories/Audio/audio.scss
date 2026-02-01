@@ -12,8 +12,12 @@
 }
 
 .wim-audio-inner {
-    display: inline-block;
+    display: flex;
     line-height: 0;
+    // Fix for Chrome on Android: overflow: hidden with border-radius 
+    // can cause rendering glitches on native elements.
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
 
     &.wim-audio--radius-small {
         border-radius: spacings.$radius-sm;
