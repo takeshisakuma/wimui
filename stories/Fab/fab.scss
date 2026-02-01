@@ -1,0 +1,201 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/typography" as typography;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+
+@layer component {
+    .wim-fab {
+        box-sizing: border-box;
+        display: inline-grid;
+        grid-template-areas: "stack";
+        place-items: center;
+        position: relative;
+        padding: 0;
+        font: inherit;
+        font-weight: typography.$weight-normal;
+        line-height: 1;
+        color: inherit;
+        cursor: pointer;
+        background-color: transparent;
+        border: 2px solid transparent;
+        border-radius: 50%; // デフォルトは円形
+        opacity: 1;
+        transition: effects.$transition-base;
+        z-index: 1000;
+
+        &:active:not(:disabled) {
+            transform: scale(effects.$scale-active);
+        }
+
+        &__inner {
+            grid-area: stack;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: spacings.$spacing-xs;
+            width: 100%;
+            height: 100%;
+        }
+
+        &__label {
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .wim-icon {
+            font-size: 0.7em;
+        }
+
+        // Sizes
+        &--lg {
+            width: spacings.$spacing-5xl;
+            height: spacings.$spacing-5xl;
+            font-size: typography.$size-large;
+        }
+
+        &--md {
+            width: spacings.$spacing-4xl;
+            height: spacings.$spacing-4xl;
+            font-size: typography.$size-medium;
+        }
+
+        &--sm {
+            width: spacings.$spacing-3xl;
+            height: spacings.$spacing-3xl;
+            font-size: typography.$size-small;
+        }
+
+        // Extended FAB (with label)
+        &--extended {
+            width: auto;
+            border-radius: spacings.$radius-full;
+            padding: 0 spacings.$spacing-xl;
+
+            &.wim-fab--lg {
+                height: spacings.$spacing-5xl;
+                padding: 0 spacings.$spacing-2xl;
+            }
+
+            &.wim-fab--md {
+                height: spacings.$spacing-4xl;
+                padding: 0 spacings.$spacing-xl;
+            }
+
+            &.wim-fab--sm {
+                height: spacings.$spacing-3xl;
+                padding: 0 spacings.$spacing-lg;
+            }
+        }
+
+        // Priorities (Reuse Button styles)
+        &--primary {
+            box-shadow: effects.$shadow-md;
+
+            &.wim-fab--default {
+                color: colors.$color-text-on-primary;
+                background-color: colors.$color-primary;
+            }
+
+            &.wim-fab--destructive {
+                color: colors.$color-text-on-destructive;
+                background-color: colors.$color-destructive;
+            }
+
+            &.wim-fab--positive {
+                color: colors.$color-text-on-positive;
+                background-color: colors.$color-positive;
+            }
+
+            &:hover:not(:disabled) {
+                box-shadow: effects.$shadow-lg;
+                transform: translateY(effects.$lift-md);
+            }
+        }
+
+        &--secondary {
+            box-shadow: effects.$shadow-sm;
+
+            &.wim-fab--default {
+                color: colors.$color-primary;
+                background-color: #fff;
+                border-color: colors.$color-primary;
+            }
+
+            &.wim-fab--destructive {
+                color: colors.$color-destructive;
+                background-color: #fff;
+                border-color: colors.$color-destructive;
+            }
+
+            &.wim-fab--positive {
+                color: colors.$color-positive;
+                background-color: #fff;
+                border-color: colors.$color-positive;
+            }
+
+            &:hover:not(:disabled) {
+                box-shadow: effects.$shadow-md;
+                transform: translateY(effects.$lift-sm);
+            }
+        }
+
+        &--tertiary {
+            background-color: rgb(255 255 255 / 0.8);
+            backdrop-filter: blur(8px);
+            border-color: rgb(0 0 0 / 0.08);
+
+            &.wim-fab--default {
+                color: colors.$color-primary;
+            }
+
+            &.wim-fab--destructive {
+                color: colors.$color-destructive;
+            }
+
+            &.wim-fab--positive {
+                color: colors.$color-positive;
+            }
+
+            &:hover:not(:disabled) {
+                background-color: #fff;
+                box-shadow: effects.$shadow-sm;
+            }
+        }
+
+        // Positions
+        &--bottom-right {
+            position: fixed;
+            bottom: spacings.$spacing-2xl;
+            right: spacings.$spacing-2xl;
+        }
+
+        &--bottom-left {
+            position: fixed;
+            bottom: spacings.$spacing-2xl;
+            left: spacings.$spacing-2xl;
+        }
+
+        &--top-right {
+            position: fixed;
+            top: spacings.$spacing-2xl;
+            right: spacings.$spacing-2xl;
+        }
+
+        &--top-left {
+            position: fixed;
+            top: spacings.$spacing-2xl;
+            left: spacings.$spacing-2xl;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        &--loading {
+            pointer-events: none;
+        }
+    }
+}

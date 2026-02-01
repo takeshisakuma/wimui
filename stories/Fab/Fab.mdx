@@ -1,0 +1,51 @@
+import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import * as FabStories from "./Fab.stories";
+
+<Meta of={FabStories} />
+
+# Fab (Floating Action Button)
+
+Fab（フローティングアクションボタン）は、画面の主要なアクションを促すためのボタン<br/>
+画面の最前面に固定して配置されることが多く、円形の形状が特徴<br/>
+Buttonと異なり、loadingとdisabledを用意していない
+
+## 特徴
+- 画面の主要なアクション（作成、追加、共有など）に使用します。
+- 固定位置（Fixed）またはインライン（Static）で配置できます。
+- ラベルを追加して「拡張FAB」として使用することも可能です。
+
+## バリエーション
+
+### プライマリ (Primary)
+最も一般的なFABです。
+
+<Canvas of={FabStories.Primary} />
+
+### セカンダリ (Secondary)
+補助的なアクションに使用します。
+
+<Canvas of={FabStories.Secondary} />
+
+### 拡張FAB (Extended)
+アイコンに加えてテキストラベルを表示します。
+
+<Canvas of={FabStories.Extended} />
+
+### ロール (Role)
+アクションの性質（破壊的、肯定的）に応じたスタイルを適用できます。
+
+<Canvas of={FabStories.Destructive} />
+<Canvas of={FabStories.Positive} />
+
+## 配置 (Position)
+`position` プロップを使用して、画面の四隅に固定配置できます。
+
+- `bottom-right` (デフォルトの固定位置)
+- `bottom-left`
+- `top-right`
+- `top-left`
+- `static` (通常フローの中での配置)
+
+## プロパティ
+
+<Controls />
