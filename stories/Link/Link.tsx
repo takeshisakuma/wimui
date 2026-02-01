@@ -8,7 +8,7 @@ type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
     label?: string;
     size?: "small" | "medium" | "large";
     priority?: "primary" | "secondary" | "tertiary";
-    iconName?: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalIcon";
+    iconName?: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon";
     iconPosition?: "left" | "right";
     external?: boolean;
 };
@@ -40,7 +40,7 @@ export const Link = ({
     ) : null;
 
     const externalIconElement = external ? (
-        <Icon name="ExternalIcon" size={size} className="wim-link__external-icon" />
+        <Icon name="ExternalLinkIcon" size={size} className="wim-link__external-icon" />
     ) : null;
 
     return (
@@ -73,7 +73,7 @@ Link.propTypes = {
     label: PropTypes.string,
     size: PropTypes.oneOf(["small", "medium", "large"]),
     priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
-    iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon", "ExternalIcon"]),
+    iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon", "ExternalLinkIcon"]),
     iconPosition: PropTypes.oneOf(["left", "right"]),
     external: PropTypes.bool,
 };

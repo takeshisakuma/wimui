@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SegmentedControl } from "./SegmentedControl";
 
 const meta: Meta<typeof SegmentedControl> = {
-    title: "Component/Forms & Selection/SegmentedControl",
+    title: "Component/Selection/SegmentedControl",
     component: SegmentedControl,
     parameters: {
         layout: "centered",
@@ -120,6 +120,52 @@ export const TwoOptions: Story = {
             <SegmentedControl
                 {...args}
                 options={twoOptions}
+                value={value}
+                onChange={setValue}
+            />
+        );
+    },
+};
+
+export const WithIcons: Story = {
+    args: {
+        size: "medium",
+        fullWidth: false,
+    },
+    render: (args) => {
+        const [value, setValue] = useState("circle");
+        const iconOptions = [
+            { label: "Circle", value: "circle", iconName: "CircleIcon" },
+            { label: "Square", value: "square", iconName: "SquareIcon" },
+            { label: "External", value: "external", iconName: "ExternalLinkIcon" },
+        ] as const;
+        return (
+            <SegmentedControl
+                {...args}
+                options={iconOptions as any}
+                value={value}
+                onChange={setValue}
+            />
+        );
+    },
+};
+
+export const IconOnly: Story = {
+    args: {
+        size: "medium",
+        fullWidth: false,
+    },
+    render: (args) => {
+        const [value, setValue] = useState("circle");
+        const iconOnlyOptions = [
+            { value: "circle", iconName: "CircleIcon" },
+            { value: "square", iconName: "SquareIcon" },
+            { value: "external", iconName: "ExternalLinkIcon" },
+        ] as const;
+        return (
+            <SegmentedControl
+                {...args}
+                options={iconOnlyOptions as any}
                 value={value}
                 onChange={setValue}
             />

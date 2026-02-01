@@ -29,7 +29,7 @@ export const RightArrow = () => (
 </h3>
 
 
-<h4>Typography & Actions</h4>
+<h4>Typography</h4>
 <table>
   <thead>
     <tr>
@@ -54,6 +54,19 @@ export const RightArrow = () => (
       <td>Inline text elements</td>
       <td>done</td>
     </tr>
+  </tbody>
+</table>
+
+<h4>Actions</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
     <tr>
       <td>link</td>
       <td>Hyperlinks and enhanced navigation links</td>
@@ -82,7 +95,7 @@ export const RightArrow = () => (
   </tbody>
 </table>
 
-<h4>Forms & Selection</h4>
+<h4>Forms</h4>
 <table>
   <thead>
     <tr>
@@ -98,39 +111,92 @@ export const RightArrow = () => (
       <td></td>
     </tr>
     <tr>
-      <td>input / textarea</td>
-      <td>Single and multi-line text fields</td>
+      <td>input</td>
+      <td>Single line text fields</td>
       <td></td>
     </tr>
     <tr>
-      <td>selection controls</td>
-      <td>checkbox, radio, switch (Multiple or single choice options)</td>
+      <td>textarea</td>
+      <td>Multi-line text fields</td>
       <td></td>
     </tr>
     <tr>
-      <td>selectbox / dropdown / combobox</td>
-      <td>Selection from options (Combobox includes search)</td>
+      <td>slider</td>
+      <td>Value selection</td>
       <td></td>
     </tr>
     <tr>
-      <td>segmented control</td>
-      <td>Toggles between a few options</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>slider / rangeSlider</td>
-      <td>Intuitive range or value selection</td>
+      <td>rangeSlider</td>
+      <td>Range selection</td>
       <td></td>
     </tr>
     <tr>
-      <td>datePicker / timePicker / calendar</td>
-      <td>Date and time selection</td>
+      <td>datePicker</td>
+      <td>Date selection</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>timePicker</td>
+      <td>Time selection</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>calendar</td>
+      <td>Calendar view</td>
       <td></td>
     </tr>
     <tr>
       <td>fieldset / legend</td>
       <td>Grouping related form elements with labels</td>
       <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Selection</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>checkbox</td>
+      <td>Multiple choice option</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>radio</td>
+      <td>Single choice option</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>switch</td>
+      <td>Toggle option</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>selectbox</td>
+      <td>Selection from options</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>dropdown</td>
+      <td>Overlay selection menu</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>combobox</td>
+      <td>Selection with search</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>segmented control</td>
+      <td>Toggles between a few options</td>
+      <td>done</td>
     </tr>
   </tbody>
 </table>
@@ -144,36 +210,41 @@ export const RightArrow = () => (
     <th>Status</th>
   </tr>
 </thead>
-<tbody>
-  <tr>
-    <td>avatar</td>
-    <td>Profile pictures or initials</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>badge / chip / tag</td>
-    <td>Status indicators, categories, or selected items</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>table</td>
-    <td>Structured data display in rows and columns</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>list</td>
-    <td>Organized item lists</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>code</td>
-    <td>Inline or block code display</td>
-    <td></td>
-  </tr>
-</tbody>
+  <tbody>
+    <tr>
+      <td>avatar</td>
+      <td>Profile pictures or initials</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>badge</td>
+      <td>Status indicators or counts</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>chip / tag</td>
+      <td>Categories or selected items</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>table</td>
+      <td>Structured data display in rows and columns</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>list</td>
+      <td>Organized item lists</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>code</td>
+      <td>Inline or block code display</td>
+      <td></td>
+    </tr>
+  </tbody>
 </table>
 
-<h4>Feedback & Overlays</h4>
+<h4>Feedback</h4>
 <table>
 <thead>
   <tr>
@@ -184,29 +255,62 @@ export const RightArrow = () => (
 </thead>
 <tbody>
   <tr>
-    <td>alert / toast</td>
-    <td>Important messages and brief notifications</td>
+    <td>alert</td>
+    <td>Important messages</td>
     <td></td>
   </tr>
+  <tr>
+    <td>toast</td>
+    <td>Brief notifications</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>progress</td>
+    <td>Progress indicator</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>spinner / loader</td>
+    <td>Loading indicators</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>skeleton</td>
+    <td>Content placeholder while loading</td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
+
+<h4>Overlays</h4>
+<table>
+<thead>
+  <tr>
+    <th>Component</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+</thead>
+<tbody>
   <tr>
     <td>dialog / modal</td>
     <td>Interactive windows for focused tasks</td>
     <td></td>
   </tr>
   <tr>
-    <td>popover / tooltip</td>
-    <td>Contextual overlay panels and information on hover</td>
+    <td>popover</td>
+    <td>Contextual overlay panels</td>
     <td></td>
   </tr>
   <tr>
-    <td>loading states</td>
-    <td>progress, spinner, loader, skeleton (Loading indicators)</td>
+    <td>tooltip</td>
+    <td>Information on hover</td>
     <td></td>
   </tr>
 </tbody>
 </table>
 
-<h4>Navigation & Structure</h4>
+<h4>Navigation</h4>
 <table>
 <thead>
   <tr>
@@ -217,29 +321,77 @@ export const RightArrow = () => (
 </thead>
 <tbody>
   <tr>
-    <td>navigation</td>
-    <td>header, footer, navbar, sidebar, breadcrumb, pagination</td>
+    <td>header</td>
+    <td>Upper page navigation</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>footer</td>
+    <td>Lower page navigation</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>navbar / sidebar</td>
+    <td>Primary navigation menus</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>breadcrumb</td>
+    <td>Current location trace</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>pagination</td>
+    <td>Multi-page navigation</td>
     <td></td>
   </tr>
   <tr>
     <td>menu / contextMenu</td>
-    <td>Navigation menus and context menus</td>
+    <td>Navigation and contextual menus</td>
     <td></td>
   </tr>
+</tbody>
+</table>
+
+<h4>Structure</h4>
+<table>
+<thead>
+  <tr>
+    <th>Component</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+</thead>
+<tbody>
   <tr>
     <td>tab</td>
     <td>Content switching within a view</td>
     <td></td>
   </tr>
   <tr>
-    <td>layout helpers</td>
-    <td>container, grid, ScrollArea, divider / separator</td>
-    <td>ScrollArea: done</td>
+    <td>container</td>
+    <td>Layout wrapper</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>grid</td>
+    <td>Flexbox or CSS Grid system</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ScrollArea</td>
+    <td>Custom scrollable area</td>
+    <td>done</td>
+  </tr>
+  <tr>
+    <td>divider / separator</td>
+    <td>Visual separation of content</td>
+    <td></td>
   </tr>
 </tbody>
 </table>
 
-<h4>Media & Content</h4>
+<h4>Content Containers</h4>
 <table>
 <thead>
   <tr>
@@ -256,17 +408,30 @@ export const RightArrow = () => (
   </tr>
   <tr>
     <td>accordion</td>
-    <td>Vertically stacked interactive headings to reveal content</td>
+    <td>Vertically stacked interactive headings</td>
     <td></td>
   </tr>
+</tbody>
+</table>
+
+<h4>Media</h4>
+<table>
+<thead>
+  <tr>
+    <th>Component</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+</thead>
+<tbody>
   <tr>
     <td>carousel</td>
     <td>Slideshow for cycling through content</td>
     <td></td>
   </tr>
   <tr>
-    <td>media</td>
-    <td>image, video, audio</td>
+    <td>image / video / audio</td>
+    <td>Media content display</td>
     <td></td>
   </tr>
 </tbody>

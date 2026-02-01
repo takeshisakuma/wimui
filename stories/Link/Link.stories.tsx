@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Link } from "./Link";
 
 const meta: Meta<typeof Link> = {
-    title: "Component/Typography & Action/Link",
+    title: "Component/Actions/Link",
     component: Link,
     parameters: {
         layout: "centered",
@@ -18,7 +18,7 @@ const meta: Meta<typeof Link> = {
         },
         iconName: {
             control: { type: "select" },
-            options: [undefined, "CircleIcon", "SquareIcon", "LoadingIcon"],
+            options: [undefined, "CircleIcon", "SquareIcon", "LoadingIcon", "ExternalLinkIcon"],
         },
         iconPosition: {
             control: { type: "radio" },

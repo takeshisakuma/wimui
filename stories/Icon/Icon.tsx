@@ -6,18 +6,18 @@ import "./icon.scss";
 import CircleIcon from "./CircleIcon";
 import SquareIcon from "./SquareIcon";
 import LoadingIcon from "./LoadingIcon";
-import ExternalIcon from "./ExternalIcon";
+import ExternalLinkIcon from "./ExternalLinkIcon";
 
 // アイコン名をコンポーネントにマッピング
 const icons = {
   CircleIcon: CircleIcon,
   SquareIcon: SquareIcon,
   LoadingIcon: LoadingIcon,
-  ExternalIcon: ExternalIcon,
+  ExternalLinkIcon: ExternalLinkIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
-  name: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalIcon";
+  name: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon";
   size?: "small" | "medium" | "large";
   color?:
   | "destructive"
@@ -30,7 +30,7 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "disabled";
 };
 
-export const Icon = ({ name, size = "medium", color, ...props }: IconProps) => {
+export const Icon = ({ name, size = "medium", color, className, ...props }: IconProps) => {
   if (!name) return null;
   const IconComponent = icons[name];
   if (!IconComponent) return null;
@@ -46,6 +46,7 @@ export const Icon = ({ name, size = "medium", color, ...props }: IconProps) => {
         sizeClass,
         colorClass,
         name === "LoadingIcon" ? "wim-icon--loading" : "",
+        className,
       ]
         .filter(Boolean)
         .join(" ")}
@@ -55,7 +56,7 @@ export const Icon = ({ name, size = "medium", color, ...props }: IconProps) => {
 };
 
 Icon.propTypes = {
-  name: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon"]),
+  name: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon", "ExternalLinkIcon"]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   color: PropTypes.oneOf([
     "destructive",

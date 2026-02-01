@@ -38,6 +38,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: spacings.$spacing-xs;
         background: none;
         border: none;
         font: inherit;
@@ -56,12 +57,26 @@
             color: colors.$color-primary;
 
         }
+
+        &.wim-segmented-control__item--icon-only {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    }
+
+    .wim-icon {
+        font-size: 0.7em; // Buttonコンポーネントと一貫性を持たせる
     }
 
     &.wim-segmented-control--sm {
         .wim-segmented-control__item {
             padding: spacings.$spacing-xs spacings.$spacing-md;
             font-size: typography.$size-small;
+
+            &.wim-segmented-control__item--icon-only {
+                padding: spacings.$spacing-xs 0 !important;
+                width: 30px;
+            }
         }
     }
 
@@ -69,6 +84,11 @@
         .wim-segmented-control__item {
             padding: spacings.$spacing-sm spacings.$spacing-lg;
             font-size: typography.$size-medium;
+
+            &.wim-segmented-control__item--icon-only {
+                padding: spacings.$spacing-sm 0 !important;
+                width: 36px;
+            }
         }
     }
 
@@ -76,6 +96,11 @@
         .wim-segmented-control__item {
             padding: spacings.$spacing-md spacings.$spacing-xl;
             font-size: typography.$size-large;
+
+            &.wim-segmented-control__item--icon-only {
+                padding: spacings.$spacing-md 0 !important;
+                width: 44px;
+            }
         }
     }
 

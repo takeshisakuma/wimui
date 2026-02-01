@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Icon } from "../Icon/Icon";
 import "./segmented-control.scss";
 
 type Option = {
-    label: string;
+    label?: string;
     value: string;
-    iconName?: "CircleIcon" | "SquareIcon";
+    iconName?: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon";
 };
 
 type SegmentedControlProps = {
@@ -54,13 +55,23 @@ export const SegmentedControl = ({
                     className={[
                         "wim-segmented-control__item",
                         option.value === value ? "wim-segmented-control__item--active" : "",
+                        !option.label && option.iconName ? "wim-segmented-control__item--icon-only" : "",
                     ]
                         .filter(Boolean)
                         .join(" ")}
                     onClick={() => onChange(option.value)}
                     aria-pressed={option.value === value}
+                    aria-label={option.label || option.value}
                 >
-                    <span className="wim-segmented-control__label">{option.label}</span>
+                    {option.iconName && (
+                        <Icon
+                            name={option.iconName}
+                            size={size}
+                        />
+                    )}
+                    {option.label && (
+                        <span className="wim-segmented-control__label">{option.label}</span>
+                    )}
                 </button>
             ))}
         </div>
@@ -70,9 +81,9 @@ export const SegmentedControl = ({
 SegmentedControl.propTypes = {
     options: PropTypes.arrayOf(
         PropTypes.shape({
-            label: PropTypes.string.isRequired,
+            label: PropTypes.string,
             value: PropTypes.string.isRequired,
-            iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon"]),
+            iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon", "ExternalLinkIcon"]),
         })
     ).isRequired,
     value: PropTypes.string.isRequired,

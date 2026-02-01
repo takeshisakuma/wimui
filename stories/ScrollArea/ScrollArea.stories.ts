@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollArea } from "./ScrollArea";
 
 export default {
-  title: "Component/Navigation & Structure/ScrollArea",
+  title: "Component/Structure/ScrollArea",
   component: ScrollArea,
   parameters: {
     layout: "centered",
