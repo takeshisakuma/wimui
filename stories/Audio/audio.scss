@@ -1,0 +1,64 @@
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+@use "../../src/tokens/semantic-colors" as colors;
+
+.wim-audio-container {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    line-height: 0; // Remove baseline gap
+}
+
+.wim-audio-inner {
+    display: inline-block;
+    line-height: 0;
+
+    &.wim-audio--radius-small {
+        border-radius: spacings.$radius-sm;
+        overflow: hidden;
+    }
+
+    &.wim-audio--radius-medium {
+        border-radius: spacings.$radius-md;
+        overflow: hidden;
+    }
+
+    &.wim-audio--radius-large {
+        border-radius: spacings.$radius-lg;
+        overflow: hidden;
+    }
+
+    &.wim-audio--radius-full {
+        border-radius: spacings.$radius-full;
+        overflow: hidden;
+    }
+
+    &.wim-audio--shadow {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    &.wim-audio--border {
+        border: 1px solid var(--color-border-default, #e0e0e0);
+    }
+}
+
+.wim-audio {
+    display: block;
+    width: 300px; // Standard width for audio players
+    max-width: 100%;
+
+    @media (max-width: 480px) {
+        width: 100%;
+    }
+}
+
+.wim-audio__caption {
+    margin-top: spacings.$spacing-sm;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary, #666);
+    line-height: 1.5;
+    text-align: center;
+    padding-bottom: spacings.$spacing-xs;
+}

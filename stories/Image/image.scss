@@ -1,0 +1,59 @@
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+@use "../../src/tokens/semantic-colors" as colors;
+
+.wim-image-container {
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: relative;
+    line-height: 0;
+}
+
+.wim-image-inner {
+    display: block;
+    line-height: 0;
+    width: 100%;
+
+    &.wim-image--radius-small {
+        border-radius: spacings.$radius-sm;
+        overflow: hidden;
+    }
+
+    &.wim-image--radius-medium {
+        border-radius: spacings.$radius-md;
+        overflow: hidden;
+    }
+
+    &.wim-image--radius-large {
+        border-radius: spacings.$radius-lg;
+        overflow: hidden;
+    }
+
+    &.wim-image--radius-full {
+        border-radius: spacings.$radius-full;
+        overflow: hidden;
+    }
+
+    &.wim-image--shadow {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    &.wim-image--border {
+        border: 1px solid var(--color-border-default, #e0e0e0);
+    }
+}
+
+.wim-image {
+    display: block;
+    max-width: 100%;
+}
+
+.wim-image__caption {
+    margin-top: spacings.$spacing-sm;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary, #666);
+    line-height: 1.5;
+    text-align: center;
+    padding-bottom: spacings.$spacing-xs; // Ensure descenders are not cut off
+}

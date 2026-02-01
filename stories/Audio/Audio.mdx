@@ -1,0 +1,52 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as AudioStories from "./Audio.stories";
+
+<Meta title="Component/Media/Audio" of={AudioStories} />
+
+# Audio
+
+`Audio` コンポーネントは、音声ファイルを簡単に再生するためのコンポーネントです。
+自動再生、ループ、コントロールの表示切り替え、角丸、影などのスタイリングをサポートしています。
+
+## 特徴
+
+- **直感的なコントロール**: `controls` プロパティで再生UIの表示/非表示を切り替え可能。
+- **自動再生とループ**: `autoPlay`、`loop`、`muted` を組み合わせてBGMなどの演出に対応。
+- **スタイリング**: `radius`、`shadow`、`border` プロパティでデザインに合わせた外観に変更可能。
+
+## Usage
+
+```tsx
+import { Audio } from "./Audio";
+
+<Audio
+  src="path/to/audio.mp3"
+  controls
+  radius="full"
+  caption="音声サンプルの説明"
+/>
+```
+
+> [!TIP]
+> ブラウザのネイティブオーディオプレイヤーは一般的にピル形状（角丸50%）であるため、`radius="full"` を指定するとシャドウやボーダーが最も美しく表示されます。
+
+## Props
+
+<Controls />
+
+## Variants
+
+### Default
+標準的なオーディオプレイヤーです。
+
+<Canvas of={AudioStories.Default} />
+
+### With Caption
+キャプションを表示した状態です。
+
+<Canvas of={AudioStories.WithCaption} />
+
+### Rounded with Shadow
+角丸と影を適用したデザインです。
+
+<Canvas of={AudioStories.Rounded} />

@@ -1,0 +1,57 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as ImageStories from "./Image.stories";
+
+<Meta title="Components/Media/Image" of={ImageStories} />
+
+# Image
+
+`Image` コンポーネントは、画像を洗練された形で表示するためのラッパーコンポーネントです。
+レスポンシブなサイズ調整、角丸、影、枠線、キャプションなどの機能を備えています。
+
+## 特徴
+
+- **アスペクト比の制御**: `fit` プロパティ（`object-fit`）により、画像の収まり方を調整可能。
+- **スタイリング**: `radius`、`shadow`、`border` プロパティで外観を簡単に変更。
+- **キャプション付き**: `caption` プロパティで画像の下に説明文を追加。
+
+## Usage
+
+```tsx
+import { Image } from "./Image";
+
+<Image
+  src="path/to/image.webp"
+  alt="説明文"
+  width={400}
+  radius="medium"
+  shadow
+  caption="サンプルの画像です"
+/>
+```
+
+## Props
+
+<Controls />
+
+## Variants
+
+### Default
+標準的な画像表示です。
+
+<Canvas of={ImageStories.Default} />
+
+### Rounded & Circular
+`radius` プロパティで角丸を調整できます。
+
+<Canvas of={ImageStories.Rounded} />
+<Canvas of={ImageStories.Circular} />
+
+### With Caption
+`caption` を追加して、画像の説明を表示します。
+
+<Canvas of={ImageStories.WithCaption} />
+
+### With Shadow
+`shadow` を有効にして、浮き上がったような効果を与えます。
+
+<Canvas of={ImageStories.WithShadow} />

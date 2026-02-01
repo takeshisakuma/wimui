@@ -1,0 +1,52 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as VideoStories from "./Video.stories";
+
+<Meta title="Components/Media/Video" of={VideoStories} />
+
+# Video
+
+`Video` コンポーネントは、動画ファイルを簡単に埋め込むためのコンポーネントです。
+自動再生、ループ、コントロールの表示切り替え、角丸、影などのスタイリングをサポートしています。
+
+## 特徴
+
+- **直感的なコントロール**: `controls` プロパティで再生UIの表示/非表示を切り替え可能。
+- **自動再生とループ**: `autoPlay`、`loop`、`muted` を組み合わせて背景動画などの演出に対応。
+- **スタイリング**: `radius`、`shadow`、`border` プロパティでデザインに合わせた外観に変更可能。
+
+## Usage
+
+```tsx
+import { Video } from "./Video";
+
+<Video
+  src="path/to/video.mp4"
+  width={600}
+  autoPlay
+  muted
+  loop
+  radius="medium"
+  caption="背景動画のサンプル"
+/>
+```
+
+## Props
+
+<Controls />
+
+## Variants
+
+### Default
+標準的なビデオプレイヤーです。
+
+<Canvas of={VideoStories.Default} />
+
+### AutoPlay & Loop
+`autoPlay`、`muted`、`loop` を有効にした状態です。
+
+<Canvas of={VideoStories.AutoPlay} />
+
+### Rounded with Shadow
+角丸と影を適用したデザインです。
+
+<Canvas of={VideoStories.Rounded} />
