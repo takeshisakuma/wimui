@@ -7,18 +7,14 @@ import { Icon } from "../Icon/Icon";
 type FabProps = React.ComponentPropsWithoutRef<"button"> & {
     size?: "small" | "medium" | "large";
     label?: string;
-    priority?: "primary" | "secondary" | "tertiary";
-    role?: "default" | "destructive" | "positive";
     iconName: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon";
-    position?: "bottom-right" | "bottom-left" | "top-right" | "top-left" | "static";
+    position?: "bottom-right" | "bottom-left" | "top-right" | "top-left" | "bottom-center" | "static";
     "aria-label"?: string;
 };
 
 export const Fab = ({
     size = "medium",
     label,
-    priority = "primary",
-    role = "default",
     iconName,
     position = "static",
     "aria-label": ariaLabel,
@@ -33,8 +29,6 @@ export const Fab = ({
         large: "lg",
     };
     const sizeClass = `wim-fab--${sizeMap[size]}`;
-    const priorityClass = `wim-fab--${priority}`;
-    const roleClass = `wim-fab--${role}`;
     const positionClass = `wim-fab--${position}`;
     const extendedClass = label ? "wim-fab--extended" : "";
 
@@ -44,8 +38,6 @@ export const Fab = ({
             className={[
                 `wim-fab`,
                 sizeClass,
-                priorityClass,
-                roleClass,
                 positionClass,
                 extendedClass,
                 className,
@@ -69,9 +61,7 @@ export const Fab = ({
 Fab.propTypes = {
     size: PropTypes.oneOf(["small", "medium", "large"]),
     label: PropTypes.string,
-    priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
-    role: PropTypes.oneOf(["default", "destructive", "positive"]),
     iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon", "ExternalLinkIcon"]).isRequired,
-    position: PropTypes.oneOf(["bottom-right", "bottom-left", "top-right", "top-left", "static"]),
+    position: PropTypes.oneOf(["bottom-right", "bottom-left", "top-right", "top-left", "bottom-center", "static"]),
     "aria-label": PropTypes.string,
 };

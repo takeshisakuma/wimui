@@ -9,21 +9,13 @@ const meta: Meta<typeof Fab> = {
     },
     tags: [],
     argTypes: {
-        priority: {
-            control: "radio",
-            options: ["primary", "secondary", "tertiary"],
-        },
-        role: {
-            control: "radio",
-            options: ["default", "destructive", "positive"],
-        },
         size: {
             control: "radio",
             options: ["small", "medium", "large"],
         },
         position: {
             control: "select",
-            options: ["bottom-right", "bottom-left", "top-right", "top-left", "static"],
+            options: ["bottom-right", "bottom-left", "bottom-center", "top-right", "top-left", "static"],
         },
         iconName: {
             control: "select",
@@ -37,26 +29,7 @@ type Story = StoryObj<typeof Fab>;
 
 export const Primary: Story = {
     args: {
-        priority: "primary",
         iconName: "CircleIcon",
-        label: "",
-        position: "static",
-    },
-};
-
-export const Secondary: Story = {
-    args: {
-        priority: "secondary",
-        iconName: "SquareIcon",
-        label: "",
-        position: "static",
-    },
-};
-
-export const Tertiary: Story = {
-    args: {
-        priority: "tertiary",
-        iconName: "ExternalLinkIcon",
         label: "",
         position: "static",
     },
@@ -64,29 +37,8 @@ export const Tertiary: Story = {
 
 export const Extended: Story = {
     args: {
-        priority: "primary",
         iconName: "CircleIcon",
         label: "送信する",
-        position: "static",
-    },
-};
-
-export const Destructive: Story = {
-    args: {
-        priority: "primary",
-        role: "destructive",
-        iconName: "SquareIcon",
-        label: "削除",
-        position: "static",
-    },
-};
-
-export const Positive: Story = {
-    args: {
-        priority: "primary",
-        role: "positive",
-        iconName: "CircleIcon",
-        label: "完了",
         position: "static",
     },
 };
@@ -96,7 +48,6 @@ export const FixedPosition: Story = {
         layout: "fullscreen",
     },
     args: {
-        priority: "primary",
         iconName: "CircleIcon",
         position: "bottom-right",
     },

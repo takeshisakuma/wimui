@@ -89,79 +89,14 @@
             }
         }
 
-        // Priorities (Reuse Button styles)
-        &--primary {
-            box-shadow: effects.$shadow-md;
+        // Base Styles (Primary)
+        box-shadow: effects.$shadow-md;
+        color: colors.$color-text-on-primary;
+        background-color: colors.$color-primary;
 
-            &.wim-fab--default {
-                color: colors.$color-text-on-primary;
-                background-color: colors.$color-primary;
-            }
-
-            &.wim-fab--destructive {
-                color: colors.$color-text-on-destructive;
-                background-color: colors.$color-destructive;
-            }
-
-            &.wim-fab--positive {
-                color: colors.$color-text-on-positive;
-                background-color: colors.$color-positive;
-            }
-
-            &:hover:not(:disabled) {
-                box-shadow: effects.$shadow-lg;
-                transform: translateY(effects.$lift-md);
-            }
-        }
-
-        &--secondary {
-            box-shadow: effects.$shadow-sm;
-
-            &.wim-fab--default {
-                color: colors.$color-primary;
-                background-color: #fff;
-                border-color: colors.$color-primary;
-            }
-
-            &.wim-fab--destructive {
-                color: colors.$color-destructive;
-                background-color: #fff;
-                border-color: colors.$color-destructive;
-            }
-
-            &.wim-fab--positive {
-                color: colors.$color-positive;
-                background-color: #fff;
-                border-color: colors.$color-positive;
-            }
-
-            &:hover:not(:disabled) {
-                box-shadow: effects.$shadow-md;
-                transform: translateY(effects.$lift-sm);
-            }
-        }
-
-        &--tertiary {
-            background-color: rgb(255 255 255 / 0.8);
-            backdrop-filter: blur(8px);
-            border-color: rgb(0 0 0 / 0.08);
-
-            &.wim-fab--default {
-                color: colors.$color-primary;
-            }
-
-            &.wim-fab--destructive {
-                color: colors.$color-destructive;
-            }
-
-            &.wim-fab--positive {
-                color: colors.$color-positive;
-            }
-
-            &:hover:not(:disabled) {
-                background-color: #fff;
-                box-shadow: effects.$shadow-sm;
-            }
+        &:hover:not(:disabled) {
+            box-shadow: effects.$shadow-lg;
+            transform: translateY(effects.$lift-md);
         }
 
         // Positions
@@ -175,6 +110,23 @@
             position: fixed;
             bottom: spacings.$spacing-2xl;
             left: spacings.$spacing-2xl;
+        }
+
+        &--bottom-center {
+            position: fixed;
+            bottom: spacings.$spacing-2xl;
+            left: 50%;
+            transform: translateX(-50%);
+
+            &:hover:not(:disabled) {
+                // translateX(-50%) を維持しつつ共通の lift 効果を追加
+                transform: translateX(-50%) translateY(effects.$lift-md);
+            }
+
+            &:active:not(:disabled) {
+                // transformを上書きしないようにスケールと lift を維持
+                transform: translateX(-50%) translateY(effects.$lift-md) scale(effects.$scale-active);
+            }
         }
 
         &--top-right {
