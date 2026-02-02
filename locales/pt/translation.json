@@ -1,4 +1,6 @@
 {
+  "required": "Obrigatório",
+  "optional": "Opcional",
   "greeting": "Olá",
   "welcome": "Bem-vindo ao nosso aplicativo",
   "button_label": "Botão",

@@ -1,4 +1,6 @@
 {
+  "required": "Required",
+  "optional": "Optional",
   "greeting": "Hello",
   "welcome": "Welcome to our app",
   "button_label": "Button",
