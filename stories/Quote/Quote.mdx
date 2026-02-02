@@ -1,0 +1,45 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as QuoteStories from "./Quote.stories";
+
+<Meta of={QuoteStories} />
+
+<Title />
+<Subtitle>
+  引用文や強調したいテキストを表示するコンポーネントです。
+</Subtitle>
+
+<Description />
+
+<h2>考慮点</h2>
+<table>
+  <tr>
+    <td>意味論</td>
+    <td>HTMLの `blockquote` 要素を使用しており、アクセシビリティとSEOに配慮しています。</td>
+  </tr>
+  <tr>
+    <td>視認性</td>
+    <td>左側のボーダー（オプション）により、通常のテキストと区別しやすくしています。</td>
+  </tr>
+  <tr>
+    <td>引用元</td>
+    <td>引用元（cite）を指定することで、情報の出所を明確にできます。</td>
+  </tr>
+</table>
+
+<h2>バリエーション</h2>
+
+<Canvas of={QuoteStories.Default} />
+<Canvas of={QuoteStories.WithCite} />
+<Canvas of={QuoteStories.Large} />
+<Canvas of={QuoteStories.NoBorder} />
+
+<Controls />
