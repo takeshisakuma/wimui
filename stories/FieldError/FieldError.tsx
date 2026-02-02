@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Paragraph } from "../Paragraph/Paragraph";
-import "./input-error.scss";
+import "./field-error.scss";
 
-type InputErrorProps = {
+type FieldErrorProps = {
     content: string;
     className?: string;
 };
@@ -11,10 +11,10 @@ type InputErrorProps = {
 /**
  * 入力フィールドの下に表示するバリデーションエラーメッセージ用のコンポーネント。
  */
-export const InputError = ({ content, className = "", ...props }: InputErrorProps) => {
+export const FieldError = ({ content, className = "", ...props }: FieldErrorProps) => {
     return (
         <div
-            className={[`wim-input-error`, className].filter(Boolean).join(" ")}
+            className={[`wim-field-error`, className].filter(Boolean).join(" ")}
             role="alert"
             aria-live="polite"
             {...props}
@@ -28,7 +28,7 @@ export const InputError = ({ content, className = "", ...props }: InputErrorProp
     );
 };
 
-InputError.propTypes = {
+FieldError.propTypes = {
     /**
      * 表示するエラーメッセージの翻訳キーまたはテキスト。
      */

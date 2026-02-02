@@ -1,0 +1,70 @@
+.wim-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-weight: normal;
+    line-height: 1;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    // Sizes
+    &--sm {
+        padding: 3px 10px;
+        font-size: 0.65rem;
+    }
+
+    &--md {
+        padding: 6px 14px;
+        font-size: 0.75rem;
+    }
+
+    // Colors - Solid
+    &--solid {
+        &.wim-badge--primary {
+            background-color: var(--wim-color-primary, #007bff);
+            color: #fff;
+        }
+
+        &.wim-badge--secondary {
+            background-color: var(--wim-color-secondary, #6c757d);
+            color: #fff;
+        }
+
+        &.wim-badge--error {
+            background-color: var(--wim-color-error, #dc3545);
+            color: #fff;
+        }
+
+        &.wim-badge--neutral {
+            background-color: var(--wim-color-neutral, #e9ecef);
+            color: var(--wim-color-black, #212529);
+        }
+    }
+
+    // Colors - Outline
+    &--outline {
+        background-color: transparent;
+        border: 1px solid currentColor;
+
+        &.wim-badge--primary {
+            color: var(--wim-color-primary, #007bff);
+            border-color: var(--wim-color-primary, #007bff);
+        }
+
+        &.wim-badge--secondary {
+            color: var(--wim-color-secondary, #6c757d);
+            border-color: var(--wim-color-secondary, #6c757d);
+        }
+
+        &.wim-badge--error {
+            color: var(--wim-color-error, #dc3545);
+            border-color: var(--wim-color-error, #dc3545);
+        }
+
+        &.wim-badge--neutral {
+            color: var(--wim-color-gray, #6c757d);
+            border-color: var(--wim-color-gray, #6c757d);
+        }
+    }
+}

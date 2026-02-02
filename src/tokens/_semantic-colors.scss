@@ -16,11 +16,11 @@ $color-focus-outline: $color-primary;
 /* --- セマンティックカラー上のテキスト、アイコンの色 --- */
 $color-text-on-destructive: $pccs-w;
 $color-text-on-positive: $pccs-w;
-$color-text-on-caution: $pccs-w;
+$color-text-on-caution: $pccs-bk;
 $color-text-on-primary: $pccs-w;
-$color-text-on-secondary: $pccs-w;
+$color-text-on-secondary: $pccs-bk;
 $color-text-on-informative: $pccs-w;
-$color-text-on-disabled: $pccs-w;
+$color-text-on-disabled: $pccs-gy3-5;
 
 /* ---- 文字色 ---- */
 /* 無彩色 */
@@ -32,10 +32,10 @@ $text-white: $pccs-w;
 
 /* 有彩色 */
 /* エラー表示など */
-$text-error: $pccs-sf2;
+$text-error: $pccs-s2;
 
 /* Scrollareaコンポーネントのスクロールバーの色 */
-$scrollbar-thumb: $pccs-b20;
+$scrollbar-thumb: $pccs-s20;
 /* スクロールバーのつまみ部分の色 */
 $scrollbar-track: $pccs-gy8-5;
 

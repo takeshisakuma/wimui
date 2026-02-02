@@ -1,11 +1,11 @@
 import { Meta, Canvas, Controls } from "@storybook/blocks";
-import * as InputErrorStories from "./InputError.stories";
+import * as FieldErrorStories from "./FieldError.stories";
 
-<Meta of={InputErrorStories} />
+<Meta of={FieldErrorStories} />
 
-# InputError
+# FieldError
 
-`InputError` コンポーネントは、入力フォームのバリデーションエラーをユーザーに通知するために使用します。
+`FieldError` コンポーネントは、入力フォームのバリデーションエラーをユーザーに通知するために使用します。
 
 ## 特徴
 - **視認性:** `Paragraph` コンポーネントの `color="error"` と `size="small"` を標準で使用し、重要度を伝えます。
@@ -15,9 +15,9 @@ import * as InputErrorStories from "./InputError.stories";
 ## 使い方
 
 ```tsx
-import { InputError } from "./InputError";
+import { FieldError } from "./FieldError";
 
-<InputError content="メールアドレスの形式が正しくありません。" />
+<FieldError content="メールアドレスの形式が正しくありません。" />
 ```
 
 ## Props
@@ -27,7 +27,7 @@ import { InputError } from "./InputError";
 ## バリエーション
 
 ### デフォルト
-<Canvas of={InputErrorStories.Default} />
+<Canvas of={FieldErrorStories.Default} />
 
 ### 短いメッセージ
-<Canvas of={InputErrorStories.ShortMessage} />
+<Canvas of={FieldErrorStories.ShortMessage} />

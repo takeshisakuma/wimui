@@ -1,0 +1,69 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+
+.wim-input {
+    all: unset;
+    box-sizing: border-box;
+    display: inline-flex;
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    font-size: 1rem;
+    border-radius: spacings.$radius-md;
+    background-color: var(--bg-component, #fff);
+    color: var(--text-primary);
+    border: 1px solid colors.$color-secondary;
+    transition: effects.$transition-base;
+    width: 100%;
+    max-width: 320px;
+
+    &::placeholder {
+        color: var(--text-tertiary);
+    }
+
+    &:focus {
+        border-color: colors.$color-primary;
+        box-shadow: 0 0 0 2px rgba(colors.$color-primary, 0.2);
+    }
+
+    &--outline {
+        border-color: colors.$color-secondary;
+
+        &:focus {
+            border-color: colors.$color-primary;
+        }
+    }
+
+    &--ghost {
+        background-color: transparent;
+        border-color: transparent;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        &:focus {
+            background-color: transparent;
+            border-color: colors.$color-primary;
+        }
+    }
+
+    &--error {
+        border-color: var(--text-error) !important;
+
+        &:focus {
+            box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2) !important;
+        }
+    }
+
+    &--disabled {
+        background-color: var(--color-disabled);
+        color: var(--text-disabled);
+        cursor: not-allowed;
+        pointer-events: none;
+        border-color: var(--color-disabled);
+    }
+
+    &--full-width {
+        max-width: none;
+    }
+}

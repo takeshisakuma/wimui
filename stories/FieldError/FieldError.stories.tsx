@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { InputError } from "./InputError";
+import { FieldError } from "./FieldError";
 
-const meta: Meta<typeof InputError> = {
-    title: "Component/Forms/InputError",
-    component: InputError,
+const meta: Meta<typeof FieldError> = {
+    title: "Component/Forms/FieldError",
+    component: FieldError,
     argTypes: {
         content: { control: "text" },
     },
 };
 
 export default meta;
-type Story = StoryObj<typeof InputError>;
+type Story = StoryObj<typeof FieldError>;
 
 export const Default: Story = {
     args: {
