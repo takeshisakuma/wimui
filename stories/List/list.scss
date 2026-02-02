@@ -1,0 +1,55 @@
+@use "../../src/base.scss" as *;
+
+.wim-list {
+    margin: 0;
+    padding: 0;
+    padding-left: 1.5rem;
+    list-style-position: outside;
+
+    &--spacing-tight {
+        .wim-list__item {
+            margin-bottom: 0.25rem;
+        }
+    }
+
+    &--spacing-normal {
+        .wim-list__item {
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    &--spacing-loose {
+        .wim-list__item {
+            margin-bottom: 1rem;
+        }
+    }
+
+    // Sizes
+    &--sm {
+        font-size: 0.875rem;
+    }
+
+    &--md {
+        font-size: 1rem;
+    }
+
+    &--lg {
+        font-size: 1.25rem;
+    }
+
+    &__item {
+        line-height: 1.5;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+ul.wim-list {
+    list-style-type: disc;
+}
+
+ol.wim-list {
+    list-style-type: decimal;
+}
