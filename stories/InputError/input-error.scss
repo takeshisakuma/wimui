@@ -1,0 +1,13 @@
+@use "../../src/tokens/spacings" as spacings;
+
+.wim-input-error {
+    display: flex;
+    align-items: center;
+    margin-top: spacings.$spacing-xs; // 入力フィールドとの適度な余白
+    min-height: 1.5rem; // メッセージがなくても高さが確保されるように（レイアウトシフト防止）
+
+    // Paragraphコンポーネントが内部にあるため、その余白をリセット
+    p.wim-paragraph {
+        margin: 0;
+    }
+}
