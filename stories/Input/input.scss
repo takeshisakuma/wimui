@@ -5,7 +5,7 @@
 .wim-input {
     all: unset;
     box-sizing: border-box;
-    display: inline-flex;
+    display: block;
     padding: spacings.$spacing-sm spacings.$spacing-md;
     font-size: 1rem;
     border-radius: spacings.$radius-md;
@@ -65,5 +65,109 @@
 
     &--full-width {
         max-width: none;
+        width: 100%;
+    }
+
+    &--has-left-icon {
+        padding-left: calc(#{spacings.$spacing-xl} + 1.2rem + 10px);
+    }
+
+    &--has-right-icon {
+        padding-right: calc(#{spacings.$spacing-xl} + 1.2rem + 10px);
+    }
+}
+
+.wim-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 320px; // Fixed width to prevent jumping
+    max-width: 100%;
+
+    &.wim-input--full-width {
+        width: 100%;
+        max-width: none;
+    }
+
+    .wim-input {
+        width: 100%; // Ensure it fills the container
+        max-width: none;
+        transition: background-color 0.2s ease-in-out;
+
+        &[readonly],
+        &[disabled] {
+            cursor: inherit; // Follow container's cursor if set
+        }
+    }
+
+    &:hover {
+        .wim-input[readonly] {
+
+            // Only add hover effect if cursor is set to pointer (Select-like)
+            &:not([disabled]) {
+                background-color: var(--color-tertiary-hover);
+            }
+        }
+    }
+
+    &:focus-within {
+        .wim-input-icon {
+
+            // Usually, only the secondary (default) icon color should turn primary on focus
+            .wim-icon--secondary {
+                color: var(--color-primary);
+            }
+        }
+    }
+}
+
+.wim-input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    color: var(--text-secondary);
+    transition: color 0.3s ease-in-out;
+
+    &--clickable {
+        pointer-events: auto;
+    }
+
+    &--left {
+        left: spacings.$spacing-xl;
+    }
+
+    &--right {
+        right: spacings.$spacing-xl;
+    }
+}
+
+.wim-input-icon-button {
+    background: transparent;
+    border: none;
+    padding: spacings.$spacing-3xs;
+    margin: -(spacings.$spacing-3xs);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: spacings.$radius-sm;
+    transition: all 0.2s ease-in-out;
+    color: inherit;
+
+    &:hover {
+        background-color: var(--color-tertiary-hover);
+    }
+
+    &:active {
+        background-color: var(--color-tertiary-active);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
     }
 }

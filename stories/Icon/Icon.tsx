@@ -7,6 +7,11 @@ import CircleIcon from "./CircleIcon";
 import SquareIcon from "./SquareIcon";
 import LoadingIcon from "./LoadingIcon";
 import ExternalLinkIcon from "./ExternalLinkIcon";
+import CloseIcon from "./CloseIcon";
+import SearchIcon from "./SearchIcon";
+import EyeIcon from "./EyeIcon";
+import EyeOffIcon from "./EyeOffIcon";
+import ChevronDownIcon from "./ChevronDownIcon";
 
 // アイコン名をコンポーネントにマッピング
 const icons = {
@@ -14,10 +19,24 @@ const icons = {
   SquareIcon: SquareIcon,
   LoadingIcon: LoadingIcon,
   ExternalLinkIcon: ExternalLinkIcon,
+  CloseIcon: CloseIcon,
+  SearchIcon: SearchIcon,
+  EyeIcon: EyeIcon,
+  EyeOffIcon: EyeOffIcon,
+  ChevronDownIcon: ChevronDownIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
-  name: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon";
+  name:
+  | "CircleIcon"
+  | "SquareIcon"
+  | "LoadingIcon"
+  | "ExternalLinkIcon"
+  | "CloseIcon"
+  | "SearchIcon"
+  | "EyeIcon"
+  | "EyeOffIcon"
+  | "ChevronDownIcon";
   size?: "small" | "medium" | "large";
   color?:
   | "destructive"
@@ -56,7 +75,17 @@ export const Icon = ({ name, size = "medium", color, className, ...props }: Icon
 };
 
 Icon.propTypes = {
-  name: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon", "ExternalLinkIcon"]),
+  name: PropTypes.oneOf([
+    "CircleIcon",
+    "SquareIcon",
+    "LoadingIcon",
+    "ExternalLinkIcon",
+    "CloseIcon",
+    "SearchIcon",
+    "EyeIcon",
+    "EyeOffIcon",
+    "ChevronDownIcon",
+  ]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   color: PropTypes.oneOf([
     "destructive",

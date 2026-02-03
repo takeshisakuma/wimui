@@ -1,0 +1,68 @@
+/* ------------------------------------------------------------------
+   Combobox Styles
+   Re-compiled to invalidate potential stale Vite cache.
+------------------------------------------------------------------ */
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/effects" as effects;
+
+.wim-combobox {
+    position: relative;
+    width: 320px;
+    max-width: 100%;
+
+    &.wim-input--full-width {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+.wim-combobox-list {
+    position: absolute;
+    top: calc(100% + #{spacings.$spacing-xs});
+    left: 0;
+    right: 0;
+    background-color: var(--bg-component, #ffffff);
+    border: 1px solid rgb(0 0 0 / 0.1);
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-lg;
+    list-style: none;
+    padding: spacings.$spacing-xs 0;
+    margin: 0;
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.wim-combobox-option {
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease-in-out;
+    color: var(--text-primary);
+
+    &:hover,
+    &--active {
+        background-color: rgb(0 0 0 / 0.05);
+    }
+
+    &:active {
+        background-color: rgb(0 0 0 / 0.1);
+    }
+}
+
+.wim-combobox-empty {
+    position: absolute;
+    top: calc(100% + #{spacings.$spacing-xs});
+    left: 0;
+    right: 0;
+    padding: spacings.$spacing-md;
+    background-color: var(--bg-component, #ffffff);
+    border: 1px solid rgb(0 0 0 / 0.1);
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-lg;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-align: center;
+    z-index: 1000;
+}

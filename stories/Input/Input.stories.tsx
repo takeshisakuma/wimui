@@ -1,7 +1,9 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Input } from "./Input";
 import { Label } from "../Label/Label";
 import { FieldError } from "../FieldError/FieldError";
+import { Button } from "../Button/Button";
 
 const meta: Meta<typeof Input> = {
     title: "Component/Forms/Input",
@@ -11,17 +13,21 @@ const meta: Meta<typeof Input> = {
     },
     tags: ["autodocs"],
     argTypes: {
-        state: {
+        leftIcon: {
             control: "select",
-            options: ["default", "error", "disabled"],
+            options: [undefined, "SearchIcon"],
         },
-        variant: {
+        rightIcon: {
             control: "select",
-            options: ["outline", "ghost"],
+            options: [undefined, "ChevronDownIcon"],
         },
-        type: {
+        leftIconColor: {
             control: "select",
-            options: ["text", "password", "email", "number", "tel", "url"],
+            options: [undefined, "primary", "secondary", "tertiary", "destructive", "positive", "caution", "informative", "disabled"],
+        },
+        rightIconColor: {
+            control: "select",
+            options: [undefined, "primary", "secondary", "tertiary", "destructive", "positive", "caution", "informative", "disabled"],
         },
     },
 };
@@ -37,6 +43,50 @@ export const Default: Story = {
     ),
     args: {
         placeholder: "Enter text...",
+    },
+};
+
+export const SearchIndicator: Story = {
+    render: (args) => (
+        <Label label="Search Indicator">
+            <Input {...args} leftIcon="SearchIcon" placeholder="Search..." />
+        </Label>
+    ),
+    args: {},
+};
+
+export const SelectLike: Story = {
+    render: (args) => {
+        const handleClick = () => alert("Dropdown or Modal would open here!");
+        return (
+            <Label label="Select-like Input">
+                <Input
+                    {...args}
+                    onClick={handleClick}
+                    onRightIconClick={(e) => {
+                        e.stopPropagation(); // Prevent duplicate alert
+                        handleClick();
+                    }}
+                />
+            </Label>
+        );
+    },
+    args: {
+        rightIcon: "ChevronDownIcon",
+        placeholder: "Select an option...",
+        readOnly: true,
+        style: { cursor: "pointer" },
+    },
+};
+
+export const Clearable: Story = {
+    render: (args) => (
+        <Label label="Auto-Clearable Input">
+            <Input {...args} allowClear placeholder="Type to see clear button..." />
+        </Label>
+    ),
+    args: {
+        defaultValue: "Clear me!",
     },
 };
 
@@ -105,17 +155,44 @@ export const FullWidth: Story = {
 
 export const Password: Story = {
     render: (args) => (
-        <Label label="Password">
+        <Label label="Basic Password">
             <Input {...args} />
         </Label>
     ),
     args: {
         type: "password",
         placeholder: "Password input",
+        defaultValue: "password123",
     },
 };
 
-export const WithLabelAndError: StoryObj<typeof Input> = {
+export const PasswordToggle: Story = {
+    render: (args) => (
+        <Label label="Password with Toggle (Default)">
+            <Input {...args} />
+        </Label>
+    ),
+    args: {
+        type: "password",
+        placeholder: "Enter password...",
+        defaultValue: "shhh-it-is-a-secret",
+    },
+};
+
+export const PasswordNoToggle: Story = {
+    render: (args) => (
+        <Label label="Password without Toggle (Opt-out)">
+            <Input {...args} />
+        </Label>
+    ),
+    args: {
+        type: "password",
+        showPasswordToggle: false,
+        placeholder: "No toggle here...",
+    },
+};
+
+export const WithLabelAndError: Story = {
     render: (args) => (
         <div style={{ display: "flex", flexDirection: "column", gap: "4px", width: "320px" }}>
             <Label label="User Name" required>
@@ -129,4 +206,21 @@ export const WithLabelAndError: StoryObj<typeof Input> = {
     args: {
         state: "default",
     },
+};
+
+export const FullSearchBar: Story = {
+    render: (args) => (
+        <div style={{ display: "flex", gap: "8px", alignItems: "flex-end" }}>
+            <Label label="Advanced Search" style={{ flex: 1 }}>
+                <Input
+                    {...args}
+                    leftIcon="SearchIcon"
+                    allowClear
+                    placeholder="Search keywords..."
+                />
+            </Label>
+            <Button priority="secondary" label="Search" iconName="SearchIcon" />
+        </div>
+    ),
+    args: {},
 };

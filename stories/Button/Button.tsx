@@ -11,7 +11,7 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   priority?: "primary" | "secondary" | "tertiary";
   role?: "default" | "destructive" | "positive";
   state?: "abled" | "disabled";
-  iconName?: "CircleIcon" | "SquareIcon" | "LoadingIcon";
+  iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
   loading?: boolean;
   "aria-label"?: string;
@@ -102,7 +102,17 @@ Button.propTypes = {
   priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
   role: PropTypes.oneOf(["default", "destructive", "positive"]),
   state: PropTypes.oneOf(["abled", "disabled"]),
-  iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon"]),
+  iconName: PropTypes.oneOf([
+    "CircleIcon",
+    "SquareIcon",
+    "LoadingIcon",
+    "ExternalLinkIcon",
+    "CloseIcon",
+    "SearchIcon",
+    "EyeIcon",
+    "EyeOffIcon",
+    "ChevronDownIcon",
+  ]),
   iconPosition: PropTypes.oneOf(["left", "right"]),
   loading: PropTypes.bool,
   "aria-label": PropTypes.string,
