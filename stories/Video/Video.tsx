@@ -15,6 +15,7 @@ type VideoProps = React.ComponentPropsWithoutRef<"video"> & {
     shadow?: boolean;
     border?: boolean;
     fit?: "contain" | "cover" | "fill" | "none" | "scale-down";
+    preload?: "auto" | "metadata" | "none";
     caption?: string;
 };
 
@@ -31,6 +32,7 @@ export const Video = ({
     shadow = false,
     border = false,
     fit = "cover",
+    preload,
     caption,
     className,
     style,
@@ -64,6 +66,7 @@ export const Video = ({
                     muted={muted}
                     controls={controls}
                     poster={poster}
+                    preload={preload}
                     playsInline
                     {...props}
                 />
@@ -86,5 +89,6 @@ Video.propTypes = {
     shadow: PropTypes.bool,
     border: PropTypes.bool,
     fit: PropTypes.oneOf(["contain", "cover", "fill", "none", "scale-down"]),
+    preload: PropTypes.oneOf(["auto", "metadata", "none"]),
     caption: PropTypes.string,
 };

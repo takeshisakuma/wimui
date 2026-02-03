@@ -11,6 +11,7 @@ type ImageProps = React.ComponentPropsWithoutRef<"img"> & {
     shadow?: boolean;
     border?: boolean;
     fit?: "contain" | "cover" | "fill" | "none" | "scale-down";
+    loading?: "eager" | "lazy";
     caption?: string;
 };
 
@@ -23,6 +24,7 @@ export const Image = ({
     shadow = false,
     border = false,
     fit = "cover",
+    loading,
     caption,
     className,
     style,
@@ -52,6 +54,7 @@ export const Image = ({
                     alt={alt}
                     className="wim-image"
                     style={imageStyles}
+                    loading={loading}
                     {...props}
                 />
             </div>
@@ -69,5 +72,6 @@ Image.propTypes = {
     shadow: PropTypes.bool,
     border: PropTypes.bool,
     fit: PropTypes.oneOf(["contain", "cover", "fill", "none", "scale-down"]),
+    loading: PropTypes.oneOf(["eager", "lazy"]),
     caption: PropTypes.string,
 };

@@ -11,6 +11,7 @@ type AudioProps = React.ComponentPropsWithoutRef<"audio"> & {
     radius?: "none" | "small" | "medium" | "large" | "full";
     shadow?: boolean;
     border?: boolean;
+    preload?: "auto" | "metadata" | "none";
     caption?: string;
 };
 
@@ -23,6 +24,7 @@ export const Audio = ({
     radius = "full",
     shadow = false,
     border = false,
+    preload,
     caption,
     className,
     style,
@@ -60,6 +62,7 @@ export const Audio = ({
                     loop={loop}
                     muted={muted}
                     controls={controls}
+                    preload={preload}
                     {...props}
                 />
             </div>
@@ -77,5 +80,6 @@ Audio.propTypes = {
     radius: PropTypes.oneOf(["none", "small", "medium", "large", "full"]),
     shadow: PropTypes.bool,
     border: PropTypes.bool,
+    preload: PropTypes.oneOf(["auto", "metadata", "none"]),
     caption: PropTypes.string,
 };
