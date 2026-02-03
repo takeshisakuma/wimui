@@ -1,0 +1,53 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as InputGroupStories from "./InputGroup.stories";
+
+<Meta of={InputGroupStories} />
+
+<Title />
+<Subtitle>
+  InputGroupコンポーネントは、Inputとボタンやテキスト（アドオン）を視覚的に一つにまとめて表示するために使用します。
+</Subtitle>
+
+> [!NOTE]
+> `InputGroupText` は、単位やプレフィックスなどの**情報表示用**です。クリック可能なアクションが必要な場合は、`Button` コンポーネントを組み合わせて使用してください。
+
+## 基本的な使い方
+
+`InputGroupText` を使って、Inputにプレフィックスを追加する例です。
+
+<Canvas of={InputGroupStories.Basic} />
+
+## ボタンとの組み合わせ
+
+Inputの横にアクションボタンを配置できます。
+
+<Canvas of={InputGroupStories.WithButton} />
+
+## サフィックスの追加
+
+Inputの後にテキストアドオンを追加できます。
+
+<Canvas of={InputGroupStories.Suffix} />
+
+## 複数のアドオン
+
+複数の `InputGroupText` を並べることも可能です。
+
+<Canvas of={InputGroupStories.MultipleAddons} />
+
+## 全幅表示
+
+`fullWidth` プロパティを使用すると、コンテナの幅いっぱいに広がります。
+
+<Canvas of={InputGroupStories.FullWidth} />
+
+<Controls />
