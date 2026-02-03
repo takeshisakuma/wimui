@@ -1,0 +1,67 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as TextareaStories from "./Textarea.stories";
+
+<Meta of={TextareaStories} />
+
+<Title />
+<Subtitle>
+  複数行のテキストを入力するためのコンポーネントです。
+</Subtitle>
+
+## 基本的な使い方
+
+標準的な `Textarea` の使用例です。
+
+<Canvas of={TextareaStories.Basic} />
+
+## バリエーション
+
+`variant` プロパティでスタイルを変更できます。
+
+### Ghost
+
+背景色がないシンプルなスタイルです。
+
+<Canvas of={TextareaStories.Ghost} />
+
+## 状態 (States)
+
+コンポーネントの状態を視覚的に表現します。
+
+### Error
+
+エラーが発生している状態です。
+
+<Canvas of={TextareaStories.ErrorState} />
+
+### Disabled
+
+入力が無効化されている状態です。
+
+<Canvas of={TextareaStories.Disabled} />
+
+## レイアウト
+
+### Full Width
+
+親要素の幅いっぱいに広がります。
+
+<Canvas of={TextareaStories.FullWidth} />
+
+## フォーム構成例 (Form Pattern)
+
+`Label` や `FieldError` と組み合わせたフォームの構築例です。
+必須項目や任意項目のラベル、エラーメッセージの配置などを確認できます。
+
+<Canvas of={TextareaStories.FormPattern} />
+
+<Controls />
