@@ -17,6 +17,8 @@ import PauseIcon from "./PauseIcon";
 import VolumeIcon from "./VolumeIcon";
 import MuteIcon from "./MuteIcon";
 import ChevronRightIcon from "./ChevronRightIcon";
+import CopyIcon from "./CopyIcon";
+import CheckIcon from "./CheckIcon";
 
 
 // アイコン名をコンポーネントにマッピング
@@ -35,6 +37,8 @@ const icons = {
   VolumeIcon: VolumeIcon,
   MuteIcon: MuteIcon,
   ChevronRightIcon: ChevronRightIcon,
+  CopyIcon: CopyIcon,
+  CheckIcon: CheckIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -52,7 +56,9 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "PauseIcon"
   | "VolumeIcon"
   | "MuteIcon"
-  | "ChevronRightIcon";
+  | "ChevronRightIcon"
+  | "CopyIcon"
+  | "CheckIcon";
   size?: "small" | "medium" | "large";
   color?:
   | "destructive"
@@ -106,6 +112,8 @@ Icon.propTypes = {
     "VolumeIcon",
     "MuteIcon",
     "ChevronRightIcon",
+    "CopyIcon",
+    "CheckIcon",
   ]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   color: PropTypes.oneOf([

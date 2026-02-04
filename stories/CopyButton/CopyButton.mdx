@@ -1,0 +1,36 @@
+import { Canvas, Meta, Controls, Story } from "@storybook/blocks";
+import * as CopyButtonStories from "./CopyButton.stories";
+
+<Meta of={CopyButtonStories} />
+
+# CopyButton
+
+`CopyButton` は、指定されたテキストをクリップボードにコピーするためのボタンコンポーネントです。
+
+## Comparison with Button
+通常の `Button`（priority="tertiary" + アイコンのみ）と異なり、以下の機能が内包されています：
+
+- **コピーロジックののカプセル化**: クリック時に `navigator.clipboard.writeText` を実行するロジックをあらかじめ持っています。
+- **状態フィードバック**: コピー完了後、アイコンが一時的に「チェック」に切り替わり、成功を示す緑色（role="positive"）になります。
+
+## Usage
+
+```tsx
+import { CopyButton } from "./CopyButton";
+
+<CopyButton value="コピーしたいテキスト" />
+```
+
+## Examples
+
+### Default
+<Canvas of={CopyButtonStories.Default} />
+
+### Sizes
+#### Small
+<Canvas of={CopyButtonStories.Small} />
+#### Large
+<Canvas of={CopyButtonStories.Large} />
+
+## Props
+<Controls />
