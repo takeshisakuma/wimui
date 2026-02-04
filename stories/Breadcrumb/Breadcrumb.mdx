@@ -1,0 +1,50 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as BreadcrumbStories from "./Breadcrumb.stories";
+
+<Meta of={BreadcrumbStories} />
+
+<Title />
+<Subtitle>
+  ユーザーが現在地を把握し、上位階層に簡単に戻れるようにするためのナビゲーションコンポーネントです。
+</Subtitle>
+
+## 使用法
+
+`items` プロパティにラベルとリンク先を配列で渡します。
+
+<Canvas of={BreadcrumbStories.Default} />
+
+<Controls />
+
+## バリエーション
+
+### アイコン付き
+
+各項目にアイコンを表示できます。
+
+<Canvas of={BreadcrumbStories.WithIcons} />
+
+### サイズ
+
+`small`, `medium`, `large` の3つのサイズをサポートしています。
+
+#### Small
+<Canvas of={BreadcrumbStories.Small} />
+
+#### Large
+<Canvas of={BreadcrumbStories.Large} />
+
+### カスタムセパレータ
+
+`separator` プロパティを使用して、区切り文字をカスタマイズできます。
+
+<Canvas of={BreadcrumbStories.CustomSeparator} />

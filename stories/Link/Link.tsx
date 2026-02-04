@@ -8,7 +8,7 @@ type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
     label?: string;
     size?: "small" | "medium" | "large";
     priority?: "primary" | "secondary" | "tertiary";
-    iconName?: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon";
+    iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";
     external?: boolean;
 };
@@ -73,7 +73,7 @@ Link.propTypes = {
     label: PropTypes.string,
     size: PropTypes.oneOf(["small", "medium", "large"]),
     priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
-    iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon", "ExternalLinkIcon"]),
+    iconName: PropTypes.string,
     iconPosition: PropTypes.oneOf(["left", "right"]),
     external: PropTypes.bool,
 };
