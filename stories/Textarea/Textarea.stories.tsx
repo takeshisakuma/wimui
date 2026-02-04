@@ -18,6 +18,10 @@ const meta: Meta<typeof Textarea> = {
         fullWidth: {
             control: { type: "boolean" },
         },
+        fieldSizing: {
+            control: { type: "select" },
+            options: ["fixed", "content"],
+        },
     },
 };
 
@@ -58,11 +62,19 @@ export const FullWidth: Story = {
     },
 };
 
+export const FieldSizingContent: Story = {
+    args: {
+        fieldSizing: "content",
+        placeholder: "入力内容に合わせて高さが変わります...",
+    },
+};
+
 export const WithLabelAndError: Story = {
     render: (args) => (
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxWidth: "400px" }}>
-            <Label htmlFor="comment" required label="コメント" />
-            <Textarea id="comment" {...args} />
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px", maxWidth: "400px" }}>
+            <Label htmlFor="comment" required label="コメント">
+                <Textarea id="comment" {...args} />
+            </Label>
             {args.state === "error" && <FieldError content="入力内容をご確認ください。" />}
         </div>
     ),
@@ -86,9 +98,10 @@ export const FormPattern: Story = {
                 <Textarea id="notes" placeholder="その他連絡事項があれば..." rows={2} fullWidth />
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                <Label htmlFor="feedback" required label="フィードバック" />
-                <Textarea id="feedback" state="error" defaultValue="短すぎます" rows={3} fullWidth />
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                <Label htmlFor="feedback" required label="フィードバック">
+                    <Textarea id="feedback" state="error" defaultValue="短すぎます" rows={3} fullWidth />
+                </Label>
                 <FieldError content="10文字以上で入力してください。" />
             </div>
         </div>

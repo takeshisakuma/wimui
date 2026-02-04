@@ -12,6 +12,10 @@ const meta: Meta<typeof ButtonGroup> = {
     argTypes: {
         gap: { control: "text" },
         joined: { control: "boolean" },
+        priority: {
+            control: "select",
+            options: ["primary", "secondary", "tertiary"],
+        },
     },
 };
 
@@ -57,6 +61,34 @@ export const JoinedGroup: Story = {
             <Button size="medium" label="button_label" priority="secondary" />
             <Button size="medium" label="button_label" priority="secondary" />
             <Button size="medium" label="button_label" priority="secondary" />
+        </ButtonGroup>
+    ),
+};
+
+export const JoinedGroupPrimary: Story = {
+    args: {
+        joined: true,
+        priority: "primary",
+    },
+    render: (args) => (
+        <ButtonGroup {...args}>
+            <Button size="medium" label="button_label" priority="secondary" />
+            <Button size="medium" label="button_label" priority="secondary" />
+            <Button size="medium" label="button_label" priority="secondary" />
+        </ButtonGroup>
+    ),
+};
+
+export const PriorityOverride: Story = {
+    args: {
+        priority: "tertiary",
+        gap: "10px",
+    },
+    render: (args) => (
+        <ButtonGroup {...args}>
+            <Button size="medium" label="Primary Button" priority="primary" />
+            <Button size="medium" label="Secondary Button" priority="secondary" />
+            <Button size="medium" label="Tertiary Button" priority="tertiary" />
         </ButtonGroup>
     ),
 };

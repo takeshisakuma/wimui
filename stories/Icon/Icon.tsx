@@ -12,6 +12,10 @@ import SearchIcon from "./SearchIcon";
 import EyeIcon from "./EyeIcon";
 import EyeOffIcon from "./EyeOffIcon";
 import ChevronDownIcon from "./ChevronDownIcon";
+import PlayIcon from "./PlayIcon";
+import PauseIcon from "./PauseIcon";
+import VolumeIcon from "./VolumeIcon";
+import MuteIcon from "./MuteIcon";
 
 // アイコン名をコンポーネントにマッピング
 const icons = {
@@ -24,6 +28,10 @@ const icons = {
   EyeIcon: EyeIcon,
   EyeOffIcon: EyeOffIcon,
   ChevronDownIcon: ChevronDownIcon,
+  PlayIcon: PlayIcon,
+  PauseIcon: PauseIcon,
+  VolumeIcon: VolumeIcon,
+  MuteIcon: MuteIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -36,7 +44,11 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "SearchIcon"
   | "EyeIcon"
   | "EyeOffIcon"
-  | "ChevronDownIcon";
+  | "ChevronDownIcon"
+  | "PlayIcon"
+  | "PauseIcon"
+  | "VolumeIcon"
+  | "MuteIcon";
   size?: "small" | "medium" | "large";
   color?:
   | "destructive"
@@ -85,6 +97,10 @@ Icon.propTypes = {
     "EyeIcon",
     "EyeOffIcon",
     "ChevronDownIcon",
+    "PlayIcon",
+    "PauseIcon",
+    "VolumeIcon",
+    "MuteIcon",
   ]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   color: PropTypes.oneOf([

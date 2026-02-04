@@ -57,7 +57,7 @@
 
     &--disabled {
         background-color: var(--color-disabled);
-        color: var(--text-disabled);
+        color: var(--color-text-on-disabled);
         cursor: not-allowed;
         pointer-events: none;
         border-color: var(--color-disabled);

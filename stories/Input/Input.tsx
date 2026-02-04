@@ -47,7 +47,9 @@ export const Input = ({
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
 
-    const stateClass = `wim-input--${state}`;
+    // disabled prop takes precedence for visual styling
+    const effectiveState = disabled ? "disabled" : state;
+    const stateClass = `wim-input--${effectiveState}`;
     const variantClass = `wim-input--${variant}`;
     const widthClass = fullWidth ? "wim-input--full-width" : "";
 

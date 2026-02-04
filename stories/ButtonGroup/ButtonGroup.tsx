@@ -7,6 +7,7 @@ type ButtonGroupProps = {
     gap?: string;
     className?: string;
     joined?: boolean;
+    priority?: "primary" | "secondary" | "tertiary";
 };
 
 export const ButtonGroup = ({
@@ -14,6 +15,7 @@ export const ButtonGroup = ({
     gap = "8px",
     className = "",
     joined = false,
+    priority,
 }: ButtonGroupProps) => {
     const containerClass = [
         "wim-button-group",
@@ -25,9 +27,20 @@ export const ButtonGroup = ({
 
     const style = joined ? {} : { gap };
 
+    const childrenWithProps = priority
+        ? React.Children.map(children, (child) => {
+            if (React.isValidElement(child)) {
+                return React.cloneElement(child as React.ReactElement<any>, {
+                    priority,
+                });
+            }
+            return child;
+        })
+        : children;
+
     return (
         <div className={containerClass} style={style}>
-            {children}
+            {childrenWithProps}
         </div>
     );
 };
@@ -37,4 +50,5 @@ ButtonGroup.propTypes = {
     gap: PropTypes.string,
     className: PropTypes.string,
     joined: PropTypes.bool,
+    priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
 };

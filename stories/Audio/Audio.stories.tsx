@@ -40,7 +40,8 @@ export const WithCaption: Story = {
 export const Rounded: Story = {
     args: {
         src: audioSample,
-        controls: true,
+        customControls: true,
+        controls: false,
         radius: "full",
         shadow: true,
         border: true,
@@ -53,5 +54,13 @@ export const AutoPlay: Story = {
         controls: true,
         autoPlay: true,
         muted: true,
+    },
+};
+
+export const CustomControls: Story = {
+    name: "Custom Design",
+    args: {
+        src: audioSample,
+        customControls: true,
     },
 };

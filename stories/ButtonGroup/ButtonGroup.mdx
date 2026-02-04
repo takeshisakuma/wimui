@@ -45,4 +45,11 @@ Large, Medium, Smallのボタンをそれぞれ配置した場合の例です。
 
 <Canvas of={ButtonGroupStories.JoinedGroup} />
 
+### 優先度の強制 (Priority Override)
+
+`priority` プロパティを指定することで、グループ内のすべてのボタンの `priority` を統一できます。
+特に `joined` モードを使用する場合、異なる優先度のボタンが混在するとデザインが崩れる可能性があるため、このプロパティを使用して `secondary` や `primary` に統一することを推奨します。
+
+<Canvas of={ButtonGroupStories.JoinedGroupPrimary} />
+
 <Controls />

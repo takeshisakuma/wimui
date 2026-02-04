@@ -11,23 +11,23 @@ const meta: Meta<typeof Input> = {
     parameters: {
         layout: "centered",
     },
-    tags: ["autodocs"],
+
     argTypes: {
         leftIcon: {
             control: "select",
-            options: [undefined, "SearchIcon"],
+            options: ["SearchIcon"],
         },
         rightIcon: {
             control: "select",
-            options: [undefined, "ChevronDownIcon"],
+            options: ["ChevronDownIcon"],
         },
         leftIconColor: {
             control: "select",
-            options: [undefined, "primary", "secondary", "tertiary", "destructive", "positive", "caution", "informative", "disabled"],
+            options: ["primary", "secondary", "tertiary", "destructive", "positive", "caution", "informative", "disabled"],
         },
         rightIconColor: {
             control: "select",
-            options: [undefined, "primary", "secondary", "tertiary", "destructive", "positive", "caution", "informative", "disabled"],
+            options: ["primary", "secondary", "tertiary", "destructive", "positive", "caution", "informative", "disabled"],
         },
     },
 };
@@ -205,6 +205,21 @@ export const WithLabelAndError: Story = {
     ),
     args: {
         state: "default",
+    },
+};
+
+export const InputWithError: Story = {
+    render: (args) => (
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px", width: "320px" }}>
+            <Label label="Email" required>
+                <Input {...args} placeholder="Enter your email" />
+            </Label>
+            <FieldError content="Invalid email address." />
+        </div>
+    ),
+    args: {
+        state: "error",
+        defaultValue: "invalid-email@",
     },
 };
 

@@ -3,7 +3,7 @@
 .wim-field-error {
     display: flex;
     align-items: center;
-    margin-top: 0; // 入力フィールドとの適度な余白
+    margin-top: calc(var(--spacing-xs) * -1); // 入力フィールドとの適度な余白 (Input/Textareaのgapと調整)
     min-height: 1.5rem; // メッセージがなくても高さが確保されるように（レイアウトシフト防止）
 
     // Paragraphコンポーネントが内部にあるため、その余白をリセット

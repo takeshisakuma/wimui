@@ -21,11 +21,11 @@
         border-radius: 50%; // デフォルトは円形
         opacity: 1;
         transition:
-            background-color effects.$transition-base,
-            border-color effects.$transition-base,
-            box-shadow effects.$transition-base,
-            transform effects.$transition-base,
-            width 0.3s ease, // スムーズな伸縮
+            background-color effects.$duration-fast effects.$easing-base,
+            border-color effects.$duration-fast effects.$easing-base,
+            box-shadow effects.$duration-fast effects.$easing-base,
+            transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), // スケールアップに少し弾むような動きを追加
+            width 0.3s ease,
             padding 0.3s ease;
         z-index: 1000;
 
@@ -136,7 +136,7 @@
 
         &:hover:not(:disabled) {
             box-shadow: effects.$shadow-lg;
-            transform: translateY(effects.$lift-md);
+            transform: scale(1.05);
         }
 
         // Positions
@@ -159,13 +159,13 @@
             transform: translateX(-50%);
 
             &:hover:not(:disabled) {
-                // translateX(-50%) を維持しつつ共通の lift 効果を追加
-                transform: translateX(-50%) translateY(effects.$lift-md);
+                // translateX(-50%) を維持しつつ scale 効果を追加
+                transform: translateX(-50%) scale(1.05);
             }
 
             &:active:not(:disabled) {
                 // transformを上書きしないようにスケールと lift を維持
-                transform: translateX(-50%) translateY(effects.$lift-md) scale(effects.$scale-active);
+                transform: translateX(-50%) scale(0.98);
             }
         }
 

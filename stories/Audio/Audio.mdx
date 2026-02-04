@@ -1,52 +1,39 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
 import * as AudioStories from "./Audio.stories";
 
-<Meta title="Component/Media/Audio" of={AudioStories} />
+<Meta of={AudioStories} />
 
 # Audio
 
-`Audio` コンポーネントは、音声ファイルを簡単に再生するためのコンポーネントです。
-自動再生、ループ、コントロールの表示切り替え、角丸、影などのスタイリングをサポートしています。
+音声ファイルを再生するためのコンポーネントです。
 
-## 特徴
+## 基本的な使い方
 
-- **直感的なコントロール**: `controls` プロパティで再生UIの表示/非表示を切り替え可能。
-- **自動再生とループ**: `autoPlay`、`loop`、`muted` を組み合わせてBGMなどの演出に対応。
-- **スタイリング**: `radius`、`shadow`、`border` プロパティでデザインに合わせた外観に変更可能。
+`src` プロパティに音声ファイルのパスを指定します。
 
-## Usage
+<Canvas of={AudioStories.Default} />
 
-```tsx
-import { Audio } from "./Audio";
+## カスタムコントロール
 
-<Audio
-  src="path/to/audio.mp3"
-  controls
-  radius="full"
-  caption="音声サンプルの説明"
-/>
-```
+`customControls` を `true` に設定すると、カスタマイズされたオーディオプレイヤーが表示されます。
+これを使用すると、`border` や `radius` などのスタイルプロパティが有効になります。
 
-> [!TIP]
-> ブラウザのネイティブオーディオプレイヤーは一般的にピル形状（角丸50%）であるため、`radius="full"` を指定するとシャドウやボーダーが最も美しく表示されます。
+<Canvas of={AudioStories.CustomControls} />
+
+## スタイルの適用（角丸・枠線）
+
+`radius` や `border` プロパティを使用してスタイルを適用できます。
+これらのプロパティは `customControls={true}` の場合のみ適用されます。
+
+<Canvas of={AudioStories.Rounded} />
+
+### 【重要】ブラウザ標準プレイヤーの制限について
+
+`customControls={false}`（デフォルト）の場合、ブラウザ標準の `<audio>` 要素が使用されます。
+ブラウザ標準プレイヤーは、ブラウザ（Chrome, Firefox, Safariなど）によってデザインやサイズが大きく異なり、また多くのブラウザで独自のスタイル（border-radiusなど）を持っています。
+そのため、`border` や `radius` プロパティを適用しても、標準プレイヤーの形状と一致せず、表示が崩れる可能性があります。
+**このため、`border` や `radius` プロパティは、`customControls={true}` の場合のみ有効になるように設計されています。**
 
 ## Props
 
 <Controls />
-
-## Variants
-
-### Default
-標準的なオーディオプレイヤーです。
-
-<Canvas of={AudioStories.Default} />
-
-### With Caption
-キャプションを表示した状態です。
-
-<Canvas of={AudioStories.WithCaption} />
-
-### Rounded with Shadow
-角丸と影を適用したデザインです。
-
-<Canvas of={AudioStories.Rounded} />

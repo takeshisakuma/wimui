@@ -6,6 +6,7 @@ type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
     state?: "default" | "error" | "disabled";
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
+    fieldSizing?: "fixed" | "content";
 };
 
 /**
@@ -30,6 +31,7 @@ export const Textarea = ({
                 stateClass,
                 variantClass,
                 widthClass,
+                props.fieldSizing === "content" ? "wim-textarea--field-sizing-content" : "",
                 className,
             ]
                 .filter(Boolean)
@@ -57,4 +59,8 @@ Textarea.propTypes = {
      * 追加のクラス名。
      */
     className: PropTypes.string,
+    /**
+     * テキストエリアのサイズ調整方法。
+     */
+    fieldSizing: PropTypes.oneOf(["fixed", "content"]),
 };

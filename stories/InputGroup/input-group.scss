@@ -33,11 +33,8 @@
             .wim-input {
                 height: auto;
                 flex: 1;
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
             }
+
         }
 
         &:not(:first-child) {
@@ -54,11 +51,23 @@
         &:not(:first-child) {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
+
+            // Also reset inner input radius if it's a container
+            &.wim-input-container .wim-input {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
         }
 
         &:not(:last-child) {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
+
+            // Also reset inner input radius if it's a container
+            &.wim-input-container .wim-input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
         }
 
         // Handle focus state z-index and interaction resets

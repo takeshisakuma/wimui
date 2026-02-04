@@ -65,3 +65,176 @@
     text-align: center;
     padding-bottom: spacings.$spacing-xs;
 }
+
+// Custom Controls Styles
+.wim-audio--custom {
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    background: linear-gradient(135deg, #1e1e24 0%, #292930 100%);
+    color: white;
+    padding: spacings.$spacing-md;
+    gap: spacings.$spacing-sm;
+
+    // Reset mask-image from .wim-audio-inner to allow shadows/overflow if needed
+    mask-image: none;
+    -webkit-mask-image: none;
+}
+
+.wim-audio-custom-controls {
+    display: flex;
+    align-items: center;
+    gap: spacings.$spacing-sm;
+    width: 100%;
+}
+
+.wim-audio-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: spacings.$spacing-xs;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #646cff; // Accent color
+    }
+
+    &:focus-visible {
+        outline: 2px solid #646cff;
+        outline-offset: 2px;
+    }
+
+    &--play {
+        width: 40px;
+        height: 40px;
+        background-color: #646cff;
+
+        &:hover {
+            background-color: lighten(#646cff, 10%);
+            color: white;
+        }
+
+        .wim-icon {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.wim-audio-time {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: spacings.$spacing-xs;
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wim-audio-progress-container {
+    flex: 1;
+    position: relative;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+
+    // Expand click area
+    &::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+    }
+}
+
+.wim-audio-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+    margin: 0;
+}
+
+.wim-audio-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #646cff;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 1;
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: -4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.wim-audio-volume-container {
+    display: flex;
+    align-items: center;
+    gap: spacings.$spacing-xs;
+    position: relative;
+
+    &:hover .wim-audio-volume {
+        width: 60px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.wim-audio-volume {
+    width: 0; // Collapsed by default? Or maybe just small
+    width: 60px; // Always show for now for simplicity
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+    transition: width 0.3s, opacity 0.3s;
+    cursor: pointer;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: white;
+        cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: white;
+        cursor: pointer;
+        border: none;
+    }
+}

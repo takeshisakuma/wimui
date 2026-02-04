@@ -8,24 +8,31 @@ import {
   Stories,
   Canvas,
 } from "@storybook/blocks";
-import * as TextareaStories from "./Textarea.stories";
+import * as InputStories from "./Input.stories";
 
-<Meta of={TextareaStories} />
+<Meta of={InputStories} />
 
 <Title />
 <Subtitle>
-  複数行のテキストを入力するためのコンポーネントです。
+
+  ユーザーがテキストを入力するための基本コンポーネントです。
 </Subtitle>
 
 ## 基本的な使い方
 
-標準的な `Textarea` の使用例です。
+標準的な `Input` の使用例です。
 
-<Canvas of={TextareaStories.Basic} />
+<Canvas of={InputStories.Default} />
 
 ## バリエーション
 
 `variant` プロパティでスタイルを変更できます。
+
+### Outline
+
+枠線がある標準的なスタイルです（デフォルトと同じですが、明示的に指定する場合に使用）。
+
+<Canvas of={InputStories.Outline} />
 
 ### Ghost
 
@@ -42,23 +49,21 @@ import * as TextareaStories from "./Textarea.stories";
 - **ホバー時:** 薄い背景色が表示され、操作可能であることを通知
 - **フォーカス時:** プライマリーカラーのボーダーが表示され、入力状態であることを明示
 
-<Canvas of={TextareaStories.Ghost} />
+<Canvas of={InputStories.Ghost} />
 
 ## 状態 (States)
-
-コンポーネントの状態を視覚的に表現します。
 
 ### Error
 
 エラーが発生している状態です。
 
-<Canvas of={TextareaStories.ErrorState} />
+<Canvas of={InputStories.Error} />
 
 ### Disabled
 
 入力が無効化されている状態です。
 
-<Canvas of={TextareaStories.Disabled} />
+<Canvas of={InputStories.Disabled} />
 
 ## レイアウト
 
@@ -66,13 +71,26 @@ import * as TextareaStories from "./Textarea.stories";
 
 親要素の幅いっぱいに広がります。
 
-<Canvas of={TextareaStories.FullWidth} />
+<Canvas of={InputStories.FullWidth} />
 
-## フォーム構成例 (Form Pattern)
+## 機能
 
-`Label` や `FieldError` と組み合わせたフォームの構築例です。
-必須項目や任意項目のラベル、エラーメッセージの配置などを確認できます。
+### Password
 
-<Canvas of={TextareaStories.FormPattern} />
+パスワード入力用のスタイルです。デフォルトで表示切り替えボタンが付きます。
+
+<Canvas of={InputStories.PasswordToggle} />
+
+### Search
+
+検索アイコンを表示する例です。
+
+<Canvas of={InputStories.SearchIndicator} />
+
+### Clearable
+
+入力内容をクリアするボタンを表示する例です。
+
+<Canvas of={InputStories.Clearable} />
 
 <Controls />
