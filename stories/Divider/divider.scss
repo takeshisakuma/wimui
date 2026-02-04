@@ -1,0 +1,24 @@
+@use "../../src/base" as base;
+
+.wim-divider {
+    display: block;
+    border: none;
+    background-color: var(--wim-color-border, #e5e7eb);
+    /* デフォルトの境界線色（後でトークンに合わせる） */
+    margin: 0;
+    flex-shrink: 0;
+
+    &--horizontal {
+        width: 100%;
+        height: var(--wim-divider-thickness, 1px);
+        margin: 8px 0;
+    }
+
+    &--vertical {
+        width: var(--wim-divider-thickness, 1px);
+        height: 100%;
+        align-self: stretch;
+        margin: 0 8px;
+        display: inline-block;
+    }
+}

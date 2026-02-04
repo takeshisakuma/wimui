@@ -4,6 +4,7 @@ import { CopyButton } from "./CopyButton";
 const meta: Meta<typeof CopyButton> = {
     title: "Component/Feedback/CopyButton",
     component: CopyButton,
+    tags: [],
     argTypes: {
         size: {
             control: { type: "select" },

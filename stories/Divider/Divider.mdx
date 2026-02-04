@@ -1,0 +1,22 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as DividerStories from "./Divider.stories";
+
+<Meta of={DividerStories} />
+
+# Divider
+
+`Divider` コンポーネントは、コンテンツを視覚的に区切るための線を表示します。
+
+## 使用方法
+
+### 水平方向
+
+<Canvas of={DividerStories.Default} />
+
+### 垂直方向
+
+<Canvas of={DividerStories.Vertical} />
+
+## Props
+
+<Controls />

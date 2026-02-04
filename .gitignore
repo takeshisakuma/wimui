@@ -148,3 +148,4 @@ lint_output.txt
 lint*.log
 tsc_output.txt
 tsc_output_utf8.txt
+eslint_output.txt
