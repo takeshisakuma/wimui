@@ -1,0 +1,50 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import * as AccordionStories from "./Accordion.stories";
+
+<Meta title="Component/Content Containers/Accordion" of={AccordionStories} />
+
+# Accordion
+
+アコーディオンコンポーネントは、コンテンツを折りたたんで表示し、ユーザーがクリックして詳細を表示できるようにします。
+
+## 特徴
+- **Single/Multiple モード**: 一度に1つのアイテムのみ開くか、複数のアイテムを同時に開くかを選択できます。
+- **Collapsible**: `single` モードで開いているアイテムを再度クリックして閉じることができます。
+- **アクセシビリティ**: WAI-ARIA に準拠し、適切なロールと属性を保持しています。
+
+## 使い方
+
+```tsx
+import { Accordion } from "./Accordion";
+
+const Example = () => (
+  <Accordion type="single" collapsible>
+    <Accordion.Item value="item-1">
+      <Accordion.Trigger>タイトル</Accordion.Trigger>
+      <Accordion.Content>
+        折りたたまれるコンテンツ
+      </Accordion.Content>
+    </Accordion.Item>
+  </Accordion>
+);
+```
+
+## キャンバス
+
+<Canvas of={AccordionStories.Single} />
+
+<Controls of={AccordionStories.Single} />
+
+## バリエーション
+
+### 複数展開可能 (Multiple)
+
+`type="multiple"` を指定することで、複数のアイテムを同時に開いた状態にできます。
+
+<Canvas of={AccordionStories.Multiple} />
+
+### 無効化 (Disabled)
+
+`Accordion.Item` に `disabled` プロップを渡すことで、そのアイテムの操作を無効化できます。
+
+<Canvas of={AccordionStories.Disabled} />
