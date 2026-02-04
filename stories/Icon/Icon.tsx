@@ -3,22 +3,22 @@ import PropTypes from "prop-types";
 import "./icon.scss";
 
 // SVG
-import CircleIcon from "./CircleIcon";
-import SquareIcon from "./SquareIcon";
-import LoadingIcon from "./LoadingIcon";
-import ExternalLinkIcon from "./ExternalLinkIcon";
-import CloseIcon from "./CloseIcon";
-import SearchIcon from "./SearchIcon";
-import EyeIcon from "./EyeIcon";
-import EyeOffIcon from "./EyeOffIcon";
-import ChevronDownIcon from "./ChevronDownIcon";
-import PlayIcon from "./PlayIcon";
-import PauseIcon from "./PauseIcon";
-import VolumeIcon from "./VolumeIcon";
-import MuteIcon from "./MuteIcon";
-import ChevronRightIcon from "./ChevronRightIcon";
-import CopyIcon from "./CopyIcon";
-import CheckIcon from "./CheckIcon";
+import CircleIcon from "../../src/icon/circle.svg?react";
+import SquareIcon from "../../src/icon/square.svg?react";
+import LoadingIcon from "../../src/icon/loading.svg?react";
+import ExternalLinkIcon from "../../src/icon/external-link.svg?react";
+import CloseIcon from "../../src/icon/close.svg?react";
+import SearchIcon from "../../src/icon/search.svg?react";
+import EyeIcon from "../../src/icon/eye.svg?react";
+import EyeOffIcon from "../../src/icon/eye-off.svg?react";
+import ChevronDownIcon from "../../src/icon/chevron-down.svg?react";
+import PlayIcon from "../../src/icon/play.svg?react";
+import PauseIcon from "../../src/icon/pause.svg?react";
+import VolumeIcon from "../../src/icon/volume.svg?react";
+import MuteIcon from "../../src/icon/mute.svg?react";
+import ChevronRightIcon from "../../src/icon/chevron-right.svg?react";
+import CopyIcon from "../../src/icon/copy.svg?react";
+import CheckIcon from "../../src/icon/check.svg?react";
 
 
 // アイコン名をコンポーネントにマッピング
