@@ -1,0 +1,42 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as CardStories from "./Card.stories";
+
+<Meta of={CardStories} />
+
+# Card
+
+`Card` コンポーネントは、関連する情報をグループ化し、視覚的に区切られたコンテナ内に表示します。
+
+## 使用方法
+
+### 基本的な使用方法
+
+`Card.Body` を使用してコンテンツをラップします。
+
+<Canvas of={CardStories.Default} />
+
+### ヘッダーとフッター付き
+
+`Card.Header` と `Card.Footer` を使用して、情報を構造化できます。
+
+<Canvas of={CardStories.WithHeaderAndFooter} />
+
+### バリアント
+
+#### 枠線付き (Outline)
+<Canvas of={CardStories.Outline} />
+
+#### フラット (Flat)
+<Canvas of={CardStories.Flat} />
+
+## Props
+
+<Controls />
+
+## サブコンポーネント
+
+`Card` コンポーネントには以下のサブコンポーネントが含まれています。
+
+- `Card.Header`: カード上部のタイトルや操作ボタンなどを配置します。
+- `Card.Body`: カードのメインコンテンツを配置します。
+- `Card.Footer`: カード下部の操作ボタンや情報を配置します。

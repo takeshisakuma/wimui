@@ -1,0 +1,102 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+
+.wim-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-component, #fff);
+    overflow: hidden;
+    color: var(--text-primary);
+    transition: effects.$transition-base;
+    box-sizing: border-box;
+
+    /* バリアント */
+    &--elevated {
+        box-shadow: effects.$shadow-sm;
+        border: 1px solid transparent;
+
+        &:hover {
+            box-shadow: effects.$shadow-lg;
+            transform: translateY(effects.$lift-sm);
+        }
+    }
+
+    &--outline {
+        border: 1px solid colors.$color-secondary;
+    }
+
+    &--flat {
+        border: 1px solid transparent;
+        background-color: var(--color-disabled);
+    }
+
+    /* パディング */
+    &--padding-none {
+
+        &>.wim-card__header,
+        &>.wim-card__body,
+        &>.wim-card__footer {
+            padding: 0;
+        }
+    }
+
+    &--padding-sm {
+
+        &>.wim-card__header,
+        &>.wim-card__body,
+        &>.wim-card__footer {
+            padding: spacings.$spacing-lg spacings.$spacing-lg;
+        }
+    }
+
+    &--padding-md {
+
+        &>.wim-card__header,
+        &>.wim-card__body,
+        &>.wim-card__footer {
+            padding: spacings.$spacing-2xl spacings.$spacing-2xl;
+        }
+    }
+
+    &--padding-lg {
+
+        &>.wim-card__header,
+        &>.wim-card__body,
+        &>.wim-card__footer {
+            padding: spacings.$spacing-3xl spacings.$spacing-3xl;
+        }
+    }
+
+
+
+    /* 角丸 */
+    &--radius-none {
+        border-radius: 0;
+    }
+
+    &--radius-sm {
+        border-radius: spacings.$radius-sm;
+    }
+
+    &--radius-md {
+        border-radius: spacings.$radius-md;
+    }
+
+    &--radius-lg {
+        border-radius: spacings.$radius-lg;
+    }
+
+    /* 内部要素 */
+    &__header {
+        border-bottom: 1px solid var(--wim-divider-color, rgba(0, 0, 0, 0.08));
+    }
+
+    &__body {
+        flex: 1;
+    }
+
+    &__footer {
+        border-top: 1px solid var(--wim-divider-color, rgba(0, 0, 0, 0.08));
+    }
+}
