@@ -1,0 +1,9 @@
+import{j as u}from"./jsx-runtime-u17CrQMm.js";import{P as a}from"./index-hLSAEAb7.js";const r=({orientation:o="horizontal",thickness:i=1,className:s="",style:n,...l})=>{const c=`wim-divider--${o}`,m={...n,"--wim-divider-thickness":`${i}px`};return u.jsx("div",{role:"separator","aria-orientation":o,className:["wim-divider",c,s].filter(Boolean).join(" "),style:m,...l})};r.propTypes={orientation:a.oneOf(["horizontal","vertical"]),thickness:a.number,className:a.string,style:a.object};r.__docgenInfo={description:"`Divider` はコンテンツを視覚的に区切るためのコンポーネントです。",methods:[],displayName:"Divider",props:{orientation:{required:!1,tsType:{name:"union",raw:'"horizontal" | "vertical"',elements:[{name:"literal",value:'"horizontal"'},{name:"literal",value:'"vertical"'}]},description:"分割線の方向",defaultValue:{value:'"horizontal"',computed:!1},type:{name:"enum",value:[{value:'"horizontal"',computed:!1},{value:'"vertical"',computed:!1}]}},thickness:{required:!1,tsType:{name:"number"},description:"線の太さ (px)",defaultValue:{value:"1",computed:!1},type:{name:"number"}},className:{defaultValue:{value:'""',computed:!1},description:"",type:{name:"string"},required:!1},style:{description:"",type:{name:"object"},required:!1}}};const p={title:"Component/Structure/Divider",component:r,tags:[],parameters:{layout:"centered"}},e={args:{orientation:"horizontal"}},t={args:{orientation:"vertical"}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    orientation: "horizontal"
+  }
+}`,...e.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    orientation: "vertical"
+  }
+}`,...t.parameters?.docs?.source}}};const d=["Default","Vertical"],y=Object.freeze(Object.defineProperty({__proto__:null,Default:e,Vertical:t,__namedExportsOrder:d,default:p},Symbol.toStringTag,{value:"Module"}));export{y as D,t as V,e as a};
