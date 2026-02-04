@@ -17,6 +17,7 @@ import PauseIcon from "../../src/icon/pause.svg?react";
 import VolumeIcon from "../../src/icon/volume.svg?react";
 import MuteIcon from "../../src/icon/mute.svg?react";
 import ChevronRightIcon from "../../src/icon/chevron-right.svg?react";
+import ChevronLeftIcon from "../../src/icon/chevron-left.svg?react";
 import CopyIcon from "../../src/icon/copy.svg?react";
 import CheckIcon from "../../src/icon/check.svg?react";
 
@@ -37,6 +38,7 @@ const icons = {
   VolumeIcon: VolumeIcon,
   MuteIcon: MuteIcon,
   ChevronRightIcon: ChevronRightIcon,
+  ChevronLeftIcon: ChevronLeftIcon,
   CopyIcon: CopyIcon,
   CheckIcon: CheckIcon,
 };
@@ -57,6 +59,7 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "VolumeIcon"
   | "MuteIcon"
   | "ChevronRightIcon"
+  | "ChevronLeftIcon"
   | "CopyIcon"
   | "CheckIcon";
   size?: "small" | "medium" | "large";
@@ -112,6 +115,7 @@ Icon.propTypes = {
     "VolumeIcon",
     "MuteIcon",
     "ChevronRightIcon",
+    "ChevronLeftIcon",
     "CopyIcon",
     "CheckIcon",
   ]),

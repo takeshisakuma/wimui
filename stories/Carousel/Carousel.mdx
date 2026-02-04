@@ -1,0 +1,69 @@
+import { Meta, Primary, Controls, Canvas } from "@storybook/blocks";
+import * as CarouselStories from "./Carousel.stories";
+
+<Meta of={CarouselStories} />
+
+# Carousel
+
+Carousel（カルーセル）は、複数のコンテンツをスライドさせて表示するためのコンポーネントです。シームレスなループ、レスポンシブな表示数設定に対応しています。
+
+## 特徴
+
+- **無限ループ**: 最後のスライドから次に進むと、最初のスライドがスムーズに現れます。
+- **表示数のカスタマイズ**: `slidesToShow` プロパティで、一度に表示するスライドの数を指定できます。
+- **レスポンシブ対応**: デバイスの幅に応じて表示数を自動的に切り替えることができます。
+
+## 使用例
+
+### 基本的な使い方
+
+`loop={true}`（デフォルト）により、シームレスな無限ループが有効です。
+
+<Canvas of={CarouselStories.Basic} />
+
+### 表示数の指定
+
+`slidesToShow` で一度に表示するスライドの数を指定できます。
+
+<Canvas of={CarouselStories.MultipleItems} />
+
+### レスポンシブ対応
+
+ブレークポイントごとに表示数を指定できます。
+
+```tsx
+<Carousel 
+  slidesToShow={{
+    base: 1,  // スマホ
+    sm: 2,    // タブレット
+    md: 3,    // PC
+    lg: 4     // ワイド
+  }}
+>
+  {/* slides */}
+</Carousel>
+```
+
+<Canvas of={CarouselStories.Responsive} />
+
+### 自動再生
+
+`autoPlay` プロパティを `true` に設定すると、一定間隔で自動的にスライドが切り替わります。
+
+<Canvas of={CarouselStories.AutoPlay} />
+
+### ループなし
+
+`loop={false}` を設定すると、最初と最後のスライドで停止し、端のボタンが無効になります。
+
+<Canvas of={CarouselStories.NoLoop} />
+
+## Props
+
+<Controls />
+
+## アクセシビリティ
+
+- 前後ボタンには適切な `aria-label` が設定されています。
+- インジケーターには `aria-current` が設定され、現在表示中のスライドを示します。
+- `infinite loop` 実装では、クローンされた要素を使用してシームレスな遷移を実現しています。

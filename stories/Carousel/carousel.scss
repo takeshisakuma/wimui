@@ -1,0 +1,110 @@
+.wim-carousel {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+
+    &__viewport {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    &__track {
+        display: flex;
+        width: 100%;
+
+        &--transition {
+            transition: transform 0.3s ease-in-out;
+        }
+    }
+
+    &__item {
+        flex: 0 0 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
+    &__control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(var(--wim-color-surface-rgb, 255, 255, 255), 0.8);
+        border: 1px solid var(--wim-color-border, #e0e0e0);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.2s ease;
+        padding: 0;
+        color: var(--wim-color-text, #333);
+
+        &:hover:not(:disabled) {
+            background: var(--wim-color-surface, #fff);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        &:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        &--prev {
+            left: 12px;
+        }
+
+        &--next {
+            right: 12px;
+        }
+    }
+
+    &__indicators {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+    }
+
+    &__indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(var(--wim-color-text-rgb, 0, 0, 0), 0.2);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &--active {
+            background: var(--wim-color-primary, #007bff);
+            width: 24px;
+            border-radius: 5px;
+        }
+
+        &:hover:not(&--active) {
+            background: rgba(var(--wim-color-text-rgb, 0, 0, 0), 0.4);
+        }
+    }
+}
+
+/* Fallback variables if design system tokens are not loaded */
+:root {
+    --wim-color-primary: #007bff;
+    --wim-color-text: #333;
+    --wim-color-border: #e0e0e0;
+    --wim-color-surface: #fff;
+}
