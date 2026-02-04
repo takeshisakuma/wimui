@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../../src/tokens/spacings" as spacings;
 @use "../../src/tokens/effects" as effects;
 @use "../../src/tokens/semantic-colors" as colors;
@@ -118,7 +119,7 @@
         background-color: #646cff;
 
         &:hover {
-            background-color: lighten(#646cff, 10%);
+            background-color: color.adjust(#646cff, $lightness: 10%);
             color: white;
         }
 

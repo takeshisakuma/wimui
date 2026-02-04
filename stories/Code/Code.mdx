@@ -1,0 +1,50 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as CodeStories from "./Code.stories";
+
+<Meta of={CodeStories} />
+
+<Title />
+<Subtitle>
+  インラインコードやコードブロックを表示するために使用されます。
+</Subtitle>
+
+## 使用法
+
+```tsx
+import { Code } from './Code';
+
+// インライン
+<Code>npm install wimui</Code>
+
+// ブロック
+<Code block language="bash">
+npm install wimui
+</Code>
+```
+
+<Canvas of={CodeStories.Inline} />
+
+<Controls />
+
+## バリエーション
+
+### Inline
+
+<Canvas of={CodeStories.Inline} />
+
+### Block
+
+<Canvas of={CodeStories.Block} />
+
+### Long Content
+
+<Canvas of={CodeStories.LongContent} />
