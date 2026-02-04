@@ -1,0 +1,46 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as FileUploadStories from "./FileUpload.stories.tsx";
+
+<Meta of={FileUploadStories} />
+
+<Title />
+<Subtitle>
+  ユーザーがローカルファイルを一つ以上選択してアップロードするために使用されます。
+</Subtitle>
+
+## 使用法
+
+`Button` コンポーネントをトリガーとしてファイル選択ダイアログを開きます。
+
+<Canvas of={FileUploadStories.Default} />
+
+<Controls />
+
+## バリエーション
+
+### 複数ファイル選択
+
+`multiple` プロパティを `true` に設定することで、複数のファイルを選択できます。
+
+<Canvas of={FileUploadStories.Multiple} />
+
+### 特定のファイル形式のみ許可
+
+`accept` プロパティを使用して、選択可能なファイル形式を制限できます。
+
+<Canvas of={FileUploadStories.AcceptImages} />
+
+### 無効状態
+
+`disabled` プロパティを `true` に設定することで、操作を無効にします。
+
+<Canvas of={FileUploadStories.Disabled} />
