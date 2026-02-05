@@ -5,12 +5,12 @@ import * as CopyButtonStories from "./CopyButton.stories";
 
 # CopyButton
 
-`CopyButton` は、指定されたテキストをクリップボードにコピーするためのボタンコンポーネントです。
+指定されたテキストをクリップボードにコピーするためのボタンコンポーネント
 
 ## Comparison with Button
-通常の `Button`（priority="tertiary" + アイコンのみ）と異なり、以下の機能が内包されています：
+通常の `Button`(priority="tertiary" + アイコンのみ)との違い
 
-- **コピーロジックののカプセル化**: クリック時に `navigator.clipboard.writeText` を実行するロジックをあらかじめ持っています。
+- **コピーロジックのカプセル化**: クリック時に `navigator.clipboard.writeText` を実行するロジックをあらかじめ持っています。
 - **状態フィードバック**: コピー完了後、アイコンが一時的に「チェック」に切り替わり、成功を示す緑色（role="positive"）になります。
 
 ## Usage

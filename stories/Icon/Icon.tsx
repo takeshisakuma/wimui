@@ -20,6 +20,7 @@ import ChevronRightIcon from "../../src/icon/chevron-right.svg?react";
 import ChevronLeftIcon from "../../src/icon/chevron-left.svg?react";
 import CopyIcon from "../../src/icon/copy.svg?react";
 import CheckIcon from "../../src/icon/check.svg?react";
+import UploadIcon from "../../src/icon/upload.svg?react";
 
 
 // アイコン名をコンポーネントにマッピング
@@ -41,6 +42,7 @@ const icons = {
   ChevronLeftIcon: ChevronLeftIcon,
   CopyIcon: CopyIcon,
   CheckIcon: CheckIcon,
+  UploadIcon: UploadIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -61,7 +63,8 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "ChevronRightIcon"
   | "ChevronLeftIcon"
   | "CopyIcon"
-  | "CheckIcon";
+  | "CheckIcon"
+  | "UploadIcon";
   size?: "small" | "medium" | "large";
   color?:
   | "destructive"
@@ -118,6 +121,7 @@ Icon.propTypes = {
     "ChevronLeftIcon",
     "CopyIcon",
     "CheckIcon",
+    "UploadIcon",
   ]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   color: PropTypes.oneOf([

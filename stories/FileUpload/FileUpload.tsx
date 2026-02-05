@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Button } from "../Button/Button";
+import { Icon } from "../Icon/Icon";
 import "./file-upload.scss";
 
 type FileUploadProps = {
@@ -11,6 +12,8 @@ type FileUploadProps = {
     disabled?: boolean;
     onChange?: (files: FileList | null) => void;
     className?: string;
+    iconName?: React.ComponentProps<typeof Icon>["name"];
+    iconPosition?: "left" | "right";
 };
 
 /**
@@ -24,6 +27,8 @@ export const FileUpload = ({
     disabled = false,
     onChange,
     className = "",
+    iconName,
+    iconPosition,
 }: FileUploadProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -66,6 +71,8 @@ export const FileUpload = ({
                     onClick={handleClick}
                     state={disabled ? "disabled" : "abled"}
                     priority="secondary"
+                    iconName={iconName}
+                    iconPosition={iconPosition}
                 />
                 <span className={`wim-file-upload__file-names ${disabled ? "wim-file-upload__file-names--disabled" : ""}`}>
                     {fileNames}
@@ -104,4 +111,12 @@ FileUpload.propTypes = {
      * 追加のクラス名。
      */
     className: PropTypes.string,
+    /**
+     * アイコンの名前。
+     */
+    iconName: PropTypes.string,
+    /**
+     * アイコンの表示位置。
+     */
+    iconPosition: PropTypes.oneOf(["left", "right"]),
 };

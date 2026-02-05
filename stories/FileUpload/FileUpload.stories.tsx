@@ -10,6 +10,14 @@ const meta: Meta<typeof FileUpload> = {
     },
     argTypes: {
         onChange: { action: "changed" },
+        iconName: {
+            control: "select",
+            options: ["UploadIcon", "CheckIcon", "CopyIcon", "SearchIcon"],
+        },
+        iconPosition: {
+            control: "radio",
+            options: ["left", "right"],
+        },
     },
 };
 
@@ -44,5 +52,14 @@ export const Disabled: Story = {
         label: "無効なアップロード",
         buttonLabel: "ファイルを選択",
         disabled: true,
+    },
+};
+
+export const WithIcon: Story = {
+    args: {
+        label: "アイコン付き",
+        buttonLabel: "アップロード",
+        iconName: "UploadIcon",
+        iconPosition: "left",
     },
 };

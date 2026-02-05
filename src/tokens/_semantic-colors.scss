@@ -67,6 +67,9 @@ $scrollbar-track: $pccs-gy8-5;
   --bg-app: #{$pccs-w}; // アプリ全体の背景
   --bg-component: #{$pccs-w};
 
+  --wim-color-border: #{$pccs-gy7-5};
+  --wim-color-border-secondary: #{$pccs-gy8-5};
+
   --scrollbar-thumb: #{$scrollbar-thumb};
   --scrollbar-track: #{$scrollbar-track};
 }

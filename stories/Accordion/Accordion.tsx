@@ -98,36 +98,55 @@ type AccordionItemProps = {
     children: React.ReactNode;
 };
 
-const AccordionItemContext = createContext<{ value: string; disabled: boolean; isVisualOpen: boolean } | null>(null);
+const AccordionItemContext = createContext<{ value: string; disabled: boolean; isContentOpen: boolean } | null>(null);
 
 export const AccordionItem = ({ value, disabled = false, className, children }: AccordionItemProps) => {
     const { value: activeValues } = useAccordion();
     const isLogicOpen = activeValues.includes(value);
 
-    // Track if we are in the middle of a transition
+    // Separating the logic state from the visual state to ensure transitions trigger properly
+    const [isContentOpen, setIsContentOpen] = useState(isLogicOpen);
     const [isAnimating, setIsAnimating] = useState(false);
-    const prevOpenRef = React.useRef(isLogicOpen);
+    const prevLogicOpenRef = React.useRef(isLogicOpen);
 
     React.useEffect(() => {
-        if (prevOpenRef.current !== isLogicOpen) {
+        if (isLogicOpen === prevLogicOpenRef.current) return;
+
+        if (isLogicOpen) {
+            // Opening: 
+            // 1. Immediately ensure we're not flagged as animating closure
+            setIsAnimating(false);
+            // 2. The <details> tag will open immediately via isDetailOpen.
+            // 3. We use a tiny delay to allow the browser to register the <details> as open
+            //    before shifting the grid from 0fr down to 1fr.
+            const timer = setTimeout(() => {
+                setIsContentOpen(true);
+            }, 10);
+            return () => clearTimeout(timer);
+        } else {
+            // Closing:
+            // 1. Immediately start the grid transition to 0fr
+            setIsContentOpen(false);
+            // 2. Mark as animating so the <details> tag stays open until it finishes
             setIsAnimating(true);
         }
-        prevOpenRef.current = isLogicOpen;
+        prevLogicOpenRef.current = isLogicOpen;
     }, [isLogicOpen]);
 
     const handleTransitionEnd = (e: React.TransitionEvent) => {
-        // We only care about transitions finishing on the content area when closing
-        if (!isLogicOpen) {
+        // We only care about the transition ending when we are intentionally closing.
+        // Once the height reaches 0fr, we can finally close the <details> element.
+        if (!isLogicOpen && e.propertyName === "grid-template-rows") {
             setIsAnimating(false);
         }
     };
 
-    const isVisualOpen = isLogicOpen || isAnimating;
+    const isDetailOpen = isLogicOpen || isAnimating;
 
     return (
-        <AccordionItemContext.Provider value={{ value, disabled, isVisualOpen }}>
+        <AccordionItemContext.Provider value={{ value, disabled, isContentOpen }}>
             <details
-                open={isVisualOpen}
+                open={isDetailOpen}
                 onTransitionEnd={handleTransitionEnd}
                 className={[
                     "wim-accordion__item",
@@ -165,10 +184,23 @@ export const AccordionTrigger = ({
         onValueChange(item.value);
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+            if (item.disabled) {
+                e.preventDefault();
+                return;
+            }
+            // We prevent default to handle the "single" vs "multiple" logic in our context
+            e.preventDefault();
+            onValueChange(item.value);
+        }
+    };
+
     return (
         <summary
             className={["wim-accordion__trigger", className].filter(Boolean).join(" ")}
             onClick={handleClick}
+            onKeyDown={handleKeyDown}
             {...props}
         >
             <span className="wim-accordion__trigger-content">{children}</span>
@@ -176,7 +208,7 @@ export const AccordionTrigger = ({
                 name="ChevronDownIcon"
                 className={[
                     "wim-accordion__chevron",
-                    item.isVisualOpen ? "wim-accordion__chevron--open" : "",
+                    item.isContentOpen ? "wim-accordion__chevron--open" : "",
                 ].join(" ")}
             />
         </summary>
@@ -195,7 +227,7 @@ export const AccordionContent = ({
         <div
             className={[
                 "wim-accordion__content",
-                item.isVisualOpen ? "wim-accordion__content--open" : "",
+                item.isContentOpen ? "wim-accordion__content--open" : "",
                 className,
             ]
                 .filter(Boolean)

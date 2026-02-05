@@ -8,6 +8,19 @@ const meta: Meta<typeof Divider> = {
     parameters: {
         layout: "centered",
     },
+    decorators: [
+        (Story, context) => (
+            <div style={{
+                width: context.args.orientation === "vertical" ? "auto" : "300px",
+                height: context.args.orientation === "vertical" ? "100px" : "auto",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+            }}>
+                <Story />
+            </div>
+        ),
+    ],
 };
 
 export default meta;
