@@ -91,3 +91,21 @@ export const h6_heading: Story = {
     },
 };
 
+export const UnderlineHeading: Story = {
+    args: {
+        tag: "h2",
+        size: "xl",
+        children: "Underline Heading",
+        decoration: "underline",
+    },
+};
+
+export const HighlightHeading: Story = {
+    args: {
+        tag: "h2",
+        size: "xl",
+        children: "Highlight Heading",
+        decoration: "highlight",
+    },
+};
+

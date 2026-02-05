@@ -84,5 +84,14 @@
         &--primary {
             color: colors.$color-primary;
         }
+
+        /* Decoration */
+        &--underline {
+            text-decoration: typography.$decoration-underline;
+        }
+
+        &__highlight {
+            background-color: var(--decoration-highlight-color);
+        }
     }
 }

@@ -63,3 +63,27 @@ export const WithChildren: Story = {
         ),
     },
 };
+
+export const Both: Story = {
+    args: {
+        scrollAxis: "both",
+        maxHeight: "20rem",
+        style: { width: "20rem" },
+        children: (
+            <div style={{ width: "40rem", height: "40rem", background: "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%)", padding: "1rem" }}>
+                <h4 style={{ color: "#333" }}>Both Axes Scrolling</h4>
+                <p style={{ color: "#555" }}>
+                    This container has content that overflows both vertically and horizontally.
+                    ScrollArea handles both directions when <code>scrollAxis="both"</code> is set.
+                </p>
+                <div style={{ marginTop: "2rem", display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "1rem" }}>
+                    {[...Array(20)].map((_, i) => (
+                        <div key={i} style={{ background: "rgba(255,255,255,0.5)", padding: "1rem", borderRadius: "4px" }}>
+                            Box {i + 1}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        ),
+    },
+};

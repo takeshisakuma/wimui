@@ -27,6 +27,11 @@ $line-height-loose-latn: 1.6;
 $line-height-normal-latn: 1.4;
 $line-height-tight-latn: 1.2;
 
+/* 装飾の定義 */
+$decoration-line-through: line-through;
+$decoration-underline: underline;
+$decoration-highlight-color: #fff9c4; // Light yellow highlight
+
 :root {
   --font-size-ex-small: #{$size-ex-small};
   --font-size-small: #{$size-small};
@@ -45,4 +50,8 @@ $line-height-tight-latn: 1.2;
   --line-height-loose-latn: #{$line-height-loose-latn};
   --line-height-normal-latn: #{$line-height-normal-latn};
   --line-height-tight-latn: #{$line-height-tight-latn};
+
+  --decoration-line-through: #{$decoration-line-through};
+  --decoration-underline: #{$decoration-underline};
+  --decoration-highlight-color: #{$decoration-highlight-color};
 }

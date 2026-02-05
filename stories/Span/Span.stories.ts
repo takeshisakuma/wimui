@@ -95,3 +95,27 @@ export const IconOnlySpan = {
     iconName: "CircleIcon",
   },
 };
+
+export const BoldSpan = {
+  args: {
+    size: "medium",
+    content: "Bold Span",
+    weight: "bold",
+  },
+};
+
+export const StrikethroughSpan = {
+  args: {
+    size: "medium",
+    content: "Strikethrough Span",
+    decoration: "line-through",
+  },
+};
+
+export const HighlightSpan = {
+  args: {
+    size: "medium",
+    content: "Highlight Span",
+    decoration: "highlight",
+  },
+};

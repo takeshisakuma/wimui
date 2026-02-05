@@ -9,8 +9,9 @@ type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
   color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error";
   weight?: "normal" | "bold";
   style?: "normal" | "italic";
+  decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
   content: string;
-  iconName?: "CircleIcon" | "SquareIcon";
+  iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
 };
 
@@ -22,6 +23,7 @@ export const Span = ({
   style = "normal",
   iconName = undefined,
   iconPosition = "left",
+  decoration = "none",
   ...props
 }: SpanProps) => {
   const { t } = useTranslation();
@@ -37,6 +39,7 @@ export const Span = ({
   const colorClass = `wim-span--${color}`;
   const weightClass = weight === "bold" ? "wim-span--bold" : "";
   const styleClass = style === "italic" ? "wim-span--italic" : "";
+  const decorationClass = decoration !== "none" ? `wim-span--${decoration}` : "";
 
   // Icon の size プロパティは "small" | "medium" | "large" のみ許容されているためマッピング
   const iconSizeMap: Record<string, "small" | "medium" | "large"> = {
@@ -62,7 +65,7 @@ export const Span = ({
 
   return (
     <span
-      className={[`wim-span`, sizeClass, colorClass, weightClass, styleClass]
+      className={[`wim-span`, sizeClass, colorClass, weightClass, styleClass, decorationClass]
         .filter(Boolean)
         .join(" ")}
       {...props}
@@ -84,8 +87,28 @@ Span.propTypes = {
   ]),
   weight: PropTypes.oneOf(["normal", "bold"]),
   style: PropTypes.oneOf(["normal", "italic"]),
+  decoration: PropTypes.oneOf(["line-through", "underline", "highlight", "none"]),
   content: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon"]),
+  iconName: PropTypes.oneOf([
+    "CircleIcon",
+    "SquareIcon",
+    "LoadingIcon",
+    "ExternalLinkIcon",
+    "CloseIcon",
+    "SearchIcon",
+    "EyeIcon",
+    "EyeOffIcon",
+    "ChevronDownIcon",
+    "PlayIcon",
+    "PauseIcon",
+    "VolumeIcon",
+    "MuteIcon",
+    "ChevronRightIcon",
+    "ChevronLeftIcon",
+    "CopyIcon",
+    "CheckIcon",
+    "UploadIcon",
+  ]),
   iconPosition: PropTypes.oneOf(["left", "right"]),
 };

@@ -8,13 +8,14 @@ type ParagraphProps = React.ComponentPropsWithoutRef<"p"> & {
   color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error";
   weight?: "normal" | "bold";
   lineHeight?:
-    | "normal-jpan"
-    | "tight-jpan"
-    | "loose-jpan"
-    | "normal-latn"
-    | "tight-latn"
-    | "loose-latn";
+  | "normal-jpan"
+  | "tight-jpan"
+  | "loose-jpan"
+  | "normal-latn"
+  | "tight-latn"
+  | "loose-latn";
   style?: "normal" | "italic";
+  decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
   content: string;
 };
 
@@ -25,6 +26,7 @@ export const Paragraph = ({
   weight = "normal",
   lineHeight = "normal-latn",
   style = "normal",
+  decoration = "none",
   ...props
 }: ParagraphProps) => {
   const { t } = useTranslation();
@@ -40,6 +42,7 @@ export const Paragraph = ({
   const lineHeightClass = `wim-paragraph--${lineHeight}`;
   const weightClass = weight === "bold" ? "wim-paragraph--bold" : "";
   const styleClass = style === "italic" ? "wim-paragraph--italic" : "";
+  const decorationClass = decoration !== "none" ? `wim-paragraph--${decoration}` : "";
   const colorClass = `wim-paragraph--${color}`;
 
   return (
@@ -50,6 +53,7 @@ export const Paragraph = ({
         lineHeightClass,
         weightClass,
         styleClass,
+        decorationClass,
         colorClass,
       ]
         .filter(Boolean)
@@ -73,6 +77,7 @@ Paragraph.propTypes = {
   ]),
   weight: PropTypes.oneOf(["normal", "bold"]),
   style: PropTypes.oneOf(["normal", "italic"]),
+  decoration: PropTypes.oneOf(["line-through", "underline", "highlight", "none"]),
   lineHeight: PropTypes.oneOf([
     "normal-jpan",
     "tight-jpan",

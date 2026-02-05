@@ -1,4 +1,5 @@
 @use "../../src/base.scss" as *;
+@use "../../src/tokens/typography" as typography;
 
 .wim-list {
     margin: 0;
@@ -24,27 +25,81 @@
         }
     }
 
-    // Sizes
+    // Sizes (Harmonized with Icon sizes)
     &--sm {
-        font-size: 0.875rem;
+        font-size: typography.$size-small;
     }
 
     &--md {
-        font-size: 1rem;
+        font-size: typography.$size-medium;
     }
 
     &--lg {
-        font-size: 1.25rem;
+        font-size: typography.$size-large;
     }
 
     &__item {
-        line-height: 1.5;
+        line-height: typography.$line-height-normal-jpan; // 1.6 に統一
 
         &:last-child {
             margin-bottom: 0;
         }
+
+        &--with-icon {
+            list-style: none;
+            margin-left: -1.5rem; // list-style-position: outside の padding-left を相殺
+
+            .wim-list__item-content {
+                display: flex;
+                align-items: center; // ユーザー要望により center に変更
+                gap: 0.5rem;
+                width: 100%;
+            }
+        }
     }
+
+    &__item-content {
+        display: block; // デフォルトは通常
+    }
+
+    &__icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 1.6em; // line-height (1.6) と厳密に合わせる
+        flex-shrink: 0;
+        width: 1rem; // アイコンエリア (1rem) + gap (0.5rem) = 1.5rem = padding-left と一致させる
+        min-width: 0;
+        overflow: visible;
+
+
+    }
+
+    &__icon {
+        // Iconコンポーネント本体のスタイル
+        display: block !important;
+        margin: 0 !important;
+        width: 1em !important;
+        height: 1em !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        // 日本語テキスト特有の重心の高さに合わせるための微調整
+        // 光学的な中央配置 (-0.2em) -> 不要になったため削除
+        // transform: translateY(-0.2em) !important;
+    }
+
+    &__text {
+        // flex: 1; を削除 (右アイコンが消える問題の修正)
+        // margin-right: auto; // 削除: これがあると右アイコンが表示されない
+        min-width: 0;
+        word-break: break-all;
+        line-height: inherit;
+    }
+
 }
+
+
 
 ul.wim-list {
     list-style-type: disc;

@@ -63,3 +63,27 @@ export const ExSmallParagraph = {
     style: `normal`,
   },
 };
+
+export const BoldParagraph = {
+  args: {
+    size: "medium",
+    content: "Bold Paragraph",
+    weight: "bold",
+  },
+};
+
+export const StrikethroughParagraph = {
+  args: {
+    size: "medium",
+    content: "Strikethrough Paragraph",
+    decoration: "line-through",
+  },
+};
+
+export const HighlightParagraph = {
+  args: {
+    size: "medium",
+    content: "Highlight Paragraph",
+    decoration: "highlight",
+  },
+};

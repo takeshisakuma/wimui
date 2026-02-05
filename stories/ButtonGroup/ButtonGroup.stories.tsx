@@ -70,6 +70,13 @@ export const JoinedGroupPrimary: Story = {
         joined: true,
         priority: "primary",
     },
+    parameters: {
+        docs: {
+            description: {
+                story: "【注意】UXの観点からは、プライマリボタンを複数並べることは推奨されません。技術的な統一機能のデモンストレーションとして参照してください。",
+            },
+        },
+    },
     render: (args) => (
         <ButtonGroup {...args}>
             <Button size="medium" label="button_label" priority="secondary" />

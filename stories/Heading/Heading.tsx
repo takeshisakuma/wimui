@@ -22,6 +22,7 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
      * Text alignment.
      */
     align?: "left" | "center" | "right";
+    decoration?: "underline" | "highlight" | "none"; // line-throughは除外
     children: React.ReactNode;
 }
 
@@ -30,20 +31,29 @@ export const Heading = ({
     size = "xl",
     color = "black",
     align = "left",
+    decoration = "none",
     className,
     children,
     ...props
 }: HeadingProps) => {
     const { t } = useTranslation();
+
+    // highlightの場合はルートにクラスを付与せず、内部のspanにスタイルを適用する
+    const decorationClass = (decoration !== "none" && decoration !== "highlight") ? `wim-heading--${decoration}` : "";
+
     const classes = classNames(
         "wim-heading",
         `wim-heading--${size}`,
         `wim-heading--${color}`,
         `wim-heading--${align}`,
+        decorationClass,
         className
     );
 
     const content = typeof children === "string" ? t(children) : children;
+    const finalContent = decoration === "highlight" ? (
+        <span className="wim-heading__highlight">{content}</span>
+    ) : content;
 
-    return React.createElement(tag, { className: classes, ...props }, content);
+    return React.createElement(tag, { className: classes, ...props }, finalContent);
 };

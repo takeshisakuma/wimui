@@ -85,3 +85,22 @@ export const LooseSpacing: Story = {
         ),
     },
 };
+
+export const WithIcons: Story = {
+    args: {
+        children: (
+            <>
+                <ListItem iconName="CheckIcon">完了したタスク (左)</ListItem>
+                <ListItem iconName="CheckIcon" iconPosition="right">完了したタスク (右)</ListItem>
+                <ListItem iconName="CircleIcon">進行中のタスク</ListItem>
+                <ListItem iconName="ExternalLinkIcon">外部リンク (左)</ListItem>
+                <ListItem iconName="ExternalLinkIcon" iconPosition="right">
+                    外部リンク (右)
+                </ListItem>
+                <ListItem iconName="UploadIcon">ファイルをアップロード</ListItem>
+            </>
+        ),
+    },
+};
+
+

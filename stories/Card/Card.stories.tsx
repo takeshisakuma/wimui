@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Card } from "./Card";
+import { Button } from "../Button/Button";
 
 const meta: Meta<typeof Card> = {
     title: "Component/Content Containers/Card",
@@ -82,10 +83,8 @@ export const WithHeaderAndFooter: Story = {
             </Card.Body>
             <Card.Footer>
                 <div style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}>
-                    <button>キャンセル</button>
-                    <button style={{ backgroundColor: "var(--color-primary)", color: "white", border: "none", padding: "4px 12px", borderRadius: "4px" }}>
-                        保存
-                    </button>
+                    <Button priority="secondary" size="small" label="キャンセル" />
+                    <Button priority="primary" size="small" label="保存" />
                 </div>
             </Card.Footer>
         </Card>

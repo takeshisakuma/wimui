@@ -1,6 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Carousel } from "./Carousel";
+import SampleImage from "../../src/media/imagesanple.webp";
+
 
 const meta: Meta<typeof Carousel> = {
     title: "Component/Media/Carousel",
@@ -121,5 +123,20 @@ export const NoLoop: Story = {
     args: {
         loop: false,
         children: slides.slice(0, 3),
+    },
+};
+
+export const WithImage: Story = {
+    args: {
+        children: [
+            <div key="img1" style={{ width: "100%", height: "300px" }}>
+                <img
+                    src={SampleImage}
+                    alt="Sample"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+            </div>,
+            ...slides.slice(0, 3),
+        ],
     },
 };

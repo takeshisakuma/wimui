@@ -60,6 +60,18 @@
       font-style: typography.$style-italic;
     }
 
+    &--line-through {
+      text-decoration: typography.$decoration-line-through;
+    }
+
+    &--underline {
+      text-decoration: typography.$decoration-underline;
+    }
+
+    &--highlight {
+      background-color: var(--decoration-highlight-color);
+    }
+
     &--black {
       color: var(--text-primary);
     }
