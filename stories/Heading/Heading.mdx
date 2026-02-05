@@ -1,0 +1,38 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as HeadingStories from "./Heading.stories";
+
+<Meta of={HeadingStories} />
+
+# Heading
+
+見出しを表示するためのコンポーネントです。`level` プロパティに応じて `h1` から `h6` までのタグをレンダリングします。
+
+## 基本的な使い方
+
+<Canvas of={HeadingStories.h1_heading} />
+
+## Levels
+
+`level` プロパティで階層を指定します。
+
+### H1
+<Canvas of={HeadingStories.H1} />
+
+### H2
+<Canvas of={HeadingStories.H2} />
+
+### H3
+<Canvas of={HeadingStories.H3} />
+
+### H4
+<Canvas of={HeadingStories.H4} />
+
+### H5
+<Canvas of={HeadingStories.H5} />
+
+### H6
+<Canvas of={HeadingStories.H6} />
+
+## Props
+
+<Controls />

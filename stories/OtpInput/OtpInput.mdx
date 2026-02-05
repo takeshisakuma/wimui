@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as OtpInputStories from "./OtpInput.stories";
+
+<Meta of={OtpInputStories} />
+
+# OtpInput
+
+ワンタイムパスワード（OTP）やPINコードを入力するための分割された入力フィールドです。
+
+## 基本的な使い方
+
+<Canvas of={OtpInputStories.Default} />
+
+## 桁数変更
+
+`length` プロパティで入力フィールドの数を変更できます。
+
+<Canvas of={OtpInputStories.Length6} />
+
+## 状態
+
+### Error
+
+<Canvas of={OtpInputStories.Error} />
+
+### Disabled
+
+<Canvas of={OtpInputStories.Disabled} />
+
+## Props
+
+<Controls />

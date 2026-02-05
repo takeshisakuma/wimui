@@ -4,7 +4,6 @@ import { Combobox } from "./Combobox";
 const meta: Meta<typeof Combobox> = {
     title: "Component/Selection/Combobox",
     component: Combobox,
-    tags: ["autodocs"],
     argTypes: {
         showSearchIcon: {
             control: "boolean",

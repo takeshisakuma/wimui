@@ -1,0 +1,45 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as SpanStories from "./Span.stories";
+
+<Meta of={SpanStories} />
+
+# Span
+
+インラインテキストや短いラベルを表示するためのコンポーネントです。アイコンとの組み合わせも可能です。
+
+## 基本的な使い方
+
+<Canvas of={SpanStories.MediumSpan} />
+
+## サイズ
+
+`size` プロパティでテキストサイズを変更できます。
+
+### Extra Large
+<Canvas of={SpanStories.ExLargeSpan} />
+
+### Large
+<Canvas of={SpanStories.LargeSpan} />
+
+### Small
+<Canvas of={SpanStories.SmallSpan} />
+
+## アイコン付き
+
+`iconName` プロパティでアイコンを表示できます。`iconPosition` で位置を指定します。
+
+<Canvas of={SpanStories.SmallSpanWithIcon} />
+
+## 装飾
+
+`decoration` プロパティでテキストの装飾を指定できます。
+
+### Strikethrough
+<Canvas of={SpanStories.StrikethroughSpan} />
+
+### Highlight
+<Canvas of={SpanStories.HighlightSpan} />
+
+## Props
+
+<Controls />

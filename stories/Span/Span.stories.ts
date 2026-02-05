@@ -7,7 +7,6 @@ export default {
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"], //ドキュメント自動生成有効化
   argTypes: {},
   args: { onClick: fn() }, //`fn` を使用して onClick 引数を監視(呼び出されるとアクションパネルに表示)
 };

@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as BadgeStories from "./Badge.stories";
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+バッジコンポーネントは、ステータス、通知数、または短いラベルを表示するために使用されます。
+
+## 基本的な使い方
+
+<Canvas of={BadgeStories.Primary} />
+
+## バリエーション
+
+`variant` プロパティを使用して、バッジのスタイルを変更できます。
+
+### Destructive
+
+<Canvas of={BadgeStories.Destructive} />
+
+### Outline
+
+<Canvas of={BadgeStories.Outline} />
+
+### Secondary
+
+<Canvas of={BadgeStories.Secondary} />
+
+## Props
+
+<Controls />

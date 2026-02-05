@@ -82,6 +82,8 @@
     -webkit-mask-image: none;
 }
 
+// ... (existing styles)
+
 .wim-audio-custom-controls {
     display: flex;
     align-items: center;
@@ -90,6 +92,7 @@
 }
 
 .wim-audio-btn {
+    // ... existing common button props
     background: none;
     border: none;
     cursor: pointer;
@@ -108,9 +111,19 @@
         color: #646cff; // Accent color
     }
 
-    &:focus-visible {
-        outline: 2px solid #646cff;
-        outline-offset: 2px;
+    // Active state for toggles
+    &.active {
+        color: #646cff;
+        background-color: rgba(100, 108, 255, 0.2);
+    }
+
+    // Text button (e.g. speed)
+    &--text {
+        width: auto;
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0 spacings.$spacing-xs;
+        border-radius: 4px;
     }
 
     &--play {
@@ -130,6 +143,7 @@
     }
 }
 
+// ... rest of time/progress/volume styles (ensure they work inside row-primary)
 .wim-audio-time {
     display: flex;
     align-items: center;
@@ -139,6 +153,9 @@
     font-variant-numeric: tabular-nums;
     color: rgba(255, 255, 255, 0.7);
 }
+
+// ...
+
 
 .wim-audio-progress-container {
     flex: 1;

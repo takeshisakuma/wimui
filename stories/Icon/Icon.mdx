@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls, Story, IconGallery, IconItem } from "@storybook/blocks";
+import * as IconStories from "./Icon.stories";
+import { Icon } from "./Icon";
+
+<Meta of={IconStories} />
+
+# Icon
+
+アプリケーション全体で使用されるアイコンコンポーネントです。
+
+## 基本的な使い方
+
+<Canvas of={IconStories.MediumSquareIcon} />
+
+## カラー
+
+`color` プロパティでアイコンの色を指定できます。
+
+<Canvas of={IconStories.MediumSquareIcon} />
+
+## サイズ
+
+`size` プロパティで `small`、`medium`、`large` からサイズを選択できます。
+
+<Canvas of={IconStories.MediumExternalLinkIcon} />
+
+## Props
+
+<Controls />

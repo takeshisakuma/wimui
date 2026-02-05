@@ -5,7 +5,6 @@ import { useState } from "react";
 const meta: Meta<typeof OtpInput> = {
     title: "Component/Forms/OtpInput",
     component: OtpInput,
-    tags: ["autodocs"],
     argTypes: {
         onChange: { action: "changed" },
     },

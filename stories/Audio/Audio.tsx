@@ -14,6 +14,7 @@ type AudioProps = React.ComponentPropsWithoutRef<"audio"> & {
     border?: boolean;
     preload?: "auto" | "metadata" | "none";
     caption?: string;
+    customControls?: boolean;
 };
 
 export const Audio = ({
@@ -122,8 +123,7 @@ export const Audio = ({
                     className="wim-audio"
                     autoPlay={autoPlay}
                     loop={loop}
-                    muted={muted} // Initialize with prop, but controlled by state later via effect? Actually native controls logic.
-                    // If customControls is true, we force controls={false} on the native element
+                    muted={muted}
                     controls={customControls ? false : controls}
                     preload={preload}
                     onTimeUpdate={handleTimeUpdate}
@@ -191,8 +191,6 @@ export const Audio = ({
         </figure>
     );
 };
-
-
 
 Audio.propTypes = {
     src: PropTypes.string.isRequired,

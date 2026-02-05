@@ -55,3 +55,15 @@ export const Rounded: Story = {
         shadow: true,
     },
 };
+
+export const CustomControls: Story = {
+    args: {
+        src: sampleVideo,
+        poster: videoPoster,
+        width: 600,
+        customControls: true,
+        radius: "medium",
+        shadow: true,
+        caption: "カスタムコントロール付きビデオ",
+    },
+};

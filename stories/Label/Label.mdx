@@ -1,0 +1,28 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as LabelStories from "./Label.stories";
+
+<Meta of={LabelStories} />
+
+# Label
+
+フォーム要素の説明やキャプションを表示するためのコンポーネントです。
+
+## 基本的な使い方
+
+<Canvas of={LabelStories.Default} />
+
+## 必須・任意表示
+
+`required` プロパティで必須マーク、`showOptional` プロパティで任意マークを表示できます。
+
+### Required
+
+<Canvas of={LabelStories.Required} />
+
+### Optional
+
+<Canvas of={LabelStories.Optional} />
+
+## Props
+
+<Controls />
