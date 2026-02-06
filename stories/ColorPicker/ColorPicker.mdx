@@ -1,0 +1,40 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import * as ColorPickerStories from "./ColorPicker.stories";
+
+<Meta title="Component/Forms/ColorPicker" of={ColorPickerStories} />
+
+# ColorPicker
+
+ユーザーが色を選択するためのコンポーネントです。ネイティブの `input type="color"` をラップしてスタイルを調整しています。
+
+## Usage
+
+```tsx
+import { ColorPicker } from "./ColorPicker";
+
+<ColorPicker />
+```
+
+## Examples
+
+### Default
+<Canvas of={ColorPickerStories.Default} />
+
+### Outline
+<Canvas of={ColorPickerStories.Outline} />
+
+### Ghost
+<Canvas of={ColorPickerStories.Ghost} />
+
+### Error State
+<Canvas of={ColorPickerStories.Error} />
+
+### Disabled State
+<Canvas of={ColorPickerStories.Disabled} />
+
+### Full Width
+<Canvas of={ColorPickerStories.FullWidth} />
+
+## Props
+
+<Controls />

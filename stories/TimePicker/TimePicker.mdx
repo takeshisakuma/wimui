@@ -1,0 +1,40 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import * as TimePickerStories from "./TimePicker.stories";
+
+<Meta title="Component/Forms/TimePicker" of={TimePickerStories} />
+
+# TimePicker
+
+ユーザーが時間を選択するためのコンポーネントです。ネイティブの `input type="time"` をラップしてスタイルを調整しています。
+
+## Usage
+
+```tsx
+import { TimePicker } from "./TimePicker";
+
+<TimePicker />
+```
+
+## Examples
+
+### Default
+<Canvas of={TimePickerStories.Default} />
+
+### Outline
+<Canvas of={TimePickerStories.Outline} />
+
+### Ghost
+<Canvas of={TimePickerStories.Ghost} />
+
+### Error State
+<Canvas of={TimePickerStories.Error} />
+
+### Disabled State
+<Canvas of={TimePickerStories.Disabled} />
+
+### Full Width
+<Canvas of={TimePickerStories.FullWidth} />
+
+## Props
+
+<Controls />

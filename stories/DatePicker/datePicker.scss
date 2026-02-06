@@ -1,0 +1,21 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+
+.wim-datepicker {
+
+    // Styling for the native date picker indicator (Chrome/Edge/Safari)
+    &::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        padding: spacings.$spacing-xs;
+        border-radius: spacings.$radius-sm;
+        transition: background-color 0.2s;
+        filter: var(--icon-filter, none); // Adjust for dark mode if needed
+
+        &:hover {
+            background-color: var(--color-tertiary-hover, rgba(0, 0, 0, 0.05));
+        }
+    }
+
+    // Firefox doesn't support -webkit-calendar-picker-indicator
+    // but we can still style the basic input
+}

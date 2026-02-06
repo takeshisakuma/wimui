@@ -1,0 +1,40 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import * as DatePickerStories from "./DatePicker.stories";
+
+<Meta title="Component/Forms/DatePicker" of={DatePickerStories} />
+
+# DatePicker
+
+ユーザーが日付を選択するためのコンポーネントです。ネイティブの `input type="date"` をラップしてスタイルを調整しています。
+
+## Usage
+
+```tsx
+import { DatePicker } from "./DatePicker";
+
+<DatePicker />
+```
+
+## Examples
+
+### Default
+<Canvas of={DatePickerStories.Default} />
+
+### Outline
+<Canvas of={DatePickerStories.Outline} />
+
+### Ghost
+<Canvas of={DatePickerStories.Ghost} />
+
+### Error State
+<Canvas of={DatePickerStories.Error} />
+
+### Disabled State
+<Canvas of={DatePickerStories.Disabled} />
+
+### Full Width
+<Canvas of={DatePickerStories.FullWidth} />
+
+## Props
+
+<Controls />
