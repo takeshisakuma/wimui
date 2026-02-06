@@ -1,0 +1,28 @@
+import { Meta, Primary, Controls, Story } from "@storybook/blocks";
+import * as SliderStories from "./Slider.stories";
+
+<Meta of={SliderStories} />
+
+# Slider
+
+値の範囲から1つの値を選択するためのスライダーコンポーネントです。
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Examples
+
+### Disabled
+<Story of={SliderStories.Disabled} />
+
+### Min/Max
+<Story of={SliderStories.MinMax} />
+
+### Step
+<Story of={SliderStories.Step} />
+
+### Controlled
+<Story of={SliderStories.Controlled} />

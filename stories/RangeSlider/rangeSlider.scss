@@ -1,0 +1,73 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+
+.wim-range-slider {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 24px;
+    touch-action: none;
+    cursor: pointer;
+
+    &--disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+
+        .wim-range-slider__thumb {
+            cursor: not-allowed;
+        }
+    }
+
+    &__track-container {
+        position: relative;
+        width: 100%;
+        height: 6px;
+        background-color: var(--wim-color-border-secondary, #e5e7eb);
+        border-radius: spacings.$radius-full;
+    }
+
+    &__track {
+        position: absolute;
+        height: 100%;
+        background-color: colors.$color-primary;
+        border-radius: spacings.$radius-full;
+    }
+
+    &__thumb {
+        position: absolute;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        background-color: colors.$text-white;
+        border: 2px solid colors.$color-primary;
+        border-radius: spacings.$radius-full;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.2s, transform 0.1s, z-index 0s;
+        outline: none;
+        cursor: grab;
+        z-index: 1;
+
+        // Active or focused thumb should be on top
+        &--active {
+            z-index: 2;
+        }
+
+        &:hover {
+            box-shadow: 0 0 0 4px rgba(colors.$color-primary, 0.1);
+            z-index: 2;
+        }
+
+        &:focus-visible {
+            box-shadow: 0 0 0 4px rgba(colors.$color-primary, 0.3);
+            z-index: 2;
+        }
+
+        &:active {
+            cursor: grabbing;
+            box-shadow: 0 0 0 6px rgba(colors.$color-primary, 0.2);
+            z-index: 2;
+        }
+    }
+}

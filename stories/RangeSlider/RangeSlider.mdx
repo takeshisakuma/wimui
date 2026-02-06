@@ -1,0 +1,28 @@
+import { Meta, Primary, Controls, Story } from "@storybook/blocks";
+import * as RangeSliderStories from "./RangeSlider.stories";
+
+<Meta of={RangeSliderStories} />
+
+# RangeSlider
+
+範囲（開始と終了）を選択するためのスライダーコンポーネントです。
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Examples
+
+### Disabled
+<Story of={RangeSliderStories.Disabled} />
+
+### Min/Max
+<Story of={RangeSliderStories.MinMax} />
+
+### Step
+<Story of={RangeSliderStories.Step} />
+
+### Controlled
+<Story of={RangeSliderStories.Controlled} />
