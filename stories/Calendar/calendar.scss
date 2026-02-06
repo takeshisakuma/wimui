@@ -112,6 +112,25 @@
         }
     }
 
+    &--in-range {
+        background-color: rgba(colors.$color-primary, 0.1);
+        border-radius: 0;
+
+        &:hover:not(:disabled) {
+            background-color: rgba(colors.$color-primary, 0.2);
+        }
+    }
+
+    &--range-start {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    &--range-end {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
     &:disabled {
         cursor: not-allowed;
     }

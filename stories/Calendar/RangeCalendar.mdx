@@ -1,0 +1,36 @@
+import { Canvas, Meta, Controls, Source } from "@storybook/blocks";
+import * as RangeCalendarStories from "./RangeCalendar.stories";
+
+<Meta of={RangeCalendarStories} />
+
+# RangeCalendar
+
+ユーザーが日付の範囲（開始日と終了日）を選択するためのカレンダーコンポーネントです。
+
+## 使用例
+
+<Canvas of={RangeCalendarStories.Default} />
+
+## 状態
+
+### 範囲選択済み
+初期値として範囲を指定することも可能です。
+
+<Canvas of={RangeCalendarStories.SelectedRange} />
+
+### 無効状態
+`disabled` プロップを使用することで、操作を無効にできます。
+
+<Canvas of={RangeCalendarStories.Disabled} />
+
+## プロパティ
+
+<Controls />
+
+## 実装例
+
+### 制御されたコンポーネント
+`value` と `onChange` を使用して、状態を外部で管理できます。
+
+<Canvas of={RangeCalendarStories.Controlled} />
+<Source of={RangeCalendarStories.Controlled} />
