@@ -1,0 +1,34 @@
+import { Meta, Primary, Controls, Canvas } from "@storybook/blocks";
+import * as TagStories from "./Tag.stories";
+
+<Meta of={TagStories} />
+
+# Tag
+
+タグは、情報のステータスやカテゴリを表示するための非インタラクティブなラベルです。
+
+## 使用例
+
+### 基本
+
+<Canvas of={TagStories.Default} />
+
+### バリアント
+
+<Canvas of={TagStories.Variants} />
+
+### 色
+
+<Canvas of={TagStories.Colors} />
+
+### サイズ
+
+<Canvas of={TagStories.Sizes} />
+
+### アイコン付き
+
+<Canvas of={TagStories.WithIcon} />
+
+## Props
+
+<Controls />

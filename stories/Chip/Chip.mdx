@@ -1,0 +1,42 @@
+import { Meta, Primary, Controls, Canvas } from "@storybook/blocks";
+import * as ChipStories from "./Chip.stories";
+
+<Meta of={ChipStories} />
+
+# Chip
+
+チップは、選択、フィルタリング、または入力の確定に使用されるインタラクティブな要素です。
+
+## 使用例
+
+### 基本
+
+<Canvas of={ChipStories.Default} />
+
+### クリック可能
+
+クリックイベントを設定するとボタンとして動作し、ホバー効果が適用されます。
+
+<Canvas of={ChipStories.Clickable} />
+
+### 削除可能
+
+`onDelete` を設定すると削除ボタン（×）が表示されます。
+
+<Canvas of={ChipStories.Deletable} />
+
+### アバター付き
+
+<Canvas of={ChipStories.WithAvatar} />
+
+### 選択状態
+
+<Canvas of={ChipStories.Selected} />
+
+### バリアント
+
+<Canvas of={ChipStories.Variants} />
+
+## Props
+
+<Controls />

@@ -1,0 +1,137 @@
+@use "sass:map";
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+
+.wim-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: spacings.$spacing-xs;
+    white-space: nowrap;
+    border-radius: spacings.$radius-full;
+    font-weight: 500;
+    line-height: spacings.$font-size-minus-2;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+    cursor: default;
+    user-select: none;
+    box-sizing: border-box;
+
+    &--md {
+        height: 2rem;
+        padding: 0 spacings.$spacing-md;
+        font-size: spacings.$font-size-minus-2;
+
+        .wim-chip__avatar {
+            width: 1.6rem;
+            height: 1.6rem;
+            margin-left: -#{spacings.$spacing-sm};
+        }
+    }
+
+    &--sm {
+        height: 1.6rem;
+        padding: 0 spacings.$spacing-sm;
+        font-size: spacings.$font-size-minus-3;
+
+        .wim-chip__avatar {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-left: -#{spacings.$spacing-xs};
+        }
+    }
+
+    &--clickable {
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(0.9);
+        }
+
+        &:active {
+            filter: brightness(0.85);
+        }
+    }
+
+    &__avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: spacings.$radius-full;
+        background: rgba(0, 0, 0, 0.1);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__icon {
+        display: flex;
+        font-size: 1.1em;
+    }
+
+    &__delete {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: spacings.$radius-full;
+        cursor: pointer;
+        padding: 1px;
+        margin-right: -#{spacings.$spacing-xs};
+        opacity: 0.6;
+        transition: opacity 0.2s;
+
+        &:hover {
+            opacity: 1;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    /* Colors and Variants */
+    $chip-colors: (
+        "primary": ("base": colors.$color-primary,
+            "on": colors.$color-text-on-primary ),
+        "secondary": ("base": colors.$color-secondary,
+            "on": colors.$color-text-on-secondary ),
+        "neutral": ("base": colors.$color-disabled,
+            "on": colors.$text-black )
+    );
+
+@each $name, $pairs in $chip-colors {
+    $base: map.get($pairs, "base");
+    $on: map.get($pairs, "on");
+
+    &--#{$name}.wim-chip--solid {
+        background-color: $base;
+        color: $on;
+
+        &.wim-chip--selected {
+            box-shadow: 0 0 0 2px white, 0 0 0 4px $base;
+        }
+    }
+
+    &--#{$name}.wim-chip--outline {
+        background-color: transparent;
+        color: colors.$text-black;
+        border-color: colors.$text-lightgray;
+
+        &.wim-chip--selected {
+            background-color: rgba($base, 0.1);
+            color: $base;
+            border-color: $base;
+        }
+
+        &.wim-chip--clickable:hover {
+            background-color: rgba($base, 0.05);
+        }
+    }
+}
+
+&:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: none;
+}
+}

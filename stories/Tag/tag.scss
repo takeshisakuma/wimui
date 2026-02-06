@@ -1,0 +1,67 @@
+@use "sass:map";
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+
+.wim-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: spacings.$spacing-xs;
+    white-space: nowrap;
+    border-radius: spacings.$radius-sm;
+    font-weight: 500;
+    line-height: 1;
+
+    &--md {
+        padding: spacings.$spacing-xs spacings.$spacing-sm;
+        font-size: spacings.$font-size-minus-2;
+    }
+
+    &--sm {
+        padding: spacings.$spacing-2xs spacings.$spacing-xs;
+        font-size: spacings.$font-size-minus-3;
+    }
+
+    &__icon {
+        display: flex;
+        font-size: 1.2em;
+    }
+
+    /* Colors and Variants */
+    $tag-colors: (
+        "primary": ("base": colors.$color-primary,
+            "on": colors.$color-text-on-primary ),
+        "secondary": ("base": colors.$color-secondary,
+            "on": colors.$color-text-on-secondary ),
+        "success": ("base": colors.$color-positive,
+            "on": colors.$color-text-on-positive ),
+        "warning": ("base": colors.$color-caution,
+            "on": colors.$color-text-on-caution ),
+        "error": ("base": colors.$color-destructive,
+            "on": colors.$color-text-on-destructive ),
+        "neutral": ("base": colors.$color-disabled,
+            "on": colors.$text-black )
+    );
+
+@each $name, $pairs in $tag-colors {
+    $base: map.get($pairs, "base");
+    $on: map.get($pairs, "on");
+
+    &--#{$name}.wim-tag--solid {
+        background-color: $base;
+        color: $on;
+        border: 1px solid transparent;
+    }
+
+    &--#{$name}.wim-tag--outline {
+        background-color: transparent;
+        color: $base;
+        border: 1px solid $base;
+    }
+
+    &--#{$name}.wim-tag--subtle {
+        background-color: rgba($base, 0.15);
+        color: $base;
+        border: 1px solid transparent;
+    }
+}
+}

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Icon } from "../Icon/Icon";
-import { Badge } from "../Badge/Badge";
+import { Chip } from "../Chip/Chip";
 import "./multiselect.scss";
 
 export type MultiSelectOption = {
@@ -115,23 +115,14 @@ export const MultiSelect = ({
                 <div className={`wim-multiselect-value ${selectedOptions.length === 0 ? "wim-multiselect-value--placeholder" : ""}`}>
                     {selectedOptions.length > 0 ? (
                         selectedOptions.map(opt => (
-                            <Badge
+                            <Chip
                                 key={opt.value}
-                                content={opt.label}
+                                label={opt.label}
                                 size="small"
                                 color="neutral"
                                 variant="solid"
-                                icon={
-                                    !disabled ? (
-                                        <span
-                                            className="wim-multiselect-badge-remove"
-                                            onClick={(e) => handleRemove(e, opt.value)}
-                                        >
-                                            <Icon name="CloseIcon" size="small" />
-                                        </span>
-                                    ) : undefined
-                                }
-                                style={{ display: "inline-flex", alignItems: "center" }}
+                                onDelete={!disabled ? (e) => handleRemove(e, opt.value) : undefined}
+                                className="wim-multiselect-badge"
                             />
                         ))
                     ) : (
