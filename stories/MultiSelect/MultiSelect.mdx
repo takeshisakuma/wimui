@@ -1,0 +1,47 @@
+import { Canvas, Meta, Story, Controls } from "@storybook/blocks";
+import * as MultiSelectStories from "./MultiSelect.stories";
+
+<Meta of={MultiSelectStories} />
+
+# MultiSelect
+
+ユーザーが定義済みの選択肢から複数を選択するためのドロップダウンメニューです。
+
+## Usage
+
+```jsx
+import { MultiSelect } from "./MultiSelect";
+
+const options = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Orange", value: "orange" },
+];
+
+<MultiSelect 
+    options={options} 
+    onChange={(vals) => console.log(vals)} // returns string[]
+/>
+```
+
+## Examples
+
+### Default
+
+<Canvas of={MultiSelectStories.Default} />
+
+### With Label
+
+<Canvas of={MultiSelectStories.WithLabel} />
+
+### Multiple Selected
+
+<Canvas of={MultiSelectStories.MultipleSelected} />
+
+### Disabled
+
+<Canvas of={MultiSelectStories.Disabled} />
+
+## Props
+
+<Controls />

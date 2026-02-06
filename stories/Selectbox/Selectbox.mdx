@@ -1,0 +1,44 @@
+import { Canvas, Meta, Story, Controls } from "@storybook/blocks";
+import * as SelectboxStories from "./Selectbox.stories";
+
+<Meta of={SelectboxStories} />
+
+# Selectbox
+
+ユーザーが定義済みの選択肢から1つを選択するためのプルダウンメニューです。
+
+## Usage
+
+```jsx
+import { Selectbox } from "./Selectbox";
+
+const options = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Orange", value: "orange" },
+];
+
+<Selectbox options={options} onChange={(val) => console.log(val)} />
+```
+
+## Examples
+
+### Default
+
+<Canvas of={SelectboxStories.Default} />
+
+### With Label
+
+<Canvas of={SelectboxStories.WithLabel} />
+
+### Preselected
+
+<Canvas of={SelectboxStories.Preselected} />
+
+### Disabled
+
+<Canvas of={SelectboxStories.Disabled} />
+
+## Props
+
+<Controls />

@@ -1,0 +1,124 @@
+/* ------------------------------------------------------------------
+   Selectbox Styles
+------------------------------------------------------------------ */
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/effects" as effects;
+
+.wim-selectbox {
+    position: relative;
+    width: 320px;
+    max-width: 100%;
+    font-family: var(--font-family-base);
+
+    &--full-width {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+.wim-selectbox-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 42px; // Match MultiSelect height
+    padding: spacings.$spacing-md spacings.$spacing-md; // Increased from sm to md to prevent text clipping
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    background-color: var(--bg-component, #ffffff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-sizing: border-box;
+
+    &:hover:not(.wim-selectbox-trigger--disabled) {
+        border-color: colors.$color-primary;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: colors.$color-primary;
+        box-shadow: 0 0 0 2px rgba(colors.$color-primary, 0.2);
+    }
+
+    &--open {
+        border-color: colors.$color-primary;
+        box-shadow: 0 0 0 2px rgba(colors.$color-primary, 0.2);
+    }
+
+    &--disabled {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--text-disabled);
+        cursor: not-allowed;
+        border-color: colors.$color-disabled;
+    }
+}
+
+.wim-selectbox-value {
+    flex: 1;
+    flex: 1;
+    // overflow: hidden; // User reported this causes vertical clipping
+    // text-overflow: ellipsis; 
+    white-space: nowrap;
+
+    &--placeholder {
+        color: var(--text-placeholder);
+    }
+}
+
+.wim-selectbox-icon {
+    margin-left: spacings.$spacing-sm;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wim-selectbox-list {
+    position: absolute;
+    top: calc(100% + #{spacings.$spacing-xs});
+    left: 0;
+    right: 0;
+    background-color: var(--bg-component, #ffffff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-lg;
+    list-style: none;
+    padding: spacings.$spacing-xs 0;
+    margin: 0;
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.wim-selectbox-option {
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover,
+    &--active {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &--selected {
+        background-color: rgba(colors.$color-primary, 0.1);
+        color: var(--text-primary);
+        font-weight: 500;
+    }
+
+    &--disabled {
+        color: var(--text-disabled);
+        cursor: not-allowed;
+        background-color: transparent;
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+}
