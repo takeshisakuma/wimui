@@ -108,7 +108,7 @@ export const Combobox = ({
                 onChange={handleInputChange}
                 onFocus={() => setIsOpen(true)}
                 leftIcon={showSearchIcon ? "SearchIcon" : undefined}
-                rightIcon="ChevronDownIcon" // Comboboxなので常に下矢印を表示
+                rightIcon={allowClear && inputValue ? undefined : "ChevronDownIcon"}
                 allowClear={allowClear}
                 disabled={disabled}
                 autoComplete="off"
