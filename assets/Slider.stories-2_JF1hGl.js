@@ -1,0 +1,26 @@
+import{j as d}from"./jsx-runtime-u17CrQMm.js";import{r as l}from"./iframe-CZ8F2xPT.js";import{P as n}from"./index-DmruUvHE.js";const S=({value:c,defaultValue:x=0,min:t=0,max:s=100,step:p=1,disabled:o=!1,onChange:V,onAfterChange:C,className:q="",name:L,...N})=>{const u=c!==void 0,[M,T]=l.useState(x),i=u?c:M,_=l.useRef(null),w=l.useRef(!1),D=(e,a,r)=>Math.max(a,Math.min(e,r)),A=e=>{const a=Math.round((e-t)/p);return D(t+a*p,t,s)},E=e=>{if(!_.current)return t;const a=_.current.getBoundingClientRect(),r=D((e-a.left)/a.width,0,1),X=t+r*(s-t);return A(X)},k=e=>{if(o)return;w.current=!0;const a="touches"in e?e.touches[0].clientX:e.clientX,r=E(a);u||T(r),V?.(r),e.preventDefault()},f=l.useCallback(e=>{if(!w.current||o)return;const a="touches"in e?e.touches[0].clientX:e.clientX,r=E(a);u||T(r),V?.(r)},[o,u,t,s,p,V]),v=l.useCallback(()=>{w.current&&(w.current=!1,C?.(u?c:M))},[u,c,M,C]);l.useEffect(()=>(document.addEventListener("mousemove",f),document.addEventListener("mouseup",v),document.addEventListener("touchmove",f,{passive:!1}),document.addEventListener("touchend",v),()=>{document.removeEventListener("mousemove",f),document.removeEventListener("mouseup",v),document.removeEventListener("touchmove",f),document.removeEventListener("touchend",v)}),[f,v]);const R=e=>{if(o)return;let a=i;if(e.key==="ArrowLeft"||e.key==="ArrowDown")a=Math.max(t,i-p);else if(e.key==="ArrowRight"||e.key==="ArrowUp")a=Math.min(s,i+p);else if(e.key==="Home")a=t;else if(e.key==="End")a=s;else return;u||T(a),V?.(a),e.preventDefault()},j=(i-t)/(s-t)*100;return d.jsxs("div",{className:`wim-slider ${o?"wim-slider--disabled":""} ${q}`,onMouseDown:k,onTouchStart:k,...N,children:[d.jsxs("div",{className:"wim-slider__track-container",ref:_,children:[d.jsx("div",{className:"wim-slider__track",style:{width:`${j}%`}}),d.jsx("div",{className:"wim-slider__thumb",style:{left:`${j}%`},role:"slider","aria-valuemin":t,"aria-valuemax":s,"aria-valuenow":i,"aria-disabled":o,tabIndex:o?-1:0,onKeyDown:R})]}),d.jsx("input",{type:"hidden",name:L,value:i})]})};S.propTypes={value:n.number,defaultValue:n.number,min:n.number,max:n.number,step:n.number,disabled:n.bool,onChange:n.func,onAfterChange:n.func,className:n.string,name:n.string};S.__docgenInfo={description:"ユーザーが値の範囲から1つの値を選択するためのスライダーコンポーネント。",methods:[],displayName:"Slider",props:{value:{required:!1,tsType:{name:"number"},description:"現在の値",type:{name:"number"}},defaultValue:{required:!1,tsType:{name:"number"},description:"デフォルトの値（非制御時）",defaultValue:{value:"0",computed:!1},type:{name:"number"}},min:{required:!1,tsType:{name:"number"},description:"最小値",defaultValue:{value:"0",computed:!1},type:{name:"number"}},max:{required:!1,tsType:{name:"number"},description:"最大値",defaultValue:{value:"100",computed:!1},type:{name:"number"}},step:{required:!1,tsType:{name:"number"},description:"ステップ値",defaultValue:{value:"1",computed:!1},type:{name:"number"}},disabled:{required:!1,tsType:{name:"boolean"},description:"無効化フラグ",defaultValue:{value:"false",computed:!1},type:{name:"bool"}},onChange:{required:!1,tsType:{name:"signature",type:"function",raw:"(value: number) => void",signature:{arguments:[{type:{name:"number"},name:"value"}],return:{name:"void"}}},description:"値変更時のコールバック",type:{name:"func"}},onAfterChange:{required:!1,tsType:{name:"signature",type:"function",raw:"(value: number) => void",signature:{arguments:[{type:{name:"number"},name:"value"}],return:{name:"void"}}},description:"ドラッグ終了時のコールバック",type:{name:"func"}},className:{required:!1,tsType:{name:"string"},description:"追加のクラス名",defaultValue:{value:'""',computed:!1},type:{name:"string"}},name:{required:!1,tsType:{name:"string"},description:"名前の属性",type:{name:"string"}}}};const I={title:"Component/Forms/Slider",component:S,argTypes:{onChange:{action:"changed"},onAfterChange:{action:"afterChanged"}}},g={args:{defaultValue:50}},y={args:{defaultValue:30,disabled:!0}},b={args:{min:-50,max:50,defaultValue:0}},h={args:{min:0,max:100,step:10,defaultValue:20}},m=()=>{const[c,x]=l.useState(25);return d.jsx(S,{value:c,onChange:x})};m.__docgenInfo={description:"",methods:[],displayName:"Controlled"};g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
+  args: {
+    defaultValue: 50
+  }
+}`,...g.parameters?.docs?.source}}};y.parameters={...y.parameters,docs:{...y.parameters?.docs,source:{originalSource:`{
+  args: {
+    defaultValue: 30,
+    disabled: true
+  }
+}`,...y.parameters?.docs?.source}}};b.parameters={...b.parameters,docs:{...b.parameters?.docs,source:{originalSource:`{
+  args: {
+    min: -50,
+    max: 50,
+    defaultValue: 0
+  }
+}`,...b.parameters?.docs?.source}}};h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`{
+  args: {
+    min: 0,
+    max: 100,
+    step: 10,
+    defaultValue: 20
+  }
+}`,...h.parameters?.docs?.source}}};m.parameters={...m.parameters,docs:{...m.parameters?.docs,source:{originalSource:`() => {
+  const [val, setVal] = useState(25);
+  return <Slider value={val} onChange={setVal} />;
+}`,...m.parameters?.docs?.source}}};const $=["Default","Disabled","MinMax","Step","Controlled"],K=Object.freeze(Object.defineProperty({__proto__:null,Controlled:m,Default:g,Disabled:y,MinMax:b,Step:h,__namedExportsOrder:$,default:I},Symbol.toStringTag,{value:"Module"}));export{m as C,y as D,b as M,K as S,h as a};
