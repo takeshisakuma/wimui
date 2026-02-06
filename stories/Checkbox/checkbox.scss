@@ -1,0 +1,93 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+
+.wim-checkbox-wrapper {
+    display: inline-flex;
+    align-items: center; // Align checkbox and label vertically
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    line-height: 1.5;
+
+    &.wim-checkbox--disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+}
+
+.wim-checkbox-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:focus-visible+.wim-checkbox-visual {
+        box-shadow: 0 0 0 2px var(--bg-background), 0 0 0 4px var(--color-primary);
+    }
+}
+
+.wim-checkbox-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-tertiary); // Default border
+    border-radius: spacings.$radius-sm; // Slightly rounded
+    background-color: var(--bg-component);
+    transition: all 0.2s ease-in-out;
+    margin-right: spacings.$spacing-sm;
+    color: var(--text-white); // Icon color
+    flex-shrink: 0;
+
+    // Checked state
+    .wim-checkbox-input:checked+& {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+
+        >* {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    // Indeterminate state (visually similar to checked)
+    .wim-checkbox-input:indeterminate+& {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+
+        >* {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    // Disabled state
+    .wim-checkbox-input:disabled+& {
+        background-color: var(--color-disabled);
+        border-color: var(--color-disabled);
+        color: var(--color-text-on-disabled);
+    }
+
+    // Child element (Icon or mark) - hidden by default
+    >* {
+        opacity: 0;
+        transform: scale(0.5);
+        transition: all 0.2s ease-in-out;
+    }
+}
+
+.wim-checkbox-label {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+// Indeterminate dash
+.wim-checkbox-indeterminate-mark {
+    width: 10px;
+    height: 2px;
+    background-color: currentColor;
+    border-radius: 1px;
+}

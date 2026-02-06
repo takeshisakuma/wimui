@@ -1,0 +1,83 @@
+import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import { Icon } from "../Icon/Icon";
+import "./checkbox.scss";
+
+type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
+    label?: string;
+    indeterminate?: boolean;
+    className?: string;
+};
+
+/**
+ * Checkbox component for boolean user input.
+ */
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+    ({ label, indeterminate = false, className, disabled, ...props }, ref) => {
+        const defaultRef = useRef<HTMLInputElement>(null);
+        const resolvedRef = (ref as React.RefObject<HTMLInputElement>) || defaultRef;
+
+        useEffect(() => {
+            if (resolvedRef.current) {
+                resolvedRef.current.indeterminate = indeterminate;
+            }
+        }, [indeterminate, resolvedRef]);
+
+        return (
+            <label
+                className={[
+                    "wim-checkbox-wrapper",
+                    disabled ? "wim-checkbox--disabled" : "",
+                    className,
+                ]
+                    .filter(Boolean)
+                    .join(" ")}
+            >
+                <input
+                    type="checkbox"
+                    className="wim-checkbox-input"
+                    disabled={disabled}
+                    ref={resolvedRef}
+                    {...props}
+                />
+                <div className="wim-checkbox-visual">
+                    {indeterminate ? (
+                        <div className="wim-checkbox-indeterminate-mark" />
+                    ) : (
+                        <Icon name="CheckIcon" size="small" style={{ color: "currentColor" }} />
+                    )}
+                </div>
+                {label && <span className="wim-checkbox-label">{label}</span>}
+            </label>
+        );
+    }
+);
+
+Checkbox.displayName = "Checkbox";
+
+Checkbox.propTypes = {
+    /**
+     * Label text to display next to the checkbox.
+     */
+    label: PropTypes.string,
+    /**
+     * If true, the checkbox is in an indeterminate state.
+     */
+    indeterminate: PropTypes.bool,
+    /**
+     * Additional class names.
+     */
+    className: PropTypes.string,
+    /**
+     * If true, the checkbox is toggled on.
+     */
+    checked: PropTypes.bool,
+    /**
+     * If true, the checkbox is disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * Function called when state changes.
+     */
+    onChange: PropTypes.func,
+};

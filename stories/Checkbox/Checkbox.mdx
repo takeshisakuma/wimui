@@ -1,0 +1,41 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as CheckboxStories from "./Checkbox.stories";
+
+<Meta of={CheckboxStories} />
+
+<Title />
+<Subtitle>
+  真偽値（ON/OFF）を入力するために使用
+</Subtitle>
+<Description />
+
+## 基本的な使い方
+
+ユーザーに同意を求めたり、オプションを有効化する場合に使用する
+
+<Canvas of={CheckboxStories.Default} />
+
+## 状態
+
+### Checked
+<Canvas of={CheckboxStories.Checked} />
+
+### Indeterminate (不確定)
+親要素が一部のみ選択されている場合などに使用
+
+<Canvas of={CheckboxStories.Indeterminate} />
+
+### Disabled
+<Canvas of={CheckboxStories.Disabled} />
+<Canvas of={CheckboxStories.DisabledChecked} />
+
+<Controls />
