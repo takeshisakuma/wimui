@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as CalendarStories from "./Calendar.stories";
+
+<Meta of={CalendarStories} />
+
+# Calendar
+
+ユーザーが日付を閲覧し、選択するためのカレンダーコンポーネントです。
+
+## 使用例
+
+### デフォルト
+<Canvas of={CalendarStories.Default} />
+
+### 特定の日付を選択
+<Canvas of={CalendarStories.SelectedDate} />
+
+### 無効状態
+<Canvas of={CalendarStories.Disabled} />
+
+## Props
+
+<Controls />
+
+## アクセシビリティ
+
+- ナビゲーションボタンには適切なラベルまたはアイコンが使用されています。
+- 現在の月以外の日は視覚的に区別されています。
+- 選択された日付、および「今日」の日付が強調表示されます。

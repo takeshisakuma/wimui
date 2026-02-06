@@ -1,0 +1,118 @@
+/* ------------------------------------------------------------------
+   Calendar Styles
+   ------------------------------------------------------------------ */
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/effects" as effects;
+
+.wim-calendar {
+    width: 300px;
+    padding: spacings.$spacing-md;
+    background-color: var(--bg-component, #ffffff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-md;
+    font-family: var(--font-family-base);
+    user-select: none;
+
+    &--disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+.wim-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: spacings.$spacing-md;
+}
+
+.wim-calendar-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.wim-calendar-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: spacings.$radius-sm;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover:not(:disabled) {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--text-primary);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+.wim-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: spacings.$spacing-xs;
+}
+
+.wim-calendar-weekday {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+}
+
+.wim-calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0;
+    font-size: 0.9rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: spacings.$radius-sm;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+
+    &:hover:not(:disabled):not(.wim-calendar-day--selected) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &--outside {
+        color: var(--text-disabled);
+    }
+
+    &--today {
+        color: colors.$color-primary;
+        font-weight: bold;
+        border-color: rgba(colors.$color-primary, 0.3);
+    }
+
+    &--selected {
+        background-color: colors.$color-primary;
+        color: #ffffff;
+        font-weight: 600;
+
+        &:hover:not(:disabled) {
+            background-color: colors.$color-primary;
+        }
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
