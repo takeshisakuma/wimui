@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as TimelineStories from "./Timeline.stories";
+
+<Meta title="Components/Timeline" of={TimelineStories} />
+
+# Timeline
+
+時系列のイベントを表示するためのコンポーネントです。
+
+## 基本的な使い方
+
+`Timeline`, `TimelineItem`, `TimelineSeparator`, `TimelinePoint`, `TimelineContent` を組み合わせて使用します。
+
+<Canvas of={TimelineStories.LeftAligned} />
+
+## 交互配置 (Alternate)
+
+`align="alternate"` を指定することで、コンテンツを左右交互に配置できます。
+`TimelineOppositeContent` を使用して、反対側に時間を表示するなどの使い方が可能です。
+
+<Canvas of={TimelineStories.Alternate} />
+
+## アイコン付き
+
+`TimelinePoint` の中に `Icon` を配置することで、状態を視覚的に表現できます。
+
+<Canvas of={TimelineStories.WithIcons} />
+
+## Props
+
+### Timeline
+<Controls of={TimelineStories.LeftAligned} />

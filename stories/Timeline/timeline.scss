@@ -1,0 +1,146 @@
+.wim-timeline {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+    &--left {
+        align-items: flex-start;
+    }
+
+    &--right {
+        align-items: flex-end;
+    }
+
+    &--alternate {
+        align-items: center;
+    }
+}
+
+.wim-timeline-item {
+    display: flex;
+    position: relative;
+    min-height: 70px;
+    width: 100%;
+
+    &--left {
+        flex-direction: row;
+    }
+
+    &--right {
+        flex-direction: row-reverse;
+    }
+
+    &--alternate {
+        &:nth-child(odd) {
+            flex-direction: row;
+
+            .wim-timeline-content {
+                text-align: left;
+            }
+
+            .wim-timeline-opposite-content {
+                text-align: right;
+            }
+        }
+
+        &:nth-child(even) {
+            flex-direction: row-reverse;
+
+            .wim-timeline-content {
+                text-align: right;
+            }
+
+            .wim-timeline-opposite-content {
+                text-align: left;
+            }
+        }
+    }
+}
+
+.wim-timeline-separator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 0;
+}
+
+.wim-timeline-connector {
+    width: 2px;
+    background-color: var(--wim-color-neutral-light, #e0e0e0);
+    flex-grow: 1;
+}
+
+.wim-timeline-point {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--wim-color-neutral, #bdbdbd);
+    margin: 6px 0;
+    z-index: 1;
+
+    &--primary {
+        background-color: var(--wim-color-primary, #007bff);
+    }
+
+    &--secondary {
+        background-color: var(--wim-color-secondary, #6c757d);
+    }
+
+    &--error {
+        background-color: var(--wim-color-error, #dc3545);
+    }
+
+    &--success {
+        background-color: var(--wim-color-success, #28a745);
+    }
+
+    &--icon {
+        width: 24px;
+        height: 24px;
+        background-color: transparent;
+        border: 2px solid var(--wim-color-neutral, #bdbdbd);
+        background-color: #fff;
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        &.wim-timeline-point--primary {
+            border-color: var(--wim-color-primary);
+            color: var(--wim-color-primary);
+        }
+
+        &.wim-timeline-point--secondary {
+            border-color: var(--wim-color-secondary);
+            color: var(--wim-color-secondary);
+        }
+
+        &.wim-timeline-point--error {
+            border-color: var(--wim-color-error);
+            color: var(--wim-color-error);
+        }
+
+        &.wim-timeline-point--success {
+            border-color: var(--wim-color-success);
+            color: var(--wim-color-success);
+        }
+    }
+}
+
+.wim-timeline-content {
+    flex: 1;
+    padding: 0 16px 20px;
+}
+
+.wim-timeline-opposite-content {
+    flex: 1;
+    padding: 0 16px;
+    color: var(--wim-color-gray, #6c757d);
+    font-size: 0.875rem;
+}
