@@ -25,7 +25,7 @@ const meta = {
             options: ["left", "center", "right"],
         },
     },
-} satisfies Meta<typeof Heading>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;

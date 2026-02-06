@@ -20,7 +20,7 @@ const meta: Meta<typeof Video> = {
             options: ["contain", "cover", "fill", "none", "scale-down"],
         },
     },
-} satisfies Meta<typeof Video>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;

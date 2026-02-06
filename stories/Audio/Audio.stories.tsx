@@ -15,7 +15,7 @@ const meta: Meta<typeof Audio> = {
             options: ["none", "small", "medium", "large", "full"],
         },
     },
-} satisfies Meta<typeof Audio>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;

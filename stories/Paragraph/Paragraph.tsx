@@ -45,6 +45,12 @@ export const Paragraph = ({
   const decorationClass = decoration !== "none" ? `wim-paragraph--${decoration}` : "";
   const colorClass = `wim-paragraph--${color}`;
 
+  const innerContent = decoration !== "none" ? (
+    <span className={decorationClass}>{t(content)}</span>
+  ) : (
+    t(content)
+  );
+
   return (
     <p
       className={[
@@ -53,14 +59,14 @@ export const Paragraph = ({
         lineHeightClass,
         weightClass,
         styleClass,
-        decorationClass,
+        // decorationClass, // 削除
         colorClass,
       ]
         .filter(Boolean)
         .join(" ")}
       {...props}
     >
-      {t(content)}
+      {innerContent}
     </p>
   );
 };

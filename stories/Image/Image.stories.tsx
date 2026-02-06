@@ -19,7 +19,7 @@ const meta: Meta<typeof Image> = {
             options: ["contain", "cover", "fill", "none", "scale-down"],
         },
     },
-} satisfies Meta<typeof Image>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
