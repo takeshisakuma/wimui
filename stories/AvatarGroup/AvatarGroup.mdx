@@ -1,0 +1,33 @@
+import { Canvas, Meta, Controls, Title, Primary, Stories } from "@storybook/blocks";
+import * as AvatarGroupStories from "./AvatarGroup.stories";
+
+<Meta of={AvatarGroupStories} />
+
+<Title />
+
+複数の `Avatar` コンポーネントを重ねて表示し、グループ（チームメンバーや参加者など）を表現するためのコンポーネントです。
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## 使用例
+
+### 最大表示数
+`max` Propを使用することで、表示するアバターの数を制限できます。超えた分は「+N」として表示されます。
+
+<Canvas of={AvatarGroupStories.MaxDisplayed} />
+
+### サイズの一括指定
+`AvatarGroup` に `size` を指定することで、子要素の `Avatar` すべてのサイズを統一できます。
+
+<Canvas of={AvatarGroupStories.Sizes} />
+
+### 合計数の指定
+実際の要素数とは別に合計数（`total`）を表示したい場合に使用します。
+
+<Canvas of={AvatarGroupStories.TotalCount} />
+
+<Stories />

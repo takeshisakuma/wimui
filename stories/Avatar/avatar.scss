@@ -1,0 +1,87 @@
+.wim-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    user-select: none;
+    background-color: var(--color-disabled, #e9ecef);
+    color: var(--color-text-on-disabled, #212529);
+    flex-shrink: 0;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__initials {
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: 60%;
+            height: 60%;
+        }
+    }
+
+    // Shapes
+    &--circle {
+        border-radius: 50%;
+    }
+
+    &--rounded {
+        border-radius: 8px;
+    }
+
+    // Sizes
+    &--sm {
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
+    }
+
+    &--md {
+        width: 40px;
+        height: 40px;
+        font-size: 0.875rem;
+    }
+
+    &--lg {
+        width: 48px;
+        height: 48px;
+        font-size: 1.125rem;
+    }
+
+    // Colors
+    &--primary {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-primary);
+    }
+
+    &--secondary {
+        background-color: var(--color-secondary);
+        color: var(--color-text-on-secondary);
+    }
+
+    &--error {
+        background-color: var(--color-destructive);
+        color: var(--color-text-on-destructive);
+    }
+
+    &--success {
+        background-color: var(--color-positive);
+        color: var(--color-text-on-positive);
+    }
+
+    &--neutral {
+        background-color: var(--color-informative);
+        color: var(--color-text-on-informative);
+    }
+}

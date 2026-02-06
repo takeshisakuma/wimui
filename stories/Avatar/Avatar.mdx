@@ -1,0 +1,38 @@
+import { Canvas, Meta, Controls, Title, Primary, Stories } from "@storybook/blocks";
+import * as AvatarStories from "./Avatar.stories";
+
+<Meta of={AvatarStories} />
+
+<Title />
+
+ユーザーのプロフィール画像、イニシャル、またはアイコンを円形や矩形で表示するためのコンポーネントです。画像の読み込みに失敗した際や指定がない場合のフォールバック表示を内蔵しています。
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## 使用例
+
+### サイズ
+`sm`, `md`, `lg` の3つのサイズをサポートしています。
+
+<Canvas of={AvatarStories.Sizes} />
+
+### 形状
+`circle`（円形）と `rounded`（角丸の矩形）を選択できます。
+
+<Canvas of={AvatarStories.Shapes} />
+
+### カラー
+イニシャルやアイコンを表示する際の背景色を指定できます。
+
+<Canvas of={AvatarStories.Colors} />
+
+### フォールバック
+画像URLが不正な場合や、画像がない場合にイニシャルやアイコンを表示します。
+
+<Canvas of={AvatarStories.Fallback} />
+
+<Stories />
