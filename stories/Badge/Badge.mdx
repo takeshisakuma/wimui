@@ -17,7 +17,7 @@ import * as BadgeStories from "./Badge.stories";
 
 ### Destructive
 
-<Canvas of={BadgeStories.Destructive} />
+<Canvas of={BadgeStories.Error} />
 
 ### Outline
 
@@ -26,6 +26,18 @@ import * as BadgeStories from "./Badge.stories";
 ### Secondary
 
 <Canvas of={BadgeStories.Secondary} />
+
+### Icon with Text
+
+`icon` プロパティを使用して、バッジにアイコンを追加できます。
+
+<Canvas of={BadgeStories.WithIcon} />
+
+### Icon Only
+
+`content` プロパティを省略し、`icon` のみを指定することで、アイコンのみのバッジを表示できます。
+
+<Canvas of={BadgeStories.IconOnly} />
 
 ## Props
 

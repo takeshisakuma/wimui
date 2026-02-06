@@ -7,16 +7,36 @@
     line-height: 1;
     white-space: nowrap;
     vertical-align: middle;
+    gap: 0.5em;
+
+    &__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: 1.2em;
+            height: 1.2em;
+        }
+    }
 
     // Sizes
     &--sm {
         padding: 3px 10px;
         font-size: 0.65rem;
+
+        &.wim-badge--icon-only {
+            padding: 3px;
+        }
     }
 
     &--md {
         padding: 6px 14px;
         font-size: 0.75rem;
+
+        &.wim-badge--icon-only {
+            padding: 6px;
+        }
     }
 
     // Colors - Solid

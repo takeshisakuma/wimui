@@ -128,15 +128,14 @@ export const NoLoop: Story = {
 
 export const WithImage: Story = {
     args: {
-        children: [
-            <div key="img1" style={{ width: "100%", height: "300px" }}>
+        children: Array.from({ length: 4 }).map((_, i) => (
+            <div key={`img-${i}`} style={{ width: "100%", height: "300px" }}>
                 <img
                     src={SampleImage}
-                    alt="Sample"
+                    alt={`Sample ${i + 1}`}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
-            </div>,
-            ...slides.slice(0, 3),
-        ],
+            </div>
+        )),
     },
 };
