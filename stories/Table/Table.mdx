@@ -1,0 +1,59 @@
+import { Canvas, Meta, Controls, Primary } from "@storybook/blocks";
+import * as TableStories from "./Table.stories";
+
+<Meta of={TableStories} />
+
+# Table
+
+テーブルコンポーネントは、データを整理して表示するために使用されます。
+
+## 使用例
+
+### 基本的なテーブル
+
+最もシンプルなテーブルの構成です。
+
+<Primary />
+
+<Controls />
+
+### ストライプ
+
+`striped` プロップを使用すると、行が交互に色付けされます。
+
+<Canvas of={TableStories.Striped} />
+
+### ボーダー
+
+`bordered` プロップを使用すると、テーブル全体と各セルにボーダーが表示されます。
+
+<Canvas of={TableStories.Bordered} />
+
+### ホバーエフェクト
+
+`hoverable` プロップを使用すると、マウスオーバーした行が強調表示されます。
+
+<Canvas of={TableStories.Hoverable} />
+
+### フルワイド
+
+`fullWidth` プロップを使用すると、テーブルが親要素の全幅に広がります。
+
+<Canvas of={TableStories.FullWidth} />
+
+### アクション付きのテーブル
+
+セル内にボタンなどのインタラクティブな要素を配置することも可能です。
+
+<Canvas of={TableStories.WithActions} />
+
+## コンパウンドコンポーネント
+
+`Table` は以下のサブコンポーネントで構成されています：
+
+- `Table.Header` (`<thead>`)
+- `Table.Body` (`<tbody>`)
+- `Table.Footer` (`<tfoot>`)
+- `Table.Row` (`<tr>`)
+- `Table.Head` (`<th>`)
+- `Table.Cell` (`<td>`)

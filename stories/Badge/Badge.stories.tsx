@@ -4,6 +4,7 @@ import { Badge } from "./Badge";
 const meta: Meta<typeof Badge> = {
     title: "Component/Data Display/Badge",
     component: Badge,
+    tags: [],
     parameters: {
         layout: "centered",
     },
@@ -26,7 +27,7 @@ export const Secondary: Story = {
     },
 };
 
-export const Error: Story = {
+export const Destructive: Story = {
     args: {
         content: "Error",
         color: "error",
