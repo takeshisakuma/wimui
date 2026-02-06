@@ -1,0 +1,33 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import * as LegendStories from "./Legend.stories";
+
+<Meta of={LegendStories} />
+
+# Legend
+
+`Legend` コンポーネントは、`Fieldset` 内でグループのタイトルを表示するために使用されます。
+
+## 使い方
+
+```tsx
+import { Fieldset, Legend } from "wimui";
+
+<Fieldset>
+    <Legend>グループのタイトル</Legend>
+    {/* フォーム要素 */}
+</Fieldset>
+```
+
+## ストーリー
+
+### デフォルト
+
+<Canvas of={LegendStories.Default} />
+
+### 長いテキスト
+
+<Canvas of={LegendStories.LongText} />
+
+## コンポーネントのプロパティ
+
+<Controls />

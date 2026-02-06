@@ -1,0 +1,17 @@
+.wim-legend {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    padding: 0 4px;
+    margin-bottom: 8px;
+    display: table;
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ブラウザのデフォルトスタイルを上書きして配置を制御しやすくする */
+fieldset>.wim-legend {
+    float: none;
+    width: auto;
+}
