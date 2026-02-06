@@ -1,0 +1,66 @@
+/* ------------------------------------------------------------------
+   Dropdown Styles
+------------------------------------------------------------------ */
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/effects" as effects;
+
+.wim-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.wim-dropdown-trigger {
+    cursor: pointer;
+    display: inline-flex;
+}
+
+.wim-dropdown-menu {
+    position: absolute;
+    top: calc(100% + #{spacings.$spacing-xs});
+    min-width: 200px;
+    background-color: var(--bg-component, #ffffff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-lg;
+    padding: spacings.$spacing-xs 0;
+    z-index: 1000;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+    &--align-left {
+        left: 0;
+    }
+
+    &--align-right {
+        right: 0;
+    }
+}
+
+.wim-dropdown-item {
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    transition: background-color 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    text-decoration: none; // For when items are links
+
+    &:hover:not(.wim-dropdown-item--disabled) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &--disabled {
+        color: var(--text-disabled);
+        cursor: not-allowed;
+        background-color: transparent;
+        opacity: 0.6;
+    }
+
+    // Support for icons inside items
+    svg {
+        margin-right: spacings.$spacing-sm;
+    }
+}
