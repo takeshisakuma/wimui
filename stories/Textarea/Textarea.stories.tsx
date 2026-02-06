@@ -86,21 +86,21 @@ export const WithLabelAndError: Story = {
 };
 
 export const FormPattern: Story = {
-    render: () => (
+    render: (args) => (
         <div style={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "500px" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 <Label htmlFor="description" required label="自己紹介" />
-                <Textarea id="description" placeholder="詳細は..." rows={3} fullWidth />
+                <Textarea id="description" {...args} placeholder="詳細は..." rows={3} fullWidth />
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 <Label htmlFor="notes" label="備考" showOptional />
-                <Textarea id="notes" placeholder="その他連絡事項があれば..." rows={2} fullWidth />
+                <Textarea id="notes" {...args} placeholder="その他連絡事項があれば..." rows={2} fullWidth />
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
                 <Label htmlFor="feedback" required label="フィードバック">
-                    <Textarea id="feedback" state="error" defaultValue="短すぎます" rows={3} fullWidth />
+                    <Textarea id="feedback" {...args} state="error" defaultValue="短すぎます" rows={3} fullWidth />
                 </Label>
                 <FieldError content="10文字以上で入力してください。" />
             </div>

@@ -11,8 +11,11 @@ export default meta;
 type Story = StoryObj<typeof Timeline>;
 
 export const LeftAligned: Story = {
+    args: {
+        align: 'left',
+    },
     render: (args) => (
-        <Timeline {...args} align="left">
+        <Timeline {...args}>
             <TimelineItem>
                 <TimelineSeparator>
                     <TimelinePoint variant="primary" />
@@ -45,8 +48,11 @@ export const LeftAligned: Story = {
 };
 
 export const Alternate: Story = {
+    args: {
+        align: 'alternate',
+    },
     render: (args) => (
-        <Timeline {...args} align="alternate">
+        <Timeline {...args}>
             <TimelineItem>
                 <TimelineOppositeContent>09:00 AM</TimelineOppositeContent>
                 <TimelineSeparator>

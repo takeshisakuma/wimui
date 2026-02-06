@@ -1,0 +1,39 @@
+import { Meta, Primary, Controls, Canvas } from "@storybook/blocks";
+import * as RatingStories from "./Rating.stories";
+
+<Meta of={RatingStories} />
+
+# Rating
+
+評価（レーティング）を表示・入力するためのコンポーネントです。
+
+## 使用方法
+
+```tsx
+import { Rating } from "./Rating";
+
+const Example = () => {
+  return <Rating defaultValue={3} onChange={(val) => console.log(val)} />;
+};
+```
+
+## Props
+
+<Controls />
+
+## バリエーション
+
+### ハーフスター許可
+`allowHalf` プロップを使用することで、0.5単位での評価が可能になります。
+
+<Canvas of={RatingStories.AllowHalf} />
+
+### サイズ
+`small`, `medium`, `large` の3つのサイズをサポートしています。
+
+<Canvas of={RatingStories.Sizes} />
+
+### 無効化（読み取り専用）
+`disabled` プロップを使用することで、値を変更できない読み取り専用モードになります。
+
+<Canvas of={RatingStories.Disabled} />

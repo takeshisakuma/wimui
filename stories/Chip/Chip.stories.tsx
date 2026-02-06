@@ -75,11 +75,11 @@ export const Selected: Story = {
 };
 
 export const Variants: Story = {
-    render: () => (
+    render: (args) => (
         <div style={{ display: "flex", gap: "10px" }}>
-            <Chip label="Solid" variant="solid" onClick={() => { }} />
-            <Chip label="Outline" variant="outline" onClick={() => { }} />
-            <Chip label="Selected" variant="outline" selected onClick={() => { }} />
+            <Chip {...args} label="Solid" variant="solid" onClick={() => { }} />
+            <Chip {...args} label="Outline" variant="outline" onClick={() => { }} />
+            <Chip {...args} label="Selected" variant="outline" selected onClick={() => { }} />
         </div>
     ),
 };

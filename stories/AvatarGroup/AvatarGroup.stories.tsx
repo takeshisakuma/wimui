@@ -44,19 +44,19 @@ export const MaxDisplayed: Story = {
 };
 
 export const Sizes: Story = {
-    render: () => (
+    render: (args) => (
         <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-            <AvatarGroup size="sm">
+            <AvatarGroup {...args} size="sm">
                 {users.map((u, i) => (
                     <Avatar key={i} initials={u.initials} color="primary" />
                 ))}
             </AvatarGroup>
-            <AvatarGroup size="md">
+            <AvatarGroup {...args} size="md">
                 {users.map((u, i) => (
                     <Avatar key={i} initials={u.initials} color="secondary" />
                 ))}
             </AvatarGroup>
-            <AvatarGroup size="lg">
+            <AvatarGroup {...args} size="lg">
                 {users.map((u, i) => (
                     <Avatar key={i} initials={u.initials} color="neutral" />
                 ))}

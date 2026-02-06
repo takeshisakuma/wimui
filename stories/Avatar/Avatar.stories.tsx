@@ -41,20 +41,20 @@ export const Initials: Story = {
 };
 
 export const Sizes: Story = {
-    render: () => (
+    render: (args) => (
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-            <Avatar size="sm" initials="SM" color="neutral" />
-            <Avatar size="md" initials="MD" color="neutral" />
-            <Avatar size="lg" initials="LG" color="neutral" />
+            <Avatar {...args} size="sm" initials="SM" color="neutral" />
+            <Avatar {...args} size="md" initials="MD" color="neutral" />
+            <Avatar {...args} size="lg" initials="LG" color="neutral" />
         </div>
     ),
 };
 
 export const Shapes: Story = {
-    render: () => (
+    render: (args) => (
         <div style={{ display: "flex", gap: "16px" }}>
-            <Avatar shape="circle" initials="C" color="secondary" />
-            <Avatar shape="rounded" initials="R" color="secondary" />
+            <Avatar {...args} shape="circle" initials="C" color="secondary" />
+            <Avatar {...args} shape="rounded" initials="R" color="secondary" />
         </div>
     ),
 };
@@ -67,13 +67,13 @@ export const Fallback: Story = {
 };
 
 export const Colors: Story = {
-    render: () => (
+    render: (args) => (
         <div style={{ display: "flex", gap: "16px" }}>
-            <Avatar initials="P" color="primary" />
-            <Avatar initials="S" color="secondary" />
-            <Avatar initials="N" color="neutral" />
-            <Avatar initials="E" color="error" />
-            <Avatar initials="SU" color="success" />
+            <Avatar {...args} initials="P" color="primary" />
+            <Avatar {...args} initials="S" color="secondary" />
+            <Avatar {...args} initials="N" color="neutral" />
+            <Avatar {...args} initials="E" color="error" />
+            <Avatar {...args} initials="SU" color="success" />
         </div>
     ),
 };

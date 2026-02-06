@@ -23,6 +23,7 @@ import CheckIcon from "../../src/icon/check.svg?react";
 import UploadIcon from "../../src/icon/upload.svg?react";
 import MaximizeIcon from "../../src/icon/maximize.svg?react";
 import MinimizeIcon from "../../src/icon/minimize.svg?react";
+import StarIcon from "../../src/icon/star.svg?react";
 
 
 // アイコン名をコンポーネントにマッピング
@@ -47,6 +48,7 @@ const icons = {
   UploadIcon: UploadIcon,
   MaximizeIcon: MaximizeIcon,
   MinimizeIcon: MinimizeIcon,
+  StarIcon: StarIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -70,7 +72,8 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "CheckIcon"
   | "UploadIcon"
   | "MaximizeIcon"
-  | "MinimizeIcon";
+  | "MinimizeIcon"
+  | "StarIcon";
   size?: "small" | "medium" | "large";
   color?:
   | "destructive"
@@ -130,6 +133,7 @@ Icon.propTypes = {
     "UploadIcon",
     "MaximizeIcon",
     "MinimizeIcon",
+    "StarIcon",
   ]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   color: PropTypes.oneOf([

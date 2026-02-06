@@ -38,33 +38,33 @@ export const Default: Story = {
 };
 
 export const Variants: Story = {
-    render: () => (
+    render: (args) => (
         <div style={{ display: "flex", gap: "10px" }}>
-            <Tag variant="solid">Solid</Tag>
-            <Tag variant="outline">Outline</Tag>
-            <Tag variant="subtle">Subtle</Tag>
+            <Tag {...args} variant="solid">Solid</Tag>
+            <Tag {...args} variant="outline">Outline</Tag>
+            <Tag {...args} variant="subtle">Subtle</Tag>
         </div>
     ),
 };
 
 export const Colors: Story = {
-    render: () => (
+    render: (args) => (
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-            <Tag color="primary">Primary</Tag>
-            <Tag color="secondary">Secondary</Tag>
-            <Tag color="success">Success</Tag>
-            <Tag color="warning">Warning</Tag>
-            <Tag color="error">Error</Tag>
-            <Tag color="neutral">Neutral</Tag>
+            <Tag {...args} color="primary">Primary</Tag>
+            <Tag {...args} color="secondary">Secondary</Tag>
+            <Tag {...args} color="success">Success</Tag>
+            <Tag {...args} color="warning">Warning</Tag>
+            <Tag {...args} color="error">Error</Tag>
+            <Tag {...args} color="neutral">Neutral</Tag>
         </div>
     ),
 };
 
 export const Sizes: Story = {
-    render: () => (
+    render: (args) => (
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <Tag size="small">Small Tag</Tag>
-            <Tag size="medium">Medium Tag</Tag>
+            <Tag {...args} size="small">Small Tag</Tag>
+            <Tag {...args} size="medium">Medium Tag</Tag>
         </div>
     ),
 };

@@ -15,8 +15,8 @@ export default meta;
 type Story = StoryObj<typeof Dropdown>;
 
 export const Basic: Story = {
-    render: () => (
-        <Dropdown>
+    render: (args) => (
+        <Dropdown {...args}>
             <DropdownTrigger>
                 <Button label="Open Menu" />
             </DropdownTrigger>
@@ -30,8 +30,8 @@ export const Basic: Story = {
 };
 
 export const WithIcons: Story = {
-    render: () => (
-        <Dropdown>
+    render: (args) => (
+        <Dropdown {...args}>
             <DropdownTrigger>
                 <Button priority="secondary" label="Options" />
             </DropdownTrigger>
@@ -51,9 +51,9 @@ export const WithIcons: Story = {
 };
 
 export const AlignmentRight: Story = {
-    render: () => (
+    render: (args) => (
         <div style={{ paddingLeft: "200px" }}>
-            <Dropdown>
+            <Dropdown {...args}>
                 <DropdownTrigger>
                     <Button label="Right Aligned" />
                 </DropdownTrigger>
