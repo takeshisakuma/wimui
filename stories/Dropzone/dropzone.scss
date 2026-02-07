@@ -1,0 +1,90 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/typography" as typography;
+@use "../../src/tokens/effects" as effects;
+
+.wim-dropzone-container {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$spacing-xs;
+    font-family: inherit;
+    width: 100%;
+}
+
+.wim-dropzone__label {
+    font-size: typography.$size-small;
+    font-weight: typography.$weight-medium;
+    color: colors.$text-deepgray;
+}
+
+.wim-dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: spacings.$spacing-xl spacings.$spacing-lg;
+    border: 2px dashed var(--wim-color-border);
+    border-radius: 8px;
+    background-color: var(--bg-app);
+    cursor: pointer;
+    transition: effects.$transition-base;
+    min-height: 160px;
+    text-align: center;
+
+    &:hover:not(&--disabled) {
+        border-color: var(--color-primary);
+        background-color: rgba(0, 0, 0, 0.02);
+    }
+
+    &--dragging {
+        border-color: var(--color-primary);
+        background-color: rgba(0, 0, 0, 0.05);
+        transform: scale(1.01);
+    }
+
+    &--disabled {
+        cursor: not-allowed;
+        background-color: var(--color-disabled);
+        border-color: var(--color-disabled);
+        opacity: 0.6;
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: spacings.$spacing-sm;
+    }
+
+    &__icon {
+        margin-bottom: spacings.$spacing-xs;
+    }
+
+    &__description {
+        font-size: typography.$size-medium;
+        color: var(--text-tertiary);
+        margin: 0;
+    }
+
+    &__file-list {
+        margin-top: spacings.$spacing-md;
+        display: flex;
+        flex-direction: column;
+        gap: spacings.$spacing-xs;
+        width: 100%;
+    }
+
+    &__file-name {
+        font-size: typography.$size-small;
+        color: var(--text-secondary);
+        background-color: var(--bg-component);
+        padding: spacings.$spacing-xs spacings.$spacing-sm;
+        border-radius: 4px;
+        border: 1px solid var(--wim-color-border-secondary);
+        word-break: break-all;
+    }
+}

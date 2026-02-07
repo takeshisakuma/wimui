@@ -1,0 +1,38 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as DropzoneStories from "./Dropzone.stories";
+
+<Meta of={DropzoneStories} />
+
+# Dropzone
+
+ドラッグ＆ドロップによるファイルアップロードをサポートするコンポーネントです。
+
+## 使用例
+
+### 基本
+
+最もシンプルな形式です。
+
+<Canvas of={DropzoneStories.Default} />
+
+### 複数ファイルのアップロード
+
+`multiple` プロパティを `true` に設定することで、複数のファイルを選択・ドロップできるようになります。
+
+<Canvas of={DropzoneStories.Multiple} />
+
+### 受け付けるファイル形式の制限
+
+`accept` プロパティを使用して、アップロード可能なファイル形式を制限できます。
+
+<Canvas of={DropzoneStories.AcceptImages} />
+
+### 無効状態
+
+`disabled` プロパティを `true` に設定すると、コンポーネントが操作不能になります。
+
+<Canvas of={DropzoneStories.Disabled} />
+
+## Props
+
+<Controls />
