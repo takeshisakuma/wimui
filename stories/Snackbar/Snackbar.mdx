@@ -1,0 +1,81 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as SnackbarStories from "./Snackbar.stories";
+
+<Meta title="Component/Feedback/Snackbar" of={SnackbarStories} />
+
+# Snackbar
+
+スナックバーは、ユーザーに短いメッセージを通知するために使用されます。通常、画面の下部に表示され、アクションボタンを含めることができます。トーストよりも目立たない、一時的な通知に適しています。
+
+## 基本的な使い方
+
+メッセージを指定して表示します。
+
+<Canvas of={SnackbarStories.Default} />
+
+## アクション付き
+
+アクションボタン（例：「元に戻す」など）を含めることができます。
+
+<Canvas of={SnackbarStories.WithAction} />
+
+## 閉じるボタン付き
+
+自動で閉じないように設定し、ユーザーが手動で閉じることができるようにします。
+
+<Canvas of={SnackbarStories.WithCloseButton} />
+
+## バリエーション
+
+`variant` プロパティを使用して、状態（成功、エラーなど）に応じたスタイルを適用できます。
+
+### Success
+<Canvas of={SnackbarStories.Success} />
+
+### Error
+<Canvas of={SnackbarStories.Error} />
+
+### Warning
+<Canvas of={SnackbarStories.Warning} />
+
+### Info
+<Canvas of={SnackbarStories.Info} />
+
+### Interactive Demo
+実際に動作を確認できます。
+
+<Canvas of={SnackbarStories.InteractiveDemo} />
+
+---
+
+## 便利な使い方 (Provider & Hook)
+
+`SnackbarProvider` と `useSnackbar` フックを使用すると、アプリケーションのどこからでも簡単にスナックバーを表示できます。
+
+```tsx
+import { SnackbarProvider, useSnackbar } from './Snackbar';
+
+const App = () => (
+  <SnackbarProvider>
+    <MyComponent />
+  </SnackbarProvider>
+);
+
+const MyComponent = () => {
+  const { showMessage } = useSnackbar();
+
+  return (
+    <button onClick={() => showMessage({ 
+      message: "保存されました", 
+      variant: "success",
+      actionLabel: "閉じる"
+    })}>
+      スナックバーを表示
+    </button>
+  );
+};
+```
+
+## Props
+
+<Controls />
