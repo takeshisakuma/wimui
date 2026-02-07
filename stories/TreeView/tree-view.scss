@@ -1,0 +1,151 @@
+@use "../../src/tokens/semantic-colors" as *;
+@use "../../src/tokens/spacings" as *;
+@use "../../src/tokens/effects" as *;
+
+.wim-tree-view {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-2xl);
+    gap: var(--spacing-2xs);
+    width: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--wim-color-border-secondary);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wim-tree-item {
+    display: flex;
+    flex-direction: column;
+    outline: none;
+    border-radius: var(--radius-md);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &__content {
+        display: flex;
+        align-items: center;
+        padding: var(--spacing-md) var(--spacing-lg);
+        cursor: pointer;
+        border-radius: var(--radius-md);
+        transition: background 0.2s ease;
+        gap: var(--spacing-md);
+        user-select: none;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    &--selected>&__content {
+        background: var(--color-primary);
+        color: var(--color-text-on-primary);
+
+        &:hover {
+            background: var(--color-primary);
+            opacity: 0.9;
+        }
+
+        .wim-tree-item__chevron {
+            color: var(--color-text-on-primary);
+        }
+    }
+
+    &--disabled {
+        pointer-events: none;
+        opacity: 0.5;
+
+        .wim-tree-item__content {
+            color: var(--text-disabled);
+        }
+    }
+
+    &:focus-visible>&__content {
+        outline: 2px solid var(--color-primary);
+        outline-offset: -2px;
+    }
+
+    &__toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        transition: background 0.2s ease;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &__chevron {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        color: var(--text-tertiary);
+
+        &--open {
+            transform: rotate(90deg);
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+    }
+
+    &--selected>&__content &__icon {
+        color: var(--color-text-on-primary);
+    }
+
+    &__label {
+        flex: 1;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__children-wrapper {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+
+        &--open {
+            grid-template-rows: 1fr;
+        }
+    }
+
+    &__children {
+        padding-left: 20px;
+        margin-top: 2px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-height: 0; // Necessary for grid-template-rows 0fr -> 1fr animation
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        transform: translateX(-10px);
+        opacity: 0;
+    }
+
+    &__children-wrapper--open &__children {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Glassmorphism adjustment for dark mode if needed */
+@media (prefers-color-scheme: dark) {
+    .wim-tree-view {
+        background: rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .wim-tree-item__content:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}

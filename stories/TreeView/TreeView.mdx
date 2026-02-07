@@ -1,0 +1,59 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import * as TreeViewStories from "./TreeView.stories";
+
+<Meta title="Component/Data Display/TreeView" of={TreeViewStories} />
+
+# TreeView
+
+`TreeView` は、階層構造を持つデータを表示するためのコンポーネントです。
+
+## 特徴
+- 展開・折りたたみ機能
+- 単一・複数選択
+- キーボードナビゲーション対応
+- アイコンのカスタマイズ
+- グラスモーフィズムを採用したモダンなデザイン
+
+## 使用方法
+
+```tsx
+import { TreeView } from "./TreeView";
+import { Icon } from "../Icon/Icon";
+
+const MyTree = () => (
+    <TreeView defaultExpandedValues={["root"]}>
+        <TreeView.Item value="root" label="Documents" icon={<Icon name="CircleIcon" />}>
+            <TreeView.Item value="child1" label="Work" />
+            <TreeView.Item value="child2" label="Personal" />
+        </TreeView.Item>
+    </TreeView>
+);
+```
+
+## キャンバス
+
+<Canvas of={TreeViewStories.Default} />
+
+## コンポーネント API
+
+### TreeView
+| プロパティ | 型 | デフォルト | 説明 |
+| :--- | :--- | :--- | :--- |
+| `width` | `string \| number` | - | コンテナの横幅。変更時にアニメーションします。 |
+| `multiSelect` | `boolean` | `false` | 複数選択モード。 |
+| `defaultExpandedValues` | `string[]` | `[]` | 初期状態で展開されている項目の値。 |
+| `defaultSelectedValues` | `string[]` | `[]` | 初期状態で選択されている項目の値。 |
+
+### TreeView.Item
+| プロパティ | 型 | デフォルト | 説明 |
+| :--- | :--- | :--- | :--- |
+| `value` | `string` | - | 必須。一意の識別子。 |
+| `label` | `ReactNode` | - | 必須。表示するラベル。 |
+| `icon` | `ReactNode` | - | ラベルの左に表示するアイコン。 |
+| `disabled` | `boolean` | `false` | 無効化状態。 |
+| `children` | `ReactNode` | - | 子ノード。 |
+
+## キーボード操作
+- `Enter` / `Space`: 選択
+- `ArrowRight`: 展開（子がある場合）
+- `ArrowLeft`: 閉じる（展開されている場合）
