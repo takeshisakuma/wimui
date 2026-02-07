@@ -1,0 +1,54 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as AlertStories from "./Alert.stories";
+
+<Meta of={AlertStories} />
+
+# Alert
+
+アラートコンポーネントは、ユーザーに重要な情報、警告、成功メッセージ、またはエラーを伝えるために使用されます。
+
+## 基本的な使い方
+
+最も一般的な使い方は、タイトルと説明文を表示することです。
+
+<Canvas of={AlertStories.Info} />
+
+## バリエーション
+
+`variant` プロパティを使用して、情報の種類に応じたスタイルを選択できます。
+
+### Success
+
+アクションが成功したことを示します。
+
+<Canvas of={AlertStories.Success} />
+
+### Warning
+
+注意が必要な事項を示します。
+
+<Canvas of={AlertStories.Warning} />
+
+### Error
+
+問題が発生したことを示します。
+
+<Canvas of={AlertStories.Error} />
+
+## カスタマイズ
+
+### タイトルなし
+
+説明文のみを表示することも可能です。
+
+<Canvas of={AlertStories.WithoutTitle} />
+
+### 閉じるボタン
+
+`onClose` プロパティを指定することで、アラートを閉じるためのボタンを表示できます。
+
+<Canvas of={AlertStories.WithCloseButton} />
+
+## Props
+
+<Controls />
