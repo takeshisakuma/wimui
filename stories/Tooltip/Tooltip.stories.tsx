@@ -3,7 +3,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from "./Tooltip";
 import { Button } from "../Button/Button"; // Assuming Button exists
 
 const meta: Meta<typeof Tooltip> = {
-    title: "Components/Overlays/Tooltip",
+    title: "Component/Overlays/Tooltip",
     component: Tooltip,
     parameters: {
         layout: "centered",
