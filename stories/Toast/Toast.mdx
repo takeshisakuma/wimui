@@ -1,0 +1,80 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as ToastStories from "./Toast.stories";
+
+<Meta title="Component/Feedback/Toast" of={ToastStories} />
+
+# Toast
+
+トーストコンポーネントは、ユーザーに短い通知やフィードバックを伝えるために使用されます。通常、画面の隅に表示され、一定時間後に自動的に消えます。
+
+## 基本的な使い方
+
+トーストは、タイトル、説明文、およびバリアント（info, success, warning, error）を組み合わせて使用します。
+
+<Canvas of={ToastStories.Default} />
+
+## トーストシステムの使用方法
+
+実際にトーストを表示するには、`ToastProvider` でアプリケーションをラップし、`useToast` フックを使用することをお勧めします。
+
+```tsx
+import { ToastProvider, useToast } from './Toast';
+
+const App = () => (
+  <ToastProvider position="bottom-right">
+    <MyComponent />
+  </ToastProvider>
+);
+
+const MyComponent = () => {
+  const { show } = useToast();
+
+  return (
+    <button onClick={() => show({ 
+      title: "保存完了", 
+      description: "データが正常に保存されました。", 
+      variant: "success" 
+    })}>
+      トーストを表示
+    </button>
+  );
+};
+```
+
+### インタラクティブな例
+
+以下の例では、実際にトーストを表示して動作を確認できます。
+
+<Canvas of={ToastStories.Interactive} />
+
+## バリエーション
+
+`variant` プロパティを使用して、通知の種類に応じたスタイルを選択できます。
+
+### Info
+
+<Canvas of={ToastStories.Info} />
+
+### Success
+
+<Canvas of={ToastStories.Success} />
+
+### Warning
+
+<Canvas of={ToastStories.Warning} />
+
+### Error
+
+<Canvas of={ToastStories.Error} />
+
+## Props
+
+### Toast Props
+<Controls />
+
+### ToastProvider Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `children` | `ReactNode` | - | プロバイダーの下に配置される要素 |
+| `position` | `ToastPosition` | `"top-right"` | トーストの表示位置 (`top-right`, `top-left`, `top-center`, `bottom-right`, `bottom-left`, `bottom-center`) |
+| `duration` | `number` | `3000` | トーストが表示される時間（ミリ秒） |

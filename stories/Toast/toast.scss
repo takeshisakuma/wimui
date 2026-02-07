@@ -1,0 +1,209 @@
+@use "../../src/tokens/semantic-colors" as *;
+@use "../../src/tokens/spacings" as *;
+@use "../../src/tokens/effects" as *;
+
+.wim-toast-container {
+    position: fixed;
+    z-index: 9999;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    pointer-events: none;
+
+    &--top-right {
+        top: 0;
+        right: 0;
+    }
+
+    &--top-left {
+        top: 0;
+        left: 0;
+    }
+
+    &--top-center {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &--bottom-right {
+        bottom: 0;
+        right: 0;
+    }
+
+    &--bottom-left {
+        bottom: 0;
+        left: 0;
+    }
+
+    &--bottom-center {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.wim-toast {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    min-width: 300px;
+    max-width: 450px;
+    border-radius: var(--radius-lg);
+    border: 1px solid transparent;
+    pointer-events: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-lg);
+
+    // Glassmorphism effect
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    // Initial state for animation
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+
+    &--visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    &__icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        font-size: 1.25rem;
+    }
+
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__title {
+        font-weight: 600;
+        font-size: 0.875rem;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    &__description {
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        margin: 0;
+        opacity: 0.8;
+
+        .wim-toast__title+& {
+            margin-top: var(--spacing-sm);
+        }
+    }
+
+    &__close {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        margin: -4px -4px 0 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        color: inherit;
+        opacity: 0.5;
+        transition: all 0.2s ease;
+
+        &:hover {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        &:active {
+            transform: scale(0.9);
+        }
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    // Variants
+    &--info {
+        border-color: rgba(59, 130, 246, 0.3);
+        color: #1e40af;
+
+        .wim-toast__icon {
+            color: #3b82f6;
+        }
+    }
+
+    &--success {
+        border-color: rgba(34, 197, 94, 0.3);
+        color: #166534;
+
+        .wim-toast__icon {
+            color: #22c55e;
+        }
+    }
+
+    &--warning {
+        border-color: rgba(234, 179, 8, 0.3);
+        color: #854d0e;
+
+        .wim-toast__icon {
+            color: #eab308;
+        }
+    }
+
+    &--error {
+        border-color: rgba(239, 68, 68, 0.3);
+        color: #991b1b;
+
+        .wim-toast__icon {
+            color: #ef4448;
+        }
+    }
+
+    // Dark Mode Support
+    @media (prefers-color-scheme: dark) {
+        background: rgba(30, 30, 30, 0.8);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+
+        &--info {
+            background: rgba(30, 58, 138, 0.8);
+            border-color: rgba(59, 130, 246, 0.4);
+            color: #dbeafe;
+        }
+
+        &--success {
+            background: rgba(20, 83, 45, 0.8);
+            border-color: rgba(34, 197, 94, 0.4);
+            color: #dcfce7;
+        }
+
+        &--warning {
+            background: rgba(113, 63, 18, 0.8);
+            border-color: rgba(234, 179, 8, 0.4);
+            color: #fef9c3;
+        }
+
+        &--error {
+            background: rgba(127, 29, 29, 0.8);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #fee2e2;
+        }
+
+        &__close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    }
+}
