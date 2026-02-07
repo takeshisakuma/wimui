@@ -1,0 +1,46 @@
+import { Canvas, Meta, Story, Controls } from "@storybook/blocks";
+import * as PopoverStories from "./Popover.stories";
+import { Popover, PopoverContent, PopoverTrigger, PopoverClose } from "./Popover";
+
+<Meta of={PopoverStories} />
+
+# Popover
+
+ボタンクリックでトリガーされ、リッチコンテンツをオーバーレイ表示します。
+
+**Note:** `Dialog`コンポーネントと同様にUIをシンプルに保つため、デフォルトでは右上の閉じるボタンを配置していません。ポップオーバーはコンテンツエリア外のクリックやEscapeキーで簡単に閉じることができます。明示的な閉じるアクションが必要な場合は、コンテンツエリア内にボタンを追加してください。
+
+## Usage
+
+```tsx
+import { Popover, PopoverContent, PopoverTrigger, PopoverClose } from "./Popover";
+
+<Popover>
+  <PopoverTrigger>Open</PopoverTrigger>
+  <PopoverContent>
+    Place content for the popover here.
+  </PopoverContent>
+</Popover>
+```
+
+## Examples
+
+### Default
+
+<Canvas of={PopoverStories.Default} />
+
+### Interactive
+
+<Canvas of={PopoverStories.Interactive} />
+
+### Alignment
+
+<Canvas of={PopoverStories.Alignment} />
+
+### Placement
+
+<Canvas of={PopoverStories.Placement} />
+
+## API
+
+<Controls />
