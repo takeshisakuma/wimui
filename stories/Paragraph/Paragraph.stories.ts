@@ -2,7 +2,7 @@ import { fn } from "storybook/test";
 import { Paragraph } from "./Paragraph";
 
 export default {
-  title: "Component/Typography/Paragraph", //左メニューの表示
+  title: "Component/General/Paragraph", //左メニューの表示
   component: Paragraph,
   parameters: {
     layout: "centered",

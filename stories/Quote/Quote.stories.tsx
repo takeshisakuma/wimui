@@ -2,7 +2,7 @@ import React from "react";
 import { Quote } from "./Quote";
 
 export default {
-    title: "Component/Typography/Quote",
+    title: "Component/General/Quote",
     component: Quote,
     parameters: {
         layout: "centered",

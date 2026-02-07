@@ -3,7 +3,7 @@ import { CheckboxGroup } from "./CheckboxGroup";
 import { useState } from "react";
 
 const meta: Meta<typeof CheckboxGroup> = {
-    title: "Component/Forms/CheckboxGroup",
+    title: "Component/Data Entry/CheckboxGroup",
     component: CheckboxGroup,
     // tags: ["autodocs"],
     argTypes: {

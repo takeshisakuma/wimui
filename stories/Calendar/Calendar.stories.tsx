@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Calendar } from "./Calendar";
 
 const meta: Meta<typeof Calendar> = {
-    title: "Component/Forms/Calendar",
+    title: "Component/Data Entry/Calendar",
     component: Calendar,
     parameters: {
         layout: "centered",

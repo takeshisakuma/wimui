@@ -4,7 +4,7 @@ import { ColorPicker } from "./ColorPicker";
 import { Label } from "../Label/Label";
 
 const meta: Meta<typeof ColorPicker> = {
-    title: "Component/Forms/ColorPicker",
+    title: "Component/Data Entry/ColorPicker",
     component: ColorPicker,
     parameters: {
         layout: "centered",

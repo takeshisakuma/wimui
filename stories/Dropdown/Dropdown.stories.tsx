@@ -4,7 +4,7 @@ import { Button } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
 
 const meta: Meta<typeof Dropdown> = {
-    title: "Component/Forms/Dropdown",
+    title: "Component/Data Entry/Dropdown",
     component: Dropdown,
     parameters: {
         layout: "centered",

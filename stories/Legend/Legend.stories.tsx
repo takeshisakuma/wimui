@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Legend } from "./Legend";
 
 const meta: Meta<typeof Legend> = {
-    title: "Component/Forms/Legend",
+    title: "Component/Data Entry/Legend",
     component: Legend,
     parameters: {
         layout: "padded",

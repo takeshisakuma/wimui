@@ -3,7 +3,7 @@ import { OtpInput } from "./OtpInput";
 import { useState } from "react";
 
 const meta: Meta<typeof OtpInput> = {
-    title: "Component/Forms/OtpInput",
+    title: "Component/Data Entry/OtpInput",
     component: OtpInput,
     argTypes: {
         onChange: { action: "changed" },

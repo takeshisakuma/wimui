@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Radio } from "./Radio";
 
 const meta: Meta<typeof Radio> = {
-    title: "Component/Forms/Radio",
+    title: "Component/Data Entry/Radio",
     component: Radio,
     argTypes: {
         checked: { control: "boolean" },
