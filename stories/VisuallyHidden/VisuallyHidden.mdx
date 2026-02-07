@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as VisuallyHiddenStories from "./VisuallyHidden.stories";
+
+<Meta of={VisuallyHiddenStories} />
+
+# VisuallyHidden
+
+`VisuallyHidden` は、視覚的にはコンテンツを非表示にしつつ、スクリーンリーダーなどの補助技術にはその情報を伝えたい場合に使用するユーティリティコンポーネントです。
+
+## 基本的な使い方
+
+このコンポーネントで囲まれた内容は、画面上には表示されませんが、HTML構造としては存在し続けます。
+
+<Canvas of={VisuallyHiddenStories.Primary} />
+
+## ユースケース
+
+### ボタンのアクセシブルなラベル
+
+アイコンのみのボタンなど、視覚的に意味が伝わるものの、テキストラベルが必要な場合に使用します。
+
+<Canvas of={VisuallyHiddenStories.WithinButton} />
+
+## Props
+
+<Controls />
