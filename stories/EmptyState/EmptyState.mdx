@@ -1,0 +1,33 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as EmptyStateStories from "./EmptyState.stories";
+
+<Meta of={EmptyStateStories} />
+
+# EmptyState
+
+データが空の場合や、検索結果がない場合、初期状態のプレースホルダーとして使用されるコンポーネントです。
+ユーザーに現在の状況を伝え、次のアクションを促すために使用します。
+
+## 基本的な使い方
+
+アイコン、タイトル、説明文、およびアクションボタンを組み合わせて表示します。
+
+<Canvas of={EmptyStateStories.Default} />
+
+## バリエーション
+
+### Simple
+
+枠線や背景色を排除した、よりシンプルなデザインです。
+
+<Canvas of={EmptyStateStories.Simple} />
+
+### Icons and Actions
+
+アイコンのみ、または複数のアクションボタンを組み合わせることも可能です。
+
+<Canvas of={EmptyStateStories.CustomAction} />
+
+## Props
+
+<Controls />
