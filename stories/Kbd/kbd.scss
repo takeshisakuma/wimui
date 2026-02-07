@@ -1,0 +1,45 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/typography" as typography;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+
+@layer component {
+    .wim-kbd {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: inherit;
+        font-weight: typography.$weight-bold;
+        line-height: 1;
+        color: var(--text-primary);
+        background-color: var(--bg-component, #ffffff);
+        border: 1px solid var(--wim-color-border, #dee2e6);
+        border-bottom-width: 3px;
+        border-radius: spacings.$radius-sm;
+        box-shadow: effects.$shadow-xs;
+        white-space: nowrap;
+        user-select: none;
+
+        // Sizes
+        &--sm {
+            min-width: 1.5rem;
+            height: 1.5rem;
+            padding: 0 spacings.$spacing-xs;
+            font-size: 0.75rem;
+        }
+
+        &--md {
+            min-width: 2rem;
+            height: 2rem;
+            padding: 0 spacings.$spacing-sm;
+            font-size: 0.875rem;
+        }
+
+        // Interactive feel (though typically static)
+        &:active {
+            border-bottom-width: 1px;
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+    }
+}

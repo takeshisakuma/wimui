@@ -4,7 +4,7 @@ import { Avatar } from "../Avatar/Avatar";
 import React from "react";
 
 const meta: Meta<typeof Indicator> = {
-    title: "Data Display/Indicator",
+    title: "Component/Data Display/Indicator",
     component: Indicator,
     argTypes: {
         color: {

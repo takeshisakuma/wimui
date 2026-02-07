@@ -1,0 +1,34 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as KbdStories from "./Kbd.stories";
+
+<Meta of={KbdStories} />
+
+# Kbd
+
+キーボードのショートカット、個別のキー、またはキーボード入力を示すために使用されるインラインコンポーネントです。
+
+## 基本的な使い方
+
+<Canvas of={KbdStories.Primary} />
+
+## サイズ
+
+`size` プロパティを使用して、サイズを調整できます。
+
+### Small
+
+<Canvas of={KbdStories.Small} />
+
+## 組み合わせ
+
+複数の `Kbd` コンポーネントを組み合わせて、ショートカットキーを表現できます。
+
+<Canvas of={KbdStories.Combined} />
+
+## 一般的なキーシンボル
+
+<Canvas of={KbdStories.KeyboardSymbols} />
+
+## Props
+
+<Controls />
