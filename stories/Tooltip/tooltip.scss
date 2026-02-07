@@ -1,0 +1,130 @@
+/* ------------------------------------------------------------------
+   Tooltip Styles
+------------------------------------------------------------------ */
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/effects" as effects;
+
+.wim-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.wim-tooltip-trigger {
+    cursor: default; // Or pointer if it's actionable
+    display: inline-flex;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.wim-tooltip-content {
+    position: absolute;
+    background-color: var(--bg-tooltip, #333333); // Dark background usually
+    color: var(--text-tooltip, #ffffff);
+    padding: spacings.$spacing-xs spacings.$spacing-sm;
+    border-radius: spacings.$radius-sm;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none; // Tooltips usually don't capture mouse events to allow clicking through specific parts, BUT if content is interactive, this should be auto. Usually tooltips are informational only.
+    box-shadow: effects.$shadow-md;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    animation: fadeIn 0.2s forwards;
+
+    &--top {
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        margin-bottom: 8px;
+    }
+
+    &--bottom {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        margin-top: 8px;
+    }
+
+    &--left {
+        top: 50%;
+        right: 100%;
+        transform: translateY(-50%) translateX(-8px);
+        margin-right: 8px;
+    }
+
+    &--right {
+        top: 50%;
+        left: 100%;
+        transform: translateY(-50%) translateX(8px);
+        margin-left: 8px;
+    }
+
+    // Alignment overrides for top/bottom
+    &--align-left.wim-tooltip-content--top,
+    &--align-left.wim-tooltip-content--bottom {
+        left: 0;
+        transform: translateY(var(--translate-y, 0)); // Reset X transform
+    }
+
+    &--align-right.wim-tooltip-content--top,
+    &--align-right.wim-tooltip-content--bottom {
+        left: auto;
+        right: 0;
+        transform: translateY(var(--translate-y, 0));
+    }
+
+    // Alignment overrides for left/right don't make as much sense usually, centering is standard.
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+}
+
+.wim-tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+// Arrow positioning
+.wim-tooltip-content--top .wim-tooltip-arrow {
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px 4px 0 4px;
+    border-color: var(--bg-tooltip, #333333) transparent transparent transparent;
+}
+
+.wim-tooltip-content--bottom .wim-tooltip-arrow {
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 4px 4px 4px;
+    border-color: transparent transparent var(--bg-tooltip, #333333) transparent;
+}
+
+.wim-tooltip-content--left .wim-tooltip-arrow {
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 4px 0 4px 4px;
+    border-color: transparent transparent transparent var(--bg-tooltip, #333333);
+}
+
+.wim-tooltip-content--right .wim-tooltip-arrow {
+    left: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 4px 4px 4px 0;
+    border-color: transparent var(--bg-tooltip, #333333) transparent transparent;
+}

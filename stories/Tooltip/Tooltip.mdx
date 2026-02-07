@@ -1,0 +1,67 @@
+import { Canvas, Meta, Story, Controls } from "@storybook/blocks";
+import * as TooltipStories from "./Tooltip.stories";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+ホバーまたはフォーカス時に補足情報を表示します。
+
+## Usage
+
+```tsx
+import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
+
+<Tooltip>
+  <TooltipTrigger>Hover me</TooltipTrigger>
+  <TooltipContent>
+    Tooltip text
+  </TooltipContent>
+</Tooltip>
+```
+
+### Delay
+
+`delay` プロパティで表示までの遅延時間を設定できます（デフォルト: 200ms）。
+
+```tsx
+<Tooltip delay={500}>
+  <TooltipTrigger>Hover me</TooltipTrigger>
+  <TooltipContent>
+    Delayed tooltip
+  </TooltipContent>
+</Tooltip>
+```
+
+## Examples
+
+### Default
+
+<Canvas of={TooltipStories.Default} />
+
+### Positioning
+
+#### Top
+
+<Canvas of={TooltipStories.Top} />
+
+#### Bottom
+
+<Canvas of={TooltipStories.Bottom} />
+
+#### Left
+
+<Canvas of={TooltipStories.Left} />
+
+#### Right
+
+<Canvas of={TooltipStories.Right} />
+
+### With Delay
+
+<Canvas of={TooltipStories.WithDelay} />
+
+## API
+
+<Controls />
