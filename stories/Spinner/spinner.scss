@@ -1,0 +1,100 @@
+.wim-spinner-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    &.wim-spinner--with-label-bottom {
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+    }
+}
+
+.wim-spinner {
+    animation: wim-spinner-rotate 2s linear infinite;
+
+    &--sm {
+        width: 16px;
+        height: 16px;
+    }
+
+    &--md {
+        width: 24px;
+        height: 24px;
+    }
+
+    &--lg {
+        width: 32px;
+        height: 32px;
+    }
+
+    &--xl {
+        width: 48px;
+        height: 48px;
+    }
+
+    // Colors
+    &--primary {
+        color: var(--color-primary, #007bff);
+    }
+
+    &--secondary {
+        color: var(--color-secondary, #6c757d);
+    }
+
+    &--success {
+        color: var(--color-positive, #28a745);
+    }
+
+    &--warning {
+        color: var(--color-caution, #ffc107);
+    }
+
+    &--error {
+        color: var(--color-destructive, #dc3545);
+    }
+
+    &--neutral {
+        color: var(--text-secondary, #4a5568);
+    }
+
+    &--currentColor {
+        color: currentColor;
+    }
+
+    &__track {
+        opacity: 0.2;
+    }
+
+    &__head {
+        animation: wim-spinner-dash 1.5s ease-in-out infinite;
+    }
+
+    &__label {
+        font-size: 0.875rem;
+        color: var(--text-secondary, #4a5568);
+    }
+}
+
+@keyframes wim-spinner-rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes wim-spinner-dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
