@@ -1,0 +1,127 @@
+.wim-indicator {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+
+    &__dot {
+        position: absolute;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background-color: var(--wim-neutral, #ccc);
+        flex-shrink: 0;
+        z-index: 10;
+
+        &--sm {
+            width: 8px;
+            height: 8px;
+            border-width: 1.5px;
+        }
+
+        &--md {
+            width: 10px;
+            height: 10px;
+            border-width: 2px;
+        }
+
+        &--lg {
+            width: 12px;
+            height: 12px;
+            border-width: 2.5px;
+        }
+
+        // Colors
+        &--primary {
+            background-color: var(--wim-primary, #007bff);
+        }
+
+        &--success {
+            background-color: var(--wim-success, #28a745);
+        }
+
+        &--error {
+            background-color: var(--wim-error, #dc3545);
+        }
+
+        &--warning {
+            background-color: var(--wim-warning, #ffc107);
+        }
+
+        &--neutral {
+            background-color: var(--wim-neutral, #6c757d);
+        }
+
+        // Positions
+        &--top-right {
+            top: 0;
+            right: 0;
+            transform: translate(50%, -50%);
+        }
+
+        &--top-left {
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        &--bottom-right {
+            bottom: 0;
+            right: 0;
+            transform: translate(50%, 50%);
+        }
+
+        &--bottom-left {
+            bottom: 0;
+            left: 0;
+            transform: translate(-50%, 50%);
+        }
+
+        // Animation
+        &--pulse {
+            &::after {
+                content: "";
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                border-radius: 50%;
+                background-color: inherit;
+                opacity: 0.4;
+                animation: wim-indicator-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+                z-index: -1;
+            }
+        }
+    }
+
+    &--inline {
+        display: inline-flex;
+
+        .wim-indicator__dot {
+            position: static;
+            transform: none;
+            border-width: 0;
+            vertical-align: middle;
+        }
+    }
+}
+
+@keyframes wim-indicator-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scale(2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,39 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as IndicatorStories from "./Indicator.stories";
+
+<Meta title="Data Display/Indicator" of={IndicatorStories} />
+
+# Indicator
+
+`Indicator`は、アバターやアイコン、コンテナなどの要素にステータス（オンライン、未読、エラーなど）を示すための小さなドットを表示するコンポーネントです。
+
+## 使用例
+
+### 基本的な使い方
+アバターなどの要素をラップして使用します。
+
+<Canvas of={IndicatorStories.Default} />
+
+### カラーバリエーション
+ステータスに応じて色を変更できます。
+
+<Canvas of={IndicatorStories.Colors} />
+
+### パルスアニメーション
+`pulse`プロパティを有効にすることで、注目を集めるためのアニメーションを追加できます。
+
+<Canvas of={IndicatorStories.Pulse} />
+
+### インライン表示
+`inline`プロパティを有効にすることで、テキストの横などに単体でドットを表示できます。
+
+<Canvas of={IndicatorStories.Inline} />
+
+### サイズ
+`small`, `medium`, `large`の3つのサイズが利用可能です。
+
+<Canvas of={IndicatorStories.Sizes} />
+
+## Props
+
+<Controls />
