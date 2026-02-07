@@ -28,8 +28,9 @@ export const Button = ({
   loading = false,
   backgroundColor,
   "aria-label": ariaLabel,
+  className,
   ...props
-}: ButtonProps) => {
+}: ButtonProps & { className?: string }) => {
   const { t } = useTranslation();
 
   const sizeMap: Record<"small" | "medium" | "large", string> = {
@@ -78,6 +79,7 @@ export const Button = ({
         roleClass,
         loadingClass,
         iconOnlyClass,
+        className,
       ]
         .filter(Boolean)
         .join(" ")}

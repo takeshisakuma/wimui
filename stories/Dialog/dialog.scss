@@ -1,0 +1,113 @@
+/* ------------------------------------------------------------------
+   Dialog Styles
+------------------------------------------------------------------ */
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/effects" as effects;
+
+.wim-dialog-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    display: grid;
+    place-items: center;
+    overflow-y: auto;
+}
+
+.wim-dialog-content {
+    background-color: var(--bg-component, #ffffff);
+    border-radius: spacings.$radius-lg;
+    box-shadow: effects.$shadow-lg;
+    position: relative;
+    width: 90vw;
+    max-width: 450px;
+    max-height: 85vh;
+    padding: spacings.$spacing-lg;
+    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    color: var(--text-primary);
+    overflow: auto;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.wim-dialog-header {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$spacing-xs;
+    margin-bottom: spacings.$spacing-lg;
+    text-align: left;
+}
+
+.wim-dialog-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+}
+
+.wim-dialog-description {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.wim-dialog-footer {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: spacings.$spacing-xl;
+    gap: spacings.$spacing-md;
+
+    @media (min-width: 640px) {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+}
+
+.wim-dialog-close {
+    position: absolute;
+    top: spacings.$spacing-md;
+    right: spacings.$spacing-md;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: spacings.$spacing-xs;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: var(--bg-hover);
+        color: var(--text-primary);
+    }
+}
+
+@keyframes overlayShow {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes contentShow {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
