@@ -1,0 +1,30 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as FocusTrapStories from "./FocusTrap.stories";
+
+<Meta of={FocusTrapStories} />
+
+# FocusTrap
+
+`FocusTrap` は、キーボードのフォーカスを特定の領域内に閉じ込めるためのユーティリティコンポーネントです。
+モーダル、ダイアログ、ドロワーなど、ユーザーの操作を特定の範囲に限定したいアクセシブルなUIの実装に使用します。
+
+## 特徴
+
+- `Tab` キーによる移動をコンポーネント内に制限します。
+- 最後の要素で `Tab` を押すと最初の要素に戻り、最初の要素で `Shift + Tab` を押すと最後の要素に移動します（ループ）。
+- コンポーネントがマウントされた際（または有効になった際）、自動的に内部の最初のフォーカス可能要素にフォーカスを移すことができます。
+- コンポーネントがアンマウントされた際、フォーカスを以前アクティブだった要素に戻します。
+
+## 基本的な使い方
+
+<Canvas of={FocusTrapStories.Default} />
+
+## 自動フォーカス
+
+`autoFocus` プロップを `true` に設定すると、トラップが有効になった瞬間に最初のフォーカス可能要素へフォーカスを移動します。
+
+<Canvas of={FocusTrapStories.AutoFocus} />
+
+## Props
+
+<Controls />
