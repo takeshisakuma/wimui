@@ -1,0 +1,47 @@
+import { Meta, Canvas, Controls, Primary } from "@storybook/blocks";
+import * as StatsStories from "./Stats.stories";
+
+<Meta of={StatsStories} />
+
+# Stats
+
+`Stats` は、統計情報や重要な指標（メトリクス）を視覚的に強調して表示するためのコンポーネントです。
+
+## 使用例
+
+### 基本的な使用方法
+
+ラベル、値、および補足情報を組み合わせて使用します。
+
+<Canvas of={StatsStories.Default} />
+
+### トレンド表示
+
+`Stats.Trend` を使用して、前月比などの変化率を表示できます。
+
+<Canvas of={StatsStories.WithTrend} />
+
+### バリアント
+
+`variant` プロパティを使用して、さまざまなスタイルを選択できます。
+
+#### Outline
+
+<Canvas of={StatsStories.Outline} />
+
+#### Flat
+
+<Canvas of={StatsStories.Flat} />
+
+## コンポーネントの構成
+
+`Stats` は以下のサブコンポーネントで構成されています。
+
+- `Stats.Label`: 指標の名称を表示します。
+- `Stats.Value`: 指標の数値を表示します。
+- `Stats.Description`: 補足情報を表示します。
+- `Stats.Trend`: 変化率や傾向を表示します。
+
+## Props
+
+<Controls />
