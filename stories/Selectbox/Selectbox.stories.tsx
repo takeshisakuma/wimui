@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Selectbox } from "./Selectbox";
 
 const meta: Meta<typeof Selectbox> = {
-    title: "Component/Data Entry/Selectbox",
+    title: "Component/Selection Controls/Selectbox",
     component: Selectbox,
     parameters: {
         layout: "centered",

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Fab } from "./Fab";
 
 const meta: Meta<typeof Fab> = {
-    title: "Component/General/Fab",
+    title: "Component/Buttons & Actions/Fab",
     component: Fab,
     parameters: {
         layout: "centered",

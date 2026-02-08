@@ -3,7 +3,7 @@ import { Audio } from "./Audio";
 import audioSample from "../../src/media/audiosample.mp3";
 
 const meta: Meta<typeof Audio> = {
-    title: "Component/Media/Audio",
+    title: "Component/Media & Viz/Audio",
     component: Audio,
     parameters: {
         layout: "centered",

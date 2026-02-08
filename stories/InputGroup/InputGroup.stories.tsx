@@ -5,7 +5,7 @@ import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 
 const meta: Meta<typeof InputGroup> = {
-    title: "Component/Data Entry/InputGroup",
+    title: "Component/Form Inputs/InputGroup",
     component: InputGroup,
     parameters: {
         layout: "centered",

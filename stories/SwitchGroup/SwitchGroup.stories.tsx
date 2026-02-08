@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { SwitchGroup } from "./SwitchGroup";
 
 const meta: Meta<typeof SwitchGroup> = {
-    title: "Component/Data Entry/SwitchGroup",
+    title: "Component/Selection Controls/SwitchGroup",
     component: SwitchGroup,
     parameters: {
         layout: "centered",

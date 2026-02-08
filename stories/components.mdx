@@ -1,804 +1,285 @@
 import { Meta } from "@storybook/blocks";
 import { T } from "./T";
 
-export const RightArrow = () => (
-  <svg
-    viewBox="0 0 14 14"
-    width="8px"
-    height="14px"
-    style={{
-      marginLeft: "4px",
-      display: "inline-block",
-      shapeRendering: "inherit",
-      verticalAlign: "middle",
-      fill: "currentColor",
-      "path fill": "currentColor",
-    }}
-  >
-    <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z" />
-  </svg>
-);
-
 <Meta title="Components" />
 
-<div className="">
-<h2>ToDo</h2>
+<div className="wim-docs-container">
+  <h1>Component Development Dashboard</h1>
+  <p>wimui のコンポーネント開発状況を管理するダッシュボードです。</p>
 
-<h3>
-  <T k="planned_for_implementation" />
-</h3>
+  <h2>🚀 全体の進捗状況</h2>
+  <div style={{ padding: "24px", background: "var(--wim-color-bg-secondary, #f4f4f7)", borderRadius: "12px", marginBottom: "32px" }}>
+    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
+      <strong>Overall Progress</strong>
+      <strong>71.8% (92 / 128)</strong>
+    </div>
+    <div style={{ width: "100%", height: "12px", background: "#e2e2e8", borderRadius: "6px", overflow: "hidden" }}>
+      <div style={{ width: "71.8%", height: "100%", background: "var(--wim-color-primary, #0052cc)" }}></div>
+    </div>
 
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px", marginTop: "24px" }}>
+      <div>
+        <a href="#typography">Typography & Icons</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (6/6)</div>
+      </div>
+      <div>
+        <a href="#buttons">Buttons & Actions</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (5/5)</div>
+      </div>
+      <div>
+        <a href="#layout">Layout</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>0% (0/10)</div>
+      </div>
+      <div>
+        <a href="#navigation">Navigation</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>6.7% (1/15)</div>
+      </div>
+      <div>
+        <a href="#inputs">Form Inputs</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>85.7% (12/14)</div>
+      </div>
+      <div>
+        <a href="#selection">Selection Controls</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (12/12)</div>
+      </div>
+      <div>
+        <a href="#pickers">Pickers & Sliders</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (9/9)</div>
+      </div>
+      <div>
+        <a href="#data-display">Data Display</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>81.0% (17/21)</div>
+      </div>
+      <div>
+        <a href="#feedback">Feedback</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>75.0% (9/12)</div>
+      </div>
+      <div>
+        <a href="#overlays">Overlays</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (7/7)</div>
+      </div>
+      <div>
+        <a href="#media-viz">Media & Viz</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (10/10)</div>
+      </div>
+      <div>
+        <a href="#utilities">Utilities</a>
+        <div style={{ fontSize: "12px", color: "#666" }}>57.1% (4/7)</div>
+      </div>
+    </div>
+  </div>
 
-<h4>General</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>heading</td>
-      <td>Headings</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>Paragraph</td>
-      <td>Paragraph text</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>span</td>
-      <td>Inline text elements</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>quote</td>
-      <td>Block quotes and citations</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>link</td>
-      <td>Hyperlinks and enhanced navigation links</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>button</td>
-      <td>Action triggers</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>iconButton</td>
-      <td>Icon-only button with optimized padding</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>linkButton</td>
-      <td>Button that renders as a semantic anchor tag</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>buttonGroup</td>
-      <td>Group of related buttons</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>fab</td>
-      <td>Floating action button</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>icon</td>
-      <td>Visual symbols</td>
-      <td>done</td>
-    </tr>
-  </tbody>
-</table>
+  <hr />
 
-<h4>Layout</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>container</td>
-      <td>Layout wrapper</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>grid</td>
-      <td>Flexbox or CSS Grid system</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>stack</td>
-      <td>Vertical or horizontal alignment wrapper</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>center</td>
-      <td>Component to center children radially</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>aspectRatio</td>
-      <td>Container that maintains a set ratio</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>bentoGrid</td>
-      <td>Modern grid layout with varying card sizes</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>masonry</td>
-      <td>Grid layout with varying item heights</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>box</td>
-      <td>Polymorphic box component for low-level layout</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>group / flex</td>
-      <td>Horizontal or vertical grouping with gap and alignment control</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>simpleGrid</td>
-      <td>Responsive grid with fixed column width or count</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+  <h2 id="typography">Typography & Icons</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>heading</td><td>Headings</td><td>✅ Done</td></tr>
+      <tr><td>Paragraph</td><td>Paragraph text</td><td>✅ Done</td></tr>
+      <tr><td>span</td><td>Inline text elements</td><td>✅ Done</td></tr>
+      <tr><td>quote</td><td>Block quotes and citations</td><td>✅ Done</td></tr>
+      <tr><td>link</td><td>Hyperlinks</td><td>✅ Done</td></tr>
+      <tr><td>icon</td><td>Visual symbols</td><td>✅ Done</td></tr>
+    </tbody>
+  </table>
 
-<h4>Navigation</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>breadcrumb</td>
-      <td>Current location trace</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>tab</td>
-      <td>Content switching within a view</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>navbar</td>
-      <td>Upper/Primary navigation bar</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>sidebar</td>
-      <td>Side navigation panel</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>header</td>
-      <td>Upper page navigation</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>footer</td>
-      <td>Lower page navigation</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>pagination</td>
-      <td>Multi-page navigation</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>menu</td>
-      <td>General navigation menus</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>contextMenu</td>
-      <td>Right-click or localized contextual menus</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>tabBar</td>
-      <td>Bottom navigation bar for mobile</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>tabNavigation</td>
-      <td>General tab-based navigation</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>hamburgerMenu</td>
-      <td>Toggleable navigation menu</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>stepper</td>
-      <td>Visual progress through a sequence of steps</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>anchor</td>
-      <td>Navigation with smooth scroll to page sections</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>affix / floatButton</td>
-      <td>Buttons or elements fixed at a specific screen position</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+  <h2 id="buttons">Buttons & Actions</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>button</td><td>Action triggers</td><td>✅ Done</td></tr>
+      <tr><td>iconButton</td><td>Icon-only button</td><td>✅ Done</td></tr>
+      <tr><td>linkButton</td><td>Anchor styled as button</td><td>✅ Done</td></tr>
+      <tr><td>buttonGroup</td><td>Group of buttons</td><td>✅ Done</td></tr>
+      <tr><td>fab</td><td>Floating action button</td><td>✅ Done</td></tr>
+    </tbody>
+  </table>
 
-<h4>Data Entry</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>label</td>
-      <td>Form field labels</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>input</td>
-      <td>Single line text fields</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>searchInput</td>
-      <td>Input specialized for search with clear button</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>inputGroup</td>
-      <td>Inputs with attached icons, buttons, or labels</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>FieldError</td>
-      <td>Validation error messages for inputs</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>textarea</td>
-      <td>Multi-line text fields</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>checkbox</td>
-      <td>Multiple choice option</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>checkboxGroup</td>
-      <td>Group of checkboxes with shared state</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>radio</td>
-      <td>Single choice option</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>radioGroup</td>
-      <td>Group of radio buttons with shared state</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>switch</td>
-      <td>Toggle option</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>switchGroup</td>
-      <td>Group of switches with shared state</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>selectbox</td>
-      <td>Selection from options</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>multiselect</td>
-      <td>Selection of multiple options</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>combobox</td>
-      <td>Selection with search</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>dropdown</td>
-      <td>Overlay selection menu</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>segmented control</td>
-      <td>Toggles between a few options</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>toggleGroup</td>
-      <td>Group of toggleable buttons</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>slider</td>
-      <td>Value selection</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>rangeSlider</td>
-      <td>Range selection</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>datePicker</td>
-      <td>Date selection</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>dateRangePicker</td>
-      <td>Range of dates selection</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>timePicker</td>
-      <td>Time selection</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>colorPicker</td>
-      <td>Color selection UI</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>colorInput</td>
-      <td>Input field with color preview and picker trigger</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>calendar</td>
-      <td>Calendar view</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>rangeCalendar</td>
-      <td>Date range selection</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>fieldset / legend</td>
-      <td>Grouping related form elements with labels</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>file upload</td>
-      <td>Single or multiple file selection</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>dropzone</td>
-      <td>Drag and drop area for file uploads</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>otpInput</td>
-      <td>One-time password input fields</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>passwordInput</td>
-      <td>Password input with visibility toggle</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>numberInput</td>
-      <td>Input for numbers with increments/decrements</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>inputMask</td>
-      <td>Input with restricted format patterns</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>mentions</td>
-      <td>Input with suggestions triggered by prefixes (@, #)</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+  <h2 id="layout">Layout</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>container</td><td>Layout wrapper</td><td>🏗 Todo</td></tr>
+      <tr><td>grid</td><td>Flexbox or CSS Grid system</td><td>🏗 Todo</td></tr>
+      <tr><td>stack</td><td>Vertical/Horizontal alignment</td><td>🏗 Todo</td></tr>
+      <tr><td>center</td><td>Radial centering</td><td>🏗 Todo</td></tr>
+      <tr><td>aspectRatio</td><td>Fixed ratio container</td><td>🏗 Todo</td></tr>
+      <tr><td>bentoGrid</td><td>Modern card grid</td><td>🏗 Todo</td></tr>
+      <tr><td>masonry</td><td>Waterfall grid</td><td>🏗 Todo</td></tr>
+      <tr><td>box</td><td>Polymorphic box</td><td>🏗 Todo</td></tr>
+      <tr><td>group / flex</td><td>Flexible grouping</td><td>🏗 Todo</td></tr>
+      <tr><td>simpleGrid</td><td>Responsive fixed grid</td><td>🏗 Todo</td></tr>
+    </tbody>
+  </table>
 
-<h4>Data Display</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>table</td>
-      <td>Structured data display in rows and columns</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>list</td>
-      <td>Organized item lists</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>card</td>
-      <td>Flexible containers for grouping related information</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>accordion</td>
-      <td>Collapsible content panels</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>avatar</td>
-      <td>Profile pictures or initials</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>avatarGroup</td>
-      <td>Stacked display of multiple avatars</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>badge</td>
-      <td>Status indicators or counts</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>chip</td>
-      <td>Interactive tokens for filters or selection</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>tag</td>
-      <td>Non-interactive labels or categories</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>timeline</td>
-      <td>Chronological event display</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>rating</td>
-      <td>Star rating or equivalent</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>indicator</td>
-      <td>Small dots for status on elements</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>kbd</td>
-      <td>Keyboard shortcut display</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>code</td>
-      <td>Inline or block code display</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>emptyState</td>
-      <td>Placeholder for empty data sets</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>stats</td>
-      <td>Metric displays with labels and trends</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>treeView</td>
-      <td>Hierarchical data display</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>descriptionList</td>
-      <td>Key-value pairs for displaying structured information</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>qrCode</td>
-      <td>Visual QR code generator</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>tour</td>
-      <td>Managed walkthrough guide for application features</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>watermark</td>
-      <td>Overlay text or image for copyright or status</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+  <h2 id="navigation">Navigation</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>breadcrumb</td><td>Location trace</td><td>✅ Done</td></tr>
+      <tr><td>tab</td><td>View switching</td><td>🏗 Todo</td></tr>
+      <tr><td>navbar</td><td>Primary navigation</td><td>🏗 Todo</td></tr>
+      <tr><td>sidebar</td><td>Side panel</td><td>🏗 Todo</td></tr>
+      <tr><td>header</td><td>Upper navigation</td><td>🏗 Todo</td></tr>
+      <tr><td>footer</td><td>Lower navigation</td><td>🏗 Todo</td></tr>
+      <tr><td>pagination</td><td>Multi-page navigation</td><td>🏗 Todo</td></tr>
+      <tr><td>menu</td><td>General menus</td><td>🏗 Todo</td></tr>
+      <tr><td>contextMenu</td><td>Right-click menus</td><td>🏗 Todo</td></tr>
+      <tr><td>tabBar</td><td>Mobile bottom navigation</td><td>🏗 Todo</td></tr>
+      <tr><td>tabNavigation</td><td>Tab-based navigation</td><td>🏗 Todo</td></tr>
+      <tr><td>hamburgerMenu</td><td>Toggleable menu</td><td>🏗 Todo</td></tr>
+      <tr><td>stepper</td><td>Visual sequence steps</td><td>🏗 Todo</td></tr>
+      <tr><td>anchor</td><td>Smooth scroll links</td><td>🏗 Todo</td></tr>
+      <tr><td>affix / floatButton</td><td>Fixed elements</td><td>🏗 Todo</td></tr>
+    </tbody>
+  </table>
 
-<h4>Feedback</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>alert</td>
-      <td>Important messages</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>toast</td>
-      <td>Brief notifications</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>progress</td>
-      <td>Progress indicator</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>spinner</td>
-      <td>Circular loading indicator</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>loader</td>
-      <td>Generic loading state indicator</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>skeleton</td>
-      <td>Content placeholder while loading</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>snackbar</td>
-      <td>Brief messages at the bottom of the screen</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>banner</td>
-      <td>Prominent messages at the top of the screen</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>copyButton</td>
-      <td>Button to copy text to clipboard</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>popconfirm</td>
-      <td>Simple confirmation overlay triggered by an action</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>result</td>
-      <td>Indicator of task status (success, error, 404, etc.)</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>notification</td>
-      <td>Rich notification card with title/description</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+  <h2 id="inputs">Form Inputs</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>label</td><td>Form field labels</td><td>✅ Done</td></tr>
+      <tr><td>input</td><td>Single line text fields</td><td>✅ Done</td></tr>
+      <tr><td>passwordInput</td><td>Password with toggle</td><td>✅ Done</td></tr>
+      <tr><td>searchInput</td><td>Search with clear button</td><td>✅ Done</td></tr>
+      <tr><td>numberInput</td><td>Numeric input with steps</td><td>✅ Done</td></tr>
+      <tr><td>inputGroup</td><td>Inputs with icons/labels</td><td>✅ Done</td></tr>
+      <tr><td>FieldError</td><td>Validation messages</td><td>✅ Done</td></tr>
+      <tr><td>textarea</td><td>Multi-line text fields</td><td>✅ Done</td></tr>
+      <tr><td>otpInput</td><td>One-time password fields</td><td>✅ Done</td></tr>
+      <tr><td>file upload</td><td>File selection</td><td>✅ Done</td></tr>
+      <tr><td>dropzone</td><td>Drag & drop files</td><td>✅ Done</td></tr>
+      <tr><td>fieldset / legend</td><td>Form grouping</td><td>✅ Done</td></tr>
+      <tr><td>inputMask</td><td>Formatted inputs</td><td>🏗 Todo</td></tr>
+      <tr><td>mentions</td><td>@/ # suggestions</td><td>🏗 Todo</td></tr>
+    </tbody>
+  </table>
 
-<h4>Overlays</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>dialog</td>
-      <td>Interactive windows for focused tasks</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>popover</td>
-      <td>Contextual overlay panels</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>tooltip</td>
-      <td>Information on hover</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>drawer</td>
-      <td>Slide-out navigation or detail panels</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>bottomSheet</td>
-      <td>Overlay anchored to the bottom of the screen</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>hoverCard</td>
-      <td>Rich content displayed on hover</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>commandPalette</td>
-      <td>Search and execution overlay (Cmd+K)</td>
-      <td>done</td>
-    </tr>
-  </tbody>
-</table>
+  <h2 id="selection">Selection Controls</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>checkbox</td><td>Multiple choice</td><td>✅ Done</td></tr>
+      <tr><td>checkboxGroup</td><td>Shared state checkboxes</td><td>✅ Done</td></tr>
+      <tr><td>radio</td><td>Single choice</td><td>✅ Done</td></tr>
+      <tr><td>radioGroup</td><td>Shared state radio buttons</td><td>✅ Done</td></tr>
+      <tr><td>switch</td><td>Toggle option</td><td>✅ Done</td></tr>
+      <tr><td>switchGroup</td><td>Shared state switches</td><td>✅ Done</td></tr>
+      <tr><td>segmented control</td><td>Few-option toggles</td><td>✅ Done</td></tr>
+      <tr><td>toggleGroup</td><td>Toggleable buttons</td><td>✅ Done</td></tr>
+      <tr><td>selectbox</td><td>Standard selection</td><td>✅ Done</td></tr>
+      <tr><td>multiselect</td><td>Multiple selection</td><td>✅ Done</td></tr>
+      <tr><td>combobox</td><td>Select with search</td><td>✅ Done</td></tr>
+      <tr><td>dropdown</td><td>Overlay selection menu</td><td>✅ Done</td></tr>
+    </tbody>
+  </table>
 
-<h4>Media</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>carousel</td>
-      <td>Slideshow for cycling through content</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>image</td>
-      <td>Image content display</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>video</td>
-      <td>Video playback</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>audio</td>
-      <td>Audio playback</td>
-      <td>done</td>
-    </tr>
-  </tbody>
-</table>
+  <h2 id="pickers">Pickers & Sliders</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>slider</td><td>Value selection</td><td>✅ Done</td></tr>
+      <tr><td>rangeSlider</td><td>Range selection</td><td>✅ Done</td></tr>
+      <tr><td>datePicker</td><td>Date selection</td><td>✅ Done</td></tr>
+      <tr><td>dateRangePicker</td><td>Date range selection</td><td>✅ Done</td></tr>
+      <tr><td>timePicker</td><td>Time selection</td><td>✅ Done</td></tr>
+      <tr><td>calendar</td><td>Calendar view</td><td>✅ Done</td></tr>
+      <tr><td>rangeCalendar</td><td>Range calendar view</td><td>✅ Done</td></tr>
+      <tr><td>colorPicker</td><td>Color selection picker</td><td>✅ Done</td></tr>
+      <tr><td>colorInput</td><td>Input with color preview</td><td>✅ Done</td></tr>
+    </tbody>
+  </table>
 
+  <h2 id="data-display">Data Display</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>table</td><td>Structured data rows/cols</td><td>✅ Done</td></tr>
+      <tr><td>list</td><td>Organized lists</td><td>✅ Done</td></tr>
+      <tr><td>card</td><td>Information containers</td><td>✅ Done</td></tr>
+      <tr><td>accordion</td><td>Collapsible panels</td><td>✅ Done</td></tr>
+      <tr><td>avatar</td><td>Profile initials/pics</td><td>✅ Done</td></tr>
+      <tr><td>avatarGroup</td><td>Stacked avatars</td><td>✅ Done</td></tr>
+      <tr><td>badge</td><td>Indicators or counts</td><td>✅ Done</td></tr>
+      <tr><td>chip</td><td>Filter/Selection tokens</td><td>✅ Done</td></tr>
+      <tr><td>tag</td><td>Non-interactive labels</td><td>✅ Done</td></tr>
+      <tr><td>timeline</td><td>Chronological events</td><td>✅ Done</td></tr>
+      <tr><td>rating</td><td>Star rating</td><td>✅ Done</td></tr>
+      <tr><td>indicator</td><td>Small status dots</td><td>✅ Done</td></tr>
+      <tr><td>kbd</td><td>Keyboard shortcuts</td><td>✅ Done</td></tr>
+      <tr><td>code</td><td>Code snippets</td><td>✅ Done</td></tr>
+      <tr><td>emptyState</td><td>Missing data placeholder</td><td>✅ Done</td></tr>
+      <tr><td>stats</td><td>Metric displays</td><td>✅ Done</td></tr>
+      <tr><td>treeView</td><td>Hierarchical data</td><td>✅ Done</td></tr>
+      <tr><td>descriptionList</td><td>Key-value pairs</td><td>🏗 Todo</td></tr>
+      <tr><td>qrCode</td><td>QR generator</td><td>🏗 Todo</td></tr>
+      <tr><td>tour</td><td>Walkthrough guide</td><td>🏗 Todo</td></tr>
+      <tr><td>watermark</td><td>Overlay copyright</td><td>🏗 Todo</td></tr>
+    </tbody>
+  </table>
 
-<h4>Charts</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>barChart</td>
-      <td>Bar and stacked bar charts</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>lineChart</td>
-      <td>Line charts</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>areaChart</td>
-      <td>Area charts with filled regions</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>pieChart</td>
-      <td>Pie and donut charts</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>scatterChart</td>
-      <td>Scatter plots and bubble charts</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>heatmap</td>
-      <td>Heatmap for visualizing density or intensity</td>
-      <td>done</td>
-    </tr>
-  </tbody>
-</table>
+  <h2 id="feedback">Feedback</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>alert</td><td>Important messages</td><td>✅ Done</td></tr>
+      <tr><td>toast</td><td>Brief notifications</td><td>✅ Done</td></tr>
+      <tr><td>progress</td><td>Progress bar</td><td>✅ Done</td></tr>
+      <tr><td>spinner</td><td>Circular loading</td><td>✅ Done</td></tr>
+      <tr><td>loader</td><td>Generic loading</td><td>✅ Done</td></tr>
+      <tr><td>skeleton</td><td>Content placeholder</td><td>✅ Done</td></tr>
+      <tr><td>snackbar</td><td>Bottom notifications</td><td>✅ Done</td></tr>
+      <tr><td>banner</td><td>Top prominent messages</td><td>✅ Done</td></tr>
+      <tr><td>copyButton</td><td>Copy to clipboard</td><td>✅ Done</td></tr>
+      <tr><td>popconfirm</td><td>Confirmation overlay</td><td>🏗 Todo</td></tr>
+      <tr><td>result</td><td>Task status indicator</td><td>🏗 Todo</td></tr>
+      <tr><td>notification</td><td>Rich notification card</td><td>🏗 Todo</td></tr>
+    </tbody>
+  </table>
 
-<h4>Utilities</h4>
+  <h2 id="overlays">Overlays</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>dialog</td><td>Focused task windows</td><td>✅ Done</td></tr>
+      <tr><td>popover</td><td>Contextual overlay</td><td>✅ Done</td></tr>
+      <tr><td>tooltip</td><td>Information on hover</td><td>✅ Done</td></tr>
+      <tr><td>drawer</td><td>Slide-out detail panels</td><td>✅ Done</td></tr>
+      <tr><td>bottomSheet</td><td>Mobile bottom overlay</td><td>✅ Done</td></tr>
+      <tr><td>hoverCard</td><td>Rich content on hover</td><td>✅ Done</td></tr>
+      <tr><td>commandPalette</td><td>Cmd+K search overlay</td><td>✅ Done</td></tr>
+    </tbody>
+  </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>divider</td>
-      <td>Visual separation of content</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>ScrollArea</td>
-      <td>Custom scrollable area</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>visuallyHidden</td>
-      <td>Hiding elements while remaining accessible</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>focusTrap</td>
-      <td>Focus management within a specific area</td>
-      <td>done</td>
-    </tr>
-    <tr>
-      <td>portal</td>
-      <td>Rendering children outside the DOM hierarchy</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>transition</td>
-      <td>Uniform management of component entry/exit animations</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>errorBoundary</td>
-      <td>Catching runtime errors and showing fallback UI</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+  <h2 id="media-viz">Media & Visualization</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>carousel</td><td>Content slideshow</td><td>✅ Done</td></tr>
+      <tr><td>image</td><td>Image content</td><td>✅ Done</td></tr>
+      <tr><td>video</td><td>Video playback</td><td>✅ Done</td></tr>
+      <tr><td>audio</td><td>Audio playback</td><td>✅ Done</td></tr>
+      <tr><td>barChart</td><td>Bar charts</td><td>✅ Done</td></tr>
+      <tr><td>lineChart</td><td>Line charts</td><td>✅ Done</td></tr>
+      <tr><td>areaChart</td><td>Area charts</td><td>✅ Done</td></tr>
+      <tr><td>pieChart</td><td>Pie/Donut charts</td><td>✅ Done</td></tr>
+      <tr><td>scatterChart</td><td>Scatter plots</td><td>✅ Done</td></tr>
+      <tr><td>heatmap</td><td>Intensity map</td><td>✅ Done</td></tr>
+    </tbody>
+  </table>
 
+  <h2 id="utilities">Utilities</h2>
+  <table>
+    <thead><tr><th>Component</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>divider</td><td>Content separator</td><td>✅ Done</td></tr>
+      <tr><td>ScrollArea</td><td>Custom scroll area</td><td>✅ Done</td></tr>
+      <tr><td>visuallyHidden</td><td>Accessible hiding</td><td>✅ Done</td></tr>
+      <tr><td>focusTrap</td><td>Focus management</td><td>✅ Done</td></tr>
+      <tr><td>portal</td><td>Out-of-hierarchy render</td><td>🏗 Todo</td></tr>
+      <tr><td>transition</td><td>Animation management</td><td>🏗 Todo</td></tr>
+      <tr><td>errorBoundary</td><td>Runtime error fallback</td><td>🏗 Todo</td></tr>
+    </tbody>
+  </table>
 </div>

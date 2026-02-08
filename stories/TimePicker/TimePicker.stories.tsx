@@ -4,7 +4,7 @@ import { TimePicker } from "./TimePicker";
 import { Label } from "../Label/Label";
 
 const meta: Meta<typeof TimePicker> = {
-    title: "Component/Data Entry/TimePicker",
+    title: "Component/Pickers & Sliders/TimePicker",
     component: TimePicker,
     parameters: {
         layout: "centered",

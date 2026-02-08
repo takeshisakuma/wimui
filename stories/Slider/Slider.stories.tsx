@@ -3,7 +3,7 @@ import { Slider } from "./Slider";
 import { useState } from "react";
 
 const MetaData: Meta<typeof Slider> = {
-    title: "Component/Data Entry/Slider",
+    title: "Component/Pickers & Sliders/Slider",
     component: Slider,
 
     argTypes: {

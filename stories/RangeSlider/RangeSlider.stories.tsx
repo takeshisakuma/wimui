@@ -3,7 +3,7 @@ import { RangeSlider } from "./RangeSlider";
 import { useState } from "react";
 
 const MetaData: Meta<typeof RangeSlider> = {
-    title: "Component/Data Entry/RangeSlider",
+    title: "Component/Pickers & Sliders/RangeSlider",
     component: RangeSlider,
 
     argTypes: {

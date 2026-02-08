@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { FieldError } from "./FieldError";
 
 const meta: Meta<typeof FieldError> = {
-    title: "Component/Data Entry/FieldError",
+    title: "Component/Form Inputs/FieldError",
     component: FieldError,
     argTypes: {
         content: { control: "text" },

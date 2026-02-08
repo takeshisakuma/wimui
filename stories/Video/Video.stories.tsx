@@ -4,7 +4,7 @@ import sampleVideo from "../../src/media/videosample.mp4";
 import videoPoster from "../../src/media/video_poster.webp";
 
 const meta: Meta<typeof Video> = {
-    title: "Component/Media/Video",
+    title: "Component/Media & Viz/Video",
     component: Video,
     parameters: {
         layout: "centered",

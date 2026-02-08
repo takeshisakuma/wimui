@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Dropzone } from "./Dropzone";
 
 const meta: Meta<typeof Dropzone> = {
-    title: "Component/Data Entry/Dropzone",
+    title: "Component/Form Inputs/Dropzone",
     component: Dropzone,
     parameters: {
         layout: "centered",
