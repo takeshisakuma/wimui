@@ -1,0 +1,53 @@
+import { Canvas, Meta, Controls, Primary } from '@storybook/blocks';
+import * as CommandPaletteStories from './CommandPalette.stories';
+
+<Meta of={CommandPaletteStories} />
+
+# Command Palette
+
+`CommandPalette`は、アプリケーション全体での検索、コマンド実行、ナビゲーションを提供するためのモーダルインターフェースです。
+
+`Cmd+K` (または `Ctrl+K`) のショートカットキーで開くことができます。
+
+## 構成
+
+- `CommandPalette`: ルートコンポーネント（モーダルの開閉管理）
+- `CommandPaletteInput`: 検索入力
+- `CommandPaletteList`: アイテム一覧のコンテナ
+- `CommandPaletteGroup`: アイテムをグループ化
+- `CommandPaletteItem`: 各コマンドアイテム
+- `CommandPaletteEmpty`: 検索結果がない時の表示
+- `CommandPaletteFooter`: 操作ヒントなどを表示するフッター
+
+## 使い方
+
+```tsx
+import { 
+  CommandPalette, 
+  CommandPaletteInput, 
+  CommandPaletteList, 
+  CommandPaletteItem 
+} from "wim-ui";
+
+const MyComponent = () => {
+    const [open, setOpen] = useState(false);
+    
+    return (
+        <CommandPalette open={open} onOpenChange={setOpen}>
+            <CommandPaletteInput />
+            <CommandPaletteList>
+                <CommandPaletteItem onSelect={() => {}}>Action 1</CommandPaletteItem>
+                <CommandPaletteItem onSelect={() => {}}>Action 2</CommandPaletteItem>
+            </CommandPaletteList>
+        </CommandPalette>
+    );
+};
+```
+
+## プレビュー
+
+<Primary />
+
+## プロパティ
+
+<Controls />

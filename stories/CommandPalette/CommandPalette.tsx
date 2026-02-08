@@ -1,0 +1,239 @@
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from "react";
+import { createPortal } from "react-dom";
+import classNames from "classnames";
+import { Icon } from "../Icon/Icon";
+import { FocusTrap } from "../FocusTrap/FocusTrap";
+import "./commandPalette.scss";
+
+// --- Context ---
+type CommandPaletteContextType = {
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    search: string;
+    setSearch: (search: string) => void;
+    activeIndex: number;
+    setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
+    itemCount: number;
+    registerItem: () => number;
+    unregisterItem: () => void;
+};
+
+const CommandPaletteContext = createContext<CommandPaletteContextType | undefined>(undefined);
+
+const useCommandPalette = () => {
+    const context = useContext(CommandPaletteContext);
+    if (!context) {
+        throw new Error("CommandPalette sub-components must be used within a CommandPalette");
+    }
+    return context;
+};
+
+// --- CommandPalette Root ---
+export interface CommandPaletteProps {
+    children: ReactNode;
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+}
+
+export const CommandPalette = ({ children, open: controlledOpen, onOpenChange }: CommandPaletteProps) => {
+    const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+    const [search, setSearch] = useState("");
+    const [activeIndex, setActiveIndex] = useState(0);
+    const itemCountRef = useRef(0);
+
+    const isControlled = controlledOpen !== undefined;
+    const open = isControlled ? controlledOpen : uncontrolledOpen;
+
+    const handleOpenChange = useCallback((newOpen: boolean) => {
+        if (!isControlled) {
+            setUncontrolledOpen(newOpen);
+        }
+        onOpenChange?.(newOpen);
+        if (!newOpen) {
+            setSearch("");
+            setActiveIndex(0);
+        }
+    }, [isControlled, onOpenChange]);
+
+    const registerItem = useCallback(() => {
+        const index = itemCountRef.current;
+        itemCountRef.current += 1;
+        return index;
+    }, []);
+
+    const unregisterItem = useCallback(() => {
+        itemCountRef.current -= 1;
+    }, []);
+
+    // Reset item count on each render to handle dynamic lists
+    itemCountRef.current = 0;
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+                e.preventDefault();
+                handleOpenChange(!open);
+            }
+            if (e.key === "Escape" && open) {
+                handleOpenChange(false);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [open, handleOpenChange]);
+
+    if (!open) return null;
+
+    return createPortal(
+        <CommandPaletteContext.Provider
+            value={{
+                open,
+                onOpenChange: handleOpenChange,
+                search,
+                setSearch,
+                activeIndex,
+                setActiveIndex,
+                itemCount: itemCountRef.current,
+                registerItem,
+                unregisterItem
+            }}
+        >
+            <div className="wim-command-palette-overlay" onClick={() => handleOpenChange(false)}>
+                <FocusTrap active={open} autoFocus={true}>
+                    <div
+                        className="wim-command-palette-content"
+                        onClick={(e) => e.stopPropagation()}
+                        onKeyDown={(e) => {
+                            if (e.key === "ArrowDown") {
+                                e.preventDefault();
+                                setActiveIndex((prev) => (prev + 1) % itemCountRef.current);
+                            } else if (e.key === "ArrowUp") {
+                                e.preventDefault();
+                                setActiveIndex((prev) => (prev - 1 + itemCountRef.current) % itemCountRef.current);
+                            }
+                        }}
+                    >
+                        {children}
+                    </div>
+                </FocusTrap>
+            </div>
+        </CommandPaletteContext.Provider>,
+        document.body
+    );
+};
+
+// --- Input ---
+export interface CommandPaletteInputProps {
+    placeholder?: string;
+    value?: string;
+    onChange?: (value: string) => void;
+}
+
+export const CommandPaletteInput = ({ placeholder = "Search commands...", value, onChange }: CommandPaletteInputProps) => {
+    const { search, setSearch, setActiveIndex } = useCommandPalette();
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+        setSearch(val);
+        setActiveIndex(0); // Reset selection on search
+        onChange?.(val);
+    };
+
+    return (
+        <div className="wim-command-palette-input-wrapper">
+            <Icon name="SearchIcon" size="small" />
+            <input
+                className="wim-command-palette-input"
+                placeholder={placeholder}
+                value={value ?? search}
+                onChange={handleChange}
+                autoFocus
+            />
+        </div>
+    );
+};
+
+// --- List ---
+export const CommandPaletteList = ({ children }: { children: ReactNode }) => {
+    return <div className="wim-command-palette-list">{children}</div>;
+};
+
+// --- Group ---
+export const CommandPaletteGroup = ({ children, heading }: { children: ReactNode; heading?: string }) => {
+    return (
+        <div className="wim-command-palette-group">
+            {heading && <div className="wim-command-palette-group-heading">{heading}</div>}
+            {children}
+        </div>
+    );
+};
+
+// --- Item ---
+export interface CommandPaletteItemProps {
+    children: ReactNode;
+    onSelect?: () => void;
+    icon?: ReactNode;
+    shortcut?: string[];
+    disabled?: boolean;
+}
+
+export const CommandPaletteItem = ({ children, onSelect, icon, shortcut, disabled }: CommandPaletteItemProps) => {
+    const { activeIndex, setActiveIndex, registerItem, onOpenChange } = useCommandPalette();
+    const [index] = useState(() => registerItem());
+
+    const isActive = activeIndex === index;
+
+    useEffect(() => {
+        if (isActive && !disabled) {
+            const handleKeyDown = (e: KeyboardEvent) => {
+                if (e.key === "Enter") {
+                    onSelect?.();
+                    onOpenChange(false);
+                }
+            };
+            window.addEventListener("keydown", handleKeyDown);
+            return () => window.removeEventListener("keydown", handleKeyDown);
+        }
+    }, [isActive, disabled, onSelect, onOpenChange]);
+
+    return (
+        <div
+            className={classNames("wim-command-palette-item", {
+                "wim-command-palette-item--active": isActive,
+                "wim-command-palette-item--disabled": disabled,
+            })}
+            onMouseEnter={() => !disabled && setActiveIndex(index)}
+            onClick={() => {
+                if (!disabled) {
+                    onSelect?.();
+                    onOpenChange(false);
+                }
+            }}
+        >
+            {icon && <div className="wim-command-palette-item-icon">{icon}</div>}
+            <div className="wim-command-palette-item-label">{children}</div>
+            {shortcut && (
+                <div className="wim-command-palette-item-shortcut">
+                    {shortcut.map((s) => (
+                        <kbd key={s} className="wim-kbd wim-kbd--sm">
+                            {s}
+                        </kbd>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+// --- Empty ---
+export const CommandPaletteEmpty = ({ children = "No results found." }: { children?: ReactNode }) => {
+    const { itemCount } = useCommandPalette();
+    if (itemCount > 0) return null;
+    return <div className="wim-command-palette-empty">{children}</div>;
+};
+
+// --- Footer ---
+export const CommandPaletteFooter = ({ children }: { children: ReactNode }) => {
+    return <div className="wim-command-palette-footer">{children}</div>;
+};
