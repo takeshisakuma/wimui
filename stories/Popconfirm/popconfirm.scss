@@ -1,0 +1,51 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+@use "../../src/tokens/typography" as typography;
+
+.wim-popconfirm-content {
+    background-color: var(--bg-component, #ffffff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-lg;
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    min-width: 200px;
+    max-width: 300px;
+    z-index: 1000;
+}
+
+.wim-popconfirm-inner {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$spacing-xs;
+}
+
+.wim-popconfirm-message {
+    display: flex;
+    align-items: flex-start;
+    gap: spacings.$spacing-xs;
+}
+
+.wim-popconfirm-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.wim-popconfirm-title {
+    font-size: typography.$size-small;
+    font-weight: typography.$weight-medium;
+    color: var(--text-primary);
+}
+
+.wim-popconfirm-description {
+    font-size: typography.$size-ex-small;
+    color: var(--text-secondary);
+    margin-left: 24px; // Align with title
+}
+
+.wim-popconfirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: spacings.$spacing-xs;
+    margin-top: spacings.$spacing-sm;
+}

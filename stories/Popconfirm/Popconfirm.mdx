@@ -1,0 +1,32 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as PopconfirmStories from "./Popconfirm.stories";
+
+<Meta of={PopconfirmStories} />
+
+# Popconfirm
+
+A simple confirmation box that appears when clicking on a target element.
+
+## Usage
+
+Use Popconfirm for simple confirmations that don't require a full modal dialog. It's often used for destructive actions like deletion.
+
+<Canvas of={PopconfirmStories.Default} />
+
+## Properties
+
+<Controls />
+
+## Examples
+
+### With Description
+
+You can add a description to provide more context for the confirmation.
+
+<Canvas of={PopconfirmStories.WithDescription} />
+
+### Disabled
+
+When disabled, the target element will be rendered directly without the popconfirm behavior.
+
+<Canvas of={PopconfirmStories.Disabled} />

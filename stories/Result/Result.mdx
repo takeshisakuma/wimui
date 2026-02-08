@@ -1,0 +1,38 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as ResultStories from "./Result.stories";
+
+<Meta of={ResultStories} />
+
+# Result
+
+Used to feed back the results of a series of operational tasks.
+
+## Usage
+
+Use when important operations need to inform users of the result, or when you need to show a status page like 404.
+
+<Canvas of={ResultStories.Success} />
+
+## Properties
+
+<Controls />
+
+## Examples
+
+### Info
+<Canvas of={ResultStories.Info} />
+
+### Warning
+<Canvas of={ResultStories.Warning} />
+
+### Error
+<Canvas of={ResultStories.Error} />
+
+### 404
+<Canvas of={ResultStories.Status404} />
+
+### 403
+<Canvas of={ResultStories.Status403} />
+
+### 500
+<Canvas of={ResultStories.Status500} />

@@ -1,0 +1,83 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+@use "../../src/tokens/typography" as typography;
+
+.wim-notification {
+    position: relative;
+    width: 384px;
+    max-width: calc(100vw - 32px);
+    margin-bottom: spacings.$spacing-md;
+    padding: spacings.$spacing-lg spacings.$spacing-md;
+    background-color: var(--bg-component, #ffffff);
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-lg;
+    border: 1px solid colors.$color-secondary;
+    overflow: hidden;
+
+    &-content {
+        display: flex;
+        align-items: center;
+        gap: spacings.$spacing-sm;
+    }
+
+    &-icon {
+        flex-shrink: 0;
+    }
+
+    &-message-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: spacings.$spacing-sm;
+    }
+
+    &-title {
+        color: var(--text-primary);
+        font-size: typography.$size-medium;
+        font-weight: typography.$weight-medium;
+        line-height: typography.$line-height-normal-jpan;
+        margin-bottom: 0; // Reset margin when centered
+    }
+
+    &-description {
+        color: var(--text-secondary);
+        font-size: typography.$size-small;
+        line-height: typography.$line-height-tight-latn;
+    }
+
+    &-close {
+        position: absolute;
+        top: spacings.$spacing-sm;
+        right: spacings.$spacing-sm;
+        cursor: pointer;
+        padding: 4px;
+        color: var(--text-disabled);
+        border: none;
+        background: transparent;
+        transition: effects.$transition-base;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            color: var(--text-secondary);
+        }
+    }
+
+    // Variants
+    &--success {
+        border-left: 4px solid colors.$color-positive;
+    }
+
+    &--info {
+        border-left: 4px solid colors.$color-informative;
+    }
+
+    &--warning {
+        border-left: 4px solid colors.$color-caution;
+    }
+
+    &--error {
+        border-left: 4px solid colors.$color-destructive;
+    }
+}
