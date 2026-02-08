@@ -1,0 +1,1 @@
+import{r as t}from"./iframe-CQ0Ubeji.js";import{r as a}from"./index-DQ99pi5X.js";const c=({children:r,container:e})=>{const[o,s]=t.useState(!1);return t.useEffect(()=>{s(!0)},[]),o?a.createPortal(r,e||document.body):null};export{c as P};
