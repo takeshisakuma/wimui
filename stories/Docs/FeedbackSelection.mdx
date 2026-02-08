@@ -1,0 +1,62 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Guides/Feedback & Notifications" />
+
+# フィードバック・通知コンポーネントの使い分け
+
+システムの状態変化やユーザーの操作結果を伝える際、メッセージの重要度や持続性に応じてコンポーネントを選択します。
+
+## コンポーネント比較
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>表示場所</th>
+      <th>持続性</th>
+      <th>強制力</th>
+      <th>主な用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Alert</strong></td>
+      <td>コンテンツ内</td>
+      <td>永続的/手動</td>
+      <td>低</td>
+      <td>画面全体やセクションに関連する重要な情報</td>
+    </tr>
+    <tr>
+      <td><strong>Toast / Snackbar</strong></td>
+      <td>画面の端</td>
+      <td>一時的 (自動)</td>
+      <td>低</td>
+      <td>操作の成功確認、軽微な通知</td>
+    </tr>
+    <tr>
+      <td><strong>Banner</strong></td>
+      <td>画面上部</td>
+      <td>永続的</td>
+      <td>中</td>
+      <td>メンテナンス予告、重要な案内</td>
+    </tr>
+    <tr>
+      <td><strong>Badge / Indicator</strong></td>
+      <td>要素の上</td>
+      <td>永続的</td>
+      <td>低</td>
+      <td>未読件数、ステータスの表示</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## ステータスの意味合い
+
+フィードバックコンポーネントは、色のセマンティクスを活用して情報を伝えます。
+
+- **Success (Green)**: 操作が成功した、正常に完了した。
+- **Info (Blue)**: 補足的な情報、中立的な通知。
+- **Warning (Yellow/Orange)**: 注意が必要。
+- **Error (Red)**: 致命的な問題、操作の拒否。

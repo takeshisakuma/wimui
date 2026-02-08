@@ -1,0 +1,77 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Guides/Data Display" />
+
+# データ表示コンポーネントの使い分け
+
+情報をユーザーに提示する際、その構造やユーザーが行いたい操作に応じて形式を選択します。
+
+## 表示形式比較表
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>構造</th>
+      <th>情報密度</th>
+      <th>主な用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Table</strong></td>
+      <td>格子状</td>
+      <td><strong>最高</strong></td>
+      <td>数値の比較、大量データの効率的な閲覧</td>
+    </tr>
+    <tr>
+      <td><strong>Card</strong></td>
+      <td>ボックス型</td>
+      <td>中</td>
+      <td>概要把握、画像を含むリスト、ダッシュボード</td>
+    </tr>
+    <tr>
+      <td><strong>List</strong></td>
+      <td>垂直一列</td>
+      <td>中〜低</td>
+      <td>シンプルな項目一覧、モバイル向けメニュー</td>
+    </tr>
+    <tr>
+      <td><strong>Accordion</strong></td>
+      <td>折りたたみ</td>
+      <td>低</td>
+      <td>詳細を段階的に開示、FAQ、設定項目の整理</td>
+    </tr>
+    <tr>
+      <td><strong>Timeline</strong></td>
+      <td>時系列</td>
+      <td>中</td>
+      <td>変更履歴、イベントの変遷、進捗状況</td>
+    </tr>
+    <tr>
+      <td><strong>TreeView</strong></td>
+      <td>階層型</td>
+      <td>中</td>
+      <td>ファイル階層、組織図、ネストしたカテゴリ</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 選択のガイドライン
+
+### 1. Table (テーブル)
+- **いつ使うか**: 大量のデータを正確に比較したいとき。ソートやフィルタリングが必要なとき。
+
+### 2. Card (カード)
+- **いつ使うか**: 各項目が画像や説明文、ボタンなど多様な要素を持つとき。
+
+### 3. Accordion (アコーディオン)
+- **いつ使うか**: 最初の画面では見出しだけ見せ、必要に応じて詳細を読ませたいとき。
+
+---
+
+## 情報設計のアドバイス
+- **重要度の重み付け**: 最も重要なデータは視覚的に強調します。
+- **空の状態 (EmptyState)**: 表示データがない場合は、次に何をすべきかを提示します。

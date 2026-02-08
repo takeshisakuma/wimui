@@ -1,0 +1,123 @@
+/* ------------------------------------------------------------------
+   BottomSheet Styles
+------------------------------------------------------------------ */
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/effects" as effects;
+
+.wim-bottom-sheet-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.wim-bottom-sheet-content {
+    background-color: var(--bg-component, #ffffff);
+    box-shadow: effects.$shadow-lg;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-primary);
+    overflow: hidden;
+    z-index: 1001;
+    border-radius: 16px 16px 0 0;
+    animation: slideUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:focus {
+        outline: none;
+    }
+
+    @media (min-width: 640px) {
+        width: 448px;
+        margin: 0 auto;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        animation: slideUpCenter 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+}
+
+.wim-bottom-sheet-handle {
+    width: 32px;
+    height: 4px;
+    background-color: var(--border-strong, #d1d5db);
+    border-radius: 2px;
+    margin: spacings.$spacing-sm auto;
+    flex-shrink: 0;
+}
+
+.wim-bottom-sheet-header {
+    padding: 0 spacings.$spacing-lg spacings.$spacing-lg;
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$spacing-xs;
+}
+
+.wim-bottom-sheet-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.wim-bottom-sheet-description {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.wim-bottom-sheet-body {
+    padding: spacings.$spacing-lg;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.wim-bottom-sheet-footer {
+    padding: spacings.$spacing-lg;
+    display: flex;
+    justify-content: flex-end;
+    gap: spacings.$spacing-md;
+    border-top: 1px solid var(--border-subtle, #e5e7eb);
+}
+
+@keyframes overlayShow {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUpCenter {
+    from {
+        transform: translate(-50%, 100%);
+    }
+
+    to {
+        transform: translate(-50%, 0);
+    }
+}

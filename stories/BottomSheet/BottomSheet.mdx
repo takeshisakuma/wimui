@@ -1,0 +1,62 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as BottomSheetStories from "./BottomSheet.stories";
+
+<Meta of={BottomSheetStories} />
+
+# BottomSheet (ボトムシート)
+
+ボトムシートは、画面の下端に固定されて表示されるオーバーレイコンポーネントです。主にモバイルインターフェースにおいて、現在のコンテキストを維持したまま、タスクに特化したアクションや追加情報の表示を行うために使用されます。
+
+## 特徴
+- **モバイル最適化**: 画面下部に配置され、親指で操作しやすい位置に表示されます。
+- **フォーカス管理**: アクセシビリティのため、フォーカストラップ機能を備えています。
+- **バックドロップ・ブラー**: 背景を暗くし、背後のコンテンツをぼかすことで視覚的な集中を促します。
+- **スクロール可能なコンテンツ**: コンテンツが長い場合、内部のスクロールエリアで対応します。
+- **ハンドルキュー**: シート上部に視覚的なハンドルを表示し、一般的なボトムシートの作法に従っています。
+
+## 使い方
+
+```tsx
+import {
+  BottomSheet,
+  BottomSheetTrigger,
+  BottomSheetContent,
+  BottomSheetHeader,
+  BottomSheetTitle,
+  BottomSheetDescription,
+  BottomSheetBody,
+  BottomSheetFooter,
+  BottomSheetClose
+} from "./BottomSheet";
+
+function Example() {
+  return (
+    <BottomSheet>
+      <BottomSheetTrigger>開く</BottomSheetTrigger>
+      <BottomSheetContent>
+        <BottomSheetHeader>
+          <BottomSheetTitle>タイトル</BottomSheetTitle>
+          <BottomSheetDescription>ここに説明文が入ります</BottomSheetDescription>
+        </BottomSheetHeader>
+        <BottomSheetBody>
+          メインコンテンツをここに配置します...
+        </BottomSheetBody>
+        <BottomSheetFooter>
+          <BottomSheetClose>閉じる</BottomSheetClose>
+        </BottomSheetFooter>
+      </BottomSheetContent>
+    </BottomSheet>
+  );
+}
+```
+
+## サンプル
+
+### デフォルト (Default)
+<Canvas of={BottomSheetStories.Default} />
+
+### アクションメニュー (Single Action Menu)
+<Canvas of={BottomSheetStories.SingleAction} />
+
+## Props (プロパティ)
+<Controls />

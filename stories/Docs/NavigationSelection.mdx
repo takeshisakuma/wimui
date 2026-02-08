@@ -1,0 +1,76 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Guides/Navigation" />
+
+# ナビゲーションコンポーネントの使い分け
+
+ユーザーがアプリケーション内を移動したり、表示内容を切り替えたりするための最適な手段を選択します。
+
+## ナビゲーション比較表
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>配置</th>
+      <th>階層レベル</th>
+      <th>主な用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Navbar</strong></td>
+      <td>画面上部</td>
+      <td>最上位</td>
+      <td>アプリ全体の主要なセクション切り替え</td>
+    </tr>
+    <tr>
+      <td><strong>Sidebar</strong></td>
+      <td>画面横</td>
+      <td>最上位〜中</td>
+      <td>機能数が多い管理画面、複雑な階層構造</td>
+    </tr>
+    <tr>
+      <td><strong>Tab</strong></td>
+      <td>コンテンツ内</td>
+      <td>中〜下</td>
+      <td>同一コンテキスト内での表示切り替え</td>
+    </tr>
+    <tr>
+      <td><strong>Breadcrumb</strong></td>
+      <td>コンテンツ上部</td>
+      <td>全レベル</td>
+      <td>現在地の把握、上位階層への素早い復帰</td>
+    </tr>
+    <tr>
+      <td><strong>Pagination</strong></td>
+      <td>リスト下部</td>
+      <td>リスト</td>
+      <td>大量データのページ分割移動</td>
+    </tr>
+    <tr>
+      <td><strong>Steppers</strong></td>
+      <td>画面中央/上部</td>
+      <td>手順</td>
+      <td>順序が決まったプロセス（登録、決済等）</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## カテゴリ別の使い分け
+
+### 1. グローバルナビゲーション (Navbar vs Sidebar)
+- **Navbar**: 主要な機能が少なく、横幅を広く使いたいとき。
+- **Sidebar**: 機能数が多く、グルーピングが必要な管理システム。
+
+### 2. コンテンツの切り替え (Tab vs Segmented Control)
+- **Tab**: 同一ページ内で関連するコンテンツを「表示領域を共有して」切り替える。
+- **Segmented Control**: 表示の「ビュー」や「モード」を切り替える。
+
+---
+
+## ユーザビリティのヒント
+- **現在地の明示**: どのメニューがアクティブなのかを常に視覚的に示してください。
+- **一貫性**: ページによってナビゲーションの位置が変わらないように配置を固定します。
