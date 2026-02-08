@@ -17,84 +17,90 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   "aria-label"?: string;
 };
 
-export const Button = ({
-  size = "medium",
-  label,
-  priority = "secondary",
-  role = "default",
-  state = "abled",
-  iconName = undefined,
-  iconPosition = "left",
-  loading = false,
-  backgroundColor,
-  "aria-label": ariaLabel,
-  className,
-  ...props
-}: ButtonProps & { className?: string }) => {
-  const { t } = useTranslation();
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { className?: string }>(
+  (
+    {
+      size = "medium",
+      label,
+      priority = "secondary",
+      role = "default",
+      state = "abled",
+      iconName = undefined,
+      iconPosition = "left",
+      loading = false,
+      backgroundColor,
+      "aria-label": ariaLabel,
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    const { t } = useTranslation();
 
-  const sizeMap: Record<"small" | "medium" | "large", string> = {
-    small: "sm",
-    medium: "md",
-    large: "lg",
-  };
-  const sizeClass = `wim-button--${sizeMap[size]}`;
-  const priorityClass = `wim-button--${priority}`;
-  const roleClass = `wim-button--${role}`;
-  const loadingClass = loading ? "wim-button--loading" : "";
-  const iconOnlyClass =
-    !label && iconName ? "wim-button--icon-only" : "";
+    const sizeMap: Record<"small" | "medium" | "large", string> = {
+      small: "sm",
+      medium: "md",
+      large: "lg",
+    };
+    const sizeClass = `wim-button--${sizeMap[size]}`;
+    const priorityClass = `wim-button--${priority}`;
+    const roleClass = `wim-button--${role}`;
+    const loadingClass = loading ? "wim-button--loading" : "";
+    const iconOnlyClass =
+      !label && iconName ? "wim-button--icon-only" : "";
 
 
-  const content = (
-    <>
-      <span
-        className="wim-button__inner"
-        style={loading ? { visibility: "hidden" } : undefined}
-      >
-        {iconName && iconPosition === "left" && (
-          <Icon name={iconName} size={size} />
-        )}
-        {label && <span className="wim-button__label">{t(label)}</span>}
-        {iconName && iconPosition === "right" && (
-          <Icon name={iconName} size={size} />
-        )}
-      </span>
-      {loading && (
-        <span className="wim-button__loader">
-          <Icon name="LoadingIcon" size={size} />
+    const content = (
+      <>
+        <span
+          className="wim-button__inner"
+          style={loading ? { visibility: "hidden" } : undefined}
+        >
+          {iconName && iconPosition === "left" && (
+            <Icon name={iconName} size={size} />
+          )}
+          {label && <span className="wim-button__label">{t(label)}</span>}
+          {iconName && iconPosition === "right" && (
+            <Icon name={iconName} size={size} />
+          )}
         </span>
-      )}
-    </>
-  );
+        {loading && (
+          <span className="wim-button__loader">
+            <Icon name="LoadingIcon" size={size} />
+          </span>
+        )}
+      </>
+    );
 
-  return (
-    <button
-      type="button"
-      style={backgroundColor ? { backgroundColor } : undefined}
-      className={[
-        `wim-button`,
-        sizeClass,
-        priorityClass,
-        roleClass,
-        loadingClass,
-        iconOnlyClass,
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
-      disabled={state === "disabled" || loading}
-      aria-label={
-        ariaLabel ||
-        (!label && iconName ? iconName : undefined) ||
-        (loading ? "LoadingIcon" : undefined)
-      }
-      {...props}
-    >
-      {content}
-    </button>
-  );
-};
+    return (
+      <button
+        ref={ref}
+        type="button"
+        style={{ ...props.style, ...(backgroundColor ? { backgroundColor } : {}) }}
+        className={[
+          `wim-button`,
+          sizeClass,
+          priorityClass,
+          roleClass,
+          loadingClass,
+          iconOnlyClass,
+          className,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        disabled={state === "disabled" || loading}
+        aria-label={
+          ariaLabel ||
+          (!label && iconName ? iconName : undefined) ||
+          (loading ? "LoadingIcon" : undefined)
+        }
+        {...props}
+      >
+        {content}
+      </button>
+    );
+  }
+);
 
 Button.propTypes = {
   backgroundColor: PropTypes.string,

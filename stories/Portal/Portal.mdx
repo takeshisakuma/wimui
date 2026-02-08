@@ -1,0 +1,41 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as PortalStories from "./Portal.stories";
+
+<Meta title="Utilities/Portal" of={PortalStories} />
+
+# Portal
+
+`Portal` コンポーネントは、React コンポーネントツリーの論理構造を保ちつつ、DOM 階層上の物理的な位置だけを別の場所（通常は `document.body` の直下など）に移動させるために使用します。
+
+## どのような時に使うのか？
+
+主に **「親要素の制約を回避したいとき」** に使用します。具体的には、以下の3つのユースケースが代表的です。
+
+### 1. `overflow: hidden` を回避する
+親要素に `overflow: hidden` が設定されている場合、その中にあるツールチップやドロップダウンメニューなどは、親の枠外に出ようとすると見切れて（カットされて）しまいます。Portal を使うことで、これらを DOM の最上位層に逃がし、正しく表示させることができます。
+
+### 2. `z-index` のスタック問題を解決する
+複雑なレイアウトにおいて、`z-index` を指定しても期待通りに重なり順が決まらないことがあります。これは「重ね合わせ文脈（Stacking Context）」の仕組みによるものです。Portal で `document.body` 直下に送ることで、他のどの要素よりも確実に前面に表示させることが容易になります。
+
+### 3. `position: fixed` や `absolute` の基準を変更する
+モーダルなどの全画面要素を配置する際、親要素に `transform` や `filter` がかかっていると、`position: fixed` の基準点が画面全体ではなく、その親要素になってしまいます。これを防ぐために、物理的な位置をトップレベルに移動させます。
+
+---
+
+## 例
+
+### 親の `overflow: hidden` を突き抜ける
+この例では、親要素（点線の枠）に `overflow: hidden` が設定されていますが、Portal を使用したメッセージは画面の右下に正しく表示されます。
+
+<Canvas of={PortalStories.OverflowEscape} />
+
+### 特定のコンテナへレンダリング
+`container` プロップに DOM の参照を渡すことで、`document.body` 以外（例えばサイドバーや特定の通知エリアなど）にもコンテンツを送り込むことができます。
+
+<Canvas of={PortalStories.CustomContainer} />
+
+---
+
+## プロップ
+
+<Controls />
