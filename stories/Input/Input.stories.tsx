@@ -147,7 +147,6 @@ export const FullWidth: Story = {
 };
 
 
-
 export const WithLabelAndError: Story = {
     render: (args) => (
         <div style={{ display: "flex", flexDirection: "column", gap: "4px", width: "320px" }}>
@@ -176,6 +175,28 @@ export const InputWithError: Story = {
     args: {
         state: "error",
         defaultValue: "invalid-email@",
+    },
+};
+
+export const PasswordToggle: Story = {
+    render: (args) => (
+        <Label label="Password Input">
+            <Input {...args} type="password" />
+        </Label>
+    ),
+    args: {
+        defaultValue: "password123",
+    },
+};
+
+export const SearchIndicator: Story = {
+    render: (args) => (
+        <Label label="Search Input">
+            <Input {...args} leftIcon="SearchIcon" />
+        </Label>
+    ),
+    args: {
+        placeholder: "Search components...",
     },
 };
 
