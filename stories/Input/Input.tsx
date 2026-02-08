@@ -7,8 +7,8 @@ type InputProps = React.ComponentPropsWithoutRef<"input"> & {
     state?: "default" | "error" | "disabled";
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
-    leftIcon?: "SearchIcon";
-    rightIcon?: "ChevronDownIcon";
+    leftIcon?: React.ComponentProps<typeof Icon>["name"];
+    rightIcon?: React.ComponentProps<typeof Icon>["name"];
     leftIconColor?: React.ComponentProps<typeof Icon>["color"];
     rightIconColor?: React.ComponentProps<typeof Icon>["color"];
     onLeftIconClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -192,11 +192,11 @@ Input.propTypes = {
     /**
      * 左側に表示するアイコン。検索のインジケーターとして SearchIcon のみを受け付けます。
      */
-    leftIcon: PropTypes.oneOf(["SearchIcon"]),
+    leftIcon: PropTypes.string,
     /**
-     * 右側に表示するアイコン。ドロップダウン等を示す ChevronDownIcon のみを想定しています。
+     * 右側に表示するアイコン。
      */
-    rightIcon: PropTypes.oneOf(["ChevronDownIcon"]),
+    rightIcon: PropTypes.string,
     /**
      * クリアボタンを表示するかどうか。文字入力時に自動的に CloseIcon が右側に表示されます。
      */
