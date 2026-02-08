@@ -4,7 +4,7 @@ import { ErrorBoundary } from "./ErrorBoundary";
 import { Button } from "../Button/Button";
 
 const meta: Meta<typeof ErrorBoundary> = {
-    title: "Utilities/ErrorBoundary",
+    title: "Component/Utilities/ErrorBoundary",
     component: ErrorBoundary,
     parameters: {
         layout: "centered",

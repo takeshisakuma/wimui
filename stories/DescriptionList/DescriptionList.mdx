@@ -1,0 +1,52 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as DescriptionListStories from "./DescriptionList.stories";
+
+<Meta of={DescriptionListStories} />
+
+<Title />
+<Subtitle>
+  キーと値のペアを整理して表示するための説明リストコンポーネント。
+</Subtitle>
+
+<Description>
+  `DescriptionList` は HTML の `<dl>` タグをベースにしており、情報の詳細、メタデータ、属性のリストを表示するのに最適です。
+</Description>
+
+<Primary />
+
+<h2>バリエーション</h2>
+
+<h3>レイアウト</h3>
+<p>
+  `horizontal` (デフォルト), `vertical`, `compact` の 3 つのレイアウトをサポートしています。
+</p>
+
+<h4>Vertical</h4>
+<Canvas of={DescriptionListStories.Vertical} />
+
+<h4>Compact</h4>
+<Canvas of={DescriptionListStories.Compact} />
+
+<h3>ボーダー付き</h3>
+<p>
+  `border` プロップを `true` に設定することで、囲み線と区切り線を表示できます。
+</p>
+<Canvas of={DescriptionListStories.WithBorder} />
+
+<h3>サイズ</h3>
+<p>
+  `small`, `medium` (デフォルト), `large` の 3 つのサイズをサポートしています。
+</p>
+<Canvas of={DescriptionListStories.Small} />
+<Canvas of={DescriptionListStories.Large} />
+
+<Controls />

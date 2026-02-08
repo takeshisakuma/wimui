@@ -1,0 +1,46 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as WatermarkStories from "./Watermark.stories";
+
+<Meta of={WatermarkStories} />
+
+<Title />
+<Subtitle>
+  コンテンツに透かし（ウォーターマーク）を追加するためのコンポーネント。
+</Subtitle>
+
+<Description>
+  `Watermark` は、著作権情報や機密状態を示すテキストや画像を、コンテンツの背面に繰り返し表示します。
+</Description>
+
+<Primary />
+
+<h2>バリエーション</h2>
+
+<h3>テキスト</h3>
+<p>
+  `content` プロップに文字列を指定して表示します。
+</p>
+<Canvas of={WatermarkStories.Text} />
+
+<h3>複数行テキスト</h3>
+<p>
+  `content` プロップに配列を渡すことで、複数行のテキストを表示できます。
+</p>
+<Canvas of={WatermarkStories.MultiLine} />
+
+<h3>画像</h3>
+<p>
+  `image` プロップを使用して、ロゴ画像などの画像を透かしとして使用できます。
+</p>
+<Canvas of={WatermarkStories.Image} />
+
+<Controls />

@@ -4,7 +4,7 @@ import { Transition } from "./Transition";
 import { Button } from "../Button/Button";
 
 const meta: Meta<typeof Transition> = {
-    title: "Utilities/Transition",
+    title: "Component/Utilities/Transition",
     component: Transition,
     parameters: {
         layout: "centered",

@@ -1,0 +1,46 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as QRCodeStories from "./QRCode.stories";
+
+<Meta of={QRCodeStories} />
+
+<Title />
+<Subtitle>
+  情報のQRコードを表示するためのコンポーネント。
+</Subtitle>
+
+<Description>
+  `QRCode` は指定された文字列を QR コードとしてレンダリングします。SVG または Canvas 形式での出力に対応しており、サイズ、色、エラー訂正レベルのカスタマイズが可能です。
+</Description>
+
+<Primary />
+
+<h2>バリエーション</h2>
+
+<h3>サイズ</h3>
+<p>
+  `size` プロップで QR コードの幅と高さを指定できます。
+</p>
+<Canvas of={QRCodeStories.Large} />
+
+<h3>カスタムカラー</h3>
+<p>
+  `bgColor` と `fgColor` を使用して、背景色と前景（ドット）の色を変更できます。
+</p>
+<Canvas of={QRCodeStories.CustomColors} />
+
+<h3>ロゴ画像付き</h3>
+<p>
+  `imageSettings` を使用して、QR コードの中央にロゴ画像を配置できます。
+</p>
+<Canvas of={QRCodeStories.WithImage} />
+
+<Controls />
