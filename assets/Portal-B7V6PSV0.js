@@ -1,1 +1,0 @@
-import{a as t}from"./utils-02Y0UBtw.js";import{r as s}from"./viz-BRLp5-ay.js";const c=({children:r,container:e})=>{const[o,a]=t.useState(!1);return t.useEffect(()=>{a(!0)},[]),o?s.createPortal(r,e||document.body):null};export{c as P};

@@ -1,0 +1,1 @@
+const{useGlobals:r,useEffect:s}=__STORYBOOK_MODULE_PREVIEW_API__;var t=(l,a)=>{const[c,o]=r();return s(()=>{const{parameters:{locale:e}}=a;e&&o({locale:e})},[]),l(a)},_={decorators:[t],initialGlobals:{locale:"",locales:{}}},i=_;export{i as p};

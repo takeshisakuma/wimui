@@ -1,0 +1,44 @@
+import{j as n}from"./react-D-G-yZ1o.js";import{useMDXComponents as o}from"./@mdx-js-yW0sD_pK.js";import{M as d,j as l,i as r}from"./@storybook-esNwf5LZ.js";import{V as c,D as t,A as h,R as x}from"./Video.stories-DjfEp8wL.js";import"../vite-inject-mocker-entry.js";import"./semver-MwBmqdgB.js";import"./react-dom-DgMH5qYG.js";import"./scheduler-7OC5HNn7.js";import"./use-sync-external-store-Crwep2Tv.js";import"./ts-dedent-DrFu-skq.js";import"./prop-types-CamVAYe7.js";import"./Icon-CjB8TZ2o.js";function i(e){const s={code:"code",h1:"h1",h2:"h2",h3:"h3",li:"li",p:"p",pre:"pre",strong:"strong",ul:"ul",...o(),...e.components};return n.jsxs(n.Fragment,{children:[n.jsx(d,{title:"Components/Media/Video",of:c}),`
+`,n.jsx(s.h1,{id:"video",children:"Video"}),`
+`,n.jsxs(s.p,{children:[n.jsx(s.code,{children:"Video"}),` コンポーネントは、動画ファイルを簡単に埋め込むためのコンポーネントです。\r
+自動再生、ループ、コントロールの表示切り替え、角丸、影などのスタイリングをサポートしています。`]}),`
+`,n.jsx(s.h2,{id:"特徴",children:"特徴"}),`
+`,n.jsxs(s.ul,{children:[`
+`,n.jsxs(s.li,{children:[n.jsx(s.strong,{children:"直感的なコントロール"}),": ",n.jsx(s.code,{children:"controls"})," プロパティで再生UIの表示/非表示を切り替え可能。"]}),`
+`,n.jsxs(s.li,{children:[n.jsx(s.strong,{children:"自動再生とループ"}),": ",n.jsx(s.code,{children:"autoPlay"}),"、",n.jsx(s.code,{children:"loop"}),"、",n.jsx(s.code,{children:"muted"})," を組み合わせて背景動画などの演出に対応。"]}),`
+`,n.jsxs(s.li,{children:[n.jsx(s.strong,{children:"スタイリング"}),": ",n.jsx(s.code,{children:"radius"}),"、",n.jsx(s.code,{children:"shadow"}),"、",n.jsx(s.code,{children:"border"})," プロパティでデザインに合わせた外観に変更可能。"]}),`
+`]}),`
+`,n.jsx(s.h2,{id:"usage",children:"Usage"}),`
+`,n.jsx(s.pre,{children:n.jsx(s.code,{className:"language-tsx",children:`import { Video } from "./Video";\r
+\r
+<Video\r
+  src="path/to/video.mp4"\r
+  width={600}\r
+  autoPlay\r
+  muted\r
+  loop\r
+  radius="medium"\r
+  caption="背景動画のサンプル"\r
+/>
+`})}),`
+`,n.jsx(s.h2,{id:"カスタムコントロールと拡張性",children:"カスタムコントロールと拡張性"}),`
+`,n.jsxs(s.p,{children:[n.jsx(s.code,{children:"customControls={true}"})," （または将来的な拡張）を利用することで、標準のビデオプレイヤーにはない以下のような高度な機能を追加・カスタマイズすることが可能です。"]}),`
+`,n.jsxs(s.ul,{children:[`
+`,n.jsxs(s.li,{children:[n.jsx(s.strong,{children:"再生速度コントロール"}),": 学習動画などに便利な「倍速再生」機能や「スロー再生」機能のUIを追加できます。"]}),`
+`,n.jsxs(s.li,{children:[n.jsx(s.strong,{children:"ピクチャーインピクチャー (PiP)"}),": 動画を画面の隅にフロート表示させるPiPモードの切り替えボタンを設置できます。"]}),`
+`,n.jsxs(s.li,{children:[n.jsx(s.strong,{children:"スキップ機能"}),": 「10秒スキップ」などのボタンを追加し、操作性を向上させることができます。"]}),`
+`,n.jsxs(s.li,{children:[n.jsx(s.strong,{children:"オーバーレイ表示"}),": 動画の上にタイトル、ロゴ、透かし、またはインタラクティブな要素（リンクボタンなど）を自由に重ねて表示できます。"]}),`
+`,n.jsxs(s.li,{children:[n.jsx(s.strong,{children:"デザインの統一"}),": ブラウザごとの表示差異をなくし、サイト全体のトーン＆マナーに合わせたカラーやアイコンを使用できます。"]}),`
+`]}),`
+`,n.jsx(s.h2,{id:"props",children:"Props"}),`
+`,n.jsx(l,{}),`
+`,n.jsx(s.h2,{id:"variants",children:"Variants"}),`
+`,n.jsx(s.h3,{id:"default",children:"Default"}),`
+`,n.jsx(s.p,{children:"標準的なビデオプレイヤーです。"}),`
+`,n.jsx(r,{of:t}),`
+`,n.jsx(s.h3,{id:"autoplay--loop",children:"AutoPlay & Loop"}),`
+`,n.jsxs(s.p,{children:[n.jsx(s.code,{children:"autoPlay"}),"、",n.jsx(s.code,{children:"muted"}),"、",n.jsx(s.code,{children:"loop"})," を有効にした状態です。"]}),`
+`,n.jsx(r,{of:h}),`
+`,n.jsx(s.h3,{id:"rounded-with-shadow",children:"Rounded with Shadow"}),`
+`,n.jsx(s.p,{children:"角丸と影を適用したデザインです。"}),`
+`,n.jsx(r,{of:x})]})}function M(e={}){const{wrapper:s}={...o(),...e.components};return s?n.jsx(s,{...e,children:n.jsx(i,{...e})}):i(e)}export{M as default};

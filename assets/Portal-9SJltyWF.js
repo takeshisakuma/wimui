@@ -1,0 +1,1 @@
+import{r as t}from"./react-D-G-yZ1o.js";import{r as a}from"./react-dom-DgMH5qYG.js";const c=({children:r,container:e})=>{const[o,s]=t.useState(!1);return t.useEffect(()=>{s(!0)},[]),o?a.createPortal(r,e||document.body):null};export{c as P};
