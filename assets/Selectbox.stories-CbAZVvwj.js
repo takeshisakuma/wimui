@@ -1,0 +1,27 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{r as n}from"./iframe-C05UZAs2.js";import{P as a}from"./index-BDBDHiMS.js";import{I as E}from"./Icon-DS6-snKS.js";const g=({options:v=[],value:y,onChange:x,placeholder:q="Select an option",label:h,className:O="",disabled:r=!1,defaultValue:j,...D})=>{const[l,s]=n.useState(!1),[T,V]=n.useState(j||""),p=n.useRef(null),w=n.useRef(null),S=y!==void 0,m=S?y:T,f=v.find(e=>e.value===m);n.useEffect(()=>{const e=b=>{p.current&&!p.current.contains(b.target)&&s(!1)};return document.addEventListener("mousedown",e),()=>document.removeEventListener("mousedown",e)},[]);const k=()=>{r||s(!l)},C=e=>{e.disabled||(S||V(e.value),x&&x(e.value),s(!1),w.current?.focus())},N=e=>{if(!r){if(e.key==="Enter"||e.key===" ")s(!l),e.preventDefault();else if(e.key==="Escape")s(!1),e.preventDefault();else if((e.key==="ArrowDown"||e.key==="ArrowUp")&&!l){s(!0),e.preventDefault();return}}};return t.jsxs("div",{className:`wim-selectbox ${O}`,ref:p,...D,children:[h&&t.jsx("label",{className:"wim-label",children:h}),t.jsxs("div",{className:`wim-selectbox-trigger ${l?"wim-selectbox-trigger--open":""} ${r?"wim-selectbox-trigger--disabled":""}`,onClick:k,onKeyDown:N,tabIndex:r?-1:0,role:"combobox","aria-expanded":l,"aria-haspopup":"listbox","aria-disabled":r,ref:w,children:[t.jsx("div",{className:`wim-selectbox-value ${f?"":"wim-selectbox-value--placeholder"}`,children:f?f.label:q}),t.jsx("div",{className:"wim-selectbox-icon",children:t.jsx(E,{name:"ChevronDownIcon",size:"medium"})})]}),l&&!r&&t.jsx("ul",{className:"wim-selectbox-list",role:"listbox",children:v.map(e=>t.jsx("li",{className:`wim-selectbox-option ${m===e.value?"wim-selectbox-option--selected":""} ${e.disabled?"wim-selectbox-option--disabled":""}`,onClick:b=>{b.stopPropagation(),C(e)},role:"option","aria-selected":m===e.value,"aria-disabled":e.disabled,children:e.label},e.value))})]})};g.propTypes={options:a.arrayOf(a.shape({label:a.string.isRequired,value:a.string.isRequired,disabled:a.bool})).isRequired,value:a.string,onChange:a.func,placeholder:a.string,label:a.string,className:a.string,disabled:a.bool,defaultValue:a.string};g.__docgenInfo={description:"ユーザーが定義済みの選択肢から1つを選択するためのプルダウンメニュー。",methods:[],displayName:"Selectbox",props:{options:{required:!1,tsType:{name:"Array",elements:[{name:"signature",type:"object",raw:`{\r
+    label: string;\r
+    value: string;\r
+    disabled?: boolean;\r
+}`,signature:{properties:[{key:"label",value:{name:"string",required:!0}},{key:"value",value:{name:"string",required:!0}},{key:"disabled",value:{name:"boolean",required:!1}}]}}],raw:"SelectboxOption[]"},description:"選択肢の配列。",defaultValue:{value:"[]",computed:!1},type:{name:"arrayOf",value:{name:"shape",value:{label:{name:"string",required:!0},value:{name:"string",required:!0},disabled:{name:"bool",required:!1}}}}},value:{required:!1,tsType:{name:"string"},description:"現在の値 (制御されたコンポーネントの場合)。",type:{name:"string"}},onChange:{required:!1,tsType:{name:"signature",type:"function",raw:"(value: string) => void",signature:{arguments:[{type:{name:"string"},name:"value"}],return:{name:"void"}}},description:"値が変更された時のコールバック。",type:{name:"func"}},placeholder:{required:!1,tsType:{name:"string"},description:"プレースホルダー。",defaultValue:{value:'"Select an option"',computed:!1},type:{name:"string"}},label:{required:!1,tsType:{name:"string"},description:"ラベル。",type:{name:"string"}},className:{required:!1,tsType:{name:"string"},description:"追加のクラス名。",defaultValue:{value:'""',computed:!1},type:{name:"string"}},disabled:{required:!1,tsType:{name:"boolean"},description:"無効化。",defaultValue:{value:"false",computed:!1},type:{name:"bool"}},defaultValue:{required:!1,tsType:{name:"string"},description:"初期値 (非制御コンポーネントの場合)。",type:{name:"string"}}}};const R={title:"Component/Selection Controls/Selectbox",component:g,parameters:{layout:"centered",docs:{description:{component:"ユーザーが定義済みの選択肢から1つを選択するためのコンポーネント。"}}},tags:[],argTypes:{onChange:{action:"changed"}}},d=[{label:"Option 1",value:"opt1"},{label:"Option 2",value:"opt2"},{label:"Option 3",value:"opt3"},{label:"Disabled Option",value:"opt4",disabled:!0},{label:"Option 5",value:"opt5"}],o={args:{options:d,placeholder:"Select an option..."}},i={args:{label:"Choose an item",options:d,placeholder:"Select..."}},c={args:{options:d,defaultValue:"opt2"}},u={args:{options:d,disabled:!0,defaultValue:"opt1"}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    options: options,
+    placeholder: "Select an option..."
+  }
+}`,...o.parameters?.docs?.source}}};i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`{
+  args: {
+    label: "Choose an item",
+    options: options,
+    placeholder: "Select..."
+  }
+}`,...i.parameters?.docs?.source}}};c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    options: options,
+    defaultValue: "opt2"
+  }
+}`,...c.parameters?.docs?.source}}};u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    options: options,
+    disabled: true,
+    defaultValue: "opt1"
+  }
+}`,...u.parameters?.docs?.source}}};const _=["Default","WithLabel","Preselected","Disabled"],A=Object.freeze(Object.defineProperty({__proto__:null,Default:o,Disabled:u,Preselected:c,WithLabel:i,__namedExportsOrder:_,default:R},Symbol.toStringTag,{value:"Module"}));export{o as D,c as P,A as S,i as W,u as a};
