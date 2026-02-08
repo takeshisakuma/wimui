@@ -46,14 +46,7 @@ export const Default: Story = {
     },
 };
 
-export const SearchIndicator: Story = {
-    render: (args) => (
-        <Label label="Search Indicator">
-            <Input {...args} leftIcon="SearchIcon" placeholder="Search..." />
-        </Label>
-    ),
-    args: {},
-};
+
 
 export const SelectLike: Story = {
     render: (args) => {
@@ -153,44 +146,7 @@ export const FullWidth: Story = {
     },
 };
 
-export const Password: Story = {
-    render: (args) => (
-        <Label label="Basic Password">
-            <Input {...args} />
-        </Label>
-    ),
-    args: {
-        type: "password",
-        placeholder: "Password input",
-        defaultValue: "password123",
-    },
-};
 
-export const PasswordToggle: Story = {
-    render: (args) => (
-        <Label label="Password with Toggle (Default)">
-            <Input {...args} />
-        </Label>
-    ),
-    args: {
-        type: "password",
-        placeholder: "Enter password...",
-        defaultValue: "shhh-it-is-a-secret",
-    },
-};
-
-export const PasswordNoToggle: Story = {
-    render: (args) => (
-        <Label label="Password without Toggle (Opt-out)">
-            <Input {...args} />
-        </Label>
-    ),
-    args: {
-        type: "password",
-        showPasswordToggle: false,
-        placeholder: "No toggle here...",
-    },
-};
 
 export const WithLabelAndError: Story = {
     render: (args) => (
@@ -223,19 +179,4 @@ export const InputWithError: Story = {
     },
 };
 
-export const FullSearchBar: Story = {
-    render: (args) => (
-        <div style={{ display: "flex", gap: "8px", alignItems: "flex-end" }}>
-            <Label label="Advanced Search" style={{ flex: 1 }}>
-                <Input
-                    {...args}
-                    leftIcon="SearchIcon"
-                    allowClear
-                    placeholder="Search keywords..."
-                />
-            </Label>
-            <Button priority="secondary" label="Search" iconName="SearchIcon" />
-        </div>
-    ),
-    args: {},
-};
+

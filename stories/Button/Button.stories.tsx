@@ -57,16 +57,7 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
   },
 };
 
-export const LargePrimaryNoLabelWithSquareIconButton: Story = {
-  args: {
-    size: "large",
-    priority: "primary",
-    role: "default",
-    state: "abled",
-    iconName: "SquareIcon",
-    "aria-label": "Square Icon Button",
-  },
-};
+
 
 export const MediumPrimaryLoadingProcessingButton: Story = {
   args: {

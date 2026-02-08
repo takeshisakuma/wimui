@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { SearchInput } from "./SearchInput";
 
 const meta: Meta<typeof SearchInput> = {
-    title: "Data Entry/SearchInput",
+    title: "Component/Data Entry/SearchInput",
     component: SearchInput,
     tags: ["autodocs"],
 };
