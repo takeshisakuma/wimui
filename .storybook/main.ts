@@ -55,6 +55,18 @@ const config: StorybookConfig = {
           },
         }),
       ],
+      build: {
+        chunkSizeWarningLimit: 1000,
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              vendor: ["react", "react-dom"],
+              viz: ["recharts"],
+              utils: ["qrcode.react", "i18next", "react-i18next"],
+            },
+          },
+        },
+      },
     });
   },
 };
