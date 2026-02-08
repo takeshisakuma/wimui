@@ -1,0 +1,1 @@
+const o=["#d40045","#0f218b","#ffcc00","#008f62","#56007d","#ff590b","#007a87","#99cf15"],e={axis:{stroke:"#8a8a8a",fontSize:12},grid:{stroke:"#e5e5e5",strokeDasharray:"3 3"},tooltip:{contentStyle:{backgroundColor:"#ffffff",border:"1px solid #e5e5e5",borderRadius:"4px",fontSize:"12px"}}};export{o as C,e as a};
