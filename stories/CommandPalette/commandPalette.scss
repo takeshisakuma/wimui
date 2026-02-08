@@ -12,6 +12,12 @@
     align-items: flex-start;
     justify-content: center;
     padding-top: 20vh;
+
+    // Mobile: sticky to top and less padding
+    @media (max-width: 640px) {
+        padding-top: 0;
+        align-items: flex-start;
+    }
 }
 
 .wim-command-palette-content {
@@ -29,6 +35,17 @@
     [data-theme="dark"] & {
         background: var(--bg-component, #1a1a1a);
         border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    // Mobile: full width and no border radius at top
+    @media (max-width: 640px) {
+        max-width: 100%;
+        height: auto;
+        max-height: 100vh;
+        border-radius: 0 0 spacings.$radius-lg spacings.$radius-lg;
+        border-top: none;
+        border-left: none;
+        border-right: none;
     }
 }
 
@@ -58,7 +75,7 @@
 
 .wim-command-palette-input {
     flex: 1;
-    height: 48px;
+    height: 56px; // Slightly taller for mobile tap
     background: transparent;
     border: none;
     font-size: 1rem;
@@ -74,6 +91,10 @@
     max-height: 400px;
     overflow-y: auto;
     padding: spacings.$spacing-xs;
+
+    @media (max-width: 640px) {
+        max-height: calc(100vh - 120px); // Adjust based on header/footer
+    }
 
     &::-webkit-scrollbar {
         width: 6px;
@@ -105,7 +126,7 @@
 .wim-command-palette-item {
     display: flex;
     align-items: center;
-    padding: spacings.$spacing-xs spacings.$spacing-sm;
+    padding: spacings.$spacing-sm spacings.$spacing-sm; // Taller for mobile
     border-radius: spacings.$radius-sm;
     cursor: pointer;
     user-select: none;
@@ -143,6 +164,11 @@
     .wim-command-palette-item-shortcut {
         display: flex;
         gap: 4px;
+
+        // Hide shortcuts on small screens
+        @media (max-width: 480px) {
+            display: none;
+        }
     }
 }
 
@@ -164,6 +190,12 @@
     [data-theme="dark"] & {
         background: rgba(0, 0, 0, 0.2);
     }
+
+    // Hide footer on very small screens or make it more compact
+    @media (max-width: 480px) {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
 }
 
 .wim-command-palette-shortcut-hint {
@@ -176,5 +208,24 @@
     .wim-kbd {
         font-size: 0.6rem;
         padding: 1px 4px;
+    }
+}
+
+// Add basic styles for the trigger if needed
+.wim-command-palette-trigger {
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    border: 1px solid var(--wim-color-border);
+    border-radius: spacings.$radius-md;
+    background: var(--bg-component);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: spacings.$spacing-sm;
+    transition: all 0.2s;
+
+    &:hover {
+        border-color: var(--color-primary);
+        color: var(--text-primary);
     }
 }

@@ -28,7 +28,7 @@ const useCommandPalette = () => {
     return context;
 };
 
-// --- CommandPalette Root ---
+// --- CommandPalette Root (Provider) ---
 export interface CommandPaletteProps {
     children: ReactNode;
     open?: boolean;
@@ -83,9 +83,7 @@ export const CommandPalette = ({ children, open: controlledOpen, onOpenChange }:
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [open, handleOpenChange]);
 
-    if (!open) return null;
-
-    return createPortal(
+    return (
         <CommandPaletteContext.Provider
             value={{
                 open,
@@ -99,26 +97,74 @@ export const CommandPalette = ({ children, open: controlledOpen, onOpenChange }:
                 unregisterItem
             }}
         >
-            <div className="wim-command-palette-overlay" onClick={() => handleOpenChange(false)}>
-                <FocusTrap active={open} autoFocus={true}>
-                    <div
-                        className="wim-command-palette-content"
-                        onClick={(e) => e.stopPropagation()}
-                        onKeyDown={(e) => {
-                            if (e.key === "ArrowDown") {
-                                e.preventDefault();
-                                setActiveIndex((prev) => (prev + 1) % itemCountRef.current);
-                            } else if (e.key === "ArrowUp") {
-                                e.preventDefault();
-                                setActiveIndex((prev) => (prev - 1 + itemCountRef.current) % itemCountRef.current);
-                            }
-                        }}
-                    >
-                        {children}
-                    </div>
-                </FocusTrap>
-            </div>
-        </CommandPaletteContext.Provider>,
+            {children}
+        </CommandPaletteContext.Provider>
+    );
+};
+
+// --- CommandPalette Trigger ---
+export interface CommandPaletteTriggerProps {
+    children: ReactNode;
+    asChild?: boolean;
+    className?: string;
+}
+
+export const CommandPaletteTrigger = ({ children, asChild, className }: CommandPaletteTriggerProps) => {
+    const { onOpenChange } = useCommandPalette();
+
+    const handleClick = (e: React.MouseEvent) => {
+        onOpenChange(true);
+    };
+
+    if (asChild && React.isValidElement(children)) {
+        return React.cloneElement(children as React.ReactElement<any>, {
+            onClick: (e: React.MouseEvent) => {
+                const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
+                child.props.onClick?.(e);
+                handleClick(e);
+            },
+            className: classNames(className, (children as React.ReactElement<any>).props.className),
+        });
+    }
+
+    return (
+        <button className={classNames("wim-command-palette-trigger", className)} onClick={handleClick}>
+            {children}
+        </button>
+    );
+};
+
+// --- CommandPalette Content (Modal) ---
+export interface CommandPaletteContentProps {
+    children: ReactNode;
+    className?: string;
+}
+
+export const CommandPaletteContent = ({ children, className }: CommandPaletteContentProps) => {
+    const { open, onOpenChange, setActiveIndex, itemCount } = useCommandPalette();
+
+    if (!open) return null;
+
+    return createPortal(
+        <div className="wim-command-palette-overlay" onClick={() => onOpenChange(false)}>
+            <FocusTrap active={open} autoFocus={true}>
+                <div
+                    className={classNames("wim-command-palette-content", className)}
+                    onClick={(e) => e.stopPropagation()}
+                    onKeyDown={(e) => {
+                        if (e.key === "ArrowDown") {
+                            e.preventDefault();
+                            setActiveIndex((prev) => (prev + 1) % itemCount);
+                        } else if (e.key === "ArrowUp") {
+                            e.preventDefault();
+                            setActiveIndex((prev) => (prev - 1 + itemCount) % itemCount);
+                        }
+                    }}
+                >
+                    {children}
+                </div>
+            </FocusTrap>
+        </div>,
         document.body
     );
 };

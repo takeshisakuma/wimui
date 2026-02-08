@@ -7,41 +7,61 @@ import * as CommandPaletteStories from './CommandPalette.stories';
 
 `CommandPalette`は、アプリケーション全体での検索、コマンド実行、ナビゲーションを提供するためのモーダルインターフェースです。
 
-`Cmd+K` (または `Ctrl+K`) のショートカットキーで開くことができます。
+モバイルやタブレットでも使いやすいように、画面上部への固定やタップしやすいサイズ調整が自動的に行われます。
+
+## 特徴
+
+- **マルチデバイス対応**: デスクトップでは中央、モバイルでは画面上部に最適化されたレイアウト。
+- **ショートカット & トリガー**: `Cmd+K` ショートカットに加え、UI上のボタン（`Trigger`）からも起動可能。
+- **キーボードナビゲーション**: 矢印キーでの選択、Enterでの実行。
 
 ## 構成
 
-- `CommandPalette`: ルートコンポーネント（モーダルの開閉管理）
+- `CommandPalette`: ルートコンポーネント（Provider）
+- `CommandPaletteTrigger`: 起動用ボタン（任意）
+- `CommandPaletteContent`: モーダルコンテンツ本体
 - `CommandPaletteInput`: 検索入力
 - `CommandPaletteList`: アイテム一覧のコンテナ
 - `CommandPaletteGroup`: アイテムをグループ化
 - `CommandPaletteItem`: 各コマンドアイテム
 - `CommandPaletteEmpty`: 検索結果がない時の表示
-- `CommandPaletteFooter`: 操作ヒントなどを表示するフッター
+- `CommandPaletteFooter`: 操作ヒントフッター
 
 ## 使い方
 
-```tsx
-import { 
-  CommandPalette, 
-  CommandPaletteInput, 
-  CommandPaletteList, 
-  CommandPaletteItem 
-} from "wim-ui";
+### 基本パターン（Triggerを使用）
 
-const MyComponent = () => {
-    const [open, setOpen] = useState(false);
-    
-    return (
-        <CommandPalette open={open} onOpenChange={setOpen}>
-            <CommandPaletteInput />
-            <CommandPaletteList>
-                <CommandPaletteItem onSelect={() => {}}>Action 1</CommandPaletteItem>
-                <CommandPaletteItem onSelect={() => {}}>Action 2</CommandPaletteItem>
-            </CommandPaletteList>
-        </CommandPalette>
-    );
-};
+```tsx
+<CommandPalette>
+  <CommandPaletteTrigger>
+    <span>コマンドを開く</span>
+    <kbd>⌘K</kbd>
+  </CommandPaletteTrigger>
+
+  <CommandPaletteContent>
+    <CommandPaletteInput />
+    <CommandPaletteList>
+      <CommandPaletteItem onSelect={() => {}}>Action 1</CommandPaletteItem>
+    </CommandPaletteList>
+  </CommandPaletteContent>
+</CommandPalette>
+```
+
+### 制御パターン（状態を外部で管理）
+
+```tsx
+const [open, setOpen] = useState(false);
+
+return (
+  <>
+    <button onClick={() => setOpen(true)}>Open</button>
+    <CommandPalette open={open} onOpenChange={setOpen}>
+      <CommandPaletteContent>
+        {/* ... */}
+      </CommandPaletteContent>
+    </CommandPalette>
+  </>
+);
 ```
 
 ## プレビュー

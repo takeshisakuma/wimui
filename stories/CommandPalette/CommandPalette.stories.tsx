@@ -8,6 +8,8 @@ import {
     CommandPaletteItem,
     CommandPaletteEmpty,
     CommandPaletteFooter,
+    CommandPaletteTrigger,
+    CommandPaletteContent,
 } from "./CommandPalette";
 import { Icon } from "../Icon/Icon";
 
@@ -23,7 +25,6 @@ export default meta;
 type Story = StoryObj<typeof CommandPalette>;
 
 const DefaultTemplate = () => {
-    const [open, setOpen] = useState(false);
     const [search, setSearch] = useState("");
 
     const items = [
@@ -44,56 +45,50 @@ const DefaultTemplate = () => {
 
     return (
         <div style={{ padding: "100px", textAlign: "center" }}>
-            <button
-                onClick={() => setOpen(true)}
-                style={{
-                    padding: "10px 20px",
-                    background: "var(--wim-primary)",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "6px",
-                    cursor: "pointer"
-                }}
-            >
-                Open Command Palette (⌘K)
-            </button>
+            <CommandPalette>
+                <CommandPaletteTrigger>
+                    <Icon name="SearchIcon" size="small" />
+                    <span>Search Commands...</span>
+                    <kbd style={{ marginLeft: "12px", fontSize: "0.8em", opacity: 0.6 }}>⌘K</kbd>
+                </CommandPaletteTrigger>
 
-            <CommandPalette open={open} onOpenChange={setOpen}>
-                <CommandPaletteInput
-                    placeholder="Type a command or search..."
-                    onChange={setSearch}
-                />
-                <CommandPaletteList>
-                    <CommandPaletteEmpty />
-                    {groups.map((group) => (
-                        <CommandPaletteGroup key={group} heading={group}>
-                            {filteredItems
-                                .filter((item) => item.group === group)
-                                .map((item) => (
-                                    <CommandPaletteItem
-                                        key={item.id}
-                                        onSelect={() => console.log(`Selected: ${item.label}`)}
-                                        shortcut={item.shortcut}
-                                        icon={<Icon name={item.icon as any} size="small" />}
-                                    >
-                                        {item.label}
-                                    </CommandPaletteItem>
-                                ))}
-                        </CommandPaletteGroup>
-                    ))}
-                </CommandPaletteList>
-                <CommandPaletteFooter>
-                    <div className="wim-command-palette-shortcut-hint">
-                        <kbd className="wim-kbd wim-kbd--sm">↵</kbd> to select
-                    </div>
-                    <div className="wim-command-palette-shortcut-hint">
-                        <kbd className="wim-kbd wim-kbd--sm">↑</kbd>
-                        <kbd className="wim-kbd wim-kbd--sm">↓</kbd> to navigate
-                    </div>
-                    <div className="wim-command-palette-shortcut-hint">
-                        <kbd className="wim-kbd wim-kbd--sm">esc</kbd> to close
-                    </div>
-                </CommandPaletteFooter>
+                <CommandPaletteContent>
+                    <CommandPaletteInput
+                        placeholder="Type a command or search..."
+                        onChange={setSearch}
+                    />
+                    <CommandPaletteList>
+                        <CommandPaletteEmpty />
+                        {groups.map((group) => (
+                            <CommandPaletteGroup key={group} heading={group}>
+                                {filteredItems
+                                    .filter((item) => item.group === group)
+                                    .map((item) => (
+                                        <CommandPaletteItem
+                                            key={item.id}
+                                            onSelect={() => console.log(`Selected: ${item.label}`)}
+                                            shortcut={item.shortcut}
+                                            icon={<Icon name={item.icon as any} size="small" />}
+                                        >
+                                            {item.label}
+                                        </CommandPaletteItem>
+                                    ))}
+                            </CommandPaletteGroup>
+                        ))}
+                    </CommandPaletteList>
+                    <CommandPaletteFooter>
+                        <div className="wim-command-palette-shortcut-hint">
+                            <kbd className="wim-kbd wim-kbd--sm">↵</kbd> to select
+                        </div>
+                        <div className="wim-command-palette-shortcut-hint">
+                            <kbd className="wim-kbd wim-kbd--sm">↑</kbd>
+                            <kbd className="wim-kbd wim-kbd--sm">↓</kbd> to navigate
+                        </div>
+                        <div className="wim-command-palette-shortcut-hint">
+                            <kbd className="wim-kbd wim-kbd--sm">esc</kbd> to close
+                        </div>
+                    </CommandPaletteFooter>
+                </CommandPaletteContent>
             </CommandPalette>
         </div>
     );
@@ -103,7 +98,7 @@ export const Default: Story = {
     render: () => <DefaultTemplate />,
 };
 
-const LucideIconsTemplate = () => {
+const ControlledTemplate = () => {
     const [open, setOpen] = useState(false);
     return (
         <div style={{ padding: "100px", textAlign: "center" }}>
@@ -111,30 +106,32 @@ const LucideIconsTemplate = () => {
                 onClick={() => setOpen(true)}
                 style={{
                     padding: "10px 20px",
-                    background: "var(--wim-primary)",
+                    background: "var(--color-primary)",
                     color: "white",
                     border: "none",
                     borderRadius: "6px",
                     cursor: "pointer"
                 }}
             >
-                Simple Palette
+                Open Controlled Palette
             </button>
 
             <CommandPalette open={open} onOpenChange={setOpen}>
-                <CommandPaletteInput placeholder="Search..." />
-                <CommandPaletteList>
-                    <CommandPaletteGroup heading="Quick Links">
-                        <CommandPaletteItem onSelect={() => { }} icon={<Icon name="SearchIcon" size="small" />}>Search Docs</CommandPaletteItem>
-                        <CommandPaletteItem onSelect={() => { }} icon={<Icon name="CopyIcon" size="small" />}>Copy Link</CommandPaletteItem>
-                        <CommandPaletteItem onSelect={() => { }} icon={<Icon name="StarIcon" size="small" />}>Add to Favorites</CommandPaletteItem>
-                    </CommandPaletteGroup>
-                </CommandPaletteList>
+                <CommandPaletteContent>
+                    <CommandPaletteInput placeholder="Search..." />
+                    <CommandPaletteList>
+                        <CommandPaletteGroup heading="Quick Links">
+                            <CommandPaletteItem onSelect={() => { }} icon={<Icon name="SearchIcon" size="small" />}>Search Docs</CommandPaletteItem>
+                            <CommandPaletteItem onSelect={() => { }} icon={<Icon name="CopyIcon" size="small" />}>Copy Link</CommandPaletteItem>
+                            <CommandPaletteItem onSelect={() => { }} icon={<Icon name="StarIcon" size="small" />}>Add to Favorites</CommandPaletteItem>
+                        </CommandPaletteGroup>
+                    </CommandPaletteList>
+                </CommandPaletteContent>
             </CommandPalette>
         </div>
     );
 };
 
-export const WithIcons: Story = {
-    render: () => <LucideIconsTemplate />,
+export const Controlled: Story = {
+    render: () => <ControlledTemplate />,
 };
