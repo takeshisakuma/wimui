@@ -1,0 +1,52 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as DrawerStories from "./Drawer.stories";
+
+<Meta of={DrawerStories} />
+
+# Drawer
+
+Drawerは、画面の端からスライドして表示されるパネルです。追加のコンテキストやナビゲーション、設定などを表示するために使用されます。
+
+## 基本的な使い方
+
+`Drawer` コンポーネントの中に `DrawerTrigger` と `DrawerContent` を配置します。
+`side` プロパティを使用して、表示される位置（top, right, bottom, left）を指定できます。デフォルトは `right` です。
+
+<Canvas of={DrawerStories.Default} />
+
+## 表示位置のバリエーション
+
+### Left
+
+<Canvas of={DrawerStories.Left} />
+
+### Top
+
+<Canvas of={DrawerStories.Top} />
+
+### Bottom
+
+<Canvas of={DrawerStories.Bottom} />
+
+## 制御された状態 (Controlled)
+
+`open` プロパティと `onOpenChange` イベントハンドラを使用することで、ドロワーの開閉状態を完全に制御できます。
+
+<Canvas of={DrawerStories.Controlled} />
+
+## API
+
+### Drawer Components
+
+- **Drawer**: ルートコンポーネント。コンテキストを提供します。
+- **DrawerTrigger**: ドロワーを開くためのボタントリガー。`asChild` を使用して他のコンポーネントをトリガーとして機能させることができます。
+- **DrawerContent**: ドロワーの中身を表示するパネル。FocusTrapとスクロールロックを管理します。
+- **DrawerHeader**: タイトルなどのヘッダー領域。
+- **DrawerFooter**: アクションボタンなどのフッター領域。
+- **DrawerTitle**: ドロワーのタイトル。
+- **DrawerDescription**: ドロワーの補助的な説明。
+- **DrawerClose**: ドロワーを閉じるためのボタン。`asChild` が利用可能です。
+
+## Props
+
+<Controls />
