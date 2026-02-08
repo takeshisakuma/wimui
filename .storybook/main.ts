@@ -2,6 +2,7 @@ import type { StorybookConfig } from "@storybook/react-vite";
 import { mergeConfig } from "vite";
 import viteImagemin from "vite-plugin-imagemin";
 import svgr from "vite-plugin-svgr";
+import path from "path";
 
 const config: StorybookConfig = {
   stories: [
@@ -25,16 +26,28 @@ const config: StorybookConfig = {
   viteFinal: async (config) => {
     // Viteの設定をマージ
     return mergeConfig(config, {
+      base: "./",
       resolve: {
         alias: [
           {
             find: "storybook/internal/theming",
-            replacement:
-              "C:\\Users\\facto\\Desktop\\github\\wimui\\node_modules\\storybook\\dist\\theming\\index.js",
+            replacement: path.resolve(
+              process.cwd(),
+              "node_modules/storybook/dist/theming/index.js"
+            ),
           },
         ],
       },
       plugins: [
+        {
+          name: "fix-vitest-path",
+          transformIndexHtml(html: string) {
+            return html.replace(
+              /\/vite-inject-mocker-entry\.js/g,
+              "./vite-inject-mocker-entry.js"
+            );
+          },
+        },
         svgr(),
         viteImagemin({
           gifsicle: { optimizationLevel: 7 },
@@ -57,19 +70,6 @@ const config: StorybookConfig = {
       ],
       build: {
         chunkSizeWarningLimit: 2000,
-        rollupOptions: {
-          output: {
-            manualChunks(id: string) {
-              if (id.includes("node_modules")) {
-                return id
-                  .toString()
-                  .split("node_modules/")[1]
-                  .split("/")[0]
-                  .toString();
-              }
-            },
-          },
-        },
       },
     });
   },
