@@ -14,6 +14,7 @@ import { Meta } from "@storybook/blocks";
       <th>コンポーネント</th>
       <th>選択形式</th>
       <th>選択肢の数</th>
+      <th>即時反映</th>
       <th>主な用途</th>
     </tr>
   </thead>
@@ -22,40 +23,75 @@ import { Meta } from "@storybook/blocks";
       <td><strong>Checkbox</strong></td>
       <td>複数選択可</td>
       <td>少数 (2〜10)</td>
+      <td>×</td>
       <td>設定のオンオフ、リストからの複数選択</td>
     </tr>
     <tr>
       <td><strong>Radio</strong></td>
       <td>単一選択</td>
       <td>少数 (2〜5)</td>
+      <td>×</td>
       <td>排他的な選択肢からの1つ選択</td>
     </tr>
     <tr>
       <td><strong>Switch</strong></td>
       <td>オン/オフ</td>
       <td>1つ</td>
+      <td>○</td>
       <td>即座に反映される設定の切り替え</td>
     </tr>
     <tr>
       <td><strong>Select</strong></td>
       <td>単一選択</td>
       <td>中〜多数 (5〜)</td>
+      <td>×</td>
       <td>フォーム内での場所を取らない1つ選択</td>
     </tr>
     <tr>
       <td><strong>Combobox</strong></td>
       <td>単一選択</td>
       <td>多数 (20〜)</td>
+      <td>×</td>
       <td>検索を伴う選択、候補からの補完入力</td>
     </tr>
     <tr>
       <td><strong>Segmented Control</strong></td>
       <td>単一選択</td>
       <td>少数 (2〜5)</td>
+      <td>○</td>
       <td>表示の切り替え、モードの変更</td>
     </tr>
   </tbody>
 </table>
+
+## Segmented Control vs Button Group (joined)
+
+見た目は似ていますが、目的が異なります。
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>役割</th>
+      <th>典型的な挙動</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Segmented Control</strong></td>
+      <td><strong>選択</strong></td>
+      <td>値や表示モードの切り替え。常にいずれか1つが選択されている。</td>
+    </tr>
+    <tr>
+      <td><strong>Button Group (joined)</strong></td>
+      <td><strong>アクション</strong></td>
+      <td>関連する複数の操作のグループ化。押すと何かが実行される（例：保存 / 複製 / 削除）。</td>
+    </tr>
+  </tbody>
+</table>
+
+- **Segmented Control を選ぶ場合**: 「表示を 週間 / 月間 に切り替える」「ソート順を 昇順 / 降順 に変える」など、ある1つの状態を決定・変更するときに使用します。
+- **Button Group を選ぶ場合**: 「編集」「削除」など、独立した（または関連した）複数の実行ボタンを視覚的にまとめたいときに使用します。
 
 ---
 
