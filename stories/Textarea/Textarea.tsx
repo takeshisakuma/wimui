@@ -12,20 +12,21 @@ type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
 /**
  * 複数行のテキスト入力を受け付けるコンポーネント。
  */
-export const Textarea = ({
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({
     state = "default",
     variant = "outline",
     fullWidth = false,
     className = "",
     disabled,
     ...props
-}: TextareaProps) => {
+}, ref) => {
     const stateClass = `wim-textarea--${state}`;
     const variantClass = `wim-textarea--${variant}`;
     const widthClass = fullWidth ? "wim-textarea--full-width" : "";
 
     return (
         <textarea
+            ref={ref}
             className={[
                 "wim-textarea",
                 stateClass,
@@ -40,7 +41,9 @@ export const Textarea = ({
             {...props}
         />
     );
-};
+});
+
+Textarea.displayName = "Textarea";
 
 Textarea.propTypes = {
     /**

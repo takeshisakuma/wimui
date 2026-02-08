@@ -1,0 +1,46 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as InputMaskStories from "./InputMask.stories";
+
+<Meta of={InputMaskStories} />
+
+<Title />
+<Subtitle>
+  特定の形式に沿った入力を強制するためのマスク付き入力コンポーネントです。
+</Subtitle>
+
+## 基本的な使い方
+
+`mask` プロパティにパターンを指定して使用します。
+
+- `9`: 数字 (0-9)
+- `a`: 英字 (a-z, A-Z)
+- `*`: 英数字 (0-9, a-z, A-Z)
+
+### 郵便番号
+
+<Canvas of={InputMaskStories.ZipCode} />
+
+### 電話番号
+
+<Canvas of={InputMaskStories.Phone} />
+
+### クレジットカード
+
+<Canvas of={InputMaskStories.CreditCard} />
+
+## 高度な利用例
+
+### カスタムマスク
+
+<Canvas of={InputMaskStories.CustomMask} />
+
+<Controls />

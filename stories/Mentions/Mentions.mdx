@@ -1,0 +1,34 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as MentionsStories from "./Mentions.stories";
+
+<Meta of={MentionsStories} />
+
+<Title />
+<Subtitle>
+  テキスト入力中に特定の文字（@など）をトリガーにして候補を表示し、選択できるようにするコンポーネントです。
+</Subtitle>
+
+## 基本的な使い方
+
+`options` プロパティに候補リストを、`trigger` プロパティに開始文字（デフォルトは `@`）を指定します。
+
+<Canvas of={MentionsStories.Default} />
+
+## カスタマイズ
+
+### 別のトリガー文字
+
+`trigger` を変更することで、ハッシュタグ（#）やコマンド（/）などの入力をサポートできます。
+
+<Canvas of={MentionsStories.CustomTrigger} />
+
+<Controls />
