@@ -30,5 +30,6 @@
   "saving": "Saving...",
   "heading_text": "Heading Text",
   "doc_pagination_title": "Component for switching page numbers",
-  "doc_stepper_title": "A component that visually displays current progress"
+  "doc_stepper_title": "A component that visually displays current progress",
+  "doc_anchor_title": "A component for smooth scrolling to specific sections"
 }
