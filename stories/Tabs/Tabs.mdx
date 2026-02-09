@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as TabsStories from "./Tabs.stories";
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+コンテンツをグループ化し、表示を切り替えるために使用。
+
+<Canvas of={TabsStories.Default} />
+
+<Controls of={TabsStories.Default} />
+
+## 垂直方向への配置
+
+`orientation="vertical"`を指定することで、タブを垂直方向に並べることが可能です。
+
+<Canvas of={TabsStories.Vertical} />
+
+## スクロール可能なタブ
+
+タブの数が多い場合やラベルが長い場合、タブリストを横方向にスクロールすることが可能です。
+
+<Canvas of={TabsStories.Scrolling} />
