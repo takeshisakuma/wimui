@@ -5,38 +5,126 @@
 
 @layer component {
     .wim-float-button {
-        position: fixed;
-        right: 24px;
-        bottom: 24px;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 44px;
-        height: 44px;
         padding: 0;
         cursor: pointer;
         border: none;
-        transition: effects.$transition-base;
+        transition:
+            background-color effects.$duration-fast effects.$easing-base,
+            box-shadow effects.$duration-fast effects.$easing-base,
+            transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+            width 0.3s ease,
+            padding 0.3s ease;
         box-shadow: effects.$shadow-md;
+        position: relative;
+        z-index: 1000;
 
         &__icon--backtop {
             transform: rotate(180deg);
         }
 
         &__inner {
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: spacings.$spacing-xs;
+            width: 100%;
+            height: 100%;
+            transition: gap 0.3s ease;
         }
 
-        &--circle {
+        &__label-wrapper {
+            display: inline-block;
+            max-width: 200px;
+            overflow: hidden;
+            padding: 4px 0;
+            vertical-align: middle;
+            transition: max-width 0.3s ease, opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        &__label {
+            display: inline-block;
+            line-height: 1.4;
+            white-space: nowrap;
+            font-weight: typography.$weight-medium;
+            opacity: 1;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        // Sizes
+        &--lg {
+            width: spacings.$spacing-5xl;
+            height: spacings.$spacing-5xl;
+            font-size: typography.$size-large;
+            --float-button-shrink-size: #{spacings.$spacing-5xl};
+        }
+
+        &--md {
+            width: spacings.$spacing-4xl;
+            height: spacings.$spacing-4xl;
+            font-size: typography.$size-medium;
+            --float-button-shrink-size: #{spacings.$spacing-4xl};
+        }
+
+        &--sm {
+            width: spacings.$spacing-3xl;
+            height: spacings.$spacing-3xl;
+            font-size: typography.$size-small;
+            --float-button-shrink-size: #{spacings.$spacing-3xl};
+
+            .wim-icon {
+                font-size: 0.75rem;
+            }
+        }
+
+        // Extended FAB (with label) - pill型
+        &--extended {
+            width: max-content; // コンテンツに応じた幅
+            min-width: var(--float-button-shrink-size);
+            border-radius: spacings.$radius-full !important; // pill型（circle/squareより優先）
+
+            &.wim-float-button--lg {
+                height: spacings.$spacing-5xl; // 高さ固定でpill型を維持
+                padding: 0 spacings.$spacing-2xl;
+            }
+
+            &.wim-float-button--md {
+                height: spacings.$spacing-4xl; // 高さ固定でpill型を維持
+                padding: 0 spacings.$spacing-xl;
+            }
+
+            &.wim-float-button--sm {
+                height: spacings.$spacing-3xl; // 高さ固定でpill型を維持
+                padding: 0 spacings.$spacing-lg;
+            }
+
+            &.wim-float-button--shrink {
+                padding: 0;
+
+                .wim-float-button__inner {
+                    gap: 0;
+                }
+
+                .wim-float-button__label-wrapper {
+                    max-width: 0;
+                    opacity: 0;
+                    visibility: hidden;
+                }
+
+                .wim-float-button__label {
+                    transform: scale(0.8);
+                }
+            }
+        }
+
+        // circle/squareはextendedでない場合のみ適用
+        &--circle:not(&--extended) {
             border-radius: 50%;
         }
 
-        &--square {
+        &--square:not(&--extended) {
             border-radius: spacings.$radius-md;
         }
 
@@ -47,6 +135,8 @@
 
             &:hover {
                 background-color: colors.$color-disabled;
+                transform: scale(1.05);
+                box-shadow: effects.$shadow-lg;
             }
         }
 
@@ -56,7 +146,53 @@
 
             &:hover {
                 filter: brightness(1.1);
+                transform: scale(1.05);
+                box-shadow: effects.$shadow-lg;
             }
+        }
+
+        // Positions
+        &--bottom-right {
+            position: fixed;
+            bottom: spacings.$spacing-2xl;
+            right: spacings.$spacing-2xl;
+        }
+
+        &--bottom-left {
+            position: fixed;
+            bottom: spacings.$spacing-2xl;
+            left: spacings.$spacing-2xl;
+        }
+
+        &--bottom-center {
+            position: fixed;
+            bottom: spacings.$spacing-2xl;
+            left: 50%;
+            transform: translateX(-50%);
+
+            &:hover:not(:disabled) {
+                transform: translateX(-50%) scale(1.05);
+            }
+
+            &:active:not(:disabled) {
+                transform: translateX(-50%) scale(0.98);
+            }
+        }
+
+        &--top-right {
+            position: fixed;
+            top: spacings.$spacing-2xl;
+            right: spacings.$spacing-2xl;
+        }
+
+        &--top-left {
+            position: fixed;
+            top: spacings.$spacing-2xl;
+            left: spacings.$spacing-2xl;
+        }
+
+        &--static {
+            position: relative;
         }
 
         &__badge {
@@ -107,8 +243,14 @@
             opacity: 1;
         }
 
-        &:active {
-            transform: scale(0.95);
+        &:active:not(:disabled) {
+            transform: scale(effects.$scale-active);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            pointer-events: none;
+            opacity: 0.5;
         }
     }
 }

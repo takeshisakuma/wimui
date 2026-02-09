@@ -5,13 +5,37 @@ import * as FloatButtonStories from "./FloatButton.stories";
 
 # FloatButton
 
-`FloatButton` は、画面上の決まった位置に浮遊するボタンを表示するコンポーネントです。
+`FloatButton` は、画面上の決まった位置に浮遊するボタンを表示するコンポーネントです。Floating Action Button (FAB) の機能も統合しており、ラベル付きのExtended FABとしても使用できます。
 
 ## 使用例
 
 ### 基本的な使い方
 
 <Canvas of={FloatButtonStories.Basic} />
+
+### Extended FAB (ラベル付き)
+
+ラベルを追加することで、pill型のExtended FABとして表示できます。上辺と下辺が平行で、両端が半円の形状になります。
+
+<Canvas of={FloatButtonStories.Extended} />
+
+### サイズバリエーション
+
+`small`、`medium`、`large`の3つのサイズから選択できます。
+
+<Canvas of={FloatButtonStories.Sizes} />
+
+### Extended FABのサイズ
+
+ラベル付きのボタンも、同様にサイズを変更できます。高さが固定されているため、pill型が保たれます。
+
+<Canvas of={FloatButtonStories.ExtendedSizes} />
+
+### 自動縮小アニメーション
+
+スクロール中にラベルを縮小し、アイコンのみの表示に切り替えることができます。
+
+<Canvas of={FloatButtonStories.AutoShrink} />
 
 ### プライマリスタイル
 
@@ -25,11 +49,25 @@ import * as FloatButtonStories from "./FloatButton.stories";
 
 <Canvas of={FloatButtonStories.WithBadge} />
 
+### 固定位置
+
+`position` プロパティを使用して、画面上の位置を指定できます。
+
+<Canvas of={FloatButtonStories.FixedPosition} />
+
 ### トップに戻る (BackTop)
 
 一定以上スクロールすると表示され、クリックするとページ最上部へ滑らかに戻ります。
 
 <Canvas of={FloatButtonStories.BackTop} />
+
+## 特徴
+
+- **Extended FAB**: ラベルを追加することで、pill型（上辺と下辺が平行、両端が半円）の形状になります
+- **3つのサイズ**: small、medium、largeから選択可能
+- **縮小アニメーション**: スクロール時などにラベルを非表示にできます
+- **柔軟な配置**: 画面の6つの位置またはstaticで配置可能
+- **BackTop機能**: スクロール位置に応じた表示制御とスムーズスクロール
 
 ## Props
 
