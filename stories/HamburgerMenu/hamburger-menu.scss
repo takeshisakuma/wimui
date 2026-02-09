@@ -1,0 +1,160 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/typography" as typography;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+
+$hamburger-layer-width: 32px !default;
+$hamburger-layer-height: 2px !default;
+$hamburger-layer-spacing: 6px !default;
+$hamburger-layer-color: colors.$text-black !default;
+$hamburger-layer-border-radius: 4px !default;
+$hamburger-hover-opacity: 0.7 !default;
+$hamburger-active-hover-opacity: 1 !default;
+
+@layer component {
+    .wim-hamburger-menu {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        display: inline-block;
+        margin: 0;
+        padding: spacings.$spacing-sm;
+        transition-timing-function: linear;
+        transition-duration: 0.15s;
+        transition-property: opacity, filter;
+        text-transform: none;
+        color: inherit;
+        font: inherit;
+        overflow: visible;
+
+        &:hover {
+            opacity: $hamburger-hover-opacity;
+        }
+
+
+
+        &__box {
+            width: $hamburger-layer-width;
+            height: $hamburger-layer-width * 0.75; // Approx aspect ratio
+            display: inline-block;
+            position: relative;
+        }
+
+        &__inner {
+            display: block;
+            top: 50%;
+            margin-top: $hamburger-layer-height * -0.5;
+
+            &,
+            &::before,
+            &::after {
+                width: $hamburger-layer-width;
+                height: $hamburger-layer-height;
+                background-color: var(--wim-hamburger-color, #{$hamburger-layer-color});
+                border-radius: $hamburger-layer-border-radius;
+                position: absolute;
+                transition-property: transform;
+                transition-duration: 0.15s;
+                transition-timing-function: ease;
+            }
+
+            &::before,
+            &::after {
+                content: "";
+                display: block;
+            }
+
+            &::before {
+                top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+                transition: top 0.1s 0.14s ease-in, opacity 0.1s ease-in;
+            }
+
+            &::after {
+                top: ($hamburger-layer-spacing + $hamburger-layer-height);
+                transition: top 0.1s 0.14s ease-in, transform 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+            }
+
+            // Default state animation logic
+            transition-duration: 0.1s;
+            transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+            // When open, we override the transitions in the --open block above
+            // But we need to handle the closing animation too.
+            // The default state logic above handles the closing transition.
+        }
+
+        // Size variants
+        &--sm {
+            .wim-hamburger-menu__box {
+                width: 24px;
+                height: 18px;
+            }
+
+            .wim-hamburger-menu__inner,
+            .wim-hamburger-menu__inner::before,
+            .wim-hamburger-menu__inner::after {
+                width: 24px;
+                height: 2px;
+            }
+
+            .wim-hamburger-menu__inner::before {
+                top: -6px;
+            }
+
+            .wim-hamburger-menu__inner::after {
+                top: 6px;
+            }
+        }
+
+        &--lg {
+            .wim-hamburger-menu__box {
+                width: 40px;
+                height: 30px;
+            }
+
+            .wim-hamburger-menu__inner,
+            .wim-hamburger-menu__inner::before,
+            .wim-hamburger-menu__inner::after {
+                width: 40px;
+                height: 3px;
+            }
+
+            .wim-hamburger-menu__inner::before {
+                top: -10px;
+            }
+
+            .wim-hamburger-menu__inner {
+                margin-top: -1.5px;
+            }
+
+            .wim-hamburger-menu__inner::after {
+                top: 10px;
+            }
+        }
+
+        // Open state transition for the main element needs to be coordinated
+        &--open {
+            &:hover {
+                opacity: $hamburger-active-hover-opacity;
+            }
+
+            .wim-hamburger-menu__inner {
+                transform: rotate(-45deg);
+                transition-delay: 0.14s;
+                transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+                &::before {
+                    top: 0;
+                    opacity: 0;
+                    transition: top 0.1s ease-out, opacity 0.1s 0.14s ease-out;
+                }
+
+                &::after {
+                    top: 0;
+                    transform: rotate(-90deg);
+                    transition: top 0.1s ease-out, transform 0.1s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
+                }
+            }
+        }
+    }
+}
