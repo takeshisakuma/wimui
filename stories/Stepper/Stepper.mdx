@@ -1,0 +1,82 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as StepperStories from "./Stepper.stories";
+import { T } from "../T";
+
+<Meta of={StepperStories} />
+
+<Title />
+<Subtitle>
+  <T k="doc_stepper_title" />
+</Subtitle>
+<Description />
+
+<Primary />
+
+<h2>Props</h2>
+<Controls />
+
+<h2>考慮点</h2>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>進捗の明示</td>
+      <td>現在のステップ、完了したステップ、未完了のステップを視覚的に区別する。</td>
+    </tr>
+    <tr>
+      <td>情報の階層</td>
+      <td>タイトルとオプションの説明を使い分け、各ステップの内容を明確に伝える。</td>
+    </tr>
+    <tr>
+      <td>レスポンシブ</td>
+      <td>画面サイズに合わせて、水平レイアウトと垂直レイアウトを切り替えられるようにする。</td>
+    </tr>
+    <tr>
+      <td>状態のフィードバック</td>
+      <td>エラーが発生したステップは警告色を使用してユーザーに通知する。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>バリエーション</h2>
+
+<h3>垂直レイアウト</h3>
+スペースが限られている場合や、ステップ数が多い場合に適しています。
+
+<Canvas of={StepperStories.Vertical} />
+
+<h3>ラベルの垂直配置</h3>
+水平レイアウトで各ステップを中央揃えにしたい場合に適しています。
+
+<Canvas of={StepperStories.LabelVertical} />
+
+<h3>エラー状態</h3>
+特定のステップでエラーが発生したことを示します。
+
+<Canvas of={StepperStories.Error} />
+
+<h3>カスタムアイコン</h3>
+標準の数字の代わりに、独自のアイコンを表示できます。
+
+<Canvas of={StepperStories.CustomIcons} />
+
+<h3>インタラクティブな例</h3>
+実際にステップを進めたり戻したりできる例です。
+
+<Canvas of={StepperStories.Interactive} />
+
+<Stories />

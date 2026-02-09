@@ -29,5 +29,6 @@
   "processing": "処理中...",
   "saving": "保存中...",
   "heading_text": "見出しテキスト",
-  "doc_pagination_title": "ページ番号を切り替えるためのコンポーネント"
+  "doc_pagination_title": "ページ番号を切り替えるためのコンポーネント",
+  "doc_stepper_title": "現在の進捗状況を視覚的に表示するコンポーネント"
 }
