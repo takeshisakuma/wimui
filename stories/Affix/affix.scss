@@ -1,0 +1,11 @@
+@use "../../src/tokens/effects" as effects;
+
+@layer component {
+    .wim-affix {
+        &--affixed {
+            transition: none;
+            // Ensure the affixed element doesn't have unintended margins
+            margin: 0;
+        }
+    }
+}

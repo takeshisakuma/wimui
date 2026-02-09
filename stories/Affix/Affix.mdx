@@ -1,0 +1,26 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as AffixStories from "./Affix.stories";
+
+<Meta of={AffixStories} />
+
+# Affix
+
+`Affix` は、要素をスクロールに応じて画面上の特定の位置に固定するためのコンポーネントです。
+
+## 使用例
+
+### 基本的な使い方
+
+`offsetTop` を指定することで、画面上端からの距離を保って固定されます。
+
+<Canvas of={AffixStories.Basic} />
+
+### 下端に固定
+
+`offsetBottom` を指定することで、画面下端からの距離を保って固定されます。
+
+<Canvas of={AffixStories.OffsetBottom} />
+
+## Props
+
+<Controls />

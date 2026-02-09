@@ -1,0 +1,111 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+@use "../../src/tokens/typography" as typography;
+
+@layer component {
+    .wim-float-button {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        cursor: pointer;
+        border: none;
+        transition: effects.$transition-base;
+        box-shadow: effects.$shadow-md;
+
+        &__icon--backtop {
+            transform: rotate(180deg);
+        }
+
+        &__inner {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &--circle {
+            border-radius: 50%;
+        }
+
+        &--square {
+            border-radius: spacings.$radius-md;
+        }
+
+        &--default {
+            color: colors.$text-black;
+            background-color: #fff;
+            border: 1px solid colors.$color-disabled;
+
+            &:hover {
+                background-color: colors.$color-disabled;
+            }
+        }
+
+        &--primary {
+            color: colors.$color-text-on-primary;
+            background-color: colors.$color-primary;
+
+            &:hover {
+                filter: brightness(1.1);
+            }
+        }
+
+        &__badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            min-width: 16px;
+            height: 16px;
+            padding: 0 4px;
+            font-size: 10px;
+            line-height: 16px;
+            color: #fff;
+            text-align: center;
+            background-color: colors.$color-destructive;
+            border-radius: 8px;
+            box-shadow: 0 0 0 2px #fff;
+
+            &--dot {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 8px;
+                height: 8px;
+                background-color: colors.$color-destructive;
+                border-radius: 50%;
+                box-shadow: 0 0 0 2px #fff;
+            }
+        }
+
+        &__description {
+            position: absolute;
+            right: 52px;
+            padding: 4px 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            border-radius: 4px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        &:hover &__description {
+            opacity: 1;
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}

@@ -1,0 +1,36 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as FloatButtonStories from "./FloatButton.stories";
+
+<Meta of={FloatButtonStories} />
+
+# FloatButton
+
+`FloatButton` は、画面上の決まった位置に浮遊するボタンを表示するコンポーネントです。
+
+## 使用例
+
+### 基本的な使い方
+
+<Canvas of={FloatButtonStories.Basic} />
+
+### プライマリスタイル
+
+<Canvas of={FloatButtonStories.Primary} />
+
+### 四角形
+
+<Canvas of={FloatButtonStories.Square} />
+
+### バッジ付き
+
+<Canvas of={FloatButtonStories.WithBadge} />
+
+### トップに戻る (BackTop)
+
+一定以上スクロールすると表示され、クリックするとページ最上部へ滑らかに戻ります。
+
+<Canvas of={FloatButtonStories.BackTop} />
+
+## Props
+
+<Controls />
