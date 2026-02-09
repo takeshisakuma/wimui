@@ -1,0 +1,80 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/typography" as typography;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+
+@layer component {
+    .wim-pagination {
+        display: flex;
+        align-items: center;
+        gap: spacings.$spacing-xs;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        &__item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: spacings.$spacing-3xl;
+            height: spacings.$spacing-3xl;
+            padding: 0 spacings.$spacing-md;
+            border-radius: spacings.$radius-md;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all effects.$transition-base;
+            user-select: none;
+            font-size: typography.$size-medium;
+            font-weight: typography.$weight-medium;
+            background: transparent;
+            border: 1px solid transparent;
+
+            &:hover:not(&--disabled):not(&--active) {
+                background-color: var(--wim-color-border-secondary);
+                color: var(--color-primary);
+            }
+
+            &--active {
+                background-color: var(--color-primary);
+                color: var(--color-text-on-primary);
+                cursor: default;
+            }
+
+            &--disabled {
+                cursor: not-allowed;
+                color: var(--color-disabled);
+                opacity: 0.5;
+            }
+
+            &--ellipsis {
+                cursor: default;
+
+                &:hover {
+                    background-color: transparent;
+                    color: var(--text-secondary);
+                }
+            }
+        }
+
+        &__button {
+            padding: 0;
+            border: none;
+            background: none;
+            font: inherit;
+            color: inherit;
+            cursor: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            outline: none;
+
+            &:focus-visible {
+                outline: 2px solid var(--color-primary);
+                outline-offset: 2px;
+                border-radius: spacings.$radius-sm;
+            }
+        }
+    }
+}

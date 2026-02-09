@@ -28,5 +28,6 @@
   "doc_custom_area": "ここは自由にHTML/CSSを記述できるエリアです。",
   "processing": "処理中...",
   "saving": "保存中...",
-  "heading_text": "見出しテキスト"
+  "heading_text": "見出しテキスト",
+  "doc_pagination_title": "ページ番号を切り替えるためのコンポーネント"
 }

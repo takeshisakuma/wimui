@@ -1,0 +1,77 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
+import * as PaginationStories from "./Pagination.stories";
+import { T } from "../T";
+
+<Meta of={PaginationStories} />
+
+<Title />
+<Subtitle>
+  <T k="doc_pagination_title" />
+</Subtitle>
+<Description />
+
+<Primary />
+
+<h2>Props</h2>
+<Controls />
+
+<h2>考慮点</h2>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>視認性</td>
+      <td>現在のページが一目でわかるように、アクティブなボタンを強調する。</td>
+    </tr>
+    <tr>
+      <td>アクセシビリティ</td>
+      <td>各ボタンに適切なaria-label（「次へ」「前のページへ」「○ページ目へ」など）を付与する。</td>
+    </tr>
+    <tr>
+      <td>省スペース</td>
+      <td>ページ数が多い場合は、省略記号（...）を使用して全てのページボタンを表示しないように制御する。</td>
+    </tr>
+    <tr>
+      <td>操作性</td>
+      <td>「前へ」「次へ」ボタンを配置し、連続したページ移動を容易にする。1ページ目や最終ページではボタンを無効化する。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>バリエーション</h2>
+
+<h3>基本</h3>
+最も標準的なページネーションです。
+
+<Canvas of={PaginationStories.Default} />
+
+<h3>多数のページ</h3>
+ページ数が多い場合、自動的に省略記号が表示されます。
+
+<Canvas of={PaginationStories.ManyPages} />
+
+<h3>周辺ページ数の調整</h3>
+`siblingCount` プロパティを使用して、現在のページの前後に表示するページ数を変更できます。
+
+<Canvas of={PaginationStories.LargeSiblingCount} />
+
+<h3>インタラクティブな例</h3>
+実際にページを切り替えることができる例です。
+
+<Canvas of={PaginationStories.Interactive} />
+
+<Stories />

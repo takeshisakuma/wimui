@@ -28,5 +28,6 @@
   "doc_custom_area": "This is an area where you can write raw HTML/CSS.",
   "processing": "Processing...",
   "saving": "Saving...",
-  "heading_text": "Heading Text"
+  "heading_text": "Heading Text",
+  "doc_pagination_title": "Component for switching page numbers"
 }
