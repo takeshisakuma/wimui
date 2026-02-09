@@ -67,8 +67,11 @@
             height: 16px;
             padding: 0 4px;
             font-size: 10px;
-            line-height: 16px;
+            line-height: 1;
             color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             background-color: colors.$color-destructive;
             border-radius: 8px;
