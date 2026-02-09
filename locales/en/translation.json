@@ -29,5 +29,6 @@
   "processing": "Processing...",
   "saving": "Saving...",
   "heading_text": "Heading Text",
-  "doc_pagination_title": "Component for switching page numbers"
+  "doc_pagination_title": "Component for switching page numbers",
+  "doc_stepper_title": "A component that visually displays current progress"
 }
