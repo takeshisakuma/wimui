@@ -1,3 +1,41 @@
+/* --- スクロール制御 --- */
+
+/* スクロール機能を維持したまま、スクロールバー（見た目）を隠す */
+.no-scrollbar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+/* モダンで控えめなスクロールバー */
+.subtle-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent !important;
+
+  &::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border-radius: 10px !important;
+    border: 1px solid transparent !important;
+    background-clip: content-box !important;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.4) !important;
+    }
+  }
+}
+
 @layer utilities {
   /* 便利なユーティリティ */
 
@@ -26,19 +64,6 @@
   /* 単語の途中で改行させない */
   .text-nowrap {
     white-space: nowrap;
-  }
-
-  /* --- スクロール制御 --- */
-
-  /* スクロール機能を維持したまま、スクロールバー（見た目）を隠す */
-  .no-scrollbar {
-    scrollbar-width: none;
-
-    /* Firefox */
-    &::-webkit-scrollbar {
-      display: none;
-      /* Chrome, Safari */
-    }
   }
 
   /* --- レイアウト補助 --- */

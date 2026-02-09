@@ -36,7 +36,7 @@ const DefaultChildren = (
         </DescriptionListItem>
         <DescriptionListItem>
             <DescriptionListTerm>Email Address</DescriptionListTerm>
-            <DescriptionListDetails>contact@wimui.design</DescriptionListDetails>
+            <DescriptionListDetails>contact@example.com</DescriptionListDetails>
         </DescriptionListItem>
         <DescriptionListItem>
             <DescriptionListTerm>Position</DescriptionListTerm>

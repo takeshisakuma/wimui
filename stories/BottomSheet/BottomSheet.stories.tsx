@@ -42,7 +42,7 @@ export const Default: Story = {
     render: (args) => (
         <BottomSheet {...args}>
             <BottomSheetTrigger asChild>
-                <Button priority="primary" label="Open Bottom Sheet" />
+                <Button priority="primary" label="Open Bottom Sheet" aria-label={false as any} />
             </BottomSheetTrigger>
             <BottomSheetContent>
                 <BottomSheetHeader>
@@ -64,9 +64,9 @@ export const Default: Story = {
                 </BottomSheetBody>
                 <BottomSheetFooter>
                     <BottomSheetClose asChild>
-                        <Button priority="secondary" label="Cancel" />
+                        <Button priority="secondary" label="Cancel" aria-label={false as any} />
                     </BottomSheetClose>
-                    <Button priority="primary" label="Action" />
+                    <Button priority="primary" label="Action" aria-label={false as any} />
                 </BottomSheetFooter>
             </BottomSheetContent>
         </BottomSheet>
@@ -77,7 +77,7 @@ export const SingleAction: Story = {
     render: (args) => (
         <BottomSheet {...args}>
             <BottomSheetTrigger asChild>
-                <Button priority="secondary" label="Quick Actions" />
+                <Button priority="secondary" label="Quick Actions" aria-label={false as any} />
             </BottomSheetTrigger>
             <BottomSheetContent>
                 <BottomSheetHeader>

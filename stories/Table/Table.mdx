@@ -47,6 +47,35 @@ import * as TableStories from "./Table.stories";
 
 <Canvas of={TableStories.WithActions} />
 
+## 高度な機能
+
+### ヘッダーの固定 (Sticky Header)
+
+`stickyHeader` プロップと `maxHeight` プロップを組み合わせることで、テーブルをスクロールした際にヘッダーを上部に固定できます。
+
+<Canvas of={TableStories.StickyHeader} />
+
+### スクロールバーのカスタマイズ
+
+`scrollbar` プロップを使用して、スクロールバーの見た目を調整できます。
+
+- `subtle`: 細く控えめなデザイン
+- `hidden`: 非表示
+
+<Canvas of={TableStories.SubtleScrollbar} />
+
+### ソート機能
+
+`Table.Head` に `sortable` プロップを渡すことで、ソート UI を表示できます。ソートロジックは利用側で制御します。
+
+<Canvas of={TableStories.Sortable} />
+
+### 行の選択 (Row Selection)
+
+チェックボックスを使用して行を複数選択する機能です。`Table.Head` や `Table.Cell` に `selection` プロップを指定することで、チェックボックス列を適切にスタイリングできます。また、`Table.Row` に `selected` プロップを渡すと、選択中の行を強調表示できます。
+
+<Canvas of={TableStories.RowSelection} />
+
 ## コンパウンドコンポーネント
 
 `Table` は以下のサブコンポーネントで構成されています：

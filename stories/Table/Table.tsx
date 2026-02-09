@@ -1,12 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./table.scss";
+import { Icon } from "../Icon/Icon";
 
 type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
     striped?: boolean;
     bordered?: boolean;
     hoverable?: boolean;
     fullWidth?: boolean;
+    stickyHeader?: boolean;
+    scrollbar?: "default" | "subtle" | "hidden";
+    height?: string | number;
+    maxHeight?: string | number;
     className?: string;
     children: React.ReactNode;
 };
@@ -16,6 +21,10 @@ export const Table = ({
     bordered = false,
     hoverable = false,
     fullWidth = false,
+    stickyHeader = false,
+    scrollbar = "default",
+    height,
+    maxHeight,
     className,
     children,
     ...props
@@ -26,13 +35,27 @@ export const Table = ({
         bordered ? "wim-table--bordered" : "",
         hoverable ? "wim-table--hoverable" : "",
         fullWidth ? "wim-table--full-width" : "",
+        stickyHeader ? "wim-table--sticky-header" : "",
         className,
     ]
         .filter(Boolean)
         .join(" ");
 
+    const containerClasses = [
+        "wim-table-container",
+        stickyHeader ? "wim-table-container--sticky" : "",
+        scrollbar === "subtle" ? "subtle-scrollbar" : "",
+        scrollbar === "hidden" ? "no-scrollbar" : "",
+    ].filter(Boolean).join(" ");
+
+    const containerStyle: React.CSSProperties = {
+        height,
+        maxHeight,
+        overflow: (height || maxHeight) ? "auto" : undefined,
+    };
+
     return (
-        <div className="wim-table-container">
+        <div className={containerClasses} style={containerStyle}>
             <table className={classes} {...props}>
                 {children}
             </table>
@@ -70,32 +93,89 @@ export const TableFooter = ({
     </tfoot>
 );
 
+type TableRowProps = React.HTMLAttributes<HTMLTableRowElement> & {
+    selected?: boolean;
+};
+
 export const TableRow = ({
+    selected = false,
     className,
     children,
     ...props
-}: React.HTMLAttributes<HTMLTableRowElement>) => (
-    <tr className={["wim-table__row", className].filter(Boolean).join(" ")} {...props}>
+}: TableRowProps) => (
+    <tr
+        className={["wim-table__row", selected ? "wim-table__row--selected" : "", className]
+            .filter(Boolean)
+            .join(" ")}
+        {...props}
+    >
         {children}
     </tr>
 );
 
+type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
+    sortable?: boolean;
+    sortDirection?: "asc" | "desc" | "none";
+    onSort?: (e: React.MouseEvent) => void;
+    selection?: boolean;
+};
+
 export const TableHead = ({
+    sortable = false,
+    sortDirection = "none",
+    onSort,
     className,
     children,
     ...props
-}: React.ThHTMLAttributes<HTMLTableCellElement>) => (
-    <th className={["wim-table__head", className].filter(Boolean).join(" ")} {...props}>
-        {children}
-    </th>
-);
+}: TableHeadProps) => {
+    const classes = [
+        "wim-table__head",
+        sortable ? "wim-table__head--sortable" : "",
+        props.selection ? "wim-table__head--selection" : "",
+        className,
+    ]
+        .filter(Boolean)
+        .join(" ");
+
+    return (
+        <th className={classes} {...props} onClick={sortable ? onSort : props.onClick}>
+            <div className="wim-table__head-content">
+                {children}
+                {sortable && (
+                    <span
+                        className={[
+                            "wim-table__sort-icon",
+                            `wim-table__sort-icon--${sortDirection}`,
+                        ].join(" ")}
+                    >
+                        <Icon name="ChevronDownIcon" size="small" />
+                    </span>
+                )}
+            </div>
+        </th>
+    );
+};
+
+type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
+    selection?: boolean;
+};
 
 export const TableCell = ({
+    selection = false,
     className,
     children,
     ...props
-}: React.TdHTMLAttributes<HTMLTableCellElement>) => (
-    <td className={["wim-table__cell", className].filter(Boolean).join(" ")} {...props}>
+}: TableCellProps) => (
+    <td
+        className={[
+            "wim-table__cell",
+            selection ? "wim-table__cell--selection" : "",
+            className,
+        ]
+            .filter(Boolean)
+            .join(" ")}
+        {...props}
+    >
         {children}
     </td>
 );
@@ -112,6 +192,10 @@ Table.propTypes = {
     bordered: PropTypes.bool,
     hoverable: PropTypes.bool,
     fullWidth: PropTypes.bool,
+    stickyHeader: PropTypes.bool,
+    scrollbar: PropTypes.oneOf(["default", "subtle", "hidden"]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     className: PropTypes.string,
     children: PropTypes.node.isRequired,
 };

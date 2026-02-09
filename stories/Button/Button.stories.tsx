@@ -12,7 +12,10 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     backgroundColor: { control: "color" },
   },
-  args: { onClick: fn() },
+  args: {
+    onClick: fn(),
+    "aria-label": undefined as unknown as string, // Will be set to false in specific stories or handled by component
+  },
 };
 
 export default meta;
@@ -24,6 +27,7 @@ export const LargePrimaryButton: Story = {
     label: "button_label",
     priority: "primary",
     state: "abled",
+    "aria-label": false as unknown as string,
   },
 };
 
@@ -33,6 +37,7 @@ export const MediumSecondaryButton: Story = {
     label: "button_label",
     priority: "secondary",
     state: "abled",
+    "aria-label": false as unknown as string,
   },
 };
 
@@ -42,6 +47,7 @@ export const SmallTertiaryButton: Story = {
     label: "button_label",
     priority: "tertiary",
     state: "abled",
+    "aria-label": false as unknown as string,
   },
 };
 
@@ -54,6 +60,7 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
     state: "abled",
     iconName: "CircleIcon",
     iconPosition: "left",
+    "aria-label": false as unknown as string,
   },
 };
 
@@ -65,6 +72,7 @@ export const MediumPrimaryLoadingProcessingButton: Story = {
     priority: "primary",
     label: "processing",
     loading: true,
+    "aria-label": false as unknown as string,
   },
 };
 
@@ -74,6 +82,7 @@ export const MediumSecondaryLoadingSavingButton: Story = {
     priority: "secondary",
     label: "saving",
     loading: true,
+    "aria-label": false as unknown as string,
   },
 };
 
@@ -98,6 +107,7 @@ export const MediumPrimaryInteractiveLoadingButton: Story = {
     size: "medium",
     priority: "primary",
     label: "button_label",
+    "aria-label": false as unknown as string,
   },
 };
 export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
@@ -128,5 +138,6 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
     label: "button_label",
     iconName: "CircleIcon",
     iconPosition: "left",
+    "aria-label": false as unknown as string,
   },
 };

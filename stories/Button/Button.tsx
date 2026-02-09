@@ -14,7 +14,7 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
   loading?: boolean;
-  "aria-label"?: string;
+  "aria-label"?: string | boolean;
 };
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { className?: string }>(
@@ -90,11 +90,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
           .join(" ")}
         disabled={state === "disabled" || loading}
         aria-label={
-          ariaLabel ||
-          (!label && iconName ? iconName : undefined) ||
-          (loading ? "LoadingIcon" : undefined)
+          typeof ariaLabel === "string" ? ariaLabel :
+            (ariaLabel === false ? undefined :
+              ((!label && iconName ? iconName : undefined) ||
+                (loading ? "LoadingIcon" : undefined)))
         }
-        {...props}
+        {...Object.fromEntries(Object.entries(props).filter(([key]) => key !== "aria-label"))}
       >
         {content}
       </button>

@@ -15,8 +15,8 @@ export default meta;
 type Story = StoryObj<typeof Mentions>;
 
 const mockUsers = [
-    { id: 1, display: "Takeshi" },
-    { id: 2, display: "Sakuma" },
+    { id: 1, display: "Alex" },
+    { id: 2, display: "Jordan" },
     { id: 3, display: "WimUI_Admin" },
     { id: 4, display: "Designer_K" },
     { id: 5, display: "Frontend_Dev" },

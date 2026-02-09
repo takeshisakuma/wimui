@@ -25,20 +25,20 @@ type Story = StoryObj<typeof QRCode>;
 
 export const Default: Story = {
     args: {
-        value: "https://takeshisakuma.github.io/wimui/",
+        value: "https://example.com/",
     },
 };
 
 export const Large: Story = {
     args: {
-        value: "https://takeshisakuma.github.io/wimui/",
+        value: "https://example.com/",
         size: 256,
     },
 };
 
 export const CustomColors: Story = {
     args: {
-        value: "https://takeshisakuma.github.io/wimui/",
+        value: "https://example.com/",
         bgColor: "#f4f4f7",
         fgColor: "#0052cc",
     },
@@ -46,7 +46,7 @@ export const CustomColors: Story = {
 
 export const WithImage: Story = {
     args: {
-        value: "https://takeshisakuma.github.io/wimui/",
+        value: "https://example.com/",
         imageSettings: {
             src: "https://avatars.githubusercontent.com/u/1000000?v=4",
             x: undefined,

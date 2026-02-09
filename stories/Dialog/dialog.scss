@@ -25,7 +25,7 @@
     width: 90vw;
     max-width: 450px;
     max-height: 85vh;
-    padding: spacings.$spacing-lg;
+    padding: spacings.$spacing-2xl;
     animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
     color: var(--text-primary);
     overflow: auto;
@@ -38,8 +38,8 @@
 .wim-dialog-header {
     display: flex;
     flex-direction: column;
-    gap: spacings.$spacing-xs;
-    margin-bottom: spacings.$spacing-lg;
+    gap: spacings.$spacing-xl;
+    margin-bottom: spacings.$spacing-xl;
     text-align: left;
 }
 
@@ -60,7 +60,7 @@
 .wim-dialog-footer {
     display: flex;
     flex-direction: column-reverse;
-    margin-top: spacings.$spacing-xl;
+    margin-top: spacings.$spacing-2xl;
     gap: spacings.$spacing-md;
 
     @media (min-width: 640px) {

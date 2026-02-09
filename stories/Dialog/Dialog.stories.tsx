@@ -35,7 +35,7 @@ export const Default: Story = {
     render: (args) => (
         <Dialog {...args}>
             <DialogTrigger asChild>
-                <Button priority="primary" label="Open Dialog" />
+                <Button priority="primary" label="Open Dialog" aria-label={false as any} />
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
@@ -44,17 +44,21 @@ export const Default: Story = {
                         Make changes to your profile here. Click save when you're done.
                     </DialogDescription>
                 </DialogHeader>
-                <div style={{ display: "grid", gap: "1rem", padding: "1rem 0" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 3fr", alignItems: "center", gap: "1rem" }}>
-                        <Label htmlFor="name" style={{ textAlign: "right" }} label="Name" />
-                        <Input id="name" defaultValue="Pedro Duarte" />
+                <div style={{ display: "grid", gap: "1.5rem", padding: "1rem 0" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                        <Label htmlFor="name" label="Name" />
+                        <Input id="name" defaultValue="Pedro Duarte" fullWidth />
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                        <Label htmlFor="username" label="Username" />
+                        <Input id="username" defaultValue="@peduarte" fullWidth />
                     </div>
                 </div>
                 <DialogFooter>
                     <DialogClose asChild>
-                        <Button priority="secondary" label="Cancel" />
+                        <Button priority="secondary" label="Cancel" aria-label={false as any} />
                     </DialogClose>
-                    <Button priority="primary" label="Save changes" />
+                    <Button priority="primary" label="Save changes" aria-label={false as any} />
                 </DialogFooter>
             </DialogContent>
         </Dialog>
@@ -65,7 +69,7 @@ export const Uncontrolled: Story = {
     render: () => (
         <Dialog>
             <DialogTrigger asChild>
-                <Button priority="secondary" label="Open Uncontrolled" />
+                <Button priority="secondary" label="Open Uncontrolled" aria-label={false as any} />
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
@@ -77,9 +81,9 @@ export const Uncontrolled: Story = {
                 <p>You can close me with logic or the close button.</p>
                 <DialogFooter>
                     <DialogClose asChild>
-                        <Button priority="secondary" label="Cancel" />
+                        <Button priority="secondary" label="Cancel" aria-label={false as any} />
                     </DialogClose>
-                    <Button priority="primary" label="Confirm Action" onClick={() => alert('Confirmed!')} />
+                    <Button priority="primary" label="Confirm Action" onClick={() => alert('Confirmed!')} aria-label={false as any} />
                 </DialogFooter>
             </DialogContent>
         </Dialog>
@@ -92,7 +96,7 @@ export const Controlled: Story = {
         return (
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}>
                 <p>Current state: {open ? "Open" : "Closed"}</p>
-                <Button priority="primary" label="Open via State" onClick={() => setOpen(true)} />
+                <Button priority="primary" label="Open via State" onClick={() => setOpen(true)} aria-label={false as any} />
 
                 <Dialog open={open} onOpenChange={setOpen}>
                     <DialogContent>
@@ -104,8 +108,8 @@ export const Controlled: Story = {
                         </DialogHeader>
                         <p>Click outside or escape to close, creating a callback to setOpen(false).</p>
                         <DialogFooter>
-                            <Button priority="secondary" label="Cancel" onClick={() => setOpen(false)} />
-                            <Button role="destructive" priority="primary" label="Close via State" onClick={() => setOpen(false)} />
+                            <Button priority="secondary" label="Cancel" onClick={() => setOpen(false)} aria-label={false as any} />
+                            <Button role="destructive" priority="primary" label="Close via State" onClick={() => setOpen(false)} aria-label={false as any} />
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
