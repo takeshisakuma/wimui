@@ -1,0 +1,83 @@
+import { Meta, Primary, Controls, Story } from "@storybook/blocks";
+import * as MenuStories from "./Menu.stories";
+
+<Meta of={MenuStories} />
+
+# Menu
+
+ナビゲーションメニューやアクションリストを表示するための汎用的なメニューコンポーネントです。
+サブメニュー、グルーピング、複数の表示モードをサポートしています。
+
+## Usage
+
+```tsx
+import { Menu, MenuItem, SubMenu, MenuItemGroup, MenuDivider } from "wimui";
+
+<Menu>
+  <MenuItem icon={<Icon name="CheckIcon" />}>Home</MenuItem>
+  <MenuItem>About</MenuItem>
+  <SubMenu itemKey="services" title="Services">
+    <MenuItem>Service 1</MenuItem>
+    <MenuItem>Service 2</MenuItem>
+  </SubMenu>
+</Menu>
+```
+
+<Primary />
+
+## Components
+
+### Menu
+ルートコンポーネント。メニューの表示モードや開閉状態を管理します。
+
+**Props:**
+- `mode`: メニューの表示モード (`"vertical"` | `"horizontal"` | `"inline"`)
+- `defaultOpenKeys`: デフォルトで開いているサブメニューのキー配列
+
+### MenuItem
+メニューの個別項目です。クリックイベントやアイコンを設定できます。
+
+### SubMenu
+展開可能なサブメニューです。`itemKey` プロパティで一意のキーを指定する必要があります。
+
+### MenuItemGroup
+メニュー項目をグループ化し、タイトルを表示します。
+
+### MenuDivider
+メニュー項目間に区切り線を挿入します。
+
+<Controls />
+
+## Stories
+
+### With Icons
+アイコン付きのメニュー項目の例です。
+
+<Story of={MenuStories.WithIcons} />
+
+### With SubMenu
+サブメニューを含むメニューの例です。サブメニューはクリックで展開・折りたたみができます。
+
+<Story of={MenuStories.WithSubMenu} />
+
+### With Groups
+メニュー項目をグループ化する例です。区切り線も使用しています。
+
+<Story of={MenuStories.WithGroups} />
+
+### Horizontal
+水平方向に表示されるメニューです。ヘッダーナビゲーションなどに適しています。
+
+<Story of={MenuStories.Horizontal} />
+
+### Inline
+インラインモードのメニューです。サイドバーナビゲーションなどに適しています。
+
+<Story of={MenuStories.Inline} />
+
+## Accessibility
+
+- キーボードナビゲーション対応（Tab キーでフォーカス移動）
+- `role="menu"` と `role="menuitem"` を適切に設定
+- `aria-haspopup` と `aria-expanded` でサブメニューの状態を通知
+- disabled 状態の項目には `aria-disabled` を設定

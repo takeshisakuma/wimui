@@ -1,0 +1,90 @@
+import { Meta, Primary, Controls, Story } from "@storybook/blocks";
+import * as ContextMenuStories from "./ContextMenu.stories";
+
+<Meta of={ContextMenuStories} />
+
+# ContextMenu
+
+右クリック（コンテキストメニュー）で表示されるメニューコンポーネントです。
+画像、テキスト、その他の要素に対して、追加のアクションを提供する際に使用します。
+
+## Usage
+
+```tsx
+import { ContextMenu, ContextMenuItem, ContextMenuDivider } from "wimui";
+
+<ContextMenu
+  menu={
+    <>
+      <ContextMenuItem onClick={handleEdit}>Edit</ContextMenuItem>
+      <ContextMenuItem onClick={handleCopy}>Copy</ContextMenuItem>
+      <ContextMenuDivider />
+      <ContextMenuItem danger onClick={handleDelete}>Delete</ContextMenuItem>
+    </>
+  }
+>
+  <div>Right-click this element</div>
+</ContextMenu>
+```
+
+<Primary />
+
+## Components
+
+### ContextMenu
+ルートコンポーネント。子要素上で右クリックされたときにメニューを表示します。
+
+**Props:**
+- `menu`: 表示するメニューの内容（ReactNode）
+- `disabled`: コンテキストメニューを無効化
+
+### ContextMenuItem
+メニューの個別項目です。クリックイベント、アイコン、danger状態を設定できます。
+
+**Props:**
+- `icon`: アイテムの左側に表示するアイコン
+- `danger`: 危険なアクション（削除など）を示す赤色スタイル
+- `disabled`: アイテムを無効化
+
+### ContextMenuDivider
+メニュー項目間に区切り線を挿入します。
+
+### ContextMenuGroup
+メニュー項目をグループ化し、タイトルを表示します。
+
+<Controls />
+
+## Stories
+
+### With Icons
+アイコン付きのコンテキストメニューの例です。
+
+<Story of={ContextMenuStories.WithIcons} />
+
+### With Groups
+メニュー項目をグループ化する例です。関連するアクションをまとめて表示できます。
+
+<Story of={ContextMenuStories.WithGroups} />
+
+### With Disabled Items
+一部のアクションを無効化する例です。
+
+<Story of={ContextMenuStories.WithDisabledItems} />
+
+### On Image
+画像に対するコンテキストメニューの実用的な例です。
+
+<Story of={ContextMenuStories.OnImage} />
+
+## Features
+
+- **自動位置調整**: メニューがビューポートの境界を超える場合、自動的に位置を調整します
+- **Escキーで閉じる**: Escキーを押すとメニューが閉じます
+- **外側クリックで閉じる**: メニューの外側をクリックすると閉じます
+- **スクロール時に閉じる**: ページをスクロールすると自動的に閉じます
+
+## Accessibility
+
+- `role="menu"` と `role="menuitem"` を適切に設定
+- disabled 状態の項目には `aria-disabled` を設定
+- キーボード操作のサポート（Escキーで閉じる）

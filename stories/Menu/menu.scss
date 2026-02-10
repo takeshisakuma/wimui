@@ -1,0 +1,179 @@
+/* ------------------------------------------------------------------
+   Menu Styles
+------------------------------------------------------------------ */
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/effects" as effects;
+
+.wim-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-component, #ffffff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-md;
+    min-width: 200px;
+
+    &--vertical {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &--horizontal {
+        display: flex;
+        flex-direction: row;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+    }
+
+    &--inline {
+        display: flex;
+        flex-direction: column;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+.wim-menu-item {
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    position: relative;
+    user-select: none;
+
+    &:hover:not(&--disabled) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &:focus {
+        outline: 2px solid colors.$color-primary;
+        outline-offset: -2px;
+    }
+
+    &--disabled {
+        color: var(--text-disabled);
+        cursor: not-allowed;
+        background-color: transparent;
+        opacity: 0.6;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        margin-right: spacings.$spacing-sm;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &__content {
+        flex: 1;
+    }
+
+    .wim-menu--horizontal & {
+        border-radius: spacings.$radius-sm;
+        margin: 0 spacings.$spacing-xs;
+    }
+}
+
+.wim-menu-item-group {
+    list-style: none;
+
+    &__title {
+        padding: spacings.$spacing-sm spacings.$spacing-md;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.wim-menu-submenu {
+    list-style: none;
+
+    &__title {
+        padding: spacings.$spacing-sm spacings.$spacing-md;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: var(--text-primary);
+        transition: all 0.2s ease-in-out;
+        display: flex;
+        align-items: center;
+        position: relative;
+        user-select: none;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        &:focus {
+            outline: 2px solid colors.$color-primary;
+            outline-offset: -2px;
+        }
+    }
+
+    &__arrow {
+        margin-left: auto;
+        transition: transform 0.2s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        &--open {
+            transform: rotate(90deg);
+        }
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding-left: spacings.$spacing-lg;
+        overflow: hidden;
+        animation: slideDown 0.2s ease-in-out;
+    }
+
+    &--open {
+        .wim-menu-submenu__list {
+            display: block;
+        }
+    }
+}
+
+.wim-menu-divider {
+    height: 1px;
+    background-color: colors.$color-secondary;
+    margin: spacings.$spacing-xs 0;
+    list-style: none;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

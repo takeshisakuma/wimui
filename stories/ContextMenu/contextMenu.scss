@@ -1,0 +1,101 @@
+/* ------------------------------------------------------------------
+   ContextMenu Styles
+------------------------------------------------------------------ */
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/effects" as effects;
+
+.wim-context-menu-container {
+    display: inline-block;
+}
+
+.wim-context-menu {
+    position: fixed;
+    z-index: 9999;
+    min-width: 200px;
+    background-color: var(--bg-component, #ffffff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-lg;
+    padding: spacings.$spacing-xs 0;
+    animation: fadeIn 0.15s ease-in-out;
+}
+
+.wim-context-menu-item {
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    transition: background-color 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    user-select: none;
+
+    &:hover:not(&--disabled):not(&--danger) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &:focus {
+        outline: 2px solid colors.$color-primary;
+        outline-offset: -2px;
+    }
+
+    &--disabled {
+        color: var(--text-disabled);
+        cursor: not-allowed;
+        background-color: transparent;
+        opacity: 0.6;
+    }
+
+    &--danger {
+        color: var(--text-error, #dc2626);
+
+        &:hover:not(.wim-context-menu-item--disabled) {
+            background-color: rgba(220, 38, 38, 0.1);
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        margin-right: spacings.$spacing-sm;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &__content {
+        flex: 1;
+    }
+}
+
+.wim-context-menu-divider {
+    height: 1px;
+    background-color: colors.$color-secondary;
+    margin: spacings.$spacing-xs 0;
+}
+
+.wim-context-menu-group {
+    &__title {
+        padding: spacings.$spacing-sm spacings.$spacing-md;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
