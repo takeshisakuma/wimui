@@ -52,11 +52,17 @@ export const Snackbar = ({
 }: SnackbarProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isRendered, setIsRendered] = useState(false);
+    const [prevOpen, setPrevOpen] = useState(open);
+
+    if (open !== prevOpen) {
+        setPrevOpen(open);
+        if (open) {
+            setIsRendered(true);
+        }
+    }
 
     useEffect(() => {
         if (open) {
-            /* eslint-disable-next-line react-hooks/set-state-in-effect */
-            setIsRendered(true);
             const timer = setTimeout(() => setIsVisible(true), 10);
             return () => clearTimeout(timer);
         } else {

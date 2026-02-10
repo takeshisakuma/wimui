@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import "./otp-input.scss";
 
@@ -24,15 +24,16 @@ export const OtpInput = ({
 }: OtpInputProps) => {
     // 内部状態（非制御時にも対応できるようにするが、基本は制御コンポーネントとして使う想定）
     const [internalValues, setInternalValues] = useState<string[]>(Array(length).fill(""));
+    const [prevValue, setPrevValue] = useState(value);
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-    // value propsが変更されたら内部状態を同期
-    useEffect(() => {
+    // value propsが変更されたら内部状態を同期 (Derived State Pattern)
+    if (value !== prevValue) {
+        setPrevValue(value);
         const chars = value.split("").slice(0, length);
         const newValues = Array(length).fill("").map((_, i) => chars[i] || "");
-        /* eslint-disable-next-line react-hooks/set-state-in-effect */
         setInternalValues(newValues);
-    }, [value, length]);
+    }
 
     const triggerChange = (newValues: string[]) => {
         const newValueString = newValues.join("");

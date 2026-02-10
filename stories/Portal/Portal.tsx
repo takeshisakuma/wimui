@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
 
 export interface PortalProps {
@@ -8,17 +8,18 @@ export interface PortalProps {
     container?: HTMLElement | null;
 }
 
+const emptySubscribe = () => () => { };
+
 /**
  * A component that renders its children into a new DOM node, outside of the 
  * parent component's DOM hierarchy.
  */
 export const Portal = ({ children, container }: PortalProps) => {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        /* eslint-disable-next-line react-hooks/set-state-in-effect */
-        setMounted(true);
-    }, []);
+    const mounted = React.useSyncExternalStore(
+        emptySubscribe,
+        () => true,
+        () => false
+    );
 
     if (!mounted) return null;
 

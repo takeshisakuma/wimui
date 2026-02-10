@@ -179,7 +179,7 @@ export interface CommandPaletteInputProps {
 }
 
 export const CommandPaletteInput = ({ placeholder = "Search commands...", value, onChange }: CommandPaletteInputProps) => {
-    const { search, setSearch, setActiveIndex } = useCommandPalette();
+    const { search, setSearch, setActiveIndex, activeIndex } = useCommandPalette();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value;
@@ -197,6 +197,11 @@ export const CommandPaletteInput = ({ placeholder = "Search commands...", value,
                 value={value ?? search}
                 onChange={handleChange}
                 autoFocus
+                role="combobox"
+                aria-autocomplete="list"
+                aria-expanded={true}
+                aria-controls="wim-command-palette-listbox"
+                aria-activedescendant={`wim-command-palette-item-${activeIndex}`}
             />
         </div>
     );
@@ -204,7 +209,15 @@ export const CommandPaletteInput = ({ placeholder = "Search commands...", value,
 
 // --- List ---
 export const CommandPaletteList = ({ children }: { children: ReactNode }) => {
-    return <div className="wim-command-palette-list">{children}</div>;
+    return (
+        <div
+            className="wim-command-palette-list"
+            role="listbox"
+            id="wim-command-palette-listbox"
+        >
+            {children}
+        </div>
+    );
 };
 
 // --- Group ---
@@ -249,6 +262,7 @@ export const CommandPaletteItem = ({ children, onSelect, icon, shortcut, disable
         /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
         <div
             role="option"
+            id={`wim-command-palette-item-${index}`}
             aria-selected={isActive}
             className={classNames("wim-command-palette-item", {
                 "wim-command-palette-item--active": isActive,
