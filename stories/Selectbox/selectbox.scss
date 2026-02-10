@@ -77,7 +77,7 @@
     justify-content: center;
 }
 
-.wim-selectbox-list {
+.wim-selectbox-dropdown {
     position: absolute;
     top: calc(100% + #{spacings.$spacing-xs});
     left: 0;
@@ -86,12 +86,48 @@
     border: 1px solid colors.$color-secondary;
     border-radius: spacings.$radius-md;
     box-shadow: effects.$shadow-lg;
+    z-index: 1000;
+}
+
+.wim-selectbox-search {
+    padding: spacings.$spacing-sm;
+    border-bottom: 1px solid colors.$color-secondary;
+}
+
+.wim-selectbox-search-input {
+    width: 100%;
+    padding: spacings.$spacing-sm;
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-sm;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+
+    &:focus {
+        border-color: colors.$color-primary;
+    }
+
+    &::placeholder {
+        color: var(--text-placeholder);
+    }
+}
+
+.wim-selectbox-list {
     list-style: none;
     padding: spacings.$spacing-xs 0;
     margin: 0;
     max-height: 240px;
     overflow-y: auto;
-    z-index: 1000;
+}
+
+.wim-selectbox-group-label {
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    pointer-events: none;
 }
 
 .wim-selectbox-option {
@@ -106,10 +142,18 @@
         background-color: rgba(0, 0, 0, 0.05);
     }
 
+    &--focused {
+        background-color: rgba(colors.$color-primary, 0.08);
+    }
+
     &--selected {
         background-color: rgba(colors.$color-primary, 0.1);
         color: var(--text-primary);
         font-weight: 500;
+    }
+
+    &--selected#{&}--focused {
+        background-color: rgba(colors.$color-primary, 0.15);
     }
 
     &--disabled {
@@ -121,4 +165,12 @@
             background-color: transparent;
         }
     }
+}
+
+.wim-selectbox-empty {
+    padding: spacings.$spacing-md;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-style: italic;
 }

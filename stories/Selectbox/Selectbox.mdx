@@ -7,7 +7,7 @@ import * as SelectboxStories from "./Selectbox.stories";
 
 ユーザーが定義済みの選択肢から1つを選択するためのプルダウンメニューです。
 
-## Usage
+## 基本的な使い方
 
 ```jsx
 import { Selectbox } from "./Selectbox";
@@ -39,6 +39,129 @@ const options = [
 
 <Canvas of={SelectboxStories.Disabled} />
 
+## 高度な機能
+
+### 検索機能 (Searchable)
+
+`searchable` プロパティを有効にすると、オプションを検索できるようになります。多数のオプションがある場合に便利です。
+
+```jsx
+<Selectbox
+  options={manyOptions}
+  searchable
+  searchPlaceholder="Search options..."
+  onChange={(val) => console.log(val)}
+/>
+```
+
+**カスタムフィルター関数:**
+
+デフォルトでは大文字小文字を区別しない部分一致検索が行われますが、カスタムフィルター関数を提供することもできます。
+
+```jsx
+<Selectbox
+  options={options}
+  searchable
+  filterOption={(option, searchValue) => {
+    // カスタムフィルターロジック
+    return option.value.includes(searchValue);
+  }}
+  onChange={(val) => console.log(val)}
+/>
+```
+
+### グループ化 (Grouped Options)
+
+オプションをグループ化して整理できます。
+
+```jsx
+const groupedOptions = [
+  {
+    label: "Fruits",
+    options: [
+      { label: "Apple", value: "apple" },
+      { label: "Banana", value: "banana" },
+    ],
+  },
+  {
+    label: "Vegetables",
+    options: [
+      { label: "Carrot", value: "carrot" },
+      { label: "Broccoli", value: "broccoli" },
+    ],
+  },
+];
+
+<Selectbox
+  options={groupedOptions}
+  grouped
+  onChange={(val) => console.log(val)}
+/>
+```
+
+### キーボードナビゲーション
+
+Selectboxは完全なキーボードアクセシビリティをサポートしています：
+
+| キー | 動作 |
+|------|------|
+| `Enter` / `Space` | ドロップダウンを開く / 選択中のオプションを選択 |
+| `Escape` | ドロップダウンを閉じる |
+| `ArrowDown` | 次のオプションにフォーカス |
+| `ArrowUp` | 前のオプションにフォーカス |
+| `Home` | 最初のオプションにフォーカス |
+| `End` | 最後のオプションにフォーカス |
+
+無効なオプションは自動的にスキップされます。
+
+### 検索とグループ化の組み合わせ
+
+検索機能とグループ化を同時に使用することも可能です。検索時は、条件に一致するオプションを含むグループのみが表示されます。
+
+```jsx
+<Selectbox
+  options={groupedOptions}
+  grouped
+  searchable
+  searchPlaceholder="Search all options..."
+  onChange={(val) => console.log(val)}
+/>
+```
+
+## アクセシビリティ
+
+Selectboxコンポーネントは、WAI-ARIAのアクセシビリティガイドラインに準拠しています：
+
+- ✅ **role="combobox"** と **role="listbox"** の適切な使用
+- ✅ **aria-expanded**、**aria-selected**、**aria-disabled** の状態管理
+- ✅ 完全なキーボードナビゲーション
+- ✅ スクリーンリーダー対応
+- ✅ フォーカス管理とスムーズなスクロール
+
 ## Props
 
 <Controls />
+
+## TypeScript サポート
+
+Selectboxコンポーネントは完全な型定義を提供しています。
+
+```typescript
+import { Selectbox, SelectboxOption, SelectboxOptionGroup } from './Selectbox';
+
+// フラットなオプション
+const options: SelectboxOption[] = [
+  { label: "Option 1", value: "opt1" },
+  { label: "Option 2", value: "opt2", disabled: true },
+];
+
+// グループ化されたオプション
+const groupedOptions: SelectboxOptionGroup[] = [
+  {
+    label: "Group 1",
+    options: [
+      { label: "Option 1", value: "opt1" },
+    ],
+  },
+];
+```

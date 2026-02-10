@@ -4,6 +4,13 @@
 @use "../../src/tokens/effects" as effects;
 
 @layer component {
+    .wim-pagination-wrapper {
+        display: flex;
+        align-items: center;
+        gap: spacings.$spacing-lg;
+        flex-wrap: wrap;
+    }
+
     .wim-pagination {
         display: flex;
         align-items: center;
@@ -11,6 +18,13 @@
         list-style: none;
         padding: 0;
         margin: 0;
+
+        &--simple {
+            .wim-pagination__simple-pager {
+                padding: 0 spacings.$spacing-md;
+                color: var(--text-primary);
+            }
+        }
 
         &__item {
             display: inline-flex;
@@ -74,6 +88,80 @@
                 outline: 2px solid var(--color-primary);
                 outline-offset: 2px;
                 border-radius: spacings.$radius-sm;
+            }
+        }
+
+        &__total {
+            color: var(--text-secondary);
+            font-size: typography.$size-medium;
+        }
+
+        &__size-changer {
+            display: flex;
+            align-items: center;
+            gap: spacings.$spacing-sm;
+        }
+
+        &__size-select {
+            padding: spacings.$spacing-sm spacings.$spacing-md;
+            border: 1px solid var(--wim-color-border);
+            border-radius: spacings.$radius-md;
+            background-color: var(--wim-color-bg);
+            color: var(--text-primary);
+            font-size: typography.$size-medium;
+            cursor: pointer;
+            outline: none;
+            transition: all effects.$transition-base;
+
+            &:hover {
+                border-color: var(--color-primary);
+            }
+
+            &:focus {
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.1);
+            }
+        }
+
+        &__quick-jumper {
+            display: flex;
+            align-items: center;
+            gap: spacings.$spacing-sm;
+            color: var(--text-secondary);
+            font-size: typography.$size-medium;
+        }
+
+        &__jump-input {
+            width: 60px;
+            padding: spacings.$spacing-sm;
+            border: 1px solid var(--wim-color-border);
+            border-radius: spacings.$radius-md;
+            background-color: var(--wim-color-bg);
+            color: var(--text-primary);
+            font-size: typography.$size-medium;
+            text-align: center;
+            outline: none;
+            transition: all effects.$transition-base;
+
+            &:hover {
+                border-color: var(--color-primary);
+            }
+
+            &:focus {
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.1);
+            }
+
+            /* Chrome, Safari, Edge, Opera */
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Firefox */
+            &[type="number"] {
+                -moz-appearance: textfield;
             }
         }
     }

@@ -5,14 +5,17 @@ import * as DatePickerStories from "./DatePicker.stories";
 
 # DatePicker
 
-ユーザーが日付を選択するためのコンポーネントです。ネイティブの `input type="date"` をラップしてスタイルを調整しています。
+ユーザーが日付を選択するためのコンポーネントです。カスタムカレンダーポップアップを使用して、直感的な日付選択体験を提供します。
 
-## Usage
+## 基本的な使い方
 
 ```tsx
 import { DatePicker } from "./DatePicker";
 
-<DatePicker />
+<DatePicker 
+  onChange={(date) => console.log(date)}
+  placeholder="Select date"
+/>
 ```
 
 ## Examples
@@ -35,6 +38,108 @@ import { DatePicker } from "./DatePicker";
 ### Full Width
 <Canvas of={DatePickerStories.FullWidth} />
 
+## 主な機能
+
+### カスタムカレンダーポップアップ
+
+ネイティブの `input type="date"` の代わりに、カスタマイズ可能なカレンダーポップアップを使用しています。
+
+**利点:**
+- ✅ 統一されたUIデザイン（ブラウザに依存しない）
+- ✅ より大きくクリックしやすいカレンダー
+- ✅ カスタマイズ可能な日付フォーマット
+- ✅ クリアボタンによる簡単なリセット
+
+### クリアボタン
+
+`clearable` プロパティ（デフォルト: `true`）により、選択した日付を簡単にクリアできます。
+
+```jsx
+<DatePicker 
+  clearable={true}
+  onChange={(date) => console.log(date)}
+/>
+```
+
+### カスタム日付フォーマット
+
+`format` プロパティで表示フォーマットをカスタマイズできます。
+
+```jsx
+<DatePicker 
+  format="YYYY/MM/DD"
+  onChange={(date) => console.log(date)}
+/>
+
+<DatePicker 
+  format="DD-MM-YYYY"
+  onChange={(date) => console.log(date)}
+/>
+```
+
+**サポートされるフォーマット:**
+- `YYYY` - 4桁の年
+- `MM` - 2桁の月
+- `DD` - 2桁の日
+
+### 制御/非制御コンポーネント
+
+DatePickerは制御コンポーネントと非制御コンポーネントの両方として使用できます。
+
+**非制御コンポーネント:**
+```jsx
+<DatePicker 
+  defaultValue={new Date()}
+  onChange={(date) => console.log(date)}
+/>
+```
+
+**制御コンポーネント:**
+```jsx
+const [date, setDate] = useState(new Date());
+
+<DatePicker 
+  value={date}
+  onChange={setDate}
+/>
+```
+
+### キーボード操作
+
+- `Enter` / `Space` - カレンダーを開く
+- `Escape` - カレンダーを閉じる
+- カレンダー内では矢印キーで日付を選択可能
+
+### アクセシビリティ
+
+- ✅ ARIA属性による適切なスクリーンリーダー対応
+- ✅ キーボードナビゲーション完全サポート
+- ✅ フォーカス管理
+- ✅ クリアボタンとカレンダーボタンにaria-label
+
+## Calendarコンポーネントとの統合
+
+DatePickerは内部で[Calendar](/docs/component-navigation-calendar--docs)コンポーネントを使用しています。将来的には、Calendarコンポーネントの機能（範囲選択、無効日付など）もDatePickerで利用可能になります。
+
 ## Props
 
 <Controls />
+
+## TypeScript サポート
+
+DatePickerは完全な型定義を提供しています。
+
+```typescript
+import { DatePicker } from './DatePicker';
+
+<DatePicker 
+  value={new Date()}
+  onChange={(date: Date | null) => {
+    if (date) {
+      console.log(date.toISOString());
+    }
+  }}
+  format="YYYY-MM-DD"
+  clearable
+/>
+```

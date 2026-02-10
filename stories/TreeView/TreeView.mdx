@@ -5,16 +5,18 @@ import * as TreeViewStories from "./TreeView.stories";
 
 # TreeView
 
-`TreeView` は、階層構造を持つデータを表示するためのコンポーネントです。
+`TreeView` は、階層構造を持つデータを表示するためのコンポーネントです。ファイルシステム、組織図、カテゴリー階層などの表示に最適です。
 
 ## 特徴
-- 展開・折りたたみ機能
-- 単一・複数選択
-- キーボードナビゲーション対応
-- アイコンのカスタマイズ
-- グラスモーフィズムを採用したモダンなデザイン
+- ✅ 展開・折りたたみ機能
+- ✅ 単一・複数選択
+- ✅ チェックボックス選択モード
+- ✅ 検索・フィルタリング機能
+- ✅ キーボードナビゲーション対応
+- ✅ アイコンのカスタマイズ
+- ✅ グラスモーフィズムを採用したモダンなデザイン
 
-## 使用方法
+## 基本的な使い方
 
 ```tsx
 import { TreeView } from "./TreeView";
@@ -30,9 +32,110 @@ const MyTree = () => (
 );
 ```
 
-## キャンバス
+## 使用例
 
 <Canvas of={TreeViewStories.Default} />
+
+## 高度な機能
+
+### チェックボックス選択モード
+
+`checkable` プロパティを有効にすると、各アイテムにチェックボックスが表示され、複数アイテムを選択できます。
+
+```tsx
+const [checked, setChecked] = useState([]);
+
+<TreeView 
+  checkable
+  defaultCheckedValues={checked}
+  onCheckedChange={setChecked}
+>
+  <TreeView.Item value="1" label="Item 1">
+    <TreeView.Item value="1-1" label="Item 1-1" />
+    <TreeView.Item value="1-2" label="Item 1-2" />
+  </TreeView.Item>
+  <TreeView.Item value="2" label="Item 2" />
+</TreeView>
+```
+
+**ユースケース:**
+- ファイル/フォルダの複数選択
+- 権限設定
+- タスクの一括操作
+
+### 検索・フィルタリング機能
+
+`searchable` プロパティを有効にすると、ツリー内のアイテムを検索できる入力フィールドが表示されます。
+
+```tsx
+<TreeView searchable>
+  <TreeView.Item value="documents" label="Documents">
+    <TreeView.Item value="work" label="Work">
+      <TreeView.Item value="projects" label="Projects" />
+      <TreeView.Item value="reports" label="Reports" />
+    </TreeView.Item>
+    <TreeView.Item value="personal" label="Personal" />
+  </TreeView.Item>
+</TreeView>
+```
+
+検索時には、一致するアイテムとその親アイテムのみが表示されます。
+
+### 複数選択モード
+
+`multiSelect` プロパティを使用すると、複数のアイテムを選択状態にできます。
+
+```tsx
+<TreeView 
+  multiSelect
+  defaultSelectedValues={['item1', 'item2']}
+>
+  {/* ツリーアイテム */}
+</TreeView>
+```
+
+### カスタムアイコン
+
+各アイテムにカスタムアイコンを設定できます。
+
+```tsx
+<TreeView>
+  <TreeView.Item 
+    value="folder1" 
+    label="Documents"
+    icon={<Icon name="CircleIcon" />}
+  >
+    <TreeView.Item 
+      value="file1" 
+      label="Report.pdf"
+      icon={<Icon name="SquareIcon" />}
+    />
+  </TreeView.Item>
+</TreeView>
+```
+
+### すべての機能を組み合わせ
+
+```tsx
+const [checked, setChecked] = useState([]);
+
+<TreeView
+  multiSelect
+  checkable
+  searchable
+  defaultExpandedValues={['root']}
+  defaultCheckedValues={checked}
+  onCheckedChange={setChecked}
+  width={400}
+>
+  <TreeView.Item value="root" label="Root">
+    <TreeView.Item value="child1" label="Child 1" />
+    <TreeView.Item value="child2" label="Child 2">
+      <TreeView.Item value="grandchild1" label="Grandchild 1" />
+    </TreeView.Item>
+  </TreeView.Item>
+</TreeView>
+```
 
 ## コンポーネント API
 
@@ -41,8 +144,12 @@ const MyTree = () => (
 | :--- | :--- | :--- | :--- |
 | `width` | `string \| number` | - | コンテナの横幅。変更時にアニメーションします。 |
 | `multiSelect` | `boolean` | `false` | 複数選択モード。 |
+| `checkable` | `boolean` | `false` | チェックボックス表示モード。 |
+| `searchable` | `boolean` | `false` | 検索機能を有効化。 |
 | `defaultExpandedValues` | `string[]` | `[]` | 初期状態で展開されている項目の値。 |
 | `defaultSelectedValues` | `string[]` | `[]` | 初期状態で選択されている項目の値。 |
+| `defaultCheckedValues` | `string[]` | `[]` | 初期状態でチェックされている項目の値。 |
+| `onCheckedChange` | `(checked: string[]) => void` | - | チェック状態が変更された時のコールバック。 |
 
 ### TreeView.Item
 | プロパティ | 型 | デフォルト | 説明 |
@@ -57,3 +164,29 @@ const MyTree = () => (
 - `Enter` / `Space`: 選択
 - `ArrowRight`: 展開（子がある場合）
 - `ArrowLeft`: 閉じる（展開されている場合）
+
+## アクセシビリティ
+
+- ✅ ARIA role="tree" と role="treeitem" を使用
+- ✅ キーボードナビゲーション完全サポート
+- ✅ スクリーンリーダー対応
+- ✅ フォーカス管理
+
+## TypeScript サポート
+
+TreeViewコンポーネントは完全な型定義を提供しています。
+
+```typescript
+import { TreeView } from './TreeView';
+
+<TreeView 
+  multiSelect
+  checkable
+  defaultCheckedValues={['item1']}
+  onCheckedChange={(checked: string[]) => {
+    console.log('Checked items:', checked);
+  }}
+>
+  {/* アイテム */}
+</TreeView>
+```

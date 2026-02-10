@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import "./table.scss";
 import { Icon } from "../Icon/Icon";
 
+export { useTableSort } from "./useTableSort";
+export type { SortDirection, SortConfig, UseTableSortOptions, UseTableSortReturn } from "./useTableSort";
+
 type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
     striped?: boolean;
     bordered?: boolean;

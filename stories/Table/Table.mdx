@@ -66,7 +66,87 @@ import * as TableStories from "./Table.stories";
 
 ### ソート機能
 
-`Table.Head` に `sortable` プロップを渡すことで、ソート UI を表示できます。ソートロジックは利用側で制御します。
+`Table.Head` に `sortable` プロップを渡すことで、ソート UI を表示できます。
+
+#### useTableSort フックを使う（推奨）
+
+Tableコンポーネントには、ソート機能を簡単に実装できる `useTableSort` フックが用意されています。
+
+```jsx
+import { Table, useTableSort } from './Table';
+
+function MyTable() {
+  const data = [
+    { id: 1, name: "Alice", age: 25, email: "alice@example.com" },
+    { id: 2, name: "Bob", age: 30, email: "bob@example.com" },
+    { id: 3, name: "Charlie", age: 22, email: "charlie@example.com" },
+  ];
+
+  const { sortedData, handleSort, getSortDirection } = useTableSort(data);
+
+  return (
+    <Table fullWidth>
+      <Table.Header>
+        <Table.Row>
+          <Table.Head
+            sortable
+            sortDirection={getSortDirection('id')}
+            onSort={() => handleSort('id')}
+          >
+            ID
+          </Table.Head>
+          <Table.Head
+            sortable
+            sortDirection={getSortDirection('name')}
+            onSort={() => handleSort('name')}
+          >
+            Name
+          </Table.Head>
+          <Table.Head
+            sortable
+            sortDirection={getSortDirection('age')}
+            onSort={() => handleSort('age')}
+          >
+            Age
+          </Table.Head>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {sortedData.map((row) => (
+          <Table.Row key={row.id}>
+            <Table.Cell>{row.id}</Table.Cell>
+            <Table.Cell>{row.name}</Table.Cell>
+            <Table.Cell>{row.age}</Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
+  );
+}
+```
+
+#### useTableSort の機能
+
+- **自動ソートロジック**: 文字列、数値、null値を適切に処理
+- **3方向ソート**: asc（昇順） → desc（降順） → none（ソートなし）のサイクル
+- **型安全**: TypeScript完全対応
+- **カスタマイズ可能**: 初期ソート状態やソート変更時のコールバックをサポート
+
+```typescript
+const {
+  sortedData,      // ソート済みのデータ
+  sortConfig,      // 現在のソート設定
+  handleSort,      // ソートを実行する関数
+  getSortDirection // 特定のキーのソート方向を取得
+} = useTableSort(data, {
+  initialSort: { key: 'name', direction: 'asc' },
+  onSortChange: (config) => console.log('Sort changed:', config)
+});
+```
+
+#### 手動でソートロジックを実装する場合
+
+フックを使わず、独自のソートロジックを実装することもできます。
 
 <Canvas of={TableStories.Sortable} />
 
@@ -75,6 +155,22 @@ import * as TableStories from "./Table.stories";
 チェックボックスを使用して行を複数選択する機能です。`Table.Head` や `Table.Cell` に `selection` プロップを指定することで、チェックボックス列を適切にスタイリングできます。また、`Table.Row` に `selected` プロップを渡すと、選択中の行を強調表示できます。
 
 <Canvas of={TableStories.RowSelection} />
+
+## TypeScript サポート
+
+TableコンポーネントとuseTableSortフックは完全な型定義を提供しています。
+
+```typescript
+import { Table, useTableSort, SortDirection, SortConfig } from './Table';
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+const { sortedData } = useTableSort<User>(users);
+```
 
 ## コンパウンドコンポーネント
 

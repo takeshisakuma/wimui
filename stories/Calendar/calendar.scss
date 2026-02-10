@@ -92,7 +92,7 @@
         background-color: rgba(0, 0, 0, 0.05);
     }
 
-    &--outside {
+    &--other-month {
         color: var(--text-disabled);
     }
 
@@ -129,6 +129,17 @@
     &--range-end {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+    }
+
+    &--disabled {
+        color: var(--text-disabled);
+        background-color: rgba(0, 0, 0, 0.02);
+        cursor: not-allowed;
+        text-decoration: line-through;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
     }
 
     &:disabled {

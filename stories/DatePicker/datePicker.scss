@@ -1,21 +1,79 @@
 @use "../../src/tokens/semantic-colors" as colors;
 @use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
 
-.wim-datepicker {
+.wim-datepicker-wrapper {
+    position: relative;
+    width: 320px;
+    max-width: 100%;
 
-    // Styling for the native date picker indicator (Chrome/Edge/Safari)
-    &::-webkit-calendar-picker-indicator {
+    &.wim-input--full-width {
+        width: 100%;
+    }
+}
+
+.wim-datepicker-container {
+    position: relative;
+
+    .wim-datepicker-input {
+        padding-right: spacings.$spacing-4xl; // Space for icons
         cursor: pointer;
-        padding: spacings.$spacing-xs;
-        border-radius: spacings.$radius-sm;
-        transition: background-color 0.2s;
-        filter: var(--icon-filter, none); // Adjust for dark mode if needed
+        user-select: none;
+    }
 
-        &:hover {
-            background-color: var(--color-tertiary-hover, rgba(0, 0, 0, 0.05));
+    .wim-datepicker-icons {
+        position: absolute;
+        right: spacings.$spacing-sm;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: spacings.$spacing-xs;
+        pointer-events: none;
+
+        button {
+            pointer-events: all;
+            background: none;
+            border: none;
+            padding: spacings.$spacing-xs;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-secondary);
+            border-radius: spacings.$radius-sm;
+            transition: all effects.$transition-base;
+
+            &:hover:not(:disabled) {
+                background-color: rgba(0, 0, 0, 0.05);
+                color: var(--text-primary);
+            }
+
+            &:disabled {
+                cursor: not-allowed;
+                opacity: 0.5;
+            }
         }
     }
 
-    // Firefox doesn't support -webkit-calendar-picker-indicator
-    // but we can still style the basic input
+    .wim-datepicker-clear {
+        opacity: 0.6;
+
+        &:hover {
+            opacity: 1 !important;
+            color: var(--color-error) !important;
+        }
+    }
+}
+
+.wim-datepicker-dropdown {
+    position: absolute;
+    top: calc(100% + #{spacings.$spacing-xs});
+    left: 0;
+    z-index: 1000;
+    background-color: var(--bg-component, #ffffff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-lg;
+    padding: spacings.$spacing-sm;
 }
