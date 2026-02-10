@@ -1,0 +1,1 @@
+.wim-fieldset{display:flex;flex-direction:column;gap:12px;min-width:0;padding:16px;margin:0;border:1px solid var(--wim-color-border);border-radius:8px}.wim-fieldset--full-width{width:100%}.wim-fieldset:disabled{cursor:not-allowed;opacity:.6}
