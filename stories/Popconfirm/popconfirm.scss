@@ -4,14 +4,14 @@
 @use "../../src/tokens/typography" as typography;
 
 .wim-popconfirm-content {
-    background-color: var(--bg-component, #ffffff);
+    z-index: 1000;
+    min-width: 200px;
+    max-width: 300px;
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    background-color: var(--bg-component, #fff);
     border: 1px solid colors.$color-secondary;
     border-radius: spacings.$radius-md;
     box-shadow: effects.$shadow-lg;
-    padding: spacings.$spacing-sm spacings.$spacing-md;
-    min-width: 200px;
-    max-width: 300px;
-    z-index: 1000;
 }
 
 .wim-popconfirm-inner {
@@ -22,8 +22,8 @@
 
 .wim-popconfirm-message {
     display: flex;
-    align-items: flex-start;
     gap: spacings.$spacing-xs;
+    align-items: flex-start;
 }
 
 .wim-popconfirm-icon {
@@ -38,14 +38,14 @@
 }
 
 .wim-popconfirm-description {
+    margin-left: 24px; // Align with title
     font-size: typography.$size-ex-small;
     color: var(--text-secondary);
-    margin-left: 24px; // Align with title
 }
 
 .wim-popconfirm-actions {
     display: flex;
-    justify-content: flex-end;
     gap: spacings.$spacing-xs;
+    justify-content: flex-end;
     margin-top: spacings.$spacing-sm;
 }

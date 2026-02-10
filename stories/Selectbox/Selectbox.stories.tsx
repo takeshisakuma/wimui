@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Selectbox } from "./Selectbox";
 
 const meta: Meta<typeof Selectbox> = {
@@ -58,3 +58,4 @@ export const Disabled: Story = {
         defaultValue: "opt1",
     },
 };
+

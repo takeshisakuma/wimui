@@ -19,36 +19,26 @@
     >.wim-button,
     >.wim-input-group-text {
         position: relative;
+        box-sizing: border-box;
         flex: 1 1 auto;
         margin-bottom: 0;
-        box-sizing: border-box;
 
         // Reset width for input container inside group
         &.wim-input-container {
-            width: 100%;
-            min-width: 0;
             display: flex;
             align-items: stretch; // Ensure inner input stretches to container height
+            width: 100%;
+            min-width: 0;
 
             .wim-input {
-                height: auto;
                 flex: 1;
+                height: auto;
             }
 
         }
 
         &:not(:first-child) {
             margin-left: -1px; // Standard overlap for 1px borders
-        }
-
-        // Special case for buttons with 2px borders
-        &.wim-button {
-            &:not(:first-child) {
-                margin-left: -2px;
-            }
-        }
-
-        &:not(:first-child) {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
 
@@ -75,24 +65,20 @@
         &:focus,
         &:hover {
             z-index: 2;
-            transform: none !important; // Prevent "lift" effects inside group
             box-shadow: none !important; // Prevent "floating" effects inside group
+            transform: none !important; // Prevent "lift" effects inside group
         }
 
-        &:hover:not(:focus-within):not(:focus) {
-
+        &:hover:not(:focus-within, :focus) {
             // Subtle feedback for hovering non-active elements
             // Use an overlay to work regardless of background color
             &::after {
-                content: "";
                 position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(0, 0, 0, 0.04); // Very subtle darkening
-                pointer-events: none;
+                inset: 0;
                 z-index: 10;
+                pointer-events: none;
+                content: "";
+                background-color: rgb(0 0 0 / 0.04); // Very subtle darkening
                 border-radius: inherit;
             }
         }

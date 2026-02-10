@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputMask } from "./InputMask";
 import { Label } from "../Label/Label";
 
@@ -68,3 +68,4 @@ export const CustomMask: Story = {
         placeholder: "ABCD-1234-X",
     },
 };
+

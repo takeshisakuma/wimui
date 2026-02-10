@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Chip } from "./Chip";
 import { Icon } from "../Icon/Icon";
 import { Avatar } from "../Avatar/Avatar";
@@ -83,3 +83,4 @@ export const Variants: Story = {
         </div>
     ),
 };
+

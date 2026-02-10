@@ -1,9 +1,9 @@
 .wim-timeline {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    padding: 20px;
     width: 100%;
-    box-sizing: border-box;
+    padding: 20px;
 
     &--left {
         align-items: flex-start;
@@ -19,10 +19,10 @@
 }
 
 .wim-timeline-item {
-    display: flex;
     position: relative;
-    min-height: 70px;
+    display: flex;
     width: 100%;
+    min-height: 70px;
 
     &--left {
         flex-direction: row;
@@ -61,27 +61,27 @@
 
 .wim-timeline-separator {
     display: flex;
+    flex-grow: 0;
     flex-direction: column;
     align-items: center;
-    flex-grow: 0;
 }
 
 .wim-timeline-connector {
+    flex-grow: 1;
     width: 2px;
     background-color: var(--wim-color-neutral-light, #e0e0e0);
-    flex-grow: 1;
 }
 
 .wim-timeline-point {
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 12px;
     height: 12px;
-    border-radius: 50%;
-    background-color: var(--wim-color-neutral, #bdbdbd);
     margin: 6px 0;
-    z-index: 1;
+    background-color: var(--wim-color-neutral, #bdbdbd);
+    border-radius: 50%;
 
     &--primary {
         background-color: var(--wim-color-primary, #007bff);
@@ -103,8 +103,8 @@
         width: 24px;
         height: 24px;
         background-color: transparent;
-        border: 2px solid var(--wim-color-neutral, #bdbdbd);
         background-color: #fff;
+        border: 2px solid var(--wim-color-neutral, #bdbdbd);
 
         svg {
             width: 14px;
@@ -112,23 +112,23 @@
         }
 
         &.wim-timeline-point--primary {
-            border-color: var(--wim-color-primary);
             color: var(--wim-color-primary);
+            border-color: var(--wim-color-primary);
         }
 
         &.wim-timeline-point--secondary {
-            border-color: var(--wim-color-secondary);
             color: var(--wim-color-secondary);
+            border-color: var(--wim-color-secondary);
         }
 
         &.wim-timeline-point--error {
-            border-color: var(--wim-color-error);
             color: var(--wim-color-error);
+            border-color: var(--wim-color-error);
         }
 
         &.wim-timeline-point--success {
-            border-color: var(--wim-color-success);
             color: var(--wim-color-success);
+            border-color: var(--wim-color-success);
         }
     }
 }
@@ -141,6 +141,6 @@
 .wim-timeline-opposite-content {
     flex: 1;
     padding: 0 16px;
-    color: var(--wim-color-gray, #6c757d);
     font-size: 0.875rem;
+    color: var(--wim-color-gray, #6c757d);
 }

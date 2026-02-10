@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Input } from "./Input";
 import { Label } from "../Label/Label";
 import { FieldError } from "../FieldError/FieldError";
@@ -199,5 +199,6 @@ export const SearchIndicator: Story = {
         placeholder: "Search components...",
     },
 };
+
 
 

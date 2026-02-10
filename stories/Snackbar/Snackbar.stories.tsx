@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
 import { Snackbar } from "./Snackbar";
 import { Button } from "../Button/Button";
@@ -93,7 +93,7 @@ export const Info: Story = {
 
 export const InteractiveDemo: Story = {
     render: () => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
+         
         const [open, setOpen] = useState(false);
         return (
             <div style={{ padding: "40px" }}>
@@ -109,4 +109,5 @@ export const InteractiveDemo: Story = {
         );
     },
 };
+
 

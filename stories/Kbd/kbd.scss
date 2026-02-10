@@ -12,13 +12,13 @@
         font-weight: typography.$weight-bold;
         line-height: 1;
         color: var(--text-primary);
-        background-color: var(--bg-component, #ffffff);
+        white-space: nowrap;
+        user-select: none;
+        background-color: var(--bg-component, #fff);
         border: 1px solid var(--wim-color-border, #dee2e6);
         border-bottom-width: 3px;
         border-radius: spacings.$radius-sm;
         box-shadow: effects.$shadow-xs;
-        white-space: nowrap;
-        user-select: none;
 
         // Sizes
         &--sm {
@@ -38,8 +38,8 @@
         // Interactive feel (though typically static)
         &:active {
             border-bottom-width: 1px;
-            transform: translateY(2px);
             box-shadow: none;
+            transform: translateY(2px);
         }
     }
 }

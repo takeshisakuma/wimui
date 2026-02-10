@@ -4,11 +4,11 @@
 
 @layer component {
     .wim-heading {
-        font-family: inherit;
-        margin: 0;
-        line-height: normal;
-        font-weight: typography.$weight-bold;
         width: 100%;
+        margin: 0;
+        font-family: inherit;
+        font-weight: typography.$weight-bold;
+        line-height: normal;
 
         /* Sizes */
         &--xs {
@@ -88,8 +88,8 @@
         /* Decoration */
         &--underline {
             text-decoration: typography.$decoration-underline;
-            text-underline-offset: 0.3em;
             text-decoration-skip-ink: none;
+            text-underline-offset: 0.3em;
         }
 
         &__highlight {

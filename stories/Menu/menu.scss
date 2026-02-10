@@ -6,14 +6,14 @@
 @use "../../src/tokens/effects" as effects;
 
 .wim-menu {
-    list-style: none;
-    margin: 0;
+    min-width: 200px;
     padding: 0;
-    background-color: var(--bg-component, #ffffff);
+    margin: 0;
+    list-style: none;
+    background-color: var(--bg-component, #fff);
     border: 1px solid colors.$color-secondary;
     border-radius: spacings.$radius-md;
     box-shadow: effects.$shadow-md;
-    min-width: 200px;
 
     &--vertical {
         display: flex;
@@ -23,9 +23,9 @@
     &--horizontal {
         display: flex;
         flex-direction: row;
+        background-color: transparent;
         border: none;
         box-shadow: none;
-        background-color: transparent;
     }
 
     &--inline {
@@ -37,18 +37,18 @@
 }
 
 .wim-menu-item {
-    padding: spacings.$spacing-sm spacings.$spacing-md;
-    cursor: pointer;
-    font-size: 0.9rem;
-    color: var(--text-primary);
-    transition: all 0.2s ease-in-out;
+    position: relative;
     display: flex;
     align-items: center;
-    position: relative;
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    cursor: pointer;
     user-select: none;
+    transition: all 0.2s ease-in-out;
 
     &:hover:not(&--disabled) {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: rgb(0 0 0 / 0.05);
     }
 
     &:focus {
@@ -79,8 +79,8 @@
     }
 
     .wim-menu--horizontal & {
-        border-radius: spacings.$radius-sm;
         margin: 0 spacings.$spacing-xs;
+        border-radius: spacings.$radius-sm;
     }
 }
 
@@ -97,9 +97,9 @@
     }
 
     &__list {
-        list-style: none;
-        margin: 0;
         padding: 0;
+        margin: 0;
+        list-style: none;
     }
 }
 
@@ -107,18 +107,18 @@
     list-style: none;
 
     &__title {
-        padding: spacings.$spacing-sm spacings.$spacing-md;
-        cursor: pointer;
-        font-size: 0.9rem;
-        color: var(--text-primary);
-        transition: all 0.2s ease-in-out;
+        position: relative;
         display: flex;
         align-items: center;
-        position: relative;
+        padding: spacings.$spacing-sm spacings.$spacing-md;
+        font-size: 0.9rem;
+        color: var(--text-primary);
+        cursor: pointer;
         user-select: none;
+        transition: all 0.2s ease-in-out;
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.05);
+            background-color: rgb(0 0 0 / 0.05);
         }
 
         &:focus {
@@ -128,11 +128,11 @@
     }
 
     &__arrow {
-        margin-left: auto;
-        transition: transform 0.2s ease-in-out;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: auto;
+        transition: transform 0.2s ease-in-out;
 
         svg {
             width: 16px;
@@ -145,10 +145,10 @@
     }
 
     &__list {
-        list-style: none;
-        margin: 0;
         padding-left: spacings.$spacing-lg;
+        margin: 0;
         overflow: hidden;
+        list-style: none;
         animation: slideDown 0.2s ease-in-out;
     }
 
@@ -161,9 +161,9 @@
 
 .wim-menu-divider {
     height: 1px;
-    background-color: colors.$color-secondary;
     margin: spacings.$spacing-xs 0;
     list-style: none;
+    background-color: colors.$color-secondary;
 }
 
 @keyframes slideDown {

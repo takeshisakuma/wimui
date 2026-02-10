@@ -4,9 +4,9 @@
 
 .wim-switch-wrapper {
     display: inline-flex;
+    gap: spacings.$spacing-sm;
     align-items: center;
     cursor: pointer;
-    gap: spacings.$spacing-sm;
     user-select: none;
 
     &.wim-switch--disabled {
@@ -17,19 +17,19 @@
 
 .wim-switch-input {
     position: absolute;
-    opacity: 0;
     width: 0;
     height: 0;
+    opacity: 0;
 }
 
 .wim-switch-track {
     position: relative;
+    flex-shrink: 0;
     width: 44px;
     height: 24px;
     background-color: var(--wim-color-border-secondary);
     border-radius: 9999px;
     transition: background-color 0.2s ease-in-out;
-    flex-shrink: 0;
 
     .wim-switch-input:checked+& {
         background-color: var(--color-primary);
@@ -43,8 +43,8 @@
         height: 20px;
         background-color: var(--text-white);
         border-radius: 50%;
+        box-shadow: 0 1px 2px rgb(0 0 0 / 0.1); // Fallback for shadow if variable missing
         transition: transform 0.2s ease-in-out;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); // Fallback for shadow if variable missing
     }
 
     .wim-switch-input:checked+& .wim-switch-thumb {

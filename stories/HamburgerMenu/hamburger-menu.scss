@@ -13,19 +13,19 @@ $hamburger-active-hover-opacity: 1 !default;
 
 @layer component {
     .wim-hamburger-menu {
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
         display: inline-block;
-        margin: 0;
         padding: spacings.$spacing-sm;
+        margin: 0;
+        overflow: visible;
+        font: inherit;
+        color: inherit;
+        text-transform: none;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
         transition-timing-function: linear;
         transition-duration: 0.15s;
         transition-property: opacity, filter;
-        text-transform: none;
-        color: inherit;
-        font: inherit;
-        overflow: visible;
 
         &:hover {
             opacity: $hamburger-hover-opacity;
@@ -34,34 +34,38 @@ $hamburger-active-hover-opacity: 1 !default;
 
 
         &__box {
+            position: relative;
+            display: inline-block;
             width: $hamburger-layer-width;
             height: $hamburger-layer-width * 0.75; // Approx aspect ratio
-            display: inline-block;
-            position: relative;
         }
 
         &__inner {
-            display: block;
             top: 50%;
+            display: block;
             margin-top: $hamburger-layer-height * -0.5;
+            transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+            // Default state animation logic
+            transition-duration: 0.1s;
 
             &,
             &::before,
             &::after {
+                position: absolute;
                 width: $hamburger-layer-width;
                 height: $hamburger-layer-height;
                 background-color: var(--wim-hamburger-color, #{$hamburger-layer-color});
                 border-radius: $hamburger-layer-border-radius;
-                position: absolute;
-                transition-property: transform;
-                transition-duration: 0.15s;
                 transition-timing-function: ease;
+                transition-duration: 0.15s;
+                transition-property: transform;
             }
 
             &::before,
             &::after {
-                content: "";
                 display: block;
+                content: "";
             }
 
             &::before {
@@ -73,10 +77,6 @@ $hamburger-active-hover-opacity: 1 !default;
                 top: ($hamburger-layer-spacing + $hamburger-layer-height);
                 transition: top 0.1s 0.14s ease-in, transform 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
             }
-
-            // Default state animation logic
-            transition-duration: 0.1s;
-            transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
             // When open, we override the transitions in the --open block above
             // But we need to handle the closing animation too.

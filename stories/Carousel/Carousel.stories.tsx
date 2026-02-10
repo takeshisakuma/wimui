@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Carousel } from "./Carousel";
 import SampleImage from "../../src/media/imagesanple.webp";
 
@@ -139,3 +139,4 @@ export const WithImage: Story = {
         )),
     },
 };
+

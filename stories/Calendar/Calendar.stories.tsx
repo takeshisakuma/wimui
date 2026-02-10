@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Calendar } from "./Calendar";
 
 const meta: Meta<typeof Calendar> = {
@@ -44,3 +44,4 @@ export const Controlled: Story = {
         return <Calendar {...(args as any)} value={date} onChange={setDate} />;
     },
 };
+

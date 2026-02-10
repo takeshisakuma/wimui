@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AvatarGroup } from "./AvatarGroup";
 import { Avatar } from "../Avatar/Avatar";
 
@@ -78,3 +78,4 @@ export const TotalCount: Story = {
         </AvatarGroup>
     ),
 };
+

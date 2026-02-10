@@ -55,6 +55,7 @@ export const Snackbar = ({
 
     useEffect(() => {
         if (open) {
+            /* eslint-disable-next-line react-hooks/set-state-in-effect */
             setIsRendered(true);
             const timer = setTimeout(() => setIsVisible(true), 10);
             return () => clearTimeout(timer);

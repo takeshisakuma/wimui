@@ -5,16 +5,16 @@
 .wim-empty-state {
     display: flex;
     flex-direction: column;
+    gap: spacings.$spacing-2xl;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: spacings.$spacing-2xl spacings.$spacing-lg;
-    border: 1px dashed var(--wim-color-border-secondary);
-    border-radius: 12px;
-    background-color: var(--bg-app);
     width: 100%;
     min-height: 240px;
-    gap: spacings.$spacing-2xl;
+    padding: spacings.$spacing-2xl spacings.$spacing-lg;
+    text-align: center;
+    background-color: var(--bg-app);
+    border: 1px dashed var(--wim-color-border-secondary);
+    border-radius: 12px;
 
     &__icon {
         display: flex;
@@ -37,10 +37,10 @@
     }
 
     &__description {
+        max-width: 400px;
         margin: 0;
         font-size: var(--font-size-medium);
         color: var(--text-tertiary);
-        max-width: 400px;
     }
 
     &__action {
@@ -49,9 +49,9 @@
 
     // Variants
     &--simple {
-        border: none;
-        background-color: transparent;
         min-height: auto;
         padding: spacings.$spacing-lg 0;
+        background-color: transparent;
+        border: none;
     }
 }

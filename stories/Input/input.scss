@@ -6,15 +6,15 @@
     all: unset;
     box-sizing: border-box;
     display: block;
-    padding: spacings.$spacing-sm spacings.$spacing-md;
-    font-size: 1rem;
-    border-radius: spacings.$radius-md;
-    background-color: var(--bg-component, #fff);
-    color: var(--text-primary);
-    border: 1px solid colors.$color-secondary;
-    transition: effects.$transition-base;
     width: 100%;
     max-width: 320px;
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background-color: var(--bg-component, #fff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    transition: effects.$transition-base;
 
     &::placeholder {
         color: var(--text-tertiary);
@@ -38,7 +38,7 @@
         border-color: transparent;
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.05);
+            background-color: rgb(0 0 0 / 0.05);
         }
 
         &:focus {
@@ -51,21 +51,21 @@
         border-color: var(--text-error) !important;
 
         &:focus {
-            box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2) !important;
+            box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2) !important;
         }
     }
 
     &--disabled {
-        background-color: var(--color-disabled);
         color: var(--color-text-on-disabled);
-        cursor: not-allowed;
         pointer-events: none;
+        cursor: not-allowed;
+        background-color: var(--color-disabled);
         border-color: var(--color-disabled);
     }
 
     &--full-width {
-        max-width: none;
         width: 100%;
+        max-width: none;
     }
 
     &--has-left-icon {
@@ -102,7 +102,6 @@
 
     &:hover {
         .wim-input[readonly] {
-
             // Only add hover effect if cursor is set to pointer (Select-like)
             &:not([disabled]) {
                 background-color: var(--color-tertiary-hover);
@@ -112,7 +111,6 @@
 
     &:focus-within {
         .wim-input-icon {
-
             // Usually, only the secondary (default) icon color should turn primary on focus
             .wim-icon--secondary {
                 color: var(--color-primary);
@@ -124,12 +122,12 @@
 .wim-input-icon {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
     color: var(--text-secondary);
+    pointer-events: none;
+    transform: translateY(-50%);
     transition: color 0.3s ease-in-out;
 
     &--clickable {
@@ -146,17 +144,17 @@
 }
 
 .wim-input-icon-button {
-    background: transparent;
-    border: none;
-    padding: spacings.$spacing-3xs;
-    margin: -(spacings.$spacing-3xs);
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: spacings.$spacing-3xs;
+    margin: -(spacings.$spacing-3xs);
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: none;
     border-radius: spacings.$radius-sm;
     transition: all 0.2s ease-in-out;
-    color: inherit;
 
     &:hover {
         background-color: var(--color-tertiary-hover);

@@ -23,30 +23,30 @@
 
     .wim-datepicker-icons {
         position: absolute;
-        right: spacings.$spacing-sm;
         top: 50%;
-        transform: translateY(-50%);
+        right: spacings.$spacing-sm;
         display: flex;
-        align-items: center;
         gap: spacings.$spacing-xs;
+        align-items: center;
         pointer-events: none;
+        transform: translateY(-50%);
 
         button {
-            pointer-events: all;
-            background: none;
-            border: none;
-            padding: spacings.$spacing-xs;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            padding: spacings.$spacing-xs;
             color: var(--text-secondary);
+            pointer-events: all;
+            cursor: pointer;
+            background: none;
+            border: none;
             border-radius: spacings.$radius-sm;
             transition: all effects.$transition-base;
 
             &:hover:not(:disabled) {
-                background-color: rgba(0, 0, 0, 0.05);
                 color: var(--text-primary);
+                background-color: rgb(0 0 0 / 0.05);
             }
 
             &:disabled {
@@ -60,8 +60,8 @@
         opacity: 0.6;
 
         &:hover {
-            opacity: 1 !important;
             color: var(--color-error) !important;
+            opacity: 1 !important;
         }
     }
 }
@@ -71,9 +71,9 @@
     top: calc(100% + #{spacings.$spacing-xs});
     left: 0;
     z-index: 1000;
-    background-color: var(--bg-component, #ffffff);
+    padding: spacings.$spacing-sm;
+    background-color: var(--bg-component, #fff);
     border: 1px solid colors.$color-secondary;
     border-radius: spacings.$radius-md;
     box-shadow: effects.$shadow-lg;
-    padding: spacings.$spacing-sm;
 }

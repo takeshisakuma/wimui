@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Result } from "./Result";
 import { Button } from "../Button/Button";
 
@@ -76,3 +76,4 @@ export const Status500: Story = {
         extra: <Button priority="primary" label="Back Home" />,
     },
 };
+

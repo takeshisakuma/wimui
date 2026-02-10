@@ -66,6 +66,7 @@ export const CommandPalette = ({ children, open: controlledOpen, onOpenChange }:
     }, []);
 
     // Reset item count on each render to handle dynamic lists
+    /* eslint-disable-next-line react-hooks/refs */
     itemCountRef.current = 0;
 
     useEffect(() => {
@@ -83,20 +84,21 @@ export const CommandPalette = ({ children, open: controlledOpen, onOpenChange }:
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [open, handleOpenChange]);
 
+    const contextValue = React.useMemo(() => ({
+        open,
+        onOpenChange: handleOpenChange,
+        search,
+        setSearch,
+        activeIndex,
+        setActiveIndex,
+        /* eslint-disable-next-line react-hooks/refs */
+        itemCount: itemCountRef.current,
+        registerItem,
+        unregisterItem
+    }), [open, handleOpenChange, search, activeIndex, registerItem, unregisterItem]);
+
     return (
-        <CommandPaletteContext.Provider
-            value={{
-                open,
-                onOpenChange: handleOpenChange,
-                search,
-                setSearch,
-                activeIndex,
-                setActiveIndex,
-                itemCount: itemCountRef.current,
-                registerItem,
-                unregisterItem
-            }}
-        >
+        <CommandPaletteContext.Provider value={contextValue}>
             {children}
         </CommandPaletteContext.Provider>
     );
@@ -244,7 +246,10 @@ export const CommandPaletteItem = ({ children, onSelect, icon, shortcut, disable
     }, [isActive, disabled, onSelect, onOpenChange]);
 
     return (
+        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
         <div
+            role="option"
+            aria-selected={isActive}
             className={classNames("wim-command-palette-item", {
                 "wim-command-palette-item--active": isActive,
                 "wim-command-palette-item--disabled": disabled,

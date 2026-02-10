@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { DateRangePicker } from "./DateRangePicker";
 
 const meta: Meta<typeof DateRangePicker> = {
@@ -20,3 +20,4 @@ export const Default: Story = {
         }
     },
 };
+

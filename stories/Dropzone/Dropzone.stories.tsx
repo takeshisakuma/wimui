@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Dropzone } from "./Dropzone";
 
 const meta: Meta<typeof Dropzone> = {
@@ -52,3 +52,4 @@ export const CustomIcon: Story = {
         description: "カスタムアイコンを使用したドロップゾーン",
     },
 };
+

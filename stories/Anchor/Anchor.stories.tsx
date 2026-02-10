@@ -1,5 +1,5 @@
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { Anchor } from "./Anchor";
 
 const meta: Meta<typeof Anchor> = {
@@ -78,3 +78,4 @@ export const Default: Story = {
         </div>
     ),
 };
+

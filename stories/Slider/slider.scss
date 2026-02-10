@@ -2,9 +2,9 @@
 @use "../../src/tokens/spacings" as spacings;
 
 .wim-slider {
+    position: relative;
     display: flex;
     align-items: center;
-    position: relative;
     width: 100%;
     height: 24px;
     touch-action: none;
@@ -35,14 +35,14 @@
         top: 50%;
         width: 18px;
         height: 18px;
+        cursor: grab;
+        outline: none;
         background-color: colors.$text-white;
         border: 2px solid colors.$color-primary;
         border-radius: spacings.$radius-full;
+        box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
         transform: translate(-50%, -50%);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition: box-shadow 0.2s, transform 0.1s;
-        outline: none;
-        cursor: grab;
 
         &:hover {
             box-shadow: 0 0 0 4px rgba(colors.$color-primary, 0.1);

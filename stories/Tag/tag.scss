@@ -4,12 +4,12 @@
 
 .wim-tag {
     display: inline-flex;
-    align-items: center;
     gap: spacings.$spacing-xs;
-    white-space: nowrap;
-    border-radius: spacings.$radius-sm;
+    align-items: center;
     font-weight: 500;
     line-height: 1;
+    white-space: nowrap;
+    border-radius: spacings.$radius-sm;
 
     &--md {
         padding: spacings.$spacing-xs spacings.$spacing-sm;
@@ -47,20 +47,20 @@
     $on: map.get($pairs, "on");
 
     &--#{$name}.wim-tag--solid {
-        background-color: $base;
         color: $on;
+        background-color: $base;
         border: 1px solid transparent;
     }
 
     &--#{$name}.wim-tag--outline {
-        background-color: transparent;
         color: $base;
+        background-color: transparent;
         border: 1px solid $base;
     }
 
     &--#{$name}.wim-tag--subtle {
-        background-color: rgba($base, 0.15);
         color: $base;
+        background-color: rgba($base, 0.15);
         border: 1px solid transparent;
     }
 }

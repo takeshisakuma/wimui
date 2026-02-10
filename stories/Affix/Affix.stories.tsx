@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Affix } from "./Affix";
 import { Button } from "../Button/Button";
 import React from "react";
@@ -46,3 +46,4 @@ export const OffsetBottom: Story = {
         </div>
     ),
 };
+

@@ -18,6 +18,7 @@
 }
 
 .wim-selectbox-trigger {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,12 +28,11 @@
     font-size: 1rem;
     line-height: 1.5;
     color: var(--text-primary);
-    background-color: var(--bg-component, #ffffff);
+    cursor: pointer;
+    background-color: var(--bg-component, #fff);
     border: 1px solid colors.$color-secondary;
     border-radius: spacings.$radius-md;
-    cursor: pointer;
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    box-sizing: border-box;
 
     &:hover:not(.wim-selectbox-trigger--disabled) {
         border-color: colors.$color-primary;
@@ -50,16 +50,16 @@
     }
 
     &--disabled {
-        background-color: rgba(0, 0, 0, 0.05);
         color: var(--text-disabled);
         cursor: not-allowed;
+        background-color: rgb(0 0 0 / 0.05);
         border-color: colors.$color-disabled;
     }
 }
 
 .wim-selectbox-value {
     flex: 1;
-    flex: 1;
+
     // overflow: hidden; // User reported this causes vertical clipping
     // text-overflow: ellipsis; 
     white-space: nowrap;
@@ -70,23 +70,23 @@
 }
 
 .wim-selectbox-icon {
-    margin-left: spacings.$spacing-sm;
-    color: var(--text-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: spacings.$spacing-sm;
+    color: var(--text-secondary);
 }
 
 .wim-selectbox-dropdown {
     position: absolute;
     top: calc(100% + #{spacings.$spacing-xs});
-    left: 0;
     right: 0;
-    background-color: var(--bg-component, #ffffff);
+    left: 0;
+    z-index: 1000;
+    background-color: var(--bg-component, #fff);
     border: 1px solid colors.$color-secondary;
     border-radius: spacings.$radius-md;
     box-shadow: effects.$shadow-lg;
-    z-index: 1000;
 }
 
 .wim-selectbox-search {
@@ -97,10 +97,10 @@
 .wim-selectbox-search-input {
     width: 100%;
     padding: spacings.$spacing-sm;
-    border: 1px solid colors.$color-secondary;
-    border-radius: spacings.$radius-sm;
     font-size: 0.9rem;
     outline: none;
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-sm;
     transition: border-color 0.2s ease-in-out;
 
     &:focus {
@@ -113,33 +113,33 @@
 }
 
 .wim-selectbox-list {
-    list-style: none;
+    max-height: 240px;
     padding: spacings.$spacing-xs 0;
     margin: 0;
-    max-height: 240px;
     overflow-y: auto;
+    list-style: none;
 }
 
 .wim-selectbox-group-label {
     padding: spacings.$spacing-sm spacings.$spacing-md;
     font-size: 0.75rem;
     font-weight: 600;
-    text-transform: uppercase;
     color: var(--text-secondary);
+    text-transform: uppercase;
     letter-spacing: 0.05em;
     pointer-events: none;
 }
 
 .wim-selectbox-option {
     padding: spacings.$spacing-sm spacings.$spacing-md;
-    cursor: pointer;
     font-size: 0.9rem;
     color: var(--text-primary);
+    cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 
     &:hover,
     &--active {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: rgb(0 0 0 / 0.05);
     }
 
     &--focused {
@@ -147,9 +147,9 @@
     }
 
     &--selected {
-        background-color: rgba(colors.$color-primary, 0.1);
-        color: var(--text-primary);
         font-weight: 500;
+        color: var(--text-primary);
+        background-color: rgba(colors.$color-primary, 0.1);
     }
 
     &--selected#{&}--focused {
@@ -169,8 +169,8 @@
 
 .wim-selectbox-empty {
     padding: spacings.$spacing-md;
-    text-align: center;
-    color: var(--text-secondary);
     font-size: 0.9rem;
     font-style: italic;
+    color: var(--text-secondary);
+    text-align: center;
 }

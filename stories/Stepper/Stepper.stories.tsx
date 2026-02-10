@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Stepper } from "./Stepper";
 import React, { useState } from "react";
 import { Icon } from "../Icon/Icon";
@@ -118,3 +118,4 @@ export const Interactive: Story = {
         })),
     },
 };
+

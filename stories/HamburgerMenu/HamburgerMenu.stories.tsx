@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { HamburgerMenu, HamburgerMenuProps } from "./HamburgerMenu";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useArgs } from "@storybook/preview-api";
 
 const meta: Meta<typeof HamburgerMenu> = {
-    title: "Navigation/HamburgerMenu",
+    title: "Component/Navigation/HamburgerMenu",
     component: HamburgerMenu,
     parameters: {
         layout: "centered",
@@ -31,16 +32,14 @@ export default meta;
 
 type Story = StoryObj<typeof HamburgerMenu>;
 
-// Define a render function that uses hooks
-const renderWithState = (args: HamburgerMenuProps) => {
-    const [isOpen, setIsOpen] = useState(args.isOpen || false);
 
-    useEffect(() => {
-        setIsOpen(args.isOpen || false);
-    }, [args.isOpen]);
+
+// Define a render function that uses hooks
+const RenderWithState = (args: HamburgerMenuProps) => {
+    const [{ isOpen }, updateArgs] = useArgs();
 
     const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-        setIsOpen((prev) => !prev);
+        updateArgs({ isOpen: !isOpen });
         args.onClick?.(e);
     };
 
@@ -52,26 +51,27 @@ export const Default: Story = {
         isOpen: false,
         size: "medium",
     },
-    render: renderWithState,
+    render: RenderWithState,
 };
 
 export const Small: Story = {
     args: {
         size: "small",
     },
-    render: renderWithState,
+    render: RenderWithState,
 };
 
 export const Large: Story = {
     args: {
         size: "large",
     },
-    render: renderWithState,
+    render: RenderWithState,
 };
 
 export const Colored: Story = {
     args: {
         color: "#ff5722",
     },
-    render: renderWithState,
+    render: RenderWithState,
 };
+

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { LineChart } from "./LineChart";
 
 const meta: Meta<typeof LineChart> = {
@@ -38,3 +38,4 @@ export const Smooth: Story = {
         smooth: true,
     },
 };
+

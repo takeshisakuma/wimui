@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SearchInput } from "./SearchInput";
 
 const meta: Meta<typeof SearchInput> = {
@@ -15,3 +15,4 @@ export const Default: Story = {
         placeholder: "検索...",
     },
 };
+

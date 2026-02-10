@@ -7,8 +7,8 @@
     display: flex;
     flex-direction: column;
     gap: spacings.$spacing-xs;
-    font-family: inherit;
     width: 100%;
+    font-family: inherit;
 }
 
 .wim-dropzone__label {
@@ -22,23 +22,23 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 160px;
     padding: spacings.$spacing-xl spacings.$spacing-lg;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--bg-app);
     border: 2px dashed var(--wim-color-border);
     border-radius: 8px;
-    background-color: var(--bg-app);
-    cursor: pointer;
     transition: effects.$transition-base;
-    min-height: 160px;
-    text-align: center;
 
     &:hover:not(&--disabled) {
+        background-color: rgb(0 0 0 / 0.02);
         border-color: var(--color-primary);
-        background-color: rgba(0, 0, 0, 0.02);
     }
 
     &--dragging {
+        background-color: rgb(0 0 0 / 0.05);
         border-color: var(--color-primary);
-        background-color: rgba(0, 0, 0, 0.05);
         transform: scale(1.01);
     }
 
@@ -56,8 +56,8 @@
     &__content {
         display: flex;
         flex-direction: column;
-        align-items: center;
         gap: spacings.$spacing-sm;
+        align-items: center;
     }
 
     &__icon {
@@ -65,26 +65,26 @@
     }
 
     &__description {
+        margin: 0;
         font-size: typography.$size-medium;
         color: var(--text-tertiary);
-        margin: 0;
     }
 
     &__file-list {
-        margin-top: spacings.$spacing-md;
         display: flex;
         flex-direction: column;
         gap: spacings.$spacing-xs;
         width: 100%;
+        margin-top: spacings.$spacing-md;
     }
 
     &__file-name {
+        padding: spacings.$spacing-xs spacings.$spacing-sm;
         font-size: typography.$size-small;
         color: var(--text-secondary);
-        background-color: var(--bg-component);
-        padding: spacings.$spacing-xs spacings.$spacing-sm;
-        border-radius: 4px;
-        border: 1px solid var(--wim-color-border-secondary);
         word-break: break-all;
+        background-color: var(--bg-component);
+        border: 1px solid var(--wim-color-border-secondary);
+        border-radius: 4px;
     }
 }

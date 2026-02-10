@@ -8,15 +8,15 @@
     display: inline-block;
     width: 1em;
     height: 1em;
+    vertical-align: middle;
     color: inherit;
     cursor: pointer;
     border: 0;
-    vertical-align: middle;
 
     // SVGそのもの、または子要素のsvgへの設定
     &,
     svg {
-      fill: currentColor;
+      fill: currentcolor;
       stroke: none;
 
       // 線画アイコンへの対応 (属性に fill="none" や stroke がある場合は尊重)
@@ -25,7 +25,7 @@
       }
 
       &[stroke] {
-        stroke: currentColor !important;
+        stroke: currentcolor !important;
       }
 
       &[stroke="none"] {

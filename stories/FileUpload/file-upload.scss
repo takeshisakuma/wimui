@@ -16,8 +16,8 @@
 
     &__controls {
         display: flex;
-        align-items: center;
         gap: spacings.$spacing-md;
+        align-items: center;
     }
 
     &__input {
@@ -26,13 +26,13 @@
 
     &__file-names {
         display: inline-block;
-        line-height: 2;
-        padding: 8px 0;
-        font-size: typography.$size-small;
-        color: colors.$text-gray;
-        overflow: visible;
-        white-space: nowrap;
         max-width: 300px;
+        padding: 8px 0;
+        overflow: visible;
+        font-size: typography.$size-small;
+        line-height: 2;
+        color: colors.$text-gray;
+        white-space: nowrap;
 
         &--disabled {
             color: colors.$color-disabled;

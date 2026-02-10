@@ -190,7 +190,7 @@ export type TabsComponent = typeof Tabs & {
     List: typeof TabsList;
     Trigger: typeof TabsTrigger;
     Content: typeof TabsContent;
-    propTypes?: any;
+    propTypes?: Record<string, any>;
 };
 
 const TabsRoot = Tabs as TabsComponent;

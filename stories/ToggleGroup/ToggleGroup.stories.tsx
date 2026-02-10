@@ -1,5 +1,5 @@
 import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ToggleGroup } from "./ToggleGroup";
 
 const meta: Meta<typeof ToggleGroup> = {
@@ -90,3 +90,4 @@ export const DisabledOptions: Story = {
         defaultValue: ["sel-disabled"],
     },
 };
+

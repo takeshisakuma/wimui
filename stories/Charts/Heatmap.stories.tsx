@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Heatmap } from "./Heatmap";
 
 const meta: Meta<typeof Heatmap> = {
@@ -32,3 +32,4 @@ export const Default: Story = {
         yAxisKey,
     },
 };
+

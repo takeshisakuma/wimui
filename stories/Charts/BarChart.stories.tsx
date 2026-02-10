@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BarChart } from "./BarChart";
 
 const meta: Meta<typeof BarChart> = {
@@ -37,3 +37,4 @@ export const Stacked: Story = {
         stacked: true,
     },
 };
+

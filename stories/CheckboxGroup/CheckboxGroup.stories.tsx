@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CheckboxGroup } from "./CheckboxGroup";
 import { useState } from "react";
 
@@ -54,3 +54,4 @@ export const Controlled = () => {
         </div>
     );
 };
+

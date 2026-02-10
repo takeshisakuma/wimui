@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CopyButton } from "./CopyButton";
 
 const meta: Meta<typeof CopyButton> = {
@@ -35,3 +35,4 @@ export const Large: Story = {
         size: "large",
     },
 };
+

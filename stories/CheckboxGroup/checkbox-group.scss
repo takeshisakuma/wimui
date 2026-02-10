@@ -6,8 +6,7 @@
     gap: spacings.$spacing-sm;
 
     &--horizontal {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
         gap: spacings.$spacing-md;
     }
 }

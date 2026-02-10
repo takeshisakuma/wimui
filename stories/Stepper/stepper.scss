@@ -5,9 +5,9 @@
 
 @layer component {
     .wim-stepper {
+        box-sizing: border-box;
         display: flex;
         width: 100%;
-        box-sizing: border-box;
 
         &--horizontal {
             flex-direction: row;
@@ -41,8 +41,8 @@
             &--label-vertical {
                 flex-direction: column;
                 align-items: center;
-                text-align: center;
                 padding-right: 0;
+                text-align: center;
 
                 .wim-stepper__line {
                     left: 50%;
@@ -65,47 +65,47 @@
             }
 
             .wim-stepper__content {
-                margin-left: spacings.$spacing-3xl;
                 margin-top: spacings.$spacing-xs;
+                margin-left: spacings.$spacing-3xl;
             }
         }
 
         /* Icon Container */
         &__icon-container {
+            z-index: 1;
             display: flex;
+            flex-shrink: 0;
             align-items: center;
             justify-content: center;
             width: spacings.$spacing-3xl;
             height: spacings.$spacing-3xl;
             margin-top: spacings.$spacing-xs;
-            border-radius: 50%;
-            border: 2px solid var(--wim-color-border-secondary);
-            background-color: transparent;
-            color: var(--text-secondary);
             font-size: typography.$size-small;
             font-weight: typography.$weight-bold;
+            color: var(--text-secondary);
+            background-color: transparent;
+            border: 2px solid var(--wim-color-border-secondary);
+            border-radius: 50%;
             transition: all effects.$transition-base;
-            z-index: 1;
-            flex-shrink: 0;
         }
 
         &__item--process &__icon-container {
-            border-color: var(--color-primary);
-            background-color: var(--color-primary);
             color: var(--color-text-on-primary);
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
             box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb, 0, 107, 255), 0.1);
         }
 
         &__item--finish &__icon-container {
-            border-color: var(--color-primary);
-            background-color: transparent;
             color: var(--color-primary);
+            background-color: transparent;
+            border-color: var(--color-primary);
         }
 
         &__item--error &__icon-container {
-            border-color: var(--color-destructive);
-            background-color: transparent;
             color: var(--color-destructive);
+            background-color: transparent;
+            border-color: var(--color-destructive);
         }
 
         /* Line / Tail */
@@ -125,14 +125,14 @@
 
         /* Content */
         &__content {
-            margin-left: spacings.$spacing-sm;
             flex-shrink: 0;
+            margin-left: spacings.$spacing-sm;
         }
 
         &__item--label-vertical &__content {
-            margin-left: 0;
-            margin-top: spacings.$spacing-xs;
             width: 100%;
+            margin-top: spacings.$spacing-xs;
+            margin-left: 0;
         }
 
         &__title {
@@ -149,9 +149,9 @@
 
         &__description {
             display: block;
+            margin-top: spacings.$spacing-xl;
             font-size: typography.$size-small;
             color: var(--text-secondary);
-            margin-top: spacings.$spacing-xl;
         }
     }
 }

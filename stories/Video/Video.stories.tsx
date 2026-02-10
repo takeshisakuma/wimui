@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Video } from "./Video";
 import sampleVideo from "../../src/media/videosample.mp4";
 import videoPoster from "../../src/media/video_poster.webp";
@@ -67,3 +67,4 @@ export const CustomControls: Story = {
         caption: "カスタムコントロール付きビデオ",
     },
 };
+

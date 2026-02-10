@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Popconfirm } from "./Popconfirm";
 import { Button } from "../Button/Button";
 
@@ -42,3 +42,4 @@ export const Disabled: Story = {
         disabled: true,
     },
 };
+

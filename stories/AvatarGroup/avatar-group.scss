@@ -15,10 +15,10 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        margin-left: 8px;
         font-weight: 600;
         color: var(--text-secondary, #6c757d);
         user-select: none;
-        margin-left: 8px;
 
         &--sm {
             font-size: 0.75rem;

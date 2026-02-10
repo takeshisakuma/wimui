@@ -20,26 +20,26 @@
 .wim-combobox-list {
     position: absolute;
     top: calc(100% + #{spacings.$spacing-xs});
-    left: 0;
     right: 0;
-    background-color: var(--bg-component, #ffffff);
+    left: 0;
+    z-index: 1000;
+    max-height: 240px;
+    padding: spacings.$spacing-xs 0;
+    margin: 0;
+    overflow-y: auto;
+    list-style: none;
+    background-color: var(--bg-component, #fff);
     border: 1px solid rgb(0 0 0 / 0.1);
     border-radius: spacings.$radius-md;
     box-shadow: effects.$shadow-lg;
-    list-style: none;
-    padding: spacings.$spacing-xs 0;
-    margin: 0;
-    max-height: 240px;
-    overflow-y: auto;
-    z-index: 1000;
 }
 
 .wim-combobox-option {
     padding: spacings.$spacing-sm spacings.$spacing-md;
-    cursor: pointer;
     font-size: 0.9rem;
-    transition: background-color 0.2s ease-in-out;
     color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 
     &:hover,
     &--active {
@@ -54,15 +54,15 @@
 .wim-combobox-empty {
     position: absolute;
     top: calc(100% + #{spacings.$spacing-xs});
-    left: 0;
     right: 0;
+    left: 0;
+    z-index: 1000;
     padding: spacings.$spacing-md;
-    background-color: var(--bg-component, #ffffff);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    background-color: var(--bg-component, #fff);
     border: 1px solid rgb(0 0 0 / 0.1);
     border-radius: spacings.$radius-md;
     box-shadow: effects.$shadow-lg;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    text-align: center;
-    z-index: 1000;
 }

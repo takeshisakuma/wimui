@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AreaChart } from "./AreaChart";
 
 const meta: Meta<typeof AreaChart> = {
@@ -36,3 +36,4 @@ export const Stacked: Story = {
         stacked: true,
     },
 };
+

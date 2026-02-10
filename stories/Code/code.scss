@@ -5,24 +5,24 @@
 
     &--inline {
         padding: 0.2em 0.4em;
-        background-color: rgba(0, 0, 0, 0.05);
         color: #eb5757;
+        background-color: rgb(0 0 0 / 0.05);
     }
 
     &--block {
         display: block;
         padding: 1rem;
-        background-color: #f8f9fa;
-        color: #333;
-        overflow-x: auto;
-        border: 1px solid #dee2e6;
         margin: 1rem 0;
+        overflow-x: auto;
+        color: #333;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
 
         code {
             padding: 0;
-            background-color: transparent;
-            color: inherit;
             font-size: 1em;
+            color: inherit;
+            background-color: transparent;
             border-radius: 0;
         }
     }

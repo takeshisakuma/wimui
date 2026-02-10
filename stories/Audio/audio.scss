@@ -4,47 +4,47 @@
 @use "../../src/tokens/semantic-colors" as colors;
 
 .wim-audio-container {
-    margin: 0;
-    padding: 0;
+    position: relative;
     display: inline-flex;
     flex-direction: column;
     max-width: 100%;
-    position: relative;
+    padding: 0;
+    margin: 0;
     line-height: 0; // Remove baseline gap
 }
 
 .wim-audio-inner {
     display: flex;
-    line-height: 0;
     width: 300px;
     max-width: 100%;
+    line-height: 0;
+
     // Fix for Chrome on Android: overflow: hidden with border-radius 
     // can cause rendering glitches on native elements.
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
     mask-image: radial-gradient(white, black);
 
     &.wim-audio--radius-small {
-        border-radius: spacings.$radius-sm;
         overflow: hidden;
+        border-radius: spacings.$radius-sm;
     }
 
     &.wim-audio--radius-medium {
-        border-radius: spacings.$radius-md;
         overflow: hidden;
+        border-radius: spacings.$radius-md;
     }
 
     &.wim-audio--radius-large {
-        border-radius: spacings.$radius-lg;
         overflow: hidden;
+        border-radius: spacings.$radius-lg;
     }
 
     &.wim-audio--radius-full {
-        border-radius: spacings.$radius-full;
         overflow: hidden;
+        border-radius: spacings.$radius-full;
     }
 
     &.wim-audio--shadow {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
     }
 
     &.wim-audio--border {
@@ -59,70 +59,70 @@
 }
 
 .wim-audio__caption {
+    padding-bottom: spacings.$spacing-xs;
     margin-top: spacings.$spacing-sm;
     font-size: 0.875rem;
-    color: var(--color-text-secondary, #666);
     line-height: 1.5;
+    color: var(--color-text-secondary, #666);
     text-align: center;
-    padding-bottom: spacings.$spacing-xs;
 }
 
 // Custom Controls Styles
 .wim-audio--custom {
     display: flex;
     flex-direction: column;
-    min-width: 320px;
-    background: linear-gradient(135deg, #1e1e24 0%, #292930 100%);
-    color: white;
-    padding: spacings.$spacing-md;
     gap: spacings.$spacing-sm;
+    min-width: 320px;
+    padding: spacings.$spacing-md;
+    color: white;
+    background: linear-gradient(135deg, #1e1e24 0%, #292930 100%);
 
     // Reset mask-image from .wim-audio-inner to allow shadows/overflow if needed
     mask-image: none;
-    -webkit-mask-image: none;
 }
 
 // ... (existing styles)
 
 .wim-audio-custom-controls {
     display: flex;
-    align-items: center;
     gap: spacings.$spacing-sm;
+    align-items: center;
     width: 100%;
 }
 
 .wim-audio-btn {
-    // ... existing common button props
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: white;
-    padding: spacings.$spacing-xs;
-    border-radius: 50%;
-    transition: background-color 0.2s, color 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 32px;
     height: 32px;
+    padding: spacings.$spacing-xs;
+    color: white;
+    cursor: pointer;
+
+    // ... existing common button props
+    background: none;
+    border: none;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
 
     &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
         color: #646cff; // Accent color
+        background-color: rgb(255 255 255 / 0.1);
     }
 
     // Active state for toggles
     &.active {
         color: #646cff;
-        background-color: rgba(100, 108, 255, 0.2);
+        background-color: rgb(100 108 255 / 0.2);
     }
 
     // Text button (e.g. speed)
     &--text {
         width: auto;
+        padding: 0 spacings.$spacing-xs;
         font-size: 0.875rem;
         font-weight: 600;
-        padding: 0 spacings.$spacing-xs;
         border-radius: 4px;
     }
 
@@ -132,8 +132,8 @@
         background-color: #646cff;
 
         &:hover {
-            background-color: color.adjust(#646cff, $lightness: 10%);
             color: white;
+            background-color: color.adjust(#646cff, $lightness: 10%);
         }
 
         .wim-icon {
@@ -146,33 +146,30 @@
 // ... rest of time/progress/volume styles (ensure they work inside row-primary)
 .wim-audio-time {
     display: flex;
-    align-items: center;
     flex: 1;
     gap: spacings.$spacing-xs;
+    align-items: center;
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgb(255 255 255 / 0.7);
 }
 
 // ...
 
 
 .wim-audio-progress-container {
-    flex: 1;
     position: relative;
+    flex: 1;
     height: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
     cursor: pointer;
+    background: rgb(255 255 255 / 0.2);
+    border-radius: 2px;
 
     // Expand click area
     &::after {
-        content: '';
         position: absolute;
-        top: -10px;
-        bottom: -10px;
-        left: 0;
-        right: 0;
+        inset: -10px 0;
+        content: '';
     }
 }
 
@@ -180,48 +177,48 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 2;
     margin: 0;
+    cursor: pointer;
+    opacity: 0;
 }
 
 .wim-audio-progress-fill {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1;
     height: 100%;
+    pointer-events: none;
     background-color: #646cff;
     border-radius: 2px;
-    pointer-events: none;
-    z-index: 1;
 
     &::after {
-        content: '';
         position: absolute;
-        right: -4px;
         top: 50%;
-        transform: translateY(-50%);
+        right: -4px;
         width: 8px;
         height: 8px;
+        content: '';
         background-color: white;
         border-radius: 50%;
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 4px rgb(0 0 0 / 0.3);
+        transform: translateY(-50%);
     }
 }
 
 .wim-audio-volume-container {
-    display: flex;
-    align-items: center;
-    gap: spacings.$spacing-xs;
     position: relative;
+    display: flex;
+    gap: spacings.$spacing-xs;
+    align-items: center;
 
     &:hover .wim-audio-volume {
         width: 60px;
-        opacity: 1;
         pointer-events: auto;
+        opacity: 1;
     }
 }
 
@@ -229,30 +226,28 @@
     width: 0; // Collapsed by default? Or maybe just small
     width: 60px; // Always show for now for simplicity
     height: 4px;
-    -webkit-appearance: none;
     appearance: none;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-    outline: none;
-    transition: width 0.3s, opacity 0.3s;
     cursor: pointer;
+    outline: none;
+    background: rgb(255 255 255 / 0.2);
+    border-radius: 2px;
+    transition: width 0.3s, opacity 0.3s;
 
     &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
         width: 10px;
         height: 10px;
-        border-radius: 50%;
-        background: white;
+        appearance: none;
         cursor: pointer;
+        background: white;
+        border-radius: 50%;
     }
 
     &::-moz-range-thumb {
         width: 10px;
         height: 10px;
-        border-radius: 50%;
-        background: white;
         cursor: pointer;
+        background: white;
         border: none;
+        border-radius: 50%;
     }
 }

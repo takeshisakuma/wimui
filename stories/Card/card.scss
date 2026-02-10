@@ -3,18 +3,18 @@
 @use "../../src/tokens/effects" as effects;
 
 .wim-card {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background-color: var(--bg-component, #fff);
     overflow: hidden;
     color: var(--text-primary);
+    background-color: var(--bg-component, #fff);
     transition: effects.$transition-base;
-    box-sizing: border-box;
 
     /* バリアント */
     &--elevated {
-        box-shadow: effects.$shadow-sm;
         border: 1px solid transparent;
+        box-shadow: effects.$shadow-sm;
 
         &:hover {
             box-shadow: effects.$shadow-lg;
@@ -27,13 +27,12 @@
     }
 
     &--flat {
-        border: 1px solid transparent;
         background-color: var(--color-disabled);
+        border: 1px solid transparent;
     }
 
     /* パディング */
     &--padding-none {
-
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {
@@ -42,7 +41,6 @@
     }
 
     &--padding-sm {
-
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {
@@ -51,7 +49,6 @@
     }
 
     &--padding-md {
-
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {
@@ -60,7 +57,6 @@
     }
 
     &--padding-lg {
-
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {
@@ -89,7 +85,7 @@
 
     /* 内部要素 */
     &__header {
-        border-bottom: 1px solid var(--wim-divider-color, rgba(0, 0, 0, 0.08));
+        border-bottom: 1px solid var(--wim-divider-color, rgb(0 0 0 / 0.08));
     }
 
     &__body {
@@ -97,6 +93,6 @@
     }
 
     &__footer {
-        border-top: 1px solid var(--wim-divider-color, rgba(0, 0, 0, 0.08));
+        border-top: 1px solid var(--wim-divider-color, rgb(0 0 0 / 0.08));
     }
 }

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Badge } from "./Badge";
 
 const meta: Meta<typeof Badge> = {
@@ -114,3 +114,4 @@ export const IconOnly: Story = {
         color: "primary",
     },
 };
+

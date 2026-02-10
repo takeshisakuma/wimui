@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Kbd } from "./Kbd";
 
 const meta: Meta<typeof Kbd> = {
@@ -50,3 +50,4 @@ export const KeyboardSymbols: Story = {
         </div>
     ),
 };
+

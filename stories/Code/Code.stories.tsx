@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Code } from "./Code";
 
 const meta: Meta<typeof Code> = {
@@ -53,3 +53,4 @@ const Example = () => {
         language: "tsx",
     },
 };
+

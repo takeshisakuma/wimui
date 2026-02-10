@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "./HoverCard";
 import React from "react";
 import { Avatar } from "../Avatar/Avatar";
@@ -66,3 +66,4 @@ export const Instant: Story = {
         </div>
     ),
 };
+

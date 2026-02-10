@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, ReactNode } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef, ReactNode } from "react";
 import "./contextMenu.scss";
 
 export type ContextMenuProps = {
@@ -70,7 +70,7 @@ export const ContextMenu = ({
     }, [isVisible]);
 
     // Adjust position to keep menu within viewport
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (isVisible && menuRef.current) {
             const menuRect = menuRef.current.getBoundingClientRect();
             const viewportWidth = window.innerWidth;
@@ -153,6 +153,12 @@ export const ContextMenuItem = ({
         <div
             className={`wim-context-menu-item ${disabled ? "wim-context-menu-item--disabled" : ""} ${danger ? "wim-context-menu-item--danger" : ""} ${className}`}
             onClick={handleClick}
+            onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleClick(e as unknown as React.MouseEvent);
+                }
+            }}
             role="menuitem"
             tabIndex={disabled ? -1 : 0}
             aria-disabled={disabled}

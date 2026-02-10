@@ -82,8 +82,8 @@
 
     &--underline {
       text-decoration: typography.$decoration-underline;
-      text-underline-offset: 0.3em;
       text-decoration-skip-ink: none;
+      text-underline-offset: 0.3em;
     }
 
     &--highlight {

@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { FloatButton } from "./FloatButton";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { FloatButton, FloatButtonProps } from "./FloatButton";
 import React, { useState, useRef } from "react";
 
 const meta: Meta<typeof FloatButton> = {
-    title: "Navigation/FloatButton",
+    title: "Component/Navigation/FloatButton",
     component: FloatButton,
     tags: [],
     parameters: {
@@ -154,9 +154,9 @@ export const BackTop: Story = {
 };
 
 // Demo component for auto-shrink
-const AutoShrinkDemo = (args: any) => {
+const AutoShrinkDemo = (args: FloatButtonProps) => {
     const [isShrunk, setIsShrunk] = useState(false);
-    const scrollTimer = useRef<any>(null);
+    const scrollTimer = useRef<number | null>(null);
 
     const handleScroll = () => {
         setIsShrunk(true);
@@ -199,3 +199,4 @@ const AutoShrinkDemo = (args: any) => {
         </div>
     );
 };
+

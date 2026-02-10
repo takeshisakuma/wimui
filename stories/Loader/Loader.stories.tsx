@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { Loader } from "./Loader";
 
@@ -90,3 +90,4 @@ export const Sizes: Story = {
         </div>
     ),
 };
+

@@ -35,14 +35,14 @@
 
         &__label {
             display: inline-flex;
-            align-items: center;
             gap: spacings.$spacing-3xs;
-            color: colors.$text-gray; // Default non-link/previous item color
+            align-items: center;
             line-height: 1;
+            color: colors.$text-gray; // Default non-link/previous item color
 
             &--current {
-                color: colors.$text-black;
                 font-weight: typography.$weight-bold;
+                color: colors.$text-black;
             }
 
             &-icon {

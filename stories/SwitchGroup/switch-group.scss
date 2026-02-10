@@ -7,8 +7,7 @@
     gap: spacings.$spacing-sm;
 
     &.wim-switch-group--horizontal {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
         gap: spacings.$spacing-lg;
     }
 }

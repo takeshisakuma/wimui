@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Audio } from "./Audio";
 import audioSample from "../../src/media/audiosample.mp3";
 
@@ -64,3 +64,4 @@ export const CustomControls: Story = {
         customControls: true,
     },
 };
+

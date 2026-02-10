@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MultiSelect } from "./MultiSelect";
 
 const meta: Meta<typeof MultiSelect> = {
@@ -58,3 +58,4 @@ export const Disabled: Story = {
         defaultValue: ["banana"],
     },
 };
+

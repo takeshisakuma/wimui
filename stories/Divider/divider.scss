@@ -2,11 +2,12 @@
 
 .wim-divider {
     display: block;
-    border: none;
-    background-color: var(--wim-color-border, #e5e7eb);
+    flex-shrink: 0;
+
     /* デフォルトの境界線色（後でトークンに合わせる） */
     margin: 0;
-    flex-shrink: 0;
+    background-color: var(--wim-color-border, #e5e7eb);
+    border: none;
 
     &--horizontal {
         width: 100%;
@@ -15,10 +16,10 @@
     }
 
     &--vertical {
+        display: inline-block;
+        align-self: stretch;
         width: var(--wim-divider-thickness, 1px);
         height: 100%;
-        align-self: stretch;
         margin: 0 8px;
-        display: inline-block;
     }
 }

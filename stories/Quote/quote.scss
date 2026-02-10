@@ -4,8 +4,8 @@
 
 @layer component {
   .wim-quote {
-    margin: spacings.$spacing-2xl 0;
     padding: spacings.$spacing-md 0 spacings.$spacing-md spacings.$spacing-2xl;
+    margin: spacings.$spacing-2xl 0;
     font-family: inherit;
     transition: all 0.2s ease;
 

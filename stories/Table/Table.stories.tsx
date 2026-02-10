@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Table } from "./Table";
 import { Badge } from "../Badge/Badge";
 import { Checkbox } from "../Checkbox/Checkbox";
@@ -312,3 +312,4 @@ export const HiddenScrollbar: Story = {
         scrollbar: "hidden",
     },
 };
+

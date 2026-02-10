@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SwitchGroup } from "./SwitchGroup";
 
 const meta: Meta<typeof SwitchGroup> = {
@@ -48,3 +48,4 @@ export const WithDisabledOption: Story = {
         defaultValue: ["wifi"],
     },
 };
+

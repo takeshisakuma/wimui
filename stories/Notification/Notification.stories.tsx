@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Notification } from "./Notification";
 
 const meta: Meta<typeof Notification> = {
@@ -51,3 +51,4 @@ export const Info: Story = {
         description: "New updates are available for your application.",
     },
 };
+

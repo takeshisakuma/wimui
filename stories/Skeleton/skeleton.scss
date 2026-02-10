@@ -1,9 +1,9 @@
 .wim-skeleton {
-    display: block;
-    background-color: var(--color-gray-200, rgba(0, 0, 0, 0.11));
-    height: 1.2em;
     position: relative;
+    display: block;
+    height: 1.2em;
     overflow: hidden;
+    background-color: var(--color-gray-200, rgb(0 0 0 / 0.11));
 
     &--text {
         width: 100%;
@@ -36,18 +36,15 @@
 
     &--wave {
         &::after {
-            content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
+            content: "";
             background: linear-gradient(90deg,
                     transparent,
-                    rgba(255, 255, 255, 0.3),
+                    rgb(255 255 255 / 0.3),
                     transparent);
-            animation: wim-skeleton-wave 1.6s linear infinite;
             transform: translateX(-100%);
+            animation: wim-skeleton-wave 1.6s linear infinite;
         }
     }
 }
@@ -75,13 +72,13 @@
 // Dark mode support if variable exists
 @media (prefers-color-scheme: dark) {
     .wim-skeleton {
-        background-color: var(--color-gray-800, rgba(255, 255, 255, 0.13));
+        background-color: var(--color-gray-800, rgb(255 255 255 / 0.13));
 
         &--wave {
             &::after {
                 background: linear-gradient(90deg,
                         transparent,
-                        rgba(255, 255, 255, 0.08),
+                        rgb(255 255 255 / 0.08),
                         transparent);
             }
         }

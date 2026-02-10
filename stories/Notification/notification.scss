@@ -7,18 +7,18 @@
     position: relative;
     width: 384px;
     max-width: calc(100vw - 32px);
-    margin-bottom: spacings.$spacing-md;
     padding: spacings.$spacing-lg spacings.$spacing-md;
-    background-color: var(--bg-component, #ffffff);
+    margin-bottom: spacings.$spacing-md;
+    overflow: hidden;
+    background-color: var(--bg-component, #fff);
+    border: 1px solid colors.$color-secondary;
     border-radius: spacings.$radius-md;
     box-shadow: effects.$shadow-lg;
-    border: 1px solid colors.$color-secondary;
-    overflow: hidden;
 
     &-content {
         display: flex;
-        align-items: center;
         gap: spacings.$spacing-sm;
+        align-items: center;
     }
 
     &-icon {
@@ -26,38 +26,38 @@
     }
 
     &-message-container {
-        flex: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
         gap: spacings.$spacing-sm;
     }
 
     &-title {
-        color: var(--text-primary);
+        margin-bottom: 0; // Reset margin when centered
         font-size: typography.$size-medium;
         font-weight: typography.$weight-medium;
         line-height: typography.$line-height-normal-jpan;
-        margin-bottom: 0; // Reset margin when centered
+        color: var(--text-primary);
     }
 
     &-description {
-        color: var(--text-secondary);
         font-size: typography.$size-small;
         line-height: typography.$line-height-tight-latn;
+        color: var(--text-secondary);
     }
 
     &-close {
         position: absolute;
         top: spacings.$spacing-sm;
         right: spacings.$spacing-sm;
-        cursor: pointer;
-        padding: 4px;
-        color: var(--text-disabled);
-        border: none;
-        background: transparent;
-        transition: effects.$transition-base;
         display: flex;
         align-items: center;
+        padding: 4px;
+        color: var(--text-disabled);
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        transition: effects.$transition-base;
 
         &:hover {
             color: var(--text-secondary);

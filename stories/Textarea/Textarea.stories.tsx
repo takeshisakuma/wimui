@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Textarea } from "./Textarea";
 import { Label } from "../Label/Label";
 import { FieldError } from "../FieldError/FieldError";
@@ -107,3 +107,4 @@ export const FormPattern: Story = {
         </div>
     ),
 };
+

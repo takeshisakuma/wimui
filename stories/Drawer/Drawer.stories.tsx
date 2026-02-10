@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription, DrawerClose } from "./Drawer";
 import { Button } from "../Button/Button";
 import { useState } from "react";
@@ -180,3 +180,4 @@ export const Controlled: Story = {
         );
     }
 };
+

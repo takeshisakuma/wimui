@@ -3,13 +3,13 @@
 @use "../../src/tokens/typography" as typography;
 
 .wim-toggle-group {
+    box-sizing: border-box;
     display: inline-flex;
+    gap: 2px;
+    padding: 2px;
     background-color: var(--bg-component);
     border: 1px solid var(--wim-color-border);
     border-radius: spacings.$radius-md;
-    padding: 2px;
-    gap: 2px;
-    box-sizing: border-box;
 
     &--full-width {
         display: flex;
@@ -22,34 +22,34 @@
 
     &__item {
         display: inline-flex;
+        gap: spacings.$spacing-xs;
         align-items: center;
         justify-content: center;
-        gap: spacings.$spacing-xs;
-        border: none;
-        background: transparent;
-        color: var(--text-secondary);
-        cursor: pointer;
-        border-radius: spacings.$radius-sm;
-        transition: all 0.2s ease;
-        white-space: nowrap;
         font-family: inherit;
         font-weight: 500;
+        color: var(--text-secondary);
+        white-space: nowrap;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        border-radius: spacings.$radius-sm;
+        transition: all 0.2s ease;
 
-        &:hover:not(:disabled):not(.wim-toggle-group__item--active) {
-            background-color: var(--wim-color-border-secondary);
+        &:hover:not(:disabled, .wim-toggle-group__item--active) {
             color: var(--text-primary);
+            background-color: var(--wim-color-border-secondary);
         }
 
         &:disabled {
+            color: var(--text-disabled);
             cursor: not-allowed;
             opacity: 0.5;
-            color: var(--text-disabled);
         }
 
         &--active {
-            background-color: var(--color-primary);
             color: var(--text-white);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background-color: var(--color-primary);
+            box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
 
             &:hover {
                 filter: brightness(1.1);
@@ -57,8 +57,8 @@
         }
 
         &--icon-only {
-            padding: 0;
             aspect-ratio: 1 / 1;
+            padding: 0;
         }
     }
 
@@ -67,9 +67,9 @@
         height: 32px;
 
         .wim-toggle-group__item {
+            height: 26px; // container height - padding/border
             padding: 0 spacings.$spacing-sm;
             font-size: typography.$size-small;
-            height: 26px; // container height - padding/border
         }
     }
 
@@ -77,9 +77,9 @@
         height: 40px;
 
         .wim-toggle-group__item {
+            height: 34px;
             padding: 0 spacings.$spacing-md;
             font-size: typography.$size-medium;
-            height: 34px;
         }
     }
 
@@ -87,9 +87,9 @@
         height: 48px;
 
         .wim-toggle-group__item {
+            height: 42px;
             padding: 0 spacings.$spacing-lg;
             font-size: typography.$size-large;
-            height: 42px;
         }
     }
 }

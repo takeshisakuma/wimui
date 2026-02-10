@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { RangeSlider } from "./RangeSlider";
 import { useState } from "react";
 
@@ -50,3 +50,4 @@ export const Controlled = () => {
     const [val, setVal] = useState<[number, number]>([20, 50]);
     return <RangeSlider value={val} onChange={setVal} />;
 }
+

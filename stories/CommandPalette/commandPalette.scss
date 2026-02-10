@@ -5,47 +5,47 @@
 .wim-command-palette-overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
     z-index: 1000;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     padding-top: 20vh;
+    background-color: rgb(0 0 0 / 0.4);
+    backdrop-filter: blur(4px);
 
     // Mobile: sticky to top and less padding
-    @media (max-width: 640px) {
-        padding-top: 0;
+    @media (width <= 640px) {
         align-items: flex-start;
+        padding-top: 0;
     }
 }
 
 .wim-command-palette-content {
-    width: 100%;
-    max-width: 640px;
-    background: var(--bg-component, #ffffff);
-    border-radius: spacings.$radius-lg;
-    box-shadow: effects.$shadow-lg;
-    border: 1px solid var(--wim-color-border-secondary);
-    overflow: hidden;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 640px;
+    overflow: hidden;
+    background: var(--bg-component, #fff);
+    border: 1px solid var(--wim-color-border-secondary);
+    border-radius: spacings.$radius-lg;
+    box-shadow: effects.$shadow-lg;
     animation: wim-command-palette-in 0.2s ease-out;
 
     [data-theme="dark"] & {
         background: var(--bg-component, #1a1a1a);
-        border-color: rgba(255, 255, 255, 0.1);
+        border-color: rgb(255 255 255 / 0.1);
     }
 
     // Mobile: full width and no border radius at top
-    @media (max-width: 640px) {
+    @media (width <= 640px) {
         max-width: 100%;
         height: auto;
         max-height: 100vh;
-        border-radius: 0 0 spacings.$radius-lg spacings.$radius-lg;
         border-top: none;
-        border-left: none;
         border-right: none;
+        border-left: none;
+        border-radius: 0 0 spacings.$radius-lg spacings.$radius-lg;
     }
 }
 
@@ -76,11 +76,11 @@
 .wim-command-palette-input {
     flex: 1;
     height: 56px; // Slightly taller for mobile tap
-    background: transparent;
-    border: none;
     font-size: 1rem;
     color: var(--text-primary);
     outline: none;
+    background: transparent;
+    border: none;
 
     &::placeholder {
         color: var(--text-tertiary);
@@ -89,10 +89,10 @@
 
 .wim-command-palette-list {
     max-height: 400px;
-    overflow-y: auto;
     padding: spacings.$spacing-xs;
+    overflow-y: auto;
 
-    @media (max-width: 640px) {
+    @media (width <= 640px) {
         max-height: calc(100vh - 120px); // Adjust based on header/footer
     }
 
@@ -125,25 +125,25 @@
 
 .wim-command-palette-item {
     display: flex;
+    gap: spacings.$spacing-sm;
     align-items: center;
     padding: spacings.$spacing-sm spacings.$spacing-sm; // Taller for mobile
-    border-radius: spacings.$radius-sm;
     cursor: pointer;
     user-select: none;
-    gap: spacings.$spacing-sm;
+    border-radius: spacings.$radius-sm;
     transition: background 0.1s ease;
 
     &--active {
         background: var(--wim-color-border-secondary);
 
         [data-theme="dark"] & {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgb(255 255 255 / 0.05);
         }
     }
 
     &--disabled {
-        opacity: 0.5;
         cursor: not-allowed;
+        opacity: 0.5;
     }
 
     .wim-command-palette-item-icon {
@@ -166,7 +166,7 @@
         gap: 4px;
 
         // Hide shortcuts on small screens
-        @media (max-width: 480px) {
+        @media (width <= 480px) {
             display: none;
         }
     }
@@ -174,25 +174,25 @@
 
 .wim-command-palette-empty {
     padding: spacings.$spacing-xl spacings.$spacing-md;
-    text-align: center;
-    color: var(--text-tertiary);
     font-size: 0.875rem;
+    color: var(--text-tertiary);
+    text-align: center;
 }
 
 .wim-command-palette-footer {
-    padding: spacings.$spacing-xs spacings.$spacing-md;
-    border-top: 1px solid var(--wim-color-border-secondary);
     display: flex;
-    align-items: center;
     gap: spacings.$spacing-md;
+    align-items: center;
+    padding: spacings.$spacing-xs spacings.$spacing-md;
     background: var(--bg-app);
+    border-top: 1px solid var(--wim-color-border-secondary);
 
     [data-theme="dark"] & {
-        background: rgba(0, 0, 0, 0.2);
+        background: rgb(0 0 0 / 0.2);
     }
 
     // Hide footer on very small screens or make it more compact
-    @media (max-width: 480px) {
+    @media (width <= 480px) {
         flex-wrap: wrap;
         gap: 8px;
     }
@@ -200,32 +200,32 @@
 
 .wim-command-palette-shortcut-hint {
     display: flex;
-    align-items: center;
     gap: 6px;
+    align-items: center;
     font-size: 0.7rem;
     color: var(--text-tertiary);
 
     .wim-kbd {
-        font-size: 0.6rem;
         padding: 1px 4px;
+        font-size: 0.6rem;
     }
 }
 
 // Add basic styles for the trigger if needed
 .wim-command-palette-trigger {
+    display: inline-flex;
+    gap: spacings.$spacing-sm;
+    align-items: center;
     padding: spacings.$spacing-sm spacings.$spacing-md;
-    border: 1px solid var(--wim-color-border);
-    border-radius: spacings.$radius-md;
-    background: var(--bg-component);
     color: var(--text-secondary);
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: spacings.$spacing-sm;
+    background: var(--bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: spacings.$radius-md;
     transition: all 0.2s;
 
     &:hover {
-        border-color: var(--color-primary);
         color: var(--text-primary);
+        border-color: var(--color-primary);
     }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { QRCode } from "./QRCode";
 
 const meta: Meta<typeof QRCode> = {
@@ -57,3 +57,4 @@ export const WithImage: Story = {
         },
     },
 };
+

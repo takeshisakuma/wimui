@@ -1,13 +1,13 @@
 .wim-badge {
     display: inline-flex;
+    gap: 0.5em;
     align-items: center;
     justify-content: center;
-    border-radius: 999px;
     font-weight: normal;
     line-height: 1;
-    white-space: nowrap;
     vertical-align: middle;
-    gap: 0.5em;
+    white-space: nowrap;
+    border-radius: 999px;
 
     &__icon {
         display: inline-flex;
@@ -42,30 +42,30 @@
     // Colors - Solid
     &--solid {
         &.wim-badge--primary {
-            background-color: var(--wim-color-primary, #007bff);
             color: #fff;
+            background-color: var(--wim-color-primary, #007bff);
         }
 
         &.wim-badge--secondary {
-            background-color: var(--wim-color-secondary, #6c757d);
             color: #fff;
+            background-color: var(--wim-color-secondary, #6c757d);
         }
 
         &.wim-badge--error {
-            background-color: var(--wim-color-error, #dc3545);
             color: #fff;
+            background-color: var(--wim-color-error, #dc3545);
         }
 
         &.wim-badge--neutral {
-            background-color: var(--wim-color-neutral, #e9ecef);
             color: var(--wim-color-black, #212529);
+            background-color: var(--wim-color-neutral, #e9ecef);
         }
     }
 
     // Colors - Outline
     &--outline {
         background-color: transparent;
-        border: 1px solid currentColor;
+        border: 1px solid currentcolor;
 
         &.wim-badge--primary {
             color: var(--wim-color-primary, #007bff);

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { PasswordInput } from "./PasswordInput";
 
 const meta: Meta<typeof PasswordInput> = {
@@ -15,3 +15,4 @@ export const Default: Story = {
         placeholder: "パスワードを入力してください",
     },
 };
+

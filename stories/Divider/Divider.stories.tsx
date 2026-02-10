@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Divider } from "./Divider";
 
 const meta: Meta<typeof Divider> = {
@@ -37,3 +37,4 @@ export const Vertical: Story = {
         orientation: "vertical",
     },
 };
+

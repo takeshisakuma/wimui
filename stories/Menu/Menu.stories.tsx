@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Menu, MenuItem, MenuItemGroup, SubMenu, MenuDivider } from "./Menu";
 import { Icon } from "../Icon/Icon";
 
@@ -128,3 +128,4 @@ export const WithDisabledItems: Story = {
         </Menu>
     ),
 };
+

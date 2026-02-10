@@ -23,7 +23,7 @@ type AccordionProps = {
     type?: "single" | "multiple";
     defaultValue?: string | string[];
     value?: string | string[];
-    onValueChange?: (value: any) => void;
+    onValueChange?: (value: string | string[]) => void;
     collapsible?: boolean;
     className?: string;
     children: React.ReactNode;

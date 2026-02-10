@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { DatePicker } from "./DatePicker";
 import { Label } from "../Label/Label";
 
@@ -80,3 +80,4 @@ export const FullWidth: Story = {
         layout: "padded",
     },
 };
+

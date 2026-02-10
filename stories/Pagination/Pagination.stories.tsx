@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Pagination } from "./Pagination";
 import React, { useState } from "react";
 
@@ -62,3 +62,4 @@ export const Interactive: Story = {
         pageSize: 10,
     },
 };
+

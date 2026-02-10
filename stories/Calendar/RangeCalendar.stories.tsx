@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { RangeCalendar, RangeCalendarValue } from "./RangeCalendar";
 
 const meta: Meta<typeof RangeCalendar> = {
@@ -48,3 +48,4 @@ export const Controlled: Story = {
         return <RangeCalendar {...(args as any)} value={range} onChange={setRange} />;
     },
 };
+

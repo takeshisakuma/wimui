@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Legend } from "./Legend";
 
 const meta: Meta<typeof Legend> = {
@@ -23,3 +23,4 @@ export const LongText: Story = {
         children: "非常に長いタイトルの例。関連するフォーム要素をグループ化するためのセクションタイトルとして使用されます。",
     },
 };
+

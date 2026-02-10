@@ -5,26 +5,29 @@
     // サイズ指定用の変数
     &--small {
         --wim-rating-star-size: 16px;
+
         gap: 2px;
     }
 
     &--medium {
         --wim-rating-star-size: 24px;
+
         gap: 4px;
     }
 
     &--large {
         --wim-rating-star-size: 32px;
+
         gap: 6px;
     }
 
     &__star {
         position: relative;
-        cursor: pointer;
-        transition: transform 0.2s ease;
+        display: block; // ブロック要素として扱う
         width: var(--wim-rating-star-size);
         height: var(--wim-rating-star-size);
-        display: block; // ブロック要素として扱う
+        cursor: pointer;
+        transition: transform 0.2s ease;
 
         &:hover {
             transform: scale(1.1);
@@ -34,10 +37,10 @@
             color: var(--wim-color-gray-300, #e0e0e0);
 
             .wim-icon {
-                fill: currentColor;
                 display: block;
                 width: var(--wim-rating-star-size) !important;
                 height: var(--wim-rating-star-size) !important;
+                fill: currentcolor;
             }
         }
 
@@ -50,15 +53,15 @@
             overflow: hidden;
             color: var(--wim-color-warning, #f59e0b);
             white-space: nowrap;
-            transition: width 0.2s ease;
             pointer-events: none; // クリック判定は親で行う
+            transition: width 0.2s ease;
 
             .wim-icon {
-                fill: currentColor;
                 display: block;
                 width: var(--wim-rating-star-size) !important;
-                height: var(--wim-rating-star-size) !important;
                 min-width: var(--wim-rating-star-size) !important; // 縮小防止
+                height: var(--wim-rating-star-size) !important;
+                fill: currentcolor;
             }
         }
 

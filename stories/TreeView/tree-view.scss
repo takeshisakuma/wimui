@@ -5,14 +5,14 @@
 .wim-tree-view {
     display: flex;
     flex-direction: column;
-    padding: var(--spacing-2xl);
     gap: var(--spacing-2xs);
     width: 100%;
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(8px);
-    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    background: rgb(255 255 255 / 0.4);
     border: 1px solid var(--wim-color-border-secondary);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
+    backdrop-filter: blur(8px);
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &__search {
@@ -22,10 +22,10 @@
     &__search-input {
         width: 100%;
         padding: var(--spacing-sm) var(--spacing-md);
-        border: 1px solid var(--wim-color-border-secondary);
-        border-radius: var(--radius-md);
         font-size: 14px;
         outline: none;
+        border: 1px solid var(--wim-color-border-secondary);
+        border-radius: var(--radius-md);
         transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
         &:focus {
@@ -48,22 +48,22 @@
 
     &__label-container {
         display: flex;
+        gap: var(--spacing-md);
         align-items: center;
         padding: var(--spacing-md) var(--spacing-lg);
         cursor: pointer;
+        user-select: none;
         border-radius: var(--radius-md);
         transition: background 0.2s ease;
-        gap: var(--spacing-md);
-        user-select: none;
 
         &:hover {
-            background: rgba(0, 0, 0, 0.05);
+            background: rgb(0 0 0 / 0.05);
         }
     }
 
     &--selected>&__label-container {
-        background: var(--color-primary);
         color: var(--color-text-on-primary);
+        background: var(--color-primary);
 
         &:hover {
             background: var(--color-primary);
@@ -96,15 +96,15 @@
         width: 24px;
         height: 24px;
         padding: 0;
-        border: none;
-        background: transparent;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         color: var(--text-tertiary);
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        border-radius: 4px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
         &:hover:not(:disabled) {
-            background: rgba(0, 0, 0, 0.1);
+            background: rgb(0 0 0 / 0.1);
         }
 
         &--expanded {
@@ -125,8 +125,8 @@
         width: 16px;
         height: 16px;
         margin: 0;
-        cursor: pointer;
         accent-color: var(--color-primary);
+        cursor: pointer;
 
         &:disabled {
             cursor: not-allowed;
@@ -146,18 +146,18 @@
 
     &__label {
         flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 14px;
         font-weight: 500;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 
     &__children {
         display: grid;
         grid-template-rows: 0fr;
-        transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         overflow: hidden;
+        transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
         &--expanded {
             grid-template-rows: 1fr;
@@ -165,31 +165,31 @@
     }
 
     &__children-inner {
-        padding-left: 20px;
-        margin-top: 2px;
         display: flex;
         flex-direction: column;
         gap: 2px;
         min-height: 0;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-        transform: translateX(-10px);
+        padding-left: 20px;
+        margin-top: 2px;
         opacity: 0;
+        transform: translateX(-10px);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
     }
 
     &__children--expanded &__children-inner {
-        transform: translateX(0);
         opacity: 1;
+        transform: translateX(0);
     }
 }
 
 /* Glassmorphism adjustment for dark mode if needed */
 @media (prefers-color-scheme: dark) {
     .wim-tree-view {
-        background: rgba(0, 0, 0, 0.2);
-        border-color: rgba(255, 255, 255, 0.1);
+        background: rgb(0 0 0 / 0.2);
+        border-color: rgb(255 255 255 / 0.1);
     }
 
     .wim-tree-view-item__label-container:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgb(255 255 255 / 0.1);
     }
 }

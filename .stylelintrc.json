@@ -5,7 +5,8 @@
   ],
   "rules": {
     "no-duplicate-selectors": true,
-    "selector-class-pattern": "^[a-z][a-zA-Z0-9-]+$",
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9-_]+$",
+    "keyframes-name-pattern": "^[a-z][a-zA-Z0-9-_]+$",
     "color-function-alias-notation": null,
     "at-rule-no-unknown": null,
     "alpha-value-notation": "number",

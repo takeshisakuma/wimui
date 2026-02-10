@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ScatterChart } from "./ScatterChart";
 
 const meta: Meta<typeof ScatterChart> = {
@@ -27,3 +27,4 @@ export const Default: Story = {
         yAxisName: "Quantity",
     },
 };
+

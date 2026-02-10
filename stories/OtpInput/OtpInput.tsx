@@ -30,6 +30,7 @@ export const OtpInput = ({
     useEffect(() => {
         const chars = value.split("").slice(0, length);
         const newValues = Array(length).fill("").map((_, i) => chars[i] || "");
+        /* eslint-disable-next-line react-hooks/set-state-in-effect */
         setInternalValues(newValues);
     }, [value, length]);
 

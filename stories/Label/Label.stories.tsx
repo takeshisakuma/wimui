@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Label } from "./Label";
 import { Input } from "../Input/Input";
 
@@ -35,3 +35,4 @@ export const Optional: Story = {
         children: <Input type="tel" placeholder="000-0000-0000" />,
     },
 };
+

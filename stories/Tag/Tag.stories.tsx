@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tag } from "./Tag";
 import { Icon } from "../Icon/Icon";
 
@@ -75,3 +75,4 @@ export const WithIcon: Story = {
         icon: <Icon name="CircleIcon" size="small" />,
     },
 };
+

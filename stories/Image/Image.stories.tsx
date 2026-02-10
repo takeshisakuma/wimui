@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Image } from "./Image";
 import sampleImage from "../../src/media/imagesanple.webp";
 
@@ -73,3 +73,4 @@ export const WithShadow: Story = {
         radius: "medium",
     },
 };
+

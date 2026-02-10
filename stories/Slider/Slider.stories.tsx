@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Slider } from "./Slider";
 import { useState } from "react";
 
@@ -50,3 +50,4 @@ export const Controlled = () => {
     const [val, setVal] = useState(25);
     return <Slider value={val} onChange={setVal} />;
 }
+

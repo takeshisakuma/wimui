@@ -6,20 +6,22 @@
     all: unset;
     box-sizing: border-box;
     display: block;
-    padding: spacings.$spacing-sm spacings.$spacing-md;
-    font-size: 1rem;
-    border-radius: spacings.$radius-md;
-    background-color: var(--bg-component, #fff);
-    color: var(--text-primary);
-    border: 1px solid colors.$color-secondary;
-    transition: effects.$transition-base;
     width: 100%;
     max-width: 320px;
-    resize: vertical;
+
     /* Allow vertical resizing by default */
     min-height: 80px;
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    font-size: 1rem;
+
     /* Reasonable default height */
     line-height: 1.5;
+    color: var(--text-primary);
+    resize: vertical;
+    background-color: var(--bg-component, #fff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    transition: effects.$transition-base;
 
     &::placeholder {
         color: var(--text-tertiary);
@@ -43,7 +45,7 @@
         border-color: transparent;
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.05);
+            background-color: rgb(0 0 0 / 0.05);
         }
 
         &:focus {
@@ -56,21 +58,21 @@
         border-color: var(--text-error) !important;
 
         &:focus {
-            box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2) !important;
+            box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2) !important;
         }
     }
 
     &--disabled {
-        background-color: var(--color-disabled);
         color: var(--text-disabled);
         cursor: not-allowed;
-        border-color: var(--color-disabled);
         resize: none;
+        background-color: var(--color-disabled);
+        border-color: var(--color-disabled);
     }
 
     &--full-width {
-        max-width: none;
         width: 100%;
+        max-width: none;
     }
 
     &--field-sizing-content {

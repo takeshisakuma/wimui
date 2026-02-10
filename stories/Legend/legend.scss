@@ -1,13 +1,13 @@
 .wim-legend {
+    float: left;
+    box-sizing: border-box;
+    display: table;
+    width: 100%;
+    padding: 0 4px;
+    margin-bottom: 8px;
     font-size: 0.9rem;
     font-weight: bold;
     color: var(--text-primary);
-    padding: 0 4px;
-    margin-bottom: 8px;
-    display: table;
-    float: left;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 /* ブラウザのデフォルトスタイルを上書きして配置を制御しやすくする */

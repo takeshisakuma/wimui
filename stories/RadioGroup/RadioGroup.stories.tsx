@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { RadioGroup } from "./RadioGroup";
 import React, { useState } from "react";
 
@@ -65,3 +65,4 @@ export const Controlled = () => {
         </div>
     );
 };
+

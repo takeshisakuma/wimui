@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { OtpInput } from "./OtpInput";
 import { useState } from "react";
 
@@ -51,3 +51,4 @@ export const Controlled = () => {
         </div>
     );
 };
+

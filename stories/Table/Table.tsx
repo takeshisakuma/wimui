@@ -141,7 +141,20 @@ export const TableHead = ({
         .join(" ");
 
     return (
-        <th className={classes} {...props} onClick={sortable ? onSort : props.onClick}>
+        <th
+            className={classes}
+            {...props}
+            onClick={sortable ? onSort : props.onClick}
+            tabIndex={sortable ? 0 : undefined}
+            aria-sort={sortable ? (sortDirection === "asc" ? "ascending" : sortDirection === "desc" ? "descending" : "none") : undefined}
+            onKeyDown={(e) => {
+                if (sortable && onSort && (e.key === "Enter" || e.key === " ")) {
+                    e.preventDefault();
+                    onSort(e as unknown as React.MouseEvent);
+                }
+                props.onKeyDown?.(e);
+            }}
+        >
             <div className="wim-table__head-content">
                 {children}
                 {sortable && (

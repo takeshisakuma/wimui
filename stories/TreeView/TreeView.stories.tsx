@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { TreeView } from "./TreeView";
 import { Icon } from "../Icon/Icon";
 
@@ -66,3 +66,4 @@ export const DisabledItems: Story = {
         </TreeView>
     ),
 };
+

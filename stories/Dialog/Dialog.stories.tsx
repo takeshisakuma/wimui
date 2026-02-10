@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose } from "./Dialog";
 import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
@@ -117,3 +117,4 @@ export const Controlled: Story = {
         );
     }
 };
+

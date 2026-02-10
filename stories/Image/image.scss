@@ -3,40 +3,40 @@
 @use "../../src/tokens/semantic-colors" as colors;
 
 .wim-image-container {
-    margin: 0;
-    padding: 0;
-    display: block;
     position: relative;
+    display: block;
+    padding: 0;
+    margin: 0;
     line-height: 0;
 }
 
 .wim-image-inner {
     display: block;
-    line-height: 0;
     width: 100%;
+    line-height: 0;
 
     &.wim-image--radius-small {
-        border-radius: spacings.$radius-sm;
         overflow: hidden;
+        border-radius: spacings.$radius-sm;
     }
 
     &.wim-image--radius-medium {
-        border-radius: spacings.$radius-md;
         overflow: hidden;
+        border-radius: spacings.$radius-md;
     }
 
     &.wim-image--radius-large {
-        border-radius: spacings.$radius-lg;
         overflow: hidden;
+        border-radius: spacings.$radius-lg;
     }
 
     &.wim-image--radius-full {
-        border-radius: spacings.$radius-full;
         overflow: hidden;
+        border-radius: spacings.$radius-full;
     }
 
     &.wim-image--shadow {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
     }
 
     &.wim-image--border {
@@ -50,10 +50,10 @@
 }
 
 .wim-image__caption {
+    padding-bottom: spacings.$spacing-xs; // Ensure descenders are not cut off
     margin-top: spacings.$spacing-sm;
     font-size: 0.875rem;
-    color: var(--color-text-secondary, #666);
     line-height: 1.5;
+    color: var(--color-text-secondary, #666);
     text-align: center;
-    padding-bottom: spacings.$spacing-xs; // Ensure descenders are not cut off
 }

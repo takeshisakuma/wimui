@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Progress } from "./Progress";
 
 const meta: Meta<typeof Progress> = {
@@ -59,3 +59,4 @@ export const Indeterminate: Story = {
     },
     render: (args) => <Progress {...args} />,
 };
+

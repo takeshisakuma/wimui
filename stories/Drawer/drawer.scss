@@ -6,24 +6,24 @@
 @use "../../src/tokens/effects" as effects;
 
 .wim-drawer-overlay {
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(2px);
     position: fixed;
     inset: 0;
     z-index: 1000;
-    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
+    background-color: rgb(0 0 0 / 0.4);
+    backdrop-filter: blur(2px);
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .wim-drawer-content {
-    background-color: var(--bg-component, #ffffff);
-    box-shadow: effects.$shadow-lg;
     position: fixed;
+    z-index: 1001;
     display: flex;
     flex-direction: column;
-    color: var(--text-primary);
     overflow: auto;
-    z-index: 1001;
+    color: var(--text-primary);
+    background-color: var(--bg-component, #fff);
+    box-shadow: effects.$shadow-lg;
 
     &:focus {
         outline: none;
@@ -40,8 +40,8 @@
 
     &--left {
         top: 0;
-        left: 0;
         bottom: 0;
+        left: 0;
         width: 100%;
         max-width: 400px;
         animation: slideInLeft 300ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -49,17 +49,17 @@
 
     &--top {
         top: 0;
-        left: 0;
         right: 0;
+        left: 0;
         height: auto;
         max-height: 80vh;
         animation: slideInTop 300ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     &--bottom {
+        right: 0;
         bottom: 0;
         left: 0;
-        right: 0;
         height: auto;
         max-height: 80vh;
         animation: slideInBottom 300ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -67,34 +67,34 @@
 }
 
 .wim-drawer-header {
-    padding: spacings.$spacing-lg;
     display: flex;
     flex-direction: column;
     gap: spacings.$spacing-xs;
+    padding: spacings.$spacing-lg;
     border-bottom: 1px solid var(--border-subtle, #e5e7eb);
 }
 
 .wim-drawer-title {
     margin: 0;
-    font-weight: 600;
     font-size: 1.25rem;
+    font-weight: 600;
     color: var(--text-primary);
 }
 
 .wim-drawer-description {
     margin: 0;
     font-size: 0.875rem;
-    color: var(--text-secondary);
     line-height: 1.5;
+    color: var(--text-secondary);
 }
 
 .wim-drawer-footer {
-    padding: spacings.$spacing-lg;
     display: flex;
-    justify-content: flex-end;
     gap: spacings.$spacing-md;
-    border-top: 1px solid var(--border-subtle, #e5e7eb);
+    justify-content: flex-end;
+    padding: spacings.$spacing-lg;
     margin-top: auto;
+    border-top: 1px solid var(--border-subtle, #e5e7eb);
 }
 
 

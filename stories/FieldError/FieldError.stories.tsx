@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FieldError } from "./FieldError";
 
 const meta: Meta<typeof FieldError> = {
@@ -23,3 +23,4 @@ export const ShortMessage: Story = {
         content: "必須項目です。",
     },
 };
+

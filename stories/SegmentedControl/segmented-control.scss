@@ -6,13 +6,13 @@
 .wim-segmented-control {
     position: relative;
     display: inline-grid;
-    grid-auto-flow: column;
     grid-auto-columns: 1fr;
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: spacings.$radius-md;
+    grid-auto-flow: column;
     padding: 2px;
-    user-select: none;
     overflow: hidden;
+    user-select: none;
+    background-color: rgb(0 0 0 / 0.05);
+    border-radius: spacings.$radius-md;
 
     &.wim-segmented-control--full-width {
         display: grid;
@@ -24,30 +24,30 @@
         top: 2px;
         bottom: 2px;
         left: 2px;
+        z-index: 1;
         background-color: #fff;
         border-radius: calc(spacings.$radius-md - 2px);
         box-shadow: effects.$shadow-sm;
         transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1;
 
 
     }
 
     .wim-segmented-control__item {
         position: relative;
+        z-index: 2;
         display: flex;
+        gap: spacings.$spacing-xs;
         align-items: center;
         justify-content: center;
-        gap: spacings.$spacing-xs;
-        background: none;
-        border: none;
         font: inherit;
         font-weight: typography.$weight-medium;
         color: colors.$text-deepgray;
-        cursor: pointer;
-        z-index: 2;
-        transition: color 0.2s ease;
         white-space: nowrap;
+        cursor: pointer;
+        background: none;
+        border: none;
+        transition: color 0.2s ease;
 
         &:hover {
             color: colors.$text-black;
@@ -59,8 +59,8 @@
         }
 
         &.wim-segmented-control__item--icon-only {
-            padding-left: 0 !important;
             padding-right: 0 !important;
+            padding-left: 0 !important;
         }
     }
 
@@ -74,8 +74,8 @@
             font-size: typography.$size-small;
 
             &.wim-segmented-control__item--icon-only {
-                padding: spacings.$spacing-xs 0 !important;
                 width: 30px;
+                padding: spacings.$spacing-xs 0 !important;
             }
         }
     }
@@ -86,8 +86,8 @@
             font-size: typography.$size-medium;
 
             &.wim-segmented-control__item--icon-only {
-                padding: spacings.$spacing-sm 0 !important;
                 width: 36px;
+                padding: spacings.$spacing-sm 0 !important;
             }
         }
     }
@@ -98,8 +98,8 @@
             font-size: typography.$size-large;
 
             &.wim-segmented-control__item--icon-only {
-                padding: spacings.$spacing-md 0 !important;
                 width: 44px;
+                padding: spacings.$spacing-md 0 !important;
             }
         }
     }

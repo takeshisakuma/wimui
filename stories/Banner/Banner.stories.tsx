@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Banner } from "./Banner";
 import { Button } from "../Button/Button";
 
@@ -85,3 +85,4 @@ export const NoIcon: Story = {
         icon: false,
     },
 };
+

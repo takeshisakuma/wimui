@@ -1,13 +1,13 @@
 .wim-avatar {
+    position: relative;
     display: inline-flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    color: var(--color-text-on-disabled, #212529);
     user-select: none;
     background-color: var(--color-disabled, #e9ecef);
-    color: var(--color-text-on-disabled, #212529);
-    flex-shrink: 0;
-    position: relative;
 
     img {
         width: 100%;
@@ -61,27 +61,27 @@
 
     // Colors
     &--primary {
-        background-color: var(--color-primary);
         color: var(--color-text-on-primary);
+        background-color: var(--color-primary);
     }
 
     &--secondary {
-        background-color: var(--color-secondary);
         color: var(--color-text-on-secondary);
+        background-color: var(--color-secondary);
     }
 
     &--error {
-        background-color: var(--color-destructive);
         color: var(--color-text-on-destructive);
+        background-color: var(--color-destructive);
     }
 
     &--success {
-        background-color: var(--color-positive);
         color: var(--color-text-on-positive);
+        background-color: var(--color-positive);
     }
 
     &--neutral {
-        background-color: var(--color-informative);
         color: var(--color-text-on-informative);
+        background-color: var(--color-informative);
     }
 }

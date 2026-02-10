@@ -4,39 +4,38 @@
 
 .wim-banner {
     position: relative;
-    width: 100%;
-    padding: var(--spacing-md) var(--spacing-lg);
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s ease;
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
 
     // Glassmorphism effect base
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(255 255 255 / 0.9);
+    border-bottom: 1px solid transparent;
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
 
     &__container {
-        width: 100%;
-        max-width: 1200px; // Optional: limit max width for content
         display: flex;
+        flex-wrap: wrap; // Allow wrapping on small screens
+        gap: var(--spacing-lg);
         align-items: center;
         justify-content: space-between;
-        gap: var(--spacing-lg);
-        flex-wrap: wrap; // Allow wrapping on small screens
+        width: 100%;
+        max-width: 1200px; // Optional: limit max width for content
     }
 
     &__content {
         display: flex;
-        align-items: center;
-        gap: var(--spacing-md);
         flex: 1;
+        gap: var(--spacing-md);
+        align-items: center;
         min-width: 0; // Prevent flex item from overflowing
     }
 
     &__icon {
-        flex-shrink: 0;
         display: flex;
+        flex-shrink: 0;
         align-items: center;
         justify-content: center;
     }
@@ -52,11 +51,11 @@
     }
 
     &__separator {
-        opacity: 0.5;
-        margin: 0 4px;
         display: none;
+        margin: 0 4px;
+        opacity: 0.5;
 
-        @media (min-width: 640px) {
+        @media (width >= 640px) {
             display: inline;
         }
     }
@@ -70,9 +69,9 @@
 
     &__actions {
         display: flex;
-        align-items: center;
-        gap: var(--spacing-md);
         flex-shrink: 0;
+        gap: var(--spacing-md);
+        align-items: center;
     }
 
     &__close {
@@ -82,21 +81,21 @@
         width: 24px;
         height: 24px;
         padding: 0;
+        color: inherit;
+        cursor: pointer;
         background: transparent;
         border: none;
         border-radius: var(--radius-sm);
-        cursor: pointer;
-        color: inherit;
         opacity: 0.6;
         transition: opacity 0.2s ease;
 
         &:hover {
+            background: rgb(0 0 0 / 0.05);
             opacity: 1;
-            background: rgba(0, 0, 0, 0.05);
         }
 
         &:focus-visible {
-            outline: 2px solid currentColor;
+            outline: 2px solid currentcolor;
             outline-offset: 2px;
         }
 
@@ -108,9 +107,9 @@
 
     // Variants
     &--info {
-        background: rgba(239, 246, 255, 0.95);
-        border-bottom-color: rgba(59, 130, 246, 0.2);
         color: #1e40af;
+        background: rgb(239 246 255 / 0.95);
+        border-bottom-color: rgb(59 130 246 / 0.2);
 
         .wim-banner__icon {
             color: #3b82f6;
@@ -118,9 +117,9 @@
     }
 
     &--success {
-        background: rgba(240, 253, 244, 0.95);
-        border-bottom-color: rgba(34, 197, 94, 0.2);
         color: #166534;
+        background: rgb(240 253 244 / 0.95);
+        border-bottom-color: rgb(34 197 94 / 0.2);
 
         .wim-banner__icon {
             color: #22c55e;
@@ -128,9 +127,9 @@
     }
 
     &--warning {
-        background: rgba(254, 252, 232, 0.95);
-        border-bottom-color: rgba(234, 179, 8, 0.2);
         color: #854d0e;
+        background: rgb(254 252 232 / 0.95);
+        border-bottom-color: rgb(234 179 8 / 0.2);
 
         .wim-banner__icon {
             color: #d97706;
@@ -138,9 +137,9 @@
     }
 
     &--error {
-        background: rgba(254, 242, 242, 0.95);
-        border-bottom-color: rgba(239, 68, 68, 0.2);
         color: #991b1b;
+        background: rgb(254 242 242 / 0.95);
+        border-bottom-color: rgb(239 68 68 / 0.2);
 
         .wim-banner__icon {
             color: #ef4444;
@@ -150,31 +149,31 @@
     // Dark Mode Support
     @media (prefers-color-scheme: dark) {
         &--info {
-            background: rgba(30, 58, 138, 0.4);
-            border-bottom-color: rgba(59, 130, 246, 0.3);
             color: #dbeafe;
+            background: rgb(30 58 138 / 0.4);
+            border-bottom-color: rgb(59 130 246 / 0.3);
         }
 
         &--success {
-            background: rgba(20, 83, 45, 0.4);
-            border-bottom-color: rgba(34, 197, 94, 0.3);
             color: #dcfce7;
+            background: rgb(20 83 45 / 0.4);
+            border-bottom-color: rgb(34 197 94 / 0.3);
         }
 
         &--warning {
-            background: rgba(113, 63, 18, 0.4);
-            border-bottom-color: rgba(234, 179, 8, 0.3);
             color: #fef9c3;
+            background: rgb(113 63 18 / 0.4);
+            border-bottom-color: rgb(234 179 8 / 0.3);
         }
 
         &--error {
-            background: rgba(127, 29, 29, 0.4);
-            border-bottom-color: rgba(239, 68, 68, 0.3);
             color: #fee2e2;
+            background: rgb(127 29 29 / 0.4);
+            border-bottom-color: rgb(239 68 68 / 0.3);
         }
 
         &__close:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgb(255 255 255 / 0.1);
         }
     }
 }

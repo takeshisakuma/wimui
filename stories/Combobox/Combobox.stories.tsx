@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Combobox } from "./Combobox";
 
 const meta: Meta<typeof Combobox> = {
@@ -53,3 +53,4 @@ export const Disabled: Story = {
         disabled: true,
     },
 };
+

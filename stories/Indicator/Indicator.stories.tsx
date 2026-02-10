@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Indicator } from "./Indicator";
 import { Avatar } from "../Avatar/Avatar";
 import React from "react";
@@ -106,3 +106,4 @@ export const WithIcons: Story = {
         </div>
     ),
 };
+

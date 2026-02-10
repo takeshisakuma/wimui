@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tooltip, TooltipTrigger, TooltipContent } from "./Tooltip";
 import { Button } from "../Button/Button"; // Assuming Button exists
 
@@ -106,3 +106,4 @@ export const WithDelay: Story = {
         </Tooltip>
     ),
 };
+

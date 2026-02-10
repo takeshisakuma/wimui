@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Alert } from "./Alert";
 
 const meta: Meta<typeof Alert> = {
@@ -69,3 +69,4 @@ export const LongContent: Story = {
         onClose: () => { },
     },
 };
+

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Popover, PopoverContent, PopoverTrigger, PopoverClose } from "./Popover";
 import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
@@ -147,3 +147,4 @@ export const Placement: Story = {
         </div>
     ),
 };
+

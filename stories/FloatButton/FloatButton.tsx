@@ -54,7 +54,14 @@ export const FloatButton = ({
     ...props
 }: FloatButtonProps) => {
     const { t } = useTranslation();
-    const [visible, setVisible] = useState(!backTop);
+    const [visible, setVisible] = useState(() => {
+        if (!backTop) return true;
+        if (typeof window !== "undefined") {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            return scrollTop > visibilityHeight;
+        }
+        return false;
+    });
 
     const handleScroll = useCallback(() => {
         if (backTop) {
@@ -66,7 +73,6 @@ export const FloatButton = ({
     useEffect(() => {
         if (backTop) {
             window.addEventListener("scroll", handleScroll);
-            handleScroll(); // Initial check
             return () => window.removeEventListener("scroll", handleScroll);
         }
     }, [backTop, handleScroll]);

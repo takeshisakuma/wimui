@@ -1,12 +1,12 @@
 .wim-spinner-container {
     display: inline-flex;
-    align-items: center;
     gap: 8px;
+    align-items: center;
 
     &.wim-spinner--with-label-bottom {
         flex-direction: column;
-        justify-content: center;
         gap: 12px;
+        justify-content: center;
     }
 }
 
@@ -59,7 +59,7 @@
     }
 
     &--currentColor {
-        color: currentColor;
+        color: currentcolor;
     }
 
     &__track {

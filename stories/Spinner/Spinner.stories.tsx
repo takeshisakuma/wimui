@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Spinner } from "./Spinner";
 
 const meta: Meta<typeof Spinner> = {
@@ -63,3 +63,4 @@ export const WithLabel: Story = {
         </div>
     ),
 };
+
