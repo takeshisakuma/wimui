@@ -1,9 +1,14 @@
-import { Meta, Primary, Controls, Canvas } from "@storybook/blocks";
+import { Meta, Primary, Controls, Canvas} from "@storybook/blocks";
 import * as CarouselStories from "./Carousel.stories";
+import { T } from "../T";
 
 <Meta of={CarouselStories} />
 
 # Carousel
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_carousel_title" />
+</p>
 
 Carousel（カルーセル）は、複数のコンテンツをスライドさせて表示するためのコンポーネント<br />
 シームレスなループ、レスポンシブな表示数設定に対応している

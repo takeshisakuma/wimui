@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
+import { T } from "../T";
 import * as ImageStories from "./Image.stories";
 
 <Meta title="Components/Media/Image" of={ImageStories} />
 
 # Image
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_image_title" />
+</p>
 
 `Image` コンポーネントは、画像を洗練された形で表示するためのラッパーコンポーネントです。
 レスポンシブなサイズ調整、角丸、影、枠線、キャプションなどの機能を備えています。

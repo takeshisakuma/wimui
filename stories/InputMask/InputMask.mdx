@@ -1,21 +1,14 @@
 import {
-  Meta,
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/blocks";
+  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
 import * as InputMaskStories from "./InputMask.stories";
+import { T } from "../T";
 
 <Meta of={InputMaskStories} />
 
 <Title />
-<Subtitle>
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
   特定の形式に沿った入力を強制するためのマスク付き入力コンポーネントです。
-</Subtitle>
+</p>
 
 ## 基本的な使い方
 

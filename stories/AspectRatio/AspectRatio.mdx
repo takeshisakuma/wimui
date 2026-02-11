@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as AspectRatioStories from "./AspectRatio.stories";
+import { T } from "../T";
 
 <Meta of={AspectRatioStories} />
 
 # AspectRatio
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_aspectratio_title" />
+</p>
 
 `AspectRatio` コンポーネントは、指定したアスペクト比を維持しながらコンテンツを表示するためのコンテナです。
 画像や動画、埋め込みコンテンツなどのサイズを一定の比率で保持したい場合に便利です。

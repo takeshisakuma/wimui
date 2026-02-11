@@ -1,21 +1,14 @@
 import {
-  Meta,
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/blocks";
+  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
 import * as FileUploadStories from "./FileUpload.stories.tsx";
+import { T } from "../T";
 
 <Meta of={FileUploadStories} />
 
 <Title />
-<Subtitle>
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
   ユーザーがローカルファイルを一つ以上選択してアップロードするために使用されます。
-</Subtitle>
+</p>
 
 ## 使用法
 

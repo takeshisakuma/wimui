@@ -1,9 +1,14 @@
-import { Canvas, Meta, Controls } from "@storybook/blocks";
+import { Canvas, Meta, Controls} from "@storybook/blocks";
 import * as FloatButtonStories from "./FloatButton.stories";
+import { T } from "../T";
 
 <Meta of={FloatButtonStories} />
 
 # FloatButton
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_floatbutton_title" />
+</p>
 
 `FloatButton` は、画面上の決まった位置に浮遊するボタンを表示するコンポーネントです。Floating Action Button (FAB) の機能も統合しており、ラベル付きのExtended FABとしても使用できます。
 

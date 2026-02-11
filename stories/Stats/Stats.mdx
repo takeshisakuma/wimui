@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Primary } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Primary} from "@storybook/blocks";
 import * as StatsStories from "./Stats.stories";
+import { T } from "../T";
 
 <Meta of={StatsStories} />
 
 # Stats
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_stats_title" />
+</p>
 
 `Stats` は、統計情報や重要な指標（メトリクス）を視覚的に強調して表示するためのコンポーネントです。
 

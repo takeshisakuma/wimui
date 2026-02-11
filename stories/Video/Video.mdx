@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
+import { T } from "../T";
 import * as VideoStories from "./Video.stories";
 
 <Meta title="Components/Media/Video" of={VideoStories} />
 
 # Video
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_video_title" />
+</p>
 
 `Video` コンポーネントは、動画ファイルを簡単に埋め込むためのコンポーネントです。
 自動再生、ループ、コントロールの表示切り替え、角丸、影などのスタイリングをサポートしています。

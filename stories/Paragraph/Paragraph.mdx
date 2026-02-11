@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
 import * as ParagraphStories from "./Paragraph.stories";
+import { T } from "../T";
 
 <Meta of={ParagraphStories} />
 
 # Paragraph
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_paragraph_title" />
+</p>
 
 段落テキストを表示するためのコンポーネントです。
 

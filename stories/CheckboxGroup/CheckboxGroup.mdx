@@ -1,21 +1,14 @@
 import {
-  Meta,
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/blocks";
+  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
 import * as CheckboxGroupStories from "./CheckboxGroup.stories";
+import { T } from "../T";
 
 <Meta of={CheckboxGroupStories} />
 
 <Title />
-<Subtitle>
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
   複数の選択肢から任意の数を選択するために使用
-</Subtitle>
+</p>
 <Description />
 
 ## 基本的な使い方

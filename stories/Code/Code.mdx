@@ -1,26 +1,19 @@
 import {
-  Meta,
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/blocks";
+  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
 import * as CodeStories from "./Code.stories";
 
 <Meta of={CodeStories} />
 
 <Title />
-<Subtitle>
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
   インラインコードやコードブロックを表示するために使用される
-</Subtitle>
+</p>
 
 ## 使用法
 
 ```tsx
 import { Code } from './Code';
+import { T } from "../T";
 
 // インライン
 <Code>npm install wimui</Code>

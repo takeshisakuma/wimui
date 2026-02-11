@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as FooterStories from "./Footer.stories";
+import { T } from "../T";
 
 <Meta of={FooterStories} />
 
 # Footer
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_footer_title" />
+</p>
 
 Footerは、ページの下部に配置されるフッターコンポーネントです。リンク、著作権情報、サイトマップなどを配置します。
 
@@ -11,6 +16,7 @@ Footerは、ページの下部に配置されるフッターコンポーネン�
 
 ```jsx
 import Footer from "./Footer";
+import { T } from "../T";
 ```
 
 ## 基本的な使用方法

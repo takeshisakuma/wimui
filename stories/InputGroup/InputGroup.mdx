@@ -1,21 +1,14 @@
 import {
-  Meta,
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/blocks";
+  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
 import * as InputGroupStories from "./InputGroup.stories";
+import { T } from "../T";
 
 <Meta of={InputGroupStories} />
 
 <Title />
-<Subtitle>
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
   InputGroupコンポーネントは、Inputとボタンやテキスト（アドオン）を視覚的に一つにまとめて表示するために使用します。
-</Subtitle>
+</p>
 
 > [!NOTE]
 > `InputGroupText` は、単位やプレフィックスなどの**情報表示用**です。クリック可能なアクションが必要な場合は、`Button` コンポーネントを組み合わせて使用してください。

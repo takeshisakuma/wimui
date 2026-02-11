@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as TransitionStories from "./Transition.stories";
+import { T } from "../T";
 
 <Meta title="Utilities/Transition" of={TransitionStories} />
 
 # Transition
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_transition_title" />
+</p>
 
 `Transition` コンポーネントは、CSS クラスを使用してコンポーネントに遷移アニメーション（進入・退出）を簡単に追加するためのユーティリティです。遷移の各段階に応じて、適切なタイミングでクラスを適用・管理します。
 

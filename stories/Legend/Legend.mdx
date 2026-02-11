@@ -1,9 +1,14 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
 import * as LegendStories from "./Legend.stories";
+import { T } from "../T";
 
 <Meta of={LegendStories} />
 
 # Legend
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_legend_title" />
+</p>
 
 `Legend` コンポーネントは、`Fieldset` 内でグループのタイトルを表示するために使用されます。
 
@@ -11,6 +16,7 @@ import * as LegendStories from "./Legend.stories";
 
 ```tsx
 import { Fieldset, Legend } from "wimui";
+import { T } from "../T";
 
 <Fieldset>
     <Legend>グループのタイトル</Legend>

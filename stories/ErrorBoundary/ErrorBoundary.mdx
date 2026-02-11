@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as ErrorBoundaryStories from "./ErrorBoundary.stories";
+import { T } from "../T";
 
 <Meta title="Utilities/ErrorBoundary" of={ErrorBoundaryStories} />
 
 # ErrorBoundary
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_errorboundary_title" />
+</p>
 
 `ErrorBoundary` コンポーネントは、子コンポーネントツリー内のどこかで発生した JavaScript エラーをキャッチし、そのエラーをログに記録した上で、クラッシュしたコンポーネントツリーの代わりにフォールバック UI を表示します。
 

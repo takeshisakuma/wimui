@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as SnackbarStories from "./Snackbar.stories";
+import { T } from "../T";
 
 <Meta title="Component/Feedback/Snackbar" of={SnackbarStories} />
 
 # Snackbar
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_snackbar_title" />
+</p>
 
 スナックバーは、ユーザーに短いメッセージを通知するために使用されます。通常、画面の下部に表示され、アクションボタンを含めることができます。トーストよりも目立たない、一時的な通知に適しています。
 
@@ -54,6 +59,7 @@ import * as SnackbarStories from "./Snackbar.stories";
 
 ```tsx
 import { SnackbarProvider, useSnackbar } from './Snackbar';
+import { T } from "../T";
 
 const App = () => (
   <SnackbarProvider>

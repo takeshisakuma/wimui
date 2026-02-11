@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
 import * as EmptyStateStories from "./EmptyState.stories";
+import { T } from "../T";
 
 <Meta of={EmptyStateStories} />
 
 # EmptyState
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_emptystate_title" />
+</p>
 
 データが空の場合や、検索結果がない場合、初期状態のプレースホルダーとして使用されるコンポーネントです。
 ユーザーに現在の状況を伝え、次のアクションを促すために使用します。

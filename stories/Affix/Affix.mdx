@@ -1,9 +1,14 @@
-import { Canvas, Meta, Controls } from "@storybook/blocks";
+import { Canvas, Meta, Controls} from "@storybook/blocks";
 import * as AffixStories from "./Affix.stories";
+import { T } from "../T";
 
 <Meta of={AffixStories} />
 
 # Affix
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_affix_title" />
+</p>
 
 `Affix` は、要素をスクロールに応じて画面上の特定の位置に固定するためのコンポーネントです。
 

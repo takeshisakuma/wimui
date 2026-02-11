@@ -1,9 +1,14 @@
-import { Meta, Primary, Controls, Story } from "@storybook/blocks";
+import { Meta, Primary, Controls, Story} from "@storybook/blocks";
 import * as SliderStories from "./Slider.stories";
+import { T } from "../T";
 
 <Meta of={SliderStories} />
 
 # Slider
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_slider_title" />
+</p>
 
 値の範囲から1つの値を選択するためのスライダーコンポーネントです。
 

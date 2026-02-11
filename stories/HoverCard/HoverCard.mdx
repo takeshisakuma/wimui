@@ -1,9 +1,14 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
 import * as HoverCardStories from "./HoverCard.stories";
+import { T } from "../T";
 
 <Meta title="Components/HoverCard" of={HoverCardStories} />
 
 # HoverCard
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_hovercard_title" />
+</p>
 
 ホバーしたときに追加情報を表示するためのコンポーネントです。
 

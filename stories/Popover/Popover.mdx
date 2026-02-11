@@ -1,10 +1,15 @@
-import { Canvas, Meta, Story, Controls } from "@storybook/blocks";
+import { Canvas, Meta, Story, Controls} from "@storybook/blocks";
+import { T } from "../T";
 import * as PopoverStories from "./Popover.stories";
 import { Popover, PopoverContent, PopoverTrigger, PopoverClose } from "./Popover";
 
 <Meta of={PopoverStories} />
 
 # Popover
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_popover_title" />
+</p>
 
 ボタンクリックでトリガーされ、リッチコンテンツをオーバーレイ表示します。
 

@@ -1,9 +1,14 @@
-import { Meta, Primary, Controls, Story } from "@storybook/blocks";
+import { Meta, Primary, Controls, Story} from "@storybook/blocks";
 import * as MenuStories from "./Menu.stories";
+import { T } from "../T";
 
 <Meta of={MenuStories} />
 
 # Menu
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_menu_title" />
+</p>
 
 ナビゲーションメニューやアクションリストを表示するための汎用的なメニューコンポーネントです。
 サブメニュー、グルーピング、複数の表示モードをサポートしています。
@@ -12,6 +17,7 @@ import * as MenuStories from "./Menu.stories";
 
 ```tsx
 import { Menu, MenuItem, SubMenu, MenuItemGroup, MenuDivider } from "wimui";
+import { T } from "../T";
 
 <Menu>
   <MenuItem icon={<Icon name="CheckIcon" />}>Home</MenuItem>

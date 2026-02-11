@@ -1,9 +1,14 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
 import * as DatePickerStories from "./DatePicker.stories";
+import { T } from "../T";
 
 <Meta title="Component/Forms/DatePicker" of={DatePickerStories} />
 
 # DatePicker
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_datepicker_title" />
+</p>
 
 ユーザーが日付を選択するためのコンポーネントです。カスタムカレンダーポップアップを使用して、直感的な日付選択体験を提供します。
 
@@ -131,6 +136,7 @@ DatePickerは完全な型定義を提供しています。
 
 ```typescript
 import { DatePicker } from './DatePicker';
+import { T } from "../T";
 
 <DatePicker 
   value={new Date()}

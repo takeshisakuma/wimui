@@ -1,9 +1,13 @@
-import { Canvas, Meta, Controls, Title, Primary, Stories } from "@storybook/blocks";
+import { Canvas, Meta, Controls, Title, Primary, Stories} from "@storybook/blocks";
 import * as AvatarGroupStories from "./AvatarGroup.stories";
+import { T } from "../T";
 
 <Meta of={AvatarGroupStories} />
 
 <Title />
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_avatargroup_title" />
+</p>
 
 複数の `Avatar` コンポーネントを重ねて表示し、グループ（チームメンバーや参加者など）を表現するためのコンポーネントです。
 

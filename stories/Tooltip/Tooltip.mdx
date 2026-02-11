@@ -1,10 +1,15 @@
-import { Canvas, Meta, Story, Controls } from "@storybook/blocks";
+import { Canvas, Meta, Story, Controls} from "@storybook/blocks";
+import { T } from "../T";
 import * as TooltipStories from "./Tooltip.stories";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
 
 <Meta of={TooltipStories} />
 
 # Tooltip
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_tooltip_title" />
+</p>
 
 ホバーまたはフォーカス時に補足情報を表示します。
 

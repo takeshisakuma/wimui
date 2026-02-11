@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as DialogStories from "./Dialog.stories";
+import { T } from "../T";
 
 <Meta of={DialogStories} />
 
 # Dialog
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_dialog_title" />
+</p>
 
 Dialogは、現在のページの上にレイヤーとしてコンテンツを表示し、ユーザーに重要な情報を伝えたり、アクションを求めたりするために使用されます。
 一般的に「モーダル」と呼ばれることが多いですが、本デザインシステムでは**「モーダルダイアログ (Modal Dialog)」**と呼称することを推奨します。

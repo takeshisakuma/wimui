@@ -1,21 +1,14 @@
 import {
-  Meta,
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/blocks";
+  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
 import * as DescriptionListStories from "./DescriptionList.stories";
+import { T } from "../T";
 
 <Meta of={DescriptionListStories} />
 
 <Title />
-<Subtitle>
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
   キーと値のペアを整理して表示するための説明リストコンポーネント。
-</Subtitle>
+</p>
 
 <Description>
   `DescriptionList` は HTML の `<dl>` タグをベースにしており、情報の詳細、メタデータ、属性のリストを表示するのに最適です。

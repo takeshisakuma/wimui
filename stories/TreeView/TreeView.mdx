@@ -1,9 +1,14 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
 import * as TreeViewStories from "./TreeView.stories";
+import { T } from "../T";
 
 <Meta title="Component/Data Display/TreeView" of={TreeViewStories} />
 
 # TreeView
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_treeview_title" />
+</p>
 
 `TreeView` は、階層構造を持つデータを表示するためのコンポーネントです。ファイルシステム、組織図、カテゴリー階層などの表示に最適です。
 
@@ -178,6 +183,7 @@ TreeViewコンポーネントは完全な型定義を提供しています。
 
 ```typescript
 import { TreeView } from './TreeView';
+import { T } from "../T";
 
 <TreeView 
   multiSelect

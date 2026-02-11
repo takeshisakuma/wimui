@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as CalendarStories from "./Calendar.stories";
+import { T } from "../T";
 
 <Meta of={CalendarStories} />
 
 # Calendar
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_calendar_title" />
+</p>
 
 ユーザーが日付を閲覧し、選択するためのカレンダーコンポーネントです。単一日付選択、範囲選択、無効日付の設定など、柔軟な日付選択機能を提供します。
 
@@ -168,6 +173,7 @@ Calendarコンポーネントは完全な型定義を提供しています。
 
 ```typescript
 import { Calendar } from './Calendar';
+import { T } from "../T";
 
 // 単一日付選択
 <Calendar 

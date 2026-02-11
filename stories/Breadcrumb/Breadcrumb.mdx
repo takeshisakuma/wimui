@@ -1,21 +1,14 @@
 import {
-  Meta,
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/blocks";
+  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
 import * as BreadcrumbStories from "./Breadcrumb.stories";
+import { T } from "../T";
 
 <Meta of={BreadcrumbStories} />
 
 <Title />
-<Subtitle>
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
   ユーザーが現在地を把握し、上位階層に簡単に戻れるようにするためのナビゲーションコンポーネントです。
-</Subtitle>
+</p>
 
 ## 使用法
 

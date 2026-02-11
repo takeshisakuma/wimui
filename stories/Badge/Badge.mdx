@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
 import * as BadgeStories from "./Badge.stories";
+import { T } from "../T";
 
 <Meta of={BadgeStories} />
 
 # Badge
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_badge_title" />
+</p>
 
 バッジコンポーネントは、ステータス、通知数、または短いラベルを表示するために使用されます。
 

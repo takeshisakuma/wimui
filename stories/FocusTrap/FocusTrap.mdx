@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as FocusTrapStories from "./FocusTrap.stories";
+import { T } from "../T";
 
 <Meta of={FocusTrapStories} />
 
 # FocusTrap
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_focustrap_title" />
+</p>
 
 `FocusTrap` は、キーボードのフォーカスを特定の領域内に閉じ込めるためのユーティリティコンポーネントです。
 モーダル、ダイアログ、ドロワーなど、ユーザーの操作を特定の範囲に限定したいアクセシブルなUIの実装に使用します。

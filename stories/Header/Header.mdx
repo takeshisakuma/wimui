@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as HeaderStories from "./Header.stories";
+import { T } from "../T";
 
 <Meta of={HeaderStories} />
 
 # Header
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_header_title" />
+</p>
 
 Headerは、ページの上部やセクションの上部に配置される汎用的なヘッダーコンポーネントです。
 
@@ -11,6 +16,7 @@ Headerは、ページの上部やセクションの上部に配置される汎�
 
 ```jsx
 import Header from "./Header";
+import { T } from "../T";
 ```
 
 ## 基本的な使用方法

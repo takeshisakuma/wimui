@@ -1,9 +1,14 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
 import * as FieldsetStories from "./Fieldset.stories";
+import { T } from "../T";
 
 <Meta of={FieldsetStories} />
 
 # Fieldset
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_fieldset_title" />
+</p>
 
 `Fieldset` コンポーネントは、関連するフォーム要素を論理的にグループ化するために使用されます。
 通常、アクセシビリティの観点から `Legend` コンポーネントと組み合わせて、そのグループの目的を示します。
@@ -12,6 +17,7 @@ import * as FieldsetStories from "./Fieldset.stories";
 
 ```tsx
 import { Fieldset, Legend, Label, Input } from "wimui";
+import { T } from "../T";
 
 <Fieldset>
     <Legend>ユーザー情報</Legend>

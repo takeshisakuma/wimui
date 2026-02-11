@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
+import { T } from "../T";
 import * as FieldErrorStories from "./FieldError.stories";
 
 <Meta of={FieldErrorStories} />
 
 # FieldError
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_fielderror_title" />
+</p>
 
 `FieldError` コンポーネントは、入力フォームのバリデーションエラーをユーザーに通知するために使用します。
 

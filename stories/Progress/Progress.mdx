@@ -1,9 +1,14 @@
-import { Canvas, Meta, Controls } from "@storybook/blocks";
+import { Canvas, Meta, Controls} from "@storybook/blocks";
 import * as ProgressStories from "./Progress.stories";
+import { T } from "../T";
 
 <Meta of={ProgressStories} />
 
 # Progress
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_progress_title" />
+</p>
 
 プログレスバーは、タスクの進捗状況を視覚的に表示するために使用されます。
 

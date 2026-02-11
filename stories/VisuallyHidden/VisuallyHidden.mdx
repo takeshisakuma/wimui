@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
 import * as VisuallyHiddenStories from "./VisuallyHidden.stories";
+import { T } from "../T";
 
 <Meta of={VisuallyHiddenStories} />
 
 # VisuallyHidden
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_visuallyhidden_title" />
+</p>
 
 `VisuallyHidden` は、視覚的にはコンテンツを非表示にしつつ、スクリーンリーダーなどの補助技術にはその情報を伝えたい場合に使用するユーティリティコンポーネントです。
 

@@ -1,9 +1,14 @@
-import { Canvas, Meta, Story, Controls } from "@storybook/blocks";
+import { Canvas, Meta, Story, Controls} from "@storybook/blocks";
 import * as SelectboxStories from "./Selectbox.stories";
+import { T } from "../T";
 
 <Meta of={SelectboxStories} />
 
 # Selectbox
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_selectbox_title" />
+</p>
 
 ユーザーが定義済みの選択肢から1つを選択するためのプルダウンメニューです。
 
@@ -148,6 +153,7 @@ Selectboxコンポーネントは完全な型定義を提供しています。
 
 ```typescript
 import { Selectbox, SelectboxOption, SelectboxOptionGroup } from './Selectbox';
+import { T } from "../T";
 
 // フラットなオプション
 const options: SelectboxOption[] = [

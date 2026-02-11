@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as PortalStories from "./Portal.stories";
+import { T } from "../T";
 
 <Meta title="Utilities/Portal" of={PortalStories} />
 
 # Portal
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_portal_title" />
+</p>
 
 `Portal` コンポーネントは、React コンポーネントツリーの論理構造を保ちつつ、DOM 階層上の物理的な位置だけを別の場所（通常は `document.body` の直下など）に移動させるために使用します。
 

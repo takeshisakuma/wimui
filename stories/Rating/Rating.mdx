@@ -1,9 +1,14 @@
-import { Meta, Primary, Controls, Canvas } from "@storybook/blocks";
+import { Meta, Primary, Controls, Canvas} from "@storybook/blocks";
+import { T } from "../T";
 import * as RatingStories from "./Rating.stories";
 
 <Meta of={RatingStories} />
 
 # Rating
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_rating_title" />
+</p>
 
 評価（レーティング）を表示・入力するためのコンポーネントです。
 

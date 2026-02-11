@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
 import * as SpanStories from "./Span.stories";
+import { T } from "../T";
 
 <Meta of={SpanStories} />
 
 # Span
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_span_title" />
+</p>
 
 インラインテキストや短いラベルを表示するためのコンポーネントです。アイコンとの組み合わせも可能です。
 

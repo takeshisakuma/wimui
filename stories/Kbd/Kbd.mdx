@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
 import * as KbdStories from "./Kbd.stories";
+import { T } from "../T";
 
 <Meta of={KbdStories} />
 
 # Kbd
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_kbd_title" />
+</p>
 
 キーボードのショートカット、個別のキー、またはキーボード入力を示すために使用されるインラインコンポーネントです。
 

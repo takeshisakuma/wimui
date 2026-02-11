@@ -1,21 +1,14 @@
 import {
-  Meta,
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/blocks";
+  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
 import * as QRCodeStories from "./QRCode.stories";
+import { T } from "../T";
 
 <Meta of={QRCodeStories} />
 
 <Title />
-<Subtitle>
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
   情報のQRコードを表示するためのコンポーネント。
-</Subtitle>
+</p>
 
 <Description>
   `QRCode` は指定された文字列を QR コードとしてレンダリングします。SVG または Canvas 形式での出力に対応しており、サイズ、色、エラー訂正レベルのカスタマイズが可能です。

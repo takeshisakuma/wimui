@@ -1,9 +1,14 @@
-import { Canvas, Meta, Controls, Primary } from "@storybook/blocks";
+import { Canvas, Meta, Controls, Primary} from "@storybook/blocks";
 import * as TableStories from "./Table.stories";
+import { T } from "../T";
 
 <Meta of={TableStories} />
 
 # Table
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_table_title" />
+</p>
 
 テーブルコンポーネントは、データを整理して表示するために使用されます。
 
@@ -162,6 +167,7 @@ TableコンポーネントとuseTableSortフックは完全な型定義を提供
 
 ```typescript
 import { Table, useTableSort, SortDirection, SortConfig } from './Table';
+import { T } from "../T";
 
 interface User {
   id: number;

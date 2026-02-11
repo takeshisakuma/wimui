@@ -1,22 +1,14 @@
 import {
-  Meta,
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/blocks";
+  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
 import * as StepperStories from "./Stepper.stories";
 import { T } from "../T";
 
 <Meta of={StepperStories} />
 
 <Title />
-<Subtitle>
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
   <T k="doc_stepper_title" />
-</Subtitle>
+</p>
 <Description />
 
 <Primary />

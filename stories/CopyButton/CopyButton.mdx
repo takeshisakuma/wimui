@@ -1,9 +1,14 @@
-import { Canvas, Meta, Controls, Story } from "@storybook/blocks";
+import { Canvas, Meta, Controls, Story} from "@storybook/blocks";
+import { T } from "../T";
 import * as CopyButtonStories from "./CopyButton.stories";
 
 <Meta of={CopyButtonStories} />
 
 # CopyButton
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_copybutton_title" />
+</p>
 
 指定されたテキストをクリップボードにコピーするためのボタンコンポーネント
 

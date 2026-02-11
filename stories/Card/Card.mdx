@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as CardStories from "./Card.stories";
+import { T } from "../T";
 
 <Meta of={CardStories} />
 
 # Card
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_card_title" />
+</p>
 
 `Card` コンポーネントは、関連する情報をグループ化し、視覚的に区切られたコンテナ内に表示します。
 

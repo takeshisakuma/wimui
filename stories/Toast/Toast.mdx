@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls} from "@storybook/blocks";
 import * as ToastStories from "./Toast.stories";
+import { T } from "../T";
 
 <Meta title="Component/Feedback/Toast" of={ToastStories} />
 
 # Toast
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_toast_title" />
+</p>
 
 トーストコンポーネントは、ユーザーに短い通知やフィードバックを伝えるために使用されます。通常、画面の隅に表示され、一定時間後に自動的に消えます。
 
@@ -19,6 +24,7 @@ import * as ToastStories from "./Toast.stories";
 
 ```tsx
 import { ToastProvider, useToast } from './Toast';
+import { T } from "../T";
 
 const App = () => (
   <ToastProvider position="bottom-right">

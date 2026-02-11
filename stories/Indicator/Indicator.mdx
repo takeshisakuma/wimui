@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
 import * as IndicatorStories from "./Indicator.stories";
+import { T } from "../T";
 
 <Meta title="Data Display/Indicator" of={IndicatorStories} />
 
 # Indicator
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_indicator_title" />
+</p>
 
 `Indicator`は、アバターやアイコン、コンテナなどの要素にステータス（オンライン、未読、エラーなど）を示すための小さなドットを表示するコンポーネントです。
 

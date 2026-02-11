@@ -1,9 +1,14 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
 import * as LabelStories from "./Label.stories";
+import { T } from "../T";
 
 <Meta of={LabelStories} />
 
 # Label
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_label_title" />
+</p>
 
 フォーム要素の説明やキャプションを表示するためのコンポーネントです。
 

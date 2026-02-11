@@ -1,21 +1,14 @@
 import {
-  Meta,
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/blocks";
+  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
 import * as MentionsStories from "./Mentions.stories";
+import { T } from "../T";
 
 <Meta of={MentionsStories} />
 
 <Title />
-<Subtitle>
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
   テキスト入力中に特定の文字（@など）をトリガーにして候補を表示し、選択できるようにするコンポーネントです。
-</Subtitle>
+</p>
 
 ## 基本的な使い方
 

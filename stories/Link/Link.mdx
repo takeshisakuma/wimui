@@ -1,9 +1,14 @@
-import { Canvas, Meta, Controls } from "@storybook/blocks";
+import { Canvas, Meta, Controls} from "@storybook/blocks";
+import { T } from "../T";
 import * as LinkStories from "./Link.stories";
 
 <Meta of={LinkStories} />
 
 # Link
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_link_title" />
+</p>
 
 `Link`コンポーネントは、テキストベースのナビゲーションや外部リソースへのリンクを提供します。
 多言語対応、サイズ変更、アイコンの追加、および3種類の優先度（Priority）をサポートしています。

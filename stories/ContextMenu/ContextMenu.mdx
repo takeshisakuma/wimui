@@ -1,9 +1,14 @@
-import { Meta, Primary, Controls, Story } from "@storybook/blocks";
+import { Meta, Primary, Controls, Story} from "@storybook/blocks";
 import * as ContextMenuStories from "./ContextMenu.stories";
+import { T } from "../T";
 
 <Meta of={ContextMenuStories} />
 
 # ContextMenu
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_contextmenu_title" />
+</p>
 
 右クリック（コンテキストメニュー）で表示されるメニューコンポーネントです。
 画像、テキスト、その他の要素に対して、追加のアクションを提供する際に使用します。
@@ -12,6 +17,7 @@ import * as ContextMenuStories from "./ContextMenu.stories";
 
 ```tsx
 import { ContextMenu, ContextMenuItem, ContextMenuDivider } from "wimui";
+import { T } from "../T";
 
 <ContextMenu
   menu={
