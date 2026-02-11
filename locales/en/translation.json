@@ -34,5 +34,6 @@
   "doc_anchor_title": "A component for smooth scrolling to specific sections",
   "doc_flex_title": "Multi-purpose layout component using Flexbox",
   "doc_group_title": "Layout component for horizontal alignment",
-  "doc_box_title": "The most basic layout component"
+  "doc_box_title": "The most basic layout component",
+  "doc_masonry_title": "Masonry layout for efficient element placement"
 }
