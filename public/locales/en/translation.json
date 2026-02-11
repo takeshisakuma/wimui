@@ -35,5 +35,8 @@
   "doc_flex_title": "Multi-purpose layout component using Flexbox",
   "doc_group_title": "Layout component for horizontal alignment",
   "doc_box_title": "The most basic layout component",
-  "doc_masonry_title": "Masonry layout for efficient element placement"
+  "doc_masonry_title": "Masonry layout for efficient element placement",
+  "doc_container_title": "A component to center content and limit maximum width",
+  "doc_stack_title": "A layout component for vertical or horizontal alignment",
+  "doc_center_title": "A component to center content"
 }

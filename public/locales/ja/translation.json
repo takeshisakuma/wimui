@@ -38,5 +38,8 @@
   "doc_flex_title": "Flexboxを用いた汎用レイアウトコンポーネント",
   "doc_group_title": "要素を水平方向に並べるためのレイアウトコンポーネント",
   "doc_box_title": "最も基本的なレイアウトコンポーネント",
-  "doc_masonry_title": "要素を効率的に配置するメイソンリーレイアウト"
+  "doc_masonry_title": "要素を効率的に配置するメイソンリーレイアウト",
+  "doc_container_title": "コンテンツを中央に配置し、最大幅を制限するコンポーネント",
+  "doc_stack_title": "要素を垂直または水平に並べるためのレイアウトコンポーネント",
+  "doc_center_title": "要素を中央に配置するためのコンポーネント"
 }

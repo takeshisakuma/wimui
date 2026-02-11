@@ -1,0 +1,50 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as StackStories from "./Stack.stories";
+import { T } from "../T";
+
+<Meta of={StackStories} />
+
+# Stack
+
+<T k="doc_stack_title" />
+
+`Stack` コンポーネントは、要素を垂直または水平に並べ、要素間の間隔を管理するために使用されます。
+
+## 使い方
+
+```tsx
+import { Stack } from "./Stack";
+import { Box } from "../Box/Box";
+
+const Demo = () => (
+  <Stack gap="md">
+    <Box>Item 1</Box>
+    <Box>Item 2</Box>
+    <Box>Item 3</Box>
+  </Stack>
+);
+```
+
+<Canvas of={StackStories.Default} />
+
+## 特徴
+
+- **方向のリセット**: `direction` プロパティで `row` または `column` を指定できます（デフォルトは `column`）。
+- **強力なスペース管理**: `gap` プロパティに `xs`, `sm`, `md` などのトークン、または数値を指定して間隔を調整できます。
+- **Flexboxベース**: 内部で `Flex` コンポーネントを使用しているため、`align` や `justify` などの Flexbox プロパティも使用可能です。
+
+## API リファレンス
+
+<Controls />
+
+## 水平方向の配置 (Row)
+
+`direction="row"` を指定することで、要素を横並びに配置できます。
+
+<Canvas of={StackStories.Row} />
+
+## スペーシングトークンの利用
+
+wimui のスペーシングトークン（xs, sm, md, lg, xl など）をそのまま使用できます。
+
+<Canvas of={StackStories.SpacingTokens} />

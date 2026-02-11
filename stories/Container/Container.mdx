@@ -1,0 +1,47 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as ContainerStories from "./Container.stories";
+import { T } from "../T";
+
+<Meta of={ContainerStories} />
+
+# Container
+
+<T k="doc_container_title" />
+
+`Container` コンポーネントは、コンテンツを中央に配置し、最大幅を制限するために使用されます。
+
+## 使い方
+
+```tsx
+import { Container } from "./Container";
+
+const Demo = () => (
+  <Container size="md" p={20}>
+    中央に配置されるコンテンツ
+  </Container>
+);
+```
+
+<Canvas of={ContainerStories.Default} />
+
+## 特徴
+
+- **中央配置**: `mx="auto"` がデフォルトで適用され、コンテンツが常に中央に配置されます。
+- **レスポンシブなサイズ**: `xs`, `sm`, `md`, `lg`, `xl` のプリセットサイズ、または数値/文字列でのカスタムサイズ指定が可能です。
+- **フル幅オプション**: `fluid` プロパティを使用することで、最大幅を制限せずに 100% の幅で表示できます。
+
+## API リファレンス
+
+<Controls />
+
+## サイズ展開
+
+さまざまなプリセットサイズを提供しています。
+
+<Canvas of={ContainerStories.Sizes} />
+
+## フル幅 (Fluid)
+
+`fluid` プロパティを使用すると、コンテナは親要素の全幅に広がります。
+
+<Canvas of={ContainerStories.Fluid} />
