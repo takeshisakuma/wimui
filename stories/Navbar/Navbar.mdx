@@ -1,44 +1,51 @@
 import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
 import Navbar from "./Navbar";
 import * as NavbarStories from "./Navbar.stories";
+import { T } from "../T";
 
 <Meta of={NavbarStories} />
 
 # Navbar
 
-Navbar is a responsive navigation header positioned at the top of the page.
+<T k="doc_navbar_title" />
 
-## Import
+Navbarは、ページの上部に配置されるレスポンシブなナビゲーションヘッダーです。
+ブランドロゴ、ナビゲーションリンク、アクションボタンなどを配置するためのコンテナとして機能します。
+
+## インポート
 
 ```jsx
 import Navbar from "./Navbar";
 ```
 
-## Basic Usage
+## 基本的な使用方法
+
+`Navbar` コンポーネントの中に `Navbar.Brand`、`Navbar.Content` などを配置して使用します。
 
 ```jsx
 <Navbar bordered>
   <Navbar.Brand>Brand</Navbar.Brand>
   <Navbar.Content>
-    <Navbar.Link href="#" active>Home</Navbar.Link>
-    <Navbar.Link href="#">About</Navbar.Link>
-    <Navbar.Link href="#">Contact</Navbar.Link>
+    <Navbar.Link href="#" active>ホーム</Navbar.Link>
+    <Navbar.Link href="#">概要</Navbar.Link>
+    <Navbar.Link href="#">お問い合わせ</Navbar.Link>
   </Navbar.Content>
 </Navbar>
 ```
 
-## Glassmorphism
+## グラスモーフィズム (Glassmorphism)
 
-Use the `glass` prop to enable a blurred backdrop effect. This is useful for fixed headers over colorful backgrounds.
+`glass` プロパティを使用すると、背景にぼかし効果（すりガラス効果）を適用できます。
+カラフルな背景画像やグラデーションの上に固定ヘッダーとして配置する場合に効果的です。
 
 <Canvas of={NavbarStories.GlassEffect} />
 
-## Centered Content
+## コンテンツの配置
 
-You can use multiple `Navbar.Content` components with different justification to achieve complex layouts.
+複数の `Navbar.Content` コンポーネントを使用し、`justify` プロパティ（`start`, `center`, `end`）を組み合わせることで、柔軟なレイアウトが可能です。
 
 <Canvas of={NavbarStories.CenteredLinks} />
 
-## API Reference
+## API リファレンス
 
 <Controls />

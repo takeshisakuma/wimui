@@ -1,45 +1,49 @@
 import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
 import TabNavigation from "./TabNavigation";
 import * as TabNavigationStories from "./TabNavigation.stories";
+import { T } from "../T";
 
 <Meta of={TabNavigationStories} />
 
 # TabNavigation
 
-TabNavigation provides a set of links to navigate between different views or contexts. Unlike the `Tabs` component, it is primarily designed for page-level navigation or filtering, often modifying the URL.
+<T k="doc_tab_navigation_title" />
 
-## Import
+TabNavigationは、異なるビューやコンテキスト間を移動するためのリンクセットを提供します。
+`Tabs` コンポーネントとは異なり、主にページレベルのナビゲーションやフィルタリング（URL遷移を伴うものなど）を想定して設計されています。
+
+## インポート
 
 ```jsx
 import TabNavigation from "./TabNavigation";
 ```
 
-## Basic Usage
+## 基本的な使用方法
 
-The default style is `underline`, commonly used for secondary page navigation.
+デフォルトのスタイルは `underline` です。これは、二次的なページナビゲーションとして一般的に使用されます。
 
 <Canvas of={TabNavigationStories.Default} />
 
-## Variants
+## バリエーション
 
-### Pill
+### Pill (カプセル型)
 
-Pill tabs are useful for filtering lists or toggling between states without changing the page context significantly.
+Pillスタイルは、リストのフィルタリングや、状態の切り替えなど、コンテキストを大きく変更しない操作に適しています。
 
 <Canvas of={TabNavigationStories.Pills} />
 
-### Contained
+### Contained (コンテナ型)
 
-Contained tabs resemble a segmented control and are often used for changing data views (e.g., charts by time period).
+Containedスタイルは、セグメントコントロールに似ており、データの表示形式（例：グラフの時間軸の切り替えなど）を変更する場合によく使用されます。
 
 <Canvas of={TabNavigationStories.Contained} />
 
-## With Icons
+## アイコン付き
 
-You can add icons to items using the `icon` prop.
+`icon` プロパティを使用して、各アイテムにアイコンを追加できます。
 
 <Canvas of={TabNavigationStories.WithIcons} />
 
-## API Reference
+## API リファレンス
 
 <Controls />

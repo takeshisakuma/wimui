@@ -1,39 +1,45 @@
 import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
 import TabBar from "./TabBar";
 import * as TabBarStories from "./TabBar.stories";
+import { T } from "../T";
 
 <Meta of={TabBarStories} />
 
 # TabBar
 
-TabBar is a persistent bottom navigation bar for mobile applications.
+<T k="doc_tab_bar_title" />
 
-## Import
+TabBarは、モバイルアプリケーション向けの画面下部に固定されるナビゲーションバーです。
+主要な画面間の切り替えに使用されます。
+
+## インポート
 
 ```jsx
 import TabBar from "./TabBar";
 ```
 
-## Basic Usage
+## 基本的な使用方法
+
+`TabBar.Item` を使用して、各タブを定義します。アイコンとラベルを設定し、`onClick` イベントでアクティブなタブを切り替えます。
 
 ```jsx
 const [active, setActive] = useState('home');
 
 <TabBar>
   <TabBar.Item 
-    label="Home" 
+    label="ホーム" 
     icon={<HomeIcon />} 
     active={active === 'home'} 
     onClick={() => setActive('home')} 
   />
   <TabBar.Item 
-    label="Search" 
+    label="検索" 
     icon={<SearchIcon />} 
     active={active === 'search'} 
     onClick={() => setActive('search')} 
   />
   <TabBar.Item 
-    label="Profile" 
+    label="マイページ" 
     icon={<UserIcon />} 
     active={active === 'profile'} 
     onClick={() => setActive('profile')} 
@@ -41,18 +47,18 @@ const [active, setActive] = useState('home');
 </TabBar>
 ```
 
-## With Badges
+## バッジ付き (With Badges)
 
-You can add a `badge` prop to any `TabBar.Item` to show a notification count or indicator.
+`TabBar.Item` に `badge` プロパティを追加することで、通知数やインジケーターを表示できます。
 
 <Canvas of={TabBarStories.Default} />
 
-## Icon Only
+## アイコンのみ (Icon Only)
 
-Labels are optional. If omitted, the icon will center vertically.
+ラベルは任意です。ラベルを省略した場合、アイコンは垂直方向の中央に配置されます。
 
 <Canvas of={TabBarStories.WithoutLabels} />
 
-## API Reference
+## API リファレンス
 
 <Controls />

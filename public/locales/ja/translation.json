@@ -31,5 +31,8 @@
   "heading_text": "見出しテキスト",
   "doc_pagination_title": "ページ番号を切り替えるためのコンポーネント",
   "doc_stepper_title": "現在の進捗状況を視覚的に表示するコンポーネント",
-  "doc_anchor_title": "特定のセクションへスムーズにスクロールするためのコンポーネント"
+  "doc_anchor_title": "特定のセクションへスムーズにスクロールするためのコンポーネント",
+  "doc_navbar_title": "ページ上部に配置されるナビゲーションバー",
+  "doc_tab_bar_title": "モバイルアプリ向けの画面下部ナビゲーション",
+  "doc_tab_navigation_title": "ページ内やコンテキスト間を移動するためのタブ"
 }
