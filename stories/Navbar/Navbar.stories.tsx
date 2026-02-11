@@ -108,3 +108,4 @@ export const CenteredLinks: Story = {
         </Navbar>
     ),
 };
+

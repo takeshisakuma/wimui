@@ -51,3 +51,4 @@ export const Controlled = () => {
     return <Slider value={val} onChange={setVal} />;
 }
 
+

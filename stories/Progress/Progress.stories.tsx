@@ -60,3 +60,4 @@ export const Indeterminate: Story = {
     render: (args) => <Progress {...args} />,
 };
 
+

@@ -78,3 +78,4 @@ export const Colored: Story = {
     render: renderWithState,
 };
 
+

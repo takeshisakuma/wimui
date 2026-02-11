@@ -51,3 +51,4 @@ export const Controlled = () => {
     return <RangeSlider value={val} onChange={setVal} />;
 }
 
+

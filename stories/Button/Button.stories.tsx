@@ -141,3 +141,4 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
     "aria-label": false as unknown as string,
   },
 };
+
