@@ -34,5 +34,7 @@
   "doc_anchor_title": "特定のセクションへスムーズにスクロールするためのコンポーネント",
   "doc_navbar_title": "ページ上部に配置されるナビゲーションバー",
   "doc_tab_bar_title": "モバイルアプリ向けの画面下部ナビゲーション",
-  "doc_tab_navigation_title": "ページ内やコンテキスト間を移動するためのタブ"
+  "doc_tab_navigation_title": "ページ内やコンテキスト間を移動するためのタブ",
+  "doc_flex_title": "Flexboxを用いた汎用レイアウトコンポーネント",
+  "doc_group_title": "要素を水平方向に並べるためのレイアウトコンポーネント"
 }

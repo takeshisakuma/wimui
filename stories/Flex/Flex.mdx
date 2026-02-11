@@ -1,0 +1,56 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as FlexStories from "./Flex.stories";
+import { T } from "../T";
+
+<Meta of={FlexStories} />
+
+# Flex
+
+<T k="doc_flex_title" />
+
+`Flex` は、CSS Flexboxを利用してレイアウトを構築するための基本的なコンポーネントです。
+要素の整列、方向、間隔などをプロパティ経由で直感的に制御できます。
+
+## 使い方
+
+```tsx
+import { Flex } from "./Flex";
+
+const Demo = () => (
+  <Flex direction="row" align="center" justify="between" gap={16}>
+    <div>アイテム 1</div>
+    <div>アイテム 2</div>
+    <div>アイテム 3</div>
+  </Flex>
+);
+```
+
+<Canvas of={FlexStories.Basic} />
+
+## 特徴
+
+- **直感的な配置**: `align-items` や `justify-content` を `align`, `justify` プロパティで簡単に設定できます。
+- **一貫した間隔**: `gap` プロパティを使用して、子要素間の隙間を均一に設定できます。
+- **柔軟な方向設定**: `direction` プロパティで縦並び（column）と横並び（row）を切り替えられます。
+
+## API リファレンス
+
+<Controls />
+
+## 垂直方向の並び (Column)
+
+`direction="column"` を指定することで、要素を垂直に並べることができます。
+
+<Canvas of={FlexStories.Column} />
+
+## コンテンツの分散配置 (Justify Content)
+
+`justify` プロパティを使用すると、メイン軸（rowの場合は横方向）に沿った要素の配置方法を指定できます。
+
+<Canvas of={FlexStories.JustifyBetween} />
+
+## 折り返し (Wrap)
+
+`wrap="wrap"` を指定すると、親コンテナの幅を超えた要素が自動的に次の行に折り返されます。
+
+<Canvas of={FlexStories.Wrapped} />

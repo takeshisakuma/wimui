@@ -1,0 +1,50 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as GroupStories from "./Group.stories";
+import { T } from "../T";
+
+<Meta of={GroupStories} />
+
+# Group
+
+<T k="doc_group_title" />
+
+`Group` は、要素を水平方向に並べるためのレイアウトコンポーネントです。
+デフォルトで子要素の間隔を一定に保ち、コンテナ幅に応じて折り返しの制御も行います。ボタンなどのインライン要素を並べる際に最適です。
+
+## 使い方
+
+```tsx
+import { Group } from "./Group";
+import { Button } from "../Button/Button";
+
+const Demo = () => (
+  <Group gap={16}>
+    <Button>送信する</Button>
+    <Button priority="secondary">キャンセル</Button>
+  </Group>
+);
+```
+
+<Canvas of={GroupStories.Basic} />
+
+## 特徴
+
+- **要素の均等化**: `grow` プロパティを使用すると、すべての子要素が利用可能な空間を埋めるように伸縮します。
+- **垂直整列**: デフォルトで `align="center"` が設定されており、高さの異なる要素も中央揃えで配置されます。
+- **柔軟な間隔**: `gap` プロパティで要素間の隙間を調整できます。
+
+## API リファレンス
+
+<Controls />
+
+## 要素の伸縮 (Grow)
+
+`grow` プロパティを `true` に設定すると、各アイテムがフレックスボックスの `flex-grow: 1` を持ち、親コンテナの幅いっぱいに等幅で広がります。
+
+<Canvas of={GroupStories.Grow} />
+
+## 垂直方向の整列
+
+`align` プロパティを使用して、異なる高さの要素が混在する場合の垂直方向の配置（上揃え、中央揃え、下揃えなど）を制御できます。
+
+<Canvas of={GroupStories.AlignEnd} />
