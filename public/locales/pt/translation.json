@@ -28,5 +28,11 @@
   "doc_custom_area": "Esta é uma área onde você pode escrever HTML/CSS livremente.",
   "processing": "Processando...",
   "saving": "Salvando...",
-  "heading_text": "Texto do Título"
+  "heading_text": "Texto do Título",
+  "doc_pagination_title": "Componente para alternar números de página",
+  "doc_stepper_title": "Um componente que exibe visualmente o progresso atual",
+  "doc_anchor_title": "Um componente para rolagem suave para seções específicas",
+  "doc_flex_title": "Componente de layout multiuso usando Flexbox",
+  "doc_group_title": "Componente de layout para alinhamento horizontal",
+  "doc_box_title": "O componente de layout mais básico"
 }
