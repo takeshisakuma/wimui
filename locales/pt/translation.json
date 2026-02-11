@@ -34,5 +34,9 @@
   "doc_anchor_title": "Um componente para rolagem suave para seções específicas",
   "doc_flex_title": "Componente de layout multiuso usando Flexbox",
   "doc_group_title": "Componente de layout para alinhamento horizontal",
-  "doc_box_title": "O componente de layout mais básico"
+  "doc_box_title": "O componente de layout mais básico",
+  "doc_masonry_title": "Layout Masonry para posicionamento eficiente de elementos",
+  "doc_container_title": "Um componente para centralizar conteúdo e limitar a largura máxima",
+  "doc_stack_title": "Um componente de layout para alinhamento vertical ou horizontal",
+  "doc_center_title": "Um componente para centralizar o conteúdo"
 }
