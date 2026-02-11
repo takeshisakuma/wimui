@@ -1,0 +1,52 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as MasonryStories from "./Masonry.stories";
+import { T } from "../T";
+
+<Meta of={MasonryStories} />
+
+# Masonry
+
+<T k="doc_masonry_title" />
+
+`Masonry` は、要素の高さが異なる場合でも、隙間を埋めるように効率的に配置するレイアウトコンポーネントです。
+主に画像ギャラリーや、高さの異なるカードを並べる際に使用されます。
+
+## 使い方
+
+```tsx
+import { Masonry } from "./Masonry";
+import { Box } from "../Box/Box";
+
+const Demo = () => (
+  <Masonry columns={3} spacing={16}>
+    <Box h={150} bg="lightblue">1</Box>
+    <Box h={200} bg="lightgreen">2</Box>
+    <Box h={100} bg="lightpink">3</Box>
+    <Box h={250} bg="lightyellow">4</Box>
+  </Masonry>
+);
+```
+
+<Canvas of={MasonryStories.Default} />
+
+## 特徴
+
+- **自動配置**: CSSの `column-count` を使用して、要素を自動的にカラムに振り分けます。
+- **レスポンシブな間隔**: `spacing` プロパティで要素間の余白を簡単に調整できます。
+- **フレキシブルなカラム数**: `columns` プロパティで任意のカラム数を指定可能です。
+
+## API リファレンス
+
+<Controls />
+
+## カラムの調整
+
+カラム数を変更することで、レイアウトの密度を調整できます。
+
+<Canvas of={MasonryStories.ManyColumns} />
+
+## スペーシングの調整
+
+`spacing` プロパティを使用して、要素間の距離を調整できます。
+
+<Canvas of={MasonryStories.LargeSpacing} />

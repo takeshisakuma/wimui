@@ -37,5 +37,6 @@
   "doc_tab_navigation_title": "ページ内やコンテキスト間を移動するためのタブ",
   "doc_flex_title": "Flexboxを用いた汎用レイアウトコンポーネント",
   "doc_group_title": "要素を水平方向に並べるためのレイアウトコンポーネント",
-  "doc_box_title": "最も基本的なレイアウトコンポーネント"
+  "doc_box_title": "最も基本的なレイアウトコンポーネント",
+  "doc_masonry_title": "要素を効率的に配置するメイソンリーレイアウト"
 }
