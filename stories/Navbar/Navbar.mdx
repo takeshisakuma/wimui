@@ -1,0 +1,44 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import Navbar from "./Navbar";
+import * as NavbarStories from "./Navbar.stories";
+
+<Meta of={NavbarStories} />
+
+# Navbar
+
+Navbar is a responsive navigation header positioned at the top of the page.
+
+## Import
+
+```jsx
+import Navbar from "./Navbar";
+```
+
+## Basic Usage
+
+```jsx
+<Navbar bordered>
+  <Navbar.Brand>Brand</Navbar.Brand>
+  <Navbar.Content>
+    <Navbar.Link href="#" active>Home</Navbar.Link>
+    <Navbar.Link href="#">About</Navbar.Link>
+    <Navbar.Link href="#">Contact</Navbar.Link>
+  </Navbar.Content>
+</Navbar>
+```
+
+## Glassmorphism
+
+Use the `glass` prop to enable a blurred backdrop effect. This is useful for fixed headers over colorful backgrounds.
+
+<Canvas of={NavbarStories.GlassEffect} />
+
+## Centered Content
+
+You can use multiple `Navbar.Content` components with different justification to achieve complex layouts.
+
+<Canvas of={NavbarStories.CenteredLinks} />
+
+## API Reference
+
+<Controls />

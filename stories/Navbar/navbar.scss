@@ -1,0 +1,110 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/typography" as typography;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+
+@layer component {
+    .wim-navbar {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 64px;
+        background-color: var(--wim-color-bg-primary, #ffffff);
+        transition: all effects.$transition-base;
+        z-index: 1000;
+        padding: 0 spacings.$spacing-xl;
+
+        &--fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        &--sticky {
+            position: sticky;
+            top: 0;
+            width: 100%;
+        }
+
+        &--transparent {
+            background-color: transparent;
+        }
+
+        &--glass {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        &--bordered {
+            border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+        }
+
+        &__container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        &__brand {
+            display: flex;
+            align-items: center;
+            font-size: typography.$size-large;
+            font-weight: typography.$weight-bold;
+            color: colors.$text-black;
+            margin-right: spacings.$spacing-xl;
+        }
+
+        &__content {
+            display: flex;
+            align-items: center;
+            gap: spacings.$spacing-md;
+            flex-grow: 1;
+
+            &--start {
+                justify-content: flex-start;
+            }
+
+            &--end {
+                justify-content: flex-end;
+            }
+
+            &--center {
+                justify-content: center;
+            }
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+        }
+
+        &__link {
+            display: inline-flex;
+            align-items: center;
+            padding: spacings.$spacing-xs spacings.$spacing-sm;
+            font-size: typography.$size-medium;
+            font-weight: typography.$weight-medium;
+            color: colors.$text-deepgray;
+            text-decoration: none;
+            border-radius: spacings.$radius-sm;
+            transition: all effects.$transition-base;
+            cursor: pointer;
+
+            &:hover {
+                color: colors.$color-primary;
+                background-color: rgba(0, 0, 0, 0.04);
+            }
+
+            &--active {
+                color: colors.$color-primary;
+                font-weight: typography.$weight-bold;
+            }
+        }
+    }
+}

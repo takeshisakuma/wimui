@@ -1,0 +1,58 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import TabBar from "./TabBar";
+import * as TabBarStories from "./TabBar.stories";
+
+<Meta of={TabBarStories} />
+
+# TabBar
+
+TabBar is a persistent bottom navigation bar for mobile applications.
+
+## Import
+
+```jsx
+import TabBar from "./TabBar";
+```
+
+## Basic Usage
+
+```jsx
+const [active, setActive] = useState('home');
+
+<TabBar>
+  <TabBar.Item 
+    label="Home" 
+    icon={<HomeIcon />} 
+    active={active === 'home'} 
+    onClick={() => setActive('home')} 
+  />
+  <TabBar.Item 
+    label="Search" 
+    icon={<SearchIcon />} 
+    active={active === 'search'} 
+    onClick={() => setActive('search')} 
+  />
+  <TabBar.Item 
+    label="Profile" 
+    icon={<UserIcon />} 
+    active={active === 'profile'} 
+    onClick={() => setActive('profile')} 
+  />
+</TabBar>
+```
+
+## With Badges
+
+You can add a `badge` prop to any `TabBar.Item` to show a notification count or indicator.
+
+<Canvas of={TabBarStories.Default} />
+
+## Icon Only
+
+Labels are optional. If omitted, the icon will center vertically.
+
+<Canvas of={TabBarStories.WithoutLabels} />
+
+## API Reference
+
+<Controls />

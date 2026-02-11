@@ -1,0 +1,167 @@
+@use "../../src/tokens/semantic-colors" as colors;
+@use "../../src/tokens/typography" as typography;
+@use "../../src/tokens/spacings" as spacings;
+@use "../../src/tokens/effects" as effects;
+
+@use "sass:color";
+
+@layer component {
+    .wim-tab-navigation {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        /* Hide scrollbar */
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        &__list {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-width: min-content;
+        }
+
+        /* Alignment */
+        &--start &__list {
+            justify-content: flex-start;
+        }
+
+        &--center &__list {
+            justify-content: center;
+        }
+
+        &--end &__list {
+            justify-content: flex-end;
+        }
+
+        &--justify &__list {
+            justify-content: space-between;
+
+            .wim-tab-navigation__item {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        /* Sizes */
+        &--small {
+            --wim-tab-nav-padding: #{spacings.$spacing-xs} #{spacings.$spacing-sm};
+            --wim-tab-nav-font-size: #{typography.$size-small};
+            --wim-tab-nav-height: 32px;
+        }
+
+        &--medium {
+            --wim-tab-nav-padding: #{spacings.$spacing-sm} #{spacings.$spacing-md};
+            --wim-tab-nav-font-size: #{typography.$size-medium};
+            --wim-tab-nav-height: 40px;
+        }
+
+        &--large {
+            --wim-tab-nav-padding: #{spacings.$spacing-md} #{spacings.$spacing-lg};
+            --wim-tab-nav-font-size: #{typography.$size-large};
+            --wim-tab-nav-height: 48px;
+        }
+
+        /* Base Item Styles */
+        &__item {
+            display: inline-flex;
+            align-items: center;
+            height: var(--wim-tab-nav-height);
+            padding: var(--wim-tab-nav-padding);
+            font-size: var(--wim-tab-nav-font-size);
+            font-weight: typography.$weight-medium;
+            color: colors.$text-deepgray;
+            text-decoration: none;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all effects.$transition-base;
+            position: relative;
+
+            &:hover:not(&--disabled) {
+                color: colors.$text-black;
+                background-color: rgba(0, 0, 0, 0.04);
+            }
+
+            &--disabled {
+                color: colors.$text-lightgray;
+                cursor: not-allowed;
+            }
+
+            .wim-tab-navigation__icon {
+                margin-right: spacings.$spacing-xs;
+                display: flex;
+            }
+        }
+
+        /* Variant: Underline (Default) */
+        &--underline {
+            border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+
+            .wim-tab-navigation__item {
+                border-radius: spacings.$radius-sm spacings.$radius-sm 0 0;
+                margin-bottom: -1px;
+                border-bottom: 2px solid transparent;
+
+                &:hover:not(&--disabled) {
+                    background-color: transparent;
+                    color: colors.$color-primary;
+                }
+
+                &--active {
+                    color: colors.$color-primary;
+                    border-bottom-color: colors.$color-primary;
+                    font-weight: typography.$weight-bold;
+                }
+            }
+        }
+
+        /* Variant: Pill */
+        &--pill {
+            .wim-tab-navigation__list {
+                gap: spacings.$spacing-xs;
+            }
+
+            .wim-tab-navigation__item {
+                border-radius: 99px;
+
+                &--active {
+                    background-color: colors.$color-primary;
+                    color: white;
+
+                    &:hover:not(&--disabled) {
+                        background-color: color.scale(colors.$color-primary, $lightness: -10%);
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        /* Variant: Contained */
+        &--contained {
+            background-color: var(--wim-color-bg-secondary, #f4f4f5);
+            padding: 4px;
+            border-radius: spacings.$radius-md;
+            display: inline-flex; // Shrink to fit content
+            width: auto;
+
+            .wim-tab-navigation__list {
+                gap: 4px;
+            }
+
+            .wim-tab-navigation__item {
+                border-radius: spacings.$radius-sm;
+                height: calc(var(--wim-tab-nav-height) - 8px); // Adjust for padding
+
+                &--active {
+                    background-color: white;
+                    color: colors.$text-black;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import TabNavigation from "./TabNavigation";
+import * as TabNavigationStories from "./TabNavigation.stories";
+
+<Meta of={TabNavigationStories} />
+
+# TabNavigation
+
+TabNavigation provides a set of links to navigate between different views or contexts. Unlike the `Tabs` component, it is primarily designed for page-level navigation or filtering, often modifying the URL.
+
+## Import
+
+```jsx
+import TabNavigation from "./TabNavigation";
+```
+
+## Basic Usage
+
+The default style is `underline`, commonly used for secondary page navigation.
+
+<Canvas of={TabNavigationStories.Default} />
+
+## Variants
+
+### Pill
+
+Pill tabs are useful for filtering lists or toggling between states without changing the page context significantly.
+
+<Canvas of={TabNavigationStories.Pills} />
+
+### Contained
+
+Contained tabs resemble a segmented control and are often used for changing data views (e.g., charts by time period).
+
+<Canvas of={TabNavigationStories.Contained} />
+
+## With Icons
+
+You can add icons to items using the `icon` prop.
+
+<Canvas of={TabNavigationStories.WithIcons} />
+
+## API Reference
+
+<Controls />
