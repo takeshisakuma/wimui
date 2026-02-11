@@ -1,0 +1,37 @@
+import { Meta, Title, Subtitle, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+import * as SimpleGridStories from "./SimpleGrid.stories";
+import { T } from "../T";
+
+<Meta of={SimpleGridStories} />
+
+<Title />
+<Subtitle>
+  <T k="doc_simplegrid_subtitle" />
+</Subtitle>
+<Description />
+
+SimpleGridコンポーネントは、レスポンシブなグリッドレイアウトを簡単に作成するための高レベルコンポーネントです。
+
+<h2>特徴</h2>
+<table>
+  <tr>
+    <td>固定列数</td>
+    <td>`cols`プロパティを使用して列数を固定できます。</td>
+  </tr>
+  <tr>
+    <td>オートフィット</td>
+    <td>`minChildWidth`プロパティを使用して、子要素の最小幅に基づいて自動的に列数を調整できます。</td>
+  </tr>
+</table>
+
+<h2>プロパティ</h2>
+<Controls />
+
+<h2>固定列数の例</h2>
+<Canvas of={SimpleGridStories.FixedColumns} />
+
+<h2>レスポンシブ表示（オートフィット）の例</h2>
+画面幅に応じて列数が自動的に変化します。
+<Canvas of={SimpleGridStories.Responsive} />
+
+<Stories />

@@ -1,0 +1,74 @@
+import React from "react";
+import PropTypes from "prop-types";
+import "./grid.scss";
+
+type GridProps = React.ComponentPropsWithoutRef<"div"> & {
+    cols?: number | string;
+    rows?: number | string;
+    gap?: number | string;
+    columnGap?: number | string;
+    rowGap?: number | string;
+    align?: "start" | "center" | "end" | "stretch";
+    justify?: "start" | "center" | "end" | "between" | "around" | "stretch";
+    flow?: "row" | "column" | "dense" | "row dense" | "column dense";
+    inline?: boolean;
+};
+
+export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
+    (
+        {
+            cols,
+            rows,
+            gap,
+            columnGap,
+            rowGap,
+            align,
+            justify,
+            flow,
+            inline = false,
+            className,
+            style,
+            children,
+            ...props
+        },
+        ref
+    ) => {
+        const gridStyle: React.CSSProperties = {
+            display: inline ? "inline-grid" : "grid",
+            gridTemplateColumns: typeof cols === "number" ? `repeat(${cols}, minmax(0, 1fr))` : cols,
+            gridTemplateRows: typeof rows === "number" ? `repeat(${rows}, minmax(0, 1fr))` : rows,
+            gap: typeof gap === "number" ? `${gap}px` : gap,
+            columnGap: typeof columnGap === "number" ? `${columnGap}px` : columnGap,
+            rowGap: typeof rowGap === "number" ? `${rowGap}px` : rowGap,
+            alignItems: align,
+            justifyContent: justify === "between" ? "space-between" : justify === "around" ? "space-around" : justify,
+            gridAutoFlow: flow,
+            ...style,
+        };
+
+        return (
+            <div
+                ref={ref}
+                className={["wim-grid", className].filter(Boolean).join(" ")}
+                style={gridStyle}
+                {...props}
+            >
+                {children}
+            </div>
+        );
+    }
+);
+
+Grid.displayName = "Grid";
+
+Grid.propTypes = {
+    cols: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    columnGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    rowGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    align: PropTypes.oneOf(["start", "center", "end", "stretch"]),
+    justify: PropTypes.oneOf(["start", "center", "end", "between", "around", "stretch"]),
+    flow: PropTypes.oneOf(["row", "column", "dense", "row dense", "column dense"]),
+    inline: PropTypes.bool,
+};

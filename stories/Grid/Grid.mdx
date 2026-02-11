@@ -1,0 +1,37 @@
+import { Meta, Title, Subtitle, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+import * as GridStories from "./Grid.stories";
+import { T } from "../T";
+
+<Meta of={GridStories} />
+
+<Title />
+<Subtitle>
+  <T k="doc_grid_subtitle" />
+</Subtitle>
+<Description />
+
+Gridコンポーネントは、CSS Gridレイアウトを簡単に実装するためのコンポーネントです。
+
+<h2>特徴</h2>
+<table>
+  <tr>
+    <td>柔軟性</td>
+    <td>列数、行数、ギャップ、アライメントなどを簡単に調整できます。</td>
+  </tr>
+  <tr>
+    <td>セマンティック</td>
+    <td>デフォルトでdiv要素を使用し、各種HTML属性をサポートします。</td>
+  </tr>
+</table>
+
+<h2>プロパティ</h2>
+<Controls />
+
+<h2>基本的な使い方</h2>
+<Canvas of={GridStories.Basic} />
+
+<h2>カスタム列の指定</h2>
+`fr`単位や具体的な数値を使用して、柔軟な列構成が可能です。
+<Canvas of={GridStories.CustomColumns} />
+
+<Stories />

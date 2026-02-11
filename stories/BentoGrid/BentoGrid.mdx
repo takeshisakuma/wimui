@@ -1,0 +1,54 @@
+import { Meta, Title, Subtitle, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+import * as BentoGridStories from "./BentoGrid.stories";
+import { T } from "../T";
+
+<Meta of={BentoGridStories} />
+
+<Title />
+<Subtitle>
+  <T k="doc_bentogrid_subtitle" />
+</Subtitle>
+<Description />
+
+BentoGridコンポーネントは、モダンで視覚的に魅力的な「弁当箱」スタイルのグリッドレイアウトを作成するためのコンポーネントです。
+
+<h2>特徴</h2>
+<table>
+  <tr>
+    <td>モダンなデザイン</td>
+    <td>カード形式のレイアウトで、プロダクトの機能をショーケースするのに適しています。</td>
+  </tr>
+  <tr>
+    <td>レスポンシブ</td>
+    <td>モバイルでは1列、デスクトップでは3列に自動的に調整されます（デフォルト設定）。</td>
+  </tr>
+  <tr>
+    <td>柔軟なスパン</td>
+    <td>`wim-bento-grid-item--col-span-2`などのクラスを使用して、特定のアイテムを複数の列や行にまたがせることができます。</td>
+  </tr>
+</table>
+
+<h2>基本的な使い方</h2>
+<Canvas of={BentoGridStories.Default} />
+
+<h2>プロパティ (BentoGridItem)</h2>
+<table>
+  <tr>
+    <td>title</td>
+    <td>アイテムのタイトル</td>
+  </tr>
+  <tr>
+    <td>description</td>
+    <td>アイテムの説明</td>
+  </tr>
+  <tr>
+    <td>header</td>
+    <td>アイテムの上部に表示されるコンテンツ（画像、プレースホルダーなど）</td>
+  </tr>
+  <tr>
+    <td>icon</td>
+    <td>タイトルの横に表示されるアイコン</td>
+  </tr>
+</table>
+
+<Stories />

@@ -1,0 +1,82 @@
+.wim-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-auto-rows: 18rem;
+    gap: 1rem;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.wim-bento-grid-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+
+    &:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+    }
+
+    &__header {
+        flex: 1;
+        width: 100%;
+        min-height: 100px;
+        border-radius: 0.5rem;
+        background: linear-gradient(to bottom right, #f3f4f6, #e5e7eb);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__icon {
+        font-size: 1.5rem;
+        color: #4b5563;
+    }
+
+    &__title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0.25rem;
+    }
+
+    &__description {
+        font-size: 0.875rem;
+        color: #6b7280;
+        line-height: 1.25rem;
+    }
+}
+
+/* Specific item patterns */
+.wim-bento-grid-item--row-span-2 {
+    @media (min-width: 768px) {
+        grid-row: span 2 / span 2;
+    }
+}
+
+.wim-bento-grid-item--col-span-2 {
+    @media (min-width: 768px) {
+        grid-column: span 2 / span 2;
+    }
+}
