@@ -24,6 +24,10 @@ import UploadIcon from "../../src/icon/upload.svg?react";
 import MaximizeIcon from "../../src/icon/maximize.svg?react";
 import MinimizeIcon from "../../src/icon/minimize.svg?react";
 import StarIcon from "../../src/icon/star.svg?react";
+import HomeIcon from "../../src/icon/home.svg?react";
+import ProjectIcon from "../../src/icon/project.svg?react";
+import ChartIcon from "../../src/icon/chart.svg?react";
+import SettingsIcon from "../../src/icon/settings.svg?react";
 
 
 // アイコン名をコンポーネントにマッピング
@@ -49,6 +53,10 @@ const icons = {
   MaximizeIcon: MaximizeIcon,
   MinimizeIcon: MinimizeIcon,
   StarIcon: StarIcon,
+  HomeIcon: HomeIcon,
+  ProjectIcon: ProjectIcon,
+  ChartIcon: ChartIcon,
+  SettingsIcon: SettingsIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -73,7 +81,11 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "UploadIcon"
   | "MaximizeIcon"
   | "MinimizeIcon"
-  | "StarIcon";
+  | "StarIcon"
+  | "HomeIcon"
+  | "ProjectIcon"
+  | "ChartIcon"
+  | "SettingsIcon";
   size?: "small" | "medium" | "large";
   color?:
   | "destructive"
@@ -134,6 +146,10 @@ Icon.propTypes = {
     "MaximizeIcon",
     "MinimizeIcon",
     "StarIcon",
+    "HomeIcon",
+    "ProjectIcon",
+    "ChartIcon",
+    "SettingsIcon",
   ]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   color: PropTypes.oneOf([

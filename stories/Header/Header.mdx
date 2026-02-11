@@ -1,0 +1,36 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as HeaderStories from "./Header.stories";
+
+<Meta of={HeaderStories} />
+
+# Header
+
+Headerは、ページの上部やセクションの上部に配置される汎用的なヘッダーコンポーネントです。
+
+## インポート
+
+```jsx
+import Header from "./Header";
+```
+
+## 基本的な使用方法
+
+`Header` コンポーネントの中に `Header.Section` を配置して使用します。
+
+<Canvas of={HeaderStories.Default} />
+
+## 境界線 (Bordered)
+
+`bordered` プロパティを使用すると、下部に境界線が表示されます。
+
+<Canvas of={HeaderStories.Bordered} />
+
+## グラスモーフィズム (Glassmorphism)
+
+`glass` プロパティを使用すると、背景にぼかし効果を適用できます。
+
+<Canvas of={HeaderStories.Glass} />
+
+## API リファレンス
+
+<Controls />

@@ -1,0 +1,30 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as FooterStories from "./Footer.stories";
+
+<Meta of={FooterStories} />
+
+# Footer
+
+Footerは、ページの下部に配置されるフッターコンポーネントです。リンク、著作権情報、サイトマップなどを配置します。
+
+## インポート
+
+```jsx
+import Footer from "./Footer";
+```
+
+## 基本的な使用方法
+
+`Footer` コンポーネントの中に `Footer.Section` や `Footer.Bottom` を配置して使用します。
+
+<Canvas of={FooterStories.Default} />
+
+## ダーク背景 (Dark)
+
+`background="dark"` プロパティを使用すると、ダークな背景色になります。
+
+<Canvas of={FooterStories.Dark} />
+
+## API リファレンス
+
+<Controls />

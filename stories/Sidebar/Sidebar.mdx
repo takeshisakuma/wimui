@@ -1,0 +1,36 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as SidebarStories from "./Sidebar.stories";
+
+<Meta of={SidebarStories} />
+
+# Sidebar
+
+Sidebarは、ページの横側に配置されるナビゲーションや情報のパネルです。
+
+## インポート
+
+```jsx
+import Sidebar from "./Sidebar";
+```
+
+## 基本的な使用方法
+
+`Sidebar` の中に `Sidebar.Header`, `Sidebar.Content`, `Sidebar.Footer` を配置し、`Content` の中に `Sidebar.Item` を配置します。
+
+<Canvas of={SidebarStories.Default} />
+
+## 折りたたみ状態 (Collapsed)
+
+`collapsed` プロパティを使用すると、サイドバーを最小サイズに折りたたみます。アイコンのみが表示されるようになります。
+
+<Canvas of={SidebarStories.Collapsed} />
+
+## カスタム幅
+
+`width` プロパティを使用して、展開時の幅を調整できます。
+
+<Canvas of={SidebarStories.CustomWidth} />
+
+## API リファレンス
+
+<Controls />
