@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./simpleGrid.scss";
 
 type SimpleGridProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -38,7 +38,7 @@ export const SimpleGrid = React.forwardRef<HTMLDivElement, SimpleGridProps>(
         return (
             <div
                 ref={ref}
-                className={["wim-simple-grid", className].filter(Boolean).join(" ")}
+                className={classNames("wim-simple-grid", className)}
                 style={gridStyle}
                 {...props}
             >
@@ -50,9 +50,4 @@ export const SimpleGrid = React.forwardRef<HTMLDivElement, SimpleGridProps>(
 
 SimpleGrid.displayName = "SimpleGrid";
 
-SimpleGrid.propTypes = {
-    cols: PropTypes.number,
-    spacing: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    verticalSpacing: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    minChildWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
+

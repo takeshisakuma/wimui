@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./navbar.scss";
 
 export interface NavbarProps extends React.ComponentPropsWithoutRef<"nav"> {
@@ -20,7 +20,7 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
         return (
             <nav
                 ref={ref}
-                className={[
+                className={classNames(
                     "wim-navbar",
                     fixed && "wim-navbar--fixed",
                     sticky && "wim-navbar--sticky",
@@ -28,7 +28,7 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
                     glass && "wim-navbar--glass",
                     bordered && "wim-navbar--bordered",
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 {...props}
             >
                 <div className="wim-navbar__container">
@@ -41,15 +41,7 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
 
 Navbar.displayName = "Navbar";
 
-Navbar.propTypes = {
-    fixed: PropTypes.bool,
-    sticky: PropTypes.bool,
-    transparent: PropTypes.bool,
-    glass: PropTypes.bool,
-    bordered: PropTypes.bool,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export interface NavbarBrandProps extends React.ComponentPropsWithoutRef<"div"> { }
 
@@ -58,7 +50,7 @@ export const NavbarBrand = React.forwardRef<HTMLDivElement, NavbarBrandProps>(
         return (
             <div
                 ref={ref}
-                className={["wim-navbar__brand", className].filter(Boolean).join(" ")}
+                className={classNames("wim-navbar__brand", className)}
                 {...props}
             >
                 {children}
@@ -78,11 +70,11 @@ export const NavbarContent = React.forwardRef<HTMLDivElement, NavbarContentProps
         return (
             <div
                 ref={ref}
-                className={[
+                className={classNames(
                     "wim-navbar__content",
                     `wim-navbar__content--${justify}`,
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 {...props}
             >
                 {children}
@@ -93,11 +85,7 @@ export const NavbarContent = React.forwardRef<HTMLDivElement, NavbarContentProps
 
 NavbarContent.displayName = "Navbar.Content";
 
-NavbarContent.propTypes = {
-    justify: PropTypes.oneOf(["start", "end", "center"]),
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export interface NavbarItemProps extends React.ComponentPropsWithoutRef<"div"> {
     active?: boolean;
@@ -108,11 +96,11 @@ export const NavbarItem = React.forwardRef<HTMLDivElement, NavbarItemProps>(
         return (
             <div
                 ref={ref}
-                className={[
+                className={classNames(
                     "wim-navbar__item",
                     active && "wim-navbar__item--active",
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 {...props}
             >
                 {children}
@@ -123,11 +111,7 @@ export const NavbarItem = React.forwardRef<HTMLDivElement, NavbarItemProps>(
 
 NavbarItem.displayName = "Navbar.Item";
 
-NavbarItem.propTypes = {
-    active: PropTypes.bool,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export interface NavbarLinkProps extends React.ComponentPropsWithoutRef<"a"> {
     active?: boolean;
@@ -138,11 +122,11 @@ export const NavbarLink = React.forwardRef<HTMLAnchorElement, NavbarLinkProps>(
         return (
             <a
                 ref={ref}
-                className={[
+                className={classNames(
                     "wim-navbar__link",
                     active && "wim-navbar__link--active",
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 {...props}
             >
                 {children}
@@ -153,11 +137,7 @@ export const NavbarLink = React.forwardRef<HTMLAnchorElement, NavbarLinkProps>(
 
 NavbarLink.displayName = "Navbar.Link";
 
-NavbarLink.propTypes = {
-    active: PropTypes.bool,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export default Object.assign(Navbar, {
     Brand: NavbarBrand,

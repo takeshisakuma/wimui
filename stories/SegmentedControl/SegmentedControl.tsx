@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./segmented-control.scss";
 
@@ -15,6 +15,7 @@ type SegmentedControlProps = {
     onChange: (value: string) => void;
     size?: "small" | "medium" | "large";
     fullWidth?: boolean;
+    className?: string;
 };
 
 export const SegmentedControl = ({
@@ -23,21 +24,8 @@ export const SegmentedControl = ({
     onChange,
     size = "medium",
     fullWidth = false,
+    className,
 }: SegmentedControlProps) => {
-    const sizeMap: Record<"small" | "medium" | "large", string> = {
-        small: "sm",
-        medium: "md",
-        large: "lg",
-    };
-
-    const containerClass = [
-        "wim-segmented-control",
-        `wim-segmented-control--${sizeMap[size]}`,
-        fullWidth ? "wim-segmented-control--full-width" : "",
-    ]
-        .filter(Boolean)
-        .join(" ");
-
     // Calculate the position of the slider
     const selectedIndex = options.findIndex((opt) => opt.value === value);
     const sliderStyle = {
@@ -46,19 +34,24 @@ export const SegmentedControl = ({
     };
 
     return (
-        <div className={containerClass}>
+        <div
+            className={classNames(
+                "wim-segmented-control",
+                `wim-segmented-control--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+                fullWidth && "wim-segmented-control--full-width",
+                className
+            )}
+        >
             <div className="wim-segmented-control__slider" style={sliderStyle} />
             {options.map((option) => (
                 <button
                     key={option.value}
                     type="button"
-                    className={[
+                    className={classNames(
                         "wim-segmented-control__item",
-                        option.value === value ? "wim-segmented-control__item--active" : "",
-                        !option.label && option.iconName ? "wim-segmented-control__item--icon-only" : "",
-                    ]
-                        .filter(Boolean)
-                        .join(" ")}
+                        option.value === value && "wim-segmented-control__item--active",
+                        !option.label && option.iconName && "wim-segmented-control__item--icon-only"
+                    )}
                     onClick={() => onChange(option.value)}
                     aria-pressed={option.value === value}
                     aria-label={option.label || option.value}
@@ -78,16 +71,4 @@ export const SegmentedControl = ({
     );
 };
 
-SegmentedControl.propTypes = {
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string,
-            value: PropTypes.string.isRequired,
-            iconName: PropTypes.oneOf(["CircleIcon", "SquareIcon", "LoadingIcon", "ExternalLinkIcon"]),
-        })
-    ).isRequired,
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    fullWidth: PropTypes.bool,
-};
+

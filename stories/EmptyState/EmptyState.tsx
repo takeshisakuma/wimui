@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import "./emptystate.scss";
 
@@ -35,18 +35,20 @@ export const EmptyState = ({
     icon,
     action,
     variant = "default",
-    className = "",
+    className,
     ...props
 }: EmptyStateProps) => {
     const { t } = useTranslation();
 
-    const variantClass = variant !== "default" ? `wim-empty-state--${variant}` : "";
+
 
     return (
         <div
-            className={["wim-empty-state", variantClass, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={classNames(
+                "wim-empty-state",
+                variant !== "default" && `wim-empty-state--${variant}`,
+                className
+            )}
             {...props}
         >
             {icon && <div className="wim-empty-state__icon">{icon}</div>}
@@ -59,11 +61,4 @@ export const EmptyState = ({
     );
 };
 
-EmptyState.propTypes = {
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string,
-    icon: PropTypes.node,
-    action: PropTypes.node,
-    variant: PropTypes.oneOf(["default", "simple"]),
-    className: PropTypes.string,
-};
+

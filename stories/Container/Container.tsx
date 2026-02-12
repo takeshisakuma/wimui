@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Box, BoxProps } from "../Box/Box";
 import "./container.scss";
 
@@ -31,7 +31,7 @@ export const Container = React.forwardRef(
         return (
             <Box
                 ref={ref}
-                className={["wim-container", className].filter(Boolean).join(" ")}
+                className={classNames("wim-container", className)}
                 mx="auto"
                 w="100%"
                 style={{ maxWidth, ...style }}
@@ -45,7 +45,4 @@ export const Container = React.forwardRef(
 
 Container.displayName = "Container";
 
-Container.propTypes = {
-    size: PropTypes.oneOfType([PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]), PropTypes.number, PropTypes.string]),
-    fluid: PropTypes.bool,
-};
+

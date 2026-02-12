@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./checkbox.scss";
 
@@ -25,13 +25,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
         return (
             <label
-                className={[
+                className={classNames(
                     "wim-checkbox-wrapper",
-                    disabled ? "wim-checkbox--disabled" : "",
-                    className,
-                ]
-                    .filter(Boolean)
-                    .join(" ")}
+                    disabled && "wim-checkbox--disabled",
+                    className
+                )}
             >
                 <input
                     type="checkbox"
@@ -55,29 +53,4 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
 Checkbox.displayName = "Checkbox";
 
-Checkbox.propTypes = {
-    /**
-     * Label text to display next to the checkbox.
-     */
-    label: PropTypes.string,
-    /**
-     * If true, the checkbox is in an indeterminate state.
-     */
-    indeterminate: PropTypes.bool,
-    /**
-     * Additional class names.
-     */
-    className: PropTypes.string,
-    /**
-     * If true, the checkbox is toggled on.
-     */
-    checked: PropTypes.bool,
-    /**
-     * If true, the checkbox is disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * Function called when state changes.
-     */
-    onChange: PropTypes.func,
-};
+

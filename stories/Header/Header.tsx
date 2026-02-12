@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./header.scss";
 
 export interface HeaderProps extends React.ComponentPropsWithoutRef<"header"> {
@@ -20,7 +20,7 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
         return (
             <header
                 ref={ref}
-                className={[
+                className={classNames(
                     "wim-header",
                     fixed && "wim-header--fixed",
                     sticky && "wim-header--sticky",
@@ -28,7 +28,7 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
                     glass && "wim-header--glass",
                     background && `wim-header--bg-${background}`,
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 {...props}
             >
                 <div className="wim-header__container">
@@ -41,15 +41,7 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
 
 Header.displayName = "Header";
 
-Header.propTypes = {
-    fixed: PropTypes.bool,
-    sticky: PropTypes.bool,
-    bordered: PropTypes.bool,
-    glass: PropTypes.bool,
-    background: PropTypes.oneOf(["primary", "secondary", "transparent"]),
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export interface HeaderSectionProps extends React.ComponentPropsWithoutRef<"div"> {
     align?: "start" | "center" | "end";
@@ -60,11 +52,11 @@ export const HeaderSection = React.forwardRef<HTMLDivElement, HeaderSectionProps
         return (
             <div
                 ref={ref}
-                className={[
+                className={classNames(
                     "wim-header__section",
                     `wim-header__section--${align}`,
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 {...props}
             >
                 {children}
@@ -75,11 +67,7 @@ export const HeaderSection = React.forwardRef<HTMLDivElement, HeaderSectionProps
 
 HeaderSection.displayName = "Header.Section";
 
-HeaderSection.propTypes = {
-    align: PropTypes.oneOf(["start", "center", "end"]),
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export default Object.assign(Header, {
     Section: HeaderSection,

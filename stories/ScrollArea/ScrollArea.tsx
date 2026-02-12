@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./scroll-area.scss";
 import { useTranslation } from "react-i18next";
 
@@ -30,7 +30,7 @@ export const ScrollArea = ({
 
   return (
     <div
-      className={`wim-scroll-area ${className || ""}`}
+      className={classNames("wim-scroll-area", className)}
       style={combinedStyle}
       {...props}
     >
@@ -39,10 +39,4 @@ export const ScrollArea = ({
   );
 };
 
-ScrollArea.propTypes = {
-  text: PropTypes.string,
-  children: PropTypes.node,
-  scrollAxis: PropTypes.oneOf(["x", "y", "both"]),
-  /** Maximum height of the scroll area */
-  maxHeight: PropTypes.string,
-};
+

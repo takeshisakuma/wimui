@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import "./tag.scss";
 
@@ -25,20 +25,22 @@ export const Tag = ({
     variant = "solid",
     size = "medium",
     icon,
-    className = "",
+    className,
     ...props
 }: TagProps) => {
     const { t } = useTranslation();
 
-    const colorClass = `wim-tag--${color}`;
-    const variantClass = `wim-tag--${variant}`;
-    const sizeClass = `wim-tag--${size === "small" ? "sm" : "md"}`;
+
 
     return (
         <span
-            className={[`wim-tag`, colorClass, variantClass, sizeClass, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={classNames(
+                "wim-tag",
+                `wim-tag--${color}`,
+                `wim-tag--${variant}`,
+                `wim-tag--${size === "small" ? "sm" : "md"}`,
+                className
+            )}
             {...props}
         >
             {icon && <span className="wim-tag__icon">{icon}</span>}
@@ -49,11 +51,4 @@ export const Tag = ({
     );
 };
 
-Tag.propTypes = {
-    children: PropTypes.node,
-    color: PropTypes.oneOf(["primary", "secondary", "success", "warning", "error", "neutral"]),
-    variant: PropTypes.oneOf(["solid", "outline", "subtle"]),
-    size: PropTypes.oneOf(["small", "medium"]),
-    icon: PropTypes.node,
-    className: PropTypes.string,
-};
+

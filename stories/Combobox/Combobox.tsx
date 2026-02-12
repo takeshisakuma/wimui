@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Input } from "../Input/Input";
 import "./combobox.scss";
 
@@ -30,7 +30,7 @@ export const Combobox = ({
     showSearchIcon = true,
     allowClear = true,
     defaultValue = "",
-    className = "",
+    className,
     disabled = false,
     ...props
 }: ComboboxProps) => {
@@ -98,7 +98,7 @@ export const Combobox = ({
 
     return (
         <div
-            className={`wim-combobox ${className}`}
+            className={classNames("wim-combobox", className)}
             ref={containerRef}
             onKeyDown={handleKeyDown}
         >
@@ -119,7 +119,10 @@ export const Combobox = ({
                     {filteredOptions.map((option, index) => (
                         <li
                             key={option.value}
-                            className={`wim-combobox-option ${index === activeIndex ? "wim-combobox-option--active" : ""}`}
+                            className={classNames(
+                                "wim-combobox-option",
+                                index === activeIndex && "wim-combobox-option--active"
+                            )}
                             onClick={() => handleOptionClick(option)}
                         >
                             {option.label}
@@ -134,34 +137,4 @@ export const Combobox = ({
     );
 };
 
-Combobox.propTypes = {
-    /**
-     * 選択肢の配列。
-     */
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string.isRequired,
-            value: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-    /**
-     * 項目が選択された時のコールバック。
-     */
-    onSelect: PropTypes.func,
-    /**
-     * プレースホルダー。
-     */
-    placeholder: PropTypes.string,
-    /**
-     * 左側に検索アイコンを表示するかどうか。
-     */
-    showSearchIcon: PropTypes.bool,
-    /**
-     * クリアボタンを表示するかどうか。
-     */
-    allowClear: PropTypes.bool,
-    /**
-     * 無効化。
-     */
-    disabled: PropTypes.bool,
-};
+

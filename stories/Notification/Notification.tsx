@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 import "./notification.scss";
@@ -43,7 +44,7 @@ export const Notification = ({
     type,
     onClose,
     closable = true,
-    className = "",
+    className,
 }: NotificationProps) => {
     const { t } = useTranslation();
 
@@ -66,11 +67,11 @@ export const Notification = ({
     };
 
     return (
-        <div className={[
+        <div className={classNames(
             "wim-notification",
-            type ? `wim-notification--${type}` : "",
+            type && `wim-notification--${type}`,
             className
-        ].filter(Boolean).join(" ")} role="alert">
+        )} role="alert">
             <div className="wim-notification-content">
                 {renderIcon() && (
                     <div className="wim-notification-icon">

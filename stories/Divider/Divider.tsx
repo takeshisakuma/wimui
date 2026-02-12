@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./divider.scss";
 
 export type DividerProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -19,11 +19,10 @@ export type DividerProps = React.ComponentPropsWithoutRef<"div"> & {
 export const Divider = ({
     orientation = "horizontal",
     thickness = 1,
-    className = "",
+    className,
     style,
     ...props
 }: DividerProps) => {
-    const orientationClass = `wim-divider--${orientation}`;
 
     const customStyle: React.CSSProperties = {
         ...style,
@@ -34,18 +33,11 @@ export const Divider = ({
         <div
             role="separator"
             aria-orientation={orientation}
-            className={["wim-divider", orientationClass, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={classNames("wim-divider", `wim-divider--${orientation}`, className)}
             style={customStyle}
             {...props}
         />
     );
 };
 
-Divider.propTypes = {
-    orientation: PropTypes.oneOf(["horizontal", "vertical"]),
-    thickness: PropTypes.number,
-    className: PropTypes.string,
-    style: PropTypes.object,
-};
+

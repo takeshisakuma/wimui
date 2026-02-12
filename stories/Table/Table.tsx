@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./table.scss";
 import { Icon } from "../Icon/Icon";
 
@@ -19,7 +19,7 @@ type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
     children: React.ReactNode;
 };
 
-export const Table = ({
+const Table = ({
     striped = false,
     bordered = false,
     hoverable = false,
@@ -32,24 +32,7 @@ export const Table = ({
     children,
     ...props
 }: TableProps) => {
-    const classes = [
-        "wim-table",
-        striped ? "wim-table--striped" : "",
-        bordered ? "wim-table--bordered" : "",
-        hoverable ? "wim-table--hoverable" : "",
-        fullWidth ? "wim-table--full-width" : "",
-        stickyHeader ? "wim-table--sticky-header" : "",
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
 
-    const containerClasses = [
-        "wim-table-container",
-        stickyHeader ? "wim-table-container--sticky" : "",
-        scrollbar === "subtle" ? "subtle-scrollbar" : "",
-        scrollbar === "hidden" ? "no-scrollbar" : "",
-    ].filter(Boolean).join(" ");
 
     const containerStyle: React.CSSProperties = {
         height,
@@ -58,8 +41,27 @@ export const Table = ({
     };
 
     return (
-        <div className={containerClasses} style={containerStyle}>
-            <table className={classes} {...props}>
+        <div
+            className={classNames(
+                "wim-table-container",
+                stickyHeader && "wim-table-container--sticky",
+                scrollbar === "subtle" && "subtle-scrollbar",
+                scrollbar === "hidden" && "no-scrollbar",
+            )}
+            style={containerStyle}
+        >
+            <table
+                className={classNames(
+                    "wim-table",
+                    striped && "wim-table--striped",
+                    bordered && "wim-table--bordered",
+                    hoverable && "wim-table--hoverable",
+                    fullWidth && "wim-table--full-width",
+                    stickyHeader && "wim-table--sticky-header",
+                    className
+                )}
+                {...props}
+            >
                 {children}
             </table>
         </div>
@@ -71,7 +73,7 @@ export const TableHeader = ({
     children,
     ...props
 }: React.HTMLAttributes<HTMLTableSectionElement>) => (
-    <thead className={["wim-table__header", className].filter(Boolean).join(" ")} {...props}>
+    <thead className={classNames("wim-table__header", className)} {...props}>
         {children}
     </thead>
 );
@@ -81,7 +83,7 @@ export const TableBody = ({
     children,
     ...props
 }: React.HTMLAttributes<HTMLTableSectionElement>) => (
-    <tbody className={["wim-table__body", className].filter(Boolean).join(" ")} {...props}>
+    <tbody className={classNames("wim-table__body", className)} {...props}>
         {children}
     </tbody>
 );
@@ -91,7 +93,7 @@ export const TableFooter = ({
     children,
     ...props
 }: React.HTMLAttributes<HTMLTableSectionElement>) => (
-    <tfoot className={["wim-table__footer", className].filter(Boolean).join(" ")} {...props}>
+    <tfoot className={classNames("wim-table__footer", className)} {...props}>
         {children}
     </tfoot>
 );
@@ -107,9 +109,7 @@ export const TableRow = ({
     ...props
 }: TableRowProps) => (
     <tr
-        className={["wim-table__row", selected ? "wim-table__row--selected" : "", className]
-            .filter(Boolean)
-            .join(" ")}
+        className={classNames("wim-table__row", selected && "wim-table__row--selected", className)}
         {...props}
     >
         {children}
@@ -131,18 +131,16 @@ export const TableHead = ({
     children,
     ...props
 }: TableHeadProps) => {
-    const classes = [
-        "wim-table__head",
-        sortable ? "wim-table__head--sortable" : "",
-        props.selection ? "wim-table__head--selection" : "",
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
+
 
     return (
         <th
-            className={classes}
+            className={classNames(
+                "wim-table__head",
+                sortable && "wim-table__head--sortable",
+                props.selection && "wim-table__head--selection",
+                className
+            )}
             {...props}
             onClick={sortable ? onSort : props.onClick}
             tabIndex={sortable ? 0 : undefined}
@@ -159,10 +157,10 @@ export const TableHead = ({
                 {children}
                 {sortable && (
                     <span
-                        className={[
+                        className={classNames(
                             "wim-table__sort-icon",
                             `wim-table__sort-icon--${sortDirection}`,
-                        ].join(" ")}
+                        )}
                     >
                         <Icon name="ChevronDownIcon" size="small" />
                     </span>
@@ -183,35 +181,32 @@ export const TableCell = ({
     ...props
 }: TableCellProps) => (
     <td
-        className={[
+        className={classNames(
             "wim-table__cell",
-            selection ? "wim-table__cell--selection" : "",
+            selection && "wim-table__cell--selection",
             className,
-        ]
-            .filter(Boolean)
-            .join(" ")}
+        )}
         {...props}
     >
         {children}
     </td>
 );
 
-Table.Header = TableHeader;
-Table.Body = TableBody;
-Table.Footer = TableFooter;
-Table.Row = TableRow;
-Table.Head = TableHead;
-Table.Cell = TableCell;
-
-Table.propTypes = {
-    striped: PropTypes.bool,
-    bordered: PropTypes.bool,
-    hoverable: PropTypes.bool,
-    fullWidth: PropTypes.bool,
-    stickyHeader: PropTypes.bool,
-    scrollbar: PropTypes.oneOf(["default", "subtle", "hidden"]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    className: PropTypes.string,
-    children: PropTypes.node.isRequired,
+const TableComponent = Table as typeof Table & {
+    Header: typeof TableHeader;
+    Body: typeof TableBody;
+    Footer: typeof TableFooter;
+    Row: typeof TableRow;
+    Head: typeof TableHead;
+    Cell: typeof TableCell;
 };
+
+TableComponent.Header = TableHeader;
+TableComponent.Body = TableBody;
+TableComponent.Footer = TableFooter;
+TableComponent.Row = TableRow;
+TableComponent.Head = TableHead;
+TableComponent.Cell = TableCell;
+
+export { TableComponent as Table };
+export default TableComponent;

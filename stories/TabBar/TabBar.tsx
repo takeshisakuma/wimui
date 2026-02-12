@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./tab-bar.scss";
 
 export interface TabBarProps extends React.ComponentPropsWithoutRef<"nav"> {
@@ -11,18 +11,18 @@ export interface TabBarProps extends React.ComponentPropsWithoutRef<"nav"> {
     glass?: boolean;
 }
 
-export const TabBar = React.forwardRef<HTMLElement, TabBarProps>(
+const TabBar = React.forwardRef<HTMLElement, TabBarProps>(
     ({ className, children, fixed = true, bordered = true, glass = false, ...props }, ref) => {
         return (
             <nav
                 ref={ref}
-                className={[
+                className={classNames(
                     "wim-tab-bar",
                     fixed && "wim-tab-bar--fixed",
                     bordered && "wim-tab-bar--bordered",
                     glass && "wim-tab-bar--glass",
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 {...props}
             >
                 <div className="wim-tab-bar__container">
@@ -35,13 +35,7 @@ export const TabBar = React.forwardRef<HTMLElement, TabBarProps>(
 
 TabBar.displayName = "TabBar";
 
-TabBar.propTypes = {
-    fixed: PropTypes.bool,
-    bordered: PropTypes.bool,
-    glass: PropTypes.bool,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export interface TabBarItemProps extends React.ComponentPropsWithoutRef<"button"> {
     /** Active state */
@@ -60,11 +54,11 @@ export const TabBarItem = React.forwardRef<HTMLButtonElement, TabBarItemProps>(
             <button
                 ref={ref}
                 type="button"
-                className={[
+                className={classNames(
                     "wim-tab-bar__item",
                     active && "wim-tab-bar__item--active",
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 aria-pressed={active}
                 {...props}
             >
@@ -79,15 +73,13 @@ export const TabBarItem = React.forwardRef<HTMLButtonElement, TabBarItemProps>(
 
 TabBarItem.displayName = "TabBar.Item";
 
-TabBarItem.propTypes = {
-    active: PropTypes.bool,
-    icon: PropTypes.node,
-    label: PropTypes.string,
-    badge: PropTypes.node,
-    className: PropTypes.string,
-    children: PropTypes.node,
+
+
+const TabBarComponent = TabBar as typeof TabBar & {
+    Item: typeof TabBarItem;
 };
 
-export default Object.assign(TabBar, {
-    Item: TabBarItem,
-});
+TabBarComponent.Item = TabBarItem;
+
+export { TabBarComponent as TabBar };
+export default TabBarComponent;

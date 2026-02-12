@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./float-button.scss";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
@@ -89,27 +89,21 @@ export const FloatButton = ({
 
     if (!visible && backTop) return null;
 
-    const sizeMap: Record<"small" | "medium" | "large", string> = {
-        small: "sm",
-        medium: "md",
-        large: "lg",
-    };
 
-    const classes = [
-        "wim-float-button",
-        `wim-float-button--${variant}`,
-        `wim-float-button--${shape}`,
-        `wim-float-button--${sizeMap[size]}`,
-        `wim-float-button--${position}`,
-        label ? "wim-float-button--extended" : "",
-        shrink ? "wim-float-button--shrink" : "",
-        className,
-    ].filter(Boolean).join(" ");
 
     return (
         <button
             type="button"
-            className={classes}
+            className={classNames(
+                "wim-float-button",
+                `wim-float-button--${variant}`,
+                `wim-float-button--${shape}`,
+                `wim-float-button--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+                `wim-float-button--${position}`,
+                label && "wim-float-button--extended",
+                shrink && "wim-float-button--shrink",
+                className
+            )}
             style={style}
             onClick={handleClick}
             title={description ? t(description) : undefined}
@@ -120,7 +114,7 @@ export const FloatButton = ({
                 <Icon
                     name={(backTop ? "ChevronDownIcon" : iconName) as any}
                     size={size}
-                    className={backTop ? "wim-float-button__icon--backtop" : ""}
+                    className={classNames(backTop && "wim-float-button__icon--backtop")}
                 />
                 {label && (
                     <span className="wim-float-button__label-wrapper">
@@ -128,7 +122,7 @@ export const FloatButton = ({
                     </span>
                 )}
                 {badge && (
-                    <span className={badge === true ? "wim-float-button__badge--dot" : "wim-float-button__badge"}>
+                    <span className={classNames(badge === true ? "wim-float-button__badge--dot" : "wim-float-button__badge")}>
                         {typeof badge === "number" ? badge : ""}
                     </span>
                 )}
@@ -138,21 +132,6 @@ export const FloatButton = ({
     );
 };
 
-FloatButton.propTypes = {
-    iconName: PropTypes.string,
-    variant: PropTypes.oneOf(["default", "primary"]),
-    shape: PropTypes.oneOf(["circle", "square"]),
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    label: PropTypes.string,
-    shrink: PropTypes.bool,
-    position: PropTypes.oneOf(["bottom-right", "bottom-left", "bottom-center", "top-right", "top-left", "static"]),
-    description: PropTypes.string,
-    badge: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    backTop: PropTypes.bool,
-    visibilityHeight: PropTypes.number,
-    className: PropTypes.string,
-    style: PropTypes.object,
-    "aria-label": PropTypes.string,
-};
+
 
 export default FloatButton;

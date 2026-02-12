@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./skeleton.scss";
 
 type SkeletonProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -36,11 +36,10 @@ export const Skeleton = ({
     width,
     height,
     style,
-    className = "",
+    className,
     ...props
 }: SkeletonProps) => {
-    const variantClass = `wim-skeleton--${variant}`;
-    const animationClass = animation !== "none" ? `wim-skeleton--${animation}` : "";
+
 
     const skeletonStyle: React.CSSProperties = {
         width,
@@ -50,9 +49,12 @@ export const Skeleton = ({
 
     return (
         <div
-            className={["wim-skeleton", variantClass, animationClass, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={classNames(
+                "wim-skeleton",
+                `wim-skeleton--${variant}`,
+                animation !== "none" && `wim-skeleton--${animation}`,
+                className
+            )}
             style={skeletonStyle}
             aria-hidden="true"
             {...props}
@@ -60,29 +62,4 @@ export const Skeleton = ({
     );
 };
 
-Skeleton.propTypes = {
-    /**
-     * スケルトンの形状。
-     */
-    variant: PropTypes.oneOf(["text", "rect", "circle"]),
-    /**
-     * アニメーションの種類。
-     */
-    animation: PropTypes.oneOf(["pulse", "wave", "none"]),
-    /**
-     * 幅。
-     */
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    /**
-     * 高さ。
-     */
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    /**
-     * 追加のスタイル。
-     */
-    style: PropTypes.object,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
+

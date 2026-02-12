@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Box, BoxProps } from "../Box/Box";
 import "./center.scss";
 
@@ -20,7 +20,7 @@ export const Center = React.forwardRef(
             <Box
                 ref={ref}
                 display={inline ? "inline-flex" : "flex"}
-                className={["wim-center", className].filter(Boolean).join(" ")}
+                className={classNames("wim-center", className)}
                 style={{
                     alignItems: "center",
                     justifyContent: "center",
@@ -36,6 +36,4 @@ export const Center = React.forwardRef(
 
 Center.displayName = "Center";
 
-Center.propTypes = {
-    inline: PropTypes.bool,
-};
+

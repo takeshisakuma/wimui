@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 import "./alert.scss";
@@ -44,7 +44,7 @@ export const Alert = ({
     variant = "info",
     icon,
     onClose,
-    className = "",
+    className,
     children,
     ...props
 }: AlertProps) => {
@@ -67,7 +67,7 @@ export const Alert = ({
 
     return (
         <div
-            className={[`wim-alert`, `wim-alert--${variant}`, className].filter(Boolean).join(" ")}
+            className={classNames("wim-alert", `wim-alert--${variant}`, className)}
             role="alert"
             {...props}
         >
@@ -96,12 +96,4 @@ export const Alert = ({
     );
 };
 
-Alert.propTypes = {
-    title: PropTypes.string,
-    description: PropTypes.string,
-    variant: PropTypes.oneOf(["info", "success", "warning", "error"]),
-    icon: PropTypes.node,
-    onClose: PropTypes.func,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+

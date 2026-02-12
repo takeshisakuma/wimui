@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./pagination.scss";
 
@@ -130,17 +130,15 @@ export const Pagination = ({
     if (simple) {
         return (
             <nav
-                className={["wim-pagination", "wim-pagination--simple", className].filter(Boolean).join(" ")}
+                className={classNames("wim-pagination", "wim-pagination--simple", className)}
                 aria-label="Pagination Navigation"
             >
                 <ul className="wim-pagination">
                     <li
-                        className={[
+                        className={classNames(
                             "wim-pagination__item",
-                            current === 1 ? "wim-pagination__item--disabled" : "",
-                        ]
-                            .filter(Boolean)
-                            .join(" ")}
+                            current === 1 && "wim-pagination__item--disabled"
+                        )}
                     >
                         <button
                             className="wim-pagination__button"
@@ -155,12 +153,10 @@ export const Pagination = ({
                         <span>{current} / {totalPages}</span>
                     </li>
                     <li
-                        className={[
+                        className={classNames(
                             "wim-pagination__item",
-                            current === totalPages ? "wim-pagination__item--disabled" : "",
-                        ]
-                            .filter(Boolean)
-                            .join(" ")}
+                            current === totalPages && "wim-pagination__item--disabled"
+                        )}
                     >
                         <button
                             className="wim-pagination__button"
@@ -177,7 +173,7 @@ export const Pagination = ({
     }
 
     return (
-        <div className={["wim-pagination-wrapper", className].filter(Boolean).join(" ")}>
+        <div className={classNames("wim-pagination-wrapper", className)}>
             {showTotal && (
                 <div className="wim-pagination__total">
                     {showTotal(total, [startItem, endItem])}
@@ -190,12 +186,10 @@ export const Pagination = ({
                 <ul className="wim-pagination">
                     {/* Previous Button */}
                     <li
-                        className={[
+                        className={classNames(
                             "wim-pagination__item",
-                            current === 1 ? "wim-pagination__item--disabled" : "",
-                        ]
-                            .filter(Boolean)
-                            .join(" ")}
+                            current === 1 && "wim-pagination__item--disabled"
+                        )}
                     >
                         <button
                             className="wim-pagination__button"
@@ -224,12 +218,10 @@ export const Pagination = ({
                         return (
                             <li
                                 key={pageNumber}
-                                className={[
+                                className={classNames(
                                     "wim-pagination__item",
-                                    pageNumber === current ? "wim-pagination__item--active" : "",
-                                ]
-                                    .filter(Boolean)
-                                    .join(" ")}
+                                    pageNumber === current && "wim-pagination__item--active"
+                                )}
                             >
                                 <button
                                     className="wim-pagination__button"
@@ -245,12 +237,10 @@ export const Pagination = ({
 
                     {/* Next Button */}
                     <li
-                        className={[
+                        className={classNames(
                             "wim-pagination__item",
-                            current === totalPages ? "wim-pagination__item--disabled" : "",
-                        ]
-                            .filter(Boolean)
-                            .join(" ")}
+                            current === totalPages && "wim-pagination__item--disabled"
+                        )}
                     >
                         <button
                             className="wim-pagination__button"
@@ -302,20 +292,6 @@ export const Pagination = ({
     );
 };
 
-Pagination.propTypes = {
-    total: PropTypes.number.isRequired,
-    pageSize: PropTypes.number,
-    current: PropTypes.number,
-    onChange: PropTypes.func,
-    onPageSizeChange: PropTypes.func,
-    siblingCount: PropTypes.number,
-    className: PropTypes.string,
-    hideOnSinglePage: PropTypes.bool,
-    simple: PropTypes.bool,
-    showSizeChanger: PropTypes.bool,
-    pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
-    showTotal: PropTypes.func,
-    showQuickJumper: PropTypes.bool,
-};
+
 
 export default Pagination;

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./video.scss";
 
@@ -18,6 +18,8 @@ type VideoProps = React.ComponentPropsWithoutRef<"video"> & {
     fit?: "contain" | "cover" | "fill" | "none" | "scale-down";
     preload?: "auto" | "metadata" | "none";
     caption?: string;
+    customControls?: boolean;
+    advancedControls?: boolean;
 };
 
 export const Video = ({
@@ -169,15 +171,7 @@ export const Video = ({
         return `${minutes}:${seconds.toString().padStart(2, "0")}`;
     };
 
-    const innerClasses = [
-        "wim-video-inner",
-        radius !== "none" && `wim-video--radius-${radius}`,
-        shadow && "wim-video--shadow",
-        border && "wim-video--border",
-        customControls && "wim-video--custom",
-    ]
-        .filter(Boolean)
-        .join(" ");
+
 
     const videoStyles: React.CSSProperties = {
         width: width || "100%",
@@ -192,10 +186,19 @@ export const Video = ({
 
     return (
         <figure
-            className={`wim-video-container ${className || ""}`}
+            className={classNames("wim-video-container", className)}
             style={{ width: width || "100%" }}
         >
-            <div className={innerClasses} ref={containerRef}>
+            <div
+                className={classNames(
+                    "wim-video-inner",
+                    radius !== "none" && `wim-video--radius-${radius}`,
+                    shadow && "wim-video--shadow",
+                    border && "wim-video--border",
+                    customControls && "wim-video--custom",
+                )}
+                ref={containerRef}
+            >
                 <video
                     ref={videoRef}
                     src={src}
@@ -289,21 +292,4 @@ export const Video = ({
     );
 };
 
-Video.propTypes = {
-    src: PropTypes.string.isRequired,
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    autoPlay: PropTypes.bool,
-    loop: PropTypes.bool,
-    muted: PropTypes.bool,
-    controls: PropTypes.bool,
-    poster: PropTypes.string,
-    radius: PropTypes.oneOf(["none", "small", "medium", "large", "full"]),
-    shadow: PropTypes.bool,
-    border: PropTypes.bool,
-    fit: PropTypes.oneOf(["contain", "cover", "fill", "none", "scale-down"]),
-    preload: PropTypes.oneOf(["auto", "metadata", "none"]),
-    caption: PropTypes.string,
-    customControls: PropTypes.bool,
-    advancedControls: PropTypes.bool,
-};
+

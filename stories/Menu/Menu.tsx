@@ -1,4 +1,5 @@
 import React, { ReactNode, useState } from "react";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./menu.scss";
 
@@ -24,7 +25,7 @@ export type MenuProps = {
 
 export const Menu = ({
     children,
-    className = "",
+    className,
     mode = "vertical",
     defaultOpenKeys = [],
 }: MenuProps) => {
@@ -46,7 +47,7 @@ export const Menu = ({
 
     return (
         <MenuContext.Provider value={{ expandedItems, toggleItem }}>
-            <ul className={`wim-menu wim-menu--${mode} ${className}`} role="menu">
+            <ul className={classNames("wim-menu", `wim-menu--${mode}`, className)} role="menu">
                 {children}
             </ul>
         </MenuContext.Provider>
@@ -67,7 +68,7 @@ export const MenuItem = ({
     children,
     onClick,
     disabled = false,
-    className = "",
+    className,
     icon,
 }: MenuItemProps) => {
     const handleClick = (e: React.MouseEvent) => {
@@ -81,7 +82,11 @@ export const MenuItem = ({
 
     return (
         <li
-            className={`wim-menu-item ${disabled ? "wim-menu-item--disabled" : ""} ${className}`}
+            className={classNames(
+                "wim-menu-item",
+                disabled && "wim-menu-item--disabled",
+                className
+            )}
             onClick={handleClick}
             role="menuitem"
             tabIndex={disabled ? -1 : 0}
@@ -99,9 +104,9 @@ export type MenuItemGroupProps = {
     className?: string;
 };
 
-export const MenuItemGroup = ({ children, title, className = "" }: MenuItemGroupProps) => {
+export const MenuItemGroup = ({ children, title, className }: MenuItemGroupProps) => {
     return (
-        <li className={`wim-menu-item-group ${className}`}>
+        <li className={classNames("wim-menu-item-group", className)}>
             {title && <div className="wim-menu-item-group__title">{title}</div>}
             <ul className="wim-menu-item-group__list" role="group">
                 {children}
@@ -122,7 +127,7 @@ export type SubMenuProps = {
 export const SubMenu = ({
     children,
     title,
-    className = "",
+    className,
     icon,
     itemKey,
 }: SubMenuProps) => {
@@ -135,7 +140,11 @@ export const SubMenu = ({
     };
 
     return (
-        <li className={`wim-menu-submenu ${isOpen ? "wim-menu-submenu--open" : ""} ${className}`}>
+        <li className={classNames(
+            "wim-menu-submenu",
+            isOpen && "wim-menu-submenu--open",
+            className
+        )}>
             <div
                 className="wim-menu-submenu__title"
                 onClick={handleToggle}
@@ -146,7 +155,10 @@ export const SubMenu = ({
             >
                 {icon && <span className="wim-menu-item__icon">{icon}</span>}
                 <span className="wim-menu-item__content">{title}</span>
-                <span className={`wim-menu-submenu__arrow ${isOpen ? "wim-menu-submenu__arrow--open" : ""}`}>
+                <span className={classNames(
+                    "wim-menu-submenu__arrow",
+                    isOpen && "wim-menu-submenu__arrow--open"
+                )}>
                     <Icon name="ChevronRightIcon" size="small" />
                 </span>
             </div>
@@ -163,6 +175,6 @@ export type MenuDividerProps = {
     className?: string;
 };
 
-export const MenuDivider = ({ className = "" }: MenuDividerProps) => {
-    return <li className={`wim-menu-divider ${className}`} role="separator" />;
+export const MenuDivider = ({ className }: MenuDividerProps) => {
+    return <li className={classNames("wim-menu-divider", className)} role="separator" />;
 };

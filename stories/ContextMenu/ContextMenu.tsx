@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, ReactNode } from "react";
+import classNames from "classnames";
 import "./contextMenu.scss";
 
 export type ContextMenuProps = {
@@ -13,7 +14,7 @@ export type ContextMenuProps = {
 export const ContextMenu = ({
     children,
     menu,
-    className = "",
+    className,
     disabled = false,
 }: ContextMenuProps) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -101,7 +102,7 @@ export const ContextMenu = ({
     return (
         <div
             ref={containerRef}
-            className={`wim-context-menu-container ${className}`}
+            className={classNames("wim-context-menu-container", className)}
             onContextMenu={handleContextMenu}
         >
             {children}
@@ -136,7 +137,7 @@ export const ContextMenuItem = ({
     children,
     onClick,
     disabled = false,
-    className = "",
+    className,
     icon,
     danger = false,
 }: ContextMenuItemProps) => {
@@ -151,7 +152,12 @@ export const ContextMenuItem = ({
 
     return (
         <div
-            className={`wim-context-menu-item ${disabled ? "wim-context-menu-item--disabled" : ""} ${danger ? "wim-context-menu-item--danger" : ""} ${className}`}
+            className={classNames(
+                "wim-context-menu-item",
+                disabled && "wim-context-menu-item--disabled",
+                danger && "wim-context-menu-item--danger",
+                className
+            )}
             onClick={handleClick}
             onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -173,8 +179,8 @@ export type ContextMenuDividerProps = {
     className?: string;
 };
 
-export const ContextMenuDivider = ({ className = "" }: ContextMenuDividerProps) => {
-    return <div className={`wim-context-menu-divider ${className}`} role="separator" />;
+export const ContextMenuDivider = ({ className }: ContextMenuDividerProps) => {
+    return <div className={classNames("wim-context-menu-divider", className)} role="separator" />;
 };
 
 export type ContextMenuGroupProps = {
@@ -186,10 +192,10 @@ export type ContextMenuGroupProps = {
 export const ContextMenuGroup = ({
     children,
     title,
-    className = "",
+    className,
 }: ContextMenuGroupProps) => {
     return (
-        <div className={`wim-context-menu-group ${className}`}>
+        <div className={classNames("wim-context-menu-group", className)}>
             {title && <div className="wim-context-menu-group__title">{title}</div>}
             {children}
         </div>

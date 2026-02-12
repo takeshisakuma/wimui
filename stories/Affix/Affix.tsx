@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./affix.scss";
 
 export interface AffixProps {
@@ -49,7 +49,7 @@ export const Affix = ({
         if (!targetElement) return;
 
         const placeholderRect = placeholderRef.current.getBoundingClientRect();
-        const targetRect = targetElement instanceof Window
+        const targetRect = (targetElement === window || targetElement instanceof Window)
             ? { top: 0, bottom: window.innerHeight }
             : (targetElement as HTMLElement).getBoundingClientRect();
 
@@ -138,10 +138,10 @@ export const Affix = ({
     }, [target, updatePosition]);
 
     return (
-        <div ref={placeholderRef} style={{ ...state.placeholderStyle, ...style }} className={className}>
+        <div ref={placeholderRef} style={{ ...state.placeholderStyle, ...style }} className={classNames(className)}>
             <div
                 ref={fixedRef}
-                className={state.isAffixed ? "wim-affix--affixed" : ""}
+                className={classNames(state.isAffixed && "wim-affix--affixed")}
                 style={state.affixStyle}
             >
                 {children}
@@ -150,14 +150,6 @@ export const Affix = ({
     );
 };
 
-Affix.propTypes = {
-    offsetTop: PropTypes.number,
-    offsetBottom: PropTypes.number,
-    onChange: PropTypes.func,
-    target: PropTypes.func,
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    style: PropTypes.object,
-};
+
 
 export default Affix;

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./stepper.scss";
 
@@ -65,13 +65,11 @@ export const Stepper = ({
 
     return (
         <div
-            className={[
+            className={classNames(
                 "wim-stepper",
                 `wim-stepper--${direction}`,
                 className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+            )}
         >
             {steps.map((step, index) => {
                 const stepStatus = getStepStatus(index, step.status);
@@ -80,14 +78,12 @@ export const Stepper = ({
                 return (
                     <div
                         key={index}
-                        className={[
+                        className={classNames(
                             "wim-stepper__item",
                             `wim-stepper__item--${stepStatus}`,
-                            labelPlacement === "vertical" ? "wim-stepper__item--label-vertical" : "",
-                            step.disabled ? "wim-stepper__item--disabled" : "",
-                        ]
-                            .filter(Boolean)
-                            .join(" ")}
+                            labelPlacement === "vertical" && "wim-stepper__item--label-vertical",
+                            step.disabled && "wim-stepper__item--disabled"
+                        )}
                         onClick={() => isClickable && onChange(index)}
                         style={{ cursor: isClickable ? "pointer" : "default" }}
                     >
@@ -110,22 +106,6 @@ export const Stepper = ({
     );
 };
 
-Stepper.propTypes = {
-    steps: PropTypes.arrayOf(
-        PropTypes.shape({
-            title: PropTypes.node.isRequired,
-            description: PropTypes.node,
-            icon: PropTypes.node,
-            status: PropTypes.oneOf(["wait", "process", "finish", "error"]),
-            disabled: PropTypes.bool,
-        })
-    ).isRequired,
-    current: PropTypes.number,
-    direction: PropTypes.oneOf(["horizontal", "vertical"]),
-    labelPlacement: PropTypes.oneOf(["horizontal", "vertical"]),
-    status: PropTypes.oneOf(["wait", "process", "finish", "error"]),
-    className: PropTypes.string,
-    onChange: PropTypes.func,
-};
+
 
 export default Stepper;

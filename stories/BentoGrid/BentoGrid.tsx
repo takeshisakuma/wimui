@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./bentoGrid.scss";
 
 type BentoGridProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -13,7 +13,7 @@ export const BentoGrid = ({
 }: BentoGridProps) => {
     return (
         <div
-            className={["wim-bento-grid", className].filter(Boolean).join(" ")}
+            className={classNames("wim-bento-grid", className)}
             {...props}
         >
             {children}
@@ -40,7 +40,7 @@ export const BentoGridItem = ({
 }: BentoGridItemProps) => {
     return (
         <div
-            className={["wim-bento-grid-item", className].filter(Boolean).join(" ")}
+            className={classNames("wim-bento-grid-item", className)}
             {...props}
         >
             {header && <div className="wim-bento-grid-item__header">{header}</div>}

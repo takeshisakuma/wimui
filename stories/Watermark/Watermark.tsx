@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./watermark.scss";
 
 type WatermarkProps = {
@@ -27,7 +27,7 @@ export const Watermark = ({
     gap = [100, 100],
     offset = [50, 50],
     children,
-    className = "",
+    className,
 }: WatermarkProps) => {
     const [base64, setBase64] = useState("");
 
@@ -69,7 +69,7 @@ export const Watermark = ({
     }, [content, image, width, height, rotate, opacity, gap, offset]);
 
     return (
-        <div className={`wim-watermark-wrapper ${className}`}>
+        <div className={classNames("wim-watermark-wrapper", className)}>
             {children}
             <div
                 className="wim-watermark"
@@ -83,19 +83,4 @@ export const Watermark = ({
     );
 };
 
-Watermark.propTypes = {
-    content: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string),
-    ]),
-    image: PropTypes.string,
-    width: PropTypes.number,
-    height: PropTypes.number,
-    rotate: PropTypes.number,
-    zIndex: PropTypes.number,
-    opacity: PropTypes.number,
-    gap: PropTypes.arrayOf(PropTypes.number),
-    offset: PropTypes.arrayOf(PropTypes.number),
-    children: PropTypes.node,
-    className: PropTypes.string,
-};
+

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { QRCodeSVG, QRCodeCanvas } from "qrcode.react";
 import "./qrcode.scss";
 
@@ -24,12 +24,12 @@ export const QRCode = ({
     marginSize = 0,
     renderAs = "svg",
     imageSettings,
-    className = "",
+    className,
 }: QRCodeProps) => {
     const Component = renderAs === "svg" ? QRCodeSVG : QRCodeCanvas;
 
     return (
-        <div className={`wim-qrcode ${className}`}>
+        <div className={classNames("wim-qrcode", className)}>
             <Component
                 value={value}
                 size={size}
@@ -43,21 +43,4 @@ export const QRCode = ({
     );
 };
 
-QRCode.propTypes = {
-    value: PropTypes.string.isRequired,
-    size: PropTypes.number,
-    level: PropTypes.oneOf(["L", "M", "Q", "H"]),
-    bgColor: PropTypes.string,
-    fgColor: PropTypes.string,
-    marginSize: PropTypes.number,
-    renderAs: PropTypes.oneOf(["svg", "canvas"]),
-    imageSettings: PropTypes.shape({
-        src: PropTypes.string.isRequired,
-        x: PropTypes.number,
-        y: PropTypes.number,
-        height: PropTypes.number,
-        width: PropTypes.number,
-        excavate: PropTypes.bool,
-    }),
-    className: PropTypes.string,
-};
+

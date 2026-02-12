@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./image.scss";
 
 type ImageProps = React.ComponentPropsWithoutRef<"img"> & {
@@ -30,14 +30,7 @@ export const Image = ({
     style,
     ...props
 }: ImageProps) => {
-    const innerClasses = [
-        "wim-image-inner",
-        radius !== "none" && `wim-image--radius-${radius}`,
-        shadow && "wim-image--shadow",
-        border && "wim-image--border",
-    ]
-        .filter(Boolean)
-        .join(" ");
+
 
     const imageStyles: React.CSSProperties = {
         width: width || "100%",
@@ -47,8 +40,15 @@ export const Image = ({
     };
 
     return (
-        <figure className={`wim-image-container ${className || ""}`} style={{ width: width || "100%" }}>
-            <div className={innerClasses}>
+        <figure className={classNames("wim-image-container", className)} style={{ width: width || "100%" }}>
+            <div
+                className={classNames(
+                    "wim-image-inner",
+                    radius !== "none" && `wim-image--radius-${radius}`,
+                    shadow && "wim-image--shadow",
+                    border && "wim-image--border"
+                )}
+            >
                 <img
                     src={src}
                     alt={alt}
@@ -63,15 +63,4 @@ export const Image = ({
     );
 };
 
-Image.propTypes = {
-    src: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    radius: PropTypes.oneOf(["none", "small", "medium", "large", "full"]),
-    shadow: PropTypes.bool,
-    border: PropTypes.bool,
-    fit: PropTypes.oneOf(["contain", "cover", "fill", "none", "scale-down"]),
-    loading: PropTypes.oneOf(["eager", "lazy"]),
-    caption: PropTypes.string,
-};
+

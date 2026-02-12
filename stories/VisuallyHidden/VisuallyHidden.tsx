@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./visuallyHidden.scss";
 
 export type VisuallyHiddenProps = React.ComponentPropsWithoutRef<"span"> & {
@@ -14,12 +14,12 @@ export type VisuallyHiddenProps = React.ComponentPropsWithoutRef<"span"> & {
  */
 export const VisuallyHidden = ({
     children,
-    className = "",
+    className,
     ...props
 }: VisuallyHiddenProps) => {
     return (
         <span
-            className={["wim-visually-hidden", className].filter(Boolean).join(" ")}
+            className={classNames("wim-visually-hidden", className)}
             {...props}
         >
             {children}
@@ -27,13 +27,4 @@ export const VisuallyHidden = ({
     );
 };
 
-VisuallyHidden.propTypes = {
-    /**
-     * 表示されないが、スクリーンリーダーには読み上げられるコンテンツ。
-     */
-    children: PropTypes.node.isRequired,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
+

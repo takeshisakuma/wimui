@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./input.scss";
 import { Icon } from "../Icon/Icon";
 
@@ -24,7 +24,7 @@ export const Input = ({
     state = "default",
     variant = "outline",
     fullWidth = false,
-    className = "",
+    className,
     disabled,
     leftIcon,
     rightIcon,
@@ -48,10 +48,7 @@ export const Input = ({
     const currentValue = isControlled ? value : internalValue;
 
     // disabled prop takes precedence for visual styling
-    const effectiveState = disabled ? "disabled" : state;
-    const stateClass = `wim-input--${effectiveState}`;
-    const variantClass = `wim-input--${variant}`;
-    const widthClass = fullWidth ? "wim-input--full-width" : "";
+
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!isControlled) {
@@ -108,17 +105,15 @@ export const Input = ({
 
     const inputElement = (
         <input
-            className={[
+            className={classNames(
                 "wim-input",
-                stateClass,
-                variantClass,
-                widthClass,
-                leftIcon ? "wim-input--has-left-icon" : "",
-                finalRightIcon ? "wim-input--has-right-icon" : "",
-                className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+                `wim-input--${disabled ? "disabled" : state}`,
+                `wim-input--${variant}`,
+                fullWidth && "wim-input--full-width",
+                leftIcon && "wim-input--has-left-icon",
+                finalRightIcon && "wim-input--has-right-icon",
+                className
+            )}
             disabled={disabled || state === "disabled"}
             value={currentValue}
             onChange={handleInputChange}
@@ -129,20 +124,17 @@ export const Input = ({
 
     return (
         <div
-            className={[
+            className={classNames(
                 "wim-input-container",
-                widthClass,
-                className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+                fullWidth && "wim-input--full-width"
+            )}
         >
             {leftIcon && (
-                <div className={[
+                <div className={classNames(
                     "wim-input-icon",
                     "wim-input-icon--left",
-                    onLeftIconClick ? "wim-input-icon--clickable" : "",
-                ].filter(Boolean).join(" ")}>
+                    onLeftIconClick && "wim-input-icon--clickable"
+                )}>
                     {onLeftIconClick ? (
                         <button type="button" onClick={onLeftIconClick} className="wim-input-icon-button" aria-label="left-icon-action">
                             <Icon name={leftIcon} size="medium" color={getIconColor(leftIconColor)} />
@@ -154,11 +146,11 @@ export const Input = ({
             )}
             {inputElement}
             {finalRightIcon && (
-                <div className={[
+                <div className={classNames(
                     "wim-input-icon",
                     "wim-input-icon--right",
-                    finalOnRightIconClick ? "wim-input-icon--clickable" : "",
-                ].filter(Boolean).join(" ")}>
+                    finalOnRightIconClick && "wim-input-icon--clickable"
+                )}>
                     {finalOnRightIconClick ? (
                         <button type="button" onClick={finalOnRightIconClick} className="wim-input-icon-button" aria-label="right-icon-action">
                             <Icon name={finalRightIcon} size="medium" color={getIconColor(rightIconColor)} />
@@ -172,37 +164,4 @@ export const Input = ({
     );
 };
 
-Input.propTypes = {
-    /**
-     * 入力フィールドの状態。
-     */
-    state: PropTypes.oneOf(["default", "error", "disabled"]),
-    /**
-     * 入力フィールドのデザインバリエーション。
-     */
-    variant: PropTypes.oneOf(["outline", "ghost"]),
-    /**
-     * 横幅を100%にするかどうか。
-     */
-    fullWidth: PropTypes.bool,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-    /**
-     * 左側に表示するアイコン。検索のインジケーターとして SearchIcon のみを受け付けます。
-     */
-    leftIcon: PropTypes.string,
-    /**
-     * 右側に表示するアイコン。
-     */
-    rightIcon: PropTypes.string,
-    /**
-     * クリアボタンを表示するかどうか。文字入力時に自動的に CloseIcon が右側に表示されます。
-     */
-    allowClear: PropTypes.bool,
-    /**
-     * パスワード表示切り替えボタンを表示するかどうか(type="password"時のみ)。デフォルト true。
-     */
-    showPasswordToggle: PropTypes.bool,
-};
+

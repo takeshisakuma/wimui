@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./calendar.scss";
 
@@ -61,7 +61,7 @@ export const Calendar = ({
     value,
     onChange,
     defaultValue,
-    className = "",
+    className,
     disabled = false,
     rangeMode = false,
     range,
@@ -212,7 +212,7 @@ export const Calendar = ({
 
     return (
         <div
-            className={`wim-calendar ${disabled ? "wim-calendar--disabled" : ""} ${className}`}
+            className={classNames("wim-calendar", disabled && "wim-calendar--disabled", className)}
             {...props}
         >
             <div className="wim-calendar-header">
@@ -252,7 +252,14 @@ export const Calendar = ({
                         <button
                             key={index}
                             type="button"
-                            className={`wim-calendar-day ${!currentMonth ? "wim-calendar-day--other-month" : ""} ${selected ? "wim-calendar-day--selected" : ""} ${today ? "wim-calendar-day--today" : ""} ${inRange ? "wim-calendar-day--in-range" : ""} ${dateDisabled ? "wim-calendar-day--disabled" : ""}`}
+                            className={classNames(
+                                "wim-calendar-day",
+                                !currentMonth && "wim-calendar-day--other-month",
+                                selected && "wim-calendar-day--selected",
+                                today && "wim-calendar-day--today",
+                                inRange && "wim-calendar-day--in-range",
+                                dateDisabled && "wim-calendar-day--disabled"
+                            )}
                             onClick={() => handleDateClick(date)}
                             disabled={disabled || dateDisabled}
                         >
@@ -265,10 +272,4 @@ export const Calendar = ({
     );
 };
 
-Calendar.propTypes = {
-    value: PropTypes.instanceOf(Date),
-    onChange: PropTypes.func,
-    defaultValue: PropTypes.instanceOf(Date),
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-};
+

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./toggle-group.scss";
 
@@ -32,7 +32,7 @@ export const ToggleGroup = ({
     selectionMode = "single",
     size = "medium",
     fullWidth = false,
-    className = "",
+    className,
 }: ToggleGroupProps) => {
     const isControlled = value !== undefined;
     const [internalValue, setInternalValue] = useState<string | string[]>(
@@ -74,34 +74,29 @@ export const ToggleGroup = ({
         return currentValue === optionValue;
     };
 
-    const sizeMap: Record<"small" | "medium" | "large", string> = {
-        small: "sm",
-        medium: "md",
-        large: "lg",
-    };
 
-    const containerClass = [
-        "wim-toggle-group",
-        `wim-toggle-group--${sizeMap[size]}`,
-        fullWidth ? "wim-toggle-group--full-width" : "",
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
+
+
 
     return (
-        <div className={containerClass} role="group">
+        <div
+            className={classNames(
+                "wim-toggle-group",
+                `wim-toggle-group--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+                fullWidth && "wim-toggle-group--full-width",
+                className,
+            )}
+            role="group"
+        >
             {options.map((option) => (
                 <button
                     key={option.value}
                     type="button"
-                    className={[
+                    className={classNames(
                         "wim-toggle-group__item",
-                        isSelected(option.value) ? "wim-toggle-group__item--active" : "",
-                        !option.label && option.iconName ? "wim-toggle-group__item--icon-only" : "",
-                    ]
-                        .filter(Boolean)
-                        .join(" ")}
+                        isSelected(option.value) && "wim-toggle-group__item--active",
+                        !option.label && option.iconName && "wim-toggle-group__item--icon-only",
+                    )}
                     onClick={() => handleToggle(option.value)}
                     disabled={option.disabled}
                     aria-pressed={isSelected(option.value)}
@@ -122,44 +117,4 @@ export const ToggleGroup = ({
     );
 };
 
-ToggleGroup.propTypes = {
-    /**
-     * Array of options to display.
-     */
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string,
-            value: PropTypes.string.isRequired,
-            iconName: PropTypes.string,
-            disabled: PropTypes.bool,
-        })
-    ).isRequired,
-    /**
-     * Currently selected value(s) (controlled mode).
-     */
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-    /**
-     * Default selected value(s) (uncontrolled mode).
-     */
-    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-    /**
-     * Callback fired when selection changes.
-     */
-    onChange: PropTypes.func,
-    /**
-     * Whether single or multiple options can be selected.
-     */
-    selectionMode: PropTypes.oneOf(["single", "multiple"]),
-    /**
-     * Size of the toggle items.
-     */
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    /**
-     * Whether the group should take up the full width of its container.
-     */
-    fullWidth: PropTypes.bool,
-    /**
-     * Additional class names.
-     */
-    className: PropTypes.string,
-};
+

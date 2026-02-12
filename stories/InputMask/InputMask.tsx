@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import PropTypes from "prop-types";
+
 import { Input } from "../Input/Input";
 import "./input-mask.scss";
 
@@ -103,14 +103,4 @@ export const InputMask = ({
     );
 };
 
-InputMask.propTypes = {
-    /**
-     * マスクパターン。 '9'（数字）、'a'（英字）、'*'（英数字）を使用。
-     * 例: "999-9999", "(999) 999-9999"
-     */
-    mask: PropTypes.string.isRequired,
-    /**
-     * 未入力部分に表示する文字。
-     */
-    maskChar: PropTypes.string,
-};
+

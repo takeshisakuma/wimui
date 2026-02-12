@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Checkbox } from "../Checkbox/Checkbox";
 import "./checkbox-group.scss";
 
@@ -55,13 +55,11 @@ export const CheckboxGroup = ({
 
     return (
         <div
-            className={[
+            className={classNames(
                 "wim-checkbox-group",
-                direction === "horizontal" ? "wim-checkbox-group--horizontal" : "",
-                className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+                direction === "horizontal" && "wim-checkbox-group--horizontal",
+                className
+            )}
         >
             {options.map((option) => (
                 <Checkbox
@@ -78,39 +76,4 @@ export const CheckboxGroup = ({
     );
 };
 
-CheckboxGroup.propTypes = {
-    /**
-     * Array of options to display.
-     */
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string.isRequired,
-            value: PropTypes.string.isRequired,
-            disabled: PropTypes.bool,
-        }).isRequired
-    ).isRequired,
-    /**
-     * Currently selected values (controlled mode).
-     */
-    value: PropTypes.arrayOf(PropTypes.string.isRequired),
-    /**
-     * Default selected values (uncontrolled mode).
-     */
-    defaultValue: PropTypes.arrayOf(PropTypes.string.isRequired),
-    /**
-     * Callback fired when value changes.
-     */
-    onChange: PropTypes.func,
-    /**
-     * Layout direction of the checkboxes.
-     */
-    direction: PropTypes.oneOf(["vertical", "horizontal"]),
-    /**
-     * Name attribute for the input elements.
-     */
-    name: PropTypes.string,
-    /**
-     * Additional class names.
-     */
-    className: PropTypes.string,
-};
+

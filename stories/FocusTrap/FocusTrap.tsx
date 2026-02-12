@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./focusTrap.scss";
 
 export type FocusTrapProps = {
@@ -29,7 +29,7 @@ export const FocusTrap = ({
     children,
     active = true,
     autoFocus = true,
-    className = "",
+    className,
 }: FocusTrapProps) => {
     const rootRef = useRef<HTMLDivElement>(null);
     const previouslyFocusedElement = useRef<HTMLElement | null>(null);
@@ -102,27 +102,10 @@ export const FocusTrap = ({
     }, [active, autoFocus]);
 
     return (
-        <div ref={rootRef} className={`wim-focus-trap ${className}`}>
+        <div ref={rootRef} className={classNames("wim-focus-trap", className)}>
             {children}
         </div>
     );
 };
 
-FocusTrap.propTypes = {
-    /**
-     * トラップされるコンテンツ。
-     */
-    children: PropTypes.node.isRequired,
-    /**
-     * トラップが有効かどうか。
-     */
-    active: PropTypes.bool,
-    /**
-     * マウント時に最初の要素にフォーカスするかどうか。
-     */
-    autoFocus: PropTypes.bool,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
+

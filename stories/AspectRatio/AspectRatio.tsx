@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./aspect-ratio.scss";
 
 export type AspectRatioProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -21,7 +21,7 @@ export const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
         return (
             <div
                 ref={ref}
-                className={["wim-aspect-ratio", className].filter(Boolean).join(" ")}
+                className={classNames("wim-aspect-ratio", className)}
                 style={{ "--wim-aspect-ratio": ratio, ...style } as React.CSSProperties}
                 {...props}
             >
@@ -33,7 +33,4 @@ export const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
 
 AspectRatio.displayName = "AspectRatio";
 
-AspectRatio.propTypes = {
-    ratio: PropTypes.number,
-    children: PropTypes.node.isRequired,
-};
+

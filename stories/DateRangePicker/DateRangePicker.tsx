@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { DatePicker } from "../DatePicker/DatePicker";
 
 type DateRangePickerProps = {
@@ -13,10 +14,10 @@ type DateRangePickerProps = {
 export const DateRangePicker = ({
     startProps,
     endProps,
-    className = "",
+    className,
 }: DateRangePickerProps) => {
     return (
-        <div className={["wim-daterangepicker", className].filter(Boolean).join(" ")} style={{ display: "flex", gap: "8px" }}>
+        <div className={classNames("wim-daterangepicker", className)} style={{ display: "flex", gap: "8px" }}>
             <DatePicker {...startProps} />
             <span style={{ alignSelf: "center" }}>~</span>
             <DatePicker {...endProps} />

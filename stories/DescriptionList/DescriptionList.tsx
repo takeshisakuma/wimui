@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./descriptionlist.scss";
 import { useTranslation } from "react-i18next";
 
@@ -13,24 +13,25 @@ type DescriptionListProps = {
 
 export const DescriptionList = ({
     children,
-    className = "",
+    className,
     layout = "horizontal",
     size = "medium",
     border = false,
     ...props
 }: DescriptionListProps) => {
-    const classes = [
-        "wim-description-list",
-        `wim-description-list--${layout}`,
-        `wim-description-list--${size}`,
-        border ? "wim-description-list--border" : "",
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
+
 
     return (
-        <dl className={classes} {...props}>
+        <dl
+            className={classNames(
+                "wim-description-list",
+                `wim-description-list--${layout}`,
+                `wim-description-list--${size}`,
+                border && "wim-description-list--border",
+                className
+            )}
+            {...props}
+        >
             {children}
         </dl>
     );
@@ -43,11 +44,11 @@ type DescriptionListItemProps = {
 
 export const DescriptionListItem = ({
     children,
-    className = "",
+    className,
     ...props
 }: DescriptionListItemProps) => {
     return (
-        <div className={`wim-description-list__item ${className}`} {...props}>
+        <div className={classNames("wim-description-list__item", className)} {...props}>
             {children}
         </div>
     );
@@ -60,12 +61,12 @@ type DescriptionListTermProps = {
 
 export const DescriptionListTerm = ({
     children,
-    className = "",
+    className,
     ...props
 }: DescriptionListTermProps) => {
     const { t } = useTranslation();
     return (
-        <dt className={`wim-description-list__term ${className}`} {...props}>
+        <dt className={classNames("wim-description-list__term", className)} {...props}>
             {typeof children === "string" ? t(children) : children}
         </dt>
     );
@@ -78,36 +79,15 @@ type DescriptionListDetailsProps = {
 
 export const DescriptionListDetails = ({
     children,
-    className = "",
+    className,
     ...props
 }: DescriptionListDetailsProps) => {
     const { t } = useTranslation();
     return (
-        <dd className={`wim-description-list__details ${className}`} {...props}>
+        <dd className={classNames("wim-description-list__details", className)} {...props}>
             {typeof children === "string" ? t(children) : children}
         </dd>
     );
 };
 
-DescriptionList.propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    layout: PropTypes.oneOf(["horizontal", "vertical", "compact"]),
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    border: PropTypes.bool,
-};
 
-DescriptionListItem.propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-};
-
-DescriptionListTerm.propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-};
-
-DescriptionListDetails.propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-};

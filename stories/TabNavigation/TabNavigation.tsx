@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./tab-navigation.scss";
 
 export interface TabNavigationProps extends React.ComponentPropsWithoutRef<"nav"> {
@@ -11,7 +11,7 @@ export interface TabNavigationProps extends React.ComponentPropsWithoutRef<"nav"
     size?: "small" | "medium" | "large";
 }
 
-export const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
+const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
     ({ className, children, variant = "underline", align = "start", size = "medium", ...props }, ref) => {
         const navRef = useRef<HTMLElement>(null);
 
@@ -20,13 +20,13 @@ export const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
         return (
             <nav
                 ref={ref || navRef}
-                className={[
+                className={classNames(
                     "wim-tab-navigation",
                     `wim-tab-navigation--${variant}`,
                     `wim-tab-navigation--${align}`,
                     `wim-tab-navigation--${size}`,
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 {...props}
             >
                 <div className="wim-tab-navigation__list" role="tablist">
@@ -39,13 +39,7 @@ export const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
 
 TabNavigation.displayName = "TabNavigation";
 
-TabNavigation.propTypes = {
-    variant: PropTypes.oneOf(["underline", "pill", "contained"]),
-    align: PropTypes.oneOf(["start", "center", "end", "justify"]),
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export interface TabNavigationItemProps extends React.ComponentPropsWithoutRef<"a"> {
     /** Active state */
@@ -74,12 +68,12 @@ export const TabNavigationItem = React.forwardRef<HTMLAnchorElement, TabNavigati
                 ref={ref}
                 href={href}
                 onClick={handleClick}
-                className={[
+                className={classNames(
                     "wim-tab-navigation__item",
                     active && "wim-tab-navigation__item--active",
                     disabled && "wim-tab-navigation__item--disabled",
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 role="tab"
                 aria-selected={active}
                 aria-disabled={disabled}
@@ -95,16 +89,13 @@ export const TabNavigationItem = React.forwardRef<HTMLAnchorElement, TabNavigati
 
 TabNavigationItem.displayName = "TabNavigation.Item";
 
-TabNavigationItem.propTypes = {
-    active: PropTypes.bool,
-    disabled: PropTypes.bool,
-    icon: PropTypes.node,
-    href: PropTypes.string,
-    onClick: PropTypes.func,
-    className: PropTypes.string,
-    children: PropTypes.node,
+
+
+const TabNavigationComponent = TabNavigation as typeof TabNavigation & {
+    Item: typeof TabNavigationItem;
 };
 
-export default Object.assign(TabNavigation, {
-    Item: TabNavigationItem,
-});
+TabNavigationComponent.Item = TabNavigationItem;
+
+export { TabNavigationComponent as TabNavigation };
+export default TabNavigationComponent;

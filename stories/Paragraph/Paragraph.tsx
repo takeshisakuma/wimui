@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./paragraph.scss";
 import { useTranslation } from "react-i18next";
 
@@ -27,71 +27,31 @@ export const Paragraph = ({
   lineHeight = "normal-latn",
   style = "normal",
   decoration = "none",
+  className,
   ...props
 }: ParagraphProps) => {
   const { t } = useTranslation();
 
-  const sizeMap = {
-    "ex-small": "xs",
-    small: "sm",
-    medium: "md",
-    large: "lg",
-    "ex-large": "xl",
-  };
-  const sizeClass = `wim-paragraph--${sizeMap[size]}`;
-  const lineHeightClass = `wim-paragraph--${lineHeight}`;
-  const weightClass = weight === "bold" ? "wim-paragraph--bold" : "";
-  const styleClass = style === "italic" ? "wim-paragraph--italic" : "";
-  const decorationClass = decoration !== "none" ? `wim-paragraph--${decoration}` : "";
-  const colorClass = `wim-paragraph--${color}`;
-
   const innerContent = decoration !== "none" ? (
-    <span className={decorationClass}>{t(content)}</span>
+    <span className={`wim-paragraph--${decoration}`}>{t(content)}</span>
   ) : (
     t(content)
   );
 
   return (
     <p
-      className={[
-        `wim-paragraph`,
-        sizeClass,
-        lineHeightClass,
-        weightClass,
-        styleClass,
-        // decorationClass, // 削除
-        colorClass,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={classNames(
+        "wim-paragraph",
+        `wim-paragraph--${size === "ex-small" ? "xs" : size === "small" ? "sm" : size === "large" ? "lg" : size === "ex-large" ? "xl" : "md"}`,
+        `wim-paragraph--${lineHeight}`,
+        weight === "bold" && "wim-paragraph--bold",
+        style === "italic" && "wim-paragraph--italic",
+        `wim-paragraph--${color}`,
+        className
+      )}
       {...props}
     >
       {innerContent}
     </p>
   );
-};
-
-Paragraph.propTypes = {
-  size: PropTypes.oneOf(["ex-small", "small", "medium", "large", "ex-large"]),
-  color: PropTypes.oneOf([
-    "black",
-    "deepgray",
-    "gray",
-    "lightgray",
-    "white",
-    "error",
-  ]),
-  weight: PropTypes.oneOf(["normal", "bold"]),
-  style: PropTypes.oneOf(["normal", "italic"]),
-  decoration: PropTypes.oneOf(["line-through", "underline", "highlight", "none"]),
-  lineHeight: PropTypes.oneOf([
-    "normal-jpan",
-    "tight-jpan",
-    "loose-jpan",
-    "normal-latn",
-    "tight-latn",
-    "loose-latn",
-  ]),
-  content: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./rating.scss";
 
@@ -49,7 +49,7 @@ export const Rating = ({
     disabled = false,
     size = "medium",
     onChange,
-    className = "",
+    className,
     ...props
 }: RatingProps) => {
     const isControlled = value !== undefined;
@@ -104,7 +104,7 @@ export const Rating = ({
         return (
             <div
                 key={index}
-                className={`wim-rating__star ${isFull ? "wim-rating__star--full" : ""} ${isHalf ? "wim-rating__star--half" : ""}`}
+                className={classNames("wim-rating__star", isFull && "wim-rating__star--full", isHalf && "wim-rating__star--half")}
                 onMouseMove={(e) => handleMouseMove(index, e)}
                 onClick={(e) => handleClick(index, e)}
             >
@@ -122,7 +122,7 @@ export const Rating = ({
 
     return (
         <div
-            className={`wim-rating wim-rating--${size} ${disabled ? "wim-rating--disabled" : ""} ${className}`}
+            className={classNames("wim-rating", `wim-rating--${size}`, disabled && "wim-rating--disabled", className)}
             onMouseLeave={handleMouseLeave}
             {...props}
         >
@@ -131,13 +131,4 @@ export const Rating = ({
     );
 };
 
-Rating.propTypes = {
-    value: PropTypes.number,
-    defaultValue: PropTypes.number,
-    count: PropTypes.number,
-    allowHalf: PropTypes.bool,
-    disabled: PropTypes.bool,
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    onChange: PropTypes.func,
-    className: PropTypes.string,
-};
+

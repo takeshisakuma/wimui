@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./switch.scss";
 
 type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
@@ -18,13 +18,11 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
 
         return (
             <label
-                className={[
+                className={classNames(
                     "wim-switch-wrapper",
-                    disabled ? "wim-switch--disabled" : "",
+                    disabled && "wim-switch--disabled",
                     className,
-                ]
-                    .filter(Boolean)
-                    .join(" ")}
+                )}
             >
                 <input
                     type="checkbox"
@@ -35,12 +33,10 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
                     {...props}
                 />
                 <div
-                    className={[
+                    className={classNames(
                         "wim-switch-track",
-                        size === "small" ? "wim-switch-track--small" : "",
-                    ]
-                        .filter(Boolean)
-                        .join(" ")}
+                        size === "small" && "wim-switch-track--small"
+                    )}
                 >
                     <div className="wim-switch-thumb" />
                 </div>
@@ -52,41 +48,4 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
 
 Switch.displayName = "Switch";
 
-Switch.propTypes = {
-    /**
-     * Label text to display next to the switch.
-     */
-    label: PropTypes.string,
-    /**
-     * Size of the switch.
-     */
-    size: PropTypes.oneOf(["small", "medium"]),
-    /**
-     * Additional class names.
-     */
-    className: PropTypes.string,
-    /**
-     * If true, the switch is checked.
-     */
-    checked: PropTypes.bool,
-    /**
-     * If true, the switch is default checked.
-     */
-    defaultChecked: PropTypes.bool,
-    /**
-     * If true, the switch is disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * Function called when state changes.
-     */
-    onChange: PropTypes.func,
-    /**
-     * Name attribute for the input element.
-     */
-    name: PropTypes.string,
-    /**
-     * Value attribute for the input element.
-     */
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
+

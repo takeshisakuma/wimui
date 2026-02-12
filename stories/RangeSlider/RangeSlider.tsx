@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./rangeSlider.scss";
 
 type RangeSliderProps = {
@@ -63,7 +63,7 @@ export const RangeSlider = ({
     disabled = false,
     onChange,
     onAfterChange,
-    className = "",
+    className,
     name,
     ...props
 }: RangeSliderProps) => {
@@ -262,7 +262,7 @@ export const RangeSlider = ({
 
     return (
         <div
-            className={`wim-range-slider ${disabled ? "wim-range-slider--disabled" : ""} ${className}`}
+            className={classNames("wim-range-slider", disabled && "wim-range-slider--disabled", className)}
             onMouseDown={handleTrackMouseDown}
             onTouchStart={handleTrackMouseDown}
             {...props}
@@ -308,16 +308,4 @@ export const RangeSlider = ({
     );
 };
 
-RangeSlider.propTypes = {
-    value: PropTypes.arrayOf(PropTypes.number),
-    defaultValue: PropTypes.arrayOf(PropTypes.number),
-    min: PropTypes.number,
-    max: PropTypes.number,
-    step: PropTypes.number,
-    allowCross: PropTypes.bool,
-    disabled: PropTypes.bool,
-    onChange: PropTypes.func,
-    onAfterChange: PropTypes.func,
-    className: PropTypes.string,
-    name: PropTypes.string,
-};
+

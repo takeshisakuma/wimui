@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, ReactNode } from "react";
+import classNames from "classnames";
 import "./dropdown.scss";
 
 // Context to share state between components
@@ -17,7 +18,7 @@ export type DropdownProps = {
     className?: string;
 };
 
-export const Dropdown = ({ children, className = "" }: DropdownProps) => {
+export const Dropdown = ({ children, className }: DropdownProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -53,7 +54,7 @@ export const Dropdown = ({ children, className = "" }: DropdownProps) => {
 
     return (
         <DropdownContext.Provider value={{ isOpen, toggle, close }}>
-            <div className={`wim-dropdown ${className}`} ref={containerRef}>
+            <div className={classNames("wim-dropdown", className)} ref={containerRef}>
                 {children}
             </div>
         </DropdownContext.Provider>
@@ -65,12 +66,12 @@ export type DropdownTriggerProps = {
     className?: string;
 };
 
-export const DropdownTrigger = ({ children, className = "" }: DropdownTriggerProps) => {
+export const DropdownTrigger = ({ children, className }: DropdownTriggerProps) => {
     const { toggle, isOpen } = React.useContext(DropdownContext);
 
     return (
         <div
-            className={`wim-dropdown-trigger ${className}`}
+            className={classNames("wim-dropdown-trigger", className)}
             onClick={toggle}
             aria-haspopup="true"
             aria-expanded={isOpen}
@@ -88,7 +89,7 @@ export type DropdownMenuProps = {
 
 export const DropdownMenu = ({
     children,
-    className = "",
+    className,
     align = "left",
 }: DropdownMenuProps) => {
     const { isOpen } = React.useContext(DropdownContext);
@@ -97,7 +98,11 @@ export const DropdownMenu = ({
 
     return (
         <div
-            className={`wim-dropdown-menu wim-dropdown-menu--align-${align} ${className}`}
+            className={classNames(
+                "wim-dropdown-menu",
+                `wim-dropdown-menu--align-${align}`,
+                className
+            )}
             role="menu"
         >
             {children}
@@ -116,7 +121,7 @@ export const DropdownItem = ({
     children,
     onClick,
     disabled = false,
-    className = "",
+    className,
 }: DropdownItemProps) => {
     const { close } = React.useContext(DropdownContext);
 
@@ -131,7 +136,11 @@ export const DropdownItem = ({
 
     return (
         <div
-            className={`wim-dropdown-item ${disabled ? "wim-dropdown-item--disabled" : ""} ${className}`}
+            className={classNames(
+                "wim-dropdown-item",
+                disabled && "wim-dropdown-item--disabled",
+                className
+            )}
             onClick={handleClick}
             role="menuitem"
             tabIndex={disabled ? -1 : 0}

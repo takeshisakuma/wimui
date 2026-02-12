@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Portal } from "../Portal/Portal";
 import { Button } from "../Button/Button";
 import "./tour.scss";
@@ -136,7 +136,7 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
                 />
             )}
             <div
-                className={`wim-tour-bubble wim-tour-bubble--${step.placement || "bottom"}`}
+                className={classNames("wim-tour-bubble", `wim-tour-bubble--${step.placement || "bottom"}`)}
                 style={bubbleStyle}
             >
                 <div className="wim-tour-bubble-inner">
@@ -173,16 +173,4 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
     );
 };
 
-Tour.propTypes = {
-    steps: PropTypes.arrayOf(
-        PropTypes.shape({
-            target: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            description: PropTypes.string.isRequired,
-            placement: PropTypes.oneOf(["top", "bottom", "left", "right"]),
-        })
-    ).isRequired,
-    open: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    onFinish: PropTypes.func,
-};
+

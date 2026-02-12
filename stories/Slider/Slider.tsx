@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./slider.scss";
 
 type SliderProps = {
@@ -57,7 +57,7 @@ export const Slider = ({
     disabled = false,
     onChange,
     onAfterChange,
-    className = "",
+    className,
     name,
     ...props
 }: SliderProps) => {
@@ -166,7 +166,7 @@ export const Slider = ({
 
     return (
         <div
-            className={`wim-slider ${disabled ? "wim-slider--disabled" : ""} ${className}`}
+            className={classNames("wim-slider", disabled && "wim-slider--disabled", className)}
             onMouseDown={handleMouseDown}
             onTouchStart={handleMouseDown}
             {...props}
@@ -193,15 +193,4 @@ export const Slider = ({
     );
 };
 
-Slider.propTypes = {
-    value: PropTypes.number,
-    defaultValue: PropTypes.number,
-    min: PropTypes.number,
-    max: PropTypes.number,
-    step: PropTypes.number,
-    disabled: PropTypes.bool,
-    onChange: PropTypes.func,
-    onAfterChange: PropTypes.func,
-    className: PropTypes.string,
-    name: PropTypes.string,
-};
+

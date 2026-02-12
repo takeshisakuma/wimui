@@ -32,7 +32,7 @@ export type TooltipProps = {
 
 export const Tooltip = ({
     children,
-    className = "",
+    className,
     delay = 200,
     isOpen: controlledOpen,
     onOpenChange,
@@ -86,7 +86,7 @@ export type TooltipTriggerProps = {
     asChild?: boolean;
 };
 
-export const TooltipTrigger = ({ children, className = "", asChild }: TooltipTriggerProps) => {
+export const TooltipTrigger = ({ children, className, asChild }: TooltipTriggerProps) => {
     const { open, close } = React.useContext(TooltipContext);
 
     // Helper to merge handlers
@@ -155,7 +155,7 @@ export type TooltipContentProps = {
 
 export const TooltipContent = ({
     children,
-    className = "",
+    className,
     align = "center",
     side = "top",
     ...props

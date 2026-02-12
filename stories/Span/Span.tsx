@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./span.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
@@ -24,6 +24,7 @@ export const Span = ({
   iconName = undefined,
   iconPosition = "left",
   decoration = "none",
+  className,
   ...props
 }: SpanProps) => {
   const { t } = useTranslation();
@@ -35,11 +36,6 @@ export const Span = ({
     large: "lg",
     "ex-large": "xl",
   };
-  const sizeClass = `wim-span--${sizeMap[size]}`;
-  const colorClass = `wim-span--${color}`;
-  const weightClass = weight === "bold" ? "wim-span--bold" : "";
-  const styleClass = style === "italic" ? "wim-span--italic" : "";
-  const decorationClass = decoration !== "none" ? `wim-span--${decoration}` : "";
 
   // Icon の size プロパティは "small" | "medium" | "large" のみ許容されているためマッピング
   const iconSizeMap: Record<string, "small" | "medium" | "large"> = {
@@ -65,9 +61,15 @@ export const Span = ({
 
   return (
     <span
-      className={[`wim-span`, sizeClass, colorClass, weightClass, styleClass, decorationClass]
-        .filter(Boolean)
-        .join(" ")}
+      className={classNames(
+        "wim-span",
+        `wim-span--${sizeMap[size]}`,
+        `wim-span--${color}`,
+        weight === "bold" && "wim-span--bold",
+        style === "italic" && "wim-span--italic",
+        decoration !== "none" && `wim-span--${decoration}`,
+        className
+      )}
       {...props}
     >
       {contentToRender}
@@ -75,40 +77,4 @@ export const Span = ({
   );
 };
 
-Span.propTypes = {
-  size: PropTypes.oneOf(["ex-small", "small", "medium", "large", "ex-large"]),
-  color: PropTypes.oneOf([
-    "black",
-    "deepgray",
-    "gray",
-    "lightgray",
-    "white",
-    "error",
-  ]),
-  weight: PropTypes.oneOf(["normal", "bold"]),
-  style: PropTypes.oneOf(["normal", "italic"]),
-  decoration: PropTypes.oneOf(["line-through", "underline", "highlight", "none"]),
-  content: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-  iconName: PropTypes.oneOf([
-    "CircleIcon",
-    "SquareIcon",
-    "LoadingIcon",
-    "ExternalLinkIcon",
-    "CloseIcon",
-    "SearchIcon",
-    "EyeIcon",
-    "EyeOffIcon",
-    "ChevronDownIcon",
-    "PlayIcon",
-    "PauseIcon",
-    "VolumeIcon",
-    "MuteIcon",
-    "ChevronRightIcon",
-    "ChevronLeftIcon",
-    "CopyIcon",
-    "CheckIcon",
-    "UploadIcon",
-  ]),
-  iconPosition: PropTypes.oneOf(["left", "right"]),
-};
+

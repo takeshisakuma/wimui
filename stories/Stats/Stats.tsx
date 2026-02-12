@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./stats.scss";
 
 export type StatsProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -14,45 +14,43 @@ export type StatsProps = React.ComponentPropsWithoutRef<"div"> & {
  */
 export const Stats = ({
     variant = "default",
-    className = "",
+    className,
     children,
     ...props
 }: StatsProps) => {
-    const classes = ["wim-stats", `wim-stats--${variant}`, className].filter(Boolean).join(" ");
-
     return (
-        <div className={classes} {...props}>
+        <div className={classNames("wim-stats", `wim-stats--${variant}`, className)} {...props}>
             {children}
         </div>
     );
 };
 
 export const StatsLabel = ({
-    className = "",
+    className,
     children,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-    <div className={["wim-stats__label", className].filter(Boolean).join(" ")} {...props}>
+    <div className={classNames("wim-stats__label", className)} {...props}>
         {children}
     </div>
 );
 
 export const StatsValue = ({
-    className = "",
+    className,
     children,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-    <div className={["wim-stats__value", className].filter(Boolean).join(" ")} {...props}>
+    <div className={classNames("wim-stats__value", className)} {...props}>
         {children}
     </div>
 );
 
 export const StatsDescription = ({
-    className = "",
+    className,
     children,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-    <div className={["wim-stats__description", className].filter(Boolean).join(" ")} {...props}>
+    <div className={classNames("wim-stats__description", className)} {...props}>
         {children}
     </div>
 );
@@ -63,18 +61,19 @@ export type StatsTrendProps = React.ComponentPropsWithoutRef<"div"> & {
 
 export const StatsTrend = ({
     direction = "up",
-    className = "",
+    className,
     children,
     ...props
 }: StatsTrendProps) => {
-    const trendClasses = [
-        "wim-stats__trend",
-        `wim-stats__trend--${direction}`,
-        className
-    ].filter(Boolean).join(" ");
-
     return (
-        <div className={trendClasses} {...props}>
+        <div
+            className={classNames(
+                "wim-stats__trend",
+                `wim-stats__trend--${direction}`,
+                className
+            )}
+            {...props}
+        >
             <span className="wim-stats__trend-icon">
                 {direction === "up" && "↑"}
                 {direction === "down" && "↓"}
@@ -90,29 +89,4 @@ Stats.Value = StatsValue;
 Stats.Description = StatsDescription;
 Stats.Trend = StatsTrend;
 
-Stats.propTypes = {
-    variant: PropTypes.oneOf(["default", "outline", "flat"]),
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
 
-StatsLabel.propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
-
-StatsValue.propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
-
-StatsDescription.propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
-
-StatsTrend.propTypes = {
-    direction: PropTypes.oneOf(["up", "down", "neutral"]),
-    className: PropTypes.string,
-    children: PropTypes.node,
-};

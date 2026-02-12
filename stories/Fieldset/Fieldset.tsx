@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./fieldset.scss";
 
 type FieldsetProps = React.ComponentPropsWithoutRef<"fieldset"> & {
@@ -16,18 +16,16 @@ export const Fieldset = ({
     children,
     disabled = false,
     variant = "default",
-    className = "",
+    className,
     ...props
 }: FieldsetProps) => {
     return (
         <fieldset
-            className={[
+            className={classNames(
                 "wim-fieldset",
                 `wim-fieldset--${variant}`,
-                className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+                className
+            )}
             disabled={disabled}
             {...props}
         >
@@ -36,21 +34,4 @@ export const Fieldset = ({
     );
 };
 
-Fieldset.propTypes = {
-    /**
-     * Fieldset 内に表示する要素（Legend や Input 等）。
-     */
-    children: PropTypes.node.isRequired,
-    /**
-     * Fieldset 内の全要素を無効化するかどうか。
-     */
-    disabled: PropTypes.bool,
-    /**
-     * 表示バリエーション。
-     */
-    variant: PropTypes.oneOf(["default", "full-width"]),
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
+

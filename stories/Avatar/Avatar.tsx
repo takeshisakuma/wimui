@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./avatar.scss";
 
 type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -23,20 +23,12 @@ export const Avatar = ({
     size = "md",
     shape = "circle",
     color,
-    className = "",
+    className,
     ...props
 }: AvatarProps) => {
     const [hasError, setHasError] = useState(false);
 
-    const containerClass = [
-        "wim-avatar",
-        `wim-avatar--${size}`,
-        `wim-avatar--${shape}`,
-        color ? `wim-avatar--${color}` : "",
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
+
 
     const renderFallback = () => {
         if (initials) {
@@ -64,7 +56,16 @@ export const Avatar = ({
     };
 
     return (
-        <div className={containerClass} {...props}>
+        <div
+            className={classNames(
+                "wim-avatar",
+                `wim-avatar--${size}`,
+                `wim-avatar--${shape}`,
+                color && `wim-avatar--${color}`,
+                className
+            )}
+            {...props}
+        >
             {src && !hasError ? (
                 <img src={src} alt={alt} onError={() => setHasError(true)} />
             ) : (
@@ -74,19 +75,4 @@ export const Avatar = ({
     );
 };
 
-Avatar.propTypes = {
-    /** 画像のURL */
-    src: PropTypes.string,
-    /** 代替テキスト */
-    alt: PropTypes.string,
-    /** 表示するイニシャル（最大2文字） */
-    initials: PropTypes.string,
-    /** イニシャルの代わりに表示するアイコン */
-    icon: PropTypes.node,
-    /** サイズ */
-    size: PropTypes.oneOf(["sm", "md", "lg"]),
-    /** 形状 */
-    shape: PropTypes.oneOf(["circle", "rounded"]),
-    /** カラーテーマ */
-    color: PropTypes.oneOf(["primary", "secondary", "neutral", "error", "success"]),
-};
+

@@ -34,7 +34,7 @@ export type PopoverProps = {
 
 export const Popover = ({
     children,
-    className = "",
+    className,
     defaultOpen = false,
     isOpen: controlledOpen,
     onOpenChange,
@@ -103,7 +103,7 @@ export type PopoverTriggerProps = {
     asChild?: boolean;
 };
 
-export const PopoverTrigger = ({ children, className = "", asChild }: PopoverTriggerProps) => {
+export const PopoverTrigger = ({ children, className, asChild }: PopoverTriggerProps) => {
     const { toggle, isOpen } = React.useContext(PopoverContext);
 
     if (asChild && React.isValidElement(children)) {
@@ -141,7 +141,7 @@ export type PopoverContentProps = {
 
 export const PopoverContent = ({
     children,
-    className = "",
+    className,
     align = "left",
     side = "bottom",
     ...props

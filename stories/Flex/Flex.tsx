@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./flex.scss";
 
 export type FlexProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -64,7 +64,7 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
         return (
             <div
                 ref={ref}
-                className={["wim-flex", className].filter(Boolean).join(" ")}
+                className={classNames("wim-flex", className)}
                 style={flexStyle}
                 {...props}
             >
@@ -76,11 +76,4 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
 
 Flex.displayName = "Flex";
 
-Flex.propTypes = {
-    direction: PropTypes.oneOf(["row", "row-reverse", "column", "column-reverse"]),
-    align: PropTypes.oneOf(["start", "center", "end", "stretch", "baseline"]),
-    justify: PropTypes.oneOf(["start", "center", "end", "between", "around", "evenly", "stretch"]),
-    wrap: PropTypes.oneOf(["nowrap", "wrap", "wrap-reverse"]),
-    gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    inline: PropTypes.bool,
-};
+

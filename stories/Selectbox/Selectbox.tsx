@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./selectbox.scss";
 
@@ -43,7 +43,7 @@ export const Selectbox = ({
     onChange,
     placeholder = "Select an option",
     label,
-    className = "",
+    className,
     disabled = false,
     defaultValue,
     searchable = false,
@@ -245,7 +245,12 @@ export const Selectbox = ({
                                 <li
                                     key={option.value}
                                     ref={el => { listItemsRef.current[index] = el; }}
-                                    className={`wim-selectbox-option ${isSelected ? "wim-selectbox-option--selected" : ""} ${option.disabled ? "wim-selectbox-option--disabled" : ""} ${isFocused ? "wim-selectbox-option--focused" : ""}`}
+                                    className={classNames(
+                                        "wim-selectbox-option",
+                                        isSelected && "wim-selectbox-option--selected",
+                                        option.disabled && "wim-selectbox-option--disabled",
+                                        isFocused && "wim-selectbox-option--focused"
+                                    )}
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         handleSelect(option);
@@ -272,7 +277,12 @@ export const Selectbox = ({
                 <li
                     key={option.value}
                     ref={el => { listItemsRef.current[index] = el; }}
-                    className={`wim-selectbox-option ${isSelected ? "wim-selectbox-option--selected" : ""} ${option.disabled ? "wim-selectbox-option--disabled" : ""} ${isFocused ? "wim-selectbox-option--focused" : ""}`}
+                    className={classNames(
+                        "wim-selectbox-option",
+                        isSelected && "wim-selectbox-option--selected",
+                        option.disabled && "wim-selectbox-option--disabled",
+                        isFocused && "wim-selectbox-option--focused"
+                    )}
                     onClick={(e) => {
                         e.stopPropagation();
                         handleSelect(option);
@@ -290,13 +300,17 @@ export const Selectbox = ({
 
     return (
         <div
-            className={`wim-selectbox ${className}`}
+            className={classNames("wim-selectbox", className)}
             ref={containerRef}
             {...props}
         >
             {label && <label className="wim-label">{label}</label>}
             <div
-                className={`wim-selectbox-trigger ${isOpen ? "wim-selectbox-trigger--open" : ""} ${disabled ? "wim-selectbox-trigger--disabled" : ""}`}
+                className={classNames(
+                    "wim-selectbox-trigger",
+                    isOpen && "wim-selectbox-trigger--open",
+                    disabled && "wim-selectbox-trigger--disabled"
+                )}
                 onClick={handleToggle}
                 onKeyDown={handleKeyDown}
                 tabIndex={disabled ? -1 : 0}
@@ -306,7 +320,7 @@ export const Selectbox = ({
                 aria-disabled={disabled}
                 ref={triggerRef}
             >
-                <div className={`wim-selectbox-value ${!selectedOption ? "wim-selectbox-value--placeholder" : ""}`}>
+                <div className={classNames("wim-selectbox-value", !selectedOption && "wim-selectbox-value--placeholder")}>
                     {selectedOption ? selectedOption.label : placeholder}
                 </div>
                 <div className="wim-selectbox-icon">
@@ -346,72 +360,4 @@ export const Selectbox = ({
     );
 };
 
-Selectbox.propTypes = {
-    /**
-     * 選択肢の配列。
-     */
-    options: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-            PropTypes.shape({
-                label: PropTypes.string.isRequired,
-                value: PropTypes.string.isRequired,
-                disabled: PropTypes.bool,
-                group: PropTypes.string,
-            }),
-            PropTypes.shape({
-                label: PropTypes.string.isRequired,
-                options: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        label: PropTypes.string.isRequired,
-                        value: PropTypes.string.isRequired,
-                        disabled: PropTypes.bool,
-                    })
-                ).isRequired,
-            }),
-        ])
-    ).isRequired,
-    /**
-     * 現在の値 (制御されたコンポーネントの場合)。
-     */
-    value: PropTypes.string,
-    /**
-     * 値が変更された時のコールバック。
-     */
-    onChange: PropTypes.func,
-    /**
-     * プレースホルダー。
-     */
-    placeholder: PropTypes.string,
-    /**
-     * ラベル。
-     */
-    label: PropTypes.string,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-    /**
-     * 無効化。
-     */
-    disabled: PropTypes.bool,
-    /**
-     * 初期値 (非制御コンポーネントの場合)。
-     */
-    defaultValue: PropTypes.string,
-    /**
-     * 検索機能を有効化。
-     */
-    searchable: PropTypes.bool,
-    /**
-     * 検索入力のプレースホルダー。
-     */
-    searchPlaceholder: PropTypes.string,
-    /**
-     * カスタムフィルター関数。
-     */
-    filterOption: PropTypes.func,
-    /**
-     * オプションがグループ化されているか。
-     */
-    grouped: PropTypes.bool,
-};
+

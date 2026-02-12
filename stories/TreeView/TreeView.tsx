@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useMemo } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./tree-view.scss";
 import { Icon } from "../Icon/Icon";
 
@@ -38,7 +38,7 @@ type TreeViewProps = {
     width?: string | number;
 };
 
-export const TreeView = ({
+const TreeView = ({
     children,
     className,
     multiSelect = false,
@@ -96,7 +96,7 @@ export const TreeView = ({
     return (
         <TreeViewContext.Provider value={contextValue}>
             <div
-                className={["wim-tree-view", className].filter(Boolean).join(" ")}
+                className={classNames("wim-tree-view", className)}
                 role="tree"
                 style={{ width }}
             >
@@ -177,11 +177,6 @@ export const TreeViewItem = ({
         return checkChildren(children);
     }, [children, searchQuery]);
 
-    // Hide if doesn't match search and has no matching children
-    if (searchQuery && !matchesSearch && !hasMatchingChildren) {
-        return null;
-    }
-
     const [isAnimating, setIsAnimating] = React.useState(false);
     const [shouldRender, setShouldRender] = React.useState(isExpanded);
     const [isVisualExpanded, setIsVisualExpanded] = React.useState(isExpanded);
@@ -198,6 +193,11 @@ export const TreeViewItem = ({
             setIsAnimating(true);
         }
     }, [isExpanded]);
+
+    // Hide if doesn't match search and has no matching children
+    if (searchQuery && !matchesSearch && !hasMatchingChildren) {
+        return null;
+    }
 
     const handleTransitionEnd = (e: React.TransitionEvent) => {
         if (e.propertyName === "grid-template-rows" && !isExpanded) {
@@ -252,14 +252,12 @@ export const TreeViewItem = ({
 
     return (
         <div
-            className={[
+            className={classNames(
                 "wim-tree-view-item",
                 isSelected && "wim-tree-view-item--selected",
                 disabled && "wim-tree-view-item--disabled",
                 className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+            )}
             role="treeitem"
             aria-selected={isSelected}
             aria-expanded={hasChildren ? isExpanded : undefined}
@@ -274,7 +272,7 @@ export const TreeViewItem = ({
                 {hasChildren && (
                     <button
                         type="button"
-                        className={`wim-tree-view-item__expand-btn ${isExpanded ? "wim-tree-view-item__expand-btn--expanded" : ""}`}
+                        className={classNames("wim-tree-view-item__expand-btn", isExpanded && "wim-tree-view-item__expand-btn--expanded")}
                         onClick={handleToggleExpand}
                         disabled={disabled}
                         aria-label={isExpanded ? "Collapse" : "Expand"}
@@ -301,7 +299,7 @@ export const TreeViewItem = ({
 
             {hasChildren && shouldRender && (
                 <div
-                    className={`wim-tree-view-item__children ${isVisualExpanded ? "wim-tree-view-item__children--expanded" : ""}`}
+                    className={classNames("wim-tree-view-item__children", isVisualExpanded && "wim-tree-view-item__children--expanded")}
                     onTransitionEnd={handleTransitionEnd}
                     style={{
                         gridTemplateRows: isVisualExpanded ? "1fr" : "0fr",
@@ -316,21 +314,11 @@ export const TreeViewItem = ({
     );
 };
 
-TreeView.Item = TreeViewItem;
-
-TreeView.propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    multiSelect: PropTypes.bool,
-    defaultExpandedValues: PropTypes.arrayOf(PropTypes.string),
-    defaultSelectedValues: PropTypes.arrayOf(PropTypes.string),
+const TreeViewComponent = TreeView as typeof TreeView & {
+    Item: typeof TreeViewItem;
 };
 
-TreeViewItem.propTypes = {
-    value: PropTypes.string.isRequired,
-    label: PropTypes.node.isRequired,
-    icon: PropTypes.node,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-};
+TreeViewComponent.Item = TreeViewItem;
+
+export { TreeViewComponent as TreeView };
+export default TreeViewComponent;

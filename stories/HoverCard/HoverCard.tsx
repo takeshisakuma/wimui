@@ -36,7 +36,7 @@ export type HoverCardProps = {
 
 export const HoverCard = ({
     children,
-    className = "",
+    className,
     openDelay = 700,
     closeDelay = 300,
     isOpen: controlledOpen,
@@ -108,7 +108,7 @@ export type HoverCardTriggerProps = {
     asChild?: boolean;
 };
 
-export const HoverCardTrigger = ({ children, className = "", asChild }: HoverCardTriggerProps) => {
+export const HoverCardTrigger = ({ children, className, asChild }: HoverCardTriggerProps) => {
     const { open, close } = React.useContext(HoverCardContext);
 
     const handleMouseEnter = () => open();
@@ -164,7 +164,7 @@ export type HoverCardContentProps = {
 
 export const HoverCardContent = ({
     children,
-    className = "",
+    className,
     align = "center",
     side = "bottom",
     sideOffset = 8,

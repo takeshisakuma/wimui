@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./tabs.scss";
 
 type TabsContextType = {
@@ -25,7 +25,7 @@ export interface TabsProps extends React.ComponentPropsWithoutRef<"div"> {
     orientation?: "horizontal" | "vertical";
 }
 
-export const Tabs = ({
+const Tabs = ({
     defaultValue,
     value: valueProp,
     onValueChange,
@@ -54,13 +54,11 @@ export const Tabs = ({
             value={{ value: activeValue, onValueChange: handleValueChange, orientation }}
         >
             <div
-                className={[
+                className={classNames(
                     "wim-tabs",
                     `wim-tabs--${orientation}`,
                     className,
-                ]
-                    .filter(Boolean)
-                    .join(" ")}
+                )}
                 {...props}
             >
                 {children}
@@ -104,11 +102,11 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
             ref={listRef}
             role="tablist"
             aria-orientation={orientation}
-            className={[
+            className={classNames(
                 "wim-tabs__list",
-                isDragging ? "wim-tabs__list--dragging" : "",
+                isDragging && "wim-tabs__list--dragging",
                 className
-            ].filter(Boolean).join(" ")}
+            )}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
@@ -142,13 +140,11 @@ export const TabsTrigger = ({
             aria-controls={`panel-${value}`}
             id={`tab-${value}`}
             disabled={disabled}
-            className={[
+            className={classNames(
                 "wim-tabs__trigger",
-                isActive ? "wim-tabs__trigger--active" : "",
+                isActive && "wim-tabs__trigger--active",
                 className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+            )}
             onClick={() => onValueChange(value)}
             {...props}
         >
@@ -178,7 +174,7 @@ export const TabsContent = ({
             id={`panel-${value}`}
             aria-labelledby={`tab-${value}`}
             tabIndex={0}
-            className={["wim-tabs__content", className].filter(Boolean).join(" ")}
+            className={classNames("wim-tabs__content", className)}
             {...props}
         >
             {children}
@@ -186,26 +182,15 @@ export const TabsContent = ({
     );
 };
 
-export type TabsComponent = typeof Tabs & {
+const TabsRoot = Tabs as typeof Tabs & {
     List: typeof TabsList;
     Trigger: typeof TabsTrigger;
     Content: typeof TabsContent;
-    propTypes?: Record<string, any>;
 };
-
-const TabsRoot = Tabs as TabsComponent;
 
 TabsRoot.List = TabsList;
 TabsRoot.Trigger = TabsTrigger;
 TabsRoot.Content = TabsContent;
 
-TabsRoot.propTypes = {
-    defaultValue: PropTypes.string,
-    value: PropTypes.string,
-    onValueChange: PropTypes.func,
-    orientation: PropTypes.oneOf(["horizontal", "vertical"]),
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
-
+export { TabsRoot as Tabs };
 export default TabsRoot;

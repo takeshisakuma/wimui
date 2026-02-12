@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./spinner.scss";
 
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -17,24 +17,23 @@ export const Spinner = ({
     color = "primary",
     label,
     labelPosition = "right",
-    className = "",
+    className,
     ...props
 }: SpinnerProps) => {
-    const sizeClass = `wim-spinner--${size}`;
-    const colorClass = `wim-spinner--${color}`;
-    const positionClass = label ? `wim-spinner--with-label-${labelPosition}` : "";
 
     return (
         <div
-            className={[`wim-spinner-container`, positionClass, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={classNames(
+                "wim-spinner-container",
+                label && `wim-spinner--with-label-${labelPosition}`,
+                className
+            )}
             role="status"
             aria-live="polite"
             {...props}
         >
             <svg
-                className={[`wim-spinner`, sizeClass, colorClass].filter(Boolean).join(" ")}
+                className={classNames("wim-spinner", `wim-spinner--${size}`, `wim-spinner--${color}`)}
                 viewBox="0 0 50 50"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -64,25 +63,4 @@ export const Spinner = ({
     );
 };
 
-Spinner.propTypes = {
-    /**
-     * スピナーのサイズ。
-     */
-    size: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
-    /**
-     * スピナーの色。
-     */
-    color: PropTypes.oneOf(["primary", "secondary", "success", "warning", "error", "neutral", "currentColor"]),
-    /**
-     * 表示するラベル。
-     */
-    label: PropTypes.string,
-    /**
-     * ラベルの表示位置。
-     */
-    labelPosition: PropTypes.oneOf(["right", "bottom"]),
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
+

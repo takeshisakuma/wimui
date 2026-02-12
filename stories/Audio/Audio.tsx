@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./audio.scss";
 
@@ -104,19 +104,19 @@ export const Audio = ({
         return `${minutes}:${seconds.toString().padStart(2, "0")}`;
     };
 
-    const innerClasses = [
-        "wim-audio-inner",
-        customControls && radius !== "none" && `wim-audio--radius-${radius}`,
-        customControls && shadow && "wim-audio--shadow",
-        customControls && border && "wim-audio--border",
-        customControls && "wim-audio--custom",
-    ]
-        .filter(Boolean)
-        .join(" ");
+
 
     return (
-        <figure className={`wim-audio-container ${className || ""}`} style={style}>
-            <div className={innerClasses}>
+        <figure className={classNames("wim-audio-container", className)} style={style}>
+            <div
+                className={classNames(
+                    "wim-audio-inner",
+                    customControls && radius !== "none" && `wim-audio--radius-${radius}`,
+                    customControls && shadow && "wim-audio--shadow",
+                    customControls && border && "wim-audio--border",
+                    customControls && "wim-audio--custom",
+                )}
+            >
                 <audio
                     ref={audioRef}
                     src={src}
@@ -192,16 +192,4 @@ export const Audio = ({
     );
 };
 
-Audio.propTypes = {
-    src: PropTypes.string.isRequired,
-    autoPlay: PropTypes.bool,
-    loop: PropTypes.bool,
-    muted: PropTypes.bool,
-    controls: PropTypes.bool,
-    radius: PropTypes.oneOf(["none", "small", "medium", "large", "full"]),
-    shadow: PropTypes.bool,
-    border: PropTypes.bool,
-    preload: PropTypes.oneOf(["auto", "metadata", "none"]),
-    caption: PropTypes.string,
-    customControls: PropTypes.bool,
-};
+

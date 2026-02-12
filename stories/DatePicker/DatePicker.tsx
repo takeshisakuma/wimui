@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Calendar } from "../Calendar/Calendar";
 import { Icon } from "../Icon/Icon";
 import "../Input/input.scss";
 import "./datePicker.scss";
 
-type DatePickerProps = React.ComponentPropsWithoutRef<"input"> & {
+type DatePickerProps = Omit<React.ComponentPropsWithoutRef<"input">, "value" | "defaultValue" | "onChange"> & {
     state?: "default" | "error" | "disabled";
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
@@ -36,7 +36,7 @@ export const DatePicker = ({
     state = "default",
     variant = "outline",
     fullWidth = false,
-    className = "",
+    className,
     disabled,
     value,
     defaultValue,
@@ -113,42 +113,35 @@ export const DatePicker = ({
         }
     };
 
-    const effectiveState = disabled ? "disabled" : state;
-    const stateClass = `wim-input--${effectiveState}`;
-    const variantClass = `wim-input--${variant}`;
-    const widthClass = fullWidth ? "wim-input--full-width" : "";
+
 
     return (
         <div
             ref={containerRef}
-            className={[
+            className={classNames(
                 "wim-datepicker-wrapper",
-                widthClass,
-                className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+                fullWidth && "wim-input--full-width",
+                className
+            )}
         >
             <div
-                className={[
+                className={classNames(
                     "wim-input-container",
                     "wim-datepicker-container",
-                    widthClass,
-                ].filter(Boolean).join(" ")}
+                    fullWidth && "wim-input--full-width"
+                )}
             >
                 <input
                     ref={inputRef}
                     type="text"
                     readOnly
-                    className={[
+                    className={classNames(
                         "wim-input",
                         "wim-datepicker-input",
-                        stateClass,
-                        variantClass,
-                        widthClass,
-                    ]
-                        .filter(Boolean)
-                        .join(" ")}
+                        `wim-input--${disabled ? "disabled" : state}`,
+                        `wim-input--${variant}`,
+                        fullWidth && "wim-input--full-width"
+                    )}
                     value={formatDate(currentValue || null)}
                     placeholder={placeholder}
                     disabled={disabled || state === "disabled"}
@@ -190,45 +183,4 @@ export const DatePicker = ({
     );
 };
 
-DatePicker.propTypes = {
-    /**
-     * フィールドの状態。
-     */
-    state: PropTypes.oneOf(["default", "error", "disabled"]),
-    /**
-     * デザインバリエーション。
-     */
-    variant: PropTypes.oneOf(["outline", "ghost"]),
-    /**
-     * 横幅を100%にするかどうか。
-     */
-    fullWidth: PropTypes.bool,
-    /**
-     * 選択された日付の値。
-     */
-    value: PropTypes.instanceOf(Date),
-    /**
-     * デフォルトの日付値（非制御）。
-     */
-    defaultValue: PropTypes.instanceOf(Date),
-    /**
-     * 日付が変更された時のコールバック。
-     */
-    onChange: PropTypes.func,
-    /**
-     * 表示フォーマット。
-     */
-    format: PropTypes.string,
-    /**
-     * クリアボタンを表示するか。
-     */
-    clearable: PropTypes.bool,
-    /**
-     * プレースホルダーテキスト。
-     */
-    placeholder: PropTypes.string,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
+

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./footer.scss";
 
 export interface FooterProps extends React.ComponentPropsWithoutRef<"footer"> {
@@ -14,12 +14,12 @@ export const Footer = React.forwardRef<HTMLElement, FooterProps>(
         return (
             <footer
                 ref={ref}
-                className={[
+                className={classNames(
                     "wim-footer",
                     bordered && "wim-footer--bordered",
                     background && `wim-footer--bg-${background}`,
                     className
-                ].filter(Boolean).join(" ")}
+                )}
                 {...props}
             >
                 <div className="wim-footer__container">
@@ -32,12 +32,7 @@ export const Footer = React.forwardRef<HTMLElement, FooterProps>(
 
 Footer.displayName = "Footer";
 
-Footer.propTypes = {
-    bordered: PropTypes.bool,
-    background: PropTypes.oneOf(["primary", "secondary", "dark"]),
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export interface FooterSectionProps extends React.ComponentPropsWithoutRef<"div"> {
     title?: string;
@@ -48,7 +43,7 @@ export const FooterSection = React.forwardRef<HTMLDivElement, FooterSectionProps
         return (
             <div
                 ref={ref}
-                className={["wim-footer__section", className].filter(Boolean).join(" ")}
+                className={classNames("wim-footer__section", className)}
                 {...props}
             >
                 {title && <h4 className="wim-footer__section-title">{title}</h4>}
@@ -62,11 +57,7 @@ export const FooterSection = React.forwardRef<HTMLDivElement, FooterSectionProps
 
 FooterSection.displayName = "Footer.Section";
 
-FooterSection.propTypes = {
-    title: PropTypes.string,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export interface FooterBottomProps extends React.ComponentPropsWithoutRef<"div"> { }
 
@@ -75,7 +66,7 @@ export const FooterBottom = React.forwardRef<HTMLDivElement, FooterBottomProps>(
         return (
             <div
                 ref={ref}
-                className={["wim-footer__bottom", className].filter(Boolean).join(" ")}
+                className={classNames("wim-footer__bottom", className)}
                 {...props}
             >
                 {children}
@@ -86,10 +77,7 @@ export const FooterBottom = React.forwardRef<HTMLDivElement, FooterBottomProps>(
 
 FooterBottom.displayName = "Footer.Bottom";
 
-FooterBottom.propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+
 
 export default Object.assign(Footer, {
     Section: FooterSection,

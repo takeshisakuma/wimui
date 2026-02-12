@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./anchor.scss";
 
 export interface AnchorLinkItem {
@@ -113,12 +113,10 @@ export const Anchor = ({
                 {links.map((item) => (
                     <li
                         key={item.key}
-                        className={[
+                        className={classNames(
                             "wim-anchor__item",
-                            activeId === item.href ? "wim-anchor__item--active" : "",
-                        ]
-                            .filter(Boolean)
-                            .join(" ")}
+                            activeId === item.href && "wim-anchor__item--active",
+                        )}
                     >
                         <a
                             href={item.href}
@@ -137,7 +135,7 @@ export const Anchor = ({
 
     return (
         <div
-            className={["wim-anchor", className].filter(Boolean).join(" ")}
+            className={classNames("wim-anchor", className)}
             style={style}
             ref={containerRef}
         >
@@ -149,19 +147,6 @@ export const Anchor = ({
     );
 };
 
-Anchor.propTypes = {
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            key: PropTypes.string.isRequired,
-            href: PropTypes.string.isRequired,
-            title: PropTypes.node.isRequired,
-            children: PropTypes.array,
-        })
-    ).isRequired,
-    bounds: PropTypes.number,
-    offset: PropTypes.number,
-    className: PropTypes.string,
-    style: PropTypes.object,
-};
+
 
 export default Anchor;

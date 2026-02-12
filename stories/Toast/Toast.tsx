@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, createContext, useContext } from "react";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./toast.scss";
 
@@ -27,7 +28,7 @@ export const Toast = ({
     duration = 3000,
     isVisible = true,
     onClose,
-    className = "",
+    className,
 }: ToastProps) => {
     const [visible, setVisible] = useState(false);
 
@@ -77,12 +78,12 @@ export const Toast = ({
 
     return (
         <div
-            className={[
+            className={classNames(
                 "wim-toast",
                 `wim-toast--${variant}`,
-                visible ? "wim-toast--visible" : "",
+                visible && "wim-toast--visible",
                 className
-            ].filter(Boolean).join(" ")}
+            )}
             role="status"
             aria-live="polite"
         >
@@ -135,7 +136,7 @@ export const ToastProvider = ({ children, position = "top-right" }: { children: 
     return (
         <ToastContext.Provider value={{ show, remove }}>
             {children}
-            <div className={`wim-toast-container wim-toast-container--${position}`}>
+            <div className={classNames("wim-toast-container", `wim-toast-container--${position}`)}>
                 {toasts.map((toast) => (
                     <Toast
                         key={toast.id}

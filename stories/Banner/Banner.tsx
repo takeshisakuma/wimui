@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 import "./banner.scss";
@@ -50,7 +50,7 @@ export const Banner = ({
     icon = true,
     action,
     onClose,
-    className = "",
+    className,
     children,
     ...props
 }: BannerProps) => {
@@ -73,7 +73,7 @@ export const Banner = ({
 
     return (
         <div
-            className={[`wim-banner`, `wim-banner--${variant}`, className].filter(Boolean).join(" ")}
+            className={classNames("wim-banner", `wim-banner--${variant}`, className)}
             role="banner"
             {...props}
         >
@@ -108,13 +108,4 @@ export const Banner = ({
     );
 };
 
-Banner.propTypes = {
-    title: PropTypes.string,
-    description: PropTypes.string,
-    variant: PropTypes.oneOf(["info", "success", "warning", "error"]),
-    icon: PropTypes.oneOfType([PropTypes.bool, PropTypes.node]),
-    action: PropTypes.node,
-    onClose: PropTypes.func,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+

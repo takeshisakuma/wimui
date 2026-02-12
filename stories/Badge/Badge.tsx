@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import "./badge.scss";
 
@@ -20,21 +20,23 @@ export const Badge = ({
     color = "primary",
     variant = "solid",
     size = "medium",
-    className = "",
+    className,
     ...props
 }: BadgeProps) => {
     const { t } = useTranslation();
 
-    const colorClass = `wim-badge--${color}`;
-    const variantClass = `wim-badge--${variant}`;
-    const sizeClass = `wim-badge--${size === "small" ? "sm" : "md"}`;
-    const iconOnlyClass = !content ? "wim-badge--icon-only" : "";
+
 
     return (
         <span
-            className={[`wim-badge`, colorClass, variantClass, sizeClass, iconOnlyClass, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={classNames(
+                "wim-badge",
+                `wim-badge--${color}`,
+                `wim-badge--${variant}`,
+                `wim-badge--${size === "small" ? "sm" : "md"}`,
+                !content && "wim-badge--icon-only",
+                className
+            )}
             {...props}
         >
             {icon && <span className="wim-badge__icon">{icon}</span>}
@@ -43,29 +45,4 @@ export const Badge = ({
     );
 };
 
-Badge.propTypes = {
-    /**
-     * 表示するテキスト（翻訳キーも可）。アイコンのみの場合は省略可。
-     */
-    content: PropTypes.string,
-    /**
-     * 表示するアイコン。
-     */
-    icon: PropTypes.node,
-    /**
-     * バッジの色。
-     */
-    color: PropTypes.oneOf(["primary", "secondary", "error", "neutral"]),
-    /**
-     * バッジのスタイル。
-     */
-    variant: PropTypes.oneOf(["solid", "outline"]),
-    /**
-     * バッジのサイズ。
-     */
-    size: PropTypes.oneOf(["small", "medium"]),
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
+

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./icon.scss";
 
 // SVG
@@ -103,63 +103,18 @@ export const Icon = ({ name, size = "medium", color, className, ...props }: Icon
   const IconComponent = icons[name];
   if (!IconComponent) return null;
 
-  const colorClass = color ? `wim-icon--${color}` : "";
-  const sizeMap = { small: "sm", medium: "md", large: "lg" };
-  const sizeClass = `wim-icon--${sizeMap[size] || "md"}`;
-
   return (
     <IconComponent
-      className={[
-        `wim-icon`,
-        sizeClass,
-        colorClass,
-        name === "LoadingIcon" ? "wim-icon--loading" : "",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={classNames(
+        "wim-icon",
+        `wim-icon--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        color && `wim-icon--${color}`,
+        name === "LoadingIcon" && "wim-icon--loading",
+        className
+      )}
       {...props}
     />
   );
 };
 
-Icon.propTypes = {
-  name: PropTypes.oneOf([
-    "CircleIcon",
-    "SquareIcon",
-    "LoadingIcon",
-    "ExternalLinkIcon",
-    "CloseIcon",
-    "SearchIcon",
-    "EyeIcon",
-    "EyeOffIcon",
-    "ChevronDownIcon",
-    "PlayIcon",
-    "PauseIcon",
-    "VolumeIcon",
-    "MuteIcon",
-    "ChevronRightIcon",
-    "ChevronLeftIcon",
-    "CopyIcon",
-    "CheckIcon",
-    "UploadIcon",
-    "MaximizeIcon",
-    "MinimizeIcon",
-    "StarIcon",
-    "HomeIcon",
-    "ProjectIcon",
-    "ChartIcon",
-    "SettingsIcon",
-  ]),
-  size: PropTypes.oneOf(["small", "medium", "large"]),
-  color: PropTypes.oneOf([
-    "destructive",
-    "positive",
-    "caution",
-    "informative",
-    "primary",
-    "secondary",
-    "tertiary",
-    "disabled",
-  ]),
-};
+

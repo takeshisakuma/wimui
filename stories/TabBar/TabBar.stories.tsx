@@ -4,7 +4,7 @@ import TabBar from "./TabBar";
 import { Icon } from "../Icon/Icon";
 
 const meta: Meta<typeof TabBar> = {
-    title: "Navigation/TabBar",
+    title: "Component/Navigation/TabBar",
     component: TabBar,
     parameters: {
         layout: "fullscreen",

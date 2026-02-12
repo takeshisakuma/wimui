@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Badge } from "../Badge/Badge";
 import "./label.scss";
@@ -18,7 +18,7 @@ export const Label = ({
     label,
     required = false,
     showOptional = false,
-    className = "",
+    className,
     children,
     ...props
 }: LabelProps) => {
@@ -26,7 +26,7 @@ export const Label = ({
 
     return (
         <label
-            className={[`wim-label`, className].filter(Boolean).join(" ")}
+            className={classNames("wim-label", className)}
             {...props}
         >
             <div className="wim-label__header">
@@ -56,25 +56,4 @@ export const Label = ({
     );
 };
 
-Label.propTypes = {
-    /**
-     * 表示するラベルの翻訳キーまたはテキスト。
-     */
-    label: PropTypes.string.isRequired,
-    /**
-     * 必須項目かどうか。
-     */
-    required: PropTypes.bool,
-    /**
-     * 任意項目であることを表示するかどうか。
-     */
-    showOptional: PropTypes.bool,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-    /**
-     * ラベル内に表示する要素（Input等）。
-     */
-    children: PropTypes.node,
-};
+

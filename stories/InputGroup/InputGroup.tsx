@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./input-group.scss";
 
 type InputGroupProps = {
@@ -14,18 +14,18 @@ type InputGroupProps = {
 export const InputGroup = ({
     children,
     fullWidth = false,
-    className = "",
+    className,
 }: InputGroupProps) => {
-    const containerClass = [
-        "wim-input-group",
-        fullWidth ? "wim-input-group--full-width" : "",
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
+
 
     return (
-        <div className={containerClass}>
+        <div
+            className={classNames(
+                "wim-input-group",
+                fullWidth && "wim-input-group--full-width",
+                className
+            )}
+        >
             {children}
         </div>
     );
@@ -41,37 +41,13 @@ type InputGroupTextProps = {
  */
 export const InputGroupText = ({
     children,
-    className = "",
+    className,
 }: InputGroupTextProps) => {
     return (
-        <span className={["wim-input-group-text", className].filter(Boolean).join(" ")}>
+        <span className={classNames("wim-input-group-text", className)}>
             {children}
         </span>
     );
 };
 
-InputGroup.propTypes = {
-    /**
-     * グループ化する要素（Input, Button, InputGroupTextなど）。
-     */
-    children: PropTypes.node.isRequired,
-    /**
-     * 横幅を100%にするかどうか。
-     */
-    fullWidth: PropTypes.bool,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
 
-InputGroupText.propTypes = {
-    /**
-     * 表示するテキストやアイコン。
-     */
-    children: PropTypes.node.isRequired,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};

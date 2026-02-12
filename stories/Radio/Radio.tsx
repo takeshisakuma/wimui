@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./radio.scss";
 
 type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -17,13 +17,11 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
 
         return (
             <label
-                className={[
+                className={classNames(
                     "wim-radio-wrapper",
-                    disabled ? "wim-radio--disabled" : "",
+                    disabled && "wim-radio--disabled",
                     className,
-                ]
-                    .filter(Boolean)
-                    .join(" ")}
+                )}
             >
                 <input
                     type="radio"
@@ -43,33 +41,4 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
 
 Radio.displayName = "Radio";
 
-Radio.propTypes = {
-    /**
-     * Label text to display next to the radio.
-     */
-    label: PropTypes.string,
-    /**
-     * Additional class names.
-     */
-    className: PropTypes.string,
-    /**
-     * If true, the radio is checked.
-     */
-    checked: PropTypes.bool,
-    /**
-     * If true, the radio is disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * Function called when state changes.
-     */
-    onChange: PropTypes.func,
-    /**
-     * Name attribute for the input element.
-     */
-    name: PropTypes.string,
-    /**
-     * Value attribute for the input element.
-     */
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
+

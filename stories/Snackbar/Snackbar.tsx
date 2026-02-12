@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, createContext, useContext } from "react";
 import { Icon } from "../Icon/Icon";
 import { Button } from "../Button/Button";
+import classNames from "classnames";
 import "./snackbar.scss";
 
 export type SnackbarVariant = "default" | "success" | "warning" | "error" | "info";
@@ -48,7 +49,7 @@ export const Snackbar = ({
     actionLabel,
     onAction,
     onClose,
-    className = "",
+    className,
 }: SnackbarProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isRendered, setIsRendered] = useState(false);
@@ -96,20 +97,18 @@ export const Snackbar = ({
 
     return (
         <div
-            className={[
+            className={classNames(
                 "wim-snackbar-wrapper",
                 `wim-snackbar-wrapper--${position}`,
-            ].join(" ")}
+            )}
         >
             <div
-                className={[
+                className={classNames(
                     "wim-snackbar",
                     `wim-snackbar--${variant}`,
-                    isVisible ? "wim-snackbar--visible" : "",
+                    isVisible && "wim-snackbar--visible",
                     className,
-                ]
-                    .filter(Boolean)
-                    .join(" ")}
+                )}
                 role="status"
                 aria-live="polite"
             >

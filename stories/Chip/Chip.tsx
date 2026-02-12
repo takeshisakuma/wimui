@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 import "./chip.scss";
@@ -45,16 +45,12 @@ export const Chip = ({
     color = "primary",
     variant = "solid",
     size = "medium",
-    className = "",
+    className,
     ...props
 }: ChipProps) => {
     const { t } = useTranslation();
 
-    const colorClass = `wim-chip--${color}`;
-    const variantClass = `wim-chip--${variant}`;
-    const sizeClass = `wim-chip--${size === "small" ? "sm" : "md"}`;
-    const selectedClass = selected ? "wim-chip--selected" : "";
-    const clickableClass = onClick && !disabled ? "wim-chip--clickable" : "";
+
 
     const content = (
         <>
@@ -79,23 +75,21 @@ export const Chip = ({
         </>
     );
 
-    const classes = [
-        "wim-chip",
-        colorClass,
-        variantClass,
-        sizeClass,
-        selectedClass,
-        clickableClass,
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
+
 
     if (onClick) {
         return (
             <button
                 type="button"
-                className={classes}
+                className={classNames(
+                    "wim-chip",
+                    `wim-chip--${color}`,
+                    `wim-chip--${variant}`,
+                    `wim-chip--${size === "small" ? "sm" : "md"}`,
+                    selected && "wim-chip--selected",
+                    !disabled && "wim-chip--clickable",
+                    className
+                )}
                 onClick={onClick}
                 disabled={disabled}
                 {...props}
@@ -106,22 +100,21 @@ export const Chip = ({
     }
 
     return (
-        <span className={classes} {...props}>
+        <span
+            className={classNames(
+                "wim-chip",
+                `wim-chip--${color}`,
+                `wim-chip--${variant}`,
+                `wim-chip--${size === "small" ? "sm" : "md"}`,
+                selected && "wim-chip--selected",
+                onClick && !disabled && "wim-chip--clickable",
+                className
+            )}
+            {...props}
+        >
             {content}
         </span>
     );
 };
 
-Chip.propTypes = {
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-    onClick: PropTypes.func,
-    onDelete: PropTypes.func,
-    avatar: PropTypes.node,
-    icon: PropTypes.node,
-    selected: PropTypes.bool,
-    disabled: PropTypes.bool,
-    color: PropTypes.oneOf(["primary", "secondary", "neutral"]),
-    variant: PropTypes.oneOf(["solid", "outline"]),
-    size: PropTypes.oneOf(["small", "medium"]),
-    className: PropTypes.string,
-};
+

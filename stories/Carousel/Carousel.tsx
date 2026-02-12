@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./carousel.scss";
 
@@ -68,7 +68,7 @@ export const Carousel = ({
     showControls = true,
     loop = true,
     slidesToShow = 1,
-    className = "",
+    className,
 }: CarouselProps) => {
     const items = useMemo(() => React.Children.toArray(children), [children]);
     const originalItemCount = items.length;
@@ -163,14 +163,14 @@ export const Carousel = ({
     const offsetX = -currentIndex * slideWidth;
 
     return (
-        <div className={["wim-carousel", className].filter(Boolean).join(" ")}>
+        <div className={classNames("wim-carousel", className)}>
             <div className="wim-carousel__viewport">
                 <div
                     ref={trackRef}
-                    className={[
+                    className={classNames(
                         "wim-carousel__track",
-                        isTransitioning ? "wim-carousel__track--transition" : "",
-                    ].join(" ")}
+                        isTransitioning && "wim-carousel__track--transition"
+                    )}
                     style={{
                         transform: `translateX(${offsetX}%)`,
                     }}
@@ -219,12 +219,10 @@ export const Carousel = ({
                         return (
                             <button
                                 key={index}
-                                className={[
+                                className={classNames(
                                     "wim-carousel__indicator",
-                                    isActive ? "wim-carousel__indicator--active" : "",
-                                ]
-                                    .filter(Boolean)
-                                    .join(" ")}
+                                    isActive && "wim-carousel__indicator--active"
+                                )}
                                 onClick={() => goToSlide(index)}
                                 aria-label={`Go to slide ${index + 1}`}
                                 aria-current={isActive}
@@ -237,22 +235,4 @@ export const Carousel = ({
     );
 };
 
-Carousel.propTypes = {
-    children: PropTypes.node,
-    autoPlay: PropTypes.bool,
-    interval: PropTypes.number,
-    showIndicators: PropTypes.bool,
-    showControls: PropTypes.bool,
-    loop: PropTypes.bool,
-    slidesToShow: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.shape({
-            base: PropTypes.number,
-            sm: PropTypes.number,
-            md: PropTypes.number,
-            lg: PropTypes.number,
-            xl: PropTypes.number,
-        }),
-    ]),
-    className: PropTypes.string,
-};
+

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./calendar.scss";
 
@@ -35,7 +35,7 @@ export const RangeCalendar = ({
     value,
     onChange,
     defaultValue,
-    className = "",
+    className,
     disabled = false,
     ...props
 }: RangeCalendarProps) => {
@@ -136,7 +136,7 @@ export const RangeCalendar = ({
 
     return (
         <div
-            className={`wim-calendar wim-range-calendar ${disabled ? "wim-calendar--disabled" : ""} ${className}`}
+            className={classNames("wim-calendar", "wim-range-calendar", disabled && "wim-calendar--disabled", className)}
             {...props}
         >
             <div className="wim-calendar-header">
@@ -177,7 +177,7 @@ export const RangeCalendar = ({
                         <button
                             key={index}
                             type="button"
-                            className={[
+                            className={classNames(
                                 "wim-calendar-day",
                                 !currentMonth && "wim-calendar-day--outside",
                                 selected && "wim-calendar-day--selected",
@@ -185,7 +185,7 @@ export const RangeCalendar = ({
                                 isStart && "wim-calendar-day--range-start",
                                 isEnd && "wim-calendar-day--range-end",
                                 today && "wim-calendar-day--today",
-                            ].filter(Boolean).join(" ")}
+                            )}
                             onClick={() => handleDateClick(date)}
                             disabled={disabled}
                         >
@@ -198,10 +198,4 @@ export const RangeCalendar = ({
     );
 };
 
-RangeCalendar.propTypes = {
-    value: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
-    onChange: PropTypes.func,
-    defaultValue: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-};
+

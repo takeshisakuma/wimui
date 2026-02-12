@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Switch } from "../Switch/Switch";
 import "./switch-group.scss";
 
@@ -55,13 +55,11 @@ export const SwitchGroup = ({
 
     return (
         <div
-            className={[
+            className={classNames(
                 "wim-switch-group",
-                direction === "horizontal" ? "wim-switch-group--horizontal" : "",
+                direction === "horizontal" && "wim-switch-group--horizontal",
                 className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+            )}
         >
             {options.map((option) => (
                 <Switch
@@ -78,39 +76,4 @@ export const SwitchGroup = ({
     );
 };
 
-SwitchGroup.propTypes = {
-    /**
-     * Array of options to display.
-     */
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string.isRequired,
-            value: PropTypes.string.isRequired,
-            disabled: PropTypes.bool,
-        }).isRequired
-    ).isRequired,
-    /**
-     * Currently selected values (controlled mode).
-     */
-    value: PropTypes.arrayOf(PropTypes.string.isRequired),
-    /**
-     * Default selected values (uncontrolled mode).
-     */
-    defaultValue: PropTypes.arrayOf(PropTypes.string.isRequired),
-    /**
-     * Callback fired when value changes.
-     */
-    onChange: PropTypes.func,
-    /**
-     * Layout direction of the switches.
-     */
-    direction: PropTypes.oneOf(["vertical", "horizontal"]),
-    /**
-     * Name attribute for the input elements.
-     */
-    name: PropTypes.string,
-    /**
-     * Additional class names.
-     */
-    className: PropTypes.string,
-};
+

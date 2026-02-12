@@ -1,15 +1,16 @@
 import React from "react";
+import classNames from "classnames";
 import { Button } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
 
 type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> &
-    Omit<React.ComponentProps<typeof Button>, "onClick" | "type">;
+    Omit<React.ComponentPropsWithoutRef<typeof Button>, "onClick" | "type">;
 
 /**
  * ボタンの見た目をしたアンカー（リンク）コンポーネント。
  */
 export const LinkButton = ({
-    className = "",
+    className,
     size = "medium",
     priority = "secondary",
     role = "default",
@@ -19,26 +20,18 @@ export const LinkButton = ({
     iconPosition = "left",
     ...props
 }: LinkButtonProps) => {
-    const sizeMap: Record<"small" | "medium" | "large", string> = {
-        small: "sm",
-        medium: "md",
-        large: "lg",
-    };
-    const sizeClass = `wim-button--${sizeMap[size]}`;
-    const priorityClass = `wim-button--${priority}`;
-    const roleClass = `wim-button--${role}`;
-    const iconOnlyClass = !label && iconName ? "wim-button--icon-only" : "";
+
 
     return (
         <a
-            className={[
+            className={classNames(
                 "wim-button",
-                sizeClass,
-                priorityClass,
-                roleClass,
-                iconOnlyClass,
+                `wim-button--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+                `wim-button--${priority}`,
+                `wim-button--${role}`,
+                !label && iconName && "wim-button--icon-only",
                 className
-            ].filter(Boolean).join(" ")}
+            )}
             style={backgroundColor ? { backgroundColor } : undefined}
             {...props}
         >

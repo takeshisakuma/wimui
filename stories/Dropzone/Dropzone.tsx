@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./dropzone.scss";
 
@@ -48,7 +48,7 @@ export const Dropzone = ({
     multiple = false,
     disabled = false,
     onChange,
-    className = "",
+    className,
     iconName = "UploadIcon",
 }: DropzoneProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -90,17 +90,17 @@ export const Dropzone = ({
         }
     };
 
-    const dropzoneClasses = [
-        "wim-dropzone",
-        isDragging ? "wim-dropzone--dragging" : "",
-        disabled ? "wim-dropzone--disabled" : "",
-    ].filter(Boolean).join(" ");
+
 
     return (
-        <div className={`wim-dropzone-container ${className}`}>
+        <div className={classNames("wim-dropzone-container", className)}>
             {label && <span className="wim-dropzone__label">{label}</span>}
             <div
-                className={dropzoneClasses}
+                className={classNames(
+                    "wim-dropzone",
+                    isDragging && "wim-dropzone--dragging",
+                    disabled && "wim-dropzone--disabled"
+                )}
                 onClick={handleClick}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
@@ -142,13 +142,4 @@ export const Dropzone = ({
     );
 };
 
-Dropzone.propTypes = {
-    label: PropTypes.string,
-    description: PropTypes.string,
-    accept: PropTypes.string,
-    multiple: PropTypes.bool,
-    disabled: PropTypes.bool,
-    onChange: PropTypes.func,
-    className: PropTypes.string,
-    iconName: PropTypes.string,
-};
+

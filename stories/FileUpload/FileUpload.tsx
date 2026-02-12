@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Button } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
 import "./file-upload.scss";
@@ -26,7 +26,7 @@ export const FileUpload = ({
     multiple = false,
     disabled = false,
     onChange,
-    className = "",
+    className,
     iconName,
     iconPosition,
 }: FileUploadProps) => {
@@ -52,7 +52,7 @@ export const FileUpload = ({
         : "選択されていません";
 
     return (
-        <div className={`wim-file-upload ${className}`}>
+        <div className={classNames("wim-file-upload", className)}>
             {label && <span className="wim-file-upload__label">{label}</span>}
             <div className="wim-file-upload__controls">
                 <input
@@ -74,7 +74,10 @@ export const FileUpload = ({
                     iconName={iconName}
                     iconPosition={iconPosition}
                 />
-                <span className={`wim-file-upload__file-names ${disabled ? "wim-file-upload__file-names--disabled" : ""}`}>
+                <span className={classNames(
+                    "wim-file-upload__file-names",
+                    disabled && "wim-file-upload__file-names--disabled"
+                )}>
                     {fileNames}
                 </span>
             </div>
@@ -82,41 +85,4 @@ export const FileUpload = ({
     );
 };
 
-FileUpload.propTypes = {
-    /**
-     * コンポーネントのラベル。
-     */
-    label: PropTypes.string,
-    /**
-     * ボタンに表示するテキスト。
-     */
-    buttonLabel: PropTypes.string,
-    /**
-     * 受け付けるファイル形式（例: ".jpg,.png"）。
-     */
-    accept: PropTypes.string,
-    /**
-     * 複数のファイル選択を許可するかどうか。
-     */
-    multiple: PropTypes.bool,
-    /**
-     * 無効状態にするかどうか。
-     */
-    disabled: PropTypes.bool,
-    /**
-     * ファイルが選択された時に呼ばれるコールバック。
-     */
-    onChange: PropTypes.func,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-    /**
-     * アイコンの名前。
-     */
-    iconName: PropTypes.string,
-    /**
-     * アイコンの表示位置。
-     */
-    iconPosition: PropTypes.oneOf(["left", "right"]),
-};
+

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Textarea } from "../Textarea/Textarea";
 import { Popover } from "../Popover/Popover";
 import "./mentions.scss";
@@ -146,7 +146,10 @@ export const Mentions = ({
                     {filteredOptions.map((opt, index) => (
                         <div
                             key={opt.id}
-                            className={`wim-mentions-item ${index === selectedIndex ? "wim-mentions-item--selected" : ""}`}
+                            className={classNames(
+                                "wim-mentions-item",
+                                index === selectedIndex && "wim-mentions-item--selected"
+                            )}
                             onClick={() => insertMention(opt)}
                         >
                             {opt.display}
@@ -158,22 +161,4 @@ export const Mentions = ({
     );
 };
 
-Mentions.propTypes = {
-    /**
-     * 補完候補のリスト。
-     */
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-            display: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-    /**
-     * メンションを開始するトリガー文字。デフォルトは '@'。
-     */
-    trigger: PropTypes.string,
-    /**
-     * 候補が選択された時に呼ばれるコールバック。
-     */
-    onSelect: PropTypes.func,
-};
+

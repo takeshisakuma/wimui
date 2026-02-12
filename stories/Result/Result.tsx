@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 import "./result.scss";
@@ -61,13 +62,13 @@ export const Result = ({
     subTitle,
     extra,
     icon,
-    className = "",
+    className,
     children,
 }: ResultProps) => {
     const { t } = useTranslation();
 
     return (
-        <div className={[`wim-result`, `wim-result--${status}`, className].filter(Boolean).join(" ")}>
+        <div className={classNames("wim-result", `wim-result--${status}`, className)}>
             <div className="wim-result-icon">
                 {icon || <DefaultIcon status={status} />}
             </div>

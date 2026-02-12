@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Button } from "../Button/Button";
 
 type CopyButtonProps = {
@@ -42,16 +42,11 @@ export const CopyButton = ({
             iconName={copied ? "CheckIcon" : "CopyIcon"}
             role={copied ? "positive" : "default"}
             onClick={handleCopy}
-            className={className}
+            className={classNames("wim-copy-button", className)}
             aria-label={ariaLabel || (copied ? "Copied" : "Copy to clipboard")}
             title={copied ? "Copied" : "Copy to clipboard"}
         />
     );
 };
 
-CopyButton.propTypes = {
-    value: PropTypes.string.isRequired,
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    className: PropTypes.string,
-    "aria-label": PropTypes.string,
-};
+

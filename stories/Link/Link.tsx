@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./link.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
@@ -27,53 +27,28 @@ export const Link = ({
 }: LinkProps) => {
     const { t } = useTranslation();
 
-    const sizeMap: Record<"small" | "medium" | "large", string> = {
-        small: "sm",
-        medium: "md",
-        large: "lg",
-    };
-    const sizeClass = `wim-link--${sizeMap[size]}`;
-    const priorityClass = `wim-link--${priority}`;
-
-    const iconElement = iconName ? (
-        <Icon name={iconName} size={size} />
-    ) : null;
-
-    const externalIconElement = external ? (
-        <Icon name="ExternalLinkIcon" size={size} className="wim-link__external-icon" />
-    ) : null;
-
     return (
         <a
-            className={[
+            className={classNames(
                 "wim-link",
-                sizeClass,
-                priorityClass,
-                external ? "wim-link--external" : "",
-                className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+                `wim-link--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+                `wim-link--${priority}`,
+                external && "wim-link--external",
+                className
+            )}
             target={external ? "_blank" : target}
             {...props}
         >
             <span className="wim-link__inner">
-                {iconName && iconPosition === "left" && iconElement}
+                {iconName && iconPosition === "left" && <Icon name={iconName} size={size} />}
                 <span className="wim-link__label">
                     {label ? t(label) : children}
                 </span>
-                {iconName && iconPosition === "right" && iconElement}
-                {externalIconElement}
+                {iconName && iconPosition === "right" && <Icon name={iconName} size={size} />}
+                {external && <Icon name="ExternalLinkIcon" size={size} className="wim-link__external-icon" />}
             </span>
         </a>
     );
 };
 
-Link.propTypes = {
-    label: PropTypes.string,
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
-    iconName: PropTypes.string,
-    iconPosition: PropTypes.oneOf(["left", "right"]),
-    external: PropTypes.bool,
-};
+

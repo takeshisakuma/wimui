@@ -37,25 +37,22 @@ export const Heading = ({
     ...props
 }: HeadingProps) => {
     const { t } = useTranslation();
-
-    // decorationがnone以外の場合は、classをルートではなく内部のspanに適用する
-    const decorationClass = decoration === "highlight"
-        ? "wim-heading__highlight"
-        : (decoration !== "none" ? `wim-heading--${decoration}` : "");
-
-    const classes = classNames(
-        "wim-heading",
-        `wim-heading--${size}`,
-        `wim-heading--${color}`,
-        `wim-heading--${align}`,
-        // decorationClassはここから除外
-        className
-    );
-
     const content = typeof children === "string" ? t(children) : children;
+
     const finalContent = decoration !== "none" ? (
-        <span className={decorationClass}>{content}</span>
+        <span className={decoration === "highlight" ? "wim-heading__highlight" : `wim-heading--${decoration}`}>
+            {content}
+        </span>
     ) : content;
 
-    return React.createElement(tag, { className: classes, ...props }, finalContent);
+    return React.createElement(tag, {
+        className: classNames(
+            "wim-heading",
+            `wim-heading--${size}`,
+            `wim-heading--${color}`,
+            `wim-heading--${align}`,
+            className
+        ),
+        ...props
+    }, finalContent);
 };

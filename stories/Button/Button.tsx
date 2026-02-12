@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./button.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
@@ -37,17 +37,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
   ) => {
     const { t } = useTranslation();
 
-    const sizeMap: Record<"small" | "medium" | "large", string> = {
-      small: "sm",
-      medium: "md",
-      large: "lg",
-    };
-    const sizeClass = `wim-button--${sizeMap[size]}`;
-    const priorityClass = `wim-button--${priority}`;
-    const roleClass = `wim-button--${role}`;
-    const loadingClass = loading ? "wim-button--loading" : "";
-    const iconOnlyClass =
-      !label && iconName ? "wim-button--icon-only" : "";
+
 
 
     const content = (
@@ -77,17 +67,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
         ref={ref}
         type="button"
         style={{ ...props.style, ...(backgroundColor ? { backgroundColor } : {}) }}
-        className={[
-          `wim-button`,
-          sizeClass,
-          priorityClass,
-          roleClass,
-          loadingClass,
-          iconOnlyClass,
-          className,
-        ]
-          .filter(Boolean)
-          .join(" ")}
+        className={classNames(
+          "wim-button",
+          `wim-button--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+          `wim-button--${priority}`,
+          `wim-button--${role}`,
+          loading && "wim-button--loading",
+          !label && iconName && "wim-button--icon-only",
+          className
+        )}
         disabled={state === "disabled" || loading}
         aria-label={
           typeof ariaLabel === "string" ? ariaLabel :
@@ -103,26 +91,4 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
   }
 );
 
-Button.propTypes = {
-  backgroundColor: PropTypes.string,
-  size: PropTypes.oneOf(["small", "medium", "large"]),
-  label: PropTypes.string,
-  onClick: PropTypes.func,
-  priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
-  role: PropTypes.oneOf(["default", "destructive", "positive"]),
-  state: PropTypes.oneOf(["abled", "disabled"]),
-  iconName: PropTypes.oneOf([
-    "CircleIcon",
-    "SquareIcon",
-    "LoadingIcon",
-    "ExternalLinkIcon",
-    "CloseIcon",
-    "SearchIcon",
-    "EyeIcon",
-    "EyeOffIcon",
-    "ChevronDownIcon",
-  ]),
-  iconPosition: PropTypes.oneOf(["left", "right"]),
-  loading: PropTypes.bool,
-  "aria-label": PropTypes.string,
-};
+

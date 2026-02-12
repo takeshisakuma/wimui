@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Radio } from "../Radio/Radio";
 import "./radio-group.scss";
 
@@ -48,13 +48,11 @@ export const RadioGroup = ({
 
     return (
         <div
-            className={[
+            className={classNames(
                 "wim-radio-group",
-                direction === "horizontal" ? "wim-radio-group--horizontal" : "",
-                className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+                direction === "horizontal" && "wim-radio-group--horizontal",
+                className
+            )}
             role="radiogroup"
         >
             {options.map((option) => (
@@ -72,39 +70,4 @@ export const RadioGroup = ({
     );
 };
 
-RadioGroup.propTypes = {
-    /**
-     * Array of options to display.
-     */
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string.isRequired,
-            value: PropTypes.string.isRequired,
-            disabled: PropTypes.bool,
-        }).isRequired
-    ).isRequired,
-    /**
-     * Currently selected value (controlled mode).
-     */
-    value: PropTypes.string,
-    /**
-     * Default selected value (uncontrolled mode).
-     */
-    defaultValue: PropTypes.string,
-    /**
-     * Callback fired when value changes.
-     */
-    onChange: PropTypes.func,
-    /**
-     * Layout direction of the radio buttons.
-     */
-    direction: PropTypes.oneOf(["vertical", "horizontal"]),
-    /**
-     * Name attribute for the input elements.
-     */
-    name: PropTypes.string,
-    /**
-     * Additional class names.
-     */
-    className: PropTypes.string,
-};
+

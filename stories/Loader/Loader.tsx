@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./loader.scss";
 
 export type LoaderVariant = "bars" | "dots" | "pulse";
@@ -26,18 +26,19 @@ export const Loader = ({
     variant = "bars",
     size = "md",
     color = "primary",
-    className = "",
+    className,
     ...props
 }: LoaderProps) => {
-    const variantClass = `wim-loader--${variant}`;
-    const sizeClass = `wim-loader--${size}`;
-    const colorClass = `wim-loader--${color}`;
 
     return (
         <div
-            className={["wim-loader", variantClass, sizeClass, colorClass, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={classNames(
+                "wim-loader",
+                `wim-loader--${variant}`,
+                `wim-loader--${size}`,
+                `wim-loader--${color}`,
+                className
+            )}
             role="status"
             aria-live="polite"
             {...props}
@@ -49,21 +50,4 @@ export const Loader = ({
     );
 };
 
-Loader.propTypes = {
-    /**
-     * ローダーのアニメーション形式。
-     */
-    variant: PropTypes.oneOf(["bars", "dots", "pulse"]),
-    /**
-     * ローダーのサイズ。
-     */
-    size: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
-    /**
-     * ローダーの色。
-     */
-    color: PropTypes.oneOf(["primary", "secondary", "success", "warning", "error", "neutral", "currentColor"]),
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
+

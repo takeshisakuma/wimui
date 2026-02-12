@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Flex } from "../Flex/Flex";
 import "./group.scss";
 
@@ -56,7 +56,7 @@ export const Group = React.forwardRef<HTMLDivElement, GroupProps>(
                 justify={justify}
                 gap={gap}
                 wrap={wrap}
-                className={["wim-group", className].filter(Boolean).join(" ")}
+                className={classNames("wim-group", className)}
                 {...props}
             >
                 {items}
@@ -67,10 +67,4 @@ export const Group = React.forwardRef<HTMLDivElement, GroupProps>(
 
 Group.displayName = "Group";
 
-Group.propTypes = {
-    align: PropTypes.oneOf(["start", "center", "end", "stretch", "baseline"]),
-    justify: PropTypes.oneOf(["start", "center", "end", "between", "around", "evenly"]),
-    gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    wrap: PropTypes.oneOf(["nowrap", "wrap", "wrap-reverse"]),
-    grow: PropTypes.bool,
-};
+

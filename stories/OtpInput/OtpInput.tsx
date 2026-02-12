@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./otp-input.scss";
 
 type OtpInputProps = {
@@ -20,7 +20,7 @@ export const OtpInput = ({
     onChange,
     disabled = false,
     error = false,
-    className = "",
+    className,
 }: OtpInputProps) => {
     // 内部状態（非制御時にも対応できるようにするが、基本は制御コンポーネントとして使う想定）
     const [internalValues, setInternalValues] = useState<string[]>(Array(length).fill(""));
@@ -107,25 +107,21 @@ export const OtpInput = ({
 
     return (
         <div
-            className={[
+            className={classNames(
                 "wim-otp-input-container",
-                disabled ? "wim-otp-input-container--disabled" : "",
-                className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+                disabled && "wim-otp-input-container--disabled",
+                className
+            )}
         >
             {Array.from({ length }).map((_, index) => (
                 <input
                     key={index}
                     ref={(el) => { inputRefs.current[index] = el; }}
-                    className={[
+                    className={classNames(
                         "wim-otp-input",
-                        error ? "wim-otp-input--error" : "",
-                        disabled ? "wim-otp-input--disabled" : "",
-                    ]
-                        .filter(Boolean)
-                        .join(" ")}
+                        error && "wim-otp-input--error",
+                        disabled && "wim-otp-input--disabled"
+                    )}
                     type="text"
                     maxLength={1} // 基本的に1文字だが、onChange制御で上書きも許可している
                     value={internalValues[index]}
@@ -138,31 +134,4 @@ export const OtpInput = ({
             ))}
         </div>
     );
-};
-
-OtpInput.propTypes = {
-    /**
-     * 入力桁数。デフォルトは6。
-     */
-    length: PropTypes.number,
-    /**
-     * 現在の値。
-     */
-    value: PropTypes.string,
-    /**
-     * 値が変更された時に呼ばれるコールバック。結合された文字列を返します。
-     */
-    onChange: PropTypes.func,
-    /**
-     * 無効化フラグ。
-     */
-    disabled: PropTypes.bool,
-    /**
-     * エラー状態フラグ。
-     */
-    error: PropTypes.bool,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
 };

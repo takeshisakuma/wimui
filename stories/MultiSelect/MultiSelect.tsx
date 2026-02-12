@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { Chip } from "../Chip/Chip";
 import "./multiselect.scss";
@@ -30,7 +30,7 @@ export const MultiSelect = ({
     onChange,
     placeholder = "Select options...",
     label,
-    className = "",
+    className,
     disabled = false,
     defaultValue = [],
     ...props
@@ -98,13 +98,17 @@ export const MultiSelect = ({
 
     return (
         <div
-            className={`wim-multiselect ${className}`}
+            className={classNames("wim-multiselect", className)}
             ref={containerRef}
             {...props}
         >
             {label && <label className="wim-label">{label}</label>}
             <div
-                className={`wim-multiselect-trigger ${isOpen ? "wim-multiselect-trigger--open" : ""} ${disabled ? "wim-multiselect-trigger--disabled" : ""}`}
+                className={classNames(
+                    "wim-multiselect-trigger",
+                    isOpen && "wim-multiselect-trigger--open",
+                    disabled && "wim-multiselect-trigger--disabled"
+                )}
                 onClick={handleToggle}
                 tabIndex={disabled ? -1 : 0}
                 role="combobox"
@@ -112,7 +116,10 @@ export const MultiSelect = ({
                 aria-haspopup="listbox"
                 aria-disabled={disabled}
             >
-                <div className={`wim-multiselect-value ${selectedOptions.length === 0 ? "wim-multiselect-value--placeholder" : ""}`}>
+                <div className={classNames(
+                    "wim-multiselect-value",
+                    selectedOptions.length === 0 && "wim-multiselect-value--placeholder"
+                )}>
                     {selectedOptions.length > 0 ? (
                         selectedOptions.map(opt => (
                             <Chip
@@ -141,7 +148,11 @@ export const MultiSelect = ({
                         return (
                             <li
                                 key={option.value}
-                                className={`wim-multiselect-option ${isSelected ? "wim-multiselect-option--selected" : ""} ${option.disabled ? "wim-multiselect-option--disabled" : ""}`}
+                                className={classNames(
+                                    "wim-multiselect-option",
+                                    isSelected && "wim-multiselect-option--selected",
+                                    option.disabled && "wim-multiselect-option--disabled"
+                                )}
                                 onClick={() => !option.disabled && handleSelect(option.value)}
                                 role="option"
                                 aria-selected={isSelected}
@@ -158,43 +169,4 @@ export const MultiSelect = ({
     );
 };
 
-MultiSelect.propTypes = {
-    /**
-     * 選択肢の配列。
-     */
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string.isRequired,
-            value: PropTypes.string.isRequired,
-            disabled: PropTypes.bool,
-        })
-    ).isRequired,
-    /**
-     * 現在の選択された値の配列 (制御されたコンポーネントの場合)。
-     */
-    value: PropTypes.arrayOf(PropTypes.string),
-    /**
-     * 値が変更された時のコールバック。
-     */
-    onChange: PropTypes.func,
-    /**
-     * プレースホルダー。
-     */
-    placeholder: PropTypes.string,
-    /**
-     * ラベル。
-     */
-    label: PropTypes.string,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-    /**
-     * 無効化。
-     */
-    disabled: PropTypes.bool,
-    /**
-     * 初期値 (非制御コンポーネントの場合)。
-     */
-    defaultValue: PropTypes.arrayOf(PropTypes.string),
-};
+

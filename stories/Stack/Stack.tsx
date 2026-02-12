@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Box, BoxProps } from "../Box/Box";
 import "./stack.scss";
 
@@ -67,7 +67,7 @@ export const Stack = React.forwardRef(
             <Box
                 ref={ref}
                 display="flex"
-                className={["wim-stack", className].filter(Boolean).join(" ")}
+                className={classNames("wim-stack", className)}
                 style={{
                     flexDirection: direction,
                     gap: getGapValue(gap),
@@ -85,9 +85,4 @@ export const Stack = React.forwardRef(
 
 Stack.displayName = "Stack";
 
-Stack.propTypes = {
-    gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    direction: PropTypes.oneOf(["row", "column"]),
-    align: PropTypes.any,
-    justify: PropTypes.any,
-};
+

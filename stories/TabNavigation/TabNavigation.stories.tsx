@@ -4,7 +4,7 @@ import TabNavigation from "./TabNavigation";
 import { Icon } from "../Icon/Icon";
 
 const meta: Meta<typeof TabNavigation> = {
-    title: "Navigation/TabNavigation",
+    title: "Component/Navigation/TabNavigation",
     component: TabNavigation,
     parameters: {
         layout: "padded",

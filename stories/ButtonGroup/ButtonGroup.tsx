@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./button-group.scss";
 
 type ButtonGroupProps = {
@@ -13,17 +13,11 @@ type ButtonGroupProps = {
 export const ButtonGroup = ({
     children,
     gap = "8px",
-    className = "",
+    className,
     joined = false,
     priority,
 }: ButtonGroupProps) => {
-    const containerClass = [
-        "wim-button-group",
-        joined ? "wim-button-group--joined" : "",
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
+
 
     const style = joined ? {} : { gap };
 
@@ -39,16 +33,17 @@ export const ButtonGroup = ({
         : children;
 
     return (
-        <div className={containerClass} style={style}>
+        <div
+            className={classNames(
+                "wim-button-group",
+                joined && "wim-button-group--joined",
+                className,
+            )}
+            style={style}
+        >
             {childrenWithProps}
         </div>
     );
 };
 
-ButtonGroup.propTypes = {
-    children: PropTypes.node.isRequired,
-    gap: PropTypes.string,
-    className: PropTypes.string,
-    joined: PropTypes.bool,
-    priority: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
-};
+

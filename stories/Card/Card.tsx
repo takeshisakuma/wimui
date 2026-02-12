@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./card.scss";
 
 export type CardProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -29,53 +29,52 @@ export const Card = ({
     padding = "md",
     radius = "md",
     as: Component = "div",
-    className = "",
+    className,
     children,
     ...props
 }: CardProps) => {
-    const classes = [
-        "wim-card",
-        `wim-card--${variant}`,
-        `wim-card--padding-${padding}`,
-        `wim-card--radius-${radius}`,
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
-
     return (
-        <Component className={classes} {...props}>
+        <Component
+            className={classNames(
+                "wim-card",
+                `wim-card--${variant}`,
+                `wim-card--padding-${padding}`,
+                `wim-card--radius-${radius}`,
+                className
+            )}
+            {...props}
+        >
             {children}
         </Component>
     );
 };
 
 export const CardHeader = ({
-    className = "",
+    className,
     children,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-    <div className={["wim-card__header", className].filter(Boolean).join(" ")} {...props}>
+    <div className={classNames("wim-card__header", className)} {...props}>
         {children}
     </div>
 );
 
 export const CardBody = ({
-    className = "",
+    className,
     children,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-    <div className={["wim-card__body", className].filter(Boolean).join(" ")} {...props}>
+    <div className={classNames("wim-card__body", className)} {...props}>
         {children}
     </div>
 );
 
 export const CardFooter = ({
-    className = "",
+    className,
     children,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-    <div className={["wim-card__footer", className].filter(Boolean).join(" ")} {...props}>
+    <div className={classNames("wim-card__footer", className)} {...props}>
         {children}
     </div>
 );
@@ -84,11 +83,4 @@ Card.Header = CardHeader;
 Card.Body = CardBody;
 Card.Footer = CardFooter;
 
-Card.propTypes = {
-    variant: PropTypes.oneOf(["elevated", "outline", "flat"]),
-    padding: PropTypes.oneOf(["none", "sm", "md", "lg"]),
-    radius: PropTypes.oneOf(["none", "sm", "md", "lg"]),
-    as: PropTypes.elementType,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./code.scss";
 
 type CodeProps = {
@@ -11,27 +11,19 @@ type CodeProps = {
 
 export const Code = ({ children, block = false, language, className }: CodeProps) => {
     const Component = block ? "pre" : "code";
-    const languageClass = language ? `language-${language}` : "";
 
     return (
         <Component
-            className={[
+            className={classNames(
                 "wim-code",
                 block ? "wim-code--block" : "wim-code--inline",
-                languageClass,
-                className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+                language && `language-${language}`,
+                className
+            )}
         >
-            {block ? <code className={languageClass}>{children}</code> : children}
+            {block ? <code className={language && `language-${language}`}>{children}</code> : children}
         </Component>
     );
 };
 
-Code.propTypes = {
-    children: PropTypes.node.isRequired,
-    block: PropTypes.bool,
-    language: PropTypes.string,
-    className: PropTypes.string,
-};
+

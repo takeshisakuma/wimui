@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./grid.scss";
 
 type GridProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -49,7 +49,7 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
         return (
             <div
                 ref={ref}
-                className={["wim-grid", className].filter(Boolean).join(" ")}
+                className={classNames("wim-grid", className)}
                 style={gridStyle}
                 {...props}
             >
@@ -61,14 +61,4 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
 
 Grid.displayName = "Grid";
 
-Grid.propTypes = {
-    cols: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    columnGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    rowGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    align: PropTypes.oneOf(["start", "center", "end", "stretch"]),
-    justify: PropTypes.oneOf(["start", "center", "end", "between", "around", "stretch"]),
-    flow: PropTypes.oneOf(["row", "column", "dense", "row dense", "column dense"]),
-    inline: PropTypes.bool,
-};
+

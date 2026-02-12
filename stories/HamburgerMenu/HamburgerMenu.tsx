@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./hamburger-menu.scss";
 
 export interface HamburgerMenuProps extends React.ComponentPropsWithoutRef<"button"> {
@@ -17,22 +17,18 @@ export interface HamburgerMenuProps extends React.ComponentPropsWithoutRef<"butt
 
 export const HamburgerMenu = React.forwardRef<HTMLButtonElement, HamburgerMenuProps>(
     ({ isOpen = false, onClick, size = "medium", color, className, style, ...props }, ref) => {
-        const sizeMap = {
-            small: "sm",
-            medium: "md",
-            large: "lg",
-        };
 
-        const sizeClass = `wim-hamburger-menu--${sizeMap[size]}`;
-        const openClass = isOpen ? "wim-hamburger-menu--open" : "";
 
         return (
             <button
                 ref={ref}
                 type="button"
-                className={["wim-hamburger-menu", sizeClass, openClass, className]
-                    .filter(Boolean)
-                    .join(" ")}
+                className={classNames(
+                    "wim-hamburger-menu",
+                    `wim-hamburger-menu--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+                    isOpen && "wim-hamburger-menu--open",
+                    className
+                )}
                 onClick={onClick}
                 aria-expanded={isOpen}
                 aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -49,10 +45,4 @@ export const HamburgerMenu = React.forwardRef<HTMLButtonElement, HamburgerMenuPr
 
 HamburgerMenu.displayName = "HamburgerMenu";
 
-HamburgerMenu.propTypes = {
-    isOpen: PropTypes.bool,
-    onClick: PropTypes.func,
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    color: PropTypes.string,
-    className: PropTypes.string,
-};
+

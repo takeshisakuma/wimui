@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./legend.scss";
 
 type LegendProps = React.ComponentPropsWithoutRef<"legend"> & {
@@ -10,10 +10,10 @@ type LegendProps = React.ComponentPropsWithoutRef<"legend"> & {
 /**
  * Fieldset のタイトルを表示するコンポーネント。
  */
-export const Legend = ({ children, className = "", ...props }: LegendProps) => {
+export const Legend = ({ children, className, ...props }: LegendProps) => {
     return (
         <legend
-            className={["wim-legend", className].filter(Boolean).join(" ")}
+            className={classNames("wim-legend", className)}
             {...props}
         >
             {children}
@@ -21,13 +21,4 @@ export const Legend = ({ children, className = "", ...props }: LegendProps) => {
     );
 };
 
-Legend.propTypes = {
-    /**
-     * 表示するテキストや要素。
-     */
-    children: PropTypes.node.isRequired,
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
+

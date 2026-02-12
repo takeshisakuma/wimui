@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./accordion.scss";
 import { Icon } from "../Icon/Icon";
 
@@ -84,7 +84,7 @@ export const Accordion = ({
         <AccordionContext.Provider
             value={{ value: activeValue as string[], onValueChange: handleValueChange, type }}
         >
-            <div className={["wim-accordion", className].filter(Boolean).join(" ")}>
+            <div className={classNames("wim-accordion", className)}>
                 {children}
             </div>
         </AccordionContext.Provider>
@@ -148,14 +148,12 @@ export const AccordionItem = ({ value, disabled = false, className, children }: 
             <details
                 open={isDetailOpen}
                 onTransitionEnd={handleTransitionEnd}
-                className={[
+                className={classNames(
                     "wim-accordion__item",
-                    disabled ? "wim-accordion__item--disabled" : "",
-                    isLogicOpen ? "wim-accordion__item--open" : "",
-                    className,
-                ]
-                    .filter(Boolean)
-                    .join(" ")}
+                    disabled && "wim-accordion__item--disabled",
+                    isLogicOpen && "wim-accordion__item--open",
+                    className
+                )}
             >
                 {children}
             </details>
@@ -198,7 +196,7 @@ export const AccordionTrigger = ({
 
     return (
         <summary
-            className={["wim-accordion__trigger", className].filter(Boolean).join(" ")}
+            className={classNames("wim-accordion__trigger", className)}
             onClick={handleClick}
             onKeyDown={handleKeyDown}
             {...props}
@@ -206,10 +204,10 @@ export const AccordionTrigger = ({
             <span className="wim-accordion__trigger-content">{children}</span>
             <Icon
                 name="ChevronDownIcon"
-                className={[
+                className={classNames(
                     "wim-accordion__chevron",
-                    item.isContentOpen ? "wim-accordion__chevron--open" : "",
-                ].join(" ")}
+                    item.isContentOpen && "wim-accordion__chevron--open"
+                )}
             />
         </summary>
     );
@@ -225,13 +223,11 @@ export const AccordionContent = ({
 
     return (
         <div
-            className={[
+            className={classNames(
                 "wim-accordion__content",
-                item.isContentOpen ? "wim-accordion__content--open" : "",
-                className,
-            ]
-                .filter(Boolean)
-                .join(" ")}
+                item.isContentOpen && "wim-accordion__content--open",
+                className
+            )}
             {...props}
         >
             <div className="wim-accordion__content-inner">{children}</div>
@@ -243,12 +239,4 @@ Accordion.Item = AccordionItem;
 Accordion.Trigger = AccordionTrigger;
 Accordion.Content = AccordionContent;
 
-Accordion.propTypes = {
-    type: PropTypes.oneOf(["single", "multiple"]),
-    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-    onValueChange: PropTypes.func,
-    collapsible: PropTypes.bool,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+

@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./list.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
@@ -23,29 +23,24 @@ export const List = ({
     size = "medium",
     spacing = "normal",
     children,
-    className = "",
+    className,
     ...props
 }: ListProps) => {
-    const sizeMap = {
-        small: "sm",
-        medium: "md",
-        large: "lg",
-    };
-    const sizeClass = `wim-list--${sizeMap[size]}`;
-    const spacingClass = `wim-list--spacing-${spacing}`;
 
-    const containerClass = [
-        "wim-list",
-        sizeClass,
-        spacingClass,
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
+
+
 
     return (
         <ListContext.Provider value={{ size }}>
-            <Component className={containerClass} {...props}>
+            <Component
+                className={classNames(
+                    "wim-list",
+                    `wim-list--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+                    `wim-list--spacing-${spacing}`,
+                    className
+                )}
+                {...props}
+            >
                 {children}
             </Component>
         </ListContext.Provider>
@@ -61,7 +56,7 @@ type ListItemProps = {
 
 export const ListItem = ({
     children,
-    className = "",
+    className,
     iconName,
     iconPosition = "left",
     ...props
@@ -69,14 +64,17 @@ export const ListItem = ({
     const { t } = useTranslation();
     const { size } = useContext(ListContext);
 
-    const itemClass = [
-        "wim-list__item",
-        iconName ? "wim-list__item--with-icon" : "",
-        className
-    ].filter(Boolean).join(" ");
+
 
     return (
-        <li className={itemClass} {...props}>
+        <li
+            className={classNames(
+                "wim-list__item",
+                iconName && "wim-list__item--with-icon",
+                className
+            )}
+            {...props}
+        >
             <div className="wim-list__item-content">
                 {iconName && iconPosition === "left" && (
                     <div className="wim-list__icon-container wim-list__icon-container--left">
@@ -99,38 +97,6 @@ export const ListItem = ({
 
 
 
-List.propTypes = {
-    as: PropTypes.oneOf(["ul", "ol"]),
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    spacing: PropTypes.oneOf(["tight", "normal", "loose"]),
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-};
 
-ListItem.propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    iconName: PropTypes.oneOf([
-        "CircleIcon",
-        "SquareIcon",
-        "LoadingIcon",
-        "ExternalLinkIcon",
-        "CloseIcon",
-        "SearchIcon",
-        "EyeIcon",
-        "EyeOffIcon",
-        "ChevronDownIcon",
-        "PlayIcon",
-        "PauseIcon",
-        "VolumeIcon",
-        "MuteIcon",
-        "ChevronRightIcon",
-        "ChevronLeftIcon",
-        "CopyIcon",
-        "CheckIcon",
-        "UploadIcon",
-    ]),
-    iconPosition: PropTypes.oneOf(["left", "right"]),
-};
 
 

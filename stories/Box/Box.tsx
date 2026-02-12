@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./box.scss";
 
 export type BoxProps<C extends React.ElementType = "div"> = {
@@ -93,16 +93,14 @@ export const Box = React.forwardRef(
         };
 
         const boxStyle: React.CSSProperties = {
-            padding: getValue(p),
-            paddingTop: getValue(pt || py),
-            paddingRight: getValue(pr || px),
-            paddingBottom: getValue(pb || py),
-            paddingLeft: getValue(pl || px),
-            margin: getValue(m),
-            marginTop: getValue(mt || my),
-            marginRight: getValue(mr || mx),
-            marginBottom: getValue(mb || my),
-            marginLeft: getValue(ml || mx),
+            paddingTop: getValue(pt ?? py ?? p),
+            paddingRight: getValue(pr ?? px ?? p),
+            paddingBottom: getValue(pb ?? py ?? p),
+            paddingLeft: getValue(pl ?? px ?? p),
+            marginTop: getValue(mt ?? my ?? m),
+            marginRight: getValue(mr ?? mx ?? m),
+            marginBottom: getValue(mb ?? my ?? m),
+            marginLeft: getValue(ml ?? mx ?? m),
             backgroundColor: bg,
             width: getValue(w),
             height: getValue(h),
@@ -116,7 +114,7 @@ export const Box = React.forwardRef(
         return (
             <Component
                 ref={ref}
-                className={["wim-box", className].filter(Boolean).join(" ")}
+                className={classNames("wim-box", className)}
                 style={boxStyle}
                 {...props}
             >
@@ -128,27 +126,4 @@ export const Box = React.forwardRef(
 
 Box.displayName = "Box";
 
-Box.propTypes = {
-    as: PropTypes.any,
-    p: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    pt: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    pr: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    pb: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    pl: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    px: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    py: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    m: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    mt: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    mr: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    mb: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    ml: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    mx: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    my: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    bg: PropTypes.string,
-    w: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    h: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    radius: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    shadow: PropTypes.string,
-    display: PropTypes.any,
-    position: PropTypes.any,
-};
+

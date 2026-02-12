@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./kbd.scss";
 
 export type KbdProps = React.ComponentPropsWithoutRef<"kbd"> & {
@@ -19,14 +19,14 @@ export type KbdProps = React.ComponentPropsWithoutRef<"kbd"> & {
 export const Kbd = ({
     children,
     size = "md",
-    className = "",
+    className,
     ...props
 }: KbdProps) => {
-    const sizeClass = `wim-kbd--${size}`;
+
 
     return (
         <kbd
-            className={["wim-kbd", sizeClass, className].filter(Boolean).join(" ")}
+            className={classNames("wim-kbd", `wim-kbd--${size}`, className)}
             {...props}
         >
             {children}
@@ -34,17 +34,4 @@ export const Kbd = ({
     );
 };
 
-Kbd.propTypes = {
-    /**
-     * キーボードのラベル（または子要素）。
-     */
-    children: PropTypes.node.isRequired,
-    /**
-     * サイズ。
-     */
-    size: PropTypes.oneOf(["sm", "md"]),
-    /**
-     * 追加のクラス名。
-     */
-    className: PropTypes.string,
-};
+

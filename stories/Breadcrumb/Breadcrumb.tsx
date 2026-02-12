@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import classNames from "classnames";
 import "./breadcrumb.scss";
 import { useTranslation } from "react-i18next";
 import { Link } from "../Link/Link";
@@ -26,13 +26,6 @@ export const Breadcrumb = ({
 }: BreadcrumbProps) => {
     const { t } = useTranslation();
 
-    const sizeMap = {
-        small: "sm",
-        medium: "md",
-        large: "lg",
-    };
-    const sizeClass = `wim-breadcrumb--${sizeMap[size]}`;
-
     const defaultSeparator = (
         <Icon name="ChevronRightIcon" size={size} className="wim-breadcrumb__separator-icon" />
     );
@@ -40,7 +33,7 @@ export const Breadcrumb = ({
     return (
         <nav
             aria-label="Breadcrumb"
-            className={["wim-breadcrumb", sizeClass, className].filter(Boolean).join(" ")}
+            className={classNames("wim-breadcrumb", `wim-breadcrumb--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`, className)}
         >
             <ol className="wim-breadcrumb__list">
                 {items.map((item, index) => {
@@ -61,12 +54,10 @@ export const Breadcrumb = ({
                                     </Link>
                                 ) : (
                                     <span
-                                        className={[
+                                        className={classNames(
                                             "wim-breadcrumb__label",
-                                            isLast ? "wim-breadcrumb__label--current" : "",
-                                        ]
-                                            .filter(Boolean)
-                                            .join(" ")}
+                                            isLast && "wim-breadcrumb__label--current",
+                                        )}
                                         aria-current={isLast ? "page" : undefined}
                                     >
                                         {item.iconName && (
@@ -93,15 +84,4 @@ export const Breadcrumb = ({
     );
 };
 
-Breadcrumb.propTypes = {
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string.isRequired,
-            href: PropTypes.string,
-            iconName: PropTypes.string,
-        })
-    ).isRequired,
-    separator: PropTypes.node,
-    size: PropTypes.oneOf(["small", "medium", "large"]),
-    className: PropTypes.string,
-};
+
