@@ -11,7 +11,7 @@ export interface TabBarProps extends React.ComponentPropsWithoutRef<"nav"> {
     glass?: boolean;
 }
 
-const TabBar = React.forwardRef<HTMLElement, TabBarProps>(
+const TabBarInner = React.forwardRef<HTMLElement, TabBarProps>(
     ({ className, children, fixed = true, bordered = true, glass = false, ...props }, ref) => {
         return (
             <nav
@@ -33,7 +33,7 @@ const TabBar = React.forwardRef<HTMLElement, TabBarProps>(
     }
 );
 
-TabBar.displayName = "TabBar";
+TabBarInner.displayName = "TabBar";
 
 
 
@@ -75,11 +75,10 @@ TabBarItem.displayName = "TabBar.Item";
 
 
 
-const TabBarComponent = TabBar as typeof TabBar & {
+export const TabBar = TabBarInner as typeof TabBarInner & {
     Item: typeof TabBarItem;
 };
 
-TabBarComponent.Item = TabBarItem;
+TabBar.Item = TabBarItem;
 
-export { TabBarComponent as TabBar };
-export default TabBarComponent;
+export default TabBar;

@@ -14,7 +14,9 @@
     "isolatedModules": true, // 各ファイルを独立したモジュールとしてコンパイルする (バンドラーで推奨)
     "noEmit": true, // 型チェックのみ行い、JavaScriptファイルの出力は行わない (Babel/SWCなどでトランスパイルする場合)
     "paths": {
-      // 例: "@/*": ["./src/*"] など、エイリアスがあればここに追加
+      "@/*": [
+        "./src/*"
+      ]
     },
     "allowJs": true, //JavaScriptファイルのコンパイル/型チェックを許可
     "types": [

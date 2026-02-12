@@ -12,11 +12,9 @@ npm outdated
 
 ### 品質確認
 
-npm run stylelint // srcのscssの品質確認
-npm run lint // srcのjs,tsの品質確認
-
-npm run test:unit //test
-~~npm run test~~ // (故障中)stories.tsを使ったテスト
+npm run stylelint // storiesフォルダ内のscssの品質確認
+npm run lint // storiesフォルダ内のjs,tsの品質確認
+npm run test // コンポーネント単体テスト (*.test.tsx) の実行
 
 ### 整形
 
