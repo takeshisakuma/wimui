@@ -1,0 +1,106 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../T";
+
+<Meta title="Guides/Charts" />
+
+<div className="wim-docs-container">
+  <h1><T k="chart_guide_title" /></h1>
+  <p><T k="chart_guide_desc" /></p>
+
+  <hr />
+
+  <h2>📊 チャート選びの基本基準 (Selection Criteria)</h2>
+  <p>データの性質や、ユーザーに伝えたいストーリーに合わせて適切なチャートを選択してください。</p>
+
+  <table style={{ width: "100%" }}>
+    <thead>
+      <tr>
+        <th>チャートタイプ</th>
+        <th>主な用途</th>
+        <th>適したデータ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong><T k="chart_guide_bar_title" /></strong></td>
+        <td><T k="chart_guide_bar_desc" /></td>
+        <td>カテゴリデータ、ランキング、項目間の差の比較</td>
+      </tr>
+      <tr>
+        <td><strong><T k="chart_guide_line_title" /></strong></td>
+        <td><T k="chart_guide_line_desc" /></td>
+        <td>時系列データ、連続的な変化、トレンドの把握</td>
+      </tr>
+      <tr>
+        <td><strong><T k="chart_guide_area_title" /></strong></td>
+        <td><T k="chart_guide_area_desc" /></td>
+        <td>合計値の変化、時系列でのボリューム感の強調</td>
+      </tr>
+      <tr>
+        <td><strong><T k="chart_guide_pie_title" /></strong></td>
+        <td><T k="chart_guide_pie_desc" /></td>
+        <td>構成比、シェア、全体に対する割合</td>
+      </tr>
+      <tr>
+        <td><strong><T k="chart_guide_scatter_title" /></strong></td>
+        <td><T k="chart_guide_scatter_desc" /></td>
+        <td>2変数間の相関、外れ値の特定、分布の確認</td>
+      </tr>
+      <tr>
+        <td><strong><T k="chart_guide_heatmap_title" /></strong></td>
+        <td><T k="chart_guide_heatmap_desc" /></td>
+        <td>多変数マトリックスの密度、行動パターンの可視化</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr />
+
+  <h2>🔍 詳細な使い分けガイドライン (Detailed Guidelines)</h2>
+
+  <h3>1. 比較・推移 (Comparison & Trend)</h3>
+  <ul>
+    <li><strong>連続的な変化</strong>を見せたい場合は <strong>Line Chart</strong> を優先します。</li>
+    <li><strong>断続的なデータの比較</strong>や、各項目の絶対的な差を際立たせたい場合は <strong>Bar Chart</strong> が適しています。</li>
+    <li>複数のデータシリーズの<strong>合計値の推移</strong>を見せたい場合は、Stacked Area Chart（積層面グラフ）を検討してください。</li>
+  </ul>
+
+  <h3>2. 割合 (Proportions)</h3>
+  <ul>
+    <li><strong>Pie Chart</strong> は直感的ですが、項目が増えると読み取りが困難になります。項目数が多い場合（目安として5項目以上）は、横棒グラフ（Horizontal Bar Chart）で比率を示す方が正確に伝わります。</li>
+    <li>面グラフ（Area Chart）を 100% 積層タイプで使用すると、時系列での割合の変化を効果的に表現できます。</li>
+  </ul>
+
+  <h3>3. 相関と分布 (Correlation & Distribution)</h3>
+  <ul>
+    <li>変数 A と 変数 B にどのような関係があるかを探るには <strong>Scatter Chart</strong> が適しています。</li>
+    <li>時間軸など特定のセグメントごとの「集中度」を表現するには <strong>Heatmap</strong> が優れています（例：週・時間別のログイン頻度）。</li>
+  </ul>
+
+  <div style={{ marginTop: "40px", padding: "24px", background: "var(--bg-component, #f9f9f9)", border: "1px solid var(--wim-color-border)", borderRadius: "12px" }}>
+    <h3>💡 設計上のヒント (Design Tips)</h3>
+    <ul>
+      <li><strong>色の使用:</strong> 意味のない色の多用は避けましょう。比較対象を区別するために最小限の配色（PCCSパレットの利用を推奨）に留めます。</li>
+      <li><strong>軸のラベリング:</strong> 常に単位と軸の名前を明示し、読み手が迷わないようにします。</li>
+      <li><strong>凡例 (Legend):</strong> 系列が多い場合は凡例の位置を工夫し、グラフエリアを圧迫しないように調整してください。</li>
+    </ul>
+  </div>
+
+  <hr />
+
+  <h2>🛠️ 実装について (Technical Implementation)</h2>
+  <div style={{ padding: "24px", background: "var(--bg-component, #fff)", border: "1px solid var(--wim-color-border)", borderRadius: "12px", marginTop: "16px" }}>
+    <p>WIM UI のチャートコンポーネントは <strong>Recharts</strong> をベースに構築されており、プロジェクトのデザイントークンに合わせたスタイリングが自動的に適用されます。</p>
+    <ul>
+      <li>
+        <strong>コンポーネントの場所:</strong><br />
+        <code>src/components/Charts/</code>
+      </li>
+      <li style={{ marginTop: "12px" }}>
+        <strong>共通設定（色・テーマ）:</strong><br />
+        <code>src/components/Charts/helpers.ts</code><br />
+        <small style={{ color: "var(--text-secondary)" }}>チャートで使用するデフォルトの配色（CHART_COLORS）や、グリッド・軸のスタイルを管理しています。</small>
+      </li>
+    </ul>
+  </div>
+</div>

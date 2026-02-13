@@ -1,0 +1,289 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../T";
+
+<Meta title="Guides/Colors" />
+
+<style>
+  {`
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+    margin-bottom: 40px;
+  }
+  .color-item {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--wim-color-border, #e5e5e5);
+    background: var(--bg-component, #fff);
+  }
+  .color-swatch {
+    height: 80px;
+    width: 100%;
+  }
+  .color-info {
+    padding: 12px;
+  }
+  .color-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .color-value {
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--text-secondary, #666);
+  }
+  .section-desc {
+    margin-bottom: 16px;
+    color: var(--text-secondary, #666);
+  }
+  `}
+</style>
+
+<div className="wim-docs-container">
+  <h1><T k="guide_colors_title" /></h1>
+  <p><T k="guide_colors_desc" /></p>
+
+  <hr />
+
+  <h2><T k="guide_colors_semantic" /></h2>
+  <p className="section-desc"><T k="guide_colors_semantic_desc" /></p>
+  <div className="color-grid">
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-primary)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Primary</span>
+        <span className="color-value">--color-primary</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-secondary)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Secondary</span>
+        <span className="color-value">--color-secondary</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-positive)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Positive (Success)</span>
+        <span className="color-value">--color-positive</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-caution)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Caution (Warning)</span>
+        <span className="color-value">--color-caution</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-destructive)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Destructive (Error)</span>
+        <span className="color-value">--color-destructive</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-informative)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Informative (Info)</span>
+        <span className="color-value">--color-informative</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-disabled)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Disabled</span>
+        <span className="color-value">--color-disabled</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Contrast Text Colors</h2>
+  <p className="section-desc">セマンティックカラー（背景）の上に配置するテキストやアイコンの色です。</p>
+  <div className="color-grid">
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-primary)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-text-on-primary)" }}>Text</div>
+      <div className="color-info">
+        <span className="color-name">On Primary</span>
+        <span className="color-value">--color-text-on-primary</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-destructive)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-text-on-destructive)" }}>Text</div>
+      <div className="color-info">
+        <span className="color-name">On Destructive</span>
+        <span className="color-value">--color-text-on-destructive</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-positive)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-text-on-positive)" }}>Text</div>
+      <div className="color-info">
+        <span className="color-name">On Positive</span>
+        <span className="color-value">--color-text-on-positive</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-caution)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-text-on-caution)" }}>Text</div>
+      <div className="color-info">
+        <span className="color-name">On Caution</span>
+        <span className="color-value">--color-text-on-caution</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-informative)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-text-on-informative)" }}>Text</div>
+      <div className="color-info">
+        <span className="color-name">On Informative</span>
+        <span className="color-value">--color-text-on-informative</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--color-disabled)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-text-on-disabled)" }}>Text</div>
+      <div className="color-info">
+        <span className="color-name">On Disabled</span>
+        <span className="color-value">--color-text-on-disabled</span>
+      </div>
+    </div>
+  </div>
+
+  <h2><T k="guide_colors_text" /></h2>
+  <p className="section-desc"><T k="guide_colors_text_desc" /></p>
+  <div className="color-grid">
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--text-primary)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Text Primary</span>
+        <span className="color-value">--text-primary</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--text-secondary)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Text Secondary</span>
+        <span className="color-value">--text-secondary</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--text-tertiary)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Text Tertiary</span>
+        <span className="color-value">--text-tertiary</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--text-disabled)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Text Disabled</span>
+        <span className="color-value">--text-disabled</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--text-error)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Text Error</span>
+        <span className="color-value">--text-error</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--text-white)", borderBottom: "1px solid #eee" }}></div>
+      <div className="color-info">
+        <span className="color-name">Text White</span>
+        <span className="color-value">--text-white</span>
+      </div>
+    </div>
+  </div>
+
+  <h2><T k="guide_colors_surface" /></h2>
+  <p className="section-desc"><T k="guide_colors_surface_desc" /></p>
+  <div className="color-grid">
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--bg-app)" }}></div>
+      <div className="color-info">
+        <span className="color-name">App Background</span>
+        <span className="color-value">--bg-app</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--bg-component)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Component Background</span>
+        <span className="color-value">--bg-component</span>
+      </div>
+    </div>
+  </div>
+
+  <h2><T k="guide_colors_border" /></h2>
+  <p className="section-desc"><T k="guide_colors_border_desc" /></p>
+  <div className="color-grid">
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--wim-color-border)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Border Primary</span>
+        <span className="color-value">--wim-color-border</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--wim-color-border-secondary)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Border Secondary</span>
+        <span className="color-value">--wim-color-border-secondary</span>
+      </div>
+    </div>
+  </div>
+
+  <h2><T k="guide_colors_scrollbar" /></h2>
+  <p className="section-desc"><T k="guide_colors_scrollbar_desc" /></p>
+  <div className="color-grid">
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--scrollbar-thumb)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Scrollbar Thumb</span>
+        <span className="color-value">--scrollbar-thumb</span>
+      </div>
+    </div>
+    <div className="color-item">
+      <div className="color-swatch" style={{ background: "var(--scrollbar-track)" }}></div>
+      <div className="color-info">
+        <span className="color-name">Scrollbar Track</span>
+        <span className="color-value">--scrollbar-track</span>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <h2><T k="guide_colors_pccs" /></h2>
+  <p><T k="guide_colors_pccs_desc" /></p>
+  <p>iWIN UI では PCCS 記法（例: <code>$pccs-v1</code>, <code>$pccs-gy8-5</code>）を用いて SCSS 変数として管理されており、それらをセマンティックな CSS 変数に割り当てています。</p>
+  
+  <div style={{ marginTop: "20px", padding: "16px", background: "var(--bg-component, #f9f9f9)", borderRadius: "8px", border: "1px solid var(--wim-color-border)" }}>
+    <strong>主要なトーンの対応:</strong>
+    <ul>
+      <li><strong>v (Vivid):</strong> 純色。プライマリーカラーなどに使用。</li>
+      <li><strong>s (Strong):</strong> 彩度が高く力強い色。エラーや注目用。</li>
+      <li><strong>gy (Grayish):</strong> 無彩色。テキストやボーダー、背景に使用。</li>
+    </ul>
+    詳細なカラーコードは <code>src/tokens/_pccs-colors.scss</code> および <code>_semantic-colors.scss</code> を参照してください。
+  </div>
+
+  <h2>🛠️ カスタマイズ (Customization)</h2>
+  <div style={{ padding: "24px", background: "var(--bg-component, #fff)", border: "1px solid var(--wim-color-border)", borderRadius: "12px", marginTop: "16px" }}>
+    <p>配色を変更または追加したい場合は、以下のファイルを編集してください：</p>
+    <ul>
+      <li>
+        <strong>セマンティックカラーの変更:</strong><br />
+        <code>src/tokens/_semantic-colors.scss</code><br />
+        <small style={{ color: "var(--text-secondary)" }}>用途ごとの色（Primary, Destructiveなど）や、ダークモードの配色を定義しています。</small>
+      </li>
+      <li style={{ marginTop: "12px" }}>
+        <strong>PCCSパレット変数の変更:</strong><br />
+        <code>src/tokens/_pccs-colors.scss</code><br />
+        <small style={{ color: "var(--text-secondary)" }}>色相とトーンに基づいた具体的なカラーコードの定義（例: $pccs-v1）を行っています。</small>
+      </li>
+    </ul>
+  </div>
+</div>
