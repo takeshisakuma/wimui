@@ -6,8 +6,7 @@ export interface TabsProps extends React.ComponentPropsWithoutRef<"div"> {
     orientation?: "horizontal" | "vertical";
 }
 declare const Tabs: ({ defaultValue, value: valueProp, onValueChange, orientation, className, children, ...props }: TabsProps) => import("react/jsx-runtime").JSX.Element;
-export interface TabsListProps extends React.ComponentPropsWithoutRef<"div"> {
-}
+export type TabsListProps = React.ComponentPropsWithoutRef<"div">;
 export declare const TabsList: ({ className, children, ...props }: TabsListProps) => import("react/jsx-runtime").JSX.Element;
 export interface TabsTriggerProps extends React.ComponentPropsWithoutRef<"button"> {
     value: string;

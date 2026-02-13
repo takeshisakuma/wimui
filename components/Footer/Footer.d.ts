@@ -10,11 +10,10 @@ export interface FooterSectionProps extends React.ComponentPropsWithoutRef<"div"
     title?: string;
 }
 export declare const FooterSection: React.ForwardRefExoticComponent<FooterSectionProps & React.RefAttributes<HTMLDivElement>>;
-export interface FooterBottomProps extends React.ComponentPropsWithoutRef<"div"> {
-}
-export declare const FooterBottom: React.ForwardRefExoticComponent<FooterBottomProps & React.RefAttributes<HTMLDivElement>>;
+export type FooterBottomProps = React.ComponentPropsWithoutRef<"div">;
+export declare const FooterBottom: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
 declare const _default: React.ForwardRefExoticComponent<FooterProps & React.RefAttributes<HTMLElement>> & {
     Section: React.ForwardRefExoticComponent<FooterSectionProps & React.RefAttributes<HTMLDivElement>>;
-    Bottom: React.ForwardRefExoticComponent<FooterBottomProps & React.RefAttributes<HTMLDivElement>>;
+    Bottom: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
 };
 export default _default;

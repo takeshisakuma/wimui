@@ -10,15 +10,12 @@ export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
     bordered?: boolean;
 }
 declare const Sidebar: React.ForwardRefExoticComponent<SidebarProps & React.RefAttributes<HTMLElement>>;
-export interface SidebarHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
-}
-export declare const SidebarHeader: React.ForwardRefExoticComponent<SidebarHeaderProps & React.RefAttributes<HTMLDivElement>>;
-export interface SidebarContentProps extends React.ComponentPropsWithoutRef<"div"> {
-}
-export declare const SidebarContent: React.ForwardRefExoticComponent<SidebarContentProps & React.RefAttributes<HTMLDivElement>>;
-export interface SidebarFooterProps extends React.ComponentPropsWithoutRef<"div"> {
-}
-export declare const SidebarFooter: React.ForwardRefExoticComponent<SidebarFooterProps & React.RefAttributes<HTMLDivElement>>;
+export type SidebarHeaderProps = React.ComponentPropsWithoutRef<"div">;
+export declare const SidebarHeader: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
+export type SidebarContentProps = React.ComponentPropsWithoutRef<"div">;
+export declare const SidebarContent: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
+export type SidebarFooterProps = React.ComponentPropsWithoutRef<"div">;
+export declare const SidebarFooter: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
 export interface SidebarItemProps extends React.ComponentPropsWithoutRef<"div"> {
     active?: boolean;
     disabled?: boolean;

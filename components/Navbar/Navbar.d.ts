@@ -12,9 +12,8 @@ export interface NavbarProps extends React.ComponentPropsWithoutRef<"nav"> {
     bordered?: boolean;
 }
 export declare const Navbar: React.ForwardRefExoticComponent<NavbarProps & React.RefAttributes<HTMLElement>>;
-export interface NavbarBrandProps extends React.ComponentPropsWithoutRef<"div"> {
-}
-export declare const NavbarBrand: React.ForwardRefExoticComponent<NavbarBrandProps & React.RefAttributes<HTMLDivElement>>;
+export type NavbarBrandProps = React.ComponentPropsWithoutRef<"div">;
+export declare const NavbarBrand: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
 export interface NavbarContentProps extends React.ComponentPropsWithoutRef<"div"> {
     justify?: "start" | "end" | "center";
 }
@@ -28,7 +27,7 @@ export interface NavbarLinkProps extends React.ComponentPropsWithoutRef<"a"> {
 }
 export declare const NavbarLink: React.ForwardRefExoticComponent<NavbarLinkProps & React.RefAttributes<HTMLAnchorElement>>;
 declare const _default: React.ForwardRefExoticComponent<NavbarProps & React.RefAttributes<HTMLElement>> & {
-    Brand: React.ForwardRefExoticComponent<NavbarBrandProps & React.RefAttributes<HTMLDivElement>>;
+    Brand: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
     Content: React.ForwardRefExoticComponent<NavbarContentProps & React.RefAttributes<HTMLDivElement>>;
     Item: React.ForwardRefExoticComponent<NavbarItemProps & React.RefAttributes<HTMLDivElement>>;
     Link: React.ForwardRefExoticComponent<NavbarLinkProps & React.RefAttributes<HTMLAnchorElement>>;
