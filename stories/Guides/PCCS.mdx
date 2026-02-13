@@ -1,6 +1,7 @@
 import { Meta } from "@storybook/blocks";
 import { T } from "../T";
 import { ColorSwatch, ColorGrid } from "../ColorSwatch";
+import { ContrastChecker } from "../ContrastChecker";
 
 <Meta title="Guides/PCCS" />
 
@@ -100,6 +101,12 @@ import { ColorSwatch, ColorGrid } from "../ColorSwatch";
       </ColorGrid>
     </div>
   ))}
+
+  <hr style={{ margin: "40px 0" }} />
+
+  <h2>💡 Contrast Checker</h2>
+  <p>PCCSカラーの組み合わせがアクセシビリティ基準を満たしているか確認できます。</p>
+  <ContrastChecker />
 
   <hr style={{ margin: "40px 0" }} />
 

@@ -1,6 +1,7 @@
 import { Meta } from "@storybook/blocks";
 import { T } from "../T";
 import { ColorSwatch, ColorGrid } from "../ColorSwatch";
+import { ContrastChecker } from "../ContrastChecker";
 
 <Meta title="Guides/Colors" />
 
@@ -90,8 +91,13 @@ import { ColorSwatch, ColorGrid } from "../ColorSwatch";
   <p className="section-desc"><T k="guide_colors_scrollbar_desc" /></p>
   <ColorGrid>
     <ColorSwatch name="Scrollbar Thumb" value="--scrollbar-thumb" color="var(--scrollbar-thumb)" />
-    <ColorSwatch name="Scrollbar Track" value="--scrollbar-track" color="var(--scrollbar-track)" />
   </ColorGrid>
+
+  <hr />
+
+  <h2>💡 Contrast Checker</h2>
+  <p className="section-desc">背景色と文字色のコントラスト比を確認して、アクセシビリティの基準を満たしているかチェックできます。</p>
+  <ContrastChecker />
 
   <hr />
 
