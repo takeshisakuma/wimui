@@ -260,5 +260,19 @@
   "doc_heatmap_title": "Intensity map",
   "doc_divider_title": "Separador de conteúdo",
   "doc_portal_title": "Renderização fora da hierarquia",
-  "doc_transition_title": "Gerenciamento de animação"
+  "doc_transition_title": "Gerenciamento de animação",
+  "chart_guide_title": "Guia de Seleção de Gráfico",
+  "chart_guide_desc": "Um guia sobre como escolher o gráfico certo com base em seus dados e na mensagem que você deseja transmitir.",
+  "chart_guide_bar_title": "Gráfico de Barras",
+  "chart_guide_bar_desc": "Melhor para comparar valores entre diferentes categorias.",
+  "chart_guide_line_title": "Gráfico de Linha",
+  "chart_guide_line_desc": "Usado para mostrar tendências ou mudanças ao longo do tempo.",
+  "chart_guide_area_title": "Gráfico de Área",
+  "chart_guide_area_desc": "Adequado para mostrar a magnitude da mudança ao longo do tempo e enfatizar o volume total.",
+  "chart_guide_pie_title": "Gráfico de Pizza",
+  "chart_guide_pie_desc": "Usado para mostrar partes de um todo (cotas). Recomendado para 5 categorias ou menos.",
+  "chart_guide_scatter_title": "Gráfico de Dispersão",
+  "chart_guide_scatter_desc": "Usado para identificar correlações ou distribuções entre duas variáveis.",
+  "chart_guide_heatmap_title": "Mapa de Calor (Heatmap)",
+  "chart_guide_heatmap_desc": "Representa a densidade de valores em dois eixos (matriz) usando cores."
 }
