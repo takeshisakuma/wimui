@@ -1,0 +1,28 @@
+.wim-transition-hidden {
+    display: none !important;
+}
+
+/* Common transition helper classes if needed */
+.fade-enter {
+    transition: opacity 300ms ease-out;
+}
+
+.fade-enter-from {
+    opacity: 0;
+}
+
+.fade-enter-to {
+    opacity: 1;
+}
+
+.fade-leave {
+    transition: opacity 300ms ease-in;
+}
+
+.fade-leave-from {
+    opacity: 1;
+}
+
+.fade-leave-to {
+    opacity: 0;
+}

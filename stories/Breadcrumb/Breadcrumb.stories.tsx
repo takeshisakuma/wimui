@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Breadcrumb } from "./Breadcrumb";
+import { Breadcrumb } from "@/components/Breadcrumb/Breadcrumb";
 
 const meta: Meta<typeof Breadcrumb> = {
     title: "Component/Navigation/Breadcrumb",

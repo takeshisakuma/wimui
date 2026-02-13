@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Transition } from "./Transition";
-import { Button } from "../Button/Button";
+import { Transition } from "@/components/Transition/Transition";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Transition> = {
     title: "Component/Utilities/Transition",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription, DrawerClose } from "./Drawer";
-import { Button } from "../Button/Button";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/Drawer/Drawer";
+import { Button } from "@/components/Button/Button";
 import { useState } from "react";
 
 const meta: Meta<typeof Drawer> = {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Affix } from "./Affix";
-import { Button } from "../Button/Button";
+import { Affix } from "@/components/Affix/Affix";
+import { Button } from "@/components/Button/Button";
 import React from "react";
 
 const meta: Meta<typeof Affix> = {

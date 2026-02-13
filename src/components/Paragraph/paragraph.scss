@@ -1,0 +1,101 @@
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/typography" as typography;
+@use "../../tokens/spacings" as spacings;
+@use "../../lang" as lang;
+
+@layer component {
+  .wim-paragraph {
+    font: inherit;
+    color: inherit;
+
+    &--xl {
+      font-size: typography.$size-ex-large;
+    }
+
+    &--lg {
+      font-size: typography.$size-large;
+    }
+
+    &--md {
+      font-size: typography.$size-medium;
+    }
+
+    &--sm {
+      font-size: typography.$size-small;
+    }
+
+    &--xs {
+      font-size: typography.$size-ex-small;
+    }
+
+    &--loose-jpan {
+      line-height: typography.$line-height-loose-jpan;
+    }
+
+    &--normal-jpan {
+      line-height: typography.$line-height-normal-jpan;
+    }
+
+    &--tight-jpan {
+      line-height: typography.$line-height-tight-jpan;
+    }
+
+    &--loose-latn {
+      line-height: typography.$line-height-loose-latn;
+    }
+
+    &--normal-latn {
+      line-height: typography.$line-height-normal-latn;
+    }
+
+    &--tight-latn {
+      line-height: typography.$line-height-tight-latn;
+    }
+
+    &--bold {
+      font-weight: typography.$weight-bold;
+    }
+
+    &--italic {
+      font-style: typography.$style-italic;
+    }
+
+    &--line-through {
+      text-decoration: typography.$decoration-line-through;
+    }
+
+    &--underline {
+      text-decoration: typography.$decoration-underline;
+      text-decoration-skip-ink: none;
+      text-underline-offset: 0.3em;
+    }
+
+    &--highlight {
+      background-color: var(--decoration-highlight-color);
+    }
+
+    &--black {
+      color: var(--text-primary);
+    }
+
+    &--deepgray {
+      color: colors.$text-deepgray;
+    }
+
+    &--gray {
+      color: colors.$text-gray;
+    }
+
+    &--lightgray {
+      color: colors.$text-lightgray;
+    }
+
+    &--white {
+      color: var(--text-white);
+    }
+
+    &--error {
+      color: var(--text-error);
+    }
+  }
+}

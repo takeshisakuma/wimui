@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { TreeView } from "./TreeView";
-import { Icon } from "../Icon/Icon";
+import { TreeView } from "@/components/TreeView/TreeView";
+import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof TreeView> = {
     title: "Component/Data Display/TreeView",

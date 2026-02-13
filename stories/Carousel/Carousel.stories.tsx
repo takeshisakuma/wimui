@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Carousel } from "./Carousel";
-import SampleImage from "../../src/media/imagesanple.webp";
+import { Carousel } from "@/components/Carousel/Carousel";
+import SampleImage from "@/media/imagesanple.webp";
 
 
 const meta: Meta<typeof Carousel> = {

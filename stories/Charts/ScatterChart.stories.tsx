@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ScatterChart } from "./ScatterChart";
+import { ScatterChart } from "@/components/Charts/ScatterChart";
 
 const meta: Meta<typeof ScatterChart> = {
     title: "Component/Media & Viz/ScatterChart",

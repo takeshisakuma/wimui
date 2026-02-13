@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Audio } from "./Audio";
-import audioSample from "../../src/media/audiosample.mp3";
+import { Audio } from "@/components/Audio/Audio";
+import audioSample from "@/media/audiosample.mp3";
 
 const meta: Meta<typeof Audio> = {
     title: "Component/Media & Viz/Audio",

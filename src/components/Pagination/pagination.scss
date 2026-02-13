@@ -1,0 +1,168 @@
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/typography" as typography;
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/effects" as effects;
+
+@layer component {
+    .wim-pagination-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: spacings.$spacing-lg;
+        align-items: center;
+    }
+
+    .wim-pagination {
+        display: flex;
+        gap: spacings.$spacing-xs;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        &--simple {
+            .wim-pagination__simple-pager {
+                padding: 0 spacings.$spacing-md;
+                color: var(--text-primary);
+            }
+        }
+
+        &__item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: spacings.$spacing-3xl;
+            height: spacings.$spacing-3xl;
+            padding: 0 spacings.$spacing-md;
+            font-size: typography.$size-medium;
+            font-weight: typography.$weight-medium;
+            color: var(--text-secondary);
+            cursor: pointer;
+            user-select: none;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: spacings.$radius-md;
+            transition: all effects.$transition-base;
+
+            &:hover:not(&--disabled, &--active) {
+                color: var(--color-primary);
+                background-color: var(--wim-color-border-secondary);
+            }
+
+            &--active {
+                color: var(--color-text-on-primary);
+                cursor: default;
+                background-color: var(--color-primary);
+            }
+
+            &--disabled {
+                color: var(--color-disabled);
+                cursor: not-allowed;
+                opacity: 0.5;
+            }
+
+            &--ellipsis {
+                cursor: default;
+
+                &:hover {
+                    color: var(--text-secondary);
+                    background-color: transparent;
+                }
+            }
+        }
+
+        &__button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            font: inherit;
+            color: inherit;
+            cursor: inherit;
+            outline: none;
+            background: none;
+            border: none;
+
+            &:focus-visible {
+                outline: 2px solid var(--color-primary);
+                outline-offset: 2px;
+                border-radius: spacings.$radius-sm;
+            }
+        }
+
+        &__total {
+            font-size: typography.$size-medium;
+            color: var(--text-secondary);
+        }
+
+        &__size-changer {
+            display: flex;
+            gap: spacings.$spacing-sm;
+            align-items: center;
+        }
+
+        &__size-select {
+            padding: spacings.$spacing-sm spacings.$spacing-md;
+            font-size: typography.$size-medium;
+            color: var(--text-primary);
+            cursor: pointer;
+            outline: none;
+            background-color: var(--wim-color-bg);
+            border: 1px solid var(--wim-color-border);
+            border-radius: spacings.$radius-md;
+            transition: all effects.$transition-base;
+
+            &:hover {
+                border-color: var(--color-primary);
+            }
+
+            &:focus {
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.1);
+            }
+        }
+
+        &__quick-jumper {
+            display: flex;
+            gap: spacings.$spacing-sm;
+            align-items: center;
+            font-size: typography.$size-medium;
+            color: var(--text-secondary);
+        }
+
+        &__jump-input {
+            width: 60px;
+            padding: spacings.$spacing-sm;
+            font-size: typography.$size-medium;
+            color: var(--text-primary);
+            text-align: center;
+            outline: none;
+            background-color: var(--wim-color-bg);
+            border: 1px solid var(--wim-color-border);
+            border-radius: spacings.$radius-md;
+            transition: all effects.$transition-base;
+
+            &:hover {
+                border-color: var(--color-primary);
+            }
+
+            &:focus {
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.1);
+            }
+
+            /* Chrome, Safari, Edge, Opera */
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                margin: 0;
+                appearance: none;
+            }
+
+            /* Firefox */
+            &[type="number"] {
+                appearance: textfield;
+            }
+        }
+    }
+}

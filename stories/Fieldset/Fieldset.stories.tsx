@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Fieldset } from "./Fieldset";
-import { Legend } from "../Legend/Legend";
-import { Label } from "../Label/Label";
-import { Input } from "../Input/Input";
-import { CheckboxGroup } from "../CheckboxGroup/CheckboxGroup";
+import { Fieldset } from "@/components/Fieldset/Fieldset";
+import { Legend } from "@/components/Legend/Legend";
+import { Label } from "@/components/Label/Label";
+import { Input } from "@/components/Input/Input";
+import { CheckboxGroup } from "@/components/CheckboxGroup/CheckboxGroup";
 
 const meta: Meta<typeof Fieldset> = {
     title: "Component/Form Inputs/Fieldset",

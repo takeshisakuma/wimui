@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { DatePicker } from "./DatePicker";
-import { Label } from "../Label/Label";
+import { DatePicker } from "@/components/DatePicker/DatePicker";
+import { Label } from "@/components/Label/Label";
 
 const meta: Meta<typeof DatePicker> = {
     title: "Component/Pickers & Sliders/DatePicker",

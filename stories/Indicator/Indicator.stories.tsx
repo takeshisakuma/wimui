@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Indicator } from "./Indicator";
-import { Avatar } from "../Avatar/Avatar";
+import { Indicator } from "@/components/Indicator/Indicator";
+import { Avatar } from "@/components/Avatar/Avatar";
 import React from "react";
 
 const meta: Meta<typeof Indicator> = {

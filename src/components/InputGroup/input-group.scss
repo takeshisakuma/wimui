@@ -1,0 +1,108 @@
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/effects" as effects;
+
+.wim-input-group {
+    display: inline-flex;
+    align-items: stretch;
+    width: auto;
+    max-width: 100%;
+
+    &--full-width {
+        display: flex;
+        width: 100%;
+    }
+
+    // Children styling
+    >.wim-input-container,
+    >.wim-input,
+    >.wim-button,
+    >.wim-input-group-text {
+        position: relative;
+        box-sizing: border-box;
+        flex: 1 1 auto;
+        margin-bottom: 0;
+
+        // Reset width for input container inside group
+        &.wim-input-container {
+            display: flex;
+            align-items: stretch; // Ensure inner input stretches to container height
+            width: 100%;
+            min-width: 0;
+
+            .wim-input {
+                flex: 1;
+                height: auto;
+            }
+
+        }
+
+        &:not(:first-child) {
+            margin-left: -1px; // Standard overlap for 1px borders
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+
+            // Also reset inner input radius if it's a container
+            &.wim-input-container .wim-input {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        &:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+
+            // Also reset inner input radius if it's a container
+            &.wim-input-container .wim-input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+
+        // Handle focus state z-index and interaction resets
+        &:focus-within,
+        &:focus,
+        &:hover {
+            z-index: 2;
+            box-shadow: none !important; // Prevent "floating" effects inside group
+            transform: none !important; // Prevent "lift" effects inside group
+        }
+
+        &:hover:not(:focus-within, :focus) {
+            // Subtle feedback for hovering non-active elements
+            // Use an overlay to work regardless of background color
+            &::after {
+                position: absolute;
+                inset: 0;
+                z-index: 10;
+                pointer-events: none;
+                content: "";
+                background-color: rgb(0 0 0 / 0.04); // Very subtle darkening
+                border-radius: inherit;
+            }
+        }
+    }
+
+    // Buttons should not grow as much as inputs
+    >.wim-button,
+    >.wim-input-group-text {
+        flex: 0 0 auto;
+    }
+}
+
+.wim-input-group-text {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: spacings.$spacing-sm spacings.$spacing-lg;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: normal; // Use normal to match input behavior
+    color: var(--text-secondary);
+    text-align: center;
+    white-space: nowrap;
+    background-color: colors.$color-disabled;
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+}

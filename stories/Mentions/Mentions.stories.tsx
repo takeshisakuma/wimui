@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Mentions } from "./Mentions";
-import { Label } from "../Label/Label";
+import { Mentions } from "@/components/Mentions/Mentions";
+import { Label } from "@/components/Label/Label";
 
 const meta: Meta<typeof Mentions> = {
     title: "Component/Form Inputs/Mentions",

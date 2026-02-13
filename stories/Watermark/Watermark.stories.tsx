@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Watermark } from "./Watermark";
+import { Watermark } from "@/components/Watermark/Watermark";
 
 const meta: Meta<typeof Watermark> = {
     title: "Component/Data Display/Watermark",

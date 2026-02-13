@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Result } from "./Result";
-import { Button } from "../Button/Button";
+import { Result } from "@/components/Result/Result";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Result> = {
     title: "Component/Feedback/Result",

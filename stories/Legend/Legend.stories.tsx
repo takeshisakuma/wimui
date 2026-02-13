@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Legend } from "./Legend";
+import { Legend } from "@/components/Legend/Legend";
 
 const meta: Meta<typeof Legend> = {
     title: "Component/Form Inputs/Legend",

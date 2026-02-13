@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { QRCode } from "./QRCode";
+import { QRCode } from "@/components/QRCode/QRCode";
 
 const meta: Meta<typeof QRCode> = {
     title: "Component/Data Display/QRCode",

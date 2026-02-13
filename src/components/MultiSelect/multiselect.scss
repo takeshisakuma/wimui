@@ -1,0 +1,72 @@
+/* ------------------------------------------------------------------
+   MultiSelect Styles
+------------------------------------------------------------------ */
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/effects" as effects;
+
+.wim-multiselect {
+    position: relative;
+    width: 320px;
+    max-width: 100%;
+    font-family: var(--font-family-base);
+
+    &--full-width {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+.wim-multiselect-trigger {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 42px;
+
+    /* Ensure consistency with inputs */
+    padding: spacings.$spacing-md spacings.$spacing-sm; // Increased from xs to md for vertical consistency
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    cursor: pointer;
+    background-color: var(--bg-component, #fff);
+    border: 1px solid colors.$color-secondary;
+    border-radius: spacings.$radius-md;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:hover:not(.wim-multiselect-trigger--disabled) {
+        border-color: colors.$color-primary;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: colors.$color-primary;
+        box-shadow: 0 0 0 2px rgba(colors.$color-primary, 0.2);
+    }
+
+    &--open {
+        border-color: colors.$color-primary;
+        box-shadow: 0 0 0 2px rgba(colors.$color-primary, 0.2);
+    }
+
+    &--disabled {
+        color: var(--text-disabled);
+        cursor: not-allowed;
+        background-color: rgb(0 0 0 / 0.05);
+        border-color: colors.$color-disabled;
+    }
+}
+
+.wim-multiselect-value {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: spacings.$spacing-xs;
+    align-items: center;
+
+    &--placeholder {
+        color: var(--text-placeholder);
+    }
+}

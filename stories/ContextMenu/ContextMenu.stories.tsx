@@ -4,8 +4,8 @@ import {
     ContextMenuItem,
     ContextMenuDivider,
     ContextMenuGroup,
-} from "./ContextMenu";
-import { Icon } from "../Icon/Icon";
+} from "@/components/ContextMenu/ContextMenu";
+import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof ContextMenu> = {
     title: "Component/Navigation/ContextMenu",

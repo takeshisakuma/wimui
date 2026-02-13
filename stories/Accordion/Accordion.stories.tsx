@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Accordion } from "./Accordion";
+import { Accordion } from "@/components/Accordion/Accordion";
 
 const meta: Meta<typeof Accordion> = {
     title: "Component/Data Display/Accordion",

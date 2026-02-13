@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
-import { Snackbar } from "./Snackbar";
-import { Button } from "../Button/Button";
+import { Snackbar } from "@/components/Snackbar/Snackbar";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Snackbar> = {
     title: "Component/Feedback/Snackbar",

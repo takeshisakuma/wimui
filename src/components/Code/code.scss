@@ -1,0 +1,29 @@
+.wim-code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875em;
+    border-radius: 4px;
+
+    &--inline {
+        padding: 0.2em 0.4em;
+        color: #eb5757;
+        background-color: rgb(0 0 0 / 0.05);
+    }
+
+    &--block {
+        display: block;
+        padding: 1rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+        color: #333;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+
+        code {
+            padding: 0;
+            font-size: 1em;
+            color: inherit;
+            background-color: transparent;
+            border-radius: 0;
+        }
+    }
+}

@@ -8,6 +8,8 @@ const __dirname = path.dirname(__filename);
 import viteImagemin from "vite-plugin-imagemin";
 import svgr from "vite-plugin-svgr";
 
+import dts from "vite-plugin-dts";
+
 export default defineConfig({
   plugins: [
     react(),
@@ -30,8 +32,29 @@ export default defineConfig({
         ],
       },
     }),
+    dts({
+      include: ["src/**/*.ts", "src/**/*.tsx"],
+      exclude: ["**/*.stories.tsx", "**/*.test.tsx"],
+      insertTypesEntry: true,
+    }),
   ],
   build: {
+    lib: {
+      entry: path.resolve(__dirname, "src/index.ts"),
+      name: "WimUI",
+      formats: ["es", "umd"],
+      fileName: (format) => `wimui.${format}.js`,
+    },
+    rollupOptions: {
+      external: ["react", "react-dom", "react/jsx-runtime"],
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+          "react/jsx-runtime": "jsxRuntime",
+        },
+      },
+    },
     chunkSizeWarningLimit: 2000,
   },
   resolve: {

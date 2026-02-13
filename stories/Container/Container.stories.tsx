@@ -1,10 +1,10 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Container } from "./Container";
-import { Box } from "../Box/Box";
+import { Container } from "@/components/Container/Container";
+import { Box } from "@/components/Box/Box";
 
 const meta: Meta<typeof Container> = {
-    title: "Layout/Container",
+    title: "Component/Layout/Container",
     component: Container,
     tags: [],
     argTypes: {

@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { InputGroup, InputGroupText } from "./InputGroup";
-import { Input } from "../Input/Input";
-import { Button } from "../Button/Button";
+import { InputGroup, InputGroupText } from "@/components/InputGroup/InputGroup";
+import { Input } from "@/components/Input/Input";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof InputGroup> = {
     title: "Component/Form Inputs/InputGroup",

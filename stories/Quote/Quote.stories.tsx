@@ -1,5 +1,5 @@
 import React from "react";
-import { Quote } from "./Quote";
+import { Quote } from "@/components/Quote/Quote";
 
 export default {
     title: "Component/Typography & Icons/Quote",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Popconfirm } from "./Popconfirm";
-import { Button } from "../Button/Button";
+import { Popconfirm } from "@/components/Popconfirm/Popconfirm";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Popconfirm> = {
     title: "Component/Feedback/Popconfirm",

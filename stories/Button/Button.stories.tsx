@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
-import { Button } from "./Button";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Button> = {
   title: "Component/Buttons & Actions/Button",

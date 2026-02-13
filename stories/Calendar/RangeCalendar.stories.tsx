@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { RangeCalendar, RangeCalendarValue } from "./RangeCalendar";
+import { RangeCalendar, RangeCalendarValue } from "@/components/Calendar/RangeCalendar";
 
 const meta: Meta<typeof RangeCalendar> = {
     title: "Component/Pickers & Sliders/RangeCalendar",

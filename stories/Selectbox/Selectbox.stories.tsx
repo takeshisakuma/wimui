@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Selectbox } from "./Selectbox";
+import { Selectbox } from "@/components/Selectbox/Selectbox";
 
 const meta: Meta<typeof Selectbox> = {
     title: "Component/Selection Controls/Selectbox",

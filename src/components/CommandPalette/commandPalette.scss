@@ -1,0 +1,231 @@
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/effects" as effects;
+
+.wim-command-palette-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20vh;
+    background-color: rgb(0 0 0 / 0.4);
+    backdrop-filter: blur(4px);
+
+    // Mobile: sticky to top and less padding
+    @media (width <= 640px) {
+        align-items: flex-start;
+        padding-top: 0;
+    }
+}
+
+.wim-command-palette-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 640px;
+    overflow: hidden;
+    background: var(--bg-component, #fff);
+    border: 1px solid var(--wim-color-border-secondary);
+    border-radius: spacings.$radius-lg;
+    box-shadow: effects.$shadow-lg;
+    animation: wim-command-palette-in 0.2s ease-out;
+
+    [data-theme="dark"] & {
+        background: var(--bg-component, #1a1a1a);
+        border-color: rgb(255 255 255 / 0.1);
+    }
+
+    // Mobile: full width and no border radius at top
+    @media (width <= 640px) {
+        max-width: 100%;
+        height: auto;
+        max-height: 100vh;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-radius: 0 0 spacings.$radius-lg spacings.$radius-lg;
+    }
+}
+
+@keyframes wim-command-palette-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.wim-command-palette-input-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0 spacings.$spacing-md;
+    border-bottom: 1px solid var(--wim-color-border-secondary);
+
+    .wim-icon {
+        margin-right: spacings.$spacing-sm;
+        color: var(--text-tertiary);
+    }
+}
+
+.wim-command-palette-input {
+    flex: 1;
+    height: 56px; // Slightly taller for mobile tap
+    font-size: 1rem;
+    color: var(--text-primary);
+    outline: none;
+    background: transparent;
+    border: none;
+
+    &::placeholder {
+        color: var(--text-tertiary);
+    }
+}
+
+.wim-command-palette-list {
+    max-height: 400px;
+    padding: spacings.$spacing-xs;
+    overflow-y: auto;
+
+    @media (width <= 640px) {
+        max-height: calc(100vh - 120px); // Adjust based on header/footer
+    }
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 10px;
+    }
+}
+
+.wim-command-palette-group {
+    margin-bottom: spacings.$spacing-sm;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.wim-command-palette-group-heading {
+    padding: spacings.$spacing-xs spacings.$spacing-sm;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.wim-command-palette-item {
+    display: flex;
+    gap: spacings.$spacing-sm;
+    align-items: center;
+    padding: spacings.$spacing-sm spacings.$spacing-sm; // Taller for mobile
+    cursor: pointer;
+    user-select: none;
+    border-radius: spacings.$radius-sm;
+    transition: background 0.1s ease;
+
+    &--active {
+        background: var(--wim-color-border-secondary);
+
+        [data-theme="dark"] & {
+            background: rgb(255 255 255 / 0.05);
+        }
+    }
+
+    &--disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .wim-command-palette-item-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        color: var(--text-secondary);
+    }
+
+    .wim-command-palette-item-label {
+        flex: 1;
+        font-size: 0.875rem;
+        color: var(--text-primary);
+    }
+
+    .wim-command-palette-item-shortcut {
+        display: flex;
+        gap: 4px;
+
+        // Hide shortcuts on small screens
+        @media (width <= 480px) {
+            display: none;
+        }
+    }
+}
+
+.wim-command-palette-empty {
+    padding: spacings.$spacing-xl spacings.$spacing-md;
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    text-align: center;
+}
+
+.wim-command-palette-footer {
+    display: flex;
+    gap: spacings.$spacing-md;
+    align-items: center;
+    padding: spacings.$spacing-xs spacings.$spacing-md;
+    background: var(--bg-app);
+    border-top: 1px solid var(--wim-color-border-secondary);
+
+    [data-theme="dark"] & {
+        background: rgb(0 0 0 / 0.2);
+    }
+
+    // Hide footer on very small screens or make it more compact
+    @media (width <= 480px) {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+.wim-command-palette-shortcut-hint {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+
+    .wim-kbd {
+        padding: 1px 4px;
+        font-size: 0.6rem;
+    }
+}
+
+// Add basic styles for the trigger if needed
+.wim-command-palette-trigger {
+    display: inline-flex;
+    gap: spacings.$spacing-sm;
+    align-items: center;
+    padding: spacings.$spacing-sm spacings.$spacing-md;
+    color: var(--text-secondary);
+    cursor: pointer;
+    background: var(--bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: spacings.$radius-md;
+    transition: all 0.2s;
+
+    &:hover {
+        color: var(--text-primary);
+        border-color: var(--color-primary);
+    }
+}

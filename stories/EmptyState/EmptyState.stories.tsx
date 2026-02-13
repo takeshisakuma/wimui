@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { EmptyState } from "./EmptyState";
-import { Icon } from "../Icon/Icon";
-import { Button } from "../Button/Button";
+import { EmptyState } from "@/components/EmptyState/EmptyState";
+import { Icon } from "@/components/Icon/Icon";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof EmptyState> = {
     title: "Component/Data Display/EmptyState",

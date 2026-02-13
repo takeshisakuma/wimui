@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Sidebar, { SidebarProps } from "./Sidebar";
-import { Icon } from "../Icon/Icon";
+import Sidebar, { SidebarProps } from "@/components/Sidebar/Sidebar";
+import { Icon } from "@/components/Icon/Icon";
 import React from "react";
 
 const meta: Meta<typeof Sidebar> = {
-    title: "Layout/Sidebar",
+    title: "Component/Layout/Sidebar",
     component: Sidebar,
     parameters: {
         layout: "fullscreen",

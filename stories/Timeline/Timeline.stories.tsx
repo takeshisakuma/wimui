@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelinePoint, TimelineContent, TimelineOppositeContent } from './Timeline';
-import { Icon } from '../Icon/Icon';
+import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelinePoint, TimelineContent, TimelineOppositeContent } from "@/components/Timeline/Timeline";
+import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof Timeline> = {
     title: 'Component/Data Display/Timeline',

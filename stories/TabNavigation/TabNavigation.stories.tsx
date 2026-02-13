@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import TabNavigation from "./TabNavigation";
-import { Icon } from "../Icon/Icon";
+import TabNavigation from "@/components/TabNavigation/TabNavigation";
+import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof TabNavigation> = {
     title: "Component/Navigation/TabNavigation",

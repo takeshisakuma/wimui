@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import Navbar from "./Navbar";
-import { Button } from "../Button/Button";
-import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
+import Navbar from "@/components/Navbar/Navbar";
+import { Button } from "@/components/Button/Button";
+import { HamburgerMenu } from "@/components/HamburgerMenu/HamburgerMenu";
 
 const meta: Meta<typeof Navbar> = {
     title: "Component/Navigation/Navbar",

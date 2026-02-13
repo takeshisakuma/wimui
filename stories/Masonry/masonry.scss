@@ -1,9 +1,0 @@
-.wim-masonry {
-    width: 100%;
-
-    .wim-masonry-item {
-        display: block; // Ensure it's a block for column break
-        width: 100%;
-        break-inside: avoid;
-    }
-}

@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Chip } from "./Chip";
-import { Icon } from "../Icon/Icon";
-import { Avatar } from "../Avatar/Avatar";
+import { Chip } from "@/components/Chip/Chip";
+import { Icon } from "@/components/Icon/Icon";
+import { Avatar } from "@/components/Avatar/Avatar";
 
 /**
  * Data Display/Chip Component

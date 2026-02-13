@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Tag } from "./Tag";
-import { Icon } from "../Icon/Icon";
+import { Tag } from "@/components/Tag/Tag";
+import { Icon } from "@/components/Icon/Icon";
 
 /**
  * Data Display/Tag Component

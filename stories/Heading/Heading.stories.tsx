@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Heading } from "./Heading";
+import { Heading } from "@/components/Heading/Heading";
 
 const meta = {
     title: "Component/Typography & Icons/Heading",

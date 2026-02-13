@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FloatButton, FloatButtonProps } from "./FloatButton";
+import { FloatButton, FloatButtonProps } from "@/components/FloatButton/FloatButton";
 import React, { useState, useRef } from "react";
 
 const meta: Meta<typeof FloatButton> = {

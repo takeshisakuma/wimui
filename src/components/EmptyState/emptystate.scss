@@ -1,0 +1,57 @@
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/typography" as typography;
+
+.wim-empty-state {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$spacing-2xl;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 240px;
+    padding: spacings.$spacing-2xl spacings.$spacing-lg;
+    text-align: center;
+    background-color: var(--bg-app);
+    border: 1px dashed var(--wim-color-border-secondary);
+    border-radius: 12px;
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: spacings.$spacing-sm;
+        color: var(--text-tertiary);
+
+        svg {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    &__title {
+        margin: 0;
+        font-size: var(--font-size-large);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+    }
+
+    &__description {
+        max-width: 400px;
+        margin: 0;
+        font-size: var(--font-size-medium);
+        color: var(--text-tertiary);
+    }
+
+    &__action {
+        margin-top: spacings.$spacing-md;
+    }
+
+    // Variants
+    &--simple {
+        min-height: auto;
+        padding: spacings.$spacing-lg 0;
+        background-color: transparent;
+        border: none;
+    }
+}

@@ -1,0 +1,71 @@
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/typography" as typography;
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/effects" as effects;
+
+@layer component {
+    .wim-anchor {
+        position: relative;
+        padding-left: 2px;
+        background-color: transparent;
+
+        &__ink {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background-color: colors.$scrollbar-track; // Use a light gray from track
+
+            &-ball {
+                position: absolute;
+                left: 0;
+                z-index: 1;
+                width: 2px;
+                background-color: colors.$color-primary;
+                opacity: 0;
+                transition: top 0.3s ease-in-out, height 0.3s ease-in-out, opacity 0.3s ease;
+            }
+        }
+
+        &__list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+
+            .wim-anchor__list {
+                padding-left: spacings.$spacing-md;
+            }
+        }
+
+        &__item {
+            position: relative;
+            padding: spacings.$spacing-2xs 0;
+            line-height: spacings.$spacing-lg;
+
+            &--active {
+                >.wim-anchor__link {
+                    font-weight: 500;
+                    color: colors.$color-primary;
+                }
+            }
+        }
+
+        &__link {
+            position: relative;
+            display: block;
+            padding-left: spacings.$spacing-md;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: typography.$size-medium;
+            color: colors.$text-deepgray;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: colors.$color-primary;
+            }
+        }
+    }
+}

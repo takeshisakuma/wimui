@@ -5,7 +5,7 @@ import {
     DescriptionListItem,
     DescriptionListTerm,
     DescriptionListDetails,
-} from "./DescriptionList";
+} from "@/components/DescriptionList/DescriptionList";
 
 const meta: Meta<typeof DescriptionList> = {
     title: "Component/Data Display/DescriptionList",

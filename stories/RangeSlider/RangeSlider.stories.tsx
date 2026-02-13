@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { RangeSlider } from "./RangeSlider";
+import { RangeSlider } from "@/components/RangeSlider/RangeSlider";
 import { useState } from "react";
 
 const MetaData: Meta<typeof RangeSlider> = {

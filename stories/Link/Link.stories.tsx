@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Link } from "./Link";
+import { Link } from "@/components/Link/Link";
 
 const meta: Meta<typeof Link> = {
     title: "Component/Typography & Icons/Link",

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { SimpleGrid } from "./SimpleGrid";
+import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
 import React from "react";
 
 const meta: Meta<typeof SimpleGrid> = {
-    title: "Layout/SimpleGrid",
+    title: "Component/Layout/SimpleGrid",
     component: SimpleGrid,
     tags: [],
     argTypes: {

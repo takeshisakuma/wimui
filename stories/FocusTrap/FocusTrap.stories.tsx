@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FocusTrap } from "./FocusTrap";
-import { Button } from "../Button/Button";
-import { Input } from "../Input/Input";
+import { FocusTrap } from "@/components/FocusTrap/FocusTrap";
+import { Button } from "@/components/Button/Button";
+import { Input } from "@/components/Input/Input";
 
 const meta: Meta<typeof FocusTrap> = {
     title: "Component/Utilities/FocusTrap",

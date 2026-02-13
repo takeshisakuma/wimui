@@ -3,20 +3,34 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "index.js",
+  "main": "dist/wimui.umd.js",
+  "module": "dist/wimui.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/wimui.es.js",
+      "require": "./dist/wimui.umd.js"
+    }
+  },
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "rimraf storybook-static && storybook build",
     "format": "prettier --write .",
-    "lint": "eslint stories/",
-    "lint:fix": "eslint stories/ --fix",
-    "stylelint:css": "stylelint \"stories/**/*.css\" --allow-empty-input",
-    "stylelint:scss": "stylelint \"stories/**/*.scss\"",
+    "lint": "eslint src stories",
+    "lint:fix": "eslint src stories --fix",
+    "stylelint:css": "stylelint \"{src,stories}/**/*.css\" --allow-empty-input",
+    "stylelint:scss": "stylelint \"{src,stories}/**/*.scss\"",
     "stylelint": "npm run stylelint:css && npm run stylelint:scss",
-    "stylelint:fix": "stylelint \"stories/**/*.{css,scss}\" --fix --allow-empty-input",
+    "stylelint:fix": "stylelint \"{src,stories}/**/*.{css,scss}\" --fix --allow-empty-input",
     "predeploy": "npm run build-storybook",
     "deploy": "gh-pages -d storybook-static"
   },
@@ -77,6 +91,7 @@
     "stylelint-order": "^7.0.1",
     "stylelint-scss": "^7.0.0",
     "typescript": "^5.9.3",
+    "vite-plugin-dts": "^4.5.4",
     "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-svgr": "^4.3.0",
     "vitest": "^4.0.18"
@@ -84,6 +99,7 @@
   "dependencies": {
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
+    "ajv": "^8.17.1",
     "classnames": "^2.5.1",
     "i18next": "^25.8.0",
     "i18next-browser-languagedetector": "^8.2.0",

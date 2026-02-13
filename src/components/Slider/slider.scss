@@ -1,0 +1,60 @@
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/spacings" as spacings;
+
+.wim-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 24px;
+    touch-action: none;
+    cursor: pointer;
+
+    &--disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &__track-container {
+        position: relative;
+        width: 100%;
+        height: 6px;
+        background-color: var(--wim-color-border-secondary, #e5e7eb);
+        border-radius: spacings.$radius-full;
+    }
+
+    &__track {
+        position: absolute;
+        height: 100%;
+        background-color: colors.$color-primary;
+        border-radius: spacings.$radius-full;
+    }
+
+    &__thumb {
+        position: absolute;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        cursor: grab;
+        outline: none;
+        background-color: colors.$text-white;
+        border: 2px solid colors.$color-primary;
+        border-radius: spacings.$radius-full;
+        box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+        transform: translate(-50%, -50%);
+        transition: box-shadow 0.2s, transform 0.1s;
+
+        &:hover {
+            box-shadow: 0 0 0 4px rgba(colors.$color-primary, 0.1);
+        }
+
+        &:focus-visible {
+            box-shadow: 0 0 0 4px rgba(colors.$color-primary, 0.3);
+        }
+
+        &:active {
+            cursor: grabbing;
+            box-shadow: 0 0 0 6px rgba(colors.$color-primary, 0.2);
+        }
+    }
+}

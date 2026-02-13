@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { Anchor } from "./Anchor";
+import { Anchor } from "@/components/Anchor/Anchor";
 
 const meta: Meta<typeof Anchor> = {
     title: "Component/Navigation/Anchor",

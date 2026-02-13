@@ -10,8 +10,8 @@ import {
     BottomSheetDescription,
     BottomSheetClose,
     BottomSheetBody,
-} from "./BottomSheet";
-import { Button } from "../Button/Button";
+} from "@/components/BottomSheet/BottomSheet";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof BottomSheet> = {
     title: "Component/Overlays/BottomSheet",

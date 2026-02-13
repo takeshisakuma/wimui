@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ColorInput } from "./ColorInput";
+import { ColorInput } from "@/components/ColorInput/ColorInput";
 
 const meta: Meta<typeof ColorInput> = {
     title: "Component/Pickers & Sliders/ColorInput",

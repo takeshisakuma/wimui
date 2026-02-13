@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Skeleton } from "./Skeleton";
+import { Skeleton } from "@/components/Skeleton/Skeleton";
 
 const meta: Meta<typeof Skeleton> = {
     title: "Component/Feedback/Skeleton",

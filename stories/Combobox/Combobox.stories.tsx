@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Combobox } from "./Combobox";
+import { Combobox } from "@/components/Combobox/Combobox";
 
 const meta: Meta<typeof Combobox> = {
     title: "Component/Selection Controls/Combobox",

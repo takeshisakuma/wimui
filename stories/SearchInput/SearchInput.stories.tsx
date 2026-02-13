@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { SearchInput } from "./SearchInput";
+import { SearchInput } from "@/components/SearchInput/SearchInput";
 
 const meta: Meta<typeof SearchInput> = {
     title: "Component/Form Inputs/SearchInput",

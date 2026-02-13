@@ -1,0 +1,179 @@
+@use "../../tokens/semantic-colors" as *;
+@use "../../tokens/spacings" as *;
+@use "../../tokens/typography" as *;
+
+.wim-banner {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+
+    // Glassmorphism effect base
+    background: rgb(255 255 255 / 0.9);
+    border-bottom: 1px solid transparent;
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap; // Allow wrapping on small screens
+        gap: var(--spacing-lg);
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px; // Optional: limit max width for content
+    }
+
+    &__content {
+        display: flex;
+        flex: 1;
+        gap: var(--spacing-md);
+        align-items: center;
+        min-width: 0; // Prevent flex item from overflowing
+    }
+
+    &__icon {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__text {
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: inherit;
+    }
+
+    &__title {
+        font-weight: 600;
+    }
+
+    &__separator {
+        display: none;
+        margin: 0 4px;
+        opacity: 0.5;
+
+        @media (width >= 640px) {
+            display: inline;
+        }
+    }
+
+    &__description {
+        opacity: 0.9;
+    }
+
+    // Stack title and description on small screens if needed, 
+    // but default implementation tries to keep them inline or wrapped naturally.
+
+    &__actions {
+        display: flex;
+        flex-shrink: 0;
+        gap: var(--spacing-md);
+        align-items: center;
+    }
+
+    &__close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        color: inherit;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        border-radius: var(--radius-sm);
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            background: rgb(0 0 0 / 0.05);
+            opacity: 1;
+        }
+
+        &:focus-visible {
+            outline: 2px solid currentcolor;
+            outline-offset: 2px;
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    // Variants
+    &--info {
+        color: #1e40af;
+        background: rgb(239 246 255 / 0.95);
+        border-bottom-color: rgb(59 130 246 / 0.2);
+
+        .wim-banner__icon {
+            color: #3b82f6;
+        }
+    }
+
+    &--success {
+        color: #166534;
+        background: rgb(240 253 244 / 0.95);
+        border-bottom-color: rgb(34 197 94 / 0.2);
+
+        .wim-banner__icon {
+            color: #22c55e;
+        }
+    }
+
+    &--warning {
+        color: #854d0e;
+        background: rgb(254 252 232 / 0.95);
+        border-bottom-color: rgb(234 179 8 / 0.2);
+
+        .wim-banner__icon {
+            color: #d97706;
+        }
+    }
+
+    &--error {
+        color: #991b1b;
+        background: rgb(254 242 242 / 0.95);
+        border-bottom-color: rgb(239 68 68 / 0.2);
+
+        .wim-banner__icon {
+            color: #ef4444;
+        }
+    }
+
+    // Dark Mode Support
+    @media (prefers-color-scheme: dark) {
+        &--info {
+            color: #dbeafe;
+            background: rgb(30 58 138 / 0.4);
+            border-bottom-color: rgb(59 130 246 / 0.3);
+        }
+
+        &--success {
+            color: #dcfce7;
+            background: rgb(20 83 45 / 0.4);
+            border-bottom-color: rgb(34 197 94 / 0.3);
+        }
+
+        &--warning {
+            color: #fef9c3;
+            background: rgb(113 63 18 / 0.4);
+            border-bottom-color: rgb(234 179 8 / 0.3);
+        }
+
+        &--error {
+            color: #fee2e2;
+            background: rgb(127 29 29 / 0.4);
+            border-bottom-color: rgb(239 68 68 / 0.3);
+        }
+
+        &__close:hover {
+            background: rgb(255 255 255 / 0.1);
+        }
+    }
+}

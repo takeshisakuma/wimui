@@ -10,8 +10,8 @@ import {
     CommandPaletteFooter,
     CommandPaletteTrigger,
     CommandPaletteContent,
-} from "./CommandPalette";
-import { Icon } from "../Icon/Icon";
+} from "@/components/CommandPalette/CommandPalette";
+import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof CommandPalette> = {
     title: "Component/Overlays/CommandPalette",

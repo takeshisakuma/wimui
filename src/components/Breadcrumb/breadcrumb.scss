@@ -1,0 +1,87 @@
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/typography" as typography;
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/effects" as effects;
+
+@layer component {
+    .wim-breadcrumb {
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+        }
+
+        &__content {
+            display: flex;
+            align-items: center;
+        }
+
+        &__link {
+            text-decoration: none;
+
+            // Override Link base style if needed for breadcrumb context
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        &__label {
+            display: inline-flex;
+            gap: spacings.$spacing-3xs;
+            align-items: center;
+            line-height: 1;
+            color: colors.$text-gray; // Default non-link/previous item color
+
+            &--current {
+                font-weight: typography.$weight-bold;
+                color: colors.$text-black;
+            }
+
+            &-icon {
+                font-size: 0.9em;
+            }
+        }
+
+        &__separator {
+            display: flex;
+            align-items: center;
+            padding: 0 spacings.$spacing-xs;
+            color: colors.$text-gray;
+            user-select: none;
+
+            &-icon {
+                font-size: 0.8em;
+                opacity: 0.6;
+            }
+        }
+
+        // Sizes
+        &--lg {
+            font-size: typography.$size-large;
+
+            .wim-breadcrumb__separator {
+                padding: 0 spacings.$spacing-sm;
+            }
+        }
+
+        &--md {
+            font-size: typography.$size-medium;
+        }
+
+        &--sm {
+            font-size: typography.$size-small;
+
+            .wim-breadcrumb__separator {
+                padding: 0 spacings.$spacing-2xs;
+            }
+        }
+    }
+}

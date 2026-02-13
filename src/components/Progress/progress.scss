@@ -1,0 +1,92 @@
+.wim-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.875rem;
+        color: var(--wim-color-text-body, #4a5568);
+    }
+
+    &__track {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background-color: var(--wim-color-neutral-light, #edf2f7);
+        border-radius: 999px;
+    }
+
+    &__bar {
+        height: 100%;
+        border-radius: 999px;
+        transition: width 0.3s ease;
+    }
+
+    // Sizes
+    &--sm {
+        .wim-progress__track {
+            height: 4px;
+        }
+    }
+
+    &--md {
+        .wim-progress__track {
+            height: 8px;
+        }
+    }
+
+    &--lg {
+        .wim-progress__track {
+            height: 12px;
+        }
+    }
+
+    // Colors
+    &--primary .wim-progress__bar {
+        background-color: var(--wim-color-primary, #007bff);
+    }
+
+    &--secondary .wim-progress__bar {
+        background-color: var(--wim-color-secondary, #6c757d);
+    }
+
+    &--success .wim-progress__bar {
+        background-color: var(--wim-color-success, #28a745);
+    }
+
+    &--warning .wim-progress__bar {
+        background-color: var(--wim-color-warning, #ffc107);
+    }
+
+    &--error .wim-progress__bar {
+        background-color: var(--wim-color-error, #dc3545);
+    }
+
+    &--neutral .wim-progress__bar {
+        background-color: var(--wim-color-neutral, #e9ecef);
+    }
+
+    // Indeterminate animation
+    &--indeterminate {
+        .wim-progress__bar {
+            position: absolute;
+            left: -30%;
+            width: 30% !important;
+            animation: wim-progress-indeterminate 1.5s infinite linear;
+        }
+    }
+}
+
+@keyframes wim-progress-indeterminate {
+    0% {
+        left: -30%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}

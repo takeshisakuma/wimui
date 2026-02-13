@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Card } from "./Card";
-import { Button } from "../Button/Button";
+import { Card } from "@/components/Card/Card";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Card> = {
     title: "Component/Data Display/Card",

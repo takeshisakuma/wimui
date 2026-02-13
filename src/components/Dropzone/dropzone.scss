@@ -1,0 +1,90 @@
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/typography" as typography;
+@use "../../tokens/effects" as effects;
+
+.wim-dropzone-container {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$spacing-xs;
+    width: 100%;
+    font-family: inherit;
+}
+
+.wim-dropzone__label {
+    font-size: typography.$size-small;
+    font-weight: typography.$weight-medium;
+    color: colors.$text-deepgray;
+}
+
+.wim-dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    padding: spacings.$spacing-xl spacings.$spacing-lg;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--bg-app);
+    border: 2px dashed var(--wim-color-border);
+    border-radius: 8px;
+    transition: effects.$transition-base;
+
+    &:hover:not(&--disabled) {
+        background-color: rgb(0 0 0 / 0.02);
+        border-color: var(--color-primary);
+    }
+
+    &--dragging {
+        background-color: rgb(0 0 0 / 0.05);
+        border-color: var(--color-primary);
+        transform: scale(1.01);
+    }
+
+    &--disabled {
+        cursor: not-allowed;
+        background-color: var(--color-disabled);
+        border-color: var(--color-disabled);
+        opacity: 0.6;
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: spacings.$spacing-sm;
+        align-items: center;
+    }
+
+    &__icon {
+        margin-bottom: spacings.$spacing-xs;
+    }
+
+    &__description {
+        margin: 0;
+        font-size: typography.$size-medium;
+        color: var(--text-tertiary);
+    }
+
+    &__file-list {
+        display: flex;
+        flex-direction: column;
+        gap: spacings.$spacing-xs;
+        width: 100%;
+        margin-top: spacings.$spacing-md;
+    }
+
+    &__file-name {
+        padding: spacings.$spacing-xs spacings.$spacing-sm;
+        font-size: typography.$size-small;
+        color: var(--text-secondary);
+        word-break: break-all;
+        background-color: var(--bg-component);
+        border: 1px solid var(--wim-color-border-secondary);
+        border-radius: 4px;
+    }
+}

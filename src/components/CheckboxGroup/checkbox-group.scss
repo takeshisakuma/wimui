@@ -1,0 +1,12 @@
+@use "../../tokens/spacings" as spacings;
+
+.wim-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$spacing-sm;
+
+    &--horizontal {
+        flex-flow: row wrap;
+        gap: spacings.$spacing-md;
+    }
+}

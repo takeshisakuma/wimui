@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { PasswordInput } from "./PasswordInput";
+import { PasswordInput } from "@/components/PasswordInput/PasswordInput";
 
 const meta: Meta<typeof PasswordInput> = {
     title: "Component/Form Inputs/PasswordInput",

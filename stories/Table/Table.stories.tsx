@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Table } from "./Table";
-import { Badge } from "../Badge/Badge";
-import { Checkbox } from "../Checkbox/Checkbox";
+import { Table } from "@/components/Table/Table";
+import { Badge } from "@/components/Badge/Badge";
+import { Checkbox } from "@/components/Checkbox/Checkbox";
 
 const meta: Meta<typeof Table> = {
     title: "Component/Data Display/Table",

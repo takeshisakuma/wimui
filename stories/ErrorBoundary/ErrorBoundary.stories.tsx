@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ErrorBoundary } from "./ErrorBoundary";
-import { Button } from "../Button/Button";
+import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof ErrorBoundary> = {
     title: "Component/Utilities/ErrorBoundary",

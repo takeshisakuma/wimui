@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ColorPicker } from "./ColorPicker";
-import { Label } from "../Label/Label";
+import { ColorPicker } from "@/components/ColorPicker/ColorPicker";
+import { Label } from "@/components/Label/Label";
 
 const meta: Meta<typeof ColorPicker> = {
     title: "Component/Pickers & Sliders/ColorPicker",

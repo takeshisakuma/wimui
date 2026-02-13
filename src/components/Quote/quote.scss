@@ -1,0 +1,87 @@
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/typography" as typography;
+@use "../../tokens/spacings" as spacings;
+
+@layer component {
+  .wim-quote {
+    padding: spacings.$spacing-md 0 spacings.$spacing-md spacings.$spacing-2xl;
+    margin: spacings.$spacing-2xl 0;
+    font-family: inherit;
+    transition: all 0.2s ease;
+
+    &--border {
+      border-left: 4px solid var(--text-secondary);
+    }
+
+    &__content {
+      font-weight: typography.$weight-normal;
+      line-height: typography.$line-height-normal-latn;
+    }
+
+    &__cite {
+      display: block;
+      margin-top: spacings.$spacing-sm;
+      font-size: 0.9em;
+      font-style: italic;
+      opacity: 0.8;
+
+      &::before {
+        content: "— ";
+      }
+    }
+
+    /* Size Variants */
+    &--sm {
+      font-size: typography.$size-small;
+    }
+
+    &--md {
+      font-size: typography.$size-medium;
+    }
+
+    &--lg {
+      font-size: typography.$size-large;
+    }
+
+    /* Color Variants */
+    &--black {
+      color: var(--text-primary);
+
+      &.wim-quote--border {
+        border-color: var(--text-primary);
+      }
+    }
+
+    &--deepgray {
+      color: colors.$text-deepgray;
+
+      &.wim-quote--border {
+        border-color: colors.$text-deepgray;
+      }
+    }
+
+    &--gray {
+      color: colors.$text-gray;
+
+      &.wim-quote--border {
+        border-color: colors.$text-gray;
+      }
+    }
+
+    &--lightgray {
+      color: colors.$text-lightgray;
+
+      &.wim-quote--border {
+        border-color: colors.$text-lightgray;
+      }
+    }
+
+    &--white {
+      color: var(--text-white);
+
+      &.wim-quote--border {
+        border-color: var(--text-white);
+      }
+    }
+  }
+}

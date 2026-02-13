@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FileUpload } from "./FileUpload";
+import { FileUpload } from "@/components/FileUpload/FileUpload";
 
 const meta: Meta<typeof FileUpload> = {
     title: "Component/Form Inputs/FileUpload",

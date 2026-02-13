@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Menu, MenuItem, MenuItemGroup, SubMenu, MenuDivider } from "./Menu";
-import { Icon } from "../Icon/Icon";
+import { Menu, MenuItem, MenuItemGroup, SubMenu, MenuDivider } from "@/components/Menu/Menu";
+import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof Menu> = {
     title: "Component/Navigation/Menu",

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Header, { HeaderProps } from "./Header";
+import Header, { HeaderProps } from "@/components/Header/Header";
 
 const meta: Meta<typeof Header> = {
-    title: "Layout/Header",
+    title: "Component/Layout/Header",
     component: Header,
     parameters: {
         layout: "fullscreen",

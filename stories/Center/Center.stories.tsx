@@ -1,10 +1,10 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Center } from "./Center";
-import { Box } from "../Box/Box";
+import { Center } from "@/components/Center/Center";
+import { Box } from "@/components/Box/Box";
 
 const meta: Meta<typeof Center> = {
-    title: "Layout/Center",
+    title: "Component/Layout/Center",
     component: Center,
     tags: [],
     argTypes: {

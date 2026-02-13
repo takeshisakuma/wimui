@@ -1,0 +1,110 @@
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/effects" as effects;
+
+.wim-hover-card {
+    position: relative;
+    display: inline-block;
+}
+
+.wim-hover-card-trigger {
+    display: inline-flex;
+    cursor: default;
+    outline: none;
+
+    &:focus-visible {
+        border-radius: spacings.$radius-sm;
+        box-shadow: 0 0 0 2px colors.$color-primary;
+    }
+}
+
+.wim-hover-card-content {
+    position: absolute;
+    z-index: 1000;
+    width: max-content;
+    max-width: 300px;
+    padding: spacings.$spacing-md;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    pointer-events: auto;
+    background-color: var(--bg-component, #fff);
+    border: 1px solid var(--wim-color-border-secondary);
+    border-radius: spacings.$radius-md;
+    box-shadow: effects.$shadow-lg;
+    opacity: 0;
+    animation: fadeIn 0.2s forwards;
+
+    &--top {
+        bottom: 100%;
+        left: 50%;
+
+        --base-transform: translate(-50%, -8px);
+
+        transform: var(--base-transform);
+    }
+
+    &--bottom {
+        top: 100%;
+        left: 50%;
+
+        --base-transform: translate(-50%, 8px);
+
+        transform: var(--base-transform);
+    }
+
+    &--left {
+        top: 50%;
+        right: 100%;
+
+        --base-transform: translate(-8px, -50%);
+
+        transform: var(--base-transform);
+    }
+
+    &--right {
+        top: 50%;
+        left: 100%;
+
+        --base-transform: translate(8px, -50%);
+
+        transform: var(--base-transform);
+    }
+
+    // Alignment overrides
+    &--align-left {
+        left: 0;
+
+        --base-transform: translateY(8px);
+
+        &.wim-hover-card-content--top {
+            --base-transform: translateY(-8px);
+        }
+
+        transform: var(--base-transform);
+    }
+
+    &--align-right {
+        right: 0;
+        left: auto;
+        transform: var(--base-transform);
+
+        --base-transform: translateY(8px);
+
+        &.wim-hover-card-content--top {
+            --base-transform: translateY(-8px);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: var(--base-transform) scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: var(--base-transform) scale(1);
+        }
+    }
+}

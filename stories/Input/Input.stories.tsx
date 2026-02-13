@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Input } from "./Input";
-import { Label } from "../Label/Label";
-import { FieldError } from "../FieldError/FieldError";
-import { Button } from "../Button/Button";
+import { Input } from "@/components/Input/Input";
+import { Label } from "@/components/Label/Label";
+import { FieldError } from "@/components/FieldError/FieldError";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Input> = {
     title: "Component/Form Inputs/Input",

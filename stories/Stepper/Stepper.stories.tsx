@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Stepper } from "./Stepper";
+import { Stepper } from "@/components/Stepper/Stepper";
 import React, { useState } from "react";
-import { Icon } from "../Icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof Stepper> = {
     title: "Component/Navigation/Stepper",

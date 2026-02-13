@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Textarea } from "./Textarea";
-import { Label } from "../Label/Label";
-import { FieldError } from "../FieldError/FieldError";
+import { Textarea } from "@/components/Textarea/Textarea";
+import { Label } from "@/components/Label/Label";
+import { FieldError } from "@/components/FieldError/FieldError";
 
 const meta: Meta<typeof Textarea> = {
     title: "Component/Form Inputs/Textarea",

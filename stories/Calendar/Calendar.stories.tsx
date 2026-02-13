@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Calendar } from "./Calendar";
+import { Calendar } from "@/components/Calendar/Calendar";
 
 const meta: Meta<typeof Calendar> = {
     title: "Component/Pickers & Sliders/Calendar",

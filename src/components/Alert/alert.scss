@@ -1,0 +1,159 @@
+@use "../../tokens/semantic-colors" as *;
+@use "../../tokens/spacings" as *;
+@use "../../tokens/effects" as *;
+
+.wim-alert {
+    position: relative;
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    overflow: hidden;
+
+    // Glassmorphism effect base
+    background: rgb(255 255 255 / 0.8);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(12px);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &__icon {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        font-size: 1.25rem;
+    }
+
+    &__content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+    &__description {
+        margin: 0;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        opacity: 0.9;
+
+        .wim-alert__title+& {
+            margin-top: var(--spacing-md);
+        }
+    }
+
+    &__close {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        margin: -4px -8px 0 0;
+        color: inherit;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        border-radius: var(--radius-md);
+        opacity: 0.5;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: rgb(0 0 0 / 0.05);
+            opacity: 1;
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    // Variants
+    &--info {
+        color: #1e40af;
+        background: rgb(239 246 255 / 0.7);
+        border-color: rgb(59 130 246 / 0.3);
+
+        .wim-alert__icon {
+            color: #3b82f6;
+        }
+    }
+
+    &--success {
+        color: #166534;
+        background: rgb(240 253 244 / 0.7);
+        border-color: rgb(34 197 94 / 0.3);
+
+        .wim-alert__icon {
+            color: #22c55e;
+        }
+    }
+
+    &--warning {
+        color: #854d0e;
+        background: rgb(254 252 232 / 0.7);
+        border-color: rgb(234 179 8 / 0.3);
+
+        .wim-alert__icon {
+            color: #eab308;
+        }
+    }
+
+    &--error {
+        color: #991b1b;
+        background: rgb(254 242 242 / 0.7);
+        border-color: rgb(239 68 68 / 0.3);
+
+        .wim-alert__icon {
+            color: #ef4448;
+        }
+    }
+
+    // Dark Mode Support
+    @media (prefers-color-scheme: dark) {
+        background: rgb(30 30 30 / 0.6);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+
+        &--info {
+            color: #dbeafe;
+            background: rgb(30 58 138 / 0.3);
+            border-color: rgb(59 130 246 / 0.4);
+        }
+
+        &--success {
+            color: #dcfce7;
+            background: rgb(20 83 45 / 0.3);
+            border-color: rgb(34 197 94 / 0.4);
+        }
+
+        &--warning {
+            color: #fef9c3;
+            background: rgb(113 63 18 / 0.3);
+            border-color: rgb(234 179 8 / 0.4);
+        }
+
+        &--error {
+            color: #fee2e2;
+            background: rgb(127 29 29 / 0.3);
+            border-color: rgb(239 68 68 / 0.4);
+        }
+
+        &__close:hover {
+            background: rgb(255 255 255 / 0.1);
+        }
+    }
+}

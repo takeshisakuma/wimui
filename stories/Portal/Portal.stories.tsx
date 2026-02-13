@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Portal } from "./Portal";
-import { Button } from "../Button/Button";
+import { Portal } from "@/components/Portal/Portal";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Portal> = {
     title: "Component/Utilities/Portal",

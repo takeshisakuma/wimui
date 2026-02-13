@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { ToggleGroup } from "./ToggleGroup";
+import { ToggleGroup } from "@/components/ToggleGroup/ToggleGroup";
 
 const meta: Meta<typeof ToggleGroup> = {
     title: "Component/Selection Controls/ToggleGroup",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Tour } from "./Tour";
-import { Button } from "../Button/Button";
+import { Tour } from "@/components/Tour/Tour";
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Tour> = {
     title: "Component/Data Display/Tour",

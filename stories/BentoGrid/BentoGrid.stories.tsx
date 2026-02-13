@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { BentoGrid, BentoGridItem } from "./BentoGrid";
+import { BentoGrid, BentoGridItem } from "@/components/BentoGrid/BentoGrid";
 import React from "react";
-import { Icon } from "../Icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof BentoGrid> = {
-    title: "Layout/BentoGrid",
+    title: "Component/Layout/BentoGrid",
     component: BentoGrid,
     tags: [],
 };

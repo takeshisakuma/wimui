@@ -1,0 +1,15 @@
+@use "../../base.scss" as *;
+
+.wim-qrcode {
+    display: inline-block;
+    padding: var(--spacing-md, 0.5rem);
+    line-height: 0;
+    background: white;
+    border: 1px solid var(--wim-color-border-secondary, #f0f0f2);
+    border-radius: var(--radius-md, 4px);
+
+    svg,
+    canvas {
+        display: block;
+    }
+}
