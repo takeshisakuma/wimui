@@ -183,7 +183,7 @@ export const RangeSlider = ({
             }
             onChange?.(nextValues);
         },
-        [disabled, isControlled, onChange, allowCross, calculateValue]
+        [disabled, isControlled, onChange, allowCross, calculateValue, min, max]
     );
 
 
@@ -252,6 +252,7 @@ export const RangeSlider = ({
     const rightPerc = getPercentage(currentValue[1]);
 
     return (
+        /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
         <div
             className={classNames("wim-range-slider", disabled && "wim-range-slider--disabled", className)}
             onMouseDown={handleTrackMouseDown}

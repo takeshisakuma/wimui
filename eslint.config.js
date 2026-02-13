@@ -24,14 +24,55 @@ export default [
       ...mdx.flat.rules,
       "no-unused-vars": "off", // MDX often has false positives for unused vars
     },
+    languageOptions: {
+      ...(mdx.flat.languageOptions || {}),
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: {
+        ...(mdx.flat.languageOptions?.parserOptions || {}),
+        project: null,
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        ...globals.browser,
+        ...(mdx.flat.languageOptions?.globals || {}),
+      },
+    },
   },
   {
     ...mdx.flatCodeBlocks,
-    files: ["**/*.mdx"],
+  },
+  {
+    files: ["**/*.mdx/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    plugins: {
+      "@typescript-eslint": tsPlugin,
+      react: reactPlugin,
+    },
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: null,
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        ...globals.browser,
+      },
+    },
+    rules: {
+      ...mdx.flatCodeBlocks.rules,
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "react/jsx-no-undef": "off", // Often used in examples without import in same block
+    },
   },
 
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    ignores: ["**/*.mdx/**"], // Ignore MDX code blocks in the main TS config
     plugins: {
       "@typescript-eslint": tsPlugin,
       storybook: eslintPluginStorybook,

@@ -59,6 +59,8 @@ export const Snackbar = ({
         setPrevOpen(open);
         if (open) {
             setIsRendered(true);
+        } else {
+            setIsVisible(false);
         }
     }
 
@@ -67,7 +69,6 @@ export const Snackbar = ({
             const timer = setTimeout(() => setIsVisible(true), 10);
             return () => clearTimeout(timer);
         } else {
-            setIsVisible(false);
             const timer = setTimeout(() => setIsRendered(false), 300);
             return () => clearTimeout(timer);
         }

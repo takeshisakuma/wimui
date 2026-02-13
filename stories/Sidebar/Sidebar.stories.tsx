@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import Sidebar, { SidebarProps } from "@/components/Sidebar/Sidebar";
 import { Icon } from "@/components/Icon/Icon";
 import React from "react";

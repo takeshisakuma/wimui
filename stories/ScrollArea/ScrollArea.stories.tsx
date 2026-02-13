@@ -74,7 +74,7 @@ export const Both: Story = {
                 <h4 style={{ color: "#333" }}>Both Axes Scrolling</h4>
                 <p style={{ color: "#555" }}>
                     This container has content that overflows both vertically and horizontally.
-                    ScrollArea handles both directions when <code>scrollAxis="both"</code> is set.
+                    ScrollArea handles both directions when <code>scrollAxis=&quot;both&quot;</code> is set.
                 </p>
                 <div style={{ marginTop: "2rem", display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "1rem" }}>
                     {[...Array(20)].map((_, i) => (

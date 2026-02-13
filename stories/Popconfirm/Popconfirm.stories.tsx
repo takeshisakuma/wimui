@@ -18,7 +18,7 @@ type Story = StoryObj<typeof Popconfirm>;
 export const Default: Story = {
     args: {
         title: "Are you sure you want to delete this task?",
-        children: <Button priority="primary" role="destructive" label="Delete" />,
+        children: <Button priority="primary" label="Delete" />,
         okText: "Yes",
         cancelText: "No",
         okType: "destructive",

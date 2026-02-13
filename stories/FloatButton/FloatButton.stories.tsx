@@ -147,7 +147,7 @@ export const BackTop: Story = {
     },
     render: (args) => (
         <div style={{ height: "200vh", padding: "20px" }}>
-            <p>Scroll down to see the "Back to Top" button appear.</p>
+            <p>Scroll down to see the &quot;Back to Top&quot; button appear.</p>
             <FloatButton {...args} />
         </div>
     ),

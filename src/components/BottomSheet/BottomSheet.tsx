@@ -62,18 +62,18 @@ export interface BottomSheetTriggerProps {
 export const BottomSheetTrigger = ({ children, asChild, className }: BottomSheetTriggerProps) => {
     const { onOpenChange } = useBottomSheet();
 
-    const handleClick = (e: React.MouseEvent) => {
+    const handleClick = () => {
         onOpenChange(true);
     };
 
     if (asChild && React.isValidElement(children)) {
-        return React.cloneElement(children as React.ReactElement<any>, {
+        return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler; className?: string }>, {
             onClick: (e: React.MouseEvent) => {
                 const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
                 child.props.onClick?.(e);
-                handleClick(e);
+                handleClick();
             },
-            className: classNames(className, (children as React.ReactElement<any>).props.className),
+            className: classNames(className, (children as React.ReactElement<{ className?: string }>).props.className),
         });
     }
 
@@ -99,13 +99,13 @@ export const BottomSheetClose = ({ children, className, asChild }: BottomSheetCl
     };
 
     if (asChild && React.isValidElement(children)) {
-        return React.cloneElement(children as React.ReactElement<any>, {
+        return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler; className?: string }>, {
             onClick: (e: React.MouseEvent) => {
                 const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
                 child.props.onClick?.(e);
                 handleClick();
             },
-            className: classNames(className, (children as React.ReactElement<any>).props.className),
+            className: classNames(className, (children as React.ReactElement<{ className?: string }>).props.className),
         });
     }
 
@@ -158,12 +158,15 @@ export const BottomSheetContent = ({ children, className }: BottomSheetContentPr
     if (!open) return null;
 
     return createPortal(
+        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */
         <div className="wim-bottom-sheet-overlay" onClick={(e) => {
             if (e.target === e.currentTarget) {
                 onOpenChange(false);
             }
         }}>
+            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
             <FocusTrap active={open} autoFocus={true} className="wim-bottom-sheet-focus-trap-wrapper">
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-autofocus */}
                 <div
                     ref={contentRef}
                     role="dialog"

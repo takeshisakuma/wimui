@@ -17,7 +17,6 @@ type Story = StoryObj<typeof meta>;
 
 const BuggyComponent = () => {
     throw new Error("意図的なエラーが発生しました！");
-    return null;
 };
 
 export const Default: Story = {
@@ -30,7 +29,6 @@ export const Default: Story = {
                     onClick={() => setShouldThrow(true)}
                     label="エラーを発生させる"
                     priority="primary"
-                    role="destructive"
                     style={{ marginBottom: "20px" }}
                 />
                 <ErrorBoundary onReset={() => setShouldThrow(false)}>
@@ -50,7 +48,6 @@ export const CustomFallback: Story = {
                     onClick={() => setShouldThrow(true)}
                     label="カスタムエラーを発生させる"
                     priority="primary"
-                    role="destructive"
                     style={{ marginBottom: "20px" }}
                 />
                 <ErrorBoundary

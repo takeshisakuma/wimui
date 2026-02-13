@@ -166,6 +166,7 @@ export const Slider = ({
     const percentage = ((currentValue - min) / (max - min)) * 100;
 
     return (
+        /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
         <div
             className={classNames("wim-slider", disabled && "wim-slider--disabled", className)}
             onMouseDown={handleMouseDown}

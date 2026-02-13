@@ -56,7 +56,7 @@ export const Video = ({
     const [playbackRate, setPlaybackRate] = React.useState(1.0);
     const [isLooping, setIsLooping] = React.useState(loop);
 
-    const shouldUseCustom = customControls || advancedControls;
+    // const shouldUseCustom = customControls || advancedControls;
 
     React.useEffect(() => {
         if (autoPlay && videoRef.current) {
@@ -108,24 +108,31 @@ export const Video = ({
         }
     };
 
+    /*
     const skip = (seconds: number) => {
         if (videoRef.current) {
             videoRef.current.currentTime += seconds;
             setCurrentTime(videoRef.current.currentTime);
         }
     };
+    */
 
+    /*
     const togglePlaybackRate = () => {
         const rates = [0.5, 1.0, 1.25, 1.5, 2.0];
         const currentIndex = rates.indexOf(playbackRate);
         const nextRate = rates[(currentIndex + 1) % rates.length];
         setPlaybackRate(nextRate);
     };
+    */
 
+    /*
     const toggleLoopState = () => {
         setIsLooping(!isLooping);
     };
+    */
 
+    /*
     const togglePiP = async () => {
         if (!videoRef.current) return;
         try {
@@ -138,6 +145,7 @@ export const Video = ({
             console.error("Failed to toggle PiP mode:", error);
         }
     };
+    */
 
     const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newVolume = parseFloat(e.target.value);

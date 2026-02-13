@@ -17,7 +17,7 @@ export const Default: Story = {
             <HoverCard>
                 <HoverCardTrigger asChild>
                     <a
-                        href="#"
+                        href="/"
                         style={{
                             borderRadius: "50%",
                             display: "inline-block",

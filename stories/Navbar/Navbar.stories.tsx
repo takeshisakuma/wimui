@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import Navbar from "@/components/Navbar/Navbar";
 import { Button } from "@/components/Button/Button";
 import { HamburgerMenu } from "@/components/HamburgerMenu/HamburgerMenu";

@@ -67,18 +67,18 @@ export interface DrawerTriggerProps {
 export const DrawerTrigger = ({ children, asChild, className }: DrawerTriggerProps) => {
     const { onOpenChange } = useDrawer();
 
-    const handleClick = (e: React.MouseEvent) => {
+    const handleClick = () => {
         onOpenChange(true);
     };
 
     if (asChild && React.isValidElement(children)) {
-        return React.cloneElement(children as React.ReactElement<any>, {
+        return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler; className?: string }>, {
             onClick: (e: React.MouseEvent) => {
                 const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
                 child.props.onClick?.(e);
-                handleClick(e);
+                handleClick();
             },
-            className: classNames(className, (children as React.ReactElement<any>).props.className),
+            className: classNames(className, (children as React.ReactElement<{ className?: string }>).props.className),
         });
     }
 
@@ -104,13 +104,13 @@ export const DrawerClose = ({ children, className, asChild }: DrawerCloseProps) 
     };
 
     if (asChild && React.isValidElement(children)) {
-        return React.cloneElement(children as React.ReactElement<any>, {
+        return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler; className?: string }>, {
             onClick: (e: React.MouseEvent) => {
                 const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
                 child.props.onClick?.(e);
                 handleClick();
             },
-            className: classNames(className, (children as React.ReactElement<any>).props.className),
+            className: classNames(className, (children as React.ReactElement<{ className?: string }>).props.className),
         });
     }
 
@@ -163,12 +163,15 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
     if (!open) return null;
 
     return createPortal(
+        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
         <div className="wim-drawer-overlay" onClick={(e) => {
             if (e.target === e.currentTarget) {
                 onOpenChange(false);
             }
         }}>
+            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
             <FocusTrap active={open} autoFocus={true} className="wim-drawer-focus-trap-wrapper">
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
                 <div
                     ref={contentRef}
                     role="dialog"

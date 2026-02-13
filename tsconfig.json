@@ -30,6 +30,8 @@
     "stories/**/*.ts",
     "stories/**/*.tsx", // LintしたいStorybookファイルのパスを必ず含める
     "stories/**/*.js",
+    "stories/**/*.mdx",
+    "src/**/*.mdx",
     ".storybook/i18n.ts"
   ],
   "exclude": [

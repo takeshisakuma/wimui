@@ -71,15 +71,17 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 `format` プロパティで表示フォーマットをカスタマイズできます。
 
 ```jsx
-<DatePicker 
-  format="YYYY/MM/DD"
-  onChange={(date) => console.log(date)}
-/>
+<>
+  <DatePicker 
+    format="YYYY/MM/DD"
+    onChange={(date) => console.log(date)}
+  />
 
-<DatePicker 
-  format="DD-MM-YYYY"
-  onChange={(date) => console.log(date)}
-/>
+  <DatePicker 
+    format="DD-MM-YYYY"
+    onChange={(date) => console.log(date)}
+  />
+</>
 ```
 
 **サポートされるフォーマット:**
@@ -134,7 +136,7 @@ DatePickerは内部で[Calendar](/docs/component-navigation-calendar--docs)コ�
 
 DatePickerは完全な型定義を提供しています。
 
-```typescript
+```tsx
 import { DatePicker } from './DatePicker';
 import { T } from "../T";
 

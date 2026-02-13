@@ -41,7 +41,7 @@ export const Default: Story = {
                 <DialogHeader>
                     <DialogTitle>Edit Profile</DialogTitle>
                     <DialogDescription>
-                        Make changes to your profile here. Click save when you're done.
+                        Make changes to your profile here. Click save when you&apos;re done.
                     </DialogDescription>
                 </DialogHeader>
                 <div style={{ display: "grid", gap: "1.5rem", padding: "1rem 0" }}>
@@ -109,7 +109,7 @@ export const Controlled: Story = {
                         <p>Click outside or escape to close, creating a callback to setOpen(false).</p>
                         <DialogFooter>
                             <Button priority="secondary" label="Cancel" onClick={() => setOpen(false)} aria-label={false as any} />
-                            <Button role="destructive" priority="primary" label="Close via State" onClick={() => setOpen(false)} aria-label={false as any} />
+                            <Button priority="primary" label="Close via State" onClick={() => setOpen(false)} aria-label={false as any} />
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>

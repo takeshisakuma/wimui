@@ -87,7 +87,9 @@ const disabledDates = [
   }}
   onChange={(date) => console.log(date)}
 />
+```
 
+```jsx
 // 過去の日付を無効化
 <Calendar 
   isDateDisabled={(date) => {
@@ -171,23 +173,25 @@ Calendarコンポーネントは[DatePicker](/docs/component-forms-datepicker--d
 
 Calendarコンポーネントは完全な型定義を提供しています。
 
-```typescript
+```tsx
 import { Calendar } from './Calendar';
 import { T } from "../T";
 
-// 単一日付選択
-<Calendar 
-  value={new Date()}
-  onChange={(date: Date) => console.log(date)}
-/>
+<>
+  {/* 単一日付選択 */}
+  <Calendar 
+    value={new Date()}
+    onChange={(date: Date) => console.log(date)}
+  />
 
-// 範囲選択
-<Calendar 
-  rangeMode
-  range={{ start: new Date(), end: null }}
-  onRangeChange={(range: { start: Date | null; end: Date | null }) => {
-    console.log(range);
-  }}
-/>
+  {/* 範囲選択 */}
+  <Calendar 
+    rangeMode
+    range={{ start: new Date(), end: null }}
+    onRangeChange={(range: { start: Date | null; end: Date | null }) => {
+      console.log(range);
+    }}
+  />
+</>
 ```
 

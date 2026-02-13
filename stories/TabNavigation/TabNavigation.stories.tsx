@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import TabNavigation from "@/components/TabNavigation/TabNavigation";
 import { Icon } from "@/components/Icon/Icon";
 

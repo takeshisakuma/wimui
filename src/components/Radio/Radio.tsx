@@ -1,4 +1,4 @@
-
+/* eslint-disable react/prop-types */
 import React, { useRef } from "react";
 import classNames from "classnames";
 import "./radio.scss";

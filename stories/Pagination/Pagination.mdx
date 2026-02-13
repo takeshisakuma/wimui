@@ -153,7 +153,7 @@ import { T } from "../T";
 `onChange` コールバックは、ページ番号とページサイズの両方を受け取るようになりました：
 
 ```typescript
-onChange?: (page: number, pageSize: number) => void;
+type OnChange = (page: number, pageSize: number) => void;
 ```
 
 これにより、ページサイズが変更された際も同じコールバックで処理できます。

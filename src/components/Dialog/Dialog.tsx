@@ -62,18 +62,18 @@ export interface DialogTriggerProps {
 export const DialogTrigger = ({ children, asChild, className }: DialogTriggerProps) => {
     const { onOpenChange } = useDialog();
 
-    const handleClick = (e: React.MouseEvent) => {
+    const handleClick = () => {
         onOpenChange(true);
     };
 
     if (asChild && React.isValidElement(children)) {
-        return React.cloneElement(children as React.ReactElement<any>, {
+        return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler; className?: string }>, {
             onClick: (e: React.MouseEvent) => {
                 const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
                 child.props.onClick?.(e);
-                handleClick(e);
+                handleClick();
             },
-            className: classNames(className, (children as React.ReactElement<any>).props.className),
+            className: classNames(className, (children as React.ReactElement<{ className?: string }>).props.className),
         });
     }
 
@@ -99,13 +99,13 @@ export const DialogClose = ({ children, className, asChild }: DialogCloseProps) 
     }
 
     if (asChild && React.isValidElement(children)) {
-        return React.cloneElement(children as React.ReactElement<any>, {
+        return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler; className?: string }>, {
             onClick: (e: React.MouseEvent) => {
                 const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
                 child.props.onClick?.(e);
                 handleClick();
             },
-            className: classNames(className, (children as React.ReactElement<any>).props.className),
+            className: classNames(className, (children as React.ReactElement<{ className?: string }>).props.className),
         });
     }
 
@@ -176,7 +176,9 @@ export const DialogContent = ({ children, className }: DialogContentProps) => {
                     onOpenChange(false);
                 }
             }}>
+            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
             <FocusTrap active={open} autoFocus={true} className="wim-dialog-focus-trap-wrapper">
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
                 <div
                     ref={contentRef}
                     role="dialog"

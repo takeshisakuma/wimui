@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import Header, { HeaderProps } from "@/components/Header/Header";
 
 const meta: Meta<typeof Header> = {
@@ -22,9 +22,9 @@ export const Default: Story = {
                 </Header.Section>
                 <Header.Section align="center">
                     <nav style={{ display: "flex", gap: "20px" }}>
-                        <a href="#">Home</a>
-                        <a href="#">About</a>
-                        <a href="#">Contact</a>
+                        <a href="/">Home</a>
+                        <a href="/">About</a>
+                        <a href="/">Contact</a>
                     </nav>
                 </Header.Section>
                 <Header.Section align="end">

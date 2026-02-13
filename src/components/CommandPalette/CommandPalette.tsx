@@ -120,13 +120,13 @@ export const CommandPaletteTrigger = ({ children, asChild, className }: CommandP
     };
 
     if (asChild && React.isValidElement(children)) {
-        return React.cloneElement(children as React.ReactElement<any>, {
+        return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler; className?: string }>, {
             onClick: (e: React.MouseEvent) => {
                 const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
                 child.props.onClick?.(e);
                 handleClick();
             },
-            className: classNames(className, (children as React.ReactElement<any>).props.className),
+            className: classNames(className, (children as React.ReactElement<{ className?: string }>).props.className),
         });
     }
 
@@ -149,6 +149,7 @@ export const CommandPaletteContent = ({ children, className }: CommandPaletteCon
     if (!open) return null;
 
     return createPortal(
+        /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
         <div
             className="wim-command-palette-overlay"
             onClick={() => onOpenChange(false)}
@@ -156,7 +157,9 @@ export const CommandPaletteContent = ({ children, className }: CommandPaletteCon
             tabIndex={-1}
             onKeyDown={() => { }}
         >
+            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
             <FocusTrap active={open} autoFocus={true}>
+                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
                 <div
                     className={classNames("wim-command-palette-content", className)}
                     onClick={(e) => e.stopPropagation()}
@@ -203,6 +206,7 @@ export const CommandPaletteInput = ({ placeholder = "Search commands...", value,
                 placeholder={placeholder}
                 value={value ?? search}
                 onChange={handleChange}
+                /* eslint-disable-next-line jsx-a11y/no-autofocus */
                 autoFocus
                 role="combobox"
                 aria-autocomplete="list"
@@ -266,7 +270,7 @@ export const CommandPaletteItem = ({ children, onSelect, icon, shortcut, disable
     }, [isActive, disabled, onSelect, onOpenChange]);
 
     return (
-        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events */
+        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */
         <div
             role="option"
             id={`wim-command-palette-item-${index}`}
