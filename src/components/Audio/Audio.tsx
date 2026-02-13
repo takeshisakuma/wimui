@@ -117,6 +117,7 @@ export const Audio = ({
                     customControls && "wim-audio--custom",
                 )}
             >
+                {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
                 <audio
                     ref={audioRef}
                     src={src}

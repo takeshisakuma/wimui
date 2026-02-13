@@ -6,6 +6,7 @@ import { Icon } from "../Icon/Icon";
 export { useTableSort } from "./useTableSort";
 export type { SortDirection, SortConfig, UseTableSortOptions, UseTableSortReturn } from "./useTableSort";
 
+/* eslint-disable react/prop-types */
 type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
     striped?: boolean;
     bordered?: boolean;

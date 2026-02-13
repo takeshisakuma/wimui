@@ -3,13 +3,14 @@ import classNames from "classnames";
 import "./code.scss";
 
 type CodeProps = {
-    children: React.ReactNode;
+    children?: React.ReactNode;
+    code?: string;
     block?: boolean;
     language?: string;
     className?: string;
 };
 
-export const Code = ({ children, block = false, language, className }: CodeProps) => {
+export const Code = ({ children, code, block = false, language, className }: CodeProps) => {
     const Component = block ? "pre" : "code";
 
     return (
@@ -21,7 +22,7 @@ export const Code = ({ children, block = false, language, className }: CodeProps
                 className
             )}
         >
-            {block ? <code className={language && `language-${language}`}>{children}</code> : children}
+            {block ? <code className={language && `language-${language}`}>{code || children}</code> : (code || children)}
         </Component>
     );
 };

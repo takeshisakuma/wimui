@@ -107,6 +107,19 @@ export const Rating = ({
                 className={classNames("wim-rating__star", isFull && "wim-rating__star--full", isHalf && "wim-rating__star--half")}
                 onMouseMove={(e) => handleMouseMove(index, e)}
                 onClick={(e) => handleClick(index, e)}
+                role="button"
+                aria-label={`${index + 1} Stars`}
+                tabIndex={disabled ? -1 : 0}
+                onKeyDown={(e) => {
+                    if (!disabled && (e.key === "Enter" || e.key === " ")) {
+                        e.preventDefault();
+                        // Handle click simulation
+                        if (!isControlled) {
+                            setInternalValue(index + 1);
+                        }
+                        onChange?.(index + 1);
+                    }
+                }}
             >
                 <div className="wim-rating__star-background">
                     <Icon name="StarIcon" size={size} />

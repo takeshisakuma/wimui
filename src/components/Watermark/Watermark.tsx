@@ -64,6 +64,7 @@ export const Watermark = ({
             contents.forEach((item, index) => {
                 ctx.fillText(item, 0, index * fontSize * 1.5);
             });
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setBase64(canvas.toDataURL());
         }
     }, [content, image, width, height, rotate, opacity, gap, offset]);

@@ -38,6 +38,7 @@ export const Toast = ({
             const timer = setTimeout(() => setVisible(true), 10);
             return () => clearTimeout(timer);
         } else {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setVisible(false);
         }
     }, [isVisible]);

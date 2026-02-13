@@ -10,21 +10,21 @@
         transition: all effects.$transition-base;
 
         &--bg-primary {
-            background-color: var(--wim-color-bg-primary, #ffffff);
             color: colors.$text-black;
+            background-color: var(--wim-color-bg-primary, #fff);
         }
 
         &--bg-secondary {
-            background-color: var(--wim-color-bg-secondary, #f4f4f5);
             color: colors.$text-black;
+            background-color: var(--wim-color-bg-secondary, #f4f4f5);
         }
 
         &--bg-dark {
+            color: #fff;
             background-color: #18181b;
-            color: #ffffff;
 
             .wim-footer__section-title {
-                color: #ffffff;
+                color: #fff;
             }
 
             .wim-footer__bottom {
@@ -41,8 +41,8 @@
             flex-direction: column;
             gap: spacings.$spacing-2xl;
             max-width: 1200px;
-            margin: 0 auto;
             padding: 0 spacings.$spacing-xl;
+            margin: 0 auto;
         }
 
         &__section {
@@ -65,14 +65,14 @@
         }
 
         &__bottom {
-            margin-top: spacings.$spacing-xl;
-            padding-top: spacings.$spacing-xl;
-            border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding-top: spacings.$spacing-xl;
+            margin-top: spacings.$spacing-xl;
             font-size: typography.$size-small;
             color: colors.$text-deepgray;
+            border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
         }
     }
 }

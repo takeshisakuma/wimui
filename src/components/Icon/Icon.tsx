@@ -98,6 +98,7 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "disabled";
 };
 
+// eslint-disable-next-line react/prop-types
 export const Icon = ({ name, size = "medium", color, className, ...props }: IconProps) => {
   if (!name) return null;
   const IconComponent = icons[name];

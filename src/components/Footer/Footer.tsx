@@ -59,7 +59,7 @@ FooterSection.displayName = "Footer.Section";
 
 
 
-export interface FooterBottomProps extends React.ComponentPropsWithoutRef<"div"> { }
+export type FooterBottomProps = React.ComponentPropsWithoutRef<"div">;
 
 export const FooterBottom = React.forwardRef<HTMLDivElement, FooterBottomProps>(
     ({ className, children, ...props }, ref) => {

@@ -6,7 +6,7 @@
 
   /* HTML要素の基本的なスタイル調整 */
   html {
-    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     line-height: 1.15;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -15,14 +15,14 @@
   /* bodyの基本的なスタイル */
   body {
     min-height: 100vh;
-    text-rendering: optimizeLegibility;
-    -webkit-tap-highlight-color: transparent;
-    word-break: break-word;
-    overflow-wrap: break-word;
+
     /* 常時スクロールバー分の領域を確保することでガタツキやレイアウトシフト防止 */
     scrollbar-gutter: stable;
-    background-color: var(--bg-app);
     color: var(--text-primary);
+    overflow-wrap: break-word;
+    background-color: var(--bg-app);
+    text-rendering: optimizelegibility;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* 画像とメディア要素の応答性 */
@@ -43,6 +43,7 @@
   select {
     font: inherit;
     line-height: inherit;
+
     /* iOSで、ボタンをダブルタップすると意図せず画面が拡大されてしまうのを防ぐ */
     touch-action: manipulation;
   }

@@ -43,7 +43,7 @@ Navbar.displayName = "Navbar";
 
 
 
-export interface NavbarBrandProps extends React.ComponentPropsWithoutRef<"div"> { }
+export type NavbarBrandProps = React.ComponentPropsWithoutRef<"div">;
 
 export const NavbarBrand = React.forwardRef<HTMLDivElement, NavbarBrandProps>(
     ({ className, children, ...props }, ref) => {

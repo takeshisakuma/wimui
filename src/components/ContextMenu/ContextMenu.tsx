@@ -94,6 +94,7 @@ export const ContextMenu = ({
             y = Math.max(10, y);
 
             if (x !== position.x || y !== position.y) {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setPosition({ x, y });
             }
         }
@@ -116,6 +117,10 @@ export const ContextMenu = ({
                     }}
                     role="menu"
                     onClick={handleClose}
+                    onKeyDown={(e) => {
+                        if (e.key === "Escape") handleClose();
+                    }}
+                    tabIndex={-1}
                 >
                     {menu}
                 </div>

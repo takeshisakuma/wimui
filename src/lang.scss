@@ -5,38 +5,37 @@
 /* または、特定の lang 属性がない場合の共通フォントとして設定 */
 body {
   font-family: $lang-default;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  text-wrap: pretty;
+  font-optical-sizing: auto;
+  font-feature-settings: normal;
+  font-kerning: auto;
+  line-height: $line-height-normal-latn;
   word-spacing: 0;
   letter-spacing: 0;
-  font-kerning: auto;
+  line-break: normal;
+  word-break: normal;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+  text-size-adjust: 100%;
   text-spacing-trim: normal;
-  font-feature-settings: normal;
   text-box-trim: trim-both;
   text-box-edge: cap alphabetic;
-  overflow-wrap: anywhere;
-  word-break: normal;
-  line-break: normal;
-  font-optical-sizing: auto;
-  line-height: $line-height-normal-latn;
 }
 
 /* 日本語のコンテンツに対するフォント指定 */
 body[lang="ja"] {
   font-family: $lang-ja;
-  line-height: $line-height-normal-jpan;
   font-feature-settings: "palt";
-  line-break: auto;
+  line-height: $line-height-normal-jpan;
   hyphens: manual;
+  line-break: auto;
 
   p,
   li,
   dd,
   dt {
-    word-break: break-all;
     -webkit-line-break: strict;
     line-break: strict;
+    word-break: break-all;
   }
 }
 

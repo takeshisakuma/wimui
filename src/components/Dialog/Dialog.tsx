@@ -166,11 +166,16 @@ export const DialogContent = ({ children, className }: DialogContentProps) => {
     if (!open) return null;
 
     return createPortal(
-        <div className="wim-dialog-overlay" onClick={(e) => {
-            if (e.target === e.currentTarget) {
-                onOpenChange(false);
-            }
-        }}>
+        <div
+            className="wim-dialog-overlay"
+            role="button"
+            tabIndex={-1}
+            onKeyDown={() => { }}
+            onClick={(e) => {
+                if (e.target === e.currentTarget) {
+                    onOpenChange(false);
+                }
+            }}>
             <FocusTrap active={open} autoFocus={true} className="wim-dialog-focus-trap-wrapper">
                 <div
                     ref={contentRef}

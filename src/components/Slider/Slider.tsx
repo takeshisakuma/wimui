@@ -68,22 +68,23 @@ export const Slider = ({
     const isDragging = useRef(false);
 
     // 値を範囲内に収める
-    const clamp = (val: number, minVal: number, maxVal: number) =>
-        Math.max(minVal, Math.min(val, maxVal));
+    // 値を範囲内に収める
+    const clamp = useCallback((val: number, minVal: number, maxVal: number) =>
+        Math.max(minVal, Math.min(val, maxVal)), []);
 
     // ステップに合わせる
-    const alignToStep = (val: number) => {
+    const alignToStep = useCallback((val: number) => {
         const steps = Math.round((val - min) / step);
         return clamp(min + steps * step, min, max);
-    };
+    }, [clamp, min, max, step]);
 
-    const calculateValue = (clientX: number) => {
+    const calculateValue = useCallback((clientX: number) => {
         if (!trackRef.current) return min;
         const rect = trackRef.current.getBoundingClientRect();
         const percentage = clamp((clientX - rect.left) / rect.width, 0, 1);
         const rawValue = min + percentage * (max - min);
         return alignToStep(rawValue);
-    };
+    }, [alignToStep, clamp, max, min]);
 
     const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
         if (disabled) return;
@@ -114,7 +115,7 @@ export const Slider = ({
             }
             onChange?.(newValue);
         },
-        [disabled, isControlled, min, max, step, onChange]
+        [disabled, isControlled, onChange, calculateValue]
     );
 
     const handleGlobalMouseUp = useCallback(() => {

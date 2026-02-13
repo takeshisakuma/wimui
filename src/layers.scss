@@ -1,3 +1,4 @@
 /* CSS レイヤーの優先順位定義 */
+
 /* 後ろに宣言されたレイヤーほど詳細度が高くなる */
 @layer reset, base, component, utilities;

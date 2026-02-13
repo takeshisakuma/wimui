@@ -262,12 +262,12 @@ export const TreeViewItem = ({
             aria-selected={isSelected}
             aria-expanded={hasChildren ? isExpanded : undefined}
             aria-disabled={disabled}
+            onClick={handleClick}
+            onKeyDown={handleKeyDown}
+            tabIndex={disabled ? -1 : 0}
         >
             <div
                 className="wim-tree-view-item__label-container"
-                onClick={handleClick}
-                onKeyDown={handleKeyDown}
-                tabIndex={disabled ? -1 : 0}
             >
                 {hasChildren && (
                     <button

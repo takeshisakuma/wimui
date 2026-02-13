@@ -9,7 +9,7 @@ $size-ex-large: $font-size-2;
 
 /* ウェイトの意味の定義 */
 $weight-normal: 400;
-$weight-medium: 500; //buttonラベル用
+$weight-medium: 500; // buttonラベル用
 $weight-bold: 700;
 
 /* スタイルの意味の定義 */
@@ -17,6 +17,7 @@ $style-normal: normal;
 $style-italic: italic;
 
 /* line-heightの意味の定義 */
+
 /* 日本語のline-height(ISO 15924コード: Jpan) */
 $line-height-loose-jpan: 1.8;
 $line-height-normal-jpan: 1.6;
@@ -38,19 +39,15 @@ $decoration-highlight-color: #fff9c4; // Light yellow highlight
   --font-size-medium: #{$size-medium};
   --font-size-large: #{$size-large};
   --font-size-ex-large: #{$size-ex-large};
-
   --font-weight-normal: #{$weight-normal};
   --font-weight-medium: #{$weight-medium};
   --font-weight-bold: #{$weight-bold};
-
   --line-height-loose-jpan: #{$line-height-loose-jpan};
   --line-height-normal-jpan: #{$line-height-normal-jpan};
   --line-height-tight-jpan: #{$line-height-tight-jpan};
-
   --line-height-loose-latn: #{$line-height-loose-latn};
   --line-height-normal-latn: #{$line-height-normal-latn};
   --line-height-tight-latn: #{$line-height-tight-latn};
-
   --decoration-line-through: #{$decoration-line-through};
   --decoration-underline: #{$decoration-underline};
   --decoration-highlight-color: #{$decoration-highlight-color};

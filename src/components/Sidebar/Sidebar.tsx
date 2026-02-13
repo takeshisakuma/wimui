@@ -44,7 +44,7 @@ Sidebar.displayName = "Sidebar";
 
 
 
-export interface SidebarHeaderProps extends React.ComponentPropsWithoutRef<"div"> { }
+export type SidebarHeaderProps = React.ComponentPropsWithoutRef<"div">;
 export const SidebarHeader = React.forwardRef<HTMLDivElement, SidebarHeaderProps>(
     ({ className, children, ...props }, ref) => (
         <div ref={ref} className={classNames("wim-sidebar__header", className)} {...props}>
@@ -54,7 +54,7 @@ export const SidebarHeader = React.forwardRef<HTMLDivElement, SidebarHeaderProps
 );
 SidebarHeader.displayName = "Sidebar.Header";
 
-export interface SidebarContentProps extends React.ComponentPropsWithoutRef<"div"> { }
+export type SidebarContentProps = React.ComponentPropsWithoutRef<"div">;
 export const SidebarContent = React.forwardRef<HTMLDivElement, SidebarContentProps>(
     ({ className, children, ...props }, ref) => (
         <div ref={ref} className={classNames("wim-sidebar__content", className)} {...props}>
@@ -64,7 +64,7 @@ export const SidebarContent = React.forwardRef<HTMLDivElement, SidebarContentPro
 );
 SidebarContent.displayName = "Sidebar.Content";
 
-export interface SidebarFooterProps extends React.ComponentPropsWithoutRef<"div"> { }
+export type SidebarFooterProps = React.ComponentPropsWithoutRef<"div">;
 export const SidebarFooter = React.forwardRef<HTMLDivElement, SidebarFooterProps>(
     ({ className, children, ...props }, ref) => (
         <div ref={ref} className={classNames("wim-sidebar__footer", className)} {...props}>

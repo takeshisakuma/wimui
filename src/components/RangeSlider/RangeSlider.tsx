@@ -83,22 +83,22 @@ export const RangeSlider = ({
     const isDragging = useRef<"min" | "max" | null>(null);
 
     // 値を範囲内に収める
-    const clamp = (val: number, minVal: number, maxVal: number) =>
-        Math.max(minVal, Math.min(val, maxVal));
+    const clamp = useCallback((val: number, minVal: number, maxVal: number) =>
+        Math.max(minVal, Math.min(val, maxVal)), []);
 
     // ステップに合わせる
-    const alignToStep = (val: number) => {
+    const alignToStep = useCallback((val: number) => {
         const steps = Math.round((val - min) / step);
         return clamp(min + steps * step, min, max);
-    };
+    }, [clamp, min, max, step]);
 
-    const calculateValue = (clientX: number) => {
+    const calculateValue = useCallback((clientX: number) => {
         if (!trackRef.current) return min;
         const rect = trackRef.current.getBoundingClientRect();
         const percentage = clamp((clientX - rect.left) / rect.width, 0, 1);
         const rawValue = min + percentage * (max - min);
         return alignToStep(rawValue);
-    };
+    }, [alignToStep, clamp, max, min]);
 
     const handleMouseDown = (e: React.MouseEvent | React.TouchEvent, handle: "min" | "max") => {
         if (disabled) return;
@@ -149,16 +149,7 @@ export const RangeSlider = ({
         onChange?.(nextValues);
     };
 
-    const handleGlobalMouseMove = useCallback(
-        (e: MouseEvent | TouchEvent) => {
-            if (!isDragging.current || disabled) return;
 
-            const clientX = 'touches' in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
-            const newValue = calculateValue(clientX);
-            updateValue(newValue, isDragging.current);
-        },
-        [disabled, isControlled, min, max, step, onChange, currentValue, allowCross] // currentValue needs to be in deps if updateValue depends on it, but updateValue is defined inside.
-    );
 
     // NOTE: updateValue depends on currentValue, so handleGlobalMouseMove needs to be updated or logic moved.
     // Instead of useCallback with deps, let's use a ref for values or just accept render updates.
@@ -192,7 +183,7 @@ export const RangeSlider = ({
             }
             onChange?.(nextValues);
         },
-        [disabled, isControlled, min, max, step, onChange, allowCross]
+        [disabled, isControlled, onChange, allowCross, calculateValue]
     );
 
 

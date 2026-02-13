@@ -147,6 +147,7 @@ export const HoverCardTrigger = ({ children, className, asChild }: HoverCardTrig
             onMouseLeave={handleMouseLeave}
             onFocus={handleMouseEnter}
             onBlur={handleMouseLeave}
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
             tabIndex={0}
         >
             {children}
@@ -167,6 +168,7 @@ export const HoverCardContent = ({
     className,
     align = "center",
     side = "bottom",
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     sideOffset = 8,
     ...props
 }: HoverCardContentProps & React.HTMLAttributes<HTMLDivElement>) => {

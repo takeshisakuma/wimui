@@ -75,6 +75,14 @@ export const DropdownTrigger = ({ children, className }: DropdownTriggerProps) =
             onClick={toggle}
             aria-haspopup="true"
             aria-expanded={isOpen}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    toggle();
+                }
+            }}
         >
             {children}
         </div>
@@ -145,6 +153,12 @@ export const DropdownItem = ({
             role="menuitem"
             tabIndex={disabled ? -1 : 0}
             aria-disabled={disabled}
+            onKeyDown={(e) => {
+                if (!disabled && (e.key === "Enter" || e.key === " ")) {
+                    e.preventDefault();
+                    handleClick(e as any);
+                }
+            }}
         >
             {children}
         </div>

@@ -68,6 +68,14 @@ export const Chip = ({
                     }}
                     role="button"
                     aria-label="Delete"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            onDelete(e as any);
+                        }
+                    }}
                 >
                     <Icon name="CloseIcon" size="small" />
                 </span>

@@ -91,6 +91,12 @@ export const MenuItem = ({
             role="menuitem"
             tabIndex={disabled ? -1 : 0}
             aria-disabled={disabled}
+            onKeyDown={(e) => {
+                if (!disabled && (e.key === "Enter" || e.key === " ")) {
+                    e.preventDefault();
+                    handleClick(e as any);
+                }
+            }}
         >
             {icon && <span className="wim-menu-item__icon">{icon}</span>}
             <span className="wim-menu-item__content">{children}</span>
@@ -152,6 +158,12 @@ export const SubMenu = ({
                 aria-haspopup="true"
                 aria-expanded={isOpen}
                 tabIndex={0}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleToggle(e as any);
+                    }
+                }}
             >
                 {icon && <span className="wim-menu-item__icon">{icon}</span>}
                 <span className="wim-menu-item__content">{title}</span>

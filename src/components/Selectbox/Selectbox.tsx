@@ -61,6 +61,7 @@ export const Selectbox = ({
     const triggerRef = useRef<HTMLDivElement>(null);
     const searchInputRef = useRef<HTMLInputElement>(null);
     const listItemsRef = useRef<(HTMLLIElement | null)[]>([]);
+    const listId = useRef("wim-selectbox-list-" + Math.random().toString(36).substr(2, 9)).current;
 
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
@@ -242,6 +243,7 @@ export const Selectbox = ({
                             const isSelected = currentValue === option.value;
 
                             return (
+                                // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                                 <li
                                     key={option.value}
                                     ref={el => { listItemsRef.current[index] = el; }}
@@ -274,6 +276,7 @@ export const Selectbox = ({
             const isSelected = currentValue === option.value;
 
             return (
+                // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                 <li
                     key={option.value}
                     ref={el => { listItemsRef.current[index] = el; }}
@@ -317,6 +320,7 @@ export const Selectbox = ({
                 role="combobox"
                 aria-expanded={isOpen}
                 aria-haspopup="listbox"
+                aria-controls={listId}
                 aria-disabled={disabled}
                 ref={triggerRef}
             >
@@ -347,7 +351,7 @@ export const Selectbox = ({
                             />
                         </div>
                     )}
-                    <ul className="wim-selectbox-list" role="listbox">
+                    <ul id={listId} className="wim-selectbox-list" role="listbox">
                         {filteredOptions.length === 0 ? (
                             <li className="wim-selectbox-empty">No options found</li>
                         ) : (

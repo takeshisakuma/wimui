@@ -98,6 +98,7 @@ export const CommandPalette = ({ children, open: controlledOpen, onOpenChange }:
     }), [open, handleOpenChange, search, activeIndex, registerItem, unregisterItem]);
 
     return (
+        // eslint-disable-next-line react-hooks/refs
         <CommandPaletteContext.Provider value={contextValue}>
             {children}
         </CommandPaletteContext.Provider>
@@ -114,7 +115,7 @@ export interface CommandPaletteTriggerProps {
 export const CommandPaletteTrigger = ({ children, asChild, className }: CommandPaletteTriggerProps) => {
     const { onOpenChange } = useCommandPalette();
 
-    const handleClick = (e: React.MouseEvent) => {
+    const handleClick = () => {
         onOpenChange(true);
     };
 
@@ -123,7 +124,7 @@ export const CommandPaletteTrigger = ({ children, asChild, className }: CommandP
             onClick: (e: React.MouseEvent) => {
                 const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
                 child.props.onClick?.(e);
-                handleClick(e);
+                handleClick();
             },
             className: classNames(className, (children as React.ReactElement<any>).props.className),
         });
@@ -148,7 +149,13 @@ export const CommandPaletteContent = ({ children, className }: CommandPaletteCon
     if (!open) return null;
 
     return createPortal(
-        <div className="wim-command-palette-overlay" onClick={() => onOpenChange(false)}>
+        <div
+            className="wim-command-palette-overlay"
+            onClick={() => onOpenChange(false)}
+            role="button"
+            tabIndex={-1}
+            onKeyDown={() => { }}
+        >
             <FocusTrap active={open} autoFocus={true}>
                 <div
                     className={classNames("wim-command-palette-content", className)}
@@ -259,7 +266,7 @@ export const CommandPaletteItem = ({ children, onSelect, icon, shortcut, disable
     }, [isActive, disabled, onSelect, onOpenChange]);
 
     return (
-        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events */
         <div
             role="option"
             id={`wim-command-palette-item-${index}`}

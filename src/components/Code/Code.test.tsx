@@ -1,24 +1,25 @@
+
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { Code } from "./Code";
 
 describe("Code", () => {
     it("renders inline code by default", () => {
-        render(<Code>const a = 1;</Code>);
+        render(<Code code="const a = 1;" />);
         const code = screen.getByText("const a = 1;");
         expect(code.tagName).toBe("CODE");
         expect(code).toHaveClass("wim-code--inline");
     });
 
     it("renders block code", () => {
-        render(<Code block>console.log("hello")</Code>);
+        render(<Code block code='console.log("hello")' />);
         const pre = screen.getByText('console.log("hello")').closest("pre");
         expect(pre).toBeInTheDocument();
         expect(pre).toHaveClass("wim-code--block");
     });
 
     it("applies language class", () => {
-        render(<Code language="javascript">var x = 10;</Code>);
+        render(<Code code="var x = 10;" language="javascript" />);
         expect(screen.getByText("var x = 10;")).toHaveClass("wim-code");
         // Inline code doesn't wrap in pre, wrapper is 'code'.
         // Implementation: 
@@ -30,7 +31,7 @@ describe("Code", () => {
     });
 
     it("applies language class to inner code in block mode", () => {
-        render(<Code block language="python">print("hi")</Code>);
+        render(<Code block language="python" code='print("hi")' />);
         // Implementation:
         // <pre ...><code className="language-python">...</code></pre>
         const code = screen.getByText('print("hi")');

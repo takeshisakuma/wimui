@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef } from "react";
 import classNames from "classnames";
 import { Textarea } from "../Textarea/Textarea";
-import { Popover } from "../Popover/Popover";
 import "./mentions.scss";
 
 type MentionOption = {
@@ -142,8 +141,9 @@ export const Mentions = ({
                 }}
             />
             {isOpen && filteredOptions.length > 0 && (
-                <div className="wim-mentions-list">
+                <div className="wim-mentions-list" role="listbox">
                     {filteredOptions.map((opt, index) => (
+                        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus
                         <div
                             key={opt.id}
                             className={classNames(
@@ -151,6 +151,9 @@ export const Mentions = ({
                                 index === selectedIndex && "wim-mentions-item--selected"
                             )}
                             onClick={() => insertMention(opt)}
+                            role="option"
+                            aria-selected={index === selectedIndex}
+                            tabIndex={-1}
                         >
                             {opt.display}
                         </div>

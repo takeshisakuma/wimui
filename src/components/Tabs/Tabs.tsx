@@ -67,7 +67,7 @@ const Tabs = ({
     );
 };
 
-export interface TabsListProps extends React.ComponentPropsWithoutRef<"div"> { }
+export type TabsListProps = React.ComponentPropsWithoutRef<"div">;
 
 export const TabsList = ({ className, children, ...props }: TabsListProps) => {
     const { orientation } = useTabs();
@@ -101,6 +101,7 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
         <div
             ref={listRef}
             role="tablist"
+            tabIndex={-1}
             aria-orientation={orientation}
             className={classNames(
                 "wim-tabs__list",

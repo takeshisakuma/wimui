@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback, useMemo } from "react";
 import classNames from "classnames";
 import "./accordion.scss";
 import { Icon } from "../Icon/Icon";
@@ -46,11 +46,11 @@ export const Accordion = ({
     });
 
     const isControlled = valueProp !== undefined;
-    const activeValue = isControlled
+    const activeValue = useMemo(() => isControlled
         ? Array.isArray(valueProp)
             ? valueProp
             : [valueProp]
-        : internalValue;
+        : internalValue, [isControlled, valueProp, internalValue]);
 
     const handleValueChange = useCallback(
         (itemValue: string) => {
@@ -166,11 +166,11 @@ export const AccordionTrigger = ({
     className,
     ...props
 }: React.ComponentPropsWithoutRef<"summary">) => {
-    const { value, onValueChange } = useAccordion();
+    const { onValueChange } = useAccordion();
     const item = useContext(AccordionItemContext);
     if (!item) throw new Error("AccordionTrigger must be used within AccordionItem");
 
-    const isOpen = value.includes(item.value);
+
 
     const handleClick = (e: React.MouseEvent) => {
         if (item.disabled) {

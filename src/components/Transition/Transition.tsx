@@ -54,12 +54,13 @@ export const Transition = ({
         }
 
         if (show) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setShouldRender(true);
             setState("entering");
             setActiveClasses(classNames(enter, enterFrom));
 
             // Force reflow
-            const _ = elementRef.current?.offsetHeight;
+            void elementRef.current?.offsetHeight;
 
             const frame = requestAnimationFrame(() => {
                 setActiveClasses(classNames(enter, enterTo));
@@ -71,7 +72,7 @@ export const Transition = ({
             setActiveClasses(classNames(leave, leaveFrom));
 
             // Force reflow
-            const _ = elementRef.current?.offsetHeight;
+            void elementRef.current?.offsetHeight;
 
             const frame = requestAnimationFrame(() => {
                 setActiveClasses(classNames(leave, leaveTo));

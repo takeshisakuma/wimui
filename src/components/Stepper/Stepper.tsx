@@ -86,6 +86,14 @@ export const Stepper = ({
                         )}
                         onClick={() => isClickable && onChange(index)}
                         style={{ cursor: isClickable ? "pointer" : "default" }}
+                        role="button"
+                        tabIndex={isClickable ? 0 : -1}
+                        onKeyDown={(e) => {
+                            if (isClickable && (e.key === "Enter" || e.key === " ")) {
+                                e.preventDefault();
+                                onChange(index);
+                            }
+                        }}
                     >
                         <div className="wim-stepper__line" />
                         <div className="wim-stepper__icon-container">

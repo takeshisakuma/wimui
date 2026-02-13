@@ -100,12 +100,12 @@ export const Combobox = ({
         <div
             className={classNames("wim-combobox", className)}
             ref={containerRef}
-            onKeyDown={handleKeyDown}
         >
             <Input
                 placeholder={placeholder}
                 value={inputValue}
                 onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
                 onFocus={() => setIsOpen(true)}
                 leftIcon={showSearchIcon ? "SearchIcon" : undefined}
                 rightIcon={allowClear && inputValue ? undefined : "ChevronDownIcon"}
@@ -117,6 +117,7 @@ export const Combobox = ({
             {isOpen && filteredOptions.length > 0 && (
                 <ul className="wim-combobox-list">
                     {filteredOptions.map((option, index) => (
+                        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                         <li
                             key={option.value}
                             className={classNames(
@@ -124,6 +125,8 @@ export const Combobox = ({
                                 index === activeIndex && "wim-combobox-option--active"
                             )}
                             onClick={() => handleOptionClick(option)}
+                            role="option"
+                            aria-selected={index === activeIndex}
                         >
                             {option.label}
                         </li>

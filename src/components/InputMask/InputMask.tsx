@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useCallback } from "react";
 
 import { Input } from "../Input/Input";
 import "./input-mask.scss";
@@ -26,21 +26,15 @@ export const InputMask = ({
     const [internalValue, setInternalValue] = useState(defaultValue || "");
     const isControlled = value !== undefined;
     const currentValue = isControlled ? (value as string) : internalValue;
-    const inputRef = useRef<HTMLInputElement>(null);
+
 
     const applyMask = useCallback(
         (val: string) => {
             let result = "";
             let maskIndex = 0;
-            let valIndex = 0;
 
-            // 文字列からマスク対象外の文字をフィルタリング
-            const cleanVal = val.split("").filter((char, i) => {
-                // すでにマスクが適用されている場合、リテラル文字をスキップするために必要
-                // ただし、単純なフィルタリングでは不十分な場合があるため、
-                // 入力値のみを抽出するロジックを検討
-                return true;
-            });
+
+
 
             // 実際には入力された文字だけを取り出してマスクに当てはめる
             const rawChars = val.replace(/[^a-zA-Z0-9]/g, "");

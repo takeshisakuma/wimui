@@ -43,6 +43,7 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
             const timer = setTimeout(updateRect, 100);
             return () => clearTimeout(timer);
         } else {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setTargetRect(null);
         }
     }, [open, currentStep, step]);
@@ -70,7 +71,11 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
         if (currentStep < steps.length - 1) {
             setCurrentStep(currentStep + 1);
         } else {
-            onFinish ? onFinish() : onClose();
+            if (onFinish) {
+                onFinish();
+            } else {
+                onClose();
+            }
             setCurrentStep(0);
         }
     };
@@ -123,7 +128,15 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
 
     return (
         <Portal>
-            <div className="wim-tour-mask" onClick={onClose} />
+            <div
+                className="wim-tour-mask"
+                onClick={onClose}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") onClose();
+                }}
+            />
             {targetRect && (
                 <div
                     className="wim-tour-highlight"

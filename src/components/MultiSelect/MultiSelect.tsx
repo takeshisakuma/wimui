@@ -38,6 +38,7 @@ export const MultiSelect = ({
     const [isOpen, setIsOpen] = useState(false);
     const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
     const containerRef = useRef<HTMLDivElement>(null);
+    const [listId] = useState(() => "wim-multiselect-list-" + Math.random().toString(36).substr(2, 9));
 
     const isControlled = value !== undefined;
     const currentValues = isControlled ? value : internalValue;
@@ -114,7 +115,14 @@ export const MultiSelect = ({
                 role="combobox"
                 aria-expanded={isOpen}
                 aria-haspopup="listbox"
+                aria-controls={listId}
                 aria-disabled={disabled}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleToggle(e as any);
+                    }
+                }}
             >
                 <div className={classNames(
                     "wim-multiselect-value",
@@ -142,7 +150,7 @@ export const MultiSelect = ({
             </div>
 
             {isOpen && !disabled && (
-                <ul className="wim-multiselect-list" role="listbox" aria-multiselectable="true">
+                <ul id={listId} className="wim-multiselect-list" role="listbox" aria-multiselectable="true">
                     {options.map((option) => {
                         const isSelected = currentValues?.includes(option.value);
                         return (
@@ -157,6 +165,13 @@ export const MultiSelect = ({
                                 role="option"
                                 aria-selected={isSelected}
                                 aria-disabled={option.disabled}
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if ((e.key === "Enter" || e.key === " ") && !option.disabled) {
+                                        e.preventDefault();
+                                        handleSelect(option.value);
+                                    }
+                                }}
                             >
                                 <span>{option.label}</span>
                                 {isSelected && <Icon name="CheckIcon" size="small" />}
