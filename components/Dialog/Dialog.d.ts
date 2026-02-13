@@ -30,7 +30,7 @@ export interface DialogContentProps {
      */
     hideCloseButton?: boolean;
 }
-export declare const DialogContent: ({ children, className }: DialogContentProps) => React.ReactPortal | null;
+export declare const DialogContent: ({ children, className, hideCloseButton }: DialogContentProps) => React.ReactPortal | null;
 export declare const DialogHeader: ({ children, className }: {
     children: React.ReactNode;
     className?: string;
