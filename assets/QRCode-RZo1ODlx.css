@@ -1,0 +1,1 @@
+.wim-qrcode{display:inline-block;padding:var(--spacing-md, .5rem);line-height:0;background:#fff;border:1px solid var(--wim-color-border-secondary, #f0f0f2);border-radius:var(--radius-md, 4px)}.wim-qrcode svg,.wim-qrcode canvas{display:block}
