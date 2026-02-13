@@ -14,13 +14,15 @@ const xAxisKey = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const yAxisKey = ["Am", "Pm", "Night"];
 
 const data = [];
+let i = 0;
 for (let x of xAxisKey) {
     for (let y of yAxisKey) {
         data.push({
             x,
             y,
-            value: Math.floor(Math.random() * 100),
+            value: (i * 13) % 100, // Predictable value instead of random
         });
+        i++;
     }
 }
 
