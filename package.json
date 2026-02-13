@@ -31,6 +31,9 @@
     "stylelint:scss": "stylelint \"{src,stories}/**/*.scss\"",
     "stylelint": "npm run stylelint:css && npm run stylelint:scss",
     "stylelint:fix": "stylelint \"{src,stories}/**/*.{css,scss}\" --fix --allow-empty-input",
+    "test:vrt": "playwright test",
+    "test:vrt:update": "playwright test --update-snapshots",
+    "test:vrt:report": "playwright show-report",
     "predeploy": "npm run build-storybook",
     "deploy": "gh-pages -d storybook-static"
   },
@@ -46,6 +49,7 @@
   "homepage": "./",
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.1",
+    "@playwright/test": "^1.58.2",
     "@storybook/addon-a11y": "^10.2.8",
     "@storybook/addon-docs": "^10.2.8",
     "@storybook/addon-themes": "^10.2.8",
