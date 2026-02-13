@@ -1,40 +1,11 @@
 import { Meta } from "@storybook/blocks";
 import { T } from "../T";
+import { ColorSwatch, ColorGrid } from "../ColorSwatch";
 
 <Meta title="Guides/PCCS" />
 
 <style>
   {`
-  .pccs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 12px;
-    margin-bottom: 40px;
-  }
-  .pccs-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .pccs-swatch {
-    width: 100%;
-    aspect-ratio: 1;
-    border-radius: 4px;
-    border: 1px solid #eee;
-    margin-bottom: 4px;
-    transition: transform 0.2s;
-  }
-  .pccs-swatch:hover {
-    transform: scale(1.1);
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-  .pccs-label {
-    font-size: 10px;
-    font-family: monospace;
-    text-align: center;
-    word-break: break-all;
-  }
   .tone-section {
     margin-bottom: 60px;
   }
@@ -42,14 +13,25 @@ import { T } from "../T";
     display: flex;
     align-items: baseline;
     gap: 12px;
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid var(--wim-color-border, #eee);
     padding-bottom: 8px;
     margin-bottom: 24px;
+    transition: border-color 0.3s;
+  }
+  .tone-header:hover {
+    border-color: var(--color-primary);
   }
   .tone-symbol {
-    font-size: 24px;
-    font-weight: bold;
-    color: #666;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-secondary, #666);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+  .tone-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
   }
   `}
 </style>
@@ -63,7 +45,7 @@ import { T } from "../T";
       <span className="tone-symbol">Achromatic</span>
       <h3>無彩色</h3>
     </div>
-    <div className="pccs-grid">
+    <ColorGrid variant="square">
       {[
         { name: "w", hex: "#fff" },
         { name: "gy8.5", hex: "#e5e5e5" },
@@ -75,12 +57,15 @@ import { T } from "../T";
         { name: "gy2.5", hex: "#262626" },
         { name: "bk", hex: "#000" },
       ].map(c => (
-        <div className="pccs-item" key={c.name}>
-          <div className="pccs-swatch" style={{ background: c.hex }} title={c.hex}></div>
-          <span className="pccs-label">pccs-{c.name}</span>
-        </div>
+        <ColorSwatch
+          key={c.name}
+          variant="square"
+          name={`pccs-${c.name}`}
+          value={c.hex}
+          color={c.hex}
+        />
       ))}
-    </div>
+    </ColorGrid>
   </div>
 
   {[
@@ -102,14 +87,17 @@ import { T } from "../T";
         <span className="tone-symbol">{tone.symbol}</span>
         <h3>{tone.name} Tone ({tone.jp})</h3>
       </div>
-      <div className="pccs-grid">
+      <ColorGrid variant="square">
         {tone.colors.map((hex, i) => (
-          <div className="pccs-item" key={tone.symbol + (i+1)}>
-            <div className="pccs-swatch" style={{ background: hex }} title={hex}></div>
-            <span className="pccs-label">pccs-{tone.symbol}{i+1}</span>
-          </div>
+          <ColorSwatch
+            key={tone.symbol + (i+1)}
+            variant="square"
+            name={`pccs-${tone.symbol}${i+1}`}
+            value={hex}
+            color={hex}
+          />
         ))}
-      </div>
+      </ColorGrid>
     </div>
   ))}
 
@@ -129,3 +117,4 @@ import { T } from "../T";
     </p>
   </div>
 </div>
+

@@ -12,10 +12,10 @@ import { T } from "./T";
   <div style={{ padding: "24px", background: "var(--wim-color-bg-secondary, #f4f4f7)", borderRadius: "12px", marginBottom: "32px" }}>
     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
       <strong><T k="dashboard_overall_progress" /></strong>
-      <strong>100% (128 / 128)</strong>
+      <strong>88% (128 / 145)</strong>
     </div>
     <div style={{ width: "100%", height: "12px", background: "#e2e2e8", borderRadius: "6px", overflow: "hidden" }}>
-      <div style={{ width: "100%", height: "100%", background: "var(--wim-color-primary, #0052cc)" }}></div>
+      <div style={{ width: "88%", height: "100%", background: "var(--wim-color-primary, #0052cc)" }}></div>
     </div>
 
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px", marginTop: "24px" }}>
@@ -29,7 +29,7 @@ import { T } from "./T";
       </div>
       <div>
         <a href="#layout"><T k="cat_layout" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>100% (10/10)</div>
+        <div style={{ fontSize: "12px", color: "#666" }}>83% (10/12)</div>
       </div>
       <div>
         <a href="#navigation"><T k="cat_navigation" /></a>
@@ -37,7 +37,7 @@ import { T } from "./T";
       </div>
       <div>
         <a href="#inputs"><T k="cat_inputs" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>100% (14/14)</div>
+        <div style={{ fontSize: "12px", color: "#666" }}>77% (14/18)</div>
       </div>
       <div>
         <a href="#selection"><T k="cat_selection" /></a>
@@ -49,7 +49,7 @@ import { T } from "./T";
       </div>
       <div>
         <a href="#data-display"><T k="cat_data_display" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>100% (21/21)</div>
+        <div style={{ fontSize: "12px", color: "#666" }}>91% (21/23)</div>
       </div>
       <div>
         <a href="#feedback"><T k="cat_feedback" /></a>
@@ -61,11 +61,11 @@ import { T } from "./T";
       </div>
       <div>
         <a href="#media-viz"><T k="cat_media_viz" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>100% (10/10)</div>
+        <div style={{ fontSize: "12px", color: "#666" }}>71% (10/14)</div>
       </div>
       <div>
         <a href="#utilities"><T k="cat_utilities" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>100% (7/7)</div>
+        <div style={{ fontSize: "12px", color: "#666" }}>58% (7/12)</div>
       </div>
     </div>
   </div>
@@ -110,6 +110,8 @@ import { T } from "./T";
       <tr><td>box</td><td><T k="doc_box_desc" /></td><td>✅ <T k="status_done" /></td></tr>
       <tr><td>group / flex</td><td><T k="doc_group_desc" /> / <T k="doc_flex_desc" /></td><td>✅ <T k="status_done" /></td></tr>
       <tr><td>simpleGrid</td><td><T k="doc_simpleGrid_desc" /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>AppShell</td><td><T k="doc_appShell_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>Splitter</td><td><T k="doc_splitter_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
     </tbody>
   </table>
 
@@ -154,6 +156,10 @@ import { T } from "./T";
       <tr><td>fieldset / legend</td><td><T k="doc_fieldset_desc" /> / <T k="doc_legend_desc" /></td><td>✅ <T k="status_done" /></td></tr>
       <tr><td>inputMask</td><td><T k="doc_inputMask_desc" /></td><td>✅ <T k="status_done" /></td></tr>
       <tr><td>mentions</td><td><T k="doc_mentions_desc" /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>Cascader</td><td><T k="doc_cascader_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>Transfer</td><td><T k="doc_transfer_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>TreeSelect</td><td><T k="doc_treeSelect_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>SignaturePad</td><td><T k="doc_signaturePad_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
     </tbody>
   </table>
 
@@ -217,6 +223,8 @@ import { T } from "./T";
       <tr><td>qrCode</td><td><T k="doc_qrCode_desc" /></td><td>✅ <T k="status_done" /></td></tr>
       <tr><td>tour</td><td><T k="doc_tour_desc" /></td><td>✅ <T k="status_done" /></td></tr>
       <tr><td>watermark</td><td><T k="doc_watermark_desc" /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>DataGrid</td><td><T k="doc_dataGrid_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>ChatUI</td><td><T k="doc_chatUI_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
     </tbody>
   </table>
 
@@ -267,6 +275,10 @@ import { T } from "./T";
       <tr><td>pieChart</td><td><T k="doc_pieChart_desc" /></td><td>✅ <T k="status_done" /></td></tr>
       <tr><td>scatterChart</td><td><T k="doc_scatterChart_desc" /></td><td>✅ <T k="status_done" /></td></tr>
       <tr><td>heatmap</td><td><T k="doc_heatmap_desc" /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>radarChart</td><td><T k="doc_radarChart_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>funnelChart</td><td><T k="doc_funnelChart_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>treemap</td><td><T k="doc_treemap_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>gauge</td><td><T k="doc_gauge_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
     </tbody>
   </table>
 
@@ -281,6 +293,21 @@ import { T } from "./T";
       <tr><td>portal</td><td><T k="doc_portal_desc" /></td><td>✅ <T k="status_done" /></td></tr>
       <tr><td>transition</td><td><T k="doc_transition_desc" /></td><td>✅ <T k="status_done" /></td></tr>
       <tr><td>errorBoundary</td><td><T k="doc_errorBoundary_desc" /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>backTop</td><td><T k="doc_backTop_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>infiniteScroll</td><td><T k="doc_infiniteScroll_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>scrollProgress</td><td><T k="doc_scrollProgress_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>markdown</td><td><T k="doc_markdown_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>marquee</td><td><T k="doc_marquee_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="docs-only"><T k="cat_docs_only" /></h2>
+  <table>
+    <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_status" /></th></tr></thead>
+    <tbody>
+      <tr><td>T</td><td>翻訳ユーティリティ (i18n wrapper)</td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>colorSwatch</td><td><T k="doc_colorSwatch_desc" /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>contrastChecker</td><td><T k="doc_contrastChecker_desc" /></td><td>⏳ <T k="status_planning" /></td></tr>
     </tbody>
   </table>
 </div>
