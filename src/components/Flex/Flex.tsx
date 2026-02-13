@@ -51,13 +51,22 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
         },
         ref
     ) => {
+        const getGapValue = (val?: number | string) => {
+            if (typeof val === "number") return `${val}px`;
+            const tokens = ["3xs", "2xs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl"];
+            if (typeof val === "string" && tokens.includes(val)) {
+                return `var(--spacing-${val})`;
+            }
+            return val;
+        };
+
         const flexStyle: React.CSSProperties = {
             display: inline ? "inline-flex" : "flex",
             flexDirection: direction,
             alignItems: mapAlign(align),
             justifyContent: mapJustify(justify),
             flexWrap: wrap,
-            gap: typeof gap === "number" ? `${gap}px` : gap,
+            gap: getGapValue(gap),
             ...style,
         };
 

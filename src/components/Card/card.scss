@@ -6,7 +6,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
     color: var(--text-primary);
     background-color: var(--bg-component, #fff);
     transition: effects.$transition-base;
@@ -33,6 +33,7 @@
 
     /* パディング */
     &--padding-none {
+
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {
@@ -41,6 +42,7 @@
     }
 
     &--padding-sm {
+
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {
@@ -49,6 +51,7 @@
     }
 
     &--padding-md {
+
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {
@@ -57,6 +60,7 @@
     }
 
     &--padding-lg {
+
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {

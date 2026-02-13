@@ -1,0 +1,50 @@
+import { Meta, Canvas, Story } from "@storybook/blocks";
+import * as PatternStories from "./Patterns.stories";
+
+<Meta of={PatternStories} />
+
+# UI パターン & レシピ
+
+WIM UI コンポーネントを組み合わせた、実践的なユースケースとレイアウトの例です。
+これらのパターンを参考に、アプリケーションの主要な画面を迅速に構築できます。
+
+## ヒーローセクション (Hero Section)
+
+ウェブサイトのトップページなどで使用される、目を引くメインビジュアルのパターンです。
+`Grid`, `Stack`, `Heading`, `Paragraph`, `Button`, `Avatar` などを組み合わせています。
+
+<Canvas of={PatternStories.HeroSection} />
+
+## 料金プラン (Pricing Table)
+
+SaaSなどで一般的な料金比較表のパターンです。
+`Grid`, `Card`, `Badge`, `Heading`, `Paragraph`, `Button`, `Stack` を使用した、情報の優先順位が明確なレイアウトです。
+
+<Canvas of={PatternStories.PricingTable} />
+
+## ユーザープロファイル設定 (User Profile Settings)
+
+`Input`, `Textarea`, `Selectbox`, `RadioGroup`, `Switch` など、多数のフォームコンポーネントを組み合わせた設定画面のパターンです。
+サイドバーナビゲーションとメインコンテンツエリアの 2 カラムレイアウトを採用しています。
+
+<Canvas of={PatternStories.UserProfileForm} />
+
+## ログイン / サインイン (Login Form)
+
+`Card`, `Input`, `Button`, `Stack` などを組み合わせた、標準的なログインフォームのパターンです。
+バリデーションやソーシャルログインボタンの配置例も含みます。
+
+<Canvas of={PatternStories.LoginForm} />
+
+## ダッシュボードヘッダー (Dashboard Header)
+
+`Header`, `Input` (検索), `Badge`, `Avatar` を組み合わせた管理画面向けのヘッダーです。
+レスポンシブな配置や、ユーザーメニュー、通知アイコンのレイアウト例を示しています。
+
+<Canvas of={PatternStories.DashboardHeader} />
+
+## エラーページ (Error Page / 404)
+
+`Center`, `Stack`, `Heading`, `Paragraph`, `Alert`, `Button` を組み合わせた、UXに配慮したエラー画面のパターンです。
+
+<Canvas of={PatternStories.ErrorPage} />

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 import "./alert.scss";
 
-type AlertProps = {
+type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * アラートのタイトル
      */

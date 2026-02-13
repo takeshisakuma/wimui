@@ -19,7 +19,7 @@ export const ExLargeParagraph = {
     content: `ex-large_paragraph`,
     weight: `normal`,
     lineHeight: `normal-latn`,
-    style: `normal`,
+    fontStyle: `normal`,
   },
 };
 
@@ -29,7 +29,7 @@ export const LargeParagraph = {
     content: `large_paragraph`,
     weight: `normal`,
     lineHeight: `normal-latn`,
-    style: `normal`,
+    fontStyle: `normal`,
   },
 };
 
@@ -39,7 +39,7 @@ export const MediumParagraph = {
     content: `medium_paragraph`,
     weight: `normal`,
     lineHeight: `normal-latn`,
-    style: `normal`,
+    fontStyle: `normal`,
   },
 };
 
@@ -49,7 +49,7 @@ export const SmallParagrapht = {
     content: `small_paragraph`,
     weight: `normal`,
     lineHeight: `normal-latn`,
-    style: `normal`,
+    fontStyle: `normal`,
   },
 };
 
@@ -59,7 +59,7 @@ export const ExSmallParagraph = {
     content: `ex-small_paragraph`,
     weight: `normal`,
     lineHeight: `normal-latn`,
-    style: `normal`,
+    fontStyle: `normal`,
   },
 };
 

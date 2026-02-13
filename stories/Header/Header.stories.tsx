@@ -8,6 +8,18 @@ const meta: Meta<typeof Header> = {
         layout: "fullscreen",
     },
     tags: [],
+    argTypes: {
+        fixed: { control: "boolean", description: "ヘッダーを上部に固定します" },
+        sticky: { control: "boolean", description: "スクロール時にヘッダーを上部に粘着させます" },
+        bordered: { control: "boolean", description: "下部に境界線を表示します" },
+        glass: { control: "boolean", description: "背景にぼかし効果（グラスモーフィズム）を適用します" },
+        background: {
+            control: "select",
+            options: ["primary", "secondary", "transparent"],
+            description: "背景色を指定します",
+        },
+        children: { table: { disable: true } },
+    },
 };
 
 export default meta;
@@ -55,13 +67,39 @@ export const Glass: Story = {
 
 export const Sticky: Story = {
     render: (args: HeaderProps) => (
-        <div style={{ height: "200vh" }}>
+        <div style={{ height: "200vh", background: "linear-gradient(to bottom, #f0f0f0, #e0e0e0)" }}>
             <Header {...args} sticky bordered>
                 <Header.Section align="start">
                     <div style={{ fontWeight: "bold" }}>Sticky Header</div>
                 </Header.Section>
+                <Header.Section align="end">
+                    <button>Action</button>
+                </Header.Section>
             </Header>
-            <div style={{ padding: "20px" }}>Scroll down to see the sticky effect.</div>
+            <div style={{ padding: "20px" }}>
+                <p>Scroll down to see the sticky effect.</p>
+                {Array.from({ length: 10 }).map((_, i) => (
+                    <p key={i} style={{ margin: "20px 0" }}>Content block {i + 1}</p>
+                ))}
+            </div>
+        </div>
+    ),
+};
+
+export const Playground: Story = {
+    args: {
+        ...Default.args,
+        bordered: true,
+        glass: false,
+        background: "primary",
+    },
+    render: (args) => (
+        <div style={{ height: "300px", position: "relative", border: "1px dashed #ccc" }}>
+            <Header {...args} style={{ position: "absolute", top: 0, left: 0, width: "100%" }} />
+            <div style={{ padding: "60px 20px 20px" }}>
+                <p>Header content is displayed above.</p>
+                <p>Change controls to see effects.</p>
+            </div>
         </div>
     ),
 };

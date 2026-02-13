@@ -28,6 +28,8 @@ import HomeIcon from "../../icon/home.svg?react";
 import ProjectIcon from "../../icon/project.svg?react";
 import ChartIcon from "../../icon/chart.svg?react";
 import SettingsIcon from "../../icon/settings.svg?react";
+import BellIcon from "../../icon/bell.svg?react";
+
 
 
 // アイコン名をコンポーネントにマッピング
@@ -57,6 +59,8 @@ const icons = {
   ProjectIcon: ProjectIcon,
   ChartIcon: ChartIcon,
   SettingsIcon: SettingsIcon,
+  BellIcon: BellIcon,
+
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -85,7 +89,9 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "HomeIcon"
   | "ProjectIcon"
   | "ChartIcon"
-  | "SettingsIcon";
+  | "SettingsIcon"
+  | "BellIcon";
+
   size?: "small" | "medium" | "large";
   color?:
   | "destructive"

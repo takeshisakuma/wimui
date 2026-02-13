@@ -14,6 +14,7 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
   loading?: boolean;
+  justify?: "start" | "center" | "end" | "between";
   "aria-label"?: string | boolean;
 };
 
@@ -29,6 +30,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
       iconPosition = "left",
       loading = false,
       backgroundColor,
+      justify = "center",
       "aria-label": ariaLabel,
       className,
       ...props
@@ -44,12 +46,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
       <>
         <span
           className="wim-button__inner"
-          style={loading ? { visibility: "hidden" } : undefined}
+          style={{
+            ...(loading ? { visibility: "hidden" } : {}),
+            justifyContent: justify === "start" ? "flex-start" : justify === "end" ? "flex-end" : justify === "between" ? "space-between" : justify,
+            textAlign: justify === "start" ? "left" : justify === "end" ? "right" : "center"
+          }}
         >
           {iconName && iconPosition === "left" && (
             <Icon name={iconName} size={size} />
           )}
-          {label && <span className="wim-button__label">{t(label)}</span>}
+          {label && <span className="wim-button__label" style={{ textAlign: "inherit", width: "100%" }}>{t(label)}</span>}
           {iconName && iconPosition === "right" && (
             <Icon name={iconName} size={size} />
           )}

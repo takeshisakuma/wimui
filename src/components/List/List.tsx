@@ -10,12 +10,11 @@ type ListContextType = {
 
 const ListContext = createContext<ListContextType>({ size: "medium" });
 
-type ListProps = {
+type ListProps = React.ComponentPropsWithoutRef<"ul"> & {
     as?: "ul" | "ol";
     size?: "small" | "medium" | "large";
     spacing?: "tight" | "normal" | "loose";
     children: React.ReactNode;
-    className?: string;
 };
 
 export const List = ({
@@ -47,9 +46,8 @@ export const List = ({
     );
 };
 
-type ListItemProps = {
+type ListItemProps = React.ComponentPropsWithoutRef<"li"> & {
     children: React.ReactNode;
-    className?: string;
     iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";
 };

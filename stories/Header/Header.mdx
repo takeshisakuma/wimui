@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
 import * as HeaderStories from "./Header.stories";
 import { T } from "../T";
 
@@ -12,31 +12,43 @@ import { T } from "../T";
 
 Headerは、ページの上部やセクションの上部に配置される汎用的なヘッダーコンポーネントです。
 
+## インターアクティブなデモ (Playground)
+
+以下の Controls を使用して、`bordered`, `glass`, `background` などのプロパティをリアルタイムで変更し、挙動を確認できます。
+
+<Canvas of={HeaderStories.Playground} />
+<Controls of={HeaderStories.Playground} />
+
 ## インポート
 
 ```jsx
 import Header from "@/components/Header/Header";
-import { T } from "../T";
 ```
 
 ## 基本的な使用方法
 
 `Header` コンポーネントの中に `Header.Section` を配置して使用します。
+`Header.Section` には `align` プロパティ ("start", "center", "end") を指定して、コンテンツの配置を制御できます。
 
 <Canvas of={HeaderStories.Default} />
 
-## 境界線 (Bordered)
+## バリエーション
 
-`bordered` プロパティを使用すると、下部に境界線が表示されます。
+### 境界線 (Bordered)
+
+`bordered` プロパティを使用すると、下部に境界線が表示されます。コンテンツの区切りを明確にするのに役立ちます。
 
 <Canvas of={HeaderStories.Bordered} />
 
-## グラスモーフィズム (Glassmorphism)
+### グラスモーフィズム (Glassmorphism)
 
-`glass` プロパティを使用すると、背景にぼかし効果を適用できます。
+`glass` プロパティを使用すると、背景にぼかし効果が適用されます。背景色が半透明になり、背面のコンテンツが透けて見えます。
 
 <Canvas of={HeaderStories.Glass} />
 
-## API リファレンス
+### 固定/スティッキーヘッダー (Sticky)
 
-<Controls />
+`sticky` または `fixed` プロパティを使用することで、スクロール時にヘッダーを追従させることができます。
+
+<Canvas of={HeaderStories.Sticky} />
+

@@ -14,7 +14,7 @@ type ParagraphProps = React.ComponentPropsWithoutRef<"p"> & {
   | "normal-latn"
   | "tight-latn"
   | "loose-latn";
-  style?: "normal" | "italic";
+  fontStyle?: "normal" | "italic";
   decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
   content: string;
 };
@@ -25,7 +25,7 @@ export const Paragraph = ({
   color = "black",
   weight = "normal",
   lineHeight = "normal-latn",
-  style = "normal",
+  fontStyle = "normal",
   decoration = "none",
   className,
   ...props
@@ -45,7 +45,7 @@ export const Paragraph = ({
         `wim-paragraph--${size === "ex-small" ? "xs" : size === "small" ? "sm" : size === "large" ? "lg" : size === "ex-large" ? "xl" : "md"}`,
         `wim-paragraph--${lineHeight}`,
         weight === "bold" && "wim-paragraph--bold",
-        style === "italic" && "wim-paragraph--italic",
+        fontStyle === "italic" && "wim-paragraph--italic",
         `wim-paragraph--${color}`,
         className
       )}
