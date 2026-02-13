@@ -10,6 +10,7 @@ export declare const Button: React.ForwardRefExoticComponent<Omit<React.Detailed
     iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";
     loading?: boolean;
+    justify?: "start" | "center" | "end" | "between";
     "aria-label"?: string | boolean;
 } & {
     className?: string;

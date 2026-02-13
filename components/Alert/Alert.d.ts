@@ -1,5 +1,5 @@
 import { default as React } from '../../../node_modules/react';
-type AlertProps = {
+type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * アラートのタイトル
      */
