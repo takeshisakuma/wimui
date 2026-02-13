@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useId } from "react";
 import classNames from "classnames";
 import { Calendar } from "../Calendar/Calendar";
 import { Icon } from "../Icon/Icon";
@@ -53,6 +53,7 @@ export const DatePicker = ({
     const [internalValue, setInternalValue] = useState<Date | null>(defaultValue || null);
     const containerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    const dropdownId = useId();
 
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
@@ -147,6 +148,9 @@ export const DatePicker = ({
                     disabled={disabled || state === "disabled"}
                     onClick={handleInputClick}
                     onKeyDown={handleKeyDown}
+                    aria-haspopup="dialog"
+                    aria-expanded={isOpen}
+                    aria-controls={isOpen ? dropdownId : undefined}
                     {...props}
                 />
                 <div className="wim-datepicker-icons">
@@ -166,13 +170,15 @@ export const DatePicker = ({
                         onClick={handleInputClick}
                         disabled={disabled || state === "disabled"}
                         aria-label="Open calendar"
+                        aria-expanded={isOpen}
+                        aria-controls={isOpen ? dropdownId : undefined}
                     >
                         <Icon name="ChevronDownIcon" size="small" />
                     </button>
                 </div>
             </div>
             {isOpen && !disabled && state !== "disabled" && (
-                <div className="wim-datepicker-dropdown">
+                <div id={dropdownId} className="wim-datepicker-dropdown" role="dialog" aria-modal="false">
                     <Calendar
                         value={currentValue || undefined}
                         onChange={handleDateChange}

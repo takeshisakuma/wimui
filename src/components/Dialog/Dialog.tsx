@@ -1,13 +1,16 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef, useId } from "react";
 import { createPortal } from "react-dom";
 import classNames from "classnames";
 import { FocusTrap } from "../FocusTrap/FocusTrap";
+import { Icon } from "../Icon/Icon";
 import "./dialog.scss";
 
 // --- Dialog Context ---
 type DialogContextType = {
     open: boolean;
     onOpenChange: (open: boolean) => void;
+    titleId: string;
+    descriptionId: string;
 };
 
 const DialogContext = createContext<DialogContextType | undefined>(undefined);
@@ -37,6 +40,8 @@ export const Dialog = ({
     const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
     const isControlled = controlledOpen !== undefined;
     const open = isControlled ? controlledOpen : uncontrolledOpen;
+    const titleId = useId();
+    const descriptionId = useId();
 
     const handleOpenChange = useCallback((newOpen: boolean) => {
         if (!isControlled) {
@@ -46,7 +51,7 @@ export const Dialog = ({
     }, [isControlled, onOpenChange]);
 
     return (
-        <DialogContext.Provider value={{ open, onOpenChange: handleOpenChange }}>
+        <DialogContext.Provider value={{ open, onOpenChange: handleOpenChange, titleId, descriptionId }}>
             {children}
         </DialogContext.Provider>
     );
@@ -110,7 +115,7 @@ export const DialogClose = ({ children, className, asChild }: DialogCloseProps) 
     }
 
     return (
-        <button type="button" className={classNames("wim-dialog-close-button", className)} onClick={handleClick}>
+        <button type="button" className={classNames("wim-dialog-close-button", className)} onClick={handleClick} aria-label="Close dialog">
             {children}
         </button>
     );
@@ -130,8 +135,8 @@ export interface DialogContentProps {
     hideCloseButton?: boolean;
 }
 
-export const DialogContent = ({ children, className }: DialogContentProps) => {
-    const { open, onOpenChange } = useDialog();
+export const DialogContent = ({ children, className, hideCloseButton = false }: DialogContentProps) => {
+    const { open, onOpenChange, titleId, descriptionId } = useDialog();
     const contentRef = useRef<HTMLDivElement>(null);
 
     // Close on Escape
@@ -168,9 +173,7 @@ export const DialogContent = ({ children, className }: DialogContentProps) => {
     return createPortal(
         <div
             className="wim-dialog-overlay"
-            role="button"
-            tabIndex={-1}
-            onKeyDown={() => { }}
+            aria-hidden="true"
             onClick={(e) => {
                 if (e.target === e.currentTarget) {
                     onOpenChange(false);
@@ -183,10 +186,22 @@ export const DialogContent = ({ children, className }: DialogContentProps) => {
                     ref={contentRef}
                     role="dialog"
                     aria-modal="true"
+                    aria-labelledby={titleId}
+                    aria-describedby={descriptionId}
                     className={classNames("wim-dialog-content", className)}
                     onClick={(e) => e.stopPropagation()}
                 >
                     {children}
+                    {!hideCloseButton && (
+                        <button
+                            type="button"
+                            className="wim-dialog-close-icon-button"
+                            onClick={() => onOpenChange(false)}
+                            aria-label="Close"
+                        >
+                            <Icon name="CloseIcon" />
+                        </button>
+                    )}
                 </div>
             </FocusTrap>
         </div>,
@@ -207,14 +222,20 @@ export const DialogFooter = ({ children, className }: { children: React.ReactNod
     </div>
 );
 
-export const DialogTitle = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <h2 className={classNames("wim-dialog-title", className)}>
-        {children}
-    </h2>
-);
+export const DialogTitle = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+    const { titleId } = useDialog();
+    return (
+        <h2 id={titleId} className={classNames("wim-dialog-title", className)}>
+            {children}
+        </h2>
+    );
+};
 
-export const DialogDescription = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <p className={classNames("wim-dialog-description", className)}>
-        {children}
-    </p>
-);
+export const DialogDescription = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+    const { descriptionId } = useDialog();
+    return (
+        <p id={descriptionId} className={classNames("wim-dialog-description", className)}>
+            {children}
+        </p>
+    );
+};

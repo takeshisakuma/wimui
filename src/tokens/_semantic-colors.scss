@@ -21,7 +21,7 @@ $color-text-on-secondary: $pccs-bk;
 $color-text-on-informative: $pccs-w;
 $color-text-on-disabled: $pccs-gy3-5;
 
-/* ---- 文字色 ---- */
+/* ---- 文字色 (SCSS変数 - ライトモードデフォルト) ---- */
 
 /* 無彩色 */
 $text-black: $pccs-bk;
@@ -69,4 +69,34 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-border-secondary: #{$pccs-gy8-5};
   --scrollbar-thumb: #{$scrollbar-thumb};
   --scrollbar-track: #{$scrollbar-track};
+}
+
+@mixin dark-theme {
+  /* Dark Mode Overrides */
+  --bg-app: #{$pccs-gy2-5}; // Dark Gray Background
+  --bg-component: #{$pccs-gy3-5}; // Slightly Lighter Component BG
+
+  --text-primary: #{$pccs-w}; // White Text
+  --text-secondary: #{$pccs-gy7-5}; // Light Gray Text
+  --text-tertiary: #{$pccs-gy6-5}; // Medium Gray Text
+  --text-disabled: #{$pccs-gy5-5}; // Darker Gray Text
+
+  --wim-color-border: #{$pccs-gy5-5}; // Medium Gray Border
+  --wim-color-border-secondary: #{$pccs-gy4-5}; // Darker Gray Border
+
+  --scrollbar-thumb: #{$pccs-gy5-5};
+  --scrollbar-track: #{$pccs-gy3-5};
+
+  /* Adjust semantic colors for dark mode visibility/contrast if needed */
+  /* Keeping primary colors similar for now as they are vivid tones */
+}
+
+[data-theme="dark"] {
+  @include dark-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark-theme;
+  }
 }

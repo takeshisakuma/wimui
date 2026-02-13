@@ -221,6 +221,7 @@ export const Calendar = ({
                     className="wim-calendar-nav-btn"
                     onClick={handlePrevMonth}
                     disabled={disabled}
+                    aria-label="前月"
                 >
                     <Icon name="ChevronLeftIcon" size="small" />
                 </button>
@@ -232,6 +233,7 @@ export const Calendar = ({
                     className="wim-calendar-nav-btn"
                     onClick={handleNextMonth}
                     disabled={disabled}
+                    aria-label="翌月"
                 >
                     <Icon name="ChevronRightIcon" size="small" />
                 </button>
@@ -262,6 +264,7 @@ export const Calendar = ({
                             )}
                             onClick={() => handleDateClick(date)}
                             disabled={disabled || dateDisabled}
+                            aria-label={`${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`}
                         >
                             {date.getDate()}
                         </button>

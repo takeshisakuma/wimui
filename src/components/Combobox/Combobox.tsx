@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useId } from "react";
 import classNames from "classnames";
 import { Input } from "../Input/Input";
 import "./combobox.scss";
@@ -39,6 +39,7 @@ export const Combobox = ({
     const [filteredOptions, setFilteredOptions] = useState<ComboboxOption[]>(options);
     const [activeIndex, setActiveIndex] = useState(-1);
     const containerRef = useRef<HTMLDivElement>(null);
+    const listboxId = useId();
 
     // 外部クリックで閉じる
     useEffect(() => {
@@ -112,14 +113,22 @@ export const Combobox = ({
                 allowClear={allowClear}
                 disabled={disabled}
                 autoComplete="off"
+                role="combobox"
+                aria-autocomplete="list"
+                aria-expanded={isOpen}
+                aria-controls={listboxId}
+                aria-activedescendant={
+                    isOpen && activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined
+                }
                 {...props}
             />
             {isOpen && filteredOptions.length > 0 && (
-                <ul className="wim-combobox-list">
+                <ul id={listboxId} className="wim-combobox-list" role="listbox">
                     {filteredOptions.map((option, index) => (
                         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                         <li
                             key={option.value}
+                            id={`${listboxId}-option-${index}`}
                             className={classNames(
                                 "wim-combobox-option",
                                 index === activeIndex && "wim-combobox-option--active"

@@ -6,8 +6,19 @@ import "../src/reset.scss"; // reset.scssをインポート
 import "../src/base.scss"; // base.scssをインポート
 import "../src/utilities.scss"; // utilities.scssをインポート
 import "../src/lang.scss"; // lang.scssをインポート
+import { withThemeByDataAttribute } from "@storybook/addon-themes";
 
 const preview: Preview = {
+  decorators: [
+    withThemeByDataAttribute({
+      themes: {
+        light: "light",
+        dark: "dark",
+      },
+      defaultTheme: "light",
+      attributeName: "data-theme",
+    }),
+  ],
   initialGlobals: {
     locale: "en",
     locales: {
