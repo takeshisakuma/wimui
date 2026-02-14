@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import { Button } from "../Button/Button";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip/Tooltip";
 
 type CopyButtonProps = {
     value: string;
@@ -35,17 +36,25 @@ export const CopyButton = ({
         }
     };
 
+    const labelText = copied ? "Copied" : "Copy to clipboard";
+
     return (
-        <Button
-            priority="tertiary"
-            size={size}
-            iconName={copied ? "CheckIcon" : "CopyIcon"}
-            role={copied ? "positive" : "default"}
-            onClick={handleCopy}
-            className={classNames("wim-copy-button", className)}
-            aria-label={ariaLabel || (copied ? "Copied" : "Copy to clipboard")}
-            title={copied ? "Copied" : "Copy to clipboard"}
-        />
+        <Tooltip>
+            <TooltipTrigger asChild>
+                <Button
+                    priority="tertiary"
+                    size={size}
+                    iconName={copied ? "CheckIcon" : "CopyIcon"}
+                    role={copied ? "positive" : "default"}
+                    onClick={handleCopy}
+                    className={classNames("wim-copy-button", className)}
+                    aria-label={ariaLabel || labelText}
+                />
+            </TooltipTrigger>
+            <TooltipContent>
+                {labelText}
+            </TooltipContent>
+        </Tooltip>
     );
 };
 

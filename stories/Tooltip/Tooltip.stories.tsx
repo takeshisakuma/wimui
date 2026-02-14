@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/Tooltip/Tooltip";
-import { Button } from "@/components/Button/Button"; // Assuming Button exists
+import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Tooltip> = {
     title: "Component/Overlays/Tooltip",
@@ -12,6 +12,10 @@ const meta: Meta<typeof Tooltip> = {
     argTypes: {
         delay: { control: "number" },
         isOpen: { control: "boolean" },
+        placement: {
+            control: "select",
+            options: ["top", "bottom", "left", "right"],
+        },
     },
 };
 
@@ -34,11 +38,11 @@ export const Default: Story = {
 export const Top: Story = {
     render: (args) => (
         <div style={{ padding: "50px" }}>
-            <Tooltip {...args}>
+            <Tooltip {...args} placement="top">
                 <TooltipTrigger asChild>
                     <Button label="Top" />
                 </TooltipTrigger>
-                <TooltipContent side="top">
+                <TooltipContent>
                     Tooltip on top
                 </TooltipContent>
             </Tooltip>
@@ -49,11 +53,11 @@ export const Top: Story = {
 export const Bottom: Story = {
     render: (args) => (
         <div style={{ padding: "50px" }}>
-            <Tooltip {...args}>
+            <Tooltip {...args} placement="bottom">
                 <TooltipTrigger asChild>
                     <Button label="Bottom" />
                 </TooltipTrigger>
-                <TooltipContent side="bottom">
+                <TooltipContent>
                     Tooltip on bottom
                 </TooltipContent>
             </Tooltip>
@@ -64,11 +68,11 @@ export const Bottom: Story = {
 export const Left: Story = {
     render: (args) => (
         <div style={{ padding: "50px" }}>
-            <Tooltip {...args}>
+            <Tooltip {...args} placement="left">
                 <TooltipTrigger asChild>
                     <Button label="Left" />
                 </TooltipTrigger>
-                <TooltipContent side="left">
+                <TooltipContent>
                     Tooltip on left
                 </TooltipContent>
             </Tooltip>
@@ -79,11 +83,11 @@ export const Left: Story = {
 export const Right: Story = {
     render: (args) => (
         <div style={{ padding: "50px" }}>
-            <Tooltip {...args}>
+            <Tooltip {...args} placement="right">
                 <TooltipTrigger asChild>
                     <Button label="Right" />
                 </TooltipTrigger>
-                <TooltipContent side="right">
+                <TooltipContent>
                     Tooltip on right
                 </TooltipContent>
             </Tooltip>

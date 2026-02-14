@@ -5,8 +5,7 @@
 @use "../../tokens/semantic-colors" as colors;
 @use "../../tokens/effects" as effects;
 
-.wim-tooltip {
-    position: relative;
+.wim-tooltip-root {
     display: inline-block;
 }
 
@@ -19,64 +18,23 @@
 }
 
 .wim-tooltip-content {
-    position: absolute;
+    // Positioning is handled by Floating UI (inline styles)
     z-index: 1000;
     padding: spacings.$spacing-xs spacings.$spacing-sm;
     font-size: 0.875rem;
     line-height: 1.25rem;
     color: var(--text-tooltip, #fff);
     white-space: nowrap;
-    pointer-events: none; // Tooltips usually don't capture mouse events to allow clicking through specific parts, BUT if content is interactive, this should be auto. Usually tooltips are informational only.
-    background-color: var(--bg-tooltip, #333); // Dark background usually
+    pointer-events: none;
+    background-color: var(--bg-tooltip, #333);
     border-radius: spacings.$radius-sm;
     box-shadow: effects.$shadow-md;
+
+    // Animation
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
     animation: fadeIn 0.2s forwards;
-
-    &--top {
-        bottom: 100%;
-        left: 50%;
-        margin-bottom: 8px;
-        transform: translateX(-50%) translateY(-8px);
-    }
-
-    &--bottom {
-        top: 100%;
-        left: 50%;
-        margin-top: 8px;
-        transform: translateX(-50%) translateY(8px);
-    }
-
-    &--left {
-        top: 50%;
-        right: 100%;
-        margin-right: 8px;
-        transform: translateY(-50%) translateX(-8px);
-    }
-
-    &--right {
-        top: 50%;
-        left: 100%;
-        margin-left: 8px;
-        transform: translateY(-50%) translateX(8px);
-    }
-
-    // Alignment overrides for top/bottom
-    &--align-left.wim-tooltip-content--top,
-    &--align-left.wim-tooltip-content--bottom {
-        left: 0;
-        transform: translateY(var(--translate-y, 0)); // Reset X transform
-    }
-
-    &--align-right.wim-tooltip-content--top,
-    &--align-right.wim-tooltip-content--bottom {
-        right: 0;
-        left: auto;
-        transform: translateY(var(--translate-y, 0));
-    }
-
-    // Alignment overrides for left/right don't make as much sense usually, centering is standard.
+    // Remove transform transition as it interferes with Floating UI positioning updates
 
     @keyframes fadeIn {
         from {
@@ -89,42 +47,7 @@
     }
 }
 
+// Floating UI handles arrow rendering, but if we need custom styles for the arrow SVG path:
 .wim-tooltip-arrow {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-}
-
-// Arrow positioning
-.wim-tooltip-content--top .wim-tooltip-arrow {
-    bottom: -4px;
-    left: 50%;
-    border-color: var(--bg-tooltip, #333) transparent transparent transparent;
-    border-width: 4px 4px 0;
-    transform: translateX(-50%);
-}
-
-.wim-tooltip-content--bottom .wim-tooltip-arrow {
-    top: -4px;
-    left: 50%;
-    border-color: transparent transparent var(--bg-tooltip, #333) transparent;
-    border-width: 0 4px 4px;
-    transform: translateX(-50%);
-}
-
-.wim-tooltip-content--left .wim-tooltip-arrow {
-    top: 50%;
-    right: -4px;
-    border-color: transparent transparent transparent var(--bg-tooltip, #333);
-    border-width: 4px 0 4px 4px;
-    transform: translateY(-50%);
-}
-
-.wim-tooltip-content--right .wim-tooltip-arrow {
-    top: 50%;
-    left: -4px;
-    border-color: transparent var(--bg-tooltip, #333) transparent transparent;
-    border-width: 4px 4px 4px 0;
-    transform: translateY(-50%);
+    fill: var(--bg-tooltip, #333);
 }

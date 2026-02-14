@@ -33,14 +33,16 @@ npm run test:vrt:report //どこが違うのかを「スライダー形式（画
 
 
 
-$env:THEME='light'; npm run test:vrt //ライトモードのみ実行
-$env:THEME='dark'; npm run test:vrt //ダークモードのみ実行
-$env:FILTER='Button'; npm run test:vrt // Buttonコンポーネントに関連するテストのみ実行
-$env:FILTER='Calendar'; npm run test:vrt // Calendarコンポーネントのみ実行
-$env:THEME='light'; $env:FILTER='Button'; npm run test:vrt // Buttonコンポーネントのライトモードのみ実行
-$env:THEME='dark'; $env:FILTER='Calendar'; npm run test:vrt // Calendarコンポーネントのダークモードのみ実行
+##### VRTの環境変数設定
 
-$env:THEME=$null; $env:FILTER=$null; npm run test:vrt // 環境変数をクリアして全テスト実行(同じターミナルウィンドウで続けて全テストを実行したい場合)
+$env:THEME='light'; //ライトモードのみ実行
+$env:THEME='dark'; //ダークモードのみ実行
+$env:FILTER='Button'; // Buttonコンポーネントのみ実行
+$env:FILTER='Calendar'; // Calendarコンポーネントのみ実行
+$env:THEME='light'; $env:FILTER='Button'; // Buttonコンポーネントのライトモードのみ実行
+$env:THEME='dark'; $env:FILTER='Calendar'; // Calendarコンポーネントのダークモードのみ実行
+
+$env:THEME=$null; $env:FILTER=$null; // 環境変数をリセット
 
 
 ### コード整形

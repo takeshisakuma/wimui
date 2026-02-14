@@ -1,17 +1,37 @@
-import React, { useState, useRef, useEffect, ReactNode } from "react";
+import React, { useState, ReactNode, useRef } from "react";
+import {
+    useFloating,
+    autoUpdate,
+    offset,
+    flip,
+    shift,
+    useHover,
+    useFocus,
+    useDismiss,
+    useRole,
+    useInteractions,
+    FloatingPortal,
+    FloatingArrow,
+    arrow,
+    Placement,
+    safePolygon,
+    useMergeRefs,
+} from "@floating-ui/react";
 import classNames from "classnames";
 import "./tooltip.scss";
 
 // Context to share state between components
 const TooltipContext = React.createContext<{
-    isOpen: boolean;
-    open: () => void;
-    close: () => void;
-}>({
-    isOpen: false,
-    open: () => { },
-    close: () => { },
-});
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    refs: any;
+    floatingStyles: React.CSSProperties;
+    context: any;
+    getReferenceProps: (userProps?: React.HTMLProps<Element>) => Record<string, unknown>;
+    getFloatingProps: (userProps?: React.HTMLProps<HTMLElement>) => Record<string, unknown>;
+    arrowRef: React.RefObject<SVGSVGElement | null>;
+    placement: string;
+} | null>(null);
 
 export type TooltipProps = {
     children: ReactNode;
@@ -28,6 +48,10 @@ export type TooltipProps = {
      * Callback when open state changes.
      */
     onOpenChange?: (open: boolean) => void;
+    /**
+     * Preferred placement of the tooltip.
+     */
+    placement?: Placement;
 };
 
 export const Tooltip = ({
@@ -36,44 +60,73 @@ export const Tooltip = ({
     delay = 200,
     isOpen: controlledOpen,
     onOpenChange,
+    placement = "top",
 }: TooltipProps) => {
     const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
-    const isControlled = controlledOpen !== undefined;
-    const isOpen = isControlled ? controlledOpen : uncontrolledOpen;
-    const timerRef = useRef<number | null>(null);
 
-    const open = () => {
-        if (timerRef.current) {
-            window.clearTimeout(timerRef.current);
-            timerRef.current = null;
+    const open = controlledOpen ?? uncontrolledOpen;
+    const setOpen = (newOpen: boolean) => {
+        if (controlledOpen === undefined) {
+            setUncontrolledOpen(newOpen);
         }
-
-        timerRef.current = window.setTimeout(() => {
-            if (!isControlled) setUncontrolledOpen(true);
-            onOpenChange?.(true);
-        }, delay);
+        onOpenChange?.(newOpen);
     };
 
-    const close = () => {
-        if (timerRef.current) {
-            window.clearTimeout(timerRef.current);
-            timerRef.current = null;
-        }
-        if (!isControlled) setUncontrolledOpen(false);
-        onOpenChange?.(false);
-    };
+    const arrowRef = useRef<SVGSVGElement>(null);
 
-    useEffect(() => {
-        return () => {
-            if (timerRef.current) {
-                window.clearTimeout(timerRef.current);
-            }
-        };
-    }, []);
+    const { refs, floatingStyles, context, placement: finalPlacement } = useFloating({
+        open,
+        onOpenChange: setOpen,
+        placement,
+        whileElementsMounted: autoUpdate,
+        middleware: [
+            offset(8),
+            flip({
+                fallbackAxisSideDirection: "start",
+            }),
+            shift(),
+            arrow({
+                element: arrowRef,
+            }),
+        ],
+    });
+
+    const hover = useHover(context, {
+        move: false,
+        delay: { open: delay, close: 100 },
+        handleClose: safePolygon(),
+    });
+    const focus = useFocus(context);
+    const dismiss = useDismiss(context);
+    const role = useRole(context, { role: "tooltip" });
+
+    // Type casting here to satisfy the context type definition, 
+    // as useInteractions returns a slightly more complex type map but compatible at runtime
+    const { getReferenceProps, getFloatingProps } = useInteractions([
+        hover,
+        focus,
+        dismiss,
+        role,
+    ]) as {
+        getReferenceProps: (userProps?: React.HTMLProps<Element>) => Record<string, unknown>;
+        getFloatingProps: (userProps?: React.HTMLProps<HTMLElement>) => Record<string, unknown>;
+    };
 
     return (
-        <TooltipContext.Provider value={{ isOpen, open, close }}>
-            <div className={classNames("wim-tooltip", className)}>
+        <TooltipContext.Provider
+            value={{
+                open,
+                setOpen,
+                refs,
+                floatingStyles,
+                context,
+                getReferenceProps,
+                getFloatingProps,
+                arrowRef,
+                placement: finalPlacement,
+            }}
+        >
+            <div className={classNames("wim-tooltip-root", className)}>
                 {children}
             </div>
         </TooltipContext.Provider>
@@ -86,97 +139,86 @@ export type TooltipTriggerProps = {
     asChild?: boolean;
 };
 
-export const TooltipTrigger = ({ children, className, asChild }: TooltipTriggerProps) => {
-    const { open, close } = React.useContext(TooltipContext);
+export const TooltipTrigger = React.forwardRef<
+    HTMLElement,
+    TooltipTriggerProps & React.HTMLProps<HTMLElement>
+>(({ children, className, asChild, ...props }, propRef) => {
+    const context = React.useContext(TooltipContext);
 
-    // Helper to merge handlers
-    const handleMouseEnter = (e: React.MouseEvent) => {
-        open();
-    };
+    if (context == null) {
+        throw new Error("Tooltip components must be wrapped in <Tooltip />");
+    }
 
-    const handleMouseLeave = (e: React.MouseEvent) => {
-        close();
-    };
-
-    const handleFocus = (e: React.FocusEvent) => {
-        open();
-    };
-
-    const handleBlur = (e: React.FocusEvent) => {
-        close();
-    };
+    const childrenRef = (children as any).ref;
+    const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
 
     if (asChild && React.isValidElement(children)) {
-        return React.cloneElement(children as React.ReactElement<any>, {
-            onMouseEnter: (e: React.MouseEvent) => {
-                const child = children as React.ReactElement<{ onMouseEnter?: React.MouseEventHandler }>;
-                child.props.onMouseEnter?.(e);
-                handleMouseEnter(e);
-            },
-            onMouseLeave: (e: React.MouseEvent) => {
-                const child = children as React.ReactElement<{ onMouseLeave?: React.MouseEventHandler }>;
-                child.props.onMouseLeave?.(e);
-                handleMouseLeave(e);
-            },
-            onFocus: (e: React.FocusEvent) => {
-                const child = children as React.ReactElement<{ onFocus?: React.FocusEventHandler }>;
-                child.props.onFocus?.(e);
-                handleFocus(e);
-            },
-            onBlur: (e: React.FocusEvent) => {
-                const child = children as React.ReactElement<{ onBlur?: React.FocusEventHandler }>;
-                child.props.onBlur?.(e);
-                handleBlur(e);
-            },
-            className: classNames(className, (children as React.ReactElement<any>).props.className),
-        });
+        const childProps = children.props as any;
+        return React.cloneElement(
+            children,
+            context.getReferenceProps({
+                ref,
+                ...props,
+                ...childProps,
+                className: classNames(className, childProps.className),
+                "data-state": context.open ? "open" : "closed",
+            }) as any // Cast to any to satisfy React.cloneElement requirements
+        );
     }
 
     return (
         <button
-            className={classNames("wim-tooltip-trigger", className)}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            ref={ref}
             type="button"
+            className={classNames("wim-tooltip-trigger", className)}
+            data-state={context.open ? "open" : "closed"}
+            {...context.getReferenceProps(props)}
         >
             {children}
         </button>
     );
-};
+});
 
 export type TooltipContentProps = {
     children: ReactNode;
     className?: string;
-    align?: "left" | "right" | "center";
-    side?: "top" | "bottom" | "left" | "right";
 };
 
-export const TooltipContent = ({
-    children,
-    className,
-    align = "center",
-    side = "top",
-    ...props
-}: TooltipContentProps & React.HTMLAttributes<HTMLDivElement>) => {
-    const { isOpen } = React.useContext(TooltipContext);
+export const TooltipContent = React.forwardRef<
+    HTMLDivElement,
+    TooltipContentProps & React.HTMLProps<HTMLDivElement>
+>(({ children, className, style, ...props }, propRef) => {
+    const context = React.useContext(TooltipContext);
 
-    if (!isOpen) return null;
+    if (context == null) {
+        throw new Error("Tooltip components must be wrapped in <Tooltip />");
+    }
+
+    const { context: floatingContext, open, refs, floatingStyles, getFloatingProps, arrowRef } = context;
+    const ref = useMergeRefs([refs.setFloating, propRef]);
+
+    if (!open) return null;
 
     return (
-        <div
-            className={classNames(
-                "wim-tooltip-content",
-                `wim-tooltip-content--align-${align}`,
-                `wim-tooltip-content--${side}`,
-                className
-            )}
-            role="tooltip"
-            {...props}
-        >
-            {children}
-            <div className="wim-tooltip-arrow" />
-        </div>
+        <FloatingPortal>
+            <div
+                ref={ref}
+                style={{ ...floatingStyles, ...style }}
+                className={classNames(
+                    "wim-tooltip-content",
+                    className
+                )}
+                {...getFloatingProps(props)}
+            >
+                {children}
+                <FloatingArrow
+                    ref={arrowRef}
+                    context={floatingContext}
+                    fill="var(--bg-tooltip, #333)"
+                    strokeWidth={0}
+                    className="wim-tooltip-arrow"
+                />
+            </div>
+        </FloatingPortal>
     );
-};
+});
