@@ -107,12 +107,25 @@ export const ContrastChecker: React.FC = () => {
                     margin: 32px 0;
                     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
                 }
+                @media (max-width: 768px) {
+                    .wim-contrast-checker {
+                        padding: 16px;
+                    }
+                }
+
                 .wim-contrast-controls {
                     display: grid;
                     grid-template-columns: repeat(2, minmax(0, 1fr));
                     gap: 32px;
                     margin-bottom: 24px;
                 }
+                @media (max-width: 768px) {
+                    .wim-contrast-controls {
+                        grid-template-columns: 1fr;
+                        gap: 16px;
+                    }
+                }
+
                 .wim-contrast-control {
                     display: flex;
                     flex-direction: column;
@@ -153,11 +166,21 @@ export const ContrastChecker: React.FC = () => {
                     background: var(--bg-app, #f8f9fa);
                     border-radius: 20px;
                 }
+                @media (max-width: 768px) {
+                    .wim-contrast-result {
+                        flex-direction: column;
+                        gap: 24px;
+                        padding: 24px;
+                        align-items: stretch;
+                    }
+                }
+
                 .wim-contrast-ratio-display {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     min-width: 140px;
+                    gap: 8px;
                 }
                 .wim-contrast-ratio-value {
                     font-size: 48px;
@@ -177,6 +200,12 @@ export const ContrastChecker: React.FC = () => {
                     grid-template-columns: repeat(2, 1fr);
                     gap: 16px;
                 }
+                @media (max-width: 480px) {
+                    .wim-contrast-badges {
+                        grid-template-columns: 1fr;
+                    }
+                }
+
                 .wim-contrast-badge {
                     padding: 16px;
                     border-radius: 12px;
@@ -211,6 +240,12 @@ export const ContrastChecker: React.FC = () => {
                     padding: 40px;
                     text-align: center;
                 }
+                @media (max-width: 768px) {
+                    .wim-contrast-preview {
+                        padding: 24px;
+                    }
+                }
+
                 .wim-contrast-preview-text-lg {
                     font-size: 24px;
                     font-weight: 700;
@@ -223,6 +258,10 @@ export const ContrastChecker: React.FC = () => {
                     opacity: 0.9;
                     display: block;
                 }
+                .wim-contrast-color-picker {
+                    width: 64px !important;
+                    flex: 0 0 auto;
+                }
                 `}
             </style>
 
@@ -233,6 +272,7 @@ export const ContrastChecker: React.FC = () => {
                         <ColorPicker
                             value={resolvedBg}
                             onChange={(e) => setBgInput(e.target.value)}
+                            className="wim-contrast-color-picker"
                         />
                         <input
                             className="wim-text-input"
@@ -248,6 +288,7 @@ export const ContrastChecker: React.FC = () => {
                         <ColorPicker
                             value={resolvedFg}
                             onChange={(e) => setFgInput(e.target.value)}
+                            className="wim-contrast-color-picker"
                         />
                         <input
                             className="wim-text-input"
