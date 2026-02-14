@@ -8,6 +8,12 @@ export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
     width?: number | string;
     /** Border at the right */
     bordered?: boolean;
+    /** Enable responsive behavior (mobile drawer) */
+    responsive?: boolean;
+    /** Mobile drawer open state */
+    mobileOpen?: boolean;
+    /** Callback when overlay is clicked */
+    onOverlayClick?: () => void;
 }
 declare const Sidebar: React.ForwardRefExoticComponent<SidebarProps & React.RefAttributes<HTMLElement>>;
 export type SidebarHeaderProps = React.ComponentPropsWithoutRef<"div">;
