@@ -58,24 +58,71 @@ import { T } from "../stories/T";
 
   <h2>🔍 詳細な使い分けガイドライン (Detailed Guidelines)</h2>
 
-  <h3>1. 比較・推移 (Comparison & Trend)</h3>
-  <ul>
-    <li><strong>連続的な変化</strong>を見せたい場合は <strong>Line Chart</strong> を優先します。</li>
-    <li><strong>断続的なデータの比較</strong>や、各項目の絶対的な差を際立たせたい場合は <strong>Bar Chart</strong> が適しています。</li>
-    <li>複数のデータシリーズの<strong>合計値の推移</strong>を見せたい場合は、Stacked Area Chart（積層面グラフ）を検討してください。</li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>カテゴリ</th>
+        <th>表現するもの</th>
+        <th>適したグラフ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowSpan={3}><strong>比較・推移</strong><br />(Comparison & Trend)</td>
+        <td>連続的な変化</td>
+        <td>Line Chart</td>
+      </tr>
+      <tr>
+        <td>
+          断続的なデータの比較<br />
+          各項目の絶対的な差
+        </td>
+        <td>Bar Chart</td>
+      </tr>
+      <tr>
+        <td>複数のデータシリーズの合計値の推移</td>
+        <td>Stacked Area Chart(積層面グラフ)</td>
+      </tr>
+      <tr>
+        <td rowSpan={3}><strong>割合</strong><br />(Proportions)</td>
+        <td>
+          全体に対する各項目の割合<br />
+          構成比、シェア<br />
+          (項目数が少ない場合)
+        </td>
+        <td>Pie Chart</td>
+      </tr>
+      <tr>
+        <td>
+          全体に対する各項目の割合<br />
+          構成比、シェア<br />
+          項目数が多い(5項目以上)割合の可視化
+        </td>
+        <td>Horizontal Bar Chart(横棒グラフ)</td>
+      </tr>
+      <tr>
+        <td>構成比の推移</td>
+        <td>面グラフ(100% 積層タイプ)</td>
+      </tr>
+      <tr>
+        <td rowSpan={2}><strong>相関と分布</strong><br />(Correlation & Distribution)</td>
+        <td>
+          2つの数値変数の関係<br />
+          相関の有無<br />
+          外れ値の検出
+        </td>
+        <td>Scatter Chart(散布図)</td>
+      </tr>
+      <tr>
+        <td>
+          時間軸など特定のセグメントごとの「集中度」<br />
+          （例：週・時間別のログイン頻度）
+        </td>
+        <td>Heatmap(ヒートマップ)</td>
+      </tr>
+    </tbody>
+  </table>
 
-  <h3>2. 割合 (Proportions)</h3>
-  <ul>
-    <li><strong>Pie Chart</strong> は直感的ですが、項目が増えると読み取りが困難になります。項目数が多い場合（目安として5項目以上）は、横棒グラフ（Horizontal Bar Chart）で比率を示す方が正確に伝わります。</li>
-    <li>面グラフ（Area Chart）を 100% 積層タイプで使用すると、時系列での割合の変化を効果的に表現できます。</li>
-  </ul>
-
-  <h3>3. 相関と分布 (Correlation & Distribution)</h3>
-  <ul>
-    <li>変数 A と 変数 B にどのような関係があるかを探るには <strong>Scatter Chart</strong> が適しています。</li>
-    <li>時間軸など特定のセグメントごとの「集中度」を表現するには <strong>Heatmap</strong> が優れています（例：週・時間別のログイン頻度）。</li>
-  </ul>
 
   <div style={{ marginTop: "40px", padding: "24px", background: "var(--bg-component, #f9f9f9)", border: "1px solid var(--wim-color-border)", borderRadius: "12px" }}>
     <h3>💡 設計上のヒント (Design Tips)</h3>
