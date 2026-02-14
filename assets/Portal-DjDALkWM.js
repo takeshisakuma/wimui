@@ -1,0 +1,23 @@
+import{j as n}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as d}from"./index-CoQHZnOj.js";import{M as s,C as i,a as t}from"./index-BIQdFeao.js";import{P as c,O as l,C as h}from"./Portal.stories-iLnYjsiE.js";import{T as x}from"./T-CT9BXTKD.js";import"./iframe-nek2XImP.js";import"./preload-helper-PPVm8Dsz.js";import"./index-BHHxnna_.js";import"./index-Bns8OFEQ.js";import"./index-Dqs3gHnL.js";import"./index-BvAOznMi.js";import"./index-CKLNsAtS.js";import"./Portal-BrZtx_nS.js";import"./Button-51QvFV-M.js";import"./index-Pp9yKcV2.js";import"./Icon-TjtOJ-ub.js";import"./useTranslation-DSXsfy7w.js";function r(o){const e={code:"code",h1:"h1",h2:"h2",h3:"h3",hr:"hr",p:"p",strong:"strong",...d(),...o.components};return n.jsxs(n.Fragment,{children:[n.jsx(s,{title:"Utilities/Portal",of:c}),`
+`,n.jsx(e.h1,{id:"portal",children:"Portal"}),`
+`,n.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:n.jsx(x,{k:"doc_portal_title"})}),`
+`,n.jsxs(e.p,{children:[n.jsx(e.code,{children:"Portal"})," コンポーネントは、React コンポーネントツリーの論理構造を保ちつつ、DOM 階層上の物理的な位置だけを別の場所（通常は ",n.jsx(e.code,{children:"document.body"})," の直下など）に移動させるために使用します。"]}),`
+`,n.jsx(e.h2,{id:"どのような時に使うのか",children:"どのような時に使うのか？"}),`
+`,n.jsxs(e.p,{children:["主に ",n.jsx(e.strong,{children:"「親要素の制約を回避したいとき」"})," に使用します。具体的には、以下の3つのユースケースが代表的です。"]}),`
+`,n.jsxs(e.h3,{id:"1-overflow-hidden-を回避する",children:["1. ",n.jsx(e.code,{children:"overflow: hidden"})," を回避する"]}),`
+`,n.jsxs(e.p,{children:["親要素に ",n.jsx(e.code,{children:"overflow: hidden"})," が設定されている場合、その中にあるツールチップやドロップダウンメニューなどは、親の枠外に出ようとすると見切れて（カットされて）しまいます。Portal を使うことで、これらを DOM の最上位層に逃がし、正しく表示させることができます。"]}),`
+`,n.jsxs(e.h3,{id:"2-z-index-のスタック問題を解決する",children:["2. ",n.jsx(e.code,{children:"z-index"})," のスタック問題を解決する"]}),`
+`,n.jsxs(e.p,{children:["複雑なレイアウトにおいて、",n.jsx(e.code,{children:"z-index"})," を指定しても期待通りに重なり順が決まらないことがあります。これは「重ね合わせ文脈（Stacking Context）」の仕組みによるものです。Portal で ",n.jsx(e.code,{children:"document.body"})," 直下に送ることで、他のどの要素よりも確実に前面に表示させることが容易になります。"]}),`
+`,n.jsxs(e.h3,{id:"3-position-fixed-や-absolute-の基準を変更する",children:["3. ",n.jsx(e.code,{children:"position: fixed"})," や ",n.jsx(e.code,{children:"absolute"})," の基準を変更する"]}),`
+`,n.jsxs(e.p,{children:["モーダルなどの全画面要素を配置する際、親要素に ",n.jsx(e.code,{children:"transform"})," や ",n.jsx(e.code,{children:"filter"})," がかかっていると、",n.jsx(e.code,{children:"position: fixed"})," の基準点が画面全体ではなく、その親要素になってしまいます。これを防ぐために、物理的な位置をトップレベルに移動させます。"]}),`
+`,n.jsx(e.hr,{}),`
+`,n.jsx(e.h2,{id:"例",children:"例"}),`
+`,n.jsxs(e.h3,{id:"親の-overflow-hidden-を突き抜ける",children:["親の ",n.jsx(e.code,{children:"overflow: hidden"})," を突き抜ける"]}),`
+`,n.jsxs(e.p,{children:["この例では、親要素（点線の枠）に ",n.jsx(e.code,{children:"overflow: hidden"})," が設定されていますが、Portal を使用したメッセージは画面の右下に正しく表示されます。"]}),`
+`,n.jsx(i,{of:l}),`
+`,n.jsx(e.h3,{id:"特定のコンテナへレンダリング",children:"特定のコンテナへレンダリング"}),`
+`,n.jsxs(e.p,{children:[n.jsx(e.code,{children:"container"})," プロップに DOM の参照を渡すことで、",n.jsx(e.code,{children:"document.body"})," 以外（例えばサイドバーや特定の通知エリアなど）にもコンテンツを送り込むことができます。"]}),`
+`,n.jsx(i,{of:h}),`
+`,n.jsx(e.hr,{}),`
+`,n.jsx(e.h2,{id:"プロップ",children:"プロップ"}),`
+`,n.jsx(t,{})]})}function _(o={}){const{wrapper:e}={...d(),...o.components};return e?n.jsx(e,{...o,children:n.jsx(r,{...o})}):r(o)}export{_ as default};

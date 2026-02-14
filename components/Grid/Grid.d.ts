@@ -1,6 +1,7 @@
 import { default as React } from '../../../node_modules/react';
+import { ResponsiveProp } from './grid-utils';
 export declare const Grid: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & {
-    cols?: number | string;
+    cols?: ResponsiveProp<number | string>;
     rows?: number | string;
     gap?: number | string;
     columnGap?: number | string;
