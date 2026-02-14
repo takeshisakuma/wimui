@@ -1,10 +1,11 @@
 import { default as React } from '../../../node_modules/react';
 import { BoxProps } from '../Box/Box';
+import { ResponsiveProp } from '../Grid/grid-utils';
 export type StackProps<C extends React.ElementType = "div"> = BoxProps<C> & {
     /** Gap between children. Can be a number (px) or a spacing token (e.g., 'sm', 'md', 'lg'). */
     gap?: number | string;
     /** Stack direction */
-    direction?: "row" | "column";
+    direction?: ResponsiveProp<"row" | "column">;
     /** Align-items */
     align?: "start" | "center" | "end" | "stretch" | "baseline" | React.CSSProperties["alignItems"];
     /** Justify-content */
