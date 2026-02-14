@@ -1,13 +1,14 @@
 import React from "react";
 import classNames from "classnames";
 import { Box, BoxProps } from "../Box/Box";
+import { ResponsiveProp } from "../Grid/grid-utils";
 import "./stack.scss";
 
 export type StackProps<C extends React.ElementType = "div"> = BoxProps<C> & {
     /** Gap between children. Can be a number (px) or a spacing token (e.g., 'sm', 'md', 'lg'). */
     gap?: number | string;
     /** Stack direction */
-    direction?: "row" | "column";
+    direction?: ResponsiveProp<"row" | "column">;
     /** Align-items */
     align?: "start" | "center" | "end" | "stretch" | "baseline" | React.CSSProperties["alignItems"];
     /** Justify-content */
@@ -60,8 +61,24 @@ export const Stack = React.forwardRef(
             if (typeof val === "string" && tokens.includes(val)) {
                 return `var(--spacing-${val})`;
             }
-            return val;
+            return val ? String(val) : undefined;
         };
+
+        const generateResponsiveDirection = (dir?: ResponsiveProp<"row" | "column">) => {
+            if (dir === undefined) return {};
+            if (typeof dir === "string") return { "--wim-stack-dir": dir };
+
+            const styles: Record<string, string> = {
+                "--wim-stack-dir": dir.base || "column"
+            };
+            if (dir.sm) styles["--wim-stack-dir-sm"] = dir.sm;
+            if (dir.md) styles["--wim-stack-dir-md"] = dir.md;
+            if (dir.lg) styles["--wim-stack-dir-lg"] = dir.lg;
+            if (dir.xl) styles["--wim-stack-dir-xl"] = dir.xl;
+            return styles;
+        };
+
+        const responsiveStyles = generateResponsiveDirection(direction);
 
         return (
             <Box
@@ -69,16 +86,17 @@ export const Stack = React.forwardRef(
                 display="flex"
                 className={classNames("wim-stack", className)}
                 style={{
-                    flexDirection: direction,
+                    flexDirection: "var(--wim-stack-dir)" as React.CSSProperties["flexDirection"],
                     gap: getGapValue(gap),
                     alignItems: mapAlign(align as string),
                     justifyContent: mapJustify(justify as string),
+                    ...responsiveStyles,
                     ...style,
                 }}
                 {...props}
             >
                 {children}
-            </Box>
+            </Box >
         );
     }
 );

@@ -11,7 +11,7 @@ type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & {
 /**
  * Radio component for single selection from a list.
  */
-// eslint-disable-next-line react/prop-types
+ 
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     ({ label, className, disabled, ...props }, ref) => {
         const defaultRef = useRef<HTMLInputElement>(null);

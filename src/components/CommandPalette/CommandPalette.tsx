@@ -149,7 +149,7 @@ export const CommandPaletteContent = ({ children, className }: CommandPaletteCon
     if (!open) return null;
 
     return createPortal(
-        /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
+         
         <div
             className="wim-command-palette-overlay"
             onClick={() => onOpenChange(false)}

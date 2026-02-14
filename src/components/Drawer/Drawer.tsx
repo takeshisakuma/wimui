@@ -171,7 +171,7 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
         }}>
             {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
             <FocusTrap active={open} autoFocus={true} className="wim-drawer-focus-trap-wrapper">
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
                 <div
                     ref={contentRef}
                     role="dialog"

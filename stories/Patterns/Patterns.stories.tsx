@@ -179,28 +179,28 @@ export const DashboardHeader: StoryObj = {
 
 export const UserProfileForm: StoryObj = {
     render: () => (
-        <Center style={{ background: "var(--bg-app)", padding: "40px 20px" }}>
+        <Center style={{ background: "var(--bg-app)", padding: "20px" }}>
             <Card style={{ maxWidth: "1000px", width: "100%", padding: "0", overflow: "hidden", border: "1px solid var(--wim-color-border-secondary)" }}>
                 <div style={{ padding: "24px", borderBottom: "1px solid var(--wim-color-border-secondary)" }}>
                     <Heading tag="h2" size="lg">Edit Profile</Heading>
                     <Paragraph content="Manage your public profile and settings" color="deepgray" style={{ marginTop: "4px" }} />
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "row", minHeight: "600px", alignItems: "stretch" }}>
+                <Grid cols={{ base: 1, md: "250px 1fr" }} gap={0} style={{ minHeight: "600px" }}>
                     {/* Sidebar Navigation */}
-                    <Sidebar width={250} bordered={false} style={{ borderRight: "1px solid var(--wim-color-border-secondary)", background: "var(--bg-app)" }}>
-                        <Sidebar.Content style={{ padding: "24px" }}>
+                    <div style={{ borderRight: "1px solid var(--wim-color-border-secondary)", background: "var(--bg-app)" }}>
+                        <div style={{ padding: "24px" }}>
                             <Stack gap="sm" align="stretch">
                                 <Sidebar.Item active>General Info</Sidebar.Item>
                                 <Sidebar.Item>Account Security</Sidebar.Item>
                                 <Sidebar.Item>Notifications</Sidebar.Item>
                                 <Sidebar.Item>Billing</Sidebar.Item>
                             </Stack>
-                        </Sidebar.Content>
-                    </Sidebar>
+                        </div>
+                    </div>
 
                     {/* Main Form Content */}
-                    <div style={{ padding: "32px", flex: 1, overflowX: "hidden" }}>
+                    <div style={{ padding: "32px", overflowX: "hidden" }}>
                         <form onSubmit={(e) => e.preventDefault()}>
                             <Stack gap="xl">
                                 {/* Profile Picture Section */}
@@ -312,7 +312,7 @@ export const UserProfileForm: StoryObj = {
                             </Stack>
                         </form>
                     </div>
-                </div>
+                </Grid>
             </Card>
         </Center>
     ),
@@ -331,8 +331,8 @@ export const PricingTable: StoryObj = {
                 </Stack>
             </Stack>
 
-            <Grid cols={3} gap={32} style={{ maxWidth: "1100px", margin: "0 auto" }}>
-                <Card style={{ padding: "32px" }}>
+            <Grid cols={{ base: 1, md: 3 }} gap={{ base: 48, md: 64 }} style={{ maxWidth: "1100px", margin: "0 auto" }}>
+                <Card style={{ padding: "32px", border: "1px solid var(--wim-color-border-secondary)" }}>
                     <Stack gap="xl" style={{ height: "100%" }}>
                         <Stack gap="xl" align="center" style={{ flex: 1 }}>
                             <Heading tag="h3" size="md" align="center">Starter</Heading>
@@ -379,7 +379,7 @@ export const PricingTable: StoryObj = {
                     </Stack>
                 </Card>
 
-                <Card style={{ padding: "32px" }}>
+                <Card style={{ padding: "32px", border: "1px solid var(--wim-color-border-secondary)" }}>
                     <Stack gap="xl" style={{ height: "100%" }}>
                         <Stack gap="xl" align="center" style={{ flex: 1 }}>
                             <Heading tag="h3" size="md" align="center">Enterprise</Heading>
@@ -408,7 +408,7 @@ export const HeroSection: StoryObj = {
     render: () => (
         <div style={{ minHeight: "600px", display: "flex", alignItems: "center", background: "linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--bg-app) 100%)", padding: "80px 24px" }}>
             <Container>
-                <Grid cols="1fr 1fr" gap={48} align="center">
+                <Grid cols={{ base: 1, md: "1fr 1fr" }} gap={48} align="center">
                     <Stack gap="3xl">
                         <Stack gap="3xl">
                             <Badge color="primary" content="v2.0 is now available" style={{ width: "fit-content" }} />
@@ -479,7 +479,7 @@ export const ErrorPage: StoryObj = {
                     Check our status page for any ongoing maintenance.
                 </Alert>
 
-                <Stack direction="row" gap="xl">
+                <Stack direction={{ base: "column", sm: "row" }} gap="xl">
                     <Button priority="primary" label="Back to Homepage" />
                     <Button priority="secondary" label="Contact Support" />
                 </Stack>

@@ -143,7 +143,7 @@ export const Mentions = ({
             {isOpen && filteredOptions.length > 0 && (
                 <div className="wim-mentions-list" role="listbox">
                     {filteredOptions.map((opt, index) => (
-                        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus
+                        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                         <div
                             key={opt.id}
                             className={classNames(

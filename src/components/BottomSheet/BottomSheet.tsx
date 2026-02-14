@@ -158,7 +158,7 @@ export const BottomSheetContent = ({ children, className }: BottomSheetContentPr
     if (!open) return null;
 
     return createPortal(
-        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */
+        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
         <div className="wim-bottom-sheet-overlay" onClick={(e) => {
             if (e.target === e.currentTarget) {
                 onOpenChange(false);
@@ -166,7 +166,7 @@ export const BottomSheetContent = ({ children, className }: BottomSheetContentPr
         }}>
             {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
             <FocusTrap active={open} autoFocus={true} className="wim-bottom-sheet-focus-trap-wrapper">
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-autofocus */}
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
                 <div
                     ref={contentRef}
                     role="dialog"
