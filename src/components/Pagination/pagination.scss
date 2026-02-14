@@ -2,6 +2,7 @@
 @use "../../tokens/typography" as typography;
 @use "../../tokens/spacings" as spacings;
 @use "../../tokens/effects" as effects;
+@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
     .wim-pagination-wrapper {
@@ -22,6 +23,19 @@
         &--simple {
             .wim-pagination__simple-pager {
                 padding: 0 spacings.$spacing-md;
+                color: var(--text-primary);
+            }
+        }
+
+        &__mobile-indicator {
+            display: none;
+
+            @include breakpoints.down(md) {
+                display: inline-flex !important;
+                border: none;
+                background: transparent !important;
+                cursor: default;
+                pointer-events: none;
                 color: var(--text-primary);
             }
         }
@@ -66,6 +80,13 @@
                 &:hover {
                     color: var(--text-secondary);
                     background-color: transparent;
+                }
+            }
+
+            &--number,
+            &--ellipsis {
+                @include breakpoints.down(md) {
+                    display: none;
                 }
             }
         }

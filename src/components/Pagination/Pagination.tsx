@@ -201,6 +201,13 @@ export const Pagination = ({
                         </button>
                     </li>
 
+                    {/* Mobile Page Indicator */}
+                    <li className="wim-pagination__item wim-pagination__mobile-indicator">
+                        <span>
+                            {current} / {totalPages}
+                        </span>
+                    </li>
+
                     {/* Page Numbers */}
                     {paginationRange.map((pageNumber, index) => {
                         if (pageNumber === ELLIPSIS) {
@@ -220,6 +227,7 @@ export const Pagination = ({
                                 key={pageNumber}
                                 className={classNames(
                                     "wim-pagination__item",
+                                    "wim-pagination__item--number",
                                     pageNumber === current && "wim-pagination__item--active"
                                 )}
                             >

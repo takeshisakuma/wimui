@@ -2,6 +2,7 @@
 @use "../../tokens/typography" as typography;
 @use "../../tokens/spacings" as spacings;
 @use "../../tokens/effects" as effects;
+@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
     .wim-tabs {
@@ -12,6 +13,10 @@
         &--vertical {
             flex-direction: row;
 
+            @include breakpoints.down(md) {
+                flex-direction: column;
+            }
+
             .wim-tabs__list {
                 flex-direction: column;
                 width: 200px;
@@ -19,6 +24,15 @@
                 border-right: 2px solid var(--wim-color-border-secondary);
                 border-bottom: none;
                 mask-image: linear-gradient(to bottom, transparent, black 15px, black calc(100% - 15px), transparent);
+
+                @include breakpoints.down(md) {
+                    flex-direction: row;
+                    width: 100%;
+                    overflow-x: auto;
+                    border-right: none;
+                    border-bottom: 2px solid var(--wim-color-border-secondary);
+                    mask-image: linear-gradient(to right, transparent, black 15px, black calc(100% - 15px), transparent);
+                }
             }
 
             .wim-tabs__trigger {
@@ -34,6 +48,22 @@
 
                 &--active {
                     border-right-color: colors.$color-primary;
+                }
+
+                @include breakpoints.down(md) {
+                    justify-content: center;
+                    width: auto;
+                    margin-right: 0;
+                    margin-bottom: -2px;
+                    white-space: nowrap;
+                    border-right: none;
+                    border-bottom: 2px solid transparent;
+                    border-radius: spacings.$radius-sm spacings.$radius-sm 0 0;
+
+                    &--active {
+                        border-right-color: transparent;
+                        border-bottom-color: colors.$color-primary;
+                    }
                 }
             }
 
