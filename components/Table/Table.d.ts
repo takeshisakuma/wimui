@@ -8,12 +8,16 @@ type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
     fullWidth?: boolean;
     stickyHeader?: boolean;
     scrollbar?: "default" | "subtle" | "hidden";
+    /**
+     * Mobile view: Switch to card layout
+     */
+    mobileCard?: boolean;
     height?: string | number;
     maxHeight?: string | number;
     className?: string;
     children: React.ReactNode;
 };
-declare const Table: ({ striped, bordered, hoverable, fullWidth, stickyHeader, scrollbar, height, maxHeight, className, children, ...props }: TableProps) => import("react/jsx-runtime").JSX.Element;
+declare const Table: ({ striped, bordered, hoverable, fullWidth, stickyHeader, scrollbar, mobileCard, height, maxHeight, className, children, ...props }: TableProps) => import("react/jsx-runtime").JSX.Element;
 export declare const TableHeader: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => import("react/jsx-runtime").JSX.Element;
 export declare const TableBody: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => import("react/jsx-runtime").JSX.Element;
 export declare const TableFooter: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => import("react/jsx-runtime").JSX.Element;
@@ -30,8 +34,9 @@ type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
 export declare const TableHead: ({ sortable, sortDirection, onSort, className, children, ...props }: TableHeadProps) => import("react/jsx-runtime").JSX.Element;
 type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
     selection?: boolean;
+    label?: string;
 };
-export declare const TableCell: ({ selection, className, children, ...props }: TableCellProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TableCell: ({ selection, label, className, children, ...props }: TableCellProps) => import("react/jsx-runtime").JSX.Element;
 declare const TableComponent: typeof Table & {
     Header: typeof TableHeader;
     Body: typeof TableBody;
