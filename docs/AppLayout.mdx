@@ -1,0 +1,123 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+
+<Meta title="Guides/App Layout" />
+
+# <T k="guide_layout_title" />
+
+<p><T k="guide_layout_desc" /></p>
+
+<div style={{ display: 'grid', gridTemplateAreas: '"header header header" "sidebar main right" "footer footer footer"', gridTemplateRows: '60px 300px 40px', gridTemplateColumns: '200px 1fr 200px', gap: '2px', background: '#ccc', border: '1px solid #ddd', color: '#555', fontSize: '14px', fontFamily: 'sans-serif', margin: '24px 0' }}>
+  <div style={{ gridArea: 'header', background: '#e0e7ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>Header</div>
+  <div style={{ gridArea: 'sidebar', background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>Sidebar</div>
+  <div style={{ gridArea: 'main', background: '#fff', position: 'relative' }}>
+    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '40px', background: '#fffbeb', borderBottom: '1px dashed #ccc', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>Page Header</div>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', paddingTop: '40px', fontWeight: 'bold' }}>Main Content</div>
+    <div style={{ position: 'absolute', bottom: '10px', right: '10px', width: '120px', height: '40px', background: '#fee2e2', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Toast (Overlay)</div>
+  </div>
+  <div style={{ gridArea: 'right', background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', borderLeft: '1px solid #e5e7eb' }}>Right Panel</div>
+  <div style={{ gridArea: 'footer', background: '#f9fafb', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>Footer</div>
+</div>
+
+---
+
+## 1. <T k="guide_layout_header_title" />
+<p><T k="guide_layout_header_desc" /></p>
+
+### <T k="table_header_description" />
+<ul>
+  <li>📝 <T k="guide_layout_header_content" /></li>
+</ul>
+
+### Components
+- `Header`
+- `Navbar`
+- `SearchInput`
+- `Avatar`
+
+---
+
+## 2. <T k="guide_layout_sidebar_title" />
+<p><T k="guide_layout_sidebar_desc" /></p>
+
+### <T k="table_header_description" />
+<ul>
+  <li>📝 <T k="guide_layout_sidebar_content" /></li>
+</ul>
+
+### Components
+- `Sidebar`
+- `Menu`
+- `TreeView`
+- `Accordion`
+
+---
+
+## 3. <T k="guide_layout_pageheader_title" />
+<p><T k="guide_layout_pageheader_desc" /></p>
+
+### Components
+- `Breadcrumb`
+- `Heading`
+- `Button` (Toolbar)
+
+---
+
+## 4. <T k="guide_layout_main_title" />
+<p><T k="guide_layout_main_desc" /></p>
+
+### Components
+- `Container`
+- `Grid` / `SimpleGrid`
+- `Card`
+- `Table` / `DataGrid`
+
+---
+
+## 5. <T k="guide_layout_rightpanel_title" />
+<p><T k="guide_layout_rightpanel_desc" /></p>
+
+### <T k="table_header_description" />
+<ul>
+  <li>📝 <T k="guide_layout_rightpanel_content" /></li>
+</ul>
+
+### Components
+- `Drawer`
+- `Tabs`
+- `DescriptionList`
+
+---
+
+## 6. <T k="guide_layout_footer_title" />
+<p><T k="guide_layout_footer_desc" /></p>
+
+### <T k="table_header_description" />
+<ul>
+  <li>📝 <T k="guide_layout_footer_content" /></li>
+</ul>
+
+### Components
+- `Footer`
+- `Link`
+- `Divider`
+
+---
+
+## 7. <T k="guide_layout_overlay_title" />
+<p><T k="guide_layout_overlay_desc" /></p>
+
+### Components
+<ul>
+   <li>📝 <T k="guide_layout_overlay_content" /></li>
+</ul>
+
+---
+
+## 8. <T k="guide_layout_responsive_title" />
+<p><T k="guide_layout_responsive_desc" /></p>
+
+- Mobile (< 768px): Sidebar -> Drawer, Header Menu -> Hamburger
+- Tablet (768px - 1024px): Sidebar (Icon only or collapsible)
+- Desktop (> 1024px): Full layout
+

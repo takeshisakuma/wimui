@@ -1,0 +1,116 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+
+<Meta title="Guides/Link vs Button" />
+
+# <T k="guide_lvb_title" />
+
+<p><T k="guide_lvb_desc" /></p>
+
+## <T k="guide_lvb_criteria_title" />
+<div style={{ background: '#e0f2fe', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #0284c7', margin: '16px 0' }}>
+  <T k="guide_lvb_criteria_text" />
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style={{ minWidth: '140px' }}><T k="table_header_component" /></th>
+      <th><code>&lt;a&gt;</code> Tag</th>
+      <th><code>&lt;button&gt;</code> Tag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="guide_lvb_table_role" /></strong></td>
+      <td><T k="guide_lvb_table_role_a" /></td>
+      <td><T k="guide_lvb_table_role_b" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide_lvb_table_scene" /></strong></td>
+      <td><T k="guide_lvb_table_scene_a" /></td>
+      <td><T k="guide_lvb_table_scene_b" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide_lvb_table_seo" /></strong></td>
+      <td><T k="guide_lvb_table_seo_a" /></td>
+      <td><T k="guide_lvb_table_seo_b" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide_lvb_table_behavior" /></strong></td>
+      <td><T k="guide_lvb_table_behavior_a" /></td>
+      <td><T k="guide_lvb_table_behavior_b" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## コンポーネントの役割と典型的なアクション
+
+| コンポーネント | 目的 | 典型的なアクション |
+| :--- | :--- | :--- |
+| **Link** (`<a>`) | ナビゲーション | 他のページへの遷移、ページ内リンク、外部サイトへの移動 |
+| **Button** (`<button>`) | アクション | フォームの送信、モーダルの開閉、状態の変更、計算の実行 |
+
+---
+
+## 1. <T k="guide_lvb_anchor_case" />
+<ul>
+  <li>🔗 <T k="guide_lvb_anchor_example" /></li>
+</ul>
+
+```html
+<!-- Good example -->
+<a href="/checkout" class="btn btn-primary">Proceed to Checkout</a>
+```
+
+## 2. <T k="guide_lvb_button_case" />
+<ul>
+  <li>🖱️ <T k="guide_lvb_button_example" /></li>
+</ul>
+
+```html
+<!-- Good example -->
+<button type="submit" class="btn btn-primary">Place Order</button>
+<button type="button" onClick={addToCart}>Add to Cart</button>
+```
+
+---
+
+## <T k="guide_lvb_a11y_title" />
+
+<div style={{ background: '#f0fdf4', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #16a34a', margin: '16px 0' }}>
+  <T k="guide_lvb_standard_text" />
+</div>
+
+### <T k="guide_lvb_a11y_rightclick" />
+<p><T k="guide_lvb_a11y_rightclick_desc" /></p>
+
+### Keyboard & Screen Readers
+<p><T k="guide_lvb_a11y_keyboard_screenreader" /></p>
+
+---
+
+## ❓ <T k="guide_lvb_confusion_title" />
+
+### Form Submission
+<p><T k="guide_lvb_confusion_submit_text" /></p>
+
+---
+
+## ⚠️ <T k="guide_lvb_antipattern_title" />
+
+<div style={{ background: '#fef2f2', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #dc2626', margin: '16px 0' }}>
+  <T k="guide_lvb_antipattern_text" />
+</div>
+
+```jsx
+// ❌ Bad: Button behaving as link
+<button onClick={() => window.location.href = '/about'}>About (Bad)</button>
+
+// ❌ Bad: Anchor behaving as button
+<a href="#" onClick={saveData}>Save (Bad)</a>
+```
+
+## <T k="guide_lvb_summary" />
+
+> <T k="guide_lvb_summary_text" />

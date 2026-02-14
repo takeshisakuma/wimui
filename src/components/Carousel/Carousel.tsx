@@ -77,9 +77,12 @@ export const Carousel = ({
     const [currentIndex, setCurrentIndex] = useState(loop ? originalItemCount : 0);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [displaySlides, setDisplaySlides] = useState(1);
+    const [isPaused, setIsPaused] = useState(false);
 
     const timerRef = useRef<number | null>(null);
     const trackRef = useRef<HTMLDivElement>(null);
+    const touchStartX = useRef<number | null>(null);
+    const touchEndX = useRef<number | null>(null);
 
     // レスポンシブ対応
     useEffect(() => {
@@ -148,14 +151,48 @@ export const Carousel = ({
         }
     };
 
+    // 自動再生
     useEffect(() => {
-        if (autoPlay && originalItemCount > displaySlides) {
+        if (autoPlay && !isPaused && originalItemCount > displaySlides) {
             timerRef.current = window.setInterval(nextSlide, interval);
         }
         return () => {
             if (timerRef.current) window.clearInterval(timerRef.current);
         };
-    }, [autoPlay, interval, nextSlide, originalItemCount, displaySlides]);
+    }, [autoPlay, interval, nextSlide, originalItemCount, displaySlides, isPaused]);
+
+    // キーボード操作
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === "ArrowLeft") {
+            prevSlide();
+        } else if (e.key === "ArrowRight") {
+            nextSlide();
+        }
+    };
+
+    // スワイプ操作
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.targetTouches[0].clientX;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        touchEndX.current = e.targetTouches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        if (!touchStartX.current || !touchEndX.current) return;
+        const distance = touchStartX.current - touchEndX.current;
+        const minSwipeDistance = 50;
+
+        if (distance > minSwipeDistance) {
+            nextSlide();
+        } else if (distance < -minSwipeDistance) {
+            prevSlide();
+        }
+
+        touchStartX.current = null;
+        touchEndX.current = null;
+    };
 
     if (originalItemCount === 0) return null;
 
@@ -163,7 +200,17 @@ export const Carousel = ({
     const offsetX = -currentIndex * slideWidth;
 
     return (
-        <div className={classNames("wim-carousel", className)}>
+        <div
+            className={classNames("wim-carousel", className)}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onFocus={() => setIsPaused(true)}
+            onBlur={() => setIsPaused(false)}
+            onKeyDown={handleKeyDown}
+            tabIndex={0} // フォーカス可能にしてキーボードイベントを受け取る
+            role="region"
+            aria-roledescription="carousel"
+        >
             <div className="wim-carousel__viewport">
                 <div
                     ref={trackRef}
@@ -175,12 +222,17 @@ export const Carousel = ({
                         transform: `translateX(${offsetX}%)`,
                     }}
                     onTransitionEnd={handleTransitionEnd}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
                 >
                     {extendedItems.map((child, index) => (
                         <div
                             key={index}
                             className="wim-carousel__item"
                             style={{ flex: `0 0 ${slideWidth}%`, width: `${slideWidth}%` }}
+                            role="group"
+                            aria-roledescription="slide"
                         >
                             {child}
                         </div>
@@ -195,6 +247,7 @@ export const Carousel = ({
                         onClick={prevSlide}
                         aria-label="Previous slide"
                         disabled={!loop && currentIndex === 0}
+                        tabIndex={-1} // 親要素でフォーカス管理するためボタン自体のタブ移動はスキップしても良いが、好みによる
                     >
                         <Icon name="ChevronLeftIcon" size="medium" />
                     </button>
@@ -203,6 +256,7 @@ export const Carousel = ({
                         onClick={nextSlide}
                         aria-label="Next slide"
                         disabled={!loop && currentIndex >= originalItemCount - displaySlides}
+                        tabIndex={-1}
                     >
                         <Icon name="ChevronRightIcon" size="medium" />
                     </button>
@@ -225,7 +279,7 @@ export const Carousel = ({
                                 )}
                                 onClick={() => goToSlide(index)}
                                 aria-label={`Go to slide ${index + 1}`}
-                                aria-current={isActive}
+                                aria-current={isActive ? "true" : "false"}
                             />
                         );
                     })}

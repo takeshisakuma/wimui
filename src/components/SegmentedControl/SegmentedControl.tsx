@@ -26,11 +26,37 @@ export const SegmentedControl = ({
     fullWidth = false,
     className,
 }: SegmentedControlProps) => {
+    const [focusedIndex, setFocusedIndex] = React.useState<number | null>(null);
+    const itemRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+
     // Calculate the position of the slider
     const selectedIndex = options.findIndex((opt) => opt.value === value);
     const sliderStyle = {
         width: `calc((100% - 4px) / ${options.length})`,
         transform: `translateX(${selectedIndex * 100}%)`,
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
+        let nextIndex = index;
+
+        switch (event.key) {
+            case "ArrowLeft":
+            case "ArrowUp":
+                nextIndex = index - 1;
+                if (nextIndex < 0) nextIndex = options.length - 1;
+                break;
+            case "ArrowRight":
+            case "ArrowDown":
+                nextIndex = index + 1;
+                if (nextIndex >= options.length) nextIndex = 0;
+                break;
+            default:
+                return;
+        }
+
+        event.preventDefault(); // Prevent scroll
+        onChange(options[nextIndex].value);
+        itemRefs.current[nextIndex]?.focus();
     };
 
     return (
@@ -41,32 +67,45 @@ export const SegmentedControl = ({
                 fullWidth && "wim-segmented-control--full-width",
                 className
             )}
+            role="radiogroup"
         >
             <div className="wim-segmented-control__slider" style={sliderStyle} />
-            {options.map((option) => (
-                <button
-                    key={option.value}
-                    type="button"
-                    className={classNames(
-                        "wim-segmented-control__item",
-                        option.value === value && "wim-segmented-control__item--active",
-                        !option.label && option.iconName && "wim-segmented-control__item--icon-only"
-                    )}
-                    onClick={() => onChange(option.value)}
-                    aria-pressed={option.value === value}
-                    aria-label={option.label || option.value}
-                >
-                    {option.iconName && (
-                        <Icon
-                            name={option.iconName}
-                            size={size}
-                        />
-                    )}
-                    {option.label && (
-                        <span className="wim-segmented-control__label">{option.label}</span>
-                    )}
-                </button>
-            ))}
+            {options.map((option, index) => {
+                const isSelected = option.value === value;
+                // If nothing is selected (unlikely for radio behavior but possible init state), make first tabable
+                const isTabbable = isSelected || (selectedIndex === -1 && index === 0);
+
+                return (
+                    <button
+                        key={option.value}
+                        ref={(el) => { itemRefs.current[index] = el; }}
+                        type="button"
+                        className={classNames(
+                            "wim-segmented-control__item",
+                            isSelected && "wim-segmented-control__item--active",
+                            !option.label && option.iconName && "wim-segmented-control__item--icon-only"
+                        )}
+                        onClick={() => onChange(option.value)}
+                        onKeyDown={(e) => handleKeyDown(e, index)}
+                        onFocus={() => setFocusedIndex(index)}
+                        onBlur={() => setFocusedIndex(null)}
+                        role="radio"
+                        aria-checked={isSelected}
+                        tabIndex={isTabbable ? 0 : -1}
+                        aria-label={option.label || option.value}
+                    >
+                        {option.iconName && (
+                            <Icon
+                                name={option.iconName}
+                                size={size}
+                            />
+                        )}
+                        {option.label && (
+                            <span className="wim-segmented-control__label">{option.label}</span>
+                        )}
+                    </button>
+                );
+            })}
         </div>
     );
 };

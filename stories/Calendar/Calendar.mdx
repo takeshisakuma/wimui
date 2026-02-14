@@ -49,7 +49,7 @@ const [range, setRange] = useState({ start: null, end: null });
 />
 ```
 
-**動作:**
+動作:
 1. 最初のクリックで範囲の開始日を選択
 2. 2回目のクリックで範囲の終了日を選択
 3. 3回目のクリックで新しい範囲を開始
@@ -135,7 +135,7 @@ const [range, setRange] = useState({ start: null, end: null });
 
 Calendarは制御コンポーネントと非制御コンポーネントの両方として使用できます。
 
-**非制御コンポーネント:**
+非制御コンポーネント:
 ```jsx
 <Calendar 
   defaultValue={new Date()}
@@ -143,7 +143,7 @@ Calendarは制御コンポーネントと非制御コンポーネントの両方
 />
 ```
 
-**制御コンポーネント:**
+制御コンポーネント:
 ```jsx
 const [date, setDate] = useState(new Date());
 

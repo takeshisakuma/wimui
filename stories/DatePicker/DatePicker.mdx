@@ -49,7 +49,7 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 
 ネイティブの `input type="date"` の代わりに、カスタマイズ可能なカレンダーポップアップを使用しています。
 
-**利点:**
+利点:
 - ✅ 統一されたUIデザイン（ブラウザに依存しない）
 - ✅ より大きくクリックしやすいカレンダー
 - ✅ カスタマイズ可能な日付フォーマット
@@ -84,7 +84,7 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 </>
 ```
 
-**サポートされるフォーマット:**
+サポートされるフォーマット:
 - `YYYY` - 4桁の年
 - `MM` - 2桁の月
 - `DD` - 2桁の日
@@ -93,7 +93,7 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 
 DatePickerは制御コンポーネントと非制御コンポーネントの両方として使用できます。
 
-**非制御コンポーネント:**
+非制御コンポーネント:
 ```jsx
 <DatePicker 
   defaultValue={new Date()}
@@ -101,7 +101,7 @@ DatePickerは制御コンポーネントと非制御コンポーネントの両�
 />
 ```
 
-**制御コンポーネント:**
+制御コンポーネント:
 ```jsx
 const [date, setDate] = useState(new Date());
 

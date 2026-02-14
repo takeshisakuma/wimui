@@ -1,0 +1,247 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+
+<Meta title="Guides/Selection Controls" />
+
+# 選択系コンポーネントの使い分け
+
+ユーザーに値を選択させる際、選択肢の数や入力の性質に応じて最適な形式を選択します。
+
+## 比較表
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>選択形式</th>
+      <th>選択肢の数</th>
+      <th>即時反映</th>
+      <th>主な用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Checkbox</strong></td>
+      <td>複数選択可</td>
+      <td>少数 (2〜10)</td>
+      <td>×</td>
+      <td>設定のオンオフ、リストからの複数選択</td>
+    </tr>
+    <tr>
+      <td><strong>Radio</strong></td>
+      <td>単一選択</td>
+      <td>少数 (2〜5)</td>
+      <td>×</td>
+      <td>排他的な選択肢からの1つ選択</td>
+    </tr>
+    <tr>
+      <td><strong>Switch</strong></td>
+      <td>オン/オフ</td>
+      <td>1つ</td>
+      <td>○</td>
+      <td>即座に反映される設定の切り替え</td>
+    </tr>
+    <tr>
+      <td><strong>Select</strong></td>
+      <td>単一選択</td>
+      <td>中〜多数 (5〜)</td>
+      <td>×</td>
+      <td>フォーム内での場所を取らない1つ選択</td>
+    </tr>
+    <tr>
+      <td><strong>Combobox</strong></td>
+      <td>単一選択</td>
+      <td>多数 (20〜)</td>
+      <td>×</td>
+      <td>検索を伴う選択、候補からの補完入力</td>
+    </tr>
+    <tr>
+      <td><strong>Segmented Control</strong></td>
+      <td>単一選択</td>
+      <td>少数 (2〜5)</td>
+      <td>○</td>
+      <td>表示の切り替え、モードの変更</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+
+
+## <T k="guide_rvc_selection_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="table_header_component" /></th>
+      <th><T k="table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="term_radio" /></td>
+      <td><T k="guide_rvc_selection_radio" /></td>
+    </tr>
+    <tr>
+      <td><T k="term_checkbox" /></td>
+      <td><T k="guide_rvc_selection_checkbox" /></td>
+    </tr>
+    <tr>
+      <td><T k="term_switch" /></td>
+      <td><T k="guide_rvc_selection_switch" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="guide_rvc_design_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="table_header_component" /></th>
+      <th><T k="table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="term_radio" /></td>
+      <td><T k="guide_rvc_design_radio" /></td>
+    </tr>
+    <tr>
+      <td><T k="term_checkbox" /></td>
+      <td><T k="guide_rvc_design_checkbox" /></td>
+    </tr>
+    <tr>
+      <td><T k="term_switch" /></td>
+      <td><T k="guide_rvc_design_switch" /></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## <T k="guide_rvc_timing_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="table_header_component" /></th>
+      <th><T k="table_header_timing" /></th>
+      <th><T k="table_header_flow" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="term_radio" /></td>
+      <td><T k="timing_immediate" /></td>
+      <td><T k="flow_radio" /></td>
+    </tr>
+    <tr>
+      <td><T k="term_checkbox" /></td>
+      <td><T k="timing_deferred" /></td>
+      <td><T k="flow_checkbox" /></td>
+    </tr>
+    <tr>
+      <td><T k="term_switch" /></td>
+      <td><T k="timing_immediate" /></td>
+      <td><T k="flow_switch" /></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Use Cases
+### Radio Button
+<div style={{ background: '#f0f9ff', padding: '12px', borderRadius: '8px', borderLeft: '4px solid #0ea5e9', marginBottom: '16px' }}>
+  <T k="guide_rvc_usage_radio" />
+</div>
+
+### Checkbox
+<div style={{ background: '#f0fdf4', padding: '12px', borderRadius: '8px', borderLeft: '4px solid #22c55e', marginBottom: '16px' }}>
+  <T k="guide_rvc_usage_checkbox" />
+</div>
+
+### Switch
+<div style={{ background: '#f5f3ff', padding: '12px', borderRadius: '8px', borderLeft: '4px solid #8b5cf6', marginBottom: '16px' }}>
+  <T k="guide_rvc_usage_switch" />
+</div>
+
+---
+
+## <T k="guide_rvc_implementation_note" />
+1. Default Value: <T k="guide_rvc_note_default" />
+2. Layout: <T k="guide_rvc_note_vertical" />
+
+---
+
+
+## Segmented Control の使い分け
+
+Segmented Control は他のコンポーネントと役割が似ているため、適切な使い分けが重要です。
+
+### vs Button Group (joined)
+
+見た目は似ていますが、目的が異なります。
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>役割</th>
+      <th>典型的な挙動</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Segmented Control</strong></td>
+      <td><strong>選択</strong></td>
+      <td>値や表示モードの切り替え。常にいずれか1つが選択されている。</td>
+    </tr>
+    <tr>
+      <td><strong>Button Group (joined)</strong></td>
+      <td><strong>アクション</strong></td>
+      <td>関連する複数の操作のグループ化。押すと何かが実行される（例：保存 / 複製 / 削除）。</td>
+    </tr>
+  </tbody>
+</table>
+
+- Segmented Control を選ぶ場合: 「表示を 週間 / 月間 に切り替える」「ソート順を 昇順 / 降順 に変える」など、ある1つの状態を決定・変更するときに使用します。
+- Button Group を選ぶ場合: 「編集」「削除」など、独立した（または関連した）複数の実行ボタンを視覚的にまとめたいときに使用します。
+
+### vs ドロップダウンメニュー (Dropdown Menu)
+| 項目 | Segmented Control | Dropdown Menu |
+| :--- | :--- | :--- |
+| 操作 | ワンタップで切り替え | タップしてリストを開く必要あり |
+| 選択肢 | 常に見えている | 隠れている |
+| 適した数 | 2〜5個 | 5個以上 |
+
+### vs タブ (Tabs)
+| 項目 | Segmented Control | Tabs |
+| :--- | :--- | :--- |
+| 目的 | 同一コンテンツ内でのフィルタリングや表示形式の切り替え | 異なる画面(コンテンツ)間を移動する |
+| スコープ | 画面内の一部、詳細な調整 | アプリの主要ナビゲーション、大きな単位の切り替え |
+| 重複 | 各セグメント間でコンテンツが重複することもある | 各タブは専用のコンテンツを持ち、通常は重複しない |
+| 例 | プロジェクト内の「未完了/完了」フィルタ | 「ダッシュボード」「メッセージ」「設定」の切り替え |
+
+## 迷った時の判断基準
+| 項目 | Segmented Control が適しているケース | 代わりのUI（推奨） |
+| :--- | :--- | :--- |
+| 選択肢の数 | 2〜5個程度 | 5個以上なら ドロップダウン または 横スクロールタブ |
+| 選択の性質 | 「どれか1つ」を選ぶ（排他的） | 複数選びたいなら チェックボックス や チップス |
+| 影響範囲 | 画面内の一部、または表示形式の変更 | 画面自体を大きく移動するなら ボトムナビゲーション |
+| 即時性 | 選んだ瞬間に結果が反映されるべき | 送信ボタンを押すまで確定させたくないなら ラジオボタン |
+
+---
+
+## 選択のフローチャート
+
+1. オン/オフの切り替えか？
+    - 即時反映なら ➔ Switch
+    - 送信が必要なら ➔ Checkbox
+2. 1つだけ選ぶか、複数選ぶか？
+    - 複数選ぶ ➔ Checkbox Group
+    - 1つだけ選ぶ ➔ 次へ
+3. 選択肢の数は？
+    - 少なめ (2-5) ➔ Radio または Segmented Control
+    - 普通 (5-20) ➔ Select
+    - 多い (20-) ➔ Combobox
+
