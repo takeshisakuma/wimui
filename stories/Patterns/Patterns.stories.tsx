@@ -98,22 +98,34 @@ export const LoginForm: StoryObj = {
 export const DashboardHeader: StoryObj = {
     render: () => (
         <div style={{ minHeight: "400px", background: "var(--bg-app)" }}>
+            <style>{`
+                @media (max-width: 768px) {
+                    .desktop-only { display: none !important; }
+                    .mobile-only { display: block !important; }
+                    .header-search { width: 100% !important; max-width: 160px; }
+                }
+                @media (min-width: 769px) {
+                    .mobile-only { display: none !important; }
+                    .header-search { width: 240px; }
+                }
+            `}</style>
             <Header bordered sticky background="primary" style={{ padding: "0 24px" }}>
-                <Header.Section align="start" style={{ gap: "16px" }}>
+                <Header.Section align="start" style={{ gap: "16px", flex: 1, overflow: "hidden" }}>
                     <button
                         aria-label="Toggle Menu"
-                        style={{ background: "none", border: "none", fontSize: "20px", cursor: "pointer", display: "md:none", padding: "8px" }}
+                        className="mobile-only"
+                        style={{ background: "none", border: "none", fontSize: "20px", cursor: "pointer", padding: "8px" }}
                     >
                         ☰
                     </button>
-                    <Stack direction="row" align="center" gap="sm">
+                    <Stack direction="row" align="center" gap="sm" style={{ flexShrink: 0 }}>
                         <div style={{ width: "32px", height: "32px", background: "var(--color-primary)", borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-text-on-primary)", fontWeight: "bold" }}>
                             W
                         </div>
                         <span style={{ fontSize: "0.9rem", fontWeight: "bold", color: "var(--text-primary)" }}>WIM UI</span>
                     </Stack>
 
-                    <Stack as="nav" direction="row" gap="lg" style={{ marginLeft: "32px" }}>
+                    <Stack as="nav" direction="row" gap="lg" className="desktop-only" style={{ marginLeft: "32px" }}>
                         <Link href="#" priority="secondary" style={{ color: "inherit", textDecoration: "none" }}>Dashboard</Link>
                         <Link href="#" priority="secondary" style={{ color: "inherit", textDecoration: "none" }}>Projects</Link>
                         <Link href="#" priority="secondary" style={{ color: "inherit", textDecoration: "none" }}>Team</Link>
@@ -121,8 +133,8 @@ export const DashboardHeader: StoryObj = {
                     </Stack>
                 </Header.Section>
 
-                <Header.Section align="end" style={{ gap: "16px" }}>
-                    <div style={{ width: "240px" }}>
+                <Header.Section align="end" style={{ gap: "16px", flexShrink: 0 }}>
+                    <div className="header-search">
                         <Input
                             placeholder="Search..."
                             fullWidth
@@ -144,7 +156,7 @@ export const DashboardHeader: StoryObj = {
 
                     <Stack direction="row" align="center" gap="sm" style={{ cursor: "pointer" }}>
                         <Avatar size="md" />
-                        <Stack gap="none">
+                        <Stack gap="none" className="desktop-only">
                             <span style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--text-primary)" }}>John Doe</span>
                             <span style={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}>Admin</span>
                         </Stack>
@@ -155,7 +167,7 @@ export const DashboardHeader: StoryObj = {
             <Container style={{ padding: "32px" }}>
                 <Stack gap="xl">
                     <Heading tag="h2" size="xl">Dashboard Overview</Heading>
-                    <Grid cols="repeat(auto-fit, minmax(280px, 1fr))" gap={24}>
+                    <Grid cols="repeat(auto-fit, minmax(280px, 1fr))" gap={24} justify="center">
                         {[1, 2, 3].map((i) => (
                             <Card key={i} style={{ padding: "24px", border: "1px solid var(--wim-color-border-secondary)" }}>
                                 <Stats>
