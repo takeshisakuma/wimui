@@ -1,4 +1,5 @@
 import { default as React, ReactNode } from '../../../node_modules/react';
+import { Placement } from '@floating-ui/react';
 export type TooltipProps = {
     children: ReactNode;
     className?: string;
@@ -14,18 +15,20 @@ export type TooltipProps = {
      * Callback when open state changes.
      */
     onOpenChange?: (open: boolean) => void;
+    /**
+     * Preferred placement of the tooltip.
+     */
+    placement?: Placement;
 };
-export declare const Tooltip: ({ children, className, delay, isOpen: controlledOpen, onOpenChange, }: TooltipProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Tooltip: ({ children, className, delay, isOpen: controlledOpen, onOpenChange, placement, }: TooltipProps) => import("react/jsx-runtime").JSX.Element;
 export type TooltipTriggerProps = {
     children: ReactNode;
     className?: string;
     asChild?: boolean;
 };
-export declare const TooltipTrigger: ({ children, className, asChild }: TooltipTriggerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TooltipTrigger: React.ForwardRefExoticComponent<Omit<TooltipTriggerProps & React.HTMLProps<HTMLElement>, "ref"> & React.RefAttributes<HTMLElement>>;
 export type TooltipContentProps = {
     children: ReactNode;
     className?: string;
-    align?: "left" | "right" | "center";
-    side?: "top" | "bottom" | "left" | "right";
 };
-export declare const TooltipContent: ({ children, className, align, side, ...props }: TooltipContentProps & React.HTMLAttributes<HTMLDivElement>) => import("react/jsx-runtime").JSX.Element | null;
+export declare const TooltipContent: React.ForwardRefExoticComponent<Omit<TooltipContentProps & React.HTMLProps<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;

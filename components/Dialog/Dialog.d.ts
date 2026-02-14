@@ -25,12 +25,8 @@ export interface DialogContentProps {
      * Called when the dialog is closed via Escape key or overlay click.
      */
     onCloseAutoFocus?: (e: Event) => void;
-    /**
-     * If true, the default close button (X icon) will be hidden.
-     */
-    hideCloseButton?: boolean;
 }
-export declare const DialogContent: ({ children, className, hideCloseButton }: DialogContentProps) => React.ReactPortal | null;
+export declare const DialogContent: ({ children, className }: DialogContentProps) => React.ReactPortal | null;
 export declare const DialogHeader: ({ children, className }: {
     children: React.ReactNode;
     className?: string;
