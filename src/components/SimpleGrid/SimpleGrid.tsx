@@ -2,8 +2,10 @@ import React from "react";
 import classNames from "classnames";
 import "./simpleGrid.scss";
 
+import { generateResponsiveVars, ResponsiveProp } from "../Grid/grid-utils";
+
 type SimpleGridProps = React.ComponentPropsWithoutRef<"div"> & {
-    cols?: number;
+    cols?: ResponsiveProp<number>;
     spacing?: number | string;
     verticalSpacing?: number | string;
     minChildWidth?: number | string;
@@ -23,6 +25,8 @@ export const SimpleGrid = React.forwardRef<HTMLDivElement, SimpleGridProps>(
         },
         ref
     ) => {
+        const colsVars = generateResponsiveVars(cols, "--wim-simple-grid-cols", (v) => `repeat(${v}, minmax(0, 1fr))`);
+
         const gridStyle: React.CSSProperties = {
             display: "grid",
             gap: typeof spacing === "number" ? `${spacing}px` : spacing,
@@ -31,7 +35,8 @@ export const SimpleGrid = React.forwardRef<HTMLDivElement, SimpleGridProps>(
                 : (typeof spacing === "number" ? `${spacing}px` : spacing),
             gridTemplateColumns: minChildWidth
                 ? `repeat(auto-fill, minmax(${typeof minChildWidth === "number" ? `${minChildWidth}px` : minChildWidth}, 1fr))`
-                : `repeat(${cols}, minmax(0, 1fr))`,
+                : undefined,
+            ...colsVars,
             ...style,
         };
 

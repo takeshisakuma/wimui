@@ -1,3 +1,24 @@
+@use "../../tokens/breakpoints" as breakpoints;
+
 .wim-grid {
     box-sizing: border-box;
+
+    // Start with base value
+    grid-template-columns: var(--wim-grid-cols);
+
+    @include breakpoints.up(sm) {
+        grid-template-columns: var(--wim-grid-cols-sm, var(--wim-grid-cols));
+    }
+
+    @include breakpoints.up(md) {
+        grid-template-columns: var(--wim-grid-cols-md, var(--wim-grid-cols-sm, var(--wim-grid-cols)));
+    }
+
+    @include breakpoints.up(lg) {
+        grid-template-columns: var(--wim-grid-cols-lg, var(--wim-grid-cols-md, var(--wim-grid-cols-sm, var(--wim-grid-cols))));
+    }
+
+    @include breakpoints.up(xl) {
+        grid-template-columns: var(--wim-grid-cols-xl, var(--wim-grid-cols-lg, var(--wim-grid-cols-md, var(--wim-grid-cols-sm, var(--wim-grid-cols)))));
+    }
 }

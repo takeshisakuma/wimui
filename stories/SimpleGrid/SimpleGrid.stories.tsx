@@ -7,7 +7,7 @@ const meta: Meta<typeof SimpleGrid> = {
     component: SimpleGrid,
     tags: [],
     argTypes: {
-        cols: { control: { type: "number", min: 1, max: 12 } },
+        cols: { control: "object" },
         spacing: { control: "text" },
         minChildWidth: { control: "text" },
     },
@@ -47,7 +47,7 @@ export const FixedColumns: Story = {
     },
 };
 
-export const Responsive: Story = {
+export const ResponsiveAuto: Story = {
     args: {
         minChildWidth: 200,
         spacing: 16,
@@ -58,6 +58,25 @@ export const Responsive: Story = {
                 <Box>Min 200px</Box>
                 <Box>Min 200px</Box>
                 <Box>Min 200px</Box>
+            </>
+        ),
+    },
+};
+
+export const ResponsiveBreakpoints: Story = {
+    args: {
+        cols: { base: 1, sm: 2, md: 3, lg: 4 },
+        spacing: 16,
+        children: (
+            <>
+                <Box>1</Box>
+                <Box>2</Box>
+                <Box>3</Box>
+                <Box>4</Box>
+                <Box>5</Box>
+                <Box>6</Box>
+                <Box>7</Box>
+                <Box>8</Box>
             </>
         ),
     },

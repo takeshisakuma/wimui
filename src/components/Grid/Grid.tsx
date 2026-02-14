@@ -2,8 +2,10 @@ import React from "react";
 import classNames from "classnames";
 import "./grid.scss";
 
+import { generateResponsiveVars, ResponsiveProp } from "./grid-utils";
+
 type GridProps = React.ComponentPropsWithoutRef<"div"> & {
-    cols?: number | string;
+    cols?: ResponsiveProp<number | string>;
     rows?: number | string;
     gap?: number | string;
     columnGap?: number | string;
@@ -33,9 +35,14 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
         },
         ref
     ) => {
+        const colsStyle = generateResponsiveVars(
+            cols,
+            "--wim-grid-cols",
+            (v) => (typeof v === "number" ? `repeat(${v}, minmax(0, 1fr))` : String(v))
+        );
+
         const gridStyle: React.CSSProperties = {
             display: inline ? "inline-grid" : "grid",
-            gridTemplateColumns: typeof cols === "number" ? `repeat(${cols}, minmax(0, 1fr))` : cols,
             gridTemplateRows: typeof rows === "number" ? `repeat(${rows}, minmax(0, 1fr))` : rows,
             gap: typeof gap === "number" ? `${gap}px` : gap,
             columnGap: typeof columnGap === "number" ? `${columnGap}px` : columnGap,
@@ -43,6 +50,7 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
             alignItems: align,
             justifyContent: justify === "between" ? "space-between" : justify === "around" ? "space-around" : justify,
             gridAutoFlow: flow,
+            ...colsStyle,
             ...style,
         };
 

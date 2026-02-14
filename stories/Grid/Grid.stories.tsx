@@ -7,7 +7,7 @@ const meta: Meta<typeof Grid> = {
     component: Grid,
     tags: [],
     argTypes: {
-        cols: { control: "text" },
+        cols: { control: "object" },
         rows: { control: "text" },
         gap: { control: "text" },
         align: {
@@ -71,6 +71,25 @@ export const CustomColumns: Story = {
                 <Box>1fr</Box>
                 <Box>2fr</Box>
                 <Box>1fr</Box>
+            </>
+        ),
+    },
+};
+
+export const Responsive: Story = {
+    args: {
+        cols: { base: 1, sm: 2, md: 3, lg: 4 },
+        gap: 16,
+        children: (
+            <>
+                <Box>1</Box>
+                <Box>2</Box>
+                <Box>3</Box>
+                <Box>4</Box>
+                <Box>5</Box>
+                <Box>6</Box>
+                <Box>7</Box>
+                <Box>8</Box>
             </>
         ),
     },

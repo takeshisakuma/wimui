@@ -31,7 +31,11 @@ SimpleGridコンポーネントは、レスポンシブなグリッドレイア�
 <Canvas of={SimpleGridStories.FixedColumns} />
 
 <h2>レスポンシブ表示（オートフィット）の例</h2>
-画面幅に応じて列数が自動的に変化します。
-<Canvas of={SimpleGridStories.Responsive} />
+`minChildWidth`を指定することで、画面幅に応じて列数が自動的に変化します。
+<Canvas of={SimpleGridStories.ResponsiveAuto} />
+
+<h2>レスポンシブ表示（ブレークポイント指定）の例</h2>
+ブレークポイントごとに列数を明示的に指定することも可能です。
+<Canvas of={SimpleGridStories.ResponsiveBreakpoints} />
 
 <Stories />
