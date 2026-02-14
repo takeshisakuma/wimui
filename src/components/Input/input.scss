@@ -81,8 +81,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 320px; // Fixed width to prevent jumping
-    max-width: 100%;
+    width: 100%; // Make it fluid
+    max-width: 320px; // Default constrained width
 
     &.wim-input--full-width {
         width: 100%;

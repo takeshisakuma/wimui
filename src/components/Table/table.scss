@@ -1,3 +1,8 @@
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/effects" as effects;
+@use "../../tokens/breakpoints" as breakpoints;
+
 .wim-table-container {
     width: 100%;
     overflow-x: auto;
@@ -129,6 +134,73 @@
 
             /* border-collapse: separate 時の擬似境界線 */
             box-shadow: inset 0 -1px 0 var(--wim-color-border, #e0e0e0);
+        }
+    }
+
+    &--mobile-card {
+        @include breakpoints.down('md') {
+            display: block;
+
+            .wim-table__header {
+                display: none;
+            }
+
+            .wim-table__body {
+                display: block;
+            }
+
+            .wim-table__row {
+                display: block;
+                margin-bottom: spacings.$spacing-md;
+                overflow: hidden; // 角丸からはみ出ないようにする
+                background-color: var(--wim-color-surface, #fff);
+                border: 1px solid var(--wim-color-border, #e0e0e0);
+                border-radius: spacings.$radius-md;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            .wim-table__cell {
+                box-sizing: border-box; // パディングを含める
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%; // 全幅にする
+                padding: spacings.$spacing-md;
+                text-align: right;
+                border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                &::before {
+                    margin-right: spacings.$spacing-md;
+                    font-weight: 600;
+                    color: var(--wim-color-text-secondary, #666);
+                    text-align: left;
+                    content: attr(data-label);
+                }
+
+                &--selection {
+                    // チェックボックスの垂直位置調整
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding: spacings.$spacing-sm spacings.$spacing-md;
+
+                    // カードのタイトル的な位置づけにする場合
+                    font-weight: bold;
+                    background-color: var(--wim-color-surface-variant-alpha, rgb(0 0 0 / 0.02));
+                    border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
+
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
         }
     }
 }

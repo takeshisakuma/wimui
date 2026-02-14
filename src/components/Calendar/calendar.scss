@@ -6,7 +6,8 @@
 @use "../../tokens/effects" as effects;
 
 .wim-calendar {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     padding: spacings.$spacing-md;
     font-family: var(--font-family-base);
     user-select: none;

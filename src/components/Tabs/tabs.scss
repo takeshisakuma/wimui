@@ -72,8 +72,8 @@
             }
 
             &--dragging {
-                cursor: grabbing;
                 scroll-behavior: auto;
+                cursor: grabbing;
             }
         }
 

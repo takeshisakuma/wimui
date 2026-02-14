@@ -54,10 +54,10 @@ const DefaultTableChildren = (
         <Table.Body>
             {sampleData.map((row) => (
                 <Table.Row key={row.id}>
-                    <Table.Cell>{row.name}</Table.Cell>
-                    <Table.Cell>{row.email}</Table.Cell>
-                    <Table.Cell>{row.role}</Table.Cell>
-                    <Table.Cell>
+                    <Table.Cell label="Name">{row.name}</Table.Cell>
+                    <Table.Cell label="Email">{row.email}</Table.Cell>
+                    <Table.Cell label="Role">{row.role}</Table.Cell>
+                    <Table.Cell label="Status">
                         <Badge
                             content={row.status}
                             size="small"
@@ -119,10 +119,10 @@ export const WithActions: Story = {
                 <Table.Body>
                     {sampleData.slice(0, 2).map((row) => (
                         <Table.Row key={row.id}>
-                            <Table.Cell>{row.name}</Table.Cell>
-                            <Table.Cell>{row.email}</Table.Cell>
-                            <Table.Cell>
-                                <div style={{ display: "flex", gap: "8px" }}>
+                            <Table.Cell label="Name">{row.name}</Table.Cell>
+                            <Table.Cell label="Email">{row.email}</Table.Cell>
+                            <Table.Cell label="Actions">
+                                <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
                                     <button style={{ padding: "4px 8px", cursor: "pointer" }}>Edit</button>
                                     <button style={{ padding: "4px 8px", cursor: "pointer", color: "red" }}>Delete</button>
                                 </div>
@@ -198,10 +198,10 @@ export const Sortable: Story = {
                 <Table.Body>
                     {data.slice(0, 10).map((row) => (
                         <Table.Row key={row.id}>
-                            <Table.Cell>{row.id}</Table.Cell>
-                            <Table.Cell>{row.name}</Table.Cell>
-                            <Table.Cell>{row.email}</Table.Cell>
-                            <Table.Cell>{row.role}</Table.Cell>
+                            <Table.Cell label="ID">{row.id}</Table.Cell>
+                            <Table.Cell label="Name">{row.name}</Table.Cell>
+                            <Table.Cell label="Email">{row.email}</Table.Cell>
+                            <Table.Cell label="Role">{row.role}</Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>
@@ -258,9 +258,9 @@ export const RowSelection: Story = {
                                     onChange={() => toggleRow(row.id)}
                                 />
                             </Table.Cell>
-                            <Table.Cell>{row.id}</Table.Cell>
-                            <Table.Cell>{row.name}</Table.Cell>
-                            <Table.Cell>{row.email}</Table.Cell>
+                            <Table.Cell label="ID">{row.id}</Table.Cell>
+                            <Table.Cell label="Name">{row.name}</Table.Cell>
+                            <Table.Cell label="Email">{row.email}</Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>
@@ -287,10 +287,10 @@ export const StickyHeader: Story = {
                 <Table.Body>
                     {manyRows.map((row) => (
                         <Table.Row key={row.id}>
-                            <Table.Cell>{row.id}</Table.Cell>
-                            <Table.Cell>{row.name}</Table.Cell>
-                            <Table.Cell>{row.email}</Table.Cell>
-                            <Table.Cell>{row.role}</Table.Cell>
+                            <Table.Cell label="ID">{row.id}</Table.Cell>
+                            <Table.Cell label="Name">{row.name}</Table.Cell>
+                            <Table.Cell label="Email">{row.email}</Table.Cell>
+                            <Table.Cell label="Role">{row.role}</Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>
@@ -314,3 +314,44 @@ export const HiddenScrollbar: Story = {
 };
 
 
+export const MobileCard: Story = {
+    args: {
+        mobileCard: true,
+        fullWidth: true,
+        children: (
+            <>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.Head>ID</Table.Head>
+                        <Table.Head>Name</Table.Head>
+                        <Table.Head>Email</Table.Head>
+                        <Table.Head>Role</Table.Head>
+                        <Table.Head>Status</Table.Head>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {sampleData.map((row) => (
+                        <Table.Row key={row.id}>
+                            <Table.Cell label="ID">{row.id}</Table.Cell>
+                            <Table.Cell label="Name">{row.name}</Table.Cell>
+                            <Table.Cell label="Email">{row.email}</Table.Cell>
+                            <Table.Cell label="Role">{row.role}</Table.Cell>
+                            <Table.Cell label="Status">
+                                <Badge
+                                    content={row.status}
+                                    size="small"
+                                    color={row.status === "Active" ? "primary" : "neutral"}
+                                />
+                            </Table.Cell>
+                        </Table.Row>
+                    ))}
+                </Table.Body>
+            </>
+        ),
+    },
+    parameters: {
+        viewport: {
+            defaultViewport: 'mobile1',
+        },
+    },
+};

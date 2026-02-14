@@ -48,12 +48,12 @@
 
     &__label {
       display: block;
-      white-space: nowrap;
+      min-width: 0;
+      padding: 4px 0;
       overflow: hidden;
       text-overflow: ellipsis;
-      min-width: 0;
       line-height: 1.4;
-      padding: 4px 0;
+      white-space: nowrap;
     }
 
     .wim-icon {

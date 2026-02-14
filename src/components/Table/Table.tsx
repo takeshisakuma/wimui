@@ -14,6 +14,10 @@ type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
     fullWidth?: boolean;
     stickyHeader?: boolean;
     scrollbar?: "default" | "subtle" | "hidden";
+    /**
+     * Mobile view: Switch to card layout
+     */
+    mobileCard?: boolean;
     height?: string | number;
     maxHeight?: string | number;
     className?: string;
@@ -27,6 +31,7 @@ const Table = ({
     fullWidth = false,
     stickyHeader = false,
     scrollbar = "default",
+    mobileCard = false,
     height,
     maxHeight,
     className,
@@ -59,6 +64,7 @@ const Table = ({
                     hoverable && "wim-table--hoverable",
                     fullWidth && "wim-table--full-width",
                     stickyHeader && "wim-table--sticky-header",
+                    mobileCard && "wim-table--mobile-card",
                     className
                 )}
                 {...props}
@@ -173,10 +179,12 @@ export const TableHead = ({
 
 type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
     selection?: boolean;
+    label?: string;
 };
 
 export const TableCell = ({
     selection = false,
+    label,
     className,
     children,
     ...props
@@ -187,6 +195,7 @@ export const TableCell = ({
             selection && "wim-table__cell--selection",
             className,
         )}
+        data-label={label}
         {...props}
     >
         {children}
