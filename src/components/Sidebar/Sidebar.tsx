@@ -11,31 +11,48 @@ export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
     width?: number | string;
     /** Border at the right */
     bordered?: boolean;
+    /** Enable responsive behavior (mobile drawer) */
+    responsive?: boolean;
+    /** Mobile drawer open state */
+    mobileOpen?: boolean;
+    /** Callback when overlay is clicked */
+    onOverlayClick?: () => void;
 }
 
 const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
-    ({ className, children, fixed, collapsed, width = 260, bordered = true, ...props }, ref) => {
+    ({ className, children, fixed, collapsed, width = 260, bordered = true, responsive, mobileOpen, onOverlayClick, ...props }, ref) => {
         const style = {
             "--wim-sidebar-width": typeof width === "number" ? `${width}px` : width,
         } as React.CSSProperties;
 
         return (
-            <aside
-                ref={ref}
-                style={style}
-                className={classNames(
-                    "wim-sidebar",
-                    fixed && "wim-sidebar--fixed",
-                    collapsed && "wim-sidebar--collapsed",
-                    bordered && "wim-sidebar--bordered",
-                    className
+            <>
+                {responsive && mobileOpen && (
+                    <div
+                        className="wim-sidebar-overlay"
+                        onClick={onOverlayClick}
+                        aria-hidden="true"
+                    />
                 )}
-                {...props}
-            >
-                <div className="wim-sidebar__container">
-                    {children}
-                </div>
-            </aside>
+                <aside
+                    ref={ref}
+                    style={style}
+                    className={classNames(
+                        "wim-sidebar",
+                        fixed && "wim-sidebar--fixed",
+                        collapsed && "wim-sidebar--collapsed",
+                        bordered && "wim-sidebar--bordered",
+                        responsive && "wim-sidebar--responsive",
+                        mobileOpen && "wim-sidebar--mobile-open",
+                        className
+                    )}
+                    {...props}
+                >
+                    <div className="wim-sidebar__container">
+                        {children}
+                    </div>
+                </aside>
+            </>
         );
     }
 );

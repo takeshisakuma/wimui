@@ -2,6 +2,7 @@
 @use "../../tokens/typography" as typography;
 @use "../../tokens/spacings" as spacings;
 @use "../../tokens/effects" as effects;
+@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
     .wim-sidebar {
@@ -13,6 +14,43 @@
         overflow: hidden;
         background-color: var(--wim-color-bg-primary, #fff);
         transition: width effects.$transition-base, all effects.$transition-base;
+
+        &--responsive {
+            @include breakpoints.down(md) {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1000;
+                width: 85vw !important;
+                max-width: 300px;
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: effects.$shadow-lg;
+
+                // レスポンシブ時は collapsed クラスの影響を受けないようにオーバーライド
+                .wim-sidebar__item-text {
+                    width: auto !important;
+                    opacity: 1 !important;
+                    pointer-events: auto !important;
+                }
+
+                .wim-sidebar__header,
+                .wim-sidebar__footer {
+                    justify-content: flex-start !important;
+                }
+
+                .wim-sidebar__hide-collapsed {
+                    display: block !important;
+                }
+            }
+        }
+
+        &--mobile-open {
+            @include breakpoints.down(md) {
+                transform: translateX(0);
+            }
+        }
 
         &--fixed {
             position: fixed;
@@ -118,6 +156,25 @@
                 font-size: typography.$size-medium;
                 transition: opacity effects.$transition-base;
             }
+        }
+    }
+
+    .wim-sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background-color: rgb(0 0 0 / 0.4);
+        backdrop-filter: blur(2px);
+        animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
         }
     }
 }

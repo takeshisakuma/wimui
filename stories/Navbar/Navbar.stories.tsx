@@ -109,3 +109,30 @@ export const CenteredLinks: Story = {
     ),
 };
 
+export const BuiltInResponsive: Story = {
+    render: () => (
+        <div style={{ height: "400px", position: "relative", overflow: "hidden", border: "1px solid #ccc" }}>
+            <Navbar bordered style={{ position: "absolute", top: 0, left: 0, right: 0 }}>
+                <Navbar.Brand>
+                    <span>RESPONSIVE</span>
+                </Navbar.Brand>
+                <Navbar.Content justify="end" hiddenOnMobile>
+                    <Navbar.Link href="#">Dashboard</Navbar.Link>
+                    <Navbar.Link href="#">Settings</Navbar.Link>
+                    <Navbar.Link href="#">Profile</Navbar.Link>
+                </Navbar.Content>
+                <Navbar.Toggle />
+                <Navbar.Menu>
+                    <Navbar.MenuItem>Dashboard</Navbar.MenuItem>
+                    <Navbar.MenuItem>Settings</Navbar.MenuItem>
+                    <Navbar.MenuItem>Profile</Navbar.MenuItem>
+                </Navbar.Menu>
+            </Navbar>
+            <div style={{ padding: "80px 20px" }}>
+                <p>Resize the window to see the responsive behavior.</p>
+                <p>On mobile (md and below), the links hide and a hamburger menu appears.</p>
+            </div>
+        </div>
+    ),
+};
+

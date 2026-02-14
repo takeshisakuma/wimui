@@ -2,6 +2,7 @@
 @use "../../tokens/typography" as typography;
 @use "../../tokens/spacings" as spacings;
 @use "../../tokens/effects" as effects;
+@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
     .wim-navbar {
@@ -104,6 +105,44 @@
                 font-weight: typography.$weight-bold;
                 color: colors.$color-primary;
             }
+        }
+
+        &__toggle {
+            display: none;
+            margin-left: auto;
+
+            @include breakpoints.down(md) {
+                display: block;
+            }
+        }
+
+        &__menu {
+            display: none;
+
+            @include breakpoints.down(md) {
+                display: flex;
+                flex-direction: column;
+                gap: spacings.$spacing-md;
+                height: 100%;
+                padding: spacings.$spacing-xl;
+            }
+
+            &-item {
+                width: 100%;
+                padding: spacings.$spacing-md;
+                font-size: typography.$size-large;
+                border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+
+    .wim-navbar__content--hidden-mobile {
+        @include breakpoints.down(md) {
+            display: none;
         }
     }
 }

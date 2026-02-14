@@ -69,7 +69,42 @@ export const Collapsed: Story = {
 export const CustomWidth: Story = {
     render: Default.render,
     args: {
-        width: 200,
+        width: 300,
+        bordered: true,
+    },
+};
+
+export const Responsive: Story = {
+    render: (args) => {
+        const [mobileOpen, setMobileOpen] = React.useState(false);
+        return (
+            <div style={{ height: "400px", display: "flex", background: "#f4f4f5", overflow: "hidden", position: "relative" }}>
+                <button
+                    onClick={() => setMobileOpen(true)}
+                    style={{ position: 'absolute', top: 10, left: 10, zIndex: 101, padding: '5px 10px', background: 'white', border: '1px solid #ccc', borderRadius: '4px' }}
+                >
+                    Menu
+                </button>
+
+                <Sidebar
+                    {...args}
+                    responsive
+                    mobileOpen={mobileOpen}
+                    onOverlayClick={() => setMobileOpen(false)}
+                >
+                    <SidebarContent />
+                </Sidebar>
+
+                <main style={{ flexGrow: 1, padding: "20px", marginLeft: "20px", marginTop: "40px" }}>
+                    <h1>Responsive Layout</h1>
+                    <p>On larger screens, the sidebar is visible.</p>
+                    <p>On smaller screens (md and below), it becomes a drawer.</p>
+                    <p>Click "Menu" to open sidebar on mobile.</p>
+                </main>
+            </div>
+        );
+    },
+    args: {
         bordered: true,
     },
 };

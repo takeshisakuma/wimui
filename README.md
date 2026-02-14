@@ -32,8 +32,7 @@ npm run test:vrt //vrt/vrt.spec.ts-snapshots/ //ディレクトリの画像と�
 npm run test:vrt:report //どこが違うのかを「スライダー形式（画像比較）」で確認
 
 
-
-##### VRTの環境変数設定
+#### VRTの環境変数設定
 
 $env:THEME='light'; //ライトモードのみ実行
 $env:THEME='dark'; //ダークモードのみ実行
