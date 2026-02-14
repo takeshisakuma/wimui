@@ -149,3 +149,6 @@ lint*.log
 tsc_output.txt
 tsc_output_utf8.txt
 eslint_output.txt
+# Playwright
+playwright-report/
+test-results/

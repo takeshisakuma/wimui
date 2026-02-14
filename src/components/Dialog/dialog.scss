@@ -63,32 +63,13 @@
     gap: spacings.$spacing-md;
     margin-top: spacings.$spacing-2xl;
 
-    @media (width >= 640px) {
+    @media (width >=640px) {
         flex-direction: row;
         justify-content: flex-end;
     }
 }
 
-.wim-dialog-close {
-    position: absolute;
-    top: spacings.$spacing-md;
-    right: spacings.$spacing-md;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: spacings.$spacing-xs;
-    color: var(--text-secondary);
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    border-radius: 50%;
-    transition: background-color 0.2s;
 
-    &:hover {
-        color: var(--text-primary);
-        background-color: var(--bg-hover);
-    }
-}
 
 @keyframes overlayShow {
     from {

@@ -129,13 +129,9 @@ export interface DialogContentProps {
      * Called when the dialog is closed via Escape key or overlay click.
      */
     onCloseAutoFocus?: (e: Event) => void;
-    /**
-     * If true, the default close button (X icon) will be hidden.
-     */
-    hideCloseButton?: boolean;
 }
 
-export const DialogContent = ({ children, className, hideCloseButton = false }: DialogContentProps) => {
+export const DialogContent = ({ children, className }: DialogContentProps) => {
     const { open, onOpenChange, titleId, descriptionId } = useDialog();
     const contentRef = useRef<HTMLDivElement>(null);
 
@@ -189,19 +185,8 @@ export const DialogContent = ({ children, className, hideCloseButton = false }: 
                     aria-labelledby={titleId}
                     aria-describedby={descriptionId}
                     className={classNames("wim-dialog-content", className)}
-                    onClick={(e) => e.stopPropagation()}
                 >
                     {children}
-                    {!hideCloseButton && (
-                        <button
-                            type="button"
-                            className="wim-dialog-close-icon-button"
-                            onClick={() => onOpenChange(false)}
-                            aria-label="Close"
-                        >
-                            <Icon name="CloseIcon" />
-                        </button>
-                    )}
                 </div>
             </FocusTrap>
         </div>,
