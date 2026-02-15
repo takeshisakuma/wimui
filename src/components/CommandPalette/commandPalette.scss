@@ -14,7 +14,7 @@
     backdrop-filter: blur(4px);
 
     // Mobile: sticky to top and less padding
-    @media (width <= 640px) {
+    @media (width <=640px) {
         align-items: flex-start;
         padding-top: 0;
     }
@@ -38,7 +38,7 @@
     }
 
     // Mobile: full width and no border radius at top
-    @media (width <= 640px) {
+    @media (width <=640px) {
         max-width: 100%;
         height: auto;
         max-height: 100vh;
@@ -92,7 +92,7 @@
     padding: spacings.$spacing-xs;
     overflow-y: auto;
 
-    @media (width <= 640px) {
+    @media (width <=640px) {
         max-height: calc(100vh - 120px); // Adjust based on header/footer
     }
 
@@ -166,7 +166,7 @@
         gap: 4px;
 
         // Hide shortcuts on small screens
-        @media (width <= 480px) {
+        @media (width <=480px) {
             display: none;
         }
     }
@@ -192,7 +192,7 @@
     }
 
     // Hide footer on very small screens or make it more compact
-    @media (width <= 480px) {
+    @media (width <=480px) {
         flex-wrap: wrap;
         gap: 8px;
     }
@@ -214,6 +214,7 @@
 // Add basic styles for the trigger if needed
 .wim-command-palette-trigger {
     display: inline-flex;
+    white-space: nowrap;
     gap: spacings.$spacing-sm;
     align-items: center;
     padding: spacings.$spacing-sm spacings.$spacing-md;

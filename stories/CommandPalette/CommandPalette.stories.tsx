@@ -44,7 +44,7 @@ const DefaultTemplate = () => {
     const groups = Array.from(new Set(filteredItems.map((item) => item.group)));
 
     return (
-        <div style={{ padding: "100px", textAlign: "center" }}>
+        <div style={{ padding: "100px 20px", textAlign: "center" }}>
             <CommandPalette>
                 <CommandPaletteTrigger>
                     <Icon name="SearchIcon" size="small" />
@@ -101,7 +101,7 @@ export const Default: Story = {
 const ControlledTemplate = () => {
     const [open, setOpen] = useState(false);
     return (
-        <div style={{ padding: "100px", textAlign: "center" }}>
+        <div style={{ padding: "100px 20px", textAlign: "center" }}>
             <button
                 onClick={() => setOpen(true)}
                 style={{
