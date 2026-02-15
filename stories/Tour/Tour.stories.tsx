@@ -4,7 +4,7 @@ import { Tour } from "@/components/Tour/Tour";
 import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Tour> = {
-    title: "Component/Data Display/Tour",
+    title: "Component/Overlays/Tour",
     component: Tour,
 };
 

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Kbd } from "@/components/Kbd/Kbd";
 
 const meta: Meta<typeof Kbd> = {
-    title: "Component/Data Display/Kbd",
+    title: "Component/Typography & Icons/Kbd",
     component: Kbd,
     tags: [],
     parameters: {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Calendar } from "@/components/Calendar/Calendar";
 
 const meta: Meta<typeof Calendar> = {
-    title: "Component/Pickers & Sliders/Calendar",
+    title: "Component/Data Display/Calendar",
     component: Calendar,
     parameters: {
         layout: "centered",
