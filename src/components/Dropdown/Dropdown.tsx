@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, ReactNode } from "react";
+import React, { useState, useRef, useEffect, ReactNode, useId } from "react";
 import classNames from "classnames";
 import "./dropdown.scss";
 
@@ -7,10 +7,14 @@ const DropdownContext = React.createContext<{
     isOpen: boolean;
     toggle: () => void;
     close: () => void;
+    menuId: string;
+    triggerId: string;
 }>({
     isOpen: false,
     toggle: () => { },
     close: () => { },
+    menuId: "",
+    triggerId: "",
 });
 
 export type DropdownProps = {
@@ -21,6 +25,10 @@ export type DropdownProps = {
 export const Dropdown = ({ children, className }: DropdownProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+
+    const generatedId = useId();
+    const menuId = `wim-dropdown-menu-${generatedId}`;
+    const triggerId = `wim-dropdown-trigger-${generatedId}`;
 
     const toggle = () => setIsOpen(!isOpen);
     const close = () => setIsOpen(false);
@@ -53,7 +61,7 @@ export const Dropdown = ({ children, className }: DropdownProps) => {
     }, [isOpen]);
 
     return (
-        <DropdownContext.Provider value={{ isOpen, toggle, close }}>
+        <DropdownContext.Provider value={{ isOpen, toggle, close, menuId, triggerId }}>
             <div className={classNames("wim-dropdown", className)} ref={containerRef}>
                 {children}
             </div>
@@ -67,14 +75,16 @@ export type DropdownTriggerProps = {
 };
 
 export const DropdownTrigger = ({ children, className }: DropdownTriggerProps) => {
-    const { toggle, isOpen } = React.useContext(DropdownContext);
+    const { toggle, isOpen, menuId, triggerId } = React.useContext(DropdownContext);
 
     return (
         <div
+            id={triggerId}
             className={classNames("wim-dropdown-trigger", className)}
             onClick={toggle}
-            aria-haspopup="true"
+            aria-haspopup="menu"
             aria-expanded={isOpen}
+            aria-controls={isOpen ? menuId : undefined}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
@@ -100,18 +110,20 @@ export const DropdownMenu = ({
     className,
     align = "left",
 }: DropdownMenuProps) => {
-    const { isOpen } = React.useContext(DropdownContext);
+    const { isOpen, menuId, triggerId } = React.useContext(DropdownContext);
 
     if (!isOpen) return null;
 
     return (
         <div
+            id={menuId}
             className={classNames(
                 "wim-dropdown-menu",
                 `wim-dropdown-menu--align-${align}`,
                 className
             )}
             role="menu"
+            aria-labelledby={triggerId}
         >
             {children}
         </div>
@@ -164,3 +176,4 @@ export const DropdownItem = ({
         </div>
     );
 };
+

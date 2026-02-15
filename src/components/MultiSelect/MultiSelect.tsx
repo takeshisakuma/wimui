@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useId } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { Chip } from "../Chip/Chip";
@@ -19,6 +19,7 @@ export type MultiSelectProps = {
     className?: string;
     disabled?: boolean;
     defaultValue?: string[];
+    id?: string;
 };
 
 /**
@@ -33,12 +34,17 @@ export const MultiSelect = ({
     className,
     disabled = false,
     defaultValue = [],
+    id: customId,
     ...props
 }: MultiSelectProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [listId] = useState(() => "wim-multiselect-list-" + Math.random().toString(36).substr(2, 9));
+    const generatedId = useId();
+    const id = customId || generatedId;
+    const listId = `wim-multiselect-list-${id}`;
+    const labelId = `wim-multiselect-label-${id}`;
+    const triggerId = `wim-multiselect-trigger-${id}`;
 
     const isControlled = value !== undefined;
     const currentValues = isControlled ? value : internalValue;
@@ -97,14 +103,26 @@ export const MultiSelect = ({
 
     const selectedOptions = options.filter(opt => currentValues?.includes(opt.value));
 
+    const {
+        'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy,
+        'aria-describedby': ariaDescribedBy,
+        ...wrapperProps
+    } = props as any;
+
     return (
         <div
             className={classNames("wim-multiselect", className)}
             ref={containerRef}
-            {...props}
+            {...wrapperProps}
         >
-            {label && <label className="wim-label">{label}</label>}
+            {label && (
+                <label id={labelId} htmlFor={triggerId} className="wim-label">
+                    {label}
+                </label>
+            )}
             <div
+                id={triggerId}
                 className={classNames(
                     "wim-multiselect-trigger",
                     isOpen && "wim-multiselect-trigger--open",
@@ -115,12 +133,23 @@ export const MultiSelect = ({
                 role="combobox"
                 aria-expanded={isOpen}
                 aria-haspopup="listbox"
-                aria-controls={listId}
+                aria-controls={isOpen ? listId : undefined}
                 aria-disabled={disabled}
+                aria-labelledby={label ? labelId : ariaLabelledBy}
+                aria-label={label ? undefined : (ariaLabel || placeholder)}
+                aria-describedby={ariaDescribedBy}
                 onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
                         handleToggle(e as any);
+                    }
+                    if (e.key === "ArrowDown" && !isOpen) {
+                        e.preventDefault();
+                        setIsOpen(true);
+                    }
+                    if (e.key === "Escape" && isOpen) {
+                        e.preventDefault();
+                        setIsOpen(false);
                     }
                 }}
             >
@@ -150,7 +179,13 @@ export const MultiSelect = ({
             </div>
 
             {isOpen && !disabled && (
-                <ul id={listId} className="wim-multiselect-list" role="listbox" aria-multiselectable="true">
+                <ul
+                    id={listId}
+                    className="wim-multiselect-list"
+                    role="listbox"
+                    aria-multiselectable="true"
+                    aria-labelledby={label ? labelId : (ariaLabelledBy || undefined)}
+                >
                     {options.map((option) => {
                         const isSelected = currentValues?.includes(option.value);
                         return (
@@ -183,5 +218,6 @@ export const MultiSelect = ({
         </div>
     );
 };
+
 
 

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback, useId, useMemo } from "react";
 import classNames from "classnames";
 import "./tabs.scss";
 
@@ -6,6 +6,10 @@ type TabsContextType = {
     value?: string;
     onValueChange: (val: string) => void;
     orientation?: "horizontal" | "vertical";
+    id: string;
+    items: string[];
+    registerItem: (val: string) => void;
+    unregisterItem: (val: string) => void;
 };
 
 const TabsContext = createContext<TabsContextType | null>(null);
@@ -35,6 +39,8 @@ const Tabs = ({
     ...props
 }: TabsProps) => {
     const [internalValue, setInternalValue] = useState<string | undefined>(defaultValue);
+    const [items, setItems] = useState<string[]>([]);
+    const id = useId();
 
     const isControlled = valueProp !== undefined;
     const activeValue = isControlled ? valueProp : internalValue;
@@ -49,9 +55,25 @@ const Tabs = ({
         [isControlled, onValueChange]
     );
 
+    const registerItem = useCallback((val: string) => {
+        setItems(prev => prev.includes(val) ? prev : [...prev, val]);
+    }, []);
+
+    const unregisterItem = useCallback((val: string) => {
+        setItems(prev => prev.filter(i => i !== val));
+    }, []);
+
     return (
         <TabsContext.Provider
-            value={{ value: activeValue, onValueChange: handleValueChange, orientation }}
+            value={{
+                value: activeValue,
+                onValueChange: handleValueChange,
+                orientation,
+                id,
+                items,
+                registerItem,
+                unregisterItem
+            }}
         >
             <div
                 className={classNames(
@@ -70,7 +92,7 @@ const Tabs = ({
 export type TabsListProps = React.ComponentPropsWithoutRef<"div">;
 
 export const TabsList = ({ className, children, ...props }: TabsListProps) => {
-    const { orientation } = useTabs();
+    const { orientation, value, items, onValueChange } = useTabs();
     const listRef = React.useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = React.useState(false);
     const [startX, setStartX] = React.useState(0);
@@ -97,11 +119,37 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
         }
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        const currentIndex = value ? items.indexOf(value) : -1;
+        let nextIndex = -1;
+
+        if (orientation === "horizontal") {
+            if (e.key === "ArrowRight") nextIndex = (currentIndex + 1) % items.length;
+            if (e.key === "ArrowLeft") nextIndex = (currentIndex - 1 + items.length) % items.length;
+        } else {
+            if (e.key === "ArrowDown") nextIndex = (currentIndex + 1) % items.length;
+            if (e.key === "ArrowUp") nextIndex = (currentIndex - 1 + items.length) % items.length;
+        }
+
+        if (e.key === "Home") nextIndex = 0;
+        if (e.key === "End") nextIndex = items.length - 1;
+
+        if (nextIndex !== -1) {
+            e.preventDefault();
+            const nextValue = items[nextIndex];
+            if (nextValue) {
+                onValueChange(nextValue);
+                // focus the new tab
+                const tab = listRef.current?.querySelector(`[data-value="${nextValue}"]`) as HTMLElement;
+                tab?.focus();
+            }
+        }
+    };
+
     return (
         <div
             ref={listRef}
             role="tablist"
-            tabIndex={-1}
             aria-orientation={orientation}
             className={classNames(
                 "wim-tabs__list",
@@ -112,6 +160,7 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
             onMouseMove={handleMouseMove}
+            onKeyDown={handleKeyDown}
             {...props}
         >
             {children}
@@ -130,17 +179,24 @@ export const TabsTrigger = ({
     children,
     ...props
 }: TabsTriggerProps) => {
-    const { value: activeValue, onValueChange } = useTabs();
+    const { value: activeValue, onValueChange, id, registerItem, unregisterItem } = useTabs();
     const isActive = activeValue === value;
+
+    React.useEffect(() => {
+        registerItem(value);
+        return () => unregisterItem(value);
+    }, [value, registerItem, unregisterItem]);
 
     return (
         <button
             type="button"
             role="tab"
             aria-selected={isActive}
-            aria-controls={`panel-${value}`}
-            id={`tab-${value}`}
+            aria-controls={`wim-tabs-${id}-panel-${value}`}
+            id={`wim-tabs-${id}-tab-${value}`}
+            data-value={value}
             disabled={disabled}
+            tabIndex={isActive ? 0 : -1}
             className={classNames(
                 "wim-tabs__trigger",
                 isActive && "wim-tabs__trigger--active",
@@ -164,7 +220,7 @@ export const TabsContent = ({
     children,
     ...props
 }: TabsContentProps) => {
-    const { value: activeValue } = useTabs();
+    const { value: activeValue, id } = useTabs();
     const isActive = activeValue === value;
 
     if (!isActive) return null;
@@ -172,8 +228,8 @@ export const TabsContent = ({
     return (
         <div
             role="tabpanel"
-            id={`panel-${value}`}
-            aria-labelledby={`tab-${value}`}
+            id={`wim-tabs-${id}-panel-${value}`}
+            aria-labelledby={`wim-tabs-${id}-tab-${value}`}
             tabIndex={0}
             className={classNames("wim-tabs__content", className)}
             {...props}
@@ -195,3 +251,4 @@ TabsRoot.Content = TabsContent;
 
 export { TabsRoot as Tabs };
 export default TabsRoot;
+

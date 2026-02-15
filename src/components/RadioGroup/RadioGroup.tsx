@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
 import classNames from "classnames";
 import { Radio } from "../Radio/Radio";
 import "./radio-group.scss";
@@ -17,6 +17,7 @@ type RadioGroupProps = {
     direction?: "vertical" | "horizontal";
     name?: string;
     className?: string;
+    label?: string;
 };
 
 /**
@@ -30,9 +31,12 @@ export const RadioGroup = ({
     direction = "vertical",
     name,
     className,
+    label,
 }: RadioGroupProps) => {
     const isControlled = value !== undefined;
     const [internalValue, setInternalValue] = useState<string | undefined>(defaultValue);
+    const generatedId = useId();
+    const labelId = `wim-radio-group-label-${generatedId}`;
 
     const currentValue = isControlled ? value : internalValue;
 
@@ -46,7 +50,7 @@ export const RadioGroup = ({
         }
     };
 
-    return (
+    const content = (
         <div
             className={classNames(
                 "wim-radio-group",
@@ -54,6 +58,7 @@ export const RadioGroup = ({
                 className
             )}
             role="radiogroup"
+            aria-labelledby={label ? labelId : undefined}
         >
             {options.map((option) => (
                 <Radio
@@ -68,6 +73,20 @@ export const RadioGroup = ({
             ))}
         </div>
     );
+
+    if (label) {
+        return (
+            <div className="wim-radio-group-container">
+                <span id={labelId} className="wim-label" style={{ display: 'block', marginBottom: '8px' }}>
+                    {label}
+                </span>
+                {content}
+            </div>
+        );
+    }
+
+    return content;
 };
+
 
 

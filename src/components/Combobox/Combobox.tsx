@@ -18,6 +18,7 @@ export type ComboboxProps = {
     defaultValue?: string;
     className?: string;
     disabled?: boolean;
+    id?: string;
 };
 
 /**
@@ -32,6 +33,8 @@ export const Combobox = ({
     defaultValue = "",
     className,
     disabled = false,
+    label,
+    id: customId,
     ...props
 }: ComboboxProps) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +42,11 @@ export const Combobox = ({
     const [filteredOptions, setFilteredOptions] = useState<ComboboxOption[]>(options);
     const [activeIndex, setActiveIndex] = useState(-1);
     const containerRef = useRef<HTMLDivElement>(null);
-    const listboxId = useId();
+    const generatedId = useId();
+    const id = customId || generatedId;
+    const listboxId = `wim-combobox-list-${id}`;
+    const labelId = `wim-combobox-label-${id}`;
+    const inputId = `wim-combobox-input-${id}`;
 
     // 外部クリックで閉じる
     useEffect(() => {
@@ -102,7 +109,13 @@ export const Combobox = ({
             className={classNames("wim-combobox", className)}
             ref={containerRef}
         >
+            {label && (
+                <label id={labelId} htmlFor={inputId} className="wim-label">
+                    {label}
+                </label>
+            )}
             <Input
+                id={inputId}
                 placeholder={placeholder}
                 value={inputValue}
                 onChange={handleInputChange}
@@ -116,14 +129,15 @@ export const Combobox = ({
                 role="combobox"
                 aria-autocomplete="list"
                 aria-expanded={isOpen}
-                aria-controls={listboxId}
+                aria-controls={isOpen ? listboxId : undefined}
+                aria-labelledby={label ? labelId : undefined}
                 aria-activedescendant={
                     isOpen && activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined
                 }
                 {...props}
             />
             {isOpen && filteredOptions.length > 0 && (
-                <ul id={listboxId} className="wim-combobox-list" role="listbox">
+                <ul id={listboxId} className="wim-combobox-list" role="listbox" aria-labelledby={label ? labelId : undefined}>
                     {filteredOptions.map((option, index) => (
                         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                         <li
@@ -143,10 +157,11 @@ export const Combobox = ({
                 </ul>
             )}
             {isOpen && filteredOptions.length === 0 && (
-                <div className="wim-combobox-empty">No results found</div>
+                <div className="wim-combobox-empty" role="region" aria-live="polite">No results found</div>
             )}
         </div>
     );
 };
+
 
 

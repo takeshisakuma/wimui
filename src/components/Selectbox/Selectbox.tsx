@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect, useMemo, useId } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./selectbox.scss";
@@ -35,6 +35,8 @@ export type SelectboxProps = {
     grouped?: boolean;
     /** Whether to use a native select element */
     native?: boolean;
+    /** Unique ID for the component */
+    id?: string;
 };
 
 /**
@@ -54,8 +56,15 @@ export const Selectbox = ({
     filterOption,
     grouped = false,
     native = false,
+    id: customId,
     ...props
 }: SelectboxProps) => {
+    const generatedId = useId();
+    const id = customId || generatedId;
+    const labelId = `wim-selectbox-label-${id}`;
+    const listId = `wim-selectbox-list-${id}`;
+    const triggerId = `wim-selectbox-trigger-${id}`;
+
     const [isOpen, setIsOpen] = useState(false);
     const [internalValue, setInternalValue] = useState(defaultValue || "");
     const [searchValue, setSearchValue] = useState("");
@@ -65,7 +74,6 @@ export const Selectbox = ({
     const triggerRef = useRef<HTMLDivElement>(null);
     const searchInputRef = useRef<HTMLInputElement>(null);
     const listItemsRef = useRef<(HTMLLIElement | null)[]>([]);
-    const listId = useRef("wim-selectbox-list-" + Math.random().toString(36).substr(2, 9)).current;
 
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
@@ -278,13 +286,14 @@ export const Selectbox = ({
                             }
 
                             const isFocused = index === focusedIndex;
-
                             const isSelected = currentValue === option.value;
+                            const optionId = `wim-selectbox-option-${id}-${option.value}`;
 
                             return (
                                 // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                                 <li
                                     key={option.value}
+                                    id={optionId}
                                     ref={el => { listItemsRef.current[index] = el; }}
                                     className={classNames(
                                         "wim-selectbox-option",
@@ -317,13 +326,14 @@ export const Selectbox = ({
             }
 
             const isFocused = itemIndex === focusedIndex;
-
             const isSelected = currentValue === option.value;
+            const optionId = `wim-selectbox-option-${id}-${option.value}`;
 
             return (
                 // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                 <li
                     key={option.value}
+                    id={optionId}
                     ref={el => { listItemsRef.current[itemIndex] = el; }}
                     className={classNames(
                         "wim-selectbox-option",
@@ -350,9 +360,18 @@ export const Selectbox = ({
     if (native) {
         return (
             <div className={classNames("wim-selectbox", "wim-selectbox--native", className)}>
-                {label && <label className="wim-label">{label}</label>}
+                {label && (
+                    <label
+                        id={labelId}
+                        htmlFor={id}
+                        className="wim-label"
+                    >
+                        {label}
+                    </label>
+                )}
                 <div className="wim-selectbox-native-wrapper">
                     <select
+                        id={id}
                         className="wim-selectbox-select"
                         value={currentValue}
                         disabled={disabled}
@@ -397,14 +416,35 @@ export const Selectbox = ({
         );
     }
 
+    const focusedOption = focusedIndex >= 0 ? filteredOptions[focusedIndex] : null;
+    const activeDescendant = focusedOption && focusedOption.type !== "separator"
+        ? `wim-selectbox-option-${id}-${focusedOption.value}`
+        : undefined;
+
+    const {
+        'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy,
+        'aria-describedby': ariaDescribedBy,
+        ...wrapperProps
+    } = props as any;
+
     return (
         <div
             className={classNames("wim-selectbox", className)}
             ref={containerRef}
-            {...props}
+            {...wrapperProps}
         >
-            {label && <label className="wim-label">{label}</label>}
+            {label && (
+                <label
+                    id={labelId}
+                    htmlFor={triggerId}
+                    className="wim-label"
+                >
+                    {label}
+                </label>
+            )}
             <div
+                id={triggerId}
                 className={classNames(
                     "wim-selectbox-trigger",
                     isOpen && "wim-selectbox-trigger--open",
@@ -416,8 +456,12 @@ export const Selectbox = ({
                 role="combobox"
                 aria-expanded={isOpen}
                 aria-haspopup="listbox"
-                aria-controls={listId}
+                aria-controls={isOpen ? listId : undefined}
                 aria-disabled={disabled}
+                aria-labelledby={label ? labelId : ariaLabelledBy}
+                aria-label={label ? undefined : (ariaLabel || placeholder)}
+                aria-describedby={ariaDescribedBy}
+                aria-activedescendant={isOpen ? activeDescendant : undefined}
                 ref={triggerRef}
             >
                 <div className={classNames("wim-selectbox-value", !selectedOption && "wim-selectbox-value--placeholder")}>
@@ -444,12 +488,20 @@ export const Selectbox = ({
                                 }}
                                 onClick={(e) => e.stopPropagation()}
                                 onKeyDown={handleKeyDown}
+                                aria-label={searchPlaceholder}
+                                aria-controls={listId}
+                                aria-activedescendant={activeDescendant}
                             />
                         </div>
                     )}
-                    <ul id={listId} className="wim-selectbox-list" role="listbox">
+                    <ul
+                        id={listId}
+                        className="wim-selectbox-list"
+                        role="listbox"
+                        aria-labelledby={label ? labelId : (ariaLabelledBy || undefined)}
+                    >
                         {filteredOptions.length === 0 ? (
-                            <li className="wim-selectbox-empty">No options found</li>
+                            <li className="wim-selectbox-empty" role="option" aria-selected="false">No options found</li>
                         ) : (
                             renderOptions()
                         )}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
 import classNames from "classnames";
 import { Checkbox } from "../Checkbox/Checkbox";
 import "./checkbox-group.scss";
@@ -17,6 +17,7 @@ type CheckboxGroupProps = {
     direction?: "vertical" | "horizontal";
     name?: string;
     className?: string;
+    label?: string;
 };
 
 /**
@@ -30,9 +31,12 @@ export const CheckboxGroup = ({
     direction = "vertical",
     name,
     className,
+    label,
 }: CheckboxGroupProps) => {
     const isControlled = value !== undefined;
     const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
+    const generatedId = useId();
+    const labelId = `wim-checkbox-group-label-${generatedId}`;
 
     const currentValue = isControlled ? value : internalValue;
 
@@ -53,13 +57,15 @@ export const CheckboxGroup = ({
         }
     };
 
-    return (
+    const content = (
         <div
             className={classNames(
                 "wim-checkbox-group",
                 direction === "horizontal" && "wim-checkbox-group--horizontal",
                 className
             )}
+            role="group"
+            aria-labelledby={label ? labelId : undefined}
         >
             {options.map((option) => (
                 <Checkbox
@@ -74,6 +80,20 @@ export const CheckboxGroup = ({
             ))}
         </div>
     );
+
+    if (label) {
+        return (
+            <div className="wim-checkbox-group-container">
+                <span id={labelId} className="wim-label" style={{ display: 'block', marginBottom: '8px' }}>
+                    {label}
+                </span>
+                {content}
+            </div>
+        );
+    }
+
+    return content;
 };
+
 
 
