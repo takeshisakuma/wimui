@@ -44,9 +44,17 @@ type RangeSliderProps = {
      * あるいはJSON文字列として送信するかなど検討が必要だが、ここでは隠しinputを2つつくる。
      */
     name?: string;
+    /**
+     * アクセシビリティ用のラベル
+     */
+    label?: string;
+    /**
+     * カスタムID
+     */
+    id?: string;
 };
 /**
  * 範囲（開始と終了）を選択するためのスライダーコンポーネント。
  */
-export declare const RangeSlider: ({ value, defaultValue, min, max, step, allowCross, disabled, onChange, onAfterChange, className, name, ...props }: RangeSliderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const RangeSlider: ({ value, defaultValue, min, max, step, allowCross, disabled, onChange, onAfterChange, className, name, label, id: customId, ...props }: RangeSliderProps) => import("react/jsx-runtime").JSX.Element;
 export {};

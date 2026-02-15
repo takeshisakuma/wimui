@@ -31,9 +31,13 @@ type RatingProps = {
      * 追加のクラス名
      */
     className?: string;
+    /**
+     * アクセシビリティ用のラベル
+     */
+    label?: string;
 };
 /**
  * ユーザーが評価を入力するためのレーティングコンポーネント。
  */
-export declare const Rating: ({ value, defaultValue, count, allowHalf, disabled, size, onChange, className, ...props }: RatingProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Rating: ({ value, defaultValue, count, allowHalf, disabled, size, onChange, className, label, ...props }: RatingProps) => import("react/jsx-runtime").JSX.Element;
 export {};

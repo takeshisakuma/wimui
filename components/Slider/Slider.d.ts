@@ -39,9 +39,17 @@ type SliderProps = {
      * 名前の属性
      */
     name?: string;
+    /**
+     * アクセシビリティ用のラベル
+     */
+    label?: string;
+    /**
+     * カスタムID
+     */
+    id?: string;
 };
 /**
  * ユーザーが値の範囲から1つの値を選択するためのスライダーコンポーネント。
  */
-export declare const Slider: ({ value, defaultValue, min, max, step, disabled, onChange, onAfterChange, className, name, ...props }: SliderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Slider: ({ value, defaultValue, min, max, step, disabled, onChange, onAfterChange, className, name, label, id: customId, ...props }: SliderProps) => import("react/jsx-runtime").JSX.Element;
 export {};

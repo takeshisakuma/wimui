@@ -7,9 +7,10 @@ type AccordionProps = {
     collapsible?: boolean;
     className?: string;
     children: React.ReactNode;
+    id?: string;
 };
 export declare const Accordion: {
-    ({ type, defaultValue, value: valueProp, onValueChange, collapsible, className, children, }: AccordionProps): import("react/jsx-runtime").JSX.Element;
+    ({ type, defaultValue, value: valueProp, onValueChange, collapsible, className, children, id: customId, }: AccordionProps): import("react/jsx-runtime").JSX.Element;
     Item: ({ value, disabled, className, children }: AccordionItemProps) => import("react/jsx-runtime").JSX.Element;
     Trigger: ({ children, className, ...props }: React.ComponentPropsWithoutRef<"summary">) => import("react/jsx-runtime").JSX.Element;
     Content: ({ children, className, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
@@ -23,4 +24,4 @@ type AccordionItemProps = {
 export declare const AccordionItem: ({ value, disabled, className, children }: AccordionItemProps) => import("react/jsx-runtime").JSX.Element;
 export declare const AccordionTrigger: ({ children, className, ...props }: React.ComponentPropsWithoutRef<"summary">) => import("react/jsx-runtime").JSX.Element;
 export declare const AccordionContent: ({ children, className, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
-export {};
+export default Accordion;

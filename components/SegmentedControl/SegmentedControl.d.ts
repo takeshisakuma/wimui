@@ -10,6 +10,10 @@ type SegmentedControlProps = {
     size?: "small" | "medium" | "large";
     fullWidth?: boolean;
     className?: string;
+    /**
+     * アクセシビリティ用のラベル
+     */
+    label?: string;
 };
-export declare const SegmentedControl: ({ options, value, onChange, size, fullWidth, className, }: SegmentedControlProps) => import("react/jsx-runtime").JSX.Element;
+export declare const SegmentedControl: ({ options, value, onChange, size, fullWidth, className, label, }: SegmentedControlProps) => import("react/jsx-runtime").JSX.Element;
 export {};
