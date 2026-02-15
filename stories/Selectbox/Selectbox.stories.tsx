@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Selectbox } from "@/components/Selectbox/Selectbox";
+import { Selectbox, SelectboxOption, SelectboxOptionGroup } from "@/components/Selectbox/Selectbox";
+
 
 const meta: Meta<typeof Selectbox> = {
     title: "Component/Selection Controls/Selectbox",
@@ -56,6 +57,32 @@ export const Disabled: Story = {
         options: options,
         disabled: true,
         defaultValue: "opt1",
+    },
+};
+
+const optionsWithSeparators: SelectboxOption[] = [
+    { label: "Settings", value: "settings" },
+    { label: "Profile", value: "profile" },
+    { type: "separator" },
+    { label: "Help", value: "help" },
+    { label: "About", value: "about" },
+    { type: "separator" },
+    { label: "Logout", value: "logout" },
+];
+
+
+export const WithSeparator: Story = {
+    args: {
+        options: optionsWithSeparators,
+        placeholder: "Select an action...",
+    },
+};
+
+export const NativeWithSeparator: Story = {
+    args: {
+        options: optionsWithSeparators,
+        native: true,
+        placeholder: "Select (Native)...",
     },
 };
 

@@ -33,6 +33,7 @@ export const AcceptImages: Story = {
     args: {
         label: "画像のみアップロード",
         accept: "image/*",
+        iconName: "ImageIcon",
         description: "画像ファイルをドラッグ＆ドロップしてください",
     },
 };
@@ -47,9 +48,19 @@ export const Disabled: Story = {
 
 export const CustomIcon: Story = {
     args: {
-        label: "カスタムアイコン",
-        iconName: "MaximizeIcon",
-        description: "カスタムアイコンを使用したドロップゾーン",
+        label: "PDFアップロード",
+        iconName: "PdfIcon",
+        accept: ".pdf",
+        description: "PDFファイルをドラッグ＆ドロップしてください",
+    },
+};
+
+export const VideoUpload: Story = {
+    args: {
+        label: "ビデオアップロード",
+        iconName: "VideoIcon",
+        accept: "video/*",
+        description: "動画ファイルをドラッグ＆ドロップしてください",
     },
 };
 

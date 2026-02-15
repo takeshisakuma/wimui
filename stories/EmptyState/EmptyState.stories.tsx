@@ -67,4 +67,29 @@ export const CustomAction: Story = {
     },
 };
 
+export const NoMessages: Story = {
+    args: {
+        title: "メールがありません",
+        description: "受信トレイは空です。新しいメッセージが届くとここに表示されます。",
+        icon: <Icon name="EmailIcon" size="large" />,
+    },
+};
+
+export const NoVideos: Story = {
+    args: {
+        title: "動画が見つかりません",
+        description: "アップロードされた動画がまだありません。最初の動画を追加しましょう。",
+        icon: <Icon name="VideoIcon" size="large" />,
+        action: <Button label="動画をアップロード" priority="primary" />,
+    },
+};
+
+export const NoFiles: Story = {
+    args: {
+        title: "ファイルがありません",
+        description: "このフォルダにはドキュメントが含まれていません。",
+        icon: <Icon name="DocumentIcon" size="large" />,
+    },
+};
+
 

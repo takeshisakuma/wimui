@@ -90,14 +90,12 @@ export const WithIcons: Story = {
     args: {
         children: (
             <>
-                <ListItem iconName="CheckIcon">完了したタスク (左)</ListItem>
-                <ListItem iconName="CheckIcon" iconPosition="right">完了したタスク (右)</ListItem>
-                <ListItem iconName="CircleIcon">進行中のタスク</ListItem>
-                <ListItem iconName="ExternalLinkIcon">外部リンク (左)</ListItem>
-                <ListItem iconName="ExternalLinkIcon" iconPosition="right">
-                    外部リンク (右)
-                </ListItem>
-                <ListItem iconName="UploadIcon">ファイルをアップロード</ListItem>
+                <ListItem iconName="CheckIcon">完了したタスク</ListItem>
+                <ListItem iconName="PdfIcon">マニュアルをダウンロード (PDF)</ListItem>
+                <ListItem iconName="ImageIcon">写真ギャラリーを表示</ListItem>
+                <ListItem iconName="EmailIcon">メールで問い合わせる</ListItem>
+                <ListItem iconName="PhoneIcon">電話をかける (03-xxxx-xxxx)</ListItem>
+                <ListItem iconName="ExternalLinkIcon" iconPosition="right">詳細を見る</ListItem>
             </>
         ),
     },

@@ -1,144 +1,18 @@
-import { Meta} from "@storybook/blocks";
+import { Meta } from "@storybook/blocks";
 import { T } from "../stories/T";
 import { Icon } from "@/components/Icon/Icon";
 
-export const RightArrow = () => (
-  <svg
-    viewBox="0 0 14 14"
-    width="8px"
-    height="14px"
-    style={{
-      marginLeft: "4px",
-      display: "inline-block",
-      shapeRendering: "inherit",
-      verticalAlign: "middle",
-      fill: "currentColor",
-      "path fill": "currentColor",
-    }}
-  >
-    <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z" />
-  </svg>
-);
+<Meta title="Guides/Icons" />
 
-<Meta title="Icons" />
+# Icons
 
-<div className="">
-<h2>Icons</h2>
+アプリケーション全体で使用するアイコンの設計指針と使い分けについてのガイドです。
 
+具体的な `Icon` コンポーネントの使用方法や、利用可能なアイコンの一覧については、[Icon コンポーネントのドキュメント](?path=/docs/component-typography-icons-icon--docs) を参照してください。
 
+## アイコンの使い分け指針
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Icon</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Circle</td>
-      <td><Icon name="CircleIcon" size="medium" /></td>
-      <td>filled</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Square</td>
-      <td><Icon name="SquareIcon" size="medium" /></td>
-      <td>filled</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Loading</td>
-      <td><Icon name="LoadingIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>External link</td>
-      <td><Icon name="ExternalLinkIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Search</td>
-      <td><Icon name="SearchIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Eye</td>
-      <td><Icon name="EyeIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Eye Off</td>
-      <td><Icon name="EyeOffIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Chevron Down</td>
-      <td><Icon name="ChevronDownIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Chevron Right</td>
-      <td><Icon name="ChevronRightIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Close</td>
-      <td><Icon name="CloseIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Play</td>
-      <td><Icon name="PlayIcon" size="medium" /></td>
-      <td>filled</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Pause</td>
-      <td><Icon name="PauseIcon" size="medium" /></td>
-      <td>filled</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Volume</td>
-      <td><Icon name="VolumeIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Mute</td>
-      <td><Icon name="MuteIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Copy</td>
-      <td><Icon name="CopyIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Check</td>
-      <td><Icon name="CheckIcon" size="medium" /></td>
-      <td>outline</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-
-<h2>
-  線(outline)が向くもの
-</h2>
+### 線 (Outline) が向いているケース
 <table>
   <thead>
     <tr>
@@ -175,9 +49,7 @@ export const RightArrow = () => (
   </tbody>
 </table>
 
-<h2>
-  塗りつぶし(filled)が向くもの
-</h2>
+### 塗りつぶし (Filled) が向いているケース
 <table>
   <thead>
     <tr>
@@ -224,5 +96,4 @@ export const RightArrow = () => (
   </tbody>
 </table>
 
-</div>
 

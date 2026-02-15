@@ -44,6 +44,7 @@ export const AcceptImages: Story = {
         label: "画像のみアップロード",
         buttonLabel: "画像を選択",
         accept: "image/*",
+        iconName: "ImageIcon",
     },
 };
 

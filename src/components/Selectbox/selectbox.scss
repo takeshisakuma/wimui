@@ -174,3 +174,68 @@
     color: var(--text-secondary);
     text-align: center;
 }
+
+.wim-selectbox-separator {
+    height: 1px;
+    margin: spacings.$spacing-xs 0;
+    overflow: hidden;
+    background-color: colors.$color-secondary;
+    opacity: 0.6;
+}
+
+/* ------------------------------------------------------------------
+   Native Selectbox Styles
+------------------------------------------------------------------ */
+
+.wim-selectbox--native {
+    .wim-selectbox-native-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .wim-selectbox-select {
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 42px;
+        padding: spacings.$spacing-md (spacings.$spacing-md * 2.5) spacings.$spacing-md spacings.$spacing-md;
+        font-family: inherit;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--text-primary);
+        cursor: pointer;
+        background-color: var(--bg-component, #fff);
+        border: 1px solid colors.$color-secondary;
+        border-radius: spacings.$radius-md;
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        appearance: none; // Hide default arrow
+
+        &:hover:not(:disabled) {
+            border-color: colors.$color-primary;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: colors.$color-primary;
+            box-shadow: 0 0 0 2px rgba(colors.$color-primary, 0.2);
+        }
+
+        &:disabled {
+            color: var(--text-disabled);
+            cursor: not-allowed;
+            background-color: rgb(0 0 0 / 0.05);
+            border-color: colors.$color-disabled;
+        }
+        
+        // hr support is automatic in modern browsers
+    }
+
+    .wim-selectbox-icon {
+        position: absolute;
+        right: spacings.$spacing-md;
+        pointer-events: none;
+        color: var(--text-secondary);
+    }
+}
+

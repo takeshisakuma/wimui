@@ -4,10 +4,11 @@ import { Icon } from "../Icon/Icon";
 import "./selectbox.scss";
 
 export type SelectboxOption = {
-    label: string;
-    value: string;
+    label?: string;
+    value?: string;
     disabled?: boolean;
     group?: string;
+    type?: "option" | "separator";
 };
 
 export type SelectboxOptionGroup = {
@@ -32,6 +33,8 @@ export type SelectboxProps = {
     filterOption?: (option: SelectboxOption, searchValue: string) => boolean;
     /** Whether options are grouped */
     grouped?: boolean;
+    /** Whether to use a native select element */
+    native?: boolean;
 };
 
 /**
@@ -50,6 +53,7 @@ export const Selectbox = ({
     searchPlaceholder = "Search...",
     filterOption,
     grouped = false,
+    native = false,
     ...props
 }: SelectboxProps) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -79,7 +83,8 @@ export const Selectbox = ({
         if (!searchValue) return flatOptions;
 
         const defaultFilter = (option: SelectboxOption, search: string) =>
-            option.label.toLowerCase().includes(search.toLowerCase());
+            option.type !== "separator" && (option.label || "").toLowerCase().includes(search.toLowerCase());
+
 
         const filterFn = filterOption || defaultFilter;
         return flatOptions.filter(option => filterFn(option, searchValue));
@@ -127,15 +132,17 @@ export const Selectbox = ({
     };
 
     const handleSelect = (option: SelectboxOption) => {
+        if (option.type === "separator") return;
         if (option.disabled) return;
 
-        if (!isControlled) {
+        if (!isControlled && option.value !== undefined) {
             setInternalValue(option.value);
         }
 
-        if (onChange) {
+        if (onChange && option.value !== undefined) {
             onChange(option.value);
         }
+
         setIsOpen(false);
         setSearchValue("");
         setFocusedIndex(-1);
@@ -170,18 +177,31 @@ export const Selectbox = ({
                     setIsOpen(true);
                 } else {
                     setFocusedIndex(prev => {
-                        const next = prev + 1;
-                        if (next >= filteredOptions.length) return 0;
-                        // Skip disabled options
-                        if (filteredOptions[next]?.disabled) {
-                            let nextValid = next + 1;
-                            while (nextValid < filteredOptions.length && filteredOptions[nextValid]?.disabled) {
-                                nextValid++;
-                            }
-                            return nextValid < filteredOptions.length ? nextValid : prev;
+                        let next = prev + 1;
+                        if (next >= filteredOptions.length) next = 0;
+
+                        // Skip disabled options and separators
+                        while (
+                            next < filteredOptions.length &&
+                            (filteredOptions[next]?.disabled || filteredOptions[next]?.type === "separator")
+                        ) {
+                            next++;
                         }
-                        return next;
+
+                        if (next >= filteredOptions.length) {
+                            // Try from beginning if we hit the end
+                            next = 0;
+                            while (
+                                next < prev &&
+                                (filteredOptions[next]?.disabled || filteredOptions[next]?.type === "separator")
+                            ) {
+                                next++;
+                            }
+                        }
+
+                        return next < filteredOptions.length ? next : prev;
                     });
+
                 }
                 break;
 
@@ -189,18 +209,31 @@ export const Selectbox = ({
                 e.preventDefault();
                 if (isOpen) {
                     setFocusedIndex(prev => {
-                        if (prev <= 0) return filteredOptions.length - 1;
-                        const next = prev - 1;
-                        // Skip disabled options
-                        if (filteredOptions[next]?.disabled) {
-                            let nextValid = next - 1;
-                            while (nextValid >= 0 && filteredOptions[nextValid]?.disabled) {
-                                nextValid--;
-                            }
-                            return nextValid >= 0 ? nextValid : prev;
+                        let next = prev - 1;
+                        if (next < 0) next = filteredOptions.length - 1;
+
+                        // Skip disabled options and separators
+                        while (
+                            next >= 0 &&
+                            (filteredOptions[next]?.disabled || filteredOptions[next]?.type === "separator")
+                        ) {
+                            next--;
                         }
-                        return next;
+
+                        if (next < 0) {
+                            // Try from end if we hit the beginning
+                            next = filteredOptions.length - 1;
+                            while (
+                                next > prev &&
+                                (filteredOptions[next]?.disabled || filteredOptions[next]?.type === "separator")
+                            ) {
+                                next--;
+                            }
+                        }
+
+                        return next >= 0 ? next : prev;
                     });
+
                 }
                 break;
 
@@ -221,14 +254,15 @@ export const Selectbox = ({
     };
 
     const renderOptions = () => {
+        let flatIndex = 0;
         if (grouped && options.length > 0 && 'options' in options[0]) {
             const groups = options as SelectboxOptionGroup[];
-            let flatIndex = 0;
 
             return groups.map((group, groupIndex) => {
                 const groupOptionsFiltered = group.options.filter(opt =>
-                    !searchValue || (filterOption || ((o, s) => o.label.toLowerCase().includes(s.toLowerCase())))(opt, searchValue)
+                    opt.type === "separator" || !searchValue || (filterOption || ((o, s) => (o.label || "").toLowerCase().includes(s.toLowerCase())))(opt, searchValue)
                 );
+
 
                 if (groupOptionsFiltered.length === 0) return null;
 
@@ -237,9 +271,14 @@ export const Selectbox = ({
                         <li className="wim-selectbox-group-label" role="presentation">
                             {group.label}
                         </li>
-                        {groupOptionsFiltered.map((option) => {
+                        {groupOptionsFiltered.map((option, optIdx) => {
                             const index = flatIndex++;
+                            if (option.type === "separator") {
+                                return <li key={`sep-${groupIndex}-${optIdx}`} className="wim-selectbox-separator" role="presentation" />;
+                            }
+
                             const isFocused = index === focusedIndex;
+
                             const isSelected = currentValue === option.value;
 
                             return (
@@ -272,14 +311,20 @@ export const Selectbox = ({
         }
 
         return filteredOptions.map((option, index) => {
-            const isFocused = index === focusedIndex;
+            const itemIndex = flatIndex++;
+            if (option.type === "separator") {
+                return <li key={`sep-${index}`} className="wim-selectbox-separator" role="presentation" />;
+            }
+
+            const isFocused = itemIndex === focusedIndex;
+
             const isSelected = currentValue === option.value;
 
             return (
                 // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                 <li
                     key={option.value}
-                    ref={el => { listItemsRef.current[index] = el; }}
+                    ref={el => { listItemsRef.current[itemIndex] = el; }}
                     className={classNames(
                         "wim-selectbox-option",
                         isSelected && "wim-selectbox-option--selected",
@@ -290,7 +335,7 @@ export const Selectbox = ({
                         e.stopPropagation();
                         handleSelect(option);
                     }}
-                    onMouseEnter={() => setFocusedIndex(index)}
+                    onMouseEnter={() => setFocusedIndex(itemIndex)}
                     role="option"
                     aria-selected={isSelected}
                     aria-disabled={option.disabled}
@@ -299,7 +344,58 @@ export const Selectbox = ({
                 </li>
             );
         });
+
     };
+
+    if (native) {
+        return (
+            <div className={classNames("wim-selectbox", "wim-selectbox--native", className)}>
+                {label && <label className="wim-label">{label}</label>}
+                <div className="wim-selectbox-native-wrapper">
+                    <select
+                        className="wim-selectbox-select"
+                        value={currentValue}
+                        disabled={disabled}
+                        onChange={(e) => {
+                            if (onChange) onChange(e.target.value);
+                            if (!isControlled) setInternalValue(e.target.value);
+                        }}
+                        {...props}
+                    >
+                        {!currentValue && <option value="" disabled>{placeholder}</option>}
+                        {grouped ? (
+                            (options as SelectboxOptionGroup[]).map((group, gi) => (
+                                <optgroup key={gi} label={group.label}>
+                                    {group.options.map((opt, oi) =>
+                                        opt.type === "separator" ? (
+                                            <hr key={`hr-${gi}-${oi}`} />
+                                        ) : (
+                                            <option key={opt.value} value={opt.value} disabled={opt.disabled}>
+                                                {opt.label}
+                                            </option>
+                                        )
+                                    )}
+                                </optgroup>
+                            ))
+                        ) : (
+                            (options as SelectboxOption[]).map((opt, i) =>
+                                opt.type === "separator" ? (
+                                    <hr key={`hr-${i}`} />
+                                ) : (
+                                    <option key={opt.value} value={opt.value} disabled={opt.disabled}>
+                                        {opt.label}
+                                    </option>
+                                )
+                            )
+                        )}
+                    </select>
+                    <div className="wim-selectbox-icon">
+                        <Icon name="ChevronDownIcon" size="medium" />
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div
@@ -362,6 +458,7 @@ export const Selectbox = ({
             )}
         </div>
     );
+
 };
 
 

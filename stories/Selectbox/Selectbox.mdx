@@ -44,6 +44,19 @@ const options = [
 
 <Canvas of={SelectboxStories.Disabled} />
 
+### セパレーター (Separators)
+
+`type: "separator"` を指定することで、オプションの間に区切り線を表示できます。
+
+<Canvas of={SelectboxStories.WithSeparator} />
+
+### ネイティブセレクト (Native Mode)
+
+`native` プロパティを有効にすると、ブラウザ標準の `<select>` 要素を使用します。
+また、最新のブラウザ（Chrome 119+ など）では、ネイティブな `select` 内でも `<hr>` による区切り線がサポートされており、`type: "separator"` を指定したオプションは `<hr>` としてレンダリングされます。
+
+<Canvas of={SelectboxStories.NativeWithSeparator} />
+
 ## 高度な機能
 
 ### 検索機能 (Searchable)

@@ -26,6 +26,8 @@ const SidebarContent = () => (
         <Sidebar.Content>
             <Sidebar.Item active icon={<Icon name="HomeIcon" />}>Dashboard</Sidebar.Item>
             <Sidebar.Item icon={<Icon name="ProjectIcon" />}>Projects</Sidebar.Item>
+            <Sidebar.Item icon={<Icon name="EmailIcon" />}>Messages</Sidebar.Item>
+            <Sidebar.Item icon={<Icon name="DocumentIcon" />}>Documents</Sidebar.Item>
             <Sidebar.Item icon={<Icon name="ChartIcon" />}>Analytics</Sidebar.Item>
             <Sidebar.Item icon={<Icon name="SettingsIcon" />}>Settings</Sidebar.Item>
         </Sidebar.Content>
