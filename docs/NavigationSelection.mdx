@@ -61,17 +61,55 @@ import { Meta} from "@storybook/blocks";
 
 ## カテゴリ別の使い分け
 
-### 1. グローバルナビゲーション (Navbar vs Sidebar)
-- Navbar: 主要な機能が少なく、横幅を広く使いたいとき。
-- Sidebar: 機能数が多く、グルーピングが必要な管理システム。
-
-### 2. コンテンツの切り替え (Tab vs Segmented Control)
-- Tab: 同一ページ内で関連するコンテンツを「表示領域を共有して」切り替える。
-- Segmented Control: 表示の「ビュー」や「モード」を切り替える。
+<table>
+  <thead>
+    <tr>
+      <th>カテゴリ</th>
+      <th>コンポーネント</th>
+      <th>推奨される利用シーン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2"><strong>グローバルナビゲーション</strong></td>
+      <td><strong>Navbar</strong></td>
+      <td>主要な機能が少なく、横幅を広く使いたいとき。</td>
+    </tr>
+    <tr>
+      <td><strong>Sidebar</strong></td>
+      <td>機能数が多く、グルーピングが必要な管理システム。</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><strong>コンテンツの切り替え</strong></td>
+      <td><strong>Tab</strong></td>
+      <td>同一ページ内で関連するコンテンツを「表示領域を共有して」切り替える。</td>
+    </tr>
+    <tr>
+      <td><strong>Segmented Control</strong></td>
+      <td>表示の「ビュー」や「モード」を切り替える。</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
 ## ユーザビリティのヒント
-- 現在地の明示: どのメニューがアクティブなのかを常に視覚的に示してください。
-- 一貫性: ページによってナビゲーションの位置が変わらないように配置を固定します。
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>ガイドライン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>現在地の明示</strong></td>
+      <td>どのメニューがアクティブなのかを常に視覚的に示してください。</td>
+    </tr>
+    <tr>
+      <td><strong>一貫性</strong></td>
+      <td>ページによってナビゲーションの位置が変わらないように配置を固定します。</td>
+    </tr>
+  </tbody>
+</table>
 

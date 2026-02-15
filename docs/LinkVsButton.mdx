@@ -8,9 +8,6 @@ import { T } from "../stories/T";
 <p><T k="guide_lvb_desc" /></p>
 
 ## <T k="guide_lvb_criteria_title" />
-<div style={{ background: '#e0f2fe', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #0284c7', margin: '16px 0' }}>
-  <T k="guide_lvb_criteria_text" />
-</div>
 
 <table>
   <thead>
@@ -21,6 +18,11 @@ import { T } from "../stories/T";
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td><strong><T k="guide_lvb_table_judgment" /></strong></td>
+      <td><strong><T k="guide_lvb_table_judgment_a" /></strong></td>
+      <td><strong><T k="guide_lvb_table_judgment_b" /></strong></td>
+    </tr>
     <tr>
       <td><strong><T k="guide_lvb_table_role" /></strong></td>
       <td><T k="guide_lvb_table_role_a" /></td>
@@ -46,10 +48,27 @@ import { T } from "../stories/T";
 
 ## コンポーネントの役割と典型的なアクション
 
-| コンポーネント | 目的 | 典型的なアクション |
-| :--- | :--- | :--- |
-| **Link** (`<a>`) | ナビゲーション | 他のページへの遷移、ページ内リンク、外部サイトへの移動 |
-| **Button** (`<button>`) | アクション | フォームの送信、モーダルの開閉、状態の変更、計算の実行 |
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>目的</th>
+      <th>典型的なアクション</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Link</strong> (<code>&lt;a&gt;</code>)</td>
+      <td>ナビゲーション</td>
+      <td>他のページへの遷移、ページ内リンク、外部サイトへの移動</td>
+    </tr>
+    <tr>
+      <td><strong>Button</strong> (<code>&lt;button&gt;</code>)</td>
+      <td>アクション</td>
+      <td>フォームの送信、モーダルの開閉、状態の変更、計算の実行</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -78,9 +97,7 @@ import { T } from "../stories/T";
 
 ## <T k="guide_lvb_a11y_title" />
 
-<div style={{ background: '#f0fdf4', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #16a34a', margin: '16px 0' }}>
-  <T k="guide_lvb_standard_text" />
-</div>
+
 
 ### <T k="guide_lvb_a11y_rightclick" />
 <p><T k="guide_lvb_a11y_rightclick_desc" /></p>
@@ -90,12 +107,7 @@ import { T } from "../stories/T";
 
 ---
 
-## ❓ <T k="guide_lvb_confusion_title" />
 
-### Form Submission
-<p><T k="guide_lvb_confusion_submit_text" /></p>
-
----
 
 ## ⚠️ <T k="guide_lvb_antipattern_title" />
 
@@ -111,6 +123,4 @@ import { T } from "../stories/T";
 <a href="#" onClick={saveData}>Save (Bad)</a>
 ```
 
-## <T k="guide_lvb_summary" />
 
-> <T k="guide_lvb_summary_text" />
