@@ -55,6 +55,10 @@ import MoonIcon from "../../icon/moon.svg?react";
 import MoreHorizontalIcon from "../../icon/more-horizontal.svg?react";
 import MoreVerticalIcon from "../../icon/more-vertical.svg?react";
 import FilterIcon from "../../icon/filter.svg?react";
+import SpinnerIcon from "../../icon/spinner.svg?react";
+import EllipsisIcon from "../../icon/ellipsis.svg?react";
+import ThumbUpIcon from "../../icon/thumb-up.svg?react";
+import ThumbDownIcon from "../../icon/thumb-down.svg?react";
 
 
 
@@ -112,6 +116,10 @@ const icons = {
   MoreHorizontalIcon: MoreHorizontalIcon,
   MoreVerticalIcon: MoreVerticalIcon,
   FilterIcon: FilterIcon,
+  SpinnerIcon: SpinnerIcon,
+  EllipsisIcon: EllipsisIcon,
+  ThumbUpIcon: ThumbUpIcon,
+  ThumbDownIcon: ThumbDownIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -167,7 +175,11 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "MoonIcon"
   | "MoreHorizontalIcon"
   | "MoreVerticalIcon"
-  | "FilterIcon";
+  | "FilterIcon"
+  | "SpinnerIcon"
+  | "EllipsisIcon"
+  | "ThumbUpIcon"
+  | "ThumbDownIcon";
 
   size?: "small" | "medium" | "large";
   color?:
@@ -193,7 +205,7 @@ export const Icon = ({ name, size = "medium", color, className, ...props }: Icon
         "wim-icon",
         `wim-icon--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
         color && `wim-icon--${color}`,
-        name === "LoadingIcon" && "wim-icon--loading",
+        (name === "LoadingIcon" || name === "SpinnerIcon") && "wim-icon--loading",
         className
       )}
       {...props}

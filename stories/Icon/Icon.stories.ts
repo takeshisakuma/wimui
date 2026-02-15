@@ -64,3 +64,31 @@ export const MediumExternalLinkIcon = {
     color: "primary",
   },
 };
+export const MediumSpinnerIcon = {
+  args: {
+    name: "SpinnerIcon",
+    size: "large",
+    color: "primary",
+  },
+};
+export const MediumEllipsisIcon = {
+  args: {
+    name: "EllipsisIcon",
+    size: "medium",
+    color: "primary",
+  },
+};
+export const MediumThumbUpIcon = {
+  args: {
+    name: "ThumbUpIcon",
+    size: "medium",
+    color: "positive",
+  },
+};
+export const MediumThumbDownIcon = {
+  args: {
+    name: "ThumbDownIcon",
+    size: "medium",
+    color: "destructive",
+  },
+};
