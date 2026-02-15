@@ -11,9 +11,10 @@ type RadioGroupProps = {
     direction?: "vertical" | "horizontal";
     name?: string;
     className?: string;
+    label?: string;
 };
 /**
  * RadioGroup component to manage multiple radio buttons.
  */
-export declare const RadioGroup: ({ options, value, defaultValue, onChange, direction, name, className, }: RadioGroupProps) => import("react/jsx-runtime").JSX.Element;
+export declare const RadioGroup: ({ options, value, defaultValue, onChange, direction, name, className, label, }: RadioGroupProps) => import("react/jsx-runtime").JSX.Element;
 export {};
