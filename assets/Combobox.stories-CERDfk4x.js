@@ -1,0 +1,24 @@
+import{j as n}from"./jsx-runtime-u17CrQMm.js";import{r}from"./iframe-Rt4Ismfj.js";import{c as x}from"./index-QO0B-RqY.js";import{I as _}from"./Input-BGn7vrV1.js";const S=({options:f=[],onSelect:g,placeholder:I="Select...",showSearchIcon:C=!0,allowClear:h=!0,defaultValue:O="",className:k,disabled:q=!1,...D})=>{const[l,t]=r.useState(!1),[v,y]=r.useState(O),[s,j]=r.useState(f),[o,d]=r.useState(-1),m=r.useRef(null),p=r.useId();r.useEffect(()=>{const a=e=>{m.current&&!m.current.contains(e.target)&&t(!1)};return document.addEventListener("mousedown",a),()=>document.removeEventListener("mousedown",a)},[]);const T=a=>{const e=a.target.value;y(e);const E=f.filter(N=>N.label.toLowerCase().includes(e.toLowerCase()));j(E),t(!0),d(-1)},w=a=>{y(a.label),t(!1),g&&g(a)},V=a=>{if(!l&&a.key==="ArrowDown"){t(!0);return}switch(a.key){case"ArrowDown":d(e=>e<s.length-1?e+1:e);break;case"ArrowUp":d(e=>e>0?e-1:e);break;case"Enter":o>=0&&o<s.length&&w(s[o]);break;case"Escape":t(!1);break}};return n.jsxs("div",{className:x("wim-combobox",k),ref:m,children:[n.jsx(_,{placeholder:I,value:v,onChange:T,onKeyDown:V,onFocus:()=>t(!0),leftIcon:C?"SearchIcon":void 0,rightIcon:h&&v?void 0:"ChevronDownIcon",allowClear:h,disabled:q,autoComplete:"off",role:"combobox","aria-autocomplete":"list","aria-expanded":l,"aria-controls":p,"aria-activedescendant":l&&o>=0?`${p}-option-${o}`:void 0,...D}),l&&s.length>0&&n.jsx("ul",{id:p,className:"wim-combobox-list",role:"listbox",children:s.map((a,e)=>n.jsx("li",{id:`${p}-option-${e}`,className:x("wim-combobox-option",e===o&&"wim-combobox-option--active"),onClick:()=>w(a),role:"option","aria-selected":e===o,children:a.label},a.value))}),l&&s.length===0&&n.jsx("div",{className:"wim-combobox-empty",children:"No results found"})]})};S.__docgenInfo={description:"入力とサジェストリストを組み合わせたコンボボックスコンポーネント。",methods:[],displayName:"Combobox",props:{options:{required:!1,tsType:{name:"Array",elements:[{name:"signature",type:"object",raw:`{\r
+    label: string;\r
+    value: string;\r
+}`,signature:{properties:[{key:"label",value:{name:"string",required:!0}},{key:"value",value:{name:"string",required:!0}}]}}],raw:"ComboboxOption[]"},description:"",defaultValue:{value:"[]",computed:!1}},onSelect:{required:!1,tsType:{name:"signature",type:"function",raw:"(option: ComboboxOption) => void",signature:{arguments:[{type:{name:"signature",type:"object",raw:`{\r
+    label: string;\r
+    value: string;\r
+}`,signature:{properties:[{key:"label",value:{name:"string",required:!0}},{key:"value",value:{name:"string",required:!0}}]}},name:"option"}],return:{name:"void"}}},description:""},placeholder:{required:!1,tsType:{name:"string"},description:"",defaultValue:{value:'"Select..."',computed:!1}},label:{required:!1,tsType:{name:"string"},description:""},showSearchIcon:{required:!1,tsType:{name:"boolean"},description:"",defaultValue:{value:"true",computed:!1}},allowClear:{required:!1,tsType:{name:"boolean"},description:"",defaultValue:{value:"true",computed:!1}},defaultValue:{required:!1,tsType:{name:"string"},description:"",defaultValue:{value:'""',computed:!1}},className:{required:!1,tsType:{name:"string"},description:""},disabled:{required:!1,tsType:{name:"boolean"},description:"",defaultValue:{value:"false",computed:!1}}}};const A={title:"Component/Selection Controls/Combobox",component:S,argTypes:{showSearchIcon:{control:"boolean"}}},b=[{label:"Apple",value:"apple"},{label:"Banana",value:"banana"},{label:"Blueberry",value:"blueberry"},{label:"Cherry",value:"cherry"},{label:"Grape",value:"grape"},{label:"Kiwi",value:"kiwi"},{label:"Lemon",value:"lemon"},{label:"Mango",value:"mango"},{label:"Orange",value:"orange"},{label:"Peach",value:"peach"},{label:"Pear",value:"pear"},{label:"Pineapple",value:"pineapple"},{label:"Strawberry",value:"strawberry"},{label:"Watermelon",value:"watermelon"}],i={args:{options:b,placeholder:"Search fruits..."}},u={args:{options:b,placeholder:"Search fruits...",showSearchIcon:!0}},c={args:{options:b,placeholder:"Disabled combobox",disabled:!0}};i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`{
+  args: {
+    options: sampleOptions,
+    placeholder: "Search fruits..."
+  }
+}`,...i.parameters?.docs?.source}}};u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    options: sampleOptions,
+    placeholder: "Search fruits...",
+    showSearchIcon: true
+  }
+}`,...u.parameters?.docs?.source}}};c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    options: sampleOptions,
+    placeholder: "Disabled combobox",
+    disabled: true
+  }
+}`,...c.parameters?.docs?.source}}};const L=["Default","WithIcon","Disabled"],W=Object.freeze(Object.defineProperty({__proto__:null,Default:i,Disabled:c,WithIcon:u,__namedExportsOrder:L,default:A},Symbol.toStringTag,{value:"Module"}));export{W as C,i as D};
