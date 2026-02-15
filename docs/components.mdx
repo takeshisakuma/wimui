@@ -4,11 +4,51 @@ import { T } from "../stories/T";
 
 <Meta title="Components" />
 
+import { Icon } from '../src/components/Icon/Icon';
+
+export const PlatformIcons = ({ pc, mobile }) => (
+  <div style={{ display: "inline-flex", gap: "8px", alignItems: "center" }}>
+    {pc && <Icon name="MonitorIcon" style={{ width: 18, height: 18, color: "var(--text-primary)" }} />}
+    {mobile && <Icon name="SmartphoneIcon" style={{ width: 18, height: 18, color: "var(--text-primary)" }} />}
+  </div>
+);
+
+export const StatusIcon = ({ status }) => {
+  if (status === "done") {
+    return <Icon name="CheckCircleIcon" style={{ width: 18, height: 18, color: "var(--color-positive, green)" }} />;
+  }
+  if (status === "planning") {
+    return <Icon name="HourglassIcon" style={{ width: 18, height: 18, color: "var(--color-caution, orange)" }} />;
+  }
+  return null;
+};
+
 <div className="wim-docs-container">
   <h1><T k="dashboard_title" /></h1>
   <p><T k="dashboard_desc" /></p>
 
   <h2>🚀 <T k="dashboard_progress" /></h2>
+
+  <div style={{ display: "flex", gap: "24px", marginBottom: "16px", fontSize: "14px", color: "var(--text-secondary, #666)", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <PlatformIcons pc mobile /> <span>全デバイス (PC, タブレット, モバイル)</span>
+    </div>
+    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <PlatformIcons pc /> <span>PCのみ (マウス/キーボード操作に最適)</span>
+    </div>
+    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <PlatformIcons mobile /> <span>モバイルのみ (タッチ操作/小画面に最適)</span>
+    </div>
+  </div>
+
+  <div style={{ display: "flex", gap: "24px", marginBottom: "24px", fontSize: "14px", color: "var(--text-secondary, #666)" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <StatusIcon status="done" /> <span><T k="status_done" /> (実装完了)</span>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <StatusIcon status="planning" /> <span><T k="status_planning" /> (計画中/作業中)</span>
+      </div>
+  </div>
   <div style={{ padding: "24px", background: "var(--wim-color-bg-secondary, #f4f4f7)", borderRadius: "12px", marginBottom: "32px" }}>
     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
       <strong><T k="dashboard_overall_progress" /></strong>
@@ -76,12 +116,12 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>heading</td><td><T k="doc_heading_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>Paragraph</td><td><T k="doc_paragraph_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>span</td><td><T k="doc_span_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>quote</td><td><T k="doc_quote_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>link</td><td><T k="doc_link_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>icon</td><td><T k="doc_icon_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>heading</td><td><T k="doc_heading_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Paragraph</td><td><T k="doc_paragraph_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>span</td><td><T k="doc_span_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>quote</td><td><T k="doc_quote_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>link</td><td><T k="doc_link_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>icon</td><td><T k="doc_icon_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
     </tbody>
   </table>
 
@@ -89,10 +129,10 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>button</td><td><T k="doc_button_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>iconButton</td><td><T k="doc_iconButton_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>linkButton</td><td><T k="doc_linkButton_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>buttonGroup</td><td><T k="doc_buttonGroup_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>button</td><td><T k="doc_button_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>iconButton</td><td><T k="doc_iconButton_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>linkButton</td><td><T k="doc_linkButton_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>buttonGroup</td><td><T k="doc_buttonGroup_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
     </tbody>
   </table>
 
@@ -100,18 +140,18 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>container</td><td><T k="doc_container_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>grid</td><td><T k="doc_grid_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>stack</td><td><T k="doc_stack_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>center</td><td><T k="doc_center_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>aspectRatio</td><td><T k="doc_aspectRatio_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>bentoGrid</td><td><T k="doc_bentoGrid_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>masonry</td><td><T k="doc_masonry_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>box</td><td><T k="doc_box_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>group / flex</td><td><T k="doc_group_desc" /> / <T k="doc_flex_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>simpleGrid</td><td><T k="doc_simpleGrid_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>AppShell</td><td><T k="doc_appShell_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>Splitter</td><td><T k="doc_splitter_desc" /></td><td>💻</td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>container</td><td><T k="doc_container_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>grid</td><td><T k="doc_grid_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>stack</td><td><T k="doc_stack_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>center</td><td><T k="doc_center_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>aspectRatio</td><td><T k="doc_aspectRatio_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>bentoGrid</td><td><T k="doc_bentoGrid_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>masonry</td><td><T k="doc_masonry_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>box</td><td><T k="doc_box_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>group / flex</td><td><T k="doc_group_desc" /> / <T k="doc_flex_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>simpleGrid</td><td><T k="doc_simpleGrid_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>AppShell</td><td><T k="doc_appShell_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>Splitter</td><td><T k="doc_splitter_desc" /></td><td><PlatformIcons pc /></td><td><StatusIcon status="planning" /></td></tr>
     </tbody>
   </table>
 
@@ -119,22 +159,22 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>breadcrumb</td><td><T k="doc_breadcrumb_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>tab</td><td><T k="doc_tab_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>navbar</td><td><T k="doc_navbar_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>sidebar</td><td><T k="doc_sidebar_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>header</td><td><T k="doc_header_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>footer</td><td><T k="doc_footer_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>pagination</td><td><T k="doc_pagination_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>menu</td><td><T k="doc_menu_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>contextMenu</td><td><T k="doc_contextMenu_desc" /></td><td>💻</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>tabBar</td><td><T k="doc_tabBar_desc" /></td><td>📱</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>tabNavigation</td><td><T k="doc_tabNavigation_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>hamburgerMenu</td><td><T k="doc_hamburgerMenu_desc" /></td><td>📱</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>stepper</td><td><T k="doc_stepper_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>anchor</td><td><T k="doc_anchor_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>affix</td><td><T k="doc_affix_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>floatButton</td><td><T k="doc_floatButton_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>breadcrumb</td><td><T k="doc_breadcrumb_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>tab</td><td><T k="doc_tab_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>navbar</td><td><T k="doc_navbar_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>sidebar</td><td><T k="doc_sidebar_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>header</td><td><T k="doc_header_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>footer</td><td><T k="doc_footer_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>pagination</td><td><T k="doc_pagination_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>menu</td><td><T k="doc_menu_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>contextMenu</td><td><T k="doc_contextMenu_desc" /></td><td><PlatformIcons pc /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>tabBar</td><td><T k="doc_tabBar_desc" /></td><td><PlatformIcons mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>tabNavigation</td><td><T k="doc_tabNavigation_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>hamburgerMenu</td><td><T k="doc_hamburgerMenu_desc" /></td><td><PlatformIcons mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>stepper</td><td><T k="doc_stepper_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>anchor</td><td><T k="doc_anchor_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>affix</td><td><T k="doc_affix_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>floatButton</td><td><T k="doc_floatButton_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
     </tbody>
   </table>
 
@@ -142,24 +182,24 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>label</td><td><T k="doc_label_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>input</td><td><T k="doc_input_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>passwordInput</td><td><T k="doc_passwordInput_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>searchInput</td><td><T k="doc_searchInput_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>numberInput</td><td><T k="doc_numberInput_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>inputGroup</td><td><T k="doc_inputGroup_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>FieldError</td><td><T k="doc_FieldError_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>textarea</td><td><T k="doc_textarea_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>otpInput</td><td><T k="doc_otpInput_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>file upload</td><td><T k="doc_file_upload_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>dropzone</td><td><T k="doc_dropzone_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>fieldset / legend</td><td><T k="doc_fieldset_desc" /> / <T k="doc_legend_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>inputMask</td><td><T k="doc_inputMask_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>mentions</td><td><T k="doc_mentions_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>Cascader</td><td><T k="doc_cascader_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>Transfer</td><td><T k="doc_transfer_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>TreeSelect</td><td><T k="doc_treeSelect_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>SignaturePad</td><td><T k="doc_signaturePad_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>label</td><td><T k="doc_label_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>input</td><td><T k="doc_input_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>passwordInput</td><td><T k="doc_passwordInput_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>searchInput</td><td><T k="doc_searchInput_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>numberInput</td><td><T k="doc_numberInput_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>inputGroup</td><td><T k="doc_inputGroup_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>FieldError</td><td><T k="doc_FieldError_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>textarea</td><td><T k="doc_textarea_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>otpInput</td><td><T k="doc_otpInput_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>file upload</td><td><T k="doc_file_upload_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>dropzone</td><td><T k="doc_dropzone_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>fieldset / legend</td><td><T k="doc_fieldset_desc" /> / <T k="doc_legend_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>inputMask</td><td><T k="doc_inputMask_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>mentions</td><td><T k="doc_mentions_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Cascader</td><td><T k="doc_cascader_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>Transfer</td><td><T k="doc_transfer_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>TreeSelect</td><td><T k="doc_treeSelect_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>SignaturePad</td><td><T k="doc_signaturePad_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
     </tbody>
   </table>
 
@@ -167,18 +207,17 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>checkbox</td><td><T k="doc_checkbox_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>checkboxGroup</td><td><T k="doc_checkboxGroup_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>radio</td><td><T k="doc_radio_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>radioGroup</td><td><T k="doc_radioGroup_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>switch</td><td><T k="doc_switch_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>switchGroup</td><td><T k="doc_switchGroup_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>segmented control</td><td><T k="doc_segmented_control_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>toggleGroup</td><td><T k="doc_toggleGroup_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>selectbox</td><td><T k="doc_selectbox_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>multiselect</td><td><T k="doc_multiselect_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>combobox</td><td><T k="doc_combobox_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>dropdown</td><td><T k="doc_dropdown_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>checkbox</td><td><T k="doc_checkbox_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>nativeSelect</td><td><T k="doc_nativeSelect_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>checkboxGroup</td><td><T k="doc_checkboxGroup_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>radio</td><td><T k="doc_radio_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>radioGroup</td><td><T k="doc_radioGroup_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>switch</td><td><T k="doc_switch_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>select</td><td><T k="doc_select_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>multiSelect</td><td><T k="doc_multiSelect_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>autocomplete</td><td><T k="doc_autocomplete_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>segmentControl</td><td><T k="doc_segmentControl_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>chipGroup</td><td><T k="doc_chipGroup_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
     </tbody>
   </table>
 
@@ -186,15 +225,15 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>slider</td><td><T k="doc_slider_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>rangeSlider</td><td><T k="doc_rangeSlider_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>datePicker</td><td><T k="doc_datePicker_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>dateRangePicker</td><td><T k="doc_dateRangePicker_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>timePicker</td><td><T k="doc_timePicker_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>calendar</td><td><T k="doc_calendar_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>rangeCalendar</td><td><T k="doc_rangeCalendar_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>colorPicker</td><td><T k="doc_colorPicker_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>colorInput</td><td><T k="doc_colorInput_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>slider</td><td><T k="doc_slider_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>rangeSlider</td><td><T k="doc_rangeSlider_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>datePicker</td><td><T k="doc_datePicker_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>timePicker</td><td><T k="doc_timePicker_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>colorPicker</td><td><T k="doc_colorPicker_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>rangeDate</td><td><T k="doc_rangeDate_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>rangeCalendar</td><td><T k="doc_rangeCalendar_desc" /></td><td><PlatformIcons pc mobile /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>colorPicker</td><td><T k="doc_colorPicker_desc" /></td><td><PlatformIcons pc mobile /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>colorInput</td><td><T k="doc_colorInput_desc" /></td><td><PlatformIcons pc mobile /></td><td>✅ <T k="status_done" /></td></tr>
     </tbody>
   </table>
 
@@ -202,29 +241,9 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>table</td><td><T k="doc_table_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>list</td><td><T k="doc_list_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>card</td><td><T k="doc_card_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>accordion</td><td><T k="doc_accordion_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>avatar</td><td><T k="doc_avatar_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>avatarGroup</td><td><T k="doc_avatarGroup_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>badge</td><td><T k="doc_badge_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>chip</td><td><T k="doc_chip_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>tag</td><td><T k="doc_tag_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>timeline</td><td><T k="doc_timeline_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>rating</td><td><T k="doc_rating_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>indicator</td><td><T k="doc_indicator_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>kbd</td><td><T k="doc_kbd_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>code</td><td><T k="doc_code_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>emptyState</td><td><T k="doc_emptyState_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>stats</td><td><T k="doc_stats_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>treeView</td><td><T k="doc_treeView_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>descriptionList</td><td><T k="doc_descriptionList_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>qrCode</td><td><T k="doc_qrCode_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>tour</td><td><T k="doc_tour_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>watermark</td><td><T k="doc_watermark_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>DataGrid</td><td><T k="doc_dataGrid_desc" /></td><td>💻</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>ChatUI</td><td><T k="doc_chatUI_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>watermark</td><td><T k="doc_watermark_desc" /></td><td><PlatformIcons pc mobile /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>DataGrid</td><td><T k="doc_dataGrid_desc" /></td><td><PlatformIcons pc /></td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>ChatUI</td><td><T k="doc_chatUI_desc" /></td><td><PlatformIcons pc mobile /></td><td>⏳ <T k="status_planning" /></td></tr>
     </tbody>
   </table>
 
@@ -232,18 +251,10 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>alert</td><td><T k="doc_alert_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>toast</td><td><T k="doc_toast_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>progress</td><td><T k="doc_progress_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>spinner</td><td><T k="doc_spinner_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>loader</td><td><T k="doc_loader_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>skeleton</td><td><T k="doc_skeleton_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>snackbar</td><td><T k="doc_snackbar_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>banner</td><td><T k="doc_banner_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>copyButton</td><td><T k="doc_copyButton_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>popconfirm</td><td><T k="doc_popconfirm_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>result</td><td><T k="doc_result_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>notification</td><td><T k="doc_notification_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>alert</td><td><T k="doc_alert_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>popconfirm</td><td><T k="doc_popconfirm_desc" /></td><td><PlatformIcons pc mobile /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>result</td><td><T k="doc_result_desc" /></td><td><PlatformIcons pc mobile /></td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>notification</td><td><T k="doc_notification_desc" /></td><td><PlatformIcons pc mobile /></td><td>✅ <T k="status_done" /></td></tr>
     </tbody>
   </table>
 
@@ -251,13 +262,13 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>dialog</td><td><T k="doc_dialog_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>popover</td><td><T k="doc_popover_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>tooltip</td><td><T k="doc_tooltip_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>drawer</td><td><T k="doc_drawer_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>bottomSheet</td><td><T k="doc_bottomSheet_desc" /></td><td>📱</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>hoverCard</td><td><T k="doc_hoverCard_desc" /></td><td>💻</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>commandPalette</td><td><T k="doc_commandPalette_desc" /></td><td>💻</td><td>✅ <T k="status_done" /></td></tr>
+      <tr><td>dialog</td><td><T k="doc_dialog_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>popover</td><td><T k="doc_popover_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>tooltip</td><td><T k="doc_tooltip_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>drawer</td><td><T k="doc_drawer_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>bottomSheet</td><td><T k="doc_bottomSheet_desc" /></td><td><PlatformIcons mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>hoverCard</td><td><T k="doc_hoverCard_desc" /></td><td><PlatformIcons pc /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>commandPalette</td><td><T k="doc_commandPalette_desc" /></td><td><PlatformIcons pc /></td><td><StatusIcon status="done" /></td></tr>
     </tbody>
   </table>
 
@@ -265,39 +276,39 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>carousel</td><td><T k="doc_carousel_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>image</td><td><T k="doc_image_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>video</td><td><T k="doc_video_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>audio</td><td><T k="doc_audio_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>barChart</td><td><T k="doc_barChart_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>lineChart</td><td><T k="doc_lineChart_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>areaChart</td><td><T k="doc_areaChart_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>pieChart</td><td><T k="doc_pieChart_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>scatterChart</td><td><T k="doc_scatterChart_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>heatmap</td><td><T k="doc_heatmap_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>radarChart</td><td><T k="doc_radarChart_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>funnelChart</td><td><T k="doc_funnelChart_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>treemap</td><td><T k="doc_treemap_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>gauge</td><td><T k="doc_gauge_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>carousel</td><td><T k="doc_carousel_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>image</td><td><T k="doc_image_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>video</td><td><T k="doc_video_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>audio</td><td><T k="doc_audio_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>barChart</td><td><T k="doc_barChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>lineChart</td><td><T k="doc_lineChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>areaChart</td><td><T k="doc_areaChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>pieChart</td><td><T k="doc_pieChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>scatterChart</td><td><T k="doc_scatterChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>heatmap</td><td><T k="doc_heatmap_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>radarChart</td><td><T k="doc_radarChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>topLayout</td><td><T k="doc_topLayout_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>sideLayout</td><td><T k="doc_sideLayout_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>contrastChecker</td><td><T k="doc_contrastChecker_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
     </tbody>
   </table>
 
-  <h2 id="utilities"><T k="cat_utilities" /></h2>
+  <h3>Utility</h3>
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>divider</td><td><T k="doc_divider_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>ScrollArea</td><td><T k="doc_ScrollArea_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>visuallyHidden</td><td><T k="doc_visuallyHidden_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>focusTrap</td><td><T k="doc_focusTrap_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>portal</td><td><T k="doc_portal_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>transition</td><td><T k="doc_transition_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>errorBoundary</td><td><T k="doc_errorBoundary_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>backTop</td><td><T k="doc_backTop_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>infiniteScroll</td><td><T k="doc_infiniteScroll_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>scrollProgress</td><td><T k="doc_scrollProgress_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>markdown</td><td><T k="doc_markdown_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
-      <tr><td>marquee</td><td><T k="doc_marquee_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>divider</td><td><T k="doc_divider_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>ScrollArea</td><td><T k="doc_ScrollArea_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>visuallyHidden</td><td><T k="doc_visuallyHidden_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>focusTrap</td><td><T k="doc_focusTrap_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>portal</td><td><T k="doc_portal_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>transition</td><td><T k="doc_transition_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>errorBoundary</td><td><T k="doc_errorBoundary_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>backTop</td><td><T k="doc_backTop_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>infiniteScroll</td><td><T k="doc_infiniteScroll_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>scrollProgress</td><td><T k="doc_scrollProgress_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>markdown</td><td><T k="doc_markdown_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>marquee</td><td><T k="doc_marquee_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
     </tbody>
   </table>
 
@@ -305,9 +316,16 @@ import { T } from "../stories/T";
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>T</td><td>翻訳ユーティリティ (i18n wrapper)</td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>colorSwatch</td><td><T k="doc_colorSwatch_desc" /></td><td>🌏</td><td>✅ <T k="status_done" /></td></tr>
-      <tr><td>contrastChecker</td><td><T k="doc_contrastChecker_desc" /></td><td>🌏</td><td>⏳ <T k="status_planning" /></td></tr>
+      <tr><td>T</td><td><T k="doc_T_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>SourceCode</td><td><T k="doc_SourceCode_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>RefTable</td><td><T k="doc_RefTable_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Meta</td><td><T k="doc_Meta_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Canvas</td><td><T k="doc_Canvas_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Controls</td><td><T k="doc_Controls_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>PlatformIcons</td><td><T k="doc_PlatformIcons_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>StatusIcon</td><td><T k="doc_StatusIcon_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>colorSwatch</td><td><T k="doc_colorSwatch_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>contrastChecker</td><td><T k="doc_contrastChecker_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
     </tbody>
   </table>
 </div>

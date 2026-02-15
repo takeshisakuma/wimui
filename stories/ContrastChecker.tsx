@@ -11,7 +11,23 @@ export const SIGNAL_COLOR_CHANGE = "WIM_SIGNAL_COLOR_CHANGE";
  */
 const resolveToHex = (color: string): string => {
     if (!color) return "#000000";
-    if (color.startsWith("#")) return color;
+
+    // Standardize to 6-digit hex for input[type="color"]
+    if (color.startsWith("#")) {
+        const hex = color.slice(1);
+        if (hex.length === 3) {
+            return `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+        }
+        if (hex.length === 4) {
+            return `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+        }
+        if (hex.length === 8) {
+            return `#${hex.slice(0, 6)}`;
+        }
+        if (hex.length === 6) {
+            return color;
+        }
+    }
 
     if (typeof document !== "undefined") {
         const temp = document.createElement("div");

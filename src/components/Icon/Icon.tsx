@@ -59,6 +59,11 @@ import SpinnerIcon from "../../icon/spinner.svg?react";
 import EllipsisIcon from "../../icon/ellipsis.svg?react";
 import ThumbUpIcon from "../../icon/thumb-up.svg?react";
 import ThumbDownIcon from "../../icon/thumb-down.svg?react";
+import MonitorIcon from "../../icon/monitor.svg?react";
+import SmartphoneIcon from "../../icon/smartphone.svg?react";
+import CloseSmallIcon from "../../icon/close-small.svg?react";
+import CheckCircleIcon from "../../icon/check-circle.svg?react";
+import HourglassIcon from "../../icon/hourglass.svg?react";
 
 
 
@@ -120,6 +125,11 @@ const icons = {
   EllipsisIcon: EllipsisIcon,
   ThumbUpIcon: ThumbUpIcon,
   ThumbDownIcon: ThumbDownIcon,
+  MonitorIcon: MonitorIcon,
+  SmartphoneIcon: SmartphoneIcon,
+  CloseSmallIcon: CloseSmallIcon,
+  CheckCircleIcon: CheckCircleIcon,
+  HourglassIcon: HourglassIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -179,7 +189,12 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "SpinnerIcon"
   | "EllipsisIcon"
   | "ThumbUpIcon"
-  | "ThumbDownIcon";
+  | "ThumbDownIcon"
+  | "MonitorIcon"
+  | "SmartphoneIcon"
+  | "CloseSmallIcon"
+  | "CheckCircleIcon"
+  | "HourglassIcon";
 
   size?: "small" | "medium" | "large";
   color?:
@@ -212,5 +227,3 @@ export const Icon = ({ name, size = "medium", color, className, ...props }: Icon
     />
   );
 };
-
-
