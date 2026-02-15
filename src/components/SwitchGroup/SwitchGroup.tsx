@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
 import classNames from "classnames";
 import { Switch } from "../Switch/Switch";
 import "./switch-group.scss";
@@ -17,6 +17,10 @@ type SwitchGroupProps = {
     direction?: "vertical" | "horizontal";
     name?: string;
     className?: string;
+    /**
+     * グループのラベル
+     */
+    label?: string;
 };
 
 /**
@@ -30,9 +34,12 @@ export const SwitchGroup = ({
     direction = "vertical",
     name,
     className,
+    label,
 }: SwitchGroupProps) => {
     const isControlled = value !== undefined;
     const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
+    const generatedId = useId();
+    const labelId = `wim-switch-group-label-${generatedId}`;
 
     const currentValue = isControlled ? value : internalValue;
 
@@ -60,7 +67,14 @@ export const SwitchGroup = ({
                 direction === "horizontal" && "wim-switch-group--horizontal",
                 className,
             )}
+            role="group"
+            aria-labelledby={label ? labelId : undefined}
         >
+            {label && (
+                <div id={labelId} className="wim-switch-group-label">
+                    {label}
+                </div>
+            )}
             {options.map((option) => (
                 <Switch
                     key={option.value}
@@ -75,5 +89,6 @@ export const SwitchGroup = ({
         </div>
     );
 };
+
 
 

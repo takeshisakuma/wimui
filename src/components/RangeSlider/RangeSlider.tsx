@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import classNames from "classnames";
 import "./rangeSlider.scss";
 
@@ -48,6 +48,14 @@ type RangeSliderProps = {
      * あるいはJSON文字列として送信するかなど検討が必要だが、ここでは隠しinputを2つつくる。
      */
     name?: string;
+    /**
+     * アクセシビリティ用のラベル
+     */
+    label?: string;
+    /**
+     * カスタムID
+     */
+    id?: string;
 };
 
 /**
@@ -65,9 +73,15 @@ export const RangeSlider = ({
     onAfterChange,
     className,
     name,
+    label,
+    id: customId,
     ...props
 }: RangeSliderProps) => {
     const isControlled = value !== undefined;
+    const generatedId = useId();
+    const id = customId || generatedId;
+    const labelId = `wim-range-slider-label-${id}`;
+
     // 初期値の正当性チェック
     const safeDefaultValue: [number, number] = [
         Math.max(min, Math.min(defaultValue[0], max)),
@@ -149,15 +163,6 @@ export const RangeSlider = ({
         onChange?.(nextValues);
     };
 
-
-
-    // NOTE: updateValue depends on currentValue, so handleGlobalMouseMove needs to be updated or logic moved.
-    // Instead of useCallback with deps, let's use a ref for values or just accept render updates.
-    // However, dragging works better if we don't rely on React render cycle for "current" dragging state logic too much if it creates lag, but for this simple component it's fine.
-    // Wait, if I put currentValue in deps, handleGlobalMouseMove is recreated every render.
-    // That's fine. But addEventListener handles might accumulate if not cleaned up properly, or thrash.
-    // Better approach: use ref for currentValue inside the effect or pass it.
-
     const currentValueRef = useRef(currentValue);
     useEffect(() => {
         currentValueRef.current = currentValue;
@@ -190,13 +195,10 @@ export const RangeSlider = ({
     const handleGlobalMouseUp = useCallback(() => {
         if (isDragging.current) {
             isDragging.current = null;
-            onAfterChange?.(isControlled ? value! : internalValue); // NOTE: isControlled value might be stale here if we don't use ref? No, value comes from closure, might be stale.
-            // Actually onAfterChange usually wants the final value.
-            // Since it's inside useCallback with deps, we should check deps.
+            onAfterChange?.(isControlled ? value! : internalValue);
         }
     }, [isControlled, value, internalValue, onAfterChange]);
 
-    // Actually, passing `value` in deps is safer for onAfterChange.
 
     useEffect(() => {
         document.addEventListener("mousemove", handleGlobalMouseMoveRef);
@@ -251,53 +253,71 @@ export const RangeSlider = ({
     const leftPerc = getPercentage(currentValue[0]);
     const rightPerc = getPercentage(currentValue[1]);
 
+    const {
+        'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy,
+        ...wrapperProps
+    } = props as any;
+
     return (
-        /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
-        <div
-            className={classNames("wim-range-slider", disabled && "wim-range-slider--disabled", className)}
-            onMouseDown={handleTrackMouseDown}
-            onTouchStart={handleTrackMouseDown}
-            {...props}
-        >
-            <div className="wim-range-slider__track-container" ref={trackRef}>
-                <div
-                    className="wim-range-slider__track"
-                    style={{
-                        left: `${leftPerc}%`,
-                        width: `${rightPerc - leftPerc}%`
-                    }}
-                />
-                <div
-                    className="wim-range-slider__thumb"
-                    style={{ left: `${leftPerc}%` }}
-                    role="slider"
-                    aria-valuemin={min}
-                    aria-valuemax={currentValue[1]}
-                    aria-valuenow={currentValue[0]}
-                    aria-disabled={disabled}
-                    tabIndex={disabled ? -1 : 0}
-                    onMouseDown={(e) => handleMouseDown(e, "min")}
-                    onTouchStart={(e) => handleMouseDown(e, "min")}
-                    onKeyDown={(e) => handleKeyDown(e, "min")}
-                />
-                <div
-                    className="wim-range-slider__thumb"
-                    style={{ left: `${rightPerc}%` }}
-                    role="slider"
-                    aria-valuemin={currentValue[0]}
-                    aria-valuemax={max}
-                    aria-valuenow={currentValue[1]}
-                    aria-disabled={disabled}
-                    tabIndex={disabled ? -1 : 0}
-                    onMouseDown={(e) => handleMouseDown(e, "max")}
-                    onTouchStart={(e) => handleMouseDown(e, "max")}
-                    onKeyDown={(e) => handleKeyDown(e, "max")}
-                />
+        <div className={classNames("wim-range-slider-container", className)}>
+            {label && (
+                <span id={labelId} className="wim-label" style={{ display: 'block', marginBottom: '8px' }}>
+                    {label}
+                </span>
+            )}
+            {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+            <div
+                className={classNames("wim-range-slider", disabled && "wim-range-slider--disabled")}
+                onMouseDown={handleTrackMouseDown}
+                onTouchStart={handleTrackMouseDown}
+                {...wrapperProps}
+            >
+                <div className="wim-range-slider__track-container" ref={trackRef}>
+                    <div
+                        className="wim-range-slider__track"
+                        style={{
+                            left: `${leftPerc}%`,
+                            width: `${rightPerc - leftPerc}%`
+                        }}
+                    />
+                    <div
+                        className="wim-range-slider__thumb"
+                        style={{ left: `${leftPerc}%` }}
+                        role="slider"
+                        aria-valuemin={min}
+                        aria-valuemax={currentValue[1]}
+                        aria-valuenow={currentValue[0]}
+                        aria-disabled={disabled}
+                        aria-labelledby={label ? labelId : ariaLabelledBy}
+                        aria-label={label ? `Start ${label}` : (ariaLabel || "Start")}
+                        tabIndex={disabled ? -1 : 0}
+                        onMouseDown={(e) => handleMouseDown(e, "min")}
+                        onTouchStart={(e) => handleMouseDown(e, "min")}
+                        onKeyDown={(e) => handleKeyDown(e, "min")}
+                    />
+                    <div
+                        className="wim-range-slider__thumb"
+                        style={{ left: `${rightPerc}%` }}
+                        role="slider"
+                        aria-valuemin={currentValue[0]}
+                        aria-valuemax={max}
+                        aria-valuenow={currentValue[1]}
+                        aria-disabled={disabled}
+                        aria-labelledby={label ? labelId : ariaLabelledBy}
+                        aria-label={label ? `End ${label}` : (ariaLabel || "End")}
+                        tabIndex={disabled ? -1 : 0}
+                        onMouseDown={(e) => handleMouseDown(e, "max")}
+                        onTouchStart={(e) => handleMouseDown(e, "max")}
+                        onKeyDown={(e) => handleKeyDown(e, "max")}
+                    />
+                </div>
+                <input type="hidden" name={name ? `${name}-min` : ""} value={currentValue[0]} />
+                <input type="hidden" name={name ? `${name}-max` : ""} value={currentValue[1]} />
             </div>
-            <input type="hidden" name={name ? `${name}-min` : ""} value={currentValue[0]} />
-            <input type="hidden" name={name ? `${name}-max` : ""} value={currentValue[1]} />
         </div>
     );
 };
+
 
 

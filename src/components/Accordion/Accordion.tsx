@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, useMemo } from "react";
+import React, { createContext, useContext, useState, useCallback, useMemo, useId } from "react";
 import classNames from "classnames";
 import "./accordion.scss";
 import { Icon } from "../Icon/Icon";
@@ -7,6 +7,7 @@ type AccordionContextType = {
     value: string[];
     onValueChange: (val: string) => void;
     type: "single" | "multiple";
+    accordionId: string;
 };
 
 const AccordionContext = createContext<AccordionContextType | null>(null);
@@ -27,6 +28,7 @@ type AccordionProps = {
     collapsible?: boolean;
     className?: string;
     children: React.ReactNode;
+    id?: string;
 };
 
 export const Accordion = ({
@@ -37,7 +39,11 @@ export const Accordion = ({
     collapsible = true,
     className,
     children,
+    id: customId,
 }: AccordionProps) => {
+    const generatedId = useId();
+    const accordionId = customId || generatedId;
+
     const [internalValue, setInternalValue] = useState<string[]>(() => {
         if (defaultValue) {
             return Array.isArray(defaultValue) ? defaultValue : [defaultValue];
@@ -82,7 +88,7 @@ export const Accordion = ({
 
     return (
         <AccordionContext.Provider
-            value={{ value: activeValue as string[], onValueChange: handleValueChange, type }}
+            value={{ value: activeValue as string[], onValueChange: handleValueChange, type, accordionId }}
         >
             <div className={classNames("wim-accordion", className)}>
                 {children}
@@ -98,11 +104,20 @@ type AccordionItemProps = {
     children: React.ReactNode;
 };
 
-const AccordionItemContext = createContext<{ value: string; disabled: boolean; isContentOpen: boolean } | null>(null);
+const AccordionItemContext = createContext<{
+    value: string;
+    disabled: boolean;
+    isContentOpen: boolean;
+    isLogicOpen: boolean;
+    triggerId: string;
+    contentId: string;
+} | null>(null);
 
 export const AccordionItem = ({ value, disabled = false, className, children }: AccordionItemProps) => {
-    const { value: activeValues } = useAccordion();
+    const { value: activeValues, accordionId } = useAccordion();
     const isLogicOpen = activeValues.includes(value);
+    const triggerId = `wim-accordion-trigger-${accordionId}-${value}`;
+    const contentId = `wim-accordion-content-${accordionId}-${value}`;
 
     // Separating the logic state from the visual state to ensure transitions trigger properly
     const [isContentOpen, setIsContentOpen] = useState(isLogicOpen);
@@ -144,7 +159,7 @@ export const AccordionItem = ({ value, disabled = false, className, children }: 
     const isDetailOpen = isLogicOpen || isAnimating;
 
     return (
-        <AccordionItemContext.Provider value={{ value, disabled, isContentOpen }}>
+        <AccordionItemContext.Provider value={{ value, disabled, isContentOpen, isLogicOpen, triggerId, contentId }}>
             <details
                 open={isDetailOpen}
                 onTransitionEnd={handleTransitionEnd}
@@ -170,8 +185,6 @@ export const AccordionTrigger = ({
     const item = useContext(AccordionItemContext);
     if (!item) throw new Error("AccordionTrigger must be used within AccordionItem");
 
-
-
     const handleClick = (e: React.MouseEvent) => {
         if (item.disabled) {
             e.preventDefault();
@@ -196,7 +209,12 @@ export const AccordionTrigger = ({
 
     return (
         <summary
+            id={item.triggerId}
             className={classNames("wim-accordion__trigger", className)}
+            role="button"
+            aria-expanded={item.isLogicOpen}
+            aria-controls={item.contentId}
+            aria-disabled={item.disabled}
             onClick={handleClick}
             onKeyDown={handleKeyDown}
             {...props}
@@ -223,6 +241,9 @@ export const AccordionContent = ({
 
     return (
         <div
+            id={item.contentId}
+            role="region"
+            aria-labelledby={item.triggerId}
             className={classNames(
                 "wim-accordion__content",
                 item.isContentOpen && "wim-accordion__content--open",
@@ -239,4 +260,4 @@ Accordion.Item = AccordionItem;
 Accordion.Trigger = AccordionTrigger;
 Accordion.Content = AccordionContent;
 
-
+export default Accordion;

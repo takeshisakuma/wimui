@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import classNames from "classnames";
 import "./slider.scss";
 
@@ -43,6 +43,14 @@ type SliderProps = {
      * 名前の属性
      */
     name?: string;
+    /**
+     * アクセシビリティ用のラベル
+     */
+    label?: string;
+    /**
+     * カスタムID
+     */
+    id?: string;
 };
 
 /**
@@ -59,6 +67,8 @@ export const Slider = ({
     onAfterChange,
     className,
     name,
+    label,
+    id: customId,
     ...props
 }: SliderProps) => {
     const isControlled = value !== undefined;
@@ -66,8 +76,10 @@ export const Slider = ({
     const currentValue = isControlled ? value! : internalValue;
     const trackRef = useRef<HTMLDivElement>(null);
     const isDragging = useRef(false);
+    const generatedId = useId();
+    const id = customId || generatedId;
+    const labelId = `wim-slider-label-${id}`;
 
-    // 値を範囲内に収める
     // 値を範囲内に収める
     const clamp = useCallback((val: number, minVal: number, maxVal: number) =>
         Math.max(minVal, Math.min(val, maxVal)), []);
@@ -165,34 +177,52 @@ export const Slider = ({
 
     const percentage = ((currentValue - min) / (max - min)) * 100;
 
+    const {
+        'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy,
+        ...wrapperProps
+    } = props as any;
+
     return (
-        /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
         <div
-            className={classNames("wim-slider", disabled && "wim-slider--disabled", className)}
-            onMouseDown={handleMouseDown}
-            onTouchStart={handleMouseDown}
-            {...props}
+            className={classNames("wim-slider-container", className)}
         >
-            <div className="wim-slider__track-container" ref={trackRef}>
-                <div
-                    className="wim-slider__track"
-                    style={{ width: `${percentage}%` }}
-                />
-                <div
-                    className="wim-slider__thumb"
-                    style={{ left: `${percentage}%` }}
-                    role="slider"
-                    aria-valuemin={min}
-                    aria-valuemax={max}
-                    aria-valuenow={currentValue}
-                    aria-disabled={disabled}
-                    tabIndex={disabled ? -1 : 0}
-                    onKeyDown={handleKeyDown}
-                />
+            {label && (
+                <span id={labelId} className="wim-label" style={{ display: 'block', marginBottom: '8px' }}>
+                    {label}
+                </span>
+            )}
+            {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+            <div
+                className={classNames("wim-slider", disabled && "wim-slider--disabled")}
+                onMouseDown={handleMouseDown}
+                onTouchStart={handleMouseDown}
+                {...wrapperProps}
+            >
+                <div className="wim-slider__track-container" ref={trackRef}>
+                    <div
+                        className="wim-slider__track"
+                        style={{ width: `${percentage}%` }}
+                    />
+                    <div
+                        className="wim-slider__thumb"
+                        style={{ left: `${percentage}%` }}
+                        role="slider"
+                        aria-valuemin={min}
+                        aria-valuemax={max}
+                        aria-valuenow={currentValue}
+                        aria-disabled={disabled}
+                        aria-labelledby={label ? labelId : ariaLabelledBy}
+                        aria-label={label ? undefined : ariaLabel}
+                        tabIndex={disabled ? -1 : 0}
+                        onKeyDown={handleKeyDown}
+                    />
+                </div>
+                <input type="hidden" name={name} value={currentValue} />
             </div>
-            <input type="hidden" name={name} value={currentValue} />
         </div>
     );
 };
+
 
 
