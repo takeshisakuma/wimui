@@ -1,5 +1,5 @@
 import { default as React } from '../../../node_modules/react';
-export interface TransitionProps {
+export interface TransitionProps extends React.HTMLAttributes<HTMLDivElement> {
     /** Whether the component should be shown or hidden */
     show: boolean;
     /** The content to be transitioned */
@@ -25,4 +25,4 @@ export interface TransitionProps {
  * A component that handles simple CSS transitions for its children.
  * It manages applying classes at the right moments (enter, enterFrom, enterTo, etc.).
  */
-export declare const Transition: ({ show, children, enter, enterFrom, enterTo, leave, leaveFrom, leaveTo, unmount, className, }: TransitionProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const Transition: React.ForwardRefExoticComponent<TransitionProps & React.RefAttributes<HTMLDivElement>>;

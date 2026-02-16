@@ -28,7 +28,7 @@ export type PopoverContentProps = {
     align?: "left" | "right" | "center";
     side?: "top" | "bottom";
 };
-export declare const PopoverContent: ({ children, className, align, side, ...props }: PopoverContentProps & React.HTMLAttributes<HTMLDivElement>) => import("react/jsx-runtime").JSX.Element | null;
+export declare const PopoverContent: ({ children, className, align, side, ...props }: PopoverContentProps & React.HTMLAttributes<HTMLDivElement>) => import("react/jsx-runtime").JSX.Element;
 export declare const PopoverClose: ({ children, className, asChild, ...props }: React.ComponentPropsWithoutRef<"button"> & {
     asChild?: boolean;
 }) => import("react/jsx-runtime").JSX.Element;

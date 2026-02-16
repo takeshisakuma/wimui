@@ -426,5 +426,10 @@
   "layout_diagram_toast": "トースト (通知)",
   "guide_layout_responsive_mobile": "モバイル (< 768px): サイドバー -> ドロワー、ヘッダーメニュー -> ハンバーガーメニュー",
   "guide_layout_responsive_tablet": "タブレット (768px - 1024px): サイドバー (アイコンのみ、または折りたたみ)",
-  "guide_layout_responsive_desktop": "デスクトップ (> 1024px): 通常レイアウト"
+  "guide_layout_responsive_desktop": "デスクトップ (> 1024px): 通常レイアウト",
+  "guide_hierarchy_title": "階層構造とコンポーネント構成",
+  "guide_hierarchy_desc": "コンポーネントのレイヤー構造と依存関係を可視化し、健全なアーキテクチャを維持するためのガイドラインです。",
+  "guide_hierarchy_tiers_title": "1. コンポーネントの階層 (Tiers)",
+  "guide_composition_map_title": "2. 構成マップ (Composition Map)",
+  "guide_hierarchy_rules_title": "3. 設計ルール"
 }

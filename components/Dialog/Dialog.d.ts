@@ -26,7 +26,7 @@ export interface DialogContentProps {
      */
     onCloseAutoFocus?: (e: Event) => void;
 }
-export declare const DialogContent: ({ children, className }: DialogContentProps) => React.ReactPortal | null;
+export declare const DialogContent: ({ children, className }: DialogContentProps) => import("react/jsx-runtime").JSX.Element;
 export declare const DialogHeader: ({ children, className }: {
     children: React.ReactNode;
     className?: string;

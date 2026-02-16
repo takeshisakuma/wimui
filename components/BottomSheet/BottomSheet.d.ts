@@ -22,7 +22,7 @@ export interface BottomSheetContentProps {
     children: React.ReactNode;
     className?: string;
 }
-export declare const BottomSheetContent: ({ children, className }: BottomSheetContentProps) => React.ReactPortal | null;
+export declare const BottomSheetContent: ({ children, className }: BottomSheetContentProps) => import("react/jsx-runtime").JSX.Element;
 export declare const BottomSheetHeader: ({ children, className }: {
     children: React.ReactNode;
     className?: string;

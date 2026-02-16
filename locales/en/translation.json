@@ -425,5 +425,10 @@
   "layout_diagram_toast": "Toast (Overlay)",
   "guide_layout_responsive_mobile": "Mobile (< 768px): Sidebar -> Drawer, Header Menu -> Hamburger",
   "guide_layout_responsive_tablet": "Tablet (768px - 1024px): Sidebar (Icon only or collapsible)",
-  "guide_layout_responsive_desktop": "Desktop (> 1024px): Full layout"
+  "guide_layout_responsive_desktop": "Desktop (> 1024px): Full layout",
+  "guide_hierarchy_title": "Hierarchy & Composition",
+  "guide_hierarchy_desc": "Visualizing the layers of components and how they are composed to maintain a healthy architecture.",
+  "guide_hierarchy_tiers_title": "1. Component Tiers",
+  "guide_composition_map_title": "2. Composition Map",
+  "guide_hierarchy_rules_title": "3. Design Rules"
 }

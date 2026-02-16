@@ -14,7 +14,7 @@ export type DropdownMenuProps = {
     className?: string;
     align?: "left" | "right";
 };
-export declare const DropdownMenu: ({ children, className, align, }: DropdownMenuProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const DropdownMenu: ({ children, className, align, }: DropdownMenuProps) => import("react/jsx-runtime").JSX.Element;
 export type DropdownItemProps = {
     children: ReactNode;
     onClick?: () => void;

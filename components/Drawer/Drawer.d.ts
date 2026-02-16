@@ -24,7 +24,7 @@ export interface DrawerContentProps {
     children: React.ReactNode;
     className?: string;
 }
-export declare const DrawerContent: ({ children, className }: DrawerContentProps) => React.ReactPortal | null;
+export declare const DrawerContent: ({ children, className }: DrawerContentProps) => import("react/jsx-runtime").JSX.Element;
 export declare const DrawerHeader: ({ children, className }: {
     children: React.ReactNode;
     className?: string;

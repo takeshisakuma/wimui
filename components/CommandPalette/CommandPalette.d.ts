@@ -1,4 +1,4 @@
-import { default as React, ReactNode } from '../../../node_modules/react';
+import { ReactNode } from '../../../node_modules/react';
 export interface CommandPaletteProps {
     children: ReactNode;
     open?: boolean;
@@ -15,7 +15,7 @@ export interface CommandPaletteContentProps {
     children: ReactNode;
     className?: string;
 }
-export declare const CommandPaletteContent: ({ children, className }: CommandPaletteContentProps) => React.ReactPortal | null;
+export declare const CommandPaletteContent: ({ children, className }: CommandPaletteContentProps) => import("react/jsx-runtime").JSX.Element;
 export interface CommandPaletteInputProps {
     placeholder?: string;
     value?: string;
