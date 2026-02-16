@@ -3,7 +3,7 @@ import { Menu, MenuItem, MenuItemGroup, SubMenu, MenuDivider } from "@/component
 import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof Menu> = {
-    title: "Component/Navigation/Menu",
+    title: "Component/Overlays/Menu",
     component: Menu,
     parameters: {
         layout: "centered",
