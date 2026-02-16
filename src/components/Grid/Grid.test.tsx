@@ -16,6 +16,6 @@ describe("Grid", () => {
     it("applies style for cols", () => {
         render(<Grid cols={3} data-testid="grid" />);
         const grid = screen.getByTestId("grid");
-        expect(grid).toHaveStyle({ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" });
+        expect(grid).toHaveStyle({ "--wim-grid-cols": "repeat(3, minmax(0, 1fr))" });
     });
 });

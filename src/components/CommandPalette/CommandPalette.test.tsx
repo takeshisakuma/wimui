@@ -55,7 +55,7 @@ describe("CommandPalette", () => {
         // We can test that typing in input works.
     });
 
-    it("handles item selection", () => {
+    it("handles item selection", async () => {
         const handleSelect = vi.fn();
         render(
             <CommandPalette>
@@ -73,6 +73,8 @@ describe("CommandPalette", () => {
 
         expect(handleSelect).toHaveBeenCalled();
         // and it should close
-        expect(screen.queryByText("Item 1")).not.toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.queryByText("Item 1")).not.toBeInTheDocument();
+        });
     });
 });

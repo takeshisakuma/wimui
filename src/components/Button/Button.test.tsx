@@ -4,7 +4,7 @@ import { Button } from "./Button";
 import { Icon } from "../Icon/Icon";
 
 // Mock Icon because it might use assets/etc
-vi.mock("../../../stories/Icon/Icon", () => ({
+vi.mock("../Icon/Icon", () => ({
     Icon: ({ name }: { name: string }) => <span data-testid="icon">{name}</span>,
 }));
 

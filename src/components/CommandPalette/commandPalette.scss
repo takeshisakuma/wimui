@@ -214,11 +214,11 @@
 // Add basic styles for the trigger if needed
 .wim-command-palette-trigger {
     display: inline-flex;
-    white-space: nowrap;
     gap: spacings.$spacing-sm;
     align-items: center;
     padding: spacings.$spacing-sm spacings.$spacing-md;
     color: var(--text-secondary);
+    white-space: nowrap;
     cursor: pointer;
     background: var(--bg-component);
     border: 1px solid var(--wim-color-border);

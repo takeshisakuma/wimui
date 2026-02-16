@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import {
     BottomSheet,
@@ -29,11 +29,13 @@ describe("BottomSheet", () => {
         fireEvent.click(screen.getByText("Open Sheet"));
 
         // Content should now be in the document
-        expect(screen.getByText("Sheet Title")).toBeInTheDocument();
-        expect(screen.getByText("Sheet Body Content")).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByText("Sheet Title")).toBeInTheDocument();
+            expect(screen.getByText("Sheet Body Content")).toBeInTheDocument();
+        });
     });
 
-    it("closes when the overlay is clicked", () => {
+    it("closes when the overlay is clicked", async () => {
         render(
             <BottomSheet defaultOpen={true}>
                 <BottomSheetContent>
@@ -51,10 +53,12 @@ describe("BottomSheet", () => {
             fireEvent.click(overlay);
         }
 
-        expect(screen.queryByText("Sheet Content")).not.toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.queryByText("Sheet Content")).not.toBeInTheDocument();
+        });
     });
 
-    it("closes when Escape key is pressed", () => {
+    it("closes when Escape key is pressed", async () => {
         render(
             <BottomSheet defaultOpen={true}>
                 <BottomSheetContent>
@@ -67,6 +71,8 @@ describe("BottomSheet", () => {
 
         fireEvent.keyDown(document, { key: "Escape" });
 
-        expect(screen.queryByText("Sheet Content")).not.toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.queryByText("Sheet Content")).not.toBeInTheDocument();
+        });
     });
 });

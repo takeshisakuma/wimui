@@ -204,12 +204,12 @@
         font-size: 1rem;
         line-height: 1.5;
         color: var(--text-primary);
+        appearance: none; // Hide default arrow
         cursor: pointer;
         background-color: var(--bg-component, #fff);
         border: 1px solid colors.$color-secondary;
         border-radius: spacings.$radius-md;
         transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        appearance: none; // Hide default arrow
 
         &:hover:not(:disabled) {
             border-color: colors.$color-primary;
@@ -234,8 +234,8 @@
     .wim-selectbox-icon {
         position: absolute;
         right: spacings.$spacing-md;
-        pointer-events: none;
         color: var(--text-secondary);
+        pointer-events: none;
     }
 }
 

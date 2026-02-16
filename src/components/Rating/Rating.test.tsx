@@ -23,7 +23,7 @@ describe("Rating", () => {
     });
 
     it("is disabled when disabled prop is true", () => {
-        const { container } = render(<Rating disabled />);
-        expect(container.firstChild).toHaveClass("wim-rating--disabled");
+        render(<Rating disabled />);
+        expect(screen.getByRole("radiogroup")).toHaveClass("wim-rating--disabled");
     });
 });

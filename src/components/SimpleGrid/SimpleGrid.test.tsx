@@ -19,7 +19,7 @@ describe("SimpleGrid", () => {
     it("applies correct grid style for columns", () => {
         const { container } = render(<SimpleGrid cols={4} />);
         const grid = container.firstChild as HTMLElement;
-        expect(grid.style.gridTemplateColumns).toBe("repeat(4, minmax(0, 1fr))");
+        expect(grid).toHaveStyle({ "--wim-simple-grid-cols": "repeat(4, minmax(0, 1fr))" });
     });
 
     it("applies minChildWidth if provided", () => {

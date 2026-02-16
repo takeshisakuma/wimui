@@ -46,6 +46,10 @@ describe("Tooltip", () => {
         expect(screen.getByText("Tooltip info")).toBeInTheDocument();
 
         fireEvent.mouseLeave(trigger);
+        act(() => {
+            vi.advanceTimersByTime(150);
+        });
+
         expect(screen.queryByText("Tooltip info")).not.toBeInTheDocument();
         vi.useRealTimers();
     });

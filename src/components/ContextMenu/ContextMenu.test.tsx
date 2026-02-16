@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { ContextMenu, ContextMenuItem } from "./ContextMenu";
 
@@ -23,7 +23,7 @@ describe("ContextMenu", () => {
         expect(screen.getByText("Menu Item 1")).toBeInTheDocument();
     });
 
-    it("hides menu on click outside", () => {
+    it("hides menu on click outside", async () => {
         render(
             <ContextMenu
                 menu={<ContextMenuItem>Menu Item 1</ContextMenuItem>}
@@ -36,7 +36,9 @@ describe("ContextMenu", () => {
         expect(screen.getByText("Menu Item 1")).toBeInTheDocument();
 
         fireEvent.mouseDown(document.body);
-        expect(screen.queryByText("Menu Item 1")).not.toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.queryByText("Menu Item 1")).not.toBeInTheDocument();
+        });
     });
 
     it("calls item onClick", () => {

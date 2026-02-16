@@ -26,7 +26,7 @@ describe("Paragraph", () => {
     });
 
     it("applies italic class", () => {
-        const { container } = render(<Paragraph content="Test" style="italic" />);
+        const { container } = render(<Paragraph content="Test" fontStyle="italic" />);
         expect(container.firstChild).toHaveClass("wim-paragraph--italic");
     });
 

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Popover, PopoverTrigger, PopoverContent, PopoverClose } from "./Popover";
 
@@ -16,7 +16,7 @@ describe("Popover", () => {
         expect(screen.getByText("Popover Content")).toBeInTheDocument();
     });
 
-    it("closes when close button is clicked", () => {
+    it("closes when close button is clicked", async () => {
         render(
             <Popover defaultOpen>
                 <PopoverTrigger>Open</PopoverTrigger>
@@ -29,10 +29,12 @@ describe("Popover", () => {
 
         expect(screen.getByText("Popover Content")).toBeInTheDocument();
         fireEvent.click(screen.getByText("Close"));
-        expect(screen.queryByText("Popover Content")).not.toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.queryByText("Popover Content")).not.toBeInTheDocument();
+        });
     });
 
-    it("closes when clicking outside", () => {
+    it("closes when clicking outside", async () => {
         render(
             <div>
                 <div data-testid="outside">Outside</div>
@@ -45,6 +47,8 @@ describe("Popover", () => {
 
         expect(screen.getByText("Popover Content")).toBeInTheDocument();
         fireEvent.mouseDown(screen.getByTestId("outside"));
-        expect(screen.queryByText("Popover Content")).not.toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.queryByText("Popover Content")).not.toBeInTheDocument();
+        });
     });
 });

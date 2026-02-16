@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Selectbox } from "./Selectbox";
 import React from "react";
@@ -15,18 +15,20 @@ describe("Selectbox", () => {
         expect(screen.getByText("Select item")).toBeInTheDocument();
     });
 
-    it("opens dropdown and selects an option", () => {
+    it("opens dropdown and selects an option", async () => {
         const onChange = vi.fn();
         render(<Selectbox options={options} onChange={onChange} />);
 
         const trigger = screen.getByRole("combobox");
         fireEvent.click(trigger);
 
-        const option1 = screen.getByText("Option 1");
+        const option1 = screen.getByRole("option", { name: "Option 1" });
         fireEvent.click(option1);
 
         expect(onChange).toHaveBeenCalledWith("1");
-        expect(screen.getByText("Option 1")).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByRole("option", { name: "Option 1" })).toBeInTheDocument();
+        }, { timeout: 1000 });
     });
 
     it("shows label when provided", () => {

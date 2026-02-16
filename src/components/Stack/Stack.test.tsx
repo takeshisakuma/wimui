@@ -11,7 +11,7 @@ describe("Stack", () => {
             </Stack>
         );
         const stack = container.firstChild as HTMLElement;
-        expect(stack.style.flexDirection).toBe("column");
+        expect(stack).toHaveStyle({ "--wim-stack-dir": "column" });
         expect(screen.getByText("1")).toBeInTheDocument();
         expect(screen.getByText("2")).toBeInTheDocument();
     });
@@ -23,7 +23,7 @@ describe("Stack", () => {
             </Stack>
         );
         const stack = container.firstChild as HTMLElement;
-        expect(stack.style.flexDirection).toBe("row");
+        expect(stack).toHaveStyle({ "--wim-stack-dir": "row" });
     });
 
     it("applies gap from spacing token", () => {

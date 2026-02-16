@@ -4,7 +4,6 @@ $sm: 576px;
 $md: 768px;
 $lg: 992px;
 $xl: 1200px;
-
 $breakpoints: (
     sm: $sm,
     md: $md,
@@ -17,9 +16,7 @@ $breakpoints: (
         @media (min-width: map.get($breakpoints, $breakpoint)) {
             @content;
         }
-    }
-
-    @else {
+    } @else {
         @warn "Breakpoint #{$breakpoint} not found in $breakpoints map";
     }
 }
@@ -29,9 +26,7 @@ $breakpoints: (
         @media (max-width: map.get($breakpoints, $breakpoint)) {
             @content;
         }
-    }
-
-    @else {
+    } @else {
         @warn "Breakpoint #{$breakpoint} not found in $breakpoints map";
     }
 }

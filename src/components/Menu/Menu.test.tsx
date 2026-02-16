@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Menu, MenuItem, SubMenu, MenuDivider, MenuItemGroup } from "./Menu";
 
@@ -34,7 +34,7 @@ describe("Menu", () => {
         expect(handleClick).toHaveBeenCalled();
     });
 
-    it("toggles submenu when clicked", () => {
+    it("toggles submenu when clicked", async () => {
         render(
             <Menu>
                 <SubMenu itemKey="sub1" title="SubMenu">
@@ -49,7 +49,9 @@ describe("Menu", () => {
         expect(screen.getByText("SubItem 1")).toBeInTheDocument();
 
         fireEvent.click(screen.getByText("SubMenu"));
-        expect(screen.queryByText("SubItem 1")).not.toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.queryByText("SubItem 1")).not.toBeInTheDocument();
+        });
     });
 
     it("disables menu items", () => {
