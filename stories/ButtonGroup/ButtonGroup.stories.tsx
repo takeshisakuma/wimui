@@ -4,7 +4,7 @@ import { ButtonGroup } from "@/components/ButtonGroup/ButtonGroup";
 import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof ButtonGroup> = {
-    title: "Component/Buttons & Actions/ButtonGroup",
+    title: "Component/Buttons/ButtonGroup",
     component: ButtonGroup,
     parameters: {
         layout: "centered",
