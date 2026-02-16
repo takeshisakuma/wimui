@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
-import { createPortal } from "react-dom";
 import classNames from "classnames";
+import { Portal } from "../Portal/Portal";
+import { Transition } from "../Transition/Transition";
 import { FocusTrap } from "../FocusTrap/FocusTrap";
 import "./bottomSheet.scss";
 
@@ -155,31 +156,51 @@ export const BottomSheetContent = ({ children, className }: BottomSheetContentPr
         }
     }, [open]);
 
-    if (!open) return null;
-
-    return createPortal(
-        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-        <div className="wim-bottom-sheet-overlay" onClick={(e) => {
-            if (e.target === e.currentTarget) {
-                onOpenChange(false);
-            }
-        }}>
-            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-            <FocusTrap active={open} autoFocus={true} className="wim-bottom-sheet-focus-trap-wrapper">
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
+    return (
+        <Portal>
+            <Transition
+                show={open}
+                enter="fade-enter"
+                enterFrom="fade-enter-from"
+                enterTo="fade-enter-to"
+                leave="fade-leave"
+                leaveFrom="fade-leave-from"
+                leaveTo="fade-leave-to"
+            >
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
                 <div
-                    ref={contentRef}
-                    role="dialog"
-                    aria-modal="true"
-                    className={classNames("wim-bottom-sheet-content", className)}
-                    onClick={(e) => e.stopPropagation()}
+                    className="wim-bottom-sheet-overlay"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            onOpenChange(false);
+                        }
+                    }}
                 >
-                    <div className="wim-bottom-sheet-handle" />
-                    {children}
+                    <Transition
+                        show={open}
+                        enter="slide-bottom-enter"
+                        enterFrom="slide-bottom-enter-from"
+                        enterTo="slide-bottom-enter-to"
+                        leave="slide-bottom-leave"
+                        leaveFrom="slide-bottom-leave-from"
+                        leaveTo="slide-bottom-leave-to"
+                    >
+                        <FocusTrap active={open} autoFocus={true} className="wim-bottom-sheet-focus-trap-wrapper">
+                            <div
+                                ref={contentRef}
+                                role="dialog"
+                                aria-modal="true"
+                                className={classNames("wim-bottom-sheet-content", className)}
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <div className="wim-bottom-sheet-handle" />
+                                {children}
+                            </div>
+                        </FocusTrap>
+                    </Transition>
                 </div>
-            </FocusTrap>
-        </div>,
-        document.body
+            </Transition>
+        </Portal>
     );
 };
 

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from "react";
-import { createPortal } from "react-dom";
 import classNames from "classnames";
+import { Portal } from "../Portal/Portal";
+import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import { FocusTrap } from "../FocusTrap/FocusTrap";
 import "./commandPalette.scss";
@@ -146,38 +147,57 @@ export interface CommandPaletteContentProps {
 export const CommandPaletteContent = ({ children, className }: CommandPaletteContentProps) => {
     const { open, onOpenChange, setActiveIndex, itemCount } = useCommandPalette();
 
-    if (!open) return null;
-
-    return createPortal(
-         
-        <div
-            className="wim-command-palette-overlay"
-            onClick={() => onOpenChange(false)}
-            role="button"
-            tabIndex={-1}
-            onKeyDown={() => { }}
-        >
-            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-            <FocusTrap active={open} autoFocus={true}>
-                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+    return (
+        <Portal>
+            <Transition
+                show={open}
+                enter="fade-enter"
+                enterFrom="fade-enter-from"
+                enterTo="fade-enter-to"
+                leave="fade-leave"
+                leaveFrom="fade-leave-from"
+                leaveTo="fade-leave-to"
+            >
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
                 <div
-                    className={classNames("wim-command-palette-content", className)}
-                    onClick={(e) => e.stopPropagation()}
-                    onKeyDown={(e) => {
-                        if (e.key === "ArrowDown") {
-                            e.preventDefault();
-                            setActiveIndex((prev) => (prev + 1) % itemCount);
-                        } else if (e.key === "ArrowUp") {
-                            e.preventDefault();
-                            setActiveIndex((prev) => (prev - 1 + itemCount) % itemCount);
+                    className="wim-command-palette-overlay"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            onOpenChange(false);
                         }
                     }}
                 >
-                    {children}
+                    <Transition
+                        show={open}
+                        enter="scale-enter"
+                        enterFrom="scale-enter-from"
+                        enterTo="scale-enter-to"
+                        leave="scale-leave"
+                        leaveFrom="scale-leave-from"
+                        leaveTo="scale-leave-to"
+                    >
+                        <FocusTrap active={open} autoFocus={true}>
+                            {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                            <div
+                                className={classNames("wim-command-palette-content", className)}
+                                onClick={(e) => e.stopPropagation()}
+                                onKeyDown={(e) => {
+                                    if (e.key === "ArrowDown") {
+                                        e.preventDefault();
+                                        setActiveIndex((prev) => (prev + 1) % itemCount);
+                                    } else if (e.key === "ArrowUp") {
+                                        e.preventDefault();
+                                        setActiveIndex((prev) => (prev - 1 + itemCount) % itemCount);
+                                    }
+                                }}
+                            >
+                                {children}
+                            </div>
+                        </FocusTrap>
+                    </Transition>
                 </div>
-            </FocusTrap>
-        </div>,
-        document.body
+            </Transition>
+        </Portal>
     );
 };
 

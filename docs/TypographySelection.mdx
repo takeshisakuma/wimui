@@ -1,0 +1,118 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+
+<Meta title="Guides/Typography" />
+
+# タイポグラフィとアイコンの使い分け
+
+情報の階層構造を明確にし、読みやすさとアクセシビリティを最大化するためのガイドラインです。
+
+## テキストコンポーネント比較表
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>HTMLタグ</th>
+      <th>主な用途</th>
+      <th>特徴</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Heading</strong></td>
+      <td>`h1` - `h6`</td>
+      <td>セクションの見出し</td>
+      <td>視覚的な重み（太さ・サイズ）を持ち、ページの構造を示す。</td>
+    </tr>
+    <tr>
+      <td><strong>Paragraph</strong></td>
+      <td>`p`</td>
+      <td>本文のブロック</td>
+      <td>適切な行間と余白を持ち、長い文章の可読性を確保する。</td>
+    </tr>
+    <tr>
+      <td><strong>Span / Text</strong></td>
+      <td>`span`</td>
+      <td>インラインテキスト</td>
+      <td>文章の一部を強調したり、特定のスタイルを適用したりする。</td>
+    </tr>
+    <tr>
+      <td><strong>Quote</strong></td>
+      <td>`blockquote`</td>
+      <td>引用文</td>
+      <td>外部からの引用や強調したい文章を視覚的に分離する。</td>
+    </tr>
+    <tr>
+      <td><strong>Code / Kbd</strong></td>
+      <td>`code` / `kbd`</td>
+      <td>技術情報</td>
+      <td>等幅フォントを使用し、コード片やキーボード操作を明示する。</td>
+    </tr>
+    <tr>
+      <td><strong>Highlight</strong></td>
+      <td>`mark`</td>
+      <td>注目喚起</td>
+      <td>検索結果のヒット部分や、特に重要な箇所を背景色で強調する。</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## アイコンコンポーネントの基本
+
+アイコンはテキストの補助、または単独でのアクション指示として機能します。
+
+<table>
+  <thead>
+    <tr>
+      <th>スタイル</th>
+      <th>例</th>
+      <th>推奨される利用シーン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Outline (線画)</strong></td>
+      <td><T k="doc_icon_desc" /></td>
+      <td>標準的なUIパーツ、ナビゲーション、フォームの補助。</td>
+    </tr>
+    <tr>
+      <td><strong>Filled (塗り)</strong></td>
+      <td>-</td>
+      <td>選択状態の明示、重要なアラート、ダークモードでの視認性確保。</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## ユーザビリティとアクセシビリティ
+
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>ガイドライン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>セマンティクス</strong></td>
+      <td>見出しのレベル（h1, h2...）は見た目のサイズではなく、ドキュメントの構造に従って正しく順序立てて使用してください。</td>
+    </tr>
+    <tr>
+      <td><strong>コントラスト</strong></td>
+      <td>テキストの色は背景色に対して十分なコントラスト比（WCAG AA以上）を維持してください。`ContrastChecker` ユーティリティで確認できます。</td>
+    </tr>
+    <tr>
+      <td><strong>アイコンの代替テキスト</strong></td>
+      <td>アイコンが意味を持つ場合（ボタンとして機能する場合など）は、`aria-label` 等でスクリーンリーダーに情報を伝えてください。</td>
+    </tr>
+    <tr>
+      <td><strong>可読性</strong></td>
+      <td>本文（Paragraph）の行幅は、読みやすさを考慮して 45〜75 文字程度に収まるよう `Container` 等で制限することを推奨します。</td>
+    </tr>
+  </tbody>
+</table>

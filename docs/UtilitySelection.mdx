@@ -1,0 +1,105 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+
+<Meta title="Guides/Utilities" />
+
+# ユーティリティの役割と使い分け
+
+wimui は、UI の構築を支える低レイヤーの補助コンポーネントを多数提供しています。これらは直接的な UI パーツではありませんが、機能性と操作性を高めるために不可欠です。
+
+## 技術的ユーティリティ
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>役割</th>
+      <th>使用ポイント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Portal</strong></td>
+      <td>DOMの転送</td>
+      <td>モーダル、ツールチップ、コンテキストメニューなど、親要素の `overflow: hidden` の影響を避ける必要がある場合。</td>
+    </tr>
+    <tr>
+      <td><strong>Transition</strong></td>
+      <td>アニメーション管理</td>
+      <td>出現・消失時の CSS アニメーションを一括管理したい場合。</td>
+    </tr>
+    <tr>
+      <td><strong>Focus Trap</strong></td>
+      <td>フォーカス制御</td>
+      <td>モーダルやダイアログが開いている間、フォーカスが裏側に漏れないようにし、アクセシビリティ（キーボード操作）を確保する場合。</td>
+    </tr>
+    <tr>
+      <td><strong>Error Boundary</strong></td>
+      <td>エラーハンドリング</td>
+      <td>特定のコンポーネントで予期せぬ実行時エラーが発生しても、アプリ全体がクラッシュするのを防ぎ、適切なフォールバックを表示する場合。</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 視覚的ユーティリティ
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>役割</th>
+      <th>活用のヒント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Divider</strong></td>
+      <td>区切り</td>
+      <td>情報のまとまりを水平または垂直に分離します。意味の薄い区切り線は排除し、余白（Stack 等）による解決も検討してください。</td>
+    </tr>
+    <tr>
+      <td><strong>Visually Hidden</strong></td>
+      <td>アクセシブルな非表示</td>
+      <td>視覚的には見せたくないが、スクリーンリーダー等には情報を伝えたい、操作のヒントなどを埋め込む場合。</td>
+    </tr>
+    <tr>
+      <td><strong>Scroll Area</strong></td>
+      <td>カスタムスクロール</td>
+      <td>OSごとのスクロールバーの差異をなくし、デザインに合わせてスクロール部分を美しく整えたい場合。</td>
+    </tr>
+    <tr>
+      <td><strong>Contrast Checker</strong></td>
+      <td>開発補助</td>
+      <td>背景色と文字色の比率を検証し、アクセシビリティの基準を満たしているか確認する場合。</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 設計上の考慮事項
+
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>ガイドライン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>過剰な Portal の回避</strong></td>
+      <td>Portal は便利ですが、デバッグ（要素特定）を難しくする可能性があります。真に必要な場合（スタッキングコンテキストの回避など）に限定して使用してください。</td>
+    </tr>
+    <tr>
+      <td><strong>アクセシビリティ優先</strong></td>
+      <td>`FocusTrap` や `VisuallyHidden` は、アクセシビリティの高い UI を作るための強力な味方です。これらを活用し、キーボード等での操作体験を疎かにしないようにしましょう。</td>
+    </tr>
+    <tr>
+      <td><strong>フェールセーフ</strong></td>
+      <td>基幹となるドメインロジックを含むコンポーネントには `ErrorBoundary` を配置し、システムが予期せぬエラーに寛容（レジリエント）であるように設計してください。</td>
+    </tr>
+  </tbody>
+</table>

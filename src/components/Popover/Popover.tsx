@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, ReactNode } from "react";
 import classNames from "classnames";
+import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import "./popover.scss";
 
@@ -149,10 +150,15 @@ export const PopoverContent = ({
 }: PopoverContentProps & React.HTMLAttributes<HTMLDivElement>) => {
     const { isOpen } = React.useContext(PopoverContext);
 
-    if (!isOpen) return null;
-
     return (
-        <div
+        <Transition
+            show={isOpen}
+            enter="fade-enter"
+            enterFrom="fade-enter-from"
+            enterTo="fade-enter-to"
+            leave="fade-leave"
+            leaveFrom="fade-leave-from"
+            leaveTo="fade-leave-to"
             className={classNames(
                 "wim-popover-content",
                 `wim-popover-content--align-${align}`,
@@ -163,7 +169,7 @@ export const PopoverContent = ({
             {...props}
         >
             {children}
-        </div>
+        </Transition>
     );
 };
 

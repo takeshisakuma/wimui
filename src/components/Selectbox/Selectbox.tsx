@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo, useId } from "react";
 import classNames from "classnames";
+import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import "./selectbox.scss";
 
@@ -472,42 +473,51 @@ export const Selectbox = ({
                 </div>
             </div>
 
-            {isOpen && !disabled && (
-                <div className="wim-selectbox-dropdown">
-                    {searchable && (
-                        <div className="wim-selectbox-search">
-                            <input
-                                ref={searchInputRef}
-                                type="text"
-                                className="wim-selectbox-search-input"
-                                placeholder={searchPlaceholder}
-                                value={searchValue}
-                                onChange={(e) => {
-                                    setSearchValue(e.target.value);
-                                    setFocusedIndex(-1);
-                                }}
-                                onClick={(e) => e.stopPropagation()}
-                                onKeyDown={handleKeyDown}
-                                aria-label={searchPlaceholder}
-                                aria-controls={listId}
-                                aria-activedescendant={activeDescendant}
-                            />
-                        </div>
+
+            <Transition
+                show={isOpen && !disabled}
+                enter="fade-enter"
+                enterFrom="fade-enter-from"
+                enterTo="fade-enter-to"
+                leave="fade-leave"
+                leaveFrom="fade-leave-from"
+                leaveTo="fade-leave-to"
+                className="wim-selectbox-dropdown"
+            >
+                {searchable && (
+                    <div className="wim-selectbox-search">
+                        <input
+                            ref={searchInputRef}
+                            type="text"
+                            className="wim-selectbox-search-input"
+                            placeholder={searchPlaceholder}
+                            value={searchValue}
+                            onChange={(e) => {
+                                setSearchValue(e.target.value);
+                                setFocusedIndex(-1);
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                            onKeyDown={handleKeyDown}
+                            aria-label={searchPlaceholder}
+                            aria-controls={listId}
+                            aria-activedescendant={activeDescendant}
+                        />
+                    </div>
+                )}
+                <ul
+                    id={listId}
+                    className="wim-selectbox-list"
+                    role="listbox"
+                    aria-labelledby={label ? labelId : (ariaLabelledBy || undefined)}
+                >
+                    {filteredOptions.length === 0 ? (
+                        <li className="wim-selectbox-empty" role="option" aria-selected="false">No options found</li>
+                    ) : (
+                        renderOptions()
                     )}
-                    <ul
-                        id={listId}
-                        className="wim-selectbox-list"
-                        role="listbox"
-                        aria-labelledby={label ? labelId : (ariaLabelledBy || undefined)}
-                    >
-                        {filteredOptions.length === 0 ? (
-                            <li className="wim-selectbox-empty" role="option" aria-selected="false">No options found</li>
-                        ) : (
-                            renderOptions()
-                        )}
-                    </ul>
-                </div>
-            )}
+                </ul>
+            </Transition>
+
         </div>
     );
 

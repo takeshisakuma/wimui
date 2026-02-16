@@ -1,0 +1,101 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+
+<Meta title="Guides/Media & Visualization" />
+
+# メディアとデータ視覚化の使い分け
+
+画像、ビデオ、オーディオ、およびチャートを使用して、情報をより効果的に伝えます。
+
+## メディアコンポーネント
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>主な用途</th>
+      <th>活用のヒント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Image</strong></td>
+      <td>画像表示</td>
+      <td>`lazy loading` を活用してパフォーマンスを最適化し、`aspect ratio` コンポーネントでレイアウトシフトを防止します。</td>
+    </tr>
+    <tr>
+      <td><strong>Video / Audio</strong></td>
+      <td>マルチメディア再生</td>
+      <td>カスタムコントロールを付与し、アプリのトーン＆マナーに合わせます。</td>
+    </tr>
+    <tr>
+      <td><strong>Carousel</strong></td>
+      <td>複数要素の閲覧</td>
+      <td>バナー広告、製品ギャラリー、ストーリー形式のコンテンツ表示に最適。</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## データ視覚化 (Charts)
+
+チャートはデータの複雑なパターンやトレンドを理解するために使用します。各チャートの使い分けの詳細は [Chart Selection Guide](?path=/docs/guides-charts--docs) を参照してください。
+
+<table>
+  <thead>
+    <tr>
+      <th>チャート種別</th>
+      <th>最適なデータ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Bar (棒グラフ)</strong></td>
+      <td>個別の項目間の比較、ランキング</td>
+    </tr>
+    <tr>
+      <td><strong>Line (折れ線グラフ)</strong></td>
+      <td>時系列データのトレンド、変化の推移</td>
+    </tr>
+    <tr>
+      <td><strong>Pie (円グラフ)</strong></td>
+      <td>全体の構成比（比較項目が少ない場合）</td>
+    </tr>
+    <tr>
+      <td><strong>Scatter (散布図)</strong></td>
+      <td>2値間の相関、分布、異常値の検出</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## ユーザビリティとパフォーマンス
+
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>ガイドライン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>代替テキスト (Alt)</strong></td>
+      <td>画像やビデオには必ず代替テキストを設定してください。視覚障害を持つユーザーだけでなく、SEO にも寄与します。</td>
+    </tr>
+    <tr>
+      <td><strong>自動再生の制限</strong></td>
+      <td>音声やビデオの自動再生はユーザーを驚かせ、アクセシビリティ標準に反する場合が多いため、必要最小限（ミュート状態での背景動画など）に留めてください。</td>
+    </tr>
+    <tr>
+      <td><strong>データ可読性</strong></td>
+      <td>チャートでは PCCS パレットを活用し、色の違いだけで情報を伝えないよう、ツールチップやラベルを活用してください。</td>
+    </tr>
+    <tr>
+      <td><strong>スケルトンの活用</strong></td>
+      <td>重いメディアファイルの読み込み中は、`Skeleton` コンポーネントを表示して、ユーザーに進行状況を伝えてください。</td>
+    </tr>
+  </tbody>
+</table>

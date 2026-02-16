@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, createContext, useContext } from "react";
 import classNames from "classnames";
+import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import "./toast.scss";
 
@@ -30,37 +31,17 @@ export const Toast = ({
     onClose,
     className,
 }: ToastProps) => {
-    const [visible, setVisible] = useState(false);
-
-    useEffect(() => {
-        // Handle animation trigger
-        if (isVisible) {
-            const timer = setTimeout(() => setVisible(true), 10);
-            return () => clearTimeout(timer);
-        } else {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setVisible(false);
-        }
-    }, [isVisible]);
-
     useEffect(() => {
         if (isVisible && duration > 0) {
             const timer = setTimeout(() => {
-                setVisible(false);
-                // Wait for animation to finish before calling onClose
-                setTimeout(() => {
-                    if (onClose) onClose(id);
-                }, 300);
-            }, duration);
+                if (onClose) onClose(id);
+            }, duration + 300); // Add extra buffer for animation
             return () => clearTimeout(timer);
         }
     }, [isVisible, duration, id, onClose]);
 
     const handleClose = () => {
-        setVisible(false);
-        setTimeout(() => {
-            if (onClose) onClose(id);
-        }, 300);
+        if (onClose) onClose(id);
     };
 
     const renderIcon = () => {
@@ -78,11 +59,17 @@ export const Toast = ({
     };
 
     return (
-        <div
+        <Transition
+            show={isVisible}
+            enter="toast-enter"
+            enterFrom="toast-enter-from"
+            enterTo="toast-enter-to"
+            leave="toast-leave"
+            leaveFrom="toast-leave-from"
+            leaveTo="toast-leave-to"
             className={classNames(
                 "wim-toast",
                 `wim-toast--${variant}`,
-                visible && "wim-toast--visible",
                 className
             )}
             role="status"
@@ -101,7 +88,7 @@ export const Toast = ({
             >
                 <Icon name="CloseIcon" />
             </button>
-        </div>
+        </Transition>
     );
 };
 

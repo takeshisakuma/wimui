@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, ReactNode } from "react";
 import classNames from "classnames";
+import { Portal } from "../Portal/Portal";
+import { Transition } from "../Transition/Transition";
 import "./contextMenu.scss";
 
 export type ContextMenuProps = {
@@ -107,8 +109,15 @@ export const ContextMenu = ({
             onContextMenu={handleContextMenu}
         >
             {children}
-            {isVisible && (
-                <div
+            <Portal>
+                <Transition
+                    show={isVisible}
+                    enter="fade-enter"
+                    enterFrom="fade-enter-from"
+                    enterTo="fade-enter-to"
+                    leave="fade-leave"
+                    leaveFrom="fade-leave-from"
+                    leaveTo="fade-leave-to"
                     ref={menuRef}
                     className="wim-context-menu"
                     style={{
@@ -123,8 +132,8 @@ export const ContextMenu = ({
                     tabIndex={-1}
                 >
                     {menu}
-                </div>
-            )}
+                </Transition>
+            </Portal>
         </div>
     );
 };

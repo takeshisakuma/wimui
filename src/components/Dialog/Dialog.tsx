@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef, useId } from "react";
-import { createPortal } from "react-dom";
 import classNames from "classnames";
+import { Portal } from "../Portal/Portal";
+import { Transition } from "../Transition/Transition";
 import { FocusTrap } from "../FocusTrap/FocusTrap";
 import { Icon } from "../Icon/Icon";
 import "./dialog.scss";
@@ -164,33 +165,52 @@ export const DialogContent = ({ children, className }: DialogContentProps) => {
         }
     }, [open]);
 
-    if (!open) return null;
-
-    return createPortal(
-        <div
-            className="wim-dialog-overlay"
-            aria-hidden="true"
-            onClick={(e) => {
-                if (e.target === e.currentTarget) {
-                    onOpenChange(false);
-                }
-            }}>
-            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-            <FocusTrap active={open} autoFocus={true} className="wim-dialog-focus-trap-wrapper">
-                { }
+    return (
+        <Portal>
+            <Transition
+                show={open}
+                enter="fade-enter"
+                enterFrom="fade-enter-from"
+                enterTo="fade-enter-to"
+                leave="fade-leave"
+                leaveFrom="fade-leave-from"
+                leaveTo="fade-leave-to"
+            >
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
                 <div
-                    ref={contentRef}
-                    role="dialog"
-                    aria-modal="true"
-                    aria-labelledby={titleId}
-                    aria-describedby={descriptionId}
-                    className={classNames("wim-dialog-content", className)}
+                    className="wim-dialog-overlay"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            onOpenChange(false);
+                        }
+                    }}
                 >
-                    {children}
+                    <Transition
+                        show={open}
+                        enter="scale-enter"
+                        enterFrom="scale-enter-from"
+                        enterTo="scale-enter-to"
+                        leave="scale-leave"
+                        leaveFrom="scale-leave-from"
+                        leaveTo="scale-leave-to"
+                    >
+                        <FocusTrap active={open} autoFocus={true} className="wim-dialog-focus-trap-wrapper">
+                            <div
+                                ref={contentRef}
+                                role="dialog"
+                                aria-modal="true"
+                                aria-labelledby={titleId}
+                                aria-describedby={descriptionId}
+                                className={classNames("wim-dialog-content", className)}
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                {children}
+                            </div>
+                        </FocusTrap>
+                    </Transition>
                 </div>
-            </FocusTrap>
-        </div>,
-        document.body
+            </Transition>
+        </Portal>
     );
 };
 

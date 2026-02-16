@@ -1,8 +1,8 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useLayoutEffect, useImperativeHandle } from "react";
 import classNames from "classnames";
 import "./transition.scss";
 
-export interface TransitionProps {
+export interface TransitionProps extends React.HTMLAttributes<HTMLDivElement> {
     /** Whether the component should be shown or hidden */
     show: boolean;
     /** The content to be transitioned */
@@ -29,85 +29,93 @@ export interface TransitionProps {
  * A component that handles simple CSS transitions for its children.
  * It manages applying classes at the right moments (enter, enterFrom, enterTo, etc.).
  */
-export const Transition = ({
-    show,
-    children,
-    enter = "",
-    enterFrom = "",
-    enterTo = "",
-    leave = "",
-    leaveFrom = "",
-    leaveTo = "",
-    unmount = true,
-    className,
-}: TransitionProps) => {
-    const [shouldRender, setShouldRender] = useState(show);
-    const [state, setState] = useState<"idle" | "entering" | "leaving">("idle");
-    const [activeClasses, setActiveClasses] = useState("");
-    const elementRef = useRef<HTMLDivElement>(null);
-    const isInitialRender = useRef(true);
+export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
+    (
+        {
+            show,
+            children,
+            enter = "",
+            enterFrom = "",
+            enterTo = "",
+            leave = "",
+            leaveFrom = "",
+            leaveTo = "",
+            unmount = true,
+            className,
+            ...props
+        },
+        ref
+    ) => {
+        const [shouldRender, setShouldRender] = useState(show);
+        const [state, setState] = useState<"idle" | "entering" | "leaving">("idle");
+        const [activeClasses, setActiveClasses] = useState("");
+        const internalRef = useRef<HTMLDivElement>(null);
+        const isInitialRender = useRef(true);
 
-    useLayoutEffect(() => {
-        if (isInitialRender.current) {
-            isInitialRender.current = false;
-            return;
-        }
+        useImperativeHandle(ref, () => internalRef.current!);
 
-        if (show) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setShouldRender(true);
-            setState("entering");
-            setActiveClasses(classNames(enter, enterFrom));
-
-            // Force reflow
-            void elementRef.current?.offsetHeight;
-
-            const frame = requestAnimationFrame(() => {
-                setActiveClasses(classNames(enter, enterTo));
-            });
-
-            return () => cancelAnimationFrame(frame);
-        } else {
-            setState("leaving");
-            setActiveClasses(classNames(leave, leaveFrom));
-
-            // Force reflow
-            void elementRef.current?.offsetHeight;
-
-            const frame = requestAnimationFrame(() => {
-                setActiveClasses(classNames(leave, leaveTo));
-            });
-
-            return () => cancelAnimationFrame(frame);
-        }
-    }, [show, enter, enterFrom, enterTo, leave, leaveFrom, leaveTo]);
-
-    const handleTransitionEnd = (e: React.TransitionEvent) => {
-        if (e.target !== elementRef.current) return;
-
-        if (state === "entering") {
-            setState("idle");
-            setActiveClasses("");
-        } else if (state === "leaving") {
-            setState("idle");
-            setActiveClasses("");
-            if (unmount) {
-                setShouldRender(false);
+        useLayoutEffect(() => {
+            if (isInitialRender.current) {
+                isInitialRender.current = false;
+                return;
             }
-        }
-    };
 
-    if (!shouldRender && unmount) return null;
+            if (show) {
+                setShouldRender(true);
+                setState("entering");
+                setActiveClasses(classNames(enter, enterFrom));
 
-    return (
-        <div
-            ref={elementRef}
-            className={classNames(className, activeClasses, {
-                "wim-transition-hidden": !show && state === "idle" && !unmount
-            })}
-            onTransitionEnd={handleTransitionEnd}
-        >
-            {children}
-        </div>
-    );
-};
+                // Force reflow
+                void internalRef.current?.offsetHeight;
+
+                const frame = requestAnimationFrame(() => {
+                    setActiveClasses(classNames(enter, enterTo));
+                });
+
+                return () => cancelAnimationFrame(frame);
+            } else {
+                setState("leaving");
+                setActiveClasses(classNames(leave, leaveFrom));
+
+                // Force reflow
+                void internalRef.current?.offsetHeight;
+
+                const frame = requestAnimationFrame(() => {
+                    setActiveClasses(classNames(leave, leaveTo));
+                });
+
+                return () => cancelAnimationFrame(frame);
+            }
+        }, [show, enter, enterFrom, enterTo, leave, leaveFrom, leaveTo]);
+
+        const handleTransitionEnd = (e: React.TransitionEvent) => {
+            if (e.target !== internalRef.current) return;
+
+            if (state === "entering") {
+                setState("idle");
+                setActiveClasses("");
+            } else if (state === "leaving") {
+                setState("idle");
+                setActiveClasses("");
+                if (unmount) {
+                    setShouldRender(false);
+                }
+            }
+        };
+
+        if (!shouldRender && unmount) return null;
+
+        return (
+            <div
+                ref={internalRef}
+                className={classNames(className, activeClasses, {
+                    "wim-transition-hidden": !show && state === "idle" && !unmount
+                })}
+                onTransitionEnd={handleTransitionEnd}
+                {...props}
+            >
+                {children}
+            </div>
+        );
+    }
+);

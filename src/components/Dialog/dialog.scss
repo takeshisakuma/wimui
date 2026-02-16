@@ -14,7 +14,6 @@
     overflow-y: auto;
     background-color: rgb(0 0 0 / 0.4);
     backdrop-filter: blur(2px);
-    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .wim-dialog-content {
@@ -28,7 +27,6 @@
     background-color: var(--bg-component, #fff);
     border-radius: spacings.$radius-lg;
     box-shadow: effects.$shadow-lg;
-    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
 
     &:focus {
         outline: none;
@@ -66,29 +64,5 @@
     @media (width >=640px) {
         flex-direction: row;
         justify-content: flex-end;
-    }
-}
-
-
-
-@keyframes overlayShow {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes contentShow {
-    from {
-        opacity: 0;
-        transform: scale(0.96);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
     }
 }

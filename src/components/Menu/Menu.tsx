@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import classNames from "classnames";
+import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import "./menu.scss";
 
@@ -174,11 +175,23 @@ export const SubMenu = ({
                     <Icon name="ChevronRightIcon" size="small" />
                 </span>
             </div>
-            {isOpen && (
-                <ul className="wim-menu-submenu__list" role="menu">
+
+            <Transition
+                show={isOpen}
+                enter="fade-enter"
+                enterFrom="fade-enter-from"
+                enterTo="fade-enter-to"
+                leave="fade-leave"
+                leaveFrom="fade-leave-from"
+                leaveTo="fade-leave-to"
+                className="wim-menu-submenu__list"
+                role="menu"
+            >
+                <ul className="wim-menu-submenu__list">
                     {children}
                 </ul>
-            )}
+            </Transition>
+
         </li>
     );
 };

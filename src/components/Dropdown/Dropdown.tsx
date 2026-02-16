@@ -105,6 +105,8 @@ export type DropdownMenuProps = {
     align?: "left" | "right";
 };
 
+import { Transition } from "../Transition/Transition";
+
 export const DropdownMenu = ({
     children,
     className,
@@ -112,10 +114,15 @@ export const DropdownMenu = ({
 }: DropdownMenuProps) => {
     const { isOpen, menuId, triggerId } = React.useContext(DropdownContext);
 
-    if (!isOpen) return null;
-
     return (
-        <div
+        <Transition
+            show={isOpen}
+            enter="fade-enter"
+            enterFrom="fade-enter-from"
+            enterTo="fade-enter-to"
+            leave="fade-leave"
+            leaveFrom="fade-leave-from"
+            leaveTo="fade-leave-to"
             id={menuId}
             className={classNames(
                 "wim-dropdown-menu",
@@ -126,7 +133,7 @@ export const DropdownMenu = ({
             aria-labelledby={triggerId}
         >
             {children}
-        </div>
+        </Transition>
     );
 };
 
