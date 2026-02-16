@@ -3,7 +3,7 @@ import { Image } from "@/components/Image/Image";
 import sampleImage from "@/media/imagesanple.webp";
 
 const meta: Meta<typeof Image> = {
-    title: "Component/Media & Viz/Image",
+    title: "Component/Media/Image",
     component: Image,
     parameters: {
         layout: "centered",

@@ -1,11 +1,11 @@
 import { Meta } from "@storybook/blocks";
 import { T } from "../stories/T";
 
-<Meta title="Guides/Charts" />
+<Meta title="Guides/Visualization" />
 
 <div className="wim-docs-container">
-  <h1><T k="chart_guide_title" /></h1>
-  <p><T k="chart_guide_desc" /></p>
+  <h1><T k="guide_visualization_title" /></h1>
+  <p><T k="guide_visualization_desc" /></p>
 
   <hr />
 
@@ -123,14 +123,34 @@ import { T } from "../stories/T";
     </tbody>
   </table>
 
-
   <div style={{ marginTop: "40px", padding: "24px", background: "var(--bg-component, #f9f9f9)", border: "1px solid var(--wim-color-border)", borderRadius: "12px" }}>
     <h3>💡 設計上のヒント (Design Tips)</h3>
-    <ul>
-      <li><strong>色の使用:</strong> 意味のない色の多用は避けましょう。比較対象を区別するために最小限の配色（PCCSパレットの利用を推奨）に留めます。</li>
-      <li><strong>軸のラベリング:</strong> 常に単位と軸の名前を明示し、読み手が迷わないようにします。</li>
-      <li><strong>凡例 (Legend):</strong> 系列が多い場合は凡例の位置を工夫し、グラフエリアを圧迫しないように調整してください。</li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>ガイドライン</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>色の使用</strong></td>
+          <td>意味のない色の多用は避けましょう。比較対象を区別するために最小限の配色（PCCSパレットの利用を推奨）に留めます。</td>
+        </tr>
+        <tr>
+          <td><strong>データ可読性</strong></td>
+          <td>色の違いだけで情報を伝えないよう、ツールチップやラベルを活用してください。</td>
+        </tr>
+        <tr>
+          <td><strong>軸のラベリング</strong></td>
+          <td>常に単位と軸の名前を明示し、読み手が迷わないようにします。</td>
+        </tr>
+        <tr>
+          <td><strong>凡例 (Legend)</strong></td>
+          <td>系列が多い場合は凡例の位置を工夫し、グラフエリアを圧迫しないように調整してください。</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <hr />

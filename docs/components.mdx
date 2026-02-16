@@ -100,8 +100,12 @@ export const StatusIcon = ({ status }) => {
         <div style={{ fontSize: "12px", color: "#666" }}>100% (11/11)</div>
       </div>
       <div>
-        <a href="#media-viz"><T k="cat_media_viz" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>71% (10/14)</div>
+        <a href="#media"><T k="cat_media" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (4/4)</div>
+      </div>
+      <div>
+        <a href="#visualization"><T k="cat_visualization" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>60% (6/10)</div>
       </div>
       <div>
         <a href="#utilities"><T k="cat_utilities" /></a>
@@ -309,7 +313,7 @@ export const StatusIcon = ({ status }) => {
     </tbody>
   </table>
 
-  <h2 id="media-viz">🖼️ <T k="cat_media_viz" /> <a href="?path=/docs/guides-media-visualization--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>📖 使い分けガイド</a></h2>
+  <h2 id="media">🖼️ <T k="cat_media" /> <a href="?path=/docs/guides-media--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>📖 使い分けガイド</a></h2>
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
@@ -317,16 +321,23 @@ export const StatusIcon = ({ status }) => {
       <tr><td>Image</td><td><T k="doc_image_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Video</td><td><T k="doc_video_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Audio</td><td><T k="doc_audio_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="visualization">📈 <T k="cat_visualization" /> <a href="?path=/docs/guides-visualization--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>📖 使い分けガイド</a></h2>
+  <table>
+    <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
+    <tbody>
       <tr><td>BarChart</td><td><T k="doc_barChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>LineChart</td><td><T k="doc_lineChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>AreaChart</td><td><T k="doc_areaChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>PieChart</td><td><T k="doc_pieChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>ScatterChart</td><td><T k="doc_scatterChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Heatmap</td><td><T k="doc_heatmap_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Sparkline</td><td><T k="doc_sparkline_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
       <tr><td>RadarChart</td><td><T k="doc_radarChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
-      <tr><td>TopLayout</td><td><T k="doc_topLayout_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
-      <tr><td>SideLayout</td><td><T k="doc_sideLayout_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>FunnelChart</td><td><T k="doc_funnelChart_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>Treemap</td><td><T k="doc_treemap_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>Gauge</td><td><T k="doc_gauge_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
     </tbody>
   </table>
 

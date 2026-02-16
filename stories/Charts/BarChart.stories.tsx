@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BarChart } from "@/components/Charts/BarChart";
 
 const meta: Meta<typeof BarChart> = {
-    title: "Component/Media & Viz/BarChart",
+    title: "Component/Visualization/BarChart",
     component: BarChart,
     tags: ["autodocs"],
 };

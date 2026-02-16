@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { PieChart } from "@/components/Charts/PieChart";
 
 const meta: Meta<typeof PieChart> = {
-    title: "Component/Media & Viz/PieChart",
+    title: "Component/Visualization/PieChart",
     component: PieChart,
     tags: ["autodocs"],
 };

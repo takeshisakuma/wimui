@@ -5,7 +5,7 @@ import SampleImage from "@/media/imagesanple.webp";
 
 
 const meta: Meta<typeof Carousel> = {
-    title: "Component/Media & Viz/Carousel",
+    title: "Component/Media/Carousel",
     component: Carousel,
     parameters: {
         layout: "centered",

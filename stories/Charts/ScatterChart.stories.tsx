@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ScatterChart } from "@/components/Charts/ScatterChart";
 
 const meta: Meta<typeof ScatterChart> = {
-    title: "Component/Media & Viz/ScatterChart",
+    title: "Component/Visualization/ScatterChart",
     component: ScatterChart,
     tags: ["autodocs"],
 };
