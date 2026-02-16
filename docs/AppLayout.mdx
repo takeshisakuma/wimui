@@ -7,16 +7,62 @@ import { T } from "../stories/T";
 
 <p><T k="guide_layout_desc" /></p>
 
-<div style={{ display: 'grid', gridTemplateAreas: '"header header header" "sidebar main right" "footer footer footer"', gridTemplateRows: '60px 300px 40px', gridTemplateColumns: '200px 1fr 200px', gap: '2px', background: '#ccc', border: '1px solid #ddd', color: '#555', fontSize: '14px', fontFamily: 'sans-serif', margin: '24px 0' }}>
-  <div style={{ gridArea: 'header', background: '#e0e7ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>Header</div>
-  <div style={{ gridArea: 'sidebar', background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>Sidebar</div>
-  <div style={{ gridArea: 'main', background: '#fff', position: 'relative' }}>
-    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '40px', background: '#fffbeb', borderBottom: '1px dashed #ccc', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>Page Header</div>
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', paddingTop: '40px', fontWeight: 'bold' }}>Main Content</div>
-    <div style={{ position: 'absolute', bottom: '10px', right: '10px', width: '120px', height: '40px', background: '#fee2e2', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Toast (Overlay)</div>
+<style>{`
+  .layout-container {
+    display: grid;
+    grid-template-areas: "header header header" "sidebar main right" "footer footer footer";
+    grid-template-rows: 60px 300px 40px;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 2px;
+    background: #ccc;
+    border: 1px solid #ddd;
+    color: #555;
+    font-size: 14px;
+    font-family: sans-serif;
+    margin: 24px 0;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .layout-header { grid-area: header; background: #e0e7ff; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .layout-sidebar { grid-area: sidebar; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .layout-main { grid-area: main; background: #fff; position: relative; }
+  .layout-page-header { position: absolute; top: 0; left: 0; right: 0; height: 40px; background: #fffbeb; border-bottom: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .layout-main-content { display: flex; align-items: center; justify-content: center; height: 100%; padding-top: 40px; font-weight: bold; }
+  .layout-toast { position: absolute; bottom: 10px; right: 10px; width: 120px; height: 40px; background: #fee2e2; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  .layout-right { grid-area: right; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-weight: bold; border-left: 1px solid #e5e7eb; }
+  .layout-footer { grid-area: footer; background: #f9fafb; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+
+  @media (max-width: 1024px) {
+    .layout-container {
+      grid-template-areas: "header header" "sidebar main" "footer footer";
+      grid-template-columns: 150px 1fr;
+    }
+    .layout-right { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .layout-container {
+      grid-template-areas: "header" "main" "sidebar" "footer";
+      grid-template-columns: 1fr;
+      grid-template-rows: 50px 300px 60px 40px;
+    }
+    .layout-sidebar { border-top: 1px solid #ddd; }
+    .layout-toast { width: 100px; height: 32px; font-size: 10px; }
+  }
+`}</style>
+
+<div className="layout-container">
+  <div className="layout-header"><T k="layout_diagram_header" /></div>
+  <div className="layout-sidebar"><T k="layout_diagram_sidebar" /></div>
+  <div className="layout-main">
+    <div className="layout-page-header"><T k="layout_diagram_page_header" /></div>
+    <div className="layout-main-content"><T k="layout_diagram_main_content" /></div>
+    <div className="layout-toast"><T k="layout_diagram_toast" /></div>
   </div>
-  <div style={{ gridArea: 'right', background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', borderLeft: '1px solid #e5e7eb' }}>Right Panel</div>
-  <div style={{ gridArea: 'footer', background: '#f9fafb', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>Footer</div>
+  <div className="layout-right"><T k="layout_diagram_right_panel" /></div>
+  <div className="layout-footer"><T k="layout_diagram_footer" /></div>
 </div>
 
 ---
@@ -117,7 +163,7 @@ import { T } from "../stories/T";
 ## 8. <T k="guide_layout_responsive_title" />
 <p><T k="guide_layout_responsive_desc" /></p>
 
-- Mobile (< 768px): Sidebar -> Drawer, Header Menu -> Hamburger
-- Tablet (768px - 1024px): Sidebar (Icon only or collapsible)
-- Desktop (> 1024px): Full layout
+- <T k="guide_layout_responsive_mobile" />
+- <T k="guide_layout_responsive_tablet" />
+- <T k="guide_layout_responsive_desktop" />
 

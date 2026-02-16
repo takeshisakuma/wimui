@@ -295,5 +295,15 @@
   "doc_treemap_desc": "Exibição de dados hierárquicos baseada em área",
   "doc_gauge_desc": "Gráfico de conquista de metas KPI",
   "doc_colorSwatch_desc": "Grade de exibição da paleta de cores",
-  "doc_contrastChecker_desc": "Verificador de taxa de contraste WCAG"
+  "doc_contrastChecker_desc": "Verificador de taxa de contraste WCAG",
+  "layout_diagram_header": "Cabeçalho",
+  "layout_diagram_sidebar": "Barra Lateral",
+  "layout_diagram_page_header": "Cabeçalho da Página",
+  "layout_diagram_main_content": "Conteúdo Principal",
+  "layout_diagram_right_panel": "Painel Direito",
+  "layout_diagram_footer": "Rodapé",
+  "layout_diagram_toast": "Notificação (Overlay)",
+  "guide_layout_responsive_mobile": "Móvel (< 768px): Barra Lateral -> Gaveta, Menu do Cabeçalho -> Hambúrguer",
+  "guide_layout_responsive_tablet": "Tablet (768px - 1024px): Barra Lateral (Apenas ícone ou recolhível)",
+  "guide_layout_responsive_desktop": "Desktop (> 1024px): Layout completo"
 }
