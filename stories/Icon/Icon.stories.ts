@@ -71,9 +71,9 @@ export const MediumSpinnerIcon = {
     color: "primary",
   },
 };
-export const MediumEllipsisIcon = {
+export const MediumMoreHorizontalIcon = {
   args: {
-    name: "EllipsisIcon",
+    name: "MoreHorizontalIcon",
     size: "medium",
     color: "primary",
   },

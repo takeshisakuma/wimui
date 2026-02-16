@@ -1,4 +1,4 @@
-import { Meta} from "@storybook/blocks";
+import { Meta } from "@storybook/blocks";
 
 <Meta title="Guides/Data Display" />
 
@@ -6,7 +6,7 @@ import { Meta} from "@storybook/blocks";
 
 情報をユーザーに提示する際、その構造やユーザーが行いたい操作に応じて形式を選択します。
 
-## 表示形式比較表
+## 表示形式の選択ガイド
 
 <table>
   <thead>
@@ -14,6 +14,7 @@ import { Meta} from "@storybook/blocks";
       <th>コンポーネント</th>
       <th>構造</th>
       <th>情報密度</th>
+      <th>判断のポイント（利用シーン）</th>
       <th>主な用途</th>
     </tr>
   </thead>
@@ -22,81 +23,113 @@ import { Meta} from "@storybook/blocks";
       <td><strong>Table</strong></td>
       <td>格子状</td>
       <td><strong>最高</strong></td>
-      <td>数値の比較、大量データの効率的な閲覧</td>
+      <td><strong>大量のデータを正確に比較・分析したい。</strong>ソートやフィルタが必要なとき。</td>
+      <td>数値の比較、管理画面のデータ一覧</td>
     </tr>
     <tr>
       <td><strong>Card</strong></td>
       <td>ボックス型</td>
       <td>中</td>
-      <td>概要把握、画像を含むリスト、ダッシュボード</td>
-    </tr>
-    <tr>
-      <td><strong>List</strong></td>
-      <td>垂直一列</td>
-      <td>中〜低</td>
-      <td>シンプルな項目一覧、モバイル向けメニュー</td>
-    </tr>
-    <tr>
-      <td><strong>Accordion</strong></td>
-      <td>折りたたみ</td>
-      <td>低</td>
-      <td>詳細を段階的に開示、FAQ、設定項目の整理</td>
-    </tr>
-    <tr>
-      <td><strong>Timeline</strong></td>
-      <td>時系列</td>
-      <td>中</td>
-      <td>変更履歴、イベントの変遷、進捗状況</td>
-    </tr>
-    <tr>
-      <td><strong>TreeView</strong></td>
-      <td>階層型</td>
-      <td>中</td>
-      <td>ファイル階層、組織図、ネストしたカテゴリ</td>
+      <td><strong>画像や説明、アクションボタンなど多様な要素をひとまとめに見せたい。</strong></td>
+      <td>概要把握、商品リスト、ダッシュボード</td>
     </tr>
     <tr>
       <td><strong>DescriptionList</strong></td>
       <td>キー・値ペア</td>
       <td>中〜高</td>
-      <td>プロフィールの詳細、商品の仕様、メタデータの表示</td>
+      <td><strong>特定の項目（キー）に対する詳細（値）を、ラベルを明示して整理したい。</strong></td>
+      <td>プロフィール詳細、商品スペック、メタデータ</td>
+    </tr>
+    <tr>
+      <td><strong>Accordion</strong></td>
+      <td>折りたたみ</td>
+      <td>低</td>
+      <td><strong>最初は見出しだけを表示し、必要に応じて詳細を段階的に開示したい。</strong></td>
+      <td>FAQ、設定項目の整理、補足情報</td>
+    </tr>
+    <tr>
+      <td><strong>List</strong></td>
+      <td>垂直一列</td>
+      <td>中〜低</td>
+      <td><strong>シンプルな項目を縦に並べ、モバイルでもスムーズに閲覧させたい。</strong></td>
+      <td>メニュー一覧、通知リスト、シンプルな履歴</td>
+    </tr>
+    <tr>
+      <td><strong>Timeline</strong></td>
+      <td>時系列</td>
+      <td>中</td>
+      <td><strong>イベントの発生順や変更履歴など、時間の流れを可視化したい。</strong></td>
+      <td>更新履歴、配送ステータス、進捗管理</td>
+    </tr>
+    <tr>
+      <td><strong>TreeView</strong></td>
+      <td>階層型</td>
+      <td>中</td>
+      <td><strong>ファイル構造やカテゴリーなど、ネストされた親子関係を表現したい。</strong></td>
+      <td>ディレクトリ表示、組織図、階層メニュー</td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 選択のガイドライン
+## 情報設計の原則
+
+### 情報の優先順位付け
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>利用シーン</th>
+      <th>ポイント</th>
+      <th>ガイドライン</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Table</strong></td>
-      <td>大量のデータを正確に比較したいとき。ソートやフィルタリングが必要なとき。</td>
+      <td><strong>重要な情報の強調</strong></td>
+      <td>最も重要なデータはフォントサイズや色の重みを変えて、最初に目が向くようにします。</td>
     </tr>
     <tr>
-      <td><strong>Card</strong></td>
-      <td>各項目が画像や説明文、ボタンなど多様な要素を持つとき。</td>
-    </tr>
-    <tr>
-      <td><strong>Accordion</strong></td>
-      <td>最初の画面では見出しだけ見せ、必要に応じて詳細を読ませたいとき。</td>
-    </tr>
-    <tr>
-      <td><strong>DescriptionList</strong></td>
-      <td>ユーザープロフィールや商品スペックなど、特定の項目（キー）に対する値（詳細）を整理して見せたいとき。ラベルとデータの関係を明確にしたい場合に最適です。</td>
+      <td><strong>スキャン性の確保</strong></td>
+      <td>ユーザーは情報のすべてを読むのではなく「スキャン（流し読み）」します。見出しや一貫した並び順が重要です。</td>
     </tr>
   </tbody>
 </table>
 
----
+### 状態への配慮
 
-## 情報設計のアドバイス
-- 重要度の重み付け: 最も重要なデータは視覚的に強調します。
-- 空の状態 (EmptyState): 表示データがない場合は、次に何をすべきかを提示します。
+<table>
+  <thead>
+    <tr>
+      <th>状態</th>
+      <th>ガイドライン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>空の状態 (EmptyState)</strong></td>
+      <td>表示データがない場合は、ただの空白ではなく「データがありません」というメッセージと、次に何をすべきか（作成ボタンなど）を提示します。</td>
+    </tr>
+    <tr>
+      <td><strong>読み込み中 (Loading)</strong></td>
+      <td>データの取得に時間がかかる場合は、Skeleton や Spinner を使用して、ユーザーに進行中であることを伝えます。</td>
+    </tr>
+  </tbody>
+</table>
 
+### モバイル対応
+
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>ガイドライン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>テーブルの変換</strong></td>
+      <td>横長のテーブルはモバイルでは読みにくいため、List や Card 形式への変換、あるいは水平スクロールの許容を検討してください。</td>
+    </tr>
+  </tbody>
+</table>

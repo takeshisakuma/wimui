@@ -1,5 +1,4 @@
 import { Meta } from "@storybook/blocks";
-import { T } from "../stories/T";
 
 <Meta title="Guides/Selection Controls" />
 
@@ -13,141 +12,144 @@ import { T } from "../stories/T";
   <thead>
     <tr>
       <th>コンポーネント</th>
-      <th>選択形式</th>
+      <th>選択可能数</th>
       <th>選択肢の数</th>
       <th>即時反映</th>
+      <th>判断のポイント</th>
       <th>主な用途</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td><strong>Switch</strong></td>
+      <td>1つ (ON/OFF)</td>
+      <td>-</td>
+      <td>○</td>
+      <td><strong>設定を即座に反映させたい</strong></td>
+      <td>Wi-Fi, ダークモード, 通知設定の即時変更</td>
+    </tr>
+    <tr>
       <td><strong>Checkbox</strong></td>
-      <td>複数選択可</td>
+      <td>単一 または 複数</td>
       <td>少数 (2〜10)</td>
       <td>×</td>
-      <td>設定のオンオフ、リストからの複数選択</td>
+      <td><strong>「保存」や「送信」ボタンで確定させたい</strong></td>
+      <td>設定のオンオフ、利用規約同意、複数フィルタ</td>
     </tr>
     <tr>
       <td><strong>Radio</strong></td>
-      <td>単一選択</td>
+      <td>単一</td>
       <td>少数 (2〜5)</td>
       <td>×</td>
-      <td>排他的な選択肢からの1つ選択</td>
-    </tr>
-    <tr>
-      <td><strong>Switch</strong></td>
-      <td>オン/オフ</td>
-      <td>1つ</td>
-      <td>○</td>
-      <td>即座に反映される設定の切り替え</td>
-    </tr>
-    <tr>
-      <td><strong>Select</strong></td>
-      <td>単一選択</td>
-      <td>中〜多数 (5〜)</td>
-      <td>×</td>
-      <td>フォーム内での場所を取らない1つ選択</td>
-    </tr>
-    <tr>
-      <td><strong>Combobox</strong></td>
-      <td>単一選択</td>
-      <td>多数 (20〜)</td>
-      <td>×</td>
-      <td>検索を伴う選択、候補からの補完入力</td>
+      <td><strong>少数の候補から1つだけ選び、後で送信したい</strong></td>
+      <td>支払い方法、配送日時、ソート順の指定</td>
     </tr>
     <tr>
       <td><strong>Segmented Control</strong></td>
-      <td>単一選択</td>
+      <td>単一</td>
       <td>少数 (2〜5)</td>
       <td>○</td>
-      <td>表示の切り替え、モードの変更</td>
+      <td><strong>表示モードやフィルタをその場で切り替えたい</strong></td>
+      <td>ビュー切替（グリッド/リスト）、期間切替（週/月）</td>
+    </tr>
+    <tr>
+      <td><strong>Select</strong></td>
+      <td>単一</td>
+      <td>中〜多数 (5〜20)</td>
+      <td>×</td>
+      <td><strong>場所を取らずに、中規模のリストから選びたい</strong></td>
+      <td>都道府県、カテゴリー選択、ステータス変更</td>
+    </tr>
+    <tr>
+      <td><strong>Combobox</strong></td>
+      <td>単一</td>
+      <td>多数 (20〜)</td>
+      <td>×</td>
+      <td><strong>膨大なデータから検索して絞り込みたい</strong></td>
+      <td>市区町村、ユーザー検索、商品検索</td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## <T k="guide_rvc_selection_title" />
+## デザインとアクセシビリティの原則
+
+### 選択の性質と役割
+
 <table>
   <thead>
     <tr>
-      <th><T k="table_header_component" /></th>
-      <th><T k="table_header_description" /></th>
+      <th>分類</th>
+      <th>説明</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><T k="term_radio" /></td>
-      <td><T k="guide_rvc_selection_radio" /></td>
+      <td><strong>ラジオボタン (Radio)</strong></td>
+      <td>常に1つだけ選択可能です。いずれかの項目が必ず選択されている必要があります。</td>
     </tr>
     <tr>
-      <td><T k="term_checkbox" /></td>
-      <td><T k="guide_rvc_selection_checkbox" /></td>
+      <td><strong>チェックボックス (Checkbox)</strong></td>
+      <td>0個以上の複数選択が可能です。各項目が独立しており、どれも選ばないという選択も可能です。</td>
     </tr>
     <tr>
-      <td><T k="term_switch" /></td>
-      <td><T k="guide_rvc_selection_switch" /></td>
+      <td><strong>スイッチ (Switch)</strong></td>
+      <td>2つの状態（オン/オフ）を切り替えます。設定の有効化・無効化という「バイナリな状態」を示すのに最適です。</td>
     </tr>
   </tbody>
 </table>
 
-## <T k="guide_rvc_design_title" />
+### 反映のタイミング (Timing)
+
 <table>
   <thead>
     <tr>
-      <th><T k="table_header_component" /></th>
-      <th><T k="table_header_description" /></th>
+      <th>タイミング</th>
+      <th>説明</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><T k="term_radio" /></td>
-      <td><T k="guide_rvc_design_radio" /></td>
+      <td><strong>即時反映 (Immediate)</strong></td>
+      <td>スイッチや Segmented Control は、操作した瞬間に設定が保存されたり画面が切り替わったりする場合に使用します。</td>
     </tr>
     <tr>
-      <td><T k="term_checkbox" /></td>
-      <td><T k="guide_rvc_design_checkbox" /></td>
-    </tr>
-    <tr>
-      <td><T k="term_switch" /></td>
-      <td><T k="guide_rvc_design_switch" /></td>
+      <td><strong>確認後に反映 (Deferred)</strong></td>
+      <td>ラジオボタンやチェックボックスは、通常「保存」や「送信」ボタンを押して初めて状態が確定するフォーム形式で使用します。</td>
     </tr>
   </tbody>
 </table>
 
----
+### 実装上の注意点
 
-## <T k="guide_rvc_timing_title" />
 <table>
   <thead>
     <tr>
-      <th><T k="table_header_component" /></th>
-      <th><T k="table_header_timing" /></th>
-      <th><T k="table_header_flow" /></th>
+      <th>項目</th>
+      <th>ガイドライン</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><T k="term_radio" /></td>
-      <td><T k="timing_immediate" /></td>
-      <td><T k="flow_radio" /></td>
+      <td><strong>デフォルト値</strong></td>
+      <td>ラジオボタンは「通常配送」などの推奨値をあらかじめ選択しておくのが一般的です。チェックボックスは基本「未選択」をデフォルトとします。</td>
     </tr>
     <tr>
-      <td><T k="term_checkbox" /></td>
-      <td><T k="timing_deferred" /></td>
-      <td><T k="flow_checkbox" /></td>
+      <td><strong>レイアウト</strong></td>
+      <td>選択肢は横に並べるよりも、<strong>垂直に並べる</strong>ほうが視線の移動がスムーズで、モバイルでのタップミスも減らせます。</td>
     </tr>
     <tr>
-      <td><T k="term_switch" /></td>
-      <td><T k="timing_immediate" /></td>
-      <td><T k="flow_switch" /></td>
+      <td><strong>アクセシビリティ</strong></td>
+      <td>ラベルテキスト自体もクリック（タップ）可能にし、ヒットエリアを十分に確保してください。</td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## Use Cases
+## 具体的ユースケース
+
 <table>
   <thead>
     <tr>
@@ -158,41 +160,19 @@ import { T } from "../stories/T";
   <tbody>
     <tr>
       <td><strong>Radio Button</strong></td>
-      <td><T k="guide_rvc_usage_radio" /></td>
+      <td>支払い方法（クレカ/銀行）、並び替え順（安い順/高い順）、配送日時</td>
     </tr>
     <tr>
       <td><strong>Checkbox</strong></td>
-      <td><T k="guide_rvc_usage_checkbox" /></td>
+      <td>フィルター条件（色・サイズ）、通知設定（メルマガ/新機能）、利用規約の同意</td>
     </tr>
     <tr>
       <td><strong>Switch</strong></td>
-      <td><T k="guide_rvc_usage_switch" /></td>
+      <td>Wi-FiやBluetoothのON/OFF、ダークモードの切り替え、通知の即時有効化</td>
     </tr>
     <tr>
       <td><strong>Segmented Control</strong></td>
       <td>表示形式の切り替え（例：週間/月間）、ソート順の変更（例：昇順/降順）</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## <T k="guide_rvc_implementation_note" />
-<table>
-  <thead>
-    <tr>
-      <th>項目</th>
-      <th>ガイドライン</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Default Value</strong></td>
-      <td><T k="guide_rvc_note_default" /></td>
-    </tr>
-    <tr>
-      <td><strong>Layout</strong></td>
-      <td><T k="guide_rvc_note_vertical" /></td>
     </tr>
   </tbody>
 </table>
@@ -293,7 +273,7 @@ Segmented Control は他のコンポーネントと役割が似ているため�
   </tbody>
 </table>
 
-## 迷った時の判断基準
+### 迷った時の判断基準
 
 <table>
   <thead>
@@ -323,53 +303,6 @@ Segmented Control は他のコンポーネントと役割が似ているため�
       <td>即時性</td>
       <td>選んだ瞬間に結果が反映されるべき</td>
       <td>送信ボタンを押すまで確定させたくないなら ラジオボタン</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## 選択のフローチャート
-
-<table>
-  <thead>
-    <tr>
-      <th>条件・質問</th>
-      <th>選択肢・結果</th>
-      <th>推奨コンポーネント</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="2"><strong>1. オン/オフの切り替えか？</strong></td>
-      <td>即時反映なら</td>
-      <td><strong>Switch</strong></td>
-    </tr>
-    <tr>
-      <td>送信が必要なら</td>
-      <td><strong>Checkbox</strong></td>
-    </tr>
-    <tr>
-      <td rowspan="2"><strong>2. 1つだけ選ぶか、複数選ぶか？</strong></td>
-      <td>複数選ぶ</td>
-      <td><strong>Checkbox Group</strong></td>
-    </tr>
-    <tr>
-      <td>1つだけ選ぶ</td>
-      <td>➔ 次へ</td>
-    </tr>
-    <tr>
-      <td rowspan="3"><strong>3. 選択肢の数は？</strong></td>
-      <td>少なめ (2-5)</td>
-      <td><strong>Radio</strong> または <strong>Segmented Control</strong></td>
-    </tr>
-    <tr>
-      <td>普通 (5-20)</td>
-      <td><strong>Select</strong></td>
-    </tr>
-    <tr>
-      <td>多い (20-)</td>
-      <td><strong>Combobox</strong></td>
     </tr>
   </tbody>
 </table>

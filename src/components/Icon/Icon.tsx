@@ -56,7 +56,6 @@ import MoreHorizontalIcon from "../../icon/more-horizontal.svg?react";
 import MoreVerticalIcon from "../../icon/more-vertical.svg?react";
 import FilterIcon from "../../icon/filter.svg?react";
 import SpinnerIcon from "../../icon/spinner.svg?react";
-import EllipsisIcon from "../../icon/ellipsis.svg?react";
 import ThumbUpIcon from "../../icon/thumb-up.svg?react";
 import ThumbDownIcon from "../../icon/thumb-down.svg?react";
 import MonitorIcon from "../../icon/monitor.svg?react";
@@ -122,7 +121,6 @@ const icons = {
   MoreVerticalIcon: MoreVerticalIcon,
   FilterIcon: FilterIcon,
   SpinnerIcon: SpinnerIcon,
-  EllipsisIcon: EllipsisIcon,
   ThumbUpIcon: ThumbUpIcon,
   ThumbDownIcon: ThumbDownIcon,
   MonitorIcon: MonitorIcon,
@@ -187,7 +185,6 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "MoreVerticalIcon"
   | "FilterIcon"
   | "SpinnerIcon"
-  | "EllipsisIcon"
   | "ThumbUpIcon"
   | "ThumbDownIcon"
   | "MonitorIcon"

@@ -1,19 +1,20 @@
-import { Meta} from "@storybook/blocks";
+import { Meta } from "@storybook/blocks";
 
 <Meta title="Guides/Overlays" />
 
 # オーバーレイコンポーネントの使い分け
 
-UIの目的に応じて、最適なオーバーレイ（Dialog, Drawer, BottomSheet, Popover）を選択するためのガイドラインです。
+UIの目的に応じて、最適なオーバーレイを選択するためのガイドラインです。
 
-## 比較表
+## オーバーレイ選択ガイド
 
 <table>
   <thead>
     <tr>
       <th>コンポーネント</th>
       <th>出現位置</th>
-      <th>ユーザーの集中度</th>
+      <th>集中度</th>
+      <th>特徴と判断のポイント</th>
       <th>主な用途</th>
     </tr>
   </thead>
@@ -22,142 +23,99 @@ UIの目的に応じて、最適なオーバーレイ（Dialog, Drawer, BottomSh
       <td><strong>Dialog</strong></td>
       <td>画面中央</td>
       <td><strong>最高</strong></td>
-      <td>重要な確認、複雑なフォーム入力、致命的な操作の防止</td>
+      <td><strong>ユーザーの注意を完全に引きつける。</strong>完了するまで他の操作をブロックします（モーダル）。</td>
+      <td>重要な確認、複雑なフォーム、致命的な操作の防止</td>
     </tr>
     <tr>
       <td><strong>Drawer</strong></td>
       <td>画面の端</td>
       <td>中</td>
-      <td>ナビゲーションメニュー、詳細情報の閲覧、設定パネル</td>
+      <td><strong>縦に長いコンテンツや設定に最適。</strong>元の画面を参照しながら副次的な操作を行えます。</td>
+      <td>ナビメニュー、詳細情報の閲覧、設定パネル</td>
     </tr>
     <tr>
       <td><strong>BottomSheet</strong></td>
       <td>画面下部</td>
       <td>中</td>
-      <td>モバイルでのアクション選択、リスト項目の詳細、設定</td>
+      <td><strong>モバイル操作に特化。</strong>指が届きやすい位置に表示され、スワイプ操作で閉じられます。</td>
+      <td>モバイルのアクション選択、項目詳細、設定</td>
     </tr>
     <tr>
       <td><strong>Popover</strong></td>
-      <td>要素の近く</td>
+      <td>要素の付近</td>
       <td>低</td>
-      <td>補足情報の提示、簡易的な設定、コンテキストメニュー</td>
+      <td><strong>文脈を維持したまま補足情報を提示。</strong>トリガーのすぐ傍に浮かせて表示します。</td>
+      <td>補足情報、簡易設定、コンテキストメニュー</td>
     </tr>
     <tr>
       <td><strong>Tooltip</strong></td>
-      <td>要素の近く</td>
+      <td>要素の付近</td>
       <td>最低</td>
-      <td>UI要素の簡単な説明、アクセシビリティ向上</td>
+      <td><strong>純粋なテキスト情報のみを提供。</strong>ホバー時等にUIの簡単な意味を伝えます（操作不可）。</td>
+      <td>アイコンの説明、専門用語の定義</td>
     </tr>
     <tr>
       <td><strong>HoverCard</strong></td>
-      <td>要素の近く</td>
+      <td>要素の付近</td>
       <td>低</td>
-      <td>詳細情報のプレビュー、リッチなコンテンツの表示</td>
+      <td><strong>リッチなプレビュー情報を表示。</strong>ホバー時に画像やリンク、ボタンなどを提供します。</td>
+      <td>プロフィールプレビュー、商品詳細の先読み</td>
     </tr>
     <tr>
       <td><strong>Tour</strong></td>
-      <td>各ターゲット付近</td>
+      <td>各ターゲット</td>
       <td>高</td>
-      <td>新機能の案内、ユーザーオンボーディング、操作ガイド</td>
+      <td><strong>一連の操作の流れをガイド。</strong>特定の要素を順番に強調して使い道を教えます。</td>
+      <td>オンボーディング、新機能案内、操作ガイド</td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 各コンポーネントの詳細
+## 情報設計の原則
+
+### モーダル (Modal) とモードレス (Modeless) の使い分け
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>概要・特徴</th>
-      <th>利用シーン</th>
+      <th>種類</th>
+      <th>動作</th>
+      <th>判断のポイント</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Dialog</strong></td>
-      <td>
-        ユーザーに特定の作業を完了させるか、重要な情報を確認させるためのウィンドウ。<br/>
-        画面中央に表示され、視覚的インパクトが最も強い。
-      </td>
-      <td>
-        <ul>
-          <li>ユーザーの注意を完全に引きつける必要があるとき。</li>
-          <li>他の操作を中断させてでも完了させるべき重要なタスク。</li>
-        </ul>
-      </td>
+      <td><strong>モーダル</strong></td>
+      <td>背後の画面を操作させない。</td>
+      <td><strong>タスクに集中させたい、または致命的なミスを防ぎたいとき。</strong>（Dialogなど）</td>
     </tr>
     <tr>
-      <td><strong>Drawer</strong></td>
-      <td>
-        画面の端（主に右または左）からスライドして表示されるパネル。<br/>
-        縦に長いコンテンツを表示するのに適している。
-      </td>
-      <td>
-        <ul>
-          <li>ページ全体のナビゲーション（サイドメニュー）。</li>
-          <li>メインコンテンツに関連する詳細情報や設定を、元のページを参照しながら操作したいとき。</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>BottomSheet</strong></td>
-      <td>
-        画面の下端からせり出すパネル（主にモバイル向け）。<br/>
-        ハンドルがあり、スワイプ操作を示唆する。
-      </td>
-      <td>
-        <ul>
-          <li>モバイルでの操作を優先するとき。</li>
-          <li>数個のアクションから一つを選択させるとき。</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Popover</strong></td>
-      <td>
-        トリガー要素のすぐ近くに浮かんで表示されるパネル。<br/>
-        矢印でトリガーを指し示すことが多く、文脈を維持しやすい。
-      </td>
-      <td>補足説明や、その場ですぐに終わる小さな設定を行うとき。</td>
-    </tr>
-    <tr>
-      <td><strong>Tooltip</strong></td>
-      <td>
-        ホバーまたはフォーカス時に表示される短いテキストラベル。<br/>
-        インタラクションを持たず、純粋に情報を提供する。
-      </td>
-      <td>
-        <ul>
-          <li>アイコンボタンに説明を加えたいとき。</li>
-          <li>専門用語の簡単な定義を表示したいとき。</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>HoverCard</strong></td>
-      <td>
-        ホバー時によりリッチな情報を表示するためのカード。<br/>
-        画像や複数のリンクを含めることができ、カード内での操作も可能。
-      </td>
-      <td>リンク先のユーザープロフィールや商品のプレビューをその場で見せたいとき。</td>
-    </tr>
-    <tr>
-      <td><strong>Tour</strong></td>
-      <td>
-        特定の要素を強調しながら順番に説明を表示するガイド。<br/>
-        複数の要素を横断して一連の流れを体験させることができる。
-      </td>
-      <td>
-        <ul>
-          <li>初めてのユーザーへのオンボーディング。</li>
-          <li>アップデート後の新機能紹介や操作ガイド。</li>
-        </ul>
-      </td>
+      <td><strong>モードレス</strong></td>
+      <td>表示中も背後の画面を操作できる。</td>
+      <td><strong>元の画面を見ながら作業を続けさせたいとき。</strong>（Popover, 一部のDrawerなど）</td>
     </tr>
   </tbody>
 </table>
 
+### モバイルへの配慮
 
+<table>
+  <thead>
+    <tr>
+      <th>デバイス</th>
+      <th>推奨コンポーネント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>デスクトップ</strong></td>
+      <td>情報量が多い場合は **Drawer**（サイドパネル）が視認性が高く、操作もしやすいです。</td>
+    </tr>
+    <tr>
+      <td><strong>モバイル</strong></td>
+      <td>画面下部から出る **BottomSheet** が片手操作に最も適しています。Dialog は入力要素が多いとキーボードで見えなくなるため注意が必要です。</td>
+    </tr>
+  </tbody>
+</table>
