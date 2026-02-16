@@ -415,5 +415,15 @@
   "guide_rvc_case_radio_vs_switch_radio": "Select 1 from 3+ options",
   "guide_rvc_case_radio_vs_switch_switch": "Toggle 2 states (On/Off)",
   "guide_rvc_case_checkbox_vs_switch_switch": "Setting applied immediately",
-  "guide_rvc_case_checkbox_vs_switch_checkbox": "Setting applied after clicking save"
+  "guide_rvc_case_checkbox_vs_switch_checkbox": "Setting applied after clicking save",
+  "layout_diagram_header": "Header",
+  "layout_diagram_sidebar": "Sidebar",
+  "layout_diagram_page_header": "Page Header",
+  "layout_diagram_main_content": "Main Content",
+  "layout_diagram_right_panel": "Right Panel",
+  "layout_diagram_footer": "Footer",
+  "layout_diagram_toast": "Toast (Overlay)",
+  "guide_layout_responsive_mobile": "Mobile (< 768px): Sidebar -> Drawer, Header Menu -> Hamburger",
+  "guide_layout_responsive_tablet": "Tablet (768px - 1024px): Sidebar (Icon only or collapsible)",
+  "guide_layout_responsive_desktop": "Desktop (> 1024px): Full layout"
 }

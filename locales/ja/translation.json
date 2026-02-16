@@ -416,5 +416,15 @@
   "guide_rvc_case_radio_vs_switch_radio": "3つ以上の選択肢から1つ選択",
   "guide_rvc_case_radio_vs_switch_switch": "2つの状態(オン/オフ)切り替え",
   "guide_rvc_case_checkbox_vs_switch_switch": "設定変更は即時反映",
-  "guide_rvc_case_checkbox_vs_switch_checkbox": "設定変更は保存ボタンを押してから反映"
+  "guide_rvc_case_checkbox_vs_switch_checkbox": "設定変更は保存ボタンを押してから反映",
+  "layout_diagram_header": "ヘッダー",
+  "layout_diagram_sidebar": "サイドバー",
+  "layout_diagram_page_header": "ページヘッダー",
+  "layout_diagram_main_content": "メイン",
+  "layout_diagram_right_panel": "右パネル",
+  "layout_diagram_footer": "フッター",
+  "layout_diagram_toast": "トースト (通知)",
+  "guide_layout_responsive_mobile": "モバイル (< 768px): サイドバー -> ドロワー、ヘッダーメニュー -> ハンバーガーメニュー",
+  "guide_layout_responsive_tablet": "タブレット (768px - 1024px): サイドバー (アイコンのみ、または折りたたみ)",
+  "guide_layout_responsive_desktop": "デスクトップ (> 1024px): 通常レイアウト"
 }
