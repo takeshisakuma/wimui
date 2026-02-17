@@ -75,6 +75,34 @@
     &--has-right-icon {
         padding-right: calc(#{spacings.$spacing-xl} + 1.2rem + 10px);
     }
+
+    &[type="color"] {
+        padding: spacings.$spacing-3xs;
+        height: 42px;
+        cursor: pointer;
+
+        &.wim-input--has-left-icon {
+            padding-left: calc(#{spacings.$spacing-xl} + 1.2rem + 10px);
+        }
+
+        &.wim-input--has-right-icon {
+            padding-right: calc(#{spacings.$spacing-xl} + 1.2rem + 10px);
+        }
+
+        &::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        &::-webkit-color-swatch {
+            border: none;
+            border-radius: spacings.$radius-sm;
+        }
+
+        &::-moz-color-swatch {
+            border: none;
+            border-radius: spacings.$radius-sm;
+        }
+    }
 }
 
 .wim-input-container {
@@ -102,6 +130,7 @@
 
     &:hover {
         .wim-input[readonly] {
+
             // Only add hover effect if cursor is set to pointer (Select-like)
             &:not([disabled]) {
                 background-color: var(--color-tertiary-hover);
@@ -111,6 +140,7 @@
 
     &:focus-within {
         .wim-input-icon {
+
             // Usually, only the secondary (default) icon color should turn primary on focus
             .wim-icon--secondary {
                 color: var(--color-primary);
