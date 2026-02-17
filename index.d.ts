@@ -69,6 +69,7 @@ export * from './components/Link/Link';
 export * from './components/LinkButton/LinkButton';
 export * from './components/List/List';
 export * from './components/Loader/Loader';
+export * from './components/LoadingOverlay/LoadingOverlay';
 export * from './components/Masonry/Masonry';
 export * from './components/Mentions/Mentions';
 export * from './components/Menu/Menu';
