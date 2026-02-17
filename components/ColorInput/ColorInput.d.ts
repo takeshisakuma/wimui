@@ -3,4 +3,4 @@ import { Input } from '../Input/Input';
 /**
  * カラー選択に特化した入力コンポーネント。
  */
-export declare const ColorInput: (props: React.ComponentProps<typeof Input>) => import("react/jsx-runtime").JSX.Element;
+export declare const ColorInput: ({ className, ...props }: React.ComponentProps<typeof Input>) => import("react/jsx-runtime").JSX.Element;
