@@ -1,0 +1,78 @@
+import { Meta} from "@storybook/blocks";
+
+<Meta title="Category/Application Shell" />
+
+# アプリケーションシェルの使い分け
+
+アプリケーションの全体構造を定義し、主要なナビゲーションや情報の基盤を提供します。
+
+## 配置と役割
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>配置</th>
+      <th>役割</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>AppShell</strong></td>
+      <td>画面全体</td>
+      <td>Header, Sidebar, Main, Footer を統合した基本レイアウト枠。</td>
+    </tr>
+    <tr>
+      <td><strong>Header</strong></td>
+      <td>画面上部</td>
+      <td>ロゴ、グローバル検索、ユーザープロフィール、トップレベルのアクションを配置。</td>
+    </tr>
+    <tr>
+      <td><strong>Navbar</strong></td>
+      <td>画面上部</td>
+      <td>主要な機能へのアクセスを提供するナビゲーションバー。</td>
+    </tr>
+    <tr>
+      <td><strong>Sidebar</strong></td>
+      <td>画面左右</td>
+      <td>機能数が多い管理画面、複雑な階層構造のドリルダウンメニュー。</td>
+    </tr>
+    <tr>
+      <td><strong>Footer</strong></td>
+      <td>画面下部</td>
+      <td>コピーライト、利用規約、補足リンク、言語切り替えなどを配置。</td>
+    </tr>
+    <tr>
+      <td><strong>TabBar</strong></td>
+      <td>画面下部</td>
+      <td>モバイルアプリ向けの主要なセクション切り替え。</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 使い分けのポイント
+
+<table>
+  <thead>
+    <tr>
+      <th>シナリオ</th>
+      <th>推奨コンポーネント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>主要な機能が4つ以下</strong></td>
+      <td><strong>Navbar</strong> (デスクトップ) / <strong>TabBar</strong> (モバイル)</td>
+    </tr>
+    <tr>
+      <td><strong>機能が多く、グループ化が必要</strong></td>
+      <td><strong>Sidebar</strong></td>
+    </tr>
+    <tr>
+      <td><strong>コンテンツに集中させたい</strong></td>
+      <td><strong>Header</strong> のみを利用したシンプルな構成</td>
+    </tr>
+  </tbody>
+</table>

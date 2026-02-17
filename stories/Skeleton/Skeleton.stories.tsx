@@ -3,7 +3,7 @@ import React from "react";
 import { Skeleton } from "@/components/Skeleton/Skeleton";
 
 const meta: Meta<typeof Skeleton> = {
-    title: "Component/Feedback/Skeleton",
+    title: "Component/Loading States/Skeleton",
     component: Skeleton,
     argTypes: {
         variant: {

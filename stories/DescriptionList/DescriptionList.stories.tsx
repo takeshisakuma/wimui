@@ -8,7 +8,7 @@ import {
 } from "@/components/DescriptionList/DescriptionList";
 
 const meta: Meta<typeof DescriptionList> = {
-    title: "Component/Data Display/DescriptionList",
+    title: "Component/Data Structures/DescriptionList",
     component: DescriptionList,
     argTypes: {
         layout: {

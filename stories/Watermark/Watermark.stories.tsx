@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Watermark } from "@/components/Watermark/Watermark";
 
 const meta: Meta<typeof Watermark> = {
-    title: "Component/Data Display/Watermark",
+    title: "Component/Data Indicators/Watermark",
     component: Watermark,
     argTypes: {
         rotate: {

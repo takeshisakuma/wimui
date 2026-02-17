@@ -4,7 +4,7 @@ import { Button } from "@/components/Button/Button";
 import React from "react";
 
 const meta: Meta<typeof Affix> = {
-    title: "Component/Navigation/Affix",
+    title: "Component/Navigation Utilities/Affix",
     component: Affix,
     tags: [],
     parameters: {

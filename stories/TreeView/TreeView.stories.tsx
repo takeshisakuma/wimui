@@ -4,7 +4,7 @@ import { TreeView } from "@/components/TreeView/TreeView";
 import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof TreeView> = {
-    title: "Component/Data Display/TreeView",
+    title: "Component/Data Structures/TreeView",
     component: TreeView,
     parameters: {
         layout: "centered",

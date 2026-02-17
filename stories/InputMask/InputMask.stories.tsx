@@ -4,7 +4,7 @@ import { InputMask } from "@/components/InputMask/InputMask";
 import { Label } from "@/components/Label/Label";
 
 const meta: Meta<typeof InputMask> = {
-    title: "Component/Form Inputs/InputMask",
+    title: "Component/Basic Inputs/InputMask",
     component: InputMask,
     argTypes: {
         mask: {

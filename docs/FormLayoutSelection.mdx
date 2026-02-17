@@ -1,0 +1,48 @@
+import { Meta} from "@storybook/blocks";
+
+<Meta title="Category/Form Layout" />
+
+# フォームレイアウトの使い分け
+
+入力フィールドを整理し、アクセシビリティとユーザビリティを高めるための要素です。
+
+## 基本要素
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>役割</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Label</strong></td>
+      <td>入力項目の名称を明示。クリックでフィールドにフォーカスします。</td>
+    </tr>
+    <tr>
+      <td><strong>InputGroup</strong></td>
+      <td>入力欄の前後（Prefix/Suffix）にアイコンや単位を付加。</td>
+    </tr>
+    <tr>
+      <td><strong>FieldError</strong></td>
+      <td>バリデーションエラーの内容を視覚的に提示。</td>
+    </tr>
+    <tr>
+      <td><strong>Fieldset</strong></td>
+      <td>関連する入力項目を意味的にグループ化。</td>
+    </tr>
+    <tr>
+      <td><strong>Legend</strong></td>
+      <td>Fieldset でグループ化された項目群のタイトル。</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## ベストプラクティス
+
+*   **ラベルの必須性**: すべての入力項目には `Label` を付け、プレースホルダーで代用しない。
+*   **近接性の原則**: `FieldError` は、エラーが発生している入力項目のすぐ近くに配置する。
+*   **視覚的グループ化**: 住所情報やプロフィール情報など、意味的なまとまりには `Fieldset` を使用する。

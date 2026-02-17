@@ -4,7 +4,7 @@ import { Icon } from "@/components/Icon/Icon";
 import React from "react";
 
 const meta: Meta<typeof Sidebar> = {
-    title: "Component/Navigation/Sidebar",
+    title: "Component/Application Shell/Sidebar",
     component: Sidebar,
     parameters: {
         layout: "fullscreen",

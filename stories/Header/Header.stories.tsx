@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import Header, { HeaderProps } from "@/components/Header/Header";
 
 const meta: Meta<typeof Header> = {
-    title: "Component/Navigation/Header",
+    title: "Component/Application Shell/Header",
     component: Header,
     parameters: {
         layout: "fullscreen",

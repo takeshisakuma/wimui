@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Rating } from "@/components/Rating/Rating";
 
 const meta: Meta<typeof Rating> = {
-    title: "Component/Form Inputs/Rating",
+    title: "Component/Advanced Inputs/Rating",
     component: Rating,
     parameters: {
         layout: "centered",

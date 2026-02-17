@@ -79,15 +79,31 @@ export const StatusIcon = ({ status }) => {
       </div>
       <div>
         <a href="#layout"><T k="cat_layout" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>85% (11/13)</div>
+        <div style={{ fontSize: "12px", color: "#666" }}>92% (11/12)</div>
       </div>
       <div>
-        <a href="#navigation"><T k="cat_navigation" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>93% (14/15)</div>
+        <a href="#app-shell"><T k="cat_app_shell" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>83% (5/6)</div>
       </div>
       <div>
-        <a href="#inputs"><T k="cat_inputs" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>80% (16/20)</div>
+        <a href="#nav-elements"><T k="cat_nav_elements" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (7/7)</div>
+      </div>
+      <div>
+        <a href="#nav-utilities"><T k="cat_nav_utilities" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>67% (2/3)</div>
+      </div>
+      <div>
+        <a href="#basic-inputs"><T k="cat_basic_inputs" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (8/8)</div>
+      </div>
+      <div>
+        <a href="#form-layout"><T k="cat_form_layout" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (5/5)</div>
+      </div>
+      <div>
+        <a href="#advanced-inputs"><T k="cat_advanced_inputs" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>43% (3/7)</div>
       </div>
       <div>
         <a href="#selection"><T k="cat_selection" /></a>
@@ -98,12 +114,24 @@ export const StatusIcon = ({ status }) => {
         <div style={{ fontSize: "12px", color: "#666" }}>100% (8/8)</div>
       </div>
       <div>
-        <a href="#data-display"><T k="cat_data_display" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>89% (17/19)</div>
+        <a href="#data-indicators"><T k="cat_data_indicators" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (9/9)</div>
       </div>
       <div>
-        <a href="#feedback"><T k="cat_feedback" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>92% (11/12)</div>
+        <a href="#data-structures"><T k="cat_data_structures" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>75% (6/8)</div>
+      </div>
+      <div>
+        <a href="#data-containers"><T k="cat_data_containers" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (2/2)</div>
+      </div>
+      <div>
+        <a href="#loading"><T k="cat_loading" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>80% (4/5)</div>
+      </div>
+      <div>
+        <a href="#alerts"><T k="cat_alerts" /></a>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (7/7)</div>
       </div>
       <div>
         <a href="#overlays"><T k="cat_overlays" /></a>
@@ -169,52 +197,80 @@ export const StatusIcon = ({ status }) => {
       <tr><td>Group</td><td><T k="doc_group_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Flex</td><td><T k="doc_flex_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>simpleGrid</td><td><T k="doc_simpleGrid_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>AppShell</td><td><T k="doc_appShell_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
       <tr><td>Splitter</td><td><T k="doc_splitter_desc" /></td><td><PlatformIcons pc /></td><td><StatusIcon status="planning" /></td></tr>
     </tbody>
   </table>
 
-  <h2 id="navigation"><T k="cat_navigation" /> <a href="?path=/docs/guides-navigation--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <h2 id="app-shell"><T k="cat_app_shell" /> <a href="?path=/docs/guides-app-layout--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <table>
+    <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
+    <tbody>
+      <tr><td>AppShell</td><td><T k="doc_appShell_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>Header</td><td><T k="doc_header_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Footer</td><td><T k="doc_footer_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Navbar</td><td><T k="doc_navbar_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Sidebar</td><td><T k="doc_sidebar_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>TabBar</td><td><T k="doc_tabBar_desc" /></td><td><PlatformIcons mobile /></td><td><StatusIcon status="done" /></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="nav-elements"><T k="cat_nav_elements" /> <a href="?path=/docs/guides-navigation-elements--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
       <tr><td>Breadcrumb</td><td><T k="doc_breadcrumb_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Tabs</td><td><T k="doc_tab_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Navbar</td><td><T k="doc_navbar_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Sidebar</td><td><T k="doc_sidebar_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Header</td><td><T k="doc_header_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Footer</td><td><T k="doc_footer_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Pagination</td><td><T k="doc_pagination_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>TabBar</td><td><T k="doc_tabBar_desc" /></td><td><PlatformIcons mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>TabNavigation</td><td><T k="doc_tabNavigation_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>HamburgerMenu</td><td><T k="doc_hamburgerMenu_desc" /></td><td><PlatformIcons mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Stepper</td><td><T k="doc_stepper_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Anchor</td><td><T k="doc_anchor_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="nav-utilities"><T k="cat_nav_utilities" /> <a href="?path=/docs/guides-navigation-utilities--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <table>
+    <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
+    <tbody>
       <tr><td>Affix</td><td><T k="doc_affix_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>BackTop</td><td><T k="doc_backTop_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
       <tr><td>FloatButton</td><td><T k="doc_floatButton_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
     </tbody>
   </table>
 
-  <h2 id="inputs"><T k="cat_inputs" /> <a href="?path=/docs/guides-form-inputs--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <h2 id="basic-inputs"><T k="cat_basic_inputs" /> <a href="?path=/docs/guides-basic-inputs--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>Label</td><td><T k="doc_label_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Input</td><td><T k="doc_input_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>PasswordInput</td><td><T k="doc_passwordInput_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>SearchInput</td><td><T k="doc_searchInput_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>NumberInput</td><td><T k="doc_numberInput_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>InputGroup</td><td><T k="doc_inputGroup_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>FieldError</td><td><T k="doc_FieldError_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Textarea</td><td><T k="doc_textarea_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>OtpInput</td><td><T k="doc_otpInput_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>FileUpload</td><td><T k="doc_file_upload_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Dropzone</td><td><T k="doc_dropzone_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Fieldset</td><td><T k="doc_fieldset_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Legend</td><td><T k="doc_legend_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>InputMask</td><td><T k="doc_inputMask_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Mentions</td><td><T k="doc_mentions_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="form-layout"><T k="cat_form_layout" /> <a href="?path=/docs/guides-form-layout--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <table>
+    <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
+    <tbody>
+      <tr><td>Label</td><td><T k="doc_label_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>InputGroup</td><td><T k="doc_inputGroup_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>FieldError</td><td><T k="doc_FieldError_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Fieldset</td><td><T k="doc_fieldset_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Legend</td><td><T k="doc_legend_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="advanced-inputs"><T k="cat_advanced_inputs" /> <a href="?path=/docs/guides-advanced-inputs--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <table>
+    <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
+    <tbody>
+      <tr><td>FileUpload</td><td><T k="doc_file_upload_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Dropzone</td><td><T k="doc_dropzone_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Rating</td><td><T k="doc_rating_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Cascader</td><td><T k="doc_cascader_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
       <tr><td>Transfer</td><td><T k="doc_transfer_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
@@ -260,48 +316,69 @@ export const StatusIcon = ({ status }) => {
     </tbody>
   </table>
 
-  <h2 id="data-display"><T k="cat_data_display" /> <a href="?path=/docs/guides-data-display--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <h2 id="data-indicators"><T k="cat_data_indicators" /> <a href="?path=/docs/guides-data-indicators--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
       <tr><td>Watermark</td><td><T k="doc_watermark_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Accordion</td><td><T k="doc_accordion_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Avatar</td><td><T k="doc_avatar_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>AvatarGroup</td><td><T k="doc_avatarGroup_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Badge</td><td><T k="doc_badge_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Calendar</td><td><T k="doc_calendar_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Card</td><td><T k="doc_card_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>DescriptionList</td><td><T k="doc_descriptionList_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>EmptyState</td><td><T k="doc_emptyState_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Indicator</td><td><T k="doc_indicator_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>List</td><td><T k="doc_list_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>QRCode</td><td><T k="doc_qrCode_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Stats</td><td><T k="doc_stats_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Table</td><td><T k="doc_table_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Tag</td><td><T k="doc_tag_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Timeline</td><td><T k="doc_timeline_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>TreeView</td><td><T k="doc_treeView_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="data-structures"><T k="cat_data_structures" /> <a href="?path=/docs/guides-data-structures--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <table>
+    <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
+    <tbody>
+      <tr><td>Table</td><td><T k="doc_table_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>DataGrid</td><td><T k="doc_dataGrid_desc" /></td><td><PlatformIcons pc /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>List</td><td><T k="doc_list_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>DescriptionList</td><td><T k="doc_descriptionList_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Stats</td><td><T k="doc_stats_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>TreeView</td><td><T k="doc_treeView_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Timeline</td><td><T k="doc_timeline_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>ChatUI</td><td><T k="doc_chatUI_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
     </tbody>
   </table>
 
-  <h2 id="feedback"><T k="cat_feedback" /> <a href="?path=/docs/guides-feedback--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <h2 id="data-containers"><T k="cat_data_containers" /> <a href="?path=/docs/guides-data-containers--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
   <table>
     <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
     <tbody>
-      <tr><td>Alert</td><td><T k="doc_alert_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Popconfirm</td><td><T k="doc_popconfirm_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Result</td><td><T k="doc_result_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Notification</td><td><T k="doc_notification_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>Banner</td><td><T k="doc_banner_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Card</td><td><T k="doc_card_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Accordion</td><td><T k="doc_accordion_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="loading"><T k="cat_loading" /> <a href="?path=/docs/guides-loading-states--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <table>
+    <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
+    <tbody>
       <tr><td>Loader</td><td><T k="doc_loader_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Progress</td><td><T k="doc_progress_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Skeleton</td><td><T k="doc_skeleton_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Spinner</td><td><T k="doc_spinner_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>LoadingOverlay</td><td><T k="doc_loadingOverlay_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="alerts"><T k="cat_alerts" /> <a href="?path=/docs/guides-alerts-notifications--docs" style={{fontSize: '14px', fontWeight: 'normal', marginLeft: '12px'}}>使い分けガイド</a></h2>
+  <table>
+    <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th><th><T k="table_header_platform" /></th><th><T k="table_header_status" /></th></tr></thead>
+    <tbody>
+      <tr><td>Alert</td><td><T k="doc_alert_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Notification</td><td><T k="doc_notification_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Banner</td><td><T k="doc_banner_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
+      <tr><td>Result</td><td><T k="doc_result_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Snackbar</td><td><T k="doc_snackbar_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Toast</td><td><T k="doc_toast_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>LoadingOverlay</td><td><T k="doc_loadingOverlay_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>Popconfirm</td><td><T k="doc_popconfirm_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
     </tbody>
   </table>
 

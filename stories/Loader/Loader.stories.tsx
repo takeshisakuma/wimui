@@ -3,7 +3,7 @@ import React from "react";
 import { Loader } from "@/components/Loader/Loader";
 
 const meta: Meta<typeof Loader> = {
-    title: "Component/Feedback/Loader",
+    title: "Component/Loading States/Loader",
     component: Loader,
     tags: [],
     argTypes: {

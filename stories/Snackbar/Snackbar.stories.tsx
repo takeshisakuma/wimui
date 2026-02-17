@@ -4,7 +4,7 @@ import { Snackbar } from "@/components/Snackbar/Snackbar";
 import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Snackbar> = {
-    title: "Component/Feedback/Snackbar",
+    title: "Component/Alerts & Notifications/Snackbar",
     component: Snackbar,
     parameters: {
         layout: "centered",

@@ -5,7 +5,7 @@ import { Badge } from "@/components/Badge/Badge";
 import { Checkbox } from "@/components/Checkbox/Checkbox";
 
 const meta: Meta<typeof Table> = {
-    title: "Component/Data Display/Table",
+    title: "Component/Data Structures/Table",
     component: Table,
     tags: [],
     argTypes: {

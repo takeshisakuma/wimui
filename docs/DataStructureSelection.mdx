@@ -1,0 +1,56 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Category/Data Structures" />
+
+# データ構造の使い分け
+
+大量のデータや複雑な親子関係、時系列データを整理して表示します。
+
+## 比較ガイド
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>構造・形式</th>
+      <th>判断のポイント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Table</strong></td>
+      <td>格子状 (Row/Column)</td>
+      <td>データの比較・分析、ソート、フィルタリングが必要。</td>
+    </tr>
+    <tr>
+      <td><strong>DataGrid</strong></td>
+      <td>高度な格子状</td>
+      <td>セルの直接編集、無限スクロール、仮想化が必要。</td>
+    </tr>
+    <tr>
+      <td><strong>DescriptionList</strong></td>
+      <td>キー・値ペア</td>
+      <td>項目名とその詳細を対にして表示したい。</td>
+    </tr>
+    <tr>
+      <td><strong>List</strong></td>
+      <td>垂直一列</td>
+      <td>シンプルな項目、モバイル重視のレイアウト。</td>
+    </tr>
+    <tr>
+      <td><strong>TreeView</strong></td>
+      <td>階層・ツリー</td>
+      <td>親子関係、ディレクトリ構造の表現。</td>
+    </tr>
+    <tr>
+      <td><strong>Timeline</strong></td>
+      <td>時系列</td>
+      <td>更新履歴、配送履歴、進捗の流れ。</td>
+    </tr>
+    <tr>
+      <td><strong>Stats</strong></td>
+      <td>数値・指標</td>
+      <td>KPI、重要な数値の強調表示。</td>
+    </tr>
+  </tbody>
+</table>

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Dropzone } from "@/components/Dropzone/Dropzone";
 
 const meta: Meta<typeof Dropzone> = {
-    title: "Component/Form Inputs/Dropzone",
+    title: "Component/Advanced Inputs/Dropzone",
     component: Dropzone,
     parameters: {
         layout: "centered",

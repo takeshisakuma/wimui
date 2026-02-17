@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Stats } from "@/components/Stats/Stats";
 
 const meta: Meta<typeof Stats> = {
-    title: "Component/Data Display/Stats",
+    title: "Component/Data Structures/Stats",
     component: Stats,
     parameters: {
         layout: "centered",

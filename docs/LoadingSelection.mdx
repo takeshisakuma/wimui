@@ -1,0 +1,52 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Category/Loading States" />
+
+# ローディング状態の使い分け
+
+データの取得中や処理中であることをユーザーに伝え、待機時間のストレスを軽減します。
+
+## ローディング形式の選択
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>形式</th>
+      <th>適用範囲</th>
+      <th>主な用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Loader</strong></td>
+      <td>アニメーション</td>
+      <td>パーツ/画面全体</td>
+      <td>汎用的な読み込み中表示。</td>
+    </tr>
+    <tr>
+      <td><strong>Spinner</strong></td>
+      <td>回転アイコン</td>
+      <td>ボタン/小さなパーツ</td>
+      <td>ボタン内の処理、小さな領域の短時間の読み込み。</td>
+    </tr>
+    <tr>
+      <td><strong>Progress</strong></td>
+      <td>進捗バー</td>
+      <td>パーツ/画面上部</td>
+      <td>完了までの割合がわかる処理（DL、アップロード等）。</td>
+    </tr>
+    <tr>
+      <td><strong>Skeleton</strong></td>
+      <td>仮の形状</td>
+      <td>コンテンツ領域</td>
+      <td>レイアウトを保持しつつ、コンテンツの到着を待つ。</td>
+    </tr>
+    <tr>
+      <td><strong>LoadingOverlay</strong></td>
+      <td>オーバーレイ</td>
+      <td>コンテナ全体</td>
+      <td>背後の操作を一時的に遮断したい場合。</td>
+    </tr>
+  </tbody>
+</table>

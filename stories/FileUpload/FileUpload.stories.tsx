@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FileUpload } from "@/components/FileUpload/FileUpload";
 
 const meta: Meta<typeof FileUpload> = {
-    title: "Component/Form Inputs/FileUpload",
+    title: "Component/Advanced Inputs/FileUpload",
     component: FileUpload,
     parameters: {
         layout: "centered",

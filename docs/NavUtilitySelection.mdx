@@ -1,0 +1,44 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Category/Navigation Utilities" />
+
+# ナビゲーションユーティリティの使い分け
+
+画面のスクロールに追従したり、特定の場所へ即座に移動したりするための補助的なナビゲーション要素です。
+
+## コンポーネント比較
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>目的</th>
+      <th>主な用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Affix</strong></td>
+      <td>要素の固定</td>
+      <td>サイドバーやボタンをスクロール中も特定の表示位置に固定する。</td>
+    </tr>
+    <tr>
+      <td><strong>BackTop</strong></td>
+      <td>トップへ戻る</td>
+      <td>長いページで、ワンクリックで最上部へスクロールさせる。</td>
+    </tr>
+    <tr>
+      <td><strong>FloatButton</strong></td>
+      <td>浮遊ボタン</td>
+      <td>画面右下などに常駐させ、問い合わせやアクションを促す。</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 使い分けのポイント
+
+*   **視認性の維持**: `Affix` は、重要なナビゲーションがスクロールによって見えなくなるのを防ぐために使用します。
+*   **長いコンテンツへの配慮**: ページが 3〜4 スクロール以上ある場合は、`BackTop` の提供を検討してください。
+*   **優先順位の管理**: `FloatButton` は強力な注意喚起になりますが、コンテンツの邪魔にならないよう、必要な場合に限定して配置してください。

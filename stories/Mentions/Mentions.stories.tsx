@@ -4,7 +4,7 @@ import { Mentions } from "@/components/Mentions/Mentions";
 import { Label } from "@/components/Label/Label";
 
 const meta: Meta<typeof Mentions> = {
-    title: "Component/Form Inputs/Mentions",
+    title: "Component/Basic Inputs/Mentions",
     component: Mentions,
     parameters: {
         layout: "padded",

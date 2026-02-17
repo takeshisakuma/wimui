@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Notification } from "@/components/Notification/Notification";
 
 const meta: Meta<typeof Notification> = {
-    title: "Component/Feedback/Notification",
+    title: "Component/Alerts & Notifications/Notification",
     component: Notification,
     tags: [],
     argTypes: {

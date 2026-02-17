@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FieldError } from "@/components/FieldError/FieldError";
 
 const meta: Meta<typeof FieldError> = {
-    title: "Component/Form Inputs/FieldError",
+    title: "Component/Form Layout/FieldError",
     component: FieldError,
     argTypes: {
         content: { control: "text" },

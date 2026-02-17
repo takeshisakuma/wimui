@@ -3,7 +3,7 @@ import { Banner } from "@/components/Banner/Banner";
 import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Banner> = {
-    title: "Component/Feedback/Banner",
+    title: "Component/Alerts & Notifications/Banner",
     component: Banner,
     tags: [],
     argTypes: {

@@ -3,7 +3,7 @@ import { Result } from "@/components/Result/Result";
 import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Result> = {
-    title: "Component/Feedback/Result",
+    title: "Component/Alerts & Notifications/Result",
     component: Result,
     tags: [],
 };

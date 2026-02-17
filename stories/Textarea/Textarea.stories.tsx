@@ -4,7 +4,7 @@ import { Label } from "@/components/Label/Label";
 import { FieldError } from "@/components/FieldError/FieldError";
 
 const meta: Meta<typeof Textarea> = {
-    title: "Component/Form Inputs/Textarea",
+    title: "Component/Basic Inputs/Textarea",
     component: Textarea,
     argTypes: {
         state: {

@@ -5,7 +5,7 @@ import { Button } from "@/components/Button/Button";
 import { HamburgerMenu } from "@/components/HamburgerMenu/HamburgerMenu";
 
 const meta: Meta<typeof Navbar> = {
-    title: "Component/Navigation/Navbar",
+    title: "Component/Application Shell/Navbar",
     component: Navbar,
     parameters: {
         layout: "fullscreen",
