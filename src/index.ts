@@ -24,6 +24,7 @@ export * from './components/ButtonGroup/ButtonGroup';
 export * from './components/Calendar/Calendar';
 export * from './components/Card/Card';
 export * from './components/Carousel/Carousel';
+export * from './components/ChatUI/ChatUI';
 export * from './components/Center/Center';
 export * from './components/Checkbox/Checkbox';
 export * from './components/CheckboxGroup/CheckboxGroup';

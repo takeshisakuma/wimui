@@ -1,0 +1,81 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import * as ChatUIStories from "./ChatUI.stories";
+
+<Meta of={ChatUIStories} />
+
+# ChatUI
+
+A comprehensive set of components for building chat interfaces with support for messages, avatars, timestamps, and interactive input.
+
+## Components
+
+The ChatUI module includes several sub-components:
+
+- **ChatContainer**: The main wrapper for the chat interface
+- **ChatMessageList**: Scrollable container for messages
+- **ChatMessage**: Individual message bubble with support for avatars, timestamps, and sender names
+- **ChatInput**: Input field with send button for composing messages
+- **ChatAvatar**: Avatar component with image support and fallback text
+
+## Usage
+
+### Basic Chat Interface
+
+<Canvas of={ChatUIStories.Basic} />
+
+### With Avatar Images
+
+<Canvas of={ChatUIStories.WithAvatarImages} />
+
+### Message Variants
+
+Messages support different variants for different types of content:
+
+<Canvas of={ChatUIStories.WithVariants} />
+
+### Interactive Example
+
+A fully functional chat with message sending and auto-scroll:
+
+<Canvas of={ChatUIStories.Interactive} />
+
+### Custom Avatars with Icons
+
+<Canvas of={ChatUIStories.WithIcons} />
+
+### Without Avatars
+
+<Canvas of={ChatUIStories.NoAvatars} />
+
+### Avatar Sizes
+
+<Canvas of={ChatUIStories.AvatarSizes} />
+
+## Features
+
+- **Flexible Layout**: Messages can be positioned left or right
+- **Avatar Support**: Display user avatars with images or fallback text
+- **Timestamps**: Show when messages were sent
+- **Sender Names**: Display who sent the message
+- **Message Variants**: Different styles for system, admin, or bot messages
+- **Interactive Input**: Send messages with button click or Enter key
+- **Auto-scroll**: Scroll to latest messages automatically
+- **Responsive**: Works on all device sizes
+
+## Best Practices
+
+1. **Position Messages**: Use `position="left"` for received messages and `position="right"` for sent messages
+2. **Show Avatars**: Display avatars for multi-user conversations to help identify senders
+3. **Include Timestamps**: Help users understand message chronology
+4. **Auto-scroll**: Implement auto-scroll to newest messages for better UX
+5. **Message Grouping**: Group consecutive messages from the same sender
+6. **Loading States**: Show typing indicators or loading states when appropriate
+7. **Accessibility**: Ensure proper ARIA labels and keyboard navigation
+
+## Accessibility
+
+- Input field is keyboard accessible
+- Send button can be triggered with Enter key
+- Proper semantic HTML structure
+- Avatar images include alt text
+- Color contrast meets WCAG standards
