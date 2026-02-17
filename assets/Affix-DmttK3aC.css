@@ -1,1 +1,0 @@
-@charset "UTF-8";:root{--shadow-sm: 0 2px 4px rgba(0, 0, 0, .1);--shadow-lg: 0 5px 10px rgba(0, 0, 0, .18);--transition-base: all .2s ease-in-out}@layer component{.wim-affix--affixed{margin:0;transition:none}}
