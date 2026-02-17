@@ -1,0 +1,169 @@
+import { Canvas, Meta, Controls, Primary } from "@storybook/blocks";
+import * as DataGridStories from "./DataGrid.stories";
+import { T } from "../T";
+
+<Meta of={DataGridStories} />
+
+# DataGrid
+
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  高機能なデータグリッドコンポーネント。ソート、ページネーション、行選択などの機能を統合的に提供します。
+</p>
+
+DataGridは、Tableコンポーネントをベースに、よく使われる機能を統合した高レベルのコンポーネントです。複雑なデータテーブルを簡単に実装できます。
+
+## 使用例
+
+### 基本的な使い方
+
+列定義とデータを渡すだけで、基本的なグリッドを表示できます。
+
+<Primary />
+
+<Controls />
+
+### 行選択機能
+
+`selection` プロップを有効にすると、チェックボックスによる行選択機能が追加されます。
+
+<Canvas of={DataGridStories.WithSelection} />
+
+### ソート機能
+
+列定義で `sortable: true` を指定し、`sortConfig` と `onSort` を渡すことで、ソート機能を実装できます。
+
+<Canvas of={DataGridStories.WithSorting} />
+
+### ページネーション
+
+`pagination` プロップを渡すことで、ページネーション機能を追加できます。
+
+<Canvas of={DataGridStories.WithPagination} />
+
+### アクション列
+
+カスタムレンダー関数を使用して、各行にアクションボタンを配置できます。
+
+<Canvas of={DataGridStories.WithActions} />
+
+## 状態表示
+
+### ローディング状態
+
+`loading` プロップを使用して、データ読み込み中の状態を表示できます。
+
+<Canvas of={DataGridStories.Loading} />
+
+### 空の状態
+
+データが空の場合、`emptyMessage` で指定したメッセージが表示されます。
+
+<Canvas of={DataGridStories.Empty} />
+
+## スタイルバリエーション
+
+### ストライプ
+
+`striped` プロップで、行を交互に色付けできます。
+
+<Canvas of={DataGridStories.Striped} />
+
+### ボーダー
+
+`bordered` プロップで、テーブルにボーダーを追加できます。
+
+<Canvas of={DataGridStories.Bordered} />
+
+### 固定ヘッダー
+
+`stickyHeader` と `maxHeight` を組み合わせることで、スクロール時にヘッダーを固定できます。
+
+<Canvas of={DataGridStories.StickyHeader} />
+
+## フル機能の例
+
+すべての機能を組み合わせた実用的な例です。
+
+<Canvas of={DataGridStories.FullFeatured} />
+
+## API
+
+### DataGridProps
+
+| プロパティ | 型 | デフォルト | 説明 |
+|-----------|-----|-----------|------|
+| `columns` | `DataGridColumn<T>[]` | - | 列定義の配列 |
+| `rows` | `T[]` | - | データ行の配列 |
+| `loading` | `boolean` | `false` | ローディング状態 |
+| `selection` | `boolean` | `false` | 行選択機能を有効化 |
+| `selectedRowKeys` | `React.Key[]` | `[]` | 選択された行のキー |
+| `onSelectionChange` | `(keys: React.Key[]) => void` | - | 選択変更時のコールバック |
+| `rowKey` | `keyof T \| ((row: T) => React.Key)` | `"id"` | 各行の一意なキー |
+| `sortConfig` | `{ key: string; direction: "asc" \| "desc" \| "none" }` | - | 現在のソート設定 |
+| `onSort` | `(key: string, direction: ...) => void` | - | ソート変更時のコールバック |
+| `pagination` | `PaginationConfig` | - | ページネーション設定 |
+| `striped` | `boolean` | `false` | ストライプ表示 |
+| `bordered` | `boolean` | `false` | ボーダー表示 |
+| `hoverable` | `boolean` | `true` | ホバーエフェクト |
+| `stickyHeader` | `boolean` | `false` | ヘッダーを固定 |
+| `height` | `string \| number` | - | 固定高さ |
+| `maxHeight` | `string \| number` | - | 最大高さ |
+| `emptyMessage` | `React.ReactNode` | `"No data available"` | 空の状態のメッセージ |
+
+### DataGridColumn
+
+| プロパティ | 型 | 説明 |
+|-----------|-----|------|
+| `key` | `string` | 列の一意なキー |
+| `header` | `React.ReactNode` | ヘッダーのテキストまたは要素 |
+| `width` | `string \| number` | 列の幅 |
+| `sortable` | `boolean` | ソート可能かどうか |
+| `render` | `(value, row, index) => React.ReactNode` | カスタムレンダー関数 |
+| `align` | `"left" \| "center" \| "right"` | テキストの配置 |
+| `dataIndex` | `keyof T` | データオブジェクトのキー（デフォルトは `key`） |
+
+## 使用例（TypeScript）
+
+```typescript
+import { DataGrid, DataGridColumn } from './DataGrid';
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
+const columns: DataGridColumn<User>[] = [
+  { key: 'id', header: 'ID', width: 80, sortable: true },
+  { key: 'name', header: 'Name', sortable: true },
+  { key: 'email', header: 'Email', sortable: true },
+  { 
+    key: 'role', 
+    header: 'Role',
+    render: (value) => <Badge content={value} />
+  },
+];
+
+function UserTable() {
+  const [users, setUsers] = useState<User[]>([]);
+  const [selectedKeys, setSelectedKeys] = useState<React.Key[]>([]);
+
+  return (
+    <DataGrid
+      columns={columns}
+      rows={users}
+      selection
+      selectedRowKeys={selectedKeys}
+      onSelectionChange={setSelectedKeys}
+    />
+  );
+}
+```
+
+## TableとDataGridの使い分け
+
+- **Table**: より柔軟なカスタマイズが必要な場合や、シンプルな表示のみの場合
+- **DataGrid**: ソート、ページネーション、行選択などの機能が必要な場合
+
+DataGridは内部でTableコンポーネントを使用しているため、Tableのすべてのスタイリング機能を継承しています。

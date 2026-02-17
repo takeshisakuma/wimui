@@ -36,6 +36,7 @@ export * from './components/CommandPalette/CommandPalette';
 export * from './components/Container/Container';
 export * from './components/ContextMenu/ContextMenu';
 export * from './components/CopyButton/CopyButton';
+export * from './components/DataGrid/DataGrid';
 export * from './components/DatePicker/DatePicker';
 export * from './components/DateRangePicker/DateRangePicker';
 export * from './components/DescriptionList/DescriptionList';
