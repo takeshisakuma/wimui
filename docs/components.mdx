@@ -62,10 +62,10 @@ export const StatusIcon = ({ status }) => {
   <div style={{ padding: "24px", background: "var(--wim-color-bg-secondary, #f4f4f7)", borderRadius: "12px", marginBottom: "32px" }}>
     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
       <strong><T k="dashboard_overall_progress" /></strong>
-      <strong>89% (136 / 153)</strong>
+      <strong>90% (137 / 153)</strong>
     </div>
     <div style={{ width: "100%", height: "12px", background: "#e2e2e8", borderRadius: "6px", overflow: "hidden" }}>
-      <div style={{ width: "88.9%", height: "100%", background: "var(--wim-color-primary, #0052cc)" }}></div>
+      <div style={{ width: "89.5%", height: "100%", background: "var(--wim-color-primary, #0052cc)" }}></div>
     </div>
 
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px", marginTop: "24px" }}>
@@ -127,7 +127,7 @@ export const StatusIcon = ({ status }) => {
       </div>
       <div>
         <a href="#loading"><T k="cat_loading" /></a>
-        <div style={{ fontSize: "12px", color: "#666" }}>80% (4/5)</div>
+        <div style={{ fontSize: "12px", color: "#666" }}>100% (5/5)</div>
       </div>
       <div>
         <a href="#alerts"><T k="cat_alerts" /></a>
@@ -364,7 +364,7 @@ export const StatusIcon = ({ status }) => {
       <tr><td>Progress</td><td><T k="doc_progress_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Skeleton</td><td><T k="doc_skeleton_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
       <tr><td>Spinner</td><td><T k="doc_spinner_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
-      <tr><td>LoadingOverlay</td><td><T k="doc_loadingOverlay_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="planning" /></td></tr>
+      <tr><td>LoadingOverlay</td><td><T k="doc_loadingOverlay_desc" /></td><td><PlatformIcons pc mobile /></td><td><StatusIcon status="done" /></td></tr>
     </tbody>
   </table>
 

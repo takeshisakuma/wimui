@@ -1,0 +1,83 @@
+.wim-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--wim-z-index-overlay, 1000);
+    pointer-events: all;
+
+    &--fixed {
+        position: fixed;
+    }
+
+    &__backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--wim-color-overlay-bg, rgba(0, 0, 0, 0.5));
+        backdrop-filter: blur(2px);
+        transition: opacity var(--wim-transition-duration-normal, 200ms) var(--wim-transition-timing-ease-out, ease-out);
+    }
+
+    &__backdrop--light {
+        background-color: var(--wim-color-overlay-bg-light, rgba(255, 255, 255, 0.8));
+    }
+
+    &__backdrop--dark {
+        background-color: var(--wim-color-overlay-bg-dark, rgba(0, 0, 0, 0.7));
+    }
+
+    &__backdrop--blur-sm {
+        backdrop-filter: blur(1px);
+    }
+
+    &__backdrop--blur-md {
+        backdrop-filter: blur(4px);
+    }
+
+    &__backdrop--blur-lg {
+        backdrop-filter: blur(8px);
+    }
+
+    &__backdrop--blur-none {
+        backdrop-filter: none;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--wim-spacing-md, 12px);
+    }
+
+    &__message {
+        color: var(--wim-color-text-on-overlay, #fff);
+        font-size: var(--wim-font-size-md, 14px);
+        font-weight: var(--wim-font-weight-medium, 500);
+        text-align: center;
+        max-width: 300px;
+    }
+
+    &--hidden {
+        display: none;
+    }
+
+    // Fade in/out animation
+    &--entering,
+    &--entered {
+        opacity: 1;
+    }
+
+    &--exiting,
+    &--exited {
+        opacity: 0;
+    }
+}
