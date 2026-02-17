@@ -27,6 +27,16 @@ export const StatusIcon = ({ status }) => {
   <h1><T k="dashboard_title" /></h1>
   <p><T k="dashboard_desc" /></p>
 
+  <div style={{ padding: "16px 24px", background: "var(--bg-component, #fff)", border: "1px solid var(--wim-color-border)", borderRadius: "12px", marginBottom: "32px", display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
+    <h3 style={{ margin: 0, fontSize: '16px' }}>💎 <T k="guide_tokens_title" />:</h3>
+    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', fontSize: '14px', fontWeight: 500 }}>
+      <a href="?path=/docs/guides-colors--docs">Colors</a>
+      <a href="?path=/docs/guides-typography-tokens--docs">Typography</a>
+      <a href="?path=/docs/guides-spacings-radius--docs">Spacings & Radius</a>
+      <a href="?path=/docs/guides-effects--docs">Effects</a>
+    </div>
+  </div>
+
   <h2>🚀 <T k="dashboard_progress" /></h2>
 
   <div style={{ display: "flex", gap: "24px", marginBottom: "16px", fontSize: "14px", color: "var(--text-secondary, #666)", flexWrap: "wrap" }}>

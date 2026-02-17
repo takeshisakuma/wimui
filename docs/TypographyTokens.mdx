@@ -1,0 +1,92 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+import { TokenGrid, TypographyVisualizer } from "../stories/TokenVisualizer";
+
+<Meta title="Guides/Typography Tokens" />
+
+<div className="wim-docs-container">
+  <h1>タイポグラフィ・トークン</h1>
+  <p>一貫したタイポグラフィを実現するための、フォントサイズ、ウェイト、行間の定義です。</p>
+
+  <hr />
+
+  <h2>フォントサイズ (Font Sizes)</h2>
+  <div style={{ display: 'grid', gap: '8px' }}>
+    <TypographyVisualizer 
+      token="--font-size-ex-large" 
+      text="Extra Large Text (20.8px)\n一貫したタイポグラフィを実現するための定義です。" 
+      type="font-size" 
+    />
+    <TypographyVisualizer 
+      token="--font-size-large" 
+      text="Large Text (17.6px)\n一貫したタイポグラフィを実現するための定義です。" 
+      type="font-size" 
+    />
+    <TypographyVisualizer 
+      token="--font-size-medium" 
+      text="Medium Text (16px)\n一貫したタイポグラフィを実現するための定義です。" 
+      type="font-size" 
+    />
+    <TypographyVisualizer 
+      token="--font-size-small" 
+      text="Small Text (14.4px)\n一貫したタイポグラフィを実現するための定義です。" 
+      type="font-size" 
+    />
+  </div>
+
+  <hr />
+
+  <h2>フォントウェイト (Font Weights)</h2>
+  <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
+     <div style={{ padding: '20px', background: 'var(--bg-component)', borderRadius: '8px', border: '1px solid var(--wim-color-border)' }}>
+        <div style={{ fontWeight: 'var(--font-weight-normal)', fontSize: '24px' }}>Normal</div>
+        <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '8px' }}>400 (<code>--font-weight-normal</code>)</div>
+     </div>
+     <div style={{ padding: '20px', background: 'var(--bg-component)', borderRadius: '8px', border: '1px solid var(--wim-color-border)' }}>
+        <div style={{ fontWeight: 'var(--font-weight-medium)', fontSize: '24px' }}>Medium</div>
+        <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '8px' }}>500 (<code>--font-weight-medium</code>)</div>
+     </div>
+     <div style={{ padding: '20px', background: 'var(--bg-component)', borderRadius: '8px', border: '1px solid var(--wim-color-border)' }}>
+        <div style={{ fontWeight: 'var(--font-weight-bold)', fontSize: '24px' }}>Bold</div>
+        <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '8px' }}>700 (<code>--font-weight-bold</code>)</div>
+     </div>
+  </TokenGrid>
+
+  <hr />
+
+  <h2>行間 (Line Heights)</h2>
+  
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
+    <div>
+      <h3>Japanese (Jpan)</h3>
+      <TypographyVisualizer 
+        token="--line-height-loose-jpan" 
+        text="Loose (1.8)\n日本語の文章において、特にモバイルデバイスや長い本文で見やすい行間です。ゆったりとした印象を与え、視線の移動をスムーズにします。" 
+      />
+      <TypographyVisualizer 
+        token="--line-height-normal-jpan" 
+        text="Normal (1.6)\nwim UI の標準的な行間です。読みやすさと情報の密度のバランスが最も取れた設定であり、一般的なニュース記事などに最適です。" 
+      />
+      <TypographyVisualizer 
+        token="--line-height-tight-jpan" 
+        text="Tight (1.4)\n見出しやラベルなど、情報の密度を高めたい場合に使用します。限られたスペースの中で多くの情報を伝えたい場合に適しています。" 
+      />
+    </div>
+
+    <div>
+      <h3>Latin (Latn)</h3>
+      <TypographyVisualizer 
+        token="--line-height-loose-latn" 
+        text="Loose (1.6)\nThe loose line height for Latin scripts provides ample breathing room between lines. It is ideal for legibility in long-form content." 
+      />
+      <TypographyVisualizer 
+        token="--line-height-normal-latn" 
+        text="Normal (1.4)\nNormal line height is the standard for most application UI elements. It offers a balanced density that works well for descriptions." 
+      />
+      <TypographyVisualizer 
+        token="--line-height-tight-latn" 
+        text="Tight (1.2)\nTight line height is specifically designed for headings. It maintains strong visual proximity for related text elements." 
+      />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+import { SpacingSwatch, RadiusSwatch, TokenGrid } from "../stories/TokenVisualizer";
+
+<Meta title="Guides/Spacings & Radius" />
+
+<div className="wim-docs-container">
+  <h1><T k="guide_spacings_title" /></h1>
+  <p><T k="guide_spacings_desc" /></p>
+
+  <hr />
+
+  <h2><T k="guide_spacings_scale" /></h2>
+  <div style={{ marginTop: '24px', marginBottom: '40px' }}>
+    <SpacingSwatch name="3XS" value="0.1rem (1.6px)" size="var(--spacing-3xs)" />
+    <SpacingSwatch name="2XS" value="0.2rem (3.2px)" size="var(--spacing-2xs)" />
+    <SpacingSwatch name="XS" value="0.3rem (4.8px)" size="var(--spacing-xs)" />
+    <SpacingSwatch name="Small" value="0.4rem (6.4px)" size="var(--spacing-sm)" />
+    <SpacingSwatch name="Medium" value="0.5rem (8px)" size="var(--spacing-md)" />
+    <SpacingSwatch name="Large" value="0.6rem (9.6px)" size="var(--spacing-lg)" />
+    <SpacingSwatch name="XL" value="0.7rem (11.2px)" size="var(--spacing-xl)" />
+    <SpacingSwatch name="2XL" value="1.0rem (16px)" size="var(--spacing-2xl)" />
+    <SpacingSwatch name="3XL" value="1.4rem (22.4px)" size="var(--spacing-3xl)" />
+    <SpacingSwatch name="4XL" value="1.8rem (28.8px)" size="var(--spacing-4xl)" />
+    <SpacingSwatch name="5XL" value="2.2rem (35.2px)" size="var(--spacing-5xl)" />
+  </div>
+
+  <hr />
+
+  <h2><T k="guide_spacings_radius" /></h2>
+  <TokenGrid>
+    <RadiusSwatch name="Small" value="2px" radius="var(--radius-sm)" />
+    <RadiusSwatch name="Medium" value="4px" radius="var(--radius-md)" />
+    <RadiusSwatch name="Large" value="8px" radius="var(--radius-lg)" />
+    <RadiusSwatch name="Full" value="9999px" radius="var(--radius-full)" />
+  </TokenGrid>
+
+  <div style={{ padding: "24px", background: "var(--bg-component, #fff)", border: "1px solid var(--wim-color-border)", borderRadius: "12px" }}>
+    <strong>💡 実装ガイドライン:</strong>
+    <ul style={{ marginTop: '12px', fontSize: '14px', lineHeight: '1.6' }}>
+      <li>ベースとなる 1rem はブラウザデフォルト（通常16px）に従います。</li>
+      <li>余白は <code>var(--spacing-md)</code> のように CSS 変数を使用し、直接数値を記述しないでください。</li>
+      <li>角丸はコンポーネントの大きさに応じて使い分けます（ボタン: sm/md, カード: lg）。</li>
+    </ul>
+  </div>
+</div>

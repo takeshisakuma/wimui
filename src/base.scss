@@ -1,5 +1,7 @@
 @use "./tokens/semantic-colors" as colors;
 @use "./tokens/spacings" as scales;
+@use "./tokens/effects";
+@use "./tokens/typography";
 
 @layer base {
   /* Base Styles: 要素へのグローバルなスタイル定義 */
