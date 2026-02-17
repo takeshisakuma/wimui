@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Portal } from "@/components/Portal/Portal";
 import { Button } from "@/components/Button/Button";
+import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof Portal> = {
     title: "Component/Utilities/Portal",
@@ -107,9 +108,14 @@ export const CustomContainer: Story = {
                                 borderRadius: "4px",
                                 fontSize: "14px",
                                 fontWeight: "bold",
-                                textAlign: "center"
+                                textAlign: "center",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "8px"
                             }}>
-                                🚀 送信完了！
+                                <Icon name="CheckCircleIcon" style={{ width: "20px", height: "20px" }} />
+                                送信完了！
                             </div>
                         </Portal>
                     </div>
