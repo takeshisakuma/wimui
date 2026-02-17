@@ -57,6 +57,7 @@ export * from './components/Group/Group';
 export * from './components/HamburgerMenu/HamburgerMenu';
 export * from './components/Header/Header';
 export * from './components/Heading/Heading';
+export * from './components/Highlight/Highlight';
 export * from './components/HoverCard/HoverCard';
 export * from './components/Icon/Icon';
 export * from './components/IconButton/IconButton';
