@@ -169,18 +169,16 @@ export const DashboardHeader: StoryObj = {
                     <Heading tag="h2" size="xl">Dashboard Overview</Heading>
                     <Grid cols="repeat(auto-fit, minmax(280px, 1fr))" gap={24} justify="center">
                         {[1, 2, 3].map((i) => (
-                            <Card key={i} style={{ padding: "24px", border: "1px solid var(--wim-color-border-secondary)" }}>
-                                <Stats>
-                                    <Stack justify="space-between" align="center" direction="row">
-                                        <Stats.Label>Total Revenue</Stats.Label>
-                                        <Badge color="neutral" content="+12.5%" size="small" />
-                                    </Stack>
-                                    <Stats.Value>
-                                        <Heading tag="h3" size="xl" style={{ whiteSpace: "nowrap" }}>$45,231.89</Heading>
-                                    </Stats.Value>
-                                    <Stats.Description>Compared to last month</Stats.Description>
-                                </Stats>
-                            </Card>
+                            <Stats key={i} style={{ border: "1px solid var(--wim-color-border-secondary)" }}>
+                                <Stack justify="space-between" align="center" direction="row">
+                                    <Stats.Label>Total Revenue</Stats.Label>
+                                    <Badge color="neutral" content="+12.5%" size="small" />
+                                </Stack>
+                                <Stats.Value>
+                                    <Heading tag="h3" size="xl" style={{ whiteSpace: "nowrap" }}>$45,231.89</Heading>
+                                </Stats.Value>
+                                <Stats.Description>Compared to last month</Stats.Description>
+                            </Stats>
                         ))}
                     </Grid>
                 </Stack>
@@ -343,16 +341,22 @@ export const PricingTable: StoryObj = {
                 </Stack>
             </Stack>
 
-            <Grid cols={{ base: 1, md: 3 }} gap={{ base: 48, md: 64 }} style={{ maxWidth: "1100px", margin: "0 auto" }}>
-                <Card style={{ padding: "32px", border: "1px solid var(--wim-color-border-secondary)" }}>
-                    <Stack gap="xl" style={{ height: "100%" }}>
-                        <Stack gap="xl" align="center" style={{ flex: 1 }}>
-                            <Heading tag="h3" size="md" align="center">Starter</Heading>
-                            <Stack direction="row" align="baseline" gap="none" justify="center">
-                                <Heading tag="h4" size="2xl">$0</Heading>
-                                <Paragraph content="/month" color="gray" size="small" style={{ whiteSpace: "nowrap" }} />
+            <Grid cols={{ base: 1, md: 3 }} gap={{ base: 32, lg: 48, xl: 64 }} style={{ maxWidth: "1100px", margin: "0 auto" }}>
+                <Card style={{ padding: "32px", border: "2px solid var(--wim-color-border-secondary)" }}>
+                    <Stack gap="lg" style={{ height: "100%" }}>
+                        <Stack gap="lg" align="center" style={{ flex: 1 }}>
+                            <Stack gap="xs" align="center">
+                                <div style={{ minHeight: "48px", display: "flex", alignItems: "flex-start", justifyContent: "center" }}>
+                                    <Heading tag="h3" size="sm" align="center" style={{ margin: 0 }}>Starter</Heading>
+                                </div>
+                                <Stack direction="row" align="baseline" gap="none" justify="center" style={{ whiteSpace: "nowrap" }}>
+                                    <Heading tag="h4" size="2xl" style={{ whiteSpace: "nowrap" }}>$0</Heading>
+                                    <Paragraph content="/month" color="gray" size="small" style={{ whiteSpace: "nowrap" }} />
+                                </Stack>
                             </Stack>
-                            <Paragraph content="Perfect for individuals just getting started." size="small" color="deepgray" style={{ textAlign: "center" }} />
+                            <div style={{ minHeight: "40px", display: "flex", alignItems: "center" }}>
+                                <Paragraph content="Perfect for individuals just getting started." size="small" color="deepgray" style={{ textAlign: "center", margin: 0 }} />
+                            </div>
 
                             <List spacing="normal" style={{ marginTop: "24px", alignSelf: "stretch" }}>
                                 <ListItem iconName="CheckIcon">Core components</ListItem>
@@ -370,14 +374,20 @@ export const PricingTable: StoryObj = {
                     <div style={{ position: "absolute", top: "-14px", left: "50%", transform: "translateX(-50%)" }}>
                         <Badge color="primary" content="MOST POPULAR" size="small" />
                     </div>
-                    <Stack gap="xl" style={{ height: "100%" }}>
-                        <Stack gap="xl" align="center" style={{ flex: 1 }}>
-                            <Heading tag="h3" size="md" align="center">Professional</Heading>
-                            <Stack direction="row" align="baseline" gap="none" justify="center">
-                                <Heading tag="h4" size="2xl">$29</Heading>
-                                <Paragraph content="/month" color="gray" size="small" style={{ whiteSpace: "nowrap" }} />
+                    <Stack gap="lg" style={{ height: "100%" }}>
+                        <Stack gap="lg" align="center" style={{ flex: 1 }}>
+                            <Stack gap="xs" align="center">
+                                <div style={{ minHeight: "48px", display: "flex", alignItems: "flex-start", justifyContent: "center" }}>
+                                    <Heading tag="h3" size="sm" align="center" style={{ margin: 0 }}>Professional</Heading>
+                                </div>
+                                <Stack direction="row" align="baseline" gap="none" justify="center" style={{ whiteSpace: "nowrap" }}>
+                                    <Heading tag="h4" size="2xl" style={{ whiteSpace: "nowrap" }}>$29</Heading>
+                                    <Paragraph content="/month" color="gray" size="small" style={{ whiteSpace: "nowrap" }} />
+                                </Stack>
                             </Stack>
-                            <Paragraph content="Advanced features for growing teams." size="small" color="deepgray" style={{ textAlign: "center" }} />
+                            <div style={{ minHeight: "40px", display: "flex", alignItems: "center" }}>
+                                <Paragraph content="Advanced features for growing teams." size="small" color="deepgray" style={{ textAlign: "center", margin: 0 }} />
+                            </div>
 
                             <List spacing="normal" style={{ marginTop: "24px", alignSelf: "stretch" }}>
                                 <ListItem iconName="CheckIcon">Everything in Starter</ListItem>
@@ -391,15 +401,21 @@ export const PricingTable: StoryObj = {
                     </Stack>
                 </Card>
 
-                <Card style={{ padding: "32px", border: "1px solid var(--wim-color-border-secondary)" }}>
-                    <Stack gap="xl" style={{ height: "100%" }}>
-                        <Stack gap="xl" align="center" style={{ flex: 1 }}>
-                            <Heading tag="h3" size="md" align="center">Enterprise</Heading>
-                            <Stack direction="row" align="baseline" gap="none" justify="center">
-                                <Heading tag="h4" size="2xl">$99</Heading>
-                                <Paragraph content="/month" color="gray" size="small" style={{ whiteSpace: "nowrap" }} />
+                <Card style={{ padding: "32px", border: "2px solid var(--wim-color-border-secondary)" }}>
+                    <Stack gap="lg" style={{ height: "100%" }}>
+                        <Stack gap="lg" align="center" style={{ flex: 1 }}>
+                            <Stack gap="xs" align="center">
+                                <div style={{ minHeight: "48px", display: "flex", alignItems: "flex-start", justifyContent: "center" }}>
+                                    <Heading tag="h3" size="sm" align="center" style={{ margin: 0 }}>Enterprise</Heading>
+                                </div>
+                                <Stack direction="row" align="baseline" gap="none" justify="center" style={{ whiteSpace: "nowrap" }}>
+                                    <Heading tag="h4" size="2xl" style={{ whiteSpace: "nowrap" }}>$99</Heading>
+                                    <Paragraph content="/month" color="gray" size="small" style={{ whiteSpace: "nowrap" }} />
+                                </Stack>
                             </Stack>
-                            <Paragraph content="Custom solutions for large organizations." size="small" color="deepgray" style={{ textAlign: "center" }} />
+                            <div style={{ minHeight: "40px", display: "flex", alignItems: "center" }}>
+                                <Paragraph content="Custom solutions for large organizations." size="small" color="deepgray" style={{ textAlign: "center", margin: 0 }} />
+                            </div>
 
                             <List spacing="normal" style={{ marginTop: "24px", alignSelf: "stretch" }}>
                                 <ListItem iconName="CheckIcon">Custom infrastructure</ListItem>
