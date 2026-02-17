@@ -1,0 +1,126 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import * as AppShellStories from "./AppShell.stories";
+
+<Meta of={AppShellStories} />
+
+# AppShell
+
+A flexible application shell component that provides a complete layout structure for modern web applications. AppShell combines header, sidebar, main content, footer, and navbar areas into a cohesive layout system.
+
+## Overview
+
+The AppShell component is designed to be the foundation of your application's layout. It handles the positioning and organization of major UI sections, allowing you to focus on building your application's features.
+
+## Usage
+
+### Basic Layout
+
+A simple layout with just a header and main content:
+
+<Canvas of={AppShellStories.Default} />
+
+### With Sidebar
+
+Add a sidebar for navigation:
+
+<Canvas of={AppShellStories.WithSidebar} />
+
+### With Footer
+
+Include a footer for additional information:
+
+<Canvas of={AppShellStories.WithFooter} />
+
+### With Bottom Navbar
+
+Perfect for mobile applications with bottom navigation:
+
+<Canvas of={AppShellStories.WithNavbar} />
+
+## Features
+
+- **Flexible Layout**: Compose your layout with any combination of header, sidebar, main content, footer, and navbar
+- **Responsive Design**: Automatically adapts to different screen sizes
+- **Customizable Padding**: Control padding on the main content area
+- **Centered Content**: Option to center content with maximum width constraint
+- **Semantic HTML**: Uses proper semantic elements (header, aside, main, footer)
+- **Z-index Management**: Proper layering of layout sections
+- **CSS Custom Properties**: Easy theming and customization
+
+## Layout Sections
+
+### Header
+- Fixed or sticky positioning options
+- Typically contains branding, navigation, and user actions
+- Use the `Header` component for consistent styling
+
+### Sidebar
+- Collapsible navigation panel
+- Configurable width
+- Can be positioned on left or right
+- Responsive behavior for mobile devices
+
+### Main Content
+- Primary content area
+- Optional padding and centering
+- Scrollable when content exceeds viewport height
+- Supports custom maximum width
+
+### Footer
+- Positioned at the bottom of the layout
+- Typically contains copyright, links, and legal information
+- Use the `Footer` component for consistent styling
+
+### Navbar
+- Bottom navigation bar for mobile applications
+- Fixed at the bottom of the viewport
+- Use the `Navbar` component for tab-based navigation
+
+## Best Practices
+
+1. **Use Semantic Components**: Combine AppShell with Header, Sidebar, Footer, and Navbar components for consistent styling
+2. **Responsive Considerations**: Test your layout on different screen sizes
+3. **Content Padding**: Use the `padding` prop to control spacing around main content
+4. **Centered Layouts**: For reading-focused apps, use `centered` with appropriate `maxWidth`
+5. **Mobile Navigation**: Use navbar for mobile-first applications
+6. **Accessibility**: Ensure proper heading hierarchy and landmark regions
+7. **Performance**: Keep sidebar and header content lightweight for better performance
+
+## Composition Pattern
+
+AppShell also provides sub-components for more granular control:
+
+```tsx
+<AppShell>
+  <AppShell.Header>
+    {/* Header content */}
+  </AppShell.Header>
+  <AppShell.Sidebar>
+    {/* Sidebar content */}
+  </AppShell.Sidebar>
+  <AppShell.Main>
+    {/* Main content */}
+  </AppShell.Main>
+  <AppShell.Footer>
+    {/* Footer content */}
+  </AppShell.Footer>
+  <AppShell.Navbar>
+    {/* Navbar content */}
+  </AppShell.Navbar>
+</AppShell>
+```
+
+## Accessibility
+
+- Uses semantic HTML5 elements (`<header>`, `<aside>`, `<main>`, `<footer>`)
+- Proper landmark regions for screen readers
+- Keyboard navigation support
+- Respects user's motion preferences
+- Maintains focus management across sections
+
+## Responsive Behavior
+
+- **Desktop**: Full layout with sidebar visible
+- **Tablet**: Sidebar may collapse or become a drawer
+- **Mobile**: Sidebar typically hidden, navbar shown at bottom
+- Padding adjusts automatically for smaller screens

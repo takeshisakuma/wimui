@@ -8,6 +8,7 @@ export * from './components/Accordion/Accordion';
 export * from './components/Affix/Affix';
 export * from './components/Alert/Alert';
 export * from './components/Anchor/Anchor';
+export * from './components/AppShell/AppShell';
 export * from './components/AspectRatio/AspectRatio';
 export * from './components/Audio/Audio';
 export * from './components/Avatar/Avatar';
