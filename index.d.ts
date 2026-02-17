@@ -97,6 +97,7 @@ export * from './components/Sidebar/Sidebar';
 export * from './components/SimpleGrid/SimpleGrid';
 export * from './components/Skeleton/Skeleton';
 export * from './components/Slider/Slider';
+export * from './components/Splitter/Splitter';
 export * from './components/Snackbar/Snackbar';
 export * from './components/Span/Span';
 export * from './components/Spinner/Spinner';
