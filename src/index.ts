@@ -14,6 +14,7 @@ export * from './components/Avatar/Avatar';
 export * from './components/AvatarGroup/AvatarGroup';
 export * from './components/Badge/Badge';
 export * from './components/Banner/Banner';
+export * from './components/BackTop/BackTop';
 export * from './components/BentoGrid/BentoGrid';
 export * from './components/BottomSheet/BottomSheet';
 export * from './components/Box/Box';
