@@ -2,7 +2,7 @@ import { Meta } from "@storybook/blocks";
 import { T } from "../stories/T";
 import { SpacingSwatch, RadiusSwatch, TokenGrid } from "../stories/TokenVisualizer";
 
-<Meta title="Guides/Spacings & Radius" />
+<Meta title="Token/Spacings & Radius" />
 
 <div className="wim-docs-container">
   <h1><T k="guide_spacings_title" /></h1>
@@ -36,7 +36,7 @@ import { SpacingSwatch, RadiusSwatch, TokenGrid } from "../stories/TokenVisualiz
   </TokenGrid>
 
   <div style={{ padding: "24px", background: "var(--bg-component, #fff)", border: "1px solid var(--wim-color-border)", borderRadius: "12px" }}>
-    <strong>💡 実装ガイドライン:</strong>
+    <strong>実装ガイドライン:</strong>
     <ul style={{ marginTop: '12px', fontSize: '14px', lineHeight: '1.6' }}>
       <li>ベースとなる 1rem はブラウザデフォルト（通常16px）に従います。</li>
       <li>余白は <code>var(--spacing-md)</code> のように CSS 変数を使用し、直接数値を記述しないでください。</li>

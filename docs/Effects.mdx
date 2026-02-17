@@ -2,7 +2,7 @@ import { Meta } from "@storybook/blocks";
 import { T } from "../stories/T";
 import { ShadowSwatch, MotionSwatch, TokenGrid } from "../stories/TokenVisualizer";
 
-<Meta title="Guides/Effects" />
+<Meta title="Token/Effects" />
 
 <div className="wim-docs-container">
   <h1><T k="guide_effects_title" /></h1>
@@ -29,7 +29,7 @@ import { ShadowSwatch, MotionSwatch, TokenGrid } from "../stories/TokenVisualize
   </TokenGrid>
 
   <div style={{ padding: "24px", background: "var(--bg-component, #fff)", border: "1px solid var(--wim-color-border)", borderRadius: "12px" }}>
-    <strong>💡 実装ガイドライン:</strong>
+    <strong>実装ガイドライン:</strong>
     <ul style={{ marginTop: '12px', fontSize: '14px', lineHeight: '1.6' }}>
       <li><strong>Shadow:</strong> 浮き出し効果は、要素の重なり順（z-index）や重要度に応じて使い分けます。</li>
       <li><strong>Motion:</strong> ユーザーの操作に対するフィードバックは 0.2s〜0.3s 程度が最も自然に感じられます。</li>

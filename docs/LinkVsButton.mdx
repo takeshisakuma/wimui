@@ -74,7 +74,7 @@ import { T } from "../stories/T";
 
 ## 1. <T k="guide_lvb_anchor_case" />
 <ul>
-  <li>🔗 <T k="guide_lvb_anchor_example" /></li>
+  <li><T k="guide_lvb_anchor_example" /></li>
 </ul>
 
 ```html
@@ -84,7 +84,7 @@ import { T } from "../stories/T";
 
 ## 2. <T k="guide_lvb_button_case" />
 <ul>
-  <li>🖱️ <T k="guide_lvb_button_example" /></li>
+  <li><T k="guide_lvb_button_example" /></li>
 </ul>
 
 ```html
@@ -109,17 +109,17 @@ import { T } from "../stories/T";
 
 
 
-## ⚠️ <T k="guide_lvb_antipattern_title" />
+## <T k="guide_lvb_antipattern_title" />
 
 <div style={{ background: '#fef2f2', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #dc2626', margin: '16px 0' }}>
   <T k="guide_lvb_antipattern_text" />
 </div>
 
 ```jsx
-// ❌ Bad: Button behaving as link
+// Bad: Button behaving as link
 <button onClick={() => window.location.href = '/about'}>About (Bad)</button>
 
-// ❌ Bad: Anchor behaving as button
+// Bad: Anchor behaving as button
 <a href="#" onClick={saveData}>Save (Bad)</a>
 ```
 
