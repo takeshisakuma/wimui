@@ -1,0 +1,107 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
+import * as SplitterStories from "./Splitter.stories";
+
+<Meta of={SplitterStories} />
+
+# Splitter
+
+Splitter は、複数のパネルをドラッグ操作でリサイズできるようにするレイアウトコンポーネントです。
+
+## 使用方法
+
+```tsx
+import { Splitter } from "wimui";
+
+<Splitter orientation="horizontal">
+  <Splitter.Panel defaultSize={30}>
+    Left Content
+  </Splitter.Panel>
+  <Splitter.Handle />
+  <Splitter.Panel defaultSize={70}>
+    Right Content
+  </Splitter.Panel>
+</Splitter>
+```
+
+## 例
+
+### 水平方向 (Horizontal)
+<Canvas of={SplitterStories.Horizontal} />
+
+### 垂直方向 (Vertical)
+<Canvas of={SplitterStories.Vertical} />
+
+### 複数パネル
+<Canvas of={SplitterStories.MultiplePanels} />
+
+### 入れ子 (Nested)
+<Canvas of={SplitterStories.Nested} />
+
+### サイズ制限 (Constraints)
+`minSize` や `maxSize` プロパティを使用して、パネルのリサイズ範囲を制限できます。
+<Canvas of={SplitterStories.Constraints} />
+
+## Props
+
+### Splitter Props
+<Controls of={SplitterStories.Horizontal} />
+
+### Splitter.Panel Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>defaultSize</code></td>
+      <td><code>number</code></td>
+      <td>-</td>
+      <td>初期サイズ（パーセンテージ）</td>
+    </tr>
+    <tr>
+      <td><code>minSize</code></td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>最小サイズ（パーセンテージ）</td>
+    </tr>
+    <tr>
+      <td><code>maxSize</code></td>
+      <td><code>number</code></td>
+      <td><code>100</code></td>
+      <td>最大サイズ（パーセンテージ）</td>
+    </tr>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>内容</td>
+    </tr>
+  </tbody>
+</table>
+
+### Splitter.Handle Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>ReactNode</code></td>
+      <td>-</td>
+      <td>カスタムハンドル要素（オプション）</td>
+    </tr>
+  </tbody>
+</table>
