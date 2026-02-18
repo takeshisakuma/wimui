@@ -1,0 +1,25 @@
+import { Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+import * as MarkdownStories from "./Markdown.stories";
+import { T } from "../T";
+
+<Meta of={MarkdownStories} />
+
+<Title />
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_markdown_desc" />
+</p>
+<Description />
+
+<Canvas of={MarkdownStories.Default} />
+<Controls />
+
+## 概要
+Markdown（マークダウン）コンポーネントは、Markdown形式で記述されたテキストを、適切なHTMLとしてレンダリングするために使用されます。
+ブログ記事、ドキュメント、ユーザー生成コンテンツのプレビューなどに適しています。
+
+## 特徴
+- GFM (GitHub Flavored Markdown) サポート：テーブル、打ち消し線、チェックリストなどが利用可能です。
+- スタイリング：WIM UI のデザインシステムに合わせたデフォルトスタイルが適用されます。
+
+## 注意点
+- セキュリティ：内部で `react-markdown` を使用しており、デフォルトでXSS攻撃を防止するように設計されていますが、複雑なHTML許可設定などを行う場合は注意が必要です。

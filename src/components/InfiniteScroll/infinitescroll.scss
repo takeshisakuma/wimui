@@ -1,0 +1,21 @@
+@use "../../tokens/spacings" as spacings;
+
+@layer component {
+    .wim-infinite-scroll {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        &__loader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: spacings.$spacing-md;
+        }
+
+        &__trigger {
+            height: 1px;
+            visibility: hidden;
+        }
+    }
+}

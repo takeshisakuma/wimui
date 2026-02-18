@@ -1,0 +1,27 @@
+import { Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+import * as MarqueeStories from "./Marquee.stories";
+import { T } from "../T";
+
+<Meta of={MarqueeStories} />
+
+<Title />
+<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+  <T k="doc_marquee_desc" />
+</p>
+<Description />
+
+<Canvas of={MarqueeStories.Default} />
+<Controls />
+
+## 概要
+Marquee（マーキー）コンポーネントは、コンテンツ（テキスト、画像、アイコンなど）を水平または垂直方向にループアニメーションで流すために使用されます。
+ニュースティッカー、ロゴの羅列、注目情報の強調などに適しています。
+
+## 特徴
+- シームレスなループ：コンテンツを自動的に複製し、切れ目のないスクロールを実現します。
+- カスタマイズ：速度（duration）、方向（reverse）、方向（vertical）、ホバー時の一時停止などを制御できます。
+
+## 使用例
+- お知らせやニュースのティッカー表示
+- 提携企業ロゴやスポンサーロゴのスライド表示
+- 特典情報の強調アニメーション

@@ -1,0 +1,109 @@
+@use "../../tokens/typography" as typography;
+@use "../../tokens/spacings" as spacings;
+@use "../../tokens/semantic-colors" as colors;
+
+@layer component {
+    .wim-markdown {
+        font-family: inherit;
+        line-height: 1.6;
+        color: var(--text-primary);
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-weight: typography.$weight-bold;
+        }
+
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 0.3em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 0.3em;
+        }
+
+        h3 {
+            font-size: 1.25em;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 1em;
+            padding-left: 2em;
+        }
+
+        li {
+            margin-bottom: 0.25em;
+        }
+
+        code {
+            padding: 0.2em 0.4em;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 85%;
+            background-color: var(--bg-surface);
+            border-radius: spacings.$radius-sm;
+        }
+
+        pre {
+            padding: 1em;
+            overflow: auto;
+            background-color: var(--bg-surface);
+            border-radius: spacings.$radius-md;
+
+            code {
+                padding: 0;
+                background-color: transparent;
+            }
+        }
+
+        blockquote {
+            padding-left: 1em;
+            color: var(--text-secondary);
+            border-left: 4px solid var(--border-subtle);
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 1em;
+            border-collapse: collapse;
+
+            th,
+            td {
+                padding: 0.5em 1em;
+                border: 1px solid var(--border-subtle);
+            }
+
+            th {
+                background-color: var(--bg-surface);
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: var(--border-subtle);
+            border: 0;
+        }
+    }
+}
