@@ -35,6 +35,7 @@ type TreeViewProps = {
     defaultSelectedValues?: string[];
     defaultCheckedValues?: string[];
     onCheckedChange?: (checked: string[]) => void;
+    onSelectedChange?: (selected: string[]) => void;
     width?: string | number;
 };
 
@@ -48,6 +49,7 @@ const TreeView = ({
     defaultSelectedValues = [],
     defaultCheckedValues = [],
     onCheckedChange,
+    onSelectedChange,
     width,
 }: TreeViewProps) => {
     const [expandedValues, setExpandedValues] = useState<string[]>(defaultExpandedValues);
@@ -63,13 +65,17 @@ const TreeView = ({
 
     const select = useCallback((value: string) => {
         if (multiSelect) {
-            setSelectedValues((prev) =>
-                prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
-            );
+            setSelectedValues((prev) => {
+                const newSelected = prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value];
+                onSelectedChange?.(newSelected);
+                return newSelected;
+            });
         } else {
-            setSelectedValues([value]);
+            const newSelected = [value];
+            setSelectedValues(newSelected);
+            onSelectedChange?.(newSelected);
         }
-    }, [multiSelect]);
+    }, [multiSelect, onSelectedChange]);
 
     const toggleCheck = useCallback((value: string) => {
         setCheckedValues((prev) => {

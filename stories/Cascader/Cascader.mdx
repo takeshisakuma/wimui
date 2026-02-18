@@ -1,0 +1,34 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as CascaderStories from "./Cascader.stories";
+
+<Meta of={CascaderStories} />
+
+# Cascader
+
+Cascader（カスケード選択）は、階層構造を持つデータから選択肢を辿って1つを選択するためのコンポーネントです。
+
+## 使用例
+
+### 基本的な使い方
+
+<Canvas of={CascaderStories.Default} />
+
+### ラベル付き
+
+<Canvas of={CascaderStories.WithLabel} />
+
+### ホバーで展開
+
+<Canvas of={CascaderStories.HoverExpand} />
+
+### 無効化
+
+<Canvas of={CascaderStories.Disabled} />
+
+### カスタムセパレーター
+
+<Canvas of={CascaderStories.CustomSeparator} />
+
+## Props
+
+<Controls />

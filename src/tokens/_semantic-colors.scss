@@ -8,6 +8,8 @@ $color-primary: $pccs-s16;
 $color-secondary: $pccs-gy6-5;
 $color-informative: $pccs-s18;
 $color-disabled: $pccs-gy8-5;
+$color-bg-primary: $pccs-w;
+$color-bg-secondary: $pccs-gy8-5;
 
 /* --- フォーカス状態の色 --- */
 $color-focus-outline: $color-primary;
@@ -65,6 +67,9 @@ $scrollbar-track: $pccs-gy8-5;
   --text-error: #{$text-error};
   --bg-app: #{$pccs-w}; // アプリ全体の背景
   --bg-component: #{$pccs-w};
+  --wim-color-bg-primary: #{$color-bg-primary};
+  --wim-color-bg-secondary: #{$color-bg-secondary};
+  --wim-color-bg-hover: rgba(0, 0, 0, 0.05); // Standard hover color
   --wim-color-border: #{$pccs-gy7-5};
   --wim-color-border-secondary: #{$pccs-gy8-5};
   --scrollbar-thumb: #{$scrollbar-thumb};

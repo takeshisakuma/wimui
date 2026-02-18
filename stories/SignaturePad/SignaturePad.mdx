@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as SignaturePadStories from "./SignaturePad.stories";
+
+<Meta of={SignaturePadStories} />
+
+# SignaturePad
+
+SignaturePad（署名パッド）は、マウスやタッチ操作で手書きの署名を入力するためのコンポーネントです。
+
+## 使用例
+
+### 基本的な使い方
+
+<Canvas of={SignaturePadStories.Default} />
+
+### カスタムカラーと太さ
+
+ペン（署名）の色や太さを変更することができます。
+
+<Canvas of={SignaturePadStories.CustomColors} />
+
+### 無効化
+
+<Canvas of={SignaturePadStories.Disabled} />
+
+### サイズ変更
+
+<Canvas of={SignaturePadStories.Large} />
+
+## Props
+
+<Controls />

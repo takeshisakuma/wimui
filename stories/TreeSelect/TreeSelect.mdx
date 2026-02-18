@@ -1,0 +1,36 @@
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as TreeSelectStories from "./TreeSelect.stories";
+
+<Meta of={TreeSelectStories} />
+
+# TreeSelect
+
+TreeSelect（ツリー選択）は、ツリー形式の選択肢から1つまたは複数を選択するためのコンポーネントです。
+
+## 使用例
+
+### 基本的な使い方
+
+<Canvas of={TreeSelectStories.Default} />
+
+### 複数選択
+
+複数選択モードでは、チェックボックスを使用して複数のノードを選択できます。
+
+<Canvas of={TreeSelectStories.Multiple} />
+
+### 検索機能
+
+<Canvas of={TreeSelectStories.Searchable} />
+
+### デフォルトで展開
+
+<Canvas of={TreeSelectStories.DefaultExpanded} />
+
+### 無効化
+
+<Canvas of={TreeSelectStories.Disabled} />
+
+## Props
+
+<Controls />
