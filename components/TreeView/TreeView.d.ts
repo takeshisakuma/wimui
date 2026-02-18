@@ -9,9 +9,10 @@ type TreeViewProps = {
     defaultSelectedValues?: string[];
     defaultCheckedValues?: string[];
     onCheckedChange?: (checked: string[]) => void;
+    onSelectedChange?: (selected: string[]) => void;
     width?: string | number;
 };
-declare const TreeView: ({ children, className, multiSelect, checkable, searchable, defaultExpandedValues, defaultSelectedValues, defaultCheckedValues, onCheckedChange, width, }: TreeViewProps) => import("react/jsx-runtime").JSX.Element;
+declare const TreeView: ({ children, className, multiSelect, checkable, searchable, defaultExpandedValues, defaultSelectedValues, defaultCheckedValues, onCheckedChange, onSelectedChange, width, }: TreeViewProps) => import("react/jsx-runtime").JSX.Element;
 type TreeViewItemProps = {
     value: string;
     label: React.ReactNode;

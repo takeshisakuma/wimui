@@ -9,7 +9,7 @@ export interface DataGridColumn<T> {
     /** Whether the column is sortable */
     sortable?: boolean;
     /** Custom render function for the cell */
-    render?: (value: any, row: T, index: number) => React.ReactNode;
+    render?: (value: T[keyof T], row: T, index: number) => React.ReactNode;
     /** Text alignment */
     align?: "left" | "center" | "right";
     /** Data index in the row object (defaults to key if not provided) */
