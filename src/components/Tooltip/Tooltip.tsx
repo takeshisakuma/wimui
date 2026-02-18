@@ -16,22 +16,27 @@ import {
     Placement,
     safePolygon,
     useMergeRefs,
+    UseFloatingReturn,
+    FloatingContext,
+    ReferenceType,
 } from "@floating-ui/react";
 import classNames from "classnames";
 import "./tooltip.scss";
 
-// Context to share state between components
-const TooltipContext = React.createContext<{
+type TooltipContextValue = {
     open: boolean;
     setOpen: (open: boolean) => void;
-    refs: any;
+    refs: UseFloatingReturn<ReferenceType>["refs"];
     floatingStyles: React.CSSProperties;
-    context: any;
+    context: FloatingContext<ReferenceType>;
     getReferenceProps: (userProps?: React.HTMLProps<Element>) => Record<string, unknown>;
     getFloatingProps: (userProps?: React.HTMLProps<HTMLElement>) => Record<string, unknown>;
     arrowRef: React.RefObject<SVGSVGElement | null>;
     placement: string;
-} | null>(null);
+};
+
+// Context to share state between components
+const TooltipContext = React.createContext<TooltipContextValue | null>(null);
 
 export type TooltipProps = {
     children: ReactNode;
@@ -74,7 +79,7 @@ export const Tooltip = ({
 
     const arrowRef = useRef<SVGSVGElement>(null);
 
-    const { refs, floatingStyles, context, placement: finalPlacement } = useFloating({
+    const { refs, floatingStyles, context, placement: finalPlacement } = useFloating<ReferenceType>({
         open,
         onOpenChange: setOpen,
         placement,
@@ -100,8 +105,6 @@ export const Tooltip = ({
     const dismiss = useDismiss(context);
     const role = useRole(context, { role: "tooltip" });
 
-    // Type casting here to satisfy the context type definition, 
-    // as useInteractions returns a slightly more complex type map but compatible at runtime
     const { getReferenceProps, getFloatingProps } = useInteractions([
         hover,
         focus,
@@ -149,35 +152,37 @@ export const TooltipTrigger = React.forwardRef<
         throw new Error("Tooltip components must be wrapped in <Tooltip />");
     }
 
-    const childrenRef = (children as any).ref;
-    const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
+    const childrenRef = (children as React.ReactElement & { ref?: React.Ref<unknown> }).ref;
+    const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef ?? null]);
 
     if (asChild && React.isValidElement(children)) {
-        const childProps = children.props as any;
-        return React.cloneElement(
-            children,
-            context.getReferenceProps({
-                ref,
-                ...props,
-                ...childProps,
-                className: classNames(className, childProps.className),
-                "data-state": context.open ? "open" : "closed",
-            }) as any // Cast to any to satisfy React.cloneElement requirements
-        );
+        const childProps = children.props as Record<string, unknown>;
+        const referenceProps = context.getReferenceProps({
+            ref,
+            ...props,
+            ...(childProps as React.HTMLProps<Element>),
+            className: classNames(className, childProps.className as string | undefined),
+        }) as React.HTMLAttributes<Element>;
+        return React.cloneElement(children, {
+            ...referenceProps,
+            "data-state": context.open ? "open" : "closed",
+        } as React.HTMLAttributes<Element>);
     }
 
     return (
         <button
-            ref={ref}
+            ref={ref as React.Ref<HTMLButtonElement>}
             type="button"
             className={classNames("wim-tooltip-trigger", className)}
             data-state={context.open ? "open" : "closed"}
-            {...context.getReferenceProps(props)}
+            {...(context.getReferenceProps(props) as React.ButtonHTMLAttributes<HTMLButtonElement>)}
         >
             {children}
         </button>
     );
 });
+
+TooltipTrigger.displayName = "TooltipTrigger";
 
 export type TooltipContentProps = {
     children: ReactNode;
@@ -208,7 +213,7 @@ export const TooltipContent = React.forwardRef<
                     "wim-tooltip-content",
                     className
                 )}
-                {...getFloatingProps(props)}
+                {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
             >
                 {children}
                 <FloatingArrow
@@ -222,3 +227,5 @@ export const TooltipContent = React.forwardRef<
         </FloatingPortal>
     );
 });
+
+TooltipContent.displayName = "TooltipContent";

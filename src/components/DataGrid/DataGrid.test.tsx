@@ -120,7 +120,7 @@ describe("DataGrid", () => {
             {
                 key: "name",
                 header: "Name",
-                render: (value: string) => <strong>{value.toUpperCase()}</strong>,
+                render: (value: unknown) => <strong>{(value as string).toUpperCase()}</strong>,
             },
         ];
 

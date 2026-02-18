@@ -24,6 +24,7 @@ export interface SplitterProps extends React.ComponentPropsWithoutRef<"div"> {
 
 /**
  * Splitter component that allows resizing of multiple panels.
+ * Supports both mouse and touch events.
  */
 const Splitter = ({
     orientation = "horizontal",
@@ -37,15 +38,18 @@ const Splitter = ({
 
     const childrenArray = React.Children.toArray(children);
     const panels = childrenArray.filter(
-        (child) => (child as any).type?.displayName === "SplitterPanel"
+        (child) => (child as React.ReactElement<{ displayName?: string }>).type &&
+            (child as React.ReactElement).type === SplitterPanel
     );
 
     useEffect(() => {
         const initialSizes = panels.map(
-            (p) => (p as any).props.defaultSize ?? 100 / panels.length
+            (p) => (p as React.ReactElement<SplitterPanelProps>).props.defaultSize ?? 100 / panels.length
         );
         const sum = initialSizes.reduce((a, b) => a + b, 0);
         setPanelSizes(initialSizes.map((s) => (s / sum) * 100));
+        // panels.length だけを依存にすることで初期化を一度だけ行う
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [panels.length]);
 
     const handleResizeStart = useCallback(
@@ -56,14 +60,24 @@ const Splitter = ({
         []
     );
 
-    const handleMouseMove = useCallback(
-        (e: MouseEvent) => {
+    /** マウス・タッチ両対応の座標取得 */
+    const getClientPos = (e: MouseEvent | TouchEvent) => {
+        if ("touches" in e) {
+            return orientation === "horizontal"
+                ? e.touches[0].clientX
+                : e.touches[0].clientY;
+        }
+        return orientation === "horizontal" ? e.clientX : e.clientY;
+    };
+
+    const handleMove = useCallback(
+        (e: MouseEvent | TouchEvent) => {
             if (resizingIndex === null || !containerRef.current) return;
 
             const rect = containerRef.current.getBoundingClientRect();
             const totalSize = orientation === "horizontal" ? rect.width : rect.height;
-            const currentPos =
-                orientation === "horizontal" ? e.clientX - rect.left : e.clientY - rect.top;
+            const origin = orientation === "horizontal" ? rect.left : rect.top;
+            const currentPos = getClientPos(e) - origin;
             const currentPercentage = (currentPos / totalSize) * 100;
 
             setPanelSizes((prev) => {
@@ -77,8 +91,8 @@ const Splitter = ({
                 let newSizeI = currentPercentage - startOfI;
 
                 // Constraints
-                const panelI = panels[resizingIndex] as React.ReactElement<any>;
-                const panelIPlus1 = panels[resizingIndex + 1] as React.ReactElement<any>;
+                const panelI = panels[resizingIndex] as React.ReactElement<SplitterPanelProps>;
+                const panelIPlus1 = panels[resizingIndex + 1] as React.ReactElement<SplitterPanelProps>;
 
                 const minI = panelI.props.minSize ?? 0;
                 const maxI = panelI.props.maxSize ?? 100;
@@ -101,36 +115,43 @@ const Splitter = ({
                 return next;
             });
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [resizingIndex, orientation, panels]
     );
 
-    const handleMouseUp = useCallback(() => {
+    const handleEnd = useCallback(() => {
         setResizingIndex(null);
     }, []);
 
     useEffect(() => {
         if (resizingIndex !== null) {
-            window.addEventListener("mousemove", handleMouseMove);
-            window.addEventListener("mouseup", handleMouseUp);
+            // マウスイベント
+            window.addEventListener("mousemove", handleMove);
+            window.addEventListener("mouseup", handleEnd);
+            // タッチイベント（passive: false で preventDefault を有効化）
+            window.addEventListener("touchmove", handleMove, { passive: false });
+            window.addEventListener("touchend", handleEnd);
             return () => {
-                window.removeEventListener("mousemove", handleMouseMove);
-                window.removeEventListener("mouseup", handleMouseUp);
+                window.removeEventListener("mousemove", handleMove);
+                window.removeEventListener("mouseup", handleEnd);
+                window.removeEventListener("touchmove", handleMove);
+                window.removeEventListener("touchend", handleEnd);
             };
         }
-    }, [resizingIndex, handleMouseMove, handleMouseUp]);
+    }, [resizingIndex, handleMove, handleEnd]);
 
     let panelIdx = 0;
     let handleIdx = 0;
     const items = childrenArray.map((child) => {
-        if ((child as any).type?.displayName === "SplitterPanel") {
+        if ((child as React.ReactElement).type === SplitterPanel) {
             const index = panelIdx++;
-            return React.cloneElement(child as any, {
+            return React.cloneElement(child as React.ReactElement<SplitterPanelProps>, {
                 size: panelSizes[index],
             });
         }
-        if ((child as any).type?.displayName === "SplitterHandle") {
+        if ((child as React.ReactElement).type === SplitterHandle) {
             const index = handleIdx++;
-            return React.cloneElement(child as any, {
+            return React.cloneElement(child as React.ReactElement<SplitterHandleProps>, {
                 index,
                 active: resizingIndex === index,
             });
@@ -168,9 +189,9 @@ export interface SplitterPanelProps extends React.ComponentPropsWithoutRef<"div"
 }
 
 const SplitterPanel = ({
-    defaultSize,
-    minSize,
-    maxSize,
+    defaultSize: _defaultSize,
+    minSize: _minSize,
+    maxSize: _maxSize,
     size,
     style,
     className,
@@ -200,16 +221,21 @@ export interface SplitterHandleProps extends React.ComponentPropsWithoutRef<"div
 }
 
 const SplitterHandle = ({ index, active, className, ...props }: SplitterHandleProps) => {
-    const { onResizeStart } = useSplitter();
+    const { onResizeStart, orientation } = useSplitter();
 
     return (
         <div
+            role="separator"
+            aria-orientation={orientation}
+            aria-label="Resize panel"
+            tabIndex={0}
             className={classNames(
                 "wim-splitter-handle",
                 active && "wim-splitter-handle--active",
                 className
             )}
             onMouseDown={(e) => index !== undefined && onResizeStart(index, e)}
+            onTouchStart={(e) => index !== undefined && onResizeStart(index, e)}
             {...props}
         />
     );

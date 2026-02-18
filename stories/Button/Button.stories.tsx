@@ -11,10 +11,14 @@ const meta: Meta<typeof Button> = {
   },
   argTypes: {
     backgroundColor: { control: "color" },
+    state: {
+      description: "⚠️ 非推奨: 代わりに標準の `disabled` prop を使用してください。",
+      control: "select",
+      options: ["abled", "disabled"],
+    },
   },
   args: {
     onClick: fn(),
-    "aria-label": undefined as unknown as string, // Will be set to false in specific stories or handled by component
   },
 };
 
@@ -26,8 +30,6 @@ export const LargePrimaryButton: Story = {
     size: "large",
     label: "button_label",
     priority: "primary",
-    state: "abled",
-    "aria-label": false as unknown as string,
   },
 };
 
@@ -36,8 +38,6 @@ export const MediumSecondaryButton: Story = {
     size: "medium",
     label: "button_label",
     priority: "secondary",
-    state: "abled",
-    "aria-label": false as unknown as string,
   },
 };
 
@@ -46,8 +46,6 @@ export const SmallTertiaryButton: Story = {
     size: "small",
     label: "button_label",
     priority: "tertiary",
-    state: "abled",
-    "aria-label": false as unknown as string,
   },
 };
 
@@ -57,14 +55,19 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
     label: "button_label",
     priority: "tertiary",
     role: "destructive",
-    state: "abled",
     iconName: "CircleIcon",
     iconPosition: "left",
-    "aria-label": false as unknown as string,
   },
 };
 
-
+export const DisabledButton: Story = {
+  args: {
+    size: "medium",
+    label: "button_label",
+    priority: "primary",
+    disabled: true,
+  },
+};
 
 export const MediumPrimaryLoadingProcessingButton: Story = {
   args: {
@@ -72,7 +75,6 @@ export const MediumPrimaryLoadingProcessingButton: Story = {
     priority: "primary",
     label: "processing",
     loading: true,
-    "aria-label": false as unknown as string,
   },
 };
 
@@ -82,14 +84,12 @@ export const MediumSecondaryLoadingSavingButton: Story = {
     priority: "secondary",
     label: "saving",
     loading: true,
-    "aria-label": false as unknown as string,
   },
 };
 
 export const MediumPrimaryInteractiveLoadingButton: Story = {
   render: (args) => {
     const [loading, setLoading] = useState(false);
-    const [label, setLabel] = useState(args.label || "button_label");
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (args.onClick) args.onClick(e);
@@ -100,20 +100,19 @@ export const MediumPrimaryInteractiveLoadingButton: Story = {
     };
 
     return (
-      <Button {...args} loading={loading} label={label} onClick={handleClick} />
+      <Button {...args} loading={loading} onClick={handleClick} />
     );
   },
   args: {
     size: "medium",
     priority: "primary",
     label: "button_label",
-    "aria-label": false as unknown as string,
   },
 };
+
 export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
   render: (args) => {
     const [loading, setLoading] = useState(false);
-    const [label, setLabel] = useState(args.label || "button_label");
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (args.onClick) args.onClick(e);
@@ -127,7 +126,6 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
       <Button
         {...args}
         loading={loading}
-        label={label}
         onClick={handleClick}
       />
     );
@@ -138,7 +136,14 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
     label: "button_label",
     iconName: "CircleIcon",
     iconPosition: "left",
-    "aria-label": false as unknown as string,
   },
 };
 
+/** children を使ったボタン（label prop の代替） */
+export const WithChildren: Story = {
+  render: () => (
+    <Button priority="primary" size="medium">
+      Click me
+    </Button>
+  ),
+};

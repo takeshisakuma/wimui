@@ -20,7 +20,7 @@ const useAccordion = () => {
     return context;
 };
 
-type AccordionProps = {
+export interface AccordionProps {
     type?: "single" | "multiple";
     defaultValue?: string | string[];
     value?: string | string[];
@@ -29,8 +29,12 @@ type AccordionProps = {
     className?: string;
     children: React.ReactNode;
     id?: string;
-};
+}
 
+/**
+ * 折りたたみ可能なコンテンツのセット。
+ * type="single" の場合は一度に一つ、"multiple" の場合は複数開くことができます。
+ */
 export const Accordion = ({
     type = "single",
     defaultValue,
@@ -52,11 +56,10 @@ export const Accordion = ({
     });
 
     const isControlled = valueProp !== undefined;
-    const activeValue = useMemo(() => isControlled
-        ? Array.isArray(valueProp)
-            ? valueProp
-            : [valueProp]
-        : internalValue, [isControlled, valueProp, internalValue]);
+    const activeValue = useMemo(() => {
+        const val = isControlled ? valueProp : internalValue;
+        return Array.isArray(val) ? val : val ? [val] : [];
+    }, [isControlled, valueProp, internalValue]);
 
     const handleValueChange = useCallback(
         (itemValue: string) => {
@@ -81,7 +84,7 @@ export const Accordion = ({
                 setInternalValue(newValue);
             }
 
-            onValueChange?.(type === "single" ? newValue[0] : newValue);
+            onValueChange?.(type === "single" ? (newValue[0] ?? "") : newValue);
         },
         [activeValue, collapsible, isControlled, onValueChange, type]
     );
@@ -97,72 +100,33 @@ export const Accordion = ({
     );
 };
 
-type AccordionItemProps = {
+export interface AccordionItemProps {
     value: string;
     disabled?: boolean;
     className?: string;
     children: React.ReactNode;
-};
+}
 
 const AccordionItemContext = createContext<{
     value: string;
     disabled: boolean;
-    isContentOpen: boolean;
     isLogicOpen: boolean;
     triggerId: string;
     contentId: string;
 } | null>(null);
 
+/**
+ * 各アコーディオン項目。
+ */
 export const AccordionItem = ({ value, disabled = false, className, children }: AccordionItemProps) => {
     const { value: activeValues, accordionId } = useAccordion();
     const isLogicOpen = activeValues.includes(value);
     const triggerId = `wim-accordion-trigger-${accordionId}-${value}`;
     const contentId = `wim-accordion-content-${accordionId}-${value}`;
 
-    // Separating the logic state from the visual state to ensure transitions trigger properly
-    const [isContentOpen, setIsContentOpen] = useState(isLogicOpen);
-    const [isAnimating, setIsAnimating] = useState(false);
-    const prevLogicOpenRef = React.useRef(isLogicOpen);
-
-    React.useEffect(() => {
-        if (isLogicOpen === prevLogicOpenRef.current) return;
-
-        if (isLogicOpen) {
-            // Opening: 
-            // 1. Immediately ensure we're not flagged as animating closure
-            setIsAnimating(false);
-            // 2. The <details> tag will open immediately via isDetailOpen.
-            // 3. We use a tiny delay to allow the browser to register the <details> as open
-            //    before shifting the grid from 0fr down to 1fr.
-            const timer = setTimeout(() => {
-                setIsContentOpen(true);
-            }, 10);
-            return () => clearTimeout(timer);
-        } else {
-            // Closing:
-            // 1. Immediately start the grid transition to 0fr
-            setIsContentOpen(false);
-            // 2. Mark as animating so the <details> tag stays open until it finishes
-            setIsAnimating(true);
-        }
-        prevLogicOpenRef.current = isLogicOpen;
-    }, [isLogicOpen]);
-
-    const handleTransitionEnd = (e: React.TransitionEvent) => {
-        // We only care about the transition ending when we are intentionally closing.
-        // Once the height reaches 0fr, we can finally close the <details> element.
-        if (!isLogicOpen && e.propertyName === "grid-template-rows") {
-            setIsAnimating(false);
-        }
-    };
-
-    const isDetailOpen = isLogicOpen || isAnimating;
-
     return (
-        <AccordionItemContext.Provider value={{ value, disabled, isContentOpen, isLogicOpen, triggerId, contentId }}>
-            <details
-                open={isDetailOpen}
-                onTransitionEnd={handleTransitionEnd}
+        <AccordionItemContext.Provider value={{ value, disabled, isLogicOpen, triggerId, contentId }}>
+            <div
                 className={classNames(
                     "wim-accordion__item",
                     disabled && "wim-accordion__item--disabled",
@@ -171,16 +135,19 @@ export const AccordionItem = ({ value, disabled = false, className, children }: 
                 )}
             >
                 {children}
-            </details>
+            </div>
         </AccordionItemContext.Provider>
     );
 };
 
+/**
+ * アコーディオンを切り替えるトリガー。
+ */
 export const AccordionTrigger = ({
     children,
     className,
     ...props
-}: React.ComponentPropsWithoutRef<"summary">) => {
+}: React.ComponentPropsWithoutRef<"button">) => {
     const { onValueChange } = useAccordion();
     const item = useContext(AccordionItemContext);
     if (!item) throw new Error("AccordionTrigger must be used within AccordionItem");
@@ -190,33 +157,19 @@ export const AccordionTrigger = ({
             e.preventDefault();
             return;
         }
-        // We prevent default to handle the "single" vs "multiple" logic in our context
-        e.preventDefault();
         onValueChange(item.value);
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-            if (item.disabled) {
-                e.preventDefault();
-                return;
-            }
-            // We prevent default to handle the "single" vs "multiple" logic in our context
-            e.preventDefault();
-            onValueChange(item.value);
-        }
-    };
-
     return (
-        <summary
+        <button
+            type="button"
             id={item.triggerId}
             className={classNames("wim-accordion__trigger", className)}
-            role="button"
             aria-expanded={item.isLogicOpen}
             aria-controls={item.contentId}
             aria-disabled={item.disabled}
+            disabled={item.disabled}
             onClick={handleClick}
-            onKeyDown={handleKeyDown}
             {...props}
         >
             <span className="wim-accordion__trigger-content">{children}</span>
@@ -224,13 +177,16 @@ export const AccordionTrigger = ({
                 name="ChevronDownIcon"
                 className={classNames(
                     "wim-accordion__chevron",
-                    item.isContentOpen && "wim-accordion__chevron--open"
+                    item.isLogicOpen && "wim-accordion__chevron--open"
                 )}
             />
-        </summary>
+        </button>
     );
 };
 
+/**
+ * アコーディオンのコンテンツ領域。
+ */
 export const AccordionContent = ({
     children,
     className,
@@ -246,7 +202,7 @@ export const AccordionContent = ({
             aria-labelledby={item.triggerId}
             className={classNames(
                 "wim-accordion__content",
-                item.isContentOpen && "wim-accordion__content--open",
+                item.isLogicOpen && "wim-accordion__content--open",
                 className
             )}
             {...props}

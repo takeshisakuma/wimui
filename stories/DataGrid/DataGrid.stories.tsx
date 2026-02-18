@@ -56,7 +56,7 @@ const basicColumns = [
     {
         key: "status",
         header: "Status",
-        render: (value: string) => (
+        render: (value: any) => (
             <Badge
                 content={value}
                 size="small"

@@ -126,19 +126,19 @@
     &--secondary {
       &.wim-button--default {
         color: colors.$color-primary;
-        background-color: #fff;
+        background-color: colors.$color-bg-primary;
         border-color: colors.$color-primary;
       }
 
       &.wim-button--destructive {
         color: colors.$color-destructive;
-        background-color: #fff;
+        background-color: colors.$color-bg-primary;
         border-color: colors.$color-destructive;
       }
 
       &.wim-button--positive {
         color: colors.$color-positive;
-        background-color: #fff;
+        background-color: colors.$color-bg-primary;
         border-color: colors.$color-positive;
       }
 

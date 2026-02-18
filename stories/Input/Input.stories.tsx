@@ -126,7 +126,7 @@ export const Disabled: Story = {
         </Label>
     ),
     args: {
-        state: "disabled",
+        disabled: true,
         defaultValue: "Disabled input",
     },
 };

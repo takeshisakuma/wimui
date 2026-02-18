@@ -112,7 +112,7 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(({
         }
     };
 
-    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             handleSend();
@@ -127,7 +127,7 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(({
                 className="wim-chat-input__field"
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyDown}
                 {...props}
             />
             {showSendButton && (
