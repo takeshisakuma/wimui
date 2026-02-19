@@ -33,14 +33,14 @@ export const Image = ({
 
 
     const imageStyles: React.CSSProperties = {
-        width: width || "100%",
+        width: "100%",
         height: height || "auto",
         objectFit: fit,
         ...style,
     };
 
     return (
-        <figure className={classNames("wim-image-container", className)} style={{ width: width || "100%" }}>
+        <figure className={classNames("wim-image-container", className)} style={{ maxWidth: width || "100%", width: "100%" }}>
             <div
                 className={classNames(
                     "wim-image-inner",
