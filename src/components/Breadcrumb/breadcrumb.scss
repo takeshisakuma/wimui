@@ -5,10 +5,13 @@
 
 @layer component {
     .wim-breadcrumb {
+        line-height: 1.5;
+
         &__list {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
+            row-gap: spacings.$spacing-md;
             padding: 0;
             margin: 0;
             list-style: none;
@@ -27,6 +30,10 @@
         &__link {
             text-decoration: none;
 
+            .wim-link__label {
+                line-height: inherit;
+            }
+
             // Override Link base style if needed for breadcrumb context
             &:hover {
                 text-decoration: underline;
@@ -37,7 +44,6 @@
             display: inline-flex;
             gap: spacings.$spacing-3xs;
             align-items: center;
-            line-height: 1;
             color: colors.$text-gray; // Default non-link/previous item color
 
             &--current {
