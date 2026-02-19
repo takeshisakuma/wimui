@@ -149,7 +149,7 @@ export const FullWidth: Story = {
 
 export const WithLabelAndError: Story = {
     render: (args) => (
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px", width: "320px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px", width: "100%", maxWidth: "320px" }}>
             <Label label="User Name" required>
                 <Input {...args} placeholder="Enter your name" />
             </Label>
@@ -165,7 +165,7 @@ export const WithLabelAndError: Story = {
 
 export const InputWithError: Story = {
     render: (args) => (
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px", width: "320px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px", width: "100%", maxWidth: "320px" }}>
             <Label label="Email" required>
                 <Input {...args} placeholder="Enter your email" />
             </Label>
