@@ -6,13 +6,15 @@ const meta: Meta<typeof Divider> = {
     component: Divider,
     tags: [],
     parameters: {
-        layout: "centered",
+        layout: "padded",
     },
     decorators: [
         (Story, context) => (
             <div style={{
-                width: context.args.orientation === "vertical" ? "auto" : "300px",
+                width: context.args.orientation === "vertical" ? "auto" : "100%",
+                maxWidth: context.args.orientation === "vertical" ? "none" : "300px",
                 height: context.args.orientation === "vertical" ? "100px" : "auto",
+                margin: "0 auto",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center"
