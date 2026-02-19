@@ -16,10 +16,12 @@ export interface AnchorProps {
     bounds?: number;
     /** Offset (in pixels) from top when clicking to scroll */
     offset?: number;
+    /** Orientation of the anchor links */
+    direction?: "vertical" | "horizontal";
     /** Additional class names */
     className?: string;
     /** Style attribute */
     style?: React.CSSProperties;
 }
-export declare const Anchor: ({ items, bounds, offset, className, style, }: AnchorProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Anchor: ({ items, bounds, offset, direction, className, style, }: AnchorProps) => import("react/jsx-runtime").JSX.Element;
 export default Anchor;
