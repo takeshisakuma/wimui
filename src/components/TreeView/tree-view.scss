@@ -7,13 +7,15 @@
     flex-direction: column;
     gap: var(--spacing-2xs);
     width: 100%;
+    max-width: 100%;
     padding: var(--spacing-2xl);
+    overflow: hidden;
     background: rgb(255 255 255 / 0.4);
     border: 1px solid var(--wim-color-border-secondary);
     border-radius: var(--radius-lg);
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
     backdrop-filter: blur(8px);
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
 
     &__search {
         margin-bottom: var(--spacing-md);
@@ -55,6 +57,7 @@
         user-select: none;
         border-radius: var(--radius-md);
         transition: background 0.2s ease;
+        min-width: 0; // Ensure container can shrink
 
         &:hover {
             background: rgb(0 0 0 / 0.05);
@@ -151,6 +154,7 @@
         font-size: 14px;
         font-weight: 500;
         white-space: nowrap;
+        min-width: 0; // Required for text-overflow to work in flex
     }
 
     &__children {

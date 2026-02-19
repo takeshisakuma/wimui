@@ -104,7 +104,7 @@ const TreeView = ({
             <div
                 className={classNames("wim-tree-view", className)}
                 role="tree"
-                style={{ width }}
+                style={{ width, maxWidth: "100%" }}
             >
                 {searchable && (
                     <div className="wim-tree-view__search">

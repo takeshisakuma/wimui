@@ -7,8 +7,26 @@ const meta: Meta<typeof TreeView> = {
     title: "Component/Data Structures/TreeView",
     component: TreeView,
     parameters: {
-        layout: "centered",
+        layout: "fullscreen",
     },
+    decorators: [
+        (Story) => (
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minHeight: "100dvh",
+                padding: "20px",
+                boxSizing: "border-box",
+                width: "100%",
+                background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)"
+            }}>
+                <div style={{ width: "100%", maxWidth: "400px" }}>
+                    <Story />
+                </div>
+            </div>
+        ),
+    ],
 };
 
 export default meta;
@@ -16,7 +34,7 @@ type Story = StoryObj<typeof TreeView>;
 
 export const Default: Story = {
     args: {
-        width: "400px",
+        width: "100%",
     },
     render: (args) => (
         <TreeView {...args} defaultExpandedValues={["1", "2"]}>
