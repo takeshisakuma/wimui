@@ -11,9 +11,7 @@
         width: 100%;
         overflow: hidden;
 
-        &--with-sidebar {
-            flex-direction: row;
-        }
+
 
         &__header {
             flex-shrink: 0;
@@ -66,8 +64,18 @@
 
         // Responsive behavior
         @media (max-width: 768px) {
-            &--with-sidebar {
+            &__body {
                 flex-direction: column;
+            }
+
+            &__sidebar {
+                width: 100%;
+                height: auto;
+
+                .wim-sidebar {
+                    width: 100% !important;
+                    height: auto !important;
+                }
             }
 
             &__main--padded {
