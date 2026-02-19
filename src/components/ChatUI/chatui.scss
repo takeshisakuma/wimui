@@ -90,10 +90,17 @@
     padding: var(--wim-spacing-md, 16px);
     border-top: 1px solid var(--wim-color-border, #e2e2e8);
     background-color: var(--wim-color-bg-primary, #ffffff);
+
+    @media (max-width: 480px) {
+        gap: 8px;
+        padding: 12px;
+    }
 }
 
 .wim-chat-input__field {
     flex: 1;
+    min-width: 0;
+    /* Ensures the input can shrink below its default size */
     padding: var(--wim-spacing-sm, 12px) var(--wim-spacing-md, 16px);
     border: 1px solid var(--wim-color-border, #e2e2e8);
     border-radius: var(--wim-radius-md, 8px);
@@ -123,6 +130,11 @@
     font-weight: var(--wim-font-weight-medium, 500);
     cursor: pointer;
     transition: background-color 0.2s ease, opacity 0.2s ease;
+    flex-shrink: 0;
+
+    @media (max-width: 480px) {
+        padding: 12px 16px;
+    }
 
     &:hover:not(:disabled) {
         background-color: var(--wim-color-primary-hover, #0047b3);

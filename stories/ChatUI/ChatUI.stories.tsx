@@ -6,6 +6,9 @@ import { useState, useRef, useEffect } from 'react';
 const meta: Meta<typeof ChatContainer> = {
     title: 'Component/Data Display/ChatUI',
     component: ChatContainer,
+    parameters: {
+        layout: 'fullscreen',
+    },
 };
 
 export default meta;
@@ -13,7 +16,7 @@ type Story = StoryObj<typeof ChatContainer>;
 
 export const Basic: Story = {
     render: () => (
-        <div style={{ height: '500px' }}>
+        <div style={{ height: '100vh' }}>
             <ChatContainer>
                 <ChatMessageList>
                     <ChatMessage
@@ -51,7 +54,7 @@ export const Basic: Story = {
 
 export const WithAvatarImages: Story = {
     render: () => (
-        <div style={{ height: '500px' }}>
+        <div style={{ height: '100vh' }}>
             <ChatContainer>
                 <ChatMessageList>
                     <ChatMessage
@@ -89,7 +92,7 @@ export const WithAvatarImages: Story = {
 
 export const WithVariants: Story = {
     render: () => (
-        <div style={{ height: '500px' }}>
+        <div style={{ height: '100vh' }}>
             <ChatContainer>
                 <ChatMessageList>
                     <ChatMessage
@@ -180,7 +183,7 @@ export const Interactive: Story = {
         }, [messages]);
 
         return (
-            <div style={{ height: '600px' }}>
+            <div style={{ height: '100vh' }}>
                 <ChatContainer>
                     <ChatMessageList ref={messageListRef}>
                         {messages.map((msg) => (
@@ -208,7 +211,7 @@ export const Interactive: Story = {
 
 export const WithIcons: Story = {
     render: () => (
-        <div style={{ height: '500px' }}>
+        <div style={{ height: '100vh' }}>
             <ChatContainer>
                 <ChatMessageList>
                     <ChatMessage
@@ -263,7 +266,7 @@ export const WithIcons: Story = {
 
 export const NoAvatars: Story = {
     render: () => (
-        <div style={{ height: '500px' }}>
+        <div style={{ height: '100vh' }}>
             <ChatContainer>
                 <ChatMessageList>
                     <ChatMessage
