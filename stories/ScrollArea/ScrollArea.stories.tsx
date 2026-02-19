@@ -34,7 +34,7 @@ export const Default: Story = {
 export const HorizontalScroll: Story = {
     args: {
         scrollAxis: "x",
-        style: { width: "20rem" },
+        style: { width: "100%", maxWidth: "80vw" },
         children: (
             <div style={{ width: "50rem", background: "linear-gradient(to right, #f0f, #0ff)", padding: "1rem", color: "white" }}>
                 This is a very wide content to demonstrate horizontal scrolling. 横方向に長いコンテンツです。
@@ -68,7 +68,7 @@ export const Both: Story = {
     args: {
         scrollAxis: "both",
         maxHeight: "20rem",
-        style: { width: "20rem" },
+        style: { width: "100%", maxWidth: "80vw" },
         children: (
             <div style={{ width: "40rem", height: "40rem", background: "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%)", padding: "1rem" }}>
                 <h4 style={{ color: "#333" }}>Both Axes Scrolling</h4>
