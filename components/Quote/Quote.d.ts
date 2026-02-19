@@ -1,7 +1,7 @@
 import { default as React } from '../../../node_modules/react';
 type QuoteProps = React.ComponentPropsWithoutRef<"blockquote"> & {
     size?: "small" | "medium" | "large";
-    color?: "black" | "deepgray" | "gray" | "lightgray" | "white";
+    color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "primary" | "success" | "warning" | "error" | "info";
     content: string;
     cite?: string;
     border?: boolean;

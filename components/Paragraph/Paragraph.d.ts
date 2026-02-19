@@ -1,7 +1,7 @@
 import { default as React } from '../../../node_modules/react';
 type ParagraphProps = React.ComponentPropsWithoutRef<"p"> & {
     size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
-    color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error";
+    color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error" | "primary" | "success" | "warning" | "info";
     weight?: "normal" | "bold";
     lineHeight?: "normal-jpan" | "tight-jpan" | "loose-jpan" | "normal-latn" | "tight-latn" | "loose-latn";
     fontStyle?: "normal" | "italic";
