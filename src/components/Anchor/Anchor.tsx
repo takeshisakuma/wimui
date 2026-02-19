@@ -20,6 +20,8 @@ export interface AnchorProps {
     bounds?: number;
     /** Offset (in pixels) from top when clicking to scroll */
     offset?: number;
+    /** Orientation of the anchor links */
+    direction?: "vertical" | "horizontal";
     /** Additional class names */
     className?: string;
     /** Style attribute */
@@ -30,6 +32,7 @@ export const Anchor = ({
     items = [],
     bounds = 5,
     offset = 0,
+    direction = "vertical",
     className,
     style,
 }: AnchorProps) => {
@@ -53,27 +56,32 @@ export const Anchor = ({
 
     useEffect(() => {
         const handleScroll = () => {
-            const getAllIds = (links: AnchorLinkItem[]): string[] => {
-                let ids: string[] = [];
+            const getAllLinks = (links: AnchorLinkItem[], parentHref?: string): { href: string; parentHref?: string }[] => {
+                let flat: { href: string; parentHref?: string }[] = [];
                 links.forEach(link => {
-                    ids.push(link.href.replace("#", ""));
+                    flat.push({ href: link.href, parentHref });
                     if (link.children) {
-                        ids = ids.concat(getAllIds(link.children));
+                        flat = flat.concat(getAllLinks(link.children, parentHref || link.href));
                     }
                 });
-                return ids;
+                return flat;
             };
 
-            const ids = getAllIds(items);
+            const flatLinks = getAllLinks(items);
             let currentActiveId = "";
 
-            for (const id of ids) {
+            for (const link of flatLinks) {
+                const id = link.href.replace("#", "");
                 const element = document.getElementById(id);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    // If the element's top is within the bounds or above it
-                    if (rect.top <= offset + bounds + 10) { // added small buffer
-                        currentActiveId = `#${id}`;
+                    if (rect.top <= offset + bounds) {
+                        // In horizontal mode, if the item is nested, highlight the parent instead
+                        if (direction === "horizontal" && link.parentHref) {
+                            currentActiveId = link.parentHref;
+                        } else {
+                            currentActiveId = link.href;
+                        }
                     } else {
                         break;
                     }
@@ -89,27 +97,39 @@ export const Anchor = ({
         handleScroll(); // Initialize
 
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [items, offset, bounds, activeId]);
+    }, [items, offset, bounds, activeId, direction]);
 
     useEffect(() => {
         if (!activeId || !containerRef.current) return;
         const activeLink = containerRef.current.querySelector(
             `a[href="${activeId}"]`
         ) as HTMLElement;
+
         if (activeLink) {
-            setMarkerStyle({
-                top: activeLink.offsetTop,
-                height: activeLink.offsetHeight,
-                opacity: 1,
-            });
+            const rect = activeLink.getBoundingClientRect();
+            const containerRect = containerRef.current.getBoundingClientRect();
+
+            if (direction === "vertical") {
+                setMarkerStyle({
+                    top: rect.top - containerRect.top,
+                    height: rect.height,
+                    opacity: 1,
+                });
+            } else {
+                setMarkerStyle({
+                    left: rect.left - containerRect.left,
+                    width: rect.width,
+                    opacity: 1,
+                });
+            }
         } else {
             setMarkerStyle({ opacity: 0 });
         }
-    }, [activeId]);
+    }, [activeId, direction]);
 
     const renderLinks = (links: AnchorLinkItem[]) => {
         return (
-            <ul className="wim-anchor__list">
+            <ul className={classNames("wim-anchor__list", `wim-anchor__list--${direction}`)}>
                 {links.map((item) => (
                     <li
                         key={item.key}
@@ -126,7 +146,7 @@ export const Anchor = ({
                         >
                             {item.title}
                         </a>
-                        {item.children && renderLinks(item.children)}
+                        {item.children && direction === "vertical" && renderLinks(item.children)}
                     </li>
                 ))}
             </ul>
@@ -135,7 +155,7 @@ export const Anchor = ({
 
     return (
         <div
-            className={classNames("wim-anchor", className)}
+            className={classNames("wim-anchor", `wim-anchor--${direction}`, className)}
             style={style}
             ref={containerRef}
         >

@@ -6,8 +6,29 @@
 @layer component {
     .wim-anchor {
         position: relative;
+        min-width: 0;
         padding-left: 2px;
         background-color: transparent;
+
+        &--horizontal {
+            padding-left: 0;
+            padding-bottom: 0;
+            border-bottom: 1px solid colors.$scrollbar-track;
+
+            .wim-anchor__ink {
+                top: auto;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+
+                &-ball {
+                    top: 0;
+                    height: 2px;
+                    transition: left 0.3s ease-in-out, width 0.3s ease-in-out, opacity 0.3s ease;
+                }
+            }
+        }
 
         &__ink {
             position: absolute;
@@ -36,6 +57,28 @@
             .wim-anchor__list {
                 padding-left: spacings.$spacing-md;
             }
+
+            &--horizontal {
+                display: flex;
+                flex-direction: row;
+                gap: spacings.$spacing-md;
+                overflow-x: auto;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .wim-anchor__item {
+                    white-space: nowrap;
+                    padding: spacings.$spacing-xs spacings.$spacing-sm;
+                }
+
+                .wim-anchor__link {
+                    padding-left: 0;
+                }
+            }
         }
 
         &__item {
@@ -57,9 +100,11 @@
             padding-left: spacings.$spacing-md;
             overflow: hidden;
             text-overflow: ellipsis;
+            white-space: nowrap;
+            word-break: normal;
+            overflow-wrap: normal;
             font-size: typography.$size-medium;
             color: colors.$text-deepgray;
-            white-space: nowrap;
             text-decoration: none;
             transition: color 0.3s ease;
 
