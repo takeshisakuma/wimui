@@ -24,7 +24,8 @@ export const OverflowEscape: Story = {
         const [show, setShow] = useState(false);
         return (
             <div style={{
-                width: "400px",
+                width: "100%",
+                maxWidth: "400px",
                 height: "200px",
                 border: "2px dashed #999",
                 padding: "20px",
@@ -55,6 +56,7 @@ export const OverflowEscape: Story = {
                             bottom: "40px",
                             right: "40px",
                             width: "280px",
+                            maxWidth: "calc(100vw - 80px)",
                             backgroundColor: "#333",
                             color: "white",
                             padding: "20px",
@@ -92,11 +94,11 @@ export const CustomContainer: Story = {
     render: () => {
         const [container, setContainer] = useState<HTMLDivElement | null>(null);
         return (
-            <div style={{ width: "500px" }}>
+            <div style={{ width: "100%", maxWidth: "500px" }}>
                 <p>下の青い枠は Portal の「転送先（container）」です。</p>
 
-                <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-                    <div style={{ flex: 1, padding: "20px", border: "1px solid #ddd", borderRadius: "8px" }}>
+                <div style={{ display: "flex", gap: "20px", marginTop: "20px", flexWrap: "wrap" }}>
+                    <div style={{ flex: "1 1 200px", padding: "20px", border: "1px solid #ddd", borderRadius: "8px" }}>
                         <h4>送信元</h4>
                         <p style={{ fontSize: "12px", color: "#666" }}>ここに Portal コンポーネントを配置しています。</p>
                         <Portal container={container}>
@@ -123,7 +125,7 @@ export const CustomContainer: Story = {
                     <div
                         ref={setContainer}
                         style={{
-                            flex: 1,
+                            flex: "1 1 200px",
                             padding: "20px",
                             border: "2px solid #3b82f6",
                             borderRadius: "8px",
