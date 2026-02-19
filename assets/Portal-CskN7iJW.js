@@ -1,1 +1,0 @@
-import{R as e}from"./iframe-5J6xCe39.js";import{r as o}from"./index-CPSSF4rf.js";const n=()=>()=>{},m=({children:t,container:r})=>e.useSyncExternalStore(n,()=>!0,()=>!1)?o.createPortal(t,r||document.body):null;export{m as P};
