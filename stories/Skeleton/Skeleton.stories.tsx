@@ -34,7 +34,7 @@ export const Default: Story = {
 
 export const Text: Story = {
     render: (args) => (
-        <div style={{ width: "300px" }}>
+        <div style={{ maxWidth: "300px", width: "100%" }}>
             <Skeleton {...args} variant="text" width="100%" />
             <Skeleton {...args} variant="text" width="80%" />
             <Skeleton {...args} variant="text" width="60%" />
@@ -72,7 +72,8 @@ export const CardExample: Story = {
                 display: "flex",
                 flexDirection: "column",
                 gap: "16px",
-                width: "300px",
+                maxWidth: "300px",
+                width: "100%",
                 padding: "16px",
                 border: "1px solid #eee",
                 borderRadius: "8px",
@@ -119,7 +120,9 @@ export const LoadingToggle: Story = {
                         padding: "20px",
                         border: "1px solid #eee",
                         borderRadius: "12px",
-                        width: "350px",
+                        maxWidth: "350px",
+                        width: "100%",
+                        boxSizing: "border-box",
                     }}
                 >
                     {loading ? (
