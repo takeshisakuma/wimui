@@ -88,41 +88,46 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
 
     const bubbleStyle: React.CSSProperties = {};
     if (targetRect) {
-        const gap = 12;
-        const bubbleWidth = 300;
         const margin = 16;
+        const gap = 12;
+        const screenWidth = window.innerWidth;
+        const actualBubbleWidth = Math.min(300, screenWidth - margin * 2);
 
-        // Calculate base center position
-        let left = targetRect.left + targetRect.width / 2;
+        let placement = step.placement || "bottom";
 
-        // Clamp left position to keep bubble within viewport
-        const minLeft = bubbleWidth / 2 + margin;
-        const maxLeft = window.innerWidth - bubbleWidth / 2 - margin;
-        left = Math.max(minLeft, Math.min(maxLeft, left));
+        // Fallback for small screens or limited space
+        if (screenWidth < 640 && (placement === "left" || placement === "right")) {
+            placement = "bottom";
+        }
 
-        switch (step.placement || "bottom") {
-            case "top":
+        if (placement === "top" || placement === "bottom") {
+            let left = targetRect.left + targetRect.width / 2;
+            const minLeft = actualBubbleWidth / 2 + margin;
+            const maxLeft = screenWidth - actualBubbleWidth / 2 - margin;
+
+            // Adjust left if bubble is wider than min/max allows (very small screens)
+            if (minLeft > maxLeft) {
+                left = screenWidth / 2;
+            } else {
+                left = Math.max(minLeft, Math.min(maxLeft, left));
+            }
+
+            bubbleStyle.left = left;
+            if (placement === "top") {
                 bubbleStyle.top = targetRect.top - gap;
-                bubbleStyle.left = left;
                 bubbleStyle.transform = "translate(-50%, -100%)";
-                break;
-            case "bottom":
+            } else {
                 bubbleStyle.top = targetRect.bottom + gap;
-                bubbleStyle.left = left;
                 bubbleStyle.transform = "translateX(-50%)";
-                break;
-            case "left":
-                // For left/right, we might still need logic if they clip, 
-                // but let's prioritize the reported issue (bottom/top center clipping)
-                bubbleStyle.left = targetRect.left - gap;
-                bubbleStyle.top = targetRect.top + targetRect.height / 2;
-                bubbleStyle.transform = "translate(-100%, -50%)";
-                break;
-            case "right":
-                bubbleStyle.left = targetRect.right + gap;
-                bubbleStyle.top = targetRect.top + targetRect.height / 2;
-                bubbleStyle.transform = "translateY(-50%)";
-                break;
+            }
+        } else if (placement === "left") {
+            bubbleStyle.left = targetRect.left - gap;
+            bubbleStyle.top = targetRect.top + targetRect.height / 2;
+            bubbleStyle.transform = "translate(-100%, -50%)";
+        } else if (placement === "right") {
+            bubbleStyle.left = targetRect.right + gap;
+            bubbleStyle.top = targetRect.top + targetRect.height / 2;
+            bubbleStyle.transform = "translateY(-50%)";
         }
     }
 

@@ -39,13 +39,14 @@ export const Default: Story = {
             <div style={{ padding: "40px", height: "1000px" }}>
                 <Button label="Start Tour" onClick={() => setOpen(true)} />
 
-                <div style={{ marginTop: "100px", display: "flex", gap: "200px" }}>
+                <div style={{ marginTop: "100px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
                     <div
                         id="tour-step-1"
                         style={{
                             padding: "20px",
                             background: "#eee",
                             border: "1px solid #ccc",
+                            minWidth: "120px",
                         }}
                     >
                         Step 1 Target
@@ -56,6 +57,7 @@ export const Default: Story = {
                             padding: "20px",
                             background: "#eee",
                             border: "1px solid #ccc",
+                            minWidth: "120px",
                         }}
                     >
                         Step 2 Target
