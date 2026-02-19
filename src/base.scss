@@ -19,7 +19,13 @@
     min-height: 100vh;
 
     /* 常時スクロールバー分の領域を確保することでガタツキやレイアウトシフト防止 */
-    scrollbar-gutter: stable;
+    /* モバイル環境では不要な余白になるため、PCサイズ以上で適用 */
+    scrollbar-gutter: auto;
+
+    @media (width >=769px) {
+      scrollbar-gutter: stable;
+    }
+
     color: var(--text-primary);
     overflow-wrap: break-word;
     background-color: var(--bg-app);

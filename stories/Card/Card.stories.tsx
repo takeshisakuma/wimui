@@ -8,9 +8,15 @@ const meta: Meta<typeof Card> = {
     component: Card,
     tags: [],
     parameters: {
-
-        layout: "centered",
+        layout: "padded",
     },
+    decorators: [
+        (Story) => (
+            <div style={{ display: "flex", justifyContent: "center", padding: "32px" }}>
+                <Story />
+            </div>
+        ),
+    ],
     argTypes: {
         variant: {
             control: "select",
