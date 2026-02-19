@@ -58,7 +58,7 @@ export const FullWidth: Story = {
         fullWidth: true,
     },
     render: (args) => (
-        <div style={{ width: "600px" }}>
+        <div style={{ width: "100%", maxWidth: "600px" }}>
             <InputGroup {...args}>
                 <InputGroupText>Search</InputGroupText>
                 <Input placeholder="Type something..." />
