@@ -171,7 +171,8 @@ const AutoShrinkDemo = (args: FloatButtonProps) => {
     return (
         <div style={{
             height: "300px",
-            width: "400px",
+            width: "100%",
+            maxWidth: "400px",
             overflow: "hidden",
             border: "1px solid #ccc",
             position: "relative",
