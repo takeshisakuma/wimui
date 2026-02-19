@@ -6,7 +6,7 @@ import { Icon } from "../Icon/Icon";
 
 type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
-  color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error";
+  color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error" | "primary" | "success" | "warning" | "info";
   weight?: "normal" | "bold";
   style?: "normal" | "italic";
   decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加

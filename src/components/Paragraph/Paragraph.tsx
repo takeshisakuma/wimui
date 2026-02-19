@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 type ParagraphProps = React.ComponentPropsWithoutRef<"p"> & {
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
-  color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error";
+  color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error" | "primary" | "success" | "warning" | "info";
   weight?: "normal" | "bold";
   lineHeight?:
   | "normal-jpan"

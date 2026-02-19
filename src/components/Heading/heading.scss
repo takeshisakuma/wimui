@@ -82,7 +82,19 @@
         }
 
         &--primary {
-            color: colors.$color-primary;
+            color: var(--color-primary);
+        }
+
+        &--success {
+            color: var(--color-positive);
+        }
+
+        &--warning {
+            color: var(--color-caution);
+        }
+
+        &--info {
+            color: var(--color-informative);
         }
 
         /* Decoration */

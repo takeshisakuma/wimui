@@ -6,7 +6,7 @@ import "./badge.scss";
 type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
     content?: string;
     icon?: React.ReactNode;
-    color?: "primary" | "secondary" | "error" | "neutral";
+    color?: "primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral";
     variant?: "solid" | "outline";
     size?: "small" | "medium";
 };

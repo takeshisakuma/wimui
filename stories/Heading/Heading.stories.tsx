@@ -18,7 +18,7 @@ const meta = {
         },
         color: {
             control: "select",
-            options: ["black", "deepgray", "gray", "lightgray", "white", "error", "primary"],
+            options: ["black", "deepgray", "gray", "lightgray", "white", "error", "primary", "success", "warning", "info"],
         },
         align: {
             control: "radio",

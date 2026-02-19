@@ -68,6 +68,18 @@
       color: var(--color-destructive);
     }
 
+    &--success {
+      color: var(--color-positive);
+    }
+
+    &--warning {
+      color: var(--color-caution);
+    }
+
+    &--info {
+      color: var(--color-informative);
+    }
+
     &--bold {
       font-weight: typography.$weight-bold;
     }

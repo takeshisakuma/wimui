@@ -15,7 +15,7 @@ export default {
         },
         color: {
             control: "select",
-            options: ["black", "deepgray", "gray", "lightgray", "white"],
+            options: ["black", "deepgray", "gray", "lightgray", "white", "primary", "success", "warning", "error", "info"],
         },
     },
 };

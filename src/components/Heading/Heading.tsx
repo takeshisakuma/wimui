@@ -17,7 +17,7 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
     /**
      * Text color.
      */
-    color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error" | "primary";
+    color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error" | "primary" | "success" | "warning" | "info";
     /**
      * Text alignment.
      */

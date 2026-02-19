@@ -83,5 +83,45 @@
         border-color: var(--text-white);
       }
     }
+
+    &--primary {
+      color: var(--color-primary);
+
+      &.wim-quote--border {
+        border-color: var(--color-primary);
+      }
+    }
+
+    &--success {
+      color: var(--color-positive);
+
+      &.wim-quote--border {
+        border-color: var(--color-positive);
+      }
+    }
+
+    &--warning {
+      color: var(--color-caution);
+
+      &.wim-quote--border {
+        border-color: var(--color-caution);
+      }
+    }
+
+    &--error {
+      color: var(--text-error);
+
+      &.wim-quote--border {
+        border-color: var(--text-error);
+      }
+    }
+
+    &--info {
+      color: var(--color-informative);
+
+      &.wim-quote--border {
+        border-color: var(--color-informative);
+      }
+    }
   }
 }

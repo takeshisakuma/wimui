@@ -7,7 +7,12 @@ export default {
   parameters: {
     layout: "centered",
   },
-  argTypes: {},
+  argTypes: {
+    color: {
+      control: "select",
+      options: ["black", "deepgray", "gray", "lightgray", "white", "error", "primary", "success", "warning", "info"],
+    },
+  },
   args: { onClick: fn() }, //`fn` を使用して onClick 引数を監視(呼び出されるとアクションパネルに表示)
 };
 
