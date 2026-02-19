@@ -59,10 +59,10 @@ export const CustomAction: Story = {
             </svg>
         ),
         action: (
-            <div style={{ display: "flex", gap: "8px" }}>
+            <>
                 <Button label="Browse templates" priority="secondary" />
                 <Button label="Create project" priority="primary" />
-            </div>
+            </>
         ),
     },
 };
