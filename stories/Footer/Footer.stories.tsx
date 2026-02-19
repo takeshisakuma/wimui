@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Footer from "@/components/Footer/Footer";
 
+import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
+
 const meta: Meta<typeof Footer> = {
     title: "Component/Application Shell/Footer",
     component: Footer,
@@ -18,7 +20,7 @@ export const Default: Story = {
         bordered: true,
         children: (
             <>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "40px" }}>
+                <SimpleGrid cols={{ base: 2, sm: 3, lg: 4 }} spacing={40}>
                     <Footer.Section title="Product">
                         <span>Features</span>
                         <span>Pricing</span>
@@ -39,11 +41,11 @@ export const Default: Story = {
                         <span>Terms</span>
                         <span>Cookie Policy</span>
                     </Footer.Section>
-                </div>
+                </SimpleGrid>
                 <Footer.Bottom>
                     <div>© 2026 WIM UI. All rights reserved.</div>
                     <div style={{ display: "flex", gap: "20px" }}>
-                        <span>Twitter</span>
+                        <span>X</span>
                         <span>GitHub</span>
                     </div>
                 </Footer.Bottom>

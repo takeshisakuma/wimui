@@ -2,6 +2,7 @@
 @use "../../tokens/typography" as typography;
 @use "../../tokens/spacings" as spacings;
 @use "../../tokens/effects" as effects;
+@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
     .wim-footer {
@@ -66,13 +67,20 @@
 
         &__bottom {
             display: flex;
+            flex-direction: column-reverse;
+            gap: spacings.$spacing-md;
             align-items: center;
-            justify-content: space-between;
             padding-top: spacings.$spacing-xl;
             margin-top: spacings.$spacing-xl;
             font-size: typography.$size-small;
             color: colors.$text-deepgray;
             border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+
+            @include breakpoints.up(sm) {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 0;
+            }
         }
     }
 }
