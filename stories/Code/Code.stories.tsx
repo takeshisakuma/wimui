@@ -6,7 +6,7 @@ const meta: Meta<typeof Code> = {
     title: "Component/Typography & Icons/Code",
     component: Code,
     parameters: {
-        layout: "centered",
+        layout: "padded",
     },
     // tags: ["autodocs"],
     argTypes: {
