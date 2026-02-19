@@ -2,6 +2,7 @@
 @use "../../tokens/typography" as typography;
 @use "../../tokens/spacings" as spacings;
 @use "../../tokens/effects" as effects;
+@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
     .wim-header {
@@ -9,9 +10,14 @@
         display: flex;
         align-items: center;
         width: 100%;
-        height: 64px;
+        min-height: 64px;
         padding: 0 spacings.$spacing-xl;
         transition: all effects.$transition-base;
+
+        @include breakpoints.down(sm) {
+            height: auto;
+            padding: spacings.$spacing-sm spacings.$spacing-md;
+        }
 
         &--bg-primary {
             background-color: var(--wim-color-bg-primary, #fff);
@@ -51,26 +57,87 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: spacings.$spacing-xl;
             width: 100%;
             height: 100%;
+            min-width: 0;
+
+            @include breakpoints.down(sm) {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: spacings.$spacing-sm;
+            }
         }
 
         &__section {
             display: flex;
             gap: spacings.$spacing-md;
             align-items: center;
+            white-space: nowrap;
+            flex-shrink: 0;
+
+            >* {
+                flex-shrink: 0;
+            }
 
             &--start {
                 justify-content: flex-start;
+
+                @include breakpoints.down(sm) {
+                    order: 1;
+                    width: 100%;
+                    justify-content: center;
+                    padding-bottom: spacings.$spacing-sm;
+                    border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+                    margin-bottom: spacings.$spacing-sm;
+                }
             }
 
             &--center {
                 flex-grow: 1;
+                flex-shrink: 1;
                 justify-content: center;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+                min-width: 0;
+
+                /* For better scrolling experience when centered */
+                &::before,
+                &::after {
+                    content: "";
+                    display: block;
+                    flex: 1 0 0%;
+                    min-width: spacings.$spacing-md;
+                }
+
+                @include breakpoints.down(sm) {
+                    order: 2;
+                    /* Reset flex basis to auto so it doesn't try to fill the whole row alone */
+                    flex-basis: auto;
+                    /* Connect with end section on the same row */
+                    width: auto;
+                    justify-content: flex-start;
+                    padding: 0;
+
+                    /* Remove spacers on mobile to left align */
+                    &::before,
+                    &::after {
+                        display: none;
+                    }
+                }
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
             }
 
             &--end {
                 justify-content: flex-end;
+
+                @include breakpoints.down(sm) {
+                    order: 2;
+                }
             }
         }
     }
