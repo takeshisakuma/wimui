@@ -6,7 +6,7 @@
 @use "../../tokens/effects" as effects;
 
 .wim-menu {
-    min-width: 200px;
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -18,19 +18,46 @@
     &--vertical {
         display: flex;
         flex-direction: column;
+        min-width: 200px;
     }
 
     &--horizontal {
         display: flex;
         flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        width: 100%;
+        min-width: 0;
+        height: auto;
         background-color: transparent;
         border: none;
         box-shadow: none;
+        overflow-x: auto;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+
+        /* Hide scrollbars */
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+
+        &::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
+
+        >li {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
     }
 
     &--inline {
         display: flex;
         flex-direction: column;
+        min-width: 200px;
         border: none;
         box-shadow: none;
     }
@@ -43,6 +70,7 @@
     padding: spacings.$spacing-sm spacings.$spacing-md;
     font-size: 0.9rem;
     color: var(--text-primary);
+    white-space: nowrap;
     cursor: pointer;
     user-select: none;
     transition: all 0.2s ease-in-out;
@@ -81,6 +109,7 @@
     .wim-menu--horizontal & {
         margin: 0 spacings.$spacing-xs;
         border-radius: spacings.$radius-sm;
+        flex-shrink: 0;
     }
 }
 
@@ -113,6 +142,7 @@
         padding: spacings.$spacing-sm spacings.$spacing-md;
         font-size: 0.9rem;
         color: var(--text-primary);
+        white-space: nowrap;
         cursor: pointer;
         user-select: none;
         transition: all 0.2s ease-in-out;
