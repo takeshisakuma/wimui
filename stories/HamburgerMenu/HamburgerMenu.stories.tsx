@@ -8,7 +8,7 @@ const meta: Meta<typeof HamburgerMenu> = {
     parameters: {
         layout: "centered",
     },
-    tags: ["autodocs"],
+    tags: [],
     argTypes: {
         isOpen: {
             control: "boolean",

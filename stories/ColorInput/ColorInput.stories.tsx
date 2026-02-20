@@ -4,7 +4,7 @@ import { ColorInput } from "@/components/ColorInput/ColorInput";
 const meta: Meta<typeof ColorInput> = {
     title: "Component/Pickers & Sliders/ColorInput",
     component: ColorInput,
-    tags: ["autodocs"],
+    tags: [],
 };
 
 export default meta;

@@ -4,7 +4,7 @@ import { LinkButton } from "@/components/LinkButton/LinkButton";
 const meta: Meta<typeof LinkButton> = {
     title: "Component/Buttons/LinkButton",
     component: LinkButton,
-    tags: ["autodocs"],
+    tags: [],
 };
 
 export default meta;
