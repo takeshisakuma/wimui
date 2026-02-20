@@ -182,7 +182,7 @@ export const Video = ({
 
 
     const videoStyles: React.CSSProperties = {
-        width: width || "100%",
+        width: "100%",
         // Height needs careful handling with aspect ratio, but for now allow override or auto
         height: height || "auto",
         objectFit: fit,
@@ -195,7 +195,7 @@ export const Video = ({
     return (
         <figure
             className={classNames("wim-video-container", className)}
-            style={{ width: width || "100%" }}
+            style={{ width: "100%" }}
         >
             <div
                 className={classNames(
