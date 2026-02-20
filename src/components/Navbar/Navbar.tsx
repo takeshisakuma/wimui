@@ -191,7 +191,7 @@ export interface NavbarMenuProps extends React.ComponentPropsWithoutRef<"div"> {
 }
 
 export const NavbarMenu = React.forwardRef<HTMLDivElement, NavbarMenuProps>(
-    ({ className, children, position = "right", ...props }, ref) => {
+    ({ className, children, position = "top", ...props }, ref) => {
         const context = useContext(NavbarContext);
         if (!context) {
             throw new Error("NavbarMenu must be used within a Navbar");

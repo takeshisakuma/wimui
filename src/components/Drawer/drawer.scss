@@ -23,6 +23,7 @@
     color: var(--text-primary);
     background-color: var(--bg-component, #fff);
     box-shadow: effects.$shadow-lg;
+    pointer-events: auto;
 
     &:focus {
         outline: none;

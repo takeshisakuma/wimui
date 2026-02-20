@@ -2,6 +2,7 @@
 @use "../../tokens/typography" as typography;
 @use "../../tokens/spacings" as spacings;
 @use "../../tokens/effects" as effects;
+@use "../../tokens/breakpoints" as breakpoints;
 
 $hamburger-layer-width: 32px !default;
 $hamburger-layer-height: 2px !default;
@@ -13,7 +14,9 @@ $hamburger-active-hover-opacity: 1 !default;
 
 @layer component {
     .wim-hamburger-menu {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         padding: spacings.$spacing-sm;
         margin: 0;
         overflow: visible;

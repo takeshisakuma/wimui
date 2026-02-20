@@ -172,6 +172,7 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
 
     return (
         <Portal>
+            {/* Outer transition acts as the overlay */}
             <Transition
                 show={open}
                 enter="fade-enter"
@@ -180,32 +181,28 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
                 leave="fade-leave"
                 leaveFrom="fade-leave-from"
                 leaveTo="fade-leave-to"
+                className="wim-drawer-overlay"
+                onClick={(e) => {
+                    if (e.target === e.currentTarget) {
+                        onOpenChange(false);
+                    }
+                }}
             >
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-                <div
-                    className="wim-drawer-overlay"
-                    onClick={(e) => {
-                        if (e.target === e.currentTarget) {
-                            onOpenChange(false);
-                        }
-                    }}
+                {/* Inner transition acts directly as the drawer content to prevent containing block CSS bugs */}
+                <Transition
+                    show={open}
+                    {...slideTransition}
+                    className={classNames("wim-drawer-content", `wim-drawer-content--${side}`, className)}
+                    ref={contentRef}
+                    role="dialog"
+                    aria-modal="true"
+                    onClick={(e) => e.stopPropagation()}
                 >
-                    <Transition show={open} {...slideTransition}>
-                        {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-                        <FocusTrap active={open} autoFocus={true} className="wim-drawer-focus-trap-wrapper">
-                            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
-                            <div
-                                ref={contentRef}
-                                role="dialog"
-                                aria-modal="true"
-                                className={classNames("wim-drawer-content", `wim-drawer-content--${side}`, className)}
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                {children}
-                            </div>
-                        </FocusTrap>
-                    </Transition>
-                </div>
+                    {/* FocusTrap renders a display:contents div so children flex properly into drawer-content */}
+                    <FocusTrap active={open} autoFocus={true}>
+                        {children}
+                    </FocusTrap>
+                </Transition>
             </Transition>
         </Portal>
     );

@@ -29,15 +29,23 @@ export const Default: Story = {
             <Navbar.Brand>
                 <span>LOGO</span>
             </Navbar.Brand>
-            <Navbar.Content justify="end">
+            <Navbar.Content justify="end" hiddenOnMobile>
                 <Navbar.Link href="#" active>Home</Navbar.Link>
                 <Navbar.Link href="#">Features</Navbar.Link>
                 <Navbar.Link href="#">Pricing</Navbar.Link>
                 <Navbar.Link href="#">About</Navbar.Link>
             </Navbar.Content>
-            <Navbar.Content justify="end">
+            <Navbar.Content justify="end" hiddenOnMobile>
                 <Button priority="secondary" size="small">Login</Button>
             </Navbar.Content>
+            <Navbar.Toggle />
+            <Navbar.Menu>
+                <Navbar.MenuItem active>Home</Navbar.MenuItem>
+                <Navbar.MenuItem>Features</Navbar.MenuItem>
+                <Navbar.MenuItem>Pricing</Navbar.MenuItem>
+                <Navbar.MenuItem>About</Navbar.MenuItem>
+                <Navbar.MenuItem>Login</Navbar.MenuItem>
+            </Navbar.Menu>
         </Navbar>
     ),
     args: {
@@ -56,11 +64,17 @@ export const GlassEffect: Story = {
                 <Navbar.Brand>
                     <span>Glass UI</span>
                 </Navbar.Brand>
-                <Navbar.Content justify="end">
+                <Navbar.Content justify="end" hiddenOnMobile>
                     <Navbar.Link href="#">Design</Navbar.Link>
                     <Navbar.Link href="#">Components</Navbar.Link>
                     <Navbar.Link href="#">Docs</Navbar.Link>
                 </Navbar.Content>
+                <Navbar.Toggle />
+                <Navbar.Menu>
+                    <Navbar.MenuItem>Design</Navbar.MenuItem>
+                    <Navbar.MenuItem>Components</Navbar.MenuItem>
+                    <Navbar.MenuItem>Docs</Navbar.MenuItem>
+                </Navbar.Menu>
             </Navbar>
             <div style={{ paddingTop: "80px", paddingLeft: "24px", color: "white" }}>
                 <h1>Glassmorphism Header</h1>
@@ -72,19 +86,20 @@ export const GlassEffect: Story = {
 
 export const WithMobileMenu: Story = {
     render: () => {
-        const [isOpen, setIsOpen] = React.useState(false);
         return (
             <Navbar bordered>
                 <Navbar.Brand>
                     <span>Mobile App</span>
                 </Navbar.Brand>
-                <Navbar.Content justify="end" className="hidden-mobile">
-                    {/* These would be hidden on mobile via CSS usually, simulating here */}
-                    <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-                        <Navbar.Link href="#">Overview</Navbar.Link>
-                        <HamburgerMenu isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
-                    </div>
+                <Navbar.Content justify="end" hiddenOnMobile>
+                    <Navbar.Link href="#">Overview</Navbar.Link>
+                    <Navbar.Link href="#">Activity</Navbar.Link>
                 </Navbar.Content>
+                <Navbar.Toggle />
+                <Navbar.Menu>
+                    <Navbar.MenuItem>Overview</Navbar.MenuItem>
+                    <Navbar.MenuItem>Activity</Navbar.MenuItem>
+                </Navbar.Menu>
             </Navbar>
         );
     },
@@ -96,15 +111,23 @@ export const CenteredLinks: Story = {
             <Navbar.Brand>
                 <span>CENTER</span>
             </Navbar.Brand>
-            <Navbar.Content justify="center">
+            <Navbar.Content justify="center" hiddenOnMobile>
                 <Navbar.Link href="#" active>Product</Navbar.Link>
                 <Navbar.Link href="#">Solutions</Navbar.Link>
                 <Navbar.Link href="#">Resources</Navbar.Link>
             </Navbar.Content>
-            <Navbar.Content justify="end">
+            <Navbar.Content justify="end" hiddenOnMobile>
                 <Button priority="tertiary" size="small">Sign In</Button>
                 <Button priority="primary" size="small">Sign Up</Button>
             </Navbar.Content>
+            <Navbar.Toggle />
+            <Navbar.Menu>
+                <Navbar.MenuItem active>Product</Navbar.MenuItem>
+                <Navbar.MenuItem>Solutions</Navbar.MenuItem>
+                <Navbar.MenuItem>Resources</Navbar.MenuItem>
+                <Navbar.MenuItem>Sign In</Navbar.MenuItem>
+                <Navbar.MenuItem>Sign Up</Navbar.MenuItem>
+            </Navbar.Menu>
         </Navbar>
     ),
 };
