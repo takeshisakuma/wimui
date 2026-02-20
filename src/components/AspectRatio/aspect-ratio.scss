@@ -2,6 +2,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: var(--wim-aspect-ratio);
+    overflow: hidden;
 
     &__inner {
         position: absolute;

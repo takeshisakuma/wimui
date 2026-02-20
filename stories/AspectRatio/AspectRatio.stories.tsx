@@ -7,7 +7,7 @@ const meta: Meta<typeof AspectRatio> = {
     component: AspectRatio,
     tags: [],
     parameters: {
-        layout: "centered",
+        layout: "padded",
     },
     argTypes: {
         ratio: {
@@ -28,7 +28,7 @@ export const Default: Story = {
                 alt="Landscape"
             />
         ),
-        style: { width: "400px" },
+        style: { width: "100%", maxWidth: "400px", margin: "0 auto" },
     },
 };
 
@@ -41,7 +41,7 @@ export const Square: Story = {
                 alt="Landscape"
             />
         ),
-        style: { width: "200px" },
+        style: { width: "100%", maxWidth: "200px", margin: "0 auto" },
     },
 };
 
@@ -56,6 +56,6 @@ export const Embed: Story = {
                 allowFullScreen
             />
         ),
-        style: { width: "500px" },
+        style: { width: "100%", maxWidth: "500px", margin: "0 auto" },
     },
 };
