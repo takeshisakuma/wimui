@@ -20,7 +20,7 @@ export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
 }
 
 const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
-    ({ className, children, fixed, collapsed, width = 260, bordered = true, responsive, mobileOpen, onOverlayClick, ...props }, ref) => {
+    ({ className, children, fixed, collapsed, width = 260, bordered = true, responsive = true, mobileOpen, onOverlayClick, ...props }, ref) => {
         const style = {
             "--wim-sidebar-width": typeof width === "number" ? `${width}px` : width,
         } as React.CSSProperties;

@@ -32,7 +32,7 @@ const SidebarContent = () => (
             <Sidebar.Item icon={<Icon name="SettingsIcon" />}>Settings</Sidebar.Item>
         </Sidebar.Content>
         <Sidebar.Footer>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", justifyContent: "inherit" }}>
                 <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#eee", flexShrink: 0 }}></div>
                 <div className="wim-sidebar__hide-collapsed">
                     <div style={{ fontSize: "0.8rem", fontWeight: "bold" }}>John Doe</div>
@@ -44,17 +44,44 @@ const SidebarContent = () => (
 );
 
 export const Default: Story = {
-    render: (args: SidebarProps) => (
-        <div style={{ height: "400px", display: "flex", background: "#f4f4f5" }}>
-            <Sidebar {...args}>
-                <SidebarContent />
-            </Sidebar>
-            <main style={{ flexGrow: 1, padding: "20px" }}>
-                <h1>Content Area</h1>
-                <p>Select a menu item from the sidebar.</p>
-            </main>
-        </div>
-    ),
+    render: (args: SidebarProps) => {
+        const [mobileOpen, setMobileOpen] = React.useState(false);
+        return (
+            <div style={{ position: "fixed", inset: 0, display: "flex", background: "#f4f4f5", overflow: "hidden" }}>
+                <style>{`
+                    .wim-sidebar-mobile-trigger-demo {
+                        position: absolute;
+                        top: 10px;
+                        left: 10px;
+                        z-index: 101;
+                        padding: 5px 10px;
+                        background: white;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    }
+                    @media (min-width: 769px) { /* md breakpoint override */
+                        .wim-sidebar-mobile-trigger-demo {
+                            display: none;
+                        }
+                    }
+                `}</style>
+                <button
+                    className="wim-sidebar-mobile-trigger-demo"
+                    onClick={() => setMobileOpen(true)}
+                >
+                    Menu
+                </button>
+                <Sidebar {...args} mobileOpen={mobileOpen} onOverlayClick={() => setMobileOpen(false)}>
+                    <SidebarContent />
+                </Sidebar>
+                <main style={{ flexGrow: 1, padding: "20px", marginLeft: "20px", marginTop: "40px" }}>
+                    <h1>Content Area</h1>
+                    <p>Select a menu item from the sidebar.</p>
+                </main>
+            </div>
+        );
+    },
     args: {
         bordered: true,
     },
@@ -76,37 +103,4 @@ export const CustomWidth: Story = {
     },
 };
 
-export const Responsive: Story = {
-    render: (args) => {
-        const [mobileOpen, setMobileOpen] = React.useState(false);
-        return (
-            <div style={{ height: "400px", display: "flex", background: "#f4f4f5", overflow: "hidden", position: "relative" }}>
-                <button
-                    onClick={() => setMobileOpen(true)}
-                    style={{ position: 'absolute', top: 10, left: 10, zIndex: 101, padding: '5px 10px', background: 'white', border: '1px solid #ccc', borderRadius: '4px' }}
-                >
-                    Menu
-                </button>
 
-                <Sidebar
-                    {...args}
-                    responsive
-                    mobileOpen={mobileOpen}
-                    onOverlayClick={() => setMobileOpen(false)}
-                >
-                    <SidebarContent />
-                </Sidebar>
-
-                <main style={{ flexGrow: 1, padding: "20px", marginLeft: "20px", marginTop: "40px" }}>
-                    <h1>Responsive Layout</h1>
-                    <p>On larger screens, the sidebar is visible.</p>
-                    <p>On smaller screens (md and below), it becomes a drawer.</p>
-                    <p>Click "Menu" to open sidebar on mobile.</p>
-                </main>
-            </div>
-        );
-    },
-    args: {
-        bordered: true,
-    },
-};

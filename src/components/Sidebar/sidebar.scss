@@ -62,10 +62,14 @@
         &--collapsed {
             width: 64px;
 
+            .wim-sidebar__item {
+                justify-content: center;
+                padding-right: 0;
+                padding-left: 0;
+            }
+
             .wim-sidebar__item-text {
-                width: 0;
-                pointer-events: none;
-                opacity: 0;
+                display: none; // use display none in collapsed state to prevent gap from causing offset
             }
 
             .wim-sidebar__header,
@@ -110,6 +114,8 @@
         }
 
         &__footer {
+            display: flex;
+            align-items: center;
             padding: spacings.$spacing-xl;
             border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
         }

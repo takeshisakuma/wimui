@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AppShell } from "@/components/AppShell/AppShell";
 import Header from "@/components/Header/Header";
@@ -51,38 +52,65 @@ export const Default: Story = {
 };
 
 export const WithSidebar: Story = {
-    args: {
-        header: (
-            <Header bordered>
-                <Header.Section align="start">
-                    <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>Dashboard</div>
-                </Header.Section>
-                <Header.Section align="end">
-                    <Icon name="BellIcon" style={{ width: 24, height: 24 }} />
-                    <Icon name="UserIcon" style={{ width: 24, height: 24 }} />
-                </Header.Section>
-            </Header>
-        ),
-        sidebar: (
-            <Sidebar bordered width={260}>
-                <Sidebar.Header>
-                    <div style={{ padding: "16px", fontWeight: "bold" }}>Navigation</div>
-                </Sidebar.Header>
-                <Sidebar.Content>
-                    <Sidebar.Item icon={<Icon name="HomeIcon" />} active>Dashboard</Sidebar.Item>
-                    <Sidebar.Item icon={<Icon name="UserIcon" />}>Users</Sidebar.Item>
-                    <Sidebar.Item icon={<Icon name="SettingsIcon" />}>Settings</Sidebar.Item>
-                    <Sidebar.Item icon={<Icon name="FilterIcon" />}>Documents</Sidebar.Item>
-                </Sidebar.Content>
-            </Sidebar>
-        ),
-        children: (
-            <div>
-                <h1>Dashboard</h1>
-                <p>Main content area with sidebar navigation.</p>
-            </div>
-        ),
-    },
+    render: (args) => {
+        const [mobileOpen, setMobileOpen] = React.useState(false);
+
+        return (
+            <AppShell
+                {...args}
+                header={
+                    <Header bordered>
+                        <Header.Section align="start" style={{ gap: "10px", alignItems: "center", display: "flex" }}>
+                            <style>{`
+                                .appshell-mobile-trigger {
+                                    display: none;
+                                    background: none;
+                                    border: 1px solid var(--wim-color-border-subtle, #ccc);
+                                    border-radius: 4px;
+                                    cursor: pointer;
+                                    padding: 4px 8px;
+                                }
+                                @media (max-width: 768px) {
+                                    .appshell-mobile-trigger {
+                                        display: block;
+                                    }
+                                }
+                            `}</style>
+                            <button
+                                className="appshell-mobile-trigger"
+                                onClick={() => setMobileOpen(true)}
+                            >
+                                Menu
+                            </button>
+                            <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>Dashboard</div>
+                        </Header.Section>
+                        <Header.Section align="end">
+                            <Icon name="BellIcon" style={{ width: 24, height: 24 }} />
+                            <Icon name="UserIcon" style={{ width: 24, height: 24 }} />
+                        </Header.Section>
+                    </Header>
+                }
+                sidebar={
+                    <Sidebar bordered width={260} mobileOpen={mobileOpen} onOverlayClick={() => setMobileOpen(false)}>
+                        <Sidebar.Header>
+                            <div style={{ padding: "16px", fontWeight: "bold" }}>Navigation</div>
+                        </Sidebar.Header>
+                        <Sidebar.Content>
+                            <Sidebar.Item icon={<Icon name="HomeIcon" />} active>Dashboard</Sidebar.Item>
+                            <Sidebar.Item icon={<Icon name="UserIcon" />}>Users</Sidebar.Item>
+                            <Sidebar.Item icon={<Icon name="SettingsIcon" />}>Settings</Sidebar.Item>
+                            <Sidebar.Item icon={<Icon name="FilterIcon" />}>Documents</Sidebar.Item>
+                        </Sidebar.Content>
+                    </Sidebar>
+                }
+            >
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Main content area with sidebar navigation.</p>
+                </div>
+            </AppShell>
+        );
+    }
 };
 
 export const WithFooter: Story = {
