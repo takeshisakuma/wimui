@@ -49,6 +49,11 @@
         .wim-description-list__term {
             width: 30%;
             padding-right: var(--spacing-2xl, 1rem);
+
+            @media (width <=600px) {
+                width: 100%;
+                padding-right: 0;
+            }
         }
     }
 
@@ -71,6 +76,11 @@
         .wim-description-list__term {
             width: 20%;
             padding-right: var(--spacing-2xl, 1rem);
+
+            @media (width <=600px) {
+                width: 100%;
+                padding-right: 0;
+            }
         }
     }
 
