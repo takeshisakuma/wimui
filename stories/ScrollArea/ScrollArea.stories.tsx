@@ -36,8 +36,8 @@ export const HorizontalScroll: Story = {
         scrollAxis: "x",
         style: { width: "100%", maxWidth: "80vw" },
         children: (
-            <div style={{ width: "50rem", background: "linear-gradient(to right, #f0f, #0ff)", padding: "1rem", color: "white" }}>
-                This is a very wide content to demonstrate horizontal scrolling. 横方向に長いコンテンツです。
+            <div style={{ width: "150rem", background: "#3b82f6", padding: "1rem", color: "white" }}>
+                This is a very wide content to demonstrate horizontal scrolling. 横方向に長いコンテンツです。This is a very wide content to demonstrate horizontal scrolling. 横方向に長いコンテンツです。This is a very wide content to demonstrate horizontal scrolling. 横方向に長いコンテンツです。This is a very wide content to demonstrate horizontal scrolling. 横方向に長いコンテンツです。
             </div>
         ),
     },
