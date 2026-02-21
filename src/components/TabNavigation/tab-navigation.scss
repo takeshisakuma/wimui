@@ -48,19 +48,19 @@
 
         /* Sizes */
         &--small {
-            --wim-tab-nav-padding: #{spacings.$spacing-xs} #{spacings.$spacing-sm};
+            --wim-tab-nav-padding: 0 #{spacings.$spacing-md};
             --wim-tab-nav-font-size: #{typography.$size-small};
             --wim-tab-nav-height: 32px;
         }
 
         &--medium {
-            --wim-tab-nav-padding: #{spacings.$spacing-sm} #{spacings.$spacing-md};
+            --wim-tab-nav-padding: 0 #{spacings.$spacing-lg};
             --wim-tab-nav-font-size: #{typography.$size-medium};
             --wim-tab-nav-height: 40px;
         }
 
         &--large {
-            --wim-tab-nav-padding: #{spacings.$spacing-md} #{spacings.$spacing-lg};
+            --wim-tab-nav-padding: 0 #{spacings.$spacing-xl};
             --wim-tab-nav-font-size: #{typography.$size-large};
             --wim-tab-nav-height: 48px;
         }
@@ -68,9 +68,11 @@
         /* Base Item Styles */
         &__item {
             position: relative;
+            box-sizing: border-box;
             display: inline-flex;
             align-items: center;
             height: var(--wim-tab-nav-height);
+            justify-content: center;
             padding: var(--wim-tab-nav-padding);
             font-size: var(--wim-tab-nav-font-size);
             font-weight: typography.$weight-medium;
@@ -126,6 +128,7 @@
 
             .wim-tab-navigation__item {
                 border-radius: 99px;
+                padding-inline: spacings.$spacing-xl;
 
                 &--active {
                     color: white;
