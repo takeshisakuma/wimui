@@ -6,8 +6,10 @@ export interface DrawerProps {
     defaultOpen?: boolean;
     onOpenChange?: (open: boolean) => void;
     side?: DrawerSide;
+    slideIn?: boolean;
+    slideOut?: boolean;
 }
-export declare const Drawer: ({ children, open: controlledOpen, defaultOpen, onOpenChange, side, }: DrawerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Drawer: ({ children, open: controlledOpen, defaultOpen, onOpenChange, side, slideIn, slideOut, }: DrawerProps) => import("react/jsx-runtime").JSX.Element;
 export interface DrawerTriggerProps {
     children: React.ReactNode;
     asChild?: boolean;

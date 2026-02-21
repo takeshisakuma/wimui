@@ -18,6 +18,8 @@ export interface TransitionProps extends React.HTMLAttributes<HTMLDivElement> {
     leaveTo?: string;
     /** Whether to unmount the children when hidden */
     unmount?: boolean;
+    /** Whether to animate on initial mount */
+    appear?: boolean;
     /** Additional class names for the wrapper */
     className?: string;
 }
