@@ -70,8 +70,14 @@ const config: StorybookConfig = {
           },
         }),
       ],
+      optimizeDeps: {
+        exclude: ['jsmediatags'],
+      },
       build: {
         chunkSizeWarningLimit: 2000,
+        rollupOptions: {
+          external: ['react-native-fs'],
+        },
       },
     });
   },

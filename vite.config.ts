@@ -46,7 +46,7 @@ export default defineConfig({
       fileName: (format) => `wimui.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: ["react", "react-dom", "react/jsx-runtime", "react-native-fs"],
       output: {
         globals: {
           react: "React",

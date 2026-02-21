@@ -64,6 +64,10 @@ import SmartphoneIcon from "../../icon/smartphone.svg?react";
 import CloseSmallIcon from "../../icon/close-small.svg?react";
 import CheckCircleIcon from "../../icon/check-circle.svg?react";
 import HourglassIcon from "../../icon/hourglass.svg?react";
+import ShuffleIcon from "../../icon/shuffle.svg?react";
+import RepeatIcon from "../../icon/repeat.svg?react";
+import SkipBackIcon from "../../icon/skip-back.svg?react";
+import SkipForwardIcon from "../../icon/skip-forward.svg?react";
 
 
 
@@ -130,6 +134,10 @@ const icons = {
   CloseSmallIcon: CloseSmallIcon,
   CheckCircleIcon: CheckCircleIcon,
   HourglassIcon: HourglassIcon,
+  ShuffleIcon: ShuffleIcon,
+  RepeatIcon: RepeatIcon,
+  SkipBackIcon: SkipBackIcon,
+  SkipForwardIcon: SkipForwardIcon,
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -194,7 +202,11 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
   | "SmartphoneIcon"
   | "CloseSmallIcon"
   | "CheckCircleIcon"
-  | "HourglassIcon";
+  | "HourglassIcon"
+  | "ShuffleIcon"
+  | "RepeatIcon"
+  | "SkipBackIcon"
+  | "SkipForwardIcon";
 
   size?: "small" | "medium" | "large";
   color?:

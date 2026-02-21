@@ -68,7 +68,8 @@ export const CustomControls: Story = {
     },
 };
 
-export const FullFeatures: Story = {
+export const FullFeatured: Story = {
+    name: "Full Featured",
     args: {
         width: 800,
         height: 450,

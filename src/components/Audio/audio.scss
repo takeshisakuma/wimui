@@ -10,18 +10,17 @@
     max-width: 100%;
     padding: 0;
     margin: 0;
-    line-height: 0; // Remove baseline gap
+    line-height: normal;
 }
 
 .wim-audio-inner {
     display: flex;
-    width: 300px;
+    width: auto;
+    min-width: 300px;
     max-width: 100%;
-    line-height: 0;
+    line-height: normal; // Reset to normal
 
-    // Fix for Chrome on Android: overflow: hidden with border-radius 
-    // can cause rendering glitches on native elements.
-    mask-image: radial-gradient(white, black);
+    overflow: hidden; // Clip content to radius
 
     &.wim-audio--radius-small {
         overflow: hidden;
@@ -67,27 +66,120 @@
     text-align: center;
 }
 
-// Custom Controls Styles
 .wim-audio--custom {
     display: flex;
     flex-direction: column;
-    gap: spacings.$spacing-sm;
-    min-width: 320px;
-    padding: spacings.$spacing-md;
+    gap: 0.6rem; // Adjusted for 3 rows
+    min-width: 380px; // Slightly wider base
+    padding: 1rem 1.2rem 0.8rem; // More generous padding
     color: white;
     background: linear-gradient(135deg, #1e1e24 0%, #292930 100%);
+    position: relative;
+    z-index: 1;
 
-    // Reset mask-image from .wim-audio-inner to allow shadows/overflow if needed
     mask-image: none;
+}
+
+// When radius is full (pills), we need even more horizontal padding and width
+.wim-audio--radius-full .wim-audio--custom {
+    min-width: 480px; // Provide more room for deep curves
+    padding: 1.5rem 52px 1rem; // Increase top/side padding to clear curves
 }
 
 // ... (existing styles)
 
+.wim-audio-visualizer-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: transparent;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+.wim-audio-metadata {
+    display: flex;
+    align-items: center;
+    gap: spacings.$spacing-sm;
+    padding-bottom: spacings.$spacing-sm;
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+    position: relative;
+    z-index: 2;
+
+    .wim-audio--radius-full & {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+.wim-audio-cover {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: spacings.$radius-sm;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
+}
+
+.wim-audio-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; // Significantly increased gap
+    line-height: 1.5;
+}
+
+.wim-audio-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1.2;
+}
+
+.wim-audio-artist {
+    font-size: 0.75rem;
+    color: rgb(255 255 255 / 0.6);
+    line-height: 1.2;
+}
+
+.wim-audio-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    font-size: 8px;
+    font-weight: bold;
+    color: white;
+    background: #646cff;
+    border-radius: 50%;
+}
+
 .wim-audio-custom-controls {
     display: flex;
-    gap: spacings.$spacing-sm;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wim-audio-controls-row {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: spacings.$spacing-sm;
     width: 100%;
+}
+
+.wim-audio-controls-group {
+    display: flex;
+    align-items: center;
+    gap: spacings.$spacing-xs;
 }
 
 .wim-audio-btn {
@@ -96,15 +188,16 @@
     justify-content: center;
     width: 32px;
     height: 32px;
+    flex-shrink: 0; // Prevent distortion in flex containers
     padding: spacings.$spacing-xs;
     color: white;
     cursor: pointer;
-
-    // ... existing common button props
     background: none;
     border: none;
     border-radius: 50%;
     transition: background-color 0.2s, color 0.2s;
+    box-sizing: border-box;
+    position: relative; // For badge positioning
 
     &:hover {
         color: #646cff; // Accent color
@@ -129,6 +222,7 @@
     &--play {
         width: 40px;
         height: 40px;
+        flex-shrink: 0;
         background-color: #646cff;
 
         &:hover {
@@ -147,7 +241,8 @@
 .wim-audio-time {
     display: flex;
     flex: 1;
-    gap: spacings.$spacing-xs;
+    gap: 6px; // Tighter gap
+    padding: 0 spacings.$spacing-lg; // Additional internal padding to shorten the bar
     align-items: center;
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
@@ -210,16 +305,9 @@
 }
 
 .wim-audio-volume-container {
-    position: relative;
     display: flex;
-    gap: spacings.$spacing-xs;
     align-items: center;
-
-    &:hover .wim-audio-volume {
-        width: 60px;
-        pointer-events: auto;
-        opacity: 1;
-    }
+    gap: spacings.$spacing-xs;
 }
 
 .wim-audio-volume {

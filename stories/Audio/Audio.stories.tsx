@@ -37,6 +37,15 @@ export const WithCaption: Story = {
     },
 };
 
+export const AutoPlay: Story = {
+    args: {
+        src: audioSample,
+        controls: true,
+        autoPlay: true,
+        muted: true,
+    },
+};
+
 export const Rounded: Story = {
     args: {
         src: audioSample,
@@ -48,21 +57,49 @@ export const Rounded: Story = {
     },
 };
 
-export const AutoPlay: Story = {
-    args: {
-        src: audioSample,
-        controls: true,
-        autoPlay: true,
-        muted: true,
-    },
-};
-
 export const CustomControls: Story = {
     name: "Custom Design",
     args: {
-        src: audioSample,
+        src: {
+            src: audioSample,
+            title: "Custom Player",
+            artist: "Wim UI",
+        },
         customControls: true,
+        showMetadata: true,
+        radius: "medium",
+        shadow: true,
+        border: true,
     },
 };
 
-
+export const FullFeatured: Story = {
+    name: "Full Featured",
+    args: {
+        src: [
+            {
+                src: audioSample,
+                title: "Sample Web Audio API",
+                artist: "Wim UI",
+            },
+            {
+                src: audioSample,
+                title: "Track 2",
+                artist: "Wim UI",
+            }
+        ],
+        customControls: true,
+        radius: "medium",
+        shadow: true,
+        border: true,
+        visualizer: true,
+        showMetadata: true,
+        fadeIn: 1500,
+        fadeOut: 1500,
+        crossfade: 2000,
+        playbackRate: true,
+        hotkeys: true,
+        presets: true,
+        sleepTimer: true,
+    },
+};
