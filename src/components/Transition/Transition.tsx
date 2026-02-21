@@ -21,6 +21,8 @@ export interface TransitionProps extends React.HTMLAttributes<HTMLDivElement> {
     leaveTo?: string;
     /** Whether to unmount the children when hidden */
     unmount?: boolean;
+    /** Whether to animate on initial mount */
+    appear?: boolean;
     /** Additional class names for the wrapper */
     className?: string;
 }
@@ -41,6 +43,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
             leaveFrom = "",
             leaveTo = "",
             unmount = true,
+            appear = false,
             className,
             ...props
         },
@@ -82,7 +85,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
         useLayoutEffect(() => {
             if (isInitialRender.current) {
                 isInitialRender.current = false;
-                return;
+                if (!appear || !show) return;
             }
 
             const completeTransition = () => {
@@ -112,13 +115,19 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
                 void internalRef.current?.offsetHeight;
 
                 let cleanup: () => void = () => { };
+                let frame2: number;
                 const frame = requestAnimationFrame(() => {
-                    setActiveClasses(classNames(enter, enterTo));
-                    cleanup = completeTransition();
+                    frame2 = requestAnimationFrame(() => {
+                        if (internalRef.current) {
+                            setActiveClasses(classNames(enter, enterTo));
+                            cleanup = completeTransition();
+                        }
+                    });
                 });
 
                 return () => {
                     cancelAnimationFrame(frame);
+                    cancelAnimationFrame(frame2);
                     cleanup();
                 };
             } else {
@@ -130,13 +139,19 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
                 void internalRef.current?.offsetHeight;
 
                 let cleanup: () => void = () => { };
+                let frame2: number;
                 const frame = requestAnimationFrame(() => {
-                    setActiveClasses(classNames(leave, leaveTo));
-                    cleanup = completeTransition();
+                    frame2 = requestAnimationFrame(() => {
+                        if (internalRef.current) {
+                            setActiveClasses(classNames(leave, leaveTo));
+                            cleanup = completeTransition();
+                        }
+                    });
                 });
 
                 return () => {
                     cancelAnimationFrame(frame);
+                    cancelAnimationFrame(frame2);
                     cleanup();
                 };
             }

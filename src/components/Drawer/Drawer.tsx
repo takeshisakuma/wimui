@@ -12,6 +12,8 @@ type DrawerContextType = {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     side: DrawerSide;
+    slideIn: boolean;
+    slideOut: boolean;
 };
 
 const DrawerContext = createContext<DrawerContextType | undefined>(undefined);
@@ -31,6 +33,8 @@ export interface DrawerProps {
     defaultOpen?: boolean;
     onOpenChange?: (open: boolean) => void;
     side?: DrawerSide;
+    slideIn?: boolean;
+    slideOut?: boolean;
 }
 
 export const Drawer = ({
@@ -39,6 +43,8 @@ export const Drawer = ({
     defaultOpen = false,
     onOpenChange,
     side = "right",
+    slideIn = true,
+    slideOut = true,
 }: DrawerProps) => {
     const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
     const isControlled = controlledOpen !== undefined;
@@ -52,7 +58,7 @@ export const Drawer = ({
     }, [isControlled, onOpenChange]);
 
     return (
-        <DrawerContext.Provider value={{ open, onOpenChange: handleOpenChange, side }}>
+        <DrawerContext.Provider value={{ open, onOpenChange: handleOpenChange, side, slideIn, slideOut }}>
             {children}
         </DrawerContext.Provider>
     );
@@ -129,7 +135,7 @@ export interface DrawerContentProps {
 }
 
 export const DrawerContent = ({ children, className }: DrawerContentProps) => {
-    const { open, onOpenChange, side } = useDrawer();
+    const { open, onOpenChange, side, slideIn, slideOut } = useDrawer();
     const contentRef = useRef<HTMLDivElement>(null);
 
     // Close on Escape
@@ -162,12 +168,12 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
     }, [open]);
 
     const slideTransition = {
-        enter: `slide-${side}-enter`,
-        enterFrom: `slide-${side}-enter-from`,
-        enterTo: `slide-${side}-enter-to`,
-        leave: `slide-${side}-leave`,
-        leaveFrom: `slide-${side}-leave-from`,
-        leaveTo: `slide-${side}-leave-to`,
+        enter: slideIn ? `slide-${side}-enter` : "",
+        enterFrom: slideIn ? `slide-${side}-enter-from` : "",
+        enterTo: slideIn ? `slide-${side}-enter-to` : "",
+        leave: slideOut ? `slide-${side}-leave` : "",
+        leaveFrom: slideOut ? `slide-${side}-leave-from` : "",
+        leaveTo: slideOut ? `slide-${side}-leave-to` : "",
     };
 
     return (
@@ -191,6 +197,7 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
                 {/* Inner transition acts directly as the drawer content to prevent containing block CSS bugs */}
                 <Transition
                     show={open}
+                    appear={slideIn}
                     {...slideTransition}
                     className={classNames("wim-drawer-content", `wim-drawer-content--${side}`, className)}
                     ref={contentRef}

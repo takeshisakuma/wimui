@@ -27,6 +27,14 @@ const meta: Meta<typeof Drawer> = {
             action: "onOpenChange",
             description: "Event handler called when the open state changes.",
         },
+        slideIn: {
+            control: "boolean",
+            description: "Whether the drawer should slide in when opening.",
+        },
+        slideOut: {
+            control: "boolean",
+            description: "Whether the drawer should slide out when closing.",
+        },
     },
 };
 
@@ -181,4 +189,33 @@ export const Controlled: Story = {
     }
 };
 
-
+export const WithoutSlide: Story = {
+    args: {
+        side: "right",
+        slideIn: false,
+        slideOut: false,
+    },
+    render: (args) => (
+        <Drawer {...args}>
+            <DrawerTrigger asChild>
+                <Button priority="primary" label="Open Drawer (No Slide)" />
+            </DrawerTrigger>
+            <DrawerContent>
+                <DrawerHeader>
+                    <DrawerTitle>No Slide Drawer</DrawerTitle>
+                    <DrawerDescription>
+                        This drawer fades without sliding.
+                    </DrawerDescription>
+                </DrawerHeader>
+                <div style={{ padding: "20px" }}>
+                    <p>The slideIn and slideOut options are set to false, so the drawer only fades in and out along with the overlay.</p>
+                </div>
+                <DrawerFooter>
+                    <DrawerClose asChild>
+                        <Button priority="secondary" label="Close" />
+                    </DrawerClose>
+                </DrawerFooter>
+            </DrawerContent>
+        </Drawer>
+    ),
+};
