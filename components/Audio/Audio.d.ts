@@ -1,18 +1,31 @@
 import { default as React } from '../../../node_modules/react';
-type AudioProps = React.ComponentPropsWithoutRef<"audio"> & {
+export type AudioTrack = {
     src: string;
+    title?: string;
+    artist?: string;
+    coverArt?: string;
+};
+type AudioProps = Omit<React.ComponentPropsWithoutRef<"audio">, "src"> & {
+    src?: string | string[] | AudioTrack | AudioTrack[];
     autoPlay?: boolean;
     loop?: boolean;
     muted?: boolean;
     controls?: boolean;
+    preload?: "auto" | "metadata" | "none";
     radius?: "none" | "small" | "medium" | "large" | "full";
     shadow?: boolean;
     border?: boolean;
-    preload?: "auto" | "metadata" | "none";
     caption?: string;
     customControls?: boolean;
+    visualizer?: boolean;
+    showMetadata?: boolean;
+    fadeIn?: boolean | number;
+    fadeOut?: boolean | number;
+    crossfade?: boolean | number;
+    playbackRate?: boolean;
+    hotkeys?: boolean;
+    presets?: boolean;
+    sleepTimer?: boolean;
 };
-export declare const Audio: ({ src, autoPlay, loop, muted, controls, radius, shadow, border, preload, caption, className, style, customControls, ...props }: AudioProps & {
-    customControls?: boolean;
-}) => import("react/jsx-runtime").JSX.Element;
+export declare const Audio: ({ src, autoPlay, loop, muted, controls, radius, shadow, border, preload, caption, className, style, customControls, visualizer, showMetadata, fadeIn, fadeOut, crossfade, playbackRate, hotkeys, presets, sleepTimer, ...props }: AudioProps) => import("react/jsx-runtime").JSX.Element;
 export {};
