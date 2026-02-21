@@ -41,9 +41,10 @@
         }
 
         &--disabled {
-            background: var(--wim-color-bg-disabled);
-            border-color: var(--wim-color-border-disabled);
-            color: var(--wim-color-text-disabled);
+            background: var(--color-disabled);
+            border-color: var(--color-disabled);
+            color: var(--color-text-on-disabled);
+            opacity: 0.6;
             cursor: not-allowed;
             pointer-events: none;
         }
@@ -137,7 +138,7 @@
         }
 
         &--disabled {
-            color: var(--wim-color-text-disabled);
+            color: var(--text-disabled);
             cursor: not-allowed;
             pointer-events: none;
         }
