@@ -15,6 +15,7 @@
     display: block;
     width: 100%;
     line-height: 0;
+    background-color: #000; // アスペクト比変更時の余白（レターボックス）を黒にする
 
     &.wim-video--radius-small {
         overflow: hidden;
@@ -226,4 +227,121 @@
     line-height: 1.5;
     color: var(--color-text-secondary, #666);
     text-align: center;
+}
+
+// Advanced Menu Styles
+.wim-video-advanced-menu {
+    position: absolute;
+    bottom: 60px;
+    right: spacings.$spacing-md;
+    background: rgb(28 28 28 / 0.95);
+    border-radius: spacings.$radius-md;
+    padding: spacings.$spacing-sm;
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$spacing-xs;
+    color: white;
+    min-width: 160px;
+    z-index: 20;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.5);
+    backdrop-filter: blur(8px);
+    font-size: 0.875rem;
+
+    .wim-video-menu-title {
+        font-weight: 600;
+        padding: spacings.$spacing-xs spacings.$spacing-sm;
+        margin-bottom: spacings.$spacing-xs;
+        border-bottom: 1px solid rgb(255 255 255 / 0.1);
+        display: flex;
+        align-items: center;
+        gap: spacings.$spacing-xs;
+
+        button {
+            padding: 0;
+            width: auto;
+            color: inherit;
+        }
+    }
+
+    .wim-video-menu-items {
+        display: flex;
+        flex-direction: column;
+        gap: spacings.$spacing-xs; // アイテム間の余白を追加
+        max-height: 250px; // 少し高さを広げる
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgb(255 255 255 / 0.3);
+            border-radius: 2px;
+        }
+    }
+
+    button.wim-video-menu-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: transparent;
+        border: none;
+        color: white;
+        padding: 10px spacings.$spacing-sm; // よりゆとりを持たせて 10px に拡大
+        border-radius: spacings.$radius-sm;
+        cursor: pointer;
+        text-align: left;
+        transition: background 0.2s;
+        gap: spacings.$spacing-sm;
+
+        &:hover {
+            background: rgb(255 255 255 / 0.15);
+        }
+
+        &.active,
+        &[data-active="true"] {
+            background: rgb(255 255 255 / 0.25);
+            font-weight: 500;
+        }
+    }
+}
+
+// Double Tap Skip Indicator Style
+.wim-video-skip-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(0 0 0 / 0.6);
+    color: white;
+    padding: spacings.$spacing-md spacings.$spacing-lg;
+    border-radius: spacings.$radius-full;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 15;
+    pointer-events: none;
+    font-weight: bold;
+    animation: skipFadeIn 0.5s ease-out forwards;
+
+    .wim-icon {
+        margin: 0 -4px; // アイコン同士を寄せる
+    }
+}
+
+@keyframes skipFadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }

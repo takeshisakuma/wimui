@@ -68,4 +68,32 @@ export const CustomControls: Story = {
     },
 };
 
+export const FullFeatures: Story = {
+    args: {
+        width: 800,
+        height: 450,
+        videoId: "sample-demo-vid",
+        resumePlayback: true,
+        autoPlayNext: true,
+        controls: false,
+        radius: "large",
+        shadow: true,
+        border: true,
+        fit: "cover",
+        preload: "auto",
+        caption: "全機能（全部盛り）プレーヤー: 画質変更・速度・フィット・プレイリスト・レジューム再生",
+        customControls: true,
+        advancedControls: true,
+        qualities: [
+            { label: "1080p", src: sampleVideo },
+            { label: "720p", src: sampleVideo },
+            { label: "Auto", src: sampleVideo },
+        ],
+        playlist: [
+            { src: sampleVideo, title: "エピソード 1: はじまり", poster: videoPoster },
+            { src: sampleVideo, title: "エピソード 2: 展開", poster: videoPoster },
+            { src: sampleVideo, title: "エピソード 3: 結末", poster: videoPoster },
+        ]
+    },
+};
 
