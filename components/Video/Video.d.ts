@@ -1,6 +1,6 @@
 import { default as React } from '../../../node_modules/react';
-type VideoProps = React.ComponentPropsWithoutRef<"video"> & {
-    src: string;
+type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
+    src?: string;
     width?: string | number;
     height?: string | number;
     autoPlay?: boolean;
@@ -16,6 +16,18 @@ type VideoProps = React.ComponentPropsWithoutRef<"video"> & {
     caption?: string;
     customControls?: boolean;
     advancedControls?: boolean;
+    videoId?: string;
+    resumePlayback?: boolean;
+    playlist?: {
+        src: string;
+        title?: string;
+        poster?: string;
+    }[];
+    autoPlayNext?: boolean;
+    qualities?: {
+        label: string;
+        src: string;
+    }[];
 };
-export declare const Video: ({ src, width, height, autoPlay, loop, muted, controls, poster, radius, shadow, border, fit, preload, caption, className, style, customControls, advancedControls, ...props }: VideoProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Video: ({ src, width, height, autoPlay, loop, muted, controls, poster, radius, shadow, border, fit, preload, caption, className, style, customControls, advancedControls, videoId, resumePlayback, playlist, autoPlayNext, qualities, ...props }: VideoProps) => import("react/jsx-runtime").JSX.Element;
 export {};
