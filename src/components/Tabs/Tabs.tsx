@@ -1,6 +1,8 @@
-import React, { createContext, useContext, useState, useCallback, useId, useMemo } from "react";
+import React, { createContext, useContext, useState, useCallback, useId, useRef, useLayoutEffect, useEffect } from "react";
 import classNames from "classnames";
 import "./tabs.scss";
+
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 type TabsContextType = {
     value?: string;
@@ -146,6 +148,74 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
         }
     };
 
+    const [sliderStyle, setSliderStyle] = useState<React.CSSProperties>({ opacity: 0 });
+    const [isReady, setIsReady] = useState(false);
+    const isReadyRef = useRef(false);
+
+    useIsomorphicLayoutEffect(() => {
+        const listElement = listRef.current;
+        if (!listElement) return;
+
+        const updateSlider = () => {
+            const activeItem = listElement.querySelector(".wim-tabs__trigger--active") as HTMLElement;
+            if (activeItem) {
+                const style: React.CSSProperties = { opacity: 1 };
+                if (orientation === "horizontal") {
+                    style.width = `${activeItem.offsetWidth}px`;
+                    style.height = `2px`;
+                    style.transform = `translateX(${activeItem.offsetLeft}px)`;
+                    style.bottom = "0px"; // align inside scroll container
+                    style.left = "0px";
+                } else {
+                    style.height = `${activeItem.offsetHeight}px`;
+                    style.width = `2px`;
+                    style.transform = `translateY(${activeItem.offsetTop}px)`;
+                    style.right = "0px"; // align inside container
+                    style.top = "0px";
+                }
+
+                setSliderStyle(style);
+
+                if (!isReadyRef.current) {
+                    requestAnimationFrame(() => {
+                        isReadyRef.current = true;
+                        setIsReady(true);
+                    });
+                }
+            } else {
+                setSliderStyle({ opacity: 0 });
+            }
+        };
+
+        updateSlider();
+
+        const resizeObserver = new ResizeObserver(() => updateSlider());
+        resizeObserver.observe(listElement);
+
+        const mutationObserver = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                if (
+                    mutation.type === "childList" ||
+                    (mutation.type === "attributes" && mutation.attributeName === "class")
+                ) {
+                    updateSlider();
+                }
+            }
+        });
+        mutationObserver.observe(listElement, {
+            attributes: true,
+            subtree: true,
+            childList: true,
+            attributeFilter: ["class"],
+        });
+
+        return () => {
+            resizeObserver.disconnect();
+            mutationObserver.disconnect();
+        };
+    }, [value, orientation]); // Watch active value and orientation
+
+
     return (
         <div
             ref={listRef}
@@ -154,6 +224,7 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
             className={classNames(
                 "wim-tabs__list",
                 isDragging && "wim-tabs__list--dragging",
+                isReady && "wim-tabs__list--ready",
                 className
             )}
             onMouseDown={handleMouseDown}
@@ -163,6 +234,7 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
             onKeyDown={handleKeyDown}
             {...props}
         >
+            <div className="wim-tabs__slider" style={sliderStyle} aria-hidden="true" />
             {children}
         </div>
     );

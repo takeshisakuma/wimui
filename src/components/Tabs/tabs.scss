@@ -46,10 +46,6 @@
                 border-bottom: none;
                 border-radius: spacings.$radius-sm 0 0 spacings.$radius-sm;
 
-                &--active {
-                    border-right-color: colors.$color-primary;
-                }
-
                 @include breakpoints.down(md) {
                     justify-content: center;
                     width: auto;
@@ -62,7 +58,6 @@
 
                     &--active {
                         border-right-color: transparent;
-                        border-bottom-color: colors.$color-primary;
                     }
                 }
             }
@@ -74,6 +69,7 @@
         }
 
         &__list {
+            position: relative;
             display: flex;
             flex-shrink: 0;
             gap: spacings.$spacing-xs;
@@ -105,6 +101,16 @@
                 scroll-behavior: auto;
                 cursor: grabbing;
             }
+
+            &.wim-tabs__list--ready .wim-tabs__slider {
+                transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), width 0.2s cubic-bezier(0.2, 0, 0, 1), height 0.2s cubic-bezier(0.2, 0, 0, 1);
+            }
+        }
+
+        &__slider {
+            position: absolute;
+            background-color: colors.$color-primary;
+            z-index: 2;
         }
 
         &__trigger {
@@ -138,7 +144,6 @@
             &--active {
                 color: colors.$color-primary;
                 background-color: #fff;
-                border-bottom-color: colors.$color-primary;
             }
 
             &:focus-visible {
