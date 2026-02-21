@@ -25,10 +25,21 @@
         justify-content: center;
         width: 100%;
 
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
+        &--has-aspect-ratio {
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: var(--wim-carousel-object-fit, cover);
+            }
+        }
+
+        &:not(&--has-aspect-ratio) {
+            img {
+                display: block;
+                max-width: 100%;
+                height: auto;
+            }
         }
     }
 

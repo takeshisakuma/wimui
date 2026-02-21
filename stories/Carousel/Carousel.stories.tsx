@@ -20,6 +20,11 @@ const meta: Meta<typeof Carousel> = {
         showControls: { control: "boolean" },
         loop: { control: "boolean" },
         slidesToShow: { control: "number" },
+        aspectRatio: { control: "text" },
+        objectFit: {
+            control: "select",
+            options: ["fill", "contain", "cover", "none", "scale-down"]
+        },
     },
 };
 
@@ -136,6 +141,20 @@ export const WithImage: Story = {
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
             </div>
+        )),
+    },
+};
+
+export const AspectRatioCheck: Story = {
+    args: {
+        aspectRatio: "16/9",
+        objectFit: "cover",
+        children: Array.from({ length: 4 }).map((_, i) => (
+            <img
+                key={`img-${i}`}
+                src={SampleImage}
+                alt={`Sample ${i + 1}`}
+            />
         )),
     },
 };

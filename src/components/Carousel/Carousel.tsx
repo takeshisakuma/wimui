@@ -41,6 +41,14 @@ export type CarouselProps = {
      */
     slidesToShow?: number | Breakpoints;
     /**
+     * アスペクト比（例: '16/9', '4/3', '1/1'）を指定します。
+     */
+    aspectRatio?: string;
+    /**
+     * 画像のフィット方法を指定します。aspectRatioが指定されている場合に有効です。（デフォルト: 'cover'）
+     */
+    objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down";
+    /**
      * 追加のクラス名
      */
     className?: string;
@@ -68,6 +76,8 @@ export const Carousel = ({
     showControls = true,
     loop = true,
     slidesToShow = 1,
+    aspectRatio,
+    objectFit = "cover",
     className,
 }: CarouselProps) => {
     const items = useMemo(() => React.Children.toArray(children), [children]);
@@ -229,8 +239,15 @@ export const Carousel = ({
                     {extendedItems.map((child, index) => (
                         <div
                             key={index}
-                            className="wim-carousel__item"
-                            style={{ flex: `0 0 ${slideWidth}%`, width: `${slideWidth}%` }}
+                            className={classNames(
+                                "wim-carousel__item",
+                                aspectRatio && "wim-carousel__item--has-aspect-ratio"
+                            )}
+                            style={{
+                                flex: `0 0 ${slideWidth}%`,
+                                width: `${slideWidth}%`,
+                                ...(aspectRatio ? { aspectRatio, "--wim-carousel-object-fit": objectFit } : {})
+                            } as React.CSSProperties}
                             role="group"
                             aria-roledescription="slide"
                         >
