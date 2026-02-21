@@ -36,6 +36,14 @@ export type CarouselProps = {
      */
     slidesToShow?: number | Breakpoints;
     /**
+     * アスペクト比（例: '16/9', '4/3', '1/1'）を指定します。
+     */
+    aspectRatio?: string;
+    /**
+     * 画像のフィット方法を指定します。aspectRatioが指定されている場合に有効です。（デフォルト: 'cover'）
+     */
+    objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down";
+    /**
      * 追加のクラス名
      */
     className?: string;
@@ -43,4 +51,4 @@ export type CarouselProps = {
 /**
  * `Carousel` は複数のコンテンツをスライドさせて表示するコンポーネントです。
  */
-export declare const Carousel: ({ children, autoPlay, interval, showIndicators, showControls, loop, slidesToShow, className, }: CarouselProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const Carousel: ({ children, autoPlay, interval, showIndicators, showControls, loop, slidesToShow, aspectRatio, objectFit, className, }: CarouselProps) => import("react/jsx-runtime").JSX.Element | null;
