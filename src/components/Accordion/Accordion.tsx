@@ -207,7 +207,9 @@ export const AccordionContent = ({
             )}
             {...props}
         >
-            <div className="wim-accordion__content-inner">{children}</div>
+            <div className="wim-accordion__content-inner">
+                <div className="wim-accordion__content-body">{children}</div>
+            </div>
         </div>
     );
 };
