@@ -1,6 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useLayoutEffect, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import "./tab-navigation.scss";
+
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export interface TabNavigationProps extends React.ComponentPropsWithoutRef<"nav"> {
     /** Visual style of the tabs */
@@ -13,23 +15,90 @@ export interface TabNavigationProps extends React.ComponentPropsWithoutRef<"nav"
 
 const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
     ({ className, children, variant = "underline", align = "start", size = "medium", ...props }, ref) => {
-        const navRef = useRef<HTMLElement>(null);
+        const localNavRef = useRef<HTMLElement>(null);
+        const listRef = useRef<HTMLDivElement>(null);
+        const [sliderStyle, setSliderStyle] = useState<React.CSSProperties>({ opacity: 0 });
+        const [isReady, setIsReady] = useState(false);
+        const isReadyRef = useRef(false);
 
-        // Simple scroll into view logic for active item could be added here if needed
+        const setRefs = useCallback(
+            (node: HTMLElement) => {
+                localNavRef.current = node;
+                if (typeof ref === "function") {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLElement | null>).current = node;
+                }
+            },
+            [ref]
+        );
+
+        useIsomorphicLayoutEffect(() => {
+            const listElement = listRef.current;
+            if (!listElement) return;
+
+            const updateSlider = () => {
+                const activeItem = listElement.querySelector(".wim-tab-navigation__item--active") as HTMLElement;
+                if (activeItem) {
+                    setSliderStyle({
+                        width: `${activeItem.offsetWidth}px`,
+                        transform: `translateX(${activeItem.offsetLeft}px)`,
+                        opacity: 1,
+                    });
+                    if (!isReadyRef.current) {
+                        requestAnimationFrame(() => {
+                            isReadyRef.current = true;
+                            setIsReady(true);
+                        });
+                    }
+                } else {
+                    setSliderStyle({ opacity: 0 });
+                }
+            };
+
+            updateSlider();
+
+            const resizeObserver = new ResizeObserver(() => updateSlider());
+            resizeObserver.observe(listElement);
+
+            const mutationObserver = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    if (
+                        mutation.type === "childList" ||
+                        (mutation.type === "attributes" && mutation.attributeName === "class")
+                    ) {
+                        updateSlider();
+                    }
+                }
+            });
+            mutationObserver.observe(listElement, {
+                attributes: true,
+                subtree: true,
+                childList: true,
+                attributeFilter: ["class"],
+            });
+
+            return () => {
+                resizeObserver.disconnect();
+                mutationObserver.disconnect();
+            };
+        }, [variant]); // Only re-run if variant changes
 
         return (
             <nav
-                ref={ref || navRef}
+                ref={setRefs}
                 className={classNames(
                     "wim-tab-navigation",
                     `wim-tab-navigation--${variant}`,
                     `wim-tab-navigation--${align}`,
                     `wim-tab-navigation--${size}`,
+                    isReady && "wim-tab-navigation--ready",
                     className
                 )}
                 {...props}
             >
-                <div className="wim-tab-navigation__list" role="tablist">
+                <div className="wim-tab-navigation__list" role="tablist" ref={listRef}>
+                    <div className="wim-tab-navigation__slider" style={sliderStyle} aria-hidden="true" />
                     {children}
                 </div>
             </nav>
