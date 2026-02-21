@@ -106,21 +106,50 @@ export const Anchor = ({
         ) as HTMLElement;
 
         if (activeLink) {
-            const rect = activeLink.getBoundingClientRect();
             const containerRect = containerRef.current.getBoundingClientRect();
 
             if (direction === "vertical") {
+                const rect = activeLink.getBoundingClientRect();
                 setMarkerStyle({
                     top: rect.top - containerRect.top,
                     height: rect.height,
                     opacity: 1,
                 });
             } else {
-                setMarkerStyle({
-                    left: rect.left - containerRect.left,
-                    width: rect.width,
-                    opacity: 1,
-                });
+                const listScrollContainer = containerRef.current.querySelector('.wim-anchor__list') as HTMLElement;
+
+                if (listScrollContainer) {
+                    const linkRect = activeLink.getBoundingClientRect();
+                    const listRect = listScrollContainer.getBoundingClientRect();
+
+                    const itemOffsetLeft = linkRect.left - listRect.left + listScrollContainer.scrollLeft;
+                    const scrollTarget = itemOffsetLeft - (listRect.width / 2) + (linkRect.width / 2);
+
+                    const maxScroll = listScrollContainer.scrollWidth - listRect.width;
+                    // Clamp the scroll target so it doesn't try to scroll past bounds
+                    const clampedScrollTarget = Math.max(0, Math.min(scrollTarget, maxScroll));
+
+                    // We calculate where the item will visually end up after the scroll finishes
+                    const finalLeft = itemOffsetLeft - clampedScrollTarget + (listRect.left - containerRect.left);
+
+                    setMarkerStyle({
+                        left: finalLeft,
+                        width: linkRect.width,
+                        opacity: 1,
+                    });
+
+                    listScrollContainer.scrollTo({
+                        left: clampedScrollTarget,
+                        behavior: "smooth"
+                    });
+                } else {
+                    const rect = activeLink.getBoundingClientRect();
+                    setMarkerStyle({
+                        left: rect.left - containerRect.left,
+                        width: rect.width,
+                        opacity: 1,
+                    });
+                }
             }
         } else {
             setMarkerStyle({ opacity: 0 });
