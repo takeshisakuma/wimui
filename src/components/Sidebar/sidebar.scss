@@ -29,15 +29,27 @@
                 transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
                 // レスポンシブ時は collapsed クラスの影響を受けないようにオーバーライド
+                .wim-sidebar__item {
+                    justify-content: flex-start !important;
+                    padding-right: spacings.$spacing-md !important;
+                    padding-left: spacings.$spacing-md !important;
+                }
+
                 .wim-sidebar__item-text {
+                    display: block !important;
                     width: auto !important;
                     pointer-events: auto !important;
                     opacity: 1 !important;
                 }
 
+                .wim-sidebar__content {
+                    overflow: auto !important;
+                }
+
                 .wim-sidebar__header,
                 .wim-sidebar__footer {
                     justify-content: flex-start !important;
+                    padding: spacings.$spacing-xl !important;
                 }
 
                 .wim-sidebar__hide-collapsed {
