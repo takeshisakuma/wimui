@@ -1,0 +1,49 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Category/Feedback" />
+
+# フィードバックコンポーネントの使い分け
+
+ユーザーの操作やページの状態をリアルタイムに視覚的フィードバックとして提示します。
+
+## コンポーネント比較
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>目的</th>
+      <th>主な用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>ScrollProgress</strong></td>
+      <td>スクロール進捗の可視化</td>
+      <td>ページをどこまで読んだかを示す進捗バー。ブログ記事、ドキュメント、長いコンテンツページのヘッダー上部に固定して使用することが多い。</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 使い分けのポイント
+
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>ガイドライン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>配置</strong></td>
+      <td>`ScrollProgress` は画面上部に固定（`Affix` や `Header` 内）して配置するのが一般的です。コンテンツ内に埋め込むと視認性が低下します。</td>
+    </tr>
+    <tr>
+      <td><strong>対象コンテナ</strong></td>
+      <td>ウィンドウ全体のスクロールに追従させるか、特定のスクロール可能な要素（例: `ScrollArea`）に追従させるか、用途に応じて設定してください。</td>
+    </tr>
+  </tbody>
+</table>

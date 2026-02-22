@@ -1,7 +1,7 @@
 import { Meta } from "@storybook/blocks";
 import { T } from "../stories/T";
 
-<Meta title="Category/Typography" />
+<Meta title="Category/Typography & Icons" />
 
 # タイポグラフィとアイコンの使い分け
 
@@ -54,6 +54,18 @@ import { T } from "../stories/T";
       <td>`mark`</td>
       <td>注目喚起</td>
       <td>検索結果のヒット部分や、特に重要な箇所を背景色で強調する。</td>
+    </tr>
+    <tr>
+      <td><strong>Link</strong></td>
+      <td>`a`</td>
+      <td>ハイパーリンク</td>
+      <td>別のページやリソースへのナビゲーション。ページ遷移には `Link`、アクション実行には `Button` を使用するのが原則。</td>
+    </tr>
+    <tr>
+      <td><strong>Icon</strong></td>
+      <td>`svg`</td>
+      <td>アイコン表示</td>
+      <td>テキストの補助や単独でのアクション指示。単体使用時は `aria-label` で意味を付与してください。</td>
     </tr>
   </tbody>
 </table>
