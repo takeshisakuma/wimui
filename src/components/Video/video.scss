@@ -1,6 +1,7 @@
 @use "../../tokens/spacings" as spacings;
 @use "../../tokens/effects" as effects;
 @use "../../tokens/semantic-colors" as colors;
+@use "../../tokens/breakpoints" as bp;
 
 .wim-video-container {
     position: relative;
@@ -88,6 +89,12 @@
     gap: spacings.$spacing-sm;
     align-items: center;
     width: 100%;
+
+    @include bp.down("sm") {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: spacings.$spacing-xs;
+    }
 }
 
 .wim-video-btn {
@@ -103,6 +110,7 @@
     border: none;
     border-radius: 50%;
     transition: background-color 0.2s, color 0.2s;
+    flex-shrink: 0;
 
     &:hover {
         background-color: rgb(255 255 255 / 0.2);
@@ -127,6 +135,12 @@
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
     color: rgb(255 255 255 / 0.9);
+
+    @include bp.down("sm") {
+        flex: 1 1 100%;
+        order: -1;
+        padding-bottom: spacings.$spacing-xs;
+    }
 }
 
 .wim-video-progress-container {
@@ -217,6 +231,11 @@
     &:active {
         width: 60px;
         opacity: 1;
+    }
+
+    // モバイルでは音量スライダーを非表示（ミュートボタンのみ残す）
+    @include bp.down("sm") {
+        display: none;
     }
 }
 

@@ -72,7 +72,6 @@ export const FullFeatured: Story = {
     name: "Full Featured",
     args: {
         width: 800,
-        height: 450,
         videoId: "sample-demo-vid",
         resumePlayback: true,
         autoPlayNext: true,
