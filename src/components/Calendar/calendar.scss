@@ -8,13 +8,15 @@
 
 .wim-calendar {
     width: 80vw;
-    max-width: 300px;
+    max-width: 340px;
+    padding: spacings.$spacing-md;
 
     @include breakpoints.down(sm) {
-        max-width: 100%;
+        width: 90vw;
+        max-width: 350px;
+        padding: spacings.$spacing-xs;
     }
 
-    padding: spacings.$spacing-md;
     font-family: var(--font-family-base);
     user-select: none;
     background-color: var(--bg-component, #fff);
@@ -85,15 +87,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 36px;
+    height: 40px;
     padding: 0;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+
+    @include breakpoints.down(sm) {
+        height: 44px;
+        font-size: 1rem;
+    }
+
     color: var(--text-primary);
     cursor: pointer;
     background: transparent;
     border: 1px solid transparent;
     border-radius: spacings.$radius-sm;
-    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    transition: background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
 
     &:hover:not(:disabled, .wim-calendar-day--selected) {
         background-color: rgb(0 0 0 / 0.05);

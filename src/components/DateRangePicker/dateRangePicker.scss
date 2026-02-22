@@ -1,0 +1,24 @@
+@use "../../tokens/breakpoints" as breakpoints;
+@use "../../tokens/spacings" as spacings;
+
+.wim-daterangepicker {
+    display: flex;
+    flex-direction: row;
+    gap: spacings.$spacing-xs;
+    align-items: center;
+    width: 100%;
+
+    @include breakpoints.down(sm) {
+        flex-direction: column;
+        align-items: stretch;
+
+        .wim-daterangepicker-separator {
+            display: none;
+        }
+    }
+}
+
+.wim-daterangepicker-separator {
+    align-self: center;
+    color: var(--text-secondary);
+}

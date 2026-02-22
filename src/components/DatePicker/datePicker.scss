@@ -1,6 +1,7 @@
 @use "../../tokens/semantic-colors" as colors;
 @use "../../tokens/spacings" as spacings;
 @use "../../tokens/effects" as effects;
+@use "../../tokens/breakpoints" as breakpoints;
 
 .wim-datepicker-wrapper {
     position: relative;
@@ -9,6 +10,7 @@
 
     &.wim-input--full-width {
         width: 100%;
+        max-width: none;
     }
 }
 
@@ -76,4 +78,12 @@
     border: 1px solid colors.$color-secondary;
     border-radius: spacings.$radius-md;
     box-shadow: effects.$shadow-lg;
+
+    @include breakpoints.down(sm) {
+        left: 50%;
+        width: auto;
+        max-width: calc(100vw - 16px);
+        padding: spacings.$spacing-xs;
+        transform: translateX(-50%);
+    }
 }
