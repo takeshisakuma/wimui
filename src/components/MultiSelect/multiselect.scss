@@ -5,6 +5,7 @@
 @use "../../tokens/semantic-colors" as colors;
 @use "../../tokens/effects" as effects;
 
+
 .wim-multiselect {
     position: relative;
     width: 320px;
@@ -71,6 +72,14 @@
     }
 }
 
+.wim-multiselect-badge {
+    &.wim-chip.wim-chip--solid {
+        color: colors.$color-primary;
+        background-color: rgba(colors.$color-primary, 0.1);
+        border-color: rgba(colors.$color-primary, 0.3);
+    }
+}
+
 .wim-multiselect-list {
     position: absolute;
     z-index: 100;
@@ -101,6 +110,7 @@
     &--selected {
         color: colors.$color-primary;
         font-weight: 500;
+        background-color: rgba(colors.$color-primary, 0.1);
     }
 
     &--disabled {
