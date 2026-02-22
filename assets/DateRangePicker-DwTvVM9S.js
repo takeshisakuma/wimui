@@ -1,0 +1,7 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as e}from"./index-8BoU1IPz.js";import{M as i,C as s,a as m}from"./index-CyRntP2b.js";import{D as p,a}from"./DateRangePicker.stories-BuRZgQcF.js";import"./iframe-CMRSIEnV.js";import"./preload-helper-PPVm8Dsz.js";import"./index-1a5NaCAO.js";import"./index-DMh35vnJ.js";import"./index-CW7syudD.js";import"./index-5tBtizym.js";import"./index-DDwXeJ6p.js";import"./index-BUcX07q_.js";import"./DatePicker-BKINCPRs.js";import"./Calendar-BI_42fCr.js";import"./Icon-BSXAmnY4.js";/* empty css                 *//* empty css              */function n(r){const o={h1:"h1",h2:"h2",p:"p",...e(),...r.components};return t.jsxs(t.Fragment,{children:[t.jsx(i,{of:p}),`
+`,t.jsx(o.h1,{id:"daterangepicker",children:"DateRangePicker"}),`
+`,t.jsx(o.p,{children:"日付の範囲を選択するためのコンポーネントです。"}),`
+`,t.jsx(o.h2,{id:"サンプル",children:"サンプル"}),`
+`,t.jsx(s,{of:a}),`
+`,t.jsx(o.h2,{id:"props",children:"Props"}),`
+`,t.jsx(m,{})]})}function v(r={}){const{wrapper:o}={...e(),...r.components};return o?t.jsx(o,{...r,children:t.jsx(n,{...r})}):n(r)}export{v as default};
