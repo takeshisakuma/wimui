@@ -8,7 +8,7 @@ const meta: Meta<typeof Carousel> = {
     title: "Component/Media/Carousel",
     component: Carousel,
     parameters: {
-        layout: "centered",
+        layout: "fullscreen",
     },
     args: {
         loop: true,
