@@ -96,28 +96,28 @@ export const Interactive: Story = {
 
 export const Alignment: Story = {
     render: () => (
-        <div style={{ display: "flex", gap: "20px" }}>
-            <Popover>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "40px", justifyContent: "center", padding: "40px 20px" }}>
+            <Popover placement="bottom-start">
                 <PopoverTrigger asChild>
                     <Button label="Left Align" />
                 </PopoverTrigger>
-                <PopoverContent align="left">
+                <PopoverContent>
                     <div style={{ padding: "10px" }}>Left aligned content</div>
                 </PopoverContent>
             </Popover>
-            <Popover>
+            <Popover placement="bottom">
                 <PopoverTrigger asChild>
                     <Button label="Center Align" />
                 </PopoverTrigger>
-                <PopoverContent align="center">
+                <PopoverContent>
                     <div style={{ padding: "10px" }}>Center aligned content</div>
                 </PopoverContent>
             </Popover>
-            <Popover>
+            <Popover placement="bottom-end">
                 <PopoverTrigger asChild>
                     <Button label="Right Align" />
                 </PopoverTrigger>
-                <PopoverContent align="right">
+                <PopoverContent>
                     <div style={{ padding: "10px" }}>Right aligned content</div>
                 </PopoverContent>
             </Popover>
@@ -128,19 +128,19 @@ export const Alignment: Story = {
 export const Placement: Story = {
     render: () => (
         <div style={{ display: "flex", flexDirection: "column", gap: "50px", padding: "50px" }}>
-            <Popover>
+            <Popover placement="top">
                 <PopoverTrigger asChild>
                     <Button label="Top Placement" />
                 </PopoverTrigger>
-                <PopoverContent side="top">
+                <PopoverContent>
                     <div style={{ padding: "10px" }}>Appears above</div>
                 </PopoverContent>
             </Popover>
-            <Popover>
+            <Popover placement="bottom">
                 <PopoverTrigger asChild>
                     <Button label="Bottom Placement" />
                 </PopoverTrigger>
-                <PopoverContent side="bottom">
+                <PopoverContent>
                     <div style={{ padding: "10px" }}>Appears below</div>
                 </PopoverContent>
             </Popover>

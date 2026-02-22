@@ -1,21 +1,38 @@
-import React, { useState, useRef, useEffect, ReactNode } from "react";
+import React, { useState, ReactNode } from "react";
+import {
+    useFloating,
+    autoUpdate,
+    offset,
+    flip,
+    shift,
+    useClick,
+    useDismiss,
+    useRole,
+    useInteractions,
+    FloatingPortal,
+    useMergeRefs,
+    Placement,
+    ReferenceType,
+    FloatingContext,
+} from "@floating-ui/react";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import "./popover.scss";
 
-// Context to share state between components
-const PopoverContext = React.createContext<{
+type PopoverContextValue = {
     isOpen: boolean;
-    toggle: () => void;
+    setOpen: (open: boolean) => void;
+    refs: any;
+    floatingStyles: React.CSSProperties;
+    context: FloatingContext<ReferenceType>;
+    getReferenceProps: (userProps?: React.HTMLProps<Element>) => Record<string, unknown>;
+    getFloatingProps: (userProps?: React.HTMLProps<HTMLElement>) => Record<string, unknown>;
     close: () => void;
-    open: () => void;
-}>({
-    isOpen: false,
-    toggle: () => { },
-    close: () => { },
-    open: () => { },
-});
+};
+
+// Context to share state between components
+const PopoverContext = React.createContext<PopoverContextValue | null>(null);
 
 export type PopoverProps = {
     children: ReactNode;
@@ -32,6 +49,10 @@ export type PopoverProps = {
      * Callback when open state changes.
      */
     onOpenChange?: (open: boolean) => void;
+    /**
+     * Preferred placement of the popover.
+     */
+    placement?: Placement;
 };
 
 export const Popover = ({
@@ -40,59 +61,56 @@ export const Popover = ({
     defaultOpen = false,
     isOpen: controlledOpen,
     onOpenChange,
+    placement = "bottom-start",
 }: PopoverProps) => {
     const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
-    const isControlled = controlledOpen !== undefined;
-    const isOpen = isControlled ? controlledOpen : uncontrolledOpen;
+    const isOpen = controlledOpen ?? uncontrolledOpen;
 
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    const toggle = () => {
-        const newState = !isOpen;
-        if (!isControlled) setUncontrolledOpen(newState);
-        onOpenChange?.(newState);
-    };
-
-    const close = () => {
-        if (!isControlled) setUncontrolledOpen(false);
-        onOpenChange?.(false);
-    };
-
-    const openFn = () => {
-        if (!isControlled) setUncontrolledOpen(true);
-        onOpenChange?.(true);
-    };
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (
-                containerRef.current &&
-                !containerRef.current.contains(event.target as Node)
-            ) {
-                close();
-            }
-        };
-
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
-                close();
-            }
-        };
-
-        if (isOpen) {
-            document.addEventListener("mousedown", handleClickOutside);
-            document.addEventListener("keydown", handleKeyDown);
+    const setOpen = (newOpen: boolean) => {
+        if (controlledOpen === undefined) {
+            setUncontrolledOpen(newOpen);
         }
+        onOpenChange?.(newOpen);
+    };
 
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-            document.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [isOpen]);
+    const { refs, floatingStyles, context } = useFloating<ReferenceType>({
+        open: isOpen,
+        onOpenChange: setOpen,
+        placement,
+        whileElementsMounted: autoUpdate,
+        middleware: [
+            offset(8),
+            flip(),
+            shift({ padding: 10 }),
+        ],
+    });
+
+    const click = useClick(context);
+    const dismiss = useDismiss(context);
+    const role = useRole(context);
+
+    const { getReferenceProps, getFloatingProps } = useInteractions([
+        click,
+        dismiss,
+        role,
+    ]);
+
+    const close = () => setOpen(false);
 
     return (
-        <PopoverContext.Provider value={{ isOpen, toggle, close, open: openFn }}>
-            <div className={classNames("wim-popover", className)} ref={containerRef}>
+        <PopoverContext.Provider
+            value={{
+                isOpen,
+                setOpen,
+                refs,
+                floatingStyles,
+                context,
+                getReferenceProps,
+                getFloatingProps,
+                close
+            }}
+        >
+            <div className={classNames("wim-popover", className)}>
                 {children}
             </div>
         </PopoverContext.Provider>
@@ -105,34 +123,47 @@ export type PopoverTriggerProps = {
     asChild?: boolean;
 };
 
-export const PopoverTrigger = ({ children, className, asChild }: PopoverTriggerProps) => {
-    const { toggle, isOpen } = React.useContext(PopoverContext);
+export const PopoverTrigger = React.forwardRef<
+    HTMLElement,
+    PopoverTriggerProps & React.HTMLProps<HTMLElement>
+>(({ children, className, asChild, ...props }, propRef) => {
+    const context = React.useContext(PopoverContext);
+
+    if (context == null) {
+        throw new Error("Popover components must be wrapped in <Popover />");
+    }
+
+    const childrenRef = (children as React.ReactElement & { ref?: React.Ref<unknown> }).ref;
+    const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef ?? null]);
 
     if (asChild && React.isValidElement(children)) {
-        return React.cloneElement(children as React.ReactElement<any>, {
-            onClick: (e: React.MouseEvent) => {
-                const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
-                child.props.onClick?.(e);
-                toggle();
-            },
-            className: classNames(className, (children as React.ReactElement<any>).props.className),
-            "aria-haspopup": "true",
-            "aria-expanded": isOpen,
-        });
+        const childProps = children.props as Record<string, unknown>;
+        const referenceProps = context.getReferenceProps({
+            ref,
+            ...props,
+            ...(childProps as React.HTMLProps<Element>),
+            className: classNames(className, childProps.className as string | undefined),
+        }) as React.HTMLAttributes<Element>;
+        return React.cloneElement(children, {
+            ...referenceProps,
+            "data-state": context.isOpen ? "open" : "closed",
+        } as React.HTMLAttributes<Element>);
     }
 
     return (
         <button
-            className={classNames("wim-popover-trigger", className)}
-            onClick={toggle}
-            aria-haspopup="true"
-            aria-expanded={isOpen}
+            ref={ref as React.Ref<HTMLButtonElement>}
             type="button"
+            className={classNames("wim-popover-trigger", className)}
+            data-state={context.isOpen ? "open" : "closed"}
+            {...(context.getReferenceProps(props) as React.ButtonHTMLAttributes<HTMLButtonElement>)}
         >
             {children}
         </button>
     );
-};
+});
+
+PopoverTrigger.displayName = "PopoverTrigger";
 
 export type PopoverContentProps = {
     children: ReactNode;
@@ -141,37 +172,51 @@ export type PopoverContentProps = {
     side?: "top" | "bottom";
 };
 
-export const PopoverContent = ({
-    children,
-    className,
-    align = "left",
-    side = "bottom",
-    ...props
-}: PopoverContentProps & React.HTMLAttributes<HTMLDivElement>) => {
-    const { isOpen } = React.useContext(PopoverContext);
+export const PopoverContent = React.forwardRef<
+    HTMLDivElement,
+    PopoverContentProps & React.HTMLAttributes<HTMLDivElement>
+>(({ children, className, align, side, style, ...props }, propRef) => {
+    const context = React.useContext(PopoverContext);
+
+    if (context == null) {
+        throw new Error("Popover components must be wrapped in <Popover />");
+    }
+
+    const { isOpen, refs, floatingStyles, getFloatingProps } = context;
+    const ref = useMergeRefs([refs.setFloating, propRef]);
+
+    // align and side are handled by Popover's placement prop now, but we keep them for backward compatibility in stories
+    // Map old align/side to placement if needed? Actually, let's just use the current placement.
 
     return (
-        <Transition
-            show={isOpen}
-            enter="fade-enter"
-            enterFrom="fade-enter-from"
-            enterTo="fade-enter-to"
-            leave="fade-leave"
-            leaveFrom="fade-leave-from"
-            leaveTo="fade-leave-to"
-            className={classNames(
-                "wim-popover-content",
-                `wim-popover-content--align-${align}`,
-                `wim-popover-content--${side}`,
-                className
-            )}
-            role="dialog"
-            {...props}
-        >
-            {children}
-        </Transition>
+        <FloatingPortal>
+            <Transition
+                show={isOpen}
+                enter="fade-enter"
+                enterFrom="fade-enter-from"
+                enterTo="fade-enter-to"
+                leave="fade-leave"
+                leaveFrom="fade-leave-from"
+                leaveTo="fade-leave-to"
+            >
+                <div
+                    ref={ref}
+                    style={{ ...floatingStyles, ...style }}
+                    className={classNames(
+                        "wim-popover-content",
+                        className
+                    )}
+                    role="dialog"
+                    {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
+                >
+                    {children}
+                </div>
+            </Transition>
+        </FloatingPortal>
     );
-};
+});
+
+PopoverContent.displayName = "PopoverContent";
 
 export const PopoverClose = ({
     children,
@@ -181,7 +226,10 @@ export const PopoverClose = ({
 }: React.ComponentPropsWithoutRef<"button"> & {
     asChild?: boolean;
 }) => {
-    const { close } = React.useContext(PopoverContext);
+    const context = React.useContext(PopoverContext);
+    if (!context) return null;
+
+    const { close } = context;
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         close();
@@ -211,3 +259,4 @@ export const PopoverClose = ({
         </button>
     );
 };
+
