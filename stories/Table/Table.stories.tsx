@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Table } from "@/components/Table/Table";
 import { Badge } from "@/components/Badge/Badge";
 import { Checkbox } from "@/components/Checkbox/Checkbox";
+import { IconButton } from "@/components/IconButton/IconButton";
 
 const meta: Meta<typeof Table> = {
     title: "Component/Data Structures/Table",
@@ -113,7 +114,7 @@ export const WithActions: Story = {
                     <Table.Row>
                         <Table.Head>Name</Table.Head>
                         <Table.Head>Email</Table.Head>
-                        <Table.Head>Actions</Table.Head>
+                        <Table.Head style={{ width: "1%", whiteSpace: "nowrap" }}>Actions</Table.Head>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -122,9 +123,20 @@ export const WithActions: Story = {
                             <Table.Cell label="Name">{row.name}</Table.Cell>
                             <Table.Cell label="Email">{row.email}</Table.Cell>
                             <Table.Cell label="Actions">
-                                <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
-                                    <button style={{ padding: "4px 8px", cursor: "pointer" }}>Edit</button>
-                                    <button style={{ padding: "4px 8px", cursor: "pointer", color: "red" }}>Delete</button>
+                                <div style={{ display: "flex", gap: "4px", justifyContent: "flex-start" }}>
+                                    <IconButton
+                                        iconName="EditIcon"
+                                        aria-label="Edit"
+                                        size="small"
+                                        priority="tertiary"
+                                    />
+                                    <IconButton
+                                        iconName="TrashIcon"
+                                        aria-label="Delete"
+                                        size="small"
+                                        priority="tertiary"
+                                        role="destructive"
+                                    />
                                 </div>
                             </Table.Cell>
                         </Table.Row>
