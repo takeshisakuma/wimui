@@ -120,7 +120,7 @@ export const FixedPosition: Story = {
         layout: "fullscreen",
     },
     args: {
-        iconName: "ExternalLinkIcon",
+        iconName: "ChevronUpIcon",
         variant: "primary",
         shape: "circle",
         size: "medium",
