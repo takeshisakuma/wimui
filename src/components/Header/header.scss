@@ -16,7 +16,7 @@
 
         @include breakpoints.down(sm) {
             height: auto;
-            padding: spacings.$spacing-sm spacings.$spacing-md;
+            padding: 0;
         }
 
         &--bg-primary {
@@ -65,7 +65,8 @@
             @include breakpoints.down(sm) {
                 flex-wrap: wrap;
                 justify-content: space-between;
-                gap: spacings.$spacing-sm;
+                gap: 0;
+                padding: 0; // セクション側のpaddingで制御するためコンテナは0に
             }
         }
 
@@ -80,6 +81,10 @@
                 flex-shrink: 0;
             }
 
+            @include breakpoints.down(sm) {
+                padding: spacings.$spacing-sm spacings.$spacing-md;
+            }
+
             &--start {
                 justify-content: flex-start;
 
@@ -87,9 +92,8 @@
                     order: 1;
                     width: 100%;
                     justify-content: center;
-                    padding-bottom: spacings.$spacing-sm;
+                    padding: spacings.$spacing-md;
                     border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
-                    margin-bottom: spacings.$spacing-sm;
                 }
             }
 
@@ -118,7 +122,8 @@
                     /* Connect with end section on the same row */
                     width: auto;
                     justify-content: flex-start;
-                    padding: 0;
+                    padding: spacings.$spacing-md;
+                    padding-bottom: 0;
 
                     /* Remove spacers on mobile to left align */
                     &::before,

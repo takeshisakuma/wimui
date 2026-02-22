@@ -6,6 +6,8 @@ import Footer from "@/components/Footer/Footer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import TabBar from "@/components/TabBar/TabBar";
 import { Icon } from "@/components/Icon/Icon";
+import { Button } from "@/components/Button/Button";
+import { Input } from "@/components/Input/Input";
 
 const meta: Meta<typeof AppShell> = {
     title: "Component/Application Shell/AppShell",
@@ -36,16 +38,57 @@ export const Default: Story = {
                 <Header.Section align="start">
                     <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
                 </Header.Section>
-                <Header.Section align="end">
-                    <button>Login</button>
+                <Header.Section align="end" style={{ gap: "8px" }}>
+                    <Button priority="tertiary" size="small">Docs</Button>
+                    <Button priority="primary" size="small">Sign In</Button>
                 </Header.Section>
             </Header>
         ),
         children: (
             <div>
-                <h1>Welcome to WIM UI</h1>
+                <h2>Welcome to WIM UI</h2>
                 <p>This is the main content area of your application.</p>
                 <p>The AppShell component provides a flexible layout structure for building modern web applications.</p>
+            </div>
+        ),
+    },
+};
+
+export const ModernApp: Story = {
+    args: {
+        header: (
+            <Header bordered>
+                <Header.Section align="start">
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                        <div style={{ width: 32, height: 32, background: "#0066ff", borderRadius: 4 }} />
+                        <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WimStore</div>
+                    </div>
+                </Header.Section>
+                <Header.Section align="center">
+                    <div style={{ width: "100%", maxWidth: 400 }}>
+                        <Input
+                            placeholder="Search products..."
+                            leftIcon="SearchIcon"
+                            fullWidth
+                        />
+                    </div>
+                </Header.Section>
+                <Header.Section align="end" style={{ gap: "12px" }}>
+                    <Icon name="BellIcon" style={{ cursor: "pointer" }} />
+                    <Icon name="StarIcon" style={{ cursor: "pointer" }} />
+                    <Button priority="primary" size="small">Checkout</Button>
+                </Header.Section>
+            </Header>
+        ),
+        children: (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "20px" }}>
+                {[1, 2, 3, 4, 5, 6].map(i => (
+                    <div key={i} style={{ border: "1px solid #eee", borderRadius: 8, padding: 16 }}>
+                        <div style={{ width: "100%", aspectRatio: "1", background: "#f5f5f5", borderRadius: 4, marginBottom: 8 }} />
+                        <div style={{ fontWeight: "bold" }}>Product {i}</div>
+                        <div style={{ color: "#666", fontSize: "0.9rem" }}>$99.00</div>
+                    </div>
+                ))}
             </div>
         ),
     },
@@ -105,7 +148,7 @@ export const WithSidebar: Story = {
                 }
             >
                 <div>
-                    <h1>Dashboard</h1>
+                    <h2>Dashboard</h2>
                     <p>Main content area with sidebar navigation.</p>
                 </div>
             </AppShell>
@@ -131,7 +174,7 @@ export const WithFooter: Story = {
         ),
         children: (
             <div>
-                <h1>Page with Footer</h1>
+                <h2>Page with Footer</h2>
                 <p>This layout includes a footer at the bottom.</p>
             </div>
         ),
@@ -157,7 +200,7 @@ export const WithNavbar: Story = {
         ),
         children: (
             <div>
-                <h1>Mobile Layout</h1>
+                <h2>Mobile Layout</h2>
                 <p>This layout includes a bottom navigation bar, commonly used in mobile applications.</p>
             </div>
         ),

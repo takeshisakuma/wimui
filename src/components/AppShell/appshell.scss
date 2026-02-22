@@ -36,7 +36,7 @@
             background-color: var(--wim-color-bg-primary, #fff);
 
             &--padded {
-                padding: spacings.$spacing-xl;
+                padding: spacings.$spacing-2xl;
             }
 
             &--centered {
@@ -78,7 +78,7 @@
             }
 
             &__main--padded {
-                padding: spacings.$spacing-md;
+                padding: spacings.$spacing-xl;
             }
         }
     }
