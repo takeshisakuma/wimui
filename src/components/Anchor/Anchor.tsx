@@ -70,20 +70,36 @@ export const Anchor = ({
             const flatLinks = getAllLinks(items);
             let currentActiveId = "";
 
-            for (const link of flatLinks) {
-                const id = link.href.replace("#", "");
-                const element = document.getElementById(id);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    if (rect.top <= offset + bounds) {
-                        // In horizontal mode, if the item is nested, highlight the parent instead
-                        if (direction === "horizontal" && link.parentHref) {
-                            currentActiveId = link.parentHref;
+            // Check if we are at the bottom of the page
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            // Use a small threshold for rounding differences and ensure we've actually scrolled
+            const isAtBottom = scrollTop > 0 && Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+
+            if (isAtBottom && flatLinks.length > 0) {
+                const lastLink = flatLinks[flatLinks.length - 1];
+                if (direction === "horizontal" && lastLink.parentHref) {
+                    currentActiveId = lastLink.parentHref;
+                } else {
+                    currentActiveId = lastLink.href;
+                }
+            } else {
+                for (const link of flatLinks) {
+                    const id = link.href.replace("#", "");
+                    const element = document.getElementById(id);
+                    if (element) {
+                        const rect = element.getBoundingClientRect();
+                        if (rect.top <= offset + bounds) {
+                            // In horizontal mode, if the item is nested, highlight the parent instead
+                            if (direction === "horizontal" && link.parentHref) {
+                                currentActiveId = link.parentHref;
+                            } else {
+                                currentActiveId = link.href;
+                            }
                         } else {
-                            currentActiveId = link.href;
+                            break;
                         }
-                    } else {
-                        break;
                     }
                 }
             }
