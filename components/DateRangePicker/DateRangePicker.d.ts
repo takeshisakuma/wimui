@@ -6,7 +6,7 @@ type DateRangePickerProps = {
     className?: string;
 };
 /**
- * 期間（開始日・終了日）を選択するためのコンポーネント。
+ * ユーザーが日付の範囲（開始日・終了日）を選択するためのコンポーネント。
  */
 export declare const DateRangePicker: ({ startProps, endProps, className, }: DateRangePickerProps) => import("react/jsx-runtime").JSX.Element;
 export {};
