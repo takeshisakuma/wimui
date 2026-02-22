@@ -38,7 +38,7 @@ export const Warning: Story = {
     },
 };
 
-export const Error: Story = {
+export const ErrorStatus: Story = {
     args: {
         status: "error",
         title: "Submission Failed",

@@ -51,7 +51,7 @@ export const Ghost: Story = {
     args: {},
 };
 
-export const Error: Story = {
+export const ErrorStatus: Story = {
     render: (args) => (
         <Label label="Error State">
             <DatePicker {...args} state="error" />

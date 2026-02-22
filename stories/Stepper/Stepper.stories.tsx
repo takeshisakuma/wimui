@@ -68,7 +68,7 @@ export const LabelVertical: Story = {
     },
 };
 
-export const Error: Story = {
+export const ErrorStatus: Story = {
     args: {
         steps: defaultSteps,
         current: 1,

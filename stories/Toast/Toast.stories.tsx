@@ -50,7 +50,7 @@ export const Warning: Story = {
     },
 };
 
-export const Error: Story = {
+export const ErrorStatus: Story = {
     args: {
         title: "Failed to upload",
         description: "There was an error while uploading your file.",

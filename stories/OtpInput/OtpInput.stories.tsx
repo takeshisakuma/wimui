@@ -33,7 +33,7 @@ export const Disabled: Story = {
     },
 };
 
-export const Error: Story = {
+export const ErrorStatus: Story = {
     args: {
         length: 6,
         error: true,
