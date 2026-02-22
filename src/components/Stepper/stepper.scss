@@ -12,6 +12,30 @@
         &--horizontal {
             flex-direction: row;
             align-items: flex-start;
+
+            @media (max-width: 576px) {
+                flex-direction: column;
+
+                .wim-stepper__item {
+                    width: 100%;
+                    padding-right: 0;
+                    padding-bottom: spacings.$spacing-lg;
+
+                    .wim-stepper__line {
+                        position: absolute;
+                        top: calc(#{spacings.$spacing-3xl} + #{spacings.$spacing-xs});
+                        left: calc(#{spacings.$spacing-3xl} / 2);
+                        width: 2px;
+                        height: calc(100% - #{spacings.$spacing-3xl} - #{spacings.$spacing-xs});
+                        transform: translateX(-50%);
+                    }
+
+                    .wim-stepper__content {
+                        margin-top: spacings.$spacing-xs;
+                        margin-left: spacings.$spacing-3xl;
+                    }
+                }
+            }
         }
 
         &--vertical {
@@ -39,14 +63,64 @@
             padding-right: spacings.$spacing-md;
 
             &--label-vertical {
-                flex-direction: column;
-                align-items: center;
-                padding-right: 0;
-                text-align: center;
+                @media (min-width: 577px) {
+                    flex-direction: column;
+                    align-items: center;
+                    padding-right: 0;
+                    text-align: center;
+                    overflow: visible;
 
-                .wim-stepper__line {
-                    left: 50%;
-                    width: 100%;
+                    .wim-stepper__line {
+                        left: 0;
+                        width: 100%;
+                        background-color: transparent !important;
+
+                        &::before,
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            height: 100%;
+                            background-color: var(--wim-color-border-secondary);
+                            transition: background-color effects.$transition-base;
+                        }
+
+                        &::before {
+                            left: -2px;
+                            width: calc(50% - #{spacings.$spacing-3xl} / 2 + 2px);
+                        }
+
+                        &::after {
+                            right: -2px;
+                            width: calc(50% - #{spacings.$spacing-3xl} / 2 + 2px);
+                        }
+                    }
+
+                    &:first-child .wim-stepper__line::before {
+                        display: none;
+                    }
+
+                    &:last-child {
+                        flex: 1;
+
+                        .wim-stepper__line {
+                            display: block;
+
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    &.wim-stepper__item--finish {
+                        .wim-stepper__line::after {
+                            background-color: var(--color-primary);
+                        }
+
+                        &+.wim-stepper__item--label-vertical .wim-stepper__line::before {
+                            background-color: var(--color-primary);
+                        }
+                    }
                 }
             }
         }
@@ -62,6 +136,7 @@
                 width: 2px;
                 height: calc(100% - #{spacings.$spacing-3xl} - #{spacings.$spacing-xs});
                 background-color: var(--wim-color-border-secondary);
+                transform: translateX(-50%);
             }
 
             .wim-stepper__content {
@@ -83,7 +158,7 @@
             font-size: typography.$size-small;
             font-weight: typography.$weight-bold;
             color: var(--text-secondary);
-            background-color: transparent;
+            background-color: var(--bg-component, #fff);
             border: 2px solid var(--wim-color-border-secondary);
             border-radius: 50%;
             transition: all effects.$transition-base;
@@ -98,13 +173,11 @@
 
         &__item--finish &__icon-container {
             color: var(--color-primary);
-            background-color: transparent;
             border-color: var(--color-primary);
         }
 
         &__item--error &__icon-container {
             color: var(--color-destructive);
-            background-color: transparent;
             border-color: var(--color-destructive);
         }
 
@@ -116,6 +189,7 @@
             width: 999px;
             height: 2px;
             background-color: var(--wim-color-border-secondary);
+            transform: translateY(-50%);
             transition: background-color effects.$transition-base;
         }
 
@@ -130,9 +204,12 @@
         }
 
         &__item--label-vertical &__content {
-            width: 100%;
-            margin-top: spacings.$spacing-xs;
-            margin-left: 0;
+            @media (min-width: 577px) {
+                width: 100%;
+                min-width: 100px;
+                margin-top: spacings.$spacing-xs;
+                margin-left: 0;
+            }
         }
 
         &__title {

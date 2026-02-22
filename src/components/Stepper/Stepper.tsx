@@ -68,6 +68,7 @@ export const Stepper = ({
             className={classNames(
                 "wim-stepper",
                 `wim-stepper--${direction}`,
+                labelPlacement === "vertical" && "wim-stepper--label-vertical",
                 className,
             )}
         >
