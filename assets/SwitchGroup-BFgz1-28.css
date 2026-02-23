@@ -1,0 +1,1 @@
+.wim-switch-group{display:flex;flex-direction:column;gap:var(--spacing-sm)}.wim-switch-group.wim-switch-group--horizontal{flex-flow:row wrap;gap:var(--spacing-lg)}

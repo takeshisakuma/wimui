@@ -1,0 +1,1 @@
+@charset "UTF-8";.wim-divider{display:block;flex-shrink:0;margin:0;background-color:var(--wim-color-border, #e5e7eb);border:none}.wim-divider--horizontal{width:100%;height:var(--wim-divider-thickness, 1px);margin:8px 0}.wim-divider--vertical{display:inline-block;align-self:stretch;width:var(--wim-divider-thickness, 1px);height:100%;margin:0 8px}
