@@ -99,6 +99,17 @@ $focus-outline-offset: 2px;
   --radius-full: #{$radius-full};
   --focus-outline-width: #{$focus-outline-width};
   --focus-outline-offset: #{$focus-outline-offset};
+
+  /* Aliases for consistency across components */
+  --wim-spacing-xs: var(--spacing-xs);
+  --wim-spacing-sm: var(--spacing-sm);
+  --wim-spacing-md: var(--spacing-md);
+  --wim-spacing-lg: var(--spacing-lg);
+  --wim-spacing-xl: var(--spacing-xl);
+  --wim-radius-sm: var(--radius-sm);
+  --wim-radius-md: var(--radius-md);
+  --wim-radius-lg: var(--radius-lg);
+  --wim-radius-full: var(--radius-full);
 }
 
 /* PC用ブレイクポイントでのフォントサイズ調整 */

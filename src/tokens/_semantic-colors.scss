@@ -75,7 +75,33 @@ $scrollbar-track: $pccs-gy8-5;
   --color-focus-outline: #{$color-focus-outline};
   --scrollbar-thumb: #{$scrollbar-thumb};
   --scrollbar-track: #{$scrollbar-track};
+
+  /* Aliases for consistency across components */
+  --wim-color-primary: var(--color-primary);
+  --wim-color-primary-hover: rgba(var(--pccs-v16-rgb), 0.9);
+  --wim-color-primary-active: rgba(var(--pccs-v16-rgb), 0.8);
+  --wim-color-primary-light: rgba(var(--pccs-v16-rgb), 0.1);
+  --wim-color-secondary: var(--color-secondary);
+  --wim-color-text-primary: var(--text-primary);
+  --wim-color-text-secondary: var(--text-secondary);
+  --wim-color-text-tertiary: var(--text-tertiary);
+  --wim-color-text-disabled: var(--text-disabled);
+  --wim-color-text-placeholder: var(--text-tertiary);
+  --wim-color-text-on-primary: var(--color-text-on-primary);
+  --wim-color-text-on-secondary: var(--color-text-on-secondary);
+  --wim-color-surface: var(--bg-component);
+  --wim-color-surface-variant: var(--wim-color-bg-secondary);
+  --wim-color-surface-hover: var(--wim-color-bg-hover);
+  --wim-color-primary-container-alpha: rgba(0, 122, 255, 0.08);
+  --wim-color-surface-variant-alpha: rgba(0, 0, 0, 0.02);
+  --wim-color-bg-tertiary: #{$pccs-gy7-5};
+  --wim-color-bg-component: var(--bg-component);
+  --wim-color-overlay-bg: rgba(0, 0, 0, 0.5);
+  --wim-color-overlay-bg-light: rgba(255, 255, 255, 0.8);
+  --wim-color-overlay-bg-dark: rgba(0, 0, 0, 0.7);
+  --wim-color-text-on-overlay: #fff;
 }
+
 
 @mixin dark-theme {
   /* Dark Mode Overrides */
@@ -85,14 +111,32 @@ $scrollbar-track: $pccs-gy8-5;
   --text-secondary: #{$pccs-gy7-5}; // Light Gray Text
   --text-tertiary: #{$pccs-gy6-5}; // Medium Gray Text
   --text-disabled: #{$pccs-gy5-5}; // Darker Gray Text
+  --wim-color-bg-primary: #{$pccs-gy3-5};
+  --wim-color-bg-secondary: #{$pccs-gy4-5};
+  --wim-color-bg-tertiary: #{$pccs-gy4-5};
+  --wim-color-bg-hover: rgba(255, 255, 255, 0.1); // Hover color for dark mode
   --wim-color-border: #{$pccs-gy5-5}; // Medium Gray Border
   --wim-color-border-secondary: #{$pccs-gy4-5}; // Darker Gray Border
   --scrollbar-thumb: #{$pccs-gy5-5};
   --scrollbar-track: #{$pccs-gy3-5};
+  --wim-color-primary-container-alpha: rgba(0, 122, 255, 0.2);
+  --wim-color-surface-variant-alpha: rgba(255, 255, 255, 0.05);
+  --wim-color-primary-hover: rgba(var(--pccs-v16-rgb), 1);
+  --wim-color-primary-light: rgba(var(--pccs-v16-rgb), 0.2);
+  --wim-color-overlay-bg: rgba(0, 0, 0, 0.7);
+  --wim-color-overlay-bg-light: rgba(255, 255, 255, 0.2);
+  --wim-color-overlay-bg-dark: rgba(0, 0, 0, 0.8);
+  --shadow-color: rgba(0, 0, 0, 0.4);
 
-  /* Adjust semantic colors for dark mode visibility/contrast if needed */
+  /* Adjust semantic colors for dark mode visibility/contrast */
+  --color-destructive: #{$pccs-v2};
+  --color-positive: #{$pccs-v12};
+  --color-caution: #{$pccs-v7};
+  --color-informative: #{$pccs-v17};
+  --color-primary: #{$pccs-v16};
 
-  /* Keeping primary colors similar for now as they are vivid tones */
+  /* Ensure aliases are also updated if they reference these */
+  --wim-color-primary: var(--color-primary);
 }
 
 [data-theme="dark"] {

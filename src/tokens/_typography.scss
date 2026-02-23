@@ -51,4 +51,17 @@ $decoration-highlight-color: #fff9c4; // Light yellow highlight
   --decoration-line-through: #{$decoration-line-through};
   --decoration-underline: #{$decoration-underline};
   --decoration-highlight-color: #{$decoration-highlight-color};
+
+  /* Aliases for consistency across components */
+  --wim-font-size-xs: var(--font-size-ex-small);
+  --wim-font-size-sm: var(--font-size-small);
+  --wim-font-size-md: var(--font-size-medium);
+  --wim-font-size-lg: var(--font-size-large);
+  --wim-font-size-xl: var(--font-size-ex-large);
+  --wim-font-weight-normal: var(--font-weight-normal);
+  --wim-font-weight-medium: var(--font-weight-medium);
+  --wim-font-weight-bold: var(--font-weight-bold);
+  --wim-line-height-tight: var(--line-height-tight-latn);
+  --wim-line-height-normal: var(--line-height-normal-latn);
+  --wim-line-height-loose: var(--line-height-loose-latn);
 }

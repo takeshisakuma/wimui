@@ -22,11 +22,12 @@ $scale-active: 0.98;
 
 :root {
   --shadow-none: #{$shadow-none};
-  --shadow-xs: #{$shadow-xs};
-  --shadow-sm: #{$shadow-sm};
-  --shadow-md: #{$shadow-md};
-  --shadow-lg: #{$shadow-lg};
-  --shadow-inset: #{$shadow-inset};
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-xs: 0 1px 2px var(--shadow-color);
+  --shadow-sm: 0 2px 4px color-mix(in srgb, var(--shadow-color) 150%, transparent);
+  --shadow-md: 0 6px 12px color-mix(in srgb, var(--shadow-color) 120%, transparent);
+  --shadow-lg: 0 12px 24px color-mix(in srgb, var(--shadow-color) 150%, transparent);
+  --shadow-inset: inset 0 2px 4px var(--shadow-color);
   --lift-sm: #{$lift-sm};
   --lift-md: #{$lift-md};
   --lift-none: #{$lift-none};

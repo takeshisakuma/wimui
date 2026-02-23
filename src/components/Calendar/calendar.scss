@@ -56,7 +56,7 @@
 
     &:hover:not(:disabled) {
         color: var(--text-primary);
-        background-color: rgb(0 0 0 / 0.05);
+        background-color: var(--wim-color-bg-hover);
     }
 
     &:disabled {
@@ -103,7 +103,7 @@
     color 0.2s;
 
     &:hover:not(:disabled, .wim-calendar-day--selected) {
-        background-color: rgb(0 0 0 / 0.05);
+        background-color: var(--wim-color-bg-hover);
     }
 
     &--other-month {
@@ -149,10 +149,10 @@
         color: var(--text-disabled);
         text-decoration: line-through;
         cursor: not-allowed;
-        background-color: rgb(0 0 0 / 0.02);
+        background-color: var(--wim-color-surface-variant-alpha);
 
         &:hover {
-            background-color: rgb(0 0 0 / 0.02);
+            background-color: var(--wim-color-surface-variant-alpha);
         }
     }
 
