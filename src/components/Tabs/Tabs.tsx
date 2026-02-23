@@ -160,18 +160,25 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
             const activeItem = listElement.querySelector(".wim-tabs__trigger--active") as HTMLElement;
             if (activeItem) {
                 const style: React.CSSProperties = { opacity: 1 };
-                if (orientation === "horizontal") {
+                const listStyle = window.getComputedStyle(listElement);
+                const isVerticalLayout = listStyle.flexDirection === 'column' || listStyle.flexDirection === 'column-reverse';
+
+                if (!isVerticalLayout) {
                     style.width = `${activeItem.offsetWidth}px`;
                     style.height = `2px`;
                     style.transform = `translateX(${activeItem.offsetLeft}px)`;
-                    style.bottom = "0px"; // align inside scroll container
+                    style.bottom = "0px";
                     style.left = "0px";
+                    style.top = "auto";
+                    style.right = "auto";
                 } else {
                     style.height = `${activeItem.offsetHeight}px`;
                     style.width = `2px`;
                     style.transform = `translateY(${activeItem.offsetTop}px)`;
-                    style.right = "0px"; // align inside container
+                    style.right = "0px";
                     style.top = "0px";
+                    style.left = "auto";
+                    style.bottom = "auto";
                 }
 
                 setSliderStyle(style);
