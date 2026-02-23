@@ -1,12 +1,9 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
-
-.wim-timepicker {
+﻿.wim-timepicker {
     // Styling for the native time picker indicator
     &::-webkit-calendar-picker-indicator {
-        padding: spacings.$spacing-xs;
+        padding: var(--spacing-xs);
         cursor: pointer;
-        border-radius: spacings.$radius-sm;
+        border-radius: var(--radius-sm);
         transition: background-color 0.2s;
 
         &:hover {

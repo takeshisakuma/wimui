@@ -1,11 +1,7 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-
-@layer component {
+﻿@layer component {
   .wim-quote {
-    padding: spacings.$spacing-md 0 spacings.$spacing-md spacings.$spacing-2xl;
-    margin: spacings.$spacing-2xl 0;
+    padding: var(--spacing-md) 0 var(--spacing-md) var(--spacing-2xl);
+    margin: var(--spacing-2xl) 0;
     font-family: inherit;
     transition: all 0.2s ease;
 
@@ -14,13 +10,13 @@
     }
 
     &__content {
-      font-weight: typography.$weight-normal;
-      line-height: typography.$line-height-normal-latn;
+      font-weight: var(--font-weight-normal);
+      line-height: var(--line-height-normal-latn);
     }
 
     &__cite {
       display: block;
-      margin-top: spacings.$spacing-sm;
+      margin-top: var(--spacing-sm);
       font-size: 0.9em;
       font-style: italic;
       opacity: 0.8;
@@ -32,15 +28,15 @@
 
     /* Size Variants */
     &--sm {
-      font-size: typography.$size-small;
+      font-size: var(--font-size-small);
     }
 
     &--md {
-      font-size: typography.$size-medium;
+      font-size: var(--font-size-medium);
     }
 
     &--lg {
-      font-size: typography.$size-large;
+      font-size: var(--font-size-large);
     }
 
     /* Color Variants */
@@ -53,26 +49,26 @@
     }
 
     &--deepgray {
-      color: colors.$text-deepgray;
+      color: var(--text-secondary);
 
       &.wim-quote--border {
-        border-color: colors.$text-deepgray;
+        border-color: var(--text-secondary);
       }
     }
 
     &--gray {
-      color: colors.$text-gray;
+      color: var(--text-tertiary);
 
       &.wim-quote--border {
-        border-color: colors.$text-gray;
+        border-color: var(--text-tertiary);
       }
     }
 
     &--lightgray {
-      color: colors.$text-lightgray;
+      color: var(--text-disabled);
 
       &.wim-quote--border {
-        border-color: colors.$text-lightgray;
+        border-color: var(--text-disabled);
       }
     }
 

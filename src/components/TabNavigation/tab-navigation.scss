@@ -1,8 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "sass:color";
+﻿@use "sass:color";
 
 @layer component {
     .wim-tab-navigation {
@@ -50,20 +46,20 @@
 
         /* Sizes */
         &--small {
-            --wim-tab-nav-padding: 0 #{spacings.$spacing-md};
-            --wim-tab-nav-font-size: #{typography.$size-small};
+            --wim-tab-nav-padding: 0 var(--spacing-md);
+            --wim-tab-nav-font-size: var(--font-size-small);
             --wim-tab-nav-height: 32px;
         }
 
         &--medium {
-            --wim-tab-nav-padding: 0 #{spacings.$spacing-lg};
-            --wim-tab-nav-font-size: #{typography.$size-medium};
+            --wim-tab-nav-padding: 0 var(--spacing-lg);
+            --wim-tab-nav-font-size: var(--font-size-medium);
             --wim-tab-nav-height: 40px;
         }
 
         &--large {
-            --wim-tab-nav-padding: 0 #{spacings.$spacing-xl};
-            --wim-tab-nav-font-size: #{typography.$size-large};
+            --wim-tab-nav-padding: 0 var(--spacing-xl);
+            --wim-tab-nav-font-size: var(--font-size-large);
             --wim-tab-nav-height: 48px;
         }
 
@@ -78,26 +74,26 @@
             justify-content: center;
             padding: var(--wim-tab-nav-padding);
             font-size: var(--wim-tab-nav-font-size);
-            font-weight: typography.$weight-medium;
-            color: colors.$text-deepgray;
+            font-weight: var(--font-weight-medium);
+            color: var(--text-secondary);
             white-space: nowrap;
             text-decoration: none;
             cursor: pointer;
-            transition: all effects.$transition-base;
+            transition: all var(--transition-base);
 
             &:hover:not(&--disabled) {
-                color: colors.$text-black;
+                color: var(--text-primary);
                 background-color: rgb(0 0 0 / 0.04);
             }
 
             &--disabled {
-                color: colors.$text-lightgray;
+                color: var(--text-disabled);
                 cursor: not-allowed;
             }
 
             .wim-tab-navigation__icon {
                 display: flex;
-                margin-right: spacings.$spacing-xs;
+                margin-right: var(--spacing-xs);
             }
         }
 
@@ -110,8 +106,8 @@
                 bottom: -1px;
                 left: 0;
                 height: 2px;
-                background-color: colors.$color-primary;
-                border-radius: spacings.$radius-sm spacings.$radius-sm 0 0;
+                background-color: var(--color-primary);
+                border-radius: var(--radius-sm) var(--radius-sm) 0 0;
                 z-index: 2;
             }
 
@@ -122,16 +118,16 @@
             .wim-tab-navigation__item {
                 margin-bottom: -1px;
                 border-bottom: 2px solid transparent;
-                border-radius: spacings.$radius-sm spacings.$radius-sm 0 0;
+                border-radius: var(--radius-sm) var(--radius-sm) 0 0;
 
                 &:hover:not(&--disabled) {
-                    color: colors.$color-primary;
+                    color: var(--color-primary);
                     background-color: transparent;
                 }
 
                 &--active {
-                    font-weight: typography.$weight-bold;
-                    color: colors.$color-primary;
+                    font-weight: var(--font-weight-bold);
+                    color: var(--color-primary);
                 }
             }
         }
@@ -139,7 +135,7 @@
         /* Variant: Pill */
         &--pill {
             .wim-tab-navigation__list {
-                gap: spacings.$spacing-xs;
+                gap: var(--spacing-xs);
             }
 
             .wim-tab-navigation__slider {
@@ -147,23 +143,23 @@
                 top: 0;
                 bottom: 0;
                 left: 0;
-                background-color: colors.$color-primary;
+                background-color: var(--color-primary);
                 border-radius: 99px;
                 z-index: -1;
-                transition: background-color effects.$duration-fast effects.$easing-base;
+                transition: background-color var(--duration-fast) var(--easing-base);
             }
 
             .wim-tab-navigation__list:has(.wim-tab-navigation__item--active:hover:not(.wim-tab-navigation__item--disabled)) .wim-tab-navigation__slider {
-                background-color: color.scale(colors.$color-primary, $lightness: -10%);
+                background-color: color-mix(in srgb, var(--color-primary) 90%, black);
             }
 
             &.wim-tab-navigation--ready .wim-tab-navigation__slider {
-                transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), width 0.2s cubic-bezier(0.2, 0, 0, 1), background-color effects.$duration-fast effects.$easing-base;
+                transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), width 0.2s cubic-bezier(0.2, 0, 0, 1), background-color var(--duration-fast) var(--easing-base);
             }
 
             .wim-tab-navigation__item {
                 border-radius: 99px;
-                padding-inline: spacings.$spacing-xl;
+                padding-inline: var(--spacing-xl);
 
                 &--active {
                     color: white;
@@ -181,7 +177,7 @@
             width: auto;
             padding: 4px;
             background-color: var(--wim-color-bg-secondary, #f4f4f5);
-            border-radius: spacings.$radius-md;
+            border-radius: var(--radius-md);
 
             .wim-tab-navigation__list {
                 gap: 4px;
@@ -193,7 +189,7 @@
                 bottom: 0;
                 left: 0;
                 background-color: white;
-                border-radius: spacings.$radius-sm;
+                border-radius: var(--radius-sm);
                 box-shadow: 0 1px 2px rgb(0 0 0 / 0.1);
                 z-index: -1;
             }
@@ -204,10 +200,10 @@
 
             .wim-tab-navigation__item {
                 height: calc(var(--wim-tab-nav-height) - 8px); // Adjust for padding
-                border-radius: spacings.$radius-sm;
+                border-radius: var(--radius-sm);
 
                 &--active {
-                    color: colors.$text-black;
+                    color: var(--text-primary);
                 }
             }
         }

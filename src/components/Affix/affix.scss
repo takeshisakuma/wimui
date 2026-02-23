@@ -1,6 +1,4 @@
-@use "../../tokens/effects" as effects;
-
-@layer component {
+﻿@layer component {
     .wim-affix {
         &--affixed {
             // Ensure the affixed element doesn't have unintended margins

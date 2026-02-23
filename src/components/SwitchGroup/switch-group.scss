@@ -1,13 +1,11 @@
-@use "../../tokens/spacings" as spacings;
-
-// SwitchGroup styles
+﻿// SwitchGroup styles
 .wim-switch-group {
     display: flex;
     flex-direction: column;
-    gap: spacings.$spacing-sm;
+    gap: var(--spacing-sm);
 
     &.wim-switch-group--horizontal {
         flex-flow: row wrap;
-        gap: spacings.$spacing-lg;
+        gap: var(--spacing-lg);
     }
 }

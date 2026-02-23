@@ -1,8 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-
-.wim-radio-wrapper {
+﻿.wim-radio-wrapper {
     position: relative;
     display: flex;
     align-items: center;
@@ -35,7 +31,7 @@
     justify-content: center;
     width: 20px;
     height: 20px;
-    margin-right: spacings.$spacing-sm;
+    margin-right: var(--spacing-sm);
     background-color: var(--bg-component);
     border: 2px solid var(--text-tertiary);
     border-radius: 50%;

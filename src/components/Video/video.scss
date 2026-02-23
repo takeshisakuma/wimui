@@ -1,7 +1,4 @@
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/breakpoints" as bp;
+﻿@use "../../tokens/breakpoints" as bp;
 
 .wim-video-container {
     position: relative;
@@ -20,22 +17,22 @@
 
     &.wim-video--radius-small {
         overflow: hidden;
-        border-radius: spacings.$radius-sm;
+        border-radius: var(--radius-sm);
     }
 
     &.wim-video--radius-medium {
         overflow: hidden;
-        border-radius: spacings.$radius-md;
+        border-radius: var(--radius-md);
     }
 
     &.wim-video--radius-large {
         overflow: hidden;
-        border-radius: spacings.$radius-lg;
+        border-radius: var(--radius-lg);
     }
 
     &.wim-video--radius-full {
         overflow: hidden;
-        border-radius: spacings.$radius-full;
+        border-radius: var(--radius-full);
     }
 
     &.wim-video--shadow {
@@ -77,8 +74,8 @@
     z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: spacings.$spacing-sm;
-    padding: spacings.$spacing-md;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
     background: linear-gradient(to top, rgb(0 0 0 / 0.7) 0%, rgb(0 0 0 / 0) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -86,14 +83,14 @@
 
 .wim-video-controls-bottom {
     display: flex;
-    gap: spacings.$spacing-sm;
+    gap: var(--spacing-sm);
     align-items: center;
     width: 100%;
 
     @include bp.down("sm") {
         flex-wrap: wrap;
         justify-content: center;
-        gap: spacings.$spacing-xs;
+        gap: var(--spacing-xs);
     }
 }
 
@@ -103,7 +100,7 @@
     justify-content: center;
     width: 32px;
     height: 32px;
-    padding: spacings.$spacing-xs;
+    padding: var(--spacing-xs);
     color: white;
     cursor: pointer;
     background: none;
@@ -130,7 +127,7 @@
 .wim-video-time-container {
     display: flex;
     flex: 1;
-    gap: spacings.$spacing-xs;
+    gap: var(--spacing-xs);
     align-items: center;
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
@@ -139,7 +136,7 @@
     @include bp.down("sm") {
         flex: 1 1 100%;
         order: -1;
-        padding-bottom: spacings.$spacing-xs;
+        padding-bottom: var(--spacing-xs);
     }
 }
 
@@ -194,7 +191,7 @@
 .wim-video-volume-container {
     position: relative;
     display: flex;
-    gap: spacings.$spacing-xs;
+    gap: var(--spacing-xs);
     align-items: center;
 
     &:hover .wim-video-volume {
@@ -240,8 +237,8 @@
 }
 
 .wim-video__caption {
-    padding-bottom: spacings.$spacing-xs;
-    margin-top: spacings.$spacing-sm;
+    padding-bottom: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--color-text-secondary, #666);
@@ -252,13 +249,13 @@
 .wim-video-advanced-menu {
     position: absolute;
     bottom: 60px;
-    right: spacings.$spacing-md;
+    right: var(--spacing-md);
     background: rgb(28 28 28 / 0.95);
-    border-radius: spacings.$radius-md;
-    padding: spacings.$spacing-sm;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
     display: flex;
     flex-direction: column;
-    gap: spacings.$spacing-xs;
+    gap: var(--spacing-xs);
     color: white;
     min-width: 160px;
     z-index: 20;
@@ -268,12 +265,12 @@
 
     .wim-video-menu-title {
         font-weight: 600;
-        padding: spacings.$spacing-xs spacings.$spacing-sm;
-        margin-bottom: spacings.$spacing-xs;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        margin-bottom: var(--spacing-xs);
         border-bottom: 1px solid rgb(255 255 255 / 0.1);
         display: flex;
         align-items: center;
-        gap: spacings.$spacing-xs;
+        gap: var(--spacing-xs);
 
         button {
             padding: 0;
@@ -285,7 +282,7 @@
     .wim-video-menu-items {
         display: flex;
         flex-direction: column;
-        gap: spacings.$spacing-xs; // アイテム間の余白を追加
+        gap: var(--spacing-xs); // アイテム間の余白を追加
         max-height: 250px; // 少し高さを広げる
         overflow-y: auto;
 
@@ -306,12 +303,12 @@
         background: transparent;
         border: none;
         color: white;
-        padding: 10px spacings.$spacing-sm; // よりゆとりを持たせて 10px に拡大
-        border-radius: spacings.$radius-sm;
+        padding: 10px var(--spacing-sm); // よりゆとりを持たせて 10px に拡大
+        border-radius: var(--radius-sm);
         cursor: pointer;
         text-align: left;
         transition: background 0.2s;
-        gap: spacings.$spacing-sm;
+        gap: var(--spacing-sm);
 
         &:hover {
             background: rgb(255 255 255 / 0.15);
@@ -333,8 +330,8 @@
     transform: translate(-50%, -50%);
     background: rgb(0 0 0 / 0.6);
     color: white;
-    padding: spacings.$spacing-md spacings.$spacing-lg;
-    border-radius: spacings.$radius-full;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     gap: 4px;

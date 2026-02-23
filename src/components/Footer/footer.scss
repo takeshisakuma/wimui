@@ -1,22 +1,18 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/breakpoints" as breakpoints;
+﻿@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
     .wim-footer {
         width: 100%;
-        padding: spacings.$spacing-2xl 0 spacings.$spacing-xl;
-        transition: all effects.$transition-base;
+        padding: var(--spacing-2xl) 0 var(--spacing-xl);
+        transition: all var(--transition-base);
 
         &--bg-primary {
-            color: colors.$text-black;
+            color: var(--text-primary);
             background-color: var(--wim-color-bg-primary, #fff);
         }
 
         &--bg-secondary {
-            color: colors.$text-black;
+            color: var(--text-primary);
             background-color: var(--wim-color-bg-secondary, #f4f4f5);
         }
 
@@ -45,40 +41,40 @@
         &__container {
             display: flex;
             flex-direction: column;
-            gap: spacings.$spacing-2xl;
+            gap: var(--spacing-2xl);
             max-width: 1200px;
-            padding: 0 spacings.$spacing-xl;
+            padding: 0 var(--spacing-xl);
             margin: 0 auto;
         }
 
         &__section {
             display: flex;
             flex-direction: column;
-            gap: spacings.$spacing-md;
+            gap: var(--spacing-md);
 
             &-title {
                 margin: 0;
-                font-size: typography.$size-medium;
-                font-weight: typography.$weight-bold;
-                color: colors.$text-black;
+                font-size: var(--font-size-medium);
+                font-weight: var(--font-weight-bold);
+                color: var(--text-primary);
             }
 
             &-content {
                 display: flex;
                 flex-direction: column;
-                gap: spacings.$spacing-xs;
+                gap: var(--spacing-xs);
             }
         }
 
         &__bottom {
             display: flex;
             flex-direction: column-reverse;
-            gap: spacings.$spacing-md;
+            gap: var(--spacing-md);
             align-items: center;
-            padding-top: spacings.$spacing-xl;
-            margin-top: spacings.$spacing-xl;
-            font-size: typography.$size-small;
-            color: colors.$text-deepgray;
+            padding-top: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
             border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
 
             @include breakpoints.up(sm) {

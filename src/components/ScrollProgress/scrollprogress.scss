@@ -1,7 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/effects" as effects;
-
-@layer component {
+﻿@layer component {
     .wim-scroll-progress {
         position: fixed;
         top: 0;
@@ -13,31 +10,31 @@
 
         &__bar {
             height: 100%;
-            background-color: colors.$color-primary;
+            background-color: var(--color-primary);
             transition: width 0.1s ease-out;
         }
 
         &--secondary {
             .wim-scroll-progress__bar {
-                background-color: colors.$color-secondary;
+                background-color: var(--color-secondary);
             }
         }
 
         &--success {
             .wim-scroll-progress__bar {
-                background-color: colors.$color-positive;
+                background-color: var(--color-positive);
             }
         }
 
         &--warning {
             .wim-scroll-progress__bar {
-                background-color: colors.$color-caution;
+                background-color: var(--color-caution);
             }
         }
 
         &--error {
             .wim-scroll-progress__bar {
-                background-color: colors.$color-destructive;
+                background-color: var(--color-destructive);
             }
         }
     }

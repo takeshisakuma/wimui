@@ -1,8 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/breakpoints" as breakpoints;
+﻿@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
     .wim-header {
@@ -11,8 +7,8 @@
         align-items: center;
         width: 100%;
         min-height: 64px;
-        padding: 0 spacings.$spacing-xl;
-        transition: all effects.$transition-base;
+        padding: 0 var(--spacing-xl);
+        transition: all var(--transition-base);
 
         @include breakpoints.down(sm) {
             height: auto;
@@ -57,7 +53,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: spacings.$spacing-xl;
+            gap: var(--spacing-xl);
             width: 100%;
             height: 100%;
             min-width: 0;
@@ -72,7 +68,7 @@
 
         &__section {
             display: flex;
-            gap: spacings.$spacing-md;
+            gap: var(--spacing-md);
             align-items: center;
             white-space: nowrap;
             flex-shrink: 0;
@@ -82,7 +78,7 @@
             }
 
             @include breakpoints.down(sm) {
-                padding: spacings.$spacing-sm spacings.$spacing-md;
+                padding: var(--spacing-sm) var(--spacing-md);
             }
 
             &--start {
@@ -92,7 +88,7 @@
                     order: 1;
                     width: 100%;
                     justify-content: center;
-                    padding: spacings.$spacing-md;
+                    padding: var(--spacing-md);
                     border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
                 }
             }
@@ -112,7 +108,7 @@
                     content: "";
                     display: block;
                     flex: 1 0 0%;
-                    min-width: spacings.$spacing-md;
+                    min-width: var(--spacing-md);
                 }
 
                 @include breakpoints.down(sm) {
@@ -122,7 +118,7 @@
                     /* Connect with end section on the same row */
                     width: auto;
                     justify-content: flex-start;
-                    padding: spacings.$spacing-md;
+                    padding: var(--spacing-md);
                     padding-bottom: 0;
 
                     /* Remove spacers on mobile to left align */

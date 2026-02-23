@@ -1,8 +1,4 @@
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/semantic-colors" as colors;
-
-.wim-image-container {
+﻿.wim-image-container {
     position: relative;
     display: block;
     padding: 0;
@@ -18,22 +14,22 @@
 
     &.wim-image--radius-small {
         overflow: hidden;
-        border-radius: spacings.$radius-sm;
+        border-radius: var(--radius-sm);
     }
 
     &.wim-image--radius-medium {
         overflow: hidden;
-        border-radius: spacings.$radius-md;
+        border-radius: var(--radius-md);
     }
 
     &.wim-image--radius-large {
         overflow: hidden;
-        border-radius: spacings.$radius-lg;
+        border-radius: var(--radius-lg);
     }
 
     &.wim-image--radius-full {
         overflow: hidden;
-        border-radius: spacings.$radius-full;
+        border-radius: var(--radius-full);
     }
 
     &.wim-image--shadow {
@@ -51,8 +47,8 @@
 }
 
 .wim-image__caption {
-    padding-bottom: spacings.$spacing-xs; // Ensure descenders are not cut off
-    margin-top: spacings.$spacing-sm;
+    padding-bottom: var(--spacing-xs); // Ensure descenders are not cut off
+    margin-top: var(--spacing-sm);
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--color-text-secondary, #666);

@@ -1,7 +1,4 @@
-@use "sass:color";
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/semantic-colors" as colors;
+﻿@use "sass:color";
 
 .wim-audio-container {
     position: relative;
@@ -24,22 +21,22 @@
 
     &.wim-audio--radius-small {
         overflow: hidden;
-        border-radius: spacings.$radius-sm;
+        border-radius: var(--radius-sm);
     }
 
     &.wim-audio--radius-medium {
         overflow: hidden;
-        border-radius: spacings.$radius-md;
+        border-radius: var(--radius-md);
     }
 
     &.wim-audio--radius-large {
         overflow: hidden;
-        border-radius: spacings.$radius-lg;
+        border-radius: var(--radius-lg);
     }
 
     &.wim-audio--radius-full {
         overflow: hidden;
-        border-radius: spacings.$radius-full;
+        border-radius: var(--radius-full);
     }
 
     &.wim-audio--shadow {
@@ -58,8 +55,8 @@
 }
 
 .wim-audio__caption {
-    padding-bottom: spacings.$spacing-xs;
-    margin-top: spacings.$spacing-sm;
+    padding-bottom: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--color-text-secondary, #666);
@@ -103,8 +100,8 @@
 .wim-audio-metadata {
     display: flex;
     align-items: center;
-    gap: spacings.$spacing-sm;
-    padding-bottom: spacings.$spacing-sm;
+    gap: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
     border-bottom: 1px solid rgb(255 255 255 / 0.1);
     position: relative;
     z-index: 2;
@@ -119,7 +116,7 @@
     width: 48px;
     height: 48px;
     object-fit: cover;
-    border-radius: spacings.$radius-sm;
+    border-radius: var(--radius-sm);
     box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
 }
 
@@ -172,14 +169,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: spacings.$spacing-sm;
+    gap: var(--spacing-sm);
     width: 100%;
 }
 
 .wim-audio-controls-group {
     display: flex;
     align-items: center;
-    gap: spacings.$spacing-xs;
+    gap: var(--spacing-xs);
 }
 
 .wim-audio-btn {
@@ -189,7 +186,7 @@
     width: 32px;
     height: 32px;
     flex-shrink: 0; // Prevent distortion in flex containers
-    padding: spacings.$spacing-xs;
+    padding: var(--spacing-xs);
     color: white;
     cursor: pointer;
     background: none;
@@ -213,7 +210,7 @@
     // Text button (e.g. speed)
     &--text {
         width: auto;
-        padding: 0 spacings.$spacing-xs;
+        padding: 0 var(--spacing-xs);
         font-size: 0.875rem;
         font-weight: 600;
         border-radius: 4px;
@@ -242,7 +239,7 @@
     display: flex;
     flex: 1;
     gap: 6px; // Tighter gap
-    padding: 0 spacings.$spacing-lg; // Additional internal padding to shorten the bar
+    padding: 0 var(--spacing-lg); // Additional internal padding to shorten the bar
     align-items: center;
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
@@ -307,7 +304,7 @@
 .wim-audio-volume-container {
     display: flex;
     align-items: center;
-    gap: spacings.$spacing-xs;
+    gap: var(--spacing-xs);
 }
 
 .wim-audio-volume {

@@ -1,22 +1,18 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/typography" as typography;
-
-.wim-file-upload {
+﻿.wim-file-upload {
     display: flex;
     flex-direction: column;
-    gap: spacings.$spacing-xs;
+    gap: var(--spacing-xs);
     font-family: inherit;
 
     &__label {
-        font-size: typography.$size-small;
-        font-weight: typography.$weight-medium;
-        color: colors.$text-deepgray;
+        font-size: var(--font-size-small);
+        font-weight: var(--font-weight-medium);
+        color: var(--text-secondary);
     }
 
     &__controls {
         display: flex;
-        gap: spacings.$spacing-md;
+        gap: var(--spacing-md);
         align-items: center;
     }
 
@@ -29,13 +25,13 @@
         max-width: 300px;
         padding: 8px 0;
         overflow: visible;
-        font-size: typography.$size-small;
+        font-size: var(--font-size-small);
         line-height: 2;
-        color: colors.$text-gray;
+        color: var(--text-tertiary);
         white-space: nowrap;
 
         &--disabled {
-            color: colors.$color-disabled;
+            color: var(--color-disabled);
         }
     }
 }

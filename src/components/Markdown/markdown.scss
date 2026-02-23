@@ -1,8 +1,4 @@
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-
-@layer component {
+﻿@layer component {
     .wim-markdown {
         font-family: inherit;
         line-height: 1.6;
@@ -16,7 +12,7 @@
         h6 {
             margin-top: 1.5em;
             margin-bottom: 0.5em;
-            font-weight: typography.$weight-bold;
+            font-weight: var(--font-weight-bold);
         }
 
         h1 {
@@ -54,14 +50,14 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             font-size: 85%;
             background-color: var(--bg-surface);
-            border-radius: spacings.$radius-sm;
+            border-radius: var(--radius-sm);
         }
 
         pre {
             padding: 1em;
             overflow: auto;
             background-color: var(--bg-surface);
-            border-radius: spacings.$radius-md;
+            border-radius: var(--radius-md);
 
             code {
                 padding: 0;

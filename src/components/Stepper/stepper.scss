@@ -1,9 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-
-@layer component {
+﻿@layer component {
     .wim-stepper {
         box-sizing: border-box;
         display: flex;
@@ -19,20 +14,20 @@
                 .wim-stepper__item {
                     width: 100%;
                     padding-right: 0;
-                    padding-bottom: spacings.$spacing-lg;
+                    padding-bottom: var(--spacing-lg);
 
                     .wim-stepper__line {
                         position: absolute;
-                        top: calc(#{spacings.$spacing-3xl} + #{spacings.$spacing-xs});
-                        left: calc(#{spacings.$spacing-3xl} / 2);
+                        top: calc(var(--spacing-3xl) + var(--spacing-xs));
+                        left: calc(var(--spacing-3xl) / 2);
                         width: 2px;
-                        height: calc(100% - #{spacings.$spacing-3xl} - #{spacings.$spacing-xs});
+                        height: calc(100% - var(--spacing-3xl) - var(--spacing-xs));
                         transform: translateX(-50%);
                     }
 
                     .wim-stepper__content {
-                        margin-top: spacings.$spacing-xs;
-                        margin-left: spacings.$spacing-3xl;
+                        margin-top: var(--spacing-xs);
+                        margin-left: var(--spacing-3xl);
                     }
                 }
             }
@@ -60,7 +55,7 @@
         }
 
         &--horizontal &__item {
-            padding-right: spacings.$spacing-md;
+            padding-right: var(--spacing-md);
 
             &--label-vertical {
                 @media (min-width: 577px) {
@@ -82,17 +77,17 @@
                             top: 0;
                             height: 100%;
                             background-color: var(--wim-color-border-secondary);
-                            transition: background-color effects.$transition-base;
+                            transition: background-color var(--transition-base);
                         }
 
                         &::before {
                             left: -2px;
-                            width: calc(50% - #{spacings.$spacing-3xl} / 2 + 2px);
+                            width: calc(50% - var(--spacing-3xl) / 2 + 2px);
                         }
 
                         &::after {
                             right: -2px;
-                            width: calc(50% - #{spacings.$spacing-3xl} / 2 + 2px);
+                            width: calc(50% - var(--spacing-3xl) / 2 + 2px);
                         }
                     }
 
@@ -127,21 +122,21 @@
 
         &--vertical &__item {
             flex-direction: column;
-            padding-bottom: spacings.$spacing-lg;
+            padding-bottom: var(--spacing-lg);
 
             .wim-stepper__line {
                 position: absolute;
-                top: calc(#{spacings.$spacing-3xl} + #{spacings.$spacing-xs});
-                left: calc(#{spacings.$spacing-3xl} / 2);
+                top: calc(var(--spacing-3xl) + var(--spacing-xs));
+                left: calc(var(--spacing-3xl) / 2);
                 width: 2px;
-                height: calc(100% - #{spacings.$spacing-3xl} - #{spacings.$spacing-xs});
+                height: calc(100% - var(--spacing-3xl) - var(--spacing-xs));
                 background-color: var(--wim-color-border-secondary);
                 transform: translateX(-50%);
             }
 
             .wim-stepper__content {
-                margin-top: spacings.$spacing-xs;
-                margin-left: spacings.$spacing-3xl;
+                margin-top: var(--spacing-xs);
+                margin-left: var(--spacing-3xl);
             }
         }
 
@@ -152,23 +147,23 @@
             flex-shrink: 0;
             align-items: center;
             justify-content: center;
-            width: spacings.$spacing-3xl;
-            height: spacings.$spacing-3xl;
-            margin-top: spacings.$spacing-xs;
-            font-size: typography.$size-small;
-            font-weight: typography.$weight-bold;
+            width: var(--spacing-3xl);
+            height: var(--spacing-3xl);
+            margin-top: var(--spacing-xs);
+            font-size: var(--font-size-small);
+            font-weight: var(--font-weight-bold);
             color: var(--text-secondary);
             background-color: var(--bg-component, #fff);
             border: 2px solid var(--wim-color-border-secondary);
             border-radius: 50%;
-            transition: all effects.$transition-base;
+            transition: all var(--transition-base);
         }
 
         &__item--process &__icon-container {
             color: var(--color-text-on-primary);
             background-color: var(--color-primary);
             border-color: var(--color-primary);
-            box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb, 0, 107, 255), 0.1);
+            box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary-rgb, 0, 107, 255) 10%, transparent);
         }
 
         &__item--finish &__icon-container {
@@ -184,13 +179,13 @@
         /* Line / Tail */
         &__line {
             position: absolute;
-            top: calc(#{spacings.$spacing-3xl} / 2 + #{spacings.$spacing-xs});
-            left: spacings.$spacing-3xl;
+            top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
+            left: var(--spacing-3xl);
             width: 999px;
             height: 2px;
             background-color: var(--wim-color-border-secondary);
             transform: translateY(-50%);
-            transition: background-color effects.$transition-base;
+            transition: background-color var(--transition-base);
         }
 
         &__item--finish &__line {
@@ -200,24 +195,24 @@
         /* Content */
         &__content {
             flex-shrink: 0;
-            margin-left: spacings.$spacing-sm;
+            margin-left: var(--spacing-sm);
         }
 
         &__item--label-vertical &__content {
             @media (min-width: 577px) {
                 width: 100%;
                 min-width: 100px;
-                margin-top: spacings.$spacing-xs;
+                margin-top: var(--spacing-xs);
                 margin-left: 0;
             }
         }
 
         &__title {
             display: block;
-            font-size: typography.$size-medium;
-            font-weight: typography.$weight-medium;
+            font-size: var(--font-size-medium);
+            font-weight: var(--font-weight-medium);
             color: var(--text-primary);
-            transition: color effects.$transition-base;
+            transition: color var(--transition-base);
         }
 
         &__item--wait &__title {
@@ -226,8 +221,8 @@
 
         &__description {
             display: block;
-            margin-top: spacings.$spacing-xl;
-            font-size: typography.$size-small;
+            margin-top: var(--spacing-xl);
+            font-size: var(--font-size-small);
             color: var(--text-secondary);
         }
     }

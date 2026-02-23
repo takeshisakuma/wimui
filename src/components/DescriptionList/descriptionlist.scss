@@ -1,6 +1,4 @@
-@use "../../tokens/typography" as typography;
-
-.wim-description-list {
+﻿.wim-description-list {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -86,14 +84,14 @@
 
     // Sizes
     &--small {
-        font-size: typography.$size-small;
+        font-size: var(--font-size-small);
     }
 
     &--medium {
-        font-size: typography.$size-medium;
+        font-size: var(--font-size-medium);
     }
 
     &--large {
-        font-size: typography.$size-large;
+        font-size: var(--font-size-large);
     }
 }

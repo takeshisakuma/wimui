@@ -1,8 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/breakpoints" as breakpoints;
+﻿@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
     .wim-sidebar {
@@ -13,7 +9,7 @@
         height: 100%;
         overflow: hidden;
         background-color: var(--wim-color-bg-primary, #fff);
-        transition: width effects.$transition-base, all effects.$transition-base;
+        transition: width var(--transition-base), all var(--transition-base);
 
         &--responsive {
             @include breakpoints.down(md) {
@@ -24,15 +20,15 @@
                 z-index: 1000;
                 width: 85vw !important;
                 max-width: 300px;
-                box-shadow: effects.$shadow-lg;
+                box-shadow: var(--shadow-lg);
                 transform: translateX(-100%);
                 transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
                 // レスポンシブ時は collapsed クラスの影響を受けないようにオーバーライド
                 .wim-sidebar__item {
                     justify-content: flex-start !important;
-                    padding-right: spacings.$spacing-md !important;
-                    padding-left: spacings.$spacing-md !important;
+                    padding-right: var(--spacing-md) !important;
+                    padding-left: var(--spacing-md) !important;
                 }
 
                 .wim-sidebar__item-text {
@@ -49,7 +45,7 @@
                 .wim-sidebar__header,
                 .wim-sidebar__footer {
                     justify-content: flex-start !important;
-                    padding: spacings.$spacing-xl !important;
+                    padding: var(--spacing-xl) !important;
                 }
 
                 .wim-sidebar__hide-collapsed {
@@ -87,7 +83,7 @@
             .wim-sidebar__header,
             .wim-sidebar__footer {
                 justify-content: center;
-                padding: spacings.$spacing-md spacings.$spacing-xs;
+                padding: var(--spacing-md) var(--spacing-xs);
                 overflow: hidden;
             }
 
@@ -116,43 +112,43 @@
             display: flex;
             align-items: center;
             min-height: 64px;
-            padding: spacings.$spacing-xl;
+            padding: var(--spacing-xl);
         }
 
         &__content {
             flex-grow: 1;
-            padding: spacings.$spacing-sm;
+            padding: var(--spacing-sm);
             overflow: hidden auto;
         }
 
         &__footer {
             display: flex;
             align-items: center;
-            padding: spacings.$spacing-xl;
+            padding: var(--spacing-xl);
             border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
         }
 
         &__item {
             display: flex;
-            gap: spacings.$spacing-md;
+            gap: var(--spacing-md);
             align-items: center;
-            padding: spacings.$spacing-sm spacings.$spacing-md;
-            margin-bottom: spacings.$spacing-xs;
-            color: colors.$text-deepgray;
+            padding: var(--spacing-sm) var(--spacing-md);
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-secondary);
             white-space: nowrap;
             cursor: pointer;
-            border-radius: spacings.$radius-md;
-            transition: all effects.$transition-base;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
 
             &:hover {
-                color: colors.$color-primary;
+                color: var(--color-primary);
                 background-color: rgb(0 0 0 / 0.04);
             }
 
             &--active {
-                font-weight: typography.$weight-bold;
-                color: colors.$color-primary;
-                background-color: rgba(var(--wim-color-primary-rgb, 0, 102, 255), 0.1);
+                font-weight: var(--font-weight-bold);
+                color: var(--color-primary);
+                background-color: color-mix(in srgb, var(--wim-color-primary-rgb, 0, 102, 255) 10%, transparent);
             }
 
             &--disabled {
@@ -171,8 +167,8 @@
             }
 
             &-text {
-                font-size: typography.$size-medium;
-                transition: opacity effects.$transition-base;
+                font-size: var(--font-size-medium);
+                transition: opacity var(--transition-base);
             }
         }
     }

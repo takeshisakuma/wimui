@@ -1,10 +1,6 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-
-.wim-switch-wrapper {
+﻿.wim-switch-wrapper {
     display: inline-flex;
-    gap: spacings.$spacing-sm;
+    gap: var(--spacing-sm);
     align-items: center;
     cursor: pointer;
     user-select: none;

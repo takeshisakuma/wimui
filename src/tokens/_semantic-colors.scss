@@ -72,6 +72,7 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-bg-hover: rgba(0, 0, 0, 0.05); // Standard hover color
   --wim-color-border: #{$pccs-gy7-5};
   --wim-color-border-secondary: #{$pccs-gy8-5};
+  --color-focus-outline: #{$color-focus-outline};
   --scrollbar-thumb: #{$scrollbar-thumb};
   --scrollbar-track: #{$scrollbar-track};
 }

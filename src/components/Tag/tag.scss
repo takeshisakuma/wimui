@@ -1,24 +1,22 @@
-@use "sass:map";
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
+﻿@use "sass:map";
 
 .wim-tag {
     display: inline-flex;
-    gap: spacings.$spacing-xs;
+    gap: var(--spacing-xs);
     align-items: center;
     font-weight: 500;
     line-height: 1;
     white-space: nowrap;
-    border-radius: spacings.$radius-sm;
+    border-radius: var(--radius-sm);
 
     &--md {
-        padding: spacings.$spacing-xs spacings.$spacing-sm;
-        font-size: spacings.$font-size-minus-2;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-minus-2);
     }
 
     &--sm {
-        padding: spacings.$spacing-2xs spacings.$spacing-xs;
-        font-size: spacings.$font-size-minus-3;
+        padding: var(--spacing-2xs) var(--spacing-xs);
+        font-size: var(--font-size-minus-3);
     }
 
     &__icon {
@@ -28,18 +26,18 @@
 
     /* Colors and Variants */
     $tag-colors: (
-        "primary": ("base": colors.$color-primary,
-            "on": colors.$color-text-on-primary ),
-        "secondary": ("base": colors.$color-secondary,
-            "on": colors.$color-text-on-secondary ),
-        "success": ("base": colors.$color-positive,
-            "on": colors.$color-text-on-positive ),
-        "warning": ("base": colors.$color-caution,
-            "on": colors.$color-text-on-caution ),
-        "error": ("base": colors.$color-destructive,
-            "on": colors.$color-text-on-destructive ),
-        "neutral": ("base": colors.$color-disabled,
-            "on": colors.$text-black )
+        "primary": ("base": var(--color-primary),
+            "on": var(--color-text-on-primary)),
+        "secondary": ("base": var(--color-secondary),
+            "on": var(--color-text-on-secondary)),
+        "success": ("base": var(--color-positive),
+            "on": var(--color-text-on-positive)),
+        "warning": ("base": var(--color-caution),
+            "on": var(--color-text-on-caution)),
+        "error": ("base": var(--color-destructive),
+            "on": var(--color-text-on-destructive)),
+        "neutral": ("base": var(--color-disabled),
+            "on": var(--text-primary))
     );
 
 @each $name, $pairs in $tag-colors {
@@ -60,7 +58,7 @@
 
     &--#{$name}.wim-tag--subtle {
         color: $base;
-        background-color: rgba($base, 0.15);
+        background-color: color-mix(in srgb, $base 15%, transparent);
         border: 1px solid transparent;
     }
 }

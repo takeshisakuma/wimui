@@ -1,12 +1,7 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../lang" as lang;
-
-@layer component {
+﻿@layer component {
   .wim-span {
     display: inline-flex;
-    gap: spacings.$spacing-xs;
+    gap: var(--spacing-xs);
     align-items: center;
     font: inherit;
     color: inherit;
@@ -17,23 +12,23 @@
     }
 
     &--xl {
-      font-size: typography.$size-ex-large;
+      font-size: var(--font-size-ex-large);
     }
 
     &--lg {
-      font-size: typography.$size-large;
+      font-size: var(--font-size-large);
     }
 
     &--md {
-      font-size: typography.$size-medium;
+      font-size: var(--font-size-medium);
     }
 
     &--sm {
-      font-size: typography.$size-small;
+      font-size: var(--font-size-small);
     }
 
     &--xs {
-      font-size: typography.$size-ex-small;
+      font-size: var(--font-size-ex-small);
     }
 
     &--black {
@@ -41,15 +36,15 @@
     }
 
     &--deepgray {
-      color: colors.$text-deepgray;
+      color: var(--text-secondary);
     }
 
     &--gray {
-      color: colors.$text-gray;
+      color: var(--text-tertiary);
     }
 
     &--lightgray {
-      color: colors.$text-lightgray;
+      color: var(--text-disabled);
     }
 
     &--white {
@@ -81,19 +76,19 @@
     }
 
     &--bold {
-      font-weight: typography.$weight-bold;
+      font-weight: var(--font-weight-bold);
     }
 
     &--italic {
-      font-style: typography.$style-italic;
+      font-style: italic;
     }
 
     &--line-through {
-      text-decoration: typography.$decoration-line-through;
+      text-decoration: var(--decoration-line-through);
     }
 
     &--underline {
-      text-decoration: typography.$decoration-underline;
+      text-decoration: var(--decoration-underline);
       text-decoration-skip-ink: none;
       text-underline-offset: 0.3em;
     }

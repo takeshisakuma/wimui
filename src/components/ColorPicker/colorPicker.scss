@@ -1,9 +1,6 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
-
-.wim-colorpicker {
+﻿.wim-colorpicker {
     height: 42px; // Match other inputs
-    padding: spacings.$spacing-3xs;
+    padding: var(--spacing-3xs);
     cursor: pointer;
 
     &::-webkit-color-swatch-wrapper {
@@ -12,11 +9,11 @@
 
     &::-webkit-color-swatch {
         border: none;
-        border-radius: spacings.$radius-sm;
+        border-radius: var(--radius-sm);
     }
 
     &::-moz-color-swatch {
         border: none;
-        border-radius: spacings.$radius-sm;
+        border-radius: var(--radius-sm);
     }
 }

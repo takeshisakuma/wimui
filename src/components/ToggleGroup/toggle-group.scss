@@ -1,15 +1,11 @@
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-
-.wim-toggle-group {
+﻿.wim-toggle-group {
     box-sizing: border-box;
     display: inline-flex;
     gap: 2px;
     padding: 2px;
     background-color: var(--bg-component);
     border: 1px solid var(--wim-color-border);
-    border-radius: spacings.$radius-md;
+    border-radius: var(--radius-md);
 
     &--full-width {
         display: flex;
@@ -22,7 +18,7 @@
 
     &__item {
         display: inline-flex;
-        gap: spacings.$spacing-xs;
+        gap: var(--spacing-xs);
         align-items: center;
         justify-content: center;
         font-family: inherit;
@@ -32,7 +28,7 @@
         cursor: pointer;
         background: transparent;
         border: none;
-        border-radius: spacings.$radius-sm;
+        border-radius: var(--radius-sm);
         transition: all 0.2s ease;
 
         &:hover:not(:disabled, .wim-toggle-group__item--active) {
@@ -68,8 +64,8 @@
 
         .wim-toggle-group__item {
             height: 26px; // container height - padding/border
-            padding: 0 spacings.$spacing-sm;
-            font-size: typography.$size-small;
+            padding: 0 var(--spacing-sm);
+            font-size: var(--font-size-small);
         }
     }
 
@@ -78,8 +74,8 @@
 
         .wim-toggle-group__item {
             height: 34px;
-            padding: 0 spacings.$spacing-md;
-            font-size: typography.$size-medium;
+            padding: 0 var(--spacing-md);
+            font-size: var(--font-size-medium);
         }
     }
 
@@ -88,8 +84,8 @@
 
         .wim-toggle-group__item {
             height: 42px;
-            padding: 0 spacings.$spacing-lg;
-            font-size: typography.$size-large;
+            padding: 0 var(--spacing-lg);
+            font-size: var(--font-size-large);
         }
     }
 }

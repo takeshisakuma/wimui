@@ -1,6 +1,4 @@
-@use "../../tokens/typography" as typography;
-
-.wim-list {
+﻿.wim-list {
     padding: 0;
     padding-left: 1.5rem;
     margin: 0;
@@ -26,19 +24,19 @@
 
     // Sizes (Harmonized with Icon sizes)
     &--sm {
-        font-size: typography.$size-small;
+        font-size: var(--font-size-small);
     }
 
     &--md {
-        font-size: typography.$size-medium;
+        font-size: var(--font-size-medium);
     }
 
     &--lg {
-        font-size: typography.$size-large;
+        font-size: var(--font-size-large);
     }
 
     &__item {
-        line-height: typography.$line-height-normal-jpan; // 1.6 に統一
+        line-height: var(--line-height-normal-jpan); // 1.6 に統一
 
         &:last-child {
             margin-bottom: 0;

@@ -1,6 +1,4 @@
-@use "../../tokens/spacings" as spacings;
-
-.wim-button-group {
+﻿.wim-button-group {
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
@@ -16,13 +14,13 @@
             }
 
             &:first-child {
-                border-top-left-radius: spacings.$radius-md;
-                border-bottom-left-radius: spacings.$radius-md;
+                border-top-left-radius: var(--radius-md);
+                border-bottom-left-radius: var(--radius-md);
             }
 
             &:last-child {
-                border-top-right-radius: spacings.$radius-md;
-                border-bottom-right-radius: spacings.$radius-md;
+                border-top-right-radius: var(--radius-md);
+                border-bottom-right-radius: var(--radius-md);
             }
 
             // Handle hover/focus state overlap

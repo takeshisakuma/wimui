@@ -1,9 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-
-@layer component {
+﻿@layer component {
     .wim-link {
         position: relative;
         display: inline-flex;
@@ -11,8 +6,8 @@
         text-decoration: none;
         cursor: pointer;
         outline: none;
-        border-radius: spacings.$radius-sm;
-        transition: effects.$transition-base;
+        border-radius: var(--radius-sm);
+        transition: var(--transition-base);
 
         &::after {
             position: absolute;
@@ -35,12 +30,12 @@
         }
 
         &:focus-visible {
-            box-shadow: 0 0 0 2px colors.$color-focus-outline;
+            box-shadow: 0 0 0 2px var(--color-focus-outline);
         }
 
         &__inner {
             display: inline-flex;
-            gap: spacings.$spacing-xs;
+            gap: var(--spacing-xs);
             align-items: center;
         }
 
@@ -50,44 +45,44 @@
 
         // Sizes
         &--lg {
-            font-size: typography.$size-large;
+            font-size: var(--font-size-large);
         }
 
         &--md {
-            font-size: typography.$size-medium;
+            font-size: var(--font-size-medium);
         }
 
         &--sm {
-            font-size: typography.$size-small;
+            font-size: var(--font-size-small);
         }
 
         // Priorities
         &--primary {
-            color: colors.$color-primary;
+            color: var(--color-primary);
 
             &:hover {
-                color: colors.$color-primary; // More vivid if needed
+                color: var(--color-primary); // More vivid if needed
             }
         }
 
         &--secondary {
-            color: colors.$text-black; // Assume default text color
+            color: var(--text-primary); // Assume default text color
 
             &:hover {
-                color: colors.$color-primary;
+                color: var(--color-primary);
             }
         }
 
         &--tertiary {
-            color: colors.$text-gray; // Assume subtle text color
+            color: var(--text-tertiary); // Assume subtle text color
 
             &:hover {
-                color: colors.$text-black;
+                color: var(--text-primary);
             }
         }
 
         &__external-icon {
-            margin-left: spacings.$spacing-3xs;
+            margin-left: var(--spacing-3xs);
             font-size: 0.8em;
             opacity: 0.8;
         }

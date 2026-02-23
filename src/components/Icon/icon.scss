@@ -1,9 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../lang" as lang;
-
-@layer component {
+﻿@layer component {
   .wim-icon {
     display: inline-block;
     width: 1em;
@@ -60,23 +55,23 @@
     }
 
     &--xl {
-      font-size: typography.$size-ex-large;
+      font-size: var(--font-size-ex-large);
     }
 
     &--lg {
-      font-size: typography.$size-large;
+      font-size: var(--font-size-large);
     }
 
     &--md {
-      font-size: typography.$size-medium;
+      font-size: var(--font-size-medium);
     }
 
     &--sm {
-      font-size: typography.$size-small;
+      font-size: var(--font-size-small);
     }
 
     &--xs {
-      font-size: typography.$size-ex-small;
+      font-size: var(--font-size-ex-small);
     }
 
     &--destructive {

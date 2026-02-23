@@ -1,46 +1,42 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-
-@layer component {
+﻿@layer component {
     .wim-heading {
         width: 100%;
         margin: 0;
         font-family: inherit;
-        font-weight: typography.$weight-bold;
+        font-weight: var(--font-weight-bold);
         line-height: normal;
 
         /* Sizes */
         &--xs {
-            font-size: spacings.$font-size-0; // 1rem
+            font-size: var(--font-size-0); // 1rem
         }
 
         &--sm {
-            font-size: spacings.$font-size-2; // 1.3rem
+            font-size: var(--font-size-2); // 1.3rem
         }
 
         &--md {
-            font-size: spacings.$font-size-4; // 1.6rem
+            font-size: var(--font-size-4); // 1.6rem
         }
 
         &--lg {
-            font-size: spacings.$font-size-6; // 2rem
+            font-size: var(--font-size-6); // 2rem
         }
 
         &--xl {
-            font-size: spacings.$font-size-8; // 2.6rem
+            font-size: var(--font-size-8); // 2.6rem
         }
 
         &--2xl {
-            font-size: spacings.$font-size-10; // 3.2rem
+            font-size: var(--font-size-10); // 3.2rem
         }
 
         &--3xl {
-            font-size: spacings.$font-size-12; // 4.1rem
+            font-size: var(--font-size-12); // 4.1rem
         }
 
         &--4xl {
-            font-size: spacings.$font-size-14; // 5.2rem
+            font-size: var(--font-size-14); // 5.2rem
         }
 
         /* Align */
@@ -62,15 +58,15 @@
         }
 
         &--deepgray {
-            color: colors.$text-deepgray;
+            color: var(--text-secondary);
         }
 
         &--gray {
-            color: colors.$text-gray;
+            color: var(--text-tertiary);
         }
 
         &--lightgray {
-            color: colors.$text-lightgray;
+            color: var(--text-disabled);
         }
 
         &--white {
@@ -99,7 +95,7 @@
 
         /* Decoration */
         &--underline {
-            text-decoration: typography.$decoration-underline;
+            text-decoration: var(--decoration-underline);
             text-decoration-skip-ink: none;
             text-underline-offset: 0.3em;
         }

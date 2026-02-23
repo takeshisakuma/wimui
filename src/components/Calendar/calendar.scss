@@ -1,28 +1,25 @@
-/* ------------------------------------------------------------------
+﻿/* ------------------------------------------------------------------
    Calendar Styles
    ------------------------------------------------------------------ */
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/effects" as effects;
 @use "../../tokens/breakpoints" as breakpoints;
 
 .wim-calendar {
     width: 80vw;
     max-width: 340px;
-    padding: spacings.$spacing-md;
+    padding: var(--spacing-md);
 
     @include breakpoints.down(sm) {
         width: 90vw;
         max-width: 350px;
-        padding: spacings.$spacing-xs;
+        padding: var(--spacing-xs);
     }
 
     font-family: var(--font-family-base);
     user-select: none;
     background-color: var(--bg-component, #fff);
-    border: 1px solid colors.$color-secondary;
-    border-radius: spacings.$radius-md;
-    box-shadow: effects.$shadow-md;
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
 
     &--disabled {
         cursor: not-allowed;
@@ -34,7 +31,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: spacings.$spacing-md;
+    margin-bottom: var(--spacing-md);
 }
 
 .wim-calendar-title {
@@ -54,7 +51,7 @@
     cursor: pointer;
     background: transparent;
     border: 1px solid transparent;
-    border-radius: spacings.$radius-sm;
+    border-radius: var(--radius-sm);
     transition: background-color 0.2s, color 0.2s;
 
     &:hover:not(:disabled) {
@@ -70,7 +67,7 @@
 .wim-calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: spacings.$spacing-xs;
+    gap: var(--spacing-xs);
 }
 
 .wim-calendar-weekday {
@@ -100,7 +97,7 @@
     cursor: pointer;
     background: transparent;
     border: 1px solid transparent;
-    border-radius: spacings.$radius-sm;
+    border-radius: var(--radius-sm);
     transition: background-color 0.2s,
     border-color 0.2s,
     color 0.2s;
@@ -115,26 +112,26 @@
 
     &--today {
         font-weight: bold;
-        color: colors.$color-primary;
-        border-color: rgba(colors.$color-primary, 0.3);
+        color: var(--color-primary);
+        border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
     }
 
     &--selected {
         font-weight: 600;
         color: #fff;
-        background-color: colors.$color-primary;
+        background-color: var(--color-primary);
 
         &:hover:not(:disabled) {
-            background-color: colors.$color-primary;
+            background-color: var(--color-primary);
         }
     }
 
     &--in-range {
-        background-color: rgba(colors.$color-primary, 0.1);
+        background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
         border-radius: 0;
 
         &:hover:not(:disabled) {
-            background-color: rgba(colors.$color-primary, 0.2);
+            background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
         }
     }
 

@@ -1,42 +1,40 @@
-@use "sass:map";
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
+﻿@use "sass:map";
 
 .wim-chip {
     box-sizing: border-box;
     display: inline-flex;
-    gap: spacings.$spacing-xs;
+    gap: var(--spacing-xs);
     align-items: center;
     font-weight: 500;
-    line-height: spacings.$font-size-minus-2;
+    line-height: var(--font-size-minus-2);
     white-space: nowrap;
     cursor: default;
     user-select: none;
     border: 1px solid transparent;
-    border-radius: spacings.$radius-full;
+    border-radius: var(--radius-full);
     transition: all 0.2s ease-in-out;
 
     &--md {
         height: 2rem;
-        padding: 0 spacings.$spacing-md;
-        font-size: spacings.$font-size-minus-2;
+        padding: 0 var(--spacing-md);
+        font-size: var(--font-size-minus-2);
 
         .wim-chip__avatar {
             width: 1.6rem;
             height: 1.6rem;
-            margin-left: -#{spacings.$spacing-sm};
+            margin-left: -var(--spacing-sm);
         }
     }
 
     &--sm {
         height: 1.6rem;
-        padding: 0 spacings.$spacing-sm;
-        font-size: spacings.$font-size-minus-3;
+        padding: 0 var(--spacing-sm);
+        font-size: var(--font-size-minus-3);
 
         .wim-chip__avatar {
             width: 1.25rem;
             height: 1.25rem;
-            margin-left: -#{spacings.$spacing-xs};
+            margin-left: -var(--spacing-xs);
         }
     }
 
@@ -58,7 +56,7 @@
         justify-content: center;
         overflow: hidden;
         background: rgb(0 0 0 / 0.1);
-        border-radius: spacings.$radius-full;
+        border-radius: var(--radius-full);
 
         img {
             width: 100%;
@@ -77,9 +75,9 @@
         align-items: center;
         justify-content: center;
         padding: 1px;
-        margin-right: -#{spacings.$spacing-xs};
+        margin-right: -var(--spacing-xs);
         cursor: pointer;
-        border-radius: spacings.$radius-full;
+        border-radius: var(--radius-full);
         opacity: 0.6;
         transition: opacity 0.2s;
 
@@ -91,12 +89,12 @@
 
     /* Colors and Variants */
     $chip-colors: (
-        "primary": ("base": colors.$color-primary,
-            "on": colors.$color-text-on-primary ),
-        "secondary": ("base": colors.$color-secondary,
-            "on": colors.$color-text-on-secondary ),
-        "neutral": ("base": colors.$color-disabled,
-            "on": colors.$text-black )
+        "primary": ("base": var(--color-primary),
+            "on": var(--color-text-on-primary)),
+        "secondary": ("base": var(--color-secondary),
+            "on": var(--color-text-on-secondary)),
+        "neutral": ("base": var(--color-disabled),
+            "on": var(--text-primary))
     );
 
 @each $name, $pairs in $chip-colors {
@@ -113,18 +111,18 @@
     }
 
     &--#{$name}.wim-chip--outline {
-        color: colors.$text-black;
+        color: var(--text-primary);
         background-color: transparent;
-        border-color: colors.$text-lightgray;
+        border-color: var(--text-disabled);
 
         &.wim-chip--selected {
             color: $base;
-            background-color: rgba($base, 0.1);
+            background-color: color-mix(in srgb, $base 10%, transparent);
             border-color: $base;
         }
 
         &.wim-chip--clickable:hover {
-            background-color: rgba($base, 0.05);
+            background-color: color-mix(in srgb, $base 5%, transparent);
         }
     }
 }

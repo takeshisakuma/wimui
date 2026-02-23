@@ -1,7 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/breakpoints" as breakpoints;
+﻿@use "../../tokens/breakpoints" as breakpoints;
 
 .wim-datepicker-wrapper {
     position: relative;
@@ -18,7 +15,7 @@
     position: relative;
 
     .wim-datepicker-input {
-        padding-right: spacings.$spacing-4xl; // Space for icons
+        padding-right: var(--spacing-4xl); // Space for icons
         cursor: pointer;
         user-select: none;
     }
@@ -26,9 +23,9 @@
     .wim-datepicker-icons {
         position: absolute;
         top: 50%;
-        right: spacings.$spacing-sm;
+        right: var(--spacing-sm);
         display: flex;
-        gap: spacings.$spacing-xs;
+        gap: var(--spacing-xs);
         align-items: center;
         pointer-events: none;
         transform: translateY(-50%);
@@ -37,14 +34,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: spacings.$spacing-xs;
+            padding: var(--spacing-xs);
             color: var(--text-secondary);
             pointer-events: all;
             cursor: pointer;
             background: none;
             border: none;
-            border-radius: spacings.$radius-sm;
-            transition: all effects.$transition-base;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-base);
 
             &:hover:not(:disabled) {
                 color: var(--text-primary);
@@ -70,20 +67,20 @@
 
 .wim-datepicker-dropdown {
     position: absolute;
-    top: calc(100% + #{spacings.$spacing-xs});
+    top: calc(100% + var(--spacing-xs));
     left: 0;
     z-index: 1000;
-    padding: spacings.$spacing-sm;
+    padding: var(--spacing-sm);
     background-color: var(--bg-component, #fff);
-    border: 1px solid colors.$color-secondary;
-    border-radius: spacings.$radius-md;
-    box-shadow: effects.$shadow-lg;
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
 
     @include breakpoints.down(sm) {
         left: 50%;
         width: auto;
         max-width: calc(100vw - 16px);
-        padding: spacings.$spacing-xs;
+        padding: var(--spacing-xs);
         transform: translateX(-50%);
     }
 }

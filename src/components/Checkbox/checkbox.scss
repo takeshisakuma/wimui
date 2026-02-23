@@ -1,8 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-
-.wim-checkbox-wrapper {
+﻿.wim-checkbox-wrapper {
     position: relative;
     display: flex;
     align-items: center;
@@ -35,11 +31,11 @@
     justify-content: center;
     width: 20px;
     height: 20px;
-    margin-right: spacings.$spacing-sm;
+    margin-right: var(--spacing-sm);
     color: var(--text-white); // Icon color
     background-color: var(--bg-component);
     border: 2px solid var(--text-tertiary); // Default border
-    border-radius: spacings.$radius-sm; // Slightly rounded
+    border-radius: var(--radius-sm); // Slightly rounded
     transition: all 0.2s ease-in-out;
 
     // Checked state

@@ -1,18 +1,16 @@
-@use "../../tokens/spacings" as spacings;
-
-@layer component {
+﻿@layer component {
     .wim-marquee {
         display: flex;
         overflow: hidden;
         user-select: none;
-        gap: spacings.$spacing-md;
+        gap: var(--spacing-md);
         width: 100%;
 
         &__content {
             flex-shrink: 0;
             display: flex;
             justify-content: space-around;
-            gap: spacings.$spacing-md;
+            gap: var(--spacing-md);
             min-width: 100%;
             animation: wim-marquee-scroll var(--duration, 20s) linear infinite;
 
@@ -37,7 +35,7 @@
         }
 
         to {
-            transform: translateX(calc(-100% - spacings.$spacing-md));
+            transform: translateX(calc(-100% - var(--spacing-md)));
         }
     }
 
@@ -47,7 +45,7 @@
         }
 
         to {
-            transform: translateY(calc(-100% - spacings.$spacing-md));
+            transform: translateY(calc(-100% - var(--spacing-md)));
         }
     }
 }

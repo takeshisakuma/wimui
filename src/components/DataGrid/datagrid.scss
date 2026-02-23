@@ -1,10 +1,7 @@
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-
-.wim-datagrid {
+﻿.wim-datagrid {
     display: flex;
     flex-direction: column;
-    gap: spacings.$spacing-md;
+    gap: var(--spacing-md);
     width: 100%;
 
     &--loading {
@@ -30,7 +27,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        padding: spacings.$spacing-sm 0;
+        padding: var(--spacing-sm) 0;
     }
 
     &__empty {
@@ -38,11 +35,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: spacings.$spacing-xl;
+        padding: var(--spacing-xl);
         color: var(--wim-color-text-secondary);
         background-color: var(--wim-color-surface);
         border: 1px solid var(--wim-color-border);
-        border-radius: spacings.$radius-md;
+        border-radius: var(--radius-md);
     }
 
     // Center checkboxes in selection cells

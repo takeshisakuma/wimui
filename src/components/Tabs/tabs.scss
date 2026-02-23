@@ -1,8 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/breakpoints" as breakpoints;
+﻿@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
     .wim-tabs {
@@ -42,7 +38,7 @@
             .wim-tabs__trigger {
                 justify-content: flex-start;
                 width: 100%;
-                padding: spacings.$spacing-md spacings.$spacing-lg;
+                padding: var(--spacing-md) var(--spacing-lg);
                 margin-right: -1px;
                 text-align: left;
                 white-space: normal;
@@ -76,7 +72,7 @@
             position: relative;
             display: flex;
             flex-shrink: 0;
-            gap: spacings.$spacing-xs;
+            gap: var(--spacing-xs);
             width: 100%;
             padding: 4px 4px 0;
             overflow-x: auto;
@@ -113,7 +109,7 @@
 
         &__slider {
             position: absolute;
-            background-color: colors.$color-primary;
+            background-color: var(--color-primary);
             z-index: 2;
         }
 
@@ -121,18 +117,18 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: spacings.$spacing-sm spacings.$spacing-lg;
+            padding: var(--spacing-sm) var(--spacing-lg);
             margin-bottom: -1px;
-            font-size: typography.$size-medium;
-            font-weight: typography.$weight-medium;
-            color: colors.$text-deepgray;
+            font-size: var(--font-size-medium);
+            font-weight: var(--font-weight-medium);
+            color: var(--text-secondary);
             white-space: nowrap;
             cursor: pointer;
             background-color: transparent;
             border: none;
             border-bottom: 2px solid transparent;
             border-radius: 0;
-            transition: all effects.$transition-base;
+            transition: all var(--transition-base);
 
             &:hover:not(:disabled) {
                 color: var(--wim-color-primary, #3b82f6);
@@ -140,13 +136,13 @@
             }
 
             &:disabled {
-                color: colors.$text-lightgray;
+                color: var(--text-disabled);
                 cursor: not-allowed;
                 background-color: transparent;
             }
 
             &--active {
-                font-weight: typography.$weight-bold;
+                font-weight: var(--font-weight-bold);
                 color: var(--wim-color-primary, #3b82f6);
                 background-color: rgba(59, 130, 246, 0.08);
             }
@@ -164,8 +160,8 @@
 
             &:focus-visible {
                 outline: none;
-                border-radius: spacings.$radius-sm;
-                box-shadow: inset 0 0 0 2px colors.$color-focus-outline;
+                border-radius: var(--radius-sm);
+                box-shadow: inset 0 0 0 2px var(--color-focus-outline);
             }
         }
     }

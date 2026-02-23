@@ -1,10 +1,7 @@
-/* ------------------------------------------------------------------
+﻿/* ------------------------------------------------------------------
    Combobox Styles
    Re-compiled to invalidate potential stale Vite cache.
 ------------------------------------------------------------------ */
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/effects" as effects;
 
 .wim-combobox {
     position: relative;
@@ -19,23 +16,23 @@
 
 .wim-combobox-list {
     position: absolute;
-    top: calc(100% + #{spacings.$spacing-xs});
+    top: calc(100% + var(--spacing-xs));
     right: 0;
     left: 0;
     z-index: 1000;
     max-height: 240px;
-    padding: spacings.$spacing-xs 0;
+    padding: var(--spacing-xs) 0;
     margin: 0;
     overflow-y: auto;
     list-style: none;
     background-color: var(--bg-component, #fff);
     border: 1px solid rgb(0 0 0 / 0.1);
-    border-radius: spacings.$radius-md;
-    box-shadow: effects.$shadow-lg;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
 }
 
 .wim-combobox-option {
-    padding: spacings.$spacing-sm spacings.$spacing-md;
+    padding: var(--spacing-sm) var(--spacing-md);
     font-size: 0.9rem;
     color: var(--text-primary);
     cursor: pointer;
@@ -53,16 +50,16 @@
 
 .wim-combobox-empty {
     position: absolute;
-    top: calc(100% + #{spacings.$spacing-xs});
+    top: calc(100% + var(--spacing-xs));
     right: 0;
     left: 0;
     z-index: 1000;
-    padding: spacings.$spacing-md;
+    padding: var(--spacing-md);
     font-size: 0.9rem;
     color: var(--text-secondary);
     text-align: center;
     background-color: var(--bg-component, #fff);
     border: 1px solid rgb(0 0 0 / 0.1);
-    border-radius: spacings.$radius-md;
-    box-shadow: effects.$shadow-lg;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
 }

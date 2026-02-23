@@ -1,9 +1,7 @@
-@use "../../tokens/semantic-colors" as colors;
-
-@layer component {
+﻿@layer component {
   .wim-scroll-area {
     scrollbar-gutter: stable;
-    scrollbar-color: colors.$scrollbar-thumb colors.$scrollbar-track;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
     scrollbar-width: thin;
     min-width: 0;
     min-height: 0;

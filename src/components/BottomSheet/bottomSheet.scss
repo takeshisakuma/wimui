@@ -1,9 +1,6 @@
-/* ------------------------------------------------------------------
+﻿/* ------------------------------------------------------------------
    BottomSheet Styles
 ------------------------------------------------------------------ */
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/effects" as effects;
 
 .wim-bottom-sheet-overlay {
     position: fixed;
@@ -31,7 +28,7 @@
     color: var(--text-primary);
     background-color: var(--bg-component, #fff);
     border-radius: 16px 16px 0 0;
-    box-shadow: effects.$shadow-lg;
+    box-shadow: var(--shadow-lg);
     animation: slideUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
 
     &:focus {
@@ -52,7 +49,7 @@
     flex-shrink: 0;
     width: 32px;
     height: 4px;
-    margin: spacings.$spacing-sm auto;
+    margin: var(--spacing-sm) auto;
     background-color: var(--border-strong, #d1d5db);
     border-radius: 2px;
 }
@@ -60,8 +57,8 @@
 .wim-bottom-sheet-header {
     display: flex;
     flex-direction: column;
-    gap: spacings.$spacing-xs;
-    padding: 0 spacings.$spacing-lg spacings.$spacing-lg;
+    gap: var(--spacing-xs);
+    padding: 0 var(--spacing-lg) var(--spacing-lg);
 }
 
 .wim-bottom-sheet-title {
@@ -80,15 +77,15 @@
 
 .wim-bottom-sheet-body {
     flex: 1;
-    padding: spacings.$spacing-lg;
+    padding: var(--spacing-lg);
     overflow-y: auto;
 }
 
 .wim-bottom-sheet-footer {
     display: flex;
-    gap: spacings.$spacing-md;
+    gap: var(--spacing-md);
     justify-content: flex-end;
-    padding: spacings.$spacing-lg;
+    padding: var(--spacing-lg);
     border-top: 1px solid var(--border-subtle, #e5e7eb);
 }
 

@@ -27,5 +27,12 @@ $scale-active: 0.98;
   --shadow-md: #{$shadow-md};
   --shadow-lg: #{$shadow-lg};
   --shadow-inset: #{$shadow-inset};
+  --lift-sm: #{$lift-sm};
+  --lift-md: #{$lift-md};
+  --lift-none: #{$lift-none};
+  --duration-fast: #{$duration-fast};
+  --duration-base: #{$duration-base};
+  --easing-base: #{$easing-base};
   --transition-base: #{$transition-base};
+  --scale-active: #{$scale-active};
 }

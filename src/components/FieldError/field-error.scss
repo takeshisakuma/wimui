@@ -1,6 +1,4 @@
-@use "../../tokens/spacings" as spacings;
-
-.wim-field-error {
+﻿.wim-field-error {
     display: flex;
     align-items: center;
     min-height: 1.5rem; // メッセージがなくても高さが確保されるように（レイアウトシフト防止）

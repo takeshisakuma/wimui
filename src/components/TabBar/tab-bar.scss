@@ -1,9 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-
-@layer component {
+﻿@layer component {
     .wim-tab-bar {
         z-index: 1000;
         width: 100%;
@@ -43,19 +38,19 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            padding: spacings.$spacing-xs;
-            color: colors.$text-deepgray;
+            padding: var(--spacing-xs);
+            color: var(--text-secondary);
             cursor: pointer;
             background: none;
             border: none;
-            transition: all effects.$transition-base;
+            transition: all var(--transition-base);
 
             &:hover {
                 background-color: rgb(0 0 0 / 0.02);
             }
 
             &--active {
-                color: colors.$color-primary;
+                color: var(--color-primary);
 
                 .wim-tab-bar__icon {
                     transform: translateY(-2px);
@@ -69,12 +64,12 @@
             justify-content: center;
             margin-bottom: 2px;
             font-size: 24px;
-            transition: transform effects.$transition-base;
+            transition: transform var(--transition-base);
         }
 
         &__label {
             font-size: 10px;
-            font-weight: typography.$weight-medium;
+            font-weight: var(--font-weight-medium);
             line-height: 1.2;
             white-space: nowrap;
         }
@@ -94,7 +89,7 @@
             line-height: 16px;
             color: white;
             pointer-events: none;
-            background-color: colors.$color-destructive;
+            background-color: var(--color-destructive);
             border-radius: 99px;
             box-shadow: 0 0 0 2px var(--wim-color-bg-primary, #fff);
         }

@@ -1,7 +1,4 @@
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/breakpoints" as breakpoints;
+﻿@use "../../tokens/breakpoints" as breakpoints;
 
 .wim-table-container {
     width: 100%;
@@ -151,11 +148,11 @@
 
             .wim-table__row {
                 display: block;
-                margin-bottom: spacings.$spacing-md;
+                margin-bottom: var(--spacing-md);
                 overflow: hidden; // 角丸からはみ出ないようにする
                 background-color: var(--wim-color-surface, #fff);
                 border: 1px solid var(--wim-color-border, #e0e0e0);
-                border-radius: spacings.$radius-md;
+                border-radius: var(--radius-md);
 
                 &:last-child {
                     margin-bottom: 0;
@@ -168,7 +165,7 @@
                 align-items: center;
                 justify-content: space-between;
                 width: 100%; // 全幅にする
-                padding: spacings.$spacing-md;
+                padding: var(--spacing-md);
                 text-align: right;
                 border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
 
@@ -177,7 +174,7 @@
                 }
 
                 &::before {
-                    margin-right: spacings.$spacing-md;
+                    margin-right: var(--spacing-md);
                     font-weight: 600;
                     color: var(--wim-color-text-secondary, #666);
                     text-align: left;
@@ -189,7 +186,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
-                    padding: spacings.$spacing-sm spacings.$spacing-md;
+                    padding: var(--spacing-sm) var(--spacing-md);
 
                     // カードのタイトル的な位置づけにする場合
                     font-weight: bold;

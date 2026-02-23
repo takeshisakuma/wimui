@@ -1,8 +1,4 @@
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/effects" as effects;
-
-.wim-hover-card {
+﻿.wim-hover-card {
     position: relative;
     display: inline-block;
 }
@@ -13,8 +9,8 @@
     outline: none;
 
     &:focus-visible {
-        border-radius: spacings.$radius-sm;
-        box-shadow: 0 0 0 2px colors.$color-primary;
+        border-radius: var(--radius-sm);
+        box-shadow: 0 0 0 2px var(--color-primary);
     }
 }
 
@@ -23,15 +19,15 @@
     z-index: 1000;
     width: max-content;
     max-width: 300px;
-    padding: spacings.$spacing-md;
+    padding: var(--spacing-md);
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--text-primary);
     pointer-events: auto;
     background-color: var(--bg-component, #fff);
     border: 1px solid var(--wim-color-border-secondary);
-    border-radius: spacings.$radius-md;
-    box-shadow: effects.$shadow-lg;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
     opacity: 0;
     animation: fadeIn 0.2s forwards;
 

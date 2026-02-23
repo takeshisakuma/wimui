@@ -1,9 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-
-@layer component {
+﻿@layer component {
     .wim-breadcrumb {
         line-height: 1.5;
 
@@ -11,7 +6,7 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            row-gap: spacings.$spacing-md;
+            row-gap: var(--spacing-md);
             padding: 0;
             margin: 0;
             list-style: none;
@@ -42,13 +37,13 @@
 
         &__label {
             display: inline-flex;
-            gap: spacings.$spacing-3xs;
+            gap: var(--spacing-3xs);
             align-items: center;
-            color: colors.$text-gray; // Default non-link/previous item color
+            color: var(--text-tertiary); // Default non-link/previous item color
 
             &--current {
-                font-weight: typography.$weight-bold;
-                color: colors.$text-black;
+                font-weight: var(--font-weight-bold);
+                color: var(--text-primary);
             }
 
             &-icon {
@@ -59,8 +54,8 @@
         &__separator {
             display: flex;
             align-items: center;
-            padding: 0 spacings.$spacing-xs;
-            color: colors.$text-gray;
+            padding: 0 var(--spacing-xs);
+            color: var(--text-tertiary);
             user-select: none;
 
             &-icon {
@@ -71,22 +66,22 @@
 
         // Sizes
         &--lg {
-            font-size: typography.$size-large;
+            font-size: var(--font-size-large);
 
             .wim-breadcrumb__separator {
-                padding: 0 spacings.$spacing-sm;
+                padding: 0 var(--spacing-sm);
             }
         }
 
         &--md {
-            font-size: typography.$size-medium;
+            font-size: var(--font-size-medium);
         }
 
         &--sm {
-            font-size: typography.$size-small;
+            font-size: var(--font-size-small);
 
             .wim-breadcrumb__separator {
-                padding: 0 spacings.$spacing-2xs;
+                padding: 0 var(--spacing-2xs);
             }
         }
     }

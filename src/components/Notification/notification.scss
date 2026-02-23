@@ -1,23 +1,18 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/typography" as typography;
-
-.wim-notification {
+﻿.wim-notification {
     position: relative;
     width: 384px;
     max-width: calc(100vw - 32px);
-    padding: spacings.$spacing-lg spacings.$spacing-md;
-    margin-bottom: spacings.$spacing-md;
+    padding: var(--spacing-lg) var(--spacing-md);
+    margin-bottom: var(--spacing-md);
     overflow: hidden;
     background-color: var(--bg-component, #fff);
-    border: 1px solid colors.$color-secondary;
-    border-radius: spacings.$radius-md;
-    box-shadow: effects.$shadow-lg;
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
 
     &-content {
         display: flex;
-        gap: spacings.$spacing-sm;
+        gap: var(--spacing-sm);
         align-items: center;
     }
 
@@ -29,27 +24,27 @@
         display: flex;
         flex: 1;
         flex-direction: column;
-        gap: spacings.$spacing-sm;
+        gap: var(--spacing-sm);
     }
 
     &-title {
         margin-bottom: 0; // Reset margin when centered
-        font-size: typography.$size-medium;
-        font-weight: typography.$weight-medium;
-        line-height: typography.$line-height-normal-jpan;
+        font-size: var(--font-size-medium);
+        font-weight: var(--font-weight-medium);
+        line-height: var(--line-height-normal-jpan);
         color: var(--text-primary);
     }
 
     &-description {
-        font-size: typography.$size-small;
-        line-height: typography.$line-height-tight-latn;
+        font-size: var(--font-size-small);
+        line-height: var(--line-height-tight-latn);
         color: var(--text-secondary);
     }
 
     &-close {
         position: absolute;
-        top: spacings.$spacing-sm;
-        right: spacings.$spacing-sm;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
         display: flex;
         align-items: center;
         padding: 4px;
@@ -57,7 +52,7 @@
         cursor: pointer;
         background: transparent;
         border: none;
-        transition: effects.$transition-base;
+        transition: var(--transition-base);
 
         &:hover {
             color: var(--text-secondary);
@@ -66,18 +61,18 @@
 
     // Variants
     &--success {
-        border-left: 4px solid colors.$color-positive;
+        border-left: 4px solid var(--color-positive);
     }
 
     &--info {
-        border-left: 4px solid colors.$color-informative;
+        border-left: 4px solid var(--color-informative);
     }
 
     &--warning {
-        border-left: 4px solid colors.$color-caution;
+        border-left: 4px solid var(--color-caution);
     }
 
     &--error {
-        border-left: 4px solid colors.$color-destructive;
+        border-left: 4px solid var(--color-destructive);
     }
 }

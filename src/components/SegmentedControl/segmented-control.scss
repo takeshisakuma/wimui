@@ -1,9 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-
-.wim-segmented-control {
+﻿.wim-segmented-control {
     position: relative;
     display: inline-grid;
     grid-auto-columns: 1fr;
@@ -12,7 +7,7 @@
     overflow: hidden;
     user-select: none;
     background-color: rgb(0 0 0 / 0.05);
-    border-radius: spacings.$radius-md;
+    border-radius: var(--radius-md);
 
     &.wim-segmented-control--full-width {
         display: grid;
@@ -26,8 +21,8 @@
         left: 2px;
         z-index: 1;
         background-color: #fff;
-        border-radius: calc(spacings.$radius-md - 2px);
-        box-shadow: effects.$shadow-sm;
+        border-radius: calc(var(--radius-md) - 2px);
+        box-shadow: var(--shadow-sm);
         transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
 
@@ -37,12 +32,12 @@
         position: relative;
         z-index: 2;
         display: flex;
-        gap: spacings.$spacing-xs;
+        gap: var(--spacing-xs);
         align-items: center;
         justify-content: center;
         font: inherit;
-        font-weight: typography.$weight-medium;
-        color: colors.$text-deepgray;
+        font-weight: var(--font-weight-medium);
+        color: var(--text-secondary);
         min-width: 0;
         cursor: pointer;
         background: none;
@@ -50,11 +45,11 @@
         transition: color 0.2s ease;
 
         &:hover {
-            color: colors.$text-black;
+            color: var(--text-primary);
         }
 
         &.wim-segmented-control__item--active {
-            color: colors.$color-primary;
+            color: var(--color-primary);
 
         }
 
@@ -70,36 +65,36 @@
 
     &.wim-segmented-control--sm {
         .wim-segmented-control__item {
-            padding: spacings.$spacing-xs spacings.$spacing-md;
-            font-size: typography.$size-small;
+            padding: var(--spacing-xs) var(--spacing-md);
+            font-size: var(--font-size-small);
 
             &.wim-segmented-control__item--icon-only {
                 width: 30px;
-                padding: spacings.$spacing-xs 0 !important;
+                padding: var(--spacing-xs) 0 !important;
             }
         }
     }
 
     &.wim-segmented-control--md {
         .wim-segmented-control__item {
-            padding: spacings.$spacing-sm spacings.$spacing-lg;
-            font-size: typography.$size-medium;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            font-size: var(--font-size-medium);
 
             &.wim-segmented-control__item--icon-only {
                 width: 36px;
-                padding: spacings.$spacing-sm 0 !important;
+                padding: var(--spacing-sm) 0 !important;
             }
         }
     }
 
     &.wim-segmented-control--lg {
         .wim-segmented-control__item {
-            padding: spacings.$spacing-md spacings.$spacing-xl;
-            font-size: typography.$size-large;
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: var(--font-size-large);
 
             &.wim-segmented-control__item--icon-only {
                 width: 44px;
-                padding: spacings.$spacing-md 0 !important;
+                padding: var(--spacing-md) 0 !important;
             }
         }
     }
@@ -109,6 +104,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        line-height: typography.$line-height-normal-latn;
+        line-height: var(--line-height-normal-latn);
     }
 }

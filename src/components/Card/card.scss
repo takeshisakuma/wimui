@@ -1,29 +1,25 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-
-.wim-card {
+﻿.wim-card {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     overflow: visible;
     color: var(--text-primary);
     background-color: var(--bg-component, #fff);
-    transition: effects.$transition-base;
+    transition: var(--transition-base);
 
     /* バリアント */
     &--elevated {
         border: 1px solid transparent;
-        box-shadow: effects.$shadow-sm;
+        box-shadow: var(--shadow-sm);
 
         &:hover {
-            box-shadow: effects.$shadow-lg;
-            transform: translateY(effects.$lift-sm);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(var(--lift-sm));
         }
     }
 
     &--outline {
-        border: 1px solid colors.$color-secondary;
+        border: 1px solid var(--color-secondary);
     }
 
     &--flat {
@@ -44,7 +40,7 @@
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {
-            padding: spacings.$spacing-lg spacings.$spacing-lg;
+            padding: var(--spacing-lg) var(--spacing-lg);
         }
     }
 
@@ -52,7 +48,7 @@
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {
-            padding: spacings.$spacing-2xl spacings.$spacing-2xl;
+            padding: var(--spacing-2xl) var(--spacing-2xl);
         }
     }
 
@@ -60,7 +56,7 @@
         &>.wim-card__header,
         &>.wim-card__body,
         &>.wim-card__footer {
-            padding: spacings.$spacing-3xl spacings.$spacing-3xl;
+            padding: var(--spacing-3xl) var(--spacing-3xl);
         }
     }
 
@@ -72,15 +68,15 @@
     }
 
     &--radius-sm {
-        border-radius: spacings.$radius-sm;
+        border-radius: var(--radius-sm);
     }
 
     &--radius-md {
-        border-radius: spacings.$radius-md;
+        border-radius: var(--radius-md);
     }
 
     &--radius-lg {
-        border-radius: spacings.$radius-lg;
+        border-radius: var(--radius-lg);
     }
 
     /* 内部要素 */

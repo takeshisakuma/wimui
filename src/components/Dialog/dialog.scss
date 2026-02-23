@@ -1,9 +1,6 @@
-/* ------------------------------------------------------------------
+﻿/* ------------------------------------------------------------------
    Dialog Styles
 ------------------------------------------------------------------ */
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/effects" as effects;
 
 .wim-dialog-overlay {
     position: fixed;
@@ -21,12 +18,12 @@
     width: 90vw;
     max-width: 450px;
     max-height: 85vh;
-    padding: spacings.$spacing-2xl;
+    padding: var(--spacing-2xl);
     overflow: auto;
     color: var(--text-primary);
     background-color: var(--bg-component, #fff);
-    border-radius: spacings.$radius-lg;
-    box-shadow: effects.$shadow-lg;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
 
     &:focus {
         outline: none;
@@ -36,8 +33,8 @@
 .wim-dialog-header {
     display: flex;
     flex-direction: column;
-    gap: spacings.$spacing-xl;
-    margin-bottom: spacings.$spacing-xl;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
     text-align: left;
 }
 
@@ -58,8 +55,8 @@
 .wim-dialog-footer {
     display: flex;
     flex-direction: column-reverse;
-    gap: spacings.$spacing-md;
-    margin-top: spacings.$spacing-2xl;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-2xl);
 
     @media (width >=640px) {
         flex-direction: row;

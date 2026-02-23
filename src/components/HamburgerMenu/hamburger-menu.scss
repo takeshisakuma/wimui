@@ -1,13 +1,7 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../tokens/breakpoints" as breakpoints;
-
-$hamburger-layer-width: 32px !default;
+﻿$hamburger-layer-width: 32px !default;
 $hamburger-layer-height: 2px !default;
 $hamburger-layer-spacing: 6px !default;
-$hamburger-layer-color: colors.$text-black !default;
+$hamburger-layer-color: var(--text-primary) !default;
 $hamburger-layer-border-radius: 4px !default;
 $hamburger-hover-opacity: 0.7 !default;
 $hamburger-active-hover-opacity: 1 !default;
@@ -17,7 +11,7 @@ $hamburger-active-hover-opacity: 1 !default;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: spacings.$spacing-sm;
+        padding: var(--spacing-sm);
         margin: 0;
         overflow: visible;
         font: inherit;

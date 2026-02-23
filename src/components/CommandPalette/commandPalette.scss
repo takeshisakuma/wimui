@@ -1,8 +1,4 @@
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/effects" as effects;
-
-.wim-command-palette-overlay {
+﻿.wim-command-palette-overlay {
     position: fixed;
     inset: 0;
     z-index: 1000;
@@ -28,8 +24,8 @@
     overflow: hidden;
     background: var(--bg-component, #fff);
     border: 1px solid var(--wim-color-border-secondary);
-    border-radius: spacings.$radius-lg;
-    box-shadow: effects.$shadow-lg;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
     animation: wim-command-palette-in 0.2s ease-out;
 
     [data-theme="dark"] & {
@@ -45,7 +41,7 @@
         border-top: none;
         border-right: none;
         border-left: none;
-        border-radius: 0 0 spacings.$radius-lg spacings.$radius-lg;
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     }
 }
 
@@ -64,11 +60,11 @@
 .wim-command-palette-input-wrapper {
     display: flex;
     align-items: center;
-    padding: 0 spacings.$spacing-md;
+    padding: 0 var(--spacing-md);
     border-bottom: 1px solid var(--wim-color-border-secondary);
 
     .wim-icon {
-        margin-right: spacings.$spacing-sm;
+        margin-right: var(--spacing-sm);
         color: var(--text-tertiary);
     }
 }
@@ -89,7 +85,7 @@
 
 .wim-command-palette-list {
     max-height: 400px;
-    padding: spacings.$spacing-xs;
+    padding: var(--spacing-xs);
     overflow-y: auto;
 
     @media (width <=640px) {
@@ -107,7 +103,7 @@
 }
 
 .wim-command-palette-group {
-    margin-bottom: spacings.$spacing-sm;
+    margin-bottom: var(--spacing-sm);
 
     &:last-child {
         margin-bottom: 0;
@@ -115,7 +111,7 @@
 }
 
 .wim-command-palette-group-heading {
-    padding: spacings.$spacing-xs spacings.$spacing-sm;
+    padding: var(--spacing-xs) var(--spacing-sm);
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-tertiary);
@@ -125,12 +121,12 @@
 
 .wim-command-palette-item {
     display: flex;
-    gap: spacings.$spacing-sm;
+    gap: var(--spacing-sm);
     align-items: center;
-    padding: spacings.$spacing-sm spacings.$spacing-sm; // Taller for mobile
+    padding: var(--spacing-sm) var(--spacing-sm); // Taller for mobile
     cursor: pointer;
     user-select: none;
-    border-radius: spacings.$radius-sm;
+    border-radius: var(--radius-sm);
     transition: background 0.1s ease;
 
     &--active {
@@ -173,7 +169,7 @@
 }
 
 .wim-command-palette-empty {
-    padding: spacings.$spacing-xl spacings.$spacing-md;
+    padding: var(--spacing-xl) var(--spacing-md);
     font-size: 0.875rem;
     color: var(--text-tertiary);
     text-align: center;
@@ -181,9 +177,9 @@
 
 .wim-command-palette-footer {
     display: flex;
-    gap: spacings.$spacing-md;
+    gap: var(--spacing-md);
     align-items: center;
-    padding: spacings.$spacing-xs spacings.$spacing-md;
+    padding: var(--spacing-xs) var(--spacing-md);
     background: var(--bg-app);
     border-top: 1px solid var(--wim-color-border-secondary);
 
@@ -214,15 +210,15 @@
 // Add basic styles for the trigger if needed
 .wim-command-palette-trigger {
     display: inline-flex;
-    gap: spacings.$spacing-sm;
+    gap: var(--spacing-sm);
     align-items: center;
-    padding: spacings.$spacing-sm spacings.$spacing-md;
+    padding: var(--spacing-sm) var(--spacing-md);
     color: var(--text-secondary);
     white-space: nowrap;
     cursor: pointer;
     background: var(--bg-component);
     border: 1px solid var(--wim-color-border);
-    border-radius: spacings.$radius-md;
+    border-radius: var(--radius-md);
     transition: all 0.2s;
 
     &:hover {

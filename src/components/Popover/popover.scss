@@ -1,9 +1,6 @@
-/* ------------------------------------------------------------------
+﻿/* ------------------------------------------------------------------
    Popover Styles
 ------------------------------------------------------------------ */
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/effects" as effects;
 
 .wim-popover {
     position: relative;
@@ -25,19 +22,19 @@
     width: max-content;
     min-width: 200px;
     max-width: calc(100vw - 20px);
-    padding: spacings.$spacing-md;
+    padding: var(--spacing-md);
     margin: 0;
     color: var(--text-primary);
     background-color: var(--bg-component, #fff);
-    border: 1px solid colors.$color-secondary;
-    border-radius: spacings.$radius-md;
-    box-shadow: effects.$shadow-lg;
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
 }
 
 .wim-popover-close {
     position: absolute;
-    top: spacings.$spacing-sm;
-    right: spacings.$spacing-sm;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
     padding: 0;
     line-height: 1;
     color: var(--text-secondary);

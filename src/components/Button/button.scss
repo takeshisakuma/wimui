@@ -1,10 +1,4 @@
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/typography" as typography;
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/effects" as effects;
-@use "../../lang" as lang;
-
-@layer component {
+﻿@layer component {
   .wim-button {
     position: relative;
     box-sizing: border-box;
@@ -13,24 +7,24 @@
     place-items: center;
     padding: 0;
     font: inherit;
-    font-weight: typography.$weight-medium;
+    font-weight: var(--font-weight-medium);
     line-height: 1.2;
     color: inherit;
     cursor: pointer;
     background-color: transparent;
     border: 2px solid transparent;
-    border-radius: spacings.$radius-md;
+    border-radius: var(--radius-md);
     opacity: 1;
-    transition: effects.$transition-base;
+    transition: var(--transition-base);
 
     &:active:not(:disabled) {
-      transform: scale(effects.$scale-active);
+      transform: scale(var(--scale-active));
     }
 
     &__inner {
       display: flex;
       grid-area: stack;
-      gap: spacings.$spacing-xs;
+      gap: var(--spacing-xs);
       align-items: center;
       justify-content: center;
       width: 100%;
@@ -63,99 +57,99 @@
     &--icon-only {
       width: auto;
       height: auto;
-      padding: spacings.$spacing-sm !important;
+      padding: var(--spacing-sm) !important;
     }
 
     &--lg {
-      min-width: calc(typography.$size-large * 1 + 2 * spacings.$spacing-xl);
-      min-height: calc(typography.$size-large * 1 + 2 * spacings.$spacing-xl);
-      padding: spacings.$spacing-xl spacings.$spacing-3xl;
-      font-size: typography.$size-large;
+      min-width: calc(var(--font-size-large) * 1 + 2 * var(--spacing-xl));
+      min-height: calc(var(--font-size-large) * 1 + 2 * var(--spacing-xl));
+      padding: var(--spacing-xl) var(--spacing-3xl);
+      font-size: var(--font-size-large);
     }
 
     &--md {
-      min-width: calc(typography.$size-medium * 1 + 2 * spacings.$spacing-lg);
-      min-height: calc(typography.$size-medium * 1 + 2 * spacings.$spacing-lg);
-      padding: spacings.$spacing-lg spacings.$spacing-2xl;
-      font-size: typography.$size-medium;
+      min-width: calc(var(--font-size-medium) * 1 + 2 * var(--spacing-lg));
+      min-height: calc(var(--font-size-medium) * 1 + 2 * var(--spacing-lg));
+      padding: var(--spacing-lg) var(--spacing-2xl);
+      font-size: var(--font-size-medium);
     }
 
     &--sm {
-      min-width: calc(typography.$size-small * 1 + 2 * spacings.$spacing-sm);
-      min-height: calc(typography.$size-small * 1 + 2 * spacings.$spacing-sm);
-      padding: spacings.$spacing-sm spacings.$spacing-lg;
-      font-size: typography.$size-small;
+      min-width: calc(var(--font-size-small) * 1 + 2 * var(--spacing-sm));
+      min-height: calc(var(--font-size-small) * 1 + 2 * var(--spacing-sm));
+      padding: var(--spacing-sm) var(--spacing-lg);
+      font-size: var(--font-size-small);
     }
 
     &--primary {
-      box-shadow: effects.$shadow-sm;
+      box-shadow: var(--shadow-sm);
 
       &.wim-button--default {
-        color: colors.$color-text-on-primary;
-        background-color: colors.$color-primary;
+        color: var(--color-text-on-primary);
+        background-color: var(--color-primary);
       }
 
       &.wim-button--destructive {
-        color: colors.$color-text-on-destructive;
-        background-color: colors.$color-destructive;
+        color: var(--color-text-on-destructive);
+        background-color: var(--color-destructive);
       }
 
       &.wim-button--positive {
-        color: colors.$color-text-on-positive;
-        background-color: colors.$color-positive;
+        color: var(--color-text-on-positive);
+        background-color: var(--color-positive);
       }
 
       &:disabled {
-        color: colors.$color-text-on-disabled;
-        background-color: colors.$color-disabled;
+        color: var(--color-text-on-disabled);
+        background-color: var(--color-disabled);
         border-color: transparent;
         box-shadow: none;
       }
 
       &:hover:not(:disabled) {
-        box-shadow: effects.$shadow-lg;
-        transform: translateY(effects.$lift-md);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(var(--lift-md));
       }
 
       &:active:not(:disabled) {
-        box-shadow: effects.$shadow-xs;
-        transform: translateY(effects.$lift-none);
+        box-shadow: var(--shadow-xs);
+        transform: translateY(var(--lift-none));
       }
     }
 
     &--secondary {
       &.wim-button--default {
-        color: colors.$color-primary;
-        background-color: colors.$color-bg-primary;
-        border-color: colors.$color-primary;
+        color: var(--color-primary);
+        background-color: var(--wim-color-bg-primary);
+        border-color: var(--color-primary);
       }
 
       &.wim-button--destructive {
-        color: colors.$color-destructive;
-        background-color: colors.$color-bg-primary;
-        border-color: colors.$color-destructive;
+        color: var(--color-destructive);
+        background-color: var(--wim-color-bg-primary);
+        border-color: var(--color-destructive);
       }
 
       &.wim-button--positive {
-        color: colors.$color-positive;
-        background-color: colors.$color-bg-primary;
-        border-color: colors.$color-positive;
+        color: var(--color-positive);
+        background-color: var(--wim-color-bg-primary);
+        border-color: var(--color-positive);
       }
 
       &:disabled {
-        color: colors.$color-disabled;
+        color: var(--color-disabled);
         background-color: transparent;
-        border-color: colors.$color-disabled;
+        border-color: var(--color-disabled);
       }
 
       &:hover:not(:disabled) {
-        box-shadow: effects.$shadow-md;
-        transform: translateY(effects.$lift-sm);
+        box-shadow: var(--shadow-md);
+        transform: translateY(var(--lift-sm));
       }
 
       &:active:not(:disabled) {
-        box-shadow: effects.$shadow-inset;
-        transform: translateY(effects.$lift-none);
+        box-shadow: var(--shadow-inset);
+        transform: translateY(var(--lift-none));
       }
     }
 
@@ -164,19 +158,19 @@
       border-color: rgb(0 0 0 / 0.08);
 
       &.wim-button--default {
-        color: colors.$color-primary;
+        color: var(--color-primary);
       }
 
       &.wim-button--destructive {
-        color: colors.$color-destructive;
+        color: var(--color-destructive);
       }
 
       &.wim-button--positive {
-        color: colors.$color-positive;
+        color: var(--color-positive);
       }
 
       &:disabled {
-        color: colors.$color-disabled;
+        color: var(--color-disabled);
         background-color: transparent;
         border-color: transparent;
       }
@@ -184,15 +178,15 @@
       &:hover:not(:disabled) {
         background-color: rgb(0 0 0 / 0.06);
         border-color: rgb(0 0 0 / 0.15);
-        box-shadow: effects.$shadow-sm;
-        transform: translateY(effects.$lift-sm);
+        box-shadow: var(--shadow-sm);
+        transform: translateY(var(--lift-sm));
       }
 
       &:active:not(:disabled) {
         background-color: rgb(0 0 0 / 0.12);
         border-color: rgb(0 0 0 / 0.25);
-        box-shadow: effects.$shadow-inset;
-        transform: translateY(effects.$lift-none);
+        box-shadow: var(--shadow-inset);
+        transform: translateY(var(--lift-none));
       }
     }
 

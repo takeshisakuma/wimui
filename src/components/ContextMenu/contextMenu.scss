@@ -1,9 +1,6 @@
-/* ------------------------------------------------------------------
+﻿/* ------------------------------------------------------------------
    ContextMenu Styles
 ------------------------------------------------------------------ */
-@use "../../tokens/spacings" as spacings;
-@use "../../tokens/semantic-colors" as colors;
-@use "../../tokens/effects" as effects;
 
 .wim-context-menu-container {
     display: inline-block;
@@ -13,18 +10,18 @@
     position: fixed;
     z-index: 9999;
     min-width: 200px;
-    padding: spacings.$spacing-xs 0;
+    padding: var(--spacing-xs) 0;
     background-color: var(--bg-component, #fff);
-    border: 1px solid colors.$color-secondary;
-    border-radius: spacings.$radius-md;
-    box-shadow: effects.$shadow-lg;
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
     animation: fadeIn 0.15s ease-in-out;
 }
 
 .wim-context-menu-item {
     display: flex;
     align-items: center;
-    padding: spacings.$spacing-sm spacings.$spacing-md;
+    padding: var(--spacing-sm) var(--spacing-md);
     font-size: 0.9rem;
     color: var(--text-primary);
     cursor: pointer;
@@ -36,7 +33,7 @@
     }
 
     &:focus {
-        outline: 2px solid colors.$color-primary;
+        outline: 2px solid var(--color-primary);
         outline-offset: -2px;
     }
 
@@ -58,7 +55,7 @@
     &__icon {
         display: flex;
         align-items: center;
-        margin-right: spacings.$spacing-sm;
+        margin-right: var(--spacing-sm);
 
         svg {
             width: 16px;
@@ -73,13 +70,13 @@
 
 .wim-context-menu-divider {
     height: 1px;
-    margin: spacings.$spacing-xs 0;
-    background-color: colors.$color-secondary;
+    margin: var(--spacing-xs) 0;
+    background-color: var(--color-secondary);
 }
 
 .wim-context-menu-group {
     &__title {
-        padding: spacings.$spacing-sm spacings.$spacing-md;
+        padding: var(--spacing-sm) var(--spacing-md);
         font-size: 0.75rem;
         font-weight: 600;
         color: var(--text-secondary);
