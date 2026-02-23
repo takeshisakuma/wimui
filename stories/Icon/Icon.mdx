@@ -35,6 +35,107 @@ import { Icon } from "@/components/Icon/Icon";
 
 <Canvas of={IconStories.MediumExternalLinkIcon} />
 
+## Icon のアニメーションと Loader コンポーネントの使い分け
+
+Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定すると、**360度回転アニメーション（`wim-rotate`）**が自動的に適用されます。一方で、別途 **Loader コンポーネント** にも読み込み中を示すアニメーションがあります。これらは用途が異なるため、適切に使い分けてください。
+
+### Icon のアニメーション（`LoadingIcon` / `SpinnerIcon`）
+
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>アニメーション</strong></td>
+      <td>単一のアイコンが無限に回転する（<code>rotate 360deg</code>）</td>
+    </tr>
+    <tr>
+      <td><strong>用途</strong></td>
+      <td>ボタン内、入力フィールド、テキストの横など <strong>インライン（行内）</strong> で「処理中」を示す場合</td>
+    </tr>
+    <tr>
+      <td><strong>特徴</strong></td>
+      <td>既存の UI レイアウトに自然に溶け込むサイズ（<code>small</code> / <code>medium</code> / <code>large</code>）で表示できる</td>
+    </tr>
+    <tr>
+      <td><strong>例</strong></td>
+      <td>ボタン送信中のスピナー、検索実行中のインジケーター、データ更新中のアイコン</td>
+    </tr>
+  </tbody>
+</table>
+
+### Loader コンポーネントのアニメーション
+
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>アニメーション</strong></td>
+      <td>複数の要素（3つのバーやドットなど）が時間差で動く波形アニメーション（<code>bars</code> / <code>dots</code> / <code>pulse</code>）</td>
+    </tr>
+    <tr>
+      <td><strong>用途</strong></td>
+      <td>ページ全体やセクション単位で <strong>コンテンツの読み込み待ち</strong> を表示する場合</td>
+    </tr>
+    <tr>
+      <td><strong>特徴</strong></td>
+      <td>視覚的なバリエーションが豊富で、独立した読み込みインジケーターとして存在感がある。<code>sm</code> / <code>md</code> / <code>lg</code> / <code>xl</code> のサイズと複数のカラーに対応</td>
+    </tr>
+    <tr>
+      <td><strong>例</strong></td>
+      <td>ページ初期ロード、一覧データの取得中、コンテンツ切り替え時の表示</td>
+    </tr>
+  </tbody>
+</table>
+
+### 早見表
+
+<table>
+  <thead>
+    <tr>
+      <th>観点</th>
+      <th>Icon（<code>LoadingIcon</code> / <code>SpinnerIcon</code>）</th>
+      <th>Loader コンポーネント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>アニメーション形式</strong></td>
+      <td>回転（rotate）</td>
+      <td>波形（bars / dots / pulse）</td>
+    </tr>
+    <tr>
+      <td><strong>表示場所</strong></td>
+      <td>インライン（テキストやボタンの横）</td>
+      <td>ページ・セクションの中央</td>
+    </tr>
+    <tr>
+      <td><strong>要素数</strong></td>
+      <td>単一アイコン</td>
+      <td>複数要素（3つのバー/ドット）</td>
+    </tr>
+    <tr>
+      <td><strong>主な用途</strong></td>
+      <td>アクション実行中のフィードバック</td>
+      <td>コンテンツ読み込み待ちの表示</td>
+    </tr>
+    <tr>
+      <td><strong>サイズ</strong></td>
+      <td>small / medium / large</td>
+      <td>sm / md / lg / xl</td>
+    </tr>
+  </tbody>
+</table>
+
 ## Props
 
 <Controls />
@@ -44,27 +145,15 @@ import { Icon } from "@/components/Icon/Icon";
 ### 線 (Outline)
 主に「控えめな表現」「ナビゲーション」「入力補助」に使用します。
 
+#### ナビゲーション
+ページ遷移や方向を示すアイコン。
+
 <IconGallery>
-  <IconItem name="LoadingIcon">
-    <Icon name="LoadingIcon" />
+  <IconItem name="HomeIcon">
+    <Icon name="HomeIcon" />
   </IconItem>
-  <IconItem name="SpinnerIcon">
-    <Icon name="SpinnerIcon" />
-  </IconItem>
-  <IconItem name="ExternalLinkIcon">
-    <Icon name="ExternalLinkIcon" />
-  </IconItem>
-  <IconItem name="CloseIcon">
-    <Icon name="CloseIcon" />
-  </IconItem>
-  <IconItem name="SearchIcon">
-    <Icon name="SearchIcon" />
-  </IconItem>
-  <IconItem name="EyeIcon">
-    <Icon name="EyeIcon" />
-  </IconItem>
-  <IconItem name="EyeOffIcon">
-    <Icon name="EyeOffIcon" />
+  <IconItem name="ChevronUpIcon">
+    <Icon name="ChevronUpIcon" />
   </IconItem>
   <IconItem name="ChevronDownIcon">
     <Icon name="ChevronDownIcon" />
@@ -75,45 +164,84 @@ import { Icon } from "@/components/Icon/Icon";
   <IconItem name="ChevronLeftIcon">
     <Icon name="ChevronLeftIcon" />
   </IconItem>
-  <IconItem name="VolumeIcon">
-    <Icon name="VolumeIcon" />
+  <IconItem name="ExternalLinkIcon">
+    <Icon name="ExternalLinkIcon" />
   </IconItem>
-  <IconItem name="MuteIcon">
-    <Icon name="MuteIcon" />
+</IconGallery>
+
+#### アクション
+ユーザーの操作・アクションを表すアイコン。
+
+<IconGallery>
+  <IconItem name="EditIcon">
+    <Icon name="EditIcon" />
+  </IconItem>
+  <IconItem name="TrashIcon">
+    <Icon name="TrashIcon" />
   </IconItem>
   <IconItem name="CopyIcon">
     <Icon name="CopyIcon" />
   </IconItem>
-  <IconItem name="CheckIcon">
-    <Icon name="CheckIcon" />
-  </IconItem>
   <IconItem name="UploadIcon">
     <Icon name="UploadIcon" />
   </IconItem>
-  <IconItem name="MaximizeIcon">
-    <Icon name="MaximizeIcon" />
+  <IconItem name="DownloadIcon">
+    <Icon name="DownloadIcon" />
   </IconItem>
-  <IconItem name="MinimizeIcon">
-    <Icon name="MinimizeIcon" />
+  <IconItem name="ShareIcon">
+    <Icon name="ShareIcon" />
   </IconItem>
-  <IconItem name="StarIcon">
-    <Icon name="StarIcon" />
+  <IconItem name="RefreshIcon">
+    <Icon name="RefreshIcon" />
   </IconItem>
-  <IconItem name="HomeIcon">
-    <Icon name="HomeIcon" />
+  <IconItem name="PlusIcon">
+    <Icon name="PlusIcon" />
   </IconItem>
-  <IconItem name="ProjectIcon">
-    <Icon name="ProjectIcon" />
+  <IconItem name="MinusIcon">
+    <Icon name="MinusIcon" />
   </IconItem>
-  <IconItem name="ChartIcon">
-    <Icon name="ChartIcon" />
+  <IconItem name="SearchIcon">
+    <Icon name="SearchIcon" />
   </IconItem>
-  <IconItem name="SettingsIcon">
-    <Icon name="SettingsIcon" />
+  <IconItem name="FilterIcon">
+    <Icon name="FilterIcon" />
   </IconItem>
-  <IconItem name="BellIcon">
-    <Icon name="BellIcon" />
+</IconGallery>
+
+#### ステータス・フィードバック
+状態表示や通知を示すアイコン。
+
+<IconGallery>
+  <IconItem name="LoadingIcon">
+    <Icon name="LoadingIcon" />
   </IconItem>
+  <IconItem name="SpinnerIcon">
+    <Icon name="SpinnerIcon" />
+  </IconItem>
+  <IconItem name="CheckIcon">
+    <Icon name="CheckIcon" />
+  </IconItem>
+  <IconItem name="CheckCircleIcon">
+    <Icon name="CheckCircleIcon" />
+  </IconItem>
+  <IconItem name="InfoCircleIcon">
+    <Icon name="InfoCircleIcon" />
+  </IconItem>
+  <IconItem name="AlertCircleIcon">
+    <Icon name="AlertCircleIcon" />
+  </IconItem>
+  <IconItem name="HelpCircleIcon">
+    <Icon name="HelpCircleIcon" />
+  </IconItem>
+  <IconItem name="HourglassIcon">
+    <Icon name="HourglassIcon" />
+  </IconItem>
+</IconGallery>
+
+#### ファイル・メディア
+ファイル種別やメディアを表すアイコン。
+
+<IconGallery>
   <IconItem name="PdfIcon">
     <Icon name="PdfIcon" />
   </IconItem>
@@ -126,33 +254,12 @@ import { Icon } from "@/components/Icon/Icon";
   <IconItem name="VideoIcon">
     <Icon name="VideoIcon" />
   </IconItem>
-  <IconItem name="EmailIcon">
-    <Icon name="EmailIcon" />
-  </IconItem>
-  <IconItem name="PhoneIcon">
-    <Icon name="PhoneIcon" />
-  </IconItem>
-  <IconItem name="PlusIcon">
-    <Icon name="PlusIcon" />
-  </IconItem>
-  <IconItem name="MinusIcon">
-    <Icon name="MinusIcon" />
-  </IconItem>
-  <IconItem name="EditIcon">
-    <Icon name="EditIcon" />
-  </IconItem>
-  <IconItem name="TrashIcon">
-    <Icon name="TrashIcon" />
-  </IconItem>
-  <IconItem name="DownloadIcon">
-    <Icon name="DownloadIcon" />
-  </IconItem>
-  <IconItem name="RefreshIcon">
-    <Icon name="RefreshIcon" />
-  </IconItem>
-  <IconItem name="ShareIcon">
-    <Icon name="ShareIcon" />
-  </IconItem>
+</IconGallery>
+
+#### ユーザー・認証
+ユーザー管理やログインに関するアイコン。
+
+<IconGallery>
   <IconItem name="UserIcon">
     <Icon name="UserIcon" />
   </IconItem>
@@ -162,20 +269,38 @@ import { Icon } from "@/components/Icon/Icon";
   <IconItem name="LogOutIcon">
     <Icon name="LogOutIcon" />
   </IconItem>
-  <IconItem name="InfoCircleIcon">
-    <Icon name="InfoCircleIcon" />
+</IconGallery>
+
+#### コミュニケーション
+通知やメッセージに関するアイコン。
+
+<IconGallery>
+  <IconItem name="EmailIcon">
+    <Icon name="EmailIcon" />
   </IconItem>
-  <IconItem name="AlertCircleIcon">
-    <Icon name="AlertCircleIcon" />
+  <IconItem name="PhoneIcon">
+    <Icon name="PhoneIcon" />
   </IconItem>
-  <IconItem name="HelpCircleIcon">
-    <Icon name="HelpCircleIcon" />
+  <IconItem name="BellIcon">
+    <Icon name="BellIcon" />
   </IconItem>
-  <IconItem name="CalendarIcon">
-    <Icon name="CalendarIcon" />
+</IconGallery>
+
+#### 表示切替・デバイス
+表示モードやデバイスに関するアイコン。
+
+<IconGallery>
+  <IconItem name="EyeIcon">
+    <Icon name="EyeIcon" />
   </IconItem>
-  <IconItem name="ClockIcon">
-    <Icon name="ClockIcon" />
+  <IconItem name="EyeOffIcon">
+    <Icon name="EyeOffIcon" />
+  </IconItem>
+  <IconItem name="MaximizeIcon">
+    <Icon name="MaximizeIcon" />
+  </IconItem>
+  <IconItem name="MinimizeIcon">
+    <Icon name="MinimizeIcon" />
   </IconItem>
   <IconItem name="SunIcon">
     <Icon name="SunIcon" />
@@ -183,14 +308,71 @@ import { Icon } from "@/components/Icon/Icon";
   <IconItem name="MoonIcon">
     <Icon name="MoonIcon" />
   </IconItem>
+  <IconItem name="MonitorIcon">
+    <Icon name="MonitorIcon" />
+  </IconItem>
+  <IconItem name="SmartphoneIcon">
+    <Icon name="SmartphoneIcon" />
+  </IconItem>
+</IconGallery>
+
+#### メディアコントロール
+音声・動画の再生操作に関するアイコン。
+
+<IconGallery>
+  <IconItem name="VolumeIcon">
+    <Icon name="VolumeIcon" />
+  </IconItem>
+  <IconItem name="MuteIcon">
+    <Icon name="MuteIcon" />
+  </IconItem>
+  <IconItem name="SkipBackIcon">
+    <Icon name="SkipBackIcon" />
+  </IconItem>
+  <IconItem name="SkipForwardIcon">
+    <Icon name="SkipForwardIcon" />
+  </IconItem>
+  <IconItem name="ShuffleIcon">
+    <Icon name="ShuffleIcon" />
+  </IconItem>
+  <IconItem name="RepeatIcon">
+    <Icon name="RepeatIcon" />
+  </IconItem>
+</IconGallery>
+
+#### その他 UI
+汎用的な UI 要素として使うアイコン。
+
+<IconGallery>
+  <IconItem name="CloseIcon">
+    <Icon name="CloseIcon" />
+  </IconItem>
+  <IconItem name="CloseSmallIcon">
+    <Icon name="CloseSmallIcon" />
+  </IconItem>
+  <IconItem name="StarIcon">
+    <Icon name="StarIcon" />
+  </IconItem>
+  <IconItem name="ProjectIcon">
+    <Icon name="ProjectIcon" />
+  </IconItem>
+  <IconItem name="ChartIcon">
+    <Icon name="ChartIcon" />
+  </IconItem>
+  <IconItem name="SettingsIcon">
+    <Icon name="SettingsIcon" />
+  </IconItem>
+  <IconItem name="CalendarIcon">
+    <Icon name="CalendarIcon" />
+  </IconItem>
+  <IconItem name="ClockIcon">
+    <Icon name="ClockIcon" />
+  </IconItem>
   <IconItem name="MoreHorizontalIcon">
     <Icon name="MoreHorizontalIcon" />
   </IconItem>
   <IconItem name="MoreVerticalIcon">
     <Icon name="MoreVerticalIcon" />
-  </IconItem>
-  <IconItem name="FilterIcon">
-    <Icon name="FilterIcon" />
   </IconItem>
   <IconItem name="ThumbUpIcon">
     <Icon name="ThumbUpIcon" />
