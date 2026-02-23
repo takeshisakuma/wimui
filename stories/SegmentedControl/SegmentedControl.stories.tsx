@@ -37,7 +37,7 @@ export const Small: Story = {
     },
     decorators: [
         (Story) => (
-            <div style={{ width: "600px" }}>
+            <div style={{ width: "100%", maxWidth: "600px" }}>
                 <Story />
             </div>
         ),
@@ -62,7 +62,7 @@ export const Medium: Story = {
     },
     decorators: [
         (Story) => (
-            <div style={{ width: "600px" }}>
+            <div style={{ width: "100%", maxWidth: "600px" }}>
                 <Story />
             </div>
         ),
@@ -87,7 +87,7 @@ export const Large: Story = {
     },
     decorators: [
         (Story) => (
-            <div style={{ width: "600px" }}>
+            <div style={{ width: "100%", maxWidth: "600px" }}>
                 <Story />
             </div>
         ),
@@ -173,3 +173,32 @@ export const IconOnly: Story = {
     },
 };
 
+export const LongLabel: Story = {
+    args: {
+        size: "medium",
+        fullWidth: true,
+    },
+    decorators: [
+        (Story) => (
+            <div style={{ width: "100%", maxWidth: "600px" }}>
+                <Story />
+            </div>
+        ),
+    ],
+    render: (args) => {
+        const [value, setValue] = useState("long1");
+        const longOptions = [
+            { label: "This is a very long text label that might cause overflow", value: "long1" },
+            { label: "Another long text variant", value: "long2" },
+            { label: "Short", value: "short" },
+        ];
+        return (
+            <SegmentedControl
+                {...args}
+                options={longOptions}
+                value={value}
+                onChange={setValue}
+            />
+        );
+    },
+};

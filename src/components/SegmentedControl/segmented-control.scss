@@ -43,7 +43,7 @@
         font: inherit;
         font-weight: typography.$weight-medium;
         color: colors.$text-deepgray;
-        white-space: nowrap;
+        min-width: 0;
         cursor: pointer;
         background: none;
         border: none;
@@ -106,6 +106,9 @@
 
     .wim-segmented-control__label {
         display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         line-height: typography.$line-height-normal-latn;
     }
 }
