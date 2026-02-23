@@ -9,6 +9,9 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+        border: 1px solid var(--wim-color-border-secondary, #e2e8f0);
+        border-radius: var(--radius-md, 4px);
+        overflow: hidden;
 
         &--vertical {
             flex-direction: row;
@@ -20,9 +23,10 @@
             .wim-tabs__list {
                 flex-direction: column;
                 width: 200px;
-                background-color: rgb(0 0 0 / 0.03);
-                border-right: 2px solid var(--wim-color-border-secondary);
+                background-color: rgba(59, 130, 246, 0.04);
+                border-right: 1px solid var(--wim-color-border-secondary, #e2e8f0);
                 border-bottom: none;
+                border-radius: 0;
                 mask-image: linear-gradient(to bottom, transparent, black 15px, black calc(100% - 15px), transparent);
 
                 @include breakpoints.down(md) {
@@ -30,7 +34,7 @@
                     width: 100%;
                     overflow-x: auto;
                     border-right: none;
-                    border-bottom: 2px solid var(--wim-color-border-secondary);
+                    border-bottom: 1px solid var(--wim-color-border-secondary, #e2e8f0);
                     mask-image: linear-gradient(to right, transparent, black 15px, black calc(100% - 15px), transparent);
                 }
             }
@@ -39,22 +43,22 @@
                 justify-content: flex-start;
                 width: 100%;
                 padding: spacings.$spacing-md spacings.$spacing-lg;
-                margin-right: -2px;
+                margin-right: -1px;
                 text-align: left;
                 white-space: normal;
                 border-right: 2px solid transparent;
                 border-bottom: none;
-                border-radius: spacings.$radius-sm 0 0 spacings.$radius-sm;
+                border-radius: 0;
 
                 @include breakpoints.down(md) {
                     justify-content: center;
                     width: auto;
                     margin-right: 0;
-                    margin-bottom: -2px;
+                    margin-bottom: -1px;
                     white-space: nowrap;
                     border-right: none;
                     border-bottom: 2px solid transparent;
-                    border-radius: spacings.$radius-sm spacings.$radius-sm 0 0;
+                    border-radius: 0;
 
                     &--active {
                         border-right-color: transparent;
@@ -64,7 +68,7 @@
 
             .wim-tabs__content {
                 flex-grow: 1;
-                padding: spacings.$spacing-md spacings.$spacing-xl;
+                padding: 1rem;
             }
         }
 
@@ -81,9 +85,9 @@
 
             /* IE and Edge */
             scrollbar-width: none;
-            background-color: rgb(0 0 0 / 0.03);
-            border-bottom: 2px solid var(--wim-color-border-secondary);
-            border-radius: spacings.$radius-md spacings.$radius-md 0 0;
+            background-color: rgba(59, 130, 246, 0.04);
+            border-bottom: 1px solid var(--wim-color-border-secondary, #e2e8f0);
+            border-radius: 0;
 
             /* Firefox */
 
@@ -118,21 +122,21 @@
             align-items: center;
             justify-content: center;
             padding: spacings.$spacing-sm spacings.$spacing-lg;
-            margin-bottom: -2px;
+            margin-bottom: -1px;
             font-size: typography.$size-medium;
             font-weight: typography.$weight-medium;
             color: colors.$text-deepgray;
             white-space: nowrap;
             cursor: pointer;
-            background-color: rgb(0 0 0 / 0.02);
+            background-color: transparent;
             border: none;
             border-bottom: 2px solid transparent;
-            border-radius: spacings.$radius-sm spacings.$radius-sm 0 0;
+            border-radius: 0;
             transition: all effects.$transition-base;
 
             &:hover:not(:disabled) {
-                color: colors.$text-black;
-                background-color: rgb(0 0 0 / 0.08);
+                color: var(--wim-color-primary, #3b82f6);
+                background-color: rgba(59, 130, 246, 0.08);
             }
 
             &:disabled {
@@ -142,21 +146,21 @@
             }
 
             &--active {
-                color: colors.$color-primary;
-                background-color: #fff;
+                font-weight: typography.$weight-bold;
+                color: var(--wim-color-primary, #3b82f6);
+                background-color: rgba(59, 130, 246, 0.08);
             }
 
             &:focus-visible {
                 z-index: 1;
-                outline: none;
-                border-radius: spacings.$radius-sm;
-                box-shadow: 0 0 0 2px colors.$color-focus-outline;
+                outline: 2px solid var(--wim-color-primary, #3b82f6);
+                outline-offset: -2px;
             }
         }
 
         &__content {
             flex-grow: 1;
-            padding: spacings.$spacing-md 0;
+            padding: 1rem;
 
             &:focus-visible {
                 outline: none;
