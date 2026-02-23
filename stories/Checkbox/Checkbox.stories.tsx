@@ -67,4 +67,8 @@ export const Controlled = () => {
     );
 };
 
-
+export const LongLabel: Story = {
+    args: {
+        label: "This is a very long label that might wrap to multiple lines depending on the container width.",
+    },
+};

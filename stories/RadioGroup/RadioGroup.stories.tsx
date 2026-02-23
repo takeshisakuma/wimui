@@ -66,4 +66,12 @@ export const Controlled = () => {
     );
 };
 
-
+export const LongLabel: Story = {
+    args: {
+        options: [
+            { label: "This is a very long label that might wrap to multiple lines depending on the container width.", value: "long1" },
+            { label: "Another long label that will wrap if the container is narrow enough to force it.", value: "long2" },
+        ],
+        name: "long-label-group",
+    },
+};
