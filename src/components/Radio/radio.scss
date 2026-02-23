@@ -5,8 +5,9 @@
 .wim-radio-wrapper {
     position: relative;
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     line-height: 1.5;
+    padding: 2px 0; // Prevent clipping of ascenders/descenders
     cursor: pointer;
     user-select: none;
 
@@ -35,6 +36,7 @@
     justify-content: center;
     width: 20px;
     height: 20px;
+    margin-top: 2px; // Align with the center of the first line of text
     margin-right: spacings.$spacing-sm;
     background-color: var(--bg-component);
     border: 2px solid var(--text-tertiary);
