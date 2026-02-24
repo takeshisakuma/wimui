@@ -84,56 +84,57 @@
     text-box-trim: trim-both;
   }
 
-  /* ドキュメント用コンテナの共通スタイル */
-  .wim-docs-container {
-    padding: 24px;
-    background-color: var(--bg-app);
-    color: var(--text-primary);
-    border-radius: 12px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color: var(--text-primary);
-      margin-top: 1.5em;
-      margin-bottom: 0.5em;
+/* ドキュメント用コンテナの共通スタイル (Storybookのデフォルトスタイルを上書きするためレイヤー外で定義) */
+.wim-docs-container {
+  padding: 24px;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  border-radius: 12px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
-      &:first-child {
-        margin-top: 0;
-      }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-primary) !important;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    color: var(--text-secondary) !important;
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+    margin: 16px 0;
+    border-collapse: collapse;
+    color: var(--text-primary) !important;
+
+    th,
+    td {
+      padding: 12px;
+      border: 1px solid var(--wim-color-border);
+      background-color: var(--bg-component);
+      color: var(--text-primary) !important;
     }
 
-    p {
-      color: var(--text-secondary);
-      line-height: 1.6;
+    th {
+      font-weight: 600;
+      background-color: var(--wim-color-bg-secondary);
     }
+  }
 
-    table {
-      width: 100%;
-      margin: 16px 0;
-      border-collapse: collapse;
-      color: var(--text-primary);
-
-      th,
-      td {
-        padding: 12px;
-        border: 1px solid var(--wim-color-border);
-        background-color: var(--bg-component);
-        color: var(--text-primary);
-      }
-
-      th {
-        font-weight: 600;
-        background-color: var(--wim-color-bg-secondary);
-      }
-    }
-
-    a {
-      color: var(--wim-color-primary, #0052cc);
-    }
+  a {
+    color: var(--wim-color-primary, #0052cc);
   }
 }
