@@ -28,7 +28,7 @@ export const StatusIcon = ({ status }) => {
   <h1><T k="dashboard_title" /></h1>
   <p><T k="dashboard_desc" /></p>
 
-  <div style={{ padding: "16px 24px", background: "var(--wim-color-bg-secondary, #f4f4f7)", border: "1px solid var(--wim-color-border)", borderRadius: "12px", marginBottom: "32px", display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
+  <div style={{ padding: "16px 24px", background: "var(--wim-color-bg-secondary, #f4f4f7)", border: "1px solid var(--wim-color-border)", borderRadius: "12px", marginBottom: "32px", display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap', color: "var(--text-primary)" }}>
     <h3 style={{ margin: 0, fontSize: '16px' }}><T k="guide_tokens_title" />:</h3>
     <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', fontSize: '14px', fontWeight: 500 }}>
       <a href="?path=/docs/guides-colors--docs">Colors</a>
@@ -40,7 +40,7 @@ export const StatusIcon = ({ status }) => {
 
   <h2><T k="dashboard_progress" /></h2>
 
-  <div style={{ display: "flex", gap: "24px", marginBottom: "16px", fontSize: "14px", color: "var(--wim-color-text-secondary, var(--text-secondary, #666))", flexWrap: "wrap" }}>
+  <div style={{ display: "flex", gap: "24px", marginBottom: "16px", fontSize: "14px", color: "var(--wim-color-text-secondary)", flexWrap: "wrap" }}>
     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
       <PlatformIcons pc mobile /> <span>全デバイス (PC, タブレット, モバイル)</span>
     </div>
@@ -52,7 +52,7 @@ export const StatusIcon = ({ status }) => {
     </div>
   </div>
 
-  <div style={{ display: "flex", gap: "24px", marginBottom: "24px", fontSize: "14px", color: "var(--wim-color-text-secondary, var(--text-secondary, #666))" }}>
+  <div style={{ display: "flex", gap: "24px", marginBottom: "24px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <StatusIcon status="done" /> <span><T k="status_done" /> (実装完了)</span>
       </div>
@@ -60,7 +60,7 @@ export const StatusIcon = ({ status }) => {
         <StatusIcon status="planning" /> <span><T k="status_planning" /> (計画中/作業中)</span>
       </div>
   </div>
-  <div style={{ padding: "24px", background: "var(--wim-color-surface-variant, var(--wim-color-bg-secondary, #f4f4f7))", borderRadius: "12px", marginBottom: "32px" }}>
+  <div style={{ padding: "24px", background: "var(--wim-color-surface-variant, var(--wim-color-bg-secondary, #f4f4f7))", borderRadius: "12px", marginBottom: "32px", color: "var(--text-primary)" }}>
     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
       <strong><T k="dashboard_overall_progress" /></strong>
       <strong>100% (162 / 162)</strong>
@@ -72,83 +72,83 @@ export const StatusIcon = ({ status }) => {
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px", marginTop: "24px" }}>
       <div>
         <a href="#advanced-inputs"><T k="cat_advanced_inputs" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (7/7)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (7/7)</div>
       </div>
       <div>
         <a href="#alerts"><T k="cat_alerts" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (7/7)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (7/7)</div>
       </div>
       <div>
         <a href="#app-shell"><T k="cat_app_shell" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (6/6)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (6/6)</div>
       </div>
       <div>
         <a href="#basic-inputs"><T k="cat_basic_inputs" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (8/8)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (8/8)</div>
       </div>
       <div>
         <a href="#buttons"><T k="cat_buttons" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (5/5)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (5/5)</div>
       </div>
       <div>
         <a href="#data-containers"><T k="cat_data_containers" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (2/2)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (2/2)</div>
       </div>
       <div>
         <a href="#data-indicators"><T k="cat_data_indicators" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (9/9)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (9/9)</div>
       </div>
       <div>
         <a href="#data-structures"><T k="cat_data_structures" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (8/8)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (8/8)</div>
       </div>
       <div>
         <a href="#form-layout"><T k="cat_form_layout" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (5/5)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (5/5)</div>
       </div>
       <div>
         <a href="#layout"><T k="cat_layout" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (12/12)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (12/12)</div>
       </div>
       <div>
         <a href="#loading"><T k="cat_loading" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (5/5)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (5/5)</div>
       </div>
       <div>
         <a href="#media"><T k="cat_media" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (4/4)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (4/4)</div>
       </div>
       <div>
         <a href="#nav-elements"><T k="cat_nav_elements" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (7/7)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (7/7)</div>
       </div>
       <div>
         <a href="#nav-utilities"><T k="cat_nav_utilities" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (3/3)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (3/3)</div>
       </div>
       <div>
         <a href="#overlays"><T k="cat_overlays" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (11/11)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (11/11)</div>
       </div>
       <div>
         <a href="#pickers"><T k="cat_pickers" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (8/8)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (8/8)</div>
       </div>
       <div>
         <a href="#selection"><T k="cat_selection" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (15/15)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (15/15)</div>
       </div>
       <div>
         <a href="#typography"><T k="cat_typography" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (9/9)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (9/9)</div>
       </div>
       <div>
         <a href="#utilities"><T k="cat_utilities" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (11/11)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (11/11)</div>
       </div>
       <div>
         <a href="#visualization"><T k="cat_visualization" /></a>
-        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary, var(--text-tertiary, #999))" }}>100% (10/10)</div>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-tertiary)" }}>100% (10/10)</div>
       </div>
     </div>
   </div>
