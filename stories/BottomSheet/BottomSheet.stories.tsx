@@ -14,7 +14,7 @@ import {
 import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof BottomSheet> = {
-    title: "Component/Overlays/BottomSheet",
+    title: "Components/Overlays/BottomSheet",
     component: BottomSheet,
     parameters: {
         layout: "centered",

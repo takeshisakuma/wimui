@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Highlight } from "@/components/Highlight/Highlight";
 
 const meta: Meta<typeof Highlight> = {
-    title: "Component/Typography & Icons/Highlight",
+    title: "Components/Typography & Icons/Highlight",
     component: Highlight,
     parameters: {
         layout: "centered",

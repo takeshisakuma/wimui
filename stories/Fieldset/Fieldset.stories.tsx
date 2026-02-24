@@ -7,7 +7,7 @@ import { Input } from "@/components/Input/Input";
 import { CheckboxGroup } from "@/components/CheckboxGroup/CheckboxGroup";
 
 const meta: Meta<typeof Fieldset> = {
-    title: "Component/Form Layout/Fieldset",
+    title: "Components/Form Layout/Fieldset",
     component: Fieldset,
     parameters: {
         layout: "padded",

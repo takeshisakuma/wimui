@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Cascader, CascaderOption } from "../../src/components/Cascader/Cascader";
 
 const meta: Meta<typeof Cascader> = {
-    title: "Component/Advanced Inputs/Cascader",
+    title: "Components/Advanced Inputs/Cascader",
     component: Cascader,
     parameters: {
         layout: "centered",

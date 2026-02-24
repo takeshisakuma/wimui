@@ -4,7 +4,7 @@ import { Masonry } from "@/components/Masonry/Masonry";
 import { Box } from "@/components/Box/Box";
 
 const meta: Meta<typeof Masonry> = {
-    title: "Component/Layout/Masonry",
+    title: "Components/Layout/Masonry",
     component: Masonry,
     tags: [],
     argTypes: {

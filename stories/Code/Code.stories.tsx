@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Code } from "@/components/Code/Code";
 
 const meta: Meta<typeof Code> = {
-    title: "Component/Typography & Icons/Code",
+    title: "Components/Typography & Icons/Code",
     component: Code,
     parameters: {
         layout: "padded",

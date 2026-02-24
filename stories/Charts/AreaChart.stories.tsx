@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AreaChart } from "@/components/Charts/AreaChart";
 
 const meta: Meta<typeof AreaChart> = {
-    title: "Component/Visualization/AreaChart",
+    title: "Components/Visualization/AreaChart",
     component: AreaChart,
     tags: ["autodocs"],
 };

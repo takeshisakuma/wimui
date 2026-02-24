@@ -3,7 +3,7 @@ import { Selectbox, SelectboxOption, SelectboxOptionGroup } from "@/components/S
 
 
 const meta: Meta<typeof Selectbox> = {
-    title: "Component/Selection Controls/Selectbox",
+    title: "Components/Selection Controls/Selectbox",
     component: Selectbox,
     parameters: {
         layout: "centered",

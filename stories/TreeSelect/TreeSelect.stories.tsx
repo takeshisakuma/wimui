@@ -3,7 +3,7 @@ import { TreeSelect, TreeSelectNode } from "../../src/components/TreeSelect/Tree
 import { Icon } from "../../src/components/Icon/Icon";
 
 const meta: Meta<typeof TreeSelect> = {
-    title: "Component/Advanced Inputs/TreeSelect",
+    title: "Components/Advanced Inputs/TreeSelect",
     component: TreeSelect,
     parameters: {
         layout: "centered",

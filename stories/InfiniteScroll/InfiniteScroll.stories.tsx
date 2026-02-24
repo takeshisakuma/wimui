@@ -5,7 +5,7 @@ import { Card } from "@/components/Card/Card";
 import { Stack } from "@/components/Stack/Stack";
 
 const meta: Meta<typeof InfiniteScroll> = {
-    title: "Component/DataDisplay/InfiniteScroll",
+    title: "Components/Utilities/InfiniteScroll",
     component: InfiniteScroll,
     parameters: {
         layout: "fullscreen",

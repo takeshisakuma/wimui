@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Treemap } from "@/components/Charts/Treemap";
 
 const meta: Meta<typeof Treemap> = {
-    title: "Component/Visualization/Treemap",
+    title: "Components/Visualization/Treemap",
     component: Treemap,
     tags: ["autodocs"],
 };

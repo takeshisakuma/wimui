@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { VisuallyHidden } from "@/components/VisuallyHidden/VisuallyHidden";
 
 const meta: Meta<typeof VisuallyHidden> = {
-    title: "Component/Utilities/VisuallyHidden",
+    title: "Components/Utilities/VisuallyHidden",
     component: VisuallyHidden,
     tags: [],
     parameters: {

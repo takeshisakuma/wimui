@@ -4,7 +4,7 @@ import { Icon } from "@/components/Icon/Icon";
 import { useState, useRef, useEffect } from 'react';
 
 const meta: Meta<typeof ChatContainer> = {
-    title: 'Component/Data Display/ChatUI',
+    title: 'Components/Data Structures/ChatUI',
     component: ChatContainer,
     parameters: {
         layout: 'fullscreen',

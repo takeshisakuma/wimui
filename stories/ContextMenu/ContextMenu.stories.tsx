@@ -8,7 +8,7 @@ import {
 import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof ContextMenu> = {
-    title: "Component/Overlays/ContextMenu",
+    title: "Components/Overlays/ContextMenu",
     component: ContextMenu,
     parameters: {
         layout: "centered",

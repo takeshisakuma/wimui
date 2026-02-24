@@ -6,7 +6,7 @@ import { FieldError } from "@/components/FieldError/FieldError";
 import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Input> = {
-    title: "Component/Basic Inputs/Input",
+    title: "Components/Basic Inputs/Input",
     component: Input,
     parameters: {
         layout: "centered",

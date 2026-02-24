@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/Checkbox/Checkbox";
 import { IconButton } from "@/components/IconButton/IconButton";
 
 const meta: Meta<typeof Table> = {
-    title: "Component/Data Structures/Table",
+    title: "Components/Data Structures/Table",
     component: Table,
     tags: [],
     argTypes: {

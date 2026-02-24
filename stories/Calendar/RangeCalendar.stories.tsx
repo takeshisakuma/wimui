@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { RangeCalendar, RangeCalendarValue } from "@/components/Calendar/RangeCalendar";
 
 const meta: Meta<typeof RangeCalendar> = {
-    title: "Component/Pickers & Sliders/RangeCalendar",
+    title: "Components/Pickers & Sliders/RangeCalendar",
     component: RangeCalendar,
     parameters: {
         layout: "centered",

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SwitchGroup } from "@/components/SwitchGroup/SwitchGroup";
 
 const meta: Meta<typeof SwitchGroup> = {
-    title: "Component/Selection Controls/SwitchGroup",
+    title: "Components/Selection Controls/SwitchGroup",
     component: SwitchGroup,
     parameters: {
         layout: "centered",

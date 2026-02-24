@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/blocks";
 
-<Meta title="Category/Data Structures" />
+<Meta title="Components/Data Structures" />
 
 # データ構造の使い分け
 
@@ -59,6 +59,35 @@ import { Meta } from "@storybook/blocks";
       <td>数値・指標</td>
       <td>KPIなど主要な数値データ（指標）を視覚的に強調表示し、増減などのトレンドも併せて表現する。</td>
       <td>アナリティクスダッシュボード画面でのトップ表示、今日の売上高・新規ユーザー数といった重要KPIのハイライト。</td>
+    </tr>
+    <tr>
+      <td><strong>ChatUI</strong></td>
+      <td>メッセージ形式</td>
+      <td>メッセージ一覧、入力、アバター等のチャット専用パーツを提供。リアルタイムな対話 UI を容易に構築。</td>
+      <td>サポートチャット、AIチャット、カスタマー等とのメッセージング画面に。</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 使い分けのポイント
+
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>ガイドライン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>リアルタイム性とスケーラビリティ</strong></td>
+      <td>`ChatUI` はリアルタイムな対話に向いていますが、大量の履歴表示には `InfiniteScroll` 等との併用や、WebSocket を用いた効率的なデータ転送を検討してください。</td>
+    </tr>
+    <tr>
+      <td><strong>構造の選択</strong></td>
+      <td>分析目的であれば `Table` や `DataGrid`、階層表現なら `TreeView`、時間軸なら `Timeline` というように、データの核心的な意味（セマンティクス）に合わせて選択しましょう。</td>
     </tr>
   </tbody>
 </table>

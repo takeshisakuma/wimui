@@ -1,6 +1,6 @@
 import { Meta} from "@storybook/blocks";
 
-<Meta title="Category/Buttons" />
+<Meta title="Components/Buttons" />
 
 # ボタンコンポーネントの使い分け
 
@@ -15,80 +15,83 @@ import { Meta} from "@storybook/blocks";
 
 ---
 
-## 役割と優先度
-
-<table>
-  <thead>
-    <tr>
-      <th>種類 (Priority)</th>
-      <th>視覚的な重み</th>
-      <th>用途</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Primary</strong></td>
-      <td>強 (塗りつぶし)</td>
-      <td>その画面で最も重要な単一のアクション（送信、保存、完了）</td>
-    </tr>
-    <tr>
-      <td><strong>Secondary</strong></td>
-      <td>中 (アウトライン)</td>
-      <td>主要アクションを補完するアクション（キャンセル、編集、戻る）</td>
-    </tr>
-    <tr>
-      <td><strong>Tertiary (Ghost)</strong></td>
-      <td>弱 (テキストのみ)</td>
-      <td>重要度の低いオプション、多用しても画面を圧搬しない</td>
-    </tr>
-    <tr>
-      <td><strong>Danger</strong></td>
-      <td>強 (赤/警告色)</td>
-      <td>取り返しのつかない操作、注意が必要な操作（削除、退会）</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## 特殊なボタン
+## 構成要素
 
 <table>
   <thead>
     <tr>
       <th>コンポーネント</th>
       <th>概要</th>
-      <th>いつ使うか (ユースケース)</th>
+      <th>主な用途</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Fab</strong> <br/><small>(Floating Action Button)</small></td>
-      <td>画面の右下などに浮いているボタン。</td>
-      <td>画面内のどこからでもアクセスしたい、そのページで最も頻繁に行われるアクション。</td>
-    </tr>
-    <tr>
-      <td><strong>Button Group</strong></td>
-      <td>複数のボタンを繋げて表示するコンポーネント。</td>
-      <td>関連性の高い一連のアクションをまとめるとき（例：ソート順の切り替え）。</td>
-    </tr>
-    <tr>
-      <td><strong>Copy Button</strong></td>
-      <td>値をクリップボードにコピーするための専用ボタン。</td>
-      <td>ユーザーが手作業で選択してコピーするのが難しい値の提供。</td>
+      <td><strong>Button</strong></td>
+      <td>標準的なボタン</td>
+      <td>最も汎用的なアクション。テキストで意図を明確に伝える必要がある場合。</td>
     </tr>
     <tr>
       <td><strong>IconButton</strong></td>
-      <td>アイコンのみを表示するボタン。</td>
-      <td>テキストラベルが不要な場面（ツールバー、アクションバー）で、アイコン単体でアクションを表現したい場合。必ず `aria-label` を付与してください。</td>
+      <td>アイコンのみのボタン</td>
+      <td>ツールバーやカード内など、省スペースで直感的な操作を提供したい場合。</td>
     </tr>
     <tr>
       <td><strong>LinkButton</strong></td>
-      <td>ボタンの見た目を持つリンク。</td>
-      <td>ページ遷移を行うが、デザイン上ボタンのスタイルが必要な場合。セマンティクス上は `<a>` タグを使用します。</td>
+      <td>リンクボタン</td>
+      <td>ページ遷移を行うが、視覚的にボタンとして強調したい場合（セマンティクスは `<a>`）。</td>
+    </tr>
+    <tr>
+      <td><strong>ButtonGroup</strong></td>
+      <td>ボタングループ</td>
+      <td>「戻る・次へ」や「編集・保存」など、関連性の高い操作をまとめて提示する場合。</td>
+    </tr>
+    <tr>
+      <td><strong>CopyButton</strong></td>
+      <td>コピー専用ボタン</td>
+      <td>IDやURLなどの文字列を、1クリックで正確にクリップボードへ保存させたい場合。</td>
     </tr>
   </tbody>
 </table>
+
+---
+
+## 役割と優先度 (Priority)
+
+同じ画面内に複数のボタンがある場合、ユーザーが迷わないよう視覚的な重み付け（優先度）を設定します。
+
+<table>
+  <thead>
+    <tr>
+      <th>優先度</th>
+      <th>視覚的な特徴</th>
+      <th>具体的な使い分け</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Primary</strong></td>
+      <td>強 (ブランドカラー)</td>
+      <td>画面内で最も重要な「主アクション」。原則として1画面に1つ。</td>
+    </tr>
+    <tr>
+      <td><strong>Secondary</strong></td>
+      <td>中 (アウトライン)</td>
+      <td>主アクションを補助する「副アクション」。（キャンセル、編集、戻るなど）</td>
+    </tr>
+    <tr>
+      <td><strong>Tertiary</strong></td>
+      <td>弱 (背景なし)</td>
+      <td>補助的な操作や、多くの選択肢を並べる必要がある場合。</td>
+    </tr>
+    <tr>
+      <td><strong>Danger</strong></td>
+      <td>注意 (赤色等)</td>
+      <td>削除、リセットなど、実行後に元に戻せない破壊的なアクション。</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ---
 

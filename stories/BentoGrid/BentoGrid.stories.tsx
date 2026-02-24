@@ -4,7 +4,7 @@ import React from "react";
 import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof BentoGrid> = {
-    title: "Component/Layout/BentoGrid",
+    title: "Components/Layout/BentoGrid",
     component: BentoGrid,
     tags: [],
 };

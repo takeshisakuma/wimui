@@ -14,7 +14,7 @@ import {
 import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof CommandPalette> = {
-    title: "Component/Overlays/CommandPalette",
+    title: "Components/Overlays/CommandPalette",
     component: CommandPalette,
     parameters: {
         layout: "fullscreen",

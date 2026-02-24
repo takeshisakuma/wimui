@@ -4,7 +4,7 @@ import { Button } from "@/components/Button/Button";
 import React from "react";
 
 const meta: Meta<typeof Group> = {
-    title: "Component/Layout/Group",
+    title: "Components/Layout/Group",
     component: Group,
     tags: [],
     argTypes: {

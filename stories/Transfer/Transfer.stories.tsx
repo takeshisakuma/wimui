@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Transfer, TransferItem } from "../../src/components/Transfer/Transfer";
 
 const meta: Meta<typeof Transfer> = {
-    title: "Component/Advanced Inputs/Transfer",
+    title: "Components/Advanced Inputs/Transfer",
     component: Transfer,
     parameters: {
         layout: "centered",

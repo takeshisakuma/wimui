@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ColorInput } from "@/components/ColorInput/ColorInput";
 
 const meta: Meta<typeof ColorInput> = {
-    title: "Component/Pickers & Sliders/ColorInput",
+    title: "Components/Pickers & Sliders/ColorInput",
     component: ColorInput,
     tags: [],
 };

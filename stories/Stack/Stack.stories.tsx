@@ -4,7 +4,7 @@ import { Stack } from "@/components/Stack/Stack";
 import { Box } from "@/components/Box/Box";
 
 const meta: Meta<typeof Stack> = {
-    title: "Component/Layout/Stack",
+    title: "Components/Layout/Stack",
     component: Stack,
     tags: [],
     argTypes: {

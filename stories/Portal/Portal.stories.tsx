@@ -9,7 +9,7 @@ import { Textarea } from "@/components/Textarea/Textarea";
 import { Badge } from "@/components/Badge/Badge";
 
 const meta: Meta<typeof Portal> = {
-    title: "Component/Utilities/Portal",
+    title: "Components/Utilities/Portal",
     component: Portal,
     parameters: {
         layout: "centered",

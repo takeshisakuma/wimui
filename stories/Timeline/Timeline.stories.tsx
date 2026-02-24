@@ -3,7 +3,7 @@ import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineP
 import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof Timeline> = {
-    title: 'Component/Data Display/Timeline',
+    title: 'Components/Data Structures/Timeline',
     component: Timeline,
 };
 

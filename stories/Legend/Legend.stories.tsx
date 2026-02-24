@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Legend } from "@/components/Legend/Legend";
 
 const meta: Meta<typeof Legend> = {
-    title: "Component/Form Layout/Legend",
+    title: "Components/Form Layout/Legend",
     component: Legend,
     parameters: {
         layout: "padded",

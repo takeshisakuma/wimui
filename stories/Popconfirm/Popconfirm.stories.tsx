@@ -3,7 +3,7 @@ import { Popconfirm } from "@/components/Popconfirm/Popconfirm";
 import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Popconfirm> = {
-    title: "Component/Alerts & Notifications/Popconfirm",
+    title: "Components/Alerts & Notifications/Popconfirm",
     component: Popconfirm,
     tags: [],
     argTypes: {

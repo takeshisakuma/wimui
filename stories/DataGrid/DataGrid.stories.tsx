@@ -6,7 +6,7 @@ import { Button } from "@/components/Button/Button";
 import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof DataGrid> = {
-    title: "Component/Data Structures/DataGrid",
+    title: "Components/Data Structures/DataGrid",
     component: DataGrid,
     tags: [],
     argTypes: {

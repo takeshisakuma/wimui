@@ -3,7 +3,7 @@ import { FloatButton, FloatButtonProps } from "@/components/FloatButton/FloatBut
 import React, { useState, useRef } from "react";
 
 const meta: Meta<typeof FloatButton> = {
-    title: "Component/Navigation Utilities/FloatButton",
+    title: "Components/Navigation Utilities/FloatButton",
     component: FloatButton,
     tags: [],
     parameters: {

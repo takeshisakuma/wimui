@@ -4,7 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
 
 const meta: Meta<typeof Footer> = {
-    title: "Component/Application Shell/Footer",
+    title: "Components/Application Shell/Footer",
     component: Footer,
     parameters: {
         layout: "fullscreen",

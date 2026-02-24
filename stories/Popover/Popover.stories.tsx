@@ -6,7 +6,7 @@ import { Label } from "@/components/Label/Label";
 import { useState } from "react";
 
 const meta: Meta<typeof Popover> = {
-    title: "Component/Overlays/Popover",
+    title: "Components/Overlays/Popover",
     component: Popover,
     parameters: {
         layout: "centered",

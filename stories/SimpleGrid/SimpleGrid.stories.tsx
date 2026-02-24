@@ -3,7 +3,7 @@ import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
 import React from "react";
 
 const meta: Meta<typeof SimpleGrid> = {
-    title: "Component/Layout/SimpleGrid",
+    title: "Components/Layout/SimpleGrid",
     component: SimpleGrid,
     tags: [],
     argTypes: {

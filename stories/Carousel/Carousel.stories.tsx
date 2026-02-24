@@ -5,7 +5,7 @@ import SampleImage from "@/media/imagesanple.webp";
 
 
 const meta: Meta<typeof Carousel> = {
-    title: "Component/Media/Carousel",
+    title: "Components/Media/Carousel",
     component: Carousel,
     parameters: {
         layout: "fullscreen",

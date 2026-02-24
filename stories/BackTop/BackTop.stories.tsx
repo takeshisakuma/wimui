@@ -3,7 +3,7 @@ import { BackTop } from "../../src/components/BackTop/BackTop";
 import React from "react";
 
 const meta: Meta<typeof BackTop> = {
-    title: "Component/Navigation Utilities/BackTop",
+    title: "Components/Navigation Utilities/BackTop",
     component: BackTop,
     parameters: {
         layout: "fullscreen",

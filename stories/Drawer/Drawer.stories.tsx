@@ -4,7 +4,7 @@ import { Button } from "@/components/Button/Button";
 import { useState } from "react";
 
 const meta: Meta<typeof Drawer> = {
-    title: "Component/Overlays/Drawer",
+    title: "Components/Overlays/Drawer",
     component: Drawer,
     parameters: {
         layout: "centered",

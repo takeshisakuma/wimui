@@ -3,7 +3,7 @@ import { Flex } from "@/components/Flex/Flex";
 import React from "react";
 
 const meta: Meta<typeof Flex> = {
-    title: "Component/Layout/Flex",
+    title: "Components/Layout/Flex",
     component: Flex,
     tags: [],
     argTypes: {

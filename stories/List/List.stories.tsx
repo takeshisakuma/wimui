@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { List, ListItem } from "@/components/List/List";
 
 const meta: Meta<typeof List> = {
-    title: 'Component/Data Display/List',
+    title: 'Components/Data Structures/List',
     component: List,
     argTypes: {
         as: {

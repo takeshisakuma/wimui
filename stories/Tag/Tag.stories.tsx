@@ -6,7 +6,7 @@ import { Icon } from "@/components/Icon/Icon";
  * Data Display/Tag Component
  */
 const meta: Meta<typeof Tag> = {
-    title: "Component/Data Indicators/Tag",
+    title: "Components/Data Indicators/Tag",
     component: Tag,
     tags: [], // mdxファイルがあるためautodocsは無効にする
     argTypes: {

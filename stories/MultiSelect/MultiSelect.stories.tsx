@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MultiSelect } from "@/components/MultiSelect/MultiSelect";
 
 const meta: Meta<typeof MultiSelect> = {
-    title: "Component/Selection Controls/MultiSelect",
+    title: "Components/Selection Controls/MultiSelect",
     component: MultiSelect,
     parameters: {
         layout: "centered",

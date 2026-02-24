@@ -4,7 +4,7 @@ import { Container } from "@/components/Container/Container";
 import { Box } from "@/components/Box/Box";
 
 const meta: Meta<typeof Container> = {
-    title: "Component/Layout/Container",
+    title: "Components/Layout/Container",
     component: Container,
     tags: [],
     argTypes: {

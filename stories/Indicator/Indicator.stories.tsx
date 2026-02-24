@@ -4,7 +4,7 @@ import { Avatar } from "@/components/Avatar/Avatar";
 import React from "react";
 
 const meta: Meta<typeof Indicator> = {
-    title: "Component/Data Indicators/Indicator",
+    title: "Components/Data Indicators/Indicator",
     component: Indicator,
     argTypes: {
         color: {

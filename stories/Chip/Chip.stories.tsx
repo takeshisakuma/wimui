@@ -8,7 +8,7 @@ import { Avatar } from "@/components/Avatar/Avatar";
  * Data Display/Chip Component
  */
 const meta: Meta<typeof Chip> = {
-    title: "Component/Selection Controls/Chip",
+    title: "Components/Selection Controls/Chip",
     component: Chip,
     tags: [], // mdxファイルがあるためautodocsは無効にする
     argTypes: {

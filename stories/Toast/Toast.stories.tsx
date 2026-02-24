@@ -4,7 +4,7 @@ import { Toast, ToastProvider, useToast } from "@/components/Toast/Toast";
 import { Button } from "@/components/Button/Button";
 
 const meta: Meta<typeof Toast> = {
-    title: "Component/Alerts & Notifications/Toast",
+    title: "Components/Alerts & Notifications/Toast",
     component: Toast,
     tags: ["!autodocs"],
     argTypes: {

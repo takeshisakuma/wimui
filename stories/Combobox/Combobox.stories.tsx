@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Combobox } from "@/components/Combobox/Combobox";
 
 const meta: Meta<typeof Combobox> = {
-    title: "Component/Selection Controls/Combobox",
+    title: "Components/Selection Controls/Combobox",
     component: Combobox,
     argTypes: {
         showSearchIcon: {

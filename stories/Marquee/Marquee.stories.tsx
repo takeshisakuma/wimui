@@ -5,7 +5,7 @@ import { Badge } from "@/components/Badge/Badge";
 import { Group } from "@/components/Group/Group";
 
 const meta: Meta<typeof Marquee> = {
-    title: "Component/Media/Marquee",
+    title: "Components/Utilities/Marquee",
     component: Marquee,
 };
 

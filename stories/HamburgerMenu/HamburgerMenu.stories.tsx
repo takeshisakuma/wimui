@@ -3,7 +3,7 @@ import { HamburgerMenu, HamburgerMenuProps } from "@/components/HamburgerMenu/Ha
 import React, { useState, useEffect } from "react";
 
 const meta: Meta<typeof HamburgerMenu> = {
-    title: "Component/Navigation Elements/HamburgerMenu",
+    title: "Components/Navigation Elements/HamburgerMenu",
     component: HamburgerMenu,
     parameters: {
         layout: "centered",

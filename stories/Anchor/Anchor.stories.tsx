@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react-vite";
 import { Anchor } from "@/components/Anchor/Anchor";
 
 const meta: Meta<typeof Anchor> = {
-    title: "Component/Navigation Elements/Anchor",
+    title: "Components/Navigation Elements/Anchor",
     component: Anchor,
     parameters: {
         layout: "fullscreen",

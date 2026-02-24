@@ -5,7 +5,7 @@ import { Button } from "../../src/components/Button/Button";
 import { Icon } from "../../src/components/Icon/Icon";
 
 const meta: Meta<typeof LoadingOverlay> = {
-    title: "Component/Loading & Progress/LoadingOverlay",
+    title: "Components/Loading States/LoadingOverlay",
     component: LoadingOverlay,
     parameters: {
         layout: "padded",

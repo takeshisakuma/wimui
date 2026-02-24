@@ -4,7 +4,7 @@ import { Center } from "@/components/Center/Center";
 import { Box } from "@/components/Box/Box";
 
 const meta: Meta<typeof Center> = {
-    title: "Component/Layout/Center",
+    title: "Components/Layout/Center",
     component: Center,
     tags: [],
     argTypes: {

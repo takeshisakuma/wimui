@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { DateRangePicker } from "@/components/DateRangePicker/DateRangePicker";
 
 const meta: Meta<typeof DateRangePicker> = {
-    title: "Component/Pickers & Sliders/DateRangePicker",
+    title: "Components/Pickers & Sliders/DateRangePicker",
     component: DateRangePicker,
     tags: [],
 };

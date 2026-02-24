@@ -5,7 +5,7 @@ import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
 
 const meta: Meta<typeof FocusTrap> = {
-    title: "Component/Utilities/FocusTrap",
+    title: "Components/Utilities/FocusTrap",
     component: FocusTrap,
     tags: [],
     parameters: {

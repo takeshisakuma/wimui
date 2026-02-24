@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Splitter } from "@/components/Splitter/Splitter";
 
 const meta: Meta<typeof Splitter> = {
-    title: "Component/Layout/Splitter",
+    title: "Components/Layout/Splitter",
     component: Splitter,
     parameters: {
         layout: "fullscreen",

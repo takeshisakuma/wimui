@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Icon } from "@/components/Icon/Icon";
 
 const meta: Meta<typeof Stepper> = {
-    title: "Component/Navigation Elements/Stepper",
+    title: "Components/Navigation Elements/Stepper",
     component: Stepper,
     parameters: {
         layout: "padded",

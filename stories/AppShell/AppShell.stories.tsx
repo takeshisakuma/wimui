@@ -10,7 +10,7 @@ import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
 
 const meta: Meta<typeof AppShell> = {
-    title: "Component/Application Shell/AppShell",
+    title: "Components/Application Shell/AppShell",
     component: AppShell,
     parameters: {
         layout: "fullscreen",

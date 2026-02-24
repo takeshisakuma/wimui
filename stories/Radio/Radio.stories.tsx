@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Radio } from "@/components/Radio/Radio";
 
 const meta: Meta<typeof Radio> = {
-    title: "Component/Selection Controls/Radio",
+    title: "Components/Selection Controls/Radio",
     component: Radio,
     argTypes: {
         checked: { control: "boolean" },

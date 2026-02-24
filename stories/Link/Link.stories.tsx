@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Link } from "@/components/Link/Link";
 
 const meta: Meta<typeof Link> = {
-    title: "Component/Typography & Icons/Link",
+    title: "Components/Typography & Icons/Link",
     component: Link,
     parameters: {
         layout: "centered",

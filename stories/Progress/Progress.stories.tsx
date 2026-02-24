@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Progress } from "@/components/Progress/Progress";
 
 const meta: Meta<typeof Progress> = {
-    title: "Component/Loading States/Progress",
+    title: "Components/Loading States/Progress",
     component: Progress,
     tags: [],
     argTypes: {

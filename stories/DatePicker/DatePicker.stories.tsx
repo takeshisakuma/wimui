@@ -4,7 +4,7 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 import { Label } from "@/components/Label/Label";
 
 const meta: Meta<typeof DatePicker> = {
-    title: "Component/Pickers & Sliders/DatePicker",
+    title: "Components/Pickers & Sliders/DatePicker",
     component: DatePicker,
     parameters: {
         layout: "centered",

@@ -3,7 +3,7 @@ import { Grid } from "@/components/Grid/Grid";
 import React from "react";
 
 const meta: Meta<typeof Grid> = {
-    title: "Component/Layout/Grid",
+    title: "Components/Layout/Grid",
     component: Grid,
     tags: [],
     argTypes: {

@@ -6,7 +6,7 @@ import { Label } from "@/components/Label/Label";
 import { useState } from "react";
 
 const meta: Meta<typeof Dialog> = {
-    title: "Component/Overlays/Dialog",
+    title: "Components/Overlays/Dialog",
     component: Dialog,
     parameters: {
         layout: "centered",

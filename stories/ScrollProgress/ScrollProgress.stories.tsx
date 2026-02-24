@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { ScrollProgress } from "@/components/ScrollProgress/ScrollProgress";
 
 const meta: Meta<typeof ScrollProgress> = {
-    title: "Component/Feedback/ScrollProgress",
+    title: "Components/Utilities/ScrollProgress",
     component: ScrollProgress,
     parameters: {
         layout: "fullscreen",

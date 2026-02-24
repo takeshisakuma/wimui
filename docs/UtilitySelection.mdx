@@ -1,7 +1,7 @@
 import { Meta } from "@storybook/blocks";
 import { T } from "../stories/T";
 
-<Meta title="Category/Utilities" />
+<Meta title="Components/Utilities" />
 
 # ユーティリティの役割と使い分け
 
@@ -70,9 +70,24 @@ wimui は、UI の構築を支える低レイヤーの補助コンポーネン�
       <td>OSごとのスクロールバーの差異をなくし、デザインに合わせてスクロール部分を美しく整えたい場合。</td>
     </tr>
     <tr>
-      <td><strong>Contrast Checker</strong></td>
-      <td>開発補助</td>
-      <td>背景色と文字色の比率を検証し、アクセシビリティの基準を満たしているか確認する場合。</td>
+      <td><strong>Scroll Progress</strong></td>
+      <td>スクロール進捗</td>
+      <td>ページをどこまで読んだかを示す進捗バー。長いドキュメントなどで読了までの目安を提示したい場合。</td>
+    </tr>
+    <tr>
+      <td><strong>Infinite Scroll</strong></td>
+      <td>無限スクロール</td>
+      <td>ページ下部への到達で次データを自動ロード。SNSフィードや一覧画面での逐次読み込み。</td>
+    </tr>
+    <tr>
+      <td><strong>Markdown</strong></td>
+      <td>マークダウン</td>
+      <td>Markdown形式の文字列を、見出しやリスト等の適切なHTML要素として美しく整形して表示する場合。</td>
+    </tr>
+    <tr>
+      <td><strong>Marquee</strong></td>
+      <td>文字スクロール</td>
+      <td>ニュースティッカーや強調したい情報の横スクロール表示。視線の誘導が強いため、限定的な使用を推奨。</td>
     </tr>
   </tbody>
 </table>
@@ -96,6 +111,18 @@ wimui は、UI の構築を支える低レイヤーの補助コンポーネン�
     <tr>
       <td><strong>アクセシビリティ優先</strong></td>
       <td>`FocusTrap` や `VisuallyHidden` は、アクセシビリティの高い UI を作るための強力な味方です。これらを活用し、キーボード等での操作体験を疎かにしないようにしましょう。</td>
+    </tr>
+    <tr>
+      <td><strong>パフォーマンス</strong></td>
+      <td>`InfiniteScroll` は便利ですが、仮想スクロールが必要なほど大量（数千件〜）のデータを扱う場合は `DataGrid` などの使用を検討してください。</td>
+    </tr>
+    <tr>
+      <td><strong>セキュリティ（Markdown）</strong></td>
+      <td>`Markdown` でユーザー入力を扱う際は、XSS（クロスサイトスクリプティング）対策として必ずサニタイズ処理が適用されていることを確認してください。</td>
+    </tr>
+    <tr>
+      <td><strong>ScrollProgress の配置</strong></td>
+      <td>`ScrollProgress` は画面上部に固定（`Affix` や `Header` 内）して配置するのが一般的です。対象はウィンドウ全体のほか、特定の `ScrollArea` 等にも設定可能です。</td>
     </tr>
     <tr>
       <td><strong>フェールセーフ</strong></td>
