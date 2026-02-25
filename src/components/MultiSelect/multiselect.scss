@@ -2,117 +2,120 @@
    MultiSelect Styles
 ------------------------------------------------------------------ */
 
-
 .wim-multiselect {
-    position: relative;
-    width: 320px;
-    max-width: 100%;
-    font-family: var(--font-family-base);
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+  font-family: var(--font-family-base);
 
-    &--full-width {
-        width: 100%;
-        max-width: none;
-    }
+  &--full-width {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 .wim-multiselect-trigger {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    min-height: 42px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 42px;
 
-    /* Ensure consistency with inputs */
-    padding: var(--spacing-md) var(--spacing-sm); // Increased from xs to md for vertical consistency
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--text-primary);
-    cursor: pointer;
-    background-color: var(--bg-component, #fff);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--radius-md);
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  /* Ensure consistency with inputs */
+  padding: var(--spacing-md) var(--spacing-sm); // Increased from xs to md for vertical consistency
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  cursor: pointer;
+  background-color: var(--bg-component, #fff);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  transition:
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 
-    &:hover:not(.wim-multiselect-trigger--disabled) {
-        border-color: var(--color-primary);
-    }
+  &:hover:not(.wim-multiselect-trigger--disabled) {
+    border-color: var(--color-primary);
+  }
 
-    &:focus {
-        outline: none;
-        border-color: var(--color-primary);
-        box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
-    }
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px
+      color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
 
-    &--open {
-        border-color: var(--color-primary);
-        box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
-    }
+  &--open {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px
+      color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
 
-    &--disabled {
-        color: var(--text-disabled);
-        cursor: not-allowed;
-        background-color: rgb(0 0 0 / 0.05);
-        border-color: var(--color-disabled);
-    }
+  &--disabled {
+    color: var(--text-disabled);
+    cursor: not-allowed;
+    background-color: rgb(0 0 0 / 0.05);
+    border-color: var(--color-disabled);
+  }
 }
 
 .wim-multiselect-value {
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    gap: var(--spacing-xs);
-    align-items: center;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  align-items: center;
 
-    &--placeholder {
-        color: var(--text-placeholder);
-    }
+  &--placeholder {
+    color: var(--text-placeholder);
+  }
 }
 
 .wim-multiselect-badge {
-    &.wim-chip.wim-chip--solid {
-        color: var(--color-primary);
-        background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
-        border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
-    }
+  &.wim-chip.wim-chip--solid {
+    color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
 }
 
 .wim-multiselect-list {
-    position: absolute;
-    z-index: 100;
-    width: 100%;
-    margin: var(--spacing-xs) 0 0;
-    padding: var(--spacing-xs) 0;
-    list-style: none;
-    background-color: var(--bg-component, #fff);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    max-height: 280px;
-    overflow-y: auto;
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  margin: var(--spacing-xs) 0 0;
+  padding: var(--spacing-xs) 0;
+  list-style: none;
+  background-color: var(--bg-component, #fff);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  max-height: 280px;
+  overflow-y: auto;
 }
 
 .wim-multiselect-option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--spacing-xl) var(--spacing-2xl);
-    cursor: pointer;
-    color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  cursor: pointer;
+  color: var(--text-primary);
 
-    &:hover:not(&--disabled) {
-        background-color: var(--bg-hover, rgba(0, 0, 0, 0.05));
-    }
+  &:hover:not(&--disabled) {
+    background-color: var(--bg-hover, rgba(0, 0, 0, 0.05));
+  }
 
-    &--selected {
-        color: var(--color-primary);
-        font-weight: 500;
-        background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
-    }
+  &--selected {
+    color: var(--color-primary);
+    font-weight: 500;
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
 
-    &--disabled {
-        color: var(--text-disabled);
-        cursor: not-allowed;
-        opacity: 0.6;
-    }
+  &--disabled {
+    color: var(--text-disabled);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }

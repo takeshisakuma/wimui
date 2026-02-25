@@ -1,65 +1,77 @@
 ﻿@use "sass:map";
 
 .wim-tag {
-    display: inline-flex;
-    gap: var(--spacing-xs);
-    align-items: center;
-    font-weight: 500;
-    line-height: 1;
-    white-space: nowrap;
-    border-radius: var(--radius-sm);
+  display: inline-flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
 
-    &--md {
-        padding: var(--spacing-xs) var(--spacing-sm);
-        font-size: var(--font-size-minus-2);
-    }
+  &--md {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-minus-2);
+  }
 
-    &--sm {
-        padding: var(--spacing-2xs) var(--spacing-xs);
-        font-size: var(--font-size-minus-3);
-    }
+  &--sm {
+    padding: var(--spacing-2xs) var(--spacing-xs);
+    font-size: var(--font-size-minus-3);
+  }
 
-    &__icon {
-        display: flex;
-        font-size: 1.2em;
-    }
+  &__icon {
+    display: flex;
+    font-size: 1.2em;
+  }
 
-    /* Colors and Variants */
-    $tag-colors: (
-        "primary": ("base": var(--color-primary),
-            "on": var(--color-text-on-primary)),
-        "secondary": ("base": var(--color-secondary),
-            "on": var(--color-text-on-secondary)),
-        "success": ("base": var(--color-positive),
-            "on": var(--color-text-on-positive)),
-        "warning": ("base": var(--color-caution),
-            "on": var(--color-text-on-caution)),
-        "error": ("base": var(--color-destructive),
-            "on": var(--color-text-on-destructive)),
-        "neutral": ("base": var(--color-disabled),
-            "on": var(--text-primary))
-    );
+  /* Colors and Variants */
+  $tag-colors: (
+    "primary": (
+      "base": var(--color-primary),
+      "on": var(--color-text-on-primary),
+    ),
+    "secondary": (
+      "base": var(--color-secondary),
+      "on": var(--color-text-on-secondary),
+    ),
+    "success": (
+      "base": var(--color-positive),
+      "on": var(--color-text-on-positive),
+    ),
+    "warning": (
+      "base": var(--color-caution),
+      "on": var(--color-text-on-caution),
+    ),
+    "error": (
+      "base": var(--color-destructive),
+      "on": var(--color-text-on-destructive),
+    ),
+    "neutral": (
+      "base": var(--color-disabled),
+      "on": var(--text-primary),
+    ),
+  );
 
-@each $name, $pairs in $tag-colors {
+  @each $name, $pairs in $tag-colors {
     $base: map.get($pairs, "base");
     $on: map.get($pairs, "on");
 
     &--#{$name}.wim-tag--solid {
-        color: $on;
-        background-color: $base;
-        border: 1px solid transparent;
+      color: $on;
+      background-color: $base;
+      border: 1px solid transparent;
     }
 
     &--#{$name}.wim-tag--outline {
-        color: $base;
-        background-color: transparent;
-        border: 1px solid $base;
+      color: $base;
+      background-color: transparent;
+      border: 1px solid $base;
     }
 
     &--#{$name}.wim-tag--subtle {
-        color: $base;
-        background-color: color-mix(in srgb, $base 15%, transparent);
-        border: 1px solid transparent;
+      color: $base;
+      background-color: color-mix(in srgb, $base 15%, transparent);
+      border: 1px solid transparent;
     }
-}
+  }
 }

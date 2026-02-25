@@ -1,6 +1,10 @@
 import { Meta } from "@storybook/blocks";
 import { T } from "../stories/T";
-import { ShadowSwatch, MotionSwatch, TokenGrid } from "../stories/TokenVisualizer";
+import {
+  ShadowSwatch,
+  MotionSwatch,
+  TokenGrid,
+} from "../stories/TokenVisualizer";
 
 <Meta title="Token/Effects" />
 
@@ -8,25 +12,46 @@ import { ShadowSwatch, MotionSwatch, TokenGrid } from "../stories/TokenVisualize
   <h1><T k="guide_effects_title" /></h1>
   <p><T k="guide_effects_desc" /></p>
 
-  <hr />
+<hr />
 
-  <h2><T k="guide_effects_shadow" /></h2>
-  <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
-    <ShadowSwatch name="XS" value="var(--shadow-xs)" shadow="var(--shadow-xs)" />
-    <ShadowSwatch name="Small" value="var(--shadow-sm)" shadow="var(--shadow-sm)" />
-    <ShadowSwatch name="Medium" value="var(--shadow-md)" shadow="var(--shadow-md)" />
-    <ShadowSwatch name="Large" value="var(--shadow-lg)" shadow="var(--shadow-lg)" />
-    <ShadowSwatch name="Inset" value="var(--shadow-inset)" shadow="var(--shadow-inset)" />
-  </TokenGrid>
+<h2>
+  <T k="guide_effects_shadow" />
+</h2>
+<TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
+  <ShadowSwatch name="XS" value="var(--shadow-xs)" shadow="var(--shadow-xs)" />
+  <ShadowSwatch
+    name="Small"
+    value="var(--shadow-sm)"
+    shadow="var(--shadow-sm)"
+  />
+  <ShadowSwatch
+    name="Medium"
+    value="var(--shadow-md)"
+    shadow="var(--shadow-md)"
+  />
+  <ShadowSwatch
+    name="Large"
+    value="var(--shadow-lg)"
+    shadow="var(--shadow-lg)"
+  />
+  <ShadowSwatch
+    name="Inset"
+    value="var(--shadow-inset)"
+    shadow="var(--shadow-inset)"
+  />
+</TokenGrid>
 
-  <hr />
+<hr />
 
-  <h2><T k="guide_effects_motion" /></h2>
-  <p style={{ marginBottom: '20px' }}><T k="guide_effects_motion_desc" /></p>
-  
-  <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
-    <MotionSwatch name="Base Transition" duration="0.3s" easing="ease-in-out" />
-  </TokenGrid>
+<h2>
+  <T k="guide_effects_motion" />
+</h2>
+<p style={{ marginBottom: "20px" }}>
+  <T k="guide_effects_motion_desc" />
+</p>
+<TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
+  <MotionSwatch name="Base Transition" duration="0.3s" easing="ease-in-out" />
+</TokenGrid>
 
   <div style={{ padding: "24px", background: "var(--bg-component)", border: "1px solid var(--wim-color-border)", borderRadius: "12px" }}>
     <strong>実装ガイドライン:</strong>

@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as DescriptionListStories from "./DescriptionList.stories";
 import { T } from "../T";
 
 <Meta of={DescriptionListStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   キーと値のペアを整理して表示するための説明リストコンポーネント。
 </p>
 
@@ -20,7 +34,8 @@ import { T } from "../T";
 
 <h3>レイアウト</h3>
 <p>
-  `horizontal` (デフォルト), `vertical`, `compact` の 3 つのレイアウトをサポートしています。
+  `horizontal` (デフォルト), `vertical`, `compact` の 3
+  つのレイアウトをサポートしています。
 </p>
 
 <h4>Vertical</h4>
@@ -43,4 +58,3 @@ import { T } from "../T";
 <Canvas of={DescriptionListStories.Large} />
 
 <Controls />
-

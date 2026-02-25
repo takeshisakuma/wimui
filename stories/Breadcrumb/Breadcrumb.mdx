@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as BreadcrumbStories from "./Breadcrumb.stories";
 import { T } from "../T";
 
 <Meta of={BreadcrumbStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   ユーザーが現在地を把握し、上位階層に簡単に戻れるようにするためのナビゲーションコンポーネントです。
 </p>
 
@@ -31,9 +45,11 @@ import { T } from "../T";
 `small`, `medium`, `large` の3つのサイズをサポートしています。
 
 #### Small
+
 <Canvas of={BreadcrumbStories.Small} />
 
 #### Large
+
 <Canvas of={BreadcrumbStories.Large} />
 
 ### カスタムセパレータ
@@ -41,4 +57,3 @@ import { T } from "../T";
 `separator` プロパティを使用して、区切り文字をカスタマイズできます。
 
 <Canvas of={BreadcrumbStories.CustomSeparator} />
-

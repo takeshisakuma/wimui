@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls, Story} from "@storybook/blocks";
+import { Canvas, Meta, Controls, Story } from "@storybook/blocks";
 import { T } from "../T";
 import * as CopyButtonStories from "./CopyButton.stories";
 
@@ -6,13 +6,21 @@ import * as CopyButtonStories from "./CopyButton.stories";
 
 # CopyButton
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_copybutton_title" />
 </p>
 
 指定されたテキストをクリップボードにコピーするためのボタンコンポーネント
 
 ## Comparison with Button
+
 通常の `Button`(priority="tertiary" + アイコンのみ)との違い
 
 - コピーロジックのカプセル化: クリック時に `navigator.clipboard.writeText` を実行するロジックをあらかじめ持っています。
@@ -23,20 +31,23 @@ import * as CopyButtonStories from "./CopyButton.stories";
 ```tsx
 import { CopyButton } from "@/components/CopyButton/CopyButton";
 
-<CopyButton value="コピーしたいテキスト" />
+<CopyButton value="コピーしたいテキスト" />;
 ```
 
 ## Examples
 
 ### Default
+
 <Canvas of={CopyButtonStories.Default} />
 
 ### Sizes
+
 #### Small
+
 <Canvas of={CopyButtonStories.Small} />
 #### Large
 <Canvas of={CopyButtonStories.Large} />
 
 ## Props
-<Controls />
 
+<Controls />

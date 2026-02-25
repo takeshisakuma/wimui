@@ -1,30 +1,44 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as CodeStories from "./Code.stories";
 
 <Meta of={CodeStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   インラインコードやコードブロックを表示するために使用される
 </p>
 
 ## 使用法
 
 ```tsx
-import { Code } from './Code';
+import { Code } from "./Code";
 import { T } from "../T";
 
 const Example = () => (
-    <>
-        {/* インライン */}
-        <Code>npm install wimui</Code>
+  <>
+    {/* インライン */}
+    <Code>npm install wimui</Code>
 
-        {/* ブロック */}
-        <Code block language="bash">
-            npm install wimui
-        </Code>
-    </>
+    {/* ブロック */}
+    <Code block language="bash">
+      npm install wimui
+    </Code>
+  </>
 );
 ```
 
@@ -48,7 +62,4 @@ const Example = () => (
 
 > Note
 > `Code` コンポーネントのコードブロック（`block` プロパティが `true` の場合）では、横スクロールを有効にしている<br />
-これは、長いコード行を無理に折り返すとインデントや構造が崩れて可読性が低下するため
-
-
-
+> これは、長いコード行を無理に折り返すとインデントや構造が崩れて可読性が低下するため

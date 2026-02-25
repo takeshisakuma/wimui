@@ -1,254 +1,261 @@
 ﻿@layer component {
-    .wim-float-button {
-        position: relative;
-        z-index: 1000;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        cursor: pointer;
-        border: none;
-        box-shadow: var(--shadow-md);
-        transition:
-            background-color var(--duration-fast) var(--easing-base),
-            box-shadow var(--duration-fast) var(--easing-base),
-            transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-            width 0.3s ease,
-            padding 0.3s ease;
+  .wim-float-button {
+    position: relative;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    box-shadow: var(--shadow-md);
+    transition:
+      background-color var(--duration-fast) var(--easing-base),
+      box-shadow var(--duration-fast) var(--easing-base),
+      transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+      width 0.3s ease,
+      padding 0.3s ease;
 
-        &__icon--backtop {
-            transform: rotate(180deg);
-        }
-
-        &__inner {
-            display: flex;
-            gap: var(--spacing-xs);
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            transition: gap 0.3s ease;
-        }
-
-        &__label-wrapper {
-            display: inline-block;
-            max-width: 200px;
-            padding: 4px 0;
-            overflow: hidden;
-            vertical-align: middle;
-            transition: max-width 0.3s ease, opacity 0.2s ease, visibility 0.2s ease;
-        }
-
-        &__label {
-            display: inline-block;
-            font-weight: var(--font-weight-medium);
-            line-height: 1.4;
-            white-space: nowrap;
-            opacity: 1;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
-
-        // Sizes
-        &--lg {
-            width: var(--spacing-5xl);
-            height: var(--spacing-5xl);
-            font-size: var(--font-size-large);
-
-            --float-button-shrink-size: var(--spacing-5xl);
-        }
-
-        &--md {
-            width: var(--spacing-4xl);
-            height: var(--spacing-4xl);
-            font-size: var(--font-size-medium);
-
-            --float-button-shrink-size: var(--spacing-4xl);
-        }
-
-        &--sm {
-            width: var(--spacing-3xl);
-            height: var(--spacing-3xl);
-            font-size: var(--font-size-small);
-
-            --float-button-shrink-size: var(--spacing-3xl);
-
-            .wim-icon {
-                font-size: 0.75rem;
-            }
-        }
-
-        // Extended FAB (with label) - pill型
-        &--extended {
-            width: max-content; // コンテンツに応じた幅
-            min-width: var(--float-button-shrink-size);
-            border-radius: var(--radius-full) !important; // pill型（circle/squareより優先）
-
-            &.wim-float-button--lg {
-                height: var(--spacing-5xl); // 高さ固定でpill型を維持
-                padding: 0 var(--spacing-2xl);
-            }
-
-            &.wim-float-button--md {
-                height: var(--spacing-4xl); // 高さ固定でpill型を維持
-                padding: 0 var(--spacing-xl);
-            }
-
-            &.wim-float-button--sm {
-                height: var(--spacing-3xl); // 高さ固定でpill型を維持
-                padding: 0 var(--spacing-lg);
-            }
-
-            &.wim-float-button--shrink {
-                padding: 0;
-
-                .wim-float-button__inner {
-                    gap: 0;
-                }
-
-                .wim-float-button__label-wrapper {
-                    visibility: hidden;
-                    max-width: 0;
-                    opacity: 0;
-                }
-
-                .wim-float-button__label {
-                    transform: scale(0.8);
-                }
-            }
-        }
-
-        // circle/squareはextendedでない場合のみ適用
-        &--circle:not(&--extended) {
-            border-radius: 50%;
-        }
-
-        &--square:not(&--extended) {
-            border-radius: var(--radius-md);
-        }
-
-        &--default {
-            color: var(--text-primary);
-            background-color: #fff;
-            border: 1px solid var(--color-disabled);
-
-            &:hover {
-                background-color: var(--color-disabled);
-                box-shadow: var(--shadow-lg);
-                transform: scale(1.05);
-            }
-        }
-
-        &--primary {
-            color: var(--color-text-on-primary);
-            background-color: var(--color-primary);
-
-            &:hover {
-                box-shadow: var(--shadow-lg);
-                filter: brightness(1.1);
-                transform: scale(1.05);
-            }
-        }
-
-        // Positions
-        &--bottom-right {
-            position: fixed;
-            right: var(--spacing-2xl);
-            bottom: var(--spacing-2xl);
-        }
-
-        &--bottom-left {
-            position: fixed;
-            bottom: var(--spacing-2xl);
-            left: var(--spacing-2xl);
-        }
-
-        &--bottom-center {
-            position: fixed;
-            bottom: var(--spacing-2xl);
-            left: 50%;
-            transform: translateX(-50%);
-
-            &:hover:not(:disabled) {
-                transform: translateX(-50%) scale(1.05);
-            }
-
-            &:active:not(:disabled) {
-                transform: translateX(-50%) scale(0.98);
-            }
-        }
-
-        &--top-right {
-            position: fixed;
-            top: var(--spacing-2xl);
-            right: var(--spacing-2xl);
-        }
-
-        &--top-left {
-            position: fixed;
-            top: var(--spacing-2xl);
-            left: var(--spacing-2xl);
-        }
-
-        &--static {
-            position: relative;
-        }
-
-        &__badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 16px;
-            height: 16px;
-            padding: 0 4px;
-            font-size: 10px;
-            line-height: 1;
-            color: #fff;
-            text-align: center;
-            background-color: var(--color-destructive);
-            border-radius: 8px;
-            box-shadow: 0 0 0 2px #fff;
-
-            &--dot {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 8px;
-                height: 8px;
-                background-color: var(--color-destructive);
-                border-radius: 50%;
-                box-shadow: 0 0 0 2px #fff;
-            }
-        }
-
-        &__description {
-            position: absolute;
-            right: 52px;
-            padding: 4px 8px;
-            font-size: 12px;
-            color: #fff;
-            white-space: nowrap;
-            pointer-events: none;
-            background-color: rgb(0 0 0 / 0.75);
-            border-radius: 4px;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        &:hover &__description {
-            opacity: 1;
-        }
-
-        &:active:not(:disabled) {
-            transform: scale(var(--scale-active));
-        }
-
-        &:disabled {
-            pointer-events: none;
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
+    &__icon--backtop {
+      transform: rotate(180deg);
     }
+
+    &__inner {
+      display: flex;
+      gap: var(--spacing-xs);
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      transition: gap 0.3s ease;
+    }
+
+    &__label-wrapper {
+      display: inline-block;
+      max-width: 200px;
+      padding: 4px 0;
+      overflow: hidden;
+      vertical-align: middle;
+      transition:
+        max-width 0.3s ease,
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+    &__label {
+      display: inline-block;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+      white-space: nowrap;
+      opacity: 1;
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    // Sizes
+    &--lg {
+      width: var(--spacing-5xl);
+      height: var(--spacing-5xl);
+      font-size: var(--font-size-large);
+
+      --float-button-shrink-size: var(--spacing-5xl);
+    }
+
+    &--md {
+      width: var(--spacing-4xl);
+      height: var(--spacing-4xl);
+      font-size: var(--font-size-medium);
+
+      --float-button-shrink-size: var(--spacing-4xl);
+    }
+
+    &--sm {
+      width: var(--spacing-3xl);
+      height: var(--spacing-3xl);
+      font-size: var(--font-size-small);
+
+      --float-button-shrink-size: var(--spacing-3xl);
+
+      .wim-icon {
+        font-size: 0.75rem;
+      }
+    }
+
+    // Extended FAB (with label) - pill型
+    &--extended {
+      width: max-content; // コンテンツに応じた幅
+      min-width: var(--float-button-shrink-size);
+      border-radius: var(
+        --radius-full
+      ) !important; // pill型（circle/squareより優先）
+
+      &.wim-float-button--lg {
+        height: var(--spacing-5xl); // 高さ固定でpill型を維持
+        padding: 0 var(--spacing-2xl);
+      }
+
+      &.wim-float-button--md {
+        height: var(--spacing-4xl); // 高さ固定でpill型を維持
+        padding: 0 var(--spacing-xl);
+      }
+
+      &.wim-float-button--sm {
+        height: var(--spacing-3xl); // 高さ固定でpill型を維持
+        padding: 0 var(--spacing-lg);
+      }
+
+      &.wim-float-button--shrink {
+        padding: 0;
+
+        .wim-float-button__inner {
+          gap: 0;
+        }
+
+        .wim-float-button__label-wrapper {
+          visibility: hidden;
+          max-width: 0;
+          opacity: 0;
+        }
+
+        .wim-float-button__label {
+          transform: scale(0.8);
+        }
+      }
+    }
+
+    // circle/squareはextendedでない場合のみ適用
+    &--circle:not(&--extended) {
+      border-radius: 50%;
+    }
+
+    &--square:not(&--extended) {
+      border-radius: var(--radius-md);
+    }
+
+    &--default {
+      color: var(--text-primary);
+      background-color: #fff;
+      border: 1px solid var(--color-disabled);
+
+      &:hover {
+        background-color: var(--color-disabled);
+        box-shadow: var(--shadow-lg);
+        transform: scale(1.05);
+      }
+    }
+
+    &--primary {
+      color: var(--color-text-on-primary);
+      background-color: var(--color-primary);
+
+      &:hover {
+        box-shadow: var(--shadow-lg);
+        filter: brightness(1.1);
+        transform: scale(1.05);
+      }
+    }
+
+    // Positions
+    &--bottom-right {
+      position: fixed;
+      right: var(--spacing-2xl);
+      bottom: var(--spacing-2xl);
+    }
+
+    &--bottom-left {
+      position: fixed;
+      bottom: var(--spacing-2xl);
+      left: var(--spacing-2xl);
+    }
+
+    &--bottom-center {
+      position: fixed;
+      bottom: var(--spacing-2xl);
+      left: 50%;
+      transform: translateX(-50%);
+
+      &:hover:not(:disabled) {
+        transform: translateX(-50%) scale(1.05);
+      }
+
+      &:active:not(:disabled) {
+        transform: translateX(-50%) scale(0.98);
+      }
+    }
+
+    &--top-right {
+      position: fixed;
+      top: var(--spacing-2xl);
+      right: var(--spacing-2xl);
+    }
+
+    &--top-left {
+      position: fixed;
+      top: var(--spacing-2xl);
+      left: var(--spacing-2xl);
+    }
+
+    &--static {
+      position: relative;
+    }
+
+    &__badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 16px;
+      height: 16px;
+      padding: 0 4px;
+      font-size: 10px;
+      line-height: 1;
+      color: #fff;
+      text-align: center;
+      background-color: var(--color-destructive);
+      border-radius: 8px;
+      box-shadow: 0 0 0 2px #fff;
+
+      &--dot {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 8px;
+        height: 8px;
+        background-color: var(--color-destructive);
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px #fff;
+      }
+    }
+
+    &__description {
+      position: absolute;
+      right: 52px;
+      padding: 4px 8px;
+      font-size: 12px;
+      color: #fff;
+      white-space: nowrap;
+      pointer-events: none;
+      background-color: rgb(0 0 0 / 0.75);
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    &:hover &__description {
+      opacity: 1;
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(var(--scale-active));
+    }
+
+    &:disabled {
+      pointer-events: none;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
 }

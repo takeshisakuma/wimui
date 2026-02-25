@@ -6,13 +6,20 @@ import { T } from "../T";
 
 # DataGrid
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   高機能なデータグリッドコンポーネント。ソート、ページネーション、行選択などの機能を統合的に提供します。
 </p>
 
 DataGridは、Tableコンポーネントをベースに、よく使われる機能を統合した高レベルのコンポーネントです。複雑なデータテーブルを簡単に実装できます。
 
-> ⚠️ **PCのみ**: このコンポーネントは機能が豊富で横幅を必要とするため、主にPC向けに設計されています。スマートフォンなどの小画面デバイスでの利用は推奨されません。
+> **PCのみ**: このコンポーネントは機能が豊富で横幅を必要とするため、主にPC向けに設計されています。スマートフォンなどの小画面デバイスでの利用は推奨されません。
 
 ## 使用例
 
@@ -92,37 +99,285 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
 
 ### DataGridProps
 
-| プロパティ | 型 | デフォルト | 説明 |
-|-----------|-----|-----------|------|
-| `columns` | `DataGridColumn<T>[]` | - | 列定義の配列 |
-| `rows` | `T[]` | - | データ行の配列 |
-| `loading` | `boolean` | `false` | ローディング状態 |
-| `selection` | `boolean` | `false` | 行選択機能を有効化 |
-| `selectedRowKeys` | `React.Key[]` | `[]` | 選択された行のキー |
-| `onSelectionChange` | `(keys: React.Key[]) => void` | - | 選択変更時のコールバック |
-| `rowKey` | `keyof T \| ((row: T) => React.Key)` | `"id"` | 各行の一意なキー |
-| `sortConfig` | `{ key: string; direction: "asc" \| "desc" \| "none" }` | - | 現在のソート設定 |
-| `onSort` | `(key: string, direction: ...) => void` | - | ソート変更時のコールバック |
-| `pagination` | `PaginationConfig` | - | ページネーション設定 |
-| `striped` | `boolean` | `false` | ストライプ表示 |
-| `bordered` | `boolean` | `false` | ボーダー表示 |
-| `hoverable` | `boolean` | `true` | ホバーエフェクト |
-| `stickyHeader` | `boolean` | `false` | ヘッダーを固定 |
-| `height` | `string \| number` | - | 固定高さ |
-| `maxHeight` | `string \| number` | - | 最大高さ |
-| `emptyMessage` | `React.ReactNode` | `"No data available"` | 空の状態のメッセージ |
+<table>
+  <thead>
+    <tr>
+      <th>プロパティ</th>
+      <th>型</th>
+      <th>デフォルト</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>columns</code>
+      </td>
+      <td>
+        <code>DataGridColumn&lt;T&gt;[]</code>
+      </td>
+      <td>-</td>
+      <td>列定義の配列</td>
+    </tr>
+    <tr>
+      <td>
+        <code>rows</code>
+      </td>
+      <td>
+        <code>T[]</code>
+      </td>
+      <td>-</td>
+      <td>データ行の配列</td>
+    </tr>
+    <tr>
+      <td>
+        <code>loading</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>ローディング状態</td>
+    </tr>
+    <tr>
+      <td>
+        <code>selection</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>行選択機能を有効化</td>
+    </tr>
+    <tr>
+      <td>
+        <code>selectedRowKeys</code>
+      </td>
+      <td>
+        <code>React.Key[]</code>
+      </td>
+      <td>
+        <code>[]</code>
+      </td>
+      <td>選択された行のキー</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onSelectionChange</code>
+      </td>
+      <td>
+        <code>{"(keys: React.Key[]) => void"}</code>
+      </td>
+      <td>-</td>
+      <td>選択変更時のコールバック</td>
+    </tr>
+    <tr>
+      <td>
+        <code>rowKey</code>
+      </td>
+      <td>
+        <code>{"keyof T | ((row: T) => React.Key)"}</code>
+      </td>
+      <td>
+        <code>"id"</code>
+      </td>
+      <td>各行の一意なキー</td>
+    </tr>
+    <tr>
+      <td>
+        <code>sortConfig</code>
+      </td>
+      <td>
+        <code>{'{ key: string; direction: "asc" | "desc" | "none" }'}</code>
+      </td>
+      <td>-</td>
+      <td>現在のソート設定</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onSort</code>
+      </td>
+      <td>
+        <code>{"(key: string, direction: ...) => void"}</code>
+      </td>
+      <td>-</td>
+      <td>ソート変更時のコールバック</td>
+    </tr>
+    <tr>
+      <td>
+        <code>pagination</code>
+      </td>
+      <td>
+        <code>PaginationConfig</code>
+      </td>
+      <td>-</td>
+      <td>ページネーション設定</td>
+    </tr>
+    <tr>
+      <td>
+        <code>striped</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>ストライプ表示</td>
+    </tr>
+    <tr>
+      <td>
+        <code>bordered</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>ボーダー表示</td>
+    </tr>
+    <tr>
+      <td>
+        <code>hoverable</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>true</code>
+      </td>
+      <td>ホバーエフェクト</td>
+    </tr>
+    <tr>
+      <td>
+        <code>stickyHeader</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>ヘッダーを固定</td>
+    </tr>
+    <tr>
+      <td>
+        <code>height</code>
+      </td>
+      <td>
+        <code>string | number</code>
+      </td>
+      <td>-</td>
+      <td>固定高さ</td>
+    </tr>
+    <tr>
+      <td>
+        <code>maxHeight</code>
+      </td>
+      <td>
+        <code>string | number</code>
+      </td>
+      <td>-</td>
+      <td>最大高さ</td>
+    </tr>
+    <tr>
+      <td>
+        <code>emptyMessage</code>
+      </td>
+      <td>
+        <code>React.ReactNode</code>
+      </td>
+      <td>
+        <code>"No data available"</code>
+      </td>
+      <td>空の状態のメッセージ</td>
+    </tr>
+  </tbody>
+</table>
 
 ### DataGridColumn
 
-| プロパティ | 型 | 説明 |
-|-----------|-----|------|
-| `key` | `string` | 列の一意なキー |
-| `header` | `React.ReactNode` | ヘッダーのテキストまたは要素 |
-| `width` | `string \| number` | 列の幅 |
-| `sortable` | `boolean` | ソート可能かどうか |
-| `render` | `(value, row, index) => React.ReactNode` | カスタムレンダー関数 |
-| `align` | `"left" \| "center" \| "right"` | テキストの配置 |
-| `dataIndex` | `keyof T` | データオブジェクトのキー（デフォルトは `key`） |
+<table>
+  <thead>
+    <tr>
+      <th>プロパティ</th>
+      <th>型</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>key</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>列の一意なキー</td>
+    </tr>
+    <tr>
+      <td>
+        <code>header</code>
+      </td>
+      <td>
+        <code>React.ReactNode</code>
+      </td>
+      <td>ヘッダーのテキストまたは要素</td>
+    </tr>
+    <tr>
+      <td>
+        <code>width</code>
+      </td>
+      <td>
+        <code>string | number</code>
+      </td>
+      <td>列の幅</td>
+    </tr>
+    <tr>
+      <td>
+        <code>sortable</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>ソート可能かどうか</td>
+    </tr>
+    <tr>
+      <td>
+        <code>render</code>
+      </td>
+      <td>
+        <code>{"(value, row, index) => React.ReactNode"}</code>
+      </td>
+      <td>カスタムレンダー関数</td>
+    </tr>
+    <tr>
+      <td>
+        <code>align</code>
+      </td>
+      <td>
+        <code>{'"left" | "center" | "right"'}</code>
+      </td>
+      <td>テキストの配置</td>
+    </tr>
+    <tr>
+      <td>
+        <code>dataIndex</code>
+      </td>
+      <td>
+        <code>keyof T</code>
+      </td>
+      <td>
+        データオブジェクトのキー（デフォルトは <code>key</code>）
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## 使用例（TypeScript）
 
@@ -140,8 +395,8 @@ const columns: DataGridColumn<User>[] = [
   { key: 'id', header: 'ID', width: 80, sortable: true },
   { key: 'name', header: 'Name', sortable: true },
   { key: 'email', header: 'Email', sortable: true },
-  { 
-    key: 'role', 
+  {
+    key: 'role',
     header: 'Role',
     render: (value) => <Badge content={value} />
   },
@@ -165,7 +420,21 @@ function UserTable() {
 
 ## TableとDataGridの使い分け
 
-- **Table**: より柔軟なカスタマイズが必要な場合や、シンプルな表示のみの場合
-- **DataGrid**: ソート、ページネーション、行選択などの機能が必要な場合
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Table</strong>
+      </td>
+      <td>より柔軟なカスタマイズが必要な場合や、シンプルな表示のみの場合</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>DataGrid</strong>
+      </td>
+      <td>ソート、ページネーション、行選択などの機能が必要な場合</td>
+    </tr>
+  </tbody>
+</table>
 
 DataGridは内部でTableコンポーネントを使用しているため、Tableのすべてのスタイリング機能を継承しています。

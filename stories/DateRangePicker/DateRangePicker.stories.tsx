@@ -2,23 +2,21 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { DateRangePicker } from "@/components/DateRangePicker/DateRangePicker";
 
 const meta: Meta<typeof DateRangePicker> = {
-    title: "Components/Pickers & Sliders/DateRangePicker",
-    component: DateRangePicker,
-    tags: [],
+  title: "Components/Pickers & Sliders/DateRangePicker",
+  component: DateRangePicker,
+  tags: [],
 };
 
 export default meta;
 type Story = StoryObj<typeof DateRangePicker>;
 
 export const Default: Story = {
-    args: {
-        startProps: {
-            placeholder: "開始日",
-        },
-        endProps: {
-            placeholder: "終了日",
-        }
+  args: {
+    startProps: {
+      placeholder: "開始日",
     },
+    endProps: {
+      placeholder: "終了日",
+    },
+  },
 };
-
-

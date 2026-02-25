@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
 import * as IndicatorStories from "./Indicator.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Indicator
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_indicator_title" />
 </p>
 
@@ -15,26 +22,31 @@ import { T } from "../T";
 ## 使用例
 
 ### 基本的な使い方
+
 アバターなどの要素をラップして使用します。
 
 <Canvas of={IndicatorStories.Default} />
 
 ### カラーバリエーション
+
 ステータスに応じて色を変更できます。
 
 <Canvas of={IndicatorStories.Colors} />
 
 ### パルスアニメーション
+
 `pulse`プロパティを有効にすることで、注目を集めるためのアニメーションを追加できます。
 
 <Canvas of={IndicatorStories.Pulse} />
 
 ### インライン表示
+
 `inline`プロパティを有効にすることで、テキストの横などに単体でドットを表示できます。
 
 <Canvas of={IndicatorStories.Inline} />
 
 ### サイズ
+
 `small`, `medium`, `large`の3つのサイズが利用可能です。
 
 <Canvas of={IndicatorStories.Sizes} />
@@ -42,4 +54,3 @@ import { T } from "../T";
 ## Props
 
 <Controls />
-

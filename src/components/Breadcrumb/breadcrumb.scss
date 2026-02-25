@@ -1,88 +1,88 @@
 ﻿@layer component {
-    .wim-breadcrumb {
-        line-height: 1.5;
+  .wim-breadcrumb {
+    line-height: 1.5;
 
-        &__list {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            row-gap: var(--spacing-md);
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        &__item {
-            display: flex;
-            align-items: center;
-        }
-
-        &__content {
-            display: flex;
-            align-items: center;
-        }
-
-        &__link {
-            text-decoration: none;
-
-            .wim-link__label {
-                line-height: inherit;
-            }
-
-            // Override Link base style if needed for breadcrumb context
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-
-        &__label {
-            display: inline-flex;
-            gap: var(--spacing-3xs);
-            align-items: center;
-            color: var(--text-tertiary); // Default non-link/previous item color
-
-            &--current {
-                font-weight: var(--font-weight-bold);
-                color: var(--text-primary);
-            }
-
-            &-icon {
-                font-size: 0.9em;
-            }
-        }
-
-        &__separator {
-            display: flex;
-            align-items: center;
-            padding: 0 var(--spacing-xs);
-            color: var(--text-tertiary);
-            user-select: none;
-
-            &-icon {
-                font-size: 0.8em;
-                opacity: 0.6;
-            }
-        }
-
-        // Sizes
-        &--lg {
-            font-size: var(--font-size-large);
-
-            .wim-breadcrumb__separator {
-                padding: 0 var(--spacing-sm);
-            }
-        }
-
-        &--md {
-            font-size: var(--font-size-medium);
-        }
-
-        &--sm {
-            font-size: var(--font-size-small);
-
-            .wim-breadcrumb__separator {
-                padding: 0 var(--spacing-2xs);
-            }
-        }
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      row-gap: var(--spacing-md);
+      padding: 0;
+      margin: 0;
+      list-style: none;
     }
+
+    &__item {
+      display: flex;
+      align-items: center;
+    }
+
+    &__content {
+      display: flex;
+      align-items: center;
+    }
+
+    &__link {
+      text-decoration: none;
+
+      .wim-link__label {
+        line-height: inherit;
+      }
+
+      // Override Link base style if needed for breadcrumb context
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &__label {
+      display: inline-flex;
+      gap: var(--spacing-3xs);
+      align-items: center;
+      color: var(--text-tertiary); // Default non-link/previous item color
+
+      &--current {
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+      }
+
+      &-icon {
+        font-size: 0.9em;
+      }
+    }
+
+    &__separator {
+      display: flex;
+      align-items: center;
+      padding: 0 var(--spacing-xs);
+      color: var(--text-tertiary);
+      user-select: none;
+
+      &-icon {
+        font-size: 0.8em;
+        opacity: 0.6;
+      }
+    }
+
+    // Sizes
+    &--lg {
+      font-size: var(--font-size-large);
+
+      .wim-breadcrumb__separator {
+        padding: 0 var(--spacing-sm);
+      }
+    }
+
+    &--md {
+      font-size: var(--font-size-medium);
+    }
+
+    &--sm {
+      font-size: var(--font-size-small);
+
+      .wim-breadcrumb__separator {
+        padding: 0 var(--spacing-2xs);
+      }
+    }
+  }
 }

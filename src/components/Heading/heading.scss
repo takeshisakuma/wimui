@@ -1,107 +1,107 @@
 ﻿@layer component {
-    .wim-heading {
-        width: 100%;
-        margin: 0;
-        font-family: inherit;
-        font-weight: var(--font-weight-bold);
-        line-height: normal;
+  .wim-heading {
+    width: 100%;
+    margin: 0;
+    font-family: inherit;
+    font-weight: var(--font-weight-bold);
+    line-height: normal;
 
-        /* Sizes */
-        &--xs {
-            font-size: var(--font-size-0); // 1rem
-        }
-
-        &--sm {
-            font-size: var(--font-size-2); // 1.3rem
-        }
-
-        &--md {
-            font-size: var(--font-size-4); // 1.6rem
-        }
-
-        &--lg {
-            font-size: var(--font-size-6); // 2rem
-        }
-
-        &--xl {
-            font-size: var(--font-size-8); // 2.6rem
-        }
-
-        &--2xl {
-            font-size: var(--font-size-10); // 3.2rem
-        }
-
-        &--3xl {
-            font-size: var(--font-size-12); // 4.1rem
-        }
-
-        &--4xl {
-            font-size: var(--font-size-14); // 5.2rem
-        }
-
-        /* Align */
-        &--left {
-            text-align: left;
-        }
-
-        &--center {
-            text-align: center;
-        }
-
-        &--right {
-            text-align: right;
-        }
-
-        /* Colors */
-        &--black {
-            color: var(--text-primary);
-        }
-
-        &--deepgray {
-            color: var(--text-secondary);
-        }
-
-        &--gray {
-            color: var(--text-tertiary);
-        }
-
-        &--lightgray {
-            color: var(--text-disabled);
-        }
-
-        &--white {
-            color: var(--text-white);
-        }
-
-        &--error {
-            color: var(--text-error);
-        }
-
-        &--primary {
-            color: var(--color-primary);
-        }
-
-        &--success {
-            color: var(--color-positive);
-        }
-
-        &--warning {
-            color: var(--color-caution);
-        }
-
-        &--info {
-            color: var(--color-informative);
-        }
-
-        /* Decoration */
-        &--underline {
-            text-decoration: var(--decoration-underline);
-            text-decoration-skip-ink: none;
-            text-underline-offset: 0.3em;
-        }
-
-        &__highlight {
-            background-color: var(--decoration-highlight-color);
-        }
+    /* Sizes */
+    &--xs {
+      font-size: var(--font-size-0); // 1rem
     }
+
+    &--sm {
+      font-size: var(--font-size-2); // 1.3rem
+    }
+
+    &--md {
+      font-size: var(--font-size-4); // 1.6rem
+    }
+
+    &--lg {
+      font-size: var(--font-size-6); // 2rem
+    }
+
+    &--xl {
+      font-size: var(--font-size-8); // 2.6rem
+    }
+
+    &--2xl {
+      font-size: var(--font-size-10); // 3.2rem
+    }
+
+    &--3xl {
+      font-size: var(--font-size-12); // 4.1rem
+    }
+
+    &--4xl {
+      font-size: var(--font-size-14); // 5.2rem
+    }
+
+    /* Align */
+    &--left {
+      text-align: left;
+    }
+
+    &--center {
+      text-align: center;
+    }
+
+    &--right {
+      text-align: right;
+    }
+
+    /* Colors */
+    &--black {
+      color: var(--text-primary);
+    }
+
+    &--deepgray {
+      color: var(--text-secondary);
+    }
+
+    &--gray {
+      color: var(--text-tertiary);
+    }
+
+    &--lightgray {
+      color: var(--text-disabled);
+    }
+
+    &--white {
+      color: var(--text-white);
+    }
+
+    &--error {
+      color: var(--text-error);
+    }
+
+    &--primary {
+      color: var(--color-primary);
+    }
+
+    &--success {
+      color: var(--color-positive);
+    }
+
+    &--warning {
+      color: var(--color-caution);
+    }
+
+    &--info {
+      color: var(--color-informative);
+    }
+
+    /* Decoration */
+    &--underline {
+      text-decoration: var(--decoration-underline);
+      text-decoration-skip-ink: none;
+      text-underline-offset: 0.3em;
+    }
+
+    &__highlight {
+      background-color: var(--decoration-highlight-color);
+    }
+  }
 }

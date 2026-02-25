@@ -14,15 +14,10 @@
     "isolatedModules": true, // 各ファイルを独立したモジュールとしてコンパイルする (バンドラーで推奨)
     "noEmit": true, // 型チェックのみ行い、JavaScriptファイルの出力は行わない (Babel/SWCなどでトランスパイルする場合)
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     "allowJs": true, //JavaScriptファイルのコンパイル/型チェックを許可
-    "types": [
-      "vitest/globals",
-      "@testing-library/jest-dom"
-    ]
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "include": [
     "src/**/*.ts",
@@ -34,9 +29,5 @@
     "src/**/*.mdx",
     ".storybook/i18n.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "storybook-static"
-  ]
+  "exclude": ["node_modules", "dist", "storybook-static"]
 }

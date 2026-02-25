@@ -1,27 +1,43 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as TourStories from "./Tour.stories";
 import { T } from "../T";
 
 <Meta of={TourStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   ユーザーに機能の使い方や画面の操作方法を案内するためのガイドコンポーネント。
 </p>
 
 <Description>
-  `Tour` は、特定の要素を強調しながらステップバイステップで説明を表示します。初めてのユーザーへのオンボーディングや、新機能の紹介に最適です。
+  `Tour`
+  は、特定の要素を強調しながらステップバイステップで説明を表示します。初めてのユーザーへのオンボーディングや、新機能の紹介に最適です。
 </Description>
 
 <Primary />
 
 <h2>使用方法</h2>
 <p>
-  `steps` プロップにターゲットとなる要素のセレクタ、タイトル、説明文を指定します。`open` プロップでツアーの表示/非表示を制御します。
+  `steps`
+  プロップにターゲットとなる要素のセレクタ、タイトル、説明文を指定します。`open`
+  プロップでツアーの表示/非表示を制御します。
 </p>
 
 <Canvas of={TourStories.Default} />
 
 <Controls />
-

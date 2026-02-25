@@ -1,23 +1,23 @@
 ﻿.wim-divider {
-    display: block;
-    flex-shrink: 0;
+  display: block;
+  flex-shrink: 0;
 
-    /* デフォルトの境界線色（後でトークンに合わせる） */
-    margin: 0;
-    background-color: var(--wim-color-border, #e5e7eb);
-    border: none;
+  /* デフォルトの境界線色（後でトークンに合わせる） */
+  margin: 0;
+  background-color: var(--wim-color-border, #e5e7eb);
+  border: none;
 
-    &--horizontal {
-        width: 100%;
-        height: var(--wim-divider-thickness, 1px);
-        margin: 8px 0;
-    }
+  &--horizontal {
+    width: 100%;
+    height: var(--wim-divider-thickness, 1px);
+    margin: 8px 0;
+  }
 
-    &--vertical {
-        display: inline-block;
-        align-self: stretch;
-        width: var(--wim-divider-thickness, 1px);
-        height: 100%;
-        margin: 0 8px;
-    }
+  &--vertical {
+    display: inline-block;
+    align-self: stretch;
+    width: var(--wim-divider-thickness, 1px);
+    height: 100%;
+    margin: 0 8px;
+  }
 }

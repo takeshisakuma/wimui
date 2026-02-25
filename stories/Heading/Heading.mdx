@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
 import * as HeadingStories from "./Heading.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Heading
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_heading_title" />
 </p>
 
@@ -21,24 +28,29 @@ import { T } from "../T";
 `level` プロパティで階層を指定します。
 
 ### H1
+
 <Canvas of={HeadingStories.h1_heading} />
 
 ### H2
+
 <Canvas of={HeadingStories.h2_heading} />
 
 ### H3
+
 <Canvas of={HeadingStories.h3_heading} />
 
 ### H4
+
 <Canvas of={HeadingStories.h4_heading} />
 
 ### H5
+
 <Canvas of={HeadingStories.h5_heading} />
 
 ### H6
+
 <Canvas of={HeadingStories.h6_heading} />
 
 ## Props
 
 <Controls />
-

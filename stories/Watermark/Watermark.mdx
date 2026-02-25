@@ -1,17 +1,32 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as WatermarkStories from "./Watermark.stories";
 import { T } from "../T";
 
 <Meta of={WatermarkStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   コンテンツに透かし（ウォーターマーク）を追加するためのコンポーネント。
 </p>
 
 <Description>
-  `Watermark` は、著作権情報や機密状態を示すテキストや画像を、コンテンツの背面に繰り返し表示します。
+  `Watermark`
+  は、著作権情報や機密状態を示すテキストや画像を、コンテンツの背面に繰り返し表示します。
 </Description>
 
 <Primary />
@@ -19,15 +34,11 @@ import { T } from "../T";
 <h2>バリエーション</h2>
 
 <h3>テキスト</h3>
-<p>
-  `content` プロップに文字列を指定して表示します。
-</p>
+<p>`content` プロップに文字列を指定して表示します。</p>
 <Canvas of={WatermarkStories.Text} />
 
 <h3>複数行テキスト</h3>
-<p>
-  `content` プロップに配列を渡すことで、複数行のテキストを表示できます。
-</p>
+<p>`content` プロップに配列を渡すことで、複数行のテキストを表示できます。</p>
 <Canvas of={WatermarkStories.MultiLine} />
 
 <h3>画像</h3>
@@ -37,4 +48,3 @@ import { T } from "../T";
 <Canvas of={WatermarkStories.Image} />
 
 <Controls />
-

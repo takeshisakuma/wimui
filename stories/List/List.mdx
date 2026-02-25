@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as ListStories from "./List.stories";
 import { T } from "../T";
 
 <Meta of={ListStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   関連するアイテムを整理して表示するための汎用的なリストコンポーネント
 </p>
 
@@ -30,9 +44,10 @@ import { T } from "../T";
 <Canvas of={ListStories.LooseSpacing} />
 
 <h3>アイコン付き</h3>
-<p>ListItem に <code>iconName</code> を指定することで、アイコンを表示できます。<code>iconPosition</code> で左右の配置を選択可能です。</p>
+<p>
+  ListItem に <code>iconName</code> を指定することで、アイコンを表示できます。
+  <code>iconPosition</code> で左右の配置を選択可能です。
+</p>
 <Canvas of={ListStories.WithIcons} />
 
-
 <Controls />
-

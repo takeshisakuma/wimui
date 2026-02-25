@@ -5,7 +5,17 @@ import { useTranslation } from "react-i18next";
 
 type QuoteProps = React.ComponentPropsWithoutRef<"blockquote"> & {
   size?: "small" | "medium" | "large";
-  color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "primary" | "success" | "warning" | "error" | "info";
+  color?:
+    | "black"
+    | "deepgray"
+    | "gray"
+    | "lightgray"
+    | "white"
+    | "primary"
+    | "success"
+    | "warning"
+    | "error"
+    | "info";
   content: string;
   cite?: string;
   border?: boolean;
@@ -29,7 +39,7 @@ export const Quote = ({
         `wim-quote--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
         `wim-quote--${color}`,
         border && "wim-quote--border",
-        className
+        className,
       )}
       {...props}
     >
@@ -38,5 +48,3 @@ export const Quote = ({
     </blockquote>
   );
 };
-
-

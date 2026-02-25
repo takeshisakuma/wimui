@@ -1,12 +1,19 @@
-import { Canvas, Meta, Controls, Primary} from '@storybook/blocks';
-import * as CommandPaletteStories from './CommandPalette.stories';
+import { Canvas, Meta, Controls, Primary } from "@storybook/blocks";
+import * as CommandPaletteStories from "./CommandPalette.stories";
 import { T } from "../T";
 
 <Meta of={CommandPaletteStories} />
 
 # Command Palette
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_commandpalette_title" />
 </p>
 
@@ -61,9 +68,7 @@ return (
   <>
     <button onClick={() => setOpen(true)}>Open</button>
     <CommandPalette open={open} onOpenChange={setOpen}>
-      <CommandPaletteContent>
-        {/* ... */}
-      </CommandPaletteContent>
+      <CommandPaletteContent>{/* ... */}</CommandPaletteContent>
     </CommandPalette>
   </>
 );
@@ -76,4 +81,3 @@ return (
 ## プロパティ
 
 <Controls />
-

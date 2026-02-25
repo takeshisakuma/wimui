@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as TextareaStories from "./Textarea.stories";
 import { T } from "../T";
 
 <Meta of={TextareaStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   複数行のテキストを入力するためのコンポーネントです。
 </p>
 
@@ -26,11 +40,13 @@ import { T } from "../T";
 通常時は入力フィールドであることを強調せず、ホバー時やフォーカス時のみ視覚的なフィードバックを提供します。
 
 使用例:
+
 - 詳細画面のタイトルなど、表示がメインで編集も可能な「Click-to-Edit」UI
 - リストやテーブル内など、入力項目が多数並ぶ画面でのノイズ低減
 - 検索バーなど、背景に溶け込ませたい場合
 
 インタラクション:
+
 - 未入力時: プレースホルダーで入力エリアであることを示唆
 - ホバー時: 薄い背景色が表示され、操作可能であることを通知
 - フォーカス時: プライマリーカラーのボーダーが表示され、入力状態であることを明示
@@ -69,4 +85,3 @@ import { T } from "../T";
 <Canvas of={TextareaStories.FormPattern} />
 
 <Controls />
-

@@ -1,74 +1,76 @@
 ﻿.wim-switch-wrapper {
-    display: inline-flex;
-    gap: var(--spacing-sm);
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
+  display: inline-flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
 
-    &.wim-switch--disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
-    }
+  &.wim-switch--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }
 
 .wim-switch-input {
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
 }
 
 .wim-switch-track {
-    position: relative;
-    flex-shrink: 0;
-    width: 44px;
-    height: 24px;
-    background-color: var(--wim-color-border-secondary);
-    border-radius: 9999px;
-    transition: background-color 0.2s ease-in-out;
+  position: relative;
+  flex-shrink: 0;
+  width: 44px;
+  height: 24px;
+  background-color: var(--wim-color-border-secondary);
+  border-radius: 9999px;
+  transition: background-color 0.2s ease-in-out;
 
-    .wim-switch-input:checked+& {
-        background-color: var(--color-primary);
-    }
+  .wim-switch-input:checked + & {
+    background-color: var(--color-primary);
+  }
 
-    .wim-switch-thumb {
-        position: absolute;
-        top: 2px;
-        left: 2px;
-        width: 20px;
-        height: 20px;
-        background-color: var(--text-white);
-        border-radius: 50%;
-        box-shadow: 0 1px 2px rgb(0 0 0 / 0.1); // Fallback for shadow if variable missing
-        transition: transform 0.2s ease-in-out;
-    }
+  .wim-switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--text-white);
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.1); // Fallback for shadow if variable missing
+    transition: transform 0.2s ease-in-out;
+  }
 
-    .wim-switch-input:checked+& .wim-switch-thumb {
-        transform: translateX(20px);
-    }
+  .wim-switch-input:checked + & .wim-switch-thumb {
+    transform: translateX(20px);
+  }
 }
 
 /* Sizes */
 .wim-switch-track--small {
-    width: 36px;
-    height: 20px;
+  width: 36px;
+  height: 20px;
 
-    .wim-switch-thumb {
-        width: 16px;
-        height: 16px;
-    }
+  .wim-switch-thumb {
+    width: 16px;
+    height: 16px;
+  }
 
-    &.wim-switch-track-checked .wim-switch-thumb {
-        transform: translateX(16px);
-    }
+  &.wim-switch-track-checked .wim-switch-thumb {
+    transform: translateX(16px);
+  }
 }
 
-.wim-switch-input:checked+.wim-switch-track.wim-switch-track--small .wim-switch-thumb {
-    transform: translateX(16px);
+.wim-switch-input:checked
+  + .wim-switch-track.wim-switch-track--small
+  .wim-switch-thumb {
+  transform: translateX(16px);
 }
 
 .wim-switch-label {
-    font-family: var(--font-sans);
-    font-size: var(--text-base); // Ensure this exists or use 1rem
-    color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-base); // Ensure this exists or use 1rem
+  color: var(--text-primary);
 }

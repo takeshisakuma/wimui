@@ -5,28 +5,28 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 $breakpoints: (
-    sm: $sm,
-    md: $md,
-    lg: $lg,
-    xl: $xl
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
 );
 
 @mixin up($breakpoint) {
-    @if map.has-key($breakpoints, $breakpoint) {
-        @media (min-width: map.get($breakpoints, $breakpoint)) {
-            @content;
-        }
-    } @else {
-        @warn "Breakpoint #{$breakpoint} not found in $breakpoints map";
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
     }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints map";
+  }
 }
 
 @mixin down($breakpoint) {
-    @if map.has-key($breakpoints, $breakpoint) {
-        @media (max-width: map.get($breakpoints, $breakpoint)) {
-            @content;
-        }
-    } @else {
-        @warn "Breakpoint #{$breakpoint} not found in $breakpoints map";
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (max-width: map.get($breakpoints, $breakpoint)) {
+      @content;
     }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints map";
+  }
 }

@@ -69,8 +69,6 @@ import RepeatIcon from "../../icon/repeat.svg?react";
 import SkipBackIcon from "../../icon/skip-back.svg?react";
 import SkipForwardIcon from "../../icon/skip-forward.svg?react";
 
-
-
 // アイコン名をコンポーネントにマッピング
 const icons = {
   CircleIcon: CircleIcon,
@@ -142,86 +140,92 @@ const icons = {
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
   name:
-  | "CircleIcon"
-  | "SquareIcon"
-  | "LoadingIcon"
-  | "ExternalLinkIcon"
-  | "CloseIcon"
-  | "SearchIcon"
-  | "EyeIcon"
-  | "EyeOffIcon"
-  | "ChevronDownIcon"
-  | "PlayIcon"
-  | "PauseIcon"
-  | "VolumeIcon"
-  | "MuteIcon"
-  | "ChevronRightIcon"
-  | "ChevronLeftIcon"
-  | "ChevronUpIcon"
-  | "CopyIcon"
-  | "CheckIcon"
-  | "UploadIcon"
-  | "MaximizeIcon"
-  | "MinimizeIcon"
-  | "StarIcon"
-  | "HomeIcon"
-  | "ProjectIcon"
-  | "ChartIcon"
-  | "SettingsIcon"
-  | "BellIcon"
-  | "PdfIcon"
-  | "DocumentIcon"
-  | "ImageIcon"
-  | "VideoIcon"
-  | "EmailIcon"
-  | "PhoneIcon"
-  | "PlusIcon"
-  | "MinusIcon"
-  | "EditIcon"
-  | "TrashIcon"
-  | "DownloadIcon"
-  | "RefreshIcon"
-  | "ShareIcon"
-  | "UserIcon"
-  | "LogInIcon"
-  | "LogOutIcon"
-  | "InfoCircleIcon"
-  | "AlertCircleIcon"
-  | "HelpCircleIcon"
-  | "CalendarIcon"
-  | "ClockIcon"
-  | "SunIcon"
-  | "MoonIcon"
-  | "MoreHorizontalIcon"
-  | "MoreVerticalIcon"
-  | "FilterIcon"
-  | "SpinnerIcon"
-  | "ThumbUpIcon"
-  | "ThumbDownIcon"
-  | "MonitorIcon"
-  | "SmartphoneIcon"
-  | "CloseSmallIcon"
-  | "CheckCircleIcon"
-  | "HourglassIcon"
-  | "ShuffleIcon"
-  | "RepeatIcon"
-  | "SkipBackIcon"
-  | "SkipForwardIcon";
+    | "CircleIcon"
+    | "SquareIcon"
+    | "LoadingIcon"
+    | "ExternalLinkIcon"
+    | "CloseIcon"
+    | "SearchIcon"
+    | "EyeIcon"
+    | "EyeOffIcon"
+    | "ChevronDownIcon"
+    | "PlayIcon"
+    | "PauseIcon"
+    | "VolumeIcon"
+    | "MuteIcon"
+    | "ChevronRightIcon"
+    | "ChevronLeftIcon"
+    | "ChevronUpIcon"
+    | "CopyIcon"
+    | "CheckIcon"
+    | "UploadIcon"
+    | "MaximizeIcon"
+    | "MinimizeIcon"
+    | "StarIcon"
+    | "HomeIcon"
+    | "ProjectIcon"
+    | "ChartIcon"
+    | "SettingsIcon"
+    | "BellIcon"
+    | "PdfIcon"
+    | "DocumentIcon"
+    | "ImageIcon"
+    | "VideoIcon"
+    | "EmailIcon"
+    | "PhoneIcon"
+    | "PlusIcon"
+    | "MinusIcon"
+    | "EditIcon"
+    | "TrashIcon"
+    | "DownloadIcon"
+    | "RefreshIcon"
+    | "ShareIcon"
+    | "UserIcon"
+    | "LogInIcon"
+    | "LogOutIcon"
+    | "InfoCircleIcon"
+    | "AlertCircleIcon"
+    | "HelpCircleIcon"
+    | "CalendarIcon"
+    | "ClockIcon"
+    | "SunIcon"
+    | "MoonIcon"
+    | "MoreHorizontalIcon"
+    | "MoreVerticalIcon"
+    | "FilterIcon"
+    | "SpinnerIcon"
+    | "ThumbUpIcon"
+    | "ThumbDownIcon"
+    | "MonitorIcon"
+    | "SmartphoneIcon"
+    | "CloseSmallIcon"
+    | "CheckCircleIcon"
+    | "HourglassIcon"
+    | "ShuffleIcon"
+    | "RepeatIcon"
+    | "SkipBackIcon"
+    | "SkipForwardIcon";
 
   size?: "small" | "medium" | "large";
   color?:
-  | "destructive"
-  | "positive"
-  | "caution"
-  | "informative"
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "disabled";
+    | "destructive"
+    | "positive"
+    | "caution"
+    | "informative"
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "disabled";
 };
 
 // eslint-disable-next-line react/prop-types
-export const Icon = ({ name, size = "medium", color, className, ...props }: IconProps) => {
+export const Icon = ({
+  name,
+  size = "medium",
+  color,
+  className,
+  ...props
+}: IconProps) => {
   if (!name) return null;
   const IconComponent = icons[name];
   if (!IconComponent) return null;
@@ -232,8 +236,9 @@ export const Icon = ({ name, size = "medium", color, className, ...props }: Icon
         "wim-icon",
         `wim-icon--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
         color && `wim-icon--${color}`,
-        (name === "LoadingIcon" || name === "SpinnerIcon") && "wim-icon--loading",
-        className
+        (name === "LoadingIcon" || name === "SpinnerIcon") &&
+          "wim-icon--loading",
+        className,
       )}
       {...props}
     />

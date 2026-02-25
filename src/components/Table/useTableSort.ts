@@ -3,20 +3,20 @@ import { useState, useCallback, useMemo } from "react";
 export type SortDirection = "asc" | "desc" | "none";
 
 export interface SortConfig<T = any> {
-    key: keyof T | null;
-    direction: SortDirection;
+  key: keyof T | null;
+  direction: SortDirection;
 }
 
 export interface UseTableSortOptions<T> {
-    initialSort?: SortConfig<T>;
-    onSortChange?: (config: SortConfig<T>) => void;
+  initialSort?: SortConfig<T>;
+  onSortChange?: (config: SortConfig<T>) => void;
 }
 
 export interface UseTableSortReturn<T> {
-    sortedData: T[];
-    sortConfig: SortConfig<T>;
-    handleSort: (key: keyof T) => void;
-    getSortDirection: (key: keyof T) => SortDirection;
+  sortedData: T[];
+  sortConfig: SortConfig<T>;
+  handleSort: (key: keyof T) => void;
+  getSortDirection: (key: keyof T) => SortDirection;
 }
 
 /**
@@ -26,79 +26,79 @@ export interface UseTableSortReturn<T> {
  * @returns Sorted data and sorting utilities
  */
 export function useTableSort<T extends Record<string, any>>(
-    data: T[],
-    options: UseTableSortOptions<T> = {}
+  data: T[],
+  options: UseTableSortOptions<T> = {},
 ): UseTableSortReturn<T> {
-    const { initialSort, onSortChange } = options;
+  const { initialSort, onSortChange } = options;
 
-    const [sortConfig, setSortConfig] = useState<SortConfig<T>>(
-        initialSort || { key: null, direction: "none" }
-    );
+  const [sortConfig, setSortConfig] = useState<SortConfig<T>>(
+    initialSort || { key: null, direction: "none" },
+  );
 
-    const handleSort = useCallback(
-        (key: keyof T) => {
-            let direction: SortDirection = "asc";
+  const handleSort = useCallback(
+    (key: keyof T) => {
+      let direction: SortDirection = "asc";
 
-            if (sortConfig.key === key) {
-                if (sortConfig.direction === "asc") {
-                    direction = "desc";
-                } else if (sortConfig.direction === "desc") {
-                    direction = "none";
-                }
-            }
-
-            const newConfig = { key, direction };
-            setSortConfig(newConfig);
-            onSortChange?.(newConfig);
-        },
-        [sortConfig, onSortChange]
-    );
-
-    const sortedData = useMemo(() => {
-        if (!sortConfig.key || sortConfig.direction === "none") {
-            return data;
+      if (sortConfig.key === key) {
+        if (sortConfig.direction === "asc") {
+          direction = "desc";
+        } else if (sortConfig.direction === "desc") {
+          direction = "none";
         }
+      }
 
-        return [...data].sort((a, b) => {
-            const aValue = a[sortConfig.key!];
-            const bValue = b[sortConfig.key!];
+      const newConfig = { key, direction };
+      setSortConfig(newConfig);
+      onSortChange?.(newConfig);
+    },
+    [sortConfig, onSortChange],
+  );
 
-            // Handle null/undefined values
-            if (aValue == null && bValue == null) return 0;
-            if (aValue == null) return 1;
-            if (bValue == null) return -1;
+  const sortedData = useMemo(() => {
+    if (!sortConfig.key || sortConfig.direction === "none") {
+      return data;
+    }
 
-            // Handle different types
-            if (typeof aValue === "string" && typeof bValue === "string") {
-                return sortConfig.direction === "asc"
-                    ? aValue.localeCompare(bValue)
-                    : bValue.localeCompare(aValue);
-            }
+    return [...data].sort((a, b) => {
+      const aValue = a[sortConfig.key!];
+      const bValue = b[sortConfig.key!];
 
-            if (typeof aValue === "number" && typeof bValue === "number") {
-                return sortConfig.direction === "asc"
-                    ? aValue - bValue
-                    : bValue - aValue;
-            }
+      // Handle null/undefined values
+      if (aValue == null && bValue == null) return 0;
+      if (aValue == null) return 1;
+      if (bValue == null) return -1;
 
-            // Default comparison
-            if (aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1;
-            if (aValue > bValue) return sortConfig.direction === "asc" ? 1 : -1;
-            return 0;
-        });
-    }, [data, sortConfig]);
+      // Handle different types
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return sortConfig.direction === "asc"
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
 
-    const getSortDirection = useCallback(
-        (key: keyof T): SortDirection => {
-            return sortConfig.key === key ? sortConfig.direction : "none";
-        },
-        [sortConfig]
-    );
+      if (typeof aValue === "number" && typeof bValue === "number") {
+        return sortConfig.direction === "asc"
+          ? aValue - bValue
+          : bValue - aValue;
+      }
 
-    return {
-        sortedData,
-        sortConfig,
-        handleSort,
-        getSortDirection,
-    };
+      // Default comparison
+      if (aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1;
+      if (aValue > bValue) return sortConfig.direction === "asc" ? 1 : -1;
+      return 0;
+    });
+  }, [data, sortConfig]);
+
+  const getSortDirection = useCallback(
+    (key: keyof T): SortDirection => {
+      return sortConfig.key === key ? sortConfig.direction : "none";
+    },
+    [sortConfig],
+  );
+
+  return {
+    sortedData,
+    sortConfig,
+    handleSort,
+    getSortDirection,
+  };
 }

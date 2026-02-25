@@ -1,12 +1,12 @@
 export {
-    ContextMenu,
-    ContextMenuItem,
-    ContextMenuDivider,
-    ContextMenuGroup,
+  ContextMenu,
+  ContextMenuItem,
+  ContextMenuDivider,
+  ContextMenuGroup,
 } from "./ContextMenu";
 export type {
-    ContextMenuProps,
-    ContextMenuItemProps,
-    ContextMenuDividerProps,
-    ContextMenuGroupProps,
+  ContextMenuProps,
+  ContextMenuItemProps,
+  ContextMenuDividerProps,
+  ContextMenuGroupProps,
 } from "./ContextMenu";

@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
 import * as ParagraphStories from "./Paragraph.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Paragraph
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_paragraph_title" />
 </p>
 
@@ -21,12 +28,15 @@ import { T } from "../T";
 `size` プロパティでテキストサイズを変更できます。
 
 ### Extra Large
+
 <Canvas of={ParagraphStories.ExLargeParagraph} />
 
 ### Large
+
 <Canvas of={ParagraphStories.LargeParagraph} />
 
 ### Small
+
 <Canvas of={ParagraphStories.SmallParagrapht} />
 
 ## 装飾
@@ -34,12 +44,13 @@ import { T } from "../T";
 `decoration` プロパティでテキストの装飾を指定できます。
 
 ### Strikethrough
+
 <Canvas of={ParagraphStories.StrikethroughParagraph} />
 
 ### Highlight
+
 <Canvas of={ParagraphStories.HighlightParagraph} />
 
 ## Props
 
 <Controls />
-

@@ -5,42 +5,42 @@ import { SIGNAL_COLOR_CHANGE } from "./ContrastChecker";
  * ColorSwatch component for documentation
  */
 interface ColorSwatchProps {
-    /** Color name displayed in the card */
-    name?: string;
-    /** Color value or variable name displayed in the card */
-    value?: string;
-    /** The actual color (CSS variable, hex, etc.) */
-    color: string;
-    /** Text or element to display on top of the color swatch */
-    children?: React.ReactNode;
-    /** Variant of the swatch */
-    variant?: "card" | "square";
+  /** Color name displayed in the card */
+  name?: string;
+  /** Color value or variable name displayed in the card */
+  value?: string;
+  /** The actual color (CSS variable, hex, etc.) */
+  color: string;
+  /** Text or element to display on top of the color swatch */
+  children?: React.ReactNode;
+  /** Variant of the swatch */
+  variant?: "card" | "square";
 }
 
 export const ColorSwatch: React.FC<ColorSwatchProps> = ({
-    name,
-    value,
-    color,
-    children,
-    variant = "card",
+  name,
+  value,
+  color,
+  children,
+  variant = "card",
 }) => {
-    const handleSetColor = (type: "bg" | "fg") => {
-        // Ensure we handle variable names correctly
-        let colorValue = value || color;
-        if (colorValue.startsWith("--")) {
-            colorValue = `var(${colorValue})`;
-        }
+  const handleSetColor = (type: "bg" | "fg") => {
+    // Ensure we handle variable names correctly
+    let colorValue = value || color;
+    if (colorValue.startsWith("--")) {
+      colorValue = `var(${colorValue})`;
+    }
 
-        const event = new CustomEvent(SIGNAL_COLOR_CHANGE, {
-            detail: { type, value: colorValue },
-        });
-        window.dispatchEvent(event);
-    };
+    const event = new CustomEvent(SIGNAL_COLOR_CHANGE, {
+      detail: { type, value: colorValue },
+    });
+    window.dispatchEvent(event);
+  };
 
-    return (
-        <>
-            <style>
-                {`
+  return (
+    <>
+      <style>
+        {`
         .wim-swatch-card {
           border-radius: 12px;
           overflow: hidden;
@@ -160,69 +160,107 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
           max-width: 100%;
         }
       `}
-            </style>
+      </style>
 
-            {variant === "card" ? (
-                <div className="wim-swatch-card">
-                    <div className="wim-swatch-actions">
-                        <button className="wim-swatch-action-btn" onClick={(e) => { e.stopPropagation(); handleSetColor("bg"); }}>BG</button>
-                        <button className="wim-swatch-action-btn" onClick={(e) => { e.stopPropagation(); handleSetColor("fg"); }}>FG</button>
-                    </div>
-                    <div className="wim-swatch-card-preview" style={{ background: color }}>
-                        {children}
-                    </div>
-                    <div className="wim-swatch-card-info">
-                        {name && <span className="wim-swatch-name">{name}</span>}
-                        {value && <span className="wim-swatch-value">{value}</span>}
-                    </div>
-                </div>
-            ) : (
-                <div className="wim-swatch-square-wrapper">
-                    <div className="wim-swatch-actions" style={{ top: "-8px", right: "-4px" }}>
-                        <button className="wim-swatch-action-btn" onClick={(e) => { e.stopPropagation(); handleSetColor("bg"); }}>BG</button>
-                        <button className="wim-swatch-action-btn" onClick={(e) => { e.stopPropagation(); handleSetColor("fg"); }}>FG</button>
-                    </div>
-                    <div
-                        className="wim-swatch-square"
-                        style={{ background: color }}
-                        title={value || name || color}
-                    >
-                        {children}
-                    </div>
-                    {(name || value) && (
-                        <span className="wim-swatch-square-label">{name || value}</span>
-                    )}
-                </div>
-            )}
-        </>
-    );
+      {variant === "card" ? (
+        <div className="wim-swatch-card">
+          <div className="wim-swatch-actions">
+            <button
+              className="wim-swatch-action-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSetColor("bg");
+              }}
+            >
+              BG
+            </button>
+            <button
+              className="wim-swatch-action-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSetColor("fg");
+              }}
+            >
+              FG
+            </button>
+          </div>
+          <div
+            className="wim-swatch-card-preview"
+            style={{ background: color }}
+          >
+            {children}
+          </div>
+          <div className="wim-swatch-card-info">
+            {name && <span className="wim-swatch-name">{name}</span>}
+            {value && <span className="wim-swatch-value">{value}</span>}
+          </div>
+        </div>
+      ) : (
+        <div className="wim-swatch-square-wrapper">
+          <div
+            className="wim-swatch-actions"
+            style={{ top: "-8px", right: "-4px" }}
+          >
+            <button
+              className="wim-swatch-action-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSetColor("bg");
+              }}
+            >
+              BG
+            </button>
+            <button
+              className="wim-swatch-action-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSetColor("fg");
+              }}
+            >
+              FG
+            </button>
+          </div>
+          <div
+            className="wim-swatch-square"
+            style={{ background: color }}
+            title={value || name || color}
+          >
+            {children}
+          </div>
+          {(name || value) && (
+            <span className="wim-swatch-square-label">{name || value}</span>
+          )}
+        </div>
+      )}
+    </>
+  );
 };
 
 export const ColorGrid: React.FC<{
-    children: React.ReactNode;
-    variant?: "card" | "square";
+  children: React.ReactNode;
+  variant?: "card" | "square";
 }> = ({ children, variant = "card" }) => {
-    const gridStyle =
-        variant === "card"
-            ? {
-                gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-                gap: "24px",
-            }
-            : {
-                gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))",
-                gap: "16px",
-            };
+  const gridStyle =
+    variant === "card"
+      ? {
+          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+          gap: "24px",
+        }
+      : {
+          gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))",
+          gap: "16px",
+        };
 
-    return (
-        <div
-            style={{
-                display: "grid",
-                ...gridStyle,
-                marginTop: "24px",
-                marginBottom: "40px",
-            }}
-        >
-            {children}
-        </div>
-    );
+  return (
+    <div
+      style={{
+        display: "grid",
+        ...gridStyle,
+        marginTop: "24px",
+        marginBottom: "40px",
+      }}
+    >
+      {children}
+    </div>
+  );
 };

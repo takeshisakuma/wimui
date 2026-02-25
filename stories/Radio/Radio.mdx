@@ -1,4 +1,4 @@
-import { Meta, Primary, Controls, Story} from "@storybook/blocks";
+import { Meta, Primary, Controls, Story } from "@storybook/blocks";
 import * as RadioStories from "./Radio.stories";
 import { T } from "../T";
 
@@ -6,16 +6,27 @@ import { T } from "../T";
 
 # Radio
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_radio_title" />
 </p>
 
 Radio buttons allow users to select one option from a set.
 
 ## <T k="doc_radio_usage_title" />
-<p><T k="doc_radio_when_to_use" /></p>
+
+<p>
+  <T k="doc_radio_when_to_use" />
+</p>
 
 ## <T k="doc_radio_implementation_note" />
+
 - <T k="doc_radio_note_default" />
 - <T k="doc_radio_note_layout" />
 
@@ -40,4 +51,3 @@ Radio buttons allow users to select one option from a set.
 ### Disabled
 
 <Story of={RadioStories.Disabled} />
-

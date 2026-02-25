@@ -1,13 +1,24 @@
-import { Canvas, Meta, Story, Controls} from "@storybook/blocks";
+import { Canvas, Meta, Story, Controls } from "@storybook/blocks";
 import { T } from "../T";
 import * as TooltipStories from "./Tooltip.stories";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/Tooltip/Tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/Tooltip/Tooltip";
 
 <Meta of={TooltipStories} />
 
 # Tooltip
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_tooltip_title" />
 </p>
 
@@ -16,14 +27,16 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/Tooltip/To
 ## Usage
 
 ```tsx
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/Tooltip/Tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/Tooltip/Tooltip";
 
 <Tooltip>
   <TooltipTrigger>Hover me</TooltipTrigger>
-  <TooltipContent>
-    Tooltip text
-  </TooltipContent>
-</Tooltip>
+  <TooltipContent>Tooltip text</TooltipContent>
+</Tooltip>;
 ```
 
 ### Delay
@@ -33,9 +46,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/Tooltip/To
 ```tsx
 <Tooltip delay={500}>
   <TooltipTrigger>Hover me</TooltipTrigger>
-  <TooltipContent>
-    Delayed tooltip
-  </TooltipContent>
+  <TooltipContent>Delayed tooltip</TooltipContent>
 </Tooltip>
 ```
 
@@ -70,4 +81,3 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/Tooltip/To
 ## API
 
 <Controls />
-

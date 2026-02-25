@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
 import * as DatePickerStories from "./DatePicker.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # DatePicker
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_datepicker_title" />
 </p>
 
@@ -17,30 +24,33 @@ import { T } from "../T";
 ```tsx
 import { DatePicker } from "@/components/DatePicker/DatePicker";
 
-<DatePicker 
-  onChange={(date) => console.log(date)}
-  placeholder="Select date"
-/>
+<DatePicker onChange={(date) => console.log(date)} placeholder="Select date" />;
 ```
 
 ## Examples
 
 ### Default
+
 <Canvas of={DatePickerStories.Default} />
 
 ### Outline
+
 <Canvas of={DatePickerStories.Outline} />
 
 ### Ghost
+
 <Canvas of={DatePickerStories.Ghost} />
 
 ### Error State
+
 <Canvas of={DatePickerStories.ErrorStatus} />
 
 ### Disabled State
+
 <Canvas of={DatePickerStories.Disabled} />
 
 ### Full Width
+
 <Canvas of={DatePickerStories.FullWidth} />
 
 ## 主な機能
@@ -50,20 +60,18 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 ネイティブの `input type="date"` の代わりに、カスタマイズ可能なカレンダーポップアップを使用しています。
 
 利点:
-- ✅ 統一されたUIデザイン（ブラウザに依存しない）
-- ✅ より大きくクリックしやすいカレンダー
-- ✅ カスタマイズ可能な日付フォーマット
-- ✅ クリアボタンによる簡単なリセット
+
+- 統一されたUIデザイン（ブラウザに依存しない）
+- より大きくクリックしやすいカレンダー
+- カスタマイズ可能な日付フォーマット
+- クリアボタンによる簡単なリセット
 
 ### クリアボタン
 
 `clearable` プロパティ（デフォルト: `true`）により、選択した日付を簡単にクリアできます。
 
 ```jsx
-<DatePicker 
-  clearable={true}
-  onChange={(date) => console.log(date)}
-/>
+<DatePicker clearable={true} onChange={(date) => console.log(date)} />
 ```
 
 ### カスタム日付フォーマット
@@ -72,19 +80,14 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 
 ```jsx
 <>
-  <DatePicker 
-    format="YYYY/MM/DD"
-    onChange={(date) => console.log(date)}
-  />
+  <DatePicker format="YYYY/MM/DD" onChange={(date) => console.log(date)} />
 
-  <DatePicker 
-    format="DD-MM-YYYY"
-    onChange={(date) => console.log(date)}
-  />
+  <DatePicker format="DD-MM-YYYY" onChange={(date) => console.log(date)} />
 </>
 ```
 
 サポートされるフォーマット:
+
 - `YYYY` - 4桁の年
 - `MM` - 2桁の月
 - `DD` - 2桁の日
@@ -94,21 +97,17 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 DatePickerは制御コンポーネントと非制御コンポーネントの両方として使用できます。
 
 非制御コンポーネント:
+
 ```jsx
-<DatePicker 
-  defaultValue={new Date()}
-  onChange={(date) => console.log(date)}
-/>
+<DatePicker defaultValue={new Date()} onChange={(date) => console.log(date)} />
 ```
 
 制御コンポーネント:
+
 ```jsx
 const [date, setDate] = useState(new Date());
 
-<DatePicker 
-  value={date}
-  onChange={setDate}
-/>
+<DatePicker value={date} onChange={setDate} />;
 ```
 
 ### キーボード操作
@@ -119,10 +118,10 @@ const [date, setDate] = useState(new Date());
 
 ### アクセシビリティ
 
-- ✅ ARIA属性による適切なスクリーンリーダー対応
-- ✅ キーボードナビゲーション完全サポート
-- ✅ フォーカス管理
-- ✅ クリアボタンとカレンダーボタンにaria-label
+- ARIA属性による適切なスクリーンリーダー対応
+- キーボードナビゲーション完全サポート
+- フォーカス管理
+- クリアボタンとカレンダーボタンにaria-label
 
 ## Calendarコンポーネントとの統合
 
@@ -137,10 +136,10 @@ DatePickerは内部で[Calendar](/docs/component-navigation-calendar--docs)コ�
 DatePickerは完全な型定義を提供しています。
 
 ```tsx
-import { DatePicker } from './DatePicker';
+import { DatePicker } from "./DatePicker";
 import { T } from "../T";
 
-<DatePicker 
+<DatePicker
   value={new Date()}
   onChange={(date: Date | null) => {
     if (date) {
@@ -149,6 +148,5 @@ import { T } from "../T";
   }}
   format="YYYY-MM-DD"
   clearable
-/>
+/>;
 ```
-

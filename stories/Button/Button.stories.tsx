@@ -12,7 +12,8 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     backgroundColor: { control: "color" },
     state: {
-      description: "⚠️ 非推奨: 代わりに標準の `disabled` prop を使用してください。",
+      description:
+        "⚠️ 非推奨: 代わりに標準の `disabled` prop を使用してください。",
       control: "select",
       options: ["abled", "disabled"],
     },
@@ -99,9 +100,7 @@ export const MediumPrimaryInteractiveLoadingButton: Story = {
       }, 2000);
     };
 
-    return (
-      <Button {...args} loading={loading} onClick={handleClick} />
-    );
+    return <Button {...args} loading={loading} onClick={handleClick} />;
   },
   args: {
     size: "medium",
@@ -122,13 +121,7 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
       }, 2000);
     };
 
-    return (
-      <Button
-        {...args}
-        loading={loading}
-        onClick={handleClick}
-      />
-    );
+    return <Button {...args} loading={loading} onClick={handleClick} />;
   },
   args: {
     size: "medium",

@@ -1,17 +1,33 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as QRCodeStories from "./QRCode.stories";
 import { T } from "../T";
 
 <Meta of={QRCodeStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   情報のQRコードを表示するためのコンポーネント。
 </p>
 
 <Description>
-  `QRCode` は指定された文字列を QR コードとしてレンダリングします。SVG または Canvas 形式での出力に対応しており、サイズ、色、エラー訂正レベルのカスタマイズが可能です。
+  `QRCode` は指定された文字列を QR コードとしてレンダリングします。SVG または
+  Canvas
+  形式での出力に対応しており、サイズ、色、エラー訂正レベルのカスタマイズが可能です。
 </Description>
 
 <Primary />
@@ -19,9 +35,7 @@ import { T } from "../T";
 <h2>バリエーション</h2>
 
 <h3>サイズ</h3>
-<p>
-  `size` プロップで QR コードの幅と高さを指定できます。
-</p>
+<p>`size` プロップで QR コードの幅と高さを指定できます。</p>
 <Canvas of={QRCodeStories.Large} />
 
 <h3>カスタムカラー</h3>
@@ -31,10 +45,7 @@ import { T } from "../T";
 <Canvas of={QRCodeStories.CustomColors} />
 
 <h3>ロゴ画像付き</h3>
-<p>
-  `imageSettings` を使用して、QR コードの中央にロゴ画像を配置できます。
-</p>
+<p>`imageSettings` を使用して、QR コードの中央にロゴ画像を配置できます。</p>
 <Canvas of={QRCodeStories.WithImage} />
 
 <Controls />
-

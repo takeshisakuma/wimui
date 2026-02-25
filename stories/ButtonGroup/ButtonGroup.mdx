@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as ButtonGroupStories from "./ButtonGroup.stories";
 import { T } from "../T";
 
 <Meta of={ButtonGroupStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   ButtonGroupコンポーネントは、複数のボタンをグループ化して表示するために使用します。
 </p>
 <Description />
@@ -22,12 +36,15 @@ import { T } from "../T";
 Large, Medium, Smallのボタンをそれぞれ配置した場合の例です。
 
 ### Large
+
 <Canvas of={ButtonGroupStories.LargeGroup} />
 
 ### Medium
+
 <Canvas of={ButtonGroupStories.MediumGroup} />
 
 ### Small
+
 <Canvas of={ButtonGroupStories.SmallGroup} />
 
 ## 結合モード
@@ -52,4 +69,3 @@ Large, Medium, Smallのボタンをそれぞれ配置した場合の例です。
 <Canvas of={ButtonGroupStories.JoinedGroupPrimary} />
 
 <Controls />
-

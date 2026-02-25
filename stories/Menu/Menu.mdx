@@ -1,4 +1,4 @@
-import { Meta, Primary, Controls, Story} from "@storybook/blocks";
+import { Meta, Primary, Controls, Story } from "@storybook/blocks";
 import * as MenuStories from "./Menu.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Menu
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_menu_title" />
 </p>
 
@@ -26,7 +33,7 @@ import { T } from "../T";
     <MenuItem>Service 1</MenuItem>
     <MenuItem>Service 2</MenuItem>
   </SubMenu>
-</Menu>
+</Menu>;
 ```
 
 <Primary />
@@ -34,22 +41,28 @@ import { T } from "../T";
 ## Components
 
 ### Menu
+
 ルートコンポーネント。メニューの表示モードや開閉状態を管理します。
 
 Props:
+
 - `mode`: メニューの表示モード (`"vertical"` | `"horizontal"` | `"inline"`)
 - `defaultOpenKeys`: デフォルトで開いているサブメニューのキー配列
 
 ### MenuItem
+
 メニューの個別項目です。クリックイベントやアイコンを設定できます。
 
 ### SubMenu
+
 展開可能なサブメニューです。`itemKey` プロパティで一意のキーを指定する必要があります。
 
 ### MenuItemGroup
+
 メニュー項目をグループ化し、タイトルを表示します。
 
 ### MenuDivider
+
 メニュー項目間に区切り線を挿入します。
 
 <Controls />
@@ -57,26 +70,31 @@ Props:
 ## Stories
 
 ### With Icons
+
 アイコン付きのメニュー項目の例です。
 
 <Story of={MenuStories.WithIcons} />
 
 ### With SubMenu
+
 サブメニューを含むメニューの例です。サブメニューはクリックで展開・折りたたみができます。
 
 <Story of={MenuStories.WithSubMenu} />
 
 ### With Groups
+
 メニュー項目をグループ化する例です。区切り線も使用しています。
 
 <Story of={MenuStories.WithGroups} />
 
 ### Horizontal
+
 水平方向に表示されるメニューです。ヘッダーナビゲーションなどに適しています。
 
 <Story of={MenuStories.Horizontal} />
 
 ### Inline
+
 インラインモードのメニューです。サイドバーナビゲーションなどに適しています。
 
 <Story of={MenuStories.Inline} />
@@ -87,4 +105,3 @@ Props:
 - `role="menu"` と `role="menuitem"` を適切に設定
 - `aria-haspopup` と `aria-expanded` でサブメニューの状態を通知
 - disabled 状態の項目には `aria-disabled` を設定
-

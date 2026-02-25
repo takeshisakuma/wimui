@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
 import * as CalendarStories from "./Calendar.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Calendar
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_calendar_title" />
 </p>
 
@@ -17,20 +24,21 @@ import { T } from "../T";
 ```tsx
 import { Calendar } from "@/components/Calendar/Calendar";
 
-<Calendar 
-  onChange={(date) => console.log(date)}
-/>
+<Calendar onChange={(date) => console.log(date)} />;
 ```
 
 ## 使用例
 
 ### デフォルト
+
 <Canvas of={CalendarStories.Default} />
 
 ### 特定の日付を選択
+
 <Canvas of={CalendarStories.SelectedDate} />
 
 ### 無効状態
+
 <Canvas of={CalendarStories.Disabled} />
 
 ## 高度な機能
@@ -42,21 +50,18 @@ import { Calendar } from "@/components/Calendar/Calendar";
 ```jsx
 const [range, setRange] = useState({ start: null, end: null });
 
-<Calendar 
-  rangeMode
-  range={range}
-  onRangeChange={setRange}
-/>
+<Calendar rangeMode range={range} onRangeChange={setRange} />;
 ```
 
 動作:
-1. 最初のクリックで範囲の開始日を選択
-2. 2回目のクリックで範囲の終了日を選択
-3. 3回目のクリックで新しい範囲を開始
+
+- 最初のクリックで範囲の開始日を選択
+- 2回目のクリックで範囲の終了日を選択
+- 3回目のクリックで新しい範囲を開始
 
 範囲内の日付は視覚的に強調表示されます。
 
-### 無効日付の設定  
+### 無効日付の設定
 
 特定の日付を選択不可能にすることができます。
 
@@ -65,13 +70,13 @@ const [range, setRange] = useState({ start: null, end: null });
 ```jsx
 const disabledDates = [
   new Date(2024, 11, 25), // クリスマス
-  new Date(2025, 0, 1),   // 元日
+  new Date(2025, 0, 1), // 元日
 ];
 
-<Calendar 
+<Calendar
   disabledDates={disabledDates}
   onChange={(date) => console.log(date)}
-/>
+/>;
 ```
 
 #### カスタム関数で指定
@@ -80,7 +85,7 @@ const disabledDates = [
 
 ```jsx
 // 土日を無効化
-<Calendar 
+<Calendar
   isDateDisabled={(date) => {
     const day = date.getDay();
     return day === 0 || day === 6; // 日曜日または土曜日
@@ -91,7 +96,7 @@ const disabledDates = [
 
 ```jsx
 // 過去の日付を無効化
-<Calendar 
+<Calendar
   isDateDisabled={(date) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -110,11 +115,11 @@ const today = new Date();
 const nextMonth = new Date();
 nextMonth.setMonth(today.getMonth() + 1);
 
-<Calendar 
+<Calendar
   minDate={today}
   maxDate={nextMonth}
   onChange={(date) => console.log(date)}
-/>
+/>;
 ```
 
 ### すべての機能を組み合わせ
@@ -122,13 +127,13 @@ nextMonth.setMonth(today.getMonth() + 1);
 ```jsx
 const [range, setRange] = useState({ start: null, end: null });
 
-<Calendar 
+<Calendar
   rangeMode
   range={range}
   onRangeChange={setRange}
   minDate={new Date()}
   isDateDisabled={(date) => date.getDay() === 0} // 日曜日を無効化
-/>
+/>;
 ```
 
 ## 制御/非制御コンポーネント
@@ -136,21 +141,17 @@ const [range, setRange] = useState({ start: null, end: null });
 Calendarは制御コンポーネントと非制御コンポーネントの両方として使用できます。
 
 非制御コンポーネント:
+
 ```jsx
-<Calendar 
-  defaultValue={new Date()}
-  onChange={(date) => console.log(date)}
-/>
+<Calendar defaultValue={new Date()} onChange={(date) => console.log(date)} />
 ```
 
 制御コンポーネント:
+
 ```jsx
 const [date, setDate] = useState(new Date());
 
-<Calendar 
-  value={date}
-  onChange={setDate}
-/>
+<Calendar value={date} onChange={setDate} />;
 ```
 
 ## Props
@@ -159,11 +160,11 @@ const [date, setDate] = useState(new Date());
 
 ## アクセシビリティ
 
-- ✅ ナビゲーションボタンには適切なラベルまたはアイコンが使用されています
-- ✅ 現在の月以外の日は視覚的に区別されています  
-- ✅ 選択された日付、および「今日」の日付が強調表示されます
-- ✅ 無効な日付は視覚的に区別され、選択できません
-- ✅ キーボードナビゲーションをサポート
+- ナビゲーションボタンには適切なラベルまたはアイコンが使用されています
+- 現在の月以外の日は視覚的に区別されています
+- 選択された日付、および「今日」の日付が強調表示されます
+- 無効な日付は視覚的に区別され、選択できません
+- キーボードナビゲーションをサポート
 
 ## DatePickerとの統合
 
@@ -174,24 +175,20 @@ Calendarコンポーネントは[DatePicker](/docs/component-forms-datepicker--d
 Calendarコンポーネントは完全な型定義を提供しています。
 
 ```tsx
-import { Calendar } from './Calendar';
+import { Calendar } from "./Calendar";
 import { T } from "../T";
 
 <>
   {/* 単一日付選択 */}
-  <Calendar 
-    value={new Date()}
-    onChange={(date: Date) => console.log(date)}
-  />
+  <Calendar value={new Date()} onChange={(date: Date) => console.log(date)} />
 
   {/* 範囲選択 */}
-  <Calendar 
+  <Calendar
     rangeMode
     range={{ start: new Date(), end: null }}
     onRangeChange={(range: { start: Date | null; end: Date | null }) => {
       console.log(range);
     }}
   />
-</>
+</>;
 ```
-

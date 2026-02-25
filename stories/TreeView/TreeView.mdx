@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
 import * as TreeViewStories from "./TreeView.stories";
 import { T } from "../T";
 
@@ -6,20 +6,28 @@ import { T } from "../T";
 
 # TreeView
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_treeview_title" />
 </p>
 
 `TreeView` は、階層構造を持つデータを表示するためのコンポーネントです。ファイルシステム、組織図、カテゴリー階層などの表示に最適です。
 
 ## 特徴
-- ✅ 展開・折りたたみ機能
-- ✅ 単一・複数選択
-- ✅ チェックボックス選択モード
-- ✅ 検索・フィルタリング機能
-- ✅ キーボードナビゲーション対応
-- ✅ アイコンのカスタマイズ
-- ✅ グラスモーフィズムを採用したモダンなデザイン
+
+- 展開・折りたたみ機能
+- 単一・複数選択
+- チェックボックス選択モード
+- 検索・フィルタリング機能
+- キーボードナビゲーション対応
+- アイコンのカスタマイズ
+- グラスモーフィズムを採用したモダンなデザイン
 
 ## 基本的な使い方
 
@@ -28,12 +36,16 @@ import { TreeView } from "@/components/TreeView/TreeView";
 import { Icon } from "@/components/Icon/Icon";
 
 const MyTree = () => (
-    <TreeView defaultExpandedValues={["root"]}>
-        <TreeView.Item value="root" label="Documents" icon={<Icon name="CircleIcon" />}>
-            <TreeView.Item value="child1" label="Work" />
-            <TreeView.Item value="child2" label="Personal" />
-        </TreeView.Item>
-    </TreeView>
+  <TreeView defaultExpandedValues={["root"]}>
+    <TreeView.Item
+      value="root"
+      label="Documents"
+      icon={<Icon name="CircleIcon" />}
+    >
+      <TreeView.Item value="child1" label="Work" />
+      <TreeView.Item value="child2" label="Personal" />
+    </TreeView.Item>
+  </TreeView>
 );
 ```
 
@@ -50,20 +62,17 @@ const MyTree = () => (
 ```tsx
 const [checked, setChecked] = useState([]);
 
-<TreeView 
-  checkable
-  defaultCheckedValues={checked}
-  onCheckedChange={setChecked}
->
+<TreeView checkable defaultCheckedValues={checked} onCheckedChange={setChecked}>
   <TreeView.Item value="1" label="Item 1">
     <TreeView.Item value="1-1" label="Item 1-1" />
     <TreeView.Item value="1-2" label="Item 1-2" />
   </TreeView.Item>
   <TreeView.Item value="2" label="Item 2" />
-</TreeView>
+</TreeView>;
 ```
 
 ユースケース:
+
 - ファイル/フォルダの複数選択
 - 権限設定
 - タスクの一括操作
@@ -91,10 +100,7 @@ const [checked, setChecked] = useState([]);
 `multiSelect` プロパティを使用すると、複数のアイテムを選択状態にできます。
 
 ```tsx
-<TreeView 
-  multiSelect
-  defaultSelectedValues={['item1', 'item2']}
->
+<TreeView multiSelect defaultSelectedValues={["item1", "item2"]}>
   {/* ツリーアイテム */}
 </TreeView>
 ```
@@ -105,13 +111,13 @@ const [checked, setChecked] = useState([]);
 
 ```tsx
 <TreeView>
-  <TreeView.Item 
-    value="folder1" 
+  <TreeView.Item
+    value="folder1"
     label="Documents"
     icon={<Icon name="CircleIcon" />}
   >
-    <TreeView.Item 
-      value="file1" 
+    <TreeView.Item
+      value="file1"
       label="Report.pdf"
       icon={<Icon name="SquareIcon" />}
     />
@@ -128,7 +134,7 @@ const [checked, setChecked] = useState([]);
   multiSelect
   checkable
   searchable
-  defaultExpandedValues={['root']}
+  defaultExpandedValues={["root"]}
   defaultCheckedValues={checked}
   onCheckedChange={setChecked}
   width={400}
@@ -139,61 +145,239 @@ const [checked, setChecked] = useState([]);
       <TreeView.Item value="grandchild1" label="Grandchild 1" />
     </TreeView.Item>
   </TreeView.Item>
-</TreeView>
+</TreeView>;
 ```
 
 ## コンポーネント API
 
 ### TreeView
-| プロパティ | 型 | デフォルト | 説明 |
-| :--- | :--- | :--- | :--- |
-| `width` | `string \| number` | - | コンテナの横幅。変更時にアニメーションします。 |
-| `multiSelect` | `boolean` | `false` | 複数選択モード。 |
-| `checkable` | `boolean` | `false` | チェックボックス表示モード。 |
-| `searchable` | `boolean` | `false` | 検索機能を有効化。 |
-| `defaultExpandedValues` | `string[]` | `[]` | 初期状態で展開されている項目の値。 |
-| `defaultSelectedValues` | `string[]` | `[]` | 初期状態で選択されている項目の値。 |
-| `defaultCheckedValues` | `string[]` | `[]` | 初期状態でチェックされている項目の値。 |
-| `onCheckedChange` | `(checked: string[]) => void` | - | チェック状態が変更された時のコールバック。 |
+
+<table>
+  <thead>
+    <tr>
+      <th>プロパティ</th>
+      <th>型</th>
+      <th>デフォルト</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>width</code>
+      </td>
+      <td>
+        <code>string | number</code>
+      </td>
+      <td>-</td>
+      <td>コンテナの横幅。変更時にアニメーションします。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>multiSelect</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>複数選択モード。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>checkable</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>チェックボックス表示モード。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>searchable</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>検索機能を有効化。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>defaultExpandedValues</code>
+      </td>
+      <td>
+        <code>string[]</code>
+      </td>
+      <td>
+        <code>[]</code>
+      </td>
+      <td>初期状態で展開されている項目の値。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>defaultSelectedValues</code>
+      </td>
+      <td>
+        <code>string[]</code>
+      </td>
+      <td>
+        <code>[]</code>
+      </td>
+      <td>初期状態で選択されている項目の値。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>defaultCheckedValues</code>
+      </td>
+      <td>
+        <code>string[]</code>
+      </td>
+      <td>
+        <code>[]</code>
+      </td>
+      <td>初期状態でチェックされている項目の値。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onCheckedChange</code>
+      </td>
+      <td>
+        <code>(checked: string[]) =&gt; void</code>
+      </td>
+      <td>-</td>
+      <td>チェック状態が変更された時のコールバック。</td>
+    </tr>
+  </tbody>
+</table>
 
 ### TreeView.Item
-| プロパティ | 型 | デフォルト | 説明 |
-| :--- | :--- | :--- | :--- |
-| `value` | `string` | - | 必須。一意の識別子。 |
-| `label` | `ReactNode` | - | 必須。表示するラベル。 |
-| `icon` | `ReactNode` | - | ラベルの左に表示するアイコン。 |
-| `disabled` | `boolean` | `false` | 無効化状態。 |
-| `children` | `ReactNode` | - | 子ノード。 |
+
+<table>
+  <thead>
+    <tr>
+      <th>プロパティ</th>
+      <th>型</th>
+      <th>デフォルト</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>value</code>
+      </td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>-</td>
+      <td>必須。一意の識別子。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>label</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
+      <td>-</td>
+      <td>必須。表示するラベル。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>icon</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
+      <td>-</td>
+      <td>ラベルの左に表示するアイコン。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>disabled</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>無効化状態。</td>
+    </tr>
+    <tr>
+      <td>
+        <code>children</code>
+      </td>
+      <td>
+        <code>ReactNode</code>
+      </td>
+      <td>-</td>
+      <td>子ノード。</td>
+    </tr>
+  </tbody>
+</table>
 
 ## キーボード操作
-- `Enter` / `Space`: 選択
-- `ArrowRight`: 展開（子がある場合）
-- `ArrowLeft`: 閉じる（展開されている場合）
+
+<table>
+  <thead>
+    <tr>
+      <th>キー</th>
+      <th>動作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>Enter</code> / <code>Space</code>
+      </td>
+      <td>選択</td>
+    </tr>
+    <tr>
+      <td>
+        <code>ArrowRight</code>
+      </td>
+      <td>展開（子がある場合）</td>
+    </tr>
+    <tr>
+      <td>
+        <code>ArrowLeft</code>
+      </td>
+      <td>閉じる（展開されている場合）</td>
+    </tr>
+  </tbody>
+</table>
 
 ## アクセシビリティ
 
-- ✅ ARIA role="tree" と role="treeitem" を使用
-- ✅ キーボードナビゲーション完全サポート
-- ✅ スクリーンリーダー対応
-- ✅ フォーカス管理
+- ARIA role="tree" と role="treeitem" を使用
+- キーボードナビゲーション完全サポート
+- スクリーンリーダー対応
+- フォーカス管理
 
 ## TypeScript サポート
 
 TreeViewコンポーネントは完全な型定義を提供しています。
 
 ```tsx
-import { TreeView } from './TreeView';
+import { TreeView } from "./TreeView";
 import { T } from "../T";
 
-<TreeView 
+<TreeView
   multiSelect
   checkable
-  defaultCheckedValues={['item1']}
+  defaultCheckedValues={["item1"]}
   onCheckedChange={(checked: string[]) => {
-    console.log('Checked items:', checked);
+    console.log("Checked items:", checked);
   }}
 >
   {/* アイテム */}
-</TreeView>
+</TreeView>;
 ```
-

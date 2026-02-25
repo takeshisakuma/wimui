@@ -3,49 +3,49 @@
 ------------------------------------------------------------------ */
 
 .wim-tooltip-root {
-    display: inline-block;
+  display: inline-block;
 }
 
 .wim-tooltip-trigger {
-    display: inline-flex;
-    padding: 0;
-    cursor: default; // Or pointer if it's actionable
-    background: none;
-    border: none;
+  display: inline-flex;
+  padding: 0;
+  cursor: default; // Or pointer if it's actionable
+  background: none;
+  border: none;
 }
 
 .wim-tooltip-content {
-    // Positioning is handled by Floating UI (inline styles)
-    z-index: 1000;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: var(--text-tooltip, #fff);
-    white-space: nowrap;
-    pointer-events: none;
-    background-color: var(--bg-tooltip, #333);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-md);
+  // Positioning is handled by Floating UI (inline styles)
+  z-index: 1000;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--text-tooltip, #fff);
+  white-space: nowrap;
+  pointer-events: none;
+  background-color: var(--bg-tooltip, #333);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
 
-    // Animation
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-    animation: fadeIn 0.2s forwards;
+  // Animation
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  animation: fadeIn 0.2s forwards;
 
-    // Remove transform transition as it interferes with Floating UI positioning updates
+  // Remove transform transition as it interferes with Floating UI positioning updates
 
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
     }
+
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 // Floating UI handles arrow rendering, but if we need custom styles for the arrow SVG path:
 .wim-tooltip-arrow {
-    fill: var(--bg-tooltip, #333);
+  fill: var(--bg-tooltip, #333);
 }

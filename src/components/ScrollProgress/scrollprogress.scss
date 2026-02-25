@@ -1,41 +1,41 @@
 ﻿@layer component {
-    .wim-scroll-progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        width: 100%;
-        height: 4px;
-        background-color: transparent;
+  .wim-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 4px;
+    background-color: transparent;
 
-        &__bar {
-            height: 100%;
-            background-color: var(--color-primary);
-            transition: width 0.1s ease-out;
-        }
-
-        &--secondary {
-            .wim-scroll-progress__bar {
-                background-color: var(--color-secondary);
-            }
-        }
-
-        &--success {
-            .wim-scroll-progress__bar {
-                background-color: var(--color-positive);
-            }
-        }
-
-        &--warning {
-            .wim-scroll-progress__bar {
-                background-color: var(--color-caution);
-            }
-        }
-
-        &--error {
-            .wim-scroll-progress__bar {
-                background-color: var(--color-destructive);
-            }
-        }
+    &__bar {
+      height: 100%;
+      background-color: var(--color-primary);
+      transition: width 0.1s ease-out;
     }
+
+    &--secondary {
+      .wim-scroll-progress__bar {
+        background-color: var(--color-secondary);
+      }
+    }
+
+    &--success {
+      .wim-scroll-progress__bar {
+        background-color: var(--color-positive);
+      }
+    }
+
+    &--warning {
+      .wim-scroll-progress__bar {
+        background-color: var(--color-caution);
+      }
+    }
+
+    &--error {
+      .wim-scroll-progress__bar {
+        background-color: var(--color-destructive);
+      }
+    }
+  }
 }

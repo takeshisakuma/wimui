@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as AnchorStories from "./Anchor.stories";
 import { T } from "../T";
 
 <Meta of={AnchorStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_anchor_title" />
 </p>
 <Description />
@@ -27,7 +41,9 @@ import { T } from "../T";
   <tbody>
     <tr>
       <td>視認性</td>
-      <td>現在どのセクションを閲覧しているかが一目でわかるように、アクティブなリンクを強調し、インジケーター（インク）をアニメーションさせます。</td>
+      <td>
+        現在どのセクションを閲覧しているかが一目でわかるように、アクティブなリンクを強調し、インジケーター（インク）をアニメーションさせます。
+      </td>
     </tr>
     <tr>
       <td>アクセシビリティ</td>
@@ -35,7 +51,10 @@ import { T } from "../T";
     </tr>
     <tr>
       <td>追従性</td>
-      <td>スクロール位置の変化を検知し、リアルタイムにアクティブな状態を切り替えます。Intersection Observer または Scroll Event を使用して実装します。</td>
+      <td>
+        スクロール位置の変化を検知し、リアルタイムにアクティブな状態を切り替えます。Intersection
+        Observer または Scroll Event を使用して実装します。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -48,4 +67,3 @@ import { T } from "../T";
 <Canvas of={AnchorStories.Default} />
 
 <Stories />
-

@@ -3,13 +3,13 @@ import { Slider } from "@/components/Slider/Slider";
 import { useState } from "react";
 
 const MetaData: Meta<typeof Slider> = {
-    title: "Components/Pickers & Sliders/Slider",
-    component: Slider,
+  title: "Components/Pickers & Sliders/Slider",
+  component: Slider,
 
-    argTypes: {
-        onChange: { action: "changed" },
-        onAfterChange: { action: "afterChanged" },
-    },
+  argTypes: {
+    onChange: { action: "changed" },
+    onAfterChange: { action: "afterChanged" },
+  },
 };
 
 export default MetaData;
@@ -17,38 +17,36 @@ export default MetaData;
 type Story = StoryObj<typeof Slider>;
 
 export const Default: Story = {
-    args: {
-        defaultValue: 50,
-    },
+  args: {
+    defaultValue: 50,
+  },
 };
 
 export const Disabled: Story = {
-    args: {
-        defaultValue: 30,
-        disabled: true,
-    },
+  args: {
+    defaultValue: 30,
+    disabled: true,
+  },
 };
 
 export const MinMax: Story = {
-    args: {
-        min: -50,
-        max: 50,
-        defaultValue: 0,
-    },
+  args: {
+    min: -50,
+    max: 50,
+    defaultValue: 0,
+  },
 };
 
 export const Step: Story = {
-    args: {
-        min: 0,
-        max: 100,
-        step: 10,
-        defaultValue: 20,
-    },
+  args: {
+    min: 0,
+    max: 100,
+    step: 10,
+    defaultValue: 20,
+  },
 };
 
 export const Controlled = () => {
-    const [val, setVal] = useState(25);
-    return <Slider value={val} onChange={setVal} />;
-}
-
-
+  const [val, setVal] = useState(25);
+  return <Slider value={val} onChange={setVal} />;
+};

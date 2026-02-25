@@ -1,4 +1,11 @@
-import { Meta, Canvas, Controls, Story, IconGallery, IconItem} from "@storybook/blocks";
+import {
+  Meta,
+  Canvas,
+  Controls,
+  Story,
+  IconGallery,
+  IconItem,
+} from "@storybook/blocks";
 import { T } from "../T";
 import * as IconStories from "./Icon.stories";
 import { Icon } from "@/components/Icon/Icon";
@@ -7,14 +14,21 @@ import { Icon } from "@/components/Icon/Icon";
 
 # Icon
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_icon_title" />
 </p>
 
 アプリケーション全体で使用されるアイコンコンポーネント
 
-
 ## Iconを独立したコンポーネントにする利点
+
 - すべてのアイコンが一元管理できるのでデザインの一貫性を保てる
 - アイコンのファイル形式やスタイリングなどをアイコンコンポーネントにカプセル化するので変更がしやすくなる
 - ボタンだけでなく、リストアイテム、フォームの入力フィールド、ステータス表示など、さまざまなコンポーネントで同じアイコンを簡単に再利用できる
@@ -50,20 +64,38 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
   </thead>
   <tbody>
     <tr>
-      <td><strong>アニメーション</strong></td>
-      <td>単一のアイコンが無限に回転する（<code>rotate 360deg</code>）</td>
+      <td>
+        <strong>アニメーション</strong>
+      </td>
+      <td>
+        単一のアイコンが無限に回転する（<code>rotate 360deg</code>）
+      </td>
     </tr>
     <tr>
-      <td><strong>用途</strong></td>
-      <td>ボタン内、入力フィールド、テキストの横など <strong>インライン（行内）</strong> で「処理中」を示す場合</td>
+      <td>
+        <strong>用途</strong>
+      </td>
+      <td>
+        ボタン内、入力フィールド、テキストの横など{" "}
+        <strong>インライン（行内）</strong> で「処理中」を示す場合
+      </td>
     </tr>
     <tr>
-      <td><strong>特徴</strong></td>
-      <td>既存の UI レイアウトに自然に溶け込むサイズ（<code>small</code> / <code>medium</code> / <code>large</code>）で表示できる</td>
+      <td>
+        <strong>特徴</strong>
+      </td>
+      <td>
+        既存の UI レイアウトに自然に溶け込むサイズ（<code>small</code> /{" "}
+        <code>medium</code> / <code>large</code>）で表示できる
+      </td>
     </tr>
     <tr>
-      <td><strong>例</strong></td>
-      <td>ボタン送信中のスピナー、検索実行中のインジケーター、データ更新中のアイコン</td>
+      <td>
+        <strong>例</strong>
+      </td>
+      <td>
+        ボタン送信中のスピナー、検索実行中のインジケーター、データ更新中のアイコン
+      </td>
     </tr>
   </tbody>
 </table>
@@ -79,19 +111,37 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
   </thead>
   <tbody>
     <tr>
-      <td><strong>アニメーション</strong></td>
-      <td>複数の要素（3つのバーやドットなど）が時間差で動く波形アニメーション（<code>bars</code> / <code>dots</code> / <code>pulse</code>）</td>
+      <td>
+        <strong>アニメーション</strong>
+      </td>
+      <td>
+        複数の要素（3つのバーやドットなど）が時間差で動く波形アニメーション（
+        <code>bars</code> / <code>dots</code> / <code>pulse</code>）
+      </td>
     </tr>
     <tr>
-      <td><strong>用途</strong></td>
-      <td>ページ全体やセクション単位で <strong>コンテンツの読み込み待ち</strong> を表示する場合</td>
+      <td>
+        <strong>用途</strong>
+      </td>
+      <td>
+        ページ全体やセクション単位で <strong>コンテンツの読み込み待ち</strong>{" "}
+        を表示する場合
+      </td>
     </tr>
     <tr>
-      <td><strong>特徴</strong></td>
-      <td>視覚的なバリエーションが豊富で、独立した読み込みインジケーターとして存在感がある。<code>sm</code> / <code>md</code> / <code>lg</code> / <code>xl</code> のサイズと複数のカラーに対応</td>
+      <td>
+        <strong>特徴</strong>
+      </td>
+      <td>
+        視覚的なバリエーションが豊富で、独立した読み込みインジケーターとして存在感がある。
+        <code>sm</code> / <code>md</code> / <code>lg</code> / <code>xl</code>{" "}
+        のサイズと複数のカラーに対応
+      </td>
     </tr>
     <tr>
-      <td><strong>例</strong></td>
+      <td>
+        <strong>例</strong>
+      </td>
       <td>ページ初期ロード、一覧データの取得中、コンテンツ切り替え時の表示</td>
     </tr>
   </tbody>
@@ -103,33 +153,45 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
   <thead>
     <tr>
       <th>観点</th>
-      <th>Icon（<code>LoadingIcon</code> / <code>SpinnerIcon</code>）</th>
+      <th>
+        Icon（<code>LoadingIcon</code> / <code>SpinnerIcon</code>）
+      </th>
       <th>Loader コンポーネント</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>アニメーション形式</strong></td>
+      <td>
+        <strong>アニメーション形式</strong>
+      </td>
       <td>回転（rotate）</td>
       <td>波形（bars / dots / pulse）</td>
     </tr>
     <tr>
-      <td><strong>表示場所</strong></td>
+      <td>
+        <strong>表示場所</strong>
+      </td>
       <td>インライン（テキストやボタンの横）</td>
       <td>ページ・セクションの中央</td>
     </tr>
     <tr>
-      <td><strong>要素数</strong></td>
+      <td>
+        <strong>要素数</strong>
+      </td>
       <td>単一アイコン</td>
       <td>複数要素（3つのバー/ドット）</td>
     </tr>
     <tr>
-      <td><strong>主な用途</strong></td>
+      <td>
+        <strong>主な用途</strong>
+      </td>
       <td>アクション実行中のフィードバック</td>
       <td>コンテンツ読み込み待ちの表示</td>
     </tr>
     <tr>
-      <td><strong>サイズ</strong></td>
+      <td>
+        <strong>サイズ</strong>
+      </td>
       <td>small / medium / large</td>
       <td>sm / md / lg / xl</td>
     </tr>
@@ -143,9 +205,11 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
 ## <T k="doc_icon_gallery" />
 
 ### 線 (Outline)
+
 主に「控えめな表現」「ナビゲーション」「入力補助」に使用します。
 
 #### ナビゲーション
+
 ページ遷移や方向を示すアイコン。
 
 <IconGallery>
@@ -170,6 +234,7 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
 </IconGallery>
 
 #### アクション
+
 ユーザーの操作・アクションを表すアイコン。
 
 <IconGallery>
@@ -209,6 +274,7 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
 </IconGallery>
 
 #### ステータス・フィードバック
+
 状態表示や通知を示すアイコン。
 
 <IconGallery>
@@ -239,6 +305,7 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
 </IconGallery>
 
 #### ファイル・メディア
+
 ファイル種別やメディアを表すアイコン。
 
 <IconGallery>
@@ -257,6 +324,7 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
 </IconGallery>
 
 #### ユーザー・認証
+
 ユーザー管理やログインに関するアイコン。
 
 <IconGallery>
@@ -272,6 +340,7 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
 </IconGallery>
 
 #### コミュニケーション
+
 通知やメッセージに関するアイコン。
 
 <IconGallery>
@@ -287,6 +356,7 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
 </IconGallery>
 
 #### 表示切替・デバイス
+
 表示モードやデバイスに関するアイコン。
 
 <IconGallery>
@@ -317,6 +387,7 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
 </IconGallery>
 
 #### メディアコントロール
+
 音声・動画の再生操作に関するアイコン。
 
 <IconGallery>
@@ -341,6 +412,7 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
 </IconGallery>
 
 #### その他 UI
+
 汎用的な UI 要素として使うアイコン。
 
 <IconGallery>
@@ -383,6 +455,7 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
 </IconGallery>
 
 ### 塗りつぶし (Filled)
+
 主に「選択状態（Active）」「強調したいアクション」「小さいサイズでの視認性向上」に使用します。
 
 <IconGallery>
@@ -399,4 +472,3 @@ Icon コンポーネントでは `LoadingIcon` や `SpinnerIcon` を指定する
     <Icon name="PauseIcon" />
   </IconItem>
 </IconGallery>
-

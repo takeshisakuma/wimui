@@ -5,7 +5,9 @@ import { T } from "../stories/T";
 
 # <T k="guide_hierarchy_title" />
 
-<p><T k="guide_hierarchy_desc" /></p>
+<p>
+  <T k="guide_hierarchy_desc" />
+</p>
 
 ---
 
@@ -14,22 +16,30 @@ import { T } from "../stories/T";
 wimui は、コンポーネントの複雑さと役割に基づいて 4 つの階層（Tiers）で設計されています。これにより、依存関係が単方向（上位から下位へ）に保たれ、メンテナンス性が向上します。
 
 ### Tier 1: Foundations (基盤層)
+
 他のコンポーネントにほぼ依存しない、ライブラリの最小構成要素です。
+
 - **役割**: 基本的なスタイリング、レイアウト、低レイヤーの振る舞いを提供。
 - **主なコンポーネント**: `Box`, `Flex`, `Stack`, `Grid`, `Icon`, `VisuallyHidden`, `Transition`, `Portal`
 
 ### Tier 2: Atoms (基本要素層)
+
 単一の機能を持つ独立したコンポーネントです。
+
 - **役割**: デザインシステム全体の統一された UI パーツを提供。
 - **主なコンポーネント**: `Button`, `Input`, `Checkbox`, `Radio`, `Switch`, `Badge`, `Label`, `Spinner`, `Divider`
 
 ### Tier 3: Molecules (複合要素層)
+
 複数の Tier 1/2 を組み合わせ、特定の UI パターンや機能を実現するコンポーネントです。
+
 - **役割**: 複雑なインタラクションや状態管理の基盤を提供。
 - **主なコンポーネント**: `Popover`, `Dialog`, `Drawer`, `Tooltip`, `ScrollArea`, `Accordion`, `Tabs`, `Pagination`, `Breadcrumb`
 
 ### Tier 4: Organisms (構造要素層)
+
 複数のコンポーネントをラップし、アプリケーションの特定のセクションや複雑な機能を完結させるコンポーネントです。
+
 - **役割**: 完成された UI ユニットや、ドメインに近い機能の提供。
 - **主なコンポーネント**: `Selectbox`, `Combobox`, `DatePicker`, `AppLayout`, `Notification`, `CommandPalette`, `Tour`
 
@@ -49,62 +59,86 @@ wimui は、コンポーネントの複雑さと役割に基づいて 4 つの�
   </thead>
   <tbody>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td>
+        <strong>Tier 4</strong>
+      </td>
       <td>`Selectbox`</td>
       <td>`Label`, `Input`, `Icon`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td>
+        <strong>Tier 4</strong>
+      </td>
       <td>`Combobox`</td>
       <td>`Input`, `Popover`, `List`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td>
+        <strong>Tier 4</strong>
+      </td>
       <td>`Notification`</td>
       <td>`Card`, `Alert`, `IconButton`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td>
+        <strong>Tier 4</strong>
+      </td>
       <td>`AppLayout`</td>
       <td>`Header`, `Sidebar`, `Footer`, `Drawer`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong></td>
+      <td>
+        <strong>Tier 4</strong>
+      </td>
       <td>`DatePicker`</td>
       <td>`Popover`, `Calendar`, `Input`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td>
+        <strong>Tier 3</strong>
+      </td>
       <td>`Dialog`</td>
       <td>`Portal`, `FocusTrap`, `Icon`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td>
+        <strong>Tier 3</strong>
+      </td>
       <td>`Popover`</td>
       <td>`Icon` (Target: `Portal`, `Transition`)</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td>
+        <strong>Tier 3</strong>
+      </td>
       <td>`Tooltip`</td>
       <td>`Popover`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong></td>
+      <td>
+        <strong>Tier 3</strong>
+      </td>
       <td>`Breadcrumb`</td>
       <td>`Link`, `Icon`</td>
     </tr>
     <tr>
-      <td><strong>Tier 2</strong></td>
+      <td>
+        <strong>Tier 2</strong>
+      </td>
       <td>`IconButton`</td>
       <td>`Button`, `Icon`</td>
     </tr>
     <tr>
-      <td><strong>Tier 2</strong></td>
+      <td>
+        <strong>Tier 2</strong>
+      </td>
       <td>`LinkButton`</td>
       <td>`Link`</td>
     </tr>
     <tr>
-      <td><strong>Tier 2</strong></td>
+      <td>
+        <strong>Tier 2</strong>
+      </td>
       <td>`Alert`</td>
       <td>`Icon`</td>
     </tr>

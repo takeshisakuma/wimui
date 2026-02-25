@@ -1,29 +1,81 @@
 @use "../../tokens/breakpoints" as breakpoints;
 
 .wim-grid {
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    // Start with base value
-    grid-template-columns: var(--wim-grid-cols);
-    gap: var(--wim-grid-row-gap, 0) var(--wim-grid-col-gap, 0);
+  // Start with base value
+  grid-template-columns: var(--wim-grid-cols);
+  gap: var(--wim-grid-row-gap, 0) var(--wim-grid-col-gap, 0);
 
-    @include breakpoints.up(sm) {
-        grid-template-columns: var(--wim-grid-cols-sm, var(--wim-grid-cols));
-        gap: var(--wim-grid-row-gap-sm, var(--wim-grid-row-gap, 0)) var(--wim-grid-col-gap-sm, var(--wim-grid-col-gap, 0));
-    }
+  @include breakpoints.up(sm) {
+    grid-template-columns: var(--wim-grid-cols-sm, var(--wim-grid-cols));
+    gap: var(--wim-grid-row-gap-sm, var(--wim-grid-row-gap, 0))
+      var(--wim-grid-col-gap-sm, var(--wim-grid-col-gap, 0));
+  }
 
-    @include breakpoints.up(md) {
-        grid-template-columns: var(--wim-grid-cols-md, var(--wim-grid-cols-sm, var(--wim-grid-cols)));
-        gap: var(--wim-grid-row-gap-md, var(--wim-grid-row-gap-sm, var(--wim-grid-row-gap, 0))) var(--wim-grid-col-gap-md, var(--wim-grid-col-gap-sm, var(--wim-grid-col-gap, 0)));
-    }
+  @include breakpoints.up(md) {
+    grid-template-columns: var(
+      --wim-grid-cols-md,
+      var(--wim-grid-cols-sm, var(--wim-grid-cols))
+    );
+    gap: var(
+        --wim-grid-row-gap-md,
+        var(--wim-grid-row-gap-sm, var(--wim-grid-row-gap, 0))
+      )
+      var(
+        --wim-grid-col-gap-md,
+        var(--wim-grid-col-gap-sm, var(--wim-grid-col-gap, 0))
+      );
+  }
 
-    @include breakpoints.up(lg) {
-        grid-template-columns: var(--wim-grid-cols-lg, var(--wim-grid-cols-md, var(--wim-grid-cols-sm, var(--wim-grid-cols))));
-        gap: var(--wim-grid-row-gap-lg, var(--wim-grid-row-gap-md, var(--wim-grid-row-gap-sm, var(--wim-grid-row-gap, 0)))) var(--wim-grid-col-gap-lg, var(--wim-grid-col-gap-md, var(--wim-grid-col-gap-sm, var(--wim-grid-col-gap, 0))));
-    }
+  @include breakpoints.up(lg) {
+    grid-template-columns: var(
+      --wim-grid-cols-lg,
+      var(--wim-grid-cols-md, var(--wim-grid-cols-sm, var(--wim-grid-cols)))
+    );
+    gap: var(
+        --wim-grid-row-gap-lg,
+        var(
+          --wim-grid-row-gap-md,
+          var(--wim-grid-row-gap-sm, var(--wim-grid-row-gap, 0))
+        )
+      )
+      var(
+        --wim-grid-col-gap-lg,
+        var(
+          --wim-grid-col-gap-md,
+          var(--wim-grid-col-gap-sm, var(--wim-grid-col-gap, 0))
+        )
+      );
+  }
 
-    @include breakpoints.up(xl) {
-        grid-template-columns: var(--wim-grid-cols-xl, var(--wim-grid-cols-lg, var(--wim-grid-cols-md, var(--wim-grid-cols-sm, var(--wim-grid-cols)))));
-        gap: var(--wim-grid-row-gap-xl, var(--wim-grid-row-gap-lg, var(--wim-grid-row-gap-md, var(--wim-grid-row-gap-sm, var(--wim-grid-row-gap, 0))))) var(--wim-grid-col-gap-xl, var(--wim-grid-col-gap-lg, var(--wim-grid-col-gap-md, var(--wim-grid-col-gap-sm, var(--wim-grid-col-gap, 0)))));
-    }
+  @include breakpoints.up(xl) {
+    grid-template-columns: var(
+      --wim-grid-cols-xl,
+      var(
+        --wim-grid-cols-lg,
+        var(--wim-grid-cols-md, var(--wim-grid-cols-sm, var(--wim-grid-cols)))
+      )
+    );
+    gap: var(
+        --wim-grid-row-gap-xl,
+        var(
+          --wim-grid-row-gap-lg,
+          var(
+            --wim-grid-row-gap-md,
+            var(--wim-grid-row-gap-sm, var(--wim-grid-row-gap, 0))
+          )
+        )
+      )
+      var(
+        --wim-grid-col-gap-xl,
+        var(
+          --wim-grid-col-gap-lg,
+          var(
+            --wim-grid-col-gap-md,
+            var(--wim-grid-col-gap-sm, var(--wim-grid-col-gap, 0))
+          )
+        )
+      );
+  }
 }

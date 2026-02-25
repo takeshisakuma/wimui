@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
 import { T } from "../T";
 import * as AccordionStories from "./Accordion.stories";
 
@@ -6,13 +6,21 @@ import * as AccordionStories from "./Accordion.stories";
 
 # Accordion
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_accordion_title" />
 </p>
 
 アコーディオンコンポーネントは、コンテンツを折りたたんで表示し、ユーザーがクリックして詳細を表示できるようにします。
 
 ## 特徴
+
 - Single/Multiple モード: 一度に1つのアイテムのみ開くか、複数のアイテムを同時に開くかを選択できます。
 - Collapsible: `single` モードで開いているアイテムを再度クリックして閉じることができます。
 - アクセシビリティ: WAI-ARIA に準拠し、適切なロールと属性を保持しています。
@@ -26,9 +34,7 @@ const Example = () => (
   <Accordion type="single" collapsible>
     <Accordion.Item value="item-1">
       <Accordion.Trigger>タイトル</Accordion.Trigger>
-      <Accordion.Content>
-        折りたたまれるコンテンツ
-      </Accordion.Content>
+      <Accordion.Content>折りたたまれるコンテンツ</Accordion.Content>
     </Accordion.Item>
   </Accordion>
 );
@@ -53,4 +59,3 @@ const Example = () => (
 `Accordion.Item` に `disabled` プロップを渡すことで、そのアイテムの操作を無効化できます。
 
 <Canvas of={AccordionStories.Disabled} />
-

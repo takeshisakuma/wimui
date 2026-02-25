@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
 import { T } from "../T";
 import * as ImageStories from "./Image.stories";
 
@@ -6,7 +6,14 @@ import * as ImageStories from "./Image.stories";
 
 # Image
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_image_title" />
 </p>
 
@@ -31,7 +38,7 @@ import { Image } from "@/components/Image/Image";
   radius="medium"
   shadow
   caption="サンプルの画像です"
-/>
+/>;
 ```
 
 ## Props
@@ -41,23 +48,26 @@ import { Image } from "@/components/Image/Image";
 ## Variants
 
 ### Default
+
 標準的な画像表示です。
 
 <Canvas of={ImageStories.Default} />
 
 ### Rounded & Circular
+
 `radius` プロパティで角丸を調整できます。
 
 <Canvas of={ImageStories.Rounded} />
 <Canvas of={ImageStories.Circular} />
 
 ### With Caption
+
 `caption` を追加して、画像の説明を表示します。
 
 <Canvas of={ImageStories.WithCaption} />
 
 ### With Shadow
+
 `shadow` を有効にして、浮き上がったような効果を与えます。
 
 <Canvas of={ImageStories.WithShadow} />
-

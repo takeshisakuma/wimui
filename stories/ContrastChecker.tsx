@@ -10,111 +10,114 @@ export const SIGNAL_COLOR_CHANGE = "WIM_SIGNAL_COLOR_CHANGE";
  * Helper to resolve colors (handles hex, rgb, and CSS variables)
  */
 const resolveToHex = (color: string): string => {
-    if (!color) return "#000000";
+  if (!color) return "#000000";
 
-    // Standardize to 6-digit hex for input[type="color"]
-    if (color.startsWith("#")) {
-        const hex = color.slice(1);
-        if (hex.length === 3) {
-            return `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
-        }
-        if (hex.length === 4) {
-            return `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
-        }
-        if (hex.length === 8) {
-            return `#${hex.slice(0, 6)}`;
-        }
-        if (hex.length === 6) {
-            return color;
-        }
+  // Standardize to 6-digit hex for input[type="color"]
+  if (color.startsWith("#")) {
+    const hex = color.slice(1);
+    if (hex.length === 3) {
+      return `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
     }
-
-    if (typeof document !== "undefined") {
-        const temp = document.createElement("div");
-        temp.style.color = color;
-        temp.style.display = "none";
-        document.body.appendChild(temp);
-        const computed = getComputedStyle(temp).color;
-        document.body.removeChild(temp);
-
-        const match = computed.match(/\d+/g);
-        if (match && match.length >= 3) {
-            const r = parseInt(match[0]).toString(16).padStart(2, "0");
-            const g = parseInt(match[1]).toString(16).padStart(2, "0");
-            const b = parseInt(match[2]).toString(16).padStart(2, "0");
-            return `#${r}${g}${b}`;
-        }
+    if (hex.length === 4) {
+      return `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
     }
-    return color;
+    if (hex.length === 8) {
+      return `#${hex.slice(0, 6)}`;
+    }
+    if (hex.length === 6) {
+      return color;
+    }
+  }
+
+  if (typeof document !== "undefined") {
+    const temp = document.createElement("div");
+    temp.style.color = color;
+    temp.style.display = "none";
+    document.body.appendChild(temp);
+    const computed = getComputedStyle(temp).color;
+    document.body.removeChild(temp);
+
+    const match = computed.match(/\d+/g);
+    if (match && match.length >= 3) {
+      const r = parseInt(match[0]).toString(16).padStart(2, "0");
+      const g = parseInt(match[1]).toString(16).padStart(2, "0");
+      const b = parseInt(match[2]).toString(16).padStart(2, "0");
+      return `#${r}${g}${b}`;
+    }
+  }
+  return color;
 };
 
 const getLuminance = (hex: string): number => {
-    const resolved = resolveToHex(hex);
-    const rgb = resolved.startsWith("#") ? resolved.slice(1) : resolved;
-    if (rgb.length !== 7 && rgb.length !== 6) {
-        if (rgb.length === 3 || (rgb.length === 4 && resolved.startsWith("#"))) {
-            const start = rgb.length === 4 ? 1 : 0;
-            const r = parseInt(rgb[start] + rgb[start], 16) / 255;
-            const g = parseInt(rgb[start + 1] + rgb[start + 1], 16) / 255;
-            const b = parseInt(rgb[start + 2] + rgb[start + 2], 16) / 255;
-            const transform = (v: number) => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-            return 0.2126 * transform(r) + 0.7152 * transform(g) + 0.0722 * transform(b);
-        }
-        return 0;
+  const resolved = resolveToHex(hex);
+  const rgb = resolved.startsWith("#") ? resolved.slice(1) : resolved;
+  if (rgb.length !== 7 && rgb.length !== 6) {
+    if (rgb.length === 3 || (rgb.length === 4 && resolved.startsWith("#"))) {
+      const start = rgb.length === 4 ? 1 : 0;
+      const r = parseInt(rgb[start] + rgb[start], 16) / 255;
+      const g = parseInt(rgb[start + 1] + rgb[start + 1], 16) / 255;
+      const b = parseInt(rgb[start + 2] + rgb[start + 2], 16) / 255;
+      const transform = (v: number) =>
+        v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      return (
+        0.2126 * transform(r) + 0.7152 * transform(g) + 0.0722 * transform(b)
+      );
     }
+    return 0;
+  }
 
-    const start = rgb.length === 7 ? 1 : 0;
-    const r = parseInt(rgb.substring(start, start + 2), 16) / 255;
-    const g = parseInt(rgb.substring(start + 2, start + 4), 16) / 255;
-    const b = parseInt(rgb.substring(start + 4, start + 6), 16) / 255;
+  const start = rgb.length === 7 ? 1 : 0;
+  const r = parseInt(rgb.substring(start, start + 2), 16) / 255;
+  const g = parseInt(rgb.substring(start + 2, start + 4), 16) / 255;
+  const b = parseInt(rgb.substring(start + 4, start + 6), 16) / 255;
 
-    const transform = (val: number) => {
-        return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
-    };
+  const transform = (val: number) => {
+    return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
+  };
 
-    return 0.2126 * transform(r) + 0.7152 * transform(g) + 0.0722 * transform(b);
+  return 0.2126 * transform(r) + 0.7152 * transform(g) + 0.0722 * transform(b);
 };
 
 const getContrastRatio = (color1: string, color2: string): number => {
-    const l1 = getLuminance(color1);
-    const l2 = getLuminance(color2);
-    const lightest = Math.max(l1, l2);
-    const darkest = Math.min(l1, l2);
-    return (lightest + 0.05) / (darkest + 0.05);
+  const l1 = getLuminance(color1);
+  const l2 = getLuminance(color2);
+  const lightest = Math.max(l1, l2);
+  const darkest = Math.min(l1, l2);
+  return (lightest + 0.05) / (darkest + 0.05);
 };
 
 export const ContrastChecker: React.FC = () => {
-    const [bgInput, setBgInput] = useState("var(--color-primary)");
-    const [fgInput, setFgInput] = useState("var(--color-text-on-primary)");
-    const [resolvedBg, setResolvedBg] = useState("#007aff");
-    const [resolvedFg, setResolvedFg] = useState("#ffffff");
-    const [ratio, setRatio] = useState(0);
+  const [bgInput, setBgInput] = useState("var(--color-primary)");
+  const [fgInput, setFgInput] = useState("var(--color-text-on-primary)");
+  const [resolvedBg, setResolvedBg] = useState("#007aff");
+  const [resolvedFg, setResolvedFg] = useState("#ffffff");
+  const [ratio, setRatio] = useState(0);
 
-    useEffect(() => {
-        // Listen for global color signals from ColorSwatch
-        const handleSignal = (e: any) => {
-            if (e.detail?.type === "bg") setBgInput(e.detail.value);
-            if (e.detail?.type === "fg") setFgInput(e.detail.value);
-        };
-        window.addEventListener(SIGNAL_COLOR_CHANGE, handleSignal);
-        return () => window.removeEventListener(SIGNAL_COLOR_CHANGE, handleSignal);
-    }, []);
+  useEffect(() => {
+    // Listen for global color signals from ColorSwatch
+    const handleSignal = (e: any) => {
+      if (e.detail?.type === "bg") setBgInput(e.detail.value);
+      if (e.detail?.type === "fg") setFgInput(e.detail.value);
+    };
+    window.addEventListener(SIGNAL_COLOR_CHANGE, handleSignal);
+    return () => window.removeEventListener(SIGNAL_COLOR_CHANGE, handleSignal);
+  }, []);
 
-    useEffect(() => {
-        const hexBg = resolveToHex(bgInput);
-        const hexFg = resolveToHex(fgInput);
-        setResolvedBg(hexBg);
-        setResolvedFg(hexFg);
-        setRatio(getContrastRatio(hexBg, hexFg));
-    }, [bgInput, fgInput]);
+  useEffect(() => {
+    const hexBg = resolveToHex(bgInput);
+    const hexFg = resolveToHex(fgInput);
+    setResolvedBg(hexBg);
+    setResolvedFg(hexFg);
+    setRatio(getContrastRatio(hexBg, hexFg));
+  }, [bgInput, fgInput]);
 
-    const passesAA = ratio >= 4.5;
-    const passesAALarge = ratio >= 3;
+  const passesAA = ratio >= 4.5;
+  const passesAALarge = ratio >= 3;
 
-    return (
-        <div className="wim-contrast-checker">
-            <style>
-                {`
+  return (
+    <div className="wim-contrast-checker">
+      <style>
+        {`
                 .wim-contrast-checker {
                     padding: 32px;
                     border: 1px solid var(--wim-color-border, rgba(0,0,0,0.1));
@@ -279,70 +282,81 @@ export const ContrastChecker: React.FC = () => {
                     flex: 0 0 auto;
                 }
                 `}
-            </style>
+      </style>
 
-            <div className="wim-contrast-controls">
-                <div className="wim-contrast-control">
-                    <label className="wim-contrast-label">Background</label>
-                    <div className="wim-contrast-inputs">
-                        <ColorPicker
-                            value={resolvedBg}
-                            onChange={(e) => setBgInput(e.target.value)}
-                            className="wim-contrast-color-picker"
-                        />
-                        <input
-                            className="wim-text-input"
-                            value={bgInput}
-                            onChange={(e) => setBgInput(e.target.value)}
-                            placeholder="#000000 or var(...)"
-                        />
-                    </div>
-                </div>
-                <div className="wim-contrast-control">
-                    <label className="wim-contrast-label">Foreground</label>
-                    <div className="wim-contrast-inputs">
-                        <ColorPicker
-                            value={resolvedFg}
-                            onChange={(e) => setFgInput(e.target.value)}
-                            className="wim-contrast-color-picker"
-                        />
-                        <input
-                            className="wim-text-input"
-                            value={fgInput}
-                            onChange={(e) => setFgInput(e.target.value)}
-                            placeholder="#ffffff or var(...)"
-                        />
-                    </div>
-                </div>
-            </div>
-
-            <div className="wim-contrast-result">
-                <div className="wim-contrast-ratio-display">
-                    <span className="wim-contrast-ratio-value">{ratio.toFixed(2)}</span>
-                    <span className="wim-contrast-ratio-unit">Ratio</span>
-                </div>
-                <div className="wim-contrast-badges">
-                    <div className="wim-contrast-badge">
-                        <span>Normal Text</span>
-                        <span className={`wim-contrast-badge-status ${passesAA ? "wim-contrast-status-pass" : "wim-contrast-status-fail"}`}>
-                            {passesAA ? "PASS (AA)" : "FAIL (AA)"}
-                        </span>
-                    </div>
-                    <div className="wim-contrast-badge">
-                        <span>Large Text</span>
-                        <span className={`wim-contrast-badge-status ${passesAALarge ? "wim-contrast-status-pass" : "wim-contrast-status-fail"}`}>
-                            {passesAALarge ? "PASS (AA)" : "FAIL (AA)"}
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div className="wim-contrast-preview-container">
-                <div className="wim-contrast-preview" style={{ backgroundColor: resolvedBg, color: resolvedFg }}>
-                    <span className="wim-contrast-preview-text-lg">Design System Contrast Test</span>
-                    <span className="wim-contrast-preview-text-sm">The quick brown fox jumps over the lazy dog.</span>
-                </div>
-            </div>
+      <div className="wim-contrast-controls">
+        <div className="wim-contrast-control">
+          <label className="wim-contrast-label">Background</label>
+          <div className="wim-contrast-inputs">
+            <ColorPicker
+              value={resolvedBg}
+              onChange={(e) => setBgInput(e.target.value)}
+              className="wim-contrast-color-picker"
+            />
+            <input
+              className="wim-text-input"
+              value={bgInput}
+              onChange={(e) => setBgInput(e.target.value)}
+              placeholder="#000000 or var(...)"
+            />
+          </div>
         </div>
-    );
+        <div className="wim-contrast-control">
+          <label className="wim-contrast-label">Foreground</label>
+          <div className="wim-contrast-inputs">
+            <ColorPicker
+              value={resolvedFg}
+              onChange={(e) => setFgInput(e.target.value)}
+              className="wim-contrast-color-picker"
+            />
+            <input
+              className="wim-text-input"
+              value={fgInput}
+              onChange={(e) => setFgInput(e.target.value)}
+              placeholder="#ffffff or var(...)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="wim-contrast-result">
+        <div className="wim-contrast-ratio-display">
+          <span className="wim-contrast-ratio-value">{ratio.toFixed(2)}</span>
+          <span className="wim-contrast-ratio-unit">Ratio</span>
+        </div>
+        <div className="wim-contrast-badges">
+          <div className="wim-contrast-badge">
+            <span>Normal Text</span>
+            <span
+              className={`wim-contrast-badge-status ${passesAA ? "wim-contrast-status-pass" : "wim-contrast-status-fail"}`}
+            >
+              {passesAA ? "PASS (AA)" : "FAIL (AA)"}
+            </span>
+          </div>
+          <div className="wim-contrast-badge">
+            <span>Large Text</span>
+            <span
+              className={`wim-contrast-badge-status ${passesAALarge ? "wim-contrast-status-pass" : "wim-contrast-status-fail"}`}
+            >
+              {passesAALarge ? "PASS (AA)" : "FAIL (AA)"}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="wim-contrast-preview-container">
+        <div
+          className="wim-contrast-preview"
+          style={{ backgroundColor: resolvedBg, color: resolvedFg }}
+        >
+          <span className="wim-contrast-preview-text-lg">
+            Design System Contrast Test
+          </span>
+          <span className="wim-contrast-preview-text-sm">
+            The quick brown fox jumps over the lazy dog.
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 };

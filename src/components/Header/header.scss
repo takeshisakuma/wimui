@@ -1,145 +1,145 @@
 ﻿@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
-    .wim-header {
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        min-height: 64px;
-        padding: 0 var(--spacing-xl);
-        transition: all var(--transition-base);
+  .wim-header {
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 64px;
+    padding: 0 var(--spacing-xl);
+    transition: all var(--transition-base);
+
+    @include breakpoints.down(sm) {
+      height: auto;
+      padding: 0;
+    }
+
+    &--bg-primary {
+      background-color: var(--wim-color-bg-primary, #fff);
+    }
+
+    &--bg-secondary {
+      background-color: var(--wim-color-bg-secondary, #f4f4f5);
+    }
+
+    &--bg-transparent {
+      background-color: transparent;
+    }
+
+    &--fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    &--sticky {
+      position: sticky;
+      top: 0;
+      width: 100%;
+    }
+
+    &--glass {
+      background-color: rgb(255 255 255 / 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    &--bordered {
+      border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+    }
+
+    &__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-xl);
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+
+      @include breakpoints.down(sm) {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0;
+        padding: 0; // セクション側のpaddingで制御するためコンテナは0に
+      }
+    }
+
+    &__section {
+      display: flex;
+      gap: var(--spacing-md);
+      align-items: center;
+      white-space: nowrap;
+      flex-shrink: 0;
+
+      > * {
+        flex-shrink: 0;
+      }
+
+      @include breakpoints.down(sm) {
+        padding: var(--spacing-sm) var(--spacing-md);
+      }
+
+      &--start {
+        justify-content: flex-start;
 
         @include breakpoints.down(sm) {
-            height: auto;
-            padding: 0;
+          order: 1;
+          width: 100%;
+          justify-content: center;
+          padding: var(--spacing-md);
+          border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+        }
+      }
+
+      &--center {
+        flex-grow: 1;
+        flex-shrink: 1;
+        justify-content: center;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        min-width: 0;
+
+        /* For better scrolling experience when centered */
+        &::before,
+        &::after {
+          content: "";
+          display: block;
+          flex: 1 0 0%;
+          min-width: var(--spacing-md);
         }
 
-        &--bg-primary {
-            background-color: var(--wim-color-bg-primary, #fff);
+        @include breakpoints.down(sm) {
+          order: 2;
+          /* Reset flex basis to auto so it doesn't try to fill the whole row alone */
+          flex-basis: auto;
+          /* Connect with end section on the same row */
+          width: auto;
+          justify-content: flex-start;
+          padding: var(--spacing-md);
+          padding-bottom: 0;
+
+          /* Remove spacers on mobile to left align */
+          &::before,
+          &::after {
+            display: none;
+          }
         }
 
-        &--bg-secondary {
-            background-color: var(--wim-color-bg-secondary, #f4f4f5);
+        &::-webkit-scrollbar {
+          display: none;
         }
+      }
 
-        &--bg-transparent {
-            background-color: transparent;
+      &--end {
+        justify-content: flex-end;
+
+        @include breakpoints.down(sm) {
+          order: 2;
         }
-
-        &--fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-        }
-
-        &--sticky {
-            position: sticky;
-            top: 0;
-            width: 100%;
-        }
-
-        &--glass {
-            background-color: rgb(255 255 255 / 0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        &--bordered {
-            border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
-        }
-
-        &__container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: var(--spacing-xl);
-            width: 100%;
-            height: 100%;
-            min-width: 0;
-
-            @include breakpoints.down(sm) {
-                flex-wrap: wrap;
-                justify-content: space-between;
-                gap: 0;
-                padding: 0; // セクション側のpaddingで制御するためコンテナは0に
-            }
-        }
-
-        &__section {
-            display: flex;
-            gap: var(--spacing-md);
-            align-items: center;
-            white-space: nowrap;
-            flex-shrink: 0;
-
-            >* {
-                flex-shrink: 0;
-            }
-
-            @include breakpoints.down(sm) {
-                padding: var(--spacing-sm) var(--spacing-md);
-            }
-
-            &--start {
-                justify-content: flex-start;
-
-                @include breakpoints.down(sm) {
-                    order: 1;
-                    width: 100%;
-                    justify-content: center;
-                    padding: var(--spacing-md);
-                    border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
-                }
-            }
-
-            &--center {
-                flex-grow: 1;
-                flex-shrink: 1;
-                justify-content: center;
-                overflow-x: auto;
-                scrollbar-width: none;
-                -webkit-overflow-scrolling: touch;
-                min-width: 0;
-
-                /* For better scrolling experience when centered */
-                &::before,
-                &::after {
-                    content: "";
-                    display: block;
-                    flex: 1 0 0%;
-                    min-width: var(--spacing-md);
-                }
-
-                @include breakpoints.down(sm) {
-                    order: 2;
-                    /* Reset flex basis to auto so it doesn't try to fill the whole row alone */
-                    flex-basis: auto;
-                    /* Connect with end section on the same row */
-                    width: auto;
-                    justify-content: flex-start;
-                    padding: var(--spacing-md);
-                    padding-bottom: 0;
-
-                    /* Remove spacers on mobile to left align */
-                    &::before,
-                    &::after {
-                        display: none;
-                    }
-                }
-
-                &::-webkit-scrollbar {
-                    display: none;
-                }
-            }
-
-            &--end {
-                justify-content: flex-end;
-
-                @include breakpoints.down(sm) {
-                    order: 2;
-                }
-            }
-        }
+      }
     }
+  }
 }

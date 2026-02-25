@@ -1,56 +1,56 @@
 ﻿.wim-image-container {
-    position: relative;
-    display: block;
-    padding: 0;
-    margin: 0;
-    max-width: 100%;
-    line-height: 0;
+  position: relative;
+  display: block;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  line-height: 0;
 }
 
 .wim-image-inner {
-    display: block;
-    width: 100%;
-    line-height: 0;
+  display: block;
+  width: 100%;
+  line-height: 0;
 
-    &.wim-image--radius-small {
-        overflow: hidden;
-        border-radius: var(--radius-sm);
-    }
+  &.wim-image--radius-small {
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
 
-    &.wim-image--radius-medium {
-        overflow: hidden;
-        border-radius: var(--radius-md);
-    }
+  &.wim-image--radius-medium {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
 
-    &.wim-image--radius-large {
-        overflow: hidden;
-        border-radius: var(--radius-lg);
-    }
+  &.wim-image--radius-large {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
 
-    &.wim-image--radius-full {
-        overflow: hidden;
-        border-radius: var(--radius-full);
-    }
+  &.wim-image--radius-full {
+    overflow: hidden;
+    border-radius: var(--radius-full);
+  }
 
-    &.wim-image--shadow {
-        box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
-    }
+  &.wim-image--shadow {
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  }
 
-    &.wim-image--border {
-        border: 1px solid var(--color-border-default, #e0e0e0);
-    }
+  &.wim-image--border {
+    border: 1px solid var(--color-border-default, #e0e0e0);
+  }
 }
 
 .wim-image {
-    display: block;
-    max-width: 100%;
+  display: block;
+  max-width: 100%;
 }
 
 .wim-image__caption {
-    padding-bottom: var(--spacing-xs); // Ensure descenders are not cut off
-    margin-top: var(--spacing-sm);
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: var(--color-text-secondary, #666);
-    text-align: center;
+  padding-bottom: var(--spacing-xs); // Ensure descenders are not cut off
+  margin-top: var(--spacing-sm);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary, #666);
+  text-align: center;
 }

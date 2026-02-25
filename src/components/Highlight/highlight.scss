@@ -1,13 +1,13 @@
 ﻿@layer component {
-    .wim-highlight-container {
-        font: inherit;
-        color: inherit;
-    }
+  .wim-highlight-container {
+    font: inherit;
+    color: inherit;
+  }
 
-    .wim-highlight {
-        background-color: var(--decoration-highlight-color, #fff9c4);
-        color: inherit;
-        padding: 0 2px;
-        border-radius: 2px;
-    }
+  .wim-highlight {
+    background-color: var(--decoration-highlight-color, #fff9c4);
+    color: inherit;
+    padding: 0 2px;
+    border-radius: 2px;
+  }
 }

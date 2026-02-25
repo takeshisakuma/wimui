@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
 import * as VisuallyHiddenStories from "./VisuallyHidden.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # VisuallyHidden
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_visuallyhidden_title" />
 </p>
 
@@ -34,9 +41,6 @@ Chrome DevTools を使用して、`VisuallyHidden` コンポーネントの内�
 2. アクセシビリティツリーへの切り替え: `Elements` パネルの右上にある 「Switch to Accessibility Tree view」 ボタン（人型のアイコン）をクリックします。これにより、DOMツリーがスクリーンリーダー等が解釈するアクセシビリティツリー表示に切り替わります。
 3. 内容の確認: ツリーの中から対象の要素を選択します。右側の `Accessibility` タブ（見当たらない場合は `>>` から選択）の `Computed Properties` セクションなどで、`Name: "..."` として表示されている内容が、実際に読み上げられるテキストです。
 
-
 ## Props
 
 <Controls />
-
-

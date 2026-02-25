@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
 import { T } from "../T";
 import * as TimePickerStories from "./TimePicker.stories";
 
@@ -6,7 +6,14 @@ import * as TimePickerStories from "./TimePicker.stories";
 
 # TimePicker
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_timepicker_title" />
 </p>
 
@@ -17,30 +24,35 @@ import * as TimePickerStories from "./TimePicker.stories";
 ```tsx
 import { TimePicker } from "@/components/TimePicker/TimePicker";
 
-<TimePicker />
+<TimePicker />;
 ```
 
 ## Examples
 
 ### Default
+
 <Canvas of={TimePickerStories.Default} />
 
 ### Outline
+
 <Canvas of={TimePickerStories.Outline} />
 
 ### Ghost
+
 <Canvas of={TimePickerStories.Ghost} />
 
 ### Error State
+
 <Canvas of={TimePickerStories.ErrorStatus} />
 
 ### Disabled State
+
 <Canvas of={TimePickerStories.Disabled} />
 
 ### Full Width
+
 <Canvas of={TimePickerStories.FullWidth} />
 
 ## Props
 
 <Controls />
-

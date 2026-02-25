@@ -3,118 +3,118 @@
 ------------------------------------------------------------------ */
 
 .wim-bottom-sheet-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    background-color: rgb(0 0 0 / 0.4);
-    backdrop-filter: blur(2px);
-    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 0.4);
+  backdrop-filter: blur(2px);
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .wim-bottom-sheet-content {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1001;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-height: 90vh;
-    overflow: hidden;
-    color: var(--text-primary);
-    background-color: var(--bg-component, #fff);
-    border-radius: 16px 16px 0 0;
-    box-shadow: var(--shadow-lg);
-    animation: slideUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  color: var(--text-primary);
+  background-color: var(--bg-component, #fff);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
 
-    &:focus {
-        outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 
-    @media (width >= 640px) {
-        right: auto;
-        left: 50%;
-        width: 448px;
-        margin: 0 auto;
-        transform: translateX(-50%);
-        animation: slideUpCenter 300ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
+  @media (width >= 640px) {
+    right: auto;
+    left: 50%;
+    width: 448px;
+    margin: 0 auto;
+    transform: translateX(-50%);
+    animation: slideUpCenter 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
 }
 
 .wim-bottom-sheet-handle {
-    flex-shrink: 0;
-    width: 32px;
-    height: 4px;
-    margin: var(--spacing-sm) auto;
-    background-color: var(--border-strong, #d1d5db);
-    border-radius: 2px;
+  flex-shrink: 0;
+  width: 32px;
+  height: 4px;
+  margin: var(--spacing-sm) auto;
+  background-color: var(--border-strong, #d1d5db);
+  border-radius: 2px;
 }
 
 .wim-bottom-sheet-header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-    padding: 0 var(--spacing-lg) var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
 }
 
 .wim-bottom-sheet-title {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .wim-bottom-sheet-description {
-    margin: 0;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
 }
 
 .wim-bottom-sheet-body {
-    flex: 1;
-    padding: var(--spacing-lg);
-    overflow-y: auto;
+  flex: 1;
+  padding: var(--spacing-lg);
+  overflow-y: auto;
 }
 
 .wim-bottom-sheet-footer {
-    display: flex;
-    gap: var(--spacing-md);
-    justify-content: flex-end;
-    padding: var(--spacing-lg);
-    border-top: 1px solid var(--border-subtle, #e5e7eb);
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: flex-end;
+  padding: var(--spacing-lg);
+  border-top: 1px solid var(--border-subtle, #e5e7eb);
 }
 
 @keyframes overlayShow {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-    from {
-        transform: translateY(100%);
-    }
+  from {
+    transform: translateY(100%);
+  }
 
-    to {
-        transform: translateY(0);
-    }
+  to {
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideUpCenter {
-    from {
-        transform: translate(-50%, 100%);
-    }
+  from {
+    transform: translate(-50%, 100%);
+  }
 
-    to {
-        transform: translate(-50%, 0);
-    }
+  to {
+    transform: translate(-50%, 0);
+  }
 }

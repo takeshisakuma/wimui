@@ -1,37 +1,61 @@
 ﻿.wim-file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  font-family: inherit;
+
+  &__label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+
+    .wim-file-upload--small & {
+      font-size: var(--font-size-ex-small);
+    }
+
+    .wim-file-upload--medium & {
+      font-size: var(--font-size-small);
+    }
+
+    .wim-file-upload--large & {
+      font-size: var(--font-size-medium);
+    }
+  }
+
+  &__controls {
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-    font-family: inherit;
+    gap: var(--spacing-md);
+    align-items: center;
+  }
 
-    &__label {
-        font-size: var(--font-size-small);
-        font-weight: var(--font-weight-medium);
-        color: var(--text-secondary);
+  &__input {
+    display: none;
+  }
+
+  &__file-names {
+    display: inline-block;
+    max-width: 300px;
+    padding: 8px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text-tertiary);
+
+    &--small {
+      font-size: var(--font-size-ex-small);
     }
 
-    &__controls {
-        display: flex;
-        gap: var(--spacing-md);
-        align-items: center;
+    &--medium {
+      font-size: var(--font-size-small);
     }
 
-    &__input {
-        display: none;
+    &--large {
+      font-size: var(--font-size-medium);
     }
 
-    &__file-names {
-        display: inline-block;
-        max-width: 300px;
-        padding: 8px 0;
-        overflow: visible;
-        font-size: var(--font-size-small);
-        line-height: 2;
-        color: var(--text-tertiary);
-        white-space: nowrap;
-
-        &--disabled {
-            color: var(--color-disabled);
-        }
+    &--disabled {
+      color: var(--color-disabled);
     }
+  }
 }

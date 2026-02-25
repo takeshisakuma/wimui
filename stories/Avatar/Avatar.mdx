@@ -1,11 +1,25 @@
-import { Canvas, Meta, Controls, Title, Primary, Stories} from "@storybook/blocks";
+import {
+  Canvas,
+  Meta,
+  Controls,
+  Title,
+  Primary,
+  Stories,
+} from "@storybook/blocks";
 import * as AvatarStories from "./Avatar.stories";
 import { T } from "../T";
 
 <Meta of={AvatarStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_avatar_title" />
 </p>
 
@@ -20,24 +34,27 @@ import { T } from "../T";
 ## 使用例
 
 ### サイズ
+
 `sm`, `md`, `lg` の3つのサイズをサポートしています。
 
 <Canvas of={AvatarStories.Sizes} />
 
 ### 形状
+
 `circle`（円形）と `rounded`（角丸の矩形）を選択できます。
 
 <Canvas of={AvatarStories.Shapes} />
 
 ### カラー
+
 イニシャルやアイコンを表示する際の背景色を指定できます。
 
 <Canvas of={AvatarStories.Colors} />
 
 ### フォールバック
+
 画像URLが不正な場合や、画像がない場合にイニシャルやアイコンを表示します。
 
 <Canvas of={AvatarStories.Fallback} />
 
 <Stories />
-

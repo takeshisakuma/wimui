@@ -1,211 +1,223 @@
 ﻿@use "sass:color";
 
 @layer component {
-    .wim-tab-navigation {
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+  .wim-tab-navigation {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 
-        /* Hide scrollbar */
-        scrollbar-width: none;
+    /* Hide scrollbar */
+    scrollbar-width: none;
 
-        &::-webkit-scrollbar {
-            display: none;
-        }
-
-        &__list {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            min-width: min-content;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Alignment */
-        &--start &__list {
-            justify-content: flex-start;
-        }
-
-        &--center &__list {
-            justify-content: center;
-        }
-
-        &--end &__list {
-            justify-content: flex-end;
-        }
-
-        &--justify &__list {
-            justify-content: space-between;
-
-            .wim-tab-navigation__item {
-                flex: 1;
-                justify-content: center;
-            }
-        }
-
-        /* Sizes */
-        &--small {
-            --wim-tab-nav-padding: 0 var(--spacing-md);
-            --wim-tab-nav-font-size: var(--font-size-small);
-            --wim-tab-nav-height: 32px;
-        }
-
-        &--medium {
-            --wim-tab-nav-padding: 0 var(--spacing-lg);
-            --wim-tab-nav-font-size: var(--font-size-medium);
-            --wim-tab-nav-height: 40px;
-        }
-
-        &--large {
-            --wim-tab-nav-padding: 0 var(--spacing-xl);
-            --wim-tab-nav-font-size: var(--font-size-large);
-            --wim-tab-nav-height: 48px;
-        }
-
-        /* Base Item Styles */
-        &__item {
-            position: relative;
-            z-index: 1;
-            box-sizing: border-box;
-            display: inline-flex;
-            align-items: center;
-            height: var(--wim-tab-nav-height);
-            justify-content: center;
-            padding: var(--wim-tab-nav-padding);
-            font-size: var(--wim-tab-nav-font-size);
-            font-weight: var(--font-weight-medium);
-            color: var(--text-secondary);
-            white-space: nowrap;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all var(--transition-base);
-
-            &:hover:not(&--disabled) {
-                color: var(--text-primary);
-                background-color: rgb(0 0 0 / 0.04);
-            }
-
-            &--disabled {
-                color: var(--text-disabled);
-                cursor: not-allowed;
-            }
-
-            .wim-tab-navigation__icon {
-                display: flex;
-                margin-right: var(--spacing-xs);
-            }
-        }
-
-        /* Variant: Underline (Default) */
-        &--underline {
-            border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
-
-            .wim-tab-navigation__slider {
-                position: absolute;
-                bottom: -1px;
-                left: 0;
-                height: 2px;
-                background-color: var(--color-primary);
-                border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-                z-index: 2;
-            }
-
-            &.wim-tab-navigation--ready .wim-tab-navigation__slider {
-                transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), width 0.2s cubic-bezier(0.2, 0, 0, 1);
-            }
-
-            .wim-tab-navigation__item {
-                margin-bottom: -1px;
-                border-bottom: 2px solid transparent;
-                border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-
-                &:hover:not(&--disabled) {
-                    color: var(--color-primary);
-                    background-color: transparent;
-                }
-
-                &--active {
-                    font-weight: var(--font-weight-bold);
-                    color: var(--color-primary);
-                }
-            }
-        }
-
-        /* Variant: Pill */
-        &--pill {
-            .wim-tab-navigation__list {
-                gap: var(--spacing-xs);
-            }
-
-            .wim-tab-navigation__slider {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                background-color: var(--color-primary);
-                border-radius: 99px;
-                z-index: -1;
-                transition: background-color var(--duration-fast) var(--easing-base);
-            }
-
-            .wim-tab-navigation__list:has(.wim-tab-navigation__item--active:hover:not(.wim-tab-navigation__item--disabled)) .wim-tab-navigation__slider {
-                background-color: color-mix(in srgb, var(--color-primary) 90%, black);
-            }
-
-            &.wim-tab-navigation--ready .wim-tab-navigation__slider {
-                transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), width 0.2s cubic-bezier(0.2, 0, 0, 1), background-color var(--duration-fast) var(--easing-base);
-            }
-
-            .wim-tab-navigation__item {
-                border-radius: 99px;
-                padding-inline: var(--spacing-xl);
-
-                &--active {
-                    color: white;
-
-                    &:hover:not(&--disabled) {
-                        color: white;
-                    }
-                }
-            }
-        }
-
-        /* Variant: Contained */
-        &--contained {
-            display: inline-flex; // Shrink to fit content
-            width: auto;
-            padding: 4px;
-            background-color: var(--wim-color-bg-secondary, #f4f4f5);
-            border-radius: var(--radius-md);
-
-            .wim-tab-navigation__list {
-                gap: 4px;
-            }
-
-            .wim-tab-navigation__slider {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                background-color: white;
-                border-radius: var(--radius-sm);
-                box-shadow: 0 1px 2px rgb(0 0 0 / 0.1);
-                z-index: -1;
-            }
-
-            &.wim-tab-navigation--ready .wim-tab-navigation__slider {
-                transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), width 0.2s cubic-bezier(0.2, 0, 0, 1);
-            }
-
-            .wim-tab-navigation__item {
-                height: calc(var(--wim-tab-nav-height) - 8px); // Adjust for padding
-                border-radius: var(--radius-sm);
-
-                &--active {
-                    color: var(--text-primary);
-                }
-            }
-        }
+    &::-webkit-scrollbar {
+      display: none;
     }
+
+    &__list {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-width: min-content;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Alignment */
+    &--start &__list {
+      justify-content: flex-start;
+    }
+
+    &--center &__list {
+      justify-content: center;
+    }
+
+    &--end &__list {
+      justify-content: flex-end;
+    }
+
+    &--justify &__list {
+      justify-content: space-between;
+
+      .wim-tab-navigation__item {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
+    /* Sizes */
+    &--small {
+      --wim-tab-nav-padding: 0 var(--spacing-md);
+      --wim-tab-nav-font-size: var(--font-size-small);
+      --wim-tab-nav-height: 32px;
+    }
+
+    &--medium {
+      --wim-tab-nav-padding: 0 var(--spacing-lg);
+      --wim-tab-nav-font-size: var(--font-size-medium);
+      --wim-tab-nav-height: 40px;
+    }
+
+    &--large {
+      --wim-tab-nav-padding: 0 var(--spacing-xl);
+      --wim-tab-nav-font-size: var(--font-size-large);
+      --wim-tab-nav-height: 48px;
+    }
+
+    /* Base Item Styles */
+    &__item {
+      position: relative;
+      z-index: 1;
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      height: var(--wim-tab-nav-height);
+      justify-content: center;
+      padding: var(--wim-tab-nav-padding);
+      font-size: var(--wim-tab-nav-font-size);
+      font-weight: var(--font-weight-medium);
+      color: var(--text-secondary);
+      white-space: nowrap;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-base);
+
+      &:hover:not(&--disabled) {
+        color: var(--text-primary);
+        background-color: rgb(0 0 0 / 0.04);
+      }
+
+      &--disabled {
+        color: var(--text-disabled);
+        cursor: not-allowed;
+      }
+
+      .wim-tab-navigation__icon {
+        display: flex;
+        margin-right: var(--spacing-xs);
+      }
+    }
+
+    /* Variant: Underline (Default) */
+    &--underline {
+      border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+
+      .wim-tab-navigation__slider {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        height: 2px;
+        background-color: var(--color-primary);
+        border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+        z-index: 2;
+      }
+
+      &.wim-tab-navigation--ready .wim-tab-navigation__slider {
+        transition:
+          transform 0.2s cubic-bezier(0.2, 0, 0, 1),
+          width 0.2s cubic-bezier(0.2, 0, 0, 1);
+      }
+
+      .wim-tab-navigation__item {
+        margin-bottom: -1px;
+        border-bottom: 2px solid transparent;
+        border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+
+        &:hover:not(&--disabled) {
+          color: var(--color-primary);
+          background-color: transparent;
+        }
+
+        &--active {
+          font-weight: var(--font-weight-bold);
+          color: var(--color-primary);
+        }
+      }
+    }
+
+    /* Variant: Pill */
+    &--pill {
+      .wim-tab-navigation__list {
+        gap: var(--spacing-xs);
+      }
+
+      .wim-tab-navigation__slider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        background-color: var(--color-primary);
+        border-radius: 99px;
+        z-index: -1;
+        transition: background-color var(--duration-fast) var(--easing-base);
+      }
+
+      .wim-tab-navigation__list:has(
+          .wim-tab-navigation__item--active:hover:not(
+              .wim-tab-navigation__item--disabled
+            )
+        )
+        .wim-tab-navigation__slider {
+        background-color: color-mix(in srgb, var(--color-primary) 90%, black);
+      }
+
+      &.wim-tab-navigation--ready .wim-tab-navigation__slider {
+        transition:
+          transform 0.2s cubic-bezier(0.2, 0, 0, 1),
+          width 0.2s cubic-bezier(0.2, 0, 0, 1),
+          background-color var(--duration-fast) var(--easing-base);
+      }
+
+      .wim-tab-navigation__item {
+        border-radius: 99px;
+        padding-inline: var(--spacing-xl);
+
+        &--active {
+          color: white;
+
+          &:hover:not(&--disabled) {
+            color: white;
+          }
+        }
+      }
+    }
+
+    /* Variant: Contained */
+    &--contained {
+      display: inline-flex; // Shrink to fit content
+      width: auto;
+      padding: 4px;
+      background-color: var(--wim-color-bg-secondary, #f4f4f5);
+      border-radius: var(--radius-md);
+
+      .wim-tab-navigation__list {
+        gap: 4px;
+      }
+
+      .wim-tab-navigation__slider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        border-radius: var(--radius-sm);
+        box-shadow: 0 1px 2px rgb(0 0 0 / 0.1);
+        z-index: -1;
+      }
+
+      &.wim-tab-navigation--ready .wim-tab-navigation__slider {
+        transition:
+          transform 0.2s cubic-bezier(0.2, 0, 0, 1),
+          width 0.2s cubic-bezier(0.2, 0, 0, 1);
+      }
+
+      .wim-tab-navigation__item {
+        height: calc(var(--wim-tab-nav-height) - 8px); // Adjust for padding
+        border-radius: var(--radius-sm);
+
+        &--active {
+          color: var(--text-primary);
+        }
+      }
+    }
+  }
 }

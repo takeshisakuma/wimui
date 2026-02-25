@@ -1,6 +1,6 @@
 import { defineConfig } from "vitest/config";
 import path from "path";
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 import react from "@vitejs/plugin-react";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -66,6 +66,6 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./test-setup.ts",
-    exclude: ['**/node_modules/**', '**/dist/**', '**/vrt/**'],
+    exclude: ["**/node_modules/**", "**/dist/**", "**/vrt/**"],
   },
 });

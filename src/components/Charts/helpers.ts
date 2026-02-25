@@ -1,4 +1,3 @@
-
 export const CHART_COLORS = [
   "#d40045", // v1
   "#0f218b", // v18

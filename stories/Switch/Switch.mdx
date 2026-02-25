@@ -1,4 +1,4 @@
-import { Meta, Primary, Controls, Story} from "@storybook/blocks";
+import { Meta, Primary, Controls, Story } from "@storybook/blocks";
 import * as SwitchStories from "./Switch.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Switch
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_switch_title" />
 </p>
 
@@ -23,11 +30,13 @@ A toggle switch for switching between two states, typically on and off.
 ## Examples
 
 ### Checked
+
 <Story of={SwitchStories.Checked} />
 
 ### Small
+
 <Story of={SwitchStories.Small} />
 
 ### Disabled
-<Story of={SwitchStories.Disabled} />
 
+<Story of={SwitchStories.Disabled} />

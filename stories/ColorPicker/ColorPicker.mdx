@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
 import { T } from "../T";
 import * as ColorPickerStories from "./ColorPicker.stories";
 
@@ -6,7 +6,14 @@ import * as ColorPickerStories from "./ColorPicker.stories";
 
 # ColorPicker
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_colorpicker_title" />
 </p>
 
@@ -17,30 +24,35 @@ import * as ColorPickerStories from "./ColorPicker.stories";
 ```tsx
 import { ColorPicker } from "@/components/ColorPicker/ColorPicker";
 
-<ColorPicker />
+<ColorPicker />;
 ```
 
 ## Examples
 
 ### Default
+
 <Canvas of={ColorPickerStories.Default} />
 
 ### Outline
+
 <Canvas of={ColorPickerStories.Outline} />
 
 ### Ghost
+
 <Canvas of={ColorPickerStories.Ghost} />
 
 ### Error State
+
 <Canvas of={ColorPickerStories.ErrorStatus} />
 
 ### Disabled State
+
 <Canvas of={ColorPickerStories.Disabled} />
 
 ### Full Width
+
 <Canvas of={ColorPickerStories.FullWidth} />
 
 ## Props
 
 <Controls />
-

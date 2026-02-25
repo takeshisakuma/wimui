@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as InputGroupStories from "./InputGroup.stories";
 import { T } from "../T";
 
 <Meta of={InputGroupStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   InputGroupコンポーネントは、Inputとボタンやテキスト（アドオン）を視覚的に一つにまとめて表示するために使用します。
 </p>
 
@@ -44,4 +58,3 @@ Inputの後にテキストアドオンを追加できます。
 <Canvas of={InputGroupStories.FullWidth} />
 
 <Controls />
-

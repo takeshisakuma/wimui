@@ -1,11 +1,26 @@
-import { Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as SimpleGridStories from "./SimpleGrid.stories";
 import { T } from "../T";
 
 <Meta of={SimpleGridStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_simplegrid_subtitle" />
 </p>
 <Description />
@@ -20,7 +35,9 @@ SimpleGridコンポーネントは、レスポンシブなグリッドレイア�
   </tr>
   <tr>
     <td>オートフィット</td>
-    <td>`minChildWidth`プロパティを使用して、子要素の最小幅に基づいて自動的に列数を調整できます。</td>
+    <td>
+      `minChildWidth`プロパティを使用して、子要素の最小幅に基づいて自動的に列数を調整できます。
+    </td>
   </tr>
 </table>
 

@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls} from "@storybook/blocks";
+import { Canvas, Meta, Controls } from "@storybook/blocks";
 import * as ResultStories from "./Result.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Result
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_result_title" />
 </p>
 
@@ -25,20 +32,25 @@ Use when important operations need to inform users of the result, or when you ne
 ## Examples
 
 ### Info
+
 <Canvas of={ResultStories.Info} />
 
 ### Warning
+
 <Canvas of={ResultStories.Warning} />
 
 ### Error
+
 <Canvas of={ResultStories.ErrorStatus} />
 
 ### 404
+
 <Canvas of={ResultStories.Status404} />
 
 ### 403
+
 <Canvas of={ResultStories.Status403} />
 
 ### 500
-<Canvas of={ResultStories.Status500} />
 
+<Canvas of={ResultStories.Status500} />

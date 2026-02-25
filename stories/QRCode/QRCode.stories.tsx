@@ -3,59 +3,57 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { QRCode } from "@/components/QRCode/QRCode";
 
 const meta: Meta<typeof QRCode> = {
-    title: "Components/Data Indicators/QRCode",
-    component: QRCode,
-    parameters: {
-        layout: "centered",
+  title: "Components/Data Indicators/QRCode",
+  component: QRCode,
+  parameters: {
+    layout: "centered",
+  },
+  argTypes: {
+    level: {
+      control: "select",
+      options: ["L", "M", "Q", "H"],
     },
-    argTypes: {
-        level: {
-            control: "select",
-            options: ["L", "M", "Q", "H"],
-        },
-        renderAs: {
-            control: "select",
-            options: ["svg", "canvas"],
-        },
+    renderAs: {
+      control: "select",
+      options: ["svg", "canvas"],
     },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof QRCode>;
 
 export const Default: Story = {
-    args: {
-        value: "https://example.com/",
-    },
+  args: {
+    value: "https://example.com/",
+  },
 };
 
 export const Large: Story = {
-    args: {
-        value: "https://example.com/",
-        size: 256,
-    },
+  args: {
+    value: "https://example.com/",
+    size: 256,
+  },
 };
 
 export const CustomColors: Story = {
-    args: {
-        value: "https://example.com/",
-        bgColor: "#f4f4f7",
-        fgColor: "#0052cc",
-    },
+  args: {
+    value: "https://example.com/",
+    bgColor: "#f4f4f7",
+    fgColor: "#0052cc",
+  },
 };
 
 export const WithImage: Story = {
-    args: {
-        value: "https://example.com/",
-        imageSettings: {
-            src: "https://avatars.githubusercontent.com/u/1000000?v=4",
-            x: undefined,
-            y: undefined,
-            height: 24,
-            width: 24,
-            excavate: true,
-        },
+  args: {
+    value: "https://example.com/",
+    imageSettings: {
+      src: "https://avatars.githubusercontent.com/u/1000000?v=4",
+      x: undefined,
+      y: undefined,
+      height: 24,
+      width: 24,
+      excavate: true,
     },
+  },
 };
-
-

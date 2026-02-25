@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as CheckboxGroupStories from "./CheckboxGroup.stories";
 import { T } from "../T";
 
 <Meta of={CheckboxGroupStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   複数の選択肢から任意の数を選択するために使用
 </p>
 <Description />
@@ -22,14 +36,15 @@ import { T } from "../T";
 ## レイアウト
 
 ### Horizontal (水平配置)
+
 選択肢が少ない場合や、横長のスペースに適している
 
 <Canvas of={CheckboxGroupStories.Horizontal} />
 
 ## Controlled (制御されたコンポーネント)
+
 Reactの状態管理を使用して選択値を制御する
 
 <Canvas of={CheckboxGroupStories.Controlled} />
 
 <Controls />
-

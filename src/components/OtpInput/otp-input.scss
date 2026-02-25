@@ -1,55 +1,56 @@
 ﻿@use "../../tokens/breakpoints" as breakpoints;
 
 .wim-otp-input-container {
-    display: flex;
-    gap: var(--spacing-sm);
-    align-items: center;
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
 
-    @include breakpoints.down(sm) {
-        gap: var(--spacing-xs);
-    }
+  @include breakpoints.down(sm) {
+    gap: var(--spacing-xs);
+  }
 
-    &--disabled {
-        pointer-events: none;
-        opacity: 0.7;
-    }
+  &--disabled {
+    pointer-events: none;
+    opacity: 0.7;
+  }
 }
 
 .wim-otp-input {
-    all: unset;
-    box-sizing: border-box;
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.25rem;
-    color: var(--text-primary);
-    text-align: center;
-    background-color: var(--bg-component, #fff);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--radius-md);
-    transition: var(--transition-base);
+  all: unset;
+  box-sizing: border-box;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  text-align: center;
+  background-color: var(--bg-component, #fff);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
 
-    @include breakpoints.down(sm) {
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 1rem;
-    }
+  @include breakpoints.down(sm) {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px
+      color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
+
+  &--error {
+    border-color: var(--text-error) !important;
 
     &:focus {
-        border-color: var(--color-primary);
-        box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
+      box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2) !important;
     }
+  }
 
-    &--error {
-        border-color: var(--text-error) !important;
-
-        &:focus {
-            box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2) !important;
-        }
-    }
-
-    &--disabled {
-        color: var(--text-disabled);
-        cursor: not-allowed;
-        background-color: var(--color-disabled);
-    }
+  &--disabled {
+    color: var(--text-disabled);
+    cursor: not-allowed;
+    background-color: var(--color-disabled);
+  }
 }

@@ -1,13 +1,13 @@
 ﻿.wim-timepicker {
-    // Styling for the native time picker indicator
-    &::-webkit-calendar-picker-indicator {
-        padding: var(--spacing-xs);
-        cursor: pointer;
-        border-radius: var(--radius-sm);
-        transition: background-color 0.2s;
+  // Styling for the native time picker indicator
+  &::-webkit-calendar-picker-indicator {
+    padding: var(--spacing-xs);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s;
 
-        &:hover {
-            background-color: var(--color-tertiary-hover, rgb(0 0 0 / 0.05));
-        }
+    &:hover {
+      background-color: var(--color-tertiary-hover, rgb(0 0 0 / 0.05));
     }
+  }
 }

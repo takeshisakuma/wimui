@@ -1,11 +1,25 @@
-import { Canvas, Meta, Controls, Title, Primary, Stories} from "@storybook/blocks";
+import {
+  Canvas,
+  Meta,
+  Controls,
+  Title,
+  Primary,
+  Stories,
+} from "@storybook/blocks";
 import * as AvatarGroupStories from "./AvatarGroup.stories";
 import { T } from "../T";
 
 <Meta of={AvatarGroupStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_avatargroup_title" />
 </p>
 
@@ -20,19 +34,21 @@ import { T } from "../T";
 ## 使用例
 
 ### 最大表示数
+
 `max` Propを使用することで、表示するアバターの数を制限できます。超えた分は「+N」として表示されます。
 
 <Canvas of={AvatarGroupStories.MaxDisplayed} />
 
 ### サイズの一括指定
+
 `AvatarGroup` に `size` を指定することで、子要素の `Avatar` すべてのサイズを統一できます。
 
 <Canvas of={AvatarGroupStories.Sizes} />
 
 ### 合計数の指定
+
 実際の要素数とは別に合計数（`total`）を表示したい場合に使用します。
 
 <Canvas of={AvatarGroupStories.TotalCount} />
 
 <Stories />
-

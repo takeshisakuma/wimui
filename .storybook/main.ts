@@ -35,7 +35,7 @@ const config: StorybookConfig = {
             find: "storybook/internal/theming",
             replacement: path.resolve(
               process.cwd(),
-              "node_modules/storybook/dist/theming/index.js"
+              "node_modules/storybook/dist/theming/index.js",
             ),
           },
         ],
@@ -46,7 +46,7 @@ const config: StorybookConfig = {
           transformIndexHtml(html: string) {
             return html.replace(
               /\/vite-inject-mocker-entry\.js/g,
-              "./vite-inject-mocker-entry.js"
+              "./vite-inject-mocker-entry.js",
             );
           },
         },
@@ -71,12 +71,12 @@ const config: StorybookConfig = {
         }),
       ],
       optimizeDeps: {
-        exclude: ['jsmediatags'],
+        exclude: ["jsmediatags"],
       },
       build: {
         chunkSizeWarningLimit: 2000,
         rollupOptions: {
-          external: ['react-native-fs'],
+          external: ["react-native-fs"],
         },
       },
     });

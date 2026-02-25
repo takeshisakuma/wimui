@@ -50,28 +50,33 @@ Perfect for mobile applications with bottom navigation:
 ## Layout Sections
 
 ### Header
+
 - Fixed or sticky positioning options
 - Typically contains branding, navigation, and user actions
 - Use the `Header` component for consistent styling
 
 ### Sidebar
+
 - Collapsible navigation panel
 - Configurable width
 - Can be positioned on left or right
 - Responsive behavior for mobile devices
 
 ### Main Content
+
 - Primary content area
 - Optional padding and centering
 - Scrollable when content exceeds viewport height
 - Supports custom maximum width
 
 ### Footer
+
 - Positioned at the bottom of the layout
 - Typically contains copyright, links, and legal information
 - Use the `Footer` component for consistent styling
 
 ### Navbar
+
 - Bottom navigation bar for mobile applications
 - Fixed at the bottom of the viewport
 - Use the `Navbar` component for tab-based navigation
@@ -92,21 +97,11 @@ AppShell also provides sub-components for more granular control:
 
 ```tsx
 <AppShell>
-  <AppShell.Header>
-    {/* Header content */}
-  </AppShell.Header>
-  <AppShell.Sidebar>
-    {/* Sidebar content */}
-  </AppShell.Sidebar>
-  <AppShell.Main>
-    {/* Main content */}
-  </AppShell.Main>
-  <AppShell.Footer>
-    {/* Footer content */}
-  </AppShell.Footer>
-  <AppShell.Navbar>
-    {/* Navbar content */}
-  </AppShell.Navbar>
+  <AppShell.Header>{/* Header content */}</AppShell.Header>
+  <AppShell.Sidebar>{/* Sidebar content */}</AppShell.Sidebar>
+  <AppShell.Main>{/* Main content */}</AppShell.Main>
+  <AppShell.Footer>{/* Footer content */}</AppShell.Footer>
+  <AppShell.Navbar>{/* Navbar content */}</AppShell.Navbar>
 </AppShell>
 ```
 

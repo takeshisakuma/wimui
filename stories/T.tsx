@@ -45,13 +45,11 @@ const startGlobalSync = () => {
           !currentLang.startsWith(targetLocale) &&
           !targetLocale.startsWith(currentLang)
         ) {
-
           i18n.changeLanguage(targetLocale);
         } else if (currentLang.length !== targetLocale.length) {
           // 精密な比較が必要な場合（例: en と en-US を厳密に分けたい場合）はここを調整
           // 今回は簡易的に en への切り替えを優先
           if (targetLocale === "en" && currentLang !== "en") {
-
             i18n.changeLanguage("en");
           }
         }

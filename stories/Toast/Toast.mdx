@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
 import * as ToastStories from "./Toast.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Toast
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_toast_title" />
 </p>
 
@@ -23,7 +30,7 @@ import { T } from "../T";
 実際にトーストを表示するには、`ToastProvider` でアプリケーションをラップし、`useToast` フックを使用することをお勧めします。
 
 ```tsx
-import { ToastProvider, useToast } from './Toast';
+import { ToastProvider, useToast } from "./Toast";
 import { T } from "../T";
 
 const App = () => (
@@ -36,11 +43,15 @@ const MyComponent = () => {
   const { show } = useToast();
 
   return (
-    <button onClick={() => show({ 
-      title: "保存完了", 
-      description: "データが正常に保存されました。", 
-      variant: "success" 
-    })}>
+    <button
+      onClick={() =>
+        show({
+          title: "保存完了",
+          description: "データが正常に保存されました。",
+          variant: "success",
+        })
+      }
+    >
       トーストを表示
     </button>
   );
@@ -76,12 +87,13 @@ const MyComponent = () => {
 ## Props
 
 ### Toast Props
+
 <Controls />
 
 ### ToastProvider Props
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `children` | `ReactNode` | - | プロバイダーの下に配置される要素 |
-| `position` | `ToastPosition` | `"top-right"` | トーストの表示位置 (`top-right`, `top-left`, `top-center`, `bottom-right`, `bottom-left`, `bottom-center`) |
-| `duration` | `number` | `3000` | トーストが表示される時間（ミリ秒） |
 
+| Prop       | Type            | Default       | Description                                                                                                |
+| :--------- | :-------------- | :------------ | :--------------------------------------------------------------------------------------------------------- |
+| `children` | `ReactNode`     | -             | プロバイダーの下に配置される要素                                                                           |
+| `position` | `ToastPosition` | `"top-right"` | トーストの表示位置 (`top-right`, `top-left`, `top-center`, `bottom-right`, `bottom-left`, `bottom-center`) |
+| `duration` | `number`        | `3000`        | トーストが表示される時間（ミリ秒）                                                                         |

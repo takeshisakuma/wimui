@@ -1,4 +1,4 @@
-import { Canvas, Meta, Story, Controls} from "@storybook/blocks";
+import { Canvas, Meta, Story, Controls } from "@storybook/blocks";
 import * as SelectboxStories from "./Selectbox.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Selectbox
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_selectbox_title" />
 </p>
 
@@ -23,7 +30,7 @@ const options = [
   { label: "Orange", value: "orange" },
 ];
 
-<Selectbox options={options} onChange={(val) => console.log(val)} />
+<Selectbox options={options} onChange={(val) => console.log(val)} />;
 ```
 
 ## Examples
@@ -114,21 +121,59 @@ const groupedOptions = [
   options={groupedOptions}
   grouped
   onChange={(val) => console.log(val)}
-/>
+/>;
 ```
 
 ### キーボードナビゲーション
 
 Selectboxは完全なキーボードアクセシビリティをサポートしています：
 
-| キー | 動作 |
-|------|------|
-| `Enter` / `Space` | ドロップダウンを開く / 選択中のオプションを選択 |
-| `Escape` | ドロップダウンを閉じる |
-| `ArrowDown` | 次のオプションにフォーカス |
-| `ArrowUp` | 前のオプションにフォーカス |
-| `Home` | 最初のオプションにフォーカス |
-| `End` | 最後のオプションにフォーカス |
+<table>
+  <thead>
+    <tr>
+      <th>キー</th>
+      <th>動作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>Enter</code> / <code>Space</code>
+      </td>
+      <td>ドロップダウンを開く / 選択中のオプションを選択</td>
+    </tr>
+    <tr>
+      <td>
+        <code>Escape</code>
+      </td>
+      <td>ドロップダウンを閉じる</td>
+    </tr>
+    <tr>
+      <td>
+        <code>ArrowDown</code>
+      </td>
+      <td>次のオプションにフォーカス</td>
+    </tr>
+    <tr>
+      <td>
+        <code>ArrowUp</code>
+      </td>
+      <td>前のオプションにフォーカス</td>
+    </tr>
+    <tr>
+      <td>
+        <code>Home</code>
+      </td>
+      <td>最初のオプションにフォーカス</td>
+    </tr>
+    <tr>
+      <td>
+        <code>End</code>
+      </td>
+      <td>最後のオプションにフォーカス</td>
+    </tr>
+  </tbody>
+</table>
 
 無効なオプションは自動的にスキップされます。
 
@@ -150,11 +195,11 @@ Selectboxは完全なキーボードアクセシビリティをサポートし�
 
 Selectboxコンポーネントは、WAI-ARIAのアクセシビリティガイドラインに準拠しています：
 
-- ✅ role="combobox" と role="listbox" の適切な使用
-- ✅ aria-expanded、aria-selected、aria-disabled の状態管理
-- ✅ 完全なキーボードナビゲーション
-- ✅ スクリーンリーダー対応
-- ✅ フォーカス管理とスムーズなスクロール
+- role="combobox" と role="listbox" の適切な使用
+- aria-expanded、aria-selected、aria-disabled の状態管理
+- 完全なキーボードナビゲーション
+- スクリーンリーダー対応
+- フォーカス管理とスムーズなスクロール
 
 ## Props
 
@@ -165,7 +210,7 @@ Selectboxコンポーネントは、WAI-ARIAのアクセシビリティガイド
 Selectboxコンポーネントは完全な型定義を提供しています。
 
 ```typescript
-import { Selectbox, SelectboxOption, SelectboxOptionGroup } from './Selectbox';
+import { Selectbox, SelectboxOption, SelectboxOptionGroup } from "./Selectbox";
 import { T } from "../T";
 
 // フラットなオプション
@@ -178,10 +223,7 @@ const options: SelectboxOption[] = [
 const groupedOptions: SelectboxOptionGroup[] = [
   {
     label: "Group 1",
-    options: [
-      { label: "Option 1", value: "opt1" },
-    ],
+    options: [{ label: "Option 1", value: "opt1" }],
   },
 ];
 ```
-

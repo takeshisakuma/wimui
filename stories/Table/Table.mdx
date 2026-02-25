@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls, Primary} from "@storybook/blocks";
+import { Canvas, Meta, Controls, Primary } from "@storybook/blocks";
 import * as TableStories from "./Table.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Table
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_table_title" />
 </p>
 
@@ -78,7 +85,7 @@ import { T } from "../T";
 Tableコンポーネントには、ソート機能を簡単に実装できる `useTableSort` フックが用意されています。
 
 ```jsx
-import { Table, useTableSort } from './Table';
+import { Table, useTableSort } from "./Table";
 
 function MyTable() {
   const data = [
@@ -95,22 +102,22 @@ function MyTable() {
         <Table.Row>
           <Table.Head
             sortable
-            sortDirection={getSortDirection('id')}
-            onSort={() => handleSort('id')}
+            sortDirection={getSortDirection("id")}
+            onSort={() => handleSort("id")}
           >
             ID
           </Table.Head>
           <Table.Head
             sortable
-            sortDirection={getSortDirection('name')}
-            onSort={() => handleSort('name')}
+            sortDirection={getSortDirection("name")}
+            onSort={() => handleSort("name")}
           >
             Name
           </Table.Head>
           <Table.Head
             sortable
-            sortDirection={getSortDirection('age')}
-            onSort={() => handleSort('age')}
+            sortDirection={getSortDirection("age")}
+            onSort={() => handleSort("age")}
           >
             Age
           </Table.Head>
@@ -139,13 +146,13 @@ function MyTable() {
 
 ```typescript
 const {
-  sortedData,      // ソート済みのデータ
-  sortConfig,      // 現在のソート設定
-  handleSort,      // ソートを実行する関数
-  getSortDirection // 特定のキーのソート方向を取得
+  sortedData, // ソート済みのデータ
+  sortConfig, // 現在のソート設定
+  handleSort, // ソートを実行する関数
+  getSortDirection, // 特定のキーのソート方向を取得
 } = useTableSort(data, {
-  initialSort: { key: 'name', direction: 'asc' },
-  onSortChange: (config) => console.log('Sort changed:', config)
+  initialSort: { key: "name", direction: "asc" },
+  onSortChange: (config) => console.log("Sort changed:", config),
 });
 ```
 
@@ -166,7 +173,7 @@ const {
 TableコンポーネントとuseTableSortフックは完全な型定義を提供しています。
 
 ```typescript
-import { Table, useTableSort, SortDirection, SortConfig } from './Table';
+import { Table, useTableSort, SortDirection, SortConfig } from "./Table";
 import { T } from "../T";
 
 interface User {
@@ -188,4 +195,3 @@ const { sortedData } = useTableSort<User>(users);
 - `Table.Row` (`<tr>`)
 - `Table.Head` (`<th>`)
 - `Table.Cell` (`<td>`)
-

@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as StepperStories from "./Stepper.stories";
 import { T } from "../T";
 
 <Meta of={StepperStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_stepper_title" />
 </p>
 <Description />
@@ -28,16 +42,28 @@ import { T } from "../T";
   </thead>
   <tbody>
     <tr>
-      <td><strong>不安の解消</strong></td>
-      <td>「あとどれくらいで完了するのか」を可視化し、ユーザーの心理的負担を軽減します。</td>
+      <td>
+        <strong>不安の解消</strong>
+      </td>
+      <td>
+        「あとどれくらいで完了するのか」を可視化し、ユーザーの心理的負担を軽減します。
+      </td>
     </tr>
     <tr>
-      <td><strong>タスクの分割</strong></td>
-      <td>複雑なフォーム入力を管理しやすい単位に分割し、集中力を維持したまま完了率を高めます。</td>
+      <td>
+        <strong>タスクの分割</strong>
+      </td>
+      <td>
+        複雑なフォーム入力を管理しやすい単位に分割し、集中力を維持したまま完了率を高めます。
+      </td>
     </tr>
     <tr>
-      <td><strong>進行のフィードバック</strong></td>
-      <td>完了・現在・未完了の状態を明確に示し、着実に進んでいることを実感させます。</td>
+      <td>
+        <strong>進行のフィードバック</strong>
+      </td>
+      <td>
+        完了・現在・未完了の状態を明確に示し、着実に進んでいることを実感させます。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -53,12 +79,16 @@ import { T } from "../T";
   </thead>
   <tbody>
     <tr>
-      <td><strong>ステップ数</strong></td>
+      <td>
+        <strong>ステップ数</strong>
+      </td>
       <td>4ステップ以上（会員登録、決済、詳細アンケート等）</td>
       <td>3ステップ以下の単純なフロー（入力→確認→完了）</td>
     </tr>
     <tr>
-      <td><strong>必要性</strong></td>
+      <td>
+        <strong>必要性</strong>
+      </td>
       <td>順序が決まった複雑な手続きが必要な場合</td>
       <td>直感的に理解できる基本的な操作（投稿、アップロード等）</td>
     </tr>
@@ -77,31 +107,47 @@ import { T } from "../T";
   </thead>
   <tbody>
     <tr>
-      <td rowspan="2"><strong>レイアウト</strong></td>
+      <td rowspan="2">
+        <strong>レイアウト</strong>
+      </td>
       <td>水平型 (Horizontal)</td>
-      <td>デスクトップ等の横幅がある画面に適し、左から右への自然な視線移動に沿います。</td>
+      <td>
+        デスクトップ等の横幅がある画面に適し、左から右への自然な視線移動に沿います。
+      </td>
     </tr>
     <tr>
       <td>垂直型 (Vertical)</td>
-      <td>モバイル環境やステップ数が多い場合に最適。詳細情報を展開しやすくなります。</td>
+      <td>
+        モバイル環境やステップ数が多い場合に最適。詳細情報を展開しやすくなります。
+      </td>
     </tr>
     <tr>
-      <td rowspan="2"><strong>進行方式</strong></td>
+      <td rowspan="2">
+        <strong>進行方式</strong>
+      </td>
       <td>リニア（順序固定）</td>
-      <td>前のステップ完了が必須のプロセス（決済など）で、データの整合性を担保します。</td>
+      <td>
+        前のステップ完了が必須のプロセス（決済など）で、データの整合性を担保します。
+      </td>
     </tr>
     <tr>
       <td>ノンリニア（順序自由）</td>
-      <td>任意の順序で編集可能なプロセス（設定、プロフィール等）に適しています。</td>
+      <td>
+        任意の順序で編集可能なプロセス（設定、プロフィール等）に適しています。
+      </td>
     </tr>
     <tr>
-      <td rowspan="2"><strong>視覚表現</strong></td>
+      <td rowspan="2">
+        <strong>視覚表現</strong>
+      </td>
       <td>区切り型</td>
       <td>ステップ数が少ない場合（3~4個）。各工程の独立性を強調します。</td>
     </tr>
     <tr>
       <td>一体型（連続）</td>
-      <td>ステップ数が多い場合（5個〜）。一連の流れとして認識させ、負担を抑えます。</td>
+      <td>
+        ステップ数が多い場合（5個〜）。一連の流れとして認識させ、負担を抑えます。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -134,4 +180,3 @@ import { T } from "../T";
 <Canvas of={StepperStories.Interactive} />
 
 <Stories />
-

@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
 import * as SpanStories from "./Span.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Span
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_span_title" />
 </p>
 
@@ -21,12 +28,15 @@ import { T } from "../T";
 `size` プロパティでテキストサイズを変更できます。
 
 ### Extra Large
+
 <Canvas of={SpanStories.ExLargeSpan} />
 
 ### Large
+
 <Canvas of={SpanStories.LargeSpan} />
 
 ### Small
+
 <Canvas of={SpanStories.SmallSpan} />
 
 ## アイコン付き
@@ -40,12 +50,13 @@ import { T } from "../T";
 `decoration` プロパティでテキストの装飾を指定できます。
 
 ### Strikethrough
+
 <Canvas of={SpanStories.StrikethroughSpan} />
 
 ### Highlight
-<Canvas of={SpanStories.Highlight} />
+
+<Canvas of={SpanStories.HighlightSpan} />
 
 ## Props
 
 <Controls />
-

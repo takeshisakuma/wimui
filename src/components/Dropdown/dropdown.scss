@@ -3,61 +3,61 @@
 ------------------------------------------------------------------ */
 
 .wim-dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .wim-dropdown-trigger {
-    display: inline-flex;
-    cursor: pointer;
+  display: inline-flex;
+  cursor: pointer;
 }
 
 .wim-dropdown-menu {
-    position: absolute;
-    top: calc(100% + var(--spacing-xs));
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    min-width: 200px;
-    padding: var(--spacing-xs) 0;
-    margin: 0;
-    background-color: var(--bg-component, #fff);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
+  position: absolute;
+  top: calc(100% + var(--spacing-xs));
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: var(--spacing-xs) 0;
+  margin: 0;
+  background-color: var(--bg-component, #fff);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
 
-    &--align-left {
-        left: 0;
-    }
+  &--align-left {
+    left: 0;
+  }
 
-    &--align-right {
-        right: 0;
-    }
+  &--align-right {
+    right: 0;
+  }
 }
 
 .wim-dropdown-item {
-    display: flex;
-    align-items: center;
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.9rem;
-    color: var(--text-primary);
-    text-decoration: none; // For when items are links
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  text-decoration: none; // For when items are links
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 
-    &:hover:not(.wim-dropdown-item--disabled) {
-        background-color: rgb(0 0 0 / 0.05);
-    }
+  &:hover:not(.wim-dropdown-item--disabled) {
+    background-color: rgb(0 0 0 / 0.05);
+  }
 
-    &--disabled {
-        color: var(--text-disabled);
-        cursor: not-allowed;
-        background-color: transparent;
-        opacity: 0.6;
-    }
+  &--disabled {
+    color: var(--text-disabled);
+    cursor: not-allowed;
+    background-color: transparent;
+    opacity: 0.6;
+  }
 
-    // Support for icons inside items
-    svg {
-        margin-right: var(--spacing-sm);
-    }
+  // Support for icons inside items
+  svg {
+    margin-right: var(--spacing-sm);
+  }
 }

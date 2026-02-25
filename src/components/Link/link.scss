@@ -1,95 +1,95 @@
 ﻿@layer component {
-    .wim-link {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        cursor: pointer;
-        outline: none;
-        border-radius: var(--radius-sm);
-        transition: var(--transition-base);
+  .wim-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-base);
 
-        &::after {
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            content: "";
-            background-color: currentcolor;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-
-        &:hover {
-            &::after {
-                transform: scaleX(1);
-                transform-origin: left;
-            }
-        }
-
-        &:focus-visible {
-            box-shadow: 0 0 0 2px var(--color-focus-outline);
-        }
-
-        &__inner {
-            display: inline-flex;
-            gap: var(--spacing-xs);
-            align-items: center;
-        }
-
-        &__label {
-            line-height: 1.2;
-        }
-
-        // Sizes
-        &--lg {
-            font-size: var(--font-size-large);
-        }
-
-        &--md {
-            font-size: var(--font-size-medium);
-        }
-
-        &--sm {
-            font-size: var(--font-size-small);
-        }
-
-        // Priorities
-        &--primary {
-            color: var(--color-primary);
-
-            &:hover {
-                color: var(--color-primary); // More vivid if needed
-            }
-        }
-
-        &--secondary {
-            color: var(--text-primary); // Assume default text color
-
-            &:hover {
-                color: var(--color-primary);
-            }
-        }
-
-        &--tertiary {
-            color: var(--text-tertiary); // Assume subtle text color
-
-            &:hover {
-                color: var(--text-primary);
-            }
-        }
-
-        &__external-icon {
-            margin-left: var(--spacing-3xs);
-            font-size: 0.8em;
-            opacity: 0.8;
-        }
-
-        .wim-icon {
-            flex-shrink: 0;
-            font-size: 0.9em;
-        }
+    &::after {
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      content: "";
+      background-color: currentcolor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
     }
+
+    &:hover {
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--color-focus-outline);
+    }
+
+    &__inner {
+      display: inline-flex;
+      gap: var(--spacing-xs);
+      align-items: center;
+    }
+
+    &__label {
+      line-height: 1.2;
+    }
+
+    // Sizes
+    &--lg {
+      font-size: var(--font-size-large);
+    }
+
+    &--md {
+      font-size: var(--font-size-medium);
+    }
+
+    &--sm {
+      font-size: var(--font-size-small);
+    }
+
+    // Priorities
+    &--primary {
+      color: var(--color-primary);
+
+      &:hover {
+        color: var(--color-primary); // More vivid if needed
+      }
+    }
+
+    &--secondary {
+      color: var(--text-primary); // Assume default text color
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+
+    &--tertiary {
+      color: var(--text-tertiary); // Assume subtle text color
+
+      &:hover {
+        color: var(--text-primary);
+      }
+    }
+
+    &__external-icon {
+      margin-left: var(--spacing-3xs);
+      font-size: 0.8em;
+      opacity: 0.8;
+    }
+
+    .wim-icon {
+      flex-shrink: 0;
+      font-size: 0.9em;
+    }
+  }
 }

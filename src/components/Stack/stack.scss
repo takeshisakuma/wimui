@@ -1,21 +1,33 @@
 @use "../../tokens/breakpoints" as breakpoints;
 
 .wim-stack {
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    @include breakpoints.up(sm) {
-        flex-direction: var(--wim-stack-dir-sm, var(--wim-stack-dir)) !important;
-    }
+  @include breakpoints.up(sm) {
+    flex-direction: var(--wim-stack-dir-sm, var(--wim-stack-dir)) !important;
+  }
 
-    @include breakpoints.up(md) {
-        flex-direction: var(--wim-stack-dir-md, var(--wim-stack-dir-sm, var(--wim-stack-dir))) !important;
-    }
+  @include breakpoints.up(md) {
+    flex-direction: var(
+      --wim-stack-dir-md,
+      var(--wim-stack-dir-sm, var(--wim-stack-dir))
+    ) !important;
+  }
 
-    @include breakpoints.up(lg) {
-        flex-direction: var(--wim-stack-dir-lg, var(--wim-stack-dir-md, var(--wim-stack-dir-sm, var(--wim-stack-dir)))) !important;
-    }
+  @include breakpoints.up(lg) {
+    flex-direction: var(
+      --wim-stack-dir-lg,
+      var(--wim-stack-dir-md, var(--wim-stack-dir-sm, var(--wim-stack-dir)))
+    ) !important;
+  }
 
-    @include breakpoints.up(xl) {
-        flex-direction: var(--wim-stack-dir-xl, var(--wim-stack-dir-lg, var(--wim-stack-dir-md, var(--wim-stack-dir-sm, var(--wim-stack-dir))))) !important;
-    }
+  @include breakpoints.up(xl) {
+    flex-direction: var(
+      --wim-stack-dir-xl,
+      var(
+        --wim-stack-dir-lg,
+        var(--wim-stack-dir-md, var(--wim-stack-dir-sm, var(--wim-stack-dir)))
+      )
+    ) !important;
+  }
 }

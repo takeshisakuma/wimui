@@ -1,9 +1,9 @@
 ﻿@layer component {
-    .wim-affix {
-        &--affixed {
-            // Ensure the affixed element doesn't have unintended margins
-            margin: 0;
-            transition: none;
-        }
+  .wim-affix {
+    &--affixed {
+      // Ensure the affixed element doesn't have unintended margins
+      margin: 0;
+      transition: none;
     }
+  }
 }

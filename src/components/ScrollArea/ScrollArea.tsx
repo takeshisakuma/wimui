@@ -38,5 +38,3 @@ export const ScrollArea = ({
     </div>
   );
 };
-
-

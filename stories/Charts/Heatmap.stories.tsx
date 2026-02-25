@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Heatmap } from "@/components/Charts/Heatmap";
 
 const meta: Meta<typeof Heatmap> = {
-    title: "Components/Visualization/Heatmap",
-    component: Heatmap,
-    tags: ["autodocs"],
+  title: "Components/Visualization/Heatmap",
+  component: Heatmap,
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -16,23 +16,21 @@ const yAxisKey = ["Am", "Pm", "Night"];
 const data = [];
 let i = 0;
 for (let x of xAxisKey) {
-    for (let y of yAxisKey) {
-        data.push({
-            x,
-            y,
-            value: (i * 13) % 100, // Predictable value instead of random
-        });
-        i++;
-    }
+  for (let y of yAxisKey) {
+    data.push({
+      x,
+      y,
+      value: (i * 13) % 100, // Predictable value instead of random
+    });
+    i++;
+  }
 }
 
 export const Default: Story = {
-    args: {
-        title: "Activity Heatmap",
-        data,
-        xAxisKey,
-        yAxisKey,
-    },
+  args: {
+    title: "Activity Heatmap",
+    data,
+    xAxisKey,
+    yAxisKey,
+  },
 };
-
-

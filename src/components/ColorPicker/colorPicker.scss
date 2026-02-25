@@ -1,19 +1,19 @@
 ﻿.wim-colorpicker {
-    height: 42px; // Match other inputs
-    padding: var(--spacing-3xs);
-    cursor: pointer;
+  height: 42px; // Match other inputs
+  padding: var(--spacing-3xs);
+  cursor: pointer;
 
-    &::-webkit-color-swatch-wrapper {
-        padding: 0;
-    }
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
 
-    &::-webkit-color-swatch {
-        border: none;
-        border-radius: var(--radius-sm);
-    }
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: var(--radius-sm);
+  }
 
-    &::-moz-color-swatch {
-        border: none;
-        border-radius: var(--radius-sm);
-    }
+  &::-moz-color-swatch {
+    border: none;
+    border-radius: var(--radius-sm);
+  }
 }

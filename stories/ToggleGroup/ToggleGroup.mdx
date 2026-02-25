@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls, Primary, Story} from "@storybook/blocks";
+import { Canvas, Meta, Controls, Primary, Story } from "@storybook/blocks";
 import * as ToggleGroupStories from "./ToggleGroup.stories";
 import { T } from "../T";
 
@@ -6,13 +6,21 @@ import { T } from "../T";
 
 # ToggleGroup
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_togglegroup_title" />
 </p>
 
 ToggleGroup components allow users to select one or multiple options from a set of buttons. It's often used for formatting options, alignment, or filtering where a button-like interface is preferred over checkboxes or radio buttons.
 
 ## When to use
+
 - When you need a button-like interface for selection.
 - For toolbars (e.g., text formatting: Bold, Italic, Underline).
 - When binary toggle states (On / Off) are grouped together.
@@ -20,11 +28,13 @@ ToggleGroup components allow users to select one or multiple options from a set 
 ## Basic Usage
 
 ### Single Selection
+
 Similar to a RadioGroup but with a button visual.
 
 <Canvas of={ToggleGroupStories.SingleSelection} />
 
 ### Multiple Selection
+
 Similar to a CheckboxGroup but with a button visual.
 
 <Canvas of={ToggleGroupStories.MultipleSelection} />
@@ -36,22 +46,25 @@ Similar to a CheckboxGroup but with a button visual.
 ## Variants
 
 ### Icon Only
+
 Useful for toolbars where space is limited and icons are universally understood.
 
 <Canvas of={ToggleGroupStories.IconOnly} />
 
 ### Sizes
+
 Available in `small`, `medium`, and `large`.
 
 <Canvas of={ToggleGroupStories.Sizes} />
 
 ### Full Width
+
 Stretches to fill the container width.
 
 <Canvas of={ToggleGroupStories.FullWidth} />
 
 ### Disabled State
+
 Options can be individually disabled.
 
 <Canvas of={ToggleGroupStories.DisabledOptions} />
-

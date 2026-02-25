@@ -1,11 +1,11 @@
 ﻿// SwitchGroup styles
 .wim-switch-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
 
-    &.wim-switch-group--horizontal {
-        flex-flow: row wrap;
-        gap: var(--spacing-lg);
-    }
+  &.wim-switch-group--horizontal {
+    flex-flow: row wrap;
+    gap: var(--spacing-lg);
+  }
 }

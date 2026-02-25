@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
 import * as CardStories from "./Card.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Card
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_card_title" />
 </p>
 
@@ -29,9 +36,11 @@ import { T } from "../T";
 ### バリアント
 
 #### 枠線付き (Outline)
+
 <Canvas of={CardStories.Outline} />
 
 #### フラット (Flat)
+
 <Canvas of={CardStories.Flat} />
 
 ## Props
@@ -45,4 +54,3 @@ import { T } from "../T";
 - `Card.Header`: カード上部のタイトルや操作ボタンなどを配置します。
 - `Card.Body`: カードのメインコンテンツを配置します。
 - `Card.Footer`: カード下部の操作ボタンや情報を配置します。
-

@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
 import * as FieldsetStories from "./Fieldset.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Fieldset
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_fieldset_title" />
 </p>
 
@@ -20,14 +27,14 @@ import { Fieldset, Legend, Label, Input } from "wimui";
 import { T } from "../T";
 
 <Fieldset>
-    <Legend>ユーザー情報</Legend>
-    <Label label="名前">
-        <Input />
-    </Label>
-    <Label label="メールアドレス">
-        <Input />
-    </Label>
-</Fieldset>
+  <Legend>ユーザー情報</Legend>
+  <Label label="名前">
+    <Input />
+  </Label>
+  <Label label="メールアドレス">
+    <Input />
+  </Label>
+</Fieldset>;
 ```
 
 ## ストーリー
@@ -49,4 +56,3 @@ import { T } from "../T";
 ## コンポーネントのプロパティ
 
 <Controls />
-

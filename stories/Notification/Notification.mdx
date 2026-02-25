@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls} from "@storybook/blocks";
+import { Canvas, Meta, Controls } from "@storybook/blocks";
 import * as NotificationStories from "./Notification.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Notification
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_notification_title" />
 </p>
 
@@ -25,14 +32,17 @@ Used for system-level dynamic messages that are more complex or important than s
 ## Examples
 
 ### Success
+
 <Canvas of={NotificationStories.Success} />
 
 ### Info
+
 <Canvas of={NotificationStories.Info} />
 
 ### Warning
+
 <Canvas of={NotificationStories.Warning} />
 
 ### Error
-<Canvas of={NotificationStories.ErrorStatus} />
 
+<Canvas of={NotificationStories.ErrorStatus} />

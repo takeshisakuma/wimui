@@ -1,203 +1,214 @@
 ﻿@use "../../tokens/breakpoints" as breakpoints;
 
 .wim-table-container {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .wim-table {
-    width: auto;
-    font-size: var(--wim-font-size-md, 14px);
-    color: var(--wim-color-text-primary, #333);
-    text-align: left;
-    border-spacing: 0;
-    border-collapse: separate;
+  width: auto;
+  font-size: var(--wim-font-size-md, 14px);
+  color: var(--wim-color-text-primary, #333);
+  text-align: left;
+  border-spacing: 0;
+  border-collapse: separate;
 
-    &--full-width {
-        width: 100%;
+  &--full-width {
+    width: 100%;
+  }
+
+  &__header {
+    background-color: var(--wim-color-surface-variant, #f5f5f5);
+    border-bottom: 2px solid var(--wim-color-border, #e0e0e0);
+  }
+
+  &__footer {
+    background-color: var(--wim-color-surface-variant, #f5f5f5);
+    border-top: 2px solid var(--wim-color-border, #e0e0e0);
+  }
+
+  &__head {
+    padding: 12px 16px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
+    transition: background-color 0.2s ease;
+
+    &--sortable {
+      cursor: pointer;
+      user-select: none;
+
+      &:hover {
+        background-color: var(--wim-color-surface-hover, #f0f0f0);
+      }
+    }
+  }
+
+  &__head-content {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__sort-icon {
+    display: inline-flex;
+    color: var(--wim-color-text-tertiary, #999);
+    transition:
+      transform 0.2s ease,
+      color 0.2s ease;
+
+    &--asc {
+      color: var(--wim-color-primary, #007aff);
+      transform: rotate(180deg);
     }
 
-    &__header {
-        background-color: var(--wim-color-surface-variant, #f5f5f5);
-        border-bottom: 2px solid var(--wim-color-border, #e0e0e0);
+    &--desc {
+      color: var(--wim-color-primary, #007aff);
+      transform: rotate(0deg);
     }
 
-    &__footer {
-        background-color: var(--wim-color-surface-variant, #f5f5f5);
-        border-top: 2px solid var(--wim-color-border, #e0e0e0);
+    &--none {
+      opacity: 0.3;
     }
+  }
 
-    &__head {
-        padding: 12px 16px;
-        font-weight: 600;
-        border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
-        transition: background-color 0.2s ease;
+  &__cell {
+    padding: 12px 16px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
+  }
 
-        &--sortable {
-            cursor: pointer;
-            user-select: none;
+  &__head--selection,
+  &__cell--selection {
+    width: 48px;
+    padding-right: 0;
+    text-align: center;
 
-            &:hover {
-                background-color: var(--wim-color-surface-hover, #f0f0f0);
-            }
-        }
+    .wim-checkbox-wrapper {
+      display: inline-flex;
+      margin: 0;
     }
+  }
 
-    &__head-content {
-        display: flex;
-        gap: 8px;
-        align-items: center;
+  &__row {
+    transition: background-color 0.2s ease;
+
+    &--selected {
+      background-color: var(
+        --wim-color-primary-container-alpha,
+        rgb(0 122 255 / 0.08)
+      ) !important;
     }
+  }
 
-    &__sort-icon {
-        display: inline-flex;
-        color: var(--wim-color-text-tertiary, #999);
-        transition: transform 0.2s ease, color 0.2s ease;
-
-        &--asc {
-            color: var(--wim-color-primary, #007aff);
-            transform: rotate(180deg);
-        }
-
-        &--desc {
-            color: var(--wim-color-primary, #007aff);
-            transform: rotate(0deg);
-        }
-
-        &--none {
-            opacity: 0.3;
-        }
+  // Variations
+  &--striped {
+    .wim-table__body .wim-table__row:nth-child(even) {
+      background-color: var(
+        --wim-color-surface-variant-alpha,
+        rgb(0 0 0 / 0.02)
+      );
     }
+  }
 
-    &__cell {
-        padding: 12px 16px;
-        vertical-align: middle;
-        border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
+  &--bordered {
+    border: 1px solid var(--wim-color-border, #e0e0e0);
+
+    .wim-table__head,
+    .wim-table__cell {
+      border-right: 1px solid var(--wim-color-border, #e0e0e0);
+
+      &:last-child {
+        border-right: none;
+      }
     }
+  }
 
-    &__head--selection,
-    &__cell--selection {
-        width: 48px;
-        padding-right: 0;
-        text-align: center;
-
-        .wim-checkbox-wrapper {
-            display: inline-flex;
-            margin: 0;
-        }
+  &--hoverable {
+    .wim-table__body .wim-table__row:hover {
+      background-color: var(--wim-color-surface-hover, #f0f0f0);
     }
+  }
 
-    &__row {
-        transition: background-color 0.2s ease;
+  &--sticky-header {
+    .wim-table__head {
+      position: sticky;
+      top: 0;
+      z-index: 100; // Higher z-index to stay above body cells
+      background-color: var(--wim-color-surface-variant, #f5f5f5);
 
-        &--selected {
-            background-color: var(--wim-color-primary-container-alpha, rgb(0 122 255 / 0.08)) !important;
-        }
+      /* border-collapse: separate 時の擬似境界線 */
+      box-shadow: inset 0 -1px 0 var(--wim-color-border, #e0e0e0);
     }
+  }
 
-    // Variations
-    &--striped {
-        .wim-table__body .wim-table__row:nth-child(even) {
-            background-color: var(--wim-color-surface-variant-alpha, rgb(0 0 0 / 0.02));
-        }
-    }
+  &--mobile-card {
+    @include breakpoints.down("md") {
+      display: block;
 
-    &--bordered {
+      .wim-table__header {
+        display: none;
+      }
+
+      .wim-table__body {
+        display: block;
+      }
+
+      .wim-table__row {
+        display: block;
+        margin-bottom: var(--spacing-md);
+        overflow: hidden; // 角丸からはみ出ないようにする
+        background-color: var(--wim-color-surface, #fff);
         border: 1px solid var(--wim-color-border, #e0e0e0);
+        border-radius: var(--radius-md);
 
-        .wim-table__head,
-        .wim-table__cell {
-            border-right: 1px solid var(--wim-color-border, #e0e0e0);
-
-            &:last-child {
-                border-right: none;
-            }
+        &:last-child {
+          margin-bottom: 0;
         }
-    }
+      }
 
-    &--hoverable {
-        .wim-table__body .wim-table__row:hover {
-            background-color: var(--wim-color-surface-hover, #f0f0f0);
+      .wim-table__cell {
+        box-sizing: border-box; // パディングを含める
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%; // 全幅にする
+        padding: var(--spacing-md);
+        text-align: right;
+        border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
+
+        &:last-child {
+          border-bottom: none;
         }
-    }
 
-    &--sticky-header {
-        .wim-table__head {
-            position: sticky;
-            top: 0;
-            z-index: 100; // Higher z-index to stay above body cells
-            background-color: var(--wim-color-surface-variant, #f5f5f5);
-
-            /* border-collapse: separate 時の擬似境界線 */
-            box-shadow: inset 0 -1px 0 var(--wim-color-border, #e0e0e0);
+        &::before {
+          margin-right: var(--spacing-md);
+          font-weight: 600;
+          color: var(--wim-color-text-secondary, #666);
+          text-align: left;
+          content: attr(data-label);
         }
-    }
 
-    &--mobile-card {
-        @include breakpoints.down('md') {
-            display: block;
+        &--selection {
+          // チェックボックスの垂直位置調整
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          padding: var(--spacing-sm) var(--spacing-md);
 
-            .wim-table__header {
-                display: none;
-            }
+          // カードのタイトル的な位置づけにする場合
+          font-weight: bold;
+          background-color: var(
+            --wim-color-surface-variant-alpha,
+            rgb(0 0 0 / 0.02)
+          );
+          border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
 
-            .wim-table__body {
-                display: block;
-            }
-
-            .wim-table__row {
-                display: block;
-                margin-bottom: var(--spacing-md);
-                overflow: hidden; // 角丸からはみ出ないようにする
-                background-color: var(--wim-color-surface, #fff);
-                border: 1px solid var(--wim-color-border, #e0e0e0);
-                border-radius: var(--radius-md);
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
-
-            .wim-table__cell {
-                box-sizing: border-box; // パディングを含める
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%; // 全幅にする
-                padding: var(--spacing-md);
-                text-align: right;
-                border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
-
-                &:last-child {
-                    border-bottom: none;
-                }
-
-                &::before {
-                    margin-right: var(--spacing-md);
-                    font-weight: 600;
-                    color: var(--wim-color-text-secondary, #666);
-                    text-align: left;
-                    content: attr(data-label);
-                }
-
-                &--selection {
-                    // チェックボックスの垂直位置調整
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                    padding: var(--spacing-sm) var(--spacing-md);
-
-                    // カードのタイトル的な位置づけにする場合
-                    font-weight: bold;
-                    background-color: var(--wim-color-surface-variant-alpha, rgb(0 0 0 / 0.02));
-                    border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
-
-                    &::before {
-                        display: none;
-                    }
-                }
-            }
+          &::before {
+            display: none;
+          }
         }
+      }
     }
+  }
 }

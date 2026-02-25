@@ -20,52 +20,86 @@ import { T } from "../stories/T";
   </thead>
   <tbody>
     <tr>
-      <td><strong>Heading</strong></td>
+      <td>
+        <strong>Heading</strong>
+      </td>
       <td>`h1` - `h6`</td>
       <td>セクションの見出し</td>
       <td>視覚的な重み（太さ・サイズ）を持ち、ページの構造を示す。</td>
     </tr>
     <tr>
-      <td><strong>Paragraph</strong></td>
+      <td>
+        <strong>Paragraph</strong>
+      </td>
       <td>`p`</td>
       <td>本文のブロック</td>
       <td>適切な行間と余白を持ち、長い文章の可読性を確保する。</td>
     </tr>
     <tr>
-      <td><strong>Span</strong></td>
+      <td>
+        <strong>Span</strong>
+      </td>
       <td>`span`</td>
       <td>インラインテキスト</td>
       <td>文章の一部を強調したり、特定のスタイルを適用したりする。</td>
     </tr>
     <tr>
-      <td><strong>Quote</strong></td>
+      <td>
+        <strong>Quote</strong>
+      </td>
       <td>`blockquote`</td>
       <td>引用文</td>
       <td>外部からの引用や強調したい文章を視覚的に分離する。</td>
     </tr>
     <tr>
-      <td><strong>Code / Kbd</strong></td>
-      <td>`code` / `kbd`</td>
+      <td>
+        <strong>Code</strong>
+      </td>
+      <td>
+        <code>code</code>
+      </td>
       <td>技術情報</td>
-      <td>等幅フォントを使用し、コード片やキーボード操作を明示する。</td>
+      <td>等幅フォントを使用し、インラインのコード片を明示する。</td>
     </tr>
     <tr>
-      <td><strong>Highlight</strong></td>
+      <td>
+        <strong>Kbd</strong>
+      </td>
+      <td>
+        <code>kbd</code>
+      </td>
+      <td>技術情報</td>
+      <td>等幅フォントを使用し、キーボード操作やショートカットを明示する。</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Highlight</strong>
+      </td>
       <td>`mark`</td>
       <td>注目喚起</td>
       <td>検索結果のヒット部分や、特に重要な箇所を背景色で強調する。</td>
     </tr>
     <tr>
-      <td><strong>Link</strong></td>
+      <td>
+        <strong>Link</strong>
+      </td>
       <td>`a`</td>
       <td>ハイパーリンク</td>
-      <td>別のページやリソースへのナビゲーション。ページ遷移には `Link`、アクション実行には `Button` を使用するのが原則。</td>
+      <td>
+        別のページやリソースへのナビゲーション。ページ遷移には
+        `Link`、アクション実行には `Button` を使用するのが原則。
+      </td>
     </tr>
     <tr>
-      <td><strong>Icon</strong></td>
+      <td>
+        <strong>Icon</strong>
+      </td>
       <td>`svg`</td>
       <td>アイコン表示</td>
-      <td>テキストの補助や単独でのアクション指示。単体使用時は `aria-label` で意味を付与してください。</td>
+      <td>
+        テキストの補助や単独でのアクション指示。単体使用時は `aria-label`
+        で意味を付与してください。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -86,12 +120,18 @@ import { T } from "../stories/T";
   </thead>
   <tbody>
     <tr>
-      <td><strong>Outline (線画)</strong></td>
-      <td><T k="doc_icon_desc" /></td>
+      <td>
+        <strong>Outline (線画)</strong>
+      </td>
+      <td>
+        <T k="doc_icon_desc" />
+      </td>
       <td>標準的なUIパーツ、ナビゲーション、フォームの補助。</td>
     </tr>
     <tr>
-      <td><strong>Filled (塗り)</strong></td>
+      <td>
+        <strong>Filled (塗り)</strong>
+      </td>
       <td>-</td>
       <td>選択状態の明示、重要なアラート、ダークモードでの視認性確保。</td>
     </tr>
@@ -111,20 +151,41 @@ import { T } from "../stories/T";
   </thead>
   <tbody>
     <tr>
-      <td><strong>セマンティクス</strong></td>
-      <td>見出しのレベル（h1, h2...）は見た目のサイズではなく、ドキュメントの構造に従って正しく順序立てて使用してください。</td>
+      <td>
+        <strong>セマンティクス</strong>
+      </td>
+      <td>
+        見出しのレベル（h1,
+        h2...）は見た目のサイズではなく、ドキュメントの構造に従って正しく順序立てて使用してください。
+      </td>
     </tr>
     <tr>
-      <td><strong>コントラスト</strong></td>
-      <td>テキストの色は背景色に対して十分なコントラスト比（WCAG AA以上）を維持してください。`ContrastChecker` ユーティリティで確認できます。</td>
+      <td>
+        <strong>コントラスト</strong>
+      </td>
+      <td>
+        テキストの色は背景色に対して十分なコントラスト比（WCAG
+        AA以上）を維持してください。`ContrastChecker`
+        ユーティリティで確認できます。
+      </td>
     </tr>
     <tr>
-      <td><strong>アイコンの代替テキスト</strong></td>
-      <td>アイコンが意味を持つ場合（ボタンとして機能する場合など）は、`aria-label` 等でスクリーンリーダーに情報を伝えてください。</td>
+      <td>
+        <strong>アイコンの代替テキスト</strong>
+      </td>
+      <td>
+        アイコンが意味を持つ場合（ボタンとして機能する場合など）は、`aria-label`
+        等でスクリーンリーダーに情報を伝えてください。
+      </td>
     </tr>
     <tr>
-      <td><strong>可読性</strong></td>
-      <td>本文（Paragraph）の行幅は、読みやすさを考慮して 45〜75 文字程度に収まるよう `Container` 等で制限することを推奨します。</td>
+      <td>
+        <strong>可読性</strong>
+      </td>
+      <td>
+        本文（Paragraph）の行幅は、読みやすさを考慮して 45〜75
+        文字程度に収まるよう `Container` 等で制限することを推奨します。
+      </td>
     </tr>
   </tbody>
 </table>

@@ -3,181 +3,185 @@
 ------------------------------------------------------------------ */
 
 .wim-selectbox {
-    position: relative;
-    width: 320px;
-    max-width: 100%;
-    font-family: var(--font-family-base);
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+  font-family: var(--font-family-base);
 
-    &--full-width {
-        width: 100%;
-        max-width: none;
-    }
+  &--full-width {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 .wim-selectbox-trigger {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    min-height: 42px; // Match MultiSelect height
-    padding: var(--spacing-md) var(--spacing-md); // Increased from sm to md to prevent text clipping
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--text-primary);
-    cursor: pointer;
-    background-color: var(--bg-component, #fff);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--radius-md);
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 42px; // Match MultiSelect height
+  padding: var(--spacing-md) var(--spacing-md); // Increased from sm to md to prevent text clipping
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  cursor: pointer;
+  background-color: var(--bg-component, #fff);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  transition:
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 
-    &:hover:not(.wim-selectbox-trigger--disabled) {
-        border-color: var(--color-primary);
-    }
+  &:hover:not(.wim-selectbox-trigger--disabled) {
+    border-color: var(--color-primary);
+  }
 
-    &:focus {
-        outline: none;
-        border-color: var(--color-primary);
-        box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
-    }
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px
+      color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
 
-    &--open {
-        border-color: var(--color-primary);
-        box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
-    }
+  &--open {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px
+      color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
 
-    &--disabled {
-        color: var(--text-disabled);
-        cursor: not-allowed;
-        background-color: rgb(0 0 0 / 0.05);
-        border-color: var(--color-disabled);
-    }
+  &--disabled {
+    color: var(--text-disabled);
+    cursor: not-allowed;
+    background-color: rgb(0 0 0 / 0.05);
+    border-color: var(--color-disabled);
+  }
 }
 
 .wim-selectbox-value {
-    flex: 1;
+  flex: 1;
 
-    // overflow: hidden; // User reported this causes vertical clipping
-    // text-overflow: ellipsis; 
-    white-space: nowrap;
+  // overflow: hidden; // User reported this causes vertical clipping
+  // text-overflow: ellipsis;
+  white-space: nowrap;
 
-    &--placeholder {
-        color: var(--text-placeholder);
-    }
+  &--placeholder {
+    color: var(--text-placeholder);
+  }
 }
 
 .wim-selectbox-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: var(--spacing-sm);
-    color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--spacing-sm);
+  color: var(--text-secondary);
 }
 
 .wim-selectbox-dropdown {
-    position: absolute;
-    top: calc(100% + var(--spacing-xs));
-    right: 0;
-    left: 0;
-    z-index: 1000;
-    background-color: var(--bg-component, #fff);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
+  position: absolute;
+  top: calc(100% + var(--spacing-xs));
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: var(--bg-component, #fff);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
 }
 
 .wim-selectbox-search {
-    padding: var(--spacing-sm);
-    border-bottom: 1px solid var(--color-secondary);
+  padding: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-secondary);
 }
 
 .wim-selectbox-search-input {
-    width: 100%;
-    padding: var(--spacing-sm);
-    font-size: 0.9rem;
-    outline: none;
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--radius-sm);
-    transition: border-color 0.2s ease-in-out;
+  width: 100%;
+  padding: var(--spacing-sm);
+  font-size: 0.9rem;
+  outline: none;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s ease-in-out;
 
-    &:focus {
-        border-color: var(--color-primary);
-    }
+  &:focus {
+    border-color: var(--color-primary);
+  }
 
-    &::placeholder {
-        color: var(--text-placeholder);
-    }
+  &::placeholder {
+    color: var(--text-placeholder);
+  }
 }
 
 .wim-selectbox-list {
-    max-height: 240px;
-    padding: var(--spacing-xs) 0;
-    margin: 0;
-    overflow-y: auto;
-    list-style: none;
+  max-height: 240px;
+  padding: var(--spacing-xs) 0;
+  margin: 0;
+  overflow-y: auto;
+  list-style: none;
 }
 
 .wim-selectbox-group-label {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    pointer-events: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  pointer-events: none;
 }
 
 .wim-selectbox-option {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.9rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover,
+  &--active {
+    background-color: rgb(0 0 0 / 0.05);
+  }
+
+  &--focused {
+    background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  }
+
+  &--selected {
+    font-weight: 500;
     color: var(--text-primary);
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
 
-    &:hover,
-    &--active {
-        background-color: rgb(0 0 0 / 0.05);
+  &--selected#{&}--focused {
+    background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  }
+
+  &--disabled {
+    color: var(--text-disabled);
+    cursor: not-allowed;
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
     }
-
-    &--focused {
-        background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
-    }
-
-    &--selected {
-        font-weight: 500;
-        color: var(--text-primary);
-        background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
-    }
-
-    &--selected#{&}--focused {
-        background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);
-    }
-
-    &--disabled {
-        color: var(--text-disabled);
-        cursor: not-allowed;
-        background-color: transparent;
-
-        &:hover {
-            background-color: transparent;
-        }
-    }
+  }
 }
 
 .wim-selectbox-empty {
-    padding: var(--spacing-md);
-    font-size: 0.9rem;
-    font-style: italic;
-    color: var(--text-secondary);
-    text-align: center;
+  padding: var(--spacing-md);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  text-align: center;
 }
 
 .wim-selectbox-separator {
-    height: 1px;
-    margin: var(--spacing-xs) 0;
-    overflow: hidden;
-    background-color: var(--color-secondary);
-    opacity: 0.6;
+  height: 1px;
+  margin: var(--spacing-xs) 0;
+  overflow: hidden;
+  background-color: var(--color-secondary);
+  opacity: 0.6;
 }
 
 /* ------------------------------------------------------------------
@@ -185,53 +189,57 @@
 ------------------------------------------------------------------ */
 
 .wim-selectbox--native {
-    .wim-selectbox-native-wrapper {
-        position: relative;
-        display: flex;
-        align-items: center;
-        width: 100%;
+  .wim-selectbox-native-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .wim-selectbox-select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 42px;
+    padding: var(--spacing-md) calc(var(--spacing-md) * 2.5) var(--spacing-md)
+      var(--spacing-md);
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    appearance: none; // Hide default arrow
+    cursor: pointer;
+    background-color: var(--bg-component, #fff);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-md);
+    transition:
+      border-color 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+
+    &:hover:not(:disabled) {
+      border-color: var(--color-primary);
     }
 
-    .wim-selectbox-select {
-        box-sizing: border-box;
-        width: 100%;
-        min-height: 42px;
-        padding: var(--spacing-md) calc(var(--spacing-md) * 2.5) var(--spacing-md) var(--spacing-md);
-        font-family: inherit;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: var(--text-primary);
-        appearance: none; // Hide default arrow
-        cursor: pointer;
-        background-color: var(--bg-component, #fff);
-        border: 1px solid var(--color-secondary);
-        border-radius: var(--radius-md);
-        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-
-        &:hover:not(:disabled) {
-            border-color: var(--color-primary);
-        }
-
-        &:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
-        }
-
-        &:disabled {
-            color: var(--text-disabled);
-            cursor: not-allowed;
-            background-color: rgb(0 0 0 / 0.05);
-            border-color: var(--color-disabled);
-        }
-
-        // hr support is automatic in modern browsers
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px
+        color-mix(in srgb, var(--color-primary) 20%, transparent);
     }
 
-    .wim-selectbox-icon {
-        position: absolute;
-        right: var(--spacing-md);
-        color: var(--text-secondary);
-        pointer-events: none;
+    &:disabled {
+      color: var(--text-disabled);
+      cursor: not-allowed;
+      background-color: rgb(0 0 0 / 0.05);
+      border-color: var(--color-disabled);
     }
+
+    // hr support is automatic in modern browsers
+  }
+
+  .wim-selectbox-icon {
+    position: absolute;
+    right: var(--spacing-md);
+    color: var(--text-secondary);
+    pointer-events: none;
+  }
 }

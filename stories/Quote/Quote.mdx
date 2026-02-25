@@ -1,18 +1,30 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as QuoteStories from "./Quote.stories";
 import { T } from "../T";
 
 <Meta of={QuoteStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   引用文や強調したいテキストを表示するコンポーネント
 </p>
 
 <Description />
-
-
 
 <h2>バリエーション</h2>
 
@@ -22,4 +34,3 @@ import { T } from "../T";
 <Canvas of={QuoteStories.NoBorder} />
 
 <Controls />
-

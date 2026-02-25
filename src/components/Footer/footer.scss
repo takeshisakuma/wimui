@@ -1,87 +1,87 @@
 ﻿@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
-    .wim-footer {
-        width: 100%;
-        padding: var(--spacing-2xl) 0 var(--spacing-xl);
-        transition: all var(--transition-base);
+  .wim-footer {
+    width: 100%;
+    padding: var(--spacing-2xl) 0 var(--spacing-xl);
+    transition: all var(--transition-base);
 
-        &--bg-primary {
-            color: var(--text-primary);
-            background-color: var(--wim-color-bg-primary, #fff);
-        }
-
-        &--bg-secondary {
-            color: var(--text-primary);
-            background-color: var(--wim-color-bg-secondary, #f4f4f5);
-        }
-
-        &--bg-dark {
-            color: #fff;
-            background-color: #18181b;
-
-            .wim-footer__section-title {
-                color: #fff;
-            }
-
-            .wim-footer__bottom {
-                color: #a1a1aa;
-                border-top-color: #27272a;
-            }
-
-            .wim-footer__section-content {
-                color: #fff;
-            }
-        }
-
-        &--bordered {
-            border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
-        }
-
-        &__container {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-2xl);
-            max-width: 1200px;
-            padding: 0 var(--spacing-xl);
-            margin: 0 auto;
-        }
-
-        &__section {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-md);
-
-            &-title {
-                margin: 0;
-                font-size: var(--font-size-medium);
-                font-weight: var(--font-weight-bold);
-                color: var(--text-primary);
-            }
-
-            &-content {
-                display: flex;
-                flex-direction: column;
-                gap: var(--spacing-xs);
-            }
-        }
-
-        &__bottom {
-            display: flex;
-            flex-direction: column-reverse;
-            gap: var(--spacing-md);
-            align-items: center;
-            padding-top: var(--spacing-xl);
-            margin-top: var(--spacing-xl);
-            font-size: var(--font-size-small);
-            color: var(--text-secondary);
-            border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
-
-            @include breakpoints.up(sm) {
-                flex-direction: row;
-                justify-content: space-between;
-                gap: 0;
-            }
-        }
+    &--bg-primary {
+      color: var(--text-primary);
+      background-color: var(--wim-color-bg-primary, #fff);
     }
+
+    &--bg-secondary {
+      color: var(--text-primary);
+      background-color: var(--wim-color-bg-secondary, #f4f4f5);
+    }
+
+    &--bg-dark {
+      color: #fff;
+      background-color: #18181b;
+
+      .wim-footer__section-title {
+        color: #fff;
+      }
+
+      .wim-footer__bottom {
+        color: #a1a1aa;
+        border-top-color: #27272a;
+      }
+
+      .wim-footer__section-content {
+        color: #fff;
+      }
+    }
+
+    &--bordered {
+      border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+    }
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-2xl);
+      max-width: 1200px;
+      padding: 0 var(--spacing-xl);
+      margin: 0 auto;
+    }
+
+    &__section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+
+      &-title {
+        margin: 0;
+        font-size: var(--font-size-medium);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+      }
+
+      &-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+      }
+    }
+
+    &__bottom {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: var(--spacing-md);
+      align-items: center;
+      padding-top: var(--spacing-xl);
+      margin-top: var(--spacing-xl);
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+
+      @include breakpoints.up(sm) {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0;
+      }
+    }
+  }
 }

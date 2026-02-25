@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls, Source} from "@storybook/blocks";
+import { Canvas, Meta, Controls, Source } from "@storybook/blocks";
 import * as RangeCalendarStories from "./RangeCalendar.stories";
 
 <Meta of={RangeCalendarStories} />
@@ -14,11 +14,13 @@ import * as RangeCalendarStories from "./RangeCalendar.stories";
 ## 状態
 
 ### 範囲選択済み
+
 初期値として範囲を指定することも可能です。
 
 <Canvas of={RangeCalendarStories.SelectedRange} />
 
 ### 無効状態
+
 `disabled` プロップを使用することで、操作を無効にできます。
 
 <Canvas of={RangeCalendarStories.Disabled} />
@@ -30,8 +32,8 @@ import * as RangeCalendarStories from "./RangeCalendar.stories";
 ## 実装例
 
 ### 制御されたコンポーネント
+
 `value` と `onChange` を使用して、状態を外部で管理できます。
 
 <Canvas of={RangeCalendarStories.Controlled} />
 <Source of={RangeCalendarStories.Controlled} />
-

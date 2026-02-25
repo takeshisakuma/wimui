@@ -19,7 +19,10 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   justify?: "start" | "center" | "end" | "between";
 };
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { className?: string }>(
+export const Button = React.forwardRef<
+  HTMLButtonElement,
+  ButtonProps & { className?: string }
+>(
   (
     {
       size = "medium",
@@ -38,7 +41,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const { t } = useTranslation();
 
@@ -74,14 +77,22 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
           style={{
             ...(loading ? { visibility: "hidden" } : {}),
             justifyContent: justifyStyle,
-            textAlign: justify === "start" ? "left" : justify === "end" ? "right" : "center",
+            textAlign:
+              justify === "start"
+                ? "left"
+                : justify === "end"
+                  ? "right"
+                  : "center",
           }}
         >
           {iconName && iconPosition === "left" && (
             <Icon name={iconName} size={size} />
           )}
           {label && (
-            <span className="wim-button__label" style={{ textAlign: "inherit", width: "100%" }}>
+            <span
+              className="wim-button__label"
+              style={{ textAlign: "inherit", width: "100%" }}
+            >
               {t(label)}
             </span>
           )}
@@ -102,7 +113,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
       <button
         ref={ref}
         type="button"
-        style={{ ...props.style, ...(backgroundColor ? { backgroundColor } : {}) }}
+        style={{
+          ...props.style,
+          ...(backgroundColor ? { backgroundColor } : {}),
+        }}
         className={classNames(
           "wim-button",
           `wim-button--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
@@ -110,7 +124,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
           `wim-button--${role}`,
           loading && "wim-button--loading",
           !label && !children && iconName && "wim-button--icon-only",
-          className
+          className,
         )}
         disabled={isDisabled || loading}
         aria-label={resolvedAriaLabel}
@@ -120,7 +134,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & { classN
         {content}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

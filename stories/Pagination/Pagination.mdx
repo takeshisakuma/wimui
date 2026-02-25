@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as PaginationStories from "./Pagination.stories";
 import { T } from "../T";
 
 <Meta of={PaginationStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_pagination_title" />
 </p>
 <Description />
@@ -31,15 +45,21 @@ import { T } from "../T";
     </tr>
     <tr>
       <td>アクセシビリティ</td>
-      <td>各ボタンに適切なaria-label（「次へ」「前のページへ」「○ページ目へ」など）を付与する。</td>
+      <td>
+        各ボタンに適切なaria-label（「次へ」「前のページへ」「○ページ目へ」など）を付与する。
+      </td>
     </tr>
     <tr>
       <td>省スペース</td>
-      <td>ページ数が多い場合は、省略記号（...）を使用して全てのページボタンを表示しないように制御する。</td>
+      <td>
+        ページ数が多い場合は、省略記号（...）を使用して全てのページボタンを表示しないように制御する。
+      </td>
     </tr>
     <tr>
       <td>操作性</td>
-      <td>「前へ」「次へ」ボタンを配置し、連続したページ移動を容易にする。1ページ目や最終ページではボタンを無効化する。</td>
+      <td>
+        「前へ」「次へ」ボタンを配置し、連続したページ移動を容易にする。1ページ目や最終ページではボタンを無効化する。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -57,7 +77,8 @@ import { T } from "../T";
 <Canvas of={PaginationStories.ManyPages} />
 
 <h3>周辺ページ数の調整</h3>
-`siblingCount` プロパティを使用して、現在のページの前後に表示するページ数を変更できます。
+`siblingCount`
+プロパティを使用して、現在のページの前後に表示するページ数を変更できます。
 
 <Canvas of={PaginationStories.LargeSiblingCount} />
 
@@ -69,7 +90,9 @@ import { T } from "../T";
 <h2>高度な機能</h2>
 
 <h3>簡易モード (Simple Mode)</h3>
-`simple` プロパティを使用すると、コンパクトな表示形式に切り替わります。ページ番号の代わりに「現在のページ / 総ページ数」が表示されます。
+`simple`
+プロパティを使用すると、コンパクトな表示形式に切り替わります。ページ番号の代わりに「現在のページ
+/ 総ページ数」が表示されます。
 
 ```jsx
 <Pagination
@@ -82,7 +105,8 @@ import { T } from "../T";
 ```
 
 <h3>ページサイズ変更機能</h3>
-`showSizeChanger` プロパティを有効にすると、ユーザーが1ページあたりの表示件数を変更できるようになります。
+`showSizeChanger`
+プロパティを有効にすると、ユーザーが1ページあたりの表示件数を変更できるようになります。
 
 ```jsx
 <Pagination
@@ -92,17 +116,19 @@ import { T } from "../T";
   showSizeChanger
   pageSizeOptions={[10, 20, 50, 100]}
   onChange={(page, pageSize) => console.log(page, pageSize)}
-  onPageSizeChange={(newSize) => console.log('Page size changed to:', newSize)}
+  onPageSizeChange={(newSize) => console.log("Page size changed to:", newSize)}
 />
 ```
 
 プロパティ:
+
 - `showSizeChanger` - ページサイズセレクタを表示するか
 - `pageSizeOptions` - 選択可能なページサイズの配列（デフォルト: `[10, 20, 50, 100]`）
 - `onPageSizeChange` - ページサイズが変更された時のコールバック
 
 <h3>総件数表示</h3>
-`showTotal` プロパティを使用して、総件数や現在表示中のアイテム範囲を表示できます。
+`showTotal`
+プロパティを使用して、総件数や現在表示中のアイテム範囲を表示できます。
 
 ```jsx
 <Pagination
@@ -115,7 +141,8 @@ import { T } from "../T";
 ```
 
 <h3>クイックジャンパー</h3>
-`showQuickJumper` プロパティを有効にすると、特定のページに直接ジャンプできる入力フィールドが表示されます。
+`showQuickJumper`
+プロパティを有効にすると、特定のページに直接ジャンプできる入力フィールドが表示されます。
 
 ```jsx
 <Pagination
@@ -140,10 +167,10 @@ import { T } from "../T";
   showTotal={(total, range) => `${range[0]}-${range[1]} / ${total}`}
   pageSizeOptions={[10, 20, 50, 100]}
   onChange={(page, pageSize) => {
-    console.log('Page:', page, 'Size:', pageSize);
+    console.log("Page:", page, "Size:", pageSize);
   }}
   onPageSizeChange={(newSize) => {
-    console.log('New page size:', newSize);
+    console.log("New page size:", newSize);
   }}
 />
 ```
@@ -159,4 +186,3 @@ type OnChange = (page: number, pageSize: number) => void;
 これにより、ページサイズが変更された際も同じコールバックで処理できます。
 
 <Stories />
-

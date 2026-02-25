@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls, Story} from "@storybook/blocks";
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
 import { T } from "../T";
 import * as VideoStories from "./Video.stories";
 
@@ -6,7 +6,14 @@ import * as VideoStories from "./Video.stories";
 
 # Video
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_video_title" />
 </p>
 
@@ -32,10 +39,11 @@ import { Video } from "@/components/Video/Video";
   loop
   radius="medium"
   caption="背景動画のサンプル"
-/>
+/>;
 ```
 
 ## 高度なコントロールと拡張機能
+
 `advancedControls={true}` を利用することで、モダンな動画プレイヤーに必要な様々な機能を利用できます。
 
 <table>
@@ -48,44 +56,88 @@ import { Video } from "@/components/Video/Video";
   </thead>
   <tbody>
     <tr>
-      <td><strong>画質切り替え</strong></td>
-      <td><code>qualities</code></td>
-      <td>1080p, 720pなどの画質プルダウンを選択でき、シームレスに途中から再生を切り替えます。</td>
+      <td>
+        <strong>画質切り替え</strong>
+      </td>
+      <td>
+        <code>qualities</code>
+      </td>
+      <td>
+        1080p,
+        720pなどの画質プルダウンを選択でき、シームレスに途中から再生を切り替えます。
+      </td>
     </tr>
     <tr>
-      <td><strong>再生速度コントロール</strong></td>
+      <td>
+        <strong>再生速度コントロール</strong>
+      </td>
       <td>-</td>
       <td>0.25倍から2.0倍まで、ユーザーが自由に再生速度を変更できるUIです。</td>
     </tr>
     <tr>
-      <td><strong>アスペクト比の変更</strong></td>
-      <td><code>fit</code></td>
-      <td><code>contain</code>, <code>cover</code> など、画面にどうフィットさせるかをユーザーが選択できます。</td>
+      <td>
+        <strong>アスペクト比の変更</strong>
+      </td>
+      <td>
+        <code>fit</code>
+      </td>
+      <td>
+        <code>contain</code>, <code>cover</code>{" "}
+        など、画面にどうフィットさせるかをユーザーが選択できます。
+      </td>
     </tr>
     <tr>
-      <td><strong>プレイリスト・自動再生</strong></td>
-      <td><code>playlist</code>, <code>autoPlayNext</code></td>
-      <td>複数の動画をリストとして扱い、リスト選択UIの提供や、終了時の自動遷移機能を利用できます。</td>
+      <td>
+        <strong>プレイリスト・自動再生</strong>
+      </td>
+      <td>
+        <code>playlist</code>, <code>autoPlayNext</code>
+      </td>
+      <td>
+        複数の動画をリストとして扱い、リスト選択UIの提供や、終了時の自動遷移機能を利用できます。
+      </td>
     </tr>
     <tr>
-      <td><strong>高度なレジューム再生</strong></td>
-      <td><code>videoId</code>, <code>resumePlayback</code></td>
-      <td><code>videoId</code> と共に指定することで、動画の再生位置を自動で保存し、次回アクセス時に続きから再生します。</td>
+      <td>
+        <strong>高度なレジューム再生</strong>
+      </td>
+      <td>
+        <code>videoId</code>, <code>resumePlayback</code>
+      </td>
+      <td>
+        <code>videoId</code>{" "}
+        と共に指定することで、動画の再生位置を自動で保存し、次回アクセス時に続きから再生します。
+      </td>
     </tr>
     <tr>
-      <td><strong>10秒スキップ &amp; ダブルタップ</strong></td>
+      <td>
+        <strong>10秒スキップ &amp; ダブルタップ</strong>
+      </td>
       <td>-</td>
-      <td>操作バーにスキップボタンを備え、モバイルでは画面の左右をダブルタップすることでもスキップ動作が行われます。</td>
+      <td>
+        操作バーにスキップボタンを備え、モバイルでは画面の左右をダブルタップすることでもスキップ動作が行われます。
+      </td>
     </tr>
     <tr>
-      <td><strong>ピクチャーインピクチャー (PiP)</strong></td>
+      <td>
+        <strong>ピクチャーインピクチャー (PiP)</strong>
+      </td>
       <td>-</td>
-      <td>動画を画面の隅にフロート表示させるPiPモードの切り替えボタンを備えています。</td>
+      <td>
+        動画を画面の隅にフロート表示させるPiPモードの切り替えボタンを備えています。
+      </td>
     </tr>
     <tr>
-      <td><strong>キーボードショートカット</strong></td>
+      <td>
+        <strong>キーボードショートカット</strong>
+      </td>
       <td>-</td>
-      <td><code>Space</code> / <code>K</code> (再生), <code>M</code> (ミュート), <code>F</code> (最大化), <code>P</code> (PiP), <code>←</code> <code>→</code> (スキップ), <code>↑</code> <code>↓</code> (音量) に対応しています。</td>
+      <td>
+        <code>Space</code> / <code>K</code> (再生), <code>M</code> (ミュート),{" "}
+        <code>F</code> (最大化), <code>P</code> (PiP), <code>←</code>{" "}
+        <code>→</code> (スキップ), <code>↑</code> <code>↓</code> (音量)
+        に対応しています。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -108,27 +160,31 @@ import { Video } from "@/components/Video/Video";
 ## Variants
 
 ### Default
+
 標準的なビデオプレイヤーです。
 
 <Canvas of={VideoStories.Default} />
 
 ### AutoPlay & Loop
+
 `autoPlay`、`muted`、`loop` を有効にした状態です。
 
 <Canvas of={VideoStories.AutoPlay} />
 
 ### Rounded with Shadow
+
 角丸と影を適用したデザインです。
 
 <Canvas of={VideoStories.Rounded} />
 
 ### Custom Controls
+
 wimui独自のカスタムコントロールUIを適用した状態です。
 
 <Canvas of={VideoStories.CustomControls} />
 
 ### Full Features (全部盛り)
+
 すべての高度な機能（プレイリスト、アスペクト比、画質、レジューム再生、ショートカット等）を有効にした完全なプレイヤーです。
 
 <Canvas of={VideoStories.FullFeatured} />
-

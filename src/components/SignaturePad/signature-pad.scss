@@ -1,38 +1,38 @@
 @use "../../base" as *;
 
 .wim-signature-pad {
-    display: inline-flex;
-    flex-direction: column;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--wim-font-family);
+
+  &__canvas-container {
+    position: relative;
+    background: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: crosshair;
+    touch-action: none; // Prevent scrolling while signing
+  }
+
+  &__canvas {
+    display: block;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
     gap: 8px;
-    font-family: var(--wim-font-family);
+  }
 
-    &__canvas-container {
-        position: relative;
-        background: var(--wim-color-bg-component);
-        border: 1px solid var(--wim-color-border);
-        border-radius: 8px;
-        overflow: hidden;
-        cursor: crosshair;
-        touch-action: none; // Prevent scrolling while signing
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .wim-signature-pad__canvas-container {
+      pointer-events: none;
+      background: var(--color-disabled);
     }
-
-    &__canvas {
-        display: block;
-    }
-
-    &__footer {
-        display: flex;
-        justify-content: flex-end;
-        gap: 8px;
-    }
-
-    &--disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-
-        .wim-signature-pad__canvas-container {
-            pointer-events: none;
-            background: var(--color-disabled);
-        }
-    }
+  }
 }

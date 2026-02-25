@@ -6,11 +6,5 @@ import { Input } from "../Input/Input";
  * 検索アイコンを標準装備し、入力がある場合はクリアボタンを表示します。
  */
 export const SearchInput = (props: React.ComponentProps<typeof Input>) => {
-    return (
-        <Input
-            leftIcon="SearchIcon"
-            allowClear
-            {...props}
-        />
-    );
+  return <Input leftIcon="SearchIcon" allowClear {...props} />;
 };

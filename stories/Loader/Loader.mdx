@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls} from "@storybook/blocks";
+import { Canvas, Meta, Controls } from "@storybook/blocks";
 import * as LoaderStories from "./Loader.stories";
 import { T } from "../T";
 
@@ -6,38 +6,50 @@ import { T } from "../T";
 
 # Loader
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_loader_title" />
 </p>
 
 ローダーは、データの読み込み中や処理中であることをユーザーに示すためのアニメーションインジケーターです。`Spinner` よりも多様な視覚的バリエーションを提供します。
 
 ## 特徴
+
 - 複数のアニメーションスタイル（bars, dots, pulse）
 - 複数のサイズ（sm, md, lg, xl）
 - テーマに合わせたカラーバリエーション
 - 軽量なCSSアニメーション
 
 ## デモ
+
 <Canvas of={LoaderStories.Default} />
 
 ## プロパティ
+
 <Controls />
 
 ## バリエーション
 
 ### アニメーションスタイル
+
 `variant` プロパティを使用して、異なるアニメーションスタイルを選択できます。
 
 <Canvas of={LoaderStories.Variants} />
 
 ### カラー
+
 システムの各状態に合わせたカラーを使用できます。
 
 <Canvas of={LoaderStories.Colors} />
 
 ### サイズ
+
 表示場所に合わせて適切なサイズを選択できます。
 
 <Canvas of={LoaderStories.Sizes} />
-

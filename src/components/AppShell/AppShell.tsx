@@ -6,21 +6,24 @@ import "./appshell.scss";
 // AppShell Root
 // ─────────────────────────────────────────────
 
-export interface AppShellProps extends Omit<React.ComponentPropsWithoutRef<"div">, "size"> {
-    /** Header component */
-    header?: React.ReactNode;
-    /** Sidebar component */
-    sidebar?: React.ReactNode;
-    /** Footer component */
-    footer?: React.ReactNode;
-    /** Navbar component (mobile bottom navigation) */
-    navbar?: React.ReactNode;
-    /** Add padding to main content */
-    padding?: boolean;
-    /** Center main content horizontally */
-    centered?: boolean;
-    /** Maximum width for centered content */
-    maxWidth?: number | string;
+export interface AppShellProps extends Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "size"
+> {
+  /** Header component */
+  header?: React.ReactNode;
+  /** Sidebar component */
+  sidebar?: React.ReactNode;
+  /** Footer component */
+  footer?: React.ReactNode;
+  /** Navbar component (mobile bottom navigation) */
+  navbar?: React.ReactNode;
+  /** Add padding to main content */
+  padding?: boolean;
+  /** Center main content horizontally */
+  centered?: boolean;
+  /** Maximum width for centered content */
+  maxWidth?: number | string;
 }
 
 /**
@@ -55,49 +58,64 @@ export interface AppShellProps extends Omit<React.ComponentPropsWithoutRef<"div"
  *       `AppShell.Body` を使って手動でレイアウトを構成してください。
  */
 export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
-    ({ className, children, header, sidebar, footer, navbar, padding = true, centered, maxWidth, ...props }, ref) => {
-        const style = maxWidth
-            ? ({
-                "--wim-appshell-max-width": typeof maxWidth === "number" ? `${maxWidth}px` : maxWidth,
-            } as React.CSSProperties)
-            : undefined;
+  (
+    {
+      className,
+      children,
+      header,
+      sidebar,
+      footer,
+      navbar,
+      padding = true,
+      centered,
+      maxWidth,
+      ...props
+    },
+    ref,
+  ) => {
+    const style = maxWidth
+      ? ({
+          "--wim-appshell-max-width":
+            typeof maxWidth === "number" ? `${maxWidth}px` : maxWidth,
+        } as React.CSSProperties)
+      : undefined;
 
-        return (
-            <div
-                ref={ref}
-                className={classNames(
-                    "wim-appshell",
-                    !!sidebar && "wim-appshell--with-sidebar",
-                    className
-                )}
-                style={style}
-                {...props}
-            >
-                {header && <div className="wim-appshell__header">{header}</div>}
+    return (
+      <div
+        ref={ref}
+        className={classNames(
+          "wim-appshell",
+          !!sidebar && "wim-appshell--with-sidebar",
+          className,
+        )}
+        style={style}
+        {...props}
+      >
+        {header && <div className="wim-appshell__header">{header}</div>}
 
-                <div className="wim-appshell__body">
-                    {sidebar && <div className="wim-appshell__sidebar">{sidebar}</div>}
+        <div className="wim-appshell__body">
+          {sidebar && <div className="wim-appshell__sidebar">{sidebar}</div>}
 
-                    <main
-                        className={classNames(
-                            "wim-appshell__main",
-                            padding && "wim-appshell__main--padded",
-                            centered && "wim-appshell__main--centered"
-                        )}
-                    >
-                        {centered ? (
-                            <div className="wim-appshell__content">{children}</div>
-                        ) : (
-                            children
-                        )}
-                    </main>
-                </div>
+          <main
+            className={classNames(
+              "wim-appshell__main",
+              padding && "wim-appshell__main--padded",
+              centered && "wim-appshell__main--centered",
+            )}
+          >
+            {centered ? (
+              <div className="wim-appshell__content">{children}</div>
+            ) : (
+              children
+            )}
+          </main>
+        </div>
 
-                {navbar && <div className="wim-appshell__navbar">{navbar}</div>}
-                {footer && <div className="wim-appshell__footer">{footer}</div>}
-            </div>
-        );
-    }
+        {navbar && <div className="wim-appshell__navbar">{navbar}</div>}
+        {footer && <div className="wim-appshell__footer">{footer}</div>}
+      </div>
+    );
+  },
 );
 
 AppShellRoot.displayName = "AppShell";
@@ -106,11 +124,14 @@ AppShellRoot.displayName = "AppShell";
 // AppShell.Main
 // ─────────────────────────────────────────────
 
-export interface AppShellMainProps extends Omit<React.ComponentPropsWithoutRef<"main">, "size"> {
-    /** Add padding to content */
-    padding?: boolean;
-    /** Center content horizontally */
-    centered?: boolean;
+export interface AppShellMainProps extends Omit<
+  React.ComponentPropsWithoutRef<"main">,
+  "size"
+> {
+  /** Add padding to content */
+  padding?: boolean;
+  /** Center content horizontally */
+  centered?: boolean;
 }
 
 /**
@@ -118,26 +139,26 @@ export interface AppShellMainProps extends Omit<React.ComponentPropsWithoutRef<"
  * Props API の `AppShellRoot` 内蔵 `<main>` と同等の機能を提供します。
  */
 export const AppShellMain = React.forwardRef<HTMLElement, AppShellMainProps>(
-    ({ className, children, padding = true, centered, ...props }, ref) => {
-        return (
-            <main
-                ref={ref}
-                className={classNames(
-                    "wim-appshell__main",
-                    padding && "wim-appshell__main--padded",
-                    centered && "wim-appshell__main--centered",
-                    className
-                )}
-                {...props}
-            >
-                {centered ? (
-                    <div className="wim-appshell__content">{children}</div>
-                ) : (
-                    children
-                )}
-            </main>
-        );
-    }
+  ({ className, children, padding = true, centered, ...props }, ref) => {
+    return (
+      <main
+        ref={ref}
+        className={classNames(
+          "wim-appshell__main",
+          padding && "wim-appshell__main--padded",
+          centered && "wim-appshell__main--centered",
+          className,
+        )}
+        {...props}
+      >
+        {centered ? (
+          <div className="wim-appshell__content">{children}</div>
+        ) : (
+          children
+        )}
+      </main>
+    );
+  },
 );
 
 AppShellMain.displayName = "AppShell.Main";
@@ -153,11 +174,15 @@ export type AppShellBodyProps = React.ComponentPropsWithoutRef<"div">;
  * Composition API でサイドバーを使う場合に使用します。
  */
 export const AppShellBody = React.forwardRef<HTMLDivElement, AppShellBodyProps>(
-    ({ className, children, ...props }, ref) => (
-        <div ref={ref} className={classNames("wim-appshell__body", className)} {...props}>
-            {children}
-        </div>
-    )
+  ({ className, children, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={classNames("wim-appshell__body", className)}
+      {...props}
+    >
+      {children}
+    </div>
+  ),
 );
 AppShellBody.displayName = "AppShell.Body";
 
@@ -166,43 +191,63 @@ AppShellBody.displayName = "AppShell.Body";
 // ─────────────────────────────────────────────
 
 export type AppShellHeaderProps = React.ComponentPropsWithoutRef<"div">;
-export const AppShellHeader = React.forwardRef<HTMLDivElement, AppShellHeaderProps>(
-    ({ className, children, ...props }, ref) => (
-        <div ref={ref} className={classNames("wim-appshell__header", className)} {...props}>
-            {children}
-        </div>
-    )
-);
+export const AppShellHeader = React.forwardRef<
+  HTMLDivElement,
+  AppShellHeaderProps
+>(({ className, children, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={classNames("wim-appshell__header", className)}
+    {...props}
+  >
+    {children}
+  </div>
+));
 AppShellHeader.displayName = "AppShell.Header";
 
 export type AppShellSidebarProps = React.ComponentPropsWithoutRef<"div">;
-export const AppShellSidebar = React.forwardRef<HTMLDivElement, AppShellSidebarProps>(
-    ({ className, children, ...props }, ref) => (
-        <div ref={ref} className={classNames("wim-appshell__sidebar", className)} {...props}>
-            {children}
-        </div>
-    )
-);
+export const AppShellSidebar = React.forwardRef<
+  HTMLDivElement,
+  AppShellSidebarProps
+>(({ className, children, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={classNames("wim-appshell__sidebar", className)}
+    {...props}
+  >
+    {children}
+  </div>
+));
 AppShellSidebar.displayName = "AppShell.Sidebar";
 
 export type AppShellFooterProps = React.ComponentPropsWithoutRef<"div">;
-export const AppShellFooter = React.forwardRef<HTMLDivElement, AppShellFooterProps>(
-    ({ className, children, ...props }, ref) => (
-        <div ref={ref} className={classNames("wim-appshell__footer", className)} {...props}>
-            {children}
-        </div>
-    )
-);
+export const AppShellFooter = React.forwardRef<
+  HTMLDivElement,
+  AppShellFooterProps
+>(({ className, children, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={classNames("wim-appshell__footer", className)}
+    {...props}
+  >
+    {children}
+  </div>
+));
 AppShellFooter.displayName = "AppShell.Footer";
 
 export type AppShellNavbarProps = React.ComponentPropsWithoutRef<"div">;
-export const AppShellNavbar = React.forwardRef<HTMLDivElement, AppShellNavbarProps>(
-    ({ className, children, ...props }, ref) => (
-        <div ref={ref} className={classNames("wim-appshell__navbar", className)} {...props}>
-            {children}
-        </div>
-    )
-);
+export const AppShellNavbar = React.forwardRef<
+  HTMLDivElement,
+  AppShellNavbarProps
+>(({ className, children, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={classNames("wim-appshell__navbar", className)}
+    {...props}
+  >
+    {children}
+  </div>
+));
 AppShellNavbar.displayName = "AppShell.Navbar";
 
 // ─────────────────────────────────────────────
@@ -210,12 +255,12 @@ AppShellNavbar.displayName = "AppShell.Navbar";
 // ─────────────────────────────────────────────
 
 const AppShellComponent = AppShellRoot as typeof AppShellRoot & {
-    Main: typeof AppShellMain;
-    Body: typeof AppShellBody;
-    Header: typeof AppShellHeader;
-    Sidebar: typeof AppShellSidebar;
-    Footer: typeof AppShellFooter;
-    Navbar: typeof AppShellNavbar;
+  Main: typeof AppShellMain;
+  Body: typeof AppShellBody;
+  Header: typeof AppShellHeader;
+  Sidebar: typeof AppShellSidebar;
+  Footer: typeof AppShellFooter;
+  Navbar: typeof AppShellNavbar;
 };
 
 AppShellComponent.Main = AppShellMain;

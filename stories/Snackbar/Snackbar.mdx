@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
 import * as SnackbarStories from "./Snackbar.stories";
 import { T } from "../T";
 
@@ -6,7 +6,14 @@ import { T } from "../T";
 
 # Snackbar
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_snackbar_title" />
 </p>
 
@@ -35,18 +42,23 @@ import { T } from "../T";
 `variant` プロパティを使用して、状態（成功、エラーなど）に応じたスタイルを適用できます。
 
 ### Success
+
 <Canvas of={SnackbarStories.Success} />
 
 ### Error
+
 <Canvas of={SnackbarStories.ErrorStatus} />
 
 ### Warning
+
 <Canvas of={SnackbarStories.Warning} />
 
 ### Info
+
 <Canvas of={SnackbarStories.Info} />
 
 ### Interactive Demo
+
 実際に動作を確認できます。
 
 <Canvas of={SnackbarStories.InteractiveDemo} />
@@ -58,7 +70,7 @@ import { T } from "../T";
 `SnackbarProvider` と `useSnackbar` フックを使用すると、アプリケーションのどこからでも簡単にスナックバーを表示できます。
 
 ```tsx
-import { SnackbarProvider, useSnackbar } from './Snackbar';
+import { SnackbarProvider, useSnackbar } from "./Snackbar";
 import { T } from "../T";
 
 const App = () => (
@@ -71,11 +83,15 @@ const MyComponent = () => {
   const { showMessage } = useSnackbar();
 
   return (
-    <button onClick={() => showMessage({ 
-      message: "保存されました", 
-      variant: "success",
-      actionLabel: "閉じる"
-    })}>
+    <button
+      onClick={() =>
+        showMessage({
+          message: "保存されました",
+          variant: "success",
+          actionLabel: "閉じる",
+        })
+      }
+    >
       スナックバーを表示
     </button>
   );
@@ -85,4 +101,3 @@ const MyComponent = () => {
 ## Props
 
 <Controls />
-

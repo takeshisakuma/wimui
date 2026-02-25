@@ -1,12 +1,26 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as CheckboxStories from "./Checkbox.stories";
 import { T } from "../T";
 
 <Meta of={CheckboxStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   真偽値（ON/OFF）を入力するために使用
 </p>
 <Description />
@@ -16,9 +30,13 @@ import { T } from "../T";
 ユーザーに同意を求めたり、オプションを有効化する場合に使用する
 
 ## <T k="doc_checkbox_usage_title" />
-<p><T k="doc_checkbox_when_to_use" /></p>
+
+<p>
+  <T k="doc_checkbox_when_to_use" />
+</p>
 
 ## <T k="doc_checkbox_implementation_note" />
+
 - <T k="doc_checkbox_note_default" />
 - <T k="doc_checkbox_note_layout" />
 
@@ -29,16 +47,18 @@ import { T } from "../T";
 ## 状態
 
 ### Checked
+
 <Canvas of={CheckboxStories.Checked} />
 
 ### Indeterminate (不確定)
+
 親要素が一部のみ選択されている場合などに使用
 
 <Canvas of={CheckboxStories.Indeterminate} />
 
 ### Disabled
+
 <Canvas of={CheckboxStories.Disabled} />
 <Canvas of={CheckboxStories.DisabledChecked} />
 
 <Controls />
-

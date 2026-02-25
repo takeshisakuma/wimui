@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls} from "@storybook/blocks";
+import { Canvas, Meta, Controls } from "@storybook/blocks";
 import { T } from "../T";
 import * as LinkStories from "./Link.stories";
 
@@ -6,7 +6,14 @@ import * as LinkStories from "./Link.stories";
 
 # Link
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_link_title" />
 </p>
 
@@ -20,7 +27,7 @@ import * as LinkStories from "./Link.stories";
 ```tsx
 import { Link } from "@/components/Link/Link";
 
-<Link label="ホームへ" href="/" priority="primary" />
+<Link label="ホームへ" href="/" priority="primary" />;
 ```
 
 ## Props
@@ -34,16 +41,19 @@ import { Link } from "@/components/Link/Link";
 リンクの重要度に応じて `primary`, `secondary`, `tertiary` から選択できます。
 
 #### Primary
+
 もっとも視認性の高いスタイルです。
 
 <Canvas of={LinkStories.Primary} />
 
 #### Secondary
+
 標準的なテキストスタイルです。
 
 <Canvas of={LinkStories.Secondary} />
 
 #### Tertiary
+
 控えめなスタイルです。
 
 <Canvas of={LinkStories.Tertiary} />
@@ -75,4 +85,3 @@ import { Link } from "@/components/Link/Link";
 #### Large
 
 <Canvas of={LinkStories.Large} />
-

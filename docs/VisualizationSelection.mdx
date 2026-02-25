@@ -7,143 +7,224 @@ import { T } from "../stories/T";
   <h1><T k="guide_visualization_title" /></h1>
   <p><T k="guide_visualization_desc" /></p>
 
-  <hr />
+<hr />
 
-  <h2>チャート選びの基本基準 (Selection Criteria)</h2>
-  <p>データの性質や、ユーザーに伝えたいストーリーに合わせて適切なチャートを選択してください。</p>
+<h2>チャート選びの基本基準 (Selection Criteria)</h2>
+<p>
+  データの性質や、ユーザーに伝えたいストーリーに合わせて適切なチャートを選択してください。
+</p>
 
-  <table style={{ width: "100%" }}>
-    <thead>
-      <tr>
-        <th>チャートタイプ</th>
-        <th>主な用途</th>
-        <th>適したデータ</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong><T k="chart_guide_bar_title" /></strong></td>
-        <td><T k="chart_guide_bar_desc" /></td>
-        <td>カテゴリデータ、ランキング、項目間の差の比較</td>
-      </tr>
-      <tr>
-        <td><strong><T k="chart_guide_line_title" /></strong></td>
-        <td><T k="chart_guide_line_desc" /></td>
-        <td>時系列データ、連続的な変化、トレンドの把握</td>
-      </tr>
-      <tr>
-        <td><strong><T k="chart_guide_area_title" /></strong></td>
-        <td><T k="chart_guide_area_desc" /></td>
-        <td>合計値の変化、時系列でのボリューム感の強調</td>
-      </tr>
-      <tr>
-        <td><strong><T k="chart_guide_pie_title" /></strong></td>
-        <td><T k="chart_guide_pie_desc" /></td>
-        <td>構成比、シェア、全体に対する割合</td>
-      </tr>
-      <tr>
-        <td><strong><T k="chart_guide_scatter_title" /></strong></td>
-        <td><T k="chart_guide_scatter_desc" /></td>
-        <td>2変数間の相関、外れ値の特定、分布の確認</td>
-      </tr>
-      <tr>
-        <td><strong><T k="chart_guide_heatmap_title" /></strong></td>
-        <td><T k="chart_guide_heatmap_desc" /></td>
-        <td>多変数マトリックスの密度、行動パターンの可視化</td>
-      </tr>
-      <tr>
-        <td><strong><T k="chart_guide_radar_title" /></strong></td>
-        <td><T k="chart_guide_radar_desc" /></td>
-        <td>多次元データの比較、能力・特性のバランス評価</td>
-      </tr>
-      <tr>
-        <td><strong><T k="chart_guide_funnel_title" /></strong></td>
-        <td><T k="chart_guide_funnel_desc" /></td>
-        <td>プロセスの段階的な減少、コンバージョン率の可視化</td>
-      </tr>
-      <tr>
-        <td><strong><T k="chart_guide_treemap_title" /></strong></td>
-        <td><T k="chart_guide_treemap_desc" /></td>
-        <td>階層構造データの割合、全体に対する部分の寄与度</td>
-      </tr>
-      <tr>
-        <td><strong><T k="chart_guide_gauge_title" /></strong></td>
-        <td><T k="chart_guide_gauge_desc" /></td>
-        <td>単一の目標値に対する現在地の可視化、達成度</td>
-      </tr>
-    </tbody>
-  </table>
+<table style={{ width: "100%" }}>
+  <thead>
+    <tr>
+      <th>チャートタイプ</th>
+      <th>主な用途</th>
+      <th>適したデータ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>
+          <T k="chart_guide_bar_title" />
+        </strong>
+      </td>
+      <td>
+        <T k="chart_guide_bar_desc" />
+      </td>
+      <td>カテゴリデータ、ランキング、項目間の差の比較</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          <T k="chart_guide_line_title" />
+        </strong>
+      </td>
+      <td>
+        <T k="chart_guide_line_desc" />
+      </td>
+      <td>時系列データ、連続的な変化、トレンドの把握</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          <T k="chart_guide_area_title" />
+        </strong>
+      </td>
+      <td>
+        <T k="chart_guide_area_desc" />
+      </td>
+      <td>合計値の変化、時系列でのボリューム感の強調</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          <T k="chart_guide_pie_title" />
+        </strong>
+      </td>
+      <td>
+        <T k="chart_guide_pie_desc" />
+      </td>
+      <td>構成比、シェア、全体に対する割合</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          <T k="chart_guide_scatter_title" />
+        </strong>
+      </td>
+      <td>
+        <T k="chart_guide_scatter_desc" />
+      </td>
+      <td>2変数間の相関、外れ値の特定、分布の確認</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          <T k="chart_guide_heatmap_title" />
+        </strong>
+      </td>
+      <td>
+        <T k="chart_guide_heatmap_desc" />
+      </td>
+      <td>多変数マトリックスの密度、行動パターンの可視化</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          <T k="chart_guide_radar_title" />
+        </strong>
+      </td>
+      <td>
+        <T k="chart_guide_radar_desc" />
+      </td>
+      <td>多次元データの比較、能力・特性のバランス評価</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          <T k="chart_guide_funnel_title" />
+        </strong>
+      </td>
+      <td>
+        <T k="chart_guide_funnel_desc" />
+      </td>
+      <td>プロセスの段階的な減少、コンバージョン率の可視化</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          <T k="chart_guide_treemap_title" />
+        </strong>
+      </td>
+      <td>
+        <T k="chart_guide_treemap_desc" />
+      </td>
+      <td>階層構造データの割合、全体に対する部分の寄与度</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          <T k="chart_guide_gauge_title" />
+        </strong>
+      </td>
+      <td>
+        <T k="chart_guide_gauge_desc" />
+      </td>
+      <td>単一の目標値に対する現在地の可視化、達成度</td>
+    </tr>
+  </tbody>
+</table>
 
-  <hr />
+<hr />
 
-  <h2>詳細な使い分けガイドライン (Detailed Guidelines)</h2>
+<h2>詳細な使い分けガイドライン (Detailed Guidelines)</h2>
 
-  <table>
-    <thead>
-      <tr>
-        <th>カテゴリ</th>
-        <th>表現するもの</th>
-        <th>適したグラフ</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td rowSpan={3}><strong>比較・推移</strong><br />(Comparison & Trend)</td>
-        <td>連続的な変化</td>
-        <td>Line Chart</td>
-      </tr>
-      <tr>
-        <td>
-          断続的なデータの比較<br />
-          各項目の絶対的な差
-        </td>
-        <td>Bar Chart</td>
-      </tr>
-      <tr>
-        <td>複数のデータシリーズの合計値の推移</td>
-        <td>Stacked Area Chart(積層面グラフ)</td>
-      </tr>
-      <tr>
-        <td rowSpan={3}><strong>割合</strong><br />(Proportions)</td>
-        <td>
-          全体に対する各項目の割合<br />
-          構成比、シェア<br />
-          (項目数が少ない場合)
-        </td>
-        <td>Pie Chart</td>
-      </tr>
-      <tr>
-        <td>
-          全体に対する各項目の割合<br />
-          構成比、シェア<br />
-          項目数が多い(5項目以上)割合の可視化
-        </td>
-        <td>Horizontal Bar Chart(横棒グラフ)</td>
-      </tr>
-      <tr>
-        <td>構成比の推移</td>
-        <td>面グラフ(100% 積層タイプ)</td>
-      </tr>
-      <tr>
-        <td rowSpan={2}><strong>相関と分布</strong><br />(Correlation & Distribution)</td>
-        <td>
-          2つの数値変数の関係<br />
-          相関の有無<br />
-          外れ値の検出
-        </td>
-        <td>Scatter Chart(散布図)</td>
-      </tr>
-      <tr>
-        <td>
-          時間軸など特定のセグメントごとの「集中度」<br />
-          （例：週・時間別のログイン頻度）
-        </td>
-        <td>Heatmap(ヒートマップ)</td>
-      </tr>
-    </tbody>
-  </table>
+<table>
+  <thead>
+    <tr>
+      <th>カテゴリ</th>
+      <th>表現するもの</th>
+      <th>適したグラフ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowSpan={3}>
+        <strong>比較・推移</strong>
+        <br />
+        (Comparison & Trend)
+      </td>
+      <td>連続的な変化</td>
+      <td>Line Chart</td>
+    </tr>
+    <tr>
+      <td>
+        断続的なデータの比較
+        <br />
+        各項目の絶対的な差
+      </td>
+      <td>Bar Chart</td>
+    </tr>
+    <tr>
+      <td>複数のデータシリーズの合計値の推移</td>
+      <td>Stacked Area Chart(積層面グラフ)</td>
+    </tr>
+    <tr>
+      <td rowSpan={3}>
+        <strong>割合</strong>
+        <br />
+        (Proportions)
+      </td>
+      <td>
+        全体に対する各項目の割合
+        <br />
+        構成比、シェア
+        <br />
+        (項目数が少ない場合)
+      </td>
+      <td>Pie Chart</td>
+    </tr>
+    <tr>
+      <td>
+        全体に対する各項目の割合
+        <br />
+        構成比、シェア
+        <br />
+        項目数が多い(5項目以上)割合の可視化
+      </td>
+      <td>Horizontal Bar Chart(横棒グラフ)</td>
+    </tr>
+    <tr>
+      <td>構成比の推移</td>
+      <td>面グラフ(100% 積層タイプ)</td>
+    </tr>
+    <tr>
+      <td rowSpan={2}>
+        <strong>相関と分布</strong>
+        <br />
+        (Correlation & Distribution)
+      </td>
+      <td>
+        2つの数値変数の関係
+        <br />
+        相関の有無
+        <br />
+        外れ値の検出
+      </td>
+      <td>Scatter Chart(散布図)</td>
+    </tr>
+    <tr>
+      <td>
+        時間軸など特定のセグメントごとの「集中度」
+        <br />
+        （例：週・時間別のログイン頻度）
+      </td>
+      <td>Heatmap(ヒートマップ)</td>
+    </tr>
+  </tbody>
+</table>
 
-  <div style={{ marginTop: "40px", padding: "24px", background: "var(--bg-component)", border: "1px solid var(--wim-color-border)", borderRadius: "12px" }}>
     <h3>設計上のヒント (Design Tips)</h3>
     <table>
       <thead>
@@ -171,12 +252,10 @@ import { T } from "../stories/T";
         </tr>
       </tbody>
     </table>
-  </div>
 
-  <hr />
+<hr />
 
   <h2>実装について (Technical Implementation)</h2>
-  <div style={{ padding: "24px", background: "var(--bg-component)", border: "1px solid var(--wim-color-border)", borderRadius: "12px", marginTop: "16px" }}>
     <p>WIM UI のチャートコンポーネントは <strong>Recharts</strong> をベースに構築されており、プロジェクトのデザイントークンに合わせたスタイリングが自動的に適用されます。</p>
     <ul>
       <li>
@@ -189,5 +268,4 @@ import { T } from "../stories/T";
         <small style={{ color: "var(--text-secondary)" }}>チャートで使用するデフォルトの配色（CHART_COLORS）や、グリッド・軸のスタイルを管理しています。</small>
       </li>
     </ul>
-  </div>
 </div>

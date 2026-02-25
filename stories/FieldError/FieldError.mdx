@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
 import { T } from "../T";
 import * as FieldErrorStories from "./FieldError.stories";
 
@@ -6,13 +6,21 @@ import * as FieldErrorStories from "./FieldError.stories";
 
 # FieldError
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_fielderror_title" />
 </p>
 
 `FieldError` コンポーネントは、入力フォームのバリデーションエラーをユーザーに通知するために使用します。
 
 ## 特徴
+
 - 視認性: `Paragraph` コンポーネントの `color="error"` と `size="small"` を標準で使用し、重要度を伝えます。
 - アクセシビリティ: `role="alert"` と `aria-live="polite"` を備えており、スクリーンリーダーを使用するユーザーにエラーの発生を即座に伝えます。
 - 一貫性: フォーム全体でエラー表示のスタイルを統一できます。
@@ -22,7 +30,7 @@ import * as FieldErrorStories from "./FieldError.stories";
 ```tsx
 import { FieldError } from "@/components/FieldError/FieldError";
 
-<FieldError content="メールアドレスの形式が正しくありません。" />
+<FieldError content="メールアドレスの形式が正しくありません。" />;
 ```
 
 ## Props
@@ -32,8 +40,9 @@ import { FieldError } from "@/components/FieldError/FieldError";
 ## バリエーション
 
 ### デフォルト
+
 <Canvas of={FieldErrorStories.Default} />
 
 ### 短いメッセージ
-<Canvas of={FieldErrorStories.ShortMessage} />
 
+<Canvas of={FieldErrorStories.ShortMessage} />

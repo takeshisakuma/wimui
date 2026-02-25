@@ -1,86 +1,86 @@
 ﻿@use "../../tokens/breakpoints" as breakpoints;
 
 .wim-datepicker-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 320px;
+  position: relative;
+  width: 100%;
+  max-width: 320px;
 
-    &.wim-input--full-width {
-        width: 100%;
-        max-width: none;
-    }
+  &.wim-input--full-width {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 .wim-datepicker-container {
-    position: relative;
+  position: relative;
 
-    .wim-datepicker-input {
-        padding-right: var(--spacing-4xl); // Space for icons
-        cursor: pointer;
-        user-select: none;
+  .wim-datepicker-input {
+    padding-right: var(--spacing-4xl); // Space for icons
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .wim-datepicker-icons {
+    position: absolute;
+    top: 50%;
+    right: var(--spacing-sm);
+    display: flex;
+    gap: var(--spacing-xs);
+    align-items: center;
+    pointer-events: none;
+    transform: translateY(-50%);
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-xs);
+      color: var(--text-secondary);
+      pointer-events: all;
+      cursor: pointer;
+      background: none;
+      border: none;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+
+      &:hover:not(:disabled) {
+        color: var(--text-primary);
+        background-color: rgb(0 0 0 / 0.05);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
     }
+  }
 
-    .wim-datepicker-icons {
-        position: absolute;
-        top: 50%;
-        right: var(--spacing-sm);
-        display: flex;
-        gap: var(--spacing-xs);
-        align-items: center;
-        pointer-events: none;
-        transform: translateY(-50%);
+  .wim-datepicker-clear {
+    opacity: 0.6;
 
-        button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--spacing-xs);
-            color: var(--text-secondary);
-            pointer-events: all;
-            cursor: pointer;
-            background: none;
-            border: none;
-            border-radius: var(--radius-sm);
-            transition: all var(--transition-base);
-
-            &:hover:not(:disabled) {
-                color: var(--text-primary);
-                background-color: rgb(0 0 0 / 0.05);
-            }
-
-            &:disabled {
-                cursor: not-allowed;
-                opacity: 0.5;
-            }
-        }
+    &:hover {
+      color: var(--color-error) !important;
+      opacity: 1 !important;
     }
-
-    .wim-datepicker-clear {
-        opacity: 0.6;
-
-        &:hover {
-            color: var(--color-error) !important;
-            opacity: 1 !important;
-        }
-    }
+  }
 }
 
 .wim-datepicker-dropdown {
-    position: absolute;
-    top: calc(100% + var(--spacing-xs));
-    left: 0;
-    z-index: 1000;
-    padding: var(--spacing-sm);
-    background-color: var(--bg-component, #fff);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
+  position: absolute;
+  top: calc(100% + var(--spacing-xs));
+  left: 0;
+  z-index: 1000;
+  padding: var(--spacing-sm);
+  background-color: var(--bg-component, #fff);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
 
-    @include breakpoints.down(sm) {
-        left: 50%;
-        width: auto;
-        max-width: calc(100vw - 16px);
-        padding: var(--spacing-xs);
-        transform: translateX(-50%);
-    }
+  @include breakpoints.down(sm) {
+    left: 50%;
+    width: auto;
+    max-width: calc(100vw - 16px);
+    padding: var(--spacing-xs);
+    transform: translateX(-50%);
+  }
 }

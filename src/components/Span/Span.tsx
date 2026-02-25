@@ -6,7 +6,17 @@ import { Icon } from "../Icon/Icon";
 
 type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
-  color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error" | "primary" | "success" | "warning" | "info";
+  color?:
+    | "black"
+    | "deepgray"
+    | "gray"
+    | "lightgray"
+    | "white"
+    | "error"
+    | "primary"
+    | "success"
+    | "warning"
+    | "info";
   weight?: "normal" | "bold";
   style?: "normal" | "italic";
   decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
@@ -68,7 +78,7 @@ export const Span = ({
         weight === "bold" && "wim-span--bold",
         style === "italic" && "wim-span--italic",
         decoration !== "none" && `wim-span--${decoration}`,
-        className
+        className,
       )}
       {...props}
     >
@@ -76,5 +86,3 @@ export const Span = ({
     </span>
   );
 };
-
-

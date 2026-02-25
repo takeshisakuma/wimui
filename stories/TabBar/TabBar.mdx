@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, Controls} from "@storybook/blocks";
+import { Meta, Story, Canvas, Controls } from "@storybook/blocks";
 import TabBar from "@/components/TabBar/TabBar";
 import * as TabBarStories from "./TabBar.stories";
 import { T } from "../T";
@@ -7,7 +7,14 @@ import { T } from "../T";
 
 # TabBar
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_tabbar_title" />
 </p>
 
@@ -29,28 +36,28 @@ import TabBar from "@/components/TabBar/TabBar";
 `TabBar.Item` を使用して、各タブを定義します。アイコンとラベルを設定し、`onClick` イベントでアクティブなタブを切り替えます。
 
 ```jsx
-const [active, setActive] = useState('home');
+const [active, setActive] = useState("home");
 
 <TabBar>
-  <TabBar.Item 
-    label="ホーム" 
-    icon={<HomeIcon />} 
-    active={active === 'home'} 
-    onClick={() => setActive('home')} 
+  <TabBar.Item
+    label="ホーム"
+    icon={<HomeIcon />}
+    active={active === "home"}
+    onClick={() => setActive("home")}
   />
-  <TabBar.Item 
-    label="検索" 
-    icon={<SearchIcon />} 
-    active={active === 'search'} 
-    onClick={() => setActive('search')} 
+  <TabBar.Item
+    label="検索"
+    icon={<SearchIcon />}
+    active={active === "search"}
+    onClick={() => setActive("search")}
   />
-  <TabBar.Item 
-    label="マイページ" 
-    icon={<UserIcon />} 
-    active={active === 'profile'} 
-    onClick={() => setActive('profile')} 
+  <TabBar.Item
+    label="マイページ"
+    icon={<UserIcon />}
+    active={active === "profile"}
+    onClick={() => setActive("profile")}
   />
-</TabBar>
+</TabBar>;
 ```
 
 ## バッジ付き (With Badges)
@@ -68,4 +75,3 @@ const [active, setActive] = useState('home');
 ## API リファレンス
 
 <Controls />
-

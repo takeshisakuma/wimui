@@ -1,112 +1,118 @@
 ﻿@layer component {
-    .wim-anchor {
-        position: relative;
-        min-width: 0;
-        padding-left: 2px;
-        background-color: transparent;
+  .wim-anchor {
+    position: relative;
+    min-width: 0;
+    padding-left: 2px;
+    background-color: transparent;
 
-        &--horizontal {
-            padding-left: 0;
-            padding-bottom: 0;
-            border-bottom: 1px solid var(--scrollbar-track);
+    &--horizontal {
+      padding-left: 0;
+      padding-bottom: 0;
+      border-bottom: 1px solid var(--scrollbar-track);
 
-            .wim-anchor__ink {
-                top: auto;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 2px;
+      .wim-anchor__ink {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
 
-                &-ball {
-                    top: 0;
-                    height: 2px;
-                    transition: left 0.3s ease-in-out, width 0.3s ease-in-out, opacity 0.3s ease;
-                }
-            }
+        &-ball {
+          top: 0;
+          height: 2px;
+          transition:
+            left 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+            opacity 0.3s ease;
         }
-
-        &__ink {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 2px;
-            height: 100%;
-            background-color: var(--scrollbar-track); // Use a light gray from track
-            overflow: hidden;
-
-            &-ball {
-                position: absolute;
-                left: 0;
-                z-index: 1;
-                width: 2px;
-                background-color: var(--color-primary);
-                opacity: 0;
-                transition: top 0.3s ease-in-out, height 0.3s ease-in-out, opacity 0.3s ease;
-            }
-        }
-
-        &__list {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-
-            .wim-anchor__list {
-                padding-left: var(--spacing-md);
-            }
-
-            &--horizontal {
-                display: flex;
-                flex-direction: row;
-                gap: var(--spacing-md);
-                overflow-x: auto;
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-
-                &::-webkit-scrollbar {
-                    display: none;
-                }
-
-                .wim-anchor__item {
-                    white-space: nowrap;
-                    padding: var(--spacing-xs) var(--spacing-sm);
-                }
-
-                .wim-anchor__link {
-                    padding-left: 0;
-                }
-            }
-        }
-
-        &__item {
-            position: relative;
-            padding: var(--spacing-2xs) 0;
-            line-height: var(--spacing-lg);
-
-            &--active {
-                >.wim-anchor__link {
-                    font-weight: 500;
-                    color: var(--color-primary);
-                }
-            }
-        }
-
-        &__link {
-            position: relative;
-            display: block;
-            padding-left: var(--spacing-md);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            word-break: normal;
-            overflow-wrap: normal;
-            font-size: var(--font-size-medium);
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-
-            &:hover {
-                color: var(--color-primary);
-            }
-        }
+      }
     }
+
+    &__ink {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 100%;
+      background-color: var(--scrollbar-track); // Use a light gray from track
+      overflow: hidden;
+
+      &-ball {
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 2px;
+        background-color: var(--color-primary);
+        opacity: 0;
+        transition:
+          top 0.3s ease-in-out,
+          height 0.3s ease-in-out,
+          opacity 0.3s ease;
+      }
+    }
+
+    &__list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      .wim-anchor__list {
+        padding-left: var(--spacing-md);
+      }
+
+      &--horizontal {
+        display: flex;
+        flex-direction: row;
+        gap: var(--spacing-md);
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .wim-anchor__item {
+          white-space: nowrap;
+          padding: var(--spacing-xs) var(--spacing-sm);
+        }
+
+        .wim-anchor__link {
+          padding-left: 0;
+        }
+      }
+    }
+
+    &__item {
+      position: relative;
+      padding: var(--spacing-2xs) 0;
+      line-height: var(--spacing-lg);
+
+      &--active {
+        > .wim-anchor__link {
+          font-weight: 500;
+          color: var(--color-primary);
+        }
+      }
+    }
+
+    &__link {
+      position: relative;
+      display: block;
+      padding-left: var(--spacing-md);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-break: normal;
+      overflow-wrap: normal;
+      font-size: var(--font-size-medium);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
 }

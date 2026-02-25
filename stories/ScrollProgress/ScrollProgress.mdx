@@ -1,11 +1,26 @@
-import { Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as ScrollProgressStories from "./ScrollProgress.stories";
 import { T } from "../T";
 
 <Meta of={ScrollProgressStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_scrollProgress_desc" />
 </p>
 <Description />
@@ -14,13 +29,16 @@ import { T } from "../T";
 <Controls />
 
 ## 概要
+
 ScrollProgress（スクロール進捗）は、ページや特定のコンテナのスクロール量に基づいて、読み進めている割合を視覚的に表示するために使用されます。
 長い記事やドキュメント、ランディングページなどにおいて、ユーザーが現在どの位置にいるかを直感的に伝えることができます。
 
 ## 使用例
+
 - 長い記事や技術ドキュメントの読了率表示
 - スクロール連動型ランディングページ
 
 ## 特徴
+
 - ターゲットの指定：デフォルトでは `window` ですが、特定のスクロール可能な要素を指定することも可能です。
 - カスタマイズ：カラーバリエーションをサポートしています。

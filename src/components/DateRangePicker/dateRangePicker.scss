@@ -1,23 +1,23 @@
 ﻿@use "../../tokens/breakpoints" as breakpoints;
 
 .wim-daterangepicker {
-    display: flex;
-    flex-direction: row;
-    gap: var(--spacing-xs);
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-xs);
+  align-items: center;
+  width: 100%;
 
-    @include breakpoints.down(sm) {
-        flex-direction: column;
-        align-items: stretch;
+  @include breakpoints.down(sm) {
+    flex-direction: column;
+    align-items: stretch;
 
-        .wim-daterangepicker-separator {
-            display: none;
-        }
+    .wim-daterangepicker-separator {
+      display: none;
     }
+  }
 }
 
 .wim-daterangepicker-separator {
-    align-self: center;
-    color: var(--text-secondary);
+  align-self: center;
+  color: var(--text-secondary);
 }

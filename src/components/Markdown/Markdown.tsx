@@ -5,36 +5,34 @@ import classNames from "classnames";
 import "./markdown.scss";
 
 export type MarkdownProps = {
-    /**
-     * レンダリングするMarkdown文字列。
-     */
-    children: string;
-    /**
-     * クラス名。
-     */
-    className?: string;
-    /**
-     * remarkGfm などのプラグインを使用するかどうか。デフォルトは `true`。
-     */
-    gfm?: boolean;
+  /**
+   * レンダリングするMarkdown文字列。
+   */
+  children: string;
+  /**
+   * クラス名。
+   */
+  className?: string;
+  /**
+   * remarkGfm などのプラグインを使用するかどうか。デフォルトは `true`。
+   */
+  gfm?: boolean;
 };
 
 /**
  * Markdown形式のテキストを安全にレンダリングするためのコンポーネント。
  */
 export const Markdown = ({
-    children,
-    className,
-    gfm = true,
-    ...props
+  children,
+  className,
+  gfm = true,
+  ...props
 }: MarkdownProps) => {
-    const remarkPlugins = gfm ? [remarkGfm] : [];
+  const remarkPlugins = gfm ? [remarkGfm] : [];
 
-    return (
-        <div className={classNames("wim-markdown", className)} {...props}>
-            <ReactMarkdown remarkPlugins={remarkPlugins}>
-                {children}
-            </ReactMarkdown>
-        </div>
-    );
+  return (
+    <div className={classNames("wim-markdown", className)} {...props}>
+      <ReactMarkdown remarkPlugins={remarkPlugins}>{children}</ReactMarkdown>
+    </div>
+  );
 };

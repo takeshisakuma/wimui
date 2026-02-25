@@ -50,10 +50,6 @@
       white-space: nowrap;
     }
 
-    .wim-icon {
-      font-size: 0.7em;
-    }
-
     &--icon-only {
       width: auto;
       height: auto;
@@ -198,7 +194,5 @@
     &--loading {
       pointer-events: none;
     }
-
-
   }
 }

@@ -1,23 +1,39 @@
 import {
-  Meta, Title, Description, Primary, Controls, Stories, Canvas } from "@storybook/blocks";
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/blocks";
 import * as SegmentedControlStories from "./SegmentedControl.stories";
 import { T } from "../T";
 
 <Meta of={SegmentedControlStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   複数の選択肢の中から1つを選択するために使用
 </p>
 <Description />
 
 ## 使用ガイドライン
+
 全ての選択肢を一度に見せる必要があります。
 タブのタブトリガーが画面内に収まりきらない時のように、横スクロールをさせてはいけません。
 
 ## 主な用途
 
 ### 表示ビューの切り替え (View Switching)
+
 画面全体のレイアウトや見せ方そのものを大きく変えるパターンです。
 
 <table>
@@ -44,6 +60,7 @@ import { T } from "../T";
 </table>
 
 ### コンテンツの絞り込み・抽出 (Filtering)
+
 表示されているデータの「種類」を制限し、タブメニューに近い役割を果たします。
 
 <table>
@@ -60,7 +77,9 @@ import { T } from "../T";
     </tr>
     <tr>
       <td>カテゴリ別</td>
-      <td>すべて / 返信 / メンション（通知画面）、すべて / 不在着信（電話アプリ）</td>
+      <td>
+        すべて / 返信 / メンション（通知画面）、すべて / 不在着信（電話アプリ）
+      </td>
     </tr>
     <tr>
       <td>属性別</td>
@@ -70,6 +89,7 @@ import { T } from "../T";
 </table>
 
 ### 並べ替えの指定 (Sorting)
+
 データの並び順を変更します。ドロップダウンにするほど選択肢が多くない場合に、1タップで切り替えられるため便利です。
 
 <table>
@@ -88,6 +108,7 @@ import { T } from "../T";
 </table>
 
 ### 設定・属性の選択 (Attribute Selection)
+
 特定の項目に対する「状態」を決定します。
 
 <table>
@@ -117,7 +138,6 @@ import { T } from "../T";
   </tbody>
 </table>
 
-
 ---
 
 ## デザインと実装
@@ -133,25 +153,38 @@ import { T } from "../T";
   </thead>
   <tbody>
     <tr>
-      <td><strong>構成</strong></td>
+      <td>
+        <strong>構成</strong>
+      </td>
       <td>少なくとも2つのセグメントで構成されます。</td>
     </tr>
     <tr>
-      <td><strong>状態</strong></td>
-      <td>各セグメントには選択状態（Active）と非選択状態（Inactive）があります。</td>
+      <td>
+        <strong>状態</strong>
+      </td>
+      <td>
+        各セグメントには選択状態（Active）と非選択状態（Inactive）があります。
+      </td>
     </tr>
     <tr>
-      <td><strong>視認性</strong></td>
+      <td>
+        <strong>視認性</strong>
+      </td>
       <td>すべての選択肢が常に表示されています。</td>
     </tr>
     <tr>
-      <td><strong>省スペース</strong></td>
-      <td>アイコンのみの表示でスペースを節約できるため、スマートフォンなどの限られた画面サイズに適しています。</td>
+      <td>
+        <strong>省スペース</strong>
+      </td>
+      <td>
+        アイコンのみの表示でスペースを節約できるため、スマートフォンなどの限られた画面サイズに適しています。
+      </td>
     </tr>
   </tbody>
 </table>
 
 ### 項目数とレイアウト
+
 - 推奨: 2〜5個 に収めること。
   - 理由: モバイル画面でも各項目が十分な幅を持ち、タップしやすいデザインを保つため。
 - 多すぎる場合: 6項目以上や、ラベル文字数が多い（5文字以上〜）場合は以下を検討してください。
@@ -159,6 +192,7 @@ import { T } from "../T";
   - タブバー (スクロール可能なタブ)
 
 ### ラベルの最適化
+
 - テキストラベルは簡潔で明確な名詞または名詞句を使用します。
 - 例:
   - 「重要」→「重要のみ」
@@ -175,7 +209,6 @@ Segmented Control と Dropdown Menu、Tabs、Button Group との違いや、迷�
 
 ---
 
-
 <Canvas of={SegmentedControlStories.Medium} />
 
 ## サイズ展開
@@ -183,12 +216,15 @@ Segmented Control と Dropdown Menu、Tabs、Button Group との違いや、迷�
 Small, Medium, Largeのサイズバリエーションがある
 
 ### Small
+
 <Canvas of={SegmentedControlStories.Small} />
 
 ### Medium
+
 <Canvas of={SegmentedControlStories.Medium} />
 
 ### Large
+
 <Canvas of={SegmentedControlStories.Large} />
 
 ## アイコンの利用
@@ -196,9 +232,11 @@ Small, Medium, Largeのサイズバリエーションがある
 アイコンとラベルを組み合わせて使用したり、アイコンのみを表示したりすることが可能
 
 ### アイコン + ラベル
+
 <Canvas of={SegmentedControlStories.WithIcons} />
 
 ### アイコンのみ
+
 <Canvas of={SegmentedControlStories.IconOnly} />
 
 ## 選択肢が2つの場合
@@ -209,4 +247,3 @@ Small, Medium, Largeのサイズバリエーションがある
 <Canvas of={SegmentedControlStories.TwoOptions} />
 
 <Controls />
-

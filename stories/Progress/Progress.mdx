@@ -1,4 +1,4 @@
-import { Canvas, Meta, Controls} from "@storybook/blocks";
+import { Canvas, Meta, Controls } from "@storybook/blocks";
 import * as ProgressStories from "./Progress.stories";
 import { T } from "../T";
 
@@ -6,38 +6,50 @@ import { T } from "../T";
 
 # Progress
 
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
   <T k="doc_progress_title" />
 </p>
 
 プログレスバーは、タスクの進捗状況を視覚的に表示するために使用されます。
 
 ## 特徴
+
 - 0から100までの数値による進捗表示
 - ラベルとパーセンテージの表示オプション
 - 複数のカラーバリエーションとサイズ
 - 不確定状態（読み込み中）のアニメーションサポート
 
 ## デモ
+
 <Canvas of={ProgressStories.Default} />
 
 ## プロパティ
+
 <Controls />
 
 ## バリエーション
 
 ### カラー
+
 用途に合わせて複数のカラーを選択できます。
 
 <Canvas of={ProgressStories.Colors} />
 
 ### サイズ
+
 `sm`, `md`, `lg` の3つのサイズが利用可能です。
 
 <Canvas of={ProgressStories.Sizes} />
 
 ### 不確定状態
+
 具体的な進捗率が不明な場合は、`indeterminate` プロパティを使用します。
 
 <Canvas of={ProgressStories.Indeterminate} />
-

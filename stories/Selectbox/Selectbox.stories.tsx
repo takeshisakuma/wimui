@@ -1,89 +1,90 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Selectbox, SelectboxOption, SelectboxOptionGroup } from "@/components/Selectbox/Selectbox";
-
+import {
+  Selectbox,
+  SelectboxOption,
+  SelectboxOptionGroup,
+} from "@/components/Selectbox/Selectbox";
 
 const meta: Meta<typeof Selectbox> = {
-    title: "Components/Selection Controls/Selectbox",
-    component: Selectbox,
-    parameters: {
-        layout: "centered",
-        docs: {
-            description: {
-                component: "ユーザーが定義済みの選択肢から1つを選択するためのコンポーネント。",
-            },
-        },
+  title: "Components/Selection Controls/Selectbox",
+  component: Selectbox,
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "ユーザーが定義済みの選択肢から1つを選択するためのコンポーネント。",
+      },
     },
-    tags: [],
-    argTypes: {
-        onChange: { action: "changed" },
-    },
+  },
+  tags: [],
+  argTypes: {
+    onChange: { action: "changed" },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Selectbox>;
 
 const options = [
-    { label: "Option 1", value: "opt1" },
-    { label: "Option 2", value: "opt2" },
-    { label: "Option 3", value: "opt3" },
-    { label: "Disabled Option", value: "opt4", disabled: true },
-    { label: "Option 5", value: "opt5" },
+  { label: "Option 1", value: "opt1" },
+  { label: "Option 2", value: "opt2" },
+  { label: "Option 3", value: "opt3" },
+  { label: "Disabled Option", value: "opt4", disabled: true },
+  { label: "Option 5", value: "opt5" },
 ];
 
 export const Default: Story = {
-    args: {
-        options: options,
-        placeholder: "Select an option...",
-    },
+  args: {
+    options: options,
+    placeholder: "Select an option...",
+  },
 };
 
 export const WithLabel: Story = {
-    args: {
-        label: "Choose an item",
-        options: options,
-        placeholder: "Select...",
-    },
+  args: {
+    label: "Choose an item",
+    options: options,
+    placeholder: "Select...",
+  },
 };
 
 export const Preselected: Story = {
-    args: {
-        options: options,
-        defaultValue: "opt2",
-    },
+  args: {
+    options: options,
+    defaultValue: "opt2",
+  },
 };
 
 export const Disabled: Story = {
-    args: {
-        options: options,
-        disabled: true,
-        defaultValue: "opt1",
-    },
+  args: {
+    options: options,
+    disabled: true,
+    defaultValue: "opt1",
+  },
 };
 
 const optionsWithSeparators: SelectboxOption[] = [
-    { label: "Settings", value: "settings" },
-    { label: "Profile", value: "profile" },
-    { type: "separator" },
-    { label: "Help", value: "help" },
-    { label: "About", value: "about" },
-    { type: "separator" },
-    { label: "Logout", value: "logout" },
+  { label: "Settings", value: "settings" },
+  { label: "Profile", value: "profile" },
+  { type: "separator" },
+  { label: "Help", value: "help" },
+  { label: "About", value: "about" },
+  { type: "separator" },
+  { label: "Logout", value: "logout" },
 ];
 
-
 export const WithSeparator: Story = {
-    args: {
-        options: optionsWithSeparators,
-        placeholder: "Select an action...",
-    },
+  args: {
+    options: optionsWithSeparators,
+    placeholder: "Select an action...",
+  },
 };
 
 export const NativeWithSeparator: Story = {
-    args: {
-        options: optionsWithSeparators,
-        native: true,
-        placeholder: "Select (Native)...",
-    },
+  args: {
+    options: optionsWithSeparators,
+    native: true,
+    placeholder: "Select (Native)...",
+  },
 };
-
-
