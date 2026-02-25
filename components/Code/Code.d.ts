@@ -6,5 +6,5 @@ type CodeProps = {
     language?: string;
     className?: string;
 };
-export declare const Code: ({ children, code, block, language, className }: CodeProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Code: ({ children, code, block, language, className, }: CodeProps) => import("react/jsx-runtime").JSX.Element;
 export {};

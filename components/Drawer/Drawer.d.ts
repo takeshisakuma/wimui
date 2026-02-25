@@ -15,31 +15,31 @@ export interface DrawerTriggerProps {
     asChild?: boolean;
     className?: string;
 }
-export declare const DrawerTrigger: ({ children, asChild, className }: DrawerTriggerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const DrawerTrigger: ({ children, asChild, className, }: DrawerTriggerProps) => import("react/jsx-runtime").JSX.Element;
 export interface DrawerCloseProps {
     children: React.ReactNode;
     asChild?: boolean;
     className?: string;
 }
-export declare const DrawerClose: ({ children, className, asChild }: DrawerCloseProps) => import("react/jsx-runtime").JSX.Element;
+export declare const DrawerClose: ({ children, className, asChild, }: DrawerCloseProps) => import("react/jsx-runtime").JSX.Element;
 export interface DrawerContentProps {
     children: React.ReactNode;
     className?: string;
 }
 export declare const DrawerContent: ({ children, className }: DrawerContentProps) => import("react/jsx-runtime").JSX.Element;
-export declare const DrawerHeader: ({ children, className }: {
+export declare const DrawerHeader: ({ children, className, }: {
     children: React.ReactNode;
     className?: string;
 }) => import("react/jsx-runtime").JSX.Element;
-export declare const DrawerFooter: ({ children, className }: {
+export declare const DrawerFooter: ({ children, className, }: {
     children: React.ReactNode;
     className?: string;
 }) => import("react/jsx-runtime").JSX.Element;
-export declare const DrawerTitle: ({ children, className }: {
+export declare const DrawerTitle: ({ children, className, }: {
     children: React.ReactNode;
     className?: string;
 }) => import("react/jsx-runtime").JSX.Element;
-export declare const DrawerDescription: ({ children, className }: {
+export declare const DrawerDescription: ({ children, className, }: {
     children: React.ReactNode;
     className?: string;
 }) => import("react/jsx-runtime").JSX.Element;

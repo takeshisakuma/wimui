@@ -1,0 +1,17 @@
+import{j as o}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as n}from"./index-BdJmE6jO.js";import{M as r,P as c,a as d,d as i}from"./index-4d6KwSW1.js";import{S as h,C as a,a as l,D as m}from"./Switch.stories-CGAadUkO.js";import{T as p}from"./T-B9tp72Y-.js";import"./iframe-C-4JLACx.js";import"./preload-helper-PPVm8Dsz.js";import"./index-CeJq3KNp.js";import"./index-jud4T1_Y.js";import"./index-BNSEd8dy.js";import"./index-DC1su9bf.js";import"./index-DFxqoh7w.js";import"./Switch-B9Ir0p9a.js";import"./index-HB-Qm5fy.js";import"./useTranslation-BFGhrLDt.js";function t(s){const e={a:"a",blockquote:"blockquote",h1:"h1",h2:"h2",h3:"h3",p:"p",...n(),...s.components};return o.jsxs(o.Fragment,{children:[o.jsx(r,{of:h}),`
+`,o.jsx(e.h1,{id:"switch",children:"Switch"}),`
+`,o.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:o.jsx(p,{k:"doc_switch_title"})}),`
+`,o.jsx(e.p,{children:"A toggle switch for switching between two states, typically on and off."}),`
+`,o.jsxs(e.blockquote,{children:[`
+`,o.jsxs(e.p,{children:["📘 Guide: See ",o.jsx(e.a,{href:"?path=/docs/guides-radio-vs-checkbox--docs",children:"Guides / Radio vs Checkbox"})," for comparison with Radio and Checkbox."]}),`
+`]}),`
+`,o.jsx(c,{}),`
+`,o.jsx(e.h2,{id:"props",children:"Props"}),`
+`,o.jsx(d,{}),`
+`,o.jsx(e.h2,{id:"examples",children:"Examples"}),`
+`,o.jsx(e.h3,{id:"checked",children:"Checked"}),`
+`,o.jsx(i,{of:a}),`
+`,o.jsx(e.h3,{id:"small",children:"Small"}),`
+`,o.jsx(i,{of:l}),`
+`,o.jsx(e.h3,{id:"disabled",children:"Disabled"}),`
+`,o.jsx(i,{of:m})]})}function P(s={}){const{wrapper:e}={...n(),...s.components};return e?o.jsx(e,{...s,children:o.jsx(t,{...s})}):t(s)}export{P as default};

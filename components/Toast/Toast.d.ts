@@ -26,7 +26,7 @@ type ToastContextType = {
     show: (toast: Omit<ToastItem, "id">) => void;
     remove: (id: string) => void;
 };
-export declare const ToastProvider: ({ children, position }: {
+export declare const ToastProvider: ({ children, position, }: {
     children: React.ReactNode;
     position?: ToastPosition;
 }) => import("react/jsx-runtime").JSX.Element;

@@ -10,9 +10,10 @@ type FileUploadProps = {
     className?: string;
     iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";
+    size?: "small" | "medium" | "large";
 };
 /**
  * ユーザーがファイルを選択・アップロードするためのコンポーネント。
  */
-export declare const FileUpload: ({ label, buttonLabel, accept, multiple, disabled, onChange, className, iconName, iconPosition, }: FileUploadProps) => import("react/jsx-runtime").JSX.Element;
+export declare const FileUpload: ({ label, buttonLabel, accept, multiple, disabled, onChange, className, iconName, iconPosition, size, }: FileUploadProps) => import("react/jsx-runtime").JSX.Element;
 export {};

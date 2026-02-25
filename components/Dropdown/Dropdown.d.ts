@@ -8,7 +8,7 @@ export type DropdownTriggerProps = {
     children: ReactNode;
     className?: string;
 };
-export declare const DropdownTrigger: ({ children, className }: DropdownTriggerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const DropdownTrigger: ({ children, className, }: DropdownTriggerProps) => import("react/jsx-runtime").JSX.Element;
 export type DropdownMenuProps = {
     children: ReactNode;
     className?: string;

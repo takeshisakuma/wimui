@@ -25,7 +25,7 @@ export type HoverCardTriggerProps = {
     className?: string;
     asChild?: boolean;
 };
-export declare const HoverCardTrigger: ({ children, className, asChild }: HoverCardTriggerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const HoverCardTrigger: ({ children, className, asChild, }: HoverCardTriggerProps) => import("react/jsx-runtime").JSX.Element;
 export type HoverCardContentProps = {
     children: ReactNode;
     className?: string;

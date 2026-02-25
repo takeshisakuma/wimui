@@ -31,7 +31,7 @@ type SnackbarContextType = {
     showMessage: (props: string | Omit<SnackbarProps, "open" | "onClose">) => void;
     hideMessage: () => void;
 };
-export declare const SnackbarProvider: ({ children }: {
+export declare const SnackbarProvider: ({ children, }: {
     children: React.ReactNode;
 }) => import("react/jsx-runtime").JSX.Element;
 export declare const useSnackbar: () => SnackbarContextType;

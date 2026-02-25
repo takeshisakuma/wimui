@@ -25,7 +25,7 @@ export type MenuItemGroupProps = {
     title?: string;
     className?: string;
 };
-export declare const MenuItemGroup: ({ children, title, className }: MenuItemGroupProps) => import("react/jsx-runtime").JSX.Element;
+export declare const MenuItemGroup: ({ children, title, className, }: MenuItemGroupProps) => import("react/jsx-runtime").JSX.Element;
 export type SubMenuProps = {
     children: ReactNode;
     title: ReactNode;

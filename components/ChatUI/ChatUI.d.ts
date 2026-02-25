@@ -11,8 +11,8 @@ export interface ChatMessageListProps {
 export declare const ChatMessageList: React.ForwardRefExoticComponent<ChatMessageListProps & React.RefAttributes<HTMLDivElement>>;
 export interface ChatMessageProps {
     children: React.ReactNode;
-    position?: 'left' | 'right';
-    variant?: 'default' | 'primary' | 'secondary';
+    position?: "left" | "right";
+    variant?: "default" | "primary" | "secondary";
     showAvatar?: boolean;
     avatar?: React.ReactNode;
     timestamp?: string;
@@ -31,7 +31,7 @@ export interface ChatAvatarProps {
     src?: string;
     alt?: string;
     fallback?: string;
-    size?: 'small' | 'medium' | 'large';
+    size?: "small" | "medium" | "large";
     className?: string;
 }
 export declare const ChatAvatar: React.FC<ChatAvatarProps>;

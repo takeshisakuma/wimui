@@ -11,13 +11,13 @@ export interface DialogTriggerProps {
     asChild?: boolean;
     className?: string;
 }
-export declare const DialogTrigger: ({ children, asChild, className }: DialogTriggerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const DialogTrigger: ({ children, asChild, className, }: DialogTriggerProps) => import("react/jsx-runtime").JSX.Element;
 export interface DialogCloseProps {
     children: React.ReactNode;
     asChild?: boolean;
     className?: string;
 }
-export declare const DialogClose: ({ children, className, asChild }: DialogCloseProps) => import("react/jsx-runtime").JSX.Element;
+export declare const DialogClose: ({ children, className, asChild, }: DialogCloseProps) => import("react/jsx-runtime").JSX.Element;
 export interface DialogContentProps {
     children: React.ReactNode;
     className?: string;
@@ -27,19 +27,19 @@ export interface DialogContentProps {
     onCloseAutoFocus?: (e: Event) => void;
 }
 export declare const DialogContent: ({ children, className }: DialogContentProps) => import("react/jsx-runtime").JSX.Element;
-export declare const DialogHeader: ({ children, className }: {
+export declare const DialogHeader: ({ children, className, }: {
     children: React.ReactNode;
     className?: string;
 }) => import("react/jsx-runtime").JSX.Element;
-export declare const DialogFooter: ({ children, className }: {
+export declare const DialogFooter: ({ children, className, }: {
     children: React.ReactNode;
     className?: string;
 }) => import("react/jsx-runtime").JSX.Element;
-export declare const DialogTitle: ({ children, className }: {
+export declare const DialogTitle: ({ children, className, }: {
     children: React.ReactNode;
     className?: string;
 }) => import("react/jsx-runtime").JSX.Element;
-export declare const DialogDescription: ({ children, className }: {
+export declare const DialogDescription: ({ children, className, }: {
     children: React.ReactNode;
     className?: string;
 }) => import("react/jsx-runtime").JSX.Element;
