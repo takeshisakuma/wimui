@@ -500,5 +500,18 @@
   "doc_advanced_input_transfer_purpose": "Movement between lists",
   "doc_advanced_input_transfer_usage": "Permission assignment, public/private toggling.",
   "doc_advanced_input_treeselect_purpose": "Selection from tree structure",
-  "doc_advanced_input_treeselect_usage": "Organization charts, file directory selection."
+  "doc_advanced_input_treeselect_usage": "Organization charts, file directory selection.",
+  "doc_copybutton_title": "Copy to clipboard",
+  "doc_avatargroup_title": "Overlapping Avatars",
+  "doc_emptystate_title": "Display for empty data",
+  "doc_treeview_title": "Hierarchical data representation",
+  "doc_aspectratio_title": "Container with fixed aspect ratio",
+  "doc_grid_subtitle": "Arrange elements in a grid",
+  "doc_simplegrid_subtitle": "Responsive fixed grid",
+  "doc_commandpalette_title": "Cmd+K search overlay",
+  "doc_rangeslider_title": "Range selection",
+  "doc_timepicker_title": "Time selection",
+  "doc_switchgroup_title": "Shared state switches",
+  "doc_togglegroup_title": "Toggleable buttons",
+  "doc_datepicker_title": "Date selection"
 }

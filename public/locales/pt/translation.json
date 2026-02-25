@@ -490,5 +490,18 @@
   "doc_advanced_input_transfer_purpose": "Movimentação entre listas",
   "doc_advanced_input_transfer_usage": "Atribuição de permissões, alternância público/privado.",
   "doc_advanced_input_treeselect_purpose": "Seleção a partir de estrutura em árvore",
-  "doc_advanced_input_treeselect_usage": "Organogramas, seleção de diretórios de arquivos"
+  "doc_advanced_input_treeselect_usage": "Organogramas, seleção de diretórios de arquivos",
+  "doc_copybutton_title": "Copiar para a área de transferência",
+  "doc_avatargroup_title": "Avatares Sobrepostos",
+  "doc_emptystate_title": "Exibição para dados vazios",
+  "doc_treeview_title": "Representação de dados hierárquicos",
+  "doc_aspectratio_title": "Contêiner de proporção fixa",
+  "doc_grid_subtitle": "Organizar elementos em uma grade",
+  "doc_simplegrid_subtitle": "Grade fixa responsiva",
+  "doc_commandpalette_title": "Sobreposição de busca Cmd+K",
+  "doc_rangeslider_title": "Seleção de intervalo",
+  "doc_timepicker_title": "Seleção de tempo",
+  "doc_switchgroup_title": "Interruptores de estado compartilhado",
+  "doc_togglegroup_title": "Botões alternáveis",
+  "doc_datepicker_title": "Seleção de data"
 }
