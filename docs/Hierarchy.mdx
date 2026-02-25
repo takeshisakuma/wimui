@@ -13,40 +13,40 @@ import { T } from "../stories/T";
 
 ## <T k="guide_hierarchy_tiers_title" />
 
-wimui は、コンポーネントの複雑さと役割に基づいて 4 つの階層（Tiers）で設計されています。これにより、依存関係が単方向（上位から下位へ）に保たれ、メンテナンス性が向上します。
+<T k="guide_hierarchy_tiers_desc" />
 
 <table>
   <thead>
     <tr>
       <th>Tier</th>
-      <th>概要</th>
-      <th>役割</th>
-      <th>主なコンポーネント</th>
+      <th><T k="table_header_overview" /></th>
+      <th><T k="table_header_role" /></th>
+      <th><T k="table_header_component" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Tier 1</strong><br/>Foundations (基盤層)</td>
-      <td>他のコンポーネントにほぼ依存しない、ライブラリの最小構成要素。</td>
-      <td>基本的なスタイリング、レイアウト、低レイヤーの振る舞いを提供。</td>
+      <td><strong>Tier 1</strong><br/>Foundations (<T k="cat_utilities" />)</td>
+      <td><T k="tier1_desc" /></td>
+      <td><T k="tier1_role" /></td>
       <td>`Box`, `Flex`, `Stack`, `Grid`, `Icon`, `VisuallyHidden`, `Transition`, `Portal`</td>
     </tr>
     <tr>
-      <td><strong>Tier 2</strong><br/>Atoms (基本要素層)</td>
-      <td>単一の機能を持つ独立したコンポーネント。</td>
-      <td>デザインシステム全体の統一された UI パーツを提供。</td>
+      <td><strong>Tier 2</strong><br/>Atoms (<T k="cat_basic_inputs" />)</td>
+      <td><T k="tier2_desc" /></td>
+      <td><T k="tier2_role" /></td>
       <td>`Button`, `Input`, `Checkbox`, `Radio`, `Switch`, `Badge`, `Label`, `Spinner`, `Divider`</td>
     </tr>
     <tr>
-      <td><strong>Tier 3</strong><br/>Molecules (複合要素層)</td>
-      <td>複数の Tier 1/2 を組み合わせ、特定の UI パターンや機能を実現するコンポーネント。</td>
-      <td>複雑なインタラクションや状態管理の基盤を提供。</td>
+      <td><strong>Tier 3</strong><br/>Molecules (<T k="cat_overlays" />)</td>
+      <td><T k="tier3_desc" /></td>
+      <td><T k="tier3_role" /></td>
       <td>`Popover`, `Dialog`, `Drawer`, `Tooltip`, `ScrollArea`, `Accordion`, `Tabs`, `Pagination`, `Breadcrumb`</td>
     </tr>
     <tr>
-      <td><strong>Tier 4</strong><br/>Organisms (構造要素層)</td>
-      <td>複数のコンポーネントをラップし、アプリケーションの特定のセクションや複雑な機能を完結させるコンポーネント。</td>
-      <td>完成された UI ユニットや、ドメインに近い機能の提供。</td>
+      <td><strong>Tier 4</strong><br/>Organisms (<T k="cat_app_shell" />)</td>
+      <td><T k="tier4_desc" /></td>
+      <td><T k="tier4_role" /></td>
       <td>`Selectbox`, `Combobox`, `DatePicker`, `AppLayout`, `Notification`, `CommandPalette`, `Tour`</td>
     </tr>
   </tbody>
@@ -56,13 +56,13 @@ wimui は、コンポーネントの複雑さと役割に基づいて 4 つの�
 
 ## <T k="guide_composition_map_title" />
 
-主要なコンポーネントが内部的にどのコンポーネントを使用（ラップ）しているかのマッピングです。
+<T k="guide_composition_map_desc" />
 
 <table>
   <thead>
     <tr>
       <th>Tier</th>
-      <th>Component</th>
+      <th><T k="table_header_component" /></th>
       <th>Composition (Uses internally)</th>
     </tr>
   </thead>
@@ -156,56 +156,58 @@ wimui は、コンポーネントの複雑さと役割に基づいて 4 つの�
 
 ## <T k="guide_hierarchy_rules_title" />
 
-健全な依存関係を維持するための wimui の設計ルールです。
+<T k="guide_hierarchy_rules_desc" />
 
 <table>
   <thead>
     <tr>
-      <th>ルール</th>
-      <th>内容</th>
+      <th><T k="table_header_rule" /></th>
+      <th><T k="table_header_content" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>単方向の依存</strong></td>
-      <td>下位の Tier は上位の Tier に依存してはなりません（例：<code>Button</code> (Tier 2) が <code>Selectbox</code> (Tier 4) をインポートするのは禁止）。</td>
+      <td><strong><T k="rule_unidirectional_title" /></strong></td>
+      <td><T k="rule_unidirectional_desc" /></td>
     </tr>
     <tr>
-      <td><strong>同一 Tier 間の依存</strong></td>
-      <td>同じ Tier 内での依存は、肥大化しない限り許容されます。</td>
+      <td><strong><T k="rule_same_tier_title" /></strong></td>
+      <td><T k="rule_same_tier_desc" /></td>
     </tr>
     <tr>
-      <td><strong>透過的な Props</strong></td>
-      <td>ラップするコンポーネントは、可能な限り内部コンポーネントの Props を透過（Spread）させ、柔軟性を確保します。</td>
+      <td><strong><T k="rule_transparent_props_title" /></strong></td>
+      <td><T k="rule_transparent_props_desc" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## ポータルとアニメーションの原則
+## <T k="guide_principles_title" />
 
-wimui では、DOM 管理とモーションの一貫性を保つため、以下の原則に従います。
+<p>
+  <T k="guide_principles_desc" />
+</p>
 
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>ガイドライン</th>
+      <th><T k="table_header_item" /></th>
+      <th><T k="table_header_guideline" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>DOM管理</strong></td>
-      <td>オーバーレイやモーダルなどの要素を DOM ツリーの外部に描画する場合、直接 <code>createPortal</code> を使用せず、Layer 1 の <code>Portal</code> コンポーネントを使用します。これにより、ポータル作成のロジックが統一されます。</td>
+      <td><strong><T k="principle_dom_title" /></strong></td>
+      <td><T k="principle_dom_desc" /></td>
     </tr>
     <tr>
-      <td><strong>アニメーション</strong></td>
-      <td>コンポーネントの出現・消失に伴うアニメーションは、個別の CSS 定義ではなく Layer 1 の <code>Transition</code> コンポーネントを介して実装します。</td>
+      <td><strong><T k="principle_animation_title" /></strong></td>
+      <td><T k="principle_animation_desc" /></td>
     </tr>
     <tr>
-      <td><strong>共通クラスの利用</strong></td>
-      <td>アニメーションの挙動は <code>transition.scss</code> で定義された共通のトランジションクラス（<code>fade</code>, <code>scale</code>, <code>slide-*</code> 等）を使用し、ライブラリ全体で一貫したユーザー体験を提供します。</td>
+      <td><strong><T k="principle_transition_title" /></strong></td>
+      <td><T k="principle_transition_desc" /></td>
     </tr>
   </tbody>
 </table>
