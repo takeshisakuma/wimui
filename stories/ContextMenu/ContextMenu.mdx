@@ -20,7 +20,7 @@ import { T } from "../T";
 右クリック（コンテキストメニュー）で表示されるメニューコンポーネントです。
 画像、テキスト、その他の要素に対して、追加のアクションを提供する際に使用します。
 
-> ⚠️ **PCのみ**: このコンポーネントは「右クリック」操作を前提としているため、PC環境での利用を想定しています。ドロップダウンメニューなど、タッチデバイスで操作可能なコンポーネントでの代替を検討してください。
+> **PCのみ**: このコンポーネントは「右クリック」操作を前提としているため、PC環境での利用を想定しています。ドロップダウンメニューなど、タッチデバイスで操作可能なコンポーネントでの代替を検討してください。
 
 ## Usage
 
@@ -54,8 +54,24 @@ import { T } from "../T";
 
 Props:
 
-- `menu`: 表示するメニューの内容（ReactNode）
-- `disabled`: コンテキストメニューを無効化
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>menu</code></td>
+      <td>表示するメニューの内容（ReactNode）</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td>コンテキストメニューを無効化</td>
+    </tr>
+  </tbody>
+</table>
 
 ### ContextMenuItem
 
@@ -63,9 +79,28 @@ Props:
 
 Props:
 
-- `icon`: アイテムの左側に表示するアイコン
-- `danger`: 危険なアクション（削除など）を示す赤色スタイル
-- `disabled`: アイテムを無効化
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>icon</code></td>
+      <td>アイテムの左側に表示するアイコン</td>
+    </tr>
+    <tr>
+      <td><code>danger</code></td>
+      <td>危険なアクション（削除など）を示す赤色スタイル</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td>アイテムを無効化</td>
+    </tr>
+  </tbody>
+</table>
 
 ### ContextMenuDivider
 
@@ -105,10 +140,32 @@ Props:
 
 ## Features
 
-- 自動位置調整: メニューがビューポートの境界を超える場合、自動的に位置を調整します
-- Escキーで閉じる: Escキーを押すとメニューが閉じます
-- 外側クリックで閉じる: メニューの外側をクリックすると閉じます
-- スクロール時に閉じる: ページをスクロールすると自動的に閉じます
+<table>
+  <thead>
+    <tr>
+      <th>特徴</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>自動位置調整</strong></td>
+      <td>メニューがビューポートの境界を超える場合、自動的に位置を調整します</td>
+    </tr>
+    <tr>
+      <td><strong>Escキーで閉じる</strong></td>
+      <td>Escキーを押すとメニューが閉じます</td>
+    </tr>
+    <tr>
+      <td><strong>外側クリックで閉じる</strong></td>
+      <td>メニューの外側をクリックすると閉じます</td>
+    </tr>
+    <tr>
+      <td><strong>スクロール時に閉じる</strong></td>
+      <td>ページをスクロールすると自動的に閉じます</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Accessibility
 

@@ -1,59 +1,17 @@
-import { Canvas, Meta, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
 import * as BoxStories from "./Box.stories";
-import { T } from "../T";
 
 <Meta of={BoxStories} />
 
 # Box
-
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
-  <T k="doc_box_title" />
-</p>
-
-<T k="doc_box_title" />
 
 `Box` は、wimuiの中で最も基本的なレイアウトコンポーネントです。
 CSSのプロパティをラップしたプロパティ（p, m, bg など）を提供し、インラインスタイルを記述することなく、直感的にスタイルを適用できます。
 
 ## 使い方
 
-```tsx
-import { Box } from "@/components/Box/Box";
-
-const Demo = () => (
-  <Box bg="#f0f0f0" p={20} radius={8} shadow="sm">
-    これは Box コンポーネントです
-  </Box>
-);
-```
-
 <Canvas of={BoxStories.Default} />
-
-## 特徴
-
-- ポリモーフィック: `as` プロパティを使用して、レンダリングされるHTML要素（div, section, button など）を自由に変更できます。
-- 簡潔なスタイル指定: `p` (padding), `m` (margin), `bg` (background) などの略称プロパティを使用して、素早くレイアウトを構築できます。
-- 自由なカスタマイズ: 通常の `style` や `className` プロパティもサポートしているため、必要に応じて詳細なカスタマイズが可能です。
 
 ## API リファレンス
 
 <Controls />
-
-## ポリモーフィズム (as プロパティ)
-
-`as` プロパティを使用することで、Boxを `button` や `a` タグとして動作させることができます。
-
-<Canvas of={BoxStories.AsButton} />
-
-## スペーシングと配置
-
-余白やサイズの設定を簡単に行うことができます。
-
-<Canvas of={BoxStories.Spacing} />

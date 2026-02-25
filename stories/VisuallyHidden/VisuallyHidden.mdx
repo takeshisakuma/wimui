@@ -37,9 +37,28 @@ import { T } from "../T";
 
 Chrome DevTools を使用して、`VisuallyHidden` コンポーネントの内容がスクリーンリーダーでどのように認識されるかを確認できます。
 
-1. 要素の検証: ブラウザで `VisuallyHidden` を使用している箇所を右クリックし、「検証」を選択して DevTools を開きます。
-2. アクセシビリティツリーへの切り替え: `Elements` パネルの右上にある 「Switch to Accessibility Tree view」 ボタン（人型のアイコン）をクリックします。これにより、DOMツリーがスクリーンリーダー等が解釈するアクセシビリティツリー表示に切り替わります。
-3. 内容の確認: ツリーの中から対象の要素を選択します。右側の `Accessibility` タブ（見当たらない場合は `>>` から選択）の `Computed Properties` セクションなどで、`Name: "..."` として表示されている内容が、実際に読み上げられるテキストです。
+<table>
+  <thead>
+    <tr>
+      <th>ステップ</th>
+      <th>操作内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1. 要素の検証</strong></td>
+      <td>ブラウザで <code>VisuallyHidden</code> を使用している箇所を右クリックし、「検証」を選択して DevTools を開きます。</td>
+    </tr>
+    <tr>
+      <td><strong>2. アクセシビリティツリーへの切り替え</strong></td>
+      <td><code>Elements</code> パネルの右上にある 「Switch to Accessibility Tree view」 ボタン（人型のアイコン）をクリックします。これにより、DOMツリーがスクリーンリーダー等が解釈するアクセシビリティツリー表示に切り替わります。</td>
+    </tr>
+    <tr>
+      <td><strong>3. 内容の確認</strong></td>
+      <td>ツリーの中から対象の要素を選択します。右側の <code>Accessibility</code> タブ（見当たらない場合は <code>>></code> から選択）の <code>Computed Properties</code> セクションなどで、<code>Name: "..."</code> として表示されている内容が、実際に読み上げられるテキストです。</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Props
 

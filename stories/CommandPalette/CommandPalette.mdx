@@ -23,21 +23,77 @@ import { T } from "../T";
 
 ## 特徴
 
-- マルチデバイス対応: デスクトップでは中央、モバイルでは画面上部に最適化されたレイアウト。
-- ショートカット & トリガー: `Cmd+K` ショートカットに加え、UI上のボタン（`Trigger`）からも起動可能。
-- キーボードナビゲーション: 矢印キーでの選択、Enterでの実行。
+<table>
+  <thead>
+    <tr>
+      <th>特徴</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>マルチデバイス対応</strong></td>
+      <td>デスクトップでは中央、モバイルでは画面上部に最適化されたレイアウト。</td>
+    </tr>
+    <tr>
+      <td><strong>ショートカット & トリガー</strong></td>
+      <td><code>Cmd+K</code> ショートカットに加え、UI上のボタン（<code>Trigger</code>）からも起動可能。</td>
+    </tr>
+    <tr>
+      <td><strong>キーボードナビゲーション</strong></td>
+      <td>矢印キーでの選択、Enterでの実行。</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 構成
 
-- `CommandPalette`: ルートコンポーネント（Provider）
-- `CommandPaletteTrigger`: 起動用ボタン（任意）
-- `CommandPaletteContent`: モーダルコンテンツ本体
-- `CommandPaletteInput`: 検索入力
-- `CommandPaletteList`: アイテム一覧のコンテナ
-- `CommandPaletteGroup`: アイテムをグループ化
-- `CommandPaletteItem`: 各コマンドアイテム
-- `CommandPaletteEmpty`: 検索結果がない時の表示
-- `CommandPaletteFooter`: 操作ヒントフッター
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>役割</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>CommandPalette</code></td>
+      <td>ルートコンポーネント（Provider）</td>
+    </tr>
+    <tr>
+      <td><code>CommandPaletteTrigger</code></td>
+      <td>起動用ボタン（任意）</td>
+    </tr>
+    <tr>
+      <td><code>CommandPaletteContent</code></td>
+      <td>モーダルコンテンツ本体</td>
+    </tr>
+    <tr>
+      <td><code>CommandPaletteInput</code></td>
+      <td>検索入力</td>
+    </tr>
+    <tr>
+      <td><code>CommandPaletteList</code></td>
+      <td>アイテム一覧のコンテナ</td>
+    </tr>
+    <tr>
+      <td><code>CommandPaletteGroup</code></td>
+      <td>アイテムをグループ化</td>
+    </tr>
+    <tr>
+      <td><code>CommandPaletteItem</code></td>
+      <td>各コマンドアイテム</td>
+    </tr>
+    <tr>
+      <td><code>CommandPaletteEmpty</code></td>
+      <td>検索結果がない時の表示</td>
+    </tr>
+    <tr>
+      <td><code>CommandPaletteFooter</code></td>
+      <td>操作ヒントフッター</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 使い方
 

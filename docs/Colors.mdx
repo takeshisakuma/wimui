@@ -258,33 +258,39 @@ import { ContrastChecker } from "../stories/ContrastChecker";
   ）を用いて SCSS 変数として管理されており、それらをセマンティックな CSS
   変数に割り当てています。
 </p>
-<div
-  style={{
-    marginTop: "20px",
-    padding: "16px",
-    background: "var(--bg-component)",
-    borderRadius: "8px",
-    border: "1px solid var(--wim-color-border)",
-  }}
->
-  <strong>主要なトーンの対応:</strong>
-  <ul>
-    <li>
-      <strong>v (Vivid):</strong> 純色。プライマリーカラーなどに使用。
-    </li>
-    <li>
-      <strong>s (Strong):</strong> 彩度が高く力強い色。エラーや注目用。
-    </li>
-    <li>
-      <strong>gy (Grayish):</strong> 無彩色。テキストやボーダー、背景に使用。
-    </li>
-  </ul>
+
+<strong>主要なトーンの対応:</strong>
+<table>
+  <thead>
+    <tr>
+      <th>トーン</th>
+      <th>特徴</th>
+      <th>主な用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>v (Vivid)</strong></td>
+      <td>純色</td>
+      <td>プライマリーカラーなど</td>
+    </tr>
+    <tr>
+      <td><strong>s (Strong)</strong></td>
+      <td>彩度が高く力強い色</td>
+      <td>エラーや重要度の高い通知など</td>
+    </tr>
+    <tr>
+      <td><strong>gy (Grayish)</strong></td>
+      <td>無彩色</td>
+      <td>テキスト、ボーダー、背景など</td>
+    </tr>
+  </tbody>
+</table>
   詳細なカラーコードは <code>src/tokens/_pccs-colors.scss</code> および{" "}
   <code>_semantic-colors.scss</code> を参照してください。
-</div>
+
 
   <h2>カスタマイズ (Customization)</h2>
-  <div style={{ padding: "24px", background: "var(--bg-component)", border: "1px solid var(--wim-color-border)", borderRadius: "12px", marginTop: "16px" }}>
     <p>配色を変更または追加したい場合は、以下のファイルを編集してください：</p>
     <ul>
       <li>
@@ -298,5 +304,5 @@ import { ContrastChecker } from "../stories/ContrastChecker";
         <small style={{ color: "var(--text-secondary)" }}>色相とトーンに基づいた具体的なカラーコードの定義（例: $pccs-v1）を行っています。</small>
       </li>
     </ul>
-  </div>
+
 </div>

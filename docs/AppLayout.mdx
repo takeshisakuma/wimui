@@ -83,7 +83,7 @@ import { T } from "../stories/T";
 
 ---
 
-## 1. <T k="guide_layout_header_title" />
+## <T k="guide_layout_header_title" />
 
 <p>
   <T k="guide_layout_header_desc" />
@@ -106,7 +106,7 @@ import { T } from "../stories/T";
 
 ---
 
-## 2. <T k="guide_layout_sidebar_title" />
+## <T k="guide_layout_sidebar_title" />
 
 <p>
   <T k="guide_layout_sidebar_desc" />
@@ -129,7 +129,7 @@ import { T } from "../stories/T";
 
 ---
 
-## 3. <T k="guide_layout_pageheader_title" />
+## <T k="guide_layout_pageheader_title" />
 
 <p>
   <T k="guide_layout_pageheader_desc" />
@@ -143,7 +143,7 @@ import { T } from "../stories/T";
 
 ---
 
-## 4. <T k="guide_layout_main_title" />
+## <T k="guide_layout_main_title" />
 
 <p>
   <T k="guide_layout_main_desc" />
@@ -158,7 +158,7 @@ import { T } from "../stories/T";
 
 ---
 
-## 5. <T k="guide_layout_rightpanel_title" />
+## <T k="guide_layout_rightpanel_title" />
 
 <p>
   <T k="guide_layout_rightpanel_desc" />
@@ -180,7 +180,7 @@ import { T } from "../stories/T";
 
 ---
 
-## 6. <T k="guide_layout_footer_title" />
+## <T k="guide_layout_footer_title" />
 
 <p>
   <T k="guide_layout_footer_desc" />
@@ -202,7 +202,7 @@ import { T } from "../stories/T";
 
 ---
 
-## 7. <T k="guide_layout_overlay_title" />
+## <T k="guide_layout_overlay_title" />
 
 <p>
   <T k="guide_layout_overlay_desc" />
@@ -218,12 +218,35 @@ import { T } from "../stories/T";
 
 ---
 
-## 8. <T k="guide_layout_responsive_title" />
+## <T k="guide_layout_responsive_title" />
 
 <p>
   <T k="guide_layout_responsive_desc" />
 </p>
 
-- <T k="guide_layout_responsive_mobile" />
-- <T k="guide_layout_responsive_tablet" />
-- <T k="guide_layout_responsive_desktop" />
+<table>
+  <thead>
+    <tr>
+      <th>デバイス</th>
+      <th>ブレークポイント</th>
+      <th>レイアウトの振る舞い</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Mobile</strong></td>
+      <td>&lt; 768px</td>
+      <td><T k="guide_layout_responsive_mobile" /></td>
+    </tr>
+    <tr>
+      <td><strong>Tablet</strong></td>
+      <td>768px - 1024px</td>
+      <td><T k="guide_layout_responsive_tablet" /></td>
+    </tr>
+    <tr>
+      <td><strong>Desktop</strong></td>
+      <td>&gt; 1024px</td>
+      <td><T k="guide_layout_responsive_desktop" /></td>
+    </tr>
+  </tbody>
+</table>

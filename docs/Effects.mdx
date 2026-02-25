@@ -53,12 +53,27 @@ import {
   <MotionSwatch name="Base Transition" duration="0.3s" easing="ease-in-out" />
 </TokenGrid>
 
-  <div style={{ padding: "24px", background: "var(--bg-component)", border: "1px solid var(--wim-color-border)", borderRadius: "12px" }}>
     <strong>実装ガイドライン:</strong>
-    <ul style={{ marginTop: '12px', fontSize: '14px', lineHeight: '1.6' }}>
-      <li><strong>Shadow:</strong> 浮き出し効果は、要素の重なり順（z-index）や重要度に応じて使い分けます。</li>
-      <li><strong>Motion:</strong> ユーザーの操作に対するフィードバックは 0.2s〜0.3s 程度が最も自然に感じられます。</li>
-      <li>変数は <code>var(--transition-base)</code> のようにまとめて定義されたものを使用することを推奨します。</li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>ガイドライン</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Shadow</strong></td>
+          <td>浮き出し効果は、要素の重なり順（z-index）や重要度に応じて使い分けます。</td>
+        </tr>
+        <tr>
+          <td><strong>Motion</strong></td>
+          <td>ユーザーの操作に対するフィードバックは 0.2s〜0.3s 程度が最も自然に感じられます。</td>
+        </tr>
+        <tr>
+          <td><strong>共通変数</strong></td>
+          <td>変数は <code>var(--transition-base)</code> のようにまとめて定義されたものを使用することを推奨します。</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</div>

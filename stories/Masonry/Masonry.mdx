@@ -17,7 +17,7 @@ import { T } from "../T";
   <T k="doc_masonry_title" />
 </p>
 
-<T k="doc_masonry_title" />
+
 
 `Masonry` は、要素の高さが異なる場合でも、隙間を埋めるように効率的に配置するレイアウトコンポーネントです。
 主に画像ギャラリーや、高さの異なるカードを並べる際に使用されます。
@@ -50,9 +50,28 @@ const Demo = () => (
 
 ## 特徴
 
-- 自動配置: CSSの `column-count` を使用して、要素を自動的にカラムに振り分けます。
-- レスポンシブな間隔: `spacing` プロパティで要素間の余白を簡単に調整できます。
-- フレキシブルなカラム数: `columns` プロパティで任意のカラム数を指定可能です。
+<table>
+  <thead>
+    <tr>
+      <th>特徴</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>自動配置</strong></td>
+      <td>CSSの <code>column-count</code> を使用して、要素を自動的にカラムに振り分けます。</td>
+    </tr>
+    <tr>
+      <td><strong>レスポンシブな間隔</strong></td>
+      <td><code>spacing</code> プロパティで要素間の余白を簡単に調整できます。</td>
+    </tr>
+    <tr>
+      <td><strong>フレキシブルなカラム数</strong></td>
+      <td><code>columns</code> プロパティで任意のカラム数を指定可能です。</td>
+    </tr>
+  </tbody>
+</table>
 
 ## API リファレンス
 

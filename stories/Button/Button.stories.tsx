@@ -13,7 +13,7 @@ const meta: Meta<typeof Button> = {
     backgroundColor: { control: "color" },
     state: {
       description:
-        "⚠️ 非推奨: 代わりに標準の `disabled` prop を使用してください。",
+        "非推奨: 代わりに標準の `disabled` prop を使用してください。",
       control: "select",
       options: ["abled", "disabled"],
     },

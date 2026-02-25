@@ -13,83 +13,147 @@ The AppShell component is designed to be the foundation of your application's la
 
 ## Usage
 
-### Basic Layout
-
-A simple layout with just a header and main content:
-
-<Canvas of={AppShellStories.Default} />
-
-### With Sidebar
-
-Add a sidebar for navigation:
-
-<Canvas of={AppShellStories.WithSidebar} />
-
-### With Footer
-
-Include a footer for additional information:
-
-<Canvas of={AppShellStories.WithFooter} />
-
-### With Bottom Navbar
-
-Perfect for mobile applications with bottom navigation:
-
-<Canvas of={AppShellStories.WithNavbar} />
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Basic Layout</strong></td>
+      <td>A simple layout with just a header and main content.</td>
+    </tr>
+    <tr>
+      <td><strong>With Sidebar</strong></td>
+      <td>Add a sidebar for navigation.</td>
+    </tr>
+    <tr>
+      <td><strong>With Footer</strong></td>
+      <td>Include a footer for additional information.</td>
+    </tr>
+    <tr>
+      <td><strong>With Bottom Navbar</strong></td>
+      <td>Perfect for mobile applications with bottom navigation.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Features
 
-- **Flexible Layout**: Compose your layout with any combination of header, sidebar, main content, footer, and navbar
-- **Responsive Design**: Automatically adapts to different screen sizes
-- **Customizable Padding**: Control padding on the main content area
-- **Centered Content**: Option to center content with maximum width constraint
-- **Semantic HTML**: Uses proper semantic elements (header, aside, main, footer)
-- **Z-index Management**: Proper layering of layout sections
-- **CSS Custom Properties**: Easy theming and customization
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Flexible Layout</strong></td>
+      <td>Compose your layout with any combination of header, sidebar, main content, footer, and navbar</td>
+    </tr>
+    <tr>
+      <td><strong>Responsive Design</strong></td>
+      <td>Automatically adapts to different screen sizes</td>
+    </tr>
+    <tr>
+      <td><strong>Customizable Padding</strong></td>
+      <td>Control padding on the main content area</td>
+    </tr>
+    <tr>
+      <td><strong>Centered Content</strong></td>
+      <td>Option to center content with maximum width constraint</td>
+    </tr>
+    <tr>
+      <td><strong>Semantic HTML</strong></td>
+      <td>Uses proper semantic elements (header, aside, main, footer)</td>
+    </tr>
+    <tr>
+      <td><strong>Z-index Management</strong></td>
+      <td>Proper layering of layout sections</td>
+    </tr>
+    <tr>
+      <td><strong>CSS Custom Properties</strong></td>
+      <td>Easy theming and customization</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Layout Sections
 
-### Header
-
-- Fixed or sticky positioning options
-- Typically contains branding, navigation, and user actions
-- Use the `Header` component for consistent styling
-
-### Sidebar
-
-- Collapsible navigation panel
-- Configurable width
-- Can be positioned on left or right
-- Responsive behavior for mobile devices
-
-### Main Content
-
-- Primary content area
-- Optional padding and centering
-- Scrollable when content exceeds viewport height
-- Supports custom maximum width
-
-### Footer
-
-- Positioned at the bottom of the layout
-- Typically contains copyright, links, and legal information
-- Use the `Footer` component for consistent styling
-
-### Navbar
-
-- Bottom navigation bar for mobile applications
-- Fixed at the bottom of the viewport
-- Use the `Navbar` component for tab-based navigation
+<table>
+  <thead>
+    <tr>
+      <th>Section</th>
+      <th>Key Features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Header</strong></td>
+      <td>Fixed or sticky positioning; typically contains branding, navigation, and user actions. Uses the `Header` component.</td>
+    </tr>
+    <tr>
+      <td><strong>Sidebar</strong></td>
+      <td>Collapsible navigation panel with configurable width; can be positioned on left or right. Responsive for mobile.</td>
+    </tr>
+    <tr>
+      <td><strong>Main Content</strong></td>
+      <td>Primary content area with optional padding and centering; scrollable when content exceeds viewport height.</td>
+    </tr>
+    <tr>
+      <td><strong>Footer</strong></td>
+      <td>Positioned at the bottom; typically contains copyright, links, and legal information. Uses the `Footer` component.</td>
+    </tr>
+    <tr>
+      <td><strong>Navbar</strong></td>
+      <td>Bottom navigation bar for mobile applications, fixed at the bottom. Uses the `Navbar` component.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Best Practices
 
-1. **Use Semantic Components**: Combine AppShell with Header, Sidebar, Footer, and Navbar components for consistent styling
-2. **Responsive Considerations**: Test your layout on different screen sizes
-3. **Content Padding**: Use the `padding` prop to control spacing around main content
-4. **Centered Layouts**: For reading-focused apps, use `centered` with appropriate `maxWidth`
-5. **Mobile Navigation**: Use navbar for mobile-first applications
-6. **Accessibility**: Ensure proper heading hierarchy and landmark regions
-7. **Performance**: Keep sidebar and header content lightweight for better performance
+<table>
+  <thead>
+    <tr>
+      <th>Practice</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Use Semantic Components</strong></td>
+      <td>Combine AppShell with Header, Sidebar, Footer, and Navbar components for consistent styling.</td>
+    </tr>
+    <tr>
+      <td><strong>Responsive Considerations</strong></td>
+      <td>Test your layout on different screen sizes to ensure a consistent experience.</td>
+    </tr>
+    <tr>
+      <td><strong>Content Padding</strong></td>
+      <td>Use the `padding` prop to control spacing around main content for better readability.</td>
+    </tr>
+    <tr>
+      <td><strong>Centered Layouts</strong></td>
+      <td>For reading-focused apps, use `centered` with appropriate `maxWidth`.</td>
+    </tr>
+    <tr>
+      <td><strong>Mobile Navigation</strong></td>
+      <td>Use navbar for mobile-first applications to improve thumb-reachability.</td>
+    </tr>
+    <tr>
+      <td><strong>Accessibility</strong></td>
+      <td>Ensure proper heading hierarchy and landmark regions for screen readers.</td>
+    </tr>
+    <tr>
+      <td><strong>Performance</strong></td>
+      <td>Keep sidebar and header content lightweight for better initial load and transitions.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Composition Pattern
 
@@ -115,7 +179,29 @@ AppShell also provides sub-components for more granular control:
 
 ## Responsive Behavior
 
-- **Desktop**: Full layout with sidebar visible
-- **Tablet**: Sidebar may collapse or become a drawer
-- **Mobile**: Sidebar typically hidden, navbar shown at bottom
-- Padding adjusts automatically for smaller screens
+<table>
+  <thead>
+    <tr>
+      <th>Device</th>
+      <th>Expected Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Desktop</strong></td>
+      <td>Full layout with the sidebar visible by default.</td>
+    </tr>
+    <tr>
+      <td><strong>Tablet</strong></td>
+      <td>Sidebar may collapse into an icon-only view or become a drawer.</td>
+    </tr>
+    <tr>
+      <td><strong>Mobile</strong></td>
+      <td>Sidebar is typically hidden, and a bottom navbar is shown for primary navigation.</td>
+    </tr>
+    <tr>
+      <td><strong>Padding</strong></td>
+      <td>Content padding adjusts automatically to maximize usable space on smaller screens.</td>
+    </tr>
+  </tbody>
+</table>
