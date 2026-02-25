@@ -501,5 +501,18 @@
   "doc_advanced_input_transfer_purpose": "リスト間の移動",
   "doc_advanced_input_transfer_usage": "権限割り当て、公開/非公開の切り替え。",
   "doc_advanced_input_treeselect_purpose": "ツリー構造からの選択",
-  "doc_advanced_input_treeselect_usage": "組織図、ファイルディレクトリからの選択。"
+  "doc_advanced_input_treeselect_usage": "組織図、ファイルディレクトリからの選択。",
+  "doc_copybutton_title": "クリップボードにコピー",
+  "doc_avatargroup_title": "重なり合ったアバター",
+  "doc_emptystate_title": "データ未作成時の表示",
+  "doc_treeview_title": "階層構造データの表示",
+  "doc_aspectratio_title": "アスペクト比固定コンテナ",
+  "doc_grid_subtitle": "グリッド状に要素を配置",
+  "doc_simplegrid_subtitle": "レスポンシブな固定グリッド",
+  "doc_commandpalette_title": "Cmd+K 検索オーバーレイ",
+  "doc_rangeslider_title": "範囲の選択",
+  "doc_timepicker_title": "時刻の選択",
+  "doc_switchgroup_title": "状態共有スイッチ",
+  "doc_togglegroup_title": "切り替え可能なボタン群",
+  "doc_datepicker_title": "日付の選択"
 }
