@@ -62,6 +62,8 @@
   "table_header_description": "説明",
   "table_header_status": "ステータス",
   "table_header_platform": "対応プラットフォーム",
+  "table_header_category": "カテゴリー",
+  "table_header_progress": "進捗",
   "status_done": "完了",
   "doc_heading_desc": "見出し",
   "doc_paragraph_desc": "段落テキスト",

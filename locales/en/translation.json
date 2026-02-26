@@ -62,6 +62,8 @@
   "table_header_description": "Description",
   "table_header_status": "Status",
   "table_header_platform": "Platform",
+  "table_header_category": "Category",
+  "table_header_progress": "Progress",
   "status_done": "Done",
   "doc_heading_desc": "Headings",
   "doc_paragraph_desc": "Paragraph text",
