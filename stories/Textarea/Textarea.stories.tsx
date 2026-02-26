@@ -29,12 +29,22 @@ export default meta;
 type Story = StoryObj<typeof Textarea>;
 
 export const Basic: Story = {
+  render: (args) => (
+    <Label label="お問い合わせ内容">
+      <Textarea {...args} />
+    </Label>
+  ),
   args: {
     placeholder: "ログインパスワードを忘れてしまったため、再発行の手順を教えてください。",
   },
 };
 
 export const Ghost: Story = {
+  render: (args) => (
+    <Label label="フィードバック">
+      <Textarea {...args} />
+    </Label>
+  ),
   args: {
     variant: "ghost",
     placeholder: "最近のアップデート以降、アプリの動作が遅くなりました。改善をお願いします。",
@@ -42,20 +52,35 @@ export const Ghost: Story = {
 };
 
 export const ErrorState: Story = {
+  render: (args) => (
+    <Label label="詳細">
+      <Textarea {...args} />
+    </Label>
+  ),
   args: {
     state: "error",
-    defaultValue: "エラーが発生しています",
+    placeholder: "不明なエラーにより処理が中断されました。",
   },
 };
 
 export const Disabled: Story = {
+  render: (args) => (
+    <Label label="備考">
+      <Textarea {...args} />
+    </Label>
+  ),
   args: {
     state: "disabled",
-    defaultValue: "無効化された入力エリア",
+    placeholder: "現在は入力できません。",
   },
 };
 
 export const FullWidth: Story = {
+  render: (args) => (
+    <Label label="メッセージ">
+      <Textarea {...args} />
+    </Label>
+  ),
   args: {
     fullWidth: true,
     placeholder: "いつもWimUIを利用させていただき、ありがとうございます。",
@@ -70,7 +95,7 @@ export const FieldSizingContent: Story = {
   ),
   args: {
     fieldSizing: "content",
-    placeholder: "WimUIのコンポーネントについての質問です。\n可能であれば、明日の15時までにご回答をお願いいたします。\n急ぎではありません。",
+    placeholder: "WimUIのコンポーネントについての質問です。可能であれば、明日の15時までにご回答をお願いいたします。急ぎではありません。",
   },
 };
 
