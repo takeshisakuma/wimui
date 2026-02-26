@@ -55,12 +55,12 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   render: (args) => (
-    <Label label="Default Input">
+    <Label label="お名前">
       <Input {...args} />
     </Label>
   ),
   args: {
-    placeholder: "入力テキスト",
+    placeholder: "山田 太郎",
   },
 };
 
@@ -68,7 +68,7 @@ export const SelectLike: Story = {
   render: (args) => {
     const handleClick = () => alert("Dropdown or Modal would open here!");
     return (
-      <Label label="Select-like Input">
+      <Label label="部署">
         <Input
           {...args}
           onClick={handleClick}
@@ -90,80 +90,42 @@ export const SelectLike: Story = {
 
 export const Clearable: Story = {
   render: (args) => (
-    <Label label="Auto-Clearable Input">
-      <Input {...args} allowClear placeholder="入力するとクリアボタンが表示されます" />
+    <Label label="キーワード">
+      <Input {...args} allowClear placeholder="検索キーワードを入力" />
     </Label>
   ),
   args: {
-    defaultValue: "Clear me!",
+    defaultValue: "UIコンポーネント",
   },
 };
 
 export const Outline: Story = {
   render: (args) => (
-    <Label label="Outline Input">
+    <Label label="会社名">
       <Input {...args} />
     </Label>
   ),
   args: {
     variant: "outline",
-    placeholder: "アウトライン入力",
+    placeholder: "株式会社WimUI",
   },
 };
 
 export const Ghost: Story = {
   render: (args) => (
-    <Label label="Ghost Input">
+    <Label label="備考">
       <Input {...args} />
     </Label>
   ),
   args: {
     variant: "ghost",
-    placeholder: "ゴースト入力",
+    placeholder: "WimUIの改善点について",
   },
 };
+
 
 export const ErrorStatus: Story = {
   render: (args) => (
-    <Label label="Error Input">
-      <Input {...args} />
-    </Label>
-  ),
-  args: {
-    state: "error",
-    defaultValue: "Invalid input",
-  },
-};
-
-export const Disabled: Story = {
-  render: (args) => (
-    <Label label="Disabled Input">
-      <Input {...args} />
-    </Label>
-  ),
-  args: {
-    disabled: true,
-    defaultValue: "Disabled input",
-  },
-};
-
-export const FullWidth: Story = {
-  render: (args) => (
-    <Label label="Full Width Input" style={{ width: "100%" }}>
-      <Input {...args} />
-    </Label>
-  ),
-  args: {
-    fullWidth: true,
-    placeholder: "幅いっぱいの入力",
-  },
-  parameters: {
-    layout: "padded",
-  },
-};
-
-export const WithLabelAndError: Story = {
-  render: (args) => (
     <div
       style={{
         display: "flex",
@@ -173,34 +135,10 @@ export const WithLabelAndError: Story = {
         maxWidth: "320px",
       }}
     >
-      <Label label="User Name" required>
-        <Input {...args} placeholder="山田 太郎" />
-      </Label>
-      {args.state === "error" && (
-        <FieldError content="This field is required." />
-      )}
-    </div>
-  ),
-  args: {
-    state: "default",
-  },
-};
-
-export const InputWithError: Story = {
-  render: (args) => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "4px",
-        width: "100%",
-        maxWidth: "320px",
-      }}
-    >
-      <Label label="Email" required>
+      <Label label="メールアドレス" required>
         <Input {...args} placeholder="taro.yamada@example.com" />
       </Label>
-      <FieldError content="Invalid email address." />
+      <FieldError content="有効なメールアドレスを入力してください。" />
     </div>
   ),
   args: {
@@ -209,20 +147,43 @@ export const InputWithError: Story = {
   },
 };
 
-export const PasswordToggle: Story = {
+
+export const Disabled: Story = {
   render: (args) => (
-    <Label label="Password Input">
-      <Input {...args} type="password" />
+    <Label label="ユーザーID">
+      <Input {...args} />
     </Label>
   ),
   args: {
-    defaultValue: "password123",
+    disabled: true,
+    placeholder: "WIM-1234",
   },
 };
 
+export const FullWidth: Story = {
+  render: (args) => (
+    <Label label="連絡先" style={{ width: "100%" }}>
+      <Input {...args} />
+    </Label>
+  ),
+  args: {
+    fullWidth: true,
+    placeholder: "info@wimui.com",
+  },
+  parameters: {
+    layout: "padded",
+  },
+};
+
+
+
+
+
+
+
 export const SearchIndicator: Story = {
   render: (args) => (
-    <Label label="Search Input">
+    <Label label="コンポーネント検索">
       <Input {...args} leftIcon="SearchIcon" />
     </Label>
   ),
