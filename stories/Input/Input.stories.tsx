@@ -130,9 +130,7 @@ export const ErrorStatus: Story = {
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "8px",
-        width: "100%",
-        maxWidth: "320px",
+        gap: "4px",
       }}
     >
       <Label label="メールアドレス" required>

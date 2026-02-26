@@ -2,8 +2,8 @@
   all: unset;
   box-sizing: border-box;
   display: block;
-  width: 100%;
-  max-width: 320px;
+  width: 320px;
+  max-width: 100%;
   padding: var(--spacing-sm) var(--spacing-md);
   font-size: 1rem;
   color: var(--text-primary);
@@ -18,8 +18,7 @@
 
   &:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px
-      color-mix(in srgb, var(--color-primary) 20%, transparent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
   }
 
   &--outline {
@@ -107,8 +106,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 100%; // Make it fluid
-  max-width: 320px; // Default constrained width
+  width: 320px;
+  max-width: 100%;
 
   &.wim-input--full-width {
     width: 100%;
@@ -128,6 +127,7 @@
 
   &:hover {
     .wim-input[readonly] {
+
       // Only add hover effect if cursor is set to pointer (Select-like)
       &:not([disabled]) {
         background-color: var(--color-tertiary-hover);
@@ -137,6 +137,7 @@
 
   &:focus-within {
     .wim-input-icon {
+
       // Usually, only the secondary (default) icon color should turn primary on focus
       .wim-icon--secondary {
         color: var(--color-primary);
