@@ -70,7 +70,7 @@ export const FieldSizingContent: Story = {
   ),
   args: {
     fieldSizing: "content",
-    placeholder: "・WimUIのコンポーネントについての質問です。\n・可能であれば、明日の15時以降にご回答をお願いいたします。\n・急ぎではありません。",
+    placeholder: "WimUIのコンポーネントについての質問です。\n可能であれば、明日の15時までにご回答をお願いいたします。\n急ぎではありません。",
   },
 };
 
