@@ -31,7 +31,7 @@ export const Default: Story = {
   ),
   args: {
     options: mockUsers,
-    placeholder: "@を入力して候補を表示...",
+    placeholder: "@yamada",
     fullWidth: true,
     rows: 4,
   },
@@ -65,7 +65,7 @@ export const CustomTrigger: Story = {
     </div>
   ),
   args: {
-    placeholder: "記号を入力...",
+    placeholder: "#design",
     fullWidth: true,
     rows: 3,
   },

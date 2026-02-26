@@ -30,14 +30,14 @@ type Story = StoryObj<typeof Textarea>;
 
 export const Basic: Story = {
   args: {
-    placeholder: "テキストを入力してください...",
+    placeholder: "お問い合わせ内容",
   },
 };
 
 export const Ghost: Story = {
   args: {
     variant: "ghost",
-    placeholder: "Ghost Variant...",
+    placeholder: "Ghost Variantでの入力",
   },
 };
 
@@ -58,14 +58,14 @@ export const Disabled: Story = {
 export const FullWidth: Story = {
   args: {
     fullWidth: true,
-    placeholder: "幅いっぱいに広がります...",
+    placeholder: "幅いっぱいに広がります",
   },
 };
 
 export const FieldSizingContent: Story = {
   args: {
     fieldSizing: "content",
-    placeholder: "入力内容に合わせて高さが変わります...",
+    placeholder: "改行すると自動で広がります",
   },
 };
 
@@ -88,7 +88,7 @@ export const WithLabelAndError: Story = {
     </div>
   ),
   args: {
-    placeholder: "ご意見・ご要望を入力してください",
+    placeholder: "機能の追加要望や改善点など",
     rows: 4,
     fullWidth: true,
   },
@@ -109,7 +109,7 @@ export const FormPattern: Story = {
         <Textarea
           id="description"
           {...args}
-          placeholder="詳細は..."
+          placeholder="ReactやTypeScriptを用いた開発経験"
           rows={3}
           fullWidth
         />
@@ -120,7 +120,7 @@ export const FormPattern: Story = {
         <Textarea
           id="notes"
           {...args}
-          placeholder="その他連絡事項があれば..."
+          placeholder="金曜日は15時以降の連絡が取りやすいです"
           rows={2}
           fullWidth
         />

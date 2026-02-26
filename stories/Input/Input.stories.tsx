@@ -60,7 +60,7 @@ export const Default: Story = {
     </Label>
   ),
   args: {
-    placeholder: "Enter text...",
+    placeholder: "入力テキスト",
   },
 };
 
@@ -82,7 +82,7 @@ export const SelectLike: Story = {
   },
   args: {
     rightIcon: "ChevronDownIcon",
-    placeholder: "Select an option...",
+    placeholder: "選択肢1",
     readOnly: true,
     style: { cursor: "pointer" },
   },
@@ -91,7 +91,7 @@ export const SelectLike: Story = {
 export const Clearable: Story = {
   render: (args) => (
     <Label label="Auto-Clearable Input">
-      <Input {...args} allowClear placeholder="Type to see clear button..." />
+      <Input {...args} allowClear placeholder="入力するとクリアボタンが表示されます" />
     </Label>
   ),
   args: {
@@ -107,7 +107,7 @@ export const Outline: Story = {
   ),
   args: {
     variant: "outline",
-    placeholder: "Outline variant",
+    placeholder: "アウトライン入力",
   },
 };
 
@@ -119,7 +119,7 @@ export const Ghost: Story = {
   ),
   args: {
     variant: "ghost",
-    placeholder: "Ghost variant",
+    placeholder: "ゴースト入力",
   },
 };
 
@@ -155,7 +155,7 @@ export const FullWidth: Story = {
   ),
   args: {
     fullWidth: true,
-    placeholder: "Full width input",
+    placeholder: "幅いっぱいの入力",
   },
   parameters: {
     layout: "padded",
@@ -174,7 +174,7 @@ export const WithLabelAndError: Story = {
       }}
     >
       <Label label="User Name" required>
-        <Input {...args} placeholder="Enter your name" />
+        <Input {...args} placeholder="山田 太郎" />
       </Label>
       {args.state === "error" && (
         <FieldError content="This field is required." />
@@ -198,7 +198,7 @@ export const InputWithError: Story = {
       }}
     >
       <Label label="Email" required>
-        <Input {...args} placeholder="Enter your email" />
+        <Input {...args} placeholder="taro.yamada@example.com" />
       </Label>
       <FieldError content="Invalid email address." />
     </div>
@@ -227,6 +227,6 @@ export const SearchIndicator: Story = {
     </Label>
   ),
   args: {
-    placeholder: "Search components...",
+    placeholder: "Button",
   },
 };
