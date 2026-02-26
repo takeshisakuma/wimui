@@ -44,6 +44,7 @@ export const CustomTrigger: Story = {
         <Mentions
           {...args}
           trigger="#"
+          placeholder="#SuperMario"
           options={[
             { id: 1, display: "SuperMario" },
             { id: 2, display: "Luigi" },
@@ -55,6 +56,7 @@ export const CustomTrigger: Story = {
         <Mentions
           {...args}
           trigger="/"
+          placeholder="/help"
           options={[
             { id: 1, display: "help" },
             { id: 2, display: "settings" },
@@ -65,7 +67,6 @@ export const CustomTrigger: Story = {
     </div>
   ),
   args: {
-    placeholder: "#design",
     fullWidth: true,
     rows: 3,
   },

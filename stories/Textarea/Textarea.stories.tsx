@@ -57,7 +57,7 @@ export const ErrorState: Story = {
       <Label label="詳細">
         <Textarea {...args} />
       </Label>
-      <FieldError content="具体的な状況を入力してください。" />
+      <FieldError content="10文字以内で入力してください。" />
     </div>
   ),
   args: {
@@ -74,7 +74,7 @@ export const Disabled: Story = {
   ),
   args: {
     state: "disabled",
-    placeholder: "現在は入力できません。",
+    placeholder: "なるべく早く回答をお願いします。",
   },
 };
 
@@ -98,34 +98,10 @@ export const FieldSizingContent: Story = {
   ),
   args: {
     fieldSizing: "content",
-    placeholder: "WimUIのコンポーネントについての質問です。可能であれば、明日の15時までにご回答をお願いいたします。急ぎではありません。",
+    placeholder: "施設の利用についての質問です。可能であれば、明日の15時までにご回答をお願いいたします。急ぎではありません。",
   },
 };
 
-export const WithLabelAndError: Story = {
-  render: (args) => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "4px",
-        maxWidth: "400px",
-      }}
-    >
-      <Label htmlFor="comment" required label="コメント">
-        <Textarea id="comment" {...args} />
-      </Label>
-      {args.state === "error" && (
-        <FieldError content="入力内容をご確認ください。" />
-      )}
-    </div>
-  ),
-  args: {
-    placeholder: "ダークモードの際、一部のテキストの色が背景と同化して読みづらいです。",
-    rows: 4,
-    fullWidth: true,
-  },
-};
 
 export const FormPattern: Story = {
   render: (args) => (

@@ -18,6 +18,6 @@ export const Default: Story = {
     </Label>
   ),
   args: {
-    placeholder: "Button",
+    placeholder: "Tシャツ",
   },
 };
