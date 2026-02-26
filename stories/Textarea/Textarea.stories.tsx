@@ -63,9 +63,14 @@ export const FullWidth: Story = {
 };
 
 export const FieldSizingContent: Story = {
+  render: (args) => (
+    <Label label="備考">
+      <Textarea {...args} />
+    </Label>
+  ),
   args: {
     fieldSizing: "content",
-    placeholder: "1行目のテキスト\n2行目のテキスト\n3行目のテキスト",
+    placeholder: "・WimUIのコンポーネントについての質問です。\n・可能であれば、明日の15時以降にご回答をお願いいたします。\n・急ぎではありません。",
   },
 };
 
