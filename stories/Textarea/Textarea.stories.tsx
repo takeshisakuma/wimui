@@ -53,13 +53,16 @@ export const Ghost: Story = {
 
 export const ErrorState: Story = {
   render: (args) => (
-    <Label label="詳細">
-      <Textarea {...args} />
-    </Label>
+    <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+      <Label label="詳細">
+        <Textarea {...args} />
+      </Label>
+      <FieldError content="具体的な状況を入力してください。" />
+    </div>
   ),
   args: {
     state: "error",
-    placeholder: "不明なエラーにより処理が中断されました。",
+    placeholder: "不明なエラーにより処理が中断されましたと表示されてしまい、使用できません。",
   },
 };
 
@@ -83,7 +86,7 @@ export const FullWidth: Story = {
   ),
   args: {
     fullWidth: true,
-    placeholder: "いつもWimUIを利用させていただき、ありがとうございます。",
+    placeholder: "いつも施設を利用させていただき、ありがとうございます。",
   },
 };
 
