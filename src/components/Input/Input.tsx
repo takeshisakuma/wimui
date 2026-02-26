@@ -93,11 +93,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             defaultPrevented: false,
             eventPhase: 0,
             isTrusted: false,
-            preventDefault: () => {},
+            preventDefault: () => { },
             isDefaultPrevented: () => false,
-            stopPropagation: () => {},
+            stopPropagation: () => { },
             isPropagationStopped: () => false,
-            persist: () => {},
+            persist: () => { },
             timeStamp: Date.now(),
             type: "change",
           } as unknown as React.ChangeEvent<HTMLInputElement>;
@@ -160,6 +160,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           fullWidth && "wim-input--full-width",
           leftIcon && "wim-input--has-left-icon",
           finalRightIcon && "wim-input--has-right-icon",
+          !finalRightIcon && allowClear && "wim-input--reserve-right-icon",
           className,
         )}
         disabled={isDisabled}

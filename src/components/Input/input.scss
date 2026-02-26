@@ -69,7 +69,8 @@
     padding-left: calc(var(--spacing-xl) + 1.2rem + 10px);
   }
 
-  &--has-right-icon {
+  &--has-right-icon,
+  &--reserve-right-icon {
     padding-right: calc(var(--spacing-xl) + 1.2rem + 10px);
   }
 
