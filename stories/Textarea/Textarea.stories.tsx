@@ -30,14 +30,14 @@ type Story = StoryObj<typeof Textarea>;
 
 export const Basic: Story = {
   args: {
-    placeholder: "お問い合わせ内容",
+    placeholder: "ログインパスワードを忘れてしまったため、再発行の手順を教えてください。",
   },
 };
 
 export const Ghost: Story = {
   args: {
     variant: "ghost",
-    placeholder: "Ghost Variantでの入力",
+    placeholder: "最近のアップデート以降、アプリの動作が遅くなりました。改善をお願いします。",
   },
 };
 
@@ -58,14 +58,14 @@ export const Disabled: Story = {
 export const FullWidth: Story = {
   args: {
     fullWidth: true,
-    placeholder: "幅いっぱいに広がります",
+    placeholder: "いつもWimUIを利用させていただき、ありがとうございます。",
   },
 };
 
 export const FieldSizingContent: Story = {
   args: {
     fieldSizing: "content",
-    placeholder: "改行すると自動で広がります",
+    placeholder: "1行目のテキスト\n2行目のテキスト\n3行目のテキスト",
   },
 };
 
@@ -88,7 +88,7 @@ export const WithLabelAndError: Story = {
     </div>
   ),
   args: {
-    placeholder: "機能の追加要望や改善点など",
+    placeholder: "ダークモードの際、一部のテキストの色が背景と同化して読みづらいです。",
     rows: 4,
     fullWidth: true,
   },
@@ -109,7 +109,7 @@ export const FormPattern: Story = {
         <Textarea
           id="description"
           {...args}
-          placeholder="ReactやTypeScriptを用いた開発経験"
+          placeholder="フロントエンドエンジニアとして3年の経験があり、主にReactとTypeScriptを使用しています。"
           rows={3}
           fullWidth
         />
@@ -120,7 +120,7 @@ export const FormPattern: Story = {
         <Textarea
           id="notes"
           {...args}
-          placeholder="金曜日は15時以降の連絡が取りやすいです"
+          placeholder="平日の10:00〜19:00であれば電話連絡が可能です。"
           rows={2}
           fullWidth
         />
