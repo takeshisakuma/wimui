@@ -60,7 +60,7 @@ export const Default: Story = {
     </Label>
   ),
   args: {
-    placeholder: "山田 太郎",
+    placeholder: "山田太郎",
   },
 };
 
@@ -82,7 +82,7 @@ export const SelectLike: Story = {
   },
   args: {
     rightIcon: "ChevronDownIcon",
-    placeholder: "選択肢1",
+    placeholder: "営業部",
     readOnly: true,
     style: { cursor: "pointer" },
   },
@@ -91,11 +91,11 @@ export const SelectLike: Story = {
 export const Clearable: Story = {
   render: (args) => (
     <Label label="キーワード">
-      <Input {...args} allowClear placeholder="検索キーワードを入力" />
+      <Input {...args} allowClear placeholder="Tシャツ" />
     </Label>
   ),
   args: {
-    defaultValue: "UIコンポーネント",
+    defaultValue: "Yシャツ",
   },
 };
 
@@ -107,7 +107,7 @@ export const Outline: Story = {
   ),
   args: {
     variant: "outline",
-    placeholder: "株式会社WimUI",
+    placeholder: "株式会社Example",
   },
 };
 
@@ -119,7 +119,7 @@ export const Ghost: Story = {
   ),
   args: {
     variant: "ghost",
-    placeholder: "WimUIの改善点について",
+    placeholder: "機能の改善点について",
   },
 };
 
@@ -168,7 +168,7 @@ export const FullWidth: Story = {
   ),
   args: {
     fullWidth: true,
-    placeholder: "info@wimui.com",
+    placeholder: "info@example.com",
   },
   parameters: {
     layout: "padded",
