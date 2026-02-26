@@ -127,17 +127,17 @@ export const FormPattern: Story = {
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-        <Label htmlFor="feedback" required label="フィードバック">
+        <Label htmlFor="motivation" required label="志望動機">
           <Textarea
-            id="feedback"
+            id="motivation"
             {...args}
             state="error"
-            defaultValue="短すぎます"
+            defaultValue="特になし"
             rows={3}
             fullWidth
           />
         </Label>
-        <FieldError content="10文字以上で入力してください。" />
+        <FieldError content="10文字以上で具体的に入力してください。" />
       </div>
     </div>
   ),
