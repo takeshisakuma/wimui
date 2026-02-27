@@ -75,9 +75,9 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
   ) => {
     const style = maxWidth
       ? ({
-          "--wim-appshell-max-width":
-            typeof maxWidth === "number" ? `${maxWidth}px` : maxWidth,
-        } as React.CSSProperties)
+        "--wim-appshell-max-width":
+          typeof maxWidth === "number" ? `${maxWidth}px` : maxWidth,
+      } as React.CSSProperties)
       : undefined;
 
     return (
@@ -86,6 +86,7 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
         className={classNames(
           "wim-appshell",
           !!sidebar && "wim-appshell--with-sidebar",
+          !!navbar && "wim-appshell--with-navbar",
           className,
         )}
         style={style}

@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
   min-height: 160px;
-  padding: var(--spacing-xl) var(--spacing-lg);
+  padding: var(--spacing-3xl) var(--spacing-2xl);
   text-align: center;
   cursor: pointer;
   background-color: var(--bg-app);
@@ -57,6 +57,7 @@
 
   &__icon {
     margin-bottom: var(--spacing-xs);
+    font-size: 48px;
   }
 
   &__description {

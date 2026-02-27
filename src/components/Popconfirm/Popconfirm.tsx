@@ -68,6 +68,11 @@ export const Popconfirm = ({
   const { t } = useTranslation();
 
   if (disabled) {
+    if (React.isValidElement(children)) {
+      return React.cloneElement(children as React.ReactElement<any>, {
+        disabled: true,
+      });
+    }
     return <>{children}</>;
   }
 

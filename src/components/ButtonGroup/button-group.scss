@@ -1,16 +1,22 @@
-﻿.wim-button-group {
-  display: inline-flex;
+﻿@use "../../tokens/breakpoints" as *;
+
+.wim-button-group {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  row-gap: var(--spacing-sm);
 
   &.wim-button-group--joined {
     gap: 0;
 
     .wim-button {
+      flex: 1 1 auto;
       border-radius: 0;
 
       &:not(:first-child) {
-        margin-left: -2px; // Overlap borders if they are 2px
+        margin-left: -2px; // Overlap borders horizontally
       }
 
       &:first-child {
@@ -32,6 +38,33 @@
 
       &:active {
         transform: none !important;
+      }
+    }
+
+    // 縦並びへの切り替え（連結状態を維持するため、折り返しではなく方向自体を変える）
+    @include down(sm) {
+      flex-direction: column;
+
+      .wim-button {
+        width: 100%;
+        margin-left: 0 !important;
+
+        &:not(:first-child) {
+          margin-top: -2px; // Overlap borders vertically
+        }
+
+        &:first-child {
+          border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+
+        &:last-child {
+          border-radius: 0 0 var(--radius-md) var(--radius-md);
+        }
+
+        // 1つしかない場合のケア
+        &:first-child:last-child {
+          border-radius: var(--radius-md);
+        }
       }
     }
   }

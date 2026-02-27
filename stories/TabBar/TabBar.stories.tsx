@@ -28,10 +28,10 @@ export const Default: Story = {
     const [activeTab, setActiveTab] = React.useState("home");
     return (
       <div
-        style={{ height: "400px", background: "#f4f4f5", position: "relative" }}
+        style={{ height: "100vh", background: "#f4f4f5", position: "relative" }}
       >
         <div style={{ padding: "20px" }}>Content for {activeTab} tab</div>
-        <TabBar {...args} style={{ position: "absolute" }}>
+        <TabBar {...args} style={{}}>
           <TabBar.Item
             active={activeTab === "home"}
             onClick={() => setActiveTab("home")}
@@ -68,9 +68,9 @@ export const WithoutLabels: Story = {
     const [activeTab, setActiveTab] = React.useState("home");
     return (
       <div
-        style={{ height: "200px", background: "#f4f4f5", position: "relative" }}
+        style={{ height: "100vh", background: "#f4f4f5", position: "relative" }}
       >
-        <TabBar {...args} style={{ position: "absolute" }}>
+        <TabBar {...args} style={{}}>
           <TabBar.Item
             active={activeTab === "home"}
             onClick={() => setActiveTab("home")}
@@ -85,6 +85,46 @@ export const WithoutLabels: Story = {
             active={activeTab === "search"}
             onClick={() => setActiveTab("search")}
             icon={<Icon name="SearchIcon" />}
+          />
+        </TabBar>
+      </div>
+    );
+  },
+};
+
+export const Fixed: Story = {
+  render: (args) => {
+    const [activeTab, setActiveTab] = React.useState("home");
+    return (
+      <div style={{ background: "#f4f4f5", minHeight: "100vh" }}>
+        <div style={{ padding: "20px", paddingBottom: "100px" }}>
+          <h2>Fixed TabBar Demo</h2>
+          <p>Scroll down to see the fixed TabBar.</p>
+          {Array.from({ length: 20 }).map((_, i) => (
+            <p key={i}>
+              This is line {i + 1} of a very long content to demonstrate
+              scrolling.
+            </p>
+          ))}
+        </div>
+        <TabBar {...args} fixed>
+          <TabBar.Item
+            active={activeTab === "home"}
+            onClick={() => setActiveTab("home")}
+            icon={<Icon name="HomeIcon" />}
+            label="Home"
+          />
+          <TabBar.Item
+            active={activeTab === "search"}
+            onClick={() => setActiveTab("search")}
+            icon={<Icon name="SearchIcon" />}
+            label="Search"
+          />
+          <TabBar.Item
+            active={activeTab === "profile"}
+            onClick={() => setActiveTab("profile")}
+            icon={<Icon name="UserIcon" />}
+            label="Profile"
           />
         </TabBar>
       </div>

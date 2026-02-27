@@ -62,6 +62,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
         "wim-chat-message",
         `wim-chat-message--${position}`,
         `wim-chat-message--${variant}`,
+        { "wim-chat-message--has-avatar": showAvatar },
         className,
       )}
     >
@@ -151,6 +152,7 @@ export interface ChatAvatarProps {
   alt?: string;
   fallback?: string;
   size?: "small" | "medium" | "large";
+  color?: "s1" | "s3" | "s5" | "s7" | "s10" | "s12" | "s14" | "s16" | "s18" | "s20" | "s22" | "s24";
   className?: string;
 }
 
@@ -159,6 +161,7 @@ export const ChatAvatar: React.FC<ChatAvatarProps> = ({
   alt = "Avatar",
   fallback,
   size = "medium",
+  color = "s18",
   className,
 }) => {
   const [imageError, setImageError] = React.useState(false);
@@ -168,6 +171,7 @@ export const ChatAvatar: React.FC<ChatAvatarProps> = ({
       className={classNames(
         "wim-chat-avatar",
         `wim-chat-avatar--${size}`,
+        `wim-chat-avatar--${color}`,
         className,
       )}
     >

@@ -12,6 +12,13 @@
       z-index: 100;
     }
 
+    &--with-navbar {
+      .wim-appshell__main {
+        // TabBar height (56px) + safe area + extra margin
+        padding-bottom: calc(56px + env(safe-area-inset-bottom) + var(--spacing-md, 16px));
+      }
+    }
+
     &__body {
       display: flex;
       flex: 1;

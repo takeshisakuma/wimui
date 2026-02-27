@@ -34,6 +34,7 @@ export const Text: Story = {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            marginTop: "24px",
           }}
         >
           機密情報エリア

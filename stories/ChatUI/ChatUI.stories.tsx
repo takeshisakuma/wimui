@@ -28,7 +28,7 @@ export const Basic: Story = {
           <ChatMessage
             position="left"
             showAvatar
-            avatar={<ChatAvatar fallback="A" />}
+            avatar={<ChatAvatar fallback="A" color="s5" />}
             senderName="Alice"
             timestamp="10:30 AM"
           >
@@ -38,6 +38,7 @@ export const Basic: Story = {
             position="right"
             showAvatar
             avatar={<ChatAvatar fallback="Y" />}
+            senderName="You"
             timestamp="10:31 AM"
           >
             I'm doing great! Thanks for asking.
@@ -45,7 +46,7 @@ export const Basic: Story = {
           <ChatMessage
             position="left"
             showAvatar
-            avatar={<ChatAvatar fallback="A" />}
+            avatar={<ChatAvatar fallback="A" color="s5" />}
             senderName="Alice"
             timestamp="10:32 AM"
           >
@@ -80,6 +81,7 @@ export const WithAvatarImages: Story = {
             avatar={
               <ChatAvatar src="https://i.pravatar.cc/150?img=5" alt="You" />
             }
+            senderName="You"
             timestamp="09:16 AM"
           >
             Good morning John!
@@ -111,7 +113,7 @@ export const WithVariants: Story = {
             position="left"
             variant="default"
             showAvatar
-            avatar={<ChatAvatar fallback="S" />}
+            avatar={<ChatAvatar fallback="S" color="s18" />}
             senderName="System"
             timestamp="08:00 AM"
           >
@@ -121,7 +123,7 @@ export const WithVariants: Story = {
             position="left"
             variant="primary"
             showAvatar
-            avatar={<ChatAvatar fallback="A" />}
+            avatar={<ChatAvatar fallback="A" color="s1" />}
             senderName="Admin"
             timestamp="08:01 AM"
           >
@@ -131,7 +133,7 @@ export const WithVariants: Story = {
             position="left"
             variant="secondary"
             showAvatar
-            avatar={<ChatAvatar fallback="B" />}
+            avatar={<ChatAvatar fallback="B" color="s12" />}
             senderName="Bot"
             timestamp="08:02 AM"
           >
@@ -212,8 +214,8 @@ export const Interactive: Story = {
                 key={msg.id}
                 position={msg.position}
                 showAvatar
-                avatar={<ChatAvatar fallback={msg.sender.charAt(0)} />}
-                senderName={msg.position === "left" ? msg.sender : undefined}
+                avatar={<ChatAvatar fallback={msg.sender.charAt(0)} color={msg.position === "left" ? "s5" : "s18"} />}
+                senderName={msg.sender}
                 timestamp={msg.timestamp}
               >
                 {msg.text}
@@ -275,6 +277,7 @@ export const WithIcons: Story = {
                 <Icon name="UserIcon" size="small" />
               </div>
             }
+            senderName="You"
             timestamp="11:01 AM"
           >
             I need help with my order.
@@ -299,7 +302,7 @@ export const NoAvatars: Story = {
           >
             This message has no avatar
           </ChatMessage>
-          <ChatMessage position="right" showAvatar={false} timestamp="10:31 AM">
+          <ChatMessage position="right" showAvatar={false} senderName="You" timestamp="10:31 AM">
             Neither does this one
           </ChatMessage>
           <ChatMessage
