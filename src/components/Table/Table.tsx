@@ -135,13 +135,20 @@ type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
   sortDirection?: "asc" | "desc" | "none";
   onSort?: (e: React.MouseEvent) => void;
   selection?: boolean;
+  stickyLeft?: boolean;
+  leftOffset?: string | number;
+  stickyZIndex?: number;
 };
 
 export const TableHead = ({
   sortable = false,
   sortDirection = "none",
   onSort,
+  stickyLeft = false,
+  leftOffset,
+  stickyZIndex,
   className,
+  style,
   children,
   ...props
 }: TableHeadProps) => {
@@ -151,8 +158,14 @@ export const TableHead = ({
         "wim-table__head",
         sortable && "wim-table__head--sortable",
         props.selection && "wim-table__head--selection",
+        stickyLeft && "wim-table__head--sticky-left",
         className,
       )}
+      style={{
+        ...style,
+        left: stickyLeft ? (leftOffset !== undefined ? leftOffset : 0) : undefined,
+        zIndex: stickyZIndex !== undefined ? stickyZIndex : undefined,
+      }}
       {...props}
       onClick={sortable ? onSort : props.onClick}
       tabIndex={sortable ? 0 : undefined}
@@ -193,12 +206,19 @@ export const TableHead = ({
 type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
   selection?: boolean;
   label?: string;
+  stickyLeft?: boolean;
+  leftOffset?: string | number;
+  stickyZIndex?: number;
 };
 
 export const TableCell = ({
   selection = false,
   label,
+  stickyLeft = false,
+  leftOffset,
+  stickyZIndex,
   className,
+  style,
   children,
   ...props
 }: TableCellProps) => (
@@ -206,8 +226,14 @@ export const TableCell = ({
     className={classNames(
       "wim-table__cell",
       selection && "wim-table__cell--selection",
+      stickyLeft && "wim-table__cell--sticky-left",
       className,
     )}
+    style={{
+      ...style,
+      left: stickyLeft ? (leftOffset !== undefined ? leftOffset : 0) : undefined,
+      zIndex: stickyZIndex !== undefined ? stickyZIndex : undefined,
+    }}
     data-label={label}
     {...props}
   >

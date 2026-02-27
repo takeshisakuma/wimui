@@ -339,3 +339,29 @@ export const FullFeatured: Story = {
     );
   },
 };
+
+export const WithFixedColumn: Story = {
+  args: {
+    columns: [
+      { key: "id", header: "ID", width: 55, fixed: true },
+      { key: "name", header: "Name", width: 140, fixed: false },
+      { key: "email", header: "Email", width: 250 },
+      { key: "role", header: "Role", width: 150 },
+      { key: "joinDate", header: "Join Date", width: 150 },
+      { key: "status", header: "Status", width: 150 },
+    ],
+    rows: sampleData,
+    selection: true,
+    bordered: true,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: "100vw" }}>
+        <p style={{ marginBottom: "16px", color: "var(--wim-color-text-secondary)" }}>
+          Resize your window or view on a small screen to see the horizontal scrolling with fixed column(s).
+        </p>
+        <Story />
+      </div>
+    ),
+  ],
+};

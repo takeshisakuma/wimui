@@ -89,6 +89,13 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
 
 <Canvas of={DataGridStories.StickyHeader} />
 
+### 列の固定 (Sticky Column)
+
+列定義で `fixed: true` を指定すると、その列を左側に固定したまま横スクロールが可能になります。
+※ 複数の列を固定する場合は、各列に `width` (数値またはpx文字列) を指定する必要があります。
+
+<Canvas of={DataGridStories.WithFixedColumn} />
+
 ## フル機能の例
 
 すべての機能を組み合わせた実用的な例です。
@@ -375,6 +382,15 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         データオブジェクトのキー（デフォルトは <code>key</code>）
       </td>
+    </tr>
+    <tr>
+      <td>
+        <code>fixed</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>列を左側に固定するかどうか</td>
     </tr>
   </tbody>
 </table>

@@ -29,6 +29,8 @@ export interface DataGridColumn<T> {
   align?: "left" | "center" | "right";
   /** Data index in the row object (defaults to key if not provided) */
   dataIndex?: keyof T;
+  /** Whether the column is fixed to the left */
+  fixed?: boolean;
 }
 
 export interface DataGridProps<T> {
@@ -135,6 +137,41 @@ export function DataGrid<T extends Record<string, any>>({
   const isSomeSelected =
     selectedRowKeys.length > 0 && selectedRowKeys.length < rows.length;
 
+  // Pre-calculate left offsets for fixed columns.
+  // We use z-index 10 for the leftmost column, and decrement for each column to prevent subpixel overlap issues.
+  const fixedLeftOffsets: Record<string, { offset: number | string; zIndex: number }> = {};
+
+  // Cell padding + border width. 
+  // wim-table--bordered adds exactly 1px border-right.
+  // Actually, even without bordered, the sticky-left cell uses box-shadow which adds NO physical width.
+  // So width is exactly column.width via max-width. BUT padding is 32px horizontally if box-sizing isn't border-box.
+  // Wait, I didn't remove box-sizing: border-box from table.scss! IT IS STILL THERE!
+  // So column.width IS the full width! No need to add padding.
+  // Is this true? Let's assume column.width is exact.
+
+  // Wait! If bordered=true, does the 1px border affect layout?
+  const borderOffset = bordered ? 1 : 0;
+
+  // Selection column is 48px wide exactly via CSS with border-box.
+  let currentLeftOffset = selection ? (48 + borderOffset) : 0;
+  let currentZIndex = 20;
+
+  columns.forEach((col) => {
+    if (col.fixed) {
+      fixedLeftOffsets[col.key] = {
+        offset: currentLeftOffset === 0 ? 0 : `${currentLeftOffset}px`,
+        zIndex: currentZIndex--,
+      };
+      let colWidth = 0;
+      if (typeof col.width === "number") {
+        colWidth = col.width;
+      } else if (typeof col.width === "string" && col.width.endsWith("px")) {
+        colWidth = parseInt(col.width, 10);
+      }
+      currentLeftOffset += colWidth + borderOffset;
+    }
+  });
+
   return (
     <div
       className={classNames(
@@ -156,7 +193,7 @@ export function DataGrid<T extends Record<string, any>>({
           <TableHeader>
             <TableRow>
               {selection && (
-                <TableHead selection>
+                <TableHead selection stickyLeft leftOffset={0} stickyZIndex={21}>
                   <Checkbox
                     checked={isAllSelected}
                     indeterminate={isSomeSelected}
@@ -165,21 +202,32 @@ export function DataGrid<T extends Record<string, any>>({
                   />
                 </TableHead>
               )}
-              {columns.map((column) => (
-                <TableHead
-                  key={column.key}
-                  style={{ width: column.width, textAlign: column.align }}
-                  sortable={column.sortable}
-                  sortDirection={
-                    sortConfig?.key === column.key
-                      ? sortConfig.direction
-                      : "none"
-                  }
-                  onSort={() => handleSort(column.key)}
-                >
-                  {column.header}
-                </TableHead>
-              ))}
+              {columns.map((column) => {
+                const fixedInfo = column.fixed ? fixedLeftOffsets[column.key] : undefined;
+                return (
+                  <TableHead
+                    key={column.key}
+                    style={{
+                      width: column.width,
+                      minWidth: column.width,
+                      maxWidth: column.width,
+                      textAlign: column.align,
+                    }}
+                    sortable={column.sortable}
+                    sortDirection={
+                      sortConfig?.key === column.key
+                        ? sortConfig.direction
+                        : "none"
+                    }
+                    onSort={() => handleSort(column.key)}
+                    stickyLeft={column.fixed}
+                    leftOffset={fixedInfo?.offset}
+                    stickyZIndex={fixedInfo?.zIndex}
+                  >
+                    {column.header}
+                  </TableHead>
+                );
+              })}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -203,7 +251,7 @@ export function DataGrid<T extends Record<string, any>>({
                 return (
                   <TableRow key={key} selected={isSelected}>
                     {selection && (
-                      <TableCell selection>
+                      <TableCell selection stickyLeft leftOffset={0} stickyZIndex={21}>
                         <Checkbox
                           checked={isSelected}
                           onChange={(e) =>
@@ -217,15 +265,25 @@ export function DataGrid<T extends Record<string, any>>({
                       const value = column.dataIndex
                         ? row[column.dataIndex]
                         : (row as any)[column.key];
+
+                      const fixedInfo = column.fixed ? fixedLeftOffsets[column.key] : undefined;
+
                       return (
                         <TableCell
                           key={column.key}
-                          style={{ textAlign: column.align }}
+                          style={{
+                            minWidth: column.width,
+                            maxWidth: column.width,
+                            textAlign: column.align,
+                          }}
                           label={
                             typeof column.header === "string"
                               ? column.header
                               : undefined
                           }
+                          stickyLeft={column.fixed}
+                          leftOffset={fixedInfo?.offset}
+                          stickyZIndex={fixedInfo?.zIndex}
                         >
                           {column.render
                             ? column.render(value, row, rowIndex)
