@@ -84,10 +84,10 @@ const manyRows: User[] = Array.from({ length: 50 }).map((_, i) => ({
 }));
 
 const basicColumns = [
-  { key: "id", header: "ID", width: 100, sortable: true },
-  { key: "name", header: "Name", sortable: true },
-  { key: "email", header: "Email", sortable: true },
-  { key: "role", header: "Role" },
+  { key: "id", header: "ID", width: 55, sortable: true, fixed: true },
+  { key: "name", header: "Name", width: 140, sortable: true, fixed: true },
+  { key: "email", header: "Email", sortable: true, width: 250 },
+  { key: "role", header: "Role", width: 150 },
   {
     key: "status",
     header: "Status",
@@ -111,6 +111,7 @@ export const Default: Story = {
   args: {
     columns: basicColumns,
     rows: sampleData,
+    bordered: true,
   },
 };
 
@@ -131,6 +132,7 @@ export const WithSelection: Story = {
           selection
           selectedRowKeys={selectedRowKeys}
           onSelectionChange={setSelectedRowKeys}
+          bordered
         />
       </div>
     );
@@ -171,6 +173,7 @@ export const WithSorting: Story = {
         rows={data}
         sortConfig={sortConfig}
         onSort={handleSort}
+        bordered
       />
     );
   },
@@ -194,6 +197,7 @@ export const WithPagination: Story = {
           current: currentPage,
           onPageChange: setCurrentPage,
         }}
+        bordered
       />
     );
   },
@@ -202,9 +206,9 @@ export const WithPagination: Story = {
 export const WithActions: Story = {
   args: {
     columns: [
-      { key: "id", header: "ID", width: 100 },
-      { key: "name", header: "Name" },
-      { key: "email", header: "Email" },
+      { key: "id", header: "ID", width: 55, fixed: true },
+      { key: "name", header: "Name", width: 140, fixed: true },
+      { key: "email", header: "Email", width: 250 },
       {
         key: "actions",
         header: "Actions",
@@ -231,6 +235,7 @@ export const WithActions: Story = {
       },
     ],
     rows: sampleData,
+    bordered: true,
   },
 };
 
@@ -239,6 +244,7 @@ export const Loading: Story = {
     columns: basicColumns,
     rows: sampleData,
     loading: true,
+    bordered: true,
   },
 };
 
@@ -247,6 +253,7 @@ export const Empty: Story = {
     columns: basicColumns,
     rows: [],
     emptyMessage: "No users found",
+    bordered: true,
   },
 };
 
@@ -255,6 +262,7 @@ export const Striped: Story = {
     columns: basicColumns,
     rows: sampleData,
     striped: true,
+    bordered: true,
   },
 };
 
@@ -272,6 +280,7 @@ export const StickyHeader: Story = {
     rows: manyRows,
     stickyHeader: true,
     maxHeight: "400px",
+    bordered: true,
   },
 };
 
