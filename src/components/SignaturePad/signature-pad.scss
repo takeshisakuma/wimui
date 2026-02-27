@@ -5,6 +5,8 @@
   flex-direction: column;
   gap: 8px;
   font-family: var(--wim-font-family);
+  max-width: 90vw;
+  box-sizing: border-box;
 
   &__canvas-container {
     position: relative;
@@ -14,10 +16,14 @@
     overflow: hidden;
     cursor: crosshair;
     touch-action: none; // Prevent scrolling while signing
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   &__canvas {
     display: block;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   &__footer {

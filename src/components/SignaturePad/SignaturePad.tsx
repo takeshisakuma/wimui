@@ -58,9 +58,12 @@ export const SignaturePad = ({
       clientY = (event as MouseEvent).clientY;
     }
 
+    const scaleX = rect.width ? canvasRef.current.width / rect.width : 1;
+    const scaleY = rect.height ? canvasRef.current.height / rect.height : 1;
+
     return {
-      x: clientX - rect.left,
-      y: clientY - rect.top,
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY,
     };
   };
 
@@ -131,13 +134,14 @@ export const SignaturePad = ({
     >
       <div
         className="wim-signature-pad__canvas-container"
-        style={{ width, height }}
+        style={{ width, maxWidth: "100%", aspectRatio: `${width} / ${height}`, height: "auto" }}
       >
         <canvas
           ref={canvasRef}
           width={width}
           height={height}
           className="wim-signature-pad__canvas"
+          style={{ width: "100%", height: "100%", display: "block" }}
           onMouseDown={startDrawing}
           onMouseMove={draw}
           onMouseUp={stopDrawing}

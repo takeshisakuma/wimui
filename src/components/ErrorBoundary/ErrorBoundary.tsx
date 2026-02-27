@@ -8,8 +8,8 @@ export interface ErrorBoundaryProps {
    * Can be a React node or a function that receives the error and info.
    */
   fallback?:
-    | ReactNode
-    | ((error: Error, errorInfo: ErrorInfo, reset: () => void) => ReactNode);
+  | ReactNode
+  | ((error: Error, errorInfo: ErrorInfo, reset: () => void) => ReactNode);
   /** Callback fired when an error is caught */
   onError?: (error: Error, errorInfo: ErrorInfo) => void;
   /** Callback fired when the error boundary is reset */
@@ -69,6 +69,9 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
               border: "1px solid red",
               borderRadius: "8px",
               background: "#fff5f5",
+              maxWidth: "100%",
+              boxSizing: "border-box",
+              wordBreak: "break-word",
             }}
           >
             <h2 style={{ color: "red", marginTop: 0 }}>

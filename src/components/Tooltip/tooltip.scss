@@ -17,14 +17,14 @@
 .wim-tooltip-content {
   // Positioning is handled by Floating UI (inline styles)
   z-index: 1000;
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: var(--text-tooltip, #fff);
   white-space: nowrap;
   pointer-events: none;
   background-color: var(--bg-tooltip, #333);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
 
   // Animation

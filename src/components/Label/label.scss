@@ -8,11 +8,13 @@
     display: flex;
     gap: 8px;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   &__text {
     font-size: 0.9rem;
     font-weight: bold;
     color: var(--text-primary);
+    word-break: break-word;
   }
 }

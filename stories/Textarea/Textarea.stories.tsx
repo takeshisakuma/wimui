@@ -51,9 +51,9 @@ export const Ghost: Story = {
   },
 };
 
-export const ErrorState: Story = {
+export const ErrorStatus: Story = {
   render: (args) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
       <Label label="詳細">
         <Textarea {...args} />
       </Label>
@@ -135,7 +135,7 @@ export const FormPattern: Story = {
         />
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         <Label htmlFor="motivation" required label="志望動機">
           <Textarea
             id="motivation"

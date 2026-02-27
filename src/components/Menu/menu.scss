@@ -44,7 +44,7 @@
       background: transparent !important;
     }
 
-    > li {
+    >li {
       flex-shrink: 0;
       display: flex;
       align-items: center;
@@ -64,8 +64,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: var(--spacing-sm) var(--spacing-md);
-  font-size: 0.9rem;
+  padding: var(--spacing-xl) var(--spacing-md);
+  font-size: 1rem;
   color: var(--text-primary);
   white-space: nowrap;
   cursor: pointer;
@@ -136,8 +136,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.9rem;
+    padding: var(--spacing-xl) var(--spacing-md);
+    font-size: 1rem;
     color: var(--text-primary);
     white-space: nowrap;
     cursor: pointer;

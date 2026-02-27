@@ -6,13 +6,14 @@
   gap: var(--spacing-xs);
   align-items: center;
   font-weight: 500;
-  line-height: var(--font-size-minus-2);
+  line-height: normal;
   white-space: nowrap;
   cursor: default;
   user-select: none;
   border: 1px solid transparent;
   border-radius: var(--radius-full);
   transition: all 0.2s ease-in-out;
+  max-width: 100%;
 
   &--md {
     height: 2rem;
@@ -20,9 +21,9 @@
     font-size: var(--font-size-minus-2);
 
     .wim-chip__avatar {
-      width: 1.6rem;
-      height: 1.6rem;
-      margin-left: -var(--spacing-sm);
+      width: 2rem;
+      height: 2rem;
+      margin-left: calc(-1 * var(--spacing-md) - 1px);
     }
   }
 
@@ -32,9 +33,9 @@
     font-size: var(--font-size-minus-3);
 
     .wim-chip__avatar {
-      width: 1.25rem;
-      height: 1.25rem;
-      margin-left: -var(--spacing-xs);
+      width: 1.6rem;
+      height: 1.6rem;
+      margin-left: calc(-1 * var(--spacing-sm) - 1px);
     }
   }
 
@@ -65,6 +66,12 @@
     }
   }
 
+  &__label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
   &__icon {
     display: flex;
     font-size: 1.1em;
@@ -89,55 +96,52 @@
 
   /* Colors and Variants */
   $chip-colors: (
-    "primary": (
-      "base": var(--color-primary),
+    "primary": ("base": var(--color-primary),
       "on": var(--color-text-on-primary),
     ),
-    "secondary": (
-      "base": var(--color-secondary),
+    "secondary": ("base": var(--color-secondary),
       "on": var(--color-text-on-secondary),
     ),
-    "neutral": (
-      "base": var(--color-disabled),
+    "neutral": ("base": var(--color-disabled),
       "on": var(--text-primary),
     ),
   );
 
-  @each $name, $pairs in $chip-colors {
-    $base: map.get($pairs, "base");
-    $on: map.get($pairs, "on");
+@each $name, $pairs in $chip-colors {
+  $base: map.get($pairs, "base");
+  $on: map.get($pairs, "on");
 
-    &--#{$name}.wim-chip--solid {
-      color: $on;
-      background-color: $base;
+  &--#{$name}.wim-chip--solid {
+    color: $on;
+    background-color: $base;
 
-      &.wim-chip--selected {
-        box-shadow:
-          0 0 0 2px white,
-          0 0 0 4px $base;
-      }
-    }
-
-    &--#{$name}.wim-chip--outline {
-      color: var(--text-primary);
-      background-color: transparent;
-      border-color: var(--text-disabled);
-
-      &.wim-chip--selected {
-        color: $base;
-        background-color: color-mix(in srgb, $base 10%, transparent);
-        border-color: $base;
-      }
-
-      &.wim-chip--clickable:hover {
-        background-color: color-mix(in srgb, $base 5%, transparent);
-      }
+    &.wim-chip--selected {
+      box-shadow:
+        0 0 0 2px white,
+        0 0 0 4px $base;
     }
   }
 
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-    filter: none;
+  &--#{$name}.wim-chip--outline {
+    color: var(--text-primary);
+    background-color: transparent;
+    border-color: var(--text-disabled);
+
+    &.wim-chip--selected {
+      color: $base;
+      background-color: color-mix(in srgb, $base 10%, transparent);
+      border-color: $base;
+    }
+
+    &.wim-chip--clickable:hover {
+      background-color: color-mix(in srgb, $base 5%, transparent);
+    }
   }
+}
+
+&:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  filter: none;
+}
 }

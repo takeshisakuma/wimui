@@ -23,7 +23,14 @@ export const Default: Story = {
   render: () => {
     const [shouldThrow, setShouldThrow] = useState(false);
     return (
-      <div style={{ padding: "20px", textAlign: "center" }}>
+      <div
+        style={{
+          padding: "20px",
+          textAlign: "center",
+          maxWidth: "100%",
+          boxSizing: "border-box",
+        }}
+      >
         <p style={{ marginBottom: "16px" }}>
           下のボタンをクリックしてエラーを発生させます。
         </p>
@@ -31,7 +38,15 @@ export const Default: Story = {
           onClick={() => setShouldThrow(true)}
           label="エラーを発生させる"
           priority="primary"
-          style={{ marginBottom: "20px" }}
+          style={{
+            marginBottom: "20px",
+            maxWidth: "100%",
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+            height: "auto",
+            paddingTop: "12px",
+            paddingBottom: "12px"
+          }}
         />
         <ErrorBoundary onReset={() => setShouldThrow(false)}>
           {shouldThrow ? (
@@ -49,12 +64,27 @@ export const CustomFallback: Story = {
   render: () => {
     const [shouldThrow, setShouldThrow] = useState(false);
     return (
-      <div style={{ padding: "20px", textAlign: "center" }}>
+      <div
+        style={{
+          padding: "20px",
+          textAlign: "center",
+          maxWidth: "90vw",
+          boxSizing: "border-box",
+        }}
+      >
         <Button
           onClick={() => setShouldThrow(true)}
           label="カスタムエラーを発生させる"
           priority="primary"
-          style={{ marginBottom: "20px" }}
+          style={{
+            marginBottom: "20px",
+            maxWidth: "100%",
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+            height: "auto",
+            paddingTop: "12px",
+            paddingBottom: "12px"
+          }}
         />
         <ErrorBoundary
           onReset={() => setShouldThrow(false)}
@@ -66,6 +96,9 @@ export const CustomFallback: Story = {
                 borderRadius: "12px",
                 textAlign: "center",
                 border: "1px solid #ddd",
+                maxWidth: "100%",
+                boxSizing: "border-box",
+                wordBreak: "break-word",
               }}
             >
               <h3 style={{ marginTop: 0 }}>おっと！エラーが発生しました</h3>
@@ -76,6 +109,14 @@ export const CustomFallback: Story = {
                 onClick={reset}
                 label="境界をリセットして再試行"
                 priority="secondary"
+                style={{
+                  maxWidth: "100%",
+                  whiteSpace: "normal",
+                  wordBreak: "break-word",
+                  height: "auto",
+                  paddingTop: "12px",
+                  paddingBottom: "12px"
+                }}
               />
             </div>
           )}

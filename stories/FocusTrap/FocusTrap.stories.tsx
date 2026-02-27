@@ -27,6 +27,8 @@ export const Default: Story = {
           flexDirection: "column",
           gap: "20px",
           alignItems: "center",
+          maxWidth: "90vw",
+          boxSizing: "border-box",
         }}
       >
         <Button onClick={() => setActive(!active)}>
@@ -38,6 +40,8 @@ export const Default: Story = {
             padding: "20px",
             border: "1px solid #ccc",
             borderRadius: "8px",
+            maxWidth: "100%",
+            boxSizing: "border-box",
           }}
         >
           <p>Outside the trap</p>
@@ -54,6 +58,8 @@ export const Default: Story = {
                 display: "flex",
                 flexDirection: "column",
                 gap: "10px",
+                maxWidth: "100%",
+                boxSizing: "border-box",
               }}
             >
               <h3>Focus Trapped Area</h3>
@@ -86,6 +92,8 @@ export const AutoFocus: Story = {
           flexDirection: "column",
           gap: "20px",
           alignItems: "center",
+          maxWidth: "90vw",
+          boxSizing: "border-box",
         }}
       >
         <Button onClick={() => setActive(!active)}>
@@ -102,6 +110,8 @@ export const AutoFocus: Story = {
                 display: "flex",
                 flexDirection: "column",
                 gap: "10px",
+                maxWidth: "100%",
+                boxSizing: "border-box",
               }}
             >
               <h3>AutoFocus enabled</h3>

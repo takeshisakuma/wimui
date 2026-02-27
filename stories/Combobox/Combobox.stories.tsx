@@ -33,23 +33,26 @@ const sampleOptions = [
 
 export const Default: Story = {
   args: {
+    label: "Favorite Fruit",
     options: sampleOptions,
-    placeholder: "Search fruits...",
+    placeholder: "Apple",
   },
 };
 
 export const WithIcon: Story = {
   args: {
+    label: "Favorite Fruit",
     options: sampleOptions,
-    placeholder: "Search fruits...",
+    placeholder: "Apple",
     showSearchIcon: true,
   },
 };
 
 export const Disabled: Story = {
   args: {
+    label: "Favorite Fruit",
     options: sampleOptions,
-    placeholder: "Disabled combobox",
+    placeholder: "Apple",
     disabled: true,
   },
 };

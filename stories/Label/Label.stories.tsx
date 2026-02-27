@@ -8,6 +8,13 @@ const meta: Meta<typeof Label> = {
   parameters: {
     layout: "centered",
   },
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: "90vw", width: "100%", boxSizing: "border-box" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

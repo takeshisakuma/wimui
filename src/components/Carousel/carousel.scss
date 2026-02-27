@@ -55,19 +55,19 @@
     padding: 0;
     color: var(--wim-color-text, #333);
     cursor: pointer;
-    background: color-mix(
-      in srgb,
-      var(--wim-color-surface-rgb, 255, 255, 255) 80%,
-      transparent
-    );
+    background: color-mix(in srgb,
+        var(--wim-color-surface, #fff) 80%,
+        transparent);
+    backdrop-filter: blur(4px);
     border: 1px solid var(--wim-color-border, #e0e0e0);
     border-radius: 50%;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
     transform: translateY(-50%);
     transition: all 0.2s ease;
 
     &:hover:not(:disabled) {
       background: var(--wim-color-surface, #fff);
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
     }
 
     &:disabled {
@@ -99,12 +99,12 @@
     height: 10px;
     padding: 0;
     cursor: pointer;
-    background: color-mix(
-      in srgb,
-      var(--wim-color-text-rgb, 0, 0, 0) 20%,
-      transparent
-    );
+    background: color-mix(in srgb,
+        var(--wim-color-surface, #fff) 60%,
+        transparent);
+    backdrop-filter: blur(4px);
     border: none;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
     border-radius: 50%;
     transition: all 0.2s ease;
 
@@ -112,14 +112,14 @@
       width: 24px;
       background: var(--wim-color-primary, #007bff);
       border-radius: 5px;
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
     }
 
     &:hover:not(&--active) {
-      background: color-mix(
-        in srgb,
-        var(--wim-color-text-rgb, 0, 0, 0) 40%,
-        transparent
-      );
+      background: color-mix(in srgb,
+          var(--wim-color-surface, #fff) 90%,
+          transparent);
+      box-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
     }
   }
 }

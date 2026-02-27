@@ -80,7 +80,7 @@ import { Meta } from "@storybook/blocks";
 
 ## プレースホルダーの活用指針
 
-プレースホルダーは、入力欄に何を入力すべきかの**短いヒントや例（サンプル）**を表示するためのものです。
+プレースホルダーは、入力欄に何を入力すべきかの短いヒントや例（サンプル）を表示するためのものです。
 
 ### 基本的な考え方
 
@@ -95,8 +95,8 @@ import { Meta } from "@storybook/blocks";
   </thead>
   <tbody>
     <tr>
-      <td>○ <code>例：03-1234-5678</code></td>
-      <td>× <code>電話番号を入力してください</code></td>
+      <td><code>例：03-1234-5678</code></td>
+      <td><code>電話番号を入力してください</code></td>
     </tr>
   </tbody>
 </table>
@@ -116,13 +116,13 @@ import { Meta } from "@storybook/blocks";
   <tbody>
     <tr>
       <td><strong>ラベルの代用</strong></td>
-      <td>○ <code>&lt;label&gt;</code> を外側に常時表示</td>
-      <td>× ラベルを消して内部をスッキリ見せる（入力中に項目名が消えるため）</td>
+      <td><code>&lt;label&gt;</code> を外側に常時表示</td>
+      <td>ラベルを消して内部をスッキリ見せる（入力中に項目名が消えるため）</td>
     </tr>
     <tr>
       <td><strong>重要ルール</strong></td>
-      <td>○ 注釈はプレースホルダーではなく欄外に記載</td>
-      <td>× 「8文字以上、記号含む」等のルールを詰め込む</td>
+      <td>注釈はプレースホルダーではなく欄外に記載</td>
+      <td>「8文字以上、記号含む」等のルールを詰め込む</td>
     </tr>
   </tbody>
 </table>
@@ -141,8 +141,8 @@ import { Meta } from "@storybook/blocks";
   </thead>
   <tbody>
     <tr>
-      <td>○ <code>yamada@example.com</code></td>
-      <td>× <code>メールアドレスを入力（項目名）</code></td>
+      <td><code>yamada@example.com</code></td>
+      <td><code>メールアドレスを入力（項目名）</code></td>
     </tr>
   </tbody>
 </table>
@@ -162,13 +162,13 @@ import { Meta } from "@storybook/blocks";
   <tbody>
     <tr>
       <td><strong>読み上げ</strong></td>
-      <td>○ <code>label</code> や <code>aria-describedby</code> 等を併用</td>
-      <td>× 重要な情報をプレースホルダーのみで提供する</td>
+      <td><code>label</code> や <code>aria-describedby</code> 等を併用</td>
+      <td>重要な情報をプレースホルダーのみで提供する</td>
     </tr>
     <tr>
       <td><strong>視覚性</strong></td>
-      <td>○ 十分なコントラストを確保する</td>
-      <td>× 文字色を薄くしすぎる</td>
+      <td>十分なコントラストを確保する</td>
+      <td>文字色を薄くしすぎる</td>
     </tr>
   </tbody>
 </table>

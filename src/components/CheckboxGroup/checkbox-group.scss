@@ -1,10 +1,11 @@
 ﻿.wim-checkbox-group {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 
   &--horizontal {
     flex-flow: row wrap;
-    gap: var(--spacing-3xl);
+    column-gap: var(--spacing-lg);
+    row-gap: var(--spacing-md);
   }
 }
