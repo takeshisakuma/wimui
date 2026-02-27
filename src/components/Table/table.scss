@@ -98,6 +98,13 @@
     &--selected {
       background-color: var(--wim-color-primary-container-alpha,
           rgb(0 122 255 / 0.08)) !important;
+
+      .wim-table__cell--sticky-left {
+        /* Layer the selected alpha color over a solid white background so scrolling items don't show through */
+        background-color: var(--wim-color-surface, #fff) !important;
+        background-image: linear-gradient(var(--wim-color-primary-container-alpha, rgb(0 122 255 / 0.08)),
+            var(--wim-color-primary-container-alpha, rgb(0 122 255 / 0.08))) !important;
+      }
     }
   }
 
@@ -122,11 +129,21 @@
     .wim-table__body .wim-table__row:nth-child(even) {
       background-color: var(--wim-color-surface-variant-alpha,
           rgb(0 0 0 / 0.02));
+
+      .wim-table__cell--sticky-left {
+        background-image: linear-gradient(var(--wim-color-surface-variant-alpha, rgb(0 0 0 / 0.02)),
+            var(--wim-color-surface-variant-alpha, rgb(0 0 0 / 0.02)));
+      }
     }
   }
 
   &--bordered {
     border: 1px solid var(--wim-color-border, #e0e0e0);
+    border-left: none;
+
+    .wim-table__row> :first-child {
+      border-left: 1px solid var(--wim-color-border, #e0e0e0);
+    }
 
     .wim-table__head,
     .wim-table__cell {
@@ -141,6 +158,11 @@
   &--hoverable {
     .wim-table__body .wim-table__row:hover {
       background-color: var(--wim-color-surface-hover, #f0f0f0);
+
+      .wim-table__cell--sticky-left {
+        background-image: linear-gradient(var(--wim-color-surface-hover, #f0f0f0),
+            var(--wim-color-surface-hover, #f0f0f0));
+      }
     }
   }
 
