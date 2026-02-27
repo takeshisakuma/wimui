@@ -14,6 +14,8 @@ export interface DataGridColumn<T> {
     align?: "left" | "center" | "right";
     /** Data index in the row object (defaults to key if not provided) */
     dataIndex?: keyof T;
+    /** Whether the column is fixed to the left */
+    fixed?: boolean;
 }
 export interface DataGridProps<T> {
     /** Column definitions */

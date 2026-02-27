@@ -30,13 +30,19 @@ type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
     sortDirection?: "asc" | "desc" | "none";
     onSort?: (e: React.MouseEvent) => void;
     selection?: boolean;
+    stickyLeft?: boolean;
+    leftOffset?: string | number;
+    stickyZIndex?: number;
 };
-export declare const TableHead: ({ sortable, sortDirection, onSort, className, children, ...props }: TableHeadProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TableHead: ({ sortable, sortDirection, onSort, stickyLeft, leftOffset, stickyZIndex, className, style, children, ...props }: TableHeadProps) => import("react/jsx-runtime").JSX.Element;
 type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
     selection?: boolean;
     label?: string;
+    stickyLeft?: boolean;
+    leftOffset?: string | number;
+    stickyZIndex?: number;
 };
-export declare const TableCell: ({ selection, label, className, children, ...props }: TableCellProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TableCell: ({ selection, label, stickyLeft, leftOffset, stickyZIndex, className, style, children, ...props }: TableCellProps) => import("react/jsx-runtime").JSX.Element;
 declare const TableComponent: typeof Table & {
     Header: typeof TableHeader;
     Body: typeof TableBody;
