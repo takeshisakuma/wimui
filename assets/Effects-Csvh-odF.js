@@ -1,0 +1,12 @@
+import{j as s}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as a}from"./index-bJSohhuS.js";import{M as d}from"./index-D8rv0vj0.js";import{T as e}from"./T-cfPeosnY.js";import{T as i,S as n,M as h}from"./TokenVisualizer-BRSnQI6S.js";import"./iframe-DeOiS_GH.js";import"./preload-helper-PPVm8Dsz.js";import"./index-CKXFMjep.js";import"./index-D1za4aJC.js";import"./index-7nQbCmQI.js";import"./index-AzqWsIcY.js";import"./index-DTXphyH5.js";import"./useTranslation-BbjDGlWL.js";function o(r){return s.jsxs(s.Fragment,{children:[s.jsx(d,{title:"Token/Effects"}),`
+`,s.jsx("h1",{children:s.jsx(e,{k:"guide_effects_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"guide_effects_desc"})}),`
+`,s.jsx("hr",{}),`
+`,s.jsx("h2",{children:s.jsx(e,{k:"guide_effects_shadow"})}),`
+`,s.jsxs(i,{columns:"repeat(auto-fill, minmax(200px, 1fr))",children:[s.jsx(n,{name:"XS",value:"var(--shadow-xs)",shadow:"var(--shadow-xs)"}),s.jsx(n,{name:"Small",value:"var(--shadow-sm)",shadow:"var(--shadow-sm)"}),s.jsx(n,{name:"Medium",value:"var(--shadow-md)",shadow:"var(--shadow-md)"}),s.jsx(n,{name:"Large",value:"var(--shadow-lg)",shadow:"var(--shadow-lg)"}),s.jsx(n,{name:"Inset",value:"var(--shadow-inset)",shadow:"var(--shadow-inset)"})]}),`
+`,s.jsx("hr",{}),`
+`,s.jsx("h2",{children:s.jsx(e,{k:"guide_effects_motion"})}),`
+`,s.jsx("p",{style:{marginBottom:"20px"},children:s.jsx(e,{k:"guide_effects_motion_desc"})}),`
+`,s.jsx(i,{columns:"repeat(auto-fill, minmax(280px, 1fr))",children:s.jsx(h,{name:"Base Transition",duration:"0.3s",easing:"ease-in-out"})}),`
+`,s.jsx("strong",{children:"実装ガイドライン:"}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:"項目"}),s.jsx("th",{children:"ガイドライン"})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("strong",{children:"Shadow"})}),s.jsx("td",{children:"浮き出し効果は、要素の重なり順（z-index）や重要度に応じて使い分けます。"})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("strong",{children:"Motion"})}),s.jsx("td",{children:"ユーザーの操作に対するフィードバックは 0.2s〜0.3s 程度が最も自然に感じられます。"})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("strong",{children:"共通変数"})}),s.jsxs("td",{children:["変数は ",s.jsx("code",{children:"var(--transition-base)"})," のようにまとめて定義されたものを使用することを推奨します。"]})]})]})]})]})}function k(r={}){const{wrapper:t}={...a(),...r.components};return t?s.jsx(t,{...r,children:s.jsx(o,{...r})}):o()}export{k as default};

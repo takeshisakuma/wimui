@@ -32,6 +32,7 @@ export interface ChatAvatarProps {
     alt?: string;
     fallback?: string;
     size?: "small" | "medium" | "large";
+    color?: "s1" | "s3" | "s5" | "s7" | "s10" | "s12" | "s14" | "s16" | "s18" | "s20" | "s22" | "s24";
     className?: string;
 }
 export declare const ChatAvatar: React.FC<ChatAvatarProps>;
