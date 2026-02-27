@@ -352,10 +352,27 @@ export const WithFixedColumn: Story = {
     columns: [
       { key: "id", header: "ID", width: 55, fixed: true },
       { key: "name", header: "Name", width: 140, fixed: false },
-      { key: "email", header: "Email", width: 250 },
-      { key: "role", header: "Role", width: 150 },
+      { key: "email", header: "Email", width: 200 },
+      { key: "role", header: "Role", width: 80 },
       { key: "joinDate", header: "Join Date", width: 150 },
-      { key: "status", header: "Status", width: 100 },
+      {
+        key: "status",
+        header: "Status",
+        width: 100,
+        render: (value: any) => (
+          <Badge
+            content={value}
+            size="small"
+            color={
+              value === "Active"
+                ? "primary"
+                : value === "Inactive"
+                  ? "neutral"
+                  : "secondary"
+            }
+          />
+        ),
+      },
     ],
     rows: sampleData,
     selection: true,
