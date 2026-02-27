@@ -91,6 +91,7 @@ const basicColumns = [
   {
     key: "status",
     header: "Status",
+    width: 100,
     render: (value: any) => (
       <Badge
         content={value}
@@ -207,8 +208,8 @@ export const WithActions: Story = {
   args: {
     columns: [
       { key: "id", header: "ID", width: 55, fixed: true },
-      { key: "name", header: "Name", width: 140, fixed: true },
-      { key: "email", header: "Email", width: 250 },
+      { key: "name", header: "Name", width: 150, fixed: false },
+      { key: "email", header: "Email", width: 200 },
       {
         key: "actions",
         header: "Actions",
@@ -323,9 +324,6 @@ export const FullFeatured: Story = {
 
     return (
       <div>
-        <p style={{ marginBottom: "16px" }}>
-          Selected {selectedRowKeys.length} of {data.length} rows
-        </p>
         <DataGrid
           columns={basicColumns}
           rows={currentData}
@@ -357,7 +355,7 @@ export const WithFixedColumn: Story = {
       { key: "email", header: "Email", width: 250 },
       { key: "role", header: "Role", width: 150 },
       { key: "joinDate", header: "Join Date", width: 150 },
-      { key: "status", header: "Status", width: 150 },
+      { key: "status", header: "Status", width: 100 },
     ],
     rows: sampleData,
     selection: true,
@@ -366,9 +364,6 @@ export const WithFixedColumn: Story = {
   decorators: [
     (Story) => (
       <div style={{ maxWidth: "100vw" }}>
-        <p style={{ marginBottom: "16px", color: "var(--wim-color-text-secondary)" }}>
-          Resize your window or view on a small screen to see the horizontal scrolling with fixed column(s).
-        </p>
         <Story />
       </div>
     ),
