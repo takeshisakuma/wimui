@@ -3,19 +3,19 @@ import { T } from "../stories/T";
 
 <Meta title="Components/Typography & Icons" />
 
-# タイポグラフィとアイコンの使い分け
+# <T k="auto_tr_typographyselection_700" />
 
-情報の階層構造を明確にし、読みやすさとアクセシビリティを最大化するためのガイドラインです。
+<T k="auto_tr_typographyselection_704" />
 
-## テキストコンポーネント比較表
+## <T k="auto_tr_typographyselection_701" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>HTMLタグ</th>
-      <th>主な用途</th>
-      <th>特徴</th>
+      <th><T k="table_header_component" /></th>
+      <th><T k="auto_tr_typographyselection_670" /></th>
+      <th><T k="table_header_usage" /></th>
+      <th><T k="table_header_feature" /></th>
     </tr>
   </thead>
   <tbody>
@@ -24,32 +24,32 @@ import { T } from "../stories/T";
         <strong>Heading</strong>
       </td>
       <td>`h1` - `h6`</td>
-      <td>セクションの見出し</td>
-      <td>視覚的な重み（太さ・サイズ）を持ち、ページの構造を示す。</td>
+      <td><T k="auto_tr_typographyselection_671" /></td>
+      <td><T k="auto_tr_typographyselection_672" /></td>
     </tr>
     <tr>
       <td>
         <strong>Paragraph</strong>
       </td>
       <td>`p`</td>
-      <td>本文のブロック</td>
-      <td>適切な行間と余白を持ち、長い文章の可読性を確保する。</td>
+      <td><T k="auto_tr_typographyselection_673" /></td>
+      <td><T k="auto_tr_typographyselection_674" /></td>
     </tr>
     <tr>
       <td>
         <strong>Span</strong>
       </td>
       <td>`span`</td>
-      <td>インラインテキスト</td>
-      <td>文章の一部を強調したり、特定のスタイルを適用したりする。</td>
+      <td><T k="auto_tr_typographyselection_675" /></td>
+      <td><T k="auto_tr_typographyselection_676" /></td>
     </tr>
     <tr>
       <td>
         <strong>Quote</strong>
       </td>
       <td>`blockquote`</td>
-      <td>引用文</td>
-      <td>外部からの引用や強調したい文章を視覚的に分離する。</td>
+      <td><T k="auto_tr_typographyselection_677" /></td>
+      <td><T k="auto_tr_typographyselection_678" /></td>
     </tr>
     <tr>
       <td>
@@ -58,8 +58,8 @@ import { T } from "../stories/T";
       <td>
         <code>code</code>
       </td>
-      <td>技術情報</td>
-      <td>等幅フォントを使用し、インラインのコード片を明示する。</td>
+      <td><T k="auto_tr_typographyselection_679" /></td>
+      <td><T k="auto_tr_typographyselection_680" /></td>
     </tr>
     <tr>
       <td>
@@ -68,124 +68,111 @@ import { T } from "../stories/T";
       <td>
         <code>kbd</code>
       </td>
-      <td>技術情報</td>
-      <td>等幅フォントを使用し、キーボード操作やショートカットを明示する。</td>
+      <td><T k="auto_tr_typographyselection_679" /></td>
+      <td><T k="auto_tr_typographyselection_681" /></td>
     </tr>
     <tr>
       <td>
         <strong>Highlight</strong>
       </td>
       <td>`mark`</td>
-      <td>注目喚起</td>
-      <td>検索結果のヒット部分や、特に重要な箇所を背景色で強調する。</td>
+      <td><T k="auto_tr_typographyselection_682" /></td>
+      <td><T k="auto_tr_typographyselection_683" /></td>
     </tr>
     <tr>
       <td>
         <strong>Link</strong>
       </td>
       <td>`a`</td>
-      <td>ハイパーリンク</td>
+      <td><T k="doc_link_desc" /></td>
       <td>
-        別のページやリソースへのナビゲーション。ページ遷移には
-        `Link`、アクション実行には `Button` を使用するのが原則。
-      </td>
+        <T k="auto_tr_typographyselection_684" /></td>
     </tr>
     <tr>
       <td>
         <strong>Icon</strong>
       </td>
       <td>`svg`</td>
-      <td>アイコン表示</td>
+      <td><T k="auto_tr_typographyselection_685" /></td>
       <td>
-        テキストの補助や単独でのアクション指示。単体使用時は `aria-label`
-        で意味を付与してください。
-      </td>
+        <T k="auto_tr_typographyselection_686" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## アイコンコンポーネントの基本
+## <T k="auto_tr_typographyselection_702" />
 
-アイコンはテキストの補助、または単独でのアクション指示として機能します。
+<T k="auto_tr_typographyselection_705" />
 
 <table>
   <thead>
     <tr>
-      <th>スタイル</th>
-      <th>例</th>
-      <th>推奨される利用シーン</th>
+      <th><T k="auto_tr_typographyselection_687" /></th>
+      <th><T k="auto_tr_formlabels_199" /></th>
+      <th><T k="auto_tr_pickerselection_524" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>Outline (線画)</strong>
+        <strong><T k="auto_tr_typographyselection_688" /></strong>
       </td>
       <td>
         <T k="doc_icon_desc" />
       </td>
-      <td>標準的なUIパーツ、ナビゲーション、フォームの補助。</td>
+      <td><T k="auto_tr_typographyselection_689" /></td>
     </tr>
     <tr>
       <td>
-        <strong>Filled (塗り)</strong>
+        <strong><T k="auto_tr_typographyselection_690" /></strong>
       </td>
       <td>-</td>
-      <td>選択状態の明示、重要なアラート、ダークモードでの視認性確保。</td>
+      <td><T k="auto_tr_typographyselection_691" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## ユーザビリティとアクセシビリティ
+## <T k="auto_tr_typographyselection_703" />
 
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>ガイドライン</th>
+      <th><T k="table_header_item" /></th>
+      <th><T k="table_header_guideline" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>セマンティクス</strong>
+        <strong><T k="auto_tr_typographyselection_692" /></strong>
       </td>
       <td>
-        見出しのレベル（h1,
-        h2...）は見た目のサイズではなく、ドキュメントの構造に従って正しく順序立てて使用してください。
-      </td>
+        <T k="auto_tr_typographyselection_693" /></td>
     </tr>
     <tr>
       <td>
-        <strong>コントラスト</strong>
+        <strong><T k="auto_tr_typographyselection_694" /></strong>
       </td>
       <td>
-        テキストの色は背景色に対して十分なコントラスト比（WCAG
-        AA以上）を維持してください。`ContrastChecker`
-        ユーティリティで確認できます。
-      </td>
+        <T k="auto_tr_typographyselection_695" /></td>
     </tr>
     <tr>
       <td>
-        <strong>アイコンの代替テキスト</strong>
+        <strong><T k="auto_tr_typographyselection_696" /></strong>
       </td>
       <td>
-        アイコンが意味を持つ場合（ボタンとして機能する場合など）は、`aria-label`
-        等でスクリーンリーダーに情報を伝えてください。
-      </td>
+        <T k="auto_tr_typographyselection_697" /></td>
     </tr>
     <tr>
       <td>
-        <strong>可読性</strong>
+        <strong><T k="auto_tr_typographyselection_698" /></strong>
       </td>
       <td>
-        本文（Paragraph）の行幅は、読みやすさを考慮して 45〜75
-        文字程度に収まるよう `Container` 等で制限することを推奨します。
-      </td>
+        <T k="auto_tr_typographyselection_699" /></td>
     </tr>
   </tbody>
 </table>

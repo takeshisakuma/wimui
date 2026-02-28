@@ -3,18 +3,18 @@ import { T } from "../stories/T";
 
 <Meta title="Components/Utilities" />
 
-# ユーティリティの役割と使い分け
+# <T k="auto_tr_utilityselection_738" />
 
 wimui は、UI の構築を支える低レイヤーの補助コンポーネントを多数提供しています。これらは直接的な UI パーツではありませんが、機能性と操作性を高めるために不可欠です。
 
-## 技術的ユーティリティ
+## <T k="auto_tr_utilityselection_739" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>役割</th>
-      <th>使用ポイント</th>
+      <th><T k="table_header_component" /></th>
+      <th><T k="table_header_role" /></th>
+      <th><T k="auto_tr_utilityselection_706" /></th>
     </tr>
   </thead>
   <tbody>
@@ -22,50 +22,46 @@ wimui は、UI の構築を支える低レイヤーの補助コンポーネン�
       <td>
         <strong>Portal</strong>
       </td>
-      <td>DOMの転送</td>
+      <td><T k="auto_tr_utilityselection_707" /></td>
       <td>
-        モーダル、ツールチップ、コンテキストメニューなど、親要素の `overflow:
-        hidden` の影響を避ける必要がある場合。
-      </td>
+        <T k="auto_tr_utilityselection_708" /></td>
     </tr>
     <tr>
       <td>
         <strong>Transition</strong>
       </td>
-      <td>アニメーション管理</td>
-      <td>出現・消失時の CSS アニメーションを一括管理したい場合。</td>
+      <td><T k="doc_transition_desc" /></td>
+      <td><T k="auto_tr_utilityselection_709" /></td>
     </tr>
     <tr>
       <td>
         <strong>Focus Trap</strong>
       </td>
-      <td>フォーカス制御</td>
+      <td><T k="auto_tr_utilityselection_710" /></td>
       <td>
-        モーダルやダイアログが開いている間、フォーカスが裏側に漏れないようにし、アクセシビリティ（キーボード操作）を確保する場合。
-      </td>
+        <T k="auto_tr_utilityselection_711" /></td>
     </tr>
     <tr>
       <td>
         <strong>Error Boundary</strong>
       </td>
-      <td>エラーハンドリング</td>
+      <td><T k="auto_tr_utilityselection_712" /></td>
       <td>
-        特定のコンポーネントで予期せぬ実行時エラーが発生しても、アプリ全体がクラッシュするのを防ぎ、適切なフォールバックを表示する場合。
-      </td>
+        <T k="auto_tr_utilityselection_713" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 視覚的ユーティリティ
+## <T k="auto_tr_utilityselection_740" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>役割</th>
-      <th>活用のヒント</th>
+      <th><T k="table_header_component" /></th>
+      <th><T k="table_header_role" /></th>
+      <th><T k="auto_tr_mediaselection_412" /></th>
     </tr>
   </thead>
   <tbody>
@@ -73,136 +69,114 @@ wimui は、UI の構築を支える低レイヤーの補助コンポーネン�
       <td>
         <strong>Divider</strong>
       </td>
-      <td>区切り</td>
+      <td><T k="auto_tr_utilityselection_714" /></td>
       <td>
-        情報のまとまりを水平または垂直に分離します。意味の薄い区切り線は排除し、余白（Stack
-        等）による解決も検討してください。
-      </td>
+        <T k="auto_tr_utilityselection_715" /></td>
     </tr>
     <tr>
       <td>
         <strong>Visually Hidden</strong>
       </td>
-      <td>アクセシブルな非表示</td>
+      <td><T k="auto_tr_utilityselection_716" /></td>
       <td>
-        視覚的には見せたくないが、スクリーンリーダー等には情報を伝えたい、操作のヒントなどを埋め込む場合。
-      </td>
+        <T k="auto_tr_utilityselection_717" /></td>
     </tr>
     <tr>
       <td>
         <strong>Scroll Area</strong>
       </td>
-      <td>カスタムスクロール</td>
+      <td><T k="auto_tr_utilityselection_718" /></td>
       <td>
-        OSごとのスクロールバーの差異をなくし、デザインに合わせてスクロール部分を美しく整えたい場合。
-      </td>
+        <T k="auto_tr_utilityselection_719" /></td>
     </tr>
     <tr>
       <td>
         <strong>Scroll Progress</strong>
       </td>
-      <td>スクロール進捗</td>
+      <td><T k="doc_scrollProgress_title" /></td>
       <td>
-        ページをどこまで読んだかを示す進捗バー。長いドキュメントなどで読了までの目安を提示したい場合。
-      </td>
+        <T k="auto_tr_utilityselection_720" /></td>
     </tr>
     <tr>
       <td>
         <strong>Infinite Scroll</strong>
       </td>
-      <td>無限スクロール</td>
+      <td><T k="doc_infiniteScroll_title" /></td>
       <td>
-        ページ下部への到達で次データを自動ロード。SNSフィードや一覧画面での逐次読み込み。
-      </td>
+        <T k="auto_tr_utilityselection_721" /></td>
     </tr>
     <tr>
       <td>
         <strong>Markdown</strong>
       </td>
-      <td>マークダウン</td>
+      <td><T k="auto_tr_utilityselection_722" /></td>
       <td>
-        Markdown形式の文字列を、見出しやリスト等の適切なHTML要素として美しく整形して表示する場合。
-      </td>
+        <T k="auto_tr_utilityselection_723" /></td>
     </tr>
     <tr>
       <td>
         <strong>Marquee</strong>
       </td>
-      <td>文字スクロール</td>
+      <td><T k="auto_tr_utilityselection_724" /></td>
       <td>
-        ニュースティッカーや強調したい情報の横スクロール表示。視線の誘導が強いため、限定的な使用を推奨。
-      </td>
+        <T k="auto_tr_utilityselection_725" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 設計上の考慮事項
+## <T k="auto_tr_utilityselection_741" />
 
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>ガイドライン</th>
+      <th><T k="table_header_item" /></th>
+      <th><T k="table_header_guideline" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>過剰な Portal の回避</strong>
+        <strong><T k="auto_tr_utilityselection_726" /></strong>
       </td>
       <td>
-        Portal
-        は便利ですが、デバッグ（要素特定）を難しくする可能性があります。真に必要な場合（スタッキングコンテキストの回避など）に限定して使用してください。
-      </td>
+        <T k="auto_tr_utilityselection_727" /></td>
     </tr>
     <tr>
       <td>
-        <strong>アクセシビリティ優先</strong>
+        <strong><T k="auto_tr_utilityselection_728" /></strong>
       </td>
       <td>
-        `FocusTrap` や `VisuallyHidden` は、アクセシビリティの高い UI
-        を作るための強力な味方です。これらを活用し、キーボード等での操作体験を疎かにしないようにしましょう。
-      </td>
+        <T k="auto_tr_utilityselection_729" /></td>
     </tr>
     <tr>
       <td>
-        <strong>パフォーマンス</strong>
+        <strong><T k="auto_tr_utilityselection_730" /></strong>
       </td>
       <td>
-        `InfiniteScroll`
-        は便利ですが、仮想スクロールが必要なほど大量（数千件〜）のデータを扱う場合は
-        `DataGrid` などの使用を検討してください。
-      </td>
+        <T k="auto_tr_utilityselection_731" /></td>
     </tr>
     <tr>
       <td>
-        <strong>セキュリティ（Markdown）</strong>
+        <strong><T k="auto_tr_utilityselection_732" /></strong>
       </td>
       <td>
-        `Markdown`
-        でユーザー入力を扱う際は、XSS（クロスサイトスクリプティング）対策として必ずサニタイズ処理が適用されていることを確認してください。
-      </td>
+        <T k="auto_tr_utilityselection_733" /></td>
     </tr>
     <tr>
       <td>
-        <strong>ScrollProgress の配置</strong>
+        <strong><T k="auto_tr_utilityselection_734" /></strong>
       </td>
       <td>
-        `ScrollProgress` は画面上部に固定（`Affix` や `Header`
-        内）して配置するのが一般的です。対象はウィンドウ全体のほか、特定の
-        `ScrollArea` 等にも設定可能です。
-      </td>
+        <T k="auto_tr_utilityselection_735" /></td>
     </tr>
     <tr>
       <td>
-        <strong>フェールセーフ</strong>
+        <strong><T k="auto_tr_utilityselection_736" /></strong>
       </td>
       <td>
-        基幹となるドメインロジックを含むコンポーネントには `ErrorBoundary`
-        を配置し、システムが予期せぬエラーに寛容（レジリエント）であるように設計してください。
-      </td>
+        <T k="auto_tr_utilityselection_737" /></td>
     </tr>
   </tbody>
 </table>

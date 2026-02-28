@@ -47,10 +47,10 @@ import {
 <hr />
 
 <h2>
-  フォーカス状態 (Focus Outline)
+  <T k="guide_spacings_focus_title" />
 </h2>
 <p style={{ marginBottom: "20px" }}>
-  アクセシビリティ（キーボード操作時の現在位置の明示など）を確保するため、フォーカス時に表示されるアウトラインの太さとオフセット余白です。
+  <T k="guide_spacings_focus_desc" />
 </p>
 <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
   <FocusOutlineSwatch />
@@ -60,22 +60,24 @@ import {
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>ガイドライン</th>
+      <th><T k="table_header_item" /></th>
+      <th><T k="table_header_guideline" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>ベースの1rem</strong></td>
-      <td>ブラウザデフォルト（通常16px）に従います。</td>
+      <td><strong><T k="guide_spacings_base_1rem" /></strong></td>
+      <td><T k="guide_spacings_base_1rem_desc" /></td>
     </tr>
     <tr>
-      <td><strong>余白</strong></td>
-      <td><code>var(--spacing-md)</code> のように CSS 変数を使用し、直接数値を記述しないでください。</td>
+      <td><strong><T k="guide_spacings_margin" /></strong></td>
+      <td dangerouslySetInnerHTML={{ __html: "<T k=\"guide_spacings_margin_desc\" />" }}>
+        <T k="guide_spacings_margin_desc" />
+      </td>
     </tr>
     <tr>
-      <td><strong>角丸</strong></td>
-      <td>コンポーネントの大きさに応じて使い分けます（ボタン: sm/md, カード: lg）。</td>
+      <td><strong><T k="guide_spacings_radius_item" /></strong></td>
+      <td><T k="guide_spacings_radius_desc" /></td>
     </tr>
   </tbody>
 </table>

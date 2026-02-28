@@ -5,175 +5,169 @@ import { Icon } from "@/components/Icon/Icon";
 
 # Icons
 
-アプリケーション全体で使用するアイコンの設計指針と使い分けについてのガイドです。
+<T k="auto_tr_icons_350" />
 
 具体的な `Icon` コンポーネントの使用方法や、利用可能なアイコンの一覧については、[Icon コンポーネントのドキュメント](?path=/docs/component-typography-icons-icon--docs) を参照してください。
 
 「線か塗りか」という問いに対して「どちらか一方が正解」ということはありません。アプリの性質や、そのアイコンが置かれる場所（コンテキスト）によって使い分けることが重要です。
 
-## 線 (Outline) と塗り (Filled)
+## <T k="auto_tr_icons_344" />
 
-現在の主流は、「基本は線（Outline）で構成し、選択状態や重要なアクションだけを塗り（Filled）にする」というスタイルです。
+<T k="auto_tr_icons_351" />
 
-### 特徴の比較
+### <T k="auto_tr_icons_345" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>線 (Outline)</th>
-      <th>塗り (Filled)</th>
+      <th><T k="table_header_feature" /></th>
+      <th><T k="auto_tr_icons_290" /></th>
+      <th><T k="auto_tr_icons_291" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>印象</strong>
+        <strong><T k="auto_tr_icons_292" /></strong>
       </td>
-      <td>モダン、クリーン、洗練、繊細</td>
-      <td>力強い、安定的、インパクトが強い</td>
+      <td><T k="auto_tr_icons_293" /></td>
+      <td><T k="auto_tr_icons_294" /></td>
     </tr>
     <tr>
       <td>
-        <strong>視認性</strong>
+        <strong><T k="auto_tr_formlabels_191" /></strong>
       </td>
-      <td>中（詳細が重要）</td>
-      <td>高（シルエットで判断可能）</td>
+      <td><T k="auto_tr_icons_295" /></td>
+      <td><T k="auto_tr_icons_296" /></td>
     </tr>
     <tr>
       <td>
-        <strong>圧迫感</strong>
+        <strong><T k="auto_tr_icons_297" /></strong>
       </td>
-      <td>低い（テキストと馴染みやすい）</td>
-      <td>高い（ユーザーの目を引きやすい）</td>
+      <td><T k="auto_tr_icons_298" /></td>
+      <td><T k="auto_tr_icons_299" /></td>
     </tr>
     <tr>
       <td>
-        <strong>主な用途</strong>
+        <strong><T k="table_header_usage" /></strong>
       </td>
-      <td>標準状態、サブ機能、装飾的</td>
-      <td>選択状態、主要機能、警告・エラー</td>
+      <td><T k="auto_tr_icons_300" /></td>
+      <td><T k="auto_tr_icons_301" /></td>
     </tr>
     <tr>
       <td>
-        <strong>プラットフォーム</strong>
+        <strong><T k="auto_tr_icons_302" /></strong>
       </td>
-      <td>iOS で好まれる傾向</td>
-      <td>Android (Material) の基本</td>
+      <td><T k="auto_tr_icons_303" /></td>
+      <td><T k="auto_tr_icons_304" /></td>
     </tr>
   </tbody>
 </table>
 
-### 活きるケースの比較
+### <T k="auto_tr_icons_346" />
 
 <table>
   <thead>
     <tr>
-      <th>シチュエーション</th>
-      <th>推奨スタイル</th>
-      <th>理由・効果</th>
+      <th><T k="auto_tr_icons_305" /></th>
+      <th><T k="auto_tr_icons_306" /></th>
+      <th><T k="auto_tr_icons_307" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>視界を整理したいとき</strong>
+        <strong><T k="auto_tr_icons_308" /></strong>
       </td>
-      <td>線 (Outline)</td>
+      <td><T k="auto_tr_icons_290" /></td>
       <td>
-        圧迫感がなく、モダンでクリーンな印象を与えます。情報の邪魔をしません。
-      </td>
+        <T k="auto_tr_icons_309" /></td>
     </tr>
     <tr>
       <td>
-        <strong>テキストに馴染ませたいとき</strong>
+        <strong><T k="auto_tr_icons_310" /></strong>
       </td>
-      <td>線 (Outline)</td>
-      <td>文字の流れを邪魔せず、さりげなく添えることができます。</td>
+      <td><T k="auto_tr_icons_290" /></td>
+      <td><T k="auto_tr_icons_311" /></td>
     </tr>
     <tr>
       <td>
-        <strong>情報の密度が高い場所</strong>
+        <strong><T k="auto_tr_icons_312" /></strong>
       </td>
-      <td>線 (Outline)</td>
+      <td><T k="auto_tr_icons_290" /></td>
       <td>
-        ツールバーなど、アイコンが密集する場所でノイズ（塊）を減らし、スッキリ見せます。
-      </td>
+        <T k="auto_tr_icons_313" /></td>
     </tr>
     <tr>
       <td>
-        <strong>視認性を最優先するとき</strong>
+        <strong><T k="auto_tr_icons_314" /></strong>
       </td>
-      <td>塗り (Filled)</td>
+      <td><T k="auto_tr_icons_291" /></td>
       <td>
-        シルエットがはっきりするため、小さく表示しても形を認識しやすいのが特徴です。
-      </td>
+        <T k="auto_tr_icons_315" /></td>
     </tr>
     <tr>
       <td>
-        <strong>視覚的な「重み」が必要なとき</strong>
+        <strong><T k="auto_tr_icons_316" /></strong>
       </td>
-      <td>塗り (Filled)</td>
+      <td><T k="auto_tr_icons_291" /></td>
       <td>
-        重要なアクションや、ユーザーの注意を強く引きたい場所に適しています。
-      </td>
+        <T k="auto_tr_icons_317" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 使い分けのガイドライン
+## <T k="auto_tr_icons_347" />
 
-設置場所に応じた推奨設定です。
+<T k="auto_tr_icons_352" />
 
 <table>
   <thead>
     <tr>
-      <th>設置場所</th>
-      <th>推奨</th>
-      <th>理由</th>
+      <th><T k="auto_tr_icons_318" /></th>
+      <th><T k="auto_tr_icons_319" /></th>
+      <th><T k="auto_tr_icons_320" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>主要なボタン (Primary)</strong>
+        <strong><T k="auto_tr_icons_321" /></strong>
       </td>
-      <td>塗り</td>
-      <td>ボタン自体の「強さ」に負けない視認性が必要なため。</td>
+      <td><T k="auto_tr_icons_322" /></td>
+      <td><T k="auto_tr_icons_323" /></td>
     </tr>
     <tr>
       <td>
-        <strong>ゴーストボタン (Outline)</strong>
+        <strong><T k="auto_tr_icons_324" /></strong>
       </td>
-      <td>線</td>
-      <td>ボタンの枠線とアイコンの線の質感を合わせると綺麗に見えるため。</td>
+      <td><T k="auto_tr_icons_325" /></td>
+      <td><T k="auto_tr_icons_326" /></td>
     </tr>
     <tr>
       <td>
-        <strong>リストの項目</strong>
+        <strong><T k="auto_tr_icons_327" /></strong>
       </td>
-      <td>塗り</td>
+      <td><T k="auto_tr_icons_322" /></td>
       <td>
-        設定画面等。アイコンごとに色が違う場合など、色を「面」で見せたほうが識別しやすいため。
-      </td>
+        <T k="auto_tr_icons_328" /></td>
     </tr>
     <tr>
       <td>
-        <strong>文中の補足</strong>
+        <strong><T k="auto_tr_icons_329" /></strong>
       </td>
-      <td>線</td>
-      <td>文字の流れを邪魔せず、控えめに添えることができるため。</td>
+      <td><T k="auto_tr_icons_325" /></td>
+      <td><T k="auto_tr_icons_330" /></td>
     </tr>
     <tr>
       <td>
-        <strong>入力フォーム内</strong>
+        <strong><T k="auto_tr_icons_331" /></strong>
       </td>
-      <td>線</td>
+      <td><T k="auto_tr_icons_325" /></td>
       <td>
-        検索バーの虫眼鏡など。入力の邪魔にならない程度の控えめな表現が適しているため。
-      </td>
+        <T k="auto_tr_icons_332" /></td>
     </tr>
   </tbody>
 </table>
@@ -181,29 +175,28 @@ import { Icon } from "@/components/Icon/Icon";
 <table>
   <thead>
     <tr>
-      <th>ルール</th>
-      <th>詳細・理由</th>
+      <th><T k="table_header_rule" /></th>
+      <th><T k="auto_tr_icons_333" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>同じ階層で混ぜない</strong>
+        <strong><T k="auto_tr_icons_334" /></strong>
       </td>
       <td>
-        同じ画面内で「ホームは線、検索は塗り」のように混在させると、ユーザーは「塗りの方が重要なのか？」と混乱します。並列な機能は同じスタイルで統一しましょう。
-      </td>
+        <T k="auto_tr_icons_335" /></td>
     </tr>
     <tr>
       <td>
-        <strong>ステート（状態）で切り替える</strong>
+        <strong><T k="auto_tr_icons_336" /></strong>
       </td>
       <td>
         通常時と選択時でアイコンの種類を切り替えると、UIのフィードバックが非常にわかりやすくなります。
         <br />
         例（ボトムナビゲーション）：
         <br />
-        - 通常時：線アイコン（Outline）
+        - <T k="auto_tr_icons_349" />
         <br />- 選択中：塗りアイコン（Filled）
       </td>
     </tr>
@@ -212,19 +205,19 @@ import { Icon } from "@/components/Icon/Icon";
 
 ---
 
-## よりよいアイコンの設計(未対応)
+## <T k="auto_tr_icons_348" />
 
 <table>
   <thead>
     <tr>
-      <th>設計ポイント</th>
-      <th>実装・効果</th>
+      <th><T k="auto_tr_icons_337" /></th>
+      <th><T k="auto_tr_icons_338" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>自動サイズ調整</strong>
+        <strong><T k="auto_tr_icons_339" /></strong>
       </td>
       <td>
         テキストの <code>line-height</code> や <code>font-size</code>{" "}
@@ -234,7 +227,7 @@ import { Icon } from "@/components/Icon/Icon";
     </tr>
     <tr>
       <td>
-        <strong>ウェイト（太さ）の同期</strong>
+        <strong><T k="auto_tr_icons_340" /></strong>
       </td>
       <td>
         テキストが Bold
@@ -244,7 +237,7 @@ import { Icon } from "@/components/Icon/Icon";
     </tr>
     <tr>
       <td>
-        <strong>ストロークの統一</strong>
+        <strong><T k="auto_tr_icons_341" /></strong>
       </td>
       <td>
         線アイコンは隣り合うテキストの太さと合わせるのが鉄則です。
@@ -254,13 +247,10 @@ import { Icon } from "@/components/Icon/Icon";
     </tr>
     <tr>
       <td>
-        <strong>角の丸み（Border Radius）の同期</strong>
+        <strong><T k="auto_tr_icons_342" /></strong>
       </td>
       <td>
-        ボタンなどのコンポーネントが丸みを帯びているなら、アイコンも Round
-        型を選びます。逆にシャープなデザインならアイコンも Sharp
-        型を選び、質感を揃えることでプロっぽい統一感が出ます。
-      </td>
+        <T k="auto_tr_icons_343" /></td>
     </tr>
   </tbody>
 </table>

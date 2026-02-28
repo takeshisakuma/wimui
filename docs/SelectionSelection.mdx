@@ -2,21 +2,21 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Components/Selection Controls" />
 
-# 選択系コンポーネントの使い分け
+# <T k="auto_tr_selectionselection_662" />
 
-ユーザーに値を選択させる際、選択肢の数や入力の性質に応じて最適な形式を選択します。
+<T k="auto_tr_selectionselection_669" />
 
-## 比較表
+## <T k="auto_tr_selectionselection_663" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>選択可能数</th>
-      <th>選択肢の数</th>
-      <th>即時反映</th>
-      <th>判断のポイント</th>
-      <th>主な用途</th>
+      <th><T k="table_header_component" /></th>
+      <th><T k="auto_tr_selectionselection_566" /></th>
+      <th><T k="auto_tr_selectionselection_567" /></th>
+      <th><T k="auto_tr_selectionselection_568" /></th>
+      <th><T k="guide_lvb_table_judgment" /></th>
+      <th><T k="table_header_usage" /></th>
     </tr>
   </thead>
   <tbody>
@@ -24,267 +24,259 @@ import { Meta } from "@storybook/addon-docs/blocks";
       <td>
         <strong>Switch</strong>
       </td>
-      <td>1つ (ON/OFF)</td>
+      <td><T k="auto_tr_selectionselection_569" /></td>
       <td>-</td>
       <td>○</td>
       <td>
-        <strong>設定を即座に反映させたい</strong>
+        <strong><T k="auto_tr_selectionselection_570" /></strong>
       </td>
-      <td>Wi-Fi, ダークモード, 通知設定の即時変更</td>
+      <td><T k="auto_tr_selectionselection_571" /></td>
     </tr>
     <tr>
       <td>
         <strong>SwitchGroup</strong>
       </td>
-      <td>複数</td>
-      <td>少数 (2〜10)</td>
+      <td><T k="auto_tr_selectionselection_572" /></td>
+      <td><T k="auto_tr_selectionselection_573" /></td>
       <td>○</td>
       <td>
-        <strong>複数の設定を即座に反映させたい</strong>
+        <strong><T k="auto_tr_selectionselection_574" /></strong>
       </td>
-      <td>複数の通知設定の即時変更など</td>
+      <td><T k="auto_tr_selectionselection_575" /></td>
     </tr>
     <tr>
       <td>
         <strong>Checkbox</strong>
       </td>
-      <td>単一 または 複数</td>
-      <td>少数 (2〜10)</td>
+      <td><T k="auto_tr_selectionselection_576" /></td>
+      <td><T k="auto_tr_selectionselection_573" /></td>
       <td>×</td>
       <td>
-        <strong>「保存」や「送信」ボタンで確定させたい</strong>
+        <strong><T k="auto_tr_selectionselection_577" /></strong>
       </td>
-      <td>設定のオンオフ、利用規約同意</td>
+      <td><T k="auto_tr_selectionselection_578" /></td>
     </tr>
     <tr>
       <td>
         <strong>CheckboxGroup</strong>
       </td>
-      <td>複数</td>
-      <td>少数〜中程度</td>
+      <td><T k="auto_tr_selectionselection_572" /></td>
+      <td><T k="auto_tr_selectionselection_579" /></td>
       <td>×</td>
       <td>
-        <strong>「保存」や「送信」ボタンで複数の値を一括で確定させたい</strong>
+        <strong><T k="auto_tr_selectionselection_580" /></strong>
       </td>
-      <td>複数フィルタの指定など</td>
+      <td><T k="auto_tr_selectionselection_581" /></td>
     </tr>
     <tr>
       <td>
         <strong>Radio</strong>
       </td>
-      <td>単一</td>
-      <td>少数 (2〜5)</td>
+      <td><T k="auto_tr_selectionselection_582" /></td>
+      <td><T k="auto_tr_selectionselection_583" /></td>
       <td>×</td>
       <td>
-        <strong>少数の候補から1つだけ選び、後で送信したい</strong>
+        <strong><T k="auto_tr_selectionselection_584" /></strong>
       </td>
-      <td>個別の選択肢（グループ化せずに単独で配置する場合）</td>
+      <td><T k="auto_tr_selectionselection_585" /></td>
     </tr>
     <tr>
       <td>
         <strong>RadioGroup</strong>
       </td>
-      <td>単一</td>
-      <td>少数 (2〜5)</td>
+      <td><T k="auto_tr_selectionselection_582" /></td>
+      <td><T k="auto_tr_selectionselection_583" /></td>
       <td>×</td>
       <td>
-        <strong>少数の候補から1つだけ選び、後で送信したい</strong>
+        <strong><T k="auto_tr_selectionselection_584" /></strong>
       </td>
-      <td>支払い方法、配送日時、ソート順の指定</td>
+      <td><T k="auto_tr_selectionselection_586" /></td>
     </tr>
     <tr>
       <td>
         <strong>Segmented Control</strong>
       </td>
-      <td>単一</td>
-      <td>少数 (2〜5)</td>
+      <td><T k="auto_tr_selectionselection_582" /></td>
+      <td><T k="auto_tr_selectionselection_583" /></td>
       <td>○</td>
       <td>
-        <strong>表示モードやフィルタをその場で切り替えたい</strong>
+        <strong><T k="auto_tr_selectionselection_587" /></strong>
       </td>
-      <td>ビュー切替（グリッド/リスト）、期間切替（週/月）</td>
+      <td><T k="auto_tr_selectionselection_588" /></td>
     </tr>
     <tr>
       <td>
         <strong>Select</strong>
       </td>
-      <td>単一</td>
-      <td>中〜多数 (5〜20)</td>
+      <td><T k="auto_tr_selectionselection_582" /></td>
+      <td><T k="auto_tr_selectionselection_589" /></td>
       <td>×</td>
       <td>
-        <strong>場所を取らずに、中規模のリストから選びたい</strong>
+        <strong><T k="auto_tr_selectionselection_590" /></strong>
       </td>
-      <td>都道府県、カテゴリー選択、ステータス変更</td>
+      <td><T k="auto_tr_selectionselection_591" /></td>
     </tr>
     <tr>
       <td>
         <strong>Combobox</strong>
       </td>
-      <td>単一</td>
-      <td>多数 (20〜)</td>
+      <td><T k="auto_tr_selectionselection_582" /></td>
+      <td><T k="auto_tr_selectionselection_592" /></td>
       <td>×</td>
       <td>
-        <strong>膨大なデータから検索して絞り込みたい</strong>
+        <strong><T k="auto_tr_selectionselection_593" /></strong>
       </td>
-      <td>市区町村、ユーザー検索、商品検索</td>
+      <td><T k="auto_tr_selectionselection_594" /></td>
     </tr>
     <tr>
       <td>
         <strong>MultiSelect</strong>
       </td>
-      <td>複数</td>
-      <td>中〜多数</td>
+      <td><T k="auto_tr_selectionselection_572" /></td>
+      <td><T k="auto_tr_selectionselection_595" /></td>
       <td>×</td>
       <td>
-        <strong>複数の項目をリストから選びたい</strong>
+        <strong><T k="auto_tr_selectionselection_596" /></strong>
       </td>
-      <td>タグ付け、参加者選択</td>
+      <td><T k="auto_tr_selectionselection_597" /></td>
     </tr>
     <tr>
       <td>
         <strong>Chip</strong>
       </td>
-      <td>単一 / 複数</td>
-      <td>少数</td>
+      <td><T k="auto_tr_selectionselection_598" /></td>
+      <td><T k="auto_tr_selectionselection_599" /></td>
       <td>○ / ×</td>
       <td>
-        <strong>視覚的に強調された形式でタグの表示や選択を行いたい</strong>
+        <strong><T k="auto_tr_selectionselection_600" /></strong>
       </td>
-      <td>タグの追加・削除、情報のフィルタリング</td>
+      <td><T k="auto_tr_selectionselection_601" /></td>
     </tr>
     <tr>
       <td>
         <strong>ToggleGroup</strong>
       </td>
-      <td>単一 / 複数</td>
-      <td>少数</td>
+      <td><T k="auto_tr_selectionselection_598" /></td>
+      <td><T k="auto_tr_selectionselection_599" /></td>
       <td>○</td>
       <td>
-        <strong>視覚的に強調されたボタン形式で選びたい</strong>
+        <strong><T k="auto_tr_selectionselection_602" /></strong>
       </td>
-      <td>フィルタ条件、モード切替、サイズ選択</td>
+      <td><T k="auto_tr_selectionselection_603" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## デザインとアクセシビリティの原則
+## <T k="auto_tr_selectionselection_664" />
 
-### 選択の性質と役割
+### <T k="auto_tr_selectionselection_665" />
 
 <table>
   <thead>
     <tr>
-      <th>分類</th>
-      <th>説明</th>
+      <th><T k="auto_tr_selectionselection_604" /></th>
+      <th><T k="table_header_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>ラジオボタン (Radio)</strong>
+        <strong><T k="auto_tr_selectionselection_605" /></strong>
       </td>
       <td>
-        常に1つだけ選択可能です。いずれかの項目が必ず選択されている必要があります。
-      </td>
+        <T k="auto_tr_selectionselection_606" /></td>
     </tr>
     <tr>
       <td>
-        <strong>チェックボックス (Checkbox)</strong>
+        <strong><T k="auto_tr_selectionselection_607" /></strong>
       </td>
       <td>
-        0個以上の複数選択が可能です。各項目が独立しており、どれも選ばないという選択も可能です。
-      </td>
+        <T k="auto_tr_selectionselection_608" /></td>
     </tr>
     <tr>
       <td>
-        <strong>スイッチ (Switch)</strong>
+        <strong><T k="auto_tr_selectionselection_609" /></strong>
       </td>
       <td>
-        2つの状態（オン/オフ）を切り替えます。設定の有効化・無効化という「バイナリな状態」を示すのに最適です。
-      </td>
+        <T k="auto_tr_selectionselection_610" /></td>
     </tr>
   </tbody>
 </table>
 
-### 反映のタイミング (Timing)
+### <T k="auto_tr_selectionselection_666" />
 
 <table>
   <thead>
     <tr>
-      <th>タイミング</th>
-      <th>説明</th>
+      <th><T k="table_header_timing" /></th>
+      <th><T k="table_header_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>即時反映 (Immediate)</strong>
+        <strong><T k="auto_tr_selectionselection_611" /></strong>
       </td>
       <td>
-        スイッチや Segmented Control
-        は、操作した瞬間に設定が保存されたり画面が切り替わったりする場合に使用します。
-      </td>
+        <T k="auto_tr_selectionselection_612" /></td>
     </tr>
     <tr>
       <td>
-        <strong>確認後に反映 (Deferred)</strong>
+        <strong><T k="auto_tr_selectionselection_613" /></strong>
       </td>
       <td>
-        ラジオボタンやチェックボックスは、通常「保存」や「送信」ボタンを押して初めて状態が確定するフォーム形式で使用します。
-      </td>
+        <T k="auto_tr_selectionselection_614" /></td>
     </tr>
   </tbody>
 </table>
 
-### 実装上の注意点
+### <T k="guide_rvc_implementation_note" />
 
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>ガイドライン</th>
+      <th><T k="table_header_item" /></th>
+      <th><T k="table_header_guideline" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>デフォルト値</strong>
+        <strong><T k="auto_tr_selectionselection_615" /></strong>
       </td>
       <td>
-        ラジオボタンは「通常配送」などの推奨値をあらかじめ選択しておくのが一般的です。チェックボックスは基本「未選択」をデフォルトとします。
-      </td>
+        <T k="auto_tr_selectionselection_616" /></td>
     </tr>
     <tr>
       <td>
-        <strong>レイアウト</strong>
+        <strong><T k="cat_layout" /></strong>
       </td>
       <td>
-        選択肢は横に並べるよりも、<strong>垂直に並べる</strong>
+        選択肢は横に並べるよりも、<strong><T k="auto_tr_selectionselection_617" /></strong>
         ほうが視線の移動がスムーズで、モバイルでのタップミスも減らせます。
       </td>
     </tr>
     <tr>
       <td>
-        <strong>アクセシビリティ</strong>
+        <strong><T k="auto_tr_basicinputselection_82" /></strong>
       </td>
       <td>
-        ラベルテキスト自体もクリック（タップ）可能にし、ヒットエリアを十分に確保してください。
-      </td>
+        <T k="auto_tr_selectionselection_618" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 具体的ユースケース
+## <T k="auto_tr_selectionselection_619" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>具体的ユースケース</th>
+      <th><T k="table_header_component" /></th>
+      <th><T k="auto_tr_selectionselection_619" /></th>
     </tr>
   </thead>
   <tbody>
@@ -292,38 +284,35 @@ import { Meta } from "@storybook/addon-docs/blocks";
       <td>
         <strong>Radio Button</strong>
       </td>
-      <td>支払い方法（クレカ/銀行）、並び替え順（安い順/高い順）、配送日時</td>
+      <td><T k="auto_tr_selectionselection_620" /></td>
     </tr>
     <tr>
       <td>
         <strong>Checkbox</strong>
       </td>
       <td>
-        フィルター条件（色・サイズ）、通知設定（メルマガ/新機能）、利用規約の同意
-      </td>
+        <T k="auto_tr_selectionselection_621" /></td>
     </tr>
     <tr>
       <td>
         <strong>Switch</strong>
       </td>
       <td>
-        Wi-FiやBluetoothのON/OFF、ダークモードの切り替え、通知の即時有効化
-      </td>
+        <T k="auto_tr_selectionselection_622" /></td>
     </tr>
     <tr>
       <td>
         <strong>Segmented Control</strong>
       </td>
       <td>
-        表示形式の切り替え（例：週間/月間）、ソート順の変更（例：昇順/降順）
-      </td>
+        <T k="auto_tr_selectionselection_623" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## Segmented Control の使い分け
+## <T k="auto_tr_selectionselection_667" />
 
 Segmented Control は他のコンポーネントと役割が似ているため、適切な使い分けが重要です。
 
@@ -332,10 +321,10 @@ Segmented Control は他のコンポーネントと役割が似ているため�
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>役割</th>
-      <th>典型的な挙動</th>
-      <th>具体的シーン</th>
+      <th><T k="table_header_component" /></th>
+      <th><T k="table_header_role" /></th>
+      <th><T k="auto_tr_selectionselection_624" /></th>
+      <th><T k="guide_lvb_table_scene" /></th>
     </tr>
   </thead>
   <tbody>
@@ -344,26 +333,22 @@ Segmented Control は他のコンポーネントと役割が似ているため�
         <strong>Segmented Control</strong>
       </td>
       <td>
-        <strong>選択</strong>
+        <strong><T k="auto_tr_selectionselection_625" /></strong>
       </td>
-      <td>値や表示モードの切り替え。常にいずれか1つが選択されている。</td>
+      <td><T k="auto_tr_selectionselection_626" /></td>
       <td>
-        「週間 / 月間 表示」「昇順 / 降順
-        ソート」など、ある1つの状態を決定・変更するとき。
-      </td>
+        <T k="auto_tr_selectionselection_627" /></td>
     </tr>
     <tr>
       <td>
         <strong>Button Group (joined)</strong>
       </td>
       <td>
-        <strong>アクション</strong>
+        <strong><T k="auto_tr_linkvsbutton_393" /></strong>
       </td>
-      <td>関連する複数の操作のグループ化。押すと何かが実行される。</td>
+      <td><T k="auto_tr_selectionselection_628" /></td>
       <td>
-        「保存 / 複製 / 削除」「編集 /
-        削除」など、独立した実行ボタンをグループ化したいとき。
-      </td>
+        <T k="auto_tr_selectionselection_629" /></td>
     </tr>
   </tbody>
 </table>
@@ -373,26 +358,26 @@ Segmented Control は他のコンポーネントと役割が似ているため�
 <table>
   <thead>
     <tr>
-      <th>項目</th>
+      <th><T k="table_header_item" /></th>
       <th>Segmented Control</th>
       <th>Dropdown Menu</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>操作</td>
-      <td>ワンタップで切り替え</td>
-      <td>タップしてリストを開く必要あり</td>
+      <td><T k="auto_tr_selectionselection_630" /></td>
+      <td><T k="auto_tr_selectionselection_631" /></td>
+      <td><T k="auto_tr_selectionselection_632" /></td>
     </tr>
     <tr>
-      <td>選択肢</td>
-      <td>常に見えている</td>
-      <td>隠れている</td>
+      <td><T k="auto_tr_selectionselection_633" /></td>
+      <td><T k="auto_tr_selectionselection_634" /></td>
+      <td><T k="auto_tr_selectionselection_635" /></td>
     </tr>
     <tr>
-      <td>適した数</td>
-      <td>2〜5個</td>
-      <td>5個以上</td>
+      <td><T k="auto_tr_selectionselection_636" /></td>
+      <td><T k="auto_tr_selectionselection_637" /></td>
+      <td><T k="auto_tr_selectionselection_638" /></td>
     </tr>
   </tbody>
 </table>
@@ -402,65 +387,65 @@ Segmented Control は他のコンポーネントと役割が似ているため�
 <table>
   <thead>
     <tr>
-      <th>項目</th>
+      <th><T k="table_header_item" /></th>
       <th>Segmented Control</th>
       <th>Tabs</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>目的</td>
-      <td>同一コンテンツ内でのフィルタリングや表示形式の切り替え</td>
-      <td>異なる画面(コンテンツ)間を移動する</td>
+      <td><T k="table_header_purpose" /></td>
+      <td><T k="auto_tr_selectionselection_639" /></td>
+      <td><T k="auto_tr_selectionselection_640" /></td>
     </tr>
     <tr>
-      <td>スコープ</td>
-      <td>画面内の一部、詳細な調整</td>
-      <td>アプリの主要ナビゲーション、大きな単位の切り替え</td>
+      <td><T k="auto_tr_selectionselection_641" /></td>
+      <td><T k="auto_tr_selectionselection_642" /></td>
+      <td><T k="auto_tr_selectionselection_643" /></td>
     </tr>
     <tr>
-      <td>重複</td>
-      <td>各セグメント間でコンテンツが重複することもある</td>
-      <td>各タブは専用のコンテンツを持ち、通常は重複しない</td>
+      <td><T k="auto_tr_selectionselection_644" /></td>
+      <td><T k="auto_tr_selectionselection_645" /></td>
+      <td><T k="auto_tr_selectionselection_646" /></td>
     </tr>
     <tr>
-      <td>例</td>
-      <td>プロジェクト内の「未完了/完了」フィルタ</td>
-      <td>「ダッシュボード」「メッセージ」「設定」の切り替え</td>
+      <td><T k="auto_tr_formlabels_199" /></td>
+      <td><T k="auto_tr_selectionselection_647" /></td>
+      <td><T k="auto_tr_selectionselection_648" /></td>
     </tr>
   </tbody>
 </table>
 
-### 迷った時の判断基準
+### <T k="auto_tr_selectionselection_668" />
 
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>Segmented Control が適しているケース</th>
-      <th>代わりのUI（推奨）</th>
+      <th><T k="table_header_item" /></th>
+      <th><T k="auto_tr_selectionselection_649" /></th>
+      <th><T k="auto_tr_selectionselection_650" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>選択肢の数</td>
-      <td>2〜5個程度</td>
-      <td>5個以上なら ドロップダウン または 横スクロールタブ</td>
+      <td><T k="auto_tr_selectionselection_567" /></td>
+      <td><T k="auto_tr_selectionselection_651" /></td>
+      <td><T k="auto_tr_selectionselection_652" /></td>
     </tr>
     <tr>
-      <td>選択の性質</td>
-      <td>「どれか1つ」を選ぶ（排他的）</td>
-      <td>複数選びたいなら チェックボックス や チップス</td>
+      <td><T k="auto_tr_selectionselection_653" /></td>
+      <td><T k="auto_tr_selectionselection_654" /></td>
+      <td><T k="auto_tr_selectionselection_655" /></td>
     </tr>
     <tr>
-      <td>影響範囲</td>
-      <td>画面内の一部、または表示形式の変更</td>
-      <td>画面自体を大きく移動するなら ボトムナビゲーション</td>
+      <td><T k="auto_tr_selectionselection_656" /></td>
+      <td><T k="auto_tr_selectionselection_657" /></td>
+      <td><T k="auto_tr_selectionselection_658" /></td>
     </tr>
     <tr>
-      <td>即時性</td>
-      <td>選んだ瞬間に結果が反映されるべき</td>
-      <td>送信ボタンを押すまで確定させたくないなら ラジオボタン</td>
+      <td><T k="auto_tr_selectionselection_659" /></td>
+      <td><T k="auto_tr_selectionselection_660" /></td>
+      <td><T k="auto_tr_selectionselection_661" /></td>
     </tr>
   </tbody>
 </table>

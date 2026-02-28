@@ -3,19 +3,19 @@ import { T } from "../stories/T";
 
 <Meta title="Components/Layout" />
 
-# レイアウトコンポーネントの使い分け
+# <T k="auto_tr_layoutselection_387" />
 
 wimui は、柔軟な位置調整から厳密なグリッドシステムまで、複数のレイアウト手法を提供しています。
 
-## レイアウト手法の比較
+## <T k="auto_tr_layoutselection_388" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>ベース技術</th>
-      <th>主な用途</th>
-      <th>使い分けのポイント</th>
+      <th><T k="table_header_component" /></th>
+      <th><T k="auto_tr_layoutselection_353" /></th>
+      <th><T k="table_header_usage" /></th>
+      <th><T k="auto_tr_appshellselection_45" /></th>
     </tr>
   </thead>
   <tbody>
@@ -24,90 +24,88 @@ wimui は、柔軟な位置調整から厳密なグリッドシステムまで�
         <strong>Stack</strong>
       </td>
       <td>Flexbox</td>
-      <td>直線的な並び</td>
-      <td>要素を一定の間隔（gap）で垂直または水平に並べる場合に最適。</td>
+      <td><T k="auto_tr_layoutselection_354" /></td>
+      <td><T k="auto_tr_layoutselection_355" /></td>
     </tr>
     <tr>
       <td>
         <strong>Flex</strong>
       </td>
       <td>Flexbox</td>
-      <td>柔軟な配置</td>
-      <td>詳細な `justify-content` 等の制御が必要な場合。</td>
+      <td><T k="auto_tr_layoutselection_356" /></td>
+      <td><T k="auto_tr_layoutselection_357" /></td>
     </tr>
     <tr>
       <td>
         <strong>Group</strong>
       </td>
       <td>Flexbox</td>
-      <td>要素のグループ化</td>
-      <td>折り返しが必要な要素の並びに最適。</td>
+      <td><T k="auto_tr_layoutselection_358" /></td>
+      <td><T k="auto_tr_layoutselection_359" /></td>
     </tr>
     <tr>
       <td>
         <strong>Grid</strong>
       </td>
       <td>CSS Grid</td>
-      <td>多次元的な配置</td>
-      <td>行と列の両方を管理する場合。</td>
+      <td><T k="auto_tr_layoutselection_360" /></td>
+      <td><T k="auto_tr_layoutselection_361" /></td>
     </tr>
     <tr>
       <td>
         <strong>SimpleGrid</strong>
       </td>
       <td>CSS Grid</td>
-      <td>シンプルなグリッド</td>
-      <td>レスポンシブなカラムレイアウトを組む場合。</td>
+      <td><T k="auto_tr_layoutselection_362" /></td>
+      <td><T k="auto_tr_layoutselection_363" /></td>
     </tr>
     <tr>
       <td>
         <strong>Box</strong>
       </td>
       <td>CSS</td>
-      <td>基本コンテナ</td>
+      <td><T k="auto_tr_layoutselection_364" /></td>
       <td>
-        余白、サイズ、境界線などの基本的なスタイリングを付与するための最小単位。
-      </td>
+        <T k="auto_tr_layoutselection_365" /></td>
     </tr>
     <tr>
       <td>
         <strong>Center</strong>
       </td>
       <td>Flexbox</td>
-      <td>中央揃え</td>
-      <td>中身を上下左右完全に中央に配置したい場合のショートカット。</td>
+      <td><T k="auto_tr_layoutselection_366" /></td>
+      <td><T k="auto_tr_layoutselection_367" /></td>
     </tr>
     <tr>
       <td>
         <strong>Aspect Ratio</strong>
       </td>
       <td>CSS</td>
-      <td>比率の固定</td>
-      <td>画像やビデオなど、特定の縦横比を維持する必要がある場合。</td>
+      <td><T k="auto_tr_layoutselection_368" /></td>
+      <td><T k="auto_tr_layoutselection_369" /></td>
     </tr>
     <tr>
       <td>
         <strong>Container</strong>
       </td>
       <td>CSS</td>
-      <td>最大幅の制御</td>
+      <td><T k="auto_tr_layoutselection_370" /></td>
       <td>
-        コンテンツの最大幅を制限し、大きな画面での視認性を確保する外側の枠。
-      </td>
+        <T k="auto_tr_layoutselection_371" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 高度なグリッド・レイアウト
+## <T k="auto_tr_layoutselection_389" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>ターゲット</th>
-      <th>特徴</th>
+      <th><T k="table_header_component" /></th>
+      <th><T k="auto_tr_layoutselection_372" /></th>
+      <th><T k="table_header_feature" /></th>
     </tr>
   </thead>
   <tbody>
@@ -115,75 +113,66 @@ wimui は、柔軟な位置調整から厳密なグリッドシステムまで�
       <td>
         <strong>Bento Grid</strong>
       </td>
-      <td>ダッシュボード、ギャラリー</td>
-      <td>モダンな格子状のレイアウト。視覚的な強弱をつけやすい。</td>
+      <td><T k="auto_tr_layoutselection_373" /></td>
+      <td><T k="auto_tr_layoutselection_374" /></td>
     </tr>
     <tr>
       <td>
         <strong>Masonry</strong>
       </td>
-      <td>写真サイト、Pinterest風</td>
-      <td>要素の高さが異なっても、隙間なく埋めるレイアウト。</td>
+      <td><T k="auto_tr_layoutselection_375" /></td>
+      <td><T k="auto_tr_layoutselection_376" /></td>
     </tr>
     <tr>
       <td>
         <strong>Splitter</strong>
       </td>
-      <td>リサイズ可能な分割レイアウト</td>
+      <td><T k="auto_tr_layoutselection_377" /></td>
       <td>
-        ドラッグで隣接するペイン（領域）の幅・高さを動的に変更できる分割レイアウト。
-      </td>
+        <T k="auto_tr_layoutselection_378" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## レイアウト設計のベストプラクティス
+## <T k="auto_tr_layoutselection_390" />
 
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>ガイドライン</th>
+      <th><T k="table_header_item" /></th>
+      <th><T k="table_header_guideline" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>疎結合な余白</strong>
+        <strong><T k="auto_tr_layoutselection_379" /></strong>
       </td>
       <td>
-        コンポーネント自体に外側の余白（margin）を持たせず、`Stack` や `Group`
-        の `gap` プロパティを使ってコンポーネント間の距離を制御してください。
-      </td>
+        <T k="auto_tr_layoutselection_380" /></td>
     </tr>
     <tr>
       <td>
-        <strong>レスポンシブ設計</strong>
+        <strong><T k="auto_tr_layoutselection_381" /></strong>
       </td>
       <td>
-        `SimpleGrid` の `cols`
-        プロパティなどを活用し、画面サイズに応じたカラム数の変化を宣言的に記述してください。
-      </td>
+        <T k="auto_tr_layoutselection_382" /></td>
     </tr>
     <tr>
       <td>
-        <strong>セマンティックなラップ</strong>
+        <strong><T k="auto_tr_layoutselection_383" /></strong>
       </td>
       <td>
-        可能な限り `Box` の `as` プロップを使用して、`section`, `article`,
-        `aside` などの適切な HTML タグを使用して構造化してください。
-      </td>
+        <T k="auto_tr_layoutselection_384" /></td>
     </tr>
     <tr>
       <td>
-        <strong>コンテナによる制御</strong>
+        <strong><T k="auto_tr_layoutselection_385" /></strong>
       </td>
       <td>
-        コンテンツの最大幅を制限する場合は `Container`
-        コンポーネントを最外殻に使用し、大きな画面での視認性を確保してください。
-      </td>
+        <T k="auto_tr_layoutselection_386" /></td>
     </tr>
   </tbody>
 </table>

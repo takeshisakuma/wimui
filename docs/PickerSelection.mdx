@@ -3,18 +3,18 @@ import { T } from "../stories/T";
 
 <Meta title="Components/Pickers & Sliders" />
 
-# ピッカーとスライダーの使い分け
+# <T k="auto_tr_pickerselection_560" />
 
-数値、日付、色、時間など、ユーザーが複雑な値を選択するための最適な UI を選択します。
+<T k="auto_tr_pickerselection_565" />
 
-## 種類別の使い分け
+## <T k="auto_tr_pickerselection_561" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>入力内容</th>
-      <th>推奨される利用シーン</th>
+      <th><T k="table_header_component" /></th>
+      <th><T k="auto_tr_basicinputselection_47" /></th>
+      <th><T k="auto_tr_pickerselection_524" /></th>
     </tr>
   </thead>
   <tbody>
@@ -22,180 +22,164 @@ import { T } from "../stories/T";
       <td>
         <strong>Slider</strong>
       </td>
-      <td>数値（単一）</td>
+      <td><T k="auto_tr_pickerselection_525" /></td>
       <td>
-        音量、明るさなどの直感的な数値調整。正確な入力よりも変化の度合いを重視する場合。
-      </td>
+        <T k="auto_tr_pickerselection_526" /></td>
     </tr>
     <tr>
       <td>
         <strong>Range Slider</strong>
       </td>
-      <td>数値（範囲）</td>
-      <td>価格帯、年齢層、時間範囲の指定。上限と下限を同時に設定する場合。</td>
+      <td><T k="auto_tr_pickerselection_527" /></td>
+      <td><T k="auto_tr_pickerselection_528" /></td>
     </tr>
     <tr>
       <td>
         <strong>DatePicker</strong>
       </td>
-      <td>日付</td>
+      <td><T k="auto_tr_pickerselection_529" /></td>
       <td>
-        予約日、誕生日、期限の指定。カレンダー形式での視覚的な選択が必要な場合。
-      </td>
+        <T k="auto_tr_pickerselection_530" /></td>
     </tr>
     <tr>
       <td>
         <strong>Range Calendar</strong>
       </td>
-      <td>日付（範囲）</td>
+      <td><T k="auto_tr_pickerselection_531" /></td>
       <td>
-        宿泊期間、データ集計期間の指定。開始日と終了日の関係性を視覚的に確認しながら選択する場合。
-      </td>
+        <T k="auto_tr_pickerselection_532" /></td>
     </tr>
     <tr>
       <td>
         <strong>TimePicker</strong>
       </td>
-      <td>時刻</td>
+      <td><T k="auto_tr_pickerselection_533" /></td>
       <td>
-        アポイントメントの時間、営業時間の設定。時・分を個別に選択する場合。
-      </td>
+        <T k="auto_tr_pickerselection_534" /></td>
     </tr>
     <tr>
       <td>
         <strong>ColorPicker</strong>
       </td>
-      <td>色</td>
+      <td><T k="auto_tr_pickerselection_535" /></td>
       <td>
-        デザイン調整、テーマ変更。パレットやグラデーションから直感的に色を選択する場合。
-      </td>
+        <T k="auto_tr_pickerselection_536" /></td>
     </tr>
     <tr>
       <td>
         <strong>ColorInput</strong>
       </td>
-      <td>色 (テキスト入力)</td>
+      <td><T k="auto_tr_pickerselection_537" /></td>
       <td>
-        HEX / RGB
-        等の色コードを直接入力・貼り付けしたい場合。コピペやコード値を把握しているユーザー向け。
-      </td>
+        <T k="auto_tr_pickerselection_538" /></td>
     </tr>
     <tr>
       <td>
         <strong>DateRangePicker</strong>
       </td>
-      <td>日付（範囲・インライン入力）</td>
+      <td><T k="auto_tr_pickerselection_539" /></td>
       <td>
-        開始日と終了日を2つの入力フィールドで指定したい場合。カレンダーを開かずに日付をキーボードで入力する用途に最適。
-      </td>
+        <T k="auto_tr_pickerselection_540" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 選択の判断基準
+## <T k="auto_tr_pickerselection_562" />
 
-### 数値入力か、スライダーか？
+### <T k="auto_tr_pickerselection_563" />
 
 <table>
   <thead>
     <tr>
-      <th>優先事項</th>
-      <th>推奨コンポーネント</th>
-      <th>具体例</th>
+      <th><T k="auto_tr_pickerselection_541" /></th>
+      <th><T k="auto_tr_appshellselection_39" /></th>
+      <th><T k="auto_tr_pickerselection_542" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>正確性が重要</strong>
+        <strong><T k="auto_tr_pickerselection_543" /></strong>
       </td>
       <td>`NumberInput`</td>
-      <td>振込金額、寸法</td>
+      <td><T k="auto_tr_pickerselection_544" /></td>
     </tr>
     <tr>
       <td>
-        <strong>直感的な操作が優先</strong>
+        <strong><T k="auto_tr_pickerselection_545" /></strong>
       </td>
       <td>`Slider`</td>
-      <td>ボリューム、フィルタのしきい値</td>
+      <td><T k="auto_tr_pickerselection_546" /></td>
     </tr>
   </tbody>
 </table>
 
-### 入力フィールドか、ピッカーか？
+### <T k="auto_tr_pickerselection_564" />
 
 <table>
   <thead>
     <tr>
-      <th>ユーザーの行動</th>
-      <th>推奨されるアプローチ</th>
+      <th><T k="auto_tr_pickerselection_547" /></th>
+      <th><T k="auto_tr_pickerselection_548" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>値を暗記している・コピペしたい</strong>
+        <strong><T k="auto_tr_pickerselection_549" /></strong>
       </td>
-      <td>`ColorInput` や直接のテキスト入力を許容する。</td>
+      <td><T k="auto_tr_pickerselection_550" /></td>
     </tr>
     <tr>
       <td>
-        <strong>選択肢を提示し入力を補助したい</strong>
+        <strong><T k="auto_tr_pickerselection_551" /></strong>
       </td>
-      <td>Overlays を伴う `DatePicker` 等のピッカーを使用する。</td>
+      <td><T k="auto_tr_pickerselection_552" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## ユーザビリティのヒント
+## <T k="auto_tr_navigationselection_452" />
 
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>ガイドライン</th>
+      <th><T k="table_header_item" /></th>
+      <th><T k="table_header_guideline" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>プレビュー</strong>
+        <strong><T k="auto_tr_pickerselection_553" /></strong>
       </td>
       <td>
-        `ColorInput`
-        のように、選択された値を常に視覚的にフィードバックしてください。
-      </td>
+        <T k="auto_tr_pickerselection_554" /></td>
     </tr>
     <tr>
       <td>
-        <strong>アクセシビリティ</strong>
+        <strong><T k="auto_tr_basicinputselection_82" /></strong>
       </td>
       <td>
-        キーボードユーザーのために、`Tab` でピッカー内を移動し、`Enter`
-        で決定できることを確認してください（wimui
-        のピッカーは標準で対応しています）。
-      </td>
+        <T k="auto_tr_pickerselection_555" /></td>
     </tr>
     <tr>
       <td>
-        <strong>無効な状態の明示</strong>
+        <strong><T k="auto_tr_pickerselection_556" /></strong>
       </td>
       <td>
-        選択不可能な日付（過去日など）はカレンダー上でグレーアウトし、直感的に判別できるように設定してください。
-      </td>
+        <T k="auto_tr_pickerselection_557" /></td>
     </tr>
     <tr>
       <td>
-        <strong>レスポンシブ</strong>
+        <strong><T k="auto_tr_pickerselection_558" /></strong>
       </td>
       <td>
-        モバイルデバイスでは、画面を占有しすぎないよう `Dialog` や `BottomSheet`
-        内にピッカーを配置することを検討してください。
-      </td>
+        <T k="auto_tr_pickerselection_559" /></td>
     </tr>
   </tbody>
 </table>

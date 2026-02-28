@@ -71,9 +71,9 @@ import { ContrastChecker } from "../stories/ContrastChecker";
   />
 </ColorGrid>
 
-<h2>Contrast Text Colors</h2>
+<h2><T k="token_color_ct_title" /></h2>
 <p className="section-desc">
-  セマンティックカラー（背景）の上に配置するテキストやアイコンの色です。
+  <T k="token_color_ct_desc" />
 </p>
 <ColorGrid>
   <ColorSwatch
@@ -239,9 +239,9 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 
 <hr />
 
-<h2>Contrast Checker</h2>
+<h2><T k="token_color_checker_title" /></h2>
 <p className="section-desc">
-  背景色と文字色のコントラスト比を確認して、アクセシビリティの基準を満たしているかチェックできます。
+  <T k="token_color_checker_desc" />
 </p>
 <ContrastChecker />
 
@@ -259,49 +259,48 @@ import { ContrastChecker } from "../stories/ContrastChecker";
   変数に割り当てています。
 </p>
 
-<strong>主要なトーンの対応:</strong>
+<strong><T k="auto_tr_colors_122" /></strong>
 <table>
   <thead>
     <tr>
-      <th>トーン</th>
-      <th>特徴</th>
-      <th>主な用途</th>
+      <th><T k="token_color_pccs_th1" /></th>
+      <th><T k="token_color_pccs_th2" /></th>
+      <th><T k="token_color_pccs_th3" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><strong>v (Vivid)</strong></td>
-      <td>純色</td>
-      <td>プライマリーカラーなど</td>
+      <td><T k="pccs_tone_v_desc" /></td>
+      <td><T k="pccs_tone_v_usage" /></td>
     </tr>
     <tr>
       <td><strong>s (Strong)</strong></td>
-      <td>彩度が高く力強い色</td>
-      <td>エラーや重要度の高い通知など</td>
+      <td><T k="pccs_tone_s_desc" /></td>
+      <td><T k="pccs_tone_s_usage" /></td>
     </tr>
     <tr>
       <td><strong>gy (Grayish)</strong></td>
-      <td>無彩色</td>
-      <td>テキスト、ボーダー、背景など</td>
+      <td><T k="pccs_tone_gy_desc" /></td>
+      <td><T k="pccs_tone_gy_usage" /></td>
     </tr>
   </tbody>
 </table>
-  詳細なカラーコードは <code>src/tokens/_pccs-colors.scss</code> および{" "}
-  <code>_semantic-colors.scss</code> を参照してください。
+  <p dangerouslySetInnerHTML={{ __html: "<T k='guide_colors_pccs_file_link' />" }}><T k="guide_colors_pccs_file_link" /></p>
 
 
-  <h2>カスタマイズ (Customization)</h2>
-    <p>配色を変更または追加したい場合は、以下のファイルを編集してください：</p>
+  <h2><T k="guide_pccs_customization_title" /></h2>
+    <p><T k="guide_colors_customization_desc" /></p>
     <ul>
       <li>
-        <strong>セマンティックカラーの変更:</strong><br />
+        <strong><T k="guide_colors_customization_semantic_title" /></strong><br />
         <code>src/tokens/_semantic-colors.scss</code><br />
-        <small style={{ color: "var(--text-secondary)" }}>用途ごとの色（Primary, Destructiveなど）や、ダークモードの配色を定義しています。</small>
+        <small style={{ color: "var(--text-secondary)" }}><T k="guide_colors_customization_semantic_desc" /></small>
       </li>
       <li style={{ marginTop: "12px" }}>
-        <strong>PCCSパレット変数の変更:</strong><br />
+        <strong><T k="guide_colors_customization_pccs_title" /></strong><br />
         <code>src/tokens/_pccs-colors.scss</code><br />
-        <small style={{ color: "var(--text-secondary)" }}>色相とトーンに基づいた具体的なカラーコードの定義（例: $pccs-v1）を行っています。</small>
+        <small style={{ color: "var(--text-secondary)" }}><T k="guide_colors_customization_pccs_desc" /></small>
       </li>
     </ul>
 

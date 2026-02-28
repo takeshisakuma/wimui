@@ -57,26 +57,26 @@ import {
   <InteractiveSwatch name="Lift Medium" tokenName="--lift-md" tokenValue="-1.5px" hoverStyle={{ transform: "translateY(var(--lift-md))", boxShadow: "var(--shadow-md)" }} />
 </TokenGrid>
 
-    <strong>実装ガイドライン:</strong>
+    <strong><T k="guide_spacings_implementation_guideline" /></strong>
     <table>
       <thead>
         <tr>
-          <th>項目</th>
-          <th>ガイドライン</th>
+          <th><T k="table_header_item" /></th>
+          <th><T k="table_header_guideline" /></th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><strong>Shadow</strong></td>
-          <td>浮き出し効果は、要素の重なり順（z-index）や重要度に応じて使い分けます。</td>
+          <td><T k="guide_effects_shadow_guideline" /></td>
         </tr>
         <tr>
           <td><strong>Motion</strong></td>
-          <td>ユーザーの操作に対するフィードバックは 0.2s〜0.3s 程度が最も自然に感じられます。</td>
+          <td><T k="guide_effects_motion_guideline" /></td>
         </tr>
         <tr>
-          <td><strong>共通変数</strong></td>
-          <td>変数は <code>var(--transition-base)</code> のようにまとめて定義されたものを使用することを推奨します。</td>
+          <td><strong><T k="auto_tr_effects_183" /></strong></td>
+          <td dangerouslySetInnerHTML={{ __html: "<T k='guide_effects_common_vars_guideline' />" }}><T k="guide_effects_common_vars_guideline" /></td>
         </tr>
       </tbody>
     </table>

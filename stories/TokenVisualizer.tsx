@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export const SpacingSwatch = ({
   name,
@@ -277,12 +278,17 @@ export const MotionSwatch = ({
 export const TypographyVisualizer = ({
   token,
   text,
+  textKey,
   type = "line-height",
 }: {
   token: string;
-  text: string;
+  text?: string;
+  textKey?: string;
   type?: "line-height" | "font-size";
 }) => {
+  const { t } = useTranslation();
+  const actualText = textKey ? t(textKey) : (text || "");
+
   const style: React.CSSProperties = {
     background: "var(--bg-app, #f9f9f9)",
     padding: "24px",
@@ -302,7 +308,7 @@ export const TypographyVisualizer = ({
     style.lineHeight = "1.5";
   }
 
-  const lines = text.split(/\\n|\n/);
+  const lines = actualText.split(/\\n|\n/);
   const title = lines[0];
   const previewText = lines.slice(1).join('\n') || title;
 

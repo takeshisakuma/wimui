@@ -5,44 +5,44 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 <Meta title="Token/Typography Tokens" />
 
 
-  <h1>タイポグラフィ・トークン</h1>
-  <p>一貫したタイポグラフィを実現するための、フォントサイズ、ウェイト、行間の定義です。フォントサイズはスケール比1.125（Major Second）のモジュラースケールを採用しています。</p>
-  <p>💡 <strong>スケール比の設定値</strong>は、<code>src/tokens/_spacings.scss</code> 内の <code>$font-scale-ratio</code> 変数で管理されており、この値を変更するだけでシステム全体のフォント比率を一括で調整できます。</p>
+  <h1><T k="token_type_title" /></h1>
+  <p><T k="token_type_desc1" /></p>
+  <p dangerouslySetInnerHTML={{ __html: "<T k='token_type_desc2' />" }}><T k="token_type_desc2" /></p>
 
 <hr />
 
-<h2>フォントサイズ (Font Sizes)</h2>
+<h2><T k="token_type_size" /></h2>
 <div style={{ display: "grid", gap: "8px" }}>
   <TypographyVisualizer
     token="--font-size-ex-large"
-    text="Extra Large Text (20.25px)\n1.125の2乗の比率（$font-size-2）を使用しています。"
+    textKey="token_type_text_ex_large"
     type="font-size"
   />
   <TypographyVisualizer
     token="--font-size-large"
-    text="Large Text (18px)\n1.125の1乗の比率（$font-size-1）を使用しています。"
+    textKey="token_type_text_large"
     type="font-size"
   />
   <TypographyVisualizer
     token="--font-size-medium"
-    text="Medium Text (16px)\n基準となるサイズ（$font-size-0 = 1rem）です。"
+    textKey="token_type_text_medium"
     type="font-size"
   />
   <TypographyVisualizer
     token="--font-size-small"
-    text="Small Text (14.22px)\n1.125の-1乗の比率（$font-size-minus-1）を使用しています。"
+    textKey="token_type_text_small"
     type="font-size"
   />
   <TypographyVisualizer
     token="--font-size-ex-small"
-    text="Extra Small Text (12.64px)\n1.125の-2乗の比率（$font-size-minus-2）を使用しています。"
+    textKey="token_type_text_ex_small"
     type="font-size"
   />
 </div>
 
 <hr />
 
-<h2>フォントウェイト (Font Weights)</h2>
+<h2><T k="token_type_weight" /></h2>
 <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
   <FontWeightVisualizer weight={400} token="--font-weight-normal" name="Normal" />
   <FontWeightVisualizer weight={500} token="--font-weight-medium" name="Medium" />
@@ -51,38 +51,38 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <hr />
 
-  <h2>行間 (Line Heights)</h2>
+  <h2><T k="token_type_lineheight" /></h2>
   
   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
     <div>
-      <h3>Japanese (Jpan)</h3>
+      <h3><T k="token_type_lh_jpan" /></h3>
       <TypographyVisualizer 
         token="--line-height-loose-jpan" 
-        text="Loose (1.8)\n日本語の文章において、特にモバイルデバイスや長い本文で見やすい行間です。ゆったりとした印象を与え、視線の移動をスムーズにします。" 
+        textKey="token_type_lh_jpan_loose"
       />
       <TypographyVisualizer 
         token="--line-height-normal-jpan" 
-        text="Normal (1.6)\n wim UI の標準的な行間です。読みやすさと情報の密度のバランスが最も取れた設定であり、一般的なニュース記事などに最適です。" 
+        textKey="token_type_lh_jpan_normal"
       />
       <TypographyVisualizer 
         token="--line-height-tight-jpan" 
-        text="Tight (1.4)\n 見出しやラベルなど、情報の密度を高めたい場合に使用します。限られたスペースの中で多くの情報を伝えたい場合に適しています。" 
+        textKey="token_type_lh_jpan_tight"
       />
     </div>
 
     <div>
-      <h3>Latin (Latn)</h3>
+      <h3><T k="token_type_lh_latn" /></h3>
       <TypographyVisualizer
         token="--line-height-loose-latn"
-        text="Loose (1.6)\nThe loose line height for Latin scripts provides ample breathing room between lines. It is ideal for legibility in long-form content."
+        textKey="token_type_lh_latn_loose"
       />
       <TypographyVisualizer
         token="--line-height-normal-latn"
-        text="Normal (1.4)\nNormal line height is the standard for most application UI elements. It offers a balanced density that works well for descriptions."
+        textKey="token_type_lh_latn_normal"
       />
       <TypographyVisualizer
         token="--line-height-tight-latn"
-        text="Tight (1.2)\nTight line height is specifically designed for headings. It maintains strong visual proximity for related text elements."
+        textKey="token_type_lh_latn_tight"
       />
     </div>
 
@@ -90,7 +90,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <hr />
 
-<h2>文字の装飾 (Text Decorations)</h2>
+<h2><T k="token_type_decor" /></h2>
 <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
   <DecorationVisualizer token="--decoration-line-through" name="Line Through" type="decoration" />
   <DecorationVisualizer token="--decoration-underline" name="Underline" type="decoration" />
@@ -99,14 +99,14 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <hr />
 
-<h2>セマンティック・エイリアス (Semantic Aliases)</h2>
-<p>コンポーネント間で一貫したスタイルを適用するため、上記のグローバルトークンには <code>--wim-</code> プレフィックスが付いたエイリアスが用意されています。wim UIのコンポーネントを開発・カスタマイズする際は、こちらの直接的なエイリアス変数の使用を推奨します。</p>
+<h2><T k="token_type_alias" /></h2>
+<p><T k="token_type_alias_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>エイリアス変数</th>
-      <th>参照先のグローバルトークン</th>
+      <th><T k="token_type_alias_th1" /></th>
+      <th><T k="token_type_alias_th2" /></th>
     </tr>
   </thead>
   <tbody>

@@ -2,70 +2,70 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Components/Buttons" />
 
-# ボタンコンポーネントの使い分け
+# <T k="auto_tr_buttonselection_115" />
 
-ユーザーのアクションを促すボタンは、その重要度や役割に応じて視覚的な重み付けを使い分ける必要があります。
+<T k="auto_tr_buttonselection_118" />
 
 ## Link vs Button
 
-セマンティクス（意味付け）とアクセシビリティを正しく保つために、見た目ではなく「目的」で使い分けます。
-詳細な使い分け基準については、専用のガイドを参照してください。
+<T k="auto_tr_buttonselection_119" />
+<T k="auto_tr_buttonselection_120" />
 
 > **Guide**: **[Link vs Button (リンクとボタンの使い分け)](?path=/docs/guides-link-vs-button--docs)**
 
 ---
 
-## 構成要素
+## <T k="auto_tr_buttonselection_116" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>概要</th>
-      <th>主な用途</th>
+      <th><T k="table_header_component" /></th>
+      <th><T k="table_header_overview" /></th>
+      <th><T k="table_header_usage" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><strong>Button</strong></td>
-      <td>標準的なボタン</td>
-      <td>最も汎用的なアクション。テキストで意図を明確に伝える必要がある場合。</td>
+      <td><T k="auto_tr_buttonselection_89" /></td>
+      <td><T k="auto_tr_buttonselection_90" /></td>
     </tr>
     <tr>
       <td><strong>IconButton</strong></td>
-      <td>アイコンのみのボタン</td>
-      <td>ツールバーやカード内など、省スペースで直感的な操作を提供したい場合。</td>
+      <td><T k="doc_iconButton_desc" /></td>
+      <td><T k="auto_tr_buttonselection_91" /></td>
     </tr>
     <tr>
       <td><strong>LinkButton</strong></td>
-      <td>リンクボタン</td>
+      <td><T k="auto_tr_buttonselection_92" /></td>
       <td>ページ遷移を行うが、視覚的にボタンとして強調したい場合（セマンティクスは `<a>`）。</td>
     </tr>
     <tr>
       <td><strong>ButtonGroup</strong></td>
-      <td>ボタングループ</td>
-      <td>「戻る・次へ」や「編集・保存」など、関連性の高い操作をまとめて提示する場合。</td>
+      <td><T k="auto_tr_buttonselection_93" /></td>
+      <td><T k="auto_tr_buttonselection_94" /></td>
     </tr>
     <tr>
       <td><strong>CopyButton</strong></td>
-      <td>コピー専用ボタン</td>
-      <td>IDやURLなどの文字列を、1クリックで正確にクリップボードへ保存させたい場合。</td>
+      <td><T k="auto_tr_buttonselection_95" /></td>
+      <td><T k="auto_tr_buttonselection_96" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 役割と優先度 (Priority)
+## <T k="auto_tr_buttonselection_117" />
 
-同じ画面内に複数のボタンがある場合、ユーザーが迷わないよう視覚的な重み付け（優先度）を設定します。
+<T k="auto_tr_buttonselection_121" />
 
 <table>
   <thead>
     <tr>
-      <th>優先度</th>
-      <th>視覚的な特徴</th>
-      <th>具体的な使い分け</th>
+      <th><T k="auto_tr_buttonselection_97" /></th>
+      <th><T k="auto_tr_buttonselection_98" /></th>
+      <th><T k="auto_tr_buttonselection_99" /></th>
     </tr>
   </thead>
   <tbody>
@@ -73,71 +73,66 @@ import { Meta } from "@storybook/addon-docs/blocks";
       <td>
         <strong>Primary</strong>
       </td>
-      <td>強 (ブランドカラー)</td>
-      <td>画面内で最も重要な「主アクション」。原則として1画面に1つ。</td>
+      <td><T k="auto_tr_buttonselection_100" /></td>
+      <td><T k="auto_tr_buttonselection_101" /></td>
     </tr>
     <tr>
       <td>
         <strong>Secondary</strong>
       </td>
-      <td>中 (アウトライン)</td>
+      <td><T k="auto_tr_buttonselection_102" /></td>
       <td>
-        主アクションを補助する「副アクション」。（キャンセル、編集、戻るなど）
-      </td>
+        <T k="auto_tr_buttonselection_103" /></td>
     </tr>
     <tr>
       <td>
         <strong>Tertiary</strong>
       </td>
-      <td>弱 (背景なし)</td>
-      <td>補助的な操作や、多くの選択肢を並べる必要がある場合。</td>
+      <td><T k="auto_tr_buttonselection_104" /></td>
+      <td><T k="auto_tr_buttonselection_105" /></td>
     </tr>
     <tr>
       <td>
         <strong>Danger</strong>
       </td>
-      <td>注意 (赤色等)</td>
-      <td>削除、リセットなど、実行後に元に戻せない破壊的なアクション。</td>
+      <td><T k="auto_tr_buttonselection_106" /></td>
+      <td><T k="auto_tr_buttonselection_107" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## ガイドライン
+## <T k="table_header_guideline" />
 
 <table>
   <thead>
     <tr>
-      <th>原則</th>
-      <th>具体的なガイドライン</th>
+      <th><T k="auto_tr_buttonselection_108" /></th>
+      <th><T k="auto_tr_buttonselection_109" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>一貫性</strong>
+        <strong><T k="auto_tr_buttonselection_110" /></strong>
       </td>
       <td>
-        同じアクションには、常に同じ種類（Priority）のボタンを使用してください。
-      </td>
+        <T k="auto_tr_buttonselection_111" /></td>
     </tr>
     <tr>
       <td>
-        <strong>配置</strong>
+        <strong><T k="auto_tr_alertselection_1" /></strong>
       </td>
       <td>
-        主要なアクション（Primary）は、一般的な視線移動の終点（例：右下）に配置します。
-      </td>
+        <T k="auto_tr_buttonselection_112" /></td>
     </tr>
     <tr>
       <td>
-        <strong>配置の競合</strong>
+        <strong><T k="auto_tr_buttonselection_113" /></strong>
       </td>
       <td>
-        1つの画面（またはモーダル）に Primary
-        ボタンは原則として1つだけに留めます。
-      </td>
+        <T k="auto_tr_buttonselection_114" /></td>
     </tr>
   </tbody>
 </table>
