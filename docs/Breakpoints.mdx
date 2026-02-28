@@ -55,11 +55,11 @@ import { T } from "../stories/T";
 @use "../../tokens/breakpoints" as *;
 
 .my-component {
-  // デフォルト（スマートフォン等の小さい画面向け）
+  // Default (for small screens like smartphones)
   display: block;
 
   @include up(md) {
-    // 画面幅が 768px 以上の時のスタイル
+    // Style for screen width 768px and above
     display: flex;
   }
 }
@@ -75,7 +75,7 @@ import { T } from "../stories/T";
   padding: 16px;
 
   @include down(sm) {
-    // 画面幅が 576px 以下の時にだけパディングを小さくする
+    // Reduce padding only when screen width is 576px or less
     padding: 8px;
   }
 }
