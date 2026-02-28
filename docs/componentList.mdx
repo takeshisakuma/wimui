@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/blocks";
+import { Meta } from "@storybook/addon-docs/blocks";
 
 import { T } from "../stories/T";
 
@@ -31,10 +31,10 @@ export const PlatformIcons = ({ pc, mobile }) => (
 
 
 <ul>
-  <li><a href="./?path=/docs/token-colors--docs" target="_top">Colors</a></li>
-  <li><a href="./?path=/docs/token-typography-tokens--docs" target="_top">Typography</a></li>
-  <li><a href="./?path=/docs/token-spacings-radius--docs" target="_top">Spacings &amp; Radius</a></li>
-  <li><a href="./?path=/docs/token-effects--docs" target="_top">Effects</a></li>
+  <li><a href="./?path=/docs/token-colors--docs" target="_top"><T k="token_colors" /></a></li>
+  <li><a href="./?path=/docs/token-typography-tokens--docs" target="_top"><T k="token_typography" /></a></li>
+  <li><a href="./?path=/docs/token-spacings-radius--docs" target="_top"><T k="token_spacings" /></a></li>
+  <li><a href="./?path=/docs/token-effects--docs" target="_top"><T k="token_effects" /></a></li>
 </ul>
 
 
@@ -42,22 +42,6 @@ export const PlatformIcons = ({ pc, mobile }) => (
 <h2>
   <T k="dashboard_progress" />
 </h2>
-
-
-<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-  <PlatformIcons pc mobile /> <span>全デバイス (PC, タブレット, モバイル)</span>
-</div>
-<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-  <PlatformIcons pc /> <span>PCのみ (マウス/キーボード操作に最適)</span>
-</div>
-<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-  <PlatformIcons mobile /> <span>モバイルのみ (タッチ操作/小画面に最適)</span>
-</div>
-
-
-
-
-
 
 <table>
   <thead>
@@ -152,8 +136,18 @@ export const PlatformIcons = ({ pc, mobile }) => (
 
 <hr />
 
+<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+  <PlatformIcons pc mobile /> <span><T k="legend_all_devices" /></span>
+</div>
+<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+  <PlatformIcons pc /> <span><T k="legend_pc_only" /></span>
+</div>
+<div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "32px" }}>
+  <PlatformIcons mobile /> <span><T k="legend_mobile_only" /></span>
+</div>
+
 <h2 id="advanced-inputs">
-  <T k="cat_advanced_inputs" /> <a href="./?path=/docs/components-advanced-inputs--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_advanced_inputs" /> <a href="./?path=/docs/components-advanced-inputs--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -237,7 +231,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="alerts">
-  <T k="cat_alerts" /> <a href="./?path=/docs/components-alerts-notifications--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_alerts" /> <a href="./?path=/docs/components-alerts-notifications--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -321,7 +315,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="app-shell">
-  <T k="cat_app_shell" /> <a href="./?path=/docs/guides-app-layout--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_app_shell" /> <a href="./?path=/docs/guides-app-layout--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -396,7 +390,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="basic-inputs">
-  <T k="cat_basic_inputs" /> <a href="./?path=/docs/components-basic-inputs--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_basic_inputs" /> <a href="./?path=/docs/components-basic-inputs--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -489,7 +483,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="buttons">
-  <T k="cat_buttons" /> <a href="./?path=/docs/components-buttons--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_buttons" /> <a href="./?path=/docs/components-buttons--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -555,7 +549,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="data-containers">
-  <T k="cat_data_containers" /> <a href="./?path=/docs/components-data-containers--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_data_containers" /> <a href="./?path=/docs/components-data-containers--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -594,7 +588,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="data-indicators">
-  <T k="cat_data_indicators" /> <a href="./?path=/docs/components-data-indicators--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_data_indicators" /> <a href="./?path=/docs/components-data-indicators--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -696,7 +690,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="data-structures">
-  <T k="cat_data_structures" /> <a href="./?path=/docs/components-data-structures--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_data_structures" /> <a href="./?path=/docs/components-data-structures--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -789,7 +783,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="form-layout">
-  <T k="cat_form_layout" /> <a href="./?path=/docs/components-form-layout--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_form_layout" /> <a href="./?path=/docs/components-form-layout--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -855,7 +849,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="layout">
-  <T k="cat_layout" /> <a href="./?path=/docs/components-layout--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_layout" /> <a href="./?path=/docs/components-layout--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -984,7 +978,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="loading">
-  <T k="cat_loading" /> <a href="./?path=/docs/components-loading-states--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_loading" /> <a href="./?path=/docs/components-loading-states--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -1050,7 +1044,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="media">
-  <T k="cat_media" /> <a href="./?path=/docs/components-media--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_media" /> <a href="./?path=/docs/components-media--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -1107,7 +1101,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="nav-elements">
-  <T k="cat_nav_elements" /> <a href="./?path=/docs/components-navigation-elements--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_nav_elements" /> <a href="./?path=/docs/components-navigation-elements--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -1191,7 +1185,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="nav-utilities">
-  <T k="cat_nav_utilities" /> <a href="./?path=/docs/components-navigation-utilities--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_nav_utilities" /> <a href="./?path=/docs/components-navigation-utilities--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -1239,7 +1233,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="overlays">
-  <T k="cat_overlays" /> <a href="./?path=/docs/components-overlays--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_overlays" /> <a href="./?path=/docs/components-overlays--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -1359,7 +1353,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="pickers">
-  <T k="cat_pickers" /> <a href="./?path=/docs/components-pickers-sliders--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_pickers" /> <a href="./?path=/docs/components-pickers-sliders--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -1452,7 +1446,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="selection">
-  <T k="cat_selection" /> <a href="./?path=/docs/components-selection-controls--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_selection" /> <a href="./?path=/docs/components-selection-controls--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -1608,7 +1602,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="typography">
-  <T k="cat_typography" /> <a href="./?path=/docs/components-typography-icons--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_typography" /> <a href="./?path=/docs/components-typography-icons--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -1710,7 +1704,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="utilities">
-  <T k="cat_utilities" /> <a href="./?path=/docs/components-utilities--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_utilities" /> <a href="./?path=/docs/components-utilities--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>
@@ -1830,7 +1824,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </table>
 
 <h2 id="visualization">
-  <T k="cat_visualization" /> <a href="./?path=/docs/components-visualization--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}>使い分けガイド</a>
+  <T k="cat_visualization" /> <a href="./?path=/docs/components-visualization--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
 </h2>
 <table>
   <thead>

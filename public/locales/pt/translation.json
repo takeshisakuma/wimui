@@ -571,5 +571,13 @@
   "guide_pccs_customization_title": "Customização",
   "guide_pccs_customization_desc": "Se você deseja alterar códigos de cores específicos na paleta PCCS, edite o seguinte arquivo:",
   "guide_pccs_customization_file_path": "Caminho do Arquivo:",
-  "guide_pccs_customization_note": "* Alterar este arquivo atualizará as cores semânticas (Primária, Sucesso, etc.) e as cores dos componentes que referenciam essas cores de uma só vez."
+  "guide_pccs_customization_note": "* Alterar este arquivo atualizará as cores semânticas (Primária, Sucesso, etc.) e as cores dos componentes que referenciam essas cores de uma só vez.",
+  "guide_usage": "Guia de Uso",
+  "legend_all_devices": "Todos os Dispositivos (PC, Tablet, Celular)",
+  "legend_pc_only": "Apenas PC (Otimizado para Mouse/Teclado)",
+  "legend_mobile_only": "Apenas Celular (Otimizado para Toque/Telas Pequenas)",
+  "token_colors": "Colors",
+  "token_typography": "Typography",
+  "token_spacings": "Spacings & Radius",
+  "token_effects": "Effects"
 }

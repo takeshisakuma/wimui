@@ -601,5 +601,13 @@
   "guide_colors_customization_semantic_title": "セマンティックカラーの変更:",
   "guide_colors_customization_semantic_desc": "用途ごとの色（Primary, Destructiveなど）や、ダークモードの配色を定義しています。",
   "guide_colors_customization_pccs_title": "PCCSパレット変数の変更:",
-  "guide_colors_customization_pccs_desc": "色相とトーンに基づいた具体的なカラーコードの定義（例: $pccs-v1）を行っています。"
+  "guide_colors_customization_pccs_desc": "色相とトーンに基づいた具体的なカラーコードの定義（例: $pccs-v1）を行っています。",
+  "guide_usage": "使い分けガイド",
+  "legend_all_devices": "全デバイス (PC, タブレット, モバイル)",
+  "legend_pc_only": "PCのみ (マウス/キーボード操作に最適)",
+  "legend_mobile_only": "モバイルのみ (タッチ操作/小画面に最適)",
+  "token_colors": "Colors",
+  "token_typography": "Typography",
+  "token_spacings": "Spacings & Radius",
+  "token_effects": "Effects"
 }

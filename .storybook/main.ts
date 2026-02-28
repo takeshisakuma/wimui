@@ -32,10 +32,10 @@ const config: StorybookConfig = {
       resolve: {
         alias: [
           {
-            find: "storybook/internal/theming",
+            find: "storybook/theming",
             replacement: path.resolve(
               process.cwd(),
-              "node_modules/storybook/dist/theming/index.js",
+              "node_modules/storybook/dist/theming",
             ),
           },
         ],

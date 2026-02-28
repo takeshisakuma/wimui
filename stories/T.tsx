@@ -38,7 +38,6 @@ const startGlobalSync = () => {
         targetLocale = "en";
       }
 
-      /*
       const currentLang = i18n.language;
       if (targetLocale && currentLang !== targetLocale) {
         // 言語コードが部分的に一致（en-US と en など）しているだけの場合は無視する
@@ -55,7 +54,6 @@ const startGlobalSync = () => {
           }
         }
       }
-      */
     } catch {
       // 異なるドメインの iframe などで window.top にアクセスできない場合のセーフティ
     }

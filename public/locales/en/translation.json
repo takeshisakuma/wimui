@@ -601,5 +601,13 @@
   "guide_colors_customization_semantic_title": "Changing Semantic Colors:",
   "guide_colors_customization_semantic_desc": "Defines colors for specific purposes (Primary, Destructive, etc.) and dark mode color schemes.",
   "guide_colors_customization_pccs_title": "Changing PCCS Palette Variables:",
-  "guide_colors_customization_pccs_desc": "Defines specific color codes based on hue and tone (e.g., $pccs-v1)."
+  "guide_colors_customization_pccs_desc": "Defines specific color codes based on hue and tone (e.g., $pccs-v1).",
+  "guide_usage": "Usage Guide",
+  "legend_all_devices": "All Devices (PC, Tablet, Mobile)",
+  "legend_pc_only": "PC Only (Optimized for Mouse/Keyboard)",
+  "legend_mobile_only": "Mobile Only (Optimized for Touch/Small Screens)",
+  "token_colors": "Colors",
+  "token_typography": "Typography",
+  "token_spacings": "Spacings & Radius",
+  "token_effects": "Effects"
 }
