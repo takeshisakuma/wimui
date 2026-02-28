@@ -67,8 +67,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem; // Adjusted for 3 rows
-  min-width: 380px; // Slightly wider base
-  padding: 1rem 1.2rem 0.8rem; // More generous padding
+  padding: 1rem 0 0.8rem; // More generous padding
   color: white;
   background: linear-gradient(135deg, #1e1e24 0%, #292930 100%);
   position: relative;
@@ -101,7 +100,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding-bottom: var(--spacing-sm);
+  padding: 0 var(--spacing-xl) var(--spacing-sm);
   border-bottom: 1px solid rgb(255 255 255 / 0.1);
   position: relative;
   z-index: 2;
@@ -176,7 +175,6 @@
 .wim-audio-controls-group {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
 }
 
 .wim-audio-btn {
@@ -241,11 +239,14 @@
   display: flex;
   flex: 1;
   gap: 6px; // Tighter gap
-  padding: 0 var(--spacing-lg); // Additional internal padding to shorten the bar
   align-items: center;
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
   color: rgb(255 255 255 / 0.7);
+
+  .wim-audio--radius-full & {
+    padding: 0 var(--spacing-3xl);
+  }
 }
 
 // ...
@@ -305,7 +306,6 @@
 .wim-audio-volume-container {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
 }
 
 .wim-audio-volume {
