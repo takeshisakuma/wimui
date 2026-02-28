@@ -253,11 +253,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 <p>
   <T k="guide_colors_pccs_desc" />
 </p>
-<p>
-  wim UI では PCCS 記法（例: <code>$pccs-v1</code>, <code>$pccs-gy8-5</code>
-  ）を用いて SCSS 変数として管理されており、それらをセマンティックな CSS
-  変数に割り当てています。
-</p>
+<p dangerouslySetInnerHTML={{ __html: "<T k='guide_colors_pccs_mapping_desc' />" }} />
 
 <strong><T k="auto_tr_colors_122" /></strong>
 <table>
@@ -270,17 +266,17 @@ import { ContrastChecker } from "../stories/ContrastChecker";
   </thead>
   <tbody>
     <tr>
-      <td><strong>v (Vivid)</strong></td>
+      <td><strong><T k="tone_vivid" /> (v)</strong></td>
       <td><T k="pccs_tone_v_desc" /></td>
       <td><T k="pccs_tone_v_usage" /></td>
     </tr>
     <tr>
-      <td><strong>s (Strong)</strong></td>
+      <td><strong><T k="tone_strong" /> (s)</strong></td>
       <td><T k="pccs_tone_s_desc" /></td>
       <td><T k="pccs_tone_s_usage" /></td>
     </tr>
     <tr>
-      <td><strong>gy (Grayish)</strong></td>
+      <td><strong><T k="tone_grayish" /> (gy)</strong></td>
       <td><T k="pccs_tone_gy_desc" /></td>
       <td><T k="pccs_tone_gy_usage" /></td>
     </tr>

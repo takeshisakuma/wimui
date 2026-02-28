@@ -8,9 +8,9 @@ import { T } from "../stories/T";
 
 <T k="auto_tr_icons_350" />
 
-具体的な `Icon` コンポーネントの使用方法や、利用可能なアイコンの一覧については、[Icon コンポーネントのドキュメント](?path=/docs/component-typography-icons-icon--docs) を参照してください。
+<T k="icons_doc_ref" />
 
-「線か塗りか」という問いに対して「どちらか一方が正解」ということはありません。アプリの性質や、そのアイコンが置かれる場所（コンテキスト）によって使い分けることが重要です。
+<T k="icons_line_or_fill" />
 
 ## <T k="auto_tr_icons_344" />
 
@@ -193,12 +193,12 @@ import { T } from "../stories/T";
         <strong><T k="auto_tr_icons_336" /></strong>
       </td>
       <td>
-        通常時と選択時でアイコンの種類を切り替えると、UIのフィードバックが非常にわかりやすくなります。
+        <T k="icons_feedback_clear" />
         <br />
-        例（ボトムナビゲーション）：
+        <T k="icons_nav_example" />
         <br />
         - <T k="auto_tr_icons_349" />
-        <br />- 選択中：塗りアイコン（Filled）
+        <br />- <T k="icons_nav_selected" />
       </td>
     </tr>
   </tbody>
@@ -221,19 +221,12 @@ import { T } from "../stories/T";
         <strong><T k="auto_tr_icons_339" /></strong>
       </td>
       <td>
-        テキストの <code>line-height</code> や <code>font-size</code>{" "}
-        に合わせてアイコンのサイズが自動で変わるように設計します（例:{" "}
-        <code>1.2em</code> などを使用）。
+        <T k="icons_size_match" />
       </td>
     </tr>
     <tr>
       <td>
-        <strong><T k="auto_tr_icons_340" /></strong>
-      </td>
-      <td>
-        テキストが Bold
-        になったらアイコンも太いものや塗りのものに切り替える、あるいは{" "}
-        <code>stroke-width</code> を微調整できる仕組みを作ると便利です。
+        <T k="icons_bold_switch" />
       </td>
     </tr>
     <tr>
@@ -241,9 +234,7 @@ import { T } from "../stories/T";
         <strong><T k="auto_tr_icons_341" /></strong>
       </td>
       <td>
-        線アイコンは隣り合うテキストの太さと合わせるのが鉄則です。
-        <code>stroke-width</code>（1.5px,
-        2px等）を微調整できるようにすると、テキストとの一体感が増します。
+        <T k="icons_line_match" />
       </td>
     </tr>
     <tr>

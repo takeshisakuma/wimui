@@ -159,9 +159,9 @@ import { T } from "../stories/T";
     </tr>
     <tr>
       <td>
-        断続的なデータの比較
+        <T k="vis_intermittent" />
         <br />
-        各項目の絶対的な差
+        <T k="vis_absolute_diff" />
       </td>
       <td>Bar Chart</td>
     </tr>
@@ -176,21 +176,21 @@ import { T } from "../stories/T";
         (Proportions)
       </td>
       <td>
-        全体に対する各項目の割合
+        <T k="vis_ratio" />
         <br />
-        構成比、シェア
+        <T k="vis_share" />
         <br />
-        (項目数が少ない場合)
+        <T k="vis_small_items" />
       </td>
       <td>Pie Chart</td>
     </tr>
     <tr>
       <td>
-        全体に対する各項目の割合
+        <T k="vis_ratio" />
         <br />
-        構成比、シェア
+        <T k="vis_share" />
         <br />
-        項目数が多い(5項目以上)割合の可視化
+        <T k="vis_large_items" />
       </td>
       <td><T k="auto_tr_visualizationselection_765" /></td>
     </tr>
@@ -205,19 +205,19 @@ import { T } from "../stories/T";
         (Correlation & Distribution)
       </td>
       <td>
-        2つの数値変数の関係
+        <T k="vis_relationship" />
         <br />
-        相関の有無
+        <T k="vis_correlation" />
         <br />
-        外れ値の検出
+        <T k="vis_outliers" />
       </td>
       <td><T k="auto_tr_visualizationselection_769" /></td>
     </tr>
     <tr>
       <td>
-        時間軸など特定のセグメントごとの「集中度」
+        <T k="vis_concentration" />
         <br />
-        （例：週・時間別のログイン頻度）
+        <T k="vis_login_freq" />
       </td>
       <td><T k="auto_tr_visualizationselection_770" /></td>
     </tr>
@@ -255,7 +255,7 @@ import { T } from "../stories/T";
 <hr />
 
   <h2><T k="auto_tr_visualizationselection_780" /></h2>
-    <p>WIM UI のチャートコンポーネントは <strong>Recharts</strong> をベースに構築されており、プロジェクトのデザイントークンに合わせたスタイリングが自動的に適用されます。</p>
+    <p><T k="vis_recharts_desc" /></p>
     <ul>
       <li>
         <strong><T k="auto_tr_visualizationselection_781" /></strong><br />
@@ -264,7 +264,7 @@ import { T } from "../stories/T";
       <li style={{ marginTop: "12px" }}>
         <strong><T k="auto_tr_visualizationselection_782" /></strong><br />
         <code>src/components/Charts/helpers.ts</code><br />
-        <small style={{ color: "var(--text-secondary)" }}>チャートで使用するデフォルトの配色（CHART_COLORS）や、グリッド・軸のスタイルを管理しています。</small>
+        <small style={{ color: "var(--text-secondary)" }}><T k="vis_chart_colors" /></small>
       </li>
     </ul>
 
