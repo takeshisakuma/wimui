@@ -3,6 +3,7 @@ import { T } from "../stories/T";
 import {
   SpacingSwatch,
   RadiusSwatch,
+  FocusOutlineSwatch,
   TokenGrid,
 } from "../stories/TokenVisualizer";
 
@@ -43,10 +44,39 @@ import {
   <RadiusSwatch name="Full" value="9999px" radius="var(--radius-full)" />
 </TokenGrid>
 
-    <strong><T k="guide_spacings_implementation_guideline" /></strong>
-    <ul style={{ marginTop: '12px', fontSize: '14px', lineHeight: '1.6' }}>
-      <li><T k="guide_spacings_guideline_1" /></li>
-      <li><T k="guide_spacings_guideline_2" /></li>
-      <li><T k="guide_spacings_guideline_3" /></li>
-    </ul>
+<hr />
+
+<h2>
+  フォーカス状態 (Focus Outline)
+</h2>
+<p style={{ marginBottom: "20px" }}>
+  アクセシビリティ（キーボード操作時の現在位置の明示など）を確保するため、フォーカス時に表示されるアウトラインの太さとオフセット余白です。
+</p>
+<TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
+  <FocusOutlineSwatch />
+</TokenGrid>
+
+<strong><T k="guide_spacings_implementation_guideline" /></strong>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>ガイドライン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>ベースの1rem</strong></td>
+      <td>ブラウザデフォルト（通常16px）に従います。</td>
+    </tr>
+    <tr>
+      <td><strong>余白</strong></td>
+      <td><code>var(--spacing-md)</code> のように CSS 変数を使用し、直接数値を記述しないでください。</td>
+    </tr>
+    <tr>
+      <td><strong>角丸</strong></td>
+      <td>コンポーネントの大きさに応じて使い分けます（ボタン: sm/md, カード: lg）。</td>
+    </tr>
+  </tbody>
+</table>
 

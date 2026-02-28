@@ -1,0 +1,81 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Token/Breakpoints" />
+
+<h1>ブレイクポイント (Breakpoints)</h1>
+<p>wim UIはレスポンシブデザインに対応しており、以下のブレイクポイントを基準にしてレイアウトが切り替わります。</p>
+
+<hr />
+
+<h2>ブレイクポイント一覧</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>キー</th>
+      <th>サイズ幅 (min-width)</th>
+      <th>想定されるデバイス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sm</code></td>
+      <td>576px</td>
+      <td>大型のスマートフォン、または縦向きの小さなタブレット</td>
+    </tr>
+    <tr>
+      <td><code>md</code></td>
+      <td>768px</td>
+      <td>タブレット（iPadなど）の縦向き</td>
+    </tr>
+    <tr>
+      <td><code>lg</code></td>
+      <td>992px</td>
+      <td>ノートPC、タブレットの横向き</td>
+    </tr>
+    <tr>
+      <td><code>xl</code></td>
+      <td>1200px</td>
+      <td>大型のデスクトップモニター</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2>SCSSでの利用方法 (Mixins)</h2>
+
+<p>これらのトークンは、<code>src/tokens/_breakpoints.scss</code> 内でマップ変数 <code>$breakpoints</code> として定義されており、メディアクエリを簡単に書くための Mixin も用意されています。</p>
+
+<h3><code>@include up($breakpoint)</code></h3>
+<p>指定したブレイクポイント<strong>以上 (min-width)</strong>でスタイルを適用する「モバイルファースト」なレイアウトで使用します。</p>
+
+```scss
+@use "../../tokens/breakpoints" as *;
+
+.my-component {
+  // デフォルト（スマートフォン等の小さい画面向け）
+  display: block;
+
+  @include up(md) {
+    // 画面幅が 768px 以上の時のスタイル
+    display: flex;
+  }
+}
+```
+
+<h3><code>@include down($breakpoint)</code></h3>
+<p>指定したブレイクポイント<strong>以下 (max-width)</strong>でのみスタイルを適用する際に使用します。</p>
+
+```scss
+@use "../../tokens/breakpoints" as *;
+
+.my-button {
+  padding: 16px;
+
+  @include down(sm) {
+    // 画面幅が 576px 以下の時にだけパディングを小さくする
+    padding: 8px;
+  }
+}
+```

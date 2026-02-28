@@ -1,12 +1,13 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
-import { TokenGrid, TypographyVisualizer } from "../stories/TokenVisualizer";
+import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisualizer } from "../stories/TokenVisualizer";
 
 <Meta title="Token/Typography Tokens" />
 
 
   <h1>タイポグラフィ・トークン</h1>
-  <p>一貫したタイポグラフィを実現するための、フォントサイズ、ウェイト、行間の定義です。</p>
+  <p>一貫したタイポグラフィを実現するための、フォントサイズ、ウェイト、行間の定義です。フォントサイズはスケール比1.125（Major Second）のモジュラースケールを採用しています。</p>
+  <p>💡 <strong>スケール比の設定値</strong>は、<code>src/tokens/_spacings.scss</code> 内の <code>$font-scale-ratio</code> 変数で管理されており、この値を変更するだけでシステム全体のフォント比率を一括で調整できます。</p>
 
 <hr />
 
@@ -14,22 +15,27 @@ import { TokenGrid, TypographyVisualizer } from "../stories/TokenVisualizer";
 <div style={{ display: "grid", gap: "8px" }}>
   <TypographyVisualizer
     token="--font-size-ex-large"
-    text="Extra Large Text (20.8px)\n一貫したタイポグラフィを実現するための定義です。"
+    text="Extra Large Text (20.25px)\n1.125の2乗の比率（$font-size-2）を使用しています。"
     type="font-size"
   />
   <TypographyVisualizer
     token="--font-size-large"
-    text="Large Text (17.6px)\n一貫したタイポグラフィを実現するための定義です。"
+    text="Large Text (18px)\n1.125の1乗の比率（$font-size-1）を使用しています。"
     type="font-size"
   />
   <TypographyVisualizer
     token="--font-size-medium"
-    text="Medium Text (16px)\n一貫したタイポグラフィを実現するための定義です。"
+    text="Medium Text (16px)\n基準となるサイズ（$font-size-0 = 1rem）です。"
     type="font-size"
   />
   <TypographyVisualizer
     token="--font-size-small"
-    text="Small Text (14.4px)\n一貫したタイポグラフィを実現するための定義です。"
+    text="Small Text (14.22px)\n1.125の-1乗の比率（$font-size-minus-1）を使用しています。"
+    type="font-size"
+  />
+  <TypographyVisualizer
+    token="--font-size-ex-small"
+    text="Extra Small Text (12.64px)\n1.125の-2乗の比率（$font-size-minus-2）を使用しています。"
     type="font-size"
   />
 </div>
@@ -38,72 +44,9 @@ import { TokenGrid, TypographyVisualizer } from "../stories/TokenVisualizer";
 
 <h2>フォントウェイト (Font Weights)</h2>
 <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
-  <div
-    style={{
-      padding: "20px",
-      background: "var(--bg-component)",
-      borderRadius: "8px",
-      border: "1px solid var(--wim-color-border)",
-      color: "var(--text-primary)",
-    }}
-  >
-    <div style={{ fontWeight: "var(--font-weight-normal)", fontSize: "24px" }}>
-      Normal
-    </div>
-    <div
-      style={{
-        fontSize: "12px",
-        color: "var(--text-secondary)",
-        marginTop: "8px",
-      }}
-    >
-      400 (<code>--font-weight-normal</code>)
-    </div>
-  </div>
-  <div
-    style={{
-      padding: "20px",
-      background: "var(--bg-component)",
-      borderRadius: "8px",
-      border: "1px solid var(--wim-color-border)",
-      color: "var(--text-primary)",
-    }}
-  >
-    <div style={{ fontWeight: "var(--font-weight-medium)", fontSize: "24px" }}>
-      Medium
-    </div>
-    <div
-      style={{
-        fontSize: "12px",
-        color: "var(--text-secondary)",
-        marginTop: "8px",
-      }}
-    >
-      500 (<code>--font-weight-medium</code>)
-    </div>
-  </div>
-  <div
-    style={{
-      padding: "20px",
-      background: "var(--bg-component)",
-      borderRadius: "8px",
-      border: "1px solid var(--wim-color-border)",
-      color: "var(--text-primary)",
-    }}
-  >
-    <div style={{ fontWeight: "var(--font-weight-bold)", fontSize: "24px" }}>
-      Bold
-    </div>
-    <div
-      style={{
-        fontSize: "12px",
-        color: "var(--text-secondary)",
-        marginTop: "8px",
-      }}
-    >
-      700 (<code>--font-weight-bold</code>)
-    </div>
-  </div>
+  <FontWeightVisualizer weight={400} token="--font-weight-normal" name="Normal" />
+  <FontWeightVisualizer weight={500} token="--font-weight-medium" name="Medium" />
+  <FontWeightVisualizer weight={700} token="--font-weight-bold" name="Bold" />
 </TokenGrid>
 
 <hr />
@@ -144,4 +87,73 @@ import { TokenGrid, TypographyVisualizer } from "../stories/TokenVisualizer";
     </div>
 
   </div>
+
+<hr />
+
+<h2>文字の装飾 (Text Decorations)</h2>
+<TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
+  <DecorationVisualizer token="--decoration-line-through" name="Line Through" type="decoration" />
+  <DecorationVisualizer token="--decoration-underline" name="Underline" type="decoration" />
+  <DecorationVisualizer token="--decoration-highlight-color" name="Highlight Color" type="highlight" />
+</TokenGrid>
+
+<hr />
+
+<h2>セマンティック・エイリアス (Semantic Aliases)</h2>
+<p>コンポーネント間で一貫したスタイルを適用するため、上記のグローバルトークンには <code>--wim-</code> プレフィックスが付いたエイリアスが用意されています。wim UIのコンポーネントを開発・カスタマイズする際は、こちらの直接的なエイリアス変数の使用を推奨します。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>エイリアス変数</th>
+      <th>参照先のグローバルトークン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--wim-font-size-xs</code></td>
+      <td><code>--font-size-ex-small</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-font-size-sm</code></td>
+      <td><code>--font-size-small</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-font-size-md</code></td>
+      <td><code>--font-size-medium</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-font-size-lg</code></td>
+      <td><code>--font-size-large</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-font-size-xl</code></td>
+      <td><code>--font-size-ex-large</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-font-weight-normal</code></td>
+      <td><code>--font-weight-normal</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-font-weight-medium</code></td>
+      <td><code>--font-weight-medium</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-font-weight-bold</code></td>
+      <td><code>--font-weight-bold</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-line-height-tight</code></td>
+      <td><code>--line-height-tight-latn</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-line-height-normal</code></td>
+      <td><code>--line-height-normal-latn</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-line-height-loose</code></td>
+      <td><code>--line-height-loose-latn</code></td>
+    </tr>
+  </tbody>
+</table>
 

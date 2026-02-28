@@ -3,6 +3,7 @@ import { T } from "../stories/T";
 import {
   ShadowSwatch,
   MotionSwatch,
+  InteractiveSwatch,
   TokenGrid,
 } from "../stories/TokenVisualizer";
 
@@ -51,6 +52,9 @@ import {
 </p>
 <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
   <MotionSwatch name="Base Transition" duration="0.3s" easing="ease-in-out" />
+  <InteractiveSwatch name="Scale Active" tokenName="--scale-active" tokenValue="0.98" activeStyle={{ transform: "scale(var(--scale-active))" }} hoverStyle={{ background: "var(--bg-component-hover, #efefef)" }} />
+  <InteractiveSwatch name="Lift Small" tokenName="--lift-sm" tokenValue="-1px" hoverStyle={{ transform: "translateY(var(--lift-sm))", boxShadow: "var(--shadow-sm)" }} />
+  <InteractiveSwatch name="Lift Medium" tokenName="--lift-md" tokenValue="-1.5px" hoverStyle={{ transform: "translateY(var(--lift-md))", boxShadow: "var(--shadow-md)" }} />
 </TokenGrid>
 
     <strong>実装ガイドライン:</strong>
