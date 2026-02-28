@@ -1,0 +1,22 @@
+import{j as r}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as s}from"./index-B2K_e2w9.js";import{M as l,a as t,C as o}from"./blocks-Co24uSwP.js";import{T as d}from"./T-CNQyDgm7.js";import{F as c,D as h,S as x}from"./FieldError.stories-CYVdOlbH.js";import"./iframe-BN-4pijT.js";import"./preload-helper-PPVm8Dsz.js";import"./index-BDyAH9Gx.js";import"./index-CXYa8rZT.js";import"./index-BTwjK_Rj.js";import"./index-hqaaz1Nb.js";import"./useTranslation-1LeyJRh3.js";import"./FieldError-CmkmGdOg.js";import"./index-CubViWzO.js";import"./Paragraph-DiSMzUpI.js";function i(n){const e={code:"code",h1:"h1",h2:"h2",h3:"h3",li:"li",p:"p",pre:"pre",ul:"ul",...s(),...n.components};return r.jsxs(r.Fragment,{children:[r.jsx(l,{of:c}),`
+`,r.jsx(e.h1,{id:"fielderror",children:"FieldError"}),`
+`,r.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:r.jsx(d,{k:"doc_fielderror_title"})}),`
+`,r.jsxs(e.p,{children:[r.jsx(e.code,{children:"FieldError"})," コンポーネントは、入力フォームのバリデーションエラーをユーザーに通知するために使用します。"]}),`
+`,r.jsx(e.h2,{id:"特徴",children:"特徴"}),`
+`,r.jsxs(e.ul,{children:[`
+`,r.jsxs(e.li,{children:["視認性: ",r.jsx(e.code,{children:"Paragraph"})," コンポーネントの ",r.jsx(e.code,{children:'color="error"'})," と ",r.jsx(e.code,{children:'size="small"'})," を標準で使用し、重要度を伝えます。"]}),`
+`,r.jsxs(e.li,{children:["アクセシビリティ: ",r.jsx(e.code,{children:'role="alert"'})," と ",r.jsx(e.code,{children:'aria-live="polite"'})," を備えており、スクリーンリーダーを使用するユーザーにエラーの発生を即座に伝えます。"]}),`
+`,r.jsx(e.li,{children:"一貫性: フォーム全体でエラー表示のスタイルを統一できます。"}),`
+`]}),`
+`,r.jsx(e.h2,{id:"使い方",children:"使い方"}),`
+`,r.jsx(e.pre,{children:r.jsx(e.code,{className:"language-tsx",children:`import { FieldError } from "@/components/FieldError/FieldError";
+
+<FieldError content="メールアドレスの形式が正しくありません。" />;
+`})}),`
+`,r.jsx(e.h2,{id:"props",children:"Props"}),`
+`,r.jsx(t,{}),`
+`,r.jsx(e.h2,{id:"バリエーション",children:"バリエーション"}),`
+`,r.jsx(e.h3,{id:"デフォルト",children:"デフォルト"}),`
+`,r.jsx(o,{of:h}),`
+`,r.jsx(e.h3,{id:"短いメッセージ",children:"短いメッセージ"}),`
+`,r.jsx(o,{of:x})]})}function v(n={}){const{wrapper:e}={...s(),...n.components};return e?r.jsx(e,{...n,children:r.jsx(i,{...n})}):i(n)}export{v as default};
