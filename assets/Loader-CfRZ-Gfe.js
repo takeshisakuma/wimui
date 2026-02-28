@@ -1,0 +1,7 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{c as i}from"./index-DgKM9sek.js";const m=({variant:a="bars",size:l="md",color:r="primary",className:s,...n})=>e.jsxs("div",{className:i("wim-loader",`wim-loader--${a}`,`wim-loader--${l}`,`wim-loader--${r}`,s),role:"status","aria-live":"polite",...n,children:[e.jsx("span",{className:"wim-loader__item"}),e.jsx("span",{className:"wim-loader__item"}),e.jsx("span",{className:"wim-loader__item"})]});m.__docgenInfo={description:"データの読み込み中や処理中であることを示すためのコンポーネント。",methods:[],displayName:"Loader",props:{variant:{required:!1,tsType:{name:"union",raw:'"bars" | "dots" | "pulse"',elements:[{name:"literal",value:'"bars"'},{name:"literal",value:'"dots"'},{name:"literal",value:'"pulse"'}]},description:"ローダーのアニメーション形式。",defaultValue:{value:'"bars"',computed:!1}},size:{required:!1,tsType:{name:"union",raw:'"sm" | "md" | "lg" | "xl"',elements:[{name:"literal",value:'"sm"'},{name:"literal",value:'"md"'},{name:"literal",value:'"lg"'},{name:"literal",value:'"xl"'}]},description:"ローダーのサイズ。",defaultValue:{value:'"md"',computed:!1}},color:{required:!1,tsType:{name:"union",raw:`| "primary"
+| "secondary"
+| "success"
+| "warning"
+| "error"
+| "neutral"
+| "currentColor"`,elements:[{name:"literal",value:'"primary"'},{name:"literal",value:'"secondary"'},{name:"literal",value:'"success"'},{name:"literal",value:'"warning"'},{name:"literal",value:'"error"'},{name:"literal",value:'"neutral"'},{name:"literal",value:'"currentColor"'}]},description:"ローダーの色。",defaultValue:{value:'"primary"',computed:!1}}}};export{m as L};
