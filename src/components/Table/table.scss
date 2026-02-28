@@ -86,6 +86,10 @@
     padding-right: 0;
     text-align: center;
 
+    .wim-table__head-content {
+      justify-content: center;
+    }
+
     .wim-checkbox-wrapper {
       display: inline-flex;
       margin: 0;
@@ -178,8 +182,8 @@
 
       &--sticky-left {
         z-index: 110;
-        /* 両方がstickyの場合、下側の境界線だけ引く(右はcell側などに任せるか、必要に応じて調整) */
-        box-shadow: inset 0 -1px 0 var(--wim-color-border, #e0e0e0);
+        /* 両方がstickyの場合、下側と右側の境界線を引く */
+        box-shadow: inset -1px -1px 0 var(--wim-color-border, #e0e0e0);
       }
     }
   }

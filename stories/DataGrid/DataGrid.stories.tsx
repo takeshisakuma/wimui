@@ -84,10 +84,10 @@ const manyRows: User[] = Array.from({ length: 50 }).map((_, i) => ({
 }));
 
 const basicColumns = [
-  { key: "id", header: "ID", width: 55, sortable: true, fixed: true },
-  { key: "name", header: "Name", width: 140, sortable: true, fixed: true },
-  { key: "email", header: "Email", sortable: true, width: 250 },
-  { key: "role", header: "Role", width: 150 },
+  { key: "id", header: "ID", width: 80, sortable: true, fixed: true },
+  { key: "name", header: "Name", width: 150, sortable: true, fixed: false },
+  { key: "email", header: "Email", sortable: true, width: 200 },
+  { key: "role", header: "Role", width: 100 },
   {
     key: "status",
     header: "Status",
@@ -351,9 +351,9 @@ export const WithFixedColumn: Story = {
   args: {
     columns: [
       { key: "id", header: "ID", width: 55, fixed: true },
-      { key: "name", header: "Name", width: 140, fixed: false },
+      { key: "name", header: "Name", width: 150, fixed: false },
       { key: "email", header: "Email", width: 200 },
-      { key: "role", header: "Role", width: 80 },
+      { key: "role", header: "Role", width: 100 },
       { key: "joinDate", header: "Join Date", width: 150 },
       {
         key: "status",

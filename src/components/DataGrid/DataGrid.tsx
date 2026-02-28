@@ -193,7 +193,7 @@ export function DataGrid<T extends Record<string, any>>({
           <TableHeader>
             <TableRow>
               {selection && (
-                <TableHead selection stickyLeft leftOffset={0} stickyZIndex={21}>
+                <TableHead selection stickyLeft leftOffset={0} stickyZIndex={stickyHeader ? 121 : 21}>
                   <Checkbox
                     checked={isAllSelected}
                     indeterminate={isSomeSelected}
@@ -222,7 +222,7 @@ export function DataGrid<T extends Record<string, any>>({
                     onSort={() => handleSort(column.key)}
                     stickyLeft={column.fixed}
                     leftOffset={fixedInfo?.offset}
-                    stickyZIndex={fixedInfo?.zIndex}
+                    stickyZIndex={fixedInfo ? (stickyHeader ? fixedInfo.zIndex + 100 : fixedInfo.zIndex) : undefined}
                   >
                     {column.header}
                   </TableHead>
