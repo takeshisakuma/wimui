@@ -78,5 +78,5 @@ export const T = ({ k }: { k: string }) => {
   }, []);
 
   console.log('Translating:', k, 'to:', t(k), 'language:', i18n.language);
-  return <>{t(k)}</>;
+  return <span dangerouslySetInnerHTML={{ __html: t(k) }} />;
 };

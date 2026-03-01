@@ -9,38 +9,38 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
   <h1><T k="token_type_title" /></h1>
   <p><T k="token_type_desc1" /></p>
 
-  <p dangerouslySetInnerHTML={{ __html: "<T k='token_type_desc2' />" }} />
+  <p><T k="token_type_desc2" /></p>
 
 <hr />
 
 <h2><T k="token_type_size" /></h2>
 <div style={{ display: "grid", gap: "8px" }}>
   <TypographyVisualizer
-    token="--font-size-ex-large"
+    token="--wim-font-size-xl"
     textKey="token_type_text_ex_large"
     type="font-size"
   />
 
   <TypographyVisualizer
-    token="--font-size-large"
+    token="--wim-font-size-lg"
     textKey="token_type_text_large"
     type="font-size"
   />
 
   <TypographyVisualizer
-    token="--font-size-medium"
+    token="--wim-font-size-md"
     textKey="token_type_text_medium"
     type="font-size"
   />
 
   <TypographyVisualizer
-    token="--font-size-small"
+    token="--wim-font-size-sm"
     textKey="token_type_text_small"
     type="font-size"
   />
 
   <TypographyVisualizer
-    token="--font-size-ex-small"
+    token="--wim-font-size-xs"
     textKey="token_type_text_ex_small"
     type="font-size"
   />
@@ -50,11 +50,11 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <h2><T k="token_type_weight" /></h2>
 <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
-  <FontWeightVisualizer weight={400} token="--font-weight-normal" name="Normal" />
+  <FontWeightVisualizer weight={400} token="--wim-font-weight-normal" name="Normal" />
 
-  <FontWeightVisualizer weight={500} token="--font-weight-medium" name="Medium" />
+  <FontWeightVisualizer weight={500} token="--wim-font-weight-medium" name="Medium" />
 
-  <FontWeightVisualizer weight={700} token="--font-weight-bold" name="Bold" />
+  <FontWeightVisualizer weight={700} token="--wim-font-weight-bold" name="Bold" />
 </TokenGrid>
 
 <hr />
@@ -65,17 +65,17 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
     <div>
       <h3><T k="token_type_lh_jpan" /></h3>
       <TypographyVisualizer 
-        token="--line-height-loose-jpan" 
+        token="--wim-line-height-loose-jp" 
         textKey="token_type_lh_jpan_loose"
       />
 
       <TypographyVisualizer 
-        token="--line-height-normal-jpan" 
+        token="--wim-line-height-normal-jp" 
         textKey="token_type_lh_jpan_normal"
       />
 
       <TypographyVisualizer 
-        token="--line-height-tight-jpan" 
+        token="--wim-line-height-tight-jp" 
         textKey="token_type_lh_jpan_tight"
       />
 
@@ -84,17 +84,17 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
     <div>
       <h3><T k="token_type_lh_latn" /></h3>
       <TypographyVisualizer
-        token="--line-height-loose-latn"
+        token="--wim-line-height-loose"
         textKey="token_type_lh_latn_loose"
       />
 
       <TypographyVisualizer
-        token="--line-height-normal-latn"
+        token="--wim-line-height-normal"
         textKey="token_type_lh_latn_normal"
       />
 
       <TypographyVisualizer
-        token="--line-height-tight-latn"
+        token="--wim-line-height-tight"
         textKey="token_type_lh_latn_tight"
       />
 
@@ -106,11 +106,11 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <h2><T k="token_type_decor" /></h2>
 <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
-  <DecorationVisualizer token="--decoration-line-through" name="Line Through" type="decoration" />
+  <DecorationVisualizer token="--wim-decoration-line-through" name="Line Through" type="decoration" />
 
-  <DecorationVisualizer token="--decoration-underline" name="Underline" type="decoration" />
+  <DecorationVisualizer token="--wim-decoration-underline" name="Underline" type="decoration" />
 
-  <DecorationVisualizer token="--decoration-highlight-color" name="Highlight Color" type="highlight" />
+  <DecorationVisualizer token="--wim-decoration-highlight-color" name="Highlight Color" type="highlight" />
 </TokenGrid>
 
 <hr />
@@ -169,6 +169,30 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
     <tr>
       <td><code>--wim-line-height-loose</code></td>
       <td><code>--line-height-loose-latn</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-line-height-tight-jp</code></td>
+      <td><code>--line-height-tight-jpan</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-line-height-normal-jp</code></td>
+      <td><code>--line-height-normal-jpan</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-line-height-loose-jp</code></td>
+      <td><code>--line-height-loose-jpan</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-decoration-line-through</code></td>
+      <td><code>--decoration-line-through</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-decoration-underline</code></td>
+      <td><code>--decoration-underline</code></td>
+    </tr>
+    <tr>
+      <td><code>--wim-decoration-highlight-color</code></td>
+      <td><code>--decoration-highlight-color</code></td>
     </tr>
   </tbody>
 </table>

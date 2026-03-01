@@ -64,4 +64,10 @@ $decoration-highlight-color: #fff9c4; // Light yellow highlight
   --wim-line-height-tight: var(--line-height-tight-latn);
   --wim-line-height-normal: var(--line-height-normal-latn);
   --wim-line-height-loose: var(--line-height-loose-latn);
+  --wim-line-height-tight-jp: var(--line-height-tight-jpan);
+  --wim-line-height-normal-jp: var(--line-height-normal-jpan);
+  --wim-line-height-loose-jp: var(--line-height-loose-jpan);
+  --wim-decoration-line-through: var(--decoration-line-through);
+  --wim-decoration-underline: var(--decoration-underline);
+  --wim-decoration-highlight-color: var(--decoration-highlight-color);
 }

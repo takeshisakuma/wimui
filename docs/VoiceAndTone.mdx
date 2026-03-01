@@ -13,53 +13,78 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <p><T k="voiceandtone_personality" /></p>
 
-- **<T k="voiceandtone_clear" />**
-  - <T k="voiceandtone_voice_clear_desc" />
-
-  - <T k="voiceandtone_voice_helpful_desc" />
-
-- **<T k="voiceandtone_prof" />**
-  - <T k="voiceandtone_voice_honest_desc" />
-
-  - <T k="voiceandtone_voice_reliable_desc" />
-
-- **<T k="voiceandtone_empth" />**
-  - <T k="voiceandtone_voice_supportive_desc" />
-
-  - <T k="voiceandtone_voice_empathetic_desc" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="table_header_item" /></th>
+      <th><T k="table_header_guideline" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="voiceandtone_clear" /></strong></td>
+      <td>
+        <ul>
+          <li><T k="voiceandtone_voice_clear_desc" /></li>
+          <li><T k="voiceandtone_voice_helpful_desc" /></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><strong><T k="voiceandtone_prof" /></strong></td>
+      <td>
+        <ul>
+          <li><T k="voiceandtone_voice_honest_desc" /></li>
+          <li><T k="voiceandtone_voice_reliable_desc" /></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><strong><T k="voiceandtone_empth" /></strong></td>
+      <td>
+        <ul>
+          <li><T k="voiceandtone_voice_supportive_desc" /></li>
+          <li><T k="voiceandtone_voice_empathetic_desc" /></li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## <T k="voiceandtone_tone_title" />
 
 <p><T k="voiceandtone_tone_desc" /></p>
 
-### <T k="voiceandtone_tone_normal" />
+### <T k="voiceandtone_tone_title" />
 
-- **<T k="voiceandtone_state" />:** <T k="voiceandtone_everyday" />
-
-- **<T k="voiceandtone_tone" />:** <T k="voiceandtone_neutral" />
-
-- **<T k="voiceandtone_point" />:** <T k="voiceandtone_point1" />
-
-### <T k="voiceandtone_tone_success" />
-
-- **<T k="voiceandtone_state" />:** <T k="voiceandtone_success" />
-
-- **<T k="voiceandtone_tone" />:** <T k="voiceandtone_positive" />
-
-- **<T k="voiceandtone_point" />:** <T k="voiceandtone_point2" />
-
-### <T k="voiceandtone_tone_error" />
-
-- **<T k="voiceandtone_state" />:** <T k="voiceandtone_error" />
-
-- **<T k="voiceandtone_tone" />:** <T k="voiceandtone_calm" />
-
-- **<T k="voiceandtone_point" />:** <T k="voiceandtone_point3" />
-
-### <T k="voiceandtone_tone_onboarding" />
-
-- **<T k="voiceandtone_state" />:** <T k="voiceandtone_new" />
-
-- **<T k="voiceandtone_tone" />:** <T k="voiceandtone_encouraging" />
-
-- **<T k="voiceandtone_point" />:** <T k="voiceandtone_point4" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="voiceandtone_state" /></th>
+      <th><T k="voiceandtone_tone" /></th>
+      <th><T k="voiceandtone_point" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ユーザーが日常的なタスクをこなしている時。</td>
+      <td>落ち着いていて、ニュートラル。</td>
+      <td>邪魔をせず、ユーザー自身のペースで操作を進められるように、必要最低限の情報のみをフラットに伝えます。</td>
+    </tr>
+    <tr>
+      <td>タスクが完了した、または操作が正しく受け付けられた時。</td>
+      <td>控えめなポジティブさ、確実性。</td>
+      <td>達成感を共有しつつも、過剰にハイテンションにはならず、「確かに完了しました」という安心感を簡潔に伝えます。</td>
+    </tr>
+    <tr>
+      <td>操作が失敗した、データが失われる危険がある、またはシステム側で問題が発生した時。</td>
+      <td>冷静、客観的、そして協力的。</td>
+      <td>ユーザーを責めるような表現（例：「〜が間違っています」）は絶対に避けます。何が起きたのかという事実と、具体的にどうすれば解決するのかというアクションを明確に提示します。</td>
+    </tr>
+    <tr>
+      <td>ユーザーが新しい機能を使う時や、複雑な操作を求められている時。</td>
+      <td>励ますように、親切で丁寧。</td>
+      <td>ステップを細かく分け、専門用語を丁寧に解説しながら、ユーザーが自信を持って操作できるよう導きます。</td>
+    </tr>
+  </tbody>
+</table>
