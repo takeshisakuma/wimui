@@ -1,0 +1,57 @@
+import{j as n}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as r}from"./index-DlgCFPTR.js";import{M as d,T as c,C as o,a as l}from"./blocks-CeNsGH9y.js";import{I as x,D as h,O as j,G as _,E as a,a as p,F as u,S as m,C as k}from"./Input.stories-CMI3RJwf.js";import{T as i}from"./T-QoylbS6P.js";import"./iframe-CxGJGCEe.js";import"./preload-helper-PPVm8Dsz.js";import"./index-BWcj0LX7.js";import"./index-Bz28715Q.js";import"./index-C0leNsjK.js";import"./index-DldsUZWL.js";import"./Input-q18HWcjg.js";import"./index-kCw4ylN7.js";/* empty css              */import"./Icon-CBegJE_x.js";import"./Label-BbB7FFqb.js";import"./Badge-D7x7Rn5D.js";import"./useTranslation-zoxZjRpn.js";import"./FieldError-DqLlkV2h.js";import"./Paragraph-iD2wDv6e.js";function e(t){const s={h2:"h2",h3:"h3",li:"li",ul:"ul",...r(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(d,{of:x}),`
+`,n.jsx(c,{}),`
+`,n.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:n.jsx("p",{children:n.jsx(i,{k:"doc_input_long_desc"})})}),`
+`,n.jsx(s.h2,{id:"",children:n.jsx(i,{k:"doc_basic_usage"})}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_basic_desc"})}),`
+`,n.jsx(o,{of:h}),`
+`,n.jsx(s.h2,{id:"-1",children:n.jsx(i,{k:"doc_variants"})}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_variant_desc"})}),`
+`,n.jsx(s.h3,{id:"outline",children:"Outline"}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_outline_desc"})}),`
+`,n.jsx(o,{of:j}),`
+`,n.jsx(s.h3,{id:"ghost",children:"Ghost"}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_ghost_desc"})}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_ghost_usage"})}),`
+`,n.jsxs(s.ul,{children:[`
+`,n.jsxs(s.li,{children:[`
+`,n.jsx(i,{k:"doc_input_ghost_u1"}),`
+`]}),`
+`,n.jsxs(s.li,{children:[`
+`,n.jsx(i,{k:"doc_input_ghost_u2"}),`
+`]}),`
+`,n.jsxs(s.li,{children:[`
+`,n.jsx(i,{k:"doc_input_ghost_u3"}),`
+`]}),`
+`]}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_ghost_interaction"})}),`
+`,n.jsxs(s.ul,{children:[`
+`,n.jsxs(s.li,{children:[`
+`,n.jsx(i,{k:"doc_input_ghost_i1"}),`
+`]}),`
+`,n.jsxs(s.li,{children:[`
+`,n.jsx(i,{k:"doc_input_ghost_i2"}),`
+`]}),`
+`,n.jsxs(s.li,{children:[`
+`,n.jsx(i,{k:"doc_input_ghost_i3"}),`
+`]}),`
+`]}),`
+`,n.jsx(o,{of:_}),`
+`,n.jsx(s.h2,{id:"-2",children:n.jsx(i,{k:"doc_states"})}),`
+`,n.jsx(s.h3,{id:"error",children:"Error"}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_error_desc"})}),`
+`,n.jsx(o,{of:a}),`
+`,n.jsx(s.h3,{id:"disabled",children:"Disabled"}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_disabled_desc"})}),`
+`,n.jsx(o,{of:p}),`
+`,n.jsx(s.h2,{id:"-3",children:n.jsx(i,{k:"doc_layout"})}),`
+`,n.jsx(s.h3,{id:"full-width",children:"Full Width"}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_fullwidth_desc"})}),`
+`,n.jsx(o,{of:u}),`
+`,n.jsx(s.h2,{id:"-4",children:n.jsx(i,{k:"doc_features"})}),`
+`,n.jsx(s.h3,{id:"search",children:"Search"}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_search_desc"})}),`
+`,n.jsx(o,{of:m}),`
+`,n.jsx(s.h3,{id:"clearable",children:"Clearable"}),`
+`,n.jsx("p",{children:n.jsx(i,{k:"doc_input_clearable_desc"})}),`
+`,n.jsx(o,{of:k}),`
+`,n.jsx(l,{})]})}function L(t={}){const{wrapper:s}={...r(),...t.components};return s?n.jsx(s,{...t,children:n.jsx(e,{...t})}):e(t)}export{L as default};
