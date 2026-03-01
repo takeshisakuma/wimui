@@ -17,57 +17,59 @@ import { T } from "../T";
   <T k="doc_snackbar_title" />
 </p>
 
-スナックバーは、ユーザーに短いメッセージを通知するために使用されます。通常、画面の下部に表示され、アクションボタンを含めることができます。トーストよりも目立たない、一時的な通知に適しています。
+<p><T k="doc_snackbar_long_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-メッセージを指定して表示します。
+<T k="doc_snackbar_usage_basic_desc" /> (Wait, I'll use common or add)
+        Specify a message to display.
 
 <Canvas of={SnackbarStories.Default} />
 
-## アクション付き
+## <T k="doc_snackbar_usage_action" />
 
-アクションボタン（例：「元に戻す」など）を含めることができます。
+<p><T k="doc_snackbar_usage_action_desc" /></p>
 
 <Canvas of={SnackbarStories.WithAction} />
 
-## 閉じるボタン付き
+## <T k="doc_snackbar_usage_close" />
 
-自動で閉じないように設定し、ユーザーが手動で閉じることができるようにします。
+<p><T k="doc_snackbar_usage_close_desc" /></p>
 
 <Canvas of={SnackbarStories.WithCloseButton} />
 
-## バリエーション
+## <T k="doc_variations" />
 
-`variant` プロパティを使用して、状態（成功、エラーなど）に応じたスタイルを適用できます。
+<p><T k="doc_snackbar_var_desc" /></p>
 
-### Success
+### <T k="doc_success" />
 
 <Canvas of={SnackbarStories.Success} />
 
-### Error
+### <T k="doc_error" />
 
 <Canvas of={SnackbarStories.ErrorStatus} />
 
-### Warning
+### <T k="doc_warning" />
 
 <Canvas of={SnackbarStories.Warning} />
 
-### Info
+### <T k="doc_info" />
 
 <Canvas of={SnackbarStories.Info} />
 
-### Interactive Demo
+### <T k="doc_interactive_demo" />
 
-実際に動作を確認できます。
+Actually works. (Wait, I'll use common or add)
+        You can see it in action.
 
 <Canvas of={SnackbarStories.InteractiveDemo} />
 
 ---
 
-## 便利な使い方 (Provider & Hook)
+## <T k="doc_snackbar_adv_title" />
 
-`SnackbarProvider` と `useSnackbar` フックを使用すると、アプリケーションのどこからでも簡単にスナックバーを表示できます。
+<p><T k="doc_snackbar_adv_desc" /></p>
 
 ```tsx
 import { SnackbarProvider, useSnackbar } from "./Snackbar";
@@ -86,18 +88,18 @@ const MyComponent = () => {
     <button
       onClick={() =>
         showMessage({
-          message: "保存されました",
+          message: <T k="doc_snackbar_saved_msg" />,
           variant: "success",
-          actionLabel: "閉じる",
+          actionLabel: <T k="doc_close" />,
         })
       }
     >
-      スナックバーを表示
+      <p><T k="doc_snackbar_show_btn" /></p>
     </button>
   );
 };
 ```
 
-## Props
+## <T k="doc_props" />
 
 <Controls />

@@ -1,10 +1,10 @@
-import { Meta, Primary, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Primary, Controls, Story, Title, Stories, Canvas } from "@storybook/addon-docs/blocks";
 import * as DropdownStories from "./Dropdown.stories";
 import { T } from "../T";
 
 <Meta of={DropdownStories} />
 
-# Dropdown
+<Title />
 
 <p
   style={{
@@ -17,222 +17,212 @@ import { T } from "../T";
   <T k="doc_dropdown_title" />
 </p>
 
-一般的なアクションメニューやナビゲーションメニューを表示するためのコンポーネントです。
-あらかじめ用意された選択肢の中からユーザーが項目を選択するUIパーツとして、特に画面スペースが限られている場合に効率的です。
-WebやアプリのUIにおいても頻繁に使用され、特にWebデザインでは重宝されます。
+<p><T k="doc_dropdown_long_desc" /></p>
 
-## 使用ガイドライン
+## <T k="doc_usage_guidelines" />
 
-### メリット
+### <T k="doc_dropdown_pros" />
 
 <table>
   <thead>
     <tr>
-      <th>メリット</th>
-      <th>説明</th>
+      <th><T k="doc_dropdown_pro_header" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>利便性向上</strong></td>
-      <td>クリックやタップだけで選択でき、直感的な操作が可能。入力の手間や心理的ハードルを減らします。</td>
+      <td><strong><T k="doc_dropdown_pro_convenience" /></strong></td>
+      <td><T k="doc_dropdown_pro_convenience_desc" /></td>
     </tr>
     <tr>
-      <td><strong>入力間違いの防止</strong></td>
-      <td>定義された選択肢から選ぶため、誤字脱字や表記ゆれを防ぎ、データの整合性を保ちます。</td>
+      <td><strong><T k="doc_dropdown_pro_error" /></strong></td>
+      <td><T k="doc_dropdown_pro_error_desc" /></td>
     </tr>
     <tr>
-      <td><strong>データ管理の効率化</strong></td>
-      <td>入力内容が統一されるため、後の集計や分析が容易になります。</td>
+      <td><strong><T k="doc_dropdown_pro_data" /></strong></td>
+      <td><T k="doc_dropdown_pro_data_desc" /></td>
     </tr>
     <tr>
-      <td><strong>省スペース</strong></td>
-      <td>長いリストを画面内に直接配置する必要がなく、情報量を抑えられます。</td>
+      <td><strong><T k="doc_dropdown_pro_space" /></strong></td>
+      <td><T k="doc_dropdown_pro_space_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-### デメリット
+### <T k="doc_dropdown_cons" />
 
 <table>
   <thead>
     <tr>
-      <th>デメリット</th>
-      <th>説明</th>
+      <th><T k="doc_dropdown_con_header" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>操作コスト</strong></td>
-      <td>リストを開いて項目を探すため、最低でも2回の操作が必要です。</td>
+      <td><strong><T k="doc_dropdown_con_cost" /></strong></td>
+      <td><T k="doc_dropdown_con_cost_desc" /></td>
     </tr>
     <tr>
-      <td><strong>一覧性</strong></td>
-      <td>選択肢が隠れているため、スクロール量や頻度によってはユーザビリティが低下します。特に長いリストでは目的の項目を探しにくくなります。</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## ベストプラクティス
-
-<table>
-  <thead>
-    <tr>
-      <th>ベストプラクティス</th>
-      <th>説明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>目的の項目に素早くアクセスできる設計</strong></td>
-      <td>
-        わかりやすい順序や分類で整理してください。<br />
-        選択肢が10個以上の場合は、カテゴリー分けや検索機能（Combobox）の導入を検討してください。
-      </td>
-    </tr>
-    <tr>
-      <td><strong>視覚的なフィードバック</strong></td>
-      <td>
-        ホバー時や選択時に色を変えるなど、現在地や操作対象を明確にします。<br />
-        デスクトップではキーボード操作にも対応させます。
-      </td>
-    </tr>
-    <tr>
-      <td><strong>レイアウトと配置の最適化</strong></td>
-      <td>
-        モバイル: 画面スペースが限られているため、ドロップダウンではなく「半モーダル（BottomSheet）」や別画面でのリスト表示を検討してください。
-      </td>
+      <td><strong><T k="doc_dropdown_con_visibility" /></strong></td>
+      <td><T k="doc_dropdown_con_visibility_desc" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 他の選択式フォームとの比較
-
-### vs ラジオボタン (Radio)
+## <T k="doc_best_practices" />
 
 <table>
   <thead>
     <tr>
-      <th>UI</th>
-      <th>特徴・適正</th>
+      <th><T k="doc_best_practices" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>ラジオボタン</strong></td>
-      <td>全ての選択肢が常に表示されています。選択肢が少ない（3個以下）場合や、一覧性が重要な場合に適しています。</td>
+      <td><strong><T k="doc_dropdown_bp_access" /></strong></td>
+      <td><T k="doc_dropdown_bp_access_desc" /></td>
     </tr>
     <tr>
-      <td><strong>ドロップダウン</strong></td>
-      <td>画面スペースの節約に優れています。選択肢が多い（4個以上）場合にWebでは適していますが、モバイルでは操作性に注意が必要です。</td>
-    </tr>
-  </tbody>
-</table>
-
-### vs チェックボックス (Checkbox)
-
-<table>
-  <thead>
-    <tr>
-      <th>UI</th>
-      <th>特徴・適正</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>チェックボックス</strong></td>
-      <td>複数選択が可能で、画面上に選択肢が並びます。</td>
+      <td><strong><T k="doc_dropdown_bp_feedback" /></strong></td>
+      <td><T k="doc_dropdown_bp_feedback_desc" /></td>
     </tr>
     <tr>
-      <td><strong>ドロップダウン</strong></td>
-      <td>通常は単一選択ですが、リスト内にチェックボックスを組み込むことで、省スペースな複数選択UIとしても機能します。</td>
-    </tr>
-  </tbody>
-</table>
-
-### vs コンボボックス (Combobox)
-
-<table>
-  <thead>
-    <tr>
-      <th>UI</th>
-      <th>特徴・適正</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>コンボボックス</strong></td>
-      <td>自由入力やフィルタリング（検索）が可能です。選択肢が多い場合や、ユーザーが独自の値を入力する必要がある場合に適しています。</td>
-    </tr>
-    <tr>
-      <td><strong>ドロップダウン</strong></td>
-      <td>選択肢が固定されており、入力はできません。</td>
-    </tr>
-  </tbody>
-</table>
-
-### vs マルチセレクト (MultiSelect)
-
-<table>
-  <thead>
-    <tr>
-      <th>UI</th>
-      <th>特徴・適正</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>マルチセレクト</strong></td>
-      <td>タグ形式などで複数の項目を同時に選ぶことに特化しています。</td>
-    </tr>
-    <tr>
-      <td><strong>ドロップダウン</strong></td>
-      <td>基本は単一選択です。</td>
+      <td><strong><T k="doc_dropdown_bp_layout" /></strong></td>
+      <td><T k="doc_dropdown_bp_layout_desc" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 使い分けの判断基準
+## <T k="doc_dropdown_comparison" />
+
+### vs <T k="doc_dropdown_vs_radio" />
 
 <table>
   <thead>
     <tr>
-      <th>条件</th>
-      <th>推奨UI</th>
-      <th>理由</th>
+      <th>UI</th>
+      <th><T k="doc_dropdown_vs_features" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>項目が少ない (〜3個)</td>
+      <td><strong><T k="doc_dropdown_vs_radio_label" /></strong></td>
+      <td><T k="doc_dropdown_vs_radio_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong>Dropdown</strong></td>
+      <td><T k="doc_dropdown_vs_radio_dd_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+### vs <T k="doc_dropdown_vs_checkbox" />
+
+<table>
+  <thead>
+    <tr>
+      <th>UI</th>
+      <th><T k="doc_dropdown_vs_features" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc_dropdown_vs_checkbox_label" /></strong></td>
+      <td><T k="doc_dropdown_vs_checkbox_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong>Dropdown</strong></td>
+      <td><T k="doc_dropdown_vs_checkbox_dd_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+### vs <T k="doc_dropdown_vs_combobox" />
+
+<table>
+  <thead>
+    <tr>
+      <th>UI</th>
+      <th><T k="doc_dropdown_vs_features" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc_dropdown_vs_combobox_label" /></strong></td>
+      <td><T k="doc_dropdown_vs_combobox_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong>Dropdown</strong></td>
+      <td><T k="doc_dropdown_vs_combobox_dd_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+### vs <T k="doc_dropdown_vs_multiselect" />
+
+<table>
+  <thead>
+    <tr>
+      <th>UI</th>
+      <th><T k="doc_dropdown_vs_features" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc_dropdown_vs_multiselect_label" /></strong></td>
+      <td><T k="doc_dropdown_vs_multiselect_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong>Dropdown</strong></td>
+      <td><T k="doc_dropdown_vs_multiselect_dd_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## <T k="doc_dropdown_criteria" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_dropdown_criteria_condition" /></th>
+      <th><T k="doc_dropdown_criteria_ui" /></th>
+      <th><T k="doc_dropdown_criteria_reason" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="doc_dropdown_criteria_few" /></td>
       <td>Radio / Checkbox</td>
-      <td>ワンタップで選択でき、一覧性が高い。</td>
+      <td><T k="doc_dropdown_criteria_few_reason" /></td>
     </tr>
     <tr>
-      <td>項目が多い (4個〜)</td>
+      <td><T k="doc_dropdown_criteria_many" /></td>
       <td>Dropdown (Web)<br/>BottomSheet (Mobile)</td>
-      <td>省スペース。モバイルではスクロールしやすいUIを選ぶ。</td>
+      <td><T k="doc_dropdown_criteria_many_reason" /></td>
     </tr>
     <tr>
-      <td>複数選択が必要</td>
+      <td><T k="doc_dropdown_criteria_multiple" /></td>
       <td>Checkbox / MultiSelect</td>
-      <td>複数の値を同時に扱うための専用UI。</td>
+      <td><T k="doc_dropdown_criteria_multiple_reason" /></td>
     </tr>
     <tr>
-      <td>自由入力が必要</td>
+      <td><T k="doc_dropdown_criteria_free" /></td>
       <td>Text Input</td>
-      <td>日付や数値など、明確な値が決まっている場合。</td>
+      <td><T k="doc_dropdown_criteria_free_reason" /></td>
     </tr>
   </tbody>
 </table>
 
-## Usage
+## <T k="doc_usage" />
 
 ```tsx
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "wimui";
@@ -251,47 +241,49 @@ import { T } from "../T";
 
 <Primary />
 
-## Components
+## <T k="doc_components" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>説明</th>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>Dropdown</code></td>
-      <td>ルートコンポーネント。開閉状態を管理します。</td>
+      <td><T k="doc_dropdown_api_dropdown" /></td>
     </tr>
     <tr>
       <td><code>DropdownTrigger</code></td>
-      <td>メニューを開閉するトリガーとなる要素をラップします。通常は <code>Button</code> や <code>Icon</code> などを含めます。</td>
+      <td><T k="doc_dropdown_api_trigger" /></td>
     </tr>
     <tr>
       <td><code>DropdownMenu</code></td>
-      <td>ドロップダウンのメニュー本体です。<code>align</code> プロパティで表示位置（左寄せ/右寄せ）を制御できます。</td>
+      <td><T k="doc_dropdown_api_menu" /></td>
     </tr>
     <tr>
       <td><code>DropdownItem</code></td>
-      <td>メニュー内の各項目です。<code>onClick</code> ハンドラを設定したり、Disabled状態にすることができます。</td>
+      <td><T k="doc_dropdown_api_item" /></td>
     </tr>
   </tbody>
 </table>
 
 <Controls />
 
-## Stories
+## <T k="doc_stories" />
 
-### With Icons
+### <T k="doc_with_icons" />
 
-アイコンを含めたメニュー項目の例です。
+<p><T k="doc_dropdown_with_icons_desc" /></p>
 
-<Story of={DropdownStories.WithIcons} />
+<Canvas of={DropdownStories.WithIcons} />
 
-### Right Alignment
+### <T k="doc_right_alignment" />
 
-メニューを右寄せにする例です。画面の右端にあるトリガーに適しています。
+<p><T k="doc_dropdown_right_alignment_desc" /></p>
 
-<Story of={DropdownStories.AlignmentRight} />
+<Canvas of={DropdownStories.AlignmentRight} />
+
+<Stories />

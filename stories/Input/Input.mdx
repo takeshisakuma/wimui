@@ -15,79 +15,78 @@ import { T } from "../T";
 <Title />
 <p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
 
-ユーザーがテキストを入力するための基本コンポーネントです。
+<p><T k="doc_input_long_desc" /></p>
 
 </p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-標準的な `Input` の使用例です。
+<p><T k="doc_input_basic_desc" /></p>
 
 <Canvas of={InputStories.Default} />
 
-## バリエーション
+## <T k="doc_variants" />
 
-`variant` プロパティでスタイルを変更できます。
+<p><T k="doc_input_variant_desc" /></p>
 
 ### Outline
 
-枠線がある標準的なスタイルです（デフォルトと同じですが、明示的に指定する場合に使用）。
+<p><T k="doc_input_outline_desc" /></p>
 
 <Canvas of={InputStories.Outline} />
 
 ### Ghost
 
-背景色がないシンプルなスタイルです。
-通常時は入力フィールドであることを強調せず、ホバー時やフォーカス時のみ視覚的なフィードバックを提供します。
+<p><T k="doc_input_ghost_desc" /></p>
 
-使用例:
+<p><T k="doc_input_ghost_usage" /></p>
 
-- 詳細画面のタイトルなど、表示がメインで編集も可能な「Click-to-Edit」UI
-- リストやテーブル内など、入力項目が多数並ぶ画面でのノイズ低減
-- 検索バーなど、背景に溶け込ませたい場合
+- <T k="doc_input_ghost_u1" />
+- <T k="doc_input_ghost_u2" />
+- <T k="doc_input_ghost_u3" />
 
-インタラクション:
+<p><T k="doc_input_ghost_interaction" /></p>
 
-- 未入力時: プレースホルダーで入力エリアであることを示唆
-- ホバー時: 薄い背景色が表示され、操作可能であることを通知
-- フォーカス時: プライマリーカラーのボーダーが表示され、入力状態であることを明示
+- <T k="doc_input_ghost_i1" />
+- <T k="doc_input_ghost_i2" />
+- <T k="doc_input_ghost_i3" />
 
 <Canvas of={InputStories.Ghost} />
 
-## 状態 (States)
+## <T k="doc_states" />
 
 ### Error
 
-エラーが発生している状態です。
+<p><T k="doc_input_error_desc" /></p>
 
 <Canvas of={InputStories.ErrorStatus} />
 
 ### Disabled
 
-入力が無効化されている状態です。
+<p><T k="doc_input_disabled_desc" /></p>
 
 <Canvas of={InputStories.Disabled} />
 
-## レイアウト
+## <T k="doc_layout" />
 
 ### Full Width
 
-親要素の幅いっぱいに広がります。
+<p><T k="doc_input_fullwidth_desc" /></p>
 
 <Canvas of={InputStories.FullWidth} />
 
-## 機能
+## <T k="doc_features" />
 
 
 ### Search
 
-検索アイコンを表示する例です。
+<p><T k="doc_input_search_desc" /></p>
 
 <Canvas of={InputStories.SearchIndicator} />
 
 ### Clearable
 
-入力内容をクリアするボタンを表示する例です。
+<p><T k="doc_input_clearable_desc" /></p>
 
 <Canvas of={InputStories.Clearable} />
 

@@ -1,50 +1,46 @@
-import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 import * as PatternStories from "./Patterns.stories";
+import { T } from "../T";
 
 <Meta of={PatternStories} />
 
-# UI パターン & レシピ
+# <T k="doc_patterns_title" />
 
-WIM UI コンポーネントを組み合わせた、実践的なユースケースとレイアウトの例です。
-これらのパターンを参考に、アプリケーションの主要な画面を迅速に構築できます。
+<p><T k="doc_patterns_desc" /></p>
 
-## ヒーローセクション (Hero Section)
+## <T k="doc_patterns_hero_title" />
 
-ウェブサイトのトップページなどで使用される、目を引くメインビジュアルのパターンです。
-`Grid`, `Stack`, `Heading`, `Paragraph`, `Button`, `Avatar` などを組み合わせています。
+<p><T k="doc_patterns_hero_desc" /></p>
 
 <Canvas of={PatternStories.HeroSection} />
 
-## 料金プラン (Pricing Table)
+## <T k="doc_patterns_pricing_title" />
 
-SaaSなどで一般的な料金比較表のパターンです。
-`Grid`, `Card`, `Badge`, `Heading`, `Paragraph`, `Button`, `Stack` を使用した、情報の優先順位が明確なレイアウトです。
+<p><T k="doc_patterns_pricing_desc" /></p>
 
 <Canvas of={PatternStories.PricingTable} />
 
-## ユーザープロファイル設定 (User Profile Settings)
+## <T k="doc_patterns_profile_title" />
 
-`Input`, `Textarea`, `Selectbox`, `RadioGroup`, `Switch` など、多数のフォームコンポーネントを組み合わせた設定画面のパターンです。
-サイドバーナビゲーションとメインコンテンツエリアの 2 カラムレイアウトを採用しています。
+<p><T k="doc_patterns_profile_desc" /></p>
 
 <Canvas of={PatternStories.UserProfileForm} />
 
-## ログイン / サインイン (Login Form)
+## <T k="doc_patterns_login_title" />
 
-`Card`, `Input`, `Button`, `Stack` などを組み合わせた、標準的なログインフォームのパターンです。
-バリデーションやソーシャルログインボタンの配置例も含みます。
+<p><T k="doc_patterns_login_desc" /></p>
 
 <Canvas of={PatternStories.LoginForm} />
 
-## ダッシュボードヘッダー (Dashboard Header)
+## <T k="doc_patterns_header_title" />
 
-`Header`, `Input` (検索), `Badge`, `Avatar` を組み合わせた管理画面向けのヘッダーです。
-レスポンシブな配置や、ユーザーメニュー、通知アイコンのレイアウト例を示しています。
+<p><T k="doc_patterns_header_desc" /></p>
 
 <Canvas of={PatternStories.DashboardHeader} />
 
-## エラーページ (Error Page / 404)
+## <T k="doc_patterns_error_title" />
 
-`Center`, `Stack`, `Heading`, `Paragraph`, `Alert`, `Button` を組み合わせた、UXに配慮したエラー画面のパターンです。
+<p><T k="doc_patterns_error_desc" /></p>
 
 <Canvas of={PatternStories.ErrorPage} />
+

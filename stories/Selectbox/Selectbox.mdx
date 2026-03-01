@@ -17,9 +17,9 @@ import { T } from "../T";
   <T k="doc_selectbox_title" />
 </p>
 
-ユーザーが定義済みの選択肢から1つを選択するためのドロップダウンメニューです。
+<p><T k="doc_selectbox_long_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
 ```jsx
 import { Selectbox } from "@/components/Selectbox/Selectbox";
@@ -51,24 +51,23 @@ const options = [
 
 <Canvas of={SelectboxStories.Disabled} />
 
-### セパレーター (Separators)
+### <T k="doc_selectbox_var_sep" />
 
-`type: "separator"` を指定することで、オプションの間に区切り線を表示できます。
+<p><T k="doc_selectbox_var_sep_desc" /></p>
 
 <Canvas of={SelectboxStories.WithSeparator} />
 
-### ネイティブセレクト (Native Mode)
+### <T k="doc_selectbox_var_native" />
 
-`native` プロパティを有効にすると、ブラウザ標準の `<select>` 要素を使用します。
-また、最新のブラウザ（Chrome 119+ など）では、ネイティブな `select` 内でも `<hr>` による区切り線がサポートされており、`type: "separator"` を指定したオプションは `<hr>` としてレンダリングされます。
+<p><T k="doc_selectbox_var_native_desc" /></p>
 
 <Canvas of={SelectboxStories.NativeWithSeparator} />
 
-## 高度な機能
+## <T k="doc_selectbox_adv" />
 
-### 検索機能 (Searchable)
+### <T k="doc_selectbox_adv_search" />
 
-`searchable` プロパティを有効にすると、オプションを検索できるようになります。多数のオプションがある場合に便利です。
+<p><T k="doc_selectbox_adv_search_desc" /></p>
 
 ```jsx
 <Selectbox
@@ -79,25 +78,25 @@ const options = [
 />
 ```
 
-カスタムフィルター関数:
+Custom filter function:
 
-デフォルトでは大文字小文字を区別しない部分一致検索が行われますが、カスタムフィルター関数を提供することもできます。
+By default, a case-insensitive partial match search is performed, but you can also provide a custom filter function.
 
 ```jsx
 <Selectbox
   options={options}
   searchable
   filterOption={(option, searchValue) => {
-    // カスタムフィルターロジック
+    // Custom filter logic
     return option.value.includes(searchValue);
   }}
   onChange={(val) => console.log(val)}
 />
 ```
 
-### グループ化 (Grouped Options)
+### <T k="doc_selectbox_adv_group" />
 
-オプションをグループ化して整理できます。
+<p><T k="doc_selectbox_adv_group_desc" /></p>
 
 ```jsx
 const groupedOptions = [
@@ -124,15 +123,15 @@ const groupedOptions = [
 />;
 ```
 
-### キーボードナビゲーション
+### <T k="doc_selectbox_adv_key" />
 
-Selectboxは完全なキーボードアクセシビリティをサポートしています：
+<p><T k="doc_selectbox_adv_key_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>キー</th>
-      <th>動作</th>
+      <th><T k="doc_key" /></th>
+      <th><T k="doc_action" /></th>
     </tr>
   </thead>
   <tbody>
@@ -140,46 +139,46 @@ Selectboxは完全なキーボードアクセシビリティをサポートし�
       <td>
         <code>Enter</code> / <code>Space</code>
       </td>
-      <td>ドロップダウンを開く / 選択中のオプションを選択</td>
+      <td><T k="doc_selectbox_key_open" /> Open dropdown / Select highlighted option</td>
     </tr>
     <tr>
       <td>
         <code>Escape</code>
       </td>
-      <td>ドロップダウンを閉じる</td>
+      <td><T k="doc_selectbox_key_close" /> Close dropdown</td>
     </tr>
     <tr>
       <td>
         <code>ArrowDown</code>
       </td>
-      <td>次のオプションにフォーカス</td>
+      <td><T k="doc_selectbox_key_next" /> Focus next option</td>
     </tr>
     <tr>
       <td>
         <code>ArrowUp</code>
       </td>
-      <td>前のオプションにフォーカス</td>
+      <td><T k="doc_selectbox_key_prev" /> Focus previous option</td>
     </tr>
     <tr>
       <td>
         <code>Home</code>
       </td>
-      <td>最初のオプションにフォーカス</td>
+      <td><T k="doc_selectbox_key_home" /> Focus first option</td>
     </tr>
     <tr>
       <td>
         <code>End</code>
       </td>
-      <td>最後のオプションにフォーカス</td>
+      <td><T k="doc_selectbox_key_end" /> Focus last option</td>
     </tr>
   </tbody>
 </table>
 
-無効なオプションは自動的にスキップされます。
+<p><T k="doc_selectbox_adv_key_skip" /></p>
 
-### 検索とグループ化の組み合わせ
+### <T k="doc_selectbox_adv_comb" />
 
-検索機能とグループ化を同時に使用することも可能です。検索時は、条件に一致するオプションを含むグループのみが表示されます。
+<p><T k="doc_selectbox_adv_comb_desc" /></p>
 
 ```jsx
 <Selectbox
@@ -191,35 +190,29 @@ Selectboxは完全なキーボードアクセシビリティをサポートし�
 />
 ```
 
-## アクセシビリティ
+## <T k="doc_accessibility" />
 
-Selectboxコンポーネントは、WAI-ARIAのアクセシビリティガイドラインに準拠しています：
+<p><T k="doc_selectbox_a11y_desc" /></p>
 
-- role="combobox" と role="listbox" の適切な使用
-- aria-expanded、aria-selected、aria-disabled の状態管理
-- 完全なキーボードナビゲーション
-- スクリーンリーダー対応
-- フォーカス管理とスムーズなスクロール
-
-## Props
+## <T k="doc_props" />
 
 <Controls />
 
-## TypeScript サポート
+## <T k="doc_selectbox_ts" />
 
-Selectboxコンポーネントは完全な型定義を提供しています。
+<p><T k="doc_selectbox_ts_desc" /></p>
 
 ```typescript
 import { Selectbox, SelectboxOption, SelectboxOptionGroup } from "./Selectbox";
 import { T } from "../T";
 
-// フラットなオプション
+// Flat options
 const options: SelectboxOption[] = [
   { label: "Option 1", value: "opt1" },
   { label: "Option 2", value: "opt2", disabled: true },
 ];
 
-// グループ化されたオプション
+// Grouped options
 const groupedOptions: SelectboxOptionGroup[] = [
   {
     label: "Group 1",

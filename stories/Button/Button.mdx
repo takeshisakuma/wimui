@@ -33,318 +33,277 @@ import { T } from "../T";
 </p>
 <Description />
 
-> 📘 Guide: See [Guides / Link vs Button](?path=/docs/guides-link-vs-button--docs) for when to use `<button>` vs `<a>`.
+<p><T k="doc_button_guide_link" /></p>
 
-<h2>考慮点</h2>
+<h2><T k="doc_button_considerations" /></h2>
 <table>
   <tr>
-    <td>視認性</td>
-    <td>目立ちやすくして、ユーザーがすぐに見つけられるようにする<br/>
-        背景色やテキスト色のコントラストを高くする</td>
+    <td><T k="doc_button_considerations_visibility" /></td>
+    <td><T k="doc_button_considerations_visibility_desc" /></td>
   </tr>
 
 <tr>
-  <td>クリック領域</td>
+  <td><T k="doc_button_click_area" /></td>
   <td>
-    クリック領域は十分に広く設定し、誤クリックを防ぐ
-    <br />
-    特にモバイルデバイスでは指での操作を考慮する
+    <p><T k="doc_button_click_area_desc" /></p>
   </td>
 </tr>
 
 <tr>
-  <td>ラベル</td>
+  <td><T k="doc_button_label" /></td>
   <td>
-    簡潔でわかりやすい言葉を使い、次に何が起こるかを伝える
-    <br />
-    例：送信、確認、キャンセル
+    <p><T k="doc_button_label_desc" /></p>
   </td>
 </tr>
 
 <tr>
-  <td>フィードバック</td>
+  <td><T k="doc_button_feedback" /></td>
   <td>
-    クリックした際のフィードバックを提供することで、ユーザーが正しい操作を行ったことを確認できるようにする
-    <br />
-    色の変化やアニメーションなどを利用する
+    <p><T k="doc_button_feedback_desc" /></p>
   </td>
 </tr>
 
 <tr>
-  <td>一貫性</td>
+  <td><T k="doc_button_consistency" /></td>
   <td>
-    同じ種類のボタンは、一貫したデザインを保つことでユーザーの混乱を避ける
-    <br />
-    サイト全体で同じスタイルを使用することが望ましい
+    <p><T k="doc_button_consistency_desc" /></p>
   </td>
 </tr>
 
 </table>
 
-<h2>バリエーション</h2>
-バリエーションの種類で高さがかわらないようにする
+<h2><T k="doc_variations" /></h2>
+<p><T k="doc_button_variations_desc" /></p>
 <table>
   <tr>
-    <td>プライマリーボタン</td>
+    <td><T k="doc_button_primary" /></td>
     <td>
-      主要なアクションを示すボタンで、他のボタンよりも目立つデザインにする
-      <br />
-      ユーザーに次にやってほしいアクションを示す
-      <br />
-      画面で最もさせたいアクション
+      <p><T k="doc_button_primary_desc" /></p>
     </td>
-    <td>「購入する」」「登録する」など</td>
+    <td><T k="doc_button_primary_eg" /></td>
   </tr>
   <tr>
-    <td>セカンダリーボタン</td>
+    <td><T k="doc_button_secondary" /></td>
     <td>
-      補助的なアクションを示すボタンで、プライマリーボタンよりも控えめなデザインにする
+      <p><T k="doc_button_secondary_desc" /></p>
     </td>
     <td>
-      「キャンセル(プライマリと対になるもの、ダイアログ、重要な変更)」や「戻る」など
+      <p><T k="doc_button_secondary_eg" /></p>
     </td>
   </tr>
   <tr>
-    <td>ターシエリボタン</td>
+    <td><T k="doc_button_tertiary" /></td>
     <td>
-      背景をつけないと、プライマリやセカンダリと並べた時に崩れているように見える
-      <br />
-      背景があると押せる範囲がわかる
-      <br />
-      「テキストリンク」や、ホバー時のみ背景が出る「ゴーストボタン」のような形式
+      <p><T k="doc_button_tertiary_desc" /></p>
     </td>
     <td>
-      「編集」「キャンセル(重要でない変更)」「サブメニューへのリンク」「ヘルプ」「SNS共有」「新規追加」「写真のアップロード」「詳細を見る」など
+      <p><T k="doc_button_tertiary_eg" /></p>
     </td>
   </tr>
 </table>
 
-<h2>アイコン</h2>
+<h2><T k="doc_button_icons" /></h2>
 <table>
   <tr>
-    <td>アイコンとテキストのボタン</td>
-    <td>テキストとアイコンを組み合わせたボタン</td>
+    <td><T k="doc_button_icons_with_text" /></td>
+    <td><T k="doc_button_icons_with_text_desc" /></td>
   </tr>
   <tr>
-    <td>ラベルのみのボタン</td>
-    <td>テキストのみのボタン</td>
+    <td><T k="doc_button_icons_label_only" /></td>
+    <td><T k="doc_button_icons_label_only_desc" /></td>
   </tr>
   <tr>
-    <td>アイコンのみのボタン</td>
+    <td><T k="doc_button_icons_only" /></td>
     <td>
-      特定のアクションを示す
-      <br />
-      アイコンだけでわかるもののみ使用する
+      <p><T k="doc_button_icons_only_desc" /></p>
     </td>
   </tr>
 </table>
 
-<h2>状態</h2>
-意図的な演出以外で、状態の変化によってサイズが変わらないようにする(レイアウトシフトを避ける)
+<h2><T k="doc_button_states" /></h2>
+<p><T k="doc_button_states_desc" /></p>
 
 <table>
   <tr>
-    <td>通常状態</td>
+    <td><T k="doc_button_state_normal" /></td>
     <td></td>
   </tr>
   <tr>
-    <td>ホバー状態</td>
+    <td><T k="doc_button_state_hover" /></td>
     <td>
-      マウスを乗せたときの挙動
-      <br />
-      押せることを伝える
+      <p><T k="doc_button_state_hover_desc" /></p>
     </td>
   </tr>
   <tr>
-    <td>アクティブ状態</td>
+    <td><T k="doc_button_state_active" /></td>
     <td>
-      押したときの挙動
-      <br />
-      押していることを伝える
+      <p><T k="doc_button_state_active_desc" /></p>
     </td>
   </tr>
   <tr>
-    <td>無効状態</td>
+    <td><T k="doc_button_state_disabled" /></td>
     <td>
-      操作できなくする
-      <br />
-      押せないことを伝える
+      <p><T k="doc_button_state_disabled_desc" /></p>
     </td>
   </tr>
   <tr>
-    <td>処理中状態</td>
+    <td><T k="doc_button_state_loading" /></td>
     <td>
-      処理が終わって通常状態に戻るまで操作できなくする
-      <br />
-      通常状態に戻るまで押せないことを伝える
-      <br />
-      「読み込み中」「準備中」「処理中」「保存中」「取得中」などで使用する
+      <p><T k="doc_button_state_loading_desc" /></p>
     </td>
   </tr>
   <tr>
-    <td>フォーカス状態</td>
+    <td><T k="doc_button_state_focus" /></td>
     <td>
-      キーボードで操作したときの挙動
-      <br />
-      操作対象であることを伝える
+      <p><T k="doc_button_state_focus_desc" /></p>
     </td>
   </tr>
 </table>
 
-<h2>意味</h2>
-3色程度までにしないと多すぎて混乱させる
-<br />
-色だけだと色覚特性を持つ人に差がわからない場合があるので、アイコンも併用する
+<h2><T k="doc_button_meaning" /></h2>
+<p><T k="doc_button_meaning_desc" /></p>
 <table>
   <tr>
     <td>default</td>
-    <td>ブランドカラーまたはグレー</td>
+    <td><T k="doc_button_meaning_default_desc" /></td>
   </tr>
   <tr>
     <td>destructive</td>
-    <td>赤</td>
+    <td><T k="doc_button_meaning_destructive_desc" /></td>
   </tr>
   <tr>
     <td>positive</td>
-    <td>緑</td>
+    <td><T k="doc_button_meaning_positive_desc" /></td>
   </tr>
 </table>
 
-<h2>サイズ</h2>
+<h2><T k="doc_size" /></h2>
 
 <table>
   <tr>
-    <td>サイズ</td>
-    <td>高さ</td>
-    <td>説明</td>
+    <td><T k="doc_size" /></td>
+    <td><T k="doc_height" /></td>
+    <td><T k="doc_description" /></td>
   </tr>
   <tr>
-    <td>Small</td>
-    <td>32px前後</td>
-    <td>フォントサイズ</td>
+    <td><T k="doc_small" /></td>
+    <td><T k="doc_button_around_32px" /></td>
+    <td><T k="doc_button_font_size" /></td>
     <td>
-      モバイルのリスト表示に適した大きさにする
-      <br />
-      テーブル内、サイドバー、密集したUI など
+      <p><T k="doc_button_size_desc_s" /></p>
     </td>
   </tr>
   <tr>
-    <td>Medium</td>
-    <td>40px前後</td>
-    <td>フォントサイズ</td>
-    <td>ほとんどの画面</td>
+    <td><T k="doc_medium" /></td>
+    <td><T k="doc_button_around_40px" /></td>
+    <td><T k="doc_button_font_size" /></td>
+    <td><T k="doc_button_size_desc_m" /></td>
   </tr>
   <tr>
-    <td>Large</td>
-    <td>48px前後</td>
+    <td><T k="doc_large" /></td>
+    <td><T k="doc_button_around_48px" /></td>
     <td></td>
     <td>
-      モバイルでは親指で押しやすいサイズにする
-      <br />
-      CTA(ランディングページなど)ボタン、ログインボタン など重要なボタン
+      <p><T k="doc_button_size_desc_l" /></p>
     </td>
   </tr>
 </table>
 
-<h2>バリエーションX意味</h2>
+<h2><T k="doc_button_var_meaning" /></h2>
 
 <table>
   <tr>
-    <td>destructiveのプライマリ</td>
-    <td>特に危険な操作（アカウント削除、全データ消去など）</td>
-    <td>最も目立ち、ユーザーに「本当にいいですか？」と強く警告する。</td>
+    <td><T k="doc_button_var_pri_dest" /></td>
+    <td><T k="doc_button_var_pri_dest_act" /></td>
+    <td><T k="doc_button_var_pri_dest_desc" /></td>
   </tr>
   <tr>
-    <td>destructiveのセカンダリ</td>
-    <td>一般的な削除（リストから1つ消す、メッセージを消すなど）</td>
+    <td><T k="doc_button_var_sec_dest" /></td>
+    <td><T k="doc_button_var_sec_dest_act" /></td>
     <td>
-      画面内で主張しすぎず、かつ「危険な操作」であることを示す
-      <br />
-      枠線の太さ(1pxなど)の分だけ中身が小さくなるように計算
+      <p><T k="doc_button_var_sec_dest_desc" /></p>
     </td>
   </tr>
   <tr>
-    <td>destructiveのターシエリ</td>
-    <td>控えめな削除（設定画面の隅にある削除、補助的な消去）</td>
-    <td>他の選択肢を邪魔したくないが、見つけたときには注意を促したい場合。</td>
+    <td><T k="doc_button_var_ter_dest" /></td>
+    <td><T k="doc_button_var_ter_dest_act" /></td>
+    <td><T k="doc_button_var_ter_dest_desc" /></td>
   </tr>
 </table>
 
-<h2>ラベルのガイドライン</h2>
+<h2><T k="doc_button_label_guidelines" /></h2>
 <p>
-  ボタンのラベルは原則として<b>「動詞」</b>を使用します。動詞にすることで、ボタンを押した後に「何が起きるか」が明確になり、ユーザーの迷いを減らすことができます。
+  <T k="doc_button_label_guidelines_desc" />
 </p>
 <table>
   <tr>
-    <th>品詞</th>
-    <th>具体例</th>
-    <th>ユーザーへの影響</th>
+    <th><T k="doc_button_pos" /></th>
+    <th><T k="doc_button_eg" /></th>
+    <th><T k="doc_button_impact" /></th>
   </tr>
   <tr>
-    <td><b>名詞のみ（避ける例）</b></td>
-    <td>「設定」「削除」など</td>
-    <td>状態か行動か判断が遅れることがあります</td>
+    <td><T k="doc_button_noun" /></td>
+    <td><T k="doc_button_noun_eg" /></td>
+    <td><T k="doc_button_noun_impact" /></td>
   </tr>
   <tr>
-    <td><b>動詞（良い例）</b></td>
-    <td>「設定を変更する」「このファイルを削除」など</td>
-    <td>目的が一目でわかります</td>
+    <td><T k="doc_button_verb" /></td>
+    <td><T k="doc_button_verb_eg" /></td>
+    <td><T k="doc_button_verb_impact" /></td>
   </tr>
 </table>
 
 <p>
-  <b>日本語表現の注意点:</b><br />
-  「〜をさせていただきます」などを使い丁寧すぎると視認性が落ちる原因になります。「〜する」「〜登録」のように、シンプルで体言止めに近い動詞形にすると、力強くクリックを促すことができます。
+  <T k="doc_button_ja_notes" />
 </p>
 
-<h3>ラベル作成の3つの黄金律</h3>
+<h3><T k="doc_button_golden_rules" /></h3>
 <table>
   <tr>
-    <th>ルール</th>
-    <th>良い例</th>
-    <th>避けるべき例</th>
+    <th><T k="doc_button_rule" /></th>
+    <th><T k="doc_button_good_eg" /></th>
+    <th><T k="doc_button_bad_eg" /></th>
   </tr>
   <tr>
-    <td>具体的である</td>
-    <td>「カートに入れる」</td>
-    <td>「OK」「次へ」</td>
+    <td><T k="doc_button_rule1" /></td>
+    <td><T k="doc_button_rule1_good" /></td>
+    <td><T k="doc_button_rule1_bad" /></td>
   </tr>
   <tr>
-    <td>結果を伝える</td>
-    <td>「パスワードをリセット」</td>
-    <td>「送信」</td>
+    <td><T k="doc_button_rule2" /></td>
+    <td><T k="doc_button_rule2_good" /></td>
+    <td><T k="doc_button_rule2_bad" /></td>
   </tr>
   <tr>
-    <td>ユーザー視点</td>
-    <td>「無料で始める」</td>
-    <td>「登録実行」</td>
+    <td><T k="doc_button_rule3" /></td>
+    <td><T k="doc_button_rule3_good" /></td>
+    <td><T k="doc_button_rule3_bad" /></td>
   </tr>
 </table>
 
-<h3>例外（名詞が適しているケース）</h3>
+<h3><T k="doc_button_exceptions" /></h3>
 <table>
   <tr>
-    <th>ケース</th>
-    <th>具体例・理由</th>
+    <th><T k="doc_button_case" /></th>
+    <th><T k="doc_button_case_eg" /></th>
   </tr>
   <tr>
-    <td><b>ナビゲーション</b></td>
-    <td>「ホーム」「お問い合わせ」など、ページ自体を指す場合</td>
+    <td><T k="doc_button_ex1" /></td>
+    <td><T k="doc_button_ex1_eg" /></td>
   </tr>
   <tr>
-    <td><b>トグル・タブ</b></td>
-    <td>「ON / OFF」「詳細」など、状態の切り替え</td>
+    <td><T k="doc_button_ex2" /></td>
+    <td><T k="doc_button_ex2_eg" /></td>
   </tr>
   <tr>
-    <td><b>極端に狭いスペース</b></td>
-    <td>モバイルのフッターなどで「保存する」より「保存」等と文字数を切り詰める場合</td>
+    <td><T k="doc_button_ex3" /></td>
+    <td><T k="doc_button_ex3_eg" /></td>
   </tr>
 </table>
 
-<h3>迷った時のチェックリスト</h3>
+<h3><T k="doc_button_checklist" /></h3>
 <ul>
-  <li>ボタンを押した後の結果（メリット）が伝わるか？</li>
-  <li>「OK」や「はい」といった汎用的な言葉に逃げていないか？</li>
-  <li>ボタン単体で、前後の文脈なしに意味が通じるか？</li>
+  <li><T k="doc_button_check1" /></li>
+  <li><T k="doc_button_check2" /></li>
+  <li><T k="doc_button_check3" /></li>
 </ul>
-

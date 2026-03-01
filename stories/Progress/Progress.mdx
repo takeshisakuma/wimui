@@ -1,10 +1,10 @@
-import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as ProgressStories from "./Progress.stories";
 import { T } from "../T";
 
 <Meta of={ProgressStories} />
 
-# Progress
+<Title />
 
 <p
   style={{
@@ -17,39 +17,40 @@ import { T } from "../T";
   <T k="doc_progress_title" />
 </p>
 
-プログレスバーは、タスクの進捗状況を視覚的に表示するために使用されます。
+<p><T k="doc_progress_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
-- 0から100までの数値による進捗表示
-- ラベルとパーセンテージの表示オプション
-- 複数のカラーバリエーションとサイズ
-- 不確定状態（読み込み中）のアニメーションサポート
+<p><T k="doc_progress_features_desc" /></p>
 
-## デモ
+## <T k="doc_usage_examples" />
 
 <Canvas of={ProgressStories.Default} />
 
-## プロパティ
+<Primary />
+
+## Props
 
 <Controls />
 
-## バリエーション
+## <T k="doc_variations" />
 
-### カラー
+### <T k="doc_progress_colors" />
 
-用途に合わせて複数のカラーを選択できます。
+<p><T k="doc_progress_colors_desc" /></p>
 
 <Canvas of={ProgressStories.Colors} />
 
-### サイズ
+### <T k="doc_progress_sizes" />
 
-`sm`, `md`, `lg` の3つのサイズが利用可能です。
+<p><T k="doc_progress_sizes_desc" /></p>
 
 <Canvas of={ProgressStories.Sizes} />
 
-### 不確定状態
+### <T k="doc_progress_indeterminate" />
 
-具体的な進捗率が不明な場合は、`indeterminate` プロパティを使用します。
+<p><T k="doc_progress_indeterminate_desc" /></p>
 
 <Canvas of={ProgressStories.Indeterminate} />
+
+<Stories />

@@ -1,171 +1,182 @@
 import { Canvas, Meta } from "@storybook/addon-docs/blocks";
 import * as ChatUIStories from "./ChatUI.stories";
+import { T } from "../T";
 
 <Meta of={ChatUIStories} />
 
 # ChatUI
 
-A comprehensive set of components for building chat interfaces with support for messages, avatars, timestamps, and interactive input.
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_chatui_desc" />
+</p>
 
-## Components
+## <T k="doc_subcomponents" />
 
-The ChatUI module includes several sub-components:
+<p><T k="doc_chatui_subcomponents" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>Component</th>
-      <th>Description</th>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><strong>ChatContainer</strong></td>
-      <td>The main wrapper for the chat interface</td>
+      <td><T k="doc_chatui_c_container" /></td>
     </tr>
     <tr>
       <td><strong>ChatMessageList</strong></td>
-      <td>Scrollable container for messages</td>
+      <td><T k="doc_chatui_c_list" /></td>
     </tr>
     <tr>
       <td><strong>ChatMessage</strong></td>
-      <td>Individual message bubble with support for avatars, timestamps, and sender names</td>
+      <td><T k="doc_chatui_c_message" /></td>
     </tr>
     <tr>
       <td><strong>ChatInput</strong></td>
-      <td>Input field with send button for composing messages</td>
+      <td><T k="doc_chatui_c_input" /></td>
     </tr>
     <tr>
       <td><strong>ChatAvatar</strong></td>
-      <td>Avatar component with image support and fallback text</td>
+      <td><T k="doc_chatui_c_avatar" /></td>
     </tr>
   </tbody>
 </table>
 
-## Usage
+## <T k="doc_usage" />
 
-### Basic Chat Interface
+### <T k="doc_chatui_basic_ui" />
 
 <Canvas of={ChatUIStories.Basic} />
 
-### With Avatar Images
+### <T k="doc_chatui_with_avatars" />
 
 <Canvas of={ChatUIStories.WithAvatarImages} />
 
-### Message Variants
+### <T k="doc_chatui_msg_variants" />
 
-Messages support different variants for different types of content:
+<p><T k="doc_chatui_msg_variants_desc" /></p>
 
 <Canvas of={ChatUIStories.WithVariants} />
 
-### Interactive Example
+### <T k="doc_chatui_interactive_ex" />
 
-A fully functional chat with message sending and auto-scroll:
+<p><T k="doc_chatui_interactive_desc" /></p>
 
 <Canvas of={ChatUIStories.Interactive} />
 
-### Custom Avatars with Icons
+### <T k="doc_chatui_custom_avatars" />
 
 <Canvas of={ChatUIStories.WithIcons} />
 
-### Without Avatars
+### <T k="doc_chatui_no_avatars" />
 
 <Canvas of={ChatUIStories.NoAvatars} />
 
-### Avatar Sizes
+### <T k="doc_chatui_avatar_sizes" />
 
 <Canvas of={ChatUIStories.AvatarSizes} />
 
-## Features
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>Feature</th>
-      <th>Description</th>
+      <th><T k="doc_feature" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Flexible Layout</strong></td>
-      <td>Messages can be positioned left or right</td>
+      <td><strong><T k="doc_chatui_f_flex" /></strong></td>
+      <td><T k="doc_chatui_f_flex_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Avatar Support</strong></td>
-      <td>Display user avatars with images or fallback text</td>
+      <td><strong><T k="doc_chatui_f_avatar" /></strong></td>
+      <td><T k="doc_chatui_f_avatar_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Timestamps</strong></td>
-      <td>Show when messages were sent</td>
+      <td><strong><T k="doc_chatui_f_timestamp" /></strong></td>
+      <td><T k="doc_chatui_f_timestamp_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Sender Names</strong></td>
-      <td>Display who sent the message</td>
+      <td><strong><T k="doc_chatui_f_sender" /></strong></td>
+      <td><T k="doc_chatui_f_sender_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Message Variants</strong></td>
-      <td>Different styles for system, admin, or bot messages</td>
+      <td><strong><T k="doc_chatui_f_variants" /></strong></td>
+      <td><T k="doc_chatui_f_variants_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Interactive Input</strong></td>
-      <td>Send messages with button click or Enter key</td>
+      <td><strong><T k="doc_chatui_f_input" /></strong></td>
+      <td><T k="doc_chatui_f_input_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Auto-scroll</strong></td>
-      <td>Scroll to latest messages automatically</td>
+      <td><strong><T k="doc_chatui_f_autoscroll" /></strong></td>
+      <td><T k="doc_chatui_f_autoscroll_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Responsive</strong></td>
-      <td>Works on all device sizes</td>
+      <td><strong><T k="doc_chatui_f_responsive" /></strong></td>
+      <td><T k="doc_chatui_f_responsive_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## Best Practices
+## <T k="doc_appshell_best_practices" />
 
 <table>
   <thead>
     <tr>
-      <th>Best Practice</th>
-      <th>Description</th>
+      <th><T k="doc_practice" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Position Messages</strong></td>
-      <td>Use `position="left"` for received messages and `position="right"` for sent messages</td>
+      <td><strong><T k="doc_chatui_bp_position" /></strong></td>
+      <td><T k="doc_chatui_bp_position_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Show Avatars</strong></td>
-      <td>Display avatars for multi-user conversations to help identify senders</td>
+      <td><strong><T k="doc_chatui_bp_avatars" /></strong></td>
+      <td><T k="doc_chatui_bp_avatars_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Include Timestamps</strong></td>
-      <td>Help users understand message chronology</td>
+      <td><strong><T k="doc_chatui_bp_timestamp" /></strong></td>
+      <td><T k="doc_chatui_bp_timestamp_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Auto-scroll</strong></td>
-      <td>Implement auto-scroll to newest messages for better UX</td>
+      <td><strong><T k="doc_chatui_bp_autoscroll" /></strong></td>
+      <td><T k="doc_chatui_bp_autoscroll_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Message Grouping</strong></td>
-      <td>Group consecutive messages from the same sender</td>
+      <td><strong><T k="doc_chatui_bp_grouping" /></strong></td>
+      <td><T k="doc_chatui_bp_grouping_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Loading States</strong></td>
-      <td>Show typing indicators or loading states when appropriate</td>
+      <td><strong><T k="doc_chatui_bp_loading" /></strong></td>
+      <td><T k="doc_chatui_bp_loading_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Accessibility</strong></td>
-      <td>Ensure proper ARIA labels and keyboard navigation</td>
+      <td><strong><T k="doc_accessibility" /></strong></td>
+      <td><T k="doc_chatui_bp_a11y_desc" /> (Wait, I used common one)
+        Ensure proper ARIA labels and keyboard navigation</td>
     </tr>
   </tbody>
 </table>
 
-## Accessibility
+## <T k="doc_accessibility" />
 
-- Input field is keyboard accessible
-- Send button can be triggered with Enter key
-- Proper semantic HTML structure
-- Avatar images include alt text
-- Color contrast meets WCAG standards
+- <T k="doc_chatui_a11y_1" />
+- <T k="doc_chatui_a11y_2" />
+- <T k="doc_chatui_a11y_3" />
+- <T k="doc_chatui_a11y_4" />
+- <T k="doc_chatui_a11y_5" />

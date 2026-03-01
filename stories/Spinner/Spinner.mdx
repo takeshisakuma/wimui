@@ -1,10 +1,10 @@
-import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as SpinnerStories from "./Spinner.stories";
 import { T } from "../T";
 
 <Meta of={SpinnerStories} />
 
-# Spinner
+<Title />
 
 <p
   style={{
@@ -17,39 +17,40 @@ import { T } from "../T";
   <T k="doc_spinner_title" />
 </p>
 
-スピナーは、データの読み込み中や処理中であることをユーザーに示すために使用される回転するインジケーターです。
+<p><T k="doc_spinner_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
-- 滑らかなSVGアニメーション
-- 複数のサイズ（sm, md, lg, xl）
-- テーマに合わせたカラーバリエーション
-- ラベル表示と配置オプション
+<p><T k="doc_spinner_features_desc" /></p>
 
-## デモ
+## <T k="doc_usage_examples" />
 
 <Canvas of={SpinnerStories.Default} />
 
-## プロパティ
+<Primary />
+
+## Props
 
 <Controls />
 
-## バリエーション
+## <T k="doc_variations" />
 
-### カラー
+### <T k="doc_spinner_colors" />
 
-システムの各状態（成功、警告、エラーなど）に合わせたカラーを使用できます。
+<p><T k="doc_spinner_colors_desc" /></p>
 
 <Canvas of={SpinnerStories.Colors} />
 
-### サイズ
+### <T k="doc_spinner_sizes" />
 
-コンテキストに合わせて適切なサイズを選択できます。
+<p><T k="doc_spinner_sizes_desc" /></p>
 
 <Canvas of={SpinnerStories.Sizes} />
 
-### ラベル付き
+### <T k="doc_spinner_with_label" />
 
-必要に応じて読み込み中のメッセージを表示できます。
+<p><T k="doc_spinner_with_label_desc" /></p>
 
 <Canvas of={SpinnerStories.WithLabel} />
+
+<Stories />

@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
+
 import {
   ShadowSwatch,
   MotionSwatch,
@@ -16,25 +17,29 @@ import {
 <hr />
 
 <h2>
-  <T k="guide_effects_shadow" />
+  <p><T k="guide_effects_shadow" /></p>
 </h2>
 <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
   <ShadowSwatch name="XS" value="var(--shadow-xs)" shadow="var(--shadow-xs)" />
+
   <ShadowSwatch
     name="Small"
     value="var(--shadow-sm)"
     shadow="var(--shadow-sm)"
   />
+
   <ShadowSwatch
     name="Medium"
     value="var(--shadow-md)"
     shadow="var(--shadow-md)"
   />
+
   <ShadowSwatch
     name="Large"
     value="var(--shadow-lg)"
     shadow="var(--shadow-lg)"
   />
+
   <ShadowSwatch
     name="Inset"
     value="var(--shadow-inset)"
@@ -45,15 +50,18 @@ import {
 <hr />
 
 <h2>
-  <T k="guide_effects_motion" />
+  <p><T k="guide_effects_motion" /></p>
 </h2>
 <p style={{ marginBottom: "20px" }}>
   <T k="guide_effects_motion_desc" />
 </p>
 <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
   <MotionSwatch name="Base Transition" duration="0.3s" easing="ease-in-out" />
+
   <InteractiveSwatch name="Scale Active" tokenName="--scale-active" tokenValue="0.98" activeStyle={{ transform: "scale(var(--scale-active))" }} hoverStyle={{ background: "var(--bg-component-hover, #efefef)" }} />
+
   <InteractiveSwatch name="Lift Small" tokenName="--lift-sm" tokenValue="-1px" hoverStyle={{ transform: "translateY(var(--lift-sm))", boxShadow: "var(--shadow-sm)" }} />
+
   <InteractiveSwatch name="Lift Medium" tokenName="--lift-md" tokenValue="-1.5px" hoverStyle={{ transform: "translateY(var(--lift-md))", boxShadow: "var(--shadow-md)" }} />
 </TokenGrid>
 
@@ -77,6 +85,7 @@ import {
         <tr>
           <td><strong><T k="effects_common_vars" /></strong></td>
           <td dangerouslySetInnerHTML={{ __html: "<T k='guide_effects_common_vars_guideline' />" }} />
+
         </tr>
       </tbody>
     </table>

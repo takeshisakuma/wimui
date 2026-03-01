@@ -19,10 +19,9 @@ import { T } from "../T";
 
 
 
-`Group` は、要素を水平方向に並べるためのレイアウトコンポーネントです。
-デフォルトで子要素の間隔を一定に保ち、コンテナ幅に応じて折り返しの制御も行います。ボタンなどのインライン要素を並べる際に最適です。
+<p><T k="doc_group_long_desc" /></p>
 
-## 使い方
+## <T k="doc_usage" />
 
 ```tsx
 import { Group } from "@/components/Group/Group";
@@ -30,51 +29,51 @@ import { Button } from "../Button/Button";
 
 const Demo = () => (
   <Group gap={16}>
-    <Button>送信する</Button>
-    <Button priority="secondary">キャンセル</Button>
+    <Button>Submit</Button>
+    <Button priority="secondary">Cancel</Button>
   </Group>
 );
 ```
 
 <Canvas of={GroupStories.Basic} />
 
-## 特徴
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>説明</th>
+      <th><T k="doc_features" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>要素の均等化</strong></td>
-      <td><code>grow</code> プロパティを使用すると、すべての子要素が利用可能な空間を埋めるように伸縮します。</td>
+      <td><strong><T k="doc_group_feat_grow" /></strong></td>
+      <td><T k="doc_group_feat_grow_desc" /></td>
     </tr>
     <tr>
-      <td><strong>垂直整列</strong></td>
-      <td>デフォルトで <code>align="center"</code> が設定されており、高さの異なる要素も中央揃えで配置されます。</td>
+      <td><strong><T k="doc_group_feat_align" /></strong></td>
+      <td><T k="doc_group_feat_align_desc" /></td>
     </tr>
     <tr>
-      <td><strong>柔軟な間隔</strong></td>
-      <td><code>gap</code> プロパティで要素間の隙間を調整できます。</td>
+      <td><strong><T k="doc_group_feat_gap" /></strong></td>
+      <td><T k="doc_group_feat_gap_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## API リファレンス
+## <T k="doc_api_reference" />
 
 <Controls />
 
-## 要素の伸縮 (Grow)
+## <T k="doc_group_grow" />
 
-`grow` プロパティを `true` に設定すると、各アイテムがフレックスボックスの `flex-grow: 1` を持ち、親コンテナの幅いっぱいに等幅で広がります。
+<p><T k="doc_group_grow_desc" /></p>
 
 <Canvas of={GroupStories.Grow} />
 
-## 垂直方向の整列
+## <T k="doc_group_align" />
 
-`align` プロパティを使用して、異なる高さの要素が混在する場合の垂直方向の配置（上揃え、中央揃え、下揃えなど）を制御できます。
+<p><T k="doc_group_align_desc" /></p>
 
 <Canvas of={GroupStories.AlignEnd} />

@@ -1,10 +1,10 @@
-import { Meta, Primary, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Primary, Controls, Canvas, Title, Stories } from "@storybook/addon-docs/blocks";
 import * as SwitchStories from "./Switch.stories";
 import { T } from "../T";
 
 <Meta of={SwitchStories} />
 
-# Switch
+<Title />
 
 <p
   style={{
@@ -17,26 +17,30 @@ import { T } from "../T";
   <T k="doc_switch_title" />
 </p>
 
-A toggle switch for switching between two states, typically on and off.
+<p><T k="doc_switch_long_desc" /></p>
 
-> 📘 Guide: See [Guides / Radio vs Checkbox](?path=/docs/guides-radio-vs-checkbox--docs) for comparison with Radio and Checkbox.
+> 📘 <T k="guide_rvc_comparison" />: [<T k="guide_rvc_title" />](?path=/docs/guides-radio-vs-checkbox--docs)
+
+## <T k="doc_usage_examples" />
 
 <Primary />
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
 
-## Examples
+## <T k="doc_variations" />
 
-### Checked
+### <T k="doc_switch_checked" />
 
-<Story of={SwitchStories.Checked} />
+<Canvas of={SwitchStories.Checked} />
 
-### Small
+### <T k="doc_switch_small" />
 
-<Story of={SwitchStories.Small} />
+<Canvas of={SwitchStories.Small} />
 
-### Disabled
+### <T k="status_disabled" />
 
-<Story of={SwitchStories.Disabled} />
+<Canvas of={SwitchStories.Disabled} />
+
+<Stories />

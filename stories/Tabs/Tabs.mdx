@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as TabsStories from "./Tabs.stories";
 import { T } from "../T";
 
 <Meta of={TabsStories} />
 
-# Tabs
+<Title />
 
 <p
   style={{
@@ -17,204 +17,172 @@ import { T } from "../T";
   <T k="doc_tabs_title" />
 </p>
 
-コンテンツをグループ化し、表示を切り替えるために使用。
+<p><T k="doc_tabs_long_desc" /></p>
 
 <Canvas of={TabsStories.Default} />
 
 <Controls of={TabsStories.Default} />
 
-## 垂直方向への配置
+## <T k="doc_tabs_vertical_alignment" />
 
-`orientation="vertical"`を指定することで、タブを垂直方向に並べることが可能です。
+<p><T k="doc_tabs_vertical_alignment_desc" /></p>
 
 <Canvas of={TabsStories.Vertical} />
 
-## スクロール可能なタブ
+## <T k="doc_tabs_scrollable" />
 
-タブの数が多い場合やラベルが長い場合、タブリストを横方向にスクロールすることが可能です。
+<p><T k="doc_tabs_scrollable_desc" /></p>
 
 <Canvas of={TabsStories.Scrolling} />
 
-## UI/UXデザインにおけるタブについて
+## <T k="doc_tabs_ui_ux" />
 
-タブはアプリケーションのナビゲーションをサポートし、情報を整理してユーザーが必要な情報にアクセスしやすくするコンポーネントです。
+<p><T k="doc_tabs_ui_ux_desc" /></p>
 
-### 特徴とメリット
+### <T k="doc_tabs_features_benefits" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>メリット</th>
+      <th><T k="doc_tabs_feature_header" /></th>
+      <th><T k="doc_tabs_benefit_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>シンプルさと利便性</strong>
+        <strong><T k="doc_tabs_feature_simplicity" /></strong>
       </td>
-      <td>
-        省スペースで情報を論理的に整理し、ユーザーの操作ストレスを軽減します。
-      </td>
+      <td><T k="doc_tabs_benefit_simplicity" /></td>
     </tr>
     <tr>
       <td>
-        <strong>スペースの有効活用</strong>
+        <strong><T k="doc_tabs_feature_space" /></strong>
       </td>
-      <td>
-        スマートフォンなど画面が小さいデバイスでも多くの情報を配置可能です。
-      </td>
+      <td><T k="doc_tabs_benefit_space" /></td>
     </tr>
   </tbody>
 </table>
 
-### タブの種類
+### <T k="doc_tabs_types" />
 
 <table>
   <thead>
     <tr>
-      <th>種類</th>
-      <th>特徴</th>
-      <th>適した用途</th>
+      <th><T k="doc_tabs_type_header" /></th>
+      <th><T k="doc_tabs_type_feature_header" /></th>
+      <th><T k="doc_tabs_type_purpose_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>固定タブ</strong>
+        <strong><T k="doc_tabs_type_fixed" /></strong>
       </td>
-      <td>
-        ・画面に固定され、全てのタブが表示されます。
-        <br />
-        ・タブの幅は等分されます。
-      </td>
-      <td>ユーザーが即座にアクセスできる重要な機能に適しています。</td>
+      <td><T k="doc_tabs_type_fixed_feature" /></td>
+      <td><T k="doc_tabs_type_fixed_purpose" /></td>
     </tr>
     <tr>
       <td>
-        <strong>スクロール可能タブ</strong>
+        <strong><T k="doc_tabs_type_scrollable" /></strong>
       </td>
-      <td>タブが多い場合にスクロールして表示します。</td>
-      <td>
-        多くのカテゴリーやオプションがある場合や、タブの数が変動する場合に適しています。
-      </td>
+      <td><T k="doc_tabs_type_scrollable_feature" /></td>
+      <td><T k="doc_tabs_type_scrollable_purpose" /></td>
     </tr>
   </tbody>
 </table>
 
-## UI/UXにおけるタブのベストプラクティス
+## <T k="doc_tabs_best_practices" />
 
-### コンテンツ設計
+### <T k="doc_tabs_content_design" />
 
 <table>
   <thead>
     <tr>
-      <th>要素</th>
-      <th>役割・特徴</th>
+      <th><T k="doc_tabs_element_header" /></th>
+      <th><T k="doc_tabs_role_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>アイコン</strong>
+        <strong><T k="doc_tabs_element_icon" /></strong>
       </td>
-      <td>機能や内容を視覚的に表現し、ユーザーの理解を助けます。</td>
+      <td><T k="doc_tabs_role_icon" /></td>
     </tr>
     <tr>
       <td>
-        <strong>テキスト</strong>
+        <strong><T k="doc_tabs_element_text" /></strong>
       </td>
-      <td>
-        ・内容を明確に伝えます。
-        <br />
-        ・基本的に1行で収め、簡潔な単語を使用します。
-      </td>
+      <td><T k="doc_tabs_role_text" /></td>
     </tr>
     <tr>
       <td>
-        <strong>選択インジケーター</strong>
+        <strong><T k="doc_tabs_element_indicator" /></strong>
       </td>
-      <td>
-        ・現在選択されているタブを明示（アンダーラインや色など）します。
-        <br />
-        ・ユーザーが現在地を把握しやすくします。
-      </td>
+      <td><T k="doc_tabs_role_indicator" /></td>
     </tr>
   </tbody>
 </table>
 
-### 配置
+### <T k="doc_tabs_placement" />
 
 <table>
   <thead>
     <tr>
-      <th>配置場所</th>
-      <th>理由・特徴</th>
+      <th><T k="doc_tabs_placement_header" /></th>
+      <th><T k="doc_tabs_reason_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>画面上部</strong>
+        <strong><T k="doc_tabs_placement_top" /></strong>
       </td>
-      <td>
-        親（タブ）と子（コンテンツ）の関係を直感的に把握できるようにするためです。
-      </td>
+      <td><T k="doc_tabs_reason_top" /></td>
     </tr>
     <tr>
       <td>
-        <strong>水平配置</strong>
+        <strong><T k="doc_tabs_placement_horizontal" /></strong>
       </td>
-      <td>
-        一般的な配置であり、タブを切り替えることで画面内のコンテンツ部分が変わります。
-      </td>
+      <td><T k="doc_tabs_reason_horizontal" /></td>
     </tr>
   </tbody>
 </table>
 
-### 注意点と使い分け
+### <T k="doc_tabs_notes_usage" />
 
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>内容・対策</th>
+      <th><T k="doc_tabs_item_header" /></th>
+      <th><T k="doc_tabs_content_measure_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>セグメンテッドコントロールとの使い分け</strong>
+        <strong><T k="doc_tabs_item_segmented" /></strong>
       </td>
-      <td>
-        コンテンツの絞り込みなど、重複するコンテンツの表示切り替えにはセグメントコントロールが適している場合があります。
-      </td>
+      <td><T k="doc_tabs_measure_segmented" /></td>
     </tr>
     <tr>
       <td>
-        <strong>固定タブの最大数</strong>
+        <strong><T k="doc_tabs_item_max" /></strong>
       </td>
-      <td>
-        スマートフォンでは<strong>5つまで</strong>が推奨されます。
-        <br />
-        それ以上の場合はスクロール可能タブを検討してください。
-      </td>
+      <td><T k="doc_tabs_measure_max" /></td>
     </tr>
     <tr>
       <td>
-        <strong>入れ子構造</strong>
+        <strong><T k="doc_tabs_item_nested" /></strong>
       </td>
-      <td>
-        タブの中にタブを入れる構造は避け、他のUIコンポーネント（セグメントコントロールなど）の使用を検討してください。
-      </td>
+      <td><T k="doc_tabs_measure_nested" /></td>
     </tr>
     <tr>
       <td>
-        <strong>スワイプ操作</strong>
+        <strong><T k="doc_tabs_item_swipe" /></strong>
       </td>
-      <td>
-        タブ切り替えのスワイプと、コンテンツ内のスワイプ操作（削除、カルーセル等）が競合しないよう注意が必要です。
-      </td>
+      <td><T k="doc_tabs_measure_swipe" /></td>
     </tr>
   </tbody>
 </table>

@@ -4,7 +4,7 @@ import { T } from "../T";
 
 <Meta of={BottomSheetStories} />
 
-# BottomSheet (ボトムシート)
+# <T k="doc_bottomsheet_title" />
 
 <p
   style={{
@@ -17,44 +17,44 @@ import { T } from "../T";
   <T k="doc_bottomsheet_title" />
 </p>
 
-ボトムシートは、画面の下端に固定されて表示されるオーバーレイコンポーネントです。主にモバイルインターフェースにおいて、現在のコンテキストを維持したまま、タスクに特化したアクションや追加情報の表示を行うために使用されます。
+<p><T k="doc_bottomsheet_long_desc" /></p>
 
-> **スマートフォンのみ**: このコンポーネントは主にモバイルデバイス向けに設計されています。PC環境では、`Dialog` や `Drawer` の利用を検討してください。
+<p><T k="doc_bottomsheet_mobile_only" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>説明</th>
+      <th><T k="doc_features" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>モバイル最適化</strong></td>
-      <td>画面下部に配置され、親指で操作しやすい位置に表示されます。</td>
+      <td><strong><T k="doc_bottomsheet_features_mobile_opt" /></strong></td>
+      <td><T k="doc_bottomsheet_features_mobile_opt_desc" /></td>
     </tr>
     <tr>
-      <td><strong>フォーカス管理</strong></td>
-      <td>アクセシビリティのため、フォーカストラップ機能を備えています。</td>
+      <td><strong><T k="doc_bottomsheet_features_focus" /></strong></td>
+      <td><T k="doc_bottomsheet_features_focus_desc" /></td>
     </tr>
     <tr>
-      <td><strong>バックドロップ・ブラー</strong></td>
-      <td>背景を暗くし、背後のコンテンツをぼかすことで視覚的な集中を促します。</td>
+      <td><strong><T k="doc_bottomsheet_features_backdrop" /></strong></td>
+      <td><T k="doc_bottomsheet_features_backdrop_desc" /></td>
     </tr>
     <tr>
-      <td><strong>スクロール可能なコンテンツ</strong></td>
-      <td>コンテンツが長い場合、内部のスクロールエリアで対応します。</td>
+      <td><strong><T k="doc_bottomsheet_features_scroll" /></strong></td>
+      <td><T k="doc_bottomsheet_features_scroll_desc" /></td>
     </tr>
     <tr>
-      <td><strong>ハンドルキュー</strong></td>
-      <td>シート上部に視覚的なハンドルを表示し、一般的なボトムシートの作法に従っています。</td>
+      <td><strong><T k="doc_bottomsheet_features_handle" /></strong></td>
+      <td><T k="doc_bottomsheet_features_handle_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## 使い方
+## <T k="doc_usage" />
 
 ```tsx
 import {
@@ -72,17 +72,17 @@ import {
 function Example() {
   return (
     <BottomSheet>
-      <BottomSheetTrigger>開く</BottomSheetTrigger>
+      <BottomSheetTrigger>Open</BottomSheetTrigger>
       <BottomSheetContent>
         <BottomSheetHeader>
-          <BottomSheetTitle>タイトル</BottomSheetTitle>
+          <BottomSheetTitle>Title</BottomSheetTitle>
           <BottomSheetDescription>
-            ここに説明文が入ります
+            Description goes here
           </BottomSheetDescription>
         </BottomSheetHeader>
-        <BottomSheetBody>メインコンテンツをここに配置します...</BottomSheetBody>
+        <BottomSheetBody>Main content goes here...</BottomSheetBody>
         <BottomSheetFooter>
-          <BottomSheetClose>閉じる</BottomSheetClose>
+          <BottomSheetClose>Close</BottomSheetClose>
         </BottomSheetFooter>
       </BottomSheetContent>
     </BottomSheet>
@@ -90,16 +90,16 @@ function Example() {
 }
 ```
 
-## サンプル
+## <T k="doc_usage_examples" />
 
-### デフォルト (Default)
+### <T k="doc_bottomsheet_default" />
 
 <Canvas of={BottomSheetStories.Default} />
 
-### アクションメニュー (Single Action Menu)
+### <T k="doc_bottomsheet_action_menu" />
 
 <Canvas of={BottomSheetStories.SingleAction} />
 
-## Props (プロパティ)
+## Props
 
 <Controls />

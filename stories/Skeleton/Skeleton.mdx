@@ -1,10 +1,10 @@
-import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as SkeletonStories from "./Skeleton.stories";
 import { T } from "../T";
 
 <Meta of={SkeletonStories} />
 
-# Skeleton
+<Title />
 
 <p
   style={{
@@ -17,46 +17,48 @@ import { T } from "../T";
   <T k="doc_skeleton_title" />
 </p>
 
-スケルトンは、コンテンツの読み込み中に表示されるプレースホルダーです。実際のコンテンツのレイアウトに合わせた形状を表示することで、ユーザーに読み込み後の構造を予見させ、体感的な待機時間を短縮します。
+<p><T k="doc_skeleton_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
-- 3つの基本形状（text, rect, circle）
-- 2つのアニメーション（pulse, wave）
-- 自由なサイズ指定（width, height）
+<p><T k="doc_skeleton_features_desc" /></p>
 
-## デモ
+## <T k="doc_usage_examples" />
 
 <Canvas of={SkeletonStories.Default} />
 
-## プロパティ
+<Primary />
+
+## <T k="doc_props" />
 
 <Controls />
 
-## バリエーション
+## <T k="doc_variations" />
 
-### 形状 (Variant)
+### <T k="doc_skeleton_shape" />
 
-表示するコンテンツの種類に合わせて、テキスト、矩形、円形を選択できます。
+<p><T k="doc_skeleton_shape_desc" /></p>
 
 <Canvas of={SkeletonStories.Text} />
 <Canvas of={SkeletonStories.Circle} />
 <Canvas of={SkeletonStories.Rect} />
 
-### アニメーション (Animation)
+### <T k="doc_skeleton_animation" />
 
-アニメーションなし、パルス（明滅）、ウェーブ（波）を選択できます。
+<p><T k="doc_skeleton_animation_desc" /></p>
 
 <Canvas of={SkeletonStories.WaveAnimation} />
 
-### 使用例
+### <T k="doc_skeleton_usage_example" />
 
-複数のスケルトンを組み合わせて、実際のカードレイアウトなどのプレースホルダーを作成できます。
+<p><T k="doc_skeleton_usage_example_desc" /></p>
 
 <Canvas of={SkeletonStories.CardExample} />
 
-### 読み込み状態の切り替え (Loading State)
+### <T k="doc_skeleton_loading_state" />
 
-ボタンを押して、スケルトンと実際のコンテンツがどのように入れ替わるかを確認できます。
+<p><T k="doc_skeleton_loading_state_desc" /></p>
 
 <Canvas of={SkeletonStories.LoadingToggle} />
+
+<Stories />

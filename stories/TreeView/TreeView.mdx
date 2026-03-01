@@ -1,10 +1,10 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Story, Canvas, Controls, Title, Stories } from "@storybook/addon-docs/blocks";
 import * as TreeViewStories from "./TreeView.stories";
 import { T } from "../T";
 
 <Meta of={TreeViewStories} />
 
-# TreeView
+<Title />
 
 <p
   style={{
@@ -17,19 +17,13 @@ import { T } from "../T";
   <T k="doc_treeview_title" />
 </p>
 
-`TreeView` は、階層構造を持つデータを表示するためのコンポーネントです。ファイルシステム、組織図、カテゴリー階層などの表示に最適です。
+<p><T k="doc_treeview_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
-- 展開・折りたたみ機能
-- 単一・複数選択
-- チェックボックス選択モード
-- 検索・フィルタリング機能
-- キーボードナビゲーション対応
-- アイコンのカスタマイズ
-- グラスモーフィズムを採用したモダンなデザイン
+<p><T k="doc_treeview_features_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
 ```tsx
 import { TreeView } from "@/components/TreeView/TreeView";
@@ -49,15 +43,15 @@ const MyTree = () => (
 );
 ```
 
-## 使用例
+## <T k="doc_usage_examples" />
 
 <Canvas of={TreeViewStories.Default} />
 
-## 高度な機能
+## <T k="doc_advanced_features" />
 
-### チェックボックス選択モード
+### <T k="doc_treeview_checkbox_mode" />
 
-`checkable` プロパティを有効にすると、各アイテムにチェックボックスが表示され、複数アイテムを選択できます。
+<p><T k="doc_treeview_checkbox_mode_desc" /></p>
 
 ```tsx
 const [checked, setChecked] = useState([]);
@@ -71,15 +65,13 @@ const [checked, setChecked] = useState([]);
 </TreeView>;
 ```
 
-ユースケース:
+<p><T k="doc_treeview_use_cases" /></p>
 
-- ファイル/フォルダの複数選択
-- 権限設定
-- タスクの一括操作
+<p><T k="doc_treeview_use_cases_list" /></p>
 
-### 検索・フィルタリング機能
+### <T k="doc_treeview_search_filter" />
 
-`searchable` プロパティを有効にすると、ツリー内のアイテムを検索できる入力フィールドが表示されます。
+<p><T k="doc_treeview_search_filter_desc" /></p>
 
 ```tsx
 <TreeView searchable>
@@ -93,21 +85,21 @@ const [checked, setChecked] = useState([]);
 </TreeView>
 ```
 
-検索時には、一致するアイテムとその親アイテムのみが表示されます。
+<p><T k="doc_treeview_search_filter_note" /></p>
 
-### 複数選択モード
+### <T k="doc_treeview_multi_select" />
 
-`multiSelect` プロパティを使用すると、複数のアイテムを選択状態にできます。
+<p><T k="doc_treeview_multi_select_desc" /></p>
 
 ```tsx
 <TreeView multiSelect defaultSelectedValues={["item1", "item2"]}>
-  {/* ツリーアイテム */}
+  {/* Tree items */}
 </TreeView>
 ```
 
-### カスタムアイコン
+### <T k="doc_treeview_custom_icons" />
 
-各アイテムにカスタムアイコンを設定できます。
+<p><T k="doc_treeview_custom_icons_desc" /></p>
 
 ```tsx
 <TreeView>
@@ -125,7 +117,7 @@ const [checked, setChecked] = useState([]);
 </TreeView>
 ```
 
-### すべての機能を組み合わせ
+### <T k="doc_treeview_combined_features" />
 
 ```tsx
 const [checked, setChecked] = useState([]);
@@ -148,17 +140,17 @@ const [checked, setChecked] = useState([]);
 </TreeView>;
 ```
 
-## コンポーネント API
+## <T k="doc_component_api" />
 
 ### TreeView
 
 <table>
   <thead>
     <tr>
-      <th>プロパティ</th>
-      <th>型</th>
-      <th>デフォルト</th>
-      <th>説明</th>
+      <th><T k="doc_prop" /></th>
+      <th><T k="doc_type" /></th>
+      <th><T k="doc_default" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
@@ -170,7 +162,7 @@ const [checked, setChecked] = useState([]);
         <code>string | number</code>
       </td>
       <td>-</td>
-      <td>コンテナの横幅。変更時にアニメーションします。</td>
+      <td><T k="doc_treeview_api_width" /></td>
     </tr>
     <tr>
       <td>
@@ -182,7 +174,7 @@ const [checked, setChecked] = useState([]);
       <td>
         <code>false</code>
       </td>
-      <td>複数選択モード。</td>
+      <td><T k="doc_treeview_api_multiselect" /></td>
     </tr>
     <tr>
       <td>
@@ -194,7 +186,7 @@ const [checked, setChecked] = useState([]);
       <td>
         <code>false</code>
       </td>
-      <td>チェックボックス表示モード。</td>
+      <td><T k="doc_treeview_api_checkable" /></td>
     </tr>
     <tr>
       <td>
@@ -206,7 +198,7 @@ const [checked, setChecked] = useState([]);
       <td>
         <code>false</code>
       </td>
-      <td>検索機能を有効化。</td>
+      <td><T k="doc_treeview_api_searchable" /></td>
     </tr>
     <tr>
       <td>
@@ -218,7 +210,7 @@ const [checked, setChecked] = useState([]);
       <td>
         <code>[]</code>
       </td>
-      <td>初期状態で展開されている項目の値。</td>
+      <td><T k="doc_treeview_api_default_expanded" /></td>
     </tr>
     <tr>
       <td>
@@ -230,7 +222,7 @@ const [checked, setChecked] = useState([]);
       <td>
         <code>[]</code>
       </td>
-      <td>初期状態で選択されている項目の値。</td>
+      <td><T k="doc_treeview_api_default_selected" /></td>
     </tr>
     <tr>
       <td>
@@ -242,7 +234,7 @@ const [checked, setChecked] = useState([]);
       <td>
         <code>[]</code>
       </td>
-      <td>初期状態でチェックされている項目の値。</td>
+      <td><T k="doc_treeview_api_default_checked" /></td>
     </tr>
     <tr>
       <td>
@@ -252,7 +244,7 @@ const [checked, setChecked] = useState([]);
         <code>(checked: string[]) =&gt; void</code>
       </td>
       <td>-</td>
-      <td>チェック状態が変更された時のコールバック。</td>
+      <td><T k="doc_treeview_api_oncheckedchange" /></td>
     </tr>
   </tbody>
 </table>
@@ -262,10 +254,10 @@ const [checked, setChecked] = useState([]);
 <table>
   <thead>
     <tr>
-      <th>プロパティ</th>
-      <th>型</th>
-      <th>デフォルト</th>
-      <th>説明</th>
+      <th><T k="doc_prop" /></th>
+      <th><T k="doc_type" /></th>
+      <th><T k="doc_default" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
@@ -277,7 +269,7 @@ const [checked, setChecked] = useState([]);
         <code>string</code>
       </td>
       <td>-</td>
-      <td>必須。一意の識別子。</td>
+      <td><T k="doc_treeview_api_item_value" /></td>
     </tr>
     <tr>
       <td>
@@ -287,7 +279,7 @@ const [checked, setChecked] = useState([]);
         <code>ReactNode</code>
       </td>
       <td>-</td>
-      <td>必須。表示するラベル。</td>
+      <td><T k="doc_treeview_api_item_label" /></td>
     </tr>
     <tr>
       <td>
@@ -297,7 +289,7 @@ const [checked, setChecked] = useState([]);
         <code>ReactNode</code>
       </td>
       <td>-</td>
-      <td>ラベルの左に表示するアイコン。</td>
+      <td><T k="doc_treeview_api_item_icon" /></td>
     </tr>
     <tr>
       <td>
@@ -309,7 +301,7 @@ const [checked, setChecked] = useState([]);
       <td>
         <code>false</code>
       </td>
-      <td>無効化状態。</td>
+      <td><T k="doc_treeview_api_item_disabled" /></td>
     </tr>
     <tr>
       <td>
@@ -319,18 +311,18 @@ const [checked, setChecked] = useState([]);
         <code>ReactNode</code>
       </td>
       <td>-</td>
-      <td>子ノード。</td>
+      <td><T k="doc_treeview_api_item_children" /></td>
     </tr>
   </tbody>
 </table>
 
-## キーボード操作
+## <T k="doc_keyboard_navigation" />
 
 <table>
   <thead>
     <tr>
-      <th>キー</th>
-      <th>動作</th>
+      <th><T k="doc_treeview_api_key_header" /></th>
+      <th><T k="doc_treeview_api_action_header" /></th>
     </tr>
   </thead>
   <tbody>
@@ -338,33 +330,30 @@ const [checked, setChecked] = useState([]);
       <td>
         <code>Enter</code> / <code>Space</code>
       </td>
-      <td>選択</td>
+      <td><T k="doc_treeview_api_key_enter" /></td>
     </tr>
     <tr>
       <td>
         <code>ArrowRight</code>
       </td>
-      <td>展開（子がある場合）</td>
+      <td><T k="doc_treeview_api_key_arrowright" /></td>
     </tr>
     <tr>
       <td>
         <code>ArrowLeft</code>
       </td>
-      <td>閉じる（展開されている場合）</td>
+      <td><T k="doc_treeview_api_key_arrowleft" /></td>
     </tr>
   </tbody>
 </table>
 
-## アクセシビリティ
+## <T k="doc_accessibility" />
 
-- ARIA role="tree" と role="treeitem" を使用
-- キーボードナビゲーション完全サポート
-- スクリーンリーダー対応
-- フォーカス管理
+<p><T k="doc_treeview_accessibility_desc" /></p>
 
-## TypeScript サポート
+## <T k="doc_table_ts_support" />
 
-TreeViewコンポーネントは完全な型定義を提供しています。
+<p><T k="doc_treeview_ts_support_desc" /></p>
 
 ```tsx
 import { TreeView } from "./TreeView";
@@ -378,6 +367,8 @@ import { T } from "../T";
     console.log("Checked items:", checked);
   }}
 >
-  {/* アイテム */}
+  {/* Items */}
 </TreeView>;
 ```
+
+<Stories />

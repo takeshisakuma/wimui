@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as AlertStories from "./Alert.stories";
 import { T } from "../T";
 
 <Meta of={AlertStories} />
 
-# Alert
+<Title />
 
 <p
   style={{
@@ -17,50 +17,54 @@ import { T } from "../T";
   <T k="doc_alert_title" />
 </p>
 
-アラートコンポーネントは、ユーザーに重要な情報、警告、成功メッセージ、またはエラーを伝えるために使用されます。
+<p><T k="doc_alert_long_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-最も一般的な使い方は、タイトルと説明文を表示することです。
+<p><T k="doc_alert_basic_desc" /></p>
 
 <Canvas of={AlertStories.Info} />
 
-## バリエーション
-
-`variant` プロパティを使用して、情報の種類に応じたスタイルを選択できます。
-
-### Success
-
-アクションが成功したことを示します。
-
-<Canvas of={AlertStories.Success} />
-
-### Warning
-
-注意が必要な事項を示します。
-
-<Canvas of={AlertStories.Warning} />
-
-### Error
-
-問題が発生したことを示します。
-
-<Canvas of={AlertStories.ErrorStatus} />
-
-## カスタマイズ
-
-### タイトルなし
-
-説明文のみを表示することも可能です。
-
-<Canvas of={AlertStories.WithoutTitle} />
-
-### 閉じるボタン
-
-`onClose` プロパティを指定することで、アラートを閉じるためのボタンを表示できます。
-
-<Canvas of={AlertStories.WithCloseButton} />
+<Primary />
 
 ## Props
 
 <Controls />
+
+## <T k="doc_variations" />
+
+<p><T k="doc_alert_variants_desc" /></p>
+
+### <T k="doc_success" />
+
+<p><T k="doc_alert_success_desc" /></p>
+
+<Canvas of={AlertStories.Success} />
+
+### <T k="doc_warning" />
+
+<p><T k="doc_alert_warning_desc" /></p>
+
+<Canvas of={AlertStories.Warning} />
+
+### <T k="doc_error" />
+
+<p><T k="doc_alert_error_desc" /></p>
+
+<Canvas of={AlertStories.ErrorStatus} />
+
+## <T k="doc_customization" />
+
+### <T k="doc_alert_no_title" />
+
+<p><T k="doc_alert_no_title_desc" /></p>
+
+<Canvas of={AlertStories.WithoutTitle} />
+
+### <T k="doc_alert_close_button" />
+
+<p><T k="doc_alert_close_button_desc" /></p>
+
+<Canvas of={AlertStories.WithCloseButton} />
+
+<Stories />

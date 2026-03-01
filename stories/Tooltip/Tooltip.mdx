@@ -1,4 +1,4 @@
-import { Canvas, Meta, Story, Controls } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../T";
 import * as TooltipStories from "./Tooltip.stories";
 import {
@@ -9,7 +9,7 @@ import {
 
 <Meta of={TooltipStories} />
 
-# Tooltip
+<Title />
 
 <p
   style={{
@@ -22,9 +22,9 @@ import {
   <T k="doc_tooltip_title" />
 </p>
 
-ホバーまたはフォーカス時に補足情報を表示します。
+<p><T k="doc_tooltip_long_desc" /></p>
 
-## Usage
+## <T k="doc_basic_usage" />
 
 ```tsx
 import {
@@ -39,9 +39,9 @@ import {
 </Tooltip>;
 ```
 
-### Delay
+### <T k="doc_tooltip_delay" />
 
-`delay` プロパティで表示までの遅延時間を設定できます（デフォルト: 200ms）。
+<p><T k="doc_tooltip_delay_desc" /></p>
 
 ```tsx
 <Tooltip delay={500}>
@@ -50,34 +50,38 @@ import {
 </Tooltip>
 ```
 
-## Examples
+## <T k="doc_usage_examples" />
 
-### Default
+### <T k="doc_default" />
 
 <Canvas of={TooltipStories.Default} />
 
-### Positioning
+<Primary />
 
-#### Top
+## <T k="doc_props" />
+
+<Controls />
+
+## <T k="doc_tooltip_positioning" />
+
+### <T k="doc_top" />
 
 <Canvas of={TooltipStories.Top} />
 
-#### Bottom
+### <T k="doc_bottom" />
 
 <Canvas of={TooltipStories.Bottom} />
 
-#### Left
+### <T k="doc_left" />
 
 <Canvas of={TooltipStories.Left} />
 
-#### Right
+### <T k="doc_right" />
 
 <Canvas of={TooltipStories.Right} />
 
-### With Delay
+### <T k="doc_tooltip_with_delay" />
 
 <Canvas of={TooltipStories.WithDelay} />
 
-## API
-
-<Controls />
+<Stories />

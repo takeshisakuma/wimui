@@ -28,45 +28,44 @@ import { T } from "../T";
 <Canvas of={MarkdownStories.Default} />
 <Controls />
 
-## 概要
+## <T k="doc_overview" />
 
-Markdown（マークダウン）コンポーネントは、Markdown形式で記述されたテキストを、適切なHTMLとしてレンダリングするために使用されます。
-ブログ記事、ドキュメント、ユーザー生成コンテンツのプレビューなどに適しています。
+<p><T k="doc_markdown_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>詳細</th>
+      <th><T k="doc_features" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>GFM (GitHub Flavored Markdown) サポート</strong></td>
-      <td>テーブル、打ち消し線、チェックリストなどが利用可能です。</td>
+      <td><strong><T k="doc_markdown_feat_gfm" /></strong></td>
+      <td><T k="doc_markdown_feat_gfm_desc" /></td>
     </tr>
     <tr>
-      <td><strong>スタイリング</strong></td>
-      <td>WIM UI のデザインシステムに合わせたデフォルトスタイルが適用されます。</td>
+      <td><strong><T k="doc_styling" /></strong></td>
+      <td><T k="doc_markdown_feat_styling_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## 注意点
+## <T k="doc_notes" />
 
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>内容</th>
+      <th><T k="doc_item" /></th>
+      <th><T k="doc_content" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>セキュリティ</strong></td>
-      <td>内部で <code>react-markdown</code> を使用しており、デフォルトでXSS攻撃を防止するように設計されていますが、複雑なHTML許可設定などを行う場合は注意が必要です。</td>
+      <td><strong><T k="doc_security" /></strong></td>
+      <td><T k="doc_markdown_notes_security_desc" /></td>
     </tr>
   </tbody>
 </table>

@@ -1,34 +1,36 @@
 import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
 import * as TransferStories from "./Transfer.stories";
+import { T } from "../T";
 
 <Meta of={TransferStories} />
 
 # Transfer
 
-Transfer（トランスファー）は、2つのカラム間でアイテムを移動させて選択を行うためのコンポーネントです。
+<p><T k="doc_transfer_long_desc" /></p>
 
-## 使用例
+## <T k="doc_usage_examples" />
 
-### 基本的な使い方
+### <T k="doc_basic_usage" />
 
 <Canvas of={TransferStories.Default} />
 
-### コントロールされた状態
+### <T k="doc_transfer_controlled_title" />
 
-内部状態を管理して、アイテムの移動を同期させることができます。
+<p><T k="doc_transfer_controlled_desc" /></p>
 
 <Canvas of={TransferStories.Controlled} />
 
-### カスタムタイトル
+### <T k="doc_transfer_custom_title" />
 
-左右のカラムにカスタムタイトルを設定できます。
+<p><T k="doc_transfer_custom_desc" /></p>
 
 <Canvas of={TransferStories.CustomTitles} />
 
-### 無効化
+### <T k="doc_disabled" />
 
 <Canvas of={TransferStories.Disabled} />
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
+

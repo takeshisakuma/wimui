@@ -1,3 +1,4 @@
+import { T } from "../T";
 import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
 import * as SignaturePadStories from "./SignaturePad.stories";
 
@@ -5,25 +6,25 @@ import * as SignaturePadStories from "./SignaturePad.stories";
 
 # SignaturePad
 
-SignaturePad（署名パッド）は、マウスやタッチ操作で手書きの署名を入力するためのコンポーネントです。
+<p><T k="doc_signaturepad_long_desc" /></p>
 
-## 使用例
+## <T k="doc_example" /> (Actually Usage Examples but I'll use common one)
 
-### 基本的な使い方
+### <T k="doc_basic_usage" />
 
 <Canvas of={SignaturePadStories.Default} />
 
-### カスタムカラーと太さ
+### <T k="doc_signaturepad_var_color" />
 
-ペン（署名）の色や太さを変更することができます。
+<p><T k="doc_signaturepad_var_color_desc" /></p>
 
 <Canvas of={SignaturePadStories.CustomColors} />
 
-### 無効化
+### <T k="doc_disabled" /> (Actually Disabled but I'll change header)
 
 <Canvas of={SignaturePadStories.Disabled} />
 
-### サイズ変更
+### <T k="doc_sizes" /> (Actually Size Changes but I'll change header)
 
 <Canvas of={SignaturePadStories.Large} />
 

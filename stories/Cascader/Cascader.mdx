@@ -1,34 +1,54 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as CascaderStories from "./Cascader.stories";
+import { T } from "../T";
 
 <Meta of={CascaderStories} />
 
-# Cascader
+<Title />
 
-Cascader（カスケード選択）は、階層構造を持つデータから選択肢を辿って1つを選択するためのコンポーネントです。
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_cascader_title" />
+</p>
 
-## 使用例
+<p><T k="doc_cascader_long_desc" /></p>
 
-### 基本的な使い方
+## <T k="doc_usage_examples" />
+
+### <T k="doc_basic_usage" />
 
 <Canvas of={CascaderStories.Default} />
 
-### ラベル付き
-
-<Canvas of={CascaderStories.WithLabel} />
-
-### ホバーで展開
-
-<Canvas of={CascaderStories.HoverExpand} />
-
-### 無効化
-
-<Canvas of={CascaderStories.Disabled} />
-
-### カスタムセパレーター
-
-<Canvas of={CascaderStories.CustomSeparator} />
+<Primary />
 
 ## Props
 
 <Controls />
+
+## <T k="doc_variations" />
+
+### <T k="doc_cascader_with_label" />
+
+<Canvas of={CascaderStories.WithLabel} />
+
+### <T k="doc_cascader_hover_expand" />
+
+<p><T k="doc_cascader_hover_expand_desc" /></p>
+
+<Canvas of={CascaderStories.HoverExpand} />
+
+### <T k="status_disabled" />
+
+<Canvas of={CascaderStories.Disabled} />
+
+### <T k="doc_cascader_custom_separator" />
+
+<Canvas of={CascaderStories.CustomSeparator} />
+
+<Stories />

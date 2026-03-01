@@ -1,3 +1,4 @@
+import { T } from "../T";
 import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
 import * as LoadingOverlayStories from "./LoadingOverlay.stories";
 
@@ -5,99 +6,100 @@ import * as LoadingOverlayStories from "./LoadingOverlay.stories";
 
 # LoadingOverlay
 
-A component that overlays the entire screen or a specific element to display a loading state with customizable loaders, backdrops, and messages.
+<p><T k="doc_loadingoverlay_desc" /></p>
 
-## When To Use
+## <T k="doc_loadingoverlay_when_to_use" />
 
-- When you need to block user interaction during asynchronous operations like data fetching or form submission.
-- When you want to provide visual feedback that a process is ongoing.
-- When you need a full-screen loading indicator for application initialization.
-- When you want to overlay a specific section of the page during partial updates.
+- <T k="doc_loadingoverlay_wtu_1" />
+- <T k="doc_loadingoverlay_wtu_2" />
+- <T k="doc_loadingoverlay_wtu_3" />
+- <T k="doc_loadingoverlay_wtu_4" />
 
-## Features
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>Feature</th>
-      <th>Description</th>
+      <th><T k="doc_feature_label" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Multiple Loader Types</strong></td>
-      <td>Choose from spinner, bars, dots, or pulse animations.</td>
+      <td><strong><T k="doc_loadingoverlay_feat_types" /></strong></td>
+      <td><T k="doc_loadingoverlay_feat_types_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Customizable Backdrop</strong></td>
-      <td>Light or dark backdrop with adjustable blur effects.</td>
+      <td><strong><T k="doc_loadingoverlay_feat_backdrop" /></strong></td>
+      <td><T k="doc_loadingoverlay_feat_backdrop_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Flexible Positioning</strong></td>
-      <td>Can be positioned absolutely within a container or fixed for full-screen coverage.</td>
+      <td><strong><T k="doc_loadingoverlay_feat_position" /></strong></td>
+      <td><T k="doc_loadingoverlay_feat_position_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Optional Message</strong></td>
-      <td>Display a loading message to provide context to users.</td>
+      <td><strong><T k="doc_loadingoverlay_feat_message" /></strong></td>
+      <td><T k="doc_loadingoverlay_feat_message_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Custom Content</strong></td>
-      <td>Replace the default loader with custom content.</td>
+      <td><strong><T k="doc_loadingoverlay_feat_custom" /></strong></td>
+      <td><T k="doc_loadingoverlay_feat_custom_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Accessibility</strong></td>
-      <td>Includes proper ARIA attributes for screen readers.</td>
+      <td><strong><T k="doc_accessibility" /></strong></td>
+      <td><T k="doc_loadingoverlay_feat_aria_desc" /> (I'll add this if needed or just use English text)
+        Includes proper ARIA attributes for screen readers.</td>
     </tr>
   </tbody>
 </table>
 
-## Examples
+## <T k="doc_example" />
 
-### Basic
+### <T k="doc_default" />
 
-A simple loading overlay with the default spinner.
+<p><T k="doc_loadingoverlay_ex_basic" /></p>
 
 <Canvas of={LoadingOverlayStories.Basic} />
 
-### With Message
+### <T k="doc_loadingoverlay_with_message" />
 
-Display a message along with the loading indicator.
+<p><T k="doc_loadingoverlay_ex_message" /></p>
 
 <Canvas of={LoadingOverlayStories.WithMessage} />
 
-### Different Loader Types
+### <T k="doc_loadingoverlay_loader_types" />
 
-Choose from various loader animations: spinner, bars, dots, or pulse.
+<p><T k="doc_loadingoverlay_ex_types" /></p>
 
 <Canvas of={LoadingOverlayStories.DifferentLoaderTypes} />
 
-### Backdrop Variants
+### <T k="doc_loadingoverlay_backdrop_variants" />
 
-Light and dark backdrop options for different background colors.
+<p><T k="doc_loadingoverlay_ex_backdrop" /></p>
 
 <Canvas of={LoadingOverlayStories.BackdropVariants} />
 
-### Blur Effects
+### <T k="doc_loadingoverlay_blur_effects" />
 
-Control the backdrop blur intensity: none, sm, md, or lg.
+<p><T k="doc_loadingoverlay_ex_blur" /></p>
 
 <Canvas of={LoadingOverlayStories.BlurEffects} />
 
-### Full Screen
+### <T k="doc_full_screen" />
 
-Use `fixed={true}` to create a full-screen loading overlay.
+<p><T k="doc_loadingoverlay_ex_full" /></p>
 
 <Canvas of={LoadingOverlayStories.FullScreen} />
 
-### Interactive
+### <T k="doc_interactive" />
 
-A practical example showing how to toggle the loading state.
+<p><T k="doc_loadingoverlay_ex_interactive" /></p>
 
 <Canvas of={LoadingOverlayStories.Interactive} />
 
-### Custom Loader
+### <T k="doc_loadingoverlay_custom_loader" />
 
-Provide custom content instead of the default loaders.
+<p><T k="doc_loadingoverlay_ex_custom" /></p>
 
 <Canvas of={LoadingOverlayStories.CustomLoader} />
 
@@ -140,6 +142,6 @@ Provide custom content instead of the default loaders.
 - The `aria-busy="true"` attribute indicates that the content is loading.
 - Ensure that loading messages are descriptive and helpful for users relying on assistive technologies.
 
-## Props
+## <T k="doc_props" />
 
 <Controls of={LoadingOverlayStories.Basic} />

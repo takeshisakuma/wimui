@@ -21,38 +21,37 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  キーと値のペアを整理して表示するための説明リストコンポーネント。
+  <T k="doc_descriptionlist_short_desc" />
 </p>
 
 <Description>
-  `DescriptionList` は HTML の `<dl>` タグをベースにしており、情報の詳細、メタデータ、属性のリストを表示するのに最適です。
+  <p><T k="doc_descriptionlist_long_desc" /></p>
 </Description>
 
 <Primary />
 
-<h2>バリエーション</h2>
+<h2><T k="doc_variants" /></h2>
 
-<h3>レイアウト</h3>
+<h3><T k="doc_descriptionlist_layout" /></h3>
 <p>
-  `horizontal` (デフォルト), `vertical`, `compact` の 3
-  つのレイアウトをサポートしています。
+  <T k="doc_descriptionlist_layout_desc" />
 </p>
 
-<h4>Vertical</h4>
+<h4><T k="doc_vertical" /></h4>
 <Canvas of={DescriptionListStories.Vertical} />
 
-<h4>Compact</h4>
+<h4><T k="doc_compact" /></h4>
 <Canvas of={DescriptionListStories.Compact} />
 
-<h3>ボーダー付き</h3>
+<h3><T k="doc_descriptionlist_with_border" /></h3>
 <p>
-  `border` プロップを `true` に設定することで、囲み線と区切り線を表示できます。
+  <T k="doc_descriptionlist_with_border_desc" />
 </p>
 <Canvas of={DescriptionListStories.WithBorder} />
 
-<h3>サイズ</h3>
+<h3><T k="doc_descriptionlist_sizes" /></h3>
 <p>
-  `small`, `medium` (デフォルト), `large` の 3 つのサイズをサポートしています。
+  <T k="doc_descriptionlist_sizes_desc" />
 </p>
 <Canvas of={DescriptionListStories.Small} />
 <Canvas of={DescriptionListStories.Large} />

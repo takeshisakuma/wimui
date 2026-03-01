@@ -18,40 +18,38 @@ import { T } from "../T";
   <T k="doc_tabbar_title" />
 </p>
 
+<p><T k="doc_tabbar_long_desc_p1" /></p>
 
-TabBarは、モバイルアプリケーション向けの画面下部に固定されるナビゲーションバーです。
-主要な画面間の切り替えに使用されます。
+> **<T k="doc_tabbar_mobile_only" />**
 
-> **スマートフォンのみ**: このコンポーネントは主にモバイルデバイス（タッチ操作・小画面）向けに設計されています。PC環境では、`Sidebar`や`Navbar`の利用を検討してください。
-
-## インポート
+## <T k="doc_usage" />
 
 ```jsx
 import TabBar from "@/components/TabBar/TabBar";
 ```
 
-## 基本的な使用方法
+## <T k="doc_basic_usage" />
 
-`TabBar.Item` を使用して、各タブを定義します。アイコンとラベルを設定し、`onClick` イベントでアクティブなタブを切り替えます。
+<p><T k="doc_tabbar_basic_usage_desc" /></p>
 
 ```jsx
 const [active, setActive] = useState("home");
 
 <TabBar>
   <TabBar.Item
-    label="ホーム"
+    label="Home"
     icon={<HomeIcon />}
     active={active === "home"}
     onClick={() => setActive("home")}
   />
   <TabBar.Item
-    label="検索"
+    label="Search"
     icon={<SearchIcon />}
     active={active === "search"}
     onClick={() => setActive("search")}
   />
   <TabBar.Item
-    label="マイページ"
+    label="Profile"
     icon={<UserIcon />}
     active={active === "profile"}
     onClick={() => setActive("profile")}
@@ -59,18 +57,19 @@ const [active, setActive] = useState("home");
 </TabBar>;
 ```
 
-## バッジ付き (With Badges)
+## <T k="doc_tabbar_badge_title" />
 
-`TabBar.Item` に `badge` プロパティを追加することで、通知数やインジケーターを表示できます。
+<p><T k="doc_tabbar_badge_desc" /></p>
 
 <Canvas of={TabBarStories.Default} />
 
-## アイコンのみ (Icon Only)
+## <T k="doc_tabbar_icon_only_title" />
 
-ラベルは任意です。ラベルを省略した場合、アイコンは垂直方向の中央に配置されます。
+<p><T k="doc_tabbar_icon_only_desc" /></p>
 
 <Canvas of={TabBarStories.WithoutLabels} />
 
-## API リファレンス
+## <T k="doc_api_reference" />
 
 <Controls />
+

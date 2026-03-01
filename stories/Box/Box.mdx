@@ -1,17 +1,17 @@
 import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
 import * as BoxStories from "./Box.stories";
+import { T } from "../T";
 
 <Meta of={BoxStories} />
 
 # Box
 
-`Box` は、wimuiの中で最も基本的なレイアウトコンポーネントです。
-CSSのプロパティをラップしたプロパティ（p, m, bg など）を提供し、インラインスタイルを記述することなく、直感的にスタイルを適用できます。
+<p><T k="doc_box_long_desc" /></p>
 
-## 使い方
+## <T k="doc_usage" />
 
 <Canvas of={BoxStories.Default} />
 
-## API リファレンス
+## <T k="doc_component_api" />
 
 <Controls />

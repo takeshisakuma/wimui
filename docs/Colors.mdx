@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
+
 import { ColorSwatch, ColorGrid } from "../stories/ColorSwatch";
 import { ContrastChecker } from "../stories/ContrastChecker";
 
@@ -28,7 +29,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 <hr />
 
 <h2>
-  <T k="guide_colors_semantic" />
+  <p><T k="guide_colors_semantic" /></p>
 </h2>
 <p className="section-desc">
   <T k="guide_colors_semantic_desc" />
@@ -39,31 +40,37 @@ import { ContrastChecker } from "../stories/ContrastChecker";
     value="--color-primary"
     color="var(--color-primary)"
   />
+
   <ColorSwatch
     name="Secondary"
     value="--color-secondary"
     color="var(--color-secondary)"
   />
+
   <ColorSwatch
     name="Positive (Success)"
     value="--color-positive"
     color="var(--color-positive)"
   />
+
   <ColorSwatch
     name="Caution (Warning)"
     value="--color-caution"
     color="var(--color-caution)"
   />
+
   <ColorSwatch
     name="Destructive (Error)"
     value="--color-destructive"
     color="var(--color-destructive)"
   />
+
   <ColorSwatch
     name="Informative (Info)"
     value="--color-informative"
     color="var(--color-informative)"
   />
+
   <ColorSwatch
     name="Disabled"
     value="--color-disabled"
@@ -151,7 +158,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 </ColorGrid>
 
 <h2>
-  <T k="guide_colors_text" />
+  <p><T k="guide_colors_text" /></p>
 </h2>
 <p className="section-desc">
   <T k="guide_colors_text_desc" />
@@ -162,26 +169,31 @@ import { ContrastChecker } from "../stories/ContrastChecker";
     value="--text-primary"
     color="var(--text-primary)"
   />
+
   <ColorSwatch
     name="Text Secondary"
     value="--text-secondary"
     color="var(--text-secondary)"
   />
+
   <ColorSwatch
     name="Text Tertiary"
     value="--text-tertiary"
     color="var(--text-tertiary)"
   />
+
   <ColorSwatch
     name="Text Disabled"
     value="--text-disabled"
     color="var(--text-disabled)"
   />
+
   <ColorSwatch
     name="Text Error"
     value="--text-error"
     color="var(--text-error)"
   />
+
   <ColorSwatch
     name="Text White"
     value="--text-white"
@@ -190,13 +202,14 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 </ColorGrid>
 
 <h2>
-  <T k="guide_colors_surface" />
+  <p><T k="guide_colors_surface" /></p>
 </h2>
 <p className="section-desc">
   <T k="guide_colors_surface_desc" />
 </p>
 <ColorGrid>
   <ColorSwatch name="App Background" value="--bg-app" color="var(--bg-app)" />
+
   <ColorSwatch
     name="Component Background"
     value="--bg-component"
@@ -205,7 +218,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 </ColorGrid>
 
 <h2>
-  <T k="guide_colors_border" />
+  <p><T k="guide_colors_border" /></p>
 </h2>
 <p className="section-desc">
   <T k="guide_colors_border_desc" />
@@ -216,6 +229,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
     value="--wim-color-border"
     color="var(--wim-color-border)"
   />
+
   <ColorSwatch
     name="Border Secondary"
     value="--wim-color-border-secondary"
@@ -224,7 +238,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 </ColorGrid>
 
 <h2>
-  <T k="guide_colors_scrollbar" />
+  <p><T k="guide_colors_scrollbar" /></p>
 </h2>
 <p className="section-desc">
   <T k="guide_colors_scrollbar_desc" />
@@ -248,7 +262,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
 <hr />
 
 <h2>
-  <T k="guide_colors_pccs" />
+  <p><T k="guide_colors_pccs" /></p>
 </h2>
 <p>
   <T k="guide_colors_pccs_desc" />
@@ -282,20 +296,26 @@ import { ContrastChecker } from "../stories/ContrastChecker";
     </tr>
   </tbody>
 </table>
+
   <p dangerouslySetInnerHTML={{ __html: "<T k='guide_colors_pccs_file_link' />" }} />
 
 
   <h2><T k="guide_pccs_customization_title" /></h2>
     <p><T k="guide_colors_customization_desc" /></p>
+
     <ul>
       <li>
         <strong><T k="guide_colors_customization_semantic_title" /></strong><br />
+
         <code>src/tokens/_semantic-colors.scss</code><br />
+
         <small style={{ color: "var(--text-secondary)" }}><T k="guide_colors_customization_semantic_desc" /></small>
       </li>
       <li style={{ marginTop: "12px" }}>
         <strong><T k="guide_colors_customization_pccs_title" /></strong><br />
+
         <code>src/tokens/_pccs-colors.scss</code><br />
+
         <small style={{ color: "var(--text-secondary)" }}><T k="guide_colors_customization_pccs_desc" /></small>
       </li>
     </ul>

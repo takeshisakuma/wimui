@@ -21,23 +21,21 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  ユーザーに機能の使い方や画面の操作方法を案内するためのガイドコンポーネント。
+  <T k="doc_tour_long_desc" />
 </p>
 
 <Description>
-  `Tour`
-  は、特定の要素を強調しながらステップバイステップで説明を表示します。初めてのユーザーへのオンボーディングや、新機能の紹介に最適です。
+  <p><T k="doc_tour_feature_desc" /></p>
 </Description>
 
 <Primary />
 
-<h2>使用方法</h2>
+<h2><T k="doc_usage" /></h2>
 <p>
-  `steps`
-  プロップにターゲットとなる要素のセレクタ、タイトル、説明文を指定します。`open`
-  プロップでツアーの表示/非表示を制御します。
+  <T k="doc_tour_usage_desc" />
 </p>
 
 <Canvas of={TourStories.Default} />
 
 <Controls />
+

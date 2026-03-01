@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as TimelineStories from "./Timeline.stories";
 import { T } from "../T";
 
 <Meta of={TimelineStories} />
 
-# Timeline
+<Title />
 
 <p
   style={{
@@ -17,29 +17,32 @@ import { T } from "../T";
   <T k="doc_timeline_title" />
 </p>
 
-時系列のイベントを表示するためのコンポーネントです。
+<p><T k="doc_timeline_long_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-`Timeline`, `TimelineItem`, `TimelineSeparator`, `TimelinePoint`, `TimelineContent` を組み合わせて使用します。
+<p><T k="doc_timeline_basic_desc" /></p>
 
 <Canvas of={TimelineStories.LeftAligned} />
 
-## 交互配置 (Alternate)
-
-`align="alternate"` を指定することで、コンテンツを左右交互に配置できます。
-`TimelineOppositeContent` を使用して、反対側に時間を表示するなどの使い方が可能です。
-
-<Canvas of={TimelineStories.Alternate} />
-
-## アイコン付き
-
-`TimelinePoint` の中に `Icon` を配置することで、状態を視覚的に表現できます。
-
-<Canvas of={TimelineStories.WithIcons} />
+<Primary />
 
 ## Props
 
-### Timeline
-
 <Controls of={TimelineStories.LeftAligned} />
+
+## <T k="doc_variations" />
+
+### <T k="doc_timeline_alternate" />
+
+<p><T k="doc_timeline_alternate_desc" /></p>
+
+<Canvas of={TimelineStories.Alternate} />
+
+### <T k="doc_timeline_with_icons" />
+
+<p><T k="doc_timeline_with_icons_desc" /></p>
+
+<Canvas of={TimelineStories.WithIcons} />
+
+<Stories />

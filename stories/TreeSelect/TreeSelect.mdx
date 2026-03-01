@@ -1,36 +1,38 @@
 import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
 import * as TreeSelectStories from "./TreeSelect.stories";
+import { T } from "../T";
 
 <Meta of={TreeSelectStories} />
 
 # TreeSelect
 
-TreeSelect（ツリー選択）は、ツリー形式の選択肢から1つまたは複数を選択するためのコンポーネントです。
+<p><T k="doc_treeselect_long_desc" /></p>
 
-## 使用例
+## <T k="doc_usage_examples" />
 
-### 基本的な使い方
+### <T k="doc_basic_usage" />
 
 <Canvas of={TreeSelectStories.Default} />
 
-### 複数選択
+### <T k="doc_treeview_checkbox_mode" />
 
-複数選択モードでは、チェックボックスを使用して複数のノードを選択できます。
+<p><T k="doc_treeselect_multi_desc" /></p>
 
 <Canvas of={TreeSelectStories.Multiple} />
 
-### 検索機能
+### <T k="doc_search" />
 
 <Canvas of={TreeSelectStories.Searchable} />
 
-### デフォルトで展開
+### <T k="doc_treeview_api_default_expanded" />
 
 <Canvas of={TreeSelectStories.DefaultExpanded} />
 
-### 無効化
+### <T k="doc_disabled" />
 
 <Canvas of={TreeSelectStories.Disabled} />
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
+

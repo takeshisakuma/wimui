@@ -1,39 +1,55 @@
-import { Canvas, Meta, Controls, Source } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Controls, Source, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as RangeCalendarStories from "./RangeCalendar.stories";
+import { T } from "../T";
 
 <Meta of={RangeCalendarStories} />
 
-# RangeCalendar
+<Title />
 
-ユーザーが日付の範囲（開始日と終了日）を選択するためのカレンダーコンポーネントです。
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_rangeCalendar_title" />
+</p>
 
-## 使用例
+<p><T k="doc_rangeCalendar_long_desc" /></p>
+
+## <T k="doc_usage_examples" />
 
 <Canvas of={RangeCalendarStories.Default} />
 
-## 状態
+<Primary />
 
-### 範囲選択済み
+## <T k="doc_states" />
 
-初期値として範囲を指定することも可能です。
+### <T k="doc_rangecalendar_selected" />
+
+<p><T k="doc_rangecalendar_selected_desc" /></p>
 
 <Canvas of={RangeCalendarStories.SelectedRange} />
 
-### 無効状態
+### <T k="status_disabled" />
 
-`disabled` プロップを使用することで、操作を無効にできます。
+<p><T k="doc_rangecalendar_disabled_desc" /></p>
 
 <Canvas of={RangeCalendarStories.Disabled} />
 
-## プロパティ
+## <T k="doc_props" />
 
 <Controls />
 
-## 実装例
+## <T k="doc_implementation_example" />
 
-### 制御されたコンポーネント
+### <T k="doc_controlled_component" />
 
-`value` と `onChange` を使用して、状態を外部で管理できます。
+<p><T k="doc_controlled_component_desc" /></p>
 
 <Canvas of={RangeCalendarStories.Controlled} />
 <Source of={RangeCalendarStories.Controlled} />
+
+<Stories />

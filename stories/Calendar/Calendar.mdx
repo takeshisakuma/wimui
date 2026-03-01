@@ -4,7 +4,7 @@ import { T } from "../T";
 
 <Meta of={CalendarStories} />
 
-# Calendar
+# <T k="doc_calendar_title" />
 
 <p
   style={{
@@ -17,9 +17,9 @@ import { T } from "../T";
   <T k="doc_calendar_title" />
 </p>
 
-ユーザーが日付を閲覧し、選択するためのカレンダーコンポーネントです。単一日付選択、範囲選択、無効日付の設定など、柔軟な日付選択機能を提供します。
+<p><T k="doc_calendar_long_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
 ```tsx
 import { Calendar } from "@/components/Calendar/Calendar";
@@ -27,25 +27,25 @@ import { Calendar } from "@/components/Calendar/Calendar";
 <Calendar onChange={(date) => console.log(date)} />;
 ```
 
-## 使用例
+## <T k="doc_example" />
 
-### デフォルト
+### <T k="doc_default" />
 
 <Canvas of={CalendarStories.Default} />
 
-### 特定の日付を選択
+### <T k="doc_calendar_selected_date" />
 
 <Canvas of={CalendarStories.SelectedDate} />
 
-### 無効状態
+### <T k="doc_disabled_state" />
 
 <Canvas of={CalendarStories.Disabled} />
 
-## 高度な機能
+## <T k="doc_calendar_advanced_features" />
 
-### 範囲選択モード
+### <T k="doc_calendar_range_mode" />
 
-`rangeMode` プロパティを有効にすると、日付範囲を選択できるようになります。
+<p><T k="doc_calendar_range_mode_desc" /></p>
 
 ```jsx
 const [range, setRange] = useState({ start: null, end: null });
@@ -53,24 +53,24 @@ const [range, setRange] = useState({ start: null, end: null });
 <Calendar rangeMode range={range} onRangeChange={setRange} />;
 ```
 
-動作:
+<p><T k="doc_behavior_colon" /></p>
 
-- 最初のクリックで範囲の開始日を選択
-- 2回目のクリックで範囲の終了日を選択
-- 3回目のクリックで新しい範囲を開始
+<p><T k="doc_calendar_behavior_1" /></p>
+<p><T k="doc_calendar_behavior_2" /></p>
+<p><T k="doc_calendar_behavior_3" /></p>
 
-範囲内の日付は視覚的に強調表示されます。
+<p><T k="doc_calendar_behavior_4" /></p>
 
-### 無効日付の設定
+### <T k="doc_calendar_disabled_dates" />
 
-特定の日付を選択不可能にすることができます。
+<p><T k="doc_calendar_disabled_dates_desc" /></p>
 
-#### 日付配列で指定
+#### <T k="doc_calendar_disabled_by_array" />
 
 ```jsx
 const disabledDates = [
-  new Date(2024, 11, 25), // クリスマス
-  new Date(2025, 0, 1), // 元日
+  new Date(2024, 11, 25), // Christmas
+  new Date(2025, 0, 1), // New Year's Day
 ];
 
 <Calendar
@@ -79,23 +79,23 @@ const disabledDates = [
 />;
 ```
 
-#### カスタム関数で指定
+#### <T k="doc_calendar_disabled_by_function" />
 
-より柔軟な無効化ロジックを実装できます。
+<p><T k="doc_calendar_disabled_by_function_desc" /></p>
 
 ```jsx
-// 土日を無効化
+// Disable weekends
 <Calendar
   isDateDisabled={(date) => {
     const day = date.getDay();
-    return day === 0 || day === 6; // 日曜日または土曜日
+    return day === 0 || day === 6; // Sunday or Saturday
   }}
   onChange={(date) => console.log(date)}
 />
 ```
 
 ```jsx
-// 過去の日付を無効化
+// Disable past dates
 <Calendar
   isDateDisabled={(date) => {
     const today = new Date();
@@ -106,9 +106,9 @@ const disabledDates = [
 />
 ```
 
-### 最小/最大日付の設定
+### <T k="doc_calendar_min_max_dates" />
 
-選択可能な日付の範囲を制限できます。
+<p><T k="doc_calendar_min_max_dates_desc" /></p>
 
 ```jsx
 const today = new Date();
@@ -122,7 +122,7 @@ nextMonth.setMonth(today.getMonth() + 1);
 />;
 ```
 
-### すべての機能を組み合わせ
+### <T k="doc_calendar_combine_features" />
 
 ```jsx
 const [range, setRange] = useState({ start: null, end: null });
@@ -132,21 +132,21 @@ const [range, setRange] = useState({ start: null, end: null });
   range={range}
   onRangeChange={setRange}
   minDate={new Date()}
-  isDateDisabled={(date) => date.getDay() === 0} // 日曜日を無効化
+  isDateDisabled={(date) => date.getDay() === 0} // Disable Sundays
 />;
 ```
 
-## 制御/非制御コンポーネント
+## <T k="doc_calendar_controlled_uncontrolled" />
 
-Calendarは制御コンポーネントと非制御コンポーネントの両方として使用できます。
+<p><T k="doc_calendar_controlled_uncontrolled_desc" /></p>
 
-非制御コンポーネント:
+<p><T k="doc_uncontrolled" /></p>
 
 ```jsx
 <Calendar defaultValue={new Date()} onChange={(date) => console.log(date)} />
 ```
 
-制御コンポーネント:
+<p><T k="doc_controlled_colon" /></p>
 
 ```jsx
 const [date, setDate] = useState(new Date());
@@ -158,31 +158,31 @@ const [date, setDate] = useState(new Date());
 
 <Controls />
 
-## アクセシビリティ
+## <T k="doc_accessibility" />
 
-- ナビゲーションボタンには適切なラベルまたはアイコンが使用されています
-- 現在の月以外の日は視覚的に区別されています
-- 選択された日付、および「今日」の日付が強調表示されます
-- 無効な日付は視覚的に区別され、選択できません
-- キーボードナビゲーションをサポート
+<p><T k="doc_calendar_a11y_1" /></p>
+<p><T k="doc_calendar_a11y_2" /></p>
+<p><T k="doc_calendar_a11y_3" /></p>
+<p><T k="doc_calendar_a11y_4" /></p>
+<p><T k="doc_calendar_a11y_5" /></p>
 
-## DatePickerとの統合
+## <T k="doc_calendar_integration_datepicker" />
 
-Calendarコンポーネントは[DatePicker](/docs/component-forms-datepicker--docs)コンポーネント内で使用されています。DatePickerは、このCalendarコンポーネントをポップアップとして表示する便利なラッパーです。
+<p><T k="doc_calendar_integration_datepicker_desc" /></p>
 
-## TypeScript サポート
+## <T k="doc_typescript_support" />
 
-Calendarコンポーネントは完全な型定義を提供しています。
+<p><T k="doc_typescript_support_desc" /></p>
 
 ```tsx
 import { Calendar } from "./Calendar";
 import { T } from "../T";
 
 <>
-  {/* 単一日付選択 */}
+  {/* Single date selection */}
   <Calendar value={new Date()} onChange={(date: Date) => console.log(date)} />
 
-  {/* 範囲選択 */}
+  {/* Range selection */}
   <Calendar
     rangeMode
     range={{ start: new Date(), end: null }}

@@ -1,10 +1,10 @@
-import { Canvas, Meta, Controls, Primary } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Controls, Primary, Title, Stories } from "@storybook/addon-docs/blocks";
 import * as TableStories from "./Table.stories";
 import { T } from "../T";
 
 <Meta of={TableStories} />
 
-# Table
+<Title />
 
 <p
   style={{
@@ -17,72 +17,72 @@ import { T } from "../T";
   <T k="doc_table_title" />
 </p>
 
-テーブルコンポーネントは、データを整理して表示するために使用されます。
+<p><T k="doc_table_long_desc" /></p>
 
-## 使用例
+## <T k="doc_usage_examples" />
 
-### 基本的なテーブル
+### <T k="doc_table_basic" />
 
-最もシンプルなテーブルの構成です。
+<p><T k="doc_table_basic_desc" /></p>
 
 <Primary />
 
 <Controls />
 
-### ストライプ
+### <T k="doc_table_striped" />
 
-`striped` プロップを使用すると、行が交互に色付けされます。
+<p><T k="doc_table_striped_desc" /></p>
 
 <Canvas of={TableStories.Striped} />
 
-### ボーダー
+### <T k="doc_table_bordered" />
 
-`bordered` プロップを使用すると、テーブル全体と各セルにボーダーが表示されます。
+<p><T k="doc_table_bordered_desc" /></p>
 
 <Canvas of={TableStories.Bordered} />
 
-### ホバーエフェクト
+### <T k="doc_table_hoverable" />
 
-`hoverable` プロップを使用すると、マウスオーバーした行が強調表示されます。
+<p><T k="doc_table_hoverable_desc" /></p>
 
 <Canvas of={TableStories.Hoverable} />
 
-### フルワイド
+### <T k="doc_table_fullwidth" />
 
-`fullWidth` プロップを使用すると、テーブルが親要素の全幅に広がります。
+<p><T k="doc_table_fullwidth_desc" /></p>
 
 <Canvas of={TableStories.FullWidth} />
 
-### アクション付きのテーブル
+### <T k="doc_table_with_actions" />
 
-セル内にボタンなどのインタラクティブな要素を配置することも可能です。
+<p><T k="doc_table_with_actions_desc" /></p>
 
 <Canvas of={TableStories.WithActions} />
 
-## 高度な機能
+## <T k="doc_features" />
 
-### ヘッダーの固定 (Sticky Header)
+### <T k="doc_table_sticky_header" />
 
-`stickyHeader` プロップと `maxHeight` プロップを組み合わせることで、テーブルをスクロールした際にヘッダーを上部に固定できます。
+<p><T k="doc_table_sticky_header_desc" /></p>
 
 <Canvas of={TableStories.StickyHeader} />
 
-### スクロールバーのカスタマイズ
+### <T k="doc_table_scrollbar" />
 
-`scrollbar` プロップを使用して、スクロールバーの見た目を調整できます。
+<p><T k="doc_table_scrollbar_desc" /></p>
 
-- `subtle`: 細く控えめなデザイン
-- `hidden`: 非表示
+- `subtle`: <T k="doc_table_scrollbar_subtle" />
+- `hidden`: <T k="doc_table_scrollbar_hidden" />
 
 <Canvas of={TableStories.SubtleScrollbar} />
 
-### ソート機能
+### <T k="doc_table_sortable" />
 
-`Table.Head` に `sortable` プロップを渡すことで、ソート UI を表示できます。
+<p><T k="doc_table_sortable_desc" /></p>
 
-#### useTableSort フックを使う（推奨）
+#### <T k="doc_table_usetablesort" />
 
-Tableコンポーネントには、ソート機能を簡単に実装できる `useTableSort` フックが用意されています。
+<p><T k="doc_table_usetablesort_desc" /></p>
 
 ```jsx
 import { Table, useTableSort } from "./Table";
@@ -137,40 +137,40 @@ function MyTable() {
 }
 ```
 
-#### useTableSort の機能
+#### <T k="doc_table_usetablesort_features" />
 
-- 自動ソートロジック: 文字列、数値、null値を適切に処理
-- 3方向ソート: asc（昇順） → desc（降順） → none（ソートなし）のサイクル
-- 型安全: TypeScript完全対応
-- カスタマイズ可能: 初期ソート状態やソート変更時のコールバックをサポート
+- <T k="doc_table_usetablesort_feature_logic" />
+- <T k="doc_table_usetablesort_feature_tri" />
+- <T k="doc_table_usetablesort_feature_ts" />
+- <T k="doc_table_usetablesort_feature_custom" />
 
 ```typescript
 const {
-  sortedData, // ソート済みのデータ
-  sortConfig, // 現在のソート設定
-  handleSort, // ソートを実行する関数
-  getSortDirection, // 特定のキーのソート方向を取得
+  sortedData, // Sorted data
+  sortConfig, // Current sort configuration
+  handleSort, // Function to execute sort
+  getSortDirection, // Get sort direction for a specific key
 } = useTableSort(data, {
   initialSort: { key: "name", direction: "asc" },
   onSortChange: (config) => console.log("Sort changed:", config),
 });
 ```
 
-#### 手動でソートロジックを実装する場合
+#### <T k="doc_table_sort_manual" />
 
-フックを使わず、独自のソートロジックを実装することもできます。
+<p><T k="doc_table_sort_manual_desc" /></p>
 
 <Canvas of={TableStories.Sortable} />
 
-### 行の選択 (Row Selection)
+### <T k="doc_table_row_selection" />
 
-チェックボックスを使用して行を複数選択する機能です。`Table.Head` や `Table.Cell` に `selection` プロップを指定することで、チェックボックス列を適切にスタイリングできます。また、`Table.Row` に `selected` プロップを渡すと、選択中の行を強調表示できます。
+<p><T k="doc_table_row_selection_desc" /></p>
 
 <Canvas of={TableStories.RowSelection} />
 
-## TypeScript サポート
+## <T k="doc_table_ts_support" />
 
-TableコンポーネントとuseTableSortフックは完全な型定義を提供しています。
+<p><T k="doc_table_ts_support_desc" /></p>
 
 ```typescript
 import { Table, useTableSort, SortDirection, SortConfig } from "./Table";
@@ -185,9 +185,9 @@ interface User {
 const { sortedData } = useTableSort<User>(users);
 ```
 
-## コンパウンドコンポーネント
+## <T k="doc_compound_components" />
 
-`Table` は以下のサブコンポーネントで構成されています：
+<p><T k="doc_table_compound_desc" /></p>
 
 - `Table.Header` (`<thead>`)
 - `Table.Body` (`<tbody>`)
@@ -195,3 +195,5 @@ const { sortedData } = useTableSort<User>(users);
 - `Table.Row` (`<tr>`)
 - `Table.Head` (`<th>`)
 - `Table.Cell` (`<td>`)
+
+<Stories />

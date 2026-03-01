@@ -21,13 +21,13 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  真偽値（ON/OFF）を入力するために使用
+  <T k="doc_checkbox_long_desc" />
 </p>
 <Description />
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-ユーザーに同意を求めたり、オプションを有効化する場合に使用する
+<p><T k="doc_checkbox_basic_usage_desc" /></p>
 
 ## <T k="doc_checkbox_usage_title" />
 
@@ -44,19 +44,19 @@ import { T } from "../T";
 
 <Canvas of={CheckboxStories.Default} />
 
-## 状態
+## <T k="doc_states" />
 
-### Checked
+### <T k="doc_checked" />
 
 <Canvas of={CheckboxStories.Checked} />
 
-### Indeterminate (不確定)
+### <T k="doc_checkbox_state_indeterminate" />
 
-親要素が一部のみ選択されている場合などに使用
+<p><T k="doc_checkbox_state_indeterminate_desc" /></p>
 
 <Canvas of={CheckboxStories.Indeterminate} />
 
-### Disabled
+### <T k="doc_disabled" />
 
 <Canvas of={CheckboxStories.Disabled} />
 <Canvas of={CheckboxStories.DisabledChecked} />

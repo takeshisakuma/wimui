@@ -17,62 +17,62 @@ import { T } from "../T";
   <T k="doc_errorboundary_title" />
 </p>
 
-`ErrorBoundary` コンポーネントは、子コンポーネントツリー内のどこかで発生した JavaScript エラーをキャッチし、そのエラーをログに記録した上で、クラッシュしたコンポーネントツリーの代わりにフォールバック UI を表示します。
+<p><T k="doc_errorboundary_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>説明</th>
+      <th><T k="doc_features" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>優雅なリカバリ</strong></td>
-      <td>単一のコンポーネントの失敗によってアプリ全体がクラッシュするのを防ぎます。</td>
+      <td><strong><T k="doc_errorboundary_feat_1" /></strong></td>
+      <td><T k="doc_errorboundary_feat_1_desc" /></td>
     </tr>
     <tr>
-      <td><strong>カスタマイズ可能なフォールバック</strong></td>
-      <td>独自のフォールバック UI を提供することも、デフォルトのものを使用することも可能です。</td>
+      <td><strong><T k="doc_errorboundary_feat_2" /></strong></td>
+      <td><T k="doc_errorboundary_feat_2_desc" /></td>
     </tr>
     <tr>
-      <td><strong>復旧サポート</strong></td>
-      <td>子要素のレンダリングを再試行するためのリセットメカニズムが含まれています。</td>
+      <td><strong><T k="doc_errorboundary_feat_3" /></strong></td>
+      <td><T k="doc_errorboundary_feat_3_desc" /></td>
     </tr>
     <tr>
-      <td><strong>エラーフック</strong></td>
-      <td><code>onError</code> や <code>onReset</code> などのコールバックを提供します。</td>
+      <td><strong><T k="doc_errorboundary_feat_4" /></strong></td>
+      <td><T k="doc_errorboundary_feat_4_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## 使い方
+## <T k="doc_usage" />
 
 ```tsx
 <ErrorBoundary
-  fallback={<div>問題が発生しました</div>}
+  fallback={<div>Something went wrong</div>}
   onError={(error) => console.log(error)}
 >
   <MyBuggyComponent />
 </ErrorBoundary>
 ```
 
-## 例
+## <T k="doc_example" />
 
-### デフォルトのエラー境界
+### <T k="doc_errorboundary_def_title" />
 
-"Try again" ボタンを備えたデフォルトのエラー UI を表示します。
+<p><T k="doc_errorboundary_def_desc" /></p>
 
 <Canvas of={ErrorBoundaryStories.Default} />
 
-### カスタムフォールバック UI
+### <T k="doc_errorboundary_custom_title" />
 
-関数として `fallback` を提供することで、エラーメッセージやリセットボタンを自由にカスタマイズできます。
+<p><T k="doc_errorboundary_custom_desc" /></p>
 
 <Canvas of={ErrorBoundaryStories.CustomFallback} />
 
-## プロップ
+## <T k="doc_props" />
 
 <Controls />

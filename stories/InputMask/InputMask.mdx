@@ -21,32 +21,32 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  特定の形式に沿った入力を強制するためのマスク付き入力コンポーネントです。
+  <T k="doc_inputmask_long_desc" />
 </p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-`mask` プロパティにパターンを指定して使用します。
+<p><T k="doc_inputmask_basic_desc" /></p>
 
-- `9`: 数字 (0-9)
-- `a`: 英字 (a-z, A-Z)
-- `*`: 英数字 (0-9, a-z, A-Z)
+- <T k="doc_inputmask_pattern_9" />
+- <T k="doc_inputmask_pattern_a" />
+- <T k="doc_inputmask_pattern_star" />
 
-### 郵便番号
+### <T k="doc_inputmask_zip" />
 
 <Canvas of={InputMaskStories.ZipCode} />
 
-### 電話番号
+### <T k="doc_inputmask_phone" />
 
 <Canvas of={InputMaskStories.Phone} />
 
-### クレジットカード
+### <T k="doc_inputmask_cc" />
 
 <Canvas of={InputMaskStories.CreditCard} />
 
-## 高度な利用例
+## <T k="doc_inputmask_advanced" />
 
-### カスタムマスク
+### <T k="doc_inputmask_custom" />
 
 <Canvas of={InputMaskStories.CustomMask} />
 

@@ -25,34 +25,34 @@ import { T } from "../T";
 </p>
 <Description />
 
-SimpleGridコンポーネントは、レスポンシブなグリッドレイアウトを簡単に作成するための高レベルコンポーネントです。
+<p><T k="doc_simplegrid_long_desc" /></p>
 
-<h2>特徴</h2>
+<h2><T k="doc_features" /></h2>
 <table>
   <tr>
-    <td>固定列数</td>
-    <td>`cols`プロパティを使用して列数を固定できます。</td>
+    <td><T k="doc_simplegrid_feat_fixed" /></td>
+    <td><T k="doc_simplegrid_feat_fixed_desc" /></td>
   </tr>
   <tr>
-    <td>オートフィット</td>
+    <td><T k="doc_simplegrid_feat_auto" /></td>
     <td>
-      `minChildWidth`プロパティを使用して、子要素の最小幅に基づいて自動的に列数を調整できます。
+      <p><T k="doc_simplegrid_feat_auto_desc" /></p>
     </td>
   </tr>
 </table>
 
-<h2>プロパティ</h2>
+<h2><T k="doc_props" /> (Actually Properties but I'll change header)</h2>
 <Controls />
 
-<h2>固定列数の例</h2>
+<h2><T k="doc_simplegrid_ex_fixed" /></h2>
 <Canvas of={SimpleGridStories.FixedColumns} />
 
-<h2>レスポンシブ表示（オートフィット）の例</h2>
-`minChildWidth`を指定することで、画面幅に応じて列数が自動的に変化します。
+<h2><T k="doc_simplegrid_ex_auto" /></h2>
+<p><T k="doc_simplegrid_ex_auto_desc" /></p>
 <Canvas of={SimpleGridStories.ResponsiveAuto} />
 
-<h2>レスポンシブ表示（ブレークポイント指定）の例</h2>
-ブレークポイントごとに列数を明示的に指定することも可能です。
+<h2><T k="doc_simplegrid_ex_break" /></h2>
+<p><T k="doc_simplegrid_ex_break_desc" /></p>
 <Canvas of={SimpleGridStories.ResponsiveBreakpoints} />
 
 <Stories />

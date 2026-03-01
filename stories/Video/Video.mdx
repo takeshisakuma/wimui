@@ -17,16 +17,15 @@ import * as VideoStories from "./Video.stories";
   <T k="doc_video_title" />
 </p>
 
-`Video` コンポーネントは、動画ファイルを簡単に埋め込むためのコンポーネントです。
-自動再生、ループ、コントロールの表示切り替え、角丸、影などのスタイリングをサポートしています。
+<p><T k="doc_video_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
-- 直感的なコントロール: `controls` プロパティで再生UIの表示/非表示を切り替え可能。
-- 自動再生とループ: `autoPlay`、`loop`、`muted` を組み合わせて背景動画などの演出に対応。
-- スタイリング: `radius`、`shadow`、`border` プロパティでデザインに合わせた外観に変更可能。
+- <T k="doc_video_feat_1" />
+- <T k="doc_video_feat_2" />
+- <T k="doc_video_feat_3" />
 
-## Usage
+## <T k="doc_usage" />
 
 ```tsx
 import { Video } from "@/components/Video/Video";
@@ -38,153 +37,147 @@ import { Video } from "@/components/Video/Video";
   muted
   loop
   radius="medium"
-  caption="背景動画のサンプル"
+  caption="<T k="doc_video_usage_caption" />"
 />;
 ```
 
-## 高度なコントロールと拡張機能
+## <T k="doc_video_adv_title" />
 
-`advancedControls={true}` を利用することで、モダンな動画プレイヤーに必要な様々な機能を利用できます。
+<p><T k="doc_video_adv_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>機能名</th>
-      <th>関連プロパティ</th>
-      <th>説明</th>
+      <th><T k="doc_video_adv_feat_name" /></th>
+      <th><T k="doc_property" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>画質切り替え</strong>
+        <strong><T k="doc_video_adv_q_title" /></strong>
       </td>
       <td>
         <code>qualities</code>
       </td>
       <td>
-        1080p,
-        720pなどの画質プルダウンを選択でき、シームレスに途中から再生を切り替えます。
+        <p><T k="doc_video_adv_q_desc" /></p>
       </td>
     </tr>
     <tr>
       <td>
-        <strong>再生速度コントロール</strong>
+        <strong><T k="doc_video_adv_speed_title" /></strong>
       </td>
       <td>-</td>
-      <td>0.25倍から2.0倍まで、ユーザーが自由に再生速度を変更できるUIです。</td>
+      <td><T k="doc_video_adv_speed_desc" /></td>
     </tr>
     <tr>
       <td>
-        <strong>アスペクト比の変更</strong>
+        <strong><T k="doc_video_adv_aspect_title" /></strong>
       </td>
       <td>
         <code>fit</code>
       </td>
       <td>
-        <code>contain</code>, <code>cover</code>{" "}
-        など、画面にどうフィットさせるかをユーザーが選択できます。
+        <p><T k="doc_video_adv_aspect_desc" /></p>
       </td>
     </tr>
     <tr>
       <td>
-        <strong>プレイリスト・自動再生</strong>
+        <strong><T k="doc_video_adv_playlist_title" /></strong>
       </td>
       <td>
         <code>playlist</code>, <code>autoPlayNext</code>
       </td>
       <td>
-        複数の動画をリストとして扱い、リスト選択UIの提供や、終了時の自動遷移機能を利用できます。
+        <p><T k="doc_video_adv_playlist_desc" /></p>
       </td>
     </tr>
     <tr>
       <td>
-        <strong>高度なレジューム再生</strong>
+        <strong><T k="doc_video_adv_resume_title" /></strong>
       </td>
       <td>
         <code>videoId</code>, <code>resumePlayback</code>
       </td>
       <td>
-        <code>videoId</code>{" "}
-        と共に指定することで、動画の再生位置を自動で保存し、次回アクセス時に続きから再生します。
+        <p><T k="doc_video_adv_resume_desc" /></p>
       </td>
     </tr>
     <tr>
       <td>
-        <strong>10秒スキップ &amp; ダブルタップ</strong>
+        <strong><T k="doc_video_adv_skip_title" /></strong>
       </td>
       <td>-</td>
       <td>
-        操作バーにスキップボタンを備え、モバイルでは画面の左右をダブルタップすることでもスキップ動作が行われます。
+        <p><T k="doc_video_adv_skip_desc" /></p>
       </td>
     </tr>
     <tr>
       <td>
-        <strong>ピクチャーインピクチャー (PiP)</strong>
+        <strong><T k="doc_video_adv_pip_title" /></strong>
       </td>
       <td>-</td>
       <td>
-        動画を画面の隅にフロート表示させるPiPモードの切り替えボタンを備えています。
+        <p><T k="doc_video_adv_pip_desc" /></p>
       </td>
     </tr>
     <tr>
       <td>
-        <strong>キーボードショートカット</strong>
+        <strong><T k="doc_video_adv_shortcuts_title" /></strong>
       </td>
       <td>-</td>
       <td>
-        <code>Space</code> / <code>K</code> (再生), <code>M</code> (ミュート),{" "}
-        <code>F</code> (最大化), <code>P</code> (PiP), <code>←</code>{" "}
-        <code>→</code> (スキップ), <code>↑</code> <code>↓</code> (音量)
-        に対応しています。
+        <p><T k="doc_video_adv_shortcuts_desc" /></p>
       </td>
     </tr>
   </tbody>
 </table>
 
-## モバイルでの挙動
+## <T k="doc_video_mobile_title" />
 
-カスタムコントロール使用時、**画面幅 576px 以下のモバイル環境では音量スライダーが非表示**になります。
-ミュート／アンミュートのトグルボタンは引き続き表示されます。
+<p><T k="doc_video_mobile_desc" /></p>
 
-この設計判断の理由は以下の通りです：
+<p><T k="doc_video_mobile_reason_title" /></p>
 
-- **操作性の問題**: 狭いコントロールバー内に音量スライダーを展開すると、シークバー・設定アイコン等の他の要素と必ず重なってしまいます。
-- **モバイルの慣例に従う**: YouTube・Netflix・Prime Video などの主要な動画プラットフォームのモバイルアプリは、いずれも音量スライダーを持ちません。モバイルでは**デバイスのハードウェアボタン（音量大・小キー）**で音量を調節するのが標準的な UX です。
-- **ミュート操作は可能**: 音量スライダーが隠れていても、ミュートボタンで音のオン・オフは切り替えられます。
+- <T k="doc_video_mobile_reason_1" />
+- <T k="doc_video_mobile_reason_2" />
+- <T k="doc_video_mobile_reason_3" />
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
 
-## Variants
+## <T k="doc_variants" />
 
-### Default
+### <T k="doc_default" />
 
-標準的なビデオプレイヤーです。
+<p><T k="doc_video_variant_default" /></p>
 
 <Canvas of={VideoStories.Default} />
 
-### AutoPlay & Loop
+### <T k="doc_auto_play_loop" />
 
-`autoPlay`、`muted`、`loop` を有効にした状態です。
+<p><T k="doc_video_variant_autoplay" /></p>
 
 <Canvas of={VideoStories.AutoPlay} />
 
-### Rounded with Shadow
+### <T k="doc_rounded_shadow" />
 
-角丸と影を適用したデザインです。
+<p><T k="doc_video_variant_rounded" /></p>
 
 <Canvas of={VideoStories.Rounded} />
 
-### Custom Controls
+### <T k="doc_custom_controls" />
 
-wimui独自のカスタムコントロールUIを適用した状態です。
+<p><T k="doc_video_variant_custom" /></p>
 
 <Canvas of={VideoStories.CustomControls} />
 
-### Full Features (全部盛り)
+### <T k="doc_full_features" />
 
-すべての高度な機能（プレイリスト、アスペクト比、画質、レジューム再生、ショートカット等）を有効にした完全なプレイヤーです。
+<p><T k="doc_video_variant_full" /></p>
 
 <Canvas of={VideoStories.FullFeatured} />
+

@@ -17,49 +17,50 @@ import { T } from "../T";
   <T k="doc_visuallyhidden_title" />
 </p>
 
-`VisuallyHidden` は、視覚的にはコンテンツを非表示にしつつ、スクリーンリーダーなどの補助技術にはその情報を伝えたい場合に使用するユーティリティコンポーネントです。
+<p><T k="doc_visuallyhidden_long_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-このコンポーネントで囲まれた内容は、画面上には表示されませんが、HTML構造としては存在し続けます。
+<p><T k="doc_visuallyhidden_usage_desc" /></p>
 
 <Canvas of={VisuallyHiddenStories.Primary} />
 
-## ユースケース
+## <T k="doc_use_case" />
 
-### ボタンのアクセシブルなラベル
+### <T k="doc_visuallyhidden_case_button" />
 
-アイコンのみのボタンなど、視覚的に意味が伝わるものの、テキストラベルが必要な場合に使用します。
+<p><T k="doc_visuallyhidden_case_button_desc" /></p>
 
 <Canvas of={VisuallyHiddenStories.WithinButton} />
 
-## アクセシビリティの確認方法
+## <T k="doc_visuallyhidden_a11y_title" />
 
-Chrome DevTools を使用して、`VisuallyHidden` コンポーネントの内容がスクリーンリーダーでどのように認識されるかを確認できます。
+<p><T k="doc_visuallyhidden_a11y_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>ステップ</th>
-      <th>操作内容</th>
+      <th><T k="doc_step" /></th>
+      <th><T k="doc_content" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>1. 要素の検証</strong></td>
-      <td>ブラウザで <code>VisuallyHidden</code> を使用している箇所を右クリックし、「検証」を選択して DevTools を開きます。</td>
+      <td><strong><T k="doc_visuallyhidden_a11y_step_1_title" /></strong></td>
+      <td><T k="doc_visuallyhidden_a11y_step_1_desc" /></td>
     </tr>
     <tr>
-      <td><strong>2. アクセシビリティツリーへの切り替え</strong></td>
-      <td><code>Elements</code> パネルの右上にある 「Switch to Accessibility Tree view」 ボタン（人型のアイコン）をクリックします。これにより、DOMツリーがスクリーンリーダー等が解釈するアクセシビリティツリー表示に切り替わります。</td>
+      <td><strong><T k="doc_visuallyhidden_a11y_step_2_title" /></strong></td>
+      <td><T k="doc_visuallyhidden_a11y_step_2_desc" /></td>
     </tr>
     <tr>
-      <td><strong>3. 内容の確認</strong></td>
-      <td>ツリーの中から対象の要素を選択します。右側の <code>Accessibility</code> タブ（見当たらない場合は <code>>></code> から選択）の <code>Computed Properties</code> セクションなどで、<code>Name: "..."</code> として表示されている内容が、実際に読み上げられるテキストです。</td>
+      <td><strong><T k="doc_visuallyhidden_a11y_step_3_title" /></strong></td>
+      <td><T k="doc_visuallyhidden_a11y_step_3_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
+

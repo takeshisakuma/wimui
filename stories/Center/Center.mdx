@@ -19,59 +19,59 @@ import { T } from "../T";
 
 
 
-`Center` コンポーネントは、子要素を垂直および水平方向の中央に配置するために使用されます。
+<p><T k="doc_center_long_desc" /></p>
 
-## 使い方
+## <T k="doc_usage" />
 
 ```tsx
 import { Center } from "@/components/Center/Center";
 
 const Demo = () => (
   <Center h={200} bg="#f0f0f0">
-    中央に配置されるコンテンツ
+    Centered content
   </Center>
 );
 ```
 
 <Canvas of={CenterStories.Default} />
 
-## 特徴
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>説明</th>
+      <th><T k="doc_features" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>完全な中央配置</strong></td>
-      <td><code>align-items: center</code> と <code>justify-content: center</code> がデフォルトで適用されます。</td>
+      <td><strong><T k="doc_center_feature_1" /></strong></td>
+      <td><T k="doc_center_feature_1_desc" /></td>
     </tr>
     <tr>
-      <td><strong>インラインモード</strong></td>
-      <td><code>inline</code> プロパティを使用することで、<code>inline-flex</code> として動作させることができます。</td>
+      <td><strong><T k="doc_center_feature_2" /></strong></td>
+      <td><T k="doc_center_feature_2_desc" /></td>
     </tr>
     <tr>
-      <td><strong>柔軟なサイズ</strong></td>
-      <td><code>Box</code> や <code>Flex</code> のプロパティを継承しているため、高さ (<code>h</code>) や幅 (<code>w</code>) も簡単に指定できます。</td>
+      <td><strong><T k="doc_center_feature_3" /></strong></td>
+      <td><T k="doc_center_feature_3_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## API リファレンス
+## <T k="doc_component_api" />
 
 <Controls />
 
-## インライン配置
+## <T k="doc_center_inline_placement" />
 
-`inline` プロパティを使用すると、テキストの流れの中に配置できます。
+<p><T k="doc_center_inline_placement_desc" /></p>
 
 <Canvas of={CenterStories.Inline} />
 
-## アイコンの中央配置
+## <T k="doc_center_icon_center" />
 
-アイコンボタンや丸いバッジなどの作成に便利です。
+<p><T k="doc_center_icon_center_desc" /></p>
 
 <Canvas of={CenterStories.Icons} />

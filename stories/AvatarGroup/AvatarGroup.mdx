@@ -23,7 +23,7 @@ import { T } from "../T";
   <T k="doc_avatargroup_title" />
 </p>
 
-複数の `Avatar` コンポーネントを重ねて表示し、グループ（チームメンバーや参加者など）を表現するためのコンポーネントです。
+<p><T k="doc_avatargroup_long_desc" /></p>
 
 <Primary />
 
@@ -31,23 +31,23 @@ import { T } from "../T";
 
 <Controls />
 
-## 使用例
+## <T k="doc_usage_examples" />
 
-### 最大表示数
+### <T k="doc_avatargroup_max" />
 
-`max` Propを使用することで、表示するアバターの数を制限できます。超えた分は「+N」として表示されます。
+<p><T k="doc_avatargroup_max_desc" /></p>
 
 <Canvas of={AvatarGroupStories.MaxDisplayed} />
 
-### サイズの一括指定
+### <T k="doc_avatargroup_size" />
 
-`AvatarGroup` に `size` を指定することで、子要素の `Avatar` すべてのサイズを統一できます。
+<p><T k="doc_avatargroup_size_desc" /></p>
 
 <Canvas of={AvatarGroupStories.Sizes} />
 
-### 合計数の指定
+### <T k="doc_avatargroup_total" />
 
-実際の要素数とは別に合計数（`total`）を表示したい場合に使用します。
+<p><T k="doc_avatargroup_total_desc" /></p>
 
 <Canvas of={AvatarGroupStories.TotalCount} />
 

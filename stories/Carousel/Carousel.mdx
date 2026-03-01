@@ -1,10 +1,10 @@
-import { Meta, Primary, Controls, Canvas } from "@storybook/addon-docs/blocks";
+import { Meta, Primary, Controls, Canvas, Title } from "@storybook/addon-docs/blocks";
 import * as CarouselStories from "./Carousel.stories";
 import { T } from "../T";
 
 <Meta of={CarouselStories} />
 
-# Carousel
+<Title />
 
 <p
   style={{
@@ -17,40 +17,37 @@ import { T } from "../T";
   <T k="doc_carousel_title" />
 </p>
 
-Carousel（カルーセル）は、複数のコンテンツをスライドさせて表示するためのコンポーネント<br />
-シームレスなループ、レスポンシブな表示数設定に対応している
+<p><T k="doc_carousel_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
-- 無限ループ: 最後のスライドから次に進むと、最初のスライドがスムーズに現れる
-- 表示数のカスタマイズ: `slidesToShow` プロパティで、一度に表示するスライドの数を指定できる
-- レスポンシブ対応: デバイスの幅に応じて表示数を自動的に切り替えることができる
+<p><T k="doc_carousel_features_desc" /></p>
 
-## 使用例
+## <T k="doc_usage_examples" />
 
-### 基本的な使い方
+### <T k="doc_basic_usage" />
 
-`loop={true}`（デフォルト）により、シームレスな無限ループが有効
+<p><T k="doc_carousel_basic_desc" /></p>
 
 <Canvas of={CarouselStories.Basic} />
 
-### 表示数の指定
+### <T k="doc_carousel_specify_slides" />
 
-`slidesToShow` で一度に表示するスライドの数を指定できる
+<p><T k="doc_carousel_specify_slides_desc" /></p>
 
 <Canvas of={CarouselStories.MultipleItems} />
 
-### レスポンシブ対応
+### <T k="doc_carousel_responsive" />
 
-ブレークポイントごとに表示数を指定できる
+<p><T k="doc_carousel_responsive_desc" /></p>
 
 ```tsx
 <Carousel
   slidesToShow={{
-    base: 1, // スマホ
-    sm: 2, // タブレット
+    base: 1, // Smartphone
+    sm: 2, // Tablet
     md: 3, // PC
-    lg: 4, // ワイド
+    lg: 4, // Wide
   }}
 >
   {/* slides */}
@@ -59,28 +56,27 @@ Carousel（カルーセル）は、複数のコンテンツをスライドさせ
 
 <Canvas of={CarouselStories.Responsive} />
 
-### 自動再生
+### <T k="doc_carousel_autoplay" />
 
-`autoPlay` プロパティを `true` に設定すると、一定間隔で自動的にスライドが切り替わる
+<p><T k="doc_carousel_autoplay_desc" /></p>
 
 <Canvas of={CarouselStories.AutoPlay} />
 
-### ループなし
+### <T k="doc_carousel_no_loop" />
 
-`loop={false}` を設定すると、最初と最後のスライドで停止し、端のボタンが無効になります。
+<p><T k="doc_carousel_no_loop_desc" /></p>
 
 <Canvas of={CarouselStories.NoLoop} />
 
-### 画像の使用例
+### <T k="doc_carousel_image_example" />
 
-実際の画像を使用した例です。
+<p><T k="doc_carousel_image_example_desc" /></p>
 
 <Canvas of={CarouselStories.WithImage} />
 
-### アスペクト比の指定
+### <T k="doc_carousel_aspect_ratio" />
 
-`aspectRatio` を指定することで、画像の高さを統一し、アスペクト比を維持したまま切り抜いて表示（`objectFit="cover"`）させることができます。
-縦長や横長の画像が混在している場合に、全体の高さを揃えるのに便利です。
+<p><T k="doc_carousel_aspect_ratio_desc" /></p>
 
 <Canvas of={CarouselStories.AspectRatioCheck} />
 
@@ -88,226 +84,193 @@ Carousel（カルーセル）は、複数のコンテンツをスライドさせ
 
 <Controls />
 
-## アクセシビリティ
+## <T k="doc_accessibility" />
 
-- 前後ボタンには適切な `aria-label` が設定されている
-- インジケーターには `aria-current` が設定され、現在表示中のスライドを示している
-- `infinite loop` 実装では、クローンされた要素を使用してシームレスな遷移を実現している
+<p><T k="doc_carousel_accessibility_desc" /></p>
 
-## Carousel UIとは?
+## <T k="doc_carousel_what_is" />
 
-カルーセルUI (Carousel UI) は、限られたスペースで複数の画像やコンテンツをスライドショーのように切り替えて表示する手法です。
-「カルーセル（carousel）」の語源は回転木馬（メリーゴーラウンド）に由来し、モバイルデバイスの普及とともに、省スペースで多くの情報を伝える手段として一般化しました。
+<p><T k="doc_carousel_what_is_desc" /></p>
 
-### スライドショー・スライダーとの違い
+### <T k="doc_carousel_differences" />
 
-厳密な定義はありませんが、以下のように使い分けられることがあります。
+<p><T k="doc_carousel_differences_intro" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>用語</th>
-      <th>特徴</th>
+      <th><T k="doc_carousel_term_header" /></th>
+      <th><T k="doc_carousel_characteristic_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>カルーセル</strong>
+        <strong><T k="doc_carousel_term_carousel" /></strong>
       </td>
-      <td>
-        複数のコンテンツが回転するように表示され、ユーザーが手動で操作（スワイプ/クリック）できる。
-      </td>
+      <td><T k="doc_carousel_char_carousel" /></td>
     </tr>
     <tr>
       <td>
-        <strong>スライドショー</strong>
+        <strong><T k="doc_carousel_term_slideshow" /></strong>
       </td>
-      <td>自動的に切り替わる機能が主で、手動操作が限定的な場合が多い。</td>
+      <td><T k="doc_carousel_char_slideshow" /></td>
     </tr>
     <tr>
       <td>
-        <strong>スライダー</strong>
+        <strong><T k="doc_carousel_term_slider" /></strong>
       </td>
-      <td>
-        自由度が高く、数値を調整するUI（レンジスライダー）を指すこともあるが、画像切り替えの意味ではカルーセルに近い。
-      </td>
+      <td><T k="doc_carousel_char_slider" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 導入のメリット
+## <T k="doc_carousel_benefits" />
 
 <table>
   <thead>
     <tr>
-      <th>メリット</th>
-      <th>説明</th>
+      <th><T k="doc_carousel_benefit_header" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>省スペース化</strong>
+        <strong><T k="doc_carousel_benefit_space" /></strong>
       </td>
-      <td>限られた領域（特にモバイル画面）に多くの情報を詰め込める。</td>
+      <td><T k="doc_carousel_benefit_space_desc" /></td>
     </tr>
     <tr>
       <td>
-        <strong>注目を集めやすい</strong>
+        <strong><T k="doc_carousel_benefit_attention" /></strong>
       </td>
-      <td>動きのあるUIは視覚的にユーザーの目を引く。</td>
+      <td><T k="doc_carousel_benefit_attention_desc" /></td>
     </tr>
     <tr>
       <td>
-        <strong>要素の強調</strong>
+        <strong><T k="doc_carousel_benefit_emphasis" /></strong>
       </td>
-      <td>
-        1つずつ大きく表示することで、個々のコンテンツに集中させることができる。
-      </td>
+      <td><T k="doc_carousel_benefit_emphasis_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## 注意点とデメリット
+## <T k="doc_carousel_drawbacks" />
 
 <table>
   <thead>
     <tr>
-      <th>課題</th>
-      <th>説明</th>
-      <th>対策</th>
+      <th><T k="doc_carousel_challenge_header" /></th>
+      <th><T k="doc_description" /></th>
+      <th><T k="doc_carousel_solution_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>2枚目以降が見られにくい</strong>
+        <strong><T k="doc_carousel_challenge_unseen" /></strong>
       </td>
-      <td>ユーザーがスライド操作に気づかない場合がある。</td>
-      <td>
-        <ul>
-          <li>次のスライドを少し見切れさせる（チラ見せ）</li>
-          <li>インジケーターを設置する</li>
-        </ul>
-      </td>
+      <td><T k="doc_carousel_challenge_unseen_desc" /></td>
+      <td><T k="doc_carousel_challenge_unseen_sol" /></td>
     </tr>
     <tr>
       <td>
-        <strong>パフォーマンスへの影響</strong>
+        <strong><T k="doc_carousel_challenge_perf" /></strong>
       </td>
-      <td>大きな画像やスクリプトが読み込み速度を低下させる可能性がある。</td>
-      <td>
-        <ul>
-          <li>画像の遅延読み込み (Lazy loading)</li>
-          <li>スクリプトの軽量化</li>
-        </ul>
-      </td>
+      <td><T k="doc_carousel_challenge_perf_desc" /></td>
+      <td><T k="doc_carousel_challenge_perf_sol" /></td>
     </tr>
     <tr>
       <td>
-        <strong>ユーザーへのストレス</strong>
+        <strong><T k="doc_carousel_challenge_stress" /></strong>
       </td>
-      <td>自動切り替えが速すぎたり、操作が直感的でないと離脱につながる。</td>
-      <td>
-        <ul>
-          <li>停止ボタンの設置</li>
-          <li>適切な切り替え速度</li>
-          <li>手動操作の優先</li>
-        </ul>
-      </td>
+      <td><T k="doc_carousel_challenge_stress_desc" /></td>
+      <td><T k="doc_carousel_challenge_stress_sol" /></td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-## 機能要件 (Functional Requirements)
+## <T k="doc_carousel_functional_reqs" />
 
 <table>
   <thead>
     <tr>
-      <th>要件</th>
-      <th>詳細</th>
+      <th><T k="doc_carousel_req_header" /></th>
+      <th><T k="doc_carousel_details_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>移動ボタン</strong>
+        <strong><T k="doc_carousel_req_nav" /></strong>
       </td>
-      <td>左右の矢印ボタンやスワイプ操作で前後に移動できること。</td>
+      <td><T k="doc_carousel_req_nav_desc" /></td>
     </tr>
     <tr>
       <td>
-        <strong>タッチ操作（スワイプ）</strong>
+        <strong><T k="doc_carousel_req_touch" /></strong>
       </td>
-      <td>
-        モバイル環境では、「横にスワイプしてスライドさせる」直感的なタッチドラッグ操作に対応しています。一方で、PC（マウス操作）環境では、無意識な画像・テキストのブラウザ標準選択（ドラッグ保存など）を防ぐため、敢えてマウスドラッグによるスライド操作は実装せず、矢印ボタンやインジケーターのみでの操作としています。
-      </td>
+      <td><T k="doc_carousel_req_touch_desc" /></td>
     </tr>
     <tr>
       <td>
-        <strong>インジケーター</strong>
+        <strong><T k="doc_carousel_req_indicator" /></strong>
       </td>
-      <td>
-        現在位置を示し、特定のスライドへ直接ジャンプできること（ドットなど）。
-      </td>
+      <td><T k="doc_carousel_req_indicator_desc" /></td>
     </tr>
     <tr>
       <td>
-        <strong>自動回転の制御</strong>
+        <strong><T k="doc_carousel_req_auto" /></strong>
       </td>
-      <td>ユーザーが操作中は一時停止する、または停止ボタンを提供する。</td>
+      <td><T k="doc_carousel_req_auto_desc" /></td>
     </tr>
     <tr>
       <td>
-        <strong>ループ機能</strong>
+        <strong><T k="doc_carousel_req_loop" /></strong>
       </td>
-      <td>最後のスライドから最初に戻るシームレスなループ。</td>
+      <td><T k="doc_carousel_req_loop_desc" /></td>
     </tr>
     <tr>
       <td>
-        <strong>キーボード操作</strong>
+        <strong><T k="doc_keyboard_navigation" /></strong>
       </td>
-      <td>矢印キーで移動できるなど、アクセシビリティへの配慮。</td>
+      <td><T k="doc_carousel_req_kbd_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## 実装・採用時のポイント
+## <T k="doc_carousel_implementation_points" />
 
 <table>
   <thead>
     <tr>
-      <th>ポイント</th>
-      <th>詳細</th>
+      <th><T k="doc_carousel_point_header" /></th>
+      <th><T k="doc_carousel_details_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>コンテンツの吟味</strong>
+        <strong><T k="doc_carousel_point_content" /></strong>
       </td>
-      <td>
-        テーマを統一し、スライド枚数は3〜5枚程度に抑える。重要な情報は1枚目に。
-      </td>
+      <td><T k="doc_carousel_point_content_desc" /></td>
     </tr>
     <tr>
       <td>
-        <strong>レスポンシブ対応</strong>
+        <strong><T k="doc_carousel_point_responsive" /></strong>
       </td>
-      <td>PCでは複数カラム、SPでは1カラムなど、デバイスに応じた表示。</td>
+      <td><T k="doc_carousel_point_responsive_desc" /></td>
     </tr>
     <tr>
       <td>
-        <strong>直感的な操作性</strong>
+        <strong><T k="doc_carousel_point_affordance" /></strong>
       </td>
-      <td>
-        「スワイプできそう」「クリックできそう」な視覚的アフォーダンスを提供する。
-      </td>
+      <td><T k="doc_carousel_point_affordance_desc" /></td>
     </tr>
   </tbody>
 </table>

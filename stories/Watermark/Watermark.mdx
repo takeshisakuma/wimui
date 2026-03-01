@@ -21,29 +21,26 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  コンテンツに透かし（ウォーターマーク）を追加するためのコンポーネント。
+  <T k="doc_watermark_long_desc" />
 </p>
 
-<Description>
-  `Watermark`
-  は、著作権情報や機密状態を示すテキストや画像を、コンテンツの背面に繰り返し表示します。
-</Description>
+<p><T k="doc_watermark_feature_desc" /></p>
 
 <Primary />
 
-<h2>バリエーション</h2>
+<h2><T k="doc_variations" /></h2>
 
-<h3>テキスト</h3>
-<p>`content` プロップに文字列を指定して表示します。</p>
+<h3><T k="doc_watermark_var_text" /></h3>
+<p><T k="doc_watermark_var_text_desc" /></p>
 <Canvas of={WatermarkStories.Text} />
 
-<h3>複数行テキスト</h3>
-<p>`content` プロップに配列を渡すことで、複数行のテキストを表示できます。</p>
+<h3><T k="doc_watermark_var_multi" /></h3>
+<p><T k="doc_watermark_var_multi_desc" /></p>
 <Canvas of={WatermarkStories.MultiLine} />
 
-<h3>画像</h3>
+<h3><T k="doc_watermark_var_image" /></h3>
 <p>
-  `image` プロップを使用して、ロゴ画像などの画像を透かしとして使用できます。
+  <T k="doc_watermark_var_image_desc" />
 </p>
 <Canvas of={WatermarkStories.Image} />
 

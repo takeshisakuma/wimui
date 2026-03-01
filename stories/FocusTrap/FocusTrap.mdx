@@ -17,23 +17,22 @@ import { T } from "../T";
   <T k="doc_focustrap_title" />
 </p>
 
-`FocusTrap` は、キーボードのフォーカスを特定の領域内に閉じ込めるためのユーティリティコンポーネントです。
-モーダル、ダイアログ、ドロワーなど、ユーザーの操作を特定の範囲に限定したいアクセシブルなUIの実装に使用します。
+<p><T k="doc_focustrap_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
-- `Tab` キーによる移動をコンポーネント内に制限します。
-- 最後の要素で `Tab` を押すと最初の要素に戻り、最初の要素で `Shift + Tab` を押すと最後の要素に移動します（ループ）。
-- コンポーネントがマウントされた際（または有効になった際）、自動的に内部の最初のフォーカス可能要素にフォーカスを移すことができます。
-- コンポーネントがアンマウントされた際、フォーカスを以前アクティブだった要素に戻します。
+- <T k="doc_focustrap_feat_1" />
+- <T k="doc_focustrap_feat_2" />
+- <T k="doc_focustrap_feat_3" />
+- <T k="doc_focustrap_feat_4" />
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
 <Canvas of={FocusTrapStories.Default} />
 
-## 自動フォーカス
+## <T k="doc_focustrap_auto_focus" />
 
-`autoFocus` プロップを `true` に設定すると、トラップが有効になった瞬間に最初のフォーカス可能要素へフォーカスを移動します。
+<p><T k="doc_focustrap_auto_focus_desc" /></p>
 
 <Canvas of={FocusTrapStories.AutoFocus} />
 

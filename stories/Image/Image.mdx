@@ -17,57 +17,56 @@ import * as ImageStories from "./Image.stories";
   <T k="doc_image_title" />
 </p>
 
-`Image` コンポーネントは、画像を洗練された形で表示するためのラッパーコンポーネントです。
-レスポンシブなサイズ調整、角丸、影、枠線、キャプションなどの機能を備えています。
+<p><T k="doc_image_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
-- アスペクト比の制御: `fit` プロパティ（`object-fit`）により、画像の収まり方を調整可能。
-- スタイリング: `radius`、`shadow`、`border` プロパティで外観を簡単に変更。
-- キャプション付き: `caption` プロパティで画像の下に説明文を追加。
+- <T k="doc_image_feat_aspect" />: <T k="doc_image_feat_aspect_desc" />
+- <T k="doc_image_feat_styling" />: <T k="doc_image_feat_styling_desc" />
+- <T k="doc_image_feat_caption" />: <T k="doc_image_feat_caption_desc" />
 
-## Usage
+## <T k="doc_usage" />
 
 ```tsx
 import { Image } from "@/components/Image/Image";
 
 <Image
   src="path/to/image.webp"
-  alt="説明文"
+  alt="Description"
   width={400}
   radius="medium"
   shadow
-  caption="サンプルの画像です"
+  caption="Sample Image"
 />;
 ```
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
 
-## Variants
+## <T k="doc_variants" />
 
-### Default
+### <T k="doc_default" />
 
-標準的な画像表示です。
+<p><T k="doc_image_variant_default" /></p>
 
 <Canvas of={ImageStories.Default} />
 
 ### Rounded & Circular
 
-`radius` プロパティで角丸を調整できます。
+<p><T k="doc_image_variant_rounded" /></p>
 
 <Canvas of={ImageStories.Rounded} />
 <Canvas of={ImageStories.Circular} />
 
 ### With Caption
 
-`caption` を追加して、画像の説明を表示します。
+<p><T k="doc_image_variant_caption" /></p>
 
 <Canvas of={ImageStories.WithCaption} />
 
 ### With Shadow
 
-`shadow` を有効にして、浮き上がったような効果を与えます。
+<p><T k="doc_image_variant_shadow" /></p>
 
 <Canvas of={ImageStories.WithShadow} />

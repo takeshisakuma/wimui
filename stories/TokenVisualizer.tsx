@@ -132,7 +132,7 @@ export const ShadowSwatch = ({
   value: string;
   shadow: string;
 }) => {
-  // 影の違いを純粋に比較するため、浮き上がっている要素の色はすべて白(#ffffff)に統一
+  // To compare shadow differences purely, the color of the lifted elements is all unified to white (#ffffff)
   const boxColor = name === "Inset" ? "#f8f9fa" : "#ffffff";
 
   return (
@@ -162,7 +162,7 @@ export const ShadowSwatch = ({
           fontSize: "12px",
           color: "var(--text-primary, #333)",
           fontWeight: 800,
-          // 白い背景の上で白いボックスの形を認識させるためのごく薄いボーダー
+          // Very thin border to make the white box shape recognizable on the white background
           border: name === "Inset" ? "none" : "1px solid rgba(0,0,0,0.06)",
         }}
       >

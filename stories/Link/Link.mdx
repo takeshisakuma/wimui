@@ -17,50 +17,52 @@ import * as LinkStories from "./Link.stories";
   <T k="doc_link_title" />
 </p>
 
-`Link`コンポーネントは、テキストベースのナビゲーションや外部リソースへのリンクを提供します。
-多言語対応、サイズ変更、アイコンの追加、および3種類の優先度（Priority）をサポートしています。
+<p><T k="doc_link_long_desc" /></p>
 
 > 📘 Guide: See [Guides / Link vs Button](?path=/docs/guides-link-vs-button--docs) for when to use `<a>` vs `<button>`.
 
-## Usage
+## <T k="doc_usage" />
 
 ```tsx
 import { Link } from "@/components/Link/Link";
 
-<Link label="ホームへ" href="/" priority="primary" />;
+<Link label="Go to Home" href="/" priority="primary" />;
 ```
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
 
-## Variants
+## <T k="doc_variants" />
 
-### Priority
+### <T k="doc_priority" />
 
-リンクの重要度に応じて `primary`, `secondary`, `tertiary` から選択できます。
+<p><T k="doc_link_priority_desc" /></p>
 
 #### Primary
 
-もっとも視認性の高いスタイルです。
+Most visible style.
 
 <Canvas of={LinkStories.Primary} />
 
 #### Secondary
 
-標準的なテキストスタイルです。
+Standard text style.
 
 <Canvas of={LinkStories.Secondary} />
 
 #### Tertiary
 
-控えめなスタイルです。
+<p><T k="doc_link_priority_tertiary_desc" /></p>
+#### Tertiary
+
+Subtle style.
 
 <Canvas of={LinkStories.Tertiary} />
 
-### Icons
+### <T k="doc_icons" />
 
-アイコンをラベルの左右に配置できます。
+<p><T k="doc_link_icons_desc" /></p>
 
 #### Left Icon
 
@@ -70,9 +72,9 @@ import { Link } from "@/components/Link/Link";
 
 <Canvas of={LinkStories.WithIconRight} />
 
-### Sizes
+### <T k="doc_size" />
 
-`small`, `medium`, `large` の3つのサイズをサポートしています。
+<p><T k="doc_link_sizes_desc" /></p>
 
 #### Small
 

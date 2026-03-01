@@ -19,68 +19,67 @@ import { T } from "../T";
 
 
 
-`Flex` は、CSS Flexboxを利用してレイアウトを構築するための基本的なコンポーネントです。
-要素の整列、方向、間隔などをプロパティ経由で直感的に制御できます。
+<p><T k="doc_flex_long_desc" /></p>
 
-## 使い方
+## <T k="doc_usage" />
 
 ```tsx
 import { Flex } from "@/components/Flex/Flex";
 
 const Demo = () => (
   <Flex direction="row" align="center" justify="between" gap={16}>
-    <div>アイテム 1</div>
-    <div>アイテム 2</div>
-    <div>アイテム 3</div>
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
   </Flex>
 );
 ```
 
 <Canvas of={FlexStories.Basic} />
 
-## 特徴
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>説明</th>
+      <th><T k="doc_features" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>直感的な配置</strong></td>
-      <td><code>align-items</code> や <code>justify-content</code> を <code>align</code>, <code>justify</code> プロパティで簡単に設定できます。</td>
+      <td><strong><T k="doc_flex_feat_1" /></strong></td>
+      <td><T k="doc_flex_feat_1_desc" /></td>
     </tr>
     <tr>
-      <td><strong>一貫した間隔</strong></td>
-      <td><code>gap</code> プロパティを使用して、子要素間の隙間を均一に設定できます。</td>
+      <td><strong><T k="doc_flex_feat_2" /></strong></td>
+      <td><T k="doc_flex_feat_2_desc" /></td>
     </tr>
     <tr>
-      <td><strong>柔軟な方向設定</strong></td>
-      <td><code>direction</code> プロパティで縦並び（column）と横並び（row）を切り替えられます。</td>
+      <td><strong><T k="doc_flex_feat_3" /></strong></td>
+      <td><T k="doc_flex_feat_3_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## API リファレンス
+## <T k="doc_api_reference" />
 
 <Controls />
 
-## 垂直方向の並び (Column)
+## <T k="doc_flex_column" />
 
-`direction="column"` を指定することで、要素を垂直に並べることができます。
+<p><T k="doc_flex_column_desc" /></p>
 
 <Canvas of={FlexStories.Column} />
 
-## コンテンツの分散配置 (Justify Content)
+## <T k="doc_flex_justify" />
 
-`justify` プロパティを使用すると、メイン軸（rowの場合は横方向）に沿った要素の配置方法を指定できます。
+<p><T k="doc_flex_justify_desc" /></p>
 
 <Canvas of={FlexStories.JustifyBetween} />
 
-## 折り返し (Wrap)
+## <T k="doc_flex_wrap" />
 
-`wrap="wrap"` を指定すると、親コンテナの幅を超えた要素が自動的に次の行に折り返されます。
+<p><T k="doc_flex_wrap_desc" /></p>
 
 <Canvas of={FlexStories.Wrapped} />

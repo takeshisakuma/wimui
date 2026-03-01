@@ -17,30 +17,30 @@ import { T } from "../T";
   <T k="doc_legend_title" />
 </p>
 
-`Legend` コンポーネントは、`Fieldset` 内でグループのタイトルを表示するために使用されます。
+<p><T k="doc_legend_long_desc" /></p>
 
-## 使い方
+## <T k="doc_usage" />
 
 ```tsx
 import { Fieldset, Legend } from "wimui";
 import { T } from "../T";
 
 <Fieldset>
-  <Legend>グループのタイトル</Legend>
-  {/* フォーム要素 */}
+  <Legend><T k="doc_legend_usage_desc" /></Legend>
+  {/* Form elements */}
 </Fieldset>;
 ```
 
-## ストーリー
+## <T k="doc_story" />
 
-### デフォルト
+### <T k="doc_default" />
 
 <Canvas of={LegendStories.Default} />
 
-### 長いテキスト
+### <T k="doc_long_text" />
 
 <Canvas of={LegendStories.LongText} />
 
-## コンポーネントのプロパティ
+## <T k="doc_component_props" />
 
 <Controls />

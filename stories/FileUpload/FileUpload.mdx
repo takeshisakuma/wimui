@@ -21,39 +21,39 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  ユーザーがローカルファイルを一つ以上選択してアップロードするために使用されます。
+  <T k="doc_fileupload_long_desc" />
 </p>
 
-## 使用法
+## <T k="doc_usage" />
 
-`Button` コンポーネントをトリガーとしてファイル選択ダイアログを開きます。
+<p><T k="doc_fileupload_usage_desc" /></p>
 
 <Canvas of={FileUploadStories.Default} />
 
 <Controls />
 
-## バリエーション
+## <T k="doc_variants" />
 
-### 複数ファイル選択
+### <T k="doc_fileupload_multiple" />
 
-`multiple` プロパティを `true` に設定することで、複数のファイルを選択できます。
+<p><T k="doc_fileupload_multiple_desc" /></p>
 
 <Canvas of={FileUploadStories.Multiple} />
 
-### 特定のファイル形式のみ許可
+### <T k="doc_fileupload_accept" />
 
-`accept` プロパティを使用して、選択可能なファイル形式を制限できます。
+<p><T k="doc_fileupload_accept_desc" /></p>
 
 <Canvas of={FileUploadStories.AcceptImages} />
 
-### 無効状態
+### <T k="doc_disabled_state" />
 
-`disabled` プロパティを `true` に設定することで、操作を無効にします。
+<p><T k="doc_disabled_state_desc" /></p>
 
 <Canvas of={FileUploadStories.Disabled} />
 
-### アイコン付き
+### <T k="doc_fileupload_with_icon" />
 
-`iconName` プロパティを指定することで、ボタンにアイコンを表示できます。`iconPosition` で位置（`left` または `right`）を指定できます。
+<p><T k="doc_fileupload_with_icon_desc" /></p>
 
 <Canvas of={FileUploadStories.WithIcon} />

@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
+
 import { ColorSwatch, ColorGrid } from "../stories/ColorSwatch";
 import { ContrastChecker } from "../stories/ContrastChecker";
 
@@ -46,6 +47,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
     <span className="tone-symbol">Achromatic</span>
     <h3><T k="tone_achromatic" /></h3>
   </div>
+
   <ColorGrid variant="square">
     {[
       { name: "w", hex: "#fff" },
@@ -65,6 +67,7 @@ import { ContrastChecker } from "../stories/ContrastChecker";
         value={c.hex}
         color={c.hex}
       />
+
     ))}
   </ColorGrid>
 </div>
@@ -98,9 +101,11 @@ name={`pccs-${tone.symbol}${i+1}`}
 value={hex}
 color={hex}
 />
+
 ))}
 </ColorGrid>
 </div>
+
 ))}
 
 <hr style={{ margin: "40px 0" }} />
@@ -115,14 +120,17 @@ color={hex}
 
   <h2><T k="guide_pccs_customization_title" /></h2>
     <p><T k="guide_pccs_customization_desc" /></p>
+
     <ul>
       <li>
         <strong><T k="guide_pccs_customization_file_path" /></strong><br />
+
         <code>src/tokens/_pccs-colors.scss</code>
       </li>
     </ul>
     <p style={{ marginTop: "12px", fontSize: "14px", color: "var(--text-secondary)" }}>
       <T k="guide_pccs_customization_note" />
+
     </p>
 
 

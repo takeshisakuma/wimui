@@ -17,50 +17,42 @@ import { T } from "../T";
   <T k="doc_portal_title" />
 </p>
 
-`Portal` コンポーネントは、React コンポーネントツリーの論理構造を保ちつつ、DOM 階層上の物理的な位置だけを別の場所（通常は `document.body` の直下など）に移動させるために使用します。
+<p><T k="doc_portal_long_desc" /></p>
 
-## どのような時に使うのか？
+## <T k="doc_portal_when_to_use" />
 
-主に 「親要素の制約を回避したいとき」 に使用します。具体的には、以下の3つのユースケースが代表的です。
+<p><T k="doc_portal_when_to_use_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>ユースケース</th>
-      <th>説明</th>
+      <th><T k="doc_use_case" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <code>overflow: hidden</code> を回避する
+        <p><T k="doc_portal_u1" /></p>
       </td>
       <td>
-        親要素に <code>overflow: hidden</code>{" "}
-        が設定されている場合、その中にあるツールチップやドロップダウンメニューなどは、親の枠外に出ようとすると見切れて（カットされて）しまいます。Portal
-        を使うことで、これらを DOM
-        の最上位層に逃がし、正しく表示させることができます。
+        <p><T k="doc_portal_u1_desc" /></p>
       </td>
     </tr>
     <tr>
       <td>
-        <code>z-index</code> のスタック問題を解決する
+        <p><T k="doc_portal_u2" /></p>
       </td>
       <td>
-        複雑なレイアウトにおいて、<code>z-index</code>{" "}
-        を指定しても期待通りに重なり順が決まらないことがあります。これは「重ね合わせ文脈（Stacking
-        Context）」の仕組みによるものです。Portal で <code>document.body</code>{" "}
-        直下に送ることで、他のどの要素よりも確実に前面に表示させることが容易になります。
+        <p><T k="doc_portal_u2_desc" /></p>
       </td>
     </tr>
     <tr>
       <td>
-        <code>position: fixed</code> や <code>absolute</code> の基準を変更する
+        <p><T k="doc_portal_u3" /></p>
       </td>
       <td>
-        モーダルなどの全画面要素を配置する際、親要素に <code>transform</code> や{" "}
-        <code>filter</code> がかかっていると、<code>position: fixed</code>{" "}
-        の基準点が画面全体ではなく、その親要素になってしまいます。これを防ぐために、物理的な位置をトップレベルに移動させます。
+        <p><T k="doc_portal_u3_desc" /></p>
       </td>
     </tr>
   </tbody>
@@ -68,37 +60,35 @@ import { T } from "../T";
 
 ---
 
-## 例
+## <T k="doc_example" />
 
-### 親の `overflow: hidden` を突き抜ける
+### <T k="doc_portal_ex_overflow" />
 
-この例では、親要素（点線の枠）に `overflow: hidden` が設定されていますが、Portal を使用したメッセージは画面の右下に正しく表示されます。
+<p><T k="doc_portal_ex_overflow_desc" /></p>
 
 <Canvas of={PortalStories.OverflowEscape} />
 
-### 特定のコンテナへレンダリング
+### <T k="doc_portal_ex_target" />
 
-`container` プロップに DOM の参照を渡すことで、`document.body` 以外（例えばサイドバーや特定の通知エリアなど）にもコンテンツを送り込むことができます。
+<p><T k="doc_portal_ex_target_desc" /></p>
 
-#### 基本的な仕組み
+#### <T k="doc_portal_ex_mechanism" />
 
-青い枠（コンテナ）に対して、別の場所にある送信元からコンテンツを送り込んでいます。
+<p><T k="doc_portal_ex_mechanism_desc" /></p>
 
 <Canvas of={PortalStories.CustomContainer} />
 
-#### ユースケース 1: 通知センター (ログ出力)
+#### <T k="doc_portal_ex_u1_title" />
 
-ページ内の特定のエリアを「通知受取用」のコンテナとして定義し、アプリ内の様々な場所に散らばったコンポーネントから、そのコンテナへ情報を「転送」するパターンです。
-これにより、UIの構造（情報の出力先）とロジック（情報の発生源）を分離できます。
+<p><T k="doc_portal_ex_u1_desc" /></p>
 
 <Canvas of={PortalStories.NotificationCenter} />
 
-#### ユースケース 2: サイドパネルでの詳細表示
+#### <T k="doc_portal_ex_u2_title" />
 
-「複雑なリストアイテムがあり、その詳細を画面端の共通パネルに表示したい」という場合に非常に効果的です。
-この方法の利点は、**「状態（State）はリストアイテム自身が持ったまま、見た目だけを別の場所へ移動できる」** という点です。
+<p><T k="doc_portal_ex_u2_desc" /></p>
 
-例えば、詳細パネル内の入力フォームの値をリストアイテムのローカル State で管理すれば、パネルを閉じたり他のアイテムに切り替えたりしても、再度そのアイテムを選択すれば入力内容を保持したまま再表示させることが容易になります。
+<p><T k="doc_portal_ex_u2_desc_2" /></p>
 
 <Canvas of={PortalStories.SidePanelDetail} />
 
@@ -108,13 +98,17 @@ import { T } from "../T";
 
 <Controls />
 
+## <T k="doc_props" />
+
+<Controls />
+
 <table>
   <thead>
     <tr>
-      <th>プロパティ</th>
-      <th>型</th>
-      <th>デフォルト</th>
-      <th>説明</th>
+      <th><T k="doc_prop_label" /></th>
+      <th><T k="doc_type" /></th>
+      <th><T k="doc_default" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
@@ -126,7 +120,7 @@ import { T } from "../T";
         <code>React.ReactNode</code>
       </td>
       <td>-</td>
-      <td>ポータルを通してレンダリングするコンテンツ。（必須）</td>
+      <td><T k="doc_portal_props_desc_1" /></td>
     </tr>
     <tr>
       <td>
@@ -139,8 +133,7 @@ import { T } from "../T";
         <code>document.body</code>
       </td>
       <td>
-        コンテンツを送り込む先のDOMノード。デフォルトでは{" "}
-        <code>document.body</code> の直下にレンダリングされます。
+        <p><T k="doc_portal_props_desc_2" /></p>
       </td>
     </tr>
   </tbody>

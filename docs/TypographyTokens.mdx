@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
+
 import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisualizer } from "../stories/TokenVisualizer";
 
 <Meta title="Token/Typography Tokens" />
@@ -7,6 +8,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
   <h1><T k="token_type_title" /></h1>
   <p><T k="token_type_desc1" /></p>
+
   <p dangerouslySetInnerHTML={{ __html: "<T k='token_type_desc2' />" }} />
 
 <hr />
@@ -18,21 +20,25 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
     textKey="token_type_text_ex_large"
     type="font-size"
   />
+
   <TypographyVisualizer
     token="--font-size-large"
     textKey="token_type_text_large"
     type="font-size"
   />
+
   <TypographyVisualizer
     token="--font-size-medium"
     textKey="token_type_text_medium"
     type="font-size"
   />
+
   <TypographyVisualizer
     token="--font-size-small"
     textKey="token_type_text_small"
     type="font-size"
   />
+
   <TypographyVisualizer
     token="--font-size-ex-small"
     textKey="token_type_text_ex_small"
@@ -45,7 +51,9 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 <h2><T k="token_type_weight" /></h2>
 <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
   <FontWeightVisualizer weight={400} token="--font-weight-normal" name="Normal" />
+
   <FontWeightVisualizer weight={500} token="--font-weight-medium" name="Medium" />
+
   <FontWeightVisualizer weight={700} token="--font-weight-bold" name="Bold" />
 </TokenGrid>
 
@@ -60,14 +68,17 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
         token="--line-height-loose-jpan" 
         textKey="token_type_lh_jpan_loose"
       />
+
       <TypographyVisualizer 
         token="--line-height-normal-jpan" 
         textKey="token_type_lh_jpan_normal"
       />
+
       <TypographyVisualizer 
         token="--line-height-tight-jpan" 
         textKey="token_type_lh_jpan_tight"
       />
+
     </div>
 
     <div>
@@ -76,14 +87,17 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
         token="--line-height-loose-latn"
         textKey="token_type_lh_latn_loose"
       />
+
       <TypographyVisualizer
         token="--line-height-normal-latn"
         textKey="token_type_lh_latn_normal"
       />
+
       <TypographyVisualizer
         token="--line-height-tight-latn"
         textKey="token_type_lh_latn_tight"
       />
+
     </div>
 
   </div>
@@ -93,7 +107,9 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 <h2><T k="token_type_decor" /></h2>
 <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
   <DecorationVisualizer token="--decoration-line-through" name="Line Through" type="decoration" />
+
   <DecorationVisualizer token="--decoration-underline" name="Underline" type="decoration" />
+
   <DecorationVisualizer token="--decoration-highlight-color" name="Highlight Color" type="highlight" />
 </TokenGrid>
 

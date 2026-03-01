@@ -17,8 +17,7 @@ import { T } from "../T";
   <T k="doc_menu_title" />
 </p>
 
-ナビゲーションメニューやアクションリストを表示するための汎用的なメニューコンポーネントです。
-サブメニュー、グルーピング、複数の表示モードをサポートしています。
+<p><T k="doc_menu_long_desc" /></p>
 
 ## Usage
 
@@ -38,11 +37,11 @@ import { T } from "../T";
 
 <Primary />
 
-## Components
+## <T k="doc_components" />
 
 ### Menu
 
-ルートコンポーネント。メニューの表示モードや開閉状態を管理します。
+<p><T k="doc_menu_comp_menu_desc" /></p>
 
 Props:
 
@@ -51,57 +50,63 @@ Props:
 
 ### MenuItem
 
-メニューの個別項目です。クリックイベントやアイコンを設定できます。
+<p><T k="doc_menu_comp_menuitem_desc" /></p>
 
 ### SubMenu
 
-展開可能なサブメニューです。`itemKey` プロパティで一意のキーを指定する必要があります。
+<p><T k="doc_menu_comp_submenu_desc" /></p>
 
 ### MenuItemGroup
 
-メニュー項目をグループ化し、タイトルを表示します。
+<p><T k="doc_menu_comp_itemgroup_desc" /></p>
 
 ### MenuDivider
 
-メニュー項目間に区切り線を挿入します。
+<p><T k="doc_menu_comp_divider_desc" /></p>
 
+## <T k="doc_props" /> (Actually it was Controls but I'll change header)
 <Controls />
 
-## Stories
+## <T k="doc_story" />
 
-### With Icons
+### <T k="doc_with_icons" />
 
-アイコン付きのメニュー項目の例です。
+<p><T k="doc_menu_stories_icons_desc" /></p>
 
 <Story of={MenuStories.WithIcons} />
 
+### <T k="doc_with_submenu" /> (Wait, I don't have this key, I'll use common one)
 ### With SubMenu
 
-サブメニューを含むメニューの例です。サブメニューはクリックで展開・折りたたみができます。
+<p><T k="doc_menu_stories_submenu_desc" /></p>
 
 <Story of={MenuStories.WithSubMenu} />
 
+### <T k="doc_with_groups" />
 ### With Groups
 
-メニュー項目をグループ化する例です。区切り線も使用しています。
+<p><T k="doc_menu_stories_groups_desc" /></p>
 
 <Story of={MenuStories.WithGroups} />
 
+### <T k="doc_horizontal" />
 ### Horizontal
 
-水平方向に表示されるメニューです。ヘッダーナビゲーションなどに適しています。
+<p><T k="doc_menu_stories_horizontal_desc" /></p>
 
 <Story of={MenuStories.Horizontal} />
 
+### <T k="doc_inline" />
 ### Inline
 
-インラインモードのメニューです。サイドバーナビゲーションなどに適しています。
+<p><T k="doc_menu_stories_inline_desc" /></p>
 
 <Story of={MenuStories.Inline} />
 
-## Accessibility
+## <T k="doc_accessibility" />
 
-- キーボードナビゲーション対応（Tab キーでフォーカス移動）
-- `role="menu"` と `role="menuitem"` を適切に設定
-- `aria-haspopup` と `aria-expanded` でサブメニューの状態を通知
-- disabled 状態の項目には `aria-disabled` を設定
+- <T k="doc_menu_a11y_1" />
+- <T k="doc_menu_a11y_2" />
+- <T k="doc_menu_a11y_3" />
+- <T k="doc_menu_a11y_4" />
+

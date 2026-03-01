@@ -21,31 +21,29 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  情報のQRコードを表示するためのコンポーネント。
+  <T k="doc_qrcode_long_desc" />
 </p>
 
 <Description>
-  `QRCode` は指定された文字列を QR コードとしてレンダリングします。SVG または
-  Canvas
-  形式での出力に対応しており、サイズ、色、エラー訂正レベルのカスタマイズが可能です。
+  <p><T k="doc_qrcode_desc_2" /></p>
 </Description>
 
 <Primary />
 
-<h2>バリエーション</h2>
+<h2><T k="doc_variants" /></h2>
 
-<h3>サイズ</h3>
-<p>`size` プロップで QR コードの幅と高さを指定できます。</p>
+<h3><T k="doc_sizes" /></h3>
+<p><T k="doc_qrcode_var_size_desc" /></p>
 <Canvas of={QRCodeStories.Large} />
 
-<h3>カスタムカラー</h3>
+<h3><T k="doc_qrcode_var_color" /></h3>
 <p>
-  `bgColor` と `fgColor` を使用して、背景色と前景（ドット）の色を変更できます。
+  <T k="doc_qrcode_var_color_desc" />
 </p>
 <Canvas of={QRCodeStories.CustomColors} />
 
-<h3>ロゴ画像付き</h3>
-<p>`imageSettings` を使用して、QR コードの中央にロゴ画像を配置できます。</p>
+<h3><T k="doc_qrcode_var_logo" /></h3>
+<p><T k="doc_qrcode_var_logo_desc" /></p>
 <Canvas of={QRCodeStories.WithImage} />
 
 <Controls />

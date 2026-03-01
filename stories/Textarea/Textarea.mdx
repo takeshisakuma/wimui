@@ -21,66 +21,60 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  複数行のテキストを入力するためのコンポーネントです。
+  <T k="doc_textarea_long_desc" />
 </p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-標準的な `Textarea` の使用例です。
+<p><T k="doc_textarea_usage_basic_desc" /></p>
 
 <Canvas of={TextareaStories.Basic} />
 
-## バリエーション
+## <T k="doc_variations" />
 
 `variant` プロパティでスタイルを変更できます。
 
-### Ghost
+### <T k="doc_ghost" />
 
-背景色がないシンプルなスタイルです。
-通常時は入力フィールドであることを強調せず、ホバー時やフォーカス時のみ視覚的なフィードバックを提供します。
+<p><T k="doc_textarea_var_ghost_desc" /></p>
 
-使用例:
+<p><T k="doc_textarea_var_ghost_ex" /></p>
 
-- 詳細画面のタイトルなど、表示がメインで編集も可能な「Click-to-Edit」UI
-- リストやテーブル内など、入力項目が多数並ぶ画面でのノイズ低減
-- 検索バーなど、背景に溶け込ませたい場合
+<p><T k="doc_textarea_var_ghost_ex_list" /></p>
 
-インタラクション:
+<p><T k="doc_textarea_var_ghost_inter" /></p>
 
-- 未入力時: プレースホルダーで入力エリアであることを示唆
-- ホバー時: 薄い背景色が表示され、操作可能であることを通知
-- フォーカス時: プライマリーカラーのボーダーが表示され、入力状態であることを明示
+<p><T k="doc_textarea_var_ghost_inter_list" /></p>
 
 <Canvas of={TextareaStories.Ghost} />
 
-## 状態 (States)
+## <T k="doc_states" />
 
-コンポーネントの状態を視覚的に表現します。
+<p><T k="doc_states_desc" /></p>
 
-### Error
+### <T k="doc_error_status" />
 
-エラーが発生している状態です。
+<p><T k="doc_error_status_desc" /></p>
 
 <Canvas of={TextareaStories.ErrorStatus} />
 
-### Disabled
+### <T k="doc_disabled" />
 
-入力が無効化されている状態です。
+<p><T k="doc_disabled_desc" /></p>
 
 <Canvas of={TextareaStories.Disabled} />
 
-## レイアウト
+## <T k="doc_layout" />
 
-### Full Width
+### <T k="doc_full_width" />
 
-親要素の幅いっぱいに広がります。
+<p><T k="doc_textarea_lay_full_desc" /></p>
 
 <Canvas of={TextareaStories.FullWidth} />
 
-## フォーム構成例 (Form Pattern)
+## <T k="doc_form_pattern" />
 
-`Label` や `FieldError` と組み合わせたフォームの構築例です。
-必須項目や任意項目のラベル、エラーメッセージの配置などを確認できます。
+<p><T k="doc_textarea_ex_form_desc" /></p>
 
 <Canvas of={TextareaStories.FormPattern} />
 

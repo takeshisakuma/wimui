@@ -17,42 +17,42 @@ import { T } from "../T";
   <T k="doc_fieldset_title" />
 </p>
 
-`Fieldset` コンポーネントは、関連するフォーム要素を論理的にグループ化するために使用されます。
-通常、アクセシビリティの観点から `Legend` コンポーネントと組み合わせて、そのグループの目的を示します。
+<p><T k="doc_fieldset_long_desc" /></p>
 
-## 使い方
+## <T k="doc_usage" />
 
 ```tsx
 import { Fieldset, Legend, Label, Input } from "wimui";
 import { T } from "../T";
 
 <Fieldset>
-  <Legend>ユーザー情報</Legend>
-  <Label label="名前">
+  <Legend>User Information</Legend>
+  <Label label="Name">
     <Input />
   </Label>
-  <Label label="メールアドレス">
+  <Label label="Email Address">
     <Input />
   </Label>
 </Fieldset>;
 ```
 
-## ストーリー
+## <T k="doc_stories" />
 
-### デフォルト
+### <T k="doc_default" />
 
 <Canvas of={FieldsetStories.Default} />
 
-### チェックボックスグループとの組み合わせ
+### <T k="doc_fieldset_with_checkbox" />
 
 <Canvas of={FieldsetStories.WithCheckboxGroup} />
 
-### 無効化状態
+### <T k="doc_disabled_state" />
 
-`disabled` プロパティを設定すると、`Fieldset` 内のすべてのフォーム要素が一括で無効化されます。
+<p><T k="doc_fieldset_disabled_desc" /></p>
 
 <Canvas of={FieldsetStories.Disabled} />
 
-## コンポーネントのプロパティ
+## <T k="doc_component_api" />
 
 <Controls />
+

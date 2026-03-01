@@ -17,26 +17,26 @@ import * as CopyButtonStories from "./CopyButton.stories";
   <T k="doc_copybutton_title" />
 </p>
 
-指定されたテキストをクリップボードにコピーするためのボタンコンポーネント
+<p><T k="doc_copybutton_long_desc" /></p>
 
-## Comparison with Button
+## <T k="doc_copybutton_comparison" />
 
-通常の `Button`(priority="tertiary" + アイコンのみ)との違い
+<p><T k="doc_copybutton_comparison_desc" /></p>
 
-- コピーロジックのカプセル化: クリック時に `navigator.clipboard.writeText` を実行するロジックをあらかじめ持っています。
-- 状態フィードバック: コピー完了後、アイコンが一時的に「チェック」に切り替わり、成功を示す緑色（role="positive"）になります。
+<p><T k="doc_copybutton_comparison_1" /></p>
+<p><T k="doc_copybutton_comparison_2" /></p>
 
 ## Usage
 
 ```tsx
 import { CopyButton } from "@/components/CopyButton/CopyButton";
 
-<CopyButton value="コピーしたいテキスト" />;
+<CopyButton value="Text to be copied" />;
 ```
 
-## Examples
+## <T k="doc_example" />
 
-### Default
+### <T k="doc_default" />
 
 <Canvas of={CopyButtonStories.Default} />
 

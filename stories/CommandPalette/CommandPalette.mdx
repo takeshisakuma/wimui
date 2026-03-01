@@ -17,92 +17,95 @@ import { T } from "../T";
   <T k="doc_commandpalette_title" />
 </p>
 
-`CommandPalette`は、アプリケーション全体での検索、コマンド実行、ナビゲーションを提供するためのモーダルインターフェースです。
+<p>
+  <T k="doc_commandpalette_long_desc_1" />
+</p>
+<p>
+  <T k="doc_commandpalette_long_desc_2" />
+</p>
 
-モバイルやタブレットでも使いやすいように、画面上部への固定やタップしやすいサイズ調整が自動的に行われます。
-
-## 特徴
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>説明</th>
+      <th><T k="doc_features" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>マルチデバイス対応</strong></td>
-      <td>デスクトップでは中央、モバイルでは画面上部に最適化されたレイアウト。</td>
+      <td><strong><T k="doc_commandpalette_feature_1" /></strong></td>
+      <td><T k="doc_commandpalette_feature_1_desc" /></td>
     </tr>
     <tr>
-      <td><strong>ショートカット & トリガー</strong></td>
-      <td><code>Cmd+K</code> ショートカットに加え、UI上のボタン（<code>Trigger</code>）からも起動可能。</td>
+      <td><strong><T k="doc_commandpalette_feature_2" /></strong></td>
+      <td><T k="doc_commandpalette_feature_2_desc" /></td>
     </tr>
     <tr>
-      <td><strong>キーボードナビゲーション</strong></td>
-      <td>矢印キーでの選択、Enterでの実行。</td>
+      <td><strong><T k="doc_commandpalette_feature_3" /></strong></td>
+      <td><T k="doc_commandpalette_feature_3_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## 構成
+## <T k="doc_components_structure" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>役割</th>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_role" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>CommandPalette</code></td>
-      <td>ルートコンポーネント（Provider）</td>
+      <td><T k="doc_commandpalette_role_1" /></td>
     </tr>
     <tr>
       <td><code>CommandPaletteTrigger</code></td>
-      <td>起動用ボタン（任意）</td>
+      <td><T k="doc_commandpalette_role_2" /></td>
     </tr>
     <tr>
       <td><code>CommandPaletteContent</code></td>
-      <td>モーダルコンテンツ本体</td>
+      <td><T k="doc_commandpalette_role_3" /></td>
     </tr>
     <tr>
       <td><code>CommandPaletteInput</code></td>
-      <td>検索入力</td>
+      <td><T k="doc_commandpalette_role_4" /></td>
     </tr>
     <tr>
       <td><code>CommandPaletteList</code></td>
-      <td>アイテム一覧のコンテナ</td>
+      <td><T k="doc_commandpalette_role_5" /></td>
     </tr>
     <tr>
       <td><code>CommandPaletteGroup</code></td>
-      <td>アイテムをグループ化</td>
+      <td><T k="doc_commandpalette_role_6" /></td>
     </tr>
     <tr>
       <td><code>CommandPaletteItem</code></td>
-      <td>各コマンドアイテム</td>
+      <td><T k="doc_commandpalette_role_7" /></td>
     </tr>
     <tr>
       <td><code>CommandPaletteEmpty</code></td>
-      <td>検索結果がない時の表示</td>
+      <td><T k="doc_commandpalette_role_8" /></td>
     </tr>
     <tr>
       <td><code>CommandPaletteFooter</code></td>
-      <td>操作ヒントフッター</td>
+      <td><T k="doc_commandpalette_role_9" /></td>
     </tr>
   </tbody>
 </table>
 
-## 使い方
+## <T k="doc_usage" />
 
-### 基本パターン（Triggerを使用）
+### <T k="doc_commandpalette_usage_1" />
 
 ```tsx
 <CommandPalette>
   <CommandPaletteTrigger>
-    <span>コマンドを開く</span>
+    <span>Open Command</span>
     <kbd>⌘K</kbd>
   </CommandPaletteTrigger>
 
@@ -115,7 +118,7 @@ import { T } from "../T";
 </CommandPalette>
 ```
 
-### 制御パターン（状態を外部で管理）
+### <T k="doc_commandpalette_usage_2" />
 
 ```tsx
 const [open, setOpen] = useState(false);
@@ -130,10 +133,10 @@ return (
 );
 ```
 
-## プレビュー
+## <T k="doc_preview" />
 
 <Primary />
 
-## プロパティ
+## <T k="doc_properties" />
 
 <Controls />

@@ -1,37 +1,47 @@
 import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
 import * as BackTopStories from "./BackTop.stories";
+import { T } from "../T";
 
 <Meta of={BackTopStories} />
 
 # BackTop
 
-A button that appears when the page is scrolled and allows the user to quickly return to the top.
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_backtop_desc" />
+</p>
 
-## When To Use
+## <T k="doc_when_to_use" />
 
-- When the page is very long and needs a quick way to return to the top.
-- When the user needs to frequently scroll back to the top for navigation or other actions.
+- <T k="doc_backtop_usage_1" />
+- <T k="doc_backtop_usage_2" />
 
-## Examples
+## <T k="doc_example" />
 
-### Basic
+### <T k="doc_basic" />
 
-The button appears after scrolling 400px.
+<p><T k="doc_backtop_basic_desc" /></p>
 
 <Canvas of={BackTopStories.Basic} />
 
-### Custom Element
+### <T k="doc_backtop_custom_title" />
 
-You can customize the content of the BackTop button.
+<p><T k="doc_backtop_custom_desc" /></p>
 
 <Canvas of={BackTopStories.CustomElement} />
 
-### Specific Target
+### <T k="doc_backtop_target_title" />
 
-You can specify a target container for the scroll event.
+<p><T k="doc_backtop_target_desc" /></p>
 
 <Canvas of={BackTopStories.SpecificTarget} />
 
-## Props
+## <T k="doc_props" />
 
 <Controls of={BackTopStories.Basic} />

@@ -17,9 +17,9 @@ import { T } from "../T";
   <T k="doc_datepicker_title" />
 </p>
 
-ユーザーが日付を選択するためのコンポーネントです。カスタムカレンダーポップアップを使用して、直感的な日付選択体験を提供します。
+<p><T k="doc_datepicker_long_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
 ```tsx
 import { DatePicker } from "@/components/DatePicker/DatePicker";
@@ -27,56 +27,56 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 <DatePicker onChange={(date) => console.log(date)} placeholder="Select date" />;
 ```
 
-## Examples
+## <T k="doc_example" />
 
-### Default
+### <T k="doc_default" />
 
 <Canvas of={DatePickerStories.Default} />
 
-### Outline
+### <T k="doc_outline" />
 
 <Canvas of={DatePickerStories.Outline} />
 
-### Ghost
+### <T k="doc_ghost" />
 
 <Canvas of={DatePickerStories.Ghost} />
 
-### Error State
+### <T k="doc_error_state" />
 
 <Canvas of={DatePickerStories.ErrorStatus} />
 
-### Disabled State
+### <T k="doc_disabled_state" />
 
 <Canvas of={DatePickerStories.Disabled} />
 
-### Full Width
+### <T k="doc_full_width" />
 
 <Canvas of={DatePickerStories.FullWidth} />
 
-## 主な機能
+## <T k="doc_datepicker_main_features" />
 
-### カスタムカレンダーポップアップ
+### <T k="doc_datepicker_custom_popup" />
 
-ネイティブの `input type="date"` の代わりに、カスタマイズ可能なカレンダーポップアップを使用しています。
+<p><T k="doc_datepicker_custom_popup_desc" /></p>
 
-利点:
+<p><T k="doc_datepicker_advantages" /></p>
 
-- 統一されたUIデザイン（ブラウザに依存しない）
-- より大きくクリックしやすいカレンダー
-- カスタマイズ可能な日付フォーマット
-- クリアボタンによる簡単なリセット
+<p><T k="doc_datepicker_adv_1" /></p>
+<p><T k="doc_datepicker_adv_2" /></p>
+<p><T k="doc_datepicker_adv_3" /></p>
+<p><T k="doc_datepicker_adv_4" /></p>
 
-### クリアボタン
+### <T k="doc_datepicker_clear_btn" />
 
-`clearable` プロパティ（デフォルト: `true`）により、選択した日付を簡単にクリアできます。
+<p><T k="doc_datepicker_clear_btn_desc" /></p>
 
 ```jsx
 <DatePicker clearable={true} onChange={(date) => console.log(date)} />
 ```
 
-### カスタム日付フォーマット
+### <T k="doc_datepicker_custom_format" />
 
-`format` プロパティで表示フォーマットをカスタマイズできます。
+<p><T k="doc_datepicker_custom_format_desc" /></p>
 
 ```jsx
 <>
@@ -86,23 +86,23 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 </>
 ```
 
-サポートされるフォーマット:
+<p><T k="doc_datepicker_supported_formats" /></p>
 
-- `YYYY` - 4桁の年
-- `MM` - 2桁の月
-- `DD` - 2桁の日
+<p><T k="doc_datepicker_fmt_1" /></p>
+<p><T k="doc_datepicker_fmt_2" /></p>
+<p><T k="doc_datepicker_fmt_3" /></p>
 
-### 制御/非制御コンポーネント
+### <T k="doc_datepicker_control_types" />
 
-DatePickerは制御コンポーネントと非制御コンポーネントの両方として使用できます。
+<p><T k="doc_datepicker_control_types_desc" /></p>
 
-非制御コンポーネント:
+<p><T k="doc_datepicker_uncontrolled" /></p>
 
 ```jsx
 <DatePicker defaultValue={new Date()} onChange={(date) => console.log(date)} />
 ```
 
-制御コンポーネント:
+<p><T k="doc_datepicker_controlled" /></p>
 
 ```jsx
 const [date, setDate] = useState(new Date());
@@ -110,30 +110,30 @@ const [date, setDate] = useState(new Date());
 <DatePicker value={date} onChange={setDate} />;
 ```
 
-### キーボード操作
+### <T k="doc_datepicker_keyboard" />
 
-- `Enter` / `Space` - カレンダーを開く
-- `Escape` - カレンダーを閉じる
-- カレンダー内では矢印キーで日付を選択可能
+<p><T k="doc_datepicker_kb_1" /></p>
+<p><T k="doc_datepicker_kb_2" /></p>
+<p><T k="doc_datepicker_kb_3" /></p>
 
-### アクセシビリティ
+### <T k="doc_datepicker_a11y" />
 
-- ARIA属性による適切なスクリーンリーダー対応
-- キーボードナビゲーション完全サポート
-- フォーカス管理
-- クリアボタンとカレンダーボタンにaria-label
+<p><T k="doc_datepicker_a11y_1" /></p>
+<p><T k="doc_datepicker_a11y_2" /></p>
+<p><T k="doc_datepicker_a11y_3" /></p>
+<p><T k="doc_datepicker_a11y_4" /></p>
 
-## Calendarコンポーネントとの統合
+## <T k="doc_datepicker_integration" />
 
-DatePickerは内部で[Calendar](/docs/component-navigation-calendar--docs)コンポーネントを使用しています。将来的には、Calendarコンポーネントの機能（範囲選択、無効日付など）もDatePickerで利用可能になります。
+<p><T k="doc_datepicker_integration_desc" /></p>
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
 
-## TypeScript サポート
+## <T k="doc_datepicker_ts" />
 
-DatePickerは完全な型定義を提供しています。
+<p><T k="doc_datepicker_ts_desc" /></p>
 
 ```tsx
 import { DatePicker } from "./DatePicker";

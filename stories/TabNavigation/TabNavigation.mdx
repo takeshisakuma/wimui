@@ -1,11 +1,11 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import TabNavigation from "@/components/TabNavigation/TabNavigation";
 import * as TabNavigationStories from "./TabNavigation.stories";
 import { T } from "../T";
 
 <Meta of={TabNavigationStories} />
 
-# TabNavigation
+<Title />
 
 <p
   style={{
@@ -15,46 +15,47 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  <T k="doc_tabnavigation_title" />
+  <T k="doc_tab_navigation_title" />
 </p>
 
-<T k="doc_tab_navigation_title" />
+<p><T k="doc_tabnavigation_long_desc" /></p>
 
-TabNavigationは、異なるビューやコンテキスト間を移動するためのリンクセットを提供します。
-`Tabs` コンポーネントとは異なり、主にページレベルのナビゲーションやフィルタリング（URL遷移を伴うものなど）を想定して設計されています。
-
-## インポート
+## Usage
 
 ```jsx
 import TabNavigation from "@/components/TabNavigation/TabNavigation";
 ```
 
-## 基本的な使用方法
+## <T k="doc_basic_usage" />
 
-デフォルトのスタイルは `underline` です。これは、二次的なページナビゲーションとして一般的に使用されます。
+<p><T k="doc_tabnavigation_basic_desc" /></p>
 
 <Canvas of={TabNavigationStories.Default} />
 
-## バリエーション
+<Primary />
 
-### Pill (カプセル型)
+## Props
 
-Pillスタイルは、リストのフィルタリングや、状態の切り替えなど、コンテキストを大きく変更しない操作に適しています。
+<Controls />
+
+## <T k="doc_variations" />
+
+### <T k="doc_tabnavigation_pill" />
+
+<p><T k="doc_tabnavigation_pill_desc" /></p>
 
 <Canvas of={TabNavigationStories.Pills} />
 
-### Contained (コンテナ型)
+### <T k="doc_tabnavigation_contained" />
 
-Containedスタイルは、セグメントコントロールに似ており、データの表示形式（例：グラフの時間軸の切り替えなど）を変更する場合によく使用されます。
+<p><T k="doc_tabnavigation_contained_desc" /></p>
 
 <Canvas of={TabNavigationStories.Contained} />
 
-## アイコン付き
+### <T k="doc_tabnavigation_icons" />
 
-`icon` プロパティを使用して、各アイテムにアイコンを追加できます。
+<p><T k="doc_tabnavigation_icons_desc" /></p>
 
 <Canvas of={TabNavigationStories.WithIcons} />
 
-## API リファレンス
-
-<Controls />
+<Stories />

@@ -17,37 +17,38 @@ import { T } from "../T";
   <T k="doc_sidebar_title" />
 </p>
 
-Sidebarは、ページの横側に配置されるナビゲーションや情報のパネルです。
+<p><T k="doc_sidebar_long_desc" /></p>
 
-> **PCのみ**: このコンポーネントは主にPC（マウス・キーボード操作）向けに設計されています。スマートフォンなどの小画面デバイスでは、`TabBar`やドロワーメニューなどの代替手段を検討してください。
+> **<T k="doc_sidebar_pc_only" />**
 
 > 📘 Guide: See [Guides / App Layout](?path=/docs/guides-app-layout--docs) for layout patterns.
 
-## インポート
+## <T k="doc_import" />
 
 ```jsx
 import Sidebar from "@/components/Sidebar/Sidebar";
 import { T } from "../T";
 ```
 
-## 基本的な使用方法
+## <T k="doc_basic_usage" />
 
-`Sidebar` の中に `Sidebar.Header`, `Sidebar.Content`, `Sidebar.Footer` を配置し、`Content` の中に `Sidebar.Item` を配置します。
+<T k="doc_sidebar_usage_desc" /> (Wait, I'll use common or add)
+        Place \`Sidebar.Header\`, \`Sidebar.Content\`, and \`Sidebar.Footer\` inside \`Sidebar\`, and place \`Sidebar.Item\` inside \`Content\`.
 
 <Canvas of={SidebarStories.Default} />
 
-## 折りたたみ状態 (Collapsed)
+## <T k="doc_sidebar_collapsed" />
 
-`collapsed` プロパティを使用すると、サイドバーを最小サイズに折りたたみます。アイコンのみが表示されるようになります。
+<p><T k="doc_sidebar_collapsed_desc" /></p>
 
 <Canvas of={SidebarStories.Collapsed} />
 
-## カスタム幅
+## <T k="doc_sidebar_custom_width" />
 
-`width` プロパティを使用して、展開時の幅を調整できます。
+<p><T k="doc_sidebar_custom_width_desc" /></p>
 
 <Canvas of={SidebarStories.CustomWidth} />
 
-## API リファレンス
+## <T k="doc_api_reference" />
 
 <Controls />

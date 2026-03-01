@@ -17,32 +17,32 @@ import * as FieldErrorStories from "./FieldError.stories";
   <T k="doc_fielderror_title" />
 </p>
 
-`FieldError` コンポーネントは、入力フォームのバリデーションエラーをユーザーに通知するために使用します。
+<p><T k="doc_fielderror_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
-- 視認性: `Paragraph` コンポーネントの `color="error"` と `size="small"` を標準で使用し、重要度を伝えます。
-- アクセシビリティ: `role="alert"` と `aria-live="polite"` を備えており、スクリーンリーダーを使用するユーザーにエラーの発生を即座に伝えます。
-- 一貫性: フォーム全体でエラー表示のスタイルを統一できます。
+- <T k="doc_fielderror_feat_1" />
+- <T k="doc_fielderror_feat_2" />
+- <T k="doc_fielderror_feat_3" />
 
-## 使い方
+## <T k="doc_usage" />
 
 ```tsx
 import { FieldError } from "@/components/FieldError/FieldError";
 
-<FieldError content="メールアドレスの形式が正しくありません。" />;
+<FieldError content="The email address format is incorrect." />;
 ```
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
 
-## バリエーション
+## <T k="doc_variants" />
 
-### デフォルト
+### <T k="doc_default" />
 
 <Canvas of={FieldErrorStories.Default} />
 
-### 短いメッセージ
+### <T k="doc_fielderror_short_msg" />
 
 <Canvas of={FieldErrorStories.ShortMessage} />

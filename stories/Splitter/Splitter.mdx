@@ -1,15 +1,16 @@
 import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
 import * as SplitterStories from "./Splitter.stories";
+import { T } from "../T";
 
 <Meta of={SplitterStories} />
 
 # Splitter
 
-Splitter は、複数のパネルをドラッグ操作でリサイズできるようにするレイアウトコンポーネントです。
+<p><T k="doc_splitter_long_desc" /></p>
 
-> **PCのみ**: ドロップ＆ドラッグ等のポインター操作によるリサイズ機能は、主にPC環境向けに設計されています。タッチデバイスでの利用は想定されていません。
+> **<T k="doc_splitter_pc_only" />**
 
-## 使用方法
+## <T k="doc_usage" />
 
 ```tsx
 import { Splitter } from "wimui";
@@ -21,45 +22,45 @@ import { Splitter } from "wimui";
 </Splitter>;
 ```
 
-## 例
+## <T k="doc_example" />
 
-### 水平方向 (Horizontal)
+### Horizontal
 
 <Canvas of={SplitterStories.Horizontal} />
 
-### 垂直方向 (Vertical)
+### Vertical
 
 <Canvas of={SplitterStories.Vertical} />
 
-### 複数パネル
+### <T k="doc_splitter_multi" />
 
 <Canvas of={SplitterStories.MultiplePanels} />
 
-### 入れ子 (Nested)
+### <T k="doc_splitter_nested" />
 
 <Canvas of={SplitterStories.Nested} />
 
-### サイズ制限 (Constraints)
+### <T k="doc_splitter_constraints" />
 
-`minSize` や `maxSize` プロパティを使用して、パネルのリサイズ範囲を制限できます。
+<p><T k="doc_splitter_constraints_desc" /></p>
 
 <Canvas of={SplitterStories.Constraints} />
 
-## Props
+## <T k="doc_props" />
 
 ### Splitter Props
 
 <Controls of={SplitterStories.Horizontal} />
 
-### Splitter.Panel Props
+### <T k="doc_splitter_panel_props" />
 
 <table>
   <thead>
     <tr>
-      <th>Property</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th>Description</th>
+      <th><T k="doc_property" /></th>
+      <th><T k="doc_type" /></th>
+      <th><T k="doc_default" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
@@ -71,7 +72,7 @@ import { Splitter } from "wimui";
         <code>number</code>
       </td>
       <td>-</td>
-      <td>初期サイズ（パーセンテージ）</td>
+      <td><T k="doc_splitter_p_def_size" /></td>
     </tr>
     <tr>
       <td>
@@ -83,7 +84,7 @@ import { Splitter } from "wimui";
       <td>
         <code>0</code>
       </td>
-      <td>最小サイズ（パーセンテージ）</td>
+      <td><T k="doc_splitter_p_min_size" /></td>
     </tr>
     <tr>
       <td>
@@ -95,7 +96,7 @@ import { Splitter } from "wimui";
       <td>
         <code>100</code>
       </td>
-      <td>最大サイズ（パーセンテージ）</td>
+      <td><T k="doc_splitter_p_max_size" /></td>
     </tr>
     <tr>
       <td>
@@ -105,20 +106,20 @@ import { Splitter } from "wimui";
         <code>ReactNode</code>
       </td>
       <td>-</td>
-      <td>内容</td>
+      <td><T k="doc_content" /></td>
     </tr>
   </tbody>
 </table>
 
-### Splitter.Handle Props
+### <T k="doc_splitter_handle_props" />
 
 <table>
   <thead>
     <tr>
-      <th>Property</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th>Description</th>
+      <th><T k="doc_property" /></th>
+      <th><T k="doc_type" /></th>
+      <th><T k="doc_default" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
@@ -130,7 +131,8 @@ import { Splitter } from "wimui";
         <code>ReactNode</code>
       </td>
       <td>-</td>
-      <td>カスタムハンドル要素（オプション）</td>
+      <td><T k="doc_splitter_p_handle_custom" /></td>
     </tr>
   </tbody>
 </table>
+

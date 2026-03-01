@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as BadgeStories from "./Badge.stories";
 import { T } from "../T";
 
 <Meta of={BadgeStories} />
 
-# Badge
+<Title />
 
 <p
   style={{
@@ -17,40 +17,44 @@ import { T } from "../T";
   <T k="doc_badge_title" />
 </p>
 
-バッジコンポーネントは、ステータス、通知数、または短いラベルを表示するために使用されます。
+<p><T k="doc_badge_long_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
 <Canvas of={BadgeStories.Primary} />
 
-## バリエーション
-
-`variant` プロパティを使用して、バッジのスタイルを変更できます。
-
-### Destructive
-
-<Canvas of={BadgeStories.Destructive} />
-
-### Outline
-
-<Canvas of={BadgeStories.Outline} />
-
-### Secondary
-
-<Canvas of={BadgeStories.Secondary} />
-
-### Icon with Text
-
-`icon` プロパティを使用して、バッジにアイコンを追加できます。
-
-<Canvas of={BadgeStories.WithIcon} />
-
-### Icon Only
-
-`content` プロパティを省略し、`icon` のみを指定することで、アイコンのみのバッジを表示できます。
-
-<Canvas of={BadgeStories.IconOnly} />
+<Primary />
 
 ## Props
 
 <Controls />
+
+## <T k="doc_variations" />
+
+<p><T k="doc_badge_variants_desc" /></p>
+
+### <T k="doc_destructive" />
+
+<Canvas of={BadgeStories.Destructive} />
+
+### <T k="doc_outline" />
+
+<Canvas of={BadgeStories.Outline} />
+
+### <T k="doc_secondary" />
+
+<Canvas of={BadgeStories.Secondary} />
+
+### <T k="doc_badge_with_icon" />
+
+<p><T k="doc_badge_with_icon_desc" /></p>
+
+<Canvas of={BadgeStories.WithIcon} />
+
+### <T k="doc_badge_icon_only" />
+
+<p><T k="doc_badge_icon_only_desc" /></p>
+
+<Canvas of={BadgeStories.IconOnly} />
+
+<Stories />

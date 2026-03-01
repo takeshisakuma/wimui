@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as DialogStories from "./Dialog.stories";
 import { T } from "../T";
 
 <Meta of={DialogStories} />
 
-# Dialog
+<Title />
 
 <p
   style={{
@@ -17,111 +17,108 @@ import { T } from "../T";
   <T k="doc_dialog_title" />
 </p>
 
-Dialogは、現在のページの上にレイヤーとしてコンテンツを表示し、ユーザーに重要な情報を伝えたり、アクションを求めたりするために使用されます。
-一般的に「モーダル」と呼ばれることが多いですが、本デザインシステムでは「モーダルダイアログ (Modal Dialog)」と呼称することを推奨します。
+<p><T k="doc_dialog_long_desc" /></p>
 
-### 「モーダル」と省略しない理由
+### <T k="doc_dialog_why_not_modal" />
 
-「モーダル (Modal)」は本来「モード（状態）を持つ」という意味の形容詞であり、UIコンポーネントそのものを指す言葉ではありません。
-モードレス (Modeless) なダイアログ（操作をブロックしないウィンドウ）との対比として使われる用語です。
+<p><T k="doc_dialog_why_not_modal_desc" /></p>
 
-単に「モーダル」と呼ぶと、それが「モーダルな状態」を指すのか、「ダイアログコンポーネント」を指すのかが曖昧になります。
-「モーダルダイアログ」と正しく呼ぶことで、「ユーザーの操作を一時的に拘束する（モードを持つ）対話ウィンドウ（ダイアログ）」という機能的特性を正確に表現し、開発者やデザイナー間での認識のズレを防ぎます。
-同様に、モードレスなものは「モードレスダイアログ」と呼び分けます。
+## <T k="doc_basic_usage" />
 
-## 基本的な使い方
-
-`Dialog` コンポーネントの中に `DialogTrigger` と `DialogContent` を配置します。
-`DialogContent` の中には、ヘッダー、フッター、タイトル、説明文などを配置できます。
+<p><T k="doc_dialog_basic_desc" /></p>
 
 <Canvas of={DialogStories.Default} />
 
-## 制御されていない状態 (Uncontrolled)
+<Primary />
 
-`Dialog` はデフォルトで制御されていない状態で動作します。トリガーをクリックすると開き、閉じるボタンやオーバーレイのクリック、Escapeキーで閉じます。
+## <T k="doc_dialog_uncontrolled" />
+
+<p><T k="doc_dialog_uncontrolled_desc" /></p>
 
 <Canvas of={DialogStories.Uncontrolled} />
 
-## 制御された状態 (Controlled)
+## <T k="doc_dialog_controlled" />
 
-`open` プロパティと `onOpenChange` イベントハンドラを使用することで、ダイアログの開閉状態を完全に制御できます。
+<p><T k="doc_dialog_controlled_desc" /></p>
 
 <Canvas of={DialogStories.Controlled} />
 
-## 設計思想: 右上の「×」ボタンを排除した理由
+## <T k="doc_dialog_design_philosophy" />
 
-本コンポーネントでは、意図的に右上の「×」ボタンを排除しています。その理由は以下の通りです。
+<p><T k="doc_dialog_design_philosophy_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>設計思想</th>
-      <th>詳細</th>
+      <th><T k="doc_dialog_philosophy_header" /></th>
+      <th><T k="doc_dialog_details_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>意思決定の曖昧さの排除</strong></td>
-      <td>「×」ボタンを押した場合、「入力を破棄して閉じたい」のか、あるいは「入力したからとりあえず閉じたい（保存されたと思っている）」のか、ユーザーの意図が不明確になります。肯定（保存など）か否定（キャンセル）かをユーザーに明確に選択させることで、データの整合性を保ち、操作ミスを防ぎます。</td>
+      <td><strong><T k="doc_dialog_eliminate_ambiguity" /></strong></td>
+      <td><T k="doc_dialog_eliminate_ambiguity_desc" /></td>
     </tr>
     <tr>
-      <td><strong>オブジェクト指向UI (OOUI) との整合性</strong></td>
-      <td>モデルベースUIやOOUIの考え方では、対象（オブジェクト）に対する操作（アクション）の流れを重視します。モーダル内での操作は、そのオブジェクトに対する「確定」か「破棄」のどちらかであるべきです。右上の「×」ボタンはOSやブラウザの「ウィンドウを閉じる」という汎用的なアクションに由来しており、特定のタスク操作としては抽象的すぎると捉えられます。</td>
+      <td><strong><T k="doc_dialog_ooui_consistency" /></strong></td>
+      <td><T k="doc_dialog_ooui_consistency_desc" /></td>
     </tr>
     <tr>
-      <td><strong>アクセシビリティと視線移動の最適化</strong></td>
-      <td>多くのアクションボタン（保存・キャンセル）は右下に配置されます。右上に「×」があると、ユーザーは対角線上に視線を大きく動かす必要があり、認知負荷が高まります。また、モーダル内外のクリック操作と混同されやすく、意図せず入力内容が消えてしまうリスクを軽減します。</td>
+      <td><strong><T k="doc_dialog_accessibility_gaze" /></strong></td>
+      <td><T k="doc_dialog_accessibility_gaze_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## API
+## <T k="doc_component_api" />
 
-### Dialog Components
+### <T k="doc_dialog_components" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>説明</th>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>Dialog</code></td>
-      <td>ルートコンポーネント。コンテキストを提供します。</td>
+      <td><T k="doc_dialog_api_dialog" /></td>
     </tr>
     <tr>
       <td><code>DialogTrigger</code></td>
-      <td>ダイアログを開くためのボタントリガー。<code>asChild</code> を使用して他のコンポーネントをトリガーとして機能させることができます。</td>
+      <td><T k="doc_dialog_api_trigger" /></td>
     </tr>
     <tr>
       <td><code>DialogContent</code></td>
-      <td>ダイアログの中身を表示するオーバーレイコンテナ。FocusTrapとスクロールロックを管理します。</td>
+      <td><T k="doc_dialog_api_content" /></td>
     </tr>
     <tr>
       <td><code>DialogHeader</code></td>
-      <td>タイトルなどのヘッダー領域。</td>
+      <td><T k="doc_dialog_api_header" /></td>
     </tr>
     <tr>
       <td><code>DialogFooter</code></td>
-      <td>アクションボタンなどのフッター領域。</td>
+      <td><T k="doc_dialog_api_footer" /></td>
     </tr>
     <tr>
       <td><code>DialogTitle</code></td>
-      <td>ダイアログのタイトル。</td>
+      <td><T k="doc_dialog_api_title" /></td>
     </tr>
     <tr>
       <td><code>DialogDescription</code></td>
-      <td>ダイアログの補助的な説明。</td>
+      <td><T k="doc_dialog_api_description" /></td>
     </tr>
     <tr>
       <td><code>DialogClose</code></td>
-      <td>ダイアログを閉じるためのボタン。<code>asChild</code> が利用可能です。</td>
+      <td><T k="doc_dialog_api_close" /></td>
     </tr>
   </tbody>
 </table>
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
+
+<Stories />

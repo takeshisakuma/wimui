@@ -1,10 +1,10 @@
-import { Meta, Primary, Controls, Canvas } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as TagStories from "./Tag.stories";
 import { T } from "../T";
 
 <Meta of={TagStories} />
 
-# Tag
+<Title />
 
 <p
   style={{
@@ -17,30 +17,36 @@ import { T } from "../T";
   <T k="doc_tag_title" />
 </p>
 
-タグは、情報のステータスやカテゴリを表示するための非インタラクティブなラベルです。
+<p><T k="doc_tag_long_desc" /></p>
 
-## 使用例
+## <T k="doc_usage_examples" />
 
-### 基本
+### <T k="doc_basic_usage" />
 
 <Canvas of={TagStories.Default} />
 
-### バリアント
+<Primary />
+
+## <T k="doc_props" />
+
+<Controls />
+
+## <T k="doc_variations" />
+
+### <T k="doc_tag_variants" />
 
 <Canvas of={TagStories.Variants} />
 
-### 色
+### <T k="doc_avatar_colors" />
 
 <Canvas of={TagStories.Colors} />
 
-### サイズ
+### <T k="doc_avatar_size" />
 
 <Canvas of={TagStories.Sizes} />
 
-### アイコン付き
+### <T k="doc_breadcrumb_with_icons" />
 
 <Canvas of={TagStories.WithIcon} />
 
-## Props
-
-<Controls />
+<Stories />

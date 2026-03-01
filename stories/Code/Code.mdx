@@ -9,6 +9,8 @@ import {
 } from "@storybook/addon-docs/blocks";
 import * as CodeStories from "./Code.stories";
 
+import { T } from "../T";
+
 <Meta of={CodeStories} />
 
 <Title />
@@ -20,10 +22,10 @@ import * as CodeStories from "./Code.stories";
     color: "#6c757d",
   }}
 >
-  インラインコードやコードブロックを表示するために使用される
+  <T k="doc_code_long_desc" />
 </p>
 
-## 使用法
+## <T k="doc_usage" />
 
 ```tsx
 import { Code } from "./Code";
@@ -31,10 +33,10 @@ import { T } from "../T";
 
 const Example = () => (
   <>
-    {/* インライン */}
+    {/* Inline */}
     <Code>npm install wimui</Code>
 
-    {/* ブロック */}
+    {/* Block */}
     <Code block language="bash">
       npm install wimui
     </Code>
@@ -46,20 +48,19 @@ const Example = () => (
 
 <Controls />
 
-## バリエーション
+## <T k="doc_variants" />
 
-### Inline
+### <T k="doc_inline" />
 
 <Canvas of={CodeStories.Inline} />
 
-### Block
+### <T k="doc_block" />
 
 <Canvas of={CodeStories.Block} />
 
-### Long Content
+### <T k="doc_long_content" />
 
 <Canvas of={CodeStories.LongContent} />
 
-> Note
-> `Code` コンポーネントのコードブロック（`block` プロパティが `true` の場合）では、横スクロールを有効にしている<br />
-> これは、長いコード行を無理に折り返すとインデントや構造が崩れて可読性が低下するため
+<p><T k="doc_code_note_title" /></p>
+<p><T k="doc_code_note_desc" /></p>

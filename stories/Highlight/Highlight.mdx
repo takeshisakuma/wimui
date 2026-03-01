@@ -1,13 +1,14 @@
 import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { T } from "../T";
 import * as HighlightStories from "./Highlight.stories";
 
 <Meta of={HighlightStories} />
 
 # Highlight
 
-Highlight component emphasizes specific parts of a text by wrapping them in a `<mark>` element.
+<p><T k="doc_highlight_long_desc" /></p>
 
-## Usage
+## <T k="doc_usage" />
 
 ```tsx
 import { Highlight } from "wimui";
@@ -15,28 +16,28 @@ import { Highlight } from "wimui";
 <Highlight highlight="world">Hello world</Highlight>;
 ```
 
-## Examples
+## <T k="doc_example" />
 
-### Default
+### <T k="doc_default" />
 
 <Canvas of={HighlightStories.Default} />
 
-### Multiple Highlights
+### <T k="doc_highlight_multi" />
 
 <Canvas of={HighlightStories.MultipleHighlights} />
 
-### Case Insensitive
+### <T k="doc_highlight_case" />
 
 <Canvas of={HighlightStories.CaseInsensitive} />
 
-### Custom Style
+### <T k="doc_highlight_custom_style" />
 
 <Canvas of={HighlightStories.CustomStyle} />
 
-### Custom Component
+### <T k="doc_highlight_custom_comp" />
 
 <Canvas of={HighlightStories.CustomComponent} />
 
-## Props
+## <T k="doc_props" />
 
 <Controls />

@@ -27,155 +27,155 @@ import { T } from "../T";
 
 <Primary />
 
-<h2>Props</h2>
+<h2><T k="doc_props" /></h2>
 <Controls />
 
-<h2>使い分けガイド</h2>
+<h2><T k="doc_stepper_guide" /></h2>
 
-<h3>役割とメリット</h3>
+<h3><T k="doc_stepper_role_benefit" /></h3>
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>説明</th>
+      <th><T k="doc_item" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>不安の解消</strong>
+        <strong><T k="doc_stepper_r_fear" /></strong>
       </td>
       <td>
-        「あとどれくらいで完了するのか」を可視化し、ユーザーの心理的負担を軽減します。
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <strong>タスクの分割</strong>
-      </td>
-      <td>
-        複雑なフォーム入力を管理しやすい単位に分割し、集中力を維持したまま完了率を高めます。
+        <p><T k="doc_stepper_r_fear_desc" /></p>
       </td>
     </tr>
     <tr>
       <td>
-        <strong>進行のフィードバック</strong>
+        <strong><T k="doc_stepper_r_task" /></strong>
       </td>
       <td>
-        完了・現在・未完了の状態を明確に示し、着実に進んでいることを実感させます。
+        <p><T k="doc_stepper_r_task_desc" /></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc_stepper_r_fb" /></strong>
+      </td>
+      <td>
+        <p><T k="doc_stepper_r_fb_desc" /></p>
       </td>
     </tr>
   </tbody>
 </table>
 
-<h3>利用基準</h3>
+<h3><T k="doc_stepper_criteria" /></h3>
 <table>
   <thead>
     <tr>
-      <th>判断材料</th>
-      <th>推奨されるケース</th>
-      <th>避けるべきケース</th>
+      <th><T k="doc_stepper_c_judgement" /></th>
+      <th><T k="doc_stepper_c_reco" /></th>
+      <th><T k="doc_stepper_c_avoid" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <strong>ステップ数</strong>
+        <strong><T k="doc_stepper_c_steps" /></strong>
       </td>
-      <td>4ステップ以上（会員登録、決済、詳細アンケート等）</td>
-      <td>3ステップ以下の単純なフロー（入力→確認→完了）</td>
+      <td><T k="doc_stepper_c_steps_reco" /></td>
+      <td><T k="doc_stepper_c_steps_avoid" /></td>
     </tr>
     <tr>
       <td>
-        <strong>必要性</strong>
+        <strong><T k="doc_stepper_c_needs" /></strong>
       </td>
-      <td>順序が決まった複雑な手続きが必要な場合</td>
-      <td>直感的に理解できる基本的な操作（投稿、アップロード等）</td>
+      <td><T k="doc_stepper_c_needs_reco" /></td>
+      <td><T k="doc_stepper_c_needs_avoid" /></td>
     </tr>
   </tbody>
 </table>
 
-<h2>設計上のベストプラクティス</h2>
+<h2><T k="doc_stepper_best" /></h2>
 
 <table>
   <thead>
     <tr>
-      <th>分類</th>
-      <th>タイプ</th>
-      <th>特徴・用途</th>
+      <th><T k="doc_category" /></th>
+      <th><T k="doc_stepper_b_type" /></th>
+      <th><T k="doc_stepper_b_feat" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td rowspan="2">
-        <strong>レイアウト</strong>
+        <strong><T k="doc_layout" /></strong>
       </td>
-      <td>水平型 (Horizontal)</td>
+      <td><T k="doc_stepper_b_hor" /></td>
       <td>
-        デスクトップ等の横幅がある画面に適し、左から右への自然な視線移動に沿います。
+        <p><T k="doc_stepper_b_hor_desc" /></p>
       </td>
     </tr>
     <tr>
-      <td>垂直型 (Vertical)</td>
+      <td><T k="doc_stepper_b_ver" /></td>
       <td>
-        モバイル環境やステップ数が多い場合に最適。詳細情報を展開しやすくなります。
-      </td>
-    </tr>
-    <tr>
-      <td rowspan="2">
-        <strong>進行方式</strong>
-      </td>
-      <td>リニア（順序固定）</td>
-      <td>
-        前のステップ完了が必須のプロセス（決済など）で、データの整合性を担保します。
-      </td>
-    </tr>
-    <tr>
-      <td>ノンリニア（順序自由）</td>
-      <td>
-        任意の順序で編集可能なプロセス（設定、プロフィール等）に適しています。
+        <p><T k="doc_stepper_b_ver_desc" /></p>
       </td>
     </tr>
     <tr>
       <td rowspan="2">
-        <strong>視覚表現</strong>
+        <strong><T k="doc_stepper_progress_method" /></strong>
       </td>
-      <td>区切り型</td>
-      <td>ステップ数が少ない場合（3~4個）。各工程の独立性を強調します。</td>
+      <td><T k="doc_stepper_b_linear" /></td>
+      <td>
+        <p><T k="doc_stepper_b_linear_desc" /></p>
+      </td>
     </tr>
     <tr>
-      <td>一体型（連続）</td>
+      <td><T k="doc_stepper_b_non" /></td>
       <td>
-        ステップ数が多い場合（5個〜）。一連の流れとして認識させ、負担を抑えます。
+        <p><T k="doc_stepper_b_non_desc" /></p>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="2">
+        <strong><T k="doc_visual_repr" /></strong>
+      </td>
+      <td><T k="doc_stepper_b_sep" /></td>
+      <td><T k="doc_stepper_b_sep_desc" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_stepper_b_cont" /></td>
+      <td>
+        <p><T k="doc_stepper_b_cont_desc" /></p>
       </td>
     </tr>
   </tbody>
 </table>
 
-<h2>バリエーション</h2>
+<h2><T k="doc_variations" /></h2>
 
-<h3>垂直レイアウト</h3>
-スペースが限られている場合や、ステップ数が多い場合に適しています。
+### <T k="doc_stepper_var_ver" />
+<p><T k="doc_stepper_var_ver_desc" /></p>
 
 <Canvas of={StepperStories.Vertical} />
 
-<h3>ラベルの垂直配置</h3>
-水平レイアウトで各ステップを中央揃えにしたい場合に適しています。
+### <T k="doc_stepper_var_lver" />
+<p><T k="doc_stepper_var_lver_desc" /></p>
 
 <Canvas of={StepperStories.LabelVertical} />
 
-<h3>エラー状態</h3>
-特定のステップでエラーが発生したことを示します。
+### <T k="doc_error_status" />
+<p><T k="doc_stepper_var_err_desc" /></p>
 
 <Canvas of={StepperStories.ErrorStatus} />
 
-<h3>カスタムアイコン</h3>
-標準の数字の代わりに、独自のアイコンを表示できます。
+### <T k="doc_custom_icon" />
+<p><T k="doc_stepper_var_icon_desc" /></p>
 
 <Canvas of={StepperStories.CustomIcons} />
 
-<h3>インタラクティブな例</h3>
-実際にステップを進めたり戻したりできる例です。
+### <T k="doc_interactive_example" />
+<p><T k="doc_stepper_var_inter_desc" /></p>
 
 <Canvas of={StepperStories.Interactive} />
 

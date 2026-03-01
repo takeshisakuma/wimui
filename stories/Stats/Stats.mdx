@@ -17,25 +17,25 @@ import { T } from "../T";
   <T k="doc_stats_title" />
 </p>
 
-`Stats` は、統計情報や重要な指標（メトリクス）を視覚的に強調して表示するためのコンポーネントです。
+<p><T k="doc_stats_long_desc" /></p>
 
-## 使用例
+## <T k="doc_usage_examples" />
 
-### 基本的な使用方法
+### <T k="doc_basic_usage" />
 
-ラベル、値、および補足情報を組み合わせて使用します。
+<p><T k="doc_stats_usage_desc" /></p>
 
 <Canvas of={StatsStories.Default} />
 
-### トレンド表示
+### <T k="doc_stats_trend" />
 
-`Stats.Trend` を使用して、前月比などの変化率を表示できます。
+<p><T k="doc_stats_trend_desc" /></p>
 
 <Canvas of={StatsStories.WithTrend} />
 
-### バリアント
+### <T k="doc_variations" />
 
-`variant` プロパティを使用して、さまざまなスタイルを選択できます。
+Various styles can be selected using the `variant` property.
 
 #### Outline
 
@@ -45,37 +45,37 @@ import { T } from "../T";
 
 <Canvas of={StatsStories.Flat} />
 
-## コンポーネントの構成
+## <T k="doc_stats_comp" />
 
-`Stats` は以下のサブコンポーネントで構成されています。
+<p><T k="doc_stats_comp_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>説明</th>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><strong>Stats.Label</strong></td>
-      <td>指標の名称を表示します。</td>
+      <td><T k="doc_stats_c_label" /></td>
     </tr>
     <tr>
       <td><strong>Stats.Value</strong></td>
-      <td>指標の数値を表示します。</td>
+      <td><T k="doc_stats_c_value" /></td>
     </tr>
     <tr>
       <td><strong>Stats.Description</strong></td>
-      <td>補足情報を表示します。</td>
+      <td><T k="doc_stats_c_desc" /></td>
     </tr>
     <tr>
       <td><strong>Stats.Trend</strong></td>
-      <td>変化率や傾向を表示します。</td>
+      <td><T k="doc_stats_c_trend" /></td>
     </tr>
   </tbody>
 </table>
 
-## Props
+## <T k="doc_props" />
 
 <Controls />

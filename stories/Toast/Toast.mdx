@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as ToastStories from "./Toast.stories";
 import { T } from "../T";
 
 <Meta of={ToastStories} />
 
-# Toast
+<Title />
 
 <p
   style={{
@@ -17,17 +17,17 @@ import { T } from "../T";
   <T k="doc_toast_title" />
 </p>
 
-トーストコンポーネントは、ユーザーに短い通知やフィードバックを伝えるために使用されます。通常、画面の隅に表示され、一定時間後に自動的に消えます。
+<p><T k="doc_toast_long_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-トーストは、タイトル、説明文、およびバリアント（info, success, warning, error）を組み合わせて使用します。
+<p><T k="doc_toast_basic_usage_desc" /></p>
 
 <Canvas of={ToastStories.Default} />
 
-## トーストシステムの使用方法
+## <T k="doc_toast_system_usage" />
 
-実際にトーストを表示するには、`ToastProvider` でアプリケーションをラップし、`useToast` フックを使用することをお勧めします。
+<p><T k="doc_toast_system_usage_desc" /></p>
 
 ```tsx
 import { ToastProvider, useToast } from "./Toast";
@@ -46,54 +46,56 @@ const MyComponent = () => {
     <button
       onClick={() =>
         show({
-          title: "保存完了",
-          description: "データが正常に保存されました。",
+          title: "Success",
+          description: "Data has been successfully saved.",
           variant: "success",
         })
       }
     >
-      トーストを表示
+      Show Toast
     </button>
   );
 };
 ```
 
-### インタラクティブな例
+### <T k="doc_toast_interactive_example" />
 
-以下の例では、実際にトーストを表示して動作を確認できます。
+<p><T k="doc_toast_interactive_example_desc" /></p>
 
 <Canvas of={ToastStories.Interactive} />
 
-## バリエーション
+## <T k="doc_variations" />
 
-`variant` プロパティを使用して、通知の種類に応じたスタイルを選択できます。
+<p><T k="doc_toast_variants_desc" /></p>
 
-### Info
+### <T k="doc_info" />
 
 <Canvas of={ToastStories.Info} />
 
-### Success
+### <T k="doc_success" />
 
 <Canvas of={ToastStories.Success} />
 
-### Warning
+### <T k="doc_warning" />
 
 <Canvas of={ToastStories.Warning} />
 
-### Error
+### <T k="doc_error" />
 
 <Canvas of={ToastStories.ErrorStatus} />
 
-## Props
+## <T k="doc_props" />
 
-### Toast Props
+### <T k="doc_toast_props" />
 
 <Controls />
 
-### ToastProvider Props
+### <T k="doc_toast_provider_props" />
 
 | Prop       | Type            | Default       | Description                                                                                                |
 | :--------- | :-------------- | :------------ | :--------------------------------------------------------------------------------------------------------- |
-| `children` | `ReactNode`     | -             | プロバイダーの下に配置される要素                                                                           |
-| `position` | `ToastPosition` | `"top-right"` | トーストの表示位置 (`top-right`, `top-left`, `top-center`, `bottom-right`, `bottom-left`, `bottom-center`) |
-| `duration` | `number`        | `3000`        | トーストが表示される時間（ミリ秒）                                                                         |
+| `children` | `ReactNode`     | -             | Children elements to be rendered within the provider                                                                           |
+| `position` | `ToastPosition` | `"top-right"` | Toast display position (`top-right`, `top-left`, `top-center`, `bottom-right`, `bottom-left`, `bottom-center`) |
+| `duration` | `number`        | `3000`        | Duration for which the toast is displayed (in milliseconds)                                                                         |
+
+<Stories />

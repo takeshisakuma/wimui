@@ -18,49 +18,49 @@ import { T } from "../T";
   <T k="doc_navbar_title" />
 </p>
 
-<T k="doc_navbar_title" />
+<p><T k="doc_navbar_title" /></p>
 
-Navbarは、ページの上部に配置されるレスポンシブなナビゲーションヘッダーです。
+<p><T k="doc_navbar_long_desc" /></p>
 
 > 📘 Guide: See [Guides / App Layout](?path=/docs/guides-app-layout--docs) for layout patterns.
-> ブランドロゴ、ナビゲーションリンク、アクションボタンなどを配置するためのコンテナとして機能します。
+> <T k="doc_navbar_desc_2" />
 
-## インポート
+## <T k="doc_navbar_import" />
 
 ```jsx
 import Navbar from "@/components/Navbar/Navbar";
 ```
 
-## 基本的な使用方法
+## <T k="doc_basic_usage" />
 
-`Navbar` コンポーネントの中に `Navbar.Brand`、`Navbar.Content` などを配置して使用します。
+<p><T k="doc_navbar_basic_usage_desc" /></p>
 
 ```jsx
 <Navbar bordered>
   <Navbar.Brand>Brand</Navbar.Brand>
   <Navbar.Content>
     <Navbar.Link href="#" active>
-      ホーム
+      <p><T k="doc_home" /></p>
     </Navbar.Link>
-    <Navbar.Link href="#">概要</Navbar.Link>
-    <Navbar.Link href="#">お問い合わせ</Navbar.Link>
+    <Navbar.Link href="#"><T k="doc_overview" /></Navbar.Link>
+    <Navbar.Link href="#"><T k="doc_contact" /></Navbar.Link>
   </Navbar.Content>
 </Navbar>
 ```
 
-## グラスモーフィズム (Glassmorphism)
+## <T k="doc_navbar_glass_title" />
 
-`glass` プロパティを使用すると、背景にぼかし効果（すりガラス効果）を適用できます。
-カラフルな背景画像やグラデーションの上に固定ヘッダーとして配置する場合に効果的です。
+<p><T k="doc_navbar_glass_desc" /></p>
 
 <Canvas of={NavbarStories.GlassEffect} />
 
-## コンテンツの配置
+## <T k="doc_navbar_layout_title" />
 
-複数の `Navbar.Content` コンポーネントを使用し、`justify` プロパティ（`start`, `center`, `end`）を組み合わせることで、柔軟なレイアウトが可能です。
+<p><T k="doc_navbar_layout_desc" /></p>
+
 
 <Canvas of={NavbarStories.CenteredLinks} />
 
-## API リファレンス
+## <T k="doc_api_reference" />
 
 <Controls />

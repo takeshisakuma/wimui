@@ -14,105 +14,104 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  高機能なデータグリッドコンポーネント。ソート、ページネーション、行選択などの機能を統合的に提供します。
+  <T k="doc_datagrid_long_desc_1" />
 </p>
 
-DataGridは、Tableコンポーネントをベースに、よく使われる機能を統合した高レベルのコンポーネントです。複雑なデータテーブルを簡単に実装できます。
+<p><T k="doc_datagrid_long_desc_2" /></p>
 
-> **PCのみ**: このコンポーネントは機能が豊富で横幅を必要とするため、主にPC向けに設計されています。スマートフォンなどの小画面デバイスでの利用は推奨されません。
+<p><T k="doc_datagrid_note" /></p>
 
-## 使用例
+## <T k="doc_example" />
 
-### 基本的な使い方
+### <T k="doc_basic_usage" />
 
-列定義とデータを渡すだけで、基本的なグリッドを表示できます。
+<p><T k="doc_datagrid_basic_usage_desc" /></p>
 
 <Primary />
 
 <Controls />
 
-### 行選択機能
+### <T k="doc_datagrid_row_selection" />
 
-`selection` プロップを有効にすると、チェックボックスによる行選択機能が追加されます。
+<p><T k="doc_datagrid_row_selection_desc" /></p>
 
 <Canvas of={DataGridStories.WithSelection} />
 
-### ソート機能
+### <T k="doc_datagrid_sorting" />
 
-列定義で `sortable: true` を指定し、`sortConfig` と `onSort` を渡すことで、ソート機能を実装できます。
+<p><T k="doc_datagrid_sorting_desc" /></p>
 
 <Canvas of={DataGridStories.WithSorting} />
 
-### ページネーション
+### <T k="doc_datagrid_pagination" />
 
-`pagination` プロップを渡すことで、ページネーション機能を追加できます。
+<p><T k="doc_datagrid_pagination_desc" /></p>
 
 <Canvas of={DataGridStories.WithPagination} />
 
-### アクション列
+### <T k="doc_datagrid_action_column" />
 
-カスタムレンダー関数を使用して、各行にアクションボタンを配置できます。
+<p><T k="doc_datagrid_action_column_desc" /></p>
 
 <Canvas of={DataGridStories.WithActions} />
 
-## 状態表示
+## <T k="doc_datagrid_state_display" />
 
-### ローディング状態
+### <T k="doc_datagrid_loading_state" />
 
-`loading` プロップを使用して、データ読み込み中の状態を表示できます。
+<p><T k="doc_datagrid_loading_state_desc" /></p>
 
 <Canvas of={DataGridStories.Loading} />
 
-### 空の状態
+### <T k="doc_datagrid_empty_state" />
 
-データが空の場合、`emptyMessage` で指定したメッセージが表示されます。
+<p><T k="doc_datagrid_empty_state_desc" /></p>
 
 <Canvas of={DataGridStories.Empty} />
 
-## スタイルバリエーション
+## <T k="doc_datagrid_style_variants" />
 
-### ストライプ
+### <T k="doc_datagrid_striped" />
 
-`striped` プロップで、行を交互に色付けできます。
+<p><T k="doc_datagrid_striped_desc" /></p>
 
 <Canvas of={DataGridStories.Striped} />
 
-### ボーダー
+### <T k="doc_datagrid_bordered" />
 
-`bordered` プロップで、テーブルにボーダーを追加できます。
+<p><T k="doc_datagrid_bordered_desc" /></p>
 
 <Canvas of={DataGridStories.Bordered} />
 
-### 固定ヘッダー
+### <T k="doc_datagrid_sticky_header" />
 
-`stickyHeader` と `maxHeight` を組み合わせることで、スクロール時にヘッダーを固定できます。
+<p><T k="doc_datagrid_sticky_header_desc" /></p>
 
 <Canvas of={DataGridStories.StickyHeader} />
 
-### 列の固定 (Sticky Column)
+### <T k="doc_datagrid_sticky_column" />
 
-列定義で `fixed: true` を指定すると、その列を左側に固定したまま横スクロールが可能になります。
-※ 複数の列を固定する場合は、各列に `width` (数値またはpx文字列) を指定する必要があります。
+<p><T k="doc_datagrid_sticky_column_desc" /></p>
 
 <Canvas of={DataGridStories.WithFixedColumn} />
 
-## フル機能の例
+## <T k="doc_datagrid_full_featured" />
 
-すべての機能を組み合わせた実用的な例です。
+<p><T k="doc_datagrid_full_featured_desc" /></p>
 
 <Canvas of={DataGridStories.FullFeatured} />
 
-## API
+## <T k="doc_api" />
 
 ### DataGridProps
 
 <table>
   <thead>
     <tr>
-      <th>プロパティ</th>
-      <th>型</th>
-      <th>デフォルト</th>
-      <th>説明</th>
+      <th><T k="doc_property" /></th>
+      <th><T k="doc_type" /></th>
+      <th><T k="doc_default" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
@@ -124,7 +123,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
         <code>DataGridColumn&lt;T&gt;[]</code>
       </td>
       <td>-</td>
-      <td>列定義の配列</td>
+      <td><T k="doc_datagrid_api_props_desc_1" /></td>
     </tr>
     <tr>
       <td>
@@ -134,7 +133,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
         <code>T[]</code>
       </td>
       <td>-</td>
-      <td>データ行の配列</td>
+      <td><T k="doc_datagrid_api_props_desc_2" /></td>
     </tr>
     <tr>
       <td>
@@ -146,7 +145,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>false</code>
       </td>
-      <td>ローディング状態</td>
+      <td><T k="doc_datagrid_api_props_desc_3" /></td>
     </tr>
     <tr>
       <td>
@@ -158,7 +157,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>false</code>
       </td>
-      <td>行選択機能を有効化</td>
+      <td><T k="doc_datagrid_api_props_desc_4" /></td>
     </tr>
     <tr>
       <td>
@@ -170,7 +169,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>[]</code>
       </td>
-      <td>選択された行のキー</td>
+      <td><T k="doc_datagrid_api_props_desc_5" /></td>
     </tr>
     <tr>
       <td>
@@ -180,7 +179,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
         <code>{"(keys: React.Key[]) => void"}</code>
       </td>
       <td>-</td>
-      <td>選択変更時のコールバック</td>
+      <td><T k="doc_datagrid_api_props_desc_6" /></td>
     </tr>
     <tr>
       <td>
@@ -192,7 +191,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>"id"</code>
       </td>
-      <td>各行の一意なキー</td>
+      <td><T k="doc_datagrid_api_props_desc_7" /></td>
     </tr>
     <tr>
       <td>
@@ -202,7 +201,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
         <code>{'{ key: string; direction: "asc" | "desc" | "none" }'}</code>
       </td>
       <td>-</td>
-      <td>現在のソート設定</td>
+      <td><T k="doc_datagrid_api_props_desc_8" /></td>
     </tr>
     <tr>
       <td>
@@ -212,7 +211,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
         <code>{"(key: string, direction: ...) => void"}</code>
       </td>
       <td>-</td>
-      <td>ソート変更時のコールバック</td>
+      <td><T k="doc_datagrid_api_props_desc_9" /></td>
     </tr>
     <tr>
       <td>
@@ -222,7 +221,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
         <code>PaginationConfig</code>
       </td>
       <td>-</td>
-      <td>ページネーション設定</td>
+      <td><T k="doc_datagrid_api_props_desc_10" /></td>
     </tr>
     <tr>
       <td>
@@ -234,7 +233,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>false</code>
       </td>
-      <td>ストライプ表示</td>
+      <td><T k="doc_datagrid_api_props_desc_11" /></td>
     </tr>
     <tr>
       <td>
@@ -246,7 +245,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>false</code>
       </td>
-      <td>ボーダー表示</td>
+      <td><T k="doc_datagrid_api_props_desc_12" /></td>
     </tr>
     <tr>
       <td>
@@ -258,7 +257,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>true</code>
       </td>
-      <td>ホバーエフェクト</td>
+      <td><T k="doc_datagrid_api_props_desc_13" /></td>
     </tr>
     <tr>
       <td>
@@ -270,7 +269,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>false</code>
       </td>
-      <td>ヘッダーを固定</td>
+      <td><T k="doc_datagrid_api_props_desc_14" /></td>
     </tr>
     <tr>
       <td>
@@ -280,7 +279,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
         <code>string | number</code>
       </td>
       <td>-</td>
-      <td>固定高さ</td>
+      <td><T k="doc_datagrid_api_props_desc_15" /></td>
     </tr>
     <tr>
       <td>
@@ -290,7 +289,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
         <code>string | number</code>
       </td>
       <td>-</td>
-      <td>最大高さ</td>
+      <td><T k="doc_datagrid_api_props_desc_16" /></td>
     </tr>
     <tr>
       <td>
@@ -302,7 +301,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>"No data available"</code>
       </td>
-      <td>空の状態のメッセージ</td>
+      <td><T k="doc_datagrid_api_props_desc_17" /></td>
     </tr>
   </tbody>
 </table>
@@ -312,9 +311,9 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
 <table>
   <thead>
     <tr>
-      <th>プロパティ</th>
-      <th>型</th>
-      <th>説明</th>
+      <th>Property</th>
+      <th>Type</th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
@@ -325,7 +324,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>string</code>
       </td>
-      <td>列の一意なキー</td>
+      <td><T k="doc_datagrid_api_col_desc_1" /></td>
     </tr>
     <tr>
       <td>
@@ -334,7 +333,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>React.ReactNode</code>
       </td>
-      <td>ヘッダーのテキストまたは要素</td>
+      <td><T k="doc_datagrid_api_col_desc_2" /></td>
     </tr>
     <tr>
       <td>
@@ -343,7 +342,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>string | number</code>
       </td>
-      <td>列の幅</td>
+      <td><T k="doc_datagrid_api_col_desc_3" /></td>
     </tr>
     <tr>
       <td>
@@ -352,7 +351,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>boolean</code>
       </td>
-      <td>ソート可能かどうか</td>
+      <td><T k="doc_datagrid_api_col_desc_4" /></td>
     </tr>
     <tr>
       <td>
@@ -361,7 +360,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>{"(value, row, index) => React.ReactNode"}</code>
       </td>
-      <td>カスタムレンダー関数</td>
+      <td><T k="doc_datagrid_api_col_desc_5" /></td>
     </tr>
     <tr>
       <td>
@@ -370,7 +369,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>{'"left" | "center" | "right"'}</code>
       </td>
-      <td>テキストの配置</td>
+      <td><T k="doc_datagrid_api_col_desc_6" /></td>
     </tr>
     <tr>
       <td>
@@ -380,7 +379,7 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
         <code>keyof T</code>
       </td>
       <td>
-        データオブジェクトのキー（デフォルトは <code>key</code>）
+        <p><T k="doc_datagrid_api_col_desc_7" /></p>
       </td>
     </tr>
     <tr>
@@ -390,12 +389,12 @@ DataGridは、Tableコンポーネントをベースに、よく使われる機�
       <td>
         <code>boolean</code>
       </td>
-      <td>列を左側に固定するかどうか</td>
+      <td><T k="doc_datagrid_api_col_desc_8" /></td>
     </tr>
   </tbody>
 </table>
 
-## 使用例（TypeScript）
+## <T k="doc_datagrid_usage_typescript" />
 
 ```typescript
 import { DataGrid, DataGridColumn } from './DataGrid';
@@ -434,23 +433,23 @@ function UserTable() {
 }
 ```
 
-## TableとDataGridの使い分け
+## <T k="doc_datagrid_table_vs_datagrid" />
 
 <table>
   <tbody>
     <tr>
       <td>
-        <strong>Table</strong>
+        <strong><T k="doc_table" /></strong>
       </td>
-      <td>より柔軟なカスタマイズが必要な場合や、シンプルな表示のみの場合</td>
+      <td><T k="doc_datagrid_table_vs_datagrid_1" /></td>
     </tr>
     <tr>
       <td>
-        <strong>DataGrid</strong>
+        <strong><T k="doc_datagrid" /></strong>
       </td>
-      <td>ソート、ページネーション、行選択などの機能が必要な場合</td>
+      <td><T k="doc_datagrid_table_vs_datagrid_2" /></td>
     </tr>
   </tbody>
 </table>
 
-DataGridは内部でTableコンポーネントを使用しているため、Tableのすべてのスタイリング機能を継承しています。
+<p><T k="doc_datagrid_table_vs_datagrid_desc" /></p>

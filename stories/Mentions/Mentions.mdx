@@ -21,20 +21,20 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  テキスト入力中に特定の文字（@など）をトリガーにして候補を表示し、選択できるようにするコンポーネントです。
+  <T k="doc_mentions_long_desc" />
 </p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-`options` プロパティに候補リストを、`trigger` プロパティに開始文字（デフォルトは `@`）を指定します。
+<p><T k="doc_mentions_basic_desc" /></p>
 
 <Canvas of={MentionsStories.Default} />
 
-## カスタマイズ
+## <T k="doc_customization" />
 
-### 別のトリガー文字
+### <T k="doc_mentions_custom_trigger" />
 
-`trigger` を変更することで、ハッシュタグ（#）やコマンド（/）などの入力をサポートできます。
+<p><T k="doc_mentions_custom_trigger_desc" /></p>
 
 <Canvas of={MentionsStories.CustomTrigger} />
 

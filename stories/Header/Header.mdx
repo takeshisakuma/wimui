@@ -17,46 +17,45 @@ import { T } from "../T";
   <T k="doc_header_title" />
 </p>
 
-Headerは、ページの上部やセクションの上部に配置される汎用的なヘッダーコンポーネントです。
+<p><T k="doc_header_long_desc" /></p>
 
 > 📘 Guide: See [Guides / App Layout](?path=/docs/guides-app-layout--docs) for layout patterns.
 
-## インターアクティブなデモ (Playground)
+## <T k="doc_header_interactive_demo" />
 
-以下の Controls を使用して、`bordered`, `glass`, `background` などのプロパティをリアルタイムで変更し、挙動を確認できます。
+<p><T k="doc_header_interactive_demo_desc" /></p>
 
 <Canvas of={HeaderStories.Playground} />
 <Controls of={HeaderStories.Playground} />
 
-## インポート
+## <T k="doc_header_import" />
 
 ```jsx
 import Header from "@/components/Header/Header";
 ```
 
-## 基本的な使用方法
+## <T k="doc_basic_usage" />
 
-`Header` コンポーネントの中に `Header.Section` を配置して使用します。
-`Header.Section` には `align` プロパティ ("start", "center", "end") を指定して、コンテンツの配置を制御できます。
+<p><T k="doc_header_basic_desc" /></p>
 
 <Canvas of={HeaderStories.Default} />
 
-## バリエーション
+## <T k="doc_header_variants" />
 
-### 境界線 (Bordered)
+### <T k="doc_header_bordered" />
 
-`bordered` プロパティを使用すると、下部に境界線が表示されます。コンテンツの区切りを明確にするのに役立ちます。
+<p><T k="doc_header_bordered_desc" /></p>
 
 <Canvas of={HeaderStories.Bordered} />
 
-### グラスモーフィズム (Glassmorphism)
+### <T k="doc_header_glass" />
 
-`glass` プロパティを使用すると、背景にぼかし効果が適用されます。背景色が半透明になり、背面のコンテンツが透けて見えます。
+<p><T k="doc_header_glass_desc" /></p>
 
 <Canvas of={HeaderStories.Glass} />
 
-### 固定/スティッキーヘッダー (Sticky)
+### <T k="doc_header_sticky" />
 
-`sticky` または `fixed` プロパティを使用することで、スクロール時にヘッダーを追従させることができます。
+<p><T k="doc_header_sticky_desc" /></p>
 
 <Canvas of={HeaderStories.Sticky} />

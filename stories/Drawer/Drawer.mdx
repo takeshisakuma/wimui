@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import * as DrawerStories from "./Drawer.stories";
 import { T } from "../T";
 
 <Meta of={DrawerStories} />
 
-# Drawer
+<Title />
 
 <p
   style={{
@@ -17,106 +17,94 @@ import { T } from "../T";
   <T k="doc_drawer_title" />
 </p>
 
-Drawerは、画面の端からスライドして表示されるパネルです。追加のコンテキストやナビゲーション、設定などを表示するために使用されます。
+<p><T k="doc_drawer_long_desc" /></p>
 
-## ドロワーUI（サイドメニュー）の基本原則
+## <T k="doc_drawer_basic_principles" />
 
-ドロワーは単なるメニュー表示の手段ではなく、複雑な機能を整理し、ユーザーに分かりやすく提示するための重要なUI要素です。
+<p><T k="doc_drawer_basic_principles_desc" /></p>
 
-### ドロワーの主なタイプ
-
-<table>
-  <thead>
-    <tr>
-      <th align="left" width="40%">
-        タイプ
-      </th>
-      <th align="left">特徴</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>**モーダルナビゲーションドロワー**</td>
-      <td>
-        モバイルアプリで最も一般的なタイプ。ハンバーガーメニュー等から呼び出し、操作中は背景が暗くなることでメニューにフォーカスを集中させます。限られた画面スペースを最大化できます。
-      </td>
-    </tr>
-    <tr>
-      <td>**標準ナビゲーションドロワー**</td>
-      <td>
-        タブレットやデスクトップなどの大画面で、メインコンテンツと常に並行して表示されます。頻繁にセクションを切り替える必要があるビジネスツール等で効果的です。
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### 効果的な使用シーン
+### <T k="doc_drawer_main_types" />
 
 <table>
   <thead>
     <tr>
       <th align="left" width="40%">
-        目的
+        <p><T k="doc_drawer_type_header" /></p>
       </th>
-      <th align="left">解説</th>
+      <th align="left"><T k="doc_drawer_feature_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>**多階層なナビゲーション**</td>
-      <td>
-        5つ以上のセクションや「ワークスペース ＞ プロジェクト ＞
-        タスク」のような深い階層を持つ場合に、全体像を損なわずに切り替えを可能にします。
-      </td>
+      <td>**<T k="doc_drawer_type_modal" />**</td>
+      <td><T k="doc_drawer_type_modal_desc" /></td>
     </tr>
     <tr>
-      <td>**デスクトップとの一貫性**</td>
-      <td>PC版と同様の使い勝手をモバイルでも維持し、学習コストを抑えます。</td>
-    </tr>
-    <tr>
-      <td>**将来の拡張性**</td>
-      <td>
-        開発初期は項目が少なくても、将来的にメニューが増える可能性がある場合の設計としても優れています。
-      </td>
+      <td>**<T k="doc_drawer_type_standard" />**</td>
+      <td><T k="doc_drawer_type_standard_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-### 設計上の注意点
+### <T k="doc_drawer_effective_scenes" />
 
 <table>
   <thead>
     <tr>
       <th align="left" width="40%">
-        考慮すべき点
+        <p><T k="doc_drawer_purpose_header" /></p>
       </th>
-      <th align="left">指針</th>
+      <th align="left"><T k="doc_drawer_explanation_header" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>**メインアクションは格納しない**</td>
-      <td>
-        ドロワーは意図的に「一階層深く」なるため、サブ機能やカテゴリーの切り替えといった、アプリ全体を俯瞰する補助的な役割としての活用が推奨されます。
-      </td>
+      <td>**<T k="doc_drawer_scene_multi_level" />**</td>
+      <td><T k="doc_drawer_scene_multi_level_desc" /></td>
     </tr>
     <tr>
-      <td>**モバイル専用アプリでの検討**</td>
-      <td>
-        主要な移動先が4つ程度であれば、より少ないタップ数でアクセスできる**ボトムナビゲーションバー**の方がUXとして優れている場合があります。
-      </td>
+      <td>**<T k="doc_drawer_scene_desktop" />**</td>
+      <td><T k="doc_drawer_scene_desktop_desc" /></td>
+    </tr>
+    <tr>
+      <td>**<T k="doc_drawer_scene_future" />**</td>
+      <td><T k="doc_drawer_scene_future_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## 基本的な使い方
+### <T k="doc_drawer_design_notes" />
 
-`Drawer` コンポーネントの中に `DrawerTrigger` と `DrawerContent` を配置します。
-`side` プロパティを使用して、表示される位置（top, right, bottom, left）を指定できます。デフォルトは `right` です。
+<table>
+  <thead>
+    <tr>
+      <th align="left" width="40%">
+        <p><T k="doc_drawer_consideration_header" /></p>
+      </th>
+      <th align="left"><T k="doc_drawer_guideline_header" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>**<T k="doc_drawer_note_main_action" />**</td>
+      <td><T k="doc_drawer_note_main_action_desc" /></td>
+    </tr>
+    <tr>
+      <td>**<T k="doc_drawer_note_mobile" />**</td>
+      <td><T k="doc_drawer_note_mobile_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_basic_usage" />
+
+<p><T k="doc_drawer_basic_usage_desc" /></p>
 
 <Canvas of={DrawerStories.Default} />
 
-## 表示位置のバリエーション
+<Primary />
+
+## <T k="doc_drawer_position_variations" />
 
 ### Left
 
@@ -130,9 +118,9 @@ Drawerは、画面の端からスライドして表示されるパネルです�
 
 <Canvas of={DrawerStories.Bottom} />
 
-## 制御された状態 (Controlled)
+## <T k="doc_dialog_controlled" />
 
-`open` プロパティと `onOpenChange` イベントハンドラを使用することで、ドロワーの開閉状態を完全に制御できます。
+<p><T k="doc_drawer_controlled_desc" /></p>
 
 <Canvas of={DrawerStories.Controlled} />
 
@@ -140,52 +128,45 @@ Drawerは、画面の端からスライドして表示されるパネルです�
 
 ### Drawer Components
 
-### Drawer Components
-
 <table>
   <thead>
     <tr>
-      <th align="left">Component</th>
-      <th align="left">Description</th>
+      <th align="left"><T k="doc_component" /></th>
+      <th align="left"><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>**Drawer**</td>
-      <td>ルートコンポーネント。コンテキストを提供します。</td>
+      <td><T k="doc_drawer_api_drawer" /></td>
     </tr>
     <tr>
       <td>**DrawerTrigger**</td>
-      <td>
-        ドロワーを開くためのボタントリガー。`asChild`
-        を使用して他のコンポーネントをトリガーとして機能させることができます。
-      </td>
+      <td><T k="doc_drawer_api_trigger" /></td>
     </tr>
     <tr>
       <td>**DrawerContent**</td>
-      <td>
-        ドロワーの中身を表示するパネル。FocusTrapとスクロールロックを管理します。
-      </td>
+      <td><T k="doc_drawer_api_content" /></td>
     </tr>
     <tr>
       <td>**DrawerHeader**</td>
-      <td>タイトルなどのヘッダー領域。</td>
+      <td><T k="doc_drawer_api_header" /></td>
     </tr>
     <tr>
       <td>**DrawerFooter**</td>
-      <td>アクションボタンなどのフッター領域。</td>
+      <td><T k="doc_drawer_api_footer" /></td>
     </tr>
     <tr>
       <td>**DrawerTitle**</td>
-      <td>ドロワーのタイトル。</td>
+      <td><T k="doc_drawer_api_title" /></td>
     </tr>
     <tr>
       <td>**DrawerDescription**</td>
-      <td>ドロワーの補助的な説明。</td>
+      <td><T k="doc_drawer_api_description" /></td>
     </tr>
     <tr>
       <td>**DrawerClose**</td>
-      <td>ドロワーを閉じるためのボタン。`asChild` が利用可能です。</td>
+      <td><T k="doc_drawer_api_close" /></td>
     </tr>
   </tbody>
 </table>
@@ -193,3 +174,5 @@ Drawerは、画面の端からスライドして表示されるパネルです�
 ## Props
 
 <Controls />
+
+<Stories />

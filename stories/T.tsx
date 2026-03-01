@@ -10,7 +10,7 @@ const startGlobalSync = () => {
 
   setInterval(() => {
     try {
-      // Storybookの親フレームのURLを確認
+      // Check the URL of Storybook's parent frame
       const topWin = window.top || window;
       const urlParams = new URLSearchParams(topWin.location.search);
       const globalsParam = urlParams.get("globals");
@@ -18,44 +18,44 @@ const startGlobalSync = () => {
       let targetLocale = null;
 
       if (globalsParam) {
-        // globals=locale:ja; などのパラメーターがある場合
+        // If there are parameters like globals=locale:ja;
         const match = globalsParam.match(/locale:([^;]+)/);
         if (match) {
           targetLocale = match[1];
         }
       } else if (urlParams.has("path")) {
-        // globalsパラメーターがないが Storybook のパスがある場合 -> デフォルト言語(en)とみなす
+        // If there is no globals parameter but a Storybook path exists -> assume default language (en)
         targetLocale = "en";
       }
 
-      // どちらでも取れない場合は localStorage (初期表示用)
+      // If neither can be obtained, use localStorage (for initial display)
       if (!targetLocale) {
         targetLocale = localStorage.getItem("i18nextLng");
       }
 
-      // 最終的なフォールバック
+      // Final fallback
       if (!targetLocale) {
         targetLocale = "en";
       }
 
       const currentLang = i18n.language;
       if (targetLocale && currentLang !== targetLocale) {
-        // 言語コードが部分的に一致（en-US と en など）しているだけの場合は無視する
+        // Ignore if the language code matches only partially (e.g. en-US and en)
         if (
           !currentLang.startsWith(targetLocale) &&
           !targetLocale.startsWith(currentLang)
         ) {
           i18n.changeLanguage(targetLocale);
         } else if (currentLang.length !== targetLocale.length) {
-          // 精密な比較が必要な場合（例: en と en-US を厳密に分けたい場合）はここを調整
-          // 今回は簡易的に en への切り替えを優先
+          // Adjust here if precise comparison is needed (e.g. if you want to strictly separate en and en-US)
+          // This time, prioritize switching to en simply
           if (targetLocale === "en" && currentLang !== "en") {
             i18n.changeLanguage("en");
           }
         }
       }
     } catch {
-      // 異なるドメインの iframe などで window.top にアクセスできない場合のセーフティ
+      // Safety for cases where window.top cannot be accessed (e.g. iframe of a different domain)
     }
   }, 500);
 };
@@ -77,5 +77,6 @@ export const T = ({ k }: { k: string }) => {
     };
   }, []);
 
+  console.log('Translating:', k, 'to:', t(k), 'language:', i18n.language);
   return <>{t(k)}</>;
 };

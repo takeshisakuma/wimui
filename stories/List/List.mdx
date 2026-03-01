@@ -21,32 +21,31 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  関連するアイテムを整理して表示するための汎用的なリストコンポーネント
+  <T k="doc_list_long_desc" />
 </p>
 
 <Description />
 
-<h2>バリエーション</h2>
+<h2><T k="doc_variants" /></h2>
 
-<h3>箇条書き (Unordered List)</h3>
+<h3><T k="doc_list_unordered" /></h3>
 <Canvas of={ListStories.Unordered} />
 
-<h3>番号付き (Ordered List)</h3>
+<h3><T k="doc_list_ordered" /></h3>
 <Canvas of={ListStories.Ordered} />
 
-<h3>サイズ</h3>
-<p>small, medium (default), large の3つのサイズをサポートしています。</p>
+<h3><T k="doc_size" /></h3>
+<p><T k="doc_list_sizes_desc" /></p>
 <Canvas of={ListStories.Small} />
 <Canvas of={ListStories.Large} />
 
-<h3>スペーシング</h3>
-<p>アイテム間の余白を tight, normal (default), loose から選択できます。</p>
+<h3><T k="doc_list_spacing" /></h3>
+<p><T k="doc_list_spacing_desc" /></p>
 <Canvas of={ListStories.LooseSpacing} />
 
-<h3>アイコン付き</h3>
+<h3><T k="doc_list_with_icons" /></h3>
 <p>
-  ListItem に <code>iconName</code> を指定することで、アイコンを表示できます。
-  <code>iconPosition</code> で左右の配置を選択可能です。
+  <T k="doc_list_with_icons_desc" />
 </p>
 <Canvas of={ListStories.WithIcons} />
 

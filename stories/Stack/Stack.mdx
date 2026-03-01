@@ -14,14 +14,14 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  <T k="doc_stack_title" />
+<T k="doc_stack_title" />
 </p>
 
 
 
-`Stack` コンポーネントは、要素を垂直または水平に並べ、要素間の間隔を管理するために使用されます。
+<p><T k="doc_stack_long_desc" /></p>
 
-## 使い方
+## <T k="doc_usage" /> (Usage)
 
 ```tsx
 import { Stack } from "@/components/Stack/Stack";
@@ -38,43 +38,43 @@ const Demo = () => (
 
 <Canvas of={StackStories.Default} />
 
-## 特徴
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>説明</th>
+      <th><T k="doc_features" /> (Feature)</th>
+      <th><T k="doc_description" /> (Description)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>方向のリセット</strong></td>
-      <td><code>direction</code> プロパティで <code>row</code> または <code>column</code> を指定できます（デフォルトは <code>column</code>）。</td>
+      <td><strong><T k="doc_stack_feat_reset" /></strong></td>
+      <td><T k="doc_stack_feat_reset_desc" /></td>
     </tr>
     <tr>
-      <td><strong>強力なスペース管理</strong></td>
-      <td><code>gap</code> プロパティに <code>xs</code>, <code>sm</code>, <code>md</code> などのトークン、または数値を指定して間隔を調整できます。</td>
+      <td><strong><T k="doc_stack_feat_space" /></strong></td>
+      <td><T k="doc_stack_feat_space_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Flexboxベース</strong></td>
-      <td>内部で <code>Flex</code> コンポーネントを使用しているため、<code>align</code> や <code>justify</code> などの Flexbox プロパティも使用可能です。</td>
+      <td><strong><T k="doc_stack_feat_flex" /></strong></td>
+      <td><T k="doc_stack_feat_flex_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## API リファレンス
+## <T k="doc_api_reference" />
 
 <Controls />
 
-## 水平方向の配置 (Row)
+## <T k="doc_stack_row_title" />
 
-`direction="row"` を指定することで、要素を横並びに配置できます。
+<p><T k="doc_stack_row_desc" /></p>
 
 <Canvas of={StackStories.Row} />
 
-## スペーシングトークンの利用
+## <T k="doc_stack_spacing_title" />
 
-wimui のスペーシングトークン（xs, sm, md, lg, xl など）をそのまま使用できます。
+<p><T k="doc_stack_spacing_desc" /></p>
 
 <Canvas of={StackStories.SpacingTokens} />

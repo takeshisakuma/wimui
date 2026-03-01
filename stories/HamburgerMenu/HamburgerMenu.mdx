@@ -1,18 +1,19 @@
 import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { T } from "../T";
 import * as HamburgerMenuStories from "./HamburgerMenu.stories";
 
 <Meta of={HamburgerMenuStories} />
 
 # HamburgerMenu
 
-ハンバーガーメニューは、モバイルデバイス向けにナビゲーション項目を格納するためのコンポーネントです。
+<p><T k="doc_hamburgermenu_long_desc" /></p>
 
-> **スマートフォンのみ**: このコンポーネントは主にモバイルデバイス（画面幅の狭いデバイス）向けに設計されています。PC環境では、`Navbar`や`Sidebar`の利用を検討してください。
+> **<T k="doc_hamburgermenu_mobile_only" />**: <T k="doc_hamburgermenu_mobile_only_desc" />
 
-## サンプル
+## <T k="doc_example" />
 
 <Canvas of={HamburgerMenuStories.Default} />
 
-## Props
+## <T k="doc_props" />
 
 <Controls />

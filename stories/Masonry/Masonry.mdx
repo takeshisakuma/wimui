@@ -19,10 +19,9 @@ import { T } from "../T";
 
 
 
-`Masonry` は、要素の高さが異なる場合でも、隙間を埋めるように効率的に配置するレイアウトコンポーネントです。
-主に画像ギャラリーや、高さの異なるカードを並べる際に使用されます。
+<p><T k="doc_masonry_long_desc" /></p>
 
-## 使い方
+## <T k="doc_usage" />
 
 ```tsx
 import { Masonry } from "@/components/Masonry/Masonry";
@@ -48,43 +47,43 @@ const Demo = () => (
 
 <Canvas of={MasonryStories.Default} />
 
-## 特徴
+## <T k="doc_features" />
 
 <table>
   <thead>
     <tr>
-      <th>特徴</th>
-      <th>説明</th>
+      <th><T k="doc_features" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>自動配置</strong></td>
-      <td>CSSの <code>column-count</code> を使用して、要素を自動的にカラムに振り分けます。</td>
+      <td><strong><T k="doc_masonry_feat_auto" /></strong></td>
+      <td><T k="doc_masonry_feat_auto_desc" /></td>
     </tr>
     <tr>
-      <td><strong>レスポンシブな間隔</strong></td>
-      <td><code>spacing</code> プロパティで要素間の余白を簡単に調整できます。</td>
+      <td><strong><T k="doc_masonry_feat_spacing" /></strong></td>
+      <td><T k="doc_masonry_feat_spacing_desc" /></td>
     </tr>
     <tr>
-      <td><strong>フレキシブルなカラム数</strong></td>
-      <td><code>columns</code> プロパティで任意のカラム数を指定可能です。</td>
+      <td><strong><T k="doc_masonry_feat_columns" /></strong></td>
+      <td><T k="doc_masonry_feat_columns_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## API リファレンス
+## <T k="doc_api_reference" />
 
 <Controls />
 
-## カラムの調整
+## <T k="doc_masonry_columns_adj" />
 
-カラム数を変更することで、レイアウトの密度を調整できます。
+<p><T k="doc_masonry_columns_adj_desc" /></p>
 
 <Canvas of={MasonryStories.ManyColumns} />
 
-## スペーシングの調整
+## <T k="doc_masonry_spacing_adj" />
 
-`spacing` プロパティを使用して、要素間の距離を調整できます。
+<p><T k="doc_masonry_spacing_adj_desc" /></p>
 
 <Canvas of={MasonryStories.LargeSpacing} />

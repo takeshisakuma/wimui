@@ -30,39 +30,38 @@ import { T } from "../T";
 <h2>Props</h2>
 <Controls />
 
-<h2>考慮点</h2>
+<h2><T k="doc_anchor_considerations" /></h2>
 <table>
   <thead>
     <tr>
-      <th>項目</th>
-      <th>説明</th>
+      <th><T k="doc_anchor_item_header" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>視認性</td>
+      <td><T k="doc_anchor_visibility" /></td>
       <td>
-        現在どのセクションを閲覧しているかが一目でわかるように、アクティブなリンクを強調し、インジケーター（インク）をアニメーションさせます。
+        <p><T k="doc_anchor_visibility_desc" /></p>
       </td>
     </tr>
     <tr>
-      <td>アクセシビリティ</td>
-      <td>キーボード操作に対応し、適切なリンク属性（href）を保持します。</td>
+      <td><T k="doc_accessibility" /></td>
+      <td><T k="doc_anchor_accessibility_desc" /></td>
     </tr>
     <tr>
-      <td>追従性</td>
+      <td><T k="doc_anchor_tracking" /></td>
       <td>
-        スクロール位置の変化を検知し、リアルタイムにアクティブな状態を切り替えます。Intersection
-        Observer または Scroll Event を使用して実装します。
+        <p><T k="doc_anchor_tracking_desc" /></p>
       </td>
     </tr>
   </tbody>
 </table>
 
-<h2>バリエーション</h2>
+<h2><T k="doc_variations" /></h2>
 
-<h3>基本</h3>
-サイドバーなどに固定して使用する標準的なアンカーです。
+<h3><T k="doc_basic" /></h3>
+<p><T k="doc_anchor_basic_desc" /></p>
 
 <Canvas of={AnchorStories.Default} />
 

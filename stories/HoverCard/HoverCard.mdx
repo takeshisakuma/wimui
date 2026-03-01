@@ -17,70 +17,70 @@ import { T } from "../T";
   <T k="doc_hovercard_title" />
 </p>
 
-ホバーしたときに追加情報を表示するためのコンポーネントです。
+<p><T k="doc_hovercard_long_desc" /></p>
 
-> **PCのみ**: このコンポーネントはポインターのホバー（Hover）操作を前提としているため、主にPC向けに設計されています。タッチデバイスでは意図した通りに動作しない場合があります。
+> **<T k="doc_hovercard_pc_only" />**: <T k="doc_hovercard_pc_only_desc" />
 
-## 使用例
+## <T k="doc_example" />
 
 <Canvas of={HoverCardStories.Default} />
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
 
-## 使い分け
+## <T k="doc_hovercard_usage_guide" />
 
-HoverCardは、Tooltipと似ていますが、以下の点が異なります。
+<p><T k="doc_hovercard_vs_tooltip" /></p>
 
 <table>
   <thead>
     <tr>
-      <th>比較項目</th>
-      <th>特徴</th>
+      <th><T k="doc_comparison_item" /></th>
+      <th><T k="doc_features" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>内容の複雑さ</strong></td>
-      <td>Tooltipは短いテキストのみを扱いますが、HoverCardはリッチなコンテンツ（画像、リンク、複数の段落など）を扱うことができます。</td>
+      <td><strong><T k="doc_hovercard_feat_complexity" /></strong></td>
+      <td><T k="doc_hovercard_feat_complexity_desc" /></td>
     </tr>
     <tr>
-      <td><strong>インタラクション</strong></td>
-      <td>HoverCardは表示されたコンテンツ自体をホバーしたり、その中のリンクをクリックしたりすることを想定しています。</td>
+      <td><strong><T k="doc_hovercard_feat_interaction" /></strong></td>
+      <td><T k="doc_hovercard_feat_interaction_desc" /></td>
     </tr>
     <tr>
-      <td><strong>遅延</strong></td>
-      <td>誤操作を防ぐために、Tooltipよりも長めの表示遅延（デフォルト700ms）が設定されることが一般的です。</td>
+      <td><strong><T k="doc_hovercard_feat_delay" /></strong></td>
+      <td><T k="doc_hovercard_feat_delay_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-### コンポーネント比較まとめ
+### <T k="doc_hovercard_comp_summary" />
 
 <table>
   <thead>
     <tr>
-      <th>コンポーネント</th>
-      <th>内容の複雑さ・インタラクション</th>
-      <th>主なユースケース</th>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_complexity_interaction" /></th>
+      <th><T k="doc_use_cases" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><strong>Tooltip</strong></td>
-      <td>短いテキストのみ。インタラクションなし。</td>
-      <td>アイコンの意味説明、短い補足説明など。</td>
+      <td><T k="doc_tooltip_feat_interaction_short" /></td>
+      <td><T k="doc_tooltip_use_cases" /></td>
     </tr>
     <tr>
       <td><strong>HoverCard</strong></td>
-      <td>リッチコンテンツ（画像、リンク等）。コンテンツ内の操作が可能。</td>
-      <td>プロフィールプレビュー、リンク先の内容抜粋など。</td>
+      <td><T k="doc_hovercard_feat_interaction_rich" /></td>
+      <td><T k="doc_hovercard_use_cases" /></td>
     </tr>
     <tr>
       <td><strong>Popover</strong></td>
-      <td>複雑なインタラクション（フォーム等）。クリックで表示。</td>
-      <td>詳細設定、入力フォーム、明示的なアクションが必要な場合。</td>
+      <td><T k="doc_popover_feat_interaction_complex" /></td>
+      <td><T k="doc_popover_use_cases" /></td>
     </tr>
   </tbody>
 </table>

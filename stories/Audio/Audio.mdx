@@ -17,43 +17,38 @@ import { T } from "../T";
   <T k="doc_audio_title" />
 </p>
 
-音声ファイルを再生するためのコンポーネントです。
+<p><T k="doc_audio_long_desc" /></p>
 
-## 基本的な使い方
+## <T k="doc_basic_usage" />
 
-`src` プロパティに音声ファイルのパスを指定します。
+<p><T k="doc_audio_basic_desc" /></p>
 
 <Canvas of={AudioStories.Default} />
 
-## カスタムコントロール
+## <T k="doc_audio_custom_controls" />
 
-`customControls` を `true` に設定すると、カスタマイズされたオーディオプレイヤーが表示されます。
-これを使用すると、`border` や `radius` などのスタイルプロパティが有効になります。
+<p><T k="doc_audio_custom_controls_desc" /></p>
 
 <Canvas of={AudioStories.CustomControls} />
 
-## スタイルの適用（角丸・枠線）
+## <T k="doc_audio_styling" />
 
-`radius` や `border` プロパティを使用してスタイルを適用できます。
-これらのプロパティは `customControls={true}` の場合のみ適用されます。
+<p><T k="doc_audio_styling_desc" /></p>
 
 <Canvas of={AudioStories.Rounded} />
 
-### 【重要】ブラウザ標準プレイヤーの制限について
+### <T k="doc_audio_important_notice" />
 
-`customControls={false}`（デフォルト）の場合、ブラウザ標準の `<audio>` 要素が使用されます。
-ブラウザ標準プレイヤーは、ブラウザ（Chrome, Firefox, Safariなど）によってデザインやサイズが大きく異なり、また多くのブラウザで独自のスタイル（border-radiusなど）を持っています。
-そのため、`border` や `radius` プロパティを適用しても、標準プレイヤーの形状と一致せず、表示が崩れる可能性があります。
-このため、`border` や `radius` プロパティは、`customControls={true}` の場合のみ有効になるように設計されています。
+<p><T k="doc_audio_important_notice_desc" /></p>
 
-## カスタマイズと拡張性（実装可能な機能）
+## <T k="doc_audio_customization" />
 
-`customControls={true}` モードでは、ReactコンポーネントとしてUIを完全に制御しているため、標準の `<audio>` タグだけでは実装が難しい以下のような機能も、コードを拡張することで追加可能です。
+<p><T k="doc_audio_customization_desc" /></p>
 
-- 再生速度の変更: `playbackRate` を操作するUIを追加し、「0.5倍」「1.5倍」「2倍」などの倍速再生機能を提供できます。
-- スキップ・シーク機能: 「5秒戻る」「10秒進む」といったカスタムボタンを配置できます。
-- ループの動的切り替え: 再生中にループ設定をON/OFFできるトグルボタンを実装できます。
-- 波形表示: Web Audio APIと組み合わせることで、音声の波形を可視化するビジュアライザーを組み込むことも可能です。
+<p><T k="doc_audio_feature_speed" /></p>
+<p><T k="doc_audio_feature_seek" /></p>
+<p><T k="doc_audio_feature_loop" /></p>
+<p><T k="doc_audio_feature_waveform" /></p>
 
 ## Props
 

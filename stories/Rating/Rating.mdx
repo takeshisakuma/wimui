@@ -17,9 +17,9 @@ import * as RatingStories from "./Rating.stories";
   <T k="doc_rating_title" />
 </p>
 
-評価（レーティング）を表示・入力するためのコンポーネントです。
+<p><T k="doc_rating_long_desc" /></p>
 
-## 使用方法
+## <T k="doc_usage" />
 
 ```tsx
 import { Rating } from "@/components/Rating/Rating";
@@ -29,26 +29,26 @@ const Example = () => {
 };
 ```
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
 
-## バリエーション
+## <T k="doc_variants" />
 
-### ハーフスター許可
+### <T k="doc_rating_half" />
 
-`allowHalf` プロップを使用することで、0.5単位での評価が可能になります。
+<p><T k="doc_rating_half_desc" /></p>
 
 <Canvas of={RatingStories.AllowHalf} />
 
-### サイズ
+### <T k="doc_sizes" />
 
-`small`, `medium`, `large` の3つのサイズをサポートしています。
+<p><T k="doc_rating_size_desc" /></p>
 
 <Canvas of={RatingStories.Sizes} />
 
-### 無効化（読み取り専用）
+### <T k="doc_rating_readonly" />
 
-`disabled` プロップを使用することで、値を変更できない読み取り専用モードになります。
+<p><T k="doc_rating_readonly_desc" /></p>
 
 <Canvas of={RatingStories.Disabled} />

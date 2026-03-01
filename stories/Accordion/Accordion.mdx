@@ -1,10 +1,10 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../T";
 import * as AccordionStories from "./Accordion.stories";
 
 <Meta of={AccordionStories} />
 
-# Accordion
+<Title />
 
 <p
   style={{
@@ -17,15 +17,13 @@ import * as AccordionStories from "./Accordion.stories";
   <T k="doc_accordion_title" />
 </p>
 
-アコーディオンコンポーネントは、コンテンツを折りたたんで表示し、ユーザーがクリックして詳細を表示できるようにします。
+<p><T k="doc_accordion_long_desc" /></p>
 
-## 特徴
+## <T k="doc_features" />
 
-- Single/Multiple モード: 一度に1つのアイテムのみ開くか、複数のアイテムを同時に開くかを選択できます。
-- Collapsible: `single` モードで開いているアイテムを再度クリックして閉じることができます。
-- アクセシビリティ: WAI-ARIA に準拠し、適切なロールと属性を保持しています。
+<p><T k="doc_accordion_features_desc" /></p>
 
-## 使い方
+## <T k="doc_usage_examples" />
 
 ```tsx
 import { Accordion } from "@/components/Accordion/Accordion";
@@ -33,29 +31,35 @@ import { Accordion } from "@/components/Accordion/Accordion";
 const Example = () => (
   <Accordion type="single" collapsible>
     <Accordion.Item value="item-1">
-      <Accordion.Trigger>タイトル</Accordion.Trigger>
-      <Accordion.Content>折りたたまれるコンテンツ</Accordion.Content>
+      <Accordion.Trigger>Title</Accordion.Trigger>
+      <Accordion.Content>Collapsible content</Accordion.Content>
     </Accordion.Item>
   </Accordion>
 );
 ```
 
-## キャンバス
+## <T k="doc_basic_usage" />
 
 <Canvas of={AccordionStories.Single} />
 
+<Primary />
+
+## Props
+
 <Controls of={AccordionStories.Single} />
 
-## バリエーション
+## <T k="doc_variations" />
 
-### 複数展開可能 (Multiple)
+### <T k="doc_accordion_multiple" />
 
-`type="multiple"` を指定することで、複数のアイテムを同時に開いた状態にできます。
+<p><T k="doc_accordion_multiple_desc" /></p>
 
 <Canvas of={AccordionStories.Multiple} />
 
-### 無効化 (Disabled)
+### <T k="doc_accordion_disabled" />
 
-`Accordion.Item` に `disabled` プロップを渡すことで、そのアイテムの操作を無効化できます。
+<p><T k="doc_accordion_disabled_desc" /></p>
 
 <Canvas of={AccordionStories.Disabled} />
+
+<Stories />
