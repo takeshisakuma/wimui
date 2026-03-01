@@ -1,0 +1,23 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{R as c}from"./iframe-RqRUvN2f.js";import{P as b,a as g,b as v,c as d}from"./Popover-DxyznAQh.js";import{B as s}from"./Button-CgPisaF3.js";import{I as j}from"./Icon-DEW6Teyt.js";import{u as k}from"./useTranslation-CveckdUp.js";const u=({title:n,description:a,onConfirm:m,onCancel:p,okText:f="OK",cancelText:h="Cancel",okType:y="default",children:i,icon:x,disabled:T=!1})=>{const{t:l}=k();return T?c.isValidElement(i)?c.cloneElement(i,{disabled:!0}):e.jsx(e.Fragment,{children:i}):e.jsxs(b,{children:[e.jsx(g,{asChild:!0,children:i}),e.jsx(v,{className:"wim-popconfirm-content",children:e.jsxs("div",{className:"wim-popconfirm-inner",children:[e.jsxs("div",{className:"wim-popconfirm-message",children:[e.jsx("span",{className:"wim-popconfirm-icon",children:x||e.jsx(j,{name:"CircleIcon",color:"caution",size:"small"})}),e.jsx("div",{className:"wim-popconfirm-title",children:typeof n=="string"?l(n):n})]}),a&&e.jsx("div",{className:"wim-popconfirm-description",children:typeof a=="string"?l(a):a}),e.jsxs("div",{className:"wim-popconfirm-actions",children:[e.jsx(d,{asChild:!0,children:e.jsx(s,{size:"small",label:h,onClick:p,priority:"tertiary"})}),e.jsx(d,{asChild:!0,children:e.jsx(s,{size:"small",label:f,onClick:m,priority:"primary",role:y})})]})]})})]})};u.__docgenInfo={description:"",methods:[],displayName:"Popconfirm",props:{title:{required:!0,tsType:{name:"ReactNode"},description:"The title of the confirmation box"},description:{required:!1,tsType:{name:"ReactNode"},description:"The description of the confirmation box"},onConfirm:{required:!1,tsType:{name:"signature",type:"function",raw:"() => void",signature:{arguments:[],return:{name:"void"}}},description:"Callback when the user clicks the confirm button"},onCancel:{required:!1,tsType:{name:"signature",type:"function",raw:"() => void",signature:{arguments:[],return:{name:"void"}}},description:"Callback when the user clicks the cancel button"},okText:{required:!1,tsType:{name:"string"},description:"Text of the confirm button",defaultValue:{value:'"OK"',computed:!1}},cancelText:{required:!1,tsType:{name:"string"},description:"Text of the cancel button",defaultValue:{value:'"Cancel"',computed:!1}},okType:{required:!1,tsType:{name:"union",raw:'"default" | "destructive" | "positive"',elements:[{name:"literal",value:'"default"'},{name:"literal",value:'"destructive"'},{name:"literal",value:'"positive"'}]},description:"Color role of the confirm button",defaultValue:{value:'"default"',computed:!1}},children:{required:!0,tsType:{name:"ReactNode"},description:"The target element which the Popconfirm will be attached to"},icon:{required:!1,tsType:{name:"ReactNode"},description:"Customize the icon"},disabled:{required:!1,tsType:{name:"boolean"},description:"Whether to show the popconfirm",defaultValue:{value:"false",computed:!1}}}};const w={title:"Components/Alerts & Notifications/Popconfirm",component:u,tags:[],argTypes:{onConfirm:{action:"confirmed"},onCancel:{action:"cancelled"}}},t={args:{title:"Are you sure you want to delete this task?",children:e.jsx(s,{priority:"primary",label:"Delete"}),okText:"Yes",cancelText:"No",okType:"destructive"}},o={args:{title:"Delete the task",description:"Are you sure to delete this task? This action cannot be undone.",children:e.jsx(s,{label:"Delete with Description"}),okText:"Yes",cancelText:"No"}},r={args:{title:"Are you sure?",children:e.jsx(s,{label:"Disabled Popconfirm"}),disabled:!0}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    title: "Are you sure you want to delete this task?",
+    children: <Button priority="primary" label="Delete" />,
+    okText: "Yes",
+    cancelText: "No",
+    okType: "destructive"
+  }
+}`,...t.parameters?.docs?.source}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    title: "Delete the task",
+    description: "Are you sure to delete this task? This action cannot be undone.",
+    children: <Button label="Delete with Description" />,
+    okText: "Yes",
+    cancelText: "No"
+  }
+}`,...o.parameters?.docs?.source}}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {
+    title: "Are you sure?",
+    children: <Button label="Disabled Popconfirm" />,
+    disabled: true
+  }
+}`,...r.parameters?.docs?.source}}};const C=["Default","WithDescription","Disabled"],R=Object.freeze(Object.defineProperty({__proto__:null,Default:t,Disabled:r,WithDescription:o,__namedExportsOrder:C,default:w},Symbol.toStringTag,{value:"Module"}));export{t as D,R as P,o as W,r as a};
