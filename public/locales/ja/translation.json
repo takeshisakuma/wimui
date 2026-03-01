@@ -1598,7 +1598,7 @@
   "doc_icon_anim_table_row_usage": "用途",
   "doc_icon_anim_table_row_usage_desc": "ボタン内、入力フィールド、テキストの横など **インライン（行内）** で「処理中」を示す場合",
   "doc_icon_anim_vs_loader": "Icon のアニメーションと Loader コンポーネントの使い分け",
-  "doc_icon_anim_vs_loader_desc": "Icon コンポーネントでは LoadingIcon や SpinnerIcon を指定すると、**360度回転アニメーション（wim-rotate）**が自動的に適用されます。一方で、別途 **Loader コンポーネント** にも読み込み中を示すアニメーションがあります。これらは用途が異なるため、適切に使い分けてください。",
+  "doc_icon_anim_vs_loader_desc": "Icon コンポーネントでは LoadingIcon や SpinnerIcon を指定すると、360度回転アニメーション（wim-rotate）が自動的に適用されます。一方で、別途 Loader コンポーネント にも読み込み中を示すアニメーションがあります。これらは用途が異なるため、適切に使い分けてください。",
   "doc_icon_anim_vs_loader_table": "早見表",
   "doc_icon_comp_anim_rotate": "回転（rotate）",
   "doc_icon_comp_anim_type": "アニメーション形式",
