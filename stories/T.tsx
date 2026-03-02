@@ -1,33 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { addons } from "storybook/internal/preview-api";
 import i18n from "../.storybook/i18n";
 
-// Sync locale from Storybook globals (e.g. ?globals=locale:ja)
-const syncLocaleFromGlobals = () => {
-  try {
-    const topWin = window.top || window;
-    const urlParams = new URLSearchParams(topWin.location.search);
-    const globals = urlParams.get("globals");
-    const match = globals?.match(/locale:([^;]+)/);
-    const locale = match ? match[1] : null;
-    if (locale && i18n.language !== locale) {
-      i18n.changeLanguage(locale);
-    }
-  } catch {
-    // ignore cross‑origin errors
-  }
-};
+// Storybook event name for globals updates
+const GLOBALS_UPDATED = "globalsUpdated";
 
 export const T = ({ k }: { k: string }) => {
   const { t } = useTranslation("translation", { i18n });
   const [, setTick] = useState(0);
 
   useEffect(() => {
-    // Initial sync with Storybook toolbar
-    syncLocaleFromGlobals();
-    const handler = () => setTick((t) => t + 1);
-    i18n.on("languageChanged", handler);
-    return () => i18n.off("languageChanged", handler);
+    // Initial sync: read locale from URL globals on mount
+    try {
+      const topWin = window.top || window;
+      const urlParams = new URLSearchParams(topWin.location.search);
+      const globals = urlParams.get("globals");
+      const match = globals?.match(/locale:([^;]+)/);
+      const locale = match ? match[1] : null;
+      if (locale && i18n.language !== locale) {
+        i18n.changeLanguage(locale);
+      }
+    } catch {
+      // ignore cross-origin errors
+    }
+
+    // Listen for Storybook toolbar locale changes via the channel
+    let channel: ReturnType<typeof addons.getChannel> | null = null;
+    const globalsHandler = ({ globals }: { globals: Record<string, unknown> }) => {
+      const locale = globals?.locale as string | undefined;
+      if (locale && i18n.language !== locale) {
+        i18n.changeLanguage(locale);
+      }
+    };
+    try {
+      channel = addons.getChannel();
+      channel.on(GLOBALS_UPDATED, globalsHandler);
+    } catch {
+      // ignore if channel is unavailable
+    }
+
+    // Re-render when i18n language actually changes
+    const langHandler = () => setTick((n) => n + 1);
+    i18n.on("languageChanged", langHandler);
+
+    return () => {
+      i18n.off("languageChanged", langHandler);
+      try {
+        channel?.off(GLOBALS_UPDATED, globalsHandler);
+      } catch {
+        // ignore
+      }
+    };
   }, []);
 
   // Debug output – can be removed in production
