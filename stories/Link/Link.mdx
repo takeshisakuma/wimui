@@ -4,7 +4,7 @@ import * as LinkStories from "./Link.stories";
 
 <Meta of={LinkStories} />
 
-# Link
+# <T k="doc_link_title" />
 
 <p
   style={{
@@ -14,12 +14,10 @@ import * as LinkStories from "./Link.stories";
     color: "#6c757d",
   }}
 >
-  <T k="doc_link_title" />
+  <T k="doc_link_long_desc" />
 </p>
 
-<p><T k="doc_link_long_desc" /></p>
-
-> 📘 Guide: See [Guides / Link vs Button](?path=/docs/guides-link-vs-button--docs) for when to use `<a>` vs `<button>`.
+> 📘 <T k="doc_guide" />: <T k="doc_link_vs_button_guide_desc" />
 
 ## <T k="doc_usage" />
 
@@ -39,24 +37,21 @@ import { Link } from "@/components/Link/Link";
 
 <p><T k="doc_link_priority_desc" /></p>
 
-#### Primary
+#### <T k="doc_link_priority_primary" />
 
-Most visible style.
+<p><T k="doc_link_priority_primary_desc" /></p>
 
 <Canvas of={LinkStories.Primary} />
 
-#### Secondary
+#### <T k="doc_link_priority_secondary" />
 
-Standard text style.
+<p><T k="doc_link_priority_secondary_desc" /></p>
 
 <Canvas of={LinkStories.Secondary} />
 
-#### Tertiary
+#### <T k="doc_link_priority_tertiary" />
 
-<p><T k="doc_link_priority_tertiary_desc" /></p>
-#### Tertiary
-
-Subtle style.
+<p><T k="doc_link_priority_tertiary_style_desc" /></p>
 
 <Canvas of={LinkStories.Tertiary} />
 
@@ -64,11 +59,11 @@ Subtle style.
 
 <p><T k="doc_link_icons_desc" /></p>
 
-#### Left Icon
+#### <T k="doc_link_icon_left" />
 
 <Canvas of={LinkStories.WithIconLeft} />
 
-#### Right Icon
+#### <T k="doc_link_icon_right" />
 
 <Canvas of={LinkStories.WithIconRight} />
 
@@ -76,14 +71,14 @@ Subtle style.
 
 <p><T k="doc_link_sizes_desc" /></p>
 
-#### Small
+#### <T k="doc_small" />
 
 <Canvas of={LinkStories.Small} />
 
-#### Medium
+#### <T k="doc_medium" />
 
 <Canvas of={LinkStories.Primary} />
 
-#### Large
+#### <T k="doc_large" />
 
 <Canvas of={LinkStories.Large} />

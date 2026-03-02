@@ -54,7 +54,22 @@ export const T = ({ k }: { k: string }) => {
     };
   }, []);
 
+  // Create a helper to process the translated text
+  const processText = (text: any) => {
+    if (typeof text !== "string") return text;
+
+    // 1. Remove extra indentation (newline followed by multiple spaces)
+    // 2. Convert literal \n to real newlines (if they were double escaped)
+    // 3. Convert all newlines to <br />
+    return text
+      .replace(/\\n/g, "\n")              // Handle literal \n text
+      .replace(/\n\s+/g, "\n")            // Remove indentation after newlines
+      .replace(/\n/g, "<br />");          // Convert to HTML line breaks
+  };
+
   // Debug output – can be removed in production
-  console.log("🔤 Translating", k, "→", t(k), `(lang=${i18n.language})`);
-  return <span dangerouslySetInnerHTML={{ __html: t(k) }} />;
+  const translated = t(k);
+  console.log("🔤 Translating", k, "→", translated, `(lang=${i18n.language})`);
+
+  return <span dangerouslySetInnerHTML={{ __html: processText(translated) }} />;
 };
