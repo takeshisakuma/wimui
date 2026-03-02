@@ -47,8 +47,7 @@ import * as LoadingOverlayStories from "./LoadingOverlay.stories";
     </tr>
     <tr>
       <td><strong><T k="doc_accessibility" /></strong></td>
-      <td><T k="doc_loadingoverlay_feat_aria_desc" /> (I'll add this if needed or just use English text)
-        Includes proper ARIA attributes for screen readers.</td>
+      <td><T k="doc_loadingoverlay_feat_aria_desc" /></td>
     </tr>
   </tbody>
 </table>
@@ -103,44 +102,44 @@ import * as LoadingOverlayStories from "./LoadingOverlay.stories";
 
 <Canvas of={LoadingOverlayStories.CustomLoader} />
 
-## Best Practices
+## <T k="doc_best_practices" />
 
 <table>
   <thead>
     <tr>
-      <th>Best Practice</th>
-      <th>Description</th>
+      <th><T k="doc_best_practice_label" /></th>
+      <th><T k="doc_description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Use Sparingly</strong></td>
-      <td>Only show loading overlays when necessary to avoid disrupting the user experience.</td>
+      <td><strong><T k="doc_loadingoverlay_bp_use_sparingly" /></strong></td>
+      <td><T k="doc_loadingoverlay_bp_use_sparingly_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Provide Context</strong></td>
-      <td>Include a message when the loading operation might take more than a few seconds.</td>
+      <td><strong><T k="doc_loadingoverlay_bp_provide_context" /></strong></td>
+      <td><T k="doc_loadingoverlay_bp_provide_context_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Choose Appropriate Scope</strong></td>
-      <td>Use absolute positioning for partial page updates and fixed positioning for full-page operations.</td>
+      <td><strong><T k="doc_loadingoverlay_bp_choose_appropriate_scope" /></strong></td>
+      <td><T k="doc_loadingoverlay_bp_choose_appropriate_scope_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Consider Backdrop</strong></td>
-      <td>Use light backdrops on dark backgrounds and vice versa for better visibility.</td>
+      <td><strong><T k="doc_loadingoverlay_bp_consider_backdrop" /></strong></td>
+      <td><T k="doc_loadingoverlay_bp_consider_backdrop_desc" /></td>
     </tr>
     <tr>
-      <td><strong>Timeout Handling</strong></td>
-      <td>Always implement timeout handling to prevent indefinite loading states.</td>
+      <td><strong><T k="doc_loadingoverlay_bp_timeout_handling" /></strong></td>
+      <td><T k="doc_loadingoverlay_bp_timeout_handling_desc" /></td>
     </tr>
   </tbody>
 </table>
 
-## Accessibility
+## <T k="doc_accessibility" />
 
-- The component includes `role="status"` and `aria-live="polite"` for screen reader announcements.
-- The `aria-busy="true"` attribute indicates that the content is loading.
-- Ensure that loading messages are descriptive and helpful for users relying on assistive technologies.
+- <T k="doc_loadingoverlay_a11y_1" />
+- <T k="doc_loadingoverlay_a11y_2" />
+- <T k="doc_loadingoverlay_a11y_3" />
 
 ## <T k="doc_props" />
 
