@@ -187,7 +187,7 @@ export interface DialogContentProps {
 
 export const DialogContent = ({ children, className }: DialogContentProps) => {
   const { open, onOpenChange, titleId, descriptionId } = useDialog();
-  const contentRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDialogElement>(null);
 
   // Close on Escape
   useEffect(() => {
@@ -252,17 +252,16 @@ export const DialogContent = ({ children, className }: DialogContentProps) => {
               autoFocus={true}
               className="wim-dialog-focus-trap-wrapper"
             >
-              <div
+              <dialog
                 ref={contentRef}
-                role="dialog"
-                aria-modal="true"
+                open={open}
                 aria-labelledby={titleId}
                 aria-describedby={descriptionId}
                 className={classNames("wim-dialog-content", className)}
                 onClick={(e) => e.stopPropagation()}
               >
                 {children}
-              </div>
+              </dialog>
             </FocusTrap>
           </Transition>
         </div>
