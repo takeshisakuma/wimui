@@ -34,36 +34,30 @@
     color: inherit;
     text-align: left;
     cursor: pointer;
-    background-color: color-mix(
-      in srgb,
-      var(--wim-color-primary, #3b82f6) 4%,
-      transparent
-    );
+    background-color: color-mix(in srgb,
+        var(--wim-color-primary, #3b82f6) 4%,
+        transparent);
     border: none;
     transition: all 0.2s ease;
 
     .wim-accordion__item--open & {
       font-weight: 600;
       color: var(--wim-color-primary, #3b82f6);
-      background-color: color-mix(
-        in srgb,
-        var(--wim-color-primary, #3b82f6) 8%,
-        transparent
-      );
+      background-color: color-mix(in srgb,
+          var(--wim-color-primary, #3b82f6) 8%,
+          transparent);
     }
 
     &:hover:not(:disabled) {
       color: var(--wim-color-primary, #3b82f6);
-      background-color: color-mix(
-        in srgb,
-        var(--wim-color-primary, #3b82f6) 8%,
-        transparent
-      );
+      background-color: color-mix(in srgb,
+          var(--wim-color-primary, #3b82f6) 8%,
+          transparent);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--wim-color-primary, #3b82f6);
-      outline-offset: -2px;
+      outline: none;
+      box-shadow: var(--shadow-focus);
     }
   }
 

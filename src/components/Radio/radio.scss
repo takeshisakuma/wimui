@@ -19,10 +19,8 @@
   cursor: pointer;
   opacity: 0;
 
-  &:focus-visible + .wim-radio-visual {
-    box-shadow:
-      0 0 0 2px var(--bg-background),
-      0 0 0 4px var(--color-primary);
+  &:focus-visible+.wim-radio-visual {
+    box-shadow: var(--shadow-focus);
   }
 }
 
@@ -40,23 +38,21 @@
   transition: all 0.2s ease-in-out;
 
   // Checked state
-  .wim-radio-input:checked + & {
-    background-color: var(
-      --bg-component
-    ); // Keep background for the dot to sit in, or change if design needs filling
+  .wim-radio-input:checked+& {
+    background-color: var(--bg-component); // Keep background for the dot to sit in, or change if design needs filling
     border-color: var(--color-primary);
 
-    > .wim-radio-dot {
+    >.wim-radio-dot {
       background-color: var(--color-primary);
       transform: scale(1);
     }
   }
 
   // Disabled state
-  .wim-radio-input:disabled + & {
+  .wim-radio-input:disabled+& {
     border-color: var(--color-disabled);
 
-    > .wim-radio-dot {
+    >.wim-radio-dot {
       background-color: var(--color-text-on-disabled);
     }
   }

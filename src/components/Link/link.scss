@@ -30,7 +30,8 @@
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px var(--color-focus-outline);
+      outline: none;
+      box-shadow: var(--shadow-focus);
     }
 
     &__inner {

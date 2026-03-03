@@ -44,19 +44,16 @@
       transform 0.1s;
 
     &:hover {
-      box-shadow: 0 0 0 4px
-        color-mix(in srgb, var(--color-primary) 10%, transparent);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 10%, transparent);
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 4px
-        color-mix(in srgb, var(--color-primary) 30%, transparent);
+      box-shadow: var(--shadow-focus);
     }
 
     &:active {
       cursor: grabbing;
-      box-shadow: 0 0 0 6px
-        color-mix(in srgb, var(--color-primary) 20%, transparent);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-primary) 20%, transparent);
     }
   }
 }

@@ -55,7 +55,7 @@
     margin: 0 4px;
     opacity: 0.5;
 
-    @media (width >= 640px) {
+    @media (width >=640px) {
       display: inline;
     }
   }
@@ -95,8 +95,8 @@
     }
 
     &:focus-visible {
-      outline: 2px solid currentcolor;
-      outline-offset: 2px;
+      outline: none;
+      box-shadow: var(--shadow-focus);
     }
 
     svg {

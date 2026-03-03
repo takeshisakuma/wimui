@@ -102,8 +102,8 @@
       border: none;
 
       &:focus-visible {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 2px;
+        outline: none;
+        box-shadow: var(--shadow-focus);
         border-radius: var(--radius-sm);
       }
     }
@@ -136,8 +136,7 @@
 
       &:focus {
         border-color: var(--color-primary);
-        box-shadow: 0 0 0 2px
-          color-mix(in srgb, var(--color-primary-rgb) 10%, transparent);
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary-rgb) 10%, transparent);
       }
     }
 
@@ -167,8 +166,7 @@
 
       &:focus {
         border-color: var(--color-primary);
-        box-shadow: 0 0 0 2px
-          color-mix(in srgb, var(--color-primary-rgb) 10%, transparent);
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary-rgb) 10%, transparent);
       }
 
       /* Chrome, Safari, Edge, Opera */

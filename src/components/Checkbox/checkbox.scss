@@ -19,10 +19,8 @@
   cursor: pointer;
   opacity: 0;
 
-  &:focus-visible + .wim-checkbox-visual {
-    box-shadow:
-      0 0 0 2px var(--bg-background),
-      0 0 0 4px var(--color-primary);
+  &:focus-visible+.wim-checkbox-visual {
+    box-shadow: var(--shadow-focus);
   }
 }
 
@@ -41,36 +39,36 @@
   transition: all 0.2s ease-in-out;
 
   // Checked state
-  .wim-checkbox-input:checked + & {
+  .wim-checkbox-input:checked+& {
     background-color: var(--color-primary);
     border-color: var(--color-primary);
 
-    > * {
+    >* {
       opacity: 1;
       transform: scale(1);
     }
   }
 
   // Indeterminate state (visually similar to checked)
-  .wim-checkbox-input:indeterminate + & {
+  .wim-checkbox-input:indeterminate+& {
     background-color: var(--color-primary);
     border-color: var(--color-primary);
 
-    > * {
+    >* {
       opacity: 1;
       transform: scale(1);
     }
   }
 
   // Disabled state
-  .wim-checkbox-input:disabled + & {
+  .wim-checkbox-input:disabled+& {
     color: var(--color-text-on-disabled);
     background-color: var(--color-disabled);
     border-color: var(--color-disabled);
   }
 
   // Child element (Icon or mark) - hidden by default
-  > * {
+  >* {
     opacity: 0;
     transform: scale(0.5);
     transition: all 0.2s ease-in-out;

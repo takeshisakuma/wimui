@@ -74,8 +74,9 @@
 
   /* フォーカス時のアウトライン表示 (アクセシビリティ向上) */
   :focus-visible {
-    outline: scales.$focus-outline-width solid colors.$color-focus-outline;
-    outline-offset: scales.$focus-outline-offset;
+    outline: none;
+    box-shadow: var(--shadow-focus);
+    border-radius: inherit;
   }
 
   /* コンポーネント共通の基本振る舞い */

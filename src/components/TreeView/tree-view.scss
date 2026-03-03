@@ -36,8 +36,7 @@
 
     &:focus {
       border-color: var(--color-primary);
-      box-shadow: 0 0 0 3px
-        color-mix(in srgb, var(--color-primary-rgb) 10%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-rgb) 10%, transparent);
     }
 
     &::placeholder {
@@ -69,7 +68,7 @@
     }
   }
 
-  &--selected > &__label-container {
+  &--selected>&__label-container {
     color: var(--color-text-on-primary);
     background: var(--color-primary);
 
@@ -92,9 +91,9 @@
     }
   }
 
-  &:focus-visible > &__label-container {
-    outline: 2px solid var(--color-primary);
-    outline-offset: -2px;
+  &:focus-visible>&__label-container {
+    outline: none;
+    box-shadow: var(--shadow-focus);
   }
 
   &__expand-btn {
@@ -148,7 +147,7 @@
     color: var(--text-secondary);
   }
 
-  &--selected > &__label-container &__icon {
+  &--selected>&__label-container &__icon {
     color: var(--color-text-on-primary);
   }
 
