@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useId } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Calendar } from "../Calendar/Calendar";
 import { Icon } from "../Icon/Icon";
@@ -52,6 +53,8 @@ export const DatePicker = ({
   disabledDates,
   ...props
 }: DatePickerProps) => {
+  const { t } = useTranslation();
+
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<Date | null>(
     defaultValue || null,
@@ -165,7 +168,7 @@ export const DatePicker = ({
               type="button"
               className="wim-datepicker-clear"
               onClick={handleClear}
-              aria-label="Clear date"
+              aria-label={t("a11y_clear_date")}
             >
               <Icon name="CloseIcon" size="small" />
             </button>
@@ -175,7 +178,7 @@ export const DatePicker = ({
             className="wim-datepicker-calendar-icon"
             onClick={handleInputClick}
             disabled={disabled || state === "disabled"}
-            aria-label="Open calendar"
+            aria-label={t("a11y_open_calendar")}
             aria-expanded={isOpen}
             aria-controls={isOpen ? dropdownId : undefined}
           >

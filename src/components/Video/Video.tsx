@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./video.scss";
@@ -54,6 +55,8 @@ export const Video = ({
   qualities,
   ...props
 }: VideoProps) => {
+  const { t } = useTranslation();
+
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -699,7 +702,7 @@ export const Video = ({
                       activeMenu === "playlist" ? null : "playlist",
                     );
                   }}
-                  aria-label="Playlist"
+                  aria-label={t("a11y_playlist")}
                 >
                   <Icon name="DocumentIcon" size="small" />
                 </button>
@@ -713,7 +716,7 @@ export const Video = ({
                     e.stopPropagation();
                     skip(-10);
                   }}
-                  aria-label="Skip Backward 10s"
+                  aria-label={t("a11y_skip_backward")}
                 >
                   <Icon name="ChevronLeftIcon" size="small" />
                 </button>
@@ -742,7 +745,7 @@ export const Video = ({
                     e.stopPropagation();
                     skip(10);
                   }}
-                  aria-label="Skip Forward 10s"
+                  aria-label={t("a11y_skip_forward")}
                 >
                   <Icon name="ChevronRightIcon" size="small" />
                 </button>
@@ -762,7 +765,7 @@ export const Video = ({
                   style={{
                     opacity: currentPlayIndex >= playlist.length - 1 ? 0.5 : 1,
                   }}
-                  aria-label="Next track"
+                  aria-label={t("a11y_next_track")}
                 >
                   {/* Using play icon for next as placeholder, or just skip forward icon if available */}
                   <Icon name="ChevronRightIcon" size="medium" />
@@ -781,7 +784,7 @@ export const Video = ({
                     value={currentTime}
                     onChange={handleSeek}
                     className="wim-video-progress"
-                    aria-label="Seek"
+                    aria-label={t("a11y_seek")}
                     onClick={(e) => e.stopPropagation()}
                   />
                   <div
@@ -822,7 +825,7 @@ export const Video = ({
                     handleVolumeChange(e);
                   }}
                   className="wim-video-volume"
-                  aria-label="Volume"
+                  aria-label={t("a11y_volume")}
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
@@ -835,7 +838,7 @@ export const Video = ({
                     e.stopPropagation();
                     setActiveMenu(activeMenu === "main" ? null : "main");
                   }}
-                  aria-label="Settings"
+                  aria-label={t("a11y_settings")}
                 >
                   <Icon name="SettingsIcon" size="small" />
                 </button>
@@ -849,7 +852,7 @@ export const Video = ({
                     e.stopPropagation();
                     togglePiP();
                   }}
-                  aria-label="Picture in Picture"
+                  aria-label={t("a11y_picture_in_picture")}
                   title="ピクチャーインピクチャー"
                 >
                   {/* Using Expand icon as substitute for PiP icon */}

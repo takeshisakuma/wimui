@@ -12,6 +12,7 @@ import { Portal } from "../Portal/Portal";
 import { Transition } from "../Transition/Transition";
 import { FocusTrap } from "../FocusTrap/FocusTrap";
 import { Icon } from "../Icon/Icon";
+import { useTranslation } from "react-i18next";
 import "./dialog.scss";
 
 // --- Dialog Context ---
@@ -134,6 +135,8 @@ export const DialogClose = ({
   className,
   asChild,
 }: DialogCloseProps) => {
+  const { t } = useTranslation();
+
   const { onOpenChange } = useDialog();
 
   const handleClick = () => {
@@ -168,7 +171,7 @@ export const DialogClose = ({
       type="button"
       className={classNames("wim-dialog-close-button", className)}
       onClick={handleClick}
-      aria-label="Close dialog"
+      aria-label={t("a11y_close_dialog")}
     >
       {children}
     </button>
@@ -186,6 +189,8 @@ export interface DialogContentProps {
 }
 
 export const DialogContent = ({ children, className }: DialogContentProps) => {
+  const { t } = useTranslation();
+
   const { open, onOpenChange, titleId, descriptionId } = useDialog();
   const contentRef = useRef<HTMLDialogElement>(null);
 

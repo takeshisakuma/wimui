@@ -8,6 +8,7 @@ import React, {
 import { Icon } from "../Icon/Icon";
 import { Button } from "../Button/Button";
 import classNames from "classnames";
+import { useTranslation } from "react-i18next";
 import "./snackbar.scss";
 
 export type SnackbarVariant =
@@ -62,6 +63,8 @@ export const Snackbar = ({
   onClose,
   className,
 }: SnackbarProps) => {
+  const { t } = useTranslation();
+
   const [isVisible, setIsVisible] = useState(false);
   const [isRendered, setIsRendered] = useState(false);
   const [prevOpen, setPrevOpen] = useState(open);
@@ -159,7 +162,7 @@ export const Snackbar = ({
               type="button"
               className="wim-snackbar__close-button"
               onClick={handleClose}
-              aria-label="Close"
+              aria-label={t("a11y_close")}
             >
               <Icon name="CloseIcon" size="small" />
             </button>

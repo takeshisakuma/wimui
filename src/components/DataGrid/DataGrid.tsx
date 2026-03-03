@@ -12,6 +12,7 @@ import { Checkbox } from "../Checkbox/Checkbox";
 import { Pagination } from "../Pagination/Pagination";
 import { Spinner } from "../Spinner/Spinner";
 import { EmptyState } from "../EmptyState/EmptyState";
+import { useTranslation } from "react-i18next";
 import "./datagrid.scss";
 
 export interface DataGridColumn<T> {
@@ -97,6 +98,8 @@ export function DataGrid<T extends Record<string, any>>({
   className,
   emptyMessage = "No data available",
 }: DataGridProps<T>) {
+  const { t } = useTranslation();
+
   const getRowKey = (row: T): React.Key => {
     if (typeof rowKey === "function") {
       return rowKey(row);
@@ -198,7 +201,7 @@ export function DataGrid<T extends Record<string, any>>({
                     checked={isAllSelected}
                     indeterminate={isSomeSelected}
                     onChange={(e) => handleSelectAll(e.target.checked)}
-                    aria-label="Select all rows"
+                    aria-label={t("a11y_select_all_rows")}
                   />
                 </TableHead>
               )}

@@ -1,4 +1,5 @@
 import React, { useState, ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import {
   useFloating,
   autoUpdate,
@@ -67,6 +68,8 @@ export const Popover = ({
   onOpenChange,
   placement = "bottom-start",
 }: PopoverProps) => {
+  const { t } = useTranslation();
+
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const isOpen = controlledOpen ?? uncontrolledOpen;
 
@@ -232,6 +235,8 @@ export const PopoverClose = ({
 }: React.ComponentPropsWithoutRef<"button"> & {
   asChild?: boolean;
 }) => {
+  const { t } = useTranslation();
+
   const context = React.useContext(PopoverContext);
   if (!context) return null;
 
@@ -263,7 +268,7 @@ export const PopoverClose = ({
       type="button"
       className={classNames("wim-popover-close", className)}
       onClick={handleClick}
-      aria-label="Close"
+      aria-label={t("a11y_close")}
       {...props}
     >
       {children || <Icon name="CloseSmallIcon" width={15} height={15} />}

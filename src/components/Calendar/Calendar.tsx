@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./calendar.scss";
@@ -72,6 +73,8 @@ export const Calendar = ({
   isDateDisabled,
   ...props
 }: CalendarProps) => {
+  const { t } = useTranslation();
+
   const [viewDate, setViewDate] = useState(defaultValue || value || new Date());
   const [selectedDate, setSelectedDate] = useState(defaultValue || value);
   const [rangeStart, setRangeStart] = useState<Date | null>(
@@ -237,7 +240,7 @@ export const Calendar = ({
           className="wim-calendar-nav-btn"
           onClick={handlePrevMonth}
           disabled={disabled}
-          aria-label="前月"
+          aria-label={t("a11y_prev_month")}
         >
           <Icon name="ChevronLeftIcon" size="small" />
         </button>
@@ -249,7 +252,7 @@ export const Calendar = ({
           className="wim-calendar-nav-btn"
           onClick={handleNextMonth}
           disabled={disabled}
-          aria-label="翌月"
+          aria-label={t("a11y_next_month")}
         >
           <Icon name="ChevronRightIcon" size="small" />
         </button>

@@ -55,9 +55,9 @@ export const Button = React.forwardRef<
     } else if (ariaLabelProp !== false) {
       // アイコンのみボタンはアイコン名をフォールバックとして使用
       if (!label && !children && iconName) {
-        resolvedAriaLabel = iconName;
+        resolvedAriaLabel = t(`icon_${iconName}`, { defaultValue: iconName });
       } else if (loading) {
-        resolvedAriaLabel = "Loading";
+        resolvedAriaLabel = t("a11y_loading");
       }
     }
 

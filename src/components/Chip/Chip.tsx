@@ -65,7 +65,7 @@ export const Chip = ({
             onDelete(e);
           }}
           role="button"
-          aria-label="Delete"
+          aria-label={t("a11y_delete")}
           tabIndex={0}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {

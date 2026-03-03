@@ -8,6 +8,7 @@ import React, {
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
+import { useTranslation } from "react-i18next";
 import "./toast.scss";
 
 export type ToastVariant = "info" | "success" | "warning" | "error";
@@ -43,6 +44,8 @@ export const Toast = ({
   onClose,
   className,
 }: ToastProps) => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (isVisible && duration > 0) {
       const timer = setTimeout(() => {
@@ -92,7 +95,7 @@ export const Toast = ({
         type="button"
         className="wim-toast__close"
         onClick={handleClose}
-        aria-label="Close"
+        aria-label={t("a11y_close")}
       >
         <Icon name="CloseIcon" />
       </button>

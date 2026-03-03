@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./pagination.scss";
@@ -49,6 +50,8 @@ export const Pagination = ({
   showTotal,
   showQuickJumper = false,
 }: PaginationProps) => {
+  const { t } = useTranslation();
+
   const [internalPageSize, setInternalPageSize] = useState(pageSize);
   const [jumpValue, setJumpValue] = useState("");
 
@@ -141,7 +144,7 @@ export const Pagination = ({
           "wim-pagination--simple",
           className,
         )}
-        aria-label="Pagination Navigation"
+        aria-label={t("a11y_pagination_nav")}
       >
         <ul className="wim-pagination">
           <li
@@ -154,7 +157,7 @@ export const Pagination = ({
               className="wim-pagination__button"
               onClick={() => handlePageChange(current - 1)}
               disabled={current === 1}
-              aria-label="Go to previous page"
+              aria-label={t("a11y_go_to_prev_page")}
             >
               <Icon name="ChevronLeftIcon" size="small" />
             </button>
@@ -174,7 +177,7 @@ export const Pagination = ({
               className="wim-pagination__button"
               onClick={() => handlePageChange(current + 1)}
               disabled={current === totalPages}
-              aria-label="Go to next page"
+              aria-label={t("a11y_go_to_next_page")}
             >
               <Icon name="ChevronRightIcon" size="small" />
             </button>
@@ -191,7 +194,7 @@ export const Pagination = ({
           {showTotal(total, [startItem, endItem])}
         </div>
       )}
-      <nav className="wim-pagination" aria-label="Pagination Navigation">
+      <nav className="wim-pagination" aria-label={t("a11y_pagination_nav")}>
         <ul className="wim-pagination">
           {/* Previous Button */}
           <li
@@ -204,7 +207,7 @@ export const Pagination = ({
               className="wim-pagination__button"
               onClick={() => handlePageChange(current - 1)}
               disabled={current === 1}
-              aria-label="Go to previous page"
+              aria-label={t("a11y_go_to_prev_page")}
             >
               <Icon name="ChevronLeftIcon" size="small" />
             </button>
@@ -263,7 +266,7 @@ export const Pagination = ({
               className="wim-pagination__button"
               onClick={() => handlePageChange(current + 1)}
               disabled={current === totalPages}
-              aria-label="Go to next page"
+              aria-label={t("a11y_go_to_next_page")}
             >
               <Icon name="ChevronRightIcon" size="small" />
             </button>
@@ -278,7 +281,7 @@ export const Pagination = ({
             value={currentPageSize}
             onChange={(e) => handlePageSizeChange(Number(e.target.value))}
             className="wim-pagination__size-select"
-            aria-label="Items per page"
+            aria-label={t("a11y_items_per_page")}
           >
             {pageSizeOptions.map((size) => (
               <option key={size} value={size}>
@@ -301,7 +304,7 @@ export const Pagination = ({
             onChange={(e) => setJumpValue(e.target.value)}
             onKeyDown={handleQuickJump}
             className="wim-pagination__jump-input"
-            aria-label="Jump to page"
+            aria-label={t("a11y_jump_to_page")}
           />
         </div>
       )}

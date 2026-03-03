@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./input.scss";
 import { Icon } from "../Icon/Icon";
@@ -44,6 +45,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
+  const { t } = useTranslation();
+
     // 内部状態
     const [internalValue, setInternalValue] = React.useState(
       defaultValue ?? "",
@@ -191,7 +194,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 type="button"
                 onClick={onLeftIconClick}
                 className="wim-input-icon-button"
-                aria-label="left-icon-action"
+                aria-label={t("a11y_left_icon_action")}
               >
                 <Icon
                   name={leftIcon}
@@ -222,7 +225,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 type="button"
                 onClick={finalOnRightIconClick}
                 className="wim-input-icon-button"
-                aria-label="right-icon-action"
+                aria-label={t("a11y_right_icon_action")}
               >
                 <Icon
                   name={finalRightIcon}

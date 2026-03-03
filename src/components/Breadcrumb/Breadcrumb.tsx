@@ -36,7 +36,7 @@ export const Breadcrumb = ({
 
   return (
     <nav
-      aria-label="Breadcrumb"
+      aria-label={t("a11y_breadcrumb")}
       className={classNames(
         "wim-breadcrumb",
         `wim-breadcrumb--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,

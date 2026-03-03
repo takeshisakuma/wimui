@@ -98,7 +98,7 @@ export const Notification = ({
             type="button"
             onClick={onClose}
             className="wim-notification-close"
-            aria-label="Close"
+            aria-label={t("a11y_close")}
           >
             <Icon name="CloseIcon" size="small" />
           </button>

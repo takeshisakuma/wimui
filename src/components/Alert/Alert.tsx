@@ -85,7 +85,7 @@ export const Alert = ({
           type="button"
           className="wim-alert__close"
           onClick={onClose}
-          aria-label="Close"
+          aria-label={t("a11y_close")}
         >
           <Icon name="CloseIcon" size="small" />
         </button>

@@ -99,7 +99,7 @@ export const Banner = ({
               type="button"
               className="wim-banner__close"
               onClick={onClose}
-              aria-label="Close"
+              aria-label={t("a11y_close")}
             >
               <Icon name="CloseIcon" size="small" />
             </button>

@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
+import { useTranslation } from "react-i18next";
 import "./carousel.scss";
 
 export type Breakpoints = {
@@ -89,6 +90,8 @@ export const Carousel = ({
   objectFit = "cover",
   className,
 }: CarouselProps) => {
+  const { t } = useTranslation();
+
   const items = useMemo(() => React.Children.toArray(children), [children]);
   const originalItemCount = items.length;
 
@@ -288,7 +291,7 @@ export const Carousel = ({
           <button
             className="wim-carousel__control wim-carousel__control--prev"
             onClick={prevSlide}
-            aria-label="Previous slide"
+            aria-label={t("a11y_prev_slide")}
             disabled={!loop && currentIndex === 0}
             tabIndex={-1} // 親要素でフォーカス管理するためボタン自体のタブ移動はスキップしても良いが、好みによる
           >
@@ -297,7 +300,7 @@ export const Carousel = ({
           <button
             className="wim-carousel__control wim-carousel__control--next"
             onClick={nextSlide}
-            aria-label="Next slide"
+            aria-label={t("a11y_next_slide")}
             disabled={
               !loop && currentIndex >= originalItemCount - displaySlides
             }

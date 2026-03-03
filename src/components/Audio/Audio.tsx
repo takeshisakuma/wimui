@@ -8,6 +8,7 @@ import React, {
 import classNames from "classnames";
 // (jsmediatags is loaded via direct path to avoid resolution issues)
 import { Icon } from "../Icon/Icon";
+import { useTranslation } from "react-i18next";
 import "./audio.scss";
 
 export type AudioTrack = {
@@ -73,6 +74,8 @@ export const Audio = ({
   sleepTimer = false,
   ...props
 }: AudioProps) => {
+  const { t } = useTranslation();
+
   // ------------------------------------------------------------------------
   // Playlist normalizer
   // ------------------------------------------------------------------------
@@ -721,7 +724,7 @@ export const Audio = ({
                   step="0.1"
                   onChange={handleSeek}
                   className="wim-audio-progress"
-                  aria-label="Seek"
+                  aria-label={t("a11y_seek")}
                 />
                 <div
                   className="wim-audio-progress-fill"
@@ -771,8 +774,8 @@ export const Audio = ({
                       const rates = [0.5, 1, 1.5, 2];
                       const nextRate =
                         rates[
-                          (rates.indexOf(currentPlaybackRate) + 1) %
-                            rates.length
+                        (rates.indexOf(currentPlaybackRate) + 1) %
+                        rates.length
                         ];
                       setCurrentPlaybackRate(nextRate);
                     }}
@@ -840,7 +843,7 @@ export const Audio = ({
                     value={isMuted ? 0 : volume}
                     onChange={handleVolumeChange}
                     className="wim-audio-volume"
-                    aria-label="Volume"
+                    aria-label={t("a11y_volume")}
                   />
                 </div>
               </div>
