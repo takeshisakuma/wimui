@@ -18,8 +18,13 @@
     transition: var(--transition-base);
     white-space: nowrap;
 
+    /* アニメーション終了時のテキストの描画ブレ（Jitter）を防止 */
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+
     &:active:not(:disabled) {
-      transform: scale(var(--scale-active));
+      transform: scale(var(--scale-active)) translateZ(0);
       transition: transform 0.1s var(--easing-base);
     }
 
@@ -108,7 +113,7 @@
 
       &:hover:not(:disabled) {
         box-shadow: var(--shadow-lg), var(--inner-highlight);
-        transform: translateY(var(--lift-md));
+        transform: translateY(var(--lift-md)) translateZ(0);
         transition:
           box-shadow var(--duration-fast) var(--easing-base),
           transform var(--duration-fast) var(--easing-out-back);
@@ -117,7 +122,7 @@
       &:active:not(:disabled) {
         background-image: none;
         box-shadow: var(--shadow-xs), var(--shadow-inset);
-        transform: translateY(var(--lift-none)) scale(var(--scale-active));
+        transform: translateY(var(--lift-none)) scale(var(--scale-active)) translateZ(0);
         transition: transform 0.1s var(--easing-base);
       }
     }
@@ -149,7 +154,7 @@
 
       &:hover:not(:disabled) {
         box-shadow: var(--shadow-md);
-        transform: translateY(var(--lift-sm));
+        transform: translateY(var(--lift-sm)) translateZ(0);
         transition:
           box-shadow var(--duration-fast) var(--easing-base),
           transform var(--duration-fast) var(--easing-out-back);
@@ -157,7 +162,7 @@
 
       &:active:not(:disabled) {
         box-shadow: var(--shadow-inset);
-        transform: translateY(var(--lift-none)) scale(var(--scale-active));
+        transform: translateY(var(--lift-none)) scale(var(--scale-active)) translateZ(0);
         transition: transform 0.1s var(--easing-base);
       }
     }
@@ -188,7 +193,7 @@
         background-color: rgb(0 0 0 / 0.06);
         border-color: rgb(0 0 0 / 0.15);
         box-shadow: var(--shadow-sm);
-        transform: translateY(var(--lift-sm));
+        transform: translateY(var(--lift-sm)) translateZ(0);
         transition:
           background-color var(--duration-fast) var(--easing-base),
           border-color var(--duration-fast) var(--easing-base),
@@ -200,7 +205,7 @@
         background-color: rgb(0 0 0 / 0.12);
         border-color: rgb(0 0 0 / 0.25);
         box-shadow: var(--shadow-inset);
-        transform: translateY(var(--lift-none)) scale(var(--scale-active));
+        transform: translateY(var(--lift-none)) scale(var(--scale-active)) translateZ(0);
         transition: transform 0.1s var(--easing-base);
       }
     }
