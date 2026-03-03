@@ -20,6 +20,7 @@
 
     &:active:not(:disabled) {
       transform: scale(var(--scale-active));
+      transition: transform 0.1s var(--easing-base);
     }
 
     &__inner {
@@ -80,7 +81,8 @@
     }
 
     &--primary {
-      box-shadow: var(--shadow-sm);
+      background-image: var(--glass-gradient);
+      box-shadow: var(--shadow-sm), var(--inner-highlight);
 
       &.wim-button--default {
         color: var(--color-text-on-primary);
@@ -105,13 +107,18 @@
       }
 
       &:hover:not(:disabled) {
-        box-shadow: var(--shadow-lg);
+        box-shadow: var(--shadow-lg), var(--inner-highlight);
         transform: translateY(var(--lift-md));
+        transition:
+          box-shadow var(--duration-fast) var(--easing-base),
+          transform var(--duration-fast) var(--easing-out-back);
       }
 
       &:active:not(:disabled) {
-        box-shadow: var(--shadow-xs);
-        transform: translateY(var(--lift-none));
+        background-image: none;
+        box-shadow: var(--shadow-xs), var(--shadow-inset);
+        transform: translateY(var(--lift-none)) scale(var(--scale-active));
+        transition: transform 0.1s var(--easing-base);
       }
     }
 
@@ -143,11 +150,15 @@
       &:hover:not(:disabled) {
         box-shadow: var(--shadow-md);
         transform: translateY(var(--lift-sm));
+        transition:
+          box-shadow var(--duration-fast) var(--easing-base),
+          transform var(--duration-fast) var(--easing-out-back);
       }
 
       &:active:not(:disabled) {
         box-shadow: var(--shadow-inset);
-        transform: translateY(var(--lift-none));
+        transform: translateY(var(--lift-none)) scale(var(--scale-active));
+        transition: transform 0.1s var(--easing-base);
       }
     }
 
@@ -178,13 +189,19 @@
         border-color: rgb(0 0 0 / 0.15);
         box-shadow: var(--shadow-sm);
         transform: translateY(var(--lift-sm));
+        transition:
+          background-color var(--duration-fast) var(--easing-base),
+          border-color var(--duration-fast) var(--easing-base),
+          box-shadow var(--duration-fast) var(--easing-base),
+          transform var(--duration-fast) var(--easing-out-back);
       }
 
       &:active:not(:disabled) {
         background-color: rgb(0 0 0 / 0.12);
         border-color: rgb(0 0 0 / 0.25);
         box-shadow: var(--shadow-inset);
-        transform: translateY(var(--lift-none));
+        transform: translateY(var(--lift-none)) scale(var(--scale-active));
+        transition: transform 0.1s var(--easing-base);
       }
     }
 

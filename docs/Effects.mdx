@@ -19,6 +19,20 @@ import {
 <h2>
   <p><T k="guide_effects_shadow" /></p>
 </h2>
+<p><T k="guide_effects_shadow_multi_layer_desc" /></p>
+
+<TokenGrid columns="1fr 1fr">
+  <div style={{ padding: "20px", borderRadius: "var(--radius-md)", background: "var(--bg-app)" }}>
+    <h3><T k="guide_effects_shadow_ambient" /></h3>
+    <p><T k="guide_effects_shadow_ambient_desc" /></p>
+    <div style={{ width: "100%", height: "40px", borderRadius: "var(--radius-sm)", boxShadow: "var(--shadow-ambient)", background: "var(--bg-component)" }}></div>
+  </div>
+  <div style={{ padding: "20px", borderRadius: "var(--radius-md)", background: "var(--bg-app)" }}>
+    <h3><T k="guide_effects_shadow_elevation" /></h3>
+    <p><T k="guide_effects_shadow_elevation_desc" /></p>
+    <div style={{ width: "100%", height: "40px", borderRadius: "var(--radius-sm)", boxShadow: "var(--shadow-elevation)", background: "var(--bg-component)" }}></div>
+  </div>
+</TokenGrid>
 <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
   <ShadowSwatch name="XS" value="var(--shadow-xs)" shadow="var(--shadow-xs)" />
 
@@ -56,13 +70,15 @@ import {
   <T k="guide_effects_motion_desc" />
 </p>
 <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
-  <MotionSwatch name="Base Transition" duration="0.3s" easing="ease-in-out" />
+  <MotionSwatch name={<T k="guide_effects_motion_base" />} duration="var(--duration-fast)" easing="var(--easing-base)" />
+  <MotionSwatch name={<T k="guide_effects_motion_spring" />} duration="var(--duration-base)" easing="var(--easing-spring)" />
+  <MotionSwatch name={<T k="guide_effects_motion_out_back" />} duration="var(--duration-base)" easing="var(--easing-out-back)" />
 
-  <InteractiveSwatch name="Scale Active" tokenName="--scale-active" tokenValue="0.98" activeStyle={{ transform: "scale(var(--scale-active))" }} hoverStyle={{ background: "var(--bg-component-hover, #efefef)" }} />
+  <InteractiveSwatch name="Scale Active (Spring)" tokenName="--scale-active" tokenValue="0.98" activeStyle={{ transition: "transform var(--duration-fast) var(--easing-spring)", transform: "scale(var(--scale-active))" }} hoverStyle={{ background: "var(--bg-component-hover, #efefef)" }} />
 
-  <InteractiveSwatch name="Lift Small" tokenName="--lift-sm" tokenValue="-1px" hoverStyle={{ transform: "translateY(var(--lift-sm))", boxShadow: "var(--shadow-sm)" }} />
+  <InteractiveSwatch name="Lift Small" tokenName="--lift-sm" tokenValue="-1px" hoverStyle={{ transition: "all var(--duration-fast) var(--easing-base)", transform: "translateY(var(--lift-sm))", boxShadow: "var(--shadow-sm)" }} />
 
-  <InteractiveSwatch name="Lift Medium" tokenName="--lift-md" tokenValue="-1.5px" hoverStyle={{ transform: "translateY(var(--lift-md))", boxShadow: "var(--shadow-md)" }} />
+  <InteractiveSwatch name="Lift Medium" tokenName="--lift-md" tokenValue="-1.5px" hoverStyle={{ transition: "all var(--duration-fast) var(--easing-base)", transform: "translateY(var(--lift-md))", boxShadow: "var(--shadow-md)" }} />
 </TokenGrid>
 
     <strong><T k="guide_spacings_implementation_guideline" /></strong>
@@ -84,7 +100,7 @@ import {
         </tr>
         <tr>
           <td><strong><T k="effects_common_vars" /></strong></td>
-          <td dangerouslySetInnerHTML={{ __html: "<T k='guide_effects_common_vars_guideline' />" }} />
+          <td><T k="guide_effects_common_vars_guideline" /></td>
 
         </tr>
       </tbody>
