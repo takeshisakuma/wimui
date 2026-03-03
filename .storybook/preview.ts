@@ -1,12 +1,65 @@
 import type { Preview } from "@storybook/react";
+import { addons } from "storybook/internal/preview-api";
 
-import i18n from "./i18n"; // i18n設定ファイルをインポート
-import "../src/layers.scss"; // レイヤー定義を最初にインポート
-import "../src/reset.scss"; // reset.scssをインポート
-import "../src/base.scss"; // base.scssをインポート
-import "../src/utilities.scss"; // utilities.scssをインポート
-import "../src/lang.scss"; // lang.scssをインポート
+import i18n from "./i18n";
+import "../src/layers.scss";
+import "../src/reset.scss";
+import "../src/base.scss";
+import "../src/utilities.scss";
+import "../src/lang.scss";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
+
+// ─────────────────────────────────────────────────
+// 動的タイポグラフィ最適化
+// lang.scss の body[lang="ja"] セレクタを機能させるため
+// html/body の lang 属性を言語切替に連動して更新する
+// ─────────────────────────────────────────────────
+const GLOBALS_UPDATED = "globalsUpdated";
+
+/** html と body の lang 属性を同時更新 */
+const applyLang = (lang: string): void => {
+  document.documentElement.lang = lang;
+  document.body.lang = lang;
+};
+
+// ① i18n の言語変更イベントを購読（モジュールレベル = 常に有効）
+//    T.tsx や他のコードが i18n.changeLanguage() を呼んだ際にも確実に反映される
+i18n.on("languageChanged", applyLang);
+
+// ② Storybook ツールバーの切替イベントを直接検知（モジュールレベル）
+//    ツールバーでロケールを変えると GLOBALS_UPDATED が発火する
+try {
+  const channel = addons.getChannel();
+  channel.on(
+    GLOBALS_UPDATED,
+    ({ globals }: { globals: Record<string, unknown> }) => {
+      const locale = globals?.locale as string | undefined;
+      if (locale) {
+        applyLang(locale);
+        if (i18n.language !== locale) i18n.changeLanguage(locale);
+      }
+    },
+  );
+} catch {
+  // チャンネルが初期化前の場合は無視（③ の URL 読み取りでカバー）
+}
+
+// ③ iframe のフルリロード時: URL の globals パラメータから初期言語を読み取る
+//    ロケール切替で iframe がリロードされる場合はこちらが機能する
+try {
+  const topWin = window.top || window;
+  const globals = new URLSearchParams(topWin.location.search).get("globals");
+  const match = globals?.match(/locale:([^;]+)/);
+  if (match) {
+    const locale = match[1];
+    applyLang(locale);
+    if (i18n.language !== locale) i18n.changeLanguage(locale);
+  }
+} catch {
+  // cross-origin エラーは無視
+}
+
+// ─────────────────────────────────────────────────
 
 const preview: Preview = {
   decorators: [
