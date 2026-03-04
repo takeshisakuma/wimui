@@ -1,15 +1,17 @@
 import React from "react";
 import classNames from "classnames";
+import { WimColor } from "../../types/tokens";
 import "./indicator.scss";
 
 type IndicatorProps = {
   children?: React.ReactNode;
-  color?: "primary" | "success" | "error" | "warning" | "neutral";
+  color?: "primary" | "success" | "error" | "warning" | "neutral" | WimColor;
   size?: "small" | "medium" | "large";
   position?: "top-right" | "top-left" | "bottom-right" | "bottom-left";
   pulse?: boolean;
   inline?: boolean;
   className?: string;
+  style?: React.CSSProperties;
 };
 
 /**
@@ -23,7 +25,10 @@ export const Indicator = ({
   pulse = false,
   inline = false,
   className,
+  style,
 }: IndicatorProps) => {
+  const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));
+
   return (
     <span
       className={classNames(
@@ -31,16 +36,20 @@ export const Indicator = ({
         inline && "wim-indicator--inline",
         className,
       )}
+      style={style}
     >
       {children}
       <span
         className={classNames(
           "wim-indicator__dot",
-          `wim-indicator__dot--${color}`,
+          !isCustomColor && `wim-indicator__dot--${color}`,
           `wim-indicator__dot--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
           !inline && `wim-indicator__dot--${position}`,
           pulse && "wim-indicator__dot--pulse",
         )}
+        style={{
+          backgroundColor: isCustomColor ? (color as string) : undefined,
+        }}
       />
     </span>
   );

@@ -3,20 +3,22 @@ import classNames from "classnames";
 import "./span.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
+import { WimColor } from "../../types/tokens";
 
 type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
   color?:
-    | "black"
-    | "deepgray"
-    | "gray"
-    | "lightgray"
-    | "white"
-    | "error"
-    | "primary"
-    | "success"
-    | "warning"
-    | "info";
+  | "black"
+  | "deepgray"
+  | "gray"
+  | "lightgray"
+  | "white"
+  | "error"
+  | "primary"
+  | "success"
+  | "warning"
+  | "info"
+  | WimColor;
   weight?: "normal" | "bold";
   style?: "normal" | "italic";
   decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
@@ -30,11 +32,12 @@ export const Span = ({
   content = "span",
   color = "black",
   weight = "normal",
-  style = "normal",
+  style: fontStyle = "normal",
   iconName = undefined,
   iconPosition = "left",
   decoration = "none",
   className,
+  style,
   ...props
 }: SpanProps) => {
   const { t } = useTranslation();
@@ -69,17 +72,23 @@ export const Span = ({
     </>
   );
 
+  const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));
+
   return (
     <span
       className={classNames(
         "wim-span",
         `wim-span--${sizeMap[size]}`,
-        `wim-span--${color}`,
+        !isCustomColor && `wim-span--${color}`,
         weight === "bold" && "wim-span--bold",
-        style === "italic" && "wim-span--italic",
+        fontStyle === "italic" && "wim-span--italic",
         decoration !== "none" && `wim-span--${decoration}`,
         className,
       )}
+      style={{
+        color: isCustomColor ? (color as string) : undefined,
+        ...(style as React.CSSProperties),
+      }}
       {...props}
     >
       {contentToRender}

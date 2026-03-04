@@ -2,28 +2,31 @@ import React from "react";
 import classNames from "classnames";
 import "./paragraph.scss";
 import { useTranslation } from "react-i18next";
+import { WimColor, WimLineHeight } from "../../types/tokens";
 
 type ParagraphProps = React.ComponentPropsWithoutRef<"p"> & {
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
   color?:
-    | "black"
-    | "deepgray"
-    | "gray"
-    | "lightgray"
-    | "white"
-    | "error"
-    | "primary"
-    | "success"
-    | "warning"
-    | "info";
+  | "black"
+  | "deepgray"
+  | "gray"
+  | "lightgray"
+  | "white"
+  | "error"
+  | "primary"
+  | "success"
+  | "warning"
+  | "info"
+  | WimColor;
   weight?: "normal" | "bold";
   lineHeight?:
-    | "normal-jpan"
-    | "tight-jpan"
-    | "loose-jpan"
-    | "normal-latn"
-    | "tight-latn"
-    | "loose-latn";
+  | "normal-jpan"
+  | "tight-jpan"
+  | "loose-jpan"
+  | "normal-latn"
+  | "tight-latn"
+  | "loose-latn"
+  | WimLineHeight;
   fontStyle?: "normal" | "italic";
   decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
   content: string;
@@ -38,6 +41,7 @@ export const Paragraph = ({
   fontStyle = "normal",
   decoration = "none",
   className,
+  style,
   ...props
 }: ParagraphProps) => {
   const { t } = useTranslation();
@@ -49,17 +53,25 @@ export const Paragraph = ({
       t(content)
     );
 
+  const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));
+  const isCustomLineHeight = lineHeight && lineHeight.startsWith("var(");
+
   return (
     <p
       className={classNames(
         "wim-paragraph",
         `wim-paragraph--${size === "ex-small" ? "xs" : size === "small" ? "sm" : size === "large" ? "lg" : size === "ex-large" ? "xl" : "md"}`,
-        `wim-paragraph--${lineHeight}`,
+        !isCustomLineHeight && `wim-paragraph--${lineHeight}`,
         weight === "bold" && "wim-paragraph--bold",
         fontStyle === "italic" && "wim-paragraph--italic",
-        `wim-paragraph--${color}`,
+        !isCustomColor && `wim-paragraph--${color}`,
         className,
       )}
+      style={{
+        color: isCustomColor ? color : undefined,
+        lineHeight: isCustomLineHeight ? lineHeight : undefined,
+        ...(style as React.CSSProperties),
+      }}
       {...props}
     >
       {innerContent}

@@ -1,8 +1,8 @@
 import React from "react";
 import "./heading.scss";
 import classNames from "classnames";
-
 import { useTranslation } from "react-i18next";
+import { WimColor } from "../../types/tokens";
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   /**
@@ -17,16 +17,17 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
    * Text color.
    */
   color?:
-    | "black"
-    | "deepgray"
-    | "gray"
-    | "lightgray"
-    | "white"
-    | "error"
-    | "primary"
-    | "success"
-    | "warning"
-    | "info";
+  | "black"
+  | "deepgray"
+  | "gray"
+  | "lightgray"
+  | "white"
+  | "error"
+  | "primary"
+  | "success"
+  | "warning"
+  | "info"
+  | WimColor;
   /**
    * Text alignment.
    */
@@ -42,6 +43,7 @@ export const Heading = ({
   align = "left",
   decoration = "none",
   className,
+  style,
   children,
   ...props
 }: HeadingProps) => {
@@ -63,16 +65,22 @@ export const Heading = ({
       content
     );
 
+  const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));
+
   return React.createElement(
     tag,
     {
       className: classNames(
         "wim-heading",
         `wim-heading--${size}`,
-        `wim-heading--${color}`,
+        !isCustomColor && `wim-heading--${color}`,
         `wim-heading--${align}`,
         className,
       ),
+      style: {
+        color: isCustomColor ? (color as string) : undefined,
+        ...(style as React.CSSProperties),
+      },
       ...props,
     },
     finalContent,

@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { WimColor } from "../../types/tokens";
 import "./loader.scss";
 
 export type LoaderVariant = "bars" | "dots" | "pulse";
@@ -17,13 +18,14 @@ export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
    * ローダーの色。
    */
   color?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "error"
-    | "neutral"
-    | "currentColor";
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "error"
+  | "neutral"
+  | "currentColor"
+  | WimColor;
 };
 
 /**
@@ -34,17 +36,24 @@ export const Loader = ({
   size = "md",
   color = "primary",
   className,
+  style,
   ...props
 }: LoaderProps) => {
+  const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));
+
   return (
     <div
       className={classNames(
         "wim-loader",
         `wim-loader--${variant}`,
         `wim-loader--${size}`,
-        `wim-loader--${color}`,
+        !isCustomColor && `wim-loader--${color}`,
         className,
       )}
+      style={{
+        color: isCustomColor ? (color as string) : undefined,
+        ...(style as React.CSSProperties),
+      }}
       role="status"
       aria-live="polite"
       {...props}

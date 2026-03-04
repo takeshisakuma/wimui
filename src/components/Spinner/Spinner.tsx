@@ -1,17 +1,19 @@
 import React from "react";
 import classNames from "classnames";
+import { WimColor } from "../../types/tokens";
 import "./spinner.scss";
 
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
   size?: "sm" | "md" | "lg" | "xl";
   color?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "error"
-    | "neutral"
-    | "currentColor";
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "error"
+  | "neutral"
+  | "currentColor"
+  | WimColor;
   label?: string;
   labelPosition?: "right" | "bottom";
 };
@@ -25,8 +27,11 @@ export const Spinner = ({
   label,
   labelPosition = "right",
   className,
+  style,
   ...props
 }: SpinnerProps) => {
+  const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));
+
   return (
     <div
       className={classNames(
@@ -36,13 +41,17 @@ export const Spinner = ({
       )}
       role="status"
       aria-live="polite"
+      style={{
+        color: isCustomColor ? (color as string) : undefined,
+        ...(style as React.CSSProperties),
+      }}
       {...props}
     >
       <svg
         className={classNames(
           "wim-spinner",
           `wim-spinner--${size}`,
-          `wim-spinner--${color}`,
+          !isCustomColor && `wim-spinner--${color}`,
         )}
         viewBox="0 0 50 50"
         fill="none"

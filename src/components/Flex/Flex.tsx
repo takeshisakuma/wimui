@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { WimSpacing } from "../../types/tokens";
 import "./flex.scss";
 
 export type FlexProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -9,17 +10,17 @@ export type FlexProps = React.ComponentPropsWithoutRef<"div"> & {
   align?: "start" | "center" | "end" | "stretch" | "baseline";
   /** Justify-content */
   justify?:
-    | "start"
-    | "center"
-    | "end"
-    | "between"
-    | "around"
-    | "evenly"
-    | "stretch";
+  | "start"
+  | "center"
+  | "end"
+  | "between"
+  | "around"
+  | "evenly"
+  | "stretch";
   /** Flex-wrap */
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
   /** Gap between children */
-  gap?: number | string;
+  gap?: number | WimSpacing;
   /** Display inline-flex */
   inline?: boolean;
 };
