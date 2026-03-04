@@ -1,45 +1,46 @@
 import { default as React } from '../../../node_modules/react';
+import { WimColor, WimSpacing, WimRadius, WimShadow } from '../../types/tokens';
 export type BoxProps<C extends React.ElementType = "div"> = {
     /** The component used for the root node. Either a string to use a HTML element or a component. */
     as?: C;
     /** Padding */
-    p?: number | string;
+    p?: number | WimSpacing;
     /** Padding top */
-    pt?: number | string;
+    pt?: number | WimSpacing;
     /** Padding right */
-    pr?: number | string;
+    pr?: number | WimSpacing;
     /** Padding bottom */
-    pb?: number | string;
+    pb?: number | WimSpacing;
     /** Padding left */
-    pl?: number | string;
+    pl?: number | WimSpacing;
     /** Padding horizontal */
-    px?: number | string;
+    px?: number | WimSpacing;
     /** Padding vertical */
-    py?: number | string;
+    py?: number | WimSpacing;
     /** Margin */
-    m?: number | string;
+    m?: number | WimSpacing;
     /** Margin top */
-    mt?: number | string;
+    mt?: number | WimSpacing;
     /** Margin right */
-    mr?: number | string;
+    mr?: number | WimSpacing;
     /** Margin bottom */
-    mb?: number | string;
+    mb?: number | WimSpacing;
     /** Margin left */
-    ml?: number | string;
+    ml?: number | WimSpacing;
     /** Margin horizontal */
-    mx?: number | string;
+    mx?: number | WimSpacing;
     /** Margin vertical */
-    my?: number | string;
+    my?: number | WimSpacing;
     /** Background color */
-    bg?: string;
+    bg?: WimColor;
     /** Width */
     w?: number | string;
     /** Height */
     h?: number | string;
     /** Border radius */
-    radius?: number | string;
+    radius?: number | WimRadius;
     /** Box shadow */
-    shadow?: string;
+    shadow?: WimShadow;
     /** Display */
     display?: React.CSSProperties["display"];
     /** Position */

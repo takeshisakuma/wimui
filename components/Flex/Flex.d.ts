@@ -1,4 +1,5 @@
 import { default as React } from '../../../node_modules/react';
+import { WimSpacing } from '../../types/tokens';
 export type FlexProps = React.ComponentPropsWithoutRef<"div"> & {
     /** Flex direction */
     direction?: "row" | "row-reverse" | "column" | "column-reverse";
@@ -9,7 +10,7 @@ export type FlexProps = React.ComponentPropsWithoutRef<"div"> & {
     /** Flex-wrap */
     wrap?: "nowrap" | "wrap" | "wrap-reverse";
     /** Gap between children */
-    gap?: number | string;
+    gap?: number | WimSpacing;
     /** Display inline-flex */
     inline?: boolean;
 };
@@ -26,7 +27,7 @@ export declare const Flex: React.ForwardRefExoticComponent<Omit<React.DetailedHT
     /** Flex-wrap */
     wrap?: "nowrap" | "wrap" | "wrap-reverse";
     /** Gap between children */
-    gap?: number | string;
+    gap?: number | WimSpacing;
     /** Display inline-flex */
     inline?: boolean;
 } & React.RefAttributes<HTMLDivElement>>;

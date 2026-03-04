@@ -1,4 +1,5 @@
 import { default as React } from '../../../node_modules/react';
+import { WimColor } from '../../types/tokens';
 export type LoaderVariant = "bars" | "dots" | "pulse";
 export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
@@ -12,9 +13,9 @@ export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * ローダーの色。
      */
-    color?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "currentColor";
+    color?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "currentColor" | WimColor;
 };
 /**
  * データの読み込み中や処理中であることを示すためのコンポーネント。
  */
-export declare const Loader: ({ variant, size, color, className, ...props }: LoaderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Loader: ({ variant, size, color, className, style, ...props }: LoaderProps) => import("react/jsx-runtime").JSX.Element;
