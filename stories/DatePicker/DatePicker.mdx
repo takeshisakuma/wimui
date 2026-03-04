@@ -1,10 +1,10 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Story, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as DatePickerStories from "./DatePicker.stories";
 import { T } from "../T";
 
 <Meta of={DatePickerStories} />
 
-# DatePicker
+<Title />
 
 <p
   style={{
@@ -35,7 +35,7 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 <DatePicker onChange={(date) => console.log(date)} placeholder="Select date" />;
 ```
 
-## <T k="doc_example" />
+## <T k="doc_variations" />
 
 ### <T k="doc_default" />
 

@@ -1,10 +1,10 @@
-import { Canvas, Meta, Story, Controls } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Story, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as SelectboxStories from "./Selectbox.stories";
 import { T } from "../T";
 
 <Meta of={SelectboxStories} />
 
-# Selectbox
+<Title />
 
 <p
   style={{
@@ -18,6 +18,20 @@ import { T } from "../T";
 </p>
 
 <p><T k="doc_selectbox_long_desc" /></p>
+
+## <T k="doc_guidelines_title" />
+
+### <T k="doc_guideline_when_to_use" />
+<ul>
+  <li><T k="doc_selectbox_guideline_1" /></li>
+  <li><T k="doc_selectbox_guideline_2" /></li>
+</ul>
+
+### <T k="doc_guideline_best_practices" />
+<ul>
+  <li><T k="doc_selectbox_best_practice_1" /></li>
+  <li><T k="doc_selectbox_best_practice_2" /></li>
+</ul>
 
 ## <T k="doc_basic_usage" />
 
@@ -33,7 +47,7 @@ const options = [
 <Selectbox options={options} onChange={(val) => console.log(val)} />;
 ```
 
-## Examples
+## <T k="doc_variations" />
 
 ### Default
 

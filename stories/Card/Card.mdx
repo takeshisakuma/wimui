@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as CardStories from "./Card.stories";
 import { T } from "../T";
 
 <Meta of={CardStories} />
 
-# Card
+<Title />
 
 <p
   style={{
@@ -19,9 +19,31 @@ import { T } from "../T";
 
 <p><T k="doc_card_long_desc" /></p>
 
-## <T k="doc_usage" />
+## <T k="doc_guidelines_title" />
 
-### <T k="doc_basic_usage" />
+### <T k="doc_guideline_when_to_use" />
+<ul>
+  <li><T k="doc_card_guideline_1" /></li>
+  <li><T k="doc_card_guideline_2" /></li>
+</ul>
+
+### <T k="doc_guideline_best_practices" />
+<ul>
+  <li><T k="doc_card_best_practice_1" /></li>
+  <li><T k="doc_card_best_practice_2" /></li>
+</ul>
+
+## <T k="doc_basic_usage" />
+
+```tsx
+import { Card } from "@/components/Card/Card";
+
+<Card>
+  <Card.Header>Title</Card.Header>
+  <Card.Body>Content</Card.Body>
+  <Card.Footer>Footer</Card.Footer>
+</Card>
+```
 
 <p><T k="doc_card_basic_usage_desc" /></p>
 
@@ -43,7 +65,7 @@ import { T } from "../T";
 
 <Canvas of={CardStories.Flat} />
 
-## Props
+## <T k="doc_props" />
 
 <Controls />
 

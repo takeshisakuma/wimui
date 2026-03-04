@@ -19,6 +19,20 @@ import * as AccordionStories from "./Accordion.stories";
 
 <p><T k="doc_accordion_long_desc" /></p>
 
+## <T k="doc_guidelines_title" />
+
+### <T k="doc_guideline_when_to_use" />
+<ul>
+  <li><T k="doc_accordion_guideline_1" /></li>
+  <li><T k="doc_accordion_guideline_2" /></li>
+</ul>
+
+### <T k="doc_guideline_best_practices" />
+<ul>
+  <li><T k="doc_accordion_best_practice_1" /></li>
+  <li><T k="doc_accordion_best_practice_2" /></li>
+</ul>
+
 ## <T k="doc_features" />
 
 <p><T k="doc_accordion_features_desc" /></p>
@@ -46,28 +60,24 @@ import * as AccordionStories from "./Accordion.stories";
   </tbody>
 </table>
 
-## <T k="doc_usage_examples" />
+## <T k="doc_basic_usage" />
 
 ```tsx
 import { Accordion } from "@/components/Accordion/Accordion";
 
-const Example = () => (
-  <Accordion type="single" collapsible>
-    <Accordion.Item value="item-1">
-      <Accordion.Trigger>Title</Accordion.Trigger>
-      <Accordion.Content>Collapsible content</Accordion.Content>
-    </Accordion.Item>
-  </Accordion>
-);
+<Accordion type="single" collapsible>
+  <Accordion.Item value="item-1">
+    <Accordion.Trigger>Title</Accordion.Trigger>
+    <Accordion.Content>Collapsible content</Accordion.Content>
+  </Accordion.Item>
+</Accordion>
 ```
-
-## <T k="doc_basic_usage" />
 
 <Canvas of={AccordionStories.Single} />
 
 <Primary />
 
-## Props
+## <T k="doc_props" />
 
 <Controls of={AccordionStories.Single} />
 
