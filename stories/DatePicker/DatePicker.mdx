@@ -59,12 +59,20 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 
 <p><T k="doc_datepicker_custom_popup_desc" /></p>
 
-<p><T k="doc_datepicker_advantages" /></p>
+### <T k="doc_datepicker_advantages" />
 
-<p><T k="doc_datepicker_adv_1" /></p>
-<p><T k="doc_datepicker_adv_2" /></p>
-<p><T k="doc_datepicker_adv_3" /></p>
-<p><T k="doc_datepicker_adv_4" /></p>
+<ul>
+  <li><T k="doc_datepicker_adv_1" /></li>
+  <li><T k="doc_datepicker_adv_2" /></li>
+  <li><T k="doc_datepicker_adv_3" /></li>
+  <li><T k="doc_datepicker_adv_4" /></li>
+</ul>
+## カレンダー選択フロー
+
+- 1回目のクリックで開始日を選択します。
+- 2回目のクリックで終了日を選択します。
+- 選択中は開始日〜終了日の間がハイライト表示されます。
+- 開始日より前の日付を終了日として選択した場合、自動的に入れ替わります。
 
 ### <T k="doc_datepicker_clear_btn" />
 
@@ -78,19 +86,18 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 
 <p><T k="doc_datepicker_custom_format_desc" /></p>
 
-```jsx
-<>
-  <DatePicker format="YYYY/MM/DD" onChange={(date) => console.log(date)} />
+<table>
+  <thead>
+    <tr><th>Format</th><th>Example</th><th>タイプ</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>YYYY/MM/DD</td><td>2023/04/15</td><td>デフォルト</td></tr>
+    <tr><td>MM/DD/YYYY</td><td>04/15/2023</td><td>英式</td></tr>
+    <tr><td>DD-MM-YYYY</td><td>15-04-2023</td><td>欧式</td></tr>
+  </tbody>
+</table>
 
-  <DatePicker format="DD-MM-YYYY" onChange={(date) => console.log(date)} />
-</>
-```
 
-<p><T k="doc_datepicker_supported_formats" /></p>
-
-<p><T k="doc_datepicker_fmt_1" /></p>
-<p><T k="doc_datepicker_fmt_2" /></p>
-<p><T k="doc_datepicker_fmt_3" /></p>
 
 ### <T k="doc_datepicker_control_types" />
 
@@ -112,16 +119,27 @@ const [date, setDate] = useState(new Date());
 
 ### <T k="doc_datepicker_keyboard" />
 
-<p><T k="doc_datepicker_kb_1" /></p>
-<p><T k="doc_datepicker_kb_2" /></p>
-<p><T k="doc_datepicker_kb_3" /></p>
+<table>
+  <thead>
+    <tr><th>操作</th><th>キー</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>カレンダーを開く</td><td>Enter / Space</td></tr>
+    <tr><td>日付を移動・選択</td><td>矢印キー / Enter</td></tr>
+    <tr><td>カレンダーを閉じる</td><td>Escape</td></tr>
+    <tr><td>日付を移動</td><td>矢印キー</td></tr>
+    <tr><td>日付を選択</td><td>Enter / Space</td></tr>
+    <tr><td>月を移動</td><td>Page Up / Down</td></tr>
+  </tbody>
+</table>
 
 ### <T k="doc_datepicker_a11y" />
 
-<p><T k="doc_datepicker_a11y_1" /></p>
-<p><T k="doc_datepicker_a11y_2" /></p>
-<p><T k="doc_datepicker_a11y_3" /></p>
-<p><T k="doc_datepicker_a11y_4" /></p>
+<ul>
+  <li>ポップアップコンテンツには <code>role="dialog"</code> を適用しています。</li>
+  <li>入力欄には <code>aria-label</code> や <code>aria-describedby</code> が設定されます。</li>
+  <li>無効化された日付には <code>aria-disabled</code> が設定されます。</li>
+</ul>
 
 ## <T k="doc_datepicker_integration" />
 
