@@ -120,9 +120,35 @@ export const DisabledItems: Story = {
         <TreeView.Item value="1-1" label="Disabled Item" disabled />
         <TreeView.Item value="1-2" label="Enabled Item" />
       </TreeView.Item>
-      <TreeView.Item value="2" label="Disabled Root" disabled>
-        <TreeView.Item value="2-1" label="Should not be reachable" />
+    </TreeView>
+  ),
+};
+
+export const Overflow: Story = {
+  render: () => (
+    <TreeView width={250} defaultExpandedValues={["1"]}>
+      <TreeView.Item
+        value="1"
+        label="Extremely Long Folder Name That Will Definitely Overflow and Trigger Ellipsis"
+        icon={<Icon name="CircleIcon" size="small" />}
+      >
+        <TreeView.Item
+          value="1-1"
+          label="Very Long Sub-item Name That Should Also Show Truncation When the Parent Width is Constrained"
+          icon={<Icon name="SquareIcon" size="small" />}
+        >
+          <TreeView.Item
+            value="1-1-1"
+            label="Even at deeper nesting levels, the text will be truncated appropriately to maintain the sidebar layout without breaking the container."
+            icon={<Icon name="CopyIcon" size="small" />}
+          />
+        </TreeView.Item>
       </TreeView.Item>
+      <TreeView.Item
+        value="2"
+        label="Regular Item"
+        icon={<Icon name="CircleIcon" size="small" />}
+      />
     </TreeView>
   ),
 };

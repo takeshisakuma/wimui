@@ -35,7 +35,7 @@ export const ExLargeSpan = {
     content: `ex-large_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`,
+    fontStyle: `normal`,
   },
 };
 
@@ -45,7 +45,7 @@ export const LargeSpan = {
     content: `large_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`,
+    fontStyle: `normal`,
   },
 };
 
@@ -55,7 +55,7 @@ export const MediumSpan = {
     content: `medium_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`,
+    fontStyle: `normal`,
   },
 };
 
@@ -65,7 +65,7 @@ export const SmallSpan = {
     content: `small_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`,
+    fontStyle: `normal`,
   },
 };
 
@@ -75,7 +75,7 @@ export const ExSmallSpan = {
     content: `ex-small_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`,
+    fontStyle: `normal`,
   },
 };
 
@@ -85,7 +85,7 @@ export const SmallSpanWithIcon = {
     content: `small_span`,
     weight: `normal`,
     color: `deepgray`,
-    style: `normal`,
+    fontStyle: `normal`,
     iconName: "SquareIcon", //アイコン名を指定
     iconPosition: "left", //アイコンの位置を指定
   },
@@ -97,7 +97,7 @@ export const LargeSpanWithIconOnRight = {
     content: `large_span`,
     weight: "bold",
     color: "black",
-    style: "italic",
+    fontStyle: "italic",
     iconName: "CircleIcon",
     iconPosition: "right",
   },

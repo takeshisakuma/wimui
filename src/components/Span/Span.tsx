@@ -20,7 +20,7 @@ type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
   | "info"
   | WimColor;
   weight?: "normal" | "bold";
-  style?: "normal" | "italic";
+  fontStyle?: "normal" | "italic";
   decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
   content: string;
   iconName?: React.ComponentProps<typeof Icon>["name"];
@@ -32,7 +32,7 @@ export const Span = ({
   content = "span",
   color = "black",
   weight = "normal",
-  style: fontStyle = "normal",
+  fontStyle = "normal",
   iconName = undefined,
   iconPosition = "left",
   decoration = "none",

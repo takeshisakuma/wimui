@@ -4566,5 +4566,7 @@
   "guide_list_item_std_rules_list": "1. Do not specify padding or background-color (hover) in custom SCSS.\\n2. Use src/components/_internal/BaseListItem when rendering selectable items.\\n3. Ensure --wim-color-bg-hover is applied for hover states (automatically handled by BaseListItem).",
   "guide_list_item_std_affected_components": "Affected Components",
   "guide_list_item_std_note_title": "Note to Developers:",
-  "guide_list_item_std_note_desc": "If you are creating a new component that includes a list of selectable items, please reuse BaseListItem located in src/components/_internal/BaseListItem."
+  "guide_list_item_std_note_desc": "If you are creating a new component that includes a list of selectable items, please reuse BaseListItem located in src/components/_internal/BaseListItem.",
+  "doc_treeview_overflow_title": "Overflow and Truncation",
+  "doc_treeview_overflow_desc": "The TreeView component is designed to maintain a consistent width (100% by default) to avoid layout shifts. When labels are too long, they are automatically truncated with an ellipsis (...)."
 }

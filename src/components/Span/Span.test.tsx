@@ -29,4 +29,9 @@ describe("Span", () => {
     );
     expect(container.querySelector("svg")).toBeInTheDocument();
   });
+
+  it("applies fontStyle italic class", () => {
+    const { container } = render(<Span content="Italic" fontStyle="italic" />);
+    expect(container.firstChild).toHaveClass("wim-span--italic");
+  });
 });
