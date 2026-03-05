@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import classNames from "classnames";
 import { Textarea } from "../Textarea/Textarea";
+import { BaseListItem } from "../_internal/BaseListItem";
 import "./mentions.scss";
 
 type MentionOption = {
@@ -34,7 +35,7 @@ export const Mentions = ({
   const [query, setQuery] = useState("");
   const [cursorPos, setCursorPos] = useState(0);
   const [mentionStart, setMentionStart] = useState(-1);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -69,7 +70,7 @@ export const Mentions = ({
         setMentionStart(lastTriggerIndex);
         setQuery(textAfterTrigger);
         setIsOpen(true);
-        setSelectedIndex(0);
+        setSelectedIndex(-1);
         return;
       }
     }
@@ -117,16 +118,19 @@ export const Mentions = ({
     if (isOpen && filteredOptions.length > 0) {
       if (e.key === "ArrowDown") {
         e.preventDefault();
-        setSelectedIndex((prev) => (prev + 1) % filteredOptions.length);
+        setSelectedIndex((prev) =>
+          prev >= filteredOptions.length - 1 ? 0 : prev + 1
+        );
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
-        setSelectedIndex(
-          (prev) =>
-            (prev - 1 + filteredOptions.length) % filteredOptions.length,
+        setSelectedIndex((prev) =>
+          prev <= 0 ? filteredOptions.length - 1 : prev - 1
         );
       } else if (e.key === "Enter" || e.key === "Tab") {
-        e.preventDefault();
-        insertMention(filteredOptions[selectedIndex]);
+        if (selectedIndex >= 0 && filteredOptions[selectedIndex]) {
+          e.preventDefault();
+          insertMention(filteredOptions[selectedIndex]);
+        }
       } else if (e.key === "Escape") {
         setIsOpen(false);
       }
@@ -150,19 +154,18 @@ export const Mentions = ({
         <div className="wim-mentions-list" role="listbox">
           {filteredOptions.map((opt, index) => (
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-            <div
+            <BaseListItem
               key={opt.id}
-              className={classNames(
-                "wim-mentions-item",
-                index === selectedIndex && "wim-mentions-item--selected",
-              )}
+              className="wim-mentions-item"
+              active={index === selectedIndex}
               onClick={() => insertMention(opt)}
+              onMouseEnter={() => setSelectedIndex(index)}
               role="option"
               aria-selected={index === selectedIndex}
               tabIndex={-1}
             >
               {opt.display}
-            </div>
+            </BaseListItem>
           ))}
         </div>
       )}

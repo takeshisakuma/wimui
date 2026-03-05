@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useMemo, useId } from "react";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
+import { BaseListItem } from "../_internal/BaseListItem";
 import "./selectbox.scss";
 
 export type SelectboxOption = {
@@ -34,7 +35,7 @@ export type SelectboxProps = {
   filterOption?: (option: SelectboxOption, searchValue: string) => boolean;
   /** Whether options are grouped */
   grouped?: boolean;
-  /** Whether to use a native select element */
+  /** @deprecated Internal use only. Native selects do not support all WIM UI styles. */
   native?: boolean;
   /** Unique ID for the component */
   id?: string;
@@ -310,30 +311,29 @@ export const Selectbox = ({
               const optionId = `wim-selectbox-option-${id}-${option.value}`;
 
               return (
-                // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-                <li
+                <BaseListItem
+                  as="li"
                   key={option.value}
                   id={optionId}
                   ref={(el) => {
                     listItemsRef.current[index] = el;
                   }}
+                  active={isFocused}
+                  disabled={option.disabled}
                   className={classNames(
                     "wim-selectbox-option",
                     isSelected && "wim-selectbox-option--selected",
-                    option.disabled && "wim-selectbox-option--disabled",
-                    isFocused && "wim-selectbox-option--focused",
                   )}
-                  onClick={(e) => {
+                  onClick={(e: React.MouseEvent) => {
                     e.stopPropagation();
                     handleSelect(option);
                   }}
                   onMouseEnter={() => setFocusedIndex(index)}
                   role="option"
                   aria-selected={isSelected}
-                  aria-disabled={option.disabled}
                 >
                   {option.label}
-                </li>
+                </BaseListItem>
               );
             })}
           </React.Fragment>
@@ -358,30 +358,29 @@ export const Selectbox = ({
       const optionId = `wim-selectbox-option-${id}-${option.value}`;
 
       return (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-        <li
+        <BaseListItem
+          as="li"
           key={option.value}
           id={optionId}
           ref={(el) => {
             listItemsRef.current[itemIndex] = el;
           }}
+          active={isFocused}
+          disabled={option.disabled}
           className={classNames(
             "wim-selectbox-option",
             isSelected && "wim-selectbox-option--selected",
-            option.disabled && "wim-selectbox-option--disabled",
-            isFocused && "wim-selectbox-option--focused",
           )}
-          onClick={(e) => {
+          onClick={(e: React.MouseEvent) => {
             e.stopPropagation();
             handleSelect(option);
           }}
           onMouseEnter={() => setFocusedIndex(itemIndex)}
           role="option"
           aria-selected={isSelected}
-          aria-disabled={option.disabled}
         >
           {option.label}
-        </li>
+        </BaseListItem>
       );
     });
   };
@@ -419,35 +418,35 @@ export const Selectbox = ({
             )}
             {grouped
               ? (options as SelectboxOptionGroup[]).map((group, gi) => (
-                  <optgroup key={gi} label={group.label}>
-                    {group.options.map((opt, oi) =>
-                      opt.type === "separator" ? (
-                        <hr key={`hr-${gi}-${oi}`} />
-                      ) : (
-                        <option
-                          key={opt.value}
-                          value={opt.value}
-                          disabled={opt.disabled}
-                        >
-                          {opt.label}
-                        </option>
-                      ),
-                    )}
-                  </optgroup>
-                ))
+                <optgroup key={gi} label={group.label}>
+                  {group.options.map((opt, oi) =>
+                    opt.type === "separator" ? (
+                      <hr key={`hr-${gi}-${oi}`} />
+                    ) : (
+                      <option
+                        key={opt.value}
+                        value={opt.value}
+                        disabled={opt.disabled}
+                      >
+                        {opt.label}
+                      </option>
+                    ),
+                  )}
+                </optgroup>
+              ))
               : (options as SelectboxOption[]).map((opt, i) =>
-                  opt.type === "separator" ? (
-                    <hr key={`hr-${i}`} />
-                  ) : (
-                    <option
-                      key={opt.value}
-                      value={opt.value}
-                      disabled={opt.disabled}
-                    >
-                      {opt.label}
-                    </option>
-                  ),
-                )}
+                opt.type === "separator" ? (
+                  <hr key={`hr-${i}`} />
+                ) : (
+                  <option
+                    key={opt.value}
+                    value={opt.value}
+                    disabled={opt.disabled}
+                  >
+                    {opt.label}
+                  </option>
+                ),
+              )}
           </select>
           <div className="wim-selectbox-icon">
             <Icon name="ChevronDownIcon" size="medium" />

@@ -8,6 +8,7 @@ import React, {
 import classNames from "classnames";
 import "./tree-view.scss";
 import { Icon } from "../Icon/Icon";
+import { BaseListItem } from "../_internal/BaseListItem";
 
 type TreeViewContextType = {
   expandedValues: string[];
@@ -305,37 +306,45 @@ export const TreeViewItem = ({
       onKeyDown={handleKeyDown}
       tabIndex={disabled ? -1 : 0}
     >
-      <div className="wim-tree-view-item__label-container">
-        {hasChildren && (
-          <button
-            type="button"
-            className={classNames(
-              "wim-tree-view-item__expand-btn",
-              isExpanded && "wim-tree-view-item__expand-btn--expanded",
+      <BaseListItem
+        className="wim-tree-view-item__label-container"
+        active={isSelected}
+        disabled={disabled}
+        icon={
+          <div className="wim-tree-view-item__icon-wrapper">
+            {hasChildren && (
+              <button
+                type="button"
+                className={classNames(
+                  "wim-tree-view-item__expand-btn",
+                  isExpanded && "wim-tree-view-item__expand-btn--expanded",
+                )}
+                onClick={handleToggleExpand}
+                disabled={disabled}
+                aria-label={isExpanded ? "Collapse" : "Expand"}
+              >
+                <Icon name="ChevronRightIcon" size="small" />
+              </button>
             )}
-            onClick={handleToggleExpand}
-            disabled={disabled}
-            aria-label={isExpanded ? "Collapse" : "Expand"}
-          >
-            <Icon name="ChevronRightIcon" size="small" />
-          </button>
-        )}
-        {!hasChildren && <span className="wim-tree-view-item__spacer" />}
+            {!hasChildren && <span className="wim-tree-view-item__spacer" />}
 
-        {checkable && (
-          <input
-            type="checkbox"
-            className="wim-tree-view-item__checkbox"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-            disabled={disabled}
-            onClick={(e) => e.stopPropagation()}
-          />
-        )}
+            {checkable && (
+              <input
+                type="checkbox"
+                className="wim-tree-view-item__checkbox"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+                disabled={disabled}
+                onClick={(e) => e.stopPropagation()}
+              />
+            )}
 
-        {icon && <span className="wim-tree-view-item__icon">{icon}</span>}
-        <span className="wim-tree-view-item__label">{label}</span>
-      </div>
+            {icon && <span className="wim-tree-view-item__icon">{icon}</span>}
+          </div>
+        }
+      >
+        {label}
+      </BaseListItem>
 
       {hasChildren && shouldRender && (
         <div

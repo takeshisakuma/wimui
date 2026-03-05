@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useId } from "react";
 import classNames from "classnames";
 import { Input } from "../Input/Input";
+import { BaseListItem } from "../_internal/BaseListItem";
 import "./combobox.scss";
 
 export type ComboboxOption = {
@@ -93,11 +94,13 @@ export const Combobox = ({
     switch (e.key) {
       case "ArrowDown":
         setActiveIndex((prev) =>
-          prev < filteredOptions.length - 1 ? prev + 1 : prev,
+          prev < filteredOptions.length - 1 ? prev + 1 : 0
         );
         break;
       case "ArrowUp":
-        setActiveIndex((prev) => (prev > 0 ? prev - 1 : prev));
+        setActiveIndex((prev) =>
+          prev <= 0 ? filteredOptions.length - 1 : prev - 1
+        );
         break;
       case "Enter":
         if (activeIndex >= 0 && activeIndex < filteredOptions.length) {
@@ -150,19 +153,19 @@ export const Combobox = ({
         >
           {filteredOptions.map((option, index) => (
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-            <li
+            <BaseListItem
+              as="li"
               key={option.value}
               id={`${listboxId}-option-${index}`}
-              className={classNames(
-                "wim-combobox-option",
-                index === activeIndex && "wim-combobox-option--active",
-              )}
+              className="wim-combobox-option"
+              active={index === activeIndex}
               onClick={() => handleOptionClick(option)}
+              onMouseEnter={() => setActiveIndex(index)}
               role="option"
               aria-selected={index === activeIndex}
             >
               {option.label}
-            </li>
+            </BaseListItem>
           ))}
         </ul>
       )}

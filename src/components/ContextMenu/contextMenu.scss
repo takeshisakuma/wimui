@@ -10,7 +10,7 @@
   position: fixed;
   z-index: 9999;
   min-width: 200px;
-  padding: var(--spacing-xs) 0;
+  padding: var(--spacing-xs) 0; // The items themselves have margins now
   background-color: var(--bg-component, #fff);
   border: 1px solid var(--color-secondary);
   border-radius: var(--radius-md);
@@ -19,65 +19,25 @@
 }
 
 .wim-context-menu-item {
-  display: flex;
-  align-items: center;
-  padding: var(--spacing-sm) var(--spacing-md);
-  font-size: 0.9rem;
-  color: var(--text-primary);
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.2s ease-in-out;
-
-  &:hover:not(&--disabled, &--danger) {
-    background-color: rgb(0 0 0 / 0.05);
-  }
+  // Common styles are now handled by BaseListItem
 
   &:focus {
     outline: none;
     box-shadow: var(--shadow-focus);
     z-index: 1;
   }
-
-  &--disabled {
-    color: var(--text-disabled);
-    cursor: not-allowed;
-    background-color: transparent;
-    opacity: 0.6;
-  }
-
-  &--danger {
-    color: var(--text-error, #dc2626);
-
-    &:hover:not(.wim-context-menu-item--disabled) {
-      background-color: rgb(220 38 38 / 0.1);
-    }
-  }
-
-  &__icon {
-    display: flex;
-    align-items: center;
-    margin-right: var(--spacing-sm);
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-  }
-
-  &__content {
-    flex: 1;
-  }
 }
 
 .wim-context-menu-divider {
   height: 1px;
-  margin: var(--spacing-xs) 0;
+  margin: var(--spacing-xs) var(--spacing-md); // Inset divider
   background-color: var(--color-secondary);
+  opacity: 0.4;
 }
 
 .wim-context-menu-group {
   &__title {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-sm) calc(var(--spacing-md) + var(--spacing-xs));
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-secondary);

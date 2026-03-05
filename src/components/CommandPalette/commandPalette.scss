@@ -85,7 +85,7 @@
 
 .wim-command-palette-list {
   max-height: 400px;
-  padding: var(--spacing-xs);
+  padding: var(--spacing-xs) 0; // Floating items have margins
   overflow-y: auto;
 
   @media (width <=640px) {
@@ -111,7 +111,7 @@
 }
 
 .wim-command-palette-group-heading {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-xs) calc(var(--spacing-md) + var(--spacing-xs));
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-tertiary);
@@ -120,42 +120,8 @@
 }
 
 .wim-command-palette-item {
-  display: flex;
-  gap: var(--spacing-sm);
-  align-items: center;
-  padding: var(--spacing-sm) var(--spacing-sm); // Taller for mobile
-  cursor: pointer;
-  user-select: none;
+  // Common styles are now handled by BaseListItem
   border-radius: var(--radius-sm);
-  transition: background 0.1s ease;
-
-  &--active {
-    background: var(--wim-color-border-secondary);
-
-    [data-theme="dark"] & {
-      background: rgb(255 255 255 / 0.05);
-    }
-  }
-
-  &--disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-
-  .wim-command-palette-item-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    color: var(--text-secondary);
-  }
-
-  .wim-command-palette-item-label {
-    flex: 1;
-    font-size: 0.875rem;
-    color: var(--text-primary);
-  }
 
   .wim-command-palette-item-shortcut {
     display: flex;

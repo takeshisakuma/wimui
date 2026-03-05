@@ -1,0 +1,73 @@
+@use "../../../tokens/semantic-colors" as *;
+@use "../../../tokens/spacings" as *;
+
+.wim-base-list-item {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    width: calc(100% - (var(--spacing-xs) * 2));
+    margin: 0 var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md); // Slightly tighter vertical padding for floating style
+    font-family: var(--font-family-base);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    line-height: var(--line-height-normal, 1.5);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease-in-out;
+    border-radius: var(--radius-md); // More rounded for the 'floating island' look
+    outline: none; // Handle focus via other means or active state
+
+    &:hover:not(&--disabled, &--danger) {
+        background-color: var(--wim-color-bg-hover);
+    }
+
+    &--active {
+        background-color: var(--wim-color-bg-hover);
+    }
+
+    &--disabled {
+        color: var(--text-disabled);
+        cursor: not-allowed;
+        background-color: transparent;
+        opacity: 0.6;
+    }
+
+    &--danger {
+        color: var(--text-error, #dc2626);
+
+        &:hover:not(.wim-base-list-item--disabled) {
+            background-color: rgba(220, 38, 38, 0.1);
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--text-secondary);
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &__content {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 2px 0; // Prevent clipping from overflow: hidden
+    }
+
+    &__right-section {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        color: var(--text-tertiary);
+        font-size: 0.75rem;
+    }
+}

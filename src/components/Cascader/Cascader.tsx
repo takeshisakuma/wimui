@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useMemo, useId } from "react";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
+import { BaseListItem } from "../_internal/BaseListItem";
 import "./cascader.scss";
 
 export type CascaderOption = {
@@ -160,30 +161,28 @@ export const Cascader = ({
           const hasChildren = option.children && option.children.length > 0;
 
           return (
-            <div
+            <BaseListItem
               key={option.value}
               className={classNames(
                 "wim-cascader__menu-item",
-                isActive && "wim-cascader__menu-item--active",
                 isSelected && "wim-cascader__menu-item--selected",
-                option.disabled && "wim-cascader__menu-item--disabled",
               )}
-              onClick={(e) => {
+              active={isActive}
+              disabled={option.disabled}
+              onClick={(e: React.MouseEvent) => {
                 e.stopPropagation();
                 handleOptionSelect(option, level);
               }}
               onMouseEnter={() => handleOptionHover(option, level)}
+              rightSection={
+                hasChildren ? (
+                  <Icon name="ChevronRightIcon" size="small" />
+                ) : undefined
+              }
               role="menuitem"
             >
-              <span className="wim-cascader__menu-item-label">
-                {option.label}
-              </span>
-              {hasChildren && (
-                <span className="wim-cascader__menu-item-expand">
-                  <Icon name="ChevronRightIcon" size="small" />
-                </span>
-              )}
-            </div>
+              {option.label}
+            </BaseListItem>
           );
         })}
       </div>

@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import classNames from "classnames";
+import { BaseListItem } from "../_internal/BaseListItem";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import "./menu.scss";
@@ -10,7 +11,7 @@ const MenuContext = React.createContext<{
   toggleItem: (key: string) => void;
 }>({
   expandedItems: new Set(),
-  toggleItem: () => {},
+  toggleItem: () => { },
 });
 
 export type MenuProps = {
@@ -85,26 +86,23 @@ export const MenuItem = ({
   };
 
   return (
-    <li
-      className={classNames(
-        "wim-menu-item",
-        disabled && "wim-menu-item--disabled",
-        className,
-      )}
+    <BaseListItem
+      as="li"
+      className={classNames("wim-menu-item", className)}
       onClick={handleClick}
+      disabled={disabled}
+      icon={icon}
       role="menuitem"
       tabIndex={disabled ? -1 : 0}
-      aria-disabled={disabled}
-      onKeyDown={(e) => {
+      onKeyDown={(e: React.KeyboardEvent) => {
         if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           handleClick(e as any);
         }
       }}
     >
-      {icon && <span className="wim-menu-item__icon">{icon}</span>}
-      <span className="wim-menu-item__content">{children}</span>
-    </li>
+      {children}
+    </BaseListItem>
   );
 };
 
@@ -161,31 +159,33 @@ export const SubMenu = ({
         className,
       )}
     >
-      <div
+      <BaseListItem
         className="wim-menu-submenu__title"
         onClick={handleToggle}
+        icon={icon}
+        rightSection={
+          <span
+            className={classNames(
+              "wim-menu-submenu__arrow",
+              isOpen && "wim-menu-submenu__arrow--open",
+            )}
+          >
+            <Icon name="ChevronRightIcon" size="small" />
+          </span>
+        }
         role="menuitem"
         aria-haspopup="true"
         aria-expanded={isOpen}
         tabIndex={0}
-        onKeyDown={(e) => {
+        onKeyDown={(e: React.KeyboardEvent) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             handleToggle(e as any);
           }
         }}
       >
-        {icon && <span className="wim-menu-item__icon">{icon}</span>}
-        <span className="wim-menu-item__content">{title}</span>
-        <span
-          className={classNames(
-            "wim-menu-submenu__arrow",
-            isOpen && "wim-menu-submenu__arrow--open",
-          )}
-        >
-          <Icon name="ChevronRightIcon" size="small" />
-        </span>
-      </div>
+        {title}
+      </BaseListItem>
 
       <Transition
         show={isOpen}

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useId } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { Chip } from "../Chip/Chip";
+import { BaseListItem } from "../_internal/BaseListItem";
 import "./multiselect.scss";
 
 export type MultiSelectOption = {
@@ -163,23 +164,23 @@ export const MultiSelect = ({
           className={classNames(
             "wim-multiselect-value",
             selectedOptions.length === 0 &&
-              "wim-multiselect-value--placeholder",
+            "wim-multiselect-value--placeholder",
           )}
         >
           {selectedOptions.length > 0
             ? selectedOptions.map((opt) => (
-                <Chip
-                  key={opt.value}
-                  label={opt.label}
-                  size="small"
-                  color="neutral"
-                  variant="solid"
-                  onDelete={
-                    !disabled ? (e) => handleRemove(e, opt.value) : undefined
-                  }
-                  className="wim-multiselect-badge"
-                />
-              ))
+              <Chip
+                key={opt.value}
+                label={opt.label}
+                size="small"
+                color="neutral"
+                variant="solid"
+                onDelete={
+                  !disabled ? (e) => handleRemove(e, opt.value) : undefined
+                }
+                className="wim-multiselect-badge"
+              />
+            ))
             : placeholder}
         </div>
         <div className="wim-multiselect-icon">
@@ -198,19 +199,22 @@ export const MultiSelect = ({
           {options.map((option) => {
             const isSelected = currentValues?.includes(option.value);
             return (
-              <li
+              <BaseListItem
+                as="li"
                 key={option.value}
                 className={classNames(
                   "wim-multiselect-option",
                   isSelected && "wim-multiselect-option--selected",
-                  option.disabled && "wim-multiselect-option--disabled",
                 )}
+                disabled={option.disabled}
                 onClick={() => !option.disabled && handleSelect(option.value)}
+                rightSection={
+                  isSelected ? <Icon name="CheckIcon" size="small" /> : undefined
+                }
                 role="option"
                 aria-selected={isSelected}
-                aria-disabled={option.disabled}
                 tabIndex={0}
-                onKeyDown={(e) => {
+                onKeyDown={(e: React.KeyboardEvent) => {
                   if (
                     (e.key === "Enter" || e.key === " ") &&
                     !option.disabled
@@ -220,9 +224,8 @@ export const MultiSelect = ({
                   }
                 }}
               >
-                <span>{option.label}</span>
-                {isSelected && <Icon name="CheckIcon" size="small" />}
-              </li>
+                {option.label}
+              </BaseListItem>
             );
           })}
         </ul>

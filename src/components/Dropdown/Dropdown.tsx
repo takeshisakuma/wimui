@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, ReactNode, useId } from "react";
 import classNames from "classnames";
+import { BaseListItem } from "../_internal/BaseListItem";
 import "./dropdown.scss";
 
 // Context to share state between components
@@ -11,8 +12,8 @@ const DropdownContext = React.createContext<{
   triggerId: string;
 }>({
   isOpen: false,
-  toggle: () => {},
-  close: () => {},
+  toggle: () => { },
+  close: () => { },
   menuId: "",
   triggerId: "",
 });
@@ -168,17 +169,13 @@ export const DropdownItem = ({
   };
 
   return (
-    <div
-      className={classNames(
-        "wim-dropdown-item",
-        disabled && "wim-dropdown-item--disabled",
-        className,
-      )}
+    <BaseListItem
+      className={classNames("wim-dropdown-item", className)}
       onClick={handleClick}
+      disabled={disabled}
       role="menuitem"
       tabIndex={disabled ? -1 : 0}
-      aria-disabled={disabled}
-      onKeyDown={(e) => {
+      onKeyDown={(e: React.KeyboardEvent) => {
         if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           handleClick(e as any);
@@ -186,6 +183,6 @@ export const DropdownItem = ({
       }}
     >
       {children}
-    </div>
+    </BaseListItem>
   );
 };

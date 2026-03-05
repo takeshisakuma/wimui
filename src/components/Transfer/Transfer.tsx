@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { Button } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
+import { BaseListItem } from "../_internal/BaseListItem";
 import "./transfer.scss";
 
 export type TransferItem = {
@@ -131,22 +132,20 @@ export const Transfer = ({
             <div className="wim-transfer__empty">No data</div>
           ) : (
             data.map((item) => (
-              <div
+              <BaseListItem
                 key={item.key}
-                className={classNames(
-                  "wim-transfer__item",
-                  item.disabled && "wim-transfer__item--disabled",
-                )}
+                className="wim-transfer__item"
+                disabled={disabled || item.disabled}
                 onClick={() => !item.disabled && handleSelect(item.key)}
-              >
-                <div className="wim-transfer__item-checkbox">
+                icon={
                   <Checkbox
                     checked={selectedKeys.includes(item.key)}
                     disabled={disabled || item.disabled}
                   />
-                </div>
-                <span className="wim-transfer__item-label">{item.title}</span>
-              </div>
+                }
+              >
+                {item.title}
+              </BaseListItem>
             ))
           )}
         </div>

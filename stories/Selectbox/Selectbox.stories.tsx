@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Selectbox,
@@ -17,7 +18,6 @@ const meta: Meta<typeof Selectbox> = {
       },
     },
   },
-  tags: [],
   argTypes: {
     onChange: { action: "changed" },
   },
@@ -78,13 +78,5 @@ export const WithSeparator: Story = {
   args: {
     options: optionsWithSeparators,
     placeholder: "Select an action...",
-  },
-};
-
-export const NativeWithSeparator: Story = {
-  args: {
-    options: optionsWithSeparators,
-    native: true,
-    placeholder: "Select (Native)...",
   },
 };

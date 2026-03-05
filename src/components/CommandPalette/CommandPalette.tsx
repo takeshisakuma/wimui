@@ -12,6 +12,7 @@ import { Portal } from "../Portal/Portal";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import { FocusTrap } from "../FocusTrap/FocusTrap";
+import { BaseListItem } from "../_internal/BaseListItem";
 import "./commandPalette.scss";
 
 // --- Context ---
@@ -356,15 +357,25 @@ export const CommandPaletteItem = ({
   }, [isActive, disabled, onSelect, onOpenChange]);
 
   return (
-    /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */
-    <div
+    <BaseListItem
       role="option"
       id={`wim-command-palette-item-${index}`}
       aria-selected={isActive}
-      className={classNames("wim-command-palette-item", {
-        "wim-command-palette-item--active": isActive,
-        "wim-command-palette-item--disabled": disabled,
-      })}
+      className="wim-command-palette-item"
+      active={isActive}
+      disabled={disabled}
+      icon={icon}
+      rightSection={
+        shortcut && (
+          <div className="wim-command-palette-item-shortcut">
+            {shortcut.map((s) => (
+              <kbd key={s} className="wim-kbd wim-kbd--sm">
+                {s}
+              </kbd>
+            ))}
+          </div>
+        )
+      }
       onMouseEnter={() => !disabled && setActiveIndex(index)}
       onClick={() => {
         if (!disabled) {
@@ -373,18 +384,8 @@ export const CommandPaletteItem = ({
         }
       }}
     >
-      {icon && <div className="wim-command-palette-item-icon">{icon}</div>}
-      <div className="wim-command-palette-item-label">{children}</div>
-      {shortcut && (
-        <div className="wim-command-palette-item-shortcut">
-          {shortcut.map((s) => (
-            <kbd key={s} className="wim-kbd wim-kbd--sm">
-              {s}
-            </kbd>
-          ))}
-        </div>
-      )}
-    </div>
+      {children}
+    </BaseListItem>
   );
 };
 

@@ -8,6 +8,7 @@ import React, {
 import classNames from "classnames";
 import { Portal } from "../Portal/Portal";
 import { Transition } from "../Transition/Transition";
+import { BaseListItem } from "../_internal/BaseListItem";
 import "./contextMenu.scss";
 
 export type ContextMenuProps = {
@@ -168,15 +169,13 @@ export const ContextMenuItem = ({
   };
 
   return (
-    <div
-      className={classNames(
-        "wim-context-menu-item",
-        disabled && "wim-context-menu-item--disabled",
-        danger && "wim-context-menu-item--danger",
-        className,
-      )}
-      onClick={handleClick}
-      onKeyDown={(e) => {
+    <BaseListItem
+      className={classNames("wim-context-menu-item", className)}
+      disabled={disabled}
+      danger={danger}
+      icon={icon}
+      onClick={(e: React.MouseEvent) => handleClick(e)}
+      onKeyDown={(e: React.KeyboardEvent) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           handleClick(e as unknown as React.MouseEvent);
@@ -184,11 +183,9 @@ export const ContextMenuItem = ({
       }}
       role="menuitem"
       tabIndex={disabled ? -1 : 0}
-      aria-disabled={disabled}
     >
-      {icon && <span className="wim-context-menu-item__icon">{icon}</span>}
-      <span className="wim-context-menu-item__content">{children}</span>
-    </div>
+      {children}
+    </BaseListItem>
   );
 };
 

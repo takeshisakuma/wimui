@@ -79,11 +79,7 @@
     border-radius: inherit;
   }
 
-  /* コンポーネント共通の基本振る舞い */
-  [class^="wim-"],
-  [class*=" wim-"] {
-    text-box-trim: trim-both;
-  }
+
 }
 
 /* ドキュメント用コンテナの共通スタイル (Storybookのデフォルトスタイルを上書きするためレイヤー外で定義) */
