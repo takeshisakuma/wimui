@@ -4490,5 +4490,7 @@
   "voiceandtone_voice_reliable_desc": "Promova a confiança mantendo uma redação consistente.",
   "voiceandtone_voice_supportive_desc": "Mantenha uma atitude de sempre apoiar os objetivos do usuário.",
   "voiceandtone_voice_title": "Voz (Personalidade do Sistema)",
-  "welcome": "Bem-vindo ao nosso aplicativo"
+  "welcome": "Bem-vindo ao nosso aplicativo",
+  "doc_treeview_overflow_title": "Estouro e Truncante",
+  "doc_treeview_overflow_desc": "O componente TreeView foi projetado para manter uma largura consistente (100% por padrão) para evitar mudanças no layout. Quando os rótulos são muito longos, eles são truncados automaticamente com reticências (...)."
 }

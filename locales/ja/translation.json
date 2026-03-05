@@ -4532,5 +4532,7 @@
   "guide_list_item_std_rules_list": "1. 独自のSCSSで padding や background-color (hover) を指定しないでください。\\n2. 項目を表示する際は src/components/_internal/BaseListItem を使用してください。\\n3. ホバー色には必ず --wim-color-bg-hover トークンが適用されるようにしてください（BaseListItem を使えば自動で適用されます）。",
   "guide_list_item_std_affected_components": "適用済みのコンポーネント",
   "guide_list_item_std_note_title": "開発者への注意：",
-  "guide_list_item_std_note_desc": "選択可能なアイテムのリストを含む新しいコンポーネントを作成する場合は、src/components/_internal/BaseListItem にある BaseListItem を再利用してください。"
+  "guide_list_item_std_note_desc": "選択可能なアイテムのリストを含む新しいコンポーネントを作成する場合は、src/components/_internal/BaseListItem にある BaseListItem を再利用してください。",
+  "doc_treeview_overflow_title": "溢れと省略",
+  "doc_treeview_overflow_desc": "TreeView コンポーネントは、レイアウトの崩れを防ぐためにデフォルトで 100% の幅を持ち、親要素の幅に合わせて伸縮します。テキストが長すぎる場合は、自動的に三点リーダー（...）で省略されます。"
 }
