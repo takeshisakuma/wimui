@@ -26,7 +26,7 @@ export type SelectboxProps = {
     filterOption?: (option: SelectboxOption, searchValue: string) => boolean;
     /** Whether options are grouped */
     grouped?: boolean;
-    /** Whether to use a native select element */
+    /** @deprecated Internal use only. Native selects do not support all WIM UI styles. */
     native?: boolean;
     /** Unique ID for the component */
     id?: string;
