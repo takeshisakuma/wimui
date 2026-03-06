@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { RadioGroup } from "@/components/RadioGroup/RadioGroup";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof RadioGroup> = {
   title: "Components/Selection Controls/RadioGroup",
@@ -16,70 +17,105 @@ const meta: Meta<typeof RadioGroup> = {
 export default meta;
 type Story = StoryObj<typeof RadioGroup>;
 
-const defaultOptions = [
-  { label: "Option 1", value: "opt1" },
-  { label: "Option 2", value: "opt2" },
-  { label: "Option 3", value: "opt3" },
-];
+const useDefaultOptions = () => {
+  const { t } = useTranslation();
+  return [
+    { label: t("story_radio_option1"), value: "opt1" },
+    { label: `${t("story_radio_option1")} 2`, value: "opt2" },
+    { label: `${t("story_radio_option1")} 3`, value: "opt3" },
+  ];
+};
 
 export const Default: Story = {
-  args: {
-    options: defaultOptions,
-    name: "default-group",
-    defaultValue: "opt1",
+  render: function Render(args) {
+    const options = useDefaultOptions();
+    return (
+      <RadioGroup
+        {...args}
+        options={options}
+        name="default-group"
+        defaultValue="opt1"
+      />
+    );
   },
 };
 
 export const Horizontal: Story = {
-  args: {
-    options: defaultOptions,
-    direction: "horizontal",
-    name: "horizontal-group",
-    defaultValue: "opt1",
+  render: function Render(args) {
+    const options = useDefaultOptions();
+    return (
+      <RadioGroup
+        {...args}
+        options={options}
+        direction="horizontal"
+        name="horizontal-group"
+        defaultValue="opt1"
+      />
+    );
   },
 };
 
 export const WithDisabledOption: Story = {
-  args: {
-    options: [
-      { label: "Option 1", value: "opt1" },
-      { label: "Option 2", value: "opt2", disabled: true },
-      { label: "Option 3", value: "opt3" },
-    ],
-    name: "disabled-option-group",
-    defaultValue: "opt1",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <RadioGroup
+        {...args}
+        options={[
+          { label: t("story_radio_option1"), value: "opt1" },
+          {
+            label: `${t("story_radio_option1")} 2 ${t("story_option_disabled")}`,
+            value: "opt2",
+            disabled: true,
+          },
+          { label: `${t("story_radio_option1")} 3`, value: "opt3" },
+        ]}
+        name="disabled-option-group"
+        defaultValue="opt1"
+      />
+    );
   },
 };
 
-export const Controlled = () => {
-  const [value, setValue] = useState("opt1");
-  return (
-    <div>
-      <div style={{ marginBottom: "1rem" }}>Selected Value: {value}</div>
-      <RadioGroup
-        options={defaultOptions}
-        value={value}
-        onChange={setValue}
-        name="controlled-group"
-      />
-    </div>
-  );
+export const Controlled: Story = {
+  render: function Render() {
+    const { t } = useTranslation();
+    const options = useDefaultOptions();
+    const [value, setValue] = useState("opt1");
+    return (
+      <div>
+        <div style={{ marginBottom: "1rem" }}>
+          {t("story_radiogroup_selected")}: {value}
+        </div>
+        <RadioGroup
+          options={options}
+          value={value}
+          onChange={setValue}
+          name="controlled-group"
+        />
+      </div>
+    );
+  },
 };
 
 export const LongLabel: Story = {
-  args: {
-    options: [
-      {
-        label:
-          "This is a very long label that might wrap to multiple lines depending on the container width.",
-        value: "long1",
-      },
-      {
-        label:
-          "Another long label that will wrap if the container is narrow enough to force it.",
-        value: "long2",
-      },
-    ],
-    name: "long-label-group",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <RadioGroup
+        {...args}
+        options={[
+          {
+            label: t("story_radio_long_label"),
+            value: "long1",
+          },
+          {
+            label: t("story_radio_long_label"),
+            value: "long2",
+          },
+        ]}
+        name="long-label-group"
+      />
+    );
   },
 };

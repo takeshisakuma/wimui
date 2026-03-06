@@ -1,5 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Dropzone } from "@/components/Dropzone/Dropzone";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Dropzone> = {
   title: "Components/Advanced Inputs/Dropzone",
@@ -16,50 +18,87 @@ export default meta;
 type Story = StoryObj<typeof Dropzone>;
 
 export const Default: Story = {
-  args: {
-    label: "ファイルアップロード",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Dropzone
+        {...args}
+        label={t("story_dropzone_label_file")}
+        description={t("story_dropzone_default_desc")}
+      />
+    );
   },
 };
 
 export const Multiple: Story = {
-  args: {
-    label: "複数ファイルアップロード",
-    multiple: true,
-    description: "複数のファイルをドラッグ＆ドロップできます",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Dropzone
+        {...args}
+        label={t("story_dropzone_label_multi")}
+        multiple={true}
+        description={t("story_dropzone_desc_multi")}
+      />
+    );
   },
 };
 
 export const AcceptImages: Story = {
-  args: {
-    label: "画像のみアップロード",
-    accept: "image/*",
-    iconName: "ImageIcon",
-    description: "画像ファイルをドラッグ＆ドロップしてください",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Dropzone
+        {...args}
+        label={t("story_dropzone_label_image_only")}
+        accept="image/*"
+        iconName="ImageIcon"
+        description={t("story_dropzone_desc_image")}
+      />
+    );
   },
 };
 
 export const Disabled: Story = {
-  args: {
-    label: "無効状態",
-    disabled: true,
-    description: "現在はアップロードできません",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Dropzone
+        {...args}
+        label={t("story_dropzone_label_disabled")}
+        disabled={true}
+        description={t("story_dropzone_desc_disabled")}
+      />
+    );
   },
 };
 
 export const CustomIcon: Story = {
-  args: {
-    label: "PDFアップロード",
-    iconName: "PdfIcon",
-    accept: ".pdf",
-    description: "PDFファイルをドラッグ＆ドロップしてください",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Dropzone
+        {...args}
+        label={t("story_dropzone_label_pdf")}
+        iconName="PdfIcon"
+        accept=".pdf"
+        description={t("story_dropzone_desc_pdf")}
+      />
+    );
   },
 };
 
 export const VideoUpload: Story = {
-  args: {
-    label: "ビデオアップロード",
-    iconName: "VideoIcon",
-    accept: "video/*",
-    description: "動画ファイルをドラッグ＆ドロップしてください",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Dropzone
+        {...args}
+        label={t("story_dropzone_label_video")}
+        iconName="VideoIcon"
+        accept="video/*"
+        description={t("story_dropzone_desc_video")}
+      />
+    );
   },
 };

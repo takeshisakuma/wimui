@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { TreeView } from "@/components/TreeView/TreeView";
 import { Icon } from "@/components/Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof TreeView> = {
   title: "Components/Data Structures/TreeView",
@@ -38,117 +39,133 @@ export const Default: Story = {
   args: {
     width: "100%",
   },
-  render: (args) => (
-    <TreeView {...args} defaultExpandedValues={["1", "2"]}>
-      <TreeView.Item
-        value="1"
-        label="Documents"
-        icon={<Icon name="CircleIcon" size="small" />}
-      >
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <TreeView {...args} defaultExpandedValues={["1", "2"]}>
         <TreeView.Item
-          value="1-1"
-          label="Work"
-          icon={<Icon name="SquareIcon" size="small" />}
+          value="1"
+          label={t("story_tree_documents")}
+          icon={<Icon name="CircleIcon" size="small" />}
         >
           <TreeView.Item
-            value="1-1-1"
-            label="Project A.docx"
-            icon={<Icon name="CopyIcon" size="small" />}
+            value="1-1"
+            label={t("story_tree_work")}
+            icon={<Icon name="SquareIcon" size="small" />}
+          >
+            <TreeView.Item
+              value="1-1-1"
+              label={t("story_tree_project_a")}
+              icon={<Icon name="CopyIcon" size="small" />}
+            />
+            <TreeView.Item
+              value="1-1-2"
+              label={t("story_tree_project_b")}
+              icon={<Icon name="CopyIcon" size="small" />}
+            />
+          </TreeView.Item>
+          <TreeView.Item
+            value="1-2"
+            label={t("story_tree_personal")}
+            icon={<Icon name="SquareIcon" size="small" />}
+          >
+            <TreeView.Item
+              value="1-2-1"
+              label={t("story_tree_photos")}
+              icon={<Icon name="CircleIcon" size="small" />}
+            />
+          </TreeView.Item>
+        </TreeView.Item>
+        <TreeView.Item
+          value="2"
+          label={t("story_tree_music")}
+          icon={<Icon name="CircleIcon" size="small" />}
+        >
+          <TreeView.Item
+            value="2-1"
+            label={t("story_tree_rock")}
+            icon={<Icon name="SquareIcon" size="small" />}
           />
           <TreeView.Item
-            value="1-1-2"
-            label="Project B.docx"
-            icon={<Icon name="CopyIcon" size="small" />}
+            value="2-2"
+            label={t("story_tree_jazz")}
+            icon={<Icon name="SquareIcon" size="small" />}
           />
         </TreeView.Item>
         <TreeView.Item
-          value="1-2"
-          label="Personal"
-          icon={<Icon name="SquareIcon" size="small" />}
-        >
-          <TreeView.Item
-            value="1-2-1"
-            label="Photos"
-            icon={<Icon name="CircleIcon" size="small" />}
-          />
-        </TreeView.Item>
-      </TreeView.Item>
-      <TreeView.Item
-        value="2"
-        label="Music"
-        icon={<Icon name="CircleIcon" size="small" />}
-      >
-        <TreeView.Item
-          value="2-1"
-          label="Rock"
-          icon={<Icon name="SquareIcon" size="small" />}
+          value="3"
+          label={t("story_tree_videos")}
+          icon={<Icon name="CircleIcon" size="small" />}
         />
-        <TreeView.Item
-          value="2-2"
-          label="Jazz"
-          icon={<Icon name="SquareIcon" size="small" />}
-        />
-      </TreeView.Item>
-      <TreeView.Item
-        value="3"
-        label="Videos"
-        icon={<Icon name="CircleIcon" size="small" />}
-      />
-    </TreeView>
-  ),
+      </TreeView>
+    );
+  },
 };
 
 export const MultiSelect: Story = {
-  render: () => (
-    <TreeView multiSelect defaultExpandedValues={["1"]}>
-      <TreeView.Item value="1" label="System">
-        <TreeView.Item value="1-1" label="Logs" />
-        <TreeView.Item value="1-2" label="Config" />
-      </TreeView.Item>
-      <TreeView.Item value="2" label="Users">
-        <TreeView.Item value="2-1" label="Admin" />
-        <TreeView.Item value="2-2" label="Guest" />
-      </TreeView.Item>
-    </TreeView>
-  ),
+  render: function Render() {
+    const { t } = useTranslation();
+    return (
+      <TreeView multiSelect defaultExpandedValues={["1"]}>
+        <TreeView.Item value="1" label={t("story_tree_system")}>
+          <TreeView.Item value="1-1" label={t("story_tree_logs")} />
+          <TreeView.Item value="1-2" label={t("story_tree_config")} />
+        </TreeView.Item>
+        <TreeView.Item value="2" label={t("story_tree_users")}>
+          <TreeView.Item value="2-1" label={t("story_tree_admin")} />
+          <TreeView.Item value="2-2" label={t("story_tree_guest")} />
+        </TreeView.Item>
+      </TreeView>
+    );
+  },
 };
 
 export const DisabledItems: Story = {
-  render: () => (
-    <TreeView defaultExpandedValues={["1"]}>
-      <TreeView.Item value="1" label="Root (Enabled)">
-        <TreeView.Item value="1-1" label="Disabled Item" disabled />
-        <TreeView.Item value="1-2" label="Enabled Item" />
-      </TreeView.Item>
-    </TreeView>
-  ),
+  render: function Render() {
+    const { t } = useTranslation();
+    return (
+      <TreeView defaultExpandedValues={["1"]}>
+        <TreeView.Item value="1" label={t("story_tree_root_enabled")}>
+          <TreeView.Item
+            value="1-1"
+            label={t("story_tree_disabled_item")}
+            disabled
+          />
+          <TreeView.Item value="1-2" label={t("story_tree_enabled_item")} />
+        </TreeView.Item>
+      </TreeView>
+    );
+  },
 };
 
 export const Overflow: Story = {
-  render: () => (
-    <TreeView width={250} defaultExpandedValues={["1"]}>
-      <TreeView.Item
-        value="1"
-        label="Extremely Long Folder Name That Will Definitely Overflow and Trigger Ellipsis"
-        icon={<Icon name="CircleIcon" size="small" />}
-      >
+  render: function Render() {
+    const { t } = useTranslation();
+    return (
+      <TreeView width={250} defaultExpandedValues={["1"]}>
         <TreeView.Item
-          value="1-1"
-          label="Very Long Sub-item Name That Should Also Show Truncation When the Parent Width is Constrained"
-          icon={<Icon name="SquareIcon" size="small" />}
+          value="1"
+          label={t("story_tree_long_folder")}
+          icon={<Icon name="CircleIcon" size="small" />}
         >
           <TreeView.Item
-            value="1-1-1"
-            label="Even at deeper nesting levels, the text will be truncated appropriately to maintain the sidebar layout without breaking the container."
-            icon={<Icon name="CopyIcon" size="small" />}
-          />
+            value="1-1"
+            label={t("story_tree_long_subitem")}
+            icon={<Icon name="SquareIcon" size="small" />}
+          >
+            <TreeView.Item
+              value="1-1-1"
+              label={t("story_tree_deep_nesting")}
+              icon={<Icon name="CopyIcon" size="small" />}
+            />
+          </TreeView.Item>
         </TreeView.Item>
-      </TreeView.Item>
-      <TreeView.Item
-        value="2"
-        label="Regular Item"
-        icon={<Icon name="CircleIcon" size="small" />}
-      />
-    </TreeView>
-  ),
+        <TreeView.Item
+          value="2"
+          label={t("story_tree_regular_item")}
+          icon={<Icon name="CircleIcon" size="small" />}
+        />
+      </TreeView>
+    );
+  },
 };

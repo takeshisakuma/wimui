@@ -1,11 +1,18 @@
-import { Meta, Primary, Controls, Story } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as RadioStories from "./Radio.stories";
 import { T } from "../T";
 
 <Meta of={RadioStories} />
 
-# Radio
-
+<Title />
 <p
   style={{
     margin: "0 0 16px 0",
@@ -42,12 +49,12 @@ import { T } from "../T";
 
 ### Default
 
-<Story of={RadioStories.Default} />
+<Canvas of={RadioStories.Default} />
 
 ### Checked
 
-<Story of={RadioStories.Checked} />
+<Canvas of={RadioStories.Checked} />
 
 ### Disabled
 
-<Story of={RadioStories.Disabled} />
+<Canvas of={RadioStories.Disabled} />

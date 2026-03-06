@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { TimePicker } from "@/components/TimePicker/TimePicker";
 import { Label } from "@/components/Label/Label";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof TimePicker> = {
   title: "Components/Pickers & Sliders/TimePicker",
@@ -25,56 +26,74 @@ export default meta;
 type Story = StoryObj<typeof TimePicker>;
 
 export const Default: Story = {
-  render: (args) => (
-    <Label label="Select Time">
-      <TimePicker {...args} />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_timepicker_select")}>
+        <TimePicker {...args} />
+      </Label>
+    );
+  },
   args: {},
 };
 
 export const Outline: Story = {
-  render: (args) => (
-    <Label label="Outline TimePicker">
-      <TimePicker {...args} variant="outline" />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_timepicker_outline")}>
+        <TimePicker {...args} variant="outline" />
+      </Label>
+    );
+  },
   args: {},
 };
 
 export const Ghost: Story = {
-  render: (args) => (
-    <Label label="Ghost TimePicker">
-      <TimePicker {...args} variant="ghost" />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_timepicker_ghost")}>
+        <TimePicker {...args} variant="ghost" />
+      </Label>
+    );
+  },
   args: {},
 };
 
 export const ErrorStatus: Story = {
-  render: (args) => (
-    <Label label="Error State">
-      <TimePicker {...args} state="error" />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_picker_error")}>
+        <TimePicker {...args} state="error" />
+      </Label>
+    );
+  },
   args: {},
 };
 
 export const Disabled: Story = {
-  render: (args) => (
-    <Label label="Disabled State">
-      <TimePicker {...args} disabled />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_picker_disabled")}>
+        <TimePicker {...args} disabled />
+      </Label>
+    );
+  },
   args: {},
 };
 
 export const FullWidth: Story = {
-  render: (args) => (
-    <Label label="Full Width TimePicker" style={{ width: "100%" }}>
-      <TimePicker {...args} fullWidth />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_picker_fullwidth")} style={{ width: "100%" }}>
+        <TimePicker {...args} fullWidth />
+      </Label>
+    );
+  },
   args: {},
   parameters: {
     layout: "padded",

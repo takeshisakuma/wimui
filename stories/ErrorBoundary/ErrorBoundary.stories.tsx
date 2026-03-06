@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { Button } from "@/components/Button/Button";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof ErrorBoundary> = {
   title: "Components/Utilities/ErrorBoundary",
@@ -16,12 +17,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const BuggyComponent = () => {
-  throw new Error("意図的なエラーが発生しました！");
+  const { t } = useTranslation();
+  throw new Error(t("story_errorboundary_throw_msg"));
 };
 
 export const Default: Story = {
-  render: () => {
+  render: function Render() {
     const [shouldThrow, setShouldThrow] = useState(false);
+    const { t } = useTranslation();
     return (
       <div
         style={{
@@ -31,12 +34,10 @@ export const Default: Story = {
           boxSizing: "border-box",
         }}
       >
-        <p style={{ marginBottom: "16px" }}>
-          下のボタンをクリックしてエラーを発生させます。
-        </p>
+        <p style={{ marginBottom: "16px" }}>{t("story_errorboundary_desc")}</p>
         <Button
           onClick={() => setShouldThrow(true)}
-          label="エラーを発生させる"
+          label={t("story_errorboundary_btn_trigger")}
           priority="primary"
           style={{
             marginBottom: "20px",
@@ -45,14 +46,14 @@ export const Default: Story = {
             wordBreak: "break-word",
             height: "auto",
             paddingTop: "12px",
-            paddingBottom: "12px"
+            paddingBottom: "12px",
           }}
         />
         <ErrorBoundary onReset={() => setShouldThrow(false)}>
           {shouldThrow ? (
             <BuggyComponent />
           ) : (
-            <div>現在、正常に動作しています。</div>
+            <div>{t("story_errorboundary_status_ok")}</div>
           )}
         </ErrorBoundary>
       </div>
@@ -61,8 +62,9 @@ export const Default: Story = {
 };
 
 export const CustomFallback: Story = {
-  render: () => {
+  render: function Render() {
     const [shouldThrow, setShouldThrow] = useState(false);
+    const { t } = useTranslation();
     return (
       <div
         style={{
@@ -74,7 +76,7 @@ export const CustomFallback: Story = {
       >
         <Button
           onClick={() => setShouldThrow(true)}
-          label="カスタムエラーを発生させる"
+          label={t("story_errorboundary_btn_trigger_custom")}
           priority="primary"
           style={{
             marginBottom: "20px",
@@ -83,12 +85,12 @@ export const CustomFallback: Story = {
             wordBreak: "break-word",
             height: "auto",
             paddingTop: "12px",
-            paddingBottom: "12px"
+            paddingBottom: "12px",
           }}
         />
         <ErrorBoundary
           onReset={() => setShouldThrow(false)}
-          fallback={(error, info, reset) => (
+          fallback={(error, _info, reset) => (
             <div
               style={{
                 background: "#f5f5f5",
@@ -101,13 +103,13 @@ export const CustomFallback: Story = {
                 wordBreak: "break-word",
               }}
             >
-              <h3 style={{ marginTop: 0 }}>おっと！エラーが発生しました</h3>
+              <h3 style={{ marginTop: 0 }}>{t("story_errorboundary_oops")}</h3>
               <p style={{ color: "#666", marginBottom: "20px" }}>
                 {error.message}
               </p>
               <Button
                 onClick={reset}
-                label="境界をリセットして再試行"
+                label={t("story_errorboundary_btn_reset")}
                 priority="secondary"
                 style={{
                   maxWidth: "100%",
@@ -115,13 +117,17 @@ export const CustomFallback: Story = {
                   wordBreak: "break-word",
                   height: "auto",
                   paddingTop: "12px",
-                  paddingBottom: "12px"
+                  paddingBottom: "12px",
                 }}
               />
             </div>
           )}
         >
-          {shouldThrow ? <BuggyComponent /> : <div>安定したコンテンツ。</div>}
+          {shouldThrow ? (
+            <BuggyComponent />
+          ) : (
+            <div>{t("story_errorboundary_status_stable")}</div>
+          )}
         </ErrorBoundary>
       </div>
     );

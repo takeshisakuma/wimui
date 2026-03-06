@@ -1,6 +1,8 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { PasswordInput } from "@/components/PasswordInput/PasswordInput";
 import { Label } from "@/components/Label/Label";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof PasswordInput> = {
   title: "Components/Basic Inputs/PasswordInput",
@@ -12,12 +14,12 @@ export default meta;
 type Story = StoryObj<typeof PasswordInput>;
 
 export const Default: Story = {
-  render: (args) => (
-    <Label label="パスワード">
-      <PasswordInput {...args} />
-    </Label>
-  ),
-  args: {
-    placeholder: "P@ssw0rd123",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_passwordinput_label")}>
+        <PasswordInput {...args} placeholder="P@ssw0rd123" />
+      </Label>
+    );
   },
 };

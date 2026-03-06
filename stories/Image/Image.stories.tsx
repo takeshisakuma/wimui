@@ -1,6 +1,8 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Image } from "@/components/Image/Image";
 import sampleImage from "@/media/imagesanple.webp";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Image> = {
   title: "Components/Media/Image",
@@ -25,26 +27,40 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Image {...args} alt={t("story_image_alt")} />;
+  },
   args: {
     src: sampleImage,
-    alt: "Sample WebP Image",
     width: 400,
   },
 };
 
 export const WithCaption: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Image
+        {...args}
+        alt={t("story_image_alt")}
+        caption={t("story_image_caption")}
+      />
+    );
+  },
   args: {
     src: sampleImage,
-    alt: "Sample WebP Image",
     width: 400,
-    caption: "これはサンプルのキャプションです。",
   },
 };
 
 export const Rounded: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Image {...args} alt={t("story_image_alt")} />;
+  },
   args: {
     src: sampleImage,
-    alt: "Sample WebP Image",
     width: 200,
     height: 200,
     radius: "large",
@@ -53,9 +69,12 @@ export const Rounded: Story = {
 };
 
 export const Circular: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Image {...args} alt={t("story_image_alt")} />;
+  },
   args: {
     src: sampleImage,
-    alt: "Sample WebP Image",
     width: 150,
     height: 150,
     radius: "full",
@@ -65,9 +84,12 @@ export const Circular: Story = {
 };
 
 export const WithShadow: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Image {...args} alt={t("story_image_alt")} />;
+  },
   args: {
     src: sampleImage,
-    alt: "Sample WebP Image",
     width: 400,
     shadow: true,
     radius: "medium",

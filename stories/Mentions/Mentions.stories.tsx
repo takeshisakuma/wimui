@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Mentions } from "@/components/Mentions/Mentions";
 import { Label } from "@/components/Label/Label";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Mentions> = {
   title: "Components/Basic Inputs/Mentions",
@@ -24,50 +25,50 @@ const mockUsers = [
 ];
 
 export const Default: Story = {
-  render: (args) => (
-    <Label label="User Mention (@でユーザーを選択)">
-      <Mentions {...args} />
-    </Label>
-  ),
-  args: {
-    options: mockUsers,
-    placeholder: "@yamada",
-    fullWidth: true,
-    rows: 4,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_mentions_label_user")}>
+        <Mentions {...args} options={mockUsers} placeholder="@yamada" fullWidth rows={4} />
+      </Label>
+    );
   },
 };
 
 export const CustomTrigger: Story = {
-  render: (args) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-      <Label label="Character Mention (#でキャラクターを選択)">
-        <Mentions
-          {...args}
-          trigger="#"
-          placeholder="#SuperMario"
-          options={[
-            { id: 1, display: "SuperMario" },
-            { id: 2, display: "Luigi" },
-            { id: 3, display: "Peach" },
-          ]}
-        />
-      </Label>
-      <Label label="Command Mention (/でコマンドを選択)">
-        <Mentions
-          {...args}
-          trigger="/"
-          placeholder="/help"
-          options={[
-            { id: 1, display: "help" },
-            { id: 2, display: "settings" },
-            { id: 3, display: "logout" },
-          ]}
-        />
-      </Label>
-    </div>
-  ),
-  args: {
-    fullWidth: true,
-    rows: 3,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <Label label={t("story_mentions_label_char")}>
+          <Mentions
+            {...args}
+            fullWidth
+            rows={3}
+            trigger="#"
+            placeholder="#SuperMario"
+            options={[
+              { id: 1, display: "SuperMario" },
+              { id: 2, display: "Luigi" },
+              { id: 3, display: "Peach" },
+            ]}
+          />
+        </Label>
+        <Label label={t("story_mentions_label_cmd")}>
+          <Mentions
+            {...args}
+            fullWidth
+            rows={3}
+            trigger="/"
+            placeholder="/help"
+            options={[
+              { id: 1, display: "help" },
+              { id: 2, display: "settings" },
+              { id: 3, display: "logout" },
+            ]}
+          />
+        </Label>
+      </div>
+    );
   },
 };

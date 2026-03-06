@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Stepper } from "@/components/Stepper/Stepper";
 import React, { useState } from "react";
 import { Icon } from "@/components/Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Stepper> = {
   title: "Components/Navigation Elements/Stepper",
@@ -30,91 +31,97 @@ const meta: Meta<typeof Stepper> = {
 export default meta;
 type Story = StoryObj<typeof Stepper>;
 
-const defaultSteps = [
-  {
-    title: "Finished",
-    description: "This is a description",
-  },
-  {
-    title: "In Progress",
-    description: "This is a description",
-  },
-  {
-    title: "Waiting",
-    description: "This is a description",
-  },
-];
+const useDefaultSteps = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      title: t("story_stepper_finished"),
+      description: t("story_stepper_desc"),
+    },
+    {
+      title: t("story_stepper_in_progress"),
+      description: t("story_stepper_desc"),
+    },
+    {
+      title: t("story_stepper_waiting"),
+      description: t("story_stepper_desc"),
+    },
+  ];
+};
 
 export const Default: Story = {
-  args: {
-    steps: defaultSteps,
-    current: 1,
+  render: function Render(args) {
+    const steps = useDefaultSteps();
+    return <Stepper {...args} steps={steps} current={1} />;
   },
 };
 
 export const Vertical: Story = {
-  args: {
-    steps: defaultSteps,
-    current: 1,
-    direction: "vertical",
+  render: function Render(args) {
+    const steps = useDefaultSteps();
+    return <Stepper {...args} steps={steps} current={1} direction="vertical" />;
   },
 };
 
 export const LabelVertical: Story = {
-  args: {
-    steps: defaultSteps,
-    current: 1,
-    labelPlacement: "vertical",
+  render: function Render(args) {
+    const steps = useDefaultSteps();
+    return <Stepper {...args} steps={steps} current={1} labelPlacement="vertical" />;
   },
 };
 
 export const ErrorStatus: Story = {
-  args: {
-    steps: defaultSteps,
-    current: 1,
-    status: "error",
+  render: function Render(args) {
+    const steps = useDefaultSteps();
+    return <Stepper {...args} steps={steps} current={1} status="error" />;
   },
 };
 
 export const CustomIcons: Story = {
-  args: {
-    steps: [
-      {
-        title: "Login",
-        icon: <Icon name="EyeIcon" size="small" />,
-      },
-      {
-        title: "Verification",
-        icon: <Icon name="LoadingIcon" size="small" />,
-      },
-      {
-        title: "Pay",
-        icon: <Icon name="StarIcon" size="small" />,
-      },
-      {
-        title: "Done",
-        icon: <Icon name="CheckIcon" size="small" />,
-      },
-    ],
-    current: 1,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Stepper
+        {...args}
+        steps={[
+          {
+            title: t("story_stepper_login"),
+            icon: <Icon name="EyeIcon" size="small" />,
+          },
+          {
+            title: t("story_stepper_verification"),
+            icon: <Icon name="LoadingIcon" size="small" />,
+          },
+          {
+            title: t("story_stepper_pay"),
+            icon: <Icon name="StarIcon" size="small" />,
+          },
+          {
+            title: t("story_stepper_done"),
+            icon: <Icon name="CheckIcon" size="small" />,
+          },
+        ]}
+        current={1}
+      />
+    );
   },
 };
 
 export const Interactive: Story = {
   render: (args) => {
+    const { t } = useTranslation();
     const [current, setCurrent] = useState(0);
+    const steps = Array.from({ length: 4 }, (_, i) => ({
+      title: `${t("story_stepper_step")} ${i + 1}`,
+      description: `${t("story_stepper_step_desc")} ${i + 1}`,
+    }));
     return (
       <Stepper
         {...args}
+        steps={steps}
         current={current}
         onChange={(index) => setCurrent(index)}
       />
     );
-  },
-  args: {
-    steps: Array.from({ length: 4 }, (_, i) => ({
-      title: `Step ${i + 1}`,
-      description: `Description for step ${i + 1}`,
-    })),
   },
 };

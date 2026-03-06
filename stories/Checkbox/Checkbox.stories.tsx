@@ -1,6 +1,8 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Checkbox } from "@/components/Checkbox/Checkbox";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Selection Controls/Checkbox",
@@ -18,49 +20,71 @@ export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
 export const Default: Story = {
-  args: {
-    label: "Accept terms and conditions",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Checkbox {...args} label={t("story_checkbox_accept")} />;
   },
 };
 
 export const Checked: Story = {
-  args: {
-    label: "Subscribe to newsletter",
-    checked: true,
-    onChange: () => {}, // Supress warning
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Checkbox
+        {...args}
+        label={t("story_checkbox_newsletter")}
+        checked={true}
+        onChange={() => {}} // Supress warning
+      />
+    );
   },
 };
 
 export const Disabled: Story = {
-  args: {
-    label: "Disabled option",
-    disabled: true,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Checkbox {...args} label={t("story_checkbox_disabled")} disabled={true} />;
   },
 };
 
 export const DisabledChecked: Story = {
-  args: {
-    label: "Disabled and checked",
-    disabled: true,
-    checked: true,
-    onChange: () => {},
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Checkbox
+        {...args}
+        label={t("story_checkbox_dis_checked")}
+        disabled={true}
+        checked={true}
+        onChange={() => {}}
+      />
+    );
   },
 };
 
 export const Indeterminate: Story = {
-  args: {
-    label: "Indeterminate",
-    indeterminate: true,
-    checked: true, // Usually indeterminate implies partially selected
-    onChange: () => {},
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Checkbox
+        {...args}
+        label={t("story_checkbox_indeterminate")}
+        indeterminate={true}
+        checked={true} // Usually indeterminate implies partially selected
+        onChange={() => {}}
+      />
+    );
   },
 };
 
 export const Controlled = () => {
+  const { t } = useTranslation();
   const [checked, setChecked] = useState(false);
   return (
     <Checkbox
-      label={`Controlled Checkbox: ${checked ? "On" : "Off"}`}
+      label={`${t("story_checkbox_controlled")}: ${
+        checked ? t("story_checkbox_on") : t("story_checkbox_off")
+      }`}
       checked={checked}
       onChange={(e) => setChecked(e.target.checked)}
     />
@@ -68,8 +92,8 @@ export const Controlled = () => {
 };
 
 export const LongLabel: Story = {
-  args: {
-    label:
-      "This is a very long label that might wrap to multiple lines depending on the container width.",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Checkbox {...args} label={t("story_checkbox_long_label")} />;
   },
 };

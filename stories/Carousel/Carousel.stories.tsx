@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Carousel } from "@/components/Carousel/Carousel";
 import SampleImage from "@/media/imagesanple.webp";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Carousel> = {
   title: "Components/Media/Carousel",
@@ -32,10 +33,10 @@ type Story = StoryObj<typeof Carousel>;
 
 const ImagePlaceholder = ({
   index,
-  width = "600px",
+  label,
 }: {
   index: number;
-  width?: string;
+  label: string;
 }) => (
   <div
     style={{
@@ -59,29 +60,31 @@ const ImagePlaceholder = ({
       boxSizing: "border-box",
     }}
   >
-    Slide {index + 1}
+    {label} {index + 1}
   </div>
 );
 
-const slides = [
-  <ImagePlaceholder key={1} index={0} />,
-  <ImagePlaceholder key={2} index={1} />,
-  <ImagePlaceholder key={3} index={2} />,
-  <ImagePlaceholder key={4} index={3} />,
-  <ImagePlaceholder key={5} index={4} />,
-  <ImagePlaceholder key={6} index={5} />,
-];
-
 export const Basic: Story = {
-  args: {
-    children: slides.slice(0, 4),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const slides = Array.from({ length: 4 }).map((_, i) => (
+      <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
+    ));
+    return <Carousel {...args}>{slides}</Carousel>;
   },
 };
 
 export const MultipleItems: Story = {
-  args: {
-    slidesToShow: 3,
-    children: slides,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const slides = Array.from({ length: 6 }).map((_, i) => (
+      <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
+    ));
+    return (
+      <Carousel {...args} slidesToShow={3}>
+        {slides}
+      </Carousel>
+    );
   },
   parameters: {
     layout: "padded",
@@ -89,14 +92,24 @@ export const MultipleItems: Story = {
 };
 
 export const Responsive: Story = {
-  args: {
-    slidesToShow: {
-      base: 1,
-      sm: 2,
-      md: 3,
-      lg: 4,
-    },
-    children: slides,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const slides = Array.from({ length: 6 }).map((_, i) => (
+      <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
+    ));
+    return (
+      <Carousel
+        {...args}
+        slidesToShow={{
+          base: 1,
+          sm: 2,
+          md: 3,
+          lg: 4,
+        }}
+      >
+        {slides}
+      </Carousel>
+    );
   },
   parameters: {
     layout: "fullscreen",
@@ -104,86 +117,116 @@ export const Responsive: Story = {
 };
 
 export const AutoPlay: Story = {
-  args: {
-    autoPlay: true,
-    interval: 3000,
-    children: slides.slice(0, 4),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const slides = Array.from({ length: 4 }).map((_, i) => (
+      <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
+    ));
+    return (
+      <Carousel {...args} autoPlay={true} interval={3000}>
+        {slides}
+      </Carousel>
+    );
   },
 };
 
 export const CustomContent: Story = {
-  args: {
-    children: [
-      <div key={1} style={{ padding: "0 10px", width: "100%" }}>
-        <div
-          style={{
-            padding: "20px",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            background: "#f9f9f9",
-          }}
-        >
-          <h3>Card 1</h3>
-          <p>Seamless infinite loop is enabled by default.</p>
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Carousel {...args}>
+        <div style={{ padding: "0 10px", width: "100%" }}>
+          <div
+            style={{
+              padding: "20px",
+              border: "1px solid #ccc",
+              borderRadius: "8px",
+              background: "#f9f9f9",
+            }}
+          >
+            <h3>
+              {t("story_carousel_card")} 1
+            </h3>
+            <p>{t("story_carousel_msg_loop")}</p>
+          </div>
         </div>
-      </div>,
-      <div key={2} style={{ padding: "0 10px", width: "100%" }}>
-        <div
-          style={{
-            padding: "20px",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            background: "#f9f9f9",
-          }}
-        >
-          <h3>Card 2</h3>
-          <p>You can see multiple items at once.</p>
+        <div style={{ padding: "0 10px", width: "100%" }}>
+          <div
+            style={{
+              padding: "20px",
+              border: "1px solid #ccc",
+              borderRadius: "8px",
+              background: "#f9f9f9",
+            }}
+          >
+            <h3>
+              {t("story_carousel_card")} 2
+            </h3>
+            <p>{t("story_carousel_msg_multiple")}</p>
+          </div>
         </div>
-      </div>,
-      <div key={3} style={{ padding: "0 10px", width: "100%" }}>
-        <div
-          style={{
-            padding: "20px",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            background: "#f9f9f9",
-          }}
-        >
-          <h3>Card 3</h3>
-          <p>The slider wraps around smoothly.</p>
+        <div style={{ padding: "0 10px", width: "100%" }}>
+          <div
+            style={{
+              padding: "20px",
+              border: "1px solid #ccc",
+              borderRadius: "8px",
+              background: "#f9f9f9",
+            }}
+          >
+            <h3>
+              {t("story_carousel_card")} 3
+            </h3>
+            <p>{t("story_carousel_msg_smooth")}</p>
+          </div>
         </div>
-      </div>,
-    ],
+      </Carousel>
+    );
   },
 };
 
 export const NoLoop: Story = {
-  args: {
-    loop: false,
-    children: slides.slice(0, 3),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const slides = Array.from({ length: 3 }).map((_, i) => (
+      <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
+    ));
+    return (
+      <Carousel {...args} loop={false}>
+        {slides}
+      </Carousel>
+    );
   },
 };
 
 export const WithImage: Story = {
-  args: {
-    children: Array.from({ length: 4 }).map((_, i) => (
-      <div key={`img-${i}`} style={{ width: "100%", height: "300px" }}>
-        <img
-          src={SampleImage}
-          alt={`Sample ${i + 1}`}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
-      </div>
-    )),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Carousel {...args}>
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={`img-${i}`} style={{ width: "100%", height: "300px" }}>
+            <img
+              src={SampleImage}
+              alt={`${t("story_carousel_sample_alt")} ${i + 1}`}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
+        ))}
+      </Carousel>
+    );
   },
 };
 
 export const AspectRatioCheck: Story = {
-  args: {
-    aspectRatio: "16/9",
-    objectFit: "cover",
-    children: Array.from({ length: 4 }).map((_, i) => (
-      <img key={`img-${i}`} src={SampleImage} alt={`Sample ${i + 1}`} />
-    )),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Carousel {...args} aspectRatio="16/9" objectFit="cover">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <img key={`img-${i}`} src={SampleImage} alt={`${t("story_carousel_sample_alt")} ${i + 1}`} />
+        ))}
+      </Carousel>
+    );
   },
 };

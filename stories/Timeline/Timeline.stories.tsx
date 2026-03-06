@@ -9,6 +9,7 @@ import {
   TimelineOppositeContent,
 } from "@/components/Timeline/Timeline";
 import { Icon } from "@/components/Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Timeline> = {
   title: "Components/Data Structures/Timeline",
@@ -22,102 +23,111 @@ export const LeftAligned: Story = {
   args: {
     align: "left",
   },
-  render: (args) => (
-    <Timeline {...args}>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelinePoint variant="primary" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Eat</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelinePoint variant="secondary" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Code</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelinePoint variant="success" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Sleep</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelinePoint />
-        </TimelineSeparator>
-        <TimelineContent>Repeat</TimelineContent>
-      </TimelineItem>
-    </Timeline>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Timeline {...args}>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelinePoint variant="primary" />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>{t("story_timeline_eat")}</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelinePoint variant="secondary" />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>{t("story_timeline_code")}</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelinePoint variant="success" />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>{t("story_timeline_sleep")}</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelinePoint />
+          </TimelineSeparator>
+          <TimelineContent>{t("story_timeline_repeat")}</TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    );
+  },
 };
 
 export const Alternate: Story = {
   args: {
     align: "alternate",
   },
-  render: (args) => (
-    <Timeline {...args}>
-      <TimelineItem>
-        <TimelineOppositeContent>09:00 AM</TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelinePoint variant="primary" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Eat</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent>10:00 AM</TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelinePoint variant="secondary" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Code</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent>12:00 PM</TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelinePoint variant="success" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Sleep</TimelineContent>
-      </TimelineItem>
-    </Timeline>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Timeline {...args}>
+        <TimelineItem>
+          <TimelineOppositeContent>09:00 AM</TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelinePoint variant="primary" />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>{t("story_timeline_eat")}</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineOppositeContent>10:00 AM</TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelinePoint variant="secondary" />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>{t("story_timeline_code")}</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineOppositeContent>12:00 PM</TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelinePoint variant="success" />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>{t("story_timeline_sleep")}</TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    );
+  },
 };
 
 export const WithIcons: Story = {
-  render: (args) => (
-    <Timeline {...args}>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelinePoint variant="primary">
-            <Icon name="CheckIcon" size="small" />
-          </TimelinePoint>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Step 1 Completed</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelinePoint variant="secondary">
-            <Icon name="CircleIcon" size="small" />
-          </TimelinePoint>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Step 2 Processing</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelinePoint variant="error">
-            <Icon name="CloseIcon" size="small" />
-          </TimelinePoint>
-        </TimelineSeparator>
-        <TimelineContent>Step 3 Error</TimelineContent>
-      </TimelineItem>
-    </Timeline>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Timeline {...args}>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelinePoint variant="primary">
+              <Icon name="CheckIcon" size="small" />
+            </TimelinePoint>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>{t("story_timeline_step1_comp")}</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelinePoint variant="secondary">
+              <Icon name="CircleIcon" size="small" />
+            </TimelinePoint>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>{t("story_timeline_step2_proc")}</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelinePoint variant="error">
+              <Icon name="CloseIcon" size="small" />
+            </TimelinePoint>
+          </TimelineSeparator>
+          <TimelineContent>{t("story_timeline_step3_err")}</TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    );
+  },
 };

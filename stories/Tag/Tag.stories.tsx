@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tag } from "@/components/Tag/Tag";
 import { Icon } from "@/components/Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 /**
  * Data Display/Tag Component
@@ -36,8 +37,11 @@ export default meta;
 type Story = StoryObj<typeof Tag>;
 
 export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Tag {...args}>{t("story_tag_content")}</Tag>;
+  },
   args: {
-    children: "Tag Content",
     color: "primary",
     variant: "solid",
     size: "medium",
@@ -45,62 +49,75 @@ export const Default: Story = {
 };
 
 export const Variants: Story = {
-  render: (args) => (
-    <div style={{ display: "flex", gap: "10px" }}>
-      <Tag {...args} variant="solid">
-        Solid
-      </Tag>
-      <Tag {...args} variant="outline">
-        Outline
-      </Tag>
-      <Tag {...args} variant="subtle">
-        Subtle
-      </Tag>
-    </div>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <div style={{ display: "flex", gap: "10px" }}>
+        <Tag {...args} variant="solid">
+          {t("story_tag_solid")}
+        </Tag>
+        <Tag {...args} variant="outline">
+          {t("story_tag_outline")}
+        </Tag>
+        <Tag {...args} variant="subtle">
+          {t("story_tag_subtle")}
+        </Tag>
+      </div>
+    );
+  },
 };
 
 export const Colors: Story = {
-  render: (args) => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-      <Tag {...args} color="primary">
-        Primary
-      </Tag>
-      <Tag {...args} color="secondary">
-        Secondary
-      </Tag>
-      <Tag {...args} color="success">
-        Success
-      </Tag>
-      <Tag {...args} color="warning">
-        Warning
-      </Tag>
-      <Tag {...args} color="error">
-        Error
-      </Tag>
-      <Tag {...args} color="neutral">
-        Neutral
-      </Tag>
-    </div>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+        <Tag {...args} color="primary">
+          {t("story_tag_primary")}
+        </Tag>
+        <Tag {...args} color="secondary">
+          {t("story_tag_secondary")}
+        </Tag>
+        <Tag {...args} color="success">
+          {t("story_tag_success")}
+        </Tag>
+        <Tag {...args} color="warning">
+          {t("story_tag_warning")}
+        </Tag>
+        <Tag {...args} color="error">
+          {t("story_tag_error")}
+        </Tag>
+        <Tag {...args} color="neutral">
+          {t("story_tag_neutral")}
+        </Tag>
+      </div>
+    );
+  },
 };
 
 export const Sizes: Story = {
-  render: (args) => (
-    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-      <Tag {...args} size="small">
-        Small Tag
-      </Tag>
-      <Tag {...args} size="medium">
-        Medium Tag
-      </Tag>
-    </div>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <Tag {...args} size="small">
+          {t("story_tag_small")}
+        </Tag>
+        <Tag {...args} size="medium">
+          {t("story_tag_medium")}
+        </Tag>
+      </div>
+    );
+  },
 };
 
 export const WithIcon: Story = {
-  args: {
-    children: "Tag with Icon",
-    icon: <Icon name="CircleIcon" size="small" />,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Tag {...args} icon={<Icon name="CircleIcon" size="small" />}>
+        {t("story_tag_with_icon")}
+      </Tag>
+    );
   },
 };

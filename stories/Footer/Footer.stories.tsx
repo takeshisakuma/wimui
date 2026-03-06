@@ -1,7 +1,8 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Footer from "@/components/Footer/Footer";
-
 import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Application Shell/Footer",
@@ -15,48 +16,47 @@ const meta: Meta<typeof Footer> = {
 export default meta;
 type Story = StoryObj<typeof Footer>;
 
+const FooterDemo = (args: any) => {
+  const { t } = useTranslation();
+  return (
+    <Footer {...args} bordered={args.bordered ?? true}>
+      <SimpleGrid cols={{ base: 2, sm: 3, lg: 4 }} spacing={40}>
+        <Footer.Section title={t("story_footer_product")}>
+          <span>{t("story_footer_features")}</span>
+          <span>{t("story_footer_pricing")}</span>
+          <span>{t("story_footer_api")}</span>
+        </Footer.Section>
+        <Footer.Section title={t("story_footer_company")}>
+          <span>{t("story_footer_about")}</span>
+          <span>{t("story_footer_careers")}</span>
+          <span>{t("story_footer_contact")}</span>
+        </Footer.Section>
+        <Footer.Section title={t("story_footer_resources")}>
+          <span>{t("story_footer_docs")}</span>
+          <span>{t("story_footer_blog")}</span>
+          <span>{t("story_footer_support")}</span>
+        </Footer.Section>
+        <Footer.Section title={t("story_footer_legal")}>
+          <span>{t("story_footer_privacy")}</span>
+          <span>{t("story_footer_terms")}</span>
+          <span>{t("story_footer_cookie")}</span>
+        </Footer.Section>
+      </SimpleGrid>
+      <Footer.Bottom>
+        <div>{t("story_footer_rights")}</div>
+        <div style={{ display: "flex", gap: "20px" }}>
+          <span>X</span>
+          <span>GitHub</span>
+        </div>
+      </Footer.Bottom>
+    </Footer>
+  );
+};
+
 export const Default: Story = {
-  args: {
-    bordered: true,
-    children: (
-      <>
-        <SimpleGrid cols={{ base: 2, sm: 3, lg: 4 }} spacing={40}>
-          <Footer.Section title="Product">
-            <span>Features</span>
-            <span>Pricing</span>
-            <span>API</span>
-          </Footer.Section>
-          <Footer.Section title="Company">
-            <span>About</span>
-            <span>Careers</span>
-            <span>Contact</span>
-          </Footer.Section>
-          <Footer.Section title="Resources">
-            <span>Documentation</span>
-            <span>Blog</span>
-            <span>Support</span>
-          </Footer.Section>
-          <Footer.Section title="Legal">
-            <span>Privacy</span>
-            <span>Terms</span>
-            <span>Cookie Policy</span>
-          </Footer.Section>
-        </SimpleGrid>
-        <Footer.Bottom>
-          <div>© 2026 WIM UI. All rights reserved.</div>
-          <div style={{ display: "flex", gap: "20px" }}>
-            <span>X</span>
-            <span>GitHub</span>
-          </div>
-        </Footer.Bottom>
-      </>
-    ),
-  },
+  render: (args) => <FooterDemo {...args} />,
 };
 
 export const Dark: Story = {
-  args: {
-    background: "dark",
-    children: Default.args?.children,
-  },
+  render: (args) => <FooterDemo {...args} background="dark" />,
 };

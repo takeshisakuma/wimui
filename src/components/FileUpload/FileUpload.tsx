@@ -7,6 +7,7 @@ import "./file-upload.scss";
 type FileUploadProps = {
   label?: string;
   buttonLabel?: string;
+  noFileLabel?: string;
   accept?: string;
   multiple?: boolean;
   disabled?: boolean;
@@ -23,6 +24,7 @@ type FileUploadProps = {
 export const FileUpload = ({
   label,
   buttonLabel = "ファイルを選択",
+  noFileLabel = "選択されていません",
   accept,
   multiple = false,
   disabled = false,
@@ -51,7 +53,7 @@ export const FileUpload = ({
     ? Array.from(selectedFiles)
         .map((file) => file.name)
         .join(", ")
-    : "選択されていません";
+    : noFileLabel;
 
   return (
     <div

@@ -1,6 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { ToggleGroup } from "@/components/ToggleGroup/ToggleGroup";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof ToggleGroup> = {
   title: "Components/Selection Controls/ToggleGroup",
@@ -21,25 +22,40 @@ const meta: Meta<typeof ToggleGroup> = {
 export default meta;
 type Story = StoryObj<typeof ToggleGroup>;
 
-const defaultOptions = [
-  { label: "Left", value: "left", iconName: "CircleIcon" },
-  { label: "Center", value: "center", iconName: "SquareIcon" },
-  { label: "Right", value: "right", iconName: "LoadingIcon" },
-];
+const useDefaultOptions = () => {
+  const { t } = useTranslation();
+  return [
+    { label: t("story_toggle_left"), value: "left", iconName: "CircleIcon" },
+    { label: t("story_toggle_center"), value: "center", iconName: "SquareIcon" },
+    { label: t("story_toggle_right"), value: "right", iconName: "LoadingIcon" },
+  ];
+};
 
 export const SingleSelection: Story = {
-  args: {
-    options: defaultOptions,
-    selectionMode: "single",
-    defaultValue: "left",
+  render: function Render(args) {
+    const options = useDefaultOptions();
+    return (
+      <ToggleGroup
+        {...args}
+        options={options}
+        selectionMode="single"
+        defaultValue="left"
+      />
+    );
   },
 };
 
 export const MultipleSelection: Story = {
-  args: {
-    options: defaultOptions,
-    selectionMode: "multiple",
-    defaultValue: ["left", "right"],
+  render: function Render(args) {
+    const options = useDefaultOptions();
+    return (
+      <ToggleGroup
+        {...args}
+        options={options}
+        selectionMode="multiple"
+        defaultValue={["left", "right"]}
+      />
+    );
   },
 };
 
@@ -56,37 +72,55 @@ export const IconOnly: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <ToggleGroup {...args} size="small" />
-      <ToggleGroup {...args} size="medium" />
-      <ToggleGroup {...args} size="large" />
-    </div>
-  ),
+  render: function Render(args) {
+    const options = useDefaultOptions();
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <ToggleGroup {...args} options={options} size="small" />
+        <ToggleGroup {...args} options={options} size="medium" />
+        <ToggleGroup {...args} options={options} size="large" />
+      </div>
+    );
+  },
   args: {
-    options: defaultOptions,
     selectionMode: "single",
     defaultValue: "center",
   },
 };
 
 export const FullWidth: Story = {
-  args: {
-    options: defaultOptions,
-    selectionMode: "single",
-    defaultValue: "center",
-    fullWidth: true,
+  render: function Render(args) {
+    const options = useDefaultOptions();
+    return (
+      <ToggleGroup
+        {...args}
+        options={options}
+        selectionMode="single"
+        defaultValue="center"
+        fullWidth={true}
+      />
+    );
   },
 };
 
 export const DisabledOptions: Story = {
-  args: {
-    options: [
-      { label: "Available", value: "avail" },
-      { label: "Disabled", value: "disabled", disabled: true },
-      { label: "Selected Disabled", value: "sel-disabled", disabled: true },
-    ],
-    selectionMode: "multiple",
-    defaultValue: ["sel-disabled"],
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <ToggleGroup
+        {...args}
+        options={[
+          { label: t("story_toggle_available"), value: "avail" },
+          { label: t("story_toggle_disabled"), value: "disabled", disabled: true },
+          {
+            label: t("story_toggle_selected_disabled"),
+            value: "sel-disabled",
+            disabled: true,
+          },
+        ]}
+        selectionMode="multiple"
+        defaultValue={["sel-disabled"]}
+      />
+    );
   },
 };

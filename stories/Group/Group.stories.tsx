@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Group } from "@/components/Group/Group";
 import { Button } from "@/components/Button/Button";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Group> = {
   title: "Components/Layout/Group",
@@ -29,27 +30,33 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Group {...args}>
+        <Button label={t("story_group_first", "First")} priority="primary" />
+        <Button label={t("story_group_second", "Second")} priority="secondary" />
+        <Button label={t("story_group_third", "Third")} priority="tertiary" />
+      </Group>
+    );
+  },
   args: {
-    children: (
-      <>
-        <Button label="First" priority="primary" />
-        <Button label="Second" priority="secondary" />
-        <Button label="Third" priority="tertiary" />
-      </>
-    ),
     gap: 16,
   },
 };
 
 export const Grow: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Group {...args}>
+        <Button label={t("story_group_first", "First")} priority="primary" />
+        <Button label={t("story_group_second", "Second")} priority="secondary" />
+      </Group>
+    );
+  },
   args: {
     grow: true,
-    children: (
-      <>
-        <Button label="First" priority="primary" />
-        <Button label="Second" priority="secondary" />
-      </>
-    ),
     gap: 16,
   },
 };

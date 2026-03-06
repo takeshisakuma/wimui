@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import { Button } from "@/components/Button/Button";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Buttons/Button",
@@ -13,7 +14,7 @@ const meta: Meta<typeof Button> = {
     backgroundColor: { control: "color" },
     state: {
       description:
-        "非推奨: 代わりに標準の `disabled` prop を使用してください。",
+        "Deprecated: Use the standard `disabled` prop instead.",
       control: "select",
       options: ["abled", "disabled"],
     },
@@ -134,9 +135,12 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
 
 /** children を使ったボタン（label prop の代替） */
 export const WithChildren: Story = {
-  render: () => (
-    <Button priority="primary" size="medium">
-      Click me
-    </Button>
-  ),
+  render: function Render() {
+    const { t } = useTranslation();
+    return (
+      <Button priority="primary" size="medium">
+        {t("story_button_click_me")}
+      </Button>
+    );
+  },
 };

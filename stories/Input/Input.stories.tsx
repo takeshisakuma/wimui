@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Input } from "@/components/Input/Input";
 import { Label } from "@/components/Label/Label";
 import { FieldError } from "@/components/FieldError/FieldError";
-import { Button } from "@/components/Button/Button";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Input> = {
   title: "Components/Basic Inputs/Input",
@@ -54,138 +54,136 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
-  render: (args) => (
-    <Label label="お名前">
-      <Input {...args} />
-    </Label>
-  ),
-  args: {
-    placeholder: "山田太郎",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_input_label_name")}>
+        <Input {...args} placeholder={t("story_input_placeholder_name")} />
+      </Label>
+    );
   },
 };
 
 export const SelectLike: Story = {
-  render: (args) => {
+  render: function Render(args) {
+    const { t } = useTranslation();
     const handleClick = () => alert("Dropdown or Modal would open here!");
     return (
-      <Label label="部署">
+      <Label label={t("story_input_label_dept")}>
         <Input
           {...args}
+          placeholder={t("story_input_placeholder_dept")}
           onClick={handleClick}
-          onRightIconClick={(e) => {
+          onRightIconClick={(e: React.MouseEvent) => {
             e.stopPropagation(); // Prevent duplicate alert
             handleClick();
           }}
+          readOnly={true}
+          style={{ cursor: "pointer" }}
         />
       </Label>
     );
   },
   args: {
     rightIcon: "ChevronDownIcon",
-    placeholder: "営業部",
-    readOnly: true,
-    style: { cursor: "pointer" },
   },
 };
 
 export const Clearable: Story = {
-  render: (args) => (
-    <Label label="キーワード">
-      <Input {...args} allowClear placeholder="Tシャツ" />
-    </Label>
-  ),
-  args: {
-    defaultValue: "Yシャツ",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_input_label_keyword")}>
+        <Input
+          {...args}
+          allowClear
+          placeholder={t("story_input_placeholder_keyword")}
+          defaultValue={t("story_input_value_keyword")}
+        />
+      </Label>
+    );
   },
 };
 
 export const Outline: Story = {
-  render: (args) => (
-    <Label label="会社名">
-      <Input {...args} />
-    </Label>
-  ),
-  args: {
-    variant: "outline",
-    placeholder: "株式会社Example",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_input_label_company")}>
+        <Input {...args} variant="outline" placeholder={t("story_input_placeholder_company")} />
+      </Label>
+    );
   },
 };
 
 export const Ghost: Story = {
-  render: (args) => (
-    <Label label="備考">
-      <Input {...args} />
-    </Label>
-  ),
-  args: {
-    variant: "ghost",
-    placeholder: "機能の改善点について",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_input_label_remarks")}>
+        <Input {...args} variant="ghost" placeholder={t("story_input_placeholder_remarks")} />
+      </Label>
+    );
   },
 };
-
 
 export const ErrorStatus: Story = {
-  render: (args) => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "8px",
-      }}
-    >
-      <Label label="メールアドレス" required>
-        <Input {...args} placeholder="taro.yamada@example.com" />
-      </Label>
-      <FieldError content="有効なメールアドレスを入力してください。" />
-    </div>
-  ),
-  args: {
-    state: "error",
-    defaultValue: "invalid-email@",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "8px",
+        }}
+      >
+        <Label label={t("story_input_label_email")} required>
+          <Input
+            {...args}
+            state="error"
+            placeholder={t("story_input_placeholder_email")}
+            defaultValue="invalid-email@"
+          />
+        </Label>
+        <FieldError content={t("story_input_error_email")} />
+      </div>
+    );
   },
 };
 
-
 export const Disabled: Story = {
-  render: (args) => (
-    <Label label="ユーザーID">
-      <Input {...args} />
-    </Label>
-  ),
-  args: {
-    disabled: true,
-    placeholder: "WIM-1234",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_input_label_userid")}>
+        <Input {...args} disabled={true} placeholder={t("story_input_placeholder_userid")} />
+      </Label>
+    );
   },
 };
 
 export const FullWidth: Story = {
-  render: (args) => (
-    <Label label="連絡先" style={{ width: "100%" }}>
-      <Input {...args} />
-    </Label>
-  ),
-  args: {
-    fullWidth: true,
-    placeholder: "info@example.com",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_input_label_contact")} style={{ width: "100%" }}>
+        <Input {...args} fullWidth={true} placeholder={t("story_input_placeholder_contact")} />
+      </Label>
+    );
   },
   parameters: {
     layout: "padded",
   },
 };
 
-
-
-
-
-
-
 export const SearchIndicator: Story = {
-  render: (args) => (
-    <Label label="コンポーネント検索">
-      <Input {...args} leftIcon="SearchIcon" />
-    </Label>
-  ),
-  args: {
-    placeholder: "Button",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("story_input_label_search")}>
+        <Input {...args} leftIcon="SearchIcon" placeholder={t("story_input_placeholder_search")} />
+      </Label>
+    );
   },
 };

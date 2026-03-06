@@ -1,5 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { VisuallyHidden } from "@/components/VisuallyHidden/VisuallyHidden";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof VisuallyHidden> = {
   title: "Components/Utilities/VisuallyHidden",
@@ -14,17 +16,24 @@ export default meta;
 type Story = StoryObj<typeof VisuallyHidden>;
 
 export const Primary: Story = {
-  args: {
-    children:
-      "このテキストは視覚的に隠されていますが、スクリーンリーダーでは読み上げられます。",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <VisuallyHidden {...args}>
+        {t("story_visuallyhidden_accessible")}
+      </VisuallyHidden>
+    );
   },
 };
 
 export const WithinButton: Story = {
-  render: () => (
-    <button aria-label="閉じる">
-      <span aria-hidden="true">×</span>
-      <VisuallyHidden>閉じる</VisuallyHidden>
-    </button>
-  ),
+  render: function Render() {
+    const { t } = useTranslation();
+    return (
+      <button aria-label={t("story_visuallyhidden_close")}>
+        <span aria-hidden="true">×</span>
+        <VisuallyHidden>{t("story_visuallyhidden_close")}</VisuallyHidden>
+      </button>
+    );
+  },
 };

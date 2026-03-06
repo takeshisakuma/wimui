@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Watermark } from "@/components/Watermark/Watermark";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Watermark> = {
   title: "Components/Data Indicators/Watermark",
@@ -19,28 +20,26 @@ export default meta;
 type Story = StoryObj<typeof Watermark>;
 
 export const Text: Story = {
-  args: {
-    content: "wimui watermark",
-    children: (
-      <div style={{ height: "400px", background: "#fff", padding: "20px" }}>
-        <p>
-          このコンテンツはウォーターマークで保護されています。
-          コピーや転載を制限したい場合に有効です。
-        </p>
-        <div
-          style={{
-            height: "200px",
-            background: "#f0f0f0",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: "24px",
-          }}
-        >
-          機密情報エリア
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Watermark {...args} content="wimui watermark">
+        <div style={{ height: "400px", background: "#fff", padding: "20px" }}>
+          <div
+            style={{
+              height: "200px",
+              background: "#f0f0f0",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: "24px",
+            }}
+          >
+            {t("story_watermark_confidential")}
+          </div>
         </div>
-      </div>
-    ),
+      </Watermark>
+    );
   },
 };
 

@@ -1,11 +1,18 @@
-import { Meta, Primary, Controls, Story } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as RadioGroupStories from "./RadioGroup.stories";
 import { T } from "../T";
 
 <Meta of={RadioGroupStories} />
 
-# RadioGroup
-
+<Title />
 <p
   style={{
     margin: "0 0 16px 0",
@@ -31,16 +38,16 @@ import { T } from "../T";
 
 ### Default
 
-<Story of={RadioGroupStories.Default} />
+<Canvas of={RadioGroupStories.Default} />
 
 ### Horizontal
 
-<Story of={RadioGroupStories.Horizontal} />
+<Canvas of={RadioGroupStories.Horizontal} />
 
 ### With Disabled Option
 
-<Story of={RadioGroupStories.WithDisabledOption} />
+<Canvas of={RadioGroupStories.WithDisabledOption} />
 
 ### Controlled
 
-<Story of={RadioGroupStories.Controlled} />
+<Canvas of={RadioGroupStories.Controlled} />

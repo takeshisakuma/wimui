@@ -1,5 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SwitchGroup } from "@/components/SwitchGroup/SwitchGroup";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof SwitchGroup> = {
   title: "Components/Selection Controls/SwitchGroup",
@@ -18,33 +20,53 @@ const meta: Meta<typeof SwitchGroup> = {
 export default meta;
 type Story = StoryObj<typeof SwitchGroup>;
 
-const options = [
-  { label: "Wi-Fi", value: "wifi" },
-  { label: "Bluetooth", value: "bluetooth" },
-  { label: "Airplane Mode", value: "airplane" },
-];
+const useOptions = () => {
+  const { t } = useTranslation();
+  return [
+    { label: t("story_switch_wifi"), value: "wifi" },
+    { label: t("story_switch_bluetooth"), value: "bluetooth" },
+    { label: t("story_switch_airplane"), value: "airplane" },
+  ];
+};
 
 export const Default: Story = {
-  args: {
-    options: options,
-    defaultValue: ["wifi"],
+  render: function Render(args) {
+    const options = useOptions();
+    return <SwitchGroup {...args} options={options} defaultValue={["wifi"]} />;
   },
 };
 
 export const Horizontal: Story = {
-  args: {
-    options: options,
-    direction: "horizontal",
-    defaultValue: ["wifi"],
+  render: function Render(args) {
+    const options = useOptions();
+    return (
+      <SwitchGroup
+        {...args}
+        options={options}
+        direction="horizontal"
+        defaultValue={["wifi"]}
+      />
+    );
   },
 };
 
 export const WithDisabledOption: Story = {
-  args: {
-    options: [
-      ...options,
-      { label: "Mobile Data (Disabled)", value: "mobile_data", disabled: true },
-    ],
-    defaultValue: ["wifi"],
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const options = useOptions();
+    return (
+      <SwitchGroup
+        {...args}
+        options={[
+          ...options,
+          {
+            label: `${t("story_mobile_data")} ${t("story_option_disabled")}`,
+            value: "mobile_data",
+            disabled: true,
+          },
+        ]}
+        defaultValue={["wifi"]}
+      />
+    );
   },
 };

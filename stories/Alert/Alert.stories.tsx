@@ -1,5 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Alert } from "@/components/Alert/Alert";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Alert> = {
   title: "Components/Alerts & Notifications/Alert",
@@ -14,60 +16,100 @@ export default meta;
 type Story = StoryObj<typeof Alert>;
 
 export const Info: Story = {
-  args: {
-    variant: "info",
-    title: "Information",
-    description: "This is an informative message for the user.",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Alert
+        {...args}
+        variant="info"
+        title={t("story_alert_info_title")}
+        description={t("story_alert_info_desc")}
+      />
+    );
   },
 };
 
 export const Success: Story = {
-  args: {
-    variant: "success",
-    title: "Success",
-    description: "Your action has been completed successfully.",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Alert
+        {...args}
+        variant="success"
+        title={t("story_alert_success_title")}
+        description={t("story_alert_success_desc")}
+      />
+    );
   },
 };
 
 export const Warning: Story = {
-  args: {
-    variant: "warning",
-    title: "Warning",
-    description: "Please be careful with this action.",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Alert
+        {...args}
+        variant="warning"
+        title={t("story_alert_warning_title")}
+        description={t("story_alert_warning_desc")}
+      />
+    );
   },
 };
 
 export const ErrorStatus: Story = {
-  args: {
-    variant: "error",
-    title: "Error",
-    description: "Something went wrong. Please try again later.",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Alert
+        {...args}
+        variant="error"
+        title={t("story_alert_error_title")}
+        description={t("story_alert_error_desc")}
+      />
+    );
   },
 };
 
 export const WithoutTitle: Story = {
-  args: {
-    variant: "info",
-    description: "This alert only has a description and no title.",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Alert
+        {...args}
+        variant="info"
+        description={t("story_alert_no_title_desc")}
+      />
+    );
   },
 };
 
 export const WithCloseButton: Story = {
-  args: {
-    variant: "success",
-    title: "Dismissible Alert",
-    description:
-      "You can close this alert by clicking the button on the right.",
-    onClose: () => console.log("Alert closed"),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Alert
+        {...args}
+        variant="success"
+        title={t("story_alert_dismiss_title")}
+        description={t("story_alert_dismiss_desc")}
+        onClose={() => console.log("Alert closed")}
+      />
+    );
   },
 };
 
 export const LongContent: Story = {
-  args: {
-    variant: "info",
-    title: "Update Available",
-    description:
-      "A new version of the software is available. Please update to get the latest features and security improvements. The update will take approximately 5 minutes to install.",
-    onClose: () => {},
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Alert
+        {...args}
+        variant="info"
+        title={t("story_alert_update_title")}
+        description={t("story_alert_update_desc")}
+        onClose={() => {}}
+      />
+    );
   },
 };

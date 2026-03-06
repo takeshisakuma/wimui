@@ -1,6 +1,8 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { OtpInput } from "@/components/OtpInput/OtpInput";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof OtpInput> = {
   title: "Components/Basic Inputs/OtpInput",
@@ -42,13 +44,16 @@ export const ErrorStatus: Story = {
 };
 
 export const Controlled = () => {
+  const { t } = useTranslation();
   const [value, setValue] = useState("");
   return (
     <div>
       <OtpInput value={value} onChange={setValue} length={6} />
-      <p style={{ marginTop: "1rem" }}>Current Value: {value}</p>
+      <p style={{ marginTop: "1rem" }}>
+        {t("story_otp_current_value")}: {value}
+      </p>
       <button onClick={() => setValue("")} style={{ marginTop: "0.5rem" }}>
-        Clear
+        {t("story_otp_clear")}
       </button>
     </div>
   );

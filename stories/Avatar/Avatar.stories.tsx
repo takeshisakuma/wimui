@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Avatar } from "@/components/Avatar/Avatar";
+import { useTranslation } from "react-i18next";
+import React from "react";
 
 const meta: Meta<typeof Avatar> = {
   title: "Components/Data Indicators/Avatar",
@@ -27,10 +29,17 @@ export default meta;
 type Story = StoryObj<typeof Avatar>;
 
 export const Default: Story = {
-  args: {
-    src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&h=120",
-    alt: "User",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Avatar
+        {...args}
+        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&h=120"
+        alt={t("story_avatar_alt")}
+      />
+    );
   },
+  args: {},
 };
 
 export const Initials: Story = {
@@ -60,10 +69,18 @@ export const Shapes: Story = {
 };
 
 export const Fallback: Story = {
-  args: {
-    src: "https://invalid-image-url.com",
-    initials: "FB",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Avatar
+        {...args}
+        src="https://invalid-image-url.com"
+        initials="FB"
+        alt={t("story_avatar_alt")}
+      />
+    );
   },
+  args: {},
 };
 
 export const Colors: Story = {

@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Result } from "@/components/Result/Result";
 import { Button } from "@/components/Button/Button";
+import { useTranslation } from "react-i18next";
+import React from "react";
 
 const meta: Meta<typeof Result> = {
   title: "Components/Alerts & Notifications/Result",
@@ -12,69 +14,109 @@ export default meta;
 type Story = StoryObj<typeof Result>;
 
 export const Success: Story = {
-  args: {
-    status: "success",
-    title: "Successfully Purchased Cloud Server ECS!",
-    subTitle:
-      "Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait patiently.",
-    extra: [
-      <Button priority="primary" key="console" label="Go Console" />,
-      <Button key="buy" label="Buy Again" />,
-    ],
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Result
+        {...args}
+        status="success"
+        title={t("story_result_success_title")}
+        subTitle={t("story_result_success_desc")}
+        extra={[
+          <Button priority="primary" key="console" label={t("story_result_go_console")} />,
+          <Button key="buy" label={t("story_result_buy_again")} />,
+        ]}
+      />
+    );
   },
 };
 
 export const Info: Story = {
-  args: {
-    title: "Your operation has been executed",
-    extra: <Button priority="primary" label="Go Console" />,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Result
+        {...args}
+        title={t("story_result_info_title")}
+        extra={<Button priority="primary" label={t("story_result_go_console")} />}
+      />
+    );
   },
 };
 
 export const Warning: Story = {
-  args: {
-    status: "warning",
-    title: "There are some problems with your operation.",
-    extra: <Button priority="primary" label="Go Console" />,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Result
+        {...args}
+        status="warning"
+        title={t("story_result_warning_title")}
+        extra={<Button priority="primary" label={t("story_result_go_console")} />}
+      />
+    );
   },
 };
 
 export const ErrorStatus: Story = {
-  args: {
-    status: "error",
-    title: "Submission Failed",
-    subTitle:
-      "Please check and modify the following information before resubmitting.",
-    extra: [
-      <Button priority="primary" key="console" label="Go Console" />,
-      <Button key="buy" label="Buy Again" />,
-    ],
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Result
+        {...args}
+        status="error"
+        title={t("story_result_error_title")}
+        subTitle={t("story_result_error_desc")}
+        extra={[
+          <Button priority="primary" key="console" label={t("story_result_go_console")} />,
+          <Button key="buy" label={t("story_result_buy_again")} />,
+        ]}
+      />
+    );
   },
 };
 
 export const Status404: Story = {
-  args: {
-    status: "404",
-    title: "404",
-    subTitle: "Sorry, the page you visited does not exist.",
-    extra: <Button priority="primary" label="Back Home" />,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Result
+        {...args}
+        status="404"
+        title="404"
+        subTitle={t("story_result_404_desc")}
+        extra={<Button priority="primary" label={t("story_result_back_home")} />}
+      />
+    );
   },
 };
 
 export const Status403: Story = {
-  args: {
-    status: "403",
-    title: "403",
-    subTitle: "Sorry, you are not authorized to access this page.",
-    extra: <Button priority="primary" label="Back Home" />,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Result
+        {...args}
+        status="403"
+        title="403"
+        subTitle={t("story_result_403_desc")}
+        extra={<Button priority="primary" label={t("story_result_back_home")} />}
+      />
+    );
   },
 };
 
 export const Status500: Story = {
-  args: {
-    status: "500",
-    title: "500",
-    subTitle: "Sorry, something went wrong.",
-    extra: <Button priority="primary" label="Back Home" />,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Result
+        {...args}
+        status="500"
+        title="500"
+        subTitle={t("story_result_500_desc")}
+        extra={<Button priority="primary" label={t("story_result_back_home")} />}
+      />
+    );
   },
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ScrollArea } from "@/components/ScrollArea/ScrollArea";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof ScrollArea> = {
   title: "Components/Utilities/ScrollArea",
@@ -32,26 +33,27 @@ export const Default: Story = {
 };
 
 export const HorizontalScroll: Story = {
-  args: {
-    scrollAxis: "x",
-    style: { width: "100%", maxWidth: "80vw" },
-    children: (
-      <div
-        style={{
-          width: "150rem",
-          background: "#3b82f6",
-          padding: "1rem",
-          color: "white",
-        }}
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <ScrollArea
+        {...args}
+        scrollAxis="x"
+        style={{ width: "100%", maxWidth: "80vw" }}
       >
-        This is a very wide content to demonstrate horizontal scrolling.
-        横方向に長いコンテンツです。This is a very wide content to demonstrate
-        horizontal scrolling. 横方向に長いコンテンツです。This is a very wide
-        content to demonstrate horizontal scrolling.
-        横方向に長いコンテンツです。This is a very wide content to demonstrate
-        horizontal scrolling. 横方向に長いコンテンツです。
-      </div>
-    ),
+        <div
+          style={{
+            width: "150rem",
+            background: "#3b82f6",
+            padding: "1rem",
+            color: "white",
+          }}
+        >
+          {t("story_scrollarea_wide_content")} {t("story_selectbox_opt4")} {t("story_scrollarea_wide_content")}{" "}
+          {t("story_selectbox_opt4")} {t("story_scrollarea_wide_content")} {t("story_selectbox_opt4")}
+        </div>
+      </ScrollArea>
+    );
   },
 };
 

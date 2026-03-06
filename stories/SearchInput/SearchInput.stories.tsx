@@ -1,6 +1,8 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SearchInput } from "@/components/SearchInput/SearchInput";
 import { Label } from "@/components/Label/Label";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof SearchInput> = {
   title: "Components/Basic Inputs/SearchInput",
@@ -12,12 +14,12 @@ export default meta;
 type Story = StoryObj<typeof SearchInput>;
 
 export const Default: Story = {
-  render: (args) => (
-    <Label label="検索">
-      <SearchInput {...args} />
-    </Label>
-  ),
-  args: {
-    placeholder: "Tシャツ",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Label label={t("doc_search")}>
+        <SearchInput {...args} placeholder={t("story_searchinput_placeholder")} />
+      </Label>
+    );
   },
 };

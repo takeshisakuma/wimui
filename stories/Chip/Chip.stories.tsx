@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Chip } from "@/components/Chip/Chip";
 import { Icon } from "@/components/Icon/Icon";
 import { Avatar } from "@/components/Avatar/Avatar";
+import { useTranslation } from "react-i18next";
 
 /**
  * Data Display/Chip Component
@@ -33,59 +34,80 @@ export default meta;
 type Story = StoryObj<typeof Chip>;
 
 export const Default: Story = {
-  args: {
-    label: "Chip Content",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Chip {...args} label={t("story_chip_default")} />;
   },
 };
 
 export const Clickable: Story = {
-  args: {
-    label: "Clickable Chip",
-    onClick: (e: React.MouseEvent) => console.log("Chip clicked", e),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Chip
+        {...args}
+        label={t("story_chip_clickable")}
+        onClick={(e: React.MouseEvent) => console.log("Chip clicked", e)}
+      />
+    );
   },
 };
 
 export const Deletable: Story = {
-  args: {
-    label: "Deletable Chip",
-    onDelete: (e: React.MouseEvent) => console.log("Chip deleted", e),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Chip
+        {...args}
+        label={t("story_chip_deletable")}
+        onDelete={(e: React.MouseEvent) => console.log("Chip deleted", e)}
+      />
+    );
   },
 };
 
 export const WithAvatar: Story = {
-  args: {
-    label: "Jane Doe",
-    avatar: <Avatar initials="JD" size="sm" />,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Chip {...args} label="Jane Doe" avatar={<Avatar initials="JD" size="sm" />} />;
   },
 };
 
 export const WithIcon: Story = {
-  args: {
-    label: "Settings",
-    icon: <Icon name="CircleIcon" size="small" />,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Chip
+        {...args}
+        label={t("story_selectbox_opt4")}
+        icon={<Icon name="CircleIcon" size="small" />}
+      />
+    );
   },
 };
 
 export const Selected: Story = {
-  args: {
-    label: "Selected Chip",
-    selected: true,
-    onClick: () => {},
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Chip {...args} label={t("story_chip_selected")} selected={true} onClick={() => {}} />;
   },
 };
 
 export const Variants: Story = {
-  render: (args) => (
-    <div style={{ display: "flex", gap: "10px" }}>
-      <Chip {...args} label="Solid" variant="solid" onClick={() => {}} />
-      <Chip {...args} label="Outline" variant="outline" onClick={() => {}} />
-      <Chip
-        {...args}
-        label="Selected"
-        variant="outline"
-        selected
-        onClick={() => {}}
-      />
-    </div>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <div style={{ display: "flex", gap: "10px" }}>
+        <Chip {...args} label={t("story_chip_solid")} variant="solid" onClick={() => {}} />
+        <Chip {...args} label={t("story_chip_outline")} variant="outline" onClick={() => {}} />
+        <Chip
+          {...args}
+          label={t("story_chip_selected_label")}
+          variant="outline"
+          selected
+          onClick={() => {}}
+        />
+      </div>
+    );
+  },
 };

@@ -1,6 +1,8 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Audio } from "@/components/Audio/Audio";
 import audioSample from "@/media/audiosample.mp3";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Audio> = {
   title: "Components/Media/Audio",
@@ -29,11 +31,14 @@ export const Default: Story = {
 };
 
 export const WithCaption: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Audio {...args} caption={t("story_audio_caption")} />;
+  },
   args: {
     src: audioSample,
     controls: true,
     radius: "none",
-    caption: "オーディオサンプルのキャプション",
   },
 };
 

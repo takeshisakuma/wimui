@@ -1,17 +1,13 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MultiSelect } from "@/components/MultiSelect/MultiSelect";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof MultiSelect> = {
   title: "Components/Selection Controls/MultiSelect",
   component: MultiSelect,
   parameters: {
     layout: "centered",
-    docs: {
-      description: {
-        component:
-          "ユーザーが定義済みの選択肢から複数を選択するためのドロップダウンメニュー。",
-      },
-    },
   },
   tags: [],
   argTypes: {
@@ -22,40 +18,65 @@ const meta: Meta<typeof MultiSelect> = {
 export default meta;
 type Story = StoryObj<typeof MultiSelect>;
 
-const options = [
-  { label: "Apple", value: "apple" },
-  { label: "Banana", value: "banana" },
-  { label: "Orange", value: "orange" },
-  { label: "Grape", value: "grape" },
-  { label: "Disabled Option", value: "disabled", disabled: true },
-];
-
 export const Default: Story = {
-  args: {
-    options: options,
-    placeholder: "Select fruits...",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const options = [
+      { label: t("story_multiselect_apple"), value: "apple" },
+      { label: t("story_multiselect_banana"), value: "banana" },
+      { label: t("story_multiselect_orange"), value: "orange" },
+      { label: t("story_multiselect_grape"), value: "grape" },
+      { label: t("story_selectbox_opt4"), value: "disabled", disabled: true },
+    ];
+    return <MultiSelect {...args} options={options} placeholder={t("story_multiselect_fruits")} />;
   },
 };
 
 export const WithLabel: Story = {
-  args: {
-    label: "Favorites",
-    options: options,
-    placeholder: "Select...",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const options = [
+      { label: t("story_multiselect_apple"), value: "apple" },
+      { label: t("story_multiselect_banana"), value: "banana" },
+      { label: t("story_multiselect_orange"), value: "orange" },
+      { label: t("story_multiselect_grape"), value: "grape" },
+      { label: t("story_selectbox_opt4"), value: "disabled", disabled: true },
+    ];
+    return (
+      <MultiSelect
+        {...args}
+        label={t("story_multiselect_favorites")}
+        options={options}
+        placeholder={t("story_selectbox_placeholder")}
+      />
+    );
   },
 };
 
 export const MultipleSelected: Story = {
-  args: {
-    options: options,
-    defaultValue: ["apple", "orange"],
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const options = [
+      { label: t("story_multiselect_apple"), value: "apple" },
+      { label: t("story_multiselect_banana"), value: "banana" },
+      { label: t("story_multiselect_orange"), value: "orange" },
+      { label: t("story_multiselect_grape"), value: "grape" },
+      { label: t("story_selectbox_opt4"), value: "disabled", disabled: true },
+    ];
+    return <MultiSelect {...args} options={options} defaultValue={["apple", "orange"]} />;
   },
 };
 
 export const Disabled: Story = {
-  args: {
-    options: options,
-    disabled: true,
-    defaultValue: ["banana"],
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const options = [
+      { label: t("story_multiselect_apple"), value: "apple" },
+      { label: t("story_multiselect_banana"), value: "banana" },
+      { label: t("story_multiselect_orange"), value: "orange" },
+      { label: t("story_multiselect_grape"), value: "grape" },
+      { label: t("story_selectbox_opt4"), value: "disabled", disabled: true },
+    ];
+    return <MultiSelect {...args} options={options} disabled={true} defaultValue={["banana"]} />;
   },
 };

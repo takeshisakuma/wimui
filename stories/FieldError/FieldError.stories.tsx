@@ -1,5 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FieldError } from "@/components/FieldError/FieldError";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof FieldError> = {
   title: "Components/Form Layout/FieldError",
@@ -13,13 +15,15 @@ export default meta;
 type Story = StoryObj<typeof FieldError>;
 
 export const Default: Story = {
-  args: {
-    content: "入力内容に誤りがあります。",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <FieldError {...args} content={t("story_fielderror_error")} />;
   },
 };
 
 export const ShortMessage: Story = {
-  args: {
-    content: "必須項目です。",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <FieldError {...args} content={t("story_fielderror_required")} />;
   },
 };

@@ -1,6 +1,8 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Banner } from "@/components/Banner/Banner";
 import { Button } from "@/components/Button/Button";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Banner> = {
   title: "Components/Alerts & Notifications/Banner",
@@ -19,70 +21,129 @@ export default meta;
 type Story = StoryObj<typeof Banner>;
 
 export const Info: Story = {
-  args: {
-    variant: "info",
-    title: "Update Available",
-    description: "A new version 2.0.0 is available.",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Banner
+        {...args}
+        variant="info"
+        title={t("story_banner_update_title")}
+        description={t("story_banner_update_desc")}
+      />
+    );
   },
 };
 
 export const Success: Story = {
-  args: {
-    variant: "success",
-    title: "Success",
-    description: "Your account has been successfully created.",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Banner
+        {...args}
+        variant="success"
+        title={t("story_alert_success_title")}
+        description={t("story_banner_update_desc")}
+      />
+    );
   },
 };
 
 export const Warning: Story = {
-  args: {
-    variant: "warning",
-    title: "Maintenance",
-    description: "Scheduled maintenance will occur tonight at 00:00 UTC.",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Banner
+        {...args}
+        variant="warning"
+        title={t("story_banner_maint_title")}
+        description={t("story_banner_maint_desc")}
+      />
+    );
   },
 };
 
 export const ErrorStatus: Story = {
-  args: {
-    variant: "error",
-    title: "Connection Error",
-    description:
-      "Failed to connect to the server. Please check your internet connection.",
-    onClose: () => {},
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Banner
+        {...args}
+        variant="error"
+        title={t("story_banner_conn_error_title")}
+        description={t("story_banner_conn_error_desc")}
+        onClose={() => {}}
+      />
+    );
   },
 };
 
 export const WithAction: Story = {
-  args: {
-    variant: "info",
-    title: "Cookie Policy",
-    description: "We use cookies to improve your experience.",
-    action: <Button size="small" priority="secondary" label="Accept" />,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Banner
+        {...args}
+        variant="info"
+        title={t("story_banner_cookie_title")}
+        description={t("story_banner_cookie_desc")}
+        action={
+          <Button
+            size="small"
+            priority="secondary"
+            label={t("story_banner_btn_accept")}
+          />
+        }
+      />
+    );
   },
 };
 
 export const WithCloseAndAction: Story = {
-  args: {
-    variant: "warning",
-    title: "Trial Expiring",
-    description: "Your trial expires in 3 days.",
-    action: <Button size="small" priority="primary" label="Upgrade" />,
-    onClose: () => {},
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Banner
+        {...args}
+        variant="warning"
+        title={t("story_banner_trial_title")}
+        description={t("story_banner_trial_desc")}
+        action={
+          <Button
+            size="small"
+            priority="primary"
+            label={t("story_banner_btn_upgrade")}
+          />
+        }
+        onClose={() => {}}
+      />
+    );
   },
 };
 
 export const DescriptionOnly: Story = {
-  args: {
-    variant: "info",
-    description: "This banner has no title, only a description.",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Banner
+        {...args}
+        variant="info"
+        description={t("story_banner_no_title_desc")}
+      />
+    );
   },
 };
 
 export const NoIcon: Story = {
-  args: {
-    variant: "info",
-    title: "Simple Banner",
-    description: "This banner has no icon.",
-    icon: false,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Banner
+        {...args}
+        variant="info"
+        title={t("story_banner_simple_title")}
+        description={t("story_banner_simple_desc")}
+        icon={false}
+      />
+    );
   },
 };

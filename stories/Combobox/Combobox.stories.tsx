@@ -1,5 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Combobox } from "@/components/Combobox/Combobox";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Combobox> = {
   title: "Components/Selection Controls/Combobox",
@@ -14,45 +16,51 @@ const meta: Meta<typeof Combobox> = {
 export default meta;
 type Story = StoryObj<typeof Combobox>;
 
-const sampleOptions = [
-  { label: "Apple", value: "apple" },
-  { label: "Banana", value: "banana" },
-  { label: "Blueberry", value: "blueberry" },
-  { label: "Cherry", value: "cherry" },
-  { label: "Grape", value: "grape" },
-  { label: "Kiwi", value: "kiwi" },
-  { label: "Lemon", value: "lemon" },
-  { label: "Mango", value: "mango" },
-  { label: "Orange", value: "orange" },
-  { label: "Peach", value: "peach" },
-  { label: "Pear", value: "pear" },
-  { label: "Pineapple", value: "pineapple" },
-  { label: "Strawberry", value: "strawberry" },
-  { label: "Watermelon", value: "watermelon" },
-];
+const useSampleOptions = () => {
+  const { t } = useTranslation();
+  return [
+    { label: t("story_fruit_apple"), value: "apple" },
+    { label: t("story_fruit_banana"), value: "banana" },
+    { label: t("story_fruit_blueberry"), value: "blueberry" },
+    { label: t("story_fruit_cherry"), value: "cherry" },
+    { label: t("story_fruit_grape"), value: "grape" },
+    { label: t("story_fruit_kiwi"), value: "kiwi" },
+    { label: t("story_fruit_lemon"), value: "lemon" },
+    { label: t("story_fruit_mango"), value: "mango" },
+    { label: t("story_fruit_orange"), value: "orange" },
+    { label: t("story_fruit_peach"), value: "peach" },
+    { label: t("story_fruit_pear"), value: "pear" },
+    { label: t("story_fruit_pineapple"), value: "pineapple" },
+    { label: t("story_fruit_strawberry"), value: "strawberry" },
+    { label: t("story_fruit_watermelon"), value: "watermelon" },
+  ];
+};
 
 export const Default: Story = {
-  args: {
-    label: "Favorite Fruit",
-    options: sampleOptions,
-    placeholder: "Apple",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const sampleOptions = useSampleOptions();
+    return (
+      <Combobox
+        {...args}
+        label={t("story_combobox_label")}
+        options={sampleOptions}
+        placeholder={t("story_combobox_placeholder")}
+      />
+    );
   },
 };
 
 export const WithIcon: Story = {
+  ...Default,
   args: {
-    label: "Favorite Fruit",
-    options: sampleOptions,
-    placeholder: "Apple",
     showSearchIcon: true,
   },
 };
 
 export const Disabled: Story = {
+  ...Default,
   args: {
-    label: "Favorite Fruit",
-    options: sampleOptions,
-    placeholder: "Apple",
     disabled: true,
   },
 };

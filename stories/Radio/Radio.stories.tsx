@@ -1,5 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Radio } from "@/components/Radio/Radio";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Radio> = {
   title: "Components/Selection Controls/Radio",
@@ -15,41 +17,58 @@ export default meta;
 type Story = StoryObj<typeof Radio>;
 
 export const Default: Story = {
-  args: {
-    label: "Option 1",
-    value: "option1",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Radio {...args} label={t("story_radio_option1")} value="option1" />;
   },
 };
 
 export const Checked: Story = {
-  args: {
-    label: "Checked Option",
-    checked: true,
-    value: "checked",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Radio
+        {...args}
+        label={t("story_radio_checked")}
+        checked={true}
+        value="checked"
+      />
+    );
   },
 };
 
 export const Disabled: Story = {
-  args: {
-    label: "Disabled Option",
-    disabled: true,
-    value: "disabled",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Radio
+        {...args}
+        label={t("story_radio_disabled")}
+        disabled={true}
+        value="disabled"
+      />
+    );
   },
 };
 
 export const DisabledChecked: Story = {
-  args: {
-    label: "Disabled Checked Option",
-    disabled: true,
-    checked: true,
-    value: "disabled-checked",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Radio
+        {...args}
+        label={t("story_radio_dis_checked")}
+        disabled={true}
+        checked={true}
+        value="disabled-checked"
+      />
+    );
   },
 };
 
 export const LongLabel: Story = {
-  args: {
-    label:
-      "This is a very long label that might wrap to multiple lines depending on the container width.",
-    value: "long",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Radio {...args} label={t("story_radio_long_label")} value="long" />;
   },
 };

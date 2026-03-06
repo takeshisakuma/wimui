@@ -4,6 +4,7 @@ import { Table } from "@/components/Table/Table";
 import { Badge } from "@/components/Badge/Badge";
 import { Checkbox } from "@/components/Checkbox/Checkbox";
 import { IconButton } from "@/components/IconButton/IconButton";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Table> = {
   title: "Components/Data Structures/Table",
@@ -27,128 +28,143 @@ const meta: Meta<typeof Table> = {
 export default meta;
 type Story = StoryObj<typeof Table>;
 
-const sampleData = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john@example.com",
-    status: "Active",
-    role: "Admin",
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane@example.com",
-    status: "Inactive",
-    role: "User",
-  },
-  {
-    id: 3,
-    name: "Bob Johnson",
-    email: "bob@example.com",
-    status: "Active",
-    role: "Editor",
-  },
-  {
-    id: 4,
-    name: "Alice Brown",
-    email: "alice@example.com",
-    status: "Pending",
-    role: "User",
-  },
-];
+const useSampleData = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      id: 1,
+      name: "John Doe",
+      email: "john@example.com",
+      status: t("story_table_active"),
+      role: t("story_table_admin"),
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      email: "jane@example.com",
+      status: t("story_table_inactive"),
+      role: t("story_table_user"),
+    },
+    {
+      id: 3,
+      name: "Bob Johnson",
+      email: "bob@example.com",
+      status: t("story_table_active"),
+      role: t("story_table_editor"),
+    },
+    {
+      id: 4,
+      name: "Alice Brown",
+      email: "alice@example.com",
+      status: t("story_table_pending"),
+      role: t("story_table_user"),
+    },
+  ];
+};
 
-const manyRows = Array.from({ length: 30 }).map((_, i) => ({
-  id: i + 1,
-  name: `User ${i + 1}`,
-  email: `user${i + 1}@example.com`,
-  role: i % 3 === 0 ? "Admin" : "Member",
-  status: i % 2 === 0 ? "Active" : "Inactive",
-}));
-
-const DefaultTableChildren = (
-  <>
-    <Table.Header>
-      <Table.Row>
-        <Table.Head>Name</Table.Head>
-        <Table.Head>Email</Table.Head>
-        <Table.Head>Role</Table.Head>
-        <Table.Head>Status</Table.Head>
-      </Table.Row>
-    </Table.Header>
-    <Table.Body>
-      {sampleData.map((row) => (
-        <Table.Row key={row.id}>
-          <Table.Cell label="Name">{row.name}</Table.Cell>
-          <Table.Cell label="Email">{row.email}</Table.Cell>
-          <Table.Cell label="Role">{row.role}</Table.Cell>
-          <Table.Cell label="Status">
-            <Badge
-              content={row.status}
-              size="small"
-              color={row.status === "Active" ? "primary" : "neutral"}
-            />
-          </Table.Cell>
-        </Table.Row>
-      ))}
-    </Table.Body>
-  </>
-);
+const useManyRows = () => {
+  const { t } = useTranslation();
+  return Array.from({ length: 30 }).map((_, i) => ({
+    id: i + 1,
+    name: `${t("story_table_user")} ${i + 1}`,
+    email: `user${i + 1}@example.com`,
+    role: i % 3 === 0 ? t("story_table_admin") : t("story_table_member"),
+    status: i % 2 === 0 ? t("story_table_active") : t("story_table_inactive"),
+  }));
+};
 
 export const Default: Story = {
-  args: {
-    children: DefaultTableChildren,
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const sampleData = useSampleData();
+    return (
+      <Table {...args}>
+        <Table.Header>
+          <Table.Row>
+            <Table.Head>{t("story_table_name")}</Table.Head>
+            <Table.Head>{t("story_table_email")}</Table.Head>
+            <Table.Head>{t("story_table_role")}</Table.Head>
+            <Table.Head>{t("story_table_status")}</Table.Head>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {sampleData.map((row) => (
+            <Table.Row key={row.id}>
+              <Table.Cell label={t("story_table_name")}>{row.name}</Table.Cell>
+              <Table.Cell label={t("story_table_email")}>
+                {row.email}
+              </Table.Cell>
+              <Table.Cell label={t("story_table_role")}>{row.role}</Table.Cell>
+              <Table.Cell label={t("story_table_status")}>
+                <Badge
+                  content={row.status}
+                  size="small"
+                  color={
+                    row.status === t("story_table_active")
+                      ? "primary"
+                      : "neutral"
+                  }
+                />
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    );
   },
 };
 
 export const Striped: Story = {
+  ...Default,
   args: {
-    ...Default.args,
     striped: true,
   },
 };
 
 export const Bordered: Story = {
+  ...Default,
   args: {
-    ...Default.args,
     bordered: true,
   },
 };
 
 export const Hoverable: Story = {
+  ...Default,
   args: {
-    ...Default.args,
     hoverable: true,
   },
 };
 
 export const FullWidth: Story = {
+  ...Default,
   args: {
-    ...Default.args,
     fullWidth: true,
   },
 };
 
 export const WithActions: Story = {
-  args: {
-    fullWidth: true,
-    children: (
-      <>
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const sampleData = useSampleData();
+    return (
+      <Table {...args} fullWidth={true}>
         <Table.Header>
           <Table.Row>
-            <Table.Head>Name</Table.Head>
-            <Table.Head>Email</Table.Head>
+            <Table.Head>{t("story_table_name")}</Table.Head>
+            <Table.Head>{t("story_table_email")}</Table.Head>
             <Table.Head style={{ width: "1%", whiteSpace: "nowrap" }}>
-              Actions
+              {t("story_table_actions")}
             </Table.Head>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {sampleData.slice(0, 2).map((row) => (
             <Table.Row key={row.id}>
-              <Table.Cell label="Name">{row.name}</Table.Cell>
-              <Table.Cell label="Email">{row.email}</Table.Cell>
-              <Table.Cell label="Actions">
+              <Table.Cell label={t("story_table_name")}>{row.name}</Table.Cell>
+              <Table.Cell label={t("story_table_email")}>
+                {row.email}
+              </Table.Cell>
+              <Table.Cell label={t("story_table_actions")}>
                 <div
                   style={{
                     display: "flex",
@@ -158,13 +174,13 @@ export const WithActions: Story = {
                 >
                   <IconButton
                     iconName="EditIcon"
-                    aria-label="Edit"
+                    aria-label={t("story_dropdown_edit")}
                     size="small"
                     priority="tertiary"
                   />
                   <IconButton
                     iconName="TrashIcon"
-                    aria-label="Delete"
+                    aria-label={t("story_dropdown_delete")}
                     size="small"
                     priority="tertiary"
                     role="destructive"
@@ -174,13 +190,15 @@ export const WithActions: Story = {
             </Table.Row>
           ))}
         </Table.Body>
-      </>
-    ),
+      </Table>
+    );
   },
 };
 
 export const Sortable: Story = {
-  render: (args) => {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const manyRows = useManyRows();
     const [sortConfig, setSortConfig] = React.useState<{
       key: string;
       direction: "asc" | "desc" | "none";
@@ -200,7 +218,7 @@ export const Sortable: Story = {
       if (direction === "none") {
         setData(manyRows);
       } else {
-        const sortedData = [...data].sort((a, b) => {
+        const sortedData = [...manyRows].sort((a, b) => {
           const aValue = (a as any)[key];
           const bValue = (b as any)[key];
           if (aValue < bValue) return direction === "asc" ? -1 : 1;
@@ -222,7 +240,7 @@ export const Sortable: Story = {
               }
               onSort={() => handleSort("id")}
             >
-              ID
+              {t("story_table_id")}
             </Table.Head>
             <Table.Head
               sortable
@@ -231,7 +249,7 @@ export const Sortable: Story = {
               }
               onSort={() => handleSort("name")}
             >
-              Name
+              {t("story_table_name")}
             </Table.Head>
             <Table.Head
               sortable
@@ -240,18 +258,20 @@ export const Sortable: Story = {
               }
               onSort={() => handleSort("email")}
             >
-              Email
+              {t("story_table_email")}
             </Table.Head>
-            <Table.Head>Role</Table.Head>
+            <Table.Head>{t("story_table_role")}</Table.Head>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {data.slice(0, 10).map((row) => (
             <Table.Row key={row.id}>
-              <Table.Cell label="ID">{row.id}</Table.Cell>
-              <Table.Cell label="Name">{row.name}</Table.Cell>
-              <Table.Cell label="Email">{row.email}</Table.Cell>
-              <Table.Cell label="Role">{row.role}</Table.Cell>
+              <Table.Cell label={t("story_table_id")}>{row.id}</Table.Cell>
+              <Table.Cell label={t("story_table_name")}>{row.name}</Table.Cell>
+              <Table.Cell label={t("story_table_email")}>
+                {row.email}
+              </Table.Cell>
+              <Table.Cell label={t("story_table_role")}>{row.role}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
@@ -261,7 +281,9 @@ export const Sortable: Story = {
 };
 
 export const RowSelection: Story = {
-  render: (args) => {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const manyRows = useManyRows();
     const [selectedIds, setSelectedIds] = React.useState<number[]>([]);
 
     const allSelected = selectedIds.length === 5;
@@ -294,9 +316,9 @@ export const RowSelection: Story = {
                 onChange={toggleAll}
               />
             </Table.Head>
-            <Table.Head>ID</Table.Head>
-            <Table.Head>Name</Table.Head>
-            <Table.Head>Email</Table.Head>
+            <Table.Head>{t("story_table_id")}</Table.Head>
+            <Table.Head>{t("story_table_name")}</Table.Head>
+            <Table.Head>{t("story_table_email")}</Table.Head>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -308,9 +330,11 @@ export const RowSelection: Story = {
                   onChange={() => toggleRow(row.id)}
                 />
               </Table.Cell>
-              <Table.Cell label="ID">{row.id}</Table.Cell>
-              <Table.Cell label="Name">{row.name}</Table.Cell>
-              <Table.Cell label="Email">{row.email}</Table.Cell>
+              <Table.Cell label={t("story_table_id")}>{row.id}</Table.Cell>
+              <Table.Cell label={t("story_table_name")}>{row.name}</Table.Cell>
+              <Table.Cell label={t("story_table_email")}>
+                {row.email}
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
@@ -320,83 +344,90 @@ export const RowSelection: Story = {
 };
 
 export const StickyHeader: Story = {
-  args: {
-    stickyHeader: true,
-    fullWidth: true,
-    maxHeight: "300px",
-    children: (
-      <>
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const manyRows = useManyRows();
+    return (
+      <Table {...args} stickyHeader={true} fullWidth={true} maxHeight="300px">
         <Table.Header>
           <Table.Row>
-            <Table.Head>ID</Table.Head>
-            <Table.Head>Name</Table.Head>
-            <Table.Head>Email</Table.Head>
-            <Table.Head>Role</Table.Head>
+            <Table.Head>{t("story_table_id")}</Table.Head>
+            <Table.Head>{t("story_table_name")}</Table.Head>
+            <Table.Head>{t("story_table_email")}</Table.Head>
+            <Table.Head>{t("story_table_role")}</Table.Head>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {manyRows.map((row) => (
             <Table.Row key={row.id}>
-              <Table.Cell label="ID">{row.id}</Table.Cell>
-              <Table.Cell label="Name">{row.name}</Table.Cell>
-              <Table.Cell label="Email">{row.email}</Table.Cell>
-              <Table.Cell label="Role">{row.role}</Table.Cell>
+              <Table.Cell label={t("story_table_id")}>{row.id}</Table.Cell>
+              <Table.Cell label={t("story_table_name")}>{row.name}</Table.Cell>
+              <Table.Cell label={t("story_table_email")}>
+                {row.email}
+              </Table.Cell>
+              <Table.Cell label={t("story_table_role")}>{row.role}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
-      </>
-    ),
+      </Table>
+    );
   },
 };
 
 export const SubtleScrollbar: Story = {
+  ...StickyHeader,
   args: {
-    ...StickyHeader.args,
     scrollbar: "subtle",
   },
 };
 
 export const HiddenScrollbar: Story = {
+  ...StickyHeader,
   args: {
-    ...StickyHeader.args,
     scrollbar: "hidden",
   },
 };
 
 export const MobileCard: Story = {
-  args: {
-    mobileCard: true,
-    fullWidth: true,
-    children: (
-      <>
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const sampleData = useSampleData();
+    return (
+      <Table {...args} mobileCard={true} fullWidth={true}>
         <Table.Header>
           <Table.Row>
-            <Table.Head>ID</Table.Head>
-            <Table.Head>Name</Table.Head>
-            <Table.Head>Email</Table.Head>
-            <Table.Head>Role</Table.Head>
-            <Table.Head>Status</Table.Head>
+            <Table.Head>{t("story_table_id")}</Table.Head>
+            <Table.Head>{t("story_table_name")}</Table.Head>
+            <Table.Head>{t("story_table_email")}</Table.Head>
+            <Table.Head>{t("story_table_role")}</Table.Head>
+            <Table.Head>{t("story_table_status")}</Table.Head>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {sampleData.map((row) => (
             <Table.Row key={row.id}>
-              <Table.Cell label="ID">{row.id}</Table.Cell>
-              <Table.Cell label="Name">{row.name}</Table.Cell>
-              <Table.Cell label="Email">{row.email}</Table.Cell>
-              <Table.Cell label="Role">{row.role}</Table.Cell>
-              <Table.Cell label="Status">
+              <Table.Cell label={t("story_table_id")}>{row.id}</Table.Cell>
+              <Table.Cell label={t("story_table_name")}>{row.name}</Table.Cell>
+              <Table.Cell label={t("story_table_email")}>
+                {row.email}
+              </Table.Cell>
+              <Table.Cell label={t("story_table_role")}>{row.role}</Table.Cell>
+              <Table.Cell label={t("story_table_status")}>
                 <Badge
                   content={row.status}
                   size="small"
-                  color={row.status === "Active" ? "primary" : "neutral"}
+                  color={
+                    row.status === t("story_table_active")
+                      ? "primary"
+                      : "neutral"
+                  }
                 />
               </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
-      </>
-    ),
+      </Table>
+    );
   },
   parameters: {
     viewport: {

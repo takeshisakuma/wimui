@@ -12,6 +12,7 @@ import {
   CommandPaletteContent,
 } from "@/components/CommandPalette/CommandPalette";
 import { Icon } from "@/components/Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof CommandPalette> = {
   title: "Components/Overlays/CommandPalette",
@@ -25,40 +26,41 @@ export default meta;
 type Story = StoryObj<typeof CommandPalette>;
 
 const DefaultTemplate = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
 
   const items = [
     {
       id: "1",
-      label: "New Project",
+      label: t("story_command_new"),
       icon: "CheckIcon",
-      group: "Actions",
+      group: t("story_command_actions"),
       shortcut: ["⌘", "N"],
     },
     {
       id: "2",
-      label: "Open Project",
+      label: t("story_command_open"),
       icon: "ChevronRightIcon",
-      group: "Actions",
+      group: t("story_command_actions"),
       shortcut: ["⌘", "O"],
     },
     {
       id: "3",
-      label: "Save File",
+      label: t("story_command_save"),
       icon: "UploadIcon",
-      group: "Actions",
+      group: t("story_command_actions"),
       shortcut: ["⌘", "S"],
     },
     {
       id: "4",
-      label: "Settings",
+      label: t("story_command_settings"),
       icon: "SquareIcon",
-      group: "Settings",
+      group: t("story_command_settings"),
       shortcut: ["⌘", ","],
     },
-    { id: "5", label: "Profile", icon: "CircleIcon", group: "Settings" },
-    { id: "6", label: "Theme: Dark", icon: "EyeOffIcon", group: "Preferences" },
-    { id: "7", label: "Theme: Light", icon: "EyeIcon", group: "Preferences" },
+    { id: "5", label: t("story_command_profile"), icon: "CircleIcon", group: t("story_command_settings") },
+    { id: "6", label: t("story_command_theme_dark"), icon: "EyeOffIcon", group: t("story_command_pref") },
+    { id: "7", label: t("story_command_theme_light"), icon: "EyeIcon", group: t("story_command_pref") },
   ];
 
   const filteredItems = items.filter((item) =>
@@ -72,7 +74,7 @@ const DefaultTemplate = () => {
       <CommandPalette>
         <CommandPaletteTrigger>
           <Icon name="SearchIcon" size="small" />
-          <span>Search Commands...</span>
+          <span>{t("story_command_search_commands")}</span>
           <kbd style={{ marginLeft: "12px", fontSize: "0.8em", opacity: 0.6 }}>
             ⌘K
           </kbd>
@@ -80,7 +82,7 @@ const DefaultTemplate = () => {
 
         <CommandPaletteContent>
           <CommandPaletteInput
-            placeholder="Type a command or search..."
+            placeholder={t("story_command_type_command")}
             onChange={setSearch}
           />
           <CommandPaletteList>
@@ -104,14 +106,14 @@ const DefaultTemplate = () => {
           </CommandPaletteList>
           <CommandPaletteFooter>
             <div className="wim-command-palette-shortcut-hint">
-              <kbd className="wim-kbd wim-kbd--sm">↵</kbd> to select
+              <kbd className="wim-kbd wim-kbd--sm">↵</kbd> {t("story_command_to_select")}
             </div>
             <div className="wim-command-palette-shortcut-hint">
               <kbd className="wim-kbd wim-kbd--sm">↑</kbd>
-              <kbd className="wim-kbd wim-kbd--sm">↓</kbd> to navigate
+              <kbd className="wim-kbd wim-kbd--sm">↓</kbd> {t("story_command_to_navigate")}
             </div>
             <div className="wim-command-palette-shortcut-hint">
-              <kbd className="wim-kbd wim-kbd--sm">esc</kbd> to close
+              <kbd className="wim-kbd wim-kbd--sm">esc</kbd> {t("story_command_to_close")}
             </div>
           </CommandPaletteFooter>
         </CommandPaletteContent>
@@ -125,6 +127,7 @@ export const Default: Story = {
 };
 
 const ControlledTemplate = () => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   return (
     <div style={{ padding: "100px 20px", textAlign: "center" }}>
@@ -139,31 +142,31 @@ const ControlledTemplate = () => {
           cursor: "pointer",
         }}
       >
-        Open Controlled Palette
+        {t("story_command_open_controlled")}
       </button>
 
       <CommandPalette open={open} onOpenChange={setOpen}>
         <CommandPaletteContent>
-          <CommandPaletteInput placeholder="Search..." />
+          <CommandPaletteInput placeholder={t("story_selectbox_placeholder")} />
           <CommandPaletteList>
-            <CommandPaletteGroup heading="Quick Links">
+            <CommandPaletteGroup heading={t("story_command_quick_links")}>
               <CommandPaletteItem
                 onSelect={() => {}}
                 icon={<Icon name="SearchIcon" size="small" />}
               >
-                Search Docs
+                {t("story_command_search_docs")}
               </CommandPaletteItem>
               <CommandPaletteItem
                 onSelect={() => {}}
                 icon={<Icon name="CopyIcon" size="small" />}
               >
-                Copy Link
+                {t("story_command_copy_link")}
               </CommandPaletteItem>
               <CommandPaletteItem
                 onSelect={() => {}}
                 icon={<Icon name="StarIcon" size="small" />}
               >
-                Add to Favorites
+                {t("story_command_add_favorites")}
               </CommandPaletteItem>
             </CommandPaletteGroup>
           </CommandPaletteList>

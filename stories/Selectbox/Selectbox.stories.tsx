@@ -3,20 +3,14 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Selectbox,
   SelectboxOption,
-  SelectboxOptionGroup,
 } from "@/components/Selectbox/Selectbox";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Selectbox> = {
   title: "Components/Selection Controls/Selectbox",
   component: Selectbox,
   parameters: {
     layout: "centered",
-    docs: {
-      description: {
-        component:
-          "ユーザーが定義済みの選択肢から1つを選択するためのコンポーネント。",
-      },
-    },
   },
   argTypes: {
     onChange: { action: "changed" },
@@ -26,57 +20,87 @@ const meta: Meta<typeof Selectbox> = {
 export default meta;
 type Story = StoryObj<typeof Selectbox>;
 
-const options = [
-  { label: "Option 1", value: "opt1" },
-  { label: "Option 2", value: "opt2" },
-  { label: "Option 3", value: "opt3" },
-  { label: "Disabled Option", value: "opt4", disabled: true },
-  { label: "Option 5", value: "opt5" },
-];
-
 export const Default: Story = {
-  args: {
-    options: options,
-    placeholder: "Select an option...",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const options = [
+      { label: t("story_selectbox_opt1"), value: "opt1" },
+      { label: t("story_selectbox_opt2"), value: "opt2" },
+      { label: t("story_selectbox_opt3"), value: "opt3" },
+      { label: t("story_selectbox_opt4"), value: "opt4", disabled: true },
+      { label: t("story_selectbox_opt5"), value: "opt5" },
+    ];
+    return <Selectbox {...args} options={options} placeholder={t("story_selectbox_placeholder")} />;
   },
 };
 
 export const WithLabel: Story = {
-  args: {
-    label: "Choose an item",
-    options: options,
-    placeholder: "Select...",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const options = [
+      { label: t("story_selectbox_opt1"), value: "opt1" },
+      { label: t("story_selectbox_opt2"), value: "opt2" },
+      { label: t("story_selectbox_opt3"), value: "opt3" },
+      { label: t("story_selectbox_opt4"), value: "opt4", disabled: true },
+      { label: t("story_selectbox_opt5"), value: "opt5" },
+    ];
+    return (
+      <Selectbox
+        {...args}
+        label={t("story_selectbox_label")}
+        options={options}
+        placeholder={t("story_selectbox_placeholder")}
+      />
+    );
   },
 };
 
 export const Preselected: Story = {
-  args: {
-    options: options,
-    defaultValue: "opt2",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const options = [
+      { label: t("story_selectbox_opt1"), value: "opt1" },
+      { label: t("story_selectbox_opt2"), value: "opt2" },
+      { label: t("story_selectbox_opt3"), value: "opt3" },
+      { label: t("story_selectbox_opt4"), value: "opt4", disabled: true },
+      { label: t("story_selectbox_opt5"), value: "opt5" },
+    ];
+    return <Selectbox {...args} options={options} defaultValue="opt2" />;
   },
 };
 
 export const Disabled: Story = {
-  args: {
-    options: options,
-    disabled: true,
-    defaultValue: "opt1",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const options = [
+      { label: t("story_selectbox_opt1"), value: "opt1" },
+      { label: t("story_selectbox_opt2"), value: "opt2" },
+      { label: t("story_selectbox_opt3"), value: "opt3" },
+      { label: t("story_selectbox_opt4"), value: "opt4", disabled: true },
+      { label: t("story_selectbox_opt5"), value: "opt5" },
+    ];
+    return <Selectbox {...args} options={options} disabled={true} defaultValue="opt1" />;
   },
 };
 
-const optionsWithSeparators: SelectboxOption[] = [
-  { label: "Settings", value: "settings" },
-  { label: "Profile", value: "profile" },
-  { type: "separator" },
-  { label: "Help", value: "help" },
-  { label: "About", value: "about" },
-  { type: "separator" },
-  { label: "Logout", value: "logout" },
-];
-
 export const WithSeparator: Story = {
-  args: {
-    options: optionsWithSeparators,
-    placeholder: "Select an action...",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    const optionsWithSeparators: SelectboxOption[] = [
+      { label: t("story_selectbox_settings"), value: "settings" },
+      { label: t("story_selectbox_profile"), value: "profile" },
+      { type: "separator" },
+      { label: t("story_selectbox_help"), value: "help" },
+      { label: t("story_selectbox_about"), value: "about" },
+      { type: "separator" },
+      { label: t("story_selectbox_logout"), value: "logout" },
+    ];
+    return (
+      <Selectbox
+        {...args}
+        options={optionsWithSeparators}
+        placeholder={t("story_selectbox_placeholder")}
+      />
+    );
   },
 };

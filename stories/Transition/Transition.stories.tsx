@@ -2,6 +2,7 @@ import React, { useState, useRef, useLayoutEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Transition } from "@/components/Transition/Transition";
 import { Button } from "@/components/Button/Button";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Transition> = {
   title: "Components/Utilities/Transition",
@@ -73,6 +74,7 @@ const AnimatedButton = ({
 export const Fade: Story = {
   render: () => {
     const [show, setShow] = useState(false);
+    const { t } = useTranslation();
     return (
       <div
         style={{
@@ -85,7 +87,7 @@ export const Fade: Story = {
         <AnimatedButton
           show={show}
           onClick={() => setShow(!show)}
-          label={show ? "非表示にする" : "コンテンツを表示する"}
+          label={show ? t("story_transition_hide_content") : t("story_transition_show_content")}
         />
         <div style={{ height: "100px" }}>
           <Transition
@@ -122,6 +124,7 @@ export const Fade: Story = {
 export const Slide: Story = {
   render: () => {
     const [show, setShow] = useState(false);
+    const { t } = useTranslation();
     return (
       <div
         style={{
@@ -142,7 +145,7 @@ export const Slide: Story = {
         <AnimatedButton
           show={show}
           onClick={() => setShow(!show)}
-          label={show ? "スライドを閉じる" : "スライドコンテンツを展開"}
+          label={show ? t("story_transition_hide_slide") : t("story_transition_show_slide")}
         />
         <div style={{ height: "100px" }}>
           <Transition

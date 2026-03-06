@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Drawer,
@@ -11,6 +12,7 @@ import {
 } from "@/components/Drawer/Drawer";
 import { Button } from "@/components/Button/Button";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Drawer> = {
   title: "Components/Overlays/Drawer",
@@ -54,116 +56,129 @@ export const Default: Story = {
   args: {
     side: "right",
   },
-  render: (args) => (
-    <Drawer {...args}>
-      <DrawerTrigger asChild>
-        <Button priority="primary" label="Open Drawer (Right)" />
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Drawer Title</DrawerTitle>
-          <DrawerDescription>
-            This is a description of the drawer content.
-          </DrawerDescription>
-        </DrawerHeader>
-        <div style={{ padding: "20px" }}>
-          <p>This is the main content area of the drawer.</p>
-          <p>You can put any React components here.</p>
-        </div>
-        <DrawerFooter>
-          <DrawerClose asChild>
-            <Button priority="secondary" label="Close" />
-          </DrawerClose>
-          <Button priority="primary" label="Confirm" />
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Drawer {...args}>
+        <DrawerTrigger asChild>
+          <Button priority="primary" label={t("story_drawer_open_right")} />
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>{t("story_drawer_title")}</DrawerTitle>
+            <DrawerDescription>{t("story_drawer_desc")}</DrawerDescription>
+          </DrawerHeader>
+          <div style={{ padding: "20px" }}>
+            <p>{t("story_drawer_body1")}</p>
+            <p>{t("story_drawer_body2")}</p>
+          </div>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button priority="secondary" label={t("story_dialog_cancel")} />
+            </DrawerClose>
+            <Button priority="primary" label={t("story_drawer_confirm")} />
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+  },
 };
 
 export const Left: Story = {
   args: {
     side: "left",
   },
-  render: (args) => (
-    <Drawer {...args}>
-      <DrawerTrigger asChild>
-        <Button priority="secondary" label="Open Drawer (Left)" />
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Left Drawer</DrawerTitle>
-          <DrawerDescription>Sliding in from the left side.</DrawerDescription>
-        </DrawerHeader>
-        <div style={{ padding: "20px" }}>
-          <p>Navigation menus often go here.</p>
-        </div>
-        <DrawerFooter>
-          <DrawerClose asChild>
-            <Button priority="secondary" label="Close" />
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Drawer {...args}>
+        <DrawerTrigger asChild>
+          <Button priority="secondary" label={t("story_drawer_open_left")} />
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>{t("story_drawer_left_title")}</DrawerTitle>
+            <DrawerDescription>{t("story_drawer_left_desc")}</DrawerDescription>
+          </DrawerHeader>
+          <div style={{ padding: "20px" }}>
+            <p>{t("story_drawer_left_body")}</p>
+          </div>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button priority="secondary" label={t("story_dialog_cancel")} />
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+  },
 };
 
 export const Top: Story = {
   args: {
     side: "top",
   },
-  render: (args) => (
-    <Drawer {...args}>
-      <DrawerTrigger asChild>
-        <Button priority="secondary" label="Open Drawer (Top)" />
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Top Drawer</DrawerTitle>
-          <DrawerDescription>Sliding in from the top.</DrawerDescription>
-        </DrawerHeader>
-        <div style={{ padding: "20px" }}>
-          <p>Useful for notifications or global search.</p>
-        </div>
-        <DrawerFooter>
-          <DrawerClose asChild>
-            <Button priority="secondary" label="Close" />
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Drawer {...args}>
+        <DrawerTrigger asChild>
+          <Button priority="secondary" label={t("story_drawer_open_top")} />
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>{t("story_drawer_top_title")}</DrawerTitle>
+            <DrawerDescription>{t("story_drawer_top_desc")}</DrawerDescription>
+          </DrawerHeader>
+          <div style={{ padding: "20px" }}>
+            <p>{t("story_drawer_top_body")}</p>
+          </div>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button priority="secondary" label={t("story_dialog_cancel")} />
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+  },
 };
 
 export const Bottom: Story = {
   args: {
     side: "bottom",
   },
-  render: (args) => (
-    <Drawer {...args}>
-      <DrawerTrigger asChild>
-        <Button priority="secondary" label="Open Drawer (Bottom)" />
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Bottom Drawer</DrawerTitle>
-          <DrawerDescription>Sliding in from the bottom.</DrawerDescription>
-        </DrawerHeader>
-        <div style={{ padding: "20px" }}>
-          <p>Often used for mobile menus or settings.</p>
-        </div>
-        <DrawerFooter>
-          <DrawerClose asChild>
-            <Button priority="secondary" label="Close" />
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Drawer {...args}>
+        <DrawerTrigger asChild>
+          <Button priority="secondary" label={t("story_drawer_open_bottom")} />
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>{t("story_drawer_bottom_title")}</DrawerTitle>
+            <DrawerDescription>
+              {t("story_drawer_bottom_desc")}
+            </DrawerDescription>
+          </DrawerHeader>
+          <div style={{ padding: "20px" }}>
+            <p>{t("story_drawer_bottom_body")}</p>
+          </div>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button priority="secondary" label={t("story_dialog_cancel")} />
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+  },
 };
 
 export const Controlled: Story = {
-  render: () => {
+  render: function Render() {
+    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     return (
       <div
@@ -174,33 +189,35 @@ export const Controlled: Story = {
           alignItems: "center",
         }}
       >
-        <p>Current state: {open ? "Open" : "Closed"}</p>
+        <p>
+          {t("story_dialog_curr_state")}: {open ? "Open" : "Closed"}
+        </p>
         <Button
           priority="primary"
-          label="Open via State"
+          label={t("story_dialog_state_open")}
           onClick={() => setOpen(true)}
         />
 
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerContent>
             <DrawerHeader>
-              <DrawerTitle>Controlled Drawer</DrawerTitle>
+              <DrawerTitle>{t("story_drawer_controlled_title")}</DrawerTitle>
               <DrawerDescription>
-                This drawer is controlled by external state.
+                {t("story_dialog_controlled_desc")}
               </DrawerDescription>
             </DrawerHeader>
             <div style={{ padding: "20px" }}>
-              <p>Click outside or escape to close.</p>
+              <p>{t("story_dialog_controlled_body")}</p>
             </div>
             <DrawerFooter>
               <Button
                 priority="secondary"
-                label="Cancel"
+                label={t("story_dialog_cancel")}
                 onClick={() => setOpen(false)}
               />
               <Button
                 priority="primary"
-                label="Close via State"
+                label={t("story_dialog_state_close")}
                 onClick={() => setOpen(false)}
               />
             </DrawerFooter>
@@ -217,30 +234,30 @@ export const WithoutSlide: Story = {
     slideIn: false,
     slideOut: false,
   },
-  render: (args) => (
-    <Drawer {...args}>
-      <DrawerTrigger asChild>
-        <Button priority="primary" label="Open Drawer (No Slide)" />
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>No Slide Drawer</DrawerTitle>
-          <DrawerDescription>
-            This drawer fades without sliding.
-          </DrawerDescription>
-        </DrawerHeader>
-        <div style={{ padding: "20px" }}>
-          <p>
-            The slideIn and slideOut options are set to false, so the drawer
-            only fades in and out along with the overlay.
-          </p>
-        </div>
-        <DrawerFooter>
-          <DrawerClose asChild>
-            <Button priority="secondary" label="Close" />
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Drawer {...args}>
+        <DrawerTrigger asChild>
+          <Button priority="primary" label={t("story_drawer_open_no_slide")} />
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>{t("story_drawer_no_slide_title")}</DrawerTitle>
+            <DrawerDescription>
+              {t("story_drawer_no_slide_desc")}
+            </DrawerDescription>
+          </DrawerHeader>
+          <div style={{ padding: "20px" }}>
+            <p>{t("story_drawer_no_slide_body")}</p>
+          </div>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button priority="secondary" label={t("story_dialog_cancel")} />
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+  },
 };

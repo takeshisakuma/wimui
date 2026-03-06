@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Dropdown,
@@ -7,6 +8,7 @@ import {
 } from "@/components/Dropdown/Dropdown";
 import { Button } from "@/components/Button/Button";
 import { Icon } from "@/components/Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Dropdown> = {
   title: "Components/Overlays/Dropdown",
@@ -20,60 +22,75 @@ export default meta;
 type Story = StoryObj<typeof Dropdown>;
 
 export const Basic: Story = {
-  render: (args) => (
-    <Dropdown {...args}>
-      <DropdownTrigger>
-        <Button label="Open Menu" />
-      </DropdownTrigger>
-      <DropdownMenu>
-        <DropdownItem onClick={() => console.log("Profile clicked")}>
-          Profile
-        </DropdownItem>
-        <DropdownItem onClick={() => console.log("Settings clicked")}>
-          Settings
-        </DropdownItem>
-        <DropdownItem onClick={() => console.log("Logout clicked")}>
-          Logout
-        </DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Dropdown {...args}>
+        <DropdownTrigger>
+          <Button label={t("story_dropdown_open")} />
+        </DropdownTrigger>
+        <DropdownMenu>
+          <DropdownItem onClick={() => console.log("Profile clicked")}>
+            {t("story_dropdown_profile")}
+          </DropdownItem>
+          <DropdownItem onClick={() => console.log("Settings clicked")}>
+            {t("story_dropdown_settings")}
+          </DropdownItem>
+          <DropdownItem onClick={() => console.log("Logout clicked")}>
+            {t("story_dropdown_logout")}
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+  },
 };
 
 export const WithIcons: Story = {
-  render: (args) => (
-    <Dropdown {...args}>
-      <DropdownTrigger>
-        <Button priority="secondary" label="Options" />
-      </DropdownTrigger>
-      <DropdownMenu>
-        <DropdownItem>
-          <Icon name="CheckIcon" size="small" /> Edit
-        </DropdownItem>
-        <DropdownItem>
-          <Icon name="CopyIcon" size="small" /> Duplicate
-        </DropdownItem>
-        <DropdownItem disabled>
-          <Icon name="CloseIcon" size="small" /> Delete
-        </DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Dropdown {...args}>
+        <DropdownTrigger>
+          <Button priority="secondary" label={t("story_dropdown_options")} />
+        </DropdownTrigger>
+        <DropdownMenu>
+          <DropdownItem>
+            <Icon name="CheckIcon" size="small" /> {t("story_dropdown_edit")}
+          </DropdownItem>
+          <DropdownItem>
+            <Icon name="CopyIcon" size="small" /> {t("story_dropdown_duplicate")}
+          </DropdownItem>
+          <DropdownItem disabled>
+            <Icon name="CloseIcon" size="small" /> {t("story_dropdown_delete")}
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+  },
 };
 
 export const AlignmentRight: Story = {
-  render: (args) => (
-    <div style={{ paddingLeft: "200px" }}>
-      <Dropdown {...args}>
-        <DropdownTrigger>
-          <Button label="Right Aligned" />
-        </DropdownTrigger>
-        <DropdownMenu align="right">
-          <DropdownItem>Item 1</DropdownItem>
-          <DropdownItem>Item 2</DropdownItem>
-          <DropdownItem>Item 3</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-    </div>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <div style={{ paddingLeft: "200px" }}>
+        <Dropdown {...args}>
+          <DropdownTrigger>
+            <Button label={t("story_dropdown_right_aligned")} />
+          </DropdownTrigger>
+          <DropdownMenu align="right">
+            <DropdownItem>
+              {t("story_dropdown_item")} 1
+            </DropdownItem>
+            <DropdownItem>
+              {t("story_dropdown_item")} 2
+            </DropdownItem>
+            <DropdownItem>
+              {t("story_dropdown_item")} 3
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </div>
+    );
+  },
 };

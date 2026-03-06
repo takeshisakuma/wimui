@@ -5,6 +5,7 @@ import { Legend } from "@/components/Legend/Legend";
 import { Label } from "@/components/Label/Label";
 import { Input } from "@/components/Input/Input";
 import { CheckboxGroup } from "@/components/CheckboxGroup/CheckboxGroup";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Fieldset> = {
   title: "Components/Form Layout/Fieldset",
@@ -18,51 +19,60 @@ export default meta;
 type Story = StoryObj<typeof Fieldset>;
 
 export const Default: Story = {
-  render: (args) => (
-    <Fieldset {...args}>
-      <Legend>基本情報</Legend>
-      <Label label="名前">
-        <Input placeholder="山田 太郎" />
-      </Label>
-      <Label label="メールアドレス">
-        <Input type="email" placeholder="example@wim.ui" />
-      </Label>
-    </Fieldset>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Fieldset {...args}>
+        <Legend>{t("story_fieldset_basic")}</Legend>
+        <Label label={t("story_fieldset_name")}>
+          <Input placeholder={t("story_fieldset_name_placeholder")} />
+        </Label>
+        <Label label={t("story_header_contact")}>
+          <Input type="email" placeholder="example@wim.ui" />
+        </Label>
+      </Fieldset>
+    );
+  },
 };
 
 export const WithCheckboxGroup: Story = {
-  render: (args) => (
-    <Fieldset {...args}>
-      <Legend>通知設定</Legend>
-      <CheckboxGroup
-        options={[
-          { label: "メール通知", value: "email" },
-          { label: "プッシュ通知", value: "push" },
-          { label: "SMS通知", value: "sms" },
-        ]}
-        defaultValue={["email"]}
-      />
-    </Fieldset>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Fieldset {...args}>
+        <Legend>{t("story_fieldset_notif")}</Legend>
+        <CheckboxGroup
+          options={[
+            { label: t("story_fieldset_notif_email"), value: "email" },
+            { label: t("story_fieldset_notif_push"), value: "push" },
+            { label: t("story_fieldset_notif_sms"), value: "sms" },
+          ]}
+          defaultValue={["email"]}
+        />
+      </Fieldset>
+    );
+  },
 };
 
 export const Disabled: Story = {
   args: {
     disabled: true,
   },
-  render: (args) => (
-    <Fieldset {...args}>
-      <Legend>無効化されたセクション</Legend>
-      <Label label="名前">
-        <Input placeholder="入力できません" />
-      </Label>
-      <CheckboxGroup
-        options={[
-          { label: "オプション1", value: "1" },
-          { label: "オプション2", value: "2" },
-        ]}
-      />
-    </Fieldset>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Fieldset {...args}>
+        <Legend>{t("story_fieldset_disabled_sec")}</Legend>
+        <Label label={t("story_fieldset_name")}>
+          <Input placeholder={t("story_fieldset_disabled_placeholder")} />
+        </Label>
+        <CheckboxGroup
+          options={[
+            { label: t("story_fieldset_opt1"), value: "1" },
+            { label: t("story_fieldset_opt2"), value: "2" },
+          ]}
+        />
+      </Fieldset>
+    );
+  },
 };

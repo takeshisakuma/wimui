@@ -1,11 +1,18 @@
-import { Meta, Primary, Controls, Story } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as ContextMenuStories from "./ContextMenu.stories";
 import { T } from "../T";
 
 <Meta of={ContextMenuStories} />
 
-# ContextMenu
-
+<Title />
 <p
   style={{
     margin: "0 0 16px 0",
@@ -25,7 +32,6 @@ import { T } from "../T";
 
 ```tsx
 import { ContextMenu, ContextMenuItem, ContextMenuDivider } from "wimui";
-import { T } from "../T";
 
 <ContextMenu
   menu={
@@ -111,33 +117,31 @@ Props:
 
 <Controls />
 
-## <T k="doc_api" />
-
-## <T k="doc_stories" />
+## Examples
 
 ### <T k="doc_contextmenu_story_1" />
 
 <p><T k="doc_contextmenu_story_1_desc" /></p>
 
-<Story of={ContextMenuStories.WithIcons} />
+<Canvas of={ContextMenuStories.WithIcons} />
 
 ### <T k="doc_contextmenu_story_2" />
 
 <p><T k="doc_contextmenu_story_2_desc" /></p>
 
-<Story of={ContextMenuStories.WithGroups} />
+<Canvas of={ContextMenuStories.WithGroups} />
 
 ### <T k="doc_contextmenu_story_3" />
 
 <p><T k="doc_contextmenu_story_3_desc" /></p>
 
-<Story of={ContextMenuStories.WithDisabledItems} />
+<Canvas of={ContextMenuStories.WithDisabledItems} />
 
 ### <T k="doc_contextmenu_story_4" />
 
 <p><T k="doc_contextmenu_story_4_desc" /></p>
 
-<Story of={ContextMenuStories.OnImage} />
+<Canvas of={ContextMenuStories.OnImage} />
 
 ## <T k="doc_features" />
 

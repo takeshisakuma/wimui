@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Badge } from "@/components/Badge/Badge";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Badge> = {
   title: "Components/Data Indicators/Badge",
@@ -14,82 +15,114 @@ export default meta;
 type Story = StoryObj<typeof Badge>;
 
 export const Primary: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Badge {...args} content={t("story_badge_content")} />;
+  },
   args: {
-    content: "Badge",
     color: "primary",
   },
 };
 
 export const Secondary: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Badge {...args} content={t("story_badge_secondary")} />;
+  },
   args: {
-    content: "Secondary",
     color: "secondary",
   },
 };
 
 export const Destructive: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Badge {...args} content={t("story_badge_error")} />;
+  },
   args: {
-    content: "Error",
     color: "error",
   },
 };
 
 export const Neutral: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Badge {...args} content={t("story_badge_neutral")} />;
+  },
   args: {
-    content: "Neutral",
     color: "neutral",
   },
 };
 
 export const Outline: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Badge {...args} content={t("story_badge_outline")} />;
+  },
   args: {
-    content: "Outline",
     variant: "outline",
     color: "primary",
   },
 };
 
 export const Small: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Badge {...args} content={t("story_badge_small")} />;
+  },
   args: {
-    content: "Small",
     size: "small",
   },
 };
 
 export const Required: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Badge {...args} content={t("required")} />;
+  },
   args: {
-    content: "required",
     color: "error",
     size: "small",
   },
 };
 
 export const Optional: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Badge {...args} content={t("optional")} />;
+  },
   args: {
-    content: "optional",
     color: "neutral",
     size: "small",
   },
 };
 
 export const WithIcon: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Badge
+        {...args}
+        content={t("story_badge_verified")}
+        icon={
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        }
+      />
+    );
+  },
   args: {
-    content: "Verified",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M20 6 9 17l-5-5" />
-      </svg>
-    ),
     color: "primary",
   },
 };

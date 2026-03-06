@@ -1,11 +1,18 @@
-import { Meta, Primary, Controls, Story } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as SwitchGroupStories from "./SwitchGroup.stories";
 import { T } from "../T";
 
 <Meta of={SwitchGroupStories} />
 
-# SwitchGroup
-
+<Title />
 <p
   style={{
     margin: "0 0 16px 0",
@@ -29,8 +36,8 @@ import { T } from "../T";
 
 ### Horizontal
 
-<Story of={SwitchGroupStories.Horizontal} />
+<Canvas of={SwitchGroupStories.Horizontal} />
 
 ### With Disabled Option
 
-<Story of={SwitchGroupStories.WithDisabledOption} />
+<Canvas of={SwitchGroupStories.WithDisabledOption} />

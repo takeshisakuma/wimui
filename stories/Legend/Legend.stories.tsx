@@ -1,5 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Legend } from "@/components/Legend/Legend";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Legend> = {
   title: "Components/Form Layout/Legend",
@@ -13,14 +15,15 @@ export default meta;
 type Story = StoryObj<typeof Legend>;
 
 export const Default: Story = {
-  args: {
-    children: "フォームのタイトル",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Legend {...args}>{t("story_legend_title")}</Legend>;
   },
 };
 
 export const LongText: Story = {
-  args: {
-    children:
-      "非常に長いタイトルの例。関連するフォーム要素をグループ化するためのセクションタイトルとして使用されます。",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Legend {...args}>{t("story_legend_long")}</Legend>;
   },
 };

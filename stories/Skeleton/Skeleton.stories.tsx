@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { Skeleton } from "@/components/Skeleton/Skeleton";
 
+import { useTranslation } from "react-i18next";
+
 const meta: Meta<typeof Skeleton> = {
   title: "Components/Loading States/Skeleton",
   component: Skeleton,
@@ -97,8 +99,9 @@ export const CardExample: Story = {
 };
 
 export const LoadingToggle: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [loading, setLoading] = React.useState(true);
+    const { t } = useTranslation();
 
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -112,7 +115,7 @@ export const LoadingToggle: Story = {
             width: "fit-content",
           }}
         >
-          {loading ? "Show Content" : "Show Skeleton"}
+          {loading ? t("story_skeleton_show_content") : t("story_skeleton_show_skeleton")}
         </button>
 
         <div
@@ -189,9 +192,7 @@ export const LoadingToggle: Story = {
                 }}
               />
               <div style={{ lineHeight: "1.6", color: "#444" }}>
-                これは実際にコンテンツが読み込まれた状態のデモです。
-                スケルトンが提供したプレースホルダーと同じ位置に、
-                本来のテキストや画像が表示されます。
+                {t("story_skeleton_demo_desc")}
               </div>
             </div>
           )}

@@ -4,6 +4,7 @@ import {
   FloatButtonProps,
 } from "@/components/FloatButton/FloatButton";
 import React, { useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof FloatButton> = {
   title: "Components/Navigation Utilities/FloatButton",
@@ -53,9 +54,12 @@ export const Basic: Story = {
 };
 
 export const Extended: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <FloatButton {...args} label={t("story_floatbutton_send")} />;
+  },
   args: {
     iconName: "CircleIcon",
-    label: "送信する",
     variant: "primary",
     size: "medium",
     position: "static",
@@ -124,15 +128,17 @@ export const ExtendedSizes: Story = {
 };
 
 export const AutoShrink: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <AutoShrinkDemo {...args} label={t("story_floatbutton_shrink")} />;
+  },
   args: {
     iconName: "CircleIcon",
-    label: "スクロールして縮小",
     variant: "primary",
     size: "medium",
     position: "static",
     shrink: false,
   },
-  render: (args) => <AutoShrinkDemo {...args} />,
 };
 
 export const Primary: Story = {
@@ -207,6 +213,7 @@ export const BackTop: Story = {
 const AutoShrinkDemo = (args: FloatButtonProps) => {
   const [isShrunk, setIsShrunk] = useState(false);
   const scrollTimer = useRef<number | null>(null);
+  const { t } = useTranslation();
 
   const handleScroll = () => {
     setIsShrunk(true);
@@ -236,7 +243,7 @@ const AutoShrinkDemo = (args: FloatButtonProps) => {
         onScroll={handleScroll}
       >
         <div style={{ height: "1000px" }}>
-          <p>Please scroll inside this area</p>
+          <p>{t("story_floatbutton_scroll_inside")}</p>
         </div>
       </div>
       <FloatButton

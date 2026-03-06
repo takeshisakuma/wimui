@@ -1,11 +1,18 @@
-import { Meta, Primary, Controls, Story } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as MenuStories from "./Menu.stories";
 import { T } from "../T";
 
 <Meta of={MenuStories} />
 
-# Menu
-
+<Title />
 <p
   style={{
     margin: "0 0 16px 0",
@@ -19,11 +26,10 @@ import { T } from "../T";
 
 <p><T k="doc_menu_long_desc" /></p>
 
-## Usage
+## <T k="doc_usage" />
 
 ```tsx
 import { Menu, MenuItem, SubMenu, MenuItemGroup, MenuDivider } from "wimui";
-import { T } from "../T";
 
 <Menu>
   <MenuItem icon={<Icon name="CheckIcon" />}>Home</MenuItem>
@@ -45,8 +51,8 @@ import { T } from "../T";
 
 Props:
 
-- `mode`: メニューの表示モード (`"vertical"` | `"horizontal"` | `"inline"`)
-- `defaultOpenKeys`: デフォルトで開いているサブメニューのキー配列
+- `mode`: <T k="doc_menu_props_mode" /> (`"vertical"` | `"horizontal"` | `"inline"`)
+- `defaultOpenKeys`: <T k="doc_menu_props_default_open_keys" />
 
 ### MenuItem
 
@@ -64,44 +70,40 @@ Props:
 
 <p><T k="doc_menu_comp_divider_desc" /></p>
 
-## <T k="doc_props" /> (Actually it was Controls but I'll change header)
+## <T k="doc_props" />
 <Controls />
 
-## <T k="doc_story" />
+## <T k="doc_examples" />
 
 ### <T k="doc_with_icons" />
 
 <p><T k="doc_menu_stories_icons_desc" /></p>
 
-<Story of={MenuStories.WithIcons} />
+<Canvas of={MenuStories.WithIcons} />
 
-### <T k="doc_with_submenu" /> (Wait, I don't have this key, I'll use common one)
-### With SubMenu
+### <T k="doc_with_submenu" />
 
 <p><T k="doc_menu_stories_submenu_desc" /></p>
 
-<Story of={MenuStories.WithSubMenu} />
+<Canvas of={MenuStories.WithSubMenu} />
 
 ### <T k="doc_with_groups" />
-### With Groups
 
 <p><T k="doc_menu_stories_groups_desc" /></p>
 
-<Story of={MenuStories.WithGroups} />
+<Canvas of={MenuStories.WithGroups} />
 
 ### <T k="doc_horizontal" />
-### Horizontal
 
 <p><T k="doc_menu_stories_horizontal_desc" /></p>
 
-<Story of={MenuStories.Horizontal} />
+<Canvas of={MenuStories.Horizontal} />
 
 ### <T k="doc_inline" />
-### Inline
 
 <p><T k="doc_menu_stories_inline_desc" /></p>
 
-<Story of={MenuStories.Inline} />
+<Canvas of={MenuStories.Inline} />
 
 ## <T k="doc_accessibility" />
 

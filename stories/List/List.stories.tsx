@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { List, ListItem } from "@/components/List/List";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof List> = {
   title: "Components/Data Structures/List",
@@ -25,83 +26,95 @@ export default meta;
 type Story = StoryObj<typeof List>;
 
 export const Unordered: Story = {
-  args: {
-    as: "ul",
-    children: (
-      <>
-        <ListItem>アイテム1</ListItem>
-        <ListItem>アイテム2</ListItem>
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <List {...args} as="ul">
+        <ListItem>{t("story_list_item1")}</ListItem>
+        <ListItem>{t("story_list_item2")}</ListItem>
         <ListItem>
-          アイテム3
-          (長いテキストがここに入ります。改行された時の見た目を確認するためのテキストです。)
+          {t("story_list_item3")} {t("story_list_item3_desc")}
         </ListItem>
-      </>
-    ),
+      </List>
+    );
   },
 };
 
 export const Ordered: Story = {
-  args: {
-    as: "ol",
-    children: (
-      <>
-        <ListItem>ステップ1</ListItem>
-        <ListItem>ステップ2</ListItem>
-        <ListItem>ステップ3</ListItem>
-      </>
-    ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <List {...args} as="ol">
+        <ListItem>{t("story_list_step1")}</ListItem>
+        <ListItem>{t("story_list_step2")}</ListItem>
+        <ListItem>{t("story_list_step3")}</ListItem>
+      </List>
+    );
   },
 };
 
 export const Small: Story = {
-  args: {
-    size: "small",
-    children: (
-      <>
-        <ListItem>小さいリストアイテム1</ListItem>
-        <ListItem>小さいリストアイテム2</ListItem>
-      </>
-    ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <List {...args} size="small">
+        <ListItem>
+          {t("story_list_item_small")} 1
+        </ListItem>
+        <ListItem>
+          {t("story_list_item_small")} 2
+        </ListItem>
+      </List>
+    );
   },
 };
 
 export const Large: Story = {
-  args: {
-    size: "large",
-    children: (
-      <>
-        <ListItem>大きいリストアイテム1</ListItem>
-        <ListItem>大きいリストアイテム2</ListItem>
-      </>
-    ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <List {...args} size="large">
+        <ListItem>
+          {t("story_list_item_large")} 1
+        </ListItem>
+        <ListItem>
+          {t("story_list_item_large")} 2
+        </ListItem>
+      </List>
+    );
   },
 };
 
 export const LooseSpacing: Story = {
-  args: {
-    spacing: "loose",
-    children: (
-      <>
-        <ListItem>ゆったりした間隔1</ListItem>
-        <ListItem>ゆったりした間隔2</ListItem>
-      </>
-    ),
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <List {...args} spacing="loose">
+        <ListItem>
+          {t("story_list_loose")} 1
+        </ListItem>
+        <ListItem>
+          {t("story_list_loose")} 2
+        </ListItem>
+      </List>
+    );
   },
 };
 
 export const WithIcons: Story = {
-  args: {
-    children: (
-      <>
-        <ListItem iconName="CheckIcon">完了したタスク</ListItem>
-        <ListItem iconName="PdfIcon">マニュアルをダウンロード (PDF)</ListItem>
-        <ListItem iconName="ImageIcon">写真ギャラリーを表示</ListItem>
-        <ListItem iconName="EmailIcon">メールで問い合わせる</ListItem>
-        <ListItem iconName="PhoneIcon">電話をかける (03-xxxx-xxxx)</ListItem>
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <List {...args}>
+        <ListItem iconName="CheckIcon">{t("story_list_task_completed")}</ListItem>
+        <ListItem iconName="PdfIcon">{t("story_list_manual_pdf")}</ListItem>
+        <ListItem iconName="ImageIcon">{t("story_list_gallery")}</ListItem>
+        <ListItem iconName="EmailIcon">{t("story_list_email")}</ListItem>
+        <ListItem iconName="PhoneIcon">{t("story_list_phone")}</ListItem>
         <ListItem iconName="ExternalLinkIcon" iconPosition="right">
-          詳細を見る
+          {t("story_list_view_details")}
         </ListItem>
-      </>
-    ),
+      </List>
+    );
   },
 };

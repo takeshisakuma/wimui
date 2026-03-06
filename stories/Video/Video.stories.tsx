@@ -1,7 +1,9 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Video } from "@/components/Video/Video";
 import sampleVideo from "@/media/videosample.mp4";
 import videoPoster from "@/media/video_poster.webp";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Video> = {
   title: "Components/Media/Video",
@@ -34,15 +36,21 @@ export const Default: Story = {
 };
 
 export const AutoPlay: Story = {
-  args: {
-    src: sampleVideo,
-    poster: videoPoster,
-    width: 600,
-    autoPlay: true,
-    muted: true,
-    loop: true,
-    controls: false,
-    caption: "自動再生＆ループ設定（ミュート必須）",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Video
+        {...args}
+        src={sampleVideo}
+        poster={videoPoster}
+        width={600}
+        autoPlay={true}
+        muted={true}
+        loop={true}
+        controls={false}
+        caption={t("story_video_autoplay_caption")}
+      />
+    );
   },
 };
 
@@ -57,47 +65,58 @@ export const Rounded: Story = {
 };
 
 export const CustomControls: Story = {
-  args: {
-    src: sampleVideo,
-    poster: videoPoster,
-    width: 600,
-    customControls: true,
-    radius: "medium",
-    shadow: true,
-    caption: "カスタムコントロール付きビデオ",
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Video
+        {...args}
+        src={sampleVideo}
+        poster={videoPoster}
+        width={600}
+        customControls={true}
+        radius="medium"
+        shadow={true}
+        caption={t("story_video_custom_caption")}
+      />
+    );
   },
 };
 
 export const FullFeatured: Story = {
   name: "Full Featured",
-  args: {
-    width: 800,
-    videoId: "sample-demo-vid",
-    resumePlayback: true,
-    autoPlayNext: true,
-    controls: false,
-    radius: "large",
-    shadow: true,
-    border: true,
-    fit: "cover",
-    preload: "auto",
-    caption:
-      "全機能（全部盛り）プレーヤー: 画質変更・速度・フィット・プレイリスト・レジューム再生",
-    customControls: true,
-    advancedControls: true,
-    qualities: [
-      { label: "1080p", src: sampleVideo },
-      { label: "720p", src: sampleVideo },
-      { label: "Auto", src: sampleVideo },
-    ],
-    playlist: [
-      {
-        src: sampleVideo,
-        title: "エピソード 1: はじまり",
-        poster: videoPoster,
-      },
-      { src: sampleVideo, title: "エピソード 2: 展開", poster: videoPoster },
-      { src: sampleVideo, title: "エピソード 3: 結末", poster: videoPoster },
-    ],
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Video
+        {...args}
+        width={800}
+        videoId="sample-demo-vid"
+        resumePlayback={true}
+        autoPlayNext={true}
+        controls={false}
+        radius="large"
+        shadow={true}
+        border={true}
+        fit="cover"
+        preload="auto"
+        caption={t("story_video_full_caption")}
+        customControls={true}
+        advancedControls={true}
+        qualities={[
+          { label: "1080p", src: sampleVideo },
+          { label: "720p", src: sampleVideo },
+          { label: "Auto", src: sampleVideo },
+        ]}
+        playlist={[
+          {
+            src: sampleVideo,
+            title: t("story_video_ep1"),
+            poster: videoPoster,
+          },
+          { src: sampleVideo, title: t("story_video_ep2"), poster: videoPoster },
+          { src: sampleVideo, title: t("story_video_ep3"), poster: videoPoster },
+        ]}
+      />
+    );
   },
 };

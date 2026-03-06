@@ -19,15 +19,15 @@ const meta: Meta<typeof AppShell> = {
   argTypes: {
     padding: {
       control: "boolean",
-      description: "メインコンテンツにパディングを追加します",
+      description: "Add padding to the main content",
     },
     centered: {
       control: "boolean",
-      description: "メインコンテンツを水平方向に中央揃えします",
+      description: "Center the main content horizontally",
     },
     maxWidth: {
       control: "text",
-      description: "中央揃え時の最大幅を指定します",
+      description: "Specify the maximum width when centered",
     },
     header: { table: { disable: true } },
     sidebar: { table: { disable: true } },

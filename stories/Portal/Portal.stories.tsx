@@ -7,6 +7,7 @@ import { Card } from "@/components/Card/Card";
 import { Stack } from "@/components/Stack/Stack";
 import { Textarea } from "@/components/Textarea/Textarea";
 import { Badge } from "@/components/Badge/Badge";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Portal> = {
   title: "Components/Utilities/Portal",
@@ -24,8 +25,9 @@ type Story = StoryObj<typeof meta>;
  * overflow: hidden な親要素を突き抜ける例
  */
 export const OverflowEscape: Story = {
-  render: () => {
+  render: function Render() {
     const [show, setShow] = useState(false);
+    const { t } = useTranslation();
     return (
       <div
         style={{
@@ -45,15 +47,17 @@ export const OverflowEscape: Story = {
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "10px" }}>
-          <p>
-            このグレーの枠線内は <strong>overflow: hidden</strong> です。
-          </p>
-          <p>Portal を使わないと右下のポップアップは見切れてしまいます。</p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t("story_portal_desc_overflow"),
+            }}
+          />
+          <p>{t("story_portal_desc_escape")}</p>
         </div>
 
         <Button
           onClick={() => setShow(!show)}
-          label={show ? "メッセージを閉じる" : "身代わり（Portal）を表示"}
+          label={show ? t("story_portal_btn_hide") : t("story_portal_btn_show")}
           priority="primary"
         />
 
@@ -83,16 +87,16 @@ export const OverflowEscape: Story = {
                                 }
                             `}</style>
               <h4 style={{ margin: "0 0 8px 0", color: "#60a5fa" }}>
-                Portal の力
+                {t("story_portal_power_title")}
               </h4>
-              <p style={{ margin: 0, fontSize: "14px", lineHeight: "1.5" }}>
-                私は親要素の <code>overflow: hidden</code>{" "}
-                を無視して、画面の右下に独立して表示されています。
-              </p>
+              <p
+                style={{ margin: 0, fontSize: "14px", lineHeight: "1.5" }}
+                dangerouslySetInnerHTML={{ __html: t("story_portal_power_desc") }}
+              />
               <div style={{ marginTop: "12px", textAlign: "right" }}>
                 <Button
                   size="small"
-                  label="了解"
+                  label={t("story_portal_btn_ok")}
                   onClick={() => setShow(false)}
                 />
               </div>
@@ -108,11 +112,12 @@ export const OverflowEscape: Story = {
  * 特定の DOM 要素へのレンダリング例
  */
 export const CustomContainer: Story = {
-  render: () => {
+  render: function Render() {
     const [container, setContainer] = useState<HTMLDivElement | null>(null);
+    const { t } = useTranslation();
     return (
       <div style={{ width: "100%", maxWidth: "500px" }}>
-        <p>下の青い枠は Portal の「転送先（container）」です。</p>
+        <p>{t("story_portal_container_desc")}</p>
 
         <div
           style={{
@@ -130,9 +135,9 @@ export const CustomContainer: Story = {
               borderRadius: "8px",
             }}
           >
-            <h4>送信元</h4>
+            <h4>{t("story_portal_source_title")}</h4>
             <p style={{ fontSize: "12px", color: "#666" }}>
-              ここに Portal コンポーネントを配置しています。
+              {t("story_portal_source_desc")}
             </p>
             <Portal container={container}>
               <div
@@ -155,7 +160,7 @@ export const CustomContainer: Story = {
                   name="CheckCircleIcon"
                   style={{ width: "20px", height: "20px" }}
                 />
-                送信完了！
+                {t("story_portal_sent_success")}
               </div>
             </Portal>
           </div>
@@ -176,7 +181,7 @@ export const CustomContainer: Story = {
           >
             {/* ここに Portal の中身が表示される */}
             {!container && (
-              <span style={{ color: "#3b82f6" }}>読み込み中...</span>
+              <span style={{ color: "#3b82f6" }}>{t("story_portal_loading")}</span>
             )}
           </div>
         </div>
@@ -191,20 +196,21 @@ export const CustomContainer: Story = {
  * 情報を Portal で送り込む例です。
  */
 export const NotificationCenter: Story = {
-  render: () => {
+  render: function Render() {
     const [logContainer, setLogContainer] = useState<HTMLDivElement | null>(
       null,
     );
     const [logs, setLogs] = useState<{ id: string; msg: string; type: any }[]>(
       [],
     );
+    const { t } = useTranslation();
 
     const addLog = (msg: string, type: any = "info") => {
       const id = Math.random().toString(36).slice(2, 9);
       setLogs((prev) => [{ id, msg, type }, ...prev].slice(0, 10));
     };
 
-    const SenderComponent = ({ name, type, color }: any) => {
+    const SenderComponent = ({ name, type, color, displayName }: any) => {
       const [active, setActive] = useState(false);
       return (
         <Card variant="outline" padding="sm">
@@ -216,9 +222,9 @@ export const NotificationCenter: Story = {
                 alignItems: "center",
               }}
             >
-              <strong>{name}</strong>
+              <strong>{displayName}</strong>
               <Badge
-                content={active ? "稼働中" : "停止中"}
+                content={active ? t("story_portal_active") : t("story_portal_inactive")}
                 color={active ? "success" : "neutral"}
                 size="small"
               />
@@ -230,11 +236,11 @@ export const NotificationCenter: Story = {
                 const newState = !active;
                 setActive(newState);
                 addLog(
-                  `${name} が${newState ? "起動" : "停止"}しました`,
+                  `${displayName}${newState ? t("story_portal_log_started") : t("story_portal_log_stopped")}`,
                   newState ? "success" : "warning",
                 );
               }}
-              label={active ? "停止する" : "起動する"}
+              label={active ? t("story_portal_btn_stop") : t("story_portal_btn_start")}
             />
             {active && (
               <Portal container={logContainer}>
@@ -250,7 +256,7 @@ export const NotificationCenter: Story = {
                   }}
                 >
                   <style>{`@keyframes slideIn { from { opacity:0; transform:translateX(-10px); } to { opacity:1; transform:translateX(0); } }`}</style>
-                  <strong>[{name}]</strong> 正常稼働中...
+                  <strong>[{displayName}]</strong> {t("story_portal_status_desc")}
                 </div>
               </Portal>
             )}
@@ -285,16 +291,15 @@ export const NotificationCenter: Story = {
                 `}</style>
         <div className="notification-grid">
           <Stack gap="md">
-            <h4>制御パネル</h4>
+            <h4>{t("story_portal_panel_title")}</h4>
             <p style={{ fontSize: "14px", color: "#666" }}>
-              各コンポーネントの状態変更が、右側のモニタリングエリアに Portal
-              経由で通知されます。
+              {t("story_portal_panel_desc")}
             </p>
             <div className="sender-grid">
-              <SenderComponent name="センサー A" color="#ecfdf5" />
-              <SenderComponent name="センサー B" color="#eff6ff" />
-              <SenderComponent name="カメラ 01" color="#fff7ed" />
-              <SenderComponent name="アラーム" color="#fef2f2" />
+              <SenderComponent name="A" displayName={t("story_portal_sensor_a")} color="#ecfdf5" />
+              <SenderComponent name="B" displayName={t("story_portal_sensor_b")} color="#eff6ff" />
+              <SenderComponent name="C" displayName={t("story_portal_camera")} color="#fff7ed" />
+              <SenderComponent name="D" displayName={t("story_portal_alarm")} color="#fef2f2" />
             </div>
           </Stack>
 
@@ -313,9 +318,9 @@ export const NotificationCenter: Story = {
             >
               <Stack direction="row" justify="between" align="center">
                 <span style={{ fontSize: "12px", fontWeight: "bold" }}>
-                  SYSTEM MONITOR
+                  {t("story_portal_monitor_title")}
                 </span>
-                <Badge content="LIVE" color="error" size="small" />
+                <Badge content={t("story_portal_monitor_live")} color="error" size="small" />
               </Stack>
             </Card.Header>
             <Card.Body style={{ flex: 1, overflowY: "auto", padding: "12px" }}>
@@ -323,7 +328,7 @@ export const NotificationCenter: Story = {
                 ref={setLogContainer}
                 style={{
                   marginBottom: "16px",
-                  borderBottom: "1px dashed #334155",
+                  borderBottom: "1px solid #334155",
                   paddingBottom: "16px",
                 }}
               >
@@ -331,7 +336,7 @@ export const NotificationCenter: Story = {
               </div>
               <div style={{ fontSize: "11px", fontFamily: "monospace" }}>
                 <div style={{ color: "#64748b", marginBottom: "8px" }}>
-                  --- イベント履歴 ---
+                  {t("story_portal_history_title")}
                 </div>
                 {logs.map((log) => (
                   <div
@@ -340,7 +345,7 @@ export const NotificationCenter: Story = {
                       marginBottom: "4px",
                       color:
                         log.type === "success"
-                          ? "#4ade80"
+                           ? "#4ade80"
                           : log.type === "warning"
                             ? "#fbbf24"
                             : "#94a3b8",
@@ -350,7 +355,7 @@ export const NotificationCenter: Story = {
                   </div>
                 ))}
                 {logs.length === 0 && (
-                  <div style={{ color: "#475569" }}>待機中...</div>
+                  <div style={{ color: "#475569" }}>{t("story_portal_waiting")}</div>
                 )}
               </div>
             </Card.Body>
@@ -367,30 +372,28 @@ export const NotificationCenter: Story = {
  * 「ロジックや状態はアイテム自身に持たせたい」という場合に Portal が役立ちます。
  */
 export const SidePanelDetail: Story = {
-  render: () => {
+  render: function Render() {
     const [panelContainer, setPanelContainer] = useState<HTMLDivElement | null>(
       null,
     );
     const [selectedId, setSelectedId] = useState<number | null>(null);
+    const { t } = useTranslation();
 
     const tasks = [
       {
         id: 1,
-        title: "コードレビュー",
-        detail:
-          "新しいPortalストーリーの実装を確認し、アクセシビリティチェックを行う。",
+        title: t("story_portal_task1_title"),
+        detail: t("story_portal_task1_detail"),
       },
       {
         id: 2,
-        title: "バグ修正",
-        detail:
-          "テーブルのレスポンスが遅い問題を調査し、メモダイズを適用して最適化する。",
+        title: t("story_portal_task2_title"),
+        detail: t("story_portal_task2_detail"),
       },
       {
         id: 3,
-        title: "ドキュメント作成",
-        detail:
-          "MDXファイルに具体的なユースケース（通知センターとサイドパネル）を追加する。",
+        title: t("story_portal_task3_title"),
+        detail: t("story_portal_task3_detail"),
       },
     ];
 
@@ -455,17 +458,17 @@ export const SidePanelDetail: Story = {
                       color: "#64748b",
                     }}
                   >
-                    担当者メモ:
+                    {t("story_portal_task_memo")}
                   </label>
                   <Textarea
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
-                    placeholder="ここにメモを入力（この入力値はリストアイテム内の state で保持されています）"
+                    placeholder={t("story_portal_memo_placeholder")}
                     rows={5}
                     fullWidth
                   />
                   <p style={{ fontSize: "11px", color: "#94a3b8" }}>
-                    ※リスト上の別のタスクに切り替えても、再選択すれば入力内容は保持されています（コンポーネントが破棄されていないため）。
+                    {t("story_portal_memo_note")}
                   </p>
                 </Stack>
               </div>
@@ -518,7 +521,7 @@ export const SidePanelDetail: Story = {
         <Card variant="outline" padding="none" className="portal-demo-card">
           <div className="portal-demo-sidebar">
             <div style={{ padding: "20px", borderBottom: "1px solid #e2e8f0" }}>
-              <h4 style={{ margin: 0 }}>タスク管理</h4>
+              <h4 style={{ margin: 0 }}>{t("story_portal_task_mgmt")}</h4>
             </div>
             <div style={{ flex: 1, overflowY: "auto", padding: "20px" }}>
               {tasks.map((task) => (
@@ -551,12 +554,12 @@ export const SidePanelDetail: Story = {
                   color: "#64748b",
                 }}
               >
-                詳細プレビュー
+                {t("story_portal_preview_title")}
               </span>
               {selectedId && (
                 <Button
                   size="small"
-                  label="閉じる"
+                  label={t("story_visuallyhidden_close")}
                   priority="secondary"
                   onClick={() => setSelectedId(null)}
                 />
@@ -592,7 +595,7 @@ export const SidePanelDetail: Story = {
                       opacity: 0.5,
                     }}
                   />
-                  <p>リストからタスクを選択してください。</p>
+                  <p>{t("story_portal_select_task")}</p>
                 </div>
               )}
             </div>

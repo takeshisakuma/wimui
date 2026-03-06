@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Dialog,
@@ -13,6 +14,7 @@ import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
 import { Label } from "@/components/Label/Label";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Dialog> = {
   title: "Components/Overlays/Dialog",
@@ -41,95 +43,100 @@ export default meta;
 type Story = StoryObj<typeof Dialog>;
 
 export const Default: Story = {
-  render: (args) => (
-    <Dialog {...args}>
-      <DialogTrigger asChild>
-        <Button
-          priority="primary"
-          label="Open Dialog"
-          aria-label={false as any}
-        />
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Edit Profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
-          </DialogDescription>
-        </DialogHeader>
-        <div style={{ display: "grid", gap: "1.5rem", padding: "1rem 0" }}>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-          >
-            <Label htmlFor="name" label="Name" />
-            <Input id="name" defaultValue="Pedro Duarte" fullWidth />
-          </div>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-          >
-            <Label htmlFor="username" label="Username" />
-            <Input id="username" defaultValue="@peduarte" fullWidth />
-          </div>
-        </div>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button
-              priority="secondary"
-              label="Cancel"
-              aria-label={false as any}
-            />
-          </DialogClose>
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return (
+      <Dialog {...args}>
+        <DialogTrigger asChild>
           <Button
             priority="primary"
-            label="Save changes"
+            label={t("story_dialog_open")}
             aria-label={false as any}
           />
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  ),
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("story_dialog_edit_title")}</DialogTitle>
+            <DialogDescription>{t("story_dialog_edit_desc")}</DialogDescription>
+          </DialogHeader>
+          <div style={{ display: "grid", gap: "1.5rem", padding: "1rem 0" }}>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+            >
+              <Label htmlFor="name" label={t("story_dialog_name")} />
+              <Input id="name" defaultValue="Pedro Duarte" fullWidth />
+            </div>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+            >
+              <Label htmlFor="username" label={t("story_dialog_username")} />
+              <Input id="username" defaultValue="@peduarte" fullWidth />
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button
+                priority="secondary"
+                label={t("story_dialog_cancel")}
+                aria-label={false as any}
+              />
+            </DialogClose>
+            <Button
+              priority="primary"
+              label={t("story_dialog_save")}
+              aria-label={false as any}
+            />
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
 };
 
 export const Uncontrolled: Story = {
-  render: () => (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          priority="secondary"
-          label="Open Uncontrolled"
-          aria-label={false as any}
-        />
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Uncontrolled Dialog</DialogTitle>
-          <DialogDescription>
-            This dialog manages its own state.
-          </DialogDescription>
-        </DialogHeader>
-        <p>You can close me with logic or the close button.</p>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button
-              priority="secondary"
-              label="Cancel"
-              aria-label={false as any}
-            />
-          </DialogClose>
+  render: function Render() {
+    const { t } = useTranslation();
+    return (
+      <Dialog>
+        <DialogTrigger asChild>
           <Button
-            priority="primary"
-            label="Confirm Action"
-            onClick={() => alert("Confirmed!")}
+            priority="secondary"
+            label={t("story_dialog_uncontrolled")}
             aria-label={false as any}
           />
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  ),
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("story_dialog_uncontrolled_title")}</DialogTitle>
+            <DialogDescription>
+              {t("story_dialog_uncontrolled_desc")}
+            </DialogDescription>
+          </DialogHeader>
+          <p>{t("story_dialog_uncontrolled_body")}</p>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button
+                priority="secondary"
+                label={t("story_dialog_cancel")}
+                aria-label={false as any}
+              />
+            </DialogClose>
+            <Button
+              priority="primary"
+              label={t("story_dialog_confirm")}
+              onClick={() => alert(t("story_dialog_confirmed_msg"))}
+              aria-label={false as any}
+            />
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
 };
 
 export const Controlled: Story = {
-  render: () => {
+  render: function Render() {
+    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     return (
       <div
@@ -140,10 +147,12 @@ export const Controlled: Story = {
           alignItems: "center",
         }}
       >
-        <p>Current state: {open ? "Open" : "Closed"}</p>
+        <p>
+          {t("story_dialog_curr_state")}: {open ? "Open" : "Closed"}
+        </p>
         <Button
           priority="primary"
-          label="Open via State"
+          label={t("story_dialog_state_open")}
           onClick={() => setOpen(true)}
           aria-label={false as any}
         />
@@ -151,25 +160,22 @@ export const Controlled: Story = {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Controlled Dialog</DialogTitle>
+              <DialogTitle>{t("story_dialog_controlled_title")}</DialogTitle>
               <DialogDescription>
-                This dialog is controlled by external state.
+                {t("story_dialog_controlled_desc")}
               </DialogDescription>
             </DialogHeader>
-            <p>
-              Click outside or escape to close, creating a callback to
-              setOpen(false).
-            </p>
+            <p>{t("story_dialog_controlled_body")}</p>
             <DialogFooter>
               <Button
                 priority="secondary"
-                label="Cancel"
+                label={t("story_dialog_cancel")}
                 onClick={() => setOpen(false)}
                 aria-label={false as any}
               />
               <Button
                 priority="primary"
-                label="Close via State"
+                label={t("story_dialog_state_close")}
                 onClick={() => setOpen(false)}
                 aria-label={false as any}
               />

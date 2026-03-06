@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Box } from "../../src/components/Box/Box";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Box> = {
   title: "Components/Layout/Box",
@@ -18,8 +19,11 @@ export default meta;
 type Story = StoryObj<typeof Box>;
 
 export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Box {...args}>{t("story_box_default")}</Box>;
+  },
   args: {
-    children: "This is a Box",
     bg: "#f0f0f0",
     p: 20,
     radius: 8,
@@ -27,8 +31,11 @@ export const Default: Story = {
 };
 
 export const WithCustomShadow: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Box {...args}>{t("story_box_shadow")}</Box>;
+  },
   args: {
-    children: "Box with Shadow",
     bg: "white",
     p: 40,
     radius: 12,
@@ -38,9 +45,12 @@ export const WithCustomShadow: Story = {
 };
 
 export const AsButton: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Box {...args}>{t("story_box_button")}</Box>;
+  },
   args: {
     as: "button",
-    children: "Box as Button",
     bg: "#eff6ff",
     color: "#1d4ed8",
     p: "10px 20px",
@@ -50,38 +60,44 @@ export const AsButton: Story = {
 };
 
 export const Spacing: Story = {
-  render: () => (
-    <Box bg="#f8fafc" p={20} radius={8} style={{ border: "1px solid #e2e8f0" }}>
-      <Box
-        bg="#eff6ff"
-        p={15}
-        mb={15}
-        color="#1d4ed8"
-        radius={4}
-        style={{ border: "1px solid #bfdbfe" }}
-      >
-        Margin Bottom 15
+  render: function Render() {
+    const { t } = useTranslation();
+    return (
+      <Box bg="#f8fafc" p={20} radius={8} style={{ border: "1px solid #e2e8f0" }}>
+        <Box
+          bg="#eff6ff"
+          p={15}
+          mb={15}
+          color="#1d4ed8"
+          radius={4}
+          style={{ border: "1px solid #bfdbfe" }}
+        >
+          {t("story_box_margin")}
+        </Box>
+        <Box
+          bg="#f0fdf4"
+          p={15}
+          color="#15803d"
+          radius={4}
+          style={{ border: "1px solid #bbf7d0" }}
+        >
+          {t("story_box_2")}
+        </Box>
       </Box>
-      <Box
-        bg="#f0fdf4"
-        p={15}
-        color="#15803d"
-        radius={4}
-        style={{ border: "1px solid #bbf7d0" }}
-      >
-        Box 2
-      </Box>
-    </Box>
-  ),
+    );
+  },
 };
 
 export const PaddingProps: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation();
+    return <Box {...args}>{t("story_box_padding")}</Box>;
+  },
   args: {
-    children: "Box with px and py",
     bg: "#fdf2f8",
     color: "#be185d",
-    px: 40, // 左右パディング
-    py: 10, // 上下パディング
+    px: 40, // Left and right padding
+    py: 10, // Top and bottom padding
     radius: 8,
     style: { border: "1px solid #fbcfe8", display: "inline-block" },
   },
