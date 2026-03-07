@@ -1,4 +1,4 @@
-﻿.wim-command-palette-overlay {
+.wim-command-palette-overlay {
   position: fixed;
   inset: 0;
   z-index: 1000;
@@ -61,22 +61,37 @@
   display: flex;
   align-items: center;
   padding: 0 var(--spacing-md);
-  border-bottom: 1px solid var(--wim-color-border-secondary);
+  border-bottom: 2px solid var(--wim-color-border-secondary); // Slightly thicker for focus transition
+  transition: all 0.2s ease;
 
   .wim-icon {
     margin-right: var(--spacing-sm);
     color: var(--text-tertiary);
+    transition: color 0.2s ease;
+  }
+
+  &:focus-within {
+    border-bottom-color: var(--color-primary);
+    background-color: var(--bg-hover, rgb(0 0 0 / 0.02));
+
+    .wim-icon {
+      color: var(--color-primary);
+    }
   }
 }
 
 .wim-command-palette-input {
   flex: 1;
-  height: 56px; // Slightly taller for mobile tap
+  height: 54px; // Adjusted for 2px border to maintain height
   font-size: 1rem;
   color: var(--text-primary);
   outline: none;
   background: transparent;
   border: none;
+
+  &:focus-visible {
+    box-shadow: none !important; // Override global focus shadow
+  }
 
   &::placeholder {
     color: var(--text-tertiary);
