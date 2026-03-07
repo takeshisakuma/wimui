@@ -14,7 +14,7 @@ type Story = StoryObj<typeof LinkButton>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <LinkButton
         {...args}

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BackTop } from "../../src/components/BackTop/BackTop";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof BackTop> = {
   title: "Components/Navigation Utilities/BackTop",
@@ -14,54 +15,54 @@ export default meta;
 type Story = StoryObj<typeof BackTop>;
 
 export const Basic: Story = {
-  args: {
-    visibilityHeight: 400,
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div style={{ height: "200vh", padding: "20px" }}>
+        <p>{t("story_backtop_scroll")}</p>
+        <p>{t("story_backtop_visible_400")}</p>
+        <BackTop {...args} visibilityHeight={400} />
+      </div>
+    );
   },
-  render: (args) => (
-    <div style={{ height: "200vh", padding: "20px" }}>
-      <p>Scroll down to see the BackTop button appear.</p>
-      <p>The button will become visible after scrolling 400px.</p>
-      <BackTop {...args} />
-    </div>
-  ),
 };
 
 export const CustomElement: Story = {
-  args: {
-    visibilityHeight: 200,
-    children: (
-      <div
-        style={{
-          height: 40,
-          width: 40,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 4,
-          backgroundColor: "#108ee9",
-          color: "#fff",
-          fontSize: 14,
-        }}
-      >
-        UP
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div style={{ height: "200vh", padding: "20px" }}>
+        <p>{t("story_backtop_custom_scroll")}</p>
+        <p>{t("story_backtop_visible_200")}</p>
+        <BackTop {...args} visibilityHeight={200}>
+          <div
+            style={{
+              height: 40,
+              width: 40,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 4,
+              backgroundColor: "#108ee9",
+              color: "#fff",
+              fontSize: 14,
+            }}
+          >
+            {t("story_backtop_up")}
+          </div>
+        </BackTop>
       </div>
-    ),
+    );
   },
-  render: (args) => (
-    <div style={{ height: "200vh", padding: "20px" }}>
-      <p>Scroll down to see the custom BackTop button appear.</p>
-      <p>The button will become visible after scrolling 200px.</p>
-      <BackTop {...args} />
-    </div>
-  ),
 };
 
 const SpecificTargetStory = () => {
   const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+  const { t } = useTranslation(["docs", "common", "components"]);
 
   return (
     <div style={{ padding: "20px" }}>
-      <p>Scrolling is limited to the blue box below.</p>
+      <p>{t("story_backtop_target_msg")}</p>
       <div
         ref={(node) => setContainer(node)}
         style={{
@@ -73,7 +74,7 @@ const SpecificTargetStory = () => {
         }}
       >
         <div style={{ height: "1000px" }}>
-          <p>Scroll inside this box...</p>
+          <p>{t("story_backtop_inside_box")}</p>
           <BackTop
             target={() => container}
             visibilityHeight={100}

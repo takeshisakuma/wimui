@@ -41,7 +41,7 @@ type Story = StoryObj<typeof Card>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Card {...args}>
         <Card.Body>
@@ -59,7 +59,7 @@ export const Default: Story = {
 
 export const Outline: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Card {...args}>
         <Card.Body>
@@ -77,7 +77,7 @@ export const Outline: Story = {
 
 export const Flat: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Card {...args}>
         <Card.Body>
@@ -95,7 +95,7 @@ export const Flat: Story = {
 
 export const WithHeaderAndFooter: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Card {...args} style={{ width: "400px" }}>
         <Card.Header>

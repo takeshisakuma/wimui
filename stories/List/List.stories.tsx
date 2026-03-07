@@ -27,7 +27,7 @@ type Story = StoryObj<typeof List>;
 
 export const Unordered: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <List {...args} as="ul">
         <ListItem>{t("story_list_item1")}</ListItem>
@@ -42,7 +42,7 @@ export const Unordered: Story = {
 
 export const Ordered: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <List {...args} as="ol">
         <ListItem>{t("story_list_step1")}</ListItem>
@@ -55,7 +55,7 @@ export const Ordered: Story = {
 
 export const Small: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <List {...args} size="small">
         <ListItem>
@@ -71,7 +71,7 @@ export const Small: Story = {
 
 export const Large: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <List {...args} size="large">
         <ListItem>
@@ -87,7 +87,7 @@ export const Large: Story = {
 
 export const LooseSpacing: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <List {...args} spacing="loose">
         <ListItem>
@@ -103,7 +103,7 @@ export const LooseSpacing: Story = {
 
 export const WithIcons: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <List {...args}>
         <ListItem iconName="CheckIcon">{t("story_list_task_completed")}</ListItem>

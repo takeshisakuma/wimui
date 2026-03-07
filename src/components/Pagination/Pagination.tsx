@@ -246,7 +246,7 @@ export const Pagination = ({
                 <button
                   className="wim-pagination__button"
                   onClick={() => handlePageChange(pageNumber as number)}
-                  aria-label={`Go to page ${pageNumber}`}
+                  aria-label={t("a11y_go_to_page", { page: pageNumber })}
                   aria-current={pageNumber === current ? "page" : undefined}
                 >
                   {pageNumber}
@@ -285,7 +285,7 @@ export const Pagination = ({
           >
             {pageSizeOptions.map((size) => (
               <option key={size} value={size}>
-                {size} / page
+                {size} {t("pagination_items_per_page")}
               </option>
             ))}
           </select>
@@ -295,7 +295,7 @@ export const Pagination = ({
       {/* Quick Jumper */}
       {showQuickJumper && (
         <div className="wim-pagination__quick-jumper">
-          <span>Go to</span>
+          <span>{t("pagination_go_to")}</span>
           <input
             type="number"
             min={1}

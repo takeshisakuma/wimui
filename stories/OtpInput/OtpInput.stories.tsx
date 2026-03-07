@@ -44,7 +44,7 @@ export const ErrorStatus: Story = {
 };
 
 export const Controlled = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   const [value, setValue] = useState("");
   return (
     <div>

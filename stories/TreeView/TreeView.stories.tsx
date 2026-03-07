@@ -40,7 +40,7 @@ export const Default: Story = {
     width: "100%",
   },
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <TreeView {...args} defaultExpandedValues={["1", "2"]}>
         <TreeView.Item
@@ -104,7 +104,7 @@ export const Default: Story = {
 
 export const MultiSelect: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <TreeView multiSelect defaultExpandedValues={["1"]}>
         <TreeView.Item value="1" label={t("story_tree_system")}>
@@ -122,7 +122,7 @@ export const MultiSelect: Story = {
 
 export const DisabledItems: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <TreeView defaultExpandedValues={["1"]}>
         <TreeView.Item value="1" label={t("story_tree_root_enabled")}>
@@ -140,7 +140,7 @@ export const DisabledItems: Story = {
 
 export const Overflow: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <TreeView width={250} defaultExpandedValues={["1"]}>
         <TreeView.Item

@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .wim-button {
     position: relative;
     box-sizing: border-box;
@@ -51,7 +51,7 @@
     &__label {
       display: block;
       min-width: 0;
-      padding: 4px 0;
+      padding: 0;
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: 1.4;
@@ -59,28 +59,34 @@
     }
 
     &--icon-only {
-      width: auto;
-      height: auto;
-      padding: var(--spacing-sm) !important;
+      width: var(--wim-button-height);
+      height: var(--wim-button-height);
+      padding: 0 !important;
     }
 
     &--lg {
+      --wim-button-height: calc(var(--font-size-large) * 1 + 2 * var(--spacing-xl));
+
       max-width: 100%;
-      min-height: calc(var(--font-size-large) * 1 + 2 * var(--spacing-xl));
+      min-height: var(--wim-button-height);
       padding: var(--spacing-xl) var(--spacing-3xl);
       font-size: var(--font-size-large);
     }
 
     &--md {
+      --wim-button-height: calc(var(--font-size-medium) * 1 + 2 * var(--spacing-lg));
+
       max-width: 100%;
-      min-height: calc(var(--font-size-medium) * 1 + 2 * var(--spacing-lg));
+      min-height: var(--wim-button-height);
       padding: var(--spacing-lg) var(--spacing-2xl);
       font-size: var(--font-size-medium);
     }
 
     &--sm {
+      --wim-button-height: calc(var(--font-size-small) * 1 + 2 * var(--spacing-sm));
+
       max-width: 100%;
-      min-height: calc(var(--font-size-small) * 1 + 2 * var(--spacing-sm));
+      min-height: var(--wim-button-height);
       padding: var(--spacing-sm) var(--spacing-lg);
       font-size: var(--font-size-small);
     }

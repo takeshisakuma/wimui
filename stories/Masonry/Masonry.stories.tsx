@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Masonry } from "@/components/Masonry/Masonry";
 import { Box } from "@/components/Box/Box";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Masonry> = {
   title: "Components/Layout/Masonry",
@@ -18,32 +19,42 @@ type Story = StoryObj<typeof Masonry>;
 
 const heights = [150, 200, 100, 250, 180, 220, 120, 300, 140, 190];
 
+const MasonryDemo = (args: any) => {
+  const { t } = useTranslation(["docs", "common", "components"]);
+  return (
+    <Masonry {...args}>
+      {heights.map((height, index) => (
+        <Box
+          key={index}
+          bg={`hsl(${index * 40}, 70%, 80%)`}
+          radius={8}
+          h={height}
+          display="flex"
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "24px",
+            fontWeight: "bold",
+            color: `hsl(${index * 40}, 70%, 30%)`,
+          }}
+        >
+          {index + 1}
+        </Box>
+      ))}
+    </Masonry>
+  );
+};
+
 export const Default: Story = {
+  render: (args) => <MasonryDemo {...args} />,
   args: {
     columns: 3,
     spacing: 16,
-    children: heights.map((height, index) => (
-      <Box
-        key={index}
-        bg={`hsl(${index * 40}, 70%, 80%)`}
-        radius={8}
-        h={height}
-        display="flex"
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "24px",
-          fontWeight: "bold",
-          color: `hsl(${index * 40}, 70%, 30%)`,
-        }}
-      >
-        {index + 1}
-      </Box>
-    )),
   },
 };
 
 export const ManyColumns: Story = {
+  render: (args) => <MasonryDemo {...args} />,
   args: {
     ...Default.args,
     columns: 5,
@@ -52,6 +63,7 @@ export const ManyColumns: Story = {
 };
 
 export const LargeSpacing: Story = {
+  render: (args) => <MasonryDemo {...args} />,
   args: {
     ...Default.args,
     columns: 3,

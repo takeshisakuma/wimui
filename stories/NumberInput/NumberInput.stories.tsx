@@ -15,7 +15,7 @@ type Story = StoryObj<typeof NumberInput>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_numberinput_label")}>
         <NumberInput {...args} placeholder="100" />

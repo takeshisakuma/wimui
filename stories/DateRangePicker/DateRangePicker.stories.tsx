@@ -14,7 +14,7 @@ type Story = StoryObj<typeof DateRangePicker>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <DateRangePicker
         {...args}

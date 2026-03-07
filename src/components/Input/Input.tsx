@@ -16,6 +16,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   onRightIconClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   allowClear?: boolean;
   showPasswordToggle?: boolean;
+  rightIconClassName?: string;
 };
 
 /**
@@ -37,6 +38,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       onRightIconClick,
       allowClear = false,
       showPasswordToggle = true,
+      rightIconClassName,
       value,
       defaultValue,
       onChange,
@@ -124,29 +126,52 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       return "secondary";
     };
 
-    // アイコン決定ロジック (優先順位順)
-    let finalRightIcon: React.ComponentProps<typeof Icon>["name"] | undefined =
-      undefined;
-    let finalOnRightIconClick:
-      | ((e: React.MouseEvent<HTMLButtonElement>) => void)
-      | undefined = undefined;
+    // アイコン決定ロジック
+    const showClear = allowClear && currentValue && !isDisabled;
+    const showPasswordToggleBtn = type === "password" && showPasswordToggle;
 
-    if (type === "password" && showPasswordToggle) {
-      // パスワード表示トグルを最優先 (セキュリティ上重要)
-      finalRightIcon = isPasswordVisible ? "EyeOffIcon" : "EyeIcon";
-      finalOnRightIconClick = togglePasswordVisibility as unknown as (
-        e: React.MouseEvent<HTMLButtonElement>,
-      ) => void;
-    } else if (rightIcon === "ChevronDownIcon") {
-      // 明示的な下矢印（ドロップダウン等）
-      finalRightIcon = "ChevronDownIcon";
-      finalOnRightIconClick = onRightIconClick;
-    } else if (allowClear && currentValue) {
-      // 文字がある時のクリアボタン
-      finalRightIcon = "CloseIcon";
-      finalOnRightIconClick = handleClear as unknown as (
-        e: React.MouseEvent<HTMLButtonElement>,
-      ) => void;
+    const rightIcons: Array<{
+      name: React.ComponentProps<typeof Icon>["name"];
+      onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+      color?: React.ComponentProps<typeof Icon>["color"];
+      ariaLabel?: string;
+      className?: string;
+    }> = [];
+
+    if (showPasswordToggleBtn) {
+      rightIcons.push({
+        name: isPasswordVisible ? "EyeOffIcon" : "EyeIcon",
+        onClick: togglePasswordVisibility as unknown as (
+          e: React.MouseEvent<HTMLButtonElement>,
+        ) => void,
+        ariaLabel: isPasswordVisible ? t("a11y_hide_password") : t("a11y_show_password"),
+      });
+    }
+
+    // クリアボタン
+    if (showClear) {
+      rightIcons.push({
+        name: "CloseIcon",
+        onClick: handleClear as unknown as (
+          e: React.MouseEvent<HTMLButtonElement>,
+        ) => void,
+        ariaLabel: t("a11y_clear_input"),
+      });
+    }
+
+    // カスタム右アイコン
+    if (rightIcon) {
+      // 重複を避ける（名前が同じで既に存在する場合）
+      const exists = rightIcons.some((icon) => icon.name === rightIcon);
+      if (!exists) {
+        rightIcons.push({
+          name: rightIcon,
+          onClick: onRightIconClick,
+          color: rightIconColor,
+          ariaLabel: t("a11y_right_icon_action"),
+          className: rightIconClassName,
+        });
+      }
     }
 
     const inputType = type === "password" && isPasswordVisible ? "text" : type;
@@ -162,8 +187,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           `wim-input--${variant}`,
           fullWidth && "wim-input--full-width",
           leftIcon && "wim-input--has-left-icon",
-          finalRightIcon && "wim-input--has-right-icon",
-          !finalRightIcon && allowClear && "wim-input--reserve-right-icon",
+          rightIcons.length > 0 && "wim-input--has-right-icon",
+          rightIcons.length >= 2 && "wim-input--has-multiple-right-icons",
+          !rightIcons.length && allowClear && "wim-input--reserve-right-icon",
           className,
         )}
         disabled={isDisabled}
@@ -212,34 +238,44 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </div>
         )}
         {inputElement}
-        {finalRightIcon && (
+        {rightIcons.length > 0 && (
           <div
             className={classNames(
-              "wim-input-icon",
-              "wim-input-icon--right",
-              finalOnRightIconClick && "wim-input-icon--clickable",
+              "wim-input-icons",
+              "wim-input-icons--right",
             )}
           >
-            {finalOnRightIconClick ? (
-              <button
-                type="button"
-                onClick={finalOnRightIconClick}
-                className="wim-input-icon-button"
-                aria-label={t("a11y_right_icon_action")}
+            {rightIcons.map((icon, index) => (
+              <div
+                key={`${icon.name}-${index}`}
+                className={classNames(
+                  "wim-input-icon-item",
+                  icon.onClick && "wim-input-icon-item--clickable",
+                  (icon as any).className,
+                )}
               >
-                <Icon
-                  name={finalRightIcon}
-                  size="medium"
-                  color={getIconColor(rightIconColor)}
-                />
-              </button>
-            ) : (
-              <Icon
-                name={finalRightIcon}
-                size="medium"
-                color={getIconColor(rightIconColor)}
-              />
-            )}
+                {icon.onClick ? (
+                  <button
+                    type="button"
+                    onClick={icon.onClick}
+                    className="wim-input-icon-button"
+                    aria-label={icon.ariaLabel || t("a11y_right_icon_action")}
+                  >
+                    <Icon
+                      name={icon.name}
+                      size="medium"
+                      color={getIconColor(icon.color)}
+                    />
+                  </button>
+                ) : (
+                  <Icon
+                    name={icon.name}
+                    size="medium"
+                    color={getIconColor(icon.color)}
+                  />
+                )}
+              </div>
+            ))}
           </div>
         )}
       </div>

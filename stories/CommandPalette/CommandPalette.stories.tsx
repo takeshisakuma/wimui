@@ -26,7 +26,7 @@ export default meta;
 type Story = StoryObj<typeof CommandPalette>;
 
 const DefaultTemplate = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   const [search, setSearch] = useState("");
 
   const items = [
@@ -127,7 +127,7 @@ export const Default: Story = {
 };
 
 const ControlledTemplate = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   const [open, setOpen] = useState(false);
   return (
     <div style={{ padding: "100px 20px", textAlign: "center" }}>

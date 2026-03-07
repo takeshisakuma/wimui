@@ -35,7 +35,7 @@ type Story = StoryObj<typeof Header>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Header {...args}>
         <Header.Section align="start">
@@ -58,7 +58,7 @@ export const Default: Story = {
 
 export const Bordered: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Header {...args} bordered>
         <Header.Section align="start">
@@ -84,7 +84,7 @@ export const Glass: Story = {
     backgrounds: { default: "dark" },
   },
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Header {...args} glass background="transparent">
         <Header.Section align="start">
@@ -107,7 +107,7 @@ export const Glass: Story = {
 
 export const Sticky: Story = {
   render: function Render(args: HeaderProps) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div
         style={{
@@ -143,7 +143,7 @@ export const Playground: Story = {
     background: "primary",
   },
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div
         style={{

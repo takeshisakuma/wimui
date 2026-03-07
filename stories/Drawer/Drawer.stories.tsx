@@ -57,7 +57,7 @@ export const Default: Story = {
     side: "right",
   },
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
@@ -89,7 +89,7 @@ export const Left: Story = {
     side: "left",
   },
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
@@ -119,7 +119,7 @@ export const Top: Story = {
     side: "top",
   },
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
@@ -149,7 +149,7 @@ export const Bottom: Story = {
     side: "bottom",
   },
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
@@ -178,7 +178,7 @@ export const Bottom: Story = {
 
 export const Controlled: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [open, setOpen] = useState(false);
     return (
       <div
@@ -235,7 +235,7 @@ export const WithoutSlide: Story = {
     slideOut: false,
   },
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>

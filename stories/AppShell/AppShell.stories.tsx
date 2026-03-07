@@ -8,6 +8,7 @@ import TabBar from "@/components/TabBar/TabBar";
 import { Icon } from "@/components/Icon/Icon";
 import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof AppShell> = {
   title: "Components/Application Shell/AppShell",
@@ -41,105 +42,117 @@ export default meta;
 type Story = StoryObj<typeof AppShell>;
 
 export const Default: Story = {
-  args: {
-    header: (
-      <Header bordered>
-        <Header.Section align="start">
-          <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
-        </Header.Section>
-        <Header.Section align="end" style={{ gap: "8px" }}>
-          <Button priority="tertiary" size="small">
-            Docs
-          </Button>
-          <Button priority="primary" size="small">
-            Sign In
-          </Button>
-        </Header.Section>
-      </Header>
-    ),
-    children: (
-      <div>
-        <h2>Welcome to WIM UI</h2>
-        <p>This is the main content area of your application.</p>
-        <p>
-          The AppShell component provides a flexible layout structure for
-          building modern web applications.
-        </p>
-      </div>
-    ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <AppShell
+        {...args}
+        header={
+          <Header bordered>
+            <Header.Section align="start">
+              <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                WIM UI
+              </div>
+            </Header.Section>
+            <Header.Section align="end" style={{ gap: "8px" }}>
+              <Button priority="tertiary" size="small">
+                {t("story_appshell_docs")}
+              </Button>
+              <Button priority="primary" size="small">
+                {t("story_appshell_signin")}
+              </Button>
+            </Header.Section>
+          </Header>
+        }
+      >
+        <div>
+          <h2>{t("story_appshell_welcome")}</h2>
+          <p>{t("story_appshell_main_content")}</p>
+          <p>{t("story_appshell_flexible_layout")}</p>
+        </div>
+      </AppShell>
+    );
   },
 };
 
 export const ModernApp: Story = {
-  args: {
-    header: (
-      <Header bordered>
-        <Header.Section align="start">
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <div
-              style={{
-                width: 32,
-                height: 32,
-                background: "#0066ff",
-                borderRadius: 4,
-              }}
-            />
-            <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-              WimStore
-            </div>
-          </div>
-        </Header.Section>
-        <Header.Section align="center">
-          <div style={{ width: "100%", maxWidth: 400 }}>
-            <Input
-              placeholder="Search products..."
-              leftIcon="SearchIcon"
-              fullWidth
-            />
-          </div>
-        </Header.Section>
-        <Header.Section align="end" style={{ gap: "12px" }}>
-          <Icon name="BellIcon" style={{ cursor: "pointer" }} />
-          <Icon name="StarIcon" style={{ cursor: "pointer" }} />
-          <Button priority="primary" size="small">
-            Checkout
-          </Button>
-        </Header.Section>
-      </Header>
-    ),
-    children: (
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-          gap: "20px",
-        }}
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <AppShell
+        {...args}
+        header={
+          <Header bordered>
+            <Header.Section align="start">
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <div
+                  style={{
+                    width: 32,
+                    height: 32,
+                    background: "#0066ff",
+                    borderRadius: 4,
+                  }}
+                />
+                <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                  WimStore
+                </div>
+              </div>
+            </Header.Section>
+            <Header.Section align="center">
+              <div style={{ width: "100%", maxWidth: 400 }}>
+                <Input
+                  placeholder={t("story_appshell_search_placeholder")}
+                  leftIcon="SearchIcon"
+                  fullWidth
+                />
+              </div>
+            </Header.Section>
+            <Header.Section align="end" style={{ gap: "12px" }}>
+              <Icon name="BellIcon" style={{ cursor: "pointer" }} />
+              <Icon name="StarIcon" style={{ cursor: "pointer" }} />
+              <Button priority="primary" size="small">
+                {t("story_appshell_checkout")}
+              </Button>
+            </Header.Section>
+          </Header>
+        }
       >
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div
-            key={i}
-            style={{ border: "1px solid #eee", borderRadius: 8, padding: 16 }}
-          >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            gap: "20px",
+          }}
+        >
+          {[1, 2, 3, 4, 5, 6].map((i) => (
             <div
-              style={{
-                width: "100%",
-                aspectRatio: "1",
-                background: "#f5f5f5",
-                borderRadius: 4,
-                marginBottom: 8,
-              }}
-            />
-            <div style={{ fontWeight: "bold" }}>Product {i}</div>
-            <div style={{ color: "#666", fontSize: "0.9rem" }}>$99.00</div>
-          </div>
-        ))}
-      </div>
-    ),
+              key={i}
+              style={{ border: "1px solid #eee", borderRadius: 8, padding: 16 }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  aspectRatio: "1",
+                  background: "#f5f5f5",
+                  borderRadius: 4,
+                  marginBottom: 8,
+                }}
+              />
+              <div style={{ fontWeight: "bold" }}>
+                {t("story_appshell_product")} {i}
+              </div>
+              <div style={{ color: "#666", fontSize: "0.9rem" }}>$99.00</div>
+            </div>
+          ))}
+        </div>
+      </AppShell>
+    );
   },
 };
 
 export const WithSidebar: Story = {
-  render: (args) => {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     return (
@@ -170,10 +183,10 @@ export const WithSidebar: Story = {
                 className="appshell-mobile-trigger"
                 onClick={() => setMobileOpen(true)}
               >
-                Menu
+                {t("story_common_menu", "Menu")}
               </button>
               <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-                Dashboard
+                {t("story_appshell_dashboard")}
               </div>
             </Header.Section>
             <Header.Section align="end">
@@ -191,27 +204,29 @@ export const WithSidebar: Story = {
           >
             <Sidebar.Header>
               <div style={{ padding: "16px", fontWeight: "bold" }}>
-                Navigation
+                {t("story_appshell_navigation")}
               </div>
             </Sidebar.Header>
             <Sidebar.Content>
               <Sidebar.Item icon={<Icon name="HomeIcon" />} active>
-                Dashboard
+                {t("story_appshell_dashboard")}
               </Sidebar.Item>
-              <Sidebar.Item icon={<Icon name="UserIcon" />}>Users</Sidebar.Item>
+              <Sidebar.Item icon={<Icon name="UserIcon" />}>
+                {t("story_appshell_users")}
+              </Sidebar.Item>
               <Sidebar.Item icon={<Icon name="SettingsIcon" />}>
-                Settings
+                {t("story_appshell_settings")}
               </Sidebar.Item>
               <Sidebar.Item icon={<Icon name="FilterIcon" />}>
-                Documents
+                {t("story_appshell_documents")}
               </Sidebar.Item>
             </Sidebar.Content>
           </Sidebar>
         }
       >
         <div>
-          <h2>Dashboard</h2>
-          <p>Main content area with sidebar navigation.</p>
+          <h2>{t("story_appshell_dashboard")}</h2>
+          <p>{t("story_appshell_dashboard_desc")}</p>
         </div>
       </AppShell>
     );
@@ -219,66 +234,109 @@ export const WithSidebar: Story = {
 };
 
 export const WithFooter: Story = {
-  args: {
-    header: (
-      <Header bordered>
-        <Header.Section align="start">
-          <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>WIM UI</div>
-        </Header.Section>
-      </Header>
-    ),
-    footer: (
-      <Footer bordered>
-        <Footer.Section>
-          <p style={{ margin: 0, textAlign: "center" }}>
-            © 2024 WIM UI. All rights reserved.
-          </p>
-        </Footer.Section>
-      </Footer>
-    ),
-    children: (
-      <div>
-        <h2>Page with Footer</h2>
-        <p>This layout includes a footer at the bottom.</p>
-      </div>
-    ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <AppShell
+        {...args}
+        header={
+          <Header bordered>
+            <Header.Section align="start">
+              <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                WIM UI
+              </div>
+            </Header.Section>
+          </Header>
+        }
+        footer={
+          <Footer bordered>
+            <Footer.Section>
+              <p style={{ margin: 0, textAlign: "center" }}>
+                {t("story_appshell_rights")}
+              </p>
+            </Footer.Section>
+          </Footer>
+        }
+      >
+        <div>
+          <h2>{t("story_appshell_footer_title")}</h2>
+          <p>{t("story_appshell_footer_desc")}</p>
+        </div>
+      </AppShell>
+    );
   },
 };
 
 export const WithNavbar: Story = {
-  args: {
-    header: (
-      <Header bordered>
-        <Header.Section align="start">
-          <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-            Mobile App
-          </div>
-        </Header.Section>
-      </Header>
-    ),
-    navbar: (
-      <TabBar>
-        <TabBar.Item icon={<Icon name="HomeIcon" />} label="Home" active />
-        <TabBar.Item icon={<Icon name="SearchIcon" />} label="Search" />
-        <TabBar.Item icon={<Icon name="BellIcon" />} label="Notifications" />
-        <TabBar.Item icon={<Icon name="UserIcon" />} label="Profile" />
-      </TabBar>
-    ),
-    children: (
-      <div>
-        <h2>Mobile Layout</h2>
-        <p>
-          This layout includes a bottom navigation bar, commonly used in mobile
-          applications.
-        </p>
-      </div>
-    ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <AppShell
+        {...args}
+        header={
+          <Header bordered>
+            <Header.Section align="start">
+              <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                {t("story_appshell_mobile_app")}
+              </div>
+            </Header.Section>
+          </Header>
+        }
+        navbar={
+          <TabBar>
+            <TabBar.Item
+              icon={<Icon name="HomeIcon" />}
+              label={t("story_common_home")}
+              active
+            />
+            <TabBar.Item
+              icon={<Icon name="SearchIcon" />}
+              label={t("story_common_search")}
+            />
+            <TabBar.Item
+              icon={<Icon name="BellIcon" />}
+              label={t("story_common_alerts")}
+            />
+            <TabBar.Item
+              icon={<Icon name="UserIcon" />}
+              label={t("story_common_profile")}
+            />
+          </TabBar>
+        }
+      >
+        <div>
+          <h2>{t("story_appshell_mobile_layout")}</h2>
+          <p>{t("story_appshell_mobile_desc")}</p>
+        </div>
+      </AppShell>
+    );
   },
 };
 
 export const Playground: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <AppShell
+        {...args}
+        header={
+          <Header bordered>
+            <Header.Section align="start">
+              <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                WIM UI
+              </div>
+            </Header.Section>
+          </Header>
+        }
+      >
+        <div>
+          <h2>{t("story_appshell_welcome")}</h2>
+          <p>{t("story_appshell_main_content")}</p>
+        </div>
+      </AppShell>
+    );
+  },
   args: {
-    ...Default.args,
     padding: true,
     centered: false,
   },

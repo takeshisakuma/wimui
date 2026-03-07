@@ -11,7 +11,7 @@ i18n
   .init({
     // Backendの設定で、ファイルが `/locales/` パス以下にあることを指定
     backend: {
-      loadPath: "./locales/{{lng}}/{{ns}}.json",
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
     fallbackLng: "en", // 翻訳ファイルがない場合のフォールバック言語
     debug: true, // 開発中はtrueにしておくとデバッグ情報が出力されます
@@ -20,6 +20,8 @@ i18n
     },
     // Storybookのi18nパネルと連携するために、サポートする言語と初期言語を設定
     supportedLngs: ["en", "ja", "pt"],
+    ns: ["common", "components", "docs"],
+    defaultNS: "common",
     lng: "en", // 初期言語
   });
 

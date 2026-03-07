@@ -15,7 +15,7 @@ type Story = StoryObj<typeof Result>;
 
 export const Success: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Result
         {...args}
@@ -33,7 +33,7 @@ export const Success: Story = {
 
 export const Info: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Result
         {...args}
@@ -46,7 +46,7 @@ export const Info: Story = {
 
 export const Warning: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Result
         {...args}
@@ -60,7 +60,7 @@ export const Warning: Story = {
 
 export const ErrorStatus: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Result
         {...args}
@@ -78,7 +78,7 @@ export const ErrorStatus: Story = {
 
 export const Status404: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Result
         {...args}
@@ -93,7 +93,7 @@ export const Status404: Story = {
 
 export const Status403: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Result
         {...args}
@@ -108,7 +108,7 @@ export const Status403: Story = {
 
 export const Status500: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Result
         {...args}

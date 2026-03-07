@@ -34,7 +34,7 @@ export const Default: Story = {
 
 export const HorizontalScroll: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <ScrollArea
         {...args}

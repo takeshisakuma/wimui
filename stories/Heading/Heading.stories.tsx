@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Heading } from "@/components/Heading/Heading";
+import { useTranslation } from "react-i18next";
 
 const meta = {
   title: "Components/Typography & Icons/Heading",
@@ -42,79 +43,105 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const h1_heading: Story = {
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+  },
   args: {
     tag: "h1",
     size: "2xl",
-    children: "heading_text",
     color: "black",
     align: "left",
   },
 };
 
 export const h2_heading: Story = {
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+  },
   args: {
     tag: "h2",
     size: "xl",
-    children: "heading_text",
     color: "black",
     align: "left",
   },
 };
 
 export const h3_heading: Story = {
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+  },
   args: {
     tag: "h3",
     size: "lg",
-    children: "heading_text",
     color: "black",
     align: "left",
   },
 };
 
 export const h4_heading: Story = {
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+  },
   args: {
     tag: "h4",
     size: "md",
-    children: "heading_text",
     color: "black",
     align: "left",
   },
 };
 
 export const h5_heading: Story = {
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+  },
   args: {
     tag: "h5",
     size: "sm",
-    children: "heading_text",
     color: "black",
     align: "left",
   },
 };
 
 export const h6_heading: Story = {
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+  },
   args: {
     tag: "h6",
     size: "xs",
-    children: "heading_text",
     color: "black",
     align: "left",
   },
 };
 
+
 export const UnderlineHeading: Story = {
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Heading {...args}>{t("story_heading_underline")}</Heading>;
+  },
   args: {
     tag: "h2",
     size: "xl",
-    children: "Underline Heading",
     decoration: "underline",
   },
 };
 
 export const HighlightHeading: Story = {
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Heading {...args}>{t("story_heading_highlight")}</Heading>;
+  },
   args: {
     tag: "h2",
     size: "xl",
-    children: "Highlight Heading",
     decoration: "highlight",
   },
 };
+

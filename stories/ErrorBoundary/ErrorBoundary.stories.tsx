@@ -17,14 +17,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const BuggyComponent = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   throw new Error(t("story_errorboundary_throw_msg"));
 };
 
 export const Default: Story = {
   render: function Render() {
     const [shouldThrow, setShouldThrow] = useState(false);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div
         style={{
@@ -64,7 +64,7 @@ export const Default: Story = {
 export const CustomFallback: Story = {
   render: function Render() {
     const [shouldThrow, setShouldThrow] = useState(false);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div
         style={{

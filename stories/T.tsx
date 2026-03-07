@@ -7,7 +7,7 @@ import i18n from "../.storybook/i18n";
 const GLOBALS_UPDATED = "globalsUpdated";
 
 export const T = ({ k }: { k: string }) => {
-  const { t } = useTranslation("translation", { i18n });
+  const { t } = useTranslation(["common", "components", "docs"], { i18n });
   const [, setTick] = useState(0);
 
   useEffect(() => {
@@ -67,8 +67,20 @@ export const T = ({ k }: { k: string }) => {
       .replace(/\n/g, "<br />");          // Convert to HTML line breaks
   };
 
-  // Debug output – can be removed in production
-  const translated = t(k);
+  // Attempt to find the key in any of the namespaces if not explicitly prefixed
+  const getTranslated = (key: string) => {
+    if (key.includes(":")) return t(key);
+
+    const namespaces = ["common", "components", "docs"];
+    for (const ns of namespaces) {
+      if (i18n.exists(`${ns}:${key}`)) {
+        return t(`${ns}:${key}`);
+      }
+    }
+    return t(key); // Fallback to default behavior
+  };
+
+  const translated = getTranslated(k);
   console.log("🔤 Translating", k, "→", translated, `(lang=${i18n.language})`);
 
   return <span dangerouslySetInnerHTML={{ __html: processText(translated) }} />;

@@ -21,14 +21,14 @@ type Story = StoryObj<typeof Checkbox>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Checkbox {...args} label={t("story_checkbox_accept")} />;
   },
 };
 
 export const Checked: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Checkbox
         {...args}
@@ -42,14 +42,14 @@ export const Checked: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Checkbox {...args} label={t("story_checkbox_disabled")} disabled={true} />;
   },
 };
 
 export const DisabledChecked: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Checkbox
         {...args}
@@ -64,7 +64,7 @@ export const DisabledChecked: Story = {
 
 export const Indeterminate: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Checkbox
         {...args}
@@ -78,7 +78,7 @@ export const Indeterminate: Story = {
 };
 
 export const Controlled = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   const [checked, setChecked] = useState(false);
   return (
     <Checkbox
@@ -93,7 +93,7 @@ export const Controlled = () => {
 
 export const LongLabel: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Checkbox {...args} label={t("story_checkbox_long_label")} />;
   },
 };

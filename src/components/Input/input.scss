@@ -1,4 +1,4 @@
-﻿.wim-input {
+.wim-input {
   all: unset;
   box-sizing: border-box;
   display: block;
@@ -68,7 +68,14 @@
     padding-left: calc(var(--spacing-xl) + 1.2rem + 10px);
   }
 
-  &--has-right-icon,
+  &--has-right-icon {
+    padding-right: calc(var(--spacing-xl) + 1.2rem + 10px);
+  }
+
+  &--has-multiple-right-icons {
+    padding-right: calc(var(--spacing-sm) + 2.4rem + var(--spacing-xs) + 10px);
+  }
+
   &--reserve-right-icon {
     padding-right: calc(var(--spacing-xl) + 1.2rem + 10px);
   }
@@ -167,6 +174,31 @@
 
   &--right {
     right: var(--spacing-xl);
+  }
+}
+
+.wim-input-icons {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: color 0.3s ease-in-out;
+
+  &--right {
+    right: var(--spacing-sm);
+  }
+}
+
+.wim-input-icon-item {
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+
+  &--clickable {
+    pointer-events: auto;
   }
 }
 

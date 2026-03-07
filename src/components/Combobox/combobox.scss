@@ -1,4 +1,4 @@
-﻿/* ------------------------------------------------------------------
+/* ------------------------------------------------------------------
    Combobox Styles
    Re-compiled to invalidate potential stale Vite cache.
 ------------------------------------------------------------------ */
@@ -29,6 +29,14 @@
   border: 1px solid var(--color-secondary);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
+}
+
+.wim-combobox-icon {
+  transition: transform var(--transition-base);
+
+  &--rotated {
+    transform: rotate(180deg);
+  }
 }
 
 .wim-combobox-option {

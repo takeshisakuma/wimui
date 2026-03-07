@@ -136,7 +136,7 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
 /** children を使ったボタン（label prop の代替） */
 export const WithChildren: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Button priority="primary" size="medium">
         {t("story_button_click_me")}

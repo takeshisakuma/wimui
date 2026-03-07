@@ -3,11 +3,9 @@ import classNames from "classnames";
 import "../Input/input.scss";
 import "./timePicker.scss";
 
-type TimePickerProps = React.ComponentPropsWithoutRef<"input"> & {
-  state?: "default" | "error" | "disabled";
-  variant?: "outline" | "ghost";
-  fullWidth?: boolean;
-};
+import { Input, InputProps } from "../Input/Input";
+
+export type TimePickerProps = Omit<InputProps, "type" | "rightIcon">;
 
 /**
  * ユーザーが時間を選択するためのコンポーネント。
@@ -18,31 +16,20 @@ export const TimePicker = ({
   fullWidth = false,
   className,
   disabled,
+  allowClear = true,
   ...props
 }: TimePickerProps) => {
-  // disabled prop takes precedence for visual styling
-
   return (
-    <div
-      className={classNames(
-        "wim-input-container",
-        "wim-timepicker-container",
-        fullWidth && "wim-input--full-width",
-        className,
-      )}
-    >
-      <input
-        type="time"
-        className={classNames(
-          "wim-input",
-          "wim-timepicker",
-          `wim-input--${disabled ? "disabled" : state}`,
-          `wim-input--${variant}`,
-          fullWidth && "wim-input--full-width",
-        )}
-        disabled={disabled || state === "disabled"}
-        {...props}
-      />
-    </div>
+    <Input
+      type="time"
+      rightIcon="ClockIcon"
+      allowClear={allowClear}
+      state={state}
+      variant={variant}
+      fullWidth={fullWidth}
+      className={classNames("wim-timepicker", className)}
+      disabled={disabled}
+      {...props}
+    />
   );
 };

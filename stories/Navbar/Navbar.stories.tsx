@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Navbar from "@/components/Navbar/Navbar";
 import { Button } from "@/components/Button/Button";
-import { HamburgerMenu } from "@/components/HamburgerMenu/HamburgerMenu";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Navbar> = {
   title: "Components/Application Shell/Navbar",
@@ -24,88 +24,95 @@ export default meta;
 type Story = StoryObj<typeof Navbar>;
 
 export const Default: Story = {
-  render: (args) => (
-    <Navbar {...args}>
-      <Navbar.Brand>
-        <span>LOGO</span>
-      </Navbar.Brand>
-      <Navbar.Content justify="end" hiddenOnMobile>
-        <Navbar.Link href="#" active>
-          Home
-        </Navbar.Link>
-        <Navbar.Link href="#">Features</Navbar.Link>
-        <Navbar.Link href="#">Pricing</Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
-      </Navbar.Content>
-      <Navbar.Content justify="end" hiddenOnMobile>
-        <Button priority="secondary" size="small">
-          Login
-        </Button>
-      </Navbar.Content>
-      <Navbar.Toggle />
-      <Navbar.Menu>
-        <Navbar.MenuItem active>Home</Navbar.MenuItem>
-        <Navbar.MenuItem>Features</Navbar.MenuItem>
-        <Navbar.MenuItem>Pricing</Navbar.MenuItem>
-        <Navbar.MenuItem>About</Navbar.MenuItem>
-        <Navbar.MenuItem>Login</Navbar.MenuItem>
-      </Navbar.Menu>
-    </Navbar>
-  ),
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Navbar {...args}>
+        <Navbar.Brand>
+          <span>{t("story_navbar_logo")}</span>
+        </Navbar.Brand>
+        <Navbar.Content justify="end" hiddenOnMobile>
+          <Navbar.Link href="#" active>
+            {t("story_navbar_home")}
+          </Navbar.Link>
+          <Navbar.Link href="#">{t("story_navbar_features")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story_navbar_pricing")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story_navbar_about")}</Navbar.Link>
+        </Navbar.Content>
+        <Navbar.Content justify="end" hiddenOnMobile>
+          <Button priority="secondary" size="small">
+            {t("story_navbar_login")}
+          </Button>
+        </Navbar.Content>
+        <Navbar.Toggle />
+        <Navbar.Menu>
+          <Navbar.MenuItem active>{t("story_navbar_home")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story_navbar_features")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story_navbar_pricing")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story_navbar_about")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story_navbar_login")}</Navbar.MenuItem>
+        </Navbar.Menu>
+      </Navbar>
+    );
+  },
   args: {
     bordered: true,
   },
 };
 
 export const GlassEffect: Story = {
-  render: (args) => (
-    <div
-      style={{
-        height: "400px",
-        background:
-          "linear-gradient(45deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%)",
-        position: "relative",
-      }}
-    >
-      <Navbar {...args} glass fixed style={{ position: "absolute" }}>
-        <Navbar.Brand>
-          <span>Glass UI</span>
-        </Navbar.Brand>
-        <Navbar.Content justify="end" hiddenOnMobile>
-          <Navbar.Link href="#">Design</Navbar.Link>
-          <Navbar.Link href="#">Components</Navbar.Link>
-          <Navbar.Link href="#">Docs</Navbar.Link>
-        </Navbar.Content>
-        <Navbar.Toggle />
-        <Navbar.Menu>
-          <Navbar.MenuItem>Design</Navbar.MenuItem>
-          <Navbar.MenuItem>Components</Navbar.MenuItem>
-          <Navbar.MenuItem>Docs</Navbar.MenuItem>
-        </Navbar.Menu>
-      </Navbar>
-      <div style={{ paddingTop: "80px", paddingLeft: "24px", color: "white" }}>
-        <h1>Glassmorphism Header</h1>
-        <p>Scroll to see the effect overlay content</p>
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div
+        style={{
+          height: "400px",
+          background:
+            "linear-gradient(45deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%)",
+          position: "relative",
+        }}
+      >
+        <Navbar {...args} glass fixed style={{ position: "absolute" }}>
+          <Navbar.Brand>
+            <span>{t("story_navbar_glass_ui")}</span>
+          </Navbar.Brand>
+          <Navbar.Content justify="end" hiddenOnMobile>
+            <Navbar.Link href="#">{t("story_navbar_design")}</Navbar.Link>
+            <Navbar.Link href="#">{t("story_navbar_components")}</Navbar.Link>
+            <Navbar.Link href="#">{t("story_navbar_docs")}</Navbar.Link>
+          </Navbar.Content>
+          <Navbar.Toggle />
+          <Navbar.Menu>
+            <Navbar.MenuItem>{t("story_navbar_design")}</Navbar.MenuItem>
+            <Navbar.MenuItem>{t("story_navbar_components")}</Navbar.MenuItem>
+            <Navbar.MenuItem>{t("story_navbar_docs")}</Navbar.MenuItem>
+          </Navbar.Menu>
+        </Navbar>
+        <div style={{ paddingTop: "80px", paddingLeft: "24px", color: "white" }}>
+          <h1>{t("story_navbar_glass_title")}</h1>
+          <p>{t("story_navbar_glass_desc")}</p>
+        </div>
       </div>
-    </div>
-  ),
+    );
+  },
 };
 
 export const WithMobileMenu: Story = {
   render: () => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Navbar bordered>
         <Navbar.Brand>
-          <span>Mobile App</span>
+          <span>{t("story_navbar_mobile_app")}</span>
         </Navbar.Brand>
         <Navbar.Content justify="end" hiddenOnMobile>
-          <Navbar.Link href="#">Overview</Navbar.Link>
-          <Navbar.Link href="#">Activity</Navbar.Link>
+          <Navbar.Link href="#">{t("story_navbar_overview")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story_navbar_activity")}</Navbar.Link>
         </Navbar.Content>
         <Navbar.Toggle />
         <Navbar.Menu>
-          <Navbar.MenuItem>Overview</Navbar.MenuItem>
-          <Navbar.MenuItem>Activity</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story_navbar_overview")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story_navbar_activity")}</Navbar.MenuItem>
         </Navbar.Menu>
       </Navbar>
     );
@@ -113,73 +120,77 @@ export const WithMobileMenu: Story = {
 };
 
 export const CenteredLinks: Story = {
-  render: (args) => (
-    <Navbar {...args} bordered>
-      <Navbar.Brand>
-        <span>CENTER</span>
-      </Navbar.Brand>
-      <Navbar.Content justify="center" hiddenOnMobile>
-        <Navbar.Link href="#" active>
-          Product
-        </Navbar.Link>
-        <Navbar.Link href="#">Solutions</Navbar.Link>
-        <Navbar.Link href="#">Resources</Navbar.Link>
-      </Navbar.Content>
-      <Navbar.Content justify="end" hiddenOnMobile>
-        <Button priority="tertiary" size="small">
-          Sign In
-        </Button>
-        <Button priority="primary" size="small">
-          Sign Up
-        </Button>
-      </Navbar.Content>
-      <Navbar.Toggle />
-      <Navbar.Menu>
-        <Navbar.MenuItem active>Product</Navbar.MenuItem>
-        <Navbar.MenuItem>Solutions</Navbar.MenuItem>
-        <Navbar.MenuItem>Resources</Navbar.MenuItem>
-        <Navbar.MenuItem>Sign In</Navbar.MenuItem>
-        <Navbar.MenuItem>Sign Up</Navbar.MenuItem>
-      </Navbar.Menu>
-    </Navbar>
-  ),
-};
-
-export const BuiltInResponsive: Story = {
-  render: () => (
-    <div
-      style={{
-        height: "400px",
-        position: "relative",
-        overflow: "hidden",
-        border: "1px solid #ccc",
-      }}
-    >
-      <Navbar
-        bordered
-        style={{ position: "absolute", top: 0, left: 0, right: 0 }}
-      >
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Navbar {...args} bordered>
         <Navbar.Brand>
-          <span>RESPONSIVE</span>
+          <span>{t("story_navbar_center")}</span>
         </Navbar.Brand>
+        <Navbar.Content justify="center" hiddenOnMobile>
+          <Navbar.Link href="#" active>
+            {t("story_navbar_product")}
+          </Navbar.Link>
+          <Navbar.Link href="#">{t("story_navbar_solutions")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story_navbar_resources")}</Navbar.Link>
+        </Navbar.Content>
         <Navbar.Content justify="end" hiddenOnMobile>
-          <Navbar.Link href="#">Dashboard</Navbar.Link>
-          <Navbar.Link href="#">Settings</Navbar.Link>
-          <Navbar.Link href="#">Profile</Navbar.Link>
+          <Button priority="tertiary" size="small">
+            {t("story_navbar_signin")}
+          </Button>
+          <Button priority="primary" size="small">
+            {t("story_navbar_signup")}
+          </Button>
         </Navbar.Content>
         <Navbar.Toggle />
         <Navbar.Menu>
-          <Navbar.MenuItem>Dashboard</Navbar.MenuItem>
-          <Navbar.MenuItem>Settings</Navbar.MenuItem>
-          <Navbar.MenuItem>Profile</Navbar.MenuItem>
+          <Navbar.MenuItem active>{t("story_navbar_product")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story_navbar_solutions")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story_navbar_resources")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story_navbar_signin")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story_navbar_signup")}</Navbar.MenuItem>
         </Navbar.Menu>
       </Navbar>
-      <div style={{ padding: "80px 20px" }}>
-        <p>Resize the window to see the responsive behavior.</p>
-        <p>
-          On mobile (md and below), the links hide and a hamburger menu appears.
-        </p>
+    );
+  },
+};
+
+export const BuiltInResponsive: Story = {
+  render: () => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div
+        style={{
+          height: "400px",
+          position: "relative",
+          overflow: "hidden",
+          border: "1px solid #ccc",
+        }}
+      >
+        <Navbar
+          bordered
+          style={{ position: "absolute", top: 0, left: 0, right: 0 }}
+        >
+          <Navbar.Brand>
+            <span>{t("story_navbar_responsive")}</span>
+          </Navbar.Brand>
+          <Navbar.Content justify="end" hiddenOnMobile>
+            <Navbar.Link href="#">{t("story_navbar_dashboard")}</Navbar.Link>
+            <Navbar.Link href="#">{t("story_navbar_settings")}</Navbar.Link>
+            <Navbar.Link href="#">{t("story_navbar_profile")}</Navbar.Link>
+          </Navbar.Content>
+          <Navbar.Toggle />
+          <Navbar.Menu>
+            <Navbar.MenuItem>{t("story_navbar_dashboard")}</Navbar.MenuItem>
+            <Navbar.MenuItem>{t("story_navbar_settings")}</Navbar.MenuItem>
+            <Navbar.MenuItem>{t("story_navbar_profile")}</Navbar.MenuItem>
+          </Navbar.Menu>
+        </Navbar>
+        <div style={{ padding: "80px 20px" }}>
+          <p>{t("story_navbar_responsive_info")}</p>
+          <p>{t("story_navbar_responsive_desc")}</p>
+        </div>
       </div>
-    </div>
-  ),
+    );
+  },
 };

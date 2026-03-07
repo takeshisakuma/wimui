@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useId, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
@@ -24,6 +25,8 @@ export type TreeSelectProps = {
   multiple?: boolean;
   searchable?: boolean;
   defaultExpandedKeys?: string[];
+  /** Whether to show a clear button when a value is selected */
+  allowClear?: boolean;
   id?: string;
 };
 
@@ -41,9 +44,11 @@ export const TreeSelect = ({
   multiple = false,
   searchable = false,
   defaultExpandedKeys = [],
+  allowClear = false,
   id: customId,
   ...props
 }: TreeSelectProps) => {
+  const { t } = useTranslation("common");
   const generatedId = useId();
   const id = customId || generatedId;
   const labelId = `wim-tree-select-label-${id}`;
@@ -119,6 +124,19 @@ export const TreeSelect = ({
     }
   };
 
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (disabled) return;
+
+    const newValue = multiple ? [] : "";
+    if (!isControlled) {
+      setInternalValue(newValue);
+    }
+    if (onChange) {
+      onChange(newValue);
+    }
+  };
+
   const renderTreeNodes = (nodes: TreeSelectNode[]) => {
     return nodes.map((node) => (
       <TreeView.Item
@@ -178,8 +196,20 @@ export const TreeSelect = ({
         >
           {displayValue || placeholder}
         </div>
-        <div className="wim-tree-select__icon">
-          <Icon name="ChevronDownIcon" size="medium" />
+        <div className="wim-tree-select__icons">
+          {allowClear && (multiple ? (currentValue as string[]).length > 0 : currentValue) && !disabled && (
+            <button
+              type="button"
+              className="wim-tree-select__clear"
+              onClick={handleClear}
+              aria-label={t("a11y_clear_selection")}
+            >
+              <Icon name="CloseIcon" size="small" />
+            </button>
+          )}
+          <div className="wim-tree-select__icon">
+            <Icon name="ChevronDownIcon" size="medium" />
+          </div>
         </div>
       </div>
 

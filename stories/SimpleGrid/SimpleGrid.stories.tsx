@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof SimpleGrid> = {
   title: "Components/Layout/SimpleGrid",
@@ -32,52 +33,61 @@ const Box = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const FixedColumns: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <SimpleGrid {...args}>
+        <Box>{t("story_grid_item", "1")}</Box>
+        <Box>{t("story_grid_item", "2")}</Box>
+        <Box>{t("story_grid_item", "3")}</Box>
+        <Box>{t("story_grid_item", "4")}</Box>
+        <Box>{t("story_grid_item", "5")}</Box>
+      </SimpleGrid>
+    );
+  },
   args: {
     cols: 3,
     spacing: "md",
-    children: (
-      <>
-        <Box>1</Box>
-        <Box>2</Box>
-        <Box>3</Box>
-        <Box>4</Box>
-        <Box>5</Box>
-      </>
-    ),
   },
 };
 
 export const ResponsiveAuto: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <SimpleGrid {...args}>
+        <Box>{t("story_grid_min_width")}</Box>
+        <Box>{t("story_grid_min_width")}</Box>
+        <Box>{t("story_grid_min_width")}</Box>
+        <Box>{t("story_grid_min_width")}</Box>
+        <Box>{t("story_grid_min_width")}</Box>
+      </SimpleGrid>
+    );
+  },
   args: {
     minChildWidth: 200,
     spacing: 16,
-    children: (
-      <>
-        <Box>Min 200px</Box>
-        <Box>Min 200px</Box>
-        <Box>Min 200px</Box>
-        <Box>Min 200px</Box>
-        <Box>Min 200px</Box>
-      </>
-    ),
   },
 };
 
 export const ResponsiveBreakpoints: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <SimpleGrid {...args}>
+        <Box>{t("story_grid_item", "1")}</Box>
+        <Box>{t("story_grid_item", "2")}</Box>
+        <Box>{t("story_grid_item", "3")}</Box>
+        <Box>{t("story_grid_item", "4")}</Box>
+        <Box>{t("story_grid_item", "5")}</Box>
+        <Box>{t("story_grid_item", "6")}</Box>
+        <Box>{t("story_grid_item", "7")}</Box>
+        <Box>{t("story_grid_item", "8")}</Box>
+      </SimpleGrid>
+    );
+  },
   args: {
     cols: { base: 1, sm: 2, md: 3, lg: 4 },
     spacing: 16,
-    children: (
-      <>
-        <Box>1</Box>
-        <Box>2</Box>
-        <Box>3</Box>
-        <Box>4</Box>
-        <Box>5</Box>
-        <Box>6</Box>
-        <Box>7</Box>
-        <Box>8</Box>
-      </>
-    ),
   },
 };

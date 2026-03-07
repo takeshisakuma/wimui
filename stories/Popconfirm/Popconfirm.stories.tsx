@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Popconfirm>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Popconfirm
         {...args}
@@ -36,7 +36,7 @@ export const Default: Story = {
 
 export const WithDescription: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Popconfirm
         {...args}
@@ -53,7 +53,7 @@ export const WithDescription: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Popconfirm {...args} title={t("story_popconfirm_yes")} disabled>
         <Button label={t("story_popconfirm_disabled_btn")} />

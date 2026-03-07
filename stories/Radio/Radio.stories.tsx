@@ -18,14 +18,14 @@ type Story = StoryObj<typeof Radio>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Radio {...args} label={t("story_radio_option1")} value="option1" />;
   },
 };
 
 export const Checked: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Radio
         {...args}
@@ -39,7 +39,7 @@ export const Checked: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Radio
         {...args}
@@ -53,7 +53,7 @@ export const Disabled: Story = {
 
 export const DisabledChecked: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Radio
         {...args}
@@ -68,7 +68,7 @@ export const DisabledChecked: Story = {
 
 export const LongLabel: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Radio {...args} label={t("story_radio_long_label")} value="long" />;
   },
 };

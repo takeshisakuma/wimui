@@ -13,7 +13,7 @@ type Story = StoryObj<typeof Tabs>;
 
 export const Default: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Tabs defaultValue="1">
         <Tabs.List>
@@ -35,7 +35,7 @@ export const Default: Story = {
 
 export const Vertical: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Tabs
         defaultValue="1"
@@ -62,7 +62,7 @@ export const Vertical: Story = {
 
 export const Scrolling: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Tabs defaultValue="1" style={{ width: "800px" }}>
         <Tabs.List>

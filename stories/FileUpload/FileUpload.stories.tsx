@@ -31,7 +31,7 @@ type Story = StoryObj<typeof FileUpload>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <FileUpload
         {...args}
@@ -45,7 +45,7 @@ export const Default: Story = {
 
 export const Multiple: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <FileUpload
         {...args}
@@ -60,7 +60,7 @@ export const Multiple: Story = {
 
 export const AcceptImages: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <FileUpload
         {...args}
@@ -77,7 +77,7 @@ export const AcceptImages: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <FileUpload
         {...args}
@@ -92,7 +92,7 @@ export const Disabled: Story = {
 
 export const WithIcon: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <FileUpload
         {...args}

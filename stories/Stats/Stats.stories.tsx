@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Stats } from "@/components/Stats/Stats";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Stats> = {
   title: "Components/Data Structures/Stats",
@@ -14,63 +15,66 @@ export default meta;
 type Story = StoryObj<typeof Stats>;
 
 export const Default: Story = {
-  args: {
-    children: (
-      <>
-        <Stats.Label>Total Users</Stats.Label>
+  render: function Render(args) {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return (
+      <Stats {...args}>
+        <Stats.Label>{t('story_stats_total_users')}</Stats.Label>
         <Stats.Value>1,234</Stats.Value>
-        <Stats.Description>+12.5% from last month</Stats.Description>
-      </>
-    ),
-  },
+        <Stats.Description>{t('story_stats_desc_users')}</Stats.Description>
+      </Stats>
+    );
+  }
 };
 
 export const WithTrend: Story = {
-  args: {
-    children: (
-      <>
-        <Stats.Label>Revenue</Stats.Label>
+  render: function Render(args) {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return (
+      <Stats {...args}>
+        <Stats.Label>{t('story_stats_revenue')}</Stats.Label>
         <Stats.Value>$45,231.89</Stats.Value>
         <Stats.Trend direction="up">+20.1%</Stats.Trend>
-      </>
-    ),
-  },
+      </Stats>
+    );
+  }
 };
 
 export const NegativeTrend: Story = {
-  args: {
-    children: (
-      <>
-        <Stats.Label>Active Alerts</Stats.Label>
+  render: function Render(args) {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return (
+      <Stats {...args}>
+        <Stats.Label>{t('story_stats_active_alerts')}</Stats.Label>
         <Stats.Value>12</Stats.Value>
         <Stats.Trend direction="down">-5%</Stats.Trend>
-      </>
-    ),
-  },
+      </Stats>
+    );
+  }
 };
 
 export const Outline: Story = {
-  args: {
-    variant: "outline",
-    children: (
-      <>
-        <Stats.Label>Page Views</Stats.Label>
+  render: function Render(args) {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return (
+      <Stats {...args} variant="outline">
+        <Stats.Label>{t('story_stats_page_views')}</Stats.Label>
         <Stats.Value>12,456</Stats.Value>
         <Stats.Trend direction="neutral">0%</Stats.Trend>
-      </>
-    ),
-  },
+      </Stats>
+    );
+  }
 };
 
 export const Flat: Story = {
-  args: {
-    variant: "flat",
-    children: (
-      <>
-        <Stats.Label>Avg. Session Time</Stats.Label>
+  render: function Render(args) {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return (
+      <Stats {...args} variant="flat">
+        <Stats.Label>{t('story_stats_avg_session')}</Stats.Label>
         <Stats.Value>2m 34s</Stats.Value>
-        <Stats.Description>Sessions over 5 minutes</Stats.Description>
-      </>
-    ),
-  },
+        <Stats.Description>{t('story_stats_desc_session')}</Stats.Description>
+      </Stats>
+    );
+  }
 };

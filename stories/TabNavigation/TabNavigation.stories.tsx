@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import TabNavigation from "@/components/TabNavigation/TabNavigation";
 import { Icon } from "@/components/Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof TabNavigation> = {
   title: "Components/Navigation Elements/TabNavigation",
@@ -25,6 +26,7 @@ type Story = StoryObj<typeof TabNavigation>;
 
 export const Default: Story = {
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [active, setActive] = React.useState("overview");
     return (
       <TabNavigation {...args}>
@@ -33,28 +35,28 @@ export const Default: Story = {
           onClick={() => setActive("overview")}
           href="#"
         >
-          Overview
+          {t("story_tabnav_overview")}
         </TabNavigation.Item>
         <TabNavigation.Item
           active={active === "integrations"}
           onClick={() => setActive("integrations")}
           href="#"
         >
-          Integrations
+          {t("story_tabnav_integrations")}
         </TabNavigation.Item>
         <TabNavigation.Item
           active={active === "activity"}
           onClick={() => setActive("activity")}
           href="#"
         >
-          Activity
+          {t("story_tabnav_activity")}
         </TabNavigation.Item>
         <TabNavigation.Item
           active={active === "settings"}
           onClick={() => setActive("settings")}
           href="#"
         >
-          Settings
+          {t("story_tabnav_settings")}
         </TabNavigation.Item>
       </TabNavigation>
     );
@@ -63,6 +65,7 @@ export const Default: Story = {
 
 export const Pills: Story = {
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [active, setActive] = React.useState("all");
     return (
       <TabNavigation {...args} variant="pill">
@@ -70,19 +73,19 @@ export const Pills: Story = {
           active={active === "all"}
           onClick={() => setActive("all")}
         >
-          All
+          {t("story_tabnav_all")}
         </TabNavigation.Item>
         <TabNavigation.Item
           active={active === "unread"}
           onClick={() => setActive("unread")}
         >
-          Unread
+          {t("story_tabnav_unread")}
         </TabNavigation.Item>
         <TabNavigation.Item
           active={active === "archived"}
           onClick={() => setActive("archived")}
         >
-          Archived
+          {t("story_tabnav_archived")}
         </TabNavigation.Item>
       </TabNavigation>
     );
@@ -91,6 +94,7 @@ export const Pills: Story = {
 
 export const Contained: Story = {
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [active, setActive] = React.useState("daily");
     return (
       <TabNavigation {...args} variant="contained">
@@ -98,19 +102,19 @@ export const Contained: Story = {
           active={active === "daily"}
           onClick={() => setActive("daily")}
         >
-          Daily
+          {t("story_tabnav_daily")}
         </TabNavigation.Item>
         <TabNavigation.Item
           active={active === "weekly"}
           onClick={() => setActive("weekly")}
         >
-          Weekly
+          {t("story_tabnav_weekly")}
         </TabNavigation.Item>
         <TabNavigation.Item
           active={active === "monthly"}
           onClick={() => setActive("monthly")}
         >
-          Monthly
+          {t("story_tabnav_monthly")}
         </TabNavigation.Item>
       </TabNavigation>
     );
@@ -119,6 +123,7 @@ export const Contained: Story = {
 
 export const WithIcons: Story = {
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [active, setActive] = React.useState("code");
     return (
       <TabNavigation {...args}>
@@ -127,21 +132,21 @@ export const WithIcons: Story = {
           onClick={() => setActive("code")}
           icon={<Icon name="ChevronRightIcon" />}
         >
-          Code
+          {t("story_tabnav_code")}
         </TabNavigation.Item>
         <TabNavigation.Item
           active={active === "issues"}
           onClick={() => setActive("issues")}
           icon={<Icon name="CircleIcon" />}
         >
-          Issues
+          {t("story_tabnav_issues")}
         </TabNavigation.Item>
         <TabNavigation.Item
           active={active === "pulls"}
           onClick={() => setActive("pulls")}
           icon={<Icon name="CopyIcon" />}
         >
-          Pull Requests
+          {t("story_tabnav_pull_requests")}
         </TabNavigation.Item>
       </TabNavigation>
     );

@@ -15,7 +15,7 @@ type Story = StoryObj<typeof PasswordInput>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_passwordinput_label")}>
         <PasswordInput {...args} placeholder="P@ssw0rd123" />

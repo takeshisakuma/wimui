@@ -16,14 +16,14 @@ type Story = StoryObj<typeof FieldError>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <FieldError {...args} content={t("story_fielderror_error")} />;
   },
 };
 
 export const ShortMessage: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <FieldError {...args} content={t("story_fielderror_required")} />;
   },
 };

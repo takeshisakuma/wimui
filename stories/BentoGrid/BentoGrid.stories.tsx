@@ -28,7 +28,7 @@ const Skeleton = () => (
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const items = [
       {
         title: t("story_bento_ai_title", "AI Integration"),

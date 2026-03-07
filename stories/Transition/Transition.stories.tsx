@@ -74,7 +74,7 @@ const AnimatedButton = ({
 export const Fade: Story = {
   render: () => {
     const [show, setShow] = useState(false);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div
         style={{
@@ -124,7 +124,7 @@ export const Fade: Story = {
 export const Slide: Story = {
   render: () => {
     const [show, setShow] = useState(false);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div
         style={{

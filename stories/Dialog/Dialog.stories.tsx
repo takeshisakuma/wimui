@@ -44,7 +44,7 @@ type Story = StoryObj<typeof Dialog>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Dialog {...args}>
         <DialogTrigger asChild>
@@ -95,7 +95,7 @@ export const Default: Story = {
 
 export const Uncontrolled: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Dialog>
         <DialogTrigger asChild>
@@ -136,7 +136,7 @@ export const Uncontrolled: Story = {
 
 export const Controlled: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [open, setOpen] = useState(false);
     return (
       <div

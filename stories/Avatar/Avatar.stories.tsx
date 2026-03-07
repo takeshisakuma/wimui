@@ -30,7 +30,7 @@ type Story = StoryObj<typeof Avatar>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Avatar
         {...args}
@@ -70,7 +70,7 @@ export const Shapes: Story = {
 
 export const Fallback: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Avatar
         {...args}

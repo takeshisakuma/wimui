@@ -29,7 +29,7 @@ export default meta;
 type Story = StoryObj<typeof Table>;
 
 const useSampleData = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   return [
     {
       id: 1,
@@ -63,7 +63,7 @@ const useSampleData = () => {
 };
 
 const useManyRows = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   return Array.from({ length: 30 }).map((_, i) => ({
     id: i + 1,
     name: `${t("story_table_user")} ${i + 1}`,
@@ -75,7 +75,7 @@ const useManyRows = () => {
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const sampleData = useSampleData();
     return (
       <Table {...args}>
@@ -144,7 +144,7 @@ export const FullWidth: Story = {
 
 export const WithActions: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const sampleData = useSampleData();
     return (
       <Table {...args} fullWidth={true}>
@@ -197,7 +197,7 @@ export const WithActions: Story = {
 
 export const Sortable: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const manyRows = useManyRows();
     const [sortConfig, setSortConfig] = React.useState<{
       key: string;
@@ -282,7 +282,7 @@ export const Sortable: Story = {
 
 export const RowSelection: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const manyRows = useManyRows();
     const [selectedIds, setSelectedIds] = React.useState<number[]>([]);
 
@@ -345,7 +345,7 @@ export const RowSelection: Story = {
 
 export const StickyHeader: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const manyRows = useManyRows();
     return (
       <Table {...args} stickyHeader={true} fullWidth={true} maxHeight="300px">
@@ -390,7 +390,7 @@ export const HiddenScrollbar: Story = {
 
 export const MobileCard: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const sampleData = useSampleData();
     return (
       <Table {...args} mobileCard={true} fullWidth={true}>

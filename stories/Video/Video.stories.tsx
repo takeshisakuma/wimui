@@ -37,7 +37,7 @@ export const Default: Story = {
 
 export const AutoPlay: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Video
         {...args}
@@ -66,7 +66,7 @@ export const Rounded: Story = {
 
 export const CustomControls: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Video
         {...args}
@@ -85,7 +85,7 @@ export const CustomControls: Story = {
 export const FullFeatured: Story = {
   name: "Full Featured",
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Video
         {...args}

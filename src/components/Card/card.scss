@@ -1,4 +1,4 @@
-﻿.wim-card {
+.wim-card {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -29,6 +29,8 @@
 
   /* パディング */
   &--padding-none {
+    padding: 0;
+
     & > .wim-card__header,
     & > .wim-card__body,
     & > .wim-card__footer {
@@ -37,6 +39,8 @@
   }
 
   &--padding-sm {
+    padding: var(--spacing-lg) var(--spacing-lg);
+
     & > .wim-card__header,
     & > .wim-card__body,
     & > .wim-card__footer {
@@ -45,6 +49,8 @@
   }
 
   &--padding-md {
+    padding: var(--spacing-2xl) var(--spacing-2xl);
+
     & > .wim-card__header,
     & > .wim-card__body,
     & > .wim-card__footer {
@@ -53,6 +59,8 @@
   }
 
   &--padding-lg {
+    padding: var(--spacing-3xl) var(--spacing-3xl);
+
     & > .wim-card__header,
     & > .wim-card__body,
     & > .wim-card__footer {

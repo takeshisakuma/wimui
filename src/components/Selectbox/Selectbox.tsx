@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo, useId } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
@@ -37,6 +38,8 @@ export type SelectboxProps = {
   grouped?: boolean;
   /** @deprecated Internal use only. Native selects do not support all WIM UI styles. */
   native?: boolean;
+  /** Whether to show a clear button when a value is selected */
+  allowClear?: boolean;
   /** Unique ID for the component */
   id?: string;
 };
@@ -58,9 +61,11 @@ export const Selectbox = ({
   filterOption,
   grouped = false,
   native = false,
+  allowClear = false,
   id: customId,
   ...props
 }: SelectboxProps) => {
+  const { t } = useTranslation("common");
   const generatedId = useId();
   const id = customId || generatedId;
   const labelId = `wim-selectbox-label-${id}`;
@@ -162,6 +167,19 @@ export const Selectbox = ({
     setSearchValue("");
     setFocusedIndex(-1);
     triggerRef.current?.focus();
+  };
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (disabled) return;
+
+    if (!isControlled) {
+      setInternalValue("");
+    }
+
+    if (onChange) {
+      onChange("");
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -510,8 +528,20 @@ export const Selectbox = ({
         >
           {selectedOption ? selectedOption.label : placeholder}
         </div>
-        <div className="wim-selectbox-icon">
-          <Icon name="ChevronDownIcon" size="medium" />
+        <div className="wim-selectbox-icons">
+          {allowClear && currentValue && !disabled && (
+            <button
+              type="button"
+              className="wim-selectbox-clear"
+              onClick={handleClear}
+              aria-label={t("a11y_clear_selection")}
+            >
+              <Icon name="CloseIcon" size="small" />
+            </button>
+          )}
+          <div className="wim-selectbox-icon">
+            <Icon name="ChevronDownIcon" size="medium" />
+          </div>
         </div>
       </div>
 

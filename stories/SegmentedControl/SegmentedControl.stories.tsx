@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof SegmentedControl> = {
   title: "Components/Selection Controls/SegmentedControl",
@@ -22,12 +23,6 @@ const meta: Meta<typeof SegmentedControl> = {
 export default meta;
 type Story = StoryObj<typeof SegmentedControl>;
 
-const options = [
-  { label: "Day", value: "day" },
-  { label: "Week", value: "week" },
-  { label: "Month", value: "month" },
-];
-
 export const Small: Story = {
   args: {
     size: "small",
@@ -41,7 +36,16 @@ export const Small: Story = {
     ),
   ],
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [value, setValue] = useState("day");
+    const options = useMemo(
+      () => [
+        { label: t("story_segmented_day"), value: "day" },
+        { label: t("story_segmented_week"), value: "week" },
+        { label: t("story_segmented_month"), value: "month" },
+      ],
+      [t],
+    );
     return (
       <SegmentedControl
         {...args}
@@ -66,7 +70,16 @@ export const Medium: Story = {
     ),
   ],
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [value, setValue] = useState("day");
+    const options = useMemo(
+      () => [
+        { label: t("story_segmented_day"), value: "day" },
+        { label: t("story_segmented_week"), value: "week" },
+        { label: t("story_segmented_month"), value: "month" },
+      ],
+      [t],
+    );
     return (
       <SegmentedControl
         {...args}
@@ -91,7 +104,16 @@ export const Large: Story = {
     ),
   ],
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [value, setValue] = useState("day");
+    const options = useMemo(
+      () => [
+        { label: t("story_segmented_day"), value: "day" },
+        { label: t("story_segmented_week"), value: "week" },
+        { label: t("story_segmented_month"), value: "month" },
+      ],
+      [t],
+    );
     return (
       <SegmentedControl
         {...args}
@@ -109,15 +131,19 @@ export const TwoOptions: Story = {
     fullWidth: true,
   },
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [value, setValue] = useState("on");
-    const twoOptions = [
-      { label: "On", value: "on" },
-      { label: "Off", value: "off" },
-    ];
+    const options = useMemo(
+      () => [
+        { label: t("story_segmented_on"), value: "on" },
+        { label: t("story_segmented_off"), value: "off" },
+      ],
+      [t],
+    );
     return (
       <SegmentedControl
         {...args}
-        options={twoOptions}
+        options={options}
         value={value}
         onChange={setValue}
       />
@@ -131,16 +157,33 @@ export const WithIcons: Story = {
     fullWidth: false,
   },
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [value, setValue] = useState("circle");
-    const iconOptions = [
-      { label: "Circle", value: "circle", iconName: "CircleIcon" },
-      { label: "Square", value: "square", iconName: "SquareIcon" },
-      { label: "External", value: "external", iconName: "ExternalLinkIcon" },
-    ] as const;
+    const options = useMemo(
+      () =>
+        [
+          {
+            label: t("story_segmented_circle"),
+            value: "circle",
+            iconName: "CircleIcon",
+          },
+          {
+            label: t("story_segmented_square"),
+            value: "square",
+            iconName: "SquareIcon",
+          },
+          {
+            label: t("story_segmented_external"),
+            value: "external",
+            iconName: "ExternalLinkIcon",
+          },
+        ] as const,
+      [t],
+    );
     return (
       <SegmentedControl
         {...args}
-        options={iconOptions as any}
+        options={options as any}
         value={value}
         onChange={setValue}
       />
@@ -184,19 +227,26 @@ export const LongLabel: Story = {
     ),
   ],
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [value, setValue] = useState("long1");
-    const longOptions = [
-      {
-        label: "This is a very long text label that might cause overflow",
-        value: "long1",
-      },
-      { label: "Another long text variant", value: "long2" },
-      { label: "Short", value: "short" },
-    ];
+    const options = useMemo(
+      () => [
+        {
+          label: t("story_segmented_long_label"),
+          value: "long1",
+        },
+        {
+          label: t("story_segmented_another_long"),
+          value: "long2",
+        },
+        { label: t("story_segmented_short"), value: "short" },
+      ],
+      [t],
+    );
     return (
       <SegmentedControl
         {...args}
-        options={longOptions}
+        options={options}
         value={value}
         onChange={setValue}
       />

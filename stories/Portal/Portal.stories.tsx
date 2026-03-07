@@ -27,7 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const OverflowEscape: Story = {
   render: function Render() {
     const [show, setShow] = useState(false);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div
         style={{
@@ -114,7 +114,7 @@ export const OverflowEscape: Story = {
 export const CustomContainer: Story = {
   render: function Render() {
     const [container, setContainer] = useState<HTMLDivElement | null>(null);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div style={{ width: "100%", maxWidth: "500px" }}>
         <p>{t("story_portal_container_desc")}</p>
@@ -203,7 +203,7 @@ export const NotificationCenter: Story = {
     const [logs, setLogs] = useState<{ id: string; msg: string; type: any }[]>(
       [],
     );
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
 
     const addLog = (msg: string, type: any = "info") => {
       const id = Math.random().toString(36).slice(2, 9);
@@ -377,7 +377,7 @@ export const SidePanelDetail: Story = {
       null,
     );
     const [selectedId, setSelectedId] = useState<number | null>(null);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
 
     const tasks = [
       {

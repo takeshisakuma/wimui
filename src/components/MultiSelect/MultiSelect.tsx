@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useId } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { Chip } from "../Chip/Chip";
@@ -20,6 +21,9 @@ export type MultiSelectProps = {
   className?: string;
   disabled?: boolean;
   defaultValue?: string[];
+  /** Whether to show a clear button to remove all selections */
+  allowClear?: boolean;
+  /** Unique ID for the component */
   id?: string;
 };
 
@@ -35,9 +39,11 @@ export const MultiSelect = ({
   className,
   disabled = false,
   defaultValue = [],
+  allowClear = false,
   id: customId,
   ...props
 }: MultiSelectProps) => {
+  const { t } = useTranslation("common");
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -103,6 +109,19 @@ export const MultiSelect = ({
 
     if (onChange) {
       onChange(newValues);
+    }
+  };
+
+  const handleClearAll = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (disabled) return;
+
+    if (!isControlled) {
+      setInternalValue([]);
+    }
+
+    if (onChange) {
+      onChange([]);
     }
   };
 
@@ -183,8 +202,20 @@ export const MultiSelect = ({
             ))
             : placeholder}
         </div>
-        <div className="wim-multiselect-icon">
-          <Icon name="ChevronDownIcon" size="small" />
+        <div className="wim-multiselect-icons">
+          {allowClear && currentValues && currentValues.length > 0 && !disabled && (
+            <button
+              type="button"
+              className="wim-multiselect-clear"
+              onClick={handleClearAll}
+              aria-label={t("a11y_clear_selection")}
+            >
+              <Icon name="CloseIcon" size="small" />
+            </button>
+          )}
+          <div className="wim-multiselect-icon">
+            <Icon name="ChevronDownIcon" size="small" />
+          </div>
         </div>
       </div>
 

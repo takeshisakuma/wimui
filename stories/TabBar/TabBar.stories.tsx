@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import TabBar from "@/components/TabBar/TabBar";
 import { Icon } from "@/components/Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof TabBar> = {
   title: "Components/Application Shell/TabBar",
@@ -25,37 +26,40 @@ type Story = StoryObj<typeof TabBar>;
 
 export const Default: Story = {
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [activeTab, setActiveTab] = React.useState("home");
     return (
       <div
         style={{ height: "100vh", background: "#f4f4f5", position: "relative" }}
       >
-        <div style={{ padding: "20px" }}>Content for {activeTab} tab</div>
+        <div style={{ padding: "20px" }}>
+          {t("story_tabbar_content_prefix")} {activeTab} {t("story_tabbar_tab")}
+        </div>
         <TabBar {...args} style={{}}>
           <TabBar.Item
             active={activeTab === "home"}
             onClick={() => setActiveTab("home")}
             icon={<Icon name="CircleIcon" />}
-            label="Home"
+            label={t("story_common_home")}
           />
           <TabBar.Item
             active={activeTab === "search"}
             onClick={() => setActiveTab("search")}
             icon={<Icon name="SearchIcon" />}
-            label="Search"
+            label={t("story_common_search")}
           />
           <TabBar.Item
             active={activeTab === "notifications"}
             onClick={() => setActiveTab("notifications")}
             icon={<Icon name="StarIcon" />}
-            label="Alerts"
+            label={t("story_common_alerts")}
             badge="3"
           />
           <TabBar.Item
             active={activeTab === "profile"}
             onClick={() => setActiveTab("profile")}
             icon={<Icon name="SquareIcon" />}
-            label="Profile"
+            label={t("story_common_profile")}
           />
         </TabBar>
       </div>
@@ -94,16 +98,16 @@ export const WithoutLabels: Story = {
 
 export const Fixed: Story = {
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [activeTab, setActiveTab] = React.useState("home");
     return (
       <div style={{ background: "#f4f4f5", minHeight: "100vh" }}>
         <div style={{ padding: "20px", paddingBottom: "100px" }}>
-          <h2>Fixed TabBar Demo</h2>
-          <p>Scroll down to see the fixed TabBar.</p>
+          <h2>{t("story_tabbar_fixed_title")}</h2>
+          <p>{t("story_tabbar_fixed_desc")}</p>
           {Array.from({ length: 20 }).map((_, i) => (
             <p key={i}>
-              This is line {i + 1} of a very long content to demonstrate
-              scrolling.
+              {t("story_tabbar_line")} {i + 1} {t("story_tabbar_long_content")}
             </p>
           ))}
         </div>
@@ -112,19 +116,19 @@ export const Fixed: Story = {
             active={activeTab === "home"}
             onClick={() => setActiveTab("home")}
             icon={<Icon name="HomeIcon" />}
-            label="Home"
+            label={t("story_common_home")}
           />
           <TabBar.Item
             active={activeTab === "search"}
             onClick={() => setActiveTab("search")}
             icon={<Icon name="SearchIcon" />}
-            label="Search"
+            label={t("story_common_search")}
           />
           <TabBar.Item
             active={activeTab === "profile"}
             onClick={() => setActiveTab("profile")}
             icon={<Icon name="UserIcon" />}
-            label="Profile"
+            label={t("story_common_profile")}
           />
         </TabBar>
       </div>

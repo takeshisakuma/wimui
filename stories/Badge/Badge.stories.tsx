@@ -16,7 +16,7 @@ type Story = StoryObj<typeof Badge>;
 
 export const Primary: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Badge {...args} content={t("story_badge_content")} />;
   },
   args: {
@@ -26,7 +26,7 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Badge {...args} content={t("story_badge_secondary")} />;
   },
   args: {
@@ -36,7 +36,7 @@ export const Secondary: Story = {
 
 export const Destructive: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Badge {...args} content={t("story_badge_error")} />;
   },
   args: {
@@ -46,7 +46,7 @@ export const Destructive: Story = {
 
 export const Neutral: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Badge {...args} content={t("story_badge_neutral")} />;
   },
   args: {
@@ -56,7 +56,7 @@ export const Neutral: Story = {
 
 export const Outline: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Badge {...args} content={t("story_badge_outline")} />;
   },
   args: {
@@ -67,7 +67,7 @@ export const Outline: Story = {
 
 export const Small: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Badge {...args} content={t("story_badge_small")} />;
   },
   args: {
@@ -77,7 +77,7 @@ export const Small: Story = {
 
 export const Required: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Badge {...args} content={t("required")} />;
   },
   args: {
@@ -88,7 +88,7 @@ export const Required: Story = {
 
 export const Optional: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Badge {...args} content={t("optional")} />;
   },
   args: {
@@ -99,7 +99,7 @@ export const Optional: Story = {
 
 export const WithIcon: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Badge
         {...args}

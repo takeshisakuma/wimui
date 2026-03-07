@@ -17,7 +17,7 @@ type Story = StoryObj<typeof Alert>;
 
 export const Info: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Alert
         {...args}
@@ -31,7 +31,7 @@ export const Info: Story = {
 
 export const Success: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Alert
         {...args}
@@ -45,7 +45,7 @@ export const Success: Story = {
 
 export const Warning: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Alert
         {...args}
@@ -59,7 +59,7 @@ export const Warning: Story = {
 
 export const ErrorStatus: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Alert
         {...args}
@@ -73,7 +73,7 @@ export const ErrorStatus: Story = {
 
 export const WithoutTitle: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Alert
         {...args}
@@ -86,7 +86,7 @@ export const WithoutTitle: Story = {
 
 export const WithCloseButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Alert
         {...args}
@@ -101,7 +101,7 @@ export const WithCloseButton: Story = {
 
 export const LongContent: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Alert
         {...args}

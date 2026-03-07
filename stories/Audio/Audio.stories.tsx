@@ -32,7 +32,7 @@ export const Default: Story = {
 
 export const WithCaption: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Audio {...args} caption={t("story_audio_caption")} />;
   },
   args: {

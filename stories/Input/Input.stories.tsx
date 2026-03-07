@@ -55,7 +55,7 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_input_label_name")}>
         <Input {...args} placeholder={t("story_input_placeholder_name")} />
@@ -66,7 +66,7 @@ export const Default: Story = {
 
 export const SelectLike: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const handleClick = () => alert("Dropdown or Modal would open here!");
     return (
       <Label label={t("story_input_label_dept")}>
@@ -91,7 +91,7 @@ export const SelectLike: Story = {
 
 export const Clearable: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_input_label_keyword")}>
         <Input
@@ -107,7 +107,7 @@ export const Clearable: Story = {
 
 export const Outline: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_input_label_company")}>
         <Input {...args} variant="outline" placeholder={t("story_input_placeholder_company")} />
@@ -118,7 +118,7 @@ export const Outline: Story = {
 
 export const Ghost: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_input_label_remarks")}>
         <Input {...args} variant="ghost" placeholder={t("story_input_placeholder_remarks")} />
@@ -129,7 +129,7 @@ export const Ghost: Story = {
 
 export const ErrorStatus: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div
         style={{
@@ -154,7 +154,7 @@ export const ErrorStatus: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_input_label_userid")}>
         <Input {...args} disabled={true} placeholder={t("story_input_placeholder_userid")} />
@@ -165,7 +165,7 @@ export const Disabled: Story = {
 
 export const FullWidth: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_input_label_contact")} style={{ width: "100%" }}>
         <Input {...args} fullWidth={true} placeholder={t("story_input_placeholder_contact")} />
@@ -179,7 +179,7 @@ export const FullWidth: Story = {
 
 export const SearchIndicator: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_input_label_search")}>
         <Input {...args} leftIcon="SearchIcon" placeholder={t("story_input_placeholder_search")} />

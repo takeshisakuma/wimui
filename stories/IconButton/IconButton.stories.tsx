@@ -14,14 +14,14 @@ type Story = StoryObj<typeof IconButton>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <IconButton {...args} iconName="SearchIcon" aria-label={t("story_iconbutton_search")} />;
   },
 };
 
 export const Close: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <IconButton
         {...args}

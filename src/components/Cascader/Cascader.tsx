@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo, useId } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
@@ -26,6 +27,8 @@ export type CascaderProps = {
   expandTrigger?: "click" | "hover";
   /** Custom separator for the display value */
   separator?: string;
+  /** Whether to show a clear button when a value is selected */
+  allowClear?: boolean;
 };
 
 /**
@@ -43,8 +46,10 @@ export const Cascader = ({
   id: customId,
   expandTrigger = "click",
   separator = " / ",
+  allowClear = false,
   ...props
 }: CascaderProps) => {
+  const { t } = useTranslation("common");
   const generatedId = useId();
   const id = customId || generatedId;
   const labelId = `wim-cascader-label-${id}`;
@@ -126,6 +131,18 @@ export const Cascader = ({
         onChange(newPath, selectedOptions);
       }
       setIsOpen(false);
+    }
+  };
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (disabled) return;
+
+    if (!isControlled) {
+      setInternalValue([]);
+    }
+    if (onChange) {
+      onChange([], []);
     }
   };
 
@@ -225,8 +242,20 @@ export const Cascader = ({
         >
           {displayValue || placeholder}
         </div>
-        <div className="wim-cascader__icon">
-          <Icon name="ChevronDownIcon" size="medium" />
+        <div className="wim-cascader__icons">
+          {allowClear && currentValue && currentValue.length > 0 && !disabled && (
+            <button
+              type="button"
+              className="wim-cascader__clear"
+              onClick={handleClear}
+              aria-label={t("a11y_clear_selection")}
+            >
+              <Icon name="CloseIcon" size="small" />
+            </button>
+          )}
+          <div className="wim-cascader__icon">
+            <Icon name="ChevronDownIcon" size="medium" />
+          </div>
         </div>
       </div>
 

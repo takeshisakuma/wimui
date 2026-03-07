@@ -23,7 +23,7 @@ type Story = StoryObj<typeof Dropdown>;
 
 export const Basic: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Dropdown {...args}>
         <DropdownTrigger>
@@ -47,7 +47,7 @@ export const Basic: Story = {
 
 export const WithIcons: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Dropdown {...args}>
         <DropdownTrigger>
@@ -71,7 +71,7 @@ export const WithIcons: Story = {
 
 export const AlignmentRight: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div style={{ paddingLeft: "200px" }}>
         <Dropdown {...args}>

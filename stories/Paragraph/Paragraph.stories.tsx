@@ -1,5 +1,6 @@
 import { fn } from "storybook/test";
 import { Paragraph } from "@/components/Paragraph/Paragraph";
+import { useTranslation } from "react-i18next";
 
 export default {
   title: "Components/Typography & Icons/Paragraph", //左メニューの表示
@@ -30,75 +31,99 @@ export default {
 //コンポーネントに渡す値
 
 export const ExLargeParagraph = {
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Paragraph {...args} content={t('story_paragraph_exlarge')} />;
+  },
   args: {
     size: "ex-large",
-    content: `ex-large_paragraph`,
     weight: `normal`,
     lineHeight: `normal-latn`,
     fontStyle: `normal`,
-  },
+  }
 };
 
 export const LargeParagraph = {
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Paragraph {...args} content={t('story_paragraph_large')} />;
+  },
   args: {
     size: "large",
-    content: `large_paragraph`,
     weight: `normal`,
     lineHeight: `normal-latn`,
     fontStyle: `normal`,
-  },
+  }
 };
 
 export const MediumParagraph = {
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Paragraph {...args} content={t('story_paragraph_medium')} />;
+  },
   args: {
     size: "medium",
-    content: `medium_paragraph`,
     weight: `normal`,
     lineHeight: `normal-latn`,
     fontStyle: `normal`,
-  },
+  }
 };
 
 export const SmallParagrapht = {
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Paragraph {...args} content={t('story_paragraph_small')} />;
+  },
   args: {
     size: "small",
-    content: `small_paragraph`,
     weight: `normal`,
     lineHeight: `normal-latn`,
     fontStyle: `normal`,
-  },
+  }
 };
 
 export const ExSmallParagraph = {
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Paragraph {...args} content={t('story_paragraph_exsmall')} />;
+  },
   args: {
     size: "ex-small",
-    content: `ex-small_paragraph`,
     weight: `normal`,
     lineHeight: `normal-latn`,
     fontStyle: `normal`,
-  },
+  }
 };
 
 export const BoldParagraph = {
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Paragraph {...args} content={t('story_paragraph_bold')} />;
+  },
   args: {
     size: "medium",
-    content: "Bold Paragraph",
     weight: "bold",
-  },
+  }
 };
 
 export const StrikethroughParagraph = {
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Paragraph {...args} content={t('story_paragraph_strikethrough')} />;
+  },
   args: {
     size: "medium",
-    content: "Strikethrough Paragraph",
     decoration: "line-through",
-  },
+  }
 };
 
 export const HighlightParagraph = {
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Paragraph {...args} content={t('story_paragraph_highlight')} />;
+  },
   args: {
     size: "medium",
-    content: "Highlight Paragraph",
     decoration: "highlight",
-  },
+  }
 };

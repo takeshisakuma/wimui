@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Affix } from "@/components/Affix/Affix";
 import { Button } from "@/components/Button/Button";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Affix> = {
   title: "Components/Navigation Utilities/Affix",
@@ -16,36 +17,35 @@ export default meta;
 type Story = StoryObj<typeof Affix>;
 
 export const Basic: Story = {
-  args: {
-    offsetTop: 20,
-    children: <Button label="Affix Top" size="medium" />,
-  },
-  render: (args) => (
-    <div style={{ height: "200vh", padding: "20px" }}>
-      <p>Scroll down to see the button stick to the top.</p>
-      <div style={{ marginTop: "100px" }}>
-        <Affix {...args} />
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div style={{ height: "200vh", padding: "20px" }}>
+        <p>{t("story_affix_scroll_top")}</p>
+        <div style={{ marginTop: "100px" }}>
+          <Affix {...args} offsetTop={20}>
+            <Button label={t("story_affix_top")} size="medium" />
+          </Affix>
+        </div>
       </div>
-    </div>
-  ),
+    );
+  },
 };
 
 export const OffsetBottom: Story = {
-  args: {
-    offsetBottom: 20,
-    children: <Button label="Affix Bottom" size="medium" />,
-  },
-  render: (args) => (
-    <div style={{ height: "200vh", padding: "20px" }}>
-      <p>
-        Scroll down to the button. It will stick to the bottom until you scroll
-        past it (upwards).
-      </p>
-      <div style={{ marginTop: "120vh" }}>
-        <p>Scroll down here...</p>
-        <Affix {...args} />
-        <p>And more content below...</p>
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div style={{ height: "200vh", padding: "20px" }}>
+        <p>{t("story_affix_scroll_bottom")}</p>
+        <div style={{ marginTop: "120vh" }}>
+          <p>{t("story_affix_scroll_bottom_2", "Scroll down here...")}</p>
+          <Affix {...args} offsetBottom={20}>
+            <Button label={t("story_affix_bottom")} size="medium" />
+          </Affix>
+          <p>{t("story_affix_more")}</p>
+        </div>
       </div>
-    </div>
-  ),
+    );
+  },
 };

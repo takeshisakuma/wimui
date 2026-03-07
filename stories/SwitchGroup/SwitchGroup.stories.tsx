@@ -21,7 +21,7 @@ export default meta;
 type Story = StoryObj<typeof SwitchGroup>;
 
 const useOptions = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   return [
     { label: t("story_switch_wifi"), value: "wifi" },
     { label: t("story_switch_bluetooth"), value: "bluetooth" },
@@ -52,7 +52,7 @@ export const Horizontal: Story = {
 
 export const WithDisabledOption: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const options = useOptions();
     return (
       <SwitchGroup

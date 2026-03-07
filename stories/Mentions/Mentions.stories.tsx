@@ -26,7 +26,7 @@ const mockUsers = [
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_mentions_label_user")}>
         <Mentions {...args} options={mockUsers} placeholder="@yamada" fullWidth rows={4} />
@@ -37,7 +37,7 @@ export const Default: Story = {
 
 export const CustomTrigger: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
         <Label label={t("story_mentions_label_char")}>

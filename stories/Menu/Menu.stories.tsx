@@ -23,7 +23,7 @@ type Story = StoryObj<typeof Menu>;
 
 export const Basic: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Menu {...args}>
         <MenuItem>{t("story_menu_home")}</MenuItem>
@@ -37,7 +37,7 @@ export const Basic: Story = {
 
 export const WithIcons: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Menu {...args}>
         <MenuItem icon={<Icon name="CheckIcon" size="small" />}>
@@ -56,7 +56,7 @@ export const WithIcons: Story = {
 
 export const WithSubMenu: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Menu {...args} defaultOpenKeys={["sub1"]}>
         <MenuItem icon={<Icon name="CheckIcon" size="small" />}>
@@ -87,7 +87,7 @@ export const WithSubMenu: Story = {
 
 export const WithGroups: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Menu {...args}>
         <MenuItemGroup title={t("story_menu_main_pages")}>
@@ -108,7 +108,7 @@ export const WithGroups: Story = {
 
 export const Horizontal: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Menu {...args} mode="horizontal">
         <MenuItem>{t("story_menu_home")}</MenuItem>
@@ -122,7 +122,7 @@ export const Horizontal: Story = {
 
 export const Inline: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Menu {...args} mode="inline" defaultOpenKeys={["sub1"]}>
         <MenuItem icon={<Icon name="CheckIcon" size="small" />}>
@@ -147,7 +147,7 @@ export const Inline: Story = {
 
 export const WithDisabledItems: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Menu {...args}>
         <MenuItem>{t("story_menu_active_item")}</MenuItem>

@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Watermark>;
 
 export const Text: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Watermark {...args} content="wimui watermark">
         <div style={{ height: "400px", background: "#fff", padding: "20px" }}>

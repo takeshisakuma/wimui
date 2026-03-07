@@ -1,5 +1,6 @@
 import React from "react";
 import { Quote } from "@/components/Quote/Quote";
+import { useTranslation } from "react-i18next";
 
 export default {
   title: "Components/Typography & Icons/Quote",
@@ -32,42 +33,47 @@ export default {
 };
 
 export const Default = {
-  args: {
-    content: "He who has a why to live can bear almost any how.",
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Quote {...args} content={t('story_quote_default')} />;
   },
+  args: {}
 };
 
 export const WithCite = {
-  args: {
-    content:
-      "Design is not just what it looks like and feels like. Design is how it works.",
-    cite: "Steve Jobs",
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Quote {...args} content={t('story_quote_design')} cite="Steve Jobs" />;
   },
+  args: {}
 };
 
 export const Large = {
-  args: {
-    size: "large",
-    content: "The only way to do great work is to love what you do.",
-    cite: "Steve Jobs",
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Quote {...args} content={t('story_quote_work')} cite="Steve Jobs" />;
   },
+  args: { size: "large" }
 };
 
 export const NoBorder = {
-  args: {
-    border: false,
-    content: "Simplicity is the ultimate sophistication.",
-    cite: "Leonardo da Vinci",
+  render: (args: any) => {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return <Quote {...args} content={t('story_quote_simple')} cite="Leonardo da Vinci" />;
   },
+  args: { border: false }
 };
 
 export const VariousColors = {
-  render: (args: any) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-      <Quote {...args} content="Black Quote" color="black" />
-      <Quote {...args} content="Deep Gray Quote" color="deepgray" />
-      <Quote {...args} content="Gray Quote" color="gray" />
-      <Quote {...args} content="Light Gray Quote" color="lightgray" />
-    </div>
-  ),
+  render: function Render(args: any) {
+    const { t } = useTranslation(['docs', 'common', 'components']);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        <Quote {...args} content={t('story_quote_black')} color="black" />
+        <Quote {...args} content={t('story_quote_deepgray')} color="deepgray" />
+        <Quote {...args} content={t('story_quote_gray')} color="gray" />
+        <Quote {...args} content={t('story_quote_lightgray')} color="lightgray" />
+      </div>
+    );
+  }
 };

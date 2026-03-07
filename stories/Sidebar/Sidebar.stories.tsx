@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import Sidebar, { SidebarProps } from "@/components/Sidebar/Sidebar";
 import { Icon } from "@/components/Icon/Icon";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Sidebar> = {
   title: "Components/Application Shell/Sidebar",
@@ -15,69 +16,85 @@ const meta: Meta<typeof Sidebar> = {
 export default meta;
 type Story = StoryObj<typeof Sidebar>;
 
-const SidebarContent = () => (
-  <>
-    <Sidebar.Header>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          width: "100%",
-          justifyContent: "inherit",
-        }}
-      >
-        <Icon name="CircleIcon" color="primary" size="large" />
-        <span
-          className="wim-sidebar__hide-collapsed"
-          style={{ fontWeight: "bold", fontSize: "1.2rem" }}
-        >
-          WIM UI
-        </span>
-      </div>
-    </Sidebar.Header>
-    <Sidebar.Content>
-      <Sidebar.Item active icon={<Icon name="HomeIcon" />}>
-        Dashboard
-      </Sidebar.Item>
-      <Sidebar.Item icon={<Icon name="ProjectIcon" />}>Projects</Sidebar.Item>
-      <Sidebar.Item icon={<Icon name="EmailIcon" />}>Messages</Sidebar.Item>
-      <Sidebar.Item icon={<Icon name="DocumentIcon" />}>Documents</Sidebar.Item>
-      <Sidebar.Item icon={<Icon name="ChartIcon" />}>Analytics</Sidebar.Item>
-      <Sidebar.Item icon={<Icon name="SettingsIcon" />}>Settings</Sidebar.Item>
-    </Sidebar.Content>
-    <Sidebar.Footer>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          width: "100%",
-          justifyContent: "inherit",
-        }}
-      >
+const SidebarContent = () => {
+  const { t } = useTranslation(["docs", "common", "components"]);
+  return (
+    <>
+      <Sidebar.Header>
         <div
           style={{
-            width: 32,
-            height: 32,
-            borderRadius: "50%",
-            background: "#eee",
-            flexShrink: 0,
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            width: "100%",
+            justifyContent: "inherit",
           }}
-        ></div>
-        <div className="wim-sidebar__hide-collapsed">
-          <div style={{ fontSize: "0.8rem", fontWeight: "bold" }}>John Doe</div>
-          <div style={{ fontSize: "0.7rem", color: "#666" }}>
-            john@example.com
+        >
+          <Icon name="CircleIcon" color="primary" size="large" />
+          <span
+            className="wim-sidebar__hide-collapsed"
+            style={{ fontWeight: "bold", fontSize: "1.2rem" }}
+          >
+            {t("story_sidebar_wimui")}
+          </span>
+        </div>
+      </Sidebar.Header>
+      <Sidebar.Content>
+        <Sidebar.Item active icon={<Icon name="HomeIcon" />}>
+          {t("story_sidebar_dashboard")}
+        </Sidebar.Item>
+        <Sidebar.Item icon={<Icon name="ProjectIcon" />}>
+          {t("story_sidebar_projects")}
+        </Sidebar.Item>
+        <Sidebar.Item icon={<Icon name="EmailIcon" />}>
+          {t("story_sidebar_messages")}
+        </Sidebar.Item>
+        <Sidebar.Item icon={<Icon name="DocumentIcon" />}>
+          {t("story_sidebar_documents")}
+        </Sidebar.Item>
+        <Sidebar.Item icon={<Icon name="ChartIcon" />}>
+          {t("story_sidebar_analytics")}
+        </Sidebar.Item>
+        <Sidebar.Item icon={<Icon name="SettingsIcon" />}>
+          {t("story_sidebar_settings")}
+        </Sidebar.Item>
+      </Sidebar.Content>
+      <Sidebar.Footer>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            width: "100%",
+            justifyContent: "inherit",
+          }}
+        >
+          <div
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: "50%",
+              background: "#eee",
+              flexShrink: 0,
+            }}
+          ></div>
+          <div className="wim-sidebar__hide-collapsed">
+            <div style={{ fontSize: "0.8rem", fontWeight: "bold" }}>
+              {t("story_sidebar_user_name")}
+            </div>
+            <div style={{ fontSize: "0.7rem", color: "#666" }}>
+              {t("story_sidebar_user_email")}
+            </div>
           </div>
         </div>
-      </div>
-    </Sidebar.Footer>
-  </>
-);
+      </Sidebar.Footer>
+    </>
+  );
+};
 
 export const Default: Story = {
   render: (args: SidebarProps) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [mobileOpen, setMobileOpen] = React.useState(false);
     return (
       <div
@@ -111,7 +128,7 @@ export const Default: Story = {
           className="wim-sidebar-mobile-trigger-demo"
           onClick={() => setMobileOpen(true)}
         >
-          Menu
+          {t("story_sidebar_menu")}
         </button>
         <Sidebar
           {...args}
@@ -128,8 +145,8 @@ export const Default: Story = {
             marginTop: "40px",
           }}
         >
-          <h1>Content Area</h1>
-          <p>Select a menu item from the sidebar.</p>
+          <h1>{t("story_sidebar_content_area")}</h1>
+          <p>{t("story_sidebar_select_item")}</p>
         </main>
       </div>
     );

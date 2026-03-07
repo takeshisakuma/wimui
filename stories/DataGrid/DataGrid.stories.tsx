@@ -4,6 +4,7 @@ import { DataGrid } from "@/components/DataGrid/DataGrid";
 import { Badge } from "@/components/Badge/Badge";
 import { Button } from "@/components/Button/Button";
 import { Icon } from "@/components/Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof DataGrid> = {
   title: "Components/Data Structures/DataGrid",
@@ -108,28 +109,49 @@ const basicColumns = [
   },
 ];
 
+const useDataGridTranslations = () => {
+  const { t } = useTranslation(['docs', 'common', 'components']);
+  const tColumns = basicColumns.map(c => ({
+    ...c,
+    header: typeof c.header === 'string' ? t(`story_datagrid_col_${c.key}`) : c.header,
+    render: c.key === 'status' ? ((value: any) => {
+      const translatedValue = value === "Active" ? t('story_datagrid_status_active') : value === "Inactive" ? t('story_datagrid_status_inactive') : t('story_datagrid_status_pending');
+      return (
+        <Badge
+          content={translatedValue}
+          size="small"
+          color={value === "Active" ? "primary" : value === "Inactive" ? "neutral" : "secondary"}
+        />
+      );
+    }) : c.render
+  }));
+  const tSampleData = sampleData; // data stays as is
+  return { t, tColumns: tColumns as any, tSampleData };
+};
+
 export const Default: Story = {
+  render: (args) => {
+    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const rows = tSampleData;
+    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
+  },
   args: {
-    columns: basicColumns,
-    rows: sampleData,
     bordered: true,
   },
 };
 
 export const WithSelection: Story = {
   render: () => {
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
-      [],
-    );
-
+    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
     return (
       <div>
         <p style={{ marginBottom: "16px" }}>
-          Selected: {selectedRowKeys.join(", ")}
+          {t('story_datagrid_selected')}{selectedRowKeys.join(", ")}
         </p>
         <DataGrid
-          columns={basicColumns}
-          rows={sampleData}
+          columns={tColumns}
+          rows={tSampleData}
           selection
           selectedRowKeys={selectedRowKeys}
           onSelectionChange={setSelectedRowKeys}
@@ -142,6 +164,7 @@ export const WithSelection: Story = {
 
 export const WithSorting: Story = {
   render: () => {
+    const { t, tColumns, tSampleData } = useDataGridTranslations();
     const [sortConfig, setSortConfig] = React.useState<{
       key: string;
       direction: "asc" | "desc" | "none";
@@ -170,7 +193,7 @@ export const WithSorting: Story = {
 
     return (
       <DataGrid
-        columns={basicColumns}
+        columns={tColumns}
         rows={data}
         sortConfig={sortConfig}
         onSort={handleSort}
@@ -182,6 +205,7 @@ export const WithSorting: Story = {
 
 export const WithPagination: Story = {
   render: () => {
+    const { t, tColumns } = useDataGridTranslations();
     const [currentPage, setCurrentPage] = React.useState(1);
     const pageSize = 10;
     const startIndex = (currentPage - 1) * pageSize;
@@ -190,7 +214,7 @@ export const WithPagination: Story = {
 
     return (
       <DataGrid
-        columns={basicColumns}
+        columns={tColumns}
         rows={currentData}
         pagination={{
           total: manyRows.length,
@@ -241,44 +265,58 @@ export const WithActions: Story = {
 };
 
 export const Loading: Story = {
+  render: (args) => {
+    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const rows = tSampleData;
+    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
+  },
   args: {
-    columns: basicColumns,
-    rows: sampleData,
     loading: true,
     bordered: true,
   },
 };
 
 export const Empty: Story = {
+  render: (args) => {
+    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const rows = tSampleData;
+    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} emptyMessage={t('story_datagrid_empty')} />;
+  },
   args: {
-    columns: basicColumns,
-    rows: [],
-    emptyMessage: "No users found",
     bordered: true,
   },
 };
 
 export const Striped: Story = {
+  render: (args) => {
+    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const rows = tSampleData;
+    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
+  },
   args: {
-    columns: basicColumns,
-    rows: sampleData,
     striped: true,
     bordered: true,
   },
 };
 
 export const Bordered: Story = {
+  render: (args) => {
+    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const rows = tSampleData;
+    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
+  },
   args: {
-    columns: basicColumns,
-    rows: sampleData,
     bordered: true,
   },
 };
 
 export const StickyHeader: Story = {
+  render: (args) => {
+    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const rows = manyRows;
+    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
+  },
   args: {
-    columns: basicColumns,
-    rows: manyRows,
     stickyHeader: true,
     maxHeight: "400px",
     bordered: true,
@@ -287,9 +325,8 @@ export const StickyHeader: Story = {
 
 export const FullFeatured: Story = {
   render: () => {
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
-      [],
-    );
+    const { t, tColumns } = useDataGridTranslations();
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
     const [currentPage, setCurrentPage] = React.useState(1);
     const [sortConfig, setSortConfig] = React.useState<{
       key: string;
@@ -325,7 +362,7 @@ export const FullFeatured: Story = {
     return (
       <div>
         <DataGrid
-          columns={basicColumns}
+          columns={tColumns}
           rows={currentData}
           selection
           selectedRowKeys={selectedRowKeys}

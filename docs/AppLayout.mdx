@@ -25,6 +25,7 @@ import { T } from "../stories/T";
     width: 100%;
     min-width: 0;
     overflow: hidden;
+    position: relative;
   }
 
   .layout-header { grid-area: header; background: #e0e7ff; display: flex; align-items: center; justify-content: center; font-weight: bold; }
@@ -77,10 +78,10 @@ import { T } from "../stories/T";
 
     </div>
 
-    <div className="layout-toast">
-      <T k="layout_diagram_toast" />
+  </div>
 
-    </div>
+  <div className="layout-toast">
+    <T k="layout_diagram_toast" />
 
   </div>
 

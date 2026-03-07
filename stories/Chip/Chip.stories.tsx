@@ -35,14 +35,14 @@ type Story = StoryObj<typeof Chip>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Chip {...args} label={t("story_chip_default")} />;
   },
 };
 
 export const Clickable: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Chip
         {...args}
@@ -55,7 +55,7 @@ export const Clickable: Story = {
 
 export const Deletable: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Chip
         {...args}
@@ -68,14 +68,14 @@ export const Deletable: Story = {
 
 export const WithAvatar: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Chip {...args} label="Jane Doe" avatar={<Avatar initials="JD" size="sm" />} />;
   },
 };
 
 export const WithIcon: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Chip
         {...args}
@@ -88,14 +88,14 @@ export const WithIcon: Story = {
 
 export const Selected: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <Chip {...args} label={t("story_chip_selected")} selected={true} onClick={() => {}} />;
   },
 };
 
 export const Variants: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div style={{ display: "flex", gap: "10px" }}>
         <Chip {...args} label={t("story_chip_solid")} variant="solid" onClick={() => {}} />

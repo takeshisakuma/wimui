@@ -101,7 +101,7 @@ export const CardExample: Story = {
 export const LoadingToggle: Story = {
   render: function Render(args) {
     const [loading, setLoading] = React.useState(true);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
 
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>

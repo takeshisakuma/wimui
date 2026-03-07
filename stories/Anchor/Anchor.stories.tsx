@@ -1,6 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { Anchor } from "@/components/Anchor/Anchor";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Anchor> = {
   title: "Components/Navigation Elements/Anchor",
@@ -15,43 +16,40 @@ export default meta;
 
 type Story = StoryObj<typeof Anchor>;
 
-const items = [
-  {
-    key: "part-1",
-    href: "#part-1",
-    title: "Part 1: Introduction",
-  },
-  {
-    key: "part-2",
-    href: "#part-2",
-    title: "Part 2: Features",
-    children: [
-      {
-        key: "part-2-1",
-        href: "#part-2-1",
-        title: "Core Functionality",
-      },
-      {
-        key: "part-2-2",
-        href: "#part-2-2",
-        title: "Advanced Options",
-      },
-    ],
-  },
-  {
-    key: "part-3",
-    href: "#part-3",
-    title: "Part 3: Conclusion",
-  },
-];
-
 export const Default: Story = {
-  args: {
-    items,
-    offset: 20,
-  },
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [isMobile, setIsMobile] = React.useState(false);
+
+    const items = [
+      {
+        key: "part-1",
+        href: "#part-1",
+        title: t("story_anchor_part1"),
+      },
+      {
+        key: "part-2",
+        href: "#part-2",
+        title: t("story_anchor_part2"),
+        children: [
+          {
+            key: "part-2-1",
+            href: "#part-2-1",
+            title: t("story_anchor_part2_1"),
+          },
+          {
+            key: "part-2-2",
+            href: "#part-2-2",
+            title: t("story_anchor_part2_2"),
+          },
+        ],
+      },
+      {
+        key: "part-3",
+        href: "#part-3",
+        title: t("story_anchor_part3"),
+      },
+    ];
 
     React.useEffect(() => {
       const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -86,6 +84,7 @@ export const Default: Story = {
         >
           <Anchor
             {...args}
+            items={items}
             direction={isMobile ? "horizontal" : "vertical"}
             offset={isMobile ? 60 : args.offset}
           />
@@ -100,8 +99,8 @@ export const Default: Story = {
               marginBottom: "20px",
             }}
           >
-            <h2>Part 1: Introduction</h2>
-            <p>Scroll down to see the anchor in action.</p>
+            <h2>{t("story_anchor_part1")}</h2>
+            <p>{t("story_anchor_scroll_msg")}</p>
           </section>
           <section
             id="part-2"
@@ -112,7 +111,7 @@ export const Default: Story = {
               marginBottom: "20px",
             }}
           >
-            <h2>Part 2: Features</h2>
+            <h2>{t("story_anchor_part2")}</h2>
             <div
               id="part-2-1"
               style={{
@@ -122,7 +121,7 @@ export const Default: Story = {
                 padding: "10px",
               }}
             >
-              <h3>Core Functionality</h3>
+              <h3>{t("story_anchor_part2_1")}</h3>
             </div>
             <div
               id="part-2-2"
@@ -133,17 +132,20 @@ export const Default: Story = {
                 padding: "10px",
               }}
             >
-              <h3>Advanced Options</h3>
+              <h3>{t("story_anchor_part2_2")}</h3>
             </div>
           </section>
           <section
             id="part-3"
             style={{ height: "600px", background: "#f0f2f5", padding: "20px" }}
           >
-            <h2>Part 3: Conclusion</h2>
+            <h2>{t("story_anchor_part3")}</h2>
           </section>
         </div>
       </div>
     );
+  },
+  args: {
+    offset: 20,
   },
 };

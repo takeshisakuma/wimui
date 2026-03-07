@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof Combobox>;
 
 const useSampleOptions = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   return [
     { label: t("story_fruit_apple"), value: "apple" },
     { label: t("story_fruit_banana"), value: "banana" },
@@ -38,7 +38,7 @@ const useSampleOptions = () => {
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const sampleOptions = useSampleOptions();
     return (
       <Combobox

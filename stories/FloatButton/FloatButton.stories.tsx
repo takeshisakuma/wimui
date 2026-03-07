@@ -55,7 +55,7 @@ export const Basic: Story = {
 
 export const Extended: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <FloatButton {...args} label={t("story_floatbutton_send")} />;
   },
   args: {
@@ -93,43 +93,46 @@ export const Sizes: Story = {
 };
 
 export const ExtendedSizes: Story = {
-  render: () => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-        alignItems: "flex-start",
-      }}
-    >
-      <FloatButton
-        iconName="CircleIcon"
-        label="Small"
-        size="small"
-        variant="primary"
-        position="static"
-      />
-      <FloatButton
-        iconName="CircleIcon"
-        label="Medium"
-        size="medium"
-        variant="primary"
-        position="static"
-      />
-      <FloatButton
-        iconName="CircleIcon"
-        label="Large"
-        size="large"
-        variant="primary"
-        position="static"
-      />
-    </div>
-  ),
+  render: () => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          alignItems: "flex-start",
+        }}
+      >
+        <FloatButton
+          iconName="CircleIcon"
+          label={t("story_floatbutton_small")}
+          size="small"
+          variant="primary"
+          position="static"
+        />
+        <FloatButton
+          iconName="CircleIcon"
+          label={t("story_floatbutton_medium")}
+          size="medium"
+          variant="primary"
+          position="static"
+        />
+        <FloatButton
+          iconName="CircleIcon"
+          label={t("story_floatbutton_large")}
+          size="large"
+          variant="primary"
+          position="static"
+        />
+      </div>
+    );
+  },
 };
 
 export const AutoShrink: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return <AutoShrinkDemo {...args} label={t("story_floatbutton_shrink")} />;
   },
   args: {
@@ -175,45 +178,51 @@ export const FixedPosition: Story = {
   parameters: {
     layout: "fullscreen",
   },
-  args: {
-    iconName: "ChevronUpIcon",
-    variant: "primary",
-    shape: "circle",
-    size: "medium",
-    position: "bottom-right",
-    description: "Click me",
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div style={{ height: "150vh", padding: "20px" }}>
+        <p>{t("story_floatbutton_look_bottom")}</p>
+        <FloatButton
+          {...args}
+          iconName="ChevronUpIcon"
+          variant="primary"
+          shape="circle"
+          size="medium"
+          position="bottom-right"
+          description={t("story_floatbutton_click_me")}
+        />
+      </div>
+    );
   },
-  render: (args) => (
-    <div style={{ height: "150vh", padding: "20px" }}>
-      <p>Look at the bottom right of the screen.</p>
-      <FloatButton {...args} />
-    </div>
-  ),
 };
 
 export const BackTop: Story = {
   parameters: {
     layout: "fullscreen",
   },
-  args: {
-    backTop: true,
-    visibilityHeight: 100,
-    variant: "primary",
-    size: "medium",
+  render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div style={{ height: "200vh", padding: "20px" }}>
+        <p>{t("story_floatbutton_scroll_top_desc")}</p>
+        <FloatButton
+          {...args}
+          backTop
+          visibilityHeight={100}
+          variant="primary"
+          size="medium"
+        />
+      </div>
+    );
   },
-  render: (args) => (
-    <div style={{ height: "200vh", padding: "20px" }}>
-      <p>Scroll down to see the &quot;Back to Top&quot; button appear.</p>
-      <FloatButton {...args} />
-    </div>
-  ),
 };
 
 // Demo component for auto-shrink
 const AutoShrinkDemo = (args: FloatButtonProps) => {
   const [isShrunk, setIsShrunk] = useState(false);
   const scrollTimer = useRef<number | null>(null);
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
 
   const handleScroll = () => {
     setIsShrunk(true);

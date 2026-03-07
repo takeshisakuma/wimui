@@ -24,7 +24,7 @@ export const LeftAligned: Story = {
     align: "left",
   },
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Timeline {...args}>
         <TimelineItem>
@@ -64,7 +64,7 @@ export const Alternate: Story = {
     align: "alternate",
   },
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Timeline {...args}>
         <TimelineItem>
@@ -98,7 +98,7 @@ export const Alternate: Story = {
 
 export const WithIcons: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Timeline {...args}>
         <TimelineItem>

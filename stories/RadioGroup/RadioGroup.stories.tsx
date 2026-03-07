@@ -18,7 +18,7 @@ export default meta;
 type Story = StoryObj<typeof RadioGroup>;
 
 const useDefaultOptions = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   return [
     { label: t("story_radio_option1"), value: "opt1" },
     { label: `${t("story_radio_option1")} 2`, value: "opt2" },
@@ -57,7 +57,7 @@ export const Horizontal: Story = {
 
 export const WithDisabledOption: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <RadioGroup
         {...args}
@@ -79,7 +79,7 @@ export const WithDisabledOption: Story = {
 
 export const Controlled: Story = {
   render: function Render() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     const options = useDefaultOptions();
     const [value, setValue] = useState("opt1");
     return (
@@ -100,7 +100,7 @@ export const Controlled: Story = {
 
 export const LongLabel: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <RadioGroup
         {...args}

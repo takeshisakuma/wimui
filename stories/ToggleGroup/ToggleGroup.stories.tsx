@@ -23,7 +23,7 @@ export default meta;
 type Story = StoryObj<typeof ToggleGroup>;
 
 const useDefaultOptions = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["docs", "common", "components"]);
   return [
     { label: t("story_toggle_left"), value: "left", iconName: "CircleIcon" },
     { label: t("story_toggle_center"), value: "center", iconName: "SquareIcon" },
@@ -105,7 +105,7 @@ export const FullWidth: Story = {
 
 export const DisabledOptions: Story = {
   render: function Render(args) {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <ToggleGroup
         {...args}
