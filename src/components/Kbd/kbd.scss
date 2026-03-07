@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .wim-kbd {
     display: inline-flex;
     align-items: center;
@@ -12,7 +12,7 @@
     background-color: var(--bg-component, #fff);
     border: 1px solid var(--wim-color-border, #dee2e6);
     border-bottom-width: 3px;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-xs);
 
     // Sizes

@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .wim-stepper {
     box-sizing: border-box;
     display: flex;
@@ -42,68 +42,93 @@
       position: relative;
       display: flex;
       flex: 1;
-      overflow: hidden;
       vertical-align: top;
 
       &:last-child {
         flex: none;
-
-        .wim-stepper__line {
-          display: none;
-        }
       }
     }
 
     &--horizontal &__item {
       padding-right: var(--spacing-md);
+      overflow: visible;
 
+      .wim-stepper__line {
+        position: absolute;
+        top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
+        left: 0;
+        right: 0;
+        z-index: 0;
+        width: auto;
+        height: 2px;
+        background-color: transparent !important;
+        transform: translateY(-50%);
+
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          height: 100%;
+          background-color: var(--wim-color-border-secondary);
+          transition: background-color var(--transition-base);
+        }
+
+        &::before {
+          left: 0;
+          width: calc(var(--spacing-3xl) / 2);
+        }
+
+        &::after {
+          right: 0;
+          left: calc(var(--spacing-3xl) / 2);
+          width: auto;
+        }
+      }
+
+      &:first-child .wim-stepper__line::before {
+        display: none;
+      }
+
+      &:last-child .wim-stepper__line::after {
+        display: none;
+      }
+
+      // Beside Label Mode (Default)
+      &:not(.wim-stepper__item--label-vertical) {
+        .wim-stepper__content {
+          margin-top: calc(var(--spacing-xs) * -1.2); // Position title further up
+          padding-right: var(--spacing-md);
+        }
+      }
+
+      // Label Vertical Mode
       &--label-vertical {
         @media (min-width: 577px) {
           flex-direction: column;
           align-items: center;
           padding-right: 0;
           text-align: center;
-          overflow: visible;
 
           .wim-stepper__line {
-            left: 0;
             width: 100%;
-            background-color: transparent !important;
-
-            &::before,
-            &::after {
-              content: "";
-              position: absolute;
-              top: 0;
-              height: 100%;
-              background-color: var(--wim-color-border-secondary);
-              transition: background-color var(--transition-base);
-            }
 
             &::before {
-              left: -2px;
-              width: calc(50% - var(--spacing-3xl) / 2 + 2px);
+              left: -1px; // Slight overlap to prevent gaps
+              width: calc(50% - var(--spacing-3xl) / 2 + 1px);
             }
 
             &::after {
-              right: -2px;
-              width: calc(50% - var(--spacing-3xl) / 2 + 2px);
+              right: -1px; // Slight overlap to prevent gaps
+              left: auto;
+              width: calc(50% - var(--spacing-3xl) / 2 + 1px);
             }
-          }
-
-          &:first-child .wim-stepper__line::before {
-            display: none;
           }
 
           &:last-child {
             flex: 1;
-
-            .wim-stepper__line {
-              display: block;
-
-              &::after {
-                display: none;
-              }
+            .wim-stepper__line::after {
+              display: none;
             }
           }
 
@@ -126,12 +151,27 @@
 
       .wim-stepper__line {
         position: absolute;
-        top: calc(var(--spacing-3xl) + var(--spacing-xs));
+        top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
         left: calc(var(--spacing-3xl) / 2);
         width: 2px;
-        height: calc(100% - var(--spacing-3xl) - var(--spacing-xs));
+        height: 100%;
         background-color: var(--wim-color-border-secondary);
         transform: translateX(-50%);
+        z-index: 0;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: calc(100% + var(--spacing-lg)); // Extend line to next icon
+          background-color: inherit;
+        }
+      }
+
+      &:last-child .wim-stepper__line {
+        display: none;
       }
 
       .wim-stepper__content {
@@ -186,19 +226,24 @@
       position: absolute;
       top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
       left: var(--spacing-3xl);
-      width: 999px;
       height: 2px;
+      z-index: 0;
       background-color: var(--wim-color-border-secondary);
       transform: translateY(-50%);
       transition: background-color var(--transition-base);
     }
 
     &__item--finish &__line {
-      background-color: var(--color-primary);
+      &::before,
+      &::after {
+        background-color: var(--color-primary);
+      }
     }
 
     /* Content */
     &__content {
+      position: relative;
+      z-index: 1;
       flex-shrink: 0;
       margin-left: var(--spacing-sm);
     }
@@ -226,7 +271,7 @@
 
     &__description {
       display: block;
-      margin-top: var(--spacing-xl);
+      margin-top: calc(var(--spacing-xs) * 0.4); // Position description closer to line
       font-size: var(--font-size-small);
       color: var(--text-secondary);
     }
