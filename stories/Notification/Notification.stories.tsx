@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Notification } from "@/components/Notification/Notification";
 
@@ -50,5 +51,31 @@ export const Info: Story = {
     type: "info",
     title: "Info Notification",
     description: "New updates are available for your application.",
+  },
+};
+
+export const Trigger: Story = {
+  render: function Render() {
+    const [visible, setVisible] = useState(false);
+    return (
+      <div style={{ padding: "24px" }}>
+        <button
+          className="wim-button wim-button--primary"
+          onClick={() => setVisible(true)}
+        >
+          Show Notification
+        </button>
+        {visible && (
+          <div style={{ marginTop: "24px" }}>
+            <Notification
+              type="success"
+              title="Success!"
+              description="This notification was triggered by a button click."
+              onClose={() => setVisible(false)}
+            />
+          </div>
+        )}
+      </div>
+    );
   },
 };

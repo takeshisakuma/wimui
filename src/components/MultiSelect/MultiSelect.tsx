@@ -192,8 +192,9 @@ export const MultiSelect = ({
                 key={opt.value}
                 label={opt.label}
                 size="small"
-                color="neutral"
+                color="primary"
                 variant="solid"
+                disabled={disabled}
                 onDelete={
                   !disabled ? (e) => handleRemove(e, opt.value) : undefined
                 }

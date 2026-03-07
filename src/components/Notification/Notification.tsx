@@ -51,6 +51,14 @@ export const Notification = ({
   className,
 }: NotificationProps) => {
   const { t } = useTranslation();
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  if (!isVisible) return null;
+
+  const handleClose = () => {
+    setIsVisible(false);
+    if (onClose) onClose();
+  };
 
   const renderIcon = () => {
     if (icon) return icon;
@@ -96,7 +104,7 @@ export const Notification = ({
         {closable && (
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             className="wim-notification-close"
             aria-label={t("a11y_close")}
           >

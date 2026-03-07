@@ -45,17 +45,19 @@ export const Toast = ({
   className,
 }: ToastProps) => {
   const { t } = useTranslation();
+  const [internalVisible, setInternalVisible] = useState(true);
 
   useEffect(() => {
-    if (isVisible && duration > 0) {
+    if (isVisible && duration > 0 && internalVisible) {
       const timer = setTimeout(() => {
-        if (onClose) onClose(id);
+        handleClose();
       }, duration + 300); // Add extra buffer for animation
       return () => clearTimeout(timer);
     }
-  }, [isVisible, duration, id, onClose]);
+  }, [isVisible, duration, id, onClose, internalVisible]);
 
   const handleClose = () => {
+    setInternalVisible(false);
     if (onClose) onClose(id);
   };
 
@@ -75,7 +77,7 @@ export const Toast = ({
 
   return (
     <Transition
-      show={isVisible}
+      show={isVisible && internalVisible}
       enter="toast-enter"
       enterFrom="toast-enter-from"
       enterTo="toast-enter-to"
@@ -93,7 +95,7 @@ export const Toast = ({
       </div>
       <button
         type="button"
-        className="wim-toast__close"
+        className="wim-toast__close-button"
         onClick={handleClose}
         aria-label={t("a11y_close")}
       >

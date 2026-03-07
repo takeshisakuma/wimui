@@ -48,10 +48,11 @@
   position: relative;
   display: flex;
   gap: var(--spacing-md);
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
   min-width: 280px;
   max-width: calc(100vw - var(--spacing-lg) * 2);
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-xl) var(--spacing-md) var(--spacing-lg); // More padding on right for X
   pointer-events: auto;
 
   // Glassmorphism effect
@@ -65,6 +66,7 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
+    align-self: center; // Vertically center the icon
     font-size: 1.25rem;
   }
 
@@ -89,19 +91,21 @@
     opacity: 0.8;
 
     .wim-toast__title + & {
-      margin-top: var(--spacing-sm);
+      margin-top: var(--spacing-2xs);
     }
   }
 
-  &__close {
+  &__close-button {
+    position: absolute;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
     display: flex;
-    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     width: 24px;
     height: 24px;
     padding: 0;
-    margin: -4px -4px 0 0;
+    margin: 0;
     color: inherit;
     cursor: pointer;
     background: transparent;

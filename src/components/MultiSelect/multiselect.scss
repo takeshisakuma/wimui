@@ -75,13 +75,7 @@
   }
 }
 
-.wim-multiselect-badge {
-  &.wim-chip.wim-chip--solid {
-    color: var(--color-primary);
-    background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
-    border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
-  }
-}
+
 
 .wim-multiselect-list {
   position: absolute;

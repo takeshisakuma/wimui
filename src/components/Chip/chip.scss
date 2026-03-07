@@ -1,4 +1,4 @@
-﻿@use "sass:map";
+@use "sass:map";
 
 .wim-chip {
   box-sizing: border-box;
@@ -139,9 +139,10 @@
   }
 }
 
-&:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-  filter: none;
-}
+  &:disabled,
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    filter: none;
+  }
 }

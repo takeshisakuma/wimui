@@ -112,6 +112,7 @@ export const Chip = ({
         `wim-chip--${size === "small" ? "sm" : "md"}`,
         selected && "wim-chip--selected",
         onClick && !disabled && "wim-chip--clickable",
+        disabled && "wim-chip--disabled",
         className,
       )}
       {...props}

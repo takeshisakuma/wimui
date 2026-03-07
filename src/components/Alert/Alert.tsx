@@ -49,6 +49,14 @@ export const Alert = ({
   ...props
 }: AlertProps) => {
   const { t } = useTranslation();
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  if (!isVisible) return null;
+
+  const handleClose = () => {
+    setIsVisible(false);
+    if (onClose) onClose();
+  };
 
   const renderIcon = () => {
     if (icon) return icon;
@@ -84,7 +92,7 @@ export const Alert = ({
         <button
           type="button"
           className="wim-alert__close"
-          onClick={onClose}
+          onClick={handleClose}
           aria-label={t("a11y_close")}
         >
           <Icon name="CloseIcon" size="small" />

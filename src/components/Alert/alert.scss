@@ -6,7 +6,7 @@
   position: relative;
   display: flex;
   gap: var(--spacing-md);
-  align-items: center;
+  align-items: flex-start;
   padding: var(--spacing-lg) var(--spacing-xl);
   overflow: hidden;
 
@@ -22,6 +22,7 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
+    align-self: center; // Vertically center the icon
     font-size: 1.25rem;
   }
 
@@ -46,11 +47,14 @@
     opacity: 0.9;
 
     .wim-alert__title + & {
-      margin-top: var(--spacing-md);
+      margin-top: var(--spacing-xs);
     }
   }
 
   &__close {
+    position: absolute;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
     display: flex;
     flex-shrink: 0;
     align-items: center;
@@ -58,7 +62,7 @@
     width: 28px;
     height: 28px;
     padding: 0;
-    margin: -4px -8px 0 0;
+    margin: 0;
     color: inherit;
     cursor: pointer;
     background: transparent;
