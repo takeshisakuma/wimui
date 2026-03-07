@@ -1,0 +1,13 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as i}from"./index-DU9d6lYs.js";import{M as d}from"./blocks-BZhIunWM.js";import{T as t}from"./T-vBn9t204.js";import"./iframe-BLtjAiBw.js";import"./preload-helper-PPVm8Dsz.js";import"./index-CydZ188a.js";import"./index-3O2juYgD.js";import"./index-CbxiFKf9.js";import"./index-m9Nyb0cn.js";import"./useTranslation-CIS57IFk.js";function s(r){const n={h1:"h1",h2:"h2",hr:"hr",...i(),...r.components};return e.jsxs(e.Fragment,{children:[e.jsx(d,{title:"Architecture/Range Selection Standardization"}),`
+`,e.jsx(n.h1,{id:"",children:e.jsx(t,{k:"guide_range_std_title"})}),`
+`,e.jsx("p",{children:e.jsx(t,{k:"guide_range_std_desc"})}),`
+`,e.jsx(n.hr,{}),`
+`,e.jsx(n.h2,{id:"-1",children:e.jsx(t,{k:"guide_range_std_concept_title"})}),`
+`,e.jsx("p",{children:e.jsx(t,{k:"guide_range_std_concept_desc"})}),`
+`,e.jsx(n.hr,{}),`
+`,e.jsx(n.h2,{id:"-2",children:e.jsx(t,{k:"guide_range_std_rules_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(t,{k:"guide_range_std_rule_1"})}),e.jsx("li",{children:e.jsx(t,{k:"guide_range_std_rule_2"})}),e.jsx("li",{children:e.jsx(t,{k:"guide_range_std_rule_3"})}),e.jsx("li",{children:e.jsx(t,{k:"guide_range_std_rule_4"})})]}),`
+`,e.jsx(n.hr,{}),`
+`,e.jsx(n.h2,{id:"-3",children:e.jsx(t,{k:"guide_range_std_affected_components"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:"Component"}),e.jsx("th",{style:{textAlign:"center"},children:"Value Type"}),e.jsx("th",{style:{textAlign:"center"},children:"Range Support"})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:"Slider"})}),e.jsx("td",{style:{textAlign:"center"},children:"Number"}),e.jsx("td",{style:{textAlign:"center"},children:"No"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:"RangeSlider"})}),e.jsx("td",{style:{textAlign:"center"},children:"Number[]"}),e.jsx("td",{style:{textAlign:"center"},children:"Yes"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:"Calendar"})}),e.jsx("td",{style:{textAlign:"center"},children:"Date"}),e.jsx("td",{style:{textAlign:"center"},children:"No"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:"RangeCalendar"})}),e.jsx("td",{style:{textAlign:"center"},children:"Date[]"}),e.jsx("td",{style:{textAlign:"center"},children:"Yes"})]})]})]}),`
+`,e.jsxs("blockquote",{children:[e.jsx("strong",{children:e.jsx(t,{k:"guide_range_std_note_title"})}),e.jsx("br",{}),e.jsx(t,{k:"guide_range_std_note_desc"})]})]})}function p(r={}){const{wrapper:n}={...i(),...r.components};return n?e.jsx(n,{...r,children:e.jsx(s,{...r})}):s(r)}export{p as default};

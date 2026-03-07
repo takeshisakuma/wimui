@@ -13,6 +13,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
     allowClear?: boolean;
     showPasswordToggle?: boolean;
     rightIconClassName?: string;
+    width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
 };
 /**
  * ユーザーからの入力を受け付けるための基本コンポーネント。
@@ -30,4 +31,5 @@ export declare const Input: React.ForwardRefExoticComponent<Omit<React.DetailedH
     allowClear?: boolean;
     showPasswordToggle?: boolean;
     rightIconClassName?: string;
+    width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
 } & React.RefAttributes<HTMLInputElement>>;
