@@ -12,6 +12,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
     onRightIconClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     allowClear?: boolean;
     showPasswordToggle?: boolean;
+    rightIconClassName?: string;
 };
 /**
  * ユーザーからの入力を受け付けるための基本コンポーネント。
@@ -28,4 +29,5 @@ export declare const Input: React.ForwardRefExoticComponent<Omit<React.DetailedH
     onRightIconClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     allowClear?: boolean;
     showPasswordToggle?: boolean;
+    rightIconClassName?: string;
 } & React.RefAttributes<HTMLInputElement>>;

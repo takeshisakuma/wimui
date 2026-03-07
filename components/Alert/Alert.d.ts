@@ -32,5 +32,5 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
 /**
  * ユーザーに重要な情報を伝えるためのアラートコンポーネント。
  */
-export declare const Alert: ({ title, description, variant, icon, onClose, className, children, ...props }: AlertProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Alert: ({ title, description, variant, icon, onClose, className, children, ...props }: AlertProps) => import("react/jsx-runtime").JSX.Element | null;
 export {};

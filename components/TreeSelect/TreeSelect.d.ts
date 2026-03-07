@@ -17,9 +17,11 @@ export type TreeSelectProps = {
     multiple?: boolean;
     searchable?: boolean;
     defaultExpandedKeys?: string[];
+    /** Whether to show a clear button when a value is selected */
+    allowClear?: boolean;
     id?: string;
 };
 /**
  * ツリー形式の選択肢から1つまたは複数を選択するためのコンポーネント。
  */
-export declare const TreeSelect: ({ treeData, value, onChange, placeholder, label, className, disabled, multiple, searchable, defaultExpandedKeys, id: customId, ...props }: TreeSelectProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TreeSelect: ({ treeData, value, onChange, placeholder, label, className, disabled, multiple, searchable, defaultExpandedKeys, allowClear, id: customId, ...props }: TreeSelectProps) => import("react/jsx-runtime").JSX.Element;

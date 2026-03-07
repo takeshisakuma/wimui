@@ -30,4 +30,4 @@ export type NotificationProps = {
      */
     className?: string;
 };
-export declare const Notification: ({ title, description, icon, type, onClose, closable, className, }: NotificationProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Notification: ({ title, description, icon, type, onClose, closable, className, }: NotificationProps) => import("react/jsx-runtime").JSX.Element | null;

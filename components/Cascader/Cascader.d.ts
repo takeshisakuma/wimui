@@ -18,8 +18,10 @@ export type CascaderProps = {
     expandTrigger?: "click" | "hover";
     /** Custom separator for the display value */
     separator?: string;
+    /** Whether to show a clear button when a value is selected */
+    allowClear?: boolean;
 };
 /**
  * 階層構造を持つデータから選択肢を辿って1つを選択するためのコンポーネント。
  */
-export declare const Cascader: ({ options, value, onChange, placeholder, label, className, disabled, defaultValue, id: customId, expandTrigger, separator, ...props }: CascaderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Cascader: ({ options, value, onChange, placeholder, label, className, disabled, defaultValue, id: customId, expandTrigger, separator, allowClear, ...props }: CascaderProps) => import("react/jsx-runtime").JSX.Element;

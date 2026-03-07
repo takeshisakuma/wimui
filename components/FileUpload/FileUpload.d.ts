@@ -3,6 +3,7 @@ import { Icon } from '../Icon/Icon';
 type FileUploadProps = {
     label?: string;
     buttonLabel?: string;
+    noFileLabel?: string;
     accept?: string;
     multiple?: boolean;
     disabled?: boolean;
@@ -15,5 +16,5 @@ type FileUploadProps = {
 /**
  * ユーザーがファイルを選択・アップロードするためのコンポーネント。
  */
-export declare const FileUpload: ({ label, buttonLabel, accept, multiple, disabled, onChange, className, iconName, iconPosition, size, }: FileUploadProps) => import("react/jsx-runtime").JSX.Element;
+export declare const FileUpload: ({ label, buttonLabel, noFileLabel, accept, multiple, disabled, onChange, className, iconName, iconPosition, size, }: FileUploadProps) => import("react/jsx-runtime").JSX.Element;
 export {};
