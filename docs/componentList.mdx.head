@@ -1,0 +1,147 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+import { T } from "../stories/T";
+
+
+<Meta title="ComponentList" />
+
+import { Icon } from "../src/components/Icon/Icon";
+
+export const PlatformIcons = ({ pc, mobile }) => (
+  <div style={{ display: "inline-flex", gap: "8px", alignItems: "center" }}>
+    {pc && (
+      <Icon
+        name="MonitorIcon"
+        style={{ width: 18, height: 18, color: "var(--text-primary)" }}
+      />
+    )}
+    {mobile && (
+      <Icon
+        name="SmartphoneIcon"
+        style={{ width: 18, height: 18, color: "var(--text-primary)" }}
+      />
+    )}
+  </div>
+);
+
+
+<h1><T k="dashboard_title" /></h1>
+<p><T k="dashboard_desc" /></p>
+
+
+<ul>
+  <li><a href="./?path=/docs/token-colors--docs" target="_top"><T k="token_colors" /></a></li>
+  <li><a href="./?path=/docs/token-typography-tokens--docs" target="_top"><T k="token_typography" /></a></li>
+  <li><a href="./?path=/docs/token-spacings-radius--docs" target="_top"><T k="token_spacings" /></a></li>
+  <li><a href="./?path=/docs/token-effects--docs" target="_top"><T k="token_effects" /></a></li>
+  <li><a href="./?path=/docs/token-pccs--docs" target="_top"><T k="token_pccs" /></a></li>
+  <li><a href="./?path=/docs/token-breakpoints--docs" target="_top"><T k="token_breakpoints" /></a></li>
+</ul>
+
+
+<h2>
+  <T k="dashboard_progress" />
+</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="table_header_category" /></th>
+      <th><T k="table_header_progress" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#advanced-inputs"><T k="cat_advanced_inputs" /></a></td>
+      <td>100% (7/7)</td>
+    </tr>
+    <tr>
+      <td><a href="#alerts"><T k="cat_alerts" /></a></td>
+      <td>100% (7/7)</td>
+    </tr>
+    <tr>
+      <td><a href="#app-shell"><T k="cat_app_shell" /></a></td>
+      <td>100% (6/6)</td>
+    </tr>
+    <tr>
+      <td><a href="#basic-inputs"><T k="cat_basic_inputs" /></a></td>
+      <td>100% (8/8)</td>
+    </tr>
+    <tr>
+      <td><a href="#buttons"><T k="cat_buttons" /></a></td>
+      <td>100% (5/5)</td>
+    </tr>
+    <tr>
+      <td><a href="#data-containers"><T k="cat_data_containers" /></a></td>
+      <td>100% (2/2)</td>
+    </tr>
+    <tr>
+      <td><a href="#data-indicators"><T k="cat_data_indicators" /></a></td>
+      <td>100% (9/9)</td>
+    </tr>
+    <tr>
+      <td><a href="#data-structures"><T k="cat_data_structures" /></a></td>
+      <td>100% (8/8)</td>
+    </tr>
+    <tr>
+      <td><a href="#form-layout"><T k="cat_form_layout" /></a></td>
+      <td>100% (5/5)</td>
+    </tr>
+    <tr>
+      <td><a href="#layout"><T k="cat_layout" /></a></td>
+      <td>100% (12/12)</td>
+    </tr>
+    <tr>
+      <td><a href="#loading"><T k="cat_loading" /></a></td>
+      <td>100% (5/5)</td>
+    </tr>
+    <tr>
+      <td><a href="#media"><T k="cat_media" /></a></td>
+      <td>100% (4/4)</td>
+    </tr>
+    <tr>
+      <td><a href="#nav-elements"><T k="cat_nav_elements" /></a></td>
+      <td>100% (7/7)</td>
+    </tr>
+    <tr>
+      <td><a href="#nav-utilities"><T k="cat_nav_utilities" /></a></td>
+      <td>100% (3/3)</td>
+    </tr>
+    <tr>
+      <td><a href="#overlays"><T k="cat_overlays" /></a></td>
+      <td>100% (11/11)</td>
+    </tr>
+    <tr>
+      <td><a href="#pickers"><T k="cat_pickers" /></a></td>
+      <td>100% (8/8)</td>
+    </tr>
+    <tr>
+      <td><a href="#selection"><T k="cat_selection" /></a></td>
+      <td>100% (15/15)</td>
+    </tr>
+    <tr>
+      <td><a href="#typography"><T k="cat_typography" /></a></td>
+      <td>100% (9/9)</td>
+    </tr>
+    <tr>
+      <td><a href="#utilities"><T k="cat_utilities" /></a></td>
+      <td>100% (11/11)</td>
+    </tr>
+    <tr>
+      <td><a href="#visualization"><T k="cat_visualization" /></a></td>
+      <td>100% (10/10)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+  <PlatformIcons pc mobile /> <span><T k="legend_all_devices" /></span>
+</div>
+<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+  <PlatformIcons pc /> <span><T k="legend_pc_only" /></span>
+</div>
+<div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "32px" }}>
+  <PlatformIcons mobile /> <span><T k="legend_mobile_only" /></span>
+        <PlatformIcons pc mobile />

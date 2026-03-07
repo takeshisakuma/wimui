@@ -97,7 +97,7 @@ export const Cascader = ({
     for (const val of currentValue) {
       const opt = currentOptions.find((o) => o.value === val);
       if (opt) {
-        labels.push(opt.label);
+        labels.push(t(opt.label));
         currentOptions = opt.children || [];
       } else {
         break;
@@ -198,7 +198,7 @@ export const Cascader = ({
               }
               role="menuitem"
             >
-              {option.label}
+              {t(option.label)}
             </BaseListItem>
           );
         })}
@@ -216,7 +216,7 @@ export const Cascader = ({
     >
       {label && (
         <label id={labelId} htmlFor={triggerId} className="wim-cascader__label">
-          {label}
+          {t(label)}
         </label>
       )}
       <div
@@ -240,7 +240,7 @@ export const Cascader = ({
             !displayValue && "wim-cascader__value--placeholder",
           )}
         >
-          {displayValue || placeholder}
+          {displayValue || t(placeholder)}
         </div>
         <div className="wim-cascader__icons">
           {allowClear && currentValue && currentValue.length > 0 && !disabled && (

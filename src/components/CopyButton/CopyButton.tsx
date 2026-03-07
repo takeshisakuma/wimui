@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Button } from "../Button/Button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip/Tooltip";
@@ -16,6 +17,7 @@ export const CopyButton = ({
   className,
   "aria-label": ariaLabel,
 }: CopyButtonProps) => {
+  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export const CopyButton = ({
     }
   };
 
-  const labelText = copied ? "Copied" : "Copy to clipboard";
+  const labelText = copied ? t("copied") : t("copy_to_clipboard");
 
   return (
     <Tooltip>

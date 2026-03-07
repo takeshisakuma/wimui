@@ -13,18 +13,5 @@ export const PasswordInput = (
     "type" | "rightIcon" | "onRightIconClick" | "showPasswordToggle"
   >,
 ) => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
-  };
-
-  return (
-    <Input
-      {...props}
-      type={isVisible ? "text" : "password"}
-      rightIcon={isVisible ? "EyeOffIcon" : "EyeIcon"}
-      onRightIconClick={toggleVisibility}
-    />
-  );
+  return <Input {...props} type="password" showPasswordToggle={true} />;
 };

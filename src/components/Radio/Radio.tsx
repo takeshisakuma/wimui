@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./radio.scss";
 
@@ -14,6 +15,7 @@ type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   ({ label, className, disabled, ...props }, ref) => {
+    const { t } = useTranslation();
     const defaultRef = useRef<HTMLInputElement>(null);
     const resolvedRef =
       (ref as React.RefObject<HTMLInputElement>) || defaultRef;
@@ -36,7 +38,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
         <div className="wim-radio-visual">
           <div className="wim-radio-dot" />
         </div>
-        {label && <span className="wim-radio-label">{label}</span>}
+        {label && <span className="wim-radio-label">{t(label)}</span>}
       </label>
     );
   },

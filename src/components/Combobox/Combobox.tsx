@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useId } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Input } from "../Input/Input";
 import { BaseListItem } from "../_internal/BaseListItem";
@@ -28,7 +29,7 @@ export type ComboboxProps = {
 export const Combobox = ({
   options = [],
   onSelect,
-  placeholder = "Select...",
+  placeholder = "select_option",
   showSearchIcon = true,
   allowClear = true,
   defaultValue = "",
@@ -38,6 +39,7 @@ export const Combobox = ({
   id: customId,
   ...props
 }: ComboboxProps) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(defaultValue);
   const [filteredOptions, setFilteredOptions] =
@@ -117,12 +119,12 @@ export const Combobox = ({
     <div className={classNames("wim-combobox", className)} ref={containerRef}>
       {label && (
         <label id={labelId} htmlFor={inputId} className="wim-label">
-          {label}
+          {t(label)}
         </label>
       )}
       <Input
         id={inputId}
-        placeholder={placeholder}
+        placeholder={t(placeholder)}
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
@@ -168,14 +170,14 @@ export const Combobox = ({
               role="option"
               aria-selected={index === activeIndex}
             >
-              {option.label}
+              {t(option.label)}
             </BaseListItem>
           ))}
         </ul>
       )}
       {isOpen && filteredOptions.length === 0 && (
         <div className="wim-combobox-empty" role="region" aria-live="polite">
-          No results found
+          {t("no_results_found")}
         </div>
       )}
     </div>

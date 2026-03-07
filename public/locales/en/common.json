@@ -67,6 +67,8 @@
   "token_colors": "Colors",
   "token_effects": "Effects",
   "token_spacings": "Spacings & Radius",
+  "token_breakpoints": "Breakpoints",
+  "token_pccs": "PCCS",
   "token_type_alias": "Semantic Aliases",
   "token_type_alias_desc": "To apply consistent styling across components, aliases with the <code>--wim-</code> prefix are provided for the global tokens above. It is recommended to use these direct alias variables when developing or customizing wim UI components.",
   "token_type_alias_th1": "Alias Variable",
@@ -99,5 +101,15 @@
   "token_type_title": "Typography Tokens",
   "token_type_weight": "Font Weights",
   "token_typography": "Typography",
-  "welcome": "Welcome to the wimui Design System"
+  "welcome": "Welcome to the wimui Design System",
+  "button_label": "Button",
+  "copy_to_clipboard": "Copy to clipboard",
+  "copied": "Copied",
+  "select_option": "Select an option",
+  "search_placeholder": "Search...",
+  "no_options_found": "No options found",
+  "no_results_found": "No results found",
+  "a11y_clear_input": "Clear input",
+  "pagination_items_per_page": "items / page",
+  "pagination_go_to": "Go to"
 }

@@ -1,4 +1,5 @@
 import React, { useRef, useId } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./switch.scss";
 
@@ -16,6 +17,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
     { label, size = "medium", className, disabled, id: customId, ...props },
     ref,
   ) => {
+    const { t } = useTranslation();
     const defaultRef = useRef<HTMLInputElement>(null);
     const resolvedRef =
       (ref as React.RefObject<HTMLInputElement>) || defaultRef;
@@ -49,7 +51,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
         >
           <div className="wim-switch-thumb" aria-hidden="true" />
         </div>
-        {label && <span className="wim-switch-label">{label}</span>}
+        {label && <span className="wim-switch-label">{t(label)}</span>}
       </label>
     );
   },

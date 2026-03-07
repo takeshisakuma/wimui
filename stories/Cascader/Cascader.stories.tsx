@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useTranslation } from "react-i18next";
 import {
   Cascader,
   CascaderOption,
@@ -15,76 +16,174 @@ const meta: Meta<typeof Cascader> = {
 export default meta;
 type Story = StoryObj<typeof Cascader>;
 
-const options: CascaderOption[] = [
-  {
-    label: "Zhejiang",
-    value: "zhejiang",
-    children: [
-      {
-        label: "Hangzhou",
-        value: "hangzhou",
-        children: [
-          {
-            label: "West Lake",
-            value: "west_lake",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Jiangsu",
-    value: "jiangsu",
-    children: [
-      {
-        label: "Nanjing",
-        value: "nanjing",
-        children: [
-          {
-            label: "Zhonghua Gate",
-            value: "zhonghua_gate",
-          },
-        ],
-      },
-    ],
-  },
-];
-
 export const Default: Story = {
-  args: {
-    options,
-    placeholder: "Please select",
+  render: (args) => {
+    const { t } = useTranslation("docs");
+    const options: CascaderOption[] = [
+      {
+        label: "story_cascader_tokyo",
+        value: "tokyo",
+        children: [
+          {
+            label: "story_cascader_shibuya",
+            value: "shibuya",
+            children: [
+              {
+                label: "story_cascader_dogenzaka",
+                value: "dogenzaka",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        label: "story_cascader_osaka",
+        value: "osaka",
+        children: [
+          {
+            label: "story_cascader_osaka_city",
+            value: "osaka_city",
+            children: [
+              {
+                label: "story_cascader_umeda",
+                value: "umeda",
+              },
+            ],
+          },
+        ],
+      },
+    ];
+    return (
+      <Cascader
+        {...args}
+        options={options}
+        placeholder={t("story_cascader_placeholder")}
+      />
+    );
   },
 };
 
 export const WithLabel: Story = {
-  args: {
-    options,
-    label: "Address",
-    placeholder: "Select address",
+  render: (args) => {
+    const { t } = useTranslation("docs");
+    const options: CascaderOption[] = [
+      {
+        label: "story_cascader_tokyo",
+        value: "tokyo",
+        children: [
+          {
+            label: "story_cascader_shibuya",
+            value: "shibuya",
+            children: [
+              {
+                label: "story_cascader_dogenzaka",
+                value: "dogenzaka",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        label: "story_cascader_osaka",
+        value: "osaka",
+        children: [
+          {
+            label: "story_cascader_osaka_city",
+            value: "osaka_city",
+            children: [
+              {
+                label: "story_cascader_umeda",
+                value: "umeda",
+              },
+            ],
+          },
+        ],
+      },
+    ];
+    return (
+      <Cascader
+        {...args}
+        options={options}
+        label="story_cascader_placeholder"
+        placeholder="story_cascader_placeholder"
+      />
+    );
   },
 };
 
 export const HoverExpand: Story = {
-  args: {
-    options,
-    expandTrigger: "hover",
-    placeholder: "Hover to expand",
+  render: (args) => {
+    const { t } = useTranslation("docs");
+    const options: CascaderOption[] = [
+      {
+        label: "story_cascader_tokyo",
+        value: "tokyo",
+        children: [
+          {
+            label: "story_cascader_shibuya",
+            value: "shibuya",
+            children: [
+              {
+                label: "story_cascader_dogenzaka",
+                value: "dogenzaka",
+              },
+            ],
+          },
+        ],
+      },
+    ];
+    return (
+      <Cascader
+        {...args}
+        options={options}
+        expandTrigger="hover"
+        placeholder={t("story_cascader_placeholder")}
+      />
+    );
   },
 };
 
 export const Disabled: Story = {
-  args: {
-    options,
-    disabled: true,
-    placeholder: "Disabled",
+  render: (args) => {
+    const { t } = useTranslation("docs");
+    return (
+      <Cascader
+        {...args}
+        disabled
+        placeholder={t("story_cascader_placeholder")}
+      />
+    );
   },
 };
 
 export const CustomSeparator: Story = {
-  args: {
-    options,
-    separator: " > ",
-    defaultValue: ["zhejiang", "hangzhou", "west_lake"],
+  render: (args) => {
+    const { t } = useTranslation("docs");
+    const options: CascaderOption[] = [
+      {
+        label: "story_cascader_tokyo",
+        value: "tokyo",
+        children: [
+          {
+            label: "story_cascader_shibuya",
+            value: "shibuya",
+            children: [
+              {
+                label: "story_cascader_dogenzaka",
+                value: "dogenzaka",
+              },
+            ],
+          },
+        ],
+      },
+    ];
+    return (
+      <Cascader
+        {...args}
+        options={options}
+        separator=" > "
+        defaultValue={["tokyo", "shibuya", "dogenzaka"]}
+      />
+    );
   },
 };

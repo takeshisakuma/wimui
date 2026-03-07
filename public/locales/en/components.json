@@ -92,7 +92,6 @@
   "button_guideline_detail": "Specific Guidelines",
   "button_guideline_principle": "Principles",
   "button_icon_usage": "Best for toolbars or cards where space is limited and intuitive operation is desired.",
-  "button_label": "Button",
   "button_link_desc": "Link Button",
   "button_placement_conflict": "Placement Conflict",
   "button_placement_conflict_desc": "Keep only one Primary button per screen (or modal) in principle.",

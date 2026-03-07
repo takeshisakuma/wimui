@@ -92,7 +92,6 @@
   "button_guideline_detail": "Diretrizes Específicas",
   "button_guideline_principle": "Princípios",
   "button_icon_usage": "Melhor para barras de ferramentas ou cartões onde o espaço é limitado e se deseja uma operação intuitiva.",
-  "button_label": "Botão",
   "button_link_desc": "Botão de Link",
   "button_placement_conflict": "Conflito de Colocação",
   "button_placement_conflict_desc": "Mantenha apenas um botão Primário por tela (ou modal), em princípio.",

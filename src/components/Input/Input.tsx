@@ -197,6 +197,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         onChange={handleInputChange}
         type={inputType}
         {...props}
+        placeholder={props.placeholder ? t(props.placeholder) : undefined}
+        aria-label={props["aria-label"] ? t(props["aria-label"]) : undefined}
       />
     );
 

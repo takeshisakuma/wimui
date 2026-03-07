@@ -67,6 +67,8 @@
   "token_colors": "Colors",
   "token_effects": "Effects",
   "token_spacings": "Spacings & Radius",
+  "token_breakpoints": "Breakpoints",
+  "token_pccs": "PCCS",
   "token_type_alias": "Aliases Semânticos",
   "token_type_alias_desc": "Para aplicar um estilo consistente em todos os componentes, aliases com o prefixo <code>--wim-</code> são fornecidos para os tokens globais acima. É recomendável usar essas variáveis de alias diretas ao desenvolver ou personalizar componentes da interface do usuário wim.",
   "token_type_alias_th1": "Variável Alias",
@@ -99,5 +101,15 @@
   "token_type_title": "Tokens de Tipografia",
   "token_type_weight": "Pesos de Fonte (Font Weights)",
   "token_typography": "Typography",
-  "welcome": "Bem-vindo ao nosso aplicativo"
+  "welcome": "Bem-vindo ao nosso aplicativo",
+  "button_label": "Botão",
+  "copy_to_clipboard": "Copiar para a área de transferência",
+  "copied": "Copiado",
+  "select_option": "Selecione uma opção",
+  "search_placeholder": "Pesquisar...",
+  "no_options_found": "Nenhuma opção encontrada",
+  "no_results_found": "Nenhum resultado encontrado",
+  "a11y_clear_input": "Limpar entrada",
+  "pagination_items_per_page": "itens / página",
+  "pagination_go_to": "Ir para"
 }

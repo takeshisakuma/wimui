@@ -92,7 +92,6 @@
   "button_guideline_detail": "具体的なガイドライン",
   "button_guideline_principle": "原則",
   "button_icon_usage": "ツールバーやカード内など、省スペースで直感的な操作を提供したい場合。",
-  "button_label": "ボタン",
   "button_link_desc": "リンクボタン",
   "button_placement_conflict": "配置の競合",
   "button_placement_conflict_desc": "1つの画面（またはモーダル）に Primary\nボタンは原則として1つだけに留めます。",

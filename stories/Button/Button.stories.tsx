@@ -28,33 +28,45 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const LargePrimaryButton: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Button {...args} label={t("button_label")} />;
+  },
   args: {
     size: "large",
-    label: "button_label",
     priority: "primary",
   },
 };
 
 export const MediumSecondaryButton: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Button {...args} label={t("button_label")} />;
+  },
   args: {
     size: "medium",
-    label: "button_label",
     priority: "secondary",
   },
 };
 
 export const SmallTertiaryButton: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Button {...args} label={t("button_label")} />;
+  },
   args: {
     size: "small",
-    label: "button_label",
     priority: "tertiary",
   },
 };
 
 export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Button {...args} label={t("button_label")} />;
+  },
   args: {
     size: "small",
-    label: "button_label",
     priority: "tertiary",
     role: "destructive",
     iconName: "CircleIcon",
@@ -63,34 +75,44 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
 };
 
 export const DisabledButton: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Button {...args} label={t("button_label")} />;
+  },
   args: {
     size: "medium",
-    label: "button_label",
     priority: "primary",
     disabled: true,
   },
 };
 
 export const MediumPrimaryLoadingProcessingButton: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Button {...args} label={t("processing")} />;
+  },
   args: {
     size: "medium",
     priority: "primary",
-    label: "processing",
     loading: true,
   },
 };
 
 export const MediumSecondaryLoadingSavingButton: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return <Button {...args} label={t("saving")} />;
+  },
   args: {
     size: "medium",
     priority: "secondary",
-    label: "saving",
     loading: true,
   },
 };
 
 export const MediumPrimaryInteractiveLoadingButton: Story = {
-  render: (args) => {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [loading, setLoading] = useState(false);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -101,17 +123,24 @@ export const MediumPrimaryInteractiveLoadingButton: Story = {
       }, 2000);
     };
 
-    return <Button {...args} loading={loading} onClick={handleClick} />;
+    return (
+      <Button
+        {...args}
+        label={t("button_label")}
+        loading={loading}
+        onClick={handleClick}
+      />
+    );
   },
   args: {
     size: "medium",
     priority: "primary",
-    label: "button_label",
   },
 };
 
 export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
-  render: (args) => {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [loading, setLoading] = useState(false);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -122,14 +151,20 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
       }, 2000);
     };
 
-    return <Button {...args} loading={loading} onClick={handleClick} />;
+    return (
+      <Button
+        {...args}
+        label={t("button_label")}
+        loading={loading}
+        onClick={handleClick}
+        iconName="CircleIcon"
+        iconPosition="left"
+      />
+    );
   },
   args: {
     size: "medium",
     priority: "secondary",
-    label: "button_label",
-    iconName: "CircleIcon",
-    iconPosition: "left",
   },
 };
 

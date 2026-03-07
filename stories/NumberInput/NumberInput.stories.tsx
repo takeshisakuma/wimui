@@ -18,7 +18,7 @@ export const Default: Story = {
     const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_numberinput_label")}>
-        <NumberInput {...args} placeholder="100" />
+        <NumberInput {...args} placeholder={t("story_numberinput_placeholder")} />
       </Label>
     );
   },

@@ -67,6 +67,8 @@
   "token_colors": "Colors",
   "token_effects": "Effects",
   "token_spacings": "Spacings & Radius",
+  "token_breakpoints": "Breakpoints",
+  "token_pccs": "PCCS",
   "token_type_alias": "セマンティック・エイリアス (Semantic Aliases)",
   "token_type_alias_desc": "コンポーネント間で一貫したスタイルを適用するため、上記のグローバルトークンには <code>--wim-</code> プレフィックスが付いたエイリアスが用意されています。wim UIのコンポーネントを開発・カスタマイズする際は、こちらの直接的なエイリアス変数の使用を推奨します。",
   "token_type_alias_th1": "エイリアス変数",
@@ -99,5 +101,15 @@
   "token_type_title": "タイポグラフィ・トークン",
   "token_type_weight": "フォントウェイト (Font Weights)",
   "token_typography": "Typography",
-  "welcome": "私たちのアプリへようこそ"
+  "welcome": "私たちのアプリへようこそ",
+  "button_label": "ボタン",
+  "copy_to_clipboard": "クリップボードにコピー",
+  "copied": "コピーしました",
+  "select_option": "選択してください",
+  "search_placeholder": "検索...",
+  "no_options_found": "オプションが見つかりません",
+  "no_results_found": "結果が見つかりません",
+  "a11y_clear_input": "入力をクリア",
+  "pagination_items_per_page": "件 / ページ",
+  "pagination_go_to": "移動"
 }

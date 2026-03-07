@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Button } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
@@ -18,8 +19,10 @@ export const LinkButton = ({
   label,
   iconName,
   iconPosition = "left",
+  "aria-label": ariaLabel,
   ...props
 }: LinkButtonProps) => {
+  const { t } = useTranslation();
   return (
     <a
       className={classNames(
@@ -32,12 +35,13 @@ export const LinkButton = ({
       )}
       style={backgroundColor ? { backgroundColor } : undefined}
       {...props}
+      aria-label={ariaLabel ? t(ariaLabel) : undefined}
     >
       <span className="wim-button__inner">
         {iconName && iconPosition === "left" && (
           <Icon name={iconName} size={size} />
         )}
-        {label && <span className="wim-button__label">{label}</span>}
+        {label && <span className="wim-button__label">{t(label)}</span>}
         {iconName && iconPosition === "right" && (
           <Icon name={iconName} size={size} />
         )}

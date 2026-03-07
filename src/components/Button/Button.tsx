@@ -51,7 +51,7 @@ export const Button = React.forwardRef<
     // aria-label の決定ロジックを明示的に整理
     let resolvedAriaLabel: string | undefined;
     if (typeof ariaLabelProp === "string") {
-      resolvedAriaLabel = ariaLabelProp;
+      resolvedAriaLabel = t(ariaLabelProp);
     } else if (ariaLabelProp !== false) {
       // アイコンのみボタンはアイコン名をフォールバックとして使用
       if (!label && !children && iconName) {

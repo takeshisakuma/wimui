@@ -98,11 +98,11 @@ export const TreeSelect = ({
     if (multiple) {
       const vals = Array.isArray(currentValue) ? currentValue : [];
       if (vals.length === 0) return null;
-      return vals.map((v) => flatNodes[v]?.label || v).join(", ");
+      return vals.map((v) => (flatNodes[v] ? t(flatNodes[v].label) : v)).join(", ");
     } else {
       const val = currentValue as string;
       if (!val) return null;
-      return flatNodes[val]?.label || val;
+      return flatNodes[val] ? t(flatNodes[val].label) : val;
     }
   };
 
@@ -142,7 +142,7 @@ export const TreeSelect = ({
       <TreeView.Item
         key={node.value}
         value={node.value}
-        label={node.label}
+        label={t(node.label)}
         icon={node.icon}
         disabled={node.disabled}
       >
@@ -170,7 +170,7 @@ export const TreeSelect = ({
           htmlFor={triggerId}
           className="wim-tree-select__label"
         >
-          {label}
+          {t(label)}
         </label>
       )}
       <div
@@ -194,7 +194,7 @@ export const TreeSelect = ({
             !displayValue && "wim-tree-select__value--placeholder",
           )}
         >
-          {displayValue || placeholder}
+          {displayValue || t(placeholder)}
         </div>
         <div className="wim-tree-select__icons">
           {allowClear && (multiple ? (currentValue as string[]).length > 0 : currentValue) && !disabled && (

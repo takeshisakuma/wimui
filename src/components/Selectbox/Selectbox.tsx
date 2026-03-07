@@ -51,13 +51,13 @@ export const Selectbox = ({
   options = [],
   value,
   onChange,
-  placeholder = "Select an option",
+  placeholder = "select_option",
   label,
   className,
   disabled = false,
   defaultValue,
   searchable = false,
-  searchPlaceholder = "Search...",
+  searchPlaceholder = "search_placeholder",
   filterOption,
   grouped = false,
   native = false,
@@ -310,7 +310,7 @@ export const Selectbox = ({
         return (
           <React.Fragment key={groupIndex}>
             <li className="wim-selectbox-group-label" role="presentation">
-              {group.label}
+              {t(group.label)}
             </li>
             {groupOptionsFiltered.map((option, optIdx) => {
               const index = flatIndex++;
@@ -350,7 +350,7 @@ export const Selectbox = ({
                   role="option"
                   aria-selected={isSelected}
                 >
-                  {option.label}
+                  {t(option.label || "")}
                 </BaseListItem>
               );
             })}
@@ -397,7 +397,7 @@ export const Selectbox = ({
           role="option"
           aria-selected={isSelected}
         >
-          {option.label}
+          {t(option.label || "")}
         </BaseListItem>
       );
     });
@@ -414,7 +414,7 @@ export const Selectbox = ({
       >
         {label && (
           <label id={labelId} htmlFor={id} className="wim-label">
-            {label}
+            {t(label)}
           </label>
         )}
         <div className="wim-selectbox-native-wrapper">
@@ -431,12 +431,12 @@ export const Selectbox = ({
           >
             {!currentValue && (
               <option value="" disabled>
-                {placeholder}
+                {t(placeholder)}
               </option>
             )}
             {grouped
               ? (options as SelectboxOptionGroup[]).map((group, gi) => (
-                <optgroup key={gi} label={group.label}>
+                <optgroup key={gi} label={t(group.label)}>
                   {group.options.map((opt, oi) =>
                     opt.type === "separator" ? (
                       <hr key={`hr-${gi}-${oi}`} />
@@ -446,7 +446,7 @@ export const Selectbox = ({
                         value={opt.value}
                         disabled={opt.disabled}
                       >
-                        {opt.label}
+                        {t(opt.label || "")}
                       </option>
                     ),
                   )}
@@ -461,7 +461,7 @@ export const Selectbox = ({
                     value={opt.value}
                     disabled={opt.disabled}
                   >
-                    {opt.label}
+                    {t(opt.label || "")}
                   </option>
                 ),
               )}
@@ -496,7 +496,7 @@ export const Selectbox = ({
     >
       {label && (
         <label id={labelId} htmlFor={triggerId} className="wim-label">
-          {label}
+          {t(label)}
         </label>
       )}
       <div
@@ -515,7 +515,7 @@ export const Selectbox = ({
         aria-controls={isOpen ? listId : undefined}
         aria-disabled={disabled}
         aria-labelledby={label ? labelId : ariaLabelledBy}
-        aria-label={label ? undefined : ariaLabel || placeholder}
+        aria-label={label ? undefined : t(ariaLabel || placeholder)}
         aria-describedby={ariaDescribedBy}
         aria-activedescendant={isOpen ? activeDescendant : undefined}
         ref={triggerRef}
@@ -526,7 +526,7 @@ export const Selectbox = ({
             !selectedOption && "wim-selectbox-value--placeholder",
           )}
         >
-          {selectedOption ? selectedOption.label : placeholder}
+          {selectedOption ? t(selectedOption.label || "") : t(placeholder)}
         </div>
         <div className="wim-selectbox-icons">
           {allowClear && currentValue && !disabled && (
@@ -561,7 +561,7 @@ export const Selectbox = ({
               ref={searchInputRef}
               type="text"
               className="wim-selectbox-search-input"
-              placeholder={searchPlaceholder}
+              placeholder={t(searchPlaceholder)}
               value={searchValue}
               onChange={(e) => {
                 setSearchValue(e.target.value);
@@ -569,7 +569,7 @@ export const Selectbox = ({
               }}
               onClick={(e) => e.stopPropagation()}
               onKeyDown={handleKeyDown}
-              aria-label={searchPlaceholder}
+              aria-label={t(searchPlaceholder)}
               aria-controls={listId}
               aria-activedescendant={activeDescendant}
             />
@@ -587,7 +587,7 @@ export const Selectbox = ({
               role="option"
               aria-selected="false"
             >
-              No options found
+              {t("no_options_found")}
             </li>
           ) : (
             renderOptions()
