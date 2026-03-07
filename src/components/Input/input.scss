@@ -3,8 +3,7 @@
   box-sizing: border-box;
   display: block;
   width: 100%;
-  max-width: 320px;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-sm) var(--wim-input-offset-right, var(--spacing-md)) var(--spacing-sm) var(--wim-input-offset-left, var(--spacing-md));
   font-size: 1rem;
   color: var(--text-primary);
   background-color: var(--bg-component, #fff);
@@ -60,38 +59,14 @@
   }
 
   &--full-width {
-    width: 100%;
-    max-width: none;
-  }
-
-  &--has-left-icon {
-    padding-left: calc(var(--spacing-xl) + 1.2rem + 10px);
-  }
-
-  &--has-right-icon {
-    padding-right: calc(var(--spacing-xl) + 1.2rem + 10px);
-  }
-
-  &--has-multiple-right-icons {
-    padding-right: calc(var(--spacing-sm) + 2.4rem + var(--spacing-xs) + 10px);
-  }
-
-  &--reserve-right-icon {
-    padding-right: calc(var(--spacing-xl) + 1.2rem + 10px);
+    width: 100% !important;
+    max-width: none !important;
   }
 
   &[type="color"] {
     padding: var(--spacing-3xs);
     height: 42px;
     cursor: pointer;
-
-    &.wim-input--has-left-icon {
-      padding-left: calc(var(--spacing-xl) + 1.2rem + 10px);
-    }
-
-    &.wim-input--has-right-icon {
-      padding-right: calc(var(--spacing-xl) + 1.2rem + 10px);
-    }
 
     &::-webkit-color-swatch-wrapper {
       padding: 0;
@@ -110,15 +85,52 @@
 }
 
 .wim-input-container {
+  --wim-input-offset-left: var(--spacing-md);
+  --wim-input-offset-right: var(--spacing-md);
+
+  &.wim-input--has-left-icon {
+    --wim-input-offset-left: calc(var(--spacing-xl) + 1.2rem + 10px);
+  }
+
+  &.wim-input--has-right-icon,
+  &.wim-input--reserve-right-icon {
+    --wim-input-offset-right: calc(var(--spacing-xl) + 1.2rem + 10px);
+  }
+
+  &.wim-input--has-multiple-right-icons {
+    --wim-input-offset-right: calc(var(--spacing-sm) + 2.4rem + var(--spacing-xs) + 10px);
+  }
+
+  // Semantic sizes
+  &.wim-input--width-xs { --wim-input-width: 80px; }
+  &.wim-input--width-sm { --wim-input-width: 160px; }
+  &.wim-input--width-md { --wim-input-width: 320px; }
+  &.wim-input--width-lg { --wim-input-width: 480px; }
+  &.wim-input--width-xl { --wim-input-width: 640px; }
+
   position: relative;
   display: flex;
   align-items: center;
-  width: 100%;
-  max-width: 320px;
+  width: var(--wim-input-width, 100%);
+  max-width: 320px; // Default max-width
+  transition: width 0.2s ease-in-out;
+
+  &.wim-input--has-custom-width,
+  &[class*="wim-input--width-"] {
+    max-width: 100%; // Guard for mobile
+  }
+
+  &.wim-input--has-custom-width,
+  &[class*="wim-input--width-"] {
+    width: calc(
+      var(--wim-input-width) + var(--wim-input-offset-left) +
+        var(--wim-input-offset-right) + 2px
+    );
+  }
 
   &.wim-input--full-width {
-    width: 100%;
-    max-width: none;
+    width: 100% !important;
+    max-width: none !important;
   }
 
   .wim-input {

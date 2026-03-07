@@ -11,6 +11,10 @@ const meta: Meta<typeof Input> = {
   parameters: {
     layout: "centered",
   },
+  args: {
+    width: "md",
+    fullWidth: false,
+  },
 
   argTypes: {
     leftIcon: {
@@ -46,6 +50,13 @@ const meta: Meta<typeof Input> = {
         "informative",
         "disabled",
       ],
+    },
+    width: {
+      control: "select",
+      options: ["xs", "sm", "md", "lg", "xl", "100%", "200px", "10ch"],
+    },
+    fullWidth: {
+      control: "boolean",
     },
   },
 };
@@ -184,6 +195,30 @@ export const SearchIndicator: Story = {
       <Label label={t("story_input_label_search")}>
         <Input {...args} leftIcon="SearchIcon" placeholder={t("story_input_placeholder_search")} />
       </Label>
+    );
+  },
+};
+
+export const CustomWidth: Story = {
+  render: function Render(args) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", maxWidth: "800px" }}>
+        <Label label="XS (80px - Secure Code)">
+          <Input {...args} width="xs" placeholder="000" />
+        </Label>
+        <Label label="SM (160px - Zip Code)">
+          <Input {...args} width="sm" placeholder="000-0000" />
+        </Label>
+        <Label label="MD (320px - Name)">
+          <Input {...args} width="md" placeholder="John Doe" />
+        </Label>
+        <Label label="LG (480px - Company)">
+          <Input {...args} width="lg" placeholder="Antigravity Inc." />
+        </Label>
+        <Label label="Custom (8ch - Always 8 chars)">
+          <Input {...args} width="8ch" placeholder="12345678" />
+        </Label>
+      </div>
     );
   },
 };

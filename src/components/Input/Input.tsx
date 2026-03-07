@@ -17,6 +17,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   allowClear?: boolean;
   showPasswordToggle?: boolean;
   rightIconClassName?: string;
+  width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
 };
 
 /**
@@ -39,6 +40,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       allowClear = false,
       showPasswordToggle = true,
       rightIconClassName,
+      width,
       value,
       defaultValue,
       onChange,
@@ -190,6 +192,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           rightIcons.length > 0 && "wim-input--has-right-icon",
           rightIcons.length >= 2 && "wim-input--has-multiple-right-icons",
           !rightIcons.length && allowClear && "wim-input--reserve-right-icon",
+          width !== undefined && "wim-input--has-custom-width",
           className,
         )}
         disabled={isDisabled}
@@ -202,12 +205,32 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       />
     );
 
+    const isSemanticWidth =
+      typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
+
+    // fullWidth が true の場合は width 属性よりも優先される
+    const effectiveHasCustomWidth = width !== undefined && !isSemanticWidth && !fullWidth;
+    const effectiveSemanticWidth = isSemanticWidth && !fullWidth ? width : undefined;
+
     return (
       <div
         className={classNames(
           "wim-input-container",
           fullWidth && "wim-input--full-width",
+          effectiveHasCustomWidth && "wim-input--has-custom-width",
+          effectiveSemanticWidth && `wim-input--width-${effectiveSemanticWidth}`,
+          leftIcon && "wim-input--has-left-icon",
+          rightIcons.length > 0 && "wim-input--has-right-icon",
+          rightIcons.length >= 2 && "wim-input--has-multiple-right-icons",
         )}
+        style={
+          effectiveHasCustomWidth
+            ? ({
+              ["--wim-input-width" as any]:
+                typeof width === "number" ? `${width}px` : width,
+            } as React.CSSProperties)
+            : undefined
+        }
       >
         {leftIcon && (
           <div

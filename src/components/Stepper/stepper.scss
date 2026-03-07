@@ -8,29 +8,7 @@
       flex-direction: row;
       align-items: flex-start;
 
-      @media (max-width: 576px) {
-        flex-direction: column;
 
-        .wim-stepper__item {
-          width: 100%;
-          padding-right: 0;
-          padding-bottom: var(--spacing-lg);
-
-          .wim-stepper__line {
-            position: absolute;
-            top: calc(var(--spacing-3xl) + var(--spacing-xs));
-            left: calc(var(--spacing-3xl) / 2);
-            width: 2px;
-            height: calc(100% - var(--spacing-3xl) - var(--spacing-xs));
-            transform: translateX(-50%);
-          }
-
-          .wim-stepper__content {
-            margin-top: var(--spacing-xs);
-            margin-left: var(--spacing-3xl);
-          }
-        }
-      }
     }
 
     &--vertical {
@@ -139,6 +117,55 @@
 
             & + .wim-stepper__item--label-vertical .wim-stepper__line::before {
               background-color: var(--color-primary);
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 576px) {
+      &--horizontal {
+        flex-direction: column;
+
+        .wim-stepper__item {
+          flex-direction: row !important;
+          width: 100% !important;
+          padding-right: 0 !important;
+          padding-bottom: var(--spacing-lg) !important;
+
+          .wim-stepper__line {
+            position: absolute !important;
+            top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs)) !important;
+            left: calc(var(--spacing-3xl) / 2) !important;
+            width: 2px !important;
+            height: 100% !important;
+            background-color: var(--wim-color-border-secondary) !important;
+            transform: translateX(-50%) !important;
+            z-index: 0 !important;
+
+            &::before,
+            &::after {
+              display: none !important;
+            }
+          }
+
+          &.wim-stepper__item--finish {
+            .wim-stepper__line {
+              background-color: var(--color-primary) !important;
+            }
+          }
+
+          .wim-stepper__content {
+            margin-top: calc(var(--spacing-xs) + 2px) !important;
+            margin-left: var(--spacing-sm) !important;
+            padding-right: 0 !important;
+            text-align: left !important;
+          }
+
+          &:last-child {
+            padding-bottom: 0 !important;
+            .wim-stepper__line {
+              display: none !important;
             }
           }
         }
