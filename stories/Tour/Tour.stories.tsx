@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tour } from "@/components/Tour/Tour";
 import { Button } from "@/components/Button/Button";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Tour> = {
   title: "Components/Overlays/Tour",
@@ -12,32 +13,33 @@ export default meta;
 type Story = StoryObj<typeof Tour>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [open, setOpen] = useState(false);
     const steps = [
       {
         target: "#tour-step-1",
-        title: "Welcome!",
-        description: "This is the first step of the tour.",
+        title: t("story_tour_welcome_title"),
+        description: t("story_tour_welcome_desc"),
         placement: "bottom" as const,
       },
       {
         target: "#tour-step-2",
-        title: "Key Feature",
-        description: "Here is a key feature you should know about.",
+        title: t("story_tour_feature_title"),
+        description: t("story_tour_feature_desc"),
         placement: "right" as const,
       },
       {
         target: "#tour-step-3",
-        title: "Need help?",
-        description: "Click here to get help anytime.",
+        title: t("story_tour_help_title"),
+        description: t("story_tour_help_desc"),
         placement: "top" as const,
       },
     ];
 
     return (
       <div style={{ padding: "40px", height: "1000px" }}>
-        <Button label="Start Tour" onClick={() => setOpen(true)} />
+        <Button label={t("story_tour_start")} onClick={() => setOpen(true)} />
 
         <div
           style={{
@@ -56,7 +58,7 @@ export const Default: Story = {
               minWidth: "120px",
             }}
           >
-            Step 1 Target
+            {t("story_tour_step_target", { n: 1 })}
           </div>
           <div
             id="tour-step-2"
@@ -67,7 +69,7 @@ export const Default: Story = {
               minWidth: "120px",
             }}
           >
-            Step 2 Target
+            {t("story_tour_step_target", { n: 2 })}
           </div>
         </div>
 
@@ -81,7 +83,7 @@ export const Default: Story = {
             width: "150px",
           }}
         >
-          Step 3 Target
+          {t("story_tour_step_target", { n: 3 })}
         </div>
 
         <Tour

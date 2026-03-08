@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { LoadingOverlay } from "../../src/components/LoadingOverlay/LoadingOverlay";
+import { LoadingOverlay } from "@/components/LoadingOverlay/LoadingOverlay";
 import React from "react";
-import { Button } from "../../src/components/Button/Button";
-import { Icon } from "../../src/components/Icon/Icon";
+import { Button } from "@/components/Button/Button";
+import { Icon } from "@/components/Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof LoadingOverlay> = {
   title: "Components/Loading States/LoadingOverlay",
@@ -58,22 +59,25 @@ export const Basic: Story = {
     loaderSize: "lg",
     loaderColor: "primary",
   },
-  render: (args) => (
-    <div
-      style={{
-        position: "relative",
-        height: "400px",
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-      }}
-    >
-      <div style={{ padding: "20px" }}>
-        <h3>Content Area</h3>
-        <p>This is the content that will be overlaid when loading.</p>
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div
+        style={{
+          position: "relative",
+          height: "400px",
+          border: "1px solid #ddd",
+          borderRadius: "8px",
+        }}
+      >
+        <div style={{ padding: "20px" }}>
+          <h3>{t("story_loading_overlay_content_title")}</h3>
+          <p>{t("story_loading_overlay_content_desc")}</p>
+        </div>
+        <LoadingOverlay {...args} />
       </div>
-      <LoadingOverlay {...args} />
-    </div>
-  ),
+    );
+  },
 };
 
 export const WithMessage: Story = {
@@ -84,22 +88,25 @@ export const WithMessage: Story = {
     loaderColor: "primary",
     message: "Loading data...",
   },
-  render: (args) => (
-    <div
-      style={{
-        position: "relative",
-        height: "400px",
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-      }}
-    >
-      <div style={{ padding: "20px" }}>
-        <h3>Content Area</h3>
-        <p>Loading overlay with a custom message.</p>
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div
+        style={{
+          position: "relative",
+          height: "400px",
+          border: "1px solid #ddd",
+          borderRadius: "8px",
+        }}
+      >
+        <div style={{ padding: "20px" }}>
+          <h3>{t("story_loading_overlay_content_title")}</h3>
+          <p>{t("story_loading_overlay_with_msg_desc")}</p>
+        </div>
+        <LoadingOverlay {...args} message={t("story_loading_overlay_loading_data")} />
       </div>
-      <LoadingOverlay {...args} />
-    </div>
-  ),
+    );
+  },
 };
 
 export const DifferentLoaderTypes: Story = {
@@ -132,89 +139,97 @@ export const DifferentLoaderTypes: Story = {
 };
 
 export const BackdropVariants: Story = {
-  render: () => (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gap: "20px",
-      }}
-    >
+  render: function Render() {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
       <div
         style={{
-          position: "relative",
-          height: "300px",
-          border: "1px solid #ddd",
-          borderRadius: "8px",
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "20px",
         }}
       >
-        <div style={{ padding: "20px", color: "white" }}>
-          <h4>Light Backdrop</h4>
-        </div>
-        <LoadingOverlay
-          visible={true}
-          backdropVariant="light"
-          loaderColor="primary"
-        />
-      </div>
-      <div
-        style={{
-          position: "relative",
-          height: "300px",
-          border: "1px solid #ddd",
-          borderRadius: "8px",
-          background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-        }}
-      >
-        <div style={{ padding: "20px", color: "white" }}>
-          <h4>Dark Backdrop</h4>
-        </div>
-        <LoadingOverlay
-          visible={true}
-          backdropVariant="dark"
-          loaderColor="currentColor"
-        />
-      </div>
-    </div>
-  ),
-};
-
-export const BlurEffects: Story = {
-  render: () => (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gap: "20px",
-      }}
-    >
-      {(["none", "sm", "md", "lg"] as const).map((blurLevel) => (
         <div
-          key={blurLevel}
           style={{
             position: "relative",
             height: "300px",
             border: "1px solid #ddd",
             borderRadius: "8px",
-            backgroundImage: "url(https://picsum.photos/400/300)",
-            backgroundSize: "cover",
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
           }}
         >
+          <div style={{ padding: "20px", color: "white" }}>
+            <h4>{t("story_loading_overlay_light_backdrop")}</h4>
+          </div>
+          <LoadingOverlay
+            visible={true}
+            backdropVariant="light"
+            loaderColor="primary"
+          />
+        </div>
+        <div
+          style={{
+            position: "relative",
+            height: "300px",
+            border: "1px solid #ddd",
+            borderRadius: "8px",
+            background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+          }}
+        >
+          <div style={{ padding: "20px", color: "white" }}>
+            <h4>{t("story_loading_overlay_dark_backdrop")}</h4>
+          </div>
+          <LoadingOverlay
+            visible={true}
+            backdropVariant="dark"
+            loaderColor="currentColor"
+          />
+        </div>
+      </div>
+    );
+  },
+};
+
+export const BlurEffects: Story = {
+  render: function Render() {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "20px",
+        }}
+      >
+        {(["none", "sm", "md", "lg"] as const).map((blurLevel) => (
           <div
+            key={blurLevel}
             style={{
-              padding: "20px",
-              color: "white",
-              textShadow: "0 0 4px black",
+              position: "relative",
+              height: "300px",
+              border: "1px solid #ddd",
+              borderRadius: "8px",
+              backgroundImage: "url(https://picsum.photos/400/300)",
+              backgroundSize: "cover",
             }}
           >
-            <h4>Blur: {blurLevel}</h4>
+            <div
+              style={{
+                padding: "20px",
+                color: "white",
+                textShadow: "0 0 4px black",
+              }}
+            >
+              <h4>
+                {t("story_loading_overlay_blur")}: {blurLevel}
+              </h4>
+            </div>
+            <LoadingOverlay visible={true} blur={blurLevel} />
           </div>
-          <LoadingOverlay visible={true} blur={blurLevel} />
-        </div>
-      ))}
-    </div>
-  ),
+        ))}
+      </div>
+    );
+  },
 };
 
 export const FullScreen: Story = {
@@ -226,6 +241,7 @@ export const FullScreen: Story = {
     message: "Loading application...",
   },
   render: function FullScreenStory(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [loading, setLoading] = React.useState(false);
 
     const handleClick = () => {
@@ -235,11 +251,15 @@ export const FullScreen: Story = {
 
     return (
       <div style={{ padding: "20px" }}>
-        <Button onClick={handleClick}>Show Full Screen Loading</Button>
-        <p>
-          Click the button to show a full-screen loading overlay for 3 seconds.
-        </p>
-        <LoadingOverlay {...args} visible={loading} />
+        <Button onClick={handleClick}>
+          {t("story_loading_overlay_show_fullscreen")}
+        </Button>
+        <p>{t("story_loading_overlay_fullscreen_desc")}</p>
+        <LoadingOverlay
+          {...args}
+          visible={loading}
+          message={t("story_loading_overlay_loading_app")}
+        />
       </div>
     );
   },
@@ -247,6 +267,7 @@ export const FullScreen: Story = {
 
 export const Interactive: Story = {
   render: function InteractiveStory() {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [loading, setLoading] = React.useState(false);
 
     const handleClick = () => {
@@ -264,20 +285,18 @@ export const Interactive: Story = {
           padding: "20px",
         }}
       >
-        <h3>Interactive Example</h3>
-        <p>Click the button to simulate a loading state.</p>
-        <Button onClick={handleClick} disabled={loading}>
-          Load Data
-        </Button>
+        <h3>{t("story_loading_overlay_interactive_title")}</h3>
+        <p>{t("story_loading_overlay_interactive_desc")}</p>
+        <Button onClick={handleClick} disabled={loading} label={t("story_loading_overlay_load_data")} />
         <div style={{ marginTop: "20px" }}>
-          <p>Some content that will be overlaid during loading...</p>
+          <p>{t("story_loading_overlay_overlaid_desc")}</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
         <LoadingOverlay
           visible={loading}
           loaderType="spinner"
           loaderSize="lg"
-          message="Fetching data..."
+          message={t("story_loading_overlay_fetching_data")}
         />
       </div>
     );
@@ -299,20 +318,36 @@ export const CustomLoader: Story = {
       </div>
     ),
   },
-  render: (args) => (
-    <div
-      style={{
-        position: "relative",
-        height: "400px",
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-      }}
-    >
-      <div style={{ padding: "20px" }}>
-        <h3>Custom Loader Content</h3>
-        <p>You can provide custom children instead of the default loaders.</p>
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div
+        style={{
+          position: "relative",
+          height: "400px",
+          border: "1px solid #ddd",
+          borderRadius: "8px",
+        }}
+      >
+        <div style={{ padding: "20px" }}>
+          <h3>{t("story_loading_overlay_custom_title")}</h3>
+          <p>{t("story_loading_overlay_custom_desc")}</p>
+        </div>
+        <LoadingOverlay
+          {...args}
+          children={
+            <div style={{ textAlign: "center", color: "white" }}>
+              <Icon
+                name="ClockIcon"
+                style={{ width: "48px", height: "48px", marginBottom: "16px" }}
+              />
+              <div style={{ fontSize: "18px", fontWeight: "bold" }}>
+                {t("story_loading_overlay_wait")}
+              </div>
+            </div>
+          }
+        />
       </div>
-      <LoadingOverlay {...args} />
-    </div>
-  ),
+    );
+  },
 };

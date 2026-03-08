@@ -23,7 +23,7 @@ export const Text: Story = {
   render: function Render(args) {
     const { t } = useTranslation(["docs", "common", "components"]);
     return (
-      <Watermark {...args} content="wimui watermark">
+      <Watermark {...args} content={t("story_watermark_text")}>
         <div style={{ height: "400px", background: "#fff", padding: "20px" }}>
           <div
             style={{
@@ -35,7 +35,7 @@ export const Text: Story = {
               marginTop: "24px",
             }}
           >
-            {t("story_watermark_confidential")}
+            {t("story_watermark_confidential_mark")}
           </div>
         </div>
       </Watermark>
@@ -44,10 +44,23 @@ export const Text: Story = {
 };
 
 export const MultiLine: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Watermark
+        {...args}
+        content={[
+          t("story_watermark_wimui"),
+          t("story_watermark_confidential_mark"),
+          t("story_watermark_team"),
+        ]}
+      >
+        <div style={{ height: "400px" }} />
+      </Watermark>
+    );
+  },
   args: {
-    content: ["wimui", "Confidential", "Wim UI Team"],
     gap: [120, 120],
-    children: <div style={{ height: "400px" }} />,
   },
 };
 

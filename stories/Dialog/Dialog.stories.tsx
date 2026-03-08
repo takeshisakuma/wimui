@@ -148,7 +148,7 @@ export const Controlled: Story = {
         }}
       >
         <p>
-          {t("story_dialog_curr_state")}: {open ? "Open" : "Closed"}
+          {t("story_dialog_curr_state")}: {open ? t("story_dialog_open_state") : t("story_dialog_closed_state")}
         </p>
         <Button
           priority="primary"

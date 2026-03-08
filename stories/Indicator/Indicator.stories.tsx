@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Indicator } from "@/components/Indicator/Indicator";
 import { Avatar } from "@/components/Avatar/Avatar";
+import { useTranslation } from "react-i18next";
 import React from "react";
 
 const meta: Meta<typeof Indicator> = {
@@ -65,12 +66,15 @@ export const Pulse: Story = {
 };
 
 export const Inline: Story = {
-  render: (args) => (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-      <Indicator {...args} color="success" inline />
-      <span>Online</span>
-    </div>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <Indicator {...args} color="success" inline />
+        <span>{t("story_indicator_online")}</span>
+      </div>
+    );
+  },
 };
 
 export const Sizes: Story = {

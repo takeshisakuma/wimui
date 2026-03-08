@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
 import { Snackbar } from "@/components/Snackbar/Snackbar";
 import { Button } from "@/components/Button/Button";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Snackbar> = {
   title: "Components/Alerts & Notifications/Snackbar",
@@ -33,8 +34,16 @@ export default meta;
 type Story = StoryObj<typeof Snackbar>;
 
 export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Snackbar
+        {...args}
+        message={args.message || t("story_snackbar_message")}
+      />
+    );
+  },
   args: {
-    message: "This is a snackbar message.",
     open: true,
     variant: "default",
     position: "bottom-center",
@@ -42,17 +51,33 @@ export const Default: Story = {
 };
 
 export const WithAction: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Snackbar
+        {...args}
+        message={args.message || t("story_snackbar_deleted")}
+        actionLabel={args.actionLabel || t("story_snackbar_undo")}
+        onAction={() => alert(t("story_snackbar_undo_clicked"))}
+      />
+    );
+  },
   args: {
-    message: "Successfully deleted the item.",
     open: true,
-    actionLabel: "UNDO",
-    onAction: () => alert("Undo clicked!"),
   },
 };
 
 export const WithCloseButton: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Snackbar
+        {...args}
+        message={args.message || t("story_snackbar_persistent")}
+      />
+    );
+  },
   args: {
-    message: "This message stays until you close it.",
     open: true,
     showCloseButton: true,
     autoHideDuration: 0,
@@ -60,52 +85,85 @@ export const WithCloseButton: Story = {
 };
 
 export const Success: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Snackbar
+        {...args}
+        message={args.message || t("story_snackbar_saved")}
+      />
+    );
+  },
   args: {
-    message: "Data saved successfully!",
     open: true,
     variant: "success",
   },
 };
 
 export const ErrorStatus: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Snackbar
+        {...args}
+        message={args.message || t("story_snackbar_failed")}
+      />
+    );
+  },
   args: {
-    message: "Failed to upload file.",
     open: true,
     variant: "error",
   },
 };
 
 export const Warning: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Snackbar
+        {...args}
+        message={args.message || t("story_snackbar_storage_full")}
+      />
+    );
+  },
   args: {
-    message: "Your storage is almost full.",
     open: true,
     variant: "warning",
   },
 };
 
 export const Info: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Snackbar
+        {...args}
+        message={args.message || t("story_snackbar_update_available")}
+      />
+    );
+  },
   args: {
-    message: "New update available.",
     open: true,
     variant: "info",
   },
 };
 
 export const InteractiveDemo: Story = {
-  render: () => {
+  render: function Render() {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [open, setOpen] = useState(false);
     return (
       <div style={{ padding: "40px" }}>
         <Button
           onClick={() => setOpen(true)}
-          label="Show Snackbar"
+          label={t("story_snackbar_show")}
           priority="primary"
         />
         <Snackbar
-          message="Interactive Snackbar is here!"
+          message={t("story_snackbar_interactive")}
           open={open}
           onClose={() => setOpen(false)}
-          actionLabel="RETRY"
+          actionLabel={t("story_snackbar_retry")}
           showCloseButton
         />
       </div>

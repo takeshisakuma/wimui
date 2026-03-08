@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Notification } from "@/components/Notification/Notification";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Notification> = {
   title: "Components/Alerts & Notifications/Notification",
@@ -15,62 +16,100 @@ export default meta;
 type Story = StoryObj<typeof Notification>;
 
 export const Default: Story = {
-  args: {
-    title: "Notification Title",
-    description:
-      "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Notification
+        {...args}
+        title={args.title || t("story_notification_title")}
+        description={args.description || t("story_notification_desc")}
+      />
+    );
   },
 };
 
 export const Success: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Notification
+        {...args}
+        title={args.title || t("story_notification_success_title")}
+        description={args.description || t("story_notification_success_desc")}
+      />
+    );
+  },
   args: {
     type: "success",
-    title: "Success Notification",
-    description: "Your changes have been saved successfully.",
   },
 };
 
 export const Warning: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Notification
+        {...args}
+        title={args.title || t("story_notification_warning_title")}
+        description={args.description || t("story_notification_warning_desc")}
+      />
+    );
+  },
   args: {
     type: "warning",
-    title: "Warning Notification",
-    description: "Please be careful with this action.",
   },
 };
 
 export const ErrorStatus: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Notification
+        {...args}
+        title={args.title || t("story_notification_error_title")}
+        description={args.description || t("story_notification_error_desc")}
+      />
+    );
+  },
   args: {
     type: "error",
-    title: "Error Notification",
-    description: "Something went wrong while processing your request.",
   },
 };
 
 export const Info: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Notification
+        {...args}
+        title={args.title || t("story_notification_info_title")}
+        description={args.description || t("story_notification_info_desc")}
+      />
+    );
+  },
   args: {
     type: "info",
-    title: "Info Notification",
-    description: "New updates are available for your application.",
   },
 };
 
 export const Trigger: Story = {
   render: function Render() {
     const [visible, setVisible] = useState(false);
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <div style={{ padding: "24px" }}>
         <button
           className="wim-button wim-button--primary"
           onClick={() => setVisible(true)}
         >
-          Show Notification
+          {t("story_notification_show")}
         </button>
         {visible && (
           <div style={{ marginTop: "24px" }}>
             <Notification
               type="success"
-              title="Success!"
-              description="This notification was triggered by a button click."
+              title={t("story_notification_success_title")}
+              description={t("story_notification_triggered_desc")}
               onClose={() => setVisible(false)}
             />
           </div>

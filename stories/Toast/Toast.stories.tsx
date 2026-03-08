@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Toast, ToastProvider, useToast } from "@/components/Toast/Toast";
 import { Button } from "@/components/Button/Button";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Toast> = {
   title: "Components/Alerts & Notifications/Toast",
@@ -19,41 +20,81 @@ export default meta;
 type Story = StoryObj<typeof Toast>;
 
 export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Toast
+        {...args}
+        title={args.title || t("story_toast_saved_title")}
+        description={args.description || t("story_toast_saved_desc")}
+      />
+    );
+  },
   args: {
-    title: "Successfully saved",
-    description: "Your changes have been saved to the cloud.",
     variant: "success",
   },
 };
 
 export const Success: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Toast
+        {...args}
+        title={args.title || t("story_toast_success_title")}
+        description={args.description || t("story_toast_success_desc")}
+      />
+    );
+  },
   args: {
-    title: "Success",
-    description: "The operation was completed successfully.",
     variant: "success",
   },
 };
 
 export const Info: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Toast
+        {...args}
+        title={args.title || t("story_toast_update_title")}
+        description={args.description || t("story_toast_update_desc")}
+      />
+    );
+  },
   args: {
-    title: "New update available",
-    description: "A new version of the app is available. Please refresh.",
     variant: "info",
   },
 };
 
 export const Warning: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Toast
+        {...args}
+        title={args.title || t("story_toast_connection_title")}
+        description={args.description || t("story_toast_connection_desc")}
+      />
+    );
+  },
   args: {
-    title: "Check your connection",
-    description: "The internet connection seems unstable.",
     variant: "warning",
   },
 };
 
 export const ErrorStatus: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Toast
+        {...args}
+        title={args.title || t("story_toast_upload_failed_title")}
+        description={args.description || t("story_toast_upload_failed_desc")}
+      />
+    );
+  },
   args: {
-    title: "Failed to upload",
-    description: "There was an error while uploading your file.",
     variant: "error",
   },
 };
@@ -61,38 +102,39 @@ export const ErrorStatus: Story = {
 // Interactive example using the hook
 const ToastTrigger = () => {
   const { show } = useToast();
+  const { t } = useTranslation(["docs", "common", "components"]);
 
   return (
     <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
       <Button
         priority="primary"
-        label="Show Success"
+        label={t("story_toast_show_success")}
         onClick={() =>
           show({
-            title: "Success!",
-            description: "Action completed successfully.",
+            title: t("story_toast_success_title"),
+            description: t("story_toast_success_desc"),
             variant: "success",
           })
         }
       />
       <Button
         priority="secondary"
-        label="Show Error"
+        label={t("story_toast_show_error")}
         onClick={() =>
           show({
-            title: "Error!",
-            description: "Something went wrong.",
+            title: t("story_notification_error_title"),
+            description: t("story_notification_error_desc"),
             variant: "error",
           })
         }
       />
       <Button
         priority="tertiary"
-        label="Show 5s Toast"
+        label={t("story_toast_show_5s")}
         onClick={() =>
           show({
-            title: "System Notification",
-            description: "This will disappear in 5 seconds.",
+            title: t("story_toast_system_notif"),
+            description: t("story_toast_5s_desc"),
             variant: "info",
             duration: 5000,
           })
