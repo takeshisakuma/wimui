@@ -3936,7 +3936,7 @@
   "story_portal_log_started": " が起動しました",
   "story_portal_log_stopped": " が停止しました",
   "story_portal_memo_note": "※リスト上の別のタスクに切り替えても、再選択すれば入力内容は保持されています（コンポーネントが破棄されていないため）。",
-  "story_portal_memo_placeholder": "ここにメモを入力（この入力値はリストアイテム内の state で保持されています）",
+  "story_portal_memo_placeholder": "担当者に確認済み。週明けに修正予定です。",
   "story_portal_monitor_live": "LIVE",
   "story_portal_monitor_title": "SYSTEM MONITOR",
   "story_portal_panel_desc": "各コンポーネントの状態変更が、右側のモニタリングエリアに Portal 経由で通知されます。",

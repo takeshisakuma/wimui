@@ -7,6 +7,7 @@ import {
   WimShadow,
 } from "../../types/tokens";
 import { getSpacingValue } from "../../utilities/style-utils";
+import { generateResponsiveVars, ResponsiveProp } from "../Grid/grid-utils";
 import "./box.scss";
 
 export type BoxProps<C extends React.ElementType = "div"> = {
@@ -43,9 +44,9 @@ export type BoxProps<C extends React.ElementType = "div"> = {
   /** Background color */
   bg?: WimColor;
   /** Width */
-  w?: number | string;
+  w?: ResponsiveProp<number | string>;
   /** Height */
-  h?: number | string;
+  h?: ResponsiveProp<number | string>;
   /** Border radius */
   radius?: number | WimRadius;
   /** Box shadow */
@@ -99,6 +100,9 @@ export const Box = React.forwardRef(
       return val;
     };
 
+    const wVars = generateResponsiveVars(w, "--wim-box-w", (v) => getSpacingValue(v) || "");
+    const hVars = generateResponsiveVars(h, "--wim-box-h", (v) => getSpacingValue(v) || "");
+
     const boxStyle: React.CSSProperties = {
       paddingTop: getSpacingValue(pt ?? py ?? p),
       paddingRight: getSpacingValue(pr ?? px ?? p),
@@ -109,12 +113,20 @@ export const Box = React.forwardRef(
       marginBottom: getSpacingValue(mb ?? my ?? m),
       marginLeft: getSpacingValue(ml ?? mx ?? m),
       backgroundColor: bg,
-      width: getSpacingValue(w),
-      height: getSpacingValue(h),
+      width:
+        typeof w === "object"
+          ? ("var(--wim-box-w)" as any)
+          : getSpacingValue(w),
+      height:
+        typeof h === "object"
+          ? ("var(--wim-box-h)" as any)
+          : getSpacingValue(h),
       borderRadius: getSpacingValue(radius),
       boxShadow: shadow,
       display,
       position,
+      ...(wVars as any),
+      ...(hVars as any),
       ...style,
     };
 

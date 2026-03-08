@@ -162,14 +162,12 @@ export const CustomContainer: Story = {
               borderRadius: "8px",
             }}
           >
-            <Box px="md">
-              {/* ここに Portal の 中身が表示される */}
-              {!container && (
-                <Box textAlign="center" color="primary">
-                  {t("story_portal_loading")}
-                </Box>
-              )}
-            </Box>
+            {/* ここに Portal の 中身が表示される */}
+            {!container && (
+              <Box textAlign="center" color="primary">
+                {t("story_portal_loading")}
+              </Box>
+            )}
           </Box>
         </SimpleGrid>
       </Container>
@@ -333,6 +331,9 @@ export const NotificationCenter: Story = {
  * 「ロジックや状態はアイテム自身に持たせたい」という場合に Portal が役立ちます。
  */
 export const SidePanelDetail: Story = {
+  parameters: {
+    layout: "fullscreen",
+  },
   render: function Render() {
     const [panelContainer, setPanelContainer] = useState<HTMLDivElement | null>(
       null,
@@ -448,17 +449,21 @@ export const SidePanelDetail: Story = {
     };
 
     return (
-      <Container size="xl">
-        <Card variant="outline" padding="none" style={{ overflow: "hidden", height: "100%", minHeight: "550px" }}>
+      <Container size="xl" className="portal-side-container">
+        <Card variant="outline" padding="none" className="side-panel-card" style={{ overflow: "hidden" }}>
           <style>{`
+            .portal-side-container { margin-top: 20px; margin-bottom: 20px; }
+            .side-panel-card { height: auto; min-height: 550px; }
             @media (min-width: 576px) {
+              .portal-side-container { height: calc(100vh - 40px); }
+              .side-panel-card { height: 100%; border-radius: 12px; }
               .sidebar-border { border-right: 1px solid var(--wim-neutral-200, #e2e8f0); border-bottom: none !important; }
             }
             @media (max-width: 575px) {
               .sidebar-border { border-bottom: 1px solid var(--wim-neutral-200, #e2e8f0); border-right: none !important; }
             }
           `}</style>
-          <Stack direction={{ base: "column", sm: "row" }} gap="none" align="stretch" style={{ height: "100%", width: "100%" }}>
+          <Stack direction={{ base: "column", sm: "row" }} gap="none" align="stretch" style={{ height: "100%", width: "100%", flex: 1 }}>
             {/* Sidebar */}
             <Box
               w={{ base: "100%", sm: 350 }}
@@ -468,12 +473,14 @@ export const SidePanelDetail: Story = {
                 flexDirection: "column",
                 background: "#fcfcfd",
                 height: "100%",
+                flexShrink: 0,
+                overflowX: "hidden"
               }}
             >
               <Box p="md" style={{ borderBottom: "1px solid var(--wim-neutral-200, #e2e8f0)" }}>
                 <h4 style={{ margin: 0 }}>{t("story_portal_task_mgmt")}</h4>
               </Box>
-              <Box p="md" style={{ flex: 1, overflowY: "auto" }}>
+              <Box p="md" style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
                 {tasks.map((task) => (
                   <TaskItem
                     key={task.id}
@@ -519,8 +526,10 @@ export const SidePanelDetail: Story = {
               <Box
                 ref={setPanelContainer}
                 p="xl"
+                display="flex"
                 style={{
                   flex: 1,
+                  flexDirection: "column",
                   overflowY: "auto",
                   position: "relative",
                   minHeight: "400px"
@@ -528,20 +537,21 @@ export const SidePanelDetail: Story = {
               >
                 {!selectedId && (
                   <Stack
+                    direction="row"
                     align="center"
                     justify="center"
-                    style={{ height: "100%", color: "#94a3b8", textAlign: "center" }}
+                    gap="xs"
+                    style={{ flex: 1, minHeight: "100%", color: "#94a3b8" }}
                   >
                     <Icon
                       name="InfoCircleIcon"
                       style={{
-                        width: "48px",
-                        height: "48px",
-                        marginBottom: "12px",
-                        opacity: 0.5,
+                        width: "20px",
+                        height: "20px",
+                        opacity: 0.8,
                       }}
                     />
-                    <p>{t("story_portal_select_task")}</p>
+                    <p style={{ margin: 0 }}>{t("story_portal_select_task")}</p>
                   </Stack>
                 )}
               </Box>
