@@ -13,6 +13,8 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
     iconPosition?: "left" | "right";
     loading?: boolean;
     justify?: "start" | "center" | "end" | "between";
+    /** Whether to animate the width change when label changes */
+    animateWidth?: boolean;
 };
 export declare const Button: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref"> & {
     backgroundColor?: string | null;
@@ -27,6 +29,8 @@ export declare const Button: React.ForwardRefExoticComponent<Omit<React.Detailed
     iconPosition?: "left" | "right";
     loading?: boolean;
     justify?: "start" | "center" | "end" | "between";
+    /** Whether to animate the width change when label changes */
+    animateWidth?: boolean;
 } & {
     className?: string;
 } & React.RefAttributes<HTMLButtonElement>>;
