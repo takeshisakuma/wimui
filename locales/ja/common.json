@@ -114,5 +114,14 @@
   "pagination_go_to": "移動",
   "no_data": "データがありません",
   "transfer_source": "選択可能",
-  "transfer_target": "選択済み"
+  "transfer_target": "選択済み",
+  "sun": "日",
+  "mon": "月",
+  "tue": "火",
+  "wed": "水",
+  "thu": "木",
+  "fri": "金",
+  "sat": "土",
+  "calendar_title": "{{year}}年 {{month}}月",
+  "calendar_aria_date": "{{year}}年{{month}}月{{day}}日"
 }

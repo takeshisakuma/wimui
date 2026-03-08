@@ -4311,7 +4311,8 @@
   "story_datagrid_col_role": "権限",
   "story_datagrid_col_status": "ステータス",
   "story_datagrid_col_actions": "アクション",
-  "story_datagrid_col_join_date": "登録日",
+  "story_datagrid_col_join_date": "入会日",
+  "story_datagrid_col_joinDate": "入会日",
   "story_datagrid_empty": "ユーザーが見つかりません",
   "story_datagrid_selected": "選択済み: ",
   "story_datagrid_status_active": "有効",
@@ -4591,6 +4592,13 @@
   "story_watermark_confidential_mark": "社外秘",
   "story_watermark_team": "Wim UI チーム",
   "story_dialog_open_state": "開いている",
-  "story_dialog_closed_state": "閉じている"
+  "story_dialog_closed_state": "閉じている",
+  "story_desc_list_user_name": "ユーザー名",
+  "story_desc_list_persona": "Wim UI ペルソナ",
+  "story_desc_list_email": "メールアドレス",
+  "story_desc_list_position": "役職",
+  "story_desc_list_designer": "UI/UX デザイナー",
+  "story_desc_list_description": "説明",
+  "story_desc_list_desc_val": "Wim UI コンポーネントライブラリのドキュメント用標準ペルソナ。"
 }
 

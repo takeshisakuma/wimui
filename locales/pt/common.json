@@ -111,5 +111,17 @@
   "no_results_found": "Nenhum resultado encontrado",
   "a11y_clear_input": "Limpar entrada",
   "pagination_items_per_page": "itens / página",
-  "pagination_go_to": "Ir para"
+  "pagination_go_to": "Ir para",
+  "no_data": "Nenhum dado",
+  "transfer_source": "Disponível",
+  "transfer_target": "Selecionado",
+  "sun": "Dom",
+  "mon": "Seg",
+  "tue": "Ter",
+  "wed": "Qua",
+  "thu": "Qui",
+  "fri": "Sex",
+  "sat": "Sáb",
+  "calendar_title": "{{month}}/{{year}}",
+  "calendar_aria_date": "{{day}}/{{month}}/{{year}}"
 }

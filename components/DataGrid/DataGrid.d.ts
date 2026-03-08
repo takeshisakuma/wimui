@@ -62,6 +62,8 @@ export interface DataGridProps<T> {
     className?: string;
     /** Message to show when data is empty */
     emptyMessage?: React.ReactNode;
+    /** Accessibility label for selecting all rows */
+    a11y_select_all_rows?: string;
 }
-export declare function DataGrid<T extends Record<string, any>>({ columns, rows, loading, selection, selectedRowKeys, onSelectionChange, rowKey, sortConfig, onSort, pagination, striped, bordered, hoverable, stickyHeader, height, maxHeight, className, emptyMessage, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
+export declare function DataGrid<T extends Record<string, any>>({ columns, rows, loading, selection, selectedRowKeys, onSelectionChange, rowKey, sortConfig, onSort, pagination, striped, bordered, hoverable, stickyHeader, height, maxHeight, className, emptyMessage, a11y_select_all_rows, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
 export default DataGrid;
