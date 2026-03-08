@@ -56,7 +56,6 @@
       text-overflow: ellipsis;
       line-height: 1.2;
       white-space: inherit;
-      margin-top: -0.15rem;
     }
 
     &--icon-only {
@@ -188,6 +187,7 @@
     }
 
     &--tertiary {
+      --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
       background-color: rgb(0 0 0 / 0.03);
       border-color: rgb(0 0 0 / 0.08);
 
