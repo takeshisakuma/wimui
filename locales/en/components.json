@@ -700,6 +700,7 @@
   "selection_category_checkbox": "Checkbox",
   "selection_category_radio": "Radio Button",
   "selection_category_switch": "Switch",
+  "otp_digit": "Digit {{index}}",
   "selection_checkbox_description": "Allows multiple selections (0 or more). Each item is independent.",
   "selection_checkbox_group_usage": "Specifying multiple filters, etc.",
   "selection_checkbox_group_want_confirm": "Confirm multiple values at once via 'Save' or 'Submit'",
