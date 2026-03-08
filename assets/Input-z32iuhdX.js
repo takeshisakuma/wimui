@@ -1,0 +1,62 @@
+import{j as n}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as o}from"./index-BbELdArX.js";import{M as r,T as c,C as d,a as l}from"./blocks-C0AWoM0t.js";import{I as x,D as h,O as j,G as _,E as p,a,F as u,C as m,S as k,b as f}from"./Input.stories-D6oZd_2b.js";import{T as s}from"./T-BeScbPr-.js";import"./iframe-DgQoBtfe.js";import"./preload-helper-PPVm8Dsz.js";import"./index-RxXSG2XW.js";import"./index-rLXbGFcJ.js";import"./index-BwUdaykg.js";import"./index-DkAcOnWZ.js";import"./Input-D-5EQmKT.js";import"./index-CFIryxeI.js";/* empty css              */import"./Icon-C-Y18G8f.js";import"./useTranslation-DccyvZwG.js";import"./Label-nQHV7_Pp.js";import"./Badge-C1OUazr5.js";import"./FieldError-DuDoPjg6.js";import"./Paragraph-BO_YZ6Db.js";function e(t){const i={h2:"h2",h3:"h3",li:"li",ul:"ul",...o(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(r,{of:x}),`
+`,n.jsx(c,{}),`
+`,n.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:n.jsx("p",{children:n.jsx(s,{k:"doc_input_long_desc"})})}),`
+`,n.jsx(i.h2,{id:"",children:n.jsx(s,{k:"doc_basic_usage"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_basic_desc"})}),`
+`,n.jsx(d,{of:h}),`
+`,n.jsx(i.h2,{id:"-1",children:n.jsx(s,{k:"doc_variants"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_variant_desc"})}),`
+`,n.jsx(i.h3,{id:"outline",children:"Outline"}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_outline_desc"})}),`
+`,n.jsx(d,{of:j}),`
+`,n.jsx(i.h3,{id:"ghost",children:"Ghost"}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_ghost_desc"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_ghost_usage"})}),`
+`,n.jsxs(i.ul,{children:[`
+`,n.jsxs(i.li,{children:[`
+`,n.jsx(s,{k:"doc_input_ghost_u1"}),`
+`]}),`
+`,n.jsxs(i.li,{children:[`
+`,n.jsx(s,{k:"doc_input_ghost_u2"}),`
+`]}),`
+`,n.jsxs(i.li,{children:[`
+`,n.jsx(s,{k:"doc_input_ghost_u3"}),`
+`]}),`
+`]}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_ghost_interaction"})}),`
+`,n.jsxs(i.ul,{children:[`
+`,n.jsxs(i.li,{children:[`
+`,n.jsx(s,{k:"doc_input_ghost_i1"}),`
+`]}),`
+`,n.jsxs(i.li,{children:[`
+`,n.jsx(s,{k:"doc_input_ghost_i2"}),`
+`]}),`
+`,n.jsxs(i.li,{children:[`
+`,n.jsx(s,{k:"doc_input_ghost_i3"}),`
+`]}),`
+`]}),`
+`,n.jsx(d,{of:_}),`
+`,n.jsx(i.h2,{id:"-2",children:n.jsx(s,{k:"doc_states"})}),`
+`,n.jsx(i.h3,{id:"error",children:"Error"}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_error_desc"})}),`
+`,n.jsx(d,{of:p}),`
+`,n.jsx(i.h3,{id:"disabled",children:"Disabled"}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_disabled_desc"})}),`
+`,n.jsx(d,{of:a}),`
+`,n.jsx(i.h2,{id:"-3",children:n.jsx(s,{k:"doc_layout"})}),`
+`,n.jsx(i.h3,{id:"full-width",children:"Full Width"}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_fullwidth_desc"})}),`
+`,n.jsx(d,{of:u}),`
+`,n.jsx(i.h3,{id:"-4",children:n.jsx(s,{k:"doc_input_width_title"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_width_desc"})}),`
+`,n.jsx("p",{style:{fontSize:"0.875rem",color:"#666",borderLeft:"4px solid #ddd",paddingLeft:"1rem"},children:n.jsx(s,{k:"doc_input_width_note"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_width_usage"})}),`
+`,n.jsx(d,{of:m}),`
+`,n.jsx(i.h2,{id:"-5",children:n.jsx(s,{k:"doc_features"})}),`
+`,n.jsx(i.h3,{id:"search",children:"Search"}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_search_desc"})}),`
+`,n.jsx(d,{of:k}),`
+`,n.jsx(i.h3,{id:"clearable",children:"Clearable"}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_input_clearable_desc"})}),`
+`,n.jsx(d,{of:f}),`
+`,n.jsx(l,{})]})}function R(t={}){const{wrapper:i}={...o(),...t.components};return i?n.jsx(i,{...t,children:n.jsx(e,{...t})}):e(t)}export{R as default};

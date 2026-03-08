@@ -1,5 +1,6 @@
 import { default as React } from '../../../node_modules/react';
 import { WimColor, WimSpacing, WimRadius, WimShadow } from '../../types/tokens';
+import { ResponsiveProp } from '../Grid/grid-utils';
 export type BoxProps<C extends React.ElementType = "div"> = {
     /** The component used for the root node. Either a string to use a HTML element or a component. */
     as?: C;
@@ -34,9 +35,9 @@ export type BoxProps<C extends React.ElementType = "div"> = {
     /** Background color */
     bg?: WimColor;
     /** Width */
-    w?: number | string;
+    w?: ResponsiveProp<number | string>;
     /** Height */
-    h?: number | string;
+    h?: ResponsiveProp<number | string>;
     /** Border radius */
     radius?: number | WimRadius;
     /** Box shadow */
