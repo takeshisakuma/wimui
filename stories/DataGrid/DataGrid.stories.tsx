@@ -229,21 +229,38 @@ export const WithPagination: Story = {
 };
 
 export const WithActions: Story = {
-  args: {
-    columns: [
-      { key: "id", header: "ID", width: 55, fixed: true },
-      { key: "name", header: "Name", width: 150, fixed: false },
-      { key: "email", header: "Email", width: 200 },
+  render: () => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    const columns = [
+      {
+        key: "id",
+        header: t("story_datagrid_col_id"),
+        width: 55,
+        fixed: true,
+      },
+      {
+        key: "name",
+        header: t("story_datagrid_col_name"),
+        width: 150,
+        fixed: false,
+      },
+      {
+        key: "email",
+        header: t("story_datagrid_col_email"),
+        width: 200,
+      },
       {
         key: "actions",
-        header: "Actions",
+        header: t("story_datagrid_col_actions"),
         width: 100,
         render: (_: any, row: Record<string, any>) => (
           <div style={{ display: "flex", gap: "8px" }}>
             <Button
               size="small"
               priority="tertiary"
-              onClick={() => alert(`Edit ${row.name}`)}
+              onClick={() =>
+                alert(t("story_datagrid_action_edit", { name: row.name }))
+              }
             >
               <Icon name="EditIcon" size="small" />
             </Button>
@@ -251,16 +268,17 @@ export const WithActions: Story = {
               size="small"
               priority="tertiary"
               role="destructive"
-              onClick={() => alert(`Delete ${row.name}`)}
+              onClick={() =>
+                alert(t("story_datagrid_action_delete", { name: row.name }))
+              }
             >
               <Icon name="TrashIcon" size="small" />
             </Button>
           </div>
         ),
       },
-    ],
-    rows: sampleData,
-    bordered: true,
+    ];
+    return <DataGrid columns={columns} rows={sampleData} bordered />;
   },
 };
 
@@ -385,35 +403,66 @@ export const FullFeatured: Story = {
 };
 
 export const WithFixedColumn: Story = {
-  args: {
-    columns: [
-      { key: "id", header: "ID", width: 55, fixed: true },
-      { key: "name", header: "Name", width: 150, fixed: false },
-      { key: "email", header: "Email", width: 200 },
-      { key: "role", header: "Role", width: 100 },
-      { key: "joinDate", header: "Join Date", width: 150 },
+  render: () => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    const columns = [
+      {
+        key: "id",
+        header: t("story_datagrid_col_id"),
+        width: 55,
+        fixed: true,
+      },
+      {
+        key: "name",
+        header: t("story_datagrid_col_name"),
+        width: 150,
+        fixed: false,
+      },
+      {
+        key: "email",
+        header: t("story_datagrid_col_email"),
+        width: 200,
+      },
+      {
+        key: "role",
+        header: t("story_datagrid_col_role"),
+        width: 100,
+      },
+      {
+        key: "joinDate",
+        header: t("story_datagrid_col_joinDate"),
+        width: 150,
+      },
       {
         key: "status",
-        header: "Status",
+        header: t("story_datagrid_col_status"),
         width: 100,
-        render: (value: any) => (
-          <Badge
-            content={value}
-            size="small"
-            color={
-              value === "Active"
-                ? "primary"
-                : value === "Inactive"
-                  ? "neutral"
-                  : "secondary"
-            }
-          />
-        ),
+        render: (value: any) => {
+          const translatedValue =
+            value === "Active"
+              ? t("story_datagrid_status_active")
+              : value === "Inactive"
+                ? t("story_datagrid_status_inactive")
+                : t("story_datagrid_status_pending");
+          return (
+            <Badge
+              content={translatedValue}
+              size="small"
+              color={
+                value === "Active"
+                  ? "primary"
+                  : value === "Inactive"
+                    ? "neutral"
+                    : "secondary"
+              }
+            />
+          );
+        },
       },
-    ],
-    rows: sampleData,
-    selection: true,
-    bordered: true,
+    ];
+    return (
+      <DataGrid columns={columns} rows={sampleData} selection bordered />
+    );
   },
   decorators: [
     (Story) => (

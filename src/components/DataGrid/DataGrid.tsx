@@ -76,6 +76,8 @@ export interface DataGridProps<T> {
   className?: string;
   /** Message to show when data is empty */
   emptyMessage?: React.ReactNode;
+  /** Accessibility label for selecting all rows */
+  a11y_select_all_rows?: string;
 }
 
 export function DataGrid<T extends Record<string, any>>({
@@ -96,9 +98,13 @@ export function DataGrid<T extends Record<string, any>>({
   height,
   maxHeight,
   className,
-  emptyMessage = "No data available",
+  emptyMessage,
+  a11y_select_all_rows,
 }: DataGridProps<T>) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["components", "common"]);
+  const actualEmptyMessage = emptyMessage ?? t("datagrid_empty");
+  const actualSelectAllRowsA11y =
+    a11y_select_all_rows ?? t("a11y_select_all_rows");
 
   const getRowKey = (row: T): React.Key => {
     if (typeof rowKey === "function") {
@@ -201,7 +207,7 @@ export function DataGrid<T extends Record<string, any>>({
                     checked={isAllSelected}
                     indeterminate={isSomeSelected}
                     onChange={(e) => handleSelectAll(e.target.checked)}
-                    aria-label={t("a11y_select_all_rows")}
+                    aria-label={actualSelectAllRowsA11y}
                   />
                 </TableHead>
               )}
@@ -238,10 +244,10 @@ export function DataGrid<T extends Record<string, any>>({
               <TableRow>
                 <TableCell colSpan={columns.length + (selection ? 1 : 0)}>
                   <div className="wim-datagrid__empty">
-                    {typeof emptyMessage === "string" ? (
-                      <EmptyState title="No Data" description={emptyMessage} />
+                    {typeof actualEmptyMessage === "string" ? (
+                      <EmptyState title="No Data" description={actualEmptyMessage} />
                     ) : (
-                      emptyMessage
+                      actualEmptyMessage
                     )}
                   </div>
                 </TableCell>
@@ -260,7 +266,9 @@ export function DataGrid<T extends Record<string, any>>({
                           onChange={(e) =>
                             handleSelectRow(key, e.target.checked)
                           }
-                          aria-label={`Select row ${rowIndex + 1}`}
+                          aria-label={t("datagrid_select_row", {
+                      index: rowIndex + 1,
+                    })}
                         />
                       </TableCell>
                     )}

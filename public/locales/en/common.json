@@ -111,5 +111,17 @@
   "no_results_found": "No results found",
   "a11y_clear_input": "Clear input",
   "pagination_items_per_page": "items / page",
-  "pagination_go_to": "Go to"
+  "pagination_go_to": "Go to",
+  "no_data": "No data",
+  "transfer_source": "Available",
+  "transfer_target": "Selected",
+  "sun": "Sun",
+  "mon": "Mon",
+  "tue": "Tue",
+  "wed": "Wed",
+  "thu": "Thu",
+  "fri": "Fri",
+  "sat": "Sat",
+  "calendar_title": "{{month}} {{year}}",
+  "calendar_aria_date": "{{month}}/{{day}}/{{year}}"
 }

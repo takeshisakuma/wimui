@@ -223,7 +223,15 @@ export const Calendar = ({
     calendarDays.push({ date: d, currentMonth: false });
   }
 
-  const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
+  const weekDays = [
+    t("sun"),
+    t("mon"),
+    t("tue"),
+    t("wed"),
+    t("thu"),
+    t("fri"),
+    t("sat"),
+  ];
 
   return (
     <div
@@ -245,7 +253,7 @@ export const Calendar = ({
           <Icon name="ChevronLeftIcon" size="small" />
         </button>
         <div className="wim-calendar-title">
-          {year}年 {month + 1}月
+          {t("calendar_title", { year, month: month + 1 })}
         </div>
         <button
           type="button"
@@ -283,7 +291,11 @@ export const Calendar = ({
               )}
               onClick={() => handleDateClick(date)}
               disabled={disabled || dateDisabled}
-              aria-label={`${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`}
+              aria-label={t("calendar_aria_date", {
+                year: date.getFullYear(),
+                month: date.getMonth() + 1,
+                day: date.getDate(),
+              })}
             >
               {date.getDate()}
             </button>

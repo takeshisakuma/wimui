@@ -947,5 +947,14 @@
   "vis_relationship": "A relação de variáveis duplas.",
   "vis_share": "Razão composicional",
   "vis_small_items": "(Quando a quantia for mínima)",
-  "visual_accessibility": "Acessibilidade Visual"
+  "visual_accessibility": "Acessibilidade Visual",
+  "rating_stars": "{{count}} estrelas",
+  "signature_clear": "Limpar",
+  "chat_send_button": "Enviar",
+  "a11y_avatar": "Avatar",
+  "datagrid_empty": "Nenhum dado disponível",
+  "datagrid_select_row": "Selecionar linha {{index}}",
+  "snackbar": "Snackbar",
+  "toast": "Toast",
+  "a11y_close": "Fechar"
 }

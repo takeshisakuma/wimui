@@ -947,5 +947,11 @@
   "vis_relationship": "Relationship between two numerical variables",
   "vis_share": "Composition ratio, share",
   "vis_small_items": "(When the number of items is less)",
-  "visual_accessibility": "Visual Accessibility"
+  "visual_accessibility": "Visual Accessibility",
+  "rating_stars": "{{count}} stars",
+  "signature_clear": "Clear",
+  "chat_send_button": "Send",
+  "a11y_avatar": "Avatar",
+  "datagrid_empty": "No data available",
+  "datagrid_select_row": "Select row {{index}}"
 }

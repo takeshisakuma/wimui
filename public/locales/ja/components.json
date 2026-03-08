@@ -950,5 +950,9 @@
   "vis_relationship": "2つの数値変数の関係",
   "vis_share": "構成比、シェア",
   "vis_small_items": "(項目数が少ない場合)",
-  "visual_accessibility": "視覚性"
+  "visual_accessibility": "視覚性",
+  "chat_send_button": "送信",
+  "a11y_avatar": "アバター",
+  "datagrid_empty": "データがありません",
+  "datagrid_select_row": "行 {{index}} を選択"
 }

@@ -65,18 +65,18 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   render: (args) => {
-    const { t } = useTranslation("docs");
+    const { t } = useTranslation(["docs", "common", "components"]);
     const options: CascaderOption[] = [
       {
-        label: "story_cascader_tokyo",
+        label: t("story_cascader_tokyo"),
         value: "tokyo",
         children: [
           {
-            label: "story_cascader_shibuya",
+            label: t("story_cascader_shibuya"),
             value: "shibuya",
             children: [
               {
-                label: "story_cascader_dogenzaka",
+                label: t("story_cascader_dogenzaka"),
                 value: "dogenzaka",
               },
             ],
@@ -84,15 +84,15 @@ export const WithLabel: Story = {
         ],
       },
       {
-        label: "story_cascader_osaka",
+        label: t("story_cascader_osaka"),
         value: "osaka",
         children: [
           {
-            label: "story_cascader_osaka_city",
+            label: t("story_cascader_osaka_city"),
             value: "osaka_city",
             children: [
               {
-                label: "story_cascader_umeda",
+                label: t("story_cascader_umeda"),
                 value: "umeda",
               },
             ],
@@ -104,8 +104,8 @@ export const WithLabel: Story = {
       <Cascader
         {...args}
         options={options}
-        label="story_cascader_placeholder"
-        placeholder="story_cascader_placeholder"
+        label={t("story_cascader_placeholder")}
+        placeholder={t("story_cascader_placeholder")}
       />
     );
   },
@@ -113,18 +113,18 @@ export const WithLabel: Story = {
 
 export const HoverExpand: Story = {
   render: (args) => {
-    const { t } = useTranslation("docs");
+    const { t } = useTranslation(["docs", "common", "components"]);
     const options: CascaderOption[] = [
       {
-        label: "story_cascader_tokyo",
+        label: t("story_cascader_tokyo"),
         value: "tokyo",
         children: [
           {
-            label: "story_cascader_shibuya",
+            label: t("story_cascader_shibuya"),
             value: "shibuya",
             children: [
               {
-                label: "story_cascader_dogenzaka",
+                label: t("story_cascader_dogenzaka"),
                 value: "dogenzaka",
               },
             ],
@@ -145,7 +145,7 @@ export const HoverExpand: Story = {
 
 export const Disabled: Story = {
   render: (args) => {
-    const { t } = useTranslation("docs");
+    const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Cascader
         {...args}
@@ -158,18 +158,18 @@ export const Disabled: Story = {
 
 export const CustomSeparator: Story = {
   render: (args) => {
-    const { t } = useTranslation("docs");
+    const { t } = useTranslation(["docs", "common", "components"]);
     const options: CascaderOption[] = [
       {
-        label: "story_cascader_tokyo",
+        label: t("story_cascader_tokyo"),
         value: "tokyo",
         children: [
           {
-            label: "story_cascader_shibuya",
+            label: t("story_cascader_shibuya"),
             value: "shibuya",
             children: [
               {
-                label: "story_cascader_dogenzaka",
+                label: t("story_cascader_dogenzaka"),
                 value: "dogenzaka",
               },
             ],

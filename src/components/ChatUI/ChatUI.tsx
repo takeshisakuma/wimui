@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
+import { useTranslation } from "react-i18next";
 import "./chatui.scss";
 
 export interface ChatContainerProps {
@@ -96,14 +97,17 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(
   (
     {
       onSend,
-      sendButtonLabel = "Send",
+      sendButtonLabel: sendButtonLabelProp,
       showSendButton = true,
       className,
       ...props
     },
     ref,
   ) => {
+    const { t } = useTranslation(["components"]);
     const [value, setValue] = React.useState("");
+
+    const sendButtonLabel = sendButtonLabelProp || t("chat_send_button");
 
     const handleSend = () => {
       if (value.trim() && onSend) {
@@ -158,13 +162,16 @@ export interface ChatAvatarProps {
 
 export const ChatAvatar: React.FC<ChatAvatarProps> = ({
   src,
-  alt = "Avatar",
+  alt: altProp,
   fallback,
   size = "medium",
   color = "s18",
   className,
 }) => {
+  const { t } = useTranslation(["components"]);
   const [imageError, setImageError] = React.useState(false);
+
+  const alt = altProp || t("a11y_avatar");
 
   return (
     <div

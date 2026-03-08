@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   DescriptionList,
@@ -28,67 +29,70 @@ const meta: Meta<typeof DescriptionList> = {
 export default meta;
 type Story = StoryObj<typeof DescriptionList>;
 
-const DefaultChildren = (
-  <>
-    <DescriptionListItem>
-      <DescriptionListTerm>User Name</DescriptionListTerm>
-      <DescriptionListDetails>Wim UI Persona</DescriptionListDetails>
-    </DescriptionListItem>
-    <DescriptionListItem>
-      <DescriptionListTerm>Email Address</DescriptionListTerm>
-      <DescriptionListDetails>contact@example.com</DescriptionListDetails>
-    </DescriptionListItem>
-    <DescriptionListItem>
-      <DescriptionListTerm>Position</DescriptionListTerm>
-      <DescriptionListDetails>UI/UX Designer</DescriptionListDetails>
-    </DescriptionListItem>
-    <DescriptionListItem>
-      <DescriptionListTerm>Description</DescriptionListTerm>
-      <DescriptionListDetails>
-        Standard persona for Wim UI component library documentation.
-      </DescriptionListDetails>
-    </DescriptionListItem>
-  </>
-);
+const DescriptionListContent = () => {
+  const { t } = useTranslation("docs");
+  return (
+    <>
+      <DescriptionListItem>
+        <DescriptionListTerm>{t("story_desc_list_user_name")}</DescriptionListTerm>
+        <DescriptionListDetails>{t("story_desc_list_persona")}</DescriptionListDetails>
+      </DescriptionListItem>
+      <DescriptionListItem>
+        <DescriptionListTerm>{t("story_desc_list_email")}</DescriptionListTerm>
+        <DescriptionListDetails>contact@example.com</DescriptionListDetails>
+      </DescriptionListItem>
+      <DescriptionListItem>
+        <DescriptionListTerm>{t("story_desc_list_position")}</DescriptionListTerm>
+        <DescriptionListDetails>{t("story_desc_list_designer")}</DescriptionListDetails>
+      </DescriptionListItem>
+      <DescriptionListItem>
+        <DescriptionListTerm>{t("story_desc_list_description")}</DescriptionListTerm>
+        <DescriptionListDetails>
+          {t("story_desc_list_desc_val")}
+        </DescriptionListDetails>
+      </DescriptionListItem>
+    </>
+  );
+};
 
 export const Horizontal: Story = {
   args: {
     layout: "horizontal",
-    children: DefaultChildren,
+    children: <DescriptionListContent />,
   },
 };
 
 export const Vertical: Story = {
   args: {
     layout: "vertical",
-    children: DefaultChildren,
+    children: <DescriptionListContent />,
   },
 };
 
 export const Compact: Story = {
   args: {
     layout: "compact",
-    children: DefaultChildren,
+    children: <DescriptionListContent />,
   },
 };
 
 export const WithBorder: Story = {
   args: {
     border: true,
-    children: DefaultChildren,
+    children: <DescriptionListContent />,
   },
 };
 
 export const Small: Story = {
   args: {
     size: "small",
-    children: DefaultChildren,
+    children: <DescriptionListContent />,
   },
 };
 
 export const Large: Story = {
   args: {
     size: "large",
-    children: DefaultChildren,
+    children: <DescriptionListContent />,
   },
 };
