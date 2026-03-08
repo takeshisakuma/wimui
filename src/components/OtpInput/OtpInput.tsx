@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
+import { useTranslation } from "react-i18next";
 import "./otp-input.scss";
 
 type OtpInputProps = {
@@ -22,6 +23,7 @@ export const OtpInput = ({
   error = false,
   className,
 }: OtpInputProps) => {
+  const { t } = useTranslation(["components"]);
   // 内部状態（非制御時にも対応できるようにするが、基本は制御コンポーネントとして使う想定）
   const [internalValues, setInternalValues] = useState<string[]>(
     Array(length).fill(""),
@@ -141,7 +143,7 @@ export const OtpInput = ({
           onKeyDown={(e) => handleKeyDown(e, index)}
           onPaste={handlePaste}
           disabled={disabled}
-          aria-label={`Digit ${index + 1}`}
+          aria-label={t("otp_digit", { index: index + 1 })}
         />
       ))}
     </div>

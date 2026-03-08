@@ -29,7 +29,7 @@ export const Default: Story = {
     const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_mentions_label_user")}>
-        <Mentions {...args} options={mockUsers} placeholder="@yamada" fullWidth rows={4} />
+        <Mentions {...args} options={mockUsers} placeholder={t("story_mentions_placeholder_user")} fullWidth rows={4} />
       </Label>
     );
   },
@@ -46,7 +46,7 @@ export const CustomTrigger: Story = {
             fullWidth
             rows={3}
             trigger="#"
-            placeholder="#SuperMario"
+            placeholder={t("story_mentions_placeholder_char")}
             options={[
               { id: 1, display: "SuperMario" },
               { id: 2, display: "Luigi" },
@@ -60,7 +60,7 @@ export const CustomTrigger: Story = {
             fullWidth
             rows={3}
             trigger="/"
-            placeholder="/help"
+            placeholder={t("story_mentions_placeholder_cmd")}
             options={[
               { id: 1, display: "help" },
               { id: 2, display: "settings" },

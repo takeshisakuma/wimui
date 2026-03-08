@@ -111,5 +111,8 @@
   "no_results_found": "結果が見つかりません",
   "a11y_clear_input": "入力をクリア",
   "pagination_items_per_page": "件 / ページ",
-  "pagination_go_to": "移動"
+  "pagination_go_to": "移動",
+  "no_data": "データがありません",
+  "transfer_source": "選択可能",
+  "transfer_target": "選択済み"
 }

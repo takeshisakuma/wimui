@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import { Button } from "../Button/Button";
+import { useTranslation } from "react-i18next";
 import "./signature-pad.scss";
 
 export type SignaturePadProps = {
@@ -33,14 +34,17 @@ export const SignaturePad = ({
   penColor = "#000000",
   penWidth = 2,
   onChange,
-  clearLabel = "Clear",
+  clearLabel,
   disabled = false,
   className,
   style,
 }: SignaturePadProps) => {
+  const { t } = useTranslation(["components"]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
+
+  const actualClearLabel = clearLabel ?? t("signature_clear");
 
   const getCoordinates = (
     event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
@@ -158,7 +162,7 @@ export const SignaturePad = ({
           onClick={clear}
           disabled={disabled || isEmpty}
         >
-          {clearLabel}
+          {actualClearLabel}
         </Button>
       </div>
     </div>

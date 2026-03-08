@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { Button } from "../Button/Button";
@@ -34,11 +35,12 @@ export const Transfer = ({
   dataSource = [],
   targetKeys,
   onChange,
-  titles = ["Source", "Target"],
+  titles = ["transfer_source", "transfer_target"],
   className,
   style,
   disabled = false,
 }: TransferProps) => {
+  const { t } = useTranslation("common");
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const [internalTargetKeys, setInternalTargetKeys] = useState<string[]>(
     targetKeys || [],
@@ -121,7 +123,7 @@ export const Transfer = ({
             indeterminate={isIndeterminate}
             onChange={() => handleSelectAll(listKeys, type)}
             disabled={disabled || listKeys.length === 0}
-            label={title}
+            label={t(title)}
           />
           <span className="wim-transfer__header-count">
             {listSelectedKeys.length}/{data.length}
@@ -129,7 +131,7 @@ export const Transfer = ({
         </div>
         <div className="wim-transfer__body">
           {data.length === 0 ? (
-            <div className="wim-transfer__empty">No data</div>
+            <div className="wim-transfer__empty">{t("no_data")}</div>
           ) : (
             data.map((item) => (
               <BaseListItem
@@ -144,7 +146,7 @@ export const Transfer = ({
                   />
                 }
               >
-                {item.title}
+                {t(item.title)}
               </BaseListItem>
             ))
           )}

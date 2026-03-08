@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Slider } from "@/components/Slider/Slider";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Label } from "@/components/Label/Label";
 
 const MetaData: Meta<typeof Slider> = {
   title: "Components/Pickers & Sliders/Slider",
@@ -17,19 +19,42 @@ export default MetaData;
 type Story = StoryObj<typeof Slider>;
 
 export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_slider_default")}>
+        <Slider {...args} />
+      </Label>
+    );
+  },
   args: {
     defaultValue: 50,
   },
 };
 
 export const Disabled: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_slider_disabled")}>
+        <Slider {...args} disabled={true} />
+      </Label>
+    );
+  },
   args: {
     defaultValue: 30,
-    disabled: true,
   },
 };
 
 export const MinMax: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_slider_minmax")}>
+        <Slider {...args} />
+      </Label>
+    );
+  },
   args: {
     min: -50,
     max: 50,
@@ -38,6 +63,14 @@ export const MinMax: Story = {
 };
 
 export const Step: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_slider_step")}>
+        <Slider {...args} />
+      </Label>
+    );
+  },
   args: {
     min: 0,
     max: 100,
@@ -47,6 +80,11 @@ export const Step: Story = {
 };
 
 export const Controlled = () => {
+  const { t } = useTranslation(["docs", "common", "components"]);
   const [val, setVal] = useState(25);
-  return <Slider value={val} onChange={setVal} />;
+  return (
+    <Label label={`${t("story_slider_default")} (${t("story_dialog_curr_state")}: ${val})`}>
+      <Slider value={val} onChange={setVal} />
+    </Label>
+  );
 };

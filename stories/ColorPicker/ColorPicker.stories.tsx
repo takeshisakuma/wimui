@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ColorPicker } from "@/components/ColorPicker/ColorPicker";
 import { Label } from "@/components/Label/Label";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof ColorPicker> = {
   title: "Components/Pickers & Sliders/ColorPicker",
@@ -25,66 +26,84 @@ export default meta;
 type Story = StoryObj<typeof ColorPicker>;
 
 export const Default: Story = {
-  render: (args) => (
-    <Label label="Select Color">
-      <ColorPicker {...args} />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_colorpicker_label")}>
+        <ColorPicker {...args} />
+      </Label>
+    );
+  },
   args: {
     defaultValue: "#3b82f6",
   },
 };
 
 export const Outline: Story = {
-  render: (args) => (
-    <Label label="Outline ColorPicker">
-      <ColorPicker {...args} variant="outline" />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_colorpicker_outline")}>
+        <ColorPicker {...args} variant="outline" />
+      </Label>
+    );
+  },
   args: {
     defaultValue: "#10b981",
   },
 };
 
 export const Ghost: Story = {
-  render: (args) => (
-    <Label label="Ghost ColorPicker">
-      <ColorPicker {...args} variant="ghost" />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_colorpicker_ghost")}>
+        <ColorPicker {...args} variant="ghost" />
+      </Label>
+    );
+  },
   args: {
     defaultValue: "#f59e0b",
   },
 };
 
 export const ErrorStatus: Story = {
-  render: (args) => (
-    <Label label="Error State">
-      <ColorPicker {...args} state="error" />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_colorpicker_error")}>
+        <ColorPicker {...args} state="error" />
+      </Label>
+    );
+  },
   args: {
     defaultValue: "#ef4444",
   },
 };
 
 export const Disabled: Story = {
-  render: (args) => (
-    <Label label="Disabled State">
-      <ColorPicker {...args} disabled />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_colorpicker_disabled")}>
+        <ColorPicker {...args} disabled />
+      </Label>
+    );
+  },
   args: {
     defaultValue: "#6b7280",
   },
 };
 
 export const FullWidth: Story = {
-  render: (args) => (
-    <Label label="Full Width ColorPicker" style={{ width: "100%" }}>
-      <ColorPicker {...args} fullWidth />
-    </Label>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_colorpicker_fullwidth")} style={{ width: "100%" }}>
+        <ColorPicker {...args} fullWidth />
+      </Label>
+    );
+  },
   args: {
     defaultValue: "#8b5cf6",
   },

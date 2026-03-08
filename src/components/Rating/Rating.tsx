@@ -1,6 +1,7 @@
 import React, { useState, useId } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
+import { useTranslation } from "react-i18next";
 import "./rating.scss";
 
 type RatingProps = {
@@ -57,6 +58,7 @@ export const Rating = ({
   label,
   ...props
 }: RatingProps) => {
+  const { t } = useTranslation("components");
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState(defaultValue);
   const [hoverValue, setHoverValue] = useState<number | null>(null);
@@ -147,7 +149,7 @@ export const Rating = ({
           currentValue === starValue ||
           (allowHalf && currentValue === starValue - 0.5)
         }
-        aria-label={`${index + 1} Stars`}
+        aria-label={t("rating_stars", { count: index + 1 })}
       >
         <div className="wim-rating__star-background">
           <Icon name="StarIcon" size={size} />

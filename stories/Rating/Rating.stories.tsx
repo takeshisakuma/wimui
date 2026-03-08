@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Rating } from "@/components/Rating/Rating";
+import { useTranslation } from "react-i18next";
+import { Label } from "@/components/Label/Label";
 
 const meta: Meta<typeof Rating> = {
   title: "Components/Advanced Inputs/Rating",
@@ -22,12 +24,28 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs"]);
+    return (
+      <Label label={t("story_rating_default")}>
+        <Rating {...args} />
+      </Label>
+    );
+  },
   args: {
     defaultValue: 3,
   },
 };
 
 export const AllowHalf: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs"]);
+    return (
+      <Label label={t("story_rating_half")}>
+        <Rating {...args} />
+      </Label>
+    );
+  },
   args: {
     defaultValue: 2.5,
     allowHalf: true,
@@ -35,6 +53,14 @@ export const AllowHalf: Story = {
 };
 
 export const CustomCount: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs"]);
+    return (
+      <Label label={t("story_rating_custom")}>
+        <Rating {...args} />
+      </Label>
+    );
+  },
   args: {
     defaultValue: 7,
     count: 10,
@@ -42,24 +68,39 @@ export const CustomCount: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <Rating {...args} size="small" defaultValue={3} />
-      <Rating {...args} size="medium" defaultValue={3} />
-      <Rating {...args} size="large" defaultValue={3} />
-    </div>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <Label label={t("story_rating_sizes")}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <Rating {...args} size="small" defaultValue={3} />
+            <Rating {...args} size="medium" defaultValue={3} />
+            <Rating {...args} size="large" defaultValue={3} />
+          </div>
+        </Label>
+      </div>
+    );
+  },
 };
 
 export const Disabled: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <Label label={t("story_rating_disabled")}>
+        <Rating {...args} disabled />
+      </Label>
+    );
+  },
   args: {
     defaultValue: 4,
-    disabled: true,
   },
 };
 
 export const Controlled: Story = {
-  render: (args) => {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [value, setValue] = useState(args.value ?? 3);
 
     useEffect(() => {
@@ -71,6 +112,10 @@ export const Controlled: Story = {
       args.onChange?.(newVal);
     };
 
-    return <Rating {...args} value={value} onChange={handleChange} />;
+    return (
+      <Label label={t("story_rating_controlled")}>
+        <Rating {...args} value={value} onChange={handleChange} />
+      </Label>
+    );
   },
 };
