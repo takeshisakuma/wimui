@@ -4599,6 +4599,10 @@
   "story_desc_list_position": "役職",
   "story_desc_list_designer": "UI/UX デザイナー",
   "story_desc_list_description": "説明",
-  "story_desc_list_desc_val": "Wim UI コンポーネントライブラリのドキュメント用標準ペルソナ。"
-}
+  "story_desc_list_desc_val": "Wim UI コンポーネントライブラリのドキュメント用標準ペルソナ。",
+  "story_colorinput_default": "デフォルト（カラー入力）",
+  "story_mentions_placeholder_user": "メッセージを入力してください (@ でメンション)",
+  "story_mentions_placeholder_char": "メッセージを入力してください (# でメンション)",
+  "story_mentions_placeholder_cmd": "コマンドを入力してください (/ で開始)"
+  }
 

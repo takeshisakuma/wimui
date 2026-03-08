@@ -4440,5 +4440,9 @@
   "story_desc_list_position": "Cargo",
   "story_desc_list_designer": "Designer UI/UX",
   "story_desc_list_description": "Descrição",
-  "story_desc_list_desc_val": "Persona padrão para documentação da biblioteca de componentes Wim UI."
-}
+  "story_desc_list_desc_val": "Persona padrão para documentação da biblioteca de componentes Wim UI.",
+  "story_colorinput_default": "Padrão (Entrada de Cor)",
+  "story_mentions_placeholder_user": "Digite a mensagem (mencione com @)",
+  "story_mentions_placeholder_char": "Digite a mensagem (mencione com #)",
+  "story_mentions_placeholder_cmd": "Digite o comando (inicie com /)"
+  }

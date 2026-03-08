@@ -700,6 +700,7 @@
   "selection_category_checkbox": "Caixa de Seleção",
   "selection_category_radio": "Botão de Rádio",
   "selection_category_switch": "Interruptor",
+  "otp_digit": "Dígito {{index}}",
   "selection_checkbox_description": "Permite várias seleções (0 ou mais). Cada item é independente.",
   "selection_checkbox_group_usage": "Especificação de vários filtros, etc.",
   "selection_checkbox_group_want_confirm": "Confirmar vários valores de uma vez via 'Salvar' ou 'Enviar'",

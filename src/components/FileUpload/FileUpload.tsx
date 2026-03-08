@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { Button } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
+import { useTranslation } from "react-i18next";
 import "./file-upload.scss";
 
 type FileUploadProps = {
@@ -23,8 +24,8 @@ type FileUploadProps = {
  */
 export const FileUpload = ({
   label,
-  buttonLabel = "ファイルを選択",
-  noFileLabel = "選択されていません",
+  buttonLabel,
+  noFileLabel,
   accept,
   multiple = false,
   disabled = false,
@@ -34,8 +35,12 @@ export const FileUpload = ({
   iconPosition,
   size = "medium",
 }: FileUploadProps) => {
+  const { t } = useTranslation("common");
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+
+  const actualButtonLabel = buttonLabel ?? t("fileupload_button");
+  const actualNoFileLabel = noFileLabel ?? t("fileupload_no_file");
 
   const handleClick = () => {
     inputRef.current?.click();
@@ -53,7 +58,7 @@ export const FileUpload = ({
     ? Array.from(selectedFiles)
         .map((file) => file.name)
         .join(", ")
-    : noFileLabel;
+    : actualNoFileLabel;
 
   return (
     <div
@@ -77,7 +82,7 @@ export const FileUpload = ({
           tabIndex={-1}
         />
         <Button
-          label={buttonLabel}
+          label={actualButtonLabel}
           onClick={handleClick}
           state={disabled ? "disabled" : "abled"}
           priority="secondary"

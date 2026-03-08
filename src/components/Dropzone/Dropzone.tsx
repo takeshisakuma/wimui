@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
+import { useTranslation } from "react-i18next";
 import "./dropzone.scss";
 
 type DropzoneProps = {
@@ -43,7 +44,7 @@ type DropzoneProps = {
  */
 export const Dropzone = ({
   label,
-  description = "ここにファイルをドラッグ＆ドロップ、またはクリックして選択",
+  description,
   accept,
   multiple = false,
   disabled = false,
@@ -51,9 +52,12 @@ export const Dropzone = ({
   className,
   iconName = "UploadIcon",
 }: DropzoneProps) => {
+  const { t } = useTranslation("common");
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState<FileList | null>(null);
+
+  const actualDescription = description ?? t("dropzone_description");
 
   const handleClick = () => {
     if (disabled) return;
@@ -131,7 +135,7 @@ export const Dropzone = ({
               color={disabled ? "disabled" : "primary"}
             />
           )}
-          <p className="wim-dropzone__description">{description}</p>
+          <p className="wim-dropzone__description">{actualDescription}</p>
           {files && files.length > 0 && (
             <div className="wim-dropzone__file-list">
               {Array.from(files).map((file, index) => (

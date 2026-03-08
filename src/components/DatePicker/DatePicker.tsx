@@ -47,13 +47,13 @@ export const DatePicker = ({
   onChange,
   format = "YYYY-MM-DD",
   clearable = true,
-  placeholder = "Select date",
+  placeholder,
   minDate,
   maxDate,
   disabledDates,
   ...props
 }: DatePickerProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<Date | null>(
@@ -65,6 +65,8 @@ export const DatePicker = ({
 
   const isControlled = value !== undefined;
   const currentValue = isControlled ? value : internalValue;
+
+  const actualPlaceholder = placeholder ?? t("datepicker_placeholder");
 
   // Close calendar when clicking outside
   useEffect(() => {
@@ -153,7 +155,7 @@ export const DatePicker = ({
             fullWidth && "wim-input--full-width",
           )}
           value={formatDate(currentValue || null)}
-          placeholder={placeholder}
+          placeholder={actualPlaceholder}
           disabled={disabled || state === "disabled"}
           onClick={handleInputClick}
           onKeyDown={handleKeyDown}

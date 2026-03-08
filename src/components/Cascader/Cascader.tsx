@@ -38,7 +38,7 @@ export const Cascader = ({
   options = [],
   value,
   onChange,
-  placeholder = "Select",
+  placeholder,
   label,
   className,
   disabled = false,
@@ -50,6 +50,8 @@ export const Cascader = ({
   ...props
 }: CascaderProps) => {
   const { t } = useTranslation("common");
+
+  const actualPlaceholder = placeholder ?? t("select_option");
   const generatedId = useId();
   const id = customId || generatedId;
   const labelId = `wim-cascader-label-${id}`;
@@ -240,7 +242,7 @@ export const Cascader = ({
             !displayValue && "wim-cascader__value--placeholder",
           )}
         >
-          {displayValue || t(placeholder)}
+          {displayValue || actualPlaceholder}
         </div>
         <div className="wim-cascader__icons">
           {allowClear && currentValue && currentValue.length > 0 && !disabled && (

@@ -4649,6 +4649,10 @@
   "story_desc_list_position": "Position",
   "story_desc_list_designer": "UI/UX Designer",
   "story_desc_list_description": "Description",
-  "story_desc_list_desc_val": "Standard persona for Wim UI component library documentation."
-}
+  "story_desc_list_desc_val": "Standard persona for Wim UI component library documentation.",
+  "story_colorinput_default": "Default (Color Input)",
+  "story_mentions_placeholder_user": "Enter message (mention with @)",
+  "story_mentions_placeholder_char": "Enter message (mention with #)",
+  "story_mentions_placeholder_cmd": "Enter command (start with /)"
+  }
 
