@@ -56,6 +56,11 @@
       text-overflow: ellipsis;
       line-height: 1.2;
       white-space: inherit;
+      margin-top: -0.1rem;
+
+      .wim-button--md & {
+        margin-top: -0.15rem;
+      }
     }
 
     &--icon-only {

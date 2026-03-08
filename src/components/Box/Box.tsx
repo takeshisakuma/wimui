@@ -6,6 +6,7 @@ import {
   WimRadius,
   WimShadow,
 } from "../../types/tokens";
+import { getSpacingValue } from "../../utilities/style-utils";
 import "./box.scss";
 
 export type BoxProps<C extends React.ElementType = "div"> = {
@@ -99,18 +100,18 @@ export const Box = React.forwardRef(
     };
 
     const boxStyle: React.CSSProperties = {
-      paddingTop: getValue(pt ?? py ?? p),
-      paddingRight: getValue(pr ?? px ?? p),
-      paddingBottom: getValue(pb ?? py ?? p),
-      paddingLeft: getValue(pl ?? px ?? p),
-      marginTop: getValue(mt ?? my ?? m),
-      marginRight: getValue(mr ?? mx ?? m),
-      marginBottom: getValue(mb ?? my ?? m),
-      marginLeft: getValue(ml ?? mx ?? m),
+      paddingTop: getSpacingValue(pt ?? py ?? p),
+      paddingRight: getSpacingValue(pr ?? px ?? p),
+      paddingBottom: getSpacingValue(pb ?? py ?? p),
+      paddingLeft: getSpacingValue(pl ?? px ?? p),
+      marginTop: getSpacingValue(mt ?? my ?? m),
+      marginRight: getSpacingValue(mr ?? mx ?? m),
+      marginBottom: getSpacingValue(mb ?? my ?? m),
+      marginLeft: getSpacingValue(ml ?? mx ?? m),
       backgroundColor: bg,
-      width: getValue(w),
-      height: getValue(h),
-      borderRadius: getValue(radius),
+      width: getSpacingValue(w),
+      height: getSpacingValue(h),
+      borderRadius: getSpacingValue(radius),
       boxShadow: shadow,
       display,
       position,

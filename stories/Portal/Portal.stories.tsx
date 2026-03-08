@@ -36,12 +36,14 @@ export const OverflowEscape: Story = {
     return (
       <Card
         variant="outline"
+        padding="lg"
         style={{
           width: "100%",
           maxWidth: "400px",
-          height: "200px",
+          height: "250px",
+          padding: "32px",
           position: "relative",
-          overflow: "hidden", // これにより、通常の子要素はここからはみ出せない
+          overflow: "hidden",
         }}
       >
         <Card.Body
@@ -134,9 +136,13 @@ export const CustomContainer: Story = {
               <p style={{ fontSize: "12px" }}>
                 {t("story_portal_source_desc")}
               </p>
-              <Box mt="md">
+              <Box mt="md" style={{ display: "flex", justifyContent: "center" }}>
                 <Portal container={container}>
-                  <Alert variant="success" icon={<Icon name="CheckCircleIcon" />}>
+                  <Alert
+                    variant="success"
+                    icon={<Icon name="CheckCircleIcon" />}
+                    style={{ width: "fit-content" }}
+                  >
                     {t("story_portal_sent_success")}
                   </Alert>
                 </Portal>
@@ -156,7 +162,7 @@ export const CustomContainer: Story = {
               borderRadius: "8px",
             }}
           >
-            <Box px="md" w="100%">
+            <Box px="md">
               {/* ここに Portal の 中身が表示される */}
               {!container && (
                 <Box textAlign="center" color="primary">
@@ -204,11 +210,6 @@ export const NotificationCenter: Story = {
               }}
             >
               <strong>{displayName}</strong>
-              <Badge
-                content={active ? t("story_portal_active") : t("story_portal_inactive")}
-                color={active ? "success" : "neutral"}
-                size="small"
-              />
             </div>
             <Button
               size="small"
@@ -410,7 +411,15 @@ export const SidePanelDetail: Story = {
                   </p>
                 </Card>
 
-                <Stack gap="xs">
+                <Stack
+                  direction={{
+                    base: "column",
+                    sm: "column",
+                    md: "column",
+                    lg: "column",
+                  }}
+                  gap="xs"
+                >
                   <label
                     style={{
                       fontSize: "13px",
@@ -441,16 +450,24 @@ export const SidePanelDetail: Story = {
     return (
       <Container size="xl">
         <Card variant="outline" padding="none" style={{ overflow: "hidden", height: "100%", minHeight: "550px" }}>
-          <Stack direction={{ base: "column", sm: "row" }} gap="none" style={{ height: "100%", width: "100%" }}>
+          <style>{`
+            @media (min-width: 576px) {
+              .sidebar-border { border-right: 1px solid var(--wim-neutral-200, #e2e8f0); border-bottom: none !important; }
+            }
+            @media (max-width: 575px) {
+              .sidebar-border { border-bottom: 1px solid var(--wim-neutral-200, #e2e8f0); border-right: none !important; }
+            }
+          `}</style>
+          <Stack direction={{ base: "column", sm: "row" }} gap="none" align="stretch" style={{ height: "100%", width: "100%" }}>
             {/* Sidebar */}
             <Box
               w={{ base: "100%", sm: 350 }}
+              className="sidebar-border"
               style={{
-                borderRight: "1px solid var(--wim-neutral-200, #e2e8f0)",
-                borderBottom: "1px solid var(--wim-neutral-200, #e2e8f0)",
                 display: "flex",
                 flexDirection: "column",
                 background: "#fcfcfd",
+                height: "100%",
               }}
             >
               <Box p="md" style={{ borderBottom: "1px solid var(--wim-neutral-200, #e2e8f0)" }}>

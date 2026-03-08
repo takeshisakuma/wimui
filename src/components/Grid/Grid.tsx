@@ -3,6 +3,7 @@ import classNames from "classnames";
 import "./grid.scss";
 
 import { generateResponsiveVars, ResponsiveProp } from "./grid-utils";
+import { getSpacingValue } from "../../utilities/style-utils";
 
 type GridProps = React.ComponentPropsWithoutRef<"div"> & {
   cols?: ResponsiveProp<number | string>;
@@ -78,13 +79,13 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     const columnGapStyle = generateResponsiveVars(
       finalColGapFn(),
       "--wim-grid-col-gap",
-      (v) => (typeof v === "number" ? `${v}px` : String(v)),
+      (v) => (typeof v === "number" ? `${v}px` : getSpacingValue(v) || String(v)),
     );
 
     const rowGapStyle = generateResponsiveVars(
       finalRowGapFn(),
       "--wim-grid-row-gap",
-      (v) => (typeof v === "number" ? `${v}px` : String(v)),
+      (v) => (typeof v === "number" ? `${v}px` : getSpacingValue(v) || String(v)),
     );
 
     const gridStyle: React.CSSProperties = {
