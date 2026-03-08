@@ -2,6 +2,10 @@ import React, { useState, useRef, useLayoutEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Transition } from "@/components/Transition/Transition";
 import { Button } from "@/components/Button/Button";
+import { Stack } from "@/components/Stack/Stack";
+import { Card } from "@/components/Card/Card";
+import { Container } from "@/components/Container/Container";
+import { Box } from "@/components/Box/Box";
 import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Transition> = {
@@ -16,107 +20,47 @@ const meta: Meta<typeof Transition> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/**
- * 幅のアニメーション付きボタンのカスタムレンダー
- */
-const AnimatedButton = ({
-  show,
-  onClick,
-  label,
-}: {
-  show: boolean;
-  onClick: () => void;
-  label: string;
-}) => {
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const [width, setWidth] = useState<number | "auto">("auto");
-
-  useLayoutEffect(() => {
-    if (buttonRef.current) {
-      // 現在の幅を一旦固定
-      const currentWidth = buttonRef.current.offsetWidth;
-      setWidth(currentWidth);
-
-      // ラベル変更後の真のサイズを計測
-      const node = buttonRef.current;
-      const originalWidthStyle = node.style.width;
-      node.style.width = "auto";
-      node.style.minWidth = "0";
-      const targetWidth = node.offsetWidth;
-      node.style.width = originalWidthStyle;
-
-      // 次のフレームで新しい幅を適用して transition を発動
-      const frame = requestAnimationFrame(() => {
-        setWidth(targetWidth);
-      });
-      return () => cancelAnimationFrame(frame);
-    }
-  }, [label]);
-
-  return (
-    <Button
-      ref={buttonRef}
-      onClick={onClick}
-      label={label}
-      priority="primary"
-      style={{
-        transition:
-          "width 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s, background-color 0.2s",
-        width: width === "auto" ? "auto" : `${width}px`,
-        minWidth: "0",
-        overflow: "hidden",
-        whiteSpace: "nowrap",
-      }}
-    />
-  );
-};
-
 export const Fade: Story = {
   render: () => {
     const [show, setShow] = useState(false);
     const { t } = useTranslation(["docs", "common", "components"]);
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "20px",
-        }}
-      >
-        <AnimatedButton
-          show={show}
-          onClick={() => setShow(!show)}
-          label={show ? t("story_transition_hide_content") : t("story_transition_show_content")}
-        />
-        <div style={{ height: "100px" }}>
-          <Transition
-            show={show}
-            enter="fade-enter"
-            enterFrom="fade-enter-from"
-            enterTo="fade-enter-to"
-            leave="fade-leave"
-            leaveFrom="fade-leave-from"
-            leaveTo="fade-leave-to"
-          >
-            <div
-              style={{
-                width: "100px",
-                height: "100px",
-                background: "var(--wim-primary, #0070f3)",
-                color: "white",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "8px",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-              }}
+      <Container size="sm">
+        <Stack align="center" gap="xl" py="xl">
+          <Button
+            animateWidth
+            priority="primary"
+            onClick={() => setShow(!show)}
+            label={show ? t("story_transition_hide_content") : t("story_transition_show_content")}
+          />
+          <Stack h={100} align="center" justify="center">
+            <Transition
+              show={show}
+              enter="fade-enter"
+              enterFrom="fade-enter-from"
+              enterTo="fade-enter-to"
+              leave="fade-leave"
+              leaveFrom="fade-leave-from"
+              leaveTo="fade-leave-to"
             >
-              Fade!
-            </div>
-          </Transition>
-        </div>
-      </div>
+              <Card
+                variant="elevated"
+                padding="lg"
+                style={{
+                  background: "var(--wim-color-surface, #ffffff)",
+                  border: "2px solid var(--wim-color-primary, #3b82f6)",
+                  color: "var(--wim-color-text-primary, #1e293b)",
+                  fontWeight: "bold",
+                  minWidth: "150px",
+                  textAlign: "center",
+                }}
+              >
+                Fade Content!
+              </Card>
+            </Transition>
+          </Stack>
+        </Stack>
+      </Container>
     );
   },
 };
@@ -126,15 +70,9 @@ export const Slide: Story = {
     const [show, setShow] = useState(false);
     const { t } = useTranslation(["docs", "common", "components"]);
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "20px",
-        }}
-      >
-        <style>{`
+      <Container size="sm">
+        <Stack align="center" gap="xl" py="xl">
+          <style>{`
                     .slide-enter { transition: all 300ms ease-out; }
                     .slide-enter-from { opacity: 0; transform: translateY(-20px); }
                     .slide-enter-to { opacity: 1; transform: translateY(0); }
@@ -142,34 +80,30 @@ export const Slide: Story = {
                     .slide-leave-from { opacity: 1; transform: translateY(0); }
                     .slide-leave-to { opacity: 0; transform: translateY(20px); }
                 `}</style>
-        <AnimatedButton
-          show={show}
-          onClick={() => setShow(!show)}
-          label={show ? t("story_transition_hide_slide") : t("story_transition_show_slide")}
-        />
-        <div style={{ height: "100px" }}>
-          <Transition
-            show={show}
-            enter="slide-enter"
-            enterFrom="slide-enter-from"
-            enterTo="slide-enter-to"
-            leave="slide-leave"
-            leaveFrom="slide-leave-from"
-            leaveTo="slide-leave-to"
-          >
-            <div
-              style={{
-                padding: "20px",
-                background: "#f0f0f0",
-                borderRadius: "12px",
-                border: "1px solid #ddd",
-              }}
+          <Button
+            animateWidth
+            priority="primary"
+            onClick={() => setShow(!show)}
+            label={show ? t("story_transition_hide_slide") : t("story_transition_show_slide")}
+          />
+          <Stack h={100} align="center" justify="center">
+            <Transition
+              show={show}
+              enter="slide-enter"
+              enterFrom="slide-enter-from"
+              enterTo="slide-enter-to"
+              leave="slide-leave"
+              leaveFrom="slide-leave-from"
+              leaveTo="slide-leave-to"
             >
-              Slide!
-            </div>
-          </Transition>
-        </div>
-      </div>
+              <Card variant="outline" padding="md">
+                Slide!
+              </Card>
+            </Transition>
+          </Stack>
+        </Stack>
+      </Container>
     );
   },
 };
+

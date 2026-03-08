@@ -238,5 +238,14 @@
     &--loading {
       pointer-events: none;
     }
+
+    &--animated-width {
+      transition:
+        width var(--duration-normal) var(--easing-base),
+        background-color var(--duration-fast) var(--easing-base),
+        border-color var(--duration-fast) var(--easing-base),
+        box-shadow var(--duration-fast) var(--easing-base),
+        transform var(--duration-fast) var(--easing-out-back);
+    }
   }
 }

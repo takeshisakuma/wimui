@@ -17,6 +17,8 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   iconPosition?: "left" | "right";
   loading?: boolean;
   justify?: "start" | "center" | "end" | "between";
+  /** Whether to animate the width change when label changes */
+  animateWidth?: boolean;
 };
 
 export const Button = React.forwardRef<
@@ -35,15 +37,58 @@ export const Button = React.forwardRef<
       loading = false,
       backgroundColor,
       justify = "center",
+      animateWidth = false,
       "aria-label": ariaLabelProp,
       className,
       disabled,
       children,
       ...props
     },
-    ref,
+    forwardedRef,
   ) => {
     const { t } = useTranslation();
+    const internalRef = React.useRef<HTMLButtonElement>(null);
+    const buttonRef = (forwardedRef as React.RefObject<HTMLButtonElement>) || internalRef;
+    const [animatedWidth, setAnimatedWidth] = React.useState<number | "auto">("auto");
+    const isInitialMount = React.useRef(true);
+
+    // Initial label for tracking changes
+    const memoizedLabel = React.useMemo(() => (label ? t(label) : ""), [label, t]);
+
+    React.useLayoutEffect(() => {
+      if (!animateWidth || !buttonRef.current) return;
+
+      if (isInitialMount.current) {
+        isInitialMount.current = false;
+        return;
+      }
+
+      const node = buttonRef.current;
+      
+      // 1. 現在の幅をピクセルで固定する（autoだと遷移しないため）
+      const currentWidth = node.getBoundingClientRect().width;
+      setAnimatedWidth(currentWidth);
+
+      // 2. 次のラベルでの「理想の幅」を計測する
+      const originalWidth = node.style.width;
+      const originalMinWidth = node.style.minWidth;
+      
+      node.style.width = "auto";
+      node.style.minWidth = "0";
+      // わずかな計算誤差と、アニメーション中の ellipsis 回避のためにバッファを追加
+      const targetWidth = Math.ceil(node.getBoundingClientRect().width) + 2;
+      
+      // 元の状態に戻す
+      node.style.width = originalWidth;
+      node.style.minWidth = originalMinWidth;
+
+      // 3. 次のフレームで目標の幅を適用して transition を発動させる
+      const frame = requestAnimationFrame(() => {
+        setAnimatedWidth(targetWidth);
+      });
+
+      return () => cancelAnimationFrame(frame);
+    }, [memoizedLabel, animateWidth, buttonRef]);
 
     // `state="disabled"` は後方互換のために残すが、標準の `disabled` を優先
     const isDisabled = disabled || state === "disabled";
@@ -111,11 +156,24 @@ export const Button = React.forwardRef<
 
     return (
       <button
-        ref={ref}
+        ref={forwardedRef || internalRef}
         type="button"
         style={{
           ...props.style,
           ...(backgroundColor ? { backgroundColor } : {}),
+          ...(animateWidth && animatedWidth !== "auto"
+            ? {
+                width: `${animatedWidth}px`,
+                transitionProperty:
+                  props.style?.transitionProperty ||
+                  "width, background-color, border-color, box-shadow, transform",
+                transitionDuration: props.style?.transitionDuration || "0.3s",
+                transitionTimingFunction: props.style?.transitionTimingFunction || "ease",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "clip",
+              }
+            : {}),
         }}
         className={classNames(
           "wim-button",
@@ -123,6 +181,7 @@ export const Button = React.forwardRef<
           `wim-button--${priority}`,
           `wim-button--${role}`,
           loading && "wim-button--loading",
+          animateWidth && "wim-button--animated-width",
           !label && !children && iconName && "wim-button--icon-only",
           className,
         )}

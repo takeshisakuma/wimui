@@ -7,6 +7,11 @@ import { Card } from "@/components/Card/Card";
 import { Stack } from "@/components/Stack/Stack";
 import { Textarea } from "@/components/Textarea/Textarea";
 import { Badge } from "@/components/Badge/Badge";
+import { Container } from "@/components/Container/Container";
+import { Box } from "@/components/Box/Box";
+import { Grid } from "@/components/Grid/Grid";
+import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
+import { Alert } from "@/components/Alert/Alert";
 import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Portal> = {
@@ -29,81 +34,82 @@ export const OverflowEscape: Story = {
     const [show, setShow] = useState(false);
     const { t } = useTranslation(["docs", "common", "components"]);
     return (
-      <div
+      <Card
+        variant="outline"
         style={{
           width: "100%",
           maxWidth: "400px",
           height: "200px",
-          border: "2px dashed #999",
-          padding: "20px",
           position: "relative",
           overflow: "hidden", // これにより、通常の子要素はここからはみ出せない
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#f9f9f9",
-          borderRadius: "8px",
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: "10px" }}>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: t("story_portal_desc_overflow"),
-            }}
-          />
-          <p>{t("story_portal_desc_escape")}</p>
-        </div>
-
-        <Button
-          onClick={() => setShow(!show)}
-          label={show ? t("story_portal_btn_hide") : t("story_portal_btn_show")}
-          priority="primary"
-        />
-
-        {show && (
-          <Portal>
-            <div
-              style={{
-                position: "fixed",
-                bottom: "40px",
-                right: "40px",
-                width: "280px",
-                maxWidth: "calc(100vw - 80px)",
-                backgroundColor: "#333",
-                color: "white",
-                padding: "20px",
-                borderRadius: "12px",
-                boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
-                zIndex: 10000,
-                border: "1px solid #444",
-                animation: "popUp 0.3s ease-out",
+        <Card.Body
+          style={{
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div style={{ textAlign: "center", marginBottom: "16px" }}>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("story_portal_desc_overflow"),
               }}
-            >
-              <style>{`
-                                @keyframes popUp {
-                                    from { transform: translateY(20px); opacity: 0; }
-                                    to { transform: translateY(0); opacity: 1; }
-                                }
-                            `}</style>
-              <h4 style={{ margin: "0 0 8px 0", color: "#60a5fa" }}>
-                {t("story_portal_power_title")}
-              </h4>
-              <p
-                style={{ margin: 0, fontSize: "14px", lineHeight: "1.5" }}
-                dangerouslySetInnerHTML={{ __html: t("story_portal_power_desc") }}
-              />
-              <div style={{ marginTop: "12px", textAlign: "right" }}>
-                <Button
-                  size="small"
-                  label={t("story_portal_btn_ok")}
-                  onClick={() => setShow(false)}
-                />
-              </div>
-            </div>
-          </Portal>
-        )}
-      </div>
+            />
+            <p>{t("story_portal_desc_escape")}</p>
+          </div>
+
+          <Button
+            onClick={() => setShow(!show)}
+            label={show ? t("story_portal_btn_hide") : t("story_portal_btn_show")}
+            priority="primary"
+          />
+
+          {show && (
+            <Portal>
+              <Card
+                variant="elevated"
+                padding="lg"
+                style={{
+                  position: "fixed",
+                  bottom: "40px",
+                  right: "40px",
+                  width: "280px",
+                  maxWidth: "calc(100vw - 80px)",
+                  zIndex: 10000,
+                  animation: "popUp 0.3s ease-out",
+                }}
+              >
+                <style>{`
+                                  @keyframes popUp {
+                                      from { transform: translateY(20px); opacity: 0; }
+                                      to { transform: translateY(0); opacity: 1; }
+                                  }
+                              `}</style>
+                <Stack gap="xs">
+                  <h4 style={{ margin: "0 0 8px 0", color: "var(--wim-primary)" }}>
+                    {t("story_portal_power_title")}
+                  </h4>
+                  <p
+                    style={{ margin: 0, fontSize: "14px", lineHeight: "1.5" }}
+                    dangerouslySetInnerHTML={{ __html: t("story_portal_power_desc") }}
+                  />
+                  <Box mt="md" textAlign="right">
+                    <Button
+                      size="small"
+                      label={t("story_portal_btn_ok")}
+                      onClick={() => setShow(false)}
+                    />
+                  </Box>
+                </Stack>
+              </Card>
+            </Portal>
+          )}
+        </Card.Body>
+      </Card>
     );
   },
 };
@@ -116,76 +122,51 @@ export const CustomContainer: Story = {
     const [container, setContainer] = useState<HTMLDivElement | null>(null);
     const { t } = useTranslation(["docs", "common", "components"]);
     return (
-      <div style={{ width: "100%", maxWidth: "500px" }}>
+      <Container size="md">
         <p>{t("story_portal_container_desc")}</p>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "20px",
-            marginTop: "20px",
-            flexWrap: "wrap",
-          }}
-        >
-          <div
-            style={{
-              flex: "1 1 200px",
-              padding: "20px",
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-            }}
-          >
-            <h4>{t("story_portal_source_title")}</h4>
-            <p style={{ fontSize: "12px", color: "#666" }}>
-              {t("story_portal_source_desc")}
-            </p>
-            <Portal container={container}>
-              <div
-                style={{
-                  padding: "10px",
-                  background: "#dcfce7",
-                  border: "1px solid #166534",
-                  color: "#166534",
-                  borderRadius: "4px",
-                  fontSize: "14px",
-                  fontWeight: "bold",
-                  textAlign: "center",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                }}
-              >
-                <Icon
-                  name="CheckCircleIcon"
-                  style={{ width: "20px", height: "20px" }}
-                />
-                {t("story_portal_sent_success")}
-              </div>
-            </Portal>
-          </div>
+        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg" style={{ marginTop: "24px" }}>
+          <Card variant="outline">
+            <Card.Header>
+              <strong>{t("story_portal_source_title")}</strong>
+            </Card.Header>
+            <Card.Body>
+              <p style={{ fontSize: "12px" }}>
+                {t("story_portal_source_desc")}
+              </p>
+              <Box mt="md">
+                <Portal container={container}>
+                  <Alert variant="success" icon={<Icon name="CheckCircleIcon" />}>
+                    {t("story_portal_sent_success")}
+                  </Alert>
+                </Portal>
+              </Box>
+            </Card.Body>
+          </Card>
 
-          <div
+          <Box
             ref={setContainer}
+            bg="var(--wim-neutral-50, #f8fafc)"
             style={{
-              flex: "1 1 200px",
-              padding: "20px",
-              border: "2px solid #3b82f6",
-              borderRadius: "8px",
-              background: "#eff6ff",
-              minHeight: "100px",
+              border: "2px dashed var(--wim-primary, #3b82f6)",
+              minHeight: "150px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              borderRadius: "8px",
             }}
           >
-            {/* ここに Portal の中身が表示される */}
-            {!container && (
-              <span style={{ color: "#3b82f6" }}>{t("story_portal_loading")}</span>
-            )}
-          </div>
-        </div>
-      </div>
+            <Box px="md" w="100%">
+              {/* ここに Portal の 中身が表示される */}
+              {!container && (
+                <Box textAlign="center" color="primary">
+                  {t("story_portal_loading")}
+                </Box>
+              )}
+            </Box>
+          </Box>
+        </SimpleGrid>
+      </Container>
     );
   },
 };
@@ -266,41 +247,19 @@ export const NotificationCenter: Story = {
     };
 
     return (
-      <div style={{ width: "100%", maxWidth: "800px" }}>
-        <style>{`
-                    .notification-grid {
-                        display: grid;
-                        grid-template-columns: 1fr 300px;
-                        gap: 24px;
-                    }
-                    .sender-grid {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        gap: 12px;
-                    }
-                    @media (max-width: 768px) {
-                        .notification-grid {
-                            grid-template-columns: 1fr;
-                        }
-                    }
-                    @media (max-width: 480px) {
-                        .sender-grid {
-                            grid-template-columns: 1fr;
-                        }
-                    }
-                `}</style>
-        <div className="notification-grid">
+      <Container size="xl">
+        <Grid cols={{ base: 1, md: "1fr 300px" }} gap="xl">
           <Stack gap="md">
             <h4>{t("story_portal_panel_title")}</h4>
             <p style={{ fontSize: "14px", color: "#666" }}>
               {t("story_portal_panel_desc")}
             </p>
-            <div className="sender-grid">
+            <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
               <SenderComponent name="A" displayName={t("story_portal_sensor_a")} color="#ecfdf5" />
               <SenderComponent name="B" displayName={t("story_portal_sensor_b")} color="#eff6ff" />
               <SenderComponent name="C" displayName={t("story_portal_camera")} color="#fff7ed" />
               <SenderComponent name="D" displayName={t("story_portal_alarm")} color="#fef2f2" />
-            </div>
+            </SimpleGrid>
           </Stack>
 
           <Card
@@ -324,16 +283,17 @@ export const NotificationCenter: Story = {
               </Stack>
             </Card.Header>
             <Card.Body style={{ flex: 1, overflowY: "auto", padding: "12px" }}>
-              <div
+              <Box
                 ref={setLogContainer}
                 style={{
                   marginBottom: "16px",
                   borderBottom: "1px solid #334155",
                   paddingBottom: "16px",
+                  minHeight: "20px",
                 }}
               >
                 {/* ここに Portal からの「稼働中メッセージ」が表示される */}
-              </div>
+              </Box>
               <div style={{ fontSize: "11px", fontFamily: "monospace" }}>
                 <div style={{ color: "#64748b", marginBottom: "8px" }}>
                   {t("story_portal_history_title")}
@@ -347,7 +307,7 @@ export const NotificationCenter: Story = {
                         log.type === "success"
                            ? "#4ade80"
                           : log.type === "warning"
-                            ? "#fbbf24"
+                             ? "#fbbf24"
                             : "#94a3b8",
                     }}
                   >
@@ -360,8 +320,8 @@ export const NotificationCenter: Story = {
               </div>
             </Card.Body>
           </Card>
-        </div>
-      </div>
+        </Grid>
+      </Container>
     );
   },
 };
@@ -479,129 +439,99 @@ export const SidePanelDetail: Story = {
     };
 
     return (
-      <div style={{ width: "100%", maxWidth: "850px" }}>
-        <style>{`
-                    .portal-demo-card {
-                        width: 100%;
-                        height: 550px;
-                        display: flex;
-                        flex-direction: row;
-                        overflow: hidden;
-                    }
-                    .portal-demo-sidebar {
-                        flex: 0 0 350px;
-                        border-right: 1px solid #e2e8f0;
-                        display: flex;
-                        flex-direction: column;
-                        background: #fcfcfd;
-                    }
-                    .portal-demo-content {
-                        flex: 1;
-                        display: flex;
-                        flex-direction: column;
-                        min-width: 0;
-                    }
-                    @media (max-width: 600px) {
-                        .portal-demo-card {
-                            flex-direction: column;
-                            height: auto;
-                            min-height: 800px;
-                        }
-                        .portal-demo-sidebar {
-                            flex: 0 0 auto;
-                            border-right: none;
-                            border-bottom: 1px solid #e2e8f0;
-                            max-height: 350px;
-                        }
-                        .portal-demo-content {
-                            height: 500px;
-                        }
-                    }
-                `}</style>
-        <Card variant="outline" padding="none" className="portal-demo-card">
-          <div className="portal-demo-sidebar">
-            <div style={{ padding: "20px", borderBottom: "1px solid #e2e8f0" }}>
-              <h4 style={{ margin: 0 }}>{t("story_portal_task_mgmt")}</h4>
-            </div>
-            <div style={{ flex: 1, overflowY: "auto", padding: "20px" }}>
-              {tasks.map((task) => (
-                <TaskItem
-                  key={task.id}
-                  task={task}
-                  isSelected={selectedId === task.id}
-                  onSelect={setSelectedId}
-                  container={panelContainer}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="portal-demo-content">
-            <div
+      <Container size="xl">
+        <Card variant="outline" padding="none" style={{ overflow: "hidden", height: "100%", minHeight: "550px" }}>
+          <Stack direction={{ base: "column", sm: "row" }} gap="none" style={{ height: "100%", width: "100%" }}>
+            {/* Sidebar */}
+            <Box
+              w={{ base: "100%", sm: 350 }}
               style={{
-                padding: "20px",
-                borderBottom: "1px solid #e2e8f0",
-                background: "#f8fafc",
+                borderRight: "1px solid var(--wim-neutral-200, #e2e8f0)",
+                borderBottom: "1px solid var(--wim-neutral-200, #e2e8f0)",
                 display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
+                flexDirection: "column",
+                background: "#fcfcfd",
               }}
             >
-              <span
+              <Box p="md" style={{ borderBottom: "1px solid var(--wim-neutral-200, #e2e8f0)" }}>
+                <h4 style={{ margin: 0 }}>{t("story_portal_task_mgmt")}</h4>
+              </Box>
+              <Box p="md" style={{ flex: 1, overflowY: "auto" }}>
+                {tasks.map((task) => (
+                  <TaskItem
+                    key={task.id}
+                    task={task}
+                    isSelected={selectedId === task.id}
+                    onSelect={setSelectedId}
+                    container={panelContainer}
+                  />
+                ))}
+              </Box>
+            </Box>
+
+            {/* Content Area */}
+            <Box style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
+              <Box
+                p="md"
+                bg="var(--wim-neutral-50, #f8fafc)"
                 style={{
-                  fontSize: "14px",
-                  fontWeight: "bold",
-                  color: "#64748b",
+                  borderBottom: "1px solid var(--wim-neutral-200, #e2e8f0)",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
-                {t("story_portal_preview_title")}
-              </span>
-              {selectedId && (
-                <Button
-                  size="small"
-                  label={t("story_visuallyhidden_close")}
-                  priority="secondary"
-                  onClick={() => setSelectedId(null)}
-                />
-              )}
-            </div>
-            <div
-              ref={setPanelContainer}
-              style={{
-                flex: 1,
-                padding: "30px",
-                overflowY: "auto",
-                position: "relative",
-              }}
-            >
-              {!selectedId && (
-                <div
+                <span
                   style={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#94a3b8",
-                    textAlign: "center",
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    color: "#64748b",
                   }}
                 >
-                  <Icon
-                    name="InfoCircleIcon"
-                    style={{
-                      width: "48px",
-                      height: "48px",
-                      marginBottom: "12px",
-                      opacity: 0.5,
-                    }}
+                  {t("story_portal_preview_title")}
+                </span>
+                {selectedId && (
+                  <Button
+                    size="small"
+                    label={t("story_visuallyhidden_close")}
+                    priority="secondary"
+                    onClick={() => setSelectedId(null)}
                   />
-                  <p>{t("story_portal_select_task")}</p>
-                </div>
-              )}
-            </div>
-          </div>
+                )}
+              </Box>
+              <Box
+                ref={setPanelContainer}
+                p="xl"
+                style={{
+                  flex: 1,
+                  overflowY: "auto",
+                  position: "relative",
+                  minHeight: "400px"
+                }}
+              >
+                {!selectedId && (
+                  <Stack
+                    align="center"
+                    justify="center"
+                    style={{ height: "100%", color: "#94a3b8", textAlign: "center" }}
+                  >
+                    <Icon
+                      name="InfoCircleIcon"
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        marginBottom: "12px",
+                        opacity: 0.5,
+                      }}
+                    />
+                    <p>{t("story_portal_select_task")}</p>
+                  </Stack>
+                )}
+              </Box>
+            </Box>
+          </Stack>
         </Card>
-      </div>
+      </Container>
     );
   },
 };
