@@ -50,6 +50,11 @@ $env:THEME=$null; $env:FILTER=$null; // 環境変数をリセット
 npm run format // storiesフォルダ内のコードを確認
 npm run format:fix // storiesフォルダ内のコードを整形
 
+
+
+npm run i18n:sync //翻訳がen, ja, pt すべてのリソースファイルで漏れなく定義されているかを確認
+
+
 ### github pagesへのデプロイ
 
 npm run deploy
