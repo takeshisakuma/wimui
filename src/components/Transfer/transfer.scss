@@ -89,6 +89,12 @@
 
 
 
+  &__item {
+    .wim-checkbox-wrapper {
+      pointer-events: none;
+    }
+  }
+
   &__item-label {
 
     // Standard font styles are handled by BaseListItem

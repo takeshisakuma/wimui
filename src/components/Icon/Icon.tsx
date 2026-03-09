@@ -68,6 +68,8 @@ import ShuffleIcon from "../../icon/shuffle.svg?react";
 import RepeatIcon from "../../icon/repeat.svg?react";
 import SkipBackIcon from "../../icon/skip-back.svg?react";
 import SkipForwardIcon from "../../icon/skip-forward.svg?react";
+import PipIcon from "../../icon/pip.svg?react";
+
 
 // アイコン名をコンポーネントにマッピング
 const icons = {
@@ -136,6 +138,8 @@ const icons = {
   RepeatIcon: RepeatIcon,
   SkipBackIcon: SkipBackIcon,
   SkipForwardIcon: SkipForwardIcon,
+  PipIcon: PipIcon,
+
 };
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
@@ -204,7 +208,9 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
     | "ShuffleIcon"
     | "RepeatIcon"
     | "SkipBackIcon"
-    | "SkipForwardIcon";
+    | "SkipForwardIcon"
+    | "PipIcon";
+
 
   size?: "small" | "medium" | "large";
   color?:

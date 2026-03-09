@@ -127,5 +127,9 @@
   "fri": "金",
   "sat": "土",
   "calendar_title": "{{year}}年 {{month}}月",
-  "calendar_aria_date": "{{year}}年{{month}}月{{day}}日"
+  "calendar_aria_date": "{{year}}年{{month}}月{{day}}日",
+  "error_boundary_title": "エラーが発生しました",
+  "error_boundary_retry": "再試行",
+  "error_boundary_show_details": "詳細を表示",
+  "error_boundary_hide_details": "詳細を非表示"
 }

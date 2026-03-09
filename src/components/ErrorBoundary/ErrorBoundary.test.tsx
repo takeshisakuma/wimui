@@ -30,8 +30,17 @@ describe("ErrorBoundary", () => {
       </ErrorBoundary>,
     );
 
-    expect(screen.getByText(/Something went wrong/)).toBeInTheDocument();
+    // The title should be in the document (it might be the translation key if not initialized in test, or the real string)
+    expect(screen.getByText(/Something went wrong/i)).toBeInTheDocument();
     expect(screen.getByText(/Test Error/)).toBeInTheDocument();
+
+    // Verify detail toggle button exists
+    const detailButton = screen.getByText(/Show details/i);
+    expect(detailButton).toBeInTheDocument();
+
+    // Toggle details
+    fireEvent.click(detailButton);
+    expect(screen.getByText(/hide details/i)).toBeInTheDocument();
 
     consoleSpy.mockRestore();
   });

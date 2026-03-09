@@ -127,5 +127,9 @@
   "fri": "Sex",
   "sat": "Sáb",
   "calendar_title": "{{month}}/{{year}}",
-  "calendar_aria_date": "{{day}}/{{month}}/{{year}}"
+  "calendar_aria_date": "{{day}}/{{month}}/{{year}}",
+  "error_boundary_title": "Ocorreu um erro",
+  "error_boundary_retry": "Tentar novamente",
+  "error_boundary_show_details": "Ver detalhes",
+  "error_boundary_hide_details": "Ocultar detalhes"
 }
