@@ -6,7 +6,7 @@ import {
   PopoverClose,
 } from "../Popover/Popover";
 import { Button } from "../Button/Button";
-import { Icon } from "../Icon/Icon";
+import { FeedbackIcon } from "../_internal/FeedbackIcon";
 import { useTranslation } from "react-i18next";
 import "./popconfirm.scss";
 
@@ -83,7 +83,12 @@ export const Popconfirm = ({
         <div className="wim-popconfirm-inner">
           <div className="wim-popconfirm-message">
             <span className="wim-popconfirm-icon">
-              {icon || <Icon name="CircleIcon" color="caution" size="small" />}
+              <FeedbackIcon
+                variant="warning"
+                icon={icon}
+                size="small"
+                color="caution"
+              />
             </span>
             <div className="wim-popconfirm-title">
               {typeof title === "string" ? t(title) : title}

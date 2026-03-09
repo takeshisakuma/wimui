@@ -1,12 +1,9 @@
-﻿@use "sass:map";
+@use "../../styles/token-common" as *;
 
 .wim-tag {
-  display: inline-flex;
+  @include token-base;
   gap: var(--spacing-xs);
-  align-items: center;
   font-weight: 500;
-  line-height: 1;
-  white-space: nowrap;
   border-radius: var(--radius-sm);
 
   &--md {
@@ -24,54 +21,6 @@
     font-size: 1.2em;
   }
 
-  /* Colors and Variants */
-  $tag-colors: (
-    "primary": (
-      "base": var(--color-primary),
-      "on": var(--color-text-on-primary),
-    ),
-    "secondary": (
-      "base": var(--color-secondary),
-      "on": var(--color-text-on-secondary),
-    ),
-    "success": (
-      "base": var(--color-positive),
-      "on": var(--color-text-on-positive),
-    ),
-    "warning": (
-      "base": var(--color-caution),
-      "on": var(--color-text-on-caution),
-    ),
-    "error": (
-      "base": var(--color-destructive),
-      "on": var(--color-text-on-destructive),
-    ),
-    "neutral": (
-      "base": var(--color-disabled),
-      "on": var(--text-primary),
-    ),
-  );
-
-  @each $name, $pairs in $tag-colors {
-    $base: map.get($pairs, "base");
-    $on: map.get($pairs, "on");
-
-    &--#{$name}.wim-tag--solid {
-      color: $on;
-      background-color: $base;
-      border: 1px solid transparent;
-    }
-
-    &--#{$name}.wim-tag--outline {
-      color: $base;
-      background-color: transparent;
-      border: 1px solid $base;
-    }
-
-    &--#{$name}.wim-tag--subtle {
-      color: $base;
-      background-color: color-mix(in srgb, $base 15%, transparent);
-      border: 1px solid transparent;
-    }
-  }
+  // Colors and Variants
+  @include token-variants("wim-tag");
 }

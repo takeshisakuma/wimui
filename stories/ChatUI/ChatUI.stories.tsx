@@ -8,6 +8,7 @@ import {
 } from "@/components/ChatUI/ChatUI";
 import { Icon } from "@/components/Icon/Icon";
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof ChatContainer> = {
   title: "Components/Data Structures/ChatUI",
@@ -21,133 +22,143 @@ export default meta;
 type Story = StoryObj<typeof ChatContainer>;
 
 export const Basic: Story = {
-  render: () => (
-    <div style={{ height: "100vh" }}>
-      <ChatContainer>
-        <ChatMessageList>
-          <ChatMessage
-            position="left"
-            showAvatar
-            avatar={<ChatAvatar fallback="A" color="s5" />}
-            senderName="Alice"
-            timestamp="10:30 AM"
-          >
-            Hey! How are you doing?
-          </ChatMessage>
-          <ChatMessage
-            position="right"
-            showAvatar
-            avatar={<ChatAvatar fallback="Y" />}
-            senderName="You"
-            timestamp="10:31 AM"
-          >
-            I'm doing great! Thanks for asking.
-          </ChatMessage>
-          <ChatMessage
-            position="left"
-            showAvatar
-            avatar={<ChatAvatar fallback="A" color="s5" />}
-            senderName="Alice"
-            timestamp="10:32 AM"
-          >
-            That's wonderful to hear!
-          </ChatMessage>
-        </ChatMessageList>
-        <ChatInput placeholder="Type a message..." />
-      </ChatContainer>
-    </div>
-  ),
+  render: () => {
+    const { t } = useTranslation(["docs", "components"]);
+    return (
+      <div style={{ height: "100vh" }}>
+        <ChatContainer>
+          <ChatMessageList>
+            <ChatMessage
+              position="left"
+              showAvatar
+              avatar={<ChatAvatar fallback="A" color="s5" />}
+              senderName={t("story_chat_alice")}
+              timestamp="10:30 AM"
+            >
+              {t("story_chat_msg_1")}
+            </ChatMessage>
+            <ChatMessage
+              position="right"
+              showAvatar
+              avatar={<ChatAvatar fallback="Y" />}
+              senderName={t("story_chat_you")}
+              timestamp="10:31 AM"
+            >
+              {t("story_chat_msg_2")}
+            </ChatMessage>
+            <ChatMessage
+              position="left"
+              showAvatar
+              avatar={<ChatAvatar fallback="A" color="s5" />}
+              senderName={t("story_chat_alice")}
+              timestamp="10:32 AM"
+            >
+              {t("story_chat_msg_3")}
+            </ChatMessage>
+          </ChatMessageList>
+          <ChatInput placeholder={t("chat_placeholder")} />
+        </ChatContainer>
+      </div>
+    );
+  },
 };
 
 export const WithAvatarImages: Story = {
-  render: () => (
-    <div style={{ height: "100vh" }}>
-      <ChatContainer>
-        <ChatMessageList>
-          <ChatMessage
-            position="left"
-            showAvatar
-            avatar={
-              <ChatAvatar src="https://i.pravatar.cc/150?img=1" alt="User 1" />
-            }
-            senderName="John Smith"
-            timestamp="09:15 AM"
-          >
-            Good morning everyone!
-          </ChatMessage>
-          <ChatMessage
-            position="right"
-            showAvatar
-            avatar={
-              <ChatAvatar src="https://i.pravatar.cc/150?img=5" alt="You" />
-            }
-            senderName="You"
-            timestamp="09:16 AM"
-          >
-            Good morning John!
-          </ChatMessage>
-          <ChatMessage
-            position="left"
-            showAvatar
-            avatar={
-              <ChatAvatar src="https://i.pravatar.cc/150?img=3" alt="User 2" />
-            }
-            senderName="Sarah Johnson"
-            timestamp="09:17 AM"
-          >
-            Morning! Ready for the meeting?
-          </ChatMessage>
-        </ChatMessageList>
-        <ChatInput placeholder="Type a message..." />
-      </ChatContainer>
-    </div>
-  ),
+  render: () => {
+    const { t } = useTranslation(["docs", "components"]);
+    return (
+      <div style={{ height: "100vh" }}>
+        <ChatContainer>
+          <ChatMessageList>
+            <ChatMessage
+              position="left"
+              showAvatar
+              avatar={
+                <ChatAvatar src="https://i.pravatar.cc/150?img=1" alt={t("story_chat_john")} />
+              }
+              senderName={t("story_chat_john")}
+              timestamp="09:15 AM"
+            >
+              {t("story_chat_msg_4")}
+            </ChatMessage>
+            <ChatMessage
+              position="right"
+              showAvatar
+              avatar={
+                <ChatAvatar src="https://i.pravatar.cc/150?img=5" alt={t("story_chat_you")} />
+              }
+              senderName={t("story_chat_you")}
+              timestamp="09:16 AM"
+            >
+              {t("story_chat_msg_5")}
+            </ChatMessage>
+            <ChatMessage
+              position="left"
+              showAvatar
+              avatar={
+                <ChatAvatar src="https://i.pravatar.cc/150?img=3" alt={t("story_chat_sarah")} />
+              }
+              senderName={t("story_chat_sarah")}
+              timestamp="09:17 AM"
+            >
+              {t("story_chat_msg_6")}
+            </ChatMessage>
+          </ChatMessageList>
+          <ChatInput placeholder={t("chat_placeholder")} />
+        </ChatContainer>
+      </div>
+    );
+  },
 };
 
 export const WithVariants: Story = {
-  render: () => (
-    <div style={{ height: "100vh" }}>
-      <ChatContainer>
-        <ChatMessageList>
-          <ChatMessage
-            position="left"
-            variant="default"
-            showAvatar
-            avatar={<ChatAvatar fallback="S" color="s18" />}
-            senderName="System"
-            timestamp="08:00 AM"
-          >
-            Welcome to the chat!
-          </ChatMessage>
-          <ChatMessage
-            position="left"
-            variant="primary"
-            showAvatar
-            avatar={<ChatAvatar fallback="A" color="s1" />}
-            senderName="Admin"
-            timestamp="08:01 AM"
-          >
-            This is an important announcement.
-          </ChatMessage>
-          <ChatMessage
-            position="left"
-            variant="secondary"
-            showAvatar
-            avatar={<ChatAvatar fallback="B" color="s12" />}
-            senderName="Bot"
-            timestamp="08:02 AM"
-          >
-            I'm here to help you!
-          </ChatMessage>
-        </ChatMessageList>
-        <ChatInput placeholder="Type a message..." />
-      </ChatContainer>
-    </div>
-  ),
+  render: () => {
+    const { t } = useTranslation(["docs", "components"]);
+    return (
+      <div style={{ height: "100vh" }}>
+        <ChatContainer>
+          <ChatMessageList>
+            <ChatMessage
+              position="left"
+              variant="default"
+              showAvatar
+              avatar={<ChatAvatar fallback="S" color="s18" />}
+              senderName={t("story_chat_system")}
+              timestamp="08:00 AM"
+            >
+              {t("story_chat_msg_7")}
+            </ChatMessage>
+            <ChatMessage
+              position="left"
+              variant="primary"
+              showAvatar
+              avatar={<ChatAvatar fallback="A" color="s1" />}
+              senderName={t("story_chat_admin")}
+              timestamp="08:01 AM"
+            >
+              {t("story_chat_msg_8")}
+            </ChatMessage>
+            <ChatMessage
+              position="left"
+              variant="secondary"
+              showAvatar
+              avatar={<ChatAvatar fallback="B" color="s12" />}
+              senderName={t("story_chat_bot")}
+              timestamp="08:02 AM"
+            >
+              {t("story_chat_msg_9")}
+            </ChatMessage>
+          </ChatMessageList>
+          <ChatInput placeholder={t("chat_placeholder")} />
+        </ChatContainer>
+      </div>
+    );
+  },
 };
 
 export const Interactive: Story = {
   render: () => {
+    const { t } = useTranslation(["docs", "components"]);
     interface Message {
       id: number;
       text: string;
@@ -159,9 +170,9 @@ export const Interactive: Story = {
     const [messages, setMessages] = useState<Message[]>([
       {
         id: 1,
-        text: "Hello! How can I help you today?",
+        text: t("story_chat_msg_10"),
         position: "left",
-        sender: "Support",
+        sender: t("story_chat_support"),
         timestamp: new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -175,7 +186,7 @@ export const Interactive: Story = {
         id: messages.length + 1,
         text: message,
         position: "right",
-        sender: "You",
+        sender: t("story_chat_you"),
         timestamp: new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -187,9 +198,9 @@ export const Interactive: Story = {
       setTimeout(() => {
         const response: Message = {
           id: messages.length + 2,
-          text: "Thanks for your message! I'll get back to you shortly.",
+          text: t("story_chat_msg_11"),
           position: "left",
-          sender: "Support",
+          sender: t("story_chat_support"),
           timestamp: new Date().toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
@@ -222,7 +233,7 @@ export const Interactive: Story = {
               </ChatMessage>
             ))}
           </ChatMessageList>
-          <ChatInput placeholder="Type your message..." onSend={handleSend} />
+          <ChatInput placeholder={t("chat_placeholder_interactive")} onSend={handleSend} />
         </ChatContainer>
       </div>
     );
@@ -230,124 +241,133 @@ export const Interactive: Story = {
 };
 
 export const WithIcons: Story = {
-  render: () => (
-    <div style={{ height: "100vh" }}>
-      <ChatContainer>
-        <ChatMessageList>
-          <ChatMessage
-            position="left"
-            showAvatar
-            avatar={
-              <div
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  background: "var(--wim-color-primary)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "white",
-                }}
-              >
-                <Icon name="UserIcon" size="small" />
-              </div>
-            }
-            senderName="Customer Support"
-            timestamp="11:00 AM"
-          >
-            How can I assist you today?
-          </ChatMessage>
-          <ChatMessage
-            position="right"
-            showAvatar
-            avatar={
-              <div
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  background: "var(--wim-color-secondary)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "white",
-                }}
-              >
-                <Icon name="UserIcon" size="small" />
-              </div>
-            }
-            senderName="You"
-            timestamp="11:01 AM"
-          >
-            I need help with my order.
-          </ChatMessage>
-        </ChatMessageList>
-        <ChatInput placeholder="Type a message..." />
-      </ChatContainer>
-    </div>
-  ),
+  render: () => {
+    const { t } = useTranslation(["docs", "components"]);
+    return (
+      <div style={{ height: "100vh" }}>
+        <ChatContainer>
+          <ChatMessageList>
+            <ChatMessage
+              position="left"
+              showAvatar
+              avatar={
+                <div
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "50%",
+                    background: "var(--wim-color-primary)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "white",
+                  }}
+                >
+                  <Icon name="UserIcon" size="small" />
+                </div>
+              }
+              senderName={t("story_chat_customer_support")}
+              timestamp="11:00 AM"
+            >
+              {t("story_chat_msg_12")}
+            </ChatMessage>
+            <ChatMessage
+              position="right"
+              showAvatar
+              avatar={
+                <div
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "50%",
+                    background: "var(--wim-color-secondary)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "white",
+                  }}
+                >
+                  <Icon name="UserIcon" size="small" />
+                </div>
+              }
+              senderName={t("story_chat_you")}
+              timestamp="11:01 AM"
+            >
+              {t("story_chat_msg_13")}
+            </ChatMessage>
+          </ChatMessageList>
+          <ChatInput placeholder={t("chat_placeholder")} />
+        </ChatContainer>
+      </div>
+    );
+  },
 };
 
 export const NoAvatars: Story = {
-  render: () => (
-    <div style={{ height: "100vh" }}>
-      <ChatContainer>
-        <ChatMessageList>
-          <ChatMessage
-            position="left"
-            showAvatar={false}
-            senderName="Alice"
-            timestamp="10:30 AM"
-          >
-            This message has no avatar
-          </ChatMessage>
-          <ChatMessage position="right" showAvatar={false} senderName="You" timestamp="10:31 AM">
-            Neither does this one
-          </ChatMessage>
-          <ChatMessage
-            position="left"
-            showAvatar={false}
-            senderName="Alice"
-            timestamp="10:32 AM"
-          >
-            Clean and simple!
-          </ChatMessage>
-        </ChatMessageList>
-        <ChatInput placeholder="Type a message..." />
-      </ChatContainer>
-    </div>
-  ),
+  render: () => {
+    const { t } = useTranslation(["docs", "components"]);
+    return (
+      <div style={{ height: "100vh" }}>
+        <ChatContainer>
+          <ChatMessageList>
+            <ChatMessage
+              position="left"
+              showAvatar={false}
+              senderName={t("story_chat_alice")}
+              timestamp="10:30 AM"
+            >
+              {t("story_chat_msg_14")}
+            </ChatMessage>
+            <ChatMessage position="right" showAvatar={false} senderName={t("story_chat_you")} timestamp="10:31 AM">
+              {t("story_chat_msg_15")}
+            </ChatMessage>
+            <ChatMessage
+              position="left"
+              showAvatar={false}
+              senderName={t("story_chat_alice")}
+              timestamp="10:32 AM"
+            >
+              {t("story_chat_msg_16")}
+            </ChatMessage>
+          </ChatMessageList>
+          <ChatInput placeholder={t("chat_placeholder")} />
+        </ChatContainer>
+      </div>
+    );
+  },
 };
 
 export const AvatarSizes: Story = {
-  render: () => (
-    <div
-      style={{
-        display: "flex",
-        gap: "24px",
-        alignItems: "center",
-        padding: "24px",
-      }}
-    >
-      <div>
-        <p style={{ marginBottom: "8px", fontSize: "14px", color: "#666" }}>
-          Small
-        </p>
-        <ChatAvatar size="small" fallback="S" />
+  render: () => {
+    const { t } = useTranslation(["docs", "components"]);
+    return (
+      <div
+        style={{
+          display: "flex",
+          gap: "24px",
+          alignItems: "center",
+          padding: "24px",
+        }}
+      >
+        <div>
+          <p style={{ marginBottom: "8px", fontSize: "14px", color: "#666" }}>
+            {t("story_chat_size_small")}
+          </p>
+          <ChatAvatar size="small" fallback="S" />
+        </div>
+        <div>
+          <p style={{ marginBottom: "8px", fontSize: "14px", color: "#666" }}>
+            {t("story_chat_size_medium")}
+          </p>
+          <ChatAvatar size="medium" fallback="M" />
+        </div>
+        <div>
+          <p style={{ marginBottom: "8px", fontSize: "14px", color: "#666" }}>
+            {t("story_chat_size_large")}
+          </p>
+          <ChatAvatar size="large" fallback="L" />
+        </div>
       </div>
-      <div>
-        <p style={{ marginBottom: "8px", fontSize: "14px", color: "#666" }}>
-          Medium
-        </p>
-        <ChatAvatar size="medium" fallback="M" />
-      </div>
-      <div>
-        <p style={{ marginBottom: "8px", fontSize: "14px", color: "#666" }}>
-          Large
-        </p>
-        <ChatAvatar size="large" fallback="L" />
-      </div>
-    </div>
-  ),
+    );
+  },
 };

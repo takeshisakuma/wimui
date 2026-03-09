@@ -1,0 +1,92 @@
+import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { InteractiveArea } from "../../../src/components/InteractiveArea/InteractiveArea";
+import { Icon } from "../../../src/components/Icon/Icon";
+import { Button } from "../../../src/components/Button/Button";
+import * as InteractiveAreaStories from "./InteractiveArea.stories";
+
+<Meta of={InteractiveAreaStories} />
+
+# InteractiveArea
+
+`InteractiveArea`は、`Dropzone`や`EmptyState`などのコンポーネントの基盤となる共通コンポーネントです。
+一貫した枠線、背景、余白、およびホバーやドラッグ状態のインタラクションを提供します。
+
+## Usage
+
+```tsx
+import { InteractiveArea } from "./components/InteractiveArea/InteractiveArea";
+import { Icon } from "./components/Icon/Icon";
+
+const MyArea = () => (
+  <InteractiveArea
+    title="データの準備ができていません"
+    description="新しいプロジェクトを作成して開始してください。"
+    icon={<Icon name="ProjectIcon" size="large" />}
+    variant="dashed"
+    isClickable
+  />
+);
+```
+
+## Props
+
+<Controls />
+
+## Examples
+
+### Default (EmptyState pattern)
+
+<Canvas>
+  <InteractiveArea
+    title="データがありません"
+    description="現在、表示できるデータはありません。後ほど再度ご確認ください。"
+    icon={<Icon name="HelpCircleIcon" />}
+    actions={<Button label="再読み込み" priority="secondary" />}
+  />
+</Canvas>
+
+### Clickable (Dropzone pattern)
+
+<Canvas>
+  <InteractiveArea
+    description="ファイルをドラッグ＆ドロップするか、クリックしてアップロード"
+    icon={<Icon name="UploadIcon" color="primary" />}
+    isClickable
+    variant="dashed"
+  />
+</Canvas>
+
+### Variants
+
+<Canvas>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <InteractiveArea title="Dashed Border (Default)" variant="dashed" />
+    <InteractiveArea title="Solid Border" variant="solid" />
+    <InteractiveArea title="No Border" variant="none" bgVariant="muted" />
+  </div>
+</Canvas>
+
+### Sizes
+
+<Canvas>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <InteractiveArea title="Small Area" size="small" />
+    <InteractiveArea title="Medium Area (Default)" size="medium" />
+    <InteractiveArea title="Large Area" size="large" />
+  </div>
+</Canvas>
+
+## Relation with ContextMenu
+
+`ContextMenu`コンポーネント自体は `InteractiveArea` を内部で使用していません。その理由は以下の通りです：
+
+1.  **汎用性の維持**: `ContextMenu` はテキストや単一のボタンなど、あらゆる要素を右クリックの対象（トリガー）としてラップする責務を持ちます。
+2.  **スタイルの分離**: `InteractiveArea` は特定の余白や枠線を持つ「エリア」としての見た目を提供しますが、全ての右クリックメニューにこのスタイルが必要なわけではありません。
+
+右クリック可能なインタラクティブエリアを作成する場合は、以下のように組み合わせて使用します：
+
+```tsx
+<ContextMenu menu={<MyMenu />}>
+  <InteractiveArea title="右クリックエリア" variant="solid" />
+</ContextMenu>
+```

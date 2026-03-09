@@ -2,6 +2,22 @@ import { useState, useCallback, useMemo } from "react";
 
 export type SortDirection = "asc" | "desc" | "none";
 
+/**
+ * Utility to get the next sort direction in the sequence: none -> asc -> desc -> none
+ */
+export function getNextSortDirection(
+  currentDirection: SortDirection,
+  isSameKey: boolean,
+): SortDirection {
+  if (!isSameKey || currentDirection === "none") {
+    return "asc";
+  }
+  if (currentDirection === "asc") {
+    return "desc";
+  }
+  return "none";
+}
+
 export interface SortConfig<T = any> {
   key: keyof T | null;
   direction: SortDirection;
@@ -37,15 +53,10 @@ export function useTableSort<T extends Record<string, any>>(
 
   const handleSort = useCallback(
     (key: keyof T) => {
-      let direction: SortDirection = "asc";
-
-      if (sortConfig.key === key) {
-        if (sortConfig.direction === "asc") {
-          direction = "desc";
-        } else if (sortConfig.direction === "desc") {
-          direction = "none";
-        }
-      }
+      const direction = getNextSortDirection(
+        sortConfig.direction,
+        sortConfig.key === key,
+      );
 
       const newConfig = { key, direction };
       setSortConfig(newConfig);

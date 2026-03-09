@@ -3,7 +3,7 @@ import classNames from "classnames";
 import "./table.scss";
 import { Icon } from "../Icon/Icon";
 
-export { useTableSort } from "./useTableSort";
+export { useTableSort, getNextSortDirection } from "./useTableSort";
 export type {
   SortDirection,
   SortConfig,

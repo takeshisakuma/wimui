@@ -1,7 +1,7 @@
 import React from "react";
+import { StatusContent } from "../_internal/StatusContent";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
-import "./emptystate.scss";
+import "./emptyState.scss";
 
 type EmptyStateProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -38,23 +38,18 @@ export const EmptyState = ({
   className,
   ...props
 }: EmptyStateProps) => {
-  const { t } = useTranslation();
-
   return (
-    <div
+    <StatusContent
+      title={title}
+      description={description}
+      icon={icon}
+      actions={action}
       className={classNames(
         "wim-empty-state",
-        variant !== "default" && `wim-empty-state--${variant}`,
+        `wim-empty-state--${variant}`,
         className,
       )}
       {...props}
-    >
-      {icon && <div className="wim-empty-state__icon">{icon}</div>}
-      <h3 className="wim-empty-state__title">{t(title)}</h3>
-      {description && (
-        <p className="wim-empty-state__description">{t(description)}</p>
-      )}
-      {action && <div className="wim-empty-state__action">{action}</div>}
-    </div>
+    />
   );
 };

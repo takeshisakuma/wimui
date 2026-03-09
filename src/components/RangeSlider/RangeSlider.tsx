@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import classNames from "classnames";
+import { useSliderCommon } from "../../utilities/slider-utils";
 import "./rangeSlider.scss";
 
 type RangeSliderProps = {
@@ -82,10 +83,12 @@ export const RangeSlider = ({
   const id = customId || generatedId;
   const labelId = `wim-range-slider-label-${id}`;
 
+  const { clamp, calculateValue } = useSliderCommon(min, max, step);
+
   // 初期値の正当性チェック
   const safeDefaultValue: [number, number] = [
-    Math.max(min, Math.min(defaultValue[0], max)),
-    Math.max(min, Math.min(defaultValue[1], max)),
+    clamp(defaultValue[0], min, max),
+    clamp(defaultValue[1], min, max),
   ];
   if (safeDefaultValue[0] > safeDefaultValue[1]) {
     safeDefaultValue.sort((a, b) => a - b);
@@ -97,33 +100,6 @@ export const RangeSlider = ({
   const trackRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef<"min" | "max" | null>(null);
 
-  // 値を範囲内に収める
-  const clamp = useCallback(
-    (val: number, minVal: number, maxVal: number) =>
-      Math.max(minVal, Math.min(val, maxVal)),
-    [],
-  );
-
-  // ステップに合わせる
-  const alignToStep = useCallback(
-    (val: number) => {
-      const steps = Math.round((val - min) / step);
-      return clamp(min + steps * step, min, max);
-    },
-    [clamp, min, max, step],
-  );
-
-  const calculateValue = useCallback(
-    (clientX: number) => {
-      if (!trackRef.current) return min;
-      const rect = trackRef.current.getBoundingClientRect();
-      const percentage = clamp((clientX - rect.left) / rect.width, 0, 1);
-      const rawValue = min + percentage * (max - min);
-      return alignToStep(rawValue);
-    },
-    [alignToStep, clamp, max, min],
-  );
-
   const handleMouseDown = (
     e: React.MouseEvent | React.TouchEvent,
     handle: "min" | "max",
@@ -134,32 +110,8 @@ export const RangeSlider = ({
     e.preventDefault();
   };
 
-  // トラッククリック時の挙動：近い方のハンドルを動かす
-  const handleTrackMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
-    if (disabled) return;
-    const clientX =
-      "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
-    const clickValue = calculateValue(clientX);
-
-    // 近い方のハンドルを探す
-    const distMin = Math.abs(currentValue[0] - clickValue);
-    const distMax = Math.abs(currentValue[1] - clickValue);
-
-    let targetHandle: "min" | "max";
-    if (distMin < distMax) targetHandle = "min";
-    else if (distMax < distMin) targetHandle = "max";
-    else {
-      // 同じ距離なら左側（小さい方）を優先、あるいは値の大小で判断
-      targetHandle = clickValue < currentValue[0] ? "min" : "max";
-    }
-
-    isDragging.current = targetHandle;
-
-    updateValue(clickValue, targetHandle);
-  };
-
   const updateValue = (newValue: number, handle: "min" | "max") => {
-    let nextValues: [number, number] = [...currentValue];
+    const nextValues: [number, number] = [...currentValue];
 
     if (handle === "min") {
       // 上限を超えないように
@@ -177,6 +129,29 @@ export const RangeSlider = ({
     onChange?.(nextValues);
   };
 
+  // トラッククリック時の挙動：近い方のハンドルを動かす
+  const handleTrackMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
+    if (disabled) return;
+    const clientX =
+      "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    const clickValue = calculateValue(clientX, trackRef.current);
+
+    // 近い方のハンドルを探す
+    const distMin = Math.abs(currentValue[0] - clickValue);
+    const distMax = Math.abs(currentValue[1] - clickValue);
+
+    let targetHandle: "min" | "max";
+    if (distMin < distMax) targetHandle = "min";
+    else if (distMax < distMin) targetHandle = "max";
+    else {
+      // 同じ距離なら左側（小さい方）を優先、あるいは値の大小で判断
+      targetHandle = clickValue < currentValue[0] ? "min" : "max";
+    }
+
+    isDragging.current = targetHandle;
+    updateValue(clickValue, targetHandle);
+  };
+
   const currentValueRef = useRef(currentValue);
   useEffect(() => {
     currentValueRef.current = currentValue;
@@ -187,9 +162,8 @@ export const RangeSlider = ({
       if (!isDragging.current || disabled) return;
       const clientX =
         "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
-      const newValue = calculateValue(clientX); // calculateValue depends on ref but min/max/step are usually stable or props.
+      const newValue = calculateValue(clientX, trackRef.current);
 
-      // Logic from updateValue but using ref
       let nextValues: [number, number] = [...currentValueRef.current];
       if (isDragging.current === "min") {
         const limit = allowCross ? max : nextValues[1];
@@ -228,6 +202,7 @@ export const RangeSlider = ({
       document.removeEventListener("touchend", handleGlobalMouseUp);
     };
   }, [handleGlobalMouseMoveRef, handleGlobalMouseUp]);
+
 
   // キーボード操作
   const handleKeyDown = (e: React.KeyboardEvent, handle: "min" | "max") => {

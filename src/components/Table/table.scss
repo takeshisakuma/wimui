@@ -1,4 +1,4 @@
-﻿@use "../../tokens/breakpoints" as breakpoints;
+@use "../../tokens/breakpoints" as breakpoints;
 
 .wim-table-container {
   width: 100%;
@@ -83,8 +83,9 @@
     width: 48px;
     min-width: 48px;
     max-width: 48px;
-    padding-right: 0;
+    padding: 12px 0; // Vertical padding only to ensure centering
     text-align: center;
+    vertical-align: middle;
 
     .wim-table__head-content {
       justify-content: center;
@@ -92,6 +93,8 @@
 
     .wim-checkbox-wrapper {
       display: inline-flex;
+      align-items: center;
+      justify-content: center;
       margin: 0;
     }
   }

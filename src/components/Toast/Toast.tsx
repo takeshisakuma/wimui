@@ -7,8 +7,9 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
-import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { FeedbackIcon } from "../_internal/FeedbackIcon";
+import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
 import "./toast.scss";
 
 export type ToastVariant = "info" | "success" | "warning" | "error";
@@ -61,20 +62,6 @@ export const Toast = ({
     if (onClose) onClose(id);
   };
 
-  const renderIcon = () => {
-    switch (variant) {
-      case "success":
-        return <Icon name="CheckIcon" size="small" />;
-      case "error":
-        return <Icon name="CircleIcon" size="small" />;
-      case "warning":
-        return <Icon name="CircleIcon" size="small" />;
-      case "info":
-      default:
-        return <Icon name="CircleIcon" size="small" />;
-    }
-  };
-
   return (
     <Transition
       show={isVisible && internalVisible}
@@ -88,19 +75,19 @@ export const Toast = ({
       role="status"
       aria-live="polite"
     >
-      <div className="wim-toast__icon">{renderIcon()}</div>
+      <div className="wim-toast__icon">
+        <FeedbackIcon variant={variant} size="small" />
+      </div>
       <div className="wim-toast__content">
         {title && <h5 className="wim-toast__title">{title}</h5>}
         {description && <p className="wim-toast__description">{description}</p>}
       </div>
-      <button
-        type="button"
+      <FeedbackCloseButton
+        onClose={onClose ? handleClose : undefined}
+        id={id}
         className="wim-toast__close-button"
-        onClick={handleClose}
-        aria-label={t("a11y_close")}
-      >
-        <Icon name="CloseIcon" />
-      </button>
+        size="medium"
+      />
     </Transition>
   );
 };

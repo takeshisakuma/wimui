@@ -68,7 +68,7 @@ export const FileUpload = ({
         className,
       )}
     >
-      {label && <span className="wim-file-upload__label">{label}</span>}
+      {label && <span className="wim-file-upload__label">{t(label)}</span>}
       <div className="wim-file-upload__controls">
         <input
           type="file"

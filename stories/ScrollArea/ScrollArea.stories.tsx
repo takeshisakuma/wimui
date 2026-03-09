@@ -61,20 +61,25 @@ export const WithChildren: Story = {
   args: {
     scrollAxis: "y",
     maxHeight: "12rem",
-    children: (
-      <div style={{ padding: "1rem" }}>
-        <h4 style={{ margin: "0 0 1rem 0" }}>Custom Content Area</h4>
-        <p>You can wrap any React elements inside ScrollArea.</p>
-        <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
-          <li>Item 4</li>
-          <li>Item 5</li>
-        </ul>
-        <p>Scrolling works perfectly for complex layouts.</p>
-      </div>
-    ),
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <ScrollArea {...args}>
+        <div style={{ padding: "1rem" }}>
+          <h4 style={{ margin: "0 0 1rem 0" }}>{t("story_scrollarea_custom_title")}</h4>
+          <p>{t("story_scrollarea_custom_desc")}</p>
+          <ul>
+            <li>{t("story_scrollarea_item", { count: 1 })}</li>
+            <li>{t("story_scrollarea_item", { count: 2 })}</li>
+            <li>{t("story_scrollarea_item", { count: 3 })}</li>
+            <li>{t("story_scrollarea_item", { count: 4 })}</li>
+            <li>{t("story_scrollarea_item", { count: 5 })}</li>
+          </ul>
+          <p>{t("story_scrollarea_scrolling_works")}</p>
+        </div>
+      </ScrollArea>
+    );
   },
 };
 
@@ -83,44 +88,47 @@ export const Both: Story = {
     scrollAxis: "both",
     maxHeight: "20rem",
     style: { width: "100%", maxWidth: "80vw" },
-    children: (
-      <div
-        style={{
-          width: "40rem",
-          height: "40rem",
-          background:
-            "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%)",
-          padding: "1rem",
-        }}
-      >
-        <h4 style={{ color: "#333" }}>Both Axes Scrolling</h4>
-        <p style={{ color: "#555" }}>
-          This container has content that overflows both vertically and
-          horizontally. ScrollArea handles both directions when{" "}
-          <code>scrollAxis=&quot;both&quot;</code> is set.
-        </p>
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    return (
+      <ScrollArea {...args}>
         <div
           style={{
-            marginTop: "2rem",
-            display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
-            gap: "1rem",
+            width: "40rem",
+            height: "40rem",
+            background:
+              "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%)",
+            padding: "1rem",
           }}
         >
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              style={{
-                background: "rgba(255,255,255,0.5)",
-                padding: "1rem",
-                borderRadius: "4px",
-              }}
-            >
-              Box {i + 1}
-            </div>
-          ))}
+          <h4 style={{ color: "#333" }}>{t("story_scrollarea_both_title")}</h4>
+          <p style={{ color: "#555" }}>
+            {t("story_scrollarea_both_desc")}
+          </p>
+          <div
+            style={{
+              marginTop: "2rem",
+              display: "grid",
+              gridTemplateColumns: "repeat(5, 1fr)",
+              gap: "1rem",
+            }}
+          >
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  background: "rgba(255,255,255,0.5)",
+                  padding: "1rem",
+                  borderRadius: "4px",
+                }}
+              >
+                {t("story_scrollarea_box", { count: i + 1 })}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    ),
+      </ScrollArea>
+    );
   },
 };

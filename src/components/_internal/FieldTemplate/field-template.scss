@@ -1,0 +1,45 @@
+.wim-field-template {
+  display: flex;
+  margin-bottom: 20px;
+
+  &--vertical {
+    flex-direction: column;
+    gap: 8px;
+
+    .wim-field-template-label {
+      display: block;
+      margin-bottom: 0px; // FieldTemplate handles gaps via flex-gap
+    }
+  }
+
+  &--horizontal {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+
+    .wim-field-template-label-wrapper {
+        width: 150px; // default label width for horizontal layout
+        flex-shrink: 0;
+        padding-top: 10px; // align with input start
+    }
+    
+    .wim-field-template-content {
+        flex: 1;
+    }
+    
+    .wim-field-template-label {
+        display: block;
+    }
+  }
+
+  .wim-field-template-error {
+      margin-top: 4px;
+  }
+}
+
+// In case we're wrapping a group that might have its own gap
+.wim-field-template-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}

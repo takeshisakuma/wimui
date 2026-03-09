@@ -1,12 +1,9 @@
+@use "../../styles/token-common" as *;
+
 .wim-badge {
-  display: inline-flex;
+  @include token-base;
   gap: 0.5em;
-  align-items: center;
-  justify-content: center;
   font-weight: normal;
-  line-height: 1;
-  vertical-align: middle;
-  white-space: nowrap;
   border-radius: 999px;
 
   &__icon {
@@ -22,69 +19,33 @@
 
   // Sizes
   &--sm {
-    padding: 3px 8px;
+    padding: 2px 6px;
     font-size: 0.65rem;
+    min-width: 1.25em;
+    height: 1.25em;
 
     &.wim-badge--icon-only {
-      padding: 3px;
+      padding: 0;
+      width: 8px;
+      height: 8px;
+      min-width: 0;
     }
   }
 
   &--md {
-    padding: 6px 14px;
+    padding: 4px 8px;
     font-size: 0.75rem;
+    min-width: 1.5em;
+    height: 1.5em;
 
     &.wim-badge--icon-only {
-      padding: 6px;
+      padding: 0;
+      width: 10px;
+      height: 10px;
+      min-width: 0;
     }
   }
 
-  // Colors - Solid
-  &--solid {
-    &.wim-badge--primary {
-      color: #fff;
-      background-color: var(--wim-color-primary, #007bff);
-    }
-
-    &.wim-badge--secondary {
-      color: #fff;
-      background-color: var(--wim-color-secondary, #6c757d);
-    }
-
-    &.wim-badge--error {
-      color: #fff;
-      background-color: var(--wim-color-error, #dc3545);
-    }
-
-    &.wim-badge--neutral {
-      color: var(--wim-color-black, #212529);
-      background-color: var(--wim-color-neutral, #e9ecef);
-    }
-  }
-
-  // Colors - Outline
-  &--outline {
-    background-color: transparent;
-    border: 1px solid currentcolor;
-
-    &.wim-badge--primary {
-      color: var(--wim-color-primary, #007bff);
-      border-color: var(--wim-color-primary, #007bff);
-    }
-
-    &.wim-badge--secondary {
-      color: var(--wim-color-secondary, #6c757d);
-      border-color: var(--wim-color-secondary, #6c757d);
-    }
-
-    &.wim-badge--error {
-      color: var(--wim-color-error, #dc3545);
-      border-color: var(--wim-color-error, #dc3545);
-    }
-
-    &.wim-badge--neutral {
-      color: var(--wim-color-gray, #6c757d);
-      border-color: var(--wim-color-gray, #6c757d);
-    }
-  }
+  // Colors and Variants
+  @include token-variants("wim-badge");
 }

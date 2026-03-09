@@ -1,15 +1,7 @@
-import React, {
-  useRef,
-  useState,
-  useLayoutEffect,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { useRef, useCallback } from "react";
 import classNames from "classnames";
+import { useIndicator } from "../_internal/useIndicator";
 import "./tab-navigation.scss";
-
-const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export interface TabNavigationProps extends React.ComponentPropsWithoutRef<"nav"> {
   /** Visual style of the tabs */
@@ -33,78 +25,23 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
     ref,
   ) => {
     const localNavRef = useRef<HTMLElement>(null);
-    const listRef = useRef<HTMLDivElement>(null);
-    const [sliderStyle, setSliderStyle] = useState<React.CSSProperties>({
-      opacity: 0,
+    const { containerRef, sliderStyle, isReady } = useIndicator({
+      activeSelector: ".wim-tab-navigation__item--active",
+      variant,
     });
-    const [isReady, setIsReady] = useState(false);
-    const isReadyRef = useRef(false);
 
     const setRefs = useCallback(
       (node: HTMLElement) => {
         localNavRef.current = node;
+        containerRef.current = node?.querySelector(".wim-tab-navigation__list");
         if (typeof ref === "function") {
           ref(node);
         } else if (ref) {
           (ref as React.MutableRefObject<HTMLElement | null>).current = node;
         }
       },
-      [ref],
+      [ref, containerRef],
     );
-
-    useIsomorphicLayoutEffect(() => {
-      const listElement = listRef.current;
-      if (!listElement) return;
-
-      const updateSlider = () => {
-        const activeItem = listElement.querySelector(
-          ".wim-tab-navigation__item--active",
-        ) as HTMLElement;
-        if (activeItem) {
-          setSliderStyle({
-            width: `${activeItem.offsetWidth}px`,
-            transform: `translateX(${activeItem.offsetLeft}px)`,
-            opacity: 1,
-          });
-          if (!isReadyRef.current) {
-            requestAnimationFrame(() => {
-              isReadyRef.current = true;
-              setIsReady(true);
-            });
-          }
-        } else {
-          setSliderStyle({ opacity: 0 });
-        }
-      };
-
-      updateSlider();
-
-      const resizeObserver = new ResizeObserver(() => updateSlider());
-      resizeObserver.observe(listElement);
-
-      const mutationObserver = new MutationObserver((mutations) => {
-        for (const mutation of mutations) {
-          if (
-            mutation.type === "childList" ||
-            (mutation.type === "attributes" &&
-              mutation.attributeName === "class")
-          ) {
-            updateSlider();
-          }
-        }
-      });
-      mutationObserver.observe(listElement, {
-        attributes: true,
-        subtree: true,
-        childList: true,
-        attributeFilter: ["class"],
-      });
-
-      return () => {
-        resizeObserver.disconnect();
-        mutationObserver.disconnect();
-      };
-    }, [variant]); // Only re-run if variant changes
 
     return (
       <nav
@@ -119,7 +56,7 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
         )}
         {...props}
       >
-        <div className="wim-tab-navigation__list" role="tablist" ref={listRef}>
+        <div className="wim-tab-navigation__list" role="tablist">
           <div
             className="wim-tab-navigation__slider"
             style={sliderStyle}

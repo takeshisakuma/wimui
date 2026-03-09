@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { InfiniteScroll } from "@/components/InfiniteScroll/InfiniteScroll";
 import { Card } from "@/components/Card/Card";
 import { Stack } from "@/components/Stack/Stack";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof InfiniteScroll> = {
   title: "Components/Utilities/InfiniteScroll",
@@ -17,8 +18,9 @@ type Story = StoryObj<typeof InfiniteScroll>;
 
 export const Default: Story = {
   render: (args) => {
+    const { t } = useTranslation(["docs", "common", "components"]);
     const [items, setItems] = useState(
-      Array.from({ length: 20 }, (_, i) => `Item ${i + 1}`),
+      Array.from({ length: 20 }, (_, i) => t("story_infscroll_item", { index: i + 1 })),
     );
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
@@ -29,7 +31,7 @@ export const Default: Story = {
       setTimeout(() => {
         const newItems = Array.from(
           { length: 10 },
-          (_, i) => `Item ${items.length + i + 1}`,
+          (_, i) => t("story_infscroll_item", { index: items.length + i + 1 }),
         );
         setItems((prev) => [...prev, ...newItems]);
         setLoading(false);

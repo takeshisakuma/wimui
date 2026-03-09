@@ -7,6 +7,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  getNextSortDirection,
 } from "../Table/Table";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { Pagination } from "../Pagination/Pagination";
@@ -72,6 +73,8 @@ export interface DataGridProps<T> {
   height?: string | number;
   /** Maximum height for the grid */
   maxHeight?: string | number;
+  /** Mobile view: Switch to card layout */
+  mobileCard?: boolean;
   /** Additional class name */
   className?: string;
   /** Message to show when data is empty */
@@ -97,6 +100,7 @@ export function DataGrid<T extends Record<string, any>>({
   stickyHeader = false,
   height,
   maxHeight,
+  mobileCard = false,
   className,
   emptyMessage,
   a11y_select_all_rows,
@@ -133,11 +137,10 @@ export function DataGrid<T extends Record<string, any>>({
 
   const handleSort = (key: string) => {
     if (!onSort) return;
-    let direction: "asc" | "desc" | "none" = "asc";
-    if (sortConfig?.key === key) {
-      if (sortConfig.direction === "asc") direction = "desc";
-      else if (sortConfig.direction === "desc") direction = "none";
-    }
+    const direction = getNextSortDirection(
+      sortConfig?.direction || "none",
+      sortConfig?.key === key,
+    );
     onSort(key, direction);
   };
 
@@ -198,6 +201,7 @@ export function DataGrid<T extends Record<string, any>>({
           fullWidth
           height={height}
           maxHeight={maxHeight}
+          mobileCard={mobileCard}
         >
           <TableHeader>
             <TableRow>

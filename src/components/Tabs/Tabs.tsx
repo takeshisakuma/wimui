@@ -9,6 +9,7 @@ import React, {
   useEffect,
 } from "react";
 import classNames from "classnames";
+import { useIndicator } from "../_internal/useIndicator";
 import "./tabs.scss";
 
 const useIsomorphicLayoutEffect =
@@ -107,16 +108,21 @@ export type TabsListProps = React.ComponentPropsWithoutRef<"div">;
 
 export const TabsList = ({ className, children, ...props }: TabsListProps) => {
   const { orientation, value, items, onValueChange } = useTabs();
-  const listRef = React.useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = React.useState(false);
   const [startX, setStartX] = React.useState(0);
   const [scrollLeft, setScrollLeft] = React.useState(0);
 
+  const { containerRef, sliderStyle, isReady } = useIndicator({
+    activeSelector: ".wim-tabs__trigger--active",
+    orientation,
+    dependence: value,
+  });
+
   const handleMouseDown = (e: React.MouseEvent) => {
     if (orientation === "vertical") return;
     setIsDragging(true);
-    setStartX(e.pageX - (listRef.current?.offsetLeft || 0));
-    setScrollLeft(listRef.current?.scrollLeft || 0);
+    setStartX(e.pageX - (containerRef.current?.offsetLeft || 0));
+    setScrollLeft(containerRef.current?.scrollLeft || 0);
   };
 
   const handleMouseUp = () => {
@@ -126,10 +132,10 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging || orientation === "vertical") return;
     e.preventDefault();
-    const x = e.pageX - (listRef.current?.offsetLeft || 0);
+    const x = e.pageX - (containerRef.current?.offsetLeft || 0);
     const walk = (x - startX) * 1.5; // スクロール速度の倍率
-    if (listRef.current) {
-      listRef.current.scrollLeft = scrollLeft - walk;
+    if (containerRef.current) {
+      containerRef.current.scrollLeft = scrollLeft - walk;
     }
   };
 
@@ -156,7 +162,7 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
       if (nextValue) {
         onValueChange(nextValue);
         // focus the new tab
-        const tab = listRef.current?.querySelector(
+        const tab = containerRef.current?.querySelector(
           `[data-value="${nextValue}"]`,
         ) as HTMLElement;
         tab?.focus();
@@ -164,89 +170,9 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
     }
   };
 
-  const [sliderStyle, setSliderStyle] = useState<React.CSSProperties>({
-    opacity: 0,
-  });
-  const [isReady, setIsReady] = useState(false);
-  const isReadyRef = useRef(false);
-
-  useIsomorphicLayoutEffect(() => {
-    const listElement = listRef.current;
-    if (!listElement) return;
-
-    const updateSlider = () => {
-      const activeItem = listElement.querySelector(
-        ".wim-tabs__trigger--active",
-      ) as HTMLElement;
-      if (activeItem) {
-        const style: React.CSSProperties = { opacity: 1 };
-        const listStyle = window.getComputedStyle(listElement);
-        const isVerticalLayout =
-          listStyle.flexDirection === "column" ||
-          listStyle.flexDirection === "column-reverse";
-
-        if (!isVerticalLayout) {
-          style.width = `${activeItem.offsetWidth}px`;
-          style.height = `2px`;
-          style.transform = `translateX(${activeItem.offsetLeft}px)`;
-          style.bottom = "0px";
-          style.left = "0px";
-          style.top = "auto";
-          style.right = "auto";
-        } else {
-          style.height = `${activeItem.offsetHeight}px`;
-          style.width = `2px`;
-          style.transform = `translateY(${activeItem.offsetTop}px)`;
-          style.right = "0px";
-          style.top = "0px";
-          style.left = "auto";
-          style.bottom = "auto";
-        }
-
-        setSliderStyle(style);
-
-        if (!isReadyRef.current) {
-          requestAnimationFrame(() => {
-            isReadyRef.current = true;
-            setIsReady(true);
-          });
-        }
-      } else {
-        setSliderStyle({ opacity: 0 });
-      }
-    };
-
-    updateSlider();
-
-    const resizeObserver = new ResizeObserver(() => updateSlider());
-    resizeObserver.observe(listElement);
-
-    const mutationObserver = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        if (
-          mutation.type === "childList" ||
-          (mutation.type === "attributes" && mutation.attributeName === "class")
-        ) {
-          updateSlider();
-        }
-      }
-    });
-    mutationObserver.observe(listElement, {
-      attributes: true,
-      subtree: true,
-      childList: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => {
-      resizeObserver.disconnect();
-      mutationObserver.disconnect();
-    };
-  }, [value, orientation]); // Watch active value and orientation
-
   return (
     <div
-      ref={listRef}
+      ref={containerRef}
       role="tablist"
       aria-orientation={orientation}
       className={classNames(

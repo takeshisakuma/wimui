@@ -1,30 +1,30 @@
 import React from "react";
 import classNames from "classnames";
+import { Card } from "../Card/Card";
 import "./stats.scss";
 
-export type StatsProps = React.ComponentPropsWithoutRef<"div"> & {
-  /**
-   * バリアント
-   */
-  variant?: "default" | "outline" | "flat";
-};
+export type StatsProps = React.ComponentPropsWithoutRef<typeof Card>;
 
 /**
  * `Stats` は統計情報やメトリクスを表示するためのコンポーネントです。
  */
 export const Stats = ({
-  variant = "default",
+  variant = "elevated",
   className,
   children,
   ...props
 }: StatsProps) => {
   return (
-    <div
-      className={classNames("wim-stats", `wim-stats--${variant}`, className)}
+    <Card
+      variant={variant as any}
+      className={classNames("wim-stats", className)}
+      padding="none"
       {...props}
     >
-      {children}
-    </div>
+      <div className="wim-stats__inner">
+        {children}
+      </div>
+    </Card>
   );
 };
 

@@ -1,0 +1,50 @@
+.wim-status-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  padding: var(--spacing-4xl) var(--spacing-md);
+  text-align: center;
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .wim-icon--lg {
+      width: 72px;
+      height: 72px;
+    }
+  }
+
+  &__title {
+    font-size: var(--font-size-ex-large);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight-latn);
+    color: var(--text-primary);
+  }
+
+  &__description {
+    max-width: 600px;
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-normal-jpan);
+    color: var(--text-secondary);
+  }
+
+  &__actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin-top: var(--spacing-lg);
+  }
+
+  &__body {
+    width: 100%;
+    max-width: 800px;
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    text-align: left;
+    background-color: var(--bg-component-secondary, #f9f9f9);
+    border-radius: var(--radius-sm);
+  }
+}

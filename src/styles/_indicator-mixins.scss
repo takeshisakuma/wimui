@@ -1,0 +1,70 @@
+/**
+ * Shared indicator patterns for components like Tabs, SegmentedControl, etc.
+ */
+
+@mixin indicator-slider-base($duration: 0.2s) {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  transition: 
+    transform $duration cubic-bezier(0.2, 0, 0, 1),
+    width $duration cubic-bezier(0.2, 0, 0, 1),
+    height $duration cubic-bezier(0.2, 0, 0, 1),
+    opacity $duration ease;
+}
+
+/* A container that has a subtle background and segmented items */
+@mixin indicator-container-segmented($radius: var(--radius-md), $bg: var(--wim-color-bg-secondary, #f4f4f5), $padding: 4px) {
+  display: inline-flex;
+  position: relative;
+  padding: $padding;
+  background-color: $bg;
+  border-radius: $radius;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* The floating slider for segmented/contained variant */
+@mixin indicator-slider-contained($radius: var(--radius-sm), $bg: #fff, $shadow: (0 1px 2px rgb(0 0 0 / 0.1)), $offset: 4px) {
+  @include indicator-slider-base;
+  top: $offset;
+  bottom: $offset;
+  left: 0;
+  background-color: $bg;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  z-index: 1; // Behind content if isolation is used correctly or use negative
+}
+
+/* Underline slider variant */
+@mixin indicator-slider-underline($height: 2px, $color: var(--color-primary), $bottom: 0) {
+  @include indicator-slider-base;
+  bottom: $bottom;
+  left: 0;
+  height: $height;
+  background-color: $color;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  z-index: 2;
+}
+
+/* Base style for items within an indicator container */
+@mixin indicator-item-base {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  transition: all var(--transition-base, 0.2s ease);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

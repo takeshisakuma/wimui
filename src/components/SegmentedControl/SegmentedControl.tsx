@@ -1,6 +1,7 @@
-import React, { useId } from "react";
+import React, { useId, useRef } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
+import { useIndicator } from "../_internal/useIndicator";
 import "./segmented-control.scss";
 
 type Option = {
@@ -32,16 +33,16 @@ export const SegmentedControl = ({
   label,
 }: SegmentedControlProps) => {
   const [focusedIndex, setFocusedIndex] = React.useState<number | null>(null);
-  const itemRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const generatedId = useId();
   const labelId = `wim-segmented-label-${generatedId}`;
 
-  // Calculate the position of the slider
+  const { containerRef, sliderStyle, isReady } = useIndicator({
+    activeSelector: ".wim-segmented-control__item--active",
+    dependence: options.length, // Recalculate if options change
+  });
+
   const selectedIndex = options.findIndex((opt) => opt.value === value);
-  const sliderStyle = {
-    width: `calc((100% - 4px) / ${options.length})`,
-    transform: `translateX(${selectedIndex * 100}%)`,
-  };
 
   const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
     let nextIndex = index;
@@ -74,10 +75,12 @@ export const SegmentedControl = ({
         </div>
       )}
       <div
+        ref={containerRef}
         className={classNames(
           "wim-segmented-control",
           `wim-segmented-control--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
           fullWidth && "wim-segmented-control--full-width",
+          isReady && "wim-segmented-control--ready",
         )}
         role="radiogroup"
         aria-labelledby={label ? labelId : undefined}

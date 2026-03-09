@@ -173,6 +173,13 @@ export const BottomSheetClose = ({
 };
 
 // --- BottomSheet Content ---
+import { OverlayBase } from "../_internal/OverlayBase";
+import "./bottomSheet.scss";
+
+// --- BottomSheet Context ---
+// ...
+
+// --- BottomSheet Content ---
 export interface BottomSheetContentProps {
   children: React.ReactNode;
   className?: string;
@@ -183,88 +190,30 @@ export const BottomSheetContent = ({
   className,
 }: BottomSheetContentProps) => {
   const { open, onOpenChange } = useBottomSheet();
-  const contentRef = useRef<HTMLDivElement>(null);
 
-  // Close on Escape
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && open) {
-        e.preventDefault();
-        e.stopPropagation();
-        onOpenChange(false);
-      }
-    };
-
-    if (open) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [open, onOpenChange]);
-
-  // Lock body scroll
-  useEffect(() => {
-    if (open) {
-      const originalStyle = window.getComputedStyle(document.body).overflow;
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = originalStyle;
-      };
-    }
-  }, [open]);
+  const slideTransition = {
+    enter: "slide-bottom-enter",
+    enterFrom: "slide-bottom-enter-from",
+    enterTo: "slide-bottom-enter-to",
+    leave: "slide-bottom-leave",
+    leaveFrom: "slide-bottom-leave-from",
+    leaveTo: "slide-bottom-leave-to",
+  };
 
   return (
-    <Portal>
-      <Transition
-        show={open}
-        enter="fade-enter"
-        enterFrom="fade-enter-from"
-        enterTo="fade-enter-to"
-        leave="fade-leave"
-        leaveFrom="fade-leave-from"
-        leaveTo="fade-leave-to"
-      >
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-        <div
-          className="wim-bottom-sheet-overlay"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              onOpenChange(false);
-            }
-          }}
-        >
-          <Transition
-            show={open}
-            enter="slide-bottom-enter"
-            enterFrom="slide-bottom-enter-from"
-            enterTo="slide-bottom-enter-to"
-            leave="slide-bottom-leave"
-            leaveFrom="slide-bottom-leave-from"
-            leaveTo="slide-bottom-leave-to"
-          >
-            <FocusTrap
-              active={open}
-              autoFocus={true}
-              className="wim-bottom-sheet-focus-trap-wrapper"
-            >
-              <div
-                ref={contentRef}
-                role="dialog"
-                aria-modal="true"
-                className={classNames("wim-bottom-sheet-content", className)}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="wim-bottom-sheet-handle" />
-                {children}
-              </div>
-            </FocusTrap>
-          </Transition>
-        </div>
-      </Transition>
-    </Portal>
+    <OverlayBase
+      open={open}
+      onOpenChange={onOpenChange}
+      overlayClassName="wim-bottom-sheet-overlay"
+      contentClassName={classNames("wim-bottom-sheet-content", className)}
+      transitionProps={slideTransition}
+    >
+      <div className="wim-bottom-sheet-handle" />
+      {children}
+    </OverlayBase>
   );
 };
+
 
 // --- BottomSheet Sections ---
 export const BottomSheetHeader = ({

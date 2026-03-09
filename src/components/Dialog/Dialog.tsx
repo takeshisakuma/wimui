@@ -13,6 +13,7 @@ import { Transition } from "../Transition/Transition";
 import { FocusTrap } from "../FocusTrap/FocusTrap";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { OverlayBase } from "../_internal/OverlayBase";
 import "./dialog.scss";
 
 // --- Dialog Context ---
@@ -189,91 +190,35 @@ export interface DialogContentProps {
 }
 
 export const DialogContent = ({ children, className }: DialogContentProps) => {
-  const { t } = useTranslation();
-
   const { open, onOpenChange, titleId, descriptionId } = useDialog();
-  const contentRef = useRef<HTMLDialogElement>(null);
-
-  // Close on Escape
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && open) {
-        e.preventDefault();
-        e.stopPropagation();
-        onOpenChange(false);
-      }
-    };
-
-    if (open) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [open, onOpenChange]);
-
-  // Lock body scroll
-  useEffect(() => {
-    if (open) {
-      const originalStyle = window.getComputedStyle(document.body).overflow;
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = originalStyle;
-      };
-    }
-  }, [open]);
 
   return (
-    <Portal>
-      <Transition
-        show={open}
-        enter="fade-enter"
-        enterFrom="fade-enter-from"
-        enterTo="fade-enter-to"
-        leave="fade-leave"
-        leaveFrom="fade-leave-from"
-        leaveTo="fade-leave-to"
+    <OverlayBase
+      open={open}
+      onOpenChange={onOpenChange}
+      overlayClassName="wim-dialog-overlay"
+      contentClassName={classNames("wim-dialog-content", className)}
+      role="dialog"
+      transitionProps={{
+        enter: "scale-enter",
+        enterFrom: "scale-enter-from",
+        enterTo: "scale-enter-to",
+        leave: "scale-leave",
+        leaveFrom: "scale-leave-from",
+        leaveTo: "scale-leave-to",
+      }}
+    >
+      <div
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
+        className="wim-dialog-content-inner"
       >
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-        <div
-          className="wim-dialog-overlay"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              onOpenChange(false);
-            }
-          }}
-        >
-          <Transition
-            show={open}
-            enter="scale-enter"
-            enterFrom="scale-enter-from"
-            enterTo="scale-enter-to"
-            leave="scale-leave"
-            leaveFrom="scale-leave-from"
-            leaveTo="scale-leave-to"
-          >
-            <FocusTrap
-              active={open}
-              autoFocus={true}
-              className="wim-dialog-focus-trap-wrapper"
-            >
-              <dialog
-                ref={contentRef}
-                open={open}
-                aria-labelledby={titleId}
-                aria-describedby={descriptionId}
-                className={classNames("wim-dialog-content", className)}
-                onClick={(e) => e.stopPropagation()}
-              >
-                {children}
-              </dialog>
-            </FocusTrap>
-          </Transition>
-        </div>
-      </Transition>
-    </Portal>
+        {children}
+      </div>
+    </OverlayBase>
   );
 };
+
 
 // --- Dialog Sections ---
 export const DialogHeader = ({

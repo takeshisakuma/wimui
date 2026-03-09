@@ -20,6 +20,8 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
 };
 
+import { InputBase, InputBaseIcon } from "../_internal/InputBase";
+
 /**
  * ユーザーからの入力を受け付けるための基本コンポーネント。
  */
@@ -49,7 +51,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
 
     // 内部状態
     const [internalValue, setInternalValue] = React.useState(
@@ -119,26 +121,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       setIsPasswordVisible((prev) => !prev);
     };
 
-    const getIconColor = (
-      customColor?: React.ComponentProps<typeof Icon>["color"],
-    ) => {
-      if (customColor) return customColor;
-      if (isDisabled) return "disabled";
-      if (state === "error") return "destructive";
-      return "secondary";
-    };
-
     // アイコン決定ロジック
-    const showClear = allowClear && currentValue && !isDisabled;
     const showPasswordToggleBtn = type === "password" && showPasswordToggle;
 
-    const rightIcons: Array<{
-      name: React.ComponentProps<typeof Icon>["name"];
-      onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-      color?: React.ComponentProps<typeof Icon>["color"];
-      ariaLabel?: string;
-      className?: string;
-    }> = [];
+    const rightIcons: InputBaseIcon[] = [];
 
     if (showPasswordToggleBtn) {
       rightIcons.push({
@@ -147,17 +133,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           e: React.MouseEvent<HTMLButtonElement>,
         ) => void,
         ariaLabel: isPasswordVisible ? t("a11y_hide_password") : t("a11y_show_password"),
-      });
-    }
-
-    // クリアボタン
-    if (showClear) {
-      rightIcons.push({
-        name: "CloseIcon",
-        onClick: handleClear as unknown as (
-          e: React.MouseEvent<HTMLButtonElement>,
-        ) => void,
-        ariaLabel: t("a11y_clear_input"),
       });
     }
 
@@ -177,136 +152,48 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }
 
     const inputType = type === "password" && isPasswordVisible ? "text" : type;
-
     const effectiveState = isDisabled ? "disabled" : state;
 
-    const inputElement = (
-      <input
-        ref={mergedRef}
-        className={classNames(
-          "wim-input",
-          `wim-input--${effectiveState}`,
-          `wim-input--${variant}`,
-          fullWidth && "wim-input--full-width",
-          leftIcon && "wim-input--has-left-icon",
-          rightIcons.length > 0 && "wim-input--has-right-icon",
-          rightIcons.length >= 2 && "wim-input--has-multiple-right-icons",
-          !rightIcons.length && allowClear && "wim-input--reserve-right-icon",
-          width !== undefined && "wim-input--has-custom-width",
-          className,
-        )}
-        disabled={isDisabled}
-        value={currentValue}
-        onChange={handleInputChange}
-        type={inputType}
-        {...props}
-        placeholder={props.placeholder ? t(props.placeholder) : undefined}
-        aria-label={props["aria-label"] ? t(props["aria-label"]) : undefined}
-      />
-    );
-
-    const isSemanticWidth =
-      typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
-
-    // fullWidth が true の場合は width 属性よりも優先される
-    const effectiveHasCustomWidth = width !== undefined && !isSemanticWidth && !fullWidth;
-    const effectiveSemanticWidth = isSemanticWidth && !fullWidth ? width : undefined;
-
     return (
-      <div
-        className={classNames(
-          "wim-input-container",
-          fullWidth && "wim-input--full-width",
-          effectiveHasCustomWidth && "wim-input--has-custom-width",
-          effectiveSemanticWidth && `wim-input--width-${effectiveSemanticWidth}`,
-          leftIcon && "wim-input--has-left-icon",
-          rightIcons.length > 0 && "wim-input--has-right-icon",
-          rightIcons.length >= 2 && "wim-input--has-multiple-right-icons",
-        )}
-        style={
-          effectiveHasCustomWidth
-            ? ({
-              ["--wim-input-width" as any]:
-                typeof width === "number" ? `${width}px` : width,
-            } as React.CSSProperties)
-            : undefined
-        }
+      <InputBase
+        state={effectiveState}
+        variant={variant}
+        fullWidth={fullWidth}
+        width={width}
+        disabled={isDisabled}
+        leftIcon={leftIcon}
+        leftIconColor={leftIconColor}
+        onLeftIconClick={onLeftIconClick}
+        rightIcons={rightIcons}
+        allowClear={allowClear}
+        hasValue={!!currentValue}
+        onClear={handleClear}
+        className={className}
       >
-        {leftIcon && (
-          <div
-            className={classNames(
-              "wim-input-icon",
-              "wim-input-icon--left",
-              onLeftIconClick && "wim-input-icon--clickable",
-            )}
-          >
-            {onLeftIconClick ? (
-              <button
-                type="button"
-                onClick={onLeftIconClick}
-                className="wim-input-icon-button"
-                aria-label={t("a11y_left_icon_action")}
-              >
-                <Icon
-                  name={leftIcon}
-                  size="medium"
-                  color={getIconColor(leftIconColor)}
-                />
-              </button>
-            ) : (
-              <Icon
-                name={leftIcon}
-                size="medium"
-                color={getIconColor(leftIconColor)}
-              />
-            )}
-          </div>
-        )}
-        {inputElement}
-        {rightIcons.length > 0 && (
-          <div
-            className={classNames(
-              "wim-input-icons",
-              "wim-input-icons--right",
-            )}
-          >
-            {rightIcons.map((icon, index) => (
-              <div
-                key={`${icon.name}-${index}`}
-                className={classNames(
-                  "wim-input-icon-item",
-                  icon.onClick && "wim-input-icon-item--clickable",
-                  (icon as any).className,
-                )}
-              >
-                {icon.onClick ? (
-                  <button
-                    type="button"
-                    onClick={icon.onClick}
-                    className="wim-input-icon-button"
-                    aria-label={icon.ariaLabel || t("a11y_right_icon_action")}
-                  >
-                    <Icon
-                      name={icon.name}
-                      size="medium"
-                      color={getIconColor(icon.color)}
-                    />
-                  </button>
-                ) : (
-                  <Icon
-                    name={icon.name}
-                    size="medium"
-                    color={getIconColor(icon.color)}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+        <input
+          ref={mergedRef}
+          className={classNames(
+            "wim-input",
+            `wim-input--${effectiveState}`,
+            `wim-input--${variant}`,
+            fullWidth && "wim-input--full-width",
+            leftIcon && "wim-input--has-left-icon",
+            rightIcons.length > 0 && "wim-input--has-right-icon",
+            // Note: InputBase classes will handle most of the layout, but we keep core wim-input classes
+          )}
+          disabled={isDisabled}
+          value={currentValue}
+          onChange={handleInputChange}
+          type={inputType}
+          {...props}
+          placeholder={props.placeholder ? t(props.placeholder) : undefined}
+          aria-label={props["aria-label"] ? t(props["aria-label"]) : undefined}
+        />
+      </InputBase>
     );
   },
 );
+
 
 Input.displayName = "Input";
 

@@ -9,9 +9,7 @@ describe("Calendar", () => {
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     render(<Calendar />);
-    expect(
-      screen.getByText(new RegExp(`${year}年 ${month}月`)),
-    ).toBeInTheDocument();
+    expect(screen.getByText("calendar_title")).toBeInTheDocument();
   });
 
   it("handles date selection", () => {

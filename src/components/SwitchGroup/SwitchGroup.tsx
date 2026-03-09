@@ -9,6 +9,8 @@ type Option = {
   disabled?: boolean;
 };
 
+import { FieldTemplate } from "../_internal/FieldTemplate";
+
 type SwitchGroupProps = {
   options: Option[];
   value?: string[];
@@ -21,6 +23,8 @@ type SwitchGroupProps = {
    * グループのラベル
    */
   label?: string;
+  error?: string;
+  required?: boolean;
 };
 
 /**
@@ -35,6 +39,8 @@ export const SwitchGroup = ({
   name,
   className,
   label,
+  error,
+  required,
 }: SwitchGroupProps) => {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
@@ -61,31 +67,34 @@ export const SwitchGroup = ({
   };
 
   return (
-    <div
-      className={classNames(
-        "wim-switch-group",
-        direction === "horizontal" && "wim-switch-group--horizontal",
-        className,
-      )}
-      role="group"
-      aria-labelledby={label ? labelId : undefined}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      labelId={labelId}
+      className={className}
     >
-      {label && (
-        <div id={labelId} className="wim-switch-group-label">
-          {label}
-        </div>
-      )}
-      {options.map((option) => (
-        <Switch
-          key={option.value}
-          label={option.label}
-          value={option.value}
-          checked={(currentValue || []).includes(option.value)}
-          disabled={option.disabled}
-          name={name}
-          onChange={(e) => handleChange(option.value, e.target.checked)}
-        />
-      ))}
-    </div>
+      <div
+        className={classNames(
+          "wim-switch-group",
+          direction === "horizontal" && "wim-switch-group--horizontal",
+        )}
+        role="group"
+        aria-labelledby={label ? labelId : undefined}
+      >
+        {options.map((option) => (
+          <Switch
+            key={option.value}
+            label={option.label}
+            value={option.value}
+            checked={(currentValue || []).includes(option.value)}
+            disabled={option.disabled}
+            name={name}
+            onChange={(e) => handleChange(option.value, e.target.checked)}
+          />
+        ))}
+      </div>
+    </FieldTemplate>
   );
 };
+

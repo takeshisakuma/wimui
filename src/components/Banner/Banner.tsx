@@ -1,7 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
-import { Icon } from "../Icon/Icon";
+import { FeedbackIcon } from "../_internal/FeedbackIcon";
+import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
 import "./banner.scss";
 
 type BannerProps = {
@@ -56,21 +57,6 @@ export const Banner = ({
 }: BannerProps) => {
   const { t } = useTranslation();
 
-  const renderIcon = () => {
-    if (!icon) return null;
-    if (React.isValidElement(icon)) return icon;
-
-    switch (variant) {
-      case "success":
-        return <Icon name="CheckIcon" size="small" />;
-      case "error":
-      case "warning":
-      case "info":
-      default:
-        return <Icon name="CircleIcon" size="small" />;
-    }
-  };
-
   return (
     <div
       className={classNames("wim-banner", `wim-banner--${variant}`, className)}
@@ -79,7 +65,15 @@ export const Banner = ({
     >
       <div className="wim-banner__container">
         <div className="wim-banner__content">
-          {icon && <div className="wim-banner__icon">{renderIcon()}</div>}
+          {icon !== false && (
+            <div className="wim-banner__icon">
+              <FeedbackIcon
+                variant={variant}
+                icon={typeof icon === "boolean" ? undefined : icon}
+                size="small"
+              />
+            </div>
+          )}
           <div className="wim-banner__text">
             {title && <span className="wim-banner__title">{t(title)}</span>}
             {title && (description || children) && (
@@ -94,16 +88,11 @@ export const Banner = ({
         </div>
         <div className="wim-banner__actions">
           {action && <div className="wim-banner__action">{action}</div>}
-          {onClose && (
-            <button
-              type="button"
-              className="wim-banner__close"
-              onClick={onClose}
-              aria-label={t("a11y_close")}
-            >
-              <Icon name="CloseIcon" size="small" />
-            </button>
-          )}
+          <FeedbackCloseButton
+             onClose={onClose}
+             className="wim-banner__close"
+             size="small"
+          />
         </div>
       </div>
     </div>

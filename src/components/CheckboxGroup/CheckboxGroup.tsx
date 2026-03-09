@@ -9,6 +9,8 @@ type Option = {
   disabled?: boolean;
 };
 
+import { FieldTemplate } from "../_internal/FieldTemplate";
+
 type CheckboxGroupProps = {
   options: Option[];
   value?: string[];
@@ -18,6 +20,8 @@ type CheckboxGroupProps = {
   name?: string;
   className?: string;
   label?: string;
+  error?: string;
+  required?: boolean;
 };
 
 /**
@@ -32,6 +36,8 @@ export const CheckboxGroup = ({
   name,
   className,
   label,
+  error,
+  required,
 }: CheckboxGroupProps) => {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
@@ -57,44 +63,35 @@ export const CheckboxGroup = ({
     }
   };
 
-  const content = (
-    <div
-      className={classNames(
-        "wim-checkbox-group",
-        direction === "horizontal" && "wim-checkbox-group--horizontal",
-        className,
-      )}
-      role="group"
-      aria-labelledby={label ? labelId : undefined}
+  return (
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      labelId={labelId}
+      className={className}
     >
-      {options.map((option) => (
-        <Checkbox
-          key={option.value}
-          label={option.label}
-          value={option.value}
-          checked={(currentValue || []).includes(option.value)}
-          disabled={option.disabled}
-          name={name}
-          onChange={(e) => handleChange(option.value, e.target.checked)}
-        />
-      ))}
-    </div>
-  );
-
-  if (label) {
-    return (
-      <div className="wim-checkbox-group-container">
-        <span
-          id={labelId}
-          className="wim-label"
-          style={{ display: "block", marginBottom: "8px" }}
-        >
-          {label}
-        </span>
-        {content}
+      <div
+        className={classNames(
+          "wim-checkbox-group",
+          direction === "horizontal" && "wim-checkbox-group--horizontal",
+        )}
+        role="group"
+        aria-labelledby={label ? labelId : undefined}
+      >
+        {options.map((option) => (
+          <Checkbox
+            key={option.value}
+            label={option.label}
+            value={option.value}
+            checked={(currentValue || []).includes(option.value)}
+            disabled={option.disabled}
+            name={name}
+            onChange={(e) => handleChange(option.value, e.target.checked)}
+          />
+        ))}
       </div>
-    );
-  }
-
-  return content;
+    </FieldTemplate>
+  );
 };
+

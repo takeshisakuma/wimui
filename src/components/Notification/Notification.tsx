@@ -1,7 +1,14 @@
-import React, { ReactNode } from "react";
+import React, {
+  ReactNode,
+  useState,
+  useCallback,
+  createContext,
+  useContext,
+} from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
-import { Icon } from "../Icon/Icon";
+import { FeedbackIcon } from "../_internal/FeedbackIcon";
+import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
 import "./notification.scss";
 
 export type NotificationPlacement =
@@ -11,6 +18,10 @@ export type NotificationPlacement =
   | "bottomLeft";
 
 export type NotificationProps = {
+  /**
+   * The unique identifier of notification
+   */
+  id?: string;
   /**
    * The title of notification
    */
@@ -30,7 +41,7 @@ export type NotificationProps = {
   /**
    * Callback when notification is closed
    */
-  onClose?: () => void;
+  onClose?: (id?: string) => void;
   /**
    * Whether to show close button
    */
@@ -42,6 +53,7 @@ export type NotificationProps = {
 };
 
 export const Notification = ({
+  id,
   title,
   description,
   icon,
@@ -57,25 +69,14 @@ export const Notification = ({
 
   const handleClose = () => {
     setIsVisible(false);
-    if (onClose) onClose();
+    if (onClose) onClose(id);
   };
 
-  const renderIcon = () => {
-    if (icon) return icon;
-    if (!type) return null;
-
-    switch (type) {
-      case "success":
-        return <Icon name="CheckIcon" color="positive" size="medium" />;
-      case "error":
-        return <Icon name="CircleIcon" color="destructive" size="medium" />;
-      case "warning":
-        return <Icon name="CircleIcon" color="caution" size="medium" />;
-      case "info":
-        return <Icon name="CircleIcon" color="informative" size="medium" />;
-      default:
-        return null;
-    }
+  const typeToColorMap: Record<string, any> = {
+    success: "positive",
+    error: "destructive",
+    warning: "caution",
+    info: "informative",
   };
 
   return (
@@ -88,8 +89,15 @@ export const Notification = ({
       role="alert"
     >
       <div className="wim-notification-content">
-        {renderIcon() && (
-          <div className="wim-notification-icon">{renderIcon()}</div>
+        {(icon || type) && (
+          <div className="wim-notification-icon">
+            <FeedbackIcon
+              variant={type as any}
+              icon={icon}
+              size="medium"
+              color={type ? typeToColorMap[type] : undefined}
+            />
+          </div>
         )}
         <div className="wim-notification-message-container">
           <div className="wim-notification-title">
@@ -101,17 +109,76 @@ export const Notification = ({
             </div>
           )}
         </div>
-        {closable && (
-          <button
-            type="button"
-            onClick={handleClose}
-            className="wim-notification-close"
-            aria-label={t("a11y_close")}
-          >
-            <Icon name="CloseIcon" size="small" />
-          </button>
-        )}
+        <FeedbackCloseButton
+          onClose={closable ? handleClose : undefined}
+          className="wim-notification-close"
+          size="small"
+        />
       </div>
     </div>
   );
+};
+
+// --- Notification System (Provider & Hook) ---
+
+type NotificationItem = Omit<NotificationProps, "onClose"> & {
+  id: string;
+};
+
+type NotificationContextType = {
+  show: (notification: Omit<NotificationItem, "id">) => void;
+  remove: (id: string) => void;
+};
+
+const NotificationContext = createContext<NotificationContextType | undefined>(
+  undefined,
+);
+
+export const NotificationProvider = ({
+  children,
+  placement = "topRight",
+}: {
+  children: React.ReactNode;
+  placement?: NotificationPlacement;
+}) => {
+  const [notifications, setNotifications] = useState<NotificationItem[]>([]);
+
+  const show = useCallback((notification: Omit<NotificationItem, "id">) => {
+    const id = Math.random().toString(36).substr(2, 9);
+    setNotifications((prev) => [...prev, { ...notification, id }]);
+  }, []);
+
+  const remove = useCallback((id: string) => {
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
+  }, []);
+
+  return (
+    <NotificationContext.Provider value={{ show, remove }}>
+      {children}
+      <div
+        className={classNames(
+          "wim-notification-container",
+          `wim-notification-container--${placement}`,
+        )}
+      >
+        {notifications.map((notification) => (
+          <Notification
+            key={notification.id}
+            {...notification}
+            onClose={() => remove(notification.id)}
+          />
+        ))}
+      </div>
+    </NotificationContext.Provider>
+  );
+};
+
+export const useNotification = () => {
+  const context = useContext(NotificationContext);
+  if (!context) {
+    throw new Error(
+      "useNotification must be used within a NotificationProvider",
+    );
+  }
+  return context;
 };

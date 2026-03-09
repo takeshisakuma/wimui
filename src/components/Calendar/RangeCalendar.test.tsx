@@ -5,8 +5,8 @@ import { RangeCalendar } from "./RangeCalendar";
 describe("RangeCalendar", () => {
   it("renders calendar grid", () => {
     render(<RangeCalendar />);
-    expect(screen.getByText("日")).toBeInTheDocument();
-    expect(screen.getByText("土")).toBeInTheDocument();
+    expect(screen.getByText("sun")).toBeInTheDocument();
+    expect(screen.getByText("sat")).toBeInTheDocument();
   });
 
   it("selects a range when dates are clicked", () => {

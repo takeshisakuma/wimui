@@ -1,7 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
-import { Icon } from "../Icon/Icon";
+import { FeedbackIcon } from "../_internal/FeedbackIcon";
+import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
 import "./alert.scss";
 
 type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -58,28 +59,15 @@ export const Alert = ({
     if (onClose) onClose();
   };
 
-  const renderIcon = () => {
-    if (icon) return icon;
-
-    // デフォルトアイコンのマッピング（Iconコンポーネントに適切なものが増えたら更新）
-    switch (variant) {
-      case "success":
-        return <Icon name="CheckIcon" size="small" />;
-      case "error":
-      case "warning":
-      case "info":
-      default:
-        return <Icon name="CircleIcon" size="small" />;
-    }
-  };
-
   return (
     <div
       className={classNames("wim-alert", `wim-alert--${variant}`, className)}
       role="alert"
       {...props}
     >
-      <div className="wim-alert__icon">{renderIcon()}</div>
+      <div className="wim-alert__icon">
+        <FeedbackIcon variant={variant} icon={icon} size="small" />
+      </div>
       <div className="wim-alert__content">
         {title && <h4 className="wim-alert__title">{t(title)}</h4>}
         {(description || children) && (
@@ -88,16 +76,11 @@ export const Alert = ({
           </div>
         )}
       </div>
-      {onClose && (
-        <button
-          type="button"
-          className="wim-alert__close"
-          onClick={handleClose}
-          aria-label={t("a11y_close")}
-        >
-          <Icon name="CloseIcon" size="small" />
-        </button>
-      )}
+      <FeedbackCloseButton
+        onClose={onClose ? handleClose : undefined}
+        className="wim-alert__close"
+        size="small"
+      />
     </div>
   );
 };

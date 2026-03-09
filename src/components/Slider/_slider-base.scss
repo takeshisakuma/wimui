@@ -1,0 +1,71 @@
+@use "../../tokens/semantic-colors" as color;
+@use "../../tokens/spacings" as spacing;
+@use "../../tokens/effects" as effect;
+
+@mixin slider-base {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 24px;
+  touch-action: none;
+  cursor: pointer;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    .wim-slider__thumb,
+    .wim-range-slider__thumb {
+      cursor: not-allowed;
+    }
+  }
+
+  &__track-container {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    background-color: var(--wim-color-border-secondary, #e5e7eb);
+    border-radius: var(--radius-full);
+  }
+
+  &__track {
+    position: absolute;
+    height: 100%;
+    background-color: var(--color-primary);
+    border-radius: var(--radius-full);
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    cursor: grab;
+    outline: none;
+    background-color: var(--text-white);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-full);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    transform: translate(-50%, -50%);
+    transition:
+      box-shadow 0.2s,
+      transform 0.1s;
+
+    &:hover {
+      z-index: 2;
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 10%, transparent);
+    }
+
+    &:focus-visible {
+      z-index: 2;
+      box-shadow: var(--shadow-focus);
+    }
+
+    &:active {
+      z-index: 2;
+      cursor: grabbing;
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    }
+  }
+}

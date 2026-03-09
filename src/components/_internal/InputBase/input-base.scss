@@ -1,0 +1,161 @@
+.wim-input-base {
+  --wim-input-offset-left: var(--spacing-md);
+  --wim-input-offset-right: var(--spacing-md);
+
+  // Shell styles
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+  background-color: var(--bg-component, #fff);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  position: relative;
+  width: var(--wim-input-width, 100%);
+  max-width: 320px;
+
+  &.wim-input--variant-ghost {
+    background-color: transparent;
+    border-color: transparent;
+    &:hover:not(.wim-input-base--disabled) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  &.wim-input-base--disabled {
+    background-color: var(--color-disabled);
+    border-color: var(--color-disabled);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &.wim-input-base--error {
+    border-color: var(--text-error);
+  }
+
+  &:focus-within:not(.wim-input-base--disabled) {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    
+    &.wim-input-base--error {
+        box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+    }
+  }
+
+  // Icons padding
+  &.wim-input--has-left-icon {
+    --wim-input-offset-left: calc(var(--spacing-xl) + 1.2rem + 10px);
+  }
+
+  &.wim-input--has-right-icon {
+    --wim-input-offset-right: calc(var(--spacing-xl) + 1.2rem + 10px);
+  }
+
+  &.wim-input--has-multiple-right-icons {
+    --wim-input-offset-right: calc(var(--spacing-sm) + 2.4rem + var(--spacing-xs) + 10px);
+  }
+
+  // Semantic sizes
+  &.wim-input--width-xs { --wim-input-width: 80px; }
+  &.wim-input--width-sm { --wim-input-width: 160px; }
+  &.wim-input--width-md { --wim-input-width: 320px; }
+  &.wim-input--width-lg { --wim-input-width: 480px; }
+  &.wim-input--width-xl { --wim-input-width: 640px; }
+
+  &.wim-input--has-custom-width,
+  &[class*="wim-input--width-"] {
+    max-width: 100%;
+    width: calc(
+      var(--wim-input-width) + var(--wim-input-offset-left) +
+        var(--wim-input-offset-right) + 2px
+    );
+  }
+
+  &.wim-input--full-width {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .wim-input-icon {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: color 0.3s ease-in-out;
+    z-index: 1;
+
+    &--clickable {
+      pointer-events: auto;
+    }
+
+    &--left {
+      left: var(--spacing-md);
+    }
+  }
+
+  .wim-input-icons {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    gap: var(--spacing-xs);
+    align-items: center;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: color 0.3s ease-in-out;
+    z-index: 1;
+
+    &--right {
+      right: var(--spacing-sm);
+    }
+  }
+
+  .wim-input-icon-item {
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+
+    &--clickable {
+      pointer-events: auto;
+    }
+  }
+
+  .wim-input-icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-3xs);
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: var(--color-tertiary-hover);
+    }
+
+    &:active {
+      background-color: var(--color-tertiary-active);
+    }
+  }
+}
+
+// Make sure children (inputs, triggers) don't have their own borders
+.wim-input-base > input,
+.wim-input-base > .wim-input,
+.wim-input-base > .wim-selectbox-trigger {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    width: 100%;
+    height: 100%;
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+}

@@ -1,11 +1,15 @@
-import React from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
+import { IndicatorBase } from "../_internal/IndicatorBase";
 import "./badge.scss";
 
-type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
+export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
+  /** 表示するコンテンツ */
+  children?: React.ReactNode;
+  /** @deprecated use children instead */
   content?: string;
+  /** アイコン */
   icon?: React.ReactNode;
+  /** 色 */
   color?:
     | "primary"
     | "secondary"
@@ -14,7 +18,9 @@ type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
     | "error"
     | "info"
     | "neutral";
-  variant?: "solid" | "outline";
+  /** バリアント */
+  variant?: "solid" | "outline" | "subtle";
+  /** サイズ */
   size?: "small" | "medium";
 };
 
@@ -22,30 +28,23 @@ type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
  * 状態やカウントなどを表示するためのバッジコンポーネント。
  */
 export const Badge = ({
+  children,
   content,
   icon,
-  color = "primary",
-  variant = "solid",
-  size = "medium",
   className,
   ...props
 }: BadgeProps) => {
-  const { t } = useTranslation();
+  const displayContent = children ?? content;
 
   return (
-    <span
-      className={classNames(
-        "wim-badge",
-        `wim-badge--${color}`,
-        `wim-badge--${variant}`,
-        `wim-badge--${size === "small" ? "sm" : "md"}`,
-        !content && "wim-badge--icon-only",
-        className,
-      )}
+    <IndicatorBase
+      prefixClass="wim-badge"
+      icon={icon}
+      className={classNames(!displayContent && "wim-badge--icon-only", className)}
       {...props}
     >
-      {icon && <span className="wim-badge__icon">{icon}</span>}
-      {content && <span>{t(content)}</span>}
-    </span>
+      {displayContent}
+    </IndicatorBase>
   );
 };
+

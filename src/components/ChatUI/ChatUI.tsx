@@ -132,6 +132,7 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
+          placeholder={props.placeholder || t("chat_placeholder")}
           {...props}
         />
         {showSendButton && (

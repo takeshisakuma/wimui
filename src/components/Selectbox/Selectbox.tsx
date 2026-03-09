@@ -44,6 +44,9 @@ export type SelectboxProps = {
   id?: string;
 };
 
+import { FieldTemplate } from "../_internal/FieldTemplate";
+import { InputBase } from "../_internal/InputBase";
+
 /**
  * ユーザーが定義済みの選択肢から1つを選択するためのプルダウンメニュー。
  */
@@ -53,6 +56,8 @@ export const Selectbox = ({
   onChange,
   placeholder = "select_option",
   label,
+  error,
+  required,
   className,
   disabled = false,
   defaultValue,
@@ -64,7 +69,7 @@ export const Selectbox = ({
   allowClear = false,
   id: customId,
   ...props
-}: SelectboxProps) => {
+}: SelectboxProps & { error?: string; required?: boolean }) => {
   const { t } = useTranslation("common");
   const generatedId = useId();
   const id = customId || generatedId;
@@ -169,8 +174,7 @@ export const Selectbox = ({
     triggerRef.current?.focus();
   };
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleClear = () => {
     if (disabled) return;
 
     if (!isControlled) {
@@ -405,18 +409,13 @@ export const Selectbox = ({
 
   if (native) {
     return (
-      <div
-        className={classNames(
-          "wim-selectbox",
-          "wim-selectbox--native",
-          className,
-        )}
+      <FieldTemplate
+        label={label}
+        error={error}
+        required={required}
+        labelId={labelId}
+        className={className}
       >
-        {label && (
-          <label id={labelId} htmlFor={id} className="wim-label">
-            {t(label)}
-          </label>
-        )}
         <div className="wim-selectbox-native-wrapper">
           <select
             id={id}
@@ -470,7 +469,7 @@ export const Selectbox = ({
             <Icon name="ChevronDownIcon" size="medium" />
           </div>
         </div>
-      </div>
+      </FieldTemplate>
     );
   }
 
@@ -489,111 +488,110 @@ export const Selectbox = ({
   } = props as any;
 
   return (
-    <div
-      className={classNames("wim-selectbox", className)}
-      ref={containerRef}
-      {...wrapperProps}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      labelId={labelId}
+      className={className}
     >
-      {label && (
-        <label id={labelId} htmlFor={triggerId} className="wim-label">
-          {t(label)}
-        </label>
-      )}
       <div
-        id={triggerId}
-        className={classNames(
-          "wim-selectbox-trigger",
-          isOpen && "wim-selectbox-trigger--open",
-          disabled && "wim-selectbox-trigger--disabled",
-        )}
-        onClick={handleToggle}
-        onKeyDown={handleKeyDown}
-        tabIndex={disabled ? -1 : 0}
-        role="combobox"
-        aria-expanded={isOpen}
-        aria-haspopup="listbox"
-        aria-controls={isOpen ? listId : undefined}
-        aria-disabled={disabled}
-        aria-labelledby={label ? labelId : ariaLabelledBy}
-        aria-label={label ? undefined : t(ariaLabel || placeholder)}
-        aria-describedby={ariaDescribedBy}
-        aria-activedescendant={isOpen ? activeDescendant : undefined}
-        ref={triggerRef}
+        className={classNames("wim-selectbox-container")}
+        ref={containerRef}
+        {...wrapperProps}
       >
-        <div
+        <InputBase
+          disabled={disabled}
+          allowClear={allowClear}
+          hasValue={!!currentValue}
+          onClear={handleClear}
+          rightIcons={[{ name: "ChevronDownIcon" }]}
           className={classNames(
-            "wim-selectbox-value",
-            !selectedOption && "wim-selectbox-value--placeholder",
+            isOpen && "wim-selectbox-trigger--open",
           )}
         >
-          {selectedOption ? t(selectedOption.label || "") : t(placeholder)}
-        </div>
-        <div className="wim-selectbox-icons">
-          {allowClear && currentValue && !disabled && (
-            <button
-              type="button"
-              className="wim-selectbox-clear"
-              onClick={handleClear}
-              aria-label={t("a11y_clear_selection")}
+          <div
+            id={triggerId}
+            className={classNames(
+              "wim-selectbox-trigger",
+              disabled && "wim-selectbox-trigger--disabled",
+            )}
+            onClick={handleToggle}
+            onKeyDown={handleKeyDown}
+            tabIndex={disabled ? -1 : 0}
+            role="combobox"
+            aria-expanded={isOpen}
+            aria-haspopup="listbox"
+            aria-controls={isOpen ? listId : undefined}
+            aria-disabled={disabled}
+            aria-labelledby={label ? labelId : ariaLabelledBy}
+            aria-label={label ? undefined : t(ariaLabel || placeholder)}
+            aria-describedby={ariaDescribedBy}
+            aria-activedescendant={isOpen ? activeDescendant : undefined}
+            ref={triggerRef}
+          >
+            <div
+              className={classNames(
+                "wim-selectbox-value",
+                !selectedOption && "wim-selectbox-value--placeholder",
+              )}
             >
-              <Icon name="CloseIcon" size="small" />
-            </button>
-          )}
-          <div className="wim-selectbox-icon">
-            <Icon name="ChevronDownIcon" size="medium" />
+              {selectedOption ? t(selectedOption.label || "") : t(placeholder)}
+            </div>
           </div>
-        </div>
-      </div>
+        </InputBase>
 
-      <Transition
-        show={isOpen && !disabled}
-        enter="fade-enter"
-        enterFrom="fade-enter-from"
-        enterTo="fade-enter-to"
-        leave="fade-leave"
-        leaveFrom="fade-leave-from"
-        leaveTo="fade-leave-to"
-        className="wim-selectbox-dropdown"
-      >
-        {searchable && (
-          <div className="wim-selectbox-search">
-            <input
-              ref={searchInputRef}
-              type="text"
-              className="wim-selectbox-search-input"
-              placeholder={t(searchPlaceholder)}
-              value={searchValue}
-              onChange={(e) => {
-                setSearchValue(e.target.value);
-                setFocusedIndex(-1);
-              }}
-              onClick={(e) => e.stopPropagation()}
-              onKeyDown={handleKeyDown}
-              aria-label={t(searchPlaceholder)}
-              aria-controls={listId}
-              aria-activedescendant={activeDescendant}
-            />
-          </div>
-        )}
-        <ul
-          id={listId}
-          className="wim-selectbox-list"
-          role="listbox"
-          aria-labelledby={label ? labelId : ariaLabelledBy || undefined}
+        <Transition
+          show={isOpen && !disabled}
+          enter="fade-enter"
+          enterFrom="fade-enter-from"
+          enterTo="fade-enter-to"
+          leave="fade-leave"
+          leaveFrom="fade-leave-from"
+          leaveTo="fade-leave-to"
+          className="wim-selectbox-dropdown"
         >
-          {filteredOptions.length === 0 ? (
-            <li
-              className="wim-selectbox-empty"
-              role="option"
-              aria-selected="false"
-            >
-              {t("no_options_found")}
-            </li>
-          ) : (
-            renderOptions()
+          {searchable && (
+            <div className="wim-selectbox-search">
+              <input
+                ref={searchInputRef}
+                type="text"
+                className="wim-selectbox-search-input"
+                placeholder={t(searchPlaceholder)}
+                value={searchValue}
+                onChange={(e) => {
+                  setSearchValue(e.target.value);
+                  setFocusedIndex(-1);
+                }}
+                onClick={(e) => e.stopPropagation()}
+                onKeyDown={handleKeyDown}
+                aria-label={t(searchPlaceholder)}
+                aria-controls={listId}
+                aria-activedescendant={activeDescendant}
+              />
+            </div>
           )}
-        </ul>
-      </Transition>
-    </div>
+          <ul
+            id={listId}
+            className="wim-selectbox-list"
+            role="listbox"
+            aria-labelledby={label ? labelId : ariaLabelledBy || undefined}
+          >
+            {filteredOptions.length === 0 ? (
+              <li
+                className="wim-selectbox-empty"
+                role="option"
+                aria-selected="false"
+              >
+                {t("no_options_found")}
+              </li>
+            ) : (
+              renderOptions()
+            )}
+          </ul>
+        </Transition>
+      </div>
+    </FieldTemplate>
   );
 };
+

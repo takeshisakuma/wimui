@@ -1,13 +1,13 @@
-﻿.wim-toggle-group {
+@use "../../styles/indicator-mixins" as indicator;
+
+.wim-toggle-group {
+  @include indicator.indicator-container-segmented($bg: var(--bg-component), $padding: 2px);
   box-sizing: border-box;
   display: inline-flex;
   gap: 2px;
-  padding: 2px;
-  background-color: var(--bg-component);
   border: 1px solid var(--wim-color-border);
-  border-radius: var(--radius-md);
 
-  &--full-width {
+  &.wim-toggle-group--full-width {
     display: flex;
     width: 100%;
 
@@ -16,20 +16,31 @@
     }
   }
 
+  &__slider {
+    @include indicator.indicator-slider-contained($offset: 2px, $bg: var(--color-primary), $shadow: (0 1px 3px rgb(0 0 0 / 0.1)));
+    opacity: 0;
+    z-index: 1;
+
+    .wim-toggle-group--single.wim-toggle-group--ready & {
+       transition: 
+        transform 0.2s cubic-bezier(0.2, 0, 0, 1),
+        width 0.2s cubic-bezier(0.2, 0, 0, 1),
+        opacity 0.2s ease;
+    }
+
+    .wim-toggle-group--multiple & {
+      display: none;
+    }
+  }
+
   &__item {
-    display: inline-flex;
+    @include indicator.indicator-item-base;
     gap: var(--spacing-xs);
-    align-items: center;
-    justify-content: center;
     font-family: inherit;
     font-weight: 500;
     color: var(--text-secondary);
     white-space: nowrap;
-    cursor: pointer;
-    background: transparent;
-    border: none;
     border-radius: var(--radius-sm);
-    transition: all 0.2s ease;
 
     &:hover:not(:disabled, .wim-toggle-group__item--active) {
       color: var(--text-primary);
@@ -44,11 +55,18 @@
 
     &--active {
       color: var(--text-white);
-      background-color: var(--color-primary);
-      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+      
+      .wim-toggle-group--single & {
+        background-color: transparent;
+      }
+      
+      .wim-toggle-group--multiple & {
+        background-color: var(--color-primary);
+        box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
 
-      &:hover {
-        filter: brightness(1.1);
+        &:hover {
+          filter: brightness(1.1);
+        }
       }
     }
 

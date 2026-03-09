@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
+import { useSliderCommon } from "../../utilities/slider-utils";
 import "./slider.scss";
 
 type SliderProps = {
@@ -71,6 +73,7 @@ export const Slider = ({
   id: customId,
   ...props
 }: SliderProps) => {
+  const { t } = useTranslation("common");
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState(defaultValue);
   const currentValue = isControlled ? value! : internalValue;
@@ -80,32 +83,7 @@ export const Slider = ({
   const id = customId || generatedId;
   const labelId = `wim-slider-label-${id}`;
 
-  // 値を範囲内に収める
-  const clamp = useCallback(
-    (val: number, minVal: number, maxVal: number) =>
-      Math.max(minVal, Math.min(val, maxVal)),
-    [],
-  );
-
-  // ステップに合わせる
-  const alignToStep = useCallback(
-    (val: number) => {
-      const steps = Math.round((val - min) / step);
-      return clamp(min + steps * step, min, max);
-    },
-    [clamp, min, max, step],
-  );
-
-  const calculateValue = useCallback(
-    (clientX: number) => {
-      if (!trackRef.current) return min;
-      const rect = trackRef.current.getBoundingClientRect();
-      const percentage = clamp((clientX - rect.left) / rect.width, 0, 1);
-      const rawValue = min + percentage * (max - min);
-      return alignToStep(rawValue);
-    },
-    [alignToStep, clamp, max, min],
-  );
+  const { calculateValue } = useSliderCommon(min, max, step);
 
   const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     if (disabled) return;
@@ -114,7 +92,7 @@ export const Slider = ({
     // TouchEventとMouseEventの両対応
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
 
-    const newValue = calculateValue(clientX);
+    const newValue = calculateValue(clientX, trackRef.current);
 
     if (!isControlled) {
       setInternalValue(newValue);
@@ -130,7 +108,7 @@ export const Slider = ({
 
       const clientX =
         "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
-      const newValue = calculateValue(clientX);
+      const newValue = calculateValue(clientX, trackRef.current);
 
       if (!isControlled) {
         setInternalValue(newValue);
@@ -187,6 +165,7 @@ export const Slider = ({
     e.preventDefault();
   };
 
+
   const percentage = ((currentValue - min) / (max - min)) * 100;
 
   const {
@@ -203,7 +182,7 @@ export const Slider = ({
           className="wim-label"
           style={{ display: "block", marginBottom: "8px" }}
         >
-          {label}
+          {t(label)}
         </span>
       )}
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}

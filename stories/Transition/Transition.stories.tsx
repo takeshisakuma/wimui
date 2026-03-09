@@ -1,11 +1,10 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Transition } from "@/components/Transition/Transition";
 import { Button } from "@/components/Button/Button";
 import { Stack } from "@/components/Stack/Stack";
 import { Card } from "@/components/Card/Card";
 import { Container } from "@/components/Container/Container";
-import { Box } from "@/components/Box/Box";
 import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Transition> = {
@@ -14,11 +13,10 @@ const meta: Meta<typeof Transition> = {
   parameters: {
     layout: "centered",
   },
-  tags: [],
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Transition>;
 
 export const Fade: Story = {
   render: () => {
@@ -55,7 +53,7 @@ export const Fade: Story = {
                   textAlign: "center",
                 }}
               >
-                Fade Content!
+                {t("story_transition_fade_content")}
               </Card>
             </Transition>
           </Stack>
@@ -97,7 +95,7 @@ export const Slide: Story = {
               leaveTo="slide-leave-to"
             >
               <Card variant="outline" padding="md">
-                Slide!
+                {t("story_transition_slide_content")}
               </Card>
             </Transition>
           </Stack>
@@ -106,4 +104,3 @@ export const Slide: Story = {
     );
   },
 };
-

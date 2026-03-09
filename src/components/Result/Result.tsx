@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
+import { InteractiveArea } from "../InteractiveArea/InteractiveArea";
 import "./result.scss";
 
 export type ResultStatus =
@@ -47,17 +48,17 @@ export type ResultProps = {
 const DefaultIcon = ({ status }: { status: ResultStatus }) => {
   switch (status) {
     case "success":
-      return <Icon name="CheckIcon" color="positive" size="large" />;
+      return <Icon name="CheckIcon" color="positive" />;
     case "error":
-      return <Icon name="CircleIcon" color="destructive" size="large" />;
+      return <Icon name="CircleIcon" color="destructive" />;
     case "warning":
-      return <Icon name="CircleIcon" color="caution" size="large" />;
+      return <Icon name="CircleIcon" color="caution" />;
     case "info":
-      return <Icon name="CircleIcon" color="informative" size="large" />;
+      return <Icon name="CircleIcon" color="informative" />;
     case "404":
     case "403":
     case "500":
-      return <Icon name="CircleIcon" color="secondary" size="large" />;
+      return <Icon name="CircleIcon" color="secondary" />;
     default:
       return null;
   }
@@ -74,25 +75,21 @@ export const Result = ({
 }: ResultProps) => {
   const { t } = useTranslation();
 
+  const renderText = (text: ReactNode) => {
+    return typeof text === "string" ? t(text) : text;
+  };
+
   return (
-    <div
+    <InteractiveArea
+      icon={icon || <DefaultIcon status={status} />}
+      title={renderText(title) ?? undefined}
+      description={renderText(subTitle) ?? undefined}
+      actions={extra}
+      variant="none"
+      bgVariant="transparent"
       className={classNames("wim-result", `wim-result--${status}`, className)}
     >
-      <div className="wim-result-icon">
-        {icon || <DefaultIcon status={status} />}
-      </div>
-      {title && (
-        <div className="wim-result-title">
-          {typeof title === "string" ? t(title) : title}
-        </div>
-      )}
-      {subTitle && (
-        <div className="wim-result-subtitle">
-          {typeof subTitle === "string" ? t(subTitle) : subTitle}
-        </div>
-      )}
-      {extra && <div className="wim-result-extra">{extra}</div>}
-      {children && <div className="wim-result-content">{children}</div>}
-    </div>
+      {children}
+    </InteractiveArea>
   );
 };

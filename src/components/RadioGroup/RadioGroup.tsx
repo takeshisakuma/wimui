@@ -9,6 +9,8 @@ type Option = {
   disabled?: boolean;
 };
 
+import { FieldTemplate } from "../_internal/FieldTemplate";
+
 type RadioGroupProps = {
   options: Option[];
   value?: string;
@@ -18,6 +20,8 @@ type RadioGroupProps = {
   name?: string;
   className?: string;
   label?: string;
+  error?: string;
+  required?: boolean;
 };
 
 /**
@@ -32,6 +36,8 @@ export const RadioGroup = ({
   name,
   className,
   label,
+  error,
+  required,
 }: RadioGroupProps) => {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string | undefined>(
@@ -52,44 +58,35 @@ export const RadioGroup = ({
     }
   };
 
-  const content = (
-    <div
-      className={classNames(
-        "wim-radio-group",
-        direction === "horizontal" && "wim-radio-group--horizontal",
-        className,
-      )}
-      role="radiogroup"
-      aria-labelledby={label ? labelId : undefined}
+  return (
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      labelId={labelId}
+      className={className}
     >
-      {options.map((option) => (
-        <Radio
-          key={option.value}
-          label={option.label}
-          value={option.value}
-          checked={currentValue === option.value}
-          disabled={option.disabled}
-          name={name}
-          onChange={() => handleChange(option.value)}
-        />
-      ))}
-    </div>
-  );
-
-  if (label) {
-    return (
-      <div className="wim-radio-group-container">
-        <span
-          id={labelId}
-          className="wim-label"
-          style={{ display: "block", marginBottom: "8px" }}
-        >
-          {label}
-        </span>
-        {content}
+      <div
+        className={classNames(
+          "wim-radio-group",
+          direction === "horizontal" && "wim-radio-group--horizontal",
+        )}
+        role="radiogroup"
+        aria-labelledby={label ? labelId : undefined}
+      >
+        {options.map((option) => (
+          <Radio
+            key={option.value}
+            label={option.label}
+            value={option.value}
+            checked={currentValue === option.value}
+            disabled={option.disabled}
+            name={name}
+            onChange={() => handleChange(option.value)}
+          />
+        ))}
       </div>
-    );
-  }
-
-  return content;
+    </FieldTemplate>
+  );
 };
+

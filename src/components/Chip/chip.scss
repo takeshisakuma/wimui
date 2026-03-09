@@ -1,16 +1,12 @@
-@use "sass:map";
+@use "../../styles/token-common" as *;
 
 .wim-chip {
+  @include token-base;
   box-sizing: border-box;
-  display: inline-flex;
   gap: var(--spacing-xs);
-  align-items: center;
   font-weight: 500;
-  line-height: normal;
-  white-space: nowrap;
   cursor: default;
   user-select: none;
-  border: 1px solid transparent;
   border-radius: var(--radius-full);
   transition: all 0.2s ease-in-out;
   max-width: 100%;
@@ -94,50 +90,14 @@
     }
   }
 
-  /* Colors and Variants */
-  $chip-colors: (
-    "primary": ("base": var(--color-primary),
-      "on": var(--color-text-on-primary),
-    ),
-    "secondary": ("base": var(--color-secondary),
-      "on": var(--color-text-on-secondary),
-    ),
-    "neutral": ("base": var(--color-disabled),
-      "on": var(--text-primary),
-    ),
-  );
+  // Colors and Variants
+  @include token-variants("wim-chip");
 
-@each $name, $pairs in $chip-colors {
-  $base: map.get($pairs, "base");
-  $on: map.get($pairs, "on");
-
-  &--#{$name}.wim-chip--solid {
-    color: $on;
-    background-color: $base;
-
-    &.wim-chip--selected {
-      box-shadow:
-        0 0 0 2px white,
-        0 0 0 4px $base;
-    }
+  &--solid.wim-chip--selected {
+    box-shadow:
+      0 0 0 2px white,
+      0 0 0 4px currentcolor;
   }
-
-  &--#{$name}.wim-chip--outline {
-    color: var(--text-primary);
-    background-color: transparent;
-    border-color: var(--text-disabled);
-
-    &.wim-chip--selected {
-      color: $base;
-      background-color: color-mix(in srgb, $base 10%, transparent);
-      border-color: $base;
-    }
-
-    &.wim-chip--clickable:hover {
-      background-color: color-mix(in srgb, $base 5%, transparent);
-    }
-  }
-}
 
   &:disabled,
   &--disabled {

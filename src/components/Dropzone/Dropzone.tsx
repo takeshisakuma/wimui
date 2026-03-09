@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { InteractiveArea } from "../InteractiveArea/InteractiveArea";
 import "./dropzone.scss";
 
 type DropzoneProps = {
@@ -96,24 +97,31 @@ export const Dropzone = ({
 
   return (
     <div className={classNames("wim-dropzone-container", className)}>
-      {label && <span className="wim-dropzone__label">{label}</span>}
-      <div
-        className={classNames(
-          "wim-dropzone",
-          isDragging && "wim-dropzone--dragging",
-          disabled && "wim-dropzone--disabled",
-        )}
+      {label && <span className="wim-dropzone__label">{t(label)}</span>}
+      <InteractiveArea
+        className="wim-dropzone"
+        isDragging={isDragging}
+        disabled={disabled}
+        isClickable={!disabled}
         onClick={handleClick}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        role="button"
-        tabIndex={disabled ? -1 : 0}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             handleClick();
           }
         }}
+        icon={
+          iconName && (
+            <Icon
+              name={iconName}
+              size="large"
+              color={disabled ? "disabled" : "primary"}
+            />
+          )
+        }
+        description={actualDescription}
       >
         <input
           type="file"
@@ -123,30 +131,20 @@ export const Dropzone = ({
           disabled={disabled}
           onChange={handleFileChange}
           className="wim-dropzone__input"
+          style={{ display: "none" }}
           aria-hidden="true"
           tabIndex={-1}
         />
-        <div className="wim-dropzone__content">
-          {iconName && (
-            <Icon
-              name={iconName}
-              size="large"
-              className="wim-dropzone__icon"
-              color={disabled ? "disabled" : "primary"}
-            />
-          )}
-          <p className="wim-dropzone__description">{actualDescription}</p>
-          {files && files.length > 0 && (
-            <div className="wim-dropzone__file-list">
-              {Array.from(files).map((file, index) => (
-                <span key={index} className="wim-dropzone__file-name">
-                  {file.name}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
+        {files && files.length > 0 && (
+          <div className="wim-dropzone__file-list">
+            {Array.from(files).map((file, index) => (
+              <span key={index} className="wim-dropzone__file-name">
+                {file.name}
+              </span>
+            ))}
+          </div>
+        )}
+      </InteractiveArea>
     </div>
   );
 };

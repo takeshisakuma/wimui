@@ -75,12 +75,12 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
   <li><T k="doc_datepicker_adv_3" /></li>
   <li><T k="doc_datepicker_adv_4" /></li>
 </ul>
-## カレンダー選択フロー
+## <T k="doc_datepicker_flow_title" />
 
-- 1回目のクリックで開始日を選択します。
-- 2回目のクリックで終了日を選択します。
-- 選択中は開始日〜終了日の間がハイライト表示されます。
-- 開始日より前の日付を終了日として選択した場合、自動的に入れ替わります。
+- <T k="doc_datepicker_flow_1" />
+- <T k="doc_datepicker_flow_2" />
+- <T k="doc_datepicker_flow_3" />
+- <T k="doc_datepicker_flow_4" />
 
 ### <T k="doc_datepicker_clear_btn" />
 
@@ -96,12 +96,12 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 
 <table>
   <thead>
-    <tr><th>Format</th><th>Example</th><th>タイプ</th></tr>
+    <tr><th>Format</th><th>Example</th><th><T k="table_header_type" /></th></tr>
   </thead>
   <tbody>
-    <tr><td>YYYY/MM/DD</td><td>2023/04/15</td><td>デフォルト</td></tr>
-    <tr><td>MM/DD/YYYY</td><td>04/15/2023</td><td>英式</td></tr>
-    <tr><td>DD-MM-YYYY</td><td>15-04-2023</td><td>欧式</td></tr>
+    <tr><td>YYYY/MM/DD</td><td>2023/04/15</td><td><T k="doc_datepicker_default" /></td></tr>
+    <tr><td>MM/DD/YYYY</td><td>04/15/2023</td><td><T k="doc_datepicker_uk_format" /></td></tr>
+    <tr><td>DD-MM-YYYY</td><td>15-04-2023</td><td><T k="doc_datepicker_eu_format" /></td></tr>
   </tbody>
 </table>
 
@@ -129,24 +129,24 @@ const [date, setDate] = useState(new Date());
 
 <table>
   <thead>
-    <tr><th>操作</th><th>キー</th></tr>
+    <tr><th><T k="table_header_operation" /></th><th><T k="table_header_key" /></th></tr>
   </thead>
   <tbody>
-    <tr><td>カレンダーを開く</td><td>Enter / Space</td></tr>
-    <tr><td>日付を移動・選択</td><td>矢印キー / Enter</td></tr>
-    <tr><td>カレンダーを閉じる</td><td>Escape</td></tr>
-    <tr><td>日付を移動</td><td>矢印キー</td></tr>
-    <tr><td>日付を選択</td><td>Enter / Space</td></tr>
-    <tr><td>月を移動</td><td>Page Up / Down</td></tr>
+    <tr><td><T k="doc_datepicker_op_open" /></td><td><T k="table_key_enter" /> / <T k="table_key_space" /></td></tr>
+    <tr><td><T k="doc_datepicker_op_move_select" /></td><td><T k="table_key_arrow" /> / <T k="table_key_enter" /></td></tr>
+    <tr><td><T k="doc_datepicker_op_close" /></td><td><T k="table_key_escape" /></td></tr>
+    <tr><td><T k="doc_datepicker_op_move" /></td><td><T k="table_key_arrow" /></td></tr>
+    <tr><td><T k="doc_datepicker_op_select" /></td><td><T k="table_key_enter" /> / <T k="table_key_space" /></td></tr>
+    <tr><td><T k="doc_datepicker_op_move_month" /></td><td><T k="table_key_page_up_down" /></td></tr>
   </tbody>
 </table>
 
 ### <T k="doc_datepicker_a11y" />
 
 <ul>
-  <li>ポップアップコンテンツには <code>role="dialog"</code> を適用しています。</li>
-  <li>入力欄には <code>aria-label</code> や <code>aria-describedby</code> が設定されます。</li>
-  <li>無効化された日付には <code>aria-disabled</code> が設定されます。</li>
+  <li><T k="doc_datepicker_a11y_1" /></li>
+  <li><T k="doc_datepicker_a11y_2" /></li>
+  <li><T k="doc_datepicker_a11y_3" /></li>
 </ul>
 
 ## <T k="doc_datepicker_integration" />

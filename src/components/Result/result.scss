@@ -1,47 +1,14 @@
-﻿.wim-result {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  padding: var(--spacing-4xl) var(--spacing-md);
-  text-align: center;
-
-  &-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.5rem;
-
-    .wim-icon--lg {
+.wim-result {
+  // Overrides for Result specifically if needed
+  // Result uses StatusContent internally, which already has default layout
+  .wim-interactive-area__icon {
+    .wim-icon {
       width: 72px;
       height: 72px;
     }
   }
 
-  &-title {
-    font-size: var(--font-size-ex-large);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-tight-latn);
-    color: var(--text-primary);
-  }
-
-  &-subtitle {
-    max-width: 600px;
-    font-size: var(--font-size-medium);
-    line-height: var(--line-height-normal-jpan);
-    color: var(--text-secondary);
-  }
-
-  &-extra {
-    display: flex;
-    gap: var(--spacing-sm);
-    justify-content: center;
-    margin-top: var(--spacing-lg);
-  }
-
-  &-content {
-    width: 100%;
-    max-width: 800px;
+  .wim-interactive-area__content {
     padding: var(--spacing-md);
     margin-top: var(--spacing-lg);
     text-align: left;

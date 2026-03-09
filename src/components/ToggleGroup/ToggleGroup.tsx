@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
+import { useIndicator } from "../_internal/useIndicator";
 import "./toggle-group.scss";
 
 type Option = {
@@ -41,6 +42,11 @@ export const ToggleGroup = ({
 
   const currentValue = isControlled ? value : internalValue;
 
+  const { containerRef, sliderStyle, isReady } = useIndicator({
+    activeSelector: ".wim-toggle-group__item--active",
+    dependence: options.length, // Options might change
+  });
+
   const handleToggle = (optionValue: string) => {
     let newValue: string | string[];
 
@@ -78,14 +84,18 @@ export const ToggleGroup = ({
 
   return (
     <div
+      ref={containerRef}
       className={classNames(
         "wim-toggle-group",
         `wim-toggle-group--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        `wim-toggle-group--${selectionMode}`,
         fullWidth && "wim-toggle-group--full-width",
+        isReady && "wim-toggle-group--ready",
         className,
       )}
       role="group"
     >
+      <div className="wim-toggle-group__slider" style={sliderStyle} aria-hidden="true" />
       {options.map((option) => (
         <button
           key={option.value}

@@ -1,4 +1,4 @@
-﻿.wim-dropzone-container {
+.wim-dropzone-container {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
@@ -13,59 +13,8 @@
 }
 
 .wim-dropzone {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 160px;
-  padding: var(--spacing-3xl) var(--spacing-2xl);
-  text-align: center;
-  cursor: pointer;
-  background-color: var(--bg-app);
-  border: 2px dashed var(--wim-color-border);
-  border-radius: 8px;
-  transition: var(--transition-base);
-
-  &:hover:not(&--disabled) {
-    background-color: rgb(0 0 0 / 0.02);
-    border-color: var(--color-primary);
-  }
-
-  &--dragging {
-    background-color: rgb(0 0 0 / 0.05);
-    border-color: var(--color-primary);
-    transform: scale(1.01);
-  }
-
-  &--disabled {
-    cursor: not-allowed;
-    background-color: var(--color-disabled);
-    border-color: var(--color-disabled);
-    opacity: 0.6;
-  }
-
-  &__input {
-    display: none;
-  }
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    align-items: center;
-  }
-
-  &__icon {
-    margin-bottom: var(--spacing-xs);
-    font-size: 48px;
-  }
-
-  &__description {
-    margin: 0;
-    font-size: var(--font-size-medium);
-    color: var(--text-tertiary);
-  }
-
+  // Base area styles are provided by InteractiveArea
+  
   &__file-list {
     display: flex;
     flex-direction: column;

@@ -5,10 +5,11 @@ import React, {
   createContext,
   useContext,
 } from "react";
-import { Icon } from "../Icon/Icon";
 import { Button } from "../Button/Button";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
+import { FeedbackIcon } from "../_internal/FeedbackIcon";
+import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
 import "./snackbar.scss";
 
 export type SnackbarVariant =
@@ -130,16 +131,8 @@ export const Snackbar = ({
         <div className="wim-snackbar__content">
           {variant !== "default" && (
             <div className="wim-snackbar__icon">
-              <Icon
-                name={
-                  variant === "success"
-                    ? "CheckIcon"
-                    : variant === "error"
-                      ? "CircleIcon"
-                      : variant === "warning"
-                        ? "CircleIcon"
-                        : "CircleIcon"
-                }
+              <FeedbackIcon
+                variant={variant as any}
                 size="small"
               />
             </div>
@@ -157,16 +150,11 @@ export const Snackbar = ({
               label={actionLabel}
             />
           )}
-          {showCloseButton && (
-            <button
-              type="button"
-              className="wim-snackbar__close-button"
-              onClick={handleClose}
-              aria-label={t("a11y_close")}
-            >
-              <Icon name="CloseIcon" size="small" />
-            </button>
-          )}
+          <FeedbackCloseButton
+            onClose={showCloseButton ? handleClose : undefined}
+            className="wim-snackbar__close-button"
+            size="small"
+          />
         </div>
       </div>
     </div>

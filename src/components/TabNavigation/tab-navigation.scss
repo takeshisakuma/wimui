@@ -1,4 +1,5 @@
-﻿@use "sass:color";
+@use "sass:color";
+@use "../../styles/indicator-mixins" as indicator;
 
 @layer component {
   .wim-tab-navigation {
@@ -65,21 +66,14 @@
 
     /* Base Item Styles */
     &__item {
-      position: relative;
-      z-index: 1;
-      box-sizing: border-box;
-      display: inline-flex;
-      align-items: center;
+      @include indicator.indicator-item-base;
       height: var(--wim-tab-nav-height);
-      justify-content: center;
       padding: var(--wim-tab-nav-padding);
       font-size: var(--wim-tab-nav-font-size);
       font-weight: var(--font-weight-medium);
       color: var(--text-secondary);
       white-space: nowrap;
       text-decoration: none;
-      cursor: pointer;
-      transition: all var(--transition-base);
 
       &:hover:not(&--disabled) {
         color: var(--text-primary);
@@ -102,19 +96,13 @@
       border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
 
       .wim-tab-navigation__slider {
-        position: absolute;
-        bottom: -1px;
-        left: 0;
-        height: 2px;
-        background-color: var(--color-primary);
-        border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-        z-index: 2;
+        @include indicator.indicator-slider-underline($bottom: -1px);
+        opacity: 0;
       }
 
       &.wim-tab-navigation--ready .wim-tab-navigation__slider {
-        transition:
-          transform 0.2s cubic-bezier(0.2, 0, 0, 1),
-          width 0.2s cubic-bezier(0.2, 0, 0, 1);
+        // use default transitions from mixin
+        pointer-events: none; // ensure it doesn't block clicks
       }
 
       .wim-tab-navigation__item {
@@ -141,12 +129,7 @@
       }
 
       .wim-tab-navigation__slider {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        background-color: var(--color-primary);
-        border-radius: 99px;
+        @include indicator.indicator-slider-contained($radius: 99px, $bg: var(--color-primary), $shadow: none, $offset: 0);
         z-index: -1;
         transition: background-color var(--duration-fast) var(--easing-base);
       }
@@ -183,31 +166,21 @@
 
     /* Variant: Contained */
     &--contained {
+      @include indicator.indicator-container-segmented($bg: var(--wim-color-bg-secondary, #f4f4f5));
       display: inline-flex; // Shrink to fit content
-      width: auto;
-      padding: 4px;
-      background-color: var(--wim-color-bg-secondary, #f4f4f5);
-      border-radius: var(--radius-md);
 
       .wim-tab-navigation__list {
         gap: 4px;
       }
 
       .wim-tab-navigation__slider {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        background-color: white;
-        border-radius: var(--radius-sm);
-        box-shadow: 0 1px 2px rgb(0 0 0 / 0.1);
-        z-index: -1;
+        @include indicator.indicator-slider-contained($offset: 0);
+        opacity: 0;
       }
 
       &.wim-tab-navigation--ready .wim-tab-navigation__slider {
-        transition:
-          transform 0.2s cubic-bezier(0.2, 0, 0, 1),
-          width 0.2s cubic-bezier(0.2, 0, 0, 1);
+        // transitions from mixin
+        pointer-events: none;
       }
 
       .wim-tab-navigation__item {

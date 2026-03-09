@@ -1,0 +1,27 @@
+/**
+ * Shared UI patterns for components like Stepper, Timeline, etc.
+ */
+
+:root {
+  --wim-indicator-dot-size: 12px;
+  --wim-indicator-dot-large-size: 24px;
+  --wim-indicator-line-thickness: 2px;
+  --wim-indicator-line-color: var(--wim-color-border-secondary, #e5e7eb);
+  --wim-indicator-active-color: var(--color-primary, #006bff);
+}
+
+.wim-ui-connector {
+  position: relative;
+  background-color: var(--wim-indicator-line-color);
+  &--active {
+    background-color: var(--wim-indicator-active-color);
+  }
+}
+
+.wim-ui-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--transition-base, 0.2s ease);
+}

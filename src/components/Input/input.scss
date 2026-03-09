@@ -22,32 +22,16 @@
 
   &--outline {
     border-color: var(--color-secondary);
-
-    &:focus {
-      border-color: var(--color-primary);
-    }
   }
 
   &--ghost {
     background-color: transparent;
     border-color: transparent;
-
-    &:hover {
-      background-color: rgb(0 0 0 / 0.05);
-    }
-
-    &:focus {
-      background-color: transparent;
-      border-color: var(--color-primary);
-    }
+    &:hover { background-color: rgb(0 0 0 / 0.05); }
   }
 
   &--error {
     border-color: var(--text-error) !important;
-
-    &:focus {
-      box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2) !important;
-    }
   }
 
   &--disabled {
@@ -57,186 +41,11 @@
     background-color: var(--color-disabled);
     border-color: var(--color-disabled);
   }
-
-  &--full-width {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-  &[type="color"] {
-    padding: var(--spacing-3xs);
-    height: 42px;
-    cursor: pointer;
-
-    &::-webkit-color-swatch-wrapper {
-      padding: 0;
-    }
-
-    &::-webkit-color-swatch {
-      border: none;
-      border-radius: var(--radius-sm);
-    }
-
-    &::-moz-color-swatch {
-      border: none;
-      border-radius: var(--radius-sm);
-    }
-  }
 }
 
-.wim-input-container {
-  --wim-input-offset-left: var(--spacing-md);
-  --wim-input-offset-right: var(--spacing-md);
-
-  &.wim-input--has-left-icon {
-    --wim-input-offset-left: calc(var(--spacing-xl) + 1.2rem + 10px);
-  }
-
-  &.wim-input--has-right-icon,
-  &.wim-input--reserve-right-icon {
-    --wim-input-offset-right: calc(var(--spacing-xl) + 1.2rem + 10px);
-  }
-
-  &.wim-input--has-multiple-right-icons {
-    --wim-input-offset-right: calc(var(--spacing-sm) + 2.4rem + var(--spacing-xs) + 10px);
-  }
-
-  // Semantic sizes
-  &.wim-input--width-xs { --wim-input-width: 80px; }
-  &.wim-input--width-sm { --wim-input-width: 160px; }
-  &.wim-input--width-md { --wim-input-width: 320px; }
-  &.wim-input--width-lg { --wim-input-width: 480px; }
-  &.wim-input--width-xl { --wim-input-width: 640px; }
-
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: var(--wim-input-width, 100%);
-  max-width: 320px; // Default max-width
-  transition: width 0.2s ease-in-out;
-
-  &.wim-input--has-custom-width,
-  &[class*="wim-input--width-"] {
-    max-width: 100%; // Guard for mobile
-  }
-
-  &.wim-input--has-custom-width,
-  &[class*="wim-input--width-"] {
-    width: calc(
-      var(--wim-input-width) + var(--wim-input-offset-left) +
-        var(--wim-input-offset-right) + 2px
-    );
-  }
-
-  &.wim-input--full-width {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-  .wim-input {
-    width: 100%; // Ensure it fills the container
-    max-width: none;
-    transition: background-color 0.2s ease-in-out;
-
-    &[readonly],
-    &[disabled] {
-      cursor: inherit; // Follow container's cursor if set
-    }
-  }
-
-  &:hover {
-    .wim-input[readonly] {
-
-      // Only add hover effect if cursor is set to pointer (Select-like)
-      &:not([disabled]) {
-        background-color: var(--color-tertiary-hover);
-      }
-    }
-  }
-
-  &:focus-within {
-    .wim-input-icon {
-
-      // Usually, only the secondary (default) icon color should turn primary on focus
-      .wim-icon--secondary {
-        color: var(--color-primary);
-      }
-    }
-  }
-}
-
-.wim-input-icon {
-  position: absolute;
-  top: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  pointer-events: none;
-  transform: translateY(-50%);
-  transition: color 0.3s ease-in-out;
-
-  &--clickable {
-    pointer-events: auto;
-  }
-
-  &--left {
-    left: var(--spacing-xl);
-  }
-
-  &--right {
-    right: var(--spacing-xl);
-  }
-}
-
-.wim-input-icons {
-  position: absolute;
-  top: 50%;
-  display: flex;
-  gap: var(--spacing-xs);
-  align-items: center;
-  pointer-events: none;
-  transform: translateY(-50%);
-  transition: color 0.3s ease-in-out;
-
-  &--right {
-    right: var(--spacing-sm);
-  }
-}
-
-.wim-input-icon-item {
-  display: flex;
-  align-items: center;
-  pointer-events: none;
-
-  &--clickable {
-    pointer-events: auto;
-  }
-}
-
-.wim-input-icon-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-3xs);
-  margin: -(var(--spacing-3xs));
-  color: inherit;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-sm);
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    background-color: var(--color-tertiary-hover);
-  }
-
-  &:active {
-    background-color: var(--color-tertiary-active);
-  }
-
-  &:focus-visible {
-    outline: none;
-    box-shadow: var(--shadow-focus);
-  }
+// When inside InputBase, let it handle the shell
+.wim-input-base > .wim-input {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
 }

@@ -1,13 +1,11 @@
-﻿.wim-segmented-control {
-  position: relative;
+@use "../../styles/indicator-mixins" as indicator;
+
+.wim-segmented-control {
+  @include indicator.indicator-container-segmented($padding: 2px);
   display: inline-grid;
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
-  padding: 2px;
-  overflow: hidden;
   user-select: none;
-  background-color: rgb(0 0 0 / 0.05);
-  border-radius: var(--radius-md);
 
   &.wim-segmented-control--full-width {
     display: grid;
@@ -15,32 +13,26 @@
   }
 
   .wim-segmented-control__slider {
-    position: absolute;
-    top: 2px;
-    bottom: 2px;
-    left: 2px;
-    z-index: 1;
-    background-color: #fff;
-    border-radius: calc(var(--radius-md) - 2px);
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    @include indicator.indicator-slider-contained($offset: 2px);
+    opacity: 0;
+
+    .wim-segmented-control--ready & {
+      transition: 
+        transform 0.2s cubic-bezier(0.2, 0, 0, 1),
+        width 0.2s cubic-bezier(0.2, 0, 0, 1),
+        opacity 0.2s ease;
+    }
   }
 
   .wim-segmented-control__item {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    gap: var(--spacing-xs);
-    align-items: center;
-    justify-content: center;
-    font: inherit;
+    @include indicator.indicator-item-base;
+    height: var(--wim-tab-nav-height);
+    padding: var(--wim-tab-nav-padding);
+    font-size: var(--wim-tab-nav-font-size);
     font-weight: var(--font-weight-medium);
     color: var(--text-secondary);
-    min-width: 0;
-    cursor: pointer;
-    background: none;
-    border: none;
-    transition: color 0.2s ease;
+    white-space: nowrap;
+    text-decoration: none;
 
     &:hover {
       color: var(--text-primary);

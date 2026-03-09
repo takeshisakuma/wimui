@@ -180,6 +180,14 @@ export const DrawerClose = ({
 };
 
 // --- Drawer Content ---
+import { OverlayBase } from "../_internal/OverlayBase";
+import "./drawer.scss";
+
+// --- Drawer Context ---
+// ... (rest of context and root remains)
+// Skipping to DrawerContent refactor
+
+// --- Drawer Content ---
 export interface DrawerContentProps {
   children: React.ReactNode;
   className?: string;
@@ -187,38 +195,9 @@ export interface DrawerContentProps {
 
 export const DrawerContent = ({ children, className }: DrawerContentProps) => {
   const { open, onOpenChange, side, slideIn, slideOut } = useDrawer();
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  // Close on Escape
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && open) {
-        e.preventDefault();
-        e.stopPropagation();
-        onOpenChange(false);
-      }
-    };
-
-    if (open) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [open, onOpenChange]);
-
-  // Lock body scroll
-  useEffect(() => {
-    if (open) {
-      const originalStyle = window.getComputedStyle(document.body).overflow;
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = originalStyle;
-      };
-    }
-  }, [open]);
 
   const slideTransition = {
+    appear: slideIn,
     enter: slideIn ? `slide-${side}-enter` : "",
     enterFrom: slideIn ? `slide-${side}-enter-from` : "",
     enterTo: slideIn ? `slide-${side}-enter-to` : "",
@@ -228,47 +207,22 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
   };
 
   return (
-    <Portal>
-      {/* Outer transition acts as the overlay */}
-      <Transition
-        show={open}
-        enter="fade-enter"
-        enterFrom="fade-enter-from"
-        enterTo="fade-enter-to"
-        leave="fade-leave"
-        leaveFrom="fade-leave-from"
-        leaveTo="fade-leave-to"
-        className="wim-drawer-overlay"
-        onClick={(e) => {
-          if (e.target === e.currentTarget) {
-            onOpenChange(false);
-          }
-        }}
-      >
-        {/* Inner transition acts directly as the drawer content to prevent containing block CSS bugs */}
-        <Transition
-          show={open}
-          appear={slideIn}
-          {...slideTransition}
-          className={classNames(
-            "wim-drawer-content",
-            `wim-drawer-content--${side}`,
-            className,
-          )}
-          ref={contentRef}
-          role="dialog"
-          aria-modal="true"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* FocusTrap renders a display:contents div so children flex properly into drawer-content */}
-          <FocusTrap active={open} autoFocus={true}>
-            {children}
-          </FocusTrap>
-        </Transition>
-      </Transition>
-    </Portal>
+    <OverlayBase
+      open={open}
+      onOpenChange={onOpenChange}
+      overlayClassName="wim-drawer-overlay"
+      contentClassName={classNames(
+        "wim-drawer-content",
+        `wim-drawer-content--${side}`,
+        className,
+      )}
+      transitionProps={slideTransition}
+    >
+      {children}
+    </OverlayBase>
   );
 };
+
 
 // --- Drawer Sections ---
 export const DrawerHeader = ({

@@ -17,39 +17,52 @@ const meta: Meta<typeof TreeSelect> = {
 export default meta;
 type Story = StoryObj<typeof TreeSelect>;
 
+const defaultTreeData: TreeSelectNode[] = [
+  {
+    label: "story_treeselect_design",
+    value: "design",
+    icon: <Icon name="EditIcon" size="small" />,
+    children: [
+      {
+        label: "story_treeselect_colors",
+        value: "colors",
+        children: [
+          { label: "story_treeselect_primary", value: "primary" },
+          { label: "story_treeselect_secondary", value: "secondary" },
+        ],
+      },
+      {
+        label: "story_treeselect_typography",
+        value: "typography",
+      },
+    ],
+  },
+  {
+    label: "story_treeselect_components",
+    value: "components",
+    icon: <Icon name="ProjectIcon" size="small" />,
+    children: [
+      { label: "story_treeselect_button", value: "button" },
+      { label: "story_treeselect_input", value: "input" },
+    ],
+  },
+];
+
+const translateTreeData = (
+  nodes: TreeSelectNode[],
+  t: any,
+): TreeSelectNode[] => {
+  return nodes.map((node) => ({
+    ...node,
+    label: t(node.label),
+    children: node.children ? translateTreeData(node.children, t) : undefined,
+  }));
+};
+
 export const Default: Story = {
   render: (args) => {
     const { t } = useTranslation("docs");
-    const treeData: TreeSelectNode[] = [
-      {
-        label: "story_treeselect_design",
-        value: "design",
-        icon: <Icon name="EditIcon" size="small" />,
-        children: [
-          {
-            label: "story_treeselect_colors",
-            value: "colors",
-            children: [
-              { label: "story_treeselect_primary", value: "primary" },
-              { label: "story_treeselect_secondary", value: "secondary" },
-            ],
-          },
-          {
-            label: "story_treeselect_typography",
-            value: "typography",
-          },
-        ],
-      },
-      {
-        label: "story_treeselect_components",
-        value: "components",
-        icon: <Icon name="ProjectIcon" size="small" />,
-        children: [
-          { label: "story_treeselect_button", value: "button" },
-          { label: "story_treeselect_input", value: "input" },
-        ],
-      },
-    ];
+    const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect
         {...args}
@@ -63,18 +76,7 @@ export const Default: Story = {
 export const Multiple: Story = {
   render: (args) => {
     const { t } = useTranslation("docs");
-    const treeData: TreeSelectNode[] = [
-      {
-        label: "story_treeselect_design",
-        value: "design",
-        children: [
-          {
-            label: "story_treeselect_colors",
-            value: "colors",
-          },
-        ],
-      },
-    ];
+    const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect
         {...args}
@@ -89,9 +91,11 @@ export const Multiple: Story = {
 export const Searchable: Story = {
   render: (args) => {
     const { t } = useTranslation("docs");
+    const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect
         {...args}
+        treeData={treeData}
         searchable
         placeholder={t("story_treeselect_placeholder")}
       />
@@ -102,9 +106,11 @@ export const Searchable: Story = {
 export const DefaultExpanded: Story = {
   render: (args) => {
     const { t } = useTranslation("docs");
+    const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect
         {...args}
+        treeData={treeData}
         defaultExpandedKeys={["design", "colors"]}
         placeholder={t("story_treeselect_placeholder")}
       />
@@ -115,9 +121,11 @@ export const DefaultExpanded: Story = {
 export const Disabled: Story = {
   render: (args) => {
     const { t } = useTranslation("docs");
+    const treeData = translateTreeData(defaultTreeData, t);
     return (
       <TreeSelect
         {...args}
+        treeData={treeData}
         disabled
         placeholder={t("story_treeselect_placeholder")}
       />

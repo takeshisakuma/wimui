@@ -49,19 +49,19 @@ const options = [
 
 ## <T k="doc_variations" />
 
-### Default
+### <T k="doc_default" />
 
 <Canvas of={SelectboxStories.Default} />
 
-### With Label
+### <T k="doc_with_label" />
 
 <Canvas of={SelectboxStories.WithLabel} />
 
-### Preselected
+### <T k="doc_selectbox_preselected" />
 
 <Canvas of={SelectboxStories.Preselected} />
 
-### Disabled
+### <T k="doc_disabled" />
 
 <Canvas of={SelectboxStories.Disabled} />
 
@@ -86,9 +86,9 @@ const options = [
 />
 ```
 
-カスタムフィルタ関数:
+### <T k="doc_selectbox_custom_filter_title" />
 
-デフォルトでは、大文字と小文字を区別しない部分一致検索が行われますが、カスタムフィルタ関数を提供することもできます。
+<p><T k="doc_selectbox_custom_filter_desc" /></p>
 
 ```jsx
 <Selectbox
@@ -137,47 +137,47 @@ const groupedOptions = [
 
 <table>
   <thead>
-            <tr>
-          <th>キー</th>
-          <th>アクション</th>
+        <tr>
+          <th><T k="table_header_key" /></th>
+          <th><T k="table_header_action" /></th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-            <code>Enter</code> / <code>Space</code>
+            <code><T k="table_key_enter" /></code> / <code><T k="table_key_space" /></code>
           </td>
-          <td>ドロップダウンを開く / ハイライトされたオプションを選択</td>
+          <td><T k="doc_selectbox_op_open_select" /></td>
         </tr>
         <tr>
           <td>
-            <code>Escape</code>
+            <code><T k="table_key_escape" /></code>
           </td>
-          <td>ドロップダウンを閉じる</td>
+          <td><T k="doc_selectbox_op_close" /></td>
         </tr>
     <tr>
       <td>
         <code>ArrowDown</code>
       </td>
-      <td>下矢印キーで次のオプションにフォーカス</td>
+      <td><T k="doc_selectbox_op_next" /></td>
     </tr>
     <tr>
       <td>
         <code>ArrowUp</code>
       </td>
-      <td>上矢印キーで前のオプションにフォーカス</td>
+      <td><T k="doc_selectbox_op_prev" /></td>
     </tr>
     <tr>
       <td>
         <code>Home</code>
       </td>
-      <td>Homeキーで最初のオプションにフォーカス</td>
+      <td><T k="doc_selectbox_op_first" /></td>
     </tr>
     <tr>
       <td>
         <code>End</code>
       </td>
-      <td>Endキーで最後のオプションにフォーカス</td>
+      <td><T k="doc_selectbox_op_last" /></td>
     </tr>
   </tbody>
 </table>
@@ -200,14 +200,14 @@ const groupedOptions = [
 
 ## <T k="doc_accessibility" />
 
-<p>Selectboxコンポーネントは、WAI-ARIAのアクセシビリティガイドラインに準拠しています：</p>
+<p><T k="doc_selectbox_a11y_desc" /></p>
 
 <ul>
-  <li>role="combobox" と role="listbox" の適切な使用</li>
-  <li>aria-expanded、aria-selected、aria-disabled の状態管理</li>
-  <li>完全なキーボードナビゲーション</li>
-  <li>スクリーンリーダー対応</li>
-  <li>フォーカス管理とスムーズなスクロール</li>
+  <li><T k="doc_selectbox_a11y_1" /></li>
+  <li><T k="doc_selectbox_a11y_2" /></li>
+  <li><T k="doc_selectbox_a11y_3" /></li>
+  <li><T k="doc_selectbox_a11y_4" /></li>
+  <li><T k="doc_selectbox_a11y_5" /></li>
 </ul>
 
 ## <T k="doc_props" />

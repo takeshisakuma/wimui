@@ -167,7 +167,7 @@ export const Rating = ({
     <div className={classNames("wim-rating-container", className)}>
       {label && (
         <div id={labelId} className="wim-label" style={{ marginBottom: "4px" }}>
-          {label}
+          {t(label)}
         </div>
       )}
       <div

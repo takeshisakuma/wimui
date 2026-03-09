@@ -21,6 +21,8 @@ import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import "./popover.scss";
 
+import { useFloatingElement } from "../_internal/useFloatingElement";
+
 type PopoverContextValue = {
   isOpen: boolean;
   setOpen: (open: boolean) => void;
@@ -68,35 +70,20 @@ export const Popover = ({
   onOpenChange,
   placement = "bottom-start",
 }: PopoverProps) => {
-  const { t } = useTranslation();
-
-  const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
-  const isOpen = controlledOpen ?? uncontrolledOpen;
-
-  const setOpen = (newOpen: boolean) => {
-    if (controlledOpen === undefined) {
-      setUncontrolledOpen(newOpen);
-    }
-    onOpenChange?.(newOpen);
-  };
-
-  const { refs, floatingStyles, context } = useFloating<ReferenceType>({
-    open: isOpen,
-    onOpenChange: setOpen,
+  const {
+    isOpen,
+    setOpen,
+    refs,
+    floatingStyles,
+    context,
+    getReferenceProps,
+    getFloatingProps,
+  } = useFloatingElement({
     placement,
-    whileElementsMounted: autoUpdate,
-    middleware: [offset(8), flip(), shift({ padding: 10 })],
+    open: controlledOpen,
+    onOpenChange,
+    trigger: "click",
   });
-
-  const click = useClick(context);
-  const dismiss = useDismiss(context);
-  const role = useRole(context);
-
-  const { getReferenceProps, getFloatingProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-  ]);
 
   const close = () => setOpen(false);
 
@@ -117,6 +104,7 @@ export const Popover = ({
     </PopoverContext.Provider>
   );
 };
+
 
 export type PopoverTriggerProps = {
   children: ReactNode;

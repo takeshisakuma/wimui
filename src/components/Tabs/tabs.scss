@@ -1,4 +1,5 @@
-﻿@use "../../tokens/breakpoints" as breakpoints;
+@use "../../tokens/breakpoints" as breakpoints;
+@use "../../styles/indicator-mixins" as indicator;
 
 @layer component {
   .wim-tabs {
@@ -115,17 +116,22 @@
       }
 
       &.wim-tabs__list--ready .wim-tabs__slider {
-        transition:
-          transform 0.2s cubic-bezier(0.2, 0, 0, 1),
-          width 0.2s cubic-bezier(0.2, 0, 0, 1),
-          height 0.2s cubic-bezier(0.2, 0, 0, 1);
+        // use default transitions from mixin
+        opacity: 1;
       }
     }
 
     &__slider {
-      position: absolute;
-      background-color: var(--color-primary);
-      z-index: 2;
+      @include indicator.indicator-slider-underline($bottom: 0px);
+      opacity: 0;
+
+      .wim-tabs--vertical & {
+        bottom: auto;
+        right: 0;
+        top: 0;
+        width: 2px;
+        border-radius: 0;
+      }
     }
 
     &__trigger {

@@ -2,11 +2,14 @@ import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
+import { IndicatorBase } from "../_internal/IndicatorBase";
 import "./chip.scss";
 
-type ChipProps = {
-  /** 表示するラベル */
-  label: string | React.ReactNode;
+export type ChipProps = {
+  /** 表示するコンテンツ (labelより優先されます) */
+  children?: React.ReactNode;
+  /** @deprecated Use children instead */
+  label?: string | React.ReactNode;
   /** クリック時のイベント。提供されるとボタンとして動作します。 */
   onClick?: (e: React.MouseEvent) => void;
   /** 削除時のイベント。提供されると×ボタンが表示されます。 */
@@ -20,9 +23,9 @@ type ChipProps = {
   /** 無効状態 */
   disabled?: boolean;
   /** 色 */
-  color?: "primary" | "secondary" | "neutral";
+  color?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
   /** バリアント */
-  variant?: "solid" | "outline";
+  variant?: "solid" | "outline" | "subtle";
   /** サイズ */
   size?: "small" | "medium";
   /** 追加のクラス名 */
@@ -35,6 +38,7 @@ type ChipProps = {
  * 選択、フィルタリング、または入力に使用されるインタラクティブなトークン。
  */
 export const Chip = ({
+  children,
   label,
   onClick,
   onDelete,
@@ -49,13 +53,14 @@ export const Chip = ({
   ...props
 }: ChipProps) => {
   const { t } = useTranslation();
+  const displayLabel = children ?? label;
 
   const content = (
     <>
       {avatar && <span className="wim-chip__avatar">{avatar}</span>}
       {!avatar && icon && <span className="wim-chip__icon">{icon}</span>}
       <span className="wim-chip__label">
-        {typeof label === "string" ? t(label) : label}
+        {typeof displayLabel === "string" ? t(displayLabel) : displayLabel}
       </span>
       {onDelete && !disabled && (
         <span
@@ -81,43 +86,26 @@ export const Chip = ({
     </>
   );
 
-  if (onClick) {
-    return (
-      <button
-        type="button"
-        className={classNames(
-          "wim-chip",
-          `wim-chip--${color}`,
-          `wim-chip--${variant}`,
-          `wim-chip--${size === "small" ? "sm" : "md"}`,
-          selected && "wim-chip--selected",
-          !disabled && "wim-chip--clickable",
-          className,
-        )}
-        onClick={onClick}
-        disabled={disabled}
-        {...props}
-      >
-        {content}
-      </button>
-    );
-  }
-
   return (
-    <span
+    <IndicatorBase
+      as={onClick ? "button" : "span"}
+      prefixClass="wim-chip"
+      color={color}
+      variant={variant}
+      size={size}
       className={classNames(
-        "wim-chip",
-        `wim-chip--${color}`,
-        `wim-chip--${variant}`,
-        `wim-chip--${size === "small" ? "sm" : "md"}`,
         selected && "wim-chip--selected",
         onClick && !disabled && "wim-chip--clickable",
         disabled && "wim-chip--disabled",
         className,
       )}
+      onClick={!disabled ? onClick : undefined}
+      disabled={disabled}
+      type={onClick ? "button" : undefined}
       {...props}
     >
       {content}
-    </span>
+    </IndicatorBase>
   );
 };
+
