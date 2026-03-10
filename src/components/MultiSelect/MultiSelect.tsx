@@ -7,6 +7,8 @@ import { BaseListItem } from "../_internal/BaseListItem";
 import { InputBase } from "../_internal/InputBase";
 import "./multiselect.scss";
 
+import { FieldTemplate } from "../_internal/FieldTemplate";
+
 export type MultiSelectOption = {
   label: string;
   value: string;
@@ -19,6 +21,9 @@ export type MultiSelectProps = {
   onChange?: (value: string[]) => void;
   placeholder?: string;
   label?: string;
+  error?: string;
+  required?: boolean;
+  layout?: "vertical" | "horizontal";
   className?: string;
   disabled?: boolean;
   defaultValue?: string[];
@@ -37,6 +42,9 @@ export const MultiSelect = ({
   onChange,
   placeholder = "Select options...",
   label,
+  error,
+  required,
+  layout,
   className,
   disabled = false,
   defaultValue = [],
@@ -49,10 +57,11 @@ export const MultiSelect = ({
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
   const containerRef = useRef<HTMLDivElement>(null);
   const generatedId = useId();
-  const id = customId || generatedId;
-  const listId = `wim-multiselect-list-${id}`;
-  const labelId = `wim-multiselect-label-${id}`;
-  const triggerId = `wim-multiselect-trigger-${id}`;
+  const id = customId || `wim-multiselect-${generatedId}`;
+  const listId = `${id}-list`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
+  const triggerId = `${id}-trigger`;
 
   const isControlled = value !== undefined;
   const currentValues = isControlled ? value : internalValue;
@@ -138,126 +147,133 @@ export const MultiSelect = ({
   } = props as any;
 
   return (
-    <div
-      className={classNames("wim-multiselect", className)}
-      ref={containerRef}
-      {...wrapperProps}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={className}
     >
-      {label && (
-        <label id={labelId} htmlFor={triggerId} className="wim-label">
-          {label}
-        </label>
-      )}
-      <InputBase
-        disabled={disabled}
-        allowClear={allowClear}
-        hasValue={currentValues && currentValues.length > 0}
-        onClear={() => handleClearAll({ stopPropagation: () => { } } as any)}
-        rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
-        className={classNames(
-          isOpen && "wim-multiselect-trigger--open",
-        )}
+      <div
+        className="wim-multiselect"
+        ref={containerRef}
+        {...wrapperProps}
       >
-        <div
-          id={triggerId}
+        <InputBase
+          disabled={disabled}
+          allowClear={allowClear}
+          hasValue={currentValues && currentValues.length > 0}
+          onClear={() => handleClearAll({ stopPropagation: () => { } } as any)}
+          status={error ? "error" : "default"}
+          rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
-            "wim-multiselect-trigger",
-            disabled && "wim-multiselect-trigger--disabled",
+            isOpen && "wim-multiselect-trigger--open",
           )}
-          onClick={handleToggle}
-          tabIndex={disabled ? -1 : 0}
-          role="combobox"
-          aria-expanded={isOpen}
-          aria-haspopup="listbox"
-          aria-controls={isOpen ? listId : undefined}
-          aria-disabled={disabled}
-          aria-labelledby={label ? labelId : ariaLabelledBy}
-          aria-label={label ? undefined : ariaLabel || placeholder}
-          aria-describedby={ariaDescribedBy}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              handleToggle(e as any);
-            }
-            if (e.key === "ArrowDown" && !isOpen) {
-              e.preventDefault();
-              setIsOpen(true);
-            }
-            if (e.key === "Escape" && isOpen) {
-              e.preventDefault();
-              setIsOpen(false);
-            }
-          }}
         >
           <div
+            id={triggerId}
             className={classNames(
-              "wim-multiselect-value",
-              selectedOptions.length === 0 &&
-              "wim-multiselect-value--placeholder",
+              "wim-multiselect-trigger",
+              disabled && "wim-multiselect-trigger--disabled",
             )}
+            onClick={handleToggle}
+            tabIndex={disabled ? -1 : 0}
+            role="combobox"
+            aria-expanded={isOpen}
+            aria-haspopup="listbox"
+            aria-controls={isOpen ? listId : undefined}
+            aria-disabled={disabled}
+            aria-labelledby={labelId || ariaLabelledBy}
+            aria-describedby={errorId || ariaDescribedBy}
+            aria-invalid={!!error}
+            aria-label={label ? undefined : ariaLabel || placeholder}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleToggle(e as any);
+              }
+              if (e.key === "ArrowDown" && !isOpen) {
+                e.preventDefault();
+                setIsOpen(true);
+              }
+              if (e.key === "Escape" && isOpen) {
+                e.preventDefault();
+                setIsOpen(false);
+              }
+            }}
           >
-            {selectedOptions.length > 0
-              ? selectedOptions.map((opt) => (
-                <Chip
-                  key={opt.value}
-                  label={opt.label}
-                  size="small"
-                  color="primary"
-                  variant="solid"
-                  disabled={disabled}
-                  onDelete={
-                    !disabled ? (e) => handleRemove(e, opt.value) : undefined
-                  }
-                  className="wim-multiselect-badge"
-                />
-              ))
-              : placeholder}
+            <div
+              className={classNames(
+                "wim-multiselect-value",
+                selectedOptions.length === 0 &&
+                "wim-multiselect-value--placeholder",
+              )}
+            >
+              {selectedOptions.length > 0
+                ? selectedOptions.map((opt) => (
+                  <Chip
+                    key={opt.value}
+                    label={opt.label}
+                    size="small"
+                    color="primary"
+                    variant="solid"
+                    disabled={disabled}
+                    onDelete={
+                      !disabled ? (e) => handleRemove(e, opt.value) : undefined
+                    }
+                    className="wim-multiselect-badge"
+                  />
+                ))
+                : placeholder}
+            </div>
           </div>
-        </div>
-      </InputBase>
+        </InputBase>
 
-      {isOpen && !disabled && (
-        <ul
-          id={listId}
-          className="wim-multiselect-list"
-          role="listbox"
-          aria-multiselectable="true"
-          aria-labelledby={label ? labelId : ariaLabelledBy || undefined}
-        >
-          {options.map((option) => {
-            const isSelected = currentValues?.includes(option.value);
-            return (
-              <BaseListItem
-                as="li"
-                key={option.value}
-                className={classNames(
-                  "wim-multiselect-option",
-                  isSelected && "wim-multiselect-option--selected",
-                )}
-                disabled={option.disabled}
-                onClick={() => !option.disabled && handleSelect(option.value)}
-                rightSection={
-                  isSelected ? <Icon name="CheckIcon" size="small" /> : undefined
-                }
-                role="option"
-                aria-selected={isSelected}
-                tabIndex={0}
-                onKeyDown={(e: React.KeyboardEvent) => {
-                  if (
-                    (e.key === "Enter" || e.key === " ") &&
-                    !option.disabled
-                  ) {
-                    e.preventDefault();
-                    handleSelect(option.value);
+        {isOpen && !disabled && (
+          <ul
+            id={listId}
+            className="wim-multiselect-list"
+            role="listbox"
+            aria-multiselectable="true"
+            aria-labelledby={labelId || ariaLabelledBy || undefined}
+          >
+            {options.map((option) => {
+              const isSelected = currentValues?.includes(option.value);
+              return (
+                <BaseListItem
+                  as="li"
+                  key={option.value}
+                  className={classNames(
+                    "wim-multiselect-option",
+                    isSelected && "wim-multiselect-option--selected",
+                  )}
+                  disabled={option.disabled}
+                  onClick={() => !option.disabled && handleSelect(option.value)}
+                  rightSection={
+                    isSelected ? <Icon name="CheckIcon" size="small" /> : undefined
                   }
-                }}
-              >
-                {option.label}
-              </BaseListItem>
-            );
-          })}
-        </ul>
-      )}
-    </div>
+                  role="option"
+                  aria-selected={isSelected}
+                  tabIndex={0}
+                  onKeyDown={(e: React.KeyboardEvent) => {
+                    if (
+                      (e.key === "Enter" || e.key === " ") &&
+                      !option.disabled
+                    ) {
+                      e.preventDefault();
+                      handleSelect(option.value);
+                    }
+                  }}
+                >
+                  {option.label}
+                </BaseListItem>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </FieldTemplate>
   );
 };

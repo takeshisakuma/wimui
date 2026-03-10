@@ -11,7 +11,7 @@ const meta: Meta<typeof DatePicker> = {
     layout: "centered",
   },
   argTypes: {
-    state: {
+    status: {
       control: "select",
       options: ["default", "error", "disabled"],
     },
@@ -66,7 +66,7 @@ export const ErrorStatus: Story = {
     const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_picker_error")}>
-        <DatePicker {...args} state="error" />
+        <DatePicker {...args} status="error" />
       </Label>
     );
   },

@@ -15,6 +15,7 @@ import {
   Placement,
   ReferenceType,
   FloatingContext,
+  FloatingFocusManager,
 } from "@floating-ui/react";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
@@ -170,23 +171,22 @@ export type PopoverContentProps = {
   className?: string;
   align?: "left" | "right" | "center";
   side?: "top" | "bottom";
+  /** Whether the popover is modal. If true, focus will be trapped inside and interaction with outside will be disabled. */
+  modal?: boolean;
 };
 
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,
   PopoverContentProps & React.HTMLAttributes<HTMLDivElement>
->(({ children, className, align, side, style, ...props }, propRef) => {
+>(({ children, className, align, side, style, modal = false, ...props }, propRef) => {
   const context = React.useContext(PopoverContext);
 
   if (context == null) {
     throw new Error("Popover components must be wrapped in <Popover />");
   }
 
-  const { open, refs, floatingStyles, getFloatingProps } = context;
+  const { open, refs, floatingStyles, getFloatingProps, context: floatingContext } = context;
   const ref = useMergeRefs([refs.setFloating, propRef]);
-
-  // align and side are handled by Popover's placement prop now, but we keep them for backward compatibility in stories
-  // Map old align/side to placement if needed? Actually, let's just use the current placement.
 
   return (
     <FloatingPortal>
@@ -199,15 +199,17 @@ export const PopoverContent = React.forwardRef<
         leaveFrom="fade-leave-from"
         leaveTo="fade-leave-to"
       >
-        <div
-          ref={ref}
-          style={{ ...floatingStyles, ...style }}
-          className={classNames("wim-popover-content", className)}
-          role="dialog"
-          {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
-        >
-          {children}
-        </div>
+        <FloatingFocusManager context={floatingContext} modal={modal}>
+          <div
+            ref={ref}
+            style={{ ...floatingStyles, ...style }}
+            className={classNames("wim-popover-content", className)}
+            role="dialog"
+            {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
+          >
+            {children}
+          </div>
+        </FloatingFocusManager>
       </Transition>
     </FloatingPortal>
   );

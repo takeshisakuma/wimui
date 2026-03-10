@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useId } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./input.scss";
 import { Icon } from "../Icon/Icon";
+import { InputBase, InputBaseIcon } from "../_internal/InputBase";
+import { FieldTemplate } from "../_internal/FieldTemplate";
 
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   status?: "default" | "error" | "disabled";
@@ -19,9 +21,11 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   rightIconClassName?: string;
   rightIconRotated?: boolean;
   width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
+  label?: string;
+  error?: string;
+  required?: boolean;
+  layout?: "vertical" | "horizontal";
 };
-
-import { InputBase, InputBaseIcon } from "../_internal/InputBase";
 
 /**
  * ユーザーからの入力を受け付けるための基本コンポーネント。
@@ -49,6 +53,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       defaultValue,
       onChange,
       type,
+      label,
+      error,
+      required,
+      layout,
+      id: customId,
       ...props
     },
     ref,
@@ -155,44 +164,61 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }
 
     const inputType = type === "password" && isPasswordVisible ? "text" : type;
-    const effectiveStatus = isDisabled ? "disabled" : status;
+    const effectiveStatus = isDisabled ? "disabled" : (error ? "error" : status);
+
+    const generatedId = useId();
+    const id = customId || `wim-input-${generatedId}`;
+    const errorId = error ? `${id}-error` : undefined;
+    const labelId = label ? `${id}-label` : undefined;
 
     return (
-      <InputBase
-        status={effectiveStatus}
-        variant={variant}
-        fullWidth={fullWidth}
-        width={width}
-        disabled={isDisabled}
-        leftIcon={leftIcon}
-        leftIconColor={leftIconColor}
-        onLeftIconClick={onLeftIconClick}
-        rightIcons={rightIcons}
-        allowClear={allowClear}
-        hasValue={!!currentValue}
-        onClear={handleClear}
+      <FieldTemplate
+        label={label}
+        error={error}
+        required={required}
+        layout={layout}
+        labelId={labelId}
+        errorId={errorId}
         className={className}
       >
-        <input
-          ref={mergedRef}
-          className={classNames(
-            "wim-input",
-            `wim-input--${effectiveStatus}`,
-            `wim-input--${variant}`,
-            fullWidth && "wim-input--full-width",
-            leftIcon && "wim-input--has-left-icon",
-            rightIcons.length > 0 && "wim-input--has-right-icon",
-            // Note: InputBase classes will handle most of the layout, but we keep core wim-input classes
-          )}
+        <InputBase
+          status={effectiveStatus}
+          variant={variant}
+          fullWidth={fullWidth}
+          width={width}
           disabled={isDisabled}
-          value={currentValue}
-          onChange={handleInputChange}
-          type={inputType}
-          {...props}
-          placeholder={props.placeholder ? t(props.placeholder) : undefined}
-          aria-label={props["aria-label"] ? t(props["aria-label"]) : undefined}
-        />
-      </InputBase>
+          leftIcon={leftIcon}
+          leftIconColor={leftIconColor}
+          onLeftIconClick={onLeftIconClick}
+          rightIcons={rightIcons}
+          allowClear={allowClear}
+          hasValue={!!currentValue}
+          onClear={handleClear}
+        >
+          <input
+            id={id}
+            ref={mergedRef}
+            className={classNames(
+              "wim-input",
+              `wim-input--${effectiveStatus}`,
+              `wim-input--${variant}`,
+              fullWidth && "wim-input--full-width",
+              leftIcon && "wim-input--has-left-icon",
+              rightIcons.length > 0 && "wim-input--has-right-icon",
+            )}
+            disabled={isDisabled}
+            value={currentValue}
+            onChange={handleInputChange}
+            type={inputType}
+            aria-invalid={effectiveStatus === "error"}
+            aria-describedby={errorId}
+            aria-labelledby={label ? labelId : undefined}
+            {...props}
+            placeholder={props.placeholder ? t(props.placeholder) : undefined}
+            aria-label={props["aria-label"] ? t(props["aria-label"]) : undefined}
+          />
+        </InputBase>
+      </FieldTemplate>
     );
   },
 );

@@ -11,7 +11,7 @@ export type TimePickerProps = Omit<InputProps, "type" | "rightIcon">;
  * ユーザーが時間を選択するためのコンポーネント。
  */
 export const TimePicker = ({
-  state = "default",
+  status = "default",
   variant = "outline",
   fullWidth = false,
   className,
@@ -24,7 +24,7 @@ export const TimePicker = ({
       type="time"
       rightIcon="ClockIcon"
       allowClear={allowClear}
-      state={state}
+      status={status}
       variant={variant}
       fullWidth={fullWidth}
       className={classNames("wim-timepicker", className)}

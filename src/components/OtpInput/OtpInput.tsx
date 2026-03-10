@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
+import { FieldTemplate } from "../_internal/FieldTemplate";
 import "./otp-input.scss";
 
 type OtpInputProps = {
@@ -8,7 +9,10 @@ type OtpInputProps = {
   value?: string;
   onChange?: (value: string) => void;
   disabled?: boolean;
-  error?: boolean;
+  error?: string;
+  required?: boolean;
+  label?: string;
+  layout?: "vertical" | "horizontal";
   className?: string;
 };
 
@@ -20,7 +24,10 @@ export const OtpInput = ({
   value = "",
   onChange,
   disabled = false,
-  error = false,
+  error,
+  required,
+  label,
+  layout,
   className,
 }: OtpInputProps) => {
   const { t } = useTranslation(["components"]);
@@ -30,6 +37,11 @@ export const OtpInput = ({
   );
   const [prevValue, setPrevValue] = useState(value);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const generatedId = React.useId();
+  const id = `wim-otp-input-${generatedId}`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
 
   // value propsが変更されたら内部状態を同期 (Derived State Pattern)
   if (value !== prevValue) {
@@ -118,34 +130,46 @@ export const OtpInput = ({
   };
 
   return (
-    <div
-      className={classNames(
-        "wim-otp-input-container",
-        disabled && "wim-otp-input-container--disabled",
-        className,
-      )}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={className}
     >
-      {Array.from({ length }).map((_, index) => (
-        <input
-          key={index}
-          ref={(el) => {
-            inputRefs.current[index] = el;
-          }}
-          className={classNames(
-            "wim-otp-input",
-            error && "wim-otp-input--error",
-            disabled && "wim-otp-input--disabled",
-          )}
-          type="text"
-          maxLength={1} // 基本的に1文字だが、onChange制御で上書きも許可している
-          value={internalValues[index]}
-          onChange={(e) => handleInputChange(e, index)}
-          onKeyDown={(e) => handleKeyDown(e, index)}
-          onPaste={handlePaste}
-          disabled={disabled}
-          aria-label={t("otp_digit", { index: index + 1 })}
-        />
-      ))}
-    </div>
+      <div
+        className={classNames(
+          "wim-otp-input-container",
+          disabled && "wim-otp-input-container--disabled",
+        )}
+      >
+        {Array.from({ length }).map((_, index) => (
+          <input
+            key={index}
+            id={index === 0 ? id : undefined}
+            ref={(el) => {
+              inputRefs.current[index] = el;
+            }}
+            className={classNames(
+              "wim-otp-input",
+              error && "wim-otp-input--error",
+              disabled && "wim-otp-input--disabled",
+            )}
+            type="text"
+            maxLength={1} // 基本的に1文字だが、onChange制御で上書きも許可している
+            value={internalValues[index]}
+            onChange={(e) => handleInputChange(e, index)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            onPaste={handlePaste}
+            disabled={disabled}
+            aria-label={t("otp_digit", { index: index + 1 })}
+            aria-invalid={!!error}
+            aria-describedby={errorId}
+          />
+        ))}
+      </div>
+    </FieldTemplate>
   );
 };

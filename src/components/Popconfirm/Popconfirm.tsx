@@ -76,26 +76,33 @@ export const Popconfirm = ({
     return <>{children}</>;
   }
 
+  const titleId = React.useId();
+  const descriptionId = React.useId();
+
   return (
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
-      <PopoverContent className="wim-popconfirm-content">
+      <PopoverContent
+        className="wim-popconfirm-content"
+        aria-labelledby={titleId}
+        aria-describedby={description ? descriptionId : undefined}
+      >
         <div className="wim-popconfirm-inner">
           <div className="wim-popconfirm-message">
             <span className="wim-popconfirm-icon">
               <FeedbackIcon
-                variant="warning"
+                status="warning"
                 icon={icon}
                 size="small"
                 color="caution"
               />
             </span>
-            <div className="wim-popconfirm-title">
+            <div id={titleId} className="wim-popconfirm-title">
               {typeof title === "string" ? t(title) : title}
             </div>
           </div>
           {description && (
-            <div className="wim-popconfirm-description">
+            <div id={descriptionId} className="wim-popconfirm-description">
               {typeof description === "string" ? t(description) : description}
             </div>
           )}

@@ -84,7 +84,7 @@ export const FileUpload = ({
         <Button
           label={actualButtonLabel}
           onClick={handleClick}
-          state={disabled ? "disabled" : "abled"}
+          disabled={disabled}
           priority="secondary"
           iconName={iconName}
           iconPosition={iconPosition}

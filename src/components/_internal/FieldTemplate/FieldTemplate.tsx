@@ -31,6 +31,10 @@ export type FieldTemplateProps = {
    */
   labelId?: string;
   /**
+   * エラー表示用のID
+   */
+  errorId?: string;
+  /**
    * カスタムクラス名
    */
   className?: string;
@@ -46,6 +50,7 @@ export const FieldTemplate = ({
   required,
   layout = "vertical",
   labelId,
+  errorId,
   className,
 }: FieldTemplateProps) => {
   return (
@@ -68,7 +73,13 @@ export const FieldTemplate = ({
       )}
       <div className="wim-field-template-content">
         {children}
-        {error && <FieldError content={error} className="wim-field-template-error" />}
+        {error && (
+          <FieldError
+            id={errorId}
+            content={error}
+            className="wim-field-template-error"
+          />
+        )}
       </div>
     </div>
   );

@@ -1,12 +1,21 @@
 import React, {
   useState,
-  useEffect,
-  useLayoutEffect,
   useRef,
   ReactNode,
 } from "react";
 import classNames from "classnames";
-import { Portal } from "../Portal/Portal";
+import {
+  useFloating,
+  autoUpdate,
+  flip,
+  shift,
+  useDismiss,
+  useRole,
+  useInteractions,
+  FloatingPortal,
+  FloatingFocusManager,
+  useMergeRefs,
+} from "@floating-ui/react";
 import { Transition } from "../Transition/Transition";
 import { BaseListItem } from "../_internal/BaseListItem";
 import "./contextMenu.scss";
@@ -26,85 +35,55 @@ export const ContextMenu = ({
   className,
   disabled = false,
 }: ContextMenuProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { refs, floatingStyles, context } = useFloating({
+    open: isOpen,
+    onOpenChange: setIsOpen,
+    middleware: [
+      flip(),
+      shift({ padding: 10 }),
+    ],
+    whileElementsMounted: autoUpdate,
+  });
+
+  const dismiss = useDismiss(context);
+  const role = useRole(context, { role: "menu" });
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    dismiss,
+    role,
+  ]);
 
   const handleContextMenu = (e: React.MouseEvent) => {
     if (disabled) return;
 
     e.preventDefault();
-    e.stopPropagation();
 
-    const { clientX, clientY } = e;
-    setPosition({ x: clientX, y: clientY });
-    setIsVisible(true);
+    refs.setReference({
+      getBoundingClientRect() {
+        return {
+          width: 0,
+          height: 0,
+          x: e.clientX,
+          y: e.clientY,
+          top: e.clientY,
+          left: e.clientX,
+          right: e.clientX,
+          bottom: e.clientY,
+        };
+      },
+    });
+
+    setIsOpen(true);
   };
 
   const handleClose = () => {
-    setIsVisible(false);
+    setIsOpen(false);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        handleClose();
-      }
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        handleClose();
-      }
-    };
-
-    const handleScroll = () => {
-      handleClose();
-    };
-
-    if (isVisible) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("keydown", handleKeyDown);
-      document.addEventListener("scroll", handleScroll, true);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("scroll", handleScroll, true);
-    };
-  }, [isVisible]);
-
-  // Adjust position to keep menu within viewport
-  useLayoutEffect(() => {
-    if (isVisible && menuRef.current) {
-      const menuRect = menuRef.current.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-
-      let { x, y } = position;
-
-      // Adjust horizontal position
-      if (x + menuRect.width > viewportWidth) {
-        x = viewportWidth - menuRect.width - 10;
-      }
-
-      // Adjust vertical position
-      if (y + menuRect.height > viewportHeight) {
-        y = viewportHeight - menuRect.height - 10;
-      }
-
-      // Ensure minimum position
-      x = Math.max(10, x);
-      y = Math.max(10, y);
-
-      if (x !== position.x || y !== position.y) {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setPosition({ x, y });
-      }
-    }
-  }, [isVisible, position]);
+  // Merge refs for the container
+  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <div
@@ -113,31 +92,33 @@ export const ContextMenu = ({
       onContextMenu={handleContextMenu}
     >
       {children}
-      <Portal>
+      <FloatingPortal>
         <Transition
-          show={isVisible}
+          show={isOpen}
           enter="fade-enter"
           enterFrom="fade-enter-from"
           enterTo="fade-enter-to"
           leave="fade-leave"
           leaveFrom="fade-leave-from"
           leaveTo="fade-leave-to"
-          ref={menuRef}
-          className="wim-context-menu"
-          style={{
-            left: `${position.x}px`,
-            top: `${position.y}px`,
-          }}
-          role="menu"
-          onClick={handleClose}
-          onKeyDown={(e) => {
-            if (e.key === "Escape") handleClose();
-          }}
-          tabIndex={-1}
         >
-          {menu}
+          <FloatingFocusManager context={context} modal={true}>
+            <div
+              ref={refs.setFloating}
+              className="wim-context-menu"
+              style={floatingStyles}
+              {...getFloatingProps({
+                onClick: handleClose,
+                onKeyDown(e) {
+                  if (e.key === "Escape") handleClose();
+                },
+              })}
+            >
+              {menu}
+            </div>
+          </FloatingFocusManager>
         </Transition>
-      </Portal>
+      </FloatingPortal>
     </div>
   );
 };

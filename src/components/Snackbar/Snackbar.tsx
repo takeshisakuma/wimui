@@ -96,70 +96,97 @@ export const Snackbar = ({
     }, 300);
   }, [onClose]);
 
-  useEffect(() => {
-    if (open && autoHideDuration > 0) {
-      const timer = setTimeout(() => {
-        handleClose();
-      }, autoHideDuration);
-      return () => clearTimeout(timer);
-    }
-  }, [open, autoHideDuration, handleClose]);
+    const [remainingTime, setRemainingTime] = useState(autoHideDuration);
+    const [lastStartTime, setLastStartTime] = useState(Date.now());
+    const [isPaused, setIsPaused] = useState(false);
 
-  const handleAction = () => {
-    if (onAction) onAction();
-  };
+    useEffect(() => {
+      if (open && autoHideDuration > 0 && !isPaused) {
+        const timer = setTimeout(() => {
+          handleClose();
+        }, remainingTime);
+        setLastStartTime(Date.now());
+        return () => clearTimeout(timer);
+      }
+    }, [open, autoHideDuration, handleClose, isPaused, remainingTime]);
 
-  if (!isRendered && !open) return null;
+    const handleMouseEnter = () => {
+      if (autoHideDuration > 0) {
+        setIsPaused(true);
+        const elapsed = Date.now() - lastStartTime;
+        setRemainingTime((prev) => Math.max(0, prev - elapsed));
+      }
+    };
 
-  return (
-    <div
-      className={classNames(
-        "wim-snackbar-wrapper",
-        `wim-snackbar-wrapper--${position}`,
-      )}
-    >
+    const handleMouseLeave = () => {
+      if (autoHideDuration > 0) {
+        setLastStartTime(Date.now());
+        setIsPaused(false);
+      }
+    };
+
+    const handleAction = () => {
+      if (onAction) onAction();
+    };
+
+    if (!isRendered && !open) return null;
+
+    const role = variant === "error" || variant === "warning" ? "alert" : "status";
+    const ariaLive = variant === "error" || variant === "warning" ? "assertive" : "polite";
+
+    return (
       <div
         className={classNames(
-          "wim-snackbar",
-          `wim-snackbar--${variant}`,
-          isVisible && "wim-snackbar--visible",
-          className,
+          "wim-snackbar-wrapper",
+          `wim-snackbar-wrapper--${position}`,
         )}
-        role="status"
-        aria-live="polite"
       >
-        <div className="wim-snackbar__content">
-          {variant !== "default" && (
-            <div className="wim-snackbar__icon">
-              <FeedbackIcon
-                variant={variant as any}
-                size="small"
-              />
-            </div>
+        <div
+          className={classNames(
+            "wim-snackbar",
+            `wim-snackbar--${variant}`,
+            isVisible && "wim-snackbar--visible",
+            className,
           )}
-          <span className="wim-snackbar__message">{message}</span>
-        </div>
+          role={role}
+          aria-live={ariaLive}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onFocus={handleMouseEnter}
+          onBlur={handleMouseLeave}
+        >
+          <div className="wim-snackbar__content">
+            {variant !== "default" && (
+              <div className="wim-snackbar__icon">
+                <FeedbackIcon
+                  status={variant as any}
+                  size="small"
+                />
+              </div>
+            )}
+            <span className="wim-snackbar__message">{message}</span>
+          </div>
 
-        <div className="wim-snackbar__actions">
-          {actionLabel && (
-            <Button
-              priority="tertiary"
+          <div className="wim-snackbar__actions">
+            {actionLabel && (
+              <Button
+                priority="tertiary"
+                size="small"
+                onClick={handleAction}
+                className="wim-snackbar__action-button"
+                label={actionLabel}
+              />
+            )}
+            <FeedbackCloseButton
+              onClose={showCloseButton ? handleClose : undefined}
+              className="wim-snackbar__close-button"
               size="small"
-              onClick={handleAction}
-              className="wim-snackbar__action-button"
-              label={actionLabel}
             />
-          )}
-          <FeedbackCloseButton
-            onClose={showCloseButton ? handleClose : undefined}
-            className="wim-snackbar__close-button"
-            size="small"
-          />
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
 // --- Snackbar System (Provider & Hook) ---
 

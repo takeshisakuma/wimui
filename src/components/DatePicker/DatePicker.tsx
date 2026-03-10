@@ -7,11 +7,13 @@ import { InputBase } from "../_internal/InputBase";
 import "../Input/input.scss";
 import "./datePicker.scss";
 
+import { FieldTemplate } from "../_internal/FieldTemplate";
+
 type DatePickerProps = Omit<
   React.ComponentPropsWithoutRef<"input">,
   "value" | "defaultValue" | "onChange"
 > & {
-  state?: "default" | "error" | "disabled";
+  status?: "default" | "error" | "disabled";
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   /** Selected date value */
@@ -32,13 +34,17 @@ type DatePickerProps = Omit<
   maxDate?: Date;
   /** Disabled dates */
   disabledDates?: Date[];
+  label?: string;
+  error?: string;
+  required?: boolean;
+  layout?: "vertical" | "horizontal";
 };
 
 /**
  * ユーザーが日付を選択するためのコンポーネント。
  */
 export const DatePicker = ({
-  state = "default",
+  status = "default",
   variant = "outline",
   fullWidth = false,
   className,
@@ -52,6 +58,11 @@ export const DatePicker = ({
   minDate,
   maxDate,
   disabledDates,
+  label,
+  error,
+  required,
+  layout,
+  id: customId,
   ...props
 }: DatePickerProps) => {
   const { t } = useTranslation("common");
@@ -62,12 +73,17 @@ export const DatePicker = ({
   );
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const dropdownId = useId();
+  const generatedId = useId();
+  const id = customId || `wim-datepicker-${generatedId}`;
+  const dropdownId = `${id}-dropdown`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
 
   const isControlled = value !== undefined;
   const currentValue = isControlled ? value : internalValue;
 
   const actualPlaceholder = placeholder ?? t("datepicker_placeholder");
+  const effectiveStatus = disabled ? "disabled" : (error ? "error" : status);
 
   // Close calendar when clicking outside
   useEffect(() => {
@@ -107,14 +123,16 @@ export const DatePicker = ({
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!isControlled) {
-      setInternalValue(null);
+    if (!disabled && status !== "disabled") {
+      if (!isControlled) {
+        setInternalValue(null);
+      }
+      onChange?.(null);
     }
-    onChange?.(null);
   };
 
   const handleInputClick = () => {
-    if (!disabled && state !== "disabled") {
+    if (!disabled && status !== "disabled") {
       setIsOpen(!isOpen);
     }
   };
@@ -129,57 +147,70 @@ export const DatePicker = ({
   };
 
   return (
-    <div
-      ref={containerRef}
-      className={classNames(
-        "wim-datepicker-wrapper",
-        fullWidth && "wim-input--full-width",
-        className,
-      )}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={className}
     >
-      <InputBase
-        state={disabled ? "disabled" : state}
-        variant={variant}
-        fullWidth={fullWidth}
-        disabled={disabled || state === "disabled"}
-        allowClear={clearable}
-        hasValue={!!currentValue}
-        onClear={() => handleClear({ stopPropagation: () => { } } as any)}
-        rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen, onClick: handleInputClick }]}
+      <div
+        ref={containerRef}
+        className={classNames(
+          "wim-datepicker-wrapper",
+          fullWidth && "wim-input--full-width",
+        )}
       >
-        <input
-          ref={inputRef}
-          type="text"
-          readOnly
-          className={classNames(
-            "wim-input",
-            "wim-datepicker-input",
-            fullWidth && "wim-input--full-width",
-          )}
-          value={formatDate(currentValue || null)}
-          placeholder={actualPlaceholder}
-          disabled={disabled || state === "disabled"}
-          onClick={handleInputClick}
-          onKeyDown={handleKeyDown}
-          aria-haspopup="dialog"
-          aria-expanded={isOpen}
-          aria-controls={isOpen ? dropdownId : undefined}
-          {...props}
-        />
-      </InputBase>
-      {isOpen && !disabled && state !== "disabled" && (
-        <div
-          id={dropdownId}
-          className="wim-datepicker-dropdown"
-          role="dialog"
-          aria-modal="false"
+        <InputBase
+          status={effectiveStatus}
+          variant={variant}
+          fullWidth={fullWidth}
+          disabled={disabled || status === "disabled"}
+          allowClear={clearable}
+          hasValue={!!currentValue}
+          onClear={() => handleClear({ stopPropagation: () => { } } as any)}
+          rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen, onClick: handleInputClick }]}
         >
-          <Calendar
-            value={currentValue || undefined}
-            onChange={handleDateChange}
+          <input
+            id={id}
+            ref={inputRef}
+            type="text"
+            readOnly
+            className={classNames(
+              "wim-input",
+              "wim-datepicker-input",
+              fullWidth && "wim-input--full-width",
+            )}
+            value={formatDate(currentValue || null)}
+            placeholder={actualPlaceholder}
+            disabled={disabled || status === "disabled"}
+            onClick={handleInputClick}
+            onKeyDown={handleKeyDown}
+            aria-haspopup="dialog"
+            aria-expanded={isOpen}
+            aria-controls={isOpen ? dropdownId : undefined}
+            aria-invalid={effectiveStatus === "error"}
+            aria-describedby={errorId}
+            aria-labelledby={labelId}
+            {...props}
           />
-        </div>
-      )}
-    </div>
+        </InputBase>
+        {isOpen && !disabled && status !== "disabled" && (
+          <div
+            id={dropdownId}
+            className="wim-datepicker-dropdown"
+            role="dialog"
+            aria-modal="false"
+          >
+            <Calendar
+              value={currentValue || undefined}
+              onChange={handleDateChange}
+            />
+          </div>
+        )}
+      </div>
+    </FieldTemplate>
   );
 };

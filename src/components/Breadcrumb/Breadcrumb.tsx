@@ -34,6 +34,24 @@ export const Breadcrumb = ({
     />
   );
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const list = e.currentTarget;
+    const items = Array.from(list.querySelectorAll(".wim-breadcrumb__link, .wim-breadcrumb__label--current"));
+    const currentIndex = items.indexOf(document.activeElement as HTMLElement);
+
+    if (currentIndex === -1) return;
+
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      const nextIndex = (currentIndex + 1) % items.length;
+      (items[nextIndex] as HTMLElement).focus();
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      const prevIndex = (currentIndex - 1 + items.length) % items.length;
+      (items[prevIndex] as HTMLElement).focus();
+    }
+  };
+
   return (
     <nav
       aria-label={t("a11y_breadcrumb")}
@@ -43,7 +61,7 @@ export const Breadcrumb = ({
         className,
       )}
     >
-      <ol className="wim-breadcrumb__list">
+      <ol className="wim-breadcrumb__list" onKeyDown={handleKeyDown}>
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
 
@@ -67,6 +85,7 @@ export const Breadcrumb = ({
                       isLast && "wim-breadcrumb__label--current",
                     )}
                     aria-current={isLast ? "page" : undefined}
+                    tabIndex={isLast ? 0 : undefined}
                   >
                     {item.iconName && (
                       <Icon

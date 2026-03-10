@@ -10,9 +10,20 @@ vi.mock("react-i18next", () => ({
 }));
 
 describe("Badge", () => {
-  it("renders content", () => {
+  it("renders content (deprecated prop)", () => {
     render(<Badge content="New" />);
     expect(screen.getByText("New")).toBeInTheDocument();
+  });
+
+  it("renders children", () => {
+    render(<Badge>Active</Badge>);
+    expect(screen.getByText("Active")).toBeInTheDocument();
+  });
+
+  it("children takes priority over content", () => {
+    render(<Badge content="Old">New</Badge>);
+    expect(screen.getByText("New")).toBeInTheDocument();
+    expect(screen.queryByText("Old")).not.toBeInTheDocument();
   });
 
   it("renders icon", () => {

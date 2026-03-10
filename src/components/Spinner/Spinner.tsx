@@ -4,7 +4,7 @@ import { WimColor } from "../../types/tokens";
 import "./spinner.scss";
 
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: "small" | "medium" | "large" | "xlarge";
   color?:
   | "primary"
   | "secondary"
@@ -22,7 +22,7 @@ type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
  * 読み込み中であることを示すための回転するインジケーター。
  */
 export const Spinner = ({
-  size = "md",
+  size = "medium",
   color = "primary",
   label,
   labelPosition = "right",
@@ -50,7 +50,7 @@ export const Spinner = ({
       <svg
         className={classNames(
           "wim-spinner",
-          `wim-spinner--${size}`,
+          `wim-spinner--${size === "small" ? "sm" : size === "large" ? "lg" : size === "xlarge" ? "xl" : "md"}`,
           !isCustomColor && `wim-spinner--${color}`,
         )}
         viewBox="0 0 50 50"

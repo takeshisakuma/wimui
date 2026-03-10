@@ -7,6 +7,8 @@ import { BaseListItem } from "../_internal/BaseListItem";
 import { InputBase } from "../_internal/InputBase";
 import "./cascader.scss";
 
+import { FieldTemplate } from "../_internal/FieldTemplate";
+
 export type CascaderOption = {
   label: string;
   value: string;
@@ -20,6 +22,9 @@ export type CascaderProps = {
   onChange?: (value: string[], selectedOptions: CascaderOption[]) => void;
   placeholder?: string;
   label?: string;
+  error?: string;
+  required?: boolean;
+  layout?: "vertical" | "horizontal";
   className?: string;
   disabled?: boolean;
   defaultValue?: string[];
@@ -41,6 +46,9 @@ export const Cascader = ({
   onChange,
   placeholder,
   label,
+  error,
+  required,
+  layout,
   className,
   disabled = false,
   defaultValue,
@@ -54,9 +62,10 @@ export const Cascader = ({
 
   const actualPlaceholder = placeholder ?? t("select_option");
   const generatedId = useId();
-  const id = customId || generatedId;
-  const labelId = `wim-cascader-label-${id}`;
-  const triggerId = `wim-cascader-trigger-${id}`;
+  const id = customId || `wim-cascader-${generatedId}`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
+  const triggerId = `${id}-trigger`;
 
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<string[]>(
@@ -212,63 +221,71 @@ export const Cascader = ({
   const displayValue = getSelectedLabel();
 
   return (
-    <div
-      className={classNames("wim-cascader", className)}
-      ref={containerRef}
-      {...(props as any)}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={className}
     >
-      {label && (
-        <label id={labelId} htmlFor={triggerId} className="wim-cascader__label">
-          {t(label)}
-        </label>
-      )}
-      <InputBase
-        disabled={disabled}
-        allowClear={allowClear}
-        hasValue={!!displayValue}
-        onClear={() => handleClear({ stopPropagation: () => { } } as any)}
-        rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
-        className={classNames(
-          isOpen && "wim-cascader__trigger--open",
-        )}
+      <div
+        className="wim-cascader"
+        ref={containerRef}
+        {...(props as any)}
       >
-        <div
-          id={triggerId}
+        <InputBase
+          disabled={disabled}
+          allowClear={allowClear}
+          hasValue={!!displayValue}
+          onClear={() => handleClear({ stopPropagation: () => { } } as any)}
+          status={error ? "error" : "default"}
+          rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
-            "wim-cascader__trigger",
-            disabled && "wim-cascader__trigger--disabled",
+            isOpen && "wim-cascader__trigger--open",
           )}
-          onClick={handleToggle}
-          tabIndex={disabled ? -1 : 0}
-          role="combobox"
-          aria-expanded={isOpen}
-          aria-haspopup="listbox"
-          aria-disabled={disabled}
-          aria-labelledby={label ? labelId : undefined}
         >
           <div
+            id={triggerId}
             className={classNames(
-              "wim-cascader__value",
-              !displayValue && "wim-cascader__value--placeholder",
+              "wim-cascader__trigger",
+              disabled && "wim-cascader__trigger--disabled",
             )}
+            onClick={handleToggle}
+            tabIndex={disabled ? -1 : 0}
+            role="combobox"
+            aria-expanded={isOpen}
+            aria-haspopup="listbox"
+            aria-disabled={disabled}
+            aria-labelledby={labelId}
+            aria-describedby={errorId}
+            aria-invalid={!!error}
           >
-            {displayValue || actualPlaceholder}
+            <div
+              className={classNames(
+                "wim-cascader__value",
+                !displayValue && "wim-cascader__value--placeholder",
+              )}
+            >
+              {displayValue || actualPlaceholder}
+            </div>
           </div>
-        </div>
-      </InputBase>
+        </InputBase>
 
-      <Transition
-        show={isOpen && !disabled}
-        enter="fade-enter"
-        enterFrom="fade-enter-from"
-        enterTo="fade-enter-to"
-        leave="fade-leave"
-        leaveFrom="fade-leave-from"
-        leaveTo="fade-leave-to"
-        className="wim-cascader__dropdown"
-      >
-        {renderMenus()}
-      </Transition>
-    </div>
+        <Transition
+          show={isOpen && !disabled}
+          enter="fade-enter"
+          enterFrom="fade-enter-from"
+          enterTo="fade-enter-to"
+          leave="fade-leave"
+          leaveFrom="fade-leave-from"
+          leaveTo="fade-leave-to"
+          className="wim-cascader__dropdown"
+        >
+          {renderMenus()}
+        </Transition>
+      </div>
+    </FieldTemplate>
   );
 };

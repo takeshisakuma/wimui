@@ -5,6 +5,8 @@ import { Input } from "../Input/Input";
 import { BaseListItem } from "../_internal/BaseListItem";
 import "./combobox.scss";
 
+import { FieldTemplate } from "../_internal/FieldTemplate";
+
 export type ComboboxOption = {
   label: string;
   value: string;
@@ -15,6 +17,9 @@ export type ComboboxProps = {
   onSelect?: (option: ComboboxOption) => void;
   placeholder?: string;
   label?: string;
+  error?: string;
+  required?: boolean;
+  layout?: "vertical" | "horizontal";
   showSearchIcon?: boolean;
   allowClear?: boolean;
   defaultValue?: string;
@@ -36,6 +41,9 @@ export const Combobox = ({
   className,
   disabled = false,
   label,
+  error,
+  required,
+  layout,
   id: customId,
   ...props
 }: ComboboxProps) => {
@@ -47,10 +55,10 @@ export const Combobox = ({
   const [activeIndex, setActiveIndex] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
   const generatedId = useId();
-  const id = customId || generatedId;
-  const listboxId = `wim-combobox-list-${id}`;
-  const labelId = `wim-combobox-label-${id}`;
-  const inputId = `wim-combobox-input-${id}`;
+  const id = customId || `wim-combobox-${generatedId}`;
+  const listboxId = `${id}-list`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
 
   // 外部クリックで閉じる
   useEffect(() => {
@@ -116,67 +124,74 @@ export const Combobox = ({
   };
 
   return (
-    <div className={classNames("wim-combobox", className)} ref={containerRef}>
-      {label && (
-        <label id={labelId} htmlFor={inputId} className="wim-label">
-          {t(label)}
-        </label>
-      )}
-      <Input
-        id={inputId}
-        placeholder={t(placeholder)}
-        value={inputValue}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-        onFocus={() => setIsOpen(true)}
-        leftIcon={showSearchIcon ? "SearchIcon" : undefined}
-        rightIcon="ChevronDownIcon"
-        rightIconRotated={isOpen}
-        allowClear={allowClear}
-        disabled={disabled}
-        autoComplete="off"
-        role="combobox"
-        aria-autocomplete="list"
-        aria-expanded={isOpen}
-        aria-controls={isOpen ? listboxId : undefined}
-        aria-labelledby={label ? labelId : undefined}
-        aria-activedescendant={
-          isOpen && activeIndex >= 0
-            ? `${listboxId}-option-${activeIndex}`
-            : undefined
-        }
-        {...props}
-      />
-      {isOpen && filteredOptions.length > 0 && (
-        <ul
-          id={listboxId}
-          className="wim-combobox-list"
-          role="listbox"
-          aria-labelledby={label ? labelId : undefined}
-        >
-          {filteredOptions.map((option, index) => (
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-            <BaseListItem
-              as="li"
-              key={option.value}
-              id={`${listboxId}-option-${index}`}
-              className="wim-combobox-option"
-              active={index === activeIndex}
-              onClick={() => handleOptionClick(option)}
-              onMouseEnter={() => setActiveIndex(index)}
-              role="option"
-              aria-selected={index === activeIndex}
-            >
-              {t(option.label)}
-            </BaseListItem>
-          ))}
-        </ul>
-      )}
-      {isOpen && filteredOptions.length === 0 && (
-        <div className="wim-combobox-empty" role="region" aria-live="polite">
-          {t("no_results_found")}
-        </div>
-      )}
-    </div>
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={className}
+    >
+      <div className="wim-combobox" ref={containerRef}>
+        <Input
+          id={id}
+          placeholder={t(placeholder)}
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          onFocus={() => setIsOpen(true)}
+          leftIcon={showSearchIcon ? "SearchIcon" : undefined}
+          rightIcon="ChevronDownIcon"
+          rightIconRotated={isOpen}
+          allowClear={allowClear}
+          disabled={disabled}
+          autoComplete="off"
+          role="combobox"
+          aria-autocomplete="list"
+          aria-expanded={isOpen}
+          aria-controls={isOpen ? listboxId : undefined}
+          aria-labelledby={labelId}
+          aria-describedby={errorId}
+          aria-invalid={!!error}
+          aria-activedescendant={
+            isOpen && activeIndex >= 0
+              ? `${listboxId}-option-${activeIndex}`
+              : undefined
+          }
+          {...props}
+        />
+        {isOpen && filteredOptions.length > 0 && (
+          <ul
+            id={listboxId}
+            className="wim-combobox-list"
+            role="listbox"
+            aria-labelledby={labelId}
+          >
+            {filteredOptions.map((option, index) => (
+              // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+              <BaseListItem
+                as="li"
+                key={option.value}
+                id={`${listboxId}-option-${index}`}
+                className="wim-combobox-option"
+                active={index === activeIndex}
+                onClick={() => handleOptionClick(option)}
+                onMouseEnter={() => setActiveIndex(index)}
+                role="option"
+                aria-selected={index === activeIndex}
+              >
+                {t(option.label)}
+              </BaseListItem>
+            ))}
+          </ul>
+        )}
+        {isOpen && filteredOptions.length === 0 && (
+          <div className="wim-combobox-empty" role="region" aria-live="polite">
+            {t("no_results_found")}
+          </div>
+        )}
+      </div>
+    </FieldTemplate>
   );
 };

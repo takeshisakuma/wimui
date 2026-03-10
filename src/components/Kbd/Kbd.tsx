@@ -10,7 +10,7 @@ export type KbdProps = React.ComponentPropsWithoutRef<"kbd"> & {
   /**
    * サイズ。
    */
-  size?: "sm" | "md";
+  size?: "small" | "medium";
 };
 
 /**
@@ -18,13 +18,13 @@ export type KbdProps = React.ComponentPropsWithoutRef<"kbd"> & {
  */
 export const Kbd = ({
   children,
-  size = "md",
+  size = "medium",
   className,
   ...props
 }: KbdProps) => {
   return (
     <kbd
-      className={classNames("wim-kbd", `wim-kbd--${size}`, className)}
+      className={classNames("wim-kbd", `wim-kbd--${size === "small" ? "sm" : "md"}`, className)}
       {...props}
     >
       {children}

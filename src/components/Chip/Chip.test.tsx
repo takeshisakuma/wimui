@@ -10,9 +10,20 @@ vi.mock("react-i18next", () => ({
 }));
 
 describe("Chip", () => {
-  it("renders label", () => {
+  it("renders label (deprecated prop)", () => {
     render(<Chip label="Test Chip" />);
     expect(screen.getByText("Test Chip")).toBeInTheDocument();
+  });
+
+  it("renders children", () => {
+    render(<Chip>Child Content</Chip>);
+    expect(screen.getByText("Child Content")).toBeInTheDocument();
+  });
+
+  it("children takes priority over label", () => {
+    render(<Chip label="Old">New Content</Chip>);
+    expect(screen.getByText("New Content")).toBeInTheDocument();
+    expect(screen.queryByText("Old")).not.toBeInTheDocument();
   });
 
   it("handles onClick", () => {
@@ -27,7 +38,7 @@ describe("Chip", () => {
     const handleDelete = vi.fn();
     render(<Chip label="Deletable" onDelete={handleDelete} />);
 
-    const deleteButton = screen.getByRole("button", { name: "Delete" });
+    const deleteButton = screen.getByRole("button", { name: "a11y_delete" });
     fireEvent.click(deleteButton);
     expect(handleDelete).toHaveBeenCalledTimes(1);
   });

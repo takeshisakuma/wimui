@@ -42,6 +42,9 @@ export type SelectboxProps = {
   allowClear?: boolean;
   /** Unique ID for the component */
   id?: string;
+  error?: string;
+  required?: boolean;
+  layout?: "vertical" | "horizontal";
 };
 
 import { FieldTemplate } from "../_internal/FieldTemplate";
@@ -58,6 +61,7 @@ export const Selectbox = ({
   label,
   error,
   required,
+  layout,
   className,
   disabled = false,
   defaultValue,
@@ -69,13 +73,14 @@ export const Selectbox = ({
   allowClear = false,
   id: customId,
   ...props
-}: SelectboxProps & { error?: string; required?: boolean }) => {
+}: SelectboxProps) => {
   const { t } = useTranslation("common");
   const generatedId = useId();
-  const id = customId || generatedId;
-  const labelId = `wim-selectbox-label-${id}`;
-  const listId = `wim-selectbox-list-${id}`;
-  const triggerId = `wim-selectbox-trigger-${id}`;
+  const id = customId || `wim-selectbox-${generatedId}`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
+  const listId = `${id}-list`;
+  const triggerId = `${id}-trigger`;
 
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState(defaultValue || "");
@@ -492,7 +497,9 @@ export const Selectbox = ({
       label={label}
       error={error}
       required={required}
+      layout={layout}
       labelId={labelId}
+      errorId={errorId}
       className={className}
     >
       <div
@@ -525,9 +532,10 @@ export const Selectbox = ({
             aria-haspopup="listbox"
             aria-controls={isOpen ? listId : undefined}
             aria-disabled={disabled}
-            aria-labelledby={label ? labelId : ariaLabelledBy}
+            aria-labelledby={labelId || ariaLabelledBy}
             aria-label={label ? undefined : t(ariaLabel || placeholder)}
-            aria-describedby={ariaDescribedBy}
+            aria-describedby={errorId || ariaDescribedBy}
+            aria-invalid={!!error}
             aria-activedescendant={isOpen ? activeDescendant : undefined}
             ref={triggerRef}
           >

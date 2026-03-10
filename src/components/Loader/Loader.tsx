@@ -13,7 +13,7 @@ export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
    * ローダーのサイズ。
    */
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: "small" | "medium" | "large" | "xlarge";
   /**
    * ローダーの色。
    */
@@ -33,7 +33,7 @@ export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
  */
 export const Loader = ({
   variant = "bars",
-  size = "md",
+  size = "medium",
   color = "primary",
   className,
   style,
@@ -46,7 +46,7 @@ export const Loader = ({
       className={classNames(
         "wim-loader",
         `wim-loader--${variant}`,
-        `wim-loader--${size}`,
+        `wim-loader--${size === "small" ? "sm" : size === "large" ? "lg" : size === "xlarge" ? "xl" : "md"}`,
         !isCustomColor && `wim-loader--${color}`,
         className,
       )}

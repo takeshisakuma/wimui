@@ -9,7 +9,7 @@ const meta: Meta<typeof Textarea> = {
   title: "Components/Basic Inputs/Textarea",
   component: Textarea,
   argTypes: {
-    state: {
+    status: {
       control: { type: "select" },
       options: ["default", "error", "disabled"],
     },
@@ -58,7 +58,7 @@ export const ErrorStatus: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         <Label label={t("story_textarea_label_details")}>
-          <Textarea {...args} state="error" placeholder={t("story_textarea_placeholder_error")} />
+          <Textarea {...args} status="error" placeholder={t("story_textarea_placeholder_error")} />
         </Label>
         <FieldError content={t("story_textarea_error_10chars")} />
       </div>
@@ -71,7 +71,7 @@ export const Disabled: Story = {
     const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_textarea_label_remarks")}>
-        <Textarea {...args} state="disabled" placeholder={t("story_textarea_placeholder_asap")} />
+        <Textarea {...args} disabled placeholder={t("story_textarea_placeholder_asap")} />
       </Label>
     );
   },
@@ -142,7 +142,7 @@ export const FormPattern: Story = {
             <Textarea
               id="motivation"
               {...args}
-              state="error"
+              status="error"
               defaultValue={t("story_textarea_value_none")}
               rows={3}
               fullWidth

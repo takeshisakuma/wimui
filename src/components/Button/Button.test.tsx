@@ -64,6 +64,26 @@ describe("Button", () => {
     expect(buttonWithIcon(container)).toHaveClass("wim-button--icon-only");
     expect(screen.getByTestId("icon")).toHaveTextContent("SearchIcon");
   });
+
+  it("renders icon via icon prop (JSX element)", () => {
+    const { container } = render(
+      <Button label="Search" icon={<span data-testid="custom-icon">★</span>} />,
+    );
+    expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
+    expect(buttonWithIcon(container)).not.toHaveClass("wim-button--icon-only");
+  });
+
+  it("applies fullWidth class", () => {
+    const { container } = render(<Button label="Full" fullWidth />);
+    const button = container.querySelector("button");
+    expect(button).toHaveClass("wim-button--full-width");
+  });
+
+  it("does not apply fullWidth class by default", () => {
+    const { container } = render(<Button label="Normal" />);
+    const button = container.querySelector("button");
+    expect(button).not.toHaveClass("wim-button--full-width");
+  });
 });
 
 function buttonWithIcon(container: HTMLElement) {

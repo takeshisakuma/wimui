@@ -69,7 +69,7 @@ export const Deletable: Story = {
 export const WithAvatar: Story = {
   render: function Render(args) {
     const { t } = useTranslation(["docs", "common", "components"]);
-    return <Chip {...args} label="Jane Doe" avatar={<Avatar initials="JD" size="sm" />} />;
+    return <Chip {...args} label="Jane Doe" avatar={<Avatar initials="JD" size="small" />} />;
   },
 };
 

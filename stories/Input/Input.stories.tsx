@@ -152,7 +152,7 @@ export const ErrorStatus: Story = {
         <Label label={t("story_input_label_email")} required>
           <Input
             {...args}
-            state="error"
+            status="error"
             placeholder={t("story_input_placeholder_email")}
             defaultValue="invalid-email@"
           />

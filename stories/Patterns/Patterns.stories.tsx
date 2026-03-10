@@ -260,7 +260,7 @@ export const DashboardHeader: StoryObj = {
               aria-label="Notifications"
             />
             <Badge
-              color="secondary"
+              status="secondary"
               size="small"
               content="3"
               style={{
@@ -280,7 +280,7 @@ export const DashboardHeader: StoryObj = {
             gap="sm"
             style={{ cursor: "pointer" }}
           >
-            <Avatar size="md" />
+            <Avatar size="medium" />
             <Stack gap="none" className="desktop-only">
               <span
                 style={{
@@ -320,7 +320,7 @@ export const DashboardHeader: StoryObj = {
               >
                 <Stack justify="space-between" align="center" direction="row">
                   <Stats.Label>Total Revenue</Stats.Label>
-                  <Badge color="neutral" content="+12.5%" size="small" />
+                  <Badge status="neutral" content="+12.5%" size="small" />
                 </Stack>
                 <Stats.Value>
                   <Heading tag="h3" size="xl" style={{ whiteSpace: "nowrap" }}>
@@ -401,7 +401,7 @@ export const UserProfileForm: StoryObj = {
                   }}
                 >
                   <Avatar
-                    size="lg"
+                    size="large"
                     style={{ width: "80px", height: "80px", fontSize: "2rem" }}
                   />
                   <Stack gap="xs">
@@ -574,7 +574,7 @@ export const PricingTable: StoryObj = {
   render: () => (
     <Container style={{ padding: "80px 24px", background: "#fff" }}>
       <Stack align="center" gap="lg" style={{ marginBottom: "64px" }}>
-        <Badge color="primary" content="PRICING PLANS" />
+        <Badge status="primary" content="PRICING PLANS" />
         <Stack align="center" gap="3xl">
           <Heading tag="h2" size="xl" align="center">
             Choose the right plan for you
@@ -693,7 +693,7 @@ export const PricingTable: StoryObj = {
               transform: "translateX(-50%)",
             }}
           >
-            <Badge color="primary" content="MOST POPULAR" size="small" />
+            <Badge status="primary" content="MOST POPULAR" size="small" />
           </div>
           <Stack gap="lg" style={{ height: "100%" }}>
             <Stack gap="lg" align="center" style={{ flex: 1 }}>
@@ -867,7 +867,7 @@ export const HeroSection: StoryObj = {
           <Stack gap="3xl">
             <Stack gap="3xl">
               <Badge
-                color="primary"
+                status="primary"
                 content="v2.0 is now available"
                 style={{ width: "fit-content" }}
               />
@@ -901,7 +901,7 @@ export const HeroSection: StoryObj = {
             </Group>
 
             <Stack direction="row" align="center" gap="md">
-              <AvatarGroup size="sm">
+              <AvatarGroup size="small">
                 {[1, 2, 3, 4].map((i) => (
                   <Avatar key={i} />
                 ))}
@@ -1028,7 +1028,7 @@ export const ErrorPage: StoryObj = {
           />
         </Stack>
 
-        <Alert variant="info" title="Need help?" style={{ textAlign: "left" }}>
+        <Alert status="info" title="Need help?" style={{ textAlign: "left" }}>
           Check our status page for any ongoing maintenance.
         </Alert>
 

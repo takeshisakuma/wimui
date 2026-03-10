@@ -11,7 +11,7 @@ const meta: Meta<typeof ColorPicker> = {
     layout: "centered",
   },
   argTypes: {
-    state: {
+    status: {
       control: "select",
       options: ["default", "error", "disabled"],
     },
@@ -72,7 +72,7 @@ export const ErrorStatus: Story = {
     const { t } = useTranslation(["docs", "common", "components"]);
     return (
       <Label label={t("story_colorpicker_error")}>
-        <ColorPicker {...args} state="error" />
+        <ColorPicker {...args} status="error" />
       </Label>
     );
   },

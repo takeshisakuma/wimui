@@ -6,6 +6,7 @@ import "./field-error.scss";
 type FieldErrorProps = {
   content: string;
   className?: string;
+  id?: string;
 };
 
 /**
@@ -14,14 +15,14 @@ type FieldErrorProps = {
 export const FieldError = ({
   content,
   className,
-  ...props
+  id,
 }: FieldErrorProps) => {
   return (
     <div
+      id={id}
       className={classNames("wim-field-error", className)}
       role="alert"
       aria-live="polite"
-      {...props}
     >
       <Paragraph content={content} color="error" size="small" />
     </div>

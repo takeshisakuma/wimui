@@ -7,6 +7,8 @@ import { TreeView } from "../TreeView/TreeView";
 import { InputBase } from "../_internal/InputBase";
 import "./tree-select.scss";
 
+import { FieldTemplate } from "../_internal/FieldTemplate";
+
 export type TreeSelectNode = {
   label: string;
   value: string;
@@ -21,6 +23,9 @@ export type TreeSelectProps = {
   onChange?: (value: any) => void;
   placeholder?: string;
   label?: string;
+  error?: string;
+  required?: boolean;
+  layout?: "vertical" | "horizontal";
   className?: string;
   disabled?: boolean;
   multiple?: boolean;
@@ -40,6 +45,9 @@ export const TreeSelect = ({
   onChange,
   placeholder = "Select",
   label,
+  error,
+  required,
+  layout,
   className,
   disabled = false,
   multiple = false,
@@ -51,9 +59,11 @@ export const TreeSelect = ({
 }: TreeSelectProps) => {
   const { t } = useTranslation("common");
   const generatedId = useId();
-  const id = customId || generatedId;
-  const labelId = `wim-tree-select-label-${id}`;
-  const triggerId = `wim-tree-select-trigger-${id}`;
+  const id = customId || `wim-tree-select-${generatedId}`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
+  const triggerId = `${id}-trigger`;
+  const dropdownId = `${id}-dropdown`;
 
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<string | string[]>(
@@ -160,77 +170,84 @@ export const TreeSelect = ({
   const displayValue = getDisplayValue();
 
   return (
-    <div
-      className={classNames("wim-tree-select", className)}
-      ref={containerRef}
-      {...(props as any)}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={className}
     >
-      {label && (
-        <label
-          id={labelId}
-          htmlFor={triggerId}
-          className="wim-tree-select__label"
-        >
-          {t(label)}
-        </label>
-      )}
-      <InputBase
-        disabled={disabled}
-        allowClear={allowClear}
-        hasValue={!!displayValue}
-        onClear={() => handleClear({ stopPropagation: () => { } } as any)}
-        rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
-        className={classNames(
-          isOpen && "wim-tree-select__trigger--open",
-        )}
+      <div
+        className="wim-tree-select"
+        ref={containerRef}
+        {...(props as any)}
       >
-        <div
-          id={triggerId}
+        <InputBase
+          disabled={disabled}
+          allowClear={allowClear}
+          hasValue={!!displayValue}
+          onClear={() => handleClear({ stopPropagation: () => { } } as any)}
+          status={error ? "error" : "default"}
+          rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
-            "wim-tree-select__trigger",
-            disabled && "wim-tree-select__trigger--disabled",
+            isOpen && "wim-tree-select__trigger--open",
           )}
-          onClick={handleToggle}
-          tabIndex={disabled ? -1 : 0}
-          role="combobox"
-          aria-expanded={isOpen}
-          aria-haspopup="tree"
-          aria-disabled={disabled}
-          aria-labelledby={label ? labelId : undefined}
         >
           <div
+            id={triggerId}
             className={classNames(
-              "wim-tree-select__value",
-              !displayValue && "wim-tree-select__value--placeholder",
+              "wim-tree-select__trigger",
+              disabled && "wim-tree-select__trigger--disabled",
             )}
+            onClick={handleToggle}
+            tabIndex={disabled ? -1 : 0}
+            role="combobox"
+            aria-expanded={isOpen}
+            aria-haspopup="tree"
+            aria-controls={isOpen ? dropdownId : undefined}
+            aria-disabled={disabled}
+            aria-labelledby={labelId}
+            aria-describedby={errorId}
+            aria-invalid={!!error}
           >
-            {displayValue || t(placeholder)}
+            <div
+              className={classNames(
+                "wim-tree-select__value",
+                !displayValue && "wim-tree-select__value--placeholder",
+              )}
+            >
+              {displayValue || t(placeholder)}
+            </div>
           </div>
-        </div>
-      </InputBase>
+        </InputBase>
 
-      <Transition
-        show={isOpen && !disabled}
-        enter="fade-enter"
-        enterFrom="fade-enter-from"
-        enterTo="fade-enter-to"
-        leave="fade-leave"
-        leaveFrom="fade-leave-from"
-        leaveTo="fade-leave-to"
-        className="wim-tree-select__dropdown"
-      >
-        <TreeView
-          multiSelect={multiple}
-          defaultSelectedValues={selectedKeys}
-          onCheckedChange={multiple ? handleSelect : undefined}
-          onSelectedChange={!multiple ? handleSelect : undefined}
-          checkable={multiple}
-          searchable={searchable}
-          defaultExpandedValues={defaultExpandedKeys}
+        <Transition
+          show={isOpen && !disabled}
+          enter="fade-enter"
+          enterFrom="fade-enter-from"
+          enterTo="fade-enter-to"
+          leave="fade-leave"
+          leaveFrom="fade-leave-from"
+          leaveTo="fade-leave-to"
+          className="wim-tree-select__dropdown"
         >
-          {renderTreeNodes(treeData)}
-        </TreeView>
-      </Transition>
-    </div>
+          <div id={dropdownId}>
+            <TreeView
+              multiSelect={multiple}
+              defaultSelectedValues={selectedKeys}
+              onCheckedChange={multiple ? handleSelect : undefined}
+              onSelectedChange={!multiple ? handleSelect : undefined}
+              checkable={multiple}
+              searchable={searchable}
+              defaultExpandedValues={defaultExpandedKeys}
+            >
+              {renderTreeNodes(treeData)}
+            </TreeView>
+          </div>
+        </Transition>
+      </div>
+    </FieldTemplate>
   );
 };

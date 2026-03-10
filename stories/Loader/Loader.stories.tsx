@@ -25,7 +25,7 @@ const meta: Meta<typeof Loader> = {
     },
     size: {
       control: "select",
-      options: ["sm", "md", "lg", "xl"],
+      options: ["small", "medium", "large", "xlarge"],
     },
   },
 };
@@ -37,7 +37,7 @@ export const Default: Story = {
   args: {
     variant: "bars",
     color: "primary",
-    size: "md",
+    size: "medium",
   },
   render: (args) => <Loader {...args} />,
 };
@@ -99,16 +99,16 @@ export const Sizes: Story = {
   render: (args) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-        <Loader {...args} variant="bars" size="sm" />
-        <Loader {...args} variant="bars" size="md" />
-        <Loader {...args} variant="bars" size="lg" />
-        <Loader {...args} variant="bars" size="xl" />
+        <Loader {...args} variant="bars" size="small" />
+        <Loader {...args} variant="bars" size="medium" />
+        <Loader {...args} variant="bars" size="large" />
+        <Loader {...args} variant="bars" size="xlarge" />
       </div>
       <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-        <Loader {...args} variant="dots" size="sm" />
-        <Loader {...args} variant="dots" size="md" />
-        <Loader {...args} variant="dots" size="lg" />
-        <Loader {...args} variant="dots" size="xl" />
+        <Loader {...args} variant="dots" size="small" />
+        <Loader {...args} variant="dots" size="medium" />
+        <Loader {...args} variant="dots" size="large" />
+        <Loader {...args} variant="dots" size="xlarge" />
       </div>
       <div
         style={{
@@ -118,10 +118,10 @@ export const Sizes: Story = {
           height: "48px",
         }}
       >
-        <Loader {...args} variant="pulse" size="sm" />
-        <Loader {...args} variant="pulse" size="md" />
-        <Loader {...args} variant="pulse" size="lg" />
-        <Loader {...args} variant="pulse" size="xl" />
+        <Loader {...args} variant="pulse" size="small" />
+        <Loader {...args} variant="pulse" size="medium" />
+        <Loader {...args} variant="pulse" size="large" />
+        <Loader {...args} variant="pulse" size="xlarge" />
       </div>
     </div>
   ),

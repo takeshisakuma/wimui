@@ -50,19 +50,19 @@ export const CustomStates: Story = {
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <ColorInput
             {...args}
-            state="default"
+            status="default"
             defaultValue="#10b981"
             leftIcon="CheckCircleIcon"
           />
           <ColorInput
             {...args}
-            state="error"
+            status="error"
             defaultValue="#ef4444"
             leftIcon="AlertCircleIcon"
           />
           <ColorInput
             {...args}
-            state="disabled"
+            status="disabled"
             defaultValue="#6b7280"
             leftIcon="SettingsIcon"
           />
