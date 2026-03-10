@@ -16,8 +16,8 @@ describe("EmptyState", () => {
     expect(screen.getByText("Try creating new item")).toBeInTheDocument();
   });
 
-  it("renders action", () => {
-    render(<EmptyState title="Title" action={<button>Create</button>} />);
+  it("renders extra action", () => {
+    render(<EmptyState title="Title" extra={<button>Create</button>} />);
     expect(screen.getByText("Create")).toBeInTheDocument();
   });
 

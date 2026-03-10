@@ -5,7 +5,7 @@ import "./input.scss";
 import { Icon } from "../Icon/Icon";
 
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
-  state?: "default" | "error" | "disabled";
+  status?: "default" | "error" | "disabled";
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   leftIcon?: React.ComponentProps<typeof Icon>["name"];
@@ -17,6 +17,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   allowClear?: boolean;
   showPasswordToggle?: boolean;
   rightIconClassName?: string;
+  rightIconRotated?: boolean;
   width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
 };
 
@@ -28,7 +29,7 @@ import { InputBase, InputBaseIcon } from "../_internal/InputBase";
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      state = "default",
+      status = "default",
       variant = "outline",
       fullWidth = false,
       className,
@@ -42,6 +43,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       allowClear = false,
       showPasswordToggle = true,
       rightIconClassName,
+      rightIconRotated,
       width,
       value,
       defaultValue,
@@ -65,8 +67,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
 
-    // `state="disabled"` は後方互換のために残すが、標準の `disabled` を優先
-    const isDisabled = disabled || state === "disabled";
+    // `status="disabled"` は後方互換のために残すが、標準の `disabled` を優先
+    const isDisabled = disabled || status === "disabled";
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!isControlled) {
@@ -147,16 +149,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           color: rightIconColor,
           ariaLabel: t("a11y_right_icon_action"),
           className: rightIconClassName,
+          rotated: rightIconRotated,
         });
       }
     }
 
     const inputType = type === "password" && isPasswordVisible ? "text" : type;
-    const effectiveState = isDisabled ? "disabled" : state;
+    const effectiveStatus = isDisabled ? "disabled" : status;
 
     return (
       <InputBase
-        state={effectiveState}
+        status={effectiveStatus}
         variant={variant}
         fullWidth={fullWidth}
         width={width}
@@ -174,7 +177,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={mergedRef}
           className={classNames(
             "wim-input",
-            `wim-input--${effectiveState}`,
+            `wim-input--${effectiveStatus}`,
             `wim-input--${variant}`,
             fullWidth && "wim-input--full-width",
             leftIcon && "wim-input--has-left-icon",

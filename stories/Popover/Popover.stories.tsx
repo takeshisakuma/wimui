@@ -26,7 +26,7 @@ const meta: Meta<typeof Popover> = {
   // tags: ["autodocs"],
   argTypes: {
     defaultOpen: { control: "boolean" },
-    isOpen: { control: "boolean" },
+    open: { control: "boolean" },
   },
 };
 

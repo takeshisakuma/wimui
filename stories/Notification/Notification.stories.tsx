@@ -40,7 +40,7 @@ export const Success: Story = {
     );
   },
   args: {
-    type: "success",
+    status: "success",
   },
 };
 
@@ -56,7 +56,7 @@ export const Warning: Story = {
     );
   },
   args: {
-    type: "warning",
+    status: "warning",
   },
 };
 
@@ -72,7 +72,7 @@ export const ErrorStatus: Story = {
     );
   },
   args: {
-    type: "error",
+    status: "error",
   },
 };
 
@@ -88,7 +88,7 @@ export const Info: Story = {
     );
   },
   args: {
-    type: "info",
+    status: "info",
   },
 };
 
@@ -107,7 +107,7 @@ export const Trigger: Story = {
         {visible && (
           <div style={{ marginTop: "24px" }}>
             <Notification
-              type="success"
+              status="success"
               title={t("story_notification_success_title")}
               description={t("story_notification_triggered_desc")}
               onClose={() => setVisible(false)}

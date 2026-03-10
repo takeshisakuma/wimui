@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 export type IndicatorBaseProps = {
   children?: React.ReactNode;
   icon?: React.ReactNode;
-  color?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
+  status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
   variant?: "solid" | "outline" | "subtle";
   size?: "small" | "medium";
   prefixClass: string;
@@ -17,7 +17,7 @@ export type IndicatorBaseProps = {
 export const IndicatorBase = ({
   children,
   icon,
-  color = "primary",
+  status = "primary",
   variant = "solid",
   size = "medium",
   prefixClass,
@@ -31,7 +31,7 @@ export const IndicatorBase = ({
     <Component
       className={classNames(
         prefixClass,
-        `${prefixClass}--${color}`,
+        `${prefixClass}--${status}`,
         `${prefixClass}--${variant}`,
         `${prefixClass}--${size === "small" ? "sm" : "md"}`,
         className,
@@ -39,9 +39,7 @@ export const IndicatorBase = ({
       {...props}
     >
       {icon && <span className={`${prefixClass}__icon`}>{icon}</span>}
-      <span className={`${prefixClass}__content`}>
-        {typeof children === "string" ? t(children) : children}
-      </span>
+      {typeof children === "string" ? t(children) : children}
     </Component>
   );
 };

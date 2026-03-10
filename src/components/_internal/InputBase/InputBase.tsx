@@ -10,11 +10,13 @@ export type InputBaseIcon = {
   color?: React.ComponentProps<typeof Icon>["color"];
   ariaLabel?: string;
   className?: string;
+  /** Whether the icon should be rotated 180deg */
+  rotated?: boolean;
 };
 
 export type InputBaseProps = {
   children: React.ReactNode;
-  state?: "default" | "error" | "disabled";
+  status?: "default" | "error" | "disabled";
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
@@ -36,7 +38,7 @@ export type InputBaseProps = {
  */
 export const InputBase = ({
   children,
-  state = "default",
+  status = "default",
   variant = "outline",
   fullWidth = false,
   width,
@@ -55,8 +57,8 @@ export const InputBase = ({
   const isSemanticWidth =
     typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
 
-  const isDisabled = disabled || state === "disabled";
-  const effectiveState = isDisabled ? "disabled" : state;
+  const isDisabled = disabled || status === "disabled";
+  const effectiveStatus = isDisabled ? "disabled" : status;
   const effectiveHasCustomWidth = width !== undefined && !isSemanticWidth && !fullWidth;
   const effectiveSemanticWidth = isSemanticWidth && !fullWidth ? width : undefined;
 
@@ -65,7 +67,7 @@ export const InputBase = ({
   ) => {
     if (customColor) return customColor;
     if (isDisabled) return "disabled";
-    if (state === "error") return "destructive";
+    if (status === "error") return "destructive";
     return "secondary";
   };
 
@@ -85,7 +87,7 @@ export const InputBase = ({
     <div
       className={classNames(
         "wim-input-base",
-        `wim-input-base--${effectiveState}`,
+        `wim-input-base--${effectiveStatus}`,
         `wim-input--variant-${variant}`,
         fullWidth && "wim-input--full-width",
         effectiveHasCustomWidth && "wim-input--has-custom-width",
@@ -149,6 +151,7 @@ export const InputBase = ({
               className={classNames(
                 "wim-input-icon-item",
                 icon.onClick && "wim-input-icon-item--clickable",
+                icon.rotated && "wim-input-icon-item--rotated",
                 icon.className,
               )}
             >

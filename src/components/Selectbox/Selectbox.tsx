@@ -505,7 +505,8 @@ export const Selectbox = ({
           allowClear={allowClear}
           hasValue={!!currentValue}
           onClear={handleClear}
-          rightIcons={[{ name: "ChevronDownIcon" }]}
+          status={error ? "error" : "default"}
+          rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && "wim-selectbox-trigger--open",
           )}

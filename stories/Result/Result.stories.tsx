@@ -21,7 +21,7 @@ export const Success: Story = {
         {...args}
         status="success"
         title={t("story_result_success_title")}
-        subTitle={t("story_result_success_desc")}
+        description={t("story_result_success_desc")}
         extra={[
           <Button priority="primary" key="console" label={t("story_result_go_console")} />,
           <Button key="buy" label={t("story_result_buy_again")} />,
@@ -66,7 +66,7 @@ export const ErrorStatus: Story = {
         {...args}
         status="error"
         title={t("story_result_error_title")}
-        subTitle={t("story_result_error_desc")}
+        description={t("story_result_error_desc")}
         extra={[
           <Button priority="primary" key="console" label={t("story_result_go_console")} />,
           <Button key="buy" label={t("story_result_buy_again")} />,
@@ -84,7 +84,7 @@ export const Status404: Story = {
         {...args}
         status="404"
         title="404"
-        subTitle={t("story_result_404_desc")}
+        description={t("story_result_404_desc")}
         extra={<Button priority="primary" label={t("story_result_back_home")} />}
       />
     );
@@ -99,7 +99,7 @@ export const Status403: Story = {
         {...args}
         status="403"
         title="403"
-        subTitle={t("story_result_403_desc")}
+        description={t("story_result_403_desc")}
         extra={<Button priority="primary" label={t("story_result_back_home")} />}
       />
     );
@@ -114,7 +114,7 @@ export const Status500: Story = {
         {...args}
         status="500"
         title="500"
-        subTitle={t("story_result_500_desc")}
+        description={t("story_result_500_desc")}
         extra={<Button priority="primary" label={t("story_result_back_home")} />}
       />
     );

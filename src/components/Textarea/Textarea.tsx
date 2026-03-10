@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import "./textarea.scss";
 
 type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
-  state?: "default" | "error" | "disabled";
+  status?: "default" | "error" | "disabled";
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   fieldSizing?: "fixed" | "content";
@@ -16,7 +16,7 @@ type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
-      state = "default",
+      status = "default",
       variant = "outline",
       fullWidth = false,
       className,
@@ -26,14 +26,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     ref,
   ) => {
     const { t } = useTranslation();
-    const isDisabled = disabled || state === "disabled";
+    const isDisabled = disabled || status === "disabled";
 
     return (
       <textarea
         ref={ref}
         className={classNames(
           "wim-textarea",
-          `wim-textarea--${isDisabled ? "disabled" : state}`,
+          `wim-textarea--${isDisabled ? "disabled" : status}`,
           `wim-textarea--${variant}`,
           fullWidth && "wim-textarea--full-width",
           props.fieldSizing === "content" &&

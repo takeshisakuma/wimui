@@ -21,7 +21,7 @@ export const Info: Story = {
     return (
       <Alert
         {...args}
-        variant="info"
+        status="info"
         title={t("story_alert_info_title")}
         description={t("story_alert_info_desc")}
       />
@@ -35,7 +35,7 @@ export const Success: Story = {
     return (
       <Alert
         {...args}
-        variant="success"
+        status="success"
         title={t("story_alert_success_title")}
         description={t("story_alert_success_desc")}
       />
@@ -49,7 +49,7 @@ export const Warning: Story = {
     return (
       <Alert
         {...args}
-        variant="warning"
+        status="warning"
         title={t("story_alert_warning_title")}
         description={t("story_alert_warning_desc")}
       />
@@ -63,7 +63,7 @@ export const ErrorStatus: Story = {
     return (
       <Alert
         {...args}
-        variant="error"
+        status="error"
         title={t("story_alert_error_title")}
         description={t("story_alert_error_desc")}
       />
@@ -77,7 +77,7 @@ export const WithoutTitle: Story = {
     return (
       <Alert
         {...args}
-        variant="info"
+        status="info"
         description={t("story_alert_no_title_desc")}
       />
     );
@@ -90,7 +90,7 @@ export const WithCloseButton: Story = {
     return (
       <Alert
         {...args}
-        variant="success"
+        status="success"
         title={t("story_alert_dismiss_title")}
         description={t("story_alert_dismiss_desc")}
         onClose={() => console.log("Alert closed")}
@@ -105,7 +105,7 @@ export const LongContent: Story = {
     return (
       <Alert
         {...args}
-        variant="info"
+        status="info"
         title={t("story_alert_update_title")}
         description={t("story_alert_update_desc")}
         onClose={() => {}}

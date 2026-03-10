@@ -24,9 +24,9 @@ export type ResultProps = {
    */
   title?: ReactNode;
   /**
-   * The subTitle
+   * The description
    */
-  subTitle?: ReactNode;
+  description?: ReactNode;
   /**
    * Operating area
    */
@@ -67,7 +67,7 @@ const DefaultIcon = ({ status }: { status: ResultStatus }) => {
 export const Result = ({
   status = "info",
   title,
-  subTitle,
+  description,
   extra,
   icon,
   className,
@@ -83,7 +83,7 @@ export const Result = ({
     <InteractiveArea
       icon={icon || <DefaultIcon status={status} />}
       title={renderText(title) ?? undefined}
-      description={renderText(subTitle) ?? undefined}
+      description={renderText(description) ?? undefined}
       actions={extra}
       variant="none"
       bgVariant="transparent"

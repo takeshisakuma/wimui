@@ -24,8 +24,8 @@ import "./popover.scss";
 import { useFloatingElement } from "../_internal/useFloatingElement";
 
 type PopoverContextValue = {
-  isOpen: boolean;
-  setOpen: (open: boolean) => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
   refs: any;
   floatingStyles: React.CSSProperties;
   context: FloatingContext<ReferenceType>;
@@ -51,7 +51,7 @@ export type PopoverProps = {
   /**
    * If provided, controls the open state.
    */
-  isOpen?: boolean;
+  open?: boolean;
   /**
    * Callback when open state changes.
    */
@@ -66,13 +66,13 @@ export const Popover = ({
   children,
   className,
   defaultOpen = false,
-  isOpen: controlledOpen,
+  open: controlledOpen,
   onOpenChange,
   placement = "bottom-start",
 }: PopoverProps) => {
   const {
-    isOpen,
-    setOpen,
+    isOpen: open,
+    setOpen: onOpenChangeInternal,
     refs,
     floatingStyles,
     context,
@@ -85,13 +85,13 @@ export const Popover = ({
     trigger: "click",
   });
 
-  const close = () => setOpen(false);
+  const close = () => onOpenChangeInternal(false);
 
   return (
     <PopoverContext.Provider
       value={{
-        isOpen,
-        setOpen,
+        open,
+        onOpenChange: onOpenChangeInternal,
         refs,
         floatingStyles,
         context,
@@ -144,7 +144,7 @@ export const PopoverTrigger = React.forwardRef<
     }) as React.HTMLAttributes<Element>;
     return React.cloneElement(children, {
       ...referenceProps,
-      "data-state": context.isOpen ? "open" : "closed",
+      "data-state": context.open ? "open" : "closed",
     } as React.HTMLAttributes<Element>);
   }
 
@@ -153,7 +153,7 @@ export const PopoverTrigger = React.forwardRef<
       ref={ref as React.Ref<HTMLButtonElement>}
       type="button"
       className={classNames("wim-popover-trigger", className)}
-      data-state={context.isOpen ? "open" : "closed"}
+      data-state={context.open ? "open" : "closed"}
       {...(context.getReferenceProps(
         props,
       ) as React.ButtonHTMLAttributes<HTMLButtonElement>)}
@@ -182,7 +182,7 @@ export const PopoverContent = React.forwardRef<
     throw new Error("Popover components must be wrapped in <Popover />");
   }
 
-  const { isOpen, refs, floatingStyles, getFloatingProps } = context;
+  const { open, refs, floatingStyles, getFloatingProps } = context;
   const ref = useMergeRefs([refs.setFloating, propRef]);
 
   // align and side are handled by Popover's placement prop now, but we keep them for backward compatibility in stories
@@ -191,7 +191,7 @@ export const PopoverContent = React.forwardRef<
   return (
     <FloatingPortal>
       <Transition
-        show={isOpen}
+        show={open}
         enter="fade-enter"
         enterFrom="fade-enter-from"
         enterTo="fade-enter-to"

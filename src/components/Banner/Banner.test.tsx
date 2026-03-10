@@ -25,8 +25,8 @@ describe("Banner", () => {
     expect(onClose).toHaveBeenCalled();
   });
 
-  it("renders actions", () => {
-    render(<Banner title="T" action={<button>Action</button>} />);
+  it("renders extra actions", () => {
+    render(<Banner title="T" extra={<button>Action</button>} />);
     expect(screen.getByText("Action")).toBeInTheDocument();
   });
 });

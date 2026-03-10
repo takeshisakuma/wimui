@@ -26,8 +26,8 @@ describe("Alert", () => {
     expect(screen.getByText("Child content")).toBeInTheDocument();
   });
 
-  it("applies variant class", () => {
-    const { container } = render(<Alert variant="error" title="Error" />);
+  it("applies status class", () => {
+    const { container } = render(<Alert status="error" title="Error" />);
     expect(container.firstChild).toHaveClass("wim-alert--error");
   });
 

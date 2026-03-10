@@ -5,8 +5,8 @@ import "./progress.scss";
 type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
   value?: number;
   max?: number;
-  color?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral";
-  size?: "sm" | "md" | "lg";
+  status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral";
+  size?: "small" | "medium" | "large";
   label?: string;
   showValue?: boolean;
   indeterminate?: boolean;
@@ -18,8 +18,8 @@ type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
 export const Progress = ({
   value = 0,
   max = 100,
-  color = "primary",
-  size = "md",
+  status = "primary",
+  size = "medium",
   label,
   showValue = false,
   indeterminate = false,
@@ -32,8 +32,8 @@ export const Progress = ({
     <div
       className={classNames(
         "wim-progress",
-        `wim-progress--${size}`,
-        `wim-progress--${color}`,
+        `wim-progress--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        `wim-progress--${status}`,
         indeterminate && "wim-progress--indeterminate",
         className,
       )}

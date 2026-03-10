@@ -131,10 +131,7 @@ export const Combobox = ({
         onFocus={() => setIsOpen(true)}
         leftIcon={showSearchIcon ? "SearchIcon" : undefined}
         rightIcon="ChevronDownIcon"
-        rightIconClassName={classNames(
-          "wim-combobox-icon",
-          isOpen && "wim-combobox-icon--rotated",
-        )}
+        rightIconRotated={isOpen}
         allowClear={allowClear}
         disabled={disabled}
         autoComplete="off"

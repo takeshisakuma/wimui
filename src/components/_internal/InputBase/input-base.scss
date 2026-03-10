@@ -118,9 +118,14 @@
     display: flex;
     align-items: center;
     pointer-events: none;
+    transition: transform var(--transition-base, 0.2s ease-in-out);
 
     &--clickable {
       pointer-events: auto;
+    }
+
+    &--rotated {
+      transform: rotate(180deg);
     }
   }
 

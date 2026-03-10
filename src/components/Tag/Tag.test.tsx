@@ -14,9 +14,9 @@ describe("Tag", () => {
     expect(screen.getByText("New")).toBeInTheDocument();
   });
 
-  it("applies variant and color classes", () => {
+  it("applies variant and status classes", () => {
     const { container } = render(
-      <Tag variant="outline" color="success">
+      <Tag variant="outline" status="success">
         Success
       </Tag>,
     );

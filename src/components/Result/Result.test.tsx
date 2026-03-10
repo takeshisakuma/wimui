@@ -10,8 +10,8 @@ vi.mock("react-i18next", () => ({
 }));
 
 describe("Result", () => {
-  it("renders title and subTitle", () => {
-    render(<Result title="Success" subTitle="Operation completed" />);
+  it("renders title and description", () => {
+    render(<Result title="Success" description="Operation completed" />);
     expect(screen.getByText("Success")).toBeInTheDocument();
     expect(screen.getByText("Operation completed")).toBeInTheDocument();
   });

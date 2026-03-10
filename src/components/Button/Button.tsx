@@ -13,12 +13,17 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   role?: "default" | "destructive" | "positive";
   /** @deprecated Use the standard HTML `disabled` prop instead. */
   state?: "abled" | "disabled";
+  /** Icon name or custom icon element */
+  icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
+  /** @deprecated Use icon instead */
   iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
   loading?: boolean;
   justify?: "start" | "center" | "end" | "between";
   /** Whether to animate the width change when label changes */
   animateWidth?: boolean;
+  /** Whether the button should take up the full width of its container */
+  fullWidth?: boolean;
 };
 
 export const Button = React.forwardRef<
@@ -32,12 +37,14 @@ export const Button = React.forwardRef<
       priority = "secondary",
       role = "default",
       state,
-      iconName = undefined,
+      icon,
+      iconName,
       iconPosition = "left",
       loading = false,
       backgroundColor,
       justify = "center",
       animateWidth = false,
+      fullWidth = false,
       "aria-label": ariaLabelProp,
       className,
       disabled,
@@ -115,6 +122,17 @@ export const Button = React.forwardRef<
             ? "space-between"
             : justify;
 
+    const renderIcon = () => {
+      const effectiveIcon = icon || iconName;
+      if (!effectiveIcon) return null;
+      if (typeof effectiveIcon === "string") {
+        return <Icon name={effectiveIcon as any} size={size} />;
+      }
+      return effectiveIcon;
+    };
+
+    const iconContent = renderIcon();
+
     const content = (
       <>
         <span
@@ -130,9 +148,7 @@ export const Button = React.forwardRef<
                   : "center",
           }}
         >
-          {iconName && iconPosition === "left" && (
-            <Icon name={iconName} size={size} />
-          )}
+          {iconContent && iconPosition === "left" && iconContent}
           {label && (
             <span
               className="wim-button__label"
@@ -142,9 +158,7 @@ export const Button = React.forwardRef<
             </span>
           )}
           {children}
-          {iconName && iconPosition === "right" && (
-            <Icon name={iconName} size={size} />
-          )}
+          {iconContent && iconPosition === "right" && iconContent}
         </span>
         {loading && (
           <span className="wim-button__loader">
@@ -182,7 +196,8 @@ export const Button = React.forwardRef<
           `wim-button--${role}`,
           loading && "wim-button--loading",
           animateWidth && "wim-button--animated-width",
-          !label && !children && iconName && "wim-button--icon-only",
+          fullWidth && "wim-button--full-width",
+          !label && !children && !!(icon || iconName) && "wim-button--icon-only",
           className,
         )}
         disabled={isDisabled || loading}

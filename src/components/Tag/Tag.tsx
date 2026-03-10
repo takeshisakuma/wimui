@@ -4,8 +4,8 @@ import "./tag.scss";
 export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   /** 表示するコンテンツ */
   children?: React.ReactNode;
-  /** 色 */
-  color?:
+  /** ステータス */
+  status?:
     | "primary"
     | "secondary"
     | "success"

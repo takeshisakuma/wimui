@@ -20,9 +20,9 @@ describe("Badge", () => {
     expect(screen.getByTestId("icon")).toBeInTheDocument();
   });
 
-  it("applies variant and color classes", () => {
+  it("applies variant and status classes", () => {
     const { container } = render(
-      <Badge content="Test" color="error" variant="outline" />,
+      <Badge content="Test" status="error" variant="outline" />,
     );
     const span = container.firstChild;
     expect(span).toHaveClass("wim-badge--error");

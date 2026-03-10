@@ -22,6 +22,11 @@
     will-change: transform, box-shadow;
     backface-visibility: hidden;
     transform: translateZ(0);
+ 
+    &--full-width {
+      display: grid;
+      width: 100%;
+    }
 
     &:active:not(:disabled) {
       transform: scale(var(--scale-active)) translateZ(0);

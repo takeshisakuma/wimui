@@ -23,9 +23,9 @@ describe("Notification", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders type-specific icon", () => {
+  it("renders status-specific icon", () => {
     const { container } = render(
-      <Notification title="Success" type="success" />,
+      <Notification title="Success" status="success" />,
     );
     const icon = container.querySelector(".wim-notification-icon");
     expect(icon).toBeInTheDocument();

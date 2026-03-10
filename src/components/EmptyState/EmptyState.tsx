@@ -19,7 +19,7 @@ type EmptyStateProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
    * アクションとして表示する要素（ボタンなど）。
    */
-  action?: React.ReactNode;
+  extra?: React.ReactNode;
   /**
    * デザインバリエーション。
    */
@@ -33,7 +33,7 @@ export const EmptyState = ({
   title,
   description,
   icon,
-  action,
+  extra,
   variant = "default",
   className,
   ...props
@@ -43,7 +43,7 @@ export const EmptyState = ({
       title={title}
       description={description}
       icon={icon}
-      actions={action}
+      actions={extra}
       className={classNames(
         "wim-empty-state",
         `wim-empty-state--${variant}`,

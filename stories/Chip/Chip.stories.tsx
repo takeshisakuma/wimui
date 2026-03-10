@@ -13,7 +13,7 @@ const meta: Meta<typeof Chip> = {
   component: Chip,
   tags: [], // mdxファイルがあるためautodocsは無効にする
   argTypes: {
-    color: {
+    status: {
       control: "select",
       options: ["primary", "secondary", "neutral"],
     },

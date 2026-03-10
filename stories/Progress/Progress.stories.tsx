@@ -6,7 +6,7 @@ const meta: Meta<typeof Progress> = {
   component: Progress,
   tags: [],
   argTypes: {
-    color: {
+    status: {
       control: "select",
       options: [
         "primary",
@@ -19,7 +19,7 @@ const meta: Meta<typeof Progress> = {
     },
     size: {
       control: "select",
-      options: ["sm", "md", "lg"],
+      options: ["small", "medium", "large"],
     },
   },
 };
@@ -46,12 +46,12 @@ export const Colors: Story = {
         width: "100%",
       }}
     >
-      <Progress {...args} color="primary" value={20} label="Primary" />
-      <Progress {...args} color="secondary" value={40} label="Secondary" />
-      <Progress {...args} color="success" value={60} label="Success" />
-      <Progress {...args} color="warning" value={80} label="Warning" />
-      <Progress {...args} color="error" value={90} label="Error" />
-      <Progress {...args} color="neutral" value={50} label="Neutral" />
+      <Progress {...args} status="primary" value={20} label="Primary" />
+      <Progress {...args} status="secondary" value={40} label="Secondary" />
+      <Progress {...args} status="success" value={60} label="Success" />
+      <Progress {...args} status="warning" value={80} label="Warning" />
+      <Progress {...args} status="error" value={90} label="Error" />
+      <Progress {...args} status="neutral" value={50} label="Neutral" />
     </div>
   ),
 };
@@ -66,9 +66,9 @@ export const Sizes: Story = {
         width: "100%",
       }}
     >
-      <Progress {...args} size="sm" value={50} label="Small" />
-      <Progress {...args} size="md" value={50} label="Medium" />
-      <Progress {...args} size="lg" value={50} label="Large" />
+      <Progress {...args} size="small" value={50} label="Small" />
+      <Progress {...args} size="medium" value={50} label="Medium" />
+      <Progress {...args} size="large" value={50} label="Large" />
     </div>
   ),
 };

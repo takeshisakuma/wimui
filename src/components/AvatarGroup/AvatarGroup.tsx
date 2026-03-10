@@ -6,7 +6,7 @@ import { Avatar } from "../Avatar/Avatar";
 type AvatarGroupProps = {
   children: React.ReactNode;
   max?: number;
-  size?: "sm" | "md" | "lg";
+  size?: "small" | "medium" | "large";
   total?: number;
   className?: string;
 };
@@ -31,7 +31,7 @@ export const AvatarGroup = ({
       {itemsToShow.map((child, index) => {
         if (React.isValidElement(child) && child.type === Avatar) {
           const avatarChild = child as React.ReactElement<{
-            size?: "sm" | "md" | "lg";
+            size?: "small" | "medium" | "large";
           }>;
           return React.cloneElement(avatarChild, {
             size: size || avatarChild.props.size,
@@ -44,7 +44,7 @@ export const AvatarGroup = ({
         <span
           className={classNames(
             "wim-avatar-group__excess",
-            `wim-avatar-group__excess--${size || "md"}`,
+            `wim-avatar-group__excess--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
           )}
         >
           +{excessCount}

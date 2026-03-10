@@ -15,9 +15,9 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
    */
   description?: string;
   /**
-   * アラートのバリアント
+   * アラートのステータス
    */
-  variant?: "info" | "success" | "warning" | "error";
+  status?: "info" | "success" | "warning" | "error";
   /**
    * カスタムアイコン。指定しない場合はバリアントに応じたデフォルトアイコンが表示されます。
    */
@@ -42,7 +42,7 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
 export const Alert = ({
   title,
   description,
-  variant = "info",
+  status = "info",
   icon,
   onClose,
   className,
@@ -61,12 +61,12 @@ export const Alert = ({
 
   return (
     <div
-      className={classNames("wim-alert", `wim-alert--${variant}`, className)}
+      className={classNames("wim-alert", `wim-alert--${status}`, className)}
       role="alert"
       {...props}
     >
       <div className="wim-alert__icon">
-        <FeedbackIcon variant={variant} icon={icon} size="small" />
+        <FeedbackIcon status={status as any} icon={icon} size="small" />
       </div>
       <div className="wim-alert__content">
         {title && <h4 className="wim-alert__title">{t(title)}</h4>}

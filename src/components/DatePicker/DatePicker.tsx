@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Calendar } from "../Calendar/Calendar";
 import { Icon } from "../Icon/Icon";
+import { InputBase } from "../_internal/InputBase";
 import "../Input/input.scss";
 import "./datePicker.scss";
 
@@ -136,12 +137,15 @@ export const DatePicker = ({
         className,
       )}
     >
-      <div
-        className={classNames(
-          "wim-input-container",
-          "wim-datepicker-container",
-          fullWidth && "wim-input--full-width",
-        )}
+      <InputBase
+        state={disabled ? "disabled" : state}
+        variant={variant}
+        fullWidth={fullWidth}
+        disabled={disabled || state === "disabled"}
+        allowClear={clearable}
+        hasValue={!!currentValue}
+        onClear={() => handleClear({ stopPropagation: () => { } } as any)}
+        rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen, onClick: handleInputClick }]}
       >
         <input
           ref={inputRef}
@@ -150,8 +154,6 @@ export const DatePicker = ({
           className={classNames(
             "wim-input",
             "wim-datepicker-input",
-            `wim-input--${disabled ? "disabled" : state}`,
-            `wim-input--${variant}`,
             fullWidth && "wim-input--full-width",
           )}
           value={formatDate(currentValue || null)}
@@ -164,30 +166,7 @@ export const DatePicker = ({
           aria-controls={isOpen ? dropdownId : undefined}
           {...props}
         />
-        <div className="wim-datepicker-icons">
-          {clearable && currentValue && !disabled && state !== "disabled" && (
-            <button
-              type="button"
-              className="wim-datepicker-clear"
-              onClick={handleClear}
-              aria-label={t("a11y_clear_date")}
-            >
-              <Icon name="CloseIcon" size="small" />
-            </button>
-          )}
-          <button
-            type="button"
-            className="wim-datepicker-calendar-icon"
-            onClick={handleInputClick}
-            disabled={disabled || state === "disabled"}
-            aria-label={t("a11y_open_calendar")}
-            aria-expanded={isOpen}
-            aria-controls={isOpen ? dropdownId : undefined}
-          >
-            <Icon name="ChevronDownIcon" size="small" />
-          </button>
-        </div>
-      </div>
+      </InputBase>
       {isOpen && !disabled && state !== "disabled" && (
         <div
           id={dropdownId}

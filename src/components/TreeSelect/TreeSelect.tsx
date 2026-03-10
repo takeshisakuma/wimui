@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import { TreeView } from "../TreeView/TreeView";
+import { InputBase } from "../_internal/InputBase";
 import "./tree-select.scss";
 
 export type TreeSelectNode = {
@@ -173,45 +174,40 @@ export const TreeSelect = ({
           {t(label)}
         </label>
       )}
-      <div
-        id={triggerId}
+      <InputBase
+        disabled={disabled}
+        allowClear={allowClear}
+        hasValue={!!displayValue}
+        onClear={() => handleClear({ stopPropagation: () => { } } as any)}
+        rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
         className={classNames(
-          "wim-tree-select__trigger",
           isOpen && "wim-tree-select__trigger--open",
-          disabled && "wim-tree-select__trigger--disabled",
         )}
-        onClick={handleToggle}
-        tabIndex={disabled ? -1 : 0}
-        role="combobox"
-        aria-expanded={isOpen}
-        aria-haspopup="tree"
-        aria-disabled={disabled}
-        aria-labelledby={label ? labelId : undefined}
       >
         <div
+          id={triggerId}
           className={classNames(
-            "wim-tree-select__value",
-            !displayValue && "wim-tree-select__value--placeholder",
+            "wim-tree-select__trigger",
+            disabled && "wim-tree-select__trigger--disabled",
           )}
+          onClick={handleToggle}
+          tabIndex={disabled ? -1 : 0}
+          role="combobox"
+          aria-expanded={isOpen}
+          aria-haspopup="tree"
+          aria-disabled={disabled}
+          aria-labelledby={label ? labelId : undefined}
         >
-          {displayValue || t(placeholder)}
-        </div>
-        <div className="wim-tree-select__icons">
-          {allowClear && (multiple ? (currentValue as string[]).length > 0 : currentValue) && !disabled && (
-            <button
-              type="button"
-              className="wim-tree-select__clear"
-              onClick={handleClear}
-              aria-label={t("a11y_clear_selection")}
-            >
-              <Icon name="CloseIcon" size="small" />
-            </button>
-          )}
-          <div className="wim-tree-select__icon">
-            <Icon name="ChevronDownIcon" size="medium" />
+          <div
+            className={classNames(
+              "wim-tree-select__value",
+              !displayValue && "wim-tree-select__value--placeholder",
+            )}
+          >
+            {displayValue || t(placeholder)}
           </div>
         </div>
-      </div>
+      </InputBase>
 
       <Transition
         show={isOpen && !disabled}

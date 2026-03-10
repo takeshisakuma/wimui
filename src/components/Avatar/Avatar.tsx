@@ -8,9 +8,10 @@ type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
   alt?: string;
   initials?: string;
   icon?: React.ReactNode;
-  size?: "sm" | "md" | "lg";
+  size?: "small" | "medium" | "large";
   shape?: "circle" | "rounded";
-  color?: "primary" | "secondary" | "neutral" | "error" | "success";
+  /** ステータス */
+  status?: "primary" | "secondary" | "neutral" | "error" | "success";
 };
 
 /**
@@ -21,9 +22,9 @@ export const Avatar = ({
   alt = "",
   initials,
   icon,
-  size = "md",
+  size = "medium",
   shape = "circle",
-  color,
+  status,
   className,
   ...props
 }: AvatarProps) => {
@@ -50,9 +51,9 @@ export const Avatar = ({
     <div
       className={classNames(
         "wim-avatar",
-        `wim-avatar--${size}`,
+        `wim-avatar--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
         `wim-avatar--${shape}`,
-        color && `wim-avatar--${color}`,
+        status && `wim-avatar--${status}`,
         className,
       )}
       {...props}

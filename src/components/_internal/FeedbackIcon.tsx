@@ -1,13 +1,13 @@
 import React from "react";
 import { Icon } from "../Icon/Icon";
 
-export type FeedbackVariant = "info" | "success" | "warning" | "error" | "default";
+export type FeedbackStatus = "info" | "success" | "warning" | "error" | "default";
 
 export interface FeedbackIconProps {
   /**
-   * フィードバックのバリアント
+   * フィードバックのステータス
    */
-  variant?: FeedbackVariant;
+  status?: FeedbackStatus;
   /**
    * カスタムアイコン
    */
@@ -30,7 +30,7 @@ export interface FeedbackIconProps {
  * 通知系コンポーネントで共通して使用されるアイコン表示用コンポーネント（内部用）
  */
 export const FeedbackIcon = ({
-  variant = "info",
+  status = "info",
   icon,
   size = "small",
   className,
@@ -40,8 +40,8 @@ export const FeedbackIcon = ({
   if (icon === false) return null;
 
   // Notification.tsx などで明示的に指定されている色を優先、
-  // 指定がない場合はバリアントに基づいてデフォルトアイコンを返す
-  switch (variant) {
+  // 指定がない場合はステータスに基づいてデフォルトアイコンを返す
+  switch (status) {
     case "success":
       return (
         <Icon

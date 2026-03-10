@@ -35,9 +35,9 @@ export type NotificationProps = {
    */
   icon?: ReactNode;
   /**
-   * The type of notification
+   * The status of notification
    */
-  type?: "info" | "success" | "error" | "warning";
+  status?: "info" | "success" | "error" | "warning";
   /**
    * Callback when notification is closed
    */
@@ -57,7 +57,7 @@ export const Notification = ({
   title,
   description,
   icon,
-  type,
+  status,
   onClose,
   closable = true,
   className,
@@ -83,19 +83,19 @@ export const Notification = ({
     <div
       className={classNames(
         "wim-notification",
-        type && `wim-notification--${type}`,
+        status && `wim-notification--${status}`,
         className,
       )}
       role="alert"
     >
       <div className="wim-notification-content">
-        {(icon || type) && (
+        {(icon || status) && (
           <div className="wim-notification-icon">
             <FeedbackIcon
-              variant={type as any}
+              status={status as any}
               icon={icon}
               size="medium"
-              color={type ? typeToColorMap[type] : undefined}
+              color={status ? typeToColorMap[status] : undefined}
             />
           </div>
         )}

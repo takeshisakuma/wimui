@@ -2,7 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
-import { IndicatorBase } from "../_internal/IndicatorBase";
 import "./chip.scss";
 
 export type ChipProps = {
@@ -22,8 +21,8 @@ export type ChipProps = {
   selected?: boolean;
   /** 無効状態 */
   disabled?: boolean;
-  /** 色 */
-  color?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
+  /** ステータス */
+  status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
   /** バリアント */
   variant?: "solid" | "outline" | "subtle";
   /** サイズ */
@@ -46,7 +45,7 @@ export const Chip = ({
   icon,
   selected = false,
   disabled = false,
-  color = "primary",
+  status = "primary",
   variant = "solid",
   size = "medium",
   className,
@@ -55,8 +54,28 @@ export const Chip = ({
   const { t } = useTranslation();
   const displayLabel = children ?? label;
 
-  const content = (
-    <>
+
+
+  const Component = onClick ? "button" : "span";
+  const commonProps = {
+    className: classNames(
+      "wim-chip",
+      `wim-chip--${status}`,
+      `wim-chip--${variant}`,
+      `wim-chip--${size === "small" ? "sm" : "md"}`,
+      selected && "wim-chip--selected",
+      onClick && !disabled && "wim-chip--clickable",
+      disabled && "wim-chip--disabled",
+      className,
+    ),
+    onClick: !disabled ? onClick : undefined,
+    disabled: disabled,
+    type: onClick ? ("button" as const) : undefined,
+    ...props,
+  };
+
+  return (
+    <Component {...commonProps}>
       {avatar && <span className="wim-chip__avatar">{avatar}</span>}
       {!avatar && icon && <span className="wim-chip__icon">{icon}</span>}
       <span className="wim-chip__label">
@@ -83,29 +102,7 @@ export const Chip = ({
           <Icon name="CloseIcon" size="small" />
         </span>
       )}
-    </>
-  );
-
-  return (
-    <IndicatorBase
-      as={onClick ? "button" : "span"}
-      prefixClass="wim-chip"
-      color={color}
-      variant={variant}
-      size={size}
-      className={classNames(
-        selected && "wim-chip--selected",
-        onClick && !disabled && "wim-chip--clickable",
-        disabled && "wim-chip--disabled",
-        className,
-      )}
-      onClick={!disabled ? onClick : undefined}
-      disabled={disabled}
-      type={onClick ? "button" : undefined}
-      {...props}
-    >
-      {content}
-    </IndicatorBase>
+    </Component>
   );
 };
 

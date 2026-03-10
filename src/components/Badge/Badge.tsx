@@ -9,8 +9,8 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
   content?: string;
   /** アイコン */
   icon?: React.ReactNode;
-  /** 色 */
-  color?:
+  /** ステータス */
+  status?:
     | "primary"
     | "secondary"
     | "success"

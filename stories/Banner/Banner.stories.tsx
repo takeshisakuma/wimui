@@ -26,7 +26,7 @@ export const Info: Story = {
     return (
       <Banner
         {...args}
-        variant="info"
+        status="info"
         title={t("story_banner_update_title")}
         description={t("story_banner_update_desc")}
       />
@@ -40,7 +40,7 @@ export const Success: Story = {
     return (
       <Banner
         {...args}
-        variant="success"
+        status="success"
         title={t("story_alert_success_title")}
         description={t("story_banner_update_desc")}
       />
@@ -54,7 +54,7 @@ export const Warning: Story = {
     return (
       <Banner
         {...args}
-        variant="warning"
+        status="warning"
         title={t("story_banner_maint_title")}
         description={t("story_banner_maint_desc")}
       />
@@ -68,7 +68,7 @@ export const ErrorStatus: Story = {
     return (
       <Banner
         {...args}
-        variant="error"
+        status="error"
         title={t("story_banner_conn_error_title")}
         description={t("story_banner_conn_error_desc")}
         onClose={() => {}}
@@ -83,10 +83,10 @@ export const WithAction: Story = {
     return (
       <Banner
         {...args}
-        variant="info"
+        status="info"
         title={t("story_banner_cookie_title")}
         description={t("story_banner_cookie_desc")}
-        action={
+        extra={
           <Button
             size="small"
             priority="secondary"
@@ -104,10 +104,10 @@ export const WithCloseAndAction: Story = {
     return (
       <Banner
         {...args}
-        variant="warning"
+        status="warning"
         title={t("story_banner_trial_title")}
         description={t("story_banner_trial_desc")}
-        action={
+        extra={
           <Button
             size="small"
             priority="primary"
@@ -126,7 +126,7 @@ export const DescriptionOnly: Story = {
     return (
       <Banner
         {...args}
-        variant="info"
+        status="info"
         description={t("story_banner_no_title_desc")}
       />
     );
@@ -139,7 +139,7 @@ export const NoIcon: Story = {
     return (
       <Banner
         {...args}
-        variant="info"
+        status="info"
         title={t("story_banner_simple_title")}
         description={t("story_banner_simple_desc")}
         icon={false}

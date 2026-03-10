@@ -20,7 +20,7 @@ export const Primary: Story = {
     return <Badge {...args} content={t("story_badge_content")} />;
   },
   args: {
-    color: "primary",
+    status: "primary",
   },
 };
 
@@ -30,7 +30,7 @@ export const Secondary: Story = {
     return <Badge {...args} content={t("story_badge_secondary")} />;
   },
   args: {
-    color: "secondary",
+    status: "secondary",
   },
 };
 
@@ -40,7 +40,7 @@ export const Destructive: Story = {
     return <Badge {...args} content={t("story_badge_error")} />;
   },
   args: {
-    color: "error",
+    status: "error",
   },
 };
 
@@ -50,7 +50,7 @@ export const Neutral: Story = {
     return <Badge {...args} content={t("story_badge_neutral")} />;
   },
   args: {
-    color: "neutral",
+    status: "neutral",
   },
 };
 
@@ -61,7 +61,7 @@ export const Outline: Story = {
   },
   args: {
     variant: "outline",
-    color: "primary",
+    status: "primary",
   },
 };
 
@@ -81,7 +81,7 @@ export const Required: Story = {
     return <Badge {...args} content={t("required")} />;
   },
   args: {
-    color: "error",
+    status: "error",
     size: "small",
   },
 };
@@ -92,7 +92,7 @@ export const Optional: Story = {
     return <Badge {...args} content={t("optional")} />;
   },
   args: {
-    color: "neutral",
+    status: "neutral",
     size: "small",
   },
 };
@@ -123,7 +123,7 @@ export const WithIcon: Story = {
     );
   },
   args: {
-    color: "primary",
+    status: "primary",
   },
 };
 
@@ -144,6 +144,6 @@ export const IconOnly: Story = {
         <path d="M20 6 9 17l-5-5" />
       </svg>
     ),
-    color: "primary",
+    status: "primary",
   },
 };

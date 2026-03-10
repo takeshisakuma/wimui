@@ -15,9 +15,9 @@ type BannerProps = {
    */
   description?: string;
   /**
-   * バナーのバリアント
+   * バナーのステータス
    */
-  variant?: "info" | "success" | "warning" | "error";
+  status?: "info" | "success" | "warning" | "error";
   /**
    * アイコンを表示するかどうか、またはカスタムアイコン
    */
@@ -25,7 +25,7 @@ type BannerProps = {
   /**
    * アクションボタン要素（例：Buttonコンポーネント）
    */
-  action?: React.ReactNode;
+  extra?: React.ReactNode;
   /**
    * 閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。
    */
@@ -47,9 +47,9 @@ type BannerProps = {
 export const Banner = ({
   title,
   description,
-  variant = "info",
+  status = "info",
   icon = true,
-  action,
+  extra,
   onClose,
   className,
   children,
@@ -59,7 +59,7 @@ export const Banner = ({
 
   return (
     <div
-      className={classNames("wim-banner", `wim-banner--${variant}`, className)}
+      className={classNames("wim-banner", `wim-banner--${status}`, className)}
       role="banner"
       {...props}
     >
@@ -68,7 +68,7 @@ export const Banner = ({
           {icon !== false && (
             <div className="wim-banner__icon">
               <FeedbackIcon
-                variant={variant}
+                status={status as any}
                 icon={typeof icon === "boolean" ? undefined : icon}
                 size="small"
               />
@@ -87,7 +87,7 @@ export const Banner = ({
           </div>
         </div>
         <div className="wim-banner__actions">
-          {action && <div className="wim-banner__action">{action}</div>}
+          {extra && <div className="wim-banner__action">{extra}</div>}
           <FeedbackCloseButton
              onClose={onClose}
              className="wim-banner__close"

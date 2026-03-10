@@ -80,11 +80,6 @@
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  transition: transform var(--transition-base);
-
-  .wim-selectbox-trigger--open & {
-    transform: rotate(180deg);
-  }
 }
 
 .wim-selectbox-clear {

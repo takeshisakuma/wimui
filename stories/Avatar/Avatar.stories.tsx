@@ -12,13 +12,13 @@ const meta: Meta<typeof Avatar> = {
   argTypes: {
     size: {
       control: "select",
-      options: ["sm", "md", "lg"],
+      options: ["small", "medium", "large"],
     },
     shape: {
       control: "radio",
       options: ["circle", "rounded"],
     },
-    color: {
+    status: {
       control: "select",
       options: ["primary", "secondary", "neutral", "error", "success"],
     },
@@ -45,16 +45,16 @@ export const Default: Story = {
 export const Initials: Story = {
   args: {
     initials: "JD",
-    color: "primary",
+    status: "primary",
   },
 };
 
 export const Sizes: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-      <Avatar {...args} size="sm" initials="SM" color="neutral" />
-      <Avatar {...args} size="md" initials="MD" color="neutral" />
-      <Avatar {...args} size="lg" initials="LG" color="neutral" />
+      <Avatar {...args} size="small" initials="SM" status="neutral" />
+      <Avatar {...args} size="medium" initials="MD" status="neutral" />
+      <Avatar {...args} size="large" initials="LG" status="neutral" />
     </div>
   ),
 };
@@ -62,8 +62,8 @@ export const Sizes: Story = {
 export const Shapes: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: "16px" }}>
-      <Avatar {...args} shape="circle" initials="C" color="secondary" />
-      <Avatar {...args} shape="rounded" initials="R" color="secondary" />
+      <Avatar {...args} shape="circle" initials="C" status="secondary" />
+      <Avatar {...args} shape="rounded" initials="R" status="secondary" />
     </div>
   ),
 };
@@ -86,11 +86,11 @@ export const Fallback: Story = {
 export const Colors: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: "16px" }}>
-      <Avatar {...args} initials="P" color="primary" />
-      <Avatar {...args} initials="S" color="secondary" />
-      <Avatar {...args} initials="N" color="neutral" />
-      <Avatar {...args} initials="E" color="error" />
-      <Avatar {...args} initials="SU" color="success" />
+      <Avatar {...args} initials="P" status="primary" />
+      <Avatar {...args} initials="S" status="secondary" />
+      <Avatar {...args} initials="N" status="neutral" />
+      <Avatar {...args} initials="E" status="error" />
+      <Avatar {...args} initials="SU" status="success" />
     </div>
   ),
 };

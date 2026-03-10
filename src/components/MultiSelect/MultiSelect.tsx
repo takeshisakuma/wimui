@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { Chip } from "../Chip/Chip";
 import { BaseListItem } from "../_internal/BaseListItem";
+import { InputBase } from "../_internal/InputBase";
 import "./multiselect.scss";
 
 export type MultiSelectOption = {
@@ -147,78 +148,73 @@ export const MultiSelect = ({
           {label}
         </label>
       )}
-      <div
-        id={triggerId}
+      <InputBase
+        disabled={disabled}
+        allowClear={allowClear}
+        hasValue={currentValues && currentValues.length > 0}
+        onClear={() => handleClearAll({ stopPropagation: () => { } } as any)}
+        rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
         className={classNames(
-          "wim-multiselect-trigger",
           isOpen && "wim-multiselect-trigger--open",
-          disabled && "wim-multiselect-trigger--disabled",
         )}
-        onClick={handleToggle}
-        tabIndex={disabled ? -1 : 0}
-        role="combobox"
-        aria-expanded={isOpen}
-        aria-haspopup="listbox"
-        aria-controls={isOpen ? listId : undefined}
-        aria-disabled={disabled}
-        aria-labelledby={label ? labelId : ariaLabelledBy}
-        aria-label={label ? undefined : ariaLabel || placeholder}
-        aria-describedby={ariaDescribedBy}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleToggle(e as any);
-          }
-          if (e.key === "ArrowDown" && !isOpen) {
-            e.preventDefault();
-            setIsOpen(true);
-          }
-          if (e.key === "Escape" && isOpen) {
-            e.preventDefault();
-            setIsOpen(false);
-          }
-        }}
       >
         <div
+          id={triggerId}
           className={classNames(
-            "wim-multiselect-value",
-            selectedOptions.length === 0 &&
-            "wim-multiselect-value--placeholder",
+            "wim-multiselect-trigger",
+            disabled && "wim-multiselect-trigger--disabled",
           )}
+          onClick={handleToggle}
+          tabIndex={disabled ? -1 : 0}
+          role="combobox"
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
+          aria-controls={isOpen ? listId : undefined}
+          aria-disabled={disabled}
+          aria-labelledby={label ? labelId : ariaLabelledBy}
+          aria-label={label ? undefined : ariaLabel || placeholder}
+          aria-describedby={ariaDescribedBy}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleToggle(e as any);
+            }
+            if (e.key === "ArrowDown" && !isOpen) {
+              e.preventDefault();
+              setIsOpen(true);
+            }
+            if (e.key === "Escape" && isOpen) {
+              e.preventDefault();
+              setIsOpen(false);
+            }
+          }}
         >
-          {selectedOptions.length > 0
-            ? selectedOptions.map((opt) => (
-              <Chip
-                key={opt.value}
-                label={opt.label}
-                size="small"
-                color="primary"
-                variant="solid"
-                disabled={disabled}
-                onDelete={
-                  !disabled ? (e) => handleRemove(e, opt.value) : undefined
-                }
-                className="wim-multiselect-badge"
-              />
-            ))
-            : placeholder}
-        </div>
-        <div className="wim-multiselect-icons">
-          {allowClear && currentValues && currentValues.length > 0 && !disabled && (
-            <button
-              type="button"
-              className="wim-multiselect-clear"
-              onClick={handleClearAll}
-              aria-label={t("a11y_clear_selection")}
-            >
-              <Icon name="CloseIcon" size="small" />
-            </button>
-          )}
-          <div className="wim-multiselect-icon">
-            <Icon name="ChevronDownIcon" size="small" />
+          <div
+            className={classNames(
+              "wim-multiselect-value",
+              selectedOptions.length === 0 &&
+              "wim-multiselect-value--placeholder",
+            )}
+          >
+            {selectedOptions.length > 0
+              ? selectedOptions.map((opt) => (
+                <Chip
+                  key={opt.value}
+                  label={opt.label}
+                  size="small"
+                  color="primary"
+                  variant="solid"
+                  disabled={disabled}
+                  onDelete={
+                    !disabled ? (e) => handleRemove(e, opt.value) : undefined
+                  }
+                  className="wim-multiselect-badge"
+                />
+              ))
+              : placeholder}
           </div>
         </div>
-      </div>
+      </InputBase>
 
       {isOpen && !disabled && (
         <ul

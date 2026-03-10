@@ -26,7 +26,7 @@ export const Default: Story = {
         title={t("story_emptystate_nodata_title")}
         description={t("story_emptystate_nodata_desc")}
         icon={<Icon name="SearchIcon" size="large" />}
-        action={<Button label={t("story_emptystate_clear_search")} />}
+        extra={<Button label={t("story_emptystate_clear_search")} />}
       />
     );
   },
@@ -81,7 +81,7 @@ export const CustomAction: Story = {
             <path d="M12 5v14M5 12h14" />
           </svg>
         }
-        action={
+        extra={
           <>
             <Button label={t("story_emptystate_browse_templates")} priority="secondary" />
             <Button label={t("story_emptystate_create_project")} priority="primary" />
@@ -115,7 +115,7 @@ export const NoVideos: Story = {
         title={t("story_emptystate_novideos_title")}
         description={t("story_emptystate_novideos_desc")}
         icon={<Icon name="VideoIcon" size="large" />}
-        action={<Button label={t("story_emptystate_upload_video")} priority="primary" />}
+        extra={<Button label={t("story_emptystate_upload_video")} priority="primary" />}
       />
     );
   },
