@@ -7,7 +7,7 @@ export type KbdProps = React.ComponentPropsWithoutRef<"kbd"> & {
     /**
      * サイズ。
      */
-    size?: "sm" | "md";
+    size?: "small" | "medium";
 };
 /**
  * ユーザーが入力するキーボードのショートカットやキーを表示するためのコンポーネント。

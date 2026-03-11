@@ -1,13 +1,18 @@
-import { default as React } from '../../../node_modules/react';
-type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
+export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
+    /** 表示するコンテンツ */
+    children?: React.ReactNode;
+    /** @deprecated use children instead */
     content?: string;
+    /** アイコン */
     icon?: React.ReactNode;
-    color?: "primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral";
-    variant?: "solid" | "outline";
+    /** ステータス */
+    status?: "primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral";
+    /** バリアント */
+    variant?: "solid" | "outline" | "subtle";
+    /** サイズ */
     size?: "small" | "medium";
 };
 /**
  * 状態やカウントなどを表示するためのバッジコンポーネント。
  */
-export declare const Badge: ({ content, icon, color, variant, size, className, ...props }: BadgeProps) => import("react/jsx-runtime").JSX.Element;
-export {};
+export declare const Badge: ({ children, content, icon, className, ...props }: BadgeProps) => import("react/jsx-runtime").JSX.Element;

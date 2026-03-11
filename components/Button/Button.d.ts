@@ -9,12 +9,17 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
     role?: "default" | "destructive" | "positive";
     /** @deprecated Use the standard HTML `disabled` prop instead. */
     state?: "abled" | "disabled";
+    /** Icon name or custom icon element */
+    icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
+    /** @deprecated Use icon instead */
     iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";
     loading?: boolean;
     justify?: "start" | "center" | "end" | "between";
     /** Whether to animate the width change when label changes */
     animateWidth?: boolean;
+    /** Whether the button should take up the full width of its container */
+    fullWidth?: boolean;
 };
 export declare const Button: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref"> & {
     backgroundColor?: string | null;
@@ -25,12 +30,17 @@ export declare const Button: React.ForwardRefExoticComponent<Omit<React.Detailed
     role?: "default" | "destructive" | "positive";
     /** @deprecated Use the standard HTML `disabled` prop instead. */
     state?: "abled" | "disabled";
+    /** Icon name or custom icon element */
+    icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
+    /** @deprecated Use icon instead */
     iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";
     loading?: boolean;
     justify?: "start" | "center" | "end" | "between";
     /** Whether to animate the width change when label changes */
     animateWidth?: boolean;
+    /** Whether the button should take up the full width of its container */
+    fullWidth?: boolean;
 } & {
     className?: string;
 } & React.RefAttributes<HTMLButtonElement>>;

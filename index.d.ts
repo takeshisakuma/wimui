@@ -63,6 +63,7 @@ export * from './components/IconButton/IconButton';
 export * from './components/InfiniteScroll/InfiniteScroll';
 export * from './components/Image/Image';
 export * from './components/Indicator/Indicator';
+export * from './components/InteractiveArea/InteractiveArea';
 export * from './components/Input/Input';
 export * from './components/InputGroup/InputGroup';
 export * from './components/InputMask/InputMask';

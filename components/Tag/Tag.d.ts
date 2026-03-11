@@ -1,9 +1,8 @@
-import { default as React } from '../../../node_modules/react';
-type TagProps = React.ComponentPropsWithoutRef<"span"> & {
-    /** 表示するテキスト */
+export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
+    /** 表示するコンテンツ */
     children?: React.ReactNode;
-    /** 色 */
-    color?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral";
+    /** ステータス */
+    status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
     /** バリアント */
     variant?: "solid" | "outline" | "subtle";
     /** サイズ */
@@ -14,5 +13,4 @@ type TagProps = React.ComponentPropsWithoutRef<"span"> & {
 /**
  * カテゴリ分けや属性のラベルとして使用される非インタラクティブなコンポーネント。
  */
-export declare const Tag: ({ children, color, variant, size, icon, className, ...props }: TagProps) => import("react/jsx-runtime").JSX.Element;
-export {};
+export declare const Tag: ({ children, icon, ...props }: TagProps) => import("react/jsx-runtime").JSX.Element;

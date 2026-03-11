@@ -1,4 +1,8 @@
 export type SortDirection = "asc" | "desc" | "none";
+/**
+ * Utility to get the next sort direction in the sequence: none -> asc -> desc -> none
+ */
+export declare function getNextSortDirection(currentDirection: SortDirection, isSameKey: boolean): SortDirection;
 export interface SortConfig<T = any> {
     key: keyof T | null;
     direction: SortDirection;

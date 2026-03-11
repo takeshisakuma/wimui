@@ -1,5 +1,5 @@
 import { default as React } from '../../../node_modules/react';
-export { useTableSort } from './useTableSort';
+export { useTableSort, getNextSortDirection } from './useTableSort';
 export type { SortDirection, SortConfig, UseTableSortOptions, UseTableSortReturn, } from './useTableSort';
 type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
     striped?: boolean;

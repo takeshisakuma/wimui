@@ -12,6 +12,9 @@ export type TreeSelectProps = {
     onChange?: (value: any) => void;
     placeholder?: string;
     label?: string;
+    error?: string;
+    required?: boolean;
+    layout?: "vertical" | "horizontal";
     className?: string;
     disabled?: boolean;
     multiple?: boolean;
@@ -24,4 +27,4 @@ export type TreeSelectProps = {
 /**
  * ツリー形式の選択肢から1つまたは複数を選択するためのコンポーネント。
  */
-export declare const TreeSelect: ({ treeData, value, onChange, placeholder, label, className, disabled, multiple, searchable, defaultExpandedKeys, allowClear, id: customId, ...props }: TreeSelectProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TreeSelect: ({ treeData, value, onChange, placeholder, label, error, required, layout, className, disabled, multiple, searchable, defaultExpandedKeys, allowClear, id: customId, ...props }: TreeSelectProps) => import("react/jsx-runtime").JSX.Element;

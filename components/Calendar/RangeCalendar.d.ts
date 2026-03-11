@@ -20,8 +20,24 @@ export type RangeCalendarProps = {
      * 無効化。
      */
     disabled?: boolean;
+    /**
+     * 選択可能な最小日付。
+     */
+    minDate?: Date;
+    /**
+     * 選択可能な最大日付。
+     */
+    maxDate?: Date;
+    /**
+     * 無効化する日付の配列。
+     */
+    disabledDates?: Date[];
+    /**
+     * 特定の日付を無効化する関数。
+     */
+    isDateDisabled?: (date: Date) => boolean;
 };
 /**
  * ユーザーが日付の範囲を選択するためのカレンダーコンポーネント。
  */
-export declare const RangeCalendar: ({ value, onChange, defaultValue, className, disabled, ...props }: RangeCalendarProps) => import("react/jsx-runtime").JSX.Element;
+export declare const RangeCalendar: ({ value, onChange, defaultValue, className, disabled, minDate, maxDate, disabledDates, isDateDisabled, ...props }: RangeCalendarProps) => import("react/jsx-runtime").JSX.Element;

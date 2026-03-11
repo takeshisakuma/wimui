@@ -15,7 +15,7 @@ type EmptyStateProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * アクションとして表示する要素（ボタンなど）。
      */
-    action?: React.ReactNode;
+    extra?: React.ReactNode;
     /**
      * デザインバリエーション。
      */
@@ -24,5 +24,5 @@ type EmptyStateProps = React.ComponentPropsWithoutRef<"div"> & {
 /**
  * データが空の場合や、検索結果がない場合などに表示するプレースホルダーコンポーネント。
  */
-export declare const EmptyState: ({ title, description, icon, action, variant, className, ...props }: EmptyStateProps) => import("react/jsx-runtime").JSX.Element;
+export declare const EmptyState: ({ title, description, icon, extra, variant, className, ...props }: EmptyStateProps) => import("react/jsx-runtime").JSX.Element;
 export {};

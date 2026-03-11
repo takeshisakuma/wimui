@@ -10,6 +10,9 @@ export type CascaderProps = {
     onChange?: (value: string[], selectedOptions: CascaderOption[]) => void;
     placeholder?: string;
     label?: string;
+    error?: string;
+    required?: boolean;
+    layout?: "vertical" | "horizontal";
     className?: string;
     disabled?: boolean;
     defaultValue?: string[];
@@ -24,4 +27,4 @@ export type CascaderProps = {
 /**
  * 階層構造を持つデータから選択肢を辿って1つを選択するためのコンポーネント。
  */
-export declare const Cascader: ({ options, value, onChange, placeholder, label, className, disabled, defaultValue, id: customId, expandTrigger, separator, allowClear, ...props }: CascaderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Cascader: ({ options, value, onChange, placeholder, label, error, required, layout, className, disabled, defaultValue, id: customId, expandTrigger, separator, allowClear, ...props }: CascaderProps) => import("react/jsx-runtime").JSX.Element;

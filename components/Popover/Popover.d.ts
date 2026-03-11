@@ -10,7 +10,7 @@ export type PopoverProps = {
     /**
      * If provided, controls the open state.
      */
-    isOpen?: boolean;
+    open?: boolean;
     /**
      * Callback when open state changes.
      */
@@ -20,7 +20,7 @@ export type PopoverProps = {
      */
     placement?: Placement;
 };
-export declare const Popover: ({ children, className, defaultOpen, isOpen: controlledOpen, onOpenChange, placement, }: PopoverProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Popover: ({ children, className, defaultOpen, open: controlledOpen, onOpenChange, placement, }: PopoverProps) => import("react/jsx-runtime").JSX.Element;
 export type PopoverTriggerProps = {
     children: ReactNode;
     className?: string;
@@ -32,6 +32,8 @@ export type PopoverContentProps = {
     className?: string;
     align?: "left" | "right" | "center";
     side?: "top" | "bottom";
+    /** Whether the popover is modal. If true, focus will be trapped inside and interaction with outside will be disabled. */
+    modal?: boolean;
 };
 export declare const PopoverContent: React.ForwardRefExoticComponent<PopoverContentProps & React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
 export declare const PopoverClose: ({ children, className, asChild, ...props }: React.ComponentPropsWithoutRef<"button"> & {

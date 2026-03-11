@@ -9,6 +9,9 @@ export type MultiSelectProps = {
     onChange?: (value: string[]) => void;
     placeholder?: string;
     label?: string;
+    error?: string;
+    required?: boolean;
+    layout?: "vertical" | "horizontal";
     className?: string;
     disabled?: boolean;
     defaultValue?: string[];
@@ -20,4 +23,4 @@ export type MultiSelectProps = {
 /**
  * ユーザーが定義済みの選択肢から複数を選択するためのドロップダウンメニュー。
  */
-export declare const MultiSelect: ({ options, value, onChange, placeholder, label, className, disabled, defaultValue, allowClear, id: customId, ...props }: MultiSelectProps) => import("react/jsx-runtime").JSX.Element;
+export declare const MultiSelect: ({ options, value, onChange, placeholder, label, error, required, layout, className, disabled, defaultValue, allowClear, id: customId, ...props }: MultiSelectProps) => import("react/jsx-runtime").JSX.Element;

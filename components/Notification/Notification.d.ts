@@ -1,6 +1,10 @@
-import { ReactNode } from '../../../node_modules/react';
+import { default as React, ReactNode } from '../../../node_modules/react';
 export type NotificationPlacement = "topRight" | "topLeft" | "bottomRight" | "bottomLeft";
 export type NotificationProps = {
+    /**
+     * The unique identifier of notification
+     */
+    id?: string;
     /**
      * The title of notification
      */
@@ -14,13 +18,13 @@ export type NotificationProps = {
      */
     icon?: ReactNode;
     /**
-     * The type of notification
+     * The status of notification
      */
-    type?: "info" | "success" | "error" | "warning";
+    status?: "info" | "success" | "error" | "warning";
     /**
      * Callback when notification is closed
      */
-    onClose?: () => void;
+    onClose?: (id?: string) => void;
     /**
      * Whether to show close button
      */
@@ -30,4 +34,17 @@ export type NotificationProps = {
      */
     className?: string;
 };
-export declare const Notification: ({ title, description, icon, type, onClose, closable, className, }: NotificationProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const Notification: ({ id, title, description, icon, status, onClose, closable, className, }: NotificationProps) => import("react/jsx-runtime").JSX.Element | null;
+type NotificationItem = Omit<NotificationProps, "onClose"> & {
+    id: string;
+};
+type NotificationContextType = {
+    show: (notification: Omit<NotificationItem, "id">) => void;
+    remove: (id: string) => void;
+};
+export declare const NotificationProvider: ({ children, placement, }: {
+    children: React.ReactNode;
+    placement?: NotificationPlacement;
+}) => import("react/jsx-runtime").JSX.Element;
+export declare const useNotification: () => NotificationContextType;
+export {};

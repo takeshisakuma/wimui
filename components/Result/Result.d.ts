@@ -10,9 +10,9 @@ export type ResultProps = {
      */
     title?: ReactNode;
     /**
-     * The subTitle
+     * The description
      */
-    subTitle?: ReactNode;
+    description?: ReactNode;
     /**
      * Operating area
      */
@@ -30,4 +30,4 @@ export type ResultProps = {
      */
     children?: ReactNode;
 };
-export declare const Result: ({ status, title, subTitle, extra, icon, className, children, }: ResultProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Result: ({ status, title, description, extra, icon, className, children, }: ResultProps) => import("react/jsx-runtime").JSX.Element;

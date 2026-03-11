@@ -9,7 +9,7 @@ export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * ローダーのサイズ。
      */
-    size?: "sm" | "md" | "lg" | "xl";
+    size?: "small" | "medium" | "large" | "xlarge";
     /**
      * ローダーの色。
      */

@@ -2,7 +2,7 @@ import { default as React } from '../../../node_modules/react';
 type AvatarGroupProps = {
     children: React.ReactNode;
     max?: number;
-    size?: "sm" | "md" | "lg";
+    size?: "small" | "medium" | "large";
     total?: number;
     className?: string;
 };

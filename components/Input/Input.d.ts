@@ -1,7 +1,7 @@
 import { default as React } from '../../../node_modules/react';
 import { Icon } from '../Icon/Icon';
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
-    state?: "default" | "error" | "disabled";
+    status?: "default" | "error" | "disabled";
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     leftIcon?: React.ComponentProps<typeof Icon>["name"];
@@ -13,13 +13,18 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
     allowClear?: boolean;
     showPasswordToggle?: boolean;
     rightIconClassName?: string;
+    rightIconRotated?: boolean;
     width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
+    label?: string;
+    error?: string;
+    required?: boolean;
+    layout?: "vertical" | "horizontal";
 };
 /**
  * ユーザーからの入力を受け付けるための基本コンポーネント。
  */
 export declare const Input: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "ref"> & {
-    state?: "default" | "error" | "disabled";
+    status?: "default" | "error" | "disabled";
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     leftIcon?: React.ComponentProps<typeof Icon>["name"];
@@ -31,5 +36,10 @@ export declare const Input: React.ForwardRefExoticComponent<Omit<React.DetailedH
     allowClear?: boolean;
     showPasswordToggle?: boolean;
     rightIconClassName?: string;
+    rightIconRotated?: boolean;
     width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
+    label?: string;
+    error?: string;
+    required?: boolean;
+    layout?: "vertical" | "horizontal";
 } & React.RefAttributes<HTMLInputElement>>;

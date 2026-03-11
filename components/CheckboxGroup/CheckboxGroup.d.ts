@@ -12,9 +12,11 @@ type CheckboxGroupProps = {
     name?: string;
     className?: string;
     label?: string;
+    error?: string;
+    required?: boolean;
 };
 /**
  * CheckboxGroup component to manage multiple checkboxes.
  */
-export declare const CheckboxGroup: ({ options, value, defaultValue, onChange, direction, name, className, label, }: CheckboxGroupProps) => import("react/jsx-runtime").JSX.Element;
+export declare const CheckboxGroup: ({ options, value, defaultValue, onChange, direction, name, className, label, error, required, }: CheckboxGroupProps) => import("react/jsx-runtime").JSX.Element;
 export {};

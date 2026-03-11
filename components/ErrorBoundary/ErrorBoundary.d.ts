@@ -1,16 +1,15 @@
 import { default as React, Component, ErrorInfo, ReactNode } from '../../../node_modules/react';
 export interface ErrorBoundaryProps {
-    /** The content that might throw an error */
-    children?: ReactNode;
-    /**
-     * The fallback UI to display when an error occurs.
-     * Can be a React node or a function that receives the error and info.
+    /** エラーが発生した時に表示されるコンポーネントまたは要素。
+     * 関数が渡された場合は (error, errorInfo, reset) => ReactNode として呼び出されます。
      */
-    fallback?: ReactNode | ((error: Error, errorInfo: ErrorInfo, reset: () => void) => ReactNode);
-    /** Callback fired when an error is caught */
+    fallback?: ReactNode | ((error: Error, errorInfo: ErrorInfo | null, reset: () => void) => ReactNode);
+    /** エラーが発生した時に呼び出されるコールバック。 */
     onError?: (error: Error, errorInfo: ErrorInfo) => void;
-    /** Callback fired when the error boundary is reset */
+    /** エラーがリセットされた時に呼び出されるコールバック。 */
     onReset?: () => void;
+    /** 子要素。 */
+    children: ReactNode;
 }
 interface State {
     hasError: boolean;
@@ -18,8 +17,7 @@ interface State {
     errorInfo: ErrorInfo | null;
 }
 /**
- * A standard React Error Boundary component that catches JavaScript errors
- * anywhere in its child component tree and displays a fallback UI.
+ * JavaScriptのエラーをキャッチしてフォールバックUIを表示する標準のReactエラー境界コンポーネント。
  */
 export declare class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
     state: State;

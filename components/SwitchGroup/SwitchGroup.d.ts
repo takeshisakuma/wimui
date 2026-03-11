@@ -15,9 +15,11 @@ type SwitchGroupProps = {
      * グループのラベル
      */
     label?: string;
+    error?: string;
+    required?: boolean;
 };
 /**
  * SwitchGroup component to manage multiple switches.
  */
-export declare const SwitchGroup: ({ options, value, defaultValue, onChange, direction, name, className, label, }: SwitchGroupProps) => import("react/jsx-runtime").JSX.Element;
+export declare const SwitchGroup: ({ options, value, defaultValue, onChange, direction, name, className, label, error, required, }: SwitchGroupProps) => import("react/jsx-runtime").JSX.Element;
 export {};

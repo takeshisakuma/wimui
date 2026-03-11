@@ -9,9 +9,9 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
      */
     description?: string;
     /**
-     * アラートのバリアント
+     * アラートのステータス
      */
-    variant?: "info" | "success" | "warning" | "error";
+    status?: "info" | "success" | "warning" | "error";
     /**
      * カスタムアイコン。指定しない場合はバリアントに応じたデフォルトアイコンが表示されます。
      */
@@ -32,5 +32,5 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
 /**
  * ユーザーに重要な情報を伝えるためのアラートコンポーネント。
  */
-export declare const Alert: ({ title, description, variant, icon, onClose, className, children, ...props }: AlertProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const Alert: ({ title, description, status, icon, onClose, className, children, ...props }: AlertProps) => import("react/jsx-runtime").JSX.Element | null;
 export {};

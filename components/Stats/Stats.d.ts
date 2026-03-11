@@ -1,10 +1,6 @@
 import { default as React } from '../../../node_modules/react';
-export type StatsProps = React.ComponentPropsWithoutRef<"div"> & {
-    /**
-     * バリアント
-     */
-    variant?: "default" | "outline" | "flat";
-};
+import { Card } from '../Card/Card';
+export type StatsProps = React.ComponentPropsWithoutRef<typeof Card>;
 /**
  * `Stats` は統計情報やメトリクスを表示するためのコンポーネントです。
  */

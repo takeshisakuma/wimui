@@ -613,6 +613,7 @@
   "overlay_modeless": "Modeless",
   "overlay_modeless_blocking_desc": "Allows interaction with the background screen while displayed.",
   "overlay_modeless_usage_criteria": "When you want to continue work while referring to the original screen.",
+  "doc_interactiveArea_desc": "Foundation component for consistent interactive areas with borders and states.",
   "overlay_multi_level_desc": "Multi-level action lists.",
   "overlay_near_element": "Near the element",
   "overlay_nested_menu": "Can handle nested menu structures.",
@@ -952,6 +953,8 @@
   "rating_stars": "{{count}} stars",
   "signature_clear": "Clear",
   "chat_send_button": "Send",
+  "chat_placeholder": "Type a message...",
+  "chat_placeholder_interactive": "Type your message...",
   "a11y_avatar": "Avatar",
   "datagrid_empty": "No data available",
   "datagrid_select_row": "Select row {{index}}"

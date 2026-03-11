@@ -31,6 +31,13 @@ export type CalendarProps = {
         end: Date | null;
     };
     /**
+     * 初期選択範囲（範囲選択モード時）。
+     */
+    defaultRange?: {
+        start: Date | null;
+        end: Date | null;
+    };
+    /**
      * 範囲が変更された時のコールバック（範囲選択モード時）。
      */
     onRangeChange?: (range: {
@@ -57,4 +64,4 @@ export type CalendarProps = {
 /**
  * ユーザーが日付を閲覧し、選択するためのカレンダーコンポーネント。
  */
-export declare const Calendar: ({ value, onChange, defaultValue, className, disabled, rangeMode, range, onRangeChange, minDate, maxDate, disabledDates, isDateDisabled, ...props }: CalendarProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Calendar: ({ value, onChange, defaultValue, className, disabled, rangeMode, range, defaultRange, onRangeChange, minDate, maxDate, disabledDates, isDateDisabled: isDateDisabledProp, ...props }: CalendarProps) => import("react/jsx-runtime").JSX.Element;

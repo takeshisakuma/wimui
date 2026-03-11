@@ -9,9 +9,9 @@ type BannerProps = {
      */
     description?: string;
     /**
-     * バナーのバリアント
+     * バナーのステータス
      */
-    variant?: "info" | "success" | "warning" | "error";
+    status?: "info" | "success" | "warning" | "error";
     /**
      * アイコンを表示するかどうか、またはカスタムアイコン
      */
@@ -19,7 +19,7 @@ type BannerProps = {
     /**
      * アクションボタン要素（例：Buttonコンポーネント）
      */
-    action?: React.ReactNode;
+    extra?: React.ReactNode;
     /**
      * 閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。
      */
@@ -37,5 +37,5 @@ type BannerProps = {
  * 重要なメッセージやアクションをユーザーに提示するためのバナーコンポーネント。
  * 通常、ページの上部に表示されます。
  */
-export declare const Banner: ({ title, description, variant, icon, action, onClose, className, children, ...props }: BannerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Banner: ({ title, description, status, icon, extra, onClose, className, children, ...props }: BannerProps) => import("react/jsx-runtime").JSX.Element;
 export {};

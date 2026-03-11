@@ -1,7 +1,7 @@
 import { default as React } from '../../../node_modules/react';
 import { WimColor } from '../../types/tokens';
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
-    size?: "sm" | "md" | "lg" | "xl";
+    size?: "small" | "medium" | "large" | "xlarge";
     color?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "currentColor" | WimColor;
     label?: string;
     labelPosition?: "right" | "bottom";
