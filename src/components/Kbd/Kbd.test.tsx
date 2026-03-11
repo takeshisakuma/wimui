@@ -9,7 +9,7 @@ describe("Kbd", () => {
   });
 
   it("applies size class", () => {
-    render(<Kbd size="sm">A</Kbd>);
+    render(<Kbd size="small">A</Kbd>);
     expect(screen.getByText("A")).toHaveClass("wim-kbd--sm");
   });
 });

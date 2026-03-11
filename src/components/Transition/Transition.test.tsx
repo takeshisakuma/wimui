@@ -1,14 +1,8 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Transition } from "./Transition";
 
 describe("Transition", () => {
-  beforeEach(() => {
-    vi.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
-      cb(0);
-      return 0;
-    });
-  });
 
   it("renders children when show is true", () => {
     render(
@@ -28,7 +22,7 @@ describe("Transition", () => {
     expect(screen.queryByTestId("content")).not.toBeInTheDocument();
   });
 
-  it("applies enter classes when shown", () => {
+  it("applies enter classes when shown", async () => {
     const { rerender, container } = render(
       <Transition
         show={false}
@@ -53,7 +47,9 @@ describe("Transition", () => {
 
     const wrapper = container.firstChild as HTMLElement;
     expect(wrapper).toHaveClass("test-enter");
-    expect(wrapper).toHaveClass("test-to");
+    await waitFor(() => {
+      expect(wrapper).toHaveClass("test-to");
+    });
   });
 
   it("unmounts after transition end if show set to false", () => {

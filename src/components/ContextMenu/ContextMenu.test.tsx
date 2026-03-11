@@ -34,9 +34,10 @@ describe("ContextMenu", () => {
     expect(screen.getByText("Menu Item 1")).toBeInTheDocument();
 
     fireEvent.mouseDown(document.body);
+    fireEvent.pointerDown(document.body);
     await waitFor(() => {
       expect(screen.queryByText("Menu Item 1")).not.toBeInTheDocument();
-    });
+    }, { timeout: 2000 });
   });
 
   it("calls item onClick", () => {

@@ -4,14 +4,14 @@ import { SignaturePad } from "./SignaturePad";
 
 describe("SignaturePad", () => {
   it("renders with default props", () => {
-    render(<SignaturePad />);
-    const canvas = screen.getByRole("img", { hidden: true }); // Canvas often doesn't have a default role but let's see
-    // Actually, canvas doesn't have a role. Let's use container.
+    const { container } = render(<SignaturePad />);
+    const canvas = container.querySelector("canvas");
+    expect(canvas).toBeInTheDocument();
   });
 
   it("has a clear button", () => {
     render(<SignaturePad clearLabel="Clear Signature" />);
-    expect(screen.getByText("Clear Signature")).toBeDefined();
+    expect(screen.getByText("Clear Signature")).toBeInTheDocument();
   });
 
   it("can be disabled", () => {

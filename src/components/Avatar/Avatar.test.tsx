@@ -24,7 +24,7 @@ describe("Avatar", () => {
   });
 
   it("applies size and shape classes", () => {
-    const { container } = render(<Avatar size="lg" shape="rounded" />);
+    const { container } = render(<Avatar size="large" shape="rounded" />);
     expect(container.firstChild).toHaveClass("wim-avatar--lg");
     expect(container.firstChild).toHaveClass("wim-avatar--rounded");
   });

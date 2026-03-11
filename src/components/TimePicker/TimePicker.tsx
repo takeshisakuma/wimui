@@ -22,7 +22,6 @@ export const TimePicker = ({
   return (
     <Input
       type="time"
-      rightIcon="ClockIcon"
       allowClear={allowClear}
       status={status}
       variant={variant}

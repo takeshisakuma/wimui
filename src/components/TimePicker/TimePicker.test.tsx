@@ -20,7 +20,7 @@ describe("TimePicker", () => {
   });
 
   it("applies error state class", () => {
-    const { container } = render(<TimePicker state="error" />);
+    const { container } = render(<TimePicker status="error" />);
     const input = container.querySelector("input");
     expect(input).toHaveClass("wim-input--error");
   });

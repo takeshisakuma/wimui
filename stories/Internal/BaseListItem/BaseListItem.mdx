@@ -1,0 +1,42 @@
+import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { T } from "../../T";
+import * as Stories from "./BaseListItem.stories";
+
+<Meta of={Stories} />
+
+# BaseListItem
+
+<p><T k="doc_baseListItem_long_desc" /></p>
+
+---
+
+## <T k="doc_usage" />
+
+<T k="doc_baseListItem_usage_desc" />
+
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+---
+
+## <T k="doc_stories" />
+
+### <T k="doc_story_default" />
+<Canvas of={Stories.Default} />
+
+### <T k="doc_story_with_icon" />
+<Canvas of={Stories.WithIcon} />
+
+### <T k="doc_story_with_right_section" />
+<Canvas of={Stories.WithRightSection} />
+
+### <T k="doc_story_with_badge" />
+<Canvas of={Stories.WithBadge} />
+
+### <T k="doc_story_states" />
+<Canvas of={Stories.States} />
+
+---
+
+## <T k="doc_api_reference" />
+<Controls />

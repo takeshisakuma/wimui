@@ -6,6 +6,7 @@ export type IndicatorSliderProps = {
   activeSelector: string;
   orientation?: IndicatorOrientation;
   className?: string;
+  style?: React.CSSProperties;
   variant?: string;
   dependence?: any;
 };
@@ -18,6 +19,7 @@ export const IndicatorSlider = ({
   activeSelector,
   orientation = "horizontal",
   className,
+  style,
   variant,
   dependence,
 }: IndicatorSliderProps) => {
@@ -38,6 +40,7 @@ export const IndicatorSlider = ({
         className={classNames("wim-indicator-slider", className)}
         style={{
           ...sliderStyle,
+          ...style,
           opacity: isReady ? sliderStyle.opacity : 0,
           transition: isReady ? "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
         }}

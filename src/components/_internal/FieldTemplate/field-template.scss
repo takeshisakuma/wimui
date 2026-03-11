@@ -1,6 +1,5 @@
 .wim-field-template {
   display: flex;
-  margin-bottom: 20px;
 
   &--vertical {
     flex-direction: column;
@@ -10,12 +9,26 @@
       display: block;
       margin-bottom: 0px; // FieldTemplate handles gaps via flex-gap
     }
+
+    .wim-input-base:has(input[type="color"]) {
+      min-height: 42px;
+      width: fit-content;
+      min-width: 120px;
+      max-width: 120px; // Lock width to avoid stretch
+    }
   }
 
   &--horizontal {
     flex-direction: row;
     align-items: flex-start;
     gap: 16px;
+
+    .wim-input-base:has(input[type="color"]) {
+      position: relative;
+      width: var(--wim-input-width, fit-content);
+      min-width: 160px;
+      max-width: 320px;
+    }
 
     .wim-field-template-label-wrapper {
         width: 150px; // default label width for horizontal layout

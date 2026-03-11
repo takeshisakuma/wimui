@@ -8,9 +8,9 @@ describe("FileUpload", () => {
     expect(screen.getByText("Upload Now")).toBeInTheDocument();
   });
 
-  it("shows '選択されていません' initially", () => {
+  it("shows 'No file selected' initially", () => {
     render(<FileUpload />);
-    expect(screen.getByText("選択されていません")).toBeInTheDocument();
+    expect(screen.getByText(/No file selected/i)).toBeInTheDocument();
   });
 
   it("triggers input click when button is clicked", () => {

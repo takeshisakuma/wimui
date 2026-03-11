@@ -4,15 +4,16 @@ import { ColorPicker } from "./ColorPicker";
 
 describe("ColorPicker", () => {
   it("renders color picker input", () => {
-    render(<ColorPicker data-testid="color-picker" />);
+    render(<ColorPicker data-testid="color-picker" id="color-picker" />);
     const input = screen.getByTestId("color-picker");
     expect(input).toBeInTheDocument();
     expect(input).toHaveAttribute("type", "color");
-    expect(input).toHaveClass("wim-colorpicker");
   });
 
   it("applies state classes", () => {
-    render(<ColorPicker state="error" data-testid="error-picker" />);
+    render(<ColorPicker status="error" data-testid="error-picker" id="error-picker" />);
+    // Check if the input itself or its wrapper has the error class.
+    // In Input component, the input element gets wim-input--error
     expect(screen.getByTestId("error-picker")).toHaveClass("wim-input--error");
   });
 

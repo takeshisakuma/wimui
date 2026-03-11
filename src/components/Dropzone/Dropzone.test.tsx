@@ -17,10 +17,10 @@ describe("Dropzone", () => {
     const dropzone = screen.getByRole("button");
 
     fireEvent.dragOver(dropzone);
-    expect(dropzone).toHaveClass("wim-dropzone--dragging");
+    expect(dropzone).toHaveClass("wim-interactive-area--dragging");
 
     fireEvent.dragLeave(dropzone);
-    expect(dropzone).not.toHaveClass("wim-dropzone--dragging");
+    expect(dropzone).not.toHaveClass("wim-interactive-area--dragging");
   });
 
   it("handles file drop", () => {

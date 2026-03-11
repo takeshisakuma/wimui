@@ -83,7 +83,7 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
           disabled && "wim-interactive-area--disabled",
           className,
         )}
-        role={isClickable ? "button" : undefined}
+        role={isClickable && !disabled ? "button" : undefined}
         tabIndex={isClickable && !disabled ? 0 : undefined}
         onKeyDown={(e) => {
           if (isClickable && !disabled && (e.key === "Enter" || e.key === " ")) {
@@ -93,6 +93,13 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
           props.onKeyDown?.(e);
         }}
         {...props}
+        onClick={(e) => {
+          if (disabled) {
+            e.preventDefault();
+            return;
+          }
+          props.onClick?.(e);
+        }}
       >
         <div className="wim-interactive-area__inner">
           {icon && <div className="wim-interactive-area__icon">{icon}</div>}

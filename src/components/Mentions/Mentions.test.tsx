@@ -2,13 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Mentions } from "./Mentions";
 
-// Mock useTranslation
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (str: string) => str,
-  }),
-}));
-
 describe("Mentions", () => {
   const options = [
     { id: 1, display: "Alice" },
@@ -54,11 +47,14 @@ describe("Mentions", () => {
     expect(handleSelect).toHaveBeenCalledWith(options[0]);
   });
 
-  it("navigates and selects with keyboard", () => {
+  it("navigates and selects with keyboard", async () => {
     render(<Mentions options={options} />);
     const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
 
     fireEvent.change(textarea, { target: { value: "@", selectionStart: 1 } });
+
+    // Wait for mention list to be open
+    await screen.findByRole("listbox");
 
     // Down to Bob
     fireEvent.keyDown(textarea, { key: "ArrowDown" });

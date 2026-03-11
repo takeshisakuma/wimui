@@ -20,7 +20,7 @@ describe("Banner", () => {
     const onClose = vi.fn();
     render(<Banner title="Close me" onClose={onClose} />);
 
-    const closeBtn = screen.getByLabelText("Close");
+    const closeBtn = screen.getByLabelText(/Close/i);
     fireEvent.click(closeBtn);
     expect(onClose).toHaveBeenCalled();
   });

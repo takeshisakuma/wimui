@@ -9,7 +9,7 @@ describe("Calendar", () => {
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     render(<Calendar />);
-    expect(screen.getByText("calendar_title")).toBeInTheDocument();
+    expect(screen.getByText(`${month} ${year}`)).toBeInTheDocument();
   });
 
   it("handles date selection", () => {

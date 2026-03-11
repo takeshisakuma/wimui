@@ -2,13 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Notification } from "./Notification";
 
-// Mock useTranslation
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (str: string) => str,
-  }),
-}));
-
 describe("Notification", () => {
   it("renders title and description", () => {
     render(
@@ -35,7 +28,7 @@ describe("Notification", () => {
     const handleClose = vi.fn();
     render(<Notification title="Title" onClose={handleClose} />);
 
-    const closeButton = screen.getByLabelText("Close");
+    const closeButton = screen.getByLabelText(/Close/i);
     fireEvent.click(closeButton);
 
     expect(handleClose).toHaveBeenCalledTimes(1);
@@ -43,7 +36,7 @@ describe("Notification", () => {
 
   it("does not render close button when closable is false", () => {
     render(<Notification title="Title" closable={false} />);
-    expect(screen.queryByLabelText("Close")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText(/Close/i)).not.toBeInTheDocument();
   });
 
   it("applies custom className", () => {

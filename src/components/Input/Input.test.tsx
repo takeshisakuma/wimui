@@ -33,8 +33,8 @@ describe("Input", () => {
     // Initially password type
     expect(input).toHaveAttribute("type", "password");
 
-    // Find toggle button by aria-label
-    const button = screen.getByRole("button", { name: "right-icon-action" });
+    // Find toggle button by aria-label using regex
+    const button = screen.getByLabelText(/Show password/i);
     fireEvent.click(button);
 
     expect(input).toHaveAttribute("type", "text");

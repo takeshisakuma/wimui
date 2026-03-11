@@ -14,17 +14,24 @@ export const Label = ({
   showOptional = false,
   className,
   children,
+  htmlFor,
   ...props
 }: LabelProps) => {
   return (
-    <label className={classNames("wim-label", className)} {...props}>
-      <FieldLabelContent
-        label={label}
-        required={required}
-        showOptional={showOptional}
-        className="wim-label__header"
-      />
+    <div className={classNames("wim-label", className)}>
+      <label
+        className="wim-label__header-wrapper"
+        htmlFor={htmlFor}
+        {...props}
+      >
+        <FieldLabelContent
+          label={label}
+          required={required}
+          showOptional={showOptional}
+          className="wim-label__header"
+        />
+      </label>
       {children}
-    </label>
+    </div>
   );
 };

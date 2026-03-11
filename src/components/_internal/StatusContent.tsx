@@ -32,6 +32,10 @@ export type StatusContentProps = {
    * Prefix for BEM classes
    */
   prefixCls?: string;
+  /**
+   * Size variation
+   */
+  size?: "default" | "small";
 };
 
 /**
@@ -45,6 +49,7 @@ export const StatusContent = ({
   children,
   className,
   prefixCls = "wim-status-content",
+  size = "default",
 }: StatusContentProps) => {
   const { t } = useTranslation();
 
@@ -53,16 +58,22 @@ export const StatusContent = ({
   };
 
   return (
-    <div className={classNames(prefixCls, className)}>
-      {icon && <div className={`${prefixCls}__icon`}>{icon}</div>}
-      {title && (
-        <div className={`${prefixCls}__title`}>{renderText(title)}</div>
-      )}
-      {description && (
-        <div className={`${prefixCls}__description`}>
-          {renderText(description)}
+    <div
+      className={classNames(prefixCls, `${prefixCls}--${size}`, className)}
+    >
+      <div className={`${prefixCls}__container`}>
+        {icon && <div className={`${prefixCls}__icon`}>{icon}</div>}
+        <div className={`${prefixCls}__content`}>
+          {title && (
+            <div className={`${prefixCls}__title`}>{renderText(title)}</div>
+          )}
+          {description && (
+            <div className={`${prefixCls}__description`}>
+              {renderText(description)}
+            </div>
+          )}
         </div>
-      )}
+      </div>
       {children && <div className={`${prefixCls}__body`}>{children}</div>}
       {actions && <div className={`${prefixCls}__actions`}>{actions}</div>}
     </div>

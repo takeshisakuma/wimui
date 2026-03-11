@@ -9,7 +9,7 @@ import { Container } from "@/components/Container/Container";
 import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof FocusTrap> = {
-  title: "Components/Utilities/FocusTrap",
+  title: "Components/Internal/FocusTrap",
   component: FocusTrap,
   tags: [],
   parameters: {

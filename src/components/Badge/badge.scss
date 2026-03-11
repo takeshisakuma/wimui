@@ -5,11 +5,14 @@
   gap: 0.5em;
   font-weight: normal;
   border-radius: 999px;
+  line-height: 1;
+  text-decoration: none;
 
   &__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    margin-top: -0.05em;
 
     svg {
       width: 1.2em;

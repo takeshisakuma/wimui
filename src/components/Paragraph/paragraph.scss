@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .wim-paragraph {
     font: inherit;
     color: inherit;
@@ -108,5 +108,10 @@
     &--info {
       color: var(--color-informative);
     }
+  }
+
+  // Prevent labels from being triggered by non-active text elements inside them
+  label .wim-paragraph {
+    pointer-events: none;
   }
 }

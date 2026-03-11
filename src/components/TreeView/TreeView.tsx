@@ -180,9 +180,14 @@ export const TreeViewItem = ({
     toggleExpand,
     select,
     toggleCheck,
+    multiSelect,
     checkable,
     searchQuery,
   } = useTreeView();
+
+  const generatedId = React.useId();
+  const checkboxId = `wim-tree-view-item-checkbox-${generatedId}`;
+  const labelId = `wim-tree-view-item-label-${generatedId}`;
 
   const isExpanded = expandedValues.includes(value);
   const isSelected = selectedValues.includes(value);
@@ -246,9 +251,14 @@ export const TreeViewItem = ({
     }
   };
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (!disabled) {
-      select(value);
+      if (multiSelect && checkable) {
+        toggleCheck(value);
+      } else {
+        select(value);
+      }
     }
   };
 
@@ -307,6 +317,7 @@ export const TreeViewItem = ({
       tabIndex={disabled ? -1 : 0}
     >
       <BaseListItem
+        id={labelId}
         className="wim-tree-view-item__label-container"
         active={isSelected}
         disabled={disabled}
@@ -330,12 +341,14 @@ export const TreeViewItem = ({
 
             {checkable && (
               <input
+                id={checkboxId}
                 type="checkbox"
                 className="wim-tree-view-item__checkbox"
                 checked={isChecked}
                 onChange={handleCheckboxChange}
                 disabled={disabled}
                 onClick={(e) => e.stopPropagation()}
+                aria-labelledby={labelId}
               />
             )}
 

@@ -828,7 +828,7 @@ export const Audio = ({
                     type="button"
                     className="wim-audio-btn wim-audio-btn--volume"
                     onClick={() => setIsMuted((m) => !m)}
-                    aria-label={isMuted ? "Unmute" : "Mute"}
+                    aria-label={isMuted ? t("a11y_unmute") : t("a11y_mute")}
                   >
                     <Icon
                       name={isMuted || volume === 0 ? "MuteIcon" : "VolumeIcon"}
@@ -867,7 +867,8 @@ export const Audio = ({
                   type="button"
                   className="wim-audio-btn wim-audio-btn--play"
                   onClick={togglePlay}
-                  title={isPlaying ? "Pause" : "Play"}
+                  title={isPlaying ? t("a11y_pause") : t("a11y_play")}
+                  aria-label={isPlaying ? t("a11y_pause") : t("a11y_play")}
                 >
                   <Icon
                     name={isPlaying ? "PauseIcon" : "PlayIcon"}

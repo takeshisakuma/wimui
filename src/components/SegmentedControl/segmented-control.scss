@@ -28,6 +28,7 @@
     @include indicator.indicator-item-base;
     height: var(--wim-tab-nav-height);
     padding: var(--wim-tab-nav-padding);
+    gap: var(--spacing-sm);
     font-size: var(--wim-tab-nav-font-size);
     font-weight: var(--font-weight-medium);
     color: var(--text-secondary);

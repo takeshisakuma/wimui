@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { ToggleGroup } from "./ToggleGroup";
 
@@ -16,15 +16,18 @@ describe("ToggleGroup", () => {
     expect(screen.getByText("Option 3")).toBeInTheDocument();
   });
 
-  it("handles single selection", () => {
+  it("handles single selection", async () => {
     const handleChange = vi.fn();
     render(<ToggleGroup options={options} onChange={handleChange} />);
 
     fireEvent.click(screen.getByText("Option 1"));
     expect(handleChange).toHaveBeenCalledWith("opt1");
-    expect(screen.getByText("Option 1").parentElement).toHaveClass(
-      "wim-toggle-group__item--active",
-    );
+    // Slider position/vibility might update asynchronously via rAF
+    await waitFor(() => {
+      expect(screen.getByText("Option 1").closest(".wim-toggle-group__item")).toHaveClass(
+        "wim-toggle-group__item--active",
+      );
+    });
 
     fireEvent.click(screen.getByText("Option 2"));
     expect(handleChange).toHaveBeenCalledWith("opt2");

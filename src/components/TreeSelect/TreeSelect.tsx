@@ -135,8 +135,7 @@ export const TreeSelect = ({
     }
   };
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleClear = () => {
     if (disabled) return;
 
     const newValue = multiple ? [] : "";
@@ -169,6 +168,13 @@ export const TreeSelect = ({
 
   const displayValue = getDisplayValue();
 
+  const {
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
+    "aria-describedby": ariaDescribedBy,
+    ...wrapperProps
+  } = props as any;
+
   return (
     <FieldTemplate
       label={label}
@@ -182,13 +188,13 @@ export const TreeSelect = ({
       <div
         className="wim-tree-select"
         ref={containerRef}
-        {...(props as any)}
+        {...wrapperProps}
       >
         <InputBase
           disabled={disabled}
           allowClear={allowClear}
           hasValue={!!displayValue}
-          onClear={() => handleClear({ stopPropagation: () => { } } as any)}
+          onClear={handleClear}
           status={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
@@ -208,8 +214,9 @@ export const TreeSelect = ({
             aria-haspopup="tree"
             aria-controls={isOpen ? dropdownId : undefined}
             aria-disabled={disabled}
-            aria-labelledby={labelId}
-            aria-describedby={errorId}
+            aria-labelledby={labelId || ariaLabelledBy}
+            aria-label={label ? undefined : (ariaLabel || t(placeholder))}
+            aria-describedby={errorId || ariaDescribedBy}
             aria-invalid={!!error}
           >
             <div
@@ -237,8 +244,9 @@ export const TreeSelect = ({
             <TreeView
               multiSelect={multiple}
               defaultSelectedValues={selectedKeys}
-              onCheckedChange={multiple ? handleSelect : undefined}
-              onSelectedChange={!multiple ? handleSelect : undefined}
+              defaultCheckedValues={multiple ? selectedKeys : []}
+              onCheckedChange={handleSelect}
+              onSelectedChange={handleSelect}
               checkable={multiple}
               searchable={searchable}
               defaultExpandedValues={defaultExpandedKeys}

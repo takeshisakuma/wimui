@@ -22,6 +22,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:check": "node scripts/generate-missing-tests-report.cjs",
+    "test:report": "npm run test:coverage && npm run test:check",
     "prestorybook": "npx kill-port 6006",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "rimraf storybook-static && storybook build",

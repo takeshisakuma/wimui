@@ -82,6 +82,7 @@ export const Popover = ({
   } = useFloatingElement({
     placement,
     open: controlledOpen,
+    defaultOpen,
     onOpenChange,
     trigger: "click",
   });

@@ -1,0 +1,85 @@
+import React, { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { OverlayBase } from "../../../src/components/_internal/OverlayBase";
+import { Button } from "../../../src/components/Button/Button";
+import { Card } from "../../../src/components/Card/Card";
+import { Stack } from "../../../src/components/Stack/Stack";
+import { useTranslation } from "react-i18next";
+
+const meta: Meta<typeof OverlayBase> = {
+  title: "Components/Internal/OverlayBase",
+  component: OverlayBase,
+  parameters: {
+    layout: "fullscreen",
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof OverlayBase>;
+
+export const Default: Story = {
+  render: function Render() {
+    const [open, setOpen] = useState(false);
+    const { t } = useTranslation(["docs", "common"]);
+    return (
+      <div style={{ padding: "40px", height: "100vh" }}>
+        <Button onClick={() => setOpen(true)} priority="primary">
+          {t("doc_ob_open")}
+        </Button>
+        <OverlayBase 
+            open={open} 
+            onOpenChange={setOpen}
+            contentClassName="wim-overlay-content-centered"
+        >
+          <Card style={{ width: "400px" }}>
+            <Card.Header>
+              <strong>{t("doc_ob_title")}</strong>
+            </Card.Header>
+            <Card.Body>
+              <Stack gap="md">
+                <p>{t("doc_ob_desc")}</p>
+                <Button onClick={() => setOpen(false)} priority="primary">{t("button_close") || "Close"}</Button>
+              </Stack>
+            </Card.Body>
+          </Card>
+        </OverlayBase>
+      </div>
+    );
+  },
+};
+
+export const CustomTransition: Story = {
+  render: function Render() {
+    const [open, setOpen] = useState(false);
+    const { t } = useTranslation(["docs", "common"]);
+    return (
+      <div style={{ padding: "40px", height: "100vh" }}>
+        <Button onClick={() => setOpen(true)} priority="primary">
+          {t("doc_ob_slide_open")}
+        </Button>
+        <OverlayBase 
+            open={open} 
+            onOpenChange={setOpen}
+            contentClassName="wim-overlay-content-top"
+            transitionProps={{
+                enter: "slide-down-enter",
+                enterFrom: "slide-down-enter-from",
+                enterTo: "slide-down-enter-to",
+                leave: "slide-down-leave",
+                leaveFrom: "slide-down-leave-from",
+                leaveTo: "slide-down-leave-to",
+            }}
+        >
+          <Card style={{ width: "100%", borderRadius: "0 0 16px 16px" }}>
+            <Card.Body>
+              <Stack direction="row" justify="space-between" align="center">
+                <p>{t("doc_ob_slide_desc")}</p>
+                <Button onClick={() => setOpen(false)} priority="secondary" label={t("button_dismiss") || "Dismiss"} />
+              </Stack>
+            </Card.Body>
+          </Card>
+        </OverlayBase>
+      </div>
+    );
+  },
+};

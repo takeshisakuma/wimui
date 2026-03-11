@@ -8,12 +8,6 @@ vi.mock("../Icon/Icon", () => ({
 }));
 
 // Mock useTranslation
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (str: string) => str,
-  }),
-}));
-
 describe("Alert", () => {
   it("renders title and description", () => {
     render(<Alert title="Test Title" description="Test Description" />);
@@ -35,7 +29,7 @@ describe("Alert", () => {
     const handleClose = vi.fn();
     render(<Alert title="Closable" onClose={handleClose} />);
 
-    const closeBtn = screen.getByLabelText("Close");
+    const closeBtn = screen.getByLabelText(/Close/i);
     expect(closeBtn).toBeInTheDocument();
 
     fireEvent.click(closeBtn);

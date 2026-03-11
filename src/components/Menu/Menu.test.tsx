@@ -65,7 +65,7 @@ describe("Menu", () => {
     );
 
     const item = screen.getByText("Disabled Item").parentElement;
-    expect(item).toHaveClass("wim-menu-item--disabled");
+    expect(item).toHaveClass("wim-base-list-item--disabled");
 
     fireEvent.click(screen.getByText("Disabled Item"));
     expect(handleClick).not.toHaveBeenCalled();

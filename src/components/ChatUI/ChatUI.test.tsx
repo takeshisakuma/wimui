@@ -150,7 +150,7 @@ describe("ChatInput", () => {
     const input = screen.getByRole("textbox");
 
     fireEvent.change(input, { target: { value: "Test message" } });
-    fireEvent.keyPress(input, { key: "Enter", code: "Enter", charCode: 13 });
+    fireEvent.keyDown(input, { key: "Enter", code: "Enter", keyCode: 13, which: 13 });
 
     expect(handleSend).toHaveBeenCalledWith("Test message");
   });

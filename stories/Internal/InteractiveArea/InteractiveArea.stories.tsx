@@ -4,6 +4,7 @@ import { InteractiveArea } from "../../../src/components/InteractiveArea/Interac
 import { Icon } from "../../../src/components/Icon/Icon";
 import { Button } from "../../../src/components/Button/Button";
 import { ContextMenu, ContextMenuItem } from "../../../src/components/ContextMenu/ContextMenu";
+import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof InteractiveArea> = {
   title: "Components/Internal/InteractiveArea",
@@ -14,35 +15,72 @@ export default meta;
 type Story = StoryObj<typeof InteractiveArea>;
 
 export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs"]);
+    return (
+      <InteractiveArea 
+        {...args} 
+        title={t("doc_ia_empty_title")} 
+        description={t("doc_ia_empty_desc")} 
+      />
+    );
+  },
   args: {
-    title: "No Data Available",
-    description: "Please upload a file or create a new entry to get started.",
     icon: <Icon name="DocumentIcon" />,
     variant: "dashed",
   },
 };
 
 export const Clickable: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs"]);
+    return (
+      <InteractiveArea 
+        {...args} 
+        title={t("doc_ia_empty_title")} 
+        description={t("doc_ia_clickable_desc")} 
+      />
+    );
+  },
   args: {
     ...Default.args,
     isClickable: true,
-    description: "Click here to perform an action.",
   },
 };
 
 export const WithActions: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common"]);
+    return (
+      <InteractiveArea 
+        {...args} 
+        title={t("doc_ia_empty_title")} 
+        description={t("doc_ia_empty_desc")} 
+        actions={
+          <>
+            <Button label={t("upload")} priority="primary" />
+            <Button label={t("learn_more")} priority="secondary" />
+          </>
+        }
+      />
+    );
+  },
   args: {
     ...Default.args,
-    actions: (
-      <>
-        <Button label="Upload" priority="primary" />
-        <Button label="Learn More" priority="secondary" />
-      </>
-    ),
   },
 };
 
 export const Large: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs"]);
+    return (
+      <InteractiveArea 
+        {...args} 
+        title={t("doc_ia_empty_title")} 
+        description={t("doc_ia_empty_desc")} 
+      />
+    );
+  },
   args: {
     ...Default.args,
     size: "large",
@@ -50,26 +88,42 @@ export const Large: Story = {
 };
 
 export const Small: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs"]);
+    return (
+      <InteractiveArea 
+        {...args} 
+        title={t("doc_ia_empty_title")} 
+        description={t("doc_ia_compact_desc")} 
+      />
+    );
+  },
   args: {
     ...Default.args,
     size: "small",
-    description: "Compact area",
   },
 };
 
 export const WithContextMenu: Story = {
-  render: (args) => (
-    <ContextMenu
-      menu={
-        <>
-          <ContextMenuItem icon={<Icon name="EditIcon" />}>Edit</ContextMenuItem>
-          <ContextMenuItem icon={<Icon name="TrashIcon" />} danger>Delete</ContextMenuItem>
-        </>
-      }
-    >
-      <InteractiveArea {...args} title="Right Click Me" description="I have a context menu." />
-    </ContextMenu>
-  ),
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common"]);
+    return (
+      <ContextMenu
+        menu={
+          <>
+            <ContextMenuItem icon={<Icon name="EditIcon" />}>{t("a11y_edit") || "Edit"}</ContextMenuItem>
+            <ContextMenuItem icon={<Icon name="TrashIcon" />} danger>{t("a11y_delete") || "Delete"}</ContextMenuItem>
+          </>
+        }
+      >
+        <InteractiveArea 
+          {...args} 
+          title={t("doc_ia_context_title")} 
+          description={t("doc_ia_context_desc")} 
+        />
+      </ContextMenu>
+    );
+  },
   args: {
     variant: "solid",
     bgVariant: "muted",

@@ -22,13 +22,13 @@ describe("Audio", () => {
 
   it("renders custom controls when customControls is true", () => {
     render(<Audio src={src} customControls />);
-    expect(screen.getByLabelText("Play")).toBeInTheDocument();
-    expect(screen.getByLabelText("Mute")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Play/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Mute/i })).toBeInTheDocument();
   });
 
   it("toggles play/pause with custom controls", () => {
     render(<Audio src={src} customControls />);
-    const playBtn = screen.getByLabelText("Play");
+    const playBtn = screen.getByRole("button", { name: /Play/i });
 
     fireEvent.click(playBtn);
     expect(window.HTMLMediaElement.prototype.play).toHaveBeenCalled();

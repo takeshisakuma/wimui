@@ -39,32 +39,32 @@
   }
 
   &--padding-sm {
-    padding: var(--spacing-lg) var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-md);
 
     & > .wim-card__header,
     & > .wim-card__body,
     & > .wim-card__footer {
-      padding: var(--spacing-lg) var(--spacing-lg);
+      padding: var(--spacing-md) var(--spacing-md);
     }
   }
 
   &--padding-md {
+    padding: var(--spacing-xl) var(--spacing-xl);
+
+    & > .wim-card__header,
+    & > .wim-card__body,
+    & > .wim-card__footer {
+      padding: var(--spacing-xl) var(--spacing-xl);
+    }
+  }
+
+  &--padding-lg {
     padding: var(--spacing-2xl) var(--spacing-2xl);
 
     & > .wim-card__header,
     & > .wim-card__body,
     & > .wim-card__footer {
       padding: var(--spacing-2xl) var(--spacing-2xl);
-    }
-  }
-
-  &--padding-lg {
-    padding: var(--spacing-3xl) var(--spacing-3xl);
-
-    & > .wim-card__header,
-    & > .wim-card__body,
-    & > .wim-card__footer {
-      padding: var(--spacing-3xl) var(--spacing-3xl);
     }
   }
 

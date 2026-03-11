@@ -45,15 +45,15 @@
 
   // Icons padding
   &.wim-input--has-left-icon {
-    --wim-input-offset-left: calc(var(--spacing-xl) + 1.2rem + 10px);
+    --wim-input-offset-left: calc(var(--spacing-2xl) + 1.5rem);
   }
 
   &.wim-input--has-right-icon {
-    --wim-input-offset-right: calc(var(--spacing-xl) + 1.2rem + 10px);
+    --wim-input-offset-right: calc(var(--spacing-2xl) + 1.5rem);
   }
 
   &.wim-input--has-multiple-right-icons {
-    --wim-input-offset-right: calc(var(--spacing-sm) + 2.4rem + var(--spacing-xs) + 10px);
+    --wim-input-offset-right: calc(var(--spacing-md) + 3rem + var(--spacing-sm) + 8px);
   }
 
   // Semantic sizes
@@ -154,7 +154,8 @@
 // Make sure children (inputs, triggers) don't have their own borders
 .wim-input-base > input,
 .wim-input-base > .wim-input,
-.wim-input-base > .wim-selectbox-trigger {
+.wim-input-base > .wim-selectbox-trigger,
+.wim-input-base > .wim-tree-select__trigger {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
@@ -163,4 +164,6 @@
     height: 100%;
     padding-top: var(--spacing-sm);
     padding-bottom: var(--spacing-sm);
+    padding-left: var(--wim-input-offset-left) !important;
+    padding-right: var(--wim-input-offset-right) !important;
 }

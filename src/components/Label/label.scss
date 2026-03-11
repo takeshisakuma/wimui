@@ -2,7 +2,17 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;
+  width: max-content;
+  max-width: 100%;
+
+  &:has(.wim-input-base) {
+    width: max-content;
+  }
+
+  &__header-wrapper {
+    display: block;
+    cursor: pointer; // Ensure the header is clickable
+  }
 
   &__header {
     display: flex;

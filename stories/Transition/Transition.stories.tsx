@@ -8,7 +8,7 @@ import { Container } from "@/components/Container/Container";
 import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Transition> = {
-  title: "Components/Utilities/Transition",
+  title: "Components/Internal/Transition",
   component: Transition,
   parameters: {
     layout: "centered",

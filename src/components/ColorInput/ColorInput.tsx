@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Input } from "../Input/Input";
+import "./color-input.scss";
 
 /**
  * カラー選択に特化した入力コンポーネント。

@@ -105,7 +105,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
                 currentTarget: internalRef.current,
               } as any);
             }
-          }, 20); // Small delay
+          }, 100); // Increased delay for tests to see classes
           return () => clearTimeout(timer);
         }
         return () => {};

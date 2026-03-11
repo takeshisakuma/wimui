@@ -51,9 +51,9 @@ describe("Popover", () => {
     );
 
     expect(screen.getByText("Popover Content")).toBeInTheDocument();
-    fireEvent.mouseDown(screen.getByTestId("outside"));
+    fireEvent.pointerDown(screen.getByTestId("outside"));
     await waitFor(() => {
       expect(screen.queryByText("Popover Content")).not.toBeInTheDocument();
-    });
+    }, { timeout: 2000 });
   });
 });

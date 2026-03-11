@@ -2,16 +2,10 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Chip } from "./Chip";
 
-// Mock translation
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
 describe("Chip", () => {
   it("renders label (deprecated prop)", () => {
     render(<Chip label="Test Chip" />);
+    // "Test Chip" might be passed to t(). If t returns the key, it works.
     expect(screen.getByText("Test Chip")).toBeInTheDocument();
   });
 
@@ -30,7 +24,7 @@ describe("Chip", () => {
     const handleClick = vi.fn();
     render(<Chip label="Clickable" onClick={handleClick} />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Clickable" }));
+    fireEvent.click(screen.getByRole("button", { name: /Clickable/i }));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
@@ -38,7 +32,7 @@ describe("Chip", () => {
     const handleDelete = vi.fn();
     render(<Chip label="Deletable" onDelete={handleDelete} />);
 
-    const deleteButton = screen.getByRole("button", { name: "a11y_delete" });
+    const deleteButton = screen.getByRole("button", { name: /Delete/i });
     fireEvent.click(deleteButton);
     expect(handleDelete).toHaveBeenCalledTimes(1);
   });

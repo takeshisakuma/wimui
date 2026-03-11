@@ -33,6 +33,6 @@ describe("RadioGroup", () => {
     const { container } = render(
       <RadioGroup options={options} direction="horizontal" />,
     );
-    expect(container.firstChild).toHaveClass("wim-radio-group--horizontal");
+    expect(screen.getByRole("radiogroup")).toHaveClass("wim-radio-group--horizontal");
   });
 });

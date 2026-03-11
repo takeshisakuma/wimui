@@ -35,7 +35,7 @@ export const Mentions = ({
   const [query, setQuery] = useState("");
   const [cursorPos, setCursorPos] = useState(0);
   const [mentionStart, setMentionStart] = useState(-1);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -70,7 +70,7 @@ export const Mentions = ({
         setMentionStart(lastTriggerIndex);
         setQuery(textAfterTrigger);
         setIsOpen(true);
-        setSelectedIndex(-1);
+        setSelectedIndex(0);
         return;
       }
     }

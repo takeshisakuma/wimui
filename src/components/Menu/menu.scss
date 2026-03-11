@@ -1,4 +1,4 @@
-﻿/* ------------------------------------------------------------------
+/* ------------------------------------------------------------------
    Menu Styles
 ------------------------------------------------------------------ */
 
@@ -26,12 +26,12 @@
     width: 100%;
     min-width: 0;
     height: auto;
-    padding: 0; // Horizontal menu doesn't need inset normally
+    padding: var(--spacing-xs) 0; // Restore some padding for focus rings
     background-color: transparent;
     border: none;
     box-shadow: none;
     overflow-x: auto;
-    overflow-y: hidden !important;
+    // overflow-y: hidden !important; (Removed to allow focus rings)
     -webkit-overflow-scrolling: touch;
 
     /* Hide scrollbars */
@@ -49,6 +49,7 @@
       flex-shrink: 0;
       display: flex;
       align-items: center;
+      width: auto;
     }
   }
 
@@ -80,6 +81,7 @@
     margin: 0 var(--spacing-xs);
     border-radius: var(--radius-sm);
     flex-shrink: 0;
+    width: auto;
   }
 }
 
@@ -99,6 +101,10 @@
     padding: 0;
     margin: 0;
     list-style: none;
+  }
+
+  .wim-menu--horizontal & {
+    width: auto;
   }
 }
 
@@ -144,6 +150,14 @@
   &--open {
     .wim-menu-submenu__list {
       display: block;
+    }
+  }
+
+  .wim-menu--horizontal & {
+    width: auto;
+
+    &__title {
+      width: auto;
     }
   }
 }

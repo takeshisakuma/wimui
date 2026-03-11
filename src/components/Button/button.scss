@@ -139,7 +139,7 @@
       }
 
       &:hover:not(:disabled) {
-        box-shadow: var(--shadow-lg), var(--inner-highlight);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12), var(--inner-highlight);
         transform: translateY(var(--lift-md)) translateZ(0);
         transition:
           box-shadow var(--duration-fast) var(--easing-base),

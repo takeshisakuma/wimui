@@ -8,9 +8,9 @@ describe("DatePicker", () => {
     expect(screen.getByPlaceholderText("Select Date")).toBeInTheDocument();
   });
 
-  it("opens calendar on click", () => {
+  it("opens calendar on click", async () => {
     render(<DatePicker />);
-    const input = screen.getByPlaceholderText("Select date");
+    const input = screen.getByPlaceholderText(/Select date/i);
 
     // Ideally checking for calendar presence visually.
     // Calendar component implementation details not fully known, but usually has days.
@@ -38,7 +38,7 @@ describe("DatePicker", () => {
     const date = new Date(2023, 0, 15);
     render(<DatePicker value={date} onChange={handleChange} clearable />);
 
-    const clearBtn = screen.getByLabelText("Clear date");
+    const clearBtn = screen.getByLabelText(/Clear/i);
     fireEvent.click(clearBtn);
 
     expect(handleChange).toHaveBeenCalledWith(null);

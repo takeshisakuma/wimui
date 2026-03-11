@@ -15,7 +15,7 @@ import { Alert } from "@/components/Alert/Alert";
 import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Portal> = {
-  title: "Components/Utilities/Portal",
+  title: "Components/Internal/Portal",
   component: Portal,
   parameters: {
     layout: "centered",

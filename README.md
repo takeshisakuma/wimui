@@ -26,6 +26,19 @@ npm run lint:fix // storiesフォルダ内のjs,tsのコードを修正
 
 npm run test // コンポーネント単体テスト (\*.test.tsx) の実行
 
+#### テストカバレッジ
+
+npm run test:coverage // coverage ディレクトリにブラウザで確認可能なHTMLレポートが生成されます。
+
+#### 未テストコンポーネントのリスト
+
+npm run test:check // 未テストコンポーネントのリスト (stories/missing_tests.txt) を更新します。
+
+#### テストカバレッジと未テストチェックを同時に実行
+
+npm run test:report // カバレッジ測定と未テストチェックを同時に実行します。
+
+
 #### Visual Regression Testing
 
 npm run test:vrt:update //vrt/vrt.spec.ts-snapshots/ ディレクトリの画像を更新(ビルド済みデータと比較)

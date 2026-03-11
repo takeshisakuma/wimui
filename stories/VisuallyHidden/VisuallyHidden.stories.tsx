@@ -4,7 +4,7 @@ import { VisuallyHidden } from "@/components/VisuallyHidden/VisuallyHidden";
 import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof VisuallyHidden> = {
-  title: "Components/Utilities/VisuallyHidden",
+  title: "Components/Internal/VisuallyHidden",
   component: VisuallyHidden,
   tags: [],
   parameters: {

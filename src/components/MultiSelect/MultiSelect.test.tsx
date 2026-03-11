@@ -2,13 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { MultiSelect } from "./MultiSelect";
 
-// Mock useTranslation
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (str: string) => str,
-  }),
-}));
-
 describe("MultiSelect", () => {
   const options = [
     { label: "Option 1", value: "opt1" },
@@ -55,7 +48,7 @@ describe("MultiSelect", () => {
       />,
     );
 
-    const deleteButton = screen.getByLabelText("Delete");
+    const deleteButton = screen.getByLabelText(/Delete/i);
     fireEvent.click(deleteButton);
 
     expect(handleChange).toHaveBeenCalledWith([]);

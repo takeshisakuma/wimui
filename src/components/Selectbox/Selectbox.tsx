@@ -421,18 +421,19 @@ export const Selectbox = ({
         labelId={labelId}
         className={className}
       >
-        <div className="wim-selectbox-native-wrapper">
-          <select
-            id={id}
-            className="wim-selectbox-select"
-            value={currentValue}
-            disabled={disabled}
-            onChange={(e) => {
-              if (onChange) onChange(e.target.value);
-              if (!isControlled) setInternalValue(e.target.value);
-            }}
-            {...props}
-          >
+        <div className="wim-selectbox wim-selectbox--native">
+          <div className="wim-selectbox-native-wrapper">
+            <select
+              id={id}
+              className="wim-selectbox-select"
+              value={currentValue}
+              disabled={disabled}
+              onChange={(e) => {
+                if (onChange) onChange(e.target.value);
+                if (!isControlled) setInternalValue(e.target.value);
+              }}
+              {...props}
+            >
             {!currentValue && (
               <option value="" disabled>
                 {t(placeholder)}
@@ -470,8 +471,9 @@ export const Selectbox = ({
                 ),
               )}
           </select>
-          <div className="wim-selectbox-icon">
-            <Icon name="ChevronDownIcon" size="medium" />
+            <div className="wim-selectbox-icon">
+              <Icon name="ChevronDownIcon" size="medium" />
+            </div>
           </div>
         </div>
       </FieldTemplate>
@@ -503,7 +505,7 @@ export const Selectbox = ({
       className={className}
     >
       <div
-        className={classNames("wim-selectbox-container")}
+        className={classNames("wim-selectbox")}
         ref={containerRef}
         {...wrapperProps}
       >
@@ -514,14 +516,12 @@ export const Selectbox = ({
           onClear={handleClear}
           status={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
-          className={classNames(
-            isOpen && "wim-selectbox-trigger--open",
-          )}
         >
           <div
             id={triggerId}
             className={classNames(
               "wim-selectbox-trigger",
+              isOpen && "wim-selectbox-trigger--open",
               disabled && "wim-selectbox-trigger--disabled",
             )}
             onClick={handleToggle}

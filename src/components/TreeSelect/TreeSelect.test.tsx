@@ -42,11 +42,15 @@ describe("TreeSelect", () => {
     render(<TreeSelect treeData={treeData} onChange={onChange} />);
     fireEvent.click(screen.getByRole("combobox"));
 
-    // Clicks the label of Node 2
-    fireEvent.click(screen.getByText("Node 2"));
+    // Clicks the label of Node 2 in the dropdown
+    // Since 'Node 2' is in both trigger and list, we use a more specific query or getAll
+    const options = screen.getAllByText("Node 2");
+    fireEvent.click(options[options.length - 1]); // The one in the list
 
     expect(onChange).toHaveBeenCalledWith("node-2");
-    expect(screen.getByText("Node 2")).toBeDefined();
+    // Verify it's displayed in the trigger
+    const triggerValue = screen.getByRole("combobox").querySelector(".wim-tree-select__value");
+    expect(triggerValue?.textContent).toBe("Node 2");
   });
 
   it("expands nodes and selects child", () => {
@@ -54,14 +58,18 @@ describe("TreeSelect", () => {
     render(<TreeSelect treeData={treeData} onChange={onChange} />);
     fireEvent.click(screen.getByRole("combobox"));
 
-    // Find expand button for Node 1
     const expandBtn = screen.getByLabelText("Expand");
     fireEvent.click(expandBtn);
 
-    expect(screen.getByText("Child 1-1")).toBeDefined();
-    fireEvent.click(screen.getByText("Child 1-1"));
+    const childNode = screen.getByText("Child 1-1");
+    fireEvent.click(childNode);
 
-    expect(onChange).toHaveBeenCalledWith("child-1-1");
+    // Should be called with the child value
+    expect(onChange).toHaveBeenLastCalledWith("child-1-1");
+    
+    // Verify it's displayed in the trigger (should NOT be parent "Node 1")
+    const triggerValue = screen.getByRole("combobox").querySelector(".wim-tree-select__value");
+    expect(triggerValue?.textContent).toBe("Child 1-1");
   });
 
   it("supports multiple selection", () => {
@@ -70,13 +78,10 @@ describe("TreeSelect", () => {
     fireEvent.click(screen.getByRole("combobox"));
 
     // Check checkboxes
-    const checkboxes = screen.getAllByRole("checkbox");
-    fireEvent.click(checkboxes[1]); // Node 2 (Node 1 expand btn is index 0 maybe? wait)
-    // TreeView uses real checkboxes for checkable mode.
-    // Node 1 has an expand btn. Node 2 is a leaf.
+    // The checkbox is associated with the label text via aria-labelledby
+    const node2Check = screen.getByLabelText("Node 2");
+    fireEvent.click(node2Check);
 
-    const node2Check = screen.getByLabelText("Node 2"); // Assuming TreeView uses labels for checkboxes
-    // Wait, TreeView doesn't set aria-label or htmlFor for its internal checkboxes in TreeView.tsx.
-    // Let's just use getAllByRole.
+    expect(onChange).toHaveBeenCalledWith(["node-2"]);
   });
 });

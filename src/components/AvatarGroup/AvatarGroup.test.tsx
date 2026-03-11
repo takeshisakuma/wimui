@@ -42,7 +42,7 @@ describe("AvatarGroup", () => {
 
   it("applies size to child avatars", () => {
     const { container } = render(
-      <AvatarGroup size="lg">
+      <AvatarGroup size="large">
         <Avatar initials="A" />
       </AvatarGroup>,
     );

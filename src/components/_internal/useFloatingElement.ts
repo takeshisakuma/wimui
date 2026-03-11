@@ -21,6 +21,7 @@ export type FloatingTriggerType = "click" | "hover" | "none";
 export interface FloatingElementOptions {
   placement?: Placement;
   open?: boolean;
+  defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   trigger?: FloatingTriggerType;
   offset?: number;
@@ -34,12 +35,13 @@ export interface FloatingElementOptions {
 export const useFloatingElement = ({
   placement = "bottom-start",
   open: controlledOpen,
+  defaultOpen = false,
   onOpenChange,
   trigger = "click",
   offset: offsetValue = 8,
   role: roleType = "dialog",
 }: FloatingElementOptions = {}) => {
-  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const isOpen = controlledOpen ?? uncontrolledOpen;
 
   const setOpen = (newOpen: boolean) => {
