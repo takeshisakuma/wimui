@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useId } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { Button } from "../Button/Button";
-import { Icon } from "../Icon/Icon";
 import { BaseListItem } from "../_internal/BaseListItem";
+import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
 import "./transfer.scss";
 
 export type TransferItem = {
@@ -26,6 +26,10 @@ export type TransferProps = {
   className?: string;
   style?: React.CSSProperties;
   disabled?: boolean;
+  label?: string;
+  error?: string;
+  required?: boolean;
+  layout?: "vertical" | "horizontal";
 };
 
 /**
@@ -39,12 +43,20 @@ export const Transfer = ({
   className,
   style,
   disabled = false,
+  label,
+  error,
+  required,
+  layout = "vertical",
 }: TransferProps) => {
   const { t } = useTranslation("common");
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const [internalTargetKeys, setInternalTargetKeys] = useState<string[]>(
     targetKeys || [],
   );
+  const generatedId = useId();
+  const id = `wim-transfer-${generatedId}`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
 
   // Controlled vs Uncontrolled targetKeys
   const isControlled = typeof targetKeys !== "undefined" && !!onChange;
@@ -68,7 +80,7 @@ export const Transfer = ({
     );
   };
 
-  const handleSelectAll = (keys: string[], listType: "source" | "target") => {
+  const handleSelectAll = (keys: string[], _listType: "source" | "target") => {
     if (disabled) return;
     const listKeys = keys;
     const allSelectedInList = listKeys.every((k) => selectedKeys.includes(k));
@@ -106,7 +118,7 @@ export const Transfer = ({
   const renderList = (
     data: TransferItem[],
     title: string,
-    type: "source" | "target",
+    _type: "source" | "target",
   ) => {
     const listKeys = data.filter((d) => !d.disabled).map((d) => d.key);
     const listSelectedKeys = selectedKeys.filter((k) => listKeys.includes(k));
@@ -121,7 +133,7 @@ export const Transfer = ({
           <Checkbox
             checked={isAllSelected}
             indeterminate={isIndeterminate}
-            onChange={() => handleSelectAll(listKeys, type)}
+            onChange={() => handleSelectAll(listKeys, _type)}
             disabled={disabled || listKeys.length === 0}
             label={t(title)}
           />
@@ -163,34 +175,45 @@ export const Transfer = ({
     0;
 
   return (
-    <div
-      className={classNames(
-        "wim-transfer",
-        disabled && "wim-transfer--disabled",
-        className,
-      )}
-      style={style}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={classNames("wim-transfer-container", className)}
     >
-      {renderList(sourceData, titles[0], "source")}
+      <div
+        className={classNames(
+          "wim-transfer",
+          disabled && "wim-transfer--disabled",
+        )}
+        style={style}
+        role="group"
+        aria-labelledby={label ? labelId : undefined}
+      >
+        {renderList(sourceData, titles[0], "source")}
 
-      <div className="wim-transfer__operation">
-        <Button
-          priority="secondary"
-          size="small"
-          onClick={() => moveItems("toRight")}
-          disabled={disabled || moveRightDisabled}
-          iconName="ChevronRightIcon"
-        />
-        <Button
-          priority="secondary"
-          size="small"
-          onClick={() => moveItems("toLeft")}
-          disabled={disabled || moveLeftDisabled}
-          iconName="ChevronLeftIcon"
-        />
+        <div className="wim-transfer__operation">
+          <Button
+            priority="secondary"
+            size="small"
+            onClick={() => moveItems("toRight")}
+            disabled={disabled || moveRightDisabled}
+            iconName="ChevronRightIcon"
+          />
+          <Button
+            priority="secondary"
+            size="small"
+            onClick={() => moveItems("toLeft")}
+            disabled={disabled || moveLeftDisabled}
+            iconName="ChevronLeftIcon"
+          />
+        </div>
+
+        {renderList(targetData, titles[1], "target")}
       </div>
-
-      {renderList(targetData, titles[1], "target")}
-    </div>
+    </FieldTemplate>
   );
 };

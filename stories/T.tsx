@@ -64,6 +64,7 @@ export const T = ({ k }: { k: string }) => {
     return text
       .replace(/\\n/g, "\n")              // Handle literal \n text
       .replace(/\n\s+/g, "\n")            // Remove indentation after newlines
+      .replace(/`([^`]+)`/g, "<code>$1</code>") // Convert backticks to code tags
       .replace(/\n/g, "<br />");          // Convert to HTML line breaks
   };
 
@@ -83,5 +84,5 @@ export const T = ({ k }: { k: string }) => {
   const translated = getTranslated(k);
   console.log("🔤 Translating", k, "→", translated, `(lang=${i18n.language})`);
 
-  return <span dangerouslySetInnerHTML={{ __html: processText(translated) }} />;
+  return <span className="wim-t" dangerouslySetInnerHTML={{ __html: processText(translated) }} />;
 };

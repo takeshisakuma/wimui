@@ -31,8 +31,8 @@ export interface DataGridColumn<T> {
   align?: "left" | "center" | "right";
   /** Data index in the row object (defaults to key if not provided) */
   dataIndex?: keyof T;
-  /** Whether the column is fixed to the left */
-  fixed?: boolean;
+  /** Whether the column is fixed to the left or right */
+  fixed?: boolean | "left" | "right";
 }
 
 export interface DataGridProps<T> {
@@ -60,6 +60,13 @@ export interface DataGridProps<T> {
     pageSize: number;
     current: number;
     onPageChange: (page: number) => void;
+  };
+  /** Infinite scroll / load more configuration */
+  loadMore?: {
+    onLoadMore: () => void;
+    hasMore: boolean;
+    loading: boolean;
+    threshold?: number;
   };
   /** Whether to show striped rows */
   striped?: boolean;
@@ -94,6 +101,7 @@ export function DataGrid<T extends Record<string, any>>({
   sortConfig,
   onSort,
   pagination,
+  loadMore,
   striped = false,
   bordered = false,
   hoverable = true,
@@ -109,6 +117,27 @@ export function DataGrid<T extends Record<string, any>>({
   const actualEmptyMessage = emptyMessage ?? t("datagrid_empty");
   const actualSelectAllRowsA11y =
     a11y_select_all_rows ?? t("a11y_select_all_rows");
+
+  const loaderRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (!loadMore || !loadMore.hasMore || loadMore.loading) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMore.onLoadMore();
+        }
+      },
+      { threshold: loadMore.threshold || 0.1 },
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [loadMore]);
 
   const getRowKey = (row: T): React.Key => {
     if (typeof rowKey === "function") {
@@ -149,30 +178,21 @@ export function DataGrid<T extends Record<string, any>>({
   const isSomeSelected =
     selectedRowKeys.length > 0 && selectedRowKeys.length < rows.length;
 
-  // Pre-calculate left offsets for fixed columns.
-  // We use z-index 10 for the leftmost column, and decrement for each column to prevent subpixel overlap issues.
-  const fixedLeftOffsets: Record<string, { offset: number | string; zIndex: number }> = {};
-
-  // Cell padding + border width. 
-  // wim-table--bordered adds exactly 1px border-right.
-  // Actually, even without bordered, the sticky-left cell uses box-shadow which adds NO physical width.
-  // So width is exactly column.width via max-width. BUT padding is 32px horizontally if box-sizing isn't border-box.
-  // Wait, I didn't remove box-sizing: border-box from table.scss! IT IS STILL THERE!
-  // So column.width IS the full width! No need to add padding.
-  // Is this true? Let's assume column.width is exact.
-
-  // Wait! If bordered=true, does the 1px border affect layout?
   const borderOffset = bordered ? 1 : 0;
 
-  // Selection column is 48px wide exactly via CSS with border-box.
-  let currentLeftOffset = selection ? (48 + borderOffset) : 0;
-  let currentZIndex = 20;
+  // Pre-calculate left offsets for fixed columns.
+  const fixedLeftOffsets: Record<
+    string,
+    { offset: number | string; zIndex: number }
+  > = {};
+  let currentLeftOffset = selection ? 48 + borderOffset : 0;
+  let currentLeftZIndex = 20;
 
   columns.forEach((col) => {
-    if (col.fixed) {
+    if (col.fixed === true || col.fixed === "left") {
       fixedLeftOffsets[col.key] = {
         offset: currentLeftOffset === 0 ? 0 : `${currentLeftOffset}px`,
-        zIndex: currentZIndex--,
+        zIndex: currentLeftZIndex--,
       };
       let colWidth = 0;
       if (typeof col.width === "number") {
@@ -181,6 +201,30 @@ export function DataGrid<T extends Record<string, any>>({
         colWidth = parseInt(col.width, 10);
       }
       currentLeftOffset += colWidth + borderOffset;
+    }
+  });
+
+  // Pre-calculate right offsets for fixed columns.
+  const fixedRightOffsets: Record<
+    string,
+    { offset: number | string; zIndex: number }
+  > = {};
+  let currentRightOffset = 0;
+  let currentRightZIndex = 20;
+
+  [...columns].reverse().forEach((col) => {
+    if (col.fixed === "right") {
+      fixedRightOffsets[col.key] = {
+        offset: currentRightOffset === 0 ? 0 : `${currentRightOffset}px`,
+        zIndex: currentRightZIndex--,
+      };
+      let colWidth = 0;
+      if (typeof col.width === "number") {
+        colWidth = col.width;
+      } else if (typeof col.width === "string" && col.width.endsWith("px")) {
+        colWidth = parseInt(col.width, 10);
+      }
+      currentRightOffset += colWidth + borderOffset;
     }
   });
 
@@ -206,7 +250,12 @@ export function DataGrid<T extends Record<string, any>>({
           <TableHeader>
             <TableRow>
               {selection && (
-                <TableHead selection stickyLeft leftOffset={0} stickyZIndex={stickyHeader ? 121 : 21}>
+                <TableHead
+                  selection
+                  stickyLeft
+                  leftOffset={0}
+                  stickyZIndex={stickyHeader ? 121 : 21}
+                >
                   <Checkbox
                     checked={isAllSelected}
                     indeterminate={isSomeSelected}
@@ -216,7 +265,16 @@ export function DataGrid<T extends Record<string, any>>({
                 </TableHead>
               )}
               {columns.map((column) => {
-                const fixedInfo = column.fixed ? fixedLeftOffsets[column.key] : undefined;
+                const fixedLeft =
+                  column.fixed === true || column.fixed === "left";
+                const fixedRight = column.fixed === "right";
+                const fixedLeftInfo = fixedLeft
+                  ? fixedLeftOffsets[column.key]
+                  : undefined;
+                const fixedRightInfo = fixedRight
+                  ? fixedRightOffsets[column.key]
+                  : undefined;
+
                 return (
                   <TableHead
                     key={column.key}
@@ -233,9 +291,21 @@ export function DataGrid<T extends Record<string, any>>({
                         : "none"
                     }
                     onSort={() => handleSort(column.key)}
-                    stickyLeft={column.fixed}
-                    leftOffset={fixedInfo?.offset}
-                    stickyZIndex={fixedInfo ? (stickyHeader ? fixedInfo.zIndex + 100 : fixedInfo.zIndex) : undefined}
+                    stickyLeft={fixedLeft}
+                    leftOffset={fixedLeftInfo?.offset}
+                    stickyRight={fixedRight}
+                    rightOffset={fixedRightInfo?.offset}
+                    stickyZIndex={
+                      fixedLeftInfo
+                        ? stickyHeader
+                          ? fixedLeftInfo.zIndex + 100
+                          : fixedLeftInfo.zIndex
+                        : fixedRightInfo
+                          ? stickyHeader
+                            ? fixedRightInfo.zIndex + 100
+                            : fixedRightInfo.zIndex
+                          : undefined
+                    }
                   >
                     {column.header}
                   </TableHead>
@@ -249,7 +319,10 @@ export function DataGrid<T extends Record<string, any>>({
                 <TableCell colSpan={columns.length + (selection ? 1 : 0)}>
                   <div className="wim-datagrid__empty">
                     {typeof actualEmptyMessage === "string" ? (
-                      <EmptyState title="No Data" description={actualEmptyMessage} />
+                      <EmptyState
+                        title="No Data"
+                        description={actualEmptyMessage}
+                      />
                     ) : (
                       actualEmptyMessage
                     )}
@@ -264,15 +337,20 @@ export function DataGrid<T extends Record<string, any>>({
                 return (
                   <TableRow key={key} selected={isSelected}>
                     {selection && (
-                      <TableCell selection stickyLeft leftOffset={0} stickyZIndex={21}>
+                      <TableCell
+                        selection
+                        stickyLeft
+                        leftOffset={0}
+                        stickyZIndex={21}
+                      >
                         <Checkbox
                           checked={isSelected}
                           onChange={(e) =>
                             handleSelectRow(key, e.target.checked)
                           }
                           aria-label={t("datagrid_select_row", {
-                      index: rowIndex + 1,
-                    })}
+                            index: rowIndex + 1,
+                          })}
                         />
                       </TableCell>
                     )}
@@ -281,7 +359,15 @@ export function DataGrid<T extends Record<string, any>>({
                         ? row[column.dataIndex]
                         : (row as any)[column.key];
 
-                      const fixedInfo = column.fixed ? fixedLeftOffsets[column.key] : undefined;
+                      const fixedLeft =
+                        column.fixed === true || column.fixed === "left";
+                      const fixedRight = column.fixed === "right";
+                      const fixedLeftInfo = fixedLeft
+                        ? fixedLeftOffsets[column.key]
+                        : undefined;
+                      const fixedRightInfo = fixedRight
+                        ? fixedRightOffsets[column.key]
+                        : undefined;
 
                       return (
                         <TableCell
@@ -296,9 +382,13 @@ export function DataGrid<T extends Record<string, any>>({
                               ? column.header
                               : undefined
                           }
-                          stickyLeft={column.fixed}
-                          leftOffset={fixedInfo?.offset}
-                          stickyZIndex={fixedInfo?.zIndex}
+                          stickyLeft={fixedLeft}
+                          leftOffset={fixedLeftInfo?.offset}
+                          stickyRight={fixedRight}
+                          rightOffset={fixedRightInfo?.offset}
+                          stickyZIndex={
+                            fixedLeftInfo?.zIndex || fixedRightInfo?.zIndex
+                          }
                         >
                           {column.render
                             ? column.render(value, row, rowIndex)
@@ -310,11 +400,20 @@ export function DataGrid<T extends Record<string, any>>({
                 );
               })
             )}
+            {loadMore && loadMore.hasMore && (
+              <TableRow>
+                <TableCell colSpan={columns.length + (selection ? 1 : 0)}>
+                  <div ref={loaderRef} className="wim-datagrid__loader">
+                    {loadMore.loading && <Spinner size="small" />}
+                  </div>
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
         {loading && (
           <div className="wim-datagrid__loading-overlay">
-            <Spinner size="lg" />
+            <Spinner size="large" />
           </div>
         )}
       </div>

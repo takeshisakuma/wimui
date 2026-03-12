@@ -9,6 +9,10 @@
     width: max-content;
   }
 
+  &:has(.wim-input--full-width) {
+    width: 100%;
+  }
+
   &__header-wrapper {
     display: block;
     cursor: pointer; // Ensure the header is clickable

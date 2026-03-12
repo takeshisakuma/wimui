@@ -136,7 +136,9 @@ type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
   onSort?: (e: React.MouseEvent) => void;
   selection?: boolean;
   stickyLeft?: boolean;
+  stickyRight?: boolean;
   leftOffset?: string | number;
+  rightOffset?: string | number;
   stickyZIndex?: number;
 };
 
@@ -145,7 +147,9 @@ export const TableHead = ({
   sortDirection = "none",
   onSort,
   stickyLeft = false,
+  stickyRight = false,
   leftOffset,
+  rightOffset,
   stickyZIndex,
   className,
   style,
@@ -159,11 +163,13 @@ export const TableHead = ({
         sortable && "wim-table__head--sortable",
         props.selection && "wim-table__head--selection",
         stickyLeft && "wim-table__head--sticky-left",
+        stickyRight && "wim-table__head--sticky-right",
         className,
       )}
       style={{
         ...style,
         left: stickyLeft ? (leftOffset !== undefined ? leftOffset : 0) : undefined,
+        right: stickyRight ? (rightOffset !== undefined ? rightOffset : 0) : undefined,
         zIndex: stickyZIndex !== undefined ? stickyZIndex : undefined,
       }}
       {...props}
@@ -207,7 +213,9 @@ type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
   selection?: boolean;
   label?: string;
   stickyLeft?: boolean;
+  stickyRight?: boolean;
   leftOffset?: string | number;
+  rightOffset?: string | number;
   stickyZIndex?: number;
 };
 
@@ -215,7 +223,9 @@ export const TableCell = ({
   selection = false,
   label,
   stickyLeft = false,
+  stickyRight = false,
   leftOffset,
+  rightOffset,
   stickyZIndex,
   className,
   style,
@@ -227,11 +237,13 @@ export const TableCell = ({
       "wim-table__cell",
       selection && "wim-table__cell--selection",
       stickyLeft && "wim-table__cell--sticky-left",
+      stickyRight && "wim-table__cell--sticky-right",
       className,
     )}
     style={{
       ...style,
       left: stickyLeft ? (leftOffset !== undefined ? leftOffset : 0) : undefined,
+      right: stickyRight ? (rightOffset !== undefined ? rightOffset : 0) : undefined,
       zIndex: stickyZIndex !== undefined ? stickyZIndex : undefined,
     }}
     data-label={label}

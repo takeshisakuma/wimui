@@ -1,7 +1,8 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useRef, useState, useEffect, useId, useCallback } from "react";
 import classNames from "classnames";
 import { Button } from "../Button/Button";
 import { useTranslation } from "react-i18next";
+import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
 import "./signature-pad.scss";
 
 export type SignaturePadProps = {
@@ -23,6 +24,10 @@ export type SignaturePadProps = {
   className?: string;
   /** Inline styles */
   style?: React.CSSProperties;
+  label?: string;
+  error?: string;
+  required?: boolean;
+  layout?: "vertical" | "horizontal";
 };
 
 /**
@@ -38,11 +43,19 @@ export const SignaturePad = ({
   disabled = false,
   className,
   style,
+  label,
+  error,
+  required,
+  layout = "vertical",
 }: SignaturePadProps) => {
   const { t } = useTranslation(["components"]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
+  const generatedId = useId();
+  const id = `wim-signature-pad-${generatedId}`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
 
   const actualClearLabel = clearLabel ?? t("signature_clear");
 
@@ -103,13 +116,13 @@ export const SignaturePad = ({
     }
   };
 
-  const stopDrawing = () => {
+  const stopDrawing = useCallback(() => {
     if (!isDrawing) return;
     setIsDrawing(false);
     if (onChange && canvasRef.current) {
       onChange(isEmpty ? null : canvasRef.current.toDataURL());
     }
-  };
+  }, [isDrawing, onChange, isEmpty]);
 
   const clear = () => {
     if (disabled || !canvasRef.current) return;
@@ -125,46 +138,63 @@ export const SignaturePad = ({
     // Global mouseup to stop drawing even if mouse leaves canvas
     window.addEventListener("mouseup", stopDrawing);
     return () => window.removeEventListener("mouseup", stopDrawing);
-  }, [isDrawing]);
+  }, [isDrawing, stopDrawing]);
 
   return (
-    <div
-      className={classNames(
-        "wim-signature-pad",
-        disabled && "wim-signature-pad--disabled",
-        className,
-      )}
-      style={style}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={classNames("wim-signature-pad-container", className)}
     >
       <div
-        className="wim-signature-pad__canvas-container"
-        style={{ width, maxWidth: "100%", aspectRatio: `${width} / ${height}`, height: "auto" }}
+        className={classNames(
+          "wim-signature-pad",
+          disabled && "wim-signature-pad--disabled",
+        )}
+        style={style}
       >
-        <canvas
-          ref={canvasRef}
-          width={width}
-          height={height}
-          className="wim-signature-pad__canvas"
-          style={{ width: "100%", height: "100%", display: "block" }}
-          onMouseDown={startDrawing}
-          onMouseMove={draw}
-          onMouseUp={stopDrawing}
-          onMouseLeave={draw} // Smooth line when leaving
-          onTouchStart={startDrawing}
-          onTouchMove={draw}
-          onTouchEnd={stopDrawing}
-        />
-      </div>
-      <div className="wim-signature-pad__footer">
-        <Button
-          priority="secondary"
-          size="small"
-          onClick={clear}
-          disabled={disabled || isEmpty}
+        <div
+          className="wim-signature-pad__canvas-container"
+          style={{
+            width,
+            maxWidth: "100%",
+            aspectRatio: `${width} / ${height}`,
+            height: "auto",
+          }}
         >
-          {actualClearLabel}
-        </Button>
+          <canvas
+            ref={canvasRef}
+            width={width}
+            height={height}
+            className="wim-signature-pad__canvas"
+            style={{ width: "100%", height: "100%", display: "block" }}
+            onMouseDown={startDrawing}
+            onMouseMove={draw}
+            onMouseUp={stopDrawing}
+            onMouseLeave={draw} // Smooth line when leaving
+            onTouchStart={startDrawing}
+            onTouchMove={draw}
+            onTouchEnd={stopDrawing}
+            aria-labelledby={label ? labelId : undefined}
+            role="img"
+            aria-label={label ? undefined : t("signature_canvas_label")}
+          />
+        </div>
+        <div className="wim-signature-pad__footer">
+          <Button
+            priority="secondary"
+            size="small"
+            onClick={clear}
+            disabled={disabled || isEmpty}
+          >
+            {actualClearLabel}
+          </Button>
+        </div>
       </div>
-    </div>
+    </FieldTemplate>
   );
 };

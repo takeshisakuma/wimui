@@ -12,8 +12,8 @@
   border-radius: var(--radius-md);
   transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
   position: relative;
-  width: var(--wim-input-width, 100%);
-  max-width: 320px;
+  width: var(--wim-input-width, 320px);
+  max-width: 100%;
 
   &.wim-input--variant-ghost {
     background-color: transparent;
@@ -66,10 +66,7 @@
   &.wim-input--has-custom-width,
   &[class*="wim-input--width-"] {
     max-width: 100%;
-    width: calc(
-      var(--wim-input-width) + var(--wim-input-offset-left) +
-        var(--wim-input-offset-right) + 2px
-    );
+    width: var(--wim-input-width);
   }
 
   &.wim-input--full-width {
@@ -156,6 +153,7 @@
 .wim-input-base > .wim-input,
 .wim-input-base > .wim-selectbox-trigger,
 .wim-input-base > .wim-tree-select__trigger {
+    box-sizing: border-box !important;
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;

@@ -2,6 +2,7 @@ import React, { useId, useRef } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { useIndicator } from "../_internal/useIndicator";
+import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
 import "./segmented-control.scss";
 
 type Option = {
@@ -21,6 +22,18 @@ type SegmentedControlProps = {
    * アクセシビリティ用のラベル
    */
   label?: string;
+  /**
+   * エラーメッセージ
+   */
+  error?: string;
+  /**
+   * 必須表示にするかどうか
+   */
+  required?: boolean;
+  /**
+   * レイアウト方向
+   */
+  layout?: "vertical" | "horizontal";
 };
 
 export const SegmentedControl = ({
@@ -31,11 +44,14 @@ export const SegmentedControl = ({
   fullWidth = false,
   className,
   label,
+  error,
+  required,
+  layout = "vertical",
 }: SegmentedControlProps) => {
-  const [focusedIndex, setFocusedIndex] = React.useState<number | null>(null);
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const generatedId = useId();
   const labelId = `wim-segmented-label-${generatedId}`;
+  const errorId = `wim-segmented-error-${generatedId}`;
 
   const { containerRef, sliderStyle, isReady } = useIndicator({
     activeSelector: ".wim-segmented-control__item--active",
@@ -68,12 +84,15 @@ export const SegmentedControl = ({
   };
 
   return (
-    <div className={classNames("wim-segmented-control-container", className)}>
-      {label && (
-        <div id={labelId} className="wim-label" style={{ marginBottom: "8px" }}>
-          {label}
-        </div>
-      )}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={classNames("wim-segmented-control-container", className)}
+    >
       <div
         ref={containerRef}
         className={classNames(
@@ -112,8 +131,8 @@ export const SegmentedControl = ({
               )}
               onClick={() => onChange(option.value)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              onFocus={() => setFocusedIndex(index)}
-              onBlur={() => setFocusedIndex(null)}
+              onFocus={() => {}}
+              onBlur={() => {}}
               role="radio"
               aria-checked={isSelected}
               tabIndex={isTabbable ? 0 : -1}
@@ -129,6 +148,6 @@ export const SegmentedControl = ({
           );
         })}
       </div>
-    </div>
+    </FieldTemplate>
   );
 };

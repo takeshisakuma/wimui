@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { InteractiveArea } from "../InteractiveArea/InteractiveArea";
+import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
 import "./dropzone.scss";
 
 type DropzoneProps = {
@@ -38,6 +39,18 @@ type DropzoneProps = {
    * アイコンの名前。
    */
   iconName?: React.ComponentProps<typeof Icon>["name"];
+  /**
+   * エラーメッセージ
+   */
+  error?: string;
+  /**
+   * 必須表示にするかどうか
+   */
+  required?: boolean;
+  /**
+   * レイアウト方向
+   */
+  layout?: "vertical" | "horizontal";
 };
 
 /**
@@ -52,6 +65,9 @@ export const Dropzone = ({
   onChange,
   className,
   iconName = "UploadIcon",
+  error,
+  required,
+  layout = "vertical",
 }: DropzoneProps) => {
   const { t } = useTranslation("common");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -96,8 +112,13 @@ export const Dropzone = ({
   };
 
   return (
-    <div className={classNames("wim-dropzone-container", className)}>
-      {label && <span className="wim-dropzone__label">{t(label)}</span>}
+    <FieldTemplate
+      label={label ? t(label) : undefined}
+      error={error}
+      required={required}
+      layout={layout}
+      className={classNames("wim-dropzone-container", className)}
+    >
       <InteractiveArea
         className="wim-dropzone"
         isDragging={isDragging}
@@ -145,6 +166,6 @@ export const Dropzone = ({
           </div>
         )}
       </InteractiveArea>
-    </div>
+    </FieldTemplate>
   );
 };

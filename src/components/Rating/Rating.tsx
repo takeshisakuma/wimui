@@ -2,6 +2,7 @@ import React, { useState, useId } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
 import "./rating.scss";
 
 type RatingProps = {
@@ -41,6 +42,18 @@ type RatingProps = {
    * アクセシビリティ用のラベル
    */
   label?: string;
+  /**
+   * エラーメッセージ
+   */
+  error?: string;
+  /**
+   * 必須表示にするかどうか
+   */
+  required?: boolean;
+  /**
+   * レイアウト方向
+   */
+  layout?: "vertical" | "horizontal";
 };
 
 /**
@@ -56,6 +69,9 @@ export const Rating = ({
   onChange,
   className,
   label,
+  error,
+  required,
+  layout = "vertical",
   ...props
 }: RatingProps) => {
   const { t } = useTranslation("components");
@@ -64,6 +80,7 @@ export const Rating = ({
   const [hoverValue, setHoverValue] = useState<number | null>(null);
   const generatedId = useId();
   const labelId = `wim-rating-label-${generatedId}`;
+  const errorId = `wim-rating-error-${generatedId}`;
 
   const currentValue = isControlled ? value! : internalValue;
   const displayValue = hoverValue !== null ? hoverValue : currentValue;
@@ -144,7 +161,14 @@ export const Rating = ({
           }
           handleClick(val);
         }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleClick(starValue);
+          }
+        }}
         role="radio"
+        tabIndex={-1}
         aria-checked={
           currentValue === starValue ||
           (allowHalf && currentValue === starValue - 0.5)
@@ -164,12 +188,15 @@ export const Rating = ({
   const stars = Array.from({ length: count }, (_, i) => renderStar(i));
 
   return (
-    <div className={classNames("wim-rating-container", className)}>
-      {label && (
-        <div id={labelId} className="wim-label" style={{ marginBottom: "4px" }}>
-          {t(label)}
-        </div>
-      )}
+    <FieldTemplate
+      label={label ? t(label) : undefined}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={classNames("wim-rating-container", className)}
+    >
       <div
         className={classNames(
           "wim-rating",
@@ -186,6 +213,6 @@ export const Rating = ({
       >
         {stars}
       </div>
-    </div>
+    </FieldTemplate>
   );
 };

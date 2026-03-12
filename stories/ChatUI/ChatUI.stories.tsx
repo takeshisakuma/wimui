@@ -9,6 +9,7 @@ import {
 import { Icon } from "@/components/Icon/Icon";
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const meta: Meta<typeof ChatContainer> = {
   title: "Components/Data Structures/ChatUI",
@@ -367,6 +368,193 @@ export const AvatarSizes: Story = {
           </p>
           <ChatAvatar size="large" fallback="L" />
         </div>
+      </div>
+    );
+  },
+};
+
+export const AiAssistantIntegration: Story = {
+  render: () => {
+    const { t } = useTranslation(["docs", "components"]);
+    interface Message {
+      id: number;
+      text: string;
+      position: "left" | "right";
+      sender: string;
+      timestamp: string;
+      isTyping?: boolean;
+    }
+
+    const [messages, setMessages] = useState<Message[]>([
+      {
+        id: 1,
+        text: "Hello! I am your AI Assistant. How can I help you today?",
+        position: "left",
+        sender: "AI Assistant",
+        timestamp: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      },
+    ]);
+    const [isLoading, setIsLoading] = useState(false);
+    const messageListRef = useRef<HTMLDivElement>(null);
+
+    const handleSend = async (message: string) => {
+      const newMessage: Message = {
+        id: Date.now(),
+        text: message,
+        position: "right",
+        sender: "You",
+        timestamp: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      };
+      setMessages((prev) => [...prev, newMessage]);
+      setIsLoading(true);
+
+      // Add a temporary typing message
+      const typingMessageId = Date.now() + 1;
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: typingMessageId,
+          text: "...",
+          position: "left",
+          sender: "AI Assistant",
+          timestamp: "",
+          isTyping: true,
+        },
+      ]);
+
+      try {
+        // [Example] How to use the Gemini API:
+        // ------------------------------------------------------------------
+        // const API_KEY = "YOUR_API_KEY"; // Replace with your actual key
+        // const genAI = new GoogleGenerativeAI(API_KEY);
+        // const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        // const result = await model.generateContent(message);
+        // const responseText = await result.response.text();
+        // ------------------------------------------------------------------
+
+        // Mocking the AI response for demonstration purposes
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        const responseText = `This is a simulated AI response to: "${message}". In a real environment, you would uncomment the Gemini API code snippet above.`;
+
+        setMessages((prev) =>
+          prev
+            .filter((msg) => msg.id !== typingMessageId)
+            .concat({
+              id: Date.now() + 2,
+              text: responseText,
+              position: "left",
+              sender: "AI Assistant",
+              timestamp: new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+            })
+        );
+      } catch (error) {
+        console.error("Failed to generate AI response:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    useEffect(() => {
+      if (messageListRef.current) {
+        messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
+      }
+    }, [messages]);
+
+    return (
+      <div style={{ height: "100vh" }}>
+        <ChatContainer>
+          <ChatMessageList ref={messageListRef}>
+            {messages.map((msg) => (
+              <ChatMessage
+                key={msg.id}
+                position={msg.position}
+                showAvatar
+                avatar={
+                  msg.position === "left" ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: 40,
+                        height: 40,
+                        borderRadius: "50%",
+                        background: "var(--wim-color-primary)",
+                        color: "white",
+                      }}
+                    >
+                      <Icon name="StarIcon" size="small" />
+                    </div>
+                  ) : (
+                    <ChatAvatar fallback="Y" color="s18" />
+                  )
+                }
+                senderName={msg.sender}
+                timestamp={msg.timestamp}
+              >
+                {msg.isTyping ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "4px",
+                      alignItems: "center",
+                      height: "24px",
+                    }}
+                  >
+                    <span
+                      className="typing-dot"
+                      style={{
+                        animation: "chat-typing 1.4s infinite ease-in-out both",
+                        animationDelay: "-0.32s",
+                      }}
+                    >
+                      ●
+                    </span>
+                    <span
+                      className="typing-dot"
+                      style={{
+                        animation: "chat-typing 1.4s infinite ease-in-out both",
+                        animationDelay: "-0.16s",
+                      }}
+                    >
+                      ●
+                    </span>
+                    <span
+                      className="typing-dot"
+                      style={{
+                        animation: "chat-typing 1.4s infinite ease-in-out both",
+                      }}
+                    >
+                      ●
+                    </span>
+                    <style>{`
+                      @keyframes chat-typing {
+                        0%, 80%, 100% { opacity: 0; }
+                        40% { opacity: 1; }
+                      }
+                    `}</style>
+                  </div>
+                ) : (
+                  msg.text
+                )}
+              </ChatMessage>
+            ))}
+          </ChatMessageList>
+          <ChatInput
+            placeholder="Ask the AI Assistant..."
+            onSend={handleSend}
+            disabled={isLoading}
+          />
+        </ChatContainer>
       </div>
     );
   },

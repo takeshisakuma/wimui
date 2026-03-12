@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import classNames from "classnames";
 import { useSliderCommon } from "../../utilities/slider-utils";
+import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
 import "./rangeSlider.scss";
 
 type RangeSliderProps = {
@@ -54,9 +55,23 @@ type RangeSliderProps = {
    */
   label?: string;
   /**
+   * エラーメッセージ
+   */
+  error?: string;
+  /**
+   * 必須表示にするかどうか
+   */
+  required?: boolean;
+  /**
+   * レイアウト方向
+   */
+  layout?: "vertical" | "horizontal";
+  /**
    * カスタムID
    */
   id?: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
 };
 
 /**
@@ -75,13 +90,19 @@ export const RangeSlider = ({
   className,
   name,
   label,
+  error,
+  required,
+  layout = "vertical",
   id: customId,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
   ...props
 }: RangeSliderProps) => {
   const isControlled = value !== undefined;
   const generatedId = useId();
   const id = customId || generatedId;
   const labelId = `wim-range-slider-label-${id}`;
+  const errorId = `wim-range-slider-error-${id}`;
 
   const { clamp, calculateValue } = useSliderCommon(min, max, step);
 
@@ -243,23 +264,18 @@ export const RangeSlider = ({
   const leftPerc = getPercentage(currentValue[0]);
   const rightPerc = getPercentage(currentValue[1]);
 
-  const {
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabelledBy,
-    ...wrapperProps
-  } = props as any;
+  const wrapperProps = props as any;
 
   return (
-    <div className={classNames("wim-range-slider-container", className)}>
-      {label && (
-        <span
-          id={labelId}
-          className="wim-label"
-          style={{ display: "block", marginBottom: "8px" }}
-        >
-          {label}
-        </span>
-      )}
+    <FieldTemplate
+      label={label}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={classNames("wim-range-slider-container", className)}
+    >
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
         className={classNames(
@@ -320,6 +336,6 @@ export const RangeSlider = ({
           value={currentValue[1]}
         />
       </div>
-    </div>
+    </FieldTemplate>
   );
 };

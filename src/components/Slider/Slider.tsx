@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { useSliderCommon } from "../../utilities/slider-utils";
+import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
 import "./slider.scss";
 
 type SliderProps = {
@@ -50,9 +51,23 @@ type SliderProps = {
    */
   label?: string;
   /**
+   * エラーメッセージ
+   */
+  error?: string;
+  /**
+   * 必須表示にするかどうか
+   */
+  required?: boolean;
+  /**
+   * レイアウト方向
+   */
+  layout?: "vertical" | "horizontal";
+  /**
    * カスタムID
    */
   id?: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
 };
 
 /**
@@ -70,7 +85,12 @@ export const Slider = ({
   className,
   name,
   label,
+  error,
+  required,
+  layout = "vertical",
   id: customId,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
   ...props
 }: SliderProps) => {
   const { t } = useTranslation("common");
@@ -82,6 +102,7 @@ export const Slider = ({
   const generatedId = useId();
   const id = customId || generatedId;
   const labelId = `wim-slider-label-${id}`;
+  const errorId = `wim-slider-error-${id}`;
 
   const { calculateValue } = useSliderCommon(min, max, step);
 
@@ -168,23 +189,18 @@ export const Slider = ({
 
   const percentage = ((currentValue - min) / (max - min)) * 100;
 
-  const {
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabelledBy,
-    ...wrapperProps
-  } = props as any;
+  const wrapperProps = props as any;
 
   return (
-    <div className={classNames("wim-slider-container", className)}>
-      {label && (
-        <span
-          id={labelId}
-          className="wim-label"
-          style={{ display: "block", marginBottom: "8px" }}
-        >
-          {t(label)}
-        </span>
-      )}
+    <FieldTemplate
+      label={label ? t(label) : undefined}
+      error={error}
+      required={required}
+      layout={layout}
+      labelId={labelId}
+      errorId={errorId}
+      className={classNames("wim-slider-container", className)}
+    >
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
         className={classNames("wim-slider", disabled && "wim-slider--disabled")}
@@ -213,6 +229,6 @@ export const Slider = ({
         </div>
         <input type="hidden" name={name} value={currentValue} />
       </div>
-    </div>
+    </FieldTemplate>
   );
 };

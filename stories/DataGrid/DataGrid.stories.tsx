@@ -472,3 +472,104 @@ export const WithFixedColumn: Story = {
     ),
   ],
 };
+
+export const WithRightFixedColumn: Story = {
+  render: () => {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    const columns = [
+      {
+        key: "id",
+        header: t("story_datagrid_col_id"),
+        width: 55,
+      },
+      {
+        key: "name",
+        header: t("story_datagrid_col_name"),
+        width: 150,
+      },
+      {
+        key: "email",
+        header: t("story_datagrid_col_email"),
+        width: 200,
+      },
+      {
+        key: "role",
+        header: t("story_datagrid_col_role"),
+        width: 100,
+      },
+      {
+        key: "joinDate",
+        header: t("story_datagrid_col_joinDate"),
+        width: 150,
+      },
+      {
+        key: "actions",
+        header: t("story_datagrid_col_actions"),
+        width: 120,
+        fixed: "right" as "right",
+        align: "center" as "center",
+        render: (_: any, row: Record<string, any>) => (
+          <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
+            <Button size="small" priority="tertiary">
+              <Icon name="EditIcon" size="small" />
+            </Button>
+            <Button size="small" priority="tertiary" role="destructive">
+              <Icon name="TrashIcon" size="small" />
+            </Button>
+          </div>
+        ),
+      },
+    ];
+    return (
+      <DataGrid columns={columns} rows={sampleData} selection bordered />
+    );
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: "100vw" }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const InfiniteScroll: Story = {
+  render: () => {
+    const { t, tColumns } = useDataGridTranslations();
+    const [data, setData] = React.useState(manyRows.slice(0, 15));
+    const [loading, setLoading] = React.useState(false);
+    const [hasMore, setHasMore] = React.useState(true);
+
+    const loadMoreData = () => {
+      if (loading) return;
+      setLoading(true);
+      
+      // Simulate network request
+      setTimeout(() => {
+        const nextData = manyRows.slice(data.length, data.length + 15);
+        setData((prev) => [...prev, ...nextData]);
+        
+        if (data.length + nextData.length >= manyRows.length) {
+          setHasMore(false);
+        }
+        setLoading(false);
+      }, 1000);
+    };
+
+    return (
+      <DataGrid
+        columns={tColumns}
+        rows={data}
+        bordered
+        stickyHeader
+        maxHeight="400px"
+        loadMore={{
+          onLoadMore: loadMoreData,
+          hasMore,
+          loading,
+        }}
+      />
+    );
+  },
+};
+

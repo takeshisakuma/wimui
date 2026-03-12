@@ -106,7 +106,8 @@
       background-color: var(--wim-color-primary-container-alpha,
           rgb(0 122 255 / 0.08)) !important;
 
-      .wim-table__cell--sticky-left {
+      .wim-table__cell--sticky-left,
+      .wim-table__cell--sticky-right {
         /* Layer the selected alpha color over a solid white background so scrolling items don't show through */
         background-color: var(--wim-color-surface, #fff) !important;
         background-image: linear-gradient(var(--wim-color-primary-container-alpha, rgb(0 122 255 / 0.08)),
@@ -115,20 +116,34 @@
     }
   }
 
-  &__head--sticky-left {
+  &__head--sticky-left,
+  &__head--sticky-right {
     position: sticky;
     z-index: 2;
     background-color: var(--wim-color-surface-variant, #f5f5f5);
-    /* border-collapse: separate に対する境界線の再定義 */
+  }
+
+  &__head--sticky-left {
     box-shadow: inset -1px 0 0 var(--wim-color-border, #e0e0e0);
   }
 
-  &__cell--sticky-left {
+  &__head--sticky-right {
+    box-shadow: inset 1px 0 0 var(--wim-color-border, #e0e0e0);
+  }
+
+  &__cell--sticky-left,
+  &__cell--sticky-right {
     position: sticky;
     z-index: 2;
     background-color: var(--wim-color-surface, #fff);
-    /* border-collapse: separate に対する境界線の再定義 */
+  }
+
+  &__cell--sticky-left {
     box-shadow: inset -1px 0 0 var(--wim-color-border, #e0e0e0);
+  }
+
+  &__cell--sticky-right {
+    box-shadow: inset 1px 0 0 var(--wim-color-border, #e0e0e0);
   }
 
   // Variations
@@ -137,7 +152,8 @@
       background-color: var(--wim-color-surface-variant-alpha,
           rgb(0 0 0 / 0.02));
 
-      .wim-table__cell--sticky-left {
+      .wim-table__cell--sticky-left,
+      .wim-table__cell--sticky-right {
         background-image: linear-gradient(var(--wim-color-surface-variant-alpha, rgb(0 0 0 / 0.02)),
             var(--wim-color-surface-variant-alpha, rgb(0 0 0 / 0.02)));
       }
@@ -166,7 +182,8 @@
     .wim-table__body .wim-table__row:hover {
       background-color: var(--wim-color-surface-hover, #f0f0f0);
 
-      .wim-table__cell--sticky-left {
+      .wim-table__cell--sticky-left,
+      .wim-table__cell--sticky-right {
         background-image: linear-gradient(var(--wim-color-surface-hover, #f0f0f0),
             var(--wim-color-surface-hover, #f0f0f0));
       }
@@ -187,6 +204,12 @@
         z-index: 110;
         /* 両方がstickyの場合、下側と右側の境界線を引く */
         box-shadow: inset -1px -1px 0 var(--wim-color-border, #e0e0e0);
+      }
+
+      &--sticky-right {
+        z-index: 110;
+        /* 両方がstickyの場合、下側と左側の境界線を引く */
+        box-shadow: inset 1px -1px 0 var(--wim-color-border, #e0e0e0);
       }
     }
   }

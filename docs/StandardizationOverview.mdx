@@ -11,20 +11,28 @@ import { T } from "../stories/T";
 
 ## <T k="guide_std_core_pillars_heading" />
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px', margin: '32px 0' }}>
-  <div style={{ padding: '24px', borderRadius: '8px', border: '1px solid var(--border-subtle)', background: 'var(--bg-subtle)' }}>
-    <h3 style={{ marginTop: 0 }}><T k="guide_std_pillar_1_title" /></h3>
-    <p><T k="guide_std_pillar_1_desc" /></p>
-  </div>
-  <div style={{ padding: '24px', borderRadius: '8px', border: '1px solid var(--border-subtle)', background: 'var(--bg-subtle)' }}>
-    <h3 style={{ marginTop: 0 }}><T k="guide_std_pillar_2_title" /></h3>
-    <p><T k="guide_std_pillar_2_desc" /></p>
-  </div>
-  <div style={{ padding: '24px', borderRadius: '8px', border: '1px solid var(--border-subtle)', background: 'var(--bg-subtle)' }}>
-    <h3 style={{ marginTop: 0 }}><T k="guide_std_pillar_3_title" /></h3>
-    <p><T k="guide_std_pillar_3_desc" /></p>
-  </div>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th><T k="qa_summary_table_category" /></th>
+      <th><T k="doc_table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="guide_std_pillar_1_title" /></strong></td>
+      <td><T k="guide_std_pillar_1_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide_std_pillar_2_title" /></strong></td>
+      <td><T k="guide_std_pillar_2_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="guide_std_pillar_3_title" /></strong></td>
+      <td><T k="guide_std_pillar_3_desc" /></td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -66,3 +74,4 @@ import { T } from "../stories/T";
 
 ## <T k="guide_std_next_steps_heading" />
 <T k="guide_std_next_steps_desc" />
+

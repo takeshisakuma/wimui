@@ -43,4 +43,10 @@
     border-radius: var(--radius-md);
   }
 
+  &__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm);
+  }
 }

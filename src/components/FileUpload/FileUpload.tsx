@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Button } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
 import "./file-upload.scss";
 
 type FileUploadProps = {
@@ -17,6 +18,9 @@ type FileUploadProps = {
   iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
   size?: "small" | "medium" | "large";
+  error?: string;
+  required?: boolean;
+  layout?: "vertical" | "horizontal";
 };
 
 /**
@@ -34,6 +38,9 @@ export const FileUpload = ({
   iconName,
   iconPosition,
   size = "medium",
+  error,
+  required,
+  layout = "vertical",
 }: FileUploadProps) => {
   const { t } = useTranslation("common");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -61,14 +68,17 @@ export const FileUpload = ({
     : actualNoFileLabel;
 
   return (
-    <div
+    <FieldTemplate
+      label={label ? t(label) : undefined}
+      error={error}
+      required={required}
+      layout={layout}
       className={classNames(
         "wim-file-upload",
         `wim-file-upload--${size}`,
         className,
       )}
     >
-      {label && <span className="wim-file-upload__label">{t(label)}</span>}
       <div className="wim-file-upload__controls">
         <input
           type="file"
@@ -100,6 +110,6 @@ export const FileUpload = ({
           {fileNames}
         </span>
       </div>
-    </div>
+    </FieldTemplate>
   );
 };
