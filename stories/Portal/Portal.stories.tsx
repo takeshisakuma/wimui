@@ -32,7 +32,7 @@ type Story = StoryObj<typeof meta>;
 export const OverflowEscape: Story = {
   render: function Render() {
     const [show, setShow] = useState(false);
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Card
         variant="outline"
@@ -122,7 +122,7 @@ export const OverflowEscape: Story = {
 export const CustomContainer: Story = {
   render: function Render() {
     const [container, setContainer] = useState<HTMLDivElement | null>(null);
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Container size="md">
         <p>{t("story_portal_container_desc")}</p>
@@ -188,7 +188,7 @@ export const NotificationCenter: Story = {
     const [logs, setLogs] = useState<{ id: string; msg: string; type: any }[]>(
       [],
     );
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
 
     const addLog = (msg: string, type: any = "info") => {
       const id = Math.random().toString(36).slice(2, 9);
@@ -339,7 +339,7 @@ export const SidePanelDetail: Story = {
       null,
     );
     const [selectedId, setSelectedId] = useState<number | null>(null);
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
 
     const tasks = [
       {

@@ -22,7 +22,7 @@ type Story = StoryObj<typeof AspectRatio>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <AspectRatio {...args}>
         <img
@@ -40,7 +40,7 @@ export const Default: Story = {
 
 export const Square: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <AspectRatio {...args}>
         <img
@@ -58,7 +58,7 @@ export const Square: Story = {
 
 export const Embed: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <AspectRatio {...args}>
         <iframe

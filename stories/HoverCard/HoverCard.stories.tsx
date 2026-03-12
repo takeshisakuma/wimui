@@ -18,7 +18,7 @@ type Story = StoryObj<typeof HoverCard>;
 
 export const Default: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{
@@ -104,7 +104,7 @@ export const Default: Story = {
 
 export const Instant: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{

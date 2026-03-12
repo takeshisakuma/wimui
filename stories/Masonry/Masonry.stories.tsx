@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Masonry>;
 const heights = [150, 200, 100, 250, 180, 220, 120, 300, 140, 190];
 
 const MasonryDemo = (args: any) => {
-  const { t } = useTranslation(["docs", "common", "components"]);
+  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
   return (
     <Masonry {...args}>
       {heights.map((height, index) => (

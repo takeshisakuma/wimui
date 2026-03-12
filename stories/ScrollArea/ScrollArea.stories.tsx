@@ -34,7 +34,7 @@ export const Default: Story = {
 
 export const HorizontalScroll: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <ScrollArea
         {...args}
@@ -63,7 +63,7 @@ export const WithChildren: Story = {
     maxHeight: "12rem",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <ScrollArea {...args}>
         <div style={{ padding: "1rem" }}>
@@ -90,7 +90,7 @@ export const Both: Story = {
     style: { width: "100%", maxWidth: "80vw" },
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <ScrollArea {...args}>
         <div

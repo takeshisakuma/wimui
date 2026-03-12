@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof Footer>;
 
 const FooterDemo = (args: any) => {
-  const { t } = useTranslation(["docs", "common", "components"]);
+  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
   return (
     <Footer {...args} bordered={args.bordered ?? true}>
       <SimpleGrid cols={{ base: 2, sm: 3, lg: 4 }} spacing={40}>

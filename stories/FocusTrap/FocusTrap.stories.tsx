@@ -23,7 +23,7 @@ type Story = StoryObj<typeof FocusTrap>;
 export const Default: Story = {
   render: (args) => {
     const [active, setActive] = useState(false);
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
 
     return (
       <Container size="sm" py="xl">
@@ -85,7 +85,7 @@ export const AutoFocus: Story = {
   },
   render: (args) => {
     const [active, setActive] = useState(false);
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
 
     return (
       <Container size="sm" py="xl">

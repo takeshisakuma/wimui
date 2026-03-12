@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Selectbox>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const options = [
       { label: t("story_selectbox_opt1"), value: "opt1" },
       { label: t("story_selectbox_opt2"), value: "opt2" },
@@ -36,7 +36,7 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const options = [
       { label: t("story_selectbox_opt1"), value: "opt1" },
       { label: t("story_selectbox_opt2"), value: "opt2" },
@@ -57,7 +57,7 @@ export const WithLabel: Story = {
 
 export const Preselected: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const options = [
       { label: t("story_selectbox_opt1"), value: "opt1" },
       { label: t("story_selectbox_opt2"), value: "opt2" },
@@ -71,7 +71,7 @@ export const Preselected: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const options = [
       { label: t("story_selectbox_opt1"), value: "opt1" },
       { label: t("story_selectbox_opt2"), value: "opt2" },
@@ -85,7 +85,7 @@ export const Disabled: Story = {
 
 export const WithSeparator: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const optionsWithSeparators: SelectboxOption[] = [
       { label: t("story_selectbox_settings"), value: "settings" },
       { label: t("story_selectbox_profile"), value: "profile" },
@@ -107,7 +107,7 @@ export const WithSeparator: Story = {
 
 export const WithClearButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const options = [
       { label: t("story_selectbox_opt1"), value: "opt1" },
       { label: t("story_selectbox_opt2"), value: "opt2" },

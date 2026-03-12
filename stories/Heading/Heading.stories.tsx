@@ -44,7 +44,7 @@ type Story = StoryObj<typeof meta>;
 
 export const h1_heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -57,7 +57,7 @@ export const h1_heading: Story = {
 
 export const h2_heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -70,7 +70,7 @@ export const h2_heading: Story = {
 
 export const h3_heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -83,7 +83,7 @@ export const h3_heading: Story = {
 
 export const h4_heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -96,7 +96,7 @@ export const h4_heading: Story = {
 
 export const h5_heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -109,7 +109,7 @@ export const h5_heading: Story = {
 
 export const h6_heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -123,7 +123,7 @@ export const h6_heading: Story = {
 
 export const UnderlineHeading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return <Heading {...args}>{t("story_heading_underline")}</Heading>;
   },
   args: {
@@ -135,7 +135,7 @@ export const UnderlineHeading: Story = {
 
 export const HighlightHeading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return <Heading {...args}>{t("story_heading_highlight")}</Heading>;
   },
   args: {

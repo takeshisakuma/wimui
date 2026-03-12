@@ -39,7 +39,7 @@ const PanelContent = ({
 
 export const Horizontal: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{
@@ -63,7 +63,7 @@ export const Horizontal: Story = {
 
 export const Vertical: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{
@@ -87,7 +87,7 @@ export const Vertical: Story = {
 
 export const MultiplePanels: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{
@@ -115,7 +115,7 @@ export const MultiplePanels: Story = {
 
 export const Nested: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{
@@ -147,7 +147,7 @@ export const Nested: Story = {
 
 export const Constraints: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{

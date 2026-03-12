@@ -25,7 +25,7 @@ type Story = StoryObj<typeof Stack>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Stack {...args}>
         <Box
@@ -66,7 +66,7 @@ export const Default: Story = {
 
 export const Row: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Stack {...args}>
         <Box
@@ -107,7 +107,7 @@ export const Row: Story = {
 
 export const SpacingTokens: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Stack gap="xl">
         <Box bg="#f8fafc" p={10}>

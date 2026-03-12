@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof Sidebar>;
 
 const SidebarContent = () => {
-  const { t } = useTranslation(["docs", "common", "components"]);
+  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
   return (
     <>
       <Sidebar.Header>
@@ -94,7 +94,7 @@ const SidebarContent = () => {
 
 export const Default: Story = {
   render: (args: SidebarProps) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [mobileOpen, setMobileOpen] = React.useState(false);
     return (
       <div

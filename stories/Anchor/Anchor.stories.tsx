@@ -18,7 +18,7 @@ type Story = StoryObj<typeof Anchor>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [isMobile, setIsMobile] = React.useState(false);
 
     const items = [

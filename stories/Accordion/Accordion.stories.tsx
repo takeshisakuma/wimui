@@ -23,7 +23,7 @@ type Story = StoryObj<typeof Accordion>;
 
 export const Single: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Accordion {...args} defaultValue="item-1">
         <Accordion.Item value="item-1">
@@ -55,7 +55,7 @@ export const Single: Story = {
 
 export const Multiple: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Accordion {...args}>
         <Accordion.Item value="item-1">
@@ -82,7 +82,7 @@ export const Multiple: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Accordion {...args}>
         <Accordion.Item value="item-1">

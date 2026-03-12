@@ -67,7 +67,7 @@ export const Pulse: Story = {
 
 export const Inline: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <Indicator {...args} color="success" inline />

@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Fieldset>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Fieldset {...args}>
         <Legend>{t("story_fieldset_basic")}</Legend>
@@ -37,7 +37,7 @@ export const Default: Story = {
 
 export const WithCheckboxGroup: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Fieldset {...args}>
         <Legend>{t("story_fieldset_notif")}</Legend>
@@ -59,7 +59,7 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Fieldset {...args}>
         <Legend>{t("story_fieldset_disabled_sec")}</Legend>

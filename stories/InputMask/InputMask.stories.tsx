@@ -24,7 +24,7 @@ type Story = StoryObj<typeof InputMask>;
 
 export const ZipCode: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Label label={t("story_inputmask_zip")}>
         <InputMask {...args} />
@@ -39,7 +39,7 @@ export const ZipCode: Story = {
 
 export const Phone: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Label label={t("story_inputmask_phone")}>
         <InputMask {...args} />
@@ -54,7 +54,7 @@ export const Phone: Story = {
 
 export const CreditCard: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Label label={t("story_inputmask_credit")}>
         <InputMask {...args} />
@@ -69,7 +69,7 @@ export const CreditCard: Story = {
 
 export const CustomMask: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Label label={t("story_inputmask_custom")}>
         <InputMask {...args} />

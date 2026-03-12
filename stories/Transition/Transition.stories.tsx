@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Transition>;
 export const Fade: Story = {
   render: () => {
     const [show, setShow] = useState(false);
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Container size="sm">
         <Stack align="center" gap="xl" py="xl">
@@ -66,7 +66,7 @@ export const Fade: Story = {
 export const Slide: Story = {
   render: () => {
     const [show, setShow] = useState(false);
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Container size="sm">
         <Stack align="center" gap="xl" py="xl">

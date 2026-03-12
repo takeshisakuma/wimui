@@ -18,7 +18,7 @@ type Story = StoryObj<typeof Cascader>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const options: CascaderOption[] = [
       {
         label: t("story_cascader_tokyo"),
@@ -65,7 +65,7 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const options: CascaderOption[] = [
       {
         label: t("story_cascader_tokyo"),
@@ -113,7 +113,7 @@ export const WithLabel: Story = {
 
 export const HoverExpand: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const options: CascaderOption[] = [
       {
         label: t("story_cascader_tokyo"),
@@ -145,7 +145,7 @@ export const HoverExpand: Story = {
 
 export const Disabled: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Cascader
         {...args}
@@ -158,7 +158,7 @@ export const Disabled: Story = {
 
 export const CustomSeparator: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const options: CascaderOption[] = [
       {
         label: t("story_cascader_tokyo"),

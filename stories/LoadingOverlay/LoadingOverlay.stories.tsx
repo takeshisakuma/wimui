@@ -60,7 +60,7 @@ export const Basic: Story = {
     loaderColor: "primary",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{
@@ -89,7 +89,7 @@ export const WithMessage: Story = {
     message: "Loading data...",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{
@@ -140,7 +140,7 @@ export const DifferentLoaderTypes: Story = {
 
 export const BackdropVariants: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{
@@ -192,7 +192,7 @@ export const BackdropVariants: Story = {
 
 export const BlurEffects: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{
@@ -241,7 +241,7 @@ export const FullScreen: Story = {
     message: "Loading application...",
   },
   render: function FullScreenStory(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [loading, setLoading] = React.useState(false);
 
     const handleClick = () => {
@@ -267,7 +267,7 @@ export const FullScreen: Story = {
 
 export const Interactive: Story = {
   render: function InteractiveStory() {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [loading, setLoading] = React.useState(false);
 
     const handleClick = () => {
@@ -319,7 +319,7 @@ export const CustomLoader: Story = {
     ),
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{

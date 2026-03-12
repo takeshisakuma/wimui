@@ -16,7 +16,7 @@ type Story = StoryObj<typeof ScrollProgress>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
         <ScrollProgress {...args} />
@@ -35,7 +35,7 @@ export const Default: Story = {
 export const CustomContainer: Story = {
   render: (args) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ padding: "20px" }}>
         <div

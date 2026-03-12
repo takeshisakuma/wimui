@@ -54,7 +54,7 @@ const Box = ({
 
 export const Basic: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Grid {...args}>
         <Box>{t("story_grid_item", "1")}</Box>
@@ -74,7 +74,7 @@ export const Basic: Story = {
 
 export const CustomColumns: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Grid {...args}>
         <Box>1fr</Box>
@@ -91,7 +91,7 @@ export const CustomColumns: Story = {
 
 export const Responsive: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Grid {...args}>
         <Box>{t("story_grid_item", "1")}</Box>

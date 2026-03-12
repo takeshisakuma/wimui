@@ -30,7 +30,7 @@ type Story = StoryObj<typeof Tooltip>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Tooltip {...args}>
         <TooltipTrigger asChild>
@@ -44,7 +44,7 @@ export const Default: Story = {
 
 export const Top: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ padding: "50px" }}>
         <Tooltip {...args} placement="top">
@@ -60,7 +60,7 @@ export const Top: Story = {
 
 export const Bottom: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ padding: "50px" }}>
         <Tooltip {...args} placement="bottom">
@@ -76,7 +76,7 @@ export const Bottom: Story = {
 
 export const Left: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ padding: "50px" }}>
         <Tooltip {...args} placement="left">
@@ -92,7 +92,7 @@ export const Left: Story = {
 
 export const Right: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ padding: "50px" }}>
         <Tooltip {...args} placement="right">
@@ -108,7 +108,7 @@ export const Right: Story = {
 
 export const WithDelay: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Tooltip {...args} delay={args.delay ?? 1000}>
         <TooltipTrigger asChild>

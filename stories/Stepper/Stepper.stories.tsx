@@ -32,7 +32,7 @@ export default meta;
 type Story = StoryObj<typeof Stepper>;
 
 const useDefaultSteps = () => {
-  const { t } = useTranslation(["docs", "common", "components"]);
+  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
   return [
     {
       title: t("story_stepper_finished"),
@@ -79,7 +79,7 @@ export const ErrorStatus: Story = {
 
 export const CustomIcons: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Stepper
         {...args}
@@ -109,7 +109,7 @@ export const CustomIcons: Story = {
 
 export const Interactive: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [current, setCurrent] = useState(0);
     const steps = Array.from({ length: 4 }, (_, i) => ({
       title: `${t("story_stepper_step")} ${i + 1}`,

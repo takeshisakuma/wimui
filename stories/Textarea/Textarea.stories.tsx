@@ -32,7 +32,7 @@ type Story = StoryObj<typeof Textarea>;
 
 export const Basic: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Label label={t("story_textarea_label_inquiry")}>
         <Textarea {...args} placeholder={t("story_textarea_placeholder_forgot")} />
@@ -43,7 +43,7 @@ export const Basic: Story = {
 
 export const Ghost: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Label label={t("story_textarea_label_feedback")}>
         <Textarea {...args} variant="ghost" placeholder={t("story_textarea_placeholder_slow")} />
@@ -54,7 +54,7 @@ export const Ghost: Story = {
 
 export const ErrorStatus: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         <Label label={t("story_textarea_label_details")}>
@@ -68,7 +68,7 @@ export const ErrorStatus: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Label label={t("story_textarea_label_remarks")}>
         <Textarea {...args} disabled placeholder={t("story_textarea_placeholder_asap")} />
@@ -79,7 +79,7 @@ export const Disabled: Story = {
 
 export const FullWidth: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Label label={t("story_textarea_label_message")}>
         <Textarea {...args} fullWidth={true} placeholder={t("story_textarea_placeholder_thanks")} />
@@ -90,7 +90,7 @@ export const FullWidth: Story = {
 
 export const FieldSizingContent: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Label label={t("story_textarea_label_remarks")}>
         <Textarea
@@ -105,7 +105,7 @@ export const FieldSizingContent: Story = {
 
 export const FormPattern: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div
         style={{

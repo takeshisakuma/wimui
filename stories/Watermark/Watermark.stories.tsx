@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Watermark>;
 
 export const Text: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Watermark {...args} content={t("story_watermark_text")}>
         <div style={{ height: "400px", background: "#fff", padding: "20px" }}>
@@ -45,7 +45,7 @@ export const Text: Story = {
 
 export const MultiLine: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Watermark
         {...args}

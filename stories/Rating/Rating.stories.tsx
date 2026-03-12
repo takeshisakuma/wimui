@@ -69,7 +69,7 @@ export const CustomCount: Story = {
 
 export const Sizes: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <Label label={t("story_rating_sizes")}>
@@ -86,7 +86,7 @@ export const Sizes: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Label label={t("story_rating_disabled")}>
         <Rating {...args} disabled />
@@ -100,7 +100,7 @@ export const Disabled: Story = {
 
 export const Controlled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [value, setValue] = useState(args.value ?? 3);
 
     useEffect(() => {

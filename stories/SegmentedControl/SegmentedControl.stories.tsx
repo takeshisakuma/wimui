@@ -36,7 +36,7 @@ export const Small: Story = {
     ),
   ],
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [value, setValue] = useState("day");
     const options = useMemo(
       () => [
@@ -70,7 +70,7 @@ export const Medium: Story = {
     ),
   ],
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [value, setValue] = useState("day");
     const options = useMemo(
       () => [
@@ -104,7 +104,7 @@ export const Large: Story = {
     ),
   ],
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [value, setValue] = useState("day");
     const options = useMemo(
       () => [
@@ -131,7 +131,7 @@ export const TwoOptions: Story = {
     fullWidth: true,
   },
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [value, setValue] = useState("on");
     const options = useMemo(
       () => [
@@ -157,7 +157,7 @@ export const WithIcons: Story = {
     fullWidth: false,
   },
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [value, setValue] = useState("circle");
     const options = useMemo(
       () =>
@@ -227,7 +227,7 @@ export const LongLabel: Story = {
     ),
   ],
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [value, setValue] = useState("long1");
     const options = useMemo(
       () => [

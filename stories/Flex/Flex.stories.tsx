@@ -66,7 +66,7 @@ const Box = ({
 
 export const Basic: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Flex {...args}>
         <Box>{t("story_flex_item_1", "1")}</Box>
@@ -83,7 +83,7 @@ export const Basic: Story = {
 
 export const Column: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Flex {...args}>
         <Box>{t("story_flex_item_1", "Item 1")}</Box>
@@ -100,7 +100,7 @@ export const Column: Story = {
 
 export const JustifyBetween: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Flex {...args}>
         <Box>{t("story_flex_left")}</Box>
@@ -118,7 +118,7 @@ export const JustifyBetween: Story = {
 
 export const Wrapped: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Flex {...args}>
         <Box>{t("story_flex_item_1", "1")}</Box>

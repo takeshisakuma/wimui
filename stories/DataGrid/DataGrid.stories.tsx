@@ -230,7 +230,7 @@ export const WithPagination: Story = {
 
 export const WithActions: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const columns = [
       {
         key: "id",
@@ -404,7 +404,7 @@ export const FullFeatured: Story = {
 
 export const WithFixedColumn: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const columns = [
       {
         key: "id",
@@ -475,7 +475,7 @@ export const WithFixedColumn: Story = {
 
 export const WithRightFixedColumn: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const columns = [
       {
         key: "id",

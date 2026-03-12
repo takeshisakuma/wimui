@@ -9,7 +9,19 @@ const API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
 const localesDir = './public/locales';
 const sourceLang = 'en';
 const targetLangs = ['ja', 'pt'];
-const namespaces = ['common', 'components', 'docs'];
+const namespaces = [
+  'common',
+  'components',
+  'docs',
+  'docs_guides',
+  'docs_actions',
+  'docs_inputs',
+  'docs_display',
+  'docs_navigation',
+  'docs_overlay',
+  'docs_layout',
+  'docs_stories'
+];
 
 async function translateKeys(keysAndValues, targetLang) {
   if (!API_KEY) {

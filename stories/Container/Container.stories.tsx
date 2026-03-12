@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Container>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Container {...args}>
         <Box bg="#f0f0f0" p={20} style={{ border: "1px solid #ccc" }}>
@@ -37,7 +37,7 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
@@ -58,7 +58,7 @@ export const Sizes: Story = {
 
 export const Fluid: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Container {...args} fluid>
         <Box

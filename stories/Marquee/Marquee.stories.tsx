@@ -15,7 +15,7 @@ type Story = StoryObj<typeof Marquee>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Marquee {...args}>
         <Group gap="xl">
@@ -38,7 +38,7 @@ export const Fast: Story = {
     duration: 5,
   },
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Marquee {...args}>
         <Group gap="xl">
@@ -61,7 +61,7 @@ export const Slow: Story = {
     duration: 40,
   },
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Marquee {...args}>
         <Group gap="xl">
@@ -84,7 +84,7 @@ export const Reverse: Story = {
     reverse: true,
   },
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Marquee {...args}>
         <Group gap="xl">
@@ -104,7 +104,7 @@ export const Reverse: Story = {
 
 export const Vertical: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <div style={{ height: "200px", border: "1px solid #ccc" }}>
         <Marquee {...args} vertical duration={5}>

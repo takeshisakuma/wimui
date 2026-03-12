@@ -18,7 +18,7 @@ type Story = StoryObj<typeof InfiniteScroll>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     const [items, setItems] = useState(
       Array.from({ length: 20 }, (_, i) => t("story_infscroll_item", { index: i + 1 })),
     );

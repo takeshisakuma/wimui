@@ -20,7 +20,19 @@ i18n
     },
     // Storybookのi18nパネルと連携するために、サポートする言語と初期言語を設定
     supportedLngs: ["en", "ja", "pt"],
-    ns: ["common", "components", "docs"],
+    ns: [
+      "common",
+      "components",
+      "docs",
+      "docs_guides",
+      "docs_actions",
+      "docs_inputs",
+      "docs_display",
+      "docs_navigation",
+      "docs_overlay",
+      "docs_layout",
+      "docs_stories",
+    ],
     defaultNS: "common",
     lng: "en", // 初期言語
   });

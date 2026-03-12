@@ -7,7 +7,22 @@ import i18n from "../.storybook/i18n";
 const GLOBALS_UPDATED = "globalsUpdated";
 
 export const T = ({ k }: { k: string }) => {
-  const { t } = useTranslation(["common", "components", "docs"], { i18n });
+  const { t } = useTranslation(
+    [
+      "common",
+      "components",
+      "docs",
+      "docs_guides",
+      "docs_actions",
+      "docs_inputs",
+      "docs_display",
+      "docs_navigation",
+      "docs_overlay",
+      "docs_layout",
+      "docs_stories",
+    ],
+    { i18n }
+  );
   const [, setTick] = useState(0);
 
   useEffect(() => {
@@ -72,7 +87,19 @@ export const T = ({ k }: { k: string }) => {
   const getTranslated = (key: string) => {
     if (key.includes(":")) return t(key);
 
-    const namespaces = ["common", "components", "docs"];
+    const namespaces = [
+      "common",
+      "components",
+      "docs",
+      "docs_guides",
+      "docs_actions",
+      "docs_inputs",
+      "docs_display",
+      "docs_navigation",
+      "docs_overlay",
+      "docs_layout",
+      "docs_stories",
+    ];
     for (const ns of namespaces) {
       if (i18n.exists(`${ns}:${key}`)) {
         return t(`${ns}:${key}`);
