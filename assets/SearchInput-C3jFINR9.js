@@ -1,7 +1,0 @@
-import{j as o}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as i}from"./index-IZnlyj4T.js";import{T as n}from"./T-Dx4eP57i.js";import{M as e,C as s,a as p}from"./blocks-CFr_HU2-.js";import{S as a,D as c}from"./SearchInput.stories-uN7n9nwb.js";import"./iframe-BisTGuVC.js";import"./preload-helper-PPVm8Dsz.js";import"./useTranslation-BH3LN071.js";import"./index-CGM3tnZC.js";import"./index-CncX0lqI.js";import"./index-CbBNLPUS.js";import"./index-B14vhhah.js";import"./Input-DayEea5m.js";import"./index-Ckw0h7AD.js";/* empty css              */import"./InputBase-fPKjp8W0.js";import"./Icon-mnVo4eg5.js";import"./FieldTemplate-DQGW8oml.js";import"./FieldLabelContent-B40D5Xwj.js";import"./Badge-C8x5xURE.js";import"./IndicatorBase-BknHWjsy.js";import"./FieldError-D2842XTA.js";import"./Paragraph-CIAdEHrH.js";function m(t){const r={h1:"h1",h2:"h2",...i(),...t.components};return o.jsxs(o.Fragment,{children:[o.jsx(e,{of:a}),`
-`,o.jsx(r.h1,{id:"searchinput",children:"SearchInput"}),`
-`,o.jsx("p",{children:o.jsx(n,{k:"doc_searchinput_long_desc"})}),`
-`,o.jsxs(r.h2,{id:"-actually-sample-but-ill-use-common-one",children:[o.jsx(n,{k:"doc_example"})," (Actually Sample but I'll use common one)"]}),`
-`,o.jsx(s,{of:c}),`
-`,o.jsx(r.h2,{id:"",children:o.jsx(n,{k:"doc_props"})}),`
-`,o.jsx(p,{})]})}function L(t={}){const{wrapper:r}={...i(),...t.components};return r?o.jsx(r,{...t,children:o.jsx(m,{...t})}):m(t)}export{L as default};
