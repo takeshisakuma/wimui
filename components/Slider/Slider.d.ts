@@ -44,12 +44,26 @@ type SliderProps = {
      */
     label?: string;
     /**
+     * エラーメッセージ
+     */
+    error?: string;
+    /**
+     * 必須表示にするかどうか
+     */
+    required?: boolean;
+    /**
+     * レイアウト方向
+     */
+    layout?: "vertical" | "horizontal";
+    /**
      * カスタムID
      */
     id?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
 };
 /**
  * ユーザーが値の範囲から1つの値を選択するためのスライダーコンポーネント。
  */
-export declare const Slider: ({ value, defaultValue, min, max, step, disabled, onChange, onAfterChange, className, name, label, id: customId, ...props }: SliderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Slider: ({ value, defaultValue, min, max, step, disabled, onChange, onAfterChange, className, name, label, error, required, layout, id: customId, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, ...props }: SliderProps) => import("react/jsx-runtime").JSX.Element;
 export {};

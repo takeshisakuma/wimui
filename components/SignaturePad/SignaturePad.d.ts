@@ -18,8 +18,12 @@ export type SignaturePadProps = {
     className?: string;
     /** Inline styles */
     style?: React.CSSProperties;
+    label?: string;
+    error?: string;
+    required?: boolean;
+    layout?: "vertical" | "horizontal";
 };
 /**
  * マウスやタッチ操作で手書きの署名を入力するためのコンポーネント。
  */
-export declare const SignaturePad: ({ width, height, penColor, penWidth, onChange, clearLabel, disabled, className, style, }: SignaturePadProps) => import("react/jsx-runtime").JSX.Element;
+export declare const SignaturePad: ({ width, height, penColor, penWidth, onChange, clearLabel, disabled, className, style, label, error, required, layout, }: SignaturePadProps) => import("react/jsx-runtime").JSX.Element;

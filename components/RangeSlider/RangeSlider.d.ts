@@ -49,12 +49,26 @@ type RangeSliderProps = {
      */
     label?: string;
     /**
+     * エラーメッセージ
+     */
+    error?: string;
+    /**
+     * 必須表示にするかどうか
+     */
+    required?: boolean;
+    /**
+     * レイアウト方向
+     */
+    layout?: "vertical" | "horizontal";
+    /**
      * カスタムID
      */
     id?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
 };
 /**
  * 範囲（開始と終了）を選択するためのスライダーコンポーネント。
  */
-export declare const RangeSlider: ({ value, defaultValue, min, max, step, allowCross, disabled, onChange, onAfterChange, className, name, label, id: customId, ...props }: RangeSliderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const RangeSlider: ({ value, defaultValue, min, max, step, allowCross, disabled, onChange, onAfterChange, className, name, label, error, required, layout, id: customId, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, ...props }: RangeSliderProps) => import("react/jsx-runtime").JSX.Element;
 export {};

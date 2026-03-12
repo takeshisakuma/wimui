@@ -14,8 +14,8 @@ export interface DataGridColumn<T> {
     align?: "left" | "center" | "right";
     /** Data index in the row object (defaults to key if not provided) */
     dataIndex?: keyof T;
-    /** Whether the column is fixed to the left */
-    fixed?: boolean;
+    /** Whether the column is fixed to the left or right */
+    fixed?: boolean | "left" | "right";
 }
 export interface DataGridProps<T> {
     /** Column definitions */
@@ -46,6 +46,13 @@ export interface DataGridProps<T> {
         current: number;
         onPageChange: (page: number) => void;
     };
+    /** Infinite scroll / load more configuration */
+    loadMore?: {
+        onLoadMore: () => void;
+        hasMore: boolean;
+        loading: boolean;
+        threshold?: number;
+    };
     /** Whether to show striped rows */
     striped?: boolean;
     /** Whether to show borders */
@@ -67,5 +74,5 @@ export interface DataGridProps<T> {
     /** Accessibility label for selecting all rows */
     a11y_select_all_rows?: string;
 }
-export declare function DataGrid<T extends Record<string, any>>({ columns, rows, loading, selection, selectedRowKeys, onSelectionChange, rowKey, sortConfig, onSort, pagination, striped, bordered, hoverable, stickyHeader, height, maxHeight, mobileCard, className, emptyMessage, a11y_select_all_rows, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
+export declare function DataGrid<T extends Record<string, any>>({ columns, rows, loading, selection, selectedRowKeys, onSelectionChange, rowKey, sortConfig, onSort, pagination, loadMore, striped, bordered, hoverable, stickyHeader, height, maxHeight, mobileCard, className, emptyMessage, a11y_select_all_rows, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
 export default DataGrid;

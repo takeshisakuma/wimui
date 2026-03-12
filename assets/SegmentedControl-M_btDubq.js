@@ -1,0 +1,54 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as r}from"./index-IZnlyj4T.js";import{M as x,T as i,D as j,C as n,a as l}from"./blocks-CFr_HU2-.js";import{S as _,M as t,a as h,L as m,W as a,I as k,T as p}from"./SegmentedControl.stories-4Ro--vge.js";import{T as s}from"./T-Dx4eP57i.js";import"./iframe-BisTGuVC.js";import"./preload-helper-PPVm8Dsz.js";import"./index-CbBNLPUS.js";import"./index-B14vhhah.js";import"./index-CGM3tnZC.js";import"./index-CncX0lqI.js";import"./index-Ckw0h7AD.js";import"./Icon-mnVo4eg5.js";import"./useIndicator-CBjJC2ID.js";import"./FieldTemplate-DQGW8oml.js";import"./FieldLabelContent-B40D5Xwj.js";import"./Badge-C8x5xURE.js";import"./IndicatorBase-BknHWjsy.js";import"./useTranslation-BH3LN071.js";import"./FieldError-D2842XTA.js";import"./Paragraph-CIAdEHrH.js";function o(c){const d={code:"code",h2:"h2",h3:"h3",hr:"hr",p:"p",...r(),...c.components};return e.jsxs(e.Fragment,{children:[e.jsx(x,{of:_}),`
+`,e.jsx(i,{}),`
+`,e.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:e.jsx(s,{k:"doc_segmentedcontrol_long_desc"})}),`
+`,e.jsx(j,{}),`
+`,e.jsx(d.h2,{id:"",children:e.jsx(s,{k:"doc_guidelines_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_guideline_desc"})}),`
+`,e.jsx(d.h2,{id:"-1",children:e.jsx(s,{k:"doc_segmentedcontrol_usage"})}),`
+`,e.jsx(d.h3,{id:"-2",children:e.jsx(s,{k:"doc_segmentedcontrol_u1"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_u1_desc"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc_category"})}),e.jsx("th",{children:e.jsx(s,{k:"doc_example"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_layout_change"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_layout"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_mode_switch"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_mode"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_timeline_change"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_time"})})]})]})]}),`
+`,e.jsx(d.h3,{id:"-3",children:e.jsx(s,{k:"doc_segmentedcontrol_u2"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_u2_desc"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc_category"})}),e.jsx("th",{children:e.jsx(s,{k:"doc_example"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_by_status"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_status"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_by_category"})}),e.jsx("td",{children:e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_category"})})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_by_attribute"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_attr"})})]})]})]}),`
+`,e.jsx(d.h3,{id:"-4",children:e.jsx(s,{k:"doc_segmentedcontrol_u3"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_u3_desc"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc_category"})}),e.jsx("th",{children:e.jsx(s,{k:"doc_example"})})]})}),e.jsx("tbody",{children:e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_priority"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_sort"})})]})})]}),`
+`,e.jsx(d.h3,{id:"-5",children:e.jsx(s,{k:"doc_segmentedcontrol_u4"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_u4_desc"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc_category"})}),e.jsx("th",{children:e.jsx(s,{k:"doc_example"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_app_settings"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_app_settings"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_visibility"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_visibility"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_size_amount"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_size"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"doc_display_priority"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_ex_display"})})]})]})]}),`
+`,e.jsx(d.hr,{}),`
+`,e.jsx(d.h2,{id:"-6",children:e.jsx(s,{k:"doc_segmentedcontrol_design"})}),`
+`,e.jsx(d.h3,{id:"-7",children:e.jsx(s,{k:"doc_segmentedcontrol_p_title"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc_element"})}),e.jsx("th",{children:e.jsx(s,{k:"doc_description"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:e.jsx(s,{k:"doc_segmentedcontrol_p_struct"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_p_struct_desc"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:e.jsx(s,{k:"doc_segmentedcontrol_p_state"})})}),e.jsx("td",{children:e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_p_state_desc"})})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:e.jsx(s,{k:"doc_segmentedcontrol_p_vis"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_p_vis_desc"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:e.jsx(s,{k:"doc_segmentedcontrol_p_space"})})}),e.jsx("td",{children:e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_p_space_desc"})})})]})]})]}),`
+`,e.jsx(d.h3,{id:"-8",children:e.jsx(s,{k:"doc_segmentedcontrol_count"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc_category"})}),e.jsx("th",{children:e.jsx(s,{k:"doc_description"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:e.jsx(s,{k:"doc_recommendation"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_count_rec"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:e.jsx(s,{k:"doc_reason"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc_segmentedcontrol_count_reason"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("strong",{children:e.jsx(s,{k:"doc_if_too_many"})})}),e.jsxs("td",{children:[e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_count_too_many"})}),e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_title"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_tabs_title"})})]})]})]})]})]}),`
+`,e.jsx(d.h3,{id:"-9",children:e.jsx(s,{k:"doc_segmentedcontrol_opt"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_opt_desc"})}),`
+`,e.jsx("p",{children:e.jsx("strong",{children:e.jsx(s,{k:"doc_example"})})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(s,{k:"doc_segmentedcontrol_opt_ex1"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_segmentedcontrol_opt_ex2"})})]}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_opt_lang_note"})}),`
+`,e.jsx(d.hr,{}),`
+`,e.jsx(d.h2,{id:"-10",children:e.jsx(s,{k:"doc_compare_other"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_compare_desc"})}),`
+`,e.jsx(d.hr,{}),`
+`,e.jsx(n,{of:t}),`
+`,e.jsx(d.h2,{id:"-11",children:e.jsx(s,{k:"doc_sizes"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmented_control_size_desc_generic"})}),`
+`,e.jsxs(d.p,{children:[e.jsx(s,{k:"doc_segmentedcontrol_available_sizes"})," ",e.jsx(d.code,{children:"small"}),", ",e.jsx(d.code,{children:"medium"}),", ",e.jsx(d.code,{children:"large"})]}),`
+`,e.jsx(d.h3,{id:"-12",children:e.jsx(s,{k:"doc_size_small"})}),`
+`,e.jsx(n,{of:h}),`
+`,e.jsx(d.h3,{id:"-13",children:e.jsx(s,{k:"doc_size_medium"})}),`
+`,e.jsx(n,{of:t}),`
+`,e.jsx(d.h3,{id:"-14",children:e.jsx(s,{k:"doc_size_large"})}),`
+`,e.jsx(n,{of:m}),`
+`,e.jsx(d.h2,{id:"-15",children:e.jsx(s,{k:"doc_use_icons"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_icon_desc"})}),`
+`,e.jsx(d.h3,{id:"-16",children:e.jsx(s,{k:"doc_icon_with_label"})}),`
+`,e.jsx(n,{of:a}),`
+`,e.jsx(d.h3,{id:"-17",children:e.jsx(s,{k:"doc_icon_only"})}),`
+`,e.jsx(n,{of:k}),`
+`,e.jsx(d.h2,{id:"-18",children:e.jsx(s,{k:"doc_segmentedcontrol_two"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_segmentedcontrol_two_desc"})}),`
+`,e.jsx(n,{of:p}),`
+`,e.jsx(l,{})]})}function R(c={}){const{wrapper:d}={...r(),...c.components};return d?e.jsx(d,{...c,children:e.jsx(o,{...c})}):o(c)}export{R as default};

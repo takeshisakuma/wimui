@@ -33,9 +33,21 @@ type DropzoneProps = {
      * アイコンの名前。
      */
     iconName?: React.ComponentProps<typeof Icon>["name"];
+    /**
+     * エラーメッセージ
+     */
+    error?: string;
+    /**
+     * 必須表示にするかどうか
+     */
+    required?: boolean;
+    /**
+     * レイアウト方向
+     */
+    layout?: "vertical" | "horizontal";
 };
 /**
  * ユーザーがファイルをドラッグ＆ドロップまたはクリックでアップロードするためのコンポーネント。
  */
-export declare const Dropzone: ({ label, description, accept, multiple, disabled, onChange, className, iconName, }: DropzoneProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Dropzone: ({ label, description, accept, multiple, disabled, onChange, className, iconName, error, required, layout, }: DropzoneProps) => import("react/jsx-runtime").JSX.Element;
 export {};

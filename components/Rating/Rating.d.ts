@@ -35,9 +35,21 @@ type RatingProps = {
      * アクセシビリティ用のラベル
      */
     label?: string;
+    /**
+     * エラーメッセージ
+     */
+    error?: string;
+    /**
+     * 必須表示にするかどうか
+     */
+    required?: boolean;
+    /**
+     * レイアウト方向
+     */
+    layout?: "vertical" | "horizontal";
 };
 /**
  * ユーザーが評価を入力するためのレーティングコンポーネント。
  */
-export declare const Rating: ({ value, defaultValue, count, allowHalf, disabled, size, onChange, className, label, ...props }: RatingProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Rating: ({ value, defaultValue, count, allowHalf, disabled, size, onChange, className, label, error, required, layout, ...props }: RatingProps) => import("react/jsx-runtime").JSX.Element;
 export {};
