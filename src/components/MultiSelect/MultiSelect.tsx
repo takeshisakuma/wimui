@@ -31,6 +31,9 @@ export type MultiSelectProps = {
   allowClear?: boolean;
   /** Unique ID for the component */
   id?: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+  "aria-describedby"?: string;
 };
 
 /**
@@ -130,8 +133,8 @@ export const MultiSelect = ({
     }
   };
 
-  const handleClearAll = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleClearAll = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (disabled) return;
 
     if (!isControlled) {
@@ -217,7 +220,7 @@ export const MultiSelect = ({
     "aria-labelledby": ariaLabelledBy,
     "aria-describedby": ariaDescribedBy,
     ...wrapperProps
-  } = props as any;
+  } = props;
 
   return (
     <FieldTemplate
@@ -238,7 +241,7 @@ export const MultiSelect = ({
           disabled={disabled}
           allowClear={allowClear}
           hasValue={currentValues && currentValues.length > 0}
-          onClear={() => handleClearAll({ stopPropagation: () => { } } as any)}
+          onClear={handleClearAll}
           status={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Heading } from "@/components/Heading/Heading";
+import { Heading, type HeadingProps } from "@/components/Heading/Heading";
 import { useTranslation } from "react-i18next";
 
-const meta = {
+const meta: Meta<HeadingProps> = {
   title: "Components/Typography & Icons/Heading",
   component: Heading,
   parameters: {

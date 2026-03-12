@@ -4,7 +4,7 @@ import { useSliderCommon } from "../../utilities/slider-utils";
 import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
 import "./rangeSlider.scss";
 
-type RangeSliderProps = {
+type RangeSliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue"> & {
   /**
    * 現在の値 [min, max]
    */
@@ -264,8 +264,6 @@ export const RangeSlider = ({
   const leftPerc = getPercentage(currentValue[0]);
   const rightPerc = getPercentage(currentValue[1]);
 
-  const wrapperProps = props as any;
-
   return (
     <FieldTemplate
       label={label}
@@ -284,7 +282,7 @@ export const RangeSlider = ({
         )}
         onMouseDown={handleTrackMouseDown}
         onTouchStart={handleTrackMouseDown}
-        {...wrapperProps}
+        {...props}
       >
         <div className="wim-range-slider__track-container" ref={trackRef}>
           <div

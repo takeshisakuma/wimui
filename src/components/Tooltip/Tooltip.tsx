@@ -99,6 +99,7 @@ export const Tooltip = ({
         fallbackAxisSideDirection: "start",
       }),
       shift(),
+      // eslint-disable-next-line react-compiler/react-compiler
       arrow({
         element: arrowRef,
       }),
@@ -176,6 +177,7 @@ export const TooltipTrigger = React.forwardRef<
 
   if (asChild && React.isValidElement(children)) {
     const childProps = children.props as Record<string, unknown>;
+    // eslint-disable-next-line react-compiler/react-compiler
     const referenceProps = context.getReferenceProps({
       ref,
       ...props,

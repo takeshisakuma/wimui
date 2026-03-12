@@ -1,3 +1,4 @@
+import React from "react";
 import { IndicatorBase } from "../_internal/IndicatorBase";
 import "./tag.scss";
 

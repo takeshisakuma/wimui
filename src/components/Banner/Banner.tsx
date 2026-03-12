@@ -68,7 +68,7 @@ export const Banner = ({
           {icon !== false && (
             <div className="wim-banner__icon">
               <FeedbackIcon
-                status={status as any}
+                status={status}
                 icon={typeof icon === "boolean" ? undefined : icon}
                 size="small"
               />

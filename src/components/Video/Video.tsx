@@ -312,17 +312,19 @@ export const Video = ({
           e.preventDefault();
           skip(-10);
           break;
-        case "arrowup":
+        case "arrowup": {
           e.preventDefault();
           const newVolUp = Math.min(1, volume + 0.1);
           setVolume(newVolUp);
           if (newVolUp > 0) setIsMuted(false);
           break;
-        case "arrowdown":
+        }
+        case "arrowdown": {
           e.preventDefault();
           const newVolDown = Math.max(0, volume - 0.1);
           setVolume(newVolDown);
           break;
+        }
         case "m":
           e.preventDefault();
           toggleMute();
@@ -476,11 +478,13 @@ export const Video = ({
         )}
 
         {(customControls || advancedControls) && (
+          // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
           <div
             className="wim-video-custom-controls"
             onClick={() => activeMenu && setActiveMenu(null)}
           >
             {advancedControls && activeMenu === "main" && (
+              // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
               <div
                 className="wim-video-advanced-menu"
                 onClick={(e) => e.stopPropagation()}
@@ -525,6 +529,7 @@ export const Video = ({
             )}
 
             {advancedControls && activeMenu === "quality" && (
+              // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
               <div
                 className="wim-video-advanced-menu"
                 onClick={(e) => e.stopPropagation()}
@@ -563,6 +568,7 @@ export const Video = ({
             )}
 
             {advancedControls && activeMenu === "rate" && (
+              // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
               <div
                 className="wim-video-advanced-menu"
                 onClick={(e) => e.stopPropagation()}
@@ -600,6 +606,7 @@ export const Video = ({
             )}
 
             {advancedControls && activeMenu === "fit" && (
+              // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
               <div
                 className="wim-video-advanced-menu"
                 onClick={(e) => e.stopPropagation()}
@@ -637,6 +644,7 @@ export const Video = ({
             )}
 
             {advancedControls && activeMenu === "playlist" && (
+              // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
               <div
                 className="wim-video-advanced-menu"
                 onClick={(e) => e.stopPropagation()}

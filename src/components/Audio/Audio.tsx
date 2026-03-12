@@ -124,7 +124,7 @@ export const Audio = ({
   const bassFilterRef = useRef<BiquadFilterNode | null>(null);
   const analyzerRef = useRef<AnalyserNode | null>(null);
   const sourceNodeRef = useRef<MediaElementAudioSourceNode | null>(null);
-  const sleepTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const sleepTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Audio node graphs
   const activeGainRef = useRef<GainNode | null>(null);
@@ -146,7 +146,7 @@ export const Audio = ({
   const initWebAudio = () => {
     if (audioCtxRef.current) return;
     const AudioContextCls =
-      window.AudioContext || (window as any).webkitAudioContext;
+      window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
     if (!AudioContextCls) return; // unsupported runtime
 
     const ctx = new AudioContextCls();
@@ -348,7 +348,12 @@ export const Audio = ({
           const jmt = jsmediatagsModule.default || jsmediatagsModule;
           jmt.read(currentTrack.src, {
             onSuccess: (tag: unknown) => {
-              const t = (tag as { tags: any }).tags;
+              type MediaTags = {
+                title?: string;
+                artist?: string;
+                picture?: { data: number[]; format: string };
+              };
+              const t = (tag as { tags: MediaTags }).tags;
               if (t.title) setMetaTitle(t.title);
               if (t.artist) setMetaArtist(t.artist);
 

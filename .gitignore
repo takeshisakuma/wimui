@@ -152,3 +152,8 @@ eslint_output.txt
 # Playwright
 playwright-report/
 test-results/
+
+
+.claude/
+missing_en_*.json
+missing_en_*.txt

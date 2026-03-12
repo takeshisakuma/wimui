@@ -159,7 +159,7 @@ export const Snackbar = ({
             {variant !== "default" && (
               <div className="wim-snackbar__icon">
                 <FeedbackIcon
-                  status={variant as any}
+                  status={variant}
                   size="small"
                 />
               </div>

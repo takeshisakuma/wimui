@@ -115,18 +115,18 @@ export const Box = React.forwardRef(
       backgroundColor: bg,
       width:
         typeof w === "object"
-          ? ("var(--wim-box-w)" as any)
+          ? "var(--wim-box-w)"
           : getSpacingValue(w),
       height:
         typeof h === "object"
-          ? ("var(--wim-box-h)" as any)
+          ? "var(--wim-box-h)"
           : getSpacingValue(h),
       borderRadius: getSpacingValue(radius),
       boxShadow: shadow,
       display,
       position,
-      ...(wVars as any),
-      ...(hVars as any),
+      ...(wVars as React.CSSProperties),
+      ...(hVars as React.CSSProperties),
       ...style,
     };
 

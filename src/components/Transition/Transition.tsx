@@ -95,7 +95,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       }
 
       const completeTransition = () => {
-        if (process.env.NODE_ENV === "test") {
+        if ((import.meta as unknown as { env: { MODE: string } }).env.MODE === "test") {
           // In tests, complete transition after a tiny delay so tests can see the 'to' classes
           // and to avoid issues with sync requestAnimationFrame mocks.
           const timer = setTimeout(() => {
@@ -103,7 +103,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
               handleTransitionEnd({
                 target: internalRef.current,
                 currentTarget: internalRef.current,
-              } as any);
+              } as unknown as React.TransitionEvent);
             }
           }, 100); // Increased delay for tests to see classes
           return () => clearTimeout(timer);
@@ -111,6 +111,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
         return () => {};
       };
 
+      // eslint-disable-next-line react-compiler/react-compiler
       if (show) {
         setShouldRender(true);
         setState("entering");

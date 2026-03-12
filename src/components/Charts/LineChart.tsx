@@ -12,7 +12,7 @@ import {
 import { CHART_COLORS, CHART_THEME } from "./helpers";
 
 export type LineChartProps = {
-  data: any[];
+  data: Record<string, unknown>[];
   keys: string[];
   xAxisKey: string;
   height?: number;

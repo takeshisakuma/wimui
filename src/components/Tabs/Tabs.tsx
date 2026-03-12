@@ -175,6 +175,7 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
       ref={containerRef}
       role="tablist"
       aria-orientation={orientation}
+      tabIndex={0}
       className={classNames(
         "wim-tabs__list",
         isDragging && "wim-tabs__list--dragging",

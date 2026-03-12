@@ -13,7 +13,7 @@ import {
 import { CHART_COLORS, CHART_THEME } from "./helpers";
 
 export type BarChartProps = {
-  data: any[];
+  data: Record<string, unknown>[];
   keys: string[];
   xAxisKey: string;
   stacked?: boolean;

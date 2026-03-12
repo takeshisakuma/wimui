@@ -12,7 +12,7 @@ describe("Watermark", () => {
       rotate: vi.fn(),
       fillText: vi.fn(),
       drawImage: vi.fn(),
-    } as any);
+    } as unknown as CanvasRenderingContext2D);
     vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(
       "data:image/png;base64,xxxx",
     );

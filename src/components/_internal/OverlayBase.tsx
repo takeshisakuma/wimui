@@ -90,7 +90,7 @@ export const OverlayBase = ({
           onClick={(e) => e.stopPropagation()}
           {...transitionProps}
         >
-          <FocusTrap active={open} autoFocus={true}>
+          <FocusTrap active={open}>
             {children}
           </FocusTrap>
         </Transition>

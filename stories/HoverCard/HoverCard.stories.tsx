@@ -52,7 +52,7 @@ export const Default: Story = {
               <Avatar
                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120"
                 alt="Sarah Miller"
-                size="lg"
+                size="large"
               />
               <div
                 style={{ display: "flex", flexDirection: "column", gap: "4px" }}

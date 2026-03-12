@@ -259,6 +259,9 @@ export const NavbarMenuItem = React.forwardRef<
         className,
       )}
       onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.currentTarget.click(); } }}
       {...props}
     >
       {children}

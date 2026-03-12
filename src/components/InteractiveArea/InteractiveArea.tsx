@@ -88,7 +88,7 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
         onKeyDown={(e) => {
           if (isClickable && !disabled && (e.key === "Enter" || e.key === " ")) {
             e.preventDefault();
-            props.onClick?.(e as any);
+            props.onClick?.(e as unknown as React.MouseEvent<HTMLDivElement>);
           }
           props.onKeyDown?.(e);
         }}

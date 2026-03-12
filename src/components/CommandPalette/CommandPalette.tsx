@@ -221,7 +221,7 @@ export const CommandPaletteContent = ({
             leaveFrom="scale-leave-from"
             leaveTo="scale-leave-to"
           >
-            <FocusTrap active={open} autoFocus={true}>
+            <FocusTrap active={open}>
               {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
               <div
                 className={classNames("wim-command-palette-content", className)}

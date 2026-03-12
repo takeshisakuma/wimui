@@ -54,6 +54,7 @@ export const BackTop = ({
     const targetElement = target();
     if (!targetElement) return;
 
+    // eslint-disable-next-line react-compiler/react-compiler
     handleScroll(); // Initial check
 
     targetElement.addEventListener("scroll", handleScroll);
@@ -101,6 +102,9 @@ export const BackTop = ({
       )}
       style={style}
       onClick={scrollToTop}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.currentTarget.click(); } }}
     >
       {children || defaultElement}
     </div>

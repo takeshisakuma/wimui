@@ -92,7 +92,7 @@ export const Notification = ({
         {(icon || status) && (
           <div className="wim-notification-icon">
             <FeedbackIcon
-              status={status as any}
+              status={status}
               icon={icon}
               size="medium"
               color={status ? typeToColorMap[status] : undefined}

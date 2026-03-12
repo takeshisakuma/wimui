@@ -135,6 +135,7 @@ export const Dropdown = ({ children, className }: DropdownProps) => {
     <DropdownContext.Provider
       value={{ isOpen, toggle, close, menuId, triggerId, focusedIndex, setFocusedIndex, registerItem, containerRef }}
     >
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <div className={classNames("wim-dropdown", className)} ref={containerRef} onKeyDown={handleKeyDown}>
         {children}
       </div>
@@ -251,7 +252,7 @@ export const DropdownItem = ({
       onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
         if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
-          handleClick(e as any);
+          handleClick(e as unknown as React.MouseEvent);
         }
       }}
     >

@@ -103,6 +103,7 @@ export const ContextMenu = ({
           leaveTo="fade-leave-to"
         >
           <FloatingFocusManager context={context} modal={true}>
+            {/* eslint-disable-next-line react-compiler/react-compiler */}
             <div
               ref={refs.setFloating}
               className="wim-context-menu"

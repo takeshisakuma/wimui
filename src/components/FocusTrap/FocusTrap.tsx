@@ -52,7 +52,7 @@ export const FocusTrap = ({
         return (
           style.display !== "none" &&
           style.visibility !== "hidden" &&
-          !(el as any).disabled
+          !(el as HTMLElement & { disabled?: boolean }).disabled
         );
       });
     };

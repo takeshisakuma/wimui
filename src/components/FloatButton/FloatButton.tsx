@@ -124,7 +124,7 @@ export const FloatButton = ({
     >
       <span className="wim-float-button__inner">
         <Icon
-          name={(backTop ? "ChevronDownIcon" : iconName) as any}
+          name={(backTop ? "ChevronDownIcon" : iconName) as React.ComponentProps<typeof Icon>["name"]}
           size={size}
           className={classNames(backTop && "wim-float-button__icon--backtop")}
         />

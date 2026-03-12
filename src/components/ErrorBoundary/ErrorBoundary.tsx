@@ -52,7 +52,7 @@ const DefaultFallback = ({
     >
       <Stack gap="md">
         <Alert
-          variant="error"
+          status="error"
           title={t("error_boundary_title")}
           description={error.message}
         />

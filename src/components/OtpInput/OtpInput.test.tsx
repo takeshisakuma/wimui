@@ -56,7 +56,7 @@ describe("OtpInput", () => {
   });
 
   it("renders with error state", () => {
-    const { container } = render(<OtpInput length={1} error />);
+    const { container } = render(<OtpInput length={1} error="error" />);
     const input = container.querySelector("input");
     expect(input).toHaveClass("wim-otp-input--error");
   });

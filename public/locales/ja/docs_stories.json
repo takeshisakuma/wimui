@@ -252,6 +252,8 @@
   "story_contextmenu_select_all": "すべて選択",
   "story_contextmenu_with_groups": "グループ化されたメニュー。右クリックしてください。",
   "story_contextmenu_with_icons": "アイコン付きメニュー。右クリックしてください。",
+  "story_datagrid_action_delete": "{{name}}を削除",
+  "story_datagrid_action_edit": "{{name}}を編集",
   "story_datagrid_col_actions": "アクション",
   "story_datagrid_col_email": "メールアドレス",
   "story_datagrid_col_id": "ID",

@@ -8,7 +8,7 @@ export type IndicatorSliderProps = {
   className?: string;
   style?: React.CSSProperties;
   variant?: string;
-  dependence?: any;
+  dependence?: unknown;
 };
 
 /**

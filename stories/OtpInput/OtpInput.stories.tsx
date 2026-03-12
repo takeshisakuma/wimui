@@ -38,7 +38,7 @@ export const Disabled: Story = {
 export const ErrorStatus: Story = {
   args: {
     length: 6,
-    error: true,
+    error: "Invalid code",
     value: "123456",
   },
 };

@@ -30,7 +30,7 @@ export type ChipProps = {
   /** 追加のクラス名 */
   className?: string;
   /** その他のprops */
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 /**
@@ -95,7 +95,7 @@ export const Chip = ({
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
               e.stopPropagation();
-              onDelete(e as any);
+              onDelete(e as unknown as React.MouseEvent);
             }
           }}
         >

@@ -66,7 +66,7 @@ export const Alert = ({
       {...props}
     >
       <div className="wim-alert__icon">
-        <FeedbackIcon status={status as any} icon={icon} size="small" />
+        <FeedbackIcon status={status} icon={icon} size="small" />
       </div>
       <div className="wim-alert__content">
         {title && <h4 className="wim-alert__title">{t(title)}</h4>}

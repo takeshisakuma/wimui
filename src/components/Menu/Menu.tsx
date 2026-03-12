@@ -199,7 +199,7 @@ export const MenuItem = ({
       onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
         if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
-          handleClick(e as any);
+          handleClick(e as unknown as React.MouseEvent);
         }
       }}
     >
@@ -285,7 +285,7 @@ export const SubMenu = ({
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            handleToggle(e as any);
+            handleToggle(e as unknown as React.MouseEvent);
           }
         }}
       >

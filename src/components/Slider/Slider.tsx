@@ -5,7 +5,7 @@ import { useSliderCommon } from "../../utilities/slider-utils";
 import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
 import "./slider.scss";
 
-type SliderProps = {
+type SliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
   /**
    * 現在の値
    */
@@ -189,8 +189,6 @@ export const Slider = ({
 
   const percentage = ((currentValue - min) / (max - min)) * 100;
 
-  const wrapperProps = props as any;
-
   return (
     <FieldTemplate
       label={label ? t(label) : undefined}
@@ -206,7 +204,7 @@ export const Slider = ({
         className={classNames("wim-slider", disabled && "wim-slider--disabled")}
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}
-        {...wrapperProps}
+        {...props}
       >
         <div className="wim-slider__track-container" ref={trackRef}>
           <div

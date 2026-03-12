@@ -274,7 +274,7 @@ export function DataGrid<T extends Record<string, any>>({
         }
         break;
       case "Enter":
-      case " ":
+      case " ": {
         // Trigger action if possible
         const activeEl = document.activeElement as HTMLElement;
         if (activeEl?.getAttribute("role") === "columnheader") {
@@ -291,6 +291,7 @@ export function DataGrid<T extends Record<string, any>>({
           }
         }
         return;
+      }
       default:
         return;
     }
@@ -315,6 +316,8 @@ export function DataGrid<T extends Record<string, any>>({
         loading && "wim-datagrid--loading",
         className,
       )}
+      role="grid"
+      tabIndex={0}
       onKeyDown={handleKeyDown}
     >
       <div className="wim-datagrid__container">
@@ -463,7 +466,7 @@ export function DataGrid<T extends Record<string, any>>({
                     {columns.map((column, columnIndex) => {
                       const value = column.dataIndex
                         ? row[column.dataIndex]
-                        : (row as any)[column.key];
+                        : (row as Record<string, T[keyof T]>)[column.key];
 
                       const fixedLeft =
                         column.fixed === true || column.fixed === "left";

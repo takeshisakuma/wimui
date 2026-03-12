@@ -4,7 +4,7 @@ import "./button.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 
-export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
+export type ButtonProps = Omit<React.ComponentPropsWithoutRef<"button">, "role"> & {
   backgroundColor?: string | null;
   size?: "small" | "medium" | "large";
   label?: string;
@@ -126,7 +126,7 @@ export const Button = React.forwardRef<
       const effectiveIcon = icon || iconName;
       if (!effectiveIcon) return null;
       if (typeof effectiveIcon === "string") {
-        return <Icon name={effectiveIcon as any} size={size} />;
+        return <Icon name={effectiveIcon as React.ComponentProps<typeof Icon>["name"]} size={size} />;
       }
       return effectiveIcon;
     };

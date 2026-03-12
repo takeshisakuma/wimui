@@ -39,7 +39,7 @@ export const Group = React.forwardRef<HTMLDivElement, GroupProps>(
           if (React.isValidElement(child)) {
             const childStyle = {
               flexGrow: 1,
-              ...(child.props as any).style,
+              ...(child as React.ReactElement<React.HTMLAttributes<HTMLElement>>).props.style,
             };
             return React.cloneElement(child as React.ReactElement<any>, {
               style: childStyle,

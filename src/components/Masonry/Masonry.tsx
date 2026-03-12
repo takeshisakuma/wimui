@@ -37,12 +37,13 @@ export const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
       >
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
-            const existingStyle = (child.props as any).style || {};
-            return React.cloneElement(child as React.ReactElement<any>, {
+            const typedChild = child as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
+            const existingStyle = typedChild.props.style || {};
+            return React.cloneElement(typedChild, {
               style: { ...itemStyle, ...existingStyle },
               className: classNames(
                 "wim-masonry-item",
-                (child.props as any).className,
+                typedChild.props.className,
               ),
             });
           }

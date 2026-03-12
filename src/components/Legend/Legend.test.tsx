@@ -4,7 +4,7 @@ import { Legend } from "./Legend";
 
 describe("Legend", () => {
   it("renders children", () => {
-    render(<Legend>Details</Legend>);
+    render(<Legend label="Details" />);
     // Role of legend is not implicitly 'legend' in all browsers/testing-lib versions sometimes?
     // But usually it is. Or simply getByText.
     expect(screen.getByText("Details")).toBeInTheDocument();

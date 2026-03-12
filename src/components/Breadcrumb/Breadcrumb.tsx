@@ -86,6 +86,7 @@ export const Breadcrumb = ({
                     )}
                     aria-current={isLast ? "page" : undefined}
                     tabIndex={isLast ? 0 : undefined}
+                    role={isLast ? "link" : undefined}
                   >
                     {item.iconName && (
                       <Icon

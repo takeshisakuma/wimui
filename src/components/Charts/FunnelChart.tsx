@@ -10,7 +10,7 @@ import {
 import { CHART_COLORS, CHART_THEME } from "./helpers";
 
 export type FunnelChartProps = {
-  data: any[];
+  data: Record<string, unknown>[];
   dataKey: string;
   nameKey: string;
   height?: number;

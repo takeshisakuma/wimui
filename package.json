@@ -39,7 +39,8 @@
     "test:vrt:report": "playwright show-report",
     "predeploy": "npm run build-storybook",
     "deploy": "gh-pages -d storybook-static",
-    "i18n:sync": "node scripts/sync-i18n.js"
+    "i18n:sync": "node scripts/sync-i18n.js",
+    "i18n:check": "node scripts/check-i18n.js"
   },
   "repository": {
     "type": "git",

@@ -76,19 +76,27 @@ export const LoadingOverlay = ({
     return null;
   }
 
+  const sizeMap: Record<"sm" | "md" | "lg" | "xl", "small" | "medium" | "large" | "xlarge"> = {
+    sm: "small",
+    md: "medium",
+    lg: "large",
+    xl: "xlarge",
+  };
+  const mappedSize = loaderSize ? sizeMap[loaderSize] : undefined;
+
   const renderLoader = () => {
     if (children) {
       return children;
     }
 
     if (loaderType === "spinner") {
-      return <Spinner size={loaderSize} color={loaderColor} />;
+      return <Spinner size={mappedSize} color={loaderColor} />;
     }
 
     return (
       <Loader
         variant={loaderType as "bars" | "dots" | "pulse"}
-        size={loaderSize}
+        size={mappedSize}
         color={loaderColor}
       />
     );

@@ -16,7 +16,7 @@ export const Stats = ({
 }: StatsProps) => {
   return (
     <Card
-      variant={variant as any}
+      variant={variant}
       className={classNames("wim-stats", className)}
       padding="none"
       {...props}

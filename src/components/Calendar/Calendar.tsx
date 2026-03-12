@@ -257,7 +257,7 @@ export const Calendar = ({
           <Icon name="ChevronRightIcon" size="small" />
         </button>
       </div>
-      <div className="wim-calendar-grid" role="grid" onKeyDown={handleKeyDown}>
+      <div className="wim-calendar-grid" role="grid" tabIndex={0} onKeyDown={handleKeyDown}>
         {weekDays.map((day) => (
           <div key={day} className="wim-calendar-weekday" role="columnheader" aria-label={day}>
             {day}

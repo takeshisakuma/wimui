@@ -23,7 +23,7 @@ export const Default: Story = {
     const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Fieldset {...args}>
-        <Legend>{t("story_fieldset_basic")}</Legend>
+        <Legend label={t("story_fieldset_basic")} />
         <Label label={t("story_fieldset_name")}>
           <Input placeholder={t("story_fieldset_name_placeholder")} />
         </Label>
@@ -40,7 +40,7 @@ export const WithCheckboxGroup: Story = {
     const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Fieldset {...args}>
-        <Legend>{t("story_fieldset_notif")}</Legend>
+        <Legend label={t("story_fieldset_notif")} />
         <CheckboxGroup
           options={[
             { label: t("story_fieldset_notif_email"), value: "email" },
@@ -62,7 +62,7 @@ export const Disabled: Story = {
     const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Fieldset {...args}>
-        <Legend>{t("story_fieldset_disabled_sec")}</Legend>
+        <Legend label={t("story_fieldset_disabled_sec")} />
         <Label label={t("story_fieldset_name")}>
           <Input placeholder={t("story_fieldset_disabled_placeholder")} />
         </Label>

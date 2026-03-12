@@ -16,7 +16,7 @@ export type CascaderOption = {
   disabled?: boolean;
 };
 
-export type CascaderProps = {
+export type CascaderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
   options: CascaderOption[];
   value?: string[];
   onChange?: (value: string[], selectedOptions: CascaderOption[]) => void;
@@ -153,8 +153,8 @@ export const Cascader = ({
     }
   };
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleClear = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (disabled) return;
 
     if (!isControlled) {
@@ -215,7 +215,7 @@ export const Cascader = ({
           return next;
         });
         break;
-      case "ArrowRight":
+      case "ArrowRight": {
         e.preventDefault();
         const currentOpt = currentMenuOptions[currentIndex];
         if (currentOpt && currentOpt.children && currentOpt.children.length > 0) {
@@ -224,6 +224,7 @@ export const Cascader = ({
           setFocusedIndexes((prev) => [...prev.slice(0, focusedLevel + 1), 0]);
         }
         break;
+      }
       case "ArrowLeft":
         e.preventDefault();
         if (focusedLevel > 0) {
@@ -232,13 +233,14 @@ export const Cascader = ({
         }
         break;
       case "Enter":
-      case " ":
+      case " ": {
         e.preventDefault();
         const optToSelect = currentMenuOptions[currentIndex];
         if (optToSelect) {
           handleOptionSelect(optToSelect, focusedLevel);
         }
         break;
+      }
       case "Escape":
         e.preventDefault();
         setIsOpen(false);
@@ -350,13 +352,13 @@ export const Cascader = ({
       <div
         className="wim-cascader"
         ref={containerRef}
-        {...(props as any)}
+        {...props}
       >
         <InputBase
           disabled={disabled}
           allowClear={allowClear}
           hasValue={!!displayValue}
-          onClear={() => handleClear({ stopPropagation: () => { } } as any)}
+          onClear={handleClear}
           status={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(

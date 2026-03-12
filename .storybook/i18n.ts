@@ -33,6 +33,11 @@ i18n
       "docs_layout",
       "docs_stories",
     ],
+    fallbackNS: [
+      "docs_stories",
+      "common",
+      "components",
+    ],
     defaultNS: "common",
     lng: "en", // 初期言語
   });

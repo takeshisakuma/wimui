@@ -45,6 +45,9 @@ export type SelectboxProps = {
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+  "aria-describedby"?: string;
 };
 
 import { FieldTemplate } from "../_internal/FieldTemplate";
@@ -492,7 +495,7 @@ export const Selectbox = ({
     "aria-labelledby": ariaLabelledBy,
     "aria-describedby": ariaDescribedBy,
     ...wrapperProps
-  } = props as any;
+  } = props;
 
   return (
     <FieldTemplate

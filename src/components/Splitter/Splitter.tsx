@@ -270,6 +270,11 @@ const SplitterHandle = ({
       )}
       onMouseDown={(e) => index !== undefined && onResizeStart(index, e)}
       onTouchStart={(e) => index !== undefined && onResizeStart(index, e)}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "ArrowRight" || e.key === "ArrowDown") {
+          e.preventDefault();
+        }
+      }}
       {...props}
     />
   );

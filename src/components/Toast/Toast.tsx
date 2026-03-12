@@ -76,7 +76,7 @@ export const Toast = ({
       aria-live="polite"
     >
       <div className="wim-toast__icon">
-        <FeedbackIcon variant={variant} size="small" />
+        <FeedbackIcon status={variant} size="small" />
       </div>
       <div className="wim-toast__content">
         {title && <h5 className="wim-toast__title">{title}</h5>}

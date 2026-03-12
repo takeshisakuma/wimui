@@ -66,6 +66,8 @@ export const Popconfirm = ({
   disabled = false,
 }: PopconfirmProps) => {
   const { t } = useTranslation();
+  const titleId = React.useId();
+  const descriptionId = React.useId();
 
   if (disabled) {
     if (React.isValidElement(children)) {
@@ -75,9 +77,6 @@ export const Popconfirm = ({
     }
     return <>{children}</>;
   }
-
-  const titleId = React.useId();
-  const descriptionId = React.useId();
 
   return (
     <Popover>
@@ -121,7 +120,7 @@ export const Popconfirm = ({
                 label={okText}
                 onClick={onConfirm}
                 priority="primary"
-                role={okType as any}
+                role={okType}
               />
             </PopoverClose>
           </div>

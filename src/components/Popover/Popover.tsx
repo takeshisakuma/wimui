@@ -24,10 +24,12 @@ import "./popover.scss";
 
 import { useFloatingElement } from "../_internal/useFloatingElement";
 
+type FloatingRefs = ReturnType<typeof useFloatingElement>["refs"];
+
 type PopoverContextValue = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  refs: any;
+  refs: FloatingRefs;
   floatingStyles: React.CSSProperties;
   context: FloatingContext<ReferenceType>;
   getReferenceProps: (
@@ -135,6 +137,7 @@ export const PopoverTrigger = React.forwardRef<
 
   if (asChild && React.isValidElement(children)) {
     const childProps = children.props as Record<string, unknown>;
+    // eslint-disable-next-line react-compiler/react-compiler
     const referenceProps = context.getReferenceProps({
       ref,
       ...props,
@@ -245,7 +248,7 @@ export const PopoverClose = ({
           onClick?: React.MouseEventHandler;
         }>;
         child.props.onClick?.(e);
-        handleClick(e as any);
+        handleClick(e as unknown as React.MouseEvent<HTMLButtonElement>);
       },
       className: classNames(
         className,

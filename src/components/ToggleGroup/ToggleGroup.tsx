@@ -4,10 +4,10 @@ import { Icon } from "../Icon/Icon";
 import { useIndicator } from "../_internal/useIndicator";
 import "./toggle-group.scss";
 
-type Option = {
+export type Option = {
   label?: string;
   value: string;
-  iconName?: any; // Name from Icon component
+  iconName?: React.ComponentProps<typeof Icon>["name"]; // Name from Icon component
   disabled?: boolean;
 };
 
@@ -15,7 +15,7 @@ type ToggleGroupProps = {
   options: Option[];
   value?: string | string[];
   defaultValue?: string | string[];
-  onChange?: (value: any) => void;
+  onChange?: (value: string | string[]) => void;
   selectionMode?: "single" | "multiple";
   size?: "small" | "medium" | "large";
   fullWidth?: boolean;

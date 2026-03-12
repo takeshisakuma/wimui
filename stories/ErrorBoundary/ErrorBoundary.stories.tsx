@@ -41,7 +41,7 @@ export const Default: Story = {
             {shouldThrow ? (
               <BuggyComponent />
             ) : (
-              <Alert variant="info" title={t("story_errorboundary_status_ok")} />
+              <Alert status="info" title={t("story_errorboundary_status_ok")} />
             )}
           </ErrorBoundary>
         </Stack>
@@ -66,7 +66,7 @@ export const CustomFallback: Story = {
             onReset={() => setShouldThrow(false)}
             fallback={(error, _info, reset) => (
               <Alert
-                variant="error"
+                status="error"
                 title={t("story_errorboundary_oops")}
                 description={error.message}
               >
@@ -84,7 +84,7 @@ export const CustomFallback: Story = {
             {shouldThrow ? (
               <BuggyComponent />
             ) : (
-              <Alert variant="success" title={t("story_errorboundary_status_stable")} />
+              <Alert status="success" title={t("story_errorboundary_status_stable")} />
             )}
           </ErrorBoundary>
         </Stack>

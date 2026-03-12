@@ -121,8 +121,8 @@ export const DatePicker = ({
     inputRef.current?.focus();
   };
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleClear = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (!disabled && status !== "disabled") {
       if (!isControlled) {
         setInternalValue(null);
@@ -170,7 +170,7 @@ export const DatePicker = ({
           disabled={disabled || status === "disabled"}
           allowClear={clearable}
           hasValue={!!currentValue}
-          onClear={() => handleClear({ stopPropagation: () => { } } as any)}
+          onClear={handleClear}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen, onClick: handleInputClick }]}
         >
           <input
