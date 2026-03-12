@@ -19,6 +19,9 @@ export type MultiSelectProps = {
     allowClear?: boolean;
     /** Unique ID for the component */
     id?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    "aria-describedby"?: string;
 };
 /**
  * ユーザーが定義済みの選択肢から複数を選択するためのドロップダウンメニュー。

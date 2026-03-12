@@ -252,6 +252,8 @@
   "story_contextmenu_select_all": "Select All",
   "story_contextmenu_with_groups": "Grouped menu. Please right-click.",
   "story_contextmenu_with_icons": "Menu with icons. Please right-click.",
+  "story_datagrid_action_delete": "Delete {{name}}",
+  "story_datagrid_action_edit": "Edit {{name}}",
   "story_datagrid_col_actions": "Actions",
   "story_datagrid_col_email": "Email",
   "story_datagrid_col_id": "ID",

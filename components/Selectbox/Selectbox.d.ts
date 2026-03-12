@@ -35,6 +35,9 @@ export type SelectboxProps = {
     error?: string;
     required?: boolean;
     layout?: "vertical" | "horizontal";
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    "aria-describedby"?: string;
 };
 /**
  * ユーザーが定義済みの選択肢から1つを選択するためのプルダウンメニュー。

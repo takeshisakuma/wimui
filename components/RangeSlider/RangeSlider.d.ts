@@ -1,4 +1,5 @@
-type RangeSliderProps = {
+import { default as React } from '../../../node_modules/react';
+type RangeSliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue"> & {
     /**
      * 現在の値 [min, max]
      */

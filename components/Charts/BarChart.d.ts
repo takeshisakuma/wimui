@@ -1,5 +1,5 @@
 export type BarChartProps = {
-    data: any[];
+    data: Record<string, unknown>[];
     keys: string[];
     xAxisKey: string;
     stacked?: boolean;

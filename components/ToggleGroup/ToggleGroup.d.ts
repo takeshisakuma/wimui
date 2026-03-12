@@ -1,14 +1,16 @@
-type Option = {
+import { default as React } from '../../../node_modules/react';
+import { Icon } from '../Icon/Icon';
+export type Option = {
     label?: string;
     value: string;
-    iconName?: any;
+    iconName?: React.ComponentProps<typeof Icon>["name"];
     disabled?: boolean;
 };
 type ToggleGroupProps = {
     options: Option[];
     value?: string | string[];
     defaultValue?: string | string[];
-    onChange?: (value: any) => void;
+    onChange?: (value: string | string[]) => void;
     selectionMode?: "single" | "multiple";
     size?: "small" | "medium" | "large";
     fullWidth?: boolean;

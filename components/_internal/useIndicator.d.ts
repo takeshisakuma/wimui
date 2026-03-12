@@ -1,3 +1,4 @@
+import { default as React } from '../../../node_modules/react';
 export type IndicatorOrientation = "horizontal" | "vertical";
 export interface UseIndicatorOptions {
     /** The CSS selector for the active element (e.g. ".active") */
@@ -14,8 +15,8 @@ export interface UseIndicatorOptions {
  * that follows an active element within a container.
  */
 export declare const useIndicator: ({ activeSelector, orientation, variant, dependence, }: UseIndicatorOptions) => {
-    containerRef: import('../../../node_modules/react').RefObject<any>;
-    sliderStyle: import('../../../node_modules/react').CSSProperties;
+    containerRef: React.RefObject<any>;
+    sliderStyle: React.CSSProperties;
     isReady: boolean;
     updateIndicator: () => void;
 };

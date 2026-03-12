@@ -1,5 +1,5 @@
 export type RadarChartProps = {
-    data: any[];
+    data: Record<string, unknown>[];
     keys: string[];
     indexKey: string;
     height?: number;

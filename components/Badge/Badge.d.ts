@@ -1,3 +1,4 @@
+import { default as React } from '../../../node_modules/react';
 export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
     /** 表示するコンテンツ */
     children?: React.ReactNode;

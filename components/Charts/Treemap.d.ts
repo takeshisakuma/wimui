@@ -1,5 +1,5 @@
 export type TreemapProps = {
-    data: any[];
+    data: Record<string, unknown>[];
     dataKey: string;
     aspectRatio?: number;
     height?: number;

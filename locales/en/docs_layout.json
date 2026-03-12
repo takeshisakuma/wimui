@@ -178,6 +178,7 @@
   "doc_portal_ex_u2_desc": "Ensuring tooltips and floating menus remain visible regardless of local overflow styles.",
   "doc_portal_ex_u2_desc_2": "Context-specific tooltips rendered at the global level for collision avoidance.",
   "doc_portal_ex_u2_title": "Floating Component Portals",
+  "doc_portal_long_desc": "Detailed information and usage instructions for the Portal component.",
   "doc_portal_props_desc_1": "The React Node or element to be rendered through the portal.",
   "doc_portal_props_desc_2": "The target DOM element or selector where content will be teleported.",
   "doc_portal_title": "DOM Portal Utility",

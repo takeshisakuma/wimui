@@ -9,7 +9,7 @@ export type TreeSelectNode = {
 export type TreeSelectProps = {
     treeData: TreeSelectNode[];
     value?: string | string[];
-    onChange?: (value: any) => void;
+    onChange?: (value: string | string[]) => void;
     placeholder?: string;
     label?: string;
     error?: string;
@@ -23,6 +23,9 @@ export type TreeSelectProps = {
     /** Whether to show a clear button when a value is selected */
     allowClear?: boolean;
     id?: string;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+    "aria-describedby"?: string;
 };
 /**
  * ツリー形式の選択肢から1つまたは複数を選択するためのコンポーネント。

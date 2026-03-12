@@ -1,4 +1,5 @@
-type SliderProps = {
+import { default as React } from '../../../node_modules/react';
+type SliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
     /**
      * 現在の値
      */

@@ -6,7 +6,7 @@ export type IndicatorSliderProps = {
     className?: string;
     style?: React.CSSProperties;
     variant?: string;
-    dependence?: any;
+    dependence?: unknown;
 };
 /**
  * A shared internal component to manage a sliding indicator that follows an active element.

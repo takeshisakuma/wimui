@@ -25,7 +25,7 @@ export type ChipProps = {
     /** 追加のクラス名 */
     className?: string;
     /** その他のprops */
-    [key: string]: any;
+    [key: string]: unknown;
 };
 /**
  * 選択、フィルタリング、または入力に使用されるインタラクティブなトークン。
