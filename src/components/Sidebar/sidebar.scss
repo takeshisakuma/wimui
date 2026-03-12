@@ -1,4 +1,4 @@
-﻿@use "../../tokens/breakpoints" as breakpoints;
+@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
   .wim-sidebar {
@@ -144,7 +144,7 @@
 
       &:hover {
         color: var(--color-primary);
-        background-color: rgb(0 0 0 / 0.04);
+        background-color: var(--wim-color-bg-hover);
       }
 
       &--active {

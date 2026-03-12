@@ -220,8 +220,8 @@
       }
 
       &:hover:not(:disabled) {
-        background-color: rgb(0 0 0 / 0.06);
-        border-color: rgb(0 0 0 / 0.15);
+        background-color: var(--wim-color-bg-hover);
+        border-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
         box-shadow: var(--shadow-sm);
         transform: translateY(var(--lift-sm)) translateZ(0);
         transition:

@@ -43,8 +43,8 @@
     border-radius: var(--radius-sm);
 
     &:hover:not(:disabled, .wim-toggle-group__item--active) {
-      color: var(--text-primary);
-      background-color: var(--wim-color-border-secondary);
+      color: var(--color-primary);
+      background-color: var(--wim-color-bg-hover);
     }
 
     &:disabled {

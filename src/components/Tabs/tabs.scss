@@ -152,8 +152,8 @@
       transition: all var(--transition-base);
 
       &:hover:not(:disabled) {
-        color: var(--wim-color-primary, #3b82f6);
-        background-color: rgba(59, 130, 246, 0.08);
+        color: var(--color-primary);
+        background-color: var(--wim-color-bg-hover);
       }
 
       &:disabled {
@@ -164,14 +164,14 @@
 
       &--active {
         font-weight: var(--font-weight-bold);
-        color: var(--wim-color-primary, #3b82f6);
-        background-color: rgba(59, 130, 246, 0.08);
+        color: var(--color-primary);
+        background-color: var(--wim-color-bg-hover);
       }
 
       &:focus-visible {
         z-index: 1;
         outline: none;
-        box-shadow: inset 0 0 0 2px var(--wim-color-primary, #3b82f6);
+        box-shadow: inset 0 0 0 2px var(--color-primary);
       }
     }
 
@@ -183,7 +183,7 @@
         z-index: 1;
         outline: none;
         border-radius: var(--radius-sm);
-        box-shadow: inset 0 0 0 2px var(--wim-color-primary, #3b82f6);
+        box-shadow: inset 0 0 0 2px var(--color-primary);
       }
     }
   }

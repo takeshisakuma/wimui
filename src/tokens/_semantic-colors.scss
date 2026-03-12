@@ -69,7 +69,7 @@ $scrollbar-track: $pccs-gy8-5;
   --bg-component: #{$pccs-w};
   --wim-color-bg-primary: #{$color-bg-primary};
   --wim-color-bg-secondary: #{$color-bg-secondary};
-  --wim-color-bg-hover: rgba(0, 0, 0, 0.05); // Standard hover color
+  --wim-color-bg-hover: color-mix(in srgb, var(--color-primary) 8%, transparent); // Unified blue hover color
   --wim-color-border: #{$pccs-gy7-5};
   --wim-color-border-secondary: #{$pccs-gy8-5};
   --color-focus-outline: #{$color-focus-outline};
@@ -113,7 +113,7 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-bg-primary: #{$pccs-gy3-5};
   --wim-color-bg-secondary: #{$pccs-gy4-5};
   --wim-color-bg-tertiary: #{$pccs-gy4-5};
-  --wim-color-bg-hover: rgba(255, 255, 255, 0.1); // Hover color for dark mode
+  --wim-color-bg-hover: color-mix(in srgb, var(--color-primary) 12%, transparent); // Hover color for dark mode (slightly opaque)
   --wim-color-border: #{$pccs-gy5-5}; // Medium Gray Border
   --wim-color-border-secondary: #{$pccs-gy4-5}; // Darker Gray Border
   --scrollbar-thumb: #{$pccs-gy5-5};

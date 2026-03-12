@@ -35,6 +35,7 @@
 
   &:hover:not(.wim-selectbox-trigger--disabled) {
     border-color: var(--color-primary);
+    background-color: var(--wim-color-bg-hover);
   }
 
   &:focus {

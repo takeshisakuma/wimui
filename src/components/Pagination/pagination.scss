@@ -1,4 +1,4 @@
-﻿@use "../../tokens/breakpoints" as breakpoints;
+@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
   .wim-pagination-wrapper {
@@ -55,7 +55,7 @@
 
       &:hover:not(&--disabled, &--active) {
         color: var(--color-primary);
-        background-color: var(--wim-color-border-secondary);
+        background-color: var(--wim-color-bg-hover);
       }
 
       &--active {
