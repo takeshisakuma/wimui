@@ -15,6 +15,7 @@ type AccordionContextType = {
   onValueChange: (val: string) => void;
   type: "single" | "multiple";
   accordionId: string;
+  containerRef: React.RefObject<HTMLDivElement | null>;
 };
 
 const AccordionContext = createContext<AccordionContextType | null>(null);
@@ -56,11 +57,9 @@ export const Accordion = ({
   const accordionId = customId || generatedId;
 
   const [internalValue, setInternalValue] = useState<string[]>(() => {
-    if (defaultValue) {
-      return Array.isArray(defaultValue) ? defaultValue : [defaultValue];
-    }
     return [];
   });
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   const isControlled = valueProp !== undefined;
   const activeValue = useMemo(() => {
@@ -103,9 +102,15 @@ export const Accordion = ({
         onValueChange: handleValueChange,
         type,
         accordionId,
+        containerRef,
       }}
     >
-      <div className={classNames("wim-accordion", className)}>{children}</div>
+      <div
+        ref={containerRef}
+        className={classNames("wim-accordion", className)}
+      >
+        {children}
+      </div>
     </AccordionContext.Provider>
   );
 };
@@ -178,6 +183,38 @@ export const AccordionTrigger = ({
     onValueChange(item.value);
   };
 
+  const { containerRef } = useAccordion();
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (item.disabled) return;
+
+    const triggers = Array.from(
+      containerRef.current?.querySelectorAll(".wim-accordion__trigger:not(:disabled)") || [],
+    ) as HTMLElement[];
+    const index = triggers.indexOf(e.currentTarget as HTMLElement);
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        triggers[(index + 1) % triggers.length]?.focus();
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        triggers[(index - 1 + triggers.length) % triggers.length]?.focus();
+        break;
+      case "Home":
+        e.preventDefault();
+        triggers[0]?.focus();
+        break;
+      case "End":
+        e.preventDefault();
+        triggers[triggers.length - 1]?.focus();
+        break;
+    }
+
+    props.onKeyDown?.(e);
+  };
+
   return (
     <button
       type="button"
@@ -188,6 +225,7 @@ export const AccordionTrigger = ({
       aria-disabled={item.disabled}
       disabled={item.disabled}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       {...props}
     >
       <span className="wim-accordion__trigger-content">{children}</span>

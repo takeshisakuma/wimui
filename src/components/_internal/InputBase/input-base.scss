@@ -36,10 +36,10 @@
 
   &:focus-within:not(.wim-input-base--disabled) {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    box-shadow: inset 0 0 0 1px var(--color-primary);
     
     &.wim-input-base--error {
-        box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+      box-shadow: inset 0 0 0 1px var(--text-error);
     }
   }
 
@@ -152,7 +152,10 @@
 .wim-input-base > input,
 .wim-input-base > .wim-input,
 .wim-input-base > .wim-selectbox-trigger,
-.wim-input-base > .wim-tree-select__trigger {
+.wim-input-base > .wim-tree-select__trigger,
+.wim-input-base > .wim-cascader__trigger,
+.wim-input-base > .wim-multiselect-trigger,
+.wim-input-base > .wim-selectbox-trigger {
     box-sizing: border-box !important;
     border: none !important;
     background: transparent !important;

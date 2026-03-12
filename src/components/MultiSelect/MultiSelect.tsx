@@ -55,7 +55,10 @@ export const MultiSelect = ({
   const { t } = useTranslation("common");
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
+  const [focusedIndex, setFocusedIndex] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
   const generatedId = useId();
   const id = customId || `wim-multiselect-${generatedId}`;
   const listId = `${id}-list`;
@@ -79,13 +82,18 @@ export const MultiSelect = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleToggle = (e: React.MouseEvent) => {
+  const handleToggle = (e?: React.MouseEvent) => {
     if (disabled) return;
-    // Don't toggle if clicking on a remove button in a badge
-    if ((e.target as HTMLElement).closest(".wim-multiselect-badge-remove"))
+    if (e && (e.target as HTMLElement).closest(".wim-multiselect-badge-remove"))
       return;
 
-    setIsOpen(!isOpen);
+    const nextOpen = !isOpen;
+    setIsOpen(nextOpen);
+    if (nextOpen) {
+      setFocusedIndex(0);
+    } else {
+      setFocusedIndex(-1);
+    }
   };
 
   const handleSelect = (optionValue: string) => {
@@ -139,6 +147,71 @@ export const MultiSelect = ({
     currentValues?.includes(opt.value),
   );
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (disabled) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        if (!isOpen) {
+          setIsOpen(true);
+          setFocusedIndex(0);
+        } else {
+          setFocusedIndex((prev) => (prev < options.length - 1 ? prev + 1 : 0));
+        }
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        if (isOpen) {
+          setFocusedIndex((prev) => (prev > 0 ? prev - 1 : options.length - 1));
+        }
+        break;
+      case "Enter":
+      case " ":
+        e.preventDefault();
+        if (!isOpen) {
+          setIsOpen(true);
+          setFocusedIndex(0);
+        } else if (focusedIndex >= 0) {
+          handleSelect(options[focusedIndex].value);
+        }
+        break;
+      case "Escape":
+        if (isOpen) {
+          e.preventDefault();
+          setIsOpen(false);
+          setFocusedIndex(-1);
+          triggerRef.current?.focus();
+        }
+        break;
+      case "Home":
+        if (isOpen) {
+          e.preventDefault();
+          setFocusedIndex(0);
+        }
+        break;
+      case "End":
+        if (isOpen) {
+          e.preventDefault();
+          setFocusedIndex(options.length - 1);
+        }
+        break;
+      case "Tab":
+        if (isOpen) {
+          setIsOpen(false);
+          setFocusedIndex(-1);
+        }
+        break;
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen && focusedIndex >= 0 && listRef.current) {
+      const focusedItem = listRef.current.children[focusedIndex] as HTMLElement;
+      focusedItem?.scrollIntoView({ block: "nearest" });
+    }
+  }, [focusedIndex, isOpen]);
+
   const {
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
@@ -189,20 +262,13 @@ export const MultiSelect = ({
             aria-describedby={errorId || ariaDescribedBy}
             aria-invalid={!!error}
             aria-label={label ? undefined : ariaLabel || placeholder}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                handleToggle(e as any);
-              }
-              if (e.key === "ArrowDown" && !isOpen) {
-                e.preventDefault();
-                setIsOpen(true);
-              }
-              if (e.key === "Escape" && isOpen) {
-                e.preventDefault();
-                setIsOpen(false);
-              }
-            }}
+            onKeyDown={handleKeyDown}
+            ref={triggerRef}
+            aria-activedescendant={
+              isOpen && focusedIndex >= 0
+                ? `${id}-option-${focusedIndex}`
+                : undefined
+            }
           >
             <div
               className={classNames(
@@ -234,38 +300,34 @@ export const MultiSelect = ({
         {isOpen && !disabled && (
           <ul
             id={listId}
+            ref={listRef}
             className="wim-multiselect-list"
             role="listbox"
             aria-multiselectable="true"
             aria-labelledby={labelId || ariaLabelledBy || undefined}
           >
-            {options.map((option) => {
+            {options.map((option, index) => {
               const isSelected = currentValues?.includes(option.value);
+              const isFocused = index === focusedIndex;
               return (
                 <BaseListItem
                   as="li"
                   key={option.value}
+                  id={`${id}-option-${index}`}
                   className={classNames(
                     "wim-multiselect-option",
                     isSelected && "wim-multiselect-option--selected",
                   )}
+                  active={isFocused}
                   disabled={option.disabled}
                   onClick={() => !option.disabled && handleSelect(option.value)}
+                  onMouseEnter={() => setFocusedIndex(index)}
                   rightSection={
                     isSelected ? <Icon name="CheckIcon" size="small" /> : undefined
                   }
                   role="option"
                   aria-selected={isSelected}
-                  tabIndex={0}
-                  onKeyDown={(e: React.KeyboardEvent) => {
-                    if (
-                      (e.key === "Enter" || e.key === " ") &&
-                      !option.disabled
-                    ) {
-                      e.preventDefault();
-                      handleSelect(option.value);
-                    }
-                  }}
+                  tabIndex={-1}
                 >
                   {option.label}
                 </BaseListItem>

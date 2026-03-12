@@ -9,10 +9,28 @@ import "./menu.scss";
 const MenuContext = React.createContext<{
   expandedItems: Set<string>;
   toggleItem: (key: string) => void;
+  containerRef: React.RefObject<HTMLUListElement | null>;
+  mode: "vertical" | "horizontal" | "inline";
+  focusedIndex: number;
+  setFocusedIndex: (index: number) => void;
+  registerItem: () => number;
 }>({
   expandedItems: new Set(),
   toggleItem: () => { },
+  containerRef: { current: null },
+  mode: "vertical",
+  focusedIndex: 0,
+  setFocusedIndex: () => { },
+  registerItem: () => 0,
 });
+
+const useMenu = () => {
+  const context = React.useContext(MenuContext);
+  if (!context) {
+    throw new Error("Menu sub-components must be used within a Menu");
+  }
+  return context;
+};
 
 export type MenuProps = {
   children: ReactNode;
@@ -34,6 +52,19 @@ export const Menu = ({
   const [expandedItems, setExpandedItems] = useState<Set<string>>(
     new Set(defaultOpenKeys),
   );
+  const [focusedIndex, setFocusedIndex] = useState(0);
+  const itemCountRef = React.useRef(0);
+
+  // Reset count on each render to handle dynamic items
+  React.useEffect(() => {
+    itemCountRef.current = 0;
+  });
+
+  const registerItem = () => {
+    const index = itemCountRef.current;
+    itemCountRef.current += 1;
+    return index;
+  };
 
   const toggleItem = (key: string) => {
     setExpandedItems((prev) => {
@@ -47,11 +78,80 @@ export const Menu = ({
     });
   };
 
+  const containerRef = React.useRef<HTMLUListElement>(null);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const items = Array.from(
+      containerRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
+    ) as HTMLElement[];
+    const index = items.indexOf(document.activeElement as HTMLElement);
+
+    if (index === -1) return;
+
+    if (mode === "vertical" || mode === "inline") {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        items[(index + 1) % items.length]?.focus();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        items[(index - 1 + items.length) % items.length]?.focus();
+      } else if (e.key === "ArrowRight") {
+        const currentItem = items[index];
+        if (currentItem.getAttribute("aria-haspopup") === "true" && currentItem.getAttribute("aria-expanded") === "false") {
+          e.preventDefault();
+          currentItem.click();
+        }
+      } else if (e.key === "ArrowLeft") {
+        const currentItem = items[index];
+        if (currentItem.getAttribute("aria-haspopup") === "true" && currentItem.getAttribute("aria-expanded") === "true") {
+          e.preventDefault();
+          currentItem.click();
+        }
+      }
+    } else if (mode === "horizontal") {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        items[(index + 1) % items.length]?.focus();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        items[(index - 1 + items.length) % items.length]?.focus();
+      } else if (e.key === "ArrowDown") {
+        const currentItem = items[index];
+        if (currentItem.getAttribute("aria-haspopup") === "true" && currentItem.getAttribute("aria-expanded") === "false") {
+          e.preventDefault();
+          currentItem.click();
+        }
+      }
+    }
+
+    if (e.key === "Home") {
+      e.preventDefault();
+      setFocusedIndex(0);
+      items[0]?.focus();
+    } else if (e.key === "End") {
+      e.preventDefault();
+      setFocusedIndex(items.length - 1);
+      items[items.length - 1]?.focus();
+    }
+  };
+
   return (
-    <MenuContext.Provider value={{ expandedItems, toggleItem }}>
+    <MenuContext.Provider
+      value={{
+        expandedItems,
+        toggleItem,
+        containerRef,
+        mode,
+        focusedIndex,
+        setFocusedIndex,
+        registerItem,
+      }}
+    >
       <ul
+        ref={containerRef}
         className={classNames("wim-menu", `wim-menu--${mode}`, className)}
         role="menu"
+        onKeyDown={handleKeyDown}
       >
         {children}
       </ul>
@@ -76,13 +176,14 @@ export const MenuItem = ({
   className,
   icon,
 }: MenuItemProps) => {
+  const { focusedIndex, setFocusedIndex, registerItem } = useMenu();
+  const [index] = useState(() => registerItem());
+  const isFocused = focusedIndex === index;
+
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (disabled) return;
-
-    if (onClick) {
-      onClick();
-    }
+    if (onClick) onClick();
   };
 
   return (
@@ -90,11 +191,12 @@ export const MenuItem = ({
       as="li"
       className={classNames("wim-menu-item", className)}
       onClick={handleClick}
+      onFocus={() => setFocusedIndex(index)}
       disabled={disabled}
       icon={icon}
       role="menuitem"
-      tabIndex={disabled ? -1 : 0}
-      onKeyDown={(e: React.KeyboardEvent) => {
+      tabIndex={isFocused ? 0 : -1}
+      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
         if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           handleClick(e as any);
@@ -143,8 +245,10 @@ export const SubMenu = ({
   icon,
   itemKey,
 }: SubMenuProps) => {
-  const { expandedItems, toggleItem } = React.useContext(MenuContext);
+  const { expandedItems, toggleItem, registerItem, focusedIndex, setFocusedIndex } = useMenu();
   const isOpen = expandedItems.has(itemKey);
+  const [index] = useState(() => registerItem());
+  const isFocused = focusedIndex === index;
 
   const handleToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -162,6 +266,7 @@ export const SubMenu = ({
       <BaseListItem
         className="wim-menu-submenu__title"
         onClick={handleToggle}
+        onFocus={() => setFocusedIndex(index)}
         icon={icon}
         rightSection={
           <span
@@ -176,8 +281,8 @@ export const SubMenu = ({
         role="menuitem"
         aria-haspopup="true"
         aria-expanded={isOpen}
-        tabIndex={0}
-        onKeyDown={(e: React.KeyboardEvent) => {
+        tabIndex={isFocused ? 0 : -1}
+        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             handleToggle(e as any);

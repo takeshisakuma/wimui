@@ -14,9 +14,12 @@ type TreeViewContextType = {
   expandedValues: string[];
   selectedValues: string[];
   checkedValues: string[];
+  focusedValue: string | null;
   toggleExpand: (value: string) => void;
   select: (value: string) => void;
   toggleCheck: (value: string) => void;
+  setFocusedValue: (value: string | null) => void;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   multiSelect?: boolean;
   checkable?: boolean;
   searchQuery?: string;
@@ -68,6 +71,10 @@ const TreeView = ({
   const [checkedValues, setCheckedValues] =
     useState<string[]>(defaultCheckedValues);
   const [searchQuery, setSearchQuery] = useState("");
+  const [focusedValue, setFocusedValue] = useState<string | null>(
+    defaultSelectedValues[0] || null,
+  );
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   const toggleExpand = useCallback((value: string) => {
     setExpandedValues((prev) =>
@@ -112,9 +119,12 @@ const TreeView = ({
       expandedValues,
       selectedValues,
       checkedValues,
+      focusedValue,
       toggleExpand,
       select,
       toggleCheck,
+      setFocusedValue,
+      containerRef,
       multiSelect,
       checkable,
       searchQuery,
@@ -123,6 +133,7 @@ const TreeView = ({
       expandedValues,
       selectedValues,
       checkedValues,
+      focusedValue,
       toggleExpand,
       select,
       toggleCheck,
@@ -135,9 +146,24 @@ const TreeView = ({
   return (
     <TreeViewContext.Provider value={contextValue}>
       <div
+        ref={containerRef}
         className={classNames("wim-tree-view", className)}
         role="tree"
         style={{ width, maxWidth: "100%" }}
+        tabIndex={focusedValue ? -1 : 0}
+        onFocus={(e) => {
+          if (e.target === containerRef.current) {
+            if (focusedValue) {
+               const focusedItem = containerRef.current.querySelector(`[role="treeitem"][data-value="${focusedValue}"]`) as HTMLElement;
+               focusedItem?.focus();
+            } else {
+              const firstItem = containerRef.current.querySelector(
+                '[role="treeitem"]',
+              ) as HTMLElement;
+              firstItem?.focus();
+            }
+          }
+        }}
       >
         {searchable && (
           <div className="wim-tree-view__search">
@@ -177,9 +203,12 @@ export const TreeViewItem = ({
     expandedValues,
     selectedValues,
     checkedValues,
+    focusedValue,
     toggleExpand,
     select,
     toggleCheck,
+    setFocusedValue,
+    containerRef,
     multiSelect,
     checkable,
     searchQuery,
@@ -253,6 +282,7 @@ export const TreeViewItem = ({
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setFocusedValue(value);
     if (!disabled) {
       if (multiSelect && checkable) {
         toggleCheck(value);
@@ -278,26 +308,80 @@ export const TreeViewItem = ({
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (disabled) return;
+    e.stopPropagation();
+
+    const items = Array.from(
+      containerRef.current?.querySelectorAll(
+        '[role="treeitem"]:not([aria-disabled="true"])',
+      ) || [],
+    ) as HTMLElement[];
+    const currentIndex = items.indexOf(e.currentTarget as HTMLElement);
 
     switch (e.key) {
       case "Enter":
       case " ":
         e.preventDefault();
         select(value);
+        if (checkable) toggleCheck(value);
+        break;
+      case "ArrowDown":
+        e.preventDefault();
+        if (currentIndex < items.length - 1) {
+          items[currentIndex + 1].focus();
+        }
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        if (currentIndex > 0) {
+          items[currentIndex - 1].focus();
+        }
+        break;
+      case "Home":
+        e.preventDefault();
+        if (items.length > 0) {
+          items[0].focus();
+        }
+        break;
+      case "End":
+        e.preventDefault();
+        if (items.length > 0) {
+          items[items.length - 1].focus();
+        }
         break;
       case "ArrowRight":
-        if (hasChildren && !isExpanded) {
-          e.preventDefault();
-          toggleExpand(value);
+        if (hasChildren) {
+          if (!isExpanded) {
+            e.preventDefault();
+            toggleExpand(value);
+          } else {
+            // Move to first child
+            e.preventDefault();
+            if (currentIndex < items.length - 1) {
+              items[currentIndex + 1].focus();
+            }
+          }
         }
         break;
       case "ArrowLeft":
         if (hasChildren && isExpanded) {
           e.preventDefault();
           toggleExpand(value);
+        } else {
+          // Move to parent
+          e.preventDefault();
+          const parentItem = (e.currentTarget as HTMLElement).parentElement
+            ?.closest('[role="treeitem"]') as HTMLElement;
+          if (parentItem) {
+            parentItem.focus();
+          }
         }
         break;
     }
+  };
+
+  const handleFocus = (e: React.FocusEvent) => {
+    e.stopPropagation();
+    setFocusedValue(value);
   };
 
   return (
@@ -309,12 +393,14 @@ export const TreeViewItem = ({
         className,
       )}
       role="treeitem"
-      aria-selected={isSelected}
       aria-expanded={hasChildren ? isExpanded : undefined}
+      aria-selected={isSelected}
       aria-disabled={disabled}
+      data-value={value}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      tabIndex={disabled ? -1 : 0}
+      onFocus={handleFocus}
+      tabIndex={focusedValue === value ? 0 : -1}
     >
       <BaseListItem
         id={labelId}
@@ -333,6 +419,7 @@ export const TreeViewItem = ({
                 onClick={handleToggleExpand}
                 disabled={disabled}
                 aria-label={isExpanded ? "Collapse" : "Expand"}
+                tabIndex={-1}
               >
                 <Icon name="ChevronRightIcon" size="small" />
               </button>
@@ -349,6 +436,7 @@ export const TreeViewItem = ({
                 disabled={disabled}
                 onClick={(e) => e.stopPropagation()}
                 aria-labelledby={labelId}
+                tabIndex={-1}
               />
             )}
 

@@ -19,9 +19,9 @@
     justify-content: space-between;
     width: 100%;
     padding: 8px 12px;
-    background: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-border);
-    border-radius: 8px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
     cursor: pointer;
     transition: all 0.2s ease;
     min-height: 40px;
@@ -32,8 +32,6 @@
 
     &:focus:not(&--disabled) {
       outline: none;
-      border-color: var(--wim-color-primary);
-      box-shadow: 0 0 0 2px var(--wim-color-primary-alpha-20);
     }
 
     &--open {

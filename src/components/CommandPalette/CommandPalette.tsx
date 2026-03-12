@@ -190,7 +190,7 @@ export const CommandPaletteContent = ({
   children,
   className,
 }: CommandPaletteContentProps) => {
-  const { open, onOpenChange, setActiveIndex, itemCount } = useCommandPalette();
+  const { open, onOpenChange, activeIndex, setActiveIndex, itemCount } = useCommandPalette();
 
   return (
     <Portal>
@@ -235,6 +235,18 @@ export const CommandPaletteContent = ({
                     setActiveIndex(
                       (prev) => (prev - 1 + itemCount) % itemCount,
                     );
+                  } else if (e.key === "Home") {
+                    e.preventDefault();
+                    setActiveIndex(0);
+                  } else if (e.key === "End") {
+                    e.preventDefault();
+                    setActiveIndex(itemCount - 1);
+                  } else if (e.key === "Enter") {
+                    e.preventDefault();
+                    // Item click logic will be handled by focused element or we can trigger it from here
+                    // Since BaseListItem is used, we can find the active element and click it
+                    const activeElement = document.getElementById(`wim-command-palette-item-${activeIndex}`);
+                    activeElement?.click();
                   }
                 }}
               >
@@ -345,16 +357,11 @@ export const CommandPaletteItem = ({
 
   useEffect(() => {
     if (isActive && !disabled) {
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Enter") {
-          onSelect?.();
-          onOpenChange(false);
-        }
-      };
-      window.addEventListener("keydown", handleKeyDown);
-      return () => window.removeEventListener("keydown", handleKeyDown);
+      // Ensure active item is scrolled into view
+      const element = document.getElementById(`wim-command-palette-item-${index}`);
+      element?.scrollIntoView({ block: "nearest" });
     }
-  }, [isActive, disabled, onSelect, onOpenChange]);
+  }, [isActive, disabled, index]);
 
   return (
     <BaseListItem

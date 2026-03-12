@@ -118,6 +118,12 @@ export function DataGrid<T extends Record<string, any>>({
   const actualSelectAllRowsA11y =
     a11y_select_all_rows ?? t("a11y_select_all_rows");
 
+  const [focusedCell, setFocusedCell] = React.useState<{
+    row: number;
+    col: number;
+  }>({ row: -1, col: selection ? -1 : 0 });
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
   const loaderRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -228,13 +234,88 @@ export function DataGrid<T extends Record<string, any>>({
     }
   });
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const { row, col } = focusedCell;
+    let nextRow = row;
+    let nextCol = col;
+
+    const minCol = selection ? -1 : 0;
+    const maxCol = columns.length - 1;
+    const minRow = -1;
+    const maxRow = rows.length - 1;
+
+    switch (e.key) {
+      case "ArrowRight":
+        if (col < maxCol) nextCol++;
+        break;
+      case "ArrowLeft":
+        if (col > minCol) nextCol--;
+        break;
+      case "ArrowDown":
+        if (row < maxRow) nextRow++;
+        break;
+      case "ArrowUp":
+        if (row > minRow) nextRow--;
+        break;
+      case "Home":
+        if (e.ctrlKey) {
+          nextRow = minRow;
+          nextCol = minCol;
+        } else {
+          nextCol = minCol;
+        }
+        break;
+      case "End":
+        if (e.ctrlKey) {
+          nextRow = maxRow;
+          nextCol = maxCol;
+        } else {
+          nextCol = maxCol;
+        }
+        break;
+      case "Enter":
+      case " ":
+        // Trigger action if possible
+        const activeEl = document.activeElement as HTMLElement;
+        if (activeEl?.getAttribute("role") === "columnheader") {
+          // Sort handled by TableHead
+          return;
+        }
+        if (activeEl?.classList.contains("wim-table__cell")) {
+          const innerInteractive = activeEl.querySelector(
+            'input, button, [role="button"]',
+          ) as HTMLElement;
+          if (innerInteractive) {
+            innerInteractive.click();
+            e.preventDefault();
+          }
+        }
+        return;
+      default:
+        return;
+    }
+
+    if (nextRow !== row || nextCol !== col) {
+      e.preventDefault();
+      setFocusedCell({ row: nextRow, col: nextCol });
+      setTimeout(() => {
+        const target = containerRef.current?.querySelector(
+          `[data-row="${nextRow}"][data-col="${nextCol}"]`,
+        ) as HTMLElement;
+        target?.focus();
+      }, 0);
+    }
+  };
+
   return (
     <div
+      ref={containerRef}
       className={classNames(
         "wim-datagrid",
         loading && "wim-datagrid--loading",
         className,
       )}
+      onKeyDown={handleKeyDown}
     >
       <div className="wim-datagrid__container">
         <Table
@@ -255,16 +336,23 @@ export function DataGrid<T extends Record<string, any>>({
                   stickyLeft
                   leftOffset={0}
                   stickyZIndex={stickyHeader ? 121 : 21}
+                  data-row={-1}
+                  data-col={-1}
+                  tabIndex={
+                    focusedCell.row === -1 && focusedCell.col === -1 ? 0 : -1
+                  }
+                  onFocus={() => setFocusedCell({ row: -1, col: -1 })}
                 >
                   <Checkbox
                     checked={isAllSelected}
                     indeterminate={isSomeSelected}
                     onChange={(e) => handleSelectAll(e.target.checked)}
                     aria-label={actualSelectAllRowsA11y}
+                    tabIndex={-1}
                   />
                 </TableHead>
               )}
-              {columns.map((column) => {
+              {columns.map((column, columnIndex) => {
                 const fixedLeft =
                   column.fixed === true || column.fixed === "left";
                 const fixedRight = column.fixed === "right";
@@ -306,6 +394,14 @@ export function DataGrid<T extends Record<string, any>>({
                             : fixedRightInfo.zIndex
                           : undefined
                     }
+                    data-row={-1}
+                    data-col={columnIndex}
+                    tabIndex={
+                      focusedCell.row === -1 && focusedCell.col === columnIndex
+                        ? 0
+                        : -1
+                    }
+                    onFocus={() => setFocusedCell({ row: -1, col: columnIndex })}
                   >
                     {column.header}
                   </TableHead>
@@ -342,6 +438,15 @@ export function DataGrid<T extends Record<string, any>>({
                         stickyLeft
                         leftOffset={0}
                         stickyZIndex={21}
+                        data-row={rowIndex}
+                        data-col={-1}
+                        tabIndex={
+                          focusedCell.row === rowIndex &&
+                          focusedCell.col === -1
+                            ? 0
+                            : -1
+                        }
+                        onFocus={() => setFocusedCell({ row: rowIndex, col: -1 })}
                       >
                         <Checkbox
                           checked={isSelected}
@@ -351,10 +456,11 @@ export function DataGrid<T extends Record<string, any>>({
                           aria-label={t("datagrid_select_row", {
                             index: rowIndex + 1,
                           })}
+                          tabIndex={-1}
                         />
                       </TableCell>
                     )}
-                    {columns.map((column) => {
+                    {columns.map((column, columnIndex) => {
                       const value = column.dataIndex
                         ? row[column.dataIndex]
                         : (row as any)[column.key];
@@ -388,6 +494,17 @@ export function DataGrid<T extends Record<string, any>>({
                           rightOffset={fixedRightInfo?.offset}
                           stickyZIndex={
                             fixedLeftInfo?.zIndex || fixedRightInfo?.zIndex
+                          }
+                          data-row={rowIndex}
+                          data-col={columnIndex}
+                          tabIndex={
+                            focusedCell.row === rowIndex &&
+                            focusedCell.col === columnIndex
+                              ? 0
+                              : -1
+                          }
+                          onFocus={() =>
+                            setFocusedCell({ row: rowIndex, col: columnIndex })
                           }
                         >
                           {column.render

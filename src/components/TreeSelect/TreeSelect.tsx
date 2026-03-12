@@ -70,6 +70,7 @@ export const TreeSelect = ({
     multiple ? [] : "",
   );
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   const isControlled = value !== undefined;
   const currentValue = isControlled ? value : internalValue;
@@ -87,9 +88,42 @@ export const TreeSelect = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      // Move focus to the tree when it opens
+      const timer = setTimeout(() => {
+        const tree = containerRef.current?.querySelector(".wim-tree-view") as HTMLElement;
+        tree?.focus();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
   const handleToggle = () => {
     if (!disabled) {
-      setIsOpen(!isOpen);
+      const nextOpen = !isOpen;
+      setIsOpen(nextOpen);
+      if (!nextOpen) {
+        triggerRef.current?.focus();
+      }
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (disabled) return;
+
+    if (!isOpen) {
+      if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+        e.preventDefault();
+        setIsOpen(true);
+      }
+      return;
+    }
+
+    if (e.key === "Escape" || e.key === "Tab") {
+      e.preventDefault();
+      setIsOpen(false);
+      triggerRef.current?.focus();
     }
   };
 
@@ -208,6 +242,7 @@ export const TreeSelect = ({
               disabled && "wim-tree-select__trigger--disabled",
             )}
             onClick={handleToggle}
+            onKeyDown={handleKeyDown}
             tabIndex={disabled ? -1 : 0}
             role="combobox"
             aria-expanded={isOpen}
@@ -218,6 +253,7 @@ export const TreeSelect = ({
             aria-label={label ? undefined : (ariaLabel || t(placeholder))}
             aria-describedby={errorId || ariaDescribedBy}
             aria-invalid={!!error}
+            ref={triggerRef}
           >
             <div
               className={classNames(

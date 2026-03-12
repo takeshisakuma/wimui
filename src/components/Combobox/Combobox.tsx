@@ -120,6 +120,9 @@ export const Combobox = ({
       case "Escape":
         setIsOpen(false);
         break;
+      case "Tab":
+        setIsOpen(false);
+        break;
     }
   };
 

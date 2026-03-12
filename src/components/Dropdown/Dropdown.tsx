@@ -10,12 +10,20 @@ const DropdownContext = React.createContext<{
   close: () => void;
   menuId: string;
   triggerId: string;
+  focusedIndex: number;
+  setFocusedIndex: (index: number) => void;
+  registerItem: () => number;
+  containerRef: React.RefObject<HTMLDivElement | null>;
 }>({
   isOpen: false,
   toggle: () => { },
   close: () => { },
   menuId: "",
   triggerId: "",
+  focusedIndex: -1,
+  setFocusedIndex: () => { },
+  registerItem: () => 0,
+  containerRef: { current: null },
 });
 
 export type DropdownProps = {
@@ -25,14 +33,37 @@ export type DropdownProps = {
 
 export const Dropdown = ({ children, className }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
+  const itemCountRef = useRef(0);
+
+  useEffect(() => {
+    itemCountRef.current = 0;
+  });
+
+  const registerItem = () => {
+    const index = itemCountRef.current;
+    itemCountRef.current += 1;
+    return index;
+  };
 
   const generatedId = useId();
   const menuId = `wim-dropdown-menu-${generatedId}`;
   const triggerId = `wim-dropdown-trigger-${generatedId}`;
 
-  const toggle = () => setIsOpen(!isOpen);
-  const close = () => setIsOpen(false);
+  const toggle = () => {
+    const nextOpen = !isOpen;
+    setIsOpen(nextOpen);
+    if (nextOpen) {
+      setFocusedIndex(0);
+    } else {
+      setFocusedIndex(-1);
+    }
+  };
+  const close = () => {
+    setIsOpen(false);
+    setFocusedIndex(-1);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -61,11 +92,50 @@ export const Dropdown = ({ children, className }: DropdownProps) => {
     };
   }, [isOpen]);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!isOpen) return;
+
+    const items = Array.from(
+      containerRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
+    ) as HTMLElement[];
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setFocusedIndex((prev) => (prev < items.length - 1 ? prev + 1 : 0));
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setFocusedIndex((prev) => (prev > 0 ? prev - 1 : items.length - 1));
+        break;
+      case "Home":
+        e.preventDefault();
+        setFocusedIndex(0);
+        break;
+      case "End":
+        e.preventDefault();
+        setFocusedIndex(items.length - 1);
+        break;
+      case "Tab":
+        close();
+        break;
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen && focusedIndex >= 0) {
+      const items = Array.from(
+        containerRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
+      ) as HTMLElement[];
+      items[focusedIndex]?.focus();
+    }
+  }, [focusedIndex, isOpen]);
+
   return (
     <DropdownContext.Provider
-      value={{ isOpen, toggle, close, menuId, triggerId }}
+      value={{ isOpen, toggle, close, menuId, triggerId, focusedIndex, setFocusedIndex, registerItem, containerRef }}
     >
-      <div className={classNames("wim-dropdown", className)} ref={containerRef}>
+      <div className={classNames("wim-dropdown", className)} ref={containerRef} onKeyDown={handleKeyDown}>
         {children}
       </div>
     </DropdownContext.Provider>
@@ -157,7 +227,9 @@ export const DropdownItem = ({
   disabled = false,
   className,
 }: DropdownItemProps) => {
-  const { close } = React.useContext(DropdownContext);
+  const { close, focusedIndex, setFocusedIndex, registerItem } = React.useContext(DropdownContext);
+  const [index] = useState(() => registerItem());
+  const isFocused = focusedIndex === index;
 
   const handleClick = (e: React.MouseEvent) => {
     if (disabled) return;
@@ -172,10 +244,11 @@ export const DropdownItem = ({
     <BaseListItem
       className={classNames("wim-dropdown-item", className)}
       onClick={handleClick}
+      onFocus={() => setFocusedIndex(index)}
       disabled={disabled}
       role="menuitem"
-      tabIndex={disabled ? -1 : 0}
-      onKeyDown={(e: React.KeyboardEvent) => {
+      tabIndex={isFocused ? 0 : -1}
+      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
         if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           handleClick(e as any);

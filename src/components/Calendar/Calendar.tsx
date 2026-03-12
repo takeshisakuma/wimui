@@ -103,6 +103,9 @@ export const Calendar = ({
   const [internalRangeEnd, setInternalRangeEnd] = useState<Date | null>(
     range?.end || defaultRange?.end || null,
   );
+  const [focusedDate, setFocusedDate] = useState<Date>(
+    defaultValue || value || new Date()
+  );
 
   const isControlled = value !== undefined;
   const currentSelected = isControlled ? value : selectedDate;
@@ -113,6 +116,7 @@ export const Calendar = ({
 
   const handleDateClick = (date: Date) => {
     if (disabled || isDateDisabled(date)) return;
+    setFocusedDate(date);
 
     if (rangeMode) {
       if (!rangeStart || (rangeStart && rangeEnd)) {
@@ -136,6 +140,64 @@ export const Calendar = ({
         setSelectedDate(date);
       }
       onChange?.(date);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (disabled) return;
+
+    let nextDate = new Date(focusedDate);
+
+    switch (e.key) {
+      case "ArrowLeft":
+        e.preventDefault();
+        nextDate.setDate(focusedDate.getDate() - 1);
+        break;
+      case "ArrowRight":
+        e.preventDefault();
+        nextDate.setDate(focusedDate.getDate() + 1);
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        nextDate.setDate(focusedDate.getDate() - 7);
+        break;
+      case "ArrowDown":
+        e.preventDefault();
+        nextDate.setDate(focusedDate.getDate() + 7);
+        break;
+      case "PageUp":
+        e.preventDefault();
+        nextDate.setMonth(focusedDate.getMonth() - 1);
+        break;
+      case "PageDown":
+        e.preventDefault();
+        nextDate.setMonth(focusedDate.getMonth() + 1);
+        break;
+      case "Home":
+        e.preventDefault();
+        nextDate.setDate(focusedDate.getDate() - focusedDate.getDay());
+        break;
+      case "End":
+        e.preventDefault();
+        nextDate.setDate(focusedDate.getDate() + (6 - focusedDate.getDay()));
+        break;
+      case "Enter":
+      case " ":
+        e.preventDefault();
+        handleDateClick(focusedDate);
+        return;
+      default:
+        return;
+    }
+
+    setFocusedDate(nextDate);
+    // Adjust month view if needed
+    if (nextDate.getMonth() !== month || nextDate.getFullYear() !== year) {
+      if (nextDate < new Date(year, month, 1)) {
+        handlePrevMonth();
+      } else {
+        handleNextMonth();
+      }
     }
   };
 
@@ -195,14 +257,15 @@ export const Calendar = ({
           <Icon name="ChevronRightIcon" size="small" />
         </button>
       </div>
-      <div className="wim-calendar-grid">
+      <div className="wim-calendar-grid" role="grid" onKeyDown={handleKeyDown}>
         {weekDays.map((day) => (
-          <div key={day} className="wim-calendar-weekday">
+          <div key={day} className="wim-calendar-weekday" role="columnheader" aria-label={day}>
             {day}
           </div>
         ))}
         {daysGrid.map(({ date, currentMonth }, index) => {
           const selected = isSelected(date);
+          const focused = isSameDay(date, focusedDate);
           const today = isToday(date);
           const inRange = isInRange(date);
           const dateDisabled = isDateDisabled(date);
@@ -217,6 +280,7 @@ export const Calendar = ({
                 "wim-calendar-day",
                 !currentMonth && "wim-calendar-day--other-month",
                 selected && "wim-calendar-day--selected",
+                focused && "wim-calendar-day--focused",
                 today && "wim-calendar-day--today",
                 inRange && "wim-calendar-day--in-range",
                 dateDisabled && "wim-calendar-day--disabled",
@@ -224,7 +288,11 @@ export const Calendar = ({
                 isEnd && "wim-calendar-day--range-end",
               )}
               onClick={() => handleDateClick(date)}
+              onFocus={() => setFocusedDate(date)}
               disabled={disabled || dateDisabled}
+              tabIndex={focused ? 0 : -1}
+              role="gridcell"
+              aria-selected={selected}
               aria-label={t("calendar_aria_date", {
                 year: date.getFullYear(),
                 month: date.getMonth() + 1,

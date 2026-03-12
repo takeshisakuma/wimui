@@ -72,6 +72,8 @@ export const Cascader = ({
     defaultValue || [],
   );
   const [activePath, setActivePath] = useState<string[]>([]);
+  const [focusedLevel, setFocusedLevel] = useState<number>(-1); // -1 means trigger is focused
+  const [focusedIndexes, setFocusedIndexes] = useState<number[]>([]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const isControlled = value !== undefined;
@@ -92,10 +94,15 @@ export const Cascader = ({
 
   const handleToggle = () => {
     if (!disabled) {
-      setIsOpen(!isOpen);
-      if (!isOpen) {
+      const nextOpen = !isOpen;
+      setIsOpen(nextOpen);
+      if (nextOpen) {
         // Initialize active path with current value if exists
         setActivePath(currentValue || []);
+        setFocusedLevel(0);
+        setFocusedIndexes([0]);
+      } else {
+        setFocusedLevel(-1);
       }
     }
   };
@@ -164,6 +171,105 @@ export const Cascader = ({
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (disabled) return;
+
+    if (!isOpen) {
+      if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+        e.preventDefault();
+        handleToggle();
+      }
+      return;
+    }
+
+    const menus = [options];
+    let currentOptions = options;
+    for (let i = 0; i < activePath.length; i++) {
+      const activeVal = activePath[i];
+      const activeOpt = currentOptions.find((o) => o.value === activeVal);
+      if (activeOpt && activeOpt.children && activeOpt.children.length > 0) {
+        menus.push(activeOpt.children);
+        currentOptions = activeOpt.children;
+      } else {
+        break;
+      }
+    }
+
+    const currentMenuOptions = menus[focusedLevel] || [];
+    const currentIndex = focusedIndexes[focusedLevel] || 0;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setFocusedIndexes((prev) => {
+          const next = [...prev];
+          next[focusedLevel] = Math.min(currentIndex + 1, currentMenuOptions.length - 1);
+          return next;
+        });
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setFocusedIndexes((prev) => {
+          const next = [...prev];
+          next[focusedLevel] = Math.max(currentIndex - 1, 0);
+          return next;
+        });
+        break;
+      case "ArrowRight":
+        e.preventDefault();
+        const currentOpt = currentMenuOptions[currentIndex];
+        if (currentOpt && currentOpt.children && currentOpt.children.length > 0) {
+          setActivePath([...activePath.slice(0, focusedLevel), currentOpt.value]);
+          setFocusedLevel(focusedLevel + 1);
+          setFocusedIndexes((prev) => [...prev.slice(0, focusedLevel + 1), 0]);
+        }
+        break;
+      case "ArrowLeft":
+        e.preventDefault();
+        if (focusedLevel > 0) {
+          setFocusedLevel(focusedLevel - 1);
+          setFocusedIndexes((prev) => prev.slice(0, focusedLevel));
+        }
+        break;
+      case "Enter":
+      case " ":
+        e.preventDefault();
+        const optToSelect = currentMenuOptions[currentIndex];
+        if (optToSelect) {
+          handleOptionSelect(optToSelect, focusedLevel);
+        }
+        break;
+      case "Escape":
+        e.preventDefault();
+        setIsOpen(false);
+        setFocusedLevel(-1);
+        (containerRef.current?.querySelector(".wim-cascader__trigger") as HTMLElement)?.focus();
+        break;
+      case "Home":
+        e.preventDefault();
+        setFocusedIndexes((prev) => {
+          const next = [...prev];
+          next[focusedLevel] = 0;
+          return next;
+        });
+        break;
+      case "End":
+        e.preventDefault();
+        setFocusedIndexes((prev) => {
+          const next = [...prev];
+          next[focusedLevel] = currentMenuOptions.length - 1;
+          return next;
+        });
+        break;
+      case "Tab":
+        if (isOpen) {
+          setIsOpen(false);
+          setFocusedLevel(-1);
+        }
+        break;
+    }
+  };
+
   const renderMenus = () => {
     const menus = [];
     let currentOptions = options;
@@ -183,9 +289,10 @@ export const Cascader = ({
     }
 
     return menus.map((menuOptions, level) => (
-      <div key={level} className="wim-cascader__menu">
-        {menuOptions.map((option) => {
+      <div key={level} className="wim-cascader__menu" role="menu">
+        {menuOptions.map((option, index) => {
           const isActive = activePath[level] === option.value;
+          const isFocused = focusedLevel === level && focusedIndexes[level] === index;
           const isSelected = currentValue[level] === option.value;
           const hasChildren = option.children && option.children.length > 0;
 
@@ -196,19 +303,29 @@ export const Cascader = ({
                 "wim-cascader__menu-item",
                 isSelected && "wim-cascader__menu-item--selected",
               )}
-              active={isActive}
+              active={isFocused || isActive}
               disabled={option.disabled}
               onClick={(e: React.MouseEvent) => {
                 e.stopPropagation();
                 handleOptionSelect(option, level);
               }}
-              onMouseEnter={() => handleOptionHover(option, level)}
+              onMouseEnter={() => {
+                handleOptionHover(option, level);
+                setFocusedLevel(level);
+                setFocusedIndexes((prev) => {
+                  const next = [...prev.slice(0, level), index];
+                  return next;
+                });
+              }}
               rightSection={
                 hasChildren ? (
                   <Icon name="ChevronRightIcon" size="small" />
                 ) : undefined
               }
-              role="menuitem"
+              role="option"
+              id={`${id}-menu-${level}-option-${index}`}
+              aria-selected={isSelected}
+              tabIndex={-1}
             >
               {t(option.label)}
             </BaseListItem>
@@ -253,6 +370,7 @@ export const Cascader = ({
               disabled && "wim-cascader__trigger--disabled",
             )}
             onClick={handleToggle}
+            onKeyDown={handleKeyDown}
             tabIndex={disabled ? -1 : 0}
             role="combobox"
             aria-expanded={isOpen}
@@ -261,6 +379,9 @@ export const Cascader = ({
             aria-labelledby={labelId}
             aria-describedby={errorId}
             aria-invalid={!!error}
+            aria-activedescendant={
+              isOpen && focusedLevel >= 0 ? `${id}-menu-${focusedLevel}-option-${focusedIndexes[focusedLevel]}` : undefined
+            }
           >
             <div
               className={classNames(
