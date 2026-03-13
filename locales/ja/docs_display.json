@@ -666,7 +666,7 @@
   "doc_feature": "機能",
   "doc_feature_label": "機能名",
   "doc_features": "特徴",
-  "doc_focusTrap_desc": "フォーカス管理",
+  "doc_focustrap_desc": "フォーカス管理",
   "doc_focustrap_auto_focus": "自動フォーカス",
   "doc_focustrap_auto_focus_desc": "autoFocus プロップを true に設定すると、トラップが有効になった瞬間に最初のフォーカス可能要素へフォーカスを移動します。",
   "doc_focustrap_feat_1": "Tab キーによる移動をコンポーネント内に制限します。",

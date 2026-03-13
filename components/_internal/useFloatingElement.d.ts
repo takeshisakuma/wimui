@@ -14,6 +14,7 @@ export interface FloatingElementOptions {
  * Floating UI を利用した位置計算、インタラクション（クリック / ホバー）、アクセシビリティ管理を一元化します。
  */
 export declare const useFloatingElement: ({ placement, open: controlledOpen, defaultOpen, onOpenChange, trigger, offset: offsetValue, role: roleType, }?: FloatingElementOptions) => {
+    isPositioned: boolean;
     getReferenceProps: (userProps?: React.HTMLProps<Element>) => Record<string, unknown>;
     getFloatingProps: (userProps?: React.HTMLProps<HTMLElement>) => Record<string, unknown>;
     getItemProps: (userProps?: Omit<React.HTMLProps<HTMLElement>, "selected" | "active"> & {
@@ -25,7 +26,6 @@ export declare const useFloatingElement: ({ placement, open: controlledOpen, def
     middlewareData: import('@floating-ui/core').MiddlewareData;
     x: number;
     y: number;
-    isPositioned: boolean;
     update: () => void;
     floatingStyles: React.CSSProperties;
     refs: {
