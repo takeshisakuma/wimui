@@ -1,0 +1,100 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{r as v,R as f}from"./iframe-C80AEei6.js";import{c as h}from"./index-Wh6O2QWQ.js";import{A as b}from"./Avatar-BOn6gJBV.js";import{A as w}from"./i18nConstants-BpHxieg5.js";import{u as T}from"./useTranslation-Cpo6ITo8.js";const g=f.createContext({isOpen:!1,open:()=>{},close:()=>{}}),y=({children:r,className:l,openDelay:d=700,closeDelay:c=300,isOpen:p,onOpenChange:t})=>{const[i,n]=v.useState(!1),o=p!==void 0,x=o?p:i,s=v.useRef(null),a=v.useRef(null),j=()=>{a.current&&(window.clearTimeout(a.current),a.current=null),!x&&(s.current&&window.clearTimeout(s.current),s.current=window.setTimeout(()=>{o||n(!0),t?.(!0),s.current=null},d))},H=()=>{s.current&&(window.clearTimeout(s.current),s.current=null),x&&(a.current&&window.clearTimeout(a.current),a.current=window.setTimeout(()=>{o||n(!1),t?.(!1),a.current=null},c))};return v.useEffect(()=>()=>{s.current&&window.clearTimeout(s.current),a.current&&window.clearTimeout(a.current)},[]),e.jsx(g.Provider,{value:{isOpen:x,open:j,close:H},children:e.jsx("div",{className:h("wim-hover-card",l),children:r})})},C=({children:r,className:l,asChild:d})=>{const{open:c,close:p}=f.useContext(g),t=()=>c(),i=()=>p();return d&&f.isValidElement(r)?f.cloneElement(r,{onMouseEnter:n=>{r.props.onMouseEnter?.(n),t()},onMouseLeave:n=>{r.props.onMouseLeave?.(n),i()},onFocus:n=>{r.props.onFocus?.(n),t()},onBlur:n=>{r.props.onBlur?.(n),i()},className:h(l,r.props.className)}):e.jsx("div",{className:h("wim-hover-card-trigger",l),onMouseEnter:t,onMouseLeave:i,onFocus:t,onBlur:i,tabIndex:0,children:r})},_=({children:r,className:l,align:d="center",side:c="bottom",sideOffset:p=8,...t})=>{const{isOpen:i,open:n,close:o}=f.useContext(g);return i?e.jsx("div",{className:h("wim-hover-card-content",`wim-hover-card-content--align-${d}`,`wim-hover-card-content--${c}`,l),onMouseEnter:n,onMouseLeave:o,...t,children:r}):null};y.__docgenInfo={description:"",methods:[],displayName:"HoverCard",props:{children:{required:!0,tsType:{name:"ReactNode"},description:""},className:{required:!1,tsType:{name:"string"},description:""},openDelay:{required:!1,tsType:{name:"number"},description:"Delay before showing the hover card in ms.",defaultValue:{value:"700",computed:!1}},closeDelay:{required:!1,tsType:{name:"number"},description:"Delay before hiding the hover card in ms.",defaultValue:{value:"300",computed:!1}},isOpen:{required:!1,tsType:{name:"boolean"},description:"If provided, controls the open state."},onOpenChange:{required:!1,tsType:{name:"signature",type:"function",raw:"(open: boolean) => void",signature:{arguments:[{type:{name:"boolean"},name:"open"}],return:{name:"void"}}},description:"Callback when open state changes."}}};C.__docgenInfo={description:"",methods:[],displayName:"HoverCardTrigger",props:{children:{required:!0,tsType:{name:"ReactNode"},description:""},className:{required:!1,tsType:{name:"string"},description:""},asChild:{required:!1,tsType:{name:"boolean"},description:""}}};_.__docgenInfo={description:"",methods:[],displayName:"HoverCardContent",props:{children:{required:!0,tsType:{name:"ReactNode"},description:""},className:{required:!1,tsType:{name:"string"},description:""},align:{required:!1,tsType:{name:"union",raw:'"left" | "right" | "center"',elements:[{name:"literal",value:'"left"'},{name:"literal",value:'"right"'},{name:"literal",value:'"center"'}]},description:"",defaultValue:{value:'"center"',computed:!1}},side:{required:!1,tsType:{name:"union",raw:'"top" | "bottom" | "left" | "right"',elements:[{name:"literal",value:'"top"'},{name:"literal",value:'"bottom"'},{name:"literal",value:'"left"'},{name:"literal",value:'"right"'}]},description:"",defaultValue:{value:'"bottom"',computed:!1}},sideOffset:{required:!1,tsType:{name:"number"},description:"",defaultValue:{value:"8",computed:!1}}}};const S={title:"Components/Overlays/HoverCard",component:y},u={render:()=>{const{t:r}=T(w);return e.jsx("div",{style:{padding:"100px",display:"flex",justifyContent:"center",alignItems:"center",minHeight:"600px"},children:e.jsxs(y,{children:[e.jsx(C,{asChild:!0,children:e.jsx("a",{href:"/",style:{borderRadius:"50%",display:"inline-block",cursor:"pointer"},children:e.jsx(b,{src:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120",alt:"Sarah Miller"})})}),e.jsx(_,{side:"bottom",children:e.jsxs("div",{style:{display:"flex",flexDirection:"column",gap:"12px"},children:[e.jsx(b,{src:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120",alt:"Sarah Miller",size:"large"}),e.jsxs("div",{style:{display:"flex",flexDirection:"column",gap:"4px"},children:[e.jsx("div",{style:{fontWeight:"bold",fontSize:"16px"},children:"Sarah Miller"}),e.jsx("div",{style:{color:"var(--text-secondary)",fontSize:"14px"},children:"@sarah_m"})]}),e.jsx("div",{style:{fontSize:"14px"},children:r("story_hovercard_bio")}),e.jsxs("div",{style:{display:"flex",gap:"16px",fontSize:"12px",color:"var(--text-secondary)"},children:[e.jsxs("div",{children:[e.jsx("span",{style:{fontWeight:"bold",color:"var(--text-primary)"},children:"452"})," ",r("story_hovercard_following")]}),e.jsxs("div",{children:[e.jsx("span",{style:{fontWeight:"bold",color:"var(--text-primary)"},children:"2.8k"})," ",r("story_hovercard_followers")]})]})]})})]})})}},m={render:()=>{const{t:r}=T(w);return e.jsx("div",{style:{padding:"100px",display:"flex",justifyContent:"center",minHeight:"200px"},children:e.jsxs(y,{openDelay:0,closeDelay:0,children:[e.jsx(C,{children:r("story_hovercard_hover_me")}),e.jsx(_,{children:r("story_hovercard_instant_desc")})]})})}};u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  render: () => {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <div style={{
+      padding: "100px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "600px"
+    }}>\r
+        <HoverCard>\r
+          <HoverCardTrigger asChild>\r
+            <a href="/" style={{
+            borderRadius: "50%",
+            display: "inline-block",
+            cursor: "pointer"
+          }}>\r
+              <Avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120" alt="Sarah Miller" />\r
+            </a>\r
+          </HoverCardTrigger>\r
+          <HoverCardContent side="bottom">\r
+            <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px"
+          }}>\r
+              <Avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120" alt="Sarah Miller" size="large" />\r
+              <div style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px"
+            }}>\r
+                <div style={{
+                fontWeight: "bold",
+                fontSize: "16px"
+              }}>\r
+                  Sarah Miller\r
+                </div>\r
+                <div style={{
+                color: "var(--text-secondary)",
+                fontSize: "14px"
+              }}>\r
+                  @sarah_m\r
+                </div>\r
+              </div>\r
+              <div style={{
+              fontSize: "14px"
+            }}>\r
+                {t("story_hovercard_bio")}\r
+              </div>\r
+              <div style={{
+              display: "flex",
+              gap: "16px",
+              fontSize: "12px",
+              color: "var(--text-secondary)"
+            }}>\r
+                <div>\r
+                  <span style={{
+                  fontWeight: "bold",
+                  color: "var(--text-primary)"
+                }}>\r
+                    452\r
+                  </span>{" "}\r
+                  {t("story_hovercard_following")}\r
+                </div>\r
+                <div>\r
+                  <span style={{
+                  fontWeight: "bold",
+                  color: "var(--text-primary)"
+                }}>\r
+                    2.8k\r
+                  </span>{" "}\r
+                  {t("story_hovercard_followers")}\r
+                </div>\r
+              </div>\r
+            </div>\r
+          </HoverCardContent>\r
+        </HoverCard>\r
+      </div>;
+  }
+}`,...u.parameters?.docs?.source}}};m.parameters={...m.parameters,docs:{...m.parameters?.docs,source:{originalSource:`{
+  render: () => {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <div style={{
+      padding: "100px",
+      display: "flex",
+      justifyContent: "center",
+      minHeight: "200px"
+    }}>\r
+        <HoverCard openDelay={0} closeDelay={0}>\r
+          <HoverCardTrigger>{t("story_hovercard_hover_me")}</HoverCardTrigger>\r
+          <HoverCardContent>{t("story_hovercard_instant_desc")}</HoverCardContent>\r
+        </HoverCard>\r
+      </div>;
+  }
+}`,...m.parameters?.docs?.source}}};const M=["Default","Instant"],R=Object.freeze(Object.defineProperty({__proto__:null,Default:u,Instant:m,__namedExportsOrder:M,default:S},Symbol.toStringTag,{value:"Module"}));export{u as D,R as H};
