@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Audio } from "@/components/Audio/Audio";
+import { Button } from "@/components/Button/Button";
 import audioSample from "@/media/audiosample.mp3";
 import { useTranslation } from "react-i18next";
 
@@ -105,5 +106,38 @@ export const FullFeatured: Story = {
     hotkeys: true,
     presets: true,
     sleepTimer: true,
+  },
+};
+export const PremiumFeatures: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    const [audioKey, setAudioKey] = React.useState(0);
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+        <div>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_audio_premium_features_lazy_load")}</p>
+          <div style={{ marginBottom: "1rem" }}>
+            <Button
+              priority="primary"
+              onClick={() => setAudioKey((prev) => prev + 1)}
+              label={t("story_audio_premium_features_reload")}
+              icon="RefreshIcon"
+            />
+          </div>
+          <Audio
+            {...args}
+            key={audioKey}
+            src={audioSample}
+            customControls
+            showMetadata
+            demoDelay={2000}
+            radius="medium"
+            shadow
+            caption={t("story_audio_premium_features_caption")}
+          />
+        </div>
+      </div>
+    );
   },
 };

@@ -133,7 +133,7 @@
   "doc_group_feat_grow": "Equal Width",
   "doc_group_feat_grow_desc": "Using the grow property makes all child elements expand to fill available space.",
   "doc_group_grow": "Expand (Grow)",
-  "doc_group_grow_desc": "When grow is set to \true, each item receives flex-grow: 1, spreading equally across the container width.",
+  "doc_group_grow_desc": "When grow is set to true, each item receives flex-grow: 1, spreading equally across the container width.",
   "doc_group_long_desc": "Group is a layout component for arranging elements horizontally. It maintains consistent spacing by default and handles wrapping based on container width. Ideal for lining up inline elements like buttons.",
   "doc_group_title": "Layout component to arrange elements horizontally",
   "doc_infiniteScroll_access_desc": "Important information should not be placed in the footer as it may become difficult to access; consider using it with a \"View More\" button.",

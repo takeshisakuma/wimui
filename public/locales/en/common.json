@@ -78,7 +78,7 @@
   "overview": "Overview",
   "pagination_go_to": "Go to",
   "pagination_items_per_page": "items / page",
-  "phoneNumber": "Phone Number",
+  "phone_number": "Phone Number",
   "processing": "Please wait...",
   "profile": "Profile",
   "reports": "Reports",
@@ -158,5 +158,7 @@
   "upload": "Upload",
   "username": "Username",
   "wed": "Wed",
-  "welcome": "Welcome to the wimui Design System"
+  "welcome": "Welcome to the wimui Design System",
+  "common_intensity": "Intensity",
+  "common_reload": "Reload"
 }

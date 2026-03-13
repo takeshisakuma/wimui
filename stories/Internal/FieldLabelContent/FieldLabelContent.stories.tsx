@@ -31,6 +31,6 @@ export const Required: Story = {
 export const Optional: Story = {
   render: function Render(args) {
     const { t } = useTranslation(["common"]);
-    return <FieldLabelContent {...args} label={t("phoneNumber")} showOptional />;
+    return <FieldLabelContent {...args} label={t("phone_number")} showOptional />;
   },
 };

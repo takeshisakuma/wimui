@@ -22,7 +22,7 @@
   "doc_backtop_usage_2": "Quando o usuário precisa retornar frequentemente ao topo para navegação ou outras ações.",
   "doc_navbar_basic_usage_desc": "Coloque componentes como Navbar.Brand e Navbar.Content dentro do componente Navbar.",
   "doc_navbar_content_placement": "Posicionamento de Conteúdo",
-  "doc_navbar_content_placement_desc": "Layouts flexíveis são possíveis combinando vários componentes Navbar.Content com a propriedade justify (start, center, \u001bnd).",
+  "doc_navbar_content_placement_desc": "Layouts flexíveis são possíveis combinando vários componentes Navbar.Content com a propriedade justify (start, center, end).",
   "doc_navbar_desc": "Barra de cabeçalho para navegação global no topo",
   "doc_navbar_desc_2": "Funciona como um container para logotipos de marca, links de navegação, botões de ação, etc.",
   "doc_navbar_glass_desc": "Use a propriedade glass para aplicar um efeito de desfoque de fundo (efeito de vidro fosco). Muito eficaz quando posicionado como um cabeçalho fixo sobre imagens de fundo coloridas ou gradientes.",

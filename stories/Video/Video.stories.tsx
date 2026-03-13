@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Video } from "@/components/Video/Video";
+import { Button } from "@/components/Button/Button";
 import sampleVideo from "@/media/videosample.mp4";
 import videoPoster from "@/media/video_poster.webp";
 import { useTranslation } from "react-i18next";
@@ -116,6 +117,40 @@ export const FullFeatured: Story = {
           { src: sampleVideo, title: t("story_video_ep3"), poster: videoPoster },
         ]}
       />
+    );
+  },
+};
+export const PremiumFeatures: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(["docs", "common", "components"]);
+    const [videoKey, setVideoKey] = React.useState(0);
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+        <div>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_video_premium_features_lazy_load")}</p>
+          <div style={{ marginBottom: "1rem" }}>
+            <Button
+              priority="primary"
+              onClick={() => setVideoKey((prev) => prev + 1)}
+              label={t("story_video_premium_features_reload")}
+              icon="RefreshIcon"
+            />
+          </div>
+          <Video
+            {...args}
+            key={videoKey}
+            src={`${sampleVideo}?k=${videoKey}`}
+            poster={videoPoster}
+            width={600}
+            fadeIn
+            demoDelay={2000}
+            radius="medium"
+            shadow
+            caption={t("story_video_premium_features_caption")}
+          />
+        </div>
+      </div>
     );
   },
 };

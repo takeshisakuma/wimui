@@ -64,6 +64,7 @@
     height: 1.25rem;
     margin-left: 1rem;
     color: var(--wim-color-text-secondary, #64748b);
+    will-change: transform;
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
     &--open {
@@ -78,6 +79,7 @@
     overflow: hidden;
     font-size: 0.875rem;
     line-height: 1.6;
+    will-change: grid-template-rows;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
     &--open {

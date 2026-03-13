@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .wim-marquee {
     display: flex;
     overflow: hidden;
@@ -13,6 +13,7 @@
       gap: var(--spacing-md);
       min-width: 100%;
       animation: wim-marquee-scroll var(--duration, 20s) linear infinite;
+      will-change: transform;
 
       &--reverse {
         animation-direction: reverse;
@@ -22,6 +23,7 @@
         flex-direction: column;
         animation: wim-marquee-scroll-vertical var(--duration, 20s) linear
           infinite;
+        will-change: transform;
       }
     }
 

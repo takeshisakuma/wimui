@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
+import { useMediaLoader } from "@/hooks/useMediaLoader";
 import "./video.scss";
 
 type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
@@ -27,6 +28,12 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
   playlist?: { src: string; title?: string; poster?: string }[];
   autoPlayNext?: boolean;
   qualities?: { label: string; src: string }[];
+  /** 読み込み設定。"lazy" の場合に Intersection Observer が有効化されます */
+  loading?: "eager" | "lazy";
+  /** 読み込み完了時にフェードインさせるか */
+  fadeIn?: boolean;
+  /** デモ用：読み込み完了を意図的に遅らせるミリ秒 */
+  demoDelay?: number;
 };
 
 export const Video = ({
@@ -53,9 +60,25 @@ export const Video = ({
   playlist,
   autoPlayNext = false,
   qualities,
+  loading = "lazy",
+  fadeIn = false,
+  demoDelay,
   ...props
 }: VideoProps) => {
   const { t } = useTranslation();
+
+  // 共通メディアローダーフックの使用
+  const {
+    containerRef: mediaLoaderRef,
+    isLoaded,
+    isIntersecting,
+    notifyLoaded,
+    shouldShowSkeleton
+  } = useMediaLoader({
+    loading,
+    src: qualities?.[0]?.src || playlist?.[0]?.src || src,
+    demoDelay,
+  });
 
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -415,37 +438,44 @@ export const Video = ({
       className={classNames("wim-video-container", className)}
       style={{ width: "100%" }}
     >
-      <div
-        className={classNames(
-          "wim-video-inner",
-          radius !== "none" && `wim-video--radius-${radius}`,
-          shadow && "wim-video--shadow",
-          border && "wim-video--border",
-          (customControls || advancedControls) && "wim-video--custom",
-        )}
-        ref={containerRef}
-      >
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video
-          ref={videoRef}
-          src={activeSrc}
-          className="wim-video"
-          style={videoStyles}
-          autoPlay={autoPlay}
-          loop={loop && (!playlist || playlist.length <= 1)}
-          muted={muted}
-          controls={showNativeControls}
-          poster={activePoster}
-          preload={preload}
-          playsInline
-          onTimeUpdate={handleTimeUpdate}
-          onLoadedMetadata={handleLoadedMetadata}
-          onEnded={handleEnded}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          onClick={handleVideoClick}
-          {...props}
-        />
+        <div
+          className={classNames(
+            "wim-video-inner",
+            radius !== "none" && `wim-video--radius-${radius}`,
+            shadow && "wim-video--shadow",
+            border && "wim-video--border",
+            (customControls || advancedControls) && "wim-video--custom",
+            fadeIn && "wim-video--fade-in",
+            fadeIn && isLoaded && "wim-video--is-loaded",
+            shouldShowSkeleton && "wim-video--loading",
+          )}
+          ref={mediaLoaderRef}
+        >
+          {/* eslint-disable jsx-a11y/media-has-caption */}
+          {isIntersecting && (
+            <video
+              ref={videoRef}
+              src={activeSrc}
+              className="wim-video"
+              style={videoStyles}
+              autoPlay={autoPlay && isLoaded}
+              loop={loop && (!playlist || playlist.length <= 1)}
+              muted={muted}
+              controls={showNativeControls}
+              poster={activePoster}
+              preload={preload}
+              playsInline
+              onTimeUpdate={handleTimeUpdate}
+              onLoadedMetadata={handleLoadedMetadata}
+              onLoadedData={notifyLoaded}
+              onEnded={handleEnded}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onClick={handleVideoClick}
+              {...props}
+            />
+          )}
+          {/* eslint-enable jsx-a11y/media-has-caption */}
 
         {skipIndicator.show && (
           <div className="wim-video-skip-indicator">

@@ -22,7 +22,7 @@
   "doc_backtop_usage_2": "When the user needs to frequently scroll back to the top for navigation or other actions.",
   "doc_navbar_basic_usage_desc": "Place components like Navbar.Brand and Navbar.Content inside the Navbar component.",
   "doc_navbar_content_placement": "Content Placement",
-  "doc_navbar_content_placement_desc": "Flexible layouts are possible by combining multiple Navbar.Content components with the justify property (start, center, \u001bnd).",
+  "doc_navbar_content_placement_desc": "Flexible layouts are possible by combining multiple Navbar.Content components with the justify property (start, center, end).",
   "doc_navbar_desc": "Primary navigation",
   "doc_navbar_desc_2": "It functions as a container for brand logos, navigation links, action buttons, etc.",
   "doc_navbar_glass_desc": "Use the glass property to apply a background blur effect (frosted glass effect). Highly effective when placed as a fixed header over colourful background images or gradients.",

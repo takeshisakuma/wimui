@@ -9,6 +9,7 @@ import classNames from "classnames";
 // (jsmediatags is loaded via direct path to avoid resolution issues)
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { useMediaLoader } from "@/hooks/useMediaLoader";
 import "./audio.scss";
 
 export type AudioTrack = {
@@ -46,6 +47,10 @@ type AudioProps = Omit<React.ComponentPropsWithoutRef<"audio">, "src"> & {
   hotkeys?: boolean;
   presets?: boolean;
   sleepTimer?: boolean;
+  /** 読み込み設定。"lazy" の場合に Intersection Observer が有効化されます */
+  loading?: "eager" | "lazy";
+  /** デモ用：読み込み完了を意図的に遅らせるミリ秒 */
+  demoDelay?: number;
 };
 
 export const Audio = ({
@@ -72,9 +77,12 @@ export const Audio = ({
   hotkeys = false,
   presets = false,
   sleepTimer = false,
+  loading = "lazy",
+  demoDelay,
   ...props
 }: AudioProps) => {
   const { t } = useTranslation();
+
 
   // ------------------------------------------------------------------------
   // Playlist normalizer
@@ -90,6 +98,19 @@ export const Audio = ({
   // ------------------------------------------------------------------------
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const currentTrack = playlist[currentTrackIndex] || null;
+
+  // 共通メディアローダーフックの使用
+  const {
+    containerRef: mediaLoaderRef,
+    isLoaded,
+    isIntersecting,
+    notifyLoaded,
+    shouldShowSkeleton
+  } = useMediaLoader({
+    loading,
+    demoDelay,
+    src: currentTrack?.src,
+  });
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -113,10 +134,6 @@ export const Audio = ({
     null,
   );
 
-  // ------------------------------------------------------------------------
-  // Web Audio / HTML5 Video Refs
-  // ------------------------------------------------------------------------
-  const audioContainerRef = useRef<HTMLDivElement>(null);
   const activeAudioRef = useRef<HTMLAudioElement>(null);
   const nextAudioRef = useRef<HTMLAudioElement>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -646,14 +663,17 @@ export const Audio = ({
       style={style}
     >
       <div
-        ref={audioContainerRef}
+        ref={mediaLoaderRef}
         className={classNames(
           "wim-audio-inner",
-          customControls && radius !== "none" && `wim-audio--radius-${radius}`,
+          radius !== "none" && `wim-audio--radius-${radius}`,
           customControls && shadow && "wim-audio--shadow",
           customControls && border && "wim-audio--border",
           customControls && "wim-audio--custom",
           visualizer && customControls && "wim-audio--has-visualizer",
+          fadeIn && "wim-audio--fade-in",
+          fadeIn && isLoaded && "wim-audio--is-loaded",
+          shouldShowSkeleton && "wim-audio--loading",
         )}
       >
         {/* Visualizer Canvas overlay as background */}
@@ -687,28 +707,43 @@ export const Audio = ({
         <div
           style={{ display: customControls ? "none" : "block", width: "100%" }}
         >
-          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-          <audio
-            ref={activeAudioRef}
-            className="wim-audio"
-            loop={repeatMode === 1 && playlist.length === 1}
-            muted={isMuted}
-            controls={!customControls && controls}
-            preload={preload}
-            crossOrigin="anonymous"
-            onTimeUpdate={handleTimeUpdateInner}
-            onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
-            onEnded={handleEndedInner}
-            {...props}
-          />
+          {/* eslint-disable jsx-a11y/media-has-caption */}
+          {isIntersecting && (
+            <audio
+              ref={activeAudioRef}
+              src={currentTrack?.src}
+              className="wim-audio"
+              loop={repeatMode === 1 && playlist.length === 1}
+              muted={isMuted}
+              controls={!customControls && controls}
+              preload={preload}
+              crossOrigin="anonymous"
+              onTimeUpdate={handleTimeUpdateInner}
+              onEnded={handleEndedInner}
+              {...props}
+              onLoadedMetadata={(e) => {
+                setDuration(e.currentTarget.duration);
+                notifyLoaded();
+                props.onLoadedMetadata?.(e);
+              }}
+              onLoadedData={(e) => {
+                notifyLoaded();
+                props.onLoadedData?.(e);
+              }}
+              onCanPlay={(e) => {
+                notifyLoaded();
+                props.onCanPlay?.(e);
+              }}
+            />
+          )}
           {/* Secondary player for crossfade */}
-          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <audio
             ref={nextAudioRef}
             muted={isMuted}
             preload="auto"
             crossOrigin="anonymous"
           />
+          {/* eslint-enable jsx-a11y/media-has-caption */}
         </div>
 
         {customControls && (

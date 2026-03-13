@@ -75,3 +75,21 @@ import { T } from "../stories/T";
 - **Backdrop**: Handles the darkened background (Overlay) and its click-to-close behavior.
 - **Focus Management**: Integrated with `FocusTrap` to prevent focus from escaping the modal.
 - **Transistions**: Provides standardized entry/exit animations.
+- **Performance**: Uses `will-change: transform` for high-frequency animations (like `Marquee` and `Carousel`) to ensure 60fps performance by offloading to the GPU.
+
+---
+
+## Performance Tips
+
+### ⚡ Animation Optimization (`will-change`)
+For components that involve continuous or complex animations, we use the `will-change` CSS property. This hints to the browser that an element will be animated, allowing it to optimize ahead of time.
+- **Used in**: `Marquee`, `Carousel`, `Skeleton`, `Icon` (loading state), `BottomSheet`, `Tooltip`, `Switch`, `Sidebar`, `Accordion`.
+- **Micro-interactions**: We also apply this to small but frequent interactions like `Switch` toggles and `Accordion` expansions to ensure zero-lag feedback.
+- **Note**: Use sparingly, as it consumes memory and GPU resources. Avoid over-using on many small elements simultaneously.
+
+### 🖼️ Critical Resource Loading (`priority`)
+In the `Image` component, we've introduced a `priority` prop. When set to `true`, it applies `fetchpriority="high"` to the underlying `img` tag.
+- **When to use**: For the largest image above the fold (LCP - Largest Contentful Paint).
+- **Benefit**: Tells the browser to prioritize this image over other non-critical resources.
+
+---

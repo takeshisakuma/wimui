@@ -95,6 +95,7 @@
     }
 
     &--loading {
+      will-change: transform;
       animation: wim-rotate 1s linear infinite;
     }
   }

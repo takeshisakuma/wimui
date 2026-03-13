@@ -887,7 +887,7 @@
   "doc_list_with_icons_desc": "Especifique iconName em um ListItem para exibir um ícone. O posicionamento pode ser controlado com iconPosition.",
   "doc_loader_anim_section": "Animação do Componente Loader",
   "doc_loader_anim_style": "Anim Style",
-  "doc_loader_anim_style_desc": "Selecione diferentes estilos de animação usando a propriedade \u000bariant.",
+  "doc_loader_anim_style_desc": "Selecione diferentes estilos de animação usando a propriedade variant.",
   "doc_loader_basic_desc": "Indicador visual para estados de carregamento em andamento ou processamento em segundo plano.",
   "doc_loader_colors_desc": "As cores podem ser combinadas com vários estados do sistema.",
   "doc_loader_desc": "Indicador visual para processamento de dados",
