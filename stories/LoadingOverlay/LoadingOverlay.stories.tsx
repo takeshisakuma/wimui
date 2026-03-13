@@ -333,20 +333,17 @@ export const CustomLoader: Story = {
           <h3>{t("story_loading_overlay_custom_title")}</h3>
           <p>{t("story_loading_overlay_custom_desc")}</p>
         </div>
-        <LoadingOverlay
-          {...args}
-          children={
-            <div style={{ textAlign: "center", color: "white" }}>
-              <Icon
-                name="ClockIcon"
-                style={{ width: "48px", height: "48px", marginBottom: "16px" }}
-              />
-              <div style={{ fontSize: "18px", fontWeight: "bold" }}>
-                {t("story_loading_overlay_wait")}
-              </div>
+        <LoadingOverlay {...args}>
+          <div style={{ textAlign: "center", color: "white" }}>
+            <Icon
+              name="ClockIcon"
+              style={{ width: "48px", height: "48px", marginBottom: "16px" }}
+            />
+            <div style={{ fontSize: "18px", fontWeight: "bold" }}>
+              {t("story_loading_overlay_wait")}
             </div>
-          }
-        />
+          </div>
+        </LoadingOverlay>
       </div>
     );
   },

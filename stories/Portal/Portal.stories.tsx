@@ -121,7 +121,7 @@ export const OverflowEscape: Story = {
  */
 export const CustomContainer: Story = {
   render: function Render() {
-    const [container, setContainer] = useState<HTMLDivElement | null>(null);
+    const [container, setContainer] = useState<HTMLElement | null>(null);
     const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
     return (
       <Container size="md">
@@ -182,7 +182,7 @@ export const CustomContainer: Story = {
  */
 export const NotificationCenter: Story = {
   render: function Render() {
-    const [logContainer, setLogContainer] = useState<HTMLDivElement | null>(
+    const [logContainer, setLogContainer] = useState<HTMLElement | null>(
       null,
     );
     const [logs, setLogs] = useState<{ id: string; msg: string; type: any }[]>(
@@ -335,7 +335,7 @@ export const SidePanelDetail: Story = {
     layout: "fullscreen",
   },
   render: function Render() {
-    const [panelContainer, setPanelContainer] = useState<HTMLDivElement | null>(
+    const [panelContainer, setPanelContainer] = useState<HTMLElement | null>(
       null,
     );
     const [selectedId, setSelectedId] = useState<number | null>(null);

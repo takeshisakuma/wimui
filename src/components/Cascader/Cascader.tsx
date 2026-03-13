@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo, useId } from "react";
+import React, { useState, useRef, useEffect, useId } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";

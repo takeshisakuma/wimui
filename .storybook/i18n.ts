@@ -35,6 +35,13 @@ i18n
     ],
     fallbackNS: [
       "docs_stories",
+      "docs_guides",
+      "docs_actions",
+      "docs_inputs",
+      "docs_display",
+      "docs_navigation",
+      "docs_overlay",
+      "docs_layout",
       "common",
       "components",
     ],

@@ -4,6 +4,7 @@ import React, {
   useLayoutEffect,
   useImperativeHandle,
   useEffect,
+  useCallback,
 } from "react";
 import classNames from "classnames";
 import "./transition.scss";
@@ -69,7 +70,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
 
     useImperativeHandle(ref, () => internalRef.current!);
 
-    const handleTransitionEnd = (e: React.TransitionEvent) => {
+    const handleTransitionEnd = useCallback((e: React.TransitionEvent) => {
       if (e.target !== internalRef.current) return;
 
       const currentState = stateRef.current;
@@ -86,7 +87,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
           setShouldRender(false);
         }
       }
-    };
+    }, [unmount]);
 
     useLayoutEffect(() => {
       if (isInitialRender.current) {
@@ -163,7 +164,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
         };
       }
       /* eslint-enable react-hooks/set-state-in-effect */
-    }, [show, enter, enterFrom, enterTo, leave, leaveFrom, leaveTo]);
+    }, [show, enter, enterFrom, enterTo, leave, leaveFrom, leaveTo, appear, handleTransitionEnd]);
 
     if (!shouldRender && unmount) return null;
 

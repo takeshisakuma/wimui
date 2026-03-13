@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Input } from "../Input/Input";
 
 type PasswordInputProps = React.ComponentProps<typeof Input>;

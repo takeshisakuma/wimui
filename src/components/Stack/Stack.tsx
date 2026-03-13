@@ -59,7 +59,7 @@ export const Stack = React.forwardRef(
       children,
       ...props
     }: StackProps<C>,
-    ref: React.Ref<any>,
+    ref: React.Ref<HTMLElement>,
   ) => {
     const getGapValue = (val?: number | string) => {
       if (typeof val === "number") return `${val}px`;

@@ -18,7 +18,7 @@ export function getNextSortDirection(
   return "none";
 }
 
-export interface SortConfig<T = any> {
+export interface SortConfig<T = unknown> {
   key: keyof T | null;
   direction: SortDirection;
 }
@@ -41,7 +41,7 @@ export interface UseTableSortReturn<T> {
  * @param options - Optional configuration
  * @returns Sorted data and sorting utilities
  */
-export function useTableSort<T extends Record<string, any>>(
+export function useTableSort<T extends Record<string, unknown>>(
   data: T[],
   options: UseTableSortOptions<T> = {},
 ): UseTableSortReturn<T> {

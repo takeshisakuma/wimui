@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useId } from "react";
 import { useTranslation } from "react-i18next";
-import classNames from "classnames";
 import { Input } from "../Input/Input";
 import { BaseListItem } from "../_internal/BaseListItem";
 import "./combobox.scss";

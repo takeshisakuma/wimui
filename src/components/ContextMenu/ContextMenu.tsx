@@ -14,7 +14,6 @@ import {
   useInteractions,
   FloatingPortal,
   FloatingFocusManager,
-  useMergeRefs,
 } from "@floating-ui/react";
 import { Transition } from "../Transition/Transition";
 import { BaseListItem } from "../_internal/BaseListItem";
@@ -50,10 +49,7 @@ export const ContextMenu = ({
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
 
-  const { getReferenceProps, getFloatingProps } = useInteractions([
-    dismiss,
-    role,
-  ]);
+  const { getFloatingProps } = useInteractions([dismiss, role]);
 
   const handleContextMenu = (e: React.MouseEvent) => {
     if (disabled) return;

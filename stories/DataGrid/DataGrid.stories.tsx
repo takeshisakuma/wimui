@@ -151,7 +151,7 @@ export const WithSelection: Story = {
         </p>
         <DataGrid
           columns={tColumns}
-          rows={tSampleData}
+          rows={tSampleData as any}
           selection
           selectedRowKeys={selectedRowKeys}
           onSelectionChange={setSelectedRowKeys}
@@ -194,7 +194,7 @@ export const WithSorting: Story = {
     return (
       <DataGrid
         columns={tColumns}
-        rows={data}
+        rows={data as any}
         sortConfig={sortConfig}
         onSort={handleSort}
         bordered
@@ -215,7 +215,7 @@ export const WithPagination: Story = {
     return (
       <DataGrid
         columns={tColumns}
-        rows={currentData}
+        rows={currentData as any}
         pagination={{
           total: manyRows.length,
           pageSize,
@@ -264,6 +264,7 @@ export const WithActions: Story = {
             >
               <Icon name="EditIcon" size="small" />
             </Button>
+            {/* eslint-disable-next-line jsx-a11y/aria-role */}
             <Button
               size="small"
               priority="tertiary"
@@ -381,7 +382,7 @@ export const FullFeatured: Story = {
       <div>
         <DataGrid
           columns={tColumns}
-          rows={currentData}
+          rows={currentData as any}
           selection
           selectedRowKeys={selectedRowKeys}
           onSelectionChange={setSelectedRowKeys}
@@ -461,7 +462,7 @@ export const WithFixedColumn: Story = {
       },
     ];
     return (
-      <DataGrid columns={columns} rows={sampleData} selection bordered />
+      <DataGrid columns={columns} rows={sampleData as any} selection bordered />
     );
   },
   decorators: [
@@ -506,13 +507,14 @@ export const WithRightFixedColumn: Story = {
         key: "actions",
         header: t("story_datagrid_col_actions"),
         width: 120,
-        fixed: "right" as "right",
-        align: "center" as "center",
+        fixed: "right" as const,
+        align: "center" as const,
         render: (_: any, row: Record<string, any>) => (
           <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
             <Button size="small" priority="tertiary">
               <Icon name="EditIcon" size="small" />
             </Button>
+            {/* eslint-disable-next-line jsx-a11y/aria-role */}
             <Button size="small" priority="tertiary" role="destructive">
               <Icon name="TrashIcon" size="small" />
             </Button>
@@ -521,7 +523,7 @@ export const WithRightFixedColumn: Story = {
       },
     ];
     return (
-      <DataGrid columns={columns} rows={sampleData} selection bordered />
+      <DataGrid columns={columns} rows={sampleData as any} selection bordered />
     );
   },
   decorators: [
@@ -559,7 +561,7 @@ export const InfiniteScroll: Story = {
     return (
       <DataGrid
         columns={tColumns}
-        rows={data}
+        rows={data as any}
         bordered
         stickyHeader
         maxHeight="400px"

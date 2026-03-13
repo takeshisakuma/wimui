@@ -6,7 +6,6 @@ import {
   DrawerContent,
   DrawerClose,
   DrawerTitle,
-  DrawerDescription,
 } from "./Drawer";
 
 describe("Drawer", () => {

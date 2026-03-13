@@ -1019,7 +1019,7 @@ export const ErrorPage: StoryObj = {
         </Heading>
         <Stack gap="2xl" align="center">
           <Heading tag="h2" size="xl" align="center">
-            Something's missing.
+            Something&apos;s missing.
           </Heading>
           <Paragraph
             content="The page you are looking for doesn't exist or has been moved. Check the URL or head back home."

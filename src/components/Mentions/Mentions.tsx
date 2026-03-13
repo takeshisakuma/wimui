@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import classNames from "classnames";
 import { Textarea } from "../Textarea/Textarea";
 import { BaseListItem } from "../_internal/BaseListItem";
 import "./mentions.scss";

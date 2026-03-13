@@ -14,7 +14,7 @@ export type CenterProps<C extends React.ElementType = "div"> = BoxProps<C> & {
 export const Center = React.forwardRef(
   <C extends React.ElementType = "div">(
     { inline = false, style, className, children, ...props }: CenterProps<C>,
-    ref: React.Ref<any>,
+    ref: React.Ref<HTMLElement>,
   ) => {
     return (
       <Box

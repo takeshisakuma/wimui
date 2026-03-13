@@ -32,7 +32,7 @@ export const Container = React.forwardRef(
       children,
       ...props
     }: ContainerProps<C>,
-    ref: React.Ref<any>,
+    ref: React.Ref<HTMLElement>,
   ) => {
     const maxWidth = fluid
       ? "100%"

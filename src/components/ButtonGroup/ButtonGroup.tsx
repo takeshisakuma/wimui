@@ -22,7 +22,7 @@ export const ButtonGroup = ({
   const childrenWithProps = priority
     ? React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child as React.ReactElement<any>, {
+          return React.cloneElement(child as React.ReactElement<{ priority?: "primary" | "secondary" | "tertiary" }>, {
             priority,
           });
         }

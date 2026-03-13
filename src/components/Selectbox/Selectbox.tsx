@@ -93,7 +93,7 @@ export const Selectbox = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const listItemsRef = useRef<(HTMLLIElement | null)[]>([]);
+  const listItemsRef = useRef<(HTMLElement | null)[]>([]);
 
   const isControlled = value !== undefined;
   const currentValue = isControlled ? value : internalValue;

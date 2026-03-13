@@ -140,7 +140,7 @@ export const Audio = ({
     typeof crossfade === "number" ? crossfade : crossfade ? 3000 : 0;
 
   // First user interaction init helper
-  const initWebAudio = () => {
+  const initWebAudio = useCallback(() => {
     if (audioCtxRef.current) return;
     const AudioContextCls =
       window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
@@ -179,7 +179,8 @@ export const Audio = ({
 
     activeGainRef.current = gain1;
     nextGainRef.current = gain2;
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Update bass value when state changes
   useEffect(() => {
@@ -238,7 +239,7 @@ export const Audio = ({
         setIsPlaying(false);
       });
     }
-  }, [fadeInt, volume, doGainRamp]);
+  }, [fadeInt, volume, doGainRamp, initWebAudio]);
 
   const pauseActivePlayer = useCallback(() => {
     if (!activeAudioRef.current) return;
@@ -325,7 +326,7 @@ export const Audio = ({
       if (drawRequestIdRef.current)
         cancelAnimationFrame(drawRequestIdRef.current);
     };
-  }, [isPlaying, visualizer, drawVisualizer]);
+  }, [isPlaying, visualizer, drawVisualizer, initWebAudio]);
 
   // ------------------------------------------------------------------------
   // Meta loading
@@ -416,7 +417,7 @@ export const Audio = ({
     } else {
       playActivePlayer();
     }
-  }, [isPlaying, pauseActivePlayer, playActivePlayer]);
+  }, [isPlaying, pauseActivePlayer, playActivePlayer, initWebAudio]);
 
   // Keyboard Shortcuts
   useEffect(() => {

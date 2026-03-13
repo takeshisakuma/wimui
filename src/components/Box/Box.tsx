@@ -91,14 +91,9 @@ export const Box = React.forwardRef(
       children,
       ...props
     }: BoxProps<C>,
-    ref: React.Ref<any>,
+    ref: React.Ref<HTMLElement>,
   ) => {
     const Component = as || "div";
-
-    const getValue = (val?: number | string) => {
-      if (typeof val === "number") return `${val}px`;
-      return val;
-    };
 
     const wVars = generateResponsiveVars(w, "--wim-box-w", (v) => getSpacingValue(v) || "");
     const hVars = generateResponsiveVars(h, "--wim-box-h", (v) => getSpacingValue(v) || "");
@@ -132,7 +127,7 @@ export const Box = React.forwardRef(
 
     return (
       <Component
-        ref={ref}
+        ref={ref as React.Ref<HTMLDivElement>}
         className={classNames("wim-box", className)}
         style={boxStyle}
         {...props}

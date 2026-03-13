@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ScrollProgress } from "@/components/ScrollProgress/ScrollProgress";
 import { useTranslation } from "react-i18next";
 

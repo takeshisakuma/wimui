@@ -21,7 +21,7 @@ export const generateResponsiveVars = (
   // Note: we assume users won't pass other objects that look like this but aren't.
   if (typeof prop === "object" && prop !== null && !Array.isArray(prop)) {
     const styles: Record<string, string> = {};
-    const p = prop as any;
+    const p = prop as { base?: number | string; sm?: number | string; md?: number | string; lg?: number | string; xl?: number | string };
 
     if (p.base !== undefined) styles[baseVarName] = t(p.base);
     if (p.sm !== undefined) styles[`${baseVarName}-sm`] = t(p.sm);

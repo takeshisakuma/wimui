@@ -233,7 +233,7 @@ export const PopoverClose = ({
   };
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<any>, {
+    return React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
       onClick: (e: React.MouseEvent) => {
         const child = children as React.ReactElement<{
           onClick?: React.MouseEventHandler;
@@ -243,7 +243,7 @@ export const PopoverClose = ({
       },
       className: classNames(
         className,
-        (children as React.ReactElement<any>).props.className,
+        (children as React.ReactElement<{ className?: string }>).props.className,
       ),
     });
   }

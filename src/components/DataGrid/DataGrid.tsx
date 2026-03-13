@@ -90,7 +90,7 @@ export interface DataGridProps<T> {
   a11y_select_all_rows?: string;
 }
 
-export function DataGrid<T extends Record<string, any>>({
+export function DataGrid<T extends Record<string, unknown>>({
   columns,
   rows,
   loading = false,
@@ -512,7 +512,7 @@ export function DataGrid<T extends Record<string, any>>({
                         >
                           {column.render
                             ? column.render(value, row, rowIndex)
-                            : value}
+                            : value as React.ReactNode}
                         </TableCell>
                       );
                     })}

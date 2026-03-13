@@ -11,7 +11,7 @@ export type IndicatorBaseProps = {
   prefixClass: string;
   as?: React.ElementType;
   className?: string;
-} & React.ComponentPropsWithoutRef<any>;
+} & React.ComponentPropsWithoutRef<React.ElementType>;
 
 
 export const IndicatorBase = ({

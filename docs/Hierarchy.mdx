@@ -29,25 +29,25 @@ import { T } from "../stories/T";
       <td><strong>Tier 1</strong><br/>Foundations (<T k="cat_utilities" />)</td>
       <td><T k="tier1_desc" /></td>
       <td><T k="tier1_role" /></td>
-      <td>`AspectRatio`, `Box`, `Center`, `Code`, `Container`, `ErrorBoundary`, `Flex`, `FocusTrap`, `Grid`, `Group`, `Heading`, `Highlight`, `Icon`, `Kbd`, `Markdown`, `Masonry`, `Paragraph`, `Portal`, `Quote`, `SimpleGrid`, `Span`, `Stack`, `Transition`, `VisuallyHidden`</td>
+      <td>`AspectRatio`, `Box`, `Center`, `Code`, `Container`, `Divider`, `Flex`, `FocusTrap`, `Grid`, `Group`, `Heading`, `Highlight`, `Icon`, `Kbd`, `Loader`, `Markdown`, `Marquee`, `Paragraph`, `Portal`, `Quote`, `ScrollArea`, `SimpleGrid`, `Span`, `Stack`, `Transition`, `VisuallyHidden`</td>
     </tr>
     <tr>
       <td><strong>Tier 2</strong><br/>Atoms (<T k="cat_basic_inputs" />)</td>
       <td><T k="tier2_desc" /></td>
       <td><T k="tier2_role" /></td>
-      <td>`Audio`, `Avatar`, `Badge`, `Button`, `Checkbox`, `Chip`, `ColorInput`, `CopyButton`, `Divider`, `FieldError`, `FloatButton`, `HamburgerMenu`, `IconButton`, `Image`, `Indicator`, `Input`, `InteractiveArea`, `Label`, `Link`, `LinkButton`, `Loader`, `NumberInput`, `PasswordInput`, `Radio`, `ScrollProgress`, `SearchInput`, `Skeleton`, `Spinner`, `Switch`, `Tag`, `Textarea`, `ToggleGroup`, `Video`</td>
+      <td>`Affix`, `Anchor`, `Audio`, `Avatar`, `BackTop`, `Badge`, `Button`, `Checkbox`, `Chip`, `ColorPicker`, `CopyButton`, `FieldError`, `Fieldset`, `FileUpload`, `FloatButton`, `IconButton`, `Image`, `Indicator`, `Input`, `InputMask`, `InteractiveArea`, `Label`, `Legend`, `Link`, `LinkButton`, `Notification`, `NumberInput`, `OtpInput`, `PasswordInput`, `Progress`, `QRCode`, `Radio`, `Rating`, `ScrollProgress`, `SignaturePad`, `Skeleton`, `Slider`, `Spinner`, `Switch`, `Tag`, `Textarea`, `Tooltip`, `Video`</td>
     </tr>
     <tr>
       <td><strong>Tier 3</strong><br/>Molecules (<T k="cat_overlays" />)</td>
       <td><T k="tier3_desc" /></td>
       <td><T k="tier3_role" /></td>
-      <td>`Accordion`, `Affix`, `Alert`, `Anchor`, `AvatarGroup`, `BackTop`, `Banner`, `Breadcrumb`, `ButtonGroup`, `Card`, `Carousel`, `Cascader`, `CheckboxGroup`, `ColorPicker`, `ContextMenu`, `DescriptionList`, `Dialog`, `Drawer`, `Dropdown`, `Dropzone`, `EmptyState`, `Fieldset`, `FileUpload`, `HoverCard`, `InfiniteScroll`, `InputGroup`, `InputMask`, `Legend`, `List`, `LoadingOverlay`, `Marquee`, `Mentions`, `Menu`, `MultiSelect`, `Navbar`, `OtpInput`, `Pagination`, `Popconfirm`, `Popover`, `Progress`, `QRCode`, `RadioGroup`, `RangeSlider`, `Rating`, `Result`, `ScrollArea`, `SegmentedControl`, `SignaturePad`, `Slider`, `Snackbar`, `Splitter`, `Stats`, `Stepper`, `SwitchGroup`, `TabBar`, `TabNavigation`, `Tabs`, `Timeline`, `Toast`, `Tooltip`, `Transfer`</td>
+      <td>`Accordion`, `Alert`, `AvatarGroup`, `Banner`, `Breadcrumb`, `ButtonGroup`, `Card`, `Carousel`, `Cascader`, `CheckboxGroup`, `ColorInput`, `Combobox`, `DescriptionList`, `Dropdown`, `EmptyState`, `HoverCard`, `InputGroup`, `List`, `LoadingOverlay`, `Mentions`, `MultiSelect`, `Pagination`, `Popconfirm`, `Popover`, `RadioGroup`, `RangeSlider`, `Result`, `SearchInput`, `SegmentedControl`, `Selectbox`, `Snackbar`, `Stats`, `Stepper`, `SwitchGroup`, `Timeline`, `Toast`, `ToggleGroup`, `Transfer`</td>
     </tr>
     <tr>
       <td><strong>Tier 4</strong><br/>Organisms (<T k="cat_app_shell" />)</td>
       <td><T k="tier4_desc" /></td>
       <td><T k="tier4_role" /></td>
-      <td>`AppShell`, `BentoGrid`, `BottomSheet`, `Calendar`, `Charts`, `ChatUI`, `Combobox`, `CommandPalette`, `DataGrid`, `DatePicker`, `DateRangePicker`, `Footer`, `Header`, `Notification`, `Selectbox`, `Sidebar`, `Table`, `TimePicker`, `Tour`, `TreeSelect`, `TreeView`, `Watermark`</td>
+      <td>`AppShell`, `BentoGrid`, `BottomSheet`, `Calendar`, `Charts`, `ChatUI`, `CommandPalette`, `ContextMenu`, `DataGrid`, `DatePicker`, `DateRangePicker`, `Dialog`, `Drawer`, `Dropzone`, `ErrorBoundary`, `Footer`, `HamburgerMenu`, `Header`, `InfiniteScroll`, `Masonry`, `Menu`, `Navbar`, `Sidebar`, `Splitter`, `TabBar`, `TabNavigation`, `Table`, `Tabs`, `TimePicker`, `Tour`, `TreeSelect`, `TreeView`, `Watermark`</td>
     </tr>
   </tbody>
 </table>
@@ -70,12 +70,12 @@ import { T } from "../stories/T";
     <tr>
       <td><strong>Tier 4</strong></td>
       <td>`DataGrid`</td>
-      <td>`Table`, `Pagination`, `Checkbox`, `Input`, `ScrollArea`, `Icon`</td>
+      <td>`Table`, `Pagination`, `Checkbox`, `EmptyState`, `Spinner`, `SearchInput`</td>
     </tr>
     <tr>
       <td><strong>Tier 4</strong></td>
       <td>`AppShell`</td>
-      <td>`Header`, `Sidebar`, `Footer`, `Drawer`, `HamburgerMenu`</td>
+      <td>`Header`, `Sidebar`, `Footer`, `Drawer`, `HamburgerMenu`, `Button`</td>
     </tr>
     <tr>
       <td><strong>Tier 4</strong></td>
@@ -84,83 +84,48 @@ import { T } from "../stories/T";
     </tr>
     <tr>
       <td><strong>Tier 4</strong></td>
-      <td>`Combobox`</td>
-      <td>`Input`, `Popover`, `List`, `Icon`</td>
+      <td>`Calendar`</td>
+      <td>`Button`, `Selectbox`</td>
     </tr>
     <tr>
       <td><strong>Tier 4</strong></td>
-      <td>`Selectbox`</td>
-      <td>`Popover`, `List`, `Input`, `Icon`</td>
+      <td>`Dialog`</td>
+      <td>`Portal`, `FocusTrap`, `Transition`, `Icon` (Internal: `OverlayBase`)</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 4</strong></td>
+      <td>`Drawer`</td>
+      <td>`Portal`, `FocusTrap`, `Transition`, `Icon` (Internal: `OverlayBase`)</td>
     </tr>
     <tr>
       <td><strong>Tier 4</strong></td>
       <td>`DatePicker`</td>
-      <td>`Popover`, `Calendar`, `Input`, `Icon`</td>
+      <td>`Popover`, `Calendar`, `Input`</td>
     </tr>
     <tr>
       <td><strong>Tier 4</strong></td>
       <td>`DateRangePicker`</td>
-      <td>`Popover`, `Calendar`, `Input`, `Icon`</td>
+      <td>`Popover`, `Calendar`, `Input`</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 4</strong></td>
+      <td>`Table`</td>
+      <td>`Icon`, `Checkbox`</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 4</strong></td>
+      <td>`Tabs`</td>
+      <td>`Transition`</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 4</strong></td>
+      <td>`Menu`</td>
+      <td>`Popover`, `List`</td>
     </tr>
     <tr>
       <td><strong>Tier 4</strong></td>
       <td>`TreeView`</td>
-      <td>`Checkbox`, `Icon`, `Input` (Search)</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 4</strong></td>
-      <td>`Tour`</td>
-      <td>`Popover`, `Portal`, `Button`</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 3</strong></td>
-      <td>`Dialog`</td>
-      <td>`Portal`, `FocusTrap`, `Icon`</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 3</strong></td>
-      <td>`Drawer`</td>
-      <td>`Portal`, `FocusTrap`, `Transition`, `Icon`</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 3</strong></td>
-      <td>`Popover`</td>
-      <td>`Portal`, `Transition`</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 3</strong></td>
-      <td>`Tooltip`</td>
-      <td>`Popover`, `Portal`, `Transition`</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 3</strong></td>
-      <td>`Accordion`</td>
-      <td>`Transition`, `Icon`</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 3</strong></td>
-      <td>`Breadcrumb`</td>
-      <td>`Link`, `Icon`</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 3</strong></td>
-      <td>`Stats`</td>
-      <td>`Card`, `Heading`, `Text`</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 3</strong></td>
-      <td>`EmptyState`</td>
-      <td>`InteractiveArea`, `Icon`, `Button`</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 3</strong></td>
-      <td>`Dropzone`</td>
-      <td>`InteractiveArea`, `Icon`</td>
-    </tr>
-    <tr>
-      <td><strong>Tier 2</strong></td>
-      <td>`IconButton`</td>
-      <td>`Button`, `Icon`</td>
+      <td>`Icon` (Internal: `BaseListItem`)</td>
     </tr>
     <tr>
       <td><strong>Tier 4</strong></td>
@@ -169,23 +134,38 @@ import { T } from "../stories/T";
     </tr>
     <tr>
       <td><strong>Tier 3</strong></td>
-      <td>`ColorPicker`</td>
-      <td>`Input` (type="color")</td>
+      <td>`Selectbox`</td>
+      <td>`Transition`, `Icon` (Internal: `InputBase`, `FieldTemplate`, `BaseListItem`)</td>
     </tr>
     <tr>
       <td><strong>Tier 3</strong></td>
-      <td>`CheckboxGroup`</td>
-      <td>`Checkbox`, `Label`</td>
+      <td>`Combobox`</td>
+      <td>`Input` (Internal: `FieldTemplate`, `BaseListItem`)</td>
     </tr>
     <tr>
       <td><strong>Tier 3</strong></td>
-      <td>`RadioGroup`</td>
-      <td>`Radio`, `Label`</td>
+      <td>`MultiSelect`</td>
+      <td>`Chip`, `Icon` (Internal: `InputBase`, `FieldTemplate`, `BaseListItem`)</td>
     </tr>
     <tr>
       <td><strong>Tier 3</strong></td>
-      <td>`SwitchGroup`</td>
-      <td>`Switch`, `Label`</td>
+      <td>`Result`</td>
+      <td>`InteractiveArea`, `Icon`</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 3</strong></td>
+      <td>`EmptyState`</td>
+      <td>`Icon`, `Button` (Internal: `StatusContent`)</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 3</strong></td>
+      <td>`Accordion`</td>
+      <td>`Icon`</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 3</strong></td>
+      <td>`Stats`</td>
+      <td>`Card`</td>
     </tr>
     <tr>
       <td><strong>Tier 3</strong></td>
@@ -199,8 +179,43 @@ import { T } from "../stories/T";
     </tr>
     <tr>
       <td><strong>Tier 3</strong></td>
+      <td>`Breadcrumb`</td>
+      <td>`Link`, `Icon`</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 3</strong></td>
+      <td>`Popover`</td>
+      <td>`Portal`, `Transition`</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 3</strong></td>
+      <td>`Tooltip`</td>
+      <td>`Popover`, `Portal`, `Transition`</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 3</strong></td>
       <td>`Stepper`</td>
       <td>`Icon`, `Divider`</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 2</strong></td>
+      <td>`IconButton`</td>
+      <td>`Button`, `Icon`</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 2</strong></td>
+      <td>`Indicator`</td>
+      <td>`Icon` (Internal: `IndicatorBase`)</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 2</strong></td>
+      <td>`Badge`</td>
+      <td>(Internal: `IndicatorBase`)</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 2</strong></td>
+      <td>`Notification`</td>
+      <td>`Icon`, `IconButton` (Close)</td>
     </tr>
 
   </tbody>
@@ -212,7 +227,9 @@ import { T } from "../stories/T";
 
 <p><T k="guide_input_std_desc" /></p>
 
-[<T k="guide_usage" />](?path=/docs/architecture-input-area-standardization--page)
+[<T k="guide_usage" /> (Input Area)](?path=/docs/architecture-input-area-standardization--page)
+&nbsp; / &nbsp;
+[<T k="guide_internal_title" />](?path=/docs/architecture-internal-core-components--page)
 
 ## <T k="guide_hierarchy_rules_title" />
 

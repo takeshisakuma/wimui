@@ -117,7 +117,7 @@ export const HoverCardTrigger = ({
   const handleMouseLeave = () => close();
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<any>, {
+    return React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
       onMouseEnter: (e: React.MouseEvent) => {
         const child = children as React.ReactElement<{
           onMouseEnter?: React.MouseEventHandler;
@@ -148,7 +148,7 @@ export const HoverCardTrigger = ({
       },
       className: classNames(
         className,
-        (children as React.ReactElement<any>).props.className,
+        (children as React.ReactElement<{ className?: string }>).props.className,
       ),
     });
   }

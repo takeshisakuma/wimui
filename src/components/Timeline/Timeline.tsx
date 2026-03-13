@@ -23,7 +23,7 @@ export const Timeline: React.FC<TimelineProps> = ({
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child as React.ReactElement<any>, {
+          return React.cloneElement(child as React.ReactElement<{ align?: "left" | "right" | "alternate" }>, {
             align,
           });
         }

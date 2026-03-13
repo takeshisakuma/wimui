@@ -13,7 +13,7 @@ export interface UseIndicatorOptions {
   /** Optional variant indicator to trigger re-calculation */
   variant?: string;
   /** Extra dependence for re-calculating */
-  dependence?: any;
+  dependence?: unknown;
 }
 
 /**
@@ -26,7 +26,7 @@ export const useIndicator = ({
   variant,
   dependence,
 }: UseIndicatorOptions) => {
-  const containerRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [sliderStyle, setSliderStyle] = useState<React.CSSProperties>({
     opacity: 0,
   });

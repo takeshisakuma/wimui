@@ -72,7 +72,7 @@ export const Notification = ({
     if (onClose) onClose(id);
   };
 
-  const typeToColorMap: Record<string, any> = {
+  const typeToColorMap: Record<string, string> = {
     success: "positive",
     error: "destructive",
     warning: "caution",
@@ -95,7 +95,7 @@ export const Notification = ({
               status={status}
               icon={icon}
               size="medium"
-              color={status ? typeToColorMap[status] : undefined}
+              color={status ? typeToColorMap[status] as "destructive" | "positive" | "caution" | "informative" : undefined}
             />
           </div>
         )}

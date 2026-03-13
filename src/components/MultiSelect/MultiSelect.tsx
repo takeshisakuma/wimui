@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useId } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { Chip } from "../Chip/Chip";
@@ -55,7 +54,6 @@ export const MultiSelect = ({
   id: customId,
   ...props
 }: MultiSelectProps) => {
-  const { t } = useTranslation("common");
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
   const [focusedIndex, setFocusedIndex] = useState(-1);

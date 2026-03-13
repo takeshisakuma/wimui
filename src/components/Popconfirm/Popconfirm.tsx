@@ -71,7 +71,7 @@ export const Popconfirm = ({
 
   if (disabled) {
     if (React.isValidElement(children)) {
-      return React.cloneElement(children as React.ReactElement<any>, {
+      return React.cloneElement(children as React.ReactElement<{ disabled?: boolean }>, {
         disabled: true,
       });
     }

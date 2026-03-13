@@ -28,8 +28,9 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "rimraf storybook-static && storybook build",
     "format": "prettier --write .",
-    "lint": "eslint src stories",
-    "lint:fix": "eslint src stories --fix",
+    "lint": "eslint src --max-warnings=0",
+    "lint:fix": "eslint src --fix --max-warnings=0",
+    "lint:stories": "eslint stories",
     "stylelint:css": "stylelint \"{src,stories}/**/*.css\" --allow-empty-input",
     "stylelint:scss": "stylelint \"{src,stories}/**/*.scss\"",
     "stylelint": "npm run stylelint:css && npm run stylelint:scss",
@@ -117,7 +118,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-      "eslint",
+      "eslint --max-warnings=0",
       "bash -c 'tsc --noEmit'"
     ]
   },

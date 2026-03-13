@@ -137,7 +137,7 @@ export const Video = ({
     setActiveMenu("main");
   };
 
-  const togglePlay = () => {
+  const togglePlay = React.useCallback(() => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
@@ -146,7 +146,7 @@ export const Video = ({
       }
       setIsPlaying(!isPlaying);
     }
-  };
+  }, [isPlaying]);
 
   const handleTimeUpdate = () => {
     if (videoRef.current) {
@@ -219,9 +219,9 @@ export const Video = ({
     }
   };
 
-  const toggleMute = () => {
+  const toggleMute = React.useCallback(() => {
     setIsMuted(!isMuted);
-  };
+  }, [isMuted]);
 
   const toggleFullscreen = () => {
     if (!containerRef.current) return;
@@ -255,7 +255,7 @@ export const Video = ({
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  const skip = (seconds: number) => {
+  const skip = React.useCallback((seconds: number) => {
     if (videoRef.current) {
       const newTime = Math.max(
         0,
@@ -264,7 +264,7 @@ export const Video = ({
       videoRef.current.currentTime = newTime;
       setCurrentTime(newTime);
     }
-  };
+  }, [duration]);
 
   const togglePiP = async () => {
     if (!videoRef.current) return;
@@ -342,7 +342,7 @@ export const Video = ({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isPlaying, volume, duration, customControls, advancedControls]);
+  }, [isPlaying, volume, duration, customControls, advancedControls, skip, toggleMute, togglePlay]);
 
   // Double Tap Skip for Mobile
   const [lastTapInfo, setLastTapInfo] = React.useState<{
