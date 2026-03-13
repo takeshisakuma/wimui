@@ -74,5 +74,5 @@ export interface DataGridProps<T> {
     /** Accessibility label for selecting all rows */
     a11y_select_all_rows?: string;
 }
-export declare function DataGrid<T extends Record<string, any>>({ columns, rows, loading, selection, selectedRowKeys, onSelectionChange, rowKey, sortConfig, onSort, pagination, loadMore, striped, bordered, hoverable, stickyHeader, height, maxHeight, mobileCard, className, emptyMessage, a11y_select_all_rows, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
+export declare function DataGrid<T extends Record<string, unknown>>({ columns, rows, loading, selection, selectedRowKeys, onSelectionChange, rowKey, sortConfig, onSort, pagination, loadMore, striped, bordered, hoverable, stickyHeader, height, maxHeight, mobileCard, className, emptyMessage, a11y_select_all_rows, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
 export default DataGrid;

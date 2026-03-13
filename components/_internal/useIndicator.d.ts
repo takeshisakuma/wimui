@@ -8,14 +8,14 @@ export interface UseIndicatorOptions {
     /** Optional variant indicator to trigger re-calculation */
     variant?: string;
     /** Extra dependence for re-calculating */
-    dependence?: any;
+    dependence?: unknown;
 }
 /**
  * A hook to manage the position and size of a sliding indicator (slider)
  * that follows an active element within a container.
  */
 export declare const useIndicator: ({ activeSelector, orientation, variant, dependence, }: UseIndicatorOptions) => {
-    containerRef: React.RefObject<any>;
+    containerRef: React.RefObject<HTMLDivElement | null>;
     sliderStyle: React.CSSProperties;
     isReady: boolean;
     updateIndicator: () => void;

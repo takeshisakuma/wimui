@@ -7,4 +7,4 @@ export type CenterProps<C extends React.ElementType = "div"> = BoxProps<C> & {
 /**
  * Center component is used to center its children vertically and horizontally.
  */
-export declare const Center: React.ForwardRefExoticComponent<Omit<CenterProps<React.ElementType<any, keyof React.JSX.IntrinsicElements>>, "ref"> & React.RefAttributes<any>>;
+export declare const Center: React.ForwardRefExoticComponent<Omit<CenterProps<React.ElementType<any, keyof React.JSX.IntrinsicElements>>, "ref"> & React.RefAttributes<HTMLElement>>;

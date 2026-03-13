@@ -14,4 +14,4 @@ export type StackProps<C extends React.ElementType = "div"> = BoxProps<C> & {
 /**
  * Stack component is used to distribute space between elements in a vertical or horizontal layout.
  */
-export declare const Stack: React.ForwardRefExoticComponent<Omit<StackProps<React.ElementType<any, keyof React.JSX.IntrinsicElements>>, "ref"> & React.RefAttributes<any>>;
+export declare const Stack: React.ForwardRefExoticComponent<Omit<StackProps<React.ElementType<any, keyof React.JSX.IntrinsicElements>>, "ref"> & React.RefAttributes<HTMLElement>>;

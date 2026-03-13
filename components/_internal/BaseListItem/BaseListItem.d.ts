@@ -16,9 +16,9 @@ export type BaseListItemProps = {
     danger?: boolean;
     /** Custom class name */
     className?: string;
-} & React.ComponentPropsWithoutRef<any>;
+} & React.ComponentPropsWithoutRef<React.ElementType>;
 /**
  * Internal component for consistent list items across Select, Menu, Dropdown, etc.
  * Not intended for direct public use.
  */
-export declare const BaseListItem: React.ForwardRefExoticComponent<Omit<BaseListItemProps, "ref"> & React.RefAttributes<any>>;
+export declare const BaseListItem: React.ForwardRefExoticComponent<Omit<BaseListItemProps, "ref"> & React.RefAttributes<HTMLElement>>;

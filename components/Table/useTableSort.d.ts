@@ -3,7 +3,7 @@ export type SortDirection = "asc" | "desc" | "none";
  * Utility to get the next sort direction in the sequence: none -> asc -> desc -> none
  */
 export declare function getNextSortDirection(currentDirection: SortDirection, isSameKey: boolean): SortDirection;
-export interface SortConfig<T = any> {
+export interface SortConfig<T = unknown> {
     key: keyof T | null;
     direction: SortDirection;
 }
@@ -23,4 +23,4 @@ export interface UseTableSortReturn<T> {
  * @param options - Optional configuration
  * @returns Sorted data and sorting utilities
  */
-export declare function useTableSort<T extends Record<string, any>>(data: T[], options?: UseTableSortOptions<T>): UseTableSortReturn<T>;
+export declare function useTableSort<T extends Record<string, unknown>>(data: T[], options?: UseTableSortOptions<T>): UseTableSortReturn<T>;

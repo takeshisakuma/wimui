@@ -51,4 +51,4 @@ export type BoxProps<C extends React.ElementType = "div"> = {
  * Box is the most basic layout component.
  * It provides a way to style a div (or any other element) with common CSS properties as props.
  */
-export declare const Box: React.ForwardRefExoticComponent<Omit<BoxProps<React.ElementType<any, keyof React.JSX.IntrinsicElements>>, "ref"> & React.RefAttributes<any>>;
+export declare const Box: React.ForwardRefExoticComponent<Omit<BoxProps<React.ElementType<any, keyof React.JSX.IntrinsicElements>>, "ref"> & React.RefAttributes<HTMLElement>>;

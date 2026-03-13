@@ -359,7 +359,7 @@
   "doc_code_note_desc": "> Blocos de código no componente Code (quando a propriedade block é true) têm rolagem horizontal ativada.<br />> Isso ocorre porque a quebra forçada de longas linhas de código quebra a indentação e a estrutura, reduzindo a legibilidade.",
   "doc_code_note_title": "> Nota",
   "doc_code_title": "Componente para exibição de código inline ou blocos de código",
-  "doc_color": "",
+  "doc_color": "Cor",
   "doc_colorSwatch_desc": "Grade de exibição da paleta de cores",
   "doc_color_palette": "Paleta de Cores (Color Palette)",
   "doc_common_customization_desc_generic": "Customization Desc Generic",

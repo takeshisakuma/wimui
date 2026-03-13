@@ -9,4 +9,4 @@ export type ContainerProps<C extends React.ElementType = "div"> = BoxProps<C> & 
 /**
  * Container component is used to center content horizontally and limit its maximum width.
  */
-export declare const Container: React.ForwardRefExoticComponent<Omit<ContainerProps<React.ElementType<any, keyof React.JSX.IntrinsicElements>>, "ref"> & React.RefAttributes<any>>;
+export declare const Container: React.ForwardRefExoticComponent<Omit<ContainerProps<React.ElementType<any, keyof React.JSX.IntrinsicElements>>, "ref"> & React.RefAttributes<HTMLElement>>;
