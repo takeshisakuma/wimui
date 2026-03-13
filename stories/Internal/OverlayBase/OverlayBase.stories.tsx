@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { OverlayBase } from "../../../src/components/_internal/OverlayBase";
 import { Button } from "../../../src/components/Button/Button";
 import { Card } from "../../../src/components/Card/Card";

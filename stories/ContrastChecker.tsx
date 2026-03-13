@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { ColorPicker } from "../src/components/ColorPicker/ColorPicker";
 
 /**
@@ -89,9 +89,9 @@ const getContrastRatio = (color1: string, color2: string): number => {
 export const ContrastChecker: React.FC = () => {
   const [bgInput, setBgInput] = useState("var(--color-primary)");
   const [fgInput, setFgInput] = useState("var(--color-text-on-primary)");
-  const [resolvedBg, setResolvedBg] = useState("#007aff");
-  const [resolvedFg, setResolvedFg] = useState("#ffffff");
-  const [ratio, setRatio] = useState(0);
+  const resolvedBg = useMemo(() => resolveToHex(bgInput), [bgInput]);
+  const resolvedFg = useMemo(() => resolveToHex(fgInput), [fgInput]);
+  const ratio = useMemo(() => getContrastRatio(resolvedBg, resolvedFg), [resolvedBg, resolvedFg]);
 
   useEffect(() => {
     // Listen for global color signals from ColorSwatch
@@ -103,13 +103,6 @@ export const ContrastChecker: React.FC = () => {
     return () => window.removeEventListener(SIGNAL_COLOR_CHANGE, handleSignal);
   }, []);
 
-  useEffect(() => {
-    const hexBg = resolveToHex(bgInput);
-    const hexFg = resolveToHex(fgInput);
-    setResolvedBg(hexBg);
-    setResolvedFg(hexFg);
-    setRatio(getContrastRatio(hexBg, hexFg));
-  }, [bgInput, fgInput]);
 
   const passesAA = ratio >= 4.5;
   const passesAALarge = ratio >= 3;
@@ -286,7 +279,7 @@ export const ContrastChecker: React.FC = () => {
 
       <div className="wim-contrast-controls">
         <div className="wim-contrast-control">
-          <label className="wim-contrast-label">Background</label>
+          <label htmlFor="bg-input" className="wim-contrast-label">Background</label>
           <div className="wim-contrast-inputs">
             <ColorPicker
               value={resolvedBg}
@@ -294,6 +287,7 @@ export const ContrastChecker: React.FC = () => {
               className="wim-contrast-color-picker"
             />
             <input
+              id="bg-input"
               className="wim-text-input"
               value={bgInput}
               onChange={(e) => setBgInput(e.target.value)}
@@ -302,7 +296,7 @@ export const ContrastChecker: React.FC = () => {
           </div>
         </div>
         <div className="wim-contrast-control">
-          <label className="wim-contrast-label">Foreground</label>
+          <label htmlFor="fg-input" className="wim-contrast-label">Foreground</label>
           <div className="wim-contrast-inputs">
             <ColorPicker
               value={resolvedFg}
@@ -310,6 +304,7 @@ export const ContrastChecker: React.FC = () => {
               className="wim-contrast-color-picker"
             />
             <input
+              id="fg-input"
               className="wim-text-input"
               value={fgInput}
               onChange={(e) => setFgInput(e.target.value)}

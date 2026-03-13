@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IndicatorSlider } from "../../../src/components/_internal/IndicatorSlider";
 import { useTranslation } from "react-i18next";
 

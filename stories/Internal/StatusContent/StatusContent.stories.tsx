@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { StatusContent } from "../../../src/components/_internal/StatusContent";
 import { Icon } from "../../../src/components/Icon/Icon";
 import { Button } from "../../../src/components/Button/Button";

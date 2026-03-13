@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InfiniteScroll } from "@/components/InfiniteScroll/InfiniteScroll";
 import { Card } from "@/components/Card/Card";
 import { Stack } from "@/components/Stack/Stack";

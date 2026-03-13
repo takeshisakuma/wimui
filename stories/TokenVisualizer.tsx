@@ -216,6 +216,8 @@ export const MotionSwatch = ({
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -227,6 +229,7 @@ export const MotionSwatch = ({
         cursor: "pointer",
       }}
       onClick={() => setActive(!active)}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setActive(!active); }}
     >
       <div
         style={{
@@ -525,10 +528,16 @@ export const InteractiveSwatch = ({
       }}
     >
       <div
+        role="button"
+        tabIndex={0}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => { setIsHovered(false); setIsActive(false); }}
         onMouseDown={() => setIsActive(true)}
         onMouseUp={() => setIsActive(false)}
+        onFocus={() => setIsHovered(true)}
+        onBlur={() => { setIsHovered(false); setIsActive(false); }}
+        onKeyDown={() => setIsActive(true)}
+        onKeyUp={() => setIsActive(false)}
         style={{
           width: "120px",
           height: "60px",

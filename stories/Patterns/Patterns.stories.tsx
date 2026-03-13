@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { Input } from "@/components/Input/Input";
 import { Button } from "@/components/Button/Button";
@@ -81,6 +81,7 @@ export const LoginForm: StoryObj = {
 
               <Stack direction="row" justify="space-between" align="center">
                 <label
+                  htmlFor="remember-me"
                   style={{
                     display: "flex",
                     alignItems: "center",

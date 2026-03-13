@@ -268,6 +268,7 @@ export const WithActions: Story = {
             <Button
               size="small"
               priority="tertiary"
+              // eslint-disable-next-line jsx-a11y/aria-role
               role="destructive"
               onClick={() =>
                 alert(t("story_datagrid_action_delete", { name: row.name }))

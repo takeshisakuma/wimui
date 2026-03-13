@@ -364,7 +364,10 @@ export const SidePanelDetail: Story = {
 
       return (
         <div
+          role="button"
+          tabIndex={0}
           onClick={() => onSelect(task.id)}
+          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onSelect(task.id); }}
           style={{
             padding: "16px",
             border: "1px solid",

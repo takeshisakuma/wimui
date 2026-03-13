@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Marquee } from "@/components/Marquee/Marquee";
 import { Badge } from "@/components/Badge/Badge";
 import { Group } from "@/components/Group/Group";

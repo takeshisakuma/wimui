@@ -30,7 +30,7 @@
     "format": "prettier --write .",
     "lint": "eslint src --max-warnings=0",
     "lint:fix": "eslint src --fix --max-warnings=0",
-    "lint:stories": "eslint stories",
+    "lint:stories": "eslint stories --ignore-pattern \"**/*.mdx\"",
     "stylelint:css": "stylelint \"{src,stories}/**/*.css\" --allow-empty-input",
     "stylelint:scss": "stylelint \"{src,stories}/**/*.scss\"",
     "stylelint": "npm run stylelint:css && npm run stylelint:scss",

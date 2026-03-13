@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FieldTemplate } from "../../../src/components/_internal/FieldTemplate/FieldTemplate";
 import { Input } from "../../../src/components/Input/Input";
 import { useTranslation } from "react-i18next";

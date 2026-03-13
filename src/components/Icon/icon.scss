@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .wim-icon {
     display: inline-block;
     width: 1em;
@@ -27,17 +27,8 @@
         stroke: none !important;
       }
 
-      // 内部要素への継承
-      path,
-      circle,
-      rect,
-      polyline,
-      line,
-      ellipse,
-      polygon {
-        fill: inherit;
-        stroke: inherit;
-      }
+      // 内部要素はデフォルトで親の svg から fill/stroke を継承するが、
+      // ここで inherit を明示してしまうと要素自体の属性(fill="none"等)が効かなくなるため指定しない
     }
 
     svg {
