@@ -31,7 +31,7 @@ export default {
 //コンポーネントに渡す値
 
 export const ExLargeParagraph = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Paragraph {...args} content={t('story_paragraph_exlarge')} />;
   },
@@ -44,7 +44,7 @@ export const ExLargeParagraph = {
 };
 
 export const LargeParagraph = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Paragraph {...args} content={t('story_paragraph_large')} />;
   },
@@ -57,7 +57,7 @@ export const LargeParagraph = {
 };
 
 export const MediumParagraph = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Paragraph {...args} content={t('story_paragraph_medium')} />;
   },
@@ -70,7 +70,7 @@ export const MediumParagraph = {
 };
 
 export const SmallParagrapht = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Paragraph {...args} content={t('story_paragraph_small')} />;
   },
@@ -83,7 +83,7 @@ export const SmallParagrapht = {
 };
 
 export const ExSmallParagraph = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Paragraph {...args} content={t('story_paragraph_exsmall')} />;
   },
@@ -96,7 +96,7 @@ export const ExSmallParagraph = {
 };
 
 export const BoldParagraph = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Paragraph {...args} content={t('story_paragraph_bold')} />;
   },
@@ -107,7 +107,7 @@ export const BoldParagraph = {
 };
 
 export const StrikethroughParagraph = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Paragraph {...args} content={t('story_paragraph_strikethrough')} />;
   },
@@ -118,7 +118,7 @@ export const StrikethroughParagraph = {
 };
 
 export const HighlightParagraph = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Paragraph {...args} content={t('story_paragraph_highlight')} />;
   },

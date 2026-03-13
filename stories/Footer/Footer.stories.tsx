@@ -16,7 +16,7 @@ const meta: Meta<typeof Footer> = {
 export default meta;
 type Story = StoryObj<typeof Footer>;
 
-const FooterDemo = (args: any) => {
+const FooterDemo = (args: Parameters<typeof Footer>[0]) => {
   const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
   return (
     <Footer {...args} bordered={args.bordered ?? true}>

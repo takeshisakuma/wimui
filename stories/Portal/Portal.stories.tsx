@@ -185,17 +185,17 @@ export const NotificationCenter: Story = {
     const [logContainer, setLogContainer] = useState<HTMLElement | null>(
       null,
     );
-    const [logs, setLogs] = useState<{ id: string; msg: string; type: any }[]>(
+    const [logs, setLogs] = useState<{ id: string; msg: string; type: string }[]>(
       [],
     );
     const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
 
-    const addLog = (msg: string, type: any = "info") => {
+    const addLog = (msg: string, type: string = "info") => {
       const id = Math.random().toString(36).slice(2, 9);
       setLogs((prev) => [{ id, msg, type }, ...prev].slice(0, 10));
     };
 
-    const SenderComponent = ({ _name, _type, color, displayName }: any) => {
+    const SenderComponent = ({ name: _name, type: _type, color, displayName }: { name?: string; type?: string; color: string; displayName: string }) => {
       const [active, setActive] = useState(false);
       return (
         <Card variant="outline" padding="sm">
@@ -359,7 +359,7 @@ export const SidePanelDetail: Story = {
       },
     ];
 
-    const TaskItem = ({ task, isSelected, onSelect, container }: any) => {
+    const TaskItem = ({ task, isSelected, onSelect, container }: { task: { id: number; title: string; detail: string }; isSelected: boolean; onSelect: (id: number) => void; container: HTMLElement | null }) => {
       const [note, setNote] = useState("");
 
       return (

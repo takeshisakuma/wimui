@@ -70,7 +70,7 @@ export const T = ({ k }: { k: string }) => {
   }, []);
 
   // Create a helper to process the translated text
-  const processText = (text: any) => {
+  const processText = (text: unknown) => {
     if (typeof text !== "string") return text;
 
     // 1. Remove extra indentation (newline followed by multiple spaces)
@@ -111,5 +111,5 @@ export const T = ({ k }: { k: string }) => {
   const translated = getTranslated(k);
   console.log("🔤 Translating", k, "→", translated, `(lang=${i18n.language})`);
 
-  return <span className="wim-t" dangerouslySetInnerHTML={{ __html: processText(translated) }} />;
+  return <span className="wim-t" dangerouslySetInnerHTML={{ __html: processText(translated) as string }} />;
 };

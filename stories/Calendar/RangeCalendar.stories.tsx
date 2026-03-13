@@ -49,7 +49,7 @@ export const Controlled: Story = {
   render: (args) => {
     const [range, setRange] = useState<RangeCalendarValue>([today, nextWeek]);
     return (
-      <RangeCalendar {...(args as any)} value={range} onChange={setRange} />
+      <RangeCalendar {...args} value={range} onChange={setRange} />
     );
   },
 };

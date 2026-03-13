@@ -183,7 +183,7 @@ export const WithIcons: Story = {
     return (
       <SegmentedControl
         {...args}
-        options={options as any}
+        options={[...options] as Parameters<typeof SegmentedControl>[0]["options"]}
         value={value}
         onChange={setValue}
       />
@@ -206,7 +206,7 @@ export const IconOnly: Story = {
     return (
       <SegmentedControl
         {...args}
-        options={iconOnlyOptions as any}
+        options={[...iconOnlyOptions] as Parameters<typeof SegmentedControl>[0]["options"]}
         value={value}
         onChange={setValue}
       />

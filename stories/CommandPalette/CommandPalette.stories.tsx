@@ -96,7 +96,7 @@ const DefaultTemplate = () => {
                       key={item.id}
                       onSelect={() => console.log(`Selected: ${item.label}`)}
                       shortcut={item.shortcut}
-                      icon={<Icon name={item.icon as any} size="small" />}
+                      icon={<Icon name={item.icon as Parameters<typeof Icon>[0]["name"]} size="small" />}
                     >
                       {item.label}
                     </CommandPaletteItem>

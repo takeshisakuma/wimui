@@ -50,7 +50,7 @@ const defaultTreeData: TreeSelectNode[] = [
 
 const translateTreeData = (
   nodes: TreeSelectNode[],
-  t: any,
+  t: (key: string) => string,
 ): TreeSelectNode[] => {
   return nodes.map((node) => ({
     ...node,

@@ -510,7 +510,13 @@ export const InteractiveSwatch = ({
   tokenValue,
   hoverStyle = {},
   activeStyle = {},
-}: any) => {
+}: {
+  name: string;
+  tokenName: string;
+  tokenValue: string;
+  hoverStyle?: React.CSSProperties;
+  activeStyle?: React.CSSProperties;
+}) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const [isActive, setIsActive] = React.useState(false);
 

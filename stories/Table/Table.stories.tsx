@@ -220,10 +220,10 @@ export const Sortable: Story = {
         setData(manyRows);
       } else {
         const sortedData = [...manyRows].sort((a, b) => {
-          const aValue = (a as any)[key];
-          const bValue = (b as any)[key];
-          if (aValue < bValue) return direction === "asc" ? -1 : 1;
-          if (aValue > bValue) return direction === "asc" ? 1 : -1;
+          const aValue = (a as unknown as Record<string, unknown>)[key];
+          const bValue = (b as unknown as Record<string, unknown>)[key];
+          if (String(aValue) < String(bValue)) return direction === "asc" ? -1 : 1;
+          if (String(aValue) > String(bValue)) return direction === "asc" ? 1 : -1;
           return 0;
         });
         setData(sortedData);

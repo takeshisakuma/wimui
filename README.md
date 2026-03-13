@@ -19,12 +19,8 @@ npm run stylelint:fix // storiesフォルダ内のscssのコードを修正
 
 #### JavaScript, TypeScript
 
-npm run lint // storiesフォルダ内のjs,tsの品質確認
-npm run lint:fix // storiesフォルダ内のjs,tsのコードを修正
-
-#### storyのエラー確認
-
-npm run lint:stories // storiesフォルダ内のstoryのエラー確認
+npm run lint // src・storiesフォルダ内のjs,tsの品質確認（.mdxを除く、警告ゼロが必須）
+npm run lint:fix // src・storiesフォルダ内のjs,tsのコードを修正
 
 
 #### コンポーネント単体テスト

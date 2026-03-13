@@ -31,7 +31,7 @@ export default {
 //コンポーネントに渡す値
 
 export const ExLargeSpan = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Span>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Span {...args} content={t('story_span_medium')} />;
   },
@@ -44,7 +44,7 @@ export const ExLargeSpan = {
 };
 
 export const LargeSpan = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Span>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Span {...args} content={t('story_span_medium')} />;
   },
@@ -57,7 +57,7 @@ export const LargeSpan = {
 };
 
 export const MediumSpan = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Span>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Span {...args} content={t('story_span_medium')} />;
   },
@@ -70,7 +70,7 @@ export const MediumSpan = {
 };
 
 export const SmallSpan = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Span>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Span {...args} content={t('story_span_medium')} />;
   },
@@ -83,7 +83,7 @@ export const SmallSpan = {
 };
 
 export const ExSmallSpan = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Span>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Span {...args} content={t('story_span_medium')} />;
   },
@@ -96,7 +96,7 @@ export const ExSmallSpan = {
 };
 
 export const SmallSpanWithIcon = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Span>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Span {...args} content={t('story_span_medium')} />;
   },
@@ -111,7 +111,7 @@ export const SmallSpanWithIcon = {
 };
 
 export const LargeSpanWithIconOnRight = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Span>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Span {...args} content={t('story_span_medium')} />;
   },
@@ -134,7 +134,7 @@ export const IconOnlySpan = {
 };
 
 export const BoldSpan = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Span>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Span {...args} content={t('story_span_medium')} />;
   },
@@ -145,7 +145,7 @@ export const BoldSpan = {
 };
 
 export const StrikethroughSpan = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Span>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Span {...args} content={t('story_span_medium')} />;
   },
@@ -156,7 +156,7 @@ export const StrikethroughSpan = {
 };
 
 export const HighlightSpan = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Span>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Span {...args} content={t('story_span_medium')} />;
   },

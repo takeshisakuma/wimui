@@ -95,9 +95,10 @@ export const ContrastChecker: React.FC = () => {
 
   useEffect(() => {
     // Listen for global color signals from ColorSwatch
-    const handleSignal = (e: any) => {
-      if (e.detail?.type === "bg") setBgInput(e.detail.value);
-      if (e.detail?.type === "fg") setFgInput(e.detail.value);
+    const handleSignal = (e: Event) => {
+      const detail = (e as CustomEvent<{ type: string; value: string }>).detail;
+      if (detail?.type === "bg") setBgInput(detail.value);
+      if (detail?.type === "fg") setFgInput(detail.value);
     };
     window.addEventListener(SIGNAL_COLOR_CHANGE, handleSignal);
     return () => window.removeEventListener(SIGNAL_COLOR_CHANGE, handleSignal);

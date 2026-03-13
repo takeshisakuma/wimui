@@ -18,7 +18,7 @@ type Story = StoryObj<typeof Masonry>;
 
 const heights = [150, 200, 100, 250, 180, 220, 120, 300, 140, 190];
 
-const MasonryDemo = (args: any) => {
+const MasonryDemo = (args: Parameters<typeof Masonry>[0]) => {
   return (
     <Masonry {...args}>
       {heights.map((height, index) => (

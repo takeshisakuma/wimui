@@ -51,7 +51,7 @@ export const Default: Story = {
           <Button
             priority="primary"
             label={t("story_dialog_open")}
-            aria-label={false as any}
+
           />
         </DialogTrigger>
         <DialogContent>
@@ -78,13 +78,13 @@ export const Default: Story = {
               <Button
                 priority="secondary"
                 label={t("story_dialog_cancel")}
-                aria-label={false as any}
+
               />
             </DialogClose>
             <Button
               priority="primary"
               label={t("story_dialog_save")}
-              aria-label={false as any}
+
             />
           </DialogFooter>
         </DialogContent>
@@ -102,7 +102,7 @@ export const Uncontrolled: Story = {
           <Button
             priority="secondary"
             label={t("story_dialog_uncontrolled")}
-            aria-label={false as any}
+
           />
         </DialogTrigger>
         <DialogContent>
@@ -118,14 +118,14 @@ export const Uncontrolled: Story = {
               <Button
                 priority="secondary"
                 label={t("story_dialog_cancel")}
-                aria-label={false as any}
+
               />
             </DialogClose>
             <Button
               priority="primary"
               label={t("story_dialog_confirm")}
               onClick={() => alert(t("story_dialog_confirmed_msg"))}
-              aria-label={false as any}
+
             />
           </DialogFooter>
         </DialogContent>
@@ -154,7 +154,7 @@ export const Controlled: Story = {
           priority="primary"
           label={t("story_dialog_state_open")}
           onClick={() => setOpen(true)}
-          aria-label={false as any}
+
         />
 
         <Dialog open={open} onOpenChange={setOpen}>
@@ -171,13 +171,13 @@ export const Controlled: Story = {
                 priority="secondary"
                 label={t("story_dialog_cancel")}
                 onClick={() => setOpen(false)}
-                aria-label={false as any}
+
               />
               <Button
                 priority="primary"
                 label={t("story_dialog_state_close")}
                 onClick={() => setOpen(false)}
-                aria-label={false as any}
+
               />
             </DialogFooter>
           </DialogContent>

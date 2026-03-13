@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { DataGrid } from "@/components/DataGrid/DataGrid";
+import { DataGrid, type DataGridColumn, type DataGridProps } from "@/components/DataGrid/DataGrid";
 import { Badge } from "@/components/Badge/Badge";
 import { Button } from "@/components/Button/Button";
 import { Icon } from "@/components/Icon/Icon";
@@ -84,7 +84,7 @@ const manyRows: User[] = Array.from({ length: 50 }).map((_, i) => ({
   joinDate: `2024-${String((i % 12) + 1).padStart(2, "0")}-${String((i % 28) + 1).padStart(2, "0")}`,
 }));
 
-const basicColumns = [
+const basicColumns: DataGridColumn<Record<string, unknown>>[] = [
   { key: "id", header: "ID", width: 80, sortable: true, fixed: true },
   { key: "name", header: "Name", width: 150, sortable: true, fixed: false },
   { key: "email", header: "Email", sortable: true, width: 200 },
@@ -93,9 +93,9 @@ const basicColumns = [
     key: "status",
     header: "Status",
     width: 100,
-    render: (value: any) => (
+    render: (value: unknown) => (
       <Badge
-        content={value}
+        content={value as string}
         size="small"
         color={
           value === "Active"
@@ -114,7 +114,7 @@ const useDataGridTranslations = () => {
   const tColumns = basicColumns.map(c => ({
     ...c,
     header: typeof c.header === 'string' ? t(`story_datagrid_col_${c.key}`) : c.header,
-    render: c.key === 'status' ? ((value: any) => {
+    render: c.key === 'status' ? ((value: unknown) => {
       const translatedValue = value === "Active" ? t('story_datagrid_status_active') : value === "Inactive" ? t('story_datagrid_status_inactive') : t('story_datagrid_status_pending');
       return (
         <Badge
@@ -125,15 +125,15 @@ const useDataGridTranslations = () => {
       );
     }) : c.render
   }));
-  const tSampleData = sampleData; // data stays as is
-  return { t, tColumns: tColumns as any, tSampleData };
+  const tSampleData = sampleData as unknown as Record<string, unknown>[]; // cast for DataGrid generic
+  return { t, tColumns, tSampleData };
 };
 
 export const Default: Story = {
   render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
-    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
   },
   args: {
     bordered: true,
@@ -151,7 +151,7 @@ export const WithSelection: Story = {
         </p>
         <DataGrid
           columns={tColumns}
-          rows={tSampleData as any}
+          rows={tSampleData}
           selection
           selectedRowKeys={selectedRowKeys}
           onSelectionChange={setSelectedRowKeys}
@@ -181,10 +181,10 @@ export const WithSorting: Story = {
         setData(sampleData);
       } else {
         const sortedData = [...data].sort((a, b) => {
-          const aValue = (a as any)[key];
-          const bValue = (b as any)[key];
-          if (aValue < bValue) return direction === "asc" ? -1 : 1;
-          if (aValue > bValue) return direction === "asc" ? 1 : -1;
+          const aValue = (a as unknown as Record<string, unknown>)[key];
+          const bValue = (b as unknown as Record<string, unknown>)[key];
+          if (String(aValue) < String(bValue)) return direction === "asc" ? -1 : 1;
+          if (String(aValue) > String(bValue)) return direction === "asc" ? 1 : -1;
           return 0;
         });
         setData(sortedData);
@@ -194,7 +194,7 @@ export const WithSorting: Story = {
     return (
       <DataGrid
         columns={tColumns}
-        rows={data as any}
+        rows={data as unknown as Record<string, unknown>[]}
         sortConfig={sortConfig}
         onSort={handleSort}
         bordered
@@ -215,7 +215,7 @@ export const WithPagination: Story = {
     return (
       <DataGrid
         columns={tColumns}
-        rows={currentData as any}
+        rows={currentData as unknown as Record<string, unknown>[]}
         pagination={{
           total: manyRows.length,
           pageSize,
@@ -253,7 +253,7 @@ export const WithActions: Story = {
         key: "actions",
         header: t("story_datagrid_col_actions"),
         width: 100,
-        render: (_: any, row: Record<string, any>) => (
+        render: (_: unknown, row: Record<string, unknown>) => (
           <div style={{ display: "flex", gap: "8px" }}>
             <Button
               size="small"
@@ -280,7 +280,7 @@ export const WithActions: Story = {
         ),
       },
     ];
-    return <DataGrid columns={columns} rows={sampleData} bordered />;
+    return <DataGrid columns={columns} rows={sampleData as unknown as Record<string, unknown>[]} bordered />;
   },
 };
 
@@ -288,7 +288,7 @@ export const Loading: Story = {
   render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
-    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
   },
   args: {
     loading: true,
@@ -300,7 +300,7 @@ export const Empty: Story = {
   render: (args) => {
     const { t, tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
-    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} emptyMessage={t('story_datagrid_empty')} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} emptyMessage={t('story_datagrid_empty')} />;
   },
   args: {
     bordered: true,
@@ -311,7 +311,7 @@ export const Striped: Story = {
   render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
-    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
   },
   args: {
     striped: true,
@@ -323,7 +323,7 @@ export const Bordered: Story = {
   render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
-    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
   },
   args: {
     bordered: true,
@@ -333,8 +333,8 @@ export const Bordered: Story = {
 export const StickyHeader: Story = {
   render: (args) => {
     const { tColumns } = useDataGridTranslations();
-    const rows = manyRows;
-    return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
+    const rows = manyRows as unknown as Record<string, unknown>[];
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
   },
   args: {
     stickyHeader: true,
@@ -364,10 +364,10 @@ export const FullFeatured: Story = {
         setData(manyRows);
       } else {
         const sortedData = [...data].sort((a, b) => {
-          const aValue = (a as any)[key];
-          const bValue = (b as any)[key];
-          if (aValue < bValue) return direction === "asc" ? -1 : 1;
-          if (aValue > bValue) return direction === "asc" ? 1 : -1;
+          const aValue = (a as unknown as Record<string, unknown>)[key];
+          const bValue = (b as unknown as Record<string, unknown>)[key];
+          if (String(aValue) < String(bValue)) return direction === "asc" ? -1 : 1;
+          if (String(aValue) > String(bValue)) return direction === "asc" ? 1 : -1;
           return 0;
         });
         setData(sortedData);
@@ -383,7 +383,7 @@ export const FullFeatured: Story = {
       <div>
         <DataGrid
           columns={tColumns}
-          rows={currentData as any}
+          rows={currentData as unknown as Record<string, unknown>[]}
           selection
           selectedRowKeys={selectedRowKeys}
           onSelectionChange={setSelectedRowKeys}
@@ -439,7 +439,7 @@ export const WithFixedColumn: Story = {
         key: "status",
         header: t("story_datagrid_col_status"),
         width: 100,
-        render: (value: any) => {
+        render: (value: unknown) => {
           const translatedValue =
             value === "Active"
               ? t("story_datagrid_status_active")
@@ -463,7 +463,7 @@ export const WithFixedColumn: Story = {
       },
     ];
     return (
-      <DataGrid columns={columns} rows={sampleData as any} selection bordered />
+      <DataGrid columns={columns} rows={sampleData as unknown as Record<string, unknown>[]} selection bordered />
     );
   },
   decorators: [
@@ -510,7 +510,7 @@ export const WithRightFixedColumn: Story = {
         width: 120,
         fixed: "right" as const,
         align: "center" as const,
-        render: (_: any, _row: Record<string, any>) => (
+        render: (_: unknown, _row: Record<string, unknown>) => (
           <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
             <Button size="small" priority="tertiary">
               <Icon name="EditIcon" size="small" />
@@ -524,7 +524,7 @@ export const WithRightFixedColumn: Story = {
       },
     ];
     return (
-      <DataGrid columns={columns} rows={sampleData as any} selection bordered />
+      <DataGrid columns={columns} rows={sampleData as unknown as Record<string, unknown>[]} selection bordered />
     );
   },
   decorators: [
@@ -562,7 +562,7 @@ export const InfiniteScroll: Story = {
     return (
       <DataGrid
         columns={tColumns}
-        rows={data as any}
+        rows={data as unknown as Record<string, unknown>[]}
         bordered
         stickyHeader
         maxHeight="400px"

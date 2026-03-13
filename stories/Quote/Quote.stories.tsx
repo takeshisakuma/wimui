@@ -33,7 +33,7 @@ export default {
 };
 
 export const Default = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Quote>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Quote {...args} content={t('story_quote_default')} />;
   },
@@ -41,7 +41,7 @@ export const Default = {
 };
 
 export const WithCite = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Quote>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Quote {...args} content={t('story_quote_design')} cite="Steve Jobs" />;
   },
@@ -49,7 +49,7 @@ export const WithCite = {
 };
 
 export const Large = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Quote>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Quote {...args} content={t('story_quote_work')} cite="Steve Jobs" />;
   },
@@ -57,7 +57,7 @@ export const Large = {
 };
 
 export const NoBorder = {
-  render: (args: any) => {
+  render: (args: Parameters<typeof Quote>[0]) => {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return <Quote {...args} content={t('story_quote_simple')} cite="Leonardo da Vinci" />;
   },
@@ -65,7 +65,7 @@ export const NoBorder = {
 };
 
 export const VariousColors = {
-  render: function Render(args: any) {
+  render: function Render(args: Parameters<typeof Quote>[0]) {
     const { t } = useTranslation(['docs', 'common', 'components']);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
