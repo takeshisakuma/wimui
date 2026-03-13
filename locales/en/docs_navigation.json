@@ -210,5 +210,14 @@
   "doc_tabs_vertical_alignment": "Vertical Alignment",
   "doc_tabs_vertical_alignment_desc": "How to align tab triggers vertically within side panels.",
   "doc_tabs_with_icons": "With Icons",
-  "doc_tabs_with_icons_desc": "Combine text with icons for improved visual identification and cleaner UI."
+  "doc_tabs_with_icons_desc": "Combine text with icons for improved visual identification and cleaner UI.",
+  "doc_breadcrumb_custom_separator": "Custom Separator",
+  "doc_breadcrumb_custom_separator_desc": "Customize the separator character using the `separator` property.",
+  "doc_breadcrumb_desc": "Location trace",
+  "doc_breadcrumb_long_desc": "A navigation component that helps users understand their current location and easily return to higher-level pages.",
+  "doc_breadcrumb_size_desc": "Supports three sizes: `small`, `medium`, and `large`.",
+  "doc_breadcrumb_title": "Location trace",
+  "doc_breadcrumb_usage_desc": "Pass an array of labels and links to the `items` property.",
+  "doc_breadcrumb_with_icons": "With Icons",
+  "doc_breadcrumb_with_icons_desc": "Icons can be displayed for each item."
 }

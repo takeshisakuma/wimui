@@ -210,5 +210,14 @@
   "doc_tabs_vertical_alignment": "Vertical Alignment",
   "doc_tabs_vertical_alignment_desc": "Vertical Alignment Desc",
   "doc_tabs_with_icons": "Com Ícones",
-  "doc_tabs_with_icons_desc": "Combine texto com ícones para melhor identificação visual e uma UI mais limpa."
+  "doc_tabs_with_icons_desc": "Combine texto com ícones para melhor identificação visual e uma UI mais limpa.",
+  "doc_breadcrumb_custom_separator": "Separador Personalizado",
+  "doc_breadcrumb_custom_separator_desc": "Personalize o caractere separador usando a propriedade `separator`.",
+  "doc_breadcrumb_desc": "Trilha de localização",
+  "doc_breadcrumb_long_desc": "Um componente de navegação que ajuda os usuários a entenderem sua localização atual e retornarem facilmente a páginas de nível superior.",
+  "doc_breadcrumb_size_desc": "Suporta três tamanhos: `small`, `medium` e `large`.",
+  "doc_breadcrumb_title": "Trilha de localização",
+  "doc_breadcrumb_usage_desc": "Passe um array de rótulos e links para a propriedade `items`.",
+  "doc_breadcrumb_with_icons": "Com Ícones",
+  "doc_breadcrumb_with_icons_desc": "Ícones podem ser exibidos para cada item."
 }
