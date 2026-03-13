@@ -2,6 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AspectRatio } from "@/components/AspectRatio/AspectRatio";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof AspectRatio> = {
   title: "Components/Layout/AspectRatio",
@@ -22,7 +24,7 @@ type Story = StoryObj<typeof AspectRatio>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <AspectRatio {...args}>
         <img
@@ -40,7 +42,7 @@ export const Default: Story = {
 
 export const Square: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <AspectRatio {...args}>
         <img
@@ -58,7 +60,7 @@ export const Square: Story = {
 
 export const Embed: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <AspectRatio {...args}>
         <iframe

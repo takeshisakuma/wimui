@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import Footer from "@/components/Footer/Footer";
 import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Application Shell/Footer",
@@ -17,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof Footer>;
 
 const FooterDemo = (args: Parameters<typeof Footer>[0]) => {
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
   return (
     <Footer {...args} bordered={args.bordered ?? true}>
       <SimpleGrid cols={{ base: 2, sm: 3, lg: 4 }} spacing={40}>

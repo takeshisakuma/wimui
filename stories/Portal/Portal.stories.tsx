@@ -13,6 +13,8 @@ import { Grid } from "@/components/Grid/Grid";
 import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
 import { Alert } from "@/components/Alert/Alert";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Portal> = {
   title: "Components/Internal/Portal",
@@ -32,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 export const OverflowEscape: Story = {
   render: function Render() {
     const [show, setShow] = useState(false);
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Card
         variant="outline"
@@ -122,7 +124,7 @@ export const OverflowEscape: Story = {
 export const CustomContainer: Story = {
   render: function Render() {
     const [container, setContainer] = useState<HTMLElement | null>(null);
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Container size="md">
         <p>{t("story_portal_container_desc")}</p>
@@ -188,7 +190,7 @@ export const NotificationCenter: Story = {
     const [logs, setLogs] = useState<{ id: string; msg: string; type: string }[]>(
       [],
     );
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
 
     const addLog = (msg: string, type: string = "info") => {
       const id = Math.random().toString(36).slice(2, 9);
@@ -339,7 +341,7 @@ export const SidePanelDetail: Story = {
       null,
     );
     const [selectedId, setSelectedId] = useState<number | null>(null);
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
 
     const tasks = [
       {

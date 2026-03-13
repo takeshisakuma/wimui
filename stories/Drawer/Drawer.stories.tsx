@@ -13,6 +13,8 @@ import {
 import { Button } from "@/components/Button/Button";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Drawer> = {
   title: "Components/Overlays/Drawer",
@@ -57,7 +59,7 @@ export const Default: Story = {
     side: "right",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
@@ -89,7 +91,7 @@ export const Left: Story = {
     side: "left",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
@@ -119,7 +121,7 @@ export const Top: Story = {
     side: "top",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
@@ -149,7 +151,7 @@ export const Bottom: Story = {
     side: "bottom",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
@@ -178,7 +180,7 @@ export const Bottom: Story = {
 
 export const Controlled: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [open, setOpen] = useState(false);
     return (
       <div
@@ -235,7 +237,7 @@ export const WithoutSlide: Story = {
     slideOut: false,
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>

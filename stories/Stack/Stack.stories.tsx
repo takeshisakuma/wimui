@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Stack } from "@/components/Stack/Stack";
 import { Box } from "@/components/Box/Box";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Stack> = {
   title: "Components/Layout/Stack",
@@ -25,7 +27,7 @@ type Story = StoryObj<typeof Stack>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stack {...args}>
         <Box
@@ -66,7 +68,7 @@ export const Default: Story = {
 
 export const Row: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stack {...args}>
         <Box
@@ -107,7 +109,7 @@ export const Row: Story = {
 
 export const SpacingTokens: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stack gap="xl">
         <Box bg="#f8fafc" p={10}>

@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Flex } from "@/components/Flex/Flex";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Flex> = {
   title: "Components/Layout/Flex",
@@ -66,7 +68,7 @@ const Box = ({
 
 export const Basic: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
         <Box>{t("story_flex_item_1", "1")}</Box>
@@ -83,7 +85,7 @@ export const Basic: Story = {
 
 export const Column: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
         <Box>{t("story_flex_item_1", "Item 1")}</Box>
@@ -100,7 +102,7 @@ export const Column: Story = {
 
 export const JustifyBetween: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
         <Box>{t("story_flex_left")}</Box>
@@ -118,7 +120,7 @@ export const JustifyBetween: Story = {
 
 export const Wrapped: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
         <Box>{t("story_flex_item_1", "1")}</Box>

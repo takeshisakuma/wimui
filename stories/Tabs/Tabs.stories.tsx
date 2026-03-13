@@ -2,6 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Tabs from "@/components/Tabs/Tabs";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Tabs> = {
   title: "Components/Navigation Elements/Tabs",
@@ -13,7 +15,7 @@ type Story = StoryObj<typeof Tabs>;
 
 export const Default: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Tabs defaultValue="1">
         <Tabs.List>
@@ -35,7 +37,7 @@ export const Default: Story = {
 
 export const Vertical: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Tabs
         defaultValue="1"
@@ -62,7 +64,7 @@ export const Vertical: Story = {
 
 export const Scrolling: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Tabs defaultValue="1" style={{ width: "800px" }}>
         <Tabs.List>

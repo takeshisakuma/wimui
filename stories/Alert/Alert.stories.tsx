@@ -2,6 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Alert } from "@/components/Alert/Alert";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Alert> = {
   title: "Components/Alerts & Notifications/Alert",
@@ -17,7 +19,7 @@ type Story = StoryObj<typeof Alert>;
 
 export const Info: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Alert
         {...args}
@@ -31,7 +33,7 @@ export const Info: Story = {
 
 export const Success: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Alert
         {...args}
@@ -45,7 +47,7 @@ export const Success: Story = {
 
 export const Warning: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Alert
         {...args}
@@ -59,7 +61,7 @@ export const Warning: Story = {
 
 export const ErrorStatus: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Alert
         {...args}
@@ -73,7 +75,7 @@ export const ErrorStatus: Story = {
 
 export const WithoutTitle: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Alert
         {...args}
@@ -86,7 +88,7 @@ export const WithoutTitle: Story = {
 
 export const WithCloseButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Alert
         {...args}
@@ -101,7 +103,7 @@ export const WithCloseButton: Story = {
 
 export const LongContent: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Alert
         {...args}

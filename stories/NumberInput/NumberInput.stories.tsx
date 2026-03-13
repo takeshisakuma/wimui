@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { NumberInput } from "@/components/NumberInput/NumberInput";
 import { Label } from "@/components/Label/Label";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof NumberInput> = {
   title: "Components/Basic Inputs/NumberInput",
@@ -15,7 +17,7 @@ type Story = StoryObj<typeof NumberInput>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_numberinput_label")}>
         <NumberInput {...args} placeholder={t("story_numberinput_placeholder")} />

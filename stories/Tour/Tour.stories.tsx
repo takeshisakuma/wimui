@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tour } from "@/components/Tour/Tour";
 import { Button } from "@/components/Button/Button";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Tour> = {
   title: "Components/Overlays/Tour",
@@ -14,7 +16,7 @@ type Story = StoryObj<typeof Tour>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [open, setOpen] = useState(false);
     const steps = [
       {

@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SignaturePad } from "../../src/components/SignaturePad/SignaturePad";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/components/Label/Label";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof SignaturePad> = {
   title: "Components/Advanced Inputs/SignaturePad",
@@ -17,7 +19,7 @@ type Story = StoryObj<typeof SignaturePad>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_signaturepad_default")}>
         <SignaturePad {...args} />
@@ -32,7 +34,7 @@ export const Default: Story = {
 
 export const CustomColors: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_signaturepad_colors")}>
         <SignaturePad {...args} />
@@ -49,7 +51,7 @@ export const CustomColors: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_signaturepad_disabled")}>
         <SignaturePad {...args} disabled={true} />
@@ -64,7 +66,7 @@ export const Disabled: Story = {
 
 export const Large: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_signaturepad_large")}>
         <SignaturePad {...args} />

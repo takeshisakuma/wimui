@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Checkbox } from "@/components/Checkbox/Checkbox";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Selection Controls/Checkbox",
@@ -21,14 +23,14 @@ type Story = StoryObj<typeof Checkbox>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Checkbox {...args} label={t("story_checkbox_accept")} />;
   },
 };
 
 export const Checked: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Checkbox
         {...args}
@@ -42,14 +44,14 @@ export const Checked: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Checkbox {...args} label={t("story_checkbox_disabled")} disabled={true} />;
   },
 };
 
 export const DisabledChecked: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Checkbox
         {...args}
@@ -64,7 +66,7 @@ export const DisabledChecked: Story = {
 
 export const Indeterminate: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Checkbox
         {...args}
@@ -78,7 +80,7 @@ export const Indeterminate: Story = {
 };
 
 export const Controlled = () => {
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
   const [checked, setChecked] = useState(false);
   return (
     <Checkbox
@@ -93,7 +95,7 @@ export const Controlled = () => {
 
 export const LongLabel: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Checkbox {...args} label={t("story_checkbox_long_label")} />;
   },
 };

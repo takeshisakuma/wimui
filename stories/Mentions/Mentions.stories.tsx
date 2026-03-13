@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Mentions } from "@/components/Mentions/Mentions";
 import { Label } from "@/components/Label/Label";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Mentions> = {
   title: "Components/Basic Inputs/Mentions",
@@ -26,7 +28,7 @@ const mockUsers = [
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_mentions_label_user")}>
         <Mentions {...args} options={mockUsers} placeholder={t("story_mentions_placeholder_user")} fullWidth rows={4} />
@@ -37,7 +39,7 @@ export const Default: Story = {
 
 export const CustomTrigger: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
         <Label label={t("story_mentions_label_char")}>

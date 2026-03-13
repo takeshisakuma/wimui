@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof SimpleGrid> = {
   title: "Components/Layout/SimpleGrid",
@@ -34,7 +36,7 @@ const Box = ({ children }: { children: React.ReactNode }) => (
 
 export const FixedColumns: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <SimpleGrid {...args}>
         <Box>{t("story_grid_item", "1")}</Box>
@@ -53,7 +55,7 @@ export const FixedColumns: Story = {
 
 export const ResponsiveAuto: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <SimpleGrid {...args}>
         <Box>{t("story_grid_min_width")}</Box>
@@ -72,7 +74,7 @@ export const ResponsiveAuto: Story = {
 
 export const ResponsiveBreakpoints: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <SimpleGrid {...args}>
         <Box>{t("story_grid_item", "1")}</Box>

@@ -10,6 +10,8 @@ import { Label } from "@/components/Label/Label";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import React from "react";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Popover> = {
   title: "Components/Overlays/Popover",
@@ -35,7 +37,7 @@ type Story = StoryObj<typeof Popover>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Popover {...args}>
         <PopoverTrigger asChild>
@@ -82,7 +84,7 @@ export const Default: Story = {
 
 export const Interactive: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [width, setWidth] = useState("300px");
     const [height, setHeight] = useState("auto");
 
@@ -145,7 +147,7 @@ export const Interactive: Story = {
 
 export const Alignment: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div
         style={{
@@ -187,7 +189,7 @@ export const Alignment: Story = {
 
 export const Placement: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div
         style={{

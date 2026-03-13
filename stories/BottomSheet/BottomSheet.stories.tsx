@@ -13,6 +13,8 @@ import {
 } from "@/components/BottomSheet/BottomSheet";
 import { Button } from "@/components/Button/Button";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof BottomSheet> = {
   title: "Components/Overlays/BottomSheet",
@@ -41,7 +43,7 @@ type Story = StoryObj<typeof BottomSheet>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <BottomSheet {...args}>
         <BottomSheetTrigger asChild>
@@ -104,7 +106,7 @@ export const Default: Story = {
 
 export const SingleAction: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <BottomSheet {...args}>
         <BottomSheetTrigger asChild>

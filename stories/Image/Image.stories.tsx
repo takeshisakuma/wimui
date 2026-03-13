@@ -4,6 +4,8 @@ import { Image } from "@/components/Image/Image";
 import { Button } from "@/components/Button/Button";
 import vibrantLandscape from "@/media/vibrant_landscape.png";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Image> = {
   title: "Components/Media/Image",
@@ -29,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Image {...args} alt={t("story_image_alt")} />;
   },
   args: {
@@ -40,7 +42,7 @@ export const Default: Story = {
 
 export const WithCaption: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Image
         {...args}
@@ -57,7 +59,7 @@ export const WithCaption: Story = {
 
 export const Rounded: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Image {...args} alt={t("story_image_alt")} />;
   },
   args: {
@@ -71,7 +73,7 @@ export const Rounded: Story = {
 
 export const Circular: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Image {...args} alt={t("story_image_alt")} />;
   },
   args: {
@@ -86,7 +88,7 @@ export const Circular: Story = {
 
 export const WithShadow: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Image {...args} alt={t("story_image_alt")} />;
   },
   args: {
@@ -99,7 +101,7 @@ export const WithShadow: Story = {
 
 export const Filters: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem" }}>
         <div>
@@ -141,7 +143,7 @@ export const Filters: Story = {
 
 export const Glassmorphism: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div
         style={{
@@ -194,7 +196,7 @@ export const Glassmorphism: Story = {
 
 export const AdvancedEffects: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
         <div>
@@ -268,7 +270,7 @@ export const AdvancedEffects: Story = {
 
 export const MotionEffects: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [imageKey, setImageKey] = React.useState(0);
 
     return (
@@ -355,7 +357,7 @@ export const MotionEffects: Story = {
 };
 export const BlendingEffects: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components", "docs_stories"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
         <div>

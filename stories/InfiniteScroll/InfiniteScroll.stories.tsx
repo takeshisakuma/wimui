@@ -4,6 +4,8 @@ import { InfiniteScroll } from "@/components/InfiniteScroll/InfiniteScroll";
 import { Card } from "@/components/Card/Card";
 import { Stack } from "@/components/Stack/Stack";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof InfiniteScroll> = {
   title: "Components/Utilities/InfiniteScroll",
@@ -18,7 +20,7 @@ type Story = StoryObj<typeof InfiniteScroll>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [items, setItems] = useState(
       Array.from({ length: 20 }, (_, i) => t("story_infscroll_item", { index: i + 1 })),
     );

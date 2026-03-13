@@ -3,6 +3,8 @@ import { Slider } from "@/components/Slider/Slider";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/components/Label/Label";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const MetaData: Meta<typeof Slider> = {
   title: "Components/Pickers & Sliders/Slider",
@@ -20,7 +22,7 @@ type Story = StoryObj<typeof Slider>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_slider_default")}>
         <Slider {...args} />
@@ -34,7 +36,7 @@ export const Default: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_slider_disabled")}>
         <Slider {...args} disabled={true} />
@@ -48,7 +50,7 @@ export const Disabled: Story = {
 
 export const MinMax: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_slider_minmax")}>
         <Slider {...args} />
@@ -64,7 +66,7 @@ export const MinMax: Story = {
 
 export const Step: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_slider_step")}>
         <Slider {...args} />
@@ -80,7 +82,7 @@ export const Step: Story = {
 };
 
 export const Controlled = () => {
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
   const [val, setVal] = useState(25);
   return (
     <Label label={`${t("story_slider_default")} (${t("story_dialog_curr_state")}: ${val})`}>

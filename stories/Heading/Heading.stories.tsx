@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Heading, type HeadingProps } from "@/components/Heading/Heading";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<HeadingProps> = {
   title: "Components/Typography & Icons/Heading",
@@ -44,7 +46,7 @@ type Story = StoryObj<typeof meta>;
 
 export const H1Heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -57,7 +59,7 @@ export const H1Heading: Story = {
 
 export const H2Heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -70,7 +72,7 @@ export const H2Heading: Story = {
 
 export const H3Heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -83,7 +85,7 @@ export const H3Heading: Story = {
 
 export const H4Heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -96,7 +98,7 @@ export const H4Heading: Story = {
 
 export const H5Heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -109,7 +111,7 @@ export const H5Heading: Story = {
 
 export const H6Heading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story_heading_text")}</Heading>;
   },
   args: {
@@ -123,7 +125,7 @@ export const H6Heading: Story = {
 
 export const UnderlineHeading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story_heading_underline")}</Heading>;
   },
   args: {
@@ -135,7 +137,7 @@ export const UnderlineHeading: Story = {
 
 export const HighlightHeading: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story_heading_highlight")}</Heading>;
   },
   args: {

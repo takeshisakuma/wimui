@@ -4,6 +4,8 @@ import { Chip } from "@/components/Chip/Chip";
 import { Icon } from "@/components/Icon/Icon";
 import { Avatar } from "@/components/Avatar/Avatar";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 /**
  * Data Display/Chip Component
@@ -35,14 +37,14 @@ type Story = StoryObj<typeof Chip>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Chip {...args} label={t("story_chip_default")} />;
   },
 };
 
 export const Clickable: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Chip
         {...args}
@@ -55,7 +57,7 @@ export const Clickable: Story = {
 
 export const Deletable: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Chip
         {...args}
@@ -74,7 +76,7 @@ export const WithAvatar: Story = {
 
 export const WithIcon: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Chip
         {...args}
@@ -87,14 +89,14 @@ export const WithIcon: Story = {
 
 export const Selected: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Chip {...args} label={t("story_chip_selected")} selected={true} onClick={() => {}} />;
   },
 };
 
 export const Variants: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", gap: "10px" }}>
         <Chip {...args} label={t("story_chip_solid")} variant="solid" onClick={() => {}} />

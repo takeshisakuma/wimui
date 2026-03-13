@@ -5,6 +5,8 @@ import { Icon } from "../../../src/components/Icon/Icon";
 import { Button } from "../../../src/components/Button/Button";
 import { ContextMenu, ContextMenuItem } from "../../../src/components/ContextMenu/ContextMenu";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
+
 
 const meta: Meta<typeof InteractiveArea> = {
   title: "Components/Internal/InteractiveArea",
@@ -16,7 +18,7 @@ type Story = StoryObj<typeof InteractiveArea>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InteractiveArea 
         {...args} 
@@ -33,7 +35,7 @@ export const Default: Story = {
 
 export const Clickable: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InteractiveArea 
         {...args} 
@@ -50,7 +52,7 @@ export const Clickable: Story = {
 
 export const WithActions: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InteractiveArea 
         {...args} 
@@ -72,7 +74,7 @@ export const WithActions: Story = {
 
 export const Large: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InteractiveArea 
         {...args} 
@@ -89,7 +91,7 @@ export const Large: Story = {
 
 export const Small: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InteractiveArea 
         {...args} 
@@ -106,7 +108,7 @@ export const Small: Story = {
 
 export const WithContextMenu: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
         menu={

@@ -10,6 +10,8 @@ import {
 } from "@/components/Timeline/Timeline";
 import { Icon } from "@/components/Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Timeline> = {
   title: "Components/Data Structures/Timeline",
@@ -24,7 +26,7 @@ export const LeftAligned: Story = {
     align: "left",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Timeline {...args}>
         <TimelineItem>
@@ -64,7 +66,7 @@ export const Alternate: Story = {
     align: "alternate",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Timeline {...args}>
         <TimelineItem>
@@ -98,7 +100,7 @@ export const Alternate: Story = {
 
 export const WithIcons: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Timeline {...args}>
         <TimelineItem>

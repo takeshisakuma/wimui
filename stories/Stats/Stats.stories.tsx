@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Stats } from "@/components/Stats/Stats";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Stats> = {
   title: "Components/Data Structures/Stats",
@@ -16,7 +18,7 @@ type Story = StoryObj<typeof Stats>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stats {...args}>
         <Stats.Label>{t('story_stats_total_users')}</Stats.Label>
@@ -29,7 +31,7 @@ export const Default: Story = {
 
 export const WithTrend: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stats {...args}>
         <Stats.Label>{t('story_stats_revenue')}</Stats.Label>
@@ -42,7 +44,7 @@ export const WithTrend: Story = {
 
 export const NegativeTrend: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stats {...args}>
         <Stats.Label>{t('story_stats_active_alerts')}</Stats.Label>
@@ -55,7 +57,7 @@ export const NegativeTrend: Story = {
 
 export const Outline: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stats {...args} variant="outline">
         <Stats.Label>{t('story_stats_page_views')}</Stats.Label>
@@ -68,7 +70,7 @@ export const Outline: Story = {
 
 export const Flat: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stats {...args} variant="flat">
         <Stats.Label>{t('story_stats_avg_session')}</Stats.Label>

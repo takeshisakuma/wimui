@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Rating } from "@/components/Rating/Rating";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/components/Label/Label";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Rating> = {
   title: "Components/Advanced Inputs/Rating",
@@ -25,7 +27,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_rating_default")}>
         <Rating {...args} />
@@ -39,7 +41,7 @@ export const Default: Story = {
 
 export const AllowHalf: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_rating_half")}>
         <Rating {...args} />
@@ -54,7 +56,7 @@ export const AllowHalf: Story = {
 
 export const CustomCount: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_rating_custom")}>
         <Rating {...args} />
@@ -69,7 +71,7 @@ export const CustomCount: Story = {
 
 export const Sizes: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <Label label={t("story_rating_sizes")}>
@@ -86,7 +88,7 @@ export const Sizes: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_rating_disabled")}>
         <Rating {...args} disabled />
@@ -100,7 +102,7 @@ export const Disabled: Story = {
 
 export const Controlled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState(args.value ?? 3);
 
     useEffect(() => {

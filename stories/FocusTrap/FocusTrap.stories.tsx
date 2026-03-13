@@ -7,6 +7,8 @@ import { Stack } from "@/components/Stack/Stack";
 import { Card } from "@/components/Card/Card";
 import { Container } from "@/components/Container/Container";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof FocusTrap> = {
   title: "Components/Internal/FocusTrap",
@@ -23,7 +25,7 @@ type Story = StoryObj<typeof FocusTrap>;
 export const Default: Story = {
   render: (args) => {
     const [active, setActive] = useState(false);
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
       <Container size="sm" py="xl">
@@ -85,7 +87,7 @@ export const AutoFocus: Story = {
   },
   render: (args) => {
     const [active, setActive] = useState(false);
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
       <Container size="sm" py="xl">

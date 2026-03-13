@@ -6,6 +6,8 @@ import { Label } from "@/components/Label/Label";
 import { Input } from "@/components/Input/Input";
 import { CheckboxGroup } from "@/components/CheckboxGroup/CheckboxGroup";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Fieldset> = {
   title: "Components/Form Layout/Fieldset",
@@ -20,7 +22,7 @@ type Story = StoryObj<typeof Fieldset>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Fieldset {...args}>
         <Legend label={t("story_fieldset_basic")} />
@@ -37,7 +39,7 @@ export const Default: Story = {
 
 export const WithCheckboxGroup: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Fieldset {...args}>
         <Legend label={t("story_fieldset_notif")} />
@@ -59,7 +61,7 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Fieldset {...args}>
         <Legend label={t("story_fieldset_disabled_sec")} />

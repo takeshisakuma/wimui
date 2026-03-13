@@ -210,5 +210,14 @@
   "doc_tabs_vertical_alignment": "垂直方向の配置",
   "doc_tabs_vertical_alignment_desc": "vertical プロパティを使用してタブを垂直に並べることができます。",
   "doc_tabs_with_icons": "アイコン付き",
-  "doc_tabs_with_icons_desc": "テキストとアイコンを組み合わせることで、視覚的な識別性を向上させ、クリーンな UI を実現します。"
+  "doc_tabs_with_icons_desc": "テキストとアイコンを組み合わせることで、視覚的な識別性を向上させ、クリーンな UI を実現します。",
+  "doc_breadcrumb_custom_separator": "カスタムセパレータ",
+  "doc_breadcrumb_custom_separator_desc": "`separator` プロパティを使用して、区切り文字をカスタマイズできます。",
+  "doc_breadcrumb_desc": "現在位置のトレース",
+  "doc_breadcrumb_long_desc": "ユーザーが現在地を把握し、上位階層に簡単に戻れるようにするためのナビゲーションコンポーネントです。",
+  "doc_breadcrumb_size_desc": "`small`, `medium`, `large` の3つのサイズをサポートしています。",
+  "doc_breadcrumb_title": "現在位置のトレース",
+  "doc_breadcrumb_usage_desc": "`items` プロパティにラベルとリンク先を配列で渡します。",
+  "doc_breadcrumb_with_icons": "アイコン付き",
+  "doc_breadcrumb_with_icons_desc": "各項目にアイコンを表示できます。"
 }

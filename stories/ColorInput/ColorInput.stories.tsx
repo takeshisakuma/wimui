@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ColorInput } from "@/components/ColorInput/ColorInput";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/components/Label/Label";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof ColorInput> = {
   title: "Components/Pickers & Sliders/ColorInput",
@@ -15,7 +17,7 @@ type Story = StoryObj<typeof ColorInput>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_colorinput_default")}>
         <ColorInput {...args} />
@@ -29,7 +31,7 @@ export const Default: Story = {
 
 export const WithIcon: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_colorinput_icon")}>
         <ColorInput {...args} />
@@ -44,7 +46,7 @@ export const WithIcon: Story = {
 
 export const CustomStates: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_colorinput_states")}>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>

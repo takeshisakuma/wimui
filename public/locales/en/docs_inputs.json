@@ -316,5 +316,22 @@
   "doc_timepicker_title": "A specialized input for selecting specific hours and minutes",
   "doc_treeSelect_desc": "Select from tree structure",
   "doc_treeselect_long_desc": "TreeSelect is a component for selecting one or more items from a tree-like list.",
-  "doc_treeselect_multi_desc": "In multi-selection mode, you can select multiple nodes using checkboxes."
+  "doc_treeselect_multi_desc": "In multi-selection mode, you can select multiple nodes using checkboxes.",
+  "doc_advanced_input_cascader_purpose": "Hierarchical selection",
+  "doc_advanced_input_cascader_usage": "Addresses (Prefecture > City), Categories.",
+  "doc_advanced_input_comparison": "Component Comparison",
+  "doc_advanced_input_desc": "Used for special input formats such as file uploads, complex selections, and ratings.",
+  "doc_advanced_input_dropzone_purpose": "Drag & drop submission",
+  "doc_advanced_input_dropzone_usage": "Batch files, folder uploads.",
+  "doc_advanced_input_fileupload_purpose": "Single/Multiple file selection",
+  "doc_advanced_input_fileupload_usage": "Profile images, single documents.",
+  "doc_advanced_input_rating_purpose": "Gradual rating",
+  "doc_advanced_input_rating_usage": "Reviews, satisfaction surveys.",
+  "doc_advanced_input_signaturepad_purpose": "Handwritten signature",
+  "doc_advanced_input_signaturepad_usage": "Contracts, consent, simple drawing.",
+  "doc_advanced_input_title": "Advanced Input Selection",
+  "doc_advanced_input_transfer_purpose": "Movement between lists",
+  "doc_advanced_input_transfer_usage": "Permission assignment, public/private toggling.",
+  "doc_advanced_input_treeselect_purpose": "Selection from tree structure",
+  "doc_advanced_input_treeselect_usage": "Organization charts, file directory selection."
 }

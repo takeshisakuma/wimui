@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import TabBar from "@/components/TabBar/TabBar";
 import { Icon } from "@/components/Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof TabBar> = {
   title: "Components/Application Shell/TabBar",
@@ -26,7 +28,7 @@ type Story = StoryObj<typeof TabBar>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [activeTab, setActiveTab] = React.useState("home");
     return (
       <div
@@ -98,7 +100,7 @@ export const WithoutLabels: Story = {
 
 export const Fixed: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [activeTab, setActiveTab] = React.useState("home");
     return (
       <div style={{ background: "#f4f4f5", minHeight: "100vh" }}>

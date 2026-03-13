@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import Navbar from "@/components/Navbar/Navbar";
 import { Button } from "@/components/Button/Button";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Navbar> = {
   title: "Components/Application Shell/Navbar",
@@ -25,7 +27,7 @@ type Story = StoryObj<typeof Navbar>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Navbar {...args}>
         <Navbar.Brand>
@@ -62,7 +64,7 @@ export const Default: Story = {
 
 export const GlassEffect: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div
         style={{
@@ -99,7 +101,7 @@ export const GlassEffect: Story = {
 
 export const WithMobileMenu: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Navbar bordered>
         <Navbar.Brand>
@@ -121,7 +123,7 @@ export const WithMobileMenu: Story = {
 
 export const CenteredLinks: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Navbar {...args} bordered>
         <Navbar.Brand>
@@ -157,7 +159,7 @@ export const CenteredLinks: Story = {
 
 export const BuiltInResponsive: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div
         style={{

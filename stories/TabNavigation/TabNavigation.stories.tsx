@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import TabNavigation from "@/components/TabNavigation/TabNavigation";
 import { Icon } from "@/components/Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof TabNavigation> = {
   title: "Components/Navigation Elements/TabNavigation",
@@ -26,7 +28,7 @@ type Story = StoryObj<typeof TabNavigation>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("overview");
     return (
       <TabNavigation {...args}>
@@ -65,7 +67,7 @@ export const Default: Story = {
 
 export const Pills: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("all");
     return (
       <TabNavigation {...args} variant="pill">
@@ -94,7 +96,7 @@ export const Pills: Story = {
 
 export const Contained: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("daily");
     return (
       <TabNavigation {...args} variant="contained">
@@ -123,7 +125,7 @@ export const Contained: Story = {
 
 export const WithIcons: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("code");
     return (
       <TabNavigation {...args}>

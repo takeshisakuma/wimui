@@ -2,6 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { List, ListItem } from "@/components/List/List";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof List> = {
   title: "Components/Data Structures/List",
@@ -27,7 +29,7 @@ type Story = StoryObj<typeof List>;
 
 export const Unordered: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args} as="ul">
         <ListItem>{t("story_list_item1")}</ListItem>
@@ -42,7 +44,7 @@ export const Unordered: Story = {
 
 export const Ordered: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args} as="ol">
         <ListItem>{t("story_list_step1")}</ListItem>
@@ -55,7 +57,7 @@ export const Ordered: Story = {
 
 export const Small: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args} size="small">
         <ListItem>
@@ -71,7 +73,7 @@ export const Small: Story = {
 
 export const Large: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args} size="large">
         <ListItem>
@@ -87,7 +89,7 @@ export const Large: Story = {
 
 export const LooseSpacing: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args} spacing="loose">
         <ListItem>
@@ -103,7 +105,7 @@ export const LooseSpacing: Story = {
 
 export const WithIcons: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args}>
         <ListItem iconName="CheckIcon">{t("story_list_task_completed")}</ListItem>

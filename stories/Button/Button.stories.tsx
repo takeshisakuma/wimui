@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import { Button } from "@/components/Button/Button";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Button> = {
   title: "Components/Buttons/Button",
@@ -29,7 +31,7 @@ type Story = StoryObj<typeof Button>;
 
 export const LargePrimaryButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Button {...args} label={t("button_label")} />;
   },
   args: {
@@ -40,7 +42,7 @@ export const LargePrimaryButton: Story = {
 
 export const MediumSecondaryButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Button {...args} label={t("button_label")} />;
   },
   args: {
@@ -51,7 +53,7 @@ export const MediumSecondaryButton: Story = {
 
 export const SmallTertiaryButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Button {...args} label={t("button_label")} />;
   },
   args: {
@@ -62,7 +64,7 @@ export const SmallTertiaryButton: Story = {
 
 export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Button {...args} label={t("button_label")} />;
   },
   args: {
@@ -76,7 +78,7 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
 
 export const DisabledButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Button {...args} label={t("button_label")} />;
   },
   args: {
@@ -88,7 +90,7 @@ export const DisabledButton: Story = {
 
 export const MediumPrimaryLoadingProcessingButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Button {...args} label={t("processing")} />;
   },
   args: {
@@ -100,7 +102,7 @@ export const MediumPrimaryLoadingProcessingButton: Story = {
 
 export const MediumSecondaryLoadingSavingButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Button {...args} label={t("saving")} />;
   },
   args: {
@@ -112,7 +114,7 @@ export const MediumSecondaryLoadingSavingButton: Story = {
 
 export const MediumPrimaryInteractiveLoadingButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [loading, setLoading] = useState(false);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -140,7 +142,7 @@ export const MediumPrimaryInteractiveLoadingButton: Story = {
 
 export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [loading, setLoading] = useState(false);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -171,7 +173,7 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
 /** children を使ったボタン（label prop の代替） */
 export const WithChildren: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Button priority="primary" size="medium">
         {t("story_button_click_me")}

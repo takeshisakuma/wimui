@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IndicatorSlider } from "../../../src/components/_internal/IndicatorSlider";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
+
 
 const meta: Meta<typeof IndicatorSlider> = {
   title: "Components/Internal/IndicatorSlider",
@@ -17,7 +19,7 @@ type Story = StoryObj<typeof IndicatorSlider>;
 export const Default: Story = {
   render: function Render() {
     const [active, setActive] = useState(0);
-    const { t } = useTranslation(["common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const labels = ["home", "profile", "settings", "account"];
 
     return (
@@ -73,7 +75,7 @@ export const Default: Story = {
 export const Vertical: Story = {
     render: function Render() {
         const [active, setActive] = useState(0);
-        const { t } = useTranslation(["common"]);
+        const { t } = useTranslation(ALL_NAMESPACES);
         const labels = ["overview", "analytics", "reports", "audience"];
 
         return (

@@ -1,6 +1,8 @@
 import { fn } from "storybook/test";
 import { Span } from "@/components/Span/Span";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 export default {
   title: "Components/Typography & Icons/Span", //左メニューの表示
@@ -32,7 +34,7 @@ export default {
 
 export const ExLargeSpan = {
   render: (args: Parameters<typeof Span>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Span {...args} content={t('story_span_medium')} />;
   },
   args: {
@@ -45,7 +47,7 @@ export const ExLargeSpan = {
 
 export const LargeSpan = {
   render: (args: Parameters<typeof Span>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Span {...args} content={t('story_span_medium')} />;
   },
   args: {
@@ -58,7 +60,7 @@ export const LargeSpan = {
 
 export const MediumSpan = {
   render: (args: Parameters<typeof Span>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Span {...args} content={t('story_span_medium')} />;
   },
   args: {
@@ -71,7 +73,7 @@ export const MediumSpan = {
 
 export const SmallSpan = {
   render: (args: Parameters<typeof Span>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Span {...args} content={t('story_span_medium')} />;
   },
   args: {
@@ -84,7 +86,7 @@ export const SmallSpan = {
 
 export const ExSmallSpan = {
   render: (args: Parameters<typeof Span>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Span {...args} content={t('story_span_medium')} />;
   },
   args: {
@@ -97,7 +99,7 @@ export const ExSmallSpan = {
 
 export const SmallSpanWithIcon = {
   render: (args: Parameters<typeof Span>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Span {...args} content={t('story_span_medium')} />;
   },
   args: {
@@ -112,7 +114,7 @@ export const SmallSpanWithIcon = {
 
 export const LargeSpanWithIconOnRight = {
   render: (args: Parameters<typeof Span>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Span {...args} content={t('story_span_medium')} />;
   },
   args: {
@@ -135,7 +137,7 @@ export const IconOnlySpan = {
 
 export const BoldSpan = {
   render: (args: Parameters<typeof Span>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Span {...args} content={t('story_span_medium')} />;
   },
   args: {
@@ -146,7 +148,7 @@ export const BoldSpan = {
 
 export const StrikethroughSpan = {
   render: (args: Parameters<typeof Span>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Span {...args} content={t('story_span_medium')} />;
   },
   args: {
@@ -157,7 +159,7 @@ export const StrikethroughSpan = {
 
 export const HighlightSpan = {
   render: (args: Parameters<typeof Span>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Span {...args} content={t('story_span_medium')} />;
   },
   args: {

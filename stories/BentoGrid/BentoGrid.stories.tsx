@@ -3,6 +3,8 @@ import { BentoGrid, BentoGridItem } from "@/components/BentoGrid/BentoGrid";
 import React from "react";
 import { Icon } from "@/components/Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof BentoGrid> = {
   title: "Components/Layout/BentoGrid",
@@ -28,7 +30,7 @@ const Skeleton = () => (
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const items = [
       {
         title: t("story_bento_ai_title", "AI Integration"),

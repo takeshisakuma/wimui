@@ -316,5 +316,22 @@
   "doc_timepicker_title": "Seletor de Hora",
   "doc_treeSelect_desc": "Seleção de estrutura em árvore",
   "doc_treeselect_long_desc": "TreeSelect é um componente para selecionar um ou mais itens de uma lista em árvore.",
-  "doc_treeselect_multi_desc": "No modo de seleção múltipla, você pode selecionar vários nós usando checkboxes."
+  "doc_treeselect_multi_desc": "No modo de seleção múltipla, você pode selecionar vários nós usando checkboxes.",
+  "doc_advanced_input_cascader_purpose": "Seleção hierárquica",
+  "doc_advanced_input_cascader_usage": "Endereços (Província > Cidade), Categorias.",
+  "doc_advanced_input_comparison": "Comparação de Componentes",
+  "doc_advanced_input_desc": "Usado para formatos de entrada especiais, como uploads de arquivos, seleções complexas e avaliações.",
+  "doc_advanced_input_dropzone_purpose": "Envio por arrastar e soltar",
+  "doc_advanced_input_dropzone_usage": "Arquivos em lote, envios de pastas.",
+  "doc_advanced_input_fileupload_purpose": "Seleção de arquivo único/múltiplo",
+  "doc_advanced_input_fileupload_usage": "Imagens de perfil, documentos únicos.",
+  "doc_advanced_input_rating_purpose": "Avaliação gradual",
+  "doc_advanced_input_rating_usage": "Avaliações, pesquisas de satisfação.",
+  "doc_advanced_input_signaturepad_purpose": "Assinatura manuscrita",
+  "doc_advanced_input_signaturepad_usage": "Contratos, consentimento, desenho simples.",
+  "doc_advanced_input_title": "Seleção de Entrada Avançada",
+  "doc_advanced_input_transfer_purpose": "Movimentação entre listas",
+  "doc_advanced_input_transfer_usage": "Atribuição de permissões, alternância público/privado.",
+  "doc_advanced_input_treeselect_purpose": "Seleção a partir de estrutura em árvore",
+  "doc_advanced_input_treeselect_usage": "Organogramas, seleção de diretórios de arquivos"
 }

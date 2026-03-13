@@ -2,6 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputBase } from "../../../src/components/_internal/InputBase/InputBase";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
+
 
 const meta: Meta<typeof InputBase> = {
   title: "Components/Internal/InputBase",
@@ -30,7 +32,7 @@ const DummyInput = ({ placeholder }: { placeholder?: string }) => (
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <InputBase {...args}><DummyInput placeholder={t("doc_inputBase_placeholder")} /></InputBase>;
   },
   args: {
@@ -40,7 +42,7 @@ export const Default: Story = {
 
 export const WithIcons: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InputBase 
         {...args} 
@@ -58,7 +60,7 @@ export const WithIcons: Story = {
 
 export const Error: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InputBase {...args} status="error" leftIcon="AlertCircleIcon">
         <DummyInput placeholder={t("doc_inputBase_placeholder")} />
@@ -72,7 +74,7 @@ export const Error: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InputBase {...args} status="disabled" leftIcon="ClockIcon">
         <DummyInput placeholder={t("doc_inputBase_placeholder")} />
@@ -86,7 +88,7 @@ export const Disabled: Story = {
 
 export const Ghost: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InputBase {...args} variant="ghost" leftIcon="SearchIcon">
         <DummyInput placeholder={t("doc_inputBase_placeholder")} />
@@ -100,7 +102,7 @@ export const Ghost: Story = {
 
 export const MultipleRightIcons: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InputBase 
         {...args} 

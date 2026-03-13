@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import {
+import { ALL_NAMESPACES } from "../i18nConstants";
+
   Cascader,
   CascaderOption,
 } from "../../src/components/Cascader/Cascader";
@@ -18,7 +20,7 @@ type Story = StoryObj<typeof Cascader>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
         label: t("story_cascader_tokyo"),
@@ -65,7 +67,7 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
         label: t("story_cascader_tokyo"),
@@ -113,7 +115,7 @@ export const WithLabel: Story = {
 
 export const HoverExpand: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
         label: t("story_cascader_tokyo"),
@@ -145,7 +147,7 @@ export const HoverExpand: Story = {
 
 export const Disabled: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Cascader
         {...args}
@@ -158,7 +160,7 @@ export const Disabled: Story = {
 
 export const CustomSeparator: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
         label: t("story_cascader_tokyo"),

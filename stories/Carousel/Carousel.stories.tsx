@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Carousel } from "@/components/Carousel/Carousel";
 import SampleImage from "@/media/imagesanple.webp";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Carousel> = {
   title: "Components/Media/Carousel",
@@ -66,7 +68,7 @@ const ImagePlaceholder = ({
 
 export const Basic: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const slides = Array.from({ length: 4 }).map((_, i) => (
       <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
     ));
@@ -76,7 +78,7 @@ export const Basic: Story = {
 
 export const MultipleItems: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const slides = Array.from({ length: 6 }).map((_, i) => (
       <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
     ));
@@ -93,7 +95,7 @@ export const MultipleItems: Story = {
 
 export const Responsive: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const slides = Array.from({ length: 6 }).map((_, i) => (
       <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
     ));
@@ -118,7 +120,7 @@ export const Responsive: Story = {
 
 export const AutoPlay: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const slides = Array.from({ length: 4 }).map((_, i) => (
       <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
     ));
@@ -132,7 +134,7 @@ export const AutoPlay: Story = {
 
 export const CustomContent: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Carousel {...args}>
         <div style={{ padding: "0 10px", width: "100%" }}>
@@ -187,7 +189,7 @@ export const CustomContent: Story = {
 
 export const NoLoop: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const slides = Array.from({ length: 3 }).map((_, i) => (
       <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
     ));
@@ -201,7 +203,7 @@ export const NoLoop: Story = {
 
 export const WithImage: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Carousel {...args}>
         {Array.from({ length: 4 }).map((_, i) => (
@@ -220,7 +222,7 @@ export const WithImage: Story = {
 
 export const AspectRatioCheck: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Carousel {...args} aspectRatio="16/9" objectFit="cover">
         {Array.from({ length: 4 }).map((_, i) => (

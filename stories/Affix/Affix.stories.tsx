@@ -3,6 +3,8 @@ import { Affix } from "@/components/Affix/Affix";
 import { Button } from "@/components/Button/Button";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Affix> = {
   title: "Components/Navigation Utilities/Affix",
@@ -18,7 +20,7 @@ type Story = StoryObj<typeof Affix>;
 
 export const Basic: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
         <p>{t("story_affix_scroll_top")}</p>
@@ -34,7 +36,7 @@ export const Basic: Story = {
 
 export const OffsetBottom: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
         <p>{t("story_affix_scroll_bottom")}</p>

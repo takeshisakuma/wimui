@@ -3,6 +3,8 @@ import { Popconfirm } from "@/components/Popconfirm/Popconfirm";
 import { Button } from "@/components/Button/Button";
 import { useTranslation } from "react-i18next";
 import React from "react";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Popconfirm> = {
   title: "Components/Alerts & Notifications/Popconfirm",
@@ -19,7 +21,7 @@ type Story = StoryObj<typeof Popconfirm>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Popconfirm
         {...args}
@@ -36,7 +38,7 @@ export const Default: Story = {
 
 export const WithDescription: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Popconfirm
         {...args}
@@ -53,7 +55,7 @@ export const WithDescription: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Popconfirm {...args} title={t("story_popconfirm_yes")} disabled>
         <Button label={t("story_popconfirm_disabled_btn")} />

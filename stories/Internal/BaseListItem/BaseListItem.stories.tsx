@@ -4,6 +4,8 @@ import { BaseListItem } from "../../../src/components/_internal/BaseListItem/Bas
 import { Icon } from "../../../src/components/Icon/Icon";
 import { Chip } from "../../../src/components/Chip/Chip";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
+
 
 const meta: Meta<typeof BaseListItem> = {
   title: "Components/Internal/BaseListItem",
@@ -18,7 +20,7 @@ type Story = StoryObj<typeof BaseListItem>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <BaseListItem {...args}>{args.children || t("standard_list_item")}</BaseListItem>;
   },
   args: {
@@ -28,7 +30,7 @@ export const Default: Story = {
 
 export const WithIcon: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <BaseListItem {...args} icon={<Icon name="EditIcon" />}>{t("home")}</BaseListItem>;
   },
   args: {
@@ -38,7 +40,7 @@ export const WithIcon: Story = {
 
 export const WithRightSection: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <BaseListItem 
         {...args} 
@@ -56,7 +58,7 @@ export const WithRightSection: Story = {
 
 export const WithBadge: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <BaseListItem 
         {...args} 
@@ -74,7 +76,7 @@ export const WithBadge: Story = {
 
 export const States: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
         <div style={{ width: "240px", display: "flex", flexDirection: "column", gap: "4px" }}>
             <BaseListItem {...args}>{t("home")}</BaseListItem>

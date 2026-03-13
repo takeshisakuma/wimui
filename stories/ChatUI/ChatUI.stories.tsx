@@ -9,6 +9,8 @@ import {
 import { Icon } from "@/components/Icon/Icon";
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 
 const meta: Meta<typeof ChatContainer> = {
@@ -24,7 +26,7 @@ type Story = StoryObj<typeof ChatContainer>;
 
 export const Basic: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "100vh" }}>
         <ChatContainer>
@@ -66,7 +68,7 @@ export const Basic: Story = {
 
 export const WithAvatarImages: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "100vh" }}>
         <ChatContainer>
@@ -114,7 +116,7 @@ export const WithAvatarImages: Story = {
 
 export const WithVariants: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "100vh" }}>
         <ChatContainer>
@@ -159,7 +161,7 @@ export const WithVariants: Story = {
 
 export const Interactive: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     interface Message {
       id: number;
       text: string;
@@ -243,7 +245,7 @@ export const Interactive: Story = {
 
 export const WithIcons: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "100vh" }}>
         <ChatContainer>
@@ -306,7 +308,7 @@ export const WithIcons: Story = {
 
 export const NoAvatars: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "100vh" }}>
         <ChatContainer>
@@ -340,7 +342,7 @@ export const NoAvatars: Story = {
 
 export const AvatarSizes: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div
         style={{

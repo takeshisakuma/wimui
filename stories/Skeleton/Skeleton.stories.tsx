@@ -3,6 +3,8 @@ import React from "react";
 import { Skeleton } from "@/components/Skeleton/Skeleton";
 
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Skeleton> = {
   title: "Components/Loading States/Skeleton",
@@ -101,7 +103,7 @@ export const CardExample: Story = {
 export const LoadingToggle: Story = {
   render: function Render(args) {
     const [loading, setLoading] = React.useState(true);
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>

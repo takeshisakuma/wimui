@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CheckboxGroup } from "@/components/CheckboxGroup/CheckboxGroup";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof CheckboxGroup> = {
   title: "Components/Selection Controls/CheckboxGroup",
@@ -20,7 +22,7 @@ export default meta;
 type Story = StoryObj<typeof CheckboxGroup>;
 
 const useOptions = () => {
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
   return [
     { label: t("story_fruit_apple"), value: "apple" },
     { label: t("story_fruit_banana"), value: "banana" },
@@ -51,7 +53,7 @@ export const Horizontal: Story = {
 };
 
 export const Controlled = () => {
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
   const options = useOptions();
   const [value, setValue] = useState<string[]>(["apple"]);
   return (
@@ -66,7 +68,7 @@ export const Controlled = () => {
 
 export const LongLabel: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <CheckboxGroup
         {...args}

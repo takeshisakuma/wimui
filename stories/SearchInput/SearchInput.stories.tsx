@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SearchInput } from "@/components/SearchInput/SearchInput";
 import { Label } from "@/components/Label/Label";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof SearchInput> = {
   title: "Components/Basic Inputs/SearchInput",
@@ -15,7 +17,7 @@ type Story = StoryObj<typeof SearchInput>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("doc_search")}>
         <SearchInput {...args} placeholder={t("story_searchinput_placeholder")} />
@@ -26,7 +28,7 @@ export const Default: Story = {
 
 export const SmartSearchWithAI_Example: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [query, setQuery] = React.useState("");
     const [suggestions, setSuggestions] = React.useState<string[]>([]);
     const [isSearching, setIsSearching] = React.useState(false);

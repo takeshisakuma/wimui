@@ -2,6 +2,8 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { ToggleGroup, type Option } from "@/components/ToggleGroup/ToggleGroup";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof ToggleGroup> = {
   title: "Components/Selection Controls/ToggleGroup",
@@ -23,7 +25,7 @@ export default meta;
 type Story = StoryObj<typeof ToggleGroup>;
 
 const useDefaultOptions = (): Option[] => {
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
   return [
     { label: t("story_toggle_left"), value: "left", iconName: "CircleIcon" },
     { label: t("story_toggle_center"), value: "center", iconName: "SquareIcon" },
@@ -105,7 +107,7 @@ export const FullWidth: Story = {
 
 export const DisabledOptions: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ToggleGroup
         {...args}

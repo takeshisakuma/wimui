@@ -6,6 +6,8 @@ import { Stack } from "@/components/Stack/Stack";
 import { Alert } from "@/components/Alert/Alert";
 import { Container } from "@/components/Container/Container";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof ErrorBoundary> = {
   title: "Components/Utilities/ErrorBoundary",
@@ -20,14 +22,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const BuggyComponent = () => {
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
   throw new Error(t("story_errorboundary_throw_msg"));
 };
 
 export const Default: Story = {
   render: function Render() {
     const [shouldThrow, setShouldThrow] = useState(false);
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Container size="sm" py="xl">
         <Stack align="center" gap="lg">
@@ -53,7 +55,7 @@ export const Default: Story = {
 export const CustomFallback: Story = {
   render: function Render() {
     const [shouldThrow, setShouldThrow] = useState(false);
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Container size="sm" py="xl">
         <Stack align="center" gap="lg">

@@ -5,6 +5,8 @@ import {
 } from "@/components/FloatButton/FloatButton";
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof FloatButton> = {
   title: "Components/Navigation Utilities/FloatButton",
@@ -55,7 +57,7 @@ export const Basic: Story = {
 
 export const Extended: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <FloatButton {...args} label={t("story_floatbutton_send")} />;
   },
   args: {
@@ -94,7 +96,7 @@ export const Sizes: Story = {
 
 export const ExtendedSizes: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div
         style={{
@@ -132,7 +134,7 @@ export const ExtendedSizes: Story = {
 
 export const AutoShrink: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <AutoShrinkDemo {...args} label={t("story_floatbutton_shrink")} />;
   },
   args: {
@@ -179,7 +181,7 @@ export const FixedPosition: Story = {
     layout: "fullscreen",
   },
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "150vh", padding: "20px" }}>
         <p>{t("story_floatbutton_look_bottom")}</p>
@@ -202,7 +204,7 @@ export const BackTop: Story = {
     layout: "fullscreen",
   },
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
         <p>{t("story_floatbutton_scroll_top_desc")}</p>
@@ -222,7 +224,7 @@ export const BackTop: Story = {
 const AutoShrinkDemo = (args: FloatButtonProps) => {
   const [isShrunk, setIsShrunk] = useState(false);
   const scrollTimer = useRef<number | null>(null);
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
 
   const handleScroll = () => {
     setIsShrunk(true);

@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tag } from "@/components/Tag/Tag";
 import { Icon } from "@/components/Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 /**
  * Data Display/Tag Component
@@ -38,7 +40,7 @@ type Story = StoryObj<typeof Tag>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Tag {...args}>{t("story_tag_content")}</Tag>;
   },
   args: {
@@ -50,7 +52,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", gap: "10px" }}>
         <Tag {...args} variant="solid">
@@ -69,7 +71,7 @@ export const Variants: Story = {
 
 export const Colors: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
         <Tag {...args} status="primary">
@@ -97,7 +99,7 @@ export const Colors: Story = {
 
 export const Sizes: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <Tag {...args} size="small">
@@ -113,7 +115,7 @@ export const Sizes: Story = {
 
 export const WithIcon: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Tag {...args} icon={<Icon name="CircleIcon" size="small" />}>
         {t("story_tag_with_icon")}

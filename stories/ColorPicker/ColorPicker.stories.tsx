@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ColorPicker } from "@/components/ColorPicker/ColorPicker";
 import { Label } from "@/components/Label/Label";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof ColorPicker> = {
   title: "Components/Pickers & Sliders/ColorPicker",
@@ -27,7 +29,7 @@ type Story = StoryObj<typeof ColorPicker>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_colorpicker_label")}>
         <ColorPicker {...args} />
@@ -41,7 +43,7 @@ export const Default: Story = {
 
 export const Outline: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_colorpicker_outline")}>
         <ColorPicker {...args} variant="outline" />
@@ -55,7 +57,7 @@ export const Outline: Story = {
 
 export const Ghost: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_colorpicker_ghost")}>
         <ColorPicker {...args} variant="ghost" />
@@ -69,7 +71,7 @@ export const Ghost: Story = {
 
 export const ErrorStatus: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_colorpicker_error")}>
         <ColorPicker {...args} status="error" />
@@ -83,7 +85,7 @@ export const ErrorStatus: Story = {
 
 export const Disabled: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_colorpicker_disabled")}>
         <ColorPicker {...args} disabled />
@@ -97,7 +99,7 @@ export const Disabled: Story = {
 
 export const FullWidth: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_colorpicker_fullwidth")} style={{ width: "100%" }}>
         <ColorPicker {...args} fullWidth />

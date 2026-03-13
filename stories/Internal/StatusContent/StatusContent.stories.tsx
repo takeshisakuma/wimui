@@ -4,6 +4,8 @@ import { StatusContent } from "../../../src/components/_internal/StatusContent";
 import { Icon } from "../../../src/components/Icon/Icon";
 import { Button } from "../../../src/components/Button/Button";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
+
 
 const meta: Meta<typeof StatusContent> = {
   title: "Components/Internal/StatusContent",
@@ -18,7 +20,7 @@ type Story = StoryObj<typeof StatusContent>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
         <StatusContent 
             {...args}
@@ -40,7 +42,7 @@ export const Default: Story = {
 
 export const Small: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
         <StatusContent 
             {...args}
@@ -57,7 +59,7 @@ export const Small: Story = {
 
 export const NoAction: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
         <StatusContent 
             {...args}

@@ -1,6 +1,8 @@
 import { fn } from "storybook/test";
 import { Paragraph } from "@/components/Paragraph/Paragraph";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 export default {
   title: "Components/Typography & Icons/Paragraph", //左メニューの表示
@@ -32,7 +34,7 @@ export default {
 
 export const ExLargeParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Paragraph {...args} content={t('story_paragraph_exlarge')} />;
   },
   args: {
@@ -45,7 +47,7 @@ export const ExLargeParagraph = {
 
 export const LargeParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Paragraph {...args} content={t('story_paragraph_large')} />;
   },
   args: {
@@ -58,7 +60,7 @@ export const LargeParagraph = {
 
 export const MediumParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Paragraph {...args} content={t('story_paragraph_medium')} />;
   },
   args: {
@@ -71,7 +73,7 @@ export const MediumParagraph = {
 
 export const SmallParagrapht = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Paragraph {...args} content={t('story_paragraph_small')} />;
   },
   args: {
@@ -84,7 +86,7 @@ export const SmallParagrapht = {
 
 export const ExSmallParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Paragraph {...args} content={t('story_paragraph_exsmall')} />;
   },
   args: {
@@ -97,7 +99,7 @@ export const ExSmallParagraph = {
 
 export const BoldParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Paragraph {...args} content={t('story_paragraph_bold')} />;
   },
   args: {
@@ -108,7 +110,7 @@ export const BoldParagraph = {
 
 export const StrikethroughParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Paragraph {...args} content={t('story_paragraph_strikethrough')} />;
   },
   args: {
@@ -119,7 +121,7 @@ export const StrikethroughParagraph = {
 
 export const HighlightParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
-    const { t } = useTranslation(['docs', 'common', 'components']);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Paragraph {...args} content={t('story_paragraph_highlight')} />;
   },
   args: {

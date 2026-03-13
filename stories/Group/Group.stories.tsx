@@ -3,6 +3,8 @@ import { Group } from "@/components/Group/Group";
 import { Button } from "@/components/Button/Button";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Group> = {
   title: "Components/Layout/Group",
@@ -31,7 +33,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Group {...args}>
         <Button label={t("story_group_first", "First")} priority="primary" />
@@ -47,7 +49,7 @@ export const Basic: Story = {
 
 export const Grow: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Group {...args}>
         <Button label={t("story_group_first", "First")} priority="primary" />

@@ -4,6 +4,8 @@ import { Center } from "@/components/Center/Center";
 import { Box } from "@/components/Box/Box";
 import { Icon } from "@/components/Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Center> = {
   title: "Components/Layout/Center",
@@ -19,7 +21,7 @@ type Story = StoryObj<typeof Center>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Center {...args}>
         <Box
@@ -41,7 +43,7 @@ export const Default: Story = {
 
 export const Inline: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ border: "1px solid #ccc", padding: "10px" }}>
         Text before

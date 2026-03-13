@@ -2,18 +2,9 @@ import fs from 'fs';
 import path from 'path';
 
 const locales = ['en', 'ja', 'pt'];
-const namespaces = [
-  'common',
-  'components',
-  'docs_actions',
-  'docs_display',
-  'docs_guides',
-  'docs_inputs',
-  'docs_layout',
-  'docs_navigation',
-  'docs_overlay',
-  'docs_stories'
-];
+const namespaces = fs.readdirSync(path.join(basePath, 'en'))
+  .filter(file => file.endsWith('.json'))
+  .map(file => file.replace('.json', ''));
 
 const basePath = 'c:\\Users\\facto\\Desktop\\github\\wimui\\public\\locales';
 

@@ -15,6 +15,8 @@ import { Input } from "@/components/Input/Input";
 import { Label } from "@/components/Label/Label";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Dialog> = {
   title: "Components/Overlays/Dialog",
@@ -44,7 +46,7 @@ type Story = StoryObj<typeof Dialog>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Dialog {...args}>
         <DialogTrigger asChild>
@@ -95,7 +97,7 @@ export const Default: Story = {
 
 export const Uncontrolled: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Dialog>
         <DialogTrigger asChild>
@@ -136,7 +138,7 @@ export const Uncontrolled: Story = {
 
 export const Controlled: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [open, setOpen] = useState(false);
     return (
       <div

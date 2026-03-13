@@ -2,6 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Combobox } from "@/components/Combobox/Combobox";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Combobox> = {
   title: "Components/Selection Controls/Combobox",
@@ -17,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof Combobox>;
 
 const useSampleOptions = () => {
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
   return [
     { label: t("story_fruit_apple"), value: "apple" },
     { label: t("story_fruit_banana"), value: "banana" },
@@ -38,7 +40,7 @@ const useSampleOptions = () => {
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const sampleOptions = useSampleOptions();
     return (
       <Combobox

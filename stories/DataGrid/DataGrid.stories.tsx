@@ -5,6 +5,8 @@ import { Badge } from "@/components/Badge/Badge";
 import { Button } from "@/components/Button/Button";
 import { Icon } from "@/components/Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof DataGrid> = {
   title: "Components/Data Structures/DataGrid",
@@ -110,7 +112,7 @@ const basicColumns: DataGridColumn<Record<string, unknown>>[] = [
 ];
 
 const useDataGridTranslations = () => {
-  const { t } = useTranslation(['docs', 'common', 'components']);
+  const { t } = useTranslation(ALL_NAMESPACES);
   const tColumns = basicColumns.map(c => ({
     ...c,
     header: typeof c.header === 'string' ? t(`story_datagrid_col_${c.key}`) : c.header,
@@ -230,7 +232,7 @@ export const WithPagination: Story = {
 
 export const WithActions: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const columns = [
       {
         key: "id",
@@ -406,7 +408,7 @@ export const FullFeatured: Story = {
 
 export const WithFixedColumn: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const columns = [
       {
         key: "id",
@@ -477,7 +479,7 @@ export const WithFixedColumn: Story = {
 
 export const WithRightFixedColumn: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const columns = [
       {
         key: "id",

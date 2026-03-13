@@ -2,6 +2,8 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
 import { Anchor } from "@/components/Anchor/Anchor";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Anchor> = {
   title: "Components/Navigation Elements/Anchor",
@@ -18,7 +20,7 @@ type Story = StoryObj<typeof Anchor>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [isMobile, setIsMobile] = React.useState(false);
 
     const items = [

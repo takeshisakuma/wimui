@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { PasswordInput } from "@/components/PasswordInput/PasswordInput";
 import { Label } from "@/components/Label/Label";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof PasswordInput> = {
   title: "Components/Basic Inputs/PasswordInput",
@@ -15,7 +17,7 @@ type Story = StoryObj<typeof PasswordInput>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_passwordinput_label")}>
         <PasswordInput {...args} placeholder={t("story_passwordinput_placeholder")} />

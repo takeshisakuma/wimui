@@ -2,6 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Box } from "../../src/components/Box/Box";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Box> = {
   title: "Components/Layout/Box",
@@ -20,7 +22,7 @@ type Story = StoryObj<typeof Box>;
 
 export const Default: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Box {...args}>{t("story_box_default")}</Box>;
   },
   args: {
@@ -32,7 +34,7 @@ export const Default: Story = {
 
 export const WithCustomShadow: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Box {...args}>{t("story_box_shadow")}</Box>;
   },
   args: {
@@ -46,7 +48,7 @@ export const WithCustomShadow: Story = {
 
 export const AsButton: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Box {...args}>{t("story_box_button")}</Box>;
   },
   args: {
@@ -61,7 +63,7 @@ export const AsButton: Story = {
 
 export const Spacing: Story = {
   render: function Render() {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Box bg="#f8fafc" p={20} radius={8} style={{ border: "1px solid #e2e8f0" }}>
         <Box
@@ -90,7 +92,7 @@ export const Spacing: Story = {
 
 export const PaddingProps: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Box {...args}>{t("story_box_padding")}</Box>;
   },
   args: {

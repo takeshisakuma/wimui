@@ -4,6 +4,8 @@ import { Audio } from "@/components/Audio/Audio";
 import { Button } from "@/components/Button/Button";
 import audioSample from "@/media/audiosample.mp3";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Audio> = {
   title: "Components/Media/Audio",
@@ -33,7 +35,7 @@ export const Default: Story = {
 
 export const WithCaption: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return <Audio {...args} caption={t("story_audio_caption")} />;
   },
   args: {
@@ -110,7 +112,7 @@ export const FullFeatured: Story = {
 };
 export const PremiumFeatures: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [audioKey, setAudioKey] = React.useState(0);
 
     return (

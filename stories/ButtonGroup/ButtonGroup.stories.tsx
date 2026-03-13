@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ButtonGroup } from "@/components/ButtonGroup/ButtonGroup";
 import { Button } from "@/components/Button/Button";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof ButtonGroup> = {
   title: "Components/Buttons/ButtonGroup",
@@ -25,7 +27,7 @@ type Story = StoryObj<typeof ButtonGroup>;
 
 export const LargeGroup: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
         <Button size="large" label={t("story_button_click_me")} priority="primary" />
@@ -38,7 +40,7 @@ export const LargeGroup: Story = {
 
 export const MediumGroup: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
         <Button size="medium" label={t("story_button_click_me")} priority="primary" />
@@ -51,7 +53,7 @@ export const MediumGroup: Story = {
 
 export const SmallGroup: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
         <Button size="small" label={t("story_button_click_me")} priority="primary" />
@@ -67,7 +69,7 @@ export const JoinedGroup: Story = {
     joined: true,
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
         <Button size="medium" label={t("story_button_click_me")} priority="secondary" />
@@ -84,7 +86,7 @@ export const JoinedGroupPrimary: Story = {
     priority: "primary",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
         <Button size="medium" label={t("story_button_click_me")} priority="secondary" />
@@ -101,7 +103,7 @@ export const PriorityOverride: Story = {
     gap: "10px",
   },
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
         <Button size="medium" label={t("story_buttongroup_primary")} priority="primary" />

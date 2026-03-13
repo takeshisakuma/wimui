@@ -2,25 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { addons } from "storybook/internal/preview-api";
 import i18n from "../.storybook/i18n";
+import { ALL_NAMESPACES } from "./i18nConstants";
 
 // Storybook event name for globals updates
 const GLOBALS_UPDATED = "globalsUpdated";
 
 export const T = ({ k }: { k: string }) => {
   const { t } = useTranslation(
-    [
-      "common",
-      "components",
-      "docs",
-      "docs_guides",
-      "docs_actions",
-      "docs_inputs",
-      "docs_display",
-      "docs_navigation",
-      "docs_overlay",
-      "docs_layout",
-      "docs_stories",
-    ],
+    ALL_NAMESPACES,
     { i18n }
   );
   const [, setTick] = useState(0);
@@ -89,19 +78,7 @@ export const T = ({ k }: { k: string }) => {
   const getTranslated = (key: string) => {
     if (key.includes(":")) return t(key);
 
-    const namespaces = [
-      "common",
-      "components",
-      "docs",
-      "docs_guides",
-      "docs_actions",
-      "docs_inputs",
-      "docs_display",
-      "docs_navigation",
-      "docs_overlay",
-      "docs_layout",
-      "docs_stories",
-    ];
+    const namespaces = ALL_NAMESPACES;
     for (const ns of namespaces) {
       if (i18n.exists(`${ns}:${key}`)) {
         return t(`${ns}:${key}`);

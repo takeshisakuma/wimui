@@ -13,6 +13,8 @@ import {
 } from "@/components/CommandPalette/CommandPalette";
 import { Icon } from "@/components/Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof CommandPalette> = {
   title: "Components/Overlays/CommandPalette",
@@ -26,7 +28,7 @@ export default meta;
 type Story = StoryObj<typeof CommandPalette>;
 
 const DefaultTemplate = () => {
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
   const [search, setSearch] = useState("");
 
   const items = [
@@ -127,7 +129,7 @@ export const Default: Story = {
 };
 
 const ControlledTemplate = () => {
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
   const [open, setOpen] = useState(false);
   return (
     <div style={{ padding: "100px 20px", textAlign: "center" }}>

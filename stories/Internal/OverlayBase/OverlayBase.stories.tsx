@@ -5,6 +5,8 @@ import { Button } from "../../../src/components/Button/Button";
 import { Card } from "../../../src/components/Card/Card";
 import { Stack } from "../../../src/components/Stack/Stack";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
+
 
 const meta: Meta<typeof OverlayBase> = {
   title: "Components/Internal/OverlayBase",
@@ -20,7 +22,7 @@ type Story = StoryObj<typeof OverlayBase>;
 export const Default: Story = {
   render: function Render() {
     const [open, setOpen] = useState(false);
-    const { t } = useTranslation(["docs", "common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ padding: "40px", height: "100vh" }}>
         <Button onClick={() => setOpen(true)} priority="primary">
@@ -51,7 +53,7 @@ export const Default: Story = {
 export const CustomTransition: Story = {
   render: function Render() {
     const [open, setOpen] = useState(false);
-    const { t } = useTranslation(["docs", "common"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ padding: "40px", height: "100vh" }}>
         <Button onClick={() => setOpen(true)} priority="primary">

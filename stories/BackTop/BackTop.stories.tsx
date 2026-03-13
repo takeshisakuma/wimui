@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BackTop } from "../../src/components/BackTop/BackTop";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof BackTop> = {
   title: "Components/Navigation Utilities/BackTop",
@@ -16,7 +18,7 @@ type Story = StoryObj<typeof BackTop>;
 
 export const Basic: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
         <p>{t("story_backtop_scroll")}</p>
@@ -29,7 +31,7 @@ export const Basic: Story = {
 
 export const CustomElement: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
         <p>{t("story_backtop_custom_scroll")}</p>
@@ -58,7 +60,7 @@ export const CustomElement: Story = {
 
 const SpecificTargetStory = () => {
   const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
-  const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+  const { t } = useTranslation(ALL_NAMESPACES);
 
   return (
     <div style={{ padding: "20px" }}>

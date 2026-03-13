@@ -4,6 +4,8 @@ import { Marquee } from "@/components/Marquee/Marquee";
 import { Badge } from "@/components/Badge/Badge";
 import { Group } from "@/components/Group/Group";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Marquee> = {
   title: "Components/Utilities/Marquee",
@@ -15,7 +17,7 @@ type Story = StoryObj<typeof Marquee>;
 
 export const Default: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
         <Group gap="xl">
@@ -38,7 +40,7 @@ export const Fast: Story = {
     duration: 5,
   },
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
         <Group gap="xl">
@@ -61,7 +63,7 @@ export const Slow: Story = {
     duration: 40,
   },
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
         <Group gap="xl">
@@ -84,7 +86,7 @@ export const Reverse: Story = {
     reverse: true,
   },
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
         <Group gap="xl">
@@ -104,7 +106,7 @@ export const Reverse: Story = {
 
 export const Vertical: Story = {
   render: (args) => {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200px", border: "1px solid #ccc" }}>
         <Marquee {...args} vertical duration={5}>

@@ -5,6 +5,8 @@ import { Button } from "@/components/Button/Button";
 import sampleVideo from "@/media/videosample.mp4";
 import videoPoster from "@/media/video_poster.webp";
 import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../i18nConstants";
+
 
 const meta: Meta<typeof Video> = {
   title: "Components/Media/Video",
@@ -38,7 +40,7 @@ export const Default: Story = {
 
 export const AutoPlay: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Video
         {...args}
@@ -67,7 +69,7 @@ export const Rounded: Story = {
 
 export const CustomControls: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Video
         {...args}
@@ -85,7 +87,7 @@ export const CustomControls: Story = {
 
 export const FullFeatured: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "docs_guides", "docs_actions", "docs_inputs", "docs_display", "docs_navigation", "docs_overlay", "docs_layout", "docs_stories", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Video
         {...args}
@@ -122,7 +124,7 @@ export const FullFeatured: Story = {
 };
 export const PremiumFeatures: Story = {
   render: function Render(args) {
-    const { t } = useTranslation(["docs", "common", "components"]);
+    const { t } = useTranslation(ALL_NAMESPACES);
     const [videoKey, setVideoKey] = React.useState(0);
 
     return (
