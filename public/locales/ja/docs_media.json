@@ -142,5 +142,20 @@
   "doc_video_variant_full": "すべての高度な機能（プレイリスト、アスペクト比、画質、レジューム再生、ショートカット等）を有効にした完全なプレイヤーです。",
   "doc_video_variant_rounded": "角丸と影を適用したデザインです。",
   "doc_watermark_var_image": "画像",
-  "doc_watermark_var_image_desc": "`image` プロップを使用して、ロゴ画像などの画像を透かしとして使用できます。"
+  "doc_watermark_var_image_desc": "`image` プロップを使用して、ロゴ画像などの画像を透かしとして使用できます。",
+  "media_alt_text": "代替テキスト (Alt)",
+  "media_alt_text_desc": "画像やビデオには必ず代替テキストを設定してください。視覚障害を持つユーザーだけでなく、SEO\nにも寄与します。",
+  "media_audio_playback": "音声再生",
+  "media_autoplay_limit": "自動再生の制限",
+  "media_autoplay_limit_desc": "音声やビデオの自動再生はユーザーを驚かせ、アクセシビリティ標準に反する場合が多いため、必要最小限（ミュート状態での背景動画など）に留めてください。",
+  "media_carousel_desc": "バナー広告、製品ギャラリー、ストーリー形式のコンテンツ表示に最適。",
+  "media_custom_controls_desc": "カスタムコントロールを付与し、アプリのトーン＆マナーに合わせます。",
+  "media_guide_desc": "画像、ビデオ、オーディオを効果的に使用して、視覚的・聴覚的に情報を伝えます。",
+  "media_lineup_title": "ラインナップ",
+  "media_multi_elements": "複数要素の閲覧",
+  "media_performance_desc": "`lazy loading` を活用してパフォーマンスを最適化し、`AspectRatio`\nコンポーネントでレイアウトシフトを防止します。",
+  "media_skeleton_usage": "スケルトンの活用",
+  "media_skeleton_usage_desc": "重いメディアファイルの読み込み中は、`Skeleton`\nコンポーネントを表示して、ユーザーに進行状況を伝えてください。",
+  "media_usability_perf_title": "ユーザビリティとパフォーマンス",
+  "media_usage_tips": "活用のヒント"
 }

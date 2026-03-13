@@ -142,5 +142,20 @@
   "doc_video_variant_full": "Um player com todos os recursos avançados (playlist, proporção, qualidade, retomada de reprodução, atalhos, etc.) ativados.",
   "doc_video_variant_rounded": "Um design com cantos arredondados e sombras.",
   "doc_watermark_var_image": "Imagem",
-  "doc_watermark_var_image_desc": "Usa uma imagem como um logotipo como uma marca d'água via prop `image`."
+  "doc_watermark_var_image_desc": "Usa uma imagem como um logotipo como uma marca d'água via prop `image`.",
+  "media_alt_text": "Texto Alternativo (Alt)",
+  "media_alt_text_desc": "Sempre defina o texto alternativo para imagens/vídeos. Ajuda na acessibilidade e no SEO.",
+  "media_audio_playback": "Reprodução de Áudio",
+  "media_autoplay_limit": "Restrições de Reprodução Automática",
+  "media_autoplay_limit_desc": "Minimize a reprodução automática em áudio/vídeo, pois muitas vezes surpreende os usuários e viola os padrões de a11y.",
+  "media_carousel_desc": "Melhor para anúncios de banner, galerias de produtos ou exibições de conteúdo em formato de história.",
+  "media_custom_controls_desc": "Adicione controles personalizados para corresponder ao tom e estilo de seu aplicativo.",
+  "media_guide_desc": "Use imagens, vídeos e áudio de forma eficaz para transmitir informações visualmente e auditivamente.",
+  "media_lineup_title": "Linha de Produtos",
+  "media_multi_elements": "Navegando em Vários Elementos",
+  "media_performance_desc": "Use o `lazy loading` para otimização de desempenho e o `AspectRatio` para evitar mudanças de layout.",
+  "media_skeleton_usage": "Uso do Esqueleto",
+  "media_skeleton_usage_desc": "Mostre um `Esqueleto` durante o carregamento de arquivos de mídia pesados para indicar o progresso.",
+  "media_usability_perf_title": "Usabilidade e Desempenho",
+  "media_usage_tips": "Dicas de Uso"
 }

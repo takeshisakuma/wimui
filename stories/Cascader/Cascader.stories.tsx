@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import {
-import { ALL_NAMESPACES } from "../i18nConstants";
 
   Cascader,
   CascaderOption,
 } from "../../src/components/Cascader/Cascader";
+import { ALL_NAMESPACES } from "../i18nConstants";
 
 const meta: Meta<typeof Cascader> = {
   title: "Components/Advanced Inputs/Cascader",

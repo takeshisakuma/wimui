@@ -142,5 +142,20 @@
   "doc_video_variant_full": "A full-featured player with all advanced features (playlist, aspect ratio, quality, resume playback, shortcuts, etc.) enabled.",
   "doc_video_variant_rounded": "A design with rounded corners and shadows.",
   "doc_watermark_var_image": "Image",
-  "doc_watermark_var_image_desc": "Uses an image such as a logo as a watermark via the `image` prop."
+  "doc_watermark_var_image_desc": "Uses an image such as a logo as a watermark via the `image` prop.",
+  "media_alt_text": "Alternative Text (Alt)",
+  "media_alt_text_desc": "Always set alt text for images/videos. Helps accessibility and SEO.",
+  "media_audio_playback": "Audio Playback",
+  "media_autoplay_limit": "Autoplay Restrictions",
+  "media_autoplay_limit_desc": "Minimize autoplay on audio/video as it often surprises users and violates a11y standards.",
+  "media_carousel_desc": "Best for banner ads, product galleries, or story-format content displays.",
+  "media_custom_controls_desc": "Add custom controls to match your app's tone & manner.",
+  "media_guide_desc": "Effectively use images, videos, and audio to convey information visually and aurally.",
+  "media_lineup_title": "Product Lineup",
+  "media_multi_elements": "Browsing Multiple Elements",
+  "media_performance_desc": "Use `lazy loading` for performance optimization, and `AspectRatio` to prevent layout shifts.",
+  "media_skeleton_usage": "Skeleton Usage",
+  "media_skeleton_usage_desc": "Show a `Skeleton` during heavy media file loading to indicate progress.",
+  "media_usability_perf_title": "Usability and Performance",
+  "media_usage_tips": "Usage Tips"
 }
