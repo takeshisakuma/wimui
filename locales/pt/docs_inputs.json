@@ -277,6 +277,7 @@
   "doc_selectbox_op_next": "Focar próxima opção com a tecla de seta para baixo",
   "doc_selectbox_op_open_select": "Abrir menu suspenso / Selecionar opção destacada",
   "doc_selectbox_op_prev": "Focar opção anterior com a tecla de seta para cima",
+  "doc_selectbox_preselected": "Valor Pré-selecionado",
   "doc_selectbox_title": "Caixa de Seleção",
   "doc_selectbox_ts": "Suporte a TypeScript",
   "doc_selectbox_ts_desc": "O componente Selectbox fornece definições de tipo completas.",
