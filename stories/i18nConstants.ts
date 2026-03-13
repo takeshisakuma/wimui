@@ -1,7 +1,6 @@
 export const ALL_NAMESPACES = [
   "common",
   "components",
-  "docs",
   "docs_actions",
   "docs_display",
   "docs_inputs",

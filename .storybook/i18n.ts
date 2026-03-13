@@ -23,7 +23,6 @@ i18n
     ns: [
       "common",
       "components",
-      "docs",
       "docs_actions",
       "docs_display",
       "docs_inputs",
