@@ -1,0 +1,17 @@
+[
+  {
+    "name": "ES module (wimui.es.js)",
+    "path": "dist/wimui.es.js",
+    "limit": "5 KB"
+  },
+  {
+    "name": "UMD bundle (wimui.umd.js)",
+    "path": "dist/wimui.umd.js",
+    "limit": "300 KB"
+  },
+  {
+    "name": "CSS (wimui.css)",
+    "path": "dist/wimui.css",
+    "limit": "40 KB"
+  }
+]
