@@ -2,11 +2,10 @@ import fs from 'fs';
 import path from 'path';
 
 const locales = ['en', 'ja', 'pt'];
+const basePath = 'c:\\Users\\facto\\Desktop\\github\\wimui\\public\\locales';
 const namespaces = fs.readdirSync(path.join(basePath, 'en'))
   .filter(file => file.endsWith('.json'))
   .map(file => file.replace('.json', ''));
-
-const basePath = 'c:\\Users\\facto\\Desktop\\github\\wimui\\public\\locales';
 
 namespaces.forEach(ns => {
   const enPath = path.join(basePath, 'en', `${ns}.json`);
