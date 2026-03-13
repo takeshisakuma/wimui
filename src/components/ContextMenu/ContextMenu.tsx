@@ -2,6 +2,7 @@ import React, {
   useState,
   useRef,
   ReactNode,
+  useContext,
 } from "react";
 import classNames from "classnames";
 import {
@@ -14,6 +15,9 @@ import {
   useInteractions,
   FloatingPortal,
   FloatingFocusManager,
+  useListNavigation,
+  useListItem,
+  FloatingList,
 } from "@floating-ui/react";
 import { Transition } from "../Transition/Transition";
 import { BaseListItem } from "../_internal/BaseListItem";
@@ -28,6 +32,12 @@ export type ContextMenuProps = {
   disabled?: boolean;
 };
 
+// Context to share state between components
+const ContextMenuContext = React.createContext<{
+  activeIndex: number | null;
+  getItemProps: (userProps?: React.HTMLProps<HTMLElement> & { index?: number }) => Record<string, unknown>;
+} | null>(null);
+
 export const ContextMenu = ({
   children,
   menu,
@@ -35,10 +45,20 @@ export const ContextMenu = ({
   disabled = false,
 }: ContextMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+
+  const elementsRef = useRef<(HTMLElement | null)[]>([]);
 
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
-    onOpenChange: setIsOpen,
+    onOpenChange: (open) => {
+      setIsOpen(open);
+      if (!open) {
+        setActiveIndex(null);
+        setIsKeyboardOpen(false);
+      }
+    },
     middleware: [
       flip(),
       shift({ padding: 10 }),
@@ -48,30 +68,59 @@ export const ContextMenu = ({
 
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
+  const listNavigation = useListNavigation(context, {
+    listRef: elementsRef,
+    activeIndex,
+    onNavigate: setActiveIndex,
+    loop: true,
+  });
 
-  const { getFloatingProps } = useInteractions([dismiss, role]);
+  const { getFloatingProps, getItemProps } = useInteractions([
+    dismiss,
+    role,
+    listNavigation,
+  ]);
 
-  const handleContextMenu = (e: React.MouseEvent) => {
-    if (disabled) return;
-
-    e.preventDefault();
-
+  const openMenu = (x: number, y: number, isKeyboard: boolean) => {
     refs.setReference({
       getBoundingClientRect() {
         return {
           width: 0,
           height: 0,
-          x: e.clientX,
-          y: e.clientY,
-          top: e.clientY,
-          left: e.clientX,
-          right: e.clientX,
-          bottom: e.clientY,
+          x,
+          y,
+          top: y,
+          left: x,
+          right: x,
+          bottom: y,
         };
       },
     });
 
+    setIsKeyboardOpen(isKeyboard);
     setIsOpen(true);
+    setActiveIndex(0);
+  };
+
+  const handleContextMenu = (e: React.MouseEvent) => {
+    if (disabled) return;
+
+    e.preventDefault();
+    // Default context menu triggered by keyboard usually has clientX/Y as 0 or center of element
+    const isKeyboard = e.clientX === 0 && e.clientY === 0;
+    openMenu(e.clientX, e.clientY, isKeyboard);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (disabled) return;
+
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (rect) {
+        openMenu(rect.left + rect.width / 2, rect.top + rect.height / 2, true);
+      }
+    }
   };
 
   const handleClose = () => {
@@ -86,6 +135,10 @@ export const ContextMenu = ({
       ref={containerRef}
       className={classNames("wim-context-menu-container", className)}
       onContextMenu={handleContextMenu}
+      onKeyDown={handleKeyDown}
+      tabIndex={disabled ? -1 : 0}
+      role="button"
+      aria-haspopup="menu"
     >
       {children}
       <FloatingPortal>
@@ -98,7 +151,11 @@ export const ContextMenu = ({
           leaveFrom="fade-leave-from"
           leaveTo="fade-leave-to"
         >
-          <FloatingFocusManager context={context} modal={true}>
+          <FloatingFocusManager 
+            context={context} 
+            modal={true} 
+            initialFocus={isKeyboardOpen ? (activeIndex ?? 0) : -1}
+          >
             {/* eslint-disable react-hooks/refs */}
             <div
               ref={refs.setFloating}
@@ -111,7 +168,11 @@ export const ContextMenu = ({
                 },
               })}
             >
-              {menu}
+              <ContextMenuContext.Provider value={{ activeIndex, getItemProps }}>
+                <FloatingList elementsRef={elementsRef}>
+                  {menu}
+                </FloatingList>
+              </ContextMenuContext.Provider>
             </div>
             {/* eslint-enable react-hooks/refs */}
           </FloatingFocusManager>
@@ -130,6 +191,7 @@ export type ContextMenuItemProps = {
   danger?: boolean;
 };
 
+
 export const ContextMenuItem = ({
   children,
   onClick,
@@ -138,7 +200,10 @@ export const ContextMenuItem = ({
   icon,
   danger = false,
 }: ContextMenuItemProps) => {
-  const handleClick = (e: React.MouseEvent) => {
+  const { ref, index } = useListItem();
+  const context = useContext(ContextMenuContext);
+
+  const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     if (disabled) return;
 
@@ -147,21 +212,31 @@ export const ContextMenuItem = ({
     }
   };
 
+  const itemProps = context ? context.getItemProps({
+    index,
+    onClick: (e: React.SyntheticEvent) => handleClick(e),
+    onKeyDown: (e: React.KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleClick(e);
+      }
+    },
+  }) : {};
+
   return (
     <BaseListItem
-      className={classNames("wim-context-menu-item", className)}
+      ref={ref}
+      className={classNames(
+        "wim-context-menu-item", 
+        className,
+        context?.activeIndex === index && "wim-base-list-item--active"
+      )}
       disabled={disabled}
       danger={danger}
       icon={icon}
-      onClick={(e: React.MouseEvent) => handleClick(e)}
-      onKeyDown={(e: React.KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handleClick(e as unknown as React.MouseEvent);
-        }
-      }}
       role="menuitem"
-      tabIndex={disabled ? -1 : 0}
+      tabIndex={context?.activeIndex === index ? 0 : -1}
+      {...itemProps}
     >
       {children}
     </BaseListItem>
@@ -199,3 +274,4 @@ export const ContextMenuGroup = ({
     </div>
   );
 };
+

@@ -55,4 +55,53 @@ describe("ContextMenu", () => {
 
     expect(handleClick).toHaveBeenCalled();
   });
+
+  it("focuses the first item when opened", async () => {
+    render(
+      <ContextMenu
+        menu={
+          <>
+            <ContextMenuItem>Item 1</ContextMenuItem>
+            <ContextMenuItem>Item 2</ContextMenuItem>
+          </>
+        }
+      >
+        <div data-testid="trigger">Trigger</div>
+      </ContextMenu>,
+    );
+
+    fireEvent.contextMenu(screen.getByTestId("trigger"));
+
+    await waitFor(() => {
+      expect(screen.getByText("Item 1").closest('[role="menuitem"]')).toHaveFocus();
+    });
+  });
+
+  it("navigates with arrow keys", async () => {
+    render(
+      <ContextMenu
+        menu={
+          <>
+            <ContextMenuItem>Item 1</ContextMenuItem>
+            <ContextMenuItem>Item 2</ContextMenuItem>
+          </>
+        }
+      >
+        <div data-testid="trigger">Trigger</div>
+      </ContextMenu>,
+    );
+
+    fireEvent.contextMenu(screen.getByTestId("trigger"));
+
+    await waitFor(() => {
+      expect(screen.getByText("Item 1").closest('[role="menuitem"]')).toHaveFocus();
+    });
+
+    fireEvent.keyDown(screen.getByRole("menu"), { key: "ArrowDown" });
+    expect(screen.getByText("Item 2").closest('[role="menuitem"]')).toHaveFocus();
+
+    fireEvent.keyDown(screen.getByRole("menu"), { key: "ArrowUp" });
+    expect(screen.getByText("Item 1").closest('[role="menuitem"]')).toHaveFocus();
+  });
 });
+

@@ -9,7 +9,7 @@ import {
 import { Icon } from "@/components/Icon/Icon";
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+
 
 const meta: Meta<typeof ChatContainer> = {
   title: "Components/Data Structures/ChatUI",
@@ -375,7 +375,6 @@ export const AvatarSizes: Story = {
 
 export const AiAssistantIntegration: Story = {
   render: () => {
-    const { t } = useTranslation(["docs", "components"]);
     interface Message {
       id: number;
       text: string;

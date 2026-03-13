@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Transfer, TransferItem } from "../../src/components/Transfer/Transfer";
+import { Transfer } from "../../src/components/Transfer/Transfer";
 
 const meta: Meta<typeof Transfer> = {
   title: "Components/Advanced Inputs/Transfer",

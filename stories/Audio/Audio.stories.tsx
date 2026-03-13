@@ -79,7 +79,6 @@ export const CustomControls: Story = {
 };
 
 export const FullFeatured: Story = {
-  name: "Full Featured",
   args: {
     src: [
       {

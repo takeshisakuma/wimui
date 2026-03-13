@@ -1,4 +1,4 @@
-﻿/* ------------------------------------------------------------------
+/* ------------------------------------------------------------------
    ContextMenu Styles
 ------------------------------------------------------------------ */
 
@@ -21,7 +21,7 @@
 .wim-context-menu-item {
   // Common styles are now handled by BaseListItem
 
-  &:focus {
+  &:focus-visible {
     outline: none;
     box-shadow: var(--shadow-focus);
     z-index: 1;

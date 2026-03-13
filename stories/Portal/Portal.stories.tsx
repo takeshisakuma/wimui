@@ -195,7 +195,7 @@ export const NotificationCenter: Story = {
       setLogs((prev) => [{ id, msg, type }, ...prev].slice(0, 10));
     };
 
-    const SenderComponent = ({ name, type, color, displayName }: any) => {
+    const SenderComponent = ({ _name, _type, color, displayName }: any) => {
       const [active, setActive] = useState(false);
       return (
         <Card variant="outline" padding="sm">

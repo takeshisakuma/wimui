@@ -131,7 +131,7 @@ const useDataGridTranslations = () => {
 
 export const Default: Story = {
   render: (args) => {
-    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
   },
@@ -164,7 +164,7 @@ export const WithSelection: Story = {
 
 export const WithSorting: Story = {
   render: () => {
-    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const { tColumns } = useDataGridTranslations();
     const [sortConfig, setSortConfig] = React.useState<{
       key: string;
       direction: "asc" | "desc" | "none";
@@ -205,7 +205,7 @@ export const WithSorting: Story = {
 
 export const WithPagination: Story = {
   render: () => {
-    const { t, tColumns } = useDataGridTranslations();
+    const { tColumns } = useDataGridTranslations();
     const [currentPage, setCurrentPage] = React.useState(1);
     const pageSize = 10;
     const startIndex = (currentPage - 1) * pageSize;
@@ -264,7 +264,7 @@ export const WithActions: Story = {
             >
               <Icon name="EditIcon" size="small" />
             </Button>
-            {/* eslint-disable-next-line jsx-a11y/aria-role */}
+            { }
             <Button
               size="small"
               priority="tertiary"
@@ -286,7 +286,7 @@ export const WithActions: Story = {
 
 export const Loading: Story = {
   render: (args) => {
-    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
   },
@@ -309,7 +309,7 @@ export const Empty: Story = {
 
 export const Striped: Story = {
   render: (args) => {
-    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
   },
@@ -321,7 +321,7 @@ export const Striped: Story = {
 
 export const Bordered: Story = {
   render: (args) => {
-    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
   },
@@ -332,7 +332,7 @@ export const Bordered: Story = {
 
 export const StickyHeader: Story = {
   render: (args) => {
-    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const { tColumns } = useDataGridTranslations();
     const rows = manyRows;
     return <DataGrid {...(args as any)} columns={tColumns} rows={rows} />;
   },
@@ -345,7 +345,7 @@ export const StickyHeader: Story = {
 
 export const FullFeatured: Story = {
   render: () => {
-    const { t, tColumns } = useDataGridTranslations();
+    const { tColumns } = useDataGridTranslations();
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
     const [currentPage, setCurrentPage] = React.useState(1);
     const [sortConfig, setSortConfig] = React.useState<{
@@ -510,7 +510,7 @@ export const WithRightFixedColumn: Story = {
         width: 120,
         fixed: "right" as const,
         align: "center" as const,
-        render: (_: any, row: Record<string, any>) => (
+        render: (_: any, _row: Record<string, any>) => (
           <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
             <Button size="small" priority="tertiary">
               <Icon name="EditIcon" size="small" />
@@ -538,7 +538,7 @@ export const WithRightFixedColumn: Story = {
 
 export const InfiniteScroll: Story = {
   render: () => {
-    const { t, tColumns } = useDataGridTranslations();
+    const { tColumns } = useDataGridTranslations();
     const [data, setData] = React.useState(manyRows.slice(0, 15));
     const [loading, setLoading] = React.useState(false);
     const [hasMore, setHasMore] = React.useState(true);
