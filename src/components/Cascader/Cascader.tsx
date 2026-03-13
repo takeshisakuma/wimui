@@ -66,6 +66,7 @@ export const Cascader = ({
   const labelId = label ? `${id}-label` : undefined;
   const errorId = error ? `${id}-error` : undefined;
   const triggerId = `${id}-trigger`;
+  const popupId = `${id}-popup`;
 
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<string[]>(
@@ -376,6 +377,7 @@ export const Cascader = ({
             tabIndex={disabled ? -1 : 0}
             role="combobox"
             aria-expanded={isOpen}
+            aria-controls={popupId}
             aria-haspopup="listbox"
             aria-disabled={disabled}
             aria-labelledby={labelId}
@@ -404,6 +406,7 @@ export const Cascader = ({
           leave="fade-leave"
           leaveFrom="fade-leave-from"
           leaveTo="fade-leave-to"
+          id={popupId}
           className="wim-cascader__dropdown"
         >
           {renderMenus()}

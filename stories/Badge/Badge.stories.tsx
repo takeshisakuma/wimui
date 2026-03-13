@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Badge } from "@/components/Badge/Badge";
+import { Icon } from "@/components/Icon/Icon";
 import { useTranslation } from "react-i18next";
 
 const meta: Meta<typeof Badge> = {
@@ -104,21 +105,7 @@ export const WithIcon: Story = {
       <Badge
         {...args}
         content={t("story_badge_verified")}
-        icon={
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M20 6 9 17l-5-5" />
-          </svg>
-        }
+        icon={<Icon name="CheckIcon" />}
       />
     );
   },
@@ -130,19 +117,7 @@ export const WithIcon: Story = {
 export const IconOnly: Story = {
   args: {
     icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M20 6 9 17l-5-5" />
-      </svg>
+      <Icon name="CheckIcon" />
     ),
     status: "primary",
   },

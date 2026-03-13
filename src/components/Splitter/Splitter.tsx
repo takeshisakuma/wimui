@@ -257,6 +257,7 @@ const SplitterHandle = ({
 
   const { onResizeStart, orientation } = useSplitter();
 
+  /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */
   return (
     <div
       role="separator"
@@ -278,6 +279,7 @@ const SplitterHandle = ({
       {...props}
     />
   );
+  /* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */
 };
 SplitterHandle.displayName = "SplitterHandle";
 

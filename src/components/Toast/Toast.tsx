@@ -48,6 +48,11 @@ export const Toast = ({
   const { t } = useTranslation();
   const [internalVisible, setInternalVisible] = useState(true);
 
+  const handleClose = useCallback(() => {
+    setInternalVisible(false);
+    if (onClose) onClose(id);
+  }, [onClose, id]);
+
   useEffect(() => {
     if (isVisible && duration > 0 && internalVisible) {
       const timer = setTimeout(() => {
@@ -55,12 +60,7 @@ export const Toast = ({
       }, duration + 300); // Add extra buffer for animation
       return () => clearTimeout(timer);
     }
-  }, [isVisible, duration, id, onClose, internalVisible]);
-
-  const handleClose = () => {
-    setInternalVisible(false);
-    if (onClose) onClose(id);
-  };
+  }, [isVisible, duration, id, onClose, internalVisible, handleClose]);
 
   return (
     <Transition

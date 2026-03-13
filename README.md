@@ -68,6 +68,11 @@ npm run format:fix // storiesフォルダ内のコードを整形
 npm run i18n:sync //翻訳がen, ja, pt すべてのリソースファイルで漏れなく定義されているかを確認
 
 
+### git commit時のhuskyのスキップ
+
+commit時にhuskyのスキップをしたい場合は、--no-verifyをつける
+git commit -m "commit message" --no-verify
+
 ### github pagesへのデプロイ
 
 npm run deploy

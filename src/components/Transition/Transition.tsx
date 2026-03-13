@@ -111,7 +111,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
         return () => {};
       };
 
-      // eslint-disable-next-line react-compiler/react-compiler
+      /* eslint-disable react-hooks/set-state-in-effect */
       if (show) {
         setShouldRender(true);
         setState("entering");
@@ -162,6 +162,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
           cleanup();
         };
       }
+      /* eslint-enable react-hooks/set-state-in-effect */
     }, [show, enter, enterFrom, enterTo, leave, leaveFrom, leaveTo]);
 
     if (!shouldRender && unmount) return null;
@@ -180,3 +181,5 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     );
   },
 );
+
+Transition.displayName = "Transition";

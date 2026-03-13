@@ -53,6 +53,7 @@ export const Breadcrumb = ({
   };
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <nav
       aria-label={t("a11y_breadcrumb")}
       className={classNames(
@@ -60,8 +61,9 @@ export const Breadcrumb = ({
         `wim-breadcrumb--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
         className,
       )}
+      onKeyDown={handleKeyDown}
     >
-      <ol className="wim-breadcrumb__list" onKeyDown={handleKeyDown}>
+      <ol className="wim-breadcrumb__list">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
 

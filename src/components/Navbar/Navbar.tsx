@@ -174,10 +174,10 @@ export const NavbarLink = React.forwardRef<HTMLAnchorElement, NavbarLinkProps>(
 
 NavbarLink.displayName = "Navbar.Link";
 
-export interface NavbarToggleProps extends Omit<
+export type NavbarToggleProps = Omit<
   React.ComponentPropsWithoutRef<typeof HamburgerMenu>,
   "isOpen" | "onClick"
-> {}
+>;
 
 export const NavbarToggle = React.forwardRef<
   HTMLButtonElement,

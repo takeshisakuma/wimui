@@ -97,7 +97,7 @@ export const Snackbar = ({
   }, [onClose]);
 
     const [remainingTime, setRemainingTime] = useState(autoHideDuration);
-    const [lastStartTime, setLastStartTime] = useState(Date.now());
+    const [lastStartTime, setLastStartTime] = useState(() => Date.now());
     const [isPaused, setIsPaused] = useState(false);
 
     useEffect(() => {
@@ -105,6 +105,7 @@ export const Snackbar = ({
         const timer = setTimeout(() => {
           handleClose();
         }, remainingTime);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setLastStartTime(Date.now());
         return () => clearTimeout(timer);
       }

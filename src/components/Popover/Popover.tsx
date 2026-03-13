@@ -137,7 +137,7 @@ export const PopoverTrigger = React.forwardRef<
 
   if (asChild && React.isValidElement(children)) {
     const childProps = children.props as Record<string, unknown>;
-    // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/refs
     const referenceProps = context.getReferenceProps({
       ref,
       ...props,
@@ -182,7 +182,7 @@ export type PopoverContentProps = {
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,
   PopoverContentProps & React.HTMLAttributes<HTMLDivElement>
->(({ children, className, align, side, style, modal = false, ...props }, propRef) => {
+>(({ children, className, align, side, style, modal = false, ...props }, propRef) => { // eslint-disable-line react/prop-types
   const context = React.useContext(PopoverContext);
 
   if (context == null) {

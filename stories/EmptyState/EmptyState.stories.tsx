@@ -67,20 +67,7 @@ export const CustomAction: Story = {
         {...args}
         title={t("story_emptystate_ready_title")}
         description={t("story_emptystate_ready_desc")}
-        icon={
-          <svg
-            viewBox="0 0 24 24"
-            width="48"
-            height="48"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M12 5v14M5 12h14" />
-          </svg>
-        }
+        icon={<Icon name="PlusIcon" style={{ width: 48, height: 48 }} />}
         extra={
           <>
             <Button label={t("story_emptystate_browse_templates")} priority="secondary" />

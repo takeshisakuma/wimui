@@ -224,7 +224,7 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
     | "disabled";
 };
 
-// eslint-disable-next-line react/prop-types
+/* eslint-disable react/prop-types */
 export const Icon = ({
   name,
   size = "medium",
@@ -250,3 +250,4 @@ export const Icon = ({
     />
   );
 };
+/* eslint-enable react/prop-types */

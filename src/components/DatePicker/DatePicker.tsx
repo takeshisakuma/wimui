@@ -178,6 +178,7 @@ export const DatePicker = ({
             ref={inputRef}
             type="text"
             readOnly
+            role="combobox"
             className={classNames(
               "wim-input",
               "wim-datepicker-input",
