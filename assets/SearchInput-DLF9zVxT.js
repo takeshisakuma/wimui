@@ -1,7 +1,0 @@
-import{j as o}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as i}from"./index-CcGuodko.js";import{T as n}from"./T-D1RPXYEF.js";import{M as e,C as s,a as p}from"./blocks-5HZkeV9G.js";import{S as a,D as c}from"./SearchInput.stories-C6Y1REdd.js";import"./iframe-DtwnyzFc.js";import"./preload-helper-PPVm8Dsz.js";import"./useTranslation-BJQcmf5i.js";import"./index-B8C8inzl.js";import"./index-DMp-KfsK.js";import"./index-D4iIu0Ck.js";import"./index-7TH5MNU4.js";import"./Input-BGgP-MIa.js";import"./index-DWTvJvSx.js";/* empty css              */import"./InputBase-DMJ6X_vW.js";import"./Icon-CPLASYuL.js";import"./FieldTemplate-ctav63-N.js";import"./FieldLabelContent-BsRDrqeT.js";import"./Badge-CAHEyuou.js";import"./IndicatorBase-Bn-Wsf5I.js";import"./FieldError-DHq6CJYr.js";import"./Paragraph-CQlnVbXO.js";function m(t){const r={h1:"h1",h2:"h2",...i(),...t.components};return o.jsxs(o.Fragment,{children:[o.jsx(e,{of:a}),`
-`,o.jsx(r.h1,{id:"searchinput",children:"SearchInput"}),`
-`,o.jsx("p",{children:o.jsx(n,{k:"doc_searchinput_long_desc"})}),`
-`,o.jsxs(r.h2,{id:"-actually-sample-but-ill-use-common-one",children:[o.jsx(n,{k:"doc_example"})," (Actually Sample but I'll use common one)"]}),`
-`,o.jsx(s,{of:c}),`
-`,o.jsx(r.h2,{id:"",children:o.jsx(n,{k:"doc_props"})}),`
-`,o.jsx(p,{})]})}function L(t={}){const{wrapper:r}={...i(),...t.components};return r?o.jsx(r,{...t,children:o.jsx(m,{...t})}):m(t)}export{L as default};
