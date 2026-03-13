@@ -29,5 +29,5 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
         src: string;
     }[];
 };
-export declare const Video: ({ src, width, height, autoPlay, loop, muted, controls, poster, radius, shadow, border, fit, preload, caption, className, style, customControls, advancedControls, videoId, resumePlayback, playlist, autoPlayNext, qualities, ...props }: VideoProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Video: ({ src, width: _width, height, autoPlay, loop, muted, controls, poster, radius, shadow, border, fit, preload, caption, className, style, customControls, advancedControls, videoId, resumePlayback, playlist, autoPlayNext, qualities, ...props }: VideoProps) => import("react/jsx-runtime").JSX.Element;
 export {};

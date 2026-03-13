@@ -29,5 +29,5 @@ type DatePickerProps = Omit<React.ComponentPropsWithoutRef<"input">, "value" | "
 /**
  * ユーザーが日付を選択するためのコンポーネント。
  */
-export declare const DatePicker: ({ status, variant, fullWidth, className, disabled, value, defaultValue, onChange, format, clearable, placeholder, minDate, maxDate, disabledDates, label, error, required, layout, id: customId, ...props }: DatePickerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const DatePicker: ({ status, variant, fullWidth, className, disabled, value, defaultValue, onChange, format, clearable, placeholder, minDate: _minDate, maxDate: _maxDate, disabledDates: _disabledDates, label, error, required, layout, id: customId, ...props }: DatePickerProps) => import("react/jsx-runtime").JSX.Element;
 export {};
