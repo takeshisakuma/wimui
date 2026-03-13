@@ -13,12 +13,8 @@ describe("RangeCalendar", () => {
     const handleChange = vi.fn();
     render(<RangeCalendar onChange={handleChange} />);
 
-    // Find all days of the current month.
-    // For simplicity, let's just find by text.
-    // Note: multiple days might have the same number if they are from outside months.
-    const days = screen
-      .getAllByRole("button")
-      .filter((b) => !b.classList.contains("wim-calendar-nav-btn"));
+    // Find all day cells (role="gridcell"). Nav buttons have role="button", not "gridcell".
+    const days = screen.getAllByRole("gridcell");
 
     // Click first day
     fireEvent.click(days[10]);

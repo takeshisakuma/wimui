@@ -1,8 +1,12 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { MultiSelect } from "./MultiSelect";
 
 describe("MultiSelect", () => {
+  beforeEach(() => {
+    window.HTMLElement.prototype.scrollIntoView = vi.fn();
+  });
+
   const options = [
     { label: "Option 1", value: "opt1" },
     { label: "Option 2", value: "opt2" },

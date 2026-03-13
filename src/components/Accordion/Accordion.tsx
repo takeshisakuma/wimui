@@ -57,7 +57,8 @@ export const Accordion = ({
   const accordionId = customId || generatedId;
 
   const [internalValue, setInternalValue] = useState<string[]>(() => {
-    return [];
+    if (!_defaultValue) return [];
+    return Array.isArray(_defaultValue) ? _defaultValue : [_defaultValue];
   });
   const containerRef = React.useRef<HTMLDivElement>(null);
 

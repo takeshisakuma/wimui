@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import {
   CommandPalette,
   CommandPaletteTrigger,
@@ -10,6 +10,10 @@ import {
 } from "./CommandPalette";
 
 describe("CommandPalette", () => {
+  beforeEach(() => {
+    window.HTMLElement.prototype.scrollIntoView = vi.fn();
+  });
+
   it("opens and closes", async () => {
     render(
       <CommandPalette>

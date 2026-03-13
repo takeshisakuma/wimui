@@ -1,4 +1,4 @@
-﻿.wim-switch-wrapper {
+.wim-switch-wrapper {
   display: inline-flex;
   gap: var(--spacing-sm);
   align-items: center;
@@ -12,65 +12,67 @@
 }
 
 .wim-switch-input {
-  position: absolute;
-  width: 0;
-  height: 0;
-  opacity: 0;
-}
-
-.wim-switch-track {
+  appearance: none;
   position: relative;
+  display: flex;
   flex-shrink: 0;
+  align-items: center;
   width: 44px;
   height: 24px;
+  padding: 2px;
+  cursor: pointer;
   background-color: var(--wim-color-border-secondary);
   border-radius: 9999px;
   transition: background-color 0.2s ease-in-out;
 
-  .wim-switch-input:checked + & {
-    background-color: var(--color-primary);
+  &::before {
+    content: "";
+    flex-grow: var(--OFF);
+    transition: flex-grow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .wim-switch-thumb {
-    position: absolute;
-    top: 2px;
-    left: 2px;
+  &::after {
+    content: "";
     width: 20px;
     height: 20px;
     background-color: var(--text-white);
     border-radius: 50%;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 0.1); // Fallback for shadow if variable missing
-    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
   }
 
-  .wim-switch-input:checked + & .wim-switch-thumb {
-    transform: translateX(20px);
-  }
-}
+  &:checked {
+    background-color: var(--color-primary);
 
-/* Sizes */
-.wim-switch-track--small {
-  width: 36px;
-  height: 20px;
-
-  .wim-switch-thumb {
-    width: 16px;
-    height: 16px;
+    &::before {
+      flex-grow: 1; // Transitions to ON state (flex-grow: initial equivalent)
+    }
   }
 
-  &.wim-switch-track-checked .wim-switch-thumb {
-    transform: translateX(16px);
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    box-shadow: var(--shadow-focus);
   }
-}
 
-.wim-switch-input:checked
-  + .wim-switch-track.wim-switch-track--small
-  .wim-switch-thumb {
-  transform: translateX(16px);
+  &.wim-switch-input--small {
+    width: 36px;
+    height: 20px;
+
+    &::after {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }
 
 .wim-switch-label {
   font-family: var(--font-sans);
-  font-size: var(--text-base); // Ensure this exists or use 1rem
+  font-size: var(--text-base);
   color: var(--text-primary);
 }
+

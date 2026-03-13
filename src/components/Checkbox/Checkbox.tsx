@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
-import { Icon } from "../Icon/Icon";
 import "./checkbox.scss";
 
 type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -42,17 +41,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           ref={resolvedRef}
           {...props}
         />
-        <div className="wim-checkbox-visual">
-          {indeterminate ? (
-            <div className="wim-checkbox-indeterminate-mark" />
-          ) : (
-            <Icon
-              name="CheckIcon"
-              size="small"
-              style={{ color: "currentColor" }}
-            />
-          )}
-        </div>
         {label && <span className="wim-checkbox-label">{t(label)}</span>}
       </label>
     );

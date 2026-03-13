@@ -100,6 +100,9 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-overlay-bg-light: rgba(255, 255, 255, 0.8);
   --wim-color-overlay-bg-dark: rgba(0, 0, 0, 0.7);
   --wim-color-text-on-overlay: #fff;
+  /* Helper variables for toggle states */
+  --ON: initial;
+  --OFF: ;
 }
 
 @mixin dark-theme {

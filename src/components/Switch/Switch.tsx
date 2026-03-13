@@ -37,20 +37,17 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           id={id}
           type="checkbox"
           role="switch"
-          className="wim-switch-input"
+          // @ts-expect-error - 'switch' attribute is a progressive enhancement for Safari
+          // eslint-disable-next-line react/no-unknown-property
+          switch=""
+          className={classNames(
+            "wim-switch-input",
+            size === "small" && "wim-switch-input--small",
+          )}
           disabled={disabled}
           ref={resolvedRef}
           {...props}
         />
-        <div
-          className={classNames(
-            "wim-switch-track",
-            size === "small" && "wim-switch-track--small",
-          )}
-          aria-hidden="true"
-        >
-          <div className="wim-switch-thumb" aria-hidden="true" />
-        </div>
         {label && <span className="wim-switch-label">{t(label)}</span>}
       </label>
     );

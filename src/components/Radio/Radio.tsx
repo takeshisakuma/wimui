@@ -35,9 +35,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           ref={resolvedRef}
           {...props}
         />
-        <div className="wim-radio-visual">
-          <div className="wim-radio-dot" />
-        </div>
         {label && <span className="wim-radio-label">{t(label)}</span>}
       </label>
     );
