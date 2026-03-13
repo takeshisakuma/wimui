@@ -1,15 +1,6 @@
-import React, { useState, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  useFloating,
-  autoUpdate,
-  offset,
-  flip,
-  shift,
-  useClick,
-  useDismiss,
-  useRole,
-  useInteractions,
   FloatingPortal,
   useMergeRefs,
   Placement,
@@ -182,7 +173,7 @@ export type PopoverContentProps = {
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,
   PopoverContentProps & React.HTMLAttributes<HTMLDivElement>
->(({ children, className, align, side, style, modal = false, ...props }, propRef) => { // eslint-disable-line react/prop-types
+>(({ children, className, align: _align, side: _side, style, modal = false, ...props }, propRef) => { // eslint-disable-line react/prop-types
   const context = React.useContext(PopoverContext);
 
   if (context == null) {

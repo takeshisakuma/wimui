@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import "./backtop.scss";
@@ -27,7 +27,6 @@ export const BackTop = ({
   style,
 }: BackTopProps) => {
   const [visible, setVisible] = useState(false);
-  const scrollEventRef = useRef<any>(null);
 
   const getScrollTop = useCallback(
     (targetElement: HTMLElement | Window | Document) => {

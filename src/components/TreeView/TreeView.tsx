@@ -251,7 +251,7 @@ export const TreeViewItem = ({
     return checkChildren(children);
   }, [children, searchQuery]);
 
-  const [isAnimating, setIsAnimating] = React.useState(false);
+  const [, setIsAnimating] = React.useState(false);
   const [shouldRender, setShouldRender] = React.useState(isExpanded);
   const [isVisualExpanded, setIsVisualExpanded] = React.useState(isExpanded);
 

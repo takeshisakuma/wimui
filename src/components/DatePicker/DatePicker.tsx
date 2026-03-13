@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect, useId } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Calendar } from "../Calendar/Calendar";
-import { Icon } from "../Icon/Icon";
 import { InputBase } from "../_internal/InputBase";
 import "../Input/input.scss";
 import "./datePicker.scss";
@@ -55,9 +54,9 @@ export const DatePicker = ({
   format = "YYYY-MM-DD",
   clearable = true,
   placeholder,
-  minDate,
-  maxDate,
-  disabledDates,
+  minDate: _minDate,
+  maxDate: _maxDate,
+  disabledDates: _disabledDates,
   label,
   error,
   required,

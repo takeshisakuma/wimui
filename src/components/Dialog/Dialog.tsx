@@ -2,16 +2,10 @@ import React, {
   createContext,
   useContext,
   useState,
-  useEffect,
   useCallback,
-  useRef,
   useId,
 } from "react";
 import classNames from "classnames";
-import { Portal } from "../Portal/Portal";
-import { Transition } from "../Transition/Transition";
-import { FocusTrap } from "../FocusTrap/FocusTrap";
-import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { OverlayBase } from "../_internal/OverlayBase";
 import "./dialog.scss";

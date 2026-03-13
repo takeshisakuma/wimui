@@ -25,7 +25,7 @@ describe("Tag", () => {
   });
 
   it("renders with icon", () => {
-    const { container } = render(
+    render(
       <Tag icon={<span data-testid="icon" />}>Icon</Tag>,
     );
     expect(screen.getByTestId("icon")).toBeInTheDocument();

@@ -2,14 +2,9 @@ import React, {
   createContext,
   useContext,
   useState,
-  useEffect,
   useCallback,
-  useRef,
 } from "react";
 import classNames from "classnames";
-import { Portal } from "../Portal/Portal";
-import { Transition } from "../Transition/Transition";
-import { FocusTrap } from "../FocusTrap/FocusTrap";
 import "./drawer.scss";
 
 // --- Drawer Context ---

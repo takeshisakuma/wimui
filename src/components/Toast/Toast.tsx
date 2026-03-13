@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
-import { useTranslation } from "react-i18next";
 import { FeedbackIcon } from "../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
 import "./toast.scss";
@@ -45,7 +44,6 @@ export const Toast = ({
   onClose,
   className,
 }: ToastProps) => {
-  const { t } = useTranslation();
   const [internalVisible, setInternalVisible] = useState(true);
 
   const handleClose = useCallback(() => {

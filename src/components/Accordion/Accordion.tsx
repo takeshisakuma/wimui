@@ -45,7 +45,7 @@ export interface AccordionProps {
  */
 export const Accordion = ({
   type = "single",
-  defaultValue,
+  defaultValue: _defaultValue,
   value: valueProp,
   onValueChange,
   collapsible = true,

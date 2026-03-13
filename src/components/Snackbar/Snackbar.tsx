@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { Button } from "../Button/Button";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { FeedbackIcon } from "../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
 import "./snackbar.scss";
@@ -64,8 +63,6 @@ export const Snackbar = ({
   onClose,
   className,
 }: SnackbarProps) => {
-  const { t } = useTranslation();
-
   const [isVisible, setIsVisible] = useState(false);
   const [isRendered, setIsRendered] = useState(false);
   const [prevOpen, setPrevOpen] = useState(open);

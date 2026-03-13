@@ -8,7 +8,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  Cell,
 } from "recharts";
 import { CHART_COLORS, CHART_THEME } from "./helpers";
 

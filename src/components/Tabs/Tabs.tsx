@@ -4,16 +4,10 @@ import React, {
   useState,
   useCallback,
   useId,
-  useRef,
-  useLayoutEffect,
-  useEffect,
 } from "react";
 import classNames from "classnames";
 import { useIndicator } from "../_internal/useIndicator";
 import "./tabs.scss";
-
-const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 type TabsContextType = {
   value?: string;

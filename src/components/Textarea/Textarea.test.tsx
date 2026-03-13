@@ -17,7 +17,7 @@ describe("Textarea", () => {
   });
 
   it("applies fullWidth class", () => {
-    const { container } = render(<Textarea fullWidth />);
+    render(<Textarea fullWidth />);
     expect(screen.getByRole("textbox")).toHaveClass("wim-textarea--full-width");
   });
 });

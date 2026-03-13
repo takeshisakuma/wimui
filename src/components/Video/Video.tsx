@@ -31,7 +31,7 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
 
 export const Video = ({
   src,
-  width,
+  width: _width,
   height,
   autoPlay = false,
   loop = false,

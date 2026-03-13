@@ -1,5 +1,5 @@
-import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
 import { Transition } from "./Transition";
 
 describe("Transition", () => {

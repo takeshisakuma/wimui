@@ -232,7 +232,7 @@ export const DropdownItem = ({
   const [index] = useState(() => registerItem());
   const isFocused = focusedIndex === index;
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (_e: React.MouseEvent) => {
     if (disabled) return;
 
     if (onClick) {

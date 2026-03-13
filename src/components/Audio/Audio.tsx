@@ -120,10 +120,7 @@ export const Audio = ({
   const activeAudioRef = useRef<HTMLAudioElement>(null);
   const nextAudioRef = useRef<HTMLAudioElement>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
-  const gainNodeRef = useRef<GainNode | null>(null);
   const bassFilterRef = useRef<BiquadFilterNode | null>(null);
-  const analyzerRef = useRef<AnalyserNode | null>(null);
-  const sourceNodeRef = useRef<MediaElementAudioSourceNode | null>(null);
   const sleepTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Audio node graphs

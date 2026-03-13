@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect, useId, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
-import { Icon } from "../Icon/Icon";
 import { TreeView } from "../TreeView/TreeView";
 import { InputBase } from "../_internal/InputBase";
 import "./tree-select.scss";

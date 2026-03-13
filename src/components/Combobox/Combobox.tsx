@@ -172,7 +172,6 @@ export const Combobox = ({
             aria-labelledby={labelId}
           >
             {filteredOptions.map((option, index) => (
-              // eslint-disable-next-line jsx-a11y/click-events-have-key-events
               <BaseListItem
                 as="li"
                 key={option.value}
