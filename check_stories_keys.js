@@ -1,21 +1,32 @@
 
 import fs from 'fs';
 import path from 'path';
-import { globSync } from 'glob';
 
 // Load all English translations
-const localesPath = 'c:\\Users\\facto\\Desktop\\github\\wimui\\public\\locales\\en';
+const localesPath = path.resolve('public/locales/en');
 const localeFiles = fs.readdirSync(localesPath).filter(f => f.endsWith('.json'));
 const allTranslations = new Set();
 
+console.log('--- Loading Translations ---');
 localeFiles.forEach(file => {
-  const data = JSON.parse(fs.readFileSync(path.join(localesPath, file), 'utf8'));
-  Object.keys(data).forEach(key => allTranslations.add(key));
+  const filePath = path.join(localesPath, file);
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    Object.keys(data).forEach(key => allTranslations.add(key));
+  } catch (err) {
+    console.error(`\n❌ ERROR parsing JSON: ${filePath}`);
+    console.error(`   Message: ${err.message}`);
+    // If it's a syntax error, try to help locate it (Node's JSON.parse message often includes line/column)
+    process.exit(1); 
+  }
 });
 
-// Find all story files
-const storiesPath = 'c:\\Users\\facto\\Desktop\\github\\wimui\\stories';
+// Find all story/docs files
+const storiesPath = path.resolve('stories');
+const docsPath = path.resolve('docs'); // Also check docs directory for MDX
+
 function getFiles(dir) {
+    if (!fs.existsSync(dir)) return [];
     const subdirs = fs.readdirSync(dir);
     const files = subdirs.map((subdir) => {
         const res = path.resolve(dir, subdir);
@@ -23,19 +34,28 @@ function getFiles(dir) {
     });
     return files.flat();
 }
-const storyFiles = getFiles(storiesPath).filter(f => f.endsWith('.stories.tsx'));
+
+const targetFiles = [
+  ...getFiles(storiesPath),
+  ...getFiles(docsPath)
+].filter(f => f.endsWith('.stories.tsx') || f.endsWith('.mdx'));
 
 const missingKeys = new Set();
 const keyToFiles = {};
 
-storyFiles.forEach(file => {
+console.log(`\n--- Scanning ${targetFiles.length} files ---`);
+
+targetFiles.forEach(file => {
   const content = fs.readFileSync(file, 'utf8');
-  // Capture the first string argument of t()
-  const matches = content.matchAll(/\bt\s*\(\s*['"]([^'"]*?)['"]\s*[,)]/g);
-  for (const match of matches) {
-    let key = match[1];
+  
+  // 1. Capture the first string argument of t()
+  const tMatches = content.matchAll(/\bt\s*\(\s*['"]([^'"]*?)['"]\s*[,)]/g);
+  // 2. Capture k="..." in <T k="..." />
+  const TMatches = content.matchAll(/<T\s+k\s*=\s*['"]([^'"]*?)['"]/g);
+
+  const processMatch = (key) => {
     // Skip keys with interpolation or complex logic
-    if (key.includes('${') || key.includes('`')) continue;
+    if (key.includes('${') || key.includes('`')) return;
     
     // Handle namespaces (e.g., "components:...")
     if (key.includes(':')) {
@@ -46,17 +66,21 @@ storyFiles.forEach(file => {
     if (!allTranslations.has(key)) {
       missingKeys.add(key);
       if (!keyToFiles[key]) keyToFiles[key] = [];
-      keyToFiles[key].push(path.relative(storiesPath, file));
+      keyToFiles[key].push(path.relative(process.cwd(), file));
     }
-  }
+  };
+
+  for (const match of tMatches) processMatch(match[1]);
+  for (const match of TMatches) processMatch(match[1]);
 });
 
 if (missingKeys.size > 0) {
-  console.log('Missing keys found in stories:');
+  console.log('\n❌ Missing keys found:');
   missingKeys.forEach(key => {
     console.log(`\nKey: ${key}`);
     console.log(`Files: ${[...new Set(keyToFiles[key])].join(', ')}`);
   });
+  process.exit(1);
 } else {
-  console.log('No missing keys found in stories.');
+  console.log('\n✅ No missing keys found.');
 }

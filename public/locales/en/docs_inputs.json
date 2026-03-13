@@ -277,6 +277,7 @@
   "doc_selectbox_op_next": "Focus next option with down arrow key",
   "doc_selectbox_op_open_select": "Open dropdown / Select highlighted option",
   "doc_selectbox_op_prev": "Focus previous option with up arrow key",
+  "doc_selectbox_preselected": "Initially Selected",
   "doc_selectbox_title": "A dropdown menu for selecting one option from a predefined list",
   "doc_selectbox_ts": "TypeScript Support",
   "doc_selectbox_ts_desc": "The Selectbox component provides full type definitions.",
