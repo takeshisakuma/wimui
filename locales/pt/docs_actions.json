@@ -190,7 +190,7 @@
   "doc_link_priority_secondary": "Secundário",
   "doc_link_priority_secondary_desc": "O estilo de link de texto padrão. Usado para navegação geral.",
   "doc_link_priority_tertiary": "Terciário",
-  "doc_link_priority_tertiary_desc": "Priority Tertiary Desc",
+  "doc_link_priority_tertiary_desc": "Um estilo de link sutil usado para itens de navegação complementares ou de menor prioridade.",
   "doc_link_priority_tertiary_style_desc": "Um estilo sutil com decoração mínima. Adequado para links complementares ou áreas congestionadas.",
   "doc_link_sizes_desc": "Suporta três tamanhos: small, medium e large.",
   "doc_link_title": "Componente de Link",

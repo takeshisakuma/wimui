@@ -174,7 +174,7 @@
   "doc_loadingoverlay_ex_basic": "A simple loading overlay with the default spinner.",
   "doc_loadingoverlay_ex_blur": "Control the backdrop blur intensity: none, sm, md, or lg.",
   "doc_loadingoverlay_ex_custom": "Provide custom content instead of the default loaders.",
-  "doc_loadingoverlay_ex_full": "Use \fixed={true} to create a full-screen loading overlay.",
+  "doc_loadingoverlay_ex_full": "Use fixed={true} to create a full-screen loading overlay.",
   "doc_loadingoverlay_ex_interactive": "A practical example showing how to toggle the loading state.",
   "doc_loadingoverlay_ex_message": "Display a message along with the loading indicator.",
   "doc_loadingoverlay_ex_types": "Choose from various loader animations: spinner, bars, dots, or pulse.",

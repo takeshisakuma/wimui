@@ -92,7 +92,7 @@
   "doc_dropzone_desc": "Drag & drop files",
   "doc_dropzone_long_desc": "A component that supports file uploads via drag and drop.",
   "doc_dropzone_multiple": "Multiple File Upload",
-  "doc_dropzone_multiple_desc": "By setting the multiple property to \true, you can select and drop multiple files.",
+  "doc_dropzone_multiple_desc": "By setting the multiple property to true, you can select and drop multiple files.",
   "doc_dropzone_title": "Area for uploading files via drag and drop",
   "doc_fieldLabelContent_desc": "Label text combined with required/optional badge",
   "doc_fieldLabelContent_long_desc": "FieldLabelContent renders the label text along with optional required or optional status badges.",

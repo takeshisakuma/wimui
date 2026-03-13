@@ -26,6 +26,10 @@ type AudioProps = Omit<React.ComponentPropsWithoutRef<"audio">, "src"> & {
     hotkeys?: boolean;
     presets?: boolean;
     sleepTimer?: boolean;
+    /** 読み込み設定。"lazy" の場合に Intersection Observer が有効化されます */
+    loading?: "eager" | "lazy";
+    /** デモ用：読み込み完了を意図的に遅らせるミリ秒 */
+    demoDelay?: number;
 };
-export declare const Audio: ({ src, autoPlay, loop, muted, controls, radius, shadow, border, preload, caption, className, style, customControls, visualizer, showMetadata, fadeIn, fadeOut, crossfade, playbackRate, hotkeys, presets, sleepTimer, ...props }: AudioProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Audio: ({ src, autoPlay, loop, muted, controls, radius, shadow, border, preload, caption, className, style, customControls, visualizer, showMetadata, fadeIn, fadeOut, crossfade, playbackRate, hotkeys, presets, sleepTimer, loading, demoDelay, ...props }: AudioProps) => import("react/jsx-runtime").JSX.Element;
 export {};

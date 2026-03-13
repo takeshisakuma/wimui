@@ -78,7 +78,7 @@
   "overview": "概要",
   "pagination_go_to": "移動",
   "pagination_items_per_page": "件 / ページ",
-  "phoneNumber": "電話番号",
+  "phone_number": "電話番号",
   "processing": "処理中...",
   "profile": "プロフィール",
   "reports": "レポート",
@@ -158,5 +158,7 @@
   "upload": "アップロード",
   "username": "ユーザー名",
   "wed": "水",
-  "welcome": "私たちのアプリへようこそ"
+  "welcome": "私たちのアプリへようこそ",
+  "common_intensity": "強度",
+  "common_reload": "再読み込み"
 }

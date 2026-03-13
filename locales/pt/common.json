@@ -78,7 +78,7 @@
   "overview": "Visão Geral",
   "pagination_go_to": "Ir para",
   "pagination_items_per_page": "itens / página",
-  "phoneNumber": "Número de telefone",
+  "phone_number": "Número de telefone",
   "processing": "Processando...",
   "profile": "Perfil",
   "reports": "Relatórios",
@@ -158,5 +158,7 @@
   "upload": "Upload",
   "username": "Nome de usuário",
   "wed": "Qua",
-  "welcome": "Bem-vindo ao nosso aplicativo"
+  "welcome": "Bem-vindo ao nosso aplicativo",
+  "common_intensity": "Intensidade",
+  "common_reload": "Recarregar"
 }
