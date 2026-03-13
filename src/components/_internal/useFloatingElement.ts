@@ -77,5 +77,6 @@ export const useFloatingElement = ({
     setOpen,
     ...data,
     ...interactions,
+    isPositioned: data.isPositioned,
   };
 };

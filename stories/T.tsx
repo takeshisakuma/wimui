@@ -55,12 +55,14 @@ export const T = ({ k }: { k: string }) => {
       // ignore if channel is unavailable
     }
 
-    // Re-render when i18n language actually changes
+    // Re-render when i18n language changes or namespaces finish loading
     const langHandler = () => setTick((n) => n + 1);
     i18n.on("languageChanged", langHandler);
+    i18n.on("loaded", langHandler);
 
     return () => {
       i18n.off("languageChanged", langHandler);
+      i18n.off("loaded", langHandler);
       try {
         channel?.off(GLOBALS_UPDATED, globalsHandler);
       } catch {

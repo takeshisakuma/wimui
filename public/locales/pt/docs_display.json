@@ -666,7 +666,7 @@
   "doc_feature": "Recurso",
   "doc_feature_label": "Label",
   "doc_features": "Recursos",
-  "doc_focusTrap_desc": "Gerenciamento de foco",
+  "doc_focustrap_desc": "Gerenciamento de foco",
   "doc_focustrap_auto_focus": "Foco Automático",
   "doc_focustrap_auto_focus_desc": "Definir a prop autoFocus como true move o foco para o primeiro elemento focável assim que o trap se torna ativo.",
   "doc_focustrap_feat_1": "Restringe o movimento da tecla Tab dentro do componente.",
