@@ -177,7 +177,7 @@
   "guide_nav_std_concept_desc": "Unifies the visual representation of active states, allowing users to intuitively grasp their current location.",
   "guide_nav_std_concept_title": "Standardization Concept",
   "guide_nav_std_desc": "Defines common rules for components that assist user movement and switching, such as tabs and pagination.",
-  "guide_nav_std_note_desc": "Use 'Tabs' for switching major features, 'Segmented Control' for auxiliary choices, and 'Pagination' for page navigation.",
+  "guide_nav_std_note_desc": "Use 'Tabs' for switching major features, 'SegmentedControl' for auxiliary choices, and 'Pagination' for page navigation.",
   "guide_nav_std_note_title": "Tip",
   "guide_nav_std_rule_1": "Active Indication: Use a sliding indicator (moving bar) to achieve smooth state transitions.",
   "guide_nav_std_rule_1_desc": "Use sliding indicators (moving bars) for smooth state transitions.",

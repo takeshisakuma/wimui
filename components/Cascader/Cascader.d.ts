@@ -24,8 +24,10 @@ export type CascaderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange
     separator?: string;
     /** Whether to show a clear button when a value is selected */
     allowClear?: boolean;
+    /** Accessible label for the trigger when no visible label is provided */
+    "aria-label"?: string;
 };
 /**
  * 階層構造を持つデータから選択肢を辿って1つを選択するためのコンポーネント。
  */
-export declare const Cascader: ({ options, value, onChange, placeholder, label, error, required, layout, className, disabled, defaultValue, id: customId, expandTrigger, separator, allowClear, ...props }: CascaderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Cascader: ({ options, value, onChange, placeholder, label, error, required, layout, className, disabled, defaultValue, id: customId, expandTrigger, separator, allowClear, "aria-label": ariaLabel, ...props }: CascaderProps) => import("react/jsx-runtime").JSX.Element;

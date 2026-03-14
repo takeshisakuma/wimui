@@ -133,7 +133,7 @@
   "doc_tabbar_title": "タブバー",
   "doc_tabnavigation_basic_desc": "デフォルトのスタイルは `underline` です。これは、二次的なページナビゲーションとして一般的に使用されます。",
   "doc_tabnavigation_contained": "Contained (コンテナ型)",
-  "doc_tabnavigation_contained_desc": "Containedスタイルは、セグメントコントロールに似ており、データの表示形式（例：グラフの時間軸の切り替えなど）を変更する場合によく使用されます。",
+  "doc_tabnavigation_contained_desc": "Containedスタイルは、SegmentedControlに似ており、データの表示形式（例：グラフの時間軸の切り替えなど）を変更する場合によく使用されます。",
   "doc_tabnavigation_icons": "アイコン付き",
   "doc_tabnavigation_icons_desc": "`icon` プロパティを使用して、各アイテムにアイコンを追加できます。",
   "doc_tabnavigation_long_desc": "TabNavigationは、異なるビューやコンテキスト間を移動するためのリンクセットを提供します。`Tabs` コンポーネントとは異なり、主にページレベルのナビゲーションやフィルタリング（URL遷移を伴うものなど）を想定して設計されています。",

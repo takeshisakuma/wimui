@@ -75,7 +75,6 @@
   "doc_box_desc": "多機能なボックス要素",
   "doc_box_long_desc": "Box は、wimuiの中で最も基本的なレイアウトコンポーネントです。\nCSSのプロパティをラップしたプロパティ（p, m, bg など）を提供し、インラインスタイルを記述することなく、直感的にスタイルを適用できます。",
   "doc_box_title": "最も基本的なレイアウトコンポーネント",
-  "doc_chipGroup_desc": "インタラクティブなチップ群",
   "doc_container_desc": "レイアウト用ラッパー",
   "doc_container_feature_1": "最大幅の制御",
   "doc_container_feature_1_desc": "size プロパティで xs / sm / md / lg / xl などの最大幅を設定できます。",
