@@ -258,7 +258,7 @@
   "guide_input_std_note_title": "例外事項",
   "guide_input_std_rule_1": "アイコンの重なりを防ぐため、右側のアイコンエリアを Flexbox で管理し、複数のアイコン（クリア、ドロップダウン、その他）を並列して表示します。",
   "guide_input_std_rule_1_desc": "アイコンの重なりを防ぐため、右側のアイコンエリアを Flexbox で管理し、複数のアイコン（クリア、ドロップダウン、その他）を並列して表示します。",
-  "guide_input_std_rule_1_title": "Flex アイリアへの統合",
+  "guide_input_std_rule_1_title": "Flex アイコンエリアへの統合",
   "guide_input_std_rule_2": "allowClear が有効な場合、値が存在するときのみ「×」ボタンを表示し、クリックで値をリセットできるようにします。",
   "guide_input_std_rule_2_desc": "allowClear が有効な場合、値が存在するときのみ「×」ボタンを表示し、クリックで値をリセットできるようにします。",
   "guide_input_std_rule_2_title": "クリアボタンの制御",
