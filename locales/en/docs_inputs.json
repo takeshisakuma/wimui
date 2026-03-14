@@ -139,7 +139,7 @@
   "doc_indicatorSlider_usage_desc": "Used internally by Tabs and SegmentedControl to display an animated active indicator.",
   "doc_inputBase_desc": "Shared shell wrapper for Input, Selectbox, etc. (icons, clear button)",
   "doc_inputBase_long_desc": "InputBase is the shared shell wrapper for input components. It provides a consistent container with optional icons, status styles (error, disabled), and action buttons (clear).",
-  "doc_inputBase_placeholder": "Base Input content...",
+  "doc_inputBase_placeholder": "John Doe",
   "doc_inputBase_summary": "Shared shell component for Input, Selectbox, etc. (icons, clear button)",
   "doc_inputBase_usage_desc": "Used internally by Input, Selectbox, Combobox, SearchInput and others to ensure a consistent visual and functional shell.",
   "doc_inputGroup_desc": "Inputs with icons/labels",

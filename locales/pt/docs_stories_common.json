@@ -45,7 +45,7 @@
   "story_fielderror_error": "Há um erro na entrada.",
   "story_fielderror_required": "Este campo é obrigatório.",
   "story_fieldset_basic": "Informações Básicas",
-  "story_fieldset_disabled_placeholder": "Não é possível inserir",
+  "story_fieldset_disabled_placeholder": "José Silva",
   "story_fieldset_disabled_sec": "Seção Desabilitada",
   "story_fieldset_name": "Nome",
   "story_fieldset_name_placeholder": "José Silva",
@@ -170,7 +170,7 @@
   "story_treeselect_components": "Componentes",
   "story_treeselect_design": "Design",
   "story_treeselect_input": "Entrada",
-  "story_treeselect_placeholder": "Selecione os nós",
+  "story_treeselect_placeholder": "Design / Cores / Primário",
   "story_treeselect_primary": "Primário",
   "story_treeselect_secondary": "Secundário",
   "story_treeselect_typography": "Tipografia"

@@ -1,0 +1,17 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as n}from"./index-Jj8evLNo.js";import{M as t}from"./blocks-YI1WEKiH.js";import{T as s}from"./T-BLD8G90G.js";import"./iframe-BMQvev7V.js";import"./preload-helper-PPVm8Dsz.js";import"./index-B2mDt5C8.js";import"./index-DtvcjPD2.js";import"./index-Eo2xDiLY.js";import"./index-zLDuGV4P.js";import"./i18nConstants-BpHxieg5.js";import"./useTranslation-XEwyYNrX.js";function i(l){const r={h1:"h1",h2:"h2",h3:"h3",hr:"hr",...n(),...l.components};return e.jsxs(e.Fragment,{children:[e.jsx(t,{title:"Guides/Form Labels"}),`
+`,e.jsx(r.h1,{id:"",children:e.jsx(s,{k:"formlabels_guide_title"})}),`
+`,e.jsxs("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"1.6",color:"#6c757d"},children:[e.jsx(s,{k:"formlabels_guide"}),e.jsx("br",{}),e.jsx(s,{k:"formlabels_top_align"})]}),`
+`,e.jsx(r.h2,{id:"-1",children:e.jsx(s,{k:"formlabels_what_is_floating"})}),`
+`,e.jsx(s,{k:"formlabels_floating"}),`
+`,e.jsx("br",{}),`
+`,e.jsx(s,{k:"formlabels_deprecated_policy"}),`
+`,e.jsx(r.hr,{}),`
+`,e.jsx(r.h2,{id:"-2",children:e.jsx(s,{k:"formlabels_why_deprecated"})}),`
+`,e.jsxs("table",{children:[e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"table_header_problems"})}),e.jsx("th",{children:e.jsx(s,{k:"table_header_description"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"formlabels_missing_info_problem"})}),e.jsx("td",{children:e.jsx(s,{k:"formlabels_missing_info_desc"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"formlabels_input_load_problem"})}),e.jsx("td",{children:e.jsx(s,{k:"formlabels_input_noise_desc"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"table_header_a11y"})}),e.jsx("td",{children:e.jsx(s,{k:"formlabels_a11y_risk_desc"})})]})]}),`
+`,e.jsx(r.hr,{}),`
+`,e.jsx(r.h2,{id:"-3",children:e.jsx(s,{k:"formlabels_recommended_layout"})}),`
+`,e.jsx(r.h3,{id:"-4",children:e.jsx(s,{k:"table_header_benefits"})}),`
+`,e.jsxs("table",{children:[e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"table_header_benefits"})}),e.jsx("th",{children:e.jsx(s,{k:"table_header_description"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"table_header_visibility"})}),e.jsx("td",{children:e.jsx(s,{k:"formlabels_visibility_benefit"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"table_header_scannability"})}),e.jsx("td",{children:e.jsx(s,{k:"formlabels_scannability_benefit"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"table_header_flexibility"})}),e.jsxs("td",{children:[e.jsx(s,{k:"formlabels_line_break"}),e.jsx("br",{}),e.jsx(s,{k:"formlabels_mobile_width"})]})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"table_header_placeholder_use"})}),e.jsx("td",{children:e.jsx(s,{k:"formlabels_placeholder_benefit"})})]})]}),`
+`,e.jsx(r.hr,{}),`
+`,e.jsx(r.h2,{id:"-5",children:e.jsx(s,{k:"formlabels_allowed_cases"})}),`
+`,e.jsxs("table",{children:[e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"table_header_conditions"})}),e.jsx("th",{children:e.jsx(s,{k:"table_header_example"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx(s,{k:"formlabels_no_space_cond"})}),e.jsx("td",{children:e.jsx(s,{k:"formlabels_mobile_space_desc"})})]})]})]})}function p(l={}){const{wrapper:r}={...n(),...l.components};return r?e.jsx(r,{...l,children:e.jsx(i,{...l})}):i(l)}export{p as default};

@@ -139,7 +139,7 @@
   "doc_indicatorSlider_usage_desc": "Tabs と SegmentedControl が内部でアニメーション付きアクティブインジケーターの表示に使用しています。",
   "doc_inputBase_desc": "InputやSelectboxなどの外殻（アイコン・クリアボタン）の共用コンポーネント",
   "doc_inputBase_long_desc": "InputBase は入力コンポーネントの共通シェルラッパーです。アイコン・ステータススタイル（エラー、無効）・アクションボタン（クリア）を備えた一貫したコンテナを提供します。",
-  "doc_inputBase_placeholder": "ベース入力の内容...",
+  "doc_inputBase_placeholder": "山田 太郎",
   "doc_inputBase_summary": "InputやSelectboxなどの外殻（アイコン・クリアボタン）の共用コンポーネント",
   "doc_inputBase_usage_desc": "Input、Selectbox、Combobox、SearchInput など多数が内部で利用し、一貫した外観と機能のシェルを実現しています。",
   "doc_inputGroup_desc": "アイコン/ラベル付き入力",
