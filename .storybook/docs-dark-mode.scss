@@ -1,0 +1,34 @@
+
+/* Storybook Docs mode Canvas background fix for Dark Mode */
+[data-theme="dark"] {
+  /* MDX Canvas (Canvas component container) */
+  .sbdocs-preview {
+    background-color: var(--bg-app) !important;
+    border-color: var(--wim-color-border) !important;
+  }
+
+  /* Preview area within the Canvas */
+  .sbdocs-preview > div:first-child {
+    background-color: var(--bg-app) !important;
+  }
+
+  /* Story inner area in Docs (Standard Storybook classes) */
+  .docs-story,
+  .story-template {
+    background-color: var(--bg-app) !important;
+  }
+
+  /* Legacy or Vite-specific variants */
+  .sb-story-v6-all {
+    background-color: var(--bg-app) !important;
+  }
+
+  /* Ensure text inside Docs content also follows theme if needed */
+  /* (Optional: Uncomment if the whole MDX page background is an issue) */
+  /*
+  .sbdocs-content {
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+  }
+  */
+}

@@ -7,6 +7,7 @@ import "../src/reset.scss";
 import "../src/base.scss";
 import "../src/utilities.scss";
 import "../src/lang.scss";
+import "./docs-dark-mode.scss";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 
 // ─────────────────────────────────────────────────
