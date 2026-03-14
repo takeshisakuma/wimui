@@ -9,6 +9,23 @@ class ResizeObserver {
 }
 window.ResizeObserver = ResizeObserver;
 
+// Mock IntersectionObserver — immediately fires callback as intersecting so lazy-loaded media renders in tests
+class IntersectionObserver {
+  private callback: IntersectionObserverCallback;
+  constructor(callback: IntersectionObserverCallback) {
+    this.callback = callback;
+  }
+  observe(target: Element) {
+    this.callback(
+      [{ isIntersecting: true, target } as IntersectionObserverEntry],
+      this as unknown as globalThis.IntersectionObserver,
+    );
+  }
+  unobserve() {}
+  disconnect() {}
+}
+window.IntersectionObserver = IntersectionObserver as unknown as typeof window.IntersectionObserver;
+
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";

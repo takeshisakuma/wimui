@@ -97,10 +97,13 @@ describe("ContextMenu", () => {
       expect(screen.getByText("Item 1").closest('[role="menuitem"]')).toHaveFocus();
     });
 
-    fireEvent.keyDown(screen.getByRole("menu"), { key: "ArrowDown" });
+    // Use querySelector directly: jsdom's partial popover API hides [popover="manual"] elements
+    // from the accessibility tree until showPopover() resolves, causing getByRole to fail.
+    const menu = document.querySelector('[role="menu"]') as HTMLElement;
+    fireEvent.keyDown(menu, { key: "ArrowDown" });
     expect(screen.getByText("Item 2").closest('[role="menuitem"]')).toHaveFocus();
 
-    fireEvent.keyDown(screen.getByRole("menu"), { key: "ArrowUp" });
+    fireEvent.keyDown(menu, { key: "ArrowUp" });
     expect(screen.getByText("Item 1").closest('[role="menuitem"]')).toHaveFocus();
   });
 });
