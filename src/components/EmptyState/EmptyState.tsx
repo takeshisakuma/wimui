@@ -1,7 +1,7 @@
 import React from "react";
 import { StatusContent } from "../_internal/StatusContent";
 import classNames from "classnames";
-import "./emptyState.scss";
+import "./emptystate.scss";
 
 type EmptyStateProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
