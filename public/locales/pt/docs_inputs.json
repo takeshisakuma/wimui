@@ -139,7 +139,7 @@
   "doc_indicatorSlider_usage_desc": "Usado internamente por Tabs e SegmentedControl para exibir um indicador ativo animado.",
   "doc_inputBase_desc": "Wrapper base compartilhado para Input, Selectbox, etc. (ícones, botão limpar)",
   "doc_inputBase_long_desc": "InputBase é o wrapper de shell compartilhado para componentes de entrada. Fornece um container consistente com ícones opcionais, estilos de status (erro, desabilitado) e botões de ação (limpar).",
-  "doc_inputBase_placeholder": "Conteúdo base do input...",
+  "doc_inputBase_placeholder": "José Silva",
   "doc_inputBase_summary": "Componente de shell compartilhado para Input, Selectbox, etc. (ícones, botão limpar)",
   "doc_inputBase_usage_desc": "Usado internamente por Input, Selectbox, Combobox, SearchInput e outros para garantir um shell visual e funcional consistente.",
   "doc_inputGroup_desc": "Entradas com ícones/rótulos",

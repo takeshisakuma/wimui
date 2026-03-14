@@ -45,7 +45,7 @@
   "story_fielderror_error": "There is an error in the input.",
   "story_fielderror_required": "This field is required.",
   "story_fieldset_basic": "Basic Information",
-  "story_fieldset_disabled_placeholder": "Cannot input",
+  "story_fieldset_disabled_placeholder": "John Doe",
   "story_fieldset_disabled_sec": "Disabled Section",
   "story_fieldset_name": "Name",
   "story_fieldset_name_placeholder": "John Doe",
@@ -170,7 +170,7 @@
   "story_treeselect_components": "Components",
   "story_treeselect_design": "Design",
   "story_treeselect_input": "Input",
-  "story_treeselect_placeholder": "Select nodes",
+  "story_treeselect_placeholder": "Design / Colors / Primary",
   "story_treeselect_primary": "Primary",
   "story_treeselect_secondary": "Secondary",
   "story_treeselect_typography": "Typography"

@@ -45,7 +45,7 @@
   "story_fielderror_error": "入力内容に誤りがあります。",
   "story_fielderror_required": "必須項目です。",
   "story_fieldset_basic": "基本情報",
-  "story_fieldset_disabled_placeholder": "入力できません",
+  "story_fieldset_disabled_placeholder": "山田 太郎",
   "story_fieldset_disabled_sec": "無効化されたセクション",
   "story_fieldset_name": "名前",
   "story_fieldset_name_placeholder": "山田 太郎",
@@ -170,7 +170,7 @@
   "story_treeselect_components": "コンポーネント",
   "story_treeselect_design": "デザイン",
   "story_treeselect_input": "インプット",
-  "story_treeselect_placeholder": "ノードを選択してください",
+  "story_treeselect_placeholder": "デザイン / カラー / プライマリ",
   "story_treeselect_primary": "プライマリ",
   "story_treeselect_secondary": "セカンダリ",
   "story_treeselect_typography": "タイポグラフィ"
