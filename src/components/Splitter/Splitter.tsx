@@ -231,7 +231,6 @@ const SplitterPanel = ({
   children,
   ...props
 }: SplitterPanelProps) => {
-  /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
   return (
     <div
       className={classNames("wim-splitter-panel", className)}
@@ -245,7 +244,6 @@ const SplitterPanel = ({
       {children}
     </div>
   );
-  /* eslint-enable jsx-a11y/no-noninteractive-tabindex */
 };
 SplitterPanel.displayName = "SplitterPanel";
 
@@ -266,7 +264,7 @@ const SplitterHandle = ({
 
   const { onResizeStart, orientation } = useSplitter();
 
-  /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */
+  /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   return (
     <div
       role="separator"
@@ -288,7 +286,7 @@ const SplitterHandle = ({
       {...props}
     />
   );
-  /* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */
+  /* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
 };
 SplitterHandle.displayName = "SplitterHandle";
 
