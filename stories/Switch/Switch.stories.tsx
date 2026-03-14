@@ -66,6 +66,6 @@ export const DisabledChecked: Story = {
 
 export const NoLabel: Story = {
   render: function Render(args) {
-    return <Switch {...args} />;
+    return <Switch {...args} aria-label="Toggle" />;
   },
 };

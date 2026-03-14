@@ -67,6 +67,7 @@ const SpecificTargetStory = () => {
       <p>{t("story_backtop_target_msg")}</p>
       <div
         ref={(node) => setContainer(node)}
+        tabIndex={0}
         style={{
           height: "300px",
           overflowY: "scroll",

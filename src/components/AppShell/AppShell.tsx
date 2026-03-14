@@ -80,6 +80,7 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
       } as React.CSSProperties)
       : undefined;
 
+    /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
     return (
       <div
         ref={ref}
@@ -103,6 +104,7 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
               padding && "wim-appshell__main--padded",
               centered && "wim-appshell__main--centered",
             )}
+            tabIndex={0}
           >
             {centered ? (
               <div className="wim-appshell__content">{children}</div>
@@ -116,6 +118,7 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
         {footer && <div className="wim-appshell__footer">{footer}</div>}
       </div>
     );
+    /* eslint-enable jsx-a11y/no-noninteractive-tabindex */
   },
 );
 
@@ -141,6 +144,7 @@ export interface AppShellMainProps extends Omit<
  */
 export const AppShellMain = React.forwardRef<HTMLElement, AppShellMainProps>(
   ({ className, children, padding = true, centered, ...props }, ref) => {
+    /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
     return (
       <main
         ref={ref}
@@ -150,6 +154,7 @@ export const AppShellMain = React.forwardRef<HTMLElement, AppShellMainProps>(
           centered && "wim-appshell__main--centered",
           className,
         )}
+        tabIndex={0}
         {...props}
       >
         {centered ? (
@@ -159,6 +164,7 @@ export const AppShellMain = React.forwardRef<HTMLElement, AppShellMainProps>(
         )}
       </main>
     );
+    /* eslint-enable jsx-a11y/no-noninteractive-tabindex */
   },
 );
 

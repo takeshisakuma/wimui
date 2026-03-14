@@ -19,9 +19,11 @@ type Story = StoryObj<typeof Splitter>;
 const PanelContent = ({
   children,
   color,
+  textColor = "#000",
 }: {
   children: React.ReactNode;
   color: string;
+  textColor?: string;
 }) => (
   <div
     style={{
@@ -32,7 +34,7 @@ const PanelContent = ({
       backgroundColor: color,
       fontSize: "24px",
       fontWeight: "bold",
-      color: "white",
+      color: textColor,
     }}
   >
     {children}
@@ -127,17 +129,17 @@ export const Nested: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={25}>
-            <PanelContent color="#374151">{t("story_splitter_sidebar", "Sidebar")}</PanelContent>
+            <PanelContent color="#374151" textColor="#fff">{t("story_splitter_sidebar", "Sidebar")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={75}>
             <Splitter orientation="vertical">
               <Splitter.Panel defaultSize={70}>
-                <PanelContent color="#1f2937">{t("story_splitter_main", "Main Content")}</PanelContent>
+                <PanelContent color="#1f2937" textColor="#fff">{t("story_splitter_main", "Main Content")}</PanelContent>
               </Splitter.Panel>
               <Splitter.Handle />
               <Splitter.Panel defaultSize={30}>
-                <PanelContent color="#4b5563">{t("story_splitter_logs", "Console / Logs")}</PanelContent>
+                <PanelContent color="#4b5563" textColor="#fff">{t("story_splitter_logs", "Console / Logs")}</PanelContent>
               </Splitter.Panel>
             </Splitter>
           </Splitter.Panel>

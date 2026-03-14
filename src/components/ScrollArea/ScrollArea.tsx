@@ -28,13 +28,16 @@ export const ScrollArea = ({
     ...style,
   };
 
+  /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
   return (
     <div
       className={classNames("wim-scroll-area", className)}
       style={combinedStyle}
+      tabIndex={0}
       {...props}
     >
       {children || (text ? t(text) : null)}
     </div>
   );
+  /* eslint-enable jsx-a11y/no-noninteractive-tabindex */
 };

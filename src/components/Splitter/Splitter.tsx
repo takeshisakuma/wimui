@@ -173,11 +173,17 @@ const Splitter = ({
     }
     if ((child as React.ReactElement).type === SplitterHandle) {
       const index = handleIdx++;
+      const valueNow = Math.round(
+        panelSizes.slice(0, index + 1).reduce((a, b) => a + b, 0),
+      );
       return React.cloneElement(
         child as React.ReactElement<SplitterHandleProps>,
         {
           index,
           active: resizingIndex === index,
+          "aria-valuenow": valueNow,
+          "aria-valuemin": 0,
+          "aria-valuemax": 100,
         },
       );
     }
@@ -225,6 +231,7 @@ const SplitterPanel = ({
   children,
   ...props
 }: SplitterPanelProps) => {
+  /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
   return (
     <div
       className={classNames("wim-splitter-panel", className)}
@@ -232,11 +239,13 @@ const SplitterPanel = ({
         ...style,
         flex: size !== undefined ? `0 0 ${size}%` : "1 1 0%",
       }}
+      tabIndex={0}
       {...props}
     >
       {children}
     </div>
   );
+  /* eslint-enable jsx-a11y/no-noninteractive-tabindex */
 };
 SplitterPanel.displayName = "SplitterPanel";
 

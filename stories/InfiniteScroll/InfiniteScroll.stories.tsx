@@ -44,7 +44,7 @@ export const Default: Story = {
     };
 
     return (
-      <div style={{ height: "400px", overflowY: "auto", padding: "20px" }}>
+      <div tabIndex={0} style={{ height: "400px", overflowY: "auto", padding: "20px" }}>
         <InfiniteScroll
           {...args}
           loading={loading}

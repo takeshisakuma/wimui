@@ -54,6 +54,7 @@
   },
   "homepage": "./",
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
     "@chromatic-com/storybook": "^5.0.1",
     "@google/generative-ai": "^0.24.1",
     "@playwright/test": "^1.58.2",

@@ -42,6 +42,7 @@ export const CustomContainer: Story = {
       <div style={{ padding: "20px" }}>
         <div
           ref={containerRef}
+          tabIndex={0}
           style={{
             height: "300px",
             overflowY: "auto",

@@ -60,6 +60,7 @@ export const Default: Story = {
         {...args}
         options={options}
         placeholder={t("story_cascader_placeholder")}
+        aria-label={t("story_cascader_placeholder")}
       />
     );
   },
@@ -140,6 +141,7 @@ export const HoverExpand: Story = {
         options={options}
         expandTrigger="hover"
         placeholder={t("story_cascader_placeholder")}
+        aria-label={t("story_cascader_placeholder")}
       />
     );
   },
@@ -153,6 +155,7 @@ export const Disabled: Story = {
         {...args}
         disabled
         placeholder={t("story_cascader_placeholder")}
+        aria-label={t("story_cascader_placeholder")}
       />
     );
   },
@@ -185,6 +188,7 @@ export const CustomSeparator: Story = {
         options={options}
         separator=" > "
         defaultValue={["tokyo", "shibuya", "dogenzaka"]}
+        aria-label="Location"
       />
     );
   },

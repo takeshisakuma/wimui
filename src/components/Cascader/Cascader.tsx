@@ -35,6 +35,8 @@ export type CascaderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange
   separator?: string;
   /** Whether to show a clear button when a value is selected */
   allowClear?: boolean;
+  /** Accessible label for the trigger when no visible label is provided */
+  "aria-label"?: string;
 };
 
 /**
@@ -56,6 +58,7 @@ export const Cascader = ({
   expandTrigger = "click",
   separator = " / ",
   allowClear = false,
+  "aria-label": ariaLabel,
   ...props
 }: CascaderProps) => {
   const { t } = useTranslation("common");
@@ -381,6 +384,7 @@ export const Cascader = ({
             aria-haspopup="listbox"
             aria-disabled={disabled}
             aria-labelledby={labelId}
+            aria-label={!labelId ? ariaLabel : undefined}
             aria-describedby={errorId}
             aria-invalid={!!error}
             aria-activedescendant={

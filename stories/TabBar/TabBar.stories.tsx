@@ -81,16 +81,19 @@ export const WithoutLabels: Story = {
             active={activeTab === "home"}
             onClick={() => setActiveTab("home")}
             icon={<Icon name="CircleIcon" />}
+            aria-label="Home"
           />
           <TabBar.Item
             active={activeTab === "grid"}
             onClick={() => setActiveTab("grid")}
             icon={<Icon name="MaximizeIcon" />}
+            aria-label="Grid"
           />
           <TabBar.Item
             active={activeTab === "search"}
             onClick={() => setActiveTab("search")}
             icon={<Icon name="SearchIcon" />}
+            aria-label="Search"
           />
         </TabBar>
       </div>
