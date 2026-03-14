@@ -406,7 +406,7 @@ export const UserProfileForm: StoryObj = {
                     style={{ width: "80px", height: "80px", fontSize: "2rem" }}
                   />
                   <Stack gap="xs">
-                    <Heading tag="h4" size="sm">
+                    <Heading tag="h3" size="sm">
                       Profile Picture
                     </Heading>
                     <div style={{ display: "flex", gap: "12px" }}>
@@ -1005,21 +1005,20 @@ export const ErrorPage: StoryObj = {
         gap="5xl"
         style={{ maxWidth: "600px", textAlign: "center" }}
       >
-        <Heading
-          tag="h1"
-          size="4xl"
-          align="center"
+        <p
+          aria-hidden="true"
           style={{
             fontSize: "120px",
             fontWeight: "900",
             color: "var(--wim-color-border-secondary)",
             lineHeight: "1",
+            margin: "0",
           }}
         >
           404
-        </Heading>
+        </p>
         <Stack gap="2xl" align="center">
-          <Heading tag="h2" size="xl" align="center">
+          <Heading tag="h1" size="xl" align="center">
             Something&apos;s missing.
           </Heading>
           <Paragraph
