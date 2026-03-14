@@ -287,12 +287,12 @@ export const Interactive: Story = {
           padding: "20px",
         }}
       >
-        <h3>{t("story_loading_overlay_interactive_title")}</h3>
-        <p>{t("story_loading_overlay_interactive_desc")}</p>
         <Button onClick={handleClick} disabled={loading} label={t("story_loading_overlay_load_data")} />
+
+
         <div style={{ marginTop: "20px" }}>
-          <p>{t("story_loading_overlay_overlaid_desc")}</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+          <p>{t("story_loading_overlay_long_content")}</p>
         </div>
         <LoadingOverlay
           visible={loading}

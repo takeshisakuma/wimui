@@ -25,6 +25,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
+  inputClassName?: string;
 };
 
 /**
@@ -58,6 +59,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       required,
       layout,
       id: customId,
+      inputClassName,
       ...props
     },
     ref,
@@ -205,6 +207,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               fullWidth && "wim-input--full-width",
               leftIcon && "wim-input--has-left-icon",
               rightIcons.length > 0 && "wim-input--has-right-icon",
+              inputClassName,
             )}
             disabled={isDisabled}
             value={currentValue}

@@ -43,6 +43,27 @@
     background-color: var(--color-disabled);
     border-color: var(--color-disabled);
   }
+
+  /* type="number" 特有の調整 */
+  &[type="number"] {
+    /* Firefoxでの表示崩れ補正 */
+    @-moz-document url-prefix() {
+      padding: 0 1rem;
+    }
+
+    /* スピンボタンを非表示にする */
+    &.wim-input--hide-spin {
+      -moz-appearance: textfield;
+      appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        appearance: none;
+        margin: 0;
+      }
+    }
+  }
 }
 
 // When inside InputBase, let it handle the shell

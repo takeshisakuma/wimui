@@ -160,5 +160,8 @@
   "wed": "Qua",
   "welcome": "Bem-vindo ao nosso aplicativo",
   "common_intensity": "Intensidade",
-  "common_reload": "Recarregar"
+  "common_reload": "Recarregar",
+  "common_do": "DO",
+  "common_dont": "DON'T",
+  "doc_see_more": "Veja mais: "
 }
