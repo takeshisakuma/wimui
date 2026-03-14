@@ -234,7 +234,7 @@ export const Carousel = ({
   const slideWidth = 100 / displaySlides;
   const offsetX = -currentIndex * slideWidth;
 
-  /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */
+  /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   return (
     <div
       className={classNames("wim-carousel", className)}
@@ -336,5 +336,5 @@ export const Carousel = ({
       )}
     </div>
   );
-  /* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */
+  /* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
 };
