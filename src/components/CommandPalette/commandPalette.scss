@@ -71,8 +71,8 @@
   }
 
   &:focus-within {
-    border-bottom-color: var(--color-primary);
     background-color: var(--bg-hover, rgb(0 0 0 / 0.02));
+    border-bottom-color: var(--color-primary);
 
     .wim-icon {
       color: var(--color-primary);

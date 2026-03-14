@@ -13,17 +13,17 @@
   }
 
   &--block {
-    display: block;
     box-sizing: border-box;
+    display: block;
     width: 100%;
-    max-width: 100%;
     min-width: 0;
+    max-width: 100%;
     padding: 1rem;
     margin: 1rem 0;
     overflow-x: auto;
+    color: #333;
     word-break: normal;
     white-space: pre;
-    color: #333;
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
 

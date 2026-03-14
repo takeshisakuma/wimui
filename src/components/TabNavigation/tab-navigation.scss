@@ -15,12 +15,12 @@
     }
 
     &__list {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
       width: 100%;
       min-width: min-content;
-      position: relative;
-      z-index: 1;
     }
 
     /* Alignment */
@@ -67,6 +67,7 @@
     /* Base Item Styles */
     &__item {
       @include indicator.indicator-item-base;
+
       height: var(--wim-tab-nav-height);
       padding: var(--wim-tab-nav-padding);
       font-size: var(--wim-tab-nav-font-size);
@@ -97,6 +98,7 @@
 
       .wim-tab-navigation__slider {
         @include indicator.indicator-slider-underline($bottom: -1px);
+
         opacity: 0;
       }
 
@@ -130,6 +132,7 @@
 
       .wim-tab-navigation__slider {
         @include indicator.indicator-slider-contained($radius: 99px, $bg: var(--color-primary), $shadow: none, $offset: 0);
+
         z-index: -1;
         transition: background-color var(--duration-fast) var(--easing-base);
       }
@@ -151,8 +154,8 @@
       }
 
       .wim-tab-navigation__item {
-        border-radius: 99px;
         padding-inline: var(--spacing-xl);
+        border-radius: 99px;
 
         &--active {
           color: white;
@@ -167,6 +170,7 @@
     /* Variant: Contained */
     &--contained {
       @include indicator.indicator-container-segmented($bg: var(--wim-color-bg-secondary, #f4f4f5));
+
       display: inline-flex; // Shrink to fit content
 
       .wim-tab-navigation__list {
@@ -175,6 +179,7 @@
 
       .wim-tab-navigation__slider {
         @include indicator.indicator-slider-contained($offset: 0);
+
         opacity: 0;
       }
 

@@ -20,22 +20,22 @@
 
   &--horizontal {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     align-items: center;
     width: 100%;
     min-width: 0;
     height: auto;
     padding: var(--spacing-xs) 0; // Restore some padding for focus rings
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
     overflow-x: auto;
-    // overflow-y: hidden !important; (Removed to allow focus rings)
-    -webkit-overflow-scrolling: touch;
 
     /* Hide scrollbars */
     scrollbar-width: none !important;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+
+    // overflow-y: hidden !important; (Removed to allow focus rings)
+    -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none !important;
 
     &::-webkit-scrollbar {
@@ -46,8 +46,8 @@
     }
 
     >li {
-      flex-shrink: 0;
       display: flex;
+      flex-shrink: 0;
       align-items: center;
       width: auto;
     }
@@ -65,12 +65,13 @@
 
 .wim-menu-item {
   position: relative;
+
   // Common styles are now handled by BaseListItem
 
   &:focus {
+    z-index: 1;
     outline: none;
     box-shadow: var(--shadow-focus);
-    z-index: 1;
   }
 
   &__content {
@@ -78,10 +79,10 @@
   }
 
   .wim-menu--horizontal & {
-    margin: 0 var(--spacing-xs);
-    border-radius: var(--radius-sm);
     flex-shrink: 0;
     width: auto;
+    margin: 0 var(--spacing-xs);
+    border-radius: var(--radius-sm);
   }
 }
 
@@ -113,12 +114,13 @@
 
   &__title {
     position: relative;
+
     // Common styles are now handled by BaseListItem
 
     &:focus {
+      z-index: 1;
       outline: none;
       box-shadow: var(--shadow-focus);
-      z-index: 1;
     }
   }
 

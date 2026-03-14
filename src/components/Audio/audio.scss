@@ -16,9 +16,8 @@
   min-width: 300px;
   max-width: 100%;
   min-height: 54px; // Matches standard native player height to avoid jumps
-  line-height: normal; // Reset to normal
-
   overflow: hidden; // Clip content to radius
+  line-height: normal; // Reset to normal
   border-radius: 2rem; // Default to pill shape for native audio feel
 
   &.wim-audio--radius-small {
@@ -77,10 +76,8 @@
     position: absolute;
     inset: 0;
     z-index: 5;
-    content: "";
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    content: "";
     background: linear-gradient(
       90deg,
       #f2f2f2 25%,
@@ -88,8 +85,10 @@
       #f2f2f2 75%
     );
     background-size: 200% 100%;
-    animation: wim-skeleton-loading 1.5s infinite;
     border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: wim-skeleton-loading 1.5s infinite;
   }
 
   &.wim-audio--loading::before {
@@ -118,15 +117,14 @@
 }
 
 .wim-audio--custom {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 0.6rem; // Adjusted for 3 rows
   padding: 1rem 0 0.8rem; // More generous padding
   color: white;
   background: linear-gradient(135deg, #1e1e24 0%, #292930 100%);
-  position: relative;
-  z-index: 1;
-
   mask-image: none;
 }
 
@@ -142,26 +140,26 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: -1;
   width: 100%;
   height: 100%;
   pointer-events: none;
   background: transparent;
   opacity: 0.25;
-  z-index: -1;
 }
 
 .wim-audio-metadata {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: 0 var(--spacing-xl) var(--spacing-sm);
-  border-bottom: 1px solid rgb(255 255 255 / 0.1);
   position: relative;
   z-index: 2;
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  padding: 0 var(--spacing-xl) var(--spacing-sm);
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
 
   .wim-audio--radius-full & {
-    padding-left: 2rem;
     padding-right: 2rem;
+    padding-left: 2rem;
   }
 }
 
@@ -183,14 +181,14 @@
 .wim-audio-title {
   font-size: 0.875rem;
   font-weight: 600;
-  color: white;
   line-height: 1.2;
+  color: white;
 }
 
 .wim-audio-artist {
   font-size: 0.75rem;
-  color: rgb(255 255 255 / 0.6);
   line-height: 1.2;
+  color: rgb(255 255 255 / 0.6);
 }
 
 .wim-audio-badge {
@@ -214,15 +212,15 @@
   flex-direction: column;
   gap: 0.2rem;
   width: 90%;
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
 }
 
 .wim-audio-controls-row {
   display: flex;
+  gap: var(--spacing-sm);
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-sm);
   width: 100%;
 }
 
@@ -232,12 +230,14 @@
 }
 
 .wim-audio-btn {
+  position: relative; // For badge positioning
+  box-sizing: border-box;
   display: flex;
+  flex-shrink: 0; // Prevent distortion in flex containers
   align-items: center;
   justify-content: center;
   width: 32px;
   height: 32px;
-  flex-shrink: 0; // Prevent distortion in flex containers
   padding: var(--spacing-xs);
   color: white;
   cursor: pointer;
@@ -247,8 +247,6 @@
   transition:
     background-color 0.2s,
     color 0.2s;
-  box-sizing: border-box;
-  position: relative; // For badge positioning
 
   &:hover {
     color: #646cff; // Accent color
@@ -271,9 +269,9 @@
   }
 
   &--play {
+    flex-shrink: 0;
     width: 40px;
     height: 40px;
-    flex-shrink: 0;
     background-color: #646cff;
 
     &:hover {

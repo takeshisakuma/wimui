@@ -4,21 +4,23 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: var(--wim-color-bg-primary, #ffffff);
+  overflow: hidden;
+  background-color: var(--wim-color-bg-primary, #fff);
   border: 1px solid var(--wim-color-border, #e2e2e8);
   border-radius: var(--wim-radius-md, 8px);
-  overflow: hidden;
 }
 
 .wim-chat-message-list {
-  flex: 1;
-  overflow-y: auto;
-  padding: var(--wim-spacing-md, 16px);
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: var(--wim-spacing-xl, 32px);
+  padding: var(--wim-spacing-md, 16px);
+  overflow-y: auto;
+
   /* Increased from lg to xl for spacing */
   background-color: #f0f2f5;
+
   /* モダンなSNS風の微かな青みグレー */
 }
 
@@ -33,12 +35,14 @@
 
   &--left {
     align-self: flex-start;
+
     --wim-chat-bubble-bg: #{$pccs-p7};
     --wim-chat-bubble-color: var(--wim-color-text-primary, #1a1a1a);
   }
 
   &--right {
     align-self: flex-end;
+
     --wim-chat-bubble-bg: #{$pccs-p18};
     --wim-chat-bubble-color: var(--wim-color-text-primary, #1a1a1a);
 
@@ -72,107 +76,113 @@
 .wim-chat-message__sender {
   font-size: var(--wim-font-size-sm, 14px);
   font-weight: var(--wim-font-weight-medium, 500);
-  color: var(--wim-color-text-secondary, #666666);
+  color: var(--wim-color-text-secondary, #666);
 }
 
 .wim-chat-message__bubble {
   position: relative;
   padding: var(--wim-spacing-md, 16px) var(--wim-spacing-lg, 24px);
-  /* パディングを増やしました */
-  border-radius: var(--wim-radius-lg, 12px);
+  line-height: var(--wim-line-height-normal, 1.5);
+  color: var(--wim-chat-bubble-color);
+  overflow-wrap: break-word;
+
   /* 角丸も少し大きくしてポップに */
   background-color: var(--wim-chat-bubble-bg);
-  color: var(--wim-chat-bubble-color);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  line-height: var(--wim-line-height-normal, 1.5);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* パディングを増やしました */
+  border-radius: var(--wim-radius-lg, 12px);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+
   /* 少し影を付けて立体感 */
 }
 
 .wim-chat-message--left.wim-chat-message--has-avatar .wim-chat-message__bubble::before {
-  content: "";
   position: absolute;
-  left: -6px;
   top: 10px;
+  left: -6px;
+  content: "";
+  border-color: transparent var(--wim-chat-bubble-bg) transparent transparent;
+
   /* パディング増に合わせて調整 */
   border-style: solid;
   border-width: 6px 6px 6px 0;
-  border-color: transparent var(--wim-chat-bubble-bg) transparent transparent;
 }
 
 .wim-chat-message--right.wim-chat-message--has-avatar .wim-chat-message__bubble::before {
-  content: "";
   position: absolute;
-  right: -6px;
   top: 10px;
+  right: -6px;
+  content: "";
+  border-color: transparent transparent transparent var(--wim-chat-bubble-bg);
+
   /* パディング増に合わせて調整 */
   border-style: solid;
   border-width: 6px 0 6px 6px;
-  border-color: transparent transparent transparent var(--wim-chat-bubble-bg);
 }
 
 .wim-chat-message__timestamp {
   font-size: var(--wim-font-size-xs, 12px);
-  color: var(--wim-color-text-tertiary, #999999);
+  color: var(--wim-color-text-tertiary, #999);
 }
 
 .wim-chat-input {
   display: flex;
   gap: var(--wim-spacing-sm, 12px);
   padding: var(--wim-spacing-md, 16px);
+  background-color: var(--wim-color-bg-primary, #fff);
   border-top: 1px solid var(--wim-color-border, #e2e2e8);
-  background-color: var(--wim-color-bg-primary, #ffffff);
 
-  @media (max-width: 480px) {
+  @media (width <= 480px) {
     gap: 8px;
     padding: 12px;
   }
 }
 
 .wim-chat-input__field {
+  box-sizing: border-box;
   flex: 1;
   min-width: 0;
+
   /* Ensures the input can shrink below its default size */
   padding: var(--wim-spacing-sm, 12px) var(--wim-spacing-md, 16px);
-  border: 1px solid var(--wim-color-border, #e2e2e8);
-  border-radius: var(--wim-radius-md, 8px);
-  font-size: var(--wim-font-size-md, 16px);
   font-family: inherit;
-  color: var(--wim-color-text-primary, #1a1a1a);
-  background-color: var(--wim-color-bg-primary, #ffffff);
-  outline: none;
+  font-size: var(--wim-font-size-md, 16px);
   line-height: normal;
-  text-box-trim: none;
+  color: var(--wim-color-text-primary, #1a1a1a);
+
   /* グローバルのトリム設定をこの要素だけ解除 */
   appearance: none;
+  outline: none;
+  background-color: var(--wim-color-bg-primary, #fff);
+  border: 1px solid var(--wim-color-border, #e2e2e8);
+  border-radius: var(--wim-radius-md, 8px);
   transition: border-color 0.2s ease;
-  box-sizing: border-box;
+  text-box-trim: none;
 
   &:focus {
     border-color: var(--wim-color-primary, #0052cc);
   }
 
   &::placeholder {
-    color: var(--wim-color-text-tertiary, #999999);
+    color: var(--wim-color-text-tertiary, #999);
   }
 }
 
 .wim-chat-input__send-button {
+  flex-shrink: 0;
   padding: var(--wim-spacing-sm, 12px) var(--wim-spacing-lg, 24px);
-  border: none;
-  border-radius: var(--wim-radius-md, 8px);
-  background-color: var(--wim-color-primary, #0052cc);
-  color: var(--wim-color-text-on-primary, #ffffff);
   font-size: var(--wim-font-size-md, 16px);
   font-weight: var(--wim-font-weight-medium, 500);
+  color: var(--wim-color-text-on-primary, #fff);
   cursor: pointer;
+  background-color: var(--wim-color-primary, #0052cc);
+  border: none;
+  border-radius: var(--wim-radius-md, 8px);
   transition:
     background-color 0.2s ease,
     opacity 0.2s ease;
-  flex-shrink: 0;
 
-  @media (max-width: 480px) {
+  @media (width <= 480px) {
     padding: 12px 16px;
   }
 
@@ -185,8 +195,8 @@
   }
 
   &:disabled {
-    opacity: 0.5;
     cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
@@ -194,11 +204,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
   overflow: hidden;
-  background-color: #{$pccs-s18};
-  color: #{$pccs-w};
   font-weight: var(--wim-font-weight-medium, 500);
+  color: #{$pccs-w};
+  background-color: #{$pccs-s18};
+  border-radius: 50%;
 
   &--small {
     width: 32px;
@@ -275,9 +285,9 @@
 }
 
 .wim-chat-avatar__fallback {
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }

@@ -36,8 +36,8 @@ $token-colors: (
   align-items: center;
   justify-content: center;
   line-height: normal;
-  white-space: nowrap;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 @mixin token-variants($prefix) {

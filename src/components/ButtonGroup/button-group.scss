@@ -1,12 +1,12 @@
-﻿@use "../../tokens/breakpoints" as *;
+@use "../../tokens/breakpoints" as *;
 
 .wim-button-group {
   display: flex;
   flex-wrap: wrap;
+  row-gap: var(--spacing-sm);
   align-items: center;
   justify-content: center;
   width: 100%;
-  row-gap: var(--spacing-sm);
 
   &.wim-button-group--joined {
     gap: 0;

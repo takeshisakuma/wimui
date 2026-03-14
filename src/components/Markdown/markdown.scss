@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .wim-markdown {
     font-family: inherit;
     line-height: 1.6;
@@ -16,15 +16,15 @@
     }
 
     h1 {
+      padding-bottom: 0.3em;
       font-size: 2em;
       border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 0.3em;
     }
 
     h2 {
+      padding-bottom: 0.3em;
       font-size: 1.5em;
       border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 0.3em;
     }
 
     h3 {
@@ -37,8 +37,8 @@
 
     ul,
     ol {
-      margin-bottom: 1em;
       padding-left: 2em;
+      margin-bottom: 1em;
     }
 
     li {
@@ -69,10 +69,10 @@
 
     blockquote {
       padding-left: 1em;
+      margin-right: 0;
+      margin-left: 0;
       color: var(--text-secondary);
       border-left: 4px solid var(--border-subtle);
-      margin-left: 0;
-      margin-right: 0;
     }
 
     table {

@@ -1,11 +1,10 @@
-﻿.wim-radio-group {
+.wim-radio-group {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
 
   &--horizontal {
     flex-flow: row wrap;
-    column-gap: var(--spacing-lg);
-    row-gap: var(--spacing-md);
+    gap: var(--spacing-md) var(--spacing-lg);
   }
 }

@@ -19,13 +19,13 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    min-height: 40px;
     padding: 8px 12px;
+    cursor: pointer;
     background: transparent;
     border: none;
     border-radius: 0;
-    cursor: pointer;
     transition: all 0.2s ease;
-    min-height: 40px;
 
     &:hover:not(&--disabled) {
       border-color: var(--wim-color-primary);
@@ -40,22 +40,22 @@
     }
 
     &--disabled {
+      color: var(--color-text-on-disabled);
+      pointer-events: none;
+      cursor: not-allowed;
       background: var(--color-disabled);
       border-color: var(--color-disabled);
-      color: var(--color-text-on-disabled);
       opacity: 0.6;
-      cursor: not-allowed;
-      pointer-events: none;
     }
   }
 
   &__value {
     flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 14px;
     color: var(--wim-color-text-primary);
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 
     &--placeholder {
       color: var(--wim-color-text-placeholder);
@@ -87,13 +87,13 @@
     top: 100%;
     left: 0;
     z-index: 1000;
+    display: flex;
     margin-top: 4px;
+    overflow: hidden;
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: flex;
-    overflow: hidden;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
 
     @include bp.down(sm) {
       flex-direction: column;
@@ -104,13 +104,13 @@
   &__menu {
     min-width: 180px;
     max-height: 240px;
-    overflow-y: auto;
     padding: var(--spacing-xs) 0; // The units are standardized. BaseListItem has the side margins.
+    overflow-y: auto;
     border-right: 1px solid var(--wim-color-border);
 
     @include bp.down(sm) {
-      min-width: unset;
       width: 100%;
+      min-width: unset;
       max-height: 200px;
       border-right: none;
       border-bottom: 1px solid var(--wim-color-border);
@@ -138,14 +138,14 @@
     // Common styles are now handled by BaseListItem
 
     &--active {
-      color: var(--wim-color-primary);
       font-weight: 500;
+      color: var(--wim-color-primary);
     }
 
     &--selected {
-      background: var(--wim-color-primary-alpha-10);
-      color: var(--wim-color-primary);
       font-weight: 500;
+      color: var(--wim-color-primary);
+      background: var(--wim-color-primary-alpha-10);
     }
   }
 }

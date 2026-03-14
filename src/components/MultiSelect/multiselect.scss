@@ -3,8 +3,8 @@
 ------------------------------------------------------------------ */
 
 .wim-multiselect {
-  box-sizing: border-box;
   position: relative;
+  box-sizing: border-box;
   width: 320px;
   max-width: 90vw;
   font-family: var(--font-family-base);
@@ -68,9 +68,9 @@
   min-width: 0;
 
   &--placeholder {
-    color: var(--text-placeholder);
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--text-placeholder);
     white-space: nowrap;
   }
 }
@@ -81,23 +81,23 @@
   position: absolute;
   z-index: 100;
   width: 100%;
-  margin: var(--spacing-xs) 0 0;
+  max-height: 280px;
   padding: var(--spacing-xs) 0; // Floating items have margins
+  margin: var(--spacing-xs) 0 0;
+  overflow-y: auto;
   list-style: none;
   background-color: var(--bg-component, #fff);
   border: 1px solid var(--color-secondary);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
-  max-height: 280px;
-  overflow-y: auto;
 }
 
 .wim-multiselect-option {
   // Common styles are now handled by BaseListItem
 
   &--selected {
-    color: var(--color-primary);
     font-weight: 500;
+    color: var(--color-primary);
     background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
   }
 }

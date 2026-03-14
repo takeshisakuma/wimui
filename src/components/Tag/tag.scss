@@ -2,6 +2,7 @@
 
 .wim-tag {
   @include token-base;
+
   gap: var(--spacing-xs);
   font-weight: 500;
   border-radius: var(--radius-sm);

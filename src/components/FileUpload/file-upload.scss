@@ -1,4 +1,4 @@
-﻿.wim-file-upload {
+.wim-file-upload {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
@@ -39,8 +39,8 @@
     padding: 8px 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
     color: var(--text-tertiary);
+    white-space: nowrap;
 
     &--small {
       font-size: var(--font-size-ex-small);

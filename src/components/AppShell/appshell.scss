@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .wim-appshell {
     position: fixed;
     inset: 0;
@@ -8,8 +8,8 @@
     overflow: hidden;
 
     &__header {
-      flex-shrink: 0;
       z-index: 100;
+      flex-shrink: 0;
     }
 
     &--with-navbar {
@@ -20,21 +20,20 @@
     }
 
     &__body {
+      position: relative;
       display: flex;
       flex: 1;
       overflow: hidden;
-      position: relative;
     }
 
     &__sidebar {
-      flex-shrink: 0;
       z-index: 90;
+      flex-shrink: 0;
     }
 
     &__main {
       flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
+      overflow: hidden auto;
       background-color: var(--wim-color-bg-primary, #fff);
 
       &--padded {
@@ -54,17 +53,17 @@
     }
 
     &__footer {
-      flex-shrink: 0;
       z-index: 80;
+      flex-shrink: 0;
     }
 
     &__navbar {
-      flex-shrink: 0;
       z-index: 95;
+      flex-shrink: 0;
     }
 
     // Responsive behavior
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       &__body {
         flex-direction: column;
       }

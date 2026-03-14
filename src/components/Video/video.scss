@@ -3,10 +3,10 @@
 .wim-video-container {
   position: relative;
   display: block;
+  max-width: 100%;
   padding: 0;
   margin: 0;
   line-height: 0;
-  max-width: 100%;
 }
 
 .wim-video-inner {
@@ -67,10 +67,8 @@
     position: absolute;
     inset: 0;
     z-index: 5;
-    content: "";
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s ease-out;
+    content: "";
     background: linear-gradient(
       90deg,
       #f2f2f2 25%,
@@ -78,6 +76,8 @@
       #f2f2f2 75%
     );
     background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
     animation: wim-skeleton-loading 1.5s infinite;
   }
 
@@ -136,13 +136,14 @@
 
   @include bp.down("sm") {
     flex-wrap: wrap;
-    justify-content: center;
     gap: var(--spacing-xs);
+    justify-content: center;
   }
 }
 
 .wim-video-btn {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 32px;
@@ -156,7 +157,6 @@
   transition:
     background-color 0.2s,
     color 0.2s;
-  flex-shrink: 0;
 
   &:hover {
     background-color: rgb(255 255 255 / 0.2);
@@ -299,33 +299,33 @@
 // Advanced Menu Styles
 .wim-video-advanced-menu {
   position: absolute;
-  bottom: 60px;
   right: var(--spacing-md);
-  background: rgb(28 28 28 / 0.95);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-sm);
+  bottom: 60px;
+  z-index: 20;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  color: white;
   min-width: 160px;
-  z-index: 20;
+  padding: var(--spacing-sm);
+  font-size: 0.875rem;
+  color: white;
+  background: rgb(28 28 28 / 0.95);
+  border-radius: var(--radius-md);
   box-shadow: 0 8px 24px rgb(0 0 0 / 0.5);
   backdrop-filter: blur(8px);
-  font-size: 0.875rem;
 
   .wim-video-menu-title {
-    font-weight: 600;
+    display: flex;
+    gap: var(--spacing-xs);
+    align-items: center;
     padding: var(--spacing-xs) var(--spacing-sm);
     margin-bottom: var(--spacing-xs);
+    font-weight: 600;
     border-bottom: 1px solid rgb(255 255 255 / 0.1);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
 
     button {
-      padding: 0;
       width: auto;
+      padding: 0;
       color: inherit;
     }
   }
@@ -349,17 +349,17 @@
 
   button.wim-video-menu-btn {
     display: flex;
-    justify-content: space-between;
+    gap: var(--spacing-sm);
     align-items: center;
+    justify-content: space-between;
+    padding: 10px var(--spacing-sm); // よりゆとりを持たせて 10px に拡大
+    color: white;
+    text-align: left;
+    cursor: pointer;
     background: transparent;
     border: none;
-    color: white;
-    padding: 10px var(--spacing-sm); // よりゆとりを持たせて 10px に拡大
     border-radius: var(--radius-sm);
-    cursor: pointer;
-    text-align: left;
     transition: background 0.2s;
-    gap: var(--spacing-sm);
 
     &:hover {
       background: rgb(255 255 255 / 0.15);
@@ -367,8 +367,8 @@
 
     &.active,
     &[data-active="true"] {
-      background: rgb(255 255 255 / 0.25);
       font-weight: 500;
+      background: rgb(255 255 255 / 0.25);
     }
   }
 }
@@ -378,17 +378,17 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgb(0 0 0 / 0.6);
-  color: white;
-  padding: var(--spacing-md) var(--spacing-lg);
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  gap: 4px;
   z-index: 15;
-  pointer-events: none;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
   font-weight: bold;
+  color: white;
+  pointer-events: none;
+  background: rgb(0 0 0 / 0.6);
+  border-radius: var(--radius-full);
+  transform: translate(-50%, -50%);
   animation: skipFadeIn 0.5s ease-out forwards;
 
   .wim-icon {

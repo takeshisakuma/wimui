@@ -1,16 +1,16 @@
 @layer component {
   .wim-marquee {
     display: flex;
-    overflow: hidden;
-    user-select: none;
     gap: var(--spacing-md);
     width: 100%;
+    overflow: hidden;
+    user-select: none;
 
     &__content {
-      flex-shrink: 0;
       display: flex;
-      justify-content: space-around;
+      flex-shrink: 0;
       gap: var(--spacing-md);
+      justify-content: space-around;
       min-width: 100%;
       animation: wim-marquee-scroll var(--duration, 20s) linear infinite;
       will-change: transform;

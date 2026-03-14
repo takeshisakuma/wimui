@@ -1,4 +1,4 @@
-﻿/* ------------------------------------------------------------------
+/* ------------------------------------------------------------------
    Drawer Styles
 ------------------------------------------------------------------ */
 
@@ -18,9 +18,9 @@
   flex-direction: column;
   overflow: auto;
   color: var(--text-primary);
+  pointer-events: auto;
   background-color: var(--bg-component, #fff);
   box-shadow: var(--shadow-lg);
-  pointer-events: auto;
 
   &:focus {
     outline: none;

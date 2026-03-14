@@ -34,8 +34,8 @@
       .wim-stepper__line {
         position: absolute;
         top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
-        left: 0;
         right: 0;
+        left: 0;
         z-index: 0;
         width: auto;
         height: 2px;
@@ -44,10 +44,10 @@
 
         &::before,
         &::after {
-          content: "";
           position: absolute;
           top: 0;
           height: 100%;
+          content: "";
           background-color: var(--wim-color-border-secondary);
           transition: background-color var(--transition-base);
         }
@@ -75,14 +75,14 @@
       // Beside Label Mode (Default)
       &:not(.wim-stepper__item--label-vertical) {
         .wim-stepper__content {
-          margin-top: calc(var(--spacing-xs) * -1.2); // Position title further up
           padding-right: var(--spacing-md);
+          margin-top: calc(var(--spacing-xs) * -1.2); // Position title further up
         }
       }
 
       // Label Vertical Mode
       &--label-vertical {
-        @media (min-width: 577px) {
+        @media (width >= 577px) {
           flex-direction: column;
           align-items: center;
           padding-right: 0;
@@ -105,6 +105,7 @@
 
           &:last-child {
             flex: 1;
+
             .wim-stepper__line::after {
               display: none;
             }
@@ -123,7 +124,7 @@
       }
     }
 
-    @media (max-width: 576px) {
+    @media (width <= 576px) {
       &--horizontal {
         flex-direction: column;
 
@@ -137,11 +138,11 @@
             position: absolute !important;
             top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs)) !important;
             left: calc(var(--spacing-3xl) / 2) !important;
+            z-index: 0 !important;
             width: 2px !important;
             height: 100% !important;
             background-color: var(--wim-color-border-secondary) !important;
             transform: translateX(-50%) !important;
-            z-index: 0 !important;
 
             &::before,
             &::after {
@@ -156,14 +157,15 @@
           }
 
           .wim-stepper__content {
+            padding-right: 0 !important;
             margin-top: calc(var(--spacing-xs) + 2px) !important;
             margin-left: var(--spacing-sm) !important;
-            padding-right: 0 !important;
             text-align: left !important;
           }
 
           &:last-child {
             padding-bottom: 0 !important;
+
             .wim-stepper__line {
               display: none !important;
             }
@@ -180,19 +182,19 @@
         position: absolute;
         top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
         left: calc(var(--spacing-3xl) / 2);
+        z-index: 0;
         width: 2px;
         height: 100%;
         background-color: var(--wim-color-border-secondary);
         transform: translateX(-50%);
-        z-index: 0;
 
         &::after {
-          content: "";
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: calc(100% + var(--spacing-lg)); // Extend line to next icon
+          content: "";
           background-color: inherit;
         }
       }
@@ -253,8 +255,8 @@
       position: absolute;
       top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
       left: var(--spacing-3xl);
-      height: 2px;
       z-index: 0;
+      height: 2px;
       background-color: var(--wim-color-border-secondary);
       transform: translateY(-50%);
       transition: background-color var(--transition-base);
@@ -276,7 +278,7 @@
     }
 
     &__item--label-vertical &__content {
-      @media (min-width: 577px) {
+      @media (width >= 577px) {
         width: 100%;
         min-width: 100px;
         margin-top: var(--spacing-xs);

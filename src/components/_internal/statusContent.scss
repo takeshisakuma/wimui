@@ -7,15 +7,15 @@
   text-align: center;
 
   &--small {
+    gap: var(--spacing-md);
+    align-items: flex-start;
     padding: var(--spacing-lg) var(--spacing-md);
     text-align: left;
-    align-items: flex-start;
-    gap: var(--spacing-md);
 
     .wim-status-content__container {
       flex-direction: row;
-      align-items: center;
       gap: var(--spacing-md);
+      align-items: center;
     }
 
     .wim-status-content__icon {
@@ -46,8 +46,8 @@
   &__container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: var(--spacing-sm);
+    align-items: center;
   }
 
   &__content {
@@ -57,8 +57,8 @@
 
   &__icon {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     margin-bottom: var(--spacing-sm);
 
     .wim-icon,

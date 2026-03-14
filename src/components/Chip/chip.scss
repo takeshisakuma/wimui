@@ -2,14 +2,15 @@
 
 .wim-chip {
   @include token-base;
+
   box-sizing: border-box;
   gap: var(--spacing-xs);
+  max-width: 100%;
   font-weight: 500;
   cursor: default;
   user-select: none;
   border-radius: var(--radius-full);
   transition: all 0.2s ease-in-out;
-  max-width: 100%;
 
   &--md {
     height: 2rem;
@@ -63,9 +64,9 @@
   }
 
   &__label {
+    min-width: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
-    min-width: 0;
   }
 
   &__icon {

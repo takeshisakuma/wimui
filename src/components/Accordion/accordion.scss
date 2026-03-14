@@ -1,8 +1,8 @@
 .wim-accordion {
   width: 100%;
+  overflow: hidden;
   border: 1px solid var(--wim-color-border-secondary, #e2e8f0);
   border-radius: var(--radius-md, 4px);
-  overflow: hidden;
 
   &__item {
     display: block;
@@ -15,8 +15,8 @@
     }
 
     &--disabled {
-      opacity: 0.5;
       pointer-events: none;
+      opacity: 0.5;
     }
   }
 
@@ -64,8 +64,8 @@
     height: 1.25rem;
     margin-left: 1rem;
     color: var(--wim-color-text-secondary, #64748b);
-    will-change: transform;
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 
     &--open {
       transform: rotate(180deg);
@@ -79,8 +79,8 @@
     overflow: hidden;
     font-size: 0.875rem;
     line-height: 1.6;
-    will-change: grid-template-rows;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: grid-template-rows;
 
     &--open {
       grid-template-rows: 1fr;

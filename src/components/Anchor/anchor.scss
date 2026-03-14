@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .wim-anchor {
     position: relative;
     min-width: 0;
@@ -6,8 +6,8 @@
     background-color: transparent;
 
     &--horizontal {
-      padding-left: 0;
       padding-bottom: 0;
+      padding-left: 0;
       border-bottom: 1px solid var(--scrollbar-track);
 
       .wim-anchor__ink {
@@ -34,8 +34,8 @@
       left: 0;
       width: 2px;
       height: 100%;
-      background-color: var(--scrollbar-track); // Use a light gray from track
       overflow: hidden;
+      background-color: var(--scrollbar-track); // Use a light gray from track
 
       &-ball {
         position: absolute;
@@ -73,8 +73,8 @@
         }
 
         .wim-anchor__item {
-          white-space: nowrap;
           padding: var(--spacing-xs) var(--spacing-sm);
+          white-space: nowrap;
         }
 
         .wim-anchor__link {
@@ -102,11 +102,11 @@
       padding-left: var(--spacing-md);
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
-      word-break: normal;
-      overflow-wrap: normal;
       font-size: var(--font-size-medium);
       color: var(--text-secondary);
+      word-break: normal;
+      overflow-wrap: normal;
+      white-space: nowrap;
       text-decoration: none;
       transition: color 0.3s ease;
 

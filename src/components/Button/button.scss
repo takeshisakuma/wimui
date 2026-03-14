@@ -10,18 +10,18 @@
     font-weight: var(--font-weight-medium);
     line-height: 1.2;
     color: inherit;
+    white-space: nowrap;
     cursor: pointer;
     background-color: transparent;
     border: 2px solid transparent;
     border-radius: var(--radius-md);
     opacity: 1;
+    transform: translateZ(0);
+    backface-visibility: hidden;
     transition: var(--transition-base);
-    white-space: nowrap;
 
     /* アニメーション終了時のテキストの描画ブレ（Jitter）を防止 */
     will-change: transform, box-shadow;
-    backface-visibility: hidden;
-    transform: translateZ(0);
  
     &--full-width {
       display: grid;
@@ -40,8 +40,8 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 100%;
       min-width: 0;
+      height: 100%;
     }
 
     &__loader {
@@ -57,11 +57,11 @@
       display: block;
       min-width: 0;
       padding: 0;
+      margin-top: -0.1rem;
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: 1.2;
       white-space: inherit;
-      margin-top: -0.1rem;
 
       .wim-button--md & {
         margin-top: -0.15rem;
@@ -139,7 +139,7 @@
       }
 
       &:hover:not(:disabled) {
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12), var(--inner-highlight);
+        box-shadow: 0 8px 18px rgb(0 0 0 / 0.12), var(--inner-highlight);
         transform: translateY(var(--lift-md)) translateZ(0);
         transition:
           box-shadow var(--duration-fast) var(--easing-base),
@@ -198,6 +198,7 @@
 
     &--tertiary {
       --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
+
       background-color: rgb(0 0 0 / 0.03);
       border-color: rgb(0 0 0 / 0.08);
 

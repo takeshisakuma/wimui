@@ -13,6 +13,7 @@
 .wim-ui-connector {
   position: relative;
   background-color: var(--wim-indicator-line-color);
+
   &--active {
     background-color: var(--wim-indicator-active-color);
   }

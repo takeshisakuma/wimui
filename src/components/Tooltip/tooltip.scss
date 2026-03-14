@@ -26,12 +26,12 @@
   background-color: var(--bg-tooltip, #333);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
-  will-change: opacity;
 
   // Animation
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   animation: fadeIn 0.2s forwards;
+  will-change: opacity;
 
   // Remove transform transition as it interferes with Floating UI positioning updates
 

@@ -2,32 +2,34 @@
   --wim-input-offset-left: var(--spacing-md);
   --wim-input-offset-right: var(--spacing-md);
 
+  position: relative;
+
   // Shell styles
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  width: var(--wim-input-width, 320px);
+  max-width: 100%;
   min-height: 42px;
   background-color: var(--bg-component, #fff);
   border: 1px solid var(--color-secondary);
   border-radius: var(--radius-md);
   transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
-  position: relative;
-  width: var(--wim-input-width, 320px);
-  max-width: 100%;
 
   &.wim-input--variant-ghost {
     background-color: transparent;
     border-color: transparent;
+
     &:hover:not(.wim-input-base--disabled) {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: rgb(0 0 0 / 0.05);
     }
   }
 
   &.wim-input-base--disabled {
+    cursor: not-allowed;
     background-color: var(--color-disabled);
     border-color: var(--color-disabled);
     opacity: 0.6;
-    cursor: not-allowed;
   }
 
   &.wim-input-base--error {
@@ -65,8 +67,8 @@
 
   &.wim-input--has-custom-width,
   &[class*="wim-input--width-"] {
-    max-width: 100%;
     width: var(--wim-input-width);
+    max-width: 100%;
   }
 
   &.wim-input--full-width {
@@ -77,6 +79,7 @@
   .wim-input-icon {
     position: absolute;
     top: 50%;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +87,6 @@
     pointer-events: none;
     transform: translateY(-50%);
     transition: color 0.3s ease-in-out;
-    z-index: 1;
 
     &--clickable {
       pointer-events: auto;
@@ -98,13 +100,13 @@
   .wim-input-icons {
     position: absolute;
     top: 50%;
+    z-index: 1;
     display: flex;
     gap: var(--spacing-xs);
     align-items: center;
     pointer-events: none;
     transform: translateY(-50%);
     transition: color 0.3s ease-in-out;
-    z-index: 1;
 
     &--right {
       right: var(--spacing-sm);
@@ -154,17 +156,16 @@
 .wim-input-base > .wim-selectbox-trigger,
 .wim-input-base > .wim-tree-select__trigger,
 .wim-input-base > .wim-cascader__trigger,
-.wim-input-base > .wim-multiselect-trigger,
-.wim-input-base > .wim-selectbox-trigger {
+.wim-input-base > .wim-multiselect-trigger {
     box-sizing: border-box !important;
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    outline: none !important;
     width: 100%;
     height: 100%;
     padding-top: var(--spacing-sm);
+    padding-right: var(--wim-input-offset-right) !important;
     padding-bottom: var(--spacing-sm);
     padding-left: var(--wim-input-offset-left) !important;
-    padding-right: var(--wim-input-offset-right) !important;
+    outline: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }

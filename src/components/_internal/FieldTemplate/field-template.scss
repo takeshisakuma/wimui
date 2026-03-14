@@ -7,21 +7,21 @@
 
     .wim-field-template-label {
       display: block;
-      margin-bottom: 0px; // FieldTemplate handles gaps via flex-gap
+      margin-bottom: 0; // FieldTemplate handles gaps via flex-gap
     }
 
     .wim-input-base:has(input[type="color"]) {
-      min-height: 42px;
       width: fit-content;
       min-width: 120px;
       max-width: 120px; // Lock width to avoid stretch
+      min-height: 42px;
     }
   }
 
   &--horizontal {
     flex-direction: row;
-    align-items: flex-start;
     gap: 16px;
+    align-items: flex-start;
 
     .wim-input-base:has(input[type="color"]) {
       position: relative;
@@ -31,8 +31,8 @@
     }
 
     .wim-field-template-label-wrapper {
-        width: 150px; // default label width for horizontal layout
         flex-shrink: 0;
+        width: 150px; // default label width for horizontal layout
         padding-top: 10px; // align with input start
     }
     

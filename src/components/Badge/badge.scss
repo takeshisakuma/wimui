@@ -2,11 +2,12 @@
 
 .wim-badge {
   @include token-base;
+
   gap: 0.5em;
   font-weight: normal;
-  border-radius: 999px;
   line-height: 1;
   text-decoration: none;
+  border-radius: 999px;
 
   &__icon {
     display: inline-flex;
@@ -22,30 +23,30 @@
 
   // Sizes
   &--sm {
-    padding: 2px 6px;
-    font-size: 0.65rem;
     min-width: 1.25em;
     height: 1.25em;
+    padding: 2px 6px;
+    font-size: 0.65rem;
 
     &.wim-badge--icon-only {
-      padding: 0;
       width: 8px;
-      height: 8px;
       min-width: 0;
+      height: 8px;
+      padding: 0;
     }
   }
 
   &--md {
-    padding: 4px 8px;
-    font-size: 0.75rem;
     min-width: 1.5em;
     height: 1.5em;
+    padding: 4px 8px;
+    font-size: 0.75rem;
 
     &.wim-badge--icon-only {
-      padding: 0;
       width: 10px;
-      height: 10px;
       min-width: 0;
+      height: 10px;
+      padding: 0;
     }
   }
 

@@ -92,17 +92,18 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-surface: var(--bg-component);
   --wim-color-surface-variant: var(--wim-color-bg-secondary);
   --wim-color-surface-hover: var(--wim-color-bg-hover);
-  --wim-color-primary-container-alpha: rgba(0, 122, 255, 0.08);
-  --wim-color-surface-variant-alpha: rgba(0, 0, 0, 0.02);
+  --wim-color-primary-container-alpha: rgb(0 122 255 / 0.08);
+  --wim-color-surface-variant-alpha: rgb(0 0 0 / 0.02);
   --wim-color-bg-tertiary: #{$pccs-gy7-5};
   --wim-color-bg-component: var(--bg-component);
-  --wim-color-overlay-bg: rgba(0, 0, 0, 0.5);
-  --wim-color-overlay-bg-light: rgba(255, 255, 255, 0.8);
-  --wim-color-overlay-bg-dark: rgba(0, 0, 0, 0.7);
+  --wim-color-overlay-bg: rgb(0 0 0 / 0.5);
+  --wim-color-overlay-bg-light: rgb(255 255 255 / 0.8);
+  --wim-color-overlay-bg-dark: rgb(0 0 0 / 0.7);
   --wim-color-text-on-overlay: #fff;
+
   /* Helper variables for toggle states */
-  --ON: initial;
-  --OFF: ;
+  --on: initial;
+  --off: ;
 }
 
 @mixin dark-theme {
@@ -121,14 +122,14 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-border-secondary: #{$pccs-gy4-5}; // Darker Gray Border
   --scrollbar-thumb: #{$pccs-gy5-5};
   --scrollbar-track: #{$pccs-gy3-5};
-  --wim-color-primary-container-alpha: rgba(0, 122, 255, 0.2);
-  --wim-color-surface-variant-alpha: rgba(255, 255, 255, 0.05);
+  --wim-color-primary-container-alpha: rgb(0 122 255 / 0.2);
+  --wim-color-surface-variant-alpha: rgb(255 255 255 / 0.05);
   --wim-color-primary-hover: rgba(var(--pccs-v16-rgb), 1);
   --wim-color-primary-light: rgba(var(--pccs-v16-rgb), 0.2);
-  --wim-color-overlay-bg: rgba(0, 0, 0, 0.7);
-  --wim-color-overlay-bg-light: rgba(255, 255, 255, 0.2);
-  --wim-color-overlay-bg-dark: rgba(0, 0, 0, 0.8);
-  --shadow-color: rgba(0, 0, 0, 0.4);
+  --wim-color-overlay-bg: rgb(0 0 0 / 0.7);
+  --wim-color-overlay-bg-light: rgb(255 255 255 / 0.2);
+  --wim-color-overlay-bg-dark: rgb(0 0 0 / 0.8);
+  --shadow-color: rgb(0 0 0 / 0.4);
 
   /* Adjust semantic colors for dark mode visibility/contrast */
   --color-destructive: #{$pccs-v2};

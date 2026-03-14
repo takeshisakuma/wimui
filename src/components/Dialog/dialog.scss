@@ -1,4 +1,4 @@
-﻿/* ------------------------------------------------------------------
+/* ------------------------------------------------------------------
    Dialog Styles
 ------------------------------------------------------------------ */
 
@@ -19,12 +19,12 @@
   max-width: 450px;
   max-height: 85vh;
   padding: var(--spacing-2xl);
+  margin: 0;
   overflow: auto;
   color: var(--text-primary);
   background-color: var(--bg-component, #fff);
   border: none;
   border-radius: var(--radius-lg);
-  margin: 0;
   box-shadow: var(--shadow-lg);
 
   &:focus {

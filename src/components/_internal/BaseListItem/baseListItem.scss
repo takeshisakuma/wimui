@@ -4,20 +4,20 @@
 .wim-base-list-item {
     box-sizing: border-box;
     display: flex;
-    align-items: center;
     gap: var(--spacing-sm);
+    align-items: center;
     width: calc(100% - (var(--spacing-xs) * 2));
-    margin: 0 var(--spacing-xs);
     padding: var(--spacing-sm) var(--spacing-md); // Slightly tighter vertical padding for floating style
+    margin: 0 var(--spacing-xs);
     font-family: var(--font-family-base);
     font-size: 0.9rem;
-    color: var(--text-primary);
     line-height: var(--line-height-normal, 1.5);
+    color: var(--text-primary);
     cursor: pointer;
     user-select: none;
-    transition: all 0.2s ease-in-out;
-    border-radius: var(--radius-md); // More rounded for the 'floating island' look
     outline: none; // Handle focus via other means or active state
+    border-radius: var(--radius-md); // More rounded for the 'floating island' look
+    transition: all 0.2s ease-in-out;
 
     &:hover:not(&--disabled, &--danger) {
         background-color: var(--wim-color-bg-hover);
@@ -38,15 +38,15 @@
         color: var(--text-error, #dc2626);
 
         &:hover:not(.wim-base-list-item--disabled) {
-            background-color: rgba(220, 38, 38, 0.1);
+            background-color: rgb(220 38 38 / 0.1);
         }
     }
 
     &__icon {
         display: flex;
+        flex-shrink: 0;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0;
         color: var(--text-secondary);
 
         svg {
@@ -58,17 +58,17 @@
     &__content {
         flex: 1;
         min-width: 0;
+        padding: 2px 0; // Prevent clipping from overflow: hidden
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        padding: 2px 0; // Prevent clipping from overflow: hidden
     }
 
     &__right-section {
         display: flex;
         align-items: center;
         margin-left: auto;
-        color: var(--text-tertiary);
         font-size: 0.75rem;
+        color: var(--text-tertiary);
     }
 }

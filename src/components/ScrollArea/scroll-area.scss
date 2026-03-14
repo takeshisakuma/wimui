@@ -1,9 +1,9 @@
-﻿@layer component {
+@layer component {
   .wim-scroll-area {
+    min-width: 0;
+    min-height: 0;
     scrollbar-gutter: stable;
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
     scrollbar-width: thin;
-    min-width: 0;
-    min-height: 0;
   }
 }

@@ -1,16 +1,17 @@
 .wim-image-container {
   position: relative;
   display: block;
+  max-width: 100%;
   padding: 0;
   margin: 0;
-  max-width: 100%;
   line-height: 0;
+
   // Tilt (3D) effect
   transform-style: preserve-3d;
-  will-change: transform;
   
   // Smooth return when mouse leaves
   transition: transform 0.5s var(--easing-base, ease);
+  will-change: transform;
 
   // Smooth follow when active (a bit faster than return)
   &:hover {
@@ -23,8 +24,8 @@
   display: block;
   width: 100%;
   line-height: 0;
-  transform-style: preserve-3d; // Pass 3D to children
   background-color: var(--wim-image-bg-color, transparent);
+  transform-style: preserve-3d; // Pass 3D to children
 
   &.wim-image--radius-small {
     overflow: hidden;
@@ -78,10 +79,8 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    content: "";
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s ease-out;
+    content: "";
     background: linear-gradient(
       90deg,
       #f0f0f0 25%,
@@ -89,6 +88,8 @@
       #f0f0f0 75%
     );
     background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
     animation: wim-skeleton-loading 1.5s infinite;
   }
 
@@ -110,9 +111,9 @@
   &.wim-image--has-noise::after {
     position: absolute;
     inset: 0;
+    z-index: 2;
     pointer-events: none;
     content: "";
-    z-index: 2;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     opacity: var(--wim-image-noise-opacity, 0);
   }
@@ -125,8 +126,8 @@
     pointer-events: none;
     content: "";
     background: var(--wim-image-overlay-color, transparent);
-    opacity: var(--wim-image-overlay-opacity, 0);
     mix-blend-mode: var(--wim-image-overlay-blend, normal);
+    opacity: var(--wim-image-overlay-opacity, 0);
     transition: opacity var(--wim-image-transition-duration, 0.3s) ease;
   }
 
@@ -138,10 +139,10 @@
 .wim-image {
   display: block;
   max-width: 100%;
+  mix-blend-mode: var(--wim-image-blend-mode, normal);
   transform: scale(1);
   backface-visibility: hidden;
   will-change: transform, filter;
-  mix-blend-mode: var(--wim-image-blend-mode, normal);
 
   // Zoom
   .wim-image--zoomable & {

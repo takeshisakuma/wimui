@@ -1,4 +1,4 @@
-﻿@layer component {
+@layer component {
   .wim-back-top {
     position: fixed;
     right: 40px;
@@ -10,8 +10,8 @@
     transition: all 0.3s;
 
     &--hidden {
-      opacity: 0;
       pointer-events: none;
+      opacity: 0;
       transform: translateY(20px);
     }
 
@@ -33,6 +33,7 @@
         background-color: var(
           --color-primary
         ); // Fallback or hover state if defined
+
         filter: brightness(1.1);
         transform: translateY(-2px);
       }

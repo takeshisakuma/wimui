@@ -2,21 +2,21 @@
 
 .wim-transfer {
   display: flex;
-  align-items: center;
   gap: 32px; // リスト間の余白を広げて全体を幅広くする
+  align-items: center;
   font-family: var(--wim-font-family);
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     flex-direction: column;
+    gap: 16px; // モバイル時は縦の余白を適切に調整
     align-items: stretch;
     width: 80vw; // 100%から80vwに変更
     margin: 0 auto; // 中央寄せ
-    gap: 16px; // モバイル時は縦の余白を適切に調整
   }
 
   &--disabled {
-    opacity: 0.6;
     pointer-events: none;
+    opacity: 0.6;
   }
 
   &__list {
@@ -24,22 +24,22 @@
     flex-direction: column;
     width: 300px;
     height: 320px;
+    overflow: hidden;
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); // プレミアムな質感を出すためのシャドウ
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.05); // プレミアムな質感を出すためのシャドウ
     transition: all 0.3s ease;
 
     &:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // ホバー時に質感を強調
       border-color: var(--wim-color-primary-light, var(--wim-color-border));
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1); // ホバー時に質感を強調
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       width: 100%;
       height: 300px; // 400pxから300pxに変更
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); // モバイルではより存在感を出す
+      box-shadow: 0 4px 16px rgb(0 0 0 / 0.08); // モバイルではより存在感を出す
     }
   }
 
@@ -48,34 +48,34 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 500;
     background: color-mix(in srgb,
         var(--wim-color-primary, #3b82f6) 4%,
         transparent);
     border-bottom: 1px solid var(--wim-color-border);
-    font-size: 14px;
-    font-weight: 500;
 
     .wim-transfer--disabled & {
       background: var(--wim-color-bg-secondary);
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       padding: 14px 16px; // ヘッダーを厚くする
     }
   }
 
   &__header-count {
-    font-size: 12px;
-    color: var(--wim-color-text-secondary);
-    font-weight: normal;
-    margin-left: 8px;
     flex-shrink: 0;
+    margin-left: 8px;
+    font-size: 12px;
+    font-weight: normal;
+    color: var(--wim-color-text-secondary);
   }
 
   &__body {
     flex: 1;
-    overflow-y: auto;
     padding: 4px 0;
+    overflow-y: auto;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -96,9 +96,8 @@
   }
 
   &__item-label {
-
     // Standard font styles are handled by BaseListItem
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       font-size: 16px; // 文字も少し大きく
     }
   }
@@ -108,10 +107,10 @@
     flex-direction: column;
     gap: 12px; // ボタン間の余白も少し広げて「太め」に
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       flex-direction: row;
-      justify-content: center;
       gap: 24px; // ボタン間の距離を広げる
+      justify-content: center;
       padding: 8px 0;
 
       .wim-button {
@@ -125,7 +124,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: var(--wim-color-text-placeholder);
     font-size: 14px;
+    color: var(--wim-color-text-placeholder);
   }
 }

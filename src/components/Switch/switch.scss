@@ -12,7 +12,6 @@
 }
 
 .wim-switch-input {
-  appearance: none;
   position: relative;
   display: flex;
   flex-shrink: 0;
@@ -20,26 +19,27 @@
   width: 44px;
   height: 24px;
   padding: 2px;
+  appearance: none;
   cursor: pointer;
   background-color: var(--wim-color-border-secondary);
   border-radius: 9999px;
-  will-change: background-color;
   transition: background-color 0.2s ease-in-out;
+  will-change: background-color;
 
   &::before {
+    flex-grow: var(--off);
     content: "";
-    flex-grow: var(--OFF);
-    will-change: flex-grow;
     transition: flex-grow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: flex-grow;
   }
 
   &::after {
-    content: "";
     width: 20px;
     height: 20px;
+    content: "";
     background-color: var(--text-white);
     border-radius: 50%;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
   }
 
   &:checked {

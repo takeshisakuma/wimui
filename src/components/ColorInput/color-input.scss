@@ -1,53 +1,53 @@
-@use "../../styles/_token-common.scss" as *;
+@use "../../styles/token-common.scss" as *;
 
 // Use attribute selector so it works even if the class is applied to the wrapper
 // Use high specificity to override InputBase defaults
 .wim-input-base > input[type="color"].wim-input {
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  min-width: 40px;
-  width: 100%;
+  box-sizing: border-box;
+  display: block;
   align-self: stretch;
+  width: 100%;
+  min-width: 40px;
   height: auto !important;
   min-height: 100%;
   padding: 0 !important; // Total edge-to-edge
+  margin: 0 !important;
+  appearance: none;
+  cursor: pointer;
   background: transparent !important;
   border: none !important;
-  display: block;
-  box-sizing: border-box;
-  margin: 0 !important;
   border-radius: 0 !important; // Ensure the element itself isn't pre-rounded
 
 
   &::-webkit-color-swatch-wrapper {
-    padding: 0;
     box-sizing: border-box;
     height: 100%;
+    padding: 0;
     border-radius: 0 !important;
   }
+
   &::-webkit-color-swatch {
+    box-sizing: border-box;
+    height: 100%;
     border: none;
     border-radius: 0 !important;
-    height: 100%;
-    box-sizing: border-box;
   }
   
   &::-moz-color-swatch {
+    box-sizing: border-box;
+    height: 100%;
     border: none;
     border-radius: 0 !important;
-    height: 100%;
-    box-sizing: border-box;
   }
 }
 
 // Ensure the shell looks okay
 .wim-input-base {
   &:has(input[type="color"]) {
-    min-height: 42px;
     width: 120px; // Solidify width
     min-width: 120px;
     max-width: 120px;
+    min-height: 42px;
     overflow: hidden;
 
     &:hover:not(.wim-input-base--disabled) {
@@ -58,6 +58,7 @@
     .wim-input-icon,
     .wim-input-icons {
       color: #000 !important;
+
       .wim-icon {
         color: inherit !important;
         stroke: #000 !important;
@@ -69,6 +70,7 @@
       .wim-input-icon,
       .wim-input-icons {
         color: var(--text-error) !important;
+
         .wim-icon {
           color: inherit !important;
           stroke: var(--text-error) !important;
@@ -79,8 +81,8 @@
     // Center the left icon in its allocated space
     .wim-input-icon--left {
       left: 0;
-      width: var(--wim-input-offset-left);
       justify-content: center;
+      width: var(--wim-input-offset-left);
     }
 
     // Restore padding for the input content area when icons are present
@@ -89,6 +91,7 @@
         padding-left: var(--wim-input-offset-left) !important;
       }
     }
+
     &.wim-input--has-right-icon {
       input[type="color"].wim-input {
         padding-right: var(--wim-input-offset-right) !important;

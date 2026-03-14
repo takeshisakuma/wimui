@@ -2,6 +2,7 @@
 
 .wim-toggle-group {
   @include indicator.indicator-container-segmented($bg: var(--bg-component), $padding: 2px);
+
   box-sizing: border-box;
   display: inline-flex;
   gap: 2px;
@@ -18,8 +19,9 @@
 
   &__slider {
     @include indicator.indicator-slider-contained($offset: 2px, $bg: var(--color-primary), $shadow: (0 1px 3px rgb(0 0 0 / 0.1)));
-    opacity: 0;
+
     z-index: 1;
+    opacity: 0;
 
     .wim-toggle-group--single.wim-toggle-group--ready & {
        transition: 
@@ -35,6 +37,7 @@
 
   &__item {
     @include indicator.indicator-item-base;
+
     gap: var(--spacing-xs);
     font-family: inherit;
     font-weight: 500;

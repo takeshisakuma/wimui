@@ -1,4 +1,4 @@
-﻿@use "../../tokens/breakpoints" as breakpoints;
+@use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
   .wim-header {
@@ -51,27 +51,27 @@
 
     &__container {
       display: flex;
+      gap: var(--spacing-xl);
       align-items: center;
       justify-content: space-between;
-      gap: var(--spacing-xl);
       width: 100%;
-      height: 100%;
       min-width: 0;
+      height: 100%;
 
       @include breakpoints.down(sm) {
         flex-wrap: wrap;
-        justify-content: space-between;
         gap: 0;
+        justify-content: space-between;
         padding: 0; // セクション側のpaddingで制御するためコンテナは0に
       }
     }
 
     &__section {
       display: flex;
+      flex-shrink: 0;
       gap: var(--spacing-md);
       align-items: center;
       white-space: nowrap;
-      flex-shrink: 0;
 
       > * {
         flex-shrink: 0;
@@ -85,9 +85,9 @@
         justify-content: flex-start;
 
         @include breakpoints.down(sm) {
+          justify-content: center;
           order: 1;
           width: 100%;
-          justify-content: center;
           padding: var(--spacing-md);
           border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
         }
@@ -97,27 +97,28 @@
         flex-grow: 1;
         flex-shrink: 1;
         justify-content: center;
+        min-width: 0;
         overflow-x: auto;
         scrollbar-width: none;
         -webkit-overflow-scrolling: touch;
-        min-width: 0;
 
         /* For better scrolling experience when centered */
         &::before,
         &::after {
-          content: "";
           display: block;
           flex: 1 0 0%;
           min-width: var(--spacing-md);
+          content: "";
         }
 
         @include breakpoints.down(sm) {
-          order: 2;
           /* Reset flex basis to auto so it doesn't try to fill the whole row alone */
           flex-basis: auto;
+          justify-content: flex-start;
+          order: 2;
+
           /* Connect with end section on the same row */
           width: auto;
-          justify-content: flex-start;
           padding: var(--spacing-md);
           padding-bottom: 0;
 

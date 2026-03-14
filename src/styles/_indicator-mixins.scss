@@ -15,36 +15,38 @@
 
 /* A container that has a subtle background and segmented items */
 @mixin indicator-container-segmented($radius: var(--radius-md), $bg: var(--wim-color-bg-secondary, #f4f4f5), $padding: 4px) {
-  display: inline-flex;
   position: relative;
+  display: inline-flex;
   padding: $padding;
+  overflow: hidden;
   background-color: $bg;
   border-radius: $radius;
-  overflow: hidden;
   isolation: isolate;
 }
 
 /* The floating slider for segmented/contained variant */
 @mixin indicator-slider-contained($radius: var(--radius-sm), $bg: #fff, $shadow: (0 1px 2px rgb(0 0 0 / 0.1)), $offset: 4px) {
   @include indicator-slider-base;
+
   top: $offset;
   bottom: $offset;
   left: 0;
+  z-index: 1; // Behind content if isolation is used correctly or use negative
   background-color: $bg;
   border-radius: $radius;
   box-shadow: $shadow;
-  z-index: 1; // Behind content if isolation is used correctly or use negative
 }
 
 /* Underline slider variant */
 @mixin indicator-slider-underline($height: 2px, $color: var(--color-primary), $bottom: 0) {
   @include indicator-slider-base;
+
   bottom: $bottom;
   left: 0;
+  z-index: 2;
   height: $height;
   background-color: $color;
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  z-index: 2;
 }
 
 /* Base style for items within an indicator container */
@@ -54,14 +56,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  background: transparent;
-  border: none;
   padding: 0;
   margin: 0;
   font: inherit;
-  transition: all var(--transition-base, 0.2s ease);
+  cursor: pointer;
   user-select: none;
+  background: transparent;
+  border: none;
+  transition: all var(--transition-base, 0.2s ease);
   -webkit-tap-highlight-color: transparent;
 
   &:disabled {
