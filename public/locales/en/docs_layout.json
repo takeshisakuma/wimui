@@ -75,7 +75,6 @@
   "doc_box_desc": "Polymorphic box",
   "doc_box_long_desc": "Box is the most basic layout component in wimui.\nIt provides properties that wrap CSS properties (p, m, bg, etc.), allowing you to apply styles intuitively without writing inline styles.",
   "doc_box_title": "The most basic layout component",
-  "doc_chipGroup_desc": "Group of interactive chips",
   "doc_container_desc": "Layout wrapper",
   "doc_container_feature_1": "Maximum Width Control",
   "doc_container_feature_1_desc": "Set the maximum width using size properties like xs, sm, md, lg, or xl.",

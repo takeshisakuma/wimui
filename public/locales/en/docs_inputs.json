@@ -1,6 +1,5 @@
 {
   "doc_FieldError_desc": "Validation messages",
-  "doc_autocomplete_desc": "Input with suggestions",
   "doc_cascader_custom_separator": "Custom Separator",
   "doc_cascader_desc": "Hierarchical selection",
   "doc_cascader_hover_expand": "Expand on Hover",
@@ -204,9 +203,8 @@
   "doc_multiSelect_desc": "Multiple selection",
   "doc_multiselect_ex_multi": "Multiple Selected",
   "doc_multiselect_long_desc": "A dropdown menu for users to select multiple options from a predefined list.",
-  "doc_multiselect_title": "Multiple selection",
-  "doc_nativeSelect_desc": "Native browser select",
-  "doc_numberInput_desc": "Numeric input with steps",
+  "doc_multiselect_title": "Multi Select",
+  "doc_numberInput_desc": "Input with step adjustments",
   "doc_numberinput_long_desc": "A component that provides numerical input.",
   "doc_numberinput_title": "Field specialized for numeric input with spin buttons",
   "doc_otpInput_desc": "One-time password fields",

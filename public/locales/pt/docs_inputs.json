@@ -1,6 +1,5 @@
 {
   "doc_FieldError_desc": "Mensagens de validação",
-  "doc_autocomplete_desc": "Entrada com sugestões",
   "doc_cascader_custom_separator": "Separador Personalizado",
   "doc_cascader_desc": "Seleção de estrutura hierárquica",
   "doc_cascader_hover_expand": "Expandir ao Passar o Mouse",
@@ -205,7 +204,6 @@
   "doc_multiselect_ex_multi": "Múltiplos Selecionados",
   "doc_multiselect_long_desc": "Um menu suspenso para os usuários selecionarem várias opções a partir de uma lista predefinida.",
   "doc_multiselect_title": "Seletor Múltiplo",
-  "doc_nativeSelect_desc": "Seleção nativa do navegador",
   "doc_numberInput_desc": "Campo de entrada otimizado para valores numéricos",
   "doc_numberinput_long_desc": "Um componente que fornece entrada numérica.",
   "doc_numberinput_title": "Campo especializado para entrada numérica com botões de ajuste",

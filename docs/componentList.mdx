@@ -117,7 +117,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
     </tr>
     <tr>
       <td><a href="#selection"><T k="cat_selection" /></a></td>
-      <td>100% (15/15)</td>
+      <td>100% (12/12)</td>
     </tr>
     <tr>
       <td><a href="#typography"><T k="cat_typography" /></a></td>
@@ -125,7 +125,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
     </tr>
     <tr>
       <td><a href="#utilities"><T k="cat_utilities" /></a></td>
-      <td>100% (7/7)</td>
+      <td>100% (11/11)</td>
     </tr>
     <tr>
       <td><a href="#visualization"><T k="cat_visualization" /></a></td>
@@ -133,7 +133,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
     </tr>
     <tr>
       <td><a href="#internal"><T k="cat_internal" /></a></td>
-      <td>12</td>
+      <td>11</td>
     </tr>
   </tbody>
 </table>
@@ -171,7 +171,20 @@ export const PlatformIcons = ({ pc, mobile }) => (
     <tr>
       <td>FileUpload</td>
       <td>
-        <p><T k="doc_file_upload_desc" /></p>      </td>
+        <p><T k="doc_file_upload_desc" /></p>
+      </td>
+      <td>
+        <PlatformIcons pc mobile />
+      </td>
+    </tr>
+    <tr>
+      <td>Dropzone</td>
+      <td>
+        <p><T k="doc_dropzone_desc" /></p>
+      </td>
+      <td>
+        <PlatformIcons pc mobile />
+      </td>
     </tr>
     <tr>
       <td>Rating</td>
@@ -995,7 +1008,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
   </thead>
   <tbody>
     <tr>
-      <td>container</td>
+      <td>Container</td>
       <td>
         <p><T k="doc_container_desc" /></p>
 
@@ -1006,7 +1019,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
       </td>
     </tr>
     <tr>
-      <td>grid</td>
+      <td>Grid</td>
       <td>
         <p><T k="doc_grid_desc" /></p>
 
@@ -1017,7 +1030,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
       </td>
     </tr>
     <tr>
-      <td>stack</td>
+      <td>Stack</td>
       <td>
         <p><T k="doc_stack_desc" /></p>
 
@@ -1028,7 +1041,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
       </td>
     </tr>
     <tr>
-      <td>center</td>
+      <td>Center</td>
       <td>
         <p><T k="doc_center_desc" /></p>
 
@@ -1039,7 +1052,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
       </td>
     </tr>
     <tr>
-      <td>aspectRatio</td>
+      <td>AspectRatio</td>
       <td>
         <p><T k="doc_aspectRatio_desc" /></p>
 
@@ -1050,7 +1063,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
       </td>
     </tr>
     <tr>
-      <td>bentoGrid</td>
+      <td>BentoGrid</td>
       <td>
         <p><T k="doc_bentoGrid_desc" /></p>
 
@@ -1061,7 +1074,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
       </td>
     </tr>
     <tr>
-      <td>masonry</td>
+      <td>Masonry</td>
       <td>
         <p><T k="doc_masonry_desc" /></p>
 
@@ -1072,7 +1085,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
       </td>
     </tr>
     <tr>
-      <td>box</td>
+      <td>Box</td>
       <td>
         <p><T k="doc_box_desc" /></p>
 
@@ -1105,7 +1118,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
       </td>
     </tr>
     <tr>
-      <td>simpleGrid</td>
+      <td>SimpleGrid</td>
       <td>
         <p><T k="doc_simpleGrid_desc" /></p>
 
@@ -1723,17 +1736,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 
       </td>
     </tr>
-    <tr>
-      <td>NativeSelect</td>
-      <td>
-        <p><T k="doc_nativeSelect_desc" /></p>
 
-      </td>
-      <td>
-        <PlatformIcons pc mobile />
-
-      </td>
-    </tr>
     <tr>
       <td>CheckboxGroup</td>
       <td>
@@ -1811,17 +1814,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 
       </td>
     </tr>
-    <tr>
-      <td>Autocomplete</td>
-      <td>
-        <p><T k="doc_autocomplete_desc" /></p>
 
-      </td>
-      <td>
-        <PlatformIcons pc mobile />
-
-      </td>
-    </tr>
     <tr>
       <td>SegmentedControl</td>
       <td>
@@ -1844,17 +1837,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
 
       </td>
     </tr>
-    <tr>
-      <td>ChipGroup</td>
-      <td>
-        <p><T k="doc_chipGroup_desc" /></p>
 
-      </td>
-      <td>
-        <PlatformIcons pc mobile />
-
-      </td>
-    </tr>
     <tr>
       <td>ToggleGroup</td>
       <td>
@@ -2095,11 +2078,45 @@ export const PlatformIcons = ({ pc, mobile }) => (
       <td>Marquee</td>
       <td>
         <p><T k="doc_marquee_desc" /></p>
-
       </td>
       <td>
         <PlatformIcons pc mobile />
-
+      </td>
+    </tr>
+    <tr>
+      <td>Portal</td>
+      <td>
+        <p><T k="doc_portal_desc" /></p>
+      </td>
+      <td>
+        <PlatformIcons pc mobile />
+      </td>
+    </tr>
+    <tr>
+      <td>FocusTrap</td>
+      <td>
+        <p><T k="doc_focustrap_desc" /></p>
+      </td>
+      <td>
+        <PlatformIcons pc mobile />
+      </td>
+    </tr>
+    <tr>
+      <td>Transition</td>
+      <td>
+        <p><T k="doc_transition_desc" /></p>
+      </td>
+      <td>
+        <PlatformIcons pc mobile />
+      </td>
+    </tr>
+    <tr>
+      <td>VisuallyHidden</td>
+      <td>
+        <p><T k="doc_visuallyHidden_desc" /></p>
+      </td>
+      <td>
+        <PlatformIcons pc mobile />
       </td>
     </tr>
   </tbody>
@@ -2149,23 +2166,20 @@ export const PlatformIcons = ({ pc, mobile }) => (
       <td><p><T k="doc_fieldLabelContent_desc" /></p></td>
     </tr>
     <tr>
-      <td>Portal</td>
-      <td><p><T k="doc_portal_desc" /></p></td>
+      <td>IndicatorBase</td>
+      <td><p><T k="doc_indicatorBase_desc" /></p></td>
     </tr>
     <tr>
-      <td>FocusTrap</td>
-      <td><p><T k="doc_focustrap_desc" /></p></td>
+      <td>FeedbackCloseButton</td>
+      <td><p><T k="doc_feedbackCloseButton_desc" /></p></td>
     </tr>
     <tr>
-      <td>Transition</td>
-      <td><p><T k="doc_transition_desc" /></p></td>
-    </tr>
-    <tr>
-      <td>VisuallyHidden</td>
-      <td><p><T k="doc_visuallyHidden_desc" /></p></td>
+      <td>FeedbackIcon</td>
+      <td><p><T k="doc_feedbackIcon_desc" /></p></td>
     </tr>
   </tbody>
 </table>
+
 
 <h2 id="visualization">
   <T k="cat_visualization" /> <a href="./?path=/docs/components-visualization-overview--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a>
@@ -2317,19 +2331,6 @@ export const PlatformIcons = ({ pc, mobile }) => (
     </tbody>
   </table>
 
-  <h2 id="internal"><T k="cat_internal" /> <a href="./?path=/docs/components-internal-overview--docs" target="_top" style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}><T k="guide_usage" /></a></h2>
-  <table>
-    <thead><tr><th><T k="table_header_component" /></th><th><T k="table_header_description" /></th></tr></thead>
-    <tbody>
-      <tr><td>BaseListItem</td><td><T k="doc_baseListItem_desc" /></td></tr>
-      <tr><td>FieldTemplate</td><td><T k="doc_fieldTemplate_desc" /></td></tr>
-      <tr><td>FieldLabelContent</td><td><T k="doc_fieldLabelContent_desc" /></td></tr>
-      <tr><td>InputBase</td><td><T k="doc_inputBase_desc" /></td></tr>
-      <tr><td>IndicatorSlider</td><td><T k="doc_indicatorSlider_desc" /></td></tr>
-      <tr><td>StatusContent</td><td><T k="doc_statusContent_desc" /></td></tr>
-      <tr><td>OverlayBase</td><td><T k="doc_overlayBase_desc" /></td></tr>
-      <tr><td>InteractiveArea</td><td><T k="doc_interactiveArea_desc" /></td></tr>
-    </tbody>
-  </table>
+
 
 

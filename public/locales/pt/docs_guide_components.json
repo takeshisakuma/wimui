@@ -177,7 +177,7 @@
   "guide_nav_std_concept_desc": "Unifica as representações visuais dos estados ativos, permitindo que os usuários percebam intuitivamente sua localização atual.",
   "guide_nav_std_concept_title": "Conceito de Padronização",
   "guide_nav_std_desc": "Define regras comuns para componentes que auxiliam o movimento ou troca do usuário, como abas e paginação.",
-  "guide_nav_std_note_desc": "Use 'Abas (Tabs)' para trocar recursos principais, 'Controle Segmentado' para escolhas auxiliares e 'Paginação' para navegação entre páginas.",
+  "guide_nav_std_note_desc": "Use 'Abas (Tabs)' para trocar recursos principais, 'SegmentedControl' para escolhas auxiliares e 'Paginação' para navegação entre páginas.",
   "guide_nav_std_note_title": "Dica",
   "guide_nav_std_rule_1": "Indicação Ativa: Use um indicador deslizante (barra móvel) para transições de estado suaves.",
   "guide_nav_std_rule_1_desc": "Use indicadores deslizantes (barras móveis) para transições de estado suaves.",

@@ -75,7 +75,6 @@
   "doc_box_desc": "Caixa polimórfica básica",
   "doc_box_long_desc": "Box é o componente de layout mais básico no wimui.\nFornece propriedades CSS que agrupam propriedades (p, m, bg, etc.), permitindo estilos sem as propriedades em linha.",
   "doc_box_title": "O componente de layout mais básico",
-  "doc_chipGroup_desc": "Grupo de chips interativos",
   "doc_container_desc": "Invólucro de layout",
   "doc_container_feature_1": "Contêiner Feature 1",
   "doc_container_feature_1_desc": "Contêiner Feature 1",

@@ -96,3 +96,10 @@ node check_stories_keys.js
 #### 「英語にあるけど日本語にはまだ翻訳がない項目」をまとめて確認したい時の確認
 
 node find_missing_keys.js
+
+
+#### 全ストーリーのa11yチェック
+npx playwright test vrt/a11y.spec.ts
+
+#### 特定コンポーネントだけ（例: Button）
+FILTER=Button npx playwright test vrt/a11y.spec.ts

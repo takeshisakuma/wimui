@@ -117,7 +117,7 @@ export const PlatformIcons = ({ pc, mobile }) => (
     </tr>
     <tr>
       <td><a href="#selection"><T k="cat_selection" /></a></td>
-      <td>100% (15/15)</td>
+      <td>100% (12/12)</td>
     </tr>
     <tr>
       <td><a href="#typography"><T k="cat_typography" /></a></td>
@@ -130,6 +130,10 @@ export const PlatformIcons = ({ pc, mobile }) => (
     <tr>
       <td><a href="#visualization"><T k="cat_visualization" /></a></td>
       <td>100% (10/10)</td>
+    </tr>
+    <tr>
+      <td><a href="#internal"><T k="cat_internal" /></a></td>
+      <td>11</td>
     </tr>
   </tbody>
 </table>
@@ -144,4 +148,4 @@ export const PlatformIcons = ({ pc, mobile }) => (
 </div>
 <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "32px" }}>
   <PlatformIcons mobile /> <span><T k="legend_mobile_only" /></span>
-        <PlatformIcons pc mobile />
+</div>
