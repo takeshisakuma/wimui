@@ -1,0 +1,7 @@
+import{j as o}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as e}from"./index-xK0Bs-41.js";import{M as m,C as p,a as s}from"./blocks-Xu6oZq2O.js";import{D as a,a as c}from"./DateRangePicker.stories-BuPWQb6r.js";import{T as i}from"./T-DR5EIhio.js";import"./iframe-PCs4N1aj.js";import"./preload-helper-PPVm8Dsz.js";import"./index-xMAEw6KV.js";import"./index-DV0T034f.js";import"./index-DH9w0MQ_.js";import"./index-BgnHOts8.js";import"./index-DfYcnZa3.js";import"./DatePicker-rrdfcsQv.js";import"./Calendar-B3fTzGPA.js";import"./Icon-DX7I38Dv.js";import"./useTranslation-DYC5WHlN.js";import"./InputBase-hMNp-jCp.js";/* empty css              */import"./FieldTemplate-C68I4J_Y.js";import"./FieldLabelContent-CvN8wu1g.js";import"./Badge-2T1Xfxqn.js";import"./IndicatorBase-DpUzofRq.js";import"./FieldError-Ce9EwKOw.js";import"./Paragraph-B9h8G8Rc.js";import"./i18nConstants-BpHxieg5.js";function n(t){const r={h1:"h1",h2:"h2",...e(),...t.components};return o.jsxs(o.Fragment,{children:[o.jsx(m,{of:a}),`
+`,o.jsx(r.h1,{id:"",children:o.jsx(i,{k:"doc_daterangepicker_title"})}),`
+`,o.jsx("p",{children:o.jsx(i,{k:"doc_daterangepicker_long_desc"})}),`
+`,o.jsx(r.h2,{id:"-1",children:o.jsx(i,{k:"doc_example"})}),`
+`,o.jsx(p,{of:c}),`
+`,o.jsx(r.h2,{id:"props",children:"Props"}),`
+`,o.jsx(s,{})]})}function q(t={}){const{wrapper:r}={...e(),...t.components};return r?o.jsx(r,{...t,children:o.jsx(n,{...t})}):n(t)}export{q as default};
