@@ -161,5 +161,7 @@
   "welcome": "Welcome to the wimui Design System",
   "common_intensity": "Intensity",
   "common_reload": "Reload",
-  "doc_see_more": "See more: "
+  "doc_see_more": "See more: ",
+  "common_do": "DO",
+  "common_dont": "DON'T"
 }

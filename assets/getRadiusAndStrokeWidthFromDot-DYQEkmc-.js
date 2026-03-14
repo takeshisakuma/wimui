@@ -1,1 +1,0 @@
-import{m as N}from"./helpers-Bzvcygn2.js";function v(i){var o=N(i),s=3,u=2;if(o!=null){var{r:n,strokeWidth:m}=o,r=Number(n),t=Number(m);return(Number.isNaN(r)||r<0)&&(r=s),(Number.isNaN(t)||t<0)&&(t=u),{r,strokeWidth:t}}return{r:s,strokeWidth:u}}export{v as g};

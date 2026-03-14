@@ -90,14 +90,14 @@
   "story_loading_overlay_custom_title": "カスタムローダーコンテンツ",
   "story_loading_overlay_dark_backdrop": "ダークバックドロップ",
   "story_loading_overlay_fetching_data": "データを取得中...",
+  "story_loading_overlay_long_content": "寿限無、寿限無、五劫の擦り切れ、海砂利水魚の水行末、雲来末、風来末、食う寝る処に住む処、藪ら柑子の藪柑子、パイポパイポ、パイポのシューリンガン、シューリンガンのグーリンダイ、グーリンダイのポンポコピーのポンポコナの長久命の長助。",
   "story_loading_overlay_fullscreen_desc": "ボタンをクリックすると、3秒間フルスクリーンのローディングオーバーレイが表示されます。",
-  "story_loading_overlay_interactive_desc": "ボタンをクリックしてローディング状態をシミュレートしてください。",
-  "story_loading_overlay_interactive_title": "インタラクティブな例",
+
   "story_loading_overlay_light_backdrop": "ライトバックドロップ",
   "story_loading_overlay_load_data": "データを読み込む",
   "story_loading_overlay_loading_app": "アプリケーションを読み込み中...",
   "story_loading_overlay_loading_data": "データを読み込み中...",
-  "story_loading_overlay_overlaid_desc": "ローディング中にオーバーレイされるコンテンツ...",
+
   "story_loading_overlay_show_fullscreen": "フルスクリーンローディングを表示",
   "story_loading_overlay_wait": "少々お待ちください...",
   "story_loading_overlay_with_msg_desc": "カスタムメッセージ付きのローディングオーバーレイ。",

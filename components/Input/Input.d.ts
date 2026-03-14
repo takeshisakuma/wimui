@@ -19,6 +19,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
     error?: string;
     required?: boolean;
     layout?: "vertical" | "horizontal";
+    inputClassName?: string;
 };
 /**
  * ユーザーからの入力を受け付けるための基本コンポーネント。
@@ -42,4 +43,5 @@ export declare const Input: React.ForwardRefExoticComponent<Omit<React.DetailedH
     error?: string;
     required?: boolean;
     layout?: "vertical" | "horizontal";
+    inputClassName?: string;
 } & React.RefAttributes<HTMLInputElement>>;
