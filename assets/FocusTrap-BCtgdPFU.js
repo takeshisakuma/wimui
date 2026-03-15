@@ -1,0 +1,43 @@
+import{j as s}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as r}from"./index-Bc4BInNb.js";import{M as e,C as n,a as d}from"./blocks-TnLz58s7.js";import{F as _,D as x,A as l}from"./FocusTrap.stories-DH3arvpV.js";import{T as c}from"./T-swAsn_9k.js";import"./iframe-BnGmj9_-.js";import"./preload-helper-PPVm8Dsz.js";import"./index-joLxKjBL.js";import"./index-CuzJ-B4l.js";import"./index-LMFUUKZq.js";import"./index-By2e_LDN.js";import"./FocusTrap-BAWM40oF.js";import"./index-BRP2Ilxn.js";import"./Button-BRKPxRu0.js";import"./Icon-CTeXjsnO.js";import"./useTranslation-CPTvk89p.js";import"./Input-BrY5F9cG.js";/* empty css              */import"./InputBase-C66uZKTG.js";import"./FieldTemplate-scGz0rQn.js";import"./FieldLabelContent-BnbmTKnJ.js";import"./Badge--PGpQQ3-.js";import"./IndicatorBase-Tb3ElmNr.js";import"./FieldError-Au5QVFKo.js";import"./Paragraph-ClH3jgpu.js";import"./Stack-Bvn-_vZl.js";import"./Box-dQus0aDR.js";import"./grid-utils-CGbVCsz0.js";import"./Card-BDVEIEad.js";import"./Container-DPKVpS2S.js";import"./i18nConstants-BpHxieg5.js";function t(o){const i={h1:"h1",h2:"h2",li:"li",ul:"ul",...r(),...o.components};return s.jsxs(s.Fragment,{children:[s.jsx(e,{of:_}),`
+`,s.jsx(i.h1,{id:"focustrap",children:"FocusTrap"}),`
+`,s.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:s.jsx(c,{k:"doc_focustrap_title"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_focustrap_long_desc"})}),`
+`,s.jsx(i.h2,{id:"",children:s.jsx(c,{k:"doc_features"})}),`
+`,s.jsxs(i.ul,{children:[`
+`,s.jsxs(i.li,{children:[`
+`,s.jsx(c,{k:"doc_focustrap_feat_1"}),`
+`]}),`
+`,s.jsxs(i.li,{children:[`
+`,s.jsx(c,{k:"doc_focustrap_feat_2"}),`
+`]}),`
+`,s.jsxs(i.li,{children:[`
+`,s.jsx(c,{k:"doc_focustrap_feat_3"}),`
+`]}),`
+`,s.jsxs(i.li,{children:[`
+`,s.jsx(c,{k:"doc_focustrap_feat_4"}),`
+`]}),`
+`]}),`
+`,s.jsx(i.h2,{id:"-1",children:s.jsx(c,{k:"doc_basic_usage"})}),`
+`,s.jsx(i.h2,{id:"-2",children:s.jsx(c,{k:"doc_design_intent_title"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_focustrap_design_intent"})}),`
+`,s.jsx(i.h2,{id:"-3",children:s.jsx(c,{k:"doc_choice_matrix_title"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_focustrap_choice_matrix_desc"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(c,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(c,{k:"doc_usage_scenario"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"FocusTrap"})}),s.jsx("td",{children:s.jsx(c,{k:"doc_focustrap_choice_self_when"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Dialog"})}),s.jsx("td",{children:s.jsx(c,{k:"doc_focustrap_choice_alt_when"})})]})]})]}),`
+`,s.jsx(i.h2,{id:"-4",children:s.jsx(c,{k:"doc_anatomy_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(c,{k:"doc_focustrap_anatomy_root"})}),s.jsx("li",{children:s.jsx(c,{k:"doc_focustrap_anatomy_content"})})]}),`
+`,s.jsx(i.h2,{id:"-5",children:s.jsx(c,{k:"doc_content_guidelines_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(c,{k:"doc_focustrap_content_guideline"})})}),`
+`,s.jsx(i.h2,{id:"-6",children:s.jsx(c,{k:"doc_motion_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_focustrap_motion_desc"})}),`
+`,s.jsx(i.h2,{id:"-7",children:s.jsx(c,{k:"doc_a11y_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_focustrap_a11y_desc"})}),`
+`,s.jsx(i.h2,{id:"-8",children:s.jsx(c,{k:"doc_real_world_scenarios_title"})}),`
+`,s.jsxs("ul",{children:[s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(c,{k:"doc_scenario_form_title"}),":"]}),s.jsx(c,{k:"doc_focustrap_scenario_1"})]}),s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(c,{k:"doc_scenario_admin_title"}),":"]}),s.jsx(c,{k:"doc_focustrap_scenario_2"})]})]}),`
+`,s.jsx(i.h2,{id:"-9",children:s.jsx(c,{k:"doc_best_practices_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(c,{k:"doc_focustrap_best_practice_1"})}),s.jsx("li",{children:s.jsx(c,{k:"doc_focustrap_best_practice_2"})})]}),`
+`,s.jsx(n,{of:x}),`
+`,s.jsx(i.h2,{id:"-10",children:s.jsx(c,{k:"doc_focustrap_auto_focus"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_focustrap_auto_focus_desc"})}),`
+`,s.jsx(n,{of:l}),`
+`,s.jsx(i.h2,{id:"props",children:"Props"}),`
+`,s.jsx(d,{})]})}function J(o={}){const{wrapper:i}={...r(),...o.components};return i?s.jsx(i,{...o,children:s.jsx(t,{...o})}):t(o)}export{J as default};

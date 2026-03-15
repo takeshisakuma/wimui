@@ -105,7 +105,7 @@
   "story_otp_clear": "Limpar",
   "story_otp_current_value": "Valor Atual",
   "story_passwordinput_label": "Senha",
-  "story_passwordinput_placeholder": "********",
+  "story_passwordinput_placeholder": "",
   "story_radio_checked": "Opção Marcada",
   "story_radio_dis_checked": "Opção Desativada e Marcada",
   "story_radio_disabled": "Opção Desativada",

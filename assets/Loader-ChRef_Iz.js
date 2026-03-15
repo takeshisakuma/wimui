@@ -1,0 +1,51 @@
+import{j as s}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as r}from"./index-Bc4BInNb.js";import{M as c,C as i,a as l}from"./blocks-TnLz58s7.js";import{L as t,D as x,V as _,C as j,S as a}from"./Loader.stories-C6hweAKF.js";import{T as e}from"./T-swAsn_9k.js";import"./iframe-BnGmj9_-.js";import"./preload-helper-PPVm8Dsz.js";import"./index-joLxKjBL.js";import"./index-CuzJ-B4l.js";import"./index-LMFUUKZq.js";import"./index-By2e_LDN.js";import"./Loader-CTO_dzGj.js";import"./index-BRP2Ilxn.js";import"./i18nConstants-BpHxieg5.js";import"./useTranslation-CPTvk89p.js";function o(d){const n={a:"a",h1:"h1",h2:"h2",h3:"h3",li:"li",ul:"ul",...r(),...d.components};return s.jsxs(s.Fragment,{children:[s.jsx(c,{of:t}),`
+`,s.jsx(n.h1,{id:"loader",children:"Loader"}),`
+`,s.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:s.jsx(e,{k:"doc_loader_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_loader_long_desc"})}),`
+`,s.jsxs("p",{children:[s.jsx(e,{k:"doc_see_more"})," ",s.jsx(n.a,{href:"?path=/docs/architecture-progress-indicator-standardization--docs",children:"Progress Indicator Standardization"})]}),`
+`,s.jsx(n.h2,{id:"",children:s.jsx(e,{k:"doc_features"})}),`
+`,s.jsxs(n.ul,{children:[`
+`,s.jsxs(n.li,{children:[`
+`,s.jsx(e,{k:"doc_loader_feat_styles"}),`
+`]}),`
+`,s.jsxs(n.li,{children:[`
+`,s.jsx(e,{k:"doc_loader_feat_sizes"}),`
+`]}),`
+`,s.jsxs(n.li,{children:[`
+`,s.jsx(e,{k:"doc_loader_feat_colors"}),`
+`]}),`
+`,s.jsxs(n.li,{children:[`
+`,s.jsx(e,{k:"doc_loader_feat_css"}),`
+`]}),`
+`]}),`
+`,s.jsx(n.h2,{id:"-1",children:s.jsx(e,{k:"doc_demo"})}),`
+`,s.jsx(n.h2,{id:"-2",children:s.jsx(e,{k:"doc_design_intent_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_loader_design_intent"})}),`
+`,s.jsx(n.h2,{id:"-3",children:s.jsx(e,{k:"doc_choice_matrix_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_loader_choice_matrix_desc"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(e,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(e,{k:"doc_usage_scenario"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Loader"})}),s.jsx("td",{children:s.jsx(e,{k:"doc_loader_choice_self_when"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Spinner"})}),s.jsx("td",{children:s.jsx(e,{k:"doc_loader_choice_alt_when"})})]})]})]}),`
+`,s.jsx(n.h2,{id:"-4",children:s.jsx(e,{k:"doc_anatomy_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(e,{k:"doc_loader_anatomy_root"})}),s.jsx("li",{children:s.jsx(e,{k:"doc_loader_anatomy_content"})})]}),`
+`,s.jsx(n.h2,{id:"-5",children:s.jsx(e,{k:"doc_content_guidelines_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(e,{k:"doc_loader_content_guideline"})})}),`
+`,s.jsx(n.h2,{id:"-6",children:s.jsx(e,{k:"doc_motion_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_loader_motion_desc"})}),`
+`,s.jsx(n.h2,{id:"-7",children:s.jsx(e,{k:"doc_a11y_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_loader_a11y_desc"})}),`
+`,s.jsx(n.h2,{id:"-8",children:s.jsx(e,{k:"doc_real_world_scenarios_title"})}),`
+`,s.jsxs("ul",{children:[s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(e,{k:"doc_scenario_form_title"}),":"]}),s.jsx(e,{k:"doc_loader_scenario_1"})]}),s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(e,{k:"doc_scenario_dashboard_title"}),":"]}),s.jsx(e,{k:"doc_loader_scenario_2"})]})]}),`
+`,s.jsx(n.h2,{id:"-9",children:s.jsx(e,{k:"doc_best_practices_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(e,{k:"doc_loader_best_practice_1"})}),s.jsx("li",{children:s.jsx(e,{k:"doc_loader_best_practice_2"})})]}),`
+`,s.jsx(i,{of:x}),`
+`,s.jsx(n.h2,{id:"-10",children:s.jsx(e,{k:"doc_props"})}),`
+`,s.jsx(l,{}),`
+`,s.jsx(n.h2,{id:"-11",children:s.jsx(e,{k:"doc_variants"})}),`
+`,s.jsx(n.h3,{id:"-12",children:s.jsx(e,{k:"doc_loader_anim_style"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_loader_anim_style_desc"})}),`
+`,s.jsx(i,{of:_}),`
+`,s.jsx(n.h3,{id:"-13",children:s.jsx(e,{k:"doc_color"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_loader_colors_desc"})}),`
+`,s.jsx(i,{of:j}),`
+`,s.jsx(n.h3,{id:"-14",children:s.jsx(e,{k:"doc_size"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_loader_sizes_desc"})}),`
+`,s.jsx(i,{of:a})]})}function w(d={}){const{wrapper:n}={...r(),...d.components};return n?s.jsx(n,{...d,children:s.jsx(o,{...d})}):o(d)}export{w as default};

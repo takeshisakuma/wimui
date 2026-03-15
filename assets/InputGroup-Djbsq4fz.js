@@ -1,0 +1,40 @@
+import{j as i}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as e}from"./index-Bc4BInNb.js";import{M as r,T as d,C as t,a as x}from"./blocks-TnLz58s7.js";import{I as _,B as l,W as j,S as p,M as h,F as u}from"./InputGroup.stories-mrZj5VDg.js";import{T as n}from"./T-swAsn_9k.js";import"./iframe-BnGmj9_-.js";import"./preload-helper-PPVm8Dsz.js";import"./index-joLxKjBL.js";import"./index-CuzJ-B4l.js";import"./index-LMFUUKZq.js";import"./index-By2e_LDN.js";import"./index-BRP2Ilxn.js";import"./Input-BrY5F9cG.js";/* empty css              */import"./InputBase-C66uZKTG.js";import"./Icon-CTeXjsnO.js";import"./useTranslation-CPTvk89p.js";import"./FieldTemplate-scGz0rQn.js";import"./FieldLabelContent-BnbmTKnJ.js";import"./Badge--PGpQQ3-.js";import"./IndicatorBase-Tb3ElmNr.js";import"./FieldError-Au5QVFKo.js";import"./Paragraph-ClH3jgpu.js";import"./Button-BRKPxRu0.js";import"./i18nConstants-BpHxieg5.js";function c(o){const s={blockquote:"blockquote",h2:"h2",p:"p",...e(),...o.components};return i.jsxs(i.Fragment,{children:[i.jsx(r,{of:_}),`
+`,i.jsx(d,{}),`
+`,i.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:i.jsx(n,{k:"doc_inputgroup_long_desc"})}),`
+`,i.jsxs(s.blockquote,{children:[`
+`,i.jsx(s.p,{children:"[!NOTE]"}),`
+`,i.jsx(n,{k:"doc_inputgroup_note"}),`
+`]}),`
+`,i.jsx(s.h2,{id:"",children:i.jsx(n,{k:"doc_basic_usage"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_inputgroup_basic_desc"})}),`
+`,i.jsx(s.h2,{id:"-1",children:i.jsx(n,{k:"doc_design_intent_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_inputgroup_design_intent"})}),`
+`,i.jsx(s.h2,{id:"-2",children:i.jsx(n,{k:"doc_choice_matrix_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_inputgroup_choice_matrix_desc"})}),`
+`,i.jsxs("table",{children:[i.jsx("thead",{children:i.jsxs("tr",{children:[i.jsx("th",{children:i.jsx(n,{k:"doc_component"})}),i.jsx("th",{children:i.jsx(n,{k:"doc_usage_scenario"})})]})}),i.jsxs("tbody",{children:[i.jsxs("tr",{children:[i.jsx("td",{children:i.jsx("b",{children:"InputGroup"})}),i.jsx("td",{children:i.jsx(n,{k:"doc_inputgroup_choice_self_when"})})]}),i.jsxs("tr",{children:[i.jsx("td",{children:i.jsx("b",{children:"Fieldset"})}),i.jsx("td",{children:i.jsx(n,{k:"doc_inputgroup_choice_alt_when"})})]})]})]}),`
+`,i.jsx(s.h2,{id:"-3",children:i.jsx(n,{k:"doc_anatomy_title"})}),`
+`,i.jsxs("ul",{children:[i.jsx("li",{children:i.jsx(n,{k:"doc_inputgroup_anatomy_root"})}),i.jsx("li",{children:i.jsx(n,{k:"doc_inputgroup_anatomy_content"})})]}),`
+`,i.jsx(s.h2,{id:"-4",children:i.jsx(n,{k:"doc_content_guidelines_title"})}),`
+`,i.jsx("ul",{children:i.jsx("li",{children:i.jsx(n,{k:"doc_inputgroup_content_guideline"})})}),`
+`,i.jsx(s.h2,{id:"-5",children:i.jsx(n,{k:"doc_motion_spec_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_inputgroup_motion_desc"})}),`
+`,i.jsx(s.h2,{id:"-6",children:i.jsx(n,{k:"doc_a11y_spec_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_inputgroup_a11y_desc"})}),`
+`,i.jsx(s.h2,{id:"-7",children:i.jsx(n,{k:"doc_real_world_scenarios_title"})}),`
+`,i.jsxs("ul",{children:[i.jsxs("li",{children:[i.jsxs("strong",{children:[i.jsx(n,{k:"doc_scenario_form_title"}),":"]}),i.jsx(n,{k:"doc_inputgroup_scenario_1"})]}),i.jsxs("li",{children:[i.jsxs("strong",{children:[i.jsx(n,{k:"doc_scenario_admin_title"}),":"]}),i.jsx(n,{k:"doc_inputgroup_scenario_2"})]})]}),`
+`,i.jsx(s.h2,{id:"-8",children:i.jsx(n,{k:"doc_best_practices_title"})}),`
+`,i.jsxs("ul",{children:[i.jsx("li",{children:i.jsx(n,{k:"doc_inputgroup_best_practice_1"})}),i.jsx("li",{children:i.jsx(n,{k:"doc_inputgroup_best_practice_2"})})]}),`
+`,i.jsx(t,{of:l}),`
+`,i.jsx(s.h2,{id:"-9",children:i.jsx(n,{k:"doc_inputgroup_with_button"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_inputgroup_with_button_desc"})}),`
+`,i.jsx(t,{of:j}),`
+`,i.jsx(s.h2,{id:"-10",children:i.jsx(n,{k:"doc_inputgroup_suffix"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_inputgroup_suffix_desc"})}),`
+`,i.jsx(t,{of:p}),`
+`,i.jsx(s.h2,{id:"-11",children:i.jsx(n,{k:"doc_inputgroup_multi"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_inputgroup_multi_desc"})}),`
+`,i.jsx(t,{of:h}),`
+`,i.jsx(s.h2,{id:"-12",children:i.jsx(n,{k:"doc_full_width"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_inputgroup_fullwidth_desc"})}),`
+`,i.jsx(t,{of:u}),`
+`,i.jsx(x,{})]})}function L(o={}){const{wrapper:s}={...e(),...o.components};return s?i.jsx(s,{...o,children:i.jsx(c,{...o})}):c(o)}export{L as default};

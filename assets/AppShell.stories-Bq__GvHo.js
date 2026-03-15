@@ -1,0 +1,284 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{R as d}from"./iframe-BnGmj9_-.js";import{c as i}from"./index-BRP2Ilxn.js";import{H as o}from"./Header-Qf3skk9-.js";import{F as B}from"./Footer-DUWxXFV8.js";import{S as c}from"./Sidebar-QakGf_zQ.js";import{T as b}from"./TabBar-ejJodavu.js";import{I as l}from"./Icon-CTeXjsnO.js";import{B as v}from"./Button-BRKPxRu0.js";import{I as E}from"./Input-BrY5F9cG.js";import{A as h}from"./i18nConstants-BpHxieg5.js";import{u as m}from"./useTranslation-CPTvk89p.js";const I=d.forwardRef(({className:a,children:n,header:r,sidebar:t,footer:p,navbar:_,padding:T=!0,centered:M,maxWidth:j,...C},z)=>{const P=j?{"--wim-appshell-max-width":typeof j=="number"?`${j}px`:j}:void 0;return e.jsxs("div",{ref:z,className:i("wim-appshell",!!t&&"wim-appshell--with-sidebar",!!_&&"wim-appshell--with-navbar",a),style:P,...C,children:[r&&e.jsx("div",{className:"wim-appshell__header",children:r}),e.jsxs("div",{className:"wim-appshell__body",children:[t&&e.jsx("div",{className:"wim-appshell__sidebar",children:t}),e.jsx("main",{className:i("wim-appshell__main",T&&"wim-appshell__main--padded",M&&"wim-appshell__main--centered"),tabIndex:0,children:M?e.jsx("div",{className:"wim-appshell__content",children:n}):n})]}),_&&e.jsx("div",{className:"wim-appshell__navbar",children:_}),p&&e.jsx("div",{className:"wim-appshell__footer",children:p})]})});I.displayName="AppShell";const A=d.forwardRef(({className:a,children:n,padding:r=!0,centered:t,...p},_)=>e.jsx("main",{ref:_,className:i("wim-appshell__main",r&&"wim-appshell__main--padded",t&&"wim-appshell__main--centered",a),tabIndex:0,...p,children:t?e.jsx("div",{className:"wim-appshell__content",children:n}):n}));A.displayName="AppShell.Main";const w=d.forwardRef(({className:a,children:n,...r},t)=>e.jsx("div",{ref:t,className:i("wim-appshell__body",a),...r,children:n}));w.displayName="AppShell.Body";const N=d.forwardRef(({className:a,children:n,...r},t)=>e.jsx("div",{ref:t,className:i("wim-appshell__header",a),...r,children:n}));N.displayName="AppShell.Header";const H=d.forwardRef(({className:a,children:n,...r},t)=>e.jsx("div",{ref:t,className:i("wim-appshell__sidebar",a),...r,children:n}));H.displayName="AppShell.Sidebar";const R=d.forwardRef(({className:a,children:n,...r},t)=>e.jsx("div",{ref:t,className:i("wim-appshell__footer",a),...r,children:n}));R.displayName="AppShell.Footer";const W=d.forwardRef(({className:a,children:n,...r},t)=>e.jsx("div",{ref:t,className:i("wim-appshell__navbar",a),...r,children:n}));W.displayName="AppShell.Navbar";const s=I;s.Main=A;s.Body=w;s.Header=N;s.Sidebar=H;s.Footer=R;s.Navbar=W;I.__docgenInfo={description:"アプリケーション全体のレイアウトを構成するルートコンポーネント。\r\n\r\n## 使い方\r\n### 1. Composition API（推奨）\r\nサブコンポーネント（`AppShell.Header`, `AppShell.Sidebar` など）を\r\n`children` として渡す方法。柔軟なカスタマイズが可能。\r\n\r\n```tsx\r\n<AppShell>\r\n  <AppShell.Header>...</AppShell.Header>\r\n  <AppShell.Sidebar>...</AppShell.Sidebar>\r\n  <AppShell.Main>...</AppShell.Main>\r\n</AppShell>\r\n```\r\n\r\n### 2. Props API（シンプルなケース向け）\r\n`header`, `sidebar`, `footer`, `navbar` を props として渡す方法。\r\nただし、サイドバーを使う場合は Composition API を推奨。\r\n\r\n```tsx\r\n<AppShell header={<Header />} sidebar={<Sidebar />}>\r\n  <main>...</main>\r\n</AppShell>\r\n```\r\n\r\n@note Props API で `sidebar` を渡した場合、`--with-sidebar` クラスが自動付与されます。\r\n      Composition API で `AppShell.Sidebar` を使う場合は、\r\n      親 `AppShell` に `sidebar` prop として何かを渡すか、\r\n      `AppShell.Body` を使って手動でレイアウトを構成してください。",methods:[],displayName:"AppShell",props:{header:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:"Header component"},sidebar:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:"Sidebar component"},footer:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:"Footer component"},navbar:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:"Navbar component (mobile bottom navigation)"},padding:{required:!1,tsType:{name:"boolean"},description:"Add padding to main content",defaultValue:{value:"true",computed:!1}},centered:{required:!1,tsType:{name:"boolean"},description:"Center main content horizontally"},maxWidth:{required:!1,tsType:{name:"union",raw:"number | string",elements:[{name:"number"},{name:"string"}]},description:"Maximum width for centered content"}},composes:["Omit"]};A.__docgenInfo={description:"Composition API でメインコンテンツ領域を定義するサブコンポーネント。\r\nProps API の `AppShellRoot` 内蔵 `<main>` と同等の機能を提供します。",methods:[],displayName:"AppShell.Main",props:{padding:{required:!1,tsType:{name:"boolean"},description:"Add padding to content",defaultValue:{value:"true",computed:!1}},centered:{required:!1,tsType:{name:"boolean"},description:"Center content horizontally"}},composes:["Omit"]};w.__docgenInfo={description:`サイドバーとメインコンテンツを横並びにするラッパー。\r
+Composition API でサイドバーを使う場合に使用します。`,methods:[],displayName:"AppShell.Body"};N.__docgenInfo={description:"",methods:[],displayName:"AppShell.Header"};H.__docgenInfo={description:"",methods:[],displayName:"AppShell.Sidebar"};R.__docgenInfo={description:"",methods:[],displayName:"AppShell.Footer"};W.__docgenInfo={description:"",methods:[],displayName:"AppShell.Navbar"};const k={title:"Components/Application Shell/AppShell",component:s,parameters:{layout:"fullscreen"},tags:[],argTypes:{padding:{control:"boolean",description:"Add padding to the main content"},centered:{control:"boolean",description:"Center the main content horizontally"},maxWidth:{control:"text",description:"Specify the maximum width when centered"},header:{table:{disable:!0}},sidebar:{table:{disable:!0}},footer:{table:{disable:!0}},navbar:{table:{disable:!0}},children:{table:{disable:!0}}}},y={render:function(n){const{t:r}=m(h);return e.jsx(s,{...n,header:e.jsxs(o,{bordered:!0,children:[e.jsx(o.Section,{align:"start",children:e.jsx("div",{style:{fontWeight:"bold",fontSize:"1.2rem"},children:"WIM UI"})}),e.jsxs(o.Section,{align:"end",style:{gap:"8px"},children:[e.jsx(v,{priority:"tertiary",size:"small",children:r("story_appshell_docs")}),e.jsx(v,{priority:"primary",size:"small",children:r("story_appshell_signin")})]})]}),children:e.jsxs("div",{children:[e.jsx("h2",{children:r("story_appshell_welcome")}),e.jsx("p",{children:r("story_appshell_main_content")}),e.jsx("p",{children:r("story_appshell_flexible_layout")})]})})}},u={render:function(n){const{t:r}=m(h);return e.jsx(s,{...n,header:e.jsxs(o,{bordered:!0,children:[e.jsx(o.Section,{align:"start",children:e.jsxs("div",{style:{display:"flex",alignItems:"center",gap:"8px"},children:[e.jsx("div",{style:{width:32,height:32,background:"#0066ff",borderRadius:4}}),e.jsx("div",{style:{fontWeight:"bold",fontSize:"1.2rem"},children:"WimStore"})]})}),e.jsx(o.Section,{align:"center",children:e.jsx("div",{style:{width:"100%",maxWidth:400},children:e.jsx(E,{placeholder:r("story_appshell_search_placeholder"),leftIcon:"SearchIcon",fullWidth:!0})})}),e.jsxs(o.Section,{align:"end",style:{gap:"12px"},children:[e.jsx(l,{name:"BellIcon",style:{cursor:"pointer"}}),e.jsx(l,{name:"StarIcon",style:{cursor:"pointer"}}),e.jsx(v,{priority:"primary",size:"small",children:r("story_appshell_checkout")})]})]}),children:e.jsx("div",{style:{display:"grid",gridTemplateColumns:"repeat(auto-fill, minmax(200px, 1fr))",gap:"20px"},children:[1,2,3,4,5,6].map(t=>e.jsxs("div",{style:{border:"1px solid #eee",borderRadius:8,padding:16},children:[e.jsx("div",{style:{width:"100%",aspectRatio:"1",background:"#f5f5f5",borderRadius:4,marginBottom:8}}),e.jsxs("div",{style:{fontWeight:"bold"},children:[r("story_appshell_product")," ",t]}),e.jsx("div",{style:{color:"#666",fontSize:"0.9rem"},children:"$99.00"})]},t))})})}},S={render:function(n){const{t:r}=m(h),[t,p]=d.useState(!1);return e.jsx(s,{...n,header:e.jsxs(o,{bordered:!0,children:[e.jsxs(o.Section,{align:"start",style:{gap:"10px",alignItems:"center",display:"flex"},children:[e.jsx("style",{children:`
+                                .appshell-mobile-trigger {
+                                    display: none;
+                                    background: none;
+                                    border: 1px solid var(--wim-color-border-subtle, #ccc);
+                                    border-radius: 4px;
+                                    cursor: pointer;
+                                    padding: 4px 8px;
+                                }
+                                @media (max-width: 768px) {
+                                    .appshell-mobile-trigger {
+                                        display: block;
+                                    }
+                                }
+                            `}),e.jsx("button",{className:"appshell-mobile-trigger",onClick:()=>p(!0),children:r("story_common_menu","Menu")}),e.jsx("div",{style:{fontWeight:"bold",fontSize:"1.2rem"},children:r("story_appshell_dashboard")})]}),e.jsxs(o.Section,{align:"end",children:[e.jsx(l,{name:"BellIcon",style:{width:24,height:24}}),e.jsx(l,{name:"UserIcon",style:{width:24,height:24}})]})]}),sidebar:e.jsxs(c,{bordered:!0,width:260,mobileOpen:t,onOverlayClick:()=>p(!1),children:[e.jsx(c.Header,{children:e.jsx("div",{style:{padding:"16px",fontWeight:"bold"},children:r("story_appshell_navigation")})}),e.jsxs(c.Content,{children:[e.jsx(c.Item,{icon:e.jsx(l,{name:"HomeIcon"}),active:!0,children:r("story_appshell_dashboard")}),e.jsx(c.Item,{icon:e.jsx(l,{name:"UserIcon"}),children:r("story_appshell_users")}),e.jsx(c.Item,{icon:e.jsx(l,{name:"SettingsIcon"}),children:r("story_appshell_settings")}),e.jsx(c.Item,{icon:e.jsx(l,{name:"FilterIcon"}),children:r("story_appshell_documents")})]})]}),children:e.jsxs("div",{children:[e.jsx("h2",{children:r("story_appshell_dashboard")}),e.jsx("p",{children:r("story_appshell_dashboard_desc")})]})})}},x={render:function(n){const{t:r}=m(h);return e.jsx(s,{...n,header:e.jsx(o,{bordered:!0,children:e.jsx(o.Section,{align:"start",children:e.jsx("div",{style:{fontWeight:"bold",fontSize:"1.2rem"},children:"WIM UI"})})}),footer:e.jsx(B,{bordered:!0,children:e.jsx(B.Section,{children:e.jsx("p",{style:{margin:0,textAlign:"center"},children:r("story_appshell_rights")})})}),children:e.jsxs("div",{children:[e.jsx("h2",{children:r("story_appshell_footer_title")}),e.jsx("p",{children:r("story_appshell_footer_desc")})]})})}},g={render:function(n){const{t:r}=m(h);return e.jsx(s,{...n,header:e.jsx(o,{bordered:!0,children:e.jsx(o.Section,{align:"start",children:e.jsx("div",{style:{fontWeight:"bold",fontSize:"1.2rem"},children:r("story_appshell_mobile_app")})})}),navbar:e.jsxs(b,{children:[e.jsx(b.Item,{icon:e.jsx(l,{name:"HomeIcon"}),label:r("story_common_home"),active:!0}),e.jsx(b.Item,{icon:e.jsx(l,{name:"SearchIcon"}),label:r("story_common_search")}),e.jsx(b.Item,{icon:e.jsx(l,{name:"BellIcon"}),label:r("story_common_alerts")}),e.jsx(b.Item,{icon:e.jsx(l,{name:"UserIcon"}),label:r("story_common_profile")})]}),children:e.jsxs("div",{children:[e.jsx("h2",{children:r("story_appshell_mobile_layout")}),e.jsx("p",{children:r("story_appshell_mobile_desc")})]})})}},f={render:function(n){const{t:r}=m(h);return e.jsx(s,{...n,header:e.jsx(o,{bordered:!0,children:e.jsx(o.Section,{align:"start",children:e.jsx("div",{style:{fontWeight:"bold",fontSize:"1.2rem"},children:"WIM UI"})})}),children:e.jsxs("div",{children:[e.jsx("h2",{children:r("story_appshell_welcome")}),e.jsx("p",{children:r("story_appshell_main_content")})]})})},args:{padding:!0,centered:!1}};y.parameters={...y.parameters,docs:{...y.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <AppShell {...args} header={<Header bordered>\r
+            <Header.Section align="start">\r
+              <div style={{
+          fontWeight: "bold",
+          fontSize: "1.2rem"
+        }}>\r
+                WIM UI\r
+              </div>\r
+            </Header.Section>\r
+            <Header.Section align="end" style={{
+        gap: "8px"
+      }}>\r
+              <Button priority="tertiary" size="small">\r
+                {t("story_appshell_docs")}\r
+              </Button>\r
+              <Button priority="primary" size="small">\r
+                {t("story_appshell_signin")}\r
+              </Button>\r
+            </Header.Section>\r
+          </Header>}>\r
+        <div>\r
+          <h2>{t("story_appshell_welcome")}</h2>\r
+          <p>{t("story_appshell_main_content")}</p>\r
+          <p>{t("story_appshell_flexible_layout")}</p>\r
+        </div>\r
+      </AppShell>;
+  }
+}`,...y.parameters?.docs?.source}}};u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <AppShell {...args} header={<Header bordered>\r
+            <Header.Section align="start">\r
+              <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "8px"
+        }}>\r
+                <div style={{
+            width: 32,
+            height: 32,
+            background: "#0066ff",
+            borderRadius: 4
+          }} />\r
+                <div style={{
+            fontWeight: "bold",
+            fontSize: "1.2rem"
+          }}>\r
+                  WimStore\r
+                </div>\r
+              </div>\r
+            </Header.Section>\r
+            <Header.Section align="center">\r
+              <div style={{
+          width: "100%",
+          maxWidth: 400
+        }}>\r
+                <Input placeholder={t("story_appshell_search_placeholder")} leftIcon="SearchIcon" fullWidth />\r
+              </div>\r
+            </Header.Section>\r
+            <Header.Section align="end" style={{
+        gap: "12px"
+      }}>\r
+              <Icon name="BellIcon" style={{
+          cursor: "pointer"
+        }} />\r
+              <Icon name="StarIcon" style={{
+          cursor: "pointer"
+        }} />\r
+              <Button priority="primary" size="small">\r
+                {t("story_appshell_checkout")}\r
+              </Button>\r
+            </Header.Section>\r
+          </Header>}>\r
+        <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+        gap: "20px"
+      }}>\r
+          {[1, 2, 3, 4, 5, 6].map(i => <div key={i} style={{
+          border: "1px solid #eee",
+          borderRadius: 8,
+          padding: 16
+        }}>\r
+              <div style={{
+            width: "100%",
+            aspectRatio: "1",
+            background: "#f5f5f5",
+            borderRadius: 4,
+            marginBottom: 8
+          }} />\r
+              <div style={{
+            fontWeight: "bold"
+          }}>\r
+                {t("story_appshell_product")} {i}\r
+              </div>\r
+              <div style={{
+            color: "#666",
+            fontSize: "0.9rem"
+          }}>$99.00</div>\r
+            </div>)}\r
+        </div>\r
+      </AppShell>;
+  }
+}`,...u.parameters?.docs?.source}}};S.parameters={...S.parameters,docs:{...S.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    return <AppShell {...args} header={<Header bordered>\r
+            <Header.Section align="start" style={{
+        gap: "10px",
+        alignItems: "center",
+        display: "flex"
+      }}>\r
+              <style>{\`
+                                .appshell-mobile-trigger {
+                                    display: none;
+                                    background: none;
+                                    border: 1px solid var(--wim-color-border-subtle, #ccc);
+                                    border-radius: 4px;
+                                    cursor: pointer;
+                                    padding: 4px 8px;
+                                }
+                                @media (max-width: 768px) {
+                                    .appshell-mobile-trigger {
+                                        display: block;
+                                    }
+                                }
+                            \`}</style>\r
+              <button className="appshell-mobile-trigger" onClick={() => setMobileOpen(true)}>\r
+                {t("story_common_menu", "Menu")}\r
+              </button>\r
+              <div style={{
+          fontWeight: "bold",
+          fontSize: "1.2rem"
+        }}>\r
+                {t("story_appshell_dashboard")}\r
+              </div>\r
+            </Header.Section>\r
+            <Header.Section align="end">\r
+              <Icon name="BellIcon" style={{
+          width: 24,
+          height: 24
+        }} />\r
+              <Icon name="UserIcon" style={{
+          width: 24,
+          height: 24
+        }} />\r
+            </Header.Section>\r
+          </Header>} sidebar={<Sidebar bordered width={260} mobileOpen={mobileOpen} onOverlayClick={() => setMobileOpen(false)}>\r
+            <Sidebar.Header>\r
+              <div style={{
+          padding: "16px",
+          fontWeight: "bold"
+        }}>\r
+                {t("story_appshell_navigation")}\r
+              </div>\r
+            </Sidebar.Header>\r
+            <Sidebar.Content>\r
+              <Sidebar.Item icon={<Icon name="HomeIcon" />} active>\r
+                {t("story_appshell_dashboard")}\r
+              </Sidebar.Item>\r
+              <Sidebar.Item icon={<Icon name="UserIcon" />}>\r
+                {t("story_appshell_users")}\r
+              </Sidebar.Item>\r
+              <Sidebar.Item icon={<Icon name="SettingsIcon" />}>\r
+                {t("story_appshell_settings")}\r
+              </Sidebar.Item>\r
+              <Sidebar.Item icon={<Icon name="FilterIcon" />}>\r
+                {t("story_appshell_documents")}\r
+              </Sidebar.Item>\r
+            </Sidebar.Content>\r
+          </Sidebar>}>\r
+        <div>\r
+          <h2>{t("story_appshell_dashboard")}</h2>\r
+          <p>{t("story_appshell_dashboard_desc")}</p>\r
+        </div>\r
+      </AppShell>;
+  }
+}`,...S.parameters?.docs?.source}}};x.parameters={...x.parameters,docs:{...x.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <AppShell {...args} header={<Header bordered>\r
+            <Header.Section align="start">\r
+              <div style={{
+          fontWeight: "bold",
+          fontSize: "1.2rem"
+        }}>\r
+                WIM UI\r
+              </div>\r
+            </Header.Section>\r
+          </Header>} footer={<Footer bordered>\r
+            <Footer.Section>\r
+              <p style={{
+          margin: 0,
+          textAlign: "center"
+        }}>\r
+                {t("story_appshell_rights")}\r
+              </p>\r
+            </Footer.Section>\r
+          </Footer>}>\r
+        <div>\r
+          <h2>{t("story_appshell_footer_title")}</h2>\r
+          <p>{t("story_appshell_footer_desc")}</p>\r
+        </div>\r
+      </AppShell>;
+  }
+}`,...x.parameters?.docs?.source}}};g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <AppShell {...args} header={<Header bordered>\r
+            <Header.Section align="start">\r
+              <div style={{
+          fontWeight: "bold",
+          fontSize: "1.2rem"
+        }}>\r
+                {t("story_appshell_mobile_app")}\r
+              </div>\r
+            </Header.Section>\r
+          </Header>} navbar={<TabBar>\r
+            <TabBar.Item icon={<Icon name="HomeIcon" />} label={t("story_common_home")} active />\r
+            <TabBar.Item icon={<Icon name="SearchIcon" />} label={t("story_common_search")} />\r
+            <TabBar.Item icon={<Icon name="BellIcon" />} label={t("story_common_alerts")} />\r
+            <TabBar.Item icon={<Icon name="UserIcon" />} label={t("story_common_profile")} />\r
+          </TabBar>}>\r
+        <div>\r
+          <h2>{t("story_appshell_mobile_layout")}</h2>\r
+          <p>{t("story_appshell_mobile_desc")}</p>\r
+        </div>\r
+      </AppShell>;
+  }
+}`,...g.parameters?.docs?.source}}};f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <AppShell {...args} header={<Header bordered>\r
+            <Header.Section align="start">\r
+              <div style={{
+          fontWeight: "bold",
+          fontSize: "1.2rem"
+        }}>\r
+                WIM UI\r
+              </div>\r
+            </Header.Section>\r
+          </Header>}>\r
+        <div>\r
+          <h2>{t("story_appshell_welcome")}</h2>\r
+          <p>{t("story_appshell_main_content")}</p>\r
+        </div>\r
+      </AppShell>;
+  },
+  args: {
+    padding: true,
+    centered: false
+  }
+}`,...f.parameters?.docs?.source}}};const F=["Default","ModernApp","WithSidebar","WithFooter","WithNavbar","Playground"],Y=Object.freeze(Object.defineProperty({__proto__:null,Default:y,ModernApp:u,Playground:f,WithFooter:x,WithNavbar:g,WithSidebar:S,__namedExportsOrder:F,default:k},Symbol.toStringTag,{value:"Module"}));export{Y as A};

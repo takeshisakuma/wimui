@@ -105,7 +105,7 @@
   "story_otp_clear": "Clear",
   "story_otp_current_value": "Current Value",
   "story_passwordinput_label": "Password",
-  "story_passwordinput_placeholder": "********",
+  "story_passwordinput_placeholder": "",
   "story_radio_checked": "Checked Option",
   "story_radio_dis_checked": "Disabled Checked Option",
   "story_radio_disabled": "Disabled Option",

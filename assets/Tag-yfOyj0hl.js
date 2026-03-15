@@ -1,0 +1,41 @@
+import{j as s}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as d}from"./index-Bc4BInNb.js";import{M as r,T as o,D as x,C as c,P as _,a as j,S as l}from"./blocks-TnLz58s7.js";import{T as a,D as h,V as p,C as k,S as m,W as g}from"./Tag.stories-YWJSNKqG.js";import{T as i}from"./T-swAsn_9k.js";import"./iframe-BnGmj9_-.js";import"./preload-helper-PPVm8Dsz.js";import"./index-joLxKjBL.js";import"./index-CuzJ-B4l.js";import"./index-LMFUUKZq.js";import"./index-By2e_LDN.js";import"./IndicatorBase-Tb3ElmNr.js";import"./index-BRP2Ilxn.js";import"./useTranslation-CPTvk89p.js";import"./Icon-CTeXjsnO.js";import"./i18nConstants-BpHxieg5.js";function t(e){const n={h2:"h2",h3:"h3",...d(),...e.components};return s.jsxs(s.Fragment,{children:[s.jsx(r,{of:a}),`
+`,s.jsx(o,{}),`
+`,s.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:s.jsx(i,{k:"doc_tag_title"})}),`
+`,s.jsx(x,{}),`
+`,s.jsx(n.h2,{id:"",children:s.jsx(i,{k:"doc_guidelines_title"})}),`
+`,s.jsx(n.h3,{id:"-1",children:s.jsx(i,{k:"doc_guideline_best_practices"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(i,{k:"doc_tag_best_practice_1"})}),s.jsx("li",{children:s.jsx(i,{k:"doc_tag_best_practice_2"})}),s.jsx("li",{children:s.jsx(i,{k:"doc_tag_best_practice_3"})})]}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_tag_long_desc"})}),`
+`,s.jsx(n.h2,{id:"-2",children:s.jsx(i,{k:"doc_design_intent_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_tag_design_intent"})}),`
+`,s.jsx(n.h2,{id:"-3",children:s.jsx(i,{k:"doc_choice_matrix_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_tag_choice_matrix_desc"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(i,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(i,{k:"doc_usage_scenario"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Tag"})}),s.jsx("td",{children:s.jsx(i,{k:"doc_tag_choice_self_when"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Badge"})}),s.jsx("td",{children:s.jsx(i,{k:"doc_tag_choice_alt_when"})})]})]})]}),`
+`,s.jsx(n.h2,{id:"-4",children:s.jsx(i,{k:"doc_anatomy_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(i,{k:"doc_tag_anatomy_root"})}),s.jsx("li",{children:s.jsx(i,{k:"doc_tag_anatomy_content"})})]}),`
+`,s.jsx(n.h2,{id:"-5",children:s.jsx(i,{k:"doc_content_guidelines_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(i,{k:"doc_tag_content_guideline"})})}),`
+`,s.jsx(n.h2,{id:"-6",children:s.jsx(i,{k:"doc_motion_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_tag_motion_desc"})}),`
+`,s.jsx(n.h2,{id:"-7",children:s.jsx(i,{k:"doc_a11y_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_tag_a11y_desc"})}),`
+`,s.jsx(n.h2,{id:"-8",children:s.jsx(i,{k:"doc_real_world_scenarios_title"})}),`
+`,s.jsxs("ul",{children:[s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(i,{k:"doc_scenario_filter_title"}),":"]}),s.jsx(i,{k:"doc_tag_scenario_1"})]}),s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(i,{k:"doc_scenario_form_title"}),":"]}),s.jsx(i,{k:"doc_tag_scenario_2"})]})]}),`
+`,s.jsx(n.h2,{id:"-9",children:s.jsx(i,{k:"doc_best_practices_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(i,{k:"doc_tag_best_practice_1"})}),s.jsx("li",{children:s.jsx(i,{k:"doc_tag_best_practice_2"})})]}),`
+`,s.jsx(n.h2,{id:"-10",children:s.jsx(i,{k:"doc_usage_examples"})}),`
+`,s.jsx(n.h3,{id:"-11",children:s.jsx(i,{k:"doc_basic_usage"})}),`
+`,s.jsx(c,{of:h}),`
+`,s.jsx(_,{}),`
+`,s.jsx(n.h2,{id:"-12",children:s.jsx(i,{k:"doc_props"})}),`
+`,s.jsx(j,{}),`
+`,s.jsx(n.h2,{id:"-13",children:s.jsx(i,{k:"doc_variations"})}),`
+`,s.jsx(n.h3,{id:"-14",children:s.jsx(i,{k:"doc_tag_variants"})}),`
+`,s.jsx(c,{of:p}),`
+`,s.jsx(n.h3,{id:"-15",children:s.jsx(i,{k:"doc_avatar_colors"})}),`
+`,s.jsx(c,{of:k}),`
+`,s.jsx(n.h3,{id:"-16",children:s.jsx(i,{k:"doc_avatar_size"})}),`
+`,s.jsx(c,{of:m}),`
+`,s.jsx(n.h3,{id:"-17",children:s.jsx(i,{k:"doc_breadcrumb_with_icons"})}),`
+`,s.jsx(c,{of:g}),`
+`,s.jsx(l,{})]})}function B(e={}){const{wrapper:n}={...d(),...e.components};return n?s.jsx(n,{...e,children:s.jsx(t,{...e})}):t(e)}export{B as default};
