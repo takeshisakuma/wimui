@@ -1,0 +1,2 @@
+npm run i18n:check
+npx vitest run --config vite.config.ts

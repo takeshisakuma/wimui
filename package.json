@@ -135,6 +135,9 @@
     "src/**/*.{ts,tsx}": [
       "eslint --max-warnings=0",
       "bash -c 'tsc --noEmit'"
+    ],
+    "src/**/*.{css,scss}": [
+      "stylelint --max-warnings=0"
     ]
   },
   "dependencies": {
