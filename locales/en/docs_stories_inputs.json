@@ -105,6 +105,7 @@
   "story_rating_default": "Default",
   "story_rating_disabled": "Disabled Rating",
   "story_rating_half": "Allow Half Star",
+  "story_rating_readonly": "Read-only Rating",
   "story_rating_sizes": "Size Variations",
   "story_searchinput_placeholder": "Button",
   "story_segmented_another_long": "Another Long Label",

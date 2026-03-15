@@ -16,9 +16,13 @@ type RatingProps = {
      */
     allowHalf?: boolean;
     /**
-     * 無効化フラグ（読み取り専用）
+     * 無効化フラグ
      */
     disabled?: boolean;
+    /**
+     * 読み取り専用フラグ（表示専用。disabledと異なりグレーアウトしない）
+     */
+    readOnly?: boolean;
     /**
      * サイズ
      */
@@ -51,5 +55,5 @@ type RatingProps = {
 /**
  * ユーザーが評価を入力するためのレーティングコンポーネント。
  */
-export declare const Rating: ({ value, defaultValue, count, allowHalf, disabled, size, onChange, className, label, error, required, layout, ...props }: RatingProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Rating: ({ value, defaultValue, count, allowHalf, disabled, readOnly, size, onChange, className, label, error, required, layout, ...props }: RatingProps) => import("react/jsx-runtime").JSX.Element;
 export {};

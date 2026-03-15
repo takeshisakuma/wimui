@@ -113,6 +113,7 @@
   "story_rating_default": "デフォルト",
   "story_rating_disabled": "無効なレーティング",
   "story_rating_half": "ハーフスターを許可",
+  "story_rating_readonly": "読み取り専用レーティング",
   "story_rating_sizes": "サイズ展開",
   "story_searchinput_placeholder": "Button",
   "story_segmented_another_long": "別の長いラベル",

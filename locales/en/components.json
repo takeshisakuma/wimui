@@ -136,6 +136,7 @@
   "otp_digit": "Digit {{index}}",
   "planned_for_implementation": "Planned for implementation",
   "rating_stars": "{{count}} stars",
+  "rating_readonly_label": "{{count}} out of {{max}} stars",
   "rule_overload_dont_desc": "Cramming rules like \"8+ chars, including symbols\"",
   "rule_same_tier_desc": "Dependencies within the same tier are allowed as long as they don't become bloated.",
   "rule_same_tier_title": "Dependency Between Same Tiers",

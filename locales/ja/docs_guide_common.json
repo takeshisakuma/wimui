@@ -516,5 +516,14 @@
   "perf_resource_title": "🖼️ 重要なリソースの読み込み (`priority`)",
   "perf_resource_desc": "`Image` コンポーネントに `priority` プロパティを導入しました。`true` に設定すると、`img` タグに `fetchpriority=\"high\"` が適用されます。",
   "perf_resource_usage_desc": "ファーストビュー（LCP - Largest Contentful Paint）にある最も大きな画像など。",
-  "perf_resource_benefit_desc": "ブラウザに、非クリティカルなリソースよりもこの画像を優先的に読み込むよう指示します。"
+  "perf_resource_benefit_desc": "ブラウザに、非クリティカルなリソースよりもこの画像を優先的に読み込むよう指示します。",
+  "doc_design_intent_title": "デザインの意図",
+  "doc_best_practices_title": "ベストプラクティス",
+  "doc_usage_guidelines_title": "利用ガイドライン",
+  "doc_choice_matrix_title": "コンポーネントの使い分け",
+  "doc_anatomy_title": "コンポーネントの構成",
+  "doc_content_guidelines_title": "文言のガイドライン",
+  "doc_motion_spec_title": "動きの定義 (Motion Spec)",
+  "doc_accessibility_spec_title": "アクセシビリティ仕様",
+  "doc_real_world_scenarios_title": "実践的な利用シーン"
 }

@@ -516,5 +516,14 @@
   "perf_resource_title": "🖼️ Carregamento de Recursos Críticos (`priority`)",
   "perf_resource_desc": "No componente `Image`, introduzimos uma prop `priority`. Quando definida como `true`, ela aplica `fetchpriority=\"high\"` à tag `img` subjacente.",
   "perf_resource_usage_desc": "Para a maior imagem acima da dobra (LCP - Largest Contentful Paint).",
-  "perf_resource_benefit_desc": "Informa ao navegador para priorizar esta imagem em relação a outros recursos não críticos."
+  "perf_resource_benefit_desc": "Informa ao navegador para priorizar esta imagem em relação a outros recursos não críticos.",
+  "doc_design_intent_title": "Intenção de Design",
+  "doc_best_practices_title": "Boas Práticas",
+  "doc_usage_guidelines_title": "Diretrizes de Uso",
+  "doc_choice_matrix_title": "Matriz de Escolha de Componentes",
+  "doc_anatomy_title": "Anatomia do Componente",
+  "doc_content_guidelines_title": "Diretrizes de Conteúdo",
+  "doc_motion_spec_title": "Micro-interações e Motion Spec",
+  "doc_accessibility_spec_title": "Especificação de Acessibilidade",
+  "doc_real_world_scenarios_title": "Cenários do Mundo Real"
 }
