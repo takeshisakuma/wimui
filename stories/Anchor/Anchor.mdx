@@ -27,10 +27,52 @@ import { T } from "../T";
 
 <Primary />
 
-<h2>Props</h2>
+{/* Standardized Sections */}
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_anchor_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_anchor_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Anchor** | <T k="doc_anchor_choice_anchor_when" /> |
+| **Navbar / Breadcrumbs** | <T k="doc_anchor_choice_nav_when" /> |
+| **Tabs** | <T k="doc_anchor_choice_tabs_when" /> |
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_anchor_anatomy_item" /></li>
+  <li><T k="doc_anchor_anatomy_ink" /></li>
+</ul>
+
+## <T k="doc_content_guidelines_title" />
+<p><T k="doc_anchor_content_guidelines" /></p>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_anchor_motion_spec" /></p>
+
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_anchor_a11y_spec" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_toc_title" />:</strong> <T k="doc_anchor_scenario_toc" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_nav_title" />:</strong> <T k="doc_anchor_scenario_nav" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_article_title" />:</strong> <T k="doc_anchor_scenario_article" />
+  </li>
+</ul>
+
+## Props
 <Controls />
 
-<h2><T k="doc_anchor_considerations" /></h2>
+## <T k="doc_anchor_considerations" />
 <table>
   <thead>
     <tr>
@@ -58,9 +100,9 @@ import { T } from "../T";
   </tbody>
 </table>
 
-<h2><T k="doc_variations" /></h2>
+## <T k="doc_variations" />
 
-<h3><T k="doc_basic" /></h3>
+### <T k="doc_basic" />
 <p><T k="doc_anchor_basic_desc" /></p>
 
 <Canvas of={AnchorStories.Default} />

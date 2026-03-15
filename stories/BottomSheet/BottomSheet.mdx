@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls, Description } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories, Description } from "@storybook/addon-docs/blocks";
 import * as BottomSheetStories from "./BottomSheet.stories";
 import { T } from "../T";
 
 <Meta of={BottomSheetStories} />
 
-# <T k="doc_bottomsheet_title" />
+<Title />
 
 <p
   style={{
@@ -14,103 +14,58 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  <T k="doc_bottomsheet_title" />
+  <T k="doc_bottomsheet_desc" />
 </p>
 
-<Description />
+<p><T k="doc_bottomsheet_long_desc" /></p>
+
+<Primary />
+
+<Controls />
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_bottomsheet_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_bottomsheet_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **BottomSheet** | <T k="doc_bottomsheet_choice_bottomsheet_when" /> |
+| **Dialog** | <T k="doc_bottomsheet_choice_dialog_when" /> |
+| **Drawer** | <T k="doc_bottomsheet_choice_drawer_when" /> |
+
+<br />
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_bottomsheet_anatomy_handle" /></li>
+  <li><T k="doc_bottomsheet_anatomy_title" /></li>
+  <li><T k="doc_bottomsheet_anatomy_content" /></li>
+  <li><T k="doc_bottomsheet_anatomy_footer" /></li>
+</ul>
 
 ## <T k="doc_guidelines_title" />
-
-### <T k="doc_guideline_best_practices" />
 <ul>
   <li><T k="doc_bottomsheet_best_practice_1" /></li>
   <li><T k="doc_bottomsheet_best_practice_2" /></li>
   <li><T k="doc_bottomsheet_best_practice_3" /></li>
+  <li><T k="doc_bottomsheet_content_limit" /></li>
 </ul>
 
-<p><T k="doc_bottomsheet_long_desc" /></p>
+## <T k="doc_motion_title" />
+<p><T k="doc_bottomsheet_motion_slide" /></p>
 
-<p><T k="doc_bottomsheet_mobile_only" /></p>
+## <T k="doc_a11y_title" />
+<ul>
+  <li><T k="doc_bottomsheet_features_focus_desc" /></li>
+  <li><T k="doc_bottomsheet_a11y_backdrop" /></li>
+</ul>
 
-## <T k="doc_features" />
+## <T k="doc_usage_scenarios_title" />
+<ul>
+  <li><strong><T k="doc_bottomsheet_scenario_action" /></strong></li>
+  <li><strong><T k="doc_bottomsheet_scenario_filter" /></strong></li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc_features" /></th>
-      <th><T k="doc_description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc_bottomsheet_features_mobile_opt" /></strong></td>
-      <td><T k="doc_bottomsheet_features_mobile_opt_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_bottomsheet_features_focus" /></strong></td>
-      <td><T k="doc_bottomsheet_features_focus_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_bottomsheet_features_backdrop" /></strong></td>
-      <td><T k="doc_bottomsheet_features_backdrop_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_bottomsheet_features_scroll" /></strong></td>
-      <td><T k="doc_bottomsheet_features_scroll_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_bottomsheet_features_handle" /></strong></td>
-      <td><T k="doc_bottomsheet_features_handle_desc" /></td>
-    </tr>
-  </tbody>
-</table>
-
-## <T k="doc_usage" />
-
-```tsx
-import {
-  BottomSheet,
-  BottomSheetTrigger,
-  BottomSheetContent,
-  BottomSheetHeader,
-  BottomSheetTitle,
-  BottomSheetDescription,
-  BottomSheetBody,
-  BottomSheetFooter,
-  BottomSheetClose,
-} from "./BottomSheet";
-
-function Example() {
-  return (
-    <BottomSheet>
-      <BottomSheetTrigger>Open</BottomSheetTrigger>
-      <BottomSheetContent>
-        <BottomSheetHeader>
-          <BottomSheetTitle>Title</BottomSheetTitle>
-          <BottomSheetDescription>
-            Description goes here
-          </BottomSheetDescription>
-        </BottomSheetHeader>
-        <BottomSheetBody>Main content goes here...</BottomSheetBody>
-        <BottomSheetFooter>
-          <BottomSheetClose>Close</BottomSheetClose>
-        </BottomSheetFooter>
-      </BottomSheetContent>
-    </BottomSheet>
-  );
-}
-```
-
-## <T k="doc_usage_examples" />
-
-### <T k="doc_bottomsheet_default" />
-
-<Canvas of={BottomSheetStories.Default} />
-
-### <T k="doc_bottomsheet_action_menu" />
-
-<Canvas of={BottomSheetStories.SingleAction} />
-
-## Props
-
-<Controls />
+<Stories title={<T k="doc_usage_examples" />} />

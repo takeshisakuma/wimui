@@ -1,11 +1,18 @@
-import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
-import { T } from "../T";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as MultiSelectStories from "./MultiSelect.stories";
+import { T } from "../T";
 
 <Meta of={MultiSelectStories} />
 
 <Title />
-
 <p
   style={{
     margin: "0 0 16px 0",
@@ -19,6 +26,8 @@ import * as MultiSelectStories from "./MultiSelect.stories";
 
 <p><T k="doc_multiselect_long_desc" /></p>
 
+<Description />
+
 ## <T k="doc_design_intent_title" />
 <p><T k="doc_multiselect_design_intent" /></p>
 
@@ -27,8 +36,8 @@ import * as MultiSelectStories from "./MultiSelect.stories";
 <table>
   <thead>
     <tr>
-      <th>Component</th>
-      <th><T k="doc_button_case" /></th>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_usage_scenario" /></th>
     </tr>
   </thead>
   <tbody>
@@ -48,11 +57,32 @@ import * as MultiSelectStories from "./MultiSelect.stories";
   <li><T k="doc_multiselect_anatomy_tags" /></li>
 </ul>
 
-<Canvas of={MultiSelectStories.Default} />
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_multiselect_content_search" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_multiselect_motion_tag" /></p>
+
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_multiselect_a11y_announcement" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_admin_title" />:</strong> <T k="doc_multiselect_scenario_skill" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_admin_title" />:</strong> <T k="doc_multiselect_scenario_admin" />
+  </li>
+</ul>
+
+<Primary />
 
 <Controls of={MultiSelectStories.Default} />
 
-## <T k="doc_example" />
+## <T k="doc_variations" />
 
 ### <T k="doc_with_label" />
 <Canvas of={MultiSelectStories.WithLabel} />
@@ -63,38 +93,4 @@ import * as MultiSelectStories from "./MultiSelect.stories";
 ### <T k="doc_disabled" />
 <Canvas of={MultiSelectStories.Disabled} />
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_content_guidelines_title" />
-<ul>
-  <li><T k="doc_multiselect_content_search" /></li>
-</ul>
-
-## <T k="doc_motion_spec_title" />
-<p><T k="doc_multiselect_motion_tag" /></p>
-
-## <T k="doc_accessibility_spec_title" />
-<p><T k="doc_multiselect_a11y_announcement" /></p>
-
-## <T k="doc_real_world_scenarios_title" />
-<ul>
-  <li><T k="doc_multiselect_scenario_skill" /></li>
-  <li><T k="doc_multiselect_scenario_admin" /></li>
-</ul>
-
-## <T k="doc_usage" />
-
-```tsx
-import { MultiSelect } from "@/components/MultiSelect/MultiSelect";
-
-const options = [
-  { label: "Apple", value: "apple" },
-  { label: "Banana", value: "banana" },
-  { label: "Orange", value: "orange" },
-];
-
-<MultiSelect
-  options={options}
-  onChange={(vals) => console.log(vals)} // returns string[]
-/>;
-```
+<Stories />

@@ -26,29 +26,18 @@ import { T } from "../T";
 
 <p><T k="doc_radio_long_desc" /></p>
 
+<Description />
+
 ## <T k="doc_design_intent_title" />
 <p><T k="doc_radio_design_intent" /></p>
 
 ## <T k="doc_choice_matrix_title" />
 <p><T k="doc_radio_choice_matrix_desc" /></p>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th><T k="doc_button_case" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>Radio</b></td>
-      <td><T k="doc_radio_choice_radio_when" /></td>
-    </tr>
-    <tr>
-      <td><b>Selectbox</b></td>
-      <td><T k="doc_radio_choice_select_when" /></td>
-    </tr>
-  </tbody>
-</table>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Radio** | <T k="doc_radio_choice_radio_when" /> |
+| **Selectbox** | <T k="doc_radio_choice_select_when" /> |
 
 ## <T k="doc_anatomy_title" />
 <ul>
@@ -56,46 +45,13 @@ import { T } from "../T";
   <li><T k="doc_radio_anatomy_label" /></li>
 </ul>
 
-## <T k="doc_radio_usage_title" />
-
-<p>
-  <T k="doc_radio_when_to_use" />
-</p>
-
-## <T k="doc_radio_implementation_note" />
-
-- <T k="doc_radio_note_default" />
-- <T k="doc_radio_note_layout" />
-
-<p><T k="selection_radio_checkbox_guide_link" /></p>
-
-<Primary />
-
-## <T k="doc_props" />
-
-<Controls />
-
-## <T k="doc_example" />
-
-### Default
-
-<Canvas of={RadioStories.Default} />
-
-### Checked
-
-<Canvas of={RadioStories.Checked} />
-
-### Disabled
-
-<Canvas of={RadioStories.Disabled} />
-
-### <T k="doc_content_guidelines_title" />
+## <T k="doc_content_guidelines_title" />
 <p><T k="doc_radio_content_consistency" /></p>
 
 ## <T k="doc_motion_spec_title" />
 <p><T k="doc_radio_motion_pop" /></p>
 
-## <T k="doc_accessibility_spec_title" />
+## <T k="doc_a11y_spec_title" />
 <ul>
   <li><T k="doc_radio_a11y_keyboard" /></li>
   <li><T k="doc_radio_a11y_group" /></li>
@@ -103,6 +59,33 @@ import { T } from "../T";
 
 ## <T k="doc_real_world_scenarios_title" />
 <ul>
-  <li><T k="doc_radio_scenario_payment" /></li>
-  <li><T k="doc_radio_scenario_plan" /></li>
+  <li>
+    <strong><T k="doc_scenario_ec_title" />:</strong> <T k="doc_radio_scenario_payment" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_admin_title" />:</strong> <T k="doc_radio_scenario_plan" />
+  </li>
 </ul>
+
+## <T k="doc_best_practices" />
+<ul>
+  <li><T k="doc_radio_note_default" /></li>
+  <li><T k="doc_radio_note_layout" /></li>
+</ul>
+
+<Primary />
+
+<Controls />
+
+## <T k="doc_states" />
+
+### Default
+<Canvas of={RadioStories.Default} />
+
+### Checked
+<Canvas of={RadioStories.Checked} />
+
+### Disabled
+<Canvas of={RadioStories.Disabled} />
+
+<Stories />

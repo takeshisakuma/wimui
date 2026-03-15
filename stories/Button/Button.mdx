@@ -6,14 +6,6 @@ import {
   Controls,
   Stories,
   Canvas,
-  Source,
-  ArgTypes,
-  ColorPalette,
-  ColorItem,
-  IconGallery,
-  IconItem,
-  Typeset,
-  Unstyled,
 } from "@storybook/addon-docs/blocks";
 import * as ButtonStories from "./Button.stories";
 import { T } from "../T";
@@ -31,10 +23,10 @@ import { T } from "../T";
 >
   <T k="doc_button_title" />
 </p>
-<Description />
 
 <p><T k="doc_button_guide_link" /></p>
-<br />
+
+<Description />
 
 ## <T k="doc_design_intent_title" />
 <p><T k="doc_button_design_intent" /></p>
@@ -44,8 +36,8 @@ import { T } from "../T";
 <table>
   <thead>
     <tr>
-      <th>Priority</th>
-      <th><T k="doc_button_case" /></th>
+      <th><T k="doc_priority" /></th>
+      <th><T k="doc_usage_scenario" /></th>
     </tr>
   </thead>
   <tbody>
@@ -71,333 +63,10 @@ import { T } from "../T";
   <li><T k="doc_button_anatomy_icon" /></li>
 </ul>
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_guideline_best_practices" />
-<ul>
-  <li><T k="doc_button_best_practice_1" /></li>
-  <li><T k="doc_button_best_practice_2" /></li>
-</ul>
-
-<h2><T k="doc_button_considerations" /></h2>
-<table>
-  <tr>
-    <td><T k="doc_button_considerations_visibility" /></td>
-    <td><T k="doc_button_considerations_visibility_desc" /></td>
-  </tr>
-
-<tr>
-  <td><T k="doc_button_click_area" /></td>
-  <td>
-    <p><T k="doc_button_click_area_desc" /></p>
-  </td>
-</tr>
-
-<tr>
-  <td><T k="doc_button_label" /></td>
-  <td>
-    <p><T k="doc_button_label_desc" /></p>
-  </td>
-</tr>
-
-<tr>
-  <td><T k="doc_button_feedback" /></td>
-  <td>
-    <p><T k="doc_button_feedback_desc" /></p>
-  </td>
-</tr>
-
-<tr>
-  <td><T k="doc_button_consistency" /></td>
-  <td>
-    <p><T k="doc_button_consistency_desc" /></p>
-  </td>
-</tr>
-
-</table>
-
-<h2><T k="doc_variations" /></h2>
-<p><T k="doc_button_variations_desc" /></p>
-<table>
-  <tr>
-    <td><T k="doc_button_primary" /></td>
-    <td>
-      <p><T k="doc_button_primary_desc" /></p>
-    </td>
-    <td><T k="doc_button_primary_eg" /></td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_secondary" /></td>
-    <td>
-      <p><T k="doc_button_secondary_desc" /></p>
-    </td>
-    <td>
-      <p><T k="doc_button_secondary_eg" /></p>
-    </td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_tertiary" /></td>
-    <td>
-      <p><T k="doc_button_tertiary_desc" /></p>
-    </td>
-    <td>
-      <p><T k="doc_button_tertiary_eg" /></p>
-    </td>
-  </tr>
-</table>
-
-<h2><T k="doc_button_icons" /></h2>
-<table>
-  <tr>
-    <td><T k="doc_button_icons_with_text" /></td>
-    <td><T k="doc_button_icons_with_text_desc" /></td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_icons_label_only" /></td>
-    <td><T k="doc_button_icons_label_only_desc" /></td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_icons_only" /></td>
-    <td>
-      <p><T k="doc_button_icons_only_desc" /></p>
-    </td>
-  </tr>
-</table>
-
-<h3>
-  <T k="doc_button_icon_placement" />
-</h3>
-<table>
-  <tr>
-    <th>
-      <T k="doc_button_placement_type" />
-    </th>
-    <th>
-      <T k="doc_button_usage_features" />
-    </th>
-  </tr>
-  <tr>
-    <td>
-      <T k="doc_button_icon_before" />
-    </td>
-    <td>
-      <T k="doc_button_icon_before_desc" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <T k="doc_button_icon_after" />
-    </td>
-    <td>
-      <T k="doc_button_icon_after_desc" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <T k="doc_button_icon_only_case" />
-    </td>
-    <td>
-      <T k="doc_button_icon_only_case_desc" />
-    </td>
-  </tr>
-</table>
-
-<h2><T k="doc_button_states" /></h2>
-<p><T k="doc_button_states_desc" /></p>
-
-<table>
-  <tr>
-    <td><T k="doc_button_state_normal" /></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_state_hover" /></td>
-    <td>
-      <p><T k="doc_button_state_hover_desc" /></p>
-    </td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_state_active" /></td>
-    <td>
-      <p><T k="doc_button_state_active_desc" /></p>
-    </td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_state_disabled" /></td>
-    <td>
-      <p><T k="doc_button_state_disabled_desc" /></p>
-    </td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_state_loading" /></td>
-    <td>
-      <p><T k="doc_button_state_loading_desc" /></p>
-    </td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_state_focus" /></td>
-    <td>
-      <p><T k="doc_button_state_focus_desc" /></p>
-    </td>
-  </tr>
-</table>
-
-<h2><T k="doc_button_meaning" /></h2>
-<p><T k="doc_button_meaning_desc" /></p>
-<table>
-  <tr>
-    <td>default</td>
-    <td><T k="doc_button_meaning_default_desc" /></td>
-  </tr>
-  <tr>
-    <td>destructive</td>
-    <td><T k="doc_button_meaning_destructive_desc" /></td>
-  </tr>
-  <tr>
-    <td>positive</td>
-    <td><T k="doc_button_meaning_positive_desc" /></td>
-  </tr>
-</table>
-
-<h2><T k="doc_size" /></h2>
-
-<table>
-  <tr>
-    <td><T k="doc_size" /></td>
-    <td><T k="doc_height" /></td>
-    <td><T k="doc_description" /></td>
-  </tr>
-  <tr>
-    <td><T k="doc_small" /></td>
-    <td><T k="doc_button_around_32px" /></td>
-    <td><T k="doc_button_font_size" /></td>
-    <td>
-      <p><T k="doc_button_size_desc_s" /></p>
-    </td>
-  </tr>
-  <tr>
-    <td><T k="doc_medium" /></td>
-    <td><T k="doc_button_around_40px" /></td>
-    <td><T k="doc_button_font_size" /></td>
-    <td><T k="doc_button_size_desc_m" /></td>
-  </tr>
-  <tr>
-    <td><T k="doc_large" /></td>
-    <td><T k="doc_button_around_48px" /></td>
-    <td></td>
-    <td>
-      <p><T k="doc_button_size_desc_l" /></p>
-    </td>
-  </tr>
-</table>
-
-<h2><T k="doc_button_var_meaning" /></h2>
-
-<table>
-  <tr>
-    <td><T k="doc_button_var_pri_dest" /></td>
-    <td><T k="doc_button_var_pri_dest_act" /></td>
-    <td><T k="doc_button_var_pri_dest_desc" /></td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_var_sec_dest" /></td>
-    <td><T k="doc_button_var_sec_dest_act" /></td>
-    <td>
-      <p><T k="doc_button_var_sec_dest_desc" /></p>
-    </td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_var_ter_dest" /></td>
-    <td><T k="doc_button_var_ter_dest_act" /></td>
-    <td><T k="doc_button_var_ter_dest_desc" /></td>
-  </tr>
-</table>
-
-<h2><T k="doc_button_label_guidelines" /></h2>
-<p>
-  <T k="doc_button_label_guidelines_desc" />
-</p>
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc_button_pos" /></th>
-      <th><T k="doc_button_eg" /></th>
-      <th><T k="doc_button_impact" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><T k="doc_button_noun" /></td>
-      <td><T k="doc_button_noun_eg" /></td>
-      <td><T k="doc_button_noun_impact" /></td>
-    </tr>
-    <tr>
-      <td><T k="doc_button_verb" /></td>
-      <td><T k="doc_button_verb_eg" /></td>
-      <td><T k="doc_button_verb_impact" /></td>
-    </tr>
-  </tbody>
-</table>
-
-<h3><T k="doc_content_guidelines_title" /></h3>
+## <T k="doc_content_guidelines_title" />
 <ul>
   <li><T k="doc_button_content_active_verb" /></li>
   <li><T k="doc_button_content_concise" /></li>
-</ul>
-
-<p>
-  <T k="doc_button_ja_notes" />
-</p>
-
-<h3><T k="doc_button_golden_rules" /></h3>
-<table>
-  <tr>
-    <th><T k="doc_button_rule" /></th>
-    <th><T k="doc_button_good_eg" /></th>
-    <th><T k="doc_button_bad_eg" /></th>
-  </tr>
-  <tr>
-    <td><T k="doc_button_rule1" /></td>
-    <td><T k="doc_button_rule1_good" /></td>
-    <td><T k="doc_button_rule1_bad" /></td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_rule2" /></td>
-    <td><T k="doc_button_rule2_good" /></td>
-    <td><T k="doc_button_rule2_bad" /></td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_rule3" /></td>
-    <td><T k="doc_button_rule3_good" /></td>
-    <td><T k="doc_button_rule3_bad" /></td>
-  </tr>
-</table>
-
-<h3><T k="doc_button_exceptions" /></h3>
-<table>
-  <tr>
-    <th><T k="doc_button_case" /></th>
-    <th><T k="doc_button_case_eg" /></th>
-  </tr>
-  <tr>
-    <td><T k="doc_button_ex1" /></td>
-    <td><T k="doc_button_ex1_eg" /></td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_ex2" /></td>
-    <td><T k="doc_button_ex2_eg" /></td>
-  </tr>
-  <tr>
-    <td><T k="doc_button_ex3" /></td>
-    <td><T k="doc_button_ex3_eg" /></td>
-  </tr>
-</table>
-
-<h3><T k="doc_button_checklist" /></h3>
-<ul>
-  <li><T k="doc_button_check1" /></li>
-  <li><T k="doc_button_check2" /></li>
-  <li><T k="doc_button_check3" /></li>
 </ul>
 
 ## <T k="doc_motion_spec_title" />
@@ -406,7 +75,7 @@ import { T } from "../T";
   <li><T k="doc_button_motion_active" /></li>
 </ul>
 
-## <T k="doc_accessibility_spec_title" />
+## <T k="doc_a11y_spec_title" />
 <ul>
   <li><T k="doc_button_a11y_keyboard" /></li>
   <li><T k="doc_button_a11y_role" /></li>
@@ -414,12 +83,164 @@ import { T } from "../T";
 
 ## <T k="doc_real_world_scenarios_title" />
 <ul>
-  <li><T k="doc_button_scenario_form" /></li>
-  <li><T k="doc_button_scenario_toolbar" /></li>
+  <li>
+    <strong><T k="doc_scenario_form_title" />:</strong> <T k="doc_button_scenario_form" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_nav_title" />:</strong> <T k="doc_button_scenario_toolbar" />
+  </li>
 </ul>
 
-## <T k="doc_props" />
+## <T k="doc_best_practices_title" />
+<ul>
+  <li><T k="doc_button_best_practice_1" /></li>
+  <li><T k="doc_button_best_practice_2" /></li>
+</ul>
 
-<Controls />
+<Primary />
+
+<Controls of={ButtonStories.Default} />
+
+## <T k="doc_variations" />
+<p><T k="doc_button_variations_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_variant" /></th>
+      <th><T k="doc_description" /></th>
+      <th><T k="doc_example" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="doc_button_primary" /></td>
+      <td><T k="doc_button_primary_desc" /></td>
+      <td><T k="doc_button_primary_eg" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_secondary" /></td>
+      <td><T k="doc_button_secondary_desc" /></td>
+      <td><T k="doc_button_secondary_eg" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_tertiary" /></td>
+      <td><T k="doc_button_tertiary_desc" /></td>
+      <td><T k="doc_button_tertiary_eg" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_button_icons" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_usage" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="doc_button_icons_with_text" /></td>
+      <td><T k="doc_button_icons_with_text_desc" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_icons_label_only" /></td>
+      <td><T k="doc_button_icons_label_only_desc" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_icons_only" /></td>
+      <td><T k="doc_button_icons_only_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+### <T k="doc_button_icon_placement" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_button_placement_type" /></th>
+      <th><T k="doc_button_usage_features" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="doc_button_icon_before" /></td>
+      <td><T k="doc_button_icon_before_desc" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_icon_after" /></td>
+      <td><T k="doc_button_icon_after_desc" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_icon_only_case" /></td>
+      <td><T k="doc_button_icon_only_case_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_button_states" />
+<p><T k="doc_button_states_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_state" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="doc_button_state_normal" /></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_state_hover" /></td>
+      <td><T k="doc_button_state_hover_desc" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_state_active" /></td>
+      <td><T k="doc_button_state_active_desc" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_state_disabled" /></td>
+      <td><T k="doc_button_state_disabled_desc" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_state_loading" /></td>
+      <td><T k="doc_button_state_loading_desc" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_button_state_focus" /></td>
+      <td><T k="doc_button_state_focus_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_size" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_size" /></th>
+      <th><T k="doc_height" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><T k="doc_small" /></td>
+      <td><T k="doc_button_around_32px" /></td>
+      <td><T k="doc_button_size_desc_s" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_medium" /></td>
+      <td><T k="doc_button_around_40px" /></td>
+      <td><T k="doc_button_size_desc_m" /></td>
+    </tr>
+    <tr>
+      <td><T k="doc_large" /></td>
+      <td><T k="doc_button_around_48px" /></td>
+      <td><T k="doc_button_size_desc_l" /></td>
+    </tr>
+  </tbody>
+</table>
 
 <Stories />

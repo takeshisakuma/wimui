@@ -19,41 +19,72 @@ import { T } from "../T";
 
 <Description />
 
-## <T k="doc_guidelines_title" />
+## <T k="doc_design_intent_title" />
+<p><T k="doc_backtop_design_intent" /></p>
 
-### <T k="doc_guideline_when_to_use" />
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_backtop_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **BackTop** | <T k="doc_backtop_choice_backtop_when" /> |
+| **Sticky Header** | <T k="doc_backtop_choice_sticky_when" /> |
+| **Pagination** | <T k="doc_backtop_choice_pagination_when" /> |
+
+## <T k="doc_anatomy_title" />
 <ul>
-  <li><T k="doc_backtop_usage_1" /></li>
-  <li><T k="doc_backtop_usage_2" /></li>
+  <li><T k="doc_backtop_anatomy_button" /></li>
+  <li><T k="doc_backtop_anatomy_icon" /></li>
 </ul>
 
-### <T k="doc_guideline_best_practices" />
+## <T k="doc_content_guidelines_title" />
+<p><T k="doc_backtop_content_guidelines" /></p>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_backtop_motion_spec" /></p>
+
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_backtop_a11y_spec" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_article_title" />:</strong> <T k="doc_backtop_scenario_article" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_feed_title" />:</strong> <T k="doc_backtop_scenario_feed" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_dashboard_title" />:</strong> <T k="doc_backtop_scenario_dashboard" />
+  </li>
+</ul>
+
+## <T k="doc_best_practices_title" />
 <ul>
   <li><T k="doc_backtop_best_practice_1" /></li>
   <li><T k="doc_backtop_best_practice_2" /></li>
   <li><T k="doc_backtop_best_practice_3" /></li>
 </ul>
 
-## <T k="doc_example" />
+## <T k="doc_usage_guidelines_title" />
+<ul>
+  <li><T k="doc_backtop_usage_1" /></li>
+  <li><T k="doc_backtop_usage_2" /></li>
+</ul>
+
+## <T k="doc_props" />
+<Controls of={BackTopStories.Basic} />
+
+## <T k="doc_variations" />
 
 ### <T k="doc_basic" />
-
 <p><T k="doc_backtop_basic_desc" /></p>
-
 <Canvas of={BackTopStories.Basic} />
 
 ### <T k="doc_backtop_custom_title" />
-
 <p><T k="doc_backtop_custom_desc" /></p>
-
 <Canvas of={BackTopStories.CustomElement} />
 
 ### <T k="doc_backtop_target_title" />
-
 <p><T k="doc_backtop_target_desc" /></p>
-
 <Canvas of={BackTopStories.SpecificTarget} />
-
-## <T k="doc_props" />
-
-<Controls of={BackTopStories.Basic} />

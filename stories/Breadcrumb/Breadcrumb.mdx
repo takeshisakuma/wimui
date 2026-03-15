@@ -24,10 +24,51 @@ import { T } from "../T";
   <T k="doc_breadcrumb_long_desc" />
 </p>
 
+<Description />
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_breadcrumb_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_breadcrumb_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Breadcrumb** | <T k="doc_breadcrumb_choice_breadcrumb_when" /> |
+| **Tabs** | <T k="doc_breadcrumb_choice_tabs_when" /> |
+| **Anchor** | <T k="doc_breadcrumb_choice_anchor_when" /> |
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_breadcrumb_anatomy_link" /></li>
+  <li><T k="doc_breadcrumb_anatomy_separator" /></li>
+  <li><T k="doc_breadcrumb_anatomy_current" /></li>
+</ul>
+
+## <T k="doc_content_guidelines_title" />
+<p><T k="doc_breadcrumb_content_guidelines" /></p>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_breadcrumb_motion_spec" /></p>
+
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_breadcrumb_a11y_spec" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_ec_title" />:</strong> <T k="doc_breadcrumb_scenario_ec" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_files_title" />:</strong> <T k="doc_breadcrumb_scenario_files" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_admin_title" />:</strong> <T k="doc_breadcrumb_scenario_admin" />
+  </li>
+</ul>
+
 ## <T k="doc_usage" />
-
 <p><T k="doc_breadcrumb_usage_desc" /></p>
-
 <Canvas of={BreadcrumbStories.Default} />
 
 <Controls />
@@ -35,25 +76,18 @@ import { T } from "../T";
 ## <T k="doc_variations" />
 
 ### <T k="doc_breadcrumb_with_icons" />
-
 <p><T k="doc_breadcrumb_with_icons_desc" /></p>
-
 <Canvas of={BreadcrumbStories.WithIcons} />
 
 ### <T k="doc_avatar_size" />
-
 <p><T k="doc_breadcrumb_size_desc" /></p>
 
 #### <T k="doc_small" />
-
 <Canvas of={BreadcrumbStories.Small} />
 
 #### <T k="doc_large" />
-
 <Canvas of={BreadcrumbStories.Large} />
 
 ### <T k="doc_breadcrumb_custom_separator" />
-
 <p><T k="doc_breadcrumb_custom_separator_desc" /></p>
-
 <Canvas of={BreadcrumbStories.CustomSeparator} />

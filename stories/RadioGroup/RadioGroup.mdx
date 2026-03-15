@@ -13,7 +13,6 @@ import { T } from "../T";
 <Meta of={RadioGroupStories} />
 
 <Title />
-
 <p
   style={{
     margin: "0 0 16px 0",
@@ -26,6 +25,8 @@ import { T } from "../T";
 </p>
 
 <p><T k="doc_radiogroup_long_desc" /></p>
+
+<Description />
 
 ## <T k="doc_design_intent_title" />
 <p><T k="doc_radiogroup_design_intent" /></p>
@@ -60,7 +61,28 @@ import { T } from "../T";
   <li><T k="doc_radiogroup_anatomy_wrapper" /></li>
 </ul>
 
-<Canvas of={RadioGroupStories.Default} />
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_radiogroup_content_default" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_radiogroup_motion_focus" /></p>
+
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_radiogroup_a11y_group" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_gender_title" />:</strong> <T k="doc_radiogroup_scenario_gender" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_subscription_title" />:</strong> <T k="doc_radiogroup_scenario_plan" />
+  </li>
+</ul>
+
+<Primary />
 
 <Controls of={RadioGroupStories.Default} />
 
@@ -72,24 +94,7 @@ import { T } from "../T";
 ### <T k="doc_disabled" />
 <Canvas of={RadioGroupStories.WithDisabledOption} />
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_content_guidelines_title" />
-<ul>
-  <li><T k="doc_radiogroup_content_default" /></li>
-</ul>
-
-## <T k="doc_motion_spec_title" />
-<p><T k="doc_radiogroup_motion_focus" /></p>
-
-## <T k="doc_accessibility_spec_title" />
-<p><T k="doc_radiogroup_a11y_group" /></p>
-
-## <T k="doc_real_world_scenarios_title" />
-<ul>
-  <li><T k="doc_radiogroup_scenario_gender" /></li>
-  <li><T k="doc_radiogroup_scenario_plan" /></li>
-</ul>
-
 ## <T k="doc_controlled_components" />
 <Canvas of={RadioGroupStories.Controlled} />
+
+<Stories />

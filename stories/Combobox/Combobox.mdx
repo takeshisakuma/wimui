@@ -1,11 +1,18 @@
-import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as ComboboxStories from "./Combobox.stories";
 import { T } from "../T";
 
 <Meta of={ComboboxStories} />
 
 <Title />
-
 <p
   style={{
     margin: "0 0 16px 0",
@@ -19,6 +26,8 @@ import { T } from "../T";
 
 <p><T k="doc_combobox_long_desc" /></p>
 
+<Description />
+
 ## <T k="doc_design_intent_title" />
 <p><T k="doc_combobox_design_intent" /></p>
 
@@ -27,8 +36,8 @@ import { T } from "../T";
 <table>
   <thead>
     <tr>
-      <th>Component</th>
-      <th><T k="doc_button_case" /></th>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_usage_scenario" /></th>
     </tr>
   </thead>
   <tbody>
@@ -49,13 +58,7 @@ import { T } from "../T";
   <li><T k="doc_combobox_anatomy_list" /></li>
 </ul>
 
-<Canvas of={ComboboxStories.Default} />
-
-<Controls of={ComboboxStories.Default} />
-
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_content_guidelines_title" />
+## <T k="doc_content_guidelines_title" />
 <ul>
   <li><T k="doc_combobox_content_no_results" /></li>
 </ul>
@@ -63,19 +66,21 @@ import { T } from "../T";
 ## <T k="doc_motion_spec_title" />
 <p><T k="doc_combobox_motion_filter" /></p>
 
-## <T k="doc_accessibility_spec_title" />
+## <T k="doc_a11y_spec_title" />
 <p><T k="doc_combobox_a11y_autocomplete" /></p>
 
 ## <T k="doc_real_world_scenarios_title" />
 <ul>
-  <li><T k="doc_combobox_scenario_tag" /></li>
-  <li><T k="doc_combobox_scenario_address" /></li>
+  <li>
+    <strong><T k="doc_scenario_form_title" />:</strong> <T k="doc_combobox_scenario_tag" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_ec_title" />:</strong> <T k="doc_combobox_scenario_address" />
+  </li>
 </ul>
 
-## <T k="doc_basic_usage" />
+<Primary />
 
-```tsx
-import { Combobox } from "@/components/Combobox/Combobox";
+<Controls of={ComboboxStories.Default} />
 
-<Combobox options={options} onChange={(val) => console.log(val)} />;
-```
+<Stories />

@@ -65,6 +65,7 @@
   "doc_checkbox_note_layout": "垂直配置を基本とし、タップ領域を確保してください。",
   "doc_checkbox_scenario_agreement": "利用規約の同意: フォームの送信前に必須項目として配置。",
   "doc_checkbox_scenario_filter": "検索フィルタ: カテゴリを複数選択して結果を絞り込む。",
+  "doc_checkbox_scenario_newsletter": "通知設定: マイページの設定などで、受信したい情報のカテゴリをユーザーの好みに合わせて複数選択する。",
   "doc_checkbox_state_indeterminate": "不確定状態（indeterminate）",
   "doc_checkbox_state_indeterminate_desc": "子要素が一部だけ選択されている場合に使用する中間状態です。「すべて選択」チェックボックスなどで活用します。",
   "doc_checkbox_title": "複数選択",

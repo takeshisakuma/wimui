@@ -1,11 +1,18 @@
-import { Meta, Primary, Controls, Canvas, Title, Stories } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as SwitchStories from "./Switch.stories";
 import { T } from "../T";
 
 <Meta of={SwitchStories} />
 
 <Title />
-
 <p
   style={{
     margin: "0 0 16px 0",
@@ -19,29 +26,18 @@ import { T } from "../T";
 
 <p><T k="doc_switch_long_desc" /></p>
 
+<Description />
+
 ## <T k="doc_design_intent_title" />
 <p><T k="doc_switch_design_intent" /></p>
 
 ## <T k="doc_choice_matrix_title" />
 <p><T k="doc_switch_choice_matrix_desc" /></p>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th><T k="doc_button_case" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>Switch</b></td>
-      <td><T k="doc_switch_choice_switch_when" /></td>
-    </tr>
-    <tr>
-      <td><b>Checkbox</b></td>
-      <td><T k="doc_switch_choice_check_when" /></td>
-    </tr>
-  </tbody>
-</table>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Switch** | <T k="doc_switch_choice_switch_when" /> |
+| **Checkbox** | <T k="doc_switch_choice_check_when" /> |
 
 ## <T k="doc_anatomy_title" />
 <ul>
@@ -49,37 +45,13 @@ import { T } from "../T";
   <li><T k="doc_switch_anatomy_thumb" /></li>
 </ul>
 
->  <T k="guide_rvc_comparison" />: <a href="./?path=/docs/components-selection-controls--docs" target="_top"><T k="guide_rvc_title" /></a>
-
-## <T k="doc_usage_examples" />
-
-<Primary />
-
-## <T k="doc_props" />
-
-<Controls />
-
-## <T k="doc_variations" />
-
-### <T k="doc_switch_checked" />
-
-<Canvas of={SwitchStories.Checked} />
-
-### <T k="doc_switch_small" />
-
-<Canvas of={SwitchStories.Small} />
-
-### <T k="status_disabled" />
-
-<Canvas of={SwitchStories.Disabled} />
-
-### <T k="doc_content_guidelines_title" />
+## <T k="doc_content_guidelines_title" />
 <p><T k="doc_switch_content_labels" /></p>
 
 ## <T k="doc_motion_spec_title" />
 <p><T k="doc_switch_motion_slide" /></p>
 
-## <T k="doc_accessibility_spec_title" />
+## <T k="doc_a11y_spec_title" />
 <ul>
   <li><T k="doc_switch_a11y_keyboard" /></li>
   <li><T k="doc_switch_a11y_role" /></li>
@@ -87,8 +59,27 @@ import { T } from "../T";
 
 ## <T k="doc_real_world_scenarios_title" />
 <ul>
-  <li><T k="doc_switch_scenario_setting" /></li>
-  <li><T k="doc_switch_scenario_filtering" /></li>
+  <li>
+    <strong><T k="doc_scenario_admin_title" />:</strong> <T k="doc_switch_scenario_setting" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_filter_title" />:</strong> <T k="doc_switch_scenario_filtering" />
+  </li>
 </ul>
+
+<Primary />
+
+<Controls />
+
+## <T k="doc_variations" />
+
+### <T k="doc_switch_checked" />
+<Canvas of={SwitchStories.Checked} />
+
+### <T k="doc_switch_small" />
+<Canvas of={SwitchStories.Small} />
+
+### <T k="doc_disabled" />
+<Canvas of={SwitchStories.Disabled} />
 
 <Stories />

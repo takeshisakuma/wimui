@@ -13,7 +13,6 @@ import { T } from "../T";
 <Meta of={CheckboxGroupStories} />
 
 <Title />
-
 <p
   style={{
     margin: "0 0 16px 0",
@@ -27,6 +26,8 @@ import { T } from "../T";
 
 <p><T k="doc_checkboxgroup_long_desc" /></p>
 
+<Description />
+
 ## <T k="doc_design_intent_title" />
 <p><T k="doc_checkboxgroup_design_intent" /></p>
 
@@ -36,7 +37,28 @@ import { T } from "../T";
   <li><T k="doc_checkboxgroup_anatomy_items" /></li>
 </ul>
 
-<Canvas of={CheckboxGroupStories.Default} />
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_checkboxgroup_content_sort" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_checkboxgroup_motion_stagger" /></p>
+
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_checkboxgroup_a11y_fieldset" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_admin_title" />:</strong> <T k="doc_checkboxgroup_scenario_hobby" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_filter_title" />:</strong> <T k="doc_checkboxgroup_scenario_filter" />
+  </li>
+</ul>
+
+<Primary />
 
 <Controls of={CheckboxGroupStories.Default} />
 
@@ -45,27 +67,8 @@ import { T } from "../T";
 ### <T k="doc_layout_horizontal" />
 <Canvas of={CheckboxGroupStories.Horizontal} />
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_content_guidelines_title" />
-<ul>
-  <li><T k="doc_checkboxgroup_content_sort" /></li>
-</ul>
-
-## <T k="doc_motion_spec_title" />
-<p><T k="doc_checkboxgroup_motion_stagger" /></p>
-
-## <T k="doc_accessibility_spec_title" />
-<p><T k="doc_checkboxgroup_a11y_fieldset" /></p>
-
-## <T k="doc_real_world_scenarios_title" />
-<ul>
-  <li><T k="doc_checkboxgroup_scenario_hobby" /></li>
-  <li><T k="doc_checkboxgroup_scenario_filter" /></li>
-</ul>
-
 ## <T k="doc_controlled_components" />
-
 <p><T k="doc_controlled_components_desc" /></p>
-
 <Canvas of={CheckboxGroupStories.Controlled} />
+
+<Stories />

@@ -21,8 +21,11 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  <T k="doc_checkbox_long_desc" />
+  <T k="doc_checkbox_title" />
 </p>
+
+<p><T k="doc_checkbox_long_desc" /></p>
+
 <Description />
 
 ## <T k="doc_design_intent_title" />
@@ -30,28 +33,12 @@ import { T } from "../T";
 
 ## <T k="doc_choice_matrix_title" />
 <p><T k="doc_checkbox_choice_matrix_desc" /></p>
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th><T k="doc_button_case" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>Checkbox</b></td>
-      <td><T k="doc_checkbox_choice_check_when" /></td>
-    </tr>
-    <tr>
-      <td><b>Radio</b></td>
-      <td><T k="doc_checkbox_choice_radio_when" /></td>
-    </tr>
-    <tr>
-      <td><b>Switch</b></td>
-      <td><T k="doc_checkbox_choice_switch_when" /></td>
-    </tr>
-  </tbody>
-</table>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Checkbox** | <T k="doc_checkbox_choice_check_when" /> |
+| **Radio** | <T k="doc_checkbox_choice_radio_when" /> |
+| **Switch** | <T k="doc_checkbox_choice_switch_when" /> |
 
 ## <T k="doc_anatomy_title" />
 <ul>
@@ -60,52 +47,16 @@ import { T } from "../T";
   <li><T k="doc_checkbox_anatomy_label" /></li>
 </ul>
 
-## <T k="doc_basic_usage" />
-
-<p><T k="doc_checkbox_basic_usage_desc" /></p>
-
-## <T k="doc_checkbox_usage_title" />
-
-<p>
-  <T k="doc_checkbox_when_to_use" />
-</p>
-
-<h3><T k="doc_content_guidelines_title" /></h3>
+## <T k="doc_content_guidelines_title" />
 <ul>
   <li><T k="doc_checkbox_content_positive" /></li>
   <li><T k="doc_checkbox_content_no_period" /></li>
 </ul>
 
-## <T k="doc_checkbox_implementation_note" />
-
-- <T k="doc_checkbox_note_default" />
-- <T k="doc_checkbox_note_layout" />
-
-<p><T k="selection_radio_checkbox_guide_link" /></p>
-
-<Canvas of={CheckboxStories.Default} />
-
-## <T k="doc_states" />
-
-### <T k="doc_checked" />
-
-<Canvas of={CheckboxStories.Checked} />
-
-### <T k="doc_checkbox_state_indeterminate" />
-
-<p><T k="doc_checkbox_state_indeterminate_desc" /></p>
-
-<Canvas of={CheckboxStories.Indeterminate} />
-
-### <T k="doc_disabled" />
-
-<Canvas of={CheckboxStories.Disabled} />
-<Canvas of={CheckboxStories.DisabledChecked} />
-
 ## <T k="doc_motion_spec_title" />
 <p><T k="doc_checkbox_motion_check" /></p>
 
-## <T k="doc_accessibility_spec_title" />
+## <T k="doc_a11y_spec_title" />
 <ul>
   <li><T k="doc_checkbox_a11y_keyboard" /></li>
   <li><T k="doc_checkbox_a11y_label" /></li>
@@ -113,8 +64,38 @@ import { T } from "../T";
 
 ## <T k="doc_real_world_scenarios_title" />
 <ul>
-  <li><T k="doc_checkbox_scenario_agreement" /></li>
-  <li><T k="doc_checkbox_scenario_filter" /></li>
+  <li>
+    <strong><T k="doc_scenario_agreement_title" />:</strong> <T k="doc_checkbox_scenario_agreement" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_filter_title" />:</strong> <T k="doc_checkbox_scenario_filter" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_form_title" />:</strong> <T k="doc_checkbox_scenario_newsletter" />
+  </li>
 </ul>
 
+## <T k="doc_best_practices" />
+<ul>
+  <li><T k="doc_checkbox_note_default" /></li>
+  <li><T k="doc_checkbox_note_layout" /></li>
+</ul>
+
+<Primary />
+
 <Controls />
+
+## <T k="doc_states" />
+
+### <T k="doc_checked" />
+<Canvas of={CheckboxStories.Checked} />
+
+### <T k="doc_checkbox_state_indeterminate" />
+<p><T k="doc_checkbox_state_indeterminate_desc" /></p>
+<Canvas of={CheckboxStories.Indeterminate} />
+
+### <T k="doc_disabled" />
+<Canvas of={CheckboxStories.Disabled} />
+<Canvas of={CheckboxStories.DisabledChecked} />
+
+<Stories />

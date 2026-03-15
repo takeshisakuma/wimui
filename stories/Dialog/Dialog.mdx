@@ -1,4 +1,12 @@
-import { Meta, Canvas, Controls, Title, Primary, Stories, Description } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Canvas,
+  Controls,
+  Title,
+  Primary,
+  Stories,
+  Description,
+} from "@storybook/addon-docs/blocks";
 import * as DialogStories from "./Dialog.stories";
 import { T } from "../T";
 
@@ -21,10 +29,6 @@ import { T } from "../T";
 
 <p><T k="doc_dialog_long_desc" /></p>
 
-<Primary />
-
-<Controls />
-
 ## <T k="doc_design_intent_title" />
 <p><T k="doc_dialog_design_intent" /></p>
 
@@ -45,14 +49,10 @@ import { T } from "../T";
 </ul>
 
 ## <T k="doc_content_guidelines_title" />
-<ul>
-  <li><T k="doc_dialog_content_button_labels" /></li>
-</ul>
+<p><T k="doc_dialog_content_button_labels" /></p>
 
 ## <T k="doc_motion_spec_title" />
-<ul>
-  <li><T k="doc_dialog_motion_scale" /></li>
-</ul>
+<p><T k="doc_dialog_motion_scale" /></p>
 
 ## <T k="doc_a11y_spec_title" />
 <ul>
@@ -61,14 +61,20 @@ import { T } from "../T";
 </ul>
 
 ## <T k="doc_real_world_scenarios_title" />
-
-### <T k="doc_scenario_confirm_title" />
-<p><T k="doc_dialog_scenario_confirm" /></p>
-
-### <T k="doc_scenario_form_title" />
-<p><T k="doc_dialog_scenario_form" /></p>
+<ul>
+  <li>
+    <strong><T k="doc_scenario_confirm_title" />:</strong> <T k="doc_dialog_scenario_confirm" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_form_title" />:</strong> <T k="doc_dialog_scenario_form" />
+  </li>
+</ul>
 
 ## <T k="doc_dialog_why_not_modal" />
 <p><T k="doc_dialog_why_not_modal_desc" /></p>
+
+<Primary />
+
+<Controls />
 
 <Stories />

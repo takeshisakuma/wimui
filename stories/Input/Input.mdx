@@ -13,7 +13,6 @@ import { T } from "../T";
 <Meta of={InputStories} />
 
 <Title />
-
 <p
   style={{
     margin: "0 0 16px 0",
@@ -27,6 +26,8 @@ import { T } from "../T";
 
 <p><T k="doc_input_long_desc" /></p>
 
+<Description />
+
 ## <T k="doc_design_intent_title" />
 <p><T k="doc_input_design_intent" /></p>
 
@@ -35,8 +36,8 @@ import { T } from "../T";
 <table>
   <thead>
     <tr>
-      <th>Component</th>
-      <th><T k="doc_button_case" /></th>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_usage_scenario" /></th>
     </tr>
   </thead>
   <tbody>
@@ -62,93 +63,7 @@ import { T } from "../T";
   <li><T k="doc_input_anatomy_icons" /></li>
 </ul>
 
-## <T k="doc_basic_usage" />
-
-<p><T k="doc_input_basic_desc" /></p>
-
-<Canvas of={InputStories.Default} />
-
-<Controls of={InputStories.Default} />
-
-## <T k="doc_variants" />
-
-<p><T k="doc_input_variant_desc" /></p>
-
-### Outline
-
-<p><T k="doc_input_outline_desc" /></p>
-
-<Canvas of={InputStories.Outline} />
-
-### Ghost
-
-<p><T k="doc_input_ghost_desc" /></p>
-
-<p><T k="doc_input_ghost_usage" /></p>
-
-- <T k="doc_input_ghost_u1" />
-- <T k="doc_input_ghost_u2" />
-- <T k="doc_input_ghost_u3" />
-
-<p><T k="doc_input_ghost_interaction" /></p>
-
-- <T k="doc_input_ghost_i1" />
-- <T k="doc_input_ghost_i2" />
-- <T k="doc_input_ghost_i3" />
-
-<Canvas of={InputStories.Ghost} />
-
-## <T k="doc_states" />
-
-### Error
-
-<p><T k="doc_input_error_desc" /></p>
-
-<Canvas of={InputStories.ErrorStatus} />
-
-### Disabled
-
-<p><T k="doc_input_disabled_desc" /></p>
-
-<Canvas of={InputStories.Disabled} />
-
-## <T k="doc_layout" />
-
-### Full Width
-
-<p><T k="doc_input_fullwidth_desc" /></p>
-
-<Canvas of={InputStories.FullWidth} />
-
-### <T k="doc_input_width_title" />
-
-<p><T k="doc_input_width_desc" /></p>
-
-<p style={{ fontSize: '0.875rem', color: '#666', borderLeft: '4px solid #ddd', paddingLeft: '1rem' }}>
-  <T k="doc_input_width_note" />
-</p>
-
-<p><T k="doc_input_width_usage" /></p>
-
-<Canvas of={InputStories.CustomWidth} />
-
-## <T k="doc_features" />
-
-### Search
-
-<p><T k="doc_input_search_desc" /></p>
-
-<Canvas of={InputStories.SearchIndicator} />
-
-### Clearable
-
-<p><T k="doc_input_clearable_desc" /></p>
-
-<Canvas of={InputStories.Clearable} />
-
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_content_guidelines_title" />
+## <T k="doc_content_guidelines_title" />
 <ul>
   <li><T k="doc_input_content_labels" /></li>
   <li><T k="doc_input_content_placeholder" /></li>
@@ -157,7 +72,7 @@ import { T } from "../T";
 ## <T k="doc_motion_spec_title" />
 <p><T k="doc_input_motion_focus" /></p>
 
-## <T k="doc_accessibility_spec_title" />
+## <T k="doc_a11y_spec_title" />
 <ul>
   <li><T k="doc_input_a11y_labels" /></li>
   <li><T k="doc_input_a11y_aria" /></li>
@@ -165,6 +80,74 @@ import { T } from "../T";
 
 ## <T k="doc_real_world_scenarios_title" />
 <ul>
-  <li><T k="doc_input_scenario_form" /></li>
-  <li><T k="doc_input_scenario_search" /></li>
+  <li>
+    <strong><T k="doc_scenario_form_title" />:</strong> <T k="doc_input_scenario_form" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_filter_title" />:</strong> <T k="doc_input_scenario_search" />
+  </li>
 </ul>
+
+<Primary />
+
+<Controls of={InputStories.Default} />
+
+## <T k="doc_variants" />
+
+<p><T k="doc_input_variant_desc" /></p>
+
+### Outline
+<p><T k="doc_input_outline_desc" /></p>
+<Canvas of={InputStories.Outline} />
+
+### Ghost
+<p><T k="doc_input_ghost_desc" /></p>
+<p><T k="doc_input_ghost_usage" /></p>
+<ul>
+  <li><T k="doc_input_ghost_u1" /></li>
+  <li><T k="doc_input_ghost_u2" /></li>
+  <li><T k="doc_input_ghost_u3" /></li>
+</ul>
+<p><T k="doc_input_ghost_interaction" /></p>
+<ul>
+  <li><T k="doc_input_ghost_i1" /></li>
+  <li><T k="doc_input_ghost_i2" /></li>
+  <li><T k="doc_input_ghost_i3" /></li>
+</ul>
+<Canvas of={InputStories.Ghost} />
+
+## <T k="doc_states" />
+
+### Error
+<p><T k="doc_input_error_desc" /></p>
+<Canvas of={InputStories.ErrorStatus} />
+
+### Disabled
+<p><T k="doc_input_disabled_desc" /></p>
+<Canvas of={InputStories.Disabled} />
+
+## <T k="doc_layout" />
+
+### Full Width
+<p><T k="doc_input_fullwidth_desc" /></p>
+<Canvas of={InputStories.FullWidth} />
+
+### <T k="doc_input_width_title" />
+<p><T k="doc_input_width_desc" /></p>
+<p style={{ fontSize: '0.875rem', color: '#6c757d', borderLeft: '4px solid #dee2e6', paddingLeft: '1rem', margin: '16px 0' }}>
+  <T k="doc_input_width_note" />
+</p>
+<p><T k="doc_input_width_usage" /></p>
+<Canvas of={InputStories.CustomWidth} />
+
+## <T k="doc_features" />
+
+### Search
+<p><T k="doc_input_search_desc" /></p>
+<Canvas of={InputStories.SearchIndicator} />
+
+### Clearable
+<p><T k="doc_input_clearable_desc" /></p>
+<Canvas of={InputStories.Clearable} />
+
+<Stories />

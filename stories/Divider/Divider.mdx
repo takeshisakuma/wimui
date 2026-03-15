@@ -1,11 +1,18 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as DividerStories from "./Divider.stories";
 import { T } from "../T";
 
 <Meta of={DividerStories} />
 
-# Divider
-
+<Title />
 <p
   style={{
     margin: "0 0 16px 0",
@@ -19,16 +26,64 @@ import { T } from "../T";
 
 <p><T k="doc_divider_long_desc" /></p>
 
-## <T k="doc_usage" />
+<Description />
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_divider_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_divider_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Divider** | <T k="doc_divider_choice_divider_when" /> |
+| **Spacing** | <T k="doc_divider_choice_spacing_when" /> |
+| **Card** | <T k="doc_divider_choice_card_when" /> |
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_divider_anatomy_line" /></li>
+  <li><T k="doc_divider_anatomy_label" /></li>
+</ul>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_divider_content_guidelines" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<ul>
+  <li><T k="doc_divider_motion_spec" /></li>
+</ul>
+
+## <T k="doc_a11y_spec_title" />
+<ul>
+  <li><T k="doc_divider_a11y_spec" /></li>
+</ul>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_form_title" />:</strong> <T k="doc_divider_scenario_form" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_list_title" />:</strong> <T k="doc_divider_scenario_list" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_nav_title" />:</strong> <T k="doc_divider_scenario_nav" />
+  </li>
+</ul>
+
+<Primary />
+
+<Controls of={DividerStories.Default} />
+
+## <T k="doc_variations" />
 
 ### <T k="doc_divider_horizontal" />
-
 <Canvas of={DividerStories.Default} />
 
 ### <T k="doc_divider_vertical" />
-
 <Canvas of={DividerStories.Vertical} />
 
-## Props
-
-<Controls />
+<Stories />

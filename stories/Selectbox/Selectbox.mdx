@@ -1,11 +1,18 @@
-import { Canvas, Meta, Controls, Title } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as SelectboxStories from "./Selectbox.stories";
 import { T } from "../T";
 
 <Meta of={SelectboxStories} />
 
 <Title />
-
 <p
   style={{
     margin: "0 0 16px 0",
@@ -19,6 +26,8 @@ import { T } from "../T";
 
 <p><T k="doc_selectbox_long_desc" /></p>
 
+<Description />
+
 ## <T k="doc_design_intent_title" />
 <p><T k="doc_selectbox_design_intent" /></p>
 
@@ -27,264 +36,220 @@ import { T } from "../T";
 <table>
   <thead>
     <tr>
-      <th>Component</th>
-      <th><T k="doc_button_case" /></th>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_usage_scenario" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><b>Selectbox</b></td>
-      <td><T k="doc_selectbox_choice_select_when" /></td>
+      <td>
+        <b>Selectbox</b>
+      </td>
+      <td>
+        <T k="doc_selectbox_choice_select_when" />
+      </td>
     </tr>
     <tr>
-      <td><b>Radio</b></td>
-      <td><T k="doc_selectbox_choice_radio_when" /></td>
+      <td>
+        <b>Radio</b>
+      </td>
+      <td>
+        <T k="doc_selectbox_choice_radio_when" />
+      </td>
     </tr>
     <tr>
-      <td><b>Combobox</b></td>
-      <td><T k="doc_selectbox_choice_combobox_when" /></td>
+      <td>
+        <b>Combobox</b>
+      </td>
+      <td>
+        <T k="doc_selectbox_choice_combobox_when" />
+      </td>
     </tr>
   </tbody>
 </table>
 
 ## <T k="doc_anatomy_title" />
 <ul>
-  <li><T k="doc_selectbox_anatomy_trigger" /></li>
-  <li><T k="doc_selectbox_anatomy_menu" /></li>
-  <li><T k="doc_selectbox_anatomy_search" /></li>
+  <li>
+    <T k="doc_selectbox_anatomy_trigger" />
+  </li>
+  <li>
+    <T k="doc_selectbox_anatomy_menu" />
+  </li>
+  <li>
+    <T k="doc_selectbox_anatomy_search" />
+  </li>
 </ul>
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_guideline_when_to_use" />
+## <T k="doc_best_practices_title" />
 <ul>
-  <li><T k="doc_selectbox_guideline_1" /></li>
-  <li><T k="doc_selectbox_guideline_2" /></li>
+  <li>
+    <T k="doc_selectbox_best_practice_1" />
+  </li>
+  <li>
+    <T k="doc_selectbox_best_practice_2" />
+  </li>
 </ul>
 
-### <T k="doc_guideline_best_practices" />
+## <T k="doc_content_guidelines_title" />
 <ul>
-  <li><T k="doc_selectbox_best_practice_1" /></li>
-  <li><T k="doc_selectbox_best_practice_2" /></li>
-</ul>
-
-<h3><T k="doc_content_guidelines_title" /></h3>
-<ul>
-  <li><T k="doc_selectbox_content_placeholder" /></li>
-  <li><T k="doc_selectbox_content_labels" /></li>
-</ul>
-
-## <T k="doc_basic_usage" />
-
-```jsx
-import { Selectbox } from "@/components/Selectbox/Selectbox";
-
-const options = [
-  { label: "Apple", value: "apple" },
-  { label: "Banana", value: "banana" },
-  { label: "Orange", value: "orange" },
-];
-
-<Selectbox options={options} onChange={(val) => console.log(val)} />;
-```
-
-## <T k="doc_variations" />
-
-### <T k="doc_default" />
-
-<Canvas of={SelectboxStories.Default} />
-
-### <T k="doc_with_label" />
-
-<Canvas of={SelectboxStories.WithLabel} />
-
-### <T k="doc_selectbox_preselected" />
-
-<Canvas of={SelectboxStories.Preselected} />
-
-### <T k="doc_disabled" />
-
-<Canvas of={SelectboxStories.Disabled} />
-
-### <T k="doc_selectbox_var_sep" />
-
-<p><T k="doc_selectbox_var_sep_desc" /></p>
-
-<Canvas of={SelectboxStories.WithSeparator} />
-
-## <T k="doc_selectbox_adv" />
-
-### <T k="doc_selectbox_adv_search" />
-
-<p><T k="doc_selectbox_adv_search_desc" /></p>
-
-```jsx
-<Selectbox
-  options={manyOptions}
-  searchable
-  searchPlaceholder="Search options..."
-  onChange={(val) => console.log(val)}
-/>
-```
-
-### <T k="doc_selectbox_custom_filter_title" />
-
-<p><T k="doc_selectbox_custom_filter_desc" /></p>
-
-```jsx
-<Selectbox
-  options={options}
-  searchable
-  filterOption={(option, searchValue) => {
-    // Custom filter logic
-    return option.value.includes(searchValue);
-  }}
-  onChange={(val) => console.log(val)}
-/>
-```
-
-### <T k="doc_selectbox_adv_group" />
-
-<p><T k="doc_selectbox_adv_group_desc" /></p>
-
-```jsx
-const groupedOptions = [
-  {
-    label: "Fruits",
-    options: [
-      { label: "Apple", value: "apple" },
-      { label: "Banana", value: "banana" },
-    ],
-  },
-  {
-    label: "Vegetables",
-    options: [
-      { label: "Carrot", value: "carrot" },
-      { label: "Broccoli", value: "broccoli" },
-    ],
-  },
-];
-
-<Selectbox
-  options={groupedOptions}
-  grouped
-  onChange={(val) => console.log(val)}
-/>;
-```
-
-### <T k="doc_selectbox_adv_key" />
-
-<p><T k="doc_selectbox_adv_key_desc" /></p>
-
-<table>
-  <thead>
-        <tr>
-          <th><T k="table_header_key" /></th>
-          <th><T k="table_header_action" /></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code><T k="table_key_enter" /></code> / <code><T k="table_key_space" /></code>
-          </td>
-          <td><T k="doc_selectbox_op_open_select" /></td>
-        </tr>
-        <tr>
-          <td>
-            <code><T k="table_key_escape" /></code>
-          </td>
-          <td><T k="doc_selectbox_op_close" /></td>
-        </tr>
-    <tr>
-      <td>
-        <code>ArrowDown</code>
-      </td>
-      <td><T k="doc_selectbox_op_next" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>ArrowUp</code>
-      </td>
-      <td><T k="doc_selectbox_op_prev" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>Home</code>
-      </td>
-      <td><T k="doc_selectbox_op_first" /></td>
-    </tr>
-    <tr>
-      <td>
-        <code>End</code>
-      </td>
-      <td><T k="doc_selectbox_op_last" /></td>
-    </tr>
-  </tbody>
-</table>
-
-<p><T k="doc_selectbox_adv_key_skip" /></p>
-
-### <T k="doc_selectbox_adv_comb" />
-
-<p><T k="doc_selectbox_adv_comb_desc" /></p>
-
-```jsx
-<Selectbox
-  options={groupedOptions}
-  grouped
-  searchable
-  searchPlaceholder="Search all options..."
-  onChange={(val) => console.log(val)}
-/>
-```
-
-## <T k="doc_accessibility" />
-
-<p><T k="doc_selectbox_a11y_desc" /></p>
-
-<ul>
-  <li><T k="doc_selectbox_a11y_1" /></li>
-  <li><T k="doc_selectbox_a11y_2" /></li>
-  <li><T k="doc_selectbox_a11y_3" /></li>
-  <li><T k="doc_selectbox_a11y_4" /></li>
-  <li><T k="doc_selectbox_a11y_5" /></li>
-  <li><T k="doc_selectbox_a11y_listbox" /></li>
-  <li><T k="doc_selectbox_a11y_scroll" /></li>
+  <li>
+    <T k="doc_selectbox_content_placeholder" />
+  </li>
+  <li>
+    <T k="doc_selectbox_content_labels" />
+  </li>
 </ul>
 
 ## <T k="doc_motion_spec_title" />
 <p><T k="doc_selectbox_motion_opacity" /></p>
 
-## <T k="doc_real_world_scenarios_title" />
+## <T k="doc_a11y_spec_title" />
+<p>
+  <T k="doc_selectbox_a11y_desc" />
+</p>
 <ul>
-  <li><T k="doc_selectbox_scenario_country" /></li>
-  <li><T k="doc_selectbox_scenario_form" /></li>
+  <li>
+    <T k="doc_selectbox_a11y_1" />
+  </li>
+  <li>
+    <T k="doc_selectbox_a11y_2" />
+  </li>
+  <li>
+    <T k="doc_selectbox_a11y_3" />
+  </li>
+  <li>
+    <T k="doc_selectbox_a11y_4" />
+  </li>
+  <li>
+    <T k="doc_selectbox_a11y_5" />
+  </li>
+  <li>
+    <T k="doc_selectbox_a11y_listbox" />
+  </li>
+  <li>
+    <T k="doc_selectbox_a11y_scroll" />
+  </li>
 </ul>
 
-## <T k="doc_props" />
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_dashboard_title" />:</strong> <T k="doc_selectbox_scenario_country" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_admin_title" />:</strong> <T k="doc_selectbox_scenario_form" />
+  </li>
+</ul>
 
-<Controls />
+<Primary />
 
-## <T k="doc_selectbox_ts" />
+<Controls of={SelectboxStories.Default} />
 
-<p><T k="doc_selectbox_ts_desc" /></p>
+## <T k="doc_variations" />
 
-```typescript
-import { Selectbox, SelectboxOption, SelectboxOptionGroup } from "./Selectbox";
-import { T } from "../T";
+### <T k="doc_default" />
+<Canvas of={SelectboxStories.Default} />
 
-// Flat options
-const options: SelectboxOption[] = [
-  { label: "Option 1", value: "opt1" },
-  { label: "Option 2", value: "opt2", disabled: true },
-];
+### <T k="doc_with_label" />
+<Canvas of={SelectboxStories.WithLabel} />
 
-// Grouped options
-const groupedOptions: SelectboxOptionGroup[] = [
-  {
-    label: "Group 1",
-    options: [{ label: "Option 1", value: "opt1" }],
-  },
-];
-```
+### <T k="doc_selectbox_preselected" />
+<Canvas of={SelectboxStories.Preselected} />
+
+### <T k="doc_disabled" />
+<Canvas of={SelectboxStories.Disabled} />
+
+### <T k="doc_selectbox_var_sep" />
+<p>
+  <T k="doc_selectbox_var_sep_desc" />
+</p>
+<Canvas of={SelectboxStories.WithSeparator} />
+
+## <T k="doc_selectbox_adv" />
+
+### <T k="doc_selectbox_adv_search" />
+<p>
+  <T k="doc_selectbox_adv_search_desc" />
+</p>
+<Canvas of={SelectboxStories.Searchable} />
+
+### <T k="doc_selectbox_adv_group" />
+<p>
+  <T k="doc_selectbox_adv_group_desc" />
+</p>
+<Canvas of={SelectboxStories.Grouped} />
+
+### <T k="doc_selectbox_adv_key" />
+<p>
+  <T k="doc_selectbox_adv_key_desc" />
+</p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="table_header_key" /></th>
+      <th><T k="table_header_action" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code><T k="table_key_enter" /></code> / <code><T k="table_key_space" /></code>
+      </td>
+      <td>
+        <T k="doc_selectbox_op_open_select" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code><T k="table_key_escape" /></code>
+      </td>
+      <td>
+        <T k="doc_selectbox_op_close" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>ArrowDown</code>
+      </td>
+      <td>
+        <T k="doc_selectbox_op_next" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>ArrowUp</code>
+      </td>
+      <td>
+        <T k="doc_selectbox_op_prev" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>Home</code>
+      </td>
+      <td>
+        <T k="doc_selectbox_op_first" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>End</code>
+      </td>
+      <td>
+        <T k="doc_selectbox_op_last" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <T k="doc_selectbox_adv_key_skip" />
+</p>
+
+### <T k="doc_selectbox_adv_comb" />
+<p>
+  <T k="doc_selectbox_adv_comb_desc" />
+</p>
+<Canvas of={SelectboxStories.AdvancedSearch} />
+
+<Stories />

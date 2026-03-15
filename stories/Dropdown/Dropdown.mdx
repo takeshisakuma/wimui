@@ -1,11 +1,18 @@
-import { Meta, Primary, Controls, Story, Title, Stories, Canvas } from "@storybook/addon-docs/blocks";
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
 import * as DropdownStories from "./Dropdown.stories";
 import { T } from "../T";
 
 <Meta of={DropdownStories} />
 
 <Title />
-
 <p
   style={{
     margin: "0 0 16px 0",
@@ -19,230 +26,65 @@ import { T } from "../T";
 
 <p><T k="doc_dropdown_long_desc" /></p>
 
-## <T k="doc_usage_guidelines" />
+<Description />
 
-### <T k="doc_dropdown_pros" />
+## <T k="doc_design_intent_title" />
+<p><T k="doc_dropdown_design_intent" /></p>
 
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc_dropdown_pro_header" /></th>
-      <th><T k="doc_description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc_dropdown_pro_convenience" /></strong></td>
-      <td><T k="doc_dropdown_pro_convenience_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_dropdown_pro_error" /></strong></td>
-      <td><T k="doc_dropdown_pro_error_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_dropdown_pro_data" /></strong></td>
-      <td><T k="doc_dropdown_pro_data_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_dropdown_pro_space" /></strong></td>
-      <td><T k="doc_dropdown_pro_space_desc" /></td>
-    </tr>
-  </tbody>
-</table>
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_dropdown_choice_matrix_desc" /></p>
 
-### <T k="doc_dropdown_cons" />
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Dropdown** | <T k="doc_dropdown_choice_dropdown_when" /> |
+| **Selectbox** | <T k="doc_dropdown_choice_selectbox_when" /> |
+| **Popover** | <T k="doc_dropdown_choice_popover_when" /> |
 
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc_dropdown_con_header" /></th>
-      <th><T k="doc_description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc_dropdown_con_cost" /></strong></td>
-      <td><T k="doc_dropdown_con_cost_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_dropdown_con_visibility" /></strong></td>
-      <td><T k="doc_dropdown_con_visibility_desc" /></td>
-    </tr>
-  </tbody>
-</table>
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_dropdown_anatomy_trigger" /></li>
+  <li><T k="doc_dropdown_anatomy_menu" /></li>
+  <li><T k="doc_dropdown_anatomy_item" /></li>
+</ul>
 
----
+## <T k="doc_content_guidelines_title" />
+<p><T k="doc_dropdown_content_guidelines" /></p>
 
-## <T k="doc_best_practices" />
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_dropdown_motion_spec" /></p>
 
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc_best_practices" /></th>
-      <th><T k="doc_description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc_dropdown_bp_access" /></strong></td>
-      <td><T k="doc_dropdown_bp_access_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_dropdown_bp_feedback" /></strong></td>
-      <td><T k="doc_dropdown_bp_feedback_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_dropdown_bp_layout" /></strong></td>
-      <td><T k="doc_dropdown_bp_layout_desc" /></td>
-    </tr>
-  </tbody>
-</table>
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_dropdown_a11y_spec" /></p>
 
----
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_collab_title" />:</strong> <T k="doc_dropdown_scenario_collab" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_nav_title" />:</strong> <T k="doc_dropdown_scenario_nav" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_admin_title" />:</strong> <T k="doc_dropdown_scenario_admin" />
+  </li>
+</ul>
 
-## <T k="doc_dropdown_comparison" />
-
-### vs <T k="doc_dropdown_vs_radio" />
-
-<table>
-  <thead>
-    <tr>
-      <th>UI</th>
-      <th><T k="doc_dropdown_vs_features" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc_dropdown_vs_radio_label" /></strong></td>
-      <td><T k="doc_dropdown_vs_radio_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong>Dropdown</strong></td>
-      <td><T k="doc_dropdown_vs_radio_dd_desc" /></td>
-    </tr>
-  </tbody>
-</table>
-
-### vs <T k="doc_dropdown_vs_checkbox" />
-
-<table>
-  <thead>
-    <tr>
-      <th>UI</th>
-      <th><T k="doc_dropdown_vs_features" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc_dropdown_vs_checkbox_label" /></strong></td>
-      <td><T k="doc_dropdown_vs_checkbox_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong>Dropdown</strong></td>
-      <td><T k="doc_dropdown_vs_checkbox_dd_desc" /></td>
-    </tr>
-  </tbody>
-</table>
-
-### vs <T k="doc_dropdown_vs_combobox" />
-
-<table>
-  <thead>
-    <tr>
-      <th>UI</th>
-      <th><T k="doc_dropdown_vs_features" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc_dropdown_vs_combobox_label" /></strong></td>
-      <td><T k="doc_dropdown_vs_combobox_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong>Dropdown</strong></td>
-      <td><T k="doc_dropdown_vs_combobox_dd_desc" /></td>
-    </tr>
-  </tbody>
-</table>
-
-### vs <T k="doc_dropdown_vs_multiselect" />
-
-<table>
-  <thead>
-    <tr>
-      <th>UI</th>
-      <th><T k="doc_dropdown_vs_features" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc_dropdown_vs_multiselect_label" /></strong></td>
-      <td><T k="doc_dropdown_vs_multiselect_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong>Dropdown</strong></td>
-      <td><T k="doc_dropdown_vs_multiselect_dd_desc" /></td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## <T k="doc_dropdown_criteria" />
-
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc_dropdown_criteria_condition" /></th>
-      <th><T k="doc_dropdown_criteria_ui" /></th>
-      <th><T k="doc_dropdown_criteria_reason" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><T k="doc_dropdown_criteria_few" /></td>
-      <td>Radio / Checkbox</td>
-      <td><T k="doc_dropdown_criteria_few_reason" /></td>
-    </tr>
-    <tr>
-      <td><T k="doc_dropdown_criteria_many" /></td>
-      <td>Dropdown (Web)<br/>BottomSheet (Mobile)</td>
-      <td><T k="doc_dropdown_criteria_many_reason" /></td>
-    </tr>
-    <tr>
-      <td><T k="doc_dropdown_criteria_multiple" /></td>
-      <td>Checkbox / MultiSelect</td>
-      <td><T k="doc_dropdown_criteria_multiple_reason" /></td>
-    </tr>
-    <tr>
-      <td><T k="doc_dropdown_criteria_free" /></td>
-      <td>Text Input</td>
-      <td><T k="doc_dropdown_criteria_free_reason" /></td>
-    </tr>
-  </tbody>
-</table>
-
-## <T k="doc_usage" />
-
-```tsx
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "wimui";
-import { T } from "../T";
-
-<Dropdown>
-  <DropdownTrigger>
-    <Button label="Open Menu" />
-  </DropdownTrigger>
-  <DropdownMenu>
-    <DropdownItem onClick={handleProfile}>Profile</DropdownItem>
-    <DropdownItem onClick={handleSettings}>Settings</DropdownItem>
-  </DropdownMenu>
-</Dropdown>;
-```
+## <T k="doc_best_practices_title" />
+<ul>
+  <li>
+    <strong><T k="doc_dropdown_bp_access" />:</strong> <T k="doc_dropdown_bp_access_desc" />
+  </li>
+  <li>
+    <strong><T k="doc_dropdown_bp_feedback" />:</strong> <T k="doc_dropdown_bp_feedback_desc" />
+  </li>
+  <li>
+    <strong><T k="doc_dropdown_bp_layout" />:</strong> <T k="doc_dropdown_bp_layout_desc" />
+  </li>
+</ul>
 
 <Primary />
 
 ## <T k="doc_components" />
-
 <table>
   <thead>
     <tr>
@@ -270,20 +112,28 @@ import { T } from "../T";
   </tbody>
 </table>
 
-<Controls />
+<Controls of={DropdownStories.Default} />
 
-## <T k="doc_stories" />
+## <T k="doc_variations" />
 
-### <T k="doc_with_icons" />
-
+### <T k="doc_dropdown_with_icons" />
 <p><T k="doc_dropdown_with_icons_desc" /></p>
-
 <Canvas of={DropdownStories.WithIcons} />
 
+### <T k="doc_dropdown_checkbox_radio" />
+<p><T k="doc_dropdown_checkbox_radio_desc" /></p>
+<Canvas of={DropdownStories.CheckboxAndRadio} />
+
 ### <T k="doc_right_alignment" />
-
 <p><T k="doc_dropdown_right_alignment_desc" /></p>
-
 <Canvas of={DropdownStories.AlignmentRight} />
+
+### <T k="doc_dropdown_grouping" />
+<p><T k="doc_dropdown_grouping_desc" /></p>
+<Canvas of={DropdownStories.Grouping} />
+
+### <T k="doc_dropdown_submenus" />
+<p><T k="doc_dropdown_submenus_desc" /></p>
+<Canvas of={DropdownStories.Submenus} />
 
 <Stories />
