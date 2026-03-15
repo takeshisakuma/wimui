@@ -1,10 +1,21 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import { T } from "../T";
 import * as NumberInputStories from "./NumberInput.stories";
 
 <Meta of={NumberInputStories} />
 
-# NumberInput
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_numberinput_title" />
+</p>
 
 <p><T k="doc_numberinput_long_desc" /></p>
 
@@ -12,12 +23,48 @@ import * as NumberInputStories from "./NumberInput.stories";
   <T k="doc_see_more" /> [Numeric Input Standardization](?path=/docs/architecture-numeric-input-standardization--docs)
 </p>
 
+## <T k="doc_design_intent_title" />
+<p><T k="doc_numberinput_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_numberinput_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th><T k="doc_button_case" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>NumberInput</b></td>
+      <td><T k="doc_numberinput_choice_number_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Input</b></td>
+      <td><T k="doc_numberinput_choice_text_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Slider</b></td>
+      <td><T k="doc_numberinput_choice_slider_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_numberinput_anatomy_input" /></li>
+  <li><T k="doc_numberinput_anatomy_steppers" /></li>
+</ul>
+
 ## <T k="doc_example" />
 
 ### <T k="story_numberinput_numeric_mode" />
 <p><T k="story_numberinput_numeric_mode_desc" /></p>
 
 <Canvas of={NumberInputStories.NumericMode} />
+
+<Controls of={NumberInputStories.NumericMode} />
 
 ### <T k="story_numberinput_text_mode" />
 <p><T k="story_numberinput_text_mode_desc" /></p>
@@ -34,6 +81,21 @@ import * as NumberInputStories from "./NumberInput.stories";
 
 <Canvas of={NumberInputStories.DecimalAndNegative} />
 
-## <T k="doc_props" />
+## <T k="doc_guidelines_title" />
 
-<Controls />
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_numberinput_content_precision" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_numberinput_motion_spin" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_numberinput_a11y_stepper" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_numberinput_scenario_cart" /></li>
+  <li><T k="doc_numberinput_scenario_admin" /></li>
+</ul>

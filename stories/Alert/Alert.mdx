@@ -19,71 +19,75 @@ import { T } from "../T";
 
 <p><T k="doc_alert_long_desc" /></p>
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_guideline_when_to_use" />
-<ul>
-  <li><T k="doc_alert_guideline_1" /></li>
-  <li><T k="doc_alert_guideline_2" /></li>
-</ul>
-
-### <T k="doc_guideline_best_practices" />
-<ul>
-  <li><T k="doc_alert_guideline_3" /></li>
-</ul>
-
-## <T k="doc_basic_usage" />
-
-```tsx
-import { Alert } from "@/components/Alert/Alert";
-
-<Alert title="Title">Message</Alert>
-```
-
-<p><T k="doc_alert_basic_desc" /></p>
-
-<Canvas of={AlertStories.Info} />
-
 <Primary />
 
-## <T k="doc_props" />
-
 <Controls />
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_alert_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_alert_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Alert** | <T k="doc_alert_choice_alert_when" /> |
+| **Toast** | <T k="doc_alert_choice_toast_when" /> |
+| **Banner** | <T k="doc_alert_choice_banner_when" /> |
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_alert_anatomy_icon" /></li>
+  <li><T k="doc_alert_anatomy_title" /></li>
+  <li><T k="doc_alert_anatomy_message" /></li>
+  <li><T k="doc_alert_anatomy_close" /></li>
+</ul>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_alert_content_tone" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<ul>
+  <li><T k="doc_alert_motion_fade" /></li>
+</ul>
+
+## <T k="doc_a11y_spec_title" />
+<ul>
+  <li><T k="doc_alert_a11y_role" /></li>
+</ul>
+
+## <T k="doc_real_world_scenarios_title" />
+
+### <T k="doc_scenario_form_title" />
+<p><T k="doc_alert_scenario_form" /></p>
+
+### <T k="doc_scenario_warning_title" />
+<p><T k="doc_alert_scenario_delete" /></p>
 
 ## <T k="doc_variations" />
 
 <p><T k="doc_alert_variants_desc" /></p>
 
 ### <T k="doc_success" />
-
 <p><T k="doc_alert_success_desc" /></p>
-
 <Canvas of={AlertStories.Success} />
 
 ### <T k="doc_warning" />
-
 <p><T k="doc_alert_warning_desc" /></p>
-
 <Canvas of={AlertStories.Warning} />
 
 ### <T k="doc_error" />
-
 <p><T k="doc_alert_error_desc" /></p>
-
 <Canvas of={AlertStories.ErrorStatus} />
 
-## <T k="doc_customization" />
-
 ### <T k="doc_alert_no_title" />
-
 <p><T k="doc_alert_no_title_desc" /></p>
-
 <Canvas of={AlertStories.WithoutTitle} />
 
 ### <T k="doc_alert_close_button" />
-
 <p><T k="doc_alert_close_button_desc" /></p>
-
 <Canvas of={AlertStories.WithCloseButton} />
 
 <Stories />

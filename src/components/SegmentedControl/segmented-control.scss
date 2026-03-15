@@ -50,6 +50,11 @@
       padding-right: 0 !important;
       padding-left: 0 !important;
     }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--color-primary);
+    }
   }
 
   .wim-icon {

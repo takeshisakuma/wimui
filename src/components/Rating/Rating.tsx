@@ -1,4 +1,4 @@
-import React, { useState, useId } from "react";
+import React, { useState, useId, useRef } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
@@ -23,9 +23,13 @@ type RatingProps = {
    */
   allowHalf?: boolean;
   /**
-   * 無効化フラグ（読み取り専用）
+   * 無効化フラグ
    */
   disabled?: boolean;
+  /**
+   * 読み取り専用フラグ（表示専用。disabledと異なりグレーアウトしない）
+   */
+  readOnly?: boolean;
   /**
    * サイズ
    */
@@ -65,6 +69,7 @@ export const Rating = ({
   count = 5,
   allowHalf = false,
   disabled = false,
+  readOnly = false,
   size = "medium",
   onChange,
   className,
@@ -81,6 +86,7 @@ export const Rating = ({
   const generatedId = useId();
   const labelId = `wim-rating-label-${generatedId}`;
   const errorId = `wim-rating-error-${generatedId}`;
+  const starRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const currentValue = isControlled ? value! : internalValue;
   const displayValue = hoverValue !== null ? hoverValue : currentValue;
@@ -89,7 +95,7 @@ export const Rating = ({
     index: number,
     e: React.MouseEvent<HTMLDivElement>,
   ) => {
-    if (disabled) return;
+    if (disabled || readOnly) return;
 
     let val = index + 1;
     if (allowHalf) {
@@ -103,12 +109,12 @@ export const Rating = ({
   };
 
   const handleMouseLeave = () => {
-    if (disabled) return;
+    if (disabled || readOnly) return;
     setHoverValue(null);
   };
 
   const handleClick = (val: number) => {
-    if (disabled) return;
+    if (disabled || readOnly) return;
 
     if (!isControlled) {
       setInternalValue(val);
@@ -116,36 +122,63 @@ export const Rating = ({
     onChange?.(val);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (disabled) return;
+  // roving tabindex: チェック済みのstarがtabIndex=0、未選択時は先頭star
+  const getActiveIndex = () => {
+    if (currentValue === 0) return 0;
+    for (let i = 0; i < count; i++) {
+      const starValue = i + 1;
+      const isChecked =
+        currentValue === starValue ||
+        (allowHalf && currentValue === starValue - 0.5);
+      if (isChecked) return i;
+    }
+    return 0;
+  };
 
-    let nextValue = currentValue;
+  const activeIndex = getActiveIndex();
+
+  const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (disabled || readOnly) return;
+
     const step = allowHalf ? 0.5 : 1;
 
     if (e.key === "ArrowRight" || e.key === "ArrowUp") {
-      nextValue = Math.min(count, currentValue + step);
+      e.preventDefault();
+      const nextValue = Math.min(count, currentValue + step);
+      const nextIndex = Math.min(Math.ceil(nextValue) - 1, count - 1);
+      handleClick(nextValue);
+      starRefs.current[nextIndex]?.focus();
     } else if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
-      nextValue = Math.max(0, currentValue - step);
+      e.preventDefault();
+      const nextValue = Math.max(0, currentValue - step);
+      const nextIndex = nextValue === 0 ? 0 : Math.ceil(nextValue) - 1;
+      handleClick(nextValue);
+      starRefs.current[nextIndex]?.focus();
     } else if (e.key === "Home") {
-      nextValue = 0;
+      e.preventDefault();
+      handleClick(0);
+      starRefs.current[0]?.focus();
     } else if (e.key === "End") {
-      nextValue = count;
-    } else {
-      return;
+      e.preventDefault();
+      handleClick(count);
+      starRefs.current[count - 1]?.focus();
     }
-
-    e.preventDefault();
-    handleClick(nextValue);
   };
 
   const renderStar = (index: number) => {
     const starValue = index + 1;
-    let isFull = displayValue >= starValue;
-    let isHalf = !isFull && displayValue >= starValue - 0.5;
+    const isFull = displayValue >= starValue;
+    const isHalf = !isFull && displayValue >= starValue - 0.5;
+    const isChecked =
+      currentValue === starValue ||
+      (allowHalf && currentValue === starValue - 0.5);
 
     return (
       <div
         key={index}
+        ref={(el) => {
+          starRefs.current[index] = el;
+        }}
         className={classNames(
           "wim-rating__star",
           isFull && "wim-rating__star--full",
@@ -155,7 +188,7 @@ export const Rating = ({
         onClick={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
           const x = e.clientX - rect.left;
-          let val = index + 1;
+          let val = starValue;
           if (allowHalf && x <= rect.width / 2) {
             val -= 0.5;
           }
@@ -165,15 +198,14 @@ export const Rating = ({
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             handleClick(starValue);
+          } else {
+            handleKeyDown(index, e);
           }
         }}
-        role="radio"
-        tabIndex={-1}
-        aria-checked={
-          currentValue === starValue ||
-          (allowHalf && currentValue === starValue - 0.5)
-        }
-        aria-label={t("rating_stars", { count: index + 1 })}
+        role={readOnly ? "presentation" : "radio"}
+        tabIndex={disabled || readOnly ? -1 : index === activeIndex ? 0 : -1}
+        aria-checked={readOnly ? undefined : isChecked}
+        aria-label={readOnly ? undefined : t("rating_stars", { count: index + 1 })}
       >
         <div className="wim-rating__star-background">
           <Icon name="StarIcon" size={size} />
@@ -203,12 +235,17 @@ export const Rating = ({
           `wim-rating--${size}`,
           disabled && "wim-rating--disabled",
         )}
-        onMouseLeave={handleMouseLeave}
-        role="radiogroup"
-        aria-labelledby={label ? labelId : undefined}
-        aria-disabled={disabled}
-        tabIndex={disabled ? -1 : 0}
-        onKeyDown={handleKeyDown}
+        onMouseLeave={readOnly ? undefined : handleMouseLeave}
+        role={readOnly ? "img" : "radiogroup"}
+        aria-label={
+          readOnly
+            ? t("rating_readonly_label", { count: currentValue, max: count })
+            : undefined
+        }
+        aria-labelledby={!readOnly && label ? labelId : undefined}
+        aria-disabled={!readOnly && disabled ? true : undefined}
+        aria-required={!readOnly ? required : undefined}
+        aria-describedby={!readOnly && error ? errorId : undefined}
         {...props}
       >
         {stars}

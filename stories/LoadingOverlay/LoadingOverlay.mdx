@@ -1,146 +1,80 @@
 import { T } from "../T";
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories, Description } from "@storybook/addon-docs/blocks";
 import * as LoadingOverlayStories from "./LoadingOverlay.stories";
 
 <Meta of={LoadingOverlayStories} />
 
-# LoadingOverlay
+<Title />
 
-<p><T k="doc_loadingoverlay_desc" /></p>
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_loadingoverlay_title" />
+</p>
 
-## <T k="doc_loadingoverlay_when_to_use" />
+<Description />
 
-- <T k="doc_loadingoverlay_wtu_1" />
-- <T k="doc_loadingoverlay_wtu_2" />
-- <T k="doc_loadingoverlay_wtu_3" />
-- <T k="doc_loadingoverlay_wtu_4" />
+<p><T k="doc_loadingoverlay_long_desc" /></p>
 
-## <T k="doc_features" />
+<Primary />
 
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc_feature_label" /></th>
-      <th><T k="doc_description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc_loadingoverlay_feat_types" /></strong></td>
-      <td><T k="doc_loadingoverlay_feat_types_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_loadingoverlay_feat_backdrop" /></strong></td>
-      <td><T k="doc_loadingoverlay_feat_backdrop_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_loadingoverlay_feat_position" /></strong></td>
-      <td><T k="doc_loadingoverlay_feat_position_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_loadingoverlay_feat_message" /></strong></td>
-      <td><T k="doc_loadingoverlay_feat_message_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_loadingoverlay_feat_custom" /></strong></td>
-      <td><T k="doc_loadingoverlay_feat_custom_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_accessibility" /></strong></td>
-      <td><T k="doc_loadingoverlay_feat_aria_desc" /></td>
-    </tr>
-  </tbody>
-</table>
+<Controls />
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_loadingoverlay_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_loadingoverlay_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **LoadingOverlay** | <T k="doc_loadingoverlay_choice_loadingoverlay_when" /> |
+| **Skeleton** | <T k="doc_loadingoverlay_choice_skeleton_when" /> |
+| **Spinner** | <T k="doc_loadingoverlay_choice_spinner_when" /> |
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_loadingoverlay_anatomy_backdrop" /></li>
+  <li><T k="doc_loadingoverlay_anatomy_loader" /></li>
+  <li><T k="doc_loadingoverlay_anatomy_message" /></li>
+</ul>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_loadingoverlay_content_meaningful" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<ul>
+  <li><T k="doc_loadingoverlay_motion_fade" /></li>
+</ul>
+
+## <T k="doc_a11y_spec_title" />
+<ul>
+  <li><T k="doc_loadingoverlay_a11y_busy" /></li>
+</ul>
+
+## <T k="doc_real_world_scenarios_title" />
+
+### <T k="doc_scenario_form_title" />
+<p><T k="doc_loadingoverlay_scenario_form" /></p>
+
+### <T k="doc_scenario_init_title" />
+<p><T k="doc_loadingoverlay_scenario_init" /></p>
 
 ## <T k="doc_example" />
 
-### <T k="doc_default" />
-
-<p><T k="doc_loadingoverlay_ex_basic" /></p>
-
-<Canvas of={LoadingOverlayStories.Basic} />
-
 ### <T k="doc_loadingoverlay_with_message" />
-
 <p><T k="doc_loadingoverlay_ex_message" /></p>
-
 <Canvas of={LoadingOverlayStories.WithMessage} />
 
-### <T k="doc_loadingoverlay_loader_types" />
-
-<p><T k="doc_loadingoverlay_ex_types" /></p>
-
-<Canvas of={LoadingOverlayStories.DifferentLoaderTypes} />
-
-### <T k="doc_loadingoverlay_backdrop_variants" />
-
-<p><T k="doc_loadingoverlay_ex_backdrop" /></p>
-
-<Canvas of={LoadingOverlayStories.BackdropVariants} />
-
-### <T k="doc_loadingoverlay_blur_effects" />
-
-<p><T k="doc_loadingoverlay_ex_blur" /></p>
-
-<Canvas of={LoadingOverlayStories.BlurEffects} />
-
 ### <T k="doc_full_screen" />
-
 <p><T k="doc_loadingoverlay_ex_full" /></p>
-
 <Canvas of={LoadingOverlayStories.FullScreen} />
 
-### <T k="doc_interactive" />
-
-<p><T k="doc_loadingoverlay_ex_interactive" /></p>
-
-<Canvas of={LoadingOverlayStories.Interactive} />
-
-### <T k="doc_loadingoverlay_custom_loader" />
-
-<p><T k="doc_loadingoverlay_ex_custom" /></p>
-
-<Canvas of={LoadingOverlayStories.CustomLoader} />
-
-## <T k="doc_best_practices" />
-
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc_best_practice_label" /></th>
-      <th><T k="doc_description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc_loadingoverlay_bp_use_sparingly" /></strong></td>
-      <td><T k="doc_loadingoverlay_bp_use_sparingly_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_loadingoverlay_bp_provide_context" /></strong></td>
-      <td><T k="doc_loadingoverlay_bp_provide_context_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_loadingoverlay_bp_choose_appropriate_scope" /></strong></td>
-      <td><T k="doc_loadingoverlay_bp_choose_appropriate_scope_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_loadingoverlay_bp_consider_backdrop" /></strong></td>
-      <td><T k="doc_loadingoverlay_bp_consider_backdrop_desc" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc_loadingoverlay_bp_timeout_handling" /></strong></td>
-      <td><T k="doc_loadingoverlay_bp_timeout_handling_desc" /></td>
-    </tr>
-  </tbody>
-</table>
-
-## <T k="doc_accessibility" />
-
-- <T k="doc_loadingoverlay_a11y_1" />
-- <T k="doc_loadingoverlay_a11y_2" />
-- <T k="doc_loadingoverlay_a11y_3" />
-
-## <T k="doc_props" />
-
-<Controls of={LoadingOverlayStories.Basic} />
+<Stories />

@@ -105,6 +105,7 @@
   "story_rating_default": "Padrão",
   "story_rating_disabled": "Avaliação desativada",
   "story_rating_half": "Permitir meia estrela",
+  "story_rating_readonly": "Avaliação somente leitura",
   "story_rating_sizes": "Variações de tamanho",
   "story_searchinput_placeholder": "Botão",
   "story_segmented_another_long": "Outro Rótulo Longo",

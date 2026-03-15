@@ -30,7 +30,7 @@
 
     &:active:not(:disabled) {
       transform: scale(var(--scale-active)) translateZ(0);
-      transition: transform 0.1s var(--easing-base);
+      transition: transform var(--duration-instant) var(--easing-standard);
     }
 
     &__inner {
@@ -142,7 +142,7 @@
         box-shadow: 0 8px 18px rgb(0 0 0 / 0.12), var(--inner-highlight);
         transform: translateY(var(--lift-md)) translateZ(0);
         transition:
-          box-shadow var(--duration-fast) var(--easing-base),
+          box-shadow var(--duration-fast) var(--easing-standard),
           transform var(--duration-fast) var(--easing-out-back);
       }
 
@@ -150,7 +150,7 @@
         background-image: none;
         box-shadow: var(--shadow-xs), var(--shadow-inset);
         transform: translateY(var(--lift-none)) scale(var(--scale-active)) translateZ(0);
-        transition: transform 0.1s var(--easing-base);
+        transition: transform var(--duration-instant) var(--easing-standard);
       }
     }
 

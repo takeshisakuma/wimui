@@ -129,7 +129,7 @@
     align-items: center;
     justify-content: center;
     margin-left: auto;
-    transition: transform 0.2s ease-in-out;
+    transition: transform var(--duration-fast) var(--easing-standard);
 
     svg {
       width: 16px;
@@ -146,7 +146,7 @@
     margin: 0;
     overflow: hidden;
     list-style: none;
-    animation: slideDown 0.2s ease-in-out;
+    animation: slideDown var(--duration-base) var(--easing-entrance);
   }
 
   &--open {

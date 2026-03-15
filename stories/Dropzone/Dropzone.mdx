@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as DropzoneStories from "./Dropzone.stories";
 import { T } from "../T";
 
 <Meta of={DropzoneStories} />
 
-# Dropzone
+<Title />
 
 <p
   style={{
@@ -19,32 +19,48 @@ import { T } from "../T";
 
 <p><T k="doc_dropzone_long_desc" /></p>
 
-## <T k="doc_example" />
+## <T k="doc_design_intent_title" />
+<p><T k="doc_dropzone_design_intent" /></p>
 
-### <T k="doc_basic" />
-
-<p><T k="doc_dropzone_basic_desc" /></p>
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_dropzone_anatomy_area" /></li>
+  <li><T k="doc_dropzone_anatomy_text" /></li>
+</ul>
 
 <Canvas of={DropzoneStories.Default} />
 
+<Controls of={DropzoneStories.Default} />
+
+## <T k="doc_example" />
+
 ### <T k="doc_dropzone_multiple" />
-
 <p><T k="doc_dropzone_multiple_desc" /></p>
-
 <Canvas of={DropzoneStories.Multiple} />
 
 ### <T k="doc_dropzone_accept" />
-
 <p><T k="doc_dropzone_accept_desc" /></p>
-
 <Canvas of={DropzoneStories.AcceptImages} />
 
 ### <T k="doc_disabled_state" />
-
 <p><T k="doc_disabled_state_desc" /></p>
-
 <Canvas of={DropzoneStories.Disabled} />
 
-## Props
+## <T k="doc_guidelines_title" />
 
-<Controls />
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_dropzone_content_limit" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_dropzone_motion_active" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_dropzone_a11y_fallback" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_dropzone_scenario_avatar" /></li>
+  <li><T k="doc_dropzone_scenario_docs" /></li>
+</ul>

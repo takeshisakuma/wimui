@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as OtpInputStories from "./OtpInput.stories";
 import { T } from "../T";
 
 <Meta of={OtpInputStories} />
 
-# OtpInput
+<Title />
 
 <p
   style={{
@@ -19,26 +19,53 @@ import { T } from "../T";
 
 <p><T k="doc_otpinput_long_desc" /></p>
 
-## <T k="doc_basic_usage" />
+## <T k="doc_design_intent_title" />
+<p><T k="doc_otpinput_design_intent" /></p>
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_otpinput_anatomy_fields" /></li>
+</ul>
 
 <Canvas of={OtpInputStories.Default} />
 
+<Controls of={OtpInputStories.Default} />
+
 ## <T k="doc_otpinput_length_change" />
-
 <p><T k="doc_otpinput_length_change_desc" /></p>
-
 <Canvas of={OtpInputStories.Length6} />
 
 ## <T k="doc_states" />
 
-### <T k="doc_error" />
-
+### <T k="doc_status_error" />
 <Canvas of={OtpInputStories.ErrorStatus} />
 
-### <T k="doc_disabled" />
-
+### <T k="doc_status_disabled" />
 <Canvas of={OtpInputStories.Disabled} />
 
-## <T k="doc_props" />
+## <T k="doc_guidelines_title" />
 
-<Controls />
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_otpinput_content_auto" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_otpinput_motion_focus" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_otpinput_a11y_label" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_otpinput_scenario_auth" /></li>
+  <li><T k="doc_otpinput_scenario_pay" /></li>
+</ul>
+
+## <T k="doc_basic_usage" />
+
+```tsx
+import { OtpInput } from "@/components/OtpInput/OtpInput";
+
+<OtpInput onChange={(val) => console.log(val)} />;
+```

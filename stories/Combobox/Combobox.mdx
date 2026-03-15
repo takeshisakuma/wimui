@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as ComboboxStories from "./Combobox.stories";
 import { T } from "../T";
 
 <Meta of={ComboboxStories} />
 
-# Combobox
+<Title />
 
 <p
   style={{
@@ -19,10 +19,63 @@ import { T } from "../T";
 
 <p><T k="doc_combobox_long_desc" /></p>
 
-## <T k="doc_basic_usage" />
+## <T k="doc_design_intent_title" />
+<p><T k="doc_combobox_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_combobox_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th><T k="doc_button_case" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Combobox</b></td>
+      <td><T k="doc_combobox_choice_combobox_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Selectbox</b></td>
+      <td><T k="doc_combobox_choice_selectbox_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_combobox_anatomy_field" /></li>
+  <li><T k="doc_combobox_anatomy_list" /></li>
+</ul>
 
 <Canvas of={ComboboxStories.Default} />
 
-## Props
+<Controls of={ComboboxStories.Default} />
 
-<Controls />
+## <T k="doc_guidelines_title" />
+
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_combobox_content_no_results" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_combobox_motion_filter" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_combobox_a11y_autocomplete" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_combobox_scenario_tag" /></li>
+  <li><T k="doc_combobox_scenario_address" /></li>
+</ul>
+
+## <T k="doc_basic_usage" />
+
+```tsx
+import { Combobox } from "@/components/Combobox/Combobox";
+
+<Combobox options={options} onChange={(val) => console.log(val)} />;
+```

@@ -516,5 +516,14 @@
   "perf_resource_title": "🖼️ Critical Resource Loading (`priority`)",
   "perf_resource_desc": "In the `Image` component, we've introduced a `priority` prop. When set to `true`, it applies `fetchpriority=\"high\"` to the underlying `img` tag.",
   "perf_resource_usage_desc": "For the largest image above the fold (LCP - Largest Contentful Paint).",
-  "perf_resource_benefit_desc": "Tells the browser to prioritize this image over other non-critical resources."
+  "perf_resource_benefit_desc": "Tells the browser to prioritize this image over other non-critical resources.",
+  "doc_design_intent_title": "Design Intent",
+  "doc_best_practices_title": "Best Practices",
+  "doc_usage_guidelines_title": "Usage Guidelines",
+  "doc_choice_matrix_title": "Component Choice Matrix",
+  "doc_anatomy_title": "Component Anatomy",
+  "doc_content_guidelines_title": "Content Guidelines",
+  "doc_motion_spec_title": "Micro-interactions & Motion Spec",
+  "doc_accessibility_spec_title": "Accessibility Spec",
+  "doc_real_world_scenarios_title": "Real-world Scenarios"
 }

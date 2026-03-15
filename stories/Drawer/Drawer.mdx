@@ -19,171 +19,63 @@ import { T } from "../T";
 
 <Description />
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_guideline_best_practices" />
-<ul>
-  <li><T k="doc_drawer_best_practice_1" /></li>
-  <li><T k="doc_drawer_best_practice_2" /></li>
-  <li><T k="doc_drawer_best_practice_3" /></li>
-</ul>
-
 <p><T k="doc_drawer_long_desc" /></p>
 
-## <T k="doc_drawer_basic_principles" />
-
-<p><T k="doc_drawer_basic_principles_desc" /></p>
-
-### <T k="doc_drawer_main_types" />
-
-<table>
-  <thead>
-    <tr>
-      <th align="left" width="40%">
-        <p><T k="doc_drawer_type_header" /></p>
-      </th>
-      <th align="left"><T k="doc_drawer_feature_header" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>**<T k="doc_drawer_type_modal" />**</td>
-      <td><T k="doc_drawer_type_modal_desc" /></td>
-    </tr>
-    <tr>
-      <td>**<T k="doc_drawer_type_standard" />**</td>
-      <td><T k="doc_drawer_type_standard_desc" /></td>
-    </tr>
-  </tbody>
-</table>
-
-### <T k="doc_drawer_effective_scenes" />
-
-<table>
-  <thead>
-    <tr>
-      <th align="left" width="40%">
-        <p><T k="doc_drawer_purpose_header" /></p>
-      </th>
-      <th align="left"><T k="doc_drawer_explanation_header" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>**<T k="doc_drawer_scene_multi_level" />**</td>
-      <td><T k="doc_drawer_scene_multi_level_desc" /></td>
-    </tr>
-    <tr>
-      <td>**<T k="doc_drawer_scene_desktop" />**</td>
-      <td><T k="doc_drawer_scene_desktop_desc" /></td>
-    </tr>
-    <tr>
-      <td>**<T k="doc_drawer_scene_future" />**</td>
-      <td><T k="doc_drawer_scene_future_desc" /></td>
-    </tr>
-  </tbody>
-</table>
-
-### <T k="doc_drawer_design_notes" />
-
-<table>
-  <thead>
-    <tr>
-      <th align="left" width="40%">
-        <p><T k="doc_drawer_consideration_header" /></p>
-      </th>
-      <th align="left"><T k="doc_drawer_guideline_header" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>**<T k="doc_drawer_note_main_action" />**</td>
-      <td><T k="doc_drawer_note_main_action_desc" /></td>
-    </tr>
-    <tr>
-      <td>**<T k="doc_drawer_note_mobile" />**</td>
-      <td><T k="doc_drawer_note_mobile_desc" /></td>
-    </tr>
-  </tbody>
-</table>
-
-## <T k="doc_basic_usage" />
-
-<p><T k="doc_drawer_basic_usage_desc" /></p>
-
-<Canvas of={DrawerStories.Default} />
-
 <Primary />
+
+<Controls />
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_drawer_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_drawer_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Drawer** | <T k="doc_drawer_choice_drawer_when" /> |
+| **Dialog** | <T k="doc_drawer_choice_dialog_when" /> |
+| **BottomSheet** | <T k="doc_drawer_choice_bottomsheet_when" /> |
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_drawer_anatomy_panel" /></li>
+  <li><T k="doc_drawer_anatomy_header" /></li>
+  <li><T k="doc_drawer_anatomy_overlay" /></li>
+</ul>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_drawer_content_hierarchy" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<ul>
+  <li><T k="doc_drawer_motion_glide" /></li>
+</ul>
+
+## <T k="doc_a11y_spec_title" />
+<ul>
+  <li><T k="doc_drawer_a11y_escape" /></li>
+</ul>
+
+## <T k="doc_real_world_scenarios_title" />
+
+### <T k="doc_scenario_detail_title" />
+<p><T k="doc_drawer_scenario_detail" /></p>
+
+### <T k="doc_scenario_filter_title" />
+<p><T k="doc_drawer_scenario_filter" /></p>
 
 ## <T k="doc_drawer_position_variations" />
 
 ### Left
-
 <Canvas of={DrawerStories.Left} />
 
 ### Top
-
 <Canvas of={DrawerStories.Top} />
 
 ### Bottom
-
 <Canvas of={DrawerStories.Bottom} />
-
-## <T k="doc_dialog_controlled" />
-
-<p><T k="doc_drawer_controlled_desc" /></p>
-
-<Canvas of={DrawerStories.Controlled} />
-
-## API
-
-### Drawer Components
-
-<table>
-  <thead>
-    <tr>
-      <th align="left"><T k="doc_component" /></th>
-      <th align="left"><T k="doc_description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>**Drawer**</td>
-      <td><T k="doc_drawer_api_drawer" /></td>
-    </tr>
-    <tr>
-      <td>**DrawerTrigger**</td>
-      <td><T k="doc_drawer_api_trigger" /></td>
-    </tr>
-    <tr>
-      <td>**DrawerContent**</td>
-      <td><T k="doc_drawer_api_content" /></td>
-    </tr>
-    <tr>
-      <td>**DrawerHeader**</td>
-      <td><T k="doc_drawer_api_header" /></td>
-    </tr>
-    <tr>
-      <td>**DrawerFooter**</td>
-      <td><T k="doc_drawer_api_footer" /></td>
-    </tr>
-    <tr>
-      <td>**DrawerTitle**</td>
-      <td><T k="doc_drawer_api_title" /></td>
-    </tr>
-    <tr>
-      <td>**DrawerDescription**</td>
-      <td><T k="doc_drawer_api_description" /></td>
-    </tr>
-    <tr>
-      <td>**DrawerClose**</td>
-      <td><T k="doc_drawer_api_close" /></td>
-    </tr>
-  </tbody>
-</table>
-
-## Props
-
-<Controls />
 
 <Stories />

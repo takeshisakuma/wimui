@@ -17,7 +17,12 @@
     user-select: none;
     outline: none; // Handle focus via other means or active state
     border-radius: var(--radius-md); // More rounded for the 'floating island' look
-    transition: all 0.2s ease-in-out;
+    transition: all var(--duration-fast) var(--easing-standard);
+
+    &:active:not(&--disabled) {
+        transform: scale(var(--scale-active));
+        transition: transform var(--duration-instant) var(--easing-standard);
+    }
 
     &:hover:not(&--disabled, &--danger) {
         background-color: var(--wim-color-bg-hover);

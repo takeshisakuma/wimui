@@ -13,6 +13,7 @@ import { T } from "../T";
 <Meta of={RadioGroupStories} />
 
 <Title />
+
 <p
   style={{
     margin: "0 0 16px 0",
@@ -26,28 +27,69 @@ import { T } from "../T";
 
 <p><T k="doc_radiogroup_long_desc" /></p>
 
-<p><T k="selection_radio_checkbox_guide_link" /></p>
+## <T k="doc_design_intent_title" />
+<p><T k="doc_radiogroup_design_intent" /></p>
 
-<Primary />
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_radiogroup_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th><T k="doc_button_case" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>RadioGroup</b></td>
+      <td><T k="doc_radiogroup_choice_radio_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Selectbox</b></td>
+      <td><T k="doc_radiogroup_choice_selectbox_when" /></td>
+    </tr>
+    <tr>
+      <td><b>SegmentedControl</b></td>
+      <td><T k="doc_radiogroup_choice_segmented_when" /></td>
+    </tr>
+  </tbody>
+</table>
 
-## Props
-
-<Controls />
-
-## Examples
-
-### Default
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_radiogroup_anatomy_wrapper" /></li>
+</ul>
 
 <Canvas of={RadioGroupStories.Default} />
 
-### Horizontal
+<Controls of={RadioGroupStories.Default} />
 
+## <T k="doc_variations" />
+
+### <T k="doc_layout_horizontal" />
 <Canvas of={RadioGroupStories.Horizontal} />
 
-### With Disabled Option
-
+### <T k="doc_disabled" />
 <Canvas of={RadioGroupStories.WithDisabledOption} />
 
-### Controlled
+## <T k="doc_guidelines_title" />
 
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_radiogroup_content_default" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_radiogroup_motion_focus" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_radiogroup_a11y_group" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_radiogroup_scenario_gender" /></li>
+  <li><T k="doc_radiogroup_scenario_plan" /></li>
+</ul>
+
+## <T k="doc_controlled_components" />
 <Canvas of={RadioGroupStories.Controlled} />

@@ -19,62 +19,71 @@ import { T } from "../T";
 
 <p><T k="doc_badge_long_desc" /></p>
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_guideline_when_to_use" />
-<ul>
-  <li><T k="doc_badge_guideline_1" /></li>
-  <li><T k="doc_badge_guideline_2" /></li>
-</ul>
-
-### <T k="doc_guideline_best_practices" />
-<ul>
-  <li><T k="doc_badge_best_practice_1" /></li>
-  <li><T k="doc_badge_best_practice_2" /></li>
-</ul>
-
-## <T k="doc_basic_usage" />
-
-```tsx
-import { Badge } from "@/components/Badge/Badge";
-
-<Badge>Default</Badge>
-```
-
-<Canvas of={BadgeStories.Primary} />
-
 <Primary />
 
-## <T k="doc_props" />
-
 <Controls />
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_badge_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_badge_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Badge** | <T k="doc_badge_choice_badge_when" /> |
+| **Alert** | <T k="doc_badge_choice_alert_when" /> |
+| **Progress** | <T k="doc_badge_choice_progress_when" /> |
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_badge_anatomy_container" /></li>
+  <li><T k="doc_badge_anatomy_label" /></li>
+  <li><T k="doc_badge_anatomy_icon" /></li>
+</ul>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_badge_content_no_wrap" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<ul>
+  <li><T k="doc_badge_motion_pop" /></li>
+</ul>
+
+## <T k="doc_a11y_spec_title" />
+<ul>
+  <li><T k="doc_badge_a11y_count" /></li>
+</ul>
+
+## <T k="doc_real_world_scenarios_title" />
+
+### <T k="doc_scenario_notif_title" />
+<p><T k="doc_badge_scenario_notif" /></p>
+
+### <T k="doc_scenario_status_title" />
+<p><T k="doc_badge_scenario_status" /></p>
 
 ## <T k="doc_variations" />
 
 <p><T k="doc_badge_variants_desc" /></p>
 
 ### <T k="doc_destructive" />
-
 <Canvas of={BadgeStories.Destructive} />
 
 ### <T k="doc_outline" />
-
 <Canvas of={BadgeStories.Outline} />
 
 ### <T k="doc_secondary" />
-
 <Canvas of={BadgeStories.Secondary} />
 
 ### <T k="doc_badge_with_icon" />
-
 <p><T k="doc_badge_with_icon_desc" /></p>
-
 <Canvas of={BadgeStories.WithIcon} />
 
 ### <T k="doc_badge_icon_only" />
-
 <p><T k="doc_badge_icon_only_desc" /></p>
-
 <Canvas of={BadgeStories.IconOnly} />
 
 <Stories />

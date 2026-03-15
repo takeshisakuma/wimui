@@ -24,11 +24,13 @@ const useDataSource = () => {
   }));
 };
 
+const DefaultTransfer = (args: React.ComponentProps<typeof Transfer>) => {
+  const dataSource = useDataSource();
+  return <Transfer {...args} dataSource={dataSource} targetKeys={["1", "3", "5"]} />;
+};
+
 export const Default: Story = {
-  render: (args) => {
-    const dataSource = useDataSource();
-    return <Transfer {...args} dataSource={dataSource} targetKeys={["1", "3", "5"]} />;
-  },
+  render: (args) => <DefaultTransfer {...args} />,
 };
 
 const TransferWrapper = () => {
@@ -47,31 +49,35 @@ export const Controlled: Story = {
   render: () => <TransferWrapper />,
 };
 
+const CustomTitlesTransfer = (args: React.ComponentProps<typeof Transfer>) => {
+  const { t } = useTranslation("docs");
+  const dataSource = useDataSource();
+  return (
+    <Transfer
+      {...args}
+      dataSource={dataSource}
+      titles={[t("story_transfer_available"), t("story_transfer_selected")]}
+      targetKeys={["10", "11"]}
+    />
+  );
+};
+
 export const CustomTitles: Story = {
-  render: (args) => {
-    const { t } = useTranslation("docs");
-    const dataSource = useDataSource();
-    return (
-      <Transfer
-        {...args}
-        dataSource={dataSource}
-        titles={[t("story_transfer_available"), t("story_transfer_selected")]}
-        targetKeys={["10", "11"]}
-      />
-    );
-  },
+  render: (args) => <CustomTitlesTransfer {...args} />,
+};
+
+const DisabledTransfer = (args: React.ComponentProps<typeof Transfer>) => {
+  const dataSource = useDataSource();
+  return (
+    <Transfer
+      {...args}
+      dataSource={dataSource}
+      disabled={true}
+      targetKeys={["1", "2"]}
+    />
+  );
 };
 
 export const Disabled: Story = {
-  render: (args) => {
-    const dataSource = useDataSource();
-    return (
-      <Transfer
-        {...args}
-        dataSource={dataSource}
-        disabled={true}
-        targetKeys={["1", "2"]}
-      />
-    );
-  },
+  render: (args) => <DisabledTransfer {...args} />,
 };

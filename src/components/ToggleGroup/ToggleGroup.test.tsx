@@ -22,7 +22,7 @@ describe("ToggleGroup", () => {
 
     fireEvent.click(screen.getByText("Option 1"));
     expect(handleChange).toHaveBeenCalledWith("opt1");
-    // Slider position/vibility might update asynchronously via rAF
+    // Slider position/visibility might update asynchronously via rAF
     await waitFor(() => {
       expect(screen.getByText("Option 1").closest(".wim-toggle-group__item")).toHaveClass(
         "wim-toggle-group__item--active",
@@ -67,5 +67,232 @@ describe("ToggleGroup", () => {
     ];
     render(<ToggleGroup options={optionsWithDisabled} />);
     expect(screen.getByText("Disabled").parentElement).toBeDisabled();
+  });
+
+  describe("ARIA roles", () => {
+    it("uses role=radiogroup for single mode", () => {
+      render(<ToggleGroup options={options} selectionMode="single" />);
+      expect(screen.getByRole("radiogroup")).toBeInTheDocument();
+    });
+
+    it("uses role=toolbar for multiple mode", () => {
+      render(<ToggleGroup options={options} selectionMode="multiple" />);
+      expect(screen.getByRole("toolbar")).toBeInTheDocument();
+    });
+
+    it("items have role=radio in single mode", () => {
+      render(<ToggleGroup options={options} selectionMode="single" />);
+      const radios = screen.getAllByRole("radio");
+      expect(radios).toHaveLength(3);
+    });
+
+    it("items have aria-checked in single mode", () => {
+      render(<ToggleGroup options={options} value="opt2" selectionMode="single" />);
+      const radios = screen.getAllByRole("radio");
+      expect(radios[1]).toHaveAttribute("aria-checked", "true");
+      expect(radios[0]).toHaveAttribute("aria-checked", "false");
+    });
+
+    it("items have aria-pressed in multiple mode", () => {
+      render(
+        <ToggleGroup
+          options={options}
+          value={["opt1", "opt3"]}
+          selectionMode="multiple"
+        />,
+      );
+      const buttons = screen.getAllByRole("button");
+      expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+      expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
+      expect(buttons[2]).toHaveAttribute("aria-pressed", "true");
+    });
+
+    it("sets aria-orientation=horizontal on container", () => {
+      render(<ToggleGroup options={options} />);
+      expect(screen.getByRole("radiogroup")).toHaveAttribute(
+        "aria-orientation",
+        "horizontal",
+      );
+    });
+
+    it("forwards aria-label to container", () => {
+      render(<ToggleGroup options={options} aria-label="Text alignment" />);
+      expect(screen.getByRole("radiogroup")).toHaveAttribute(
+        "aria-label",
+        "Text alignment",
+      );
+    });
+  });
+
+  describe("roving tabindex", () => {
+    it("gives tabIndex=0 to the selected item in single mode", () => {
+      render(<ToggleGroup options={options} value="opt2" selectionMode="single" />);
+      const radios = screen.getAllByRole("radio");
+      expect(radios[1]).toHaveAttribute("tabindex", "0");
+      expect(radios[0]).toHaveAttribute("tabindex", "-1");
+      expect(radios[2]).toHaveAttribute("tabindex", "-1");
+    });
+
+    it("gives tabIndex=0 to first non-disabled item when nothing is selected", () => {
+      render(<ToggleGroup options={options} selectionMode="single" />);
+      const radios = screen.getAllByRole("radio");
+      expect(radios[0]).toHaveAttribute("tabindex", "0");
+    });
+
+    it("gives tabIndex=0 to first non-disabled item in multiple mode", () => {
+      render(<ToggleGroup options={options} selectionMode="multiple" />);
+      const buttons = screen.getAllByRole("button");
+      expect(buttons[0]).toHaveAttribute("tabindex", "0");
+    });
+
+    it("skips disabled items for initial tabIndex", () => {
+      const optionsWithDisabled = [
+        { label: "Option 1", value: "opt1", disabled: true },
+        { label: "Option 2", value: "opt2" },
+        { label: "Option 3", value: "opt3" },
+      ];
+      render(<ToggleGroup options={optionsWithDisabled} selectionMode="single" />);
+      const radios = screen.getAllByRole("radio");
+      expect(radios[0]).toHaveAttribute("tabindex", "-1");
+      expect(radios[1]).toHaveAttribute("tabindex", "0");
+    });
+  });
+
+  describe("keyboard navigation – single mode", () => {
+    it("ArrowRight moves focus and selects next item", () => {
+      const onChange = vi.fn();
+      render(
+        <ToggleGroup
+          options={options}
+          value="opt1"
+          selectionMode="single"
+          onChange={onChange}
+        />,
+      );
+      const radios = screen.getAllByRole("radio");
+      fireEvent.keyDown(radios[0], { key: "ArrowRight" });
+      expect(onChange).toHaveBeenCalledWith("opt2");
+      expect(document.activeElement).toBe(radios[1]);
+    });
+
+    it("ArrowLeft moves focus and selects previous item", () => {
+      const onChange = vi.fn();
+      render(
+        <ToggleGroup
+          options={options}
+          value="opt3"
+          selectionMode="single"
+          onChange={onChange}
+        />,
+      );
+      const radios = screen.getAllByRole("radio");
+      fireEvent.keyDown(radios[2], { key: "ArrowLeft" });
+      expect(onChange).toHaveBeenCalledWith("opt2");
+      expect(document.activeElement).toBe(radios[1]);
+    });
+
+    it("ArrowRight wraps from last to first", () => {
+      const onChange = vi.fn();
+      render(
+        <ToggleGroup
+          options={options}
+          value="opt3"
+          selectionMode="single"
+          onChange={onChange}
+        />,
+      );
+      const radios = screen.getAllByRole("radio");
+      fireEvent.keyDown(radios[2], { key: "ArrowRight" });
+      expect(onChange).toHaveBeenCalledWith("opt1");
+      expect(document.activeElement).toBe(radios[0]);
+    });
+
+    it("Home moves focus and selects first item", () => {
+      const onChange = vi.fn();
+      render(
+        <ToggleGroup
+          options={options}
+          value="opt3"
+          selectionMode="single"
+          onChange={onChange}
+        />,
+      );
+      const radios = screen.getAllByRole("radio");
+      fireEvent.keyDown(radios[2], { key: "Home" });
+      expect(onChange).toHaveBeenCalledWith("opt1");
+      expect(document.activeElement).toBe(radios[0]);
+    });
+
+    it("End moves focus and selects last item", () => {
+      const onChange = vi.fn();
+      render(
+        <ToggleGroup
+          options={options}
+          value="opt1"
+          selectionMode="single"
+          onChange={onChange}
+        />,
+      );
+      const radios = screen.getAllByRole("radio");
+      fireEvent.keyDown(radios[0], { key: "End" });
+      expect(onChange).toHaveBeenCalledWith("opt3");
+      expect(document.activeElement).toBe(radios[2]);
+    });
+
+    it("skips disabled items when navigating", () => {
+      const onChange = vi.fn();
+      const optionsWithDisabled = [
+        { label: "Option 1", value: "opt1" },
+        { label: "Option 2", value: "opt2", disabled: true },
+        { label: "Option 3", value: "opt3" },
+      ];
+      render(
+        <ToggleGroup
+          options={optionsWithDisabled}
+          value="opt1"
+          selectionMode="single"
+          onChange={onChange}
+        />,
+      );
+      const radios = screen.getAllByRole("radio");
+      fireEvent.keyDown(radios[0], { key: "ArrowRight" });
+      expect(onChange).toHaveBeenCalledWith("opt3");
+      expect(document.activeElement).toBe(radios[2]);
+    });
+  });
+
+  describe("keyboard navigation – multiple mode", () => {
+    it("ArrowRight moves focus without changing selection", () => {
+      const onChange = vi.fn();
+      render(
+        <ToggleGroup
+          options={options}
+          value={["opt1"]}
+          selectionMode="multiple"
+          onChange={onChange}
+        />,
+      );
+      const buttons = screen.getAllByRole("button");
+      (buttons[0] as HTMLElement).focus();
+      fireEvent.keyDown(buttons[0], { key: "ArrowRight" });
+      expect(onChange).not.toHaveBeenCalled();
+      expect(document.activeElement).toBe(buttons[1]);
+    });
+
+    it("ArrowLeft moves focus without changing selection", () => {
+      const onChange = vi.fn();
+      render(
+        <ToggleGroup
+          options={options}
+          value={["opt3"]}
+          selectionMode="multiple"
+          onChange={onChange}
+        />,
+      );
+      const buttons = screen.getAllByRole("button");
+      fireEvent.keyDown(buttons[2], { key: "ArrowLeft" });
+      expect(onChange).not.toHaveBeenCalled();
+      expect(document.activeElement).toBe(buttons[1]);
+    });
   });
 });

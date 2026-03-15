@@ -24,12 +24,22 @@ $lift-none: 0;
 $shadow-focus: 0 0 0 2px var(--wim-color-bg-primary), 0 0 0 4px var(--color-focus-outline);
 
 /* --- アニメーション (Motion) --- */
-$duration-fast: 0.2s;
-$duration-base: 0.3s;
-$easing-base: cubic-bezier(0.4, 0, 0.2, 1);
+$duration-instant: 0.083s; /* ~83ms (1/12s) */
+$duration-fast: 0.167s;    /* ~167ms (2/12s) */
+$duration-base: 0.25s;     /* 250ms (3/12s) */
+$duration-slow: 0.333s;    /* ~333ms (4/12s) */
+
+/* Fluent Design 2 Easings */
+$easing-standard: cubic-bezier(0.55, 0, 0.1, 1);   /* Fast-Out, Fast-In */
+$easing-entrance: cubic-bezier(0, 0, 0, 1);       /* Fast-Out, Slow-In */
+$easing-exit: cubic-bezier(1, 0, 1, 1);           /* Slow-Out, Fast-In */
+$easing-base: $easing-standard;
 $easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 $easing-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-$transition-base: all $duration-fast $easing-base;
+
+$transition-base: all $duration-base $easing-standard;
+$transition-instant: all $duration-instant $easing-standard;
+$transition-fast: all $duration-fast $easing-standard;
 
 /* --- インタラクション (Interaction) --- */
 $scale-active: 0.98;
@@ -58,12 +68,19 @@ $scale-active: 0.98;
   --lift-sm: #{$lift-sm};
   --lift-md: #{$lift-md};
   --lift-none: #{$lift-none};
+  --duration-instant: #{$duration-instant};
   --duration-fast: #{$duration-fast};
   --duration-base: #{$duration-base};
+  --duration-slow: #{$duration-slow};
+  --easing-standard: #{$easing-standard};
+  --easing-entrance: #{$easing-entrance};
+  --easing-exit: #{$easing-exit};
   --easing-base: #{$easing-base};
   --easing-spring: #{$easing-spring};
   --easing-out-back: #{$easing-out-back};
   --transition-base: #{$transition-base};
+  --transition-instant: #{$transition-instant};
+  --transition-fast: #{$transition-fast};
   --scale-active: #{$scale-active};
 
   /* --- 質感・グラデーション (Texture & Gradients) --- */

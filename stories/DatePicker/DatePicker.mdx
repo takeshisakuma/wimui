@@ -19,81 +19,66 @@ import { T } from "../T";
 
 <p><T k="doc_datepicker_long_desc" /></p>
 
-## <T k="doc_guidelines_title" />
+## <T k="doc_design_intent_title" />
+<p><T k="doc_datepicker_design_intent" /></p>
 
-### <T k="doc_guideline_when_to_use" />
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_datepicker_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th><T k="doc_button_case" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>DatePicker</b></td>
+      <td><T k="doc_datepicker_choice_picker_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Input</b></td>
+      <td><T k="doc_datepicker_choice_input_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
 <ul>
-  <li><T k="doc_datepicker_guideline_1" /></li>
-  <li><T k="doc_datepicker_guideline_2" /></li>
+  <li><T k="doc_datepicker_anatomy_input" /></li>
+  <li><T k="doc_datepicker_anatomy_popup" /></li>
 </ul>
-
-## <T k="doc_basic_usage" />
-
-```tsx
-import { DatePicker } from "@/components/DatePicker/DatePicker";
-
-<DatePicker onChange={(date) => console.log(date)} placeholder="Select date" />;
-```
-
-## <T k="doc_variations" />
-
-### <T k="doc_default" />
 
 <Canvas of={DatePickerStories.Default} />
 
-### <T k="doc_outline" />
+<Controls of={DatePickerStories.Default} />
 
+## <T k="doc_variations" />
+
+### <T k="doc_outline" />
 <Canvas of={DatePickerStories.Outline} />
 
 ### <T k="doc_ghost" />
-
 <Canvas of={DatePickerStories.Ghost} />
 
 ### <T k="doc_error_state" />
-
 <Canvas of={DatePickerStories.ErrorStatus} />
 
 ### <T k="doc_disabled_state" />
-
 <Canvas of={DatePickerStories.Disabled} />
 
 ### <T k="doc_full_width" />
-
 <Canvas of={DatePickerStories.FullWidth} />
 
-## <T k="doc_datepicker_main_features" />
+## <T k="doc_guidelines_title" />
 
-### <T k="doc_datepicker_custom_popup" />
-
-<p><T k="doc_datepicker_custom_popup_desc" /></p>
-
-### <T k="doc_datepicker_advantages" />
-
+### <T k="doc_content_guidelines_title" />
 <ul>
-  <li><T k="doc_datepicker_adv_1" /></li>
-  <li><T k="doc_datepicker_adv_2" /></li>
-  <li><T k="doc_datepicker_adv_3" /></li>
-  <li><T k="doc_datepicker_adv_4" /></li>
+  <li><T k="doc_datepicker_content_format" /></li>
 </ul>
-## <T k="doc_datepicker_flow_title" />
-
-- <T k="doc_datepicker_flow_1" />
-- <T k="doc_datepicker_flow_2" />
-- <T k="doc_datepicker_flow_3" />
-- <T k="doc_datepicker_flow_4" />
-
-### <T k="doc_datepicker_clear_btn" />
-
-<p><T k="doc_datepicker_clear_btn_desc" /></p>
-
-```jsx
-<DatePicker clearable={true} onChange={(date) => console.log(date)} />
-```
 
 ### <T k="doc_datepicker_custom_format" />
-
 <p><T k="doc_datepicker_custom_format_desc" /></p>
-
 <table>
   <thead>
     <tr><th>Format</th><th>Example</th><th><T k="table_header_type" /></th></tr>
@@ -105,28 +90,13 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
   </tbody>
 </table>
 
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_datepicker_motion_fade" /></p>
 
-
-### <T k="doc_datepicker_control_types" />
-
-<p><T k="doc_datepicker_control_types_desc" /></p>
-
-<p><T k="doc_datepicker_uncontrolled" /></p>
-
-```jsx
-<DatePicker defaultValue={new Date()} onChange={(date) => console.log(date)} />
-```
-
-<p><T k="doc_datepicker_controlled" /></p>
-
-```jsx
-const [date, setDate] = useState(new Date());
-
-<DatePicker value={date} onChange={setDate} />;
-```
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_datepicker_a11y_keyboard" /></p>
 
 ### <T k="doc_datepicker_keyboard" />
-
 <table>
   <thead>
     <tr><th><T k="table_header_operation" /></th><th><T k="table_header_key" /></th></tr>
@@ -141,30 +111,24 @@ const [date, setDate] = useState(new Date());
   </tbody>
 </table>
 
-### <T k="doc_datepicker_a11y" />
-
+## <T k="doc_real_world_scenarios_title" />
 <ul>
-  <li><T k="doc_datepicker_a11y_1" /></li>
-  <li><T k="doc_datepicker_a11y_2" /></li>
-  <li><T k="doc_datepicker_a11y_3" /></li>
+  <li><T k="doc_datepicker_scenario_reserve" /></li>
+  <li><T k="doc_datepicker_scenario_deadline" /></li>
 </ul>
 
-## <T k="doc_datepicker_integration" />
+## <T k="doc_basic_usage" />
 
-<p><T k="doc_datepicker_integration_desc" /></p>
+```tsx
+import { DatePicker } from "@/components/DatePicker/DatePicker";
 
-## <T k="doc_props" />
-
-<Controls />
+<DatePicker onChange={(date) => console.log(date)} placeholder="Select date" />;
+```
 
 ## <T k="doc_datepicker_ts" />
-
 <p><T k="doc_datepicker_ts_desc" /></p>
 
 ```tsx
-import { DatePicker } from "./DatePicker";
-import { T } from "../T";
-
 <DatePicker
   value={new Date()}
   onChange={(date: Date | null) => {

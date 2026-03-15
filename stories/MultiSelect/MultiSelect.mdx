@@ -1,10 +1,10 @@
-import { Canvas, Meta, Story, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import { T } from "../T";
 import * as MultiSelectStories from "./MultiSelect.stories";
 
 <Meta of={MultiSelectStories} />
 
-# MultiSelect
+<Title />
 
 <p
   style={{
@@ -19,9 +19,72 @@ import * as MultiSelectStories from "./MultiSelect.stories";
 
 <p><T k="doc_multiselect_long_desc" /></p>
 
+## <T k="doc_design_intent_title" />
+<p><T k="doc_multiselect_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_multiselect_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th><T k="doc_button_case" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>MultiSelect</b></td>
+      <td><T k="doc_multiselect_choice_multi_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Checkbox Group</b></td>
+      <td><T k="doc_multiselect_choice_checkbox_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_multiselect_anatomy_tags" /></li>
+</ul>
+
+<Canvas of={MultiSelectStories.Default} />
+
+<Controls of={MultiSelectStories.Default} />
+
+## <T k="doc_example" />
+
+### <T k="doc_with_label" />
+<Canvas of={MultiSelectStories.WithLabel} />
+
+### <T k="doc_multiselect_ex_multi" />
+<Canvas of={MultiSelectStories.MultipleSelected} />
+
+### <T k="doc_disabled" />
+<Canvas of={MultiSelectStories.Disabled} />
+
+## <T k="doc_guidelines_title" />
+
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_multiselect_content_search" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_multiselect_motion_tag" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_multiselect_a11y_announcement" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_multiselect_scenario_skill" /></li>
+  <li><T k="doc_multiselect_scenario_admin" /></li>
+</ul>
+
 ## <T k="doc_usage" />
 
-```jsx
+```tsx
 import { MultiSelect } from "@/components/MultiSelect/MultiSelect";
 
 const options = [
@@ -35,25 +98,3 @@ const options = [
   onChange={(vals) => console.log(vals)} // returns string[]
 />;
 ```
-
-## <T k="doc_example" />
-
-### <T k="doc_default" />
-
-<Canvas of={MultiSelectStories.Default} />
-
-### <T k="doc_with_label" />
-
-<Canvas of={MultiSelectStories.WithLabel} />
-
-### <T k="doc_multiselect_ex_multi" />
-
-<Canvas of={MultiSelectStories.MultipleSelected} />
-
-### <T k="doc_disabled" />
-
-<Canvas of={MultiSelectStories.Disabled} />
-
-## <T k="doc_props" />
-
-<Controls />

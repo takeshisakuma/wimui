@@ -23,13 +23,18 @@
   cursor: pointer;
   background-color: var(--wim-color-border-secondary);
   border-radius: 9999px;
-  transition: background-color 0.2s ease-in-out;
-  will-change: background-color;
+  transition: background-color var(--duration-fast) var(--easing-standard);
+  will-change: background-color, transform;
+
+  &:active:not(:disabled) {
+    transform: scale(var(--scale-active));
+    transition: transform var(--duration-instant) var(--easing-standard);
+  }
 
   &::before {
     flex-grow: var(--off);
     content: "";
-    transition: flex-grow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: flex-grow var(--duration-base) var(--easing-entrance);
     will-change: flex-grow;
   }
 

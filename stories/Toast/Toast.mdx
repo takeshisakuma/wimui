@@ -19,22 +19,54 @@ import { T } from "../T";
 
 <Description />
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_guideline_best_practices" />
-<ul>
-  <li><T k="doc_toast_best_practice_1" /></li>
-  <li><T k="doc_toast_best_practice_2" /></li>
-  <li><T k="doc_toast_best_practice_3" /></li>
-</ul>
-
 <p><T k="doc_toast_long_desc" /></p>
 
-## <T k="doc_basic_usage" />
+<Primary />
 
-<p><T k="doc_toast_basic_usage_desc" /></p>
+<Controls />
 
-<Canvas of={ToastStories.Default} />
+## <T k="doc_design_intent_title" />
+<p><T k="doc_toast_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_toast_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Toast** | <T k="doc_toast_choice_toast_when" /> |
+| **Snackbar** | <T k="doc_toast_choice_snackbar_when" /> |
+| **Alert** | <T k="doc_toast_choice_alert_when" /> |
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_toast_anatomy_icon" /></li>
+  <li><T k="doc_toast_anatomy_title" /></li>
+  <li><T k="doc_toast_anatomy_message" /></li>
+  <li><T k="doc_toast_anatomy_close" /></li>
+</ul>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_toast_content_concise" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<ul>
+  <li><T k="doc_toast_motion_slide" /></li>
+</ul>
+
+## <T k="doc_a11y_spec_title" />
+<ul>
+  <li><T k="doc_toast_a11y_status" /></li>
+</ul>
+
+## <T k="doc_real_world_scenarios_title" />
+
+### <T k="doc_scenario_save_title" />
+<p><T k="doc_toast_scenario_save" /></p>
+
+### <T k="doc_scenario_copy_title" />
+<p><T k="doc_toast_scenario_copy" /></p>
 
 ## <T k="doc_toast_system_usage" />
 
@@ -42,13 +74,6 @@ import { T } from "../T";
 
 ```tsx
 import { ToastProvider, useToast } from "./Toast";
-import { T } from "../T";
-
-const App = () => (
-  <ToastProvider position="bottom-right">
-    <MyComponent />
-  </ToastProvider>
-);
 
 const MyComponent = () => {
   const { show } = useToast();
@@ -69,69 +94,17 @@ const MyComponent = () => {
 };
 ```
 
-### <T k="doc_toast_interactive_example" />
-
-<p><T k="doc_toast_interactive_example_desc" /></p>
-
-<Canvas of={ToastStories.Interactive} />
-
 ## <T k="doc_variations" />
 
 <p><T k="doc_toast_variants_desc" /></p>
 
-### <T k="doc_info" />
-
-<Canvas of={ToastStories.Info} />
-
 ### <T k="doc_success" />
-
 <Canvas of={ToastStories.Success} />
 
 ### <T k="doc_warning" />
-
 <Canvas of={ToastStories.Warning} />
 
 ### <T k="doc_error" />
-
 <Canvas of={ToastStories.ErrorStatus} />
-
-## <T k="doc_props" />
-
-### <T k="doc_toast_props" />
-
-<Controls />
-
-### <T k="doc_toast_provider_props" />
-
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc_prop" /></th>
-      <th><T k="doc_type" /></th>
-      <th><T k="doc_default" /></th>
-      <th><T k="doc_description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>children</code></td>
-      <td><code>ReactNode</code></td>
-      <td>-</td>
-      <td><T k="doc_toast_provider_prop_children_desc" /></td>
-    </tr>
-    <tr>
-      <td><code>position</code></td>
-      <td><code>ToastPosition</code></td>
-      <td><code>"top-right"</code></td>
-      <td><T k="doc_toast_provider_prop_position_desc" /></td>
-    </tr>
-    <tr>
-      <td><code>duration</code></td>
-      <td><code>number</code></td>
-      <td><code>3000</code></td>
-      <td><T k="doc_toast_provider_prop_duration_desc" /></td>
-    </tr>
-  </tbody>
-</table>
 
 <Stories />

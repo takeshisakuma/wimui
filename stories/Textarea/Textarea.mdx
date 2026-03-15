@@ -13,6 +13,7 @@ import { T } from "../T";
 <Meta of={TextareaStories} />
 
 <Title />
+
 <p
   style={{
     margin: "0 0 16px 0",
@@ -21,61 +22,89 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  <T k="doc_textarea_long_desc" />
+  <T k="doc_textarea_title" />
 </p>
 
-## <T k="doc_basic_usage" />
+<p><T k="doc_textarea_long_desc" /></p>
 
-<p><T k="doc_textarea_usage_basic_desc" /></p>
+## <T k="doc_design_intent_title" />
+<p><T k="doc_textarea_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_textarea_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th><T k="doc_button_case" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Textarea</b></td>
+      <td><T k="doc_textarea_choice_textarea_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Input</b></td>
+      <td><T k="doc_textarea_choice_input_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_textarea_anatomy_field" /></li>
+  <li><T k="doc_textarea_anatomy_resize" /></li>
+</ul>
 
 <Canvas of={TextareaStories.Basic} />
+
+<Controls of={TextareaStories.Basic} />
 
 ## <T k="doc_variations" />
 
 <T k="doc_textarea_variant_desc" />
 
 ### <T k="doc_ghost" />
-
 <p><T k="doc_textarea_var_ghost_desc" /></p>
-
-<p><T k="doc_textarea_var_ghost_ex" /></p>
-
-<p><T k="doc_textarea_var_ghost_ex_list" /></p>
-
-<p><T k="doc_textarea_var_ghost_inter" /></p>
-
-<p><T k="doc_textarea_var_ghost_inter_list" /></p>
-
 <Canvas of={TextareaStories.Ghost} />
 
 ## <T k="doc_states" />
 
-<p><T k="doc_states_desc" /></p>
-
-### <T k="doc_error_status" />
-
-<p><T k="doc_error_status_desc" /></p>
-
+### <T k="doc_status_error" />
 <Canvas of={TextareaStories.ErrorStatus} />
 
-### <T k="doc_disabled" />
-
-<p><T k="doc_disabled_desc" /></p>
-
+### <T k="doc_status_disabled" />
 <Canvas of={TextareaStories.Disabled} />
 
 ## <T k="doc_layout" />
 
 ### <T k="doc_full_width" />
-
-<p><T k="doc_textarea_lay_full_desc" /></p>
-
 <Canvas of={TextareaStories.FullWidth} />
 
-## <T k="doc_form_pattern" />
+## <T k="doc_guidelines_title" />
 
-<p><T k="doc_textarea_ex_form_desc" /></p>
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_textarea_content_prefill" /></li>
+</ul>
 
-<Canvas of={TextareaStories.FormPattern} />
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_textarea_motion_expand" /></p>
 
-<Controls />
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_textarea_a11y_desc" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_textarea_scenario_comment" /></li>
+  <li><T k="doc_textarea_scenario_contact" /></li>
+</ul>
+
+## <T k="doc_basic_usage" />
+
+```tsx
+import { Textarea } from "@/components/Textarea/Textarea";
+
+<Textarea placeholder="Type something..." onChange={(e) => console.log(e.target.value)} />;
+```

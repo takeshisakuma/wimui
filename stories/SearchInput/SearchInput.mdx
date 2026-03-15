@@ -1,17 +1,52 @@
-import { T } from "../T";
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as SearchInputStories from "./SearchInput.stories";
+import { T } from "../T";
 
 <Meta of={SearchInputStories} />
 
-# SearchInput
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_searchinput_title" />
+</p>
 
 <p><T k="doc_searchinput_long_desc" /></p>
 
-## <T k="doc_example" /> (Actually Sample but I'll use common one)
+## <T k="doc_design_intent_title" />
+<p><T k="doc_searchinput_design_intent" /></p>
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_searchinput_anatomy_icon" /></li>
+  <li><T k="doc_searchinput_anatomy_clear" /></li>
+</ul>
 
 <Canvas of={SearchInputStories.Default} />
 
-## <T k="doc_props" />
+<Controls of={SearchInputStories.Default} />
 
-<Controls />
+## <T k="doc_guidelines_title" />
+
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_searchinput_content_placeholder" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_searchinput_motion_clear" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_searchinput_a11y_label" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_searchinput_scenario_global" /></li>
+  <li><T k="doc_searchinput_scenario_list" /></li>
+</ul>

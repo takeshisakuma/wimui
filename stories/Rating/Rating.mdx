@@ -1,10 +1,10 @@
-import { Meta, Primary, Controls, Canvas } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import { T } from "../T";
 import * as RatingStories from "./Rating.stories";
 
 <Meta of={RatingStories} />
 
-# Rating
+<Title />
 
 <p
   style={{
@@ -19,6 +19,55 @@ import * as RatingStories from "./Rating.stories";
 
 <p><T k="doc_rating_long_desc" /></p>
 
+## <T k="doc_design_intent_title" />
+<p><T k="doc_rating_design_intent" /></p>
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_rating_anatomy_stars" /></li>
+</ul>
+
+<Canvas of={RatingStories.Default} />
+
+<Controls of={RatingStories.Default} />
+
+## <T k="doc_variants" />
+
+### <T k="doc_rating_half" />
+<p><T k="doc_rating_half_desc" /></p>
+<Canvas of={RatingStories.AllowHalf} />
+
+### <T k="doc_sizes" />
+<p><T k="doc_rating_size_desc" /></p>
+<Canvas of={RatingStories.Sizes} />
+
+### <T k="doc_rating_disabled" />
+<p><T k="doc_rating_disabled_desc" /></p>
+<Canvas of={RatingStories.Disabled} />
+
+### <T k="doc_rating_readonly" />
+<p><T k="doc_rating_readonly_desc" /></p>
+<Canvas of={RatingStories.ReadOnly} />
+
+## <T k="doc_guidelines_title" />
+
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_rating_content_precision" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_rating_motion_hover" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_rating_a11y_reading" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_rating_scenario_review" /></li>
+  <li><T k="doc_rating_scenario_survey" /></li>
+</ul>
+
 ## <T k="doc_usage" />
 
 ```tsx
@@ -28,27 +77,3 @@ const Example = () => {
   return <Rating defaultValue={3} onChange={(val) => console.log(val)} />;
 };
 ```
-
-## <T k="doc_props" />
-
-<Controls />
-
-## <T k="doc_variants" />
-
-### <T k="doc_rating_half" />
-
-<p><T k="doc_rating_half_desc" /></p>
-
-<Canvas of={RatingStories.AllowHalf} />
-
-### <T k="doc_sizes" />
-
-<p><T k="doc_rating_size_desc" /></p>
-
-<Canvas of={RatingStories.Sizes} />
-
-### <T k="doc_rating_readonly" />
-
-<p><T k="doc_rating_readonly_desc" /></p>
-
-<Canvas of={RatingStories.Disabled} />

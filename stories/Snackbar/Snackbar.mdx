@@ -1,10 +1,10 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title, Primary, Stories, Description } from "@storybook/addon-docs/blocks";
 import * as SnackbarStories from "./Snackbar.stories";
 import { T } from "../T";
 
 <Meta of={SnackbarStories} />
 
-# Snackbar
+<Title />
 
 <p
   style={{
@@ -17,53 +17,71 @@ import { T } from "../T";
   <T k="doc_snackbar_title" />
 </p>
 
+<Description />
+
 <p><T k="doc_snackbar_long_desc" /></p>
 
-## <T k="doc_basic_usage" />
+<Primary />
 
-<p><T k="doc_snackbar_usage_basic_desc" /></p>
+<Controls />
 
-<Canvas of={SnackbarStories.Default} />
+## <T k="doc_design_intent_title" />
+<p><T k="doc_snackbar_design_intent" /></p>
 
-## <T k="doc_snackbar_usage_action" />
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_snackbar_choice_matrix_desc" /></p>
 
-<p><T k="doc_snackbar_usage_action_desc" /></p>
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Snackbar** | <T k="doc_snackbar_choice_snackbar_when" /> |
+| **Toast** | <T k="doc_snackbar_choice_toast_when" /> |
+| **Dialog** | <T k="doc_snackbar_choice_dialog_when" /> |
 
-<Canvas of={SnackbarStories.WithAction} />
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_snackbar_anatomy_message" /></li>
+  <li><T k="doc_snackbar_anatomy_action" /></li>
+  <li><T k="doc_snackbar_anatomy_close" /></li>
+</ul>
 
-## <T k="doc_snackbar_usage_close" />
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_snackbar_content_one_action" /></li>
+</ul>
 
-<p><T k="doc_snackbar_usage_close_desc" /></p>
+## <T k="doc_motion_spec_title" />
+<ul>
+  <li><T k="doc_snackbar_motion_up" /></li>
+</ul>
 
-<Canvas of={SnackbarStories.WithCloseButton} />
+## <T k="doc_a11y_spec_title" />
+<ul>
+  <li><T k="doc_snackbar_a11y_polite" /></li>
+</ul>
+
+## <T k="doc_real_world_scenarios_title" />
+
+### <T k="doc_scenario_undo_title" />
+<p><T k="doc_snackbar_scenario_undo" /></p>
+
+### <T k="doc_scenario_refresh_title" />
+<p><T k="doc_snackbar_scenario_refresh" /></p>
 
 ## <T k="doc_variations" />
 
 <p><T k="doc_snackbar_var_desc" /></p>
 
 ### <T k="doc_success" />
-
 <Canvas of={SnackbarStories.Success} />
 
 ### <T k="doc_error" />
-
 <Canvas of={SnackbarStories.ErrorStatus} />
 
 ### <T k="doc_warning" />
-
 <Canvas of={SnackbarStories.Warning} />
 
 ### <T k="doc_info" />
-
 <Canvas of={SnackbarStories.Info} />
-
-### <T k="doc_interactive_demo" />
-
-<p><T k="doc_snackbar_usage_interactive_desc" /></p>
-
-<Canvas of={SnackbarStories.InteractiveDemo} />
-
----
 
 ## <T k="doc_snackbar_adv_title" />
 
@@ -71,13 +89,6 @@ import { T } from "../T";
 
 ```tsx
 import { SnackbarProvider, useSnackbar } from "./Snackbar";
-import { T } from "../T";
-
-const App = () => (
-  <SnackbarProvider>
-    <MyComponent />
-  </SnackbarProvider>
-);
 
 const MyComponent = () => {
   const { showMessage } = useSnackbar();
@@ -86,18 +97,16 @@ const MyComponent = () => {
     <button
       onClick={() =>
         showMessage({
-          message: <T k="doc_snackbar_saved_msg" />,
+          message: "Data saved",
           variant: "success",
-          actionLabel: <T k="doc_close" />,
+          actionLabel: "Undo",
         })
       }
     >
-      <p><T k="doc_snackbar_show_btn" /></p>
+      Show Snackbar
     </button>
   );
 };
 ```
 
-## <T k="doc_props" />
-
-<Controls />
+<Stories />

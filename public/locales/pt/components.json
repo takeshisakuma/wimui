@@ -136,6 +136,7 @@
   "otp_digit": "Dígito {{index}}",
   "planned_for_implementation": "Planejado para implementação",
   "rating_stars": "{{count}} estrelas",
+  "rating_readonly_label": "{{count}} de {{max}} estrelas",
   "rule_overload_dont_desc": "Sufocando com regras como \"8+ caracteres, incluindo símbolos\"",
   "rule_same_tier_desc": "Dependências dentro da mesma camada são permitidas, desde que não se tornem excessivas.",
   "rule_same_tier_title": "Dependência entre Mesmas Camadas",

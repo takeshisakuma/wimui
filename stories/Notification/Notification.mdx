@@ -1,10 +1,10 @@
-import { Canvas, Meta, Controls, Description } from "@storybook/addon-docs/blocks";
+import { Canvas, Meta, Controls, Description, Primary, Stories, Title } from "@storybook/addon-docs/blocks";
 import * as NotificationStories from "./Notification.stories";
 import { T } from "../T";
 
 <Meta of={NotificationStories} />
 
-# Notification
+<Title />
 
 <p
   style={{
@@ -19,41 +19,67 @@ import { T } from "../T";
 
 <Description />
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_guideline_best_practices" />
-<ul>
-  <li><T k="doc_notification_best_practice_1" /></li>
-  <li><T k="doc_notification_best_practice_2" /></li>
-  <li><T k="doc_notification_best_practice_3" /></li>
-</ul>
-
 <p><T k="doc_notification_long_desc" /></p>
 
-## <T k="doc_usage" />
-
-<p><T k="doc_notification_usage_desc" /></p>
-
-<Canvas of={NotificationStories.Default} />
-
-## <T k="doc_props" />
+<Primary />
 
 <Controls />
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_notification_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_notification_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Notification** | <T k="doc_notification_choice_notification_when" /> |
+| **Toast** | <T k="doc_notification_choice_toast_when" /> |
+| **Banner** | <T k="doc_notification_choice_banner_when" /> |
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_notification_anatomy_container" /></li>
+  <li><T k="doc_notification_anatomy_title" /></li>
+  <li><T k="doc_notification_anatomy_description" /></li>
+  <li><T k="doc_notification_anatomy_timestamp" /></li>
+</ul>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_notification_content_actionable" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<ul>
+  <li><T k="doc_notification_motion_fade" /></li>
+</ul>
+
+## <T k="doc_a11y_spec_title" />
+<ul>
+  <li><T k="doc_notification_a11y_region" /></li>
+</ul>
+
+## <T k="doc_real_world_scenarios_title" />
+
+### <T k="doc_scenario_feature_title" />
+<p><T k="doc_notification_scenario_feature" /></p>
+
+### <T k="doc_scenario_event_title" />
+<p><T k="doc_notification_scenario_event" /></p>
 
 ## <T k="doc_example" />
 
 ### <T k="doc_success" />
-
 <Canvas of={NotificationStories.Success} />
 
 ### <T k="doc_info" />
-
 <Canvas of={NotificationStories.Info} />
 
 ### <T k="doc_warning" />
-
 <Canvas of={NotificationStories.Warning} />
 
 ### <T k="doc_error" />
-
 <Canvas of={NotificationStories.ErrorStatus} />
+
+<Stories />

@@ -1,11 +1,6 @@
 import { Canvas, Meta, Controls, Title, Primary, Stories, Description } from "@storybook/addon-docs/blocks";
 import { T } from "../T";
 import * as TooltipStories from "./Tooltip.stories";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/Tooltip/Tooltip";
 
 <Meta of={TooltipStories} />
 
@@ -24,75 +19,69 @@ import {
 
 <Description />
 
-## <T k="doc_guidelines_title" />
-
-### <T k="doc_guideline_best_practices" />
-<ul>
-  <li><T k="doc_tooltip_best_practice_1" /></li>
-  <li><T k="doc_tooltip_best_practice_2" /></li>
-  <li><T k="doc_tooltip_best_practice_3" /></li>
-</ul>
-
 <p><T k="doc_tooltip_long_desc" /></p>
-
-## <T k="doc_basic_usage" />
-
-```tsx
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/Tooltip/Tooltip";
-
-<Tooltip>
-  <TooltipTrigger>Hover me</TooltipTrigger>
-  <TooltipContent>Tooltip text</TooltipContent>
-</Tooltip>;
-```
-
-### <T k="doc_tooltip_delay" />
-
-<p><T k="doc_tooltip_delay_desc" /></p>
-
-```tsx
-<Tooltip delay={500}>
-  <TooltipTrigger>Hover me</TooltipTrigger>
-  <TooltipContent>Delayed tooltip</TooltipContent>
-</Tooltip>
-```
-
-## <T k="doc_usage_examples" />
-
-### <T k="doc_default" />
-
-<Canvas of={TooltipStories.Default} />
 
 <Primary />
 
-## <T k="doc_props" />
-
 <Controls />
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_tooltip_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_tooltip_choice_matrix_desc" /></p>
+
+| <T k="doc_component" /> | <T k="doc_usage_scenario" /> |
+| :--- | :--- |
+| **Tooltip** | <T k="doc_tooltip_choice_tooltip_when" /> |
+| **Popover** | <T k="doc_tooltip_choice_popover_when" /> |
+| **HoverCard** | <T k="doc_tooltip_choice_hovercard_when" /> |
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_tooltip_anatomy_trigger" /></li>
+  <li><T k="doc_tooltip_anatomy_content" /></li>
+</ul>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_tooltip_content_length" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<ul>
+  <li><T k="doc_tooltip_motion_delay" /></li>
+</ul>
+
+## <T k="doc_a11y_spec_title" />
+<ul>
+  <li><T k="doc_tooltip_a11y_linkage" /></li>
+</ul>
+
+## <T k="doc_real_world_scenarios_title" />
+
+### <T k="doc_scenario_icon_title" />
+<p><T k="doc_tooltip_scenario_icon" /></p>
+
+### <T k="doc_scenario_help_title" />
+<p><T k="doc_tooltip_scenario_help" /></p>
 
 ## <T k="doc_tooltip_positioning" />
 
 ### <T k="doc_top" />
-
 <Canvas of={TooltipStories.Top} />
 
 ### <T k="doc_bottom" />
-
 <Canvas of={TooltipStories.Bottom} />
 
 ### <T k="doc_left" />
-
 <Canvas of={TooltipStories.Left} />
 
 ### <T k="doc_right" />
-
 <Canvas of={TooltipStories.Right} />
 
 ### <T k="doc_tooltip_with_delay" />
-
+<p><T k="doc_tooltip_delay_desc" /></p>
 <Canvas of={TooltipStories.WithDelay} />
 
 <Stories />

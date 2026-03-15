@@ -13,17 +13,62 @@ import { T } from "../T";
 <Meta of={InputStories} />
 
 <Title />
-<p style={{ margin: "0 0 16px 0", fontSize: "18px", lineHeight: "28px", color: "#6c757d" }}>
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_input_title" />
+</p>
 
 <p><T k="doc_input_long_desc" /></p>
 
-</p>
+## <T k="doc_design_intent_title" />
+<p><T k="doc_input_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_input_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th><T k="doc_button_case" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Input</b></td>
+      <td><T k="doc_input_choice_input_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Textarea</b></td>
+      <td><T k="doc_input_choice_textarea_when" /></td>
+    </tr>
+    <tr>
+      <td><b>NumberInput</b></td>
+      <td><T k="doc_input_choice_number_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_input_anatomy_container" /></li>
+  <li><T k="doc_input_anatomy_field" /></li>
+  <li><T k="doc_input_anatomy_icons" /></li>
+</ul>
 
 ## <T k="doc_basic_usage" />
 
 <p><T k="doc_input_basic_desc" /></p>
 
 <Canvas of={InputStories.Default} />
+
+<Controls of={InputStories.Default} />
 
 ## <T k="doc_variants" />
 
@@ -89,7 +134,6 @@ import { T } from "../T";
 
 ## <T k="doc_features" />
 
-
 ### Search
 
 <p><T k="doc_input_search_desc" /></p>
@@ -102,4 +146,25 @@ import { T } from "../T";
 
 <Canvas of={InputStories.Clearable} />
 
-<Controls />
+## <T k="doc_guidelines_title" />
+
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_input_content_labels" /></li>
+  <li><T k="doc_input_content_placeholder" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_input_motion_focus" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<ul>
+  <li><T k="doc_input_a11y_labels" /></li>
+  <li><T k="doc_input_a11y_aria" /></li>
+</ul>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_input_scenario_form" /></li>
+  <li><T k="doc_input_scenario_search" /></li>
+</ul>

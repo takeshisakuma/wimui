@@ -13,6 +13,7 @@ import { T } from "../T";
 <Meta of={CheckboxGroupStories} />
 
 <Title />
+
 <p
   style={{
     margin: "0 0 16px 0",
@@ -21,30 +22,50 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  <T k="doc_checkboxgroup_long_desc" />
+  <T k="doc_checkboxgroup_title" />
 </p>
-<Description />
 
-## <T k="doc_basic_usage" />
+<p><T k="doc_checkboxgroup_long_desc" /></p>
 
-<p><T k="doc_checkboxgroup_basic_usage_desc" /></p>
+## <T k="doc_design_intent_title" />
+<p><T k="doc_checkboxgroup_design_intent" /></p>
 
-<p><T k="doc_guide_radio_vs_checkbox" /></p>
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_checkboxgroup_anatomy_label" /></li>
+  <li><T k="doc_checkboxgroup_anatomy_items" /></li>
+</ul>
 
 <Canvas of={CheckboxGroupStories.Default} />
+
+<Controls of={CheckboxGroupStories.Default} />
 
 ## <T k="doc_layout" />
 
 ### <T k="doc_layout_horizontal" />
-
-<p><T k="doc_layout_horizontal_desc" /></p>
-
 <Canvas of={CheckboxGroupStories.Horizontal} />
+
+## <T k="doc_guidelines_title" />
+
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_checkboxgroup_content_sort" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_checkboxgroup_motion_stagger" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_checkboxgroup_a11y_fieldset" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_checkboxgroup_scenario_hobby" /></li>
+  <li><T k="doc_checkboxgroup_scenario_filter" /></li>
+</ul>
 
 ## <T k="doc_controlled_components" />
 
 <p><T k="doc_controlled_components_desc" /></p>
 
 <Canvas of={CheckboxGroupStories.Controlled} />
-
-<Controls />

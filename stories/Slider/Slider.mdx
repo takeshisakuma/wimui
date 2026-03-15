@@ -1,10 +1,10 @@
-import { Meta, Primary, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as SliderStories from "./Slider.stories";
 import { T } from "../T";
 
 <Meta of={SliderStories} />
 
-# Slider
+<Title />
 
 <p
   style={{
@@ -19,26 +19,69 @@ import { T } from "../T";
 
 <p><T k="doc_slider_long_desc" /></p>
 
-<Primary />
+## <T k="doc_design_intent_title" />
+<p><T k="doc_slider_design_intent" /></p>
 
-## <T k="doc_props" />
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_slider_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th><T k="doc_button_case" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Slider</b></td>
+      <td><T k="doc_slider_choice_slider_when" /></td>
+    </tr>
+    <tr>
+      <td><b>NumberInput</b></td>
+      <td><T k="doc_slider_choice_number_when" /></td>
+    </tr>
+  </tbody>
+</table>
 
-<Controls />
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_slider_anatomy_track" /></li>
+  <li><T k="doc_slider_anatomy_thumb" /></li>
+  <li><T k="doc_slider_anatomy_marks" /></li>
+</ul>
+
+<Canvas of={SliderStories.Default} />
+
+<Controls of={SliderStories.Default} />
 
 ## <T k="doc_usage_examples" />
 
 ### <T k="doc_disabled" />
-
-<Story of={SliderStories.Disabled} />
+<Canvas of={SliderStories.Disabled} />
 
 ### <T k="doc_min_max" />
-
-<Story of={SliderStories.MinMax} />
+<Canvas of={SliderStories.MinMax} />
 
 ### <T k="doc_step" />
-
-<Story of={SliderStories.Step} />
+<Canvas of={SliderStories.Step} />
 
 ### <T k="doc_controlled" />
+<Canvas of={SliderStories.Controlled} />
 
-<Story of={SliderStories.Controlled} />
+## <T k="doc_guidelines_title" />
+
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_slider_content_labels" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_slider_motion_slide" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_slider_a11y_keyboard" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_slider_scenario_volume" /></li>
+</ul>

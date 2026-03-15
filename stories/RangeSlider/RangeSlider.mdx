@@ -1,10 +1,10 @@
-import { Meta, Primary, Controls, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as RangeSliderStories from "./RangeSlider.stories";
 import { T } from "../T";
 
 <Meta of={RangeSliderStories} />
 
-# RangeSlider
+<Title />
 
 <p
   style={{
@@ -19,26 +19,47 @@ import { T } from "../T";
 
 <p><T k="doc_rangeslider_long_desc" /></p>
 
-<Primary />
+## <T k="doc_design_intent_title" />
+<p><T k="doc_slider_design_intent" /></p>
 
-## <T k="doc_props" />
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_slider_anatomy_track" /></li>
+  <li><T k="doc_slider_anatomy_thumb" /> (x2)</li>
+</ul>
 
-<Controls />
+<Canvas of={RangeSliderStories.Default} />
+
+<Controls of={RangeSliderStories.Default} />
 
 ## <T k="doc_example" />
 
-### Disabled
+### <T k="doc_disabled" />
+<Canvas of={RangeSliderStories.Disabled} />
 
-<Story of={RangeSliderStories.Disabled} />
+### <T k="doc_min_max" />
+<Canvas of={RangeSliderStories.MinMax} />
 
-### Min/Max
+### <T k="doc_step" />
+<Canvas of={RangeSliderStories.Step} />
 
-<Story of={RangeSliderStories.MinMax} />
+### <T k="doc_controlled" />
+<Canvas of={RangeSliderStories.Controlled} />
 
-### Step
+## <T k="doc_guidelines_title" />
 
-<Story of={RangeSliderStories.Step} />
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_slider_content_labels" /></li>
+</ul>
 
-### Controlled
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_slider_motion_slide" /></p>
 
-<Story of={RangeSliderStories.Controlled} />
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_slider_a11y_keyboard" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_slider_scenario_filter" /></li>
+</ul>

@@ -100,6 +100,25 @@ export const Disabled: Story = {
   },
 };
 
+export const ReadOnly: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <Label label={t("story_rating_readonly")}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <Rating {...args} value={5} readOnly />
+            <Rating {...args} value={4} readOnly />
+            <Rating {...args} value={3} readOnly />
+            <Rating {...args} value={2} readOnly />
+            <Rating {...args} value={1} readOnly />
+          </div>
+        </Label>
+      </div>
+    );
+  },
+};
+
 export const Controlled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

@@ -18,7 +18,6 @@ import {
   useListNavigation,
   useListItem,
   FloatingList,
-  useMergeRefs,
 } from "@floating-ui/react";
 import { Transition } from "../Transition/Transition";
 import { BaseListItem } from "../_internal/BaseListItem";
@@ -51,7 +50,7 @@ export const ContextMenu = ({
 
   const elementsRef = useRef<(HTMLElement | null)[]>([]);
 
-  const { refs, floatingStyles, context, isPositioned } = useFloating({
+  const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
     onOpenChange: (open) => {
       setIsOpen(open);
@@ -60,6 +59,7 @@ export const ContextMenu = ({
         setIsKeyboardOpen(false);
       }
     },
+    strategy: "fixed",
     middleware: [
       flip(),
       shift({ padding: 10 }),
@@ -152,92 +152,31 @@ export const ContextMenu = ({
           leaveFrom="fade-leave-from"
           leaveTo="fade-leave-to"
         >
-          <FloatingFocusManager 
-            context={context} 
-            modal={true} 
+          <FloatingFocusManager
+            context={context}
+            modal={true}
             initialFocus={isKeyboardOpen ? (activeIndex ?? 0) : -1}
           >
-            <ContextMenuContent 
-              isOpen={isOpen}
-              refs={refs}
-              floatingStyles={floatingStyles}
-              isPositioned={isPositioned}
-              getFloatingProps={getFloatingProps}
-              handleClose={handleClose}
-              activeIndex={activeIndex}
-              getItemProps={getItemProps}
-              elementsRef={elementsRef}
-              menu={menu}
-            />
+            <div
+              ref={refs.setFloating} // eslint-disable-line react-hooks/refs
+              className="wim-context-menu"
+              style={floatingStyles}
+              {...(getFloatingProps({
+                onClick: handleClose,
+                onKeyDown(e: React.KeyboardEvent) {
+                  if (e.key === "Escape") handleClose();
+                },
+              }) as React.HTMLAttributes<HTMLDivElement>)}
+            >
+              <ContextMenuContext.Provider value={{ activeIndex, getItemProps }}>
+                <FloatingList elementsRef={elementsRef}>
+                  {menu}
+                </FloatingList>
+              </ContextMenuContext.Provider>
+            </div>
           </FloatingFocusManager>
         </Transition>
       </FloatingPortal>
-    </div>
-  );
-};
-
-type ContextMenuContentProps = {
-  isOpen: boolean;
-  refs: ReturnType<typeof useFloating>["refs"];
-  floatingStyles: React.CSSProperties;
-  isPositioned: boolean;
-  getFloatingProps: (props?: React.HTMLProps<HTMLElement>) => Record<string, unknown>;
-  handleClose: () => void;
-  activeIndex: number | null;
-  getItemProps: (props?: React.HTMLProps<HTMLElement>) => Record<string, unknown>;
-  elementsRef: React.RefObject<(HTMLElement | null)[]>;
-  menu: ReactNode;
-};
-
-const ContextMenuContent = ({
-  isOpen,
-  refs,
-  floatingStyles,
-  isPositioned,
-  getFloatingProps,
-  handleClose,
-  activeIndex,
-  getItemProps,
-  elementsRef,
-  menu,
-}: ContextMenuContentProps) => {
-  const internalRef = useRef<HTMLDivElement>(null);
-  const combinedRef = useMergeRefs([refs.setFloating, internalRef]);
-
-  React.useLayoutEffect(() => {
-    const el = internalRef.current;
-    if (!el || !("showPopover" in el)) return;
-
-    if (isOpen && isPositioned) {
-      // Small delay via RAF to ensure the initial layout/styles are committed
-      const frame = requestAnimationFrame(() => {
-        try { el.showPopover(); } catch { /* popover not supported */ }
-      });
-      return () => cancelAnimationFrame(frame);
-    } else if (!isOpen) {
-      try { el.hidePopover(); } catch { /* popover not supported */ }
-    }
-  }, [isOpen, isPositioned]);
-
-  return (
-    <div
-      ref={combinedRef}
-      className="wim-context-menu"
-      style={floatingStyles}
-      data-positioned={isPositioned}
-      {...(getFloatingProps({
-        onClick: handleClose,
-        onKeyDown(e: React.KeyboardEvent) {
-          if (e.key === "Escape") handleClose();
-        },
-      }) as React.HTMLAttributes<HTMLDivElement>)}
-      {...({ popover: "manual" } as React.HTMLAttributes<HTMLDivElement>)}
-    >
-      <ContextMenuContext.Provider value={{ activeIndex, getItemProps }}>
-        <FloatingList elementsRef={elementsRef}>
-          {menu}
-        </FloatingList>
-      </ContextMenuContext.Provider>
     </div>
   );
 };
@@ -287,7 +226,7 @@ export const ContextMenuItem = ({
     <BaseListItem
       ref={ref}
       className={classNames(
-        "wim-context-menu-item", 
+        "wim-context-menu-item",
         className,
         context?.activeIndex === index && "wim-base-list-item--active"
       )}
@@ -334,4 +273,3 @@ export const ContextMenuGroup = ({
     </div>
   );
 };
-

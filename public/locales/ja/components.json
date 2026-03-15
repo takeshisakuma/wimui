@@ -136,6 +136,7 @@
   "otp_digit": "{{index}}番目の数字",
   "planned_for_implementation": "実装する予定",
   "rating_stars": "{{count}}つ星",
+  "rating_readonly_label": "{{max}}つ星中{{count}}つ",
   "rule_overload_dont_desc": "「8文字以上、記号含む」等のルールを詰め込む",
   "rule_same_tier_desc": "同じ Tier 内での依存は、肥大化しない限り許容されます。",
   "rule_same_tier_title": "同一 Tier 間の依存",
