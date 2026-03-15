@@ -135,6 +135,7 @@
   "doc_drawer_scene_future": "Future Scenarios",
   "doc_drawer_scene_future_desc": "Advanced interaction patterns for upcoming complex feature sets.",
   "doc_drawer_scene_multi_level": "Hierarchical Data",
+  "doc_drawer_scene_multi_level_desc": "Suitable for layered navigation such as category side menus and settings screens.",
   "doc_drawer_title": "Slide-out detail panels",
   "doc_drawer_type_header": "Type",
   "doc_drawer_type_modal": "Modal Drawer",
