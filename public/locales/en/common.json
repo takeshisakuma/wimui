@@ -163,5 +163,9 @@
   "common_reload": "Reload",
   "doc_see_more": "See more: ",
   "common_do": "DO",
-  "common_dont": "DON'T"
+  "common_dont": "DON'T",
+  "dashboard_intro": "You can check the development status and specification overview of all wim UI components.",
+  "dashboard_tokens_link": "For design foundations (colors, typography, etc.), please refer to the Design Token Overview.",
+  "token_overview_title": "Design Token Overview",
+  "token_overview_desc": "This is a list of design tokens that form the foundation of style definitions for wim UI. It is recommended to use these variables to maintain a consistent design."
 }

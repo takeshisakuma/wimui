@@ -163,5 +163,9 @@
   "common_reload": "再読み込み",
   "doc_see_more": "詳細を見る：",
   "common_do": "DO",
-  "common_dont": "DON'T"
+  "common_dont": "DON'T",
+  "dashboard_intro": "wim UI の全コンポーネントの開発状況と仕様の概要を確認できます。",
+  "dashboard_tokens_link": "デザインの基礎（カラー、タイポグラフィ等）については、デザイントークン概要 を参照してください。",
+  "token_overview_title": "デザイントークン概要",
+  "token_overview_desc": "wim UI のスタイル定義の基礎となるデザイントークンの一覧です。一貫したデザインを維持するために、これらの変数を使用することを推奨します。"
 }

@@ -79,6 +79,12 @@ export default defineConfig({
         "dist/",
         "src/index.ts",
       ],
+      thresholds: {
+        lines: 60,
+        branches: 55,
+        functions: 65,
+        statements: 60,
+      },
     },
   },
 });

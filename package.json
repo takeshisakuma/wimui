@@ -16,9 +16,24 @@
       "require": "./dist/wimui.umd.js"
     }
   },
+  "size-limit": [
+    {
+      "name": "ES Module (all chunks, gzip)",
+      "path": ["dist/*.js", "!dist/wimui.umd.js"],
+      "gzip": true,
+      "limit": "440 kB"
+    },
+    {
+      "name": "UMD Bundle (gzip)",
+      "path": "dist/wimui.umd.js",
+      "gzip": true,
+      "limit": "350 kB"
+    }
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "size": "size-limit",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -55,9 +70,9 @@
   "homepage": "./",
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
-    "@chromatic-com/storybook": "^5.0.1",
     "@google/generative-ai": "^0.24.1",
     "@playwright/test": "^1.58.2",
+    "@size-limit/file": "^12.0.1",
     "@storybook/addon-a11y": "^10.2.17",
     "@storybook/addon-docs": "^10.2.17",
     "@storybook/addon-themes": "^10.2.17",
@@ -98,6 +113,7 @@
     "prop-types": "^15.8.1",
     "rimraf": "^6.1.3",
     "sass": "^1.97.3",
+    "size-limit": "^12.0.1",
     "storybook": "^10.2.17",
     "storybook-react-i18next": "^10.1.1",
     "stylelint": "^17.4.0",
