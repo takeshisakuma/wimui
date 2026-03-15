@@ -1,0 +1,41 @@
+import{j as i}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as c}from"./index-xXuD2LP4.js";import{M as r,T as t,P as l,a as x,C as d}from"./blocks-CIFgT73G.js";import{R as _,D as j,C as h,a}from"./Radio.stories-C0euQJI1.js";import{T as n}from"./T-DuPEhfS0.js";import"./iframe-DzDEpXwh.js";import"./preload-helper-PPVm8Dsz.js";import"./index-DnJqiaKL.js";import"./index-CsSgyaRa.js";import"./index-qjqfg5ym.js";import"./index-3JgSyORg.js";import"./Radio-h_5c_up1.js";import"./index-CHdddvW5.js";import"./useTranslation-Dhq9g8tg.js";import"./i18nConstants-BpHxieg5.js";function o(e){const s={h2:"h2",h3:"h3",li:"li",ul:"ul",...c(),...e.components};return i.jsxs(i.Fragment,{children:[i.jsx(r,{of:_}),`
+`,i.jsx(t,{}),`
+`,i.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:i.jsx(n,{k:"doc_radio_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_radio_long_desc"})}),`
+`,i.jsx(s.h2,{id:"",children:i.jsx(n,{k:"doc_design_intent_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_radio_design_intent"})}),`
+`,i.jsx(s.h2,{id:"-1",children:i.jsx(n,{k:"doc_choice_matrix_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_radio_choice_matrix_desc"})}),`
+`,i.jsxs("table",{children:[i.jsx("thead",{children:i.jsxs("tr",{children:[i.jsx("th",{children:"Component"}),i.jsx("th",{children:i.jsx(n,{k:"doc_button_case"})})]})}),i.jsxs("tbody",{children:[i.jsxs("tr",{children:[i.jsx("td",{children:i.jsx("b",{children:"Radio"})}),i.jsx("td",{children:i.jsx(n,{k:"doc_radio_choice_radio_when"})})]}),i.jsxs("tr",{children:[i.jsx("td",{children:i.jsx("b",{children:"Selectbox"})}),i.jsx("td",{children:i.jsx(n,{k:"doc_radio_choice_select_when"})})]})]})]}),`
+`,i.jsx(s.h2,{id:"-2",children:i.jsx(n,{k:"doc_anatomy_title"})}),`
+`,i.jsxs("ul",{children:[i.jsx("li",{children:i.jsx(n,{k:"doc_radio_anatomy_button"})}),i.jsx("li",{children:i.jsx(n,{k:"doc_radio_anatomy_label"})})]}),`
+`,i.jsx(s.h2,{id:"-3",children:i.jsx(n,{k:"doc_radio_usage_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_radio_when_to_use"})}),`
+`,i.jsx(s.h2,{id:"-4",children:i.jsx(n,{k:"doc_radio_implementation_note"})}),`
+`,i.jsxs(s.ul,{children:[`
+`,i.jsxs(s.li,{children:[`
+`,i.jsx(n,{k:"doc_radio_note_default"}),`
+`]}),`
+`,i.jsxs(s.li,{children:[`
+`,i.jsx(n,{k:"doc_radio_note_layout"}),`
+`]}),`
+`]}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"selection_radio_checkbox_guide_link"})}),`
+`,i.jsx(l,{}),`
+`,i.jsx(s.h2,{id:"-5",children:i.jsx(n,{k:"doc_props"})}),`
+`,i.jsx(x,{}),`
+`,i.jsx(s.h2,{id:"-6",children:i.jsx(n,{k:"doc_example"})}),`
+`,i.jsx(s.h3,{id:"default",children:"Default"}),`
+`,i.jsx(d,{of:j}),`
+`,i.jsx(s.h3,{id:"checked",children:"Checked"}),`
+`,i.jsx(d,{of:h}),`
+`,i.jsx(s.h3,{id:"disabled",children:"Disabled"}),`
+`,i.jsx(d,{of:a}),`
+`,i.jsx(s.h3,{id:"-7",children:i.jsx(n,{k:"doc_content_guidelines_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_radio_content_consistency"})}),`
+`,i.jsx(s.h2,{id:"-8",children:i.jsx(n,{k:"doc_motion_spec_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc_radio_motion_pop"})}),`
+`,i.jsx(s.h2,{id:"-9",children:i.jsx(n,{k:"doc_accessibility_spec_title"})}),`
+`,i.jsxs("ul",{children:[i.jsx("li",{children:i.jsx(n,{k:"doc_radio_a11y_keyboard"})}),i.jsx("li",{children:i.jsx(n,{k:"doc_radio_a11y_group"})})]}),`
+`,i.jsx(s.h2,{id:"-10",children:i.jsx(n,{k:"doc_real_world_scenarios_title"})}),`
+`,i.jsxs("ul",{children:[i.jsx("li",{children:i.jsx(n,{k:"doc_radio_scenario_payment"})}),i.jsx("li",{children:i.jsx(n,{k:"doc_radio_scenario_plan"})})]})]})}function X(e={}){const{wrapper:s}={...c(),...e.components};return s?i.jsx(s,{...e,children:i.jsx(o,{...e})}):o(e)}export{X as default};
