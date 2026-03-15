@@ -70,6 +70,40 @@ export const Stepper = ({
     return <span>{index + 1}</span>;
   };
 
+  const handleContainerKeyDown = (e: React.KeyboardEvent) => {
+    if (!onChange) return;
+
+    const items = Array.from(
+      e.currentTarget.querySelectorAll<HTMLElement>('[role="tab"]'),
+    );
+    const focusedEl = document.activeElement as HTMLElement;
+    const focusedItemIdx = items.indexOf(focusedEl);
+    if (focusedItemIdx === -1) return;
+
+    const arrowKeys = ["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp", "Home", "End"];
+    if (!arrowKeys.includes(e.key)) return;
+    e.preventDefault();
+
+    const navigableItems = items.filter((_, i) => !steps[i]?.disabled);
+    const focusedNavIdx = navigableItems.indexOf(focusedEl);
+    if (focusedNavIdx === -1) return;
+
+    let nextNavIdx: number;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      nextNavIdx = (focusedNavIdx + 1) % navigableItems.length;
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      nextNavIdx = (focusedNavIdx - 1 + navigableItems.length) % navigableItems.length;
+    } else if (e.key === "Home") {
+      nextNavIdx = 0;
+    } else {
+      nextNavIdx = navigableItems.length - 1;
+    }
+
+    const nextItem = navigableItems[nextNavIdx];
+    nextItem.focus();
+    onChange(items.indexOf(nextItem));
+  };
+
   return (
     <div
       className={classNames(
@@ -78,6 +112,9 @@ export const Stepper = ({
         labelPlacement === "vertical" && "wim-stepper--label-vertical",
         className,
       )}
+      role={onChange ? "tablist" : undefined}
+      aria-orientation={onChange ? direction : undefined}
+      onKeyDown={handleContainerKeyDown}
     >
       {steps.map((step, index) => {
         const stepStatus = getStepStatus(index, step.status);
@@ -95,8 +132,14 @@ export const Stepper = ({
             )}
             onClick={() => isClickable && onChange(index)}
             style={{ cursor: isClickable ? "pointer" : "default" }}
-            role="button"
-            tabIndex={isClickable ? 0 : -1}
+            role={onChange ? "tab" : undefined}
+            aria-selected={onChange ? index === current : undefined}
+            aria-disabled={step.disabled ? "true" : undefined}
+            tabIndex={
+              onChange
+                ? !step.disabled && index === current ? 0 : -1
+                : isClickable ? 0 : -1
+            }
             onKeyDown={(e) => {
               if (isClickable && (e.key === "Enter" || e.key === " ")) {
                 e.preventDefault();

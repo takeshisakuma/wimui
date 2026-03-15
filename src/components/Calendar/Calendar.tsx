@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, useId } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
@@ -86,6 +86,7 @@ export const Calendar = ({
     month,
     handlePrevMonth,
     handleNextMonth,
+    setViewDate,
     isDateDisabled,
     daysGrid,
   } = useCalendar({
@@ -106,6 +107,20 @@ export const Calendar = ({
   const [focusedDate, setFocusedDate] = useState<Date>(
     defaultValue || value || new Date()
   );
+
+  const titleId = useId();
+  const gridRef = useRef<HTMLDivElement>(null);
+  const isNavigating = useRef(false);
+
+  // After keyboard navigation, move DOM focus to the newly focused day button
+  useEffect(() => {
+    if (!isNavigating.current) return;
+    isNavigating.current = false;
+    const btn = gridRef.current?.querySelector<HTMLButtonElement>(
+      ".wim-calendar-day--focused:not(:disabled)",
+    );
+    btn?.focus();
+  }, [focusedDate]);
 
   const isControlled = value !== undefined;
   const currentSelected = isControlled ? value : selectedDate;
@@ -167,11 +182,19 @@ export const Calendar = ({
         break;
       case "PageUp":
         e.preventDefault();
-        nextDate.setMonth(focusedDate.getMonth() - 1);
+        if (e.ctrlKey) {
+          nextDate.setFullYear(focusedDate.getFullYear() - 1);
+        } else {
+          nextDate.setMonth(focusedDate.getMonth() - 1);
+        }
         break;
       case "PageDown":
         e.preventDefault();
-        nextDate.setMonth(focusedDate.getMonth() + 1);
+        if (e.ctrlKey) {
+          nextDate.setFullYear(focusedDate.getFullYear() + 1);
+        } else {
+          nextDate.setMonth(focusedDate.getMonth() + 1);
+        }
         break;
       case "Home":
         e.preventDefault();
@@ -190,14 +213,11 @@ export const Calendar = ({
         return;
     }
 
+    isNavigating.current = true;
     setFocusedDate(nextDate);
-    // Adjust month view if needed
+    // Update calendar view if focused date moved to a different month
     if (nextDate.getMonth() !== month || nextDate.getFullYear() !== year) {
-      if (nextDate < new Date(year, month, 1)) {
-        handlePrevMonth();
-      } else {
-        handleNextMonth();
-      }
+      setViewDate(new Date(nextDate.getFullYear(), nextDate.getMonth(), 1));
     }
   };
 
@@ -244,7 +264,12 @@ export const Calendar = ({
         >
           <Icon name="ChevronLeftIcon" size="small" />
         </button>
-        <div className="wim-calendar-title">
+        <div
+          id={titleId}
+          className="wim-calendar-title"
+          aria-live="polite"
+          aria-atomic="true"
+        >
           {t("calendar_title", { year, month: month + 1 })}
         </div>
         <button
@@ -257,7 +282,14 @@ export const Calendar = ({
           <Icon name="ChevronRightIcon" size="small" />
         </button>
       </div>
-      <div className="wim-calendar-grid" role="grid" tabIndex={0} onKeyDown={handleKeyDown}>
+      <div
+        ref={gridRef}
+        className="wim-calendar-grid"
+        role="grid"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
+      >
         {weekDays.map((day) => (
           <div key={day} className="wim-calendar-weekday" role="columnheader" aria-label={day}>
             {day}
@@ -307,4 +339,3 @@ export const Calendar = ({
     </div>
   );
 };
-
