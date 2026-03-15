@@ -1,0 +1,44 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as d}from"./index-B62-2B5d.js";import{M as x,T as t,D as h,C as i,a as _}from"./blocks-Ql0HPBTW.js";import{C as l,D as r,a as j,I as k,b as a,c as b}from"./Checkbox.stories-CuMrVOJt.js";import{T as c}from"./T-DQc8EXRh.js";import"./iframe-Dqv4ZIoz.js";import"./preload-helper-PPVm8Dsz.js";import"./index-xXG16E7m.js";import"./index-J7Qv7izm.js";import"./index-CtFels7q.js";import"./index-CR3tNe4L.js";import"./Checkbox--RJcbgPG.js";import"./index-COgXasq6.js";import"./useTranslation-7X4DMM5t.js";import"./i18nConstants-BpHxieg5.js";function o(s){const n={h2:"h2",h3:"h3",li:"li",ul:"ul",...d(),...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(x,{of:l}),`
+`,e.jsx(t,{}),`
+`,e.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:e.jsx(c,{k:"doc_checkbox_long_desc"})}),`
+`,e.jsx(h,{}),`
+`,e.jsx(n.h2,{id:"",children:e.jsx(c,{k:"doc_design_intent_title"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc_checkbox_design_intent"})}),`
+`,e.jsx(n.h2,{id:"-1",children:e.jsx(c,{k:"doc_choice_matrix_title"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc_checkbox_choice_matrix_desc"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:"Component"}),e.jsx("th",{children:e.jsx(c,{k:"doc_button_case"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"Checkbox"})}),e.jsx("td",{children:e.jsx(c,{k:"doc_checkbox_choice_check_when"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"Radio"})}),e.jsx("td",{children:e.jsx(c,{k:"doc_checkbox_choice_radio_when"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"Switch"})}),e.jsx("td",{children:e.jsx(c,{k:"doc_checkbox_choice_switch_when"})})]})]})]}),`
+`,e.jsx(n.h2,{id:"-2",children:e.jsx(c,{k:"doc_anatomy_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(c,{k:"doc_checkbox_anatomy_input"})}),e.jsx("li",{children:e.jsx(c,{k:"doc_checkbox_anatomy_box"})}),e.jsx("li",{children:e.jsx(c,{k:"doc_checkbox_anatomy_label"})})]}),`
+`,e.jsx(n.h2,{id:"-3",children:e.jsx(c,{k:"doc_basic_usage"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc_checkbox_basic_usage_desc"})}),`
+`,e.jsx(n.h2,{id:"-4",children:e.jsx(c,{k:"doc_checkbox_usage_title"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc_checkbox_when_to_use"})}),`
+`,e.jsx("h3",{children:e.jsx(c,{k:"doc_content_guidelines_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(c,{k:"doc_checkbox_content_positive"})}),e.jsx("li",{children:e.jsx(c,{k:"doc_checkbox_content_no_period"})})]}),`
+`,e.jsx(n.h2,{id:"-5",children:e.jsx(c,{k:"doc_checkbox_implementation_note"})}),`
+`,e.jsxs(n.ul,{children:[`
+`,e.jsxs(n.li,{children:[`
+`,e.jsx(c,{k:"doc_checkbox_note_default"}),`
+`]}),`
+`,e.jsxs(n.li,{children:[`
+`,e.jsx(c,{k:"doc_checkbox_note_layout"}),`
+`]}),`
+`]}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"selection_radio_checkbox_guide_link"})}),`
+`,e.jsx(i,{of:r}),`
+`,e.jsx(n.h2,{id:"-6",children:e.jsx(c,{k:"doc_states"})}),`
+`,e.jsx(n.h3,{id:"-7",children:e.jsx(c,{k:"doc_checked"})}),`
+`,e.jsx(i,{of:j}),`
+`,e.jsx(n.h3,{id:"-8",children:e.jsx(c,{k:"doc_checkbox_state_indeterminate"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc_checkbox_state_indeterminate_desc"})}),`
+`,e.jsx(i,{of:k}),`
+`,e.jsx(n.h3,{id:"-9",children:e.jsx(c,{k:"doc_disabled"})}),`
+`,e.jsx(i,{of:a}),`
+`,e.jsx(i,{of:b}),`
+`,e.jsx(n.h2,{id:"-10",children:e.jsx(c,{k:"doc_motion_spec_title"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc_checkbox_motion_check"})}),`
+`,e.jsx(n.h2,{id:"-11",children:e.jsx(c,{k:"doc_accessibility_spec_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(c,{k:"doc_checkbox_a11y_keyboard"})}),e.jsx("li",{children:e.jsx(c,{k:"doc_checkbox_a11y_label"})})]}),`
+`,e.jsx(n.h2,{id:"-12",children:e.jsx(c,{k:"doc_real_world_scenarios_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(c,{k:"doc_checkbox_scenario_agreement"})}),e.jsx("li",{children:e.jsx(c,{k:"doc_checkbox_scenario_filter"})})]}),`
+`,e.jsx(_,{})]})}function R(s={}){const{wrapper:n}={...d(),...s.components};return n?e.jsx(n,{...s,children:e.jsx(o,{...s})}):o(s)}export{R as default};
