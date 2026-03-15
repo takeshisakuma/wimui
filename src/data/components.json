@@ -192,6 +192,12 @@
         "descKey": "doc_mentions_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "RichTextEditor",
+        "descKey": "doc_richTextEditor_desc",
+        "pc": true,
+        "mobile": false
       }
     ]
   },

@@ -1,0 +1,136 @@
+import {
+  Meta,
+  Title,
+  Primary,
+  Controls,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as RichTextEditorStories from "./RichTextEditor.stories";
+import { T } from "../T";
+
+<Meta of={RichTextEditorStories} />
+
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_richTextEditor_title" />
+</p>
+
+<p><T k="doc_richTextEditor_long_desc" /></p>
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_richTextEditor_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_richTextEditor_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th><T k="doc_button_case" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>RichTextEditor</b></td>
+      <td><T k="doc_richTextEditor_choice_rte_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Textarea</b></td>
+      <td><T k="doc_richTextEditor_choice_textarea_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Markdown</b></td>
+      <td><T k="doc_richTextEditor_choice_markdown_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
+<ul>
+  <li><T k="doc_richTextEditor_anatomy_toolbar" /></li>
+  <li><T k="doc_richTextEditor_anatomy_editor" /></li>
+</ul>
+
+<Canvas of={RichTextEditorStories.Basic} />
+
+<Controls of={RichTextEditorStories.Basic} />
+
+## <T k="doc_variations" />
+
+<p><T k="doc_richTextEditor_variant_desc" /></p>
+
+### <T k="doc_ghost" />
+<Canvas of={RichTextEditorStories.Ghost} />
+
+### <T k="doc_full_width" />
+<Canvas of={RichTextEditorStories.FullWidth} />
+
+## Toolbar
+
+<p><T k="doc_richTextEditor_toolbar_desc" /></p>
+
+<Canvas of={RichTextEditorStories.MinimalToolbar} />
+
+## Controlled
+
+<Canvas of={RichTextEditorStories.Controlled} />
+
+## <T k="doc_states" />
+
+### <T k="doc_status_error" />
+<Canvas of={RichTextEditorStories.ErrorStatus} />
+
+### <T k="doc_status_disabled" />
+<Canvas of={RichTextEditorStories.Disabled} />
+
+## <T k="doc_guidelines_title" />
+
+### <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_richTextEditor_content_output" /></li>
+  <li><T k="doc_richTextEditor_content_placeholder" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_richTextEditor_motion_toolbar" /></p>
+
+## <T k="doc_accessibility_spec_title" />
+<p><T k="doc_richTextEditor_a11y_desc" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li><T k="doc_richTextEditor_scenario_article" /></li>
+  <li><T k="doc_richTextEditor_scenario_comment" /></li>
+  <li><T k="doc_richTextEditor_scenario_email" /></li>
+</ul>
+
+## <T k="doc_basic_usage" />
+
+```tsx
+import { RichTextEditor } from "@/components/RichTextEditor/RichTextEditor";
+
+// Uncontrolled
+<RichTextEditor
+  label="Content"
+  placeholder="Write something..."
+  defaultValue="<p>Hello world</p>"
+  onChange={(html) => console.log(html)}
+/>;
+
+// Controlled
+const [value, setValue] = useState("");
+<RichTextEditor value={value} onChange={setValue} />;
+
+// Custom toolbar
+<RichTextEditor
+  toolbar={["bold", "italic", "underline", "separator", "link"]}
+/>;
+```

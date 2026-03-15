@@ -102,6 +102,7 @@ export * from "./components/QRCode/QRCode";
 export * from "./components/Quote/Quote";
 export * from "./components/Radio/Radio";
 export * from "./components/RadioGroup/RadioGroup";
+export * from "./components/RichTextEditor/RichTextEditor";
 export * from "./components/RangeSlider/RangeSlider";
 export * from "./components/Rating/Rating";
 export * from "./components/Result/Result";
