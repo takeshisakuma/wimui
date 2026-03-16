@@ -95,6 +95,7 @@ export * from "./components/OtpInput/OtpInput";
 export * from "./components/Pagination/Pagination";
 export * from "./components/Paragraph/Paragraph";
 export * from "./components/PasswordInput/PasswordInput";
+export * from "./components/PhoneInput/PhoneInput";
 export * from "./components/Popconfirm/Popconfirm";
 export * from "./components/Popover/Popover";
 export * from "./components/Portal/Portal";

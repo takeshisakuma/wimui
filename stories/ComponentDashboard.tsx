@@ -31,10 +31,31 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
     };
   });
 
+  const totalComponents = data.reduce((acc, cat) => acc + cat.components.length, 0);
+
   return (
     <div className="component-dashboard">
       <h1><T k="dashboard_title" /></h1>
       <p style={{ marginBottom: '16px' }}><T k="dashboard_intro" /></p>
+      
+      <div style={{ 
+        marginBottom: '32px', 
+        padding: '16px 24px', 
+        background: 'var(--bg-component)', 
+        borderRadius: '12px', 
+        border: '1px solid var(--wim-color-border)', 
+        display: 'inline-flex',
+        flexDirection: 'column',
+        gap: '4px',
+        minWidth: '200px'
+      }}>
+        <span style={{ fontSize: '14px', color: 'gray' }}>
+          <T k="dashboard_total_components" />
+        </span>
+        <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--wim-color-primary)' }}>
+          {totalComponents}
+        </div>
+      </div>
       
       <p style={{ marginBottom: '32px', padding: '12px', background: 'var(--bg-component)', borderRadius: '8px', border: '1px solid var(--wim-color-border)' }}>
         <T k="dashboard_tokens_link" />

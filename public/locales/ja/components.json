@@ -31,6 +31,7 @@
   "dashboard_overall_progress": "全体の進捗",
   "dashboard_progress": "全体の進捗状況",
   "dashboard_title": "コンポーネント開発ダッシュボード",
+  "dashboard_total_components": "合計コンポーネント数",
   "datacontainer_accordion_desc": "表示スペースを節約しつつ、詳細を段階的に開示する。",
   "datacontainer_accordion_format": "開閉式パネル",
   "datacontainer_box_desc": "画像、タイトル、説明文、ボタンをひとつにまとめる。",
@@ -339,5 +340,11 @@
   "unit_fixed_title": "グラフィックの正確性（px）",
   "unit_fixed_desc": "1px の境界線や小さな角丸など、スケーリングの影響を受けてぼやけたり比率が崩れたりしてはならない要素には `px` を使用します。",
   "unit_responsive_title": "比率の維持（%, vh, vw）",
-  "unit_responsive_desc": "レイアウトの骨組みには相対単位を使用し、デバイスサイズに応じた柔軟な変化を許容します。"
+  "unit_responsive_desc": "レイアウトの骨組みには相対単位を使用し、デバイスサイズに応じた柔軟な変化を許容します。",
+  "doc_base_list_desc": "Menu, Selectbox, TreeView などで使用されるリスト形式のアイテムのレイアウトとインタラクション状態を標準化します。",
+  "doc_field_template_desc": "すべてのフォーム系コンポーネントに対して、ラベルの配置、必須マーク、エラーメッセージの表示を標準化します。",
+  "doc_indicator_base_desc": "ステータスドットやバッジの視覚スタイルとアニメーションを標準化します。",
+  "doc_input_base_desc": "テキストベースの入力欄に対して、視覚的な外殻、アイコンスロット（Prefix/Suffix）、クリアボタンの振る舞いを標準化します。",
+  "doc_overlay_base_desc": "Dialog, Drawer, BottomSheet に対して、ポータルによるレンダリング、バックドロップ、フォーカス管理を標準化します。",
+  "doc_status_content_desc": "リザルトや空状態のレイアウト（アイコン、タイトル、説明文）を標準化します。"
 }

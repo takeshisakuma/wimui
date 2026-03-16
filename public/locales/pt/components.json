@@ -31,6 +31,7 @@
   "dashboard_overall_progress": "Progresso Geral",
   "dashboard_progress": "Progresso Geral do Desenvolvimento",
   "dashboard_title": "Painel de Desenvolvimento de Componentes",
+  "dashboard_total_components": "Total de Componentes",
   "datacontainer_accordion_desc": "Economiza espaço enquanto divulga detalhes progressivamente.",
   "datacontainer_accordion_format": "Painel Acordeão",
   "datacontainer_box_desc": "Agrupa imagem, título, descrição e botão.",
@@ -339,5 +340,11 @@
   "unit_fixed_title": "Precisão Gráfica (px)",
   "unit_fixed_desc": "Use `px` para elementos que não devem borrar ou perder suas proporções devido ao dimensionamento, como bordas de 1px.",
   "unit_responsive_title": "Manutenção de Proporção (%, vh, vw)",
-  "unit_responsive_desc": "Use unidades relativas para a estrutura do layout para permitir mudanças flexíveis de acordo com o tamanho do dispositivo."
+  "unit_responsive_desc": "Use unidades relativas para a estrutura do layout para permitir mudanças flexíveis de acordo com o tamanho do dispositivo.",
+  "doc_base_list_desc": "Padroniza o layout e os estados de interação para itens do tipo lista usados em Menus, Selectboxes e TreeViews.",
+  "doc_field_template_desc": "Padroniza a colocação de rótulos, marcações obrigatórias e exibição de mensagens de erro para todos os componentes relacionados a formulários.",
+  "doc_indicator_base_desc": "Padroniza o estilo visual e a animação para pontos de status e emblemas.",
+  "doc_input_base_desc": "Padroniza o contêiner visual, os slots de ícone (Prefixo/Sufixo) e o comportamento do botão de limpeza para entradas baseadas em texto.",
+  "doc_overlay_base_desc": "Padroniza a renderização baseada em portal, o plano de fundo e o gerenciamento de foco para Diálogos, Gavetas e BottomSheets.",
+  "doc_status_content_desc": "Padroniza o layout para resultados e estados vazios, incluindo ícone, título e descrição."
 }

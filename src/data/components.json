@@ -158,6 +158,12 @@
         "mobile": true
       },
       {
+        "name": "PhoneInput",
+        "descKey": "doc_phoneinput_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
         "name": "SearchInput",
         "descKey": "doc_searchInput_desc",
         "pc": true,
@@ -987,8 +993,51 @@
   {
     "id": "internal",
     "nameKey": "cat_internal",
-    "guideUrl": null,
-    "components": []
+    "guideUrl": "./?path=/docs/architecture-internal-core-components--docs",
+    "components": [
+      {
+        "name": "BaseListItem",
+        "descKey": "doc_base_list_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "FieldTemplate",
+        "descKey": "doc_field_template_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "IndicatorBase",
+        "descKey": "doc_indicator_base_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "InputBase",
+        "descKey": "doc_input_base_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "InteractiveArea",
+        "descKey": "doc_interactiveArea_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "OverlayBase",
+        "descKey": "doc_overlay_base_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "StatusContent",
+        "descKey": "doc_status_content_desc",
+        "pc": true,
+        "mobile": true
+      }
+    ]
   },
   {
     "id": "visualization",
