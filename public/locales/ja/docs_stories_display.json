@@ -164,5 +164,7 @@
   "story_watermark_desc": "このコンテンツはウォーターマークで保護されています。コピーや転載を制限したい場合に有効です。",
   "story_watermark_team": "Wim UI チーム",
   "story_watermark_text": "wimui ウォーターマーク",
-  "story_watermark_wimui": "wimui"
+  "story_watermark_wimui": "wimui",
+  "story_virtuallist_item_label": "アイテム {{id}}",
+  "story_virtuallist_item_sublabel": "このアイテムのサブ情報"
 }

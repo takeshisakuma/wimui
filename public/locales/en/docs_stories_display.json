@@ -164,5 +164,7 @@
   "story_watermark_desc": "This content is protected by a watermark. Effective when you want to restrict copying or reprinting.",
   "story_watermark_team": "Wim UI Team",
   "story_watermark_text": "wimui watermark",
-  "story_watermark_wimui": "wimui"
+  "story_watermark_wimui": "wimui",
+  "story_virtuallist_item_label": "Item {{id}}",
+  "story_virtuallist_item_sublabel": "Secondary information for this item"
 }

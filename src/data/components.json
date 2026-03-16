@@ -370,6 +370,12 @@
         "descKey": "doc_chatUI_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "VirtualList",
+        "descKey": "doc_virtuallist_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

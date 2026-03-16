@@ -164,5 +164,7 @@
   "story_watermark_desc": "Este conteúdo está protegido por uma marca d'água. Eficaz quando você deseja restringir a cópia ou a republicação.",
   "story_watermark_team": "Wim UI Team",
   "story_watermark_text": "wimui watermark",
-  "story_watermark_wimui": "wimui"
+  "story_watermark_wimui": "wimui",
+  "story_virtuallist_item_label": "Item {{id}}",
+  "story_virtuallist_item_sublabel": "Informações secundárias deste item"
 }

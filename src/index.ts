@@ -142,6 +142,7 @@ export * from "./components/Transition/Transition";
 export * from "./components/TreeSelect/TreeSelect";
 export * from "./components/TreeView/TreeView";
 export * from "./components/Video/Video";
+export * from "./components/VirtualList/VirtualList";
 export * from "./components/VisuallyHidden/VisuallyHidden";
 export * from "./components/Watermark/Watermark";
 export * from "./components/Charts/AreaChart";

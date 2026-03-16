@@ -1,0 +1,137 @@
+import {
+  Meta,
+  Title,
+  Description,
+  Controls,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as VirtualListStories from "./VirtualList.stories";
+import { T } from "../T";
+
+<Meta of={VirtualListStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_virtuallist_long_desc" />
+</p>
+
+<Description />
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_virtuallist_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_virtuallist_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>VirtualList</b></td>
+      <td><T k="doc_virtuallist_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>InfiniteScroll</b></td>
+      <td><T k="doc_virtuallist_choice_alt_infinite_when" /></td>
+    </tr>
+    <tr>
+      <td><b>List</b></td>
+      <td><T k="doc_virtuallist_choice_alt_list_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Table</b></td>
+      <td><T k="doc_virtuallist_choice_alt_table_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Root</b></td>
+      <td><T k="doc_virtuallist_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b>Inner</b></td>
+      <td><T k="doc_virtuallist_anatomy_inner" /></td>
+    </tr>
+    <tr>
+      <td><b>Item</b></td>
+      <td><T k="doc_virtuallist_anatomy_item" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_virtuallist_content_guideline_1" /></li>
+  <li><T k="doc_virtuallist_content_guideline_2" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_virtuallist_motion_desc" /></p>
+
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_virtuallist_a11y_desc" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_usage_scenario" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc_scenario_dashboard_title" /></b></td>
+      <td><T k="doc_virtuallist_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc_scenario_article_title" /></b></td>
+      <td><T k="doc_virtuallist_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_best_practices_title" />
+<ul>
+  <li><T k="doc_virtuallist_best_practice_1" /></li>
+  <li><T k="doc_virtuallist_best_practice_2" /></li>
+  <li><T k="doc_virtuallist_best_practice_3" /></li>
+  <li><T k="doc_virtuallist_best_practice_4" /></li>
+</ul>
+
+<Canvas of={VirtualListStories.Default} />
+
+<h3><T k="doc_virtuallist_large_dataset" /></h3>
+<p><T k="doc_virtuallist_large_dataset_desc" /></p>
+<Canvas of={VirtualListStories.LargeDataset} />
+
+<h3><T k="doc_virtuallist_custom_height" /></h3>
+<p><T k="doc_virtuallist_custom_height_desc" /></p>
+<Canvas of={VirtualListStories.WithCustomItemHeight} />
+
+<h3><T k="doc_virtuallist_overscan" /></h3>
+<p><T k="doc_virtuallist_overscan_desc" /></p>
+<Canvas of={VirtualListStories.WithOverscan} />
+
+<Controls />
