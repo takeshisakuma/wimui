@@ -166,5 +166,16 @@
   "story_watermark_text": "wimui watermark",
   "story_watermark_wimui": "wimui",
   "story_virtuallist_item_label": "Item {{id}}",
-  "story_virtuallist_item_sublabel": "Informações secundárias deste item"
+  "story_virtuallist_item_sublabel": "Informações secundárias deste item",
+  "story_kanban_col_todo": "A Fazer",
+  "story_kanban_col_in_progress": "Em Progresso",
+  "story_kanban_col_review": "Revisão",
+  "story_kanban_col_done": "Concluído",
+  "story_kanban_card_design": "Design de UI",
+  "story_kanban_card_research": "Pesquisa de Usuário",
+  "story_kanban_card_develop": "Implementar API",
+  "story_kanban_card_review": "Code Review",
+  "story_kanban_card_deploy": "Deploy para Staging",
+  "story_kanban_card_done1": "Documentação",
+  "story_kanban_card_locked": "Cartão Bloqueado (desabilitado)"
 }

@@ -1,0 +1,158 @@
+.wim-kanban {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+  width: 100%;
+  overflow-x: auto;
+
+  &__column {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    width: 280px;
+    min-height: 200px;
+    background: var(--wim-color-bg-subtle, #f3f4f6);
+    border-radius: 8px;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+
+    &--drag-over {
+      background: var(--wim-color-bg-hover, #e5e7eb);
+      box-shadow: inset 0 0 0 2px var(--wim-color-primary, #3b82f6);
+    }
+  }
+
+  &__column-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--wim-color-border, #e5e7eb);
+  }
+
+  &__column-title {
+    font-size: var(--font-size-medium);
+    font-weight: 600;
+    color: var(--wim-color-text, #111827);
+  }
+
+  &__column-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0 0.375rem;
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    color: var(--wim-color-text-muted, #6b7280);
+    background: var(--wim-color-bg-muted, #d1d5db);
+    border-radius: 999px;
+  }
+
+  &__column-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  &__card {
+    position: relative;
+    box-sizing: border-box;
+    cursor: grab;
+    background: #fff;
+    border: 1px solid var(--wim-color-border, #e5e7eb);
+    border-radius: 6px;
+    transition: opacity 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover:not(&--disabled) {
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+    }
+
+    &--dragging {
+      cursor: grabbing;
+      opacity: 0.4;
+    }
+
+    &--disabled {
+      cursor: default;
+      opacity: 0.6;
+    }
+  }
+
+  &__card-content {
+    padding: 0.75rem;
+  }
+
+  // タッチデバイス向け移動ボタン
+  &__card-move {
+    position: relative;
+    display: none;
+    border-top: 1px solid var(--wim-color-border, #e5e7eb);
+
+    // PCでは非表示、タッチデバイスのみ表示
+    @media (hover: none) and (pointer: coarse) {
+      display: block;
+    }
+
+    // forceMobileUI={true} のとき強制表示（Storybookプレビュー用）
+    .wim-kanban--touch & {
+      display: block;
+    }
+  }
+
+  &__card-move-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.375rem;
+    font-size: var(--font-size-medium);
+    color: var(--wim-color-text-muted, #6b7280);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 0 0 6px 6px;
+
+    &:active {
+      background: var(--wim-color-bg-hover, #e5e7eb);
+    }
+  }
+
+  &__card-move-menu {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 4px);
+    left: 0;
+    z-index: 10;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--wim-color-border, #e5e7eb);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.12);
+  }
+
+  &__card-move-option {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    font-size: var(--font-size-small);
+    color: var(--wim-color-text, #111827);
+    text-align: left;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--wim-color-border, #e5e7eb);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:active {
+      background: var(--wim-color-bg-hover, #e5e7eb);
+    }
+  }
+}

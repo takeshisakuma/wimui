@@ -58,6 +58,7 @@ export * from "./components/FloatButton/FloatButton";
 export * from "./components/FocusTrap/FocusTrap";
 export * from "./components/Footer/Footer";
 export * from "./components/Grid/Grid";
+export * from "./components/Kanban/Kanban";
 export * from "./components/Group/Group";
 export * from "./components/HamburgerMenu/HamburgerMenu";
 export * from "./components/Header/Header";

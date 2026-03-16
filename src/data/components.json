@@ -376,6 +376,12 @@
         "descKey": "doc_virtuallist_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Kanban",
+        "descKey": "doc_kanban_desc",
+        "pc": true,
+        "mobile": false
       }
     ]
   },

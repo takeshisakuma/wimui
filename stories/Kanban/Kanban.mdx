@@ -1,0 +1,121 @@
+import {
+  Meta,
+  Title,
+  Controls,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as KanbanStories from "./Kanban.stories";
+import { T } from "../T";
+
+<Meta of={KanbanStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_kanban_long_desc" />
+</p>
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_kanban_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_kanban_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Kanban</b></td>
+      <td><T k="doc_kanban_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Table</b></td>
+      <td><T k="doc_kanban_choice_alt_table_when" /></td>
+    </tr>
+    <tr>
+      <td><b>List</b></td>
+      <td><T k="doc_kanban_choice_alt_list_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>KanbanBoard</b></td>
+      <td><T k="doc_kanban_anatomy_board" /></td>
+    </tr>
+    <tr>
+      <td><b>KanbanBoard.Column</b></td>
+      <td><T k="doc_kanban_anatomy_column" /></td>
+    </tr>
+    <tr>
+      <td><b>KanbanBoard.Card</b></td>
+      <td><T k="doc_kanban_anatomy_card" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_kanban_content_guideline_1" /></li>
+  <li><T k="doc_kanban_content_guideline_2" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_kanban_motion_desc" /></p>
+
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_kanban_a11y_desc" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_usage_scenario" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc_kanban_scenario_project_title" /></b></td>
+      <td><T k="doc_kanban_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc_kanban_scenario_support_title" /></b></td>
+      <td><T k="doc_kanban_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_best_practices_title" />
+<ul>
+  <li><T k="doc_kanban_best_practice_1" /></li>
+  <li><T k="doc_kanban_best_practice_2" /></li>
+  <li><T k="doc_kanban_best_practice_3" /></li>
+</ul>
+
+<Canvas of={KanbanStories.Default} />
+
+<h3><T k="doc_kanban_disabled_card" /></h3>
+<p><T k="doc_kanban_disabled_card_desc" /></p>
+<Canvas of={KanbanStories.WithDisabledCard} />
+
+<Controls />
