@@ -31,6 +31,7 @@
   "dashboard_overall_progress": "Overall Progress",
   "dashboard_progress": "Overall Development Progress",
   "dashboard_title": "Component Development Dashboard",
+  "dashboard_total_components": "Total Components",
   "datacontainer_accordion_desc": "Saves space while disclosing details progressively.",
   "datacontainer_accordion_format": "Accordion Panel",
   "datacontainer_box_desc": "Groups image, title, description, and button together.",
@@ -339,5 +340,13 @@
   "unit_fixed_title": "Graphic Accuracy (px)",
   "unit_fixed_desc": "Use `px` for elements that should not blur or lose their proportions due to scaling, such as 1px borders or small corner radii.",
   "unit_responsive_title": "Ratio Maintenance (%, vh, vw)",
-  "unit_responsive_desc": "Use relative units for the layout framework to allow flexible changes according to device size."
+  "unit_responsive_desc": "Use relative units for the layout framework to allow flexible changes according to device size.",
+  "doc_base_list_desc": "Standardizes the layout and interaction states for list-like items used in Menus, Selectboxes, and TreeViews.",
+  "doc_field_template_desc": "Standardizes label placement, required markings, and error message display for all form-related components.",
+  "doc_indicator_base_desc": "Standardizes the visual style and animation for status dots and badges.",
+  "doc_input_base_desc": "Standardizes the visual container, icon slots (Prefix/Suffix), and clear button behavior for text-based inputs.",
+  "doc_overlay_base_desc": "Standardizes the portal-based rendering, backdrop, and focus management for Dialogs, Drawers, and BottomSheets.",
+  "doc_status_content_desc": "Standardizes the layout for results and empty states, including icon, title, and description.",
+  "doc_visual_guideline_title": "Visual Guidance",
+  "doc_ganttchart_visual_guideline_progress": "Progress (completed portion) is clearly distinguished from the incomplete part by overlaying semi-transparent black on the base color and adding a subtle separator to enhance contrast."
 }

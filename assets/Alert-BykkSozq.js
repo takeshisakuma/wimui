@@ -1,0 +1,44 @@
+import{j as s}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as c}from"./index-C2SHUO_A.js";import{M as d,T as o,P as l,a as x,C as r,S as _}from"./blocks-s5ForvvM.js";import{A as j,S as h,W as a,E as m,a as k,b as p}from"./Alert.stories-tQM8jsGm.js";import{T as e}from"./T-QPAjEbnX.js";import"./iframe-DqYBP9z6.js";import"./preload-helper-PPVm8Dsz.js";import"./index-DPA5NbhZ.js";import"./index-B1XFWKzi.js";import"./index-CP7gMDpa.js";import"./index-CkpP_Uyt.js";import"./Alert-DgppJBwD.js";import"./index-DTc8ljRI.js";import"./FeedbackIcon-CfPYIHwq.js";import"./Icon-D0d7jZEz.js";import"./FeedbackCloseButton-0En-9fQ-.js";import"./useTranslation-BBRUnBtc.js";import"./i18nConstants-BpHxieg5.js";function t(i){const n={h2:"h2",h3:"h3",...c(),...i.components};return s.jsxs(s.Fragment,{children:[s.jsx(d,{of:j}),`
+`,s.jsx(o,{}),`
+`,s.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:s.jsx(e,{k:"doc_alert_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_long_desc"})}),`
+`,s.jsx(l,{}),`
+`,s.jsx(x,{}),`
+`,s.jsx(n.h2,{id:"",children:s.jsx(e,{k:"doc_design_intent_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_design_intent"})}),`
+`,s.jsx(n.h2,{id:"-1",children:s.jsx(e,{k:"doc_choice_matrix_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_choice_matrix_desc"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(e,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(e,{k:"doc_usage_scenario"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Alert"})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_choice_alert_when"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Toast"})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_choice_toast_when"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Banner"})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_choice_banner_when"})})]})]})]}),`
+`,s.jsx(n.h2,{id:"-2",children:s.jsx(e,{k:"doc_anatomy_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(e,{k:"doc_alert_anatomy_icon"})}),s.jsx("li",{children:s.jsx(e,{k:"doc_alert_anatomy_title"})}),s.jsx("li",{children:s.jsx(e,{k:"doc_alert_anatomy_message"})}),s.jsx("li",{children:s.jsx(e,{k:"doc_alert_anatomy_close"})})]}),`
+`,s.jsx(n.h2,{id:"-3",children:s.jsx(e,{k:"doc_content_guidelines_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(e,{k:"doc_alert_content_tone"})})}),`
+`,s.jsx(n.h2,{id:"-4",children:s.jsx(e,{k:"doc_motion_spec_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(e,{k:"doc_alert_motion_fade"})})}),`
+`,s.jsx(n.h2,{id:"-5",children:s.jsx(e,{k:"doc_a11y_spec_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(e,{k:"doc_alert_a11y_role"})})}),`
+`,s.jsx(n.h2,{id:"-6",children:s.jsx(e,{k:"doc_real_world_scenarios_title"})}),`
+`,s.jsx(n.h3,{id:"-7",children:s.jsx(e,{k:"doc_scenario_form_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_scenario_form"})}),`
+`,s.jsx(n.h3,{id:"-8",children:s.jsx(e,{k:"doc_scenario_warning_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_scenario_delete"})}),`
+`,s.jsx(n.h2,{id:"-9",children:s.jsx(e,{k:"doc_best_practices_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(e,{k:"doc_alert_best_practice_1"})}),s.jsx("li",{children:s.jsx(e,{k:"doc_alert_best_practice_2"})})]}),`
+`,s.jsx(n.h2,{id:"-10",children:s.jsx(e,{k:"doc_variations"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_variants_desc"})}),`
+`,s.jsx(n.h3,{id:"-11",children:s.jsx(e,{k:"doc_success"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_success_desc"})}),`
+`,s.jsx(r,{of:h}),`
+`,s.jsx(n.h3,{id:"-12",children:s.jsx(e,{k:"doc_warning"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_warning_desc"})}),`
+`,s.jsx(r,{of:a}),`
+`,s.jsx(n.h3,{id:"-13",children:s.jsx(e,{k:"doc_error"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_error_desc"})}),`
+`,s.jsx(r,{of:m}),`
+`,s.jsx(n.h3,{id:"-14",children:s.jsx(e,{k:"doc_alert_no_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_no_title_desc"})}),`
+`,s.jsx(r,{of:k}),`
+`,s.jsx(n.h3,{id:"-15",children:s.jsx(e,{k:"doc_alert_close_button"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_close_button_desc"})}),`
+`,s.jsx(r,{of:p}),`
+`,s.jsx(_,{})]})}function z(i={}){const{wrapper:n}={...c(),...i.components};return n?s.jsx(n,{...i,children:s.jsx(t,{...i})}):t(i)}export{z as default};
