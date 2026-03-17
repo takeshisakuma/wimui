@@ -509,6 +509,7 @@
   "perf_tips_title": "パフォーマンス・チップス",
   "perf_animation_title": "⚡ アニメーションの最適化 (`will-change`)",
   "perf_animation_desc": "継続的または複雑なアニメーションを伴うコンポーネントでは、`will-change` CSS プロパティを使用してブラウザに最適化を促します。",
+  "perf_animation_used_in": "使用箇所",
   "perf_animation_micro_interactions": "マイクロインタラクション",
   "perf_animation_micro_interactions_desc": "スイッチの切り替えやアコーディオンの展開など、細かな操作に適用し、即時的な手触り感を実現します。",
   "perf_animation_note": "注意点",
@@ -580,5 +581,17 @@
   "doc_scenario_user_title": "ユーザー一覧・管理",
   "doc_scenario_warning_title": "警告・注意",
   "doc_component": "コンポーネント",
-  "doc_usage_scenario": "利用シーン / 使い分け"
+  "doc_usage_scenario": "利用シーン / 使い分け",
+  "doc_motion_title": "動き (Motion)",
+  "doc_a11y_title": "アクセシビリティ (Accessibility)",
+  "doc_usage_scenarios_title": "利用シーン (Usage Scenarios)",
+  "doc_variant": "バリエーション (Variant)",
+  "doc_state": "状態 (State)",
+  "doc_design_tokens_title": "デザイン・トークン",
+  "doc_token": "トークン",
+  "doc_responsive_title": "レスポンシブ対応",
+  "doc_keyboard_nav_title": "キーボードナビゲーション",
+  "doc_i18n_title": "国際化 (i18n)",
+  "doc_test_title": "テスト",
+  "doc_visual_guideline_title": "ビジュアル・ガイドライン"
 }
