@@ -346,5 +346,7 @@
   "doc_indicator_base_desc": "ステータスドットやバッジの視覚スタイルとアニメーションを標準化します。",
   "doc_input_base_desc": "テキストベースの入力欄に対して、視覚的な外殻、アイコンスロット（Prefix/Suffix）、クリアボタンの振る舞いを標準化します。",
   "doc_overlay_base_desc": "Dialog, Drawer, BottomSheet に対して、ポータルによるレンダリング、バックドロップ、フォーカス管理を標準化します。",
-  "doc_status_content_desc": "リザルトや空状態のレイアウト（アイコン、タイトル、説明文）を標準化します。"
-}
+  "doc_status_content_desc": "リザルトや空状態のレイアウト（アイコン、タイトル、説明文）を標準化します。",
+  "doc_visual_guideline_title": "視覚的ガイドライン",
+  "doc_ganttchart_visual_guideline_progress": "進捗（完了部分）は、タスクバーのベースカラーの上に半透明の黒を重ね、境界線を引くことでコントラストを強調し、未完了部分と明確に区別されます。"
+}

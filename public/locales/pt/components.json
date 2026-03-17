@@ -346,5 +346,7 @@
   "doc_indicator_base_desc": "Padroniza o estilo visual e a animação para pontos de status e emblemas.",
   "doc_input_base_desc": "Padroniza o contêiner visual, os slots de ícone (Prefixo/Sufixo) e o comportamento do botão de limpeza para entradas baseadas em texto.",
   "doc_overlay_base_desc": "Padroniza a renderização baseada em portal, o plano de fundo e o gerenciamento de foco para Diálogos, Gavetas e BottomSheets.",
-  "doc_status_content_desc": "Padroniza o layout para resultados e estados vazios, incluindo ícone, título e descrição."
-}
+  "doc_status_content_desc": "Padroniza o layout para resultados e estados vazios, incluindo ícone, título e descrição.",
+  "doc_visual_guideline_title": "Diretrizes Visuais",
+  "doc_ganttchart_visual_guideline_progress": "O progresso (parte concluída) é claramente distinguido da parte incompleta através da sobreposição de preto semitransparente na cor de base e da adição de um separador sutil para aumentar o contraste."
+}
