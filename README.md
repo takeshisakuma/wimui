@@ -131,4 +131,4 @@ git commit -m "commit message" --no-verify
 
 ## コーディングルール
 
-- CSSクラス名：kebab-case
+- CSSクラス名：`wim-` プレフィックスを付けたkebab-case（例: `wim-button`, `wim-button--primary`）
