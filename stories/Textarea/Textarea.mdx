@@ -52,10 +52,24 @@ import { T } from "../T";
 </table>
 
 ## <T k="doc_anatomy_title" />
-<ul>
-  <li><T k="doc_textarea_anatomy_field" /></li>
-  <li><T k="doc_textarea_anatomy_resize" /></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc_textarea_anatomy_field_label" /></b></td>
+      <td><T k="doc_textarea_anatomy_field" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc_textarea_anatomy_resize_label" /></b></td>
+      <td><T k="doc_textarea_anatomy_resize" /></td>
+    </tr>
+  </tbody>
+</table>
 
 <Canvas of={TextareaStories.Basic} />
 

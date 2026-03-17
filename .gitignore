@@ -157,3 +157,7 @@ test-results/
 .claude/
 missing_en_*.json
 missing_en_*.txt
+
+# Temporary work scripts and files
+tmp/
+scripts/tmp_*.cjs

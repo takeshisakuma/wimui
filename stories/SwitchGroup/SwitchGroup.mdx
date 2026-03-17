@@ -31,10 +31,24 @@ import { T } from "../T";
 <p><T k="doc_switchgroup_design_intent" /></p>
 
 ## <T k="doc_anatomy_title" />
-<ul>
-  <li><T k="doc_switchgroup_anatomy_label" /></li>
-  <li><T k="doc_switchgroup_anatomy_items" /></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc_switchgroup_anatomy_label_label" /></b></td>
+      <td><T k="doc_switchgroup_anatomy_label" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc_switchgroup_anatomy_items_label" /></b></td>
+      <td><T k="doc_switchgroup_anatomy_items" /></td>
+    </tr>
+  </tbody>
+</table>
 
 <Canvas of={SwitchGroupStories.Default} />
 

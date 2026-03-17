@@ -509,6 +509,7 @@
   "perf_tips_title": "Dicas de Performance",
   "perf_animation_title": "⚡ Otimização de Animação (`will-change`)",
   "perf_animation_desc": "Para componentes que envolvem animações contínuas ou complexas, usamos a propriedade CSS `will-change` para dar uma dica ao navegador para otimização.",
+  "perf_animation_used_in": "Usado em",
   "perf_animation_micro_interactions": "Micro-interações",
   "perf_animation_micro_interactions_desc": "Aplicado a interações pequenas, mas frequentes, como alternâncias de `Switch` e expansões de `Accordion` para garantir feedback sem atraso.",
   "perf_animation_note": "Nota",
@@ -580,5 +581,17 @@
   "doc_scenario_user_title": "Lista de Usuários / Gerenciamento",
   "doc_scenario_warning_title": "Aviso / Cuidado",
   "doc_component": "Componente",
-  "doc_usage_scenario": "Cenário de Uso / Escolha"
+  "doc_usage_scenario": "Cenário de Uso / Escolha",
+  "doc_motion_title": "Movimento",
+  "doc_a11y_title": "Acessibilidade",
+  "doc_usage_scenarios_title": "Cenários de Uso",
+  "doc_variant": "Variante",
+  "doc_state": "Estado",
+  "doc_design_tokens_title": "Tokens de Design",
+  "doc_token": "Token",
+  "doc_responsive_title": "Design Responsivo",
+  "doc_keyboard_nav_title": "Navegação por Teclado",
+  "doc_i18n_title": "Internacionalização (i18n)",
+  "doc_test_title": "Testes",
+  "doc_visual_guideline_title": "Diretrizes Visuais"
 }

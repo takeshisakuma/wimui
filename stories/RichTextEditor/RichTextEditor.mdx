@@ -54,10 +54,24 @@ import { T } from "../T";
 </table>
 
 ## <T k="doc_anatomy_title" />
-<ul>
-  <li><T k="doc_richTextEditor_anatomy_toolbar" /></li>
-  <li><T k="doc_richTextEditor_anatomy_editor" /></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc_richTextEditor_anatomy_toolbar_label" /></b></td>
+      <td><T k="doc_richTextEditor_anatomy_toolbar" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc_richTextEditor_anatomy_editor_label" /></b></td>
+      <td><T k="doc_richTextEditor_anatomy_editor" /></td>
+    </tr>
+  </tbody>
+</table>
 
 <Canvas of={RichTextEditorStories.Basic} />
 

@@ -388,6 +388,12 @@
         "descKey": "doc_kanban_desc",
         "pc": true,
         "mobile": false
+      },
+      {
+        "name": "GanttChart",
+        "descKey": "doc_ganttchart_desc",
+        "pc": true,
+        "mobile": false
       }
     ]
   },

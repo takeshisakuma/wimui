@@ -177,5 +177,10 @@
   "story_kanban_card_review": "Code Review",
   "story_kanban_card_deploy": "Deploy para Staging",
   "story_kanban_card_done1": "Documentação",
-  "story_kanban_card_locked": "Cartão Bloqueado (desabilitado)"
+  "story_kanban_card_locked": "Cartão Bloqueado (desabilitado)",
+  "story_ganttchart_task_requirements": "Análise de Requisitos",
+  "story_ganttchart_task_design": "Fase de Design",
+  "story_ganttchart_task_development": "Desenvolvimento",
+  "story_ganttchart_task_testing": "Teste & QA",
+  "story_ganttchart_task_release": "Lançamento"
 }
