@@ -10,24 +10,21 @@ import fs from "fs";
 import path from "path";
 
 const localesDir = "./public/locales";
-const namespaces = [
-  "common",
-  "components",
-  "docs",
-  "docs_actions",
-  "docs_display",
-  "docs_guides",
-  "docs_inputs",
-  "docs_layout",
-  "docs_navigation",
-  "docs_overlay",
-  "docs_stories",
-];
 
 // Derive available languages from the locales directory
 const langs = fs
   .readdirSync(localesDir)
   .filter((f) => fs.statSync(path.join(localesDir, f)).isDirectory());
+
+// Derive namespaces from all JSON files found across any locale
+const namespacesSet = new Set();
+for (const lang of langs) {
+  const langDir = path.join(localesDir, lang);
+  fs.readdirSync(langDir)
+    .filter((f) => f.endsWith(".json"))
+    .forEach((f) => namespacesSet.add(f.replace(".json", "")));
+}
+const namespaces = [...namespacesSet].sort();
 
 let totalGaps = 0;
 const report = [];
