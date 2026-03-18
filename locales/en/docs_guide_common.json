@@ -593,5 +593,18 @@
   "doc_keyboard_nav_title": "Keyboard Navigation",
   "doc_i18n_title": "Internationalization (i18n)",
   "doc_test_title": "Testing",
-  "doc_visual_guideline_title": "Visual Guidelines"
+  "doc_visual_guideline_title": "Visual Guidelines",
+  "guide_styling_std_title": "Styling & Tokens Standardization",
+  "guide_styling_std_desc": "Guidelines on distinguishing between SCSS variables and CSS custom properties, and rules for token management in wimui.",
+  "guide_styling_std_concept_title": "Core Concept",
+  "guide_styling_std_concept_desc": "Static logic is managed via SCSS, while themes and runtime extensibility are managed via CSS custom properties (Design Tokens).",
+  "guide_styling_std_rules_title": "Usage Rules",
+  "guide_styling_std_rule_scss_title": "SCSS Variable Usage",
+  "guide_styling_std_rule_scss_desc": "Used for defining primitive values, mathematical calculations (Type Scale, spacing multipliers), and static constants used only within the library.",
+  "guide_styling_std_rule_css_title": "CSS Custom Property Usage",
+  "guide_styling_std_rule_css_desc": "All design elements (colors, spacing, fonts, border widths, etc.) must be exported as CSS variables. This enables dark mode support and runtime theme overrides.",
+  "guide_styling_std_rule_component_title": "Component Implementation Principles",
+  "guide_styling_std_rule_component_desc": "Within individual component stylesheets (.scss), use var() whenever possible. Avoid hardcoded values (1px, 2rem, etc.) and reference standardized tokens instead.",
+  "table_header_token_type": "Token Type",
+  "table_header_usage_policy": "Usage Policy"
 }

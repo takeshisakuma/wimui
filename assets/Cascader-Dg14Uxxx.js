@@ -1,0 +1,38 @@
+import{j as s}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as r}from"./index-B4cCaVyf.js";import{M as t,T as o,C as n,P as x,a,S as j}from"./blocks-C_EzlH8l.js";import{C as _,D as l,W as h,H as m,a as p,b as k}from"./Cascader.stories-jpaTtBSk.js";import{T as c}from"./T-P_IL7_sk.js";import"./iframe-KO47qPQt.js";import"./preload-helper-PPVm8Dsz.js";import"./index-DyC8LpoC.js";import"./index-DAYor9N1.js";import"./index-BjVAeFvO.js";import"./index-2ajKnj2-.js";import"./index-DoF0NgAI.js";import"./Transition-DtHCzNDW.js";import"./Icon-C3wtoj5L.js";import"./BaseListItem-HxVN7JRs.js";import"./InputBase-DPdrabE5.js";import"./useTranslation-vvBMO_AT.js";import"./FieldTemplate--r7M2MIs.js";import"./FieldLabelContent-BRSoFMLx.js";import"./Badge-DxLTkGaE.js";import"./IndicatorBase-CT5yj7Y1.js";import"./FieldError-ClKEL-cR.js";import"./Paragraph-DnjEO2Sq.js";import"./i18nConstants-BpHxieg5.js";function i(d){const e={h2:"h2",h3:"h3",...r(),...d.components};return s.jsxs(s.Fragment,{children:[s.jsx(t,{of:_}),`
+`,s.jsx(o,{}),`
+`,s.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:s.jsx(c,{k:"doc_cascader_title"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_cascader_long_desc"})}),`
+`,s.jsx(e.h2,{id:"",children:s.jsx(c,{k:"doc_usage_examples"})}),`
+`,s.jsx(e.h3,{id:"-1",children:s.jsx(c,{k:"doc_basic_usage"})}),`
+`,s.jsx(e.h2,{id:"-2",children:s.jsx(c,{k:"doc_design_intent_title"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_cascader_design_intent"})}),`
+`,s.jsx(e.h2,{id:"-3",children:s.jsx(c,{k:"doc_choice_matrix_title"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_cascader_choice_matrix_desc"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(c,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(c,{k:"doc_usage_scenario"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Cascader"})}),s.jsx("td",{children:s.jsx(c,{k:"doc_cascader_choice_self_when"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"TreeSelect"})}),s.jsx("td",{children:s.jsx(c,{k:"doc_cascader_choice_alt_when"})})]})]})]}),`
+`,s.jsx(e.h2,{id:"-4",children:s.jsx(c,{k:"doc_anatomy_title"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(c,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(c,{k:"doc_description"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(c,{k:"doc_cascader_anatomy_root_label"})})}),s.jsx("td",{children:s.jsx(c,{k:"doc_cascader_anatomy_root"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(c,{k:"doc_cascader_anatomy_content_label"})})}),s.jsx("td",{children:s.jsx(c,{k:"doc_cascader_anatomy_content"})})]})]})]}),`
+`,s.jsx(e.h2,{id:"-5",children:s.jsx(c,{k:"doc_content_guidelines_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(c,{k:"doc_cascader_content_guideline"})})}),`
+`,s.jsx(e.h2,{id:"-6",children:s.jsx(c,{k:"doc_motion_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_cascader_motion_desc"})}),`
+`,s.jsx(e.h2,{id:"-7",children:s.jsx(c,{k:"doc_a11y_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_cascader_a11y_desc"})}),`
+`,s.jsx(e.h2,{id:"-8",children:s.jsx(c,{k:"doc_real_world_scenarios_title"})}),`
+`,s.jsxs("ul",{children:[s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(c,{k:"doc_scenario_form_title"}),":"]}),s.jsx(c,{k:"doc_cascader_scenario_1"})]}),s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(c,{k:"doc_scenario_admin_title"}),":"]}),s.jsx(c,{k:"doc_cascader_scenario_2"})]})]}),`
+`,s.jsx(e.h2,{id:"-9",children:s.jsx(c,{k:"doc_best_practices_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(c,{k:"doc_cascader_best_practice_1"})}),s.jsx("li",{children:s.jsx(c,{k:"doc_cascader_best_practice_2"})})]}),`
+`,s.jsx(n,{of:l}),`
+`,s.jsx(x,{}),`
+`,s.jsx(e.h2,{id:"props",children:"Props"}),`
+`,s.jsx(a,{}),`
+`,s.jsx(e.h2,{id:"-10",children:s.jsx(c,{k:"doc_variations"})}),`
+`,s.jsx(e.h3,{id:"-11",children:s.jsx(c,{k:"doc_cascader_with_label"})}),`
+`,s.jsx(n,{of:h}),`
+`,s.jsx(e.h3,{id:"-12",children:s.jsx(c,{k:"doc_cascader_hover_expand"})}),`
+`,s.jsx("p",{children:s.jsx(c,{k:"doc_cascader_hover_expand_desc"})}),`
+`,s.jsx(n,{of:m}),`
+`,s.jsx(e.h3,{id:"-13",children:s.jsx(c,{k:"status_disabled"})}),`
+`,s.jsx(n,{of:p}),`
+`,s.jsx(e.h3,{id:"-14",children:s.jsx(c,{k:"doc_cascader_custom_separator"})}),`
+`,s.jsx(n,{of:k}),`
+`,s.jsx(j,{})]})}function G(d={}){const{wrapper:e}={...r(),...d.components};return e?s.jsx(e,{...d,children:s.jsx(i,{...d})}):i(d)}export{G as default};

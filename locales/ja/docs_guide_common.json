@@ -593,5 +593,18 @@
   "doc_keyboard_nav_title": "キーボードナビゲーション",
   "doc_i18n_title": "国際化 (i18n)",
   "doc_test_title": "テスト",
-  "doc_visual_guideline_title": "ビジュアル・ガイドライン"
+  "doc_visual_guideline_title": "ビジュアル・ガイドライン",
+  "guide_styling_std_title": "スタイリングとトークンの標準化",
+  "guide_styling_std_desc": "wimuiにおけるSCSS変数とCSSカスタムプロパティの使い分け、およびトークン管理のルールについて説明します。",
+  "guide_styling_std_concept_title": "基本コンセプト",
+  "guide_styling_std_concept_desc": "静的なロジックはSCSSで、テーマや実行時の拡張性はCSSカスタムプロパティ（デザイン・トークン）で管理します。",
+  "guide_styling_std_rules_title": "使用ルール",
+  "guide_styling_std_rule_scss_title": "SCSS変数の使用範囲",
+  "guide_styling_std_rule_scss_desc": "プリミティブ値の定義、数学的な演算（Type Scale, Spacingの倍率計算など）、およびライブラリ内部でのみ完結する静的な定数に使用します。",
+  "guide_styling_std_rule_css_title": "CSSカスタムプロパティの使用範囲",
+  "guide_styling_std_rule_css_desc": "すべてのデザイン要素（色、余白、フォント、境界線の太さ等）はCSS変数としてエクスポートされる必要があります。これにより、ダークモード対応やランタイムでのテーマ上書きが可能になります。",
+  "guide_styling_std_rule_component_title": "コンポーネント実装の原則",
+  "guide_styling_std_rule_component_desc": "個別のコンポーネント用スタイルシート (.scss) 内では、可能な限り var() を使用してください。直接的な数値（1px, 2rem等）の記述は避け、定義済みの標準トークンを参照します。",
+  "table_header_token_type": "トークン種別",
+  "table_header_usage_policy": "利用方針"
 }
