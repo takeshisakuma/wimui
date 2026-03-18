@@ -1,3 +1,0 @@
-Audio\components\AudioCustomControls.tsx
-Video\components\VideoAdvancedMenu.tsx
-Video\components\VideoControls.tsx
