@@ -89,9 +89,7 @@
   background: transparent;
   border: none;
 
-  &:focus-visible {
-    box-shadow: none !important; // Override global focus shadow
-  }
+  // Removed explicit shadow removal to allow global focus indicator
 
   &::placeholder {
     color: var(--text-tertiary);

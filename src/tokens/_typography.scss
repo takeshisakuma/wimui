@@ -1,4 +1,5 @@
 @use "../tokens/spacings" as *;
+@use "../tokens/fonts" as *;
 
 /* --- サイズの意味の定義 --- */
 $size-ex-small: $font-size-minus-2;
@@ -34,6 +35,13 @@ $decoration-underline: underline;
 $decoration-highlight-color: #fff9c4; // Light yellow highlight
 
 :root {
+  /* Font Families */
+  --font-family-default: #{$lang-default};
+  --font-family-ja: #{$lang-ja};
+  --font-family-en: #{$lang-en};
+  --font-family-pt: #{$lang-pt};
+
+  /* Font Sizes */
   --font-size-ex-small: #{$size-ex-small};
   --font-size-small: #{$size-small};
   --font-size-medium: #{$size-medium};

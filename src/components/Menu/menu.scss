@@ -68,7 +68,7 @@
 
   // Common styles are now handled by BaseListItem
 
-  &:focus {
+  &:focus-visible {
     z-index: 1;
     outline: none;
     box-shadow: var(--shadow-focus);
@@ -117,7 +117,7 @@
 
     // Common styles are now handled by BaseListItem
 
-    &:focus {
+    &:focus-visible {
       z-index: 1;
       outline: none;
       box-shadow: var(--shadow-focus);

@@ -8,6 +8,11 @@
   --wim-indicator-line-thickness: 2px;
   --wim-indicator-line-color: var(--wim-color-border-secondary, #e5e7eb);
   --wim-indicator-active-color: var(--color-primary, #006bff);
+
+  /* Standard Component Heights (Standardized for Button, Input, etc.) */
+  --wim-height-sm: 2rem;
+  --wim-height-md: 2.5rem;
+  --wim-height-lg: 3rem;
 }
 
 .wim-ui-connector {

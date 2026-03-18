@@ -75,12 +75,13 @@ $scrollbar-track: $pccs-gy8-5;
   --color-focus-outline: #{$color-focus-outline};
   --scrollbar-thumb: #{$scrollbar-thumb};
   --scrollbar-track: #{$scrollbar-track};
+  --color-primary-rgb: #{$pccs-s16-rgb};
 
   /* Aliases for consistency across components */
   --wim-color-primary: var(--color-primary);
-  --wim-color-primary-hover: rgba(var(--pccs-v16-rgb), 0.9);
-  --wim-color-primary-active: rgba(var(--pccs-v16-rgb), 0.8);
-  --wim-color-primary-light: rgba(var(--pccs-v16-rgb), 0.1);
+  --wim-color-primary-hover: rgba(var(--color-primary-rgb), 0.9);
+  --wim-color-primary-active: rgba(var(--color-primary-rgb), 0.8);
+  --wim-color-primary-light: rgba(var(--color-primary-rgb), 0.1);
   --wim-color-secondary: var(--color-secondary);
   --wim-color-text-primary: var(--text-primary);
   --wim-color-text-secondary: var(--text-secondary);
@@ -124,12 +125,13 @@ $scrollbar-track: $pccs-gy8-5;
   --scrollbar-track: #{$pccs-gy3-5};
   --wim-color-primary-container-alpha: rgb(0 122 255 / 0.2);
   --wim-color-surface-variant-alpha: rgb(255 255 255 / 0.05);
-  --wim-color-primary-hover: rgba(var(--pccs-v16-rgb), 1);
-  --wim-color-primary-light: rgba(var(--pccs-v16-rgb), 0.2);
+  --wim-color-primary-hover: rgba(var(--color-primary-rgb), 1);
+  --wim-color-primary-light: rgba(var(--color-primary-rgb), 0.2);
   --wim-color-overlay-bg: rgb(0 0 0 / 0.7);
   --wim-color-overlay-bg-light: rgb(255 255 255 / 0.2);
   --wim-color-overlay-bg-dark: rgb(0 0 0 / 0.8);
   --shadow-color: rgb(0 0 0 / 0.4);
+  --color-primary-rgb: #{$pccs-v16-rgb};
 
   /* Adjust semantic colors for dark mode visibility/contrast */
   --color-destructive: #{$pccs-v2};

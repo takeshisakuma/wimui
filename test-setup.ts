@@ -68,7 +68,7 @@ vi.mock("react-i18next", () => {
   return {
     useTranslation: () => {
       return {
-        t: (key: string, options?: any) => {
+        t: (key: string, options?: Record<string, string>) => {
           let translation = translations[key] || key;
           if (options && typeof translation === "string") {
             Object.keys(options).forEach((k) => {

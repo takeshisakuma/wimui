@@ -21,11 +21,28 @@ import * as VideoStories from "./Video.stories";
 
 ## <T k="doc_features" />
 
-<ul>
-  <li><T k="doc_video_feat_1" /></li>
-  <li><T k="doc_video_feat_2" /></li>
-  <li><T k="doc_video_feat_3" /></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="table_header_feature" /></th>
+      <th><T k="table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc_video_feat_1_title" /></strong></td>
+      <td><T k="doc_video_feat_1_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc_video_feat_2_title" /></strong></td>
+      <td><T k="doc_video_feat_2_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc_video_feat_3_title" /></strong></td>
+      <td><T k="doc_video_feat_3_desc" /></td>
+    </tr>
+  </tbody>
+</table>
 
 
 ## <T k="doc_design_intent_title" />
@@ -84,14 +101,32 @@ import * as VideoStories from "./Video.stories";
 <p><T k="doc_video_a11y_desc" /></p>
 
 ## <T k="doc_real_world_scenarios_title" />
-<ul>
-  <li>
-    <strong><T k="doc_scenario_article_title" />:</strong> <T k="doc_video_scenario_1" />
-  </li>
-  <li>
-    <strong><T k="doc_scenario_ec_title" />:</strong> <T k="doc_video_scenario_2" />
-  </li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="table_header_example" /></th>
+      <th><T k="table_header_usage" /></th>
+      <th><T k="table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc_scenario_hero_title" /></strong></td>
+      <td><T k="doc_video_scenario_1_title" /></td>
+      <td><T k="doc_video_scenario_1_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc_scenario_ec_title" /></strong></td>
+      <td><T k="doc_video_scenario_2_title" /></td>
+      <td><T k="doc_video_scenario_2_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc_scenario_feature_title" /></strong></td>
+      <td><T k="doc_video_scenario_3_title" /></td>
+      <td><T k="doc_video_scenario_3_desc" /></td>
+    </tr>
+  </tbody>
+</table>
 
 ## <T k="doc_best_practices_title" />
 <ul>
@@ -215,11 +250,28 @@ import { Video } from "@/components/Video/Video";
 
 <p><T k="doc_video_mobile_reason_title" /></p>
 
-<ul>
-  <li><T k="doc_video_mobile_reason_1" /></li>
-  <li><T k="doc_video_mobile_reason_2" /></li>
-  <li><T k="doc_video_mobile_reason_3" /></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="table_header_reason" /></th>
+      <th><T k="table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc_video_mobile_reason_1_title" /></strong></td>
+      <td><T k="doc_video_mobile_reason_1_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc_video_mobile_reason_2_title" /></strong></td>
+      <td><T k="doc_video_mobile_reason_2_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc_video_mobile_reason_3_title" /></strong></td>
+      <td><T k="doc_video_mobile_reason_3_desc" /></td>
+    </tr>
+  </tbody>
+</table>
 
 ## <T k="doc_props" />
 
@@ -256,4 +308,10 @@ import { Video } from "@/components/Video/Video";
 <p><T k="doc_video_variant_full" /></p>
 
 <Canvas of={VideoStories.FullFeatured} />
+
+### <T k="doc_video_premium_features_mdx_title" />
+
+<p><T k="doc_video_premium_features_mdx_desc" /></p>
+
+<Canvas of={VideoStories.PremiumFeatures} />
 

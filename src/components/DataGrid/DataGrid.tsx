@@ -184,14 +184,14 @@ export function DataGrid<T extends Record<string, unknown>>({
   const isSomeSelected =
     selectedRowKeys.length > 0 && selectedRowKeys.length < rows.length;
 
-  const borderOffset = bordered ? 1 : 0;
-
   // Pre-calculate left offsets for fixed columns.
+  // Note: reset.scss applies box-sizing: border-box globally, so cell widths
+  // already include borders — no border offset adjustment is needed.
   const fixedLeftOffsets: Record<
     string,
     { offset: number | string; zIndex: number }
   > = {};
-  let currentLeftOffset = selection ? 48 + borderOffset : 0;
+  let currentLeftOffset = selection ? 48 : 0;
   let currentLeftZIndex = 20;
 
   columns.forEach((col) => {
@@ -206,7 +206,7 @@ export function DataGrid<T extends Record<string, unknown>>({
       } else if (typeof col.width === "string" && col.width.endsWith("px")) {
         colWidth = parseInt(col.width, 10);
       }
-      currentLeftOffset += colWidth + borderOffset;
+      currentLeftOffset += colWidth;
     }
   });
 
@@ -230,7 +230,7 @@ export function DataGrid<T extends Record<string, unknown>>({
       } else if (typeof col.width === "string" && col.width.endsWith("px")) {
         colWidth = parseInt(col.width, 10);
       }
-      currentRightOffset += colWidth + borderOffset;
+      currentRightOffset += colWidth;
     }
   });
 

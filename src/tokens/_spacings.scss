@@ -47,6 +47,8 @@ $radius-sm: 2px;
 $radius-md: 4px;
 $radius-lg: 8px;
 $radius-full: 9999px;
+$border-width-thin: 1px;
+$border-width-thick: 2px;
 
 /* --- フォーカス状態の寸法 --- */
 $focus-outline-width: 2px;
@@ -100,6 +102,8 @@ $focus-outline-offset: 2px;
   --radius-full: #{$radius-full};
   --focus-outline-width: #{$focus-outline-width};
   --focus-outline-offset: #{$focus-outline-offset};
+  --wim-border-width-thin: #{$border-width-thin};
+  --wim-border-width-thick: #{$border-width-thick};
 
   /* Aliases for consistency across components */
   --wim-spacing-xs: var(--spacing-xs);

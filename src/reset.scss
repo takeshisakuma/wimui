@@ -1,4 +1,16 @@
 @layer reset {
+  /* アニメーション・モーション軽減: 前庭障害など動きに敏感なユーザー向け (WCAG 2.3.3) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+
   /* Box Sizing Reset: デフォルトをborder-boxにする */
 
   /* paddingやborderがwidth/heightに含まれるようになり、レイアウト計算がしやすくなる */

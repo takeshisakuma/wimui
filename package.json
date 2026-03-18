@@ -19,7 +19,10 @@
   "size-limit": [
     {
       "name": "ES Module (all chunks, gzip)",
-      "path": ["dist/*.js", "!dist/wimui.umd.js"],
+      "path": [
+        "dist/*.js",
+        "!dist/wimui.umd.js"
+      ],
       "gzip": true,
       "limit": "440 kB"
     },
