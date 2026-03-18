@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import { Cascader, CascaderOption } from "./Cascader";
 
@@ -87,5 +88,77 @@ describe("Cascader", () => {
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
     expect(screen.queryByText("Zhejiang")).toBeNull();
+  });
+
+  it("expands on hover when expandTrigger is hover", async () => {
+    const user = userEvent.setup();
+    render(<Cascader options={options} expandTrigger="hover" />);
+    fireEvent.click(screen.getByRole("combobox"));
+    
+    // Check if Zhejiang is there
+    expect(screen.queryByText("Zhejiang")).not.toBeNull();
+    
+    const zhejiang = screen.getByText("Zhejiang");
+    await user.hover(zhejiang);
+    
+    // Wait for Hangzhou
+    await waitFor(() => expect(screen.queryByText("Hangzhou")).not.toBeNull(), { timeout: 2000 });
+  });
+
+  it("handles clearing the value", () => {
+    const onChange = vi.fn();
+    render(
+      <Cascader
+        options={options}
+        defaultValue={["zhejiang", "hangzhou", "west_lake"]}
+        allowClear
+        onChange={onChange}
+      />
+    );
+    
+    const clearButton = screen.getByLabelText(/clear input/i);
+    fireEvent.click(clearButton);
+    
+    expect(onChange).toHaveBeenCalledWith([], []);
+  });
+
+  it("handles keyboard navigation: ArrowDown, ArrowUp, ArrowRight, ArrowLeft, Enter", async () => {
+    const onChange = vi.fn();
+    render(<Cascader options={options} onChange={onChange} />);
+    const trigger = screen.getByRole("combobox");
+    
+    // Open with keyboard
+    fireEvent.keyDown(trigger, { key: "Enter" });
+    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
+    
+    // Navigate down to Jiangsu
+    fireEvent.keyDown(trigger, { key: "ArrowDown" });
+    // Navigate right to Nanjing
+    fireEvent.keyDown(trigger, { key: "ArrowRight" });
+    await waitFor(() => expect(screen.getByText("Nanjing")).not.toBeNull());
+    
+    // Navigate left back to first menu
+    fireEvent.keyDown(trigger, { key: "ArrowLeft" });
+    // Navigate up to Zhejiang
+    fireEvent.keyDown(trigger, { key: "ArrowUp" });
+    
+    // Navigate right to Hangzhou
+    fireEvent.keyDown(trigger, { key: "ArrowRight" });
+    // Navigate right to West Lake
+    fireEvent.keyDown(trigger, { key: "ArrowRight" });
+    // Press Enter to select
+    fireEvent.keyDown(trigger, { key: "Enter" });
+    
+    expect(onChange).toHaveBeenCalledWith(["zhejiang", "hangzhou", "west_lake"], expect.any(Array));
+  });
+
+  it("closes on Escape", async () => {
+    render(<Cascader options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
+    
+    fireEvent.keyDown(trigger, { key: "Escape" });
+    await waitFor(() => expect(screen.queryByText("Zhejiang")).toBeNull());
   });
 });

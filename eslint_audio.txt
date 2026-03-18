@@ -1,0 +1,13 @@
+
+C:\Users\facto\Desktop\github\wimui\src\components\Audio\hooks\useAudioPlayer.test.ts
+   82:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   83:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  102:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  103:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  117:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  118:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  145:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  146:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+笨・8 problems (0 errors, 8 warnings)
+

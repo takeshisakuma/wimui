@@ -20,4 +20,29 @@ describe("Textarea", () => {
     render(<Textarea fullWidth />);
     expect(screen.getByRole("textbox")).toHaveClass("wim-textarea--full-width");
   });
+
+  it("applies fieldSizing content class", () => {
+    render(<Textarea fieldSizing="content" />);
+    expect(screen.getByRole("textbox")).toHaveClass("wim-textarea--field-sizing-content");
+  });
+
+  it("handles error state and aria-describedby", () => {
+    render(<Textarea error="This is required" />);
+    const textarea = screen.getByRole("textbox");
+    expect(textarea).toHaveClass("wim-textarea--error");
+    expect(textarea).toHaveAttribute("aria-invalid", "true");
+    
+    // The error message is rendered within a div with role="alert"
+    const errorAlert = screen.getByRole("alert");
+    expect(errorAlert).toHaveTextContent("This is required");
+    expect(textarea).toHaveAttribute("aria-describedby", errorAlert.id);
+  });
+
+  it("applies variant classes", () => {
+    const { rerender } = render(<Textarea variant="outline" />);
+    expect(screen.getByRole("textbox")).toHaveClass("wim-textarea--outline");
+
+    rerender(<Textarea variant="ghost" />);
+    expect(screen.getByRole("textbox")).toHaveClass("wim-textarea--ghost");
+  });
 });

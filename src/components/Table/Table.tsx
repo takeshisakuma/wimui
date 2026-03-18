@@ -174,7 +174,7 @@ export const TableHead = ({
       }}
       {...props}
       onClick={sortable ? onSort : props.onClick}
-      tabIndex={sortable ? 0 : undefined}
+      tabIndex={props.tabIndex !== undefined ? props.tabIndex : (sortable ? 0 : undefined)}
       aria-sort={
         sortable
           ? sortDirection === "asc"

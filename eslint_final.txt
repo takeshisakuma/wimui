@@ -1,0 +1,8 @@
+
+C:\Users\facto\Desktop\github\wimui\src\components\NumberInput\NumberInput.test.tsx
+  34:61  error  'React' is not defined  no-undef
+  54:61  error  'React' is not defined  no-undef
+  74:61  error  'React' is not defined  no-undef
+
+笨・3 problems (3 errors, 0 warnings)
+

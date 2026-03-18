@@ -83,6 +83,40 @@ describe("Button", () => {
     const button = container.querySelector("button");
     expect(button).not.toHaveClass("wim-button--full-width");
   });
+
+  it("handles loading state properly", () => {
+    const { container } = render(<Button label="Load" loading />);
+    const button = container.querySelector("button");
+    expect(button).toHaveClass("wim-button--loading");
+    expect(button).toHaveAttribute("aria-busy", "true");
+    expect(button).toHaveAttribute("aria-label", "a11y_loading");
+    expect(button).toBeDisabled();
+  });
+
+  it("calculates animated width on label change", () => {
+    // We must mock getBoundingClientRect
+    const originalRequestAnimationFrame = window.requestAnimationFrame;
+    const originalCancelAnimationFrame = window.cancelAnimationFrame;
+    window.requestAnimationFrame = (cb) => {
+      cb(0);
+      return 1;
+    };
+    window.cancelAnimationFrame = vi.fn();
+
+    const { rerender, container } = render(<Button label="Initial" animateWidth />);
+    const button = container.querySelector("button") as HTMLButtonElement;
+    
+    // Mock getBoundingClientRect
+    button.getBoundingClientRect = vi.fn().mockReturnValue({ width: 100 });
+
+    // Rerender with new label to trigger effect
+    rerender(<Button label="Updated" animateWidth />);
+
+    expect(button).toHaveStyle({ width: "102px" }); // targetWidth is 100 + 2=102
+
+    window.requestAnimationFrame = originalRequestAnimationFrame;
+    window.cancelAnimationFrame = originalCancelAnimationFrame;
+  });
 });
 
 function buttonWithIcon(container: HTMLElement) {

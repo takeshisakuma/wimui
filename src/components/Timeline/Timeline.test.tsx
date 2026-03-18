@@ -54,4 +54,26 @@ describe("Timeline", () => {
     const { container } = render(<TimelinePoint variant="success" />);
     expect(container.firstChild).toHaveClass("wim-timeline-point--success");
   });
+
+  it("handles non-element children in Timeline", () => {
+    const { container } = render(
+      <Timeline>
+        <TimelineItem>Item 1</TimelineItem>
+        {"Literal String"}
+        {null}
+      </Timeline>
+    );
+    expect(container.textContent).toContain("Item 1Literal String");
+  });
+
+  it("renders point with icon and custom class", () => {
+    const { container } = render(
+      <TimelinePoint className="custom-point">
+        <span data-testid="icon">Icon</span>
+      </TimelinePoint>
+    );
+    expect(container.firstChild).toHaveClass("wim-timeline-point--icon");
+    expect(container.firstChild).toHaveClass("custom-point");
+    expect(screen.getByTestId("icon")).toBeInTheDocument();
+  });
 });

@@ -69,7 +69,7 @@ export default defineConfig({
     exclude: ["**/node_modules/**", "**/dist/**", "**/vrt/**"],
     coverage: {
       provider: "v8",
-      reporter: ["text", "json", "html"],
+      reporter: ["text", "json", "html", "json-summary"],
       include: ["src/**/*.ts", "src/**/*.tsx"],
       exclude: [
         "node_modules/",
@@ -80,10 +80,10 @@ export default defineConfig({
         "src/index.ts",
       ],
       thresholds: {
-        lines: 60,
-        branches: 55,
-        functions: 65,
-        statements: 60,
+        lines: 80,
+        branches: 80,
+        functions: 80,
+        statements: 80,
       },
     },
   },

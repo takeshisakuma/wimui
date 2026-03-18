@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
 import { ToggleGroup } from "./ToggleGroup";
 
 describe("ToggleGroup", () => {
@@ -8,6 +8,19 @@ describe("ToggleGroup", () => {
     { label: "Option 2", value: "opt2" },
     { label: "Option 3", value: "opt3" },
   ];
+
+  const originalRAF = window.requestAnimationFrame;
+
+  beforeAll(() => {
+    window.requestAnimationFrame = (cb) => {
+      cb(0);
+      return 0;
+    };
+  });
+
+  afterAll(() => {
+    window.requestAnimationFrame = originalRAF;
+  });
 
   it("renders all options", () => {
     render(<ToggleGroup options={options} />);
@@ -294,5 +307,43 @@ describe("ToggleGroup", () => {
       expect(onChange).not.toHaveBeenCalled();
       expect(document.activeElement).toBe(buttons[1]);
     });
+
+    it("Home/End move focus without changing selection", () => {
+      render(<ToggleGroup options={options} selectionMode="multiple" />);
+      const buttons = screen.getAllByRole("button");
+      fireEvent.keyDown(buttons[2], { key: "Home" });
+      expect(document.activeElement).toBe(buttons[0]);
+      fireEvent.keyDown(buttons[0], { key: "End" });
+      expect(document.activeElement).toBe(buttons[2]);
+    });
+  });
+
+  it("handles uncontrolled state with defaultValue", () => {
+    const onChange = vi.fn();
+    render(<ToggleGroup options={options} defaultValue="opt2" onChange={onChange} />);
+    const radios = screen.getAllByRole("radio");
+    expect(radios[1]).toHaveClass("wim-toggle-group__item--active");
+    
+    fireEvent.click(radios[0]);
+    expect(onChange).toHaveBeenCalledWith("opt1");
+    expect(radios[0]).toHaveClass("wim-toggle-group__item--active");
+  });
+
+  it("toggles off in single mode when clicking active item", () => {
+    const onChange = vi.fn();
+    render(<ToggleGroup options={options} value="opt1" onChange={onChange} />);
+    fireEvent.click(screen.getByText("Option 1"));
+    expect(onChange).toHaveBeenCalledWith("");
+  });
+
+  it("renders items with icons only", () => {
+    const iconOptions = [
+      { value: "bold", iconName: "CircleIcon" as const },
+      { value: "italic", iconName: "SquareIcon" as const },
+    ];
+    render(<ToggleGroup options={iconOptions} />);
+    const buttons = screen.getAllByRole("radio");
+    expect(buttons[0]).toHaveClass("wim-toggle-group__item--icon-only");
+    expect(buttons[0].querySelector("svg")).toBeInTheDocument();
   });
 });

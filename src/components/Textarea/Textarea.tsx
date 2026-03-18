@@ -24,6 +24,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       status = "default",
       variant = "outline",
       fullWidth = false,
+      fieldSizing = "fixed",
       className,
       disabled,
       label,
@@ -62,7 +63,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             `wim-textarea--${effectiveStatus}`,
             `wim-textarea--${variant}`,
             fullWidth && "wim-textarea--full-width",
-            props.fieldSizing === "content" &&
+            fieldSizing === "content" &&
               "wim-textarea--field-sizing-content",
           )}
           disabled={isDisabled}

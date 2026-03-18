@@ -262,9 +262,38 @@ describe("Rating", () => {
     it("sets aria-describedby on radiogroup when error is present", () => {
       render(<Rating error="Required field" />);
       const radiogroup = screen.getByRole("radiogroup");
-      const describedBy = radiogroup.getAttribute("aria-describedby");
-      expect(describedBy).toBeTruthy();
-      expect(document.getElementById(describedBy!)).toBeTruthy();
+      const errorLabel = screen.getByRole("alert");
+      expect(errorLabel).toHaveTextContent("Required field");
+      expect(radiogroup).toHaveAttribute("aria-describedby", errorLabel.id);
+    });
+
+    it("applies layout classes and custom className", () => {
+      const { container } = render(<Rating layout="horizontal" className="custom-rating" />);
+      expect(container.querySelector(".wim-field-template")).toHaveClass("wim-field-template--horizontal");
+      expect(container.querySelector(".wim-rating-container")).toHaveClass("custom-rating");
+    });
+
+    it("handles click for half stars when allowHalf is true", () => {
+      const onChange = vi.fn();
+      const { container } = render(<Rating allowHalf count={5} onChange={onChange} />);
+      const stars = container.querySelectorAll(".wim-rating__star");
+      
+      // Mock getBoundingClientRect for the star
+      const star = stars[2];
+      vi.spyOn(star, "getBoundingClientRect").mockReturnValue({
+        left: 0,
+        top: 0,
+        width: 40,
+        height: 40,
+      } as DOMRect);
+
+      // Click left half
+      fireEvent.click(star, { clientX: 10 });
+      expect(onChange).toHaveBeenCalledWith(2.5);
+
+      // Click right half
+      fireEvent.click(star, { clientX: 30 });
+      expect(onChange).toHaveBeenCalledWith(3);
     });
 
     it("does not set aria-describedby when no error", () => {

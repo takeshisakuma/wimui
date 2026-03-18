@@ -21,4 +21,15 @@ describe("Skeleton", () => {
     expect(skeleton.style.width).toBe("100px");
     expect(skeleton.style.height).toBe("50px");
   });
+
+  it("applies wave animation class", () => {
+    const { container } = render(<Skeleton animation="wave" />);
+    expect(container.firstChild).toHaveClass("wim-skeleton--wave");
+  });
+
+  it("applies no animation class when animation is none", () => {
+    const { container } = render(<Skeleton animation="none" />);
+    expect(container.firstChild).not.toHaveClass("wim-skeleton--pulse");
+    expect(container.firstChild).not.toHaveClass("wim-skeleton--wave");
+  });
 });
