@@ -1,0 +1,46 @@
+import{j as s}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as c}from"./index-DSCrJuX5.js";import{M as t,C as e,a as _}from"./blocks-CBkKZE10.js";import{A as r,D as x,a as l,C as j,R as a,F as h,P as u}from"./Audio.stories-CaWpRycq.js";import{T as i}from"./T-BwhEiaBP.js";import"./iframe-CzzNuQsS.js";import"./preload-helper-PPVm8Dsz.js";import"./index-BIwD8Er2.js";import"./index-ChAF4HhZ.js";import"./index-BdQ_0hYd.js";import"./index-XFYJJ0B8.js";import"./index-DcUaXI3T.js";import"./useMediaLoader-CBnzIoS_.js";import"./Icon-DHd-2rK_.js";import"./useTranslation-CcD7M1NG.js";import"./Button-DOHmJbvu.js";import"./i18nConstants-BpHxieg5.js";function n(o){const d={h1:"h1",h2:"h2",h3:"h3",...c(),...o.components};return s.jsxs(s.Fragment,{children:[s.jsx(t,{of:r}),`
+`,s.jsx(d.h1,{id:"audio",children:"Audio"}),`
+`,s.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:s.jsx(i,{k:"doc_audio_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_long_desc"})}),`
+`,s.jsx(d.h2,{id:"",children:s.jsx(i,{k:"doc_basic_usage"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_basic_desc"})}),`
+`,s.jsx(d.h2,{id:"-1",children:s.jsx(i,{k:"doc_design_intent_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_design_intent"})}),`
+`,s.jsx(d.h2,{id:"-2",children:s.jsx(i,{k:"doc_choice_matrix_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_choice_matrix_desc"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(i,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(i,{k:"doc_usage_scenario"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Audio"})}),s.jsx("td",{children:s.jsx(i,{k:"doc_audio_choice_self_when"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Video"})}),s.jsx("td",{children:s.jsx(i,{k:"doc_audio_choice_alt_when"})})]})]})]}),`
+`,s.jsx(d.h2,{id:"-3",children:s.jsx(i,{k:"doc_anatomy_title"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(i,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(i,{k:"doc_description"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(i,{k:"doc_audio_anatomy_root_label"})})}),s.jsx("td",{children:s.jsx(i,{k:"doc_audio_anatomy_root"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(i,{k:"doc_audio_anatomy_content_label"})})}),s.jsx("td",{children:s.jsx(i,{k:"doc_audio_anatomy_content"})})]})]})]}),`
+`,s.jsx(d.h2,{id:"-4",children:s.jsx(i,{k:"doc_content_guidelines_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(i,{k:"doc_audio_content_guideline"})})}),`
+`,s.jsx(d.h2,{id:"-5",children:s.jsx(i,{k:"doc_motion_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_motion_desc"})}),`
+`,s.jsx(d.h2,{id:"-6",children:s.jsx(i,{k:"doc_a11y_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_a11y_desc"})}),`
+`,s.jsx(d.h2,{id:"-7",children:s.jsx(i,{k:"doc_real_world_scenarios_title"})}),`
+`,s.jsxs("ul",{children:[s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(i,{k:"doc_scenario_article_title"}),":"]}),s.jsx(i,{k:"doc_audio_scenario_1"})]}),s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(i,{k:"doc_scenario_chat_title"}),":"]}),s.jsx(i,{k:"doc_audio_scenario_2"})]}),s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(i,{k:"doc_scenario_gallery_title"}),":"]}),s.jsx(i,{k:"doc_audio_scenario_3"})]})]}),`
+`,s.jsx(d.h2,{id:"-8",children:s.jsx(i,{k:"doc_best_practices_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(i,{k:"doc_audio_best_practice_1"})}),s.jsx("li",{children:s.jsx(i,{k:"doc_audio_best_practice_2"})})]}),`
+`,s.jsx(e,{of:x}),`
+`,s.jsx(d.h2,{id:"-9",children:s.jsx(i,{k:"doc_audio_autoplay_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_autoplay_desc"})}),`
+`,s.jsx(e,{of:l}),`
+`,s.jsx(d.h2,{id:"-10",children:s.jsx(i,{k:"doc_audio_custom_controls"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_custom_controls_desc"})}),`
+`,s.jsx(e,{of:j}),`
+`,s.jsx(d.h2,{id:"-11",children:s.jsx(i,{k:"doc_audio_styling"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_styling_desc"})}),`
+`,s.jsx(e,{of:a}),`
+`,s.jsx(d.h3,{id:"-12",children:s.jsx(i,{k:"doc_audio_important_notice"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_important_notice_desc"})}),`
+`,s.jsx(d.h2,{id:"-13",children:s.jsx(i,{k:"doc_audio_customization"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_customization_desc"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(i,{k:"doc_audio_feature_speed"})}),s.jsx("li",{children:s.jsx(i,{k:"doc_audio_feature_seek"})}),s.jsx("li",{children:s.jsx(i,{k:"doc_audio_feature_loop"})}),s.jsx("li",{children:s.jsx(i,{k:"doc_audio_feature_waveform"})})]}),`
+`,s.jsx(d.h2,{id:"-14",children:s.jsx(i,{k:"doc_audio_full_featured_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_full_featured_desc"})}),`
+`,s.jsx(e,{of:h}),`
+`,s.jsx(d.h2,{id:"-15",children:s.jsx(i,{k:"doc_audio_premium_features_mdx_title"})}),`
+`,s.jsx("p",{children:s.jsx(i,{k:"doc_audio_premium_features_mdx_desc"})}),`
+`,s.jsx(e,{of:u}),`
+`,s.jsx(d.h2,{id:"props",children:"Props"}),`
+`,s.jsx(_,{})]})}function v(o={}){const{wrapper:d}={...c(),...o.components};return d?s.jsx(d,{...o,children:s.jsx(n,{...o})}):n(o)}export{v as default};

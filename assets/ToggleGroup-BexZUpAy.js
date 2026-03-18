@@ -1,0 +1,45 @@
+import{j as o}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as c}from"./index-DSCrJuX5.js";import{M as l,C as i,a as r}from"./blocks-CBkKZE10.js";import{T as t,S as x,M as _,I as j,a as h,F as g,D as p}from"./ToggleGroup.stories-Dl6Jp-El.js";import{T as s}from"./T-BwhEiaBP.js";import"./iframe-CzzNuQsS.js";import"./preload-helper-PPVm8Dsz.js";import"./index-BIwD8Er2.js";import"./index-ChAF4HhZ.js";import"./index-BdQ_0hYd.js";import"./index-XFYJJ0B8.js";import"./index-DcUaXI3T.js";import"./Icon-DHd-2rK_.js";import"./useIndicator-Cjr8D0nw.js";import"./i18nConstants-BpHxieg5.js";import"./useTranslation-CcD7M1NG.js";function d(n){const e={h1:"h1",h2:"h2",h3:"h3",...c(),...n.components};return o.jsxs(o.Fragment,{children:[o.jsx(l,{of:t}),`
+`,o.jsx(e.h1,{id:"togglegroup",children:"ToggleGroup"}),`
+`,o.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:o.jsx(s,{k:"doc_togglegroup_title"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_togglegroup_long_desc"})}),`
+`,o.jsx(e.h2,{id:"",children:o.jsx(s,{k:"doc_togglegroup_when_to_use"})}),`
+`,o.jsxs("ul",{children:[o.jsx("li",{children:o.jsx(s,{k:"doc_togglegroup_reason_1"})}),o.jsx("li",{children:o.jsx(s,{k:"doc_togglegroup_toolbar"})}),o.jsx("li",{children:o.jsx(s,{k:"doc_togglegroup_group"})})]}),`
+`,o.jsx(e.h2,{id:"-1",children:o.jsx(s,{k:"doc_basic_usage"})}),`
+`,o.jsx(e.h3,{id:"-2",children:o.jsx(s,{k:"doc_togglegroup_single"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_togglegroup_single_desc"})}),`
+`,o.jsx(e.h2,{id:"-3",children:o.jsx(s,{k:"doc_design_intent_title"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_togglegroup_design_intent"})}),`
+`,o.jsx(e.h2,{id:"-4",children:o.jsx(s,{k:"doc_choice_matrix_title"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_togglegroup_choice_matrix_desc"})}),`
+`,o.jsxs("table",{children:[o.jsx("thead",{children:o.jsxs("tr",{children:[o.jsx("th",{children:o.jsx(s,{k:"doc_component"})}),o.jsx("th",{children:o.jsx(s,{k:"doc_usage_scenario"})})]})}),o.jsxs("tbody",{children:[o.jsxs("tr",{children:[o.jsx("td",{children:o.jsx("b",{children:"ToggleGroup"})}),o.jsx("td",{children:o.jsx(s,{k:"doc_togglegroup_choice_self_when"})})]}),o.jsxs("tr",{children:[o.jsx("td",{children:o.jsx("b",{children:"SegmentedControl"})}),o.jsx("td",{children:o.jsx(s,{k:"doc_togglegroup_choice_alt_when"})})]})]})]}),`
+`,o.jsx(e.h2,{id:"-5",children:o.jsx(s,{k:"doc_anatomy_title"})}),`
+`,o.jsxs("table",{children:[o.jsx("thead",{children:o.jsxs("tr",{children:[o.jsx("th",{children:o.jsx(s,{k:"doc_component"})}),o.jsx("th",{children:o.jsx(s,{k:"doc_description"})})]})}),o.jsxs("tbody",{children:[o.jsxs("tr",{children:[o.jsx("td",{children:o.jsx("b",{children:o.jsx(s,{k:"doc_togglegroup_anatomy_root_label"})})}),o.jsx("td",{children:o.jsx(s,{k:"doc_togglegroup_anatomy_root"})})]}),o.jsxs("tr",{children:[o.jsx("td",{children:o.jsx("b",{children:o.jsx(s,{k:"doc_togglegroup_anatomy_content_label"})})}),o.jsx("td",{children:o.jsx(s,{k:"doc_togglegroup_anatomy_content"})})]})]})]}),`
+`,o.jsx(e.h2,{id:"-6",children:o.jsx(s,{k:"doc_content_guidelines_title"})}),`
+`,o.jsx("ul",{children:o.jsx("li",{children:o.jsx(s,{k:"doc_togglegroup_content_guideline"})})}),`
+`,o.jsx(e.h2,{id:"-7",children:o.jsx(s,{k:"doc_motion_spec_title"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_togglegroup_motion_desc"})}),`
+`,o.jsx(e.h2,{id:"-8",children:o.jsx(s,{k:"doc_a11y_spec_title"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_togglegroup_a11y_desc"})}),`
+`,o.jsx(e.h2,{id:"-9",children:o.jsx(s,{k:"doc_real_world_scenarios_title"})}),`
+`,o.jsxs("ul",{children:[o.jsxs("li",{children:[o.jsxs("strong",{children:[o.jsx(s,{k:"doc_scenario_form_title"}),":"]}),o.jsx(s,{k:"doc_togglegroup_scenario_1"})]}),o.jsxs("li",{children:[o.jsxs("strong",{children:[o.jsx(s,{k:"doc_scenario_dashboard_title"}),":"]}),o.jsx(s,{k:"doc_togglegroup_scenario_2"})]})]}),`
+`,o.jsx(e.h2,{id:"-10",children:o.jsx(s,{k:"doc_best_practices_title"})}),`
+`,o.jsxs("ul",{children:[o.jsx("li",{children:o.jsx(s,{k:"doc_togglegroup_best_practice_1"})}),o.jsx("li",{children:o.jsx(s,{k:"doc_togglegroup_best_practice_2"})})]}),`
+`,o.jsx(i,{of:x}),`
+`,o.jsx(e.h3,{id:"-11",children:o.jsx(s,{k:"doc_togglegroup_multi"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_togglegroup_multi_desc"})}),`
+`,o.jsx(i,{of:_}),`
+`,o.jsx(e.h2,{id:"-12",children:o.jsx(s,{k:"doc_props"})}),`
+`,o.jsx(r,{}),`
+`,o.jsx(e.h2,{id:"-13",children:o.jsx(s,{k:"doc_variations"})}),`
+`,o.jsx(e.h3,{id:"-14",children:o.jsx(s,{k:"doc_togglegroup_icon_only"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_togglegroup_icon_only_desc"})}),`
+`,o.jsx(i,{of:j}),`
+`,o.jsx(e.h3,{id:"-15",children:o.jsx(s,{k:"doc_sizes"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_loader_sizes_desc"})}),`
+`,o.jsx(i,{of:h}),`
+`,o.jsx(e.h3,{id:"-16",children:o.jsx(s,{k:"doc_full_width"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_textarea_lay_full_desc"})}),`
+`,o.jsx(i,{of:g}),`
+`,o.jsx(e.h3,{id:"-17",children:o.jsx(s,{k:"doc_togglegroup_disabled_options"})}),`
+`,o.jsx("p",{children:o.jsx(s,{k:"doc_togglegroup_disabled_options_desc"})}),`
+`,o.jsx(i,{of:p})]})}function X(n={}){const{wrapper:e}={...c(),...n.components};return e?o.jsx(e,{...n,children:o.jsx(d,{...n})}):d(n)}export{X as default};

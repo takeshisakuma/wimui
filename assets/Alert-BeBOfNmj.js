@@ -1,0 +1,41 @@
+import{j as s}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as d}from"./index-DSCrJuX5.js";import{M as i,T as l,P as o,a as x,C as t,S as j}from"./blocks-CBkKZE10.js";import{A as _,S as h,W as a,E as k,a as m,b as p}from"./Alert.stories-BkFi4z6V.js";import{T as e}from"./T-BwhEiaBP.js";import"./iframe-CzzNuQsS.js";import"./preload-helper-PPVm8Dsz.js";import"./index-BIwD8Er2.js";import"./index-ChAF4HhZ.js";import"./index-BdQ_0hYd.js";import"./index-XFYJJ0B8.js";import"./Alert-D9Qj8RDD.js";import"./index-DcUaXI3T.js";import"./FeedbackIcon-BX-hGybb.js";import"./Icon-DHd-2rK_.js";import"./FeedbackCloseButton-cIFW2PyX.js";import"./useTranslation-CcD7M1NG.js";import"./i18nConstants-BpHxieg5.js";function c(r){const n={h2:"h2",h3:"h3",...d(),...r.components};return s.jsxs(s.Fragment,{children:[s.jsx(i,{of:_}),`
+`,s.jsx(l,{}),`
+`,s.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:s.jsx(e,{k:"doc_alert_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_long_desc"})}),`
+`,s.jsx(o,{}),`
+`,s.jsx(x,{}),`
+`,s.jsx(n.h2,{id:"",children:s.jsx(e,{k:"doc_design_intent_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_design_intent"})}),`
+`,s.jsx(n.h2,{id:"-1",children:s.jsx(e,{k:"doc_choice_matrix_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_choice_matrix_desc"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(e,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(e,{k:"doc_usage_scenario"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Alert"})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_choice_alert_when"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Toast"})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_choice_toast_when"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Banner"})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_choice_banner_when"})})]})]})]}),`
+`,s.jsx(n.h2,{id:"-2",children:s.jsx(e,{k:"doc_anatomy_title"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(e,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(e,{k:"doc_description"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(e,{k:"doc_alert_anatomy_icon_label"})})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_anatomy_icon"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(e,{k:"doc_alert_anatomy_title_label"})})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_anatomy_title"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(e,{k:"doc_alert_anatomy_message_label"})})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_anatomy_message"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(e,{k:"doc_alert_anatomy_close_label"})})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_anatomy_close"})})]})]})]}),`
+`,s.jsx(n.h2,{id:"-3",children:s.jsx(e,{k:"doc_content_guidelines_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(e,{k:"doc_alert_content_tone"})})}),`
+`,s.jsx(n.h2,{id:"-4",children:s.jsx(e,{k:"doc_motion_spec_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(e,{k:"doc_alert_motion_fade"})})}),`
+`,s.jsx(n.h2,{id:"-5",children:s.jsx(e,{k:"doc_a11y_spec_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(e,{k:"doc_alert_a11y_role"})})}),`
+`,s.jsx(n.h2,{id:"-6",children:s.jsx(e,{k:"doc_real_world_scenarios_title"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(e,{k:"doc_usage_scenario"})}),s.jsx("th",{children:s.jsx(e,{k:"doc_description"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(e,{k:"doc_scenario_form_title"})})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_scenario_form"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(e,{k:"doc_scenario_warning_title"})})}),s.jsx("td",{children:s.jsx(e,{k:"doc_alert_scenario_delete"})})]})]})]}),`
+`,s.jsx(n.h2,{id:"-7",children:s.jsx(e,{k:"doc_best_practices_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(e,{k:"doc_alert_best_practice_1"})}),s.jsx("li",{children:s.jsx(e,{k:"doc_alert_best_practice_2"})})]}),`
+`,s.jsx(n.h2,{id:"-8",children:s.jsx(e,{k:"doc_variations"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_variants_desc"})}),`
+`,s.jsx(n.h3,{id:"-9",children:s.jsx(e,{k:"doc_success"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_success_desc"})}),`
+`,s.jsx(t,{of:h}),`
+`,s.jsx(n.h3,{id:"-10",children:s.jsx(e,{k:"doc_warning"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_warning_desc"})}),`
+`,s.jsx(t,{of:a}),`
+`,s.jsx(n.h3,{id:"-11",children:s.jsx(e,{k:"doc_error"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_error_desc"})}),`
+`,s.jsx(t,{of:k}),`
+`,s.jsx(n.h3,{id:"-12",children:s.jsx(e,{k:"doc_alert_no_title"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_no_title_desc"})}),`
+`,s.jsx(t,{of:m}),`
+`,s.jsx(n.h3,{id:"-13",children:s.jsx(e,{k:"doc_alert_close_button"})}),`
+`,s.jsx("p",{children:s.jsx(e,{k:"doc_alert_close_button_desc"})}),`
+`,s.jsx(t,{of:p}),`
+`,s.jsx(j,{})]})}function z(r={}){const{wrapper:n}={...d(),...r.components};return n?s.jsx(n,{...r,children:s.jsx(c,{...r})}):c(r)}export{z as default};
