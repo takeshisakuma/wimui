@@ -19,4 +19,25 @@ describe("Spinner", () => {
     expect(svg).toHaveClass("wim-spinner--lg");
     expect(svg).toHaveClass("wim-spinner--success");
   });
+
+  it("applies xlarge size class", () => {
+    const { container } = render(<Spinner size="xlarge" />);
+    expect(container.querySelector("svg")).toHaveClass("wim-spinner--xl");
+  });
+
+  it("applies small size class", () => {
+    const { container } = render(<Spinner size="small" />);
+    expect(container.querySelector("svg")).toHaveClass("wim-spinner--sm");
+  });
+
+  it("applies custom hex color as inline style", () => {
+    const { container } = render(<Spinner color="#ff0000" />);
+    const wrapper = container.firstChild as HTMLElement;
+    expect(wrapper.style.color).toBeTruthy();
+  });
+
+  it("applies labelPosition bottom", () => {
+    render(<Spinner label="Loading" labelPosition="bottom" />);
+    expect(screen.getByText("Loading")).toBeInTheDocument();
+  });
 });

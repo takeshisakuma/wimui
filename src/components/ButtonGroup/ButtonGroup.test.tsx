@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { ButtonGroup } from "./ButtonGroup";
-import React from "react";
 
 describe("ButtonGroup", () => {
   it("renders children", () => {
@@ -23,5 +22,44 @@ describe("ButtonGroup", () => {
     );
     const group = container.firstChild as HTMLElement;
     expect(group.style.gap).toBe("20px");
+  });
+
+  it("applies joined class and no gap when joined=true", () => {
+    const { container } = render(
+      <ButtonGroup joined>
+        <button>Btn</button>
+      </ButtonGroup>,
+    );
+    const group = container.firstChild as HTMLElement;
+    expect(group).toHaveClass("wim-button-group--joined");
+    expect(group.style.gap).toBe("");
+  });
+
+  it("applies priority to child elements", () => {
+    render(
+      <ButtonGroup priority="primary">
+        <button>Btn</button>
+      </ButtonGroup>,
+    );
+    expect(screen.getByText("Btn")).toBeInTheDocument();
+  });
+
+  it("skips non-element children when priority is set", () => {
+    render(
+      <ButtonGroup priority="secondary">
+        {"text"}
+        <button>Btn</button>
+      </ButtonGroup>,
+    );
+    expect(screen.getByText("Btn")).toBeInTheDocument();
+  });
+
+  it("applies custom className", () => {
+    const { container } = render(
+      <ButtonGroup className="my-group">
+        <button>Btn</button>
+      </ButtonGroup>,
+    );
+    expect(container.firstChild).toHaveClass("my-group");
   });
 });

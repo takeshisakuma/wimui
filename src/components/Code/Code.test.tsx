@@ -31,10 +31,24 @@ describe("Code", () => {
 
   it("applies language class to inner code in block mode", () => {
     render(<Code block language="python" code='print("hi")' />);
-    // Implementation:
-    // <pre ...><code className="language-python">...</code></pre>
     const code = screen.getByText('print("hi")');
     expect(code.tagName).toBe("CODE");
     expect(code).toHaveClass("language-python");
+  });
+
+  it("renders children when no code prop (inline)", () => {
+    render(<Code>let x = 5;</Code>);
+    expect(screen.getByText("let x = 5;")).toBeInTheDocument();
+  });
+
+  it("renders children when no code prop (block)", () => {
+    render(<Code block>return true;</Code>);
+    expect(screen.getByText("return true;")).toBeInTheDocument();
+  });
+
+  it("renders block without language class", () => {
+    render(<Code block code="x = 1" />);
+    const pre = screen.getByText("x = 1").closest("pre");
+    expect(pre).toHaveClass("wim-code--block");
   });
 });

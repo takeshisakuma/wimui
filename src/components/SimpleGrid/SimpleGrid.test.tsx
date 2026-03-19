@@ -31,4 +31,12 @@ describe("SimpleGrid", () => {
       "repeat(auto-fill, minmax(200px, 1fr))",
     );
   });
+
+  it("applies string minChildWidth", () => {
+    const { container } = render(<SimpleGrid minChildWidth="20rem" />);
+    const grid = container.firstChild as HTMLElement;
+    expect(grid.style.gridTemplateColumns).toBe(
+      "repeat(auto-fill, minmax(20rem, 1fr))",
+    );
+  });
 });

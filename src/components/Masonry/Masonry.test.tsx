@@ -28,4 +28,14 @@ describe("Masonry", () => {
     const item = container.querySelector(".wim-masonry-item") as HTMLElement;
     expect(item.style.marginBottom).toBe("20px");
   });
+
+  it("skips non-element children", () => {
+    const { container } = render(
+      <Masonry>
+        {"text node"}
+        <div>Element</div>
+      </Masonry>,
+    );
+    expect(container.querySelectorAll(".wim-masonry-item")).toHaveLength(1);
+  });
 });

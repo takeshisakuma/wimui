@@ -86,4 +86,41 @@ describe("Pagination", () => {
     render(<Pagination total={50} simple current={2} />);
     expect(screen.getByText("2 / 5")).toBeInTheDocument();
   });
+
+  it("renders ellipsis on both sides (current in middle)", () => {
+    render(<Pagination total={200} current={10} siblingCount={1} />);
+    // Should show both left and right ellipsis
+    const ellipses = screen.getAllByText("...");
+    expect(ellipses.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("renders ellipsis on left side only (current near last page)", () => {
+    render(<Pagination total={200} current={20} siblingCount={1} />);
+    // Current near end: left ellipsis only
+    expect(screen.getByText("...")).toBeInTheDocument();
+  });
+
+  it("returns null when hideOnSinglePage and only 1 page", () => {
+    const { container } = render(<Pagination total={5} pageSize={10} hideOnSinglePage />);
+    expect(container.firstChild).toBeNull();
+  });
+
+  it("ignores invalid page change (page out of range)", () => {
+    const onChange = vi.fn();
+    render(<Pagination total={50} current={1} onChange={onChange} />);
+    // Clicking disabled previous button should not call onChange
+    fireEvent.click(screen.getByLabelText("Go to previous page"));
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("renders showTotal function", () => {
+    render(
+      <Pagination
+        total={100}
+        current={1}
+        showTotal={(total, range) => `${range[0]}-${range[1]} of ${total}`}
+      />,
+    );
+    expect(screen.getByText("1-10 of 100")).toBeInTheDocument();
+  });
 });

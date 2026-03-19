@@ -33,4 +33,18 @@ describe("RangeCalendar", () => {
     const buttons = screen.getAllByRole("button");
     buttons.forEach((btn) => expect(btn).toBeDisabled());
   });
+
+  it("renders with controlled value", () => {
+    const start = new Date(2024, 0, 10);
+    const end = new Date(2024, 0, 20);
+    render(<RangeCalendar value={[start, end]} />);
+    expect(screen.getByText(/Sun/i)).toBeInTheDocument();
+  });
+
+  it("renders with defaultValue", () => {
+    const start = new Date(2024, 0, 5);
+    const end = new Date(2024, 0, 15);
+    render(<RangeCalendar defaultValue={[start, end]} />);
+    expect(screen.getByText(/Sun/i)).toBeInTheDocument();
+  });
 });

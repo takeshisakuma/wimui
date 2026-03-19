@@ -34,4 +34,34 @@ describe("Span", () => {
     const { container } = render(<Span content="Italic" fontStyle="italic" />);
     expect(container.firstChild).toHaveClass("wim-span--italic");
   });
+
+  it("renders icon on right side", () => {
+    const { container } = render(
+      <Span content="Label" iconName="CheckIcon" iconPosition="right" />,
+    );
+    expect(container.querySelector("svg")).toBeInTheDocument();
+  });
+
+  it("applies custom hex color as inline style", () => {
+    const { container } = render(<Span content="Custom" color="#ff0000" />);
+    const el = container.firstChild as HTMLElement;
+    expect(el.style.color).toBeTruthy();
+  });
+
+  it("applies custom var() color as inline style", () => {
+    const { container } = render(<Span content="Custom" color="var(--color-primary)" />);
+    const el = container.firstChild as HTMLElement;
+    // Should not add color class but use inline style
+    expect(el).not.toHaveClass("wim-span--var(--color-primary)");
+  });
+
+  it("applies decoration class", () => {
+    const { container } = render(<Span content="Underline" decoration="underline" />);
+    expect(container.firstChild).toHaveClass("wim-span--underline");
+  });
+
+  it("applies bold weight class", () => {
+    const { container } = render(<Span content="Bold" weight="bold" />);
+    expect(container.firstChild).toHaveClass("wim-span--bold");
+  });
 });

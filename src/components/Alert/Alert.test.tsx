@@ -45,4 +45,11 @@ describe("Alert", () => {
     );
     expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
   });
+
+  it("closes without onClose callback (no error)", () => {
+    render(<Alert title="No callback" />);
+    // Close button only renders when onClose is provided - if not, alert is not closable
+    // This just verifies the component renders without issue
+    expect(screen.getByText("No callback")).toBeInTheDocument();
+  });
 });

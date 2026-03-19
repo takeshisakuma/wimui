@@ -28,4 +28,20 @@ describe("EmptyState", () => {
     const wrapper = title.closest(".wim-empty-state");
     expect(wrapper).toHaveClass("wim-empty-state--simple");
   });
+
+  it("renders with custom icon", () => {
+    render(
+      <EmptyState title="Empty" icon={<span data-testid="custom-icon">★</span>} />,
+    );
+    expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
+  });
+
+  it("renders children via rest props", () => {
+    render(
+      <EmptyState title="Empty">
+        <p>Extra content</p>
+      </EmptyState>,
+    );
+    expect(screen.getByText("Extra content")).toBeInTheDocument();
+  });
 });

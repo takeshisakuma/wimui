@@ -29,4 +29,19 @@ describe("Banner", () => {
     render(<Banner title="T" extra={<button>Action</button>} />);
     expect(screen.getByText("Action")).toBeInTheDocument();
   });
+
+  it("renders children as description when no description prop", () => {
+    render(<Banner title="T">Child content</Banner>);
+    expect(screen.getByText("Child content")).toBeInTheDocument();
+  });
+
+  it("renders with icon=true (default icon)", () => {
+    const { container } = render(<Banner title="Info" icon={true} status="info" />);
+    expect(container.querySelector(".wim-banner__icon")).toBeInTheDocument();
+  });
+
+  it("renders with icon=false (no icon)", () => {
+    const { container } = render(<Banner title="No icon" icon={false} />);
+    expect(container.querySelector(".wim-banner__icon")).not.toBeInTheDocument();
+  });
 });

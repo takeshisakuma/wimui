@@ -1,45 +1,72 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
-import { T } from "../../T";
-import * as Stories from "./InteractiveArea.stories";
+import { Meta, Story, Canvas, Controls, Markdown } from "@storybook/blocks";
+import * as InteractiveAreaStories from "./InteractiveArea.stories";
+import { useTranslation } from "react-i18next";
 
-<Meta of={Stories} />
+<Meta of={InteractiveAreaStories} />
 
 # InteractiveArea
 
-<p><T k="doc_interactiveArea_long_desc" /></p>
+<Markdown>{useTranslation("docs_display").t("doc_interactiveArea_long_desc")}</Markdown>
 
----
+<Canvas of={InteractiveAreaStories.Default} />
+<Controls of={InteractiveAreaStories.Default} />
 
-## <T k="doc_usage" />
+## {useTranslation("docs_guide_common").t("doc_design_intent_title")}
 
-<T k="doc_interactiveArea_usage_desc" />
+<Markdown>{useTranslation("docs_display").t("doc_interactiveArea_design_intent")}</Markdown>
 
-<Canvas of={Stories.Default} />
-<Controls of={Stories.Default} />
+## {useTranslation("docs_guide_common").t("doc_choice_matrix_title")}
 
----
+| {useTranslation("docs_guide_common").t("doc_comparison_item")} | {useTranslation("docs_guide_common").t("doc_choice_self_title")} | {useTranslation("docs_guide_common").t("doc_choice_alt_title")} |
+| :--- | :--- | :--- |
+| **{useTranslation("docs_guide_common").t("doc_usage_context")}** | {useTranslation("docs_display").t("doc_interactiveArea_choice_self_when")} | {useTranslation("docs_display").t("doc_interactiveArea_choice_alt_when")} |
+| **{useTranslation("docs_guide_common").t("doc_complexity_interaction")}** | {useTranslation("docs_display").t("doc_interactiveArea_choice_matrix_desc")} | {useTranslation("docs_guide_common").t("doc_choice_alt_desc")} |
 
-## <T k="doc_stories" />
+## {useTranslation("docs_guide_common").t("doc_anatomy_title")}
 
-### <T k="doc_story_default" />
-<Canvas of={Stories.Default} />
+- **{useTranslation("docs_display").t("doc_interactiveArea_anatomy_root_label")}**: {useTranslation("docs_display").t("doc_interactiveArea_anatomy_root")}
+- **{useTranslation("docs_display").t("doc_interactiveArea_anatomy_content_label")}**: {useTranslation("docs_display").t("doc_interactiveArea_anatomy_content")}
 
-### <T k="doc_story_clickable" />
-<Canvas of={Stories.Clickable} />
+## {useTranslation("docs_guide_common").t("doc_guidelines_title")}
 
-### <T k="doc_story_with_actions" />
-<Canvas of={Stories.WithActions} />
+### {useTranslation("docs_guide_common").t("doc_guideline_best_practices")}
 
-### <T k="doc_story_large" />
-<Canvas of={Stories.Large} />
+- {useTranslation("docs_display").t("doc_interactiveArea_best_practice_1")}
+- {useTranslation("docs_display").t("doc_interactiveArea_best_practice_2")}
 
-### <T k="doc_story_small" />
-<Canvas of={Stories.Small} />
+## {useTranslation("docs_guide_common").t("doc_accessibility_title")}
 
-### <T k="doc_story_with_context_menu" />
-<Canvas of={Stories.WithContextMenu} />
+<Markdown>{useTranslation("docs_display").t("doc_interactiveArea_a11y_desc")}</Markdown>
 
----
+## {useTranslation("docs_guide_common").t("doc_motion_title")}
 
-## <T k="doc_api_reference" />
-<Controls />
+<Markdown>{useTranslation("docs_display").t("doc_interactiveArea_motion_desc")}</Markdown>
+
+## {useTranslation("docs_guide_common").t("doc_examples_title")}
+
+### Clickable
+
+<Canvas of={InteractiveAreaStories.Clickable} />
+
+### With Actions
+
+<Canvas of={InteractiveAreaStories.WithActions} />
+
+### Small and Large
+
+<Canvas of={InteractiveAreaStories.Small} />
+<Canvas of={InteractiveAreaStories.Large} />
+
+### With Context Menu
+
+<Canvas of={InteractiveAreaStories.WithContextMenu} />
+
+## {useTranslation("docs_guide_common").t("doc_test_title")}
+
+```bash
+npm run test -- InteractiveArea
+```
+
+## {useTranslation("docs_guide_common").t("doc_i18n_title")}
+
+<Markdown>{useTranslation("docs_display").t("doc_interactiveArea_i18n_desc")}</Markdown>

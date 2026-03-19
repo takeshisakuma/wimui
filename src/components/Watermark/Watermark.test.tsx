@@ -4,9 +4,6 @@ import { Watermark } from "./Watermark";
 
 describe("Watermark", () => {
   beforeEach(() => {
-    // Mocking canvas because it's not well supported in jsdom
-    // But we want to test that it renders its children and the watermark div
-
     vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue({
       translate: vi.fn(),
       rotate: vi.fn(),
@@ -41,5 +38,38 @@ describe("Watermark", () => {
       ".wim-watermark",
     ) as HTMLElement;
     expect(watermarkDiv.style.zIndex).toBe("100");
+  });
+
+  it("renders with array content", () => {
+    const { container } = render(
+      <Watermark content={["Line 1", "Line 2"]} />,
+    );
+    expect(container.querySelector(".wim-watermark")).toBeInTheDocument();
+  });
+
+  it("renders with custom className", () => {
+    const { container } = render(
+      <Watermark content="Test" className="custom-watermark" />,
+    );
+    expect(container.firstChild).toHaveClass("custom-watermark");
+  });
+
+  it("renders with no content and no image (no canvas drawing)", () => {
+    const { container } = render(<Watermark />);
+    expect(container.querySelector(".wim-watermark")).toBeInTheDocument();
+  });
+
+  it("renders with image prop", () => {
+    const { container } = render(
+      <Watermark image="https://example.com/logo.png" />,
+    );
+    expect(container.querySelector(".wim-watermark")).toBeInTheDocument();
+  });
+
+  it("renders with custom width, height, rotate", () => {
+    const { container } = render(
+      <Watermark content="Custom" width={200} height={80} rotate={-45} />,
+    );
+    expect(container.querySelector(".wim-watermark")).toBeInTheDocument();
   });
 });

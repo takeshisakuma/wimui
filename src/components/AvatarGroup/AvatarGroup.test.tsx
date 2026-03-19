@@ -49,4 +49,16 @@ describe("AvatarGroup", () => {
     const avatar = container.querySelector(".wim-avatar");
     expect(avatar).toHaveClass("wim-avatar--lg");
   });
+
+  it("applies small size to excess badge", () => {
+    const { container } = render(
+      <AvatarGroup max={1} size="small">
+        <Avatar initials="A" />
+        <Avatar initials="B" />
+        <Avatar initials="C" />
+      </AvatarGroup>,
+    );
+    const excess = container.querySelector(".wim-avatar-group__excess");
+    expect(excess).toHaveClass("wim-avatar-group__excess--sm");
+  });
 });

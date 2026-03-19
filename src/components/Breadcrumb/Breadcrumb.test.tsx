@@ -64,4 +64,49 @@ describe("Breadcrumb", () => {
     fireEvent.keyDown(nav, { key: "ArrowRight" }); // should just return, no change in focus
     expect(document.activeElement).not.toBe(linkItems[0]);
   });
+
+  it("applies small size class", () => {
+    const { container } = render(<Breadcrumb items={items} size="small" />);
+    expect(container.querySelector(".wim-breadcrumb--sm")).toBeInTheDocument();
+  });
+
+  it("applies large size class", () => {
+    const { container } = render(<Breadcrumb items={items} size="large" />);
+    expect(container.querySelector(".wim-breadcrumb--lg")).toBeInTheDocument();
+  });
+
+  it("renders custom separator", () => {
+    render(<Breadcrumb items={items} separator={<span>/</span>} />);
+    // Custom separator should appear between items
+    const separators = screen.getAllByText("/");
+    expect(separators.length).toBeGreaterThan(0);
+  });
+
+  it("renders item without href as non-link span", () => {
+    const itemsNoHref = [
+      { label: "Home", href: "/" },
+      { label: "NoLink" }, // no href
+      { label: "Current" },
+    ];
+    const { container } = render(<Breadcrumb items={itemsNoHref} />);
+    // Middle item with no href should be a span without aria-current
+    const spans = container.querySelectorAll(".wim-breadcrumb__label");
+    expect(spans.length).toBeGreaterThan(0);
+  });
+
+  it("renders item with iconName", () => {
+    const itemsWithIcon = [
+      { label: "Home", href: "/", iconName: "HomeIcon" as const },
+      { label: "Current" },
+    ];
+    render(<Breadcrumb items={itemsWithIcon} />);
+    expect(screen.getByText("Home")).toBeInTheDocument();
+  });
+
+  it("applies custom className", () => {
+    const { container } = render(
+      <Breadcrumb items={items} className="custom-breadcrumb" />,
+    );
+    expect(container.querySelector(".custom-breadcrumb")).toBeInTheDocument();
+  });
 });

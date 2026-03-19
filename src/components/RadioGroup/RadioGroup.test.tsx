@@ -35,4 +35,22 @@ describe("RadioGroup", () => {
     );
     expect(screen.getByRole("radiogroup")).toHaveClass("wim-radio-group--horizontal");
   });
+
+  it("uncontrolled: updates internal value on change", () => {
+    render(<RadioGroup options={options} defaultValue="1" />);
+    expect(screen.getByLabelText("Option 1")).toBeChecked();
+    fireEvent.click(screen.getByLabelText("Option 2"));
+    expect(screen.getByLabelText("Option 2")).toBeChecked();
+  });
+
+  it("renders label and sets aria-labelledby", () => {
+    const { container } = render(<RadioGroup options={options} label="My Group" />);
+    expect(screen.getByText("My Group")).toBeInTheDocument();
+    expect(container.querySelector("[role='radiogroup']")).toHaveAttribute("aria-labelledby");
+  });
+
+  it("renders error message", () => {
+    render(<RadioGroup options={options} error="Required" />);
+    expect(screen.getByText("Required")).toBeInTheDocument();
+  });
 });

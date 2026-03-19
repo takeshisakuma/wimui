@@ -1,0 +1,28 @@
+import { Meta, Canvas, Markdown } from "@storybook/blocks";
+import * as ChartsStories from "./Charts.stories";
+import { T } from "../T";
+
+<Meta title="Components/Visualization/Charts" of={ChartsStories} />
+
+# <T k="cat_visualization" />
+
+<p><Markdown><T k="doc_charts_desc" /></Markdown></p>
+
+<Canvas of={ChartsStories.Dashboard} />
+
+## Chart Components
+
+This collection includes various charting components for data visualization:
+
+- **BarChart**: Best for comparing quantities across categories.
+- **LineChart**: Ideal for showing trends over time.
+- **AreaChart**: Similar to LineChart but emphasizes the magnitude of change.
+- **PieChart**: Shows parts of a whole proportionally.
+- **ScatterChart**: Visualizes relationships between two numerical variables.
+- **RadarChart**: Compares multiple quantitative variables across three or more dimensions.
+- **Heatmap**: Represents data density or values through color variations.
+- **FunnelChart**: Shows the progression of data through a process.
+- **Treemap**: Displays hierarchical data using nested rectangles.
+- **Gauge**: Visualizes a single value within a range (e.g., progress toward goal).
+
+Each chart is built using Recharts for high performance and accessibility.

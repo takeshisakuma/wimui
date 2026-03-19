@@ -101,7 +101,7 @@
   "story_otp_clear": "Limpar",
   "story_otp_current_value": "Valor Atual",
   "story_passwordinput_label": "Senha",
-  "story_passwordinput_placeholder": "[MISSING_TRANSLATION: pt] ",
+  "story_passwordinput_placeholder": "Digite sua senha",
   "story_phoneinput_error": "Por favor, insira um número de telefone válido.",
   "story_phoneinput_label": "Número de Telefone",
   "story_phoneinput_placeholder": "000-000-0000",

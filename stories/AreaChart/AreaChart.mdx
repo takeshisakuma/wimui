@@ -1,0 +1,106 @@
+import {
+  Canvas,
+  Meta,
+  Controls,
+  Title,
+  Primary,
+  Stories,
+} from "@storybook/addon-docs/blocks";
+import * as AreaChartStories from "./AreaChart.stories";
+import { T } from "../T";
+
+<Meta of={AreaChartStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_areachart_desc" />
+</p>
+
+<p><T k="doc_areachart_long_desc" /></p>
+
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_areachart_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_areachart_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>AreaChart</b></td>
+      <td><T k="doc_areachart_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Table</b></td>
+      <td><T k="doc_areachart_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc_areachart_anatomy_root_label" /></b></td>
+      <td><T k="doc_areachart_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc_areachart_anatomy_content_label" /></b></td>
+      <td><T k="doc_areachart_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_areachart_content_guideline" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_areachart_motion_desc" /></p>
+
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_areachart_a11y_desc" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_dashboard_title" />:</strong> <T k="doc_areachart_scenario_1" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_stats_title" />:</strong> <T k="doc_areachart_scenario_2" />
+  </li>
+</ul>
+
+## <T k="doc_best_practices_title" />
+<ul>
+  <li><T k="doc_areachart_best_practice_1" /></li>
+  <li><T k="doc_areachart_best_practice_2" /></li>
+</ul>
+
+<Primary />
+
+## Props
+
+<Controls />
+
+<Stories />

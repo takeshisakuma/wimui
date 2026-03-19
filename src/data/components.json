@@ -1051,6 +1051,12 @@
     "guideUrl": "./?path=/docs/components-visualization-overview--docs",
     "components": [
       {
+        "name": "Charts",
+        "descKey": "doc_charts_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
         "name": "BarChart",
         "descKey": "doc_barChart_desc",
         "pc": true,

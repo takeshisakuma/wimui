@@ -39,9 +39,6 @@ describe("FloatButton", () => {
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
 
     act(() => {
-      // Mock window scroll
-      // We need to trigger the event listener.
-      // window.pageYOffset is read-only usually, but in JSDOM we might be able to set it or scrollTop.
       Object.defineProperty(window, "pageYOffset", {
         value: 200,
         configurable: true,
@@ -50,5 +47,54 @@ describe("FloatButton", () => {
     });
 
     expect(screen.getByRole("button")).toBeInTheDocument();
+  });
+
+  it("backTop scrolls to top on click", () => {
+    const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    // Make scrollY > visibilityHeight so button is visible
+    Object.defineProperty(window, "pageYOffset", { value: 500, configurable: true });
+    render(<FloatButton backTop visibilityHeight={100} />);
+    // Trigger scroll to show button
+    act(() => { fireEvent.scroll(window); });
+    fireEvent.click(screen.getByRole("button"));
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
+    scrollTo.mockRestore();
+  });
+
+  it("renders number badge", () => {
+    render(<FloatButton badge={5} />);
+    expect(screen.getByText("5")).toBeInTheDocument();
+  });
+
+  it("renders dot badge", () => {
+    const { container } = render(<FloatButton badge={true} />);
+    expect(container.querySelector(".wim-float-button__badge--dot")).toBeInTheDocument();
+  });
+
+  it("renders description", () => {
+    render(<FloatButton description="Tooltip text" />);
+    expect(screen.getByText("Tooltip text")).toBeInTheDocument();
+  });
+
+  it("renders small size", () => {
+    render(<FloatButton size="small" />);
+    expect(screen.getByRole("button")).toHaveClass("wim-float-button--sm");
+  });
+
+  it("renders large size", () => {
+    render(<FloatButton size="large" />);
+    expect(screen.getByRole("button")).toHaveClass("wim-float-button--lg");
+  });
+
+  it("renders primary variant and square shape", () => {
+    render(<FloatButton variant="primary" shape="square" />);
+    const btn = screen.getByRole("button");
+    expect(btn).toHaveClass("wim-float-button--primary");
+    expect(btn).toHaveClass("wim-float-button--square");
+  });
+
+  it("renders shrink class", () => {
+    render(<FloatButton label="Create" shrink />);
+    expect(screen.getByRole("button")).toHaveClass("wim-float-button--shrink");
   });
 });

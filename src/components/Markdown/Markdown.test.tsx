@@ -21,4 +21,10 @@ describe("Markdown", () => {
     const { container } = render(<Markdown>{content}</Markdown>);
     expect(container.querySelector("del")).toBeInTheDocument();
   });
+
+  it("should render without GFM when gfm=false", () => {
+    const content = "Plain **bold** text";
+    const { container } = render(<Markdown gfm={false}>{content}</Markdown>);
+    expect(container.querySelector(".wim-markdown")).toBeInTheDocument();
+  });
 });

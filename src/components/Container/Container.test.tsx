@@ -12,14 +12,41 @@ describe("Container", () => {
   it("applies fluid styling", () => {
     render(<Container fluid>Fluid Content</Container>);
     const container = screen.getByText("Fluid Content");
-    // Fluid sets maxWidth to 100%
     expect(container).toHaveStyle({ maxWidth: "100%" });
   });
 
-  it("applies size styling", () => {
+  it("applies size sm styling", () => {
     render(<Container size="sm">Small Content</Container>);
-    const container = screen.getByText("Small Content");
-    // sm is 720px
-    expect(container).toHaveStyle({ maxWidth: "720px" });
+    expect(screen.getByText("Small Content")).toHaveStyle({ maxWidth: "720px" });
+  });
+
+  it("applies size xs styling", () => {
+    render(<Container size="xs">XS</Container>);
+    expect(screen.getByText("XS")).toHaveStyle({ maxWidth: "540px" });
+  });
+
+  it("applies size md styling", () => {
+    render(<Container size="md">MD</Container>);
+    expect(screen.getByText("MD")).toHaveStyle({ maxWidth: "960px" });
+  });
+
+  it("applies size lg styling (default)", () => {
+    render(<Container>LG</Container>);
+    expect(screen.getByText("LG")).toHaveStyle({ maxWidth: "1140px" });
+  });
+
+  it("applies size xl styling", () => {
+    render(<Container size="xl">XL</Container>);
+    expect(screen.getByText("XL")).toHaveStyle({ maxWidth: "1320px" });
+  });
+
+  it("applies number size as px", () => {
+    render(<Container size={800}>Custom</Container>);
+    expect(screen.getByText("Custom")).toHaveStyle({ maxWidth: "800px" });
+  });
+
+  it("applies arbitrary string size", () => {
+    render(<Container size="50vw">VW</Container>);
+    expect(screen.getByText("VW")).toHaveStyle({ maxWidth: "50vw" });
   });
 });
