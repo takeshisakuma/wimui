@@ -121,15 +121,6 @@
   @media (width <=640px) {
     max-height: calc(100vh - 120px); // Adjust based on header/footer
   }
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb);
-    border-radius: 10px;
-  }
 }
 
 .wim-command-palette-group {

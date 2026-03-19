@@ -92,7 +92,32 @@
     }
   }
 
+  /* --- グローバルなスクロールバーのスタイル設定 --- */
 
+  /* Chrome, Edge, Safari (Webkit) */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track, transparent);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb, #ccc);
+    border-radius: 10px;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-color: var(--scrollbar-thumb, #ccc) var(--scrollbar-track, transparent);
+    scrollbar-width: thin;
+  }
 }
 
 /* ドキュメント用コンチE��の共通スタイル (StorybookのチE��ォルトスタイルを上書きするためレイヤー外で定義) */
