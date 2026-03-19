@@ -20,8 +20,9 @@ export interface CommandPaletteInputProps {
     placeholder?: string;
     value?: string;
     onChange?: (value: string) => void;
+    rightSection?: ReactNode;
 }
-export declare const CommandPaletteInput: ({ placeholder, value, onChange, }: CommandPaletteInputProps) => import("react/jsx-runtime").JSX.Element;
+export declare const CommandPaletteInput: ({ placeholder, value, onChange, rightSection, }: CommandPaletteInputProps) => import("react/jsx-runtime").JSX.Element;
 export declare const CommandPaletteList: ({ children }: {
     children: ReactNode;
 }) => import("react/jsx-runtime").JSX.Element;
