@@ -138,7 +138,7 @@
 
 .wim-selectbox-list {
   max-height: 240px;
-  padding: var(--spacing-xs) 0;
+  padding: 4px 0; // Standardized padding for focus rings
   margin: 0;
   overflow-y: auto;
   list-style: none;
@@ -155,6 +155,11 @@
 }
 
 .wim-selectbox-option {
+  .wim-selectbox[data-keyboard-nav="true"] &.wim-base-list-item--active {
+    z-index: 1;
+    box-shadow: var(--shadow-focus);
+  }
+
   &--selected {
     font-weight: 500;
     color: var(--text-primary);

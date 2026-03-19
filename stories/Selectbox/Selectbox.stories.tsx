@@ -128,3 +128,86 @@ export const WithClearButton: Story = {
     );
   },
 };
+
+export const Searchable: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const options = [
+      { label: t("story_selectbox_opt_apple"), value: "apple" },
+      { label: t("story_selectbox_opt_banana"), value: "banana" },
+      { label: t("story_selectbox_opt_cherry"), value: "cherry" },
+      { label: t("story_selectbox_opt_grape"), value: "grape" },
+      { label: t("story_selectbox_opt_orange"), value: "orange" },
+    ];
+    return (
+      <Selectbox
+        {...args}
+        options={options}
+        searchable={true}
+        placeholder={t("story_selectbox_placeholder")}
+      />
+    );
+  },
+};
+
+export const Grouped: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const groupedOptions = [
+      {
+        label: t("story_selectbox_group_fruits"),
+        options: [
+          { label: t("story_selectbox_opt_apple"), value: "apple" },
+          { label: t("story_selectbox_opt_banana"), value: "banana" },
+        ],
+      },
+      {
+        label: t("story_selectbox_group_veggies"),
+        options: [
+          { label: t("story_selectbox_opt_carrot"), value: "carrot" },
+          { label: t("story_selectbox_opt_potato"), value: "potato" },
+        ],
+      },
+    ];
+    return (
+      <Selectbox
+        {...args}
+        options={groupedOptions}
+        grouped={true}
+        placeholder={t("story_selectbox_placeholder")}
+      />
+    );
+  },
+};
+
+export const AdvancedSearch: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const groupedOptions = [
+      {
+        label: t("story_selectbox_group_fruits"),
+        options: [
+          { label: t("story_selectbox_opt_apple"), value: "apple" },
+          { label: t("story_selectbox_opt_banana"), value: "banana" },
+        ],
+      },
+      {
+        label: t("story_selectbox_group_veggies"),
+        options: [
+          { label: t("story_selectbox_opt_carrot"), value: "carrot" },
+          { label: t("story_selectbox_opt_potato"), value: "potato" },
+        ],
+      },
+    ];
+    return (
+      <Selectbox
+        {...args}
+        options={groupedOptions}
+        grouped={true}
+        searchable={true}
+        allowClear={true}
+        placeholder={t("story_selectbox_placeholder")}
+      />
+    );
+  },
+};

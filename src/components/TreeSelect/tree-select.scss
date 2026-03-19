@@ -87,7 +87,7 @@
     min-width: 100%;
     max-width: 480px;
     max-height: 320px;
-    padding: 0; // Floating items in TreeView handle the margins
+    padding: 4px 0; // Provide space for focus ring shadows
     margin-top: 4px;
     overflow-y: auto;
     background: var(--wim-color-bg-component);
@@ -108,7 +108,7 @@
   // Adapt TreeView styles for Selectbox dropdown
   .wim-tree-view {
     width: 100% !important;
-    padding: 0;
+    padding: 4px 0;
     border: none;
 
     &__search {

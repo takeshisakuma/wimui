@@ -78,6 +78,7 @@ export const Cascader = ({
   const [activePath, setActivePath] = useState<string[]>([]);
   const [focusedLevel, setFocusedLevel] = useState<number>(-1); // -1 means trigger is focused
   const [focusedIndexes, setFocusedIndexes] = useState<number[]>([]);
+  const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const isControlled = value !== undefined;
@@ -176,6 +177,7 @@ export const Cascader = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    setIsKeyboardNavigating(true);
     if (disabled) return;
 
     if (!isOpen) {
@@ -356,6 +358,8 @@ export const Cascader = ({
       <div
         className="wim-cascader"
         ref={containerRef}
+        onMouseMove={() => setIsKeyboardNavigating(false)}
+        data-keyboard-nav={isKeyboardNavigating}
         {...props}
       >
         <InputBase

@@ -21,7 +21,7 @@
   left: 0;
   z-index: 1000;
   max-height: 240px;
-  padding: var(--spacing-xs) 0; // The items themselves have horizontal margins
+  padding: 4px 0; // Standardized padding for focus rings
   margin: 0;
   overflow-y: auto;
   list-style: none;
@@ -40,7 +40,11 @@
 }
 
 .wim-combobox-option {
-  // Common styles are now handled by BaseListItem
+  .wim-combobox[data-keyboard-nav="true"] &.wim-base-list-item--active {
+    z-index: 1;
+    box-shadow: var(--shadow-focus);
+  }
+
   &:active {
     background-color: rgb(0 0 0 / 0.1);
   }

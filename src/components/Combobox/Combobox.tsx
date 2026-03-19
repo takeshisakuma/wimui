@@ -52,6 +52,7 @@ export const Combobox = ({
   const [filteredOptions, setFilteredOptions] =
     useState<ComboboxOption[]>(options);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const generatedId = useId();
   const id = customId || `wim-combobox-${generatedId}`;
@@ -95,6 +96,7 @@ export const Combobox = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    setIsKeyboardNavigating(true);
     if (!isOpen && e.key === "ArrowDown") {
       setIsOpen(true);
       return;
@@ -135,7 +137,12 @@ export const Combobox = ({
       errorId={errorId}
       className={className}
     >
-      <div className="wim-combobox" ref={containerRef}>
+      <div
+        className="wim-combobox"
+        ref={containerRef}
+        onMouseMove={() => setIsKeyboardNavigating(false)}
+        data-keyboard-nav={isKeyboardNavigating}
+      >
         <Input
           id={id}
           placeholder={t(placeholder)}

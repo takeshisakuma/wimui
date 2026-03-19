@@ -272,7 +272,7 @@ export const ContrastChecker: React.FC = () => {
                     display: block;
                 }
                 .wim-contrast-color-picker {
-                    width: 64px !important;
+                    width: 120px !important;
                     flex: 0 0 auto;
                 }
                 `}

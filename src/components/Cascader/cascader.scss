@@ -104,7 +104,7 @@
   &__menu {
     min-width: 180px;
     max-height: 240px;
-    padding: var(--spacing-xs) 0; // The units are standardized. BaseListItem has the side margins.
+    padding: 4px 0; // Standardized padding for focus rings
     overflow-y: auto;
     border-right: 1px solid var(--wim-color-border);
 
@@ -136,6 +136,10 @@
 
   &__menu-item {
     // Common styles are now handled by BaseListItem
+    .wim-cascader[data-keyboard-nav="true"] &.wim-base-list-item--active {
+      z-index: 1;
+      box-shadow: var(--shadow-focus);
+    }
 
     &--active {
       font-weight: 500;

@@ -137,7 +137,7 @@
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
       "eslint --fix --max-warnings=0",
-      "tsc --noEmit"
+      "node scripts/tsc-check.js"
     ],
     "src/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0"

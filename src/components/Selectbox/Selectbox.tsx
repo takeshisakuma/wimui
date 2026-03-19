@@ -89,6 +89,7 @@ export const Selectbox = ({
   const [internalValue, setInternalValue] = useState(defaultValue || "");
   const [searchValue, setSearchValue] = useState("");
   const [focusedIndex, setFocusedIndex] = useState(-1);
+  const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -195,6 +196,7 @@ export const Selectbox = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    setIsKeyboardNavigating(true);
     if (disabled) return;
 
     switch (e.key) {
@@ -510,6 +512,8 @@ export const Selectbox = ({
       <div
         className={classNames("wim-selectbox")}
         ref={containerRef}
+        onMouseMove={() => setIsKeyboardNavigating(false)}
+        data-keyboard-nav={isKeyboardNavigating}
         {...wrapperProps}
       >
         <InputBase

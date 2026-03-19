@@ -23,9 +23,10 @@ type CommandPaletteContextType = {
   setSearch: (search: string) => void;
   activeIndex: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
-  itemCount: number;
   registerItem: () => number;
   unregisterItem: () => void;
+  isKeyboardNavigating: boolean;
+  setIsKeyboardNavigating: (is: boolean) => void;
 };
 
 const CommandPaletteContext = createContext<
@@ -57,6 +58,7 @@ export const CommandPalette = ({
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
   const itemCountRef = useRef(0);
 
   const isControlled = controlledOpen !== undefined;
@@ -94,6 +96,7 @@ export const CommandPalette = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
+        setIsKeyboardNavigating(true);
         handleOpenChange(!open);
       }
       if (e.key === "Escape" && open) {
@@ -113,16 +116,15 @@ export const CommandPalette = ({
       setSearch,
       activeIndex,
       setActiveIndex,
-      /* eslint-disable-next-line react-hooks/refs */
-      itemCount: itemCountRef.current,
       registerItem,
       unregisterItem,
+      isKeyboardNavigating,
+      setIsKeyboardNavigating,
     }),
-    [open, handleOpenChange, search, activeIndex, registerItem, unregisterItem],
+    [open, handleOpenChange, search, activeIndex, registerItem, unregisterItem, isKeyboardNavigating],
   );
 
   return (
-    // eslint-disable-next-line react-hooks/refs
     <CommandPaletteContext.Provider value={contextValue}>
       {children}
     </CommandPaletteContext.Provider>
@@ -141,9 +143,11 @@ export const CommandPaletteTrigger = ({
   asChild,
   className,
 }: CommandPaletteTriggerProps) => {
-  const { onOpenChange } = useCommandPalette();
+  const { onOpenChange, setIsKeyboardNavigating } = useCommandPalette();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    // e.detail is 0 when triggered via keyboard (Enter/Space)
+    setIsKeyboardNavigating(e.detail === 0);
     onOpenChange(true);
   };
 
@@ -159,7 +163,7 @@ export const CommandPaletteTrigger = ({
             onClick?: React.MouseEventHandler;
           }>;
           child.props.onClick?.(e);
-          handleClick();
+          handleClick(e);
         },
         className: classNames(
           className,
@@ -174,6 +178,11 @@ export const CommandPaletteTrigger = ({
     <button
       className={classNames("wim-command-palette-trigger", className)}
       onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          setIsKeyboardNavigating(true);
+        }
+      }}
     >
       {children}
     </button>
@@ -190,87 +199,115 @@ export const CommandPaletteContent = ({
   children,
   className,
 }: CommandPaletteContentProps) => {
-  const { open, onOpenChange, activeIndex, setActiveIndex, itemCount } = useCommandPalette();
+  const { open, onOpenChange, activeIndex, setActiveIndex, isKeyboardNavigating, setIsKeyboardNavigating } = useCommandPalette();
+    const mousePosRef = useRef<{ x: number; y: number } | null>(null);
 
-  return (
-    <Portal>
-      <Transition
-        show={open}
-        enter="fade-enter"
-        enterFrom="fade-enter-from"
-        enterTo="fade-enter-to"
-        leave="fade-leave"
-        leaveFrom="fade-leave-from"
-        leaveTo="fade-leave-to"
-      >
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-        <div
-          className="wim-command-palette-overlay"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              onOpenChange(false);
-            }
-          }}
+    const handleMouseMove = (e: React.MouseEvent) => {
+      if (!mousePosRef.current) {
+        mousePosRef.current = { x: e.clientX, y: e.clientY };
+        return;
+      }
+
+      // Avoid accidental reset if the mouse hasn't really moved (prevent noise/auto-events)
+      const dist = Math.sqrt(
+        Math.pow(e.clientX - mousePosRef.current.x, 2) +
+          Math.pow(e.clientY - mousePosRef.current.y, 2),
+      );
+      if (dist > 10) {
+        setIsKeyboardNavigating(false);
+      }
+      mousePosRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    return (
+      <Portal>
+        <Transition
+          show={open}
+          enter="fade-enter"
+          enterFrom="fade-enter-from"
+          enterTo="fade-enter-to"
+          leave="fade-leave"
+          leaveFrom="fade-leave-from"
+          leaveTo="fade-leave-to"
         >
-          <Transition
-            show={open}
-            enter="scale-enter"
-            enterFrom="scale-enter-from"
-            enterTo="scale-enter-to"
-            leave="scale-leave"
-            leaveFrom="scale-leave-from"
-            leaveTo="scale-leave-to"
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+          <div
+            className="wim-command-palette-overlay"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                onOpenChange(false);
+              }
+            }}
           >
-            <FocusTrap active={open}>
-              {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-              <div
-                className={classNames("wim-command-palette-content", className)}
-                onClick={(e) => e.stopPropagation()}
-                onKeyDown={(e) => {
-                  if (e.key === "ArrowDown") {
-                    e.preventDefault();
-                    setActiveIndex((prev) => (prev + 1) % itemCount);
-                  } else if (e.key === "ArrowUp") {
-                    e.preventDefault();
-                    setActiveIndex(
-                      (prev) => (prev - 1 + itemCount) % itemCount,
-                    );
-                  } else if (e.key === "Home") {
-                    e.preventDefault();
-                    setActiveIndex(0);
-                  } else if (e.key === "End") {
-                    e.preventDefault();
-                    setActiveIndex(itemCount - 1);
-                  } else if (e.key === "Enter") {
-                    e.preventDefault();
-                    // Item click logic will be handled by focused element or we can trigger it from here
-                    // Since BaseListItem is used, we can find the active element and click it
-                    const activeElement = document.getElementById(`wim-command-palette-item-${activeIndex}`);
-                    activeElement?.click();
-                  }
-                }}
-              >
-                {children}
-              </div>
-            </FocusTrap>
-          </Transition>
-        </div>
-      </Transition>
-    </Portal>
-  );
-};
+            <Transition
+              show={open}
+              enter="scale-enter"
+              enterFrom="scale-enter-from"
+              enterTo="scale-enter-to"
+              leave="scale-leave"
+              leaveFrom="scale-leave-from"
+              leaveTo="scale-leave-to"
+            >
+              <FocusTrap active={open}>
+                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                <div
+                  className={classNames("wim-command-palette-content", className)}
+                  onClick={(e) => e.stopPropagation()}
+                  onMouseMove={handleMouseMove}
+                  data-keyboard-nav={isKeyboardNavigating}
+                  onKeyDown={(e) => {
+                    setIsKeyboardNavigating(true);
+                    
+                    // Query items in the DOM to get the most accurate count
+                    const items = e.currentTarget.querySelectorAll('.wim-command-palette-item:not(.wim-base-list-item--disabled)');
+                    const itemCount = items.length;
+                    
+                    if (itemCount === 0) return;
+
+                    if (e.key === "ArrowDown") {
+                      e.preventDefault();
+                      setActiveIndex((prev) => (prev + 1) % itemCount);
+                    } else if (e.key === "ArrowUp") {
+                      e.preventDefault();
+                      setActiveIndex(
+                        (prev) => (prev - 1 + itemCount) % itemCount,
+                      );
+                    } else if (e.key === "Home") {
+                      e.preventDefault();
+                      setActiveIndex(0);
+                    } else if (e.key === "End") {
+                      e.preventDefault();
+                      setActiveIndex(itemCount - 1);
+                    } else if (e.key === "Enter") {
+                      e.preventDefault();
+                      const activeElement = document.getElementById(`wim-command-palette-item-${activeIndex}`) as HTMLElement;
+                      activeElement?.click();
+                    }
+                  }}
+                >
+                  {children}
+                </div>
+              </FocusTrap>
+            </Transition>
+          </div>
+        </Transition>
+      </Portal>
+    );
+  };
 
 // --- Input ---
 export interface CommandPaletteInputProps {
   placeholder?: string;
   value?: string;
   onChange?: (value: string) => void;
+  rightSection?: ReactNode;
 }
 
 export const CommandPaletteInput = ({
   placeholder = "Search commands...",
   value,
   onChange,
+  rightSection,
 }: CommandPaletteInputProps) => {
   const { search, setSearch, setActiveIndex, activeIndex } =
     useCommandPalette();
@@ -298,6 +335,11 @@ export const CommandPaletteInput = ({
         aria-controls="wim-command-palette-listbox"
         aria-activedescendant={`wim-command-palette-item-${activeIndex}`}
       />
+      {rightSection && (
+        <div className="wim-command-palette-input-right">
+          {rightSection}
+        </div>
+      )}
     </div>
   );
 };
@@ -402,8 +444,21 @@ export const CommandPaletteEmpty = ({
 }: {
   children?: ReactNode;
 }) => {
-  const { itemCount } = useCommandPalette();
-  if (itemCount > 0) return null;
+  const { open, search } = useCommandPalette();
+  const [isEmpty, setIsEmpty] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      // Small delay to allow items to register/render
+      const timer = setTimeout(() => {
+        const items = document.querySelectorAll(".wim-command-palette-item");
+        setIsEmpty(items.length === 0);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [open, search]);
+
+  if (!open || !isEmpty) return null;
   return <div className="wim-command-palette-empty">{children}</div>;
 };
 

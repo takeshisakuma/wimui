@@ -1,8 +1,8 @@
 import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
-import * as CascaderStories from "./Cascader.stories";
+import { Default, WithLabel, HoverExpand, Disabled, CustomSeparator } from "./Cascader.stories";
 import { T } from "../T";
 
-<Meta of={CascaderStories} />
+<Meta of={Default} />
 
 <Title />
 
@@ -95,7 +95,7 @@ import { T } from "../T";
   <li><T k="doc_cascader_best_practice_2" /></li>
 </ul>
 
-<Canvas of={CascaderStories.Default} />
+<Canvas of={Default} />
 
 <Primary />
 
@@ -107,20 +107,20 @@ import { T } from "../T";
 
 ### <T k="doc_cascader_with_label" />
 
-<Canvas of={CascaderStories.WithLabel} />
+<Canvas of={WithLabel} />
 
 ### <T k="doc_cascader_hover_expand" />
 
 <p><T k="doc_cascader_hover_expand_desc" /></p>
 
-<Canvas of={CascaderStories.HoverExpand} />
+<Canvas of={HoverExpand} />
 
 ### <T k="status_disabled" />
 
-<Canvas of={CascaderStories.Disabled} />
+<Canvas of={Disabled} />
 
 ### <T k="doc_cascader_custom_separator" />
 
-<Canvas of={CascaderStories.CustomSeparator} />
+<Canvas of={CustomSeparator} />
 
 <Stories />

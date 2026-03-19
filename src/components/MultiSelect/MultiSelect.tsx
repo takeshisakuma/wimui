@@ -57,6 +57,7 @@ export const MultiSelect = ({
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
   const [focusedIndex, setFocusedIndex] = useState(-1);
+  const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -149,6 +150,7 @@ export const MultiSelect = ({
   );
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    setIsKeyboardNavigating(true);
     if (disabled) return;
 
     switch (e.key) {
@@ -233,6 +235,8 @@ export const MultiSelect = ({
       <div
         className="wim-multiselect"
         ref={containerRef}
+        onMouseMove={() => setIsKeyboardNavigating(false)}
+        data-keyboard-nav={isKeyboardNavigating}
         {...wrapperProps}
       >
         <InputBase
