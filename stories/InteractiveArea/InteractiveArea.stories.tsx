@@ -3,8 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InteractiveArea } from "@/components/InteractiveArea/InteractiveArea";
 import { Button } from "@/components/Button/Button";
 import { Icon } from "@/components/Icon/Icon";
-import { useTranslation } from "react-i18next";
-import { ALL_NAMESPACES } from "../i18nConstants";
 
 const meta: Meta<typeof InteractiveArea> = {
   title: "Internal/InteractiveArea",
