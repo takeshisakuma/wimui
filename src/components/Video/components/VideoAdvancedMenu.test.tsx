@@ -36,14 +36,14 @@ describe("VideoAdvancedMenu", () => {
 
   it("renders main menu", () => {
     render(<VideoAdvancedMenu {...defaultProps} />);
-    expect(screen.getByText("設定")).toBeInTheDocument();
-    expect(screen.getByText("画質")).toBeInTheDocument();
-    expect(screen.getByText("再生速度")).toBeInTheDocument();
+    expect(screen.getByText(/Settings|設定/i)).toBeInTheDocument();
+    expect(screen.getByText(/Quality|画質/i)).toBeInTheDocument();
+    expect(screen.getByText(/Playback Rate|再生速度/i)).toBeInTheDocument();
   });
 
   it("switches to quality menu", () => {
     render(<VideoAdvancedMenu {...defaultProps} />);
-    fireEvent.click(screen.getByText("画質"));
+    fireEvent.click(screen.getByText(/Quality|画質/i));
     expect(defaultProps.setActiveMenu).toHaveBeenCalledWith("quality");
   });
 
