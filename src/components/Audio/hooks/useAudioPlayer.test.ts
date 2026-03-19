@@ -20,7 +20,7 @@ class MockAudioContext {
     connect: vi.fn(),
     type: "lowshelf",
     frequency: { value: 200 },
-    gain: { 
+    gain: {
       value: 0,
       setTargetAtTime: vi.fn(),
     },
@@ -77,7 +77,7 @@ describe("useAudioPlayer", () => {
 
   it("toggles play/pause", async () => {
     const { result } = renderHook(() => useAudioPlayer(options));
-    
+
     await act(async () => {
       (result.current.activeAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
       (result.current.nextAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
@@ -86,7 +86,7 @@ describe("useAudioPlayer", () => {
     await act(async () => {
       result.current.togglePlay();
     });
-    
+
     expect(result.current.isPlaying).toBe(true);
 
     await act(async () => {
@@ -97,7 +97,7 @@ describe("useAudioPlayer", () => {
 
   it("changes tracks", async () => {
     const { result } = renderHook(() => useAudioPlayer(options));
-    
+
     await act(async () => {
       (result.current.activeAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
       (result.current.nextAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
@@ -106,13 +106,13 @@ describe("useAudioPlayer", () => {
     act(() => {
       result.current.playNext(1);
     });
-    
+
     expect(result.current.currentTrackIndex).toBe(1);
   });
 
   it("handles repeat modes", async () => {
     const { result } = renderHook(() => useAudioPlayer(options));
-    
+
     await act(async () => {
       (result.current.activeAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
       (result.current.nextAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
@@ -131,7 +131,7 @@ describe("useAudioPlayer", () => {
 
   it("toggles bass boost", () => {
     const { result } = renderHook(() => useAudioPlayer(options));
-    
+
     act(() => {
       result.current.setIsBassBoost(true);
     });
@@ -140,7 +140,7 @@ describe("useAudioPlayer", () => {
 
   it("handles volume change", async () => {
     const { result } = renderHook(() => useAudioPlayer(options));
-    
+
     await act(async () => {
       (result.current.activeAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
       (result.current.nextAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
@@ -155,17 +155,165 @@ describe("useAudioPlayer", () => {
   it("handles sleep timer", () => {
     vi.useFakeTimers();
     const { result } = renderHook(() => useAudioPlayer(options));
-    
+
     act(() => {
       result.current.toggleSleepTimer();
     });
     expect(result.current.remainingSleepTime).toBe(900); // 15 minutes
-    
+
     act(() => {
       vi.advanceTimersByTime(1000);
     });
     expect(result.current.remainingSleepTime).toBe(899);
-    
+
     vi.useRealTimers();
+  });
+
+  it("initializes repeatMode as 1 when loop is true", () => {
+    const { result } = renderHook(() => useAudioPlayer({ ...options, loop: true }));
+    expect(result.current.repeatMode).toBe(1);
+  });
+
+  it("initializes isMuted as true when muted is true", () => {
+    const { result } = renderHook(() => useAudioPlayer({ ...options, muted: true }));
+    expect(result.current.isMuted).toBe(true);
+  });
+
+  it("formatTime formats 0 seconds as 0:00", () => {
+    const { result } = renderHook(() => useAudioPlayer(options));
+    expect(result.current.formatTime(0)).toBe("0:00");
+  });
+
+  it("formatTime formats 65 seconds as 1:05", () => {
+    const { result } = renderHook(() => useAudioPlayer(options));
+    expect(result.current.formatTime(65)).toBe("1:05");
+  });
+
+  it("formatTime formats 3600 seconds as 60:00", () => {
+    const { result } = renderHook(() => useAudioPlayer(options));
+    expect(result.current.formatTime(3600)).toBe("60:00");
+  });
+
+  it("handleSeek updates currentTime state", async () => {
+    const { result } = renderHook(() => useAudioPlayer(options));
+
+    await act(async () => {
+      (result.current.activeAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
+    });
+
+    act(() => {
+      result.current.handleSeek({ target: { value: "30" } } as unknown as React.ChangeEvent<HTMLInputElement>);
+    });
+    expect(result.current.currentTime).toBe(30);
+  });
+
+  it("playNext(-1) goes to the previous track", async () => {
+    const { result } = renderHook(() => useAudioPlayer(options));
+
+    await act(async () => {
+      (result.current.activeAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
+      (result.current.nextAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
+    });
+
+    act(() => { result.current.playNext(1); });
+    expect(result.current.currentTrackIndex).toBe(1);
+
+    act(() => { result.current.playNext(-1); });
+    expect(result.current.currentTrackIndex).toBe(0);
+  });
+
+  it("cancels sleep timer when toggled twice", () => {
+    vi.useFakeTimers();
+    const { result } = renderHook(() => useAudioPlayer(options));
+
+    act(() => { result.current.toggleSleepTimer(); });
+    expect(result.current.remainingSleepTime).toBe(900);
+
+    act(() => { result.current.toggleSleepTimer(); });
+    expect(result.current.remainingSleepTime).toBeNull();
+
+    vi.useRealTimers();
+  });
+
+  it("sleep timer sets remainingSleepTime to null when it reaches zero", async () => {
+    vi.useFakeTimers();
+    const { result } = renderHook(() => useAudioPlayer(options));
+
+    await act(async () => {
+      (result.current.activeAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
+      (result.current.nextAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
+    });
+
+    act(() => { result.current.toggleSleepTimer(); });
+
+    await act(async () => {
+      vi.advanceTimersByTime(900 * 1000);
+    });
+
+    expect(result.current.remainingSleepTime).toBeNull();
+    vi.useRealTimers();
+  });
+
+  it("hotkey M toggles mute", () => {
+    const { result } = renderHook(() => useAudioPlayer({ ...options, hotkeys: true }));
+
+    act(() => {
+      window.dispatchEvent(new KeyboardEvent("keydown", { code: "KeyM" }));
+    });
+    expect(result.current.isMuted).toBe(true);
+
+    act(() => {
+      window.dispatchEvent(new KeyboardEvent("keydown", { code: "KeyM" }));
+    });
+    expect(result.current.isMuted).toBe(false);
+  });
+
+  it("hotkey Space toggles play", async () => {
+    const { result } = renderHook(() => useAudioPlayer({ ...options, hotkeys: true }));
+
+    await act(async () => {
+      (result.current.activeAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
+      (result.current.nextAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
+    });
+
+    await act(async () => {
+      window.dispatchEvent(new KeyboardEvent("keydown", { code: "Space" }));
+    });
+
+    expect(result.current.isPlaying).toBe(true);
+  });
+
+  it("hotkeys are not registered when hotkeys is false", () => {
+    const { result } = renderHook(() => useAudioPlayer({ ...options, hotkeys: false }));
+
+    act(() => {
+      window.dispatchEvent(new KeyboardEvent("keydown", { code: "KeyM" }));
+    });
+    // isMuted should remain false since hotkeys are disabled
+    expect(result.current.isMuted).toBe(false);
+  });
+
+  it("setShuffleMode toggles shuffle state", () => {
+    const { result } = renderHook(() => useAudioPlayer(options));
+
+    act(() => { result.current.setShuffleMode((s) => !s); });
+    expect(result.current.shuffleMode).toBe(true);
+
+    act(() => { result.current.setShuffleMode((s) => !s); });
+    expect(result.current.shuffleMode).toBe(false);
+  });
+
+  it("handleVolumeChange above 0 clears mute state", async () => {
+    const { result } = renderHook(() => useAudioPlayer({ ...options, muted: true }));
+
+    await act(async () => {
+      (result.current.activeAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
+      (result.current.nextAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
+    });
+
+    act(() => {
+      result.current.handleVolumeChange({ target: { value: "0.5" } } as unknown as React.ChangeEvent<HTMLInputElement>);
+    });
+    expect(result.current.isMuted).toBe(false);
   });
 });

@@ -1,22 +1,24 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor, act } from "@testing-library/react";
 import { useAudioMetadata } from "./useAudioMetadata";
 
 // Mock jsmediatags
+const mockRead = vi.fn((src, callbacks) => {
+  callbacks.onSuccess({
+    tags: {
+      title: "Parsed Title",
+      artist: "Parsed Artist",
+      picture: {
+        data: [72, 101, 108, 108, 111], // "Hello"
+        format: "image/png",
+      },
+    },
+  });
+});
+
 vi.mock("jsmediatags/build2/jsmediatags.js", () => ({
   default: {
-    read: vi.fn((src, callbacks) => {
-      callbacks.onSuccess({
-        tags: {
-          title: "Parsed Title",
-          artist: "Parsed Artist",
-          picture: {
-            data: [72, 101, 108, 108, 111], // "Hello"
-            format: "image/png",
-          },
-        },
-      });
-    }),
+    read: (...args: Parameters<typeof mockRead>) => mockRead(...args),
   },
 }));
 
@@ -68,15 +70,76 @@ describe("useAudioMetadata", () => {
     expect(result.current.metaCover).toContain("data:image/png;base64,");
   });
 
-  it("does not load tags if showMetadata is false", () => {
-    const currentTrack = {
-      src: "test.mp3",
-    };
-    renderHook(() => useAudioMetadata({ currentTrack, showMetadata: false }));
+  it("does not call jsmediatags when showMetadata is false", async () => {
+    renderHook(() =>
+      useAudioMetadata({ currentTrack: { src: "test.mp3" }, showMetadata: false }),
+    );
 
-    // jsmediatags should NOT be called if we can check its mock, 
-    // but it's loaded via dynamic import, so we'd need to mock the import itself carefully.
-    // In our mock above, it is called. 
-    // However, the code at line 24 has a guard: `if (showMetadata && !title && ...)`
+    // Allow any pending microtasks to settle
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    expect(mockRead).not.toHaveBeenCalled();
+  });
+
+  it("does not call jsmediatags when track already has title and artist", async () => {
+    renderHook(() =>
+      useAudioMetadata({
+        currentTrack: { src: "test.mp3", title: "Title", artist: "Artist" },
+        showMetadata: true,
+      }),
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    expect(mockRead).not.toHaveBeenCalled();
+  });
+
+  it("updates metadata when currentTrack changes", () => {
+    const { result, rerender } = renderHook(
+      ({ track }: { track: { src: string; title?: string; artist?: string } }) =>
+        useAudioMetadata({ currentTrack: track, showMetadata: true }),
+      {
+        initialProps: {
+          track: { src: "a.mp3", title: "Track A", artist: "Artist A" },
+        },
+      },
+    );
+
+    expect(result.current.metaTitle).toBe("Track A");
+    expect(result.current.metaArtist).toBe("Artist A");
+
+    act(() => {
+      rerender({ track: { src: "b.mp3", title: "Track B", artist: "Artist B" } });
+    });
+
+    expect(result.current.metaTitle).toBe("Track B");
+    expect(result.current.metaArtist).toBe("Artist B");
+  });
+
+  it("handles jsmediatags onError gracefully", async () => {
+    mockRead.mockImplementationOnce((_src, callbacks) => {
+      callbacks.onError(new Error("parse error"));
+    });
+
+    const consoleSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+
+    renderHook(() =>
+      useAudioMetadata({ currentTrack: { src: "bad.mp3" }, showMetadata: true }),
+    );
+
+    await waitFor(() => expect(consoleSpy).toHaveBeenCalled());
+    consoleSpy.mockRestore();
+  });
+
+  it("returns empty strings when currentTrack has no metadata fields", () => {
+    const { result } = renderHook(() =>
+      useAudioMetadata({ currentTrack: { src: "only-src.mp3" }, showMetadata: false }),
+    );
+
+    // showMetadata=false, so values stay at initial empty strings until effect runs
+    // (effect sets them to empty strings from the track)
+    expect(result.current.metaTitle).toBe("");
+    expect(result.current.metaArtist).toBe("");
+    expect(result.current.metaCover).toBe("");
   });
 });
