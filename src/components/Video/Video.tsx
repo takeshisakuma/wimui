@@ -5,6 +5,7 @@ import { useMediaLoader } from "@/hooks/useMediaLoader";
 import { useVideoPlayer } from "./hooks/useVideoPlayer";
 import { VideoAdvancedMenu } from "./components/VideoAdvancedMenu";
 import { VideoControls } from "./components/VideoControls";
+import { useTranslation } from "react-i18next";
 import "./video.scss";
 
 type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
@@ -66,6 +67,7 @@ export const Video = ({
   demoDelay,
   ...props
 }: VideoProps) => {
+  const { t } = useTranslation();
   const {
     containerRef: mediaLoaderRef,
     isLoaded,
@@ -117,6 +119,8 @@ export const Video = ({
     <figure
       className={classNames("wim-video-container", className)}
       style={{ width: "100%" }}
+      role="region"
+      aria-label={t("icon_VideoIcon")}
     >
       <div
         className={classNames(

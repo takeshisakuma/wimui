@@ -1,11 +1,18 @@
 import React from "react";
 import { Icon } from "../../Icon/Icon";
+import { useTranslation } from "react-i18next";
 
 type FitOption = "contain" | "cover" | "fill" | "none" | "scale-down";
 type ActiveMenu = "main" | "quality" | "rate" | "fit" | "playlist" | null;
 
 const RATES = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0];
-const FIT_OPTIONS: FitOption[] = ["contain", "cover", "fill", "scale-down", "none"];
+const FIT_OPTIONS: FitOption[] = [
+  "contain",
+  "cover",
+  "fill",
+  "scale-down",
+  "none",
+];
 
 interface VideoAdvancedMenuProps {
   activeMenu: ActiveMenu;
@@ -36,18 +43,24 @@ export function VideoAdvancedMenu({
   currentPlayIndex,
   playPlaylistItem,
 }: VideoAdvancedMenuProps) {
+  const { t } = useTranslation();
+
   if (!activeMenu) return null;
 
   return (
     <>
       {activeMenu === "main" && (
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <div
           className="wim-video-advanced-menu"
           onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setActiveMenu(null);
+          }}
+          role="menu"
+          tabIndex={-1}
         >
           <div className="wim-video-menu-title">
-            <span>設定</span>
+            <span>{t("settings")}</span>
           </div>
           <div className="wim-video-menu-items">
             {qualities && qualities.length > 0 && (
@@ -55,7 +68,7 @@ export function VideoAdvancedMenu({
                 className="wim-video-menu-btn"
                 onClick={() => setActiveMenu("quality")}
               >
-                <span>画質</span>
+                <span>{t("quality")}</span>
                 <span style={{ opacity: 0.7 }}>
                   {qualities[currentQualityIndex].label}{" "}
                   <Icon name="ChevronRightIcon" size="small" />
@@ -66,7 +79,7 @@ export function VideoAdvancedMenu({
               className="wim-video-menu-btn"
               onClick={() => setActiveMenu("rate")}
             >
-              <span>再生速度</span>
+              <span>{t("playback_rate")}</span>
               <span style={{ opacity: 0.7 }}>
                 {playbackRate}x <Icon name="ChevronRightIcon" size="small" />
               </span>
@@ -75,7 +88,7 @@ export function VideoAdvancedMenu({
               className="wim-video-menu-btn"
               onClick={() => setActiveMenu("fit")}
             >
-              <span>アスペクト比</span>
+              <span>{t("aspect_ratio")}</span>
               <span style={{ opacity: 0.7 }}>
                 {activeFit} <Icon name="ChevronRightIcon" size="small" />
               </span>
@@ -85,16 +98,23 @@ export function VideoAdvancedMenu({
       )}
 
       {activeMenu === "quality" && (
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <div
           className="wim-video-advanced-menu"
           onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setActiveMenu("main");
+          }}
+          role="menu"
+          tabIndex={-1}
         >
           <div className="wim-video-menu-title">
-            <button onClick={() => setActiveMenu("main")} className="wim-video-btn">
+            <button
+              onClick={() => setActiveMenu("main")}
+              className="wim-video-btn"
+            >
               <Icon name="ChevronLeftIcon" size="small" />
             </button>
-            <span>画質</span>
+            <span>{t("quality")}</span>
           </div>
           <div className="wim-video-menu-items">
             {qualities?.map((q, i) => (
@@ -107,7 +127,9 @@ export function VideoAdvancedMenu({
                 {currentQualityIndex === i && (
                   <Icon name="CheckIcon" size="small" />
                 )}
-                <span style={{ marginLeft: currentQualityIndex === i ? 0 : 24 }}>
+                <span
+                  style={{ marginLeft: currentQualityIndex === i ? 0 : 24 }}
+                >
                   {q.label}
                 </span>
               </button>
@@ -117,16 +139,23 @@ export function VideoAdvancedMenu({
       )}
 
       {activeMenu === "rate" && (
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <div
           className="wim-video-advanced-menu"
           onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setActiveMenu("main");
+          }}
+          role="menu"
+          tabIndex={-1}
         >
           <div className="wim-video-menu-title">
-            <button onClick={() => setActiveMenu("main")} className="wim-video-btn">
+            <button
+              onClick={() => setActiveMenu("main")}
+              className="wim-video-btn"
+            >
               <Icon name="ChevronLeftIcon" size="small" />
             </button>
-            <span>再生速度</span>
+            <span>{t("playback_rate")}</span>
           </div>
           <div className="wim-video-menu-items">
             {RATES.map((r) => (
@@ -141,7 +170,7 @@ export function VideoAdvancedMenu({
               >
                 {playbackRate === r && <Icon name="CheckIcon" size="small" />}
                 <span style={{ marginLeft: playbackRate === r ? 0 : 24 }}>
-                  {r === 1.0 ? "標準" : `${r}x`}
+                  {r === 1.0 ? t("standard") : `${r}x`}
                 </span>
               </button>
             ))}
@@ -150,16 +179,23 @@ export function VideoAdvancedMenu({
       )}
 
       {activeMenu === "fit" && (
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <div
           className="wim-video-advanced-menu"
           onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setActiveMenu("main");
+          }}
+          role="menu"
+          tabIndex={-1}
         >
           <div className="wim-video-menu-title">
-            <button onClick={() => setActiveMenu("main")} className="wim-video-btn">
+            <button
+              onClick={() => setActiveMenu("main")}
+              className="wim-video-btn"
+            >
               <Icon name="ChevronLeftIcon" size="small" />
             </button>
-            <span>アスペクト比</span>
+            <span>{t("aspect_ratio")}</span>
           </div>
           <div className="wim-video-menu-items">
             {FIT_OPTIONS.map((f) => (
@@ -173,7 +209,9 @@ export function VideoAdvancedMenu({
                 }}
               >
                 {activeFit === f && <Icon name="CheckIcon" size="small" />}
-                <span style={{ marginLeft: activeFit === f ? 0 : 24 }}>{f}</span>
+                <span style={{ marginLeft: activeFit === f ? 0 : 24 }}>
+                  {f}
+                </span>
               </button>
             ))}
           </div>
@@ -181,14 +219,18 @@ export function VideoAdvancedMenu({
       )}
 
       {activeMenu === "playlist" && (
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <div
           className="wim-video-advanced-menu"
           onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setActiveMenu(null);
+          }}
           style={{ bottom: 60, right: 16, width: 250 }}
+          role="menu"
+          tabIndex={-1}
         >
           <div className="wim-video-menu-title">
-            <span>プレイリスト</span>
+            <span>{t("a11y_playlist")}</span>
             <button
               onClick={() => setActiveMenu(null)}
               style={{ marginLeft: "auto" }}
@@ -204,7 +246,11 @@ export function VideoAdvancedMenu({
                 className="wim-video-menu-btn"
                 data-active={currentPlayIndex === i}
                 onClick={() => playPlaylistItem(i)}
-                style={{ flexDirection: "column", alignItems: "flex-start", gap: 4 }}
+                style={{
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  gap: 4,
+                }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   {currentPlayIndex === i ? (

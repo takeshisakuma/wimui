@@ -202,7 +202,7 @@ export function VideoControls({
             togglePiP();
           }}
           aria-label={t("a11y_picture_in_picture")}
-          title="ピクチャーインピクチャー"
+          title={t("a11y_picture_in_picture")}
         >
           <Icon name="MonitorIcon" size="small" />
         </button>

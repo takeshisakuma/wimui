@@ -20,7 +20,7 @@ describe("Carousel", () => {
     );
     // In loop mode, it renders 3x items: [Cloned] + [Original] + [Cloned]
     const slides = screen.getAllByRole("group", { name: /slide/i });
-    expect(slides).toHaveLength(4);
+    expect(slides).toHaveLength(6);
   });
 
   it("handles navigation in non-loop mode", () => {

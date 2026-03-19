@@ -280,6 +280,9 @@ export const Carousel = ({
               }
               role="group"
               aria-roledescription="slide"
+              aria-label={t("story_carousel_slide_label", {
+                number: (index % originalItemCount) + 1,
+              })}
             >
               {child}
             </div>

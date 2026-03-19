@@ -218,11 +218,6 @@ export const TreeViewItem = ({
   const checkboxId = `wim-tree-view-item-checkbox-${generatedId}`;
   const labelId = `wim-tree-view-item-label-${generatedId}`;
 
-  const isExpanded = expandedValues.includes(value);
-  const isSelected = selectedValues.includes(value);
-  const isChecked = checkedValues.includes(value);
-  const hasChildren = !!React.Children.count(children);
-
   // Search filtering
   const labelText = typeof label === "string" ? label : "";
   const matchesSearch =
@@ -250,6 +245,12 @@ export const TreeViewItem = ({
 
     return checkChildren(children);
   }, [children, searchQuery]);
+
+  const isExpandedBySearch = !!searchQuery && hasMatchingChildren;
+  const isExpanded = expandedValues.includes(value) || isExpandedBySearch;
+  const isSelected = selectedValues.includes(value);
+  const isChecked = checkedValues.includes(value);
+  const hasChildren = !!React.Children.count(children);
 
   const [, setIsAnimating] = React.useState(false);
   const [shouldRender, setShouldRender] = React.useState(isExpanded);

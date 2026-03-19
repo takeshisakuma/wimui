@@ -117,6 +117,11 @@ describe("TreeView", () => {
     
     // Search for "app" -> should show Parent and Apple
     fireEvent.change(searchInput, { target: { value: "app" } });
+    
+    act(() => {
+      vi.advanceTimersByTime(20);
+    });
+
     expect(screen.getByText("Parent")).toBeInTheDocument();
     expect(screen.getByText("Apple")).toBeInTheDocument();
     expect(screen.queryByText("Banana")).not.toBeInTheDocument();
@@ -177,7 +182,7 @@ describe("TreeView", () => {
       vi.advanceTimersByTime(20);
     });
 
-    expect(await screen.findByText("Child")).toBeInTheDocument();
+    expect(screen.getByText("Child")).toBeInTheDocument();
 
     // ArrowRight again to move to first child
     act(() => {

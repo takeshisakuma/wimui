@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Video } from "./Video";
 
@@ -46,10 +46,18 @@ describe("Video", () => {
     fireEvent(video, new Event("loadedmetadata"));
     
     // Time update
-    Object.defineProperty(video, "currentTime", { value: 50 });
+    let currentTime = 50;
+    Object.defineProperty(video, "currentTime", {
+      get: () => currentTime,
+      set: function (val) {
+        currentTime = val;
+      },
+      configurable: true,
+    });
     fireEvent(video, new Event("timeupdate"));
     
-    expect(screen.getByText("0:50 / 1:40")).toBeInTheDocument();
+    expect(screen.getByText("0:50")).toBeInTheDocument();
+    expect(screen.getByText("1:40")).toBeInTheDocument();
     
     // Seek
     const slider = screen.getByRole("slider", { name: /seek/i });
@@ -88,13 +96,16 @@ describe("Video", () => {
     fireEvent.click(settingsBtn);
     
     // Should see quality option
-    expect(screen.getByText(/quality/i)).toBeInTheDocument();
+    expect(screen.getByText(/quality|画質/i)).toBeInTheDocument();
   });
 
   it("handles double skip on double click (simulation)", () => {
     render(<Video src={src} customControls />);
     const video = document.querySelector("video")!;
     
+    // Mock duration
+    Object.defineProperty(video, "duration", { value: 100, configurable: true });
+    fireEvent(video, new Event("loadedmetadata"));
     // Mock getBoundingClientRect
     vi.spyOn(video, "getBoundingClientRect").mockReturnValue({
       left: 0,
@@ -121,10 +132,14 @@ describe("Video", () => {
     const container = screen.getByRole("region");
     container.focus();
 
-    fireEvent.keyDown(window, { key: " ", code: "Space" });
+    act(() => {
+      fireEvent.keyDown(window, { key: " ", code: "Space" });
+    });
     expect(window.HTMLMediaElement.prototype.play).toHaveBeenCalled();
 
-    fireEvent.keyDown(window, { key: "m" });
+    act(() => {
+      fireEvent.keyDown(window, { key: "m" });
+    });
     const video = document.querySelector("video")!;
     expect(video.muted).toBe(true);
   });
@@ -135,6 +150,10 @@ describe("Video", () => {
       { src: "v2.mp4", title: "Video 2" },
     ];
     render(<Video playlist={playlist} advancedControls />);
+    
+    // Open playlist menu to see titles
+    const playlistBtn = screen.getByLabelText(/playlist/i);
+    fireEvent.click(playlistBtn);
     
     expect(screen.getByText("Video 1")).toBeInTheDocument();
     

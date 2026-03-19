@@ -61,20 +61,28 @@ describe("Anchor", () => {
   it("highlights the active link on scroll", () => {
     const { container } = render(<Anchor items={items} offset={0} bounds={5} />);
     
+    // Ensure we're not at bottom
+    Object.defineProperty(document.documentElement, "scrollHeight", { value: 5000, configurable: true });
+    Object.defineProperty(document.documentElement, "clientHeight", { value: 1000, configurable: true });
+
     // Simulate scroll where section1 is in view
     vi.spyOn(document, "getElementById").mockImplementation((id) => {
-      if (id === "section1") return { getBoundingClientRect: () => ({ top: 2 }) } as unknown as HTMLElement;
-      return { getBoundingClientRect: () => ({ top: 500 }) } as unknown as HTMLElement;
+      if (id === "section1")
+        return {
+          getBoundingClientRect: () => ({ top: 0, bottom: 100, height: 100 }),
+        } as unknown as HTMLElement;
+      return {
+        getBoundingClientRect: () => ({ top: 1000, bottom: 1100, height: 100 }),
+      } as unknown as HTMLElement;
     });
 
-    Object.defineProperty(window, "scrollY", { value: 100, writable: true });
+    Object.defineProperty(window, "scrollY", { value: 10, writable: true });
 
     act(() => {
       fireEvent.scroll(window);
     });
 
     const activeItem = container.querySelector(".wim-anchor__item--active");
-    // ID matched by top=2 should be #section1
     expect(activeItem?.querySelector("a")?.getAttribute("href")).toBe("#section1");
   });
 

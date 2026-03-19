@@ -8,6 +8,8 @@ class ResizeObserver {
   disconnect() {}
 }
 window.ResizeObserver = ResizeObserver;
+window.HTMLElement.prototype.scrollTo = vi.fn();
+window.HTMLElement.prototype.scrollIntoView = vi.fn();
 
 // Mock IntersectionObserver — immediately fires callback as intersecting so lazy-loaded media renders in tests
 class IntersectionObserver {
