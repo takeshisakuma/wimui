@@ -149,7 +149,7 @@ export function DataGrid<T extends Record<string, unknown>>({
     if (typeof rowKey === "function") {
       return rowKey(row);
     }
-    return row[rowKey] as unknown as React.Key;
+    return row[rowKey] as React.Key;
   };
 
   const handleSelectAll = (checked: boolean) => {

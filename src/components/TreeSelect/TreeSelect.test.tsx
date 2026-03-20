@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { TreeSelect, TreeSelectNode } from "./TreeSelect";
 
@@ -83,5 +83,52 @@ describe("TreeSelect", () => {
     fireEvent.click(node2Check);
 
     expect(onChange).toHaveBeenCalledWith(["node-2"]);
+  });
+
+  it("closes dropdown on Escape key", async () => {
+    render(<TreeSelect treeData={treeData} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    expect(screen.getByRole("tree")).toBeInTheDocument();
+
+    fireEvent.keyDown(trigger, { key: "Escape" });
+    await waitFor(() => expect(screen.queryByRole("tree")).not.toBeInTheDocument());
+  });
+
+  it("opens dropdown with ArrowDown key", () => {
+    render(<TreeSelect treeData={treeData} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: "ArrowDown" });
+    expect(screen.getByText("Node 1")).toBeInTheDocument();
+  });
+
+  it("clears selection with clear button", () => {
+    const onChange = vi.fn();
+    render(
+      <TreeSelect
+        treeData={treeData}
+        value="node-2"
+        allowClear
+        onChange={onChange}
+      />,
+    );
+    const clearBtn = screen.getByLabelText("Clear input");
+    fireEvent.click(clearBtn);
+    expect(onChange).toHaveBeenCalledWith("");
+  });
+
+  it("does not clear when disabled", () => {
+    const onChange = vi.fn();
+    render(
+      <TreeSelect
+        treeData={treeData}
+        value="node-2"
+        allowClear
+        disabled
+        onChange={onChange}
+      />,
+    );
+    // When disabled, clear button should not appear
+    expect(screen.queryByLabelText("Clear input")).not.toBeInTheDocument();
   });
 });

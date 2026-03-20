@@ -160,4 +160,33 @@ describe("Selectbox", () => {
     expect(select.tagName).toBe("SELECT");
     expect(screen.getByText("Apple")).toBeInTheDocument();
   });
+
+  it("renders separator option", async () => {
+    const optionsWithSeparator = [
+      { label: "Apple", value: "1" },
+      { type: "separator" as const },
+      { label: "Banana", value: "2" },
+    ];
+    render(<Selectbox options={optionsWithSeparator} />);
+    fireEvent.click(screen.getByRole("combobox"));
+
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+    const separator = document.querySelector(".wim-selectbox-separator");
+    expect(separator).toBeInTheDocument();
+  });
+
+  it("highlights option on mouse enter in non-grouped path", async () => {
+    const onChange = vi.fn();
+    render(<Selectbox options={options} onChange={onChange} />);
+    fireEvent.click(screen.getByRole("combobox"));
+
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+
+    const banana = screen.getByText("Banana").closest("[role='option']")!;
+    fireEvent.mouseEnter(banana);
+
+    // After mouse enter, pressing Enter should select the hovered item
+    fireEvent.keyDown(screen.getByRole("combobox"), { key: "Enter" });
+    expect(onChange).toHaveBeenCalledWith("2");
+  });
 });

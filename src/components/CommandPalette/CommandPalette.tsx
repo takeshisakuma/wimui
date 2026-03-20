@@ -89,7 +89,7 @@ export const CommandPalette = ({
   }, []);
 
   // Reset item count on each render to handle dynamic lists
-  /* eslint-disable-next-line react-hooks/refs */
+  // eslint-disable-next-line react-hooks/refs
   itemCountRef.current = 0;
 
   useEffect(() => {

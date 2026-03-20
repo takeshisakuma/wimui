@@ -133,7 +133,7 @@ export const TableRow = ({
 type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
   sortable?: boolean;
   sortDirection?: "asc" | "desc" | "none";
-  onSort?: (e: React.MouseEvent) => void;
+  onSort?: (e: React.SyntheticEvent) => void;
   selection?: boolean;
   stickyLeft?: boolean;
   stickyRight?: boolean;
@@ -187,7 +187,7 @@ export const TableHead = ({
       onKeyDown={(e) => {
         if (sortable && onSort && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
-          onSort(e as unknown as React.MouseEvent);
+          onSort(e);
         }
         props.onKeyDown?.(e);
       }}

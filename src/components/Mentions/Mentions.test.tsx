@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Mentions } from "./Mentions";
 
@@ -61,5 +61,58 @@ describe("Mentions", () => {
     fireEvent.keyDown(textarea, { key: "Enter" });
 
     expect(textarea.value).toBe("@Bob ");
+  });
+
+  it("closes dropdown on Escape key", async () => {
+    render(<Mentions options={options} />);
+    const textarea = screen.getByRole("textbox");
+
+    fireEvent.change(textarea, { target: { value: "@", selectionStart: 1 } });
+    await screen.findByRole("listbox");
+
+    fireEvent.keyDown(textarea, { key: "Escape" });
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  });
+
+  it("selects with Tab key", async () => {
+    render(<Mentions options={options} />);
+    const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
+
+    fireEvent.change(textarea, { target: { value: "@", selectionStart: 1 } });
+    await screen.findByRole("listbox");
+
+    fireEvent.keyDown(textarea, { key: "ArrowDown" });
+    fireEvent.keyDown(textarea, { key: "Tab" });
+
+    expect(textarea.value).toBe("@Bob ");
+  });
+
+  it("highlights option on mouse enter", async () => {
+    render(<Mentions options={options} />);
+    const textarea = screen.getByRole("textbox");
+
+    fireEvent.change(textarea, { target: { value: "@", selectionStart: 1 } });
+    await screen.findByRole("listbox");
+
+    const charlieItem = screen.getByText("Charlie").closest("[role='option']")!;
+    fireEvent.mouseEnter(charlieItem);
+
+    fireEvent.keyDown(textarea, { key: "Enter" });
+    expect((textarea as HTMLTextAreaElement).value).toBe("@Charlie ");
+  });
+
+  it("closes dropdown on blur", async () => {
+    render(<Mentions options={options} />);
+    const textarea = screen.getByRole("textbox");
+
+    fireEvent.change(textarea, { target: { value: "@", selectionStart: 1 } });
+    await screen.findByRole("listbox");
+
+    fireEvent.blur(textarea);
+
+    await waitFor(
+      () => expect(screen.queryByRole("listbox")).not.toBeInTheDocument(),
+      { timeout: 500 },
+    );
   });
 });

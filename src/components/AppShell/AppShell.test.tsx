@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { AppShell } from "./AppShell";
+import { AppShell, AppShellHeader, AppShellSidebar, AppShellFooter, AppShellNavbar } from "./AppShell";
 
 describe("AppShell", () => {
   it("renders children correctly", () => {
@@ -72,6 +72,30 @@ describe("AppShell", () => {
     );
     const appshell = container.querySelector(".wim-appshell");
     expect(appshell).toHaveClass("wim-appshell--with-sidebar");
+  });
+
+  it("renders AppShellHeader as standalone component", () => {
+    const { container } = render(<AppShellHeader className="my-header">Header</AppShellHeader>);
+    expect(screen.getByText("Header")).toBeInTheDocument();
+    expect(container.firstChild).toHaveClass("wim-appshell__header", "my-header");
+  });
+
+  it("renders AppShellSidebar as standalone component", () => {
+    const { container } = render(<AppShellSidebar className="my-sidebar">Sidebar</AppShellSidebar>);
+    expect(screen.getByText("Sidebar")).toBeInTheDocument();
+    expect(container.firstChild).toHaveClass("wim-appshell__sidebar", "my-sidebar");
+  });
+
+  it("renders AppShellFooter as standalone component", () => {
+    const { container } = render(<AppShellFooter className="my-footer">Footer</AppShellFooter>);
+    expect(screen.getByText("Footer")).toBeInTheDocument();
+    expect(container.firstChild).toHaveClass("wim-appshell__footer", "my-footer");
+  });
+
+  it("renders AppShellNavbar as standalone component", () => {
+    const { container } = render(<AppShellNavbar className="my-navbar">Navbar</AppShellNavbar>);
+    expect(screen.getByText("Navbar")).toBeInTheDocument();
+    expect(container.firstChild).toHaveClass("wim-appshell__navbar", "my-navbar");
   });
 
   it("renders all sections together", () => {

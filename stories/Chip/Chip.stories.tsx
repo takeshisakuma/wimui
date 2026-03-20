@@ -62,7 +62,7 @@ export const Deletable: Story = {
       <Chip
         {...args}
         label={t("story_chip_deletable")}
-        onDelete={(e: React.MouseEvent) => console.log("Chip deleted", e)}
+        onDelete={(e: React.SyntheticEvent) => console.log("Chip deleted", e)}
       />
     );
   },

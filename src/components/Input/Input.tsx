@@ -142,9 +142,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     if (showPasswordToggleBtn) {
       rightIcons.push({
         name: isPasswordVisible ? "EyeOffIcon" : "EyeIcon",
-        onClick: togglePasswordVisibility as unknown as (
-          e: React.MouseEvent<HTMLButtonElement>,
-        ) => void,
+        onClick: (_e: React.MouseEvent<HTMLButtonElement>) => togglePasswordVisibility(),
         ariaLabel: isPasswordVisible ? t("a11y_hide_password") : t("a11y_show_password"),
       });
     }

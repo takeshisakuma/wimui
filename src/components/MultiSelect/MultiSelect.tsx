@@ -117,7 +117,7 @@ export const MultiSelect = ({
     }
   };
 
-  const handleRemove = (e: React.MouseEvent, optionValue: string) => {
+  const handleRemove = (e: React.SyntheticEvent, optionValue: string) => {
     e.stopPropagation(); // Stop trigger from toggling
     if (disabled) return;
 

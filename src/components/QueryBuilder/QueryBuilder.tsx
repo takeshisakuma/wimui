@@ -100,6 +100,8 @@ const OPERATORS_BY_TYPE: Record<QueryFieldType, { label: string; value: string }
   boolean: [
     { label: "operators.equal", value: "=" },
     { label: "operators.not_equal", value: "!=" },
+    { label: "operators.is_null", value: "is_null" },
+    { label: "operators.is_not_null", value: "is_not_null" },
   ],
 };
 
@@ -244,12 +246,14 @@ export const QueryBuilder = ({
       <div key={rule.id} className="wim-query-rule">
         <div className="wim-query-rule__fields">
           <Selectbox
+            className="wim-query-rule__field"
             options={fields.map((f) => ({ label: t(f.label), value: f.name }))}
             value={rule.field}
             onChange={handleFieldChange}
             aria-label={t("query_builder.field")}
           />
           <Selectbox
+            className="wim-query-rule__operator"
             options={operators.map((op) => ({ label: t(op.label), value: op.value }))}
             value={rule.operator}
             onChange={(val) => handleUpdate(rule.id, { operator: val })}
@@ -272,9 +276,13 @@ export const QueryBuilder = ({
                   aria-label={t("query_builder.value")}
                 />
               ) : type === "boolean" ? (
-                <Switch
-                  checked={!!rule.value}
-                  onChange={(e) => handleUpdate(rule.id, { value: e.target.checked })}
+                <Selectbox
+                  options={[
+                    { label: t("query_builder.true"), value: "true" },
+                    { label: t("query_builder.false"), value: "false" },
+                  ]}
+                  value={String(rule.value)}
+                  onChange={(val) => handleUpdate(rule.id, { value: val === "true" })}
                   aria-label={t("query_builder.value")}
                 />
               ) : (
@@ -291,6 +299,7 @@ export const QueryBuilder = ({
             aria-label={t("query_builder.remove_rule")}
             priority="tertiary"
             size="medium"
+            color="danger"
             onClick={() => handleRemove(rule.id)}
             className="wim-query-rule__remove"
           />
@@ -326,41 +335,43 @@ export const QueryBuilder = ({
               onChange={(e) => handleUpdate(group.id, { not: e.target.checked })}
             />
           </Group>
-          <div className="wim-query-group__actions">
-            <Button
-              size="medium"
-              priority="tertiary"
-              iconName="PlusIcon"
-              onClick={() => handleAddRule(group.id)}
-            >
-              {t("query_builder.add_rule")}
-            </Button>
-            {depth < maxDepth && (
-              <Button
-                size="medium"
-                priority="tertiary"
-                iconName="PlusIcon"
-                onClick={() => handleAddGroup(group.id)}
-              >
-                {t("query_builder.add_group")}
-              </Button>
-            )}
+          <div className="wim-query-group__header-actions">
             {depth > 0 && (
               <Button
+                className="wim-query-group__remove"
                 iconName="TrashIcon"
                 aria-label={t("query_builder.remove_group")}
                 priority="tertiary"
                 size="medium"
+                color="danger"
                 onClick={() => handleRemove(group.id)}
-              >
-                {t("query_builder.remove_group")}
-              </Button>
+              />
             )}
           </div>
         </div>
         <div className="wim-query-builder__rule-list">
           {group.rules.map((item) =>
             "rules" in item ? renderGroup(item, depth + 1) : renderRule(item),
+          )}
+        </div>
+        <div className="wim-query-group__actions">
+          <Button
+            size="medium"
+            priority="tertiary"
+            iconName="PlusIcon"
+            onClick={() => handleAddRule(group.id)}
+          >
+            {t("query_builder.add_rule")}
+          </Button>
+          {depth < maxDepth && (
+            <Button
+              size="medium"
+              priority="tertiary"
+              iconName="PlusIcon"
+              onClick={() => handleAddGroup(group.id)}
+            >
+              {t("query_builder.add_group")}
+            </Button>
           )}
         </div>
       </div>

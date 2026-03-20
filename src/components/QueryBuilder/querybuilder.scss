@@ -3,7 +3,7 @@
 .wim-query-builder {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
   width: 100%;
 }
 
@@ -11,25 +11,21 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md);
-  background-color: var(--bg-color-elevated);
+  overflow: hidden; // Contain header and rules
+  background-color: var(--color-grey-50); // Light background for the "Group Box"
   border: 1px solid var(--border-color-default);
-  border-radius: var(--radius-md);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: var(--radius-lg);
+  transition: all 0.2s ease;
 
   &:hover {
     border-color: var(--border-color-hover);
   }
 
   &--nested {
-    margin-left: var(--spacing-xl);
-    border-left: 2px solid var(--color-primary-default);
-
-    @include down(sm) {
-      padding: var(--spacing-sm);
-      margin-left: var(--spacing-sm);
-    }
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    margin-left: 0; // Use container padding instead
+    background-color: var(--color-grey-100); // Slightly darker for depth
   }
 }
 
@@ -39,6 +35,9 @@
   gap: var(--spacing-md);
   align-items: center;
   justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--bg-color-subtle);
+  border-bottom: 1px solid var(--border-color-default);
 
   @include down(sm) {
     flex-direction: column;
@@ -46,9 +45,8 @@
   }
 }
 
-.wim-query-group__actions {
+.wim-query-group__header-actions {
   display: flex;
-  gap: var(--spacing-xs);
   align-items: center;
 }
 
@@ -56,23 +54,26 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  padding-left: var(--spacing-md);
-  border-left: 1px dashed var(--border-color-default);
-
-  @include down(sm) {
-    padding-left: var(--spacing-xs);
-  }
+  min-height: 20px; // Ensure space even when empty
+  padding: var(--spacing-md); // Internal space for the box
 }
 
 .wim-query-rule {
+  position: relative;
   display: flex;
   gap: var(--spacing-sm);
   align-items: center;
-  padding: var(--spacing-sm);
-  background-color: var(--bg-color-default);
+  padding: var(--spacing-md);
+  background-color: var(--bg-color-default); // White card inside grey group
   border: 1px solid var(--border-color-default);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
   animation: slideIn 0.2s ease-out;
+
+  &:hover {
+    background-color: var(--bg-color-subtle);
+    border-color: var(--color-primary-default);
+  }
 
   @include down(sm) {
     flex-direction: column;
@@ -81,35 +82,54 @@
   }
 }
 
+.wim-query-group__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-top: auto;
+  background-color: rgb(0 0 0 / 0.02); // Subtle footer background
+  border-top: 1px solid var(--border-color-subtle);
+
+  @include down(sm) {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+}
+
+/* Fields Styling */
 .wim-query-rule__fields {
   box-sizing: border-box !important;
   display: flex !important;
   flex: 1;
   flex-wrap: wrap;
-  gap: 12px !important; // Forced literal pixel value
+  gap: 12px !important;
   align-items: stretch;
 
   > * {
     display: flex;
-    flex: 1 1 150px; // Standardized flex-basis for wrapping
+    flex: 0 1 240px;
     align-items: stretch;
-    min-width: 0; // Allow shrinking to respect gap
+    min-width: 0 !important;
     height: 42px !important;
     min-height: 42px !important;
 
-    // Direct components like Selectbox
     &.wim-selectbox {
-      flex: 1 1 auto; // Let selectbox handle its width
-      width: 100% !important;
-      height: 42px !important;
+      flex: 0 1 240px;
+      width: auto !important;
+
+      &.wim-query-rule__operator {
+        flex: 0 1 180px;
+      }
     }
 
-    // Standardize children inside containers or components
     .wim-input-base,
     .wim-input,
     .wim-selectbox-trigger {
       box-sizing: border-box !important;
-      width: 100% !important; // Ensure they fill the cell
+      width: 100% !important;
       height: 42px !important;
       min-height: 42px !important;
       padding-top: 0 !important;
@@ -120,15 +140,14 @@
 
   .wim-query-rule__value {
     display: flex;
-    flex: 2 1 200px;
+    flex: 0 1 240px;
     align-items: stretch;
-    min-width: 0;
+    min-width: 0 !important;
 
     & > * {
       box-sizing: border-box !important;
-      display: flex !important;
-      align-items: center !important;
-      width: 100%;
+      width: 100% !important;
+      min-width: 0 !important;
       height: 42px !important;
       min-height: 42px !important;
       padding-top: 0 !important;
@@ -137,36 +156,46 @@
     }
   }
 
-  // Media Query (at the end for absolute precedence)
   @include down(sm) {
     flex-direction: column;
     gap: var(--spacing-xs);
     align-items: stretch;
 
     > * {
-      flex: 0 0 auto !important; // Kill the 180px/240px height on mobile
-      min-width: auto !important;
+      flex: 0 0 auto !important;
       height: 42px !important;
     }
 
     .wim-query-rule__value {
       flex: 0 0 auto !important;
-      min-width: auto !important;
     }
   }
 }
 
-
-.wim-query-rule__remove {
-  display: flex;
-  flex: 0 0 auto !important; // DO NOT SHAPE-SHIFT
+.wim-query-rule__remove,
+.wim-query-group__remove {
+  display: flex !important;
+  flex: 0 0 auto !important;
   align-items: center;
-  align-self: flex-start;
   justify-content: center;
   width: 42px !important;
+  min-width: 42px !important;
   height: 42px !important;
   min-height: 42px !important;
-  margin-top: 0;
+  padding: 0 !important;
+  color: var(--color-destructive) !important;
+  transition: all 0.2s ease;
+
+  .wim-icon,
+  svg {
+    color: inherit !important;
+    fill: currentcolor !important;
+  }
+
+  &:hover {
+    color: var(--color-destructive) !important;
+    background-color: color-mix(in srgb, var(--color-destructive) 10%, transparent) !important;
+  }
 
   @include down(sm) {
     align-self: flex-end;
@@ -185,13 +214,26 @@
   }
 }
 
-// Dark Mode Support
+/* Dark Mode Support */
 [data-theme="dark"] {
   .wim-query-group {
-    background-color: var(--color-grey-900);
+    background-color: var(--color-grey-800);
+
+    &--nested {
+      background-color: var(--color-grey-900);
+    }
   }
 
   .wim-query-rule {
-    background-color: var(--color-grey-800);
+    background-color: var(--color-grey-700);
+    border-color: var(--color-grey-600);
+
+    &:hover {
+      background-color: var(--color-grey-600);
+    }
+  }
+
+  .wim-query-group__actions {
+    background-color: rgb(255 255 255 / 0.05);
   }
 }

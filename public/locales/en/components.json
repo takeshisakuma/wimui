@@ -15,6 +15,9 @@
   "a11y_rte_unlink": "Remove link",
   "a11y_rte_remove_format": "Remove formatting",
   "a11y_rte_link_prompt": "Enter URL",
+  "ganttchart_aria_chart": "Gantt chart",
+  "ganttchart_aria_task_bar": "{{label}}: {{start}} – {{end}}",
+  "signature_canvas_label": "Signature canvas",
   "doc_richTextEditor_desc": "WYSIWYG rich text editor",
   "annotation_outside_field": "Notes should be outside the field, not as placeholders.",
   "applayout_behavior": "Layout Behavior",
@@ -386,5 +389,7 @@
   "doc_querybuilder_logic_andor_title": "AND / OR are \"Combinators\"",
   "doc_querybuilder_logic_andor_desc": "They determine how rules within a group are joined. Since they are mutually exclusive, they are provided as a selection.",
   "doc_querybuilder_logic_not_title": "NOT is a \"Negation Flag\"",
-  "doc_querybuilder_logic_not_desc": "An operator that inverts the entire joined result. Since it can be applied to either AND or OR states, it is an independent switch."
+  "doc_querybuilder_logic_not_desc": "An operator that inverts the entire joined result. Since it can be applied to either AND or OR states, it is an independent switch.",
+  "query_builder.true": "True",
+  "query_builder.false": "False"
 }

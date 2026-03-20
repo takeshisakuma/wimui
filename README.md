@@ -93,9 +93,23 @@ npm run format   # プロジェクト全体をPrettierで整形
 ## 国際化 (i18n)
 
 ```
-npm run i18n:check   # en/ja/pt の翻訳キー欠落をチェック（CIでも実行）
-npm run i18n:sync    # enを基準にja/ptへGoogle AIで自動翻訳・追記（要: GOOGLE_GENERATIVE_AI_API_KEY）
+npm run i18n:check              # ロケールファイル間の翻訳キー欠落をチェック（en にあって ja/pt にない、など）
+npm run i18n:check:components   # コンポーネントソースで使われているキーが翻訳ファイルに存在するかチェック
+npm run i18n:sync               # enを基準にja/ptへGoogle AIで自動翻訳・追記（要: GOOGLE_GENERATIVE_AI_API_KEY）
 ```
+
+### 2つのチェックスクリプトの使い分け
+
+| スクリプト | 検出できるケース |
+|---|---|
+| `i18n:check` | ロケール間の欠落（en に翻訳があるが ja/pt に未追加） |
+| `i18n:check:components` | コードで `t("key")` を使い始めたがどのロケールにも未登録 |
+
+**推奨フロー：**
+1. `npm run i18n:check:components` でコード上の未登録キーを検出
+2. EN の翻訳ファイルにキーを追加
+3. `npm run i18n:sync` で ja/pt へ自動翻訳
+4. `npm run i18n:check` でロケール間の整合性を確認
 
 ## ユーティリティ
 

@@ -180,7 +180,7 @@ export const MenuItem = ({
   const [index] = useState(() => registerItem());
   const isFocused = focusedIndex === index;
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     if (disabled) return;
     if (onClick) onClick();
@@ -199,7 +199,7 @@ export const MenuItem = ({
       onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
         if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
-          handleClick(e as unknown as React.MouseEvent);
+          handleClick(e);
         }
       }}
     >
@@ -250,7 +250,7 @@ export const SubMenu = ({
   const [index] = useState(() => registerItem());
   const isFocused = focusedIndex === index;
 
-  const handleToggle = (e: React.MouseEvent) => {
+  const handleToggle = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     toggleItem(itemKey);
   };
@@ -285,7 +285,7 @@ export const SubMenu = ({
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            handleToggle(e as unknown as React.MouseEvent);
+            handleToggle(e);
           }
         }}
       >

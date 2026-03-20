@@ -232,7 +232,7 @@ export const DropdownItem = ({
   const [index] = useState(() => registerItem());
   const isFocused = focusedIndex === index;
 
-  const handleClick = (_e: React.MouseEvent) => {
+  const handleClick = (_e: React.SyntheticEvent) => {
     if (disabled) return;
 
     if (onClick) {
@@ -252,7 +252,7 @@ export const DropdownItem = ({
       onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
         if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
-          handleClick(e as unknown as React.MouseEvent);
+          handleClick(e);
         }
       }}
     >
