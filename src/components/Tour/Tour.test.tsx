@@ -123,4 +123,129 @@ describe("Tour", () => {
 
     expect(handleClose).toHaveBeenCalled();
   });
+
+  it("calls onClose when Enter key pressed on mask", () => {
+    const handleClose = vi.fn();
+    render(<Tour steps={steps} open={true} onClose={handleClose} />);
+
+    const mask = document.querySelector(".wim-tour-mask");
+    if (mask) fireEvent.keyDown(mask, { key: "Enter" });
+
+    expect(handleClose).toHaveBeenCalled();
+  });
+
+  it("calls onClose when Space key pressed on mask", () => {
+    const handleClose = vi.fn();
+    render(<Tour steps={steps} open={true} onClose={handleClose} />);
+
+    const mask = document.querySelector(".wim-tour-mask");
+    if (mask) fireEvent.keyDown(mask, { key: " " });
+
+    expect(handleClose).toHaveBeenCalled();
+  });
+
+  it("calls onClose when last step is finished and no onFinish is provided", () => {
+    const handleClose = vi.fn();
+    render(<Tour steps={steps} open={true} onClose={handleClose} />);
+
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+
+    // Go to last step
+    fireEvent.click(screen.getByText("Next"));
+
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+
+    fireEvent.click(screen.getByText("Finish"));
+    expect(handleClose).toHaveBeenCalled();
+  });
+
+  it("shows Back button on non-first step and navigates back", () => {
+    render(<Tour steps={steps} open={true} onClose={() => {}} />);
+
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+
+    expect(screen.queryByText("Back")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByText("Next"));
+
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+
+    expect(screen.getByText("Back")).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Back"));
+
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+
+    expect(screen.getByText("Step 1")).toBeInTheDocument();
+  });
+
+  it("renders with top placement", () => {
+    const stepsWithPlacement = [
+      { target: "#step1", title: "Top Step", description: "Top placement", placement: "top" as const },
+    ];
+    render(<Tour steps={stepsWithPlacement} open={true} onClose={() => {}} />);
+
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+
+    expect(screen.getByText("Top Step")).toBeInTheDocument();
+    const bubble = document.querySelector(".wim-tour-bubble--top");
+    expect(bubble).toBeInTheDocument();
+  });
+
+  it("renders with left placement", () => {
+    const stepsWithPlacement = [
+      { target: "#step1", title: "Left Step", description: "Left placement", placement: "left" as const },
+    ];
+    render(<Tour steps={stepsWithPlacement} open={true} onClose={() => {}} />);
+
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+
+    expect(screen.getByText("Left Step")).toBeInTheDocument();
+    const bubble = document.querySelector(".wim-tour-bubble--left");
+    expect(bubble).toBeInTheDocument();
+  });
+
+  it("renders with right placement", () => {
+    const stepsWithPlacement = [
+      { target: "#step1", title: "Right Step", description: "Right placement", placement: "right" as const },
+    ];
+    render(<Tour steps={stepsWithPlacement} open={true} onClose={() => {}} />);
+
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+
+    expect(screen.getByText("Right Step")).toBeInTheDocument();
+    const bubble = document.querySelector(".wim-tour-bubble--right");
+    expect(bubble).toBeInTheDocument();
+  });
+
+  it("renders nothing when steps array is empty", () => {
+    render(<Tour steps={[]} open={true} onClose={() => {}} />);
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  });
+
+  it("handles resize event to update position", () => {
+    render(<Tour steps={steps} open={true} onClose={() => {}} />);
+
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+
+    // Firing resize should not crash
+    fireEvent(window, new Event("resize"));
+    expect(screen.getByText("Step 1")).toBeInTheDocument();
+  });
 });

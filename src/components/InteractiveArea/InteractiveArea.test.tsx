@@ -46,4 +46,33 @@ describe("InteractiveArea", () => {
     expect(area).toHaveClass("wim-interactive-area--muted");
     expect(area).toHaveClass("wim-interactive-area--large");
   });
+
+  it("triggers onClick with Enter key when isClickable", () => {
+    const onClick = vi.fn();
+    render(<InteractiveArea isClickable onClick={onClick} />);
+    fireEvent.keyDown(screen.getByRole("button"), { key: "Enter" });
+    expect(onClick).toHaveBeenCalled();
+  });
+
+  it("triggers onClick with Space key when isClickable", () => {
+    const onClick = vi.fn();
+    render(<InteractiveArea isClickable onClick={onClick} />);
+    fireEvent.keyDown(screen.getByRole("button"), { key: " " });
+    expect(onClick).toHaveBeenCalled();
+  });
+
+  it("calls custom onKeyDown handler", () => {
+    const onKeyDown = vi.fn();
+    render(<InteractiveArea isClickable onKeyDown={onKeyDown} />);
+    fireEvent.keyDown(screen.getByRole("button"), { key: "Tab" });
+    expect(onKeyDown).toHaveBeenCalled();
+  });
+
+  it("does not trigger onClick when disabled and Enter pressed", () => {
+    const onClick = vi.fn();
+    const { container } = render(<InteractiveArea isClickable disabled onClick={onClick} />);
+    const area = container.firstChild as HTMLElement;
+    fireEvent.keyDown(area, { key: "Enter" });
+    expect(onClick).not.toHaveBeenCalled();
+  });
 });

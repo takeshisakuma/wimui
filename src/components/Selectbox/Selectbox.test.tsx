@@ -129,7 +129,35 @@ describe("Selectbox", () => {
     
     const clearButton = screen.getByLabelText(/clear input/i);
     fireEvent.click(clearButton);
-    
+
     expect(onChange).toHaveBeenCalledWith("");
+  });
+
+  it("highlights option on mouse enter", async () => {
+    render(<Selectbox options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+
+    const opt2 = screen.getByText("Banana").closest("[role='option']")!;
+    fireEvent.mouseEnter(opt2);
+    expect(screen.getByText("Banana")).toBeInTheDocument();
+  });
+
+  it("handles grouped native mode", () => {
+    const groupedOptions = [
+      {
+        label: "Fruits",
+        options: [
+          { label: "Apple", value: "apple" },
+          { label: "Banana", value: "banana" },
+        ],
+      },
+    ];
+    render(<Selectbox options={groupedOptions} grouped native />);
+    const select = screen.getByRole("combobox");
+    expect(select.tagName).toBe("SELECT");
+    expect(screen.getByText("Apple")).toBeInTheDocument();
   });
 });

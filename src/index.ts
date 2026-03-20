@@ -101,6 +101,7 @@ export * from "./components/Popconfirm/Popconfirm";
 export * from "./components/Popover/Popover";
 export * from "./components/Portal/Portal";
 export * from "./components/Progress/Progress";
+export * from "./components/QueryBuilder/QueryBuilder";
 export * from "./components/QRCode/QRCode";
 export * from "./components/Quote/Quote";
 export * from "./components/Radio/Radio";

@@ -25,4 +25,27 @@ describe("FileUpload", () => {
 
     expect(clickSpy).toHaveBeenCalled();
   });
+
+  it("displays file name after file is selected", () => {
+    const handleChange = vi.fn();
+    render(<FileUpload onChange={handleChange} />);
+    const input = document.querySelector('input[type="file"]') as HTMLInputElement;
+
+    const file = new File(["content"], "photo.jpg", { type: "image/jpeg" });
+    Object.defineProperty(input, "files", { value: [file], configurable: true });
+    fireEvent.change(input);
+
+    expect(screen.getByText("photo.jpg")).toBeInTheDocument();
+    expect(handleChange).toHaveBeenCalled();
+  });
+
+  it("renders with label and error", () => {
+    render(<FileUpload label="fileupload_label" error="File is required" />);
+    expect(screen.getByText("File is required")).toBeInTheDocument();
+  });
+
+  it("renders with custom noFileLabel", () => {
+    render(<FileUpload noFileLabel="No document chosen" />);
+    expect(screen.getByText("No document chosen")).toBeInTheDocument();
+  });
 });

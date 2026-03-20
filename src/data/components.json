@@ -342,6 +342,12 @@
         "mobile": false
       },
       {
+        "name": "QueryBuilder",
+        "descKey": "doc_queryBuilder_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
         "name": "List",
         "descKey": "doc_list_desc",
         "pc": true,

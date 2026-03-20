@@ -1,0 +1,197 @@
+@use "../../tokens/breakpoints" as *;
+
+.wim-query-builder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.wim-query-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--bg-color-elevated);
+  border: 1px solid var(--border-color-default);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: var(--border-color-hover);
+  }
+
+  &--nested {
+    margin-left: var(--spacing-xl);
+    border-left: 2px solid var(--color-primary-default);
+
+    @include down(sm) {
+      padding: var(--spacing-sm);
+      margin-left: var(--spacing-sm);
+    }
+  }
+}
+
+.wim-query-group__header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  align-items: center;
+  justify-content: space-between;
+
+  @include down(sm) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.wim-query-group__actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+}
+
+.wim-query-builder__rule-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding-left: var(--spacing-md);
+  border-left: 1px dashed var(--border-color-default);
+
+  @include down(sm) {
+    padding-left: var(--spacing-xs);
+  }
+}
+
+.wim-query-rule {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  padding: var(--spacing-sm);
+  background-color: var(--bg-color-default);
+  border: 1px solid var(--border-color-default);
+  border-radius: var(--radius-sm);
+  animation: slideIn 0.2s ease-out;
+
+  @include down(sm) {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+}
+
+.wim-query-rule__fields {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 12px !important; // Forced literal pixel value
+  align-items: stretch;
+
+  > * {
+    display: flex;
+    flex: 1 1 150px; // Standardized flex-basis for wrapping
+    align-items: stretch;
+    min-width: 0; // Allow shrinking to respect gap
+    height: 42px !important;
+    min-height: 42px !important;
+
+    // Direct components like Selectbox
+    &.wim-selectbox {
+      flex: 1 1 auto; // Let selectbox handle its width
+      width: 100% !important;
+      height: 42px !important;
+    }
+
+    // Standardize children inside containers or components
+    .wim-input-base,
+    .wim-input,
+    .wim-selectbox-trigger {
+      box-sizing: border-box !important;
+      width: 100% !important; // Ensure they fill the cell
+      height: 42px !important;
+      min-height: 42px !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      line-height: 40px !important;
+    }
+  }
+
+  .wim-query-rule__value {
+    display: flex;
+    flex: 2 1 200px;
+    align-items: stretch;
+    min-width: 0;
+
+    & > * {
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
+      width: 100%;
+      height: 42px !important;
+      min-height: 42px !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      line-height: 40px !important;
+    }
+  }
+
+  // Media Query (at the end for absolute precedence)
+  @include down(sm) {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    align-items: stretch;
+
+    > * {
+      flex: 0 0 auto !important; // Kill the 180px/240px height on mobile
+      min-width: auto !important;
+      height: 42px !important;
+    }
+
+    .wim-query-rule__value {
+      flex: 0 0 auto !important;
+      min-width: auto !important;
+    }
+  }
+}
+
+
+.wim-query-rule__remove {
+  display: flex;
+  flex: 0 0 auto !important; // DO NOT SHAPE-SHIFT
+  align-items: center;
+  align-self: flex-start;
+  justify-content: center;
+  width: 42px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  margin-top: 0;
+
+  @include down(sm) {
+    align-self: flex-end;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Dark Mode Support
+[data-theme="dark"] {
+  .wim-query-group {
+    background-color: var(--color-grey-900);
+  }
+
+  .wim-query-rule {
+    background-color: var(--color-grey-800);
+  }
+}

@@ -1,0 +1,66 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import * as QueryBuilderStories from "./QueryBuilder.stories";
+import { T } from "../T";
+
+<Meta of={QueryBuilderStories} />
+
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc_queryBuilder_desc" />
+</p>
+
+## <T k="doc_querybuilder_logic_title" />
+
+<p><T k="doc_querybuilder_logic_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="table_header_item" /></th>
+      <th><T k="table_header_role" /></th>
+      <th><T k="table_header_reason" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>AND / OR</strong></td>
+      <td><T k="doc_querybuilder_logic_andor_title" /></td>
+      <td><T k="doc_querybuilder_logic_andor_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong>NOT</strong></td>
+      <td><T k="doc_querybuilder_logic_not_title" /></td>
+      <td><T k="doc_querybuilder_logic_not_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_basic_usage" />
+
+```tsx
+import { QueryBuilder } from "@/components/QueryBuilder/QueryBuilder";
+
+const fields = [
+  { name: "firstName", label: "First Name", type: "string" },
+  { name: "age", label: "Age", type: "number" },
+];
+
+const MyComponent = () => {
+  const [query, setQuery] = useState();
+  return <QueryBuilder fields={fields} query={query} onChange={setQuery} />;
+}
+```
+
+<Canvas of={QueryBuilderStories.Default} />
+
+## <T k="doc_props" />
+
+<Controls />

@@ -43,4 +43,45 @@ describe("DatePicker", () => {
 
     expect(handleChange).toHaveBeenCalledWith(null);
   });
+
+  it("clears in uncontrolled mode", () => {
+    const handleChange = vi.fn();
+    const date = new Date(2023, 0, 15);
+    render(<DatePicker defaultValue={date} onChange={handleChange} clearable />);
+
+    const clearBtn = screen.getByLabelText(/Clear/i);
+    fireEvent.click(clearBtn);
+
+    expect(handleChange).toHaveBeenCalledWith(null);
+  });
+
+  it("opens calendar with Enter key", () => {
+    render(<DatePicker />);
+    const input = screen.getByRole("combobox");
+    fireEvent.keyDown(input, { key: "Enter" });
+    expect(document.querySelector(".wim-datepicker-dropdown")).toBeInTheDocument();
+  });
+
+  it("opens calendar with Space key", () => {
+    render(<DatePicker />);
+    const input = screen.getByRole("combobox");
+    fireEvent.keyDown(input, { key: " " });
+    expect(document.querySelector(".wim-datepicker-dropdown")).toBeInTheDocument();
+  });
+
+  it("closes calendar with Escape key", () => {
+    render(<DatePicker />);
+    const input = screen.getByRole("combobox");
+    fireEvent.click(input);
+    expect(document.querySelector(".wim-datepicker-dropdown")).toBeInTheDocument();
+    fireEvent.keyDown(input, { key: "Escape" });
+    expect(document.querySelector(".wim-datepicker-dropdown")).not.toBeInTheDocument();
+  });
+
+  it("does not open when disabled", () => {
+    render(<DatePicker disabled />);
+    const input = screen.getByRole("combobox");
+    fireEvent.click(input);
+    expect(document.querySelector(".wim-datepicker-dropdown")).not.toBeInTheDocument();
+  });
 });

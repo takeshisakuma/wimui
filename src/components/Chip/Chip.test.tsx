@@ -50,4 +50,28 @@ describe("Chip", () => {
     fireEvent.click(screen.getByRole("button", { name: "Disabled" }));
     expect(handleClick).not.toHaveBeenCalled();
   });
+
+  it("triggers onDelete with Enter key on delete button", () => {
+    const handleDelete = vi.fn();
+    render(<Chip label="Deletable" onDelete={handleDelete} />);
+    const deleteButton = screen.getByRole("button", { name: /Delete/i });
+    fireEvent.keyDown(deleteButton, { key: "Enter" });
+    expect(handleDelete).toHaveBeenCalledTimes(1);
+  });
+
+  it("triggers onDelete with Space key on delete button", () => {
+    const handleDelete = vi.fn();
+    render(<Chip label="Deletable" onDelete={handleDelete} />);
+    const deleteButton = screen.getByRole("button", { name: /Delete/i });
+    fireEvent.keyDown(deleteButton, { key: " " });
+    expect(handleDelete).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not trigger onDelete for other keys", () => {
+    const handleDelete = vi.fn();
+    render(<Chip label="Deletable" onDelete={handleDelete} />);
+    const deleteButton = screen.getByRole("button", { name: /Delete/i });
+    fireEvent.keyDown(deleteButton, { key: "Escape" });
+    expect(handleDelete).not.toHaveBeenCalled();
+  });
 });
