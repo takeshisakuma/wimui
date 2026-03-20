@@ -1,4 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode, useState } from "react";
+import { isDev } from "../../utilities/dev-utils";
 import { useTranslation } from "react-i18next";
 import { Alert } from "../Alert/Alert";
 import { Button } from "../Button/Button";
@@ -118,7 +119,9 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({ errorInfo });
     this.props.onError?.(error, errorInfo);
-    console.error("ErrorBoundary caught an error:", error, errorInfo);
+    if (isDev) {
+      console.error("ErrorBoundary caught an error:", error, errorInfo);
+    }
   }
 
   public reset = () => {

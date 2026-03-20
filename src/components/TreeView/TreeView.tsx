@@ -9,6 +9,7 @@ import classNames from "classnames";
 import "./tree-view.scss";
 import { Icon } from "../Icon/Icon";
 import { BaseListItem } from "../_internal/BaseListItem";
+import { useTreeViewItemExpansion } from "./useTreeViewItemExpansion";
 
 type TreeViewContextType = {
   expandedValues: string[];
@@ -252,34 +253,13 @@ export const TreeViewItem = ({
   const isChecked = checkedValues.includes(value);
   const hasChildren = !!React.Children.count(children);
 
-  const [, setIsAnimating] = React.useState(false);
-  const [shouldRender, setShouldRender] = React.useState(isExpanded);
-  const [isVisualExpanded, setIsVisualExpanded] = React.useState(isExpanded);
-
-  React.useEffect(() => {
-    if (isExpanded) {
-      setShouldRender(true);
-      const timer = setTimeout(() => {
-        setIsVisualExpanded(true);
-      }, 10);
-      return () => clearTimeout(timer);
-    } else {
-      setIsVisualExpanded(false);
-      setIsAnimating(true);
-    }
-  }, [isExpanded]);
+  const { shouldRender, isVisualExpanded, handleTransitionEnd } =
+    useTreeViewItemExpansion(isExpanded);
 
   // Hide if doesn't match search and has no matching children
   if (searchQuery && !matchesSearch && !hasMatchingChildren) {
     return null;
   }
-
-  const handleTransitionEnd = (e: React.TransitionEvent) => {
-    if (e.propertyName === "grid-template-rows" && !isExpanded) {
-      setShouldRender(false);
-      setIsAnimating(false);
-    }
-  };
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();

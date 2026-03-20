@@ -14,6 +14,7 @@ on:
       - "src/**/*.tsx"
       - "src/**/*.ts"
       - "scripts/check-i18n.js"
+      - "scripts/check-i18n-components.js"
 
 jobs:
   check-translations:
@@ -30,5 +31,11 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      - name: Check translation keys
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check translation key consistency (locale vs locale)
         run: npm run i18n:check
+
+      - name: Check translation keys used in components
+        run: npm run i18n:check:components

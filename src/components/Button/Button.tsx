@@ -3,6 +3,7 @@ import classNames from "classnames";
 import "./button.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
+import { warnDeprecated } from "../../utilities/dev-utils";
 
 export type ButtonProps = Omit<React.ComponentPropsWithoutRef<"button">, "role"> & {
   backgroundColor?: string | null;
@@ -55,6 +56,16 @@ export const Button = React.forwardRef<
   ) => {
     const { t } = useTranslation();
     const internalRef = React.useRef<HTMLButtonElement>(null);
+
+    if (role !== "default") {
+      warnDeprecated("Button", "role", "Use the standard HTML `disabled` prop instead.");
+    }
+    if (state !== undefined) {
+      warnDeprecated("Button", "state", "Use the standard HTML `disabled` prop instead.");
+    }
+    if (iconName !== undefined) {
+      warnDeprecated("Button", "iconName", "Use `icon` instead.");
+    }
     const buttonRef = (forwardedRef as React.RefObject<HTMLButtonElement>) || internalRef;
     const [animatedWidth, setAnimatedWidth] = React.useState<number | "auto">("auto");
     const isInitialMount = React.useRef(true);

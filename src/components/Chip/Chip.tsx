@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 import "./chip.scss";
+import { warnDeprecated } from "../../utilities/dev-utils";
 
 export type ChipProps = {
   /** 表示するコンテンツ (labelより優先されます) */
@@ -52,6 +53,9 @@ export const Chip = ({
   ...props
 }: ChipProps) => {
   const { t } = useTranslation();
+  if (label !== undefined) {
+    warnDeprecated("Chip", "label", "Use `children` instead.");
+  }
   const displayLabel = children ?? label;
 
 

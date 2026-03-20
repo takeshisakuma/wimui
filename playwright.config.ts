@@ -47,7 +47,11 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: "npm run storybook",
+    // In CI: serve the pre-built static storybook (faster, no watch overhead).
+    // Locally: use the dev storybook for hot reload.
+    command: process.env.CI
+      ? "npx serve storybook-static -p 6006 -s --no-clipboard"
+      : "npm run storybook",
     url: "http://localhost:6006",
     reuseExistingServer: !process.env.CI,
     stdout: "pipe",

@@ -14,6 +14,9 @@ import { Pagination } from "../Pagination/Pagination";
 import { Spinner } from "../Spinner/Spinner";
 import { EmptyState } from "../EmptyState/EmptyState";
 import { useTranslation } from "react-i18next";
+import { useDataGridKeyboard } from "./useDataGridKeyboard";
+import { useFixedColumns } from "./useFixedColumns";
+import { useInfiniteScroll } from "./useInfiniteScroll";
 import "./datagrid.scss";
 
 export interface DataGridColumn<T> {
@@ -118,32 +121,17 @@ export function DataGrid<T extends Record<string, unknown>>({
   const actualSelectAllRowsA11y =
     a11y_select_all_rows ?? t("a11y_select_all_rows");
 
-  const [focusedCell, setFocusedCell] = React.useState<{
-    row: number;
-    col: number;
-  }>({ row: -1, col: selection ? -1 : 0 });
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const { focusedCell, setFocusedCell, containerRef, handleKeyDown } =
+    useDataGridKeyboard(columns, rows, selection);
 
-  const loaderRef = React.useRef<HTMLDivElement>(null);
+  const { fixedLeftOffsets, fixedRightOffsets } = useFixedColumns(
+    columns,
+    selection,
+  );
 
-  React.useEffect(() => {
-    if (!loadMore || !loadMore.hasMore || loadMore.loading) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          loadMore.onLoadMore();
-        }
-      },
-      { threshold: loadMore.threshold || 0.1 },
-    );
-
-    if (loaderRef.current) {
-      observer.observe(loaderRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [loadMore]);
+  const { loaderRef } = useInfiniteScroll(
+    loadMore as DataGridProps<Record<string, unknown>>["loadMore"],
+  );
 
   const getRowKey = (row: T): React.Key => {
     if (typeof rowKey === "function") {
@@ -183,130 +171,6 @@ export function DataGrid<T extends Record<string, unknown>>({
     rows.length > 0 && selectedRowKeys.length === rows.length;
   const isSomeSelected =
     selectedRowKeys.length > 0 && selectedRowKeys.length < rows.length;
-
-  // Pre-calculate left offsets for fixed columns.
-  // Note: reset.scss applies box-sizing: border-box globally, so cell widths
-  // already include borders — no border offset adjustment is needed.
-  const fixedLeftOffsets: Record<
-    string,
-    { offset: number | string; zIndex: number }
-  > = {};
-  let currentLeftOffset = selection ? 48 : 0;
-  let currentLeftZIndex = 20;
-
-  columns.forEach((col) => {
-    if (col.fixed === true || col.fixed === "left") {
-      fixedLeftOffsets[col.key] = {
-        offset: currentLeftOffset === 0 ? 0 : `${currentLeftOffset}px`,
-        zIndex: currentLeftZIndex--,
-      };
-      let colWidth = 0;
-      if (typeof col.width === "number") {
-        colWidth = col.width;
-      } else if (typeof col.width === "string" && col.width.endsWith("px")) {
-        colWidth = parseInt(col.width, 10);
-      }
-      currentLeftOffset += colWidth;
-    }
-  });
-
-  // Pre-calculate right offsets for fixed columns.
-  const fixedRightOffsets: Record<
-    string,
-    { offset: number | string; zIndex: number }
-  > = {};
-  let currentRightOffset = 0;
-  let currentRightZIndex = 20;
-
-  [...columns].reverse().forEach((col) => {
-    if (col.fixed === "right") {
-      fixedRightOffsets[col.key] = {
-        offset: currentRightOffset === 0 ? 0 : `${currentRightOffset}px`,
-        zIndex: currentRightZIndex--,
-      };
-      let colWidth = 0;
-      if (typeof col.width === "number") {
-        colWidth = col.width;
-      } else if (typeof col.width === "string" && col.width.endsWith("px")) {
-        colWidth = parseInt(col.width, 10);
-      }
-      currentRightOffset += colWidth;
-    }
-  });
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    const { row, col } = focusedCell;
-    let nextRow = row;
-    let nextCol = col;
-
-    const minCol = selection ? -1 : 0;
-    const maxCol = columns.length - 1;
-    const minRow = -1;
-    const maxRow = rows.length - 1;
-
-    switch (e.key) {
-      case "ArrowRight":
-        if (col < maxCol) nextCol++;
-        break;
-      case "ArrowLeft":
-        if (col > minCol) nextCol--;
-        break;
-      case "ArrowDown":
-        if (row < maxRow) nextRow++;
-        break;
-      case "ArrowUp":
-        if (row > minRow) nextRow--;
-        break;
-      case "Home":
-        if (e.ctrlKey) {
-          nextRow = minRow;
-          nextCol = minCol;
-        } else {
-          nextCol = minCol;
-        }
-        break;
-      case "End":
-        if (e.ctrlKey) {
-          nextRow = maxRow;
-          nextCol = maxCol;
-        } else {
-          nextCol = maxCol;
-        }
-        break;
-      case "Enter":
-      case " ": {
-        // Trigger action if possible
-        const activeEl = document.activeElement as HTMLElement;
-        if (activeEl?.getAttribute("role") === "columnheader") {
-          // Sort handled by TableHead
-          return;
-        }
-        if (activeEl?.classList.contains("wim-table__cell")) {
-          const innerInteractive = activeEl.querySelector(
-            'input, button, [role="button"]',
-          ) as HTMLElement;
-          if (innerInteractive) {
-            innerInteractive.click();
-            e.preventDefault();
-          }
-        }
-        return;
-      }
-      default:
-        return;
-    }
-
-    if (nextRow !== row || nextCol !== col) {
-      e.preventDefault();
-      setFocusedCell({ row: nextRow, col: nextCol });
-      setTimeout(() => {
-        const target = containerRef.current?.querySelector(
-          `[data-row="${nextRow}"][data-col="${nextCol}"]`,
-        ) as HTMLElement;
-        target?.focus();
-      }, 0);
-    }
-  };
 
   return (
     <div

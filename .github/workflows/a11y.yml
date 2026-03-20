@@ -1,0 +1,51 @@
+name: Accessibility (axe-core)
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "stories/**"
+      - "public/locales/**"
+      - "vrt/a11y.spec.ts"
+      - "playwright.config.ts"
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "stories/**"
+      - "public/locales/**"
+
+jobs:
+  a11y:
+    name: WCAG 2.1 AA (axe-core)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Run axe-core accessibility tests
+        run: npx playwright test vrt/a11y.spec.ts
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-report
+          path: playwright-report/
+          retention-days: 7

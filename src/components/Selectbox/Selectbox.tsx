@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect, useMemo, useId } from "react";
+import React, { useId } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
+import { warnDeprecated } from "../../utilities/dev-utils";
 import { Transition } from "../Transition/Transition";
 import { Icon } from "../Icon/Icon";
 import { BaseListItem } from "../_internal/BaseListItem";
 import "./selectbox.scss";
+import { useSelectbox } from "./useSelectbox";
 
 export type SelectboxOption = {
   label?: string;
@@ -77,6 +79,9 @@ export const Selectbox = ({
   id: customId,
   ...props
 }: SelectboxProps) => {
+  if (native) {
+    warnDeprecated("Selectbox", "native", "Native selects do not support all WIM UI styles.");
+  }
   const { t } = useTranslation("common");
   const generatedId = useId();
   const id = customId || `wim-selectbox-${generatedId}`;
@@ -85,222 +90,36 @@ export const Selectbox = ({
   const listId = `${id}-list`;
   const triggerId = `${id}-trigger`;
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [internalValue, setInternalValue] = useState(defaultValue || "");
-  const [searchValue, setSearchValue] = useState("");
-  const [focusedIndex, setFocusedIndex] = useState(-1);
-  const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLDivElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
-  const listItemsRef = useRef<(HTMLElement | null)[]>([]);
-
-  const isControlled = value !== undefined;
-  const currentValue = isControlled ? value : internalValue;
-
-  // Normalize options to flat array
-  const flatOptions = useMemo(() => {
-    if (grouped && options.length > 0 && "options" in options[0]) {
-      return (options as SelectboxOptionGroup[]).flatMap(
-        (group) => group.options,
-      );
-    }
-    return options as SelectboxOption[];
-  }, [options, grouped]);
-
-  // Filter options based on search
-  const filteredOptions = useMemo(() => {
-    if (!searchValue) return flatOptions;
-
-    const defaultFilter = (option: SelectboxOption, search: string) =>
-      option.type !== "separator" &&
-      (option.label || "").toLowerCase().includes(search.toLowerCase());
-
-    const filterFn = filterOption || defaultFilter;
-    return flatOptions.filter((option) => filterFn(option, searchValue));
-  }, [flatOptions, searchValue, filterOption]);
-
-  const selectedOption = flatOptions.find((opt) => opt.value === currentValue);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-        setSearchValue("");
-        setFocusedIndex(-1);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Focus search input when dropdown opens
-  useEffect(() => {
-    if (isOpen && searchable && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [isOpen, searchable]);
-
-  // Scroll focused option into view
-  useEffect(() => {
-    if (focusedIndex >= 0 && listItemsRef.current[focusedIndex]) {
-      listItemsRef.current[focusedIndex]?.scrollIntoView({
-        block: "nearest",
-        behavior: "smooth",
-      });
-    }
-  }, [focusedIndex]);
-
-  const handleToggle = () => {
-    if (!disabled) {
-      setIsOpen(!isOpen);
-      if (!isOpen) {
-        setSearchValue("");
-        setFocusedIndex(-1);
-      }
-    }
-  };
-
-  const handleSelect = (option: SelectboxOption) => {
-    if (option.type === "separator") return;
-    if (option.disabled) return;
-
-    if (!isControlled && option.value !== undefined) {
-      setInternalValue(option.value);
-    }
-
-    if (onChange && option.value !== undefined) {
-      onChange(option.value);
-    }
-
-    setIsOpen(false);
-    setSearchValue("");
-    setFocusedIndex(-1);
-    triggerRef.current?.focus();
-  };
-
-  const handleClear = () => {
-    if (disabled) return;
-
-    if (!isControlled) {
-      setInternalValue("");
-    }
-
-    if (onChange) {
-      onChange("");
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    setIsKeyboardNavigating(true);
-    if (disabled) return;
-
-    switch (e.key) {
-      case "Enter":
-      case " ":
-        if (!isOpen) {
-          setIsOpen(true);
-        } else if (focusedIndex >= 0 && filteredOptions[focusedIndex]) {
-          handleSelect(filteredOptions[focusedIndex]);
-        }
-        e.preventDefault();
-        break;
-
-      case "Escape":
-        setIsOpen(false);
-        setSearchValue("");
-        setFocusedIndex(-1);
-        triggerRef.current?.focus();
-        e.preventDefault();
-        break;
-
-      case "ArrowDown":
-        e.preventDefault();
-        if (!isOpen) {
-          setIsOpen(true);
-        } else {
-          setFocusedIndex((prev) => {
-            let next = prev + 1;
-            if (next >= filteredOptions.length) next = 0;
-
-            // Skip disabled options and separators
-            while (
-              next < filteredOptions.length &&
-              (filteredOptions[next]?.disabled ||
-                filteredOptions[next]?.type === "separator")
-            ) {
-              next++;
-            }
-
-            if (next >= filteredOptions.length) {
-              // Try from beginning if we hit the end
-              next = 0;
-              while (
-                next < prev &&
-                (filteredOptions[next]?.disabled ||
-                  filteredOptions[next]?.type === "separator")
-              ) {
-                next++;
-              }
-            }
-
-            return next < filteredOptions.length ? next : prev;
-          });
-        }
-        break;
-
-      case "ArrowUp":
-        e.preventDefault();
-        if (isOpen) {
-          setFocusedIndex((prev) => {
-            let next = prev - 1;
-            if (next < 0) next = filteredOptions.length - 1;
-
-            // Skip disabled options and separators
-            while (
-              next >= 0 &&
-              (filteredOptions[next]?.disabled ||
-                filteredOptions[next]?.type === "separator")
-            ) {
-              next--;
-            }
-
-            if (next < 0) {
-              // Try from end if we hit the beginning
-              next = filteredOptions.length - 1;
-              while (
-                next > prev &&
-                (filteredOptions[next]?.disabled ||
-                  filteredOptions[next]?.type === "separator")
-              ) {
-                next--;
-              }
-            }
-
-            return next >= 0 ? next : prev;
-          });
-        }
-        break;
-
-      case "Home":
-        if (isOpen) {
-          e.preventDefault();
-          setFocusedIndex(0);
-        }
-        break;
-
-      case "End":
-        if (isOpen) {
-          e.preventDefault();
-          setFocusedIndex(filteredOptions.length - 1);
-        }
-        break;
-    }
-  };
+  const {
+    isOpen,
+    searchValue,
+    setSearchValue,
+    focusedIndex,
+    setFocusedIndex,
+    isKeyboardNavigating,
+    setIsKeyboardNavigating,
+    containerRef,
+    triggerRef,
+    searchInputRef,
+    listItemsRef,
+    currentValue,
+    filteredOptions,
+    selectedOption,
+    focusedOption,
+    handleToggle,
+    handleSelect,
+    handleClear,
+    handleKeyDown,
+  } = useSelectbox({
+    options,
+    value,
+    onChange,
+    defaultValue,
+    searchable,
+    grouped,
+    disabled,
+    filterOption,
+  });
 
   const renderOptions = () => {
     let flatIndex = 0;
@@ -435,7 +254,6 @@ export const Selectbox = ({
               disabled={disabled}
               onChange={(e) => {
                 if (onChange) onChange(e.target.value);
-                if (!isControlled) setInternalValue(e.target.value);
               }}
               {...props}
             >
@@ -485,8 +303,6 @@ export const Selectbox = ({
     );
   }
 
-  const focusedOption =
-    focusedIndex >= 0 ? filteredOptions[focusedIndex] : null;
   const activeDescendant =
     focusedOption && focusedOption.type !== "separator"
       ? `wim-selectbox-option-${id}-${focusedOption.value}`
@@ -610,4 +426,3 @@ export const Selectbox = ({
     </FieldTemplate>
   );
 };
-
