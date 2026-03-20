@@ -225,7 +225,7 @@ export const QueryBuilder = ({
     updateQuery(deepRemove(currentQuery));
   };
 
-  const renderRule = (rule: QueryRule) => {
+  const renderRule = (rule: QueryRule, _isExcluded: boolean) => {
     const fieldDef = fields.find((f) => f.name === rule.field);
     const type = fieldDef?.type || "string";
     const operators = OPERATORS_BY_TYPE[type];
@@ -310,13 +310,15 @@ export const QueryBuilder = ({
     );
   };
 
-  const renderGroup = (group: QueryGroup, depth: number) => {
+  const renderGroup = (group: QueryGroup, depth: number, isParentExcluded = false) => {
+    const isExcluded = group.not ? !isParentExcluded : isParentExcluded;
     return (
       <div
         key={group.id}
         className={classNames(
           "wim-query-group",
           depth > 0 && "wim-query-group--nested",
+          isExcluded && "wim-query-group--excluded",
         )}
       >
         <div className="wim-query-group__header">
@@ -351,7 +353,9 @@ export const QueryBuilder = ({
         </div>
         <div className="wim-query-builder__rule-list">
           {group.rules.map((item) =>
-            "rules" in item ? renderGroup(item, depth + 1) : renderRule(item),
+            "rules" in item
+              ? renderGroup(item, depth + 1, isExcluded)
+              : renderRule(item, isExcluded),
           )}
         </div>
         <div className="wim-query-group__actions">
@@ -380,7 +384,7 @@ export const QueryBuilder = ({
 
   return (
     <div id={id} className={classNames("wim-query-builder", className)}>
-      {renderGroup(currentQuery, 0)}
+      {renderGroup(currentQuery, 0, false)}
     </div>
   );
 };

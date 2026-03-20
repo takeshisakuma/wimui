@@ -14,6 +14,15 @@
   background-color: var(--wim-color-bg-secondary); // Correct background token for groups
   border: 1px solid var(--wim-color-border); // Correct border token
   border-radius: var(--radius-lg);
+
+  &--excluded {
+    border-color: color-mix(in srgb, var(--color-error, #f43f5e) 20%, var(--wim-color-border-secondary, #e2e2e8));
+
+    & > .wim-query-builder__rule-list {
+      background-color: color-mix(in srgb, var(--color-error, #f43f5e) 6%, #fff);
+    }
+  }
+
   transition: all 0.2s ease;
 
   &:hover {
@@ -25,7 +34,6 @@
     margin-bottom: var(--spacing-sm);
     background-color: var(--wim-color-bg-secondary);
     border: 1px solid var(--wim-color-border);
-
   }
 }
 
@@ -88,7 +96,6 @@
   background-color: var(--bg-component); // White background inside grey group
   border: 1px solid var(--wim-color-border);
   border-radius: var(--radius-lg);
-  transition: all 0.2s ease;
   animation: slideIn 0.2s ease-out;
 
   &:hover {
@@ -159,6 +166,7 @@
       padding-top: 0 !important;
       padding-bottom: 0 !important;
       line-height: var(--wim-height-md) !important;
+      transition: background-color 0.3s ease;
     }
   }
 
