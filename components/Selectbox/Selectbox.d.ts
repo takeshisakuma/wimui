@@ -30,6 +30,8 @@ export type SelectboxProps = {
     native?: boolean;
     /** Whether to show a clear button when a value is selected */
     allowClear?: boolean;
+    /** Whether to take full width of parent */
+    fullWidth?: boolean;
     /** Unique ID for the component */
     id?: string;
     error?: string;
@@ -42,4 +44,4 @@ export type SelectboxProps = {
 /**
  * ユーザーが定義済みの選択肢から1つを選択するためのプルダウンメニュー。
  */
-export declare const Selectbox: ({ options, value, onChange, placeholder, label, error, required, layout, className, disabled, defaultValue, searchable, searchPlaceholder, filterOption, grouped, native, allowClear, id: customId, ...props }: SelectboxProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Selectbox: ({ options, value, onChange, placeholder, label, error, required, layout, className, disabled, defaultValue, searchable, searchPlaceholder, filterOption, grouped, native, allowClear, fullWidth, id: customId, ...props }: SelectboxProps) => import("react/jsx-runtime").JSX.Element;

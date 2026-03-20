@@ -7,7 +7,7 @@ export type ChipProps = {
     /** クリック時のイベント。提供されるとボタンとして動作します。 */
     onClick?: (e: React.MouseEvent) => void;
     /** 削除時のイベント。提供されると×ボタンが表示されます。 */
-    onDelete?: (e: React.MouseEvent) => void;
+    onDelete?: (e: React.SyntheticEvent) => void;
     /** アバター（画像や頭文字など） */
     avatar?: React.ReactNode;
     /** アイコン */

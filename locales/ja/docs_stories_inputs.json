@@ -101,7 +101,7 @@
   "story_otp_clear": "クリア",
   "story_otp_current_value": "現在の値",
   "story_passwordinput_label": "パスワード",
-  "story_passwordinput_placeholder": "[MISSING_TRANSLATION: ja] ",
+  "story_passwordinput_placeholder": "パスワードを入力",
   "story_phoneinput_error": "有効な電話番号を入力してください。",
   "story_phoneinput_label": "電話番号",
   "story_phoneinput_placeholder": "000-000-0000",

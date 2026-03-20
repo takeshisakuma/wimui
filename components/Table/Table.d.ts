@@ -28,7 +28,7 @@ export declare const TableRow: ({ selected, className, children, ...props }: Tab
 type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
     sortable?: boolean;
     sortDirection?: "asc" | "desc" | "none";
-    onSort?: (e: React.MouseEvent) => void;
+    onSort?: (e: React.SyntheticEvent) => void;
     selection?: boolean;
     stickyLeft?: boolean;
     stickyRight?: boolean;
