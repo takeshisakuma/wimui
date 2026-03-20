@@ -55,7 +55,7 @@
     &--medium {
       --wim-tab-nav-padding: 0 var(--spacing-lg);
       --wim-tab-nav-font-size: var(--font-size-medium);
-      --wim-tab-nav-height: 40px;
+      --wim-tab-nav-height: var(--wim-height-md);
     }
 
     &--large {

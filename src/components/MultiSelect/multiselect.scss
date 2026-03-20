@@ -5,8 +5,8 @@
 .wim-multiselect {
   position: relative;
   box-sizing: border-box;
-  width: 320px;
-  max-width: 90vw;
+  width: 100%;
+  max-width: 280px;
   font-family: var(--font-family-base);
 
   &--full-width {

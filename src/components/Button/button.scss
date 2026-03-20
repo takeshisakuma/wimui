@@ -22,7 +22,7 @@
 
     /* アニメーション終了時のテキストの描画ブレ（Jitter）を防止 */
     will-change: transform, box-shadow;
- 
+
     &--full-width {
       display: grid;
       width: 100%;
@@ -63,9 +63,6 @@
       line-height: 1.2;
       white-space: inherit;
 
-      .wim-button--md & {
-        margin-top: -0.15rem;
-      }
     }
 
     &--icon-only {

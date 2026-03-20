@@ -1,9 +1,9 @@
-﻿.wim-textarea {
+.wim-textarea {
   all: unset;
   box-sizing: border-box;
   display: block;
-  width: 320px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 280px;
 
   /* Allow vertical resizing by default */
   min-height: 80px;

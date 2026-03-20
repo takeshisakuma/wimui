@@ -7,10 +7,10 @@ import {
   Stories,
   Canvas,
 } from "@storybook/addon-docs/blocks";
-import { Default, WithLabel, MultipleSelected, Disabled, WithClearButton } from "./MultiSelect.stories";
+import * as MultiSelectStories from "./MultiSelect.stories";
 import { T } from "../T";
 
-<Meta of={Default} />
+<Meta of={MultiSelectStories} />
 
 <Title />
 <p
@@ -97,17 +97,17 @@ import { T } from "../T";
 
 <Primary />
 
-<Controls of={Default} />
+<Controls of={MultiSelectStories.Default} />
 
 ## <T k="doc_variations" />
 
 ### <T k="doc_with_label" />
-<Canvas of={WithLabel} />
+<Canvas of={MultiSelectStories.WithLabel} />
 
 ### <T k="doc_multiselect_ex_multi" />
-<Canvas of={MultipleSelected} />
+<Canvas of={MultiSelectStories.MultipleSelected} />
 
 ### <T k="doc_disabled" />
-<Canvas of={Disabled} />
+<Canvas of={MultiSelectStories.Disabled} />
 
 <Stories />

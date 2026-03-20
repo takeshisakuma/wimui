@@ -42,6 +42,8 @@ export type SelectboxProps = {
   native?: boolean;
   /** Whether to show a clear button when a value is selected */
   allowClear?: boolean;
+  /** Whether to take full width of parent */
+  fullWidth?: boolean;
   /** Unique ID for the component */
   id?: string;
   error?: string;
@@ -76,6 +78,7 @@ export const Selectbox = ({
   grouped = false,
   native = false,
   allowClear = false,
+  fullWidth = false,
   id: customId,
   ...props
 }: SelectboxProps) => {
@@ -326,7 +329,7 @@ export const Selectbox = ({
       className={className}
     >
       <div
-        className={classNames("wim-selectbox")}
+        className={classNames("wim-selectbox", fullWidth && "wim-selectbox--full-width")}
         ref={containerRef}
         onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}
@@ -339,6 +342,7 @@ export const Selectbox = ({
           onClear={handleClear}
           status={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
+          fullWidth={fullWidth}
         >
           <div
             id={triggerId}

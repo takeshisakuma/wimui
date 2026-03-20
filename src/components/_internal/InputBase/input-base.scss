@@ -8,9 +8,10 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  width: var(--wim-input-width, 320px);
-  max-width: 100%;
-  min-height: 42px;
+  width: 100%;
+  min-width: 0;
+  max-width: var(--wim-input-width, 280px);
+  min-height: var(--wim-height-md);
   background-color: var(--bg-component, #fff);
   border: 1px solid var(--color-secondary);
   border-radius: var(--radius-md);
@@ -61,14 +62,14 @@
   // Semantic sizes
   &.wim-input--width-xs { --wim-input-width: 80px; }
   &.wim-input--width-sm { --wim-input-width: 160px; }
-  &.wim-input--width-md { --wim-input-width: 320px; }
+  &.wim-input--width-md { --wim-input-width: 280px; }
   &.wim-input--width-lg { --wim-input-width: 480px; }
   &.wim-input--width-xl { --wim-input-width: 640px; }
 
   &.wim-input--has-custom-width,
   &[class*="wim-input--width-"] {
-    width: var(--wim-input-width);
-    max-width: 100%;
+    width: 100%;
+    max-width: var(--wim-input-width);
   }
 
   &.wim-input--full-width {
@@ -159,6 +160,7 @@
 .wim-input-base > .wim-multiselect-trigger {
     box-sizing: border-box !important;
     width: 100%;
+    min-width: 0 !important;
     height: 100%;
     padding-top: var(--spacing-sm);
     padding-right: var(--wim-input-offset-right) !important;

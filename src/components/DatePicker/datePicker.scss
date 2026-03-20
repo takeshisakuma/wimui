@@ -1,9 +1,9 @@
-﻿@use "../../tokens/breakpoints" as breakpoints;
+@use "../../tokens/breakpoints" as breakpoints;
 
 .wim-datepicker-wrapper {
   position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: 280px;
 
   &.wim-input--full-width {
     width: 100%;

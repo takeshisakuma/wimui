@@ -4,13 +4,20 @@
 
 .wim-selectbox {
   position: relative;
-  width: 320px;
-  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  max-width: 280px;
+  overflow: hidden;
   font-family: var(--font-family-base);
 
   &--full-width {
     width: 100%;
     max-width: none;
+
+    .wim-input-base {
+      width: 100% !important;
+      max-width: none !important;
+    }
   }
 }
 
@@ -20,7 +27,8 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 42px; // Match MultiSelect height
+  min-width: 0;
+  min-height: var(--wim-height-md); // Match MultiSelect height
   padding: var(--spacing-md) var(--spacing-md); // Increased from sm to md to prevent text clipping
   font-size: 1rem;
   line-height: 1.5;
@@ -59,9 +67,9 @@
 
 .wim-selectbox-value {
   flex: 1;
-
-  // overflow: hidden; // User reported this causes vertical clipping
-  // text-overflow: ellipsis;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 
   &--placeholder {
@@ -198,7 +206,7 @@
   .wim-selectbox-select {
     box-sizing: border-box;
     width: 100%;
-    min-height: 42px;
+    min-height: var(--wim-height-md);
     padding: var(--spacing-md) calc(var(--spacing-md) * 2.5) var(--spacing-md) var(--spacing-md);
     font-family: inherit;
     font-size: 1rem;

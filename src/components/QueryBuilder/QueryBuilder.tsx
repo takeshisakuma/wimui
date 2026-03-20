@@ -9,7 +9,6 @@ import { NumberInput } from "../NumberInput/NumberInput";
 import { DatePicker } from "../DatePicker/DatePicker";
 import { Switch } from "../Switch/Switch";
 import { SegmentedControl } from "../SegmentedControl/SegmentedControl";
-import { Group } from "../Group/Group";
 import "./querybuilder.scss";
 
 export type QueryFieldType = "string" | "number" | "date" | "boolean";
@@ -251,6 +250,7 @@ export const QueryBuilder = ({
             value={rule.field}
             onChange={handleFieldChange}
             aria-label={t("query_builder.field")}
+            fullWidth
           />
           <Selectbox
             className="wim-query-rule__operator"
@@ -258,6 +258,7 @@ export const QueryBuilder = ({
             value={rule.operator}
             onChange={(val) => handleUpdate(rule.id, { operator: val })}
             aria-label={t("query_builder.operator")}
+            fullWidth
           />
           {!isUnaryOperator && (
             <div className="wim-query-rule__value">
@@ -284,6 +285,7 @@ export const QueryBuilder = ({
                   value={String(rule.value)}
                   onChange={(val) => handleUpdate(rule.id, { value: val === "true" })}
                   aria-label={t("query_builder.value")}
+                  fullWidth
                 />
               ) : (
                 <Input
@@ -318,36 +320,34 @@ export const QueryBuilder = ({
         )}
       >
         <div className="wim-query-group__header">
-          <Group gap="sm">
+          <div className="wim-query-group__header-left">
             <SegmentedControl
               size="medium"
               options={[
-                { label: t("query_builder.and"), value: "and" },
-                { label: t("query_builder.or"), value: "or" },
+                { label: "AND", value: "and" },
+                { label: "OR", value: "or" },
               ]}
               value={group.combinator}
               onChange={(val) => handleUpdate(group.id, { combinator: val as "and" | "or" })}
             />
             <Switch
               size="medium"
-              label={t("query_builder.not")}
+              label="NOT"
               checked={group.not}
               onChange={(e) => handleUpdate(group.id, { not: e.target.checked })}
             />
-          </Group>
-          <div className="wim-query-group__header-actions">
-            {depth > 0 && (
-              <Button
-                className="wim-query-group__remove"
-                iconName="TrashIcon"
-                aria-label={t("query_builder.remove_group")}
-                priority="tertiary"
-                size="medium"
-                color="danger"
-                onClick={() => handleRemove(group.id)}
-              />
-            )}
           </div>
+          {depth > 0 && (
+            <IconButton
+              iconName="TrashIcon"
+              aria-label={t("query_builder.remove_group")}
+              priority="tertiary"
+              size="medium"
+              color="danger"
+              onClick={() => handleRemove(group.id)}
+              className="wim-query-group__remove"
+            />
+          )}
         </div>
         <div className="wim-query-builder__rule-list">
           {group.rules.map((item) =>

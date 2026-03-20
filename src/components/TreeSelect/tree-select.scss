@@ -3,7 +3,18 @@
 .wim-tree-select {
   position: relative;
   width: 100%;
+  min-width: 200px;
+  max-width: var(--wim-input-width, 280px);
   font-family: var(--wim-font-family);
+
+  @media (width <= 480px) {
+    min-width: 160px;
+  }
+
+  &--full-width {
+    min-width: 0;
+    max-width: none;
+  }
 
   &__label {
     display: block;
@@ -50,8 +61,12 @@
 
   &__value {
     flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 14px;
     color: var(--wim-color-text-primary);
+    white-space: nowrap;
 
     &--placeholder {
       color: var(--wim-color-text-placeholder);
@@ -85,11 +100,11 @@
     z-index: 1000;
     width: max-content;
     min-width: 100%;
-    max-width: 480px;
+    max-width: min(480px, calc(100vw - 32px));
     max-height: 320px;
     padding: 4px 0; // Provide space for focus ring shadows
     margin-top: 4px;
-    overflow-y: auto;
+    overflow: hidden auto; // Force vertical scroll only
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
     border-radius: 8px;

@@ -10,9 +10,9 @@
   --wim-indicator-active-color: var(--color-primary, #006bff);
 
   /* Standard Component Heights (Standardized for Button, Input, etc.) */
-  --wim-height-sm: 2rem;
-  --wim-height-md: 2.5rem;
-  --wim-height-lg: 3rem;
+  --wim-height-sm: 2rem;       // 32px
+  --wim-height-md: 2.625rem;   // 42px
+  --wim-height-lg: 3rem;       // 48px
 }
 
 .wim-ui-connector {

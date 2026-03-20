@@ -2,6 +2,7 @@
 @use "./tokens/spacings" as scales;
 @use "./tokens/effects";
 @use "./tokens/typography";
+@use "./styles/ui-patterns";
 
 @layer base {
   /* Base Styles: 要素へのグローバルなスタイル定義 */
