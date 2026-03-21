@@ -57,7 +57,6 @@
       display: block;
       min-width: 0;
       padding: 0;
-      margin-top: -0.1rem;
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: 1.2;
@@ -74,7 +73,7 @@
     &--lg {
       --wim-button-v-padding-base: var(--spacing-xl);
       --wim-button-v-padding: var(--wim-button-v-padding-base);
-      --wim-button-h-padding: var(--spacing-3xl);
+      --wim-button-h-padding: var(--spacing-2xl);
       --wim-button-height: var(--wim-height-lg);
 
       max-width: 100%;
@@ -98,7 +97,7 @@
     &--sm {
       --wim-button-v-padding-base: var(--spacing-sm);
       --wim-button-v-padding: var(--wim-button-v-padding-base);
-      --wim-button-h-padding: var(--spacing-lg);
+      --wim-button-h-padding: var(--spacing-xl);
       --wim-button-height: var(--wim-height-sm);
 
       max-width: 100%;
