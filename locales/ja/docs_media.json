@@ -270,5 +270,11 @@
   "media_skeleton_usage": "スケルトンの活用",
   "media_skeleton_usage_desc": "重いメディアファイルの読み込み中は、`Skeleton`\nコンポーネントを表示して、ユーザーに進行状況を伝えてください。",
   "media_usability_perf_title": "ユーザビリティとパフォーマンス",
-  "media_usage_tips": "活用のヒント"
+  "media_usage_tips": "活用のヒント",
+  "doc_audio_token_primary": "再生ボタン・プログレスバー充填・アクティブ状態のアクセントカラー",
+  "doc_audio_token_primary_light": "アクティブボタンの背景色（主要色の薄い透過）",
+  "doc_audio_token_border": "borderモード時のボーダー色",
+  "doc_audio_token_text_secondary": "キャプションテキストの色",
+  "doc_audio_token_radius_full": "ピル形状・円形ボタン・スライダーサム",
+  "doc_audio_token_shadow": "shadowモード時のシャドウエフェクト"
 }

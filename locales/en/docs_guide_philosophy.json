@@ -301,5 +301,11 @@
   "icons_usage_guide_title": "Usage Guidelines",
   "icons_vis_priority_reason": "Recognizable even when small due to silhouette.",
   "icons_visual_weight": "Visual Weight",
-  "icons_weight_sync_title": "Weight Sync"
+  "icons_weight_sync_title": "Weight Sync",
+  "guide_effects_opacity": "Opacity",
+  "guide_effects_opacity_desc": "Opacity tokens for expressing UI states. Always reference these tokens instead of hardcoded values.",
+  "guide_effects_opacity_disabled": "Disabled controls (checkbox, radio, fieldset, etc.)",
+  "guide_effects_opacity_ghost": "Ghost UI elements (close buttons, placeholder icons, etc.)",
+  "guide_effects_opacity_secondary": "Secondary elements and supplemental text",
+  "guide_effects_opacity_guideline": "Use these three levels — disabled / ghost / secondary — instead of hardcoded values (0.5, 0.6, 0.7)."
 }

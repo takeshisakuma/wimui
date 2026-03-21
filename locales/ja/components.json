@@ -391,5 +391,11 @@
   "vis_relationship": "2つの数値変数の関係",
   "vis_share": "構成比、シェア",
   "vis_small_items": "(項目数が少ない場合)",
-  "visual_accessibility": "視覚性"
+  "visual_accessibility": "視覚性",
+  "doc_querybuilder_token_destructive": "excludedグループのボーダー・背景ハイライトカラー",
+  "doc_querybuilder_token_border": "グループ・ルールのボーダー色",
+  "doc_querybuilder_token_bg_secondary": "グループの背景色（ライト／ダークモード自動切り替え）",
+  "doc_querybuilder_token_bg_component": "各ルールの背景色",
+  "doc_querybuilder_token_radius": "グループ・ルールの角丸（8px）",
+  "doc_querybuilder_token_transition": "ホバー時のボーダー色変化アニメーション"
 }

@@ -270,5 +270,11 @@
   "media_skeleton_usage": "Skeleton Usage",
   "media_skeleton_usage_desc": "Show a `Skeleton` during heavy media file loading to indicate progress.",
   "media_usability_perf_title": "Usability and Performance",
-  "media_usage_tips": "Usage Tips"
+  "media_usage_tips": "Usage Tips",
+  "doc_audio_token_primary": "Accent color for the play button, progress bar fill, and active state.",
+  "doc_audio_token_primary_light": "Background color for active buttons (translucent primary color).",
+  "doc_audio_token_border": "Border color in border mode.",
+  "doc_audio_token_text_secondary": "Caption text color.",
+  "doc_audio_token_radius_full": "Pill shape, circular buttons, and slider thumbs.",
+  "doc_audio_token_shadow": "Shadow effect in shadow mode."
 }

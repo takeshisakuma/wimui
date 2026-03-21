@@ -445,5 +445,11 @@
   "loading_skeleton_desc": "レイアウトを保持しつつ、コンテンツの到着を待つ。",
   "loading_small_parts": "ボタン/小さなパーツ",
   "loading_spinner_icon": "回転アイコン",
-  "loading_tentative_shape": "仮の形状"
+  "loading_tentative_shape": "仮の形状",
+  "doc_alert_token_semantic_color": "variant（info/success/warning/error）に対応したセマンティックカラー。ライトモードではテキスト・ボーダー・アイコン色として使い、ダークモードでは自動的に視認性の高い値に切り替わります。",
+  "doc_alert_token_overlay_bg": "Glassmorphismのベース背景。ライトモードでは半透明白（rgb(255 255 255 / 0.8)）、ダークモードではコンポーネント背景色の60%不透明度。",
+  "doc_alert_token_radius": "コンポーネント全体の角丸（8px）",
+  "doc_alert_token_shadow": "ベースの影。ライトモードで浮き上がりを表現します。",
+  "doc_alert_token_transition": "ホバー・表示切り替えのアニメーション",
+  "doc_alert_token_opacity": "閉じるボタンの初期不透明度（ゴースト状態）"
 }
