@@ -31,7 +31,7 @@ describe("TreeView", () => {
 
     expect(screen.queryByText("Child 1.1")).not.toBeInTheDocument();
 
-    const expandBtn = screen.getByLabelText("Expand");
+    const expandBtn = screen.getByLabelText("Expand Root 1");
     fireEvent.click(expandBtn);
 
     act(() => {

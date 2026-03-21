@@ -58,7 +58,7 @@ describe("TreeSelect", () => {
     render(<TreeSelect treeData={treeData} onChange={onChange} />);
     fireEvent.click(screen.getByRole("combobox"));
 
-    const expandBtn = screen.getByLabelText("Expand");
+    const expandBtn = screen.getByLabelText("Expand Node 1");
     fireEvent.click(expandBtn);
 
     const childNode = screen.getByText("Child 1-1");
