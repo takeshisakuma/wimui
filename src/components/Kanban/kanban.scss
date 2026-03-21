@@ -68,7 +68,7 @@
     transition: opacity 0.15s ease, box-shadow 0.15s ease;
 
     &:hover:not(&--disabled) {
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+      box-shadow: var(--shadow-sm);
     }
 
     &--dragging {
@@ -78,7 +78,7 @@
 
     &--disabled {
       cursor: default;
-      opacity: 0.6;
+      opacity: var(--opacity-disabled);
     }
   }
 
@@ -131,7 +131,7 @@
     background: #fff;
     border: 1px solid var(--wim-color-border, #e5e7eb);
     border-radius: 6px;
-    box-shadow: 0 4px 12px rgb(0 0 0 / 0.12);
+    box-shadow: var(--shadow-md);
   }
 
   &__card-move-option {

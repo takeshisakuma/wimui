@@ -52,7 +52,7 @@
 
     .wim-rte__toolbar {
       pointer-events: none;
-      opacity: 0.5;
+      opacity: var(--opacity-ghost);
     }
   }
 

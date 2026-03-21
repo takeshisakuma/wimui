@@ -391,5 +391,11 @@
   "doc_querybuilder_logic_not_title": "NOT is a \"Negation Flag\"",
   "doc_querybuilder_logic_not_desc": "An operator that inverts the entire joined result. Since it can be applied to either AND or OR states, it is an independent switch.",
   "query_builder.true": "True",
-  "query_builder.false": "False"
+  "query_builder.false": "False",
+  "doc_querybuilder_token_destructive": "Border and background highlight color for excluded groups.",
+  "doc_querybuilder_token_border": "Border color for groups and rules.",
+  "doc_querybuilder_token_bg_secondary": "Background color for groups (auto-switches in dark mode).",
+  "doc_querybuilder_token_bg_component": "Background color for individual rule rows.",
+  "doc_querybuilder_token_radius": "Corner radius for groups and rules (8px).",
+  "doc_querybuilder_token_transition": "Animation for border color change on hover."
 }

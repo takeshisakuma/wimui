@@ -16,7 +16,7 @@
 
   &--disabled {
     pointer-events: none;
-    opacity: 0.6;
+    opacity: var(--opacity-disabled);
   }
 
   &__list {
@@ -28,18 +28,18 @@
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.05); // プレミアムな質感を出すためのシャドウ
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-xs); // プレミアムな質感を出すためのシャドウ
+    transition: var(--transition-base);
 
     &:hover {
       border-color: var(--wim-color-primary-light, var(--wim-color-border));
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1); // ホバー時に質感を強調
+      box-shadow: var(--shadow-md); // ホバー時に質感を強調
     }
 
     @media (width <= 768px) {
       width: 100%;
       height: 300px; // 400pxから300pxに変更
-      box-shadow: 0 4px 16px rgb(0 0 0 / 0.08); // モバイルではより存在感を出す
+      box-shadow: var(--shadow-md); // モバイルではより存在感を出す
     }
   }
 

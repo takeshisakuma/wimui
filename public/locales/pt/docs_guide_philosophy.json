@@ -301,5 +301,11 @@
   "voiceandtone_voice_honest_desc": "Evite exageros ou palavras excessivamente decoradas; transmita fatos com precisão.",
   "voiceandtone_voice_reliable_desc": "Promova a confiança mantendo uma redação consistente.",
   "voiceandtone_voice_supportive_desc": "Mantenha uma atitude de sempre apoiar os objetivos do usuário.",
-  "voiceandtone_voice_title": "Voz (Personalidade do Sistema)"
+  "voiceandtone_voice_title": "Voz (Personalidade do Sistema)",
+  "guide_effects_opacity": "Opacidade",
+  "guide_effects_opacity_desc": "Tokens de opacidade para expressar estados de UI. Sempre referencie esses tokens em vez de valores fixos.",
+  "guide_effects_opacity_disabled": "Controles desabilitados (checkbox, radio, fieldset, etc.)",
+  "guide_effects_opacity_ghost": "Elementos de UI fantasma (botões de fechar, ícones de placeholder, etc.)",
+  "guide_effects_opacity_secondary": "Elementos secundários e texto complementar",
+  "guide_effects_opacity_guideline": "Use esses três níveis — disabled / ghost / secondary — em vez de valores fixos (0.5, 0.6, 0.7)."
 }

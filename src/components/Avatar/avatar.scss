@@ -33,7 +33,7 @@
 
   // Shapes
   &--circle {
-    border-radius: 50%;
+    border-radius: var(--radius-full);
   }
 
   &--rounded {

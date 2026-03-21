@@ -43,6 +43,11 @@ $transition-fast: all $duration-fast $easing-standard;
 /* --- インタラクション (Interaction) --- */
 $scale-active: 0.98;
 
+/* --- 不透明度 (Opacity) --- */
+$opacity-disabled: 0.6;  // disabled状態のコントロール
+$opacity-ghost: 0.5;     // ゴースト・閉じるボタンなど控えめなUI
+$opacity-secondary: 0.7; // セカンダリ要素・補助テキスト
+
 :root {
   --shadow-none: #{$shadow-none};
   --shadow-color: rgb(0 0 0 / 0.1);
@@ -81,6 +86,9 @@ $scale-active: 0.98;
   --transition-instant: #{$transition-instant};
   --transition-fast: #{$transition-fast};
   --scale-active: #{$scale-active};
+  --opacity-disabled: #{$opacity-disabled};
+  --opacity-ghost: #{$opacity-ghost};
+  --opacity-secondary: #{$opacity-secondary};
 
   /* --- 質感・グラデーション (Texture & Gradients) --- */
   --glass-gradient: linear-gradient(180deg,

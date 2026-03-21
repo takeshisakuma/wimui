@@ -16,7 +16,7 @@
 
     &--disabled {
       pointer-events: none;
-      opacity: 0.5;
+      opacity: var(--opacity-ghost);
     }
   }
 
@@ -36,7 +36,7 @@
     cursor: pointer;
     background-color: var(--wim-color-bg-hover);
     border: none;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
 
     .wim-accordion__item--open & {
       font-weight: 600;

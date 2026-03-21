@@ -3,7 +3,7 @@
     padding: var(--spacing-md) 0 var(--spacing-md) var(--spacing-2xl);
     margin: var(--spacing-2xl) 0;
     font-family: inherit;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
 
     &--border {
       border-left: 4px solid var(--text-secondary);

@@ -62,7 +62,7 @@
   align-items: center;
   padding: 0 var(--spacing-md);
   border-bottom: 2px solid var(--wim-color-border-secondary); // Slightly thicker for focus transition
-  transition: all 0.2s ease;
+  transition: var(--transition-fast);
 
   .wim-icon {
     margin-right: var(--spacing-sm);
@@ -73,7 +73,7 @@
   &:focus-within {
     background-color: var(--bg-hover, rgb(0 0 0 / 0.02));
     border-bottom-color: var(--color-primary);
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
 
     // Default (mouse) focus indicator: change icon color and light background
     // but NO full outline.

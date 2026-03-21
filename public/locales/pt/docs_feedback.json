@@ -445,5 +445,11 @@
   "loading_skeleton_desc": "Mantém o layout aguardando a chegada do conteúdo.",
   "loading_small_parts": "Botões / Componentes Pequenos",
   "loading_spinner_icon": "Ícone de Giro",
-  "loading_tentative_shape": "Forma de Espaço Reservado"
+  "loading_tentative_shape": "Forma de Espaço Reservado",
+  "doc_alert_token_semantic_color": "Cor semântica correspondente ao variant (info/success/warning/error). Usada para texto, borda e ícones no modo claro, alternando automaticamente para valores acessíveis no modo escuro.",
+  "doc_alert_token_overlay_bg": "Fundo base do Glassmorphism. Branco semitransparente (rgb(255 255 255 / 0.8)) no modo claro; 60% de opacidade do fundo do componente no modo escuro.",
+  "doc_alert_token_radius": "Raio de canto do componente (8px)",
+  "doc_alert_token_shadow": "Sombra base para elevação no modo claro.",
+  "doc_alert_token_transition": "Animação para transições de hover e visibilidade.",
+  "doc_alert_token_opacity": "Opacidade inicial do botão de fechar (estado fantasma)."
 }

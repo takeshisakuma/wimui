@@ -28,6 +28,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   transition: all var(--transition-base, 0.2s ease);
 }

@@ -8,7 +8,7 @@
   &--loading {
     position: relative;
     pointer-events: none;
-    opacity: 0.6;
+    opacity: var(--opacity-disabled);
   }
 
   &__loading-overlay {

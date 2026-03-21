@@ -67,7 +67,7 @@
       &--disabled {
         color: var(--color-disabled);
         cursor: not-allowed;
-        opacity: 0.5;
+        opacity: var(--opacity-ghost);
       }
 
       &--ellipsis {

@@ -445,5 +445,11 @@
   "loading_skeleton_desc": "Maintains layout while waiting for content to arrive.",
   "loading_small_parts": "Buttons / Small Components",
   "loading_spinner_icon": "Spinner Icon",
-  "loading_tentative_shape": "Placeholder Shape"
+  "loading_tentative_shape": "Placeholder Shape",
+  "doc_alert_token_semantic_color": "Semantic color corresponding to the variant (info/success/warning/error). Used for text, border, and icon colors in light mode, automatically switching to accessible values in dark mode.",
+  "doc_alert_token_overlay_bg": "Glassmorphism base background. Semi-transparent white (rgb(255 255 255 / 0.8)) in light mode; 60% opacity component background in dark mode.",
+  "doc_alert_token_radius": "Component corner radius (8px)",
+  "doc_alert_token_shadow": "Base shadow for light-mode elevation.",
+  "doc_alert_token_transition": "Animation for hover and visibility transitions.",
+  "doc_alert_token_opacity": "Initial opacity of the close button (ghost state)."
 }

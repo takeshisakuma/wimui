@@ -128,8 +128,8 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: 50%;
-    transition: all 0.2s ease;
+    border-radius: var(--radius-full);
+    transition: var(--transition-fast);
 
     &:hover {
       color: #fff;

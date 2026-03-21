@@ -13,7 +13,7 @@
 
   &--disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: var(--opacity-ghost);
 
     .wim-slider__thumb,
     .wim-range-slider__thumb {

@@ -111,8 +111,8 @@
     background: transparent;
     border: none;
     border-radius: var(--radius-md);
-    opacity: 0.5;
-    transition: all 0.2s ease;
+    opacity: var(--opacity-ghost);
+    transition: var(--transition-fast);
 
     &:hover {
       background: rgb(0 0 0 / 0.05);

@@ -23,7 +23,7 @@
       height: 100%;
       color: #fff;
       background-color: var(--color-primary);
-      border-radius: 50%;
+      border-radius: var(--radius-full);
       box-shadow: var(--shadow-lg);
       transition:
         background-color 0.3s,

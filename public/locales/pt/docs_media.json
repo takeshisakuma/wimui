@@ -270,5 +270,11 @@
   "media_skeleton_usage": "Uso do Esqueleto",
   "media_skeleton_usage_desc": "Mostre um `Esqueleto` durante o carregamento de arquivos de mídia pesados para indicar o progresso.",
   "media_usability_perf_title": "Usabilidade e Desempenho",
-  "media_usage_tips": "Dicas de Uso"
+  "media_usage_tips": "Dicas de Uso",
+  "doc_audio_token_primary": "Cor de destaque para o botão de reprodução, preenchimento da barra de progresso e estado ativo.",
+  "doc_audio_token_primary_light": "Cor de fundo para botões ativos (cor primária translúcida).",
+  "doc_audio_token_border": "Cor da borda no modo border.",
+  "doc_audio_token_text_secondary": "Cor do texto da legenda.",
+  "doc_audio_token_radius_full": "Forma de pílula, botões circulares e thumbs do slider.",
+  "doc_audio_token_shadow": "Efeito de sombra no modo shadow."
 }

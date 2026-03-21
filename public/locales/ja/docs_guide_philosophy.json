@@ -301,5 +301,11 @@
   "icons_usage_guide_title": "使い分けのガイドライン",
   "icons_vis_priority_reason": "シルエットがはっきりするため、小さく表示しても形を認識しやすいのが特徴です。",
   "icons_visual_weight": "圧迫感",
-  "icons_weight_sync_title": "ウェイト（太さ）の同期"
+  "icons_weight_sync_title": "ウェイト（太さ）の同期",
+  "guide_effects_opacity": "不透明度",
+  "guide_effects_opacity_desc": "UIの状態表現に使う不透明度トークンです。ハードコードの数値を使わず、常にこれらのトークンを参照してください。",
+  "guide_effects_opacity_disabled": "disabled状態のコントロール（チェックボックス、ラジオ、フィールドセットなど）",
+  "guide_effects_opacity_ghost": "ゴーストUI要素（閉じるボタン、プレースホルダーアイコンなど）",
+  "guide_effects_opacity_secondary": "セカンダリ要素・補助テキスト",
+  "guide_effects_opacity_guideline": "disabled / ghost / secondary の3段階で、ハードコード値（0.5, 0.6, 0.7）の代わりに使用してください。"
 }

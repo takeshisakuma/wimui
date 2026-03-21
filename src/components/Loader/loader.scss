@@ -97,7 +97,7 @@
       width: 8px;
       height: 8px;
       background-color: currentcolor;
-      border-radius: 50%;
+      border-radius: var(--radius-full);
       animation: wim-loader-dots 1s ease-in-out infinite;
 
       &:nth-child(2) {
@@ -153,8 +153,8 @@
       width: 100%;
       height: 100%;
       background-color: currentcolor;
-      border-radius: 50%;
-      opacity: 0.6;
+      border-radius: var(--radius-full);
+      opacity: var(--opacity-disabled);
       animation: wim-loader-pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
       &:nth-child(2) {
@@ -191,7 +191,7 @@
 @keyframes wim-loader-bars {
   0%,
   100% {
-    opacity: 0.6;
+    opacity: var(--opacity-disabled);
     transform: scaleY(0.6);
   }
 

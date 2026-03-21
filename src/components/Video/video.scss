@@ -36,7 +36,7 @@
   }
 
   &.wim-video--shadow {
-    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-md);
     transition: box-shadow 0.6s ease;
 
     &.wim-video--loading {
@@ -153,7 +153,7 @@
   cursor: pointer;
   background: none;
   border: none;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   transition:
     background-color 0.2s,
     color 0.2s;
@@ -231,7 +231,7 @@
     height: 12px;
     content: "";
     background-color: white;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     box-shadow: 0 0 4px rgb(0 0 0 / 0.5);
     transform: translateY(-50%);
   }
@@ -274,7 +274,7 @@
     appearance: none;
     cursor: pointer;
     background: white;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     box-shadow: 0 0 2px rgb(0 0 0 / 0.5);
   }
 

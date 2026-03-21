@@ -42,7 +42,7 @@
         color: var(--text-disabled);
         cursor: not-allowed;
         background-color: transparent;
-        opacity: 0.6;
+        opacity: var(--opacity-disabled);
     }
 
     &--danger {

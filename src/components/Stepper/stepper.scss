@@ -224,7 +224,7 @@
       color: var(--text-secondary);
       background-color: var(--bg-component, #fff);
       border: 2px solid var(--wim-color-border-secondary);
-      border-radius: 50%;
+      border-radius: var(--radius-full);
       transition: all var(--transition-base);
     }
 

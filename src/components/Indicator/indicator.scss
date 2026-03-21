@@ -13,7 +13,7 @@
     height: 10px;
     background-color: var(--wim-neutral, #ccc);
     border: 2px solid #fff;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
 
     &--sm {
       width: 8px;
@@ -87,7 +87,7 @@
         z-index: -1;
         content: "";
         background-color: inherit;
-        border-radius: 50%;
+        border-radius: var(--radius-full);
         opacity: 0.4;
         animation: wim-indicator-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
       }

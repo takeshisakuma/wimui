@@ -35,7 +35,7 @@
     background: transparent;
     border: none;
     border-radius: 0;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
 
     &:hover:not(&--disabled) {
       border-color: var(--wim-color-primary);
@@ -55,7 +55,7 @@
       cursor: not-allowed;
       background: var(--color-disabled);
       border-color: var(--color-disabled);
-      opacity: 0.6;
+      opacity: var(--opacity-disabled);
     }
   }
 
@@ -90,7 +90,7 @@
     background: none;
     border: none;
     border-radius: 4px;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
   }
 
   &__dropdown {
@@ -108,7 +108,7 @@
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-md);
 
     &::-webkit-scrollbar {
       width: 6px;

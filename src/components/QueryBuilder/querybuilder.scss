@@ -16,14 +16,14 @@
   border-radius: var(--radius-lg);
 
   &--excluded {
-    border-color: color-mix(in srgb, var(--color-error, #f43f5e) 20%, var(--wim-color-border-secondary, #e2e2e8));
+    border-color: color-mix(in srgb, var(--color-destructive) 20%, var(--wim-color-border-secondary));
 
     & > .wim-query-builder__rule-list {
-      background-color: color-mix(in srgb, var(--color-error, #f43f5e) 6%, #fff);
+      background-color: color-mix(in srgb, var(--color-destructive) 6%, var(--bg-component));
     }
   }
 
-  transition: all 0.2s ease;
+  transition: var(--transition-fast);
 
   &:hover {
     border-color: var(--wim-color-primary);
@@ -227,7 +227,7 @@
   padding: 0 !important;
   margin-left: auto;
   color: var(--color-destructive) !important;
-  transition: all 0.2s ease;
+  transition: var(--transition-fast);
 
   .wim-icon,
   svg {
@@ -269,21 +269,3 @@
   }
 }
 
-[data-theme="dark"] {
-  .wim-query-group {
-    background-color: var(--color-grey-800);
-
-    &--nested {
-      background-color: var(--color-grey-900);
-    }
-  }
-
-  .wim-query-rule {
-    background-color: var(--color-grey-700);
-    border-color: var(--color-grey-600);
-
-    &:hover {
-      background-color: var(--color-grey-600);
-    }
-  }
-}
