@@ -19,7 +19,7 @@ declare module "*.png" {
 }
 
 declare module "*.svg" {
-  import type React from "react";
-  const content: React.FC<React.SVGProps<SVGSVGElement>>;
+  const content: string;
   export default content;
 }
+
