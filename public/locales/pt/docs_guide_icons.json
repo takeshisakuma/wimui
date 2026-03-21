@@ -18,7 +18,7 @@
   "icons_filled_weight": "Alto (Chama a atenção)",
   "icons_form_field_reason": "A modéstia previne a distração durante a entrada.",
   "icons_ghost_btn_reason": "Combina com a textura da borda para uma aparência limpa.",
-  "icons_guide_title_desc": "Guia de princípios de design de ícones e convenções de nomenclatura em todo o aplicativo.",
+  "icons_guide_title_desc": "Guia de princípios de design de ícones, diretrizes de uso e convenções de nomenclatura em todo o aplicativo.",
   "icons_heavy_weight_reason": "Adequado para ações importantes que precisam de forte atenção.",
   "icons_impression": "Impressão",
   "icons_inline_supp_reason": "Adição sutil ao fluxo de texto.",
@@ -65,5 +65,13 @@
   "icons_usage_guide_title": "Diretrizes de Uso",
   "icons_vis_priority_reason": "Reconhecível mesmo pequeno devido à silhueta.",
   "icons_visual_weight": "Peso Visual",
-  "icons_weight_sync_title": "Sincronização de Peso"
+  "icons_weight_sync_title": "Sincronização de Peso",
+  "icons_optical_alignment_title": "Alinhamento Óptico",
+  "icons_optical_alignment_desc": "Ajuste ícones onde o centro geométrico parece deslocado (ex: botão play) para garantir que pareçam visualmente centralizados.",
+  "icons_simplicity_title": "Complexidade Reduzida",
+  "icons_simplicity_desc": "Remova detalhes desnecessários para garantir que os ícones permaneçam reconhecíveis em tamanhos pequenos (16-24px).",
+  "icons_naming_conv_title": "Nomenclatura Padronizada",
+  "icons_naming_conv_desc": "Unifique a nomenclatura como `[Name]Icon` (ex: SettingsIcon) para melhorar a previsibilidade na base de código.",
+  "icons_accessibility_title": "Suplemento de Informação",
+  "icons_accessibility_desc": "Considere o uso de `aria-label` ou tooltips, pois ícones isolados podem às vezes ser ambíguos."
 }

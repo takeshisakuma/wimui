@@ -1088,7 +1088,7 @@
       },
       {
         "name": "ScatterChart",
-        "descKey": "doc_scatterChart_desc",
+        "descKey": "doc_scatterchart_desc",
         "pc": true,
         "mobile": true
       },

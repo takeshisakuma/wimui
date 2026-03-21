@@ -2,7 +2,7 @@
   "icons_android_pref": "Android (Material) の基本",
   "icons_auto_resize_title": "自動サイズ調整",
   "icons_best_scenes_title": "活きるケースの比較",
-  "icons_better_design_title": "よりよいアイコンの設計(未対応)",
+  "icons_better_design_title": "よりよいアイコンの設計",
   "icons_blend_text_reason": "文字の流れを邪魔せず、さりげなく添えることができます。",
   "icons_bold_switch": "テキストが太字（Bold）になると、アイコンのウェイトも自動的に太くなります。",
   "icons_clean_view_reason": "圧迫感がなく、モダンでクリーンな印象を与えます。情報の邪魔をしません。",
@@ -18,7 +18,7 @@
   "icons_filled_weight": "高い（ユーザーの目を引きやすい）",
   "icons_form_field_reason": "検索バーの虫眼鏡など。入力の邪魔にならない程度の控えめな表現が適しているため。",
   "icons_ghost_btn_reason": "ボタンの枠線とアイコンの線の質感を合わせると綺麗に見えるため。",
-  "icons_guide_title_desc": "アプリケーション全体で使用するアイコンの設計指針と使い分けについてのガイドです。",
+  "icons_guide_title_desc": "アプリケーション全体で使用するアイコンの設計指針、命名規則、および使い分けについてのガイドです。",
   "icons_heavy_weight_reason": "重要なアクションや、ユーザーの注意を強く引きたい場所に適しています。",
   "icons_impression": "印象",
   "icons_inline_supp_reason": "文字の流れを邪魔せず、控えめに添えることができるため。",
@@ -45,7 +45,7 @@
   "icons_outline_weight": "低い（テキストと馴染みやすい）",
   "icons_platform_pref": "プラットフォーム",
   "icons_primary_btn_reason": "ボタン自体の「強さ」に負けない視認性が必要なため。",
-  "icons_radius_sync_desc": "ボタンなどのコンポーネントが丸みを帯びているなら、アイコンも Round\n型を選びます。逆にシャープなデザインならアイコンも Sharp\n型を選び、質感を揃えることでプロっぽい統一感が出ます。",
+  "icons_radius_sync_desc": "ボタンなどのコンポーネントが丸みを帯びているなら、アイコンも Round 型を選びます。逆にシャープなデザインならアイコンも Sharp 型を選び、質感を揃えることでプロっぽい統一感が出ます。",
   "icons_radius_sync_title": "角の丸み（Border Radius）の同期",
   "icons_recommended_style": "推奨スタイル",
   "icons_rule_no_mixing": "同じ階層で混ぜない",
@@ -65,5 +65,14 @@
   "icons_usage_guide_title": "使い分けのガイドライン",
   "icons_vis_priority_reason": "シルエットがはっきりするため、小さく表示しても形を認識しやすいのが特徴です。",
   "icons_visual_weight": "圧迫感",
-  "icons_weight_sync_title": "ウェイト（太さ）の同期"
+  "icons_weight_sync_title": "ウェイト（太さ）の同期",
+  "icons_optical_alignment_title": "視覚的バランス",
+  "icons_optical_alignment_desc": "再生アイコン（三角形）のように重心が偏る形状は、幾何学的な中央ではなく視覚的な中央に来るよう微調整を施します。",
+  "icons_simplicity_title": "形状の簡略化",
+  "icons_simplicity_desc": "小さなサイズでも認識できるよう、不必要な要素を削ぎ落とし、本質的な特徴だけを抽出して設計します。",
+  "icons_naming_conv_title": "命名の標準化",
+  "icons_naming_conv_desc": "アイコン名は `[Name]Icon` 形式（例: SettingsIcon）で統一し、コード内での予測可能性を向上させます。",
+  "icons_accessibility_title": "非テキスト情報の補完",
+  "icons_accessibility_desc": "アイコン単体では意味が曖昧になる可能性があるため、`aria-label` やツールチップによる情報の補完を検討します。"
+
 }

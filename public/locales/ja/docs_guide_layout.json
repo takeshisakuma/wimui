@@ -1,4 +1,11 @@
 {
+  "layout_diagram_header": "Header (ヘッダー)",
+  "layout_diagram_sidebar": "Sidebar (サイドバー)",
+  "layout_diagram_page_header": "Page Header (ページヘッダー)",
+  "layout_diagram_main_content": "Main Content Area (メインコンテンツ)",
+  "layout_diagram_toast": "Toast (通知)",
+  "layout_diagram_right_panel": "Right Panel (ライトパネル)",
+  "layout_diagram_footer": "Footer (フッター)",
   "guide_layout_desc": "Header, Sidebar, Main, Footer の役割と配置についてのガイドラインです。",
   "guide_layout_footer_content": "推奨項目: Copyright, 利用規約, プライバシーポリシー, 言語切り替え, SNSリンク",
   "guide_layout_footer_desc": "補足情報や法的情報を記載します。Webアプリケーションでは省略されることも多いですが、Webサイトでは必須です。",

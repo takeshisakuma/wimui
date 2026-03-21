@@ -64,13 +64,23 @@ export const T = ({ k }: { k: string }) => {
   const processText = (text: unknown) => {
     if (typeof text !== "string") return text;
 
+    // Helper to escape HTML characters
+    const escapeHtml = (unsafe: string) => {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    };
+
     // 1. Remove extra indentation (newline followed by multiple spaces)
     // 2. Convert literal \n to real newlines (if they were double escaped)
     // 3. Convert all newlines to <br />
     return text
       .replace(/\\n/g, "\n")              // Handle literal \n text
       .replace(/\n\s+/g, "\n")            // Remove indentation after newlines
-      .replace(/`([^`]+)`/g, "<code>$1</code>") // Convert backticks to code tags
+      .replace(/`([^`]+)`/g, (_match, code) => `<code>${escapeHtml(code)}</code>`) // Convert backticks to code tags and escape content
       .replace(/\n/g, "<br />");          // Convert to HTML line breaks
   };
 

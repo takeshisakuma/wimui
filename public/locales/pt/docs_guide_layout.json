@@ -1,4 +1,11 @@
 {
+  "layout_diagram_header": "Cabeçalho",
+  "layout_diagram_sidebar": "Barra Lateral",
+  "layout_diagram_page_header": "Cabeçalho da Página",
+  "layout_diagram_main_content": "Conteúdo Principal",
+  "layout_diagram_toast": "Toast",
+  "layout_diagram_right_panel": "Painel Direito",
+  "layout_diagram_footer": "Rodapé",
   "guide_layout_desc": "Diretrizes para funções e posicionamento de Cabeçalho, Barra Lateral, Principal e Rodapé.",
   "guide_layout_footer_content": "Recomendado: Direitos autorais, termos de serviço, política de privacidade, seletor de idioma, links sociais",
   "guide_layout_footer_desc": "Contém informações complementares ou legais. Frequentemente omitido em aplicativos da web, mas crítico para sites.",

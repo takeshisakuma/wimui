@@ -3,6 +3,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-http-backend";
+import { ALL_NAMESPACES } from "../stories/i18nConstants";
 
 i18n
   .use(Backend)
@@ -20,66 +21,8 @@ i18n
     },
     // Storybookのi18nパネルと連携するために、サポートする言語と初期言語を設定
     supportedLngs: ["en", "ja", "pt"],
-    ns: [
-      "common",
-      "components",
-      "docs_actions",
-      "docs_display",
-      "docs_inputs",
-      "docs_layout",
-      "docs_navigation",
-      "docs_overlay",
-      "docs_stories_actions",
-      "docs_stories_common",
-      "docs_stories_display",
-      "docs_stories_feedback",
-      "docs_stories_inputs",
-      "docs_stories_layout",
-      "docs_stories_media",
-      "docs_stories_navigation",
-      "docs_stories_overlay",
-      "docs_stories_utility",
-      "docs_feedback",
-      "docs_media",
-      "docs_utility",
-      "docs_guide_layout",
-      "docs_guide_navigation",
-      "docs_guide_forms",
-      "docs_guide_data",
-      "docs_guide_components",
-      "docs_guide_philosophy",
-      "docs_guide_common"
-    ],
-    fallbackNS: [
-      "docs_stories_actions",
-      "docs_stories_common",
-      "docs_stories_display",
-      "docs_stories_feedback",
-      "docs_stories_inputs",
-      "docs_stories_layout",
-      "docs_stories_media",
-      "docs_stories_navigation",
-      "docs_stories_overlay",
-      "docs_stories_utility",
-      "docs_feedback",
-      "docs_media",
-      "docs_utility",
-      "docs_guide_layout",
-      "docs_guide_navigation",
-      "docs_guide_forms",
-      "docs_guide_data",
-      "docs_guide_components",
-      "docs_guide_philosophy",
-      "docs_guide_common",
-      "docs_actions",
-      "docs_inputs",
-      "docs_display",
-      "docs_navigation",
-      "docs_overlay",
-      "docs_layout",
-      "common",
-      "components",
-    ],
+    ns: ALL_NAMESPACES,
+    fallbackNS: ALL_NAMESPACES,
     defaultNS: "common",
     lng: "en", // 初期言語
   });

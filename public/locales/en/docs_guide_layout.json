@@ -1,4 +1,11 @@
 {
+  "layout_diagram_header": "Header",
+  "layout_diagram_sidebar": "Sidebar",
+  "layout_diagram_page_header": "Page Header",
+  "layout_diagram_main_content": "Main Content",
+  "layout_diagram_toast": "Toast",
+  "layout_diagram_right_panel": "Right Panel",
+  "layout_diagram_footer": "Footer",
   "guide_layout_desc": "Guidelines for roles and placement of Header, Sidebar, Main, and Footer.",
   "guide_layout_footer_content": "Recommended: Copyright, terms of service, privacy policy, language switcher, social links",
   "guide_layout_footer_desc": "Contains supplementary or legal information. Often omitted in web applications but critical for websites.",

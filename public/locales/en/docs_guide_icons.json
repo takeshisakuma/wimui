@@ -18,7 +18,7 @@
   "icons_filled_weight": "High (Draws attention)",
   "icons_form_field_reason": "Modesty prevents distraction during input.",
   "icons_ghost_btn_reason": "Matches border texture for a clean look.",
-  "icons_guide_title_desc": "Guide for icon design principles and naming conventions across the app.",
+  "icons_guide_title_desc": "Guide for icon design principles, naming conventions, and usage guidelines across the app.",
   "icons_heavy_weight_reason": "Suits important actions needing strong attention.",
   "icons_impression": "Impression",
   "icons_inline_supp_reason": "Subtle addition to text flow.",
@@ -65,5 +65,14 @@
   "icons_usage_guide_title": "Usage Guidelines",
   "icons_vis_priority_reason": "Recognizable even when small due to silhouette.",
   "icons_visual_weight": "Visual Weight",
-  "icons_weight_sync_title": "Weight Sync"
+  "icons_weight_sync_title": "Weight Sync",
+  "icons_optical_alignment_title": "Optical Alignment",
+  "icons_optical_alignment_desc": "Adjust icons where the geometric center feels off (e.g., play button) to ensure they look visually centered.",
+  "icons_simplicity_title": "Reduced Complexity",
+  "icons_simplicity_desc": "Strip unnecessary details to ensure icons remain recognizable at small sizes (16-24px).",
+  "icons_naming_conv_title": "Standardized Naming",
+  "icons_naming_conv_desc": "Unify naming as `[Name]Icon` (e.g., SettingsIcon) to improve predictability within the codebase.",
+  "icons_accessibility_title": "Information Supplement",
+  "icons_accessibility_desc": "Consider using `aria-label` or tooltips since icons alone may sometimes be ambiguous."
+
 }

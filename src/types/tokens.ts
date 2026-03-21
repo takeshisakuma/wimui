@@ -159,3 +159,13 @@ export type WimLineHeightToken =
   | "var(--wim-line-height-loose-jp)";
 
 export type WimLineHeight = LiteralWithAutocomplete<WimLineHeightToken>;
+
+/**
+ * Opacity tokens available as CSS variables.
+ */
+export type WimOpacityToken =
+  | "var(--opacity-disabled)"
+  | "var(--opacity-ghost)"
+  | "var(--opacity-secondary)";
+
+export type WimOpacity = LiteralWithAutocomplete<WimOpacityToken>;

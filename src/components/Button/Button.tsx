@@ -3,10 +3,12 @@ import classNames from "classnames";
 import "./button.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
+import type { WimColor } from "../../types/tokens";
 import { warnDeprecated } from "../../utilities/dev-utils";
 
 export type ButtonProps = Omit<React.ComponentPropsWithoutRef<"button">, "role"> & {
-  backgroundColor?: string | null;
+  /** ボタンの背景色をデザイントークンで上書きする。通常は `priority` prop で対応できるため、このpropは最終手段として使用してください。 */
+  backgroundColor?: WimColor;
   size?: "small" | "medium" | "large";
   label?: string;
   priority?: "primary" | "secondary" | "tertiary";
