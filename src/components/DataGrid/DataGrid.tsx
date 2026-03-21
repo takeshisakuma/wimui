@@ -172,6 +172,8 @@ export function DataGrid<T extends Record<string, unknown>>({
   const isSomeSelected =
     selectedRowKeys.length > 0 && selectedRowKeys.length < rows.length;
 
+  const totalCols = columns.length + (selection ? 1 : 0);
+
   return (
     <div
       ref={containerRef}
@@ -181,6 +183,8 @@ export function DataGrid<T extends Record<string, unknown>>({
         className,
       )}
       role="grid"
+      aria-rowcount={rows.length + 1}
+      aria-colcount={totalCols}
       tabIndex={0}
       onKeyDown={handleKeyDown}
     >
@@ -280,7 +284,7 @@ export function DataGrid<T extends Record<string, unknown>>({
             {rows.length === 0 && !loading ? (
               <TableRow>
                 <TableCell colSpan={columns.length + (selection ? 1 : 0)}>
-                  <div className="wim-datagrid__empty">
+                  <div className="wim-datagrid__empty" role="status" aria-live="polite">
                     {typeof actualEmptyMessage === "string" ? (
                       <EmptyState
                         title="No Data"
@@ -387,7 +391,12 @@ export function DataGrid<T extends Record<string, unknown>>({
             {loadMore && loadMore.hasMore && (
               <TableRow>
                 <TableCell colSpan={columns.length + (selection ? 1 : 0)}>
-                  <div ref={loaderRef} className="wim-datagrid__loader">
+                  <div
+                    ref={loaderRef}
+                    className="wim-datagrid__loader"
+                    aria-live="polite"
+                    aria-label={loadMore.loading ? t("datagrid_loading_more", "Loading more rows") : undefined}
+                  >
                     {loadMore.loading && <Spinner size="small" />}
                   </div>
                 </TableCell>

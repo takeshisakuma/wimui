@@ -174,6 +174,7 @@ const TreeView = ({
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search tree items"
             />
           </div>
         )}
@@ -399,7 +400,7 @@ export const TreeViewItem = ({
                 )}
                 onClick={handleToggleExpand}
                 disabled={disabled}
-                aria-label={isExpanded ? "Collapse" : "Expand"}
+                aria-label={isExpanded ? `Collapse ${typeof label === "string" ? label : ""}` : `Expand ${typeof label === "string" ? label : ""}`}
                 tabIndex={-1}
               >
                 <Icon name="ChevronRightIcon" size="small" />

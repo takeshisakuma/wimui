@@ -1,4 +1,4 @@
-import React, { useState, useId, useCallback } from "react";
+import React, { useState, useId, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { IconButton } from "../IconButton/IconButton";
@@ -119,6 +119,7 @@ export const QueryBuilder = ({
   const { t } = useTranslation("components");
   const generatedId = useId();
   const id = customId || `wim-qb-${generatedId}`;
+  const statusRef = useRef<HTMLDivElement>(null);
 
   const [internalQuery, setInternalQuery] = useState<QueryGroup>(
     defaultQuery || {
@@ -130,6 +131,16 @@ export const QueryBuilder = ({
   );
 
   const currentQuery = query !== undefined ? query : internalQuery;
+
+  const announce = useCallback((message: string) => {
+    if (statusRef.current) {
+      statusRef.current.textContent = "";
+      // Brief timeout ensures the DOM change fires a new announcement
+      setTimeout(() => {
+        if (statusRef.current) statusRef.current.textContent = message;
+      }, 50);
+    }
+  }, []);
 
   const updateQuery = useCallback(
     (newQuery: QueryGroup) => {
@@ -185,6 +196,7 @@ export const QueryBuilder = ({
       };
     };
     updateQuery(deepAdd(currentQuery));
+    announce(t("query_builder.rule_added", "Rule added"));
   };
 
   const handleAddGroup = (parentId: string) => {
@@ -208,6 +220,7 @@ export const QueryBuilder = ({
       };
     };
     updateQuery(deepAdd(currentQuery));
+    announce(t("query_builder.group_added", "Group added"));
   };
 
   const handleRemove = (targetId: string) => {
@@ -223,6 +236,7 @@ export const QueryBuilder = ({
       };
     };
     updateQuery(deepRemove(currentQuery));
+    announce(t("query_builder.removed", "Removed"));
   };
 
   const renderRule = (rule: QueryRule, _isExcluded: boolean) => {
@@ -242,7 +256,7 @@ export const QueryBuilder = ({
     const isUnaryOperator = rule.operator === "is_null" || rule.operator === "is_not_null";
 
     return (
-      <div key={rule.id} className="wim-query-rule">
+      <div key={rule.id} className="wim-query-rule" role="group" aria-label={t("query_builder.rule", "Rule")}>
         <div className="wim-query-rule__fields">
           <Selectbox
             className="wim-query-rule__field"
@@ -312,9 +326,12 @@ export const QueryBuilder = ({
 
   const renderGroup = (group: QueryGroup, depth: number, isParentExcluded = false) => {
     const isExcluded = group.not ? !isParentExcluded : isParentExcluded;
+    const groupLabel = `${group.combinator.toUpperCase()}${group.not ? " NOT" : ""} group`;
     return (
       <div
         key={group.id}
+        role="group"
+        aria-label={groupLabel}
         className={classNames(
           "wim-query-group",
           depth > 0 && "wim-query-group--nested",
@@ -331,6 +348,7 @@ export const QueryBuilder = ({
               ]}
               value={group.combinator}
               onChange={(val) => handleUpdate(group.id, { combinator: val as "and" | "or" })}
+              aria-label={t("query_builder.combinator", "Combinator")}
             />
             <Switch
               size="medium"
@@ -383,7 +401,29 @@ export const QueryBuilder = ({
   };
 
   return (
-    <div id={id} className={classNames("wim-query-builder", className)}>
+    <div
+      id={id}
+      role="region"
+      aria-label={t("query_builder.region_label", "Query Builder")}
+      className={classNames("wim-query-builder", className)}
+    >
+      {/* Screen reader live region for dynamic announcements */}
+      <div
+        ref={statusRef}
+        aria-live="polite"
+        aria-atomic="true"
+        style={{
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          padding: 0,
+          margin: "-1px",
+          overflow: "hidden",
+          clip: "rect(0,0,0,0)",
+          whiteSpace: "nowrap",
+          border: 0,
+        }}
+      />
       {renderGroup(currentQuery, 0, false)}
     </div>
   );

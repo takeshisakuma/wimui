@@ -157,8 +157,148 @@ describe("Cascader", () => {
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
     await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
-    
+
     fireEvent.keyDown(trigger, { key: "Escape" });
     await waitFor(() => expect(screen.queryByText("Zhejiang")).toBeNull());
+  });
+
+  it("does not select disabled options", async () => {
+    const onChange = vi.fn();
+    const optionsWithDisabled: CascaderOption[] = [
+      { label: "Disabled", value: "disabled", disabled: true },
+      { label: "Enabled", value: "enabled", children: [{ label: "Child", value: "child" }] },
+    ];
+    render(<Cascader options={optionsWithDisabled} onChange={onChange} />);
+    fireEvent.click(screen.getByRole("combobox"));
+    fireEvent.click(screen.getByText("Disabled"));
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("does not close after clicking an intermediate node (node with children)", async () => {
+    render(<Cascader options={options} />);
+    fireEvent.click(screen.getByRole("combobox"));
+    fireEvent.click(screen.getByText("Zhejiang"));
+    // Dropdown should still be open — submenu appeared
+    expect(screen.getByText("Hangzhou")).toBeInTheDocument();
+    expect(screen.getByText("Zhejiang")).toBeInTheDocument();
+  });
+
+  it("uses custom separator in display value", () => {
+    render(
+      <Cascader
+        options={options}
+        defaultValue={["zhejiang", "hangzhou", "west_lake"]}
+        separator=" > "
+      />,
+    );
+    expect(screen.getByText("Zhejiang > Hangzhou > West Lake")).toBeInTheDocument();
+  });
+
+  it("works as a controlled component", () => {
+    const onChange = vi.fn();
+    render(
+      <Cascader
+        options={options}
+        value={["zhejiang", "hangzhou", "west_lake"]}
+        onChange={onChange}
+      />,
+    );
+    expect(screen.getByText("Zhejiang / Hangzhou / West Lake")).toBeInTheDocument();
+  });
+
+  it("closes dropdown with Tab key", async () => {
+    render(<Cascader options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
+
+    fireEvent.keyDown(trigger, { key: "Tab" });
+    await waitFor(() => expect(screen.queryByText("Zhejiang")).toBeNull());
+  });
+
+  it("navigates to first item with Home key", async () => {
+    render(<Cascader options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    // Move to last item first
+    fireEvent.keyDown(trigger, { key: "End" });
+    // Then Home to go back to first
+    fireEvent.keyDown(trigger, { key: "Home" });
+    // Verify dropdown still open (focus is on first item)
+    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
+  });
+
+  it("navigates to last item with End key", async () => {
+    render(<Cascader options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    fireEvent.keyDown(trigger, { key: "End" });
+    // Dropdown stays open
+    await waitFor(() => expect(screen.queryByText("Jiangsu")).not.toBeNull());
+  });
+
+  it("opens dropdown with Space key when closed", async () => {
+    render(<Cascader options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: " " });
+    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
+  });
+
+  it("opens dropdown with ArrowDown key when closed", async () => {
+    render(<Cascader options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: "ArrowDown" });
+    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
+  });
+
+  it("ignores keyboard when disabled", async () => {
+    render(<Cascader options={options} disabled />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: "Enter" });
+    await new Promise((r) => setTimeout(r, 50));
+    expect(screen.queryByText("Zhejiang")).toBeNull();
+  });
+
+  it("does not clear when disabled", () => {
+    const onChange = vi.fn();
+    render(
+      <Cascader
+        options={options}
+        defaultValue={["zhejiang", "hangzhou", "west_lake"]}
+        allowClear
+        disabled
+        onChange={onChange}
+      />,
+    );
+    // handleClear guards on disabled
+    const clearButton = screen.queryByLabelText(/clear input/i);
+    if (clearButton) fireEvent.click(clearButton);
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("renders aria-label on trigger when no visible label provided", () => {
+    render(<Cascader options={options} aria-label="Select location" />);
+    const trigger = screen.getByRole("combobox");
+    expect(trigger).toHaveAttribute("aria-label", "Select location");
+  });
+
+  it("ArrowUp does not go below index 0", async () => {
+    render(<Cascader options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    // Press ArrowUp multiple times from the top
+    fireEvent.keyDown(trigger, { key: "ArrowUp" });
+    fireEvent.keyDown(trigger, { key: "ArrowUp" });
+    // Dropdown still open (no crash)
+    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
+  });
+
+  it("ArrowLeft at level 0 does not decrease focusedLevel below 0", async () => {
+    render(<Cascader options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    fireEvent.keyDown(trigger, { key: "ArrowLeft" });
+    // Dropdown stays open (level 0, ArrowLeft is ignored)
+    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
   });
 });

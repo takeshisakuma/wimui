@@ -291,4 +291,142 @@ describe("DataGrid", () => {
     fireEvent.click(checkbox);
     expect(onSelectionChange).toHaveBeenCalledWith(["u1"]);
   });
+
+  it("shows indeterminate state when some (but not all) rows are selected", () => {
+    render(
+      <DataGrid
+        columns={mockColumns}
+        rows={mockRows}
+        selection
+        selectedRowKeys={[1]}
+        onSelectionChange={vi.fn()}
+      />,
+    );
+    const selectAllCheckbox = screen.getAllByRole("checkbox")[0] as HTMLInputElement;
+    expect(selectAllCheckbox.indeterminate).toBe(true);
+    expect(selectAllCheckbox.checked).toBe(false);
+  });
+
+  it("shows checked state for select-all when all rows are selected", () => {
+    render(
+      <DataGrid
+        columns={mockColumns}
+        rows={mockRows}
+        selection
+        selectedRowKeys={[1, 2, 3]}
+        onSelectionChange={vi.fn()}
+      />,
+    );
+    const selectAllCheckbox = screen.getAllByRole("checkbox")[0] as HTMLInputElement;
+    expect(selectAllCheckbox.checked).toBe(true);
+    expect(selectAllCheckbox.indeterminate).toBe(false);
+  });
+
+  it("deselects all rows when select-all is clicked while all are selected", async () => {
+    const onSelectionChange = vi.fn();
+    const user = userEvent.setup();
+    render(
+      <DataGrid
+        columns={mockColumns}
+        rows={mockRows}
+        selection
+        selectedRowKeys={[1, 2, 3]}
+        onSelectionChange={onSelectionChange}
+      />,
+    );
+    const selectAllCheckbox = screen.getAllByRole("checkbox")[0];
+    await user.click(selectAllCheckbox);
+    expect(onSelectionChange).toHaveBeenCalledWith([]);
+  });
+
+  it("uses dataIndex to read cell value when different from key", () => {
+    const columnsWithDataIndex = [
+      { key: "display_name", header: "Name", dataIndex: "name" as const },
+    ];
+    render(<DataGrid columns={columnsWithDataIndex} rows={mockRows} />);
+    expect(screen.getByText("Alice")).toBeInTheDocument();
+    expect(screen.getByText("Bob")).toBeInTheDocument();
+  });
+
+  it("accepts rowKey as a function", () => {
+    const onSelectionChange = vi.fn();
+    render(
+      <DataGrid
+        columns={mockColumns}
+        rows={mockRows}
+        selection
+        rowKey={(row) => `row-${row.id}`}
+        onSelectionChange={onSelectionChange}
+      />,
+    );
+    const checkbox = screen.getAllByRole("checkbox")[1];
+    fireEvent.click(checkbox);
+    expect(onSelectionChange).toHaveBeenCalledWith(["row-1"]);
+  });
+
+  it("renders custom ReactNode emptyMessage", () => {
+    render(
+      <DataGrid
+        columns={mockColumns}
+        rows={[]}
+        emptyMessage={<span data-testid="custom-empty">Nothing here</span>}
+      />,
+    );
+    expect(screen.getByTestId("custom-empty")).toBeInTheDocument();
+  });
+
+  it("applies aria-rowcount and aria-colcount on the grid element", () => {
+    render(<DataGrid columns={mockColumns} rows={mockRows} />);
+    const grid = screen.getByRole("grid");
+    // rows.length + 1 (header row)
+    expect(grid).toHaveAttribute("aria-rowcount", "4");
+    // 3 columns, no selection
+    expect(grid).toHaveAttribute("aria-colcount", "3");
+  });
+
+  it("applies aria-colcount including selection column", () => {
+    render(
+      <DataGrid
+        columns={mockColumns}
+        rows={mockRows}
+        selection
+        selectedRowKeys={[]}
+        onSelectionChange={vi.fn()}
+      />,
+    );
+    const grid = screen.getByRole("grid");
+    expect(grid).toHaveAttribute("aria-colcount", "4");
+  });
+
+  it("renders fixed-left and fixed-right columns without error", () => {
+    const fixedColumns = [
+      { key: "id", header: "ID", fixed: "left" as const, width: "80px" },
+      { key: "name", header: "Name" },
+      { key: "action", header: "Action", fixed: "right" as const, width: "100px" },
+    ];
+    render(<DataGrid columns={fixedColumns} rows={mockRows} />);
+    expect(screen.getByText("ID")).toBeInTheDocument();
+    expect(screen.getByText("Action")).toBeInTheDocument();
+  });
+
+  it("renders striped and bordered variants without error", () => {
+    const { container } = render(
+      <DataGrid columns={mockColumns} rows={mockRows} striped bordered />,
+    );
+    expect(container.querySelector(".wim-table--striped")).toBeInTheDocument();
+    expect(container.querySelector(".wim-table--bordered")).toBeInTheDocument();
+  });
+
+  it("renders with mobileCard layout without error", () => {
+    const { container } = render(
+      <DataGrid columns={mockColumns} rows={mockRows} mobileCard />,
+    );
+    expect(container.querySelector(".wim-table--mobile-card")).toBeInTheDocument();
+  });
+
+  it("empty state live region has role=status", () => {
+    render(<DataGrid columns={mockColumns} rows={[]} emptyMessage="Empty" />);
+    const statusEl = document.querySelector('[role="status"]');
+    expect(statusEl).toBeInTheDocument();
+  });
 });
