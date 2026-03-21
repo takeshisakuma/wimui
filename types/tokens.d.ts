@@ -33,3 +33,8 @@ export type WimFontWeightToken = "var(--font-weight-normal)" | "var(--font-weigh
 export type WimFontWeight = LiteralWithAutocomplete<WimFontWeightToken>;
 export type WimLineHeightToken = "var(--line-height-loose-jpan)" | "var(--line-height-normal-jpan)" | "var(--line-height-tight-jpan)" | "var(--line-height-loose-latn)" | "var(--line-height-normal-latn)" | "var(--line-height-tight-latn)" | "var(--wim-line-height-tight)" | "var(--wim-line-height-normal)" | "var(--wim-line-height-loose)" | "var(--wim-line-height-tight-jp)" | "var(--wim-line-height-normal-jp)" | "var(--wim-line-height-loose-jp)";
 export type WimLineHeight = LiteralWithAutocomplete<WimLineHeightToken>;
+/**
+ * Opacity tokens available as CSS variables.
+ */
+export type WimOpacityToken = "var(--opacity-disabled)" | "var(--opacity-ghost)" | "var(--opacity-secondary)";
+export type WimOpacity = LiteralWithAutocomplete<WimOpacityToken>;

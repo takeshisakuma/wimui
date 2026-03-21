@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.2s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.8s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -7325,7 +7325,10 @@ import { T } from &quot;../T&quot;;
  */
 animateWidth?: boolean = false
 
-backgroundColor?: string | null
+/**
+ * ボタンの背景色をデザイントークンで上書きする。通常は `priority` prop で対応できるため、このpropは最終手段として使用してください。
+ */
+backgroundColor?: T | (string &amp; {})
 
 className?: string
 
@@ -65752,7 +65755,7 @@ import { T } from &quot;../stories/T&quot;;
 &lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
-      &lt;th&gt;&lt;T k=&quot;qa_summary_table_category&quot; /&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;T k=&quot;doc_table_header_category&quot; /&gt;&lt;/th&gt;
       &lt;th&gt;&lt;T k=&quot;doc_table_header_description&quot; /&gt;&lt;/th&gt;
     &lt;/tr&gt;
   &lt;/thead&gt;
@@ -75330,6 +75333,34 @@ import { T } from &quot;../stories/T&quot;;
       &lt;/td&gt;
       &lt;td&gt;
         &lt;T k=&quot;icons_radius_sync_desc&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;strong&gt;&lt;T k=&quot;icons_optical_alignment_title&quot; /&gt;&lt;/strong&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;T k=&quot;icons_optical_alignment_desc&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;strong&gt;&lt;T k=&quot;icons_simplicity_title&quot; /&gt;&lt;/strong&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;T k=&quot;icons_simplicity_desc&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;strong&gt;&lt;T k=&quot;icons_naming_conv_title&quot; /&gt;&lt;/strong&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;T k=&quot;icons_naming_conv_desc&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;strong&gt;&lt;T k=&quot;icons_accessibility_title&quot; /&gt;&lt;/strong&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;T k=&quot;icons_accessibility_desc&quot; /&gt;&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;

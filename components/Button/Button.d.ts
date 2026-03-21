@@ -1,7 +1,9 @@
 import { default as React } from '../../../node_modules/react';
 import { Icon } from '../Icon/Icon';
+import { WimColor } from '../../types/tokens';
 export type ButtonProps = Omit<React.ComponentPropsWithoutRef<"button">, "role"> & {
-    backgroundColor?: string | null;
+    /** ボタンの背景色をデザイントークンで上書きする。通常は `priority` prop で対応できるため、このpropは最終手段として使用してください。 */
+    backgroundColor?: WimColor;
     size?: "small" | "medium" | "large";
     label?: string;
     priority?: "primary" | "secondary" | "tertiary";
@@ -22,7 +24,8 @@ export type ButtonProps = Omit<React.ComponentPropsWithoutRef<"button">, "role">
     fullWidth?: boolean;
 };
 export declare const Button: React.ForwardRefExoticComponent<Omit<Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref">, "role"> & {
-    backgroundColor?: string | null;
+    /** ボタンの背景色をデザイントークンで上書きする。通常は `priority` prop で対応できるため、このpropは最終手段として使用してください。 */
+    backgroundColor?: WimColor;
     size?: "small" | "medium" | "large";
     label?: string;
     priority?: "primary" | "secondary" | "tertiary";
