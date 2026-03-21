@@ -379,7 +379,7 @@
       },
       {
         "name": "ChatUI",
-        "descKey": "doc_chatUI_desc",
+        "descKey": "doc_chatui_desc",
         "pc": true,
         "mobile": true
       },
@@ -996,7 +996,7 @@
       },
       {
         "name": "VisuallyHidden",
-        "descKey": "doc_visuallyHidden_desc",
+        "descKey": "doc_visuallyhidden_desc",
         "pc": true,
         "mobile": true
       }
@@ -1064,25 +1064,25 @@
       },
       {
         "name": "BarChart",
-        "descKey": "doc_barChart_desc",
+        "descKey": "doc_barchart_desc",
         "pc": true,
         "mobile": true
       },
       {
         "name": "LineChart",
-        "descKey": "doc_lineChart_desc",
+        "descKey": "doc_linechart_desc",
         "pc": true,
         "mobile": true
       },
       {
         "name": "AreaChart",
-        "descKey": "doc_areaChart_desc",
+        "descKey": "doc_areachart_desc",
         "pc": true,
         "mobile": true
       },
       {
         "name": "PieChart",
-        "descKey": "doc_pieChart_desc",
+        "descKey": "doc_piechart_desc",
         "pc": true,
         "mobile": true
       },
@@ -1100,13 +1100,13 @@
       },
       {
         "name": "RadarChart",
-        "descKey": "doc_radarChart_desc",
+        "descKey": "doc_radarchart_desc",
         "pc": true,
         "mobile": true
       },
       {
         "name": "FunnelChart",
-        "descKey": "doc_funnelChart_desc",
+        "descKey": "doc_funnelchart_desc",
         "pc": true,
         "mobile": true
       },
@@ -1118,7 +1118,7 @@
       },
       {
         "name": "GaugeChart",
-        "descKey": "doc_gauge_desc",
+        "descKey": "doc_gaugechart_desc",
         "pc": true,
         "mobile": true
       }

@@ -710,7 +710,7 @@
     <tr>
       <td>ChatUI</td>
       <td>
-        <p><T k="doc_chatUI_desc" /></p>
+        <p><T k="doc_chatui_desc" /></p>
 
       </td>
       <td>
@@ -1876,7 +1876,7 @@
     <tr>
       <td>VisuallyHidden</td>
       <td>
-        <p><T k="doc_visuallyHidden_desc" /></p>
+        <p><T k="doc_visuallyhidden_desc" /></p>
 
       </td>
       <td>
@@ -1999,7 +1999,7 @@
     <tr>
       <td>BarChart</td>
       <td>
-        <p><T k="doc_barChart_desc" /></p>
+        <p><T k="doc_barchart_desc" /></p>
 
       </td>
       <td>
@@ -2010,7 +2010,7 @@
     <tr>
       <td>LineChart</td>
       <td>
-        <p><T k="doc_lineChart_desc" /></p>
+        <p><T k="doc_linechart_desc" /></p>
 
       </td>
       <td>
@@ -2021,7 +2021,7 @@
     <tr>
       <td>AreaChart</td>
       <td>
-        <p><T k="doc_areaChart_desc" /></p>
+        <p><T k="doc_areachart_desc" /></p>
 
       </td>
       <td>
@@ -2032,7 +2032,7 @@
     <tr>
       <td>PieChart</td>
       <td>
-        <p><T k="doc_pieChart_desc" /></p>
+        <p><T k="doc_piechart_desc" /></p>
 
       </td>
       <td>
@@ -2065,7 +2065,7 @@
     <tr>
       <td>RadarChart</td>
       <td>
-        <p><T k="doc_radarChart_desc" /></p>
+        <p><T k="doc_radarchart_desc" /></p>
 
       </td>
       <td>
@@ -2076,7 +2076,7 @@
     <tr>
       <td>FunnelChart</td>
       <td>
-        <p><T k="doc_funnelChart_desc" /></p>
+        <p><T k="doc_funnelchart_desc" /></p>
 
       </td>
       <td>
@@ -2098,7 +2098,7 @@
     <tr>
       <td>GaugeChart</td>
       <td>
-        <p><T k="doc_gauge_desc" /></p>
+        <p><T k="doc_gaugechart_desc" /></p>
 
       </td>
       <td>
