@@ -26,5 +26,20 @@ export const ALL_NAMESPACES = [
   "docs_guide_data",
   "docs_guide_components",
   "docs_guide_philosophy",
-  "docs_guide_common"
+  "docs_guide_common",
+  "docs_guide_icons",
+  "docs_guide_typography",
+  "docs_guide_effects",
+  "docs_guide_voice_tone",
+  "docs_guide_colors",
+  "docs_guide_standards",
+  "docs_guide_utility",
+  "docs_guide_visualization",
+  "docs_guide_hierarchy",
+  "docs_guide_standardization",
+  "docs_guide_composition",
+  "docs_guide_qa",
+  "docs_guide_internal",
+  "docs_guide_a11y_usability",
+  "docs_guide_styling_spacing"
 ];

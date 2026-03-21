@@ -1,0 +1,12 @@
+{
+  "guide_hierarchy_desc": "コンポーネントのレイヤー構造と、不健全な依存関係を防ぐための構成ルールについて説明します。",
+  "guide_hierarchy_rules_desc": "wimui において健全な依存関係を保つための設計ルールです。",
+  "guide_hierarchy_rules_title": "設計ルール",
+  "guide_hierarchy_tiers_desc": "wimui は、コンポーネントの複雑さと役割に応じて4つの Tier（階層）に分けて設計されています。これにより依存関係が単方向（トップダウン）に保たれ、メンテナンス性が向上します。",
+  "guide_hierarchy_tiers_title": "コンポーネントの階層 (Tiers)",
+  "guide_hierarchy_title": "階層構造とコンポジション (Hierarchy & Composition)",
+  "guide_composition_map_desc": "主要なコンポーネントが内部的にどのコンポーネントを使用（ラップ）しているかの対応表です。下位 Tier のコンポーネントを組み合わせることで、一貫した機能を提供します。",
+  "guide_composition_map_title": "コンポジション・マップ (Composition Map)",
+  "guide_principles_desc": "wimui では、DOM管理やモーションの整合性を保つために以下の原則に従っています。",
+  "guide_principles_title": "ポータルとアニメーションの原則"
+}
