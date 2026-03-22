@@ -1,0 +1,41 @@
+import{j as s}from"./jsx-runtime-u17CrQMm.js";import{u as d,M as r,T as o,D as x,C as c,P as j,a as _,S as l}from"./blocks-n1Zpk6ZK.js";import{T as a,D as h,V as k,C as p,S as m,W as g}from"./Tag.stories-ClXSiq_m.js";import{T as n}from"./T-C-aATF0b.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-C9i3XsnT.js";import"./index-ShODSCoq.js";import"./index-BnHh6wM0.js";import"./index-H4KHlGjb.js";import"./index-BqCEZobW.js";import"./IndicatorBase-Dj98u9j4.js";import"./index-BQ1Y-8kQ.js";import"./useTranslation-B3FosVoW.js";import"./Icon-CmMiL5MC.js";function t(e){const i={h2:"h2",h3:"h3",...d(),...e.components};return s.jsxs(s.Fragment,{children:[s.jsx(r,{of:a}),`
+`,s.jsx(o,{}),`
+`,s.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:s.jsx(n,{k:"doc_tag_title"})}),`
+`,s.jsx(x,{}),`
+`,s.jsx(i.h2,{id:"",children:s.jsx(n,{k:"doc_guidelines_title"})}),`
+`,s.jsx(i.h3,{id:"-1",children:s.jsx(n,{k:"doc_guideline_best_practices"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(n,{k:"doc_tag_best_practice_1"})}),s.jsx("li",{children:s.jsx(n,{k:"doc_tag_best_practice_2"})}),s.jsx("li",{children:s.jsx(n,{k:"doc_tag_best_practice_3"})})]}),`
+`,s.jsx("p",{children:s.jsx(n,{k:"doc_tag_long_desc"})}),`
+`,s.jsx(i.h2,{id:"-2",children:s.jsx(n,{k:"doc_design_intent_title"})}),`
+`,s.jsx("p",{children:s.jsx(n,{k:"doc_tag_design_intent"})}),`
+`,s.jsx(i.h2,{id:"-3",children:s.jsx(n,{k:"doc_choice_matrix_title"})}),`
+`,s.jsx("p",{children:s.jsx(n,{k:"doc_tag_choice_matrix_desc"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(n,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(n,{k:"doc_usage_scenario"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Tag"})}),s.jsx("td",{children:s.jsx(n,{k:"doc_tag_choice_self_when"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:"Badge"})}),s.jsx("td",{children:s.jsx(n,{k:"doc_tag_choice_alt_when"})})]})]})]}),`
+`,s.jsx(i.h2,{id:"-4",children:s.jsx(n,{k:"doc_anatomy_title"})}),`
+`,s.jsxs("table",{children:[s.jsx("thead",{children:s.jsxs("tr",{children:[s.jsx("th",{children:s.jsx(n,{k:"doc_component"})}),s.jsx("th",{children:s.jsx(n,{k:"doc_description"})})]})}),s.jsxs("tbody",{children:[s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(n,{k:"doc_tag_anatomy_root_label"})})}),s.jsx("td",{children:s.jsx(n,{k:"doc_tag_anatomy_root"})})]}),s.jsxs("tr",{children:[s.jsx("td",{children:s.jsx("b",{children:s.jsx(n,{k:"doc_tag_anatomy_content_label"})})}),s.jsx("td",{children:s.jsx(n,{k:"doc_tag_anatomy_content"})})]})]})]}),`
+`,s.jsx(i.h2,{id:"-5",children:s.jsx(n,{k:"doc_content_guidelines_title"})}),`
+`,s.jsx("ul",{children:s.jsx("li",{children:s.jsx(n,{k:"doc_tag_content_guideline"})})}),`
+`,s.jsx(i.h2,{id:"-6",children:s.jsx(n,{k:"doc_motion_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(n,{k:"doc_tag_motion_desc"})}),`
+`,s.jsx(i.h2,{id:"-7",children:s.jsx(n,{k:"doc_a11y_spec_title"})}),`
+`,s.jsx("p",{children:s.jsx(n,{k:"doc_tag_a11y_desc"})}),`
+`,s.jsx(i.h2,{id:"-8",children:s.jsx(n,{k:"doc_real_world_scenarios_title"})}),`
+`,s.jsxs("ul",{children:[s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(n,{k:"doc_scenario_filter_title"}),":"]}),s.jsx(n,{k:"doc_tag_scenario_1"})]}),s.jsxs("li",{children:[s.jsxs("strong",{children:[s.jsx(n,{k:"doc_scenario_form_title"}),":"]}),s.jsx(n,{k:"doc_tag_scenario_2"})]})]}),`
+`,s.jsx(i.h2,{id:"-9",children:s.jsx(n,{k:"doc_best_practices_title"})}),`
+`,s.jsxs("ul",{children:[s.jsx("li",{children:s.jsx(n,{k:"doc_tag_best_practice_1"})}),s.jsx("li",{children:s.jsx(n,{k:"doc_tag_best_practice_2"})})]}),`
+`,s.jsx(i.h2,{id:"-10",children:s.jsx(n,{k:"doc_usage_examples"})}),`
+`,s.jsx(i.h3,{id:"-11",children:s.jsx(n,{k:"doc_basic_usage"})}),`
+`,s.jsx(c,{of:h}),`
+`,s.jsx(j,{}),`
+`,s.jsx(i.h2,{id:"-12",children:s.jsx(n,{k:"doc_props"})}),`
+`,s.jsx(_,{}),`
+`,s.jsx(i.h2,{id:"-13",children:s.jsx(n,{k:"doc_variations"})}),`
+`,s.jsx(i.h3,{id:"-14",children:s.jsx(n,{k:"doc_tag_variants"})}),`
+`,s.jsx(c,{of:k}),`
+`,s.jsx(i.h3,{id:"-15",children:s.jsx(n,{k:"doc_avatar_colors"})}),`
+`,s.jsx(c,{of:p}),`
+`,s.jsx(i.h3,{id:"-16",children:s.jsx(n,{k:"doc_avatar_size"})}),`
+`,s.jsx(c,{of:m}),`
+`,s.jsx(i.h3,{id:"-17",children:s.jsx(n,{k:"doc_breadcrumb_with_icons"})}),`
+`,s.jsx(c,{of:g}),`
+`,s.jsx(l,{})]})}function V(e={}){const{wrapper:i}={...d(),...e.components};return i?s.jsx(i,{...e,children:s.jsx(t,{...e})}):t(e)}export{V as default};

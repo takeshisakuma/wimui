@@ -1,6 +1,6 @@
 {
   "guide_input_std_affected_components": "Principais Componentes Alvo",
-  "guide_input_std_concept_desc": "No wim UI, unificamos a estrutura da \"área do ícone direito\" para todos os componentes de entrada e seleção. Isso garante uma experiência de usuário consistente sem quebra de layout, mesmo quando os botões de limpeza, ícones de menu suspenso e ícones de validação coexistem.",
+  "guide_input_std_concept_desc": "No WIM UI, unificamos a estrutura da \"área do ícone direito\" para todos os componentes de entrada e seleção. Isso garante uma experiência de usuário consistente sem quebra de layout, mesmo quando os botões de limpeza, ícones de menu suspenso e ícones de validação coexistem.",
   "guide_input_std_concept_title": "Conceito de Design",
   "guide_input_std_desc": "Diretrizes para regras padronizadas de posicionamento de ícones e a funcionalidade `allowClear` em campos de entrada e vários componentes de seleção.",
   "guide_input_std_note_desc": "O ColorPicker não suporta `allowClear` como uma exceção, porque aciona o seletor de cores nativo do navegador devido à sua natureza `type=\"color\"`.",

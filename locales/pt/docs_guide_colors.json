@@ -13,7 +13,7 @@
   "guide_colors_pccs": "Sobre a Paleta PCCS",
   "guide_colors_pccs_desc": "O WIM UI mantém internamente uma paleta de cores PCCS, permitindo uma seleção de cores intuitiva baseada em tons.",
   "guide_colors_pccs_file_link": "Consulte src/tokens/_pccs-colors.scss e _semantic-colors.scss para códigos de cores detalhados.",
-  "guide_colors_pccs_mapping_desc": "O wim UI gerencia as cores como variáveis SCSS usando a notação PCCS (ex: $pccs-v1, $pccs-gy8-5) e as atribui a variáveis CSS semânticas.",
+  "guide_colors_pccs_mapping_desc": "O WIM UI gerencia as cores como variáveis SCSS usando a notação PCCS (ex: $pccs-v1, $pccs-gy8-5) e as atribui a variáveis CSS semânticas.",
   "guide_colors_scrollbar": "Barra de Rolagem",
   "guide_colors_scrollbar_desc": "Cores usadas para barras de rolagem, como no componente ScrollArea.",
   "guide_colors_semantic": "Cores Semânticas",
