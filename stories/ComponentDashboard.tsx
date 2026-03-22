@@ -49,7 +49,7 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
         gap: '4px',
         minWidth: '200px'
       }}>
-        <span style={{ fontSize: '14px', color: 'gray' }}>
+        <span style={{ fontSize: '14px', color: 'var(--wim-color-text-secondary)' }}>
           <T k="dashboard_total_components" />
         </span>
         <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--wim-color-primary)' }}>

@@ -55,8 +55,6 @@
     "test:vrt": "playwright test",
     "test:vrt:update": "playwright test --update-snapshots",
     "test:vrt:report": "playwright show-report",
-    "predeploy": "npm run build-storybook",
-    "deploy": "gh-pages -d storybook-static",
     "i18n:sync": "node scripts/sync-i18n.js",
     "i18n:check": "node scripts/check-i18n.js",
     "i18n:check:components": "node scripts/check-i18n-components.js",

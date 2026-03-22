@@ -10,6 +10,10 @@ import "../src/lang.scss";
 import "./docs-dark-mode.scss";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 
+const prefersDark =
+  typeof window !== "undefined" &&
+  window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+
 // ─────────────────────────────────────────────────
 // 動的タイポグラフィ最適化
 // lang.scss の body[lang="ja"] セレクタを機能させるため
@@ -69,7 +73,7 @@ const preview: Preview = {
         light: "light",
         dark: "dark",
       },
-      defaultTheme: "light",
+      defaultTheme: prefersDark ? "dark" : "light",
       attributeName: "data-theme",
     }),
   ],
