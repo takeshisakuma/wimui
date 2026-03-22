@@ -17,7 +17,7 @@ export const SpacingSwatch = ({
         alignItems: "center",
         gap: "16px",
         marginBottom: "12px",
-        background: "var(--bg-component, #fff)",
+        background: "var(--wim-color-surface)",
         padding: "12px",
         borderRadius: "8px",
         border: "1px solid var(--wim-color-border, #eee)",
@@ -28,7 +28,7 @@ export const SpacingSwatch = ({
           width: "120px",
           fontSize: "14px",
           fontWeight: 600,
-          color: "var(--text-primary)",
+          color: "var(--wim-color-text-primary)",
         }}
       >
         {name}
@@ -38,8 +38,8 @@ export const SpacingSwatch = ({
           width: "100px",
           fontFamily: "monospace",
           fontSize: "12px",
-          color: "var(--text-secondary)",
-          background: "var(--bg-app)",
+          color: "var(--wim-color-text-secondary)",
+          background: "var(--wim-color-surface)",
           padding: "2px 6px",
           borderRadius: "4px",
         }}
@@ -78,7 +78,7 @@ export const RadiusSwatch = ({
         alignItems: "center",
         gap: "12px",
         padding: "16px",
-        background: "var(--bg-component, #fff)",
+        background: "var(--wim-color-surface)",
         borderRadius: "12px",
         border: "1px solid var(--wim-color-border, #eee)",
       }}
@@ -87,7 +87,7 @@ export const RadiusSwatch = ({
         style={{
           width: "100%",
           height: "80px",
-          background: "var(--bg-app, #f9f9f9)",
+          background: "var(--wim-color-surface)",
           border: "2px solid var(--color-primary, #007aff)",
           borderRadius: radius,
         }}
@@ -104,7 +104,7 @@ export const RadiusSwatch = ({
           style={{
             fontSize: "14px",
             fontWeight: 600,
-            color: "var(--text-primary)",
+            color: "var(--wim-color-text-primary)",
           }}
         >
           {name}
@@ -113,7 +113,7 @@ export const RadiusSwatch = ({
           style={{
             fontFamily: "monospace",
             fontSize: "12px",
-            color: "var(--text-secondary)",
+            color: "var(--wim-color-text-secondary)",
           }}
         >
           {value}
@@ -160,7 +160,7 @@ export const ShadowSwatch = ({
           alignItems: "center",
           justifyContent: "center",
           fontSize: "12px",
-          color: "var(--text-primary, #333)",
+          color: "var(--wim-color-text-primary)",
           fontWeight: 800,
           // Very thin border to make the white box shape recognizable on the white background
           border: name === "Inset" ? "none" : "1px solid rgba(0,0,0,0.06)",
@@ -180,7 +180,7 @@ export const ShadowSwatch = ({
           style={{
             fontSize: "14px",
             fontWeight: 700,
-            color: "var(--text-primary)",
+            color: "var(--wim-color-text-primary)",
           }}
         >
           {name} Level
@@ -189,8 +189,8 @@ export const ShadowSwatch = ({
           style={{
             fontFamily: "monospace",
             fontSize: "11px",
-            color: "var(--text-secondary)",
-            background: "var(--bg-app, #f5f5f5)",
+            color: "var(--wim-color-text-secondary)",
+            background: "var(--wim-color-surface)",
             padding: "2px 8px",
             borderRadius: "4px",
             marginTop: "4px",
@@ -223,7 +223,7 @@ export const MotionSwatch = ({
         flexDirection: "column",
         gap: "12px",
         padding: "16px",
-        background: "var(--bg-component, #fff)",
+        background: "var(--wim-color-surface)",
         borderRadius: "12px",
         border: "1px solid var(--wim-color-border, #eee)",
         cursor: "pointer",
@@ -235,18 +235,18 @@ export const MotionSwatch = ({
         style={{
           fontSize: "14px",
           fontWeight: 600,
-          color: "var(--text-primary)",
+          color: "var(--wim-color-text-primary)",
         }}
       >
         {name}
       </div>
-      <div style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
+      <div style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)" }}>
         Click to animate
       </div>
       <div
         style={{
           height: "40px",
-          background: "var(--bg-app)",
+          background: "var(--wim-color-surface)",
           borderRadius: "20px",
           position: "relative",
           overflow: "hidden",
@@ -269,7 +269,7 @@ export const MotionSwatch = ({
         style={{
           fontFamily: "monospace",
           fontSize: "11px",
-          color: "var(--text-secondary)",
+          color: "var(--wim-color-text-secondary)",
         }}
       >
         {duration} | {easing}
@@ -293,13 +293,13 @@ export const TypographyVisualizer = ({
   const actualText = textKey ? t(textKey) : (text || "");
 
   const style: React.CSSProperties = {
-    background: "var(--bg-app, #f9f9f9)",
+    background: "var(--wim-color-surface)",
     padding: "24px",
     borderRadius: "8px",
     border: "1px solid var(--wim-color-border, #eee)",
     marginTop: "8px",
     fontSize: "16px",
-    color: "var(--text-primary, #333)",
+    color: "var(--wim-color-text-primary)",
     whiteSpace: "pre-wrap",
     wordBreak: "break-all",
   };
@@ -322,7 +322,7 @@ export const TypographyVisualizer = ({
           marginBottom: "8px",
           fontSize: "14px",
           fontWeight: 600,
-          color: "var(--text-primary, #333)",
+          color: "var(--wim-color-text-primary)",
         }}
       >
         {title}
@@ -330,7 +330,7 @@ export const TypographyVisualizer = ({
           style={{
             marginLeft: "12px",
             fontSize: "13px",
-            color: "var(--text-secondary, #666)",
+            color: "var(--wim-color-text-secondary)",
             background: "rgba(0, 0, 0, 0.05)",
             padding: "4px 8px",
             borderRadius: "4px",
@@ -363,7 +363,7 @@ export const FontWeightVisualizer = ({
           marginBottom: "8px",
           fontSize: "14px",
           fontWeight: 600,
-          color: "var(--text-primary, #333)",
+          color: "var(--wim-color-text-primary)",
           display: "flex",
           alignItems: "center",
         }}
@@ -373,7 +373,7 @@ export const FontWeightVisualizer = ({
           style={{
             marginLeft: "12px",
             fontSize: "13px",
-            color: "var(--text-secondary, #666)",
+            color: "var(--wim-color-text-secondary)",
             background: "rgba(0, 0, 0, 0.05)",
             padding: "4px 8px",
             borderRadius: "4px",
@@ -387,10 +387,10 @@ export const FontWeightVisualizer = ({
       <div
         style={{
           padding: "20px",
-          background: "var(--bg-component)",
+          background: "var(--wim-color-surface)",
           borderRadius: "8px",
           border: "1px solid var(--wim-color-border)",
-          color: "var(--text-primary)",
+          color: "var(--wim-color-text-primary)",
         }}
       >
         <div style={{ fontWeight: `var(${token})`, fontSize: "24px" }}>
@@ -417,7 +417,7 @@ export const DecorationVisualizer = ({
           marginBottom: "8px",
           fontSize: "14px",
           fontWeight: 600,
-          color: "var(--text-primary, #333)",
+          color: "var(--wim-color-text-primary)",
           display: "flex",
           alignItems: "center",
         }}
@@ -427,7 +427,7 @@ export const DecorationVisualizer = ({
           style={{
             marginLeft: "12px",
             fontSize: "13px",
-            color: "var(--text-secondary, #666)",
+            color: "var(--wim-color-text-secondary)",
             background: "rgba(0, 0, 0, 0.05)",
             padding: "4px 8px",
             borderRadius: "4px",
@@ -441,10 +441,10 @@ export const DecorationVisualizer = ({
       <div
         style={{
           padding: "20px",
-          background: "var(--bg-component, #fff)",
+          background: "var(--wim-color-surface)",
           borderRadius: "8px",
           border: "1px solid var(--wim-color-border, #eee)",
-          color: "var(--text-primary, #333)",
+          color: "var(--wim-color-text-primary)",
         }}
       >
         <span
@@ -470,7 +470,7 @@ export const FocusOutlineSwatch = () => {
         alignItems: "center",
         gap: "12px",
         padding: "24px",
-        background: "var(--bg-component, #fff)",
+        background: "var(--wim-color-surface)",
         borderRadius: "12px",
         border: "1px solid var(--wim-color-border, #eee)",
       }}
@@ -495,7 +495,7 @@ export const FocusOutlineSwatch = () => {
       </div>
       <div style={{ textAlign: "center", marginTop: "8px" }}>
         <div style={{ fontSize: "14px", fontWeight: 600 }}>Focus Ring</div>
-        <div style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)", marginTop: "4px" }}>
           <code style={{ background: "rgba(0,0,0,0.05)", padding: "2px 4px", borderRadius: "4px" }}>--focus-outline-width</code> (2px)<br />
           <code style={{ background: "rgba(0,0,0,0.05)", padding: "2px 4px", borderRadius: "4px", marginTop: "4px", display: "inline-block" }}>--focus-outline-offset</code> (2px)
         </div>
@@ -528,7 +528,7 @@ export const InteractiveSwatch = ({
         alignItems: "center",
         gap: "16px",
         padding: "24px",
-        background: "var(--bg-component, #fff)",
+        background: "var(--wim-color-surface)",
         borderRadius: "12px",
         border: "1px solid var(--wim-color-border, #eee)",
       }}
@@ -547,7 +547,7 @@ export const InteractiveSwatch = ({
         style={{
           width: "120px",
           height: "60px",
-          background: "var(--bg-app, #f5f5f5)",
+          background: "var(--wim-color-surface)",
           border: "1px solid var(--wim-color-border, #ccc)",
           borderRadius: "var(--radius-md)",
           display: "flex",
@@ -565,7 +565,7 @@ export const InteractiveSwatch = ({
       </div>
       <div style={{ textAlign: "center" }}>
         <div style={{ fontSize: "14px", fontWeight: 600 }}>{name}</div>
-        <div style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)", marginTop: "4px" }}>
           <code style={{ background: "rgba(0,0,0,0.05)", padding: "2px 4px", borderRadius: "4px" }}>{tokenName}</code><br />
           <span style={{ display: "inline-block", marginTop: "4px" }}>({tokenValue})</span>
         </div>

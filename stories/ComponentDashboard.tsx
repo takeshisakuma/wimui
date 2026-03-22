@@ -38,12 +38,12 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
       <h1><T k="dashboard_title" /></h1>
       <p style={{ marginBottom: '16px' }}><T k="dashboard_intro" /></p>
       
-      <div style={{ 
-        marginBottom: '32px', 
-        padding: '16px 24px', 
-        background: 'var(--bg-component)', 
-        borderRadius: '12px', 
-        border: '1px solid var(--wim-color-border)', 
+      <div style={{
+        marginBottom: '32px',
+        padding: '16px 24px',
+        background: 'var(--wim-color-surface)',
+        borderRadius: '12px',
+        border: '1px solid var(--wim-color-border)',
         display: 'inline-flex',
         flexDirection: 'column',
         gap: '4px',
@@ -57,7 +57,7 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
         </div>
       </div>
       
-      <p style={{ marginBottom: '32px', padding: '12px', background: 'var(--bg-component)', borderRadius: '8px', border: '1px solid var(--wim-color-border)' }}>
+      <p style={{ marginBottom: '32px', padding: '12px', background: 'var(--wim-color-surface)', borderRadius: '8px', border: '1px solid var(--wim-color-border)', color: 'var(--wim-color-text-primary)' }}>
         <T k="dashboard_tokens_link" />
       </p>
 

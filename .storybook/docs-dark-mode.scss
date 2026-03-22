@@ -1,6 +1,6 @@
 
 /* Storybook Docs mode Canvas background fix for Dark Mode */
-[data-theme="dark"] {
+@mixin docs-dark-overrides {
   /* MDX Canvas (Canvas component container) */
   .sbdocs-preview {
     background-color: var(--bg-app) !important;
@@ -23,12 +23,20 @@
     background-color: var(--bg-app) !important;
   }
 
-  /* Ensure text inside Docs content also follows theme if needed */
-  /* (Optional: Uncomment if the whole MDX page background is an issue) */
-  /*
+  /* MDX content area: override Storybook default white background */
+  .sbdocs-wrapper,
   .sbdocs-content {
-    background-color: var(--bg-app);
-    color: var(--text-primary);
+    background-color: var(--bg-app) !important;
+    color: var(--wim-color-text-primary) !important;
   }
-  */
+}
+
+[data-theme="dark"] {
+  @include docs-dark-overrides;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include docs-dark-overrides;
+  }
 }

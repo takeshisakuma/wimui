@@ -40,7 +40,7 @@ export default meta;
 
 export const LoginForm: StoryObj = {
   render: () => (
-    <Center style={{ height: "100vh", background: "var(--bg-app)" }}>
+    <Center style={{ height: "100vh", background: "var(--wim-color-surface)" }}>
       <Card
         style={{
           width: "400px",
@@ -88,7 +88,7 @@ export const LoginForm: StoryObj = {
                     gap: "8px",
                     fontSize: "0.875rem",
                     cursor: "pointer",
-                    color: "var(--text-secondary)",
+                    color: "var(--wim-color-text-secondary)",
                   }}
                 >
                   <Checkbox id="remember-me" />
@@ -134,7 +134,7 @@ export const LoginForm: StoryObj = {
 
 export const DashboardHeader: StoryObj = {
   render: () => (
-    <div style={{ minHeight: "400px", background: "var(--bg-app)" }}>
+    <div style={{ minHeight: "400px", background: "var(--wim-color-surface)" }}>
       <style>{`
                 @media (max-width: 768px) {
                     .desktop-only { display: none !important; }
@@ -194,7 +194,7 @@ export const DashboardHeader: StoryObj = {
               style={{
                 fontSize: "0.9rem",
                 fontWeight: "bold",
-                color: "var(--text-primary)",
+                color: "var(--wim-color-text-primary)",
               }}
             >
               WIM UI
@@ -287,13 +287,13 @@ export const DashboardHeader: StoryObj = {
                 style={{
                   fontSize: "0.875rem",
                   fontWeight: 600,
-                  color: "var(--text-primary)",
+                  color: "var(--wim-color-text-primary)",
                 }}
               >
                 John Doe
               </span>
               <span
-                style={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}
+                style={{ fontSize: "0.75rem", color: "var(--wim-color-text-secondary)" }}
               >
                 Admin
               </span>
@@ -340,7 +340,7 @@ export const DashboardHeader: StoryObj = {
 
 export const UserProfileForm: StoryObj = {
   render: () => (
-    <Center style={{ background: "var(--bg-app)", padding: "20px" }}>
+    <Center style={{ background: "var(--wim-color-surface)", padding: "20px" }}>
       <Card
         style={{
           maxWidth: "1000px",
@@ -375,7 +375,7 @@ export const UserProfileForm: StoryObj = {
           <div
             style={{
               borderRight: "1px solid var(--wim-color-border-secondary)",
-              background: "var(--bg-app)",
+              background: "var(--wim-color-surface)",
             }}
           >
             <div style={{ padding: "24px" }}>
@@ -859,7 +859,7 @@ export const HeroSection: StoryObj = {
         display: "flex",
         alignItems: "center",
         background:
-          "linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--bg-app) 100%)",
+          "linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--wim-color-surface) 100%)",
         padding: "80px 24px",
       }}
     >
@@ -998,7 +998,7 @@ export const HeroSection: StoryObj = {
 export const ErrorPage: StoryObj = {
   render: () => (
     <Center
-      style={{ height: "100vh", background: "var(--bg-app)", padding: "24px" }}
+      style={{ height: "100vh", background: "var(--wim-color-surface)", padding: "24px" }}
     >
       <Stack
         align="center"

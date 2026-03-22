@@ -36,6 +36,7 @@
 - コンポーネントAPIの整合性（Prop名の統一）を保ってください。
 - 最新のセマンティックHTMLを使用してください。
 - コンポーネントではデザイントークン（`src/tokens/`）の値を使用してください。ストーリーやdocsのユーティリティコンポーネント（`stories/` 配下のTSX）でインラインスタイルを使う場合も、`color: 'gray'` のようなハードコードされたCSS色名は使わず、`var(--wim-color-text-secondary)` などのCSSカスタムプロパティを使用してください。ダークモードで背景色と同化して読めなくなります。
+- `stories/` 配下のTSXでは、`var(--bg-component)`・`var(--text-primary)`・`var(--text-secondary)` などの内部ショートエイリアスを使用しないでください。ストーリーを持たない純粋なMDXページ（`<Meta title="..." />` のみのページ）ではデコレーターが動作しないため `data-theme` が設定されず、これらの変数が意図した色に解決されないケースがあります。代わりに必ず `var(--wim-color-surface)`・`var(--wim-color-text-primary)`・`var(--wim-color-text-secondary)` などの `--wim-color-*` プレフィックス付きトークンを使用してください。
 - レスポンシブデザインに対応してください。ブレークポイントの使い分けは以下のルールに従ってください。
 
 ### メディアクエリ vs コンテナクエリ

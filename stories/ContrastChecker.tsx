@@ -167,8 +167,8 @@ export const ContrastChecker: React.FC = () => {
                     border: 1px solid var(--wim-color-border);
                     font-family: inherit;
                     font-size: 14px;
-                    background: var(--bg-app);
-                    color: var(--text-primary);
+                    background: var(--wim-color-surface);
+                    color: var(--wim-color-text-primary);
                     width: 100%;
                 }
                 .wim-contrast-result {
@@ -176,7 +176,7 @@ export const ContrastChecker: React.FC = () => {
                     gap: 40px;
                     align-items: center;
                     padding: 32px;
-                    background: var(--bg-app, #f8f9fa);
+                    background: var(--wim-color-surface);
                     border-radius: 20px;
                 }
                 @media (max-width: 768px) {
@@ -198,13 +198,13 @@ export const ContrastChecker: React.FC = () => {
                 .wim-contrast-ratio-value {
                     font-size: 48px;
                     font-weight: 900;
-                    color: var(--text-primary);
+                    color: var(--wim-color-text-primary);
                     line-height: 1;
                 }
                 .wim-contrast-ratio-unit {
                     font-size: 12px;
                     font-weight: 600;
-                    color: var(--text-tertiary);
+                    color: var(--wim-color-text-tertiary);
                     text-transform: uppercase;
                 }
                 .wim-contrast-badges {
@@ -226,7 +226,7 @@ export const ContrastChecker: React.FC = () => {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    background: var(--bg-component);
+                    background: var(--wim-color-surface);
                     border: 1px solid rgba(0,0,0,0.03);
                 }
                 .wim-contrast-badge-status {

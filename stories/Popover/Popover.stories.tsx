@@ -49,7 +49,7 @@ export const Default: Story = {
             <p
               style={{
                 margin: 0,
-                color: "var(--text-secondary)",
+                color: "var(--wim-color-text-secondary)",
                 fontSize: "0.9rem",
               }}
             >
@@ -104,7 +104,7 @@ export const Interactive: Story = {
             <p
               style={{
                 margin: 0,
-                color: "var(--text-secondary)",
+                color: "var(--wim-color-text-secondary)",
                 fontSize: "0.9rem",
               }}
             >

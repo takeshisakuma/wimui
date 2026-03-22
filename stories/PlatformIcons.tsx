@@ -6,13 +6,13 @@ export const PlatformIcons = ({ pc, mobile }: { pc?: boolean; mobile?: boolean }
     {pc && (
       <Icon
         name="MonitorIcon"
-        style={{ width: 18, height: 18, color: "var(--text-primary)" }}
+        style={{ width: 18, height: 18, color: "var(--wim-color-text-primary)" }}
       />
     )}
     {mobile && (
       <Icon
         name="SmartphoneIcon"
-        style={{ width: 18, height: 18, color: "var(--text-primary)" }}
+        style={{ width: 18, height: 18, color: "var(--wim-color-text-primary)" }}
       />
     )}
   </div>

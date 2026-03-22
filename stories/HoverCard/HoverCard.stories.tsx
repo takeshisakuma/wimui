@@ -63,7 +63,7 @@ export const Default: Story = {
                   Sarah Miller
                 </div>
                 <div
-                  style={{ color: "var(--text-secondary)", fontSize: "14px" }}
+                  style={{ color: "var(--wim-color-text-secondary)", fontSize: "14px" }}
                 >
                   @sarah_m
                 </div>
@@ -76,12 +76,12 @@ export const Default: Story = {
                   display: "flex",
                   gap: "16px",
                   fontSize: "12px",
-                  color: "var(--text-secondary)",
+                  color: "var(--wim-color-text-secondary)",
                 }}
               >
                 <div>
                   <span
-                    style={{ fontWeight: "bold", color: "var(--text-primary)" }}
+                    style={{ fontWeight: "bold", color: "var(--wim-color-text-primary)" }}
                   >
                     452
                   </span>{" "}
@@ -89,7 +89,7 @@ export const Default: Story = {
                 </div>
                 <div>
                   <span
-                    style={{ fontWeight: "bold", color: "var(--text-primary)" }}
+                    style={{ fontWeight: "bold", color: "var(--wim-color-text-primary)" }}
                   >
                     2.8k
                   </span>{" "}
