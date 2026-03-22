@@ -1,0 +1,34 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{u as d,M as r,C as n,a as o}from"./blocks-DJjQgkhP.js";import{T as l,D as x,M as j,S as _,a as h,b as a}from"./TreeSelect.stories-6qO1-uTN.js";import{T as s}from"./T-C6df2AXI.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-B7RtKuM4.js";import"./index-CfBZcb1M.js";import"./index-CcAJqoIc.js";import"./index-CgPbJUtZ.js";import"./index-Cztp1iPX.js";import"./index-BgucfEWj.js";import"./Transition-BqtAQ2Ku.js";import"./TreeView-Cdz-Tf0h.js";import"./Icon-CKW6V6dp.js";import"./BaseListItem-B7Wxjc94.js";import"./InputBase-DEDyLnKO.js";import"./useTranslation-BRrcRHvL.js";import"./FieldTemplate-Dy-pQOzT.js";import"./FieldLabelContent-D3TbpHOQ.js";import"./Badge-BFD4dgoe.js";import"./IndicatorBase-BuU95g2b.js";import"./FieldError-NuE6z-H2.js";import"./Paragraph-Z06xTtd9.js";function i(c){const t={h1:"h1",h2:"h2",h3:"h3",...d(),...c.components};return e.jsxs(e.Fragment,{children:[e.jsx(r,{of:l}),`
+`,e.jsx(t.h1,{id:"treeselect",children:"TreeSelect"}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_treeselect_long_desc"})}),`
+`,e.jsx(t.h2,{id:"",children:e.jsx(s,{k:"doc_usage_examples"})}),`
+`,e.jsx(t.h3,{id:"-1",children:e.jsx(s,{k:"doc_basic_usage"})}),`
+`,e.jsx(t.h2,{id:"-2",children:e.jsx(s,{k:"doc_design_intent_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_treeselect_design_intent"})}),`
+`,e.jsx(t.h2,{id:"-3",children:e.jsx(s,{k:"doc_choice_matrix_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_treeselect_choice_matrix_desc"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc_component"})}),e.jsx("th",{children:e.jsx(s,{k:"doc_usage_scenario"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"TreeSelect"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_treeselect_choice_self_when"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"Cascader"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_treeselect_choice_alt_when"})})]})]})]}),`
+`,e.jsx(t.h2,{id:"-4",children:e.jsx(s,{k:"doc_anatomy_title"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc_component"})}),e.jsx("th",{children:e.jsx(s,{k:"doc_description"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:e.jsx(s,{k:"doc_treeselect_anatomy_root_label"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc_treeselect_anatomy_root"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:e.jsx(s,{k:"doc_treeselect_anatomy_content_label"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc_treeselect_anatomy_content"})})]})]})]}),`
+`,e.jsx(t.h2,{id:"-5",children:e.jsx(s,{k:"doc_content_guidelines_title"})}),`
+`,e.jsx("ul",{children:e.jsx("li",{children:e.jsx(s,{k:"doc_treeselect_content_guideline"})})}),`
+`,e.jsx(t.h2,{id:"-6",children:e.jsx(s,{k:"doc_motion_spec_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_treeselect_motion_desc"})}),`
+`,e.jsx(t.h2,{id:"-7",children:e.jsx(s,{k:"doc_a11y_spec_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_treeselect_a11y_desc"})}),`
+`,e.jsx(t.h2,{id:"-8",children:e.jsx(s,{k:"doc_real_world_scenarios_title"})}),`
+`,e.jsxs("ul",{children:[e.jsxs("li",{children:[e.jsxs("strong",{children:[e.jsx(s,{k:"doc_scenario_form_title"}),":"]}),e.jsx(s,{k:"doc_treeselect_scenario_1"})]}),e.jsxs("li",{children:[e.jsxs("strong",{children:[e.jsx(s,{k:"doc_scenario_admin_title"}),":"]}),e.jsx(s,{k:"doc_treeselect_scenario_2"})]})]}),`
+`,e.jsx(t.h2,{id:"-9",children:e.jsx(s,{k:"doc_best_practices_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(s,{k:"doc_treeselect_best_practice_1"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_treeselect_best_practice_2"})})]}),`
+`,e.jsx(n,{of:x}),`
+`,e.jsx(t.h3,{id:"-10",children:e.jsx(s,{k:"doc_treeview_checkbox_mode"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_treeselect_multi_desc"})}),`
+`,e.jsx(n,{of:j}),`
+`,e.jsx(t.h3,{id:"-11",children:e.jsx(s,{k:"doc_search"})}),`
+`,e.jsx(n,{of:_}),`
+`,e.jsx(t.h3,{id:"-12",children:e.jsx(s,{k:"doc_treeview_api_default_expanded"})}),`
+`,e.jsx(n,{of:h}),`
+`,e.jsx(t.h3,{id:"-13",children:e.jsx(s,{k:"doc_disabled"})}),`
+`,e.jsx(n,{of:a}),`
+`,e.jsx(t.h2,{id:"-14",children:e.jsx(s,{k:"doc_props"})}),`
+`,e.jsx(o,{})]})}function B(c={}){const{wrapper:t}={...d(),...c.components};return t?e.jsx(t,{...c,children:e.jsx(i,{...c})}):i(c)}export{B as default};
