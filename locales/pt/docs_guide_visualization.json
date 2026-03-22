@@ -39,5 +39,7 @@
   "viz_suitable_graph": "Gráfico Adequado",
   "viz_technical_impl_title": "Implementação Técnica",
   "viz_treemap_data_desc": "Relações de dados hierárquicos, contribuição para o todo.",
-  "viz_what_to_express": "Objetivo da História"
+  "viz_what_to_express": "Objetivo da História",
+  "guide_visualization_title": "Guia de Seleção de Componentes de Visualização",
+  "guide_visualization_desc": "Diretrizes para escolher o componente de gráfico ou visualização certo com base no tipo de dados e na história que você deseja contar."
 }

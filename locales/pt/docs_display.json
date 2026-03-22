@@ -1637,5 +1637,6 @@
   "doc_kanban_token_shadow": "Sombra aplicada aos cartões durante o arrasto.",
   "doc_kanban_responsive_desc": "Adapta-se ao mobile empilhando colunas ou usando uma visualização de abas.",
   "doc_kanban_keyboard_desc": "Os cartões podem ser movidos entre colunas usando atalhos de teclado.",
-  "doc_kanban_i18n_desc": "Suporta rótulos para diferentes estados de coluna, como Todo, Doing, Done."
+  "doc_kanban_i18n_desc": "Suporta rótulos para diferentes estados de coluna, como Todo, Doing, Done.",
+  "doc_interactiveArea_i18n_desc": "Todo o texto visível ao usuário dentro do InteractiveArea (título, descrição) deve ser passado via chaves de tradução para suportar aplicações multilíngues."
 }

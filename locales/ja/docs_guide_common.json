@@ -138,5 +138,13 @@
   "a11y_considerations": "アクセシビリティへの配慮",
   "a11y_guideline_desc": "すべてのユーザーが快適に利用できるように、支援技術や多様な閲覧環境に配慮した設計を行います。",
   "screen_reader": "スクリーンリーダー対応",
-  "critical_info_only_in_p_desc": "重要な情報をプレースホルダーのみで提供する"
+  "critical_info_only_in_p_desc": "重要な情報をプレースホルダーのみで提供する",
+  "doc_choice_self_title": "このコンポーネント",
+  "doc_choice_alt_title": "代替手段",
+  "doc_usage_context": "利用シーン",
+  "doc_choice_alt_desc": "フル機能が不要な場合は、よりシンプルなネイティブ要素や別のコンポーネントを使用してください。",
+  "doc_accessibility_title": "アクセシビリティ",
+  "doc_examples_title": "使用例",
+  "doc_guidelines_title": "ガイドライン",
+  "doc_guideline_best_practices": "ベストプラクティス"
 }

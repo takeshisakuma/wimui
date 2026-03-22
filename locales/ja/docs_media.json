@@ -276,5 +276,6 @@
   "doc_audio_token_border": "borderモード時のボーダー色",
   "doc_audio_token_text_secondary": "キャプションテキストの色",
   "doc_audio_token_radius_full": "ピル形状・円形ボタン・スライダーサム",
-  "doc_audio_token_shadow": "shadowモード時のシャドウエフェクト"
+  "doc_audio_token_shadow": "shadowモード時のシャドウエフェクト",
+  "guide_media_title": "メディアコンポーネントの使い分けガイド"
 }

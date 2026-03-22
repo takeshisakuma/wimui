@@ -276,5 +276,6 @@
   "doc_audio_token_border": "Border color in border mode.",
   "doc_audio_token_text_secondary": "Caption text color.",
   "doc_audio_token_radius_full": "Pill shape, circular buttons, and slider thumbs.",
-  "doc_audio_token_shadow": "Shadow effect in shadow mode."
+  "doc_audio_token_shadow": "Shadow effect in shadow mode.",
+  "guide_media_title": "Media Component Selection Guide"
 }

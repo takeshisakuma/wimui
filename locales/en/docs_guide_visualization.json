@@ -39,5 +39,7 @@
   "viz_suitable_graph": "Suitable Graph",
   "viz_technical_impl_title": "Technical Implementation",
   "viz_treemap_data_desc": "Hierarchical data relations, contribution to the whole.",
-  "viz_what_to_express": "Story Goal"
+  "viz_what_to_express": "Story Goal",
+  "guide_visualization_title": "Visualization Component Selection Guide",
+  "guide_visualization_desc": "Guidelines for choosing the right chart or graph component based on the type of data and the story you want to tell."
 }

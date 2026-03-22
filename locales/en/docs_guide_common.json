@@ -138,5 +138,13 @@
   "a11y_considerations": "Accessibility Considerations",
   "a11y_guideline_desc": "Design for accessibility to ensure all users can effectively use the interface.",
   "screen_reader": "Screen Reader Support",
-  "critical_info_only_in_p_desc": "Providing critical information only in the placeholder"
+  "critical_info_only_in_p_desc": "Providing critical information only in the placeholder",
+  "doc_choice_self_title": "This Component",
+  "doc_choice_alt_title": "Alternative",
+  "doc_usage_context": "Usage Context",
+  "doc_choice_alt_desc": "Use a simpler native element or a different component when the full feature set is not needed.",
+  "doc_accessibility_title": "Accessibility",
+  "doc_examples_title": "Examples",
+  "doc_guidelines_title": "Guidelines",
+  "doc_guideline_best_practices": "Best Practices"
 }

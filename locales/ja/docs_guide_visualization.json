@@ -39,5 +39,7 @@
   "viz_suitable_graph": "適したグラフ",
   "viz_technical_impl_title": "技術的な実装",
   "viz_treemap_data_desc": "階層構造を持つデータの割合。全体への寄与度など。",
-  "viz_what_to_express": "表現したいこと"
+  "viz_what_to_express": "表現したいこと",
+  "guide_visualization_title": "可視化コンポーネントの使い分けガイド",
+  "guide_visualization_desc": "データの種類と伝えたいストーリーに基づいて、適切なチャートやグラフコンポーネントを選択するためのガイドラインです。"
 }

@@ -41,5 +41,13 @@
   "internal_overlay_base_features_perf": "パフォーマンス",
   "internal_overlay_base_features_perf_desc": "高頻度なアニメーションにおいて `will-change: transform` を使用し、GPUによる60fpsの滑らかな描画を保証します。",
   "internal_philosophy_desc": "wimui を拡張したり、新しいコンポーネントを追加したりする際に従うべき、内部的な設計の一貫性とカプセル化に関するガイドラインです。",
-  "internal_philosophy_title": "内部設計の哲学"
+  "internal_philosophy_title": "内部設計の哲学",
+  "guide_internal_title": "内部コアコンポーネント",
+  "guide_internal_desc": "wimui のパブリック API を支える内部の基盤コンポーネントの概要です。これらを理解することで、ライブラリへのコントリビュートや拡張を一貫して行えます。",
+  "principle_dom_title": "最小DOM",
+  "principle_dom_desc": "レンダリングされる DOM をできる限りフラットに保ちます。意味的な価値をもたらさない不要なラッパー要素による深さの追加を避けてください。",
+  "principle_animation_title": "アニメーション",
+  "principle_animation_desc": "登場・退場アニメーションには Transition コンポーネントを使用します。デザインシステムチームに相談せずに独自の CSS キーフレームを実装しないでください。",
+  "principle_transition_title": "トランジション",
+  "principle_transition_desc": "すべてのトランジションは `prefers-reduced-motion` メディアクエリを通じて、ユーザーのモーション軽減設定を尊重する必要があります。"
 }
