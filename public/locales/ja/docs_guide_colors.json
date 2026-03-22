@@ -13,7 +13,7 @@
   "guide_colors_pccs": "PCCS パレットについて",
   "guide_colors_pccs_desc": "WIM UI は内部的に PCCS（Practical Color Co-ordinate System）のカラーパレットを保持しています。これにより、トーンに基づいた直感的な色の選択が可能です。",
   "guide_colors_pccs_file_link": "詳細なカラーコードは src/tokens/_pccs-colors.scss および _semantic-colors.scss を参照してください。",
-  "guide_colors_pccs_mapping_desc": "wim UI では PCCS 記法（例: $pccs-v1, $pccs-gy8-5）を用いて SCSS 変数として管理されており、それらをセマンティックな CSS 変数に割り当てています。",
+  "guide_colors_pccs_mapping_desc": "WIM UI では PCCS 記法（例: $pccs-v1, $pccs-gy8-5）を用いて SCSS 変数として管理されており、それらをセマンティックな CSS 変数に割り当てています。",
   "guide_colors_scrollbar": "スクロールバー (Scrollbar)",
   "guide_colors_scrollbar_desc": "スクロールエリア（ScrollArea）コンポーネントなどで使用されるスクロールバーの色です。",
   "guide_colors_semantic": "セマンティックカラー (Semantic Colors)",

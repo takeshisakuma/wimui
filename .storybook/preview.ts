@@ -10,9 +10,23 @@ import "../src/lang.scss";
 import "./docs-dark-mode.scss";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 
-const prefersDark =
-  typeof window !== "undefined" &&
-  window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+const darkMQ =
+  typeof window !== "undefined"
+    ? window.matchMedia?.("(prefers-color-scheme: dark)")
+    : null;
+
+const prefersDark = darkMQ?.matches ?? false;
+
+// システムのダーク/ライト切り替えに追従して data-theme を更新する
+darkMQ?.addEventListener("change", (e) => {
+  // ユーザーがツールバーで手動切替している場合は上書きしない
+  const current = document.documentElement.getAttribute("data-theme");
+  if (current === "light" && e.matches) {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else if (current === "dark" && !e.matches) {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+});
 
 // ─────────────────────────────────────────────────
 // 動的タイポグラフィ最適化

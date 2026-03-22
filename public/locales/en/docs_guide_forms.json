@@ -1,6 +1,6 @@
 {
   "guide_input_std_affected_components": "Target Major Components",
-  "guide_input_std_concept_desc": "In wim UI, we have unified the structure of the \"right icon area\" for all input and selection components. This ensures a consistent user experience without layout breakage, even when clear buttons, dropdown icons, and validation icons coexist.",
+  "guide_input_std_concept_desc": "In WIM UI, we have unified the structure of the \"right icon area\" for all input and selection components. This ensures a consistent user experience without layout breakage, even when clear buttons, dropdown icons, and validation icons coexist.",
   "guide_input_std_concept_title": "Design Concept",
   "guide_input_std_desc": "Guidelines for standardized icon placement rules and the `allowClear` functionality in input fields and various picker components.",
   "guide_input_std_note_desc": "ColorPicker does not support `allowClear` as an exception, because it triggers the browser's native color picker due to its `type=\"color\"` nature.",
