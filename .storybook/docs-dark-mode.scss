@@ -22,13 +22,6 @@
   .sb-story-v6-all {
     background-color: var(--bg-app) !important;
   }
-
-  /* MDX content area: override Storybook default white background */
-  .sbdocs-wrapper,
-  .sbdocs-content {
-    background-color: var(--bg-app) !important;
-    color: var(--wim-color-text-primary) !important;
-  }
 }
 
 [data-theme="dark"] {
