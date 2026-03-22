@@ -41,12 +41,10 @@
       }
     }
 
-    // 縦並びへの切り替え（連結状態を維持するため、折り返しではなく方向自体を変える）
+    // 縦並びへの切り替え（flex: 1 1 100% で各ボタンを1行に押し込み、連結状態を維持する）
     @include down(sm) {
-      flex-direction: column;
-
       .wim-button {
-        width: 100%;
+        flex: 1 1 100%;
         margin-left: 0 !important;
 
         &:not(:first-child) {

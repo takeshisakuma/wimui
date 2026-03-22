@@ -82,3 +82,56 @@ import { T } from "../stories/T";
 }
 ```
 
+<hr />
+
+<h2><T k="token_bp_mq_vs_cq_title" /></h2>
+
+<p dangerouslySetInnerHTML={{ __html: "<T k='token_bp_mq_vs_cq_desc' />" }} />
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th><T k="token_bp_mq_label" /></th>
+      <th><T k="token_bp_cq_label" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="token_bp_decision_col" /></strong></td>
+      <td><T k="token_bp_mq_criterion" /></td>
+      <td><T k="token_bp_cq_criterion" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc_real_world_scenarios_title" /></strong></td>
+      <td><T k="token_bp_mq_examples" /></td>
+      <td><T k="token_bp_cq_examples" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><T k="token_bp_cq_why_title" /></h3>
+
+<p><T k="token_bp_cq_why_desc" /></p>
+
+<h3><T k="token_bp_cq_usage_title" /></h3>
+
+<p dangerouslySetInnerHTML={{ __html: "<T k='token_bp_cq_usage_desc' />" }} />
+
+```scss
+@use "../../tokens/breakpoints" as *;
+
+.wim-my-component {
+  container-type: inline-size;
+
+  // Narrow layout when container is 768px or less
+  @include container-down(md) {
+    .wim-my-component__fields {
+      flex-direction: column;
+    }
+  }
+}
+```
+
+<p><T k="token_bp_cq_note" /></p>
+

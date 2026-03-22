@@ -202,7 +202,7 @@ export const GanttChart: React.FC<GanttChartProps> = ({
               className="wim-gantt-chart__label-row"
               style={{ height: rowHeight }}
             >
-              {task.label}
+              <span className="wim-gantt-chart__label-text">{task.label}</span>
             </div>
           ))}
         </div>

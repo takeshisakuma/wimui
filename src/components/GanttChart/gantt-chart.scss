@@ -7,6 +7,7 @@
 .wim-gantt-chart {
   display: flex;
   flex-direction: column;
+  container-type: inline-size;
   overflow: hidden;
   font-size: var(--font-size-sm, 0.875rem);
   color: var(--wim-color-text-primary, #212121);
@@ -28,7 +29,7 @@
     background-color: var(--wim-color-bg, #fff);
     border-right: 1px solid var(--wim-color-border, #e0e0e0);
 
-    @include down(sm) {
+    @include container-down(sm) {
       width: 100px;
     }
   }
@@ -38,11 +39,16 @@
     align-items: center;
     padding: 0 12px;
     overflow: hidden;
-    text-overflow: ellipsis;
     font-size: var(--font-size-sm, 0.875rem);
     color: var(--wim-color-text-primary, #212121);
-    white-space: nowrap;
     border-bottom: 1px solid var(--wim-color-border-secondary, #f0f0f0);
+  }
+
+  &__label-text {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   // Right: scrollable timeline
@@ -69,8 +75,7 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    justify-content: flex-start;
-    padding-left: 4px;
+    justify-content: center;
     overflow: hidden;
     font-size: var(--font-size-xs, 0.75rem);
     font-weight: var(--font-weight-bold, 700);
@@ -83,7 +88,7 @@
       width: 160px;
       border-right: 1px solid var(--wim-color-border, #e0e0e0);
 
-      @include down(sm) {
+      @include container-down(sm) {
         width: 100px;
       }
     }

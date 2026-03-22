@@ -30,3 +30,23 @@ $breakpoints: (
     @warn "Breakpoint #{$breakpoint} not found in $breakpoints map";
   }
 }
+
+@mixin container-up($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @container (min-width: #{map.get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints map";
+  }
+}
+
+@mixin container-down($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @container (max-width: #{map.get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints map";
+  }
+}
