@@ -12,6 +12,8 @@ import { globSync } from "glob";
 
 const localesDir = "./public/locales";
 const srcDir = "./src/components";
+const docsDir = "./docs";
+const storiesDir = "./stories";
 
 // Load all locale data: locales[lang][namespace] = Set<key>
 const locales = {};
@@ -30,9 +32,16 @@ for (const lang of langs) {
 }
 
 // Find all component TSX files (exclude tests and stories)
-const files = globSync(`${srcDir}/**/*.tsx`, { posix: true }).filter(
+const componentFiles = globSync(`${srcDir}/**/*.tsx`, { posix: true }).filter(
   (f) => !f.includes(".test.") && !f.includes(".stories.")
 );
+// Find docs MDX files, stories TSX files, and stories MDX files
+const docsFiles = globSync(`${docsDir}/**/*.mdx`, { posix: true });
+const storiesFiles = [
+  ...globSync(`${storiesDir}/**/*.tsx`, { posix: true }),
+  ...globSync(`${storiesDir}/**/*.mdx`, { posix: true }),
+];
+const files = [...componentFiles, ...docsFiles, ...storiesFiles];
 
 // Extract namespaces from useTranslation("ns"), useTranslation(['ns1','ns2']), etc.
 // Returns an array of namespaces. Defaults to ["common"] if not specified.
@@ -49,14 +58,22 @@ function detectNamespaces(source) {
   return ["common"];
 }
 
-// Extract all t("key") / t('key') literal calls
+// Extract all t("key") / t('key') calls and <T k="key" /> / <T k={"key"} /> usages
 function extractKeys(source) {
   const keys = new Set();
   // Match t("key") and t('key') — only string literals, not variables
-  const re = /\bt\(\s*["']([^"']+)["']/g;
+  // Strip namespace prefix (e.g. "components:key" → "key")
+  const reT = /\bt\(\s*["']([^"']+)["']/g;
   let m;
-  while ((m = re.exec(source)) !== null) {
-    keys.add(m[1]);
+  while ((m = reT.exec(source)) !== null) {
+    const raw = m[1];
+    keys.add(raw.includes(":") ? raw.split(":")[1] : raw);
+  }
+  // Match <T k="key" /> and <T k={'key'} /> and <T k={"key"} />
+  // Only string literals (not dynamic expressions like k={variable})
+  const reJsx = /\bk=["']([a-z][a-z0-9_]*)["']|\bk=\{["']([a-z][a-z0-9_]*)["']\}/g;
+  while ((m = reJsx.exec(source)) !== null) {
+    keys.add(m[1] ?? m[2]);
   }
   return keys;
 }

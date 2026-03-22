@@ -276,5 +276,6 @@
   "doc_audio_token_border": "Cor da borda no modo border.",
   "doc_audio_token_text_secondary": "Cor do texto da legenda.",
   "doc_audio_token_radius_full": "Forma de pílula, botões circulares e thumbs do slider.",
-  "doc_audio_token_shadow": "Efeito de sombra no modo shadow."
+  "doc_audio_token_shadow": "Efeito de sombra no modo shadow.",
+  "guide_media_title": "Guia de Seleção de Componentes de Mídia"
 }

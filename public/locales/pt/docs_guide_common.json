@@ -138,5 +138,13 @@
   "a11y_considerations": "Considerações de Acessibilidade",
   "a11y_guideline_desc": "Projete pensando na acessibilidade para garantir que todos os usuários possam usar a interface de forma eficaz.",
   "screen_reader": "Suporte a Leitor de Tela",
-  "critical_info_only_in_p_desc": "Fornecer informações críticas apenas no placeholder"
+  "critical_info_only_in_p_desc": "Fornecer informações críticas apenas no placeholder",
+  "doc_choice_self_title": "Este Componente",
+  "doc_choice_alt_title": "Alternativa",
+  "doc_usage_context": "Contexto de Uso",
+  "doc_choice_alt_desc": "Use um elemento nativo mais simples ou um componente diferente quando o conjunto completo de recursos não for necessário.",
+  "doc_accessibility_title": "Acessibilidade",
+  "doc_examples_title": "Exemplos",
+  "doc_guidelines_title": "Diretrizes",
+  "doc_guideline_best_practices": "Melhores Práticas"
 }

@@ -41,5 +41,13 @@
   "internal_overlay_base_features_perf": "Performance",
   "internal_overlay_base_features_perf_desc": "Usa `will-change: transform` para animações de alta frequência para garantir 60fps, descarregando para a GPU.",
   "internal_philosophy_desc": "Diretrizes para consistência e encapsulamento de design interno que devem ser seguidas ao estender o wimui ou adicionar novos componentes.",
-  "internal_philosophy_title": "Filosofia de Design Interno"
+  "internal_philosophy_title": "Filosofia de Design Interno",
+  "guide_internal_title": "Componentes Internos Principais",
+  "guide_internal_desc": "Visão geral dos componentes internos que sustentam a API pública do wimui. Entendê-los ajuda você a contribuir com ou estender a biblioteca de forma consistente.",
+  "principle_dom_title": "DOM Mínimo",
+  "principle_dom_desc": "Mantenha o DOM renderizado o mais plano possível. Evite elementos wrapper desnecessários que adicionam profundidade sem valor semântico.",
+  "principle_animation_title": "Animação",
+  "principle_animation_desc": "Use o componente Transition para animações de entrada/saída. Não implemente keyframes CSS personalizados sem consultar a equipe de sistema de design.",
+  "principle_transition_title": "Transição",
+  "principle_transition_desc": "Todas as transições devem respeitar a preferência de movimento reduzido do usuário via media query `prefers-reduced-motion`."
 }
