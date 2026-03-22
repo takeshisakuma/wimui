@@ -555,9 +555,15 @@
   href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap"
   rel="stylesheet" media="print" onload="this.media = 'all'" />
 <meta name="color-scheme" content="light dark" />
-    <script type="module" crossorigin src="./assets/iframe-BKE1Tr9u.js"></script>
+<script>
+  (function () {
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+  })();
+</script>
+    <script type="module" crossorigin src="./assets/iframe-CbS9gB6V.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/preload-helper-PPVm8Dsz.js">
-    <link rel="stylesheet" crossorigin href="./assets/iframe-vg_-Fd80.css">
+    <link rel="stylesheet" crossorigin href="./assets/iframe-Cchi96CG.css">
   </head>
 
   <body>

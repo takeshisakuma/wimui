@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.3s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -25773,7 +25773,7 @@ openDelay?: number = 700</code></pre>
                 Sarah Miller
               &lt;/div&gt;
               &lt;div
-                style={{ color: &quot;var(--text-secondary)&quot;, fontSize: &quot;14px&quot; }}
+                style={{ color: &quot;var(--wim-color-text-secondary)&quot;, fontSize: &quot;14px&quot; }}
               &gt;
                 @sarah_m
               &lt;/div&gt;
@@ -25786,12 +25786,12 @@ openDelay?: number = 700</code></pre>
                 display: &quot;flex&quot;,
                 gap: &quot;16px&quot;,
                 fontSize: &quot;12px&quot;,
-                color: &quot;var(--text-secondary)&quot;,
+                color: &quot;var(--wim-color-text-secondary)&quot;,
               }}
             &gt;
               &lt;div&gt;
                 &lt;span
-                  style={{ fontWeight: &quot;bold&quot;, color: &quot;var(--text-primary)&quot; }}
+                  style={{ fontWeight: &quot;bold&quot;, color: &quot;var(--wim-color-text-primary)&quot; }}
                 &gt;
                   452
                 &lt;/span&gt;{&quot; &quot;}
@@ -25799,7 +25799,7 @@ openDelay?: number = 700</code></pre>
               &lt;/div&gt;
               &lt;div&gt;
                 &lt;span
-                  style={{ fontWeight: &quot;bold&quot;, color: &quot;var(--text-primary)&quot; }}
+                  style={{ fontWeight: &quot;bold&quot;, color: &quot;var(--wim-color-text-primary)&quot; }}
                 &gt;
                   2.8k
                 &lt;/span&gt;{&quot; &quot;}
@@ -39247,7 +39247,7 @@ placement?: Placement = &quot;bottom-start&quot;</code></pre>
                     &lt;p
                         style={{
                           margin: 0,
-                          color: &quot;var(--text-secondary)&quot;,
+                          color: &quot;var(--wim-color-text-secondary)&quot;,
                           fontSize: &quot;0.9rem&quot;,
                         }}&gt;
                         {t(&quot;story_popover_set_dim&quot;)}
@@ -39297,7 +39297,7 @@ placement?: Placement = &quot;bottom-start&quot;</code></pre>
                     &lt;p
                         style={{
                           margin: 0,
-                          color: &quot;var(--text-secondary)&quot;,
+                          color: &quot;var(--wim-color-text-secondary)&quot;,
                           fontSize: &quot;0.9rem&quot;,
                         }}&gt;
                         {t(&quot;story_popover_change_val&quot;)}
@@ -43460,7 +43460,7 @@ export default meta;
 
 export const LoginForm: StoryObj = {
   render: () =&gt; (
-    &lt;Center style={{ height: &quot;100vh&quot;, background: &quot;var(--bg-app)&quot; }}&gt;
+    &lt;Center style={{ height: &quot;100vh&quot;, background: &quot;var(--wim-color-surface)&quot; }}&gt;
       &lt;Card
         style={{
           width: &quot;400px&quot;,
@@ -43508,7 +43508,7 @@ export const LoginForm: StoryObj = {
                     gap: &quot;8px&quot;,
                     fontSize: &quot;0.875rem&quot;,
                     cursor: &quot;pointer&quot;,
-                    color: &quot;var(--text-secondary)&quot;,
+                    color: &quot;var(--wim-color-text-secondary)&quot;,
                   }}
                 &gt;
                   &lt;Checkbox id=&quot;remember-me&quot; /&gt;
@@ -43554,7 +43554,7 @@ export const LoginForm: StoryObj = {
 
 export const DashboardHeader: StoryObj = {
   render: () =&gt; (
-    &lt;div style={{ minHeight: &quot;400px&quot;, background: &quot;var(--bg-app)&quot; }}&gt;
+    &lt;div style={{ minHeight: &quot;400px&quot;, background: &quot;var(--wim-color-surface)&quot; }}&gt;
       &lt;style&gt;{`
                 @media (max-width: 768px) {
                     .desktop-only { display: none !important; }
@@ -43614,7 +43614,7 @@ export const DashboardHeader: StoryObj = {
               style={{
                 fontSize: &quot;0.9rem&quot;,
                 fontWeight: &quot;bold&quot;,
-                color: &quot;var(--text-primary)&quot;,
+                color: &quot;var(--wim-color-text-primary)&quot;,
               }}
             &gt;
               WIM UI
@@ -43707,13 +43707,13 @@ export const DashboardHeader: StoryObj = {
                 style={{
                   fontSize: &quot;0.875rem&quot;,
                   fontWeight: 600,
-                  color: &quot;var(--text-primary)&quot;,
+                  color: &quot;var(--wim-color-text-primary)&quot;,
                 }}
               &gt;
                 John Doe
               &lt;/span&gt;
               &lt;span
-                style={{ fontSize: &quot;0.75rem&quot;, color: &quot;var(--text-secondary)&quot; }}
+                style={{ fontSize: &quot;0.75rem&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}
               &gt;
                 Admin
               &lt;/span&gt;
@@ -43760,7 +43760,7 @@ export const DashboardHeader: StoryObj = {
 
 export const UserProfileForm: StoryObj = {
   render: () =&gt; (
-    &lt;Center style={{ background: &quot;var(--bg-app)&quot;, padding: &quot;20px&quot; }}&gt;
+    &lt;Center style={{ background: &quot;var(--wim-color-surface)&quot;, padding: &quot;20px&quot; }}&gt;
       &lt;Card
         style={{
           maxWidth: &quot;1000px&quot;,
@@ -43795,7 +43795,7 @@ export const UserProfileForm: StoryObj = {
           &lt;div
             style={{
               borderRight: &quot;1px solid var(--wim-color-border-secondary)&quot;,
-              background: &quot;var(--bg-app)&quot;,
+              background: &quot;var(--wim-color-surface)&quot;,
             }}
           &gt;
             &lt;div style={{ padding: &quot;24px&quot; }}&gt;
@@ -44279,7 +44279,7 @@ export const HeroSection: StoryObj = {
         display: &quot;flex&quot;,
         alignItems: &quot;center&quot;,
         background:
-          &quot;linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--bg-app) 100%)&quot;,
+          &quot;linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--wim-color-surface) 100%)&quot;,
         padding: &quot;80px 24px&quot;,
       }}
     &gt;
@@ -44418,7 +44418,7 @@ export const HeroSection: StoryObj = {
 export const ErrorPage: StoryObj = {
   render: () =&gt; (
     &lt;Center
-      style={{ height: &quot;100vh&quot;, background: &quot;var(--bg-app)&quot;, padding: &quot;24px&quot; }}
+      style={{ height: &quot;100vh&quot;, background: &quot;var(--wim-color-surface)&quot;, padding: &quot;24px&quot; }}
     &gt;
       &lt;Stack
         align=&quot;center&quot;
@@ -44523,7 +44523,7 @@ export const ErrorPage: StoryObj = {
               
               
               <pre><code>const LoginForm = () =&gt; (
-  &lt;Center style={{ height: &quot;100vh&quot;, background: &quot;var(--bg-app)&quot; }}&gt;
+  &lt;Center style={{ height: &quot;100vh&quot;, background: &quot;var(--wim-color-surface)&quot; }}&gt;
     &lt;Card
       style={{
         width: &quot;400px&quot;,
@@ -44571,7 +44571,7 @@ export const ErrorPage: StoryObj = {
                   gap: &quot;8px&quot;,
                   fontSize: &quot;0.875rem&quot;,
                   cursor: &quot;pointer&quot;,
-                  color: &quot;var(--text-secondary)&quot;,
+                  color: &quot;var(--wim-color-text-secondary)&quot;,
                 }}
               &gt;
                 &lt;Checkbox id=&quot;remember-me&quot; /&gt;
@@ -44622,7 +44622,7 @@ export const ErrorPage: StoryObj = {
               
               
               <pre><code>const DashboardHeader = () =&gt; (
-  &lt;div style={{ minHeight: &quot;400px&quot;, background: &quot;var(--bg-app)&quot; }}&gt;
+  &lt;div style={{ minHeight: &quot;400px&quot;, background: &quot;var(--wim-color-surface)&quot; }}&gt;
     &lt;style&gt;{`
               @media (max-width: 768px) {
                   .desktop-only { display: none !important; }
@@ -44682,7 +44682,7 @@ export const ErrorPage: StoryObj = {
             style={{
               fontSize: &quot;0.9rem&quot;,
               fontWeight: &quot;bold&quot;,
-              color: &quot;var(--text-primary)&quot;,
+              color: &quot;var(--wim-color-text-primary)&quot;,
             }}
           &gt;
             WIM UI
@@ -44775,13 +44775,13 @@ export const ErrorPage: StoryObj = {
               style={{
                 fontSize: &quot;0.875rem&quot;,
                 fontWeight: 600,
-                color: &quot;var(--text-primary)&quot;,
+                color: &quot;var(--wim-color-text-primary)&quot;,
               }}
             &gt;
               John Doe
             &lt;/span&gt;
             &lt;span
-              style={{ fontSize: &quot;0.75rem&quot;, color: &quot;var(--text-secondary)&quot; }}
+              style={{ fontSize: &quot;0.75rem&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}
             &gt;
               Admin
             &lt;/span&gt;
@@ -44833,7 +44833,7 @@ export const ErrorPage: StoryObj = {
               
               
               <pre><code>const UserProfileForm = () =&gt; (
-  &lt;Center style={{ background: &quot;var(--bg-app)&quot;, padding: &quot;20px&quot; }}&gt;
+  &lt;Center style={{ background: &quot;var(--wim-color-surface)&quot;, padding: &quot;20px&quot; }}&gt;
     &lt;Card
       style={{
         maxWidth: &quot;1000px&quot;,
@@ -44868,7 +44868,7 @@ export const ErrorPage: StoryObj = {
         &lt;div
           style={{
             borderRight: &quot;1px solid var(--wim-color-border-secondary)&quot;,
-            background: &quot;var(--bg-app)&quot;,
+            background: &quot;var(--wim-color-surface)&quot;,
           }}
         &gt;
           &lt;div style={{ padding: &quot;24px&quot; }}&gt;
@@ -45362,7 +45362,7 @@ export const ErrorPage: StoryObj = {
       display: &quot;flex&quot;,
       alignItems: &quot;center&quot;,
       background:
-        &quot;linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--bg-app) 100%)&quot;,
+        &quot;linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--wim-color-surface) 100%)&quot;,
       padding: &quot;80px 24px&quot;,
     }}
   &gt;
@@ -45506,7 +45506,7 @@ export const ErrorPage: StoryObj = {
               
               <pre><code>const ErrorPage = () =&gt; (
   &lt;Center
-    style={{ height: &quot;100vh&quot;, background: &quot;var(--bg-app)&quot;, padding: &quot;24px&quot; }}
+    style={{ height: &quot;100vh&quot;, background: &quot;var(--wim-color-surface)&quot;, padding: &quot;24px&quot; }}
   &gt;
     &lt;Stack
       align=&quot;center&quot;
@@ -62628,7 +62628,7 @@ export default meta;
 
 export const LoginForm: StoryObj = {
   render: () =&gt; (
-    &lt;Center style={{ height: &quot;100vh&quot;, background: &quot;var(--bg-app)&quot; }}&gt;
+    &lt;Center style={{ height: &quot;100vh&quot;, background: &quot;var(--wim-color-surface)&quot; }}&gt;
       &lt;Card
         style={{
           width: &quot;400px&quot;,
@@ -62676,7 +62676,7 @@ export const LoginForm: StoryObj = {
                     gap: &quot;8px&quot;,
                     fontSize: &quot;0.875rem&quot;,
                     cursor: &quot;pointer&quot;,
-                    color: &quot;var(--text-secondary)&quot;,
+                    color: &quot;var(--wim-color-text-secondary)&quot;,
                   }}
                 &gt;
                   &lt;Checkbox id=&quot;remember-me&quot; /&gt;
@@ -62722,7 +62722,7 @@ export const LoginForm: StoryObj = {
 
 export const DashboardHeader: StoryObj = {
   render: () =&gt; (
-    &lt;div style={{ minHeight: &quot;400px&quot;, background: &quot;var(--bg-app)&quot; }}&gt;
+    &lt;div style={{ minHeight: &quot;400px&quot;, background: &quot;var(--wim-color-surface)&quot; }}&gt;
       &lt;style&gt;{`
                 @media (max-width: 768px) {
                     .desktop-only { display: none !important; }
@@ -62782,7 +62782,7 @@ export const DashboardHeader: StoryObj = {
               style={{
                 fontSize: &quot;0.9rem&quot;,
                 fontWeight: &quot;bold&quot;,
-                color: &quot;var(--text-primary)&quot;,
+                color: &quot;var(--wim-color-text-primary)&quot;,
               }}
             &gt;
               WIM UI
@@ -62875,13 +62875,13 @@ export const DashboardHeader: StoryObj = {
                 style={{
                   fontSize: &quot;0.875rem&quot;,
                   fontWeight: 600,
-                  color: &quot;var(--text-primary)&quot;,
+                  color: &quot;var(--wim-color-text-primary)&quot;,
                 }}
               &gt;
                 John Doe
               &lt;/span&gt;
               &lt;span
-                style={{ fontSize: &quot;0.75rem&quot;, color: &quot;var(--text-secondary)&quot; }}
+                style={{ fontSize: &quot;0.75rem&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}
               &gt;
                 Admin
               &lt;/span&gt;
@@ -62928,7 +62928,7 @@ export const DashboardHeader: StoryObj = {
 
 export const UserProfileForm: StoryObj = {
   render: () =&gt; (
-    &lt;Center style={{ background: &quot;var(--bg-app)&quot;, padding: &quot;20px&quot; }}&gt;
+    &lt;Center style={{ background: &quot;var(--wim-color-surface)&quot;, padding: &quot;20px&quot; }}&gt;
       &lt;Card
         style={{
           maxWidth: &quot;1000px&quot;,
@@ -62963,7 +62963,7 @@ export const UserProfileForm: StoryObj = {
           &lt;div
             style={{
               borderRight: &quot;1px solid var(--wim-color-border-secondary)&quot;,
-              background: &quot;var(--bg-app)&quot;,
+              background: &quot;var(--wim-color-surface)&quot;,
             }}
           &gt;
             &lt;div style={{ padding: &quot;24px&quot; }}&gt;
@@ -63447,7 +63447,7 @@ export const HeroSection: StoryObj = {
         display: &quot;flex&quot;,
         alignItems: &quot;center&quot;,
         background:
-          &quot;linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--bg-app) 100%)&quot;,
+          &quot;linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--wim-color-surface) 100%)&quot;,
         padding: &quot;80px 24px&quot;,
       }}
     &gt;
@@ -63586,7 +63586,7 @@ export const HeroSection: StoryObj = {
 export const ErrorPage: StoryObj = {
   render: () =&gt; (
     &lt;Center
-      style={{ height: &quot;100vh&quot;, background: &quot;var(--bg-app)&quot;, padding: &quot;24px&quot; }}
+      style={{ height: &quot;100vh&quot;, background: &quot;var(--wim-color-surface)&quot;, padding: &quot;24px&quot; }}
     &gt;
       &lt;Stack
         align=&quot;center&quot;
@@ -63691,7 +63691,7 @@ export const ErrorPage: StoryObj = {
               
               
               <pre><code>const LoginForm = () =&gt; (
-  &lt;Center style={{ height: &quot;100vh&quot;, background: &quot;var(--bg-app)&quot; }}&gt;
+  &lt;Center style={{ height: &quot;100vh&quot;, background: &quot;var(--wim-color-surface)&quot; }}&gt;
     &lt;Card
       style={{
         width: &quot;400px&quot;,
@@ -63739,7 +63739,7 @@ export const ErrorPage: StoryObj = {
                   gap: &quot;8px&quot;,
                   fontSize: &quot;0.875rem&quot;,
                   cursor: &quot;pointer&quot;,
-                  color: &quot;var(--text-secondary)&quot;,
+                  color: &quot;var(--wim-color-text-secondary)&quot;,
                 }}
               &gt;
                 &lt;Checkbox id=&quot;remember-me&quot; /&gt;
@@ -63790,7 +63790,7 @@ export const ErrorPage: StoryObj = {
               
               
               <pre><code>const DashboardHeader = () =&gt; (
-  &lt;div style={{ minHeight: &quot;400px&quot;, background: &quot;var(--bg-app)&quot; }}&gt;
+  &lt;div style={{ minHeight: &quot;400px&quot;, background: &quot;var(--wim-color-surface)&quot; }}&gt;
     &lt;style&gt;{`
               @media (max-width: 768px) {
                   .desktop-only { display: none !important; }
@@ -63850,7 +63850,7 @@ export const ErrorPage: StoryObj = {
             style={{
               fontSize: &quot;0.9rem&quot;,
               fontWeight: &quot;bold&quot;,
-              color: &quot;var(--text-primary)&quot;,
+              color: &quot;var(--wim-color-text-primary)&quot;,
             }}
           &gt;
             WIM UI
@@ -63943,13 +63943,13 @@ export const ErrorPage: StoryObj = {
               style={{
                 fontSize: &quot;0.875rem&quot;,
                 fontWeight: 600,
-                color: &quot;var(--text-primary)&quot;,
+                color: &quot;var(--wim-color-text-primary)&quot;,
               }}
             &gt;
               John Doe
             &lt;/span&gt;
             &lt;span
-              style={{ fontSize: &quot;0.75rem&quot;, color: &quot;var(--text-secondary)&quot; }}
+              style={{ fontSize: &quot;0.75rem&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}
             &gt;
               Admin
             &lt;/span&gt;
@@ -64001,7 +64001,7 @@ export const ErrorPage: StoryObj = {
               
               
               <pre><code>const UserProfileForm = () =&gt; (
-  &lt;Center style={{ background: &quot;var(--bg-app)&quot;, padding: &quot;20px&quot; }}&gt;
+  &lt;Center style={{ background: &quot;var(--wim-color-surface)&quot;, padding: &quot;20px&quot; }}&gt;
     &lt;Card
       style={{
         maxWidth: &quot;1000px&quot;,
@@ -64036,7 +64036,7 @@ export const ErrorPage: StoryObj = {
         &lt;div
           style={{
             borderRight: &quot;1px solid var(--wim-color-border-secondary)&quot;,
-            background: &quot;var(--bg-app)&quot;,
+            background: &quot;var(--wim-color-surface)&quot;,
           }}
         &gt;
           &lt;div style={{ padding: &quot;24px&quot; }}&gt;
@@ -64530,7 +64530,7 @@ export const ErrorPage: StoryObj = {
       display: &quot;flex&quot;,
       alignItems: &quot;center&quot;,
       background:
-        &quot;linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--bg-app) 100%)&quot;,
+        &quot;linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--wim-color-surface) 100%)&quot;,
       padding: &quot;80px 24px&quot;,
     }}
   &gt;
@@ -64674,7 +64674,7 @@ export const ErrorPage: StoryObj = {
               
               <pre><code>const ErrorPage = () =&gt; (
   &lt;Center
-    style={{ height: &quot;100vh&quot;, background: &quot;var(--bg-app)&quot;, padding: &quot;24px&quot; }}
+    style={{ height: &quot;100vh&quot;, background: &quot;var(--wim-color-surface)&quot;, padding: &quot;24px&quot; }}
   &gt;
     &lt;Stack
       align=&quot;center&quot;
@@ -71802,7 +71802,7 @@ import { T } from &quot;../stories/T&quot;;
 
         `src/components/Charts/helpers.ts`&lt;br /&gt;
 
-        &lt;small style={{ color: &quot;var(--text-secondary)&quot; }}&gt;&lt;T k=&quot;vis_chart_colors&quot; /&gt;&lt;/small&gt;
+        &lt;small style={{ color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;&lt;T k=&quot;vis_chart_colors&quot; /&gt;&lt;/small&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
 
@@ -72753,7 +72753,7 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
   {`
   .section-desc {
     margin-bottom: 24px;
-    color: var(--text-secondary);
+    color: var(--wim-color-text-secondary);
     font-size: 16px;
     line-height: 1.6;
   }
@@ -73052,14 +73052,14 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
 
         `src/tokens/_semantic-colors.scss`&lt;br /&gt;
 
-        &lt;small style={{ color: &quot;var(--text-secondary)&quot; }}&gt;&lt;T k=&quot;guide_colors_customization_semantic_desc&quot; /&gt;&lt;/small&gt;
+        &lt;small style={{ color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;&lt;T k=&quot;guide_colors_customization_semantic_desc&quot; /&gt;&lt;/small&gt;
       &lt;/li&gt;
       &lt;li style={{ marginTop: &quot;12px&quot; }}&gt;
         &lt;strong&gt;&lt;T k=&quot;guide_colors_customization_pccs_title&quot; /&gt;&lt;/strong&gt;&lt;br /&gt;
 
         `src/tokens/_pccs-colors.scss`&lt;br /&gt;
 
-        &lt;small style={{ color: &quot;var(--text-secondary)&quot; }}&gt;&lt;T k=&quot;guide_colors_customization_pccs_desc&quot; /&gt;&lt;/small&gt;
+        &lt;small style={{ color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;&lt;T k=&quot;guide_colors_customization_pccs_desc&quot; /&gt;&lt;/small&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
 
@@ -73118,15 +73118,15 @@ import {
 &lt;p&gt;&lt;T k=&quot;guide_effects_shadow_multi_layer_desc&quot; /&gt;&lt;/p&gt;
 
 &lt;TokenGrid columns=&quot;1fr 1fr&quot;&gt;
-  &lt;div style={{ padding: &quot;20px&quot;, borderRadius: &quot;var(--radius-md)&quot;, background: &quot;var(--bg-app)&quot; }}&gt;
+  &lt;div style={{ padding: &quot;20px&quot;, borderRadius: &quot;var(--radius-md)&quot;, background: &quot;var(--wim-color-bg-secondary)&quot; }}&gt;
     &lt;h3&gt;&lt;T k=&quot;guide_effects_shadow_ambient&quot; /&gt;&lt;/h3&gt;
     &lt;p&gt;&lt;T k=&quot;guide_effects_shadow_ambient_desc&quot; /&gt;&lt;/p&gt;
-    &lt;div style={{ width: &quot;100%&quot;, height: &quot;40px&quot;, borderRadius: &quot;var(--radius-sm)&quot;, boxShadow: &quot;var(--shadow-ambient)&quot;, background: &quot;var(--bg-component)&quot; }}&gt;&lt;/div&gt;
+    &lt;div style={{ width: &quot;100%&quot;, height: &quot;40px&quot;, borderRadius: &quot;var(--radius-sm)&quot;, boxShadow: &quot;var(--shadow-ambient)&quot;, background: &quot;var(--wim-color-surface)&quot; }}&gt;&lt;/div&gt;
   &lt;/div&gt;
-  &lt;div style={{ padding: &quot;20px&quot;, borderRadius: &quot;var(--radius-md)&quot;, background: &quot;var(--bg-app)&quot; }}&gt;
+  &lt;div style={{ padding: &quot;20px&quot;, borderRadius: &quot;var(--radius-md)&quot;, background: &quot;var(--wim-color-bg-secondary)&quot; }}&gt;
     &lt;h3&gt;&lt;T k=&quot;guide_effects_shadow_elevation&quot; /&gt;&lt;/h3&gt;
     &lt;p&gt;&lt;T k=&quot;guide_effects_shadow_elevation_desc&quot; /&gt;&lt;/p&gt;
-    &lt;div style={{ width: &quot;100%&quot;, height: &quot;40px&quot;, borderRadius: &quot;var(--radius-sm)&quot;, boxShadow: &quot;var(--shadow-elevation)&quot;, background: &quot;var(--bg-component)&quot; }}&gt;&lt;/div&gt;
+    &lt;div style={{ width: &quot;100%&quot;, height: &quot;40px&quot;, borderRadius: &quot;var(--radius-sm)&quot;, boxShadow: &quot;var(--shadow-elevation)&quot;, background: &quot;var(--wim-color-surface)&quot; }}&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/TokenGrid&gt;
 &lt;TokenGrid columns=&quot;repeat(auto-fill, minmax(200px, 1fr))&quot;&gt;
@@ -74333,7 +74333,7 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
   .tone-symbol {
     font-size: 28px;
     font-weight: 800;
-    color: var(--text-secondary);
+    color: var(--wim-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: -0.02em;
   }
@@ -74435,7 +74435,7 @@ color={hex}
         `src/tokens/_pccs-colors.scss`
       &lt;/li&gt;
     &lt;/ul&gt;
-    &lt;p style={{ marginTop: &quot;12px&quot;, fontSize: &quot;14px&quot;, color: &quot;var(--text-secondary)&quot; }}&gt;
+    &lt;p style={{ marginTop: &quot;12px&quot;, fontSize: &quot;14px&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;
       &lt;T k=&quot;guide_pccs_customization_note&quot; /&gt;
 
     &lt;/p&gt;
