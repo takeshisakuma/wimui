@@ -25,6 +25,11 @@ i18n
     fallbackNS: ALL_NAMESPACES,
     defaultNS: "common",
     lng: "en", // 初期言語
+    react: {
+      // リロード時にuseTranslationがSuspenseをスローしないようにする
+      // (翻訳ファイルのロード完了を待たず即座に返す)
+      useSuspense: false,
+    },
   });
 
 export default i18n;
