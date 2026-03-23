@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.6s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.9s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -10753,7 +10753,7 @@ export const Dashboard: StoryObj = {
               </div>
               <div class="hint">./stories/Charts/Charts.mdx</div>
               
-              <div class="mdx-content"><pre><code>import { Meta, Canvas, Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+              <div class="mdx-content"><pre><code>import { Meta, Canvas } from &quot;@storybook/addon-docs/blocks&quot;;
 import * as ChartsStories from &quot;./Charts.stories&quot;;
 import { T } from &quot;../T&quot;;
 
@@ -10761,7 +10761,7 @@ import { T } from &quot;../T&quot;;
 
 # &lt;T k=&quot;cat_visualization&quot; /&gt;
 
-&lt;p&gt;&lt;Markdown&gt;&lt;T k=&quot;doc_charts_desc&quot; /&gt;&lt;/Markdown&gt;&lt;/p&gt;
+&lt;p&gt;&lt;T k=&quot;doc_charts_desc&quot; /&gt;&lt;/p&gt;
 
 &lt;Canvas of={ChartsStories.Dashboard} /&gt;
 
@@ -18808,7 +18808,7 @@ import { T } from &quot;../T&quot;;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;Controls of={DropdownStories.Default} /&gt;
+&lt;Controls of={DropdownStories.Basic} /&gt;
 
 ## &lt;T k=&quot;doc_variations&quot; /&gt;
 
@@ -18816,21 +18816,9 @@ import { T } from &quot;../T&quot;;
 &lt;p&gt;&lt;T k=&quot;doc_dropdown_with_icons_desc&quot; /&gt;&lt;/p&gt;
 &lt;Canvas of={DropdownStories.WithIcons} /&gt;
 
-### &lt;T k=&quot;doc_dropdown_checkbox_radio&quot; /&gt;
-&lt;p&gt;&lt;T k=&quot;doc_dropdown_checkbox_radio_desc&quot; /&gt;&lt;/p&gt;
-&lt;Canvas of={DropdownStories.CheckboxAndRadio} /&gt;
-
 ### &lt;T k=&quot;doc_right_alignment&quot; /&gt;
 &lt;p&gt;&lt;T k=&quot;doc_dropdown_right_alignment_desc&quot; /&gt;&lt;/p&gt;
 &lt;Canvas of={DropdownStories.AlignmentRight} /&gt;
-
-### &lt;T k=&quot;doc_dropdown_grouping&quot; /&gt;
-&lt;p&gt;&lt;T k=&quot;doc_dropdown_grouping_desc&quot; /&gt;&lt;/p&gt;
-&lt;Canvas of={DropdownStories.Grouping} /&gt;
-
-### &lt;T k=&quot;doc_dropdown_submenus&quot; /&gt;
-&lt;p&gt;&lt;T k=&quot;doc_dropdown_submenus_desc&quot; /&gt;&lt;/p&gt;
-&lt;Canvas of={DropdownStories.Submenus} /&gt;
 
 &lt;Stories /&gt;
 </code></pre></div>
@@ -25113,7 +25101,7 @@ import { T } from &quot;../T&quot;;
   &lt;li&gt;&lt;T k=&quot;doc_heading_best_practice_2&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;Canvas of={HeadingStories.h1_heading} /&gt;
+&lt;Canvas of={HeadingStories.H1Heading} /&gt;
 
 ## &lt;T k=&quot;doc_heading_levels&quot; /&gt;
 
@@ -25121,27 +25109,27 @@ import { T } from &quot;../T&quot;;
 
 ### &lt;T k=&quot;doc_h1&quot; /&gt;
 
-&lt;Canvas of={HeadingStories.h1_heading} /&gt;
+&lt;Canvas of={HeadingStories.H1Heading} /&gt;
 
 ### &lt;T k=&quot;doc_h2&quot; /&gt;
 
-&lt;Canvas of={HeadingStories.h2_heading} /&gt;
+&lt;Canvas of={HeadingStories.H2Heading} /&gt;
 
 ### &lt;T k=&quot;doc_h3&quot; /&gt;
 
-&lt;Canvas of={HeadingStories.h3_heading} /&gt;
+&lt;Canvas of={HeadingStories.H3Heading} /&gt;
 
 ### &lt;T k=&quot;doc_h4&quot; /&gt;
 
-&lt;Canvas of={HeadingStories.h4_heading} /&gt;
+&lt;Canvas of={HeadingStories.H4Heading} /&gt;
 
 ### &lt;T k=&quot;doc_h5&quot; /&gt;
 
-&lt;Canvas of={HeadingStories.h5_heading} /&gt;
+&lt;Canvas of={HeadingStories.H5Heading} /&gt;
 
 ### &lt;T k=&quot;doc_h6&quot; /&gt;
 
-&lt;Canvas of={HeadingStories.h6_heading} /&gt;
+&lt;Canvas of={HeadingStories.H6Heading} /&gt;
 
 ## &lt;T k=&quot;doc_props&quot; /&gt;
 
@@ -62506,7 +62494,7 @@ export const Dashboard: StoryObj = {
               </div>
               <div class="hint">./stories/Charts/Charts.mdx</div>
               
-              <div class="mdx-content"><pre><code>import { Meta, Canvas, Markdown } from &quot;@storybook/addon-docs/blocks&quot;;
+              <div class="mdx-content"><pre><code>import { Meta, Canvas } from &quot;@storybook/addon-docs/blocks&quot;;
 import * as ChartsStories from &quot;./Charts.stories&quot;;
 import { T } from &quot;../T&quot;;
 
@@ -62514,7 +62502,7 @@ import { T } from &quot;../T&quot;;
 
 # &lt;T k=&quot;cat_visualization&quot; /&gt;
 
-&lt;p&gt;&lt;Markdown&gt;&lt;T k=&quot;doc_charts_desc&quot; /&gt;&lt;/Markdown&gt;&lt;/p&gt;
+&lt;p&gt;&lt;T k=&quot;doc_charts_desc&quot; /&gt;&lt;/p&gt;
 
 &lt;Canvas of={ChartsStories.Dashboard} /&gt;
 
