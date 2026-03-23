@@ -1,0 +1,22 @@
+import{j as n}from"./jsx-runtime-u17CrQMm.js";import{c as s}from"./index-mpNjWjvP.js";import{C as d}from"./Card-BdDUFrxT.js";const o=({variant:e="elevated",className:a,children:t,...i})=>n.jsx(d,{variant:e,className:s("wim-stats",a),padding:"none",...i,children:n.jsx("div",{className:"wim-stats__inner",children:t})}),l=({className:e,children:a,...t})=>n.jsx("div",{className:s("wim-stats__label",e),...t,children:a}),r=({className:e,children:a,...t})=>n.jsx("div",{className:s("wim-stats__value",e),...t,children:a}),m=({className:e,children:a,...t})=>n.jsx("div",{className:s("wim-stats__description",e),...t,children:a}),p=({direction:e="up",className:a,children:t,...i})=>n.jsxs("div",{className:s("wim-stats__trend",`wim-stats__trend--${e}`,a),...i,children:[n.jsxs("span",{className:"wim-stats__trend-icon",children:[e==="up"&&"↑",e==="down"&&"↓",e==="neutral"&&"→"]}),n.jsx("span",{className:"wim-stats__trend-value",children:t})]});o.Label=l;o.Value=r;o.Description=m;o.Trend=p;o.__docgenInfo={description:"`Stats` は統計情報やメトリクスを表示するためのコンポーネントです。",methods:[{name:"Label",docblock:null,modifiers:["static"],params:[{name:`{
+  className,
+  children,
+  ...props
+}: React.ComponentPropsWithoutRef<"div">`,optional:!1,type:{name:"ReactComponentPropsWithoutRef",raw:'React.ComponentPropsWithoutRef<"div">',elements:[{name:"literal",value:'"div"'}],alias:"React.ComponentPropsWithoutRef"}}],returns:null},{name:"Value",docblock:null,modifiers:["static"],params:[{name:`{
+  className,
+  children,
+  ...props
+}: React.ComponentPropsWithoutRef<"div">`,optional:!1,type:{name:"ReactComponentPropsWithoutRef",raw:'React.ComponentPropsWithoutRef<"div">',elements:[{name:"literal",value:'"div"'}],alias:"React.ComponentPropsWithoutRef"}}],returns:null},{name:"Description",docblock:null,modifiers:["static"],params:[{name:`{
+  className,
+  children,
+  ...props
+}: React.ComponentPropsWithoutRef<"div">`,optional:!1,type:{name:"ReactComponentPropsWithoutRef",raw:'React.ComponentPropsWithoutRef<"div">',elements:[{name:"literal",value:'"div"'}],alias:"React.ComponentPropsWithoutRef"}}],returns:null},{name:"Trend",docblock:null,modifiers:["static"],params:[{name:`{
+  direction = "up",
+  className,
+  children,
+  ...props
+}: StatsTrendProps`,optional:!1,type:{name:"intersection",raw:`React.ComponentPropsWithoutRef<"div"> & {
+  direction?: "up" | "down" | "neutral";
+}`,elements:[{name:"ReactComponentPropsWithoutRef",raw:'React.ComponentPropsWithoutRef<"div">',elements:[{name:"literal",value:'"div"'}]},{name:"signature",type:"object",raw:`{
+  direction?: "up" | "down" | "neutral";
+}`,signature:{properties:[{key:"direction",value:{name:"union",raw:'"up" | "down" | "neutral"',elements:[{name:"literal",value:'"up"'},{name:"literal",value:'"down"'},{name:"literal",value:'"neutral"'}],required:!1}}]}}],alias:"StatsTrendProps"}}],returns:null}],displayName:"Stats",props:{variant:{defaultValue:{value:'"elevated"',computed:!1},required:!1}}};l.__docgenInfo={description:"",methods:[],displayName:"StatsLabel"};r.__docgenInfo={description:"",methods:[],displayName:"StatsValue"};m.__docgenInfo={description:"",methods:[],displayName:"StatsDescription"};p.__docgenInfo={description:"",methods:[],displayName:"StatsTrend",props:{direction:{required:!1,tsType:{name:"union",raw:'"up" | "down" | "neutral"',elements:[{name:"literal",value:'"up"'},{name:"literal",value:'"down"'},{name:"literal",value:'"neutral"'}]},description:"",defaultValue:{value:'"up"',computed:!1}}}};export{o as S};
