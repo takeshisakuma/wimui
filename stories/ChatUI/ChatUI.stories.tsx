@@ -410,7 +410,7 @@ export const AiAssistantIntegration: Story = {
             : msg
         )
       );
-    }, [i18n.language]);
+    }, [i18n.language, t]);
 
     const handleSend = async (message: string) => {
       const newMessage: Message = {
