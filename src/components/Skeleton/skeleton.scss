@@ -73,8 +73,23 @@
 }
 
 // Dark mode support if variable exists
+[data-theme="dark"] .wim-skeleton {
+  background-color: var(--color-gray-800, rgb(255 255 255 / 0.13));
+
+  &--wave {
+    &::after {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgb(255 255 255 / 0.08),
+        transparent
+      );
+    }
+  }
+}
+
 @media (prefers-color-scheme: dark) {
-  .wim-skeleton {
+  :root:not([data-theme="light"]) .wim-skeleton {
     background-color: var(--color-gray-800, rgb(255 255 255 / 0.13));
 
     &--wave {

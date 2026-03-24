@@ -210,7 +210,7 @@
 }
 
 /* Glassmorphism adjustment for dark mode if needed */
-@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
   .wim-tree-view {
     background: rgb(0 0 0 / 0.2);
     border-color: rgb(255 255 255 / 0.1);
@@ -218,5 +218,18 @@
 
   .wim-tree-view-item__label-container:hover {
     background: var(--wim-color-bg-hover);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    .wim-tree-view {
+      background: rgb(0 0 0 / 0.2);
+      border-color: rgb(255 255 255 / 0.1);
+    }
+
+    .wim-tree-view-item__label-container:hover {
+      background: var(--wim-color-bg-hover);
+    }
   }
 }

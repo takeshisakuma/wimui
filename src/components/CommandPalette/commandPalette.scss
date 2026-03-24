@@ -33,6 +33,13 @@
     border-color: rgb(255 255 255 / 0.1);
   }
 
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) & {
+      background: var(--bg-component, #1a1a1a);
+      border-color: rgb(255 255 255 / 0.1);
+    }
+  }
+
   // Mobile: full width and no border radius at top
   @media (width <=640px) {
     max-width: 100%;
@@ -177,6 +184,12 @@
 
   [data-theme="dark"] & {
     background: rgb(0 0 0 / 0.2);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) & {
+      background: rgb(0 0 0 / 0.2);
+    }
   }
 
   // Hide footer on very small screens or make it more compact
