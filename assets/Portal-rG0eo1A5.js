@@ -1,0 +1,1 @@
+import{R as e}from"./iframe-Dmg4FORK.js";import{r as o}from"./index-Dqj_UpCi.js";const n=()=>()=>{},m=({children:t,container:r})=>e.useSyncExternalStore(n,()=>!0,()=>!1)?o.createPortal(t,r||document.body):null;export{m as P};

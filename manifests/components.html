@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.1s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.7s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -2840,7 +2840,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">8 prop types</span>
             </div>
-            <pre><code>Component: src/components/AreaChart/AreaChart.tsx::AreaChart</code></pre>
+            <pre><code>Component: src/components/Charts/AreaChart/AreaChart.tsx::AreaChart</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>data: Record&lt;string, unknown&gt;[]
 
@@ -5475,7 +5475,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">7 prop types</span>
             </div>
-            <pre><code>Component: src/components/BarChart/BarChart.tsx::BarChart</code></pre>
+            <pre><code>Component: src/components/Charts/BarChart/BarChart.tsx::BarChart</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>data: Record&lt;string, unknown&gt;[]
 
@@ -10668,9 +10668,9 @@ const Demo = () =&gt; (
 ./stories/Charts/Charts.stories.tsx:
 import type { Meta, StoryObj } from &quot;@storybook/react-vite&quot;;
 import React from &quot;react&quot;;
-import { BarChart } from &quot;@/components/BarChart/BarChart&quot;;
-import { LineChart } from &quot;@/components/LineChart/LineChart&quot;;
-import { PieChart } from &quot;@/components/PieChart/PieChart&quot;;
+import { BarChart } from &quot;@/components/Charts/BarChart/BarChart&quot;;
+import { LineChart } from &quot;@/components/Charts/LineChart/LineChart&quot;;
+import { PieChart } from &quot;@/components/Charts/PieChart/PieChart&quot;;
 import { Stack } from &quot;@/components/Stack/Stack&quot;;
 import { Heading } from &quot;@/components/Heading/Heading&quot;;
 
@@ -22588,7 +22588,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">6 prop types</span>
             </div>
-            <pre><code>Component: src/components/FunnelChart/FunnelChart.tsx::FunnelChart</code></pre>
+            <pre><code>Component: src/components/Charts/FunnelChart/FunnelChart.tsx::FunnelChart</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>data: Record&lt;string, unknown&gt;[]
 
@@ -22796,7 +22796,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">8 prop types</span>
             </div>
-            <pre><code>Component: src/components/GanttChart/GanttChart.tsx::GanttChart</code></pre>
+            <pre><code>Component: src/components/Charts/GanttChart/GanttChart.tsx::GanttChart</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>className?: string
 
@@ -23312,7 +23312,7 @@ npm run test -- GanttChart
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">8 prop types</span>
             </div>
-            <pre><code>Component: src/components/GaugeChart/GaugeChart.tsx::GaugeChart</code></pre>
+            <pre><code>Component: src/components/Charts/GaugeChart/GaugeChart.tsx::GaugeChart</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>color?: string
 
@@ -25187,7 +25187,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">7 prop types</span>
             </div>
-            <pre><code>Component: src/components/Heatmap/Heatmap.tsx::Heatmap</code></pre>
+            <pre><code>Component: src/components/Charts/Heatmap/Heatmap.tsx::Heatmap</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>colorRange?: [string, string] = [&quot;#f5f5f5&quot;, &quot;#d40045&quot;]
 
@@ -31755,7 +31755,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">7 prop types</span>
             </div>
-            <pre><code>Component: src/components/LineChart/LineChart.tsx::LineChart</code></pre>
+            <pre><code>Component: src/components/Charts/LineChart/LineChart.tsx::LineChart</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>data: Record&lt;string, unknown&gt;[]
 
@@ -38630,7 +38630,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">5 prop types</span>
             </div>
-            <pre><code>Component: src/components/PieChart/PieChart.tsx::PieChart</code></pre>
+            <pre><code>Component: src/components/Charts/PieChart/PieChart.tsx::PieChart</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>data: { name: string; value: number }[]
 
@@ -41604,7 +41604,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">6 prop types</span>
             </div>
-            <pre><code>Component: src/components/RadarChart/RadarChart.tsx::RadarChart</code></pre>
+            <pre><code>Component: src/components/Charts/RadarChart/RadarChart.tsx::RadarChart</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>data: Record&lt;string, unknown&gt;[]
 
@@ -46576,7 +46576,7 @@ const [value, setValue] = useState(&quot;&quot;);
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">6 prop types</span>
             </div>
-            <pre><code>Component: src/components/ScatterChart/ScatterChart.tsx::ScatterChart</code></pre>
+            <pre><code>Component: src/components/Charts/ScatterChart/ScatterChart.tsx::ScatterChart</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>data: { x: number; y: number; z?: number; name: string }[]
 
@@ -59692,7 +59692,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">6 prop types</span>
             </div>
-            <pre><code>Component: src/components/Treemap/Treemap.tsx::Treemap</code></pre>
+            <pre><code>Component: src/components/Charts/Treemap/Treemap.tsx::Treemap</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>aspectRatio?: number = 4 / 3
 
@@ -62409,9 +62409,9 @@ import { T } from &quot;../T&quot;;
 ./stories/Charts/Charts.stories.tsx:
 import type { Meta, StoryObj } from &quot;@storybook/react-vite&quot;;
 import React from &quot;react&quot;;
-import { BarChart } from &quot;@/components/BarChart/BarChart&quot;;
-import { LineChart } from &quot;@/components/LineChart/LineChart&quot;;
-import { PieChart } from &quot;@/components/PieChart/PieChart&quot;;
+import { BarChart } from &quot;@/components/Charts/BarChart/BarChart&quot;;
+import { LineChart } from &quot;@/components/Charts/LineChart/LineChart&quot;;
+import { PieChart } from &quot;@/components/Charts/PieChart/PieChart&quot;;
 import { Stack } from &quot;@/components/Stack/Stack&quot;;
 import { Heading } from &quot;@/components/Heading/Heading&quot;;
 
