@@ -1,8 +1,8 @@
-@use "../../tokens/breakpoints" as *;
-@use "../../tokens/semantic-colors" as *;
-@use "../../tokens/spacings" as *;
-@use "../../tokens/typography" as *;
-@use "../../tokens/effects" as *;
+@use "../../../tokens/breakpoints" as *;
+@use "../../../tokens/semantic-colors" as *;
+@use "../../../tokens/spacings" as *;
+@use "../../../tokens/typography" as *;
+@use "../../../tokens/effects" as *;
 
 .wim-gantt-chart {
   display: flex;

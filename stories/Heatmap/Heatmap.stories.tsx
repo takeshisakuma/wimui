@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Heatmap } from "@/components/Heatmap/Heatmap";
+import { Heatmap } from "@/components/Charts/Heatmap/Heatmap";
 
 const meta: Meta<typeof Heatmap> = {
   title: "Components/Visualization/Heatmap",

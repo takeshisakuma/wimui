@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { BarChart } from "@/components/BarChart/BarChart";
-import { LineChart } from "@/components/LineChart/LineChart";
-import { PieChart } from "@/components/PieChart/PieChart";
+import { BarChart } from "@/components/Charts/BarChart/BarChart";
+import { LineChart } from "@/components/Charts/LineChart/LineChart";
+import { PieChart } from "@/components/Charts/PieChart/PieChart";
 import { Stack } from "@/components/Stack/Stack";
 import { Heading } from "@/components/Heading/Heading";
 

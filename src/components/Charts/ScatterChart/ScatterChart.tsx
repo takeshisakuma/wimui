@@ -10,7 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { CHART_COLORS, CHART_THEME } from "../Charts/helpers";
+import { CHART_COLORS, CHART_THEME } from "../helpers";
 
 export type ScatterChartProps = {
   data: { x: number; y: number; z?: number; name: string }[];

@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { GanttChart } from "@/components/GanttChart/GanttChart";
+import { GanttChart } from "@/components/Charts/GanttChart/GanttChart";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

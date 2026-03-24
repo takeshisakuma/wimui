@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { LineChart } from "@/components/LineChart/LineChart";
+import { LineChart } from "@/components/Charts/LineChart/LineChart";
 
 const meta: Meta<typeof LineChart> = {
   title: "Components/Visualization/LineChart",

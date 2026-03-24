@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { CHART_COLORS, CHART_THEME } from "../Charts/helpers";
+import { CHART_COLORS, CHART_THEME } from "../helpers";
 
 export type RadarChartProps = {
   data: Record<string, unknown>[];

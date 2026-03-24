@@ -9,7 +9,7 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
-import { CHART_THEME } from "../Charts/helpers";
+import { CHART_THEME } from "../helpers";
 
 export type HeatmapProps = {
   data: { x: string; y: string; value: number }[];

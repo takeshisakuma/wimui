@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  BarChart as RechartsBarChart,
-  Bar,
+  AreaChart as RechartsAreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -9,9 +9,9 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { CHART_COLORS, CHART_THEME } from "../Charts/helpers";
+import { CHART_COLORS, CHART_THEME } from "../helpers";
 
-export type BarChartProps = {
+export type AreaChartProps = {
   data: Record<string, unknown>[];
   keys: string[];
   xAxisKey: string;
@@ -19,9 +19,10 @@ export type BarChartProps = {
   height?: number;
   width?: string | number;
   title?: string;
+  smooth?: boolean;
 };
 
-export const BarChart = ({
+export const AreaChart = ({
   data,
   keys,
   xAxisKey,
@@ -29,7 +30,8 @@ export const BarChart = ({
   height = 300,
   width = "100%",
   title,
-}: BarChartProps) => {
+  smooth = true,
+}: AreaChartProps) => {
   return (
     <div style={{ width, height: "auto" }}>
       {title && (
@@ -37,10 +39,28 @@ export const BarChart = ({
       )}
       <div style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
-          <RechartsBarChart
+          <RechartsAreaChart
             data={data}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
+            <defs>
+              {keys.map((key, index) => {
+                const color = CHART_COLORS[index % CHART_COLORS.length];
+                return (
+                  <linearGradient
+                    key={`grad-${key}`}
+                    id={`grad-${key}`}
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop offset="5%" stopColor={color} stopOpacity={0.3} />
+                    <stop offset="95%" stopColor={color} stopOpacity={0} />
+                  </linearGradient>
+                );
+              })}
+            </defs>
             <CartesianGrid {...CHART_THEME.grid} vertical={false} />
             <XAxis
               dataKey={xAxisKey}
@@ -49,21 +69,20 @@ export const BarChart = ({
               axisLine={false}
             />
             <YAxis {...CHART_THEME.axis} tickLine={false} axisLine={false} />
-            <Tooltip
-              contentStyle={CHART_THEME.tooltip.contentStyle}
-              cursor={{ fill: "rgba(0,0,0,0.05)" }}
-            />
+            <Tooltip contentStyle={CHART_THEME.tooltip.contentStyle} />
             <Legend verticalAlign="top" height={36} />
             {keys.map((key, index) => (
-              <Bar
+              <Area
                 key={key}
+                type={smooth ? "monotone" : "linear"}
                 dataKey={key}
-                fill={CHART_COLORS[index % CHART_COLORS.length]}
+                stroke={CHART_COLORS[index % CHART_COLORS.length]}
+                fillOpacity={1}
+                fill={`url(#grad-${key})`}
                 stackId={stacked ? "stack" : undefined}
-                radius={stacked ? 0 : [4, 4, 0, 0]}
               />
             ))}
-          </RechartsBarChart>
+          </RechartsAreaChart>
         </ResponsiveContainer>
       </div>
     </div>

@@ -7,7 +7,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { CHART_COLORS, CHART_THEME } from "../Charts/helpers";
+import { CHART_COLORS, CHART_THEME } from "../helpers";
 
 export type PieChartProps = {
   data: { name: string; value: number }[];

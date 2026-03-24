@@ -1,6 +1,6 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import { CHART_COLORS } from "../Charts/helpers";
+import { CHART_COLORS } from "../helpers";
 
 export type GaugeChartProps = {
   value: number;
