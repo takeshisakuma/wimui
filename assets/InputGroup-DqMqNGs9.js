@@ -1,0 +1,39 @@
+import{j as n}from"./jsx-runtime-u17CrQMm.js";import{u as c,M as e,T as r,C as o,a as x}from"./blocks-CZh4F1Z1.js";import{I as j,B as _,W as l,S as h,M as p,F as u}from"./InputGroup.stories-D2jBwEfS.js";import{T as s}from"./T-DPUKcueB.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-CF4lwqoS.js";import"./index-CSqdjfK5.js";import"./index-B5capQCB.js";import"./index-DHfsUB__.js";import"./index-BXC-r1Ig.js";import"./index-rEmvtr-m.js";import"./Input-CIiHqNAX.js";/* empty css              */import"./InputBase-4FDdjRuM.js";import"./Icon-BPSmrBcs.js";import"./useTranslation-DtEA5sc5.js";import"./FieldTemplate-BV5fQsvD.js";import"./FieldLabelContent-B6I11Ljg.js";import"./Badge-Cn5kpx5w.js";import"./IndicatorBase-6jZVzQI9.js";import"./FieldError-D8hHJZni.js";import"./Paragraph-DVxOhrsA.js";import"./Button-BhV4Rc6Y.js";function d(t){const i={blockquote:"blockquote",h2:"h2",...c(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(e,{of:j}),`
+`,n.jsx(r,{}),`
+`,n.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:n.jsx(s,{k:"doc_inputgroup_long_desc"})}),`
+`,n.jsxs(i.blockquote,{children:[`
+`,n.jsx(s,{k:"doc_inputgroup_note"}),`
+`]}),`
+`,n.jsx(i.h2,{id:"",children:n.jsx(s,{k:"doc_basic_usage"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_inputgroup_basic_desc"})}),`
+`,n.jsx(i.h2,{id:"-1",children:n.jsx(s,{k:"doc_design_intent_title"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_inputgroup_design_intent"})}),`
+`,n.jsx(i.h2,{id:"-2",children:n.jsx(s,{k:"doc_choice_matrix_title"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_inputgroup_choice_matrix_desc"})}),`
+`,n.jsxs("table",{children:[n.jsx("thead",{children:n.jsxs("tr",{children:[n.jsx("th",{children:n.jsx(s,{k:"doc_component"})}),n.jsx("th",{children:n.jsx(s,{k:"doc_usage_scenario"})})]})}),n.jsxs("tbody",{children:[n.jsxs("tr",{children:[n.jsx("td",{children:n.jsx("b",{children:"InputGroup"})}),n.jsx("td",{children:n.jsx(s,{k:"doc_inputgroup_choice_self_when"})})]}),n.jsxs("tr",{children:[n.jsx("td",{children:n.jsx("b",{children:"Fieldset"})}),n.jsx("td",{children:n.jsx(s,{k:"doc_inputgroup_choice_alt_when"})})]})]})]}),`
+`,n.jsx(i.h2,{id:"-3",children:n.jsx(s,{k:"doc_anatomy_title"})}),`
+`,n.jsxs("table",{children:[n.jsx("thead",{children:n.jsxs("tr",{children:[n.jsx("th",{children:n.jsx(s,{k:"doc_component"})}),n.jsx("th",{children:n.jsx(s,{k:"doc_description"})})]})}),n.jsxs("tbody",{children:[n.jsxs("tr",{children:[n.jsx("td",{children:n.jsx("b",{children:n.jsx(s,{k:"doc_inputgroup_anatomy_root_label"})})}),n.jsx("td",{children:n.jsx(s,{k:"doc_inputgroup_anatomy_root"})})]}),n.jsxs("tr",{children:[n.jsx("td",{children:n.jsx("b",{children:n.jsx(s,{k:"doc_inputgroup_anatomy_content_label"})})}),n.jsx("td",{children:n.jsx(s,{k:"doc_inputgroup_anatomy_content"})})]})]})]}),`
+`,n.jsx(i.h2,{id:"-4",children:n.jsx(s,{k:"doc_content_guidelines_title"})}),`
+`,n.jsx("ul",{children:n.jsx("li",{children:n.jsx(s,{k:"doc_inputgroup_content_guideline"})})}),`
+`,n.jsx(i.h2,{id:"-5",children:n.jsx(s,{k:"doc_motion_spec_title"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_inputgroup_motion_desc"})}),`
+`,n.jsx(i.h2,{id:"-6",children:n.jsx(s,{k:"doc_a11y_spec_title"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_inputgroup_a11y_desc"})}),`
+`,n.jsx(i.h2,{id:"-7",children:n.jsx(s,{k:"doc_real_world_scenarios_title"})}),`
+`,n.jsxs("table",{children:[n.jsx("thead",{children:n.jsxs("tr",{children:[n.jsx("th",{children:n.jsx(s,{k:"doc_usage_scenario"})}),n.jsx("th",{children:n.jsx(s,{k:"doc_description"})})]})}),n.jsxs("tbody",{children:[n.jsxs("tr",{children:[n.jsx("td",{children:n.jsx("b",{children:n.jsx(s,{k:"doc_scenario_form_title"})})}),n.jsx("td",{children:n.jsx(s,{k:"doc_inputgroup_scenario_1"})})]}),n.jsxs("tr",{children:[n.jsx("td",{children:n.jsx("b",{children:n.jsx(s,{k:"doc_scenario_admin_title"})})}),n.jsx("td",{children:n.jsx(s,{k:"doc_inputgroup_scenario_2"})})]})]})]}),`
+`,n.jsx(i.h2,{id:"-8",children:n.jsx(s,{k:"doc_best_practices_title"})}),`
+`,n.jsxs("ul",{children:[n.jsx("li",{children:n.jsx(s,{k:"doc_inputgroup_best_practice_1"})}),n.jsx("li",{children:n.jsx(s,{k:"doc_inputgroup_best_practice_2"})})]}),`
+`,n.jsx(o,{of:_}),`
+`,n.jsx(i.h2,{id:"-9",children:n.jsx(s,{k:"doc_inputgroup_with_button"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_inputgroup_with_button_desc"})}),`
+`,n.jsx(o,{of:l}),`
+`,n.jsx(i.h2,{id:"-10",children:n.jsx(s,{k:"doc_inputgroup_suffix"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_inputgroup_suffix_desc"})}),`
+`,n.jsx(o,{of:h}),`
+`,n.jsx(i.h2,{id:"-11",children:n.jsx(s,{k:"doc_inputgroup_multi"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_inputgroup_multi_desc"})}),`
+`,n.jsx(o,{of:p}),`
+`,n.jsx(i.h2,{id:"-12",children:n.jsx(s,{k:"doc_full_width"})}),`
+`,n.jsx("p",{children:n.jsx(s,{k:"doc_inputgroup_fullwidth_desc"})}),`
+`,n.jsx(o,{of:u}),`
+`,n.jsx(x,{})]})}function E(t={}){const{wrapper:i}={...c(),...t.components};return i?n.jsx(i,{...t,children:n.jsx(d,{...t})}):d(t)}export{E as default};
