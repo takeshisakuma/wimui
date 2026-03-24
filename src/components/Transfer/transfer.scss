@@ -1,5 +1,11 @@
 @use "../../base" as *;
 
+.wim-transfer-container {
+  width: 100%;
+  min-width: 320px;
+  container-type: inline-size;
+}
+
 .wim-transfer {
   display: flex;
   gap: 32px; // リスト間の余白を広げて全体を幅広くする

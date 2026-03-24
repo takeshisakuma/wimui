@@ -289,37 +289,39 @@ export const Transfer = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames("wim-transfer-container", className)}
+      className={className}
     >
-      <div
-        className={classNames(
-          "wim-transfer",
-          disabled && "wim-transfer--disabled",
-        )}
-        style={style}
-        role="group"
-        aria-labelledby={label ? labelId : undefined}
-      >
-        {renderList(sourceData, titles[0], "source")}
+      <div className="wim-transfer-container">
+        <div
+          className={classNames(
+            "wim-transfer",
+            disabled && "wim-transfer--disabled",
+          )}
+          style={style}
+          role="group"
+          aria-labelledby={label ? labelId : undefined}
+        >
+          {renderList(sourceData, titles[0], "source")}
 
-        <div className="wim-transfer__operation">
-          <Button
-            priority="secondary"
-            size="small"
-            onClick={() => moveItems("toRight")}
-            disabled={disabled || moveRightDisabled}
-            iconName="ChevronRightIcon"
-          />
-          <Button
-            priority="secondary"
-            size="small"
-            onClick={() => moveItems("toLeft")}
-            disabled={disabled || moveLeftDisabled}
-            iconName="ChevronLeftIcon"
-          />
+          <div className="wim-transfer__operation">
+            <Button
+              priority="secondary"
+              size="small"
+              onClick={() => moveItems("toRight")}
+              disabled={disabled || moveRightDisabled}
+              iconName="ChevronRightIcon"
+            />
+            <Button
+              priority="secondary"
+              size="small"
+              onClick={() => moveItems("toLeft")}
+              disabled={disabled || moveLeftDisabled}
+              iconName="ChevronLeftIcon"
+            />
+          </div>
+
+          {renderList(targetData, titles[1], "target")}
         </div>
-
-        {renderList(targetData, titles[1], "target")}
       </div>
     </FieldTemplate>
   );

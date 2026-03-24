@@ -1,5 +1,10 @@
 @use "../../base" as *;
 
+.wim-tree-select-container {
+  width: 100%;
+  container-type: inline-size;
+}
+
 .wim-tree-select {
   position: relative;
   width: 100%;
@@ -7,7 +12,7 @@
   max-width: var(--wim-input-width, 280px);
   font-family: var(--wim-font-family);
 
-  @media (width <= 480px) {
+  @container (max-width: 480px) {
     min-width: 160px;
   }
 

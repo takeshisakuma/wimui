@@ -1,4 +1,9 @@
 @layer component {
+  .wim-stepper-container {
+    width: 100%;
+    container-type: inline-size;
+  }
+
   .wim-stepper {
     box-sizing: border-box;
     display: flex;
@@ -82,7 +87,7 @@
 
       // Label Vertical Mode
       &--label-vertical {
-        @media (width >= 577px) {
+        @container (min-width: 577px) {
           flex-direction: column;
           align-items: center;
           padding-right: 0;
@@ -124,7 +129,7 @@
       }
     }
 
-    @media (width <= 576px) {
+    @container (max-width: 576px) {
       &--horizontal {
         flex-direction: column;
 
@@ -278,7 +283,7 @@
     }
 
     &__item--label-vertical &__content {
-      @media (width >= 577px) {
+      @container (min-width: 577px) {
         width: 100%;
         min-width: 100px;
         margin-top: var(--spacing-xs);

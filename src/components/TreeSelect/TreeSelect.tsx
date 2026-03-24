@@ -219,7 +219,7 @@ export const TreeSelect = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={className}
+      className={classNames("wim-tree-select-container", className)}
     >
       <div
         className="wim-tree-select"

@@ -105,63 +105,65 @@ export const Stepper = ({
   };
 
   return (
-    <div
-      className={classNames(
-        "wim-stepper",
-        `wim-stepper--${direction}`,
-        labelPlacement === "vertical" && "wim-stepper--label-vertical",
-        className,
-      )}
-      role={onChange ? "tablist" : undefined}
-      aria-orientation={onChange ? direction : undefined}
-      onKeyDown={handleContainerKeyDown}
-    >
-      {steps.map((step, index) => {
-        const stepStatus = getStepStatus(index, step.status);
-        const isClickable = !!onChange && !step.disabled;
+    <div className="wim-stepper-container">
+      <div
+        className={classNames(
+          "wim-stepper",
+          `wim-stepper--${direction}`,
+          labelPlacement === "vertical" && "wim-stepper--label-vertical",
+          className,
+        )}
+        role={onChange ? "tablist" : undefined}
+        aria-orientation={onChange ? direction : undefined}
+        onKeyDown={handleContainerKeyDown}
+      >
+        {steps.map((step, index) => {
+          const stepStatus = getStepStatus(index, step.status);
+          const isClickable = !!onChange && !step.disabled;
 
-        return (
-          <div
-            key={index}
-            className={classNames(
-              "wim-stepper__item",
-              `wim-stepper__item--${stepStatus}`,
-              labelPlacement === "vertical" &&
-                "wim-stepper__item--label-vertical",
-              step.disabled && "wim-stepper__item--disabled",
-            )}
-            onClick={() => isClickable && onChange(index)}
-            style={{ cursor: isClickable ? "pointer" : "default" }}
-            role={onChange ? "tab" : undefined}
-            aria-selected={onChange ? index === current : undefined}
-            aria-disabled={step.disabled ? "true" : undefined}
-            tabIndex={
-              onChange
-                ? !step.disabled && index === current ? 0 : -1
-                : isClickable ? 0 : -1
-            }
-            onKeyDown={(e) => {
-              if (isClickable && (e.key === "Enter" || e.key === " ")) {
-                e.preventDefault();
-                onChange(index);
-              }
-            }}
-          >
-            <div className="wim-stepper__line" />
-            <div className="wim-stepper__icon-container">
-              {renderIcon(index, stepStatus, step.icon)}
-            </div>
-            <div className="wim-stepper__content">
-              <span className="wim-stepper__title">{step.title}</span>
-              {step.description && (
-                <span className="wim-stepper__description">
-                  {step.description}
-                </span>
+          return (
+            <div
+              key={index}
+              className={classNames(
+                "wim-stepper__item",
+                `wim-stepper__item--${stepStatus}`,
+                labelPlacement === "vertical" &&
+                  "wim-stepper__item--label-vertical",
+                step.disabled && "wim-stepper__item--disabled",
               )}
+              onClick={() => isClickable && onChange(index)}
+              style={{ cursor: isClickable ? "pointer" : "default" }}
+              role={onChange ? "tab" : undefined}
+              aria-selected={onChange ? index === current : undefined}
+              aria-disabled={step.disabled ? "true" : undefined}
+              tabIndex={
+                onChange
+                  ? !step.disabled && index === current ? 0 : -1
+                  : isClickable ? 0 : -1
+              }
+              onKeyDown={(e) => {
+                if (isClickable && (e.key === "Enter" || e.key === " ")) {
+                  e.preventDefault();
+                  onChange(index);
+                }
+              }}
+            >
+              <div className="wim-stepper__line" />
+              <div className="wim-stepper__icon-container">
+                {renderIcon(index, stepStatus, step.icon)}
+              </div>
+              <div className="wim-stepper__content">
+                <span className="wim-stepper__title">{step.title}</span>
+                {step.description && (
+                  <span className="wim-stepper__description">
+                    {step.description}
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };

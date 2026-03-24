@@ -7,7 +7,7 @@ const meta: Meta<typeof Transfer> = {
   title: "Components/Advanced Inputs/Transfer",
   component: Transfer,
   parameters: {
-    layout: "centered",
+    layout: "padded",
   },
 };
 
