@@ -215,8 +215,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             aria-describedby={errorId}
             aria-labelledby={label ? labelId : undefined}
             {...props}
-            placeholder={props.placeholder ? t(props.placeholder) : undefined}
-            aria-label={props["aria-label"] ? t(props["aria-label"]) : undefined}
+            placeholder={props.placeholder}
+            aria-label={props["aria-label"]}
           />
         </InputBase>
       </FieldTemplate>
