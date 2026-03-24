@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  container-type: inline-size;
   overflow: hidden;
   background-color: var(--wim-color-bg-primary, #fff);
   border: 1px solid var(--wim-color-border, #e2e2e8);
@@ -132,7 +133,7 @@
   background-color: var(--wim-color-bg-primary, #fff);
   border-top: 1px solid var(--wim-color-border, #e2e2e8);
 
-  @media (width <= 480px) {
+  @container (max-width: 480px) {
     gap: 8px;
     padding: 12px;
   }
@@ -182,7 +183,7 @@
     background-color 0.2s ease,
     opacity 0.2s ease;
 
-  @media (width <= 480px) {
+  @container (max-width: 480px) {
     padding: 12px 16px;
   }
 

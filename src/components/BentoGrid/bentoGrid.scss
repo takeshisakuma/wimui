@@ -1,3 +1,7 @@
+.wim-bento-grid-container {
+  container-type: inline-size;
+}
+
 .wim-bento-grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -7,7 +11,7 @@
   margin-right: auto;
   margin-left: auto;
 
-  @media (width >= 768px) {
+  @container (min-width: 768px) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -74,13 +78,13 @@
 
 /* Specific item patterns */
 .wim-bento-grid-item--row-span-2 {
-  @media (width >= 768px) {
+  @container (min-width: 768px) {
     grid-row: span 2 / span 2;
   }
 }
 
 .wim-bento-grid-item--col-span-2 {
-  @media (width >= 768px) {
+  @container (min-width: 768px) {
     grid-column: span 2 / span 2;
   }
 }

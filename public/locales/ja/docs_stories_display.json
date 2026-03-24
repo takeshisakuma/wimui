@@ -182,5 +182,9 @@
   "story_ganttchart_task_design": "デザインフェーズ",
   "story_ganttchart_task_development": "開発",
   "story_ganttchart_task_testing": "テスト & QA",
-  "story_ganttchart_task_release": "リリース"
+  "story_ganttchart_task_release": "リリース",
+  "story_chat_ai_assistant": "AIアシスタント",
+  "story_chat_ai_greeting": "こんにちは！AIアシスタントです。何かお手伝いできることはありますか？",
+  "story_chat_ai_response": "「{{message}}」へのAI応答のシミュレーションです。実際の環境では、上記のGemini APIコードのコメントを外してください。",
+  "story_chat_placeholder_ai": "AIアシスタントに質問する..."
 }

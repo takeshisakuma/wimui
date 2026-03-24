@@ -14,7 +14,7 @@ describe("BentoGrid", () => {
 
   it("applies custom className", () => {
     const { container } = render(<BentoGrid className="custom-grid" />);
-    expect(container.firstChild).toHaveClass("custom-grid");
+    expect(container.firstChild?.firstChild).toHaveClass("custom-grid");
   });
 });
 

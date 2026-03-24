@@ -377,6 +377,7 @@ export const AvatarSizes: Story = {
 
 export const AiAssistantIntegration: Story = {
   render: () => {
+    const { t, i18n } = useTranslation(ALL_NAMESPACES);
     interface Message {
       id: number;
       text: string;
@@ -389,9 +390,9 @@ export const AiAssistantIntegration: Story = {
     const [messages, setMessages] = useState<Message[]>([
       {
         id: 1,
-        text: "Hello! I am your AI Assistant. How can I help you today?",
+        text: t("story_chat_ai_greeting"),
         position: "left",
-        sender: "AI Assistant",
+        sender: t("story_chat_ai_assistant"),
         timestamp: new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -401,12 +402,22 @@ export const AiAssistantIntegration: Story = {
     const [isLoading, setIsLoading] = useState(false);
     const messageListRef = useRef<HTMLDivElement>(null);
 
+    useEffect(() => {
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === 1
+            ? { ...msg, text: t("story_chat_ai_greeting"), sender: t("story_chat_ai_assistant") }
+            : msg
+        )
+      );
+    }, [i18n.language]);
+
     const handleSend = async (message: string) => {
       const newMessage: Message = {
         id: Date.now(),
         text: message,
         position: "right",
-        sender: "You",
+        sender: t("story_chat_you"),
         timestamp: new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -423,7 +434,7 @@ export const AiAssistantIntegration: Story = {
           id: typingMessageId,
           text: "...",
           position: "left",
-          sender: "AI Assistant",
+          sender: t("story_chat_ai_assistant"),
           timestamp: "",
           isTyping: true,
         },
@@ -441,7 +452,7 @@ export const AiAssistantIntegration: Story = {
 
         // Mocking the AI response for demonstration purposes
         await new Promise((resolve) => setTimeout(resolve, 1500));
-        const responseText = `This is a simulated AI response to: "${message}". In a real environment, you would uncomment the Gemini API code snippet above.`;
+        const responseText = t("story_chat_ai_response", { message });
 
         setMessages((prev) =>
           prev
@@ -450,7 +461,7 @@ export const AiAssistantIntegration: Story = {
               id: Date.now() + 2,
               text: responseText,
               position: "left",
-              sender: "AI Assistant",
+              sender: t("story_chat_ai_assistant"),
               timestamp: new Date().toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
@@ -551,7 +562,7 @@ export const AiAssistantIntegration: Story = {
             ))}
           </ChatMessageList>
           <ChatInput
-            placeholder="Ask the AI Assistant..."
+            placeholder={t("story_chat_placeholder_ai")}
             onSend={handleSend}
             disabled={isLoading}
           />

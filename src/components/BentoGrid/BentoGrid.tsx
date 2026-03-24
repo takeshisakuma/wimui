@@ -12,8 +12,10 @@ export const BentoGrid = ({
   ...props
 }: BentoGridProps) => {
   return (
-    <div className={classNames("wim-bento-grid", className)} {...props}>
-      {children}
+    <div className="wim-bento-grid-container">
+      <div className={classNames("wim-bento-grid", className)} {...props}>
+        {children}
+      </div>
     </div>
   );
 };

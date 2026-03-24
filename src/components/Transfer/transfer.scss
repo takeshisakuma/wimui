@@ -6,11 +6,11 @@
   align-items: center;
   font-family: var(--wim-font-family);
 
-  @media (width <= 768px) {
+  @container (max-width: 768px) {
     flex-direction: column;
     gap: 16px; // モバイル時は縦の余白を適切に調整
     align-items: stretch;
-    width: 80vw; // 100%から80vwに変更
+    width: 100%;
     margin: 0 auto; // 中央寄せ
   }
 
@@ -36,7 +36,7 @@
       box-shadow: var(--shadow-md); // ホバー時に質感を強調
     }
 
-    @media (width <= 768px) {
+    @container (max-width: 768px) {
       width: 100%;
       height: 300px; // 400pxから300pxに変更
       box-shadow: var(--shadow-md); // モバイルではより存在感を出す
@@ -59,7 +59,7 @@
       background: var(--wim-color-bg-secondary);
     }
 
-    @media (width <= 768px) {
+    @container (max-width: 768px) {
       padding: 14px 16px; // ヘッダーを厚くする
     }
   }
@@ -108,7 +108,7 @@
 
   &__item-label {
     // Standard font styles are handled by BaseListItem
-    @media (width <= 768px) {
+    @container (max-width: 768px) {
       font-size: 16px; // 文字も少し大きく
     }
   }
@@ -118,7 +118,7 @@
     flex-direction: column;
     gap: 12px; // ボタン間の余白も少し広げて「太め」に
 
-    @media (width <= 768px) {
+    @container (max-width: 768px) {
       flex-direction: row;
       gap: 24px; // ボタン間の距離を広げる
       justify-content: center;
