@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.9s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.2s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -11248,6 +11248,7 @@ className?: string</code></pre>
               
               
               <pre><code>const AiAssistantIntegration = () =&gt; {
+  const { t, i18n } = useTranslation(ALL_NAMESPACES);
   interface Message {
     id: number;
     text: string;
@@ -11260,9 +11261,9 @@ className?: string</code></pre>
   const [messages, setMessages] = useState&lt;Message[]&gt;([
     {
       id: 1,
-      text: &quot;Hello! I am your AI Assistant. How can I help you today?&quot;,
+      text: t(&quot;story_chat_ai_greeting&quot;),
       position: &quot;left&quot;,
-      sender: &quot;AI Assistant&quot;,
+      sender: t(&quot;story_chat_ai_assistant&quot;),
       timestamp: new Date().toLocaleTimeString([], {
         hour: &quot;2-digit&quot;,
         minute: &quot;2-digit&quot;,
@@ -11272,12 +11273,22 @@ className?: string</code></pre>
   const [isLoading, setIsLoading] = useState(false);
   const messageListRef = useRef&lt;HTMLDivElement&gt;(null);
 
+  useEffect(() =&gt; {
+    setMessages((prev) =&gt;
+      prev.map((msg) =&gt;
+        msg.id === 1
+          ? { ...msg, text: t(&quot;story_chat_ai_greeting&quot;), sender: t(&quot;story_chat_ai_assistant&quot;) }
+          : msg
+      )
+    );
+  }, [i18n.language]);
+
   const handleSend = async (message: string) =&gt; {
     const newMessage: Message = {
       id: Date.now(),
       text: message,
       position: &quot;right&quot;,
-      sender: &quot;You&quot;,
+      sender: t(&quot;story_chat_you&quot;),
       timestamp: new Date().toLocaleTimeString([], {
         hour: &quot;2-digit&quot;,
         minute: &quot;2-digit&quot;,
@@ -11294,7 +11305,7 @@ className?: string</code></pre>
         id: typingMessageId,
         text: &quot;...&quot;,
         position: &quot;left&quot;,
-        sender: &quot;AI Assistant&quot;,
+        sender: t(&quot;story_chat_ai_assistant&quot;),
         timestamp: &quot;&quot;,
         isTyping: true,
       },
@@ -11312,7 +11323,7 @@ className?: string</code></pre>
 
       // Mocking the AI response for demonstration purposes
       await new Promise((resolve) =&gt; setTimeout(resolve, 1500));
-      const responseText = `This is a simulated AI response to: &quot;${message}&quot;. In a real environment, you would uncomment the Gemini API code snippet above.`;
+      const responseText = t(&quot;story_chat_ai_response&quot;, { message });
 
       setMessages((prev) =&gt;
         prev
@@ -11321,7 +11332,7 @@ className?: string</code></pre>
             id: Date.now() + 2,
             text: responseText,
             position: &quot;left&quot;,
-            sender: &quot;AI Assistant&quot;,
+            sender: t(&quot;story_chat_ai_assistant&quot;),
             timestamp: new Date().toLocaleTimeString([], {
               hour: &quot;2-digit&quot;,
               minute: &quot;2-digit&quot;,
@@ -11422,7 +11433,7 @@ className?: string</code></pre>
           ))}
         &lt;/ChatMessageList&gt;
         &lt;ChatInput
-          placeholder=&quot;Ask the AI Assistant...&quot;
+          placeholder={t(&quot;story_chat_placeholder_ai&quot;)}
           onSend={handleSend}
           disabled={isLoading}
         /&gt;

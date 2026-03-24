@@ -182,5 +182,9 @@
   "story_ganttchart_task_design": "Fase de Design",
   "story_ganttchart_task_development": "Desenvolvimento",
   "story_ganttchart_task_testing": "Teste & QA",
-  "story_ganttchart_task_release": "Lançamento"
+  "story_ganttchart_task_release": "Lançamento",
+  "story_chat_ai_assistant": "Assistente de IA",
+  "story_chat_ai_greeting": "Olá! Sou seu Assistente de IA. Como posso ajudá-lo hoje?",
+  "story_chat_ai_response": "Esta é uma resposta de IA simulada para: \"{{message}}\". Em um ambiente real, você descomentaria o trecho de código da API Gemini acima.",
+  "story_chat_placeholder_ai": "Pergunte ao Assistente de IA..."
 }

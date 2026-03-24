@@ -182,5 +182,9 @@
   "story_ganttchart_task_design": "Design Phase",
   "story_ganttchart_task_development": "Development",
   "story_ganttchart_task_testing": "Testing & QA",
-  "story_ganttchart_task_release": "Release"
+  "story_ganttchart_task_release": "Release",
+  "story_chat_ai_assistant": "AI Assistant",
+  "story_chat_ai_greeting": "Hello! I am your AI Assistant. How can I help you today?",
+  "story_chat_ai_response": "This is a simulated AI response to: \"{{message}}\". In a real environment, you would uncomment the Gemini API code snippet above.",
+  "story_chat_placeholder_ai": "Ask the AI Assistant..."
 }
