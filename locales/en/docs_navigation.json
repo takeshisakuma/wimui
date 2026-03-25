@@ -462,5 +462,19 @@
   "doc_stepper_keyboard_desc": "Tab moves focus through step indicators. Enter or Space activates a step when non-linear mode is enabled.",
   "doc_stepper_i18n_desc": "All visible text uses i18n keys. Pass translated strings through step label and description props.",
   "doc_tabs_keyboard_desc": "Tab focuses the tab list. Arrow keys navigate between tab triggers. Enter or Space activates the focused tab.",
-  "doc_tabs_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the tab label and panel content props."
+  "doc_tabs_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the tab label and panel content props.",
+  "doc_affix_keyboard_desc": "This component is a positioning wrapper with no keyboard interaction of its own. Keyboard navigation applies to the interactive content placed inside it.",
+  "doc_affix_i18n_desc": "Apply i18n to the content placed inside the Affix component.",
+  "doc_anchor_keyboard_desc": "Tab moves focus through each anchor link in the list. Enter activates the focused link and scrolls to the target section.",
+  "doc_anchor_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each anchor item's label prop.",
+  "doc_backtop_keyboard_desc": "Tab focuses the back-to-top button. Enter or Space scrolls the page back to the top.",
+  "doc_backtop_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the aria-label prop.",
+  "doc_infinitescroll_keyboard_desc": "Tab moves focus through items in the list. New items are announced to screen readers via aria-live when loaded.",
+  "doc_infinitescroll_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the loadingText and endMessage props.",
+  "doc_tabbar_keyboard_desc": "Tab focuses the tab bar. Arrow keys navigate between tab items. Enter or Space activates the focused tab.",
+  "doc_tabbar_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each tab item's label prop.",
+  "doc_tabnavigation_keyboard_desc": "Tab focuses the tab navigation. Arrow keys navigate between tab items. Enter or Space activates the focused tab.",
+  "doc_tabnavigation_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each tab item's label prop.",
+  "doc_tour_keyboard_desc": "Tab moves focus through the Previous, Next, and Close buttons within each tour step. Enter or Space activates the focused button. Escape closes the tour.",
+  "doc_tour_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each step's title, description, and button label props."
 }
