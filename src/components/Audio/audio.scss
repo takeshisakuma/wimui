@@ -78,9 +78,9 @@
     content: "";
     background: linear-gradient(
       90deg,
-      #f2f2f2 25%,
-      #fafafa 50%,
-      #f2f2f2 75%
+      var(--wim-color-bg-secondary) 25%,
+      var(--wim-color-bg-primary) 50%,
+      var(--wim-color-bg-secondary) 75%
     );
     background-size: 200% 100%;
     border-radius: inherit;
@@ -121,7 +121,7 @@
   flex-direction: column;
   gap: 0.6rem; // Adjusted for 3 rows
   padding: 1rem 0 0.8rem; // More generous padding
-  color: white;
+  color: var(--text-white);
   background: linear-gradient(135deg, #1e1e24 0%, #292930 100%);
   mask-image: none;
 }
@@ -180,7 +180,7 @@
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.2;
-  color: white;
+  color: var(--text-white);
 }
 
 .wim-audio-artist {
@@ -200,7 +200,7 @@
   height: 12px;
   font-size: 8px;
   font-weight: bold;
-  color: white;
+  color: var(--color-text-on-primary);
   background: var(--color-primary);
   border-radius: var(--radius-full);
 }
@@ -237,7 +237,7 @@
   width: 32px;
   height: 32px;
   padding: var(--spacing-xs);
-  color: white;
+  color: var(--text-white);
   cursor: pointer;
   background: none;
   border: none;
@@ -273,8 +273,8 @@
     background-color: var(--color-primary);
 
     &:hover {
-      color: white;
-      background-color: color-mix(in srgb, var(--color-primary) 85%, white);
+      color: var(--color-text-on-primary);
+      background-color: color-mix(in srgb, var(--color-primary) 85%, var(--text-white));
     }
 
     .wim-icon {
@@ -346,7 +346,7 @@
     width: 8px;
     height: 8px;
     content: "";
-    background-color: white;
+    background-color: var(--text-white);
     border-radius: var(--radius-full);
     box-shadow: 0 0 4px rgb(0 0 0 / 0.3);
     transform: translateY(-50%);
@@ -380,7 +380,7 @@
     height: 10px;
     appearance: none;
     cursor: pointer;
-    background: white;
+    background: var(--text-white);
     border-radius: var(--radius-full);
   }
 
@@ -388,7 +388,7 @@
     width: 10px;
     height: 10px;
     cursor: pointer;
-    background: white;
+    background: var(--text-white);
     border: none;
     border-radius: var(--radius-full);
   }
