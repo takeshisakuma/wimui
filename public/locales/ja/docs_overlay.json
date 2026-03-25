@@ -543,5 +543,21 @@
   "overlay_tour_desc": "特定の要素を順番に強調して使い道を教えます。",
   "overlay_tour_usage": "オンボーディング、新機能案内、操作ガイド",
   "overlay_type": "種類",
-  "overlay_vert_list_desc": "垂直方向のリスト選択。"
+  "overlay_vert_list_desc": "垂直方向のリスト選択。",
+  "doc_bottomsheet_keyboard_desc": "Tab キーでボトムシート内のフォーカスを移動します。Escape キーで閉じます。開いている間はフォーカスがトラップされます。",
+  "doc_bottomsheet_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。title・アクションラベルプロパティに翻訳済み文字列を渡してください。",
+  "doc_contextmenu_keyboard_desc": "矢印キーでメニューアイテムを移動します。Enter または Space キーでフォーカス中のアイテムを実行します。Escape キーでメニューを閉じます。",
+  "doc_contextmenu_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。メニューアイテムラベルプロパティに翻訳済み文字列を渡してください。",
+  "doc_dialog_keyboard_desc": "Tab キーでダイアログ内のフォーカスを移動します。Escape キーで閉じます。開いている間はフォーカスがトラップされます。",
+  "doc_dialog_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。title・content プロパティに翻訳済み文字列を渡してください。",
+  "doc_drawer_keyboard_desc": "Tab キーでドロワー内のフォーカスを移動します。Escape キーで閉じます。開いている間はフォーカスがトラップされます。",
+  "doc_drawer_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。title・content プロパティに翻訳済み文字列を渡してください。",
+  "doc_dropzone_keyboard_desc": "Tab キーでドロップゾーンにフォーカスします。Enter または Space キーでファイル選択ダイアログを開きます。ドラッグ＆ドロップの代替としてキーボード操作をサポートしています。",
+  "doc_dropzone_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。label・ヘルパーテキストプロパティに翻訳済み文字列を渡してください。",
+  "doc_loader_keyboard_desc": "このコンポーネントは標準の Tab フォーカス以外の固有のキーボード操作は必要ありません。",
+  "doc_loader_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。aria-label プロパティに翻訳済み文字列を渡してください。",
+  "doc_menu_keyboard_desc": "矢印キーでメニューアイテムを移動します。Enter または Space キーでフォーカス中のアイテムを実行します。Escape キーでサブメニューまたはメニューを閉じます。",
+  "doc_menu_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。メニューアイテムラベルと aria-label プロパティに翻訳済み文字列を渡してください。",
+  "doc_popover_keyboard_desc": "Tab キーでトリガー要素にフォーカスします。Enter または Space キーでポップオーバーを開きます。Tab キーで内部を移動します。Escape キーで閉じます。",
+  "doc_popover_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。content・aria-label プロパティに翻訳済み文字列を渡してください。"
 }

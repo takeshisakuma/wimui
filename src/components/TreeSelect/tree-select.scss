@@ -47,7 +47,14 @@
     }
 
     &:focus:not(&--disabled) {
-      outline: none;
+      outline: none; // フォーカスリングは InputBase の :focus-within で提供
+    }
+
+    &:focus-visible:not(&--disabled) {
+      @media (forced-colors: active) {
+        outline: 2px solid Highlight;
+        outline-offset: 2px;
+      }
     }
 
     &--open {
@@ -114,6 +121,11 @@
     border: 1px solid var(--wim-color-border);
     border-radius: 8px;
     box-shadow: var(--shadow-md);
+
+    @media (forced-colors: active) {
+      border: 2px solid ButtonBorder;
+      box-shadow: none;
+    }
 
     &::-webkit-scrollbar {
       width: 6px;

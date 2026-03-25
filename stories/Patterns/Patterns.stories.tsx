@@ -40,12 +40,12 @@ export default meta;
 
 export const LoginForm: StoryObj = {
   render: () => (
-    <Center style={{ height: "100vh", background: "var(--wim-color-surface)" }}>
+    <Center style={{ height: "100vh", backgroundColor: "var(--wim-color-surface)" }}>
       <Card
         style={{
           width: "400px",
           padding: "32px",
-          border: "1px solid var(--wim-color-border-secondary)",
+          border: "1px solid", borderColor: "var(--wim-color-border-secondary)",
         }}
       >
         <Stack gap="xl">
@@ -134,7 +134,7 @@ export const LoginForm: StoryObj = {
 
 export const DashboardHeader: StoryObj = {
   render: () => (
-    <div style={{ minHeight: "400px", background: "var(--wim-color-surface)" }}>
+    <div style={{ minHeight: "400px", backgroundColor: "var(--wim-color-surface)" }}>
       <style>{`
                 @media (max-width: 768px) {
                     .desktop-only { display: none !important; }
@@ -179,7 +179,7 @@ export const DashboardHeader: StoryObj = {
               style={{
                 width: "32px",
                 height: "32px",
-                background: "var(--color-primary)",
+                backgroundColor: "var(--color-primary)",
                 borderRadius: "6px",
                 display: "flex",
                 alignItems: "center",
@@ -316,7 +316,7 @@ export const DashboardHeader: StoryObj = {
               <Stats
                 key={i}
                 style={{
-                  border: "1px solid var(--wim-color-border-secondary)",
+                  border: "1px solid", borderColor: "var(--wim-color-border-secondary)",
                 }}
               >
                 <Stack justify="space-between" align="center" direction="row">
@@ -340,14 +340,14 @@ export const DashboardHeader: StoryObj = {
 
 export const UserProfileForm: StoryObj = {
   render: () => (
-    <Center style={{ background: "var(--wim-color-surface)", padding: "20px" }}>
+    <Center style={{ backgroundColor: "var(--wim-color-surface)", padding: "20px" }}>
       <Card
         style={{
           maxWidth: "1000px",
           width: "100%",
           padding: "0",
           overflow: "hidden",
-          border: "1px solid var(--wim-color-border-secondary)",
+          border: "1px solid", borderColor: "var(--wim-color-border-secondary)",
         }}
       >
         <div
@@ -375,7 +375,7 @@ export const UserProfileForm: StoryObj = {
           <div
             style={{
               borderRight: "1px solid var(--wim-color-border-secondary)",
-              background: "var(--wim-color-surface)",
+              backgroundColor: "var(--wim-color-surface)",
             }}
           >
             <div style={{ padding: "24px" }}>
@@ -598,7 +598,7 @@ export const PricingTable: StoryObj = {
         <Card
           style={{
             padding: "32px",
-            border: "2px solid var(--wim-color-border-secondary)",
+            border: "2px solid", borderColor: "var(--wim-color-border-secondary)",
           }}
         >
           <Stack gap="lg" style={{ height: "100%" }}>
@@ -771,7 +771,7 @@ export const PricingTable: StoryObj = {
         <Card
           style={{
             padding: "32px",
-            border: "2px solid var(--wim-color-border-secondary)",
+            border: "2px solid", borderColor: "var(--wim-color-border-secondary)",
           }}
         >
           <Stack gap="lg" style={{ height: "100%" }}>
@@ -998,7 +998,7 @@ export const HeroSection: StoryObj = {
 export const ErrorPage: StoryObj = {
   render: () => (
     <Center
-      style={{ height: "100vh", background: "var(--wim-color-surface)", padding: "24px" }}
+      style={{ height: "100vh", backgroundColor: "var(--wim-color-surface)", padding: "24px" }}
     >
       <Stack
         align="center"

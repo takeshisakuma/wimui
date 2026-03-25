@@ -245,7 +245,53 @@
     &--loading {
       pointer-events: none;
     }
+  }
+}
 
+// ─── ダークモード上書き ───────────────────────────────────────────────────────
+
+@mixin wim-button-dark {
+  // secondary default: 濃紺テキストが暗背景で消えるため白テキスト+セカンダリ背景に変更
+  &--secondary.wim-button--default {
+    color: var(--wim-color-text-primary);
+    background-color: var(--wim-color-bg-secondary);
+    border-color: var(--wim-color-border);
+  }
+
+  // tertiary: rgb(0 0 0 / 0.03) は暗背景で不可視になるため白ベース半透明に変更
+  &--tertiary {
+    background-color: rgb(255 255 255 / 0.06);
+    border-color: rgb(255 255 255 / 0.15);
+
+    &.wim-button--default {
+      color: var(--wim-color-text-primary);
+    }
+
+    &:hover:not(:disabled) {
+      background-color: var(--wim-color-bg-hover);
+      border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgb(255 255 255 / 0.12);
+      border-color: rgb(255 255 255 / 0.3);
+    }
+  }
+}
+
+@layer component {
+  [data-theme="dark"] .wim-button {
+    @include wim-button-dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .wim-button {
+      @include wim-button-dark;
+    }
+  }
+
+  // dummy to close @layer (以下は元のブロックを閉じるための構造維持)
+  .wim-button {
     &--animated-width {
       transition:
         width var(--duration-normal) var(--easing-base),

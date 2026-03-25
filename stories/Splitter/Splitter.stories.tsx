@@ -48,7 +48,7 @@ export const Horizontal: Story = {
       <div
         style={{
           height: "400px",
-          border: "1px solid var(--wim-color-border-subtle)",
+          border: "1px solid", borderColor: "var(--wim-color-border-subtle)",
         }}
       >
         <Splitter orientation="horizontal">
@@ -72,7 +72,7 @@ export const Vertical: Story = {
       <div
         style={{
           height: "400px",
-          border: "1px solid var(--wim-color-border-subtle)",
+          border: "1px solid", borderColor: "var(--wim-color-border-subtle)",
         }}
       >
         <Splitter orientation="vertical">
@@ -96,7 +96,7 @@ export const MultiplePanels: Story = {
       <div
         style={{
           height: "400px",
-          border: "1px solid var(--wim-color-border-subtle)",
+          border: "1px solid", borderColor: "var(--wim-color-border-subtle)",
         }}
       >
         <Splitter orientation="horizontal">
@@ -124,7 +124,7 @@ export const Nested: Story = {
       <div
         style={{
           height: "600px",
-          border: "1px solid var(--wim-color-border-subtle)",
+          border: "1px solid", borderColor: "var(--wim-color-border-subtle)",
         }}
       >
         <Splitter orientation="horizontal">
@@ -156,7 +156,7 @@ export const Constraints: Story = {
       <div
         style={{
           height: "400px",
-          border: "1px solid var(--wim-color-border-subtle)",
+          border: "1px solid", borderColor: "var(--wim-color-border-subtle)",
         }}
       >
         <Splitter orientation="horizontal">

@@ -11,11 +11,95 @@ import { T } from "../T";
     margin: "0 0 16px 0",
     fontSize: "18px",
     lineHeight: "28px",
-    color: "#6c757d",
+    color: "var(--wim-color-text-secondary)",
   }}
 >
   <T k="doc_queryBuilder_desc" />
 </p>
+
+## <T k="doc_design_intent_title" />
+<p><T k="doc_querybuilder_design_intent" /></p>
+
+## <T k="doc_choice_matrix_title" />
+<p><T k="doc_querybuilder_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>QueryBuilder</b></td>
+      <td><T k="doc_querybuilder_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>FilterBar / SearchInput</b></td>
+      <td><T k="doc_querybuilder_choice_filterbar_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc_component" /></th>
+      <th><T k="doc_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc_querybuilder_anatomy_root_label" /></b></td>
+      <td><T k="doc_querybuilder_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc_querybuilder_anatomy_group_label" /></b></td>
+      <td><T k="doc_querybuilder_anatomy_group" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc_querybuilder_anatomy_rule_label" /></b></td>
+      <td><T k="doc_querybuilder_anatomy_rule" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc_querybuilder_anatomy_combinator_label" /></b></td>
+      <td><T k="doc_querybuilder_anatomy_combinator" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc_querybuilder_anatomy_not_label" /></b></td>
+      <td><T k="doc_querybuilder_anatomy_not" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc_content_guidelines_title" />
+<ul>
+  <li><T k="doc_querybuilder_content_guideline_1" /></li>
+  <li><T k="doc_querybuilder_content_guideline_2" /></li>
+</ul>
+
+## <T k="doc_motion_spec_title" />
+<p><T k="doc_querybuilder_motion_desc" /></p>
+
+## <T k="doc_a11y_spec_title" />
+<p><T k="doc_querybuilder_a11y_desc" /></p>
+
+## <T k="doc_real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc_scenario_admin_title" />:</strong> <T k="doc_querybuilder_scenario_1" />
+  </li>
+  <li>
+    <strong><T k="doc_scenario_dashboard_title" />:</strong> <T k="doc_querybuilder_scenario_2" />
+  </li>
+</ul>
+
+## <T k="doc_best_practices_title" />
+<ul>
+  <li><T k="doc_querybuilder_best_practice_1" /></li>
+  <li><T k="doc_querybuilder_best_practice_2" /></li>
+</ul>
 
 ## <T k="doc_querybuilder_logic_title" />
 
@@ -61,6 +145,8 @@ const MyComponent = () => {
 
 <Canvas of={QueryBuilderStories.Default} />
 
+<Canvas of={QueryBuilderStories.Predefined} />
+
 ## <T k="doc_design_tokens_title" />
 <table>
   <thead>
@@ -83,7 +169,7 @@ const MyComponent = () => {
       <td><T k="doc_querybuilder_token_bg_secondary" /></td>
     </tr>
     <tr>
-      <td><code>--bg-component</code></td>
+      <td><code>--wim-color-bg-component</code></td>
       <td><T k="doc_querybuilder_token_bg_component" /></td>
     </tr>
     <tr>
@@ -96,6 +182,21 @@ const MyComponent = () => {
     </tr>
   </tbody>
 </table>
+
+## <T k="doc_responsive_title" />
+<p><T k="doc_querybuilder_responsive_desc" /></p>
+
+## <T k="doc_keyboard_nav_title" />
+<p><T k="doc_querybuilder_keyboard_desc" /></p>
+
+## <T k="doc_i18n_title" />
+<p><T k="doc_querybuilder_i18n_desc" /></p>
+
+## <T k="doc_test_title" />
+
+```bash
+npm run test -- QueryBuilder
+```
 
 ## <T k="doc_props" />
 

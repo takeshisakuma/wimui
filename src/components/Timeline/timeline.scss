@@ -102,8 +102,7 @@
   &--icon {
     width: 24px;
     height: 24px;
-    background-color: transparent;
-    background-color: #fff;
+    background-color: var(--wim-color-bg-component);
     border: 2px solid var(--wim-color-neutral, #bdbdbd);
 
     svg {

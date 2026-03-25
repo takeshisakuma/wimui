@@ -297,5 +297,9 @@
   "doc_linkbutton_motion_desc": "As transições são mínimas e propositais, respeitando as preferências de movimento reduzido do usuário.",
   "doc_linkbutton_scenario_1": "Integrando LinkButton em fluxos de trabalho para coleta ou exibição de dados.",
   "doc_linkbutton_scenario_2": "Usando LinkButton em visualizações de gerenciamento para organização de informações.",
-  "doc_linkbutton_title": "Um botão que funciona como um link, usado para navegação ou ações com aparência de link."
+  "doc_linkbutton_title": "Um botão que funciona como um link, usado para navegação ou ações com aparência de link.",
+  "doc_button_keyboard_desc": "Tab foca o botão. Espaço ou Enter o ativa. Botões desabilitados não são acessíveis pelo teclado.",
+  "doc_button_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através da prop label ou children.",
+  "doc_buttongroup_keyboard_desc": "Tab foca o contêiner do grupo de botões. Cada botão dentro do grupo pode ser focado individualmente.",
+  "doc_buttongroup_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através da prop label ou children de cada botão."
 }

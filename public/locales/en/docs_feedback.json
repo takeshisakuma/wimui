@@ -451,5 +451,15 @@
   "doc_alert_token_radius": "Component corner radius (8px)",
   "doc_alert_token_shadow": "Base shadow for light-mode elevation.",
   "doc_alert_token_transition": "Animation for hover and visibility transitions.",
-  "doc_alert_token_opacity": "Initial opacity of the close button (ghost state)."
+  "doc_alert_token_opacity": "Initial opacity of the close button (ghost state).",
+  "doc_alert_keyboard_desc": "Tab moves focus to the close button when present. Escape dismisses the alert if it is closable.",
+  "doc_alert_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title and message props, or override via the i18n namespace.",
+  "doc_banner_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",
+  "doc_banner_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title, description, and action label props.",
+  "doc_notification_keyboard_desc": "Tab moves focus within the notification. Escape closes it when triggered programmatically.",
+  "doc_notification_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title and description props.",
+  "doc_snackbar_keyboard_desc": "Tab moves focus to the action button when present. Escape dismisses the snackbar.",
+  "doc_snackbar_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the message and action label props.",
+  "doc_toast_keyboard_desc": "Tab moves focus to the action button when present. Escape dismisses the toast.",
+  "doc_toast_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title, description, and action label props."
 }

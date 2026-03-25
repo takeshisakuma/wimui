@@ -23,8 +23,8 @@
   justify-content: space-between;
   padding: 1rem;
   overflow: hidden;
-  background: white;
-  border: 1px solid rgb(0 0 0 / 0.1);
+  background-color: var(--wim-color-bg-component);
+  border: 1px solid var(--wim-color-border);
   border-radius: 1rem;
   box-shadow:
     0 4px 6px -1px rgb(0 0 0 / 0.1),

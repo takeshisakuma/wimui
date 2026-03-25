@@ -1,0 +1,33 @@
+.wim-component-dashboard {
+  &__stat-box {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 200px;
+    padding: 16px 24px;
+    margin-bottom: 32px;
+    background-color: var(--wim-color-surface);
+    border: 1px solid var(--wim-color-border);
+    border-radius: 12px;
+  }
+
+  &__stat-label {
+    font-size: 14px;
+    color: var(--wim-color-text-secondary);
+  }
+
+  &__stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--wim-color-primary);
+  }
+
+  &__note-box {
+    padding: 12px;
+    margin-bottom: 32px;
+    color: var(--wim-color-text-primary);
+    background-color: var(--wim-color-surface);
+    border: 1px solid var(--wim-color-border);
+    border-radius: 8px;
+  }
+}

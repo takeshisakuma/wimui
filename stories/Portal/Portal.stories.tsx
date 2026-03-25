@@ -156,7 +156,7 @@ export const CustomContainer: Story = {
             ref={setContainer}
             bg="var(--wim-neutral-50, #f8fafc)"
             style={{
-              border: "2px dashed var(--wim-primary, #3b82f6)",
+              border: "2px dashed", borderColor: "var(--wim-primary, #3b82f6)",
               minHeight: "150px",
               display: "flex",
               alignItems: "center",

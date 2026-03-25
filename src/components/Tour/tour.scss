@@ -22,7 +22,8 @@
   z-index: 1002;
   width: 300px;
   max-width: calc(100vw - 32px);
-  background: white;
+  background-color: var(--wim-color-bg-component);
+  border: 1px solid var(--wim-color-border);
   border-radius: var(--radius-lg, 8px);
   box-shadow: var(--shadow-lg, 0 5px 10px rgb(0 0 0 / 0.18));
   transition: var(--transition-base);
@@ -41,7 +42,7 @@
 .wim-tour-description {
   margin: 0 0 var(--spacing-2xl, 1rem) 0;
   font-size: 0.9rem;
-  color: var(--text-secondary, #666);
+  color: var(--wim-color-text-secondary);
 }
 
 .wim-tour-footer {
@@ -52,7 +53,7 @@
 
 .wim-tour-progress {
   font-size: 0.8rem;
-  color: var(--text-tertiary, #999);
+  color: var(--wim-color-text-tertiary);
 }
 
 .wim-tour-buttons {

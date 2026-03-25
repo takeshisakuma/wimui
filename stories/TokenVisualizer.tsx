@@ -17,10 +17,10 @@ export const SpacingSwatch = ({
         alignItems: "center",
         gap: "16px",
         marginBottom: "12px",
-        background: "var(--wim-color-surface)",
+        backgroundColor: "var(--wim-color-surface)",
         padding: "12px",
         borderRadius: "8px",
-        border: "1px solid var(--wim-color-border, #eee)",
+        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
       }}
     >
       <div
@@ -39,7 +39,7 @@ export const SpacingSwatch = ({
           fontFamily: "monospace",
           fontSize: "12px",
           color: "var(--wim-color-text-secondary)",
-          background: "var(--wim-color-surface)",
+          backgroundColor: "var(--wim-color-surface)",
           padding: "2px 6px",
           borderRadius: "4px",
         }}
@@ -51,7 +51,7 @@ export const SpacingSwatch = ({
           style={{
             height: "24px",
             width: size,
-            background: "var(--color-primary, #007aff)",
+            backgroundColor: "var(--color-primary, #007aff)",
             borderRadius: "2px",
             opacity: 0.7,
           }}
@@ -78,17 +78,17 @@ export const RadiusSwatch = ({
         alignItems: "center",
         gap: "12px",
         padding: "16px",
-        background: "var(--wim-color-surface)",
+        backgroundColor: "var(--wim-color-surface)",
         borderRadius: "12px",
-        border: "1px solid var(--wim-color-border, #eee)",
+        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
       }}
     >
       <div
         style={{
           width: "100%",
           height: "80px",
-          background: "var(--wim-color-surface)",
-          border: "2px solid var(--color-primary, #007aff)",
+          backgroundColor: "var(--wim-color-surface)",
+          border: "2px solid", borderColor: "var(--color-primary, #007aff)",
           borderRadius: radius,
         }}
       ></div>
@@ -145,7 +145,7 @@ export const ShadowSwatch = ({
         padding: "40px 24px",
         background: "#ffffff",
         borderRadius: "16px",
-        border: "1px solid var(--wim-color-border, #eee)",
+        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
         textAlign: "center",
       }}
     >
@@ -190,7 +190,7 @@ export const ShadowSwatch = ({
             fontFamily: "monospace",
             fontSize: "11px",
             color: "var(--wim-color-text-secondary)",
-            background: "var(--wim-color-surface)",
+            backgroundColor: "var(--wim-color-surface)",
             padding: "2px 8px",
             borderRadius: "4px",
             marginTop: "4px",
@@ -223,9 +223,9 @@ export const MotionSwatch = ({
         flexDirection: "column",
         gap: "12px",
         padding: "16px",
-        background: "var(--wim-color-surface)",
+        backgroundColor: "var(--wim-color-surface)",
         borderRadius: "12px",
-        border: "1px solid var(--wim-color-border, #eee)",
+        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
         cursor: "pointer",
       }}
       onClick={() => setActive(!active)}
@@ -246,7 +246,7 @@ export const MotionSwatch = ({
       <div
         style={{
           height: "40px",
-          background: "var(--wim-color-surface)",
+          backgroundColor: "var(--wim-color-surface)",
           borderRadius: "20px",
           position: "relative",
           overflow: "hidden",
@@ -258,7 +258,7 @@ export const MotionSwatch = ({
             height: "32px",
             width: "32px",
             borderRadius: "50%",
-            background: "var(--color-primary)",
+            backgroundColor: "var(--color-primary)",
             top: "4px",
             left: active ? "calc(100% - 36px)" : "4px",
             transition: `all ${duration} ${easing}`,
@@ -293,10 +293,10 @@ export const TypographyVisualizer = ({
   const actualText = textKey ? t(textKey) : (text || "");
 
   const style: React.CSSProperties = {
-    background: "var(--wim-color-surface)",
+    backgroundColor: "var(--wim-color-surface)",
     padding: "24px",
     borderRadius: "8px",
-    border: "1px solid var(--wim-color-border, #eee)",
+    border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
     marginTop: "8px",
     fontSize: "16px",
     color: "var(--wim-color-text-primary)",
@@ -387,9 +387,9 @@ export const FontWeightVisualizer = ({
       <div
         style={{
           padding: "20px",
-          background: "var(--wim-color-surface)",
+          backgroundColor: "var(--wim-color-surface)",
           borderRadius: "8px",
-          border: "1px solid var(--wim-color-border)",
+          border: "1px solid", borderColor: "var(--wim-color-border)",
           color: "var(--wim-color-text-primary)",
         }}
       >
@@ -441,9 +441,9 @@ export const DecorationVisualizer = ({
       <div
         style={{
           padding: "20px",
-          background: "var(--wim-color-surface)",
+          backgroundColor: "var(--wim-color-surface)",
           borderRadius: "8px",
-          border: "1px solid var(--wim-color-border, #eee)",
+          border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
           color: "var(--wim-color-text-primary)",
         }}
       >
@@ -470,16 +470,16 @@ export const FocusOutlineSwatch = () => {
         alignItems: "center",
         gap: "12px",
         padding: "24px",
-        background: "var(--wim-color-surface)",
+        backgroundColor: "var(--wim-color-surface)",
         borderRadius: "12px",
-        border: "1px solid var(--wim-color-border, #eee)",
+        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
       }}
     >
       <div
         style={{
           width: "100px",
           height: "40px",
-          background: "var(--color-primary, #007aff)",
+          backgroundColor: "var(--color-primary, #007aff)",
           borderRadius: "var(--radius-md)",
           outline: "var(--focus-outline-width) solid rgba(0, 122, 255, 0.5)",
           outlineOffset: "var(--focus-outline-offset)",
@@ -528,9 +528,9 @@ export const InteractiveSwatch = ({
         alignItems: "center",
         gap: "16px",
         padding: "24px",
-        background: "var(--wim-color-surface)",
+        backgroundColor: "var(--wim-color-surface)",
         borderRadius: "12px",
-        border: "1px solid var(--wim-color-border, #eee)",
+        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
       }}
     >
       <div
@@ -547,8 +547,8 @@ export const InteractiveSwatch = ({
         style={{
           width: "120px",
           height: "60px",
-          background: "var(--wim-color-surface)",
-          border: "1px solid var(--wim-color-border, #ccc)",
+          backgroundColor: "var(--wim-color-surface)",
+          border: "1px solid", borderColor: "var(--wim-color-border, #ccc)",
           borderRadius: "var(--radius-md)",
           display: "flex",
           alignItems: "center",

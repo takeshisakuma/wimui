@@ -543,5 +543,21 @@
   "overlay_tour_desc": "Realça elementos específicos em sequência para ensinar seu uso.",
   "overlay_tour_usage": "Integração, anúncios de novos recursos, guias de operação.",
   "overlay_type": "Tipo",
-  "overlay_vert_list_desc": "Seleção em lista vertical."
+  "overlay_vert_list_desc": "Seleção em lista vertical.",
+  "doc_bottomsheet_keyboard_desc": "Tab move o foco dentro do bottom sheet. Escape o fecha. O foco fica preso dentro enquanto aberto.",
+  "doc_bottomsheet_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props title e rótulo de ação.",
+  "doc_contextmenu_keyboard_desc": "As teclas de seta navegam pelos itens do menu. Enter ou Espaço ativa o item focado. Escape fecha o menu.",
+  "doc_contextmenu_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props de rótulo dos itens do menu.",
+  "doc_dialog_keyboard_desc": "Tab move o foco dentro do diálogo. Escape o fecha. O foco fica preso dentro enquanto aberto.",
+  "doc_dialog_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props title e content.",
+  "doc_drawer_keyboard_desc": "Tab move o foco dentro do drawer. Escape o fecha. O foco fica preso dentro enquanto aberto.",
+  "doc_drawer_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props title e content.",
+  "doc_dropzone_keyboard_desc": "Tab foca a dropzone. Enter ou Espaço abre um seletor de arquivos. A ativação por teclado é suportada como alternativa ao arrastar e soltar.",
+  "doc_dropzone_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props label e texto auxiliar.",
+  "doc_loader_keyboard_desc": "Este componente não requer interação específica de teclado além do foco padrão com Tab.",
+  "doc_loader_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através da prop aria-label.",
+  "doc_menu_keyboard_desc": "As teclas de seta navegam pelos itens do menu. Enter ou Espaço ativa o item focado. Escape fecha submenus ou o menu.",
+  "doc_menu_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através dos rótulos dos itens e da prop aria-label.",
+  "doc_popover_keyboard_desc": "Tab foca o elemento de acionamento. Enter ou Espaço abre o popover. Tab move o foco dentro dele. Escape o fecha.",
+  "doc_popover_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props content e aria-label."
 }

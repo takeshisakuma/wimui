@@ -1,10 +1,11 @@
-import React, { useState, useMemo, useId, useEffect } from "react";
+import React, { useState, useMemo, useId, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { Button } from "../Button/Button";
 import { BaseListItem } from "../_internal/BaseListItem";
 import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
+import { VisuallyHidden } from "../VisuallyHidden/VisuallyHidden";
 import "./transfer.scss";
 
 export type TransferItem = {
@@ -77,6 +78,10 @@ export const Transfer = ({
   const [focusedSourceKey, setFocusedSourceKey] = useState<string | null>(null);
   const [focusedTargetKey, setFocusedTargetKey] = useState<string | null>(null);
 
+  // aria-live status message for screen reader announcements on item moves
+  const [statusMessage, setStatusMessage] = useState("");
+  const statusTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   // Reset focused key if it's no longer in the list (e.g. after move)
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
@@ -119,6 +124,8 @@ export const Transfer = ({
         : targetData.map((d) => d.key);
 
     const moveKeys = selectedKeys.filter((k) => currentListKeys.includes(k));
+    if (moveKeys.length === 0) return;
+
     const nextTargetKeys =
       direction === "toRight"
         ? [...currentTargetKeys, ...moveKeys]
@@ -132,6 +139,16 @@ export const Transfer = ({
       onChange(nextTargetKeys, direction, moveKeys);
     }
     setSelectedKeys((prev) => prev.filter((k) => !moveKeys.includes(k)));
+
+    // Announce the move to screen readers
+    const msgKey =
+      direction === "toRight"
+        ? "transfer_status_moved_to_target"
+        : "transfer_status_moved_to_source";
+    const msg = t(msgKey, { count: moveKeys.length });
+    if (statusTimeoutRef.current) clearTimeout(statusTimeoutRef.current);
+    setStatusMessage("");
+    statusTimeoutRef.current = setTimeout(() => setStatusMessage(msg), 50);
   };
 
   const getAdjacentKey = (
@@ -292,6 +309,9 @@ export const Transfer = ({
       className={className}
     >
       <div className="wim-transfer-container">
+        <VisuallyHidden aria-live="polite" aria-atomic="true">
+          {statusMessage}
+        </VisuallyHidden>
         <div
           className={classNames(
             "wim-transfer",
@@ -309,14 +329,16 @@ export const Transfer = ({
               size="small"
               onClick={() => moveItems("toRight")}
               disabled={disabled || moveRightDisabled}
-              iconName="ChevronRightIcon"
+              icon="ChevronRightIcon"
+              aria-label={t("transfer_move_to_target")}
             />
             <Button
               priority="secondary"
               size="small"
               onClick={() => moveItems("toLeft")}
               disabled={disabled || moveLeftDisabled}
-              iconName="ChevronLeftIcon"
+              icon="ChevronLeftIcon"
+              aria-label={t("transfer_move_to_source")}
             />
           </div>
 

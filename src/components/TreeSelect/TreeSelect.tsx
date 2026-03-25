@@ -122,10 +122,13 @@ export const TreeSelect = ({
       return;
     }
 
-    if (e.key === "Escape" || e.key === "Tab") {
+    if (e.key === "Escape") {
       e.preventDefault();
       setIsOpen(false);
       triggerRef.current?.focus();
+    } else if (e.key === "Tab") {
+      // Tab closes the popup without overriding natural focus movement
+      setIsOpen(false);
     }
   };
 

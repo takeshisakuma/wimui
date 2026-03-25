@@ -52,7 +52,7 @@ export const Default: Story = {
                 variant="elevated"
                 style={{
                   width: "100%",
-                  border: "2px solid var(--wim-primary, #0070f3)",
+                  border: "2px solid", borderColor: "var(--wim-primary, #0070f3)",
                 }}
               >
                 <Card.Header>
@@ -102,7 +102,7 @@ export const AutoFocus: Story = {
                 variant="elevated"
                 style={{
                   width: "100%",
-                  border: "2px solid var(--wim-success, #28a745)",
+                  border: "2px solid", borderColor: "var(--wim-success, #28a745)",
                 }}
               >
                 <Card.Header>

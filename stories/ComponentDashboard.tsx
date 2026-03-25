@@ -1,6 +1,7 @@
 import React from "react";
 import { T } from "./T";
 import { PlatformIcons } from "./PlatformIcons";
+import "./componentDashboard.scss";
 
 interface ComponentEntry {
   name: string;
@@ -38,26 +39,16 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
       <h1><T k="dashboard_title" /></h1>
       <p style={{ marginBottom: '16px' }}><T k="dashboard_intro" /></p>
       
-      <div style={{
-        marginBottom: '32px',
-        padding: '16px 24px',
-        background: 'var(--wim-color-surface)',
-        borderRadius: '12px',
-        border: '1px solid var(--wim-color-border)',
-        display: 'inline-flex',
-        flexDirection: 'column',
-        gap: '4px',
-        minWidth: '200px'
-      }}>
-        <span style={{ fontSize: '14px', color: 'var(--wim-color-text-secondary)' }}>
+      <div className="wim-component-dashboard__stat-box">
+        <span className="wim-component-dashboard__stat-label">
           <T k="dashboard_total_components" />
         </span>
-        <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--wim-color-primary)' }}>
+        <div className="wim-component-dashboard__stat-value">
           {totalComponents}
         </div>
       </div>
-      
-      <p style={{ marginBottom: '32px', padding: '12px', background: 'var(--wim-color-surface)', borderRadius: '8px', border: '1px solid var(--wim-color-border)', color: 'var(--wim-color-text-primary)' }}>
+
+      <p className="wim-component-dashboard__note-box">
         <T k="dashboard_tokens_link" />
       </p>
 

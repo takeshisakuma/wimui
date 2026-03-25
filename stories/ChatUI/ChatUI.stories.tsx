@@ -259,7 +259,7 @@ export const WithIcons: Story = {
                     width: "40px",
                     height: "40px",
                     borderRadius: "50%",
-                    background: "var(--wim-color-primary)",
+                    backgroundColor: "var(--wim-color-primary)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -283,7 +283,7 @@ export const WithIcons: Story = {
                     width: "40px",
                     height: "40px",
                     borderRadius: "50%",
-                    background: "var(--wim-color-secondary)",
+                    backgroundColor: "var(--wim-color-secondary)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -500,7 +500,7 @@ export const AiAssistantIntegration: Story = {
                         width: 40,
                         height: 40,
                         borderRadius: "50%",
-                        background: "var(--wim-color-primary)",
+                        backgroundColor: "var(--wim-color-primary)",
                         color: "white",
                       }}
                     >
