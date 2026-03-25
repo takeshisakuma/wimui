@@ -26,6 +26,15 @@ export type VirtualListProps<T = unknown> = Omit<
    * 表示領域の外側に追加レンダリングするアイテム数。デフォルトは 3。
    */
   overscan?: number;
+  /**
+   * 各アイテムラッパーの role 属性。デフォルトは "listitem"。
+   * listbox など別の親ロールと組み合わせる場合は "none" を指定してください。
+   */
+  itemRole?: string;
+  /**
+   * スクロールコンテナの DOM ref。外部からプログラム的にスクロール位置を制御する場合に使用します。
+   */
+  containerRef?: React.RefObject<HTMLDivElement | null>;
 };
 
 /**
@@ -38,6 +47,8 @@ export function VirtualList<T = unknown>({
   height,
   renderItem,
   overscan = 3,
+  itemRole = "listitem",
+  containerRef,
   className,
   style,
   ...props
@@ -60,6 +71,7 @@ export function VirtualList<T = unknown>({
 
   return (
     <div
+      ref={containerRef}
       className={classNames("wim-virtual-list", className)}
       style={{ ...style, height, overflowY: "auto" }}
       onScroll={handleScroll}
@@ -79,9 +91,9 @@ export function VirtualList<T = unknown>({
               key={startIndex + i}
               className="wim-virtual-list__item"
               style={{ height: itemHeight }}
-              role="listitem"
-              aria-setsize={items.length}
-              aria-posinset={startIndex + i + 1}
+              role={itemRole}
+              aria-setsize={itemRole === "listitem" ? items.length : undefined}
+              aria-posinset={itemRole === "listitem" ? startIndex + i + 1 : undefined}
             >
               {renderItem(item, startIndex + i)}
             </div>

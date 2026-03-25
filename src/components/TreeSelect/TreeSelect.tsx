@@ -1,12 +1,27 @@
 import React, { useState, useRef, useEffect, useId, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
-import { TreeView } from "../TreeView/TreeView";
+import { TreeView, TreeViewNode } from "../TreeView/TreeView";
 import { InputBase } from "../_internal/InputBase";
 import "./tree-select.scss";
 
 import { FieldTemplate } from "../_internal/FieldTemplate";
+
+/** treeData の label（i18nキー）を翻訳済み文字列に展開してツリーを再構築する */
+function resolveLabels(
+  nodes: TreeSelectNode[],
+  t: TFunction,
+): TreeViewNode[] {
+  return nodes.map((node) => ({
+    value: node.value,
+    label: t(node.label),
+    disabled: node.disabled,
+    icon: node.icon,
+    children: node.children ? resolveLabels(node.children, t) : undefined,
+  }));
+}
 
 export type TreeSelectNode = {
   label: string;
@@ -186,19 +201,11 @@ export const TreeSelect = ({
     }
   };
 
-  const renderTreeNodes = (nodes: TreeSelectNode[]) => {
-    return nodes.map((node) => (
-      <TreeView.Item
-        key={node.value}
-        value={node.value}
-        label={t(node.label)}
-        icon={node.icon}
-        disabled={node.disabled}
-      >
-        {node.children && renderTreeNodes(node.children)}
-      </TreeView.Item>
-    ));
-  };
+  // treeData を TreeViewNode 形式に変換（ラベルを翻訳済み文字列に展開）
+  const resolvedNodes = useMemo(
+    () => resolveLabels(treeData, t),
+    [treeData, t],
+  );
 
   const selectedKeys = useMemo(() => {
     if (multiple) return Array.isArray(currentValue) ? currentValue : [];
@@ -286,14 +293,13 @@ export const TreeSelect = ({
               multiSelect={multiple}
               defaultSelectedValues={selectedKeys}
               defaultCheckedValues={multiple ? selectedKeys : []}
+              nodes={resolvedNodes}
               onCheckedChange={handleSelect}
               onSelectedChange={handleSelect}
               checkable={multiple}
               searchable={searchable}
               defaultExpandedValues={defaultExpandedKeys}
-            >
-              {renderTreeNodes(treeData)}
-            </TreeView>
+            />
           </div>
         </Transition>
       </div>

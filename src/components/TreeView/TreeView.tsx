@@ -10,6 +10,9 @@ import "./tree-view.scss";
 import { Icon } from "../Icon/Icon";
 import { BaseListItem } from "../_internal/BaseListItem";
 import { useTreeViewItemExpansion } from "./useTreeViewItemExpansion";
+import { VirtualList } from "../VirtualList/VirtualList";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 type TreeViewContextType = {
   expandedValues: string[];
@@ -36,8 +39,93 @@ const useTreeView = () => {
   return context;
 };
 
+/**
+ * データ駆動モードで使用するノード型。
+ * TreeSelectNode と互換性があります。
+ */
+export type TreeViewNode = {
+  value: string;
+  label: string;
+  children?: TreeViewNode[];
+  disabled?: boolean;
+  icon?: React.ReactNode;
+};
+
+/** データ駆動モードの内部フラットノード型 */
+type FlatNode = TreeViewNode & {
+  depth: number;
+  hasChildren: boolean;
+};
+
+/** データ駆動モードのデフォルトアイテム高さ（px） */
+const NODE_ITEM_HEIGHT = 40;
+
+/** 仮想化を有効にするデフォルトのノード数しきい値 */
+const DEFAULT_VIRTUAL_THRESHOLD = 100;
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+/**
+ * ツリーデータを展開状態・検索クエリに基づいてフラット配列に変換する。
+ */
+function flattenVisible(
+  nodes: TreeViewNode[],
+  expandedValues: string[],
+  searchQuery: string,
+  depth = 0,
+): FlatNode[] {
+  const result: FlatNode[] = [];
+
+  for (const node of nodes) {
+    const labelText = node.label;
+    const matchesSelf =
+      !searchQuery ||
+      labelText.toLowerCase().includes(searchQuery.toLowerCase());
+    const hasMatchingDescendant =
+      searchQuery && node.children
+        ? hasMatchingChild(node.children, searchQuery)
+        : false;
+
+    if (searchQuery && !matchesSelf && !hasMatchingDescendant) continue;
+
+    result.push({
+      ...node,
+      depth,
+      hasChildren: !!(node.children && node.children.length > 0),
+    });
+
+    const isExpanded =
+      expandedValues.includes(node.value) ||
+      (!!searchQuery && hasMatchingDescendant);
+
+    if (node.children && node.children.length > 0 && isExpanded) {
+      result.push(
+        ...flattenVisible(node.children, expandedValues, searchQuery, depth + 1),
+      );
+    }
+  }
+
+  return result;
+}
+
+function hasMatchingChild(nodes: TreeViewNode[], query: string): boolean {
+  return nodes.some(
+    (node) =>
+      node.label.toLowerCase().includes(query.toLowerCase()) ||
+      (node.children ? hasMatchingChild(node.children, query) : false),
+  );
+}
+
+// ─── TreeView (主コンポーネント) ───────────────────────────────────────────────
+
 type TreeViewProps = {
-  children: React.ReactNode;
+  /** JSX ベースのアイテム（children API）。nodes を使わない場合に指定します。 */
+  children?: React.ReactNode;
+  /**
+   * データ駆動モードのノード配列。
+   * 指定した場合は children より優先され、大量データで自動的に仮想化されます。
+   */
+  nodes?: TreeViewNode[];
   className?: string;
   multiSelect?: boolean;
   checkable?: boolean;
@@ -48,10 +136,16 @@ type TreeViewProps = {
   onCheckedChange?: (checked: string[]) => void;
   onSelectedChange?: (selected: string[]) => void;
   width?: string | number;
+  /**
+   * データ駆動モードで仮想化を開始するノード数のしきい値。
+   * デフォルトは 100。
+   */
+  virtualThreshold?: number;
 };
 
 const TreeView = ({
   children,
+  nodes,
   className,
   multiSelect = false,
   checkable = false,
@@ -62,6 +156,7 @@ const TreeView = ({
   onCheckedChange,
   onSelectedChange,
   width,
+  virtualThreshold = DEFAULT_VIRTUAL_THRESHOLD,
 }: TreeViewProps) => {
   const [expandedValues, setExpandedValues] = useState<string[]>(
     defaultExpandedValues,
@@ -144,24 +239,229 @@ const TreeView = ({
     ],
   );
 
+  // ─── データ駆動モード ──────────────────────────────────────────────────────
+
+  const flatNodes = useMemo<FlatNode[]>(() => {
+    if (!nodes) return [];
+    return flattenVisible(nodes, expandedValues, searchQuery);
+  }, [nodes, expandedValues, searchQuery]);
+
+  const useVirtual = !!nodes && flatNodes.length >= virtualThreshold;
+
+  const handleNodeKeyDown = useCallback(
+    (e: React.KeyboardEvent, node: FlatNode, flatIndex: number) => {
+      switch (e.key) {
+        case "Enter":
+        case " ":
+          e.preventDefault();
+          select(node.value);
+          if (checkable) toggleCheck(node.value);
+          break;
+        case "ArrowDown":
+          e.preventDefault();
+          if (flatIndex < flatNodes.length - 1) {
+            setFocusedValue(flatNodes[flatIndex + 1].value);
+          }
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          if (flatIndex > 0) {
+            setFocusedValue(flatNodes[flatIndex - 1].value);
+          }
+          break;
+        case "Home":
+          e.preventDefault();
+          if (flatNodes.length > 0) setFocusedValue(flatNodes[0].value);
+          break;
+        case "End":
+          e.preventDefault();
+          if (flatNodes.length > 0)
+            setFocusedValue(flatNodes[flatNodes.length - 1].value);
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          if (node.hasChildren && !expandedValues.includes(node.value)) {
+            toggleExpand(node.value);
+          } else if (node.hasChildren && flatIndex < flatNodes.length - 1) {
+            setFocusedValue(flatNodes[flatIndex + 1].value);
+          }
+          break;
+        case "ArrowLeft":
+          e.preventDefault();
+          if (node.hasChildren && expandedValues.includes(node.value)) {
+            toggleExpand(node.value);
+          } else {
+            // 親ノードを探してフォーカス
+            for (let i = flatIndex - 1; i >= 0; i--) {
+              if (flatNodes[i].depth < node.depth) {
+                setFocusedValue(flatNodes[i].value);
+                break;
+              }
+            }
+          }
+          break;
+      }
+    },
+    [
+      flatNodes,
+      expandedValues,
+      select,
+      checkable,
+      toggleCheck,
+      toggleExpand,
+    ],
+  );
+
+  const renderFlatNode = useCallback(
+    (node: FlatNode, index: number) => {
+      const isSelected = selectedValues.includes(node.value);
+      const isChecked = checkedValues.includes(node.value);
+      const isExpanded = expandedValues.includes(node.value);
+      const isFocused = focusedValue === node.value;
+
+      return (
+        <div
+          className={classNames(
+            "wim-tree-view-item",
+            isSelected && "wim-tree-view-item--selected",
+            node.disabled && "wim-tree-view-item--disabled",
+          )}
+          role="treeitem"
+          aria-expanded={node.hasChildren ? isExpanded : undefined}
+          aria-selected={isSelected}
+          aria-disabled={node.disabled}
+          aria-setsize={flatNodes.length}
+          aria-posinset={index + 1}
+          aria-level={node.depth + 1}
+          data-value={node.value}
+          tabIndex={isFocused ? 0 : -1}
+          key={node.value}
+          onClick={(e) => {
+            e.stopPropagation();
+            setFocusedValue(node.value);
+            if (!node.disabled) {
+              if (multiSelect && checkable) {
+                toggleCheck(node.value);
+              } else {
+                select(node.value);
+              }
+            }
+          }}
+          onKeyDown={(e) => {
+            e.stopPropagation();
+            handleNodeKeyDown(e, node, index);
+          }}
+          onFocus={(e) => {
+            e.stopPropagation();
+            setFocusedValue(node.value);
+          }}
+          style={{ paddingLeft: node.depth * 20 }}
+        >
+          <BaseListItem
+            className="wim-tree-view-item__label-container"
+            active={isSelected}
+            disabled={node.disabled}
+            icon={
+              <div className="wim-tree-view-item__icon-wrapper">
+                {node.hasChildren ? (
+                  <button
+                    type="button"
+                    className={classNames(
+                      "wim-tree-view-item__expand-btn",
+                      isExpanded && "wim-tree-view-item__expand-btn--expanded",
+                    )}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!node.disabled) toggleExpand(node.value);
+                    }}
+                    disabled={node.disabled}
+                    aria-label={
+                      isExpanded
+                        ? `Collapse ${node.label}`
+                        : `Expand ${node.label}`
+                    }
+                    tabIndex={-1}
+                  >
+                    <Icon name="ChevronRightIcon" size="small" />
+                  </button>
+                ) : (
+                  <span className="wim-tree-view-item__spacer" />
+                )}
+
+                {checkable && (
+                  <input
+                    type="checkbox"
+                    className="wim-tree-view-item__checkbox"
+                    checked={isChecked}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      if (!node.disabled) toggleCheck(node.value);
+                    }}
+                    disabled={node.disabled}
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label={node.label}
+                    tabIndex={-1}
+                  />
+                )}
+
+                {node.icon && (
+                  <span className="wim-tree-view-item__icon">{node.icon}</span>
+                )}
+              </div>
+            }
+          >
+            {node.label}
+          </BaseListItem>
+        </div>
+      );
+    },
+    [
+      selectedValues,
+      checkedValues,
+      expandedValues,
+      focusedValue,
+      flatNodes.length,
+      multiSelect,
+      checkable,
+      select,
+      toggleCheck,
+      toggleExpand,
+      handleNodeKeyDown,
+    ],
+  );
+
+  // ─── レンダリング ──────────────────────────────────────────────────────────
+
   return (
     <TreeViewContext.Provider value={contextValue}>
       <div
         ref={containerRef}
-        className={classNames("wim-tree-view", className)}
+        className={classNames("wim-tree-view", !!nodes && "wim-tree-view--data-driven", className)}
         role="tree"
         style={{ width, maxWidth: "100%" }}
         tabIndex={focusedValue ? -1 : 0}
         onFocus={(e) => {
           if (e.target === containerRef.current) {
-            if (focusedValue) {
-               const focusedItem = containerRef.current.querySelector(`[role="treeitem"][data-value="${focusedValue}"]`) as HTMLElement;
-               focusedItem?.focus();
+            if (nodes) {
+              // データ駆動モード: flat配列の先頭へ
+              if (focusedValue) {
+                setFocusedValue(focusedValue);
+              } else if (flatNodes.length > 0) {
+                setFocusedValue(flatNodes[0].value);
+              }
             } else {
-              const firstItem = containerRef.current.querySelector(
-                '[role="treeitem"]',
-              ) as HTMLElement;
-              firstItem?.focus();
+              // children モード: DOM クエリで先頭アイテムへ
+              if (focusedValue) {
+                const focusedItem = containerRef.current?.querySelector(
+                  `[role="treeitem"][data-value="${focusedValue}"]`,
+                ) as HTMLElement;
+                focusedItem?.focus();
+              } else {
+                const firstItem = containerRef.current?.querySelector(
+                  '[role="treeitem"]',
+                ) as HTMLElement;
+                firstItem?.focus();
+              }
             }
           }
         }}
@@ -178,11 +478,31 @@ const TreeView = ({
             />
           </div>
         )}
-        {children}
+
+        {nodes ? (
+          // ─── データ駆動モード ────────────────────────────────────────────
+          useVirtual ? (
+            <VirtualList
+              items={flatNodes}
+              itemHeight={NODE_ITEM_HEIGHT}
+              height={400}
+              renderItem={renderFlatNode}
+              itemRole="none"
+              role="presentation"
+            />
+          ) : (
+            flatNodes.map((node, index) => renderFlatNode(node, index))
+          )
+        ) : (
+          // ─── children モード（既存 API） ────────────────────────────────
+          children
+        )}
       </div>
     </TreeViewContext.Provider>
   );
 };
+
+// ─── TreeViewItem (children モード用) ─────────────────────────────────────────
 
 type TreeViewItemProps = {
   value: string;
