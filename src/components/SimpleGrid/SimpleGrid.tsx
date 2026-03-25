@@ -44,13 +44,15 @@ export const SimpleGrid = React.forwardRef<HTMLDivElement, SimpleGridProps>(
     };
 
     return (
-      <div
-        ref={ref}
-        className={classNames("wim-simple-grid", className)}
-        style={gridStyle}
-        {...props}
-      >
-        {children}
+      <div className="wim-simple-grid-container">
+        <div
+          ref={ref}
+          className={classNames("wim-simple-grid", className)}
+          style={gridStyle}
+          {...props}
+        >
+          {children}
+        </div>
       </div>
     );
   },

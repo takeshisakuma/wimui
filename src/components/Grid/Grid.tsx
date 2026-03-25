@@ -107,13 +107,15 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     };
 
     return (
-      <div
-        ref={ref}
-        className={classNames("wim-grid", className)}
-        style={gridStyle}
-        {...props}
-      >
-        {children}
+      <div className="wim-grid-container">
+        <div
+          ref={ref}
+          className={classNames("wim-grid", className)}
+          style={gridStyle}
+          {...props}
+        >
+          {children}
+        </div>
       </div>
     );
   },
