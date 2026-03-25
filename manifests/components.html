@@ -60960,7 +60960,7 @@ npm run test -- TreeSelect
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TreeView</h2>
       <div class="badges">
-        <label for="c-161-components-data-structures-treeview-props" class="badge ok as-toggle">11 prop types</label>
+        <label for="c-161-components-data-structures-treeview-props" class="badge ok as-toggle">13 prop types</label>
         <label for="c-161-components-data-structures-treeview-info" class="badge info as-toggle">1 info</label>
         <label for="c-161-components-data-structures-treeview-stories" class="badge ok as-toggle">4 stories</label>
         <label for="c-161-components-data-structures-treeview-docs" class="badge ok as-toggle">1 doc</label>
@@ -60994,13 +60994,16 @@ npm run test -- TreeSelect
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">11 prop types</span>
+              <span class="badge ok">13 prop types</span>
             </div>
             <pre><code>Component: src/components/TreeView/TreeView.tsx</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>checkable?: boolean = false
 
-children: React.ReactNode
+/**
+ * JSX ベースのアイテム（children API）。nodes を使わない場合に指定します。
+ */
+children?: React.ReactNode
 
 className?: string
 
@@ -61012,11 +61015,23 @@ defaultSelectedValues?: string[] = []
 
 multiSelect?: boolean = false
 
+/**
+ * データ駆動モードのノード配列。
+ * 指定した場合は children より優先され、大量データで自動的に仮想化されます。
+ */
+nodes?: TreeViewNode[]
+
 onCheckedChange?: (checked: string[]) =&gt; void
 
 onSelectedChange?: (selected: string[]) =&gt; void
 
 searchable?: boolean = false
+
+/**
+ * データ駆動モードで仮想化を開始するノード数のしきい値。
+ * デフォルトは 100。
+ */
+virtualThreshold?: number = 100
 
 width?: string | number</code></pre>
           </div>
@@ -62280,7 +62295,7 @@ import { Video } from &quot;@/components/Video/Video&quot;;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> VirtualList</h2>
       <div class="badges">
-        <label for="c-163-components-data-structures-virtuallist-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-163-components-data-structures-virtuallist-props" class="badge ok as-toggle">7 prop types</label>
         
         <label for="c-163-components-data-structures-virtuallist-stories" class="badge ok as-toggle">4 stories</label>
         <label for="c-163-components-data-structures-virtuallist-docs" class="badge ok as-toggle">1 doc</label>
@@ -62307,11 +62322,16 @@ import { Video } from &quot;@/components/Video/Video&quot;;
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">5 prop types</span>
+              <span class="badge ok">7 prop types</span>
             </div>
             <pre><code>Component: src/components/VirtualList/VirtualList.tsx::VirtualList</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
+ * スクロールコンテナの DOM ref。外部からプログラム的にスクロール位置を制御する場合に使用します。
+ */
+containerRef?: React.RefObject&lt;HTMLDivElement | null&gt;
+
+/**
  * リストコンテナの表示高さ（px）。
  */
 height: number
@@ -62320,6 +62340,12 @@ height: number
  * 各アイテムの高さ（px）。
  */
 itemHeight: number
+
+/**
+ * 各アイテムラッパーの role 属性。デフォルトは &quot;listitem&quot;。
+ * listbox など別の親ロールと組み合わせる場合は &quot;none&quot; を指定してください。
+ */
+itemRole?: string = &quot;listitem&quot;
 
 /**
  * レンダリング対象のアイテム配列。
