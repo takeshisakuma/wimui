@@ -451,5 +451,15 @@
   "doc_alert_token_radius": "Raio de canto do componente (8px)",
   "doc_alert_token_shadow": "Sombra base para elevação no modo claro.",
   "doc_alert_token_transition": "Animação para transições de hover e visibilidade.",
-  "doc_alert_token_opacity": "Opacidade inicial do botão de fechar (estado fantasma)."
+  "doc_alert_token_opacity": "Opacidade inicial do botão de fechar (estado fantasma).",
+  "doc_alert_keyboard_desc": "Tab move o foco para o botão de fechar quando presente. Escape fecha o alerta se for descartável.",
+  "doc_alert_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props title e message, ou substitua via namespace i18n.",
+  "doc_banner_keyboard_desc": "Este componente não requer interação específica de teclado além do foco padrão com Tab.",
+  "doc_banner_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props title, description e label de ação.",
+  "doc_notification_keyboard_desc": "Tab move o foco dentro da notificação. Escape a fecha quando exibida programaticamente.",
+  "doc_notification_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props title e description.",
+  "doc_snackbar_keyboard_desc": "Tab move o foco para o botão de ação quando presente. Escape fecha o snackbar.",
+  "doc_snackbar_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props message e label de ação.",
+  "doc_toast_keyboard_desc": "Tab move o foco para o botão de ação quando presente. Escape fecha o toast.",
+  "doc_toast_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props title, description e label de ação."
 }

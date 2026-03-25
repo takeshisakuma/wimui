@@ -297,5 +297,9 @@
   "doc_linkbutton_motion_desc": "Transitions are minimal and purposeful, respecting the user's reduced-motion preferences.",
   "doc_linkbutton_scenario_1": "Integrating LinkButton into workflows for data collection or display.",
   "doc_linkbutton_scenario_2": "Using LinkButton in management views for information organization.",
-  "doc_linkbutton_title": "A button that functions like a link, used for navigation or actions that look like links."
+  "doc_linkbutton_title": "A button that functions like a link, used for navigation or actions that look like links.",
+  "doc_button_keyboard_desc": "Tab focuses the button. Space or Enter activates it. Disabled buttons are not reachable by keyboard.",
+  "doc_button_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the label prop or children.",
+  "doc_buttongroup_keyboard_desc": "Tab focuses the button group container. Each button within the group is individually focusable.",
+  "doc_buttongroup_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each button's label prop or children."
 }

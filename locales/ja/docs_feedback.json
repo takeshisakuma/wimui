@@ -451,5 +451,15 @@
   "doc_alert_token_radius": "コンポーネント全体の角丸（8px）",
   "doc_alert_token_shadow": "ベースの影。ライトモードで浮き上がりを表現します。",
   "doc_alert_token_transition": "ホバー・表示切り替えのアニメーション",
-  "doc_alert_token_opacity": "閉じるボタンの初期不透明度（ゴースト状態）"
+  "doc_alert_token_opacity": "閉じるボタンの初期不透明度（ゴースト状態）",
+  "doc_alert_keyboard_desc": "閉じるボタンがある場合は Tab キーでフォーカスできます。閉じる操作が可能な場合は Escape キーで閉じます。",
+  "doc_alert_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。title・message プロパティに翻訳済み文字列を渡すか、i18n 名前空間を上書きしてください。",
+  "doc_banner_keyboard_desc": "このコンポーネントは標準の Tab フォーカス以外の固有のキーボード操作は必要ありません。",
+  "doc_banner_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。title・description・アクションラベルプロパティに翻訳済み文字列を渡してください。",
+  "doc_notification_keyboard_desc": "Tab キーでフォーカスを移動します。プログラムで表示された場合は Escape キーで閉じます。",
+  "doc_notification_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。title・description プロパティに翻訳済み文字列を渡してください。",
+  "doc_snackbar_keyboard_desc": "アクションボタンがある場合は Tab キーでフォーカスできます。Escape キーでスナックバーを閉じます。",
+  "doc_snackbar_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。message・アクションラベルプロパティに翻訳済み文字列を渡してください。",
+  "doc_toast_keyboard_desc": "アクションボタンがある場合は Tab キーでフォーカスできます。Escape キーでトーストを閉じます。",
+  "doc_toast_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。title・description・アクションラベルプロパティに翻訳済み文字列を渡してください。"
 }

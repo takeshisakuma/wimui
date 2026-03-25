@@ -543,5 +543,21 @@
   "overlay_tour_desc": "Sequentially highlights specific elements to teach their usage.",
   "overlay_tour_usage": "Onboarding, new feature announcements, operation guides.",
   "overlay_type": "Type",
-  "overlay_vert_list_desc": "Vertical list selection."
+  "overlay_vert_list_desc": "Vertical list selection.",
+  "doc_bottomsheet_keyboard_desc": "Tab moves focus within the bottom sheet. Escape closes it. Focus is trapped inside while open.",
+  "doc_bottomsheet_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title and action label props.",
+  "doc_contextmenu_keyboard_desc": "Arrow keys navigate menu items. Enter or Space activates the focused item. Escape closes the menu.",
+  "doc_contextmenu_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the menu item label props.",
+  "doc_dialog_keyboard_desc": "Tab moves focus within the dialog. Escape closes it. Focus is trapped inside while open.",
+  "doc_dialog_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title and content props.",
+  "doc_drawer_keyboard_desc": "Tab moves focus within the drawer. Escape closes it. Focus is trapped inside while open.",
+  "doc_drawer_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title and content props.",
+  "doc_dropzone_keyboard_desc": "Tab focuses the dropzone. Enter or Space opens a file picker. Keyboard activation is supported as an alternative to drag-and-drop.",
+  "doc_dropzone_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the label and helper text props.",
+  "doc_loader_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",
+  "doc_loader_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the aria-label prop.",
+  "doc_menu_keyboard_desc": "Arrow keys navigate menu items. Enter or Space activates the focused item. Escape closes submenus or the menu.",
+  "doc_menu_i18n_desc": "All visible text uses i18n keys. Pass translated strings through menu item labels and the aria-label prop.",
+  "doc_popover_keyboard_desc": "Tab focuses the trigger element. Enter or Space opens the popover. Tab moves focus within it. Escape closes it.",
+  "doc_popover_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the content and aria-label props."
 }

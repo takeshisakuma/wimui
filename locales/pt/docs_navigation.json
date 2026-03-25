@@ -450,5 +450,17 @@
   "doc_tour_design_intent": "Tour fornece um padrão consistente e reutilizável para walkthrough guiado destacando recursos passo a passo, reduzindo o esforço de implementação e garantindo conformidade com o design system.",
   "doc_tour_motion_desc": "As transições são mínimas e propositais, respeitando as preferências de movimento reduzido do usuário.",
   "doc_tour_scenario_1": "Integrando Tour em fluxos de trabalho para coleta ou exibição de dados.",
-  "doc_tour_scenario_2": "Usando Tour em visualizações de gerenciamento para organização de informações."
+  "doc_tour_scenario_2": "Usando Tour em visualizações de gerenciamento para organização de informações.",
+  "doc_breadcrumb_keyboard_desc": "Tab move o foco por cada link do breadcrumb. Enter ativa o link focado.",
+  "doc_breadcrumb_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props de rótulo dos itens.",
+  "doc_navbar_keyboard_desc": "Tab move o foco pelos links de navegação e botões de ação. Enter ou Espaço ativa os links focados.",
+  "doc_navbar_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através dos rótulos dos links e props aria-label.",
+  "doc_pagination_keyboard_desc": "Tab move o foco pelos botões de página. Enter ou Espaço ativa o botão de página focado. As teclas de seta podem navegar entre páginas adjacentes.",
+  "doc_pagination_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props aria-label, ou substitua via namespace i18n.",
+  "doc_sidebar_keyboard_desc": "Tab move o foco pelos itens de navegação. Enter ativa o item focado. O toggle de colapso também é acessível pelo teclado.",
+  "doc_sidebar_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através dos rótulos dos itens de navegação e props aria-label.",
+  "doc_stepper_keyboard_desc": "Tab move o foco pelos indicadores de etapa. Enter ou Espaço ativa uma etapa quando o modo não-linear está habilitado.",
+  "doc_stepper_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props de rótulo e descrição das etapas.",
+  "doc_tabs_keyboard_desc": "Tab foca a lista de abas. As teclas de seta navegam entre os acionadores de aba. Enter ou Espaço ativa a aba focada.",
+  "doc_tabs_i18n_desc": "Todo o texto visível usa chaves i18n. Passe strings traduzidas através das props de rótulo das abas e conteúdo dos painéis."
 }

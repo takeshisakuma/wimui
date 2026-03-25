@@ -297,5 +297,9 @@
   "doc_linkbutton_motion_desc": "トランジションは最小限かつ目的のあるもので、ユーザーのモーション軽減設定を尊重します。",
   "doc_linkbutton_scenario_1": "データ収集や表示のワークフローにLinkButtonを統合する。",
   "doc_linkbutton_scenario_2": "情報管理ビューでLinkButtonを使用する。",
-  "doc_linkbutton_title": "ボタンの外観を持ちながら、ページ遷移などのアクションを実行するコンポーネント"
+  "doc_linkbutton_title": "ボタンの外観を持ちながら、ページ遷移などのアクションを実行するコンポーネント",
+  "doc_button_keyboard_desc": "Tab キーでボタンにフォーカスします。Space または Enter キーで実行します。無効なボタンはキーボードでのアクセス対象外です。",
+  "doc_button_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。label プロパティや children に翻訳済み文字列を渡してください。",
+  "doc_buttongroup_keyboard_desc": "Tab キーでボタングループのコンテナにフォーカスします。グループ内の各ボタンは個別にフォーカス可能です。",
+  "doc_buttongroup_i18n_desc": "表示されるテキストはすべて i18n キーを使用します。各ボタンの label プロパティや children に翻訳済み文字列を渡してください。"
 }
