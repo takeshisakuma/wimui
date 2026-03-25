@@ -559,5 +559,9 @@
   "doc_menu_keyboard_desc": "Arrow keys navigate menu items. Enter or Space activates the focused item. Escape closes submenus or the menu.",
   "doc_menu_i18n_desc": "All visible text uses i18n keys. Pass translated strings through menu item labels and the aria-label prop.",
   "doc_popover_keyboard_desc": "Tab focuses the trigger element. Enter or Space opens the popover. Tab moves focus within it. Escape closes it.",
-  "doc_popover_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the content and aria-label props."
+  "doc_popover_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the content and aria-label props.",
+  "doc_commandpalette_keyboard_desc": "Type to search commands. Arrow keys navigate the results list. Enter activates the focused command. Escape closes the command palette.",
+  "doc_commandpalette_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the placeholder, group label, and item label props.",
+  "doc_hovercard_keyboard_desc": "Tab focuses the trigger element. The hover card appears when the trigger receives focus. Escape closes the card. Focus is not trapped inside the card.",
+  "doc_hovercard_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the card content children."
 }

@@ -301,5 +301,21 @@
   "doc_button_keyboard_desc": "Tab focuses the button. Space or Enter activates it. Disabled buttons are not reachable by keyboard.",
   "doc_button_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the label prop or children.",
   "doc_buttongroup_keyboard_desc": "Tab focuses the button group container. Each button within the group is individually focusable.",
-  "doc_buttongroup_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each button's label prop or children."
+  "doc_buttongroup_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each button's label prop or children.",
+  "doc_copybutton_keyboard_desc": "Tab focuses the button. Enter or Space copies the target content to the clipboard.",
+  "doc_copybutton_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the aria-label, copiedLabel, and copyLabel props.",
+  "doc_floatbutton_keyboard_desc": "Tab focuses the float button. Enter or Space activates it. When a group is open, Tab moves focus through each button in the group. Escape collapses the group.",
+  "doc_floatbutton_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the aria-label prop.",
+  "doc_hamburgermenu_keyboard_desc": "Tab focuses the hamburger button. Enter or Space toggles the menu open or closed.",
+  "doc_hamburgermenu_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the aria-label prop.",
+  "doc_icon_keyboard_desc": "This component does not require specific keyboard interaction. Decorative icons should have aria-hidden=\"true\". Meaningful icons should have an accessible label.",
+  "doc_icon_i18n_desc": "Decorative icons use aria-hidden. For meaningful icons, pass a translated string through the aria-label prop.",
+  "doc_iconbutton_keyboard_desc": "Tab focuses the button. Enter or Space activates it. Disabled buttons are not reachable by keyboard.",
+  "doc_iconbutton_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the aria-label prop.",
+  "doc_link_keyboard_desc": "Tab focuses the link. Enter activates it. The link follows standard browser anchor navigation behavior.",
+  "doc_link_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the children prop.",
+  "doc_linkbutton_keyboard_desc": "Tab focuses the link button. Enter activates it. It behaves as a standard anchor element for keyboard users.",
+  "doc_linkbutton_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the children prop.",
+  "doc_dropdown_keyboard_desc": "Tab focuses the dropdown trigger. Enter or Space opens the dropdown. Arrow keys navigate options. Enter selects the focused option. Escape closes the dropdown.",
+  "doc_dropdown_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the trigger and item label children."
 }

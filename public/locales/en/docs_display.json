@@ -918,5 +918,20 @@
   "doc_timeline_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",
   "doc_timeline_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title and content props.",
   "doc_tooltip_keyboard_desc": "Tab focuses the trigger element. The tooltip appears on focus. Escape closes it.",
-  "doc_tooltip_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the content prop."
+  "doc_tooltip_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the content prop.",
+  "doc_avatargroup_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",
+  "doc_avatargroup_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the name and alt props of each Avatar.",
+  "doc_calendar_keyboard_desc": "Arrow keys navigate between dates. Page Up and Page Down move between months. Home and End move to the first and last day of the month. Enter or Space selects the focused date.",
+  "doc_calendar_i18n_desc": "All visible text uses i18n keys. Pass translated strings through locale-aware date formatting and the aria-label props.",
+  "doc_descriptionlist_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",
+  "doc_descriptionlist_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the term and description children.",
+  "doc_heading_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",
+  "doc_heading_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the children prop.",
+  "doc_highlight_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",
+  "doc_highlight_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the children and highlight props.",
+  "doc_legend_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",
+  "doc_legend_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the children prop.",
+  "doc_markdown_keyboard_desc": "Tab moves focus through interactive elements (links, buttons) within the rendered Markdown content.",
+  "doc_markdown_i18n_desc": "Pass a pre-translated markdown string through the content prop.",
+  "doc_heatmap_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus."
 }

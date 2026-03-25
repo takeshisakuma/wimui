@@ -461,5 +461,9 @@
   "doc_snackbar_keyboard_desc": "Tab moves focus to the action button when present. Escape dismisses the snackbar.",
   "doc_snackbar_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the message and action label props.",
   "doc_toast_keyboard_desc": "Tab moves focus to the action button when present. Escape dismisses the toast.",
-  "doc_toast_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title, description, and action label props."
+  "doc_toast_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the title, description, and action label props.",
+  "doc_loadingoverlay_keyboard_desc": "When the overlay is active, focus is trapped to prevent interaction with the underlying content. Screen readers announce the loading state via aria-live.",
+  "doc_loadingoverlay_i18n_desc": "All visible text uses i18n keys. Pass translated strings through the message prop.",
+  "doc_skeleton_keyboard_desc": "This component does not require specific keyboard interaction. It is a placeholder shown during loading and is hidden from screen readers.",
+  "doc_skeleton_i18n_desc": "This component has no visible text content. Use the aria-label prop on the containing element to describe the loading state."
 }
