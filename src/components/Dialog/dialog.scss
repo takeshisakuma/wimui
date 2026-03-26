@@ -20,6 +20,7 @@
   max-height: 85vh;
   padding: var(--spacing-2xl);
   margin: 0;
+  container-type: inline-size;
   overflow: auto;
   color: var(--text-primary);
   background-color: var(--bg-component, #fff);
@@ -60,7 +61,7 @@
   gap: var(--spacing-md);
   margin-top: var(--spacing-2xl);
 
-  @media (width >=640px) {
+  @container (width >= 640px) {
     flex-direction: row;
     justify-content: flex-end;
   }

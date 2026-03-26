@@ -62,6 +62,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  container-type: inline-size;
   outline: none;
   border-radius: var(--radius-md);
   transition: var(--transition-fast);
@@ -76,7 +77,7 @@
     gap: var(--spacing-md);
     align-items: center;
 
-    @media (width <= 480px) {
+    @container (width <= 480px) {
       gap: var(--spacing-xs);
     }
   }
@@ -210,7 +211,7 @@
       transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
       opacity 0.3s ease;
 
-    @media (width <= 480px) {
+    @container (width <= 480px) {
       padding-left: 12px; // Reduce indentation on small screens
     }
   }
@@ -235,6 +236,10 @@
   .wim-tree-view-item__label-container:hover {
     background: var(--wim-color-bg-hover);
   }
+
+  .wim-tree-view-item__expand-btn {
+    color: var(--wim-color-text-secondary);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -246,6 +251,10 @@
 
     .wim-tree-view-item__label-container:hover {
       background: var(--wim-color-bg-hover);
+    }
+
+    .wim-tree-view-item__expand-btn {
+      color: var(--wim-color-text-secondary);
     }
   }
 }
