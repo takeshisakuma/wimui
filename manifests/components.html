@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.2s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -1879,11 +1879,11 @@ style?: React.CSSProperties</code></pre>
                   zIndex: 100,
                   width: isMobile ? &quot;100%&quot; : &quot;200px&quot;,
                   flexShrink: 0,
-                  background: &quot;rgba(255, 255, 255, 1)&quot;,
+                  background: &quot;var(--wim-color-surface)&quot;,
                   backdropFilter: &quot;blur(8px)&quot;,
                   alignSelf: &quot;flex-start&quot;,
                   padding: isMobile ? &quot;0&quot; : &quot;20px 0&quot;,
-                  borderBottom: isMobile ? &quot;1px solid #eee&quot; : &quot;none&quot;,
+                  borderBottom: isMobile ? &quot;1px solid var(--wim-color-border)&quot; : &quot;none&quot;,
                 }}&gt;
                 &lt;Anchor
                     items={items}
@@ -1895,7 +1895,7 @@ style?: React.CSSProperties</code></pre>
                     id=&quot;part-1&quot;
                     style={{
                       height: &quot;600px&quot;,
-                      background: &quot;#f0f2f5&quot;,
+                      background: &quot;var(--wim-color-surface-variant)&quot;,
                       padding: &quot;20px&quot;,
                       marginBottom: &quot;20px&quot;,
                     }}&gt;
@@ -1906,7 +1906,7 @@ style?: React.CSSProperties</code></pre>
                     id=&quot;part-2&quot;
                     style={{
                       height: &quot;1000px&quot;,
-                      background: &quot;#f9f9f9&quot;,
+                      background: &quot;var(--wim-color-surface-variant)&quot;,
                       padding: &quot;20px&quot;,
                       marginBottom: &quot;20px&quot;,
                     }}&gt;
@@ -1915,7 +1915,7 @@ style?: React.CSSProperties</code></pre>
                         id=&quot;part-2-1&quot;
                         style={{
                           height: &quot;400px&quot;,
-                          border: &quot;1px dashed #ccc&quot;,
+                          border: &quot;1px dashed var(--wim-color-border)&quot;,
                           margin: &quot;20px 0&quot;,
                           padding: &quot;10px&quot;,
                         }}&gt;
@@ -1925,7 +1925,7 @@ style?: React.CSSProperties</code></pre>
                         id=&quot;part-2-2&quot;
                         style={{
                           height: &quot;400px&quot;,
-                          border: &quot;1px dashed #ccc&quot;,
+                          border: &quot;1px dashed var(--wim-color-border)&quot;,
                           margin: &quot;20px 0&quot;,
                           padding: &quot;10px&quot;,
                         }}&gt;
@@ -1934,7 +1934,7 @@ style?: React.CSSProperties</code></pre>
                 &lt;/section&gt;
                 &lt;section
                     id=&quot;part-3&quot;
-                    style={{ height: &quot;600px&quot;, background: &quot;#f0f2f5&quot;, padding: &quot;20px&quot; }}&gt;
+                    style={{ height: &quot;600px&quot;, background: &quot;var(--wim-color-surface-variant)&quot;, padding: &quot;20px&quot; }}&gt;
                     &lt;h2&gt;{t(&quot;story_anchor_part3&quot;)}&lt;/h2&gt;
                 &lt;/section&gt;
             &lt;/div&gt;
@@ -2269,7 +2269,7 @@ sidebar?: React.ReactNode</code></pre>
                       style={{
                         width: 32,
                         height: 32,
-                        background: &quot;#0066ff&quot;,
+                        background: &quot;var(--wim-color-primary)&quot;,
                         borderRadius: 4,
                       }}
                     /&gt;
@@ -2305,13 +2305,13 @@ sidebar?: React.ReactNode</code></pre>
                 {[1, 2, 3, 4, 5, 6].map((i) =&gt; (
                   &lt;div
                     key={i}
-                    style={{ border: &quot;1px solid #eee&quot;, borderRadius: 8, padding: 16 }}
+                    style={{ border: &quot;1px solid var(--wim-color-border)&quot;, borderRadius: 8, padding: 16 }}
                   &gt;
                     &lt;div
                       style={{
                         width: &quot;100%&quot;,
                         aspectRatio: &quot;1&quot;,
-                        background: &quot;#f5f5f5&quot;,
+                        background: &quot;var(--wim-color-surface-variant)&quot;,
                         borderRadius: 4,
                         marginBottom: 8,
                       }}
@@ -2319,7 +2319,7 @@ sidebar?: React.ReactNode</code></pre>
                     &lt;div style={{ fontWeight: &quot;bold&quot; }}&gt;
                       {t(&quot;story_appshell_product&quot;)} {i}
                     &lt;/div&gt;
-                    &lt;div style={{ color: &quot;#666&quot;, fontSize: &quot;0.9rem&quot; }}&gt;$99.00&lt;/div&gt;
+                    &lt;div style={{ color: &quot;var(--wim-color-text-secondary)&quot;, fontSize: &quot;0.9rem&quot; }}&gt;$99.00&lt;/div&gt;
                   &lt;/div&gt;
                 ))}
             &lt;/div&gt;
@@ -2350,7 +2350,7 @@ sidebar?: React.ReactNode</code></pre>
                                     .appshell-mobile-trigger {
                                         display: none;
                                         background: none;
-                                        border: 1px solid var(--wim-color-border-subtle, #ccc);
+                                        border: 1px solid var(--wim-color-border);
                                         border-radius: 4px;
                                         cursor: pointer;
                                         padding: 4px 8px;
@@ -6460,7 +6460,7 @@ open?: boolean</code></pre>
                         &lt;div
                             style={{
                               padding: &quot;1rem&quot;,
-                              backgroundColor: &quot;#f3f4f6&quot;,
+                              backgroundColor: &quot;var(--wim-color-surface-variant)&quot;,
                               borderRadius: &quot;0.5rem&quot;,
                             }}&gt;
                             &lt;p style={{ fontSize: &quot;0.875rem&quot; }}&gt;
@@ -6539,7 +6539,7 @@ open?: boolean</code></pre>
                               background: &quot;none&quot;,
                               cursor: &quot;pointer&quot;,
                               borderRadius: &quot;0.375rem&quot;,
-                              color: &quot;#dc2626&quot;,
+                              color: &quot;var(--color-destructive)&quot;,
                             }}&gt;
                             &lt;span&gt;{t(&quot;story_bottomsheet_delete&quot;)}&lt;/span&gt;
                         &lt;/button&gt;
@@ -9512,9 +9512,9 @@ slidesToShow?: number | Breakpoints = 1</code></pre>
                 &lt;div
                     style={{
                       padding: &quot;20px&quot;,
-                      border: &quot;1px solid #ccc&quot;,
+                      border: &quot;1px solid var(--wim-color-border)&quot;,
                       borderRadius: &quot;8px&quot;,
-                      background: &quot;#f9f9f9&quot;,
+                      background: &quot;var(--wim-color-surface-variant)&quot;,
                     }}&gt;
                     &lt;h3&gt;
                         {t(&quot;story_carousel_card&quot;)}1
@@ -9526,9 +9526,9 @@ slidesToShow?: number | Breakpoints = 1</code></pre>
                 &lt;div
                     style={{
                       padding: &quot;20px&quot;,
-                      border: &quot;1px solid #ccc&quot;,
+                      border: &quot;1px solid var(--wim-color-border)&quot;,
                       borderRadius: &quot;8px&quot;,
-                      background: &quot;#f9f9f9&quot;,
+                      background: &quot;var(--wim-color-surface-variant)&quot;,
                     }}&gt;
                     &lt;h3&gt;
                         {t(&quot;story_carousel_card&quot;)}2
@@ -9540,9 +9540,9 @@ slidesToShow?: number | Breakpoints = 1</code></pre>
                 &lt;div
                     style={{
                       padding: &quot;20px&quot;,
-                      border: &quot;1px solid #ccc&quot;,
+                      border: &quot;1px solid var(--wim-color-border)&quot;,
                       borderRadius: &quot;8px&quot;,
-                      background: &quot;#f9f9f9&quot;,
+                      background: &quot;var(--wim-color-surface-variant)&quot;,
                     }}&gt;
                     &lt;h3&gt;
                         {t(&quot;story_carousel_card&quot;)}3
@@ -11503,19 +11503,19 @@ className?: string</code></pre>
       }}
     &gt;
       &lt;div&gt;
-        &lt;p style={{ marginBottom: &quot;8px&quot;, fontSize: &quot;14px&quot;, color: &quot;#666&quot; }}&gt;
+        &lt;p style={{ marginBottom: &quot;8px&quot;, fontSize: &quot;14px&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;
           {t(&quot;story_chat_size_small&quot;)}
         &lt;/p&gt;
         &lt;ChatAvatar size=&quot;small&quot; fallback=&quot;S&quot; /&gt;
       &lt;/div&gt;
       &lt;div&gt;
-        &lt;p style={{ marginBottom: &quot;8px&quot;, fontSize: &quot;14px&quot;, color: &quot;#666&quot; }}&gt;
+        &lt;p style={{ marginBottom: &quot;8px&quot;, fontSize: &quot;14px&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;
           {t(&quot;story_chat_size_medium&quot;)}
         &lt;/p&gt;
         &lt;ChatAvatar size=&quot;medium&quot; fallback=&quot;M&quot; /&gt;
       &lt;/div&gt;
       &lt;div&gt;
-        &lt;p style={{ marginBottom: &quot;8px&quot;, fontSize: &quot;14px&quot;, color: &quot;#666&quot; }}&gt;
+        &lt;p style={{ marginBottom: &quot;8px&quot;, fontSize: &quot;14px&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;
           {t(&quot;story_chat_size_large&quot;)}
         &lt;/p&gt;
         &lt;ChatAvatar size=&quot;large&quot; fallback=&quot;L&quot; /&gt;
@@ -28736,7 +28736,8 @@ style?: React.CSSProperties</code></pre>
               
               <pre><code>const WithIcons = () =&gt; &lt;div style={{ display: &quot;flex&quot;, gap: &quot;20px&quot; }}&gt;
     &lt;Indicator color=&quot;error&quot;&gt;
-        &lt;div style={{ padding: &quot;8px&quot;, background: &quot;#f0f0f0&quot;, borderRadius: &quot;8px&quot; }}&gt;
+        &lt;div
+            style={{ padding: &quot;8px&quot;, background: &quot;var(--wim-color-surface-variant)&quot;, borderRadius: &quot;8px&quot; }}&gt;
             &lt;Icon name=&quot;BellIcon&quot; /&gt;
         &lt;/div&gt;
     &lt;/Indicator&gt;
@@ -33812,7 +33813,7 @@ variant?: &quot;bars&quot; | &quot;dots&quot; | &quot;pulse&quot; = &quot;bars&q
           gap: &quot;8px&quot;,
         }}&gt;
         &lt;Loader variant=&quot;bars&quot; /&gt;
-        &lt;span style={{ fontSize: &quot;12px&quot;, color: &quot;#666&quot; }}&gt;bars&lt;/span&gt;
+        &lt;span style={{ fontSize: &quot;12px&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;bars&lt;/span&gt;
     &lt;/div&gt;
     &lt;div
         style={{
@@ -33822,7 +33823,7 @@ variant?: &quot;bars&quot; | &quot;dots&quot; | &quot;pulse&quot; = &quot;bars&q
           gap: &quot;8px&quot;,
         }}&gt;
         &lt;Loader variant=&quot;dots&quot; /&gt;
-        &lt;span style={{ fontSize: &quot;12px&quot;, color: &quot;#666&quot; }}&gt;dots&lt;/span&gt;
+        &lt;span style={{ fontSize: &quot;12px&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;dots&lt;/span&gt;
     &lt;/div&gt;
     &lt;div
         style={{
@@ -33832,7 +33833,7 @@ variant?: &quot;bars&quot; | &quot;dots&quot; | &quot;pulse&quot; = &quot;bars&q
           gap: &quot;8px&quot;,
         }}&gt;
         &lt;Loader variant=&quot;pulse&quot; /&gt;
-        &lt;span style={{ fontSize: &quot;12px&quot;, color: &quot;#666&quot; }}&gt;pulse&lt;/span&gt;
+        &lt;span style={{ fontSize: &quot;12px&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;pulse&lt;/span&gt;
     &lt;/div&gt;
 &lt;/div&gt;;</code></pre>
             </div>
@@ -42264,7 +42265,7 @@ query?: QueryGroup</code></pre>
             &lt;div style={{ marginTop: &quot;20px&quot; }}&gt;
                 &lt;h4&gt;{t(&quot;query_builder.generated_json&quot;)}:&lt;/h4&gt;
                 &lt;pre
-                    style={{ backgroundColor: &quot;#f4f4f4&quot;, padding: &quot;10px&quot;, borderRadius: &quot;4px&quot;, overflow: &quot;auto&quot; }}&gt;
+                    style={{ backgroundColor: &quot;var(--wim-color-surface-variant)&quot;, padding: &quot;10px&quot;, borderRadius: &quot;4px&quot;, overflow: &quot;auto&quot; }}&gt;
                     {JSON.stringify(query, null, 2)}
                 &lt;/pre&gt;
             &lt;/div&gt;
@@ -42324,7 +42325,7 @@ query?: QueryGroup</code></pre>
             &lt;div style={{ marginTop: &quot;20px&quot; }}&gt;
                 &lt;h4&gt;{t(&quot;query_builder.generated_json&quot;)}:&lt;/h4&gt;
                 &lt;pre
-                    style={{ backgroundColor: &quot;#f4f4f4&quot;, padding: &quot;10px&quot;, borderRadius: &quot;4px&quot;, overflow: &quot;auto&quot; }}&gt;
+                    style={{ backgroundColor: &quot;var(--wim-color-surface-variant)&quot;, padding: &quot;10px&quot;, borderRadius: &quot;4px&quot;, overflow: &quot;auto&quot; }}&gt;
                     {JSON.stringify(query, null, 2)}
                 &lt;/pre&gt;
             &lt;/div&gt;
@@ -47624,7 +47625,7 @@ variant?: &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;</code></
             &lt;div&gt;
                 &lt;strong&gt;{t(&quot;story_rte_output_label&quot;)}&lt;/strong&gt;
                 &lt;pre
-                    style={{ fontSize: &quot;0.75rem&quot;, whiteSpace: &quot;pre-wrap&quot;, wordBreak: &quot;break-all&quot;, padding: &quot;8px&quot;, background: &quot;#f5f5f5&quot;, borderRadius: &quot;4px&quot; }}&gt;
+                    style={{ fontSize: &quot;0.75rem&quot;, whiteSpace: &quot;pre-wrap&quot;, wordBreak: &quot;break-all&quot;, padding: &quot;8px&quot;, background: &quot;var(--wim-color-surface-variant)&quot;, borderRadius: &quot;4px&quot; }}&gt;
                     {value}
                 &lt;/pre&gt;
             &lt;/div&gt;
@@ -48608,7 +48609,7 @@ target?: React.RefObject&lt;HTMLElement | null&gt;</code></pre>
                 style={{
                   height: &quot;300px&quot;,
                   overflowY: &quot;auto&quot;,
-                  border: &quot;1px solid #ccc&quot;,
+                  border: &quot;1px solid var(--wim-color-border)&quot;,
                   position: &quot;relative&quot;,
                 }}&gt;
                 &lt;ScrollProgress target={containerRef} style={{ position: &quot;sticky&quot;, top: 0 }} /&gt;
@@ -48888,14 +48889,14 @@ npm run test -- ScrollProgress
                         onChange={(e) =&gt; handleSearch(e.target.value)}
                         placeholder={t(&quot;components:smart_search_placeholder&quot;)} /&gt;
                     {isSearching &amp;&amp; (
-                      &lt;div style={{ position: &quot;absolute&quot;, right: 40, top: &quot;50%&quot;, transform: &quot;translateY(-50%)&quot;, fontSize: 12, color: &quot;#888&quot; }}&gt;
+                      &lt;div style={{ position: &quot;absolute&quot;, right: 40, top: &quot;50%&quot;, transform: &quot;translateY(-50%)&quot;, fontSize: 12, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;
                         {t(&quot;components:smart_search_thinking&quot;)}
                       &lt;/div&gt;
                     )}
                 &lt;/div&gt;
             &lt;/Label&gt;
             {suggestions.length &gt; 0 &amp;&amp; (
-              &lt;div style={{ marginTop: 8, padding: 12, border: &quot;1px solid #eee&quot;, borderRadius: 8, background: &quot;#fafafa&quot; }}&gt;
+              &lt;div style={{ marginTop: 8, padding: 12, border: &quot;1px solid var(--wim-color-border)&quot;, borderRadius: 8, background: &quot;var(--wim-color-surface-variant)&quot; }}&gt;
                 &lt;div style={{ fontSize: 12, fontWeight: &quot;bold&quot;, marginBottom: 8, color: &quot;var(--wim-color-primary)&quot; }}&gt;
                   {t(&quot;components:smart_search_suggestions&quot;)}
                 &lt;/div&gt;
@@ -50527,7 +50528,7 @@ width?: number | string = 260</code></pre>
               position: &quot;fixed&quot;,
               inset: 0,
               display: &quot;flex&quot;,
-              background: &quot;#f4f4f5&quot;,
+              background: &quot;var(--wim-color-surface-variant)&quot;,
               overflow: &quot;hidden&quot;,
             }}&gt;
             &lt;style&gt;{`
@@ -50537,8 +50538,8 @@ width?: number | string = 260</code></pre>
                                 left: 10px;
                                 z-index: 101;
                                 padding: 5px 10px;
-                                background: white;
-                                border: 1px solid #ccc;
+                                background: var(--wim-color-surface);
+                                border: 1px solid var(--wim-color-border);
                                 border-radius: 4px;
                                 cursor: pointer;
                             }
@@ -51491,7 +51492,7 @@ width?: string | number</code></pre>
       maxWidth: &quot;300px&quot;,
       width: &quot;100%&quot;,
       padding: &quot;16px&quot;,
-      border: &quot;1px solid #eee&quot;,
+      border: &quot;1px solid var(--wim-color-border)&quot;,
       borderRadius: &quot;8px&quot;,
     }}&gt;
     &lt;div style={{ display: &quot;flex&quot;, alignItems: &quot;center&quot;, gap: &quot;12px&quot; }}&gt;
@@ -51527,7 +51528,7 @@ width?: string | number</code></pre>
         style={{
           padding: &quot;8px 16px&quot;,
           borderRadius: &quot;4px&quot;,
-          border: &quot;1px solid #ccc&quot;,
+          border: &quot;1px solid var(--wim-color-border)&quot;,
           cursor: &quot;pointer&quot;,
           width: &quot;fit-content&quot;,
         }}
@@ -51538,7 +51539,7 @@ width?: string | number</code></pre>
       &lt;div
         style={{
           padding: &quot;20px&quot;,
-          border: &quot;1px solid #eee&quot;,
+          border: &quot;1px solid var(--wim-color-border)&quot;,
           borderRadius: &quot;12px&quot;,
           maxWidth: &quot;350px&quot;,
           width: &quot;100%&quot;,
@@ -51579,11 +51580,11 @@ width?: string | number</code></pre>
                   width: 48,
                   height: 48,
                   borderRadius: &quot;50%&quot;,
-                  backgroundColor: &quot;#007bff&quot;,
+                  backgroundColor: &quot;var(--wim-color-primary)&quot;,
                   display: &quot;flex&quot;,
                   alignItems: &quot;center&quot;,
                   justifyContent: &quot;center&quot;,
-                  color: &quot;white&quot;,
+                  color: &quot;var(--wim-color-text-on-primary)&quot;,
                   fontWeight: &quot;bold&quot;,
                 }}
               &gt;
@@ -51593,7 +51594,7 @@ width?: string | number</code></pre>
                 &lt;div style={{ fontWeight: &quot;bold&quot;, fontSize: &quot;1.1rem&quot; }}&gt;
                   John Doe
                 &lt;/div&gt;
-                &lt;div style={{ color: &quot;#666&quot;, fontSize: &quot;0.9rem&quot; }}&gt;
+                &lt;div style={{ color: &quot;var(--wim-color-text-secondary)&quot;, fontSize: &quot;0.9rem&quot; }}&gt;
                   Software Engineer
                 &lt;/div&gt;
               &lt;/div&gt;
@@ -51608,7 +51609,7 @@ width?: string | number</code></pre>
                 borderRadius: &quot;4px&quot;,
               }}
             /&gt;
-            &lt;div style={{ lineHeight: &quot;1.6&quot;, color: &quot;#444&quot; }}&gt;
+            &lt;div style={{ lineHeight: &quot;1.6&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;
               {t(&quot;story_skeleton_demo_desc&quot;)}
             &lt;/div&gt;
           &lt;/div&gt;
@@ -56042,7 +56043,8 @@ glass?: boolean = false</code></pre>
     const [activeTab, setActiveTab] = React.useState(&quot;home&quot;);
 
     return (
-        &lt;div style={{ height: &quot;100vh&quot;, background: &quot;#f4f4f5&quot;, position: &quot;relative&quot; }}&gt;
+        &lt;div
+            style={{ height: &quot;100vh&quot;, background: &quot;var(--wim-color-surface-variant)&quot;, position: &quot;relative&quot; }}&gt;
             &lt;div style={{ padding: &quot;20px&quot; }}&gt;
                 {t(&quot;story_tabbar_content_prefix&quot;)} {activeTab} {t(&quot;story_tabbar_tab&quot;)}
             &lt;/div&gt;
@@ -56084,7 +56086,8 @@ glass?: boolean = false</code></pre>
     const [activeTab, setActiveTab] = React.useState(&quot;home&quot;);
 
     return (
-        &lt;div style={{ height: &quot;100vh&quot;, background: &quot;#f4f4f5&quot;, position: &quot;relative&quot; }}&gt;
+        &lt;div
+            style={{ height: &quot;100vh&quot;, background: &quot;var(--wim-color-surface-variant)&quot;, position: &quot;relative&quot; }}&gt;
             &lt;TabBar style={{}}&gt;
                 &lt;TabBar.Item
                     active={activeTab === &quot;home&quot;}
@@ -56118,7 +56121,8 @@ glass?: boolean = false</code></pre>
     const [activeTab, setActiveTab] = React.useState(&quot;home&quot;);
 
     return (
-        &lt;div style={{ background: &quot;#f4f4f5&quot;, minHeight: &quot;100vh&quot; }}&gt;
+        &lt;div
+            style={{ background: &quot;var(--wim-color-surface-variant)&quot;, minHeight: &quot;100vh&quot; }}&gt;
             &lt;div style={{ padding: &quot;20px&quot;, paddingBottom: &quot;100px&quot; }}&gt;
                 &lt;h2&gt;{t(&quot;story_tabbar_fixed_title&quot;)}&lt;/h2&gt;
                 &lt;p&gt;{t(&quot;story_tabbar_fixed_desc&quot;)}&lt;/p&gt;
@@ -60538,8 +60542,8 @@ steps: TourStep[]</code></pre>
                     id=&quot;tour-step-1&quot;
                     style={{
                       padding: &quot;20px&quot;,
-                      background: &quot;#eee&quot;,
-                      border: &quot;1px solid #ccc&quot;,
+                      background: &quot;var(--wim-color-surface-variant)&quot;,
+                      border: &quot;1px solid var(--wim-color-border)&quot;,
                       minWidth: &quot;120px&quot;,
                     }}&gt;
                     {t(&quot;story_tour_step_target&quot;, { n: 1 })}
@@ -60548,8 +60552,8 @@ steps: TourStep[]</code></pre>
                     id=&quot;tour-step-2&quot;
                     style={{
                       padding: &quot;20px&quot;,
-                      background: &quot;#eee&quot;,
-                      border: &quot;1px solid #ccc&quot;,
+                      background: &quot;var(--wim-color-surface-variant)&quot;,
+                      border: &quot;1px solid var(--wim-color-border)&quot;,
                       minWidth: &quot;120px&quot;,
                     }}&gt;
                     {t(&quot;story_tour_step_target&quot;, { n: 2 })}
@@ -60560,8 +60564,8 @@ steps: TourStep[]</code></pre>
                 style={{
                   marginTop: &quot;400px&quot;,
                   padding: &quot;20px&quot;,
-                  background: &quot;#eee&quot;,
-                  border: &quot;1px solid #ccc&quot;,
+                  background: &quot;var(--wim-color-surface-variant)&quot;,
+                  border: &quot;1px solid var(--wim-color-border)&quot;,
                   width: &quot;150px&quot;,
                 }}&gt;
                 {t(&quot;story_tour_step_target&quot;, { n: 3 })}
@@ -64048,11 +64052,12 @@ zIndex?: number = 9</code></pre>
 
     return (
         &lt;Watermark content={t(&quot;story_watermark_text&quot;)}&gt;
-            &lt;div style={{ height: &quot;400px&quot;, background: &quot;#fff&quot;, padding: &quot;20px&quot; }}&gt;
+            &lt;div
+                style={{ height: &quot;400px&quot;, background: &quot;var(--wim-color-surface)&quot;, padding: &quot;20px&quot; }}&gt;
                 &lt;div
                     style={{
                       height: &quot;200px&quot;,
-                      background: &quot;#f0f0f0&quot;,
+                      background: &quot;var(--wim-color-surface-variant)&quot;,
                       display: &quot;flex&quot;,
                       alignItems: &quot;center&quot;,
                       justifyContent: &quot;center&quot;,
@@ -68997,15 +69002,15 @@ import { T } from &quot;../stories/T&quot;;
 &lt;p&gt;&lt;T k=&quot;guide_numeric_std_concept_desc&quot; /&gt;&lt;/p&gt;
 
 &lt;div style={{ display: &#39;grid&#39;, gridTemplateColumns: &#39;1fr 1fr&#39;, gap: &#39;24px&#39;, margin: &#39;24px 0&#39; }}&gt;
-  &lt;div style={{ padding: &#39;16px&#39;, borderRadius: &#39;8px&#39;, border: &#39;1px solid #e0e0e0&#39;, backgroundColor: &#39;#f9f9f9&#39; }}&gt;
-    &lt;strong style={{ display: &#39;block&#39;, marginBottom: &#39;8px&#39;, color: &#39;#2e7d32&#39; }}&gt;&lt;T k=&quot;common_do&quot; /&gt;&lt;/strong&gt;
+  &lt;div style={{ padding: &#39;16px&#39;, borderRadius: &#39;8px&#39;, border: &#39;1px solid var(--wim-color-border)&#39;, backgroundColor: &#39;var(--wim-color-surface-variant)&#39; }}&gt;
+    &lt;strong style={{ display: &#39;block&#39;, marginBottom: &#39;8px&#39;, color: &#39;var(--color-positive)&#39; }}&gt;&lt;T k=&quot;common_do&quot; /&gt;&lt;/strong&gt;
     &lt;ul style={{ margin: 0, paddingLeft: &#39;20px&#39; }}&gt;
       &lt;li&gt;&lt;T k=&quot;guide_numeric_std_usage_warning_desc&quot; /&gt;&lt;/li&gt;
       &lt;li&gt;&lt;T k=&quot;guide_numeric_std_usage_do_1&quot; /&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
-  &lt;div style={{ padding: &#39;16px&#39;, borderRadius: &#39;8px&#39;, border: &#39;1px solid #e0e0e0&#39;, backgroundColor: &#39;#f9f9f9&#39; }}&gt;
-    &lt;strong style={{ display: &#39;block&#39;, marginBottom: &#39;8px&#39;, color: &#39;#d32f2f&#39; }}&gt;&lt;T k=&quot;common_dont&quot; /&gt;&lt;/strong&gt;
+  &lt;div style={{ padding: &#39;16px&#39;, borderRadius: &#39;8px&#39;, border: &#39;1px solid var(--wim-color-border)&#39;, backgroundColor: &#39;var(--wim-color-surface-variant)&#39; }}&gt;
+    &lt;strong style={{ display: &#39;block&#39;, marginBottom: &#39;8px&#39;, color: &#39;var(--color-destructive)&#39; }}&gt;&lt;T k=&quot;common_dont&quot; /&gt;&lt;/strong&gt;
     &lt;ul style={{ margin: 0, paddingLeft: &#39;20px&#39; }}&gt;
       &lt;li&gt;&lt;T k=&quot;guide_numeric_std_usage_dont_1&quot; /&gt;&lt;/li&gt;
       &lt;li&gt;&lt;T k=&quot;guide_numeric_std_usage_dont_2&quot; /&gt;&lt;/li&gt;
@@ -74199,9 +74204,9 @@ import { T } from &quot;../stories/T&quot;;
     grid-template-rows: 60px 300px 40px;
     grid-template-columns: 200px 1fr 200px;
     gap: 2px;
-    background: #ccc;
-    border: 1px solid #ddd;
-    color: #555;
+    background: var(--wim-color-border);
+    border: 1px solid var(--wim-color-border);
+    color: var(--wim-color-text-secondary);
     font-size: 14px;
     font-family: sans-serif;
     margin: 24px 0;
@@ -74211,14 +74216,14 @@ import { T } from &quot;../stories/T&quot;;
     position: relative;
   }
 
-  .layout-header { grid-area: header; background: #e0e7ff; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-  .layout-sidebar { grid-area: sidebar; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-  .layout-main { grid-area: main; background: #fff; position: relative; }
-  .layout-page-header { position: absolute; top: 0; left: 0; right: 0; height: 40px; background: #fffbeb; border-bottom: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .layout-header { grid-area: header; background: var(--wim-color-primary-light); display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .layout-sidebar { grid-area: sidebar; background: var(--wim-color-surface-variant); display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .layout-main { grid-area: main; background: var(--wim-color-surface); position: relative; }
+  .layout-page-header { position: absolute; top: 0; left: 0; right: 0; height: 40px; background: var(--wim-color-surface-variant); border-bottom: 1px dashed var(--wim-color-border); display: flex; align-items: center; justify-content: center; font-size: 12px; }
   .layout-main-content { display: flex; align-items: center; justify-content: center; height: 100%; padding-top: 40px; font-weight: bold; }
-  .layout-toast { position: absolute; bottom: 10px; right: 10px; width: 120px; height: 40px; background: #fee2e2; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-  .layout-right { grid-area: right; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-weight: bold; border-left: 1px solid #e5e7eb; }
-  .layout-footer { grid-area: footer; background: #f9fafb; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .layout-toast { position: absolute; bottom: 10px; right: 10px; width: 120px; height: 40px; background: var(--wim-color-primary-container-alpha); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  .layout-right { grid-area: right; background: var(--wim-color-surface-variant); display: flex; align-items: center; justify-content: center; font-weight: bold; border-left: 1px solid var(--wim-color-border); }
+  .layout-footer { grid-area: footer; background: var(--wim-color-surface-variant); display: flex; align-items: center; justify-content: center; font-size: 12px; }
 
   @media (max-width: 1024px) {
     .layout-container {
@@ -74234,7 +74239,7 @@ import { T } from &quot;../stories/T&quot;;
       grid-template-columns: 1fr;
       grid-template-rows: 50px 300px 60px 40px;
     }
-    .layout-sidebar { border-top: 1px solid #ddd; }
+    .layout-sidebar { border-top: 1px solid var(--wim-color-border); }
     .layout-toast { width: 100px; height: 32px; font-size: 10px; }
   }
 `}&lt;/style&gt;
