@@ -32,7 +32,7 @@ export const Default: Story = {
     const [activeTab, setActiveTab] = React.useState("home");
     return (
       <div
-        style={{ height: "100vh", background: "#f4f4f5", position: "relative" }}
+        style={{ height: "100vh", background: "var(--wim-color-surface-variant)", position: "relative" }}
       >
         <div style={{ padding: "20px" }}>
           {t("story_tabbar_content_prefix")} {activeTab} {t("story_tabbar_tab")}
@@ -74,7 +74,7 @@ export const WithoutLabels: Story = {
     const [activeTab, setActiveTab] = React.useState("home");
     return (
       <div
-        style={{ height: "100vh", background: "#f4f4f5", position: "relative" }}
+        style={{ height: "100vh", background: "var(--wim-color-surface-variant)", position: "relative" }}
       >
         <TabBar {...args} style={{}}>
           <TabBar.Item
@@ -106,7 +106,7 @@ export const Fixed: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [activeTab, setActiveTab] = React.useState("home");
     return (
-      <div style={{ background: "#f4f4f5", minHeight: "100vh" }}>
+      <div style={{ background: "var(--wim-color-surface-variant)", minHeight: "100vh" }}>
         <div style={{ padding: "20px", paddingBottom: "100px" }}>
           <h2>{t("story_tabbar_fixed_title")}</h2>
           <p>{t("story_tabbar_fixed_desc")}</p>

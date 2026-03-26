@@ -55,8 +55,8 @@ export const Default: Story = {
             id="tour-step-1"
             style={{
               padding: "20px",
-              background: "#eee",
-              border: "1px solid #ccc",
+              background: "var(--wim-color-surface-variant)",
+              border: "1px solid var(--wim-color-border)",
               minWidth: "120px",
             }}
           >
@@ -66,8 +66,8 @@ export const Default: Story = {
             id="tour-step-2"
             style={{
               padding: "20px",
-              background: "#eee",
-              border: "1px solid #ccc",
+              background: "var(--wim-color-surface-variant)",
+              border: "1px solid var(--wim-color-border)",
               minWidth: "120px",
             }}
           >
@@ -80,8 +80,8 @@ export const Default: Story = {
           style={{
             marginTop: "400px",
             padding: "20px",
-            background: "#eee",
-            border: "1px solid #ccc",
+            background: "var(--wim-color-surface-variant)",
+            border: "1px solid var(--wim-color-border)",
             width: "150px",
           }}
         >

@@ -23,7 +23,7 @@ const Skeleton = () => (
       height: "100%",
       minHeight: "6rem",
       borderRadius: "0.5rem",
-      background: "linear-gradient(to bottom right, #f3f4f6, #e5e7eb)",
+      background: "var(--wim-color-surface-variant)",
     }}
   />
 );

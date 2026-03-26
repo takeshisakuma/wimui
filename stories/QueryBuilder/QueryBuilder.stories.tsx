@@ -32,7 +32,7 @@ export const Default: Story = {
         <QueryBuilder {...args} query={query} onChange={setQuery} />
         <div style={{ marginTop: "20px" }}>
           <h4>{t("query_builder.generated_json")}:</h4>
-          <pre style={{ backgroundColor: "#f4f4f4", padding: "10px", borderRadius: "4px", overflow: "auto" }}>
+          <pre style={{ backgroundColor: "var(--wim-color-surface-variant)", padding: "10px", borderRadius: "4px", overflow: "auto" }}>
             {JSON.stringify(query, null, 2)}
           </pre>
         </div>
@@ -85,7 +85,7 @@ export const Predefined: Story = {
         <QueryBuilder {...args} query={query} onChange={setQuery} />
         <div style={{ marginTop: "20px" }}>
           <h4>{t("query_builder.generated_json")}:</h4>
-          <pre style={{ backgroundColor: "#f4f4f4", padding: "10px", borderRadius: "4px", overflow: "auto" }}>
+          <pre style={{ backgroundColor: "var(--wim-color-surface-variant)", padding: "10px", borderRadius: "4px", overflow: "auto" }}>
             {JSON.stringify(query, null, 2)}
           </pre>
         </div>

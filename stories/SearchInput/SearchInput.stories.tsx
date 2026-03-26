@@ -63,14 +63,14 @@ export const SmartSearchWithAI_Example: Story = {
               placeholder={t("components:smart_search_placeholder")}
             />
             {isSearching && (
-              <div style={{ position: "absolute", right: 40, top: "50%", transform: "translateY(-50%)", fontSize: 12, color: "#888" }}>
+              <div style={{ position: "absolute", right: 40, top: "50%", transform: "translateY(-50%)", fontSize: 12, color: "var(--wim-color-text-secondary)" }}>
                 {t("components:smart_search_thinking")}
               </div>
             )}
           </div>
         </Label>
         {suggestions.length > 0 && (
-          <div style={{ marginTop: 8, padding: 12, border: "1px solid #eee", borderRadius: 8, background: "#fafafa" }}>
+          <div style={{ marginTop: 8, padding: 12, border: "1px solid var(--wim-color-border)", borderRadius: 8, background: "var(--wim-color-surface-variant)" }}>
             <div style={{ fontSize: 12, fontWeight: "bold", marginBottom: 8, color: "var(--wim-color-primary)" }}>
               {t("components:smart_search_suggestions")}
             </div>

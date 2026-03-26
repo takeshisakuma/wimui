@@ -141,9 +141,9 @@ export const CustomContent: Story = {
           <div
             style={{
               padding: "20px",
-              border: "1px solid #ccc",
+              border: "1px solid var(--wim-color-border)",
               borderRadius: "8px",
-              background: "#f9f9f9",
+              background: "var(--wim-color-surface-variant)",
             }}
           >
             <h3>
@@ -156,9 +156,9 @@ export const CustomContent: Story = {
           <div
             style={{
               padding: "20px",
-              border: "1px solid #ccc",
+              border: "1px solid var(--wim-color-border)",
               borderRadius: "8px",
-              background: "#f9f9f9",
+              background: "var(--wim-color-surface-variant)",
             }}
           >
             <h3>
@@ -171,9 +171,9 @@ export const CustomContent: Story = {
           <div
             style={{
               padding: "20px",
-              border: "1px solid #ccc",
+              border: "1px solid var(--wim-color-border)",
               borderRadius: "8px",
-              background: "#f9f9f9",
+              background: "var(--wim-color-surface-variant)",
             }}
           >
             <h3>

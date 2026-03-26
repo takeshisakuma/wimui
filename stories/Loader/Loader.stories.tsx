@@ -54,7 +54,7 @@ export const Variants: Story = {
         }}
       >
         <Loader {...args} variant="bars" />
-        <span style={{ fontSize: "12px", color: "#666" }}>bars</span>
+        <span style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)" }}>bars</span>
       </div>
       <div
         style={{
@@ -65,7 +65,7 @@ export const Variants: Story = {
         }}
       >
         <Loader {...args} variant="dots" />
-        <span style={{ fontSize: "12px", color: "#666" }}>dots</span>
+        <span style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)" }}>dots</span>
       </div>
       <div
         style={{
@@ -76,7 +76,7 @@ export const Variants: Story = {
         }}
       >
         <Loader {...args} variant="pulse" />
-        <span style={{ fontSize: "12px", color: "#666" }}>pulse</span>
+        <span style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)" }}>pulse</span>
       </div>
     </div>
   ),

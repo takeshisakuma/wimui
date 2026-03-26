@@ -95,7 +95,7 @@ export const WithIcons: Story = {
     <div style={{ display: "flex", gap: "20px" }}>
       <Indicator {...args} color="error">
         <div
-          style={{ padding: "8px", background: "#f0f0f0", borderRadius: "8px" }}
+          style={{ padding: "8px", background: "var(--wim-color-surface-variant)", borderRadius: "8px" }}
         >
           <Icon name="BellIcon" />
         </div>

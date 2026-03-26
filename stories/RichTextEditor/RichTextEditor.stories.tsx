@@ -65,7 +65,7 @@ export const Controlled: Story = {
         />
         <div>
           <strong>{t("story_rte_output_label")}</strong>
-          <pre style={{ fontSize: "0.75rem", whiteSpace: "pre-wrap", wordBreak: "break-all", padding: "8px", background: "#f5f5f5", borderRadius: "4px" }}>
+          <pre style={{ fontSize: "0.75rem", whiteSpace: "pre-wrap", wordBreak: "break-all", padding: "8px", background: "var(--wim-color-surface-variant)", borderRadius: "4px" }}>
             {value}
           </pre>
         </div>

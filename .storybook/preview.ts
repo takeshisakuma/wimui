@@ -51,8 +51,15 @@ const applyLang = (lang: string): void => {
 //    T.tsx や他のコードが i18n.changeLanguage() を呼んだ際にも確実に反映される
 i18n.on("languageChanged", applyLang);
 
+/** data-theme を document.documentElement に適用（純粋な MDX ページ用） */
+const applyTheme = (theme: string): void => {
+  if (theme === "dark" || theme === "light") {
+    document.documentElement.setAttribute("data-theme", theme);
+  }
+};
+
 // ② Storybook ツールバーの切替イベントを直接検知（モジュールレベル）
-//    ツールバーでロケールを変えると GLOBALS_UPDATED が発火する
+//    ツールバーでロケール・テーマを変えると GLOBALS_UPDATED が発火する
 try {
   const channel = addons.getChannel();
   channel.on(
@@ -63,23 +70,32 @@ try {
         applyLang(locale);
         if (i18n.language !== locale) i18n.changeLanguage(locale);
       }
+      // ツールバーのテーマ切り替えを純粋な MDX ページにも適用する
+      // デコレーターはストーリーにしか動作しないため、documentElement に直接セットする
+      const theme = globals?.theme as string | undefined;
+      if (theme) applyTheme(theme);
     },
   );
 } catch {
   // チャンネルが初期化前の場合は無視（③ の URL 読み取りでカバー）
 }
 
-// ③ iframe のフルリロード時: URL の globals パラメータから初期言語を読み取る
-//    ロケール切替で iframe がリロードされる場合はこちらが機能する
+// ③ iframe のフルリロード時: URL の globals パラメータから初期値を読み取る
+//    ロケール・テーマ切替で iframe がリロードされる場合はこちらが機能する
 try {
   const topWin = window.top || window;
   const globals = new URLSearchParams(topWin.location.search).get("globals");
-  const match = globals?.match(/locale:([^;]+)/);
-  if (match) {
-    const locale = match[1];
+
+  const localeMatch = globals?.match(/locale:([^;]+)/);
+  if (localeMatch) {
+    const locale = localeMatch[1];
     applyLang(locale);
     if (i18n.language !== locale) i18n.changeLanguage(locale);
   }
+
+  // URL に保存されたテーマ選択を復元（system pref より優先）
+  const themeMatch = globals?.match(/theme:([^;]+)/);
+  if (themeMatch) applyTheme(themeMatch[1]);
 } catch {
   // cross-origin エラーは無視
 }

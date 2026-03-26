@@ -16,9 +16,9 @@ import { T } from "../stories/T";
     grid-template-rows: 60px 300px 40px;
     grid-template-columns: 200px 1fr 200px;
     gap: 2px;
-    background: #ccc;
-    border: 1px solid #ddd;
-    color: #555;
+    background: var(--wim-color-border);
+    border: 1px solid var(--wim-color-border);
+    color: var(--wim-color-text-secondary);
     font-size: 14px;
     font-family: sans-serif;
     margin: 24px 0;
@@ -28,14 +28,14 @@ import { T } from "../stories/T";
     position: relative;
   }
 
-  .layout-header { grid-area: header; background: #e0e7ff; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-  .layout-sidebar { grid-area: sidebar; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-  .layout-main { grid-area: main; background: #fff; position: relative; }
-  .layout-page-header { position: absolute; top: 0; left: 0; right: 0; height: 40px; background: #fffbeb; border-bottom: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .layout-header { grid-area: header; background: var(--wim-color-primary-light); display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .layout-sidebar { grid-area: sidebar; background: var(--wim-color-surface-variant); display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .layout-main { grid-area: main; background: var(--wim-color-surface); position: relative; }
+  .layout-page-header { position: absolute; top: 0; left: 0; right: 0; height: 40px; background: var(--wim-color-surface-variant); border-bottom: 1px dashed var(--wim-color-border); display: flex; align-items: center; justify-content: center; font-size: 12px; }
   .layout-main-content { display: flex; align-items: center; justify-content: center; height: 100%; padding-top: 40px; font-weight: bold; }
-  .layout-toast { position: absolute; bottom: 10px; right: 10px; width: 120px; height: 40px; background: #fee2e2; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-  .layout-right { grid-area: right; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-weight: bold; border-left: 1px solid #e5e7eb; }
-  .layout-footer { grid-area: footer; background: #f9fafb; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .layout-toast { position: absolute; bottom: 10px; right: 10px; width: 120px; height: 40px; background: var(--wim-color-primary-container-alpha); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  .layout-right { grid-area: right; background: var(--wim-color-surface-variant); display: flex; align-items: center; justify-content: center; font-weight: bold; border-left: 1px solid var(--wim-color-border); }
+  .layout-footer { grid-area: footer; background: var(--wim-color-surface-variant); display: flex; align-items: center; justify-content: center; font-size: 12px; }
 
   @media (max-width: 1024px) {
     .layout-container {
@@ -51,7 +51,7 @@ import { T } from "../stories/T";
       grid-template-columns: 1fr;
       grid-template-rows: 50px 300px 60px 40px;
     }
-    .layout-sidebar { border-top: 1px solid #ddd; }
+    .layout-sidebar { border-top: 1px solid var(--wim-color-border); }
     .layout-toast { width: 100px; height: 32px; font-size: 10px; }
   }
 `}</style>

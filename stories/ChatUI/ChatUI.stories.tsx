@@ -353,19 +353,19 @@ export const AvatarSizes: Story = {
         }}
       >
         <div>
-          <p style={{ marginBottom: "8px", fontSize: "14px", color: "#666" }}>
+          <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
             {t("story_chat_size_small")}
           </p>
           <ChatAvatar size="small" fallback="S" />
         </div>
         <div>
-          <p style={{ marginBottom: "8px", fontSize: "14px", color: "#666" }}>
+          <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
             {t("story_chat_size_medium")}
           </p>
           <ChatAvatar size="medium" fallback="M" />
         </div>
         <div>
-          <p style={{ marginBottom: "8px", fontSize: "14px", color: "#666" }}>
+          <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
             {t("story_chat_size_large")}
           </p>
           <ChatAvatar size="large" fallback="L" />

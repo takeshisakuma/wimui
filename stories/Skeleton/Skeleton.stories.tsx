@@ -79,7 +79,7 @@ export const CardExample: Story = {
         maxWidth: "300px",
         width: "100%",
         padding: "16px",
-        border: "1px solid #eee",
+        border: "1px solid var(--wim-color-border)",
         borderRadius: "8px",
       }}
     >
@@ -112,7 +112,7 @@ export const LoadingToggle: Story = {
           style={{
             padding: "8px 16px",
             borderRadius: "4px",
-            border: "1px solid #ccc",
+            border: "1px solid var(--wim-color-border)",
             cursor: "pointer",
             width: "fit-content",
           }}
@@ -123,7 +123,7 @@ export const LoadingToggle: Story = {
         <div
           style={{
             padding: "20px",
-            border: "1px solid #eee",
+            border: "1px solid var(--wim-color-border)",
             borderRadius: "12px",
             maxWidth: "350px",
             width: "100%",
@@ -164,11 +164,11 @@ export const LoadingToggle: Story = {
                     width: 48,
                     height: 48,
                     borderRadius: "50%",
-                    backgroundColor: "#007bff",
+                    backgroundColor: "var(--wim-color-primary)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "white",
+                    color: "var(--wim-color-text-on-primary)",
                     fontWeight: "bold",
                   }}
                 >
@@ -178,7 +178,7 @@ export const LoadingToggle: Story = {
                   <div style={{ fontWeight: "bold", fontSize: "1.1rem" }}>
                     John Doe
                   </div>
-                  <div style={{ color: "#666", fontSize: "0.9rem" }}>
+                  <div style={{ color: "var(--wim-color-text-secondary)", fontSize: "0.9rem" }}>
                     Software Engineer
                   </div>
                 </div>
@@ -193,7 +193,7 @@ export const LoadingToggle: Story = {
                   borderRadius: "4px",
                 }}
               />
-              <div style={{ lineHeight: "1.6", color: "#444" }}>
+              <div style={{ lineHeight: "1.6", color: "var(--wim-color-text-secondary)" }}>
                 {t("story_skeleton_demo_desc")}
               </div>
             </div>

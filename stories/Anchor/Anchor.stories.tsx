@@ -77,11 +77,11 @@ export const Default: Story = {
             zIndex: 100,
             width: isMobile ? "100%" : "200px",
             flexShrink: 0,
-            background: "rgba(255, 255, 255, 1)",
+            background: "var(--wim-color-surface)",
             backdropFilter: "blur(8px)",
             alignSelf: "flex-start",
             padding: isMobile ? "0" : "20px 0",
-            borderBottom: isMobile ? "1px solid #eee" : "none",
+            borderBottom: isMobile ? "1px solid var(--wim-color-border)" : "none",
           }}
         >
           <Anchor
@@ -96,7 +96,7 @@ export const Default: Story = {
             id="part-1"
             style={{
               height: "600px",
-              background: "#f0f2f5",
+              background: "var(--wim-color-surface-variant)",
               padding: "20px",
               marginBottom: "20px",
             }}
@@ -108,7 +108,7 @@ export const Default: Story = {
             id="part-2"
             style={{
               height: "1000px",
-              background: "#f9f9f9",
+              background: "var(--wim-color-surface-variant)",
               padding: "20px",
               marginBottom: "20px",
             }}
@@ -118,7 +118,7 @@ export const Default: Story = {
               id="part-2-1"
               style={{
                 height: "400px",
-                border: "1px dashed #ccc",
+                border: "1px dashed var(--wim-color-border)",
                 margin: "20px 0",
                 padding: "10px",
               }}
@@ -129,7 +129,7 @@ export const Default: Story = {
               id="part-2-2"
               style={{
                 height: "400px",
-                border: "1px dashed #ccc",
+                border: "1px dashed var(--wim-color-border)",
                 margin: "20px 0",
                 padding: "10px",
               }}
@@ -139,7 +139,7 @@ export const Default: Story = {
           </section>
           <section
             id="part-3"
-            style={{ height: "600px", background: "#f0f2f5", padding: "20px" }}
+            style={{ height: "600px", background: "var(--wim-color-surface-variant)", padding: "20px" }}
           >
             <h2>{t("story_anchor_part3")}</h2>
           </section>

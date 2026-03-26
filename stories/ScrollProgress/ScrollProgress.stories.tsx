@@ -46,7 +46,7 @@ export const CustomContainer: Story = {
           style={{
             height: "300px",
             overflowY: "auto",
-            border: "1px solid #ccc",
+            border: "1px solid var(--wim-color-border)",
             position: "relative",
           }}
         >

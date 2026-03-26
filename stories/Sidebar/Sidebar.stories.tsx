@@ -76,7 +76,7 @@ const SidebarContent = () => {
               width: 32,
               height: 32,
               borderRadius: "50%",
-              background: "#eee",
+              background: "var(--wim-color-surface-variant)",
               flexShrink: 0,
             }}
           ></div>
@@ -84,7 +84,7 @@ const SidebarContent = () => {
             <div style={{ fontSize: "0.8rem", fontWeight: "bold" }}>
               {t("story_sidebar_user_name")}
             </div>
-            <div style={{ fontSize: "0.7rem", color: "#666" }}>
+            <div style={{ fontSize: "0.7rem", color: "var(--wim-color-text-secondary)" }}>
               {t("story_sidebar_user_email")}
             </div>
           </div>
@@ -104,7 +104,7 @@ export const Default: Story = {
           position: "fixed",
           inset: 0,
           display: "flex",
-          background: "#f4f4f5",
+          background: "var(--wim-color-surface-variant)",
           overflow: "hidden",
         }}
       >
@@ -115,8 +115,8 @@ export const Default: Story = {
                         left: 10px;
                         z-index: 101;
                         padding: 5px 10px;
-                        background: white;
-                        border: 1px solid #ccc;
+                        background: var(--wim-color-surface);
+                        border: 1px solid var(--wim-color-border);
                         border-radius: 4px;
                         cursor: pointer;
                     }

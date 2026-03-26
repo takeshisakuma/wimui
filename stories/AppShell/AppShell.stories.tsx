@@ -91,7 +91,7 @@ export const ModernApp: Story = {
                   style={{
                     width: 32,
                     height: 32,
-                    background: "#0066ff",
+                    background: "var(--wim-color-primary)",
                     borderRadius: 4,
                   }}
                 />
@@ -129,13 +129,13 @@ export const ModernApp: Story = {
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div
               key={i}
-              style={{ border: "1px solid #eee", borderRadius: 8, padding: 16 }}
+              style={{ border: "1px solid var(--wim-color-border)", borderRadius: 8, padding: 16 }}
             >
               <div
                 style={{
                   width: "100%",
                   aspectRatio: "1",
-                  background: "#f5f5f5",
+                  background: "var(--wim-color-surface-variant)",
                   borderRadius: 4,
                   marginBottom: 8,
                 }}
@@ -143,7 +143,7 @@ export const ModernApp: Story = {
               <div style={{ fontWeight: "bold" }}>
                 {t("story_appshell_product")} {i}
               </div>
-              <div style={{ color: "#666", fontSize: "0.9rem" }}>$99.00</div>
+              <div style={{ color: "var(--wim-color-text-secondary)", fontSize: "0.9rem" }}>$99.00</div>
             </div>
           ))}
         </div>
@@ -170,7 +170,7 @@ export const WithSidebar: Story = {
                                 .appshell-mobile-trigger {
                                     display: none;
                                     background: none;
-                                    border: 1px solid var(--wim-color-border-subtle, #ccc);
+                                    border: 1px solid var(--wim-color-border);
                                     border-radius: 4px;
                                     cursor: pointer;
                                     padding: 4px 8px;

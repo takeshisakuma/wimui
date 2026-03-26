@@ -30,6 +30,27 @@
     color: var(--text-primary) !important;
   }
 
+  /* Docs 見出し・本文テキスト – Storybook addon-docs の rgba(0,0,0,x) を上書き */
+  .sbdocs-content h1,
+  .sbdocs-content h2,
+  .sbdocs-content h3,
+  .sbdocs-content h4,
+  .sbdocs-content h5,
+  .sbdocs-content h6,
+  .sbdocs-content p,
+  .sbdocs-content li,
+  .sbdocs-content strong,
+  .sbdocs-content span {
+    color: var(--text-primary) !important;
+  }
+
+  /* Docs内テーブル行 – zebra stripe の白背景を除去 */
+  .sbdocs-content table tr,
+  .sbdocs-content table tr:nth-child(even),
+  .sbdocs-content table tr:nth-child(odd) {
+    background-color: transparent !important;
+  }
+
   /* Docs内テーブルセル – Storybook 既定の白背景を上書き */
   .sbdocs-content table th,
   .sbdocs-content table td {

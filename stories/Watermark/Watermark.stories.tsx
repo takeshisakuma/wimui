@@ -26,11 +26,11 @@ export const Text: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Watermark {...args} content={t("story_watermark_text")}>
-        <div style={{ height: "400px", background: "#fff", padding: "20px" }}>
+        <div style={{ height: "400px", background: "var(--wim-color-surface)", padding: "20px" }}>
           <div
             style={{
               height: "200px",
-              background: "#f0f0f0",
+              background: "var(--wim-color-surface-variant)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
