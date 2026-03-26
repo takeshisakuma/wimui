@@ -153,3 +153,4 @@ export * from './components/Charts/PieChart/PieChart';
 export * from './components/Charts/RadarChart/RadarChart';
 export * from './components/Charts/ScatterChart/ScatterChart';
 export * from './components/Charts/Treemap/Treemap';
+export * from './components/FAQSection/FAQSection';
