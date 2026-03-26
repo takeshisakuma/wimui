@@ -1,0 +1,53 @@
+@use "../../tokens/breakpoints" as *;
+
+.wim-faq-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wim-spacing-xl);
+  width: 100%;
+  padding: var(--wim-spacing-2xl) 0;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-sm);
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__description {
+    max-width: 600px;
+    margin: 0;
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  // --- Layouts ---
+
+  &--layout-left {
+    @include up(lg) {
+      flex-direction: row;
+      gap: var(--wim-spacing-2xl);
+
+      .wim-faq-section__header {
+        position: sticky;
+        top: var(--wim-spacing-xl);
+        flex: 1;
+        height: min-content;
+      }
+
+      .wim-faq-section__content {
+        flex: 2;
+      }
+    }
+  }
+
+  &--layout-top {
+    text-align: inherit;
+  }
+}
+

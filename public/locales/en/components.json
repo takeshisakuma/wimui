@@ -39,6 +39,8 @@
   "datacontainer_accordion_format": "Accordion Panel",
   "datacontainer_box_desc": "Groups image, title, description, and button together.",
   "datacontainer_box_format": "Independent Box",
+  "datacontainer_faqsection_desc": "Organized list of questions and answers using accordions.",
+  "datacontainer_faqsection_format": "FAQ Section",
   "datacontainer_guide_desc": "Groups information and provides layout cohesion.",
   "datacontainer_guide_title": "Data Container Usage Guide",
   "datagrid_empty": "No data available",

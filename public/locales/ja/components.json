@@ -35,6 +35,8 @@
   "datacontainer_accordion_format": "開閉式パネル",
   "datacontainer_box_desc": "画像、タイトル、説明文、ボタンをひとつにまとめる。",
   "datacontainer_box_format": "独立したボックス",
+  "datacontainer_faqsection_desc": "アコーディオンを使用して質問と回答を整理したリスト。",
+  "datacontainer_faqsection_format": "よくある質問セクション",
   "datacontainer_guide_desc": "情報をグループ化し、レイアウト上でのまとまりを提供します。",
   "datacontainer_guide_title": "データコンテナの使い分け",
   "datagrid_empty": "データがありません",

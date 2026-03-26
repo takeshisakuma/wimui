@@ -260,6 +260,12 @@
         "descKey": "doc_accordion_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "FAQSection",
+        "descKey": "doc_faqSection_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

@@ -35,6 +35,8 @@
   "datacontainer_accordion_format": "Painel Acordeão",
   "datacontainer_box_desc": "Agrupa imagem, título, descrição e botão.",
   "datacontainer_box_format": "Caixa Independente",
+  "datacontainer_faqsection_desc": "Lista organizada de perguntas e respostas usando acordeões.",
+  "datacontainer_faqsection_format": "Seção de Perguntas Frequentes",
   "datacontainer_guide_desc": "Agrupa informações e fornece coesão de layout.",
   "datacontainer_guide_title": "Guia de Uso de Contêineres de Dados",
   "datagrid_empty": "Nenhum dado disponível",
