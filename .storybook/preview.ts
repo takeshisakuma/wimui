@@ -17,6 +17,12 @@ const darkMQ =
 
 const prefersDark = darkMQ?.matches ?? false;
 
+// 純粋な MDX ページ（デコレーターが動作しないページ）のために初期 data-theme を設定する
+// これがないと prefers-color-scheme でトークンは dark になるが Storybook docs 背景は white のままになる
+if (typeof document !== "undefined" && !document.documentElement.getAttribute("data-theme")) {
+  document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+}
+
 // システムのダーク/ライト切り替えに追従して data-theme を更新する
 darkMQ?.addEventListener("change", (e) => {
   // ユーザーがツールバーで手動切替している場合は上書きしない

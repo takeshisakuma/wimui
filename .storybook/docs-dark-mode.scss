@@ -22,6 +22,21 @@
   .sb-story-v6-all {
     background-color: var(--bg-app) !important;
   }
+
+  /* Docs page wrapper – 純粋な MDX ページの本文背景 */
+  .sbdocs-wrapper,
+  .sbdocs-content {
+    background-color: var(--bg-app) !important;
+    color: var(--text-primary) !important;
+  }
+
+  /* Docs内テーブルセル – Storybook 既定の白背景を上書き */
+  .sbdocs-content table th,
+  .sbdocs-content table td {
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+    border-color: var(--wim-color-border) !important;
+  }
 }
 
 [data-theme="dark"] {

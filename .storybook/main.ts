@@ -12,6 +12,7 @@ const config: StorybookConfig = {
   ],
   addons: [
     "@storybook/addon-docs",
+    "@storybook/addon-mcp",
     "@storybook/addon-a11y",
     "@storybook/addon-vitest",
     "storybook-react-i18next",
