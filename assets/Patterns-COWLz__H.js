@@ -1,0 +1,45 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{u as o,M as d,C as n}from"./blocks-Bl6P6Fsh.js";import{P as c,H as _,a as x,U as j,L as l,D as p,E as h}from"./Patterns.stories-qcBexeX4.js";import{T as s}from"./T-aHy-5LOg.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-Cst4i4An.js";import"./index-CzBoRtzV.js";import"./index-Z9-1Ds9F.js";import"./index-CW6E-Qwy.js";import"./index-Z0Vi9yJw.js";import"./Input-fJy71Ccj.js";import"./index-DzXdecxS.js";/* empty css              */import"./InputBase-DGQmv43r.js";import"./Icon-CH1wl_Bh.js";import"./useTranslation-C4xIFMNH.js";import"./FieldTemplate-BdaKgcBW.js";import"./FieldLabelContent-DdIy7HTe.js";import"./Badge-C_vqTuG2.js";import"./IndicatorBase-X8TNafIL.js";import"./FieldError-CrQ5uVAh.js";import"./Paragraph-BhXeLkeO.js";import"./Button-BdnWStm_.js";import"./Card-DZoyAX-x.js";import"./Checkbox-CgcRO5ks.js";import"./Link-C0wPqoOW.js";import"./Heading-D2fnV6WK.js";import"./Stack-CLp860x9.js";import"./Box-D9ZJxBf1.js";import"./grid-utils-CGbVCsz0.js";import"./Center-DwCTz7Aw.js";import"./Container-xFpMiYgp.js";import"./Header-BqnbBYvz.js";import"./Avatar-Bzx2fLY0.js";import"./AvatarGroup-DCqfZlxe.js";import"./Divider-CHxc3TdL.js";import"./Selectbox-qoxrgRJp.js";import"./Transition-Yd-Ff-6z.js";import"./BaseListItem-0D9fZj20.js";import"./RadioGroup-BhhwUYst.js";import"./Radio-CShWkqHK.js";import"./Textarea-Brx0itBG.js";import"./Switch-JohCsrQv.js";import"./Grid-D4O71HER.js";import"./Alert-ziPSfN6s.js";import"./FeedbackIcon-DkCtkLdK.js";import"./FeedbackCloseButton-CdpDyA08.js";import"./Stats-CNKdSRDR.js";import"./List-CpUOTVQt.js";import"./Sidebar-2P2QDDKR.js";import"./Skeleton-DSByyv8g.js";import"./Group-B29j6Dw_.js";import"./Flex-CBqkX0L5.js";function i(r){const e={code:"code",h1:"h1",h2:"h2",pre:"pre",...o(),...r.components};return t.jsxs(t.Fragment,{children:[t.jsx(d,{of:c}),`
+`,t.jsx(e.h1,{id:"",children:t.jsx(s,{k:"doc_patterns_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_desc"})}),`
+`,t.jsx(e.h2,{id:"-1",children:t.jsx(s,{k:"doc_patterns_hero_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_hero_desc"})}),`
+`,t.jsx(e.h2,{id:"-2",children:t.jsx(s,{k:"doc_design_intent_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_design_intent"})}),`
+`,t.jsx(e.h2,{id:"-3",children:t.jsx(s,{k:"doc_choice_matrix_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_choice_matrix_desc"})}),`
+`,t.jsxs("table",{children:[t.jsx("thead",{children:t.jsxs("tr",{children:[t.jsx("th",{children:t.jsx(s,{k:"doc_component"})}),t.jsx("th",{children:t.jsx(s,{k:"doc_usage_scenario"})})]})}),t.jsxs("tbody",{children:[t.jsxs("tr",{children:[t.jsx("td",{children:t.jsx("b",{children:"Patterns"})}),t.jsx("td",{children:t.jsx(s,{k:"doc_patterns_choice_self_when"})})]}),t.jsxs("tr",{children:[t.jsx("td",{children:t.jsx("b",{children:"Card"})}),t.jsx("td",{children:t.jsx(s,{k:"doc_patterns_choice_alt_when"})})]})]})]}),`
+`,t.jsx(e.h2,{id:"-4",children:t.jsx(s,{k:"doc_anatomy_title"})}),`
+`,t.jsxs("table",{children:[t.jsx("thead",{children:t.jsxs("tr",{children:[t.jsx("th",{children:t.jsx(s,{k:"doc_component"})}),t.jsx("th",{children:t.jsx(s,{k:"doc_description"})})]})}),t.jsxs("tbody",{children:[t.jsxs("tr",{children:[t.jsx("td",{children:t.jsx("b",{children:t.jsx(s,{k:"doc_patterns_anatomy_root_label"})})}),t.jsx("td",{children:t.jsx(s,{k:"doc_patterns_anatomy_root"})})]}),t.jsxs("tr",{children:[t.jsx("td",{children:t.jsx("b",{children:t.jsx(s,{k:"doc_patterns_anatomy_content_label"})})}),t.jsx("td",{children:t.jsx(s,{k:"doc_patterns_anatomy_content"})})]})]})]}),`
+`,t.jsx(e.h2,{id:"-5",children:t.jsx(s,{k:"doc_content_guidelines_title"})}),`
+`,t.jsx("ul",{children:t.jsx("li",{children:t.jsx(s,{k:"doc_patterns_content_guideline"})})}),`
+`,t.jsx(e.h2,{id:"-6",children:t.jsx(s,{k:"doc_motion_spec_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_motion_desc"})}),`
+`,t.jsx(e.h2,{id:"-7",children:t.jsx(s,{k:"doc_a11y_spec_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_a11y_desc"})}),`
+`,t.jsx(e.h2,{id:"-8",children:t.jsx(s,{k:"doc_real_world_scenarios_title"})}),`
+`,t.jsxs("ul",{children:[t.jsxs("li",{children:[t.jsxs("strong",{children:[t.jsx(s,{k:"doc_scenario_dashboard_title"}),":"]}),t.jsx(s,{k:"doc_patterns_scenario_1"})]}),t.jsxs("li",{children:[t.jsxs("strong",{children:[t.jsx(s,{k:"doc_scenario_admin_title"}),":"]}),t.jsx(s,{k:"doc_patterns_scenario_2"})]})]}),`
+`,t.jsx(e.h2,{id:"-9",children:t.jsx(s,{k:"doc_best_practices_title"})}),`
+`,t.jsxs("ul",{children:[t.jsx("li",{children:t.jsx(s,{k:"doc_patterns_best_practice_1"})}),t.jsx("li",{children:t.jsx(s,{k:"doc_patterns_best_practice_2"})})]}),`
+`,t.jsx(n,{of:_}),`
+`,t.jsx(e.h2,{id:"-10",children:t.jsx(s,{k:"doc_patterns_pricing_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_pricing_desc"})}),`
+`,t.jsx(n,{of:x}),`
+`,t.jsx(e.h2,{id:"-11",children:t.jsx(s,{k:"doc_patterns_profile_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_profile_desc"})}),`
+`,t.jsx(n,{of:j}),`
+`,t.jsx(e.h2,{id:"-12",children:t.jsx(s,{k:"doc_patterns_login_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_login_desc"})}),`
+`,t.jsx(n,{of:l}),`
+`,t.jsx(e.h2,{id:"-13",children:t.jsx(s,{k:"doc_patterns_header_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_header_desc"})}),`
+`,t.jsx(n,{of:p}),`
+`,t.jsx(e.h2,{id:"-14",children:t.jsx(s,{k:"doc_patterns_error_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_error_desc"})}),`
+`,t.jsx(n,{of:h}),`
+`,t.jsx(e.h2,{id:"-15",children:t.jsx(s,{k:"doc_keyboard_nav_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_keyboard_desc"})}),`
+`,t.jsx(e.h2,{id:"-16",children:t.jsx(s,{k:"doc_i18n_title"})}),`
+`,t.jsx("p",{children:t.jsx(s,{k:"doc_patterns_i18n_desc"})}),`
+`,t.jsx(e.h2,{id:"-17",children:t.jsx(s,{k:"doc_test_title"})}),`
+`,t.jsx(e.pre,{children:t.jsx(e.code,{className:"language-bash",children:`npm run test -- Patterns
+`})})]})}function ht(r={}){const{wrapper:e}={...o(),...r.components};return e?t.jsx(e,{...r,children:t.jsx(i,{...r})}):i(r)}export{ht as default};
