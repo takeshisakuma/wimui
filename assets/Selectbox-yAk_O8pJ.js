@@ -1,0 +1,59 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{u as i,M as l,T as t,D as r,P as j,a as _,C as d,S as h}from"./blocks-CW8Chn0M.js";import{S as a,D as n,W as b,P as k,a as p,b as m,c as y,G as u,A as f}from"./Selectbox.stories-69Dd-Mn-.js";import{T as s}from"./T-BOw0PXdZ.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-D0D_YrNH.js";import"./index-sToDIAc6.js";import"./index-DfB09lqr.js";import"./index-D6kq6ZLx.js";import"./index-DDxDtS_7.js";import"./Selectbox-BVDsFxzL.js";import"./index-BT-z7k4m.js";import"./Transition-CQD3QjcP.js";import"./Icon-DBjc-Qgx.js";import"./BaseListItem-BQjvDw4p.js";import"./FieldTemplate-CwyK03Sd.js";import"./FieldLabelContent-Cr-WWREg.js";import"./Badge-DhmBGTIr.js";import"./IndicatorBase-Djp92BVn.js";import"./useTranslation--fMTB-_A.js";import"./FieldError-BDn4al3S.js";import"./Paragraph-CIwiWLPf.js";import"./InputBase-DjZFlF7T.js";function o(x){const c={code:"code",h2:"h2",h3:"h3",p:"p",pre:"pre",...i(),...x.components};return e.jsxs(e.Fragment,{children:[e.jsx(l,{of:a}),`
+`,e.jsx(t,{}),`
+`,e.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:e.jsx(s,{k:"doc_selectbox_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_long_desc"})}),`
+`,e.jsx(r,{}),`
+`,e.jsx(c.h2,{id:"",children:e.jsx(s,{k:"doc_design_intent_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_design_intent"})}),`
+`,e.jsx(c.h2,{id:"-1",children:e.jsx(s,{k:"doc_choice_matrix_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_choice_matrix_desc"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc_component"})}),e.jsx("th",{children:e.jsx(s,{k:"doc_usage_scenario"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"Selectbox"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_choice_select_when"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"Radio"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_choice_radio_when"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"Combobox"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_choice_combobox_when"})})]})]})]}),`
+`,e.jsx(c.h2,{id:"-2",children:e.jsx(s,{k:"doc_anatomy_title"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc_component"})}),e.jsx("th",{children:e.jsx(s,{k:"doc_description"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:e.jsx(s,{k:"doc_selectbox_anatomy_trigger_label"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_anatomy_trigger"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:e.jsx(s,{k:"doc_selectbox_anatomy_menu_label"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_anatomy_menu"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:e.jsx(s,{k:"doc_selectbox_anatomy_search_label"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_anatomy_search"})})]})]})]}),`
+`,e.jsx(c.h2,{id:"-3",children:e.jsx(s,{k:"doc_best_practices_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_best_practice_1"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_best_practice_2"})})]}),`
+`,e.jsx(c.h2,{id:"-4",children:e.jsx(s,{k:"doc_content_guidelines_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_content_placeholder"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_content_labels"})})]}),`
+`,e.jsx(c.h2,{id:"-5",children:e.jsx(s,{k:"doc_motion_spec_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_motion_opacity"})}),`
+`,e.jsx(c.h2,{id:"-6",children:e.jsx(s,{k:"doc_a11y_spec_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_a11y_desc"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_a11y_1"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_a11y_2"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_a11y_3"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_a11y_4"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_a11y_5"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_a11y_listbox"})}),e.jsx("li",{children:e.jsx(s,{k:"doc_selectbox_a11y_scroll"})})]}),`
+`,e.jsx(c.h2,{id:"-7",children:e.jsx(s,{k:"doc_real_world_scenarios_title"})}),`
+`,e.jsxs("ul",{children:[e.jsxs("li",{children:[e.jsxs("strong",{children:[e.jsx(s,{k:"doc_scenario_dashboard_title"}),":"]}),e.jsx(s,{k:"doc_selectbox_scenario_country"})]}),e.jsxs("li",{children:[e.jsxs("strong",{children:[e.jsx(s,{k:"doc_scenario_admin_title"}),":"]}),e.jsx(s,{k:"doc_selectbox_scenario_form"})]})]}),`
+`,e.jsx(j,{}),`
+`,e.jsx(_,{of:n}),`
+`,e.jsx(c.h2,{id:"-8",children:e.jsx(s,{k:"doc_variations"})}),`
+`,e.jsx(c.h3,{id:"-9",children:e.jsx(s,{k:"doc_default"})}),`
+`,e.jsx(d,{of:n}),`
+`,e.jsx(c.h3,{id:"-10",children:e.jsx(s,{k:"doc_with_label"})}),`
+`,e.jsx(d,{of:b}),`
+`,e.jsx(c.h3,{id:"-11",children:e.jsx(s,{k:"doc_selectbox_preselected"})}),`
+`,e.jsx(d,{of:k}),`
+`,e.jsx(c.h3,{id:"-12",children:e.jsx(s,{k:"doc_disabled"})}),`
+`,e.jsx(d,{of:p}),`
+`,e.jsx(c.h3,{id:"-13",children:e.jsx(s,{k:"doc_selectbox_var_sep"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_var_sep_desc"})}),`
+`,e.jsx(d,{of:m}),`
+`,e.jsx(c.h2,{id:"-14",children:e.jsx(s,{k:"doc_selectbox_adv"})}),`
+`,e.jsx(c.h3,{id:"-15",children:e.jsx(s,{k:"doc_selectbox_adv_search"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_adv_search_desc"})}),`
+`,e.jsx(d,{of:y}),`
+`,e.jsx(c.h3,{id:"-16",children:e.jsx(s,{k:"doc_selectbox_adv_group"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_adv_group_desc"})}),`
+`,e.jsx(d,{of:u}),`
+`,e.jsx(c.h3,{id:"-17",children:e.jsx(s,{k:"doc_selectbox_adv_key"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_adv_key_desc"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"table_header_key"})}),e.jsx("th",{children:e.jsx(s,{k:"table_header_action"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsxs(c.p,{children:[e.jsx("code",{children:e.jsx(s,{k:"table_key_enter"})})," / ",e.jsx("code",{children:e.jsx(s,{k:"table_key_space"})})]})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_op_open_select"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:e.jsx(s,{k:"table_key_escape"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_op_close"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"ArrowDown"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_op_next"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"ArrowUp"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_op_prev"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"Home"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_op_first"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("code",{children:"End"})}),e.jsx("td",{children:e.jsx(s,{k:"doc_selectbox_op_last"})})]})]})]}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_adv_key_skip"})}),`
+`,e.jsx(c.h3,{id:"-18",children:e.jsx(s,{k:"doc_selectbox_adv_comb"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_adv_comb_desc"})}),`
+`,e.jsx(d,{of:f}),`
+`,e.jsx(c.h2,{id:"-19",children:e.jsx(s,{k:"doc_keyboard_nav_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_keyboard_desc"})}),`
+`,e.jsx(c.h2,{id:"-20",children:e.jsx(s,{k:"doc_i18n_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc_selectbox_i18n_desc"})}),`
+`,e.jsx(c.h2,{id:"-21",children:e.jsx(s,{k:"doc_test_title"})}),`
+`,e.jsx(c.pre,{children:e.jsx(c.code,{className:"language-bash",children:`npm run test -- Selectbox
+`})}),`
+`,e.jsx(h,{})]})}function I(x={}){const{wrapper:c}={...i(),...x.components};return c?e.jsx(c,{...x,children:e.jsx(o,{...x})}):o(x)}export{I as default};
