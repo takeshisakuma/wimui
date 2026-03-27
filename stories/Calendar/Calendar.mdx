@@ -194,6 +194,18 @@ nextMonth.setMonth(today.getMonth() + 1);
 />;
 ```
 
+### <T k="doc_calendar_week_start" />
+
+<p><T k="doc_calendar_week_start_desc" /></p>
+
+```jsx
+{/* 日曜始まり（デフォルト） */}
+<Calendar weekStartsOn={0} onChange={(date) => console.log(date)} />
+
+{/* 月曜始まり */}
+<Calendar weekStartsOn={1} onChange={(date) => console.log(date)} />
+```
+
 ### <T k="doc_calendar_combine_features" />
 
 ```jsx

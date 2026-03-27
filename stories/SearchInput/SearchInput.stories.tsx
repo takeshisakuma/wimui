@@ -10,6 +10,14 @@ const meta: Meta<typeof SearchInput> = {
   title: "Components/Basic Inputs/SearchInput",
   component: SearchInput,
   tags: [],
+  args: {
+    disabled: false,
+  },
+  argTypes: {
+    disabled: {
+      control: "boolean",
+    },
+  },
 };
 
 export default meta;

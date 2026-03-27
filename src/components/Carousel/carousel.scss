@@ -54,12 +54,10 @@
     width: 40px;
     height: 40px;
     padding: 0;
-    color: var(--wim-color-text, #333);
+    color: var(--text-primary);
     cursor: pointer;
-    background: color-mix(in srgb,
-        var(--wim-color-surface, #fff) 80%,
-        transparent);
-    border: 1px solid var(--wim-color-border, #e0e0e0);
+    background: color-mix(in srgb, var(--bg-component) 80%, transparent);
+    border: 1px solid var(--color-secondary);
     border-radius: var(--radius-full);
     box-shadow: var(--shadow-sm);
     backdrop-filter: blur(4px);
@@ -67,7 +65,7 @@
     transition: var(--transition-fast);
 
     &:hover:not(:disabled) {
-      background: var(--wim-color-surface, #fff);
+      background: var(--bg-component);
       box-shadow: var(--shadow-md);
     }
 
@@ -100,9 +98,7 @@
     height: 10px;
     padding: 0;
     cursor: pointer;
-    background: color-mix(in srgb,
-        var(--wim-color-surface, #fff) 60%,
-        transparent);
+    background: color-mix(in srgb, var(--bg-component) 60%, transparent);
     border: none;
     border-radius: var(--radius-full);
     box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
@@ -111,24 +107,14 @@
 
     &--active {
       width: 24px;
-      background: var(--wim-color-primary, #007bff);
+      background: var(--color-primary);
       border-radius: 5px;
       box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
     }
 
     &:hover:not(&--active) {
-      background: color-mix(in srgb,
-          var(--wim-color-surface, #fff) 90%,
-          transparent);
+      background: color-mix(in srgb, var(--bg-component) 90%, transparent);
       box-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
     }
   }
-}
-
-/* Fallback variables if design system tokens are not loaded */
-:root {
-  --wim-color-primary: #007bff;
-  --wim-color-text: #333;
-  --wim-color-border: #e0e0e0;
-  --wim-color-surface: #fff;
 }

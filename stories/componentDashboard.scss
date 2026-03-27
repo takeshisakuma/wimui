@@ -8,7 +8,7 @@
     margin-bottom: 32px;
     background-color: var(--wim-color-surface);
     border: 1px solid var(--wim-color-border);
-    border-radius: 12px;
+    border-radius: 4px;
   }
 
   &__stat-label {
@@ -28,6 +28,6 @@
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-surface);
     border: 1px solid var(--wim-color-border);
-    border-radius: 8px;
+    border-radius: 4px;
   }
 }

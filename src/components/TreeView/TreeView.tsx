@@ -18,6 +18,7 @@ type TreeViewContextType = {
   expandedValues: string[];
   selectedValues: string[];
   checkedValues: string[];
+  indeterminateValues: string[];
   focusedValue: string | null;
   toggleExpand: (value: string) => void;
   select: (value: string) => void;
@@ -26,6 +27,7 @@ type TreeViewContextType = {
   containerRef: React.RefObject<HTMLDivElement | null>;
   multiSelect?: boolean;
   checkable?: boolean;
+  checkStrategy: "cascade" | "exclusive";
   searchQuery?: string;
 };
 
@@ -116,6 +118,91 @@ function hasMatchingChild(nodes: TreeViewNode[], query: string): boolean {
   );
 }
 
+/** 指定ノードの全子孫 value を返す。見つからなければ null。 */
+function getAllDescendantValues(
+  nodes: TreeViewNode[],
+  targetValue: string,
+): string[] | null {
+  for (const node of nodes) {
+    if (node.value === targetValue) {
+      const values: string[] = [];
+      const collect = (ns: TreeViewNode[]) => {
+        for (const n of ns) {
+          values.push(n.value);
+          if (n.children) collect(n.children);
+        }
+      };
+      if (node.children) collect(node.children);
+      return values;
+    }
+    if (node.children) {
+      const found = getAllDescendantValues(node.children, targetValue);
+      if (found !== null) return found;
+    }
+  }
+  return null;
+}
+
+/** 指定ノードの全祖先 value を返す。見つからなければ null。 */
+function getAllAncestorValues(
+  nodes: TreeViewNode[],
+  targetValue: string,
+  ancestors: string[] = [],
+): string[] | null {
+  for (const node of nodes) {
+    if (node.value === targetValue) return ancestors;
+    if (node.children) {
+      const found = getAllAncestorValues(node.children, targetValue, [
+        ...ancestors,
+        node.value,
+      ]);
+      if (found !== null) return found;
+    }
+  }
+  return null;
+}
+
+type CascadeState = {
+  indeterminateValues: string[];
+  effectiveCheckedSet: Set<string>;
+};
+
+/**
+ * cascade モード用: indeterminate なノードと、
+ * 子孫から導出された親を含む「実効チェック済み」セットを計算する。
+ */
+function computeCascadeState(
+  nodes: TreeViewNode[],
+  checkedSet: Set<string>,
+): CascadeState {
+  const indet: string[] = [];
+  const effective = new Set(checkedSet);
+
+  function getState(
+    node: TreeViewNode,
+  ): "checked" | "indeterminate" | "unchecked" {
+    if (!node.children?.length) {
+      return effective.has(node.value) ? "checked" : "unchecked";
+    }
+    const childStates = node.children.map(getState);
+    const allChecked = childStates.every((s) => s === "checked");
+    const someActive = childStates.some((s) => s !== "unchecked");
+
+    if (allChecked) {
+      effective.add(node.value); // 子が全員 checked なら親も実効 checked
+      return "checked";
+    }
+    if (someActive) {
+      indet.push(node.value);
+      return "indeterminate";
+    }
+    return "unchecked";
+  }
+
+  for (const node of nodes) getState(node);
+  return { indeterminateValues: indet, effectiveCheckedSet: effective };
+}
+
 // ─── TreeView (主コンポーネント) ───────────────────────────────────────────────
 
 type TreeViewProps = {
@@ -129,6 +216,12 @@ type TreeViewProps = {
   className?: string;
   multiSelect?: boolean;
   checkable?: boolean;
+  /**
+   * チェック選択の動作モード（checkable かつ data-driven モード時に有効）。
+   * - cascade: 親チェック→子全選択、子の一部→親は indeterminate（デフォルト）
+   * - exclusive: 親子排他（親選択→子解除、子選択→親解除）
+   */
+  checkStrategy?: "cascade" | "exclusive";
   searchable?: boolean;
   defaultExpandedValues?: string[];
   defaultSelectedValues?: string[];
@@ -149,6 +242,7 @@ const TreeView = ({
   className,
   multiSelect = false,
   checkable = false,
+  checkStrategy = "cascade",
   searchable = false,
   defaultExpandedValues = [],
   defaultSelectedValues = [],
@@ -171,6 +265,22 @@ const TreeView = ({
     defaultSelectedValues[0] || null,
   );
   const containerRef = React.useRef<HTMLDivElement>(null);
+
+  // ─── cascade 状態の導出 ────────────────────────────────────────────────────
+
+  const { indeterminateValues, effectiveCheckedSet } = useMemo<
+    CascadeState & { effectiveCheckedSet: Set<string> }
+  >(() => {
+    if (!nodes || checkStrategy !== "cascade") {
+      return {
+        indeterminateValues: [],
+        effectiveCheckedSet: new Set(checkedValues),
+      };
+    }
+    return computeCascadeState(nodes, new Set(checkedValues));
+  }, [nodes, checkStrategy, checkedValues]);
+
+  // ─── イベントハンドラ ──────────────────────────────────────────────────────
 
   const toggleExpand = useCallback((value: string) => {
     setExpandedValues((prev) =>
@@ -200,21 +310,65 @@ const TreeView = ({
   const toggleCheck = useCallback(
     (value: string) => {
       setCheckedValues((prev) => {
-        const newChecked = prev.includes(value)
-          ? prev.filter((v) => v !== value)
-          : [...prev, value];
-        onCheckedChange?.(newChecked);
+        let newChecked: string[];
+
+        if (!nodes) {
+          // children モード: 戦略なし、単純トグル
+          newChecked = prev.includes(value)
+            ? prev.filter((v) => v !== value)
+            : [...prev, value];
+          onCheckedChange?.(newChecked);
+          return newChecked;
+        }
+
+        if (checkStrategy === "cascade") {
+          const { indeterminateValues: currentIndet } = computeCascadeState(
+            nodes,
+            new Set(prev),
+          );
+          // indeterminate なノードをクリックした場合は「チェックする」方向に解決する
+          const isEffectivelyChecked =
+            prev.includes(value) && !currentIndet.includes(value);
+          const descendants = getAllDescendantValues(nodes, value) ?? [];
+          const related = [value, ...descendants];
+
+          newChecked = isEffectivelyChecked
+            ? prev.filter((v) => !related.includes(v))
+            : [...prev, ...related.filter((v) => !prev.includes(v))];
+
+          // onCheckedChange には indeterminate でない実効 checked のみを返す
+          const { indeterminateValues: newIndet, effectiveCheckedSet: newEff } =
+            computeCascadeState(nodes, new Set(newChecked));
+          onCheckedChange?.(
+            [...newEff].filter((v) => !newIndet.includes(v)),
+          );
+        } else {
+          // exclusive: 選択時に祖先・子孫を全解除
+          if (prev.includes(value)) {
+            newChecked = prev.filter((v) => v !== value);
+          } else {
+            const ancestors = getAllAncestorValues(nodes, value) ?? [];
+            const descendants = getAllDescendantValues(nodes, value) ?? [];
+            const toRemove = new Set([...ancestors, ...descendants]);
+            newChecked = [...prev.filter((v) => !toRemove.has(v)), value];
+          }
+          onCheckedChange?.(newChecked);
+        }
+
         return newChecked;
       });
     },
-    [onCheckedChange],
+    [checkStrategy, nodes, onCheckedChange],
   );
+
+  // ─── Context ───────────────────────────────────────────────────────────────
 
   const contextValue = useMemo(
     () => ({
       expandedValues,
       selectedValues,
       checkedValues,
+      indeterminateValues,
       focusedValue,
       toggleExpand,
       select,
@@ -223,18 +377,21 @@ const TreeView = ({
       containerRef,
       multiSelect,
       checkable,
+      checkStrategy,
       searchQuery,
     }),
     [
       expandedValues,
       selectedValues,
       checkedValues,
+      indeterminateValues,
       focusedValue,
       toggleExpand,
       select,
       toggleCheck,
       multiSelect,
       checkable,
+      checkStrategy,
       searchQuery,
     ],
   );
@@ -291,7 +448,6 @@ const TreeView = ({
           if (node.hasChildren && expandedValues.includes(node.value)) {
             toggleExpand(node.value);
           } else {
-            // 親ノードを探してフォーカス
             for (let i = flatIndex - 1; i >= 0; i--) {
               if (flatNodes[i].depth < node.depth) {
                 setFocusedValue(flatNodes[i].value);
@@ -315,7 +471,8 @@ const TreeView = ({
   const renderFlatNode = useCallback(
     (node: FlatNode, index: number) => {
       const isSelected = selectedValues.includes(node.value);
-      const isChecked = checkedValues.includes(node.value);
+      const isChecked = effectiveCheckedSet.has(node.value);
+      const isIndeterminate = indeterminateValues.includes(node.value);
       const isExpanded = expandedValues.includes(node.value);
       const isFocused = focusedValue === node.value;
 
@@ -392,7 +549,10 @@ const TreeView = ({
                   <input
                     type="checkbox"
                     className="wim-tree-view-item__checkbox"
-                    checked={isChecked}
+                    checked={isChecked && !isIndeterminate}
+                    ref={(el) => {
+                      if (el) el.indeterminate = isIndeterminate;
+                    }}
                     onChange={(e) => {
                       e.stopPropagation();
                       if (!node.disabled) toggleCheck(node.value);
@@ -417,7 +577,8 @@ const TreeView = ({
     },
     [
       selectedValues,
-      checkedValues,
+      effectiveCheckedSet,
+      indeterminateValues,
       expandedValues,
       focusedValue,
       flatNodes.length,
@@ -443,14 +604,12 @@ const TreeView = ({
         onFocus={(e) => {
           if (e.target === containerRef.current) {
             if (nodes) {
-              // データ駆動モード: flat配列の先頭へ
               if (focusedValue) {
                 setFocusedValue(focusedValue);
               } else if (flatNodes.length > 0) {
                 setFocusedValue(flatNodes[0].value);
               }
             } else {
-              // children モード: DOM クエリで先頭アイテムへ
               if (focusedValue) {
                 const focusedItem = containerRef.current?.querySelector(
                   `[role="treeitem"][data-value="${focusedValue}"]`,
@@ -525,6 +684,7 @@ export const TreeViewItem = ({
     expandedValues,
     selectedValues,
     checkedValues,
+    indeterminateValues,
     focusedValue,
     toggleExpand,
     select,
@@ -540,12 +700,10 @@ export const TreeViewItem = ({
   const checkboxId = `wim-tree-view-item-checkbox-${generatedId}`;
   const labelId = `wim-tree-view-item-label-${generatedId}`;
 
-  // Search filtering
   const labelText = typeof label === "string" ? label : "";
   const matchesSearch =
     !searchQuery || labelText.toLowerCase().includes(searchQuery.toLowerCase());
 
-  // Check if any children match the search
   const hasMatchingChildren = React.useMemo(() => {
     if (!searchQuery || !children) return false;
 
@@ -572,12 +730,12 @@ export const TreeViewItem = ({
   const isExpanded = expandedValues.includes(value) || isExpandedBySearch;
   const isSelected = selectedValues.includes(value);
   const isChecked = checkedValues.includes(value);
+  const isIndeterminate = indeterminateValues.includes(value);
   const hasChildren = !!React.Children.count(children);
 
   const { shouldRender, isVisualExpanded, handleTransitionEnd } =
     useTreeViewItemExpansion(isExpanded);
 
-  // Hide if doesn't match search and has no matching children
   if (searchQuery && !matchesSearch && !hasMatchingChildren) {
     return null;
   }
@@ -656,7 +814,6 @@ export const TreeViewItem = ({
             e.preventDefault();
             toggleExpand(value);
           } else {
-            // Move to first child
             e.preventDefault();
             if (currentIndex < items.length - 1) {
               items[currentIndex + 1].focus();
@@ -669,7 +826,6 @@ export const TreeViewItem = ({
           e.preventDefault();
           toggleExpand(value);
         } else {
-          // Move to parent
           e.preventDefault();
           const parentItem = (e.currentTarget as HTMLElement).parentElement
             ?.closest('[role="treeitem"]') as HTMLElement;
@@ -733,7 +889,10 @@ export const TreeViewItem = ({
                 id={checkboxId}
                 type="checkbox"
                 className="wim-tree-view-item__checkbox"
-                checked={isChecked}
+                checked={isChecked && !isIndeterminate}
+                ref={(el) => {
+                  if (el) el.indeterminate = isIndeterminate;
+                }}
                 onChange={handleCheckboxChange}
                 disabled={disabled}
                 onClick={(e) => e.stopPropagation()}

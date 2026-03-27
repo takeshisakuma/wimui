@@ -1,6 +1,11 @@
 @use "../../tokens/breakpoints" as breakpoints;
 @use "../../styles/indicator-mixins" as indicator;
 
+.wim-tabs-container {
+  width: 100%;
+  container-type: inline-size;
+}
+
 @layer component {
   .wim-tabs {
     display: flex;
@@ -13,7 +18,7 @@
     &--vertical {
       flex-direction: row;
 
-      @include breakpoints.down(md) {
+      @include breakpoints.container-down(md) {
         flex-direction: column;
       }
 
@@ -30,7 +35,7 @@
             black calc(100% - 15px),
             transparent);
 
-        @include breakpoints.down(md) {
+        @include breakpoints.container-down(md) {
           flex-direction: row;
           width: 100%;
           overflow-x: auto;
@@ -55,7 +60,7 @@
         border-bottom: none;
         border-radius: 0;
 
-        @include breakpoints.down(md) {
+        @include breakpoints.container-down(md) {
           justify-content: center;
           width: auto;
           margin-right: 0;

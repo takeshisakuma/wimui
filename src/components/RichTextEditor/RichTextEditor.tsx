@@ -124,7 +124,7 @@ export type RichTextEditorProps = {
   onChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
-  status?: "default" | "error" | "disabled";
+  status?: "default" | "error";
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   minHeight?: number | string;
@@ -200,7 +200,7 @@ export const RichTextEditor = ({
   const errorId = error ? `${id}-error` : undefined;
   const labelId = label ? `${id}-label` : undefined;
 
-  const isDisabled = disabled || status === "disabled";
+  const isDisabled = disabled;
   const effectiveStatus = isDisabled ? "disabled" : (error ? "error" : status);
 
   // Set initial content imperatively on mount (avoids dangerouslySetInnerHTML reset on re-render)

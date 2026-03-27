@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 
-
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import { Button } from "@/components/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
-
 
 const meta: Meta<typeof Button> = {
   title: "Components/Buttons/Button",
@@ -16,12 +14,6 @@ const meta: Meta<typeof Button> = {
   },
   argTypes: {
     backgroundColor: { control: "color" },
-    state: {
-      description:
-        "Deprecated: Use the standard `disabled` prop instead.",
-      control: "select",
-      options: ["abled", "disabled"],
-    },
   },
   args: {
     onClick: fn(),
@@ -75,6 +67,7 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
     role: "destructive",
     iconName: "CircleIcon",
     iconPosition: "left",
+    disabled: true,
   },
 };
 

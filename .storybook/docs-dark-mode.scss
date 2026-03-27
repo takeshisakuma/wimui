@@ -68,6 +68,29 @@
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     font-size: 0.85em !important;
   }
+
+  /* Docs fenced code blocks – pre > code のシンタックスハイライト上書き */
+  .sbdocs-content pre {
+    background-color: #1e1e2e !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 4px !important;
+  }
+
+  .sbdocs-content pre code {
+    background-color: transparent !important;
+    color: #cdd6f4 !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: 0.875em !important;
+  }
+
+  /* コメント行（<!-- ... --> や // ... など）のコントラスト確保 */
+  .sbdocs-content pre .token.comment,
+  .sbdocs-content pre .token.prolog,
+  .sbdocs-content pre .token.doctype,
+  .sbdocs-content pre .token.cdata {
+    color: #6c7086 !important;
+  }
 }
 
 [data-theme="dark"] {

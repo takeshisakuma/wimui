@@ -15,6 +15,7 @@ const meta: Meta<typeof Chip> = {
   component: Chip,
   tags: [], // mdxファイルがあるためautodocsは無効にする
   argTypes: {
+    disabled: { control: "boolean" },
     status: {
       control: "select",
       options: ["primary", "secondary", "neutral"],

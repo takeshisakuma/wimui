@@ -5,12 +5,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
-
 const meta: Meta<typeof CheckboxGroup> = {
   title: "Components/Selection Controls/CheckboxGroup",
   component: CheckboxGroup,
   // tags: ["autodocs"],
   argTypes: {
+    disabled: { control: "boolean" },
     direction: {
       control: "radio",
       options: ["vertical", "horizontal"],

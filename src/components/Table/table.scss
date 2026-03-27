@@ -2,6 +2,7 @@
 
 .wim-table-container {
   width: 100%;
+  container-type: inline-size;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -232,7 +233,7 @@
   }
 
   &--mobile-card {
-    @include breakpoints.down("md") {
+    @include breakpoints.container-down("md") {
       display: block;
 
       .wim-table__header {

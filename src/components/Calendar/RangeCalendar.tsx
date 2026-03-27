@@ -40,6 +40,10 @@ export type RangeCalendarProps = {
    * 特定の日付を無効化する関数。
    */
   isDateDisabled?: (date: Date) => boolean;
+  /**
+   * 週の開始曜日。0 = 日曜始まり、1 = 月曜始まり。デフォルトは 0。
+   */
+  weekStartsOn?: 0 | 1;
 };
 
 /**
@@ -55,6 +59,7 @@ export const RangeCalendar = ({
   maxDate,
   disabledDates,
   isDateDisabled,
+  weekStartsOn,
   ...props
 }: RangeCalendarProps) => {
   const range = value ? { start: value[0], end: value[1] } : undefined;
@@ -83,6 +88,7 @@ export const RangeCalendar = ({
       maxDate={maxDate}
       disabledDates={disabledDates}
       isDateDisabled={isDateDisabled}
+      weekStartsOn={weekStartsOn}
     />
   );
 };

@@ -2,6 +2,37 @@
 @use "../../tokens/spacings" as *;
 @use "../../tokens/typography" as *;
 
+// Dark-mode colors derived from semantic tokens
+@mixin banner-dark-colors {
+  &--info {
+    color: color-mix(in srgb, var(--color-informative) 25%, white);
+    background: color-mix(in srgb, var(--color-informative) 25%, black);
+    border-bottom-color: color-mix(in srgb, var(--color-informative) 30%, transparent);
+  }
+
+  &--success {
+    color: color-mix(in srgb, var(--color-positive) 25%, white);
+    background: color-mix(in srgb, var(--color-positive) 25%, black);
+    border-bottom-color: color-mix(in srgb, var(--color-positive) 30%, transparent);
+  }
+
+  &--warning {
+    color: color-mix(in srgb, var(--color-caution) 25%, white);
+    background: color-mix(in srgb, var(--color-caution) 25%, black);
+    border-bottom-color: color-mix(in srgb, var(--color-caution) 30%, transparent);
+  }
+
+  &--error {
+    color: color-mix(in srgb, var(--color-destructive) 25%, white);
+    background: color-mix(in srgb, var(--color-destructive) 25%, black);
+    border-bottom-color: color-mix(in srgb, var(--color-destructive) 30%, transparent);
+  }
+
+  &__close:hover {
+    background: color-mix(in srgb, white 10%, transparent);
+  }
+}
+
 .wim-banner {
   position: relative;
   display: flex;
@@ -65,9 +96,6 @@
     opacity: 0.9;
   }
 
-  // Stack title and description on small screens if needed,
-  // but default implementation tries to keep them inline or wrapped naturally.
-
   &__actions {
     display: flex;
     flex-shrink: 0;
@@ -91,7 +119,7 @@
     transition: opacity 0.2s ease;
 
     &:hover {
-      background: rgb(0 0 0 / 0.05);
+      background: color-mix(in srgb, black 5%, transparent);
       opacity: 1;
     }
 
@@ -106,11 +134,11 @@
     }
   }
 
-  // Variants
+  // Variants — light mode colors derived from semantic tokens
   &--info {
-    color: #1e40af;
-    background: rgb(239 246 255 / 0.95);
-    border-bottom-color: rgb(59 130 246 / 0.2);
+    color: color-mix(in srgb, var(--color-informative) 60%, black);
+    background: color-mix(in srgb, var(--color-informative) 8%, white);
+    border-bottom-color: color-mix(in srgb, var(--color-informative) 25%, transparent);
 
     .wim-banner__icon {
       color: var(--color-informative);
@@ -118,9 +146,9 @@
   }
 
   &--success {
-    color: #166534;
-    background: rgb(240 253 244 / 0.95);
-    border-bottom-color: rgb(34 197 94 / 0.2);
+    color: color-mix(in srgb, var(--color-positive) 60%, black);
+    background: color-mix(in srgb, var(--color-positive) 8%, white);
+    border-bottom-color: color-mix(in srgb, var(--color-positive) 25%, transparent);
 
     .wim-banner__icon {
       color: var(--color-positive);
@@ -128,9 +156,9 @@
   }
 
   &--warning {
-    color: #854d0e;
-    background: rgb(254 252 232 / 0.95);
-    border-bottom-color: rgb(234 179 8 / 0.2);
+    color: color-mix(in srgb, var(--color-caution) 80%, black);
+    background: color-mix(in srgb, var(--color-caution) 8%, white);
+    border-bottom-color: color-mix(in srgb, var(--color-caution) 25%, transparent);
 
     .wim-banner__icon {
       color: var(--color-caution);
@@ -138,73 +166,23 @@
   }
 
   &--error {
-    color: #991b1b;
-    background: rgb(254 242 242 / 0.95);
-    border-bottom-color: rgb(239 68 68 / 0.2);
+    color: color-mix(in srgb, var(--color-destructive) 60%, black);
+    background: color-mix(in srgb, var(--color-destructive) 8%, white);
+    border-bottom-color: color-mix(in srgb, var(--color-destructive) 25%, transparent);
 
     .wim-banner__icon {
       color: var(--color-destructive);
     }
   }
 
-  // Dark Mode Support
+  // Dark mode — use mixin to avoid duplication
   [data-theme="dark"] & {
-    &--info {
-      color: #dbeafe;
-      background: rgb(30 58 138 / 0.4);
-      border-bottom-color: rgb(59 130 246 / 0.3);
-    }
-
-    &--success {
-      color: #dcfce7;
-      background: rgb(20 83 45 / 0.4);
-      border-bottom-color: rgb(34 197 94 / 0.3);
-    }
-
-    &--warning {
-      color: #fef9c3;
-      background: rgb(113 63 18 / 0.4);
-      border-bottom-color: rgb(234 179 8 / 0.3);
-    }
-
-    &--error {
-      color: #fee2e2;
-      background: rgb(127 29 29 / 0.4);
-      border-bottom-color: rgb(239 68 68 / 0.3);
-    }
-
-    &__close:hover {
-      background: rgb(255 255 255 / 0.1);
-    }
+    @include banner-dark-colors;
   }
 
   @media (prefers-color-scheme: dark) {
-    &--info {
-      color: #dbeafe;
-      background: rgb(30 58 138 / 0.4);
-      border-bottom-color: rgb(59 130 246 / 0.3);
-    }
-
-    &--success {
-      color: #dcfce7;
-      background: rgb(20 83 45 / 0.4);
-      border-bottom-color: rgb(34 197 94 / 0.3);
-    }
-
-    &--warning {
-      color: #fef9c3;
-      background: rgb(113 63 18 / 0.4);
-      border-bottom-color: rgb(234 179 8 / 0.3);
-    }
-
-    &--error {
-      color: #fee2e2;
-      background: rgb(127 29 29 / 0.4);
-      border-bottom-color: rgb(239 68 68 / 0.3);
-    }
-
-    &__close:hover {
-      background: rgb(255 255 255 / 0.1);
+    :root:not([data-theme="light"]) & {
+      @include banner-dark-colors;
     }
   }
 }

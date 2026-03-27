@@ -25,6 +25,7 @@ export interface UseCalendarProps {
   maxDate?: Date;
   disabledDates?: Date[];
   isDateDisabled?: (date: Date) => boolean;
+  weekStartsOn?: 0 | 1;
 }
 
 export const useCalendar = ({
@@ -34,6 +35,7 @@ export const useCalendar = ({
   maxDate,
   disabledDates,
   isDateDisabled,
+  weekStartsOn = 0,
 }: UseCalendarProps = {}) => {
   const [viewDate, setViewDate] = useState(defaultValue || value || new Date());
 
@@ -69,11 +71,11 @@ export const useCalendar = ({
     const days: CalendarDay[] = [];
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfPrevMonth = new Date(year, month, 0);
-    const startDayOfWeek = firstDayOfMonth.getDay();
+    const adjustedStartDay = (firstDayOfMonth.getDay() - weekStartsOn + 7) % 7;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     // Previous month filler
-    for (let i = startDayOfWeek - 1; i >= 0; i--) {
+    for (let i = adjustedStartDay - 1; i >= 0; i--) {
       days.push({
         date: new Date(year, month - 1, lastDayOfPrevMonth.getDate() - i),
         currentMonth: false,
@@ -98,7 +100,7 @@ export const useCalendar = ({
     }
 
     return days;
-  }, [year, month]);
+  }, [year, month, weekStartsOn]);
 
   return {
     viewDate,

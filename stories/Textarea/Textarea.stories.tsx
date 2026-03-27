@@ -10,10 +10,16 @@ import { ALL_NAMESPACES } from "../i18nConstants";
 const meta: Meta<typeof Textarea> = {
   title: "Components/Basic Inputs/Textarea",
   component: Textarea,
+  args: {
+    disabled: false,
+  },
   argTypes: {
+    disabled: {
+      control: { type: "boolean" },
+    },
     status: {
       control: { type: "select" },
-      options: ["default", "error", "disabled"],
+      options: ["default", "error"],
     },
     variant: {
       control: { type: "select" },

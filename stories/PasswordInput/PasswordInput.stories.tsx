@@ -10,6 +10,14 @@ const meta: Meta<typeof PasswordInput> = {
   title: "Components/Basic Inputs/PasswordInput",
   component: PasswordInput,
   tags: [],
+  args: {
+    disabled: false,
+  },
+  argTypes: {
+    disabled: {
+      control: "boolean",
+    },
+  },
 };
 
 export default meta;

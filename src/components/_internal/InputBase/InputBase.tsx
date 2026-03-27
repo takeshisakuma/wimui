@@ -16,7 +16,7 @@ export type InputBaseIcon = {
 
 export type InputBaseProps = {
   children: React.ReactNode;
-  status?: "default" | "error" | "disabled";
+  status?: "default" | "error";
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
@@ -57,8 +57,16 @@ export const InputBase = ({
   const isSemanticWidth =
     typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
 
-  const isDisabled = disabled || status === "disabled";
+  const isDisabled = disabled;
   const effectiveStatus = isDisabled ? "disabled" : status;
+
+  const disabledChildren = isDisabled
+    ? React.Children.map(children, (child) =>
+        React.isValidElement(child)
+          ? React.cloneElement(child, { disabled: true } as React.HTMLAttributes<HTMLElement>)
+          : child,
+      )
+    : children;
   const effectiveHasCustomWidth = width !== undefined && !isSemanticWidth && !fullWidth;
   const effectiveSemanticWidth = isSemanticWidth && !fullWidth ? width : undefined;
 
@@ -137,7 +145,7 @@ export const InputBase = ({
           )}
         </div>
       )}
-      {children}
+      {disabledChildren}
       {finalRightIcons.length > 0 && (
         <div
           className={classNames(

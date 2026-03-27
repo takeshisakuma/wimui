@@ -17,12 +17,18 @@ const meta: Meta<typeof ContextMenu> = {
   parameters: {
     layout: "centered",
   },
+  argTypes: {
+    disabled: { control: "boolean" },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof ContextMenu>;
 
 export const Basic: Story = {
+  args: {
+    disabled: false,
+  },
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
@@ -60,6 +66,40 @@ export const Basic: Story = {
           }}
         >
           {t("story_contextmenu_right_click")}
+        </div>
+      </ContextMenu>
+    );
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <ContextMenu
+        {...args}
+        menu={
+          <>
+            <ContextMenuItem>{t("story_contextmenu_edit")}</ContextMenuItem>
+            <ContextMenuItem>{t("story_contextmenu_copy")}</ContextMenuItem>
+            <ContextMenuItem>{t("story_contextmenu_paste")}</ContextMenuItem>
+          </>
+        }
+      >
+        <div
+          style={{
+            padding: "60px 100px",
+            backgroundColor: "#f0f0f0",
+            border: "2px dashed #ccc",
+            borderRadius: "8px",
+            textAlign: "center",
+            cursor: "pointer",
+          }}
+        >
+          {t("story_contextmenu_disabled_menu")}
         </div>
       </ContextMenu>
     );

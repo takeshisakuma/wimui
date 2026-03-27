@@ -12,6 +12,7 @@ const meta: Meta<typeof Switch> = {
     layout: "centered",
   },
   argTypes: {
+    disabled: { control: "boolean" },
     size: {
       control: "radio",
       options: ["small", "medium"],

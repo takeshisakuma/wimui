@@ -76,7 +76,7 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <InputBase {...args} status="disabled" leftIcon="ClockIcon">
+      <InputBase {...args} disabled leftIcon="ClockIcon">
         <DummyInput placeholder={t("doc_inputBase_placeholder")} />
       </InputBase>
     );

@@ -30,13 +30,9 @@ describe("Button", () => {
   it("does not call onClick when disabled", () => {
     const handleClick = vi.fn();
     const { container } = render(
-      <Button label="Click me" onClick={handleClick} state="disabled" />,
+      <Button label="Click me" onClick={handleClick} disabled />,
     );
-    // Button should be disabled
-    // Note: The disabled HTML attribute might handle this, but the click handler logic relies on state prop too
     expect(container.querySelector("button")).toBeDisabled();
-
-    // Attempt click by bypassing the HTML disabled behavior if possible, or just standard click
     fireEvent.click(screen.getByText("Click me"));
     expect(handleClick).not.toHaveBeenCalled();
   });

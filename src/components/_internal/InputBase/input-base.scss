@@ -31,6 +31,12 @@
     background-color: var(--color-disabled);
     border-color: var(--color-disabled);
     opacity: var(--opacity-disabled);
+
+    input,
+    textarea {
+      pointer-events: none;
+      cursor: not-allowed;
+    }
   }
 
   &.wim-input-base--error {

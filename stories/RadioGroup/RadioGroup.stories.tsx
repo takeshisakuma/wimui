@@ -9,6 +9,7 @@ const meta: Meta<typeof RadioGroup> = {
   title: "Components/Selection Controls/RadioGroup",
   component: RadioGroup,
   argTypes: {
+    disabled: { control: "boolean" },
     direction: {
       control: { type: "radio" },
       options: ["vertical", "horizontal"],

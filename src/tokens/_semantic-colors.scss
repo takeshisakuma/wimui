@@ -133,6 +133,10 @@ $scrollbar-track: $pccs-gy8-5;
   --shadow-color: rgb(0 0 0 / 0.4);
   --color-primary-rgb: #{$pccs-v16-rgb};
 
+  /* Disabled state – invert for dark backgrounds */
+  --color-disabled: #{$pccs-gy4-5}; // Dark: #4f4f4f (was #e5e5e5 light)
+  --color-text-on-disabled: #{$pccs-gy7-5}; // Dark: #b6b6b6 (was #393939 dark)
+
   /* Adjust semantic colors for dark mode visibility/contrast */
   --color-destructive: #{$pccs-v2};
   --color-positive: #{$pccs-v12};
@@ -142,6 +146,9 @@ $scrollbar-track: $pccs-gy8-5;
 
   /* Ensure aliases are also updated if they reference these */
   --wim-color-primary: var(--color-primary);
+
+  /* Typography decoration tokens – dark mode overrides */
+  --decoration-highlight-color: #5c4400; // Dark amber: white text stays readable
 }
 
 [data-theme="dark"] {

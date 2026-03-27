@@ -20,11 +20,6 @@ describe("Spinner", () => {
     expect(svg).toHaveClass("wim-spinner--success");
   });
 
-  it("applies xlarge size class", () => {
-    const { container } = render(<Spinner size="xlarge" />);
-    expect(container.querySelector("svg")).toHaveClass("wim-spinner--xl");
-  });
-
   it("applies small size class", () => {
     const { container } = render(<Spinner size="small" />);
     expect(container.querySelector("svg")).toHaveClass("wim-spinner--sm");

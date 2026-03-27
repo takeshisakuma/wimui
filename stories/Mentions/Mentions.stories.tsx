@@ -12,6 +12,14 @@ const meta: Meta<typeof Mentions> = {
   parameters: {
     layout: "padded",
   },
+  args: {
+    disabled: false,
+  },
+  argTypes: {
+    disabled: {
+      control: "boolean",
+    },
+  },
 };
 
 export default meta;

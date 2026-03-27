@@ -28,6 +28,10 @@ type ToggleGroupProps = {
    * アクセシビリティ用のラベルID（aria-label の代替）
    */
   "aria-labelledby"?: string;
+  /**
+   * 無効状態にするかどうか
+   */
+  disabled?: boolean;
 };
 
 /**
@@ -44,6 +48,7 @@ export const ToggleGroup = ({
   className,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
+  disabled = false,
 }: ToggleGroupProps) => {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string | string[]>(
@@ -191,7 +196,7 @@ export const ToggleGroup = ({
             handleToggle(option.value);
           }}
           onKeyDown={(e) => handleKeyDown(index, e)}
-          disabled={option.disabled}
+          disabled={disabled || option.disabled}
           // single: role="radio" + aria-checked / multiple: role="button" + aria-pressed
           role={selectionMode === "single" ? "radio" : "button"}
           aria-checked={selectionMode === "single" ? isSelected(option.value) : undefined}

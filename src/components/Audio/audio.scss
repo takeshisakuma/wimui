@@ -115,6 +115,9 @@
 }
 
 .wim-audio--custom {
+  --wim-audio-bg-start: #1e1e24;
+  --wim-audio-bg-end: #292930;
+
   position: relative;
   z-index: 1;
   display: flex;
@@ -122,7 +125,7 @@
   gap: 0.6rem; // Adjusted for 3 rows
   padding: 1rem 0 0.8rem; // More generous padding
   color: var(--text-white);
-  background: linear-gradient(135deg, #1e1e24 0%, #292930 100%);
+  background: linear-gradient(135deg, var(--wim-audio-bg-start) 0%, var(--wim-audio-bg-end) 100%);
   mask-image: none;
 }
 
@@ -153,7 +156,7 @@
   gap: var(--spacing-sm);
   align-items: center;
   padding: 0 var(--spacing-xl) var(--spacing-sm);
-  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-white) 10%, transparent);
 
   .wim-audio--radius-full & {
     padding-right: 2rem;
@@ -186,7 +189,7 @@
 .wim-audio-artist {
   font-size: 0.75rem;
   line-height: 1.2;
-  color: rgb(255 255 255 / 0.6);
+  color: color-mix(in srgb, var(--text-white) 60%, transparent);
 }
 
 .wim-audio-badge {
@@ -248,7 +251,7 @@
 
   &:hover {
     color: var(--color-primary); // Accent color
-    background-color: rgb(255 255 255 / 0.1);
+    background-color: color-mix(in srgb, var(--text-white) 10%, transparent);
   }
 
   // Active state for toggles
@@ -292,7 +295,7 @@
   align-items: center;
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
-  color: rgb(255 255 255 / 0.7);
+  color: color-mix(in srgb, var(--text-white) 70%, transparent);
 
   .wim-audio--radius-full & {
     padding: 0 var(--spacing-3xl);
@@ -306,7 +309,7 @@
   flex: 1;
   height: 4px;
   cursor: pointer;
-  background: rgb(255 255 255 / 0.2);
+  background: color-mix(in srgb, var(--text-white) 20%, transparent);
   border-radius: 2px;
 
   // Expand click area
@@ -365,7 +368,7 @@
   appearance: none;
   cursor: pointer;
   outline: none;
-  background: rgb(255 255 255 / 0.2);
+  background: color-mix(in srgb, var(--text-white) 20%, transparent);
   border-radius: 2px;
   transition:
     width 0.3s,

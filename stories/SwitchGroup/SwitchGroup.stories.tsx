@@ -12,6 +12,7 @@ const meta: Meta<typeof SwitchGroup> = {
     layout: "centered",
   },
   argTypes: {
+    disabled: { control: "boolean" },
     direction: {
       control: "radio",
       options: ["vertical", "horizontal"],

@@ -22,6 +22,7 @@ type RadioGroupProps = {
   label?: string;
   error?: string;
   required?: boolean;
+  disabled?: boolean;
 };
 
 /**
@@ -38,6 +39,7 @@ export const RadioGroup = ({
   label,
   error,
   required,
+  disabled,
 }: RadioGroupProps) => {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string | undefined>(
@@ -80,7 +82,7 @@ export const RadioGroup = ({
             label={option.label}
             value={option.value}
             checked={currentValue === option.value}
-            disabled={option.disabled}
+            disabled={disabled || option.disabled}
             name={name}
             onChange={() => handleChange(option.value)}
           />

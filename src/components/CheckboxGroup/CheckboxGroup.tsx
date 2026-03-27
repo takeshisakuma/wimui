@@ -22,6 +22,7 @@ type CheckboxGroupProps = {
   label?: string;
   error?: string;
   required?: boolean;
+  disabled?: boolean;
 };
 
 /**
@@ -38,6 +39,7 @@ export const CheckboxGroup = ({
   label,
   error,
   required,
+  disabled,
 }: CheckboxGroupProps) => {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
@@ -85,7 +87,7 @@ export const CheckboxGroup = ({
             label={option.label}
             value={option.value}
             checked={(currentValue || []).includes(option.value)}
-            disabled={option.disabled}
+            disabled={disabled || option.disabled}
             name={name}
             onChange={(e) => handleChange(option.value, e.target.checked)}
           />

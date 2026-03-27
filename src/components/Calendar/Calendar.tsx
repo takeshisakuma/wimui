@@ -58,6 +58,10 @@ export type CalendarProps = {
    * 特定の日付を無効化する関数。
    */
   isDateDisabled?: (date: Date) => boolean;
+  /**
+   * 週の開始曜日。0 = 日曜始まり、1 = 月曜始まり。デフォルトは 0。
+   */
+  weekStartsOn?: 0 | 1;
 };
 
 /**
@@ -77,6 +81,7 @@ export const Calendar = ({
   maxDate,
   disabledDates,
   isDateDisabled: isDateDisabledProp,
+  weekStartsOn = 0,
   ...props
 }: CalendarProps) => {
   const { t } = useTranslation();
@@ -95,6 +100,7 @@ export const Calendar = ({
     maxDate,
     disabledDates,
     isDateDisabled: isDateDisabledProp,
+    weekStartsOn,
   });
 
   const [selectedDate, setSelectedDate] = useState(defaultValue || value);
@@ -243,7 +249,15 @@ export const Calendar = ({
     t("thu"),
     t("fri"),
     t("sat"),
-  ];
+  ].slice(weekStartsOn).concat([
+    t("sun"),
+    t("mon"),
+    t("tue"),
+    t("wed"),
+    t("thu"),
+    t("fri"),
+    t("sat"),
+  ].slice(0, weekStartsOn));
 
   return (
     <div
@@ -290,11 +304,23 @@ export const Calendar = ({
         tabIndex={-1}
         onKeyDown={handleKeyDown}
       >
-        {weekDays.map((day) => (
-          <div key={day} className="wim-calendar-weekday" role="columnheader" aria-label={day}>
-            {day}
-          </div>
-        ))}
+        {weekDays.map((day, index) => {
+          const dayOfWeek = (index + weekStartsOn) % 7;
+          return (
+            <div
+              key={day}
+              className={classNames(
+                "wim-calendar-weekday",
+                dayOfWeek === 0 && "wim-calendar-weekday--sunday",
+                dayOfWeek === 6 && "wim-calendar-weekday--saturday",
+              )}
+              role="columnheader"
+              aria-label={day}
+            >
+              {day}
+            </div>
+          );
+        })}
         {daysGrid.map(({ date, currentMonth }, index) => {
           const selected = isSelected(date);
           const focused = isSameDay(date, focusedDate);
@@ -310,6 +336,8 @@ export const Calendar = ({
               type="button"
               className={classNames(
                 "wim-calendar-day",
+                date.getDay() === 0 && "wim-calendar-day--sunday",
+                date.getDay() === 6 && "wim-calendar-day--saturday",
                 !currentMonth && "wim-calendar-day--other-month",
                 selected && "wim-calendar-day--selected",
                 focused && "wim-calendar-day--focused",

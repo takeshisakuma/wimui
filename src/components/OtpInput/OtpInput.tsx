@@ -139,6 +139,7 @@ export const OtpInput = ({
       errorId={errorId}
       className={className}
     >
+      <div className="wim-otp-input-wrapper">
       <div
         className={classNames(
           "wim-otp-input-container",
@@ -169,6 +170,7 @@ export const OtpInput = ({
             aria-describedby={errorId}
           />
         ))}
+      </div>
       </div>
     </FieldTemplate>
   );

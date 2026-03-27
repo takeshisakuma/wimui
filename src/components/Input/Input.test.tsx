@@ -47,11 +47,6 @@ describe("Input", () => {
     expect(screen.getByRole("textbox")).toBeDisabled();
   });
 
-  it("is disabled when status=disabled", () => {
-    render(<Input status="disabled" />);
-    expect(screen.getByRole("textbox")).toBeDisabled();
-  });
-
   it("controlled mode uses value prop", () => {
     render(<Input value="controlled" onChange={vi.fn()} />);
     expect(screen.getByRole("textbox")).toHaveValue("controlled");

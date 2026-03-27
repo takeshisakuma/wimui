@@ -34,6 +34,10 @@ type SegmentedControlProps = {
    * レイアウト方向
    */
   layout?: "vertical" | "horizontal";
+  /**
+   * 無効状態にするかどうか
+   */
+  disabled?: boolean;
 };
 
 export const SegmentedControl = ({
@@ -47,6 +51,7 @@ export const SegmentedControl = ({
   error,
   required,
   layout = "vertical",
+  disabled = false,
 }: SegmentedControlProps) => {
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const generatedId = useId();
@@ -137,6 +142,7 @@ export const SegmentedControl = ({
               aria-checked={isSelected}
               tabIndex={isTabbable ? 0 : -1}
               aria-label={option.label || option.value}
+              disabled={disabled}
             >
               {option.iconName && <Icon name={option.iconName} size={size} />}
               {option.label && (

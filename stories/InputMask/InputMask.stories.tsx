@@ -9,7 +9,13 @@ import { ALL_NAMESPACES } from "../i18nConstants";
 const meta: Meta<typeof InputMask> = {
   title: "Components/Basic Inputs/InputMask",
   component: InputMask,
+  args: {
+    disabled: false,
+  },
   argTypes: {
+    disabled: {
+      control: "boolean",
+    },
     mask: {
       control: "text",
       description: "Mask pattern ('9': number, 'a': letter, '*': alphanumeric)",

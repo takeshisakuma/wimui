@@ -188,6 +188,7 @@ export const Pagination = ({
   }
 
   return (
+    <div className="wim-pagination-container">
     <div className={classNames("wim-pagination-wrapper", className)}>
       {showTotal && (
         <div className="wim-pagination__total">
@@ -308,6 +309,7 @@ export const Pagination = ({
           />
         </div>
       )}
+    </div>
     </div>
   );
 };

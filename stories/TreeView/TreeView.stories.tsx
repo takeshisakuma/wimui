@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { TreeView } from "@/components/TreeView/TreeView";
+import { TreeView, TreeViewNode } from "@/components/TreeView/TreeView";
 import { Icon } from "@/components/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
@@ -168,6 +168,104 @@ export const Overflow: Story = {
           icon={<Icon name="CircleIcon" size="small" />}
         />
       </TreeView>
+    );
+  },
+};
+
+// ─── checkStrategy デモ用ノード ────────────────────────────────────────────────
+
+const regionNodes: TreeViewNode[] = [
+  {
+    value: "asia",
+    label: "Asia",
+    children: [
+      {
+        value: "east-asia",
+        label: "East Asia",
+        children: [
+          { value: "japan", label: "Japan" },
+          { value: "korea", label: "Korea" },
+          { value: "china", label: "China" },
+        ],
+      },
+      {
+        value: "southeast-asia",
+        label: "Southeast Asia",
+        children: [
+          { value: "thailand", label: "Thailand" },
+          { value: "vietnam", label: "Vietnam" },
+        ],
+      },
+    ],
+  },
+  {
+    value: "europe",
+    label: "Europe",
+    children: [
+      { value: "france", label: "France" },
+      { value: "germany", label: "Germany" },
+      { value: "italy", label: "Italy" },
+    ],
+  },
+  {
+    value: "americas",
+    label: "Americas",
+    children: [
+      { value: "usa", label: "United States" },
+      { value: "canada", label: "Canada" },
+      { value: "brazil", label: "Brazil" },
+    ],
+  },
+];
+
+/**
+ * cascade（デフォルト）: 親チェックで子全選択、子の一部で親が indeterminate。
+ * バックアップ対象フォルダや地域フィルタのような「親 = 子を全て包含」用途。
+ */
+export const CascadeCheckable: Story = {
+  render: function Render() {
+    const [checked, setChecked] = React.useState<string[]>([]);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+        <TreeView
+          nodes={regionNodes}
+          checkable
+          checkStrategy="cascade"
+          multiSelect
+          defaultExpandedValues={["asia", "east-asia", "europe"]}
+          onCheckedChange={setChecked}
+          width="100%"
+        />
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)" }}>
+          Checked: {checked.length > 0 ? checked.join(", ") : "(none)"}
+        </div>
+      </div>
+    );
+  },
+};
+
+/**
+ * exclusive: 親選択→子が自動解除、子選択→親が解除。
+ * レポートの集計粒度やカテゴリ分類など「重複なしで最小セットを選ぶ」用途。
+ */
+export const ExclusiveCheckable: Story = {
+  render: function Render() {
+    const [checked, setChecked] = React.useState<string[]>([]);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+        <TreeView
+          nodes={regionNodes}
+          checkable
+          checkStrategy="exclusive"
+          multiSelect
+          defaultExpandedValues={["asia", "east-asia", "europe"]}
+          onCheckedChange={setChecked}
+          width="100%"
+        />
+        <div style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)" }}>
+          Checked: {checked.length > 0 ? checked.join(", ") : "(none)"}
+        </div>
+      </div>
     );
   },
 };

@@ -12,7 +12,7 @@ type DatePickerProps = Omit<
   React.ComponentPropsWithoutRef<"input">,
   "value" | "defaultValue" | "onChange"
 > & {
-  status?: "default" | "error" | "disabled";
+  status?: "default" | "error";
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   /** Selected date value */
@@ -122,7 +122,7 @@ export const DatePicker = ({
 
   const handleClear = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    if (!disabled && status !== "disabled") {
+    if (!disabled) {
       if (!isControlled) {
         setInternalValue(null);
       }
@@ -131,7 +131,7 @@ export const DatePicker = ({
   };
 
   const handleInputClick = () => {
-    if (!disabled && status !== "disabled") {
+    if (!disabled) {
       setIsOpen(!isOpen);
     }
   };
@@ -163,10 +163,10 @@ export const DatePicker = ({
         )}
       >
         <InputBase
-          status={effectiveStatus}
+          status={error ? "error" : status}
           variant={variant}
           fullWidth={fullWidth}
-          disabled={disabled || status === "disabled"}
+          disabled={disabled}
           allowClear={clearable}
           hasValue={!!currentValue}
           onClear={handleClear}
@@ -185,7 +185,7 @@ export const DatePicker = ({
             )}
             value={formatDate(currentValue || null)}
             placeholder={actualPlaceholder}
-            disabled={disabled || status === "disabled"}
+            disabled={disabled}
             onClick={handleInputClick}
             onKeyDown={handleKeyDown}
             aria-haspopup="dialog"
@@ -197,7 +197,7 @@ export const DatePicker = ({
             {...props}
           />
         </InputBase>
-        {isOpen && !disabled && status !== "disabled" && (
+        {isOpen && !disabled && (
           <div
             id={dropdownId}
             className="wim-datepicker-dropdown"

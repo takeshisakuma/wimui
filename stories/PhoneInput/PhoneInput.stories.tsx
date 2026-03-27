@@ -7,6 +7,14 @@ import { ALL_NAMESPACES } from "../i18nConstants";
 const meta: Meta<typeof PhoneInput> = {
   title: "Components/Basic Inputs/PhoneInput",
   component: PhoneInput,
+  args: {
+    disabled: false,
+  },
+  argTypes: {
+    disabled: {
+      control: "boolean",
+    },
+  },
   tags: [],
 };
 

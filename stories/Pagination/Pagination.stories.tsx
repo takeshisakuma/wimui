@@ -6,7 +6,7 @@ const meta: Meta<typeof Pagination> = {
   title: "Components/Navigation Elements/Pagination",
   component: Pagination,
   parameters: {
-    layout: "centered",
+    layout: "padded",
   },
   tags: [],
   argTypes: {

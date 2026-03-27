@@ -4,7 +4,7 @@ import { WimColor } from "../../types/tokens";
 import "./spinner.scss";
 
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
-  size?: "small" | "medium" | "large" | "xlarge";
+  size?: "small" | "medium" | "large";
   color?:
   | "primary"
   | "secondary"
@@ -50,7 +50,7 @@ export const Spinner = ({
       <svg
         className={classNames(
           "wim-spinner",
-          `wim-spinner--${size === "small" ? "sm" : size === "large" ? "lg" : size === "xlarge" ? "xl" : "md"}`,
+          `wim-spinner--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
           !isCustomColor && `wim-spinner--${color}`,
         )}
         viewBox="0 0 50 50"

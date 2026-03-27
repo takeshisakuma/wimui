@@ -4,12 +4,12 @@ import { ToggleGroup, type Option } from "@/components/ToggleGroup/ToggleGroup";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
-
 const meta: Meta<typeof ToggleGroup> = {
   title: "Components/Selection Controls/ToggleGroup",
   component: ToggleGroup,
   // tags: ["autodocs"],
   argTypes: {
+    disabled: { control: "boolean" },
     selectionMode: {
       control: "select",
       options: ["single", "multiple"],

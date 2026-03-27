@@ -4,7 +4,7 @@ import { FieldTemplate } from "../_internal/FieldTemplate";
 import "./textarea.scss";
 
 type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
-  status?: "default" | "error" | "disabled";
+  status?: "default" | "error";
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   fieldSizing?: "fixed" | "content";
@@ -35,7 +35,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref,
   ) => {
-    const isDisabled = disabled || status === "disabled";
+    const isDisabled = disabled;
     const effectiveStatus = isDisabled ? "disabled" : (error ? "error" : status);
 
     const generatedId = React.useId();

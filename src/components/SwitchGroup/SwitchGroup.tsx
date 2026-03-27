@@ -25,6 +25,7 @@ type SwitchGroupProps = {
   label?: string;
   error?: string;
   required?: boolean;
+  disabled?: boolean;
 };
 
 /**
@@ -41,6 +42,7 @@ export const SwitchGroup = ({
   label,
   error,
   required,
+  disabled,
 }: SwitchGroupProps) => {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
@@ -88,7 +90,7 @@ export const SwitchGroup = ({
             label={option.label}
             value={option.value}
             checked={(currentValue || []).includes(option.value)}
-            disabled={option.disabled}
+            disabled={disabled || option.disabled}
             name={name}
             onChange={(e) => handleChange(option.value, e.target.checked)}
           />

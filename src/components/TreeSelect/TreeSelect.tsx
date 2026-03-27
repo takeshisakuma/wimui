@@ -47,6 +47,12 @@ export type TreeSelectProps = {
   defaultExpandedKeys?: string[];
   /** Whether to show a clear button when a value is selected */
   allowClear?: boolean;
+  /**
+   * チェック選択の動作モード（multiple 時に有効）。
+   * - cascade: 親チェック→子全選択、子の一部→親は indeterminate（デフォルト）
+   * - exclusive: 親子排他（親選択→子解除、子選択→親解除）
+   */
+  checkStrategy?: "cascade" | "exclusive";
   id?: string;
   "aria-label"?: string;
   "aria-labelledby"?: string;
@@ -71,6 +77,7 @@ export const TreeSelect = ({
   searchable = false,
   defaultExpandedKeys = [],
   allowClear = false,
+  checkStrategy = "cascade",
   id: customId,
   ...props
 }: TreeSelectProps) => {
@@ -297,6 +304,7 @@ export const TreeSelect = ({
               onCheckedChange={handleSelect}
               onSelectedChange={handleSelect}
               checkable={multiple}
+              checkStrategy={checkStrategy}
               searchable={searchable}
               defaultExpandedValues={defaultExpandedKeys}
             />

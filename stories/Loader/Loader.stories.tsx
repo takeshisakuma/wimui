@@ -25,7 +25,7 @@ const meta: Meta<typeof Loader> = {
     },
     size: {
       control: "select",
-      options: ["small", "medium", "large", "xlarge"],
+      options: ["small", "medium", "large"],
     },
   },
 };
@@ -102,13 +102,11 @@ export const Sizes: Story = {
         <Loader {...args} variant="bars" size="small" />
         <Loader {...args} variant="bars" size="medium" />
         <Loader {...args} variant="bars" size="large" />
-        <Loader {...args} variant="bars" size="xlarge" />
       </div>
       <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
         <Loader {...args} variant="dots" size="small" />
         <Loader {...args} variant="dots" size="medium" />
         <Loader {...args} variant="dots" size="large" />
-        <Loader {...args} variant="dots" size="xlarge" />
       </div>
       <div
         style={{
@@ -121,7 +119,6 @@ export const Sizes: Story = {
         <Loader {...args} variant="pulse" size="small" />
         <Loader {...args} variant="pulse" size="medium" />
         <Loader {...args} variant="pulse" size="large" />
-        <Loader {...args} variant="pulse" size="xlarge" />
       </div>
     </div>
   ),

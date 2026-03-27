@@ -16,9 +16,13 @@ const meta: Meta<typeof Input> = {
   args: {
     width: "md",
     fullWidth: false,
+    disabled: false,
   },
 
   argTypes: {
+    disabled: {
+      control: "boolean",
+    },
     leftIcon: {
       control: "select",
       options: ["SearchIcon"],

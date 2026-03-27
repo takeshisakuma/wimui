@@ -70,17 +70,10 @@
   top: calc(100% + var(--spacing-xs));
   left: 0;
   z-index: 1000;
+  min-width: 100%;
   padding: var(--spacing-sm);
   background-color: var(--bg-component, #fff);
   border: 1px solid var(--color-secondary);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
-
-  @include breakpoints.down(sm) {
-    left: 50%;
-    width: auto;
-    max-width: calc(100vw - 16px);
-    padding: var(--spacing-xs);
-    transform: translateX(-50%);
-  }
 }

@@ -71,15 +71,6 @@
     }
 
     &.wim-loader--lg {
-      gap: 6px;
-
-      .wim-loader__item {
-        width: 6px;
-        height: 24px;
-      }
-    }
-
-    &.wim-loader--xl {
       gap: 8px;
 
       .wim-loader__item {
@@ -128,15 +119,6 @@
     }
 
     &.wim-loader--lg {
-      gap: 8px;
-
-      .wim-loader__item {
-        width: 12px;
-        height: 12px;
-      }
-    }
-
-    &.wim-loader--xl {
       gap: 10px;
 
       .wim-loader__item {
@@ -177,11 +159,6 @@
     }
 
     &.wim-loader--lg {
-      width: 32px;
-      height: 32px;
-    }
-
-    &.wim-loader--xl {
       width: 48px;
       height: 48px;
     }

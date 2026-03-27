@@ -12,6 +12,7 @@ const meta: Meta<typeof SegmentedControl> = {
     layout: "centered",
   },
   argTypes: {
+    disabled: { control: "boolean" },
     size: {
       control: { type: "select" },
       options: ["small", "medium", "large"],

@@ -843,5 +843,8 @@
   "doc_treeview_api_key_header": "キー",
   "doc_treeview_checkbox_mode": "チェックボックス選択モード",
   "doc_treeview_checkbox_mode_desc": "`checkable` プロパティを有効にすると、各アイテムにチェックボックスが表示され、複数アイテムを選択できます。",
+  "doc_treeselect_cascade_desc": "親を選択すると配下の子・孫がすべて選択されます。子の一部だけ選択している場合、親は中間（indeterminate）状態になります。カテゴリごとにまとめて選択したい場合に使用します。",
+  "doc_treeselect_exclusive_desc": "親と子孫を同時に選択することはできません。親を選択すると配下の選択がすべて解除され、子を選択すると先祖の選択が解除されます。集計粒度の選択（「年」と「月」の同時選択を防ぐなど）、異なる粒度の項目を重複させたくない場合に使用します。",
+  "doc_exclusive_mode": "排他選択モード",
   "doc_with_groups": "Groups"
 }

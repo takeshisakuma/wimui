@@ -14,7 +14,13 @@ const meta: Meta<typeof Selectbox> = {
   parameters: {
     layout: "centered",
   },
+  args: {
+    disabled: false,
+  },
   argTypes: {
+    disabled: {
+      control: "boolean",
+    },
     onChange: { action: "changed" },
   },
 };

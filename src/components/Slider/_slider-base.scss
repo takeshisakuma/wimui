@@ -48,9 +48,8 @@
     border-radius: var(--radius-full);
     box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
     transform: translate(-50%, -50%);
-    transition:
-      box-shadow 0.2s,
-      transform 0.1s;
+    transition: box-shadow 0.2s;
+    will-change: left;
 
     &:hover {
       z-index: 2;

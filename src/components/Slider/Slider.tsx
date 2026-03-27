@@ -98,7 +98,11 @@ export const Slider = ({
   const [internalValue, setInternalValue] = useState(defaultValue);
   const currentValue = isControlled ? value! : internalValue;
   const trackRef = useRef<HTMLDivElement>(null);
+  const thumbRef = useRef<HTMLDivElement>(null);
+  const trackFillRef = useRef<HTMLDivElement>(null);
+  const hiddenInputRef = useRef<HTMLInputElement>(null);
   const isDragging = useRef(false);
+  const dragValueRef = useRef(currentValue);
   const generatedId = useId();
   const id = customId || generatedId;
   const labelId = `wim-slider-label-${id}`;
@@ -106,21 +110,43 @@ export const Slider = ({
 
   const { calculateValue } = useSliderCommon(min, max, step);
 
+  const toPct = useCallback(
+    (val: number) => ((val - min) / (max - min)) * 100,
+    [min, max],
+  );
+
+  // DOM を直接更新してレンダリングをスキップ
+  const applyDomPosition = useCallback(
+    (val: number) => {
+      const pct = toPct(val);
+      if (trackFillRef.current) trackFillRef.current.style.width = `${pct}%`;
+      if (thumbRef.current) {
+        thumbRef.current.style.left = `${pct}%`;
+        thumbRef.current.setAttribute("aria-valuenow", String(val));
+      }
+      if (hiddenInputRef.current) hiddenInputRef.current.value = String(val);
+    },
+    [toPct],
+  );
+
+  // 制御モードで value が外部から変わったとき（ドラッグ中でなければ）DOM を同期
+  useEffect(() => {
+    if (!isDragging.current) {
+      applyDomPosition(currentValue);
+    }
+  }, [currentValue, applyDomPosition]);
+
   const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     if (disabled) return;
     isDragging.current = true;
 
-    // TouchEventとMouseEventの両対応
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-
     const newValue = calculateValue(clientX, trackRef.current);
-
-    if (!isControlled) {
-      setInternalValue(newValue);
-    }
+    dragValueRef.current = newValue;
+    applyDomPosition(newValue);
     onChange?.(newValue);
 
-    e.preventDefault(); // テキスト選択防止など
+    e.preventDefault();
   };
 
   const handleGlobalMouseMove = useCallback(
@@ -130,21 +156,23 @@ export const Slider = ({
       const clientX =
         "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
       const newValue = calculateValue(clientX, trackRef.current);
-
-      if (!isControlled) {
-        setInternalValue(newValue);
-      }
+      dragValueRef.current = newValue;
+      applyDomPosition(newValue);
       onChange?.(newValue);
     },
-    [disabled, isControlled, onChange, calculateValue],
+    [disabled, calculateValue, onChange, applyDomPosition],
   );
 
   const handleGlobalMouseUp = useCallback(() => {
     if (isDragging.current) {
       isDragging.current = false;
-      onAfterChange?.(isControlled ? value! : internalValue);
+      const finalValue = dragValueRef.current;
+      if (!isControlled) {
+        setInternalValue(finalValue);
+      }
+      onAfterChange?.(finalValue);
     }
-  }, [isControlled, value, internalValue, onAfterChange]);
+  }, [isControlled, onAfterChange]);
 
   useEffect(() => {
     document.addEventListener("mousemove", handleGlobalMouseMove);
@@ -186,8 +214,7 @@ export const Slider = ({
     e.preventDefault();
   };
 
-
-  const percentage = ((currentValue - min) / (max - min)) * 100;
+  const percentage = toPct(currentValue);
 
   return (
     <FieldTemplate
@@ -208,10 +235,12 @@ export const Slider = ({
       >
         <div className="wim-slider__track-container" ref={trackRef}>
           <div
+            ref={trackFillRef}
             className="wim-slider__track"
             style={{ width: `${percentage}%` }}
           />
           <div
+            ref={thumbRef}
             className="wim-slider__thumb"
             style={{ left: `${percentage}%` }}
             role="slider"
@@ -225,7 +254,7 @@ export const Slider = ({
             onKeyDown={handleKeyDown}
           />
         </div>
-        <input type="hidden" name={name} value={currentValue} />
+        <input ref={hiddenInputRef} type="hidden" name={name} value={currentValue} />
       </div>
     </FieldTemplate>
   );

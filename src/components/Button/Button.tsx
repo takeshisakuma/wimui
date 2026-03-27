@@ -12,10 +12,7 @@ export type ButtonProps = Omit<React.ComponentPropsWithoutRef<"button">, "role">
   size?: "small" | "medium" | "large";
   label?: string;
   priority?: "primary" | "secondary" | "tertiary";
-  /** @deprecated Use the standard HTML `disabled` prop instead. */
   role?: "default" | "destructive" | "positive";
-  /** @deprecated Use the standard HTML `disabled` prop instead. */
-  state?: "abled" | "disabled";
   /** Icon name or custom icon element */
   icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
   /** @deprecated Use icon instead */
@@ -39,7 +36,6 @@ export const Button = React.forwardRef<
       label,
       priority = "secondary",
       role = "default",
-      state,
       icon,
       iconName,
       iconPosition = "left",
@@ -59,12 +55,6 @@ export const Button = React.forwardRef<
     const { t } = useTranslation();
     const internalRef = React.useRef<HTMLButtonElement>(null);
 
-    if (role !== "default") {
-      warnDeprecated("Button", "role", "Use the standard HTML `disabled` prop instead.");
-    }
-    if (state !== undefined) {
-      warnDeprecated("Button", "state", "Use the standard HTML `disabled` prop instead.");
-    }
     if (iconName !== undefined) {
       warnDeprecated("Button", "iconName", "Use `icon` instead.");
     }
@@ -110,8 +100,7 @@ export const Button = React.forwardRef<
       return () => cancelAnimationFrame(frame);
     }, [memoizedLabel, animateWidth, buttonRef]);
 
-    // `state="disabled"` は後方互換のために残すが、標準の `disabled` を優先
-    const isDisabled = disabled || state === "disabled";
+    const isDisabled = disabled;
 
     // aria-label の決定ロジックを明示的に整理
     let resolvedAriaLabel: string | undefined;

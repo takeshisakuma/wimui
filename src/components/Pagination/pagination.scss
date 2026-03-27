@@ -1,6 +1,11 @@
 @use "../../tokens/breakpoints" as breakpoints;
 
 @layer component {
+  .wim-pagination-container {
+    width: 100%;
+    container-type: inline-size;
+  }
+
   .wim-pagination-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -26,7 +31,7 @@
     &__mobile-indicator {
       display: none;
 
-      @include breakpoints.down(md) {
+      @include breakpoints.container-down(md) {
         display: inline-flex !important;
         color: var(--text-primary);
         pointer-events: none;
@@ -81,7 +86,7 @@
 
       &--number,
       &--ellipsis {
-        @include breakpoints.down(md) {
+        @include breakpoints.container-down(md) {
           display: none;
         }
       }

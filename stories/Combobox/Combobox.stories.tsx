@@ -8,7 +8,13 @@ import { ALL_NAMESPACES } from "../i18nConstants";
 const meta: Meta<typeof Combobox> = {
   title: "Components/Selection Controls/Combobox",
   component: Combobox,
+  args: {
+    disabled: false,
+  },
   argTypes: {
+    disabled: {
+      control: "boolean",
+    },
     showSearchIcon: {
       control: "boolean",
     },

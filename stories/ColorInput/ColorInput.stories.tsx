@@ -10,6 +10,9 @@ const meta: Meta<typeof ColorInput> = {
   title: "Components/Pickers & Sliders/ColorInput",
   component: ColorInput,
   tags: [],
+  argTypes: {
+    disabled: { control: "boolean" },
+  },
 };
 
 export default meta;
@@ -64,7 +67,7 @@ export const CustomStates: Story = {
           />
           <ColorInput
             {...args}
-            status="disabled"
+            disabled
             defaultValue="#6b7280"
             leftIcon="SettingsIcon"
           />

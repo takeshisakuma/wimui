@@ -1,19 +1,11 @@
-﻿/* ------------------------------------------------------------------
+/* ------------------------------------------------------------------
    Calendar Styles
    ------------------------------------------------------------------ */
-@use "../../tokens/breakpoints" as breakpoints;
 
 .wim-calendar {
-  width: 80vw;
+  width: 100%;
   max-width: 340px;
   padding: var(--spacing-md);
-
-  @include breakpoints.down(sm) {
-    width: 90vw;
-    max-width: 350px;
-    padding: var(--spacing-xs);
-  }
-
   font-family: var(--font-family-base);
   user-select: none;
   background-color: var(--bg-component, #fff);
@@ -68,7 +60,7 @@
 
 .wim-calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(min-content, 1fr));
   gap: var(--spacing-xs);
 }
 
@@ -80,21 +72,24 @@
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-tertiary);
+  white-space: nowrap;
+
+  &--sunday {
+    color: var(--color-destructive);
+  }
+
+  &--saturday {
+    color: var(--color-informative);
+  }
 }
 
 .wim-calendar-day {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  height: 30px;
   padding: 0;
-  font-size: 0.95rem;
-
-  @include breakpoints.down(sm) {
-    height: 44px;
-    font-size: 1rem;
-  }
-
+  font-size: 1rem;
   color: var(--text-primary);
   cursor: pointer;
   background: transparent;
@@ -107,6 +102,14 @@
 
   &:hover:not(:disabled, .wim-calendar-day--selected) {
     background-color: var(--wim-color-bg-hover);
+  }
+
+  &--sunday {
+    color: var(--color-destructive);
+  }
+
+  &--saturday {
+    color: var(--color-informative);
   }
 
   &--other-month {

@@ -11,8 +11,14 @@ const meta: Meta<typeof MultiSelect> = {
   parameters: {
     layout: "centered",
   },
+  args: {
+    disabled: false,
+  },
   tags: [],
   argTypes: {
+    disabled: {
+      control: "boolean",
+    },
     onChange: { action: "changed" },
   },
 };

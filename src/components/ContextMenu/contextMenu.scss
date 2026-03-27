@@ -4,6 +4,15 @@
 
 .wim-context-menu-container {
   display: inline-block;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: var(--opacity-disabled);
+
+    > * {
+      pointer-events: none;
+    }
+  }
 }
 
 .wim-context-menu {

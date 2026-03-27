@@ -9,7 +9,13 @@ import { ALL_NAMESPACES } from "../i18nConstants";
 const meta: Meta<typeof OtpInput> = {
   title: "Components/Basic Inputs/OtpInput",
   component: OtpInput,
+  args: {
+    disabled: false,
+  },
   argTypes: {
+    disabled: {
+      control: "boolean",
+    },
     onChange: { action: "changed" },
   },
 };

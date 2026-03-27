@@ -104,9 +104,8 @@ export const ContextMenu = ({
   };
 
   const handleContextMenu = (e: React.MouseEvent) => {
-    if (disabled) return;
-
     e.preventDefault();
+    if (disabled) return;
     // Default context menu triggered by keyboard usually has clientX/Y as 0 or center of element
     const isKeyboard = e.clientX === 0 && e.clientY === 0;
     openMenu(e.clientX, e.clientY, isKeyboard);
@@ -134,7 +133,7 @@ export const ContextMenu = ({
   return (
     <div
       ref={containerRef}
-      className={classNames("wim-context-menu-container", className)}
+      className={classNames("wim-context-menu-container", disabled && "wim-context-menu-container--disabled", className)}
       onContextMenu={handleContextMenu}
       onKeyDown={handleKeyDown}
       tabIndex={disabled ? -1 : 0}

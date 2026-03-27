@@ -7,6 +7,7 @@
 
 .wim-tree-select {
   position: relative;
+  align-self: flex-start; // prevent flex-stretch from pushing to flex-end when max-width kicks in
   width: 100%;
   min-width: 200px;
   max-width: var(--wim-input-width, 280px);
@@ -65,9 +66,8 @@
       color: var(--color-text-on-disabled);
       pointer-events: none;
       cursor: not-allowed;
-      background: var(--color-disabled);
-      border-color: var(--color-disabled);
-      opacity: var(--opacity-disabled);
+
+      // background / border / opacity are handled by the InputBase wrapper
     }
   }
 
@@ -139,12 +139,31 @@
 
   // Adapt TreeView styles for Selectbox dropdown
   .wim-tree-view {
-    width: 100% !important;
+    // width: max-content: sizes to widest item label, allowing dropdown to
+    // exceed trigger width.
+    // min-width: 100%: stretches tree-view to fill dropdown when trigger is
+    // wider than all items (e.g. full-width variant). Percentage min-width
+    // is excluded from intrinsic size calculations, so no circular dependency
+    // with __dropdown { width: max-content }.
+    width: max-content;
+    min-width: 100%;
     padding: 4px 0;
+
+    // overflow: hidden in tree-view.scss clips items when width is max-content.
+    // __dropdown handles overflow; tree-view should not clip internally.
+    overflow: visible;
     border: none;
+    box-shadow: none; // __dropdown provides shadow
+
+    // container-type: inline-size on items excludes them from the parent's
+    // max-content width calculation, collapsing items to 0px.
+    // Reset to normal so items contribute their text width correctly.
+    .wim-tree-view-item {
+      container-type: normal;
+    }
 
     &__search {
-      padding: 4px;
+      padding: 4px 12px;
       margin-bottom: 8px;
     }
   }

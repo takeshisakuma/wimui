@@ -13,6 +13,9 @@ const meta: Meta<typeof Cascader> = {
   parameters: {
     layout: "centered",
   },
+  argTypes: {
+    disabled: { control: "boolean" },
+  },
 };
 
 export default meta;

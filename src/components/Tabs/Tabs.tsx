@@ -84,15 +84,17 @@ const Tabs = ({
         unregisterItem,
       }}
     >
-      <div
-        className={classNames(
-          "wim-tabs",
-          `wim-tabs--${orientation}`,
-          className,
-        )}
-        {...props}
-      >
-        {children}
+      <div className="wim-tabs-container">
+        <div
+          className={classNames(
+            "wim-tabs",
+            `wim-tabs--${orientation}`,
+            className,
+          )}
+          {...props}
+        >
+          {children}
+        </div>
       </div>
     </TabsContext.Provider>
   );

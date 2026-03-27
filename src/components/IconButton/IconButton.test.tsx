@@ -25,7 +25,7 @@ describe("IconButton", () => {
 
   it("is disabled when disabled prop is true", () => {
     render(
-      <IconButton iconName="SearchIcon" aria-label="Add" state="disabled" />,
+      <IconButton iconName="SearchIcon" aria-label="Add" disabled />,
     );
     expect(screen.getByLabelText("Add")).toBeDisabled();
   });

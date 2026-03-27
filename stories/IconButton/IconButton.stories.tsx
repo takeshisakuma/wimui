@@ -9,6 +9,9 @@ const meta: Meta<typeof IconButton> = {
   title: "Components/Buttons/IconButton",
   component: IconButton,
   tags: [],
+  argTypes: {
+    disabled: { control: "boolean" },
+  },
 };
 
 export default meta;

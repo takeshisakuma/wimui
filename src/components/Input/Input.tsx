@@ -7,7 +7,7 @@ import { InputBase, InputBaseIcon } from "../_internal/InputBase";
 import { FieldTemplate } from "../_internal/FieldTemplate";
 
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
-  status?: "default" | "error" | "disabled";
+  status?: "default" | "error";
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   leftIcon?: React.ComponentProps<typeof Icon>["name"];
@@ -78,8 +78,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
 
-    // `status="disabled"` は後方互換のために残すが、標準の `disabled` を優先
-    const isDisabled = disabled || status === "disabled";
+    const isDisabled = disabled;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!isControlled) {
@@ -182,7 +181,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         className={className}
       >
         <InputBase
-          status={effectiveStatus}
+          status={error ? "error" : status}
           variant={variant}
           fullWidth={fullWidth}
           width={width}

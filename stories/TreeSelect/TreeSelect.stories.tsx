@@ -9,9 +9,6 @@ import { Icon } from "../../src/components/Icon/Icon";
 const meta: Meta<typeof TreeSelect> = {
   title: "Components/Advanced Inputs/TreeSelect",
   component: TreeSelect,
-  parameters: {
-    layout: "centered",
-  },
 };
 
 export default meta;
@@ -73,7 +70,11 @@ export const Default: Story = {
   },
 };
 
-export const Multiple: Story = {
+/**
+ * cascade（デフォルト）: 親チェックで子全選択、子の一部で親が indeterminate。
+ * 「Design」を選ぶと Colors・Typography・Primary・Secondary が全て選択される。
+ */
+export const CascadeMultiple: Story = {
   render: (args) => {
     const { t } = useTranslation("docs");
     const treeData = translateTreeData(defaultTreeData, t);
@@ -82,6 +83,29 @@ export const Multiple: Story = {
         {...args}
         treeData={treeData}
         multiple
+        checkStrategy="cascade"
+        defaultExpandedKeys={["design"]}
+        placeholder={t("story_treeselect_placeholder")}
+      />
+    );
+  },
+};
+
+/**
+ * exclusive: 親子排他。親を選ぶと子が解除され、子を選ぶと親が解除される。
+ * 集計粒度の選択（「年」と「月」の同時選択を防ぐ）などに適する。
+ */
+export const ExclusiveMultiple: Story = {
+  render: (args) => {
+    const { t } = useTranslation("docs");
+    const treeData = translateTreeData(defaultTreeData, t);
+    return (
+      <TreeSelect
+        {...args}
+        treeData={treeData}
+        multiple
+        checkStrategy="exclusive"
+        defaultExpandedKeys={["design"]}
         placeholder={t("story_treeselect_placeholder")}
       />
     );

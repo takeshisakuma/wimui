@@ -11,6 +11,7 @@
 }
 
 .wim-spinner {
+  display: block;
   animation: wim-spinner-rotate 2s linear infinite;
 
   &--sm {
@@ -24,11 +25,6 @@
   }
 
   &--lg {
-    width: 32px;
-    height: 32px;
-  }
-
-  &--xl {
     width: 48px;
     height: 48px;
   }
