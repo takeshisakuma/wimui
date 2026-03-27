@@ -26,6 +26,10 @@ type SegmentedControlProps = {
      * レイアウト方向
      */
     layout?: "vertical" | "horizontal";
+    /**
+     * 無効状態にするかどうか
+     */
+    disabled?: boolean;
 };
-export declare const SegmentedControl: ({ options, value, onChange, size, fullWidth, className, label, error, required, layout, }: SegmentedControlProps) => import("react/jsx-runtime").JSX.Element;
+export declare const SegmentedControl: ({ options, value, onChange, size, fullWidth, className, label, error, required, layout, disabled, }: SegmentedControlProps) => import("react/jsx-runtime").JSX.Element;
 export {};

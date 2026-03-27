@@ -11,7 +11,7 @@ export type InputBaseIcon = {
 };
 export type InputBaseProps = {
     children: React.ReactNode;
-    status?: "default" | "error" | "disabled";
+    status?: "default" | "error";
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;

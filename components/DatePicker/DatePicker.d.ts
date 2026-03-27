@@ -1,6 +1,6 @@
 import { default as React } from '../../../node_modules/react';
 type DatePickerProps = Omit<React.ComponentPropsWithoutRef<"input">, "value" | "defaultValue" | "onChange"> & {
-    status?: "default" | "error" | "disabled";
+    status?: "default" | "error";
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     /** Selected date value */

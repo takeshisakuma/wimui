@@ -23,9 +23,13 @@ type ToggleGroupProps = {
      * アクセシビリティ用のラベルID（aria-label の代替）
      */
     "aria-labelledby"?: string;
+    /**
+     * 無効状態にするかどうか
+     */
+    disabled?: boolean;
 };
 /**
  * ToggleGroup component allows users to select one or multiple options from a set of buttons.
  */
-export declare const ToggleGroup: ({ options, value, defaultValue, onChange, selectionMode, size, fullWidth, className, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, }: ToggleGroupProps) => import("react/jsx-runtime").JSX.Element;
+export declare const ToggleGroup: ({ options, value, defaultValue, onChange, selectionMode, size, fullWidth, className, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, disabled, }: ToggleGroupProps) => import("react/jsx-runtime").JSX.Element;
 export {};

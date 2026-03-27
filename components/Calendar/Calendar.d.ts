@@ -60,8 +60,12 @@ export type CalendarProps = {
      * 特定の日付を無効化する関数。
      */
     isDateDisabled?: (date: Date) => boolean;
+    /**
+     * 週の開始曜日。0 = 日曜始まり、1 = 月曜始まり。デフォルトは 0。
+     */
+    weekStartsOn?: 0 | 1;
 };
 /**
  * ユーザーが日付を閲覧し、選択するためのカレンダーコンポーネント。
  */
-export declare const Calendar: ({ value, onChange, defaultValue, className, disabled, rangeMode, range, defaultRange, onRangeChange, minDate, maxDate, disabledDates, isDateDisabled: isDateDisabledProp, ...props }: CalendarProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Calendar: ({ value, onChange, defaultValue, className, disabled, rangeMode, range, defaultRange, onRangeChange, minDate, maxDate, disabledDates, isDateDisabled: isDateDisabledProp, weekStartsOn, ...props }: CalendarProps) => import("react/jsx-runtime").JSX.Element;

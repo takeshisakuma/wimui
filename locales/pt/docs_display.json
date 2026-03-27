@@ -176,6 +176,8 @@
   "doc_calendar_range_mode_desc": "Ative a seleção de intervalo de datas de início e término definindo a propriedade rangeMode.",
   "doc_calendar_selected_date": "Data Pré-selecionada",
   "doc_calendar_title": "Visualização de calendário",
+  "doc_calendar_week_start": "Dia de Início da Semana",
+  "doc_calendar_week_start_desc": "Use a prop `weekStartsOn` para definir o primeiro dia da semana. `0` começa no domingo (padrão), `1` começa na segunda-feira.",
   "doc_card_a11y_spec": "Ao tornar o card inteiro um link, considere a ordem em que os leitores de tela leem e explore estruturas (como foco em títulos) para evitar leitura redundante.",
   "doc_card_anatomy_body": "Exibe o conteúdo principal que está no coração do conteúdo (como descrições ou imagens).",
   "doc_card_anatomy_body_label": "Corpo",

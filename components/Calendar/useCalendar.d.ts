@@ -11,8 +11,9 @@ export interface UseCalendarProps {
     maxDate?: Date;
     disabledDates?: Date[];
     isDateDisabled?: (date: Date) => boolean;
+    weekStartsOn?: 0 | 1;
 }
-export declare const useCalendar: ({ defaultValue, value, minDate, maxDate, disabledDates, isDateDisabled, }?: UseCalendarProps) => {
+export declare const useCalendar: ({ defaultValue, value, minDate, maxDate, disabledDates, isDateDisabled, weekStartsOn, }?: UseCalendarProps) => {
     viewDate: Date;
     setViewDate: import('../../../node_modules/react').Dispatch<import('../../../node_modules/react').SetStateAction<Date>>;
     year: number;

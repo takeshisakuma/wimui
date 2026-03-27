@@ -37,6 +37,7 @@
   "story_contextmenu_cut": "切り取り",
   "story_contextmenu_delete": "削除",
   "story_contextmenu_disabled": "無効アイテム付きメニュー。右クリックしてください。",
+  "story_contextmenu_disabled_menu": "コンテキストメニューが無効です。右クリックしても何も起きません。",
   "story_contextmenu_edit": "編集",
   "story_contextmenu_edit_actions": "編集アクション",
   "story_contextmenu_file_actions": "ファイルアクション",

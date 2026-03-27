@@ -21,6 +21,12 @@ type TreeViewProps = {
     className?: string;
     multiSelect?: boolean;
     checkable?: boolean;
+    /**
+     * チェック選択の動作モード（checkable かつ data-driven モード時に有効）。
+     * - cascade: 親チェック→子全選択、子の一部→親は indeterminate（デフォルト）
+     * - exclusive: 親子排他（親選択→子解除、子選択→親解除）
+     */
+    checkStrategy?: "cascade" | "exclusive";
     searchable?: boolean;
     defaultExpandedValues?: string[];
     defaultSelectedValues?: string[];
@@ -34,7 +40,7 @@ type TreeViewProps = {
      */
     virtualThreshold?: number;
 };
-declare const TreeView: ({ children, nodes, className, multiSelect, checkable, searchable, defaultExpandedValues, defaultSelectedValues, defaultCheckedValues, onCheckedChange, onSelectedChange, width, virtualThreshold, }: TreeViewProps) => import("react/jsx-runtime").JSX.Element;
+declare const TreeView: ({ children, nodes, className, multiSelect, checkable, checkStrategy, searchable, defaultExpandedValues, defaultSelectedValues, defaultCheckedValues, onCheckedChange, onSelectedChange, width, virtualThreshold, }: TreeViewProps) => import("react/jsx-runtime").JSX.Element;
 type TreeViewItemProps = {
     value: string;
     label: React.ReactNode;

@@ -14,9 +14,10 @@ type RadioGroupProps = {
     label?: string;
     error?: string;
     required?: boolean;
+    disabled?: boolean;
 };
 /**
  * RadioGroup component to manage multiple radio buttons.
  */
-export declare const RadioGroup: ({ options, value, defaultValue, onChange, direction, name, className, label, error, required, }: RadioGroupProps) => import("react/jsx-runtime").JSX.Element;
+export declare const RadioGroup: ({ options, value, defaultValue, onChange, direction, name, className, label, error, required, disabled, }: RadioGroupProps) => import("react/jsx-runtime").JSX.Element;
 export {};

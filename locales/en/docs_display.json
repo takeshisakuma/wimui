@@ -136,6 +136,8 @@
   "doc_calendar_range_mode_desc": "Enable starting and ending date range selection by setting the rangeMode property.",
   "doc_calendar_selected_date": "Pre-selected Date",
   "doc_calendar_title": "Calendar view",
+  "doc_calendar_week_start": "Week Start Day",
+  "doc_calendar_week_start_desc": "Use the `weekStartsOn` prop to set the first day of the week. `0` starts on Sunday (default), `1` starts on Monday.",
   "doc_card_a11y_spec": "When making the entire card a link, consider the order in which screen readers read and explore structures (such as focus on headings) to avoid redundant reading.",
   "doc_card_anatomy_body": "Displays the main content that is at the heart of the content (such as descriptions or images).",
   "doc_card_anatomy_body_label": "Body",

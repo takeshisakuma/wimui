@@ -7,10 +7,7 @@ export type ButtonProps = Omit<React.ComponentPropsWithoutRef<"button">, "role">
     size?: "small" | "medium" | "large";
     label?: string;
     priority?: "primary" | "secondary" | "tertiary";
-    /** @deprecated Use the standard HTML `disabled` prop instead. */
     role?: "default" | "destructive" | "positive";
-    /** @deprecated Use the standard HTML `disabled` prop instead. */
-    state?: "abled" | "disabled";
     /** Icon name or custom icon element */
     icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
     /** @deprecated Use icon instead */
@@ -29,10 +26,7 @@ export declare const Button: React.ForwardRefExoticComponent<Omit<Omit<React.Det
     size?: "small" | "medium" | "large";
     label?: string;
     priority?: "primary" | "secondary" | "tertiary";
-    /** @deprecated Use the standard HTML `disabled` prop instead. */
     role?: "default" | "destructive" | "positive";
-    /** @deprecated Use the standard HTML `disabled` prop instead. */
-    state?: "abled" | "disabled";
     /** Icon name or custom icon element */
     icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
     /** @deprecated Use icon instead */

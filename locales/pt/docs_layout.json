@@ -843,5 +843,8 @@
   "doc_treeview_api_key_header": "Chave",
   "doc_treeview_checkbox_mode": "Modo de Caixa de Seleção",
   "doc_treeview_checkbox_mode_desc": "Quando a propriedade `checkable` está habilitada, uma caixa de seleção é exibida para cada item, permitindo várias seleções de itens.",
+  "doc_treeselect_cascade_desc": "Selecionar um pai seleciona automaticamente todos os seus descendentes. Se apenas alguns filhos estiverem selecionados, o pai exibe um estado intermediário. Use quando quiser selecionar uma categoria inteira de uma vez.",
+  "doc_treeselect_exclusive_desc": "Um pai e seus descendentes não podem ser selecionados ao mesmo tempo. Selecionar um pai limpa todos os seus descendentes; selecionar um filho limpa seus ancestrais. Use quando seleções em diferentes níveis de granularidade devem ser mutuamente exclusivas (ex: impedir a seleção simultânea de \"Ano\" e \"Mês\").",
+  "doc_exclusive_mode": "Modo Exclusivo",
   "doc_with_groups": "Groups"
 }

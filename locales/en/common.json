@@ -57,7 +57,7 @@
   "button_dismiss": "Dismiss",
   "button_label": "Button",
   "calendar_aria_date": "{{month}}/{{day}}/{{year}}",
-  "calendar_title": "{{month}} {{year}}",
+  "calendar_title": "{{month}}/{{year}}",
   "copied": "Copied",
   "copy_to_clipboard": "Copy to clipboard",
   "datepicker_placeholder": "2026/03/14",

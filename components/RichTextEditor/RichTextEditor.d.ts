@@ -5,7 +5,7 @@ export type RichTextEditorProps = {
     onChange?: (value: string) => void;
     placeholder?: string;
     disabled?: boolean;
-    status?: "default" | "error" | "disabled";
+    status?: "default" | "error";
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     minHeight?: number | string;

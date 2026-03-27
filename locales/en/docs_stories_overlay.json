@@ -37,6 +37,7 @@
   "story_contextmenu_cut": "Cut",
   "story_contextmenu_delete": "Delete",
   "story_contextmenu_disabled": "Menu with disabled item. Please right-click.",
+  "story_contextmenu_disabled_menu": "Context menu is disabled. Right-click does nothing.",
   "story_contextmenu_edit": "Edit",
   "story_contextmenu_edit_actions": "Edit Actions",
   "story_contextmenu_file_actions": "File Actions",
