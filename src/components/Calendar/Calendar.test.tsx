@@ -9,7 +9,7 @@ describe("Calendar", () => {
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     render(<Calendar />);
-    expect(screen.getByText(`${month} ${year}`)).toBeInTheDocument();
+    expect(screen.getByText(`${month}/${year}`)).toBeInTheDocument();
   });
 
   it("handles date selection", () => {
@@ -38,16 +38,16 @@ describe("Calendar", () => {
 
   it("navigates to previous month", () => {
     render(<Calendar defaultValue={new Date(2024, 5, 15)} />);
-    expect(screen.getByText("6 2024")).toBeInTheDocument();
+    expect(screen.getByText("6/2024")).toBeInTheDocument();
     fireEvent.click(screen.getByLabelText("Previous month"));
-    expect(screen.getByText("5 2024")).toBeInTheDocument();
+    expect(screen.getByText("5/2024")).toBeInTheDocument();
   });
 
   it("navigates to next month", () => {
     render(<Calendar defaultValue={new Date(2024, 5, 15)} />);
-    expect(screen.getByText("6 2024")).toBeInTheDocument();
+    expect(screen.getByText("6/2024")).toBeInTheDocument();
     fireEvent.click(screen.getByLabelText("Next month"));
-    expect(screen.getByText("7 2024")).toBeInTheDocument();
+    expect(screen.getByText("7/2024")).toBeInTheDocument();
   });
 
   it("navigates days with ArrowLeft key", () => {
@@ -56,7 +56,7 @@ describe("Calendar", () => {
     fireEvent.click(day15);
     fireEvent.keyDown(day15, { key: "ArrowLeft" });
     // Focus moves to previous day - just verifying no crash
-    expect(screen.getByText("1 2024")).toBeInTheDocument();
+    expect(screen.getByText("1/2024")).toBeInTheDocument();
   });
 
   it("navigates days with ArrowRight key", () => {
@@ -64,7 +64,7 @@ describe("Calendar", () => {
     render(<Calendar defaultValue={date} />);
     const grid = document.querySelector(".wim-calendar-grid")!;
     fireEvent.keyDown(grid, { key: "ArrowRight" });
-    expect(screen.getByText("1 2024")).toBeInTheDocument();
+    expect(screen.getByText("1/2024")).toBeInTheDocument();
   });
 
   it("navigates weeks with ArrowUp key", () => {
@@ -72,7 +72,7 @@ describe("Calendar", () => {
     render(<Calendar defaultValue={date} />);
     const grid = document.querySelector(".wim-calendar-grid")!;
     fireEvent.keyDown(grid, { key: "ArrowUp" });
-    expect(screen.getByText("1 2024")).toBeInTheDocument();
+    expect(screen.getByText("1/2024")).toBeInTheDocument();
   });
 
   it("navigates weeks with ArrowDown key", () => {
@@ -80,7 +80,7 @@ describe("Calendar", () => {
     render(<Calendar defaultValue={date} />);
     const grid = document.querySelector(".wim-calendar-grid")!;
     fireEvent.keyDown(grid, { key: "ArrowDown" });
-    expect(screen.getByText("1 2024")).toBeInTheDocument();
+    expect(screen.getByText("1/2024")).toBeInTheDocument();
   });
 
   it("navigates to previous month with PageUp key", () => {
@@ -88,7 +88,7 @@ describe("Calendar", () => {
     render(<Calendar defaultValue={date} />);
     const grid = document.querySelector(".wim-calendar-grid")!;
     fireEvent.keyDown(grid, { key: "PageUp" });
-    expect(screen.getByText("5 2024")).toBeInTheDocument();
+    expect(screen.getByText("5/2024")).toBeInTheDocument();
   });
 
   it("navigates to next month with PageDown key", () => {
@@ -96,7 +96,7 @@ describe("Calendar", () => {
     render(<Calendar defaultValue={date} />);
     const grid = document.querySelector(".wim-calendar-grid")!;
     fireEvent.keyDown(grid, { key: "PageDown" });
-    expect(screen.getByText("7 2024")).toBeInTheDocument();
+    expect(screen.getByText("7/2024")).toBeInTheDocument();
   });
 
   it("navigates to previous year with Ctrl+PageUp", () => {
@@ -104,7 +104,7 @@ describe("Calendar", () => {
     render(<Calendar defaultValue={date} />);
     const grid = document.querySelector(".wim-calendar-grid")!;
     fireEvent.keyDown(grid, { key: "PageUp", ctrlKey: true });
-    expect(screen.getByText("6 2023")).toBeInTheDocument();
+    expect(screen.getByText("6/2023")).toBeInTheDocument();
   });
 
   it("navigates to next year with Ctrl+PageDown", () => {
@@ -112,7 +112,7 @@ describe("Calendar", () => {
     render(<Calendar defaultValue={date} />);
     const grid = document.querySelector(".wim-calendar-grid")!;
     fireEvent.keyDown(grid, { key: "PageDown", ctrlKey: true });
-    expect(screen.getByText("6 2025")).toBeInTheDocument();
+    expect(screen.getByText("6/2025")).toBeInTheDocument();
   });
 
   it("navigates to start of week with Home key", () => {
@@ -120,7 +120,7 @@ describe("Calendar", () => {
     render(<Calendar defaultValue={date} />);
     const grid = document.querySelector(".wim-calendar-grid")!;
     fireEvent.keyDown(grid, { key: "Home" });
-    expect(screen.getByText("1 2024")).toBeInTheDocument();
+    expect(screen.getByText("1/2024")).toBeInTheDocument();
   });
 
   it("navigates to end of week with End key", () => {
@@ -128,7 +128,7 @@ describe("Calendar", () => {
     render(<Calendar defaultValue={date} />);
     const grid = document.querySelector(".wim-calendar-grid")!;
     fireEvent.keyDown(grid, { key: "End" });
-    expect(screen.getByText("1 2024")).toBeInTheDocument();
+    expect(screen.getByText("1/2024")).toBeInTheDocument();
   });
 
   it("selects date with Enter key", () => {
