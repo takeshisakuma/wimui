@@ -74,6 +74,38 @@
 - クラス名は `wim-` プレフィックスを付けたkebab-caseにしてください（例: `wim-button`, `wim-button--primary`）。
 - Stylelintで `^[a-z][a-zA-Z0-9-_]+$` パターンが強制されています。
 
+## `!important` の使用
+
+新規コードで `!important` を使用する場合は以下の方針に従ってください。
+
+**使用してよいケース（意図的な使用）:**
+- `prefers-reduced-motion` など、アクセシビリティのためにすべてのアニメーションを無効化する場合
+- スクロールバーの非表示・スタイリングなど、ブラウザのデフォルトを確実に上書きするユーティリティクラス
+- Box / Stack のようにインラインスタイル（CSS カスタムプロパティ）より優先させる必要があるレスポンシブユーティリティ
+- ダークモードでテーマカラーを強制する場合
+
+**使用してはいけないケース（代替手段を使うこと）:**
+- 親コンポーネントが子コンポーネントのスタイルを上書きしたい場合 → 親クラスを前置してセレクターの特異性を上げてください
+
+  ```scss
+  // NG
+  .wim-child-input { width: 100% !important; }
+
+  // OK: 親クラスを前置して特異性で勝つ
+  .wim-parent .wim-parent__row .wim-child-input { width: 100%; }
+  ```
+
+- サイズ・色・間隔などコンポーネント固有の値を上書きしたい場合 → CSS カスタムプロパティで上書き可能な設計にしてください
+
+  ```scss
+  // NG
+  .wim-parent .wim-child { color: red !important; }
+
+  // OK: カスタムプロパティで上書き可能にする
+  .wim-child { color: var(--wim-child-color, var(--color-default)); }
+  .wim-parent { --wim-child-color: red; }
+  ```
+
 ## ダークモード
 
 - 新規コンポーネントのSCSSでは、`[data-theme="dark"]` セレクターと `@media (prefers-color-scheme: dark)` の両方に対応してください。

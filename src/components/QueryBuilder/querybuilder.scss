@@ -6,6 +6,48 @@
   gap: var(--spacing-lg);
   width: 100%;
   container-type: inline-size;
+
+  .wim-query-rule__remove,
+  .wim-query-group__remove {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: var(--wim-height-md);
+    min-width: var(--wim-height-md);
+    height: var(--wim-height-md);
+    min-height: var(--wim-height-md);
+    padding: 0;
+    margin-left: auto;
+    color: var(--color-destructive);
+    transition: var(--transition-fast);
+
+    .wim-icon,
+    svg {
+      color: inherit;
+      fill: currentcolor;
+    }
+
+    &:hover {
+      color: var(--color-destructive);
+      background-color: color-mix(in srgb, var(--color-destructive) 10%, transparent);
+    }
+  }
+
+  .wim-query-rule__remove {
+    align-self: center; // Align with inputs
+    margin-left: auto;
+
+    @include container-down(md) {
+      align-self: center;
+      margin-left: 0;
+    }
+  }
+
+  .wim-query-group__remove {
+    align-self: flex-start;
+    margin-left: 0;
+  }
 }
 
 .wim-query-group {
@@ -155,18 +197,18 @@
     }
 
     .wim-selectbox {
-      width: 100% !important;
+      width: 100%;
       min-width: 0;
     }
 
     .wim-input-base,
     .wim-input,
     .wim-selectbox-trigger {
-      width: 100% !important;
-      height: var(--wim-height-md) !important;
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-      line-height: var(--wim-height-md) !important;
+      width: 100%;
+      height: var(--wim-height-md);
+      padding-top: 0;
+      padding-bottom: 0;
+      line-height: var(--wim-height-md);
       transition: background-color 0.3s ease;
     }
   }
@@ -178,10 +220,10 @@
     min-width: 0;
 
     & > * {
-      width: 100% !important;
-      height: var(--wim-height-md) !important;
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
+      width: 100%;
+      height: var(--wim-height-md);
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
 
@@ -194,13 +236,13 @@
     .wim-query-rule__field {
       flex: 0 0 calc(100% - 54px);
       order: 1;
-      width: calc(100% - 54px) !important; // 42px (icon) + 12px (gap)
+      width: calc(100% - 54px); // 42px (icon) + 12px (gap)
     }
 
     .wim-query-rule__remove {
       flex: 0 0 auto;
       order: 2;
-      width: var(--wim-height-md) !important;
+      width: var(--wim-height-md);
     }
 
     .wim-query-rule__operator {
@@ -213,49 +255,6 @@
       order: 4;
     }
   }
-}
-
-.wim-query-rule__remove,
-.wim-query-group__remove {
-  display: flex !important;
-  flex: 0 0 auto !important;
-  align-items: center;
-  justify-content: center;
-  width: var(--wim-height-md) !important;
-  min-width: var(--wim-height-md) !important;
-  height: var(--wim-height-md) !important;
-  min-height: var(--wim-height-md) !important;
-  padding: 0 !important;
-  margin-left: auto;
-  color: var(--color-destructive) !important;
-  transition: var(--transition-fast);
-
-  .wim-icon,
-  svg {
-    color: inherit !important;
-    fill: currentcolor !important;
-  }
-
-  &:hover {
-    color: var(--color-destructive) !important;
-    background-color: color-mix(in srgb, var(--color-destructive) 10%, transparent) !important;
-  }
-
-}
-
-.wim-query-rule__remove {
-  align-self: center; // Align with inputs
-  margin-left: auto !important;
-
-  @include container-down(md) {
-    align-self: center;
-    margin-left: 0 !important;
-  }
-}
-
-.wim-query-group__remove {
-  align-self: flex-start;
-  margin-left: 0 !important;
 }
 
 @keyframes slideIn {
