@@ -83,11 +83,11 @@
   }
 
   &--selected>&__label-container {
-    color: var(--color-text-on-primary) !important;
-    background-color: var(--color-primary) !important;
+    color: var(--color-text-on-primary);
+    background-color: var(--color-primary);
 
     &:hover {
-      background-color: var(--color-primary) !important;
+      background-color: var(--color-primary);
       opacity: 0.9;
     }
 
@@ -178,7 +178,7 @@
   }
 
   &--selected>&__label-container &__icon {
-    color: var(--color-text-on-primary) !important;
+    color: var(--color-text-on-primary);
   }
 
   &__label {

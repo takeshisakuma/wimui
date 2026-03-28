@@ -47,8 +47,8 @@
     }
 
     &.wim-segmented-control__item--icon-only {
-      padding-right: 0 !important;
-      padding-left: 0 !important;
+      padding-right: 0;
+      padding-left: 0;
     }
 
     &:focus-visible {
@@ -68,7 +68,7 @@
 
       &.wim-segmented-control__item--icon-only {
         width: 30px;
-        padding: var(--spacing-xs) 0 !important;
+        padding: var(--spacing-xs) 0;
       }
     }
   }
@@ -80,7 +80,7 @@
 
       &.wim-segmented-control__item--icon-only {
         width: 36px;
-        padding: var(--spacing-sm) 0 !important;
+        padding: var(--spacing-sm) 0;
       }
     }
   }
@@ -92,7 +92,7 @@
 
       &.wim-segmented-control__item--icon-only {
         width: 44px;
-        padding: var(--spacing-md) 0 !important;
+        padding: var(--spacing-md) 0;
       }
     }
   }

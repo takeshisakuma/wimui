@@ -35,7 +35,7 @@
   }
 
   &--error {
-    border-color: var(--text-error) !important;
+    border-color: var(--text-error);
   }
 
   &--disabled {
@@ -62,8 +62,9 @@
 }
 
 // When inside InputBase, let it handle the shell
+// InputBase (@layer) sets the same values with !important; same result either way
 .wim-input-base > .wim-input {
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
 }

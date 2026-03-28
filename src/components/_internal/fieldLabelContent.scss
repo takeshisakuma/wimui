@@ -1,7 +1,9 @@
-.wim-field-label-text {
-  font-weight: 500;
-}
+@layer component {
+  .wim-field-label-text {
+    font-weight: 500;
+  }
 
-.wim-field-label-badge {
-  margin-left: 0.5rem;
+  .wim-field-label-badge {
+    margin-left: 0.5rem;
+  }
 }

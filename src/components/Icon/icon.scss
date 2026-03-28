@@ -15,16 +15,17 @@
       stroke: none;
 
       // 線画アイコンへの対応 (属性に fill="none" や stroke がある場合は尊重)
+      // 属性セレクタが基本ルール（0,1,1）より高い特異性（0,2,1）を持つため !important 不要
       &[fill="none"] {
-        fill: none !important;
+        fill: none;
       }
 
       &[stroke] {
-        stroke: currentcolor !important;
+        stroke: currentcolor;
       }
 
       &[stroke="none"] {
-        stroke: none !important;
+        stroke: none;
       }
 
       // 内部要素はデフォルトで親の svg から fill/stroke を継承するが、

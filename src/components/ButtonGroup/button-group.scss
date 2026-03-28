@@ -30,25 +30,27 @@
       }
 
       // Handle hover/focus state overlap
+      // Button は @layer component 内のため非レイヤーの ButtonGroup が自動で勝つ
       &:hover,
       &:focus-visible {
         z-index: 1;
-        transform: none !important;
+        transform: none;
       }
 
       &:active {
-        transform: none !important;
+        transform: none;
       }
     }
 
     // 縦並びへの切り替え（flex: 1 1 100% で各ボタンを1行に押し込み、連結状態を維持する）
+    // :not(:first-child) を追加して特異性を 0,4,0 に揃え、同名ルール（0,4,0）に対してソース順で勝つ
     @include down(sm) {
       .wim-button {
         flex: 1 1 100%;
-        margin-left: 0 !important;
 
         &:not(:first-child) {
           margin-top: -2px; // Overlap borders vertically
+          margin-left: 0;
         }
 
         &:first-child {

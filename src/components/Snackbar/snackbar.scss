@@ -104,13 +104,13 @@
   }
 
   &__action-button {
-    min-height: auto !important;
-    padding: 4px 8px !important;
-    font-weight: 600 !important;
-    color: #90caf9 !important; // Light blue for action on dark background
+    min-height: auto;
+    padding: 4px 8px;
+    font-weight: 600;
+    color: #90caf9; // Light blue for action on dark background
 
     &:hover {
-      background: rgb(144 202 249 / 0.1) !important;
+      background: rgb(144 202 249 / 0.1);
     }
   }
 
@@ -147,7 +147,7 @@
     border-color: rgb(255 255 255 / 0.1);
 
     .wim-snackbar__action-button {
-      color: #fff !important;
+      color: #fff;
     }
   }
 
@@ -156,7 +156,7 @@
     border-color: rgb(255 255 255 / 0.1);
 
     .wim-snackbar__action-button {
-      color: #fff !important;
+      color: #fff;
     }
   }
 
@@ -165,7 +165,7 @@
     border-color: rgb(255 255 255 / 0.1);
 
     .wim-snackbar__action-button {
-      color: #fff !important;
+      color: #fff;
     }
   }
 
@@ -174,7 +174,7 @@
     border-color: rgb(255 255 255 / 0.1);
 
     .wim-snackbar__action-button {
-      color: #fff !important;
+      color: #fff;
     }
   }
 

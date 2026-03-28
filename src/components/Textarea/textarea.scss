@@ -51,10 +51,10 @@
   }
 
   &--error {
-    border-color: var(--text-error) !important;
+    border-color: var(--text-error);
 
     &:focus {
-      box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2) !important;
+      box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2);
     }
   }
 

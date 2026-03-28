@@ -38,8 +38,8 @@
 
       .wim-icon {
         display: block;
-        width: var(--wim-rating-star-size) !important;
-        height: var(--wim-rating-star-size) !important;
+        width: var(--wim-rating-star-size);
+        height: var(--wim-rating-star-size);
         fill: currentcolor;
       }
     }
@@ -58,9 +58,9 @@
 
       .wim-icon {
         display: block;
-        width: var(--wim-rating-star-size) !important;
-        min-width: var(--wim-rating-star-size) !important; // 縮小防止
-        height: var(--wim-rating-star-size) !important;
+        width: var(--wim-rating-star-size);
+        min-width: var(--wim-rating-star-size); // 縮小防止
+        height: var(--wim-rating-star-size);
         fill: currentcolor;
       }
     }

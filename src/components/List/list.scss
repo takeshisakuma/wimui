@@ -71,13 +71,13 @@
   }
 
   &__icon {
-    // Iconコンポーネント本体のスタイル
-    display: block !important;
-    visibility: visible !important;
-    width: 1em !important;
-    height: 1em !important;
-    margin: 0 !important;
-    opacity: 1 !important;
+    // Iconコンポーネント本体のスタイル（Icon は @layer component 内のため非レイヤーの List が自動で勝つ）
+    display: block;
+    visibility: visible;
+    width: 1em;
+    height: 1em;
+    margin: 0;
+    opacity: 1;
 
     // 日本語テキスト特有の重心の高さに合わせるための微調整
     // 光学的な中央配置 (-0.2em) -> 不要になったため削除

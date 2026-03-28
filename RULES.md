@@ -9,7 +9,7 @@
 
 コンポーネントを新規作成・削除した場合は、以下をすべて更新してください。
 
-- `componentlist.mdx`
+- `docs/componentList.mdx`（データ実体は `src/data/components.json`）
 - コンポーネント個別のmdx
 - カテゴリーのmdx
 
@@ -105,6 +105,53 @@
   .wim-child { color: var(--wim-child-color, var(--color-default)); }
   .wim-parent { --wim-child-color: red; }
   ```
+
+## CSS カスケードレイヤー（@layer）
+
+### 方針
+
+コンポーネントの「使われる側」と「使う側」で @layer の有無を分けることで、`!important` なしに自然な上書き関係を実現しています。
+
+| コンポーネントの種類 | @layer の扱い |
+|---|---|
+| 他コンポーネントに**使われる側**（Button・Icon・InputBase など `src/components/_internal/` 含む） | `@layer component` でラップする |
+| 他コンポーネントを**使う側**（Snackbar・List・Rating など） | 非レイヤーのまま |
+
+### 理由
+
+CSS カスケードでは「非レイヤーのルール」が「@layer 内のルール」よりも常に優先されます。この性質を利用することで、使う側のコンポーネントは `!important` なしに使われる側のスタイルを上書きできます。
+
+```scss
+// Button は @layer component 内
+// Snackbar は非レイヤー → Snackbar の Button 上書きが !important 不要で機能する
+.wim-snackbar .wim-button {
+  color: #fff; // !important 不要
+}
+```
+
+全コンポーネントを同じ `@layer component` に入れると、ソース順・特異性による衝突が再発するため推奨しません。
+
+### 新規コンポーネント作成時の判断フロー
+
+新しいコンポーネントの SCSS を書く際は、以下の問いで判断してください。
+
+```
+Q1. このコンポーネントは他のコンポーネントから内部に組み込まれて使われることがある？
+    （例: Button をラップした複合コンポーネント内で Button のスタイルを上書きしたい）
+    → Yes: 非レイヤーにする
+    → No: 次へ
+
+Q2. このコンポーネント自身が他の多くのコンポーネントから利用される汎用部品？
+    （例: アイコン・入力枠・リストアイテムのベースなど）
+    → Yes: @layer component にする
+    → No: どちらでもよいが、非レイヤーを推奨（将来の上書しやすさを確保）
+```
+
+### `!important` の使用基準との関係
+
+非レイヤーから `@layer component` 内のスタイルを上書きするときは `!important` 不要です。`@layer component` から非レイヤーのスタイルを上書きする必要がある場合のみ `!important` を使用してください（例: AppShell が Sidebar の幅をリセットする場合）。
+
+---
 
 ## ダークモード
 

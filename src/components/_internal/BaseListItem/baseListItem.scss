@@ -1,6 +1,7 @@
 @use "../../../tokens/semantic-colors" as *;
 @use "../../../tokens/spacings" as *;
 
+@layer component {
 .wim-base-list-item {
     box-sizing: border-box;
     display: flex;
@@ -83,3 +84,4 @@
         color: var(--text-tertiary);
     }
 }
+} // @layer component

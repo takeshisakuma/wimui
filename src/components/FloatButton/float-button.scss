@@ -86,9 +86,7 @@
     &--extended {
       width: max-content; // コンテンツに応じた幅
       min-width: var(--float-button-shrink-size);
-      border-radius: var(
-        --radius-full
-      ) !important; // pill型（circle/squareより優先）
+      border-radius: var(--radius-full); // pill型（circle/squareより優先）
 
       &.wim-float-button--lg {
         height: var(--spacing-5xl); // 高さ固定でpill型を維持

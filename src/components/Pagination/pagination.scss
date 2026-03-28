@@ -32,11 +32,11 @@
       display: none;
 
       @include breakpoints.container-down(md) {
-        display: inline-flex !important;
+        display: inline-flex;
         color: var(--text-primary);
         pointer-events: none;
         cursor: default;
-        background: transparent !important;
+        background: transparent;
         border: none;
       }
     }

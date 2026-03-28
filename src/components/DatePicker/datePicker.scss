@@ -59,8 +59,8 @@
     opacity: var(--opacity-disabled);
 
     &:hover {
-      color: var(--color-error) !important;
-      opacity: 1 !important;
+      color: var(--color-error);
+      opacity: 1;
     }
   }
 }

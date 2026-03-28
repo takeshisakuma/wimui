@@ -2,6 +2,7 @@
    Menu Styles
 ------------------------------------------------------------------ */
 
+@layer component {
 .wim-menu {
   box-sizing: border-box;
   padding: var(--spacing-xs) 0; // Container padding for floating items
@@ -29,20 +30,20 @@
     overflow-x: auto;
 
     /* Hide scrollbars */
-    scrollbar-width: none !important;
+    scrollbar-width: none;
     background-color: transparent;
     border: none;
     box-shadow: none;
 
     // overflow-y: hidden !important; (Removed to allow focus rings)
     -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none !important;
+    -ms-overflow-style: none;
 
     &::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
-      background: transparent !important;
+      display: none;
+      width: 0;
+      height: 0;
+      background: transparent;
     }
 
     >li {
@@ -183,3 +184,4 @@
     transform: translateY(0);
   }
 }
+} // @layer component

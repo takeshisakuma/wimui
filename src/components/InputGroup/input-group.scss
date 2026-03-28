@@ -60,8 +60,8 @@
     &:focus,
     &:hover {
       z-index: 2;
-      box-shadow: none !important; // Prevent "floating" effects inside group
-      transform: none !important; // Prevent "lift" effects inside group
+      box-shadow: none; // Prevent "floating" effects inside group
+      transform: none; // Prevent "lift" effects inside group
     }
 
     &:hover:not(:focus-within, :focus) {
