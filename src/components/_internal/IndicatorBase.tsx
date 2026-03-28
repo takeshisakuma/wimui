@@ -2,29 +2,29 @@ import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 
-export type IndicatorBaseProps = {
+export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   children?: React.ReactNode;
   icon?: React.ReactNode;
   status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
   variant?: "solid" | "outline" | "subtle";
   size?: "small" | "medium";
   prefixClass: string;
-  as?: React.ElementType;
+  as?: C;
   className?: string;
-} & React.ComponentPropsWithoutRef<React.ElementType>;
+} & React.ComponentPropsWithoutRef<C>;
 
-
-export const IndicatorBase = ({
+export const IndicatorBase = <C extends React.ElementType = "span">({
   children,
   icon,
   status = "primary",
   variant = "solid",
   size = "medium",
   prefixClass,
-  as: Component = "span",
+  as,
   className,
   ...props
-}: IndicatorBaseProps) => {
+}: IndicatorBaseProps<C>) => {
+  const Component = as || "span";
   const { t } = useTranslation();
 
   return (

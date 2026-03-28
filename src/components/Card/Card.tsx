@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import "./card.scss";
 
-export type CardProps = React.ComponentPropsWithoutRef<"div"> & {
+export type CardProps<C extends React.ElementType = "div"> = {
   /**
    * カードのバリアント
    */
@@ -18,21 +18,22 @@ export type CardProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
    * レンダリングするHTML要素
    */
-  as?: React.ElementType;
-};
+  as?: C;
+} & React.ComponentPropsWithoutRef<C>;
 
 /**
  * `Card` はコンテンツをグループ化して表示するためのコンテナコンポーネントです。
  */
-export const Card = ({
+export const Card = <C extends React.ElementType = "div">({
   variant = "elevated",
   padding = "md",
   radius = "md",
-  as: Component = "div",
+  as,
   className,
   children,
   ...props
-}: CardProps) => {
+}: CardProps<C>) => {
+  const Component = as || "div";
   return (
     <Component
       className={classNames(

@@ -2,11 +2,9 @@ import React from "react";
 import classNames from "classnames";
 import "./baseListItem.scss";
 
-export type BaseListItemProps = {
+export type BaseListItemProps<C extends React.ElementType = "div"> = {
     /** The component used for the root node. */
-    as?: React.ElementType;
-    /** Primary label or content */
-    children: React.ReactNode;
+    as?: C;
     /** Left icon or element */
     icon?: React.ReactNode;
     /** Right section (shortcuts, arrows, etc.) */
@@ -19,16 +17,16 @@ export type BaseListItemProps = {
     danger?: boolean;
     /** Custom class name */
     className?: string;
-} & React.ComponentPropsWithoutRef<React.ElementType>;
+} & React.ComponentPropsWithoutRef<C>;
 
 /**
  * Internal component for consistent list items across Select, Menu, Dropdown, etc.
  * Not intended for direct public use.
  */
-export const BaseListItem = React.forwardRef<HTMLElement, BaseListItemProps>(
-    (
+export const BaseListItem = React.forwardRef(
+    <C extends React.ElementType = "div">(
         {
-            as: Component = "div",
+            as,
             children,
             icon,
             rightSection,
@@ -37,12 +35,13 @@ export const BaseListItem = React.forwardRef<HTMLElement, BaseListItemProps>(
             danger,
             className,
             ...props
-        },
-        ref,
+        }: BaseListItemProps<C>,
+        ref: React.Ref<HTMLElement>,
     ) => {
+        const Component = as || "div";
         return (
             <Component
-                ref={ref}
+                ref={ref as React.Ref<HTMLDivElement>}
                 className={classNames(
                     "wim-base-list-item",
                     active && "wim-base-list-item--active",
