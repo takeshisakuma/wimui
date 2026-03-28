@@ -11,7 +11,7 @@ const meta: Meta<typeof Toast> = {
   component: Toast,
   tags: ["!autodocs"],
   argTypes: {
-    variant: {
+    status: {
       control: "select",
       options: ["info", "success", "warning", "error"],
     },
@@ -33,7 +33,7 @@ export const Default: Story = {
     );
   },
   args: {
-    variant: "success",
+    status: "success",
   },
 };
 
@@ -49,7 +49,7 @@ export const Success: Story = {
     );
   },
   args: {
-    variant: "success",
+    status: "success",
   },
 };
 
@@ -65,7 +65,7 @@ export const Info: Story = {
     );
   },
   args: {
-    variant: "info",
+    status: "info",
   },
 };
 
@@ -81,7 +81,7 @@ export const Warning: Story = {
     );
   },
   args: {
-    variant: "warning",
+    status: "warning",
   },
 };
 
@@ -97,7 +97,7 @@ export const ErrorStatus: Story = {
     );
   },
   args: {
-    variant: "error",
+    status: "error",
   },
 };
 
@@ -115,7 +115,7 @@ const ToastTrigger = () => {
           show({
             title: t("story_toast_success_title"),
             description: t("story_toast_success_desc"),
-            variant: "success",
+            status: "success",
           })
         }
       />
@@ -126,7 +126,7 @@ const ToastTrigger = () => {
           show({
             title: t("story_notification_error_title"),
             description: t("story_notification_error_desc"),
-            variant: "error",
+            status: "error",
           })
         }
       />
@@ -137,7 +137,7 @@ const ToastTrigger = () => {
           show({
             title: t("story_toast_system_notif"),
             description: t("story_toast_5s_desc"),
-            variant: "info",
+            status: "info",
             duration: 5000,
           })
         }

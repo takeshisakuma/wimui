@@ -49,7 +49,7 @@ export const Top: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ padding: "50px" }}>
-        <Tooltip {...args} placement="top">
+        <Tooltip {...args}>
           <TooltipTrigger asChild>
             <Button label={t("top")} />
           </TooltipTrigger>
@@ -58,6 +58,9 @@ export const Top: Story = {
       </div>
     );
   },
+  args: {
+    placement: "top",
+  },
 };
 
 export const Bottom: Story = {
@@ -65,7 +68,7 @@ export const Bottom: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ padding: "50px" }}>
-        <Tooltip {...args} placement="bottom">
+        <Tooltip {...args}>
           <TooltipTrigger asChild>
             <Button label={t("bottom")} />
           </TooltipTrigger>
@@ -74,6 +77,9 @@ export const Bottom: Story = {
       </div>
     );
   },
+  args: {
+    placement: "bottom",
+  },
 };
 
 export const Left: Story = {
@@ -81,7 +87,7 @@ export const Left: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ padding: "50px" }}>
-        <Tooltip {...args} placement="left">
+        <Tooltip {...args}>
           <TooltipTrigger asChild>
             <Button label={t("left")} />
           </TooltipTrigger>
@@ -90,6 +96,9 @@ export const Left: Story = {
       </div>
     );
   },
+  args: {
+    placement: "left",
+  },
 };
 
 export const Right: Story = {
@@ -97,7 +106,7 @@ export const Right: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ padding: "50px" }}>
-        <Tooltip {...args} placement="right">
+        <Tooltip {...args}>
           <TooltipTrigger asChild>
             <Button label={t("right")} />
           </TooltipTrigger>
@@ -105,6 +114,9 @@ export const Right: Story = {
         </Tooltip>
       </div>
     );
+  },
+  args: {
+    placement: "right",
   },
 };
 

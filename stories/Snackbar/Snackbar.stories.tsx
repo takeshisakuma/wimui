@@ -14,7 +14,7 @@ const meta: Meta<typeof Snackbar> = {
   },
   tags: ["!autodocs"],
   argTypes: {
-    variant: {
+    status: {
       control: "select",
       options: ["default", "success", "warning", "error", "info"],
     },
@@ -47,7 +47,7 @@ export const Default: Story = {
   },
   args: {
     open: true,
-    variant: "default",
+    status: "default",
     position: "bottom-center",
   },
 };
@@ -98,7 +98,7 @@ export const Success: Story = {
   },
   args: {
     open: true,
-    variant: "success",
+    status: "success",
   },
 };
 
@@ -114,7 +114,7 @@ export const ErrorStatus: Story = {
   },
   args: {
     open: true,
-    variant: "error",
+    status: "error",
   },
 };
 
@@ -130,7 +130,7 @@ export const Warning: Story = {
   },
   args: {
     open: true,
-    variant: "warning",
+    status: "warning",
   },
 };
 
@@ -146,7 +146,7 @@ export const Info: Story = {
   },
   args: {
     open: true,
-    variant: "info",
+    status: "info",
   },
 };
 

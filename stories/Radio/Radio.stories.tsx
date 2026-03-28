@@ -32,10 +32,12 @@ export const Checked: Story = {
       <Radio
         {...args}
         label={t("story_radio_checked")}
-        checked={true}
         value="checked"
       />
     );
+  },
+  args: {
+    checked: true,
   },
 };
 
@@ -46,10 +48,12 @@ export const Disabled: Story = {
       <Radio
         {...args}
         label={t("story_radio_disabled")}
-        disabled={true}
         value="disabled"
       />
     );
+  },
+  args: {
+    disabled: true,
   },
 };
 
@@ -60,11 +64,13 @@ export const DisabledChecked: Story = {
       <Radio
         {...args}
         label={t("story_radio_dis_checked")}
-        disabled={true}
-        checked={true}
         value="disabled-checked"
       />
     );
+  },
+  args: {
+    disabled: true,
+    checked: true,
   },
 };
 

@@ -11,6 +11,10 @@ const meta: Meta<typeof Alert> = {
   tags: [],
   argTypes: {
     onClose: { action: "closed" },
+    status: {
+      control: "select",
+      options: ["info", "success", "warning", "error"],
+    },
   },
 };
 
@@ -23,11 +27,13 @@ export const Info: Story = {
     return (
       <Alert
         {...args}
-        status="info"
-        title={t("story_alert_info_title")}
-        description={t("story_alert_info_desc")}
+        title={args.title || t("story_alert_info_title")}
+        description={args.description || t("story_alert_info_desc")}
       />
     );
+  },
+  args: {
+    status: "info",
   },
 };
 
@@ -37,11 +43,13 @@ export const Success: Story = {
     return (
       <Alert
         {...args}
-        status="success"
-        title={t("story_alert_success_title")}
-        description={t("story_alert_success_desc")}
+        title={args.title || t("story_alert_success_title")}
+        description={args.description || t("story_alert_success_desc")}
       />
     );
+  },
+  args: {
+    status: "success",
   },
 };
 
@@ -51,11 +59,13 @@ export const Warning: Story = {
     return (
       <Alert
         {...args}
-        status="warning"
-        title={t("story_alert_warning_title")}
-        description={t("story_alert_warning_desc")}
+        title={args.title || t("story_alert_warning_title")}
+        description={args.description || t("story_alert_warning_desc")}
       />
     );
+  },
+  args: {
+    status: "warning",
   },
 };
 
@@ -65,11 +75,13 @@ export const ErrorStatus: Story = {
     return (
       <Alert
         {...args}
-        status="error"
-        title={t("story_alert_error_title")}
-        description={t("story_alert_error_desc")}
+        title={args.title || t("story_alert_error_title")}
+        description={args.description || t("story_alert_error_desc")}
       />
     );
+  },
+  args: {
+    status: "error",
   },
 };
 
@@ -79,10 +91,12 @@ export const WithoutTitle: Story = {
     return (
       <Alert
         {...args}
-        status="info"
-        description={t("story_alert_no_title_desc")}
+        description={args.description || t("story_alert_no_title_desc")}
       />
     );
+  },
+  args: {
+    status: "info",
   },
 };
 
@@ -92,12 +106,14 @@ export const WithCloseButton: Story = {
     return (
       <Alert
         {...args}
-        status="success"
-        title={t("story_alert_dismiss_title")}
-        description={t("story_alert_dismiss_desc")}
-        onClose={() => console.log("Alert closed")}
+        title={args.title || t("story_alert_dismiss_title")}
+        description={args.description || t("story_alert_dismiss_desc")}
+        onClose={args.onClose ?? (() => console.log("Alert closed"))}
       />
     );
+  },
+  args: {
+    status: "success",
   },
 };
 
@@ -107,11 +123,13 @@ export const LongContent: Story = {
     return (
       <Alert
         {...args}
-        status="info"
-        title={t("story_alert_update_title")}
-        description={t("story_alert_update_desc")}
-        onClose={() => {}}
+        title={args.title || t("story_alert_update_title")}
+        description={args.description || t("story_alert_update_desc")}
+        onClose={args.onClose ?? (() => {})}
       />
     );
+  },
+  args: {
+    status: "info",
   },
 };

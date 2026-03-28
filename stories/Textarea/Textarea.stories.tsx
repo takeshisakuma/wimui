@@ -54,9 +54,12 @@ export const Ghost: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_textarea_label_feedback")}>
-        <Textarea {...args} variant="ghost" placeholder={t("story_textarea_placeholder_slow")} />
+        <Textarea {...args} placeholder={t("story_textarea_placeholder_slow")} />
       </Label>
     );
+  },
+  args: {
+    variant: "ghost",
   },
 };
 
@@ -66,11 +69,14 @@ export const ErrorStatus: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         <Label label={t("story_textarea_label_details")}>
-          <Textarea {...args} status="error" placeholder={t("story_textarea_placeholder_error")} />
+          <Textarea {...args} placeholder={t("story_textarea_placeholder_error")} />
         </Label>
         <FieldError content={t("story_textarea_error_10chars")} />
       </div>
     );
+  },
+  args: {
+    status: "error",
   },
 };
 
@@ -79,9 +85,12 @@ export const Disabled: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_textarea_label_remarks")}>
-        <Textarea {...args} disabled placeholder={t("story_textarea_placeholder_asap")} />
+        <Textarea {...args} placeholder={t("story_textarea_placeholder_asap")} />
       </Label>
     );
+  },
+  args: {
+    disabled: true,
   },
 };
 
@@ -90,9 +99,12 @@ export const FullWidth: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_textarea_label_message")}>
-        <Textarea {...args} fullWidth={true} placeholder={t("story_textarea_placeholder_thanks")} />
+        <Textarea {...args} placeholder={t("story_textarea_placeholder_thanks")} />
       </Label>
     );
+  },
+  args: {
+    fullWidth: true,
   },
 };
 
@@ -103,11 +115,13 @@ export const FieldSizingContent: Story = {
       <Label label={t("story_textarea_label_remarks")}>
         <Textarea
           {...args}
-          fieldSizing="content"
           placeholder={t("story_textarea_placeholder_urgent")}
         />
       </Label>
     );
+  },
+  args: {
+    fieldSizing: "content",
   },
 };
 

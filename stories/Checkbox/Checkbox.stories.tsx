@@ -35,17 +35,22 @@ export const Checked: Story = {
       <Checkbox
         {...args}
         label={t("story_checkbox_newsletter")}
-        checked={true}
-        onChange={() => {}} // Supress warning
+        onChange={args.onChange ?? (() => {})}
       />
     );
+  },
+  args: {
+    checked: true,
   },
 };
 
 export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Checkbox {...args} label={t("story_checkbox_disabled")} disabled={true} />;
+    return <Checkbox {...args} label={t("story_checkbox_disabled")} />;
+  },
+  args: {
+    disabled: true,
   },
 };
 
@@ -56,11 +61,13 @@ export const DisabledChecked: Story = {
       <Checkbox
         {...args}
         label={t("story_checkbox_dis_checked")}
-        disabled={true}
-        checked={true}
-        onChange={() => {}}
+        onChange={args.onChange ?? (() => {})}
       />
     );
+  },
+  args: {
+    disabled: true,
+    checked: true,
   },
 };
 
@@ -71,11 +78,13 @@ export const Indeterminate: Story = {
       <Checkbox
         {...args}
         label={t("story_checkbox_indeterminate")}
-        indeterminate={true}
-        checked={true} // Usually indeterminate implies partially selected
-        onChange={() => {}}
+        onChange={args.onChange ?? (() => {})}
       />
     );
+  },
+  args: {
+    indeterminate: true,
+    checked: true,
   },
 };
 

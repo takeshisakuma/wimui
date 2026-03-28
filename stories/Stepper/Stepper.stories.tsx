@@ -61,21 +61,30 @@ export const Default: Story = {
 export const Vertical: Story = {
   render: function Render(args) {
     const steps = useDefaultSteps();
-    return <Stepper {...args} steps={steps} current={1} direction="vertical" />;
+    return <Stepper {...args} steps={steps} current={1} />;
+  },
+  args: {
+    direction: "vertical",
   },
 };
 
 export const LabelVertical: Story = {
   render: function Render(args) {
     const steps = useDefaultSteps();
-    return <Stepper {...args} steps={steps} current={1} labelPlacement="vertical" />;
+    return <Stepper {...args} steps={steps} current={1} />;
+  },
+  args: {
+    labelPlacement: "vertical",
   },
 };
 
 export const ErrorStatus: Story = {
   render: function Render(args) {
     const steps = useDefaultSteps();
-    return <Stepper {...args} steps={steps} current={1} status="error" />;
+    return <Stepper {...args} steps={steps} current={1} />;
+  },
+  args: {
+    status: "error",
   },
 };
 

@@ -39,12 +39,13 @@ export const Disabled: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_slider_disabled")}>
-        <Slider {...args} disabled={true} />
+        <Slider {...args} />
       </Label>
     );
   },
   args: {
     defaultValue: 30,
+    disabled: true,
   },
 };
 

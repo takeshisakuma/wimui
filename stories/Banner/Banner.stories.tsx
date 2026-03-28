@@ -13,6 +13,10 @@ const meta: Meta<typeof Banner> = {
   argTypes: {
     onClose: { action: "closed" },
     icon: { control: "boolean" },
+    status: {
+      control: "select",
+      options: ["info", "success", "warning", "error"],
+    },
   },
   parameters: {
     layout: "fullscreen",
@@ -28,11 +32,13 @@ export const Info: Story = {
     return (
       <Banner
         {...args}
-        status="info"
-        title={t("story_banner_update_title")}
-        description={t("story_banner_update_desc")}
+        title={args.title || t("story_banner_update_title")}
+        description={args.description || t("story_banner_update_desc")}
       />
     );
+  },
+  args: {
+    status: "info",
   },
 };
 
@@ -42,11 +48,13 @@ export const Success: Story = {
     return (
       <Banner
         {...args}
-        status="success"
-        title={t("story_alert_success_title")}
-        description={t("story_banner_update_desc")}
+        title={args.title || t("story_alert_success_title")}
+        description={args.description || t("story_banner_update_desc")}
       />
     );
+  },
+  args: {
+    status: "success",
   },
 };
 
@@ -56,11 +64,13 @@ export const Warning: Story = {
     return (
       <Banner
         {...args}
-        status="warning"
-        title={t("story_banner_maint_title")}
-        description={t("story_banner_maint_desc")}
+        title={args.title || t("story_banner_maint_title")}
+        description={args.description || t("story_banner_maint_desc")}
       />
     );
+  },
+  args: {
+    status: "warning",
   },
 };
 
@@ -70,12 +80,14 @@ export const ErrorStatus: Story = {
     return (
       <Banner
         {...args}
-        status="error"
-        title={t("story_banner_conn_error_title")}
-        description={t("story_banner_conn_error_desc")}
-        onClose={() => {}}
+        title={args.title || t("story_banner_conn_error_title")}
+        description={args.description || t("story_banner_conn_error_desc")}
+        onClose={args.onClose ?? (() => {})}
       />
     );
+  },
+  args: {
+    status: "error",
   },
 };
 
@@ -85,9 +97,8 @@ export const WithAction: Story = {
     return (
       <Banner
         {...args}
-        status="info"
-        title={t("story_banner_cookie_title")}
-        description={t("story_banner_cookie_desc")}
+        title={args.title || t("story_banner_cookie_title")}
+        description={args.description || t("story_banner_cookie_desc")}
         extra={
           <Button
             size="small"
@@ -98,6 +109,9 @@ export const WithAction: Story = {
       />
     );
   },
+  args: {
+    status: "info",
+  },
 };
 
 export const WithCloseAndAction: Story = {
@@ -106,9 +120,8 @@ export const WithCloseAndAction: Story = {
     return (
       <Banner
         {...args}
-        status="warning"
-        title={t("story_banner_trial_title")}
-        description={t("story_banner_trial_desc")}
+        title={args.title || t("story_banner_trial_title")}
+        description={args.description || t("story_banner_trial_desc")}
         extra={
           <Button
             size="small"
@@ -116,9 +129,12 @@ export const WithCloseAndAction: Story = {
             label={t("story_banner_btn_upgrade")}
           />
         }
-        onClose={() => {}}
+        onClose={args.onClose ?? (() => {})}
       />
     );
+  },
+  args: {
+    status: "warning",
   },
 };
 
@@ -128,10 +144,12 @@ export const DescriptionOnly: Story = {
     return (
       <Banner
         {...args}
-        status="info"
-        description={t("story_banner_no_title_desc")}
+        description={args.description || t("story_banner_no_title_desc")}
       />
     );
+  },
+  args: {
+    status: "info",
   },
 };
 
@@ -141,11 +159,13 @@ export const NoIcon: Story = {
     return (
       <Banner
         {...args}
-        status="info"
-        title={t("story_banner_simple_title")}
-        description={t("story_banner_simple_desc")}
+        title={args.title || t("story_banner_simple_title")}
+        description={args.description || t("story_banner_simple_desc")}
         icon={false}
       />
     );
+  },
+  args: {
+    status: "info",
   },
 };

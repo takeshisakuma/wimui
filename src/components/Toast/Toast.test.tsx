@@ -38,8 +38,8 @@ describe("Toast", () => {
     expect(handleClose).toHaveBeenCalled();
   });
 
-  it("applies variant class", () => {
-    const { container } = render(<Toast title="Message" variant="success" />);
+  it("applies status class", () => {
+    const { container } = render(<Toast title="Message" status="success" />);
     expect(container.firstChild).toHaveClass("wim-toast--success");
   });
 });

@@ -33,21 +33,30 @@ export const Default: Story = {
 export const Checked: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Switch {...args} label={t("story_switch_wifi")} defaultChecked={true} />;
+    return <Switch {...args} label={t("story_switch_wifi")} />;
+  },
+  args: {
+    defaultChecked: true,
   },
 };
 
 export const Small: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Switch {...args} label={t("story_switch_airplane")} size="small" />;
+    return <Switch {...args} label={t("story_switch_airplane")} />;
+  },
+  args: {
+    size: "small",
   },
 };
 
 export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Switch {...args} label={t("story_switch_bluetooth")} disabled={true} />;
+    return <Switch {...args} label={t("story_switch_bluetooth")} />;
+  },
+  args: {
+    disabled: true,
   },
 };
 
@@ -58,10 +67,12 @@ export const DisabledChecked: Story = {
       <Switch
         {...args}
         label={t("story_switch_bluetooth")}
-        disabled={true}
-        defaultChecked={true}
       />
     );
+  },
+  args: {
+    disabled: true,
+    defaultChecked: true,
   },
 };
 

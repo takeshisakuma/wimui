@@ -11,6 +11,10 @@ const meta: Meta<typeof IconButton> = {
   tags: [],
   argTypes: {
     disabled: { control: "boolean" },
+    priority: {
+      control: "select",
+      options: ["primary", "secondary", "tertiary"],
+    },
   },
 };
 
@@ -32,8 +36,10 @@ export const Close: Story = {
         {...args}
         iconName="CloseIcon"
         aria-label={t("story_iconbutton_close")}
-        priority="tertiary"
       />
     );
+  },
+  args: {
+    priority: "tertiary",
   },
 };

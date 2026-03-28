@@ -11,7 +11,7 @@ import { FeedbackIcon } from "../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
 import "./snackbar.scss";
 
-export type SnackbarVariant =
+export type SnackbarStatus =
   | "default"
   | "success"
   | "warning"
@@ -31,7 +31,7 @@ export interface SnackbarProps {
   /** 表示状態 */
   open?: boolean;
   /** 表示するタイプ */
-  variant?: SnackbarVariant;
+  status?: SnackbarStatus;
   /** 表示位置 */
   position?: SnackbarPosition;
   /** 自動で閉じるまでの時間（ミリ秒）。0を指定すると自動で閉じません。 */
@@ -54,7 +54,7 @@ export interface SnackbarProps {
 export const Snackbar = ({
   message,
   open = false,
-  variant = "default",
+  status = "default",
   position = "bottom-center",
   autoHideDuration = 5000,
   showCloseButton = false,
@@ -129,8 +129,8 @@ export const Snackbar = ({
 
     if (!isRendered && !open) return null;
 
-    const role = variant === "error" || variant === "warning" ? "alert" : "status";
-    const ariaLive = variant === "error" || variant === "warning" ? "assertive" : "polite";
+    const role = status === "error" || status === "warning" ? "alert" : "status";
+    const ariaLive = status === "error" || status === "warning" ? "assertive" : "polite";
 
     return (
       <div
@@ -142,7 +142,7 @@ export const Snackbar = ({
         <div
           className={classNames(
             "wim-snackbar",
-            `wim-snackbar--${variant}`,
+            `wim-snackbar--${status}`,
             isVisible && "wim-snackbar--visible",
             className,
           )}
@@ -154,10 +154,10 @@ export const Snackbar = ({
           onBlur={handleMouseLeave}
         >
           <div className="wim-snackbar__content">
-            {variant !== "default" && (
+            {status !== "default" && (
               <div className="wim-snackbar__icon">
                 <FeedbackIcon
-                  status={variant}
+                  status={status}
                   size="small"
                 />
               </div>

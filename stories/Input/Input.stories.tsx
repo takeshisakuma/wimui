@@ -20,6 +20,14 @@ const meta: Meta<typeof Input> = {
   },
 
   argTypes: {
+    variant: {
+      control: "select",
+      options: ["default", "outline", "ghost"],
+    },
+    status: {
+      control: "select",
+      options: ["default", "error"],
+    },
     disabled: {
       control: "boolean",
     },
@@ -127,9 +135,12 @@ export const Outline: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_input_label_company")}>
-        <Input {...args} variant="outline" placeholder={t("story_input_placeholder_company")} />
+        <Input {...args} placeholder={t("story_input_placeholder_company")} />
       </Label>
     );
+  },
+  args: {
+    variant: "outline",
   },
 };
 
@@ -138,9 +149,12 @@ export const Ghost: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_input_label_remarks")}>
-        <Input {...args} variant="ghost" placeholder={t("story_input_placeholder_remarks")} />
+        <Input {...args} placeholder={t("story_input_placeholder_remarks")} />
       </Label>
     );
+  },
+  args: {
+    variant: "ghost",
   },
 };
 
@@ -158,7 +172,6 @@ export const ErrorStatus: Story = {
         <Label label={t("story_input_label_email")} required>
           <Input
             {...args}
-            status="error"
             placeholder={t("story_input_placeholder_email")}
             defaultValue="invalid-email@"
           />
@@ -167,6 +180,9 @@ export const ErrorStatus: Story = {
       </div>
     );
   },
+  args: {
+    status: "error",
+  },
 };
 
 export const Disabled: Story = {
@@ -174,9 +190,12 @@ export const Disabled: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_input_label_userid")}>
-        <Input {...args} disabled={true} placeholder={t("story_input_placeholder_userid")} />
+        <Input {...args} placeholder={t("story_input_placeholder_userid")} />
       </Label>
     );
+  },
+  args: {
+    disabled: true,
   },
 };
 
@@ -185,9 +204,12 @@ export const FullWidth: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_input_label_contact")} style={{ width: "100%" }}>
-        <Input {...args} fullWidth={true} placeholder={t("story_input_placeholder_contact")} />
+        <Input {...args} placeholder={t("story_input_placeholder_contact")} />
       </Label>
     );
+  },
+  args: {
+    fullWidth: true,
   },
   parameters: {
     layout: "padded",
@@ -199,9 +221,12 @@ export const SearchIndicator: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story_input_label_search")}>
-        <Input {...args} leftIcon="SearchIcon" placeholder={t("story_input_placeholder_search")} />
+        <Input {...args} placeholder={t("story_input_placeholder_search")} />
       </Label>
     );
+  },
+  args: {
+    leftIcon: "SearchIcon",
   },
 };
 
