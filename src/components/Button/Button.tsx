@@ -6,13 +6,14 @@ import { Icon } from "../Icon/Icon";
 import type { WimColor } from "../../types/tokens";
 import { warnDeprecated } from "../../utilities/dev-utils";
 
-export type ButtonProps = Omit<React.ComponentPropsWithoutRef<"button">, "role"> & {
+export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   /** ボタンの背景色をデザイントークンで上書きする。通常は `priority` prop で対応できるため、このpropは最終手段として使用してください。 */
   backgroundColor?: WimColor;
   size?: "small" | "medium" | "large";
   label?: string;
   priority?: "primary" | "secondary" | "tertiary";
-  role?: "default" | "destructive" | "positive";
+  /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
+  intent?: "default" | "destructive" | "positive";
   /** Icon name or custom icon element */
   icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
   /** @deprecated Use icon instead */
@@ -35,7 +36,7 @@ export const Button = React.forwardRef<
       size = "medium",
       label,
       priority = "secondary",
-      role = "default",
+      intent = "default",
       icon,
       iconName,
       iconPosition = "left",
@@ -195,7 +196,7 @@ export const Button = React.forwardRef<
           "wim-button",
           `wim-button--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
           `wim-button--${priority}`,
-          `wim-button--${role}`,
+          `wim-button--${intent}`,
           loading && "wim-button--loading",
           animateWidth && "wim-button--animated-width",
           fullWidth && "wim-button--full-width",

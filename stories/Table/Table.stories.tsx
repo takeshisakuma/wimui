@@ -185,8 +185,7 @@ export const WithActions: Story = {
                     aria-label={t("story_dropdown_delete")}
                     size="small"
                     priority="tertiary"
-                    // eslint-disable-next-line jsx-a11y/aria-role
-                    role="destructive"
+                    intent="destructive"
                   />
                 </div>
               </Table.Cell>

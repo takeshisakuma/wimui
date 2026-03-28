@@ -270,8 +270,7 @@ export const WithActions: Story = {
             <Button
               size="small"
               priority="tertiary"
-              // eslint-disable-next-line jsx-a11y/aria-role
-              role="destructive"
+              intent="destructive"
               onClick={() =>
                 alert(t("story_datagrid_action_delete", { name: row.name }))
               }
@@ -517,8 +516,7 @@ export const WithRightFixedColumn: Story = {
             <Button size="small" priority="tertiary">
               <Icon name="EditIcon" size="small" />
             </Button>
-            {/* eslint-disable-next-line jsx-a11y/aria-role */}
-            <Button size="small" priority="tertiary" role="destructive">
+            <Button size="small" priority="tertiary" intent="destructive">
               <Icon name="TrashIcon" size="small" />
             </Button>
           </div>

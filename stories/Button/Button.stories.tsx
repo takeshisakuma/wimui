@@ -64,7 +64,7 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
   args: {
     size: "small",
     priority: "tertiary",
-    role: "destructive",
+    intent: "destructive",
     iconName: "CircleIcon",
     iconPosition: "left",
     disabled: true,

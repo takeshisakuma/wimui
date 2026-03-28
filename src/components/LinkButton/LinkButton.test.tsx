@@ -31,9 +31,8 @@ describe("LinkButton", () => {
     expect(screen.getByRole("link")).toHaveClass("wim-button--primary");
   });
 
-  it("applies role class", () => {
-    // eslint-disable-next-line jsx-a11y/aria-role
-    render(<LinkButton href="#" label="Destructive" role="destructive" />);
+  it("applies intent class", () => {
+    render(<LinkButton href="#" label="Destructive" intent="destructive" />);
     expect(screen.getByRole("link")).toHaveClass("wim-button--destructive");
   });
 

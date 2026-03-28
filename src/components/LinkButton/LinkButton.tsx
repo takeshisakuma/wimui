@@ -14,7 +14,7 @@ export const LinkButton = ({
   className,
   size = "medium",
   priority = "secondary",
-  role = "default",
+  intent = "default",
   backgroundColor,
   label,
   iconName,
@@ -29,7 +29,7 @@ export const LinkButton = ({
         "wim-button",
         `wim-button--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
         `wim-button--${priority}`,
-        `wim-button--${role}`,
+        `wim-button--${intent}`,
         !label && iconName && "wim-button--icon-only",
         className,
       )}
