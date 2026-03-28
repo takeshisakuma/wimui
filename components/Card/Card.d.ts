@@ -1,5 +1,5 @@
 import { default as React } from '../../../node_modules/react';
-export type CardProps = React.ComponentPropsWithoutRef<"div"> & {
+export type CardProps<C extends React.ElementType = "div"> = {
     /**
      * カードのバリアント
      */
@@ -15,13 +15,13 @@ export type CardProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * レンダリングするHTML要素
      */
-    as?: React.ElementType;
-};
+    as?: C;
+} & React.ComponentPropsWithoutRef<C>;
 /**
  * `Card` はコンテンツをグループ化して表示するためのコンテナコンポーネントです。
  */
 export declare const Card: {
-    ({ variant, padding, radius, as: Component, className, children, ...props }: CardProps): import("react/jsx-runtime").JSX.Element;
+    <C extends React.ElementType = "div">({ variant, padding, radius, as, className, children, ...props }: CardProps<C>): import("react/jsx-runtime").JSX.Element;
     Header: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
     Body: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
     Footer: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
