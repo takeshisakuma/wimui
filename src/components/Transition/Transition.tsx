@@ -96,11 +96,13 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       }
 
       const completeTransition = () => {
-        if ((import.meta as unknown as { env: { MODE: string } }).env.MODE === "test") {
+        if (import.meta.env.MODE === "test") {
           // In tests, complete transition after a tiny delay so tests can see the 'to' classes
           // and to avoid issues with sync requestAnimationFrame mocks.
           const timer = setTimeout(() => {
             if (internalRef.current) {
+              // React.TransitionEvent は多くの必須フィールドを持つため、
+              // テスト用最小モックオブジェクトには as unknown as が必要
               handleTransitionEnd({
                 target: internalRef.current,
                 currentTarget: internalRef.current,

@@ -1,4 +1,4 @@
-export const isDev = (import.meta as unknown as { env: { DEV: boolean } }).env.DEV;
+export const isDev = import.meta.env.DEV;
 
 /**
  * Emit a deprecation warning in development mode only.

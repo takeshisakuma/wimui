@@ -88,11 +88,7 @@ export const Mentions = ({
     }
 
     if (onChange) {
-      const dummyEvent = {
-        target: { value: insertedValue },
-        currentTarget: { value: insertedValue },
-      } as unknown as React.ChangeEvent<HTMLTextAreaElement>;
-      onChange(dummyEvent);
+      onChange({ target: { value: insertedValue } } as React.ChangeEvent<HTMLTextAreaElement>);
     }
 
     if (onSelect) {

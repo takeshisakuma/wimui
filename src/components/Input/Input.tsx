@@ -102,27 +102,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         nativeInputValueSetter.call(input, "");
         input.dispatchEvent(new Event("input", { bubbles: true }));
       } else {
-        // フォールバック
+        // フォールバック: nativeInputValueSetter が存在しない極めてまれな環境向け
         if (!isControlled) setInternalValue("");
         if (onChange) {
-          const syntheticEvent = {
-            target: input,
-            currentTarget: input,
-            nativeEvent: new Event("change"),
-            bubbles: true,
-            cancelable: false,
-            defaultPrevented: false,
-            eventPhase: 0,
-            isTrusted: false,
-            preventDefault: () => { },
-            isDefaultPrevented: () => false,
-            stopPropagation: () => { },
-            isPropagationStopped: () => false,
-            persist: () => { },
-            timeStamp: Date.now(),
-            type: "change",
-          } as unknown as React.ChangeEvent<HTMLInputElement>;
-          onChange(syntheticEvent);
+          input.value = "";
+          onChange({ target: input, currentTarget: input } as React.ChangeEvent<HTMLInputElement>);
         }
       }
 
