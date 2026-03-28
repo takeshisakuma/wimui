@@ -111,7 +111,7 @@ const DEFAULT_COLUMN_WIDTHS: Record<GanttViewMode, number> = {
   month: 120,
 };
 
-export const GanttChart: React.FC<GanttChartProps> = ({
+export const GanttChart = ({
   tasks,
   startDate,
   endDate,
@@ -120,7 +120,7 @@ export const GanttChart: React.FC<GanttChartProps> = ({
   rowHeight = 40,
   onTaskClick,
   className,
-}) => {
+}: GanttChartProps): React.ReactElement => {
   const { t } = useTranslation("components");
   const bodyScrollRef = useRef<HTMLDivElement>(null);
   const headerScrollRef = useRef<HTMLDivElement>(null);

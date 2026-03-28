@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import type { AudioTrack } from "../Audio";
+import { isDev } from "@/utilities/dev-utils";
 
 interface UseAudioMetadataOptions {
   currentTrack: AudioTrack | null;
@@ -47,12 +48,12 @@ export function useAudioMetadata({
               }
             },
             onError: (err: unknown) => {
-              console.warn("jsmediatags parse error:", err);
+              if (isDev) console.warn("jsmediatags parse error:", err);
             },
           });
         })
         .catch((err) => {
-          console.warn("Failed to load jsmediatags dynamically:", err);
+          if (isDev) console.warn("Failed to load jsmediatags dynamically:", err);
         });
     }
 

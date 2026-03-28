@@ -13,7 +13,6 @@ type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
  * Checkbox component for boolean user input.
  */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  // eslint-disable-next-line react/prop-types
   ({ label, indeterminate = false, className, disabled, ...props }, ref) => {
     const { t } = useTranslation();
     const defaultRef = useRef<HTMLInputElement>(null);

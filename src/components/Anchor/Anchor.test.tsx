@@ -19,8 +19,7 @@ describe("Anchor", () => {
     window.scrollTo = vi.fn();
     
     // Mock getElementById
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const mockElements: Record<string, any> = {
+    const mockElements: Record<string, { offsetTop: number; getBoundingClientRect: () => { top: number; height: number } }> = {
       "section1": { offsetTop: 100, getBoundingClientRect: () => ({ top: 100, height: 50 }) },
       "section1-1": { offsetTop: 150, getBoundingClientRect: () => ({ top: 150, height: 50 }) },
       "section2": { offsetTop: 500, getBoundingClientRect: () => ({ top: 500, height: 50 }) },

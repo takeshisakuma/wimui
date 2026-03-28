@@ -218,7 +218,7 @@ export type TooltipContentProps = {
 export const TooltipContent = React.forwardRef<
   HTMLDivElement,
   TooltipContentProps & React.HTMLProps<HTMLDivElement>
->(({ children, className, style, ...props }, propRef) => { // eslint-disable-line react/prop-types
+>(({ children, className, style, ...props }, propRef) => {
   const context = React.useContext(TooltipContext);
 
   if (context == null) {

@@ -75,16 +75,6 @@ const Splitter = ({
     [],
   );
 
-  /** マウス・タッチ両対応の座標取得 */
-  const getClientPos = (e: MouseEvent | TouchEvent) => {
-    if ("touches" in e) {
-      return orientation === "horizontal"
-        ? e.touches[0].clientX
-        : e.touches[0].clientY;
-    }
-    return orientation === "horizontal" ? e.clientX : e.clientY;
-  };
-
   const handleMove = useCallback(
     (e: MouseEvent | TouchEvent) => {
       if (resizingIndex === null || !containerRef.current) return;
@@ -92,7 +82,15 @@ const Splitter = ({
       const rect = containerRef.current.getBoundingClientRect();
       const totalSize = orientation === "horizontal" ? rect.width : rect.height;
       const origin = orientation === "horizontal" ? rect.left : rect.top;
-      const currentPos = getClientPos(e) - origin;
+      const clientPos =
+        "touches" in e
+          ? orientation === "horizontal"
+            ? e.touches[0].clientX
+            : e.touches[0].clientY
+          : orientation === "horizontal"
+            ? e.clientX
+            : e.clientY;
+      const currentPos = clientPos - origin;
       const currentPercentage = (currentPos / totalSize) * 100;
 
       setPanelSizes((prev) => {
@@ -134,7 +132,6 @@ const Splitter = ({
         return next;
       });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [resizingIndex, orientation, panels],
   );
 

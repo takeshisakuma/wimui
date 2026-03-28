@@ -7,7 +7,6 @@ import {
   AccordionContent,
 } from "./Accordion";
 
-// eslint-disable-next-line react/prop-types
 const SimpleAccordion = ({ collapsible = true, type = "single" as "single" | "multiple", defaultValue = undefined as string | string[] | undefined, value = undefined as string | string[] | undefined, onValueChange = undefined as ((v: string | string[]) => void) | undefined }) => (
   <Accordion type={type} collapsible={collapsible} defaultValue={defaultValue} value={value} onValueChange={onValueChange}>
     <AccordionItem value="item-1">

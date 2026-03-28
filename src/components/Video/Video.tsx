@@ -192,8 +192,8 @@ export const Video = ({
         )}
 
         {(customControls || advancedControls) && (
-          // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
           <div
+            role="none"
             className="wim-video-custom-controls"
             onClick={() => activeMenu && setActiveMenu(null)}
           >

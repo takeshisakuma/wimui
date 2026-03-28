@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Button } from "../Button/Button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip/Tooltip";
+import { isDev } from "@/utilities/dev-utils";
 
 type CopyButtonProps = {
   value: string;
@@ -34,7 +35,7 @@ export const CopyButton = ({
       await navigator.clipboard.writeText(value);
       setCopied(true);
     } catch (err) {
-      console.error("Failed to copy: ", err);
+      if (isDev) console.error("Failed to copy: ", err);
     }
   };
 

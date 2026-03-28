@@ -173,7 +173,7 @@ export type PopoverContentProps = {
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,
   PopoverContentProps & React.HTMLAttributes<HTMLDivElement>
->(({ children, className, align: _align, side: _side, style, modal = false, ...props }, propRef) => { // eslint-disable-line react/prop-types
+>(({ children, className, align: _align, side: _side, style, modal = false, ...props }, propRef) => {
   const context = React.useContext(PopoverContext);
 
   if (context == null) {

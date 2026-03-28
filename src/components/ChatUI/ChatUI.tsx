@@ -8,10 +8,10 @@ export interface ChatContainerProps {
   className?: string;
 }
 
-export const ChatContainer: React.FC<ChatContainerProps> = ({
+export const ChatContainer = ({
   children,
   className,
-}) => {
+}: ChatContainerProps): React.ReactElement => {
   return (
     <div className={classNames("wim-chat-container", className)}>
       {children}
@@ -47,7 +47,7 @@ export interface ChatMessageProps {
   className?: string;
 }
 
-export const ChatMessage: React.FC<ChatMessageProps> = ({
+export const ChatMessage = ({
   children,
   position = "left",
   variant = "default",
@@ -56,7 +56,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
   timestamp,
   senderName,
   className,
-}) => {
+}: ChatMessageProps): React.ReactElement => {
   return (
     <div
       className={classNames(
@@ -161,14 +161,14 @@ export interface ChatAvatarProps {
   className?: string;
 }
 
-export const ChatAvatar: React.FC<ChatAvatarProps> = ({
+export const ChatAvatar = ({
   src,
   alt: altProp,
   fallback,
   size = "medium",
   color = "s18",
   className,
-}) => {
+}: ChatAvatarProps): React.ReactElement => {
   const { t } = useTranslation(["components"]);
   const [imageError, setImageError] = React.useState(false);
 

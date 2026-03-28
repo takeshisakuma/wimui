@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { isDev } from "@/utilities/dev-utils";
 
 type FitOption = "contain" | "cover" | "fill" | "none" | "scale-down";
 type ActiveMenu = "main" | "quality" | "rate" | "fit" | "playlist" | null;
@@ -89,7 +90,7 @@ export function useVideoPlayer({
   useEffect(() => {
     if (autoPlay && videoRef.current) {
       videoRef.current.play().catch((error) => {
-        console.warn("Autoplay was prevented:", error);
+        if (isDev) console.warn("Autoplay was prevented:", error);
       });
     }
   }, [autoPlay, activeSrc]);
@@ -145,7 +146,7 @@ export function useVideoPlayer({
     if (!containerRef.current) return;
     if (!document.fullscreenElement) {
       containerRef.current.requestFullscreen().catch((err) => {
-        console.warn(
+        if (isDev) console.warn(
           `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`,
         );
       });
@@ -165,7 +166,7 @@ export function useVideoPlayer({
         await videoRef.current.requestPictureInPicture();
       }
     } catch (error) {
-      console.error("Failed to toggle PiP mode:", error);
+      if (isDev) console.error("Failed to toggle PiP mode:", error);
     }
   }, []);
 

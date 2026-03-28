@@ -230,8 +230,8 @@ export const CommandPaletteContent = ({
           leaveFrom="fade-leave-from"
           leaveTo="fade-leave-to"
         >
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
           <div
+            role="presentation"
             className="wim-command-palette-overlay"
             onClick={(e) => {
               if (e.target === e.currentTarget) {
@@ -249,8 +249,10 @@ export const CommandPaletteContent = ({
               leaveTo="scale-leave-to"
             >
               <FocusTrap active={open}>
-                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
                 <div
+                  role="dialog"
+                  aria-modal="true"
                   className={classNames("wim-command-palette-content", className)}
                   onClick={(e) => e.stopPropagation()}
                   onMouseMove={handleMouseMove}

@@ -135,8 +135,7 @@ export const Dropdown = ({ children, className }: DropdownProps) => {
     <DropdownContext.Provider
       value={{ isOpen, toggle, close, menuId, triggerId, focusedIndex, setFocusedIndex, registerItem, containerRef }}
     >
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-      <div className={classNames("wim-dropdown", className)} ref={containerRef} onKeyDown={handleKeyDown}>
+      <div role="none" className={classNames("wim-dropdown", className)} ref={containerRef} onKeyDown={handleKeyDown}>
         {children}
       </div>
     </DropdownContext.Provider>

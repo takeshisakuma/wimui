@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 import type React from "react";
 import type { AudioTrack } from "../Audio";
+import { isDev } from "@/utilities/dev-utils";
 
 interface UseAudioPlayerOptions {
   playlist: AudioTrack[];
@@ -144,7 +145,7 @@ export function useAudioPlayer({
         }
         setIsPlaying(true);
       }).catch((e) => {
-        console.warn("Playback prevented", e);
+        if (isDev) console.warn("Playback prevented", e);
         setIsPlaying(false);
       });
     }
@@ -388,7 +389,7 @@ export function useAudioPlayer({
           }, xfadet);
         })
         .catch((e) => {
-          console.warn("Crossfade prevented", e);
+          if (isDev) console.warn("Crossfade prevented", e);
           isCrossfadingRef.current = false;
         });
     },

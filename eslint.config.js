@@ -105,6 +105,7 @@ export default [
       ...reactPlugin.configs.recommended.rules,
       ...reactHooksPlugin.configs.recommended.rules,
       "react/react-in-jsx-scope": "off", // Vite based projects don't need React in scope
+      "react/prop-types": "off", // TypeScript handles prop type checking
       "jsx-a11y/no-noninteractive-tabindex": "off", // Conflicts with axe-core scrollable-region-focusable; axe-core handles this at runtime
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [

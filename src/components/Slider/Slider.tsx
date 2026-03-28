@@ -226,8 +226,8 @@ export const Slider = ({
       errorId={errorId}
       className={classNames("wim-slider-container", className)}
     >
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
+        role="presentation"
         className={classNames("wim-slider", disabled && "wim-slider--disabled")}
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}

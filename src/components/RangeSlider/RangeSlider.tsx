@@ -298,8 +298,8 @@ export const RangeSlider = ({
       errorId={errorId}
       className={classNames("wim-range-slider-container", className)}
     >
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
+        role="presentation"
         className={classNames(
           "wim-range-slider",
           disabled && "wim-range-slider--disabled",

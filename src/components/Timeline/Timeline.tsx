@@ -8,11 +8,11 @@ export interface TimelineProps {
   className?: string;
 }
 
-export const Timeline: React.FC<TimelineProps> = ({
+export const Timeline = ({
   children,
   align = "left",
   className,
-}) => {
+}: TimelineProps): React.ReactElement => {
   return (
     <div
       className={classNames(
@@ -39,11 +39,11 @@ export interface TimelineItemProps {
   align?: "left" | "right" | "alternate";
 }
 
-export const TimelineItem: React.FC<TimelineItemProps> = ({
+export const TimelineItem = ({
   children,
   className,
   align,
-}) => {
+}: TimelineItemProps): React.ReactElement => {
   return (
     <div
       className={classNames(
@@ -62,10 +62,10 @@ export interface TimelineSeparatorProps {
   className?: string;
 }
 
-export const TimelineSeparator: React.FC<TimelineSeparatorProps> = ({
+export const TimelineSeparator = ({
   children,
   className,
-}) => {
+}: TimelineSeparatorProps): React.ReactElement => {
   return (
     <div className={classNames("wim-timeline-separator", className)}>
       {children}
@@ -77,9 +77,9 @@ export interface TimelineConnectorProps {
   className?: string;
 }
 
-export const TimelineConnector: React.FC<TimelineConnectorProps> = ({
+export const TimelineConnector = ({
   className,
-}) => {
+}: TimelineConnectorProps): React.ReactElement => {
   return <div className={classNames("wim-timeline-connector", className)} />;
 };
 
@@ -89,11 +89,11 @@ export interface TimelinePointProps {
   className?: string;
 }
 
-export const TimelinePoint: React.FC<TimelinePointProps> = ({
+export const TimelinePoint = ({
   children,
   variant,
   className,
-}) => {
+}: TimelinePointProps): React.ReactElement => {
   const isIcon = !!children;
   return (
     <div
@@ -114,10 +114,10 @@ export interface TimelineContentProps {
   className?: string;
 }
 
-export const TimelineContent: React.FC<TimelineContentProps> = ({
+export const TimelineContent = ({
   children,
   className,
-}) => {
+}: TimelineContentProps): React.ReactElement => {
   return (
     <div className={classNames("wim-timeline-content", className)}>
       {children}
@@ -130,9 +130,10 @@ export interface TimelineOppositeContentProps {
   className?: string;
 }
 
-export const TimelineOppositeContent: React.FC<
-  TimelineOppositeContentProps
-> = ({ children, className }) => {
+export const TimelineOppositeContent = ({
+  children,
+  className,
+}: TimelineOppositeContentProps): React.ReactElement => {
   return (
     <div className={classNames("wim-timeline-opposite-content", className)}>
       {children}

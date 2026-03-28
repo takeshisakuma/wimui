@@ -11,7 +11,6 @@ export type {
   UseTableSortReturn,
 } from "./useTableSort";
 
-/* eslint-disable react/prop-types */
 type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
   striped?: boolean;
   bordered?: boolean;

@@ -180,8 +180,7 @@ export const HoverCardContent = ({
   className,
   align = "center",
   side = "bottom",
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  sideOffset = 8,
+  sideOffset: _sideOffset = 8,
   ...props
 }: HoverCardContentProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { isOpen, open, close } = React.useContext(HoverCardContext);
