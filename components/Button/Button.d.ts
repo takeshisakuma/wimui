@@ -1,13 +1,14 @@
 import { default as React } from '../../../node_modules/react';
 import { Icon } from '../Icon/Icon';
 import { WimColor } from '../../types/tokens';
-export type ButtonProps = Omit<React.ComponentPropsWithoutRef<"button">, "role"> & {
+export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
     /** ボタンの背景色をデザイントークンで上書きする。通常は `priority` prop で対応できるため、このpropは最終手段として使用してください。 */
     backgroundColor?: WimColor;
     size?: "small" | "medium" | "large";
     label?: string;
     priority?: "primary" | "secondary" | "tertiary";
-    role?: "default" | "destructive" | "positive";
+    /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
+    intent?: "default" | "destructive" | "positive";
     /** Icon name or custom icon element */
     icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
     /** @deprecated Use icon instead */
@@ -20,13 +21,14 @@ export type ButtonProps = Omit<React.ComponentPropsWithoutRef<"button">, "role">
     /** Whether the button should take up the full width of its container */
     fullWidth?: boolean;
 };
-export declare const Button: React.ForwardRefExoticComponent<Omit<Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref">, "role"> & {
+export declare const Button: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref"> & {
     /** ボタンの背景色をデザイントークンで上書きする。通常は `priority` prop で対応できるため、このpropは最終手段として使用してください。 */
     backgroundColor?: WimColor;
     size?: "small" | "medium" | "large";
     label?: string;
     priority?: "primary" | "secondary" | "tertiary";
-    role?: "default" | "destructive" | "positive";
+    /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
+    intent?: "default" | "destructive" | "positive";
     /** Icon name or custom icon element */
     icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
     /** @deprecated Use icon instead */

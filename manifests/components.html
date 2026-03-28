@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.2s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -7557,6 +7557,11 @@ iconName?: React.ComponentProps&lt;typeof Icon&gt;[&quot;name&quot;]
 
 iconPosition?: &quot;left&quot; | &quot;right&quot; = &quot;left&quot;
 
+/**
+ * ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。
+ */
+intent?: &quot;default&quot; | &quot;destructive&quot; | &quot;positive&quot; = &quot;default&quot;
+
 justify?: &quot;start&quot; | &quot;center&quot; | &quot;end&quot; | &quot;between&quot; = &quot;center&quot;
 
 label?: string
@@ -7564,8 +7569,6 @@ label?: string
 loading?: boolean = false
 
 priority?: &quot;primary&quot; | &quot;secondary&quot; | &quot;tertiary&quot; = &quot;secondary&quot;
-
-role?: &quot;default&quot; | &quot;destructive&quot; | &quot;positive&quot; = &quot;default&quot;
 
 size?: &quot;small&quot; | &quot;medium&quot; | &quot;large&quot; = &quot;medium&quot;</code></pre>
           </div>
@@ -7641,7 +7644,7 @@ size?: &quot;small&quot; | &quot;medium&quot; | &quot;large&quot; = &quot;medium
             onClick={fn()}
             size=&quot;small&quot;
             priority=&quot;tertiary&quot;
-            role=&quot;destructive&quot;
+            intent=&quot;destructive&quot;
             iconName=&quot;CircleIcon&quot;
             iconPosition=&quot;left&quot;
             disabled
@@ -16128,8 +16131,7 @@ striped?: boolean = false</code></pre>
           &lt;Button
             size=&quot;small&quot;
             priority=&quot;tertiary&quot;
-            // eslint-disable-next-line jsx-a11y/aria-role
-            role=&quot;destructive&quot;
+            intent=&quot;destructive&quot;
             onClick={() =&gt;
               alert(t(&quot;story_datagrid_action_delete&quot;, { name: row.name }))
             }
@@ -16389,8 +16391,7 @@ striped?: boolean = false</code></pre>
           &lt;Button size=&quot;small&quot; priority=&quot;tertiary&quot;&gt;
             &lt;Icon name=&quot;EditIcon&quot; size=&quot;small&quot; /&gt;
           &lt;/Button&gt;
-          {/* eslint-disable-next-line jsx-a11y/aria-role */}
-          &lt;Button size=&quot;small&quot; priority=&quot;tertiary&quot; role=&quot;destructive&quot;&gt;
+          &lt;Button size=&quot;small&quot; priority=&quot;tertiary&quot; intent=&quot;destructive&quot;&gt;
             &lt;Icon name=&quot;TrashIcon&quot; size=&quot;small&quot; /&gt;
           &lt;/Button&gt;
         &lt;/div&gt;
@@ -33271,9 +33272,9 @@ npm run test -- Link
             <pre><code>Props:</code></pre>
             <pre><code>iconPosition?: any = &quot;left&quot;
 
-priority?: any = &quot;secondary&quot;
+intent?: any = &quot;default&quot;
 
-role?: any = &quot;default&quot;
+priority?: any = &quot;secondary&quot;
 
 size?: any = &quot;medium&quot;</code></pre>
           </div>
@@ -56656,8 +56657,7 @@ striped?: boolean = false</code></pre>
                           aria-label={t(&quot;story_dropdown_delete&quot;)}
                           size=&quot;small&quot;
                           priority=&quot;tertiary&quot;
-                          // eslint-disable-next-line jsx-a11y/aria-role
-                          role=&quot;destructive&quot;
+                          intent=&quot;destructive&quot;
                         /&gt;
                       &lt;/div&gt;
                     &lt;/Table.Cell&gt;

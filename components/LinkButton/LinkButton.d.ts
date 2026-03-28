@@ -4,5 +4,5 @@ type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> & Omit<React.Componen
 /**
  * ボタンの見た目をしたアンカー（リンク）コンポーネント。
  */
-export declare const LinkButton: ({ className, size, priority, role, backgroundColor, label, iconName, iconPosition, "aria-label": ariaLabel, ...props }: LinkButtonProps) => import("react/jsx-runtime").JSX.Element;
+export declare const LinkButton: ({ className, size, priority, intent, backgroundColor, label, iconName, iconPosition, "aria-label": ariaLabel, ...props }: LinkButtonProps) => import("react/jsx-runtime").JSX.Element;
 export {};
