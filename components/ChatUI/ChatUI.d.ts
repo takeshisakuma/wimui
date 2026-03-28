@@ -3,7 +3,7 @@ export interface ChatContainerProps {
     children: React.ReactNode;
     className?: string;
 }
-export declare const ChatContainer: React.FC<ChatContainerProps>;
+export declare const ChatContainer: ({ children, className, }: ChatContainerProps) => React.ReactElement;
 export interface ChatMessageListProps {
     children: React.ReactNode;
     className?: string;
@@ -19,7 +19,7 @@ export interface ChatMessageProps {
     senderName?: string;
     className?: string;
 }
-export declare const ChatMessage: React.FC<ChatMessageProps>;
+export declare const ChatMessage: ({ children, position, variant, showAvatar, avatar, timestamp, senderName, className, }: ChatMessageProps) => React.ReactElement;
 export interface ChatInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     onSend?: (message: string) => void;
     sendButtonLabel?: string;
@@ -35,4 +35,4 @@ export interface ChatAvatarProps {
     color?: "s1" | "s3" | "s5" | "s7" | "s10" | "s12" | "s14" | "s16" | "s18" | "s20" | "s22" | "s24";
     className?: string;
 }
-export declare const ChatAvatar: React.FC<ChatAvatarProps>;
+export declare const ChatAvatar: ({ src, alt: altProp, fallback, size, color, className, }: ChatAvatarProps) => React.ReactElement;

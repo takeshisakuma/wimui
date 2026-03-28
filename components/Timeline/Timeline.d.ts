@@ -4,35 +4,35 @@ export interface TimelineProps {
     align?: "left" | "right" | "alternate";
     className?: string;
 }
-export declare const Timeline: React.FC<TimelineProps>;
+export declare const Timeline: ({ children, align, className, }: TimelineProps) => React.ReactElement;
 export interface TimelineItemProps {
     children: React.ReactNode;
     className?: string;
     align?: "left" | "right" | "alternate";
 }
-export declare const TimelineItem: React.FC<TimelineItemProps>;
+export declare const TimelineItem: ({ children, className, align, }: TimelineItemProps) => React.ReactElement;
 export interface TimelineSeparatorProps {
     children?: React.ReactNode;
     className?: string;
 }
-export declare const TimelineSeparator: React.FC<TimelineSeparatorProps>;
+export declare const TimelineSeparator: ({ children, className, }: TimelineSeparatorProps) => React.ReactElement;
 export interface TimelineConnectorProps {
     className?: string;
 }
-export declare const TimelineConnector: React.FC<TimelineConnectorProps>;
+export declare const TimelineConnector: ({ className, }: TimelineConnectorProps) => React.ReactElement;
 export interface TimelinePointProps {
     children?: React.ReactNode;
     variant?: "primary" | "secondary" | "error" | "success";
     className?: string;
 }
-export declare const TimelinePoint: React.FC<TimelinePointProps>;
+export declare const TimelinePoint: ({ children, variant, className, }: TimelinePointProps) => React.ReactElement;
 export interface TimelineContentProps {
     children: React.ReactNode;
     className?: string;
 }
-export declare const TimelineContent: React.FC<TimelineContentProps>;
+export declare const TimelineContent: ({ children, className, }: TimelineContentProps) => React.ReactElement;
 export interface TimelineOppositeContentProps {
     children: React.ReactNode;
     className?: string;
 }
-export declare const TimelineOppositeContent: React.FC<TimelineOppositeContentProps>;
+export declare const TimelineOppositeContent: ({ children, className, }: TimelineOppositeContentProps) => React.ReactElement;

@@ -33,4 +33,4 @@ export type HoverCardContentProps = {
     side?: "top" | "bottom" | "left" | "right";
     sideOffset?: number;
 };
-export declare const HoverCardContent: ({ children, className, align, side, sideOffset, ...props }: HoverCardContentProps & React.HTMLAttributes<HTMLDivElement>) => import("react/jsx-runtime").JSX.Element | null;
+export declare const HoverCardContent: ({ children, className, align, side, sideOffset: _sideOffset, ...props }: HoverCardContentProps & React.HTMLAttributes<HTMLDivElement>) => import("react/jsx-runtime").JSX.Element | null;

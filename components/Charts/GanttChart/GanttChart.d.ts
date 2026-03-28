@@ -18,4 +18,4 @@ export type GanttChartProps = {
     onTaskClick?: (task: GanttTask) => void;
     className?: string;
 };
-export declare const GanttChart: React.FC<GanttChartProps>;
+export declare const GanttChart: ({ tasks, startDate, endDate, viewMode, columnWidth, rowHeight, onTaskClick, className, }: GanttChartProps) => React.ReactElement;
