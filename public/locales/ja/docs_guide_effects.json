@@ -32,7 +32,7 @@
   "guide_effects_opacity_guideline": "0.5, 0.6, 0.7 などの固定値を使わず、disabled / ghost / secondary の3段階を使い分けてください。",
   "effects_common_vars": "共通変数",
   "perf_tips_title": "パフォーマンス・チップス",
-  "perf_animation_title": "⚡ アニメーションの最適化 (`will-change`)",
+  "perf_animation_title": "アニメーションの最適化 (`will-change`)",
   "perf_animation_desc": "継続的または複雑なアニメーションを伴うコンポーネントでは、`will-change` CSS プロパティを使用してブラウザに最適化を促します。",
   "perf_animation_used_in": "使用箇所",
   "perf_animation_micro_interactions": "マイクロインタラクション",
