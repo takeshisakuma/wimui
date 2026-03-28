@@ -32,7 +32,7 @@
   "guide_effects_opacity_guideline": "Use these three levels — disabled / ghost / secondary — instead of hardcoded values (0.5, 0.6, 0.7).",
   "effects_common_vars": "Common Variables",
   "perf_tips_title": "Performance Tips",
-  "perf_animation_title": "⚡ Animation Optimization (`will-change`)",
+  "perf_animation_title": "Animation Optimization (`will-change`)",
   "perf_animation_desc": "For components with continuous or complex animations, use the `will-change` CSS property to prompt browser optimization.",
   "perf_animation_used_in": "Used in",
   "perf_animation_micro_interactions": "Micro-interactions",
