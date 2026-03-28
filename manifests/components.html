@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.2s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -1400,8 +1400,8 @@ title?: string</code></pre>
     return (
         &lt;Alert
             status=&quot;info&quot;
-            title={t(&quot;story_alert_info_title&quot;)}
-            description={t(&quot;story_alert_info_desc&quot;)} /&gt;
+            title={args.title || t(&quot;story_alert_info_title&quot;)}
+            description={args.description || t(&quot;story_alert_info_desc&quot;)} /&gt;
     );
 };</code></pre>
             </div>
@@ -1418,8 +1418,8 @@ title?: string</code></pre>
     return (
         &lt;Alert
             status=&quot;success&quot;
-            title={t(&quot;story_alert_success_title&quot;)}
-            description={t(&quot;story_alert_success_desc&quot;)} /&gt;
+            title={args.title || t(&quot;story_alert_success_title&quot;)}
+            description={args.description || t(&quot;story_alert_success_desc&quot;)} /&gt;
     );
 };</code></pre>
             </div>
@@ -1436,8 +1436,8 @@ title?: string</code></pre>
     return (
         &lt;Alert
             status=&quot;warning&quot;
-            title={t(&quot;story_alert_warning_title&quot;)}
-            description={t(&quot;story_alert_warning_desc&quot;)} /&gt;
+            title={args.title || t(&quot;story_alert_warning_title&quot;)}
+            description={args.description || t(&quot;story_alert_warning_desc&quot;)} /&gt;
     );
 };</code></pre>
             </div>
@@ -1454,8 +1454,8 @@ title?: string</code></pre>
     return (
         &lt;Alert
             status=&quot;error&quot;
-            title={t(&quot;story_alert_error_title&quot;)}
-            description={t(&quot;story_alert_error_desc&quot;)} /&gt;
+            title={args.title || t(&quot;story_alert_error_title&quot;)}
+            description={args.description || t(&quot;story_alert_error_desc&quot;)} /&gt;
     );
 };</code></pre>
             </div>
@@ -1468,7 +1468,12 @@ title?: string</code></pre>
               
               <pre><code>const WithoutTitle = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Alert status=&quot;info&quot; description={t(&quot;story_alert_no_title_desc&quot;)} /&gt;;
+
+    return (
+        &lt;Alert
+            status=&quot;info&quot;
+            description={args.description || t(&quot;story_alert_no_title_desc&quot;)} /&gt;
+    );
 };</code></pre>
             </div>
             <div class="note ok">
@@ -1484,9 +1489,9 @@ title?: string</code></pre>
     return (
         &lt;Alert
             status=&quot;success&quot;
-            title={t(&quot;story_alert_dismiss_title&quot;)}
-            description={t(&quot;story_alert_dismiss_desc&quot;)}
-            onClose={() =&gt; console.log(&quot;Alert closed&quot;)} /&gt;
+            title={args.title || t(&quot;story_alert_dismiss_title&quot;)}
+            description={args.description || t(&quot;story_alert_dismiss_desc&quot;)}
+            onClose={args.onClose ?? (() =&gt; console.log(&quot;Alert closed&quot;))} /&gt;
     );
 };</code></pre>
             </div>
@@ -1503,9 +1508,9 @@ title?: string</code></pre>
     return (
         &lt;Alert
             status=&quot;info&quot;
-            title={t(&quot;story_alert_update_title&quot;)}
-            description={t(&quot;story_alert_update_desc&quot;)}
-            onClose={() =&gt; {}} /&gt;
+            title={args.title || t(&quot;story_alert_update_title&quot;)}
+            description={args.description || t(&quot;story_alert_update_desc&quot;)}
+            onClose={args.onClose ?? (() =&gt; {})} /&gt;
     );
 };</code></pre>
             </div>
@@ -5274,8 +5279,8 @@ title?: string</code></pre>
     return (
         &lt;Banner
             status=&quot;info&quot;
-            title={t(&quot;story_banner_update_title&quot;)}
-            description={t(&quot;story_banner_update_desc&quot;)} /&gt;
+            title={args.title || t(&quot;story_banner_update_title&quot;)}
+            description={args.description || t(&quot;story_banner_update_desc&quot;)} /&gt;
     );
 };</code></pre>
             </div>
@@ -5292,8 +5297,8 @@ title?: string</code></pre>
     return (
         &lt;Banner
             status=&quot;success&quot;
-            title={t(&quot;story_alert_success_title&quot;)}
-            description={t(&quot;story_banner_update_desc&quot;)} /&gt;
+            title={args.title || t(&quot;story_alert_success_title&quot;)}
+            description={args.description || t(&quot;story_banner_update_desc&quot;)} /&gt;
     );
 };</code></pre>
             </div>
@@ -5310,8 +5315,8 @@ title?: string</code></pre>
     return (
         &lt;Banner
             status=&quot;warning&quot;
-            title={t(&quot;story_banner_maint_title&quot;)}
-            description={t(&quot;story_banner_maint_desc&quot;)} /&gt;
+            title={args.title || t(&quot;story_banner_maint_title&quot;)}
+            description={args.description || t(&quot;story_banner_maint_desc&quot;)} /&gt;
     );
 };</code></pre>
             </div>
@@ -5328,9 +5333,9 @@ title?: string</code></pre>
     return (
         &lt;Banner
             status=&quot;error&quot;
-            title={t(&quot;story_banner_conn_error_title&quot;)}
-            description={t(&quot;story_banner_conn_error_desc&quot;)}
-            onClose={() =&gt; {}} /&gt;
+            title={args.title || t(&quot;story_banner_conn_error_title&quot;)}
+            description={args.description || t(&quot;story_banner_conn_error_desc&quot;)}
+            onClose={args.onClose ?? (() =&gt; {})} /&gt;
     );
 };</code></pre>
             </div>
@@ -5347,8 +5352,8 @@ title?: string</code></pre>
     return (
         &lt;Banner
             status=&quot;info&quot;
-            title={t(&quot;story_banner_cookie_title&quot;)}
-            description={t(&quot;story_banner_cookie_desc&quot;)}
+            title={args.title || t(&quot;story_banner_cookie_title&quot;)}
+            description={args.description || t(&quot;story_banner_cookie_desc&quot;)}
             extra={
               &lt;Button
                 size=&quot;small&quot;
@@ -5372,8 +5377,8 @@ title?: string</code></pre>
     return (
         &lt;Banner
             status=&quot;warning&quot;
-            title={t(&quot;story_banner_trial_title&quot;)}
-            description={t(&quot;story_banner_trial_desc&quot;)}
+            title={args.title || t(&quot;story_banner_trial_title&quot;)}
+            description={args.description || t(&quot;story_banner_trial_desc&quot;)}
             extra={
               &lt;Button
                 size=&quot;small&quot;
@@ -5381,7 +5386,7 @@ title?: string</code></pre>
                 label={t(&quot;story_banner_btn_upgrade&quot;)}
               /&gt;
             }
-            onClose={() =&gt; {}} /&gt;
+            onClose={args.onClose ?? (() =&gt; {})} /&gt;
     );
 };</code></pre>
             </div>
@@ -5394,7 +5399,12 @@ title?: string</code></pre>
               
               <pre><code>const DescriptionOnly = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Banner status=&quot;info&quot; description={t(&quot;story_banner_no_title_desc&quot;)} /&gt;;
+
+    return (
+        &lt;Banner
+            status=&quot;info&quot;
+            description={args.description || t(&quot;story_banner_no_title_desc&quot;)} /&gt;
+    );
 };</code></pre>
             </div>
             <div class="note ok">
@@ -5410,8 +5420,8 @@ title?: string</code></pre>
     return (
         &lt;Banner
             status=&quot;info&quot;
-            title={t(&quot;story_banner_simple_title&quot;)}
-            description={t(&quot;story_banner_simple_desc&quot;)}
+            title={args.title || t(&quot;story_banner_simple_title&quot;)}
+            description={args.description || t(&quot;story_banner_simple_desc&quot;)}
             icon={false} /&gt;
     );
 };</code></pre>
@@ -12096,10 +12106,9 @@ label?: string</code></pre>
 
     return (
         &lt;Checkbox
+            checked
             label={t(&quot;story_checkbox_newsletter&quot;)}
-            checked={true}
-            // Supress warning
-            onChange={() =&gt; {}} /&gt;
+            onChange={args.onChange ?? (() =&gt; {})} /&gt;
     );
 };</code></pre>
             </div>
@@ -12112,7 +12121,7 @@ label?: string</code></pre>
               
               <pre><code>const Disabled = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Checkbox label={t(&quot;story_checkbox_disabled&quot;)} disabled={true} /&gt;;
+    return &lt;Checkbox disabled label={t(&quot;story_checkbox_disabled&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -12127,10 +12136,10 @@ label?: string</code></pre>
 
     return (
         &lt;Checkbox
+            disabled
+            checked
             label={t(&quot;story_checkbox_dis_checked&quot;)}
-            disabled={true}
-            checked={true}
-            onChange={() =&gt; {}} /&gt;
+            onChange={args.onChange ?? (() =&gt; {})} /&gt;
     );
 };</code></pre>
             </div>
@@ -12146,11 +12155,10 @@ label?: string</code></pre>
 
     return (
         &lt;Checkbox
+            indeterminate
+            checked
             label={t(&quot;story_checkbox_indeterminate&quot;)}
-            indeterminate={true}
-            // Usually indeterminate implies partially selected
-            checked={true}
-            onChange={() =&gt; {}} /&gt;
+            onChange={args.onChange ?? (() =&gt; {})} /&gt;
     );
 };</code></pre>
             </div>
@@ -27951,9 +27959,9 @@ iconName: React.ComponentProps&lt;typeof Icon&gt;[&quot;name&quot;]</code></pre>
 
     return (
         &lt;IconButton
+            priority=&quot;tertiary&quot;
             iconName=&quot;CloseIcon&quot;
-            aria-label={t(&quot;story_iconbutton_close&quot;)}
-            priority=&quot;tertiary&quot; /&gt;
+            aria-label={t(&quot;story_iconbutton_close&quot;)} /&gt;
     );
 };</code></pre>
             </div>
@@ -29988,7 +29996,7 @@ width?: &quot;xs&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quo
             &lt;Input
                 width=&quot;md&quot;
                 fullWidth={false}
-                disabled={true}
+                disabled
                 placeholder={t(&quot;story_input_placeholder_userid&quot;)} /&gt;
         &lt;/Label&gt;
     );
@@ -30008,8 +30016,8 @@ width?: &quot;xs&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quo
         &lt;Label label={t(&quot;story_input_label_contact&quot;)} style={{ width: &quot;100%&quot; }}&gt;
             &lt;Input
                 width=&quot;md&quot;
+                fullWidth
                 disabled={false}
-                fullWidth={true}
                 placeholder={t(&quot;story_input_placeholder_contact&quot;)} /&gt;
         &lt;/Label&gt;
     );
@@ -43214,7 +43222,7 @@ label?: string</code></pre>
               
               <pre><code>const Checked = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Radio label={t(&quot;story_radio_checked&quot;)} checked={true} value=&quot;checked&quot; /&gt;;
+    return &lt;Radio checked label={t(&quot;story_radio_checked&quot;)} value=&quot;checked&quot; /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -43226,7 +43234,7 @@ label?: string</code></pre>
               
               <pre><code>const Disabled = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Radio label={t(&quot;story_radio_disabled&quot;)} disabled={true} value=&quot;disabled&quot; /&gt;;
+    return &lt;Radio disabled label={t(&quot;story_radio_disabled&quot;)} value=&quot;disabled&quot; /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -43241,9 +43249,9 @@ label?: string</code></pre>
 
     return (
         &lt;Radio
+            disabled
+            checked
             label={t(&quot;story_radio_dis_checked&quot;)}
-            disabled={true}
-            checked={true}
             value=&quot;disabled-checked&quot; /&gt;
     );
 };</code></pre>
@@ -52059,7 +52067,7 @@ value?: number</code></pre>
 
     return (
         &lt;Label label={t(&quot;story_slider_disabled&quot;)}&gt;
-            &lt;Slider defaultValue={30} disabled={true} /&gt;
+            &lt;Slider defaultValue={30} disabled /&gt;
         &lt;/Label&gt;
     );
 };</code></pre>
@@ -52356,7 +52364,7 @@ showCloseButton?: boolean = false
 /**
  * 表示するタイプ
  */
-variant?: | &quot;default&quot;
+status?: | &quot;default&quot;
 | &quot;success&quot;
 | &quot;warning&quot;
 | &quot;error&quot;
@@ -52389,7 +52397,7 @@ variant?: | &quot;default&quot;
     return (
         &lt;Snackbar
             open
-            variant=&quot;default&quot;
+            status=&quot;default&quot;
             position=&quot;bottom-center&quot;
             message={args.message || t(&quot;story_snackbar_message&quot;)} /&gt;
     );
@@ -52442,13 +52450,7 @@ variant?: | &quot;default&quot;
               
               <pre><code>const Success = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-
-    return (
-        &lt;Snackbar
-            open
-            variant=&quot;success&quot;
-            message={args.message || t(&quot;story_snackbar_saved&quot;)} /&gt;
-    );
+    return &lt;Snackbar open status=&quot;success&quot; message={args.message || t(&quot;story_snackbar_saved&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -52460,7 +52462,7 @@ variant?: | &quot;default&quot;
               
               <pre><code>const ErrorStatus = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Snackbar open variant=&quot;error&quot; message={args.message || t(&quot;story_snackbar_failed&quot;)} /&gt;;
+    return &lt;Snackbar open status=&quot;error&quot; message={args.message || t(&quot;story_snackbar_failed&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -52476,7 +52478,7 @@ variant?: | &quot;default&quot;
     return (
         &lt;Snackbar
             open
-            variant=&quot;warning&quot;
+            status=&quot;warning&quot;
             message={args.message || t(&quot;story_snackbar_storage_full&quot;)} /&gt;
     );
 };</code></pre>
@@ -52494,7 +52496,7 @@ variant?: | &quot;default&quot;
     return (
         &lt;Snackbar
             open
-            variant=&quot;info&quot;
+            status=&quot;info&quot;
             message={args.message || t(&quot;story_snackbar_update_available&quot;)} /&gt;
     );
 };</code></pre>
@@ -52690,7 +52692,7 @@ const MyComponent = () =&gt; {
       onClick={() =&gt;
         showMessage({
           message: &quot;Data saved&quot;,
-          variant: &quot;success&quot;,
+          status: &quot;success&quot;,
           actionLabel: &quot;Undo&quot;,
         })
       }
@@ -55136,7 +55138,7 @@ steps?: Step[] = []</code></pre>
               
               <pre><code>const Vertical = () =&gt; {
     const steps = useDefaultSteps();
-    return &lt;Stepper steps={steps} current={1} direction=&quot;vertical&quot; /&gt;;
+    return &lt;Stepper direction=&quot;vertical&quot; steps={steps} current={1} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -55148,7 +55150,7 @@ steps?: Step[] = []</code></pre>
               
               <pre><code>const LabelVertical = () =&gt; {
     const steps = useDefaultSteps();
-    return &lt;Stepper steps={steps} current={1} labelPlacement=&quot;vertical&quot; /&gt;;
+    return &lt;Stepper labelPlacement=&quot;vertical&quot; steps={steps} current={1} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -55160,7 +55162,7 @@ steps?: Step[] = []</code></pre>
               
               <pre><code>const ErrorStatus = () =&gt; {
     const steps = useDefaultSteps();
-    return &lt;Stepper steps={steps} current={1} status=&quot;error&quot; /&gt;;
+    return &lt;Stepper status=&quot;error&quot; steps={steps} current={1} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -55581,7 +55583,7 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
               
               <pre><code>const Checked = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Switch label={t(&quot;story_switch_wifi&quot;)} defaultChecked={true} /&gt;;
+    return &lt;Switch defaultChecked label={t(&quot;story_switch_wifi&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -55593,7 +55595,7 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
               
               <pre><code>const Small = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Switch label={t(&quot;story_switch_airplane&quot;)} size=&quot;small&quot; /&gt;;
+    return &lt;Switch size=&quot;small&quot; label={t(&quot;story_switch_airplane&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -55605,7 +55607,7 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
               
               <pre><code>const Disabled = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Switch label={t(&quot;story_switch_bluetooth&quot;)} disabled={true} /&gt;;
+    return &lt;Switch disabled label={t(&quot;story_switch_bluetooth&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -55617,7 +55619,7 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
               
               <pre><code>const DisabledChecked = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Switch label={t(&quot;story_switch_bluetooth&quot;)} disabled={true} defaultChecked={true} /&gt;;
+    return &lt;Switch disabled defaultChecked label={t(&quot;story_switch_bluetooth&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -58487,7 +58489,7 @@ variant?: &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;</code></
         &lt;Label label={t(&quot;story_textarea_label_message&quot;)}&gt;
             &lt;Textarea
                 disabled={false}
-                fullWidth={true}
+                fullWidth
                 placeholder={t(&quot;story_textarea_placeholder_thanks&quot;)} /&gt;
         &lt;/Label&gt;
     );
@@ -59469,9 +59471,9 @@ isVisible?: boolean = true
 
 onClose?: (id?: string) =&gt; void
 
-title?: string
+status?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;error&quot; = &quot;info&quot;
 
-variant?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;error&quot; = &quot;info&quot;</code></pre>
+title?: string</code></pre>
           </div>
         </div>
     
@@ -59499,7 +59501,7 @@ variant?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;e
 
     return (
         &lt;Toast
-            variant=&quot;success&quot;
+            status=&quot;success&quot;
             title={args.title || t(&quot;story_toast_saved_title&quot;)}
             description={args.description || t(&quot;story_toast_saved_desc&quot;)} /&gt;
     );
@@ -59517,7 +59519,7 @@ variant?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;e
 
     return (
         &lt;Toast
-            variant=&quot;success&quot;
+            status=&quot;success&quot;
             title={args.title || t(&quot;story_toast_success_title&quot;)}
             description={args.description || t(&quot;story_toast_success_desc&quot;)} /&gt;
     );
@@ -59535,7 +59537,7 @@ variant?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;e
 
     return (
         &lt;Toast
-            variant=&quot;info&quot;
+            status=&quot;info&quot;
             title={args.title || t(&quot;story_toast_update_title&quot;)}
             description={args.description || t(&quot;story_toast_update_desc&quot;)} /&gt;
     );
@@ -59553,7 +59555,7 @@ variant?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;e
 
     return (
         &lt;Toast
-            variant=&quot;warning&quot;
+            status=&quot;warning&quot;
             title={args.title || t(&quot;story_toast_connection_title&quot;)}
             description={args.description || t(&quot;story_toast_connection_desc&quot;)} /&gt;
     );
@@ -59571,7 +59573,7 @@ variant?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;e
 
     return (
         &lt;Toast
-            variant=&quot;error&quot;
+            status=&quot;error&quot;
             title={args.title || t(&quot;story_toast_upload_failed_title&quot;)}
             description={args.description || t(&quot;story_toast_upload_failed_desc&quot;)} /&gt;
     );
@@ -59742,7 +59744,7 @@ const MyComponent = () =&gt; {
         show({
           title: &quot;Success&quot;,
           description: &quot;Data has been successfully saved.&quot;,
-          variant: &quot;success&quot;,
+          status: &quot;success&quot;,
         })
       }
     &gt;

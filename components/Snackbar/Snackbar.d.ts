@@ -1,5 +1,5 @@
 import { default as React } from '../../../node_modules/react';
-export type SnackbarVariant = "default" | "success" | "warning" | "error" | "info";
+export type SnackbarStatus = "default" | "success" | "warning" | "error" | "info";
 export type SnackbarPosition = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
 export interface SnackbarProps {
     /** スナックバーに表示するメッセージ */
@@ -7,7 +7,7 @@ export interface SnackbarProps {
     /** 表示状態 */
     open?: boolean;
     /** 表示するタイプ */
-    variant?: SnackbarVariant;
+    status?: SnackbarStatus;
     /** 表示位置 */
     position?: SnackbarPosition;
     /** 自動で閉じるまでの時間（ミリ秒）。0を指定すると自動で閉じません。 */
@@ -26,7 +26,7 @@ export interface SnackbarProps {
 /**
  * ユーザーに短いメッセージを通知するためのスナックバーコンポーネント。
  */
-export declare const Snackbar: ({ message, open, variant, position, autoHideDuration, showCloseButton, actionLabel, onAction, onClose, className, }: SnackbarProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const Snackbar: ({ message, open, status, position, autoHideDuration, showCloseButton, actionLabel, onAction, onClose, className, }: SnackbarProps) => import("react/jsx-runtime").JSX.Element | null;
 type SnackbarContextType = {
     showMessage: (props: string | Omit<SnackbarProps, "open" | "onClose">) => void;
     hideMessage: () => void;
