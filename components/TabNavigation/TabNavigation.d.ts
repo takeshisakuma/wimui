@@ -1,11 +1,12 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 export interface TabNavigationProps extends React.ComponentPropsWithoutRef<"nav"> {
     /** Visual style of the tabs */
     variant?: "underline" | "pill" | "contained";
     /** Alignment of the tabs */
     align?: "start" | "center" | "end" | "justify";
     /** Size of the tabs */
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
 }
 declare const TabNavigation: React.ForwardRefExoticComponent<TabNavigationProps & React.RefAttributes<HTMLElement>>;
 export interface TabNavigationItemProps extends React.ComponentPropsWithoutRef<"a"> {

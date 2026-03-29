@@ -1,0 +1,7 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{c as s}from"./index-C8PrtP12.js";import{I as o}from"./IndicatorBase-7ruf9QZU.js";const m=({children:a,content:r,icon:n,className:l,...i})=>{const e=a??r;return t.jsx(o,{prefixClass:"wim-badge",icon:n,className:s(!e&&"wim-badge--icon-only",l),...i,children:e})};m.__docgenInfo={description:"状態やカウントなどを表示するためのバッジコンポーネント。",methods:[],displayName:"Badge",props:{children:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:"表示するコンテンツ"},content:{required:!1,tsType:{name:"string"},description:"@deprecated use children instead"},icon:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:"アイコン"},status:{required:!1,tsType:{name:"union",raw:`| "primary"
+| "secondary"
+| "success"
+| "warning"
+| "error"
+| "info"
+| "neutral"`,elements:[{name:"literal",value:'"primary"'},{name:"literal",value:'"secondary"'},{name:"literal",value:'"success"'},{name:"literal",value:'"warning"'},{name:"literal",value:'"error"'},{name:"literal",value:'"info"'},{name:"literal",value:'"neutral"'}]},description:"ステータス"},variant:{required:!1,tsType:{name:"union",raw:'"solid" | "outline" | "subtle"',elements:[{name:"literal",value:'"solid"'},{name:"literal",value:'"outline"'},{name:"literal",value:'"subtle"'}]},description:"バリアント"},size:{required:!1,tsType:{name:"union",raw:'"small" | "medium" | "large"',elements:[{name:"literal",value:'"small"'},{name:"literal",value:'"medium"'},{name:"literal",value:'"large"'}]},description:"サイズ"}}};export{m as B};

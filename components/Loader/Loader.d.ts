@@ -1,5 +1,5 @@
 import { default as React } from '../../../node_modules/react';
-import { WimColor } from '../../types/tokens';
+import { WimColor, ComponentSize } from '../../types/tokens';
 export type LoaderVariant = "bars" | "dots" | "pulse";
 export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
@@ -9,7 +9,7 @@ export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * ローダーのサイズ。
      */
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     /**
      * ローダーの色。
      */

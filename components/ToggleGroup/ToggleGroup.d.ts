@@ -1,5 +1,6 @@
 import { default as React } from '../../../node_modules/react';
 import { Icon } from '../Icon/Icon';
+import { ComponentSize } from '../../types/tokens';
 export type Option = {
     label?: string;
     value: string;
@@ -12,7 +13,7 @@ type ToggleGroupProps = {
     defaultValue?: string | string[];
     onChange?: (value: string | string[]) => void;
     selectionMode?: "single" | "multiple";
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     fullWidth?: boolean;
     className?: string;
     /**

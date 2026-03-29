@@ -1,4 +1,5 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 export type KbdProps = React.ComponentPropsWithoutRef<"kbd"> & {
     /**
      * キーボードのラベル（または子要素）。
@@ -7,7 +8,7 @@ export type KbdProps = React.ComponentPropsWithoutRef<"kbd"> & {
     /**
      * サイズ。
      */
-    size?: "small" | "medium";
+    size?: ComponentSize;
 };
 /**
  * ユーザーが入力するキーボードのショートカットやキーを表示するためのコンポーネント。

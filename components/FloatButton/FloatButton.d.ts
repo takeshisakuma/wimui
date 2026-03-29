@@ -1,4 +1,5 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     /** Icon name from the library */
     iconName?: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon" | "ArrowUpIcon" | string;
@@ -7,7 +8,7 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
     /** Shape of the button */
     shape?: "circle" | "square";
     /** Size of the button */
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     /** Label text for extended FAB */
     label?: string;
     /** Whether to shrink the extended FAB (hide label) */

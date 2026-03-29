@@ -1,4 +1,5 @@
 import { default as React, ReactNode } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 export type InteractiveAreaProps = Omit<React.ComponentPropsWithoutRef<"div">, "title" | "description"> & {
     /**
      * Area title
@@ -27,7 +28,7 @@ export type InteractiveAreaProps = Omit<React.ComponentPropsWithoutRef<"div">, "
     /**
      * Size variation
      */
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     /**
      * Whether the area is currently in a dragging state (for dropzone)
      */
@@ -72,7 +73,7 @@ export declare const InteractiveArea: React.ForwardRefExoticComponent<Omit<Omit<
     /**
      * Size variation
      */
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     /**
      * Whether the area is currently in a dragging state (for dropzone)
      */

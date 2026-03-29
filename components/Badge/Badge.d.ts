@@ -1,4 +1,5 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
     /** 表示するコンテンツ */
     children?: React.ReactNode;
@@ -11,7 +12,7 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
     /** バリアント */
     variant?: "solid" | "outline" | "subtle";
     /** サイズ */
-    size?: "small" | "medium";
+    size?: ComponentSize;
 };
 /**
  * 状態やカウントなどを表示するためのバッジコンポーネント。

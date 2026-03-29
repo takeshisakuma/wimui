@@ -1,5 +1,6 @@
 import { default as React } from '../../../node_modules/react';
 import { Icon } from '../Icon/Icon';
+import { ComponentSize } from '../../types/tokens';
 type FileUploadProps = {
     label?: string;
     buttonLabel?: string;
@@ -11,7 +12,7 @@ type FileUploadProps = {
     className?: string;
     iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     error?: string;
     required?: boolean;
     layout?: "vertical" | "horizontal";

@@ -1,3 +1,4 @@
+import { ComponentSize } from '../../types/tokens';
 export interface FeedbackCloseButtonProps {
     /**
      * 閉じるボタンをクリックした時のコールバック。指定するとボタンが表示されます。
@@ -18,7 +19,7 @@ export interface FeedbackCloseButtonProps {
     /**
      * アイコンのサイズ
      */
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
 }
 /**
  * 通知系コンポーネントで共通して使用される閉じるボタン（内部用）

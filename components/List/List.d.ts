@@ -1,8 +1,9 @@
 import { default as React } from '../../../node_modules/react';
 import { Icon } from '../Icon/Icon';
+import { ComponentSize } from '../../types/tokens';
 type ListProps = React.ComponentPropsWithoutRef<"ul"> & {
     as?: "ul" | "ol";
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     spacing?: "tight" | "normal" | "loose";
     children: React.ReactNode;
 };

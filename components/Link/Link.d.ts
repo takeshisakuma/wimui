@@ -1,8 +1,9 @@
 import { default as React } from '../../../node_modules/react';
 import { Icon } from '../Icon/Icon';
+import { ComponentSize } from '../../types/tokens';
 type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
     label?: string;
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     priority?: "primary" | "secondary" | "tertiary";
     iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";

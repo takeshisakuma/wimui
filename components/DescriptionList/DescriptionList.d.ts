@@ -1,9 +1,10 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 type DescriptionListProps = {
     children: React.ReactNode;
     className?: string;
     layout?: "horizontal" | "vertical" | "compact";
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     border?: boolean;
 };
 export declare const DescriptionList: ({ children, className, layout, size, border, ...props }: DescriptionListProps) => import("react/jsx-runtime").JSX.Element;

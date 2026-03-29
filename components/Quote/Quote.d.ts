@@ -1,6 +1,7 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 type QuoteProps = React.ComponentPropsWithoutRef<"blockquote"> & {
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "primary" | "success" | "warning" | "error" | "info";
     content: string;
     cite?: string;

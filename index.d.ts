@@ -1,3 +1,4 @@
+export * from './types/tokens';
 export * from './components/Accordion/Accordion';
 export * from './components/Affix/Affix';
 export * from './components/Alert/Alert';

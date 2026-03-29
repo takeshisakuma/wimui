@@ -1,9 +1,10 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
     value?: number;
     max?: number;
     status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral";
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     label?: string;
     showValue?: boolean;
     indeterminate?: boolean;

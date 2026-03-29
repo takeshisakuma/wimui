@@ -1,3 +1,4 @@
+import { ComponentSize } from '../../types/tokens';
 type RatingProps = {
     /**
      * 現在の値
@@ -26,7 +27,7 @@ type RatingProps = {
     /**
      * サイズ
      */
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     /**
      * 値変更時のコールバック
      */

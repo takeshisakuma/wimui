@@ -1,8 +1,9 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 type AvatarGroupProps = {
     children: React.ReactNode;
     max?: number;
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     total?: number;
     className?: string;
 };

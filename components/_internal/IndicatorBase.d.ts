@@ -1,10 +1,11 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
     children?: React.ReactNode;
     icon?: React.ReactNode;
     status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
     variant?: "solid" | "outline" | "subtle";
-    size?: "small" | "medium";
+    size?: ComponentSize;
     prefixClass: string;
     as?: C;
     className?: string;

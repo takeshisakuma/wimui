@@ -1,4 +1,5 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 export type ChipProps = {
     /** 表示するコンテンツ (labelより優先されます) */
     children?: React.ReactNode;
@@ -21,7 +22,7 @@ export type ChipProps = {
     /** バリアント */
     variant?: "solid" | "outline" | "subtle";
     /** サイズ */
-    size?: "small" | "medium";
+    size?: ComponentSize;
     /** 追加のクラス名 */
     className?: string;
     /** その他のprops */

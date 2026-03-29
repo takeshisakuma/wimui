@@ -1,10 +1,10 @@
 import { default as React } from '../../../node_modules/react';
 import { Icon } from '../Icon/Icon';
-import { WimColor } from '../../types/tokens';
+import { WimColor, ComponentSize } from '../../types/tokens';
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
     /** ボタンの背景色をデザイントークンで上書きする。通常は `priority` prop で対応できるため、このpropは最終手段として使用してください。 */
     backgroundColor?: WimColor;
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     label?: string;
     priority?: "primary" | "secondary" | "tertiary";
     /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
@@ -24,7 +24,7 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
 export declare const Button: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref"> & {
     /** ボタンの背景色をデザイントークンで上書きする。通常は `priority` prop で対応できるため、このpropは最終手段として使用してください。 */
     backgroundColor?: WimColor;
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     label?: string;
     priority?: "primary" | "secondary" | "tertiary";
     /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */

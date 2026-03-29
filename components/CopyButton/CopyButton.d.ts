@@ -1,6 +1,7 @@
+import { ComponentSize } from '../../types/tokens';
 type CopyButtonProps = {
     value: string;
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     className?: string;
     "aria-label"?: string;
 };

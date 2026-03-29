@@ -1,4 +1,5 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 export type FeedbackStatus = "info" | "success" | "warning" | "error" | "default";
 export interface FeedbackIconProps {
     /**
@@ -12,7 +13,7 @@ export interface FeedbackIconProps {
     /**
      * アイコンのサイズ
      */
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     /**
      * 追加のクラス名
      */

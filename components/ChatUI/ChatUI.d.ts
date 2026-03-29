@@ -1,4 +1,5 @@
 import { default as React } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 export interface ChatContainerProps {
     children: React.ReactNode;
     className?: string;
@@ -31,7 +32,7 @@ export interface ChatAvatarProps {
     src?: string;
     alt?: string;
     fallback?: string;
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     color?: "s1" | "s3" | "s5" | "s7" | "s10" | "s12" | "s14" | "s16" | "s18" | "s20" | "s22" | "s24";
     className?: string;
 }

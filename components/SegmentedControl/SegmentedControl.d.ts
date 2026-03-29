@@ -1,3 +1,4 @@
+import { ComponentSize } from '../../types/tokens';
 type Option = {
     label?: string;
     value: string;
@@ -7,7 +8,7 @@ type SegmentedControlProps = {
     options: Option[];
     value: string;
     onChange: (value: string) => void;
-    size?: "small" | "medium" | "large";
+    size?: ComponentSize;
     fullWidth?: boolean;
     className?: string;
     /**
