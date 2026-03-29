@@ -42,18 +42,40 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "WimUI",
-      formats: ["es", "umd"],
-      fileName: (format) => `wimui.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime", "react-native-fs"],
-      output: {
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-          "react/jsx-runtime": "jsxRuntime",
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react-native-fs",
+        "i18next",
+        "react-i18next",
+      ],
+      output: [
+        {
+          format: "es" as const,
+          dir: "dist",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          entryFileNames: "[name].js",
+          assetFileNames: "assets/[name][extname]",
         },
-      },
+        {
+          format: "umd" as const,
+          dir: "dist",
+          name: "WimUI",
+          entryFileNames: "wimui.umd.js",
+          globals: {
+            react: "React",
+            "react-dom": "ReactDOM",
+            "react/jsx-runtime": "jsxRuntime",
+            i18next: "i18next",
+            "react-i18next": "reactI18next",
+          },
+          assetFileNames: "assets/[name][extname]",
+        },
+      ],
     },
     chunkSizeWarningLimit: 2000,
   },
