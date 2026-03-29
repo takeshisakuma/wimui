@@ -1,210 +1,212 @@
-.wim-rte {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  width: 320px;
-  max-width: 100%;
-  overflow: hidden;
-  background-color: var(--wim-color-bg-component, #fff);
-  border: 1px solid var(--wim-color-secondary);
-  border-radius: var(--wim-radius-md);
-  transition: var(--wim-transition-base);
-
-  &:focus-within {
-    border-color: var(--wim-color-primary);
-    box-shadow: inset 0 0 0 1px var(--wim-color-primary);
-  }
-
-  &--outline {
-    border-color: var(--wim-color-secondary);
-
-    &:focus-within {
-      border-color: var(--wim-color-primary);
-    }
-  }
-
-  &--ghost {
-    background-color: transparent;
-    border-color: transparent;
-
-    &:hover {
-      background-color: rgb(0 0 0 / 0.05);
-    }
-
-    &:focus-within {
-      background-color: transparent;
-      border-color: var(--wim-color-primary);
-    }
-  }
-
-  &--error {
-    border-color: var(--wim-color-text-error);
-
-    &:focus-within {
-      box-shadow: inset 0 0 0 1px var(--wim-color-text-error);
-    }
-  }
-
-  &--disabled {
-    cursor: not-allowed;
-    background-color: var(--wim-color-disabled);
-    border-color: var(--wim-color-disabled);
-
-    .wim-rte__toolbar {
-      pointer-events: none;
-      opacity: var(--wim-opacity-ghost);
-    }
-  }
-
-  &--full-width {
-    width: 100%;
-    max-width: none;
-  }
-
-  // ---- Toolbar ----
-
-  &__toolbar {
+@layer component {
+  .wim-rte {
+    box-sizing: border-box;
     display: flex;
-    flex-flow: row wrap;
-    gap: 2px;
-    align-items: center;
-    padding: var(--wim-spacing-xs, 4px) var(--wim-spacing-sm, 8px);
-    border-bottom: 1px solid var(--wim-color-secondary);
-  }
-
-  &__toolbar-sep {
-    display: inline-block;
-    flex-shrink: 0;
-    width: 1px;
-    height: 20px;
-    margin: 0 var(--wim-spacing-xs, 4px);
-    background-color: var(--wim-color-secondary);
-  }
-
-  &__toolbar-btn {
-    all: unset;
-    box-sizing: border-box;
-    display: inline-flex;
-    flex-shrink: 0;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    padding: 4px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    line-height: 1;
-    color: var(--wim-color-text-secondary, var(--wim-color-text-primary));
-    white-space: nowrap;
-    cursor: pointer;
-    border-radius: var(--wim-radius-sm, 4px);
-    writing-mode: horizontal-tb;
+    flex-direction: column;
+    width: 320px;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: var(--wim-color-bg-component, #fff);
+    border: 1px solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
     transition: var(--wim-transition-base);
-
-    svg {
-      width: 16px;
-      height: 16px;
-      pointer-events: none;
+  
+    &:focus-within {
+      border-color: var(--wim-color-primary);
+      box-shadow: inset 0 0 0 1px var(--wim-color-primary);
     }
-
-    &:hover:not(:disabled) {
-      color: var(--wim-color-text-primary);
-      background-color: var(--wim-color-secondary-hover, rgb(0 0 0 / 0.08));
+  
+    &--outline {
+      border-color: var(--wim-color-secondary);
+  
+      &:focus-within {
+        border-color: var(--wim-color-primary);
+      }
     }
-
-    &--active {
-      color: var(--wim-color-primary);
-      background-color: color-mix(in srgb, var(--wim-color-primary) 12%, transparent);
+  
+    &--ghost {
+      background-color: transparent;
+      border-color: transparent;
+  
+      &:hover {
+        background-color: rgb(0 0 0 / 0.05);
+      }
+  
+      &:focus-within {
+        background-color: transparent;
+        border-color: var(--wim-color-primary);
+      }
     }
-
-    &:disabled {
-      color: var(--wim-color-text-disabled);
+  
+    &--error {
+      border-color: var(--wim-color-text-error);
+  
+      &:focus-within {
+        box-shadow: inset 0 0 0 1px var(--wim-color-text-error);
+      }
+    }
+  
+    &--disabled {
       cursor: not-allowed;
+      background-color: var(--wim-color-disabled);
+      border-color: var(--wim-color-disabled);
+  
+      .wim-rte__toolbar {
+        pointer-events: none;
+        opacity: var(--wim-opacity-ghost);
+      }
     }
-
-    &:focus-visible {
-      outline: 2px solid var(--wim-color-primary);
-      outline-offset: 1px;
+  
+    &--full-width {
+      width: 100%;
+      max-width: none;
     }
-  }
-
-  // ---- Content (editable area) ----
-
-  &__content {
-    box-sizing: border-box;
-    flex: 1;
-    padding: var(--wim-spacing-sm, 8px) var(--wim-spacing-md, 16px);
-    overflow-y: auto;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--wim-color-text-primary);
-    overflow-wrap: break-word;
-    outline: none;
-    box-shadow: none;
-
-    // Suppress browser-native focus ring on contentEditable
-    &:focus,
-    &:focus-visible {
+  
+    // ---- Toolbar ----
+  
+    &__toolbar {
+      display: flex;
+      flex-flow: row wrap;
+      gap: 2px;
+      align-items: center;
+      padding: var(--wim-spacing-xs, 4px) var(--wim-spacing-sm, 8px);
+      border-bottom: 1px solid var(--wim-color-secondary);
+    }
+  
+    &__toolbar-sep {
+      display: inline-block;
+      flex-shrink: 0;
+      width: 1px;
+      height: 20px;
+      margin: 0 var(--wim-spacing-xs, 4px);
+      background-color: var(--wim-color-secondary);
+    }
+  
+    &__toolbar-btn {
+      all: unset;
+      box-sizing: border-box;
+      display: inline-flex;
+      flex-shrink: 0;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      padding: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      line-height: 1;
+      color: var(--wim-color-text-secondary, var(--wim-color-text-primary));
+      white-space: nowrap;
+      cursor: pointer;
+      border-radius: var(--wim-radius-sm, 4px);
+      writing-mode: horizontal-tb;
+      transition: var(--wim-transition-base);
+  
+      svg {
+        width: 16px;
+        height: 16px;
+        pointer-events: none;
+      }
+  
+      &:hover:not(:disabled) {
+        color: var(--wim-color-text-primary);
+        background-color: var(--wim-color-secondary-hover, rgb(0 0 0 / 0.08));
+      }
+  
+      &--active {
+        color: var(--wim-color-primary);
+        background-color: color-mix(in srgb, var(--wim-color-primary) 12%, transparent);
+      }
+  
+      &:disabled {
+        color: var(--wim-color-text-disabled);
+        cursor: not-allowed;
+      }
+  
+      &:focus-visible {
+        outline: 2px solid var(--wim-color-primary);
+        outline-offset: 1px;
+      }
+    }
+  
+    // ---- Content (editable area) ----
+  
+    &__content {
+      box-sizing: border-box;
+      flex: 1;
+      padding: var(--wim-spacing-sm, 8px) var(--wim-spacing-md, 16px);
+      overflow-y: auto;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--wim-color-text-primary);
+      overflow-wrap: break-word;
       outline: none;
       box-shadow: none;
-    }
-
-    // Placeholder via CSS
-    &:empty::before {
-      color: var(--wim-color-text-tertiary);
-      pointer-events: none;
-      content: attr(data-placeholder);
-    }
-
-    // Reset heading styles inside editor
-    h1 {
-      margin: 0.25em 0;
-      font-size: 1.6em;
-      font-weight: bold;
-    }
-
-    h2 {
-      margin: 0.25em 0;
-      font-size: 1.3em;
-      font-weight: bold;
-    }
-
-    h3 {
-      margin: 0.25em 0;
-      font-size: 1.1em;
-      font-weight: bold;
-    }
-
-    p {
-      margin: 0.25em 0;
-    }
-
-    ul {
-      padding-left: 1.5em;
-      margin: 0.25em 0;
-      list-style-type: disc;
-    }
-
-    ol {
-      padding-left: 1.5em;
-      margin: 0.25em 0;
-      list-style-type: decimal;
-    }
-
-    a {
-      color: var(--wim-color-primary);
-      text-decoration: underline;
-    }
-
-    strong,
-    b {
-      font-weight: bold;
-    }
-
-    em,
-    i {
-      font-style: italic;
+  
+      // Suppress browser-native focus ring on contentEditable
+      &:focus,
+      &:focus-visible {
+        outline: none;
+        box-shadow: none;
+      }
+  
+      // Placeholder via CSS
+      &:empty::before {
+        color: var(--wim-color-text-tertiary);
+        pointer-events: none;
+        content: attr(data-placeholder);
+      }
+  
+      // Reset heading styles inside editor
+      h1 {
+        margin: 0.25em 0;
+        font-size: 1.6em;
+        font-weight: bold;
+      }
+  
+      h2 {
+        margin: 0.25em 0;
+        font-size: 1.3em;
+        font-weight: bold;
+      }
+  
+      h3 {
+        margin: 0.25em 0;
+        font-size: 1.1em;
+        font-weight: bold;
+      }
+  
+      p {
+        margin: 0.25em 0;
+      }
+  
+      ul {
+        padding-left: 1.5em;
+        margin: 0.25em 0;
+        list-style-type: disc;
+      }
+  
+      ol {
+        padding-left: 1.5em;
+        margin: 0.25em 0;
+        list-style-type: decimal;
+      }
+  
+      a {
+        color: var(--wim-color-primary);
+        text-decoration: underline;
+      }
+  
+      strong,
+      b {
+        font-weight: bold;
+      }
+  
+      em,
+      i {
+        font-style: italic;
+      }
     }
   }
 }

@@ -1,61 +1,63 @@
 ﻿@use "../../tokens/breakpoints" as breakpoints;
 
-.wim-otp-input-wrapper {
-  width: 100%;
-  container-type: inline-size;
-}
-
-.wim-otp-input-container {
-  display: flex;
-  gap: var(--wim-spacing-sm);
-  align-items: center;
-
-  @include breakpoints.container-down(sm) {
-    gap: var(--wim-spacing-xs);
+@layer component {
+  .wim-otp-input-wrapper {
+    width: 100%;
+    container-type: inline-size;
   }
-
-  &--disabled {
-    pointer-events: none;
-    opacity: var(--wim-opacity-secondary);
-  }
-}
-
-.wim-otp-input {
-  all: unset;
-  box-sizing: border-box;
-  width: 3rem;
-  height: 3rem;
-  font-size: 1.25rem;
-  color: var(--wim-color-text-primary);
-  text-align: center;
-  background-color: var(--wim-color-bg-component, #fff);
-  border: 1px solid var(--wim-color-secondary);
-  border-radius: var(--wim-radius-md);
-  transition: var(--wim-transition-base);
-
-  @include breakpoints.container-down(sm) {
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1rem;
-  }
-
-  &:focus {
-    border-color: var(--wim-color-primary);
-    box-shadow: 0 0 0 2px
-      color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
-  }
-
-  &--error {
-    border-color: var(--wim-color-text-error);
-
-    &:focus {
-      box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2);
+  
+  .wim-otp-input-container {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+  
+    @include breakpoints.container-down(sm) {
+      gap: var(--wim-spacing-xs);
+    }
+  
+    &--disabled {
+      pointer-events: none;
+      opacity: var(--wim-opacity-secondary);
     }
   }
-
-  &--disabled {
-    color: var(--wim-color-text-disabled);
-    cursor: not-allowed;
-    background-color: var(--wim-color-disabled);
+  
+  .wim-otp-input {
+    all: unset;
+    box-sizing: border-box;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+    color: var(--wim-color-text-primary);
+    text-align: center;
+    background-color: var(--wim-color-bg-component, #fff);
+    border: 1px solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
+    transition: var(--wim-transition-base);
+  
+    @include breakpoints.container-down(sm) {
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1rem;
+    }
+  
+    &:focus {
+      border-color: var(--wim-color-primary);
+      box-shadow: 0 0 0 2px
+        color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+    }
+  
+    &--error {
+      border-color: var(--wim-color-text-error);
+  
+      &:focus {
+        box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2);
+      }
+    }
+  
+    &--disabled {
+      color: var(--wim-color-text-disabled);
+      cursor: not-allowed;
+      background-color: var(--wim-color-disabled);
+    }
   }
 }

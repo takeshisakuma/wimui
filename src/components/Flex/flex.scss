@@ -1,3 +1,5 @@
-.wim-flex {
-  box-sizing: border-box;
+@layer component {
+  .wim-flex {
+    box-sizing: border-box;
+  }
 }

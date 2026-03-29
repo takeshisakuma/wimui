@@ -1,100 +1,102 @@
-.wim-card {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  overflow: visible;
-  color: var(--wim-color-text-primary);
-  background-color: var(--wim-color-bg-component, #fff);
-  transition: var(--wim-transition-base);
-
-  /* バリアント */
-  &--elevated {
-    border: 1px solid transparent;
-    box-shadow: var(--wim-shadow-sm);
-
-    &:hover {
-      box-shadow: var(--wim-shadow-lg);
-      transform: translateY(var(--wim-lift-sm));
+@layer component {
+  .wim-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    color: var(--wim-color-text-primary);
+    background-color: var(--wim-color-bg-component, #fff);
+    transition: var(--wim-transition-base);
+  
+    /* バリアント */
+    &--elevated {
+      border: 1px solid transparent;
+      box-shadow: var(--wim-shadow-sm);
+  
+      &:hover {
+        box-shadow: var(--wim-shadow-lg);
+        transform: translateY(var(--wim-lift-sm));
+      }
     }
-  }
-
-  &--outline {
-    border: 1px solid var(--wim-color-secondary);
-  }
-
-  &--flat {
-    background-color: var(--wim-color-disabled);
-    border: 1px solid transparent;
-  }
-
-  /* パディング */
-  &--padding-none {
-    padding: 0;
-
-    & > .wim-card__header,
-    & > .wim-card__body,
-    & > .wim-card__footer {
+  
+    &--outline {
+      border: 1px solid var(--wim-color-secondary);
+    }
+  
+    &--flat {
+      background-color: var(--wim-color-disabled);
+      border: 1px solid transparent;
+    }
+  
+    /* パディング */
+    &--padding-none {
       padding: 0;
+  
+      & > .wim-card__header,
+      & > .wim-card__body,
+      & > .wim-card__footer {
+        padding: 0;
+      }
     }
-  }
-
-  &--padding-sm {
-    padding: var(--wim-spacing-md) var(--wim-spacing-md);
-
-    & > .wim-card__header,
-    & > .wim-card__body,
-    & > .wim-card__footer {
+  
+    &--padding-sm {
       padding: var(--wim-spacing-md) var(--wim-spacing-md);
+  
+      & > .wim-card__header,
+      & > .wim-card__body,
+      & > .wim-card__footer {
+        padding: var(--wim-spacing-md) var(--wim-spacing-md);
+      }
     }
-  }
-
-  &--padding-md {
-    padding: var(--wim-spacing-xl) var(--wim-spacing-xl);
-
-    & > .wim-card__header,
-    & > .wim-card__body,
-    & > .wim-card__footer {
+  
+    &--padding-md {
       padding: var(--wim-spacing-xl) var(--wim-spacing-xl);
+  
+      & > .wim-card__header,
+      & > .wim-card__body,
+      & > .wim-card__footer {
+        padding: var(--wim-spacing-xl) var(--wim-spacing-xl);
+      }
     }
-  }
-
-  &--padding-lg {
-    padding: var(--wim-spacing-2xl) var(--wim-spacing-2xl);
-
-    & > .wim-card__header,
-    & > .wim-card__body,
-    & > .wim-card__footer {
+  
+    &--padding-lg {
       padding: var(--wim-spacing-2xl) var(--wim-spacing-2xl);
+  
+      & > .wim-card__header,
+      & > .wim-card__body,
+      & > .wim-card__footer {
+        padding: var(--wim-spacing-2xl) var(--wim-spacing-2xl);
+      }
     }
-  }
-
-  /* 角丸 */
-  &--radius-none {
-    border-radius: 0;
-  }
-
-  &--wim-radius-sm {
-    border-radius: var(--wim-radius-sm);
-  }
-
-  &--wim-radius-md {
-    border-radius: var(--wim-radius-md);
-  }
-
-  &--wim-radius-lg {
-    border-radius: var(--wim-radius-lg);
-  }
-
-  /* 内部要素 */
-  &__header {
-    border-bottom: 1px solid var(--wim-divider-color, rgb(0 0 0 / 0.08));
-  }
-
-  &__body {
-    flex: 1;
-  }
-
-  &__footer {
-    border-top: 1px solid var(--wim-divider-color, rgb(0 0 0 / 0.08));
+  
+    /* 角丸 */
+    &--radius-none {
+      border-radius: 0;
+    }
+  
+    &--wim-radius-sm {
+      border-radius: var(--wim-radius-sm);
+    }
+  
+    &--wim-radius-md {
+      border-radius: var(--wim-radius-md);
+    }
+  
+    &--wim-radius-lg {
+      border-radius: var(--wim-radius-lg);
+    }
+  
+    /* 内部要素 */
+    &__header {
+      border-bottom: 1px solid var(--wim-divider-color, rgb(0 0 0 / 0.08));
+    }
+  
+    &__body {
+      flex: 1;
+    }
+  
+    &__footer {
+      border-top: 1px solid var(--wim-divider-color, rgb(0 0 0 / 0.08));
+    }
   }
 }

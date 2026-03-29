@@ -1,56 +1,58 @@
-.wim-stats {
-  min-width: 160px;
-
-  &__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: var(--wim-spacing-2xl);
-  }
-
-  &__label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.25rem;
-    color: var(--wim-color-text-secondary);
-  }
-
-  &__value {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 2rem;
-    color: var(--wim-color-text-primary);
-  }
-
-  &__description {
-    font-size: 0.75rem;
-    line-height: 1rem;
-    color: var(--wim-color-text-tertiary);
-  }
-
-  &__trend {
-    display: inline-flex;
-    gap: var(--wim-spacing-2xs);
-    align-items: center;
-    width: fit-content;
-    padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
-    font-size: 0.75rem;
-    font-weight: 600;
-    border-radius: var(--wim-radius-sm);
-
-    &--up {
-      color: var(--wim-color-positive);
-      background-color: rgb(34 197 94 / 0.1);
+@layer component {
+  .wim-stats {
+    min-width: 160px;
+  
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: var(--wim-spacing-2xl);
     }
-
-    &--down {
-      color: var(--wim-color-destructive);
-      background-color: rgb(239 68 68 / 0.1);
+  
+    &__label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.25rem;
+      color: var(--wim-color-text-secondary);
     }
-
-    &--neutral {
+  
+    &__value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 2rem;
+      color: var(--wim-color-text-primary);
+    }
+  
+    &__description {
+      font-size: 0.75rem;
+      line-height: 1rem;
       color: var(--wim-color-text-tertiary);
-      background-color: var(--wim-color-disabled);
+    }
+  
+    &__trend {
+      display: inline-flex;
+      gap: var(--wim-spacing-2xs);
+      align-items: center;
+      width: fit-content;
+      padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: var(--wim-radius-sm);
+  
+      &--up {
+        color: var(--wim-color-positive);
+        background-color: rgb(34 197 94 / 0.1);
+      }
+  
+      &--down {
+        color: var(--wim-color-destructive);
+        background-color: rgb(239 68 68 / 0.1);
+      }
+  
+      &--neutral {
+        color: var(--wim-color-text-tertiary);
+        background-color: var(--wim-color-disabled);
+      }
     }
   }
 }

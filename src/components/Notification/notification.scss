@@ -1,110 +1,112 @@
-.wim-notification {
-  position: relative;
-  width: 384px;
-  max-width: calc(100vw - 32px);
-  padding: var(--wim-spacing-lg) var(--wim-spacing-md);
-  margin-bottom: var(--wim-spacing-md);
-  overflow: hidden;
-  background-color: var(--wim-color-bg-component, #fff);
-  border: 1px solid var(--wim-color-secondary);
-  border-radius: var(--wim-radius-md);
-  box-shadow: var(--wim-shadow-lg);
-
-  &-content {
-    display: flex;
-    gap: var(--wim-spacing-md);
-    align-items: center;
-  }
-
-  &-icon {
-    flex-shrink: 0;
-  }
-
-  &-message-container {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: var(--wim-spacing-2xs);
-  }
-
-  &-title {
-    margin-bottom: 0; // Reset margin when centered
-    font-size: var(--wim-font-size-md);
-    font-weight: var(--wim-font-weight-medium);
-    line-height: var(--wim-line-height-normal-jp);
-    color: var(--wim-color-text-primary);
-  }
-
-  &-description {
-    font-size: var(--wim-font-size-sm);
-    line-height: var(--wim-line-height-tight);
-    color: var(--wim-color-text-secondary);
-  }
-
-  &-close {
-    position: absolute;
-    top: var(--wim-spacing-sm);
-    right: var(--wim-spacing-sm);
-    display: flex;
-    align-items: center;
-    padding: 4px;
-    color: var(--wim-color-text-disabled);
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    transition: var(--wim-transition-base);
-
-    &:hover {
+@layer component {
+  .wim-notification {
+    position: relative;
+    width: 384px;
+    max-width: calc(100vw - 32px);
+    padding: var(--wim-spacing-lg) var(--wim-spacing-md);
+    margin-bottom: var(--wim-spacing-md);
+    overflow: hidden;
+    background-color: var(--wim-color-bg-component, #fff);
+    border: 1px solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
+    box-shadow: var(--wim-shadow-lg);
+  
+    &-content {
+      display: flex;
+      gap: var(--wim-spacing-md);
+      align-items: center;
+    }
+  
+    &-icon {
+      flex-shrink: 0;
+    }
+  
+    &-message-container {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: var(--wim-spacing-2xs);
+    }
+  
+    &-title {
+      margin-bottom: 0; // Reset margin when centered
+      font-size: var(--wim-font-size-md);
+      font-weight: var(--wim-font-weight-medium);
+      line-height: var(--wim-line-height-normal-jp);
+      color: var(--wim-color-text-primary);
+    }
+  
+    &-description {
+      font-size: var(--wim-font-size-sm);
+      line-height: var(--wim-line-height-tight);
       color: var(--wim-color-text-secondary);
     }
+  
+    &-close {
+      position: absolute;
+      top: var(--wim-spacing-sm);
+      right: var(--wim-spacing-sm);
+      display: flex;
+      align-items: center;
+      padding: 4px;
+      color: var(--wim-color-text-disabled);
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: var(--wim-transition-base);
+  
+      &:hover {
+        color: var(--wim-color-text-secondary);
+      }
+    }
+  
+    // Variants
+    &--success {
+      border-left: 4px solid var(--wim-color-positive);
+    }
+  
+    &--info {
+      border-left: 4px solid var(--wim-color-informative);
+    }
+  
+    &--warning {
+      border-left: 4px solid var(--wim-color-caution);
+    }
+  
+    &--error {
+      border-left: 4px solid var(--wim-color-destructive);
+    }
   }
-
-  // Variants
-  &--success {
-    border-left: 4px solid var(--wim-color-positive);
-  }
-
-  &--info {
-    border-left: 4px solid var(--wim-color-informative);
-  }
-
-  &--warning {
-    border-left: 4px solid var(--wim-color-caution);
-  }
-
-  &--error {
-    border-left: 4px solid var(--wim-color-destructive);
-  }
-}
-
-.wim-notification-container {
-  position: fixed;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  pointer-events: none;
-
-  & > * {
-    pointer-events: auto;
-  }
-
-  &--topRight {
-    top: var(--wim-spacing-md);
-    right: var(--wim-spacing-md);
-  }
-
-  &--topLeft {
-    top: var(--wim-spacing-md);
-    left: var(--wim-spacing-md);
-  }
-
-  &--bottomRight {
-    right: var(--wim-spacing-md);
-    bottom: var(--wim-spacing-md);
-  }
-
-  &--bottomLeft {
-    bottom: var(--wim-spacing-md);
-    left: var(--wim-spacing-md);
+  
+  .wim-notification-container {
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+  
+    & > * {
+      pointer-events: auto;
+    }
+  
+    &--topRight {
+      top: var(--wim-spacing-md);
+      right: var(--wim-spacing-md);
+    }
+  
+    &--topLeft {
+      top: var(--wim-spacing-md);
+      left: var(--wim-spacing-md);
+    }
+  
+    &--bottomRight {
+      right: var(--wim-spacing-md);
+      bottom: var(--wim-spacing-md);
+    }
+  
+    &--bottomLeft {
+      bottom: var(--wim-spacing-md);
+      left: var(--wim-spacing-md);
+    }
   }
 }

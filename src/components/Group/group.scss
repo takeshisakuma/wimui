@@ -1,3 +1,5 @@
-.wim-group {
-  box-sizing: border-box;
+@layer component {
+  .wim-group {
+    box-sizing: border-box;
+  }
 }

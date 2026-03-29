@@ -1,187 +1,189 @@
-.wim-image-container {
-  position: relative;
-  display: block;
-  max-width: 100%;
-  padding: 0;
-  margin: 0;
-  line-height: 0;
-
-  // Tilt (3D) effect
-  transform-style: preserve-3d;
+@layer component {
+  .wim-image-container {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
   
-  // Smooth return when mouse leaves
-  transition: transform 0.5s var(--wim-easing-base, ease);
-  will-change: transform;
-
-  // Smooth follow when active (a bit faster than return)
-  &:hover {
-    transition: transform 0.1s ease-out;
-  }
-}
-
-.wim-image-inner {
-  position: relative; // For pseudo-elements
-  display: block;
-  width: 100%;
-  line-height: 0;
-  background-color: var(--wim-image-bg-color, transparent);
-  transform-style: preserve-3d; // Pass 3D to children
-
-  &.wim-image--wim-radius-small {
-    overflow: hidden;
-    border-radius: var(--wim-radius-sm);
-  }
-
-  &.wim-image--radius-medium {
-    overflow: hidden;
-    border-radius: var(--wim-radius-md);
-  }
-
-  &.wim-image--radius-large {
-    overflow: hidden;
-    border-radius: var(--wim-radius-lg);
-  }
-
-  &.wim-image--wim-radius-full {
-    overflow: hidden;
-    border-radius: var(--wim-radius-full);
-  }
-
-  &.wim-image--shadow {
-    box-shadow: var(--wim-shadow-md);
-    transition: box-shadow 0.6s ease;
-
-    &.wim-image--loading {
-      box-shadow: none;
+    // Tilt (3D) effect
+    transform-style: preserve-3d;
+    
+    // Smooth return when mouse leaves
+    transition: transform 0.5s var(--wim-easing-base, ease);
+    will-change: transform;
+  
+    // Smooth follow when active (a bit faster than return)
+    &:hover {
+      transition: transform 0.1s ease-out;
     }
   }
-
-  &.wim-image--border {
-    border: 1px solid var(--wim-color-border, #e0e0e0);
-  }
-
-  // Fade-in state
-  &.wim-image--fade-in {
-    .wim-image {
-      opacity: 0;
-      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  .wim-image-inner {
+    position: relative; // For pseudo-elements
+    display: block;
+    width: 100%;
+    line-height: 0;
+    background-color: var(--wim-image-bg-color, transparent);
+    transform-style: preserve-3d; // Pass 3D to children
+  
+    &.wim-image--wim-radius-small {
+      overflow: hidden;
+      border-radius: var(--wim-radius-sm);
     }
-
-    &.wim-image--is-loaded {
-      .wim-image {
-        opacity: 1;
+  
+    &.wim-image--radius-medium {
+      overflow: hidden;
+      border-radius: var(--wim-radius-md);
+    }
+  
+    &.wim-image--radius-large {
+      overflow: hidden;
+      border-radius: var(--wim-radius-lg);
+    }
+  
+    &.wim-image--wim-radius-full {
+      overflow: hidden;
+      border-radius: var(--wim-radius-full);
+    }
+  
+    &.wim-image--shadow {
+      box-shadow: var(--wim-shadow-md);
+      transition: box-shadow 0.6s ease;
+  
+      &.wim-image--loading {
+        box-shadow: none;
       }
     }
+  
+    &.wim-image--border {
+      border: 1px solid var(--wim-color-border, #e0e0e0);
+    }
+  
+    // Fade-in state
+    &.wim-image--fade-in {
+      .wim-image {
+        opacity: 0;
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+  
+      &.wim-image--is-loaded {
+        .wim-image {
+          opacity: 1;
+        }
+      }
+    }
+  
+    // Skeleton / Loading state (Using pseudo-element to allow fade-out)
+    &::before {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #f8f8f8 50%,
+        #f0f0f0 75%
+      );
+      background-size: 200% 100%;
+      opacity: 0;
+      transition: opacity 0.4s ease-out;
+      animation: wim-skeleton-loading 1.5s infinite;
+    }
+  
+    &.wim-image--loading::before {
+      opacity: 1;
+    }
+  
+    // Backdrop Filter
+    &.wim-image--has-backdrop {
+      backdrop-filter: var(--wim-image-backdrop, none);
+      transition: backdrop-filter var(--wim-image-transition-duration, 0.3s) ease;
+    }
+  
+    .wim-image-container:hover &.wim-image--has-backdrop {
+      backdrop-filter: var(--wim-image-hover-backdrop, var(--wim-image-backdrop, none));
+    }
+  
+    // Noise (Grain)
+    &.wim-image--has-noise::after {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      content: "";
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: var(--wim-image-noise-opacity, 0);
+    }
+  
+    // Overlay
+    &.wim-image--has-overlay::before {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      content: "";
+      background: var(--wim-image-overlay-color, transparent);
+      mix-blend-mode: var(--wim-image-overlay-blend, normal);
+      opacity: var(--wim-image-overlay-opacity, 0);
+      transition: opacity var(--wim-image-transition-duration, 0.3s) ease;
+    }
+  
+    .wim-image-container:hover &.wim-image--has-overlay::before {
+      opacity: var(--wim-image-overlay-hover-opacity, var(--wim-image-overlay-opacity, 0));
+    }
   }
-
-  // Skeleton / Loading state (Using pseudo-element to allow fade-out)
-  &::before {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    content: "";
-    background: linear-gradient(
-      90deg,
-      #f0f0f0 25%,
-      #f8f8f8 50%,
-      #f0f0f0 75%
-    );
-    background-size: 200% 100%;
-    opacity: 0;
-    transition: opacity 0.4s ease-out;
-    animation: wim-skeleton-loading 1.5s infinite;
+  
+  .wim-image {
+    display: block;
+    max-width: 100%;
+    mix-blend-mode: var(--wim-image-blend-mode, normal);
+    transform: scale(1);
+    backface-visibility: hidden;
+    will-change: transform, filter;
+  
+    // Zoom
+    .wim-image--zoomable & {
+      transition: 
+        transform var(--wim-image-transition-duration, 0.3s) cubic-bezier(0.34, 1.56, 0.64, 1), // Spring-like feel
+        filter var(--wim-image-transition-duration, 0.3s) ease;
+    }
+  
+    .wim-image-container:hover .wim-image--zoomable & {
+      transform: scale(var(--wim-image-zoom-scale, 1.05));
+    }
+  
+    // Image Filter
+    &.get-wim-image--has-filter {
+      filter: var(--wim-image-filter, none);
+      transition: filter var(--wim-image-transition-duration, 0.3s) ease;
+    }
+  
+    // Fix: filter classes were slightly mismatched in CSS selection logic earlier
+    &.wim-image--has-filter {
+      filter: var(--wim-image-filter, none);
+      transition: filter var(--wim-image-transition-duration, 0.3s) ease;
+    }
+  
+    .wim-image-container:hover &.wim-image--has-filter {
+      filter: var(--wim-image-hover-filter, var(--wim-image-filter, none));
+    }
   }
-
-  &.wim-image--loading::before {
-    opacity: 1;
+  
+  .wim-image__caption {
+    padding-bottom: var(--wim-spacing-xs);
+    margin-top: var(--wim-spacing-sm);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--wim-color-text-secondary, #666);
+    text-align: center;
   }
-
-  // Backdrop Filter
-  &.wim-image--has-backdrop {
-    backdrop-filter: var(--wim-image-backdrop, none);
-    transition: backdrop-filter var(--wim-image-transition-duration, 0.3s) ease;
+  
+  @keyframes wim-skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
-
-  .wim-image-container:hover &.wim-image--has-backdrop {
-    backdrop-filter: var(--wim-image-hover-backdrop, var(--wim-image-backdrop, none));
-  }
-
-  // Noise (Grain)
-  &.wim-image--has-noise::after {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    content: "";
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: var(--wim-image-noise-opacity, 0);
-  }
-
-  // Overlay
-  &.wim-image--has-overlay::before {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    content: "";
-    background: var(--wim-image-overlay-color, transparent);
-    mix-blend-mode: var(--wim-image-overlay-blend, normal);
-    opacity: var(--wim-image-overlay-opacity, 0);
-    transition: opacity var(--wim-image-transition-duration, 0.3s) ease;
-  }
-
-  .wim-image-container:hover &.wim-image--has-overlay::before {
-    opacity: var(--wim-image-overlay-hover-opacity, var(--wim-image-overlay-opacity, 0));
-  }
-}
-
-.wim-image {
-  display: block;
-  max-width: 100%;
-  mix-blend-mode: var(--wim-image-blend-mode, normal);
-  transform: scale(1);
-  backface-visibility: hidden;
-  will-change: transform, filter;
-
-  // Zoom
-  .wim-image--zoomable & {
-    transition: 
-      transform var(--wim-image-transition-duration, 0.3s) cubic-bezier(0.34, 1.56, 0.64, 1), // Spring-like feel
-      filter var(--wim-image-transition-duration, 0.3s) ease;
-  }
-
-  .wim-image-container:hover .wim-image--zoomable & {
-    transform: scale(var(--wim-image-zoom-scale, 1.05));
-  }
-
-  // Image Filter
-  &.get-wim-image--has-filter {
-    filter: var(--wim-image-filter, none);
-    transition: filter var(--wim-image-transition-duration, 0.3s) ease;
-  }
-
-  // Fix: filter classes were slightly mismatched in CSS selection logic earlier
-  &.wim-image--has-filter {
-    filter: var(--wim-image-filter, none);
-    transition: filter var(--wim-image-transition-duration, 0.3s) ease;
-  }
-
-  .wim-image-container:hover &.wim-image--has-filter {
-    filter: var(--wim-image-hover-filter, var(--wim-image-filter, none));
-  }
-}
-
-.wim-image__caption {
-  padding-bottom: var(--wim-spacing-xs);
-  margin-top: var(--wim-spacing-sm);
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--wim-color-text-secondary, #666);
-  text-align: center;
-}
-
-@keyframes wim-skeleton-loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
 }

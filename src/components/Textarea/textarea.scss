@@ -1,77 +1,79 @@
-.wim-textarea {
-  all: unset;
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  max-width: 280px;
-
-  /* Allow vertical resizing by default */
-  min-height: 80px;
-  padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-  font-size: 1rem;
-
-  /* Reasonable default height */
-  line-height: 1.5;
-  color: var(--wim-color-text-primary);
-  resize: vertical;
-  background-color: var(--wim-color-bg-component, #fff);
-  border: 1px solid var(--wim-color-secondary);
-  border-radius: var(--wim-radius-md);
-  transition: var(--wim-transition-base);
-
-  &::placeholder {
-    color: var(--wim-color-text-tertiary);
-  }
-
-  &:focus {
-    border-color: var(--wim-color-primary);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
-  }
-
-  &--outline {
-    border-color: var(--wim-color-secondary);
-
-    &:focus {
-      border-color: var(--wim-color-primary);
-    }
-  }
-
-  &--ghost {
-    background-color: transparent;
-    border-color: transparent;
-
-    &:hover {
-      background-color: rgb(0 0 0 / 0.05);
-    }
-
-    &:focus {
-      background-color: transparent;
-      border-color: var(--wim-color-primary);
-    }
-  }
-
-  &--error {
-    border-color: var(--wim-color-text-error);
-
-    &:focus {
-      box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2);
-    }
-  }
-
-  &--disabled {
-    color: var(--wim-color-text-disabled);
-    cursor: not-allowed;
-    resize: none;
-    background-color: var(--wim-color-disabled);
-    border-color: var(--wim-color-disabled);
-  }
-
-  &--full-width {
+@layer component {
+  .wim-textarea {
+    all: unset;
+    box-sizing: border-box;
+    display: block;
     width: 100%;
-    max-width: none;
-  }
-
-  &--field-sizing-content {
-    field-sizing: content;
+    max-width: 280px;
+  
+    /* Allow vertical resizing by default */
+    min-height: 80px;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    font-size: 1rem;
+  
+    /* Reasonable default height */
+    line-height: 1.5;
+    color: var(--wim-color-text-primary);
+    resize: vertical;
+    background-color: var(--wim-color-bg-component, #fff);
+    border: 1px solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
+    transition: var(--wim-transition-base);
+  
+    &::placeholder {
+      color: var(--wim-color-text-tertiary);
+    }
+  
+    &:focus {
+      border-color: var(--wim-color-primary);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+    }
+  
+    &--outline {
+      border-color: var(--wim-color-secondary);
+  
+      &:focus {
+        border-color: var(--wim-color-primary);
+      }
+    }
+  
+    &--ghost {
+      background-color: transparent;
+      border-color: transparent;
+  
+      &:hover {
+        background-color: rgb(0 0 0 / 0.05);
+      }
+  
+      &:focus {
+        background-color: transparent;
+        border-color: var(--wim-color-primary);
+      }
+    }
+  
+    &--error {
+      border-color: var(--wim-color-text-error);
+  
+      &:focus {
+        box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2);
+      }
+    }
+  
+    &--disabled {
+      color: var(--wim-color-text-disabled);
+      cursor: not-allowed;
+      resize: none;
+      background-color: var(--wim-color-disabled);
+      border-color: var(--wim-color-disabled);
+    }
+  
+    &--full-width {
+      width: 100%;
+      max-width: none;
+    }
+  
+    &--field-sizing-content {
+      field-sizing: content;
+    }
   }
 }

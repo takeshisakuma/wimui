@@ -1,93 +1,95 @@
-.wim-checkbox-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  line-height: 1.5;
-  cursor: pointer;
-  user-select: none;
+@layer component {
+  .wim-checkbox-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    cursor: pointer;
+    user-select: none;
 
-  &.wim-checkbox--disabled {
-    cursor: not-allowed;
-    opacity: var(--wim-opacity-disabled);
-  }
-}
-
-.wim-checkbox-input {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin: 0 var(--wim-spacing-sm) 0 0;
-  appearance: none;
-  cursor: pointer;
-  background-color: var(--wim-color-bg-component);
-  border: 2px solid var(--wim-color-text-tertiary);
-  border-radius: var(--wim-radius-sm);
-  transition: all var(--wim-duration-fast) var(--wim-easing-standard);
-
-  &::after {
-    content: "";
-    opacity: 0;
-    transform: scale(0.5);
-    transition: all var(--wim-duration-fast) var(--wim-easing-entrance);
+    &.wim-checkbox--disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+    }
   }
 
-  // Checked state
-  &:checked {
-    background-color: var(--wim-color-primary);
-    border-color: var(--wim-color-primary);
+  .wim-checkbox-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin: 0 var(--wim-spacing-sm) 0 0;
+    appearance: none;
+    cursor: pointer;
+    background-color: var(--wim-color-bg-component);
+    border: 2px solid var(--wim-color-text-tertiary);
+    border-radius: var(--wim-radius-sm);
+    transition: all var(--wim-duration-fast) var(--wim-easing-standard);
 
     &::after {
-      width: 5px;
-      height: 9px;
-      border: solid var(--wim-color-text-white);
-      border-width: 0 2px 2px 0;
-      opacity: 1;
-      transform: rotate(45deg) scale(1) translate(-1px, -1px);
+      content: "";
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all var(--wim-duration-fast) var(--wim-easing-entrance);
+    }
+
+    // Checked state
+    &:checked {
+      background-color: var(--wim-color-primary);
+      border-color: var(--wim-color-primary);
+
+      &::after {
+        width: 5px;
+        height: 9px;
+        border: solid var(--wim-color-text-white);
+        border-width: 0 2px 2px 0;
+        opacity: 1;
+        transform: rotate(45deg) scale(1) translate(-1px, -1px);
+      }
+    }
+
+    // Indeterminate state
+    &:indeterminate {
+      background-color: var(--wim-color-primary);
+      border-color: var(--wim-color-primary);
+
+      &::after {
+        width: 10px;
+        height: 2px;
+        background-color: var(--wim-color-text-white);
+        border-radius: 1px;
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    // Focus state
+    &:focus-visible {
+      outline: 2px solid var(--wim-color-primary);
+      outline-offset: 2px;
+      box-shadow: var(--wim-shadow-focus);
+    }
+
+    // Disabled state
+    &:disabled {
+      cursor: not-allowed;
+      background-color: var(--wim-color-disabled);
+      border-color: var(--wim-color-disabled);
+      opacity: var(--wim-opacity-disabled);
+
+      &:checked::after,
+      &:indeterminate::after {
+        background-color: var(--wim-color-text-on-disabled);
+        border-color: var(--wim-color-text-on-disabled);
+      }
     }
   }
 
-  // Indeterminate state
-  &:indeterminate {
-    background-color: var(--wim-color-primary);
-    border-color: var(--wim-color-primary);
-
-    &::after {
-      width: 10px;
-      height: 2px;
-      background-color: var(--wim-color-text-white);
-      border-radius: 1px;
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  // Focus state
-  &:focus-visible {
-    outline: 2px solid var(--wim-color-primary);
-    outline-offset: 2px;
-    box-shadow: var(--wim-shadow-focus);
-  }
-
-  // Disabled state
-  &:disabled {
-    cursor: not-allowed;
-    background-color: var(--wim-color-disabled);
-    border-color: var(--wim-color-disabled);
-    opacity: var(--wim-opacity-disabled);
-
-    &:checked::after,
-    &:indeterminate::after {
-      background-color: var(--wim-color-text-on-disabled);
-      border-color: var(--wim-color-text-on-disabled);
-    }
+  .wim-checkbox-label {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--wim-color-text-primary);
   }
 }
-
-.wim-checkbox-label {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  color: var(--wim-color-text-primary);
-}

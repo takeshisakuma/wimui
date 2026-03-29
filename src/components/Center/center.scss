@@ -1,3 +1,5 @@
-.wim-center {
-  box-sizing: border-box;
+@layer component {
+  .wim-center {
+    box-sizing: border-box;
+  }
 }

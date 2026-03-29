@@ -1,18 +1,20 @@
 @use "../Slider/slider-base";
 
-.wim-range-slider {
-  @include slider-base.slider-base;
+@layer component {
+  .wim-range-slider {
+    @include slider-base.slider-base;
 
-  &__thumb {
-    z-index: 1;
-    transition:
-      box-shadow 0.2s,
-      transform 0.1s,
-      z-index 0s;
+    &__thumb {
+      z-index: 1;
+      transition:
+        box-shadow 0.2s,
+        transform 0.1s,
+        z-index 0s;
 
-    // Active or focused thumb should be on top
-    &--active {
-      z-index: 2;
+      // Active or focused thumb should be on top
+      &--active {
+        z-index: 2;
+      }
     }
   }
 }

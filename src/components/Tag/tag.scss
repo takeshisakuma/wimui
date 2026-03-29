@@ -1,32 +1,34 @@
 @use "../../styles/token-common" as *;
 
-.wim-tag {
-  @include token-base;
-
-  gap: var(--wim-spacing-xs);
-  font-weight: 500;
-  border-radius: var(--wim-radius-sm);
-
-  &--md {
-    padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
-    font-size: var(--wim-font-size-minus-2);
+@layer component {
+  .wim-tag {
+    @include token-base;
+  
+    gap: var(--wim-spacing-xs);
+    font-weight: 500;
+    border-radius: var(--wim-radius-sm);
+  
+    &--md {
+      padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+      font-size: var(--wim-font-size-minus-2);
+    }
+  
+    &--sm {
+      padding: var(--wim-spacing-2xs) var(--wim-spacing-xs);
+      font-size: var(--wim-font-size-minus-3);
+    }
+  
+    &--lg {
+      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+      font-size: var(--wim-font-size-sm);
+    }
+  
+    &__icon {
+      display: flex;
+      font-size: 1.2em;
+    }
+  
+    // Colors and Variants
+    @include token-variants("wim-tag");
   }
-
-  &--sm {
-    padding: var(--wim-spacing-2xs) var(--wim-spacing-xs);
-    font-size: var(--wim-font-size-minus-3);
-  }
-
-  &--lg {
-    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-    font-size: var(--wim-font-size-sm);
-  }
-
-  &__icon {
-    display: flex;
-    font-size: 1.2em;
-  }
-
-  // Colors and Variants
-  @include token-variants("wim-tag");
 }

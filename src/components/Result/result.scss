@@ -1,22 +1,24 @@
-.wim-result {
-  // Overrides for Result specifically if needed
-  // Result uses StatusContent internally, which already has default layout
-  .wim-interactive-area__icon {
-    margin-bottom: var(--wim-spacing-sm);
-
-    .wim-icon,
-    svg {
-      width: 80px;
-      height: 80px;
-      font-size: 80px;
+@layer component {
+  .wim-result {
+    // Overrides for Result specifically if needed
+    // Result uses StatusContent internally, which already has default layout
+    .wim-interactive-area__icon {
+      margin-bottom: var(--wim-spacing-sm);
+  
+      .wim-icon,
+      svg {
+        width: 80px;
+        height: 80px;
+        font-size: 80px;
+      }
     }
-  }
-
-  .wim-interactive-area__content {
-    padding: var(--wim-spacing-md);
-    margin-top: var(--wim-spacing-lg);
-    text-align: left;
-    background-color: var(--wim-color-bg-component-secondary, #f9f9f9);
-    border-radius: var(--wim-radius-sm);
+  
+    .wim-interactive-area__content {
+      padding: var(--wim-spacing-md);
+      margin-top: var(--wim-spacing-lg);
+      text-align: left;
+      background-color: var(--wim-color-bg-component-secondary, #f9f9f9);
+      border-radius: var(--wim-radius-sm);
+    }
   }
 }

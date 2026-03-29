@@ -1,95 +1,96 @@
-.wim-switch-wrapper {
-  display: inline-flex;
-  gap: var(--wim-spacing-sm);
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-
-  &.wim-switch--disabled {
-    cursor: not-allowed;
-    opacity: var(--wim-opacity-ghost);
+@layer component {
+  .wim-switch-wrapper {
+    display: inline-flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  
+    &.wim-switch--disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-ghost);
+    }
   }
-}
-
-.wim-switch-input {
-  position: relative;
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  width: 44px;
-  height: 24px;
-  padding: 2px;
-  appearance: none;
-  cursor: pointer;
-  background-color: var(--wim-color-border-secondary);
-  border-radius: 9999px;
-  transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
-  will-change: background-color, transform;
-
-  &:active:not(:disabled) {
-    transform: scale(var(--wim-scale-active));
-    transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
-  }
-
-  &::before {
-    flex-grow: var(--off);
-    content: "";
-    transition: flex-grow var(--wim-duration-base) var(--wim-easing-entrance);
-    will-change: flex-grow;
-  }
-
-  &::after {
-    width: 20px;
-    height: 20px;
-    content: "";
-    background-color: var(--wim-color-text-white);
-    border-radius: var(--wim-radius-full);
-    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
-  }
-
-  &:checked {
-    background-color: var(--wim-color-primary);
-
+  
+  .wim-switch-input {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    width: 44px;
+    height: 24px;
+    padding: 2px;
+    appearance: none;
+    cursor: pointer;
+    background-color: var(--wim-color-border-secondary);
+    border-radius: 9999px;
+    transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
+    will-change: background-color, transform;
+  
+    &:active:not(:disabled) {
+      transform: scale(var(--wim-scale-active));
+      transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
+    }
+  
     &::before {
-      flex-grow: 1; // Transitions to ON state (flex-grow: initial equivalent)
+      flex-grow: var(--off);
+      content: "";
+      transition: flex-grow var(--wim-duration-base) var(--wim-easing-entrance);
+      will-change: flex-grow;
     }
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--wim-color-primary);
-    outline-offset: 2px;
-    box-shadow: var(--wim-shadow-focus);
-  }
-
-  &.wim-switch-input--sm {
-    width: 36px;
-    height: 20px;
-
+  
     &::after {
-      width: 16px;
-      height: 16px;
+      width: 20px;
+      height: 20px;
+      content: "";
+      background-color: var(--wim-color-text-white);
+      border-radius: var(--wim-radius-full);
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    }
+  
+    &:checked {
+      background-color: var(--wim-color-primary);
+  
+      &::before {
+        flex-grow: 1; // Transitions to ON state (flex-grow: initial equivalent)
+      }
+    }
+  
+    &:focus-visible {
+      outline: 2px solid var(--wim-color-primary);
+      outline-offset: 2px;
+      box-shadow: var(--wim-shadow-focus);
+    }
+  
+    &.wim-switch-input--sm {
+      width: 36px;
+      height: 20px;
+  
+      &::after {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  
+    &.wim-switch-input--lg {
+      width: 52px;
+      height: 28px;
+  
+      &::after {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  
+    &:disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-ghost);
     }
   }
-
-  &.wim-switch-input--lg {
-    width: 52px;
-    height: 28px;
-
-    &::after {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: var(--wim-opacity-ghost);
+  
+  .wim-switch-label {
+    font-family: var(--font-sans);
+    font-size: var(--wim-font-size-md);
+    color: var(--wim-color-text-primary);
   }
 }
-
-.wim-switch-label {
-  font-family: var(--font-sans);
-  font-size: var(--wim-font-size-md);
-  color: var(--wim-color-text-primary);
-}
-

@@ -1,3 +1,5 @@
-.wim-focus-trap {
-  display: contents;
+@layer component {
+  .wim-focus-trap {
+    display: contents;
+  }
 }

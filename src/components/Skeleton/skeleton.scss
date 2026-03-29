@@ -1,97 +1,82 @@
-.wim-skeleton {
-  position: relative;
-  display: block;
-  height: 1.2em;
-  overflow: hidden;
-  background-color: var(--color-gray-200, rgb(0 0 0 / 0.11));
-
-  &--text {
-    width: 100%;
-    height: 0.8em;
-    margin-top: 0;
-    margin-bottom: 0;
-    border-radius: 4px;
-
-    &:not(:first-child) {
-      margin-top: 0.5em;
+@layer component {
+  .wim-skeleton {
+    position: relative;
+    display: block;
+    height: 1.2em;
+    overflow: hidden;
+    background-color: var(--color-gray-200, rgb(0 0 0 / 0.11));
+  
+    &--text {
+      width: 100%;
+      height: 0.8em;
+      margin-top: 0;
+      margin-bottom: 0;
+      border-radius: 4px;
+  
+      &:not(:first-child) {
+        margin-top: 0.5em;
+      }
+  
+      &:not(:last-child) {
+        margin-bottom: 0.5em;
+      }
     }
-
-    &:not(:last-child) {
-      margin-bottom: 0.5em;
+  
+    &--rect {
+      border-radius: 4px;
     }
-  }
-
-  &--rect {
-    border-radius: 4px;
-  }
-
-  &--circle {
-    border-radius: var(--wim-radius-full);
-  }
-
-  // Animations
-  &--pulse {
-    animation: wim-skeleton-pulse 1.5s ease-in-out infinite;
-  }
-
-  &--wave {
-    &::after {
-      position: absolute;
-      inset: 0;
-      content: "";
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgb(255 255 255 / 0.3),
-        transparent
-      );
-      transform: translateX(-100%);
-      animation: wim-skeleton-wave 1.6s linear infinite;
-      will-change: transform;
+  
+    &--circle {
+      border-radius: var(--wim-radius-full);
     }
-  }
-}
-
-@keyframes wim-skeleton-pulse {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.4;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes wim-skeleton-wave {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-// Dark mode support if variable exists
-[data-theme="dark"] .wim-skeleton {
-  background-color: var(--color-gray-800, rgb(255 255 255 / 0.13));
-
-  &--wave {
-    &::after {
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgb(255 255 255 / 0.08),
-        transparent
-      );
+  
+    // Animations
+    &--pulse {
+      animation: wim-skeleton-pulse 1.5s ease-in-out infinite;
+    }
+  
+    &--wave {
+      &::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgb(255 255 255 / 0.3),
+          transparent
+        );
+        transform: translateX(-100%);
+        animation: wim-skeleton-wave 1.6s linear infinite;
+        will-change: transform;
+      }
     }
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .wim-skeleton {
+  
+  @keyframes wim-skeleton-pulse {
+    0% {
+      opacity: 1;
+    }
+  
+    50% {
+      opacity: 0.4;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes wim-skeleton-wave {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  // Dark mode support if variable exists
+  [data-theme="dark"] .wim-skeleton {
     background-color: var(--color-gray-800, rgb(255 255 255 / 0.13));
-
+  
     &--wave {
       &::after {
         background: linear-gradient(
@@ -100,6 +85,23 @@
           rgb(255 255 255 / 0.08),
           transparent
         );
+      }
+    }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .wim-skeleton {
+      background-color: var(--color-gray-800, rgb(255 255 255 / 0.13));
+  
+      &--wave {
+        &::after {
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgb(255 255 255 / 0.08),
+            transparent
+          );
+        }
       }
     }
   }

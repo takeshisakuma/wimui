@@ -1,61 +1,63 @@
-.wim-file-upload {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-xs);
-  font-family: inherit;
-
-  &__label {
-    display: block;
-    margin-bottom: var(--wim-spacing-xs);
-    font-weight: var(--wim-font-weight-medium);
-    color: var(--wim-color-text-secondary);
-
-    .wim-file-upload--small & {
-      font-size: var(--wim-font-size-xs);
-    }
-
-    .wim-file-upload--medium & {
-      font-size: var(--wim-font-size-sm);
-    }
-
-    .wim-file-upload--large & {
-      font-size: var(--wim-font-size-md);
-    }
-  }
-
-  &__controls {
+@layer component {
+  .wim-file-upload {
     display: flex;
-    gap: var(--wim-spacing-md);
-    align-items: center;
-  }
-
-  &__input {
-    display: none;
-  }
-
-  &__file-names {
-    display: inline-block;
-    max-width: 300px;
-    padding: 8px 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--wim-color-text-tertiary);
-    white-space: nowrap;
-
-    &--small {
-      font-size: var(--wim-font-size-xs);
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    font-family: inherit;
+  
+    &__label {
+      display: block;
+      margin-bottom: var(--wim-spacing-xs);
+      font-weight: var(--wim-font-weight-medium);
+      color: var(--wim-color-text-secondary);
+  
+      .wim-file-upload--small & {
+        font-size: var(--wim-font-size-xs);
+      }
+  
+      .wim-file-upload--medium & {
+        font-size: var(--wim-font-size-sm);
+      }
+  
+      .wim-file-upload--large & {
+        font-size: var(--wim-font-size-md);
+      }
     }
-
-    &--medium {
-      font-size: var(--wim-font-size-sm);
+  
+    &__controls {
+      display: flex;
+      gap: var(--wim-spacing-md);
+      align-items: center;
     }
-
-    &--large {
-      font-size: var(--wim-font-size-md);
+  
+    &__input {
+      display: none;
     }
-
-    &--disabled {
-      color: var(--wim-color-disabled);
+  
+    &__file-names {
+      display: inline-block;
+      max-width: 300px;
+      padding: 8px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--wim-color-text-tertiary);
+      white-space: nowrap;
+  
+      &--small {
+        font-size: var(--wim-font-size-xs);
+      }
+  
+      &--medium {
+        font-size: var(--wim-font-size-sm);
+      }
+  
+      &--large {
+        font-size: var(--wim-font-size-md);
+      }
+  
+      &--disabled {
+        color: var(--wim-color-disabled);
+      }
     }
   }
 }

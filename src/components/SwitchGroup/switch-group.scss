@@ -1,11 +1,13 @@
-// SwitchGroup styles
-.wim-switch-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-md);
-
-  &.wim-switch-group--horizontal {
-    flex-flow: row wrap;
-    gap: var(--wim-spacing-md) var(--wim-spacing-lg);
+@layer component {
+  // SwitchGroup styles
+  .wim-switch-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+  
+    &.wim-switch-group--horizontal {
+      flex-flow: row wrap;
+      gap: var(--wim-spacing-md) var(--wim-spacing-lg);
+    }
   }
 }

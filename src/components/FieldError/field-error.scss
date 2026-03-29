@@ -1,10 +1,12 @@
-﻿.wim-field-error {
-  display: flex;
-  align-items: flex-start;
-  min-height: 1.5rem; // メッセージがなくても高さが確保されるように（レイアウトシフト防止）
+@layer component {
+  .wim-field-error {
+    display: flex;
+    align-items: flex-start;
+    min-height: 1.5rem; // メッセージがなくても高さが確保されるように（レイアウトシフト防止）
 
-  // Paragraphコンポーネントが内部にあるため、その余白をリセット
-  p.wim-paragraph {
-    margin: 0;
+    // Paragraphコンポーネントが内部にあるため、その余白をリセット
+    p.wim-paragraph {
+      margin: 0;
+    }
   }
 }

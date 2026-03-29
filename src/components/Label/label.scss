@@ -1,34 +1,36 @@
-.wim-label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: max-content;
-  max-width: 100%;
-
-  &:has(.wim-input-base) {
-    width: max-content;
-  }
-
-  &:has(.wim-input--full-width) {
-    width: 100%;
-  }
-
-  &__header-wrapper {
-    display: block;
-    cursor: pointer; // Ensure the header is clickable
-  }
-
-  &__header {
+@layer component {
+  .wim-label {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 8px;
-    align-items: center;
-  }
-
-  &__text {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: var(--wim-color-text-primary);
-    overflow-wrap: break-word;
+    width: max-content;
+    max-width: 100%;
+  
+    &:has(.wim-input-base) {
+      width: max-content;
+    }
+  
+    &:has(.wim-input--full-width) {
+      width: 100%;
+    }
+  
+    &__header-wrapper {
+      display: block;
+      cursor: pointer; // Ensure the header is clickable
+    }
+  
+    &__header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+  
+    &__text {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--wim-color-text-primary);
+      overflow-wrap: break-word;
+    }
   }
 }

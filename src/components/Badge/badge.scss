@@ -1,69 +1,71 @@
 @use "../../styles/token-common" as *;
 
-.wim-badge {
-  @include token-base;
+@layer component {
+  .wim-badge {
+    @include token-base;
 
-  gap: 0.5em;
-  font-weight: normal;
-  line-height: 1;
-  text-decoration: none;
-  border-radius: 999px;
+    gap: 0.5em;
+    font-weight: normal;
+    line-height: 1;
+    text-decoration: none;
+    border-radius: 999px;
 
-  &__icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -0.05em;
+    &__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -0.05em;
 
-    svg {
-      width: 1.2em;
-      height: 1.2em;
+      svg {
+        width: 1.2em;
+        height: 1.2em;
+      }
     }
-  }
 
-  // Sizes
-  &--sm {
-    min-width: 1.25em;
-    height: 1.25em;
-    padding: 2px 6px;
-    font-size: 0.65rem;
+    // Sizes
+    &--sm {
+      min-width: 1.25em;
+      height: 1.25em;
+      padding: 2px 6px;
+      font-size: 0.65rem;
 
-    &.wim-badge--icon-only {
-      width: 8px;
-      min-width: 0;
-      height: 8px;
-      padding: 0;
+      &.wim-badge--icon-only {
+        width: 8px;
+        min-width: 0;
+        height: 8px;
+        padding: 0;
+      }
     }
-  }
 
-  &--md {
-    min-width: 1.5em;
-    height: 1.5em;
-    padding: 4px 8px;
-    font-size: 0.75rem;
+    &--md {
+      min-width: 1.5em;
+      height: 1.5em;
+      padding: 4px 8px;
+      font-size: 0.75rem;
 
-    &.wim-badge--icon-only {
-      width: 10px;
-      min-width: 0;
-      height: 10px;
-      padding: 0;
+      &.wim-badge--icon-only {
+        width: 10px;
+        min-width: 0;
+        height: 10px;
+        padding: 0;
+      }
     }
-  }
 
-  &--lg {
-    min-width: 1.75em;
-    height: 1.75em;
-    padding: 6px 10px;
-    font-size: 0.875rem;
+    &--lg {
+      min-width: 1.75em;
+      height: 1.75em;
+      padding: 6px 10px;
+      font-size: 0.875rem;
 
-    &.wim-badge--icon-only {
-      width: 12px;
-      min-width: 0;
-      height: 12px;
-      padding: 0;
+      &.wim-badge--icon-only {
+        width: 12px;
+        min-width: 0;
+        height: 12px;
+        padding: 0;
+      }
     }
-  }
 
-  // Colors and Variants
-  @include token-variants("wim-badge");
+    // Colors and Variants
+    @include token-variants("wim-badge");
+  }
 }

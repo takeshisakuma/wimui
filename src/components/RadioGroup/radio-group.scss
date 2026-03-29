@@ -1,10 +1,12 @@
-.wim-radio-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wim-spacing-md);
-
-  &--horizontal {
-    flex-flow: row wrap;
-    gap: var(--wim-spacing-md) var(--wim-spacing-lg);
+@layer component {
+  .wim-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md);
+  
+    &--horizontal {
+      flex-flow: row wrap;
+      gap: var(--wim-spacing-md) var(--wim-spacing-lg);
+    }
   }
 }

@@ -1,81 +1,83 @@
-.wim-loading-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: var(--wim-z-index-overlay, 1000);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: all;
-
-  &--fixed {
-    position: fixed;
-  }
-
-  &__backdrop {
+@layer component {
+  .wim-loading-overlay {
     position: absolute;
     inset: 0;
-    background-color: var(--wim-color-overlay-bg, rgb(0 0 0 / 0.5));
-    backdrop-filter: blur(2px);
-    transition: opacity var(--wim-transition-duration-normal, 200ms)
-      var(--wim-transition-timing-ease-out, ease-out);
-  }
-
-  &__backdrop--light {
-    background-color: var(
-      --wim-color-overlay-bg-light,
-      rgb(255 255 255 / 0.8)
-    );
-  }
-
-  &__backdrop--dark {
-    background-color: var(--wim-color-overlay-bg-dark, rgb(0 0 0 / 0.7));
-  }
-
-  &__backdrop--blur-sm {
-    backdrop-filter: blur(1px);
-  }
-
-  &__backdrop--blur-md {
-    backdrop-filter: blur(4px);
-  }
-
-  &__backdrop--blur-lg {
-    backdrop-filter: blur(8px);
-  }
-
-  &__backdrop--blur-none {
-    backdrop-filter: none;
-  }
-
-  &__content {
-    position: relative;
-    z-index: 1;
+    z-index: var(--wim-z-index-overlay, 1000);
     display: flex;
-    flex-direction: column;
-    gap: var(--wim-spacing-md, 12px);
     align-items: center;
-  }
+    justify-content: center;
+    pointer-events: all;
 
-  &__message {
-    max-width: 300px;
-    font-size: var(--wim-font-size-md, 14px);
-    font-weight: var(--wim-font-weight-medium, 500);
-    color: var(--wim-color-text-on-overlay, #fff);
-    text-align: center;
-  }
+    &--fixed {
+      position: fixed;
+    }
 
-  &--hidden {
-    display: none;
-  }
+    &__backdrop {
+      position: absolute;
+      inset: 0;
+      background-color: var(--wim-color-overlay-bg, rgb(0 0 0 / 0.5));
+      backdrop-filter: blur(2px);
+      transition: opacity var(--wim-transition-duration-normal, 200ms)
+        var(--wim-transition-timing-ease-out, ease-out);
+    }
 
-  // Fade in/out animation
-  &--entering,
-  &--entered {
-    opacity: 1;
-  }
+    &__backdrop--light {
+      background-color: var(
+        --wim-color-overlay-bg-light,
+        rgb(255 255 255 / 0.8)
+      );
+    }
 
-  &--exiting,
-  &--exited {
-    opacity: 0;
+    &__backdrop--dark {
+      background-color: var(--wim-color-overlay-bg-dark, rgb(0 0 0 / 0.7));
+    }
+
+    &__backdrop--blur-sm {
+      backdrop-filter: blur(1px);
+    }
+
+    &__backdrop--blur-md {
+      backdrop-filter: blur(4px);
+    }
+
+    &__backdrop--blur-lg {
+      backdrop-filter: blur(8px);
+    }
+
+    &__backdrop--blur-none {
+      backdrop-filter: none;
+    }
+
+    &__content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--wim-spacing-md, 12px);
+      align-items: center;
+    }
+
+    &__message {
+      max-width: 300px;
+      font-size: var(--wim-font-size-md, 14px);
+      font-weight: var(--wim-font-weight-medium, 500);
+      color: var(--wim-color-text-on-overlay, #fff);
+      text-align: center;
+    }
+
+    &--hidden {
+      display: none;
+    }
+
+    // Fade in/out animation
+    &--entering,
+    &--entered {
+      opacity: 1;
+    }
+
+    &--exiting,
+    &--exited {
+      opacity: 0;
+    }
   }
 }

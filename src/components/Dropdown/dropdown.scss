@@ -1,41 +1,43 @@
-﻿/* ------------------------------------------------------------------
-   Dropdown Styles
------------------------------------------------------------------- */
-
-.wim-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.wim-dropdown-trigger {
-  display: inline-flex;
-  cursor: pointer;
-}
-
-.wim-dropdown-menu {
-  position: absolute;
-  top: calc(100% + var(--wim-spacing-xs));
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  min-width: 200px;
-  padding: var(--wim-spacing-xs) 0;
-  margin: 0;
-  background-color: var(--wim-color-bg-component, #fff);
-  border: 1px solid var(--wim-color-secondary);
-  border-radius: var(--wim-radius-md);
-  box-shadow: var(--wim-shadow-lg);
-
-  &--align-left {
-    left: 0;
+@layer component {
+  /* ------------------------------------------------------------------
+     Dropdown Styles
+  ------------------------------------------------------------------ */
+  
+  .wim-dropdown {
+    position: relative;
+    display: inline-block;
   }
-
-  &--align-right {
-    right: 0;
+  
+  .wim-dropdown-trigger {
+    display: inline-flex;
+    cursor: pointer;
   }
-}
-
-.wim-dropdown-item {
-  // Common styles are now handled by BaseListItem
-  text-decoration: none; // For when items are links
+  
+  .wim-dropdown-menu {
+    position: absolute;
+    top: calc(100% + var(--wim-spacing-xs));
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    padding: var(--wim-spacing-xs) 0;
+    margin: 0;
+    background-color: var(--wim-color-bg-component, #fff);
+    border: 1px solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
+    box-shadow: var(--wim-shadow-lg);
+  
+    &--align-left {
+      left: 0;
+    }
+  
+    &--align-right {
+      right: 0;
+    }
+  }
+  
+  .wim-dropdown-item {
+    // Common styles are now handled by BaseListItem
+    text-decoration: none; // For when items are links
+  }
 }

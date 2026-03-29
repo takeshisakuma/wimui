@@ -2,182 +2,184 @@
 @use "../../tokens/spacings" as *;
 @use "../../tokens/effects" as *;
 
-.wim-snackbar-wrapper {
-  position: fixed;
-  z-index: 9999;
-  display: flex;
-  width: 100%;
-  padding: var(--wim-spacing-lg);
-  pointer-events: none;
-
-  &--top-left {
-    top: 0;
-    left: 0;
-    justify-content: flex-start;
-  }
-
-  &--top-center {
-    top: 0;
-    left: 0;
-    justify-content: center;
-  }
-
-  &--top-right {
-    top: 0;
-    right: 0;
-    justify-content: flex-end;
-  }
-
-  &--bottom-left {
-    bottom: 0;
-    left: 0;
-    justify-content: flex-start;
-  }
-
-  &--bottom-center {
-    bottom: 0;
-    left: 0;
-    justify-content: center;
-  }
-
-  &--bottom-right {
-    right: 0;
-    bottom: 0;
-    justify-content: flex-end;
-  }
-}
-
-.wim-snackbar {
-  position: relative;
-  display: flex;
-  gap: var(--wim-spacing-md);
-  align-items: flex-start;
-  justify-content: space-between;
-  min-width: 288px;
-  max-width: 560px;
-  padding: var(--wim-spacing-sm) var(--wim-spacing-2xl) var(--wim-spacing-sm) var(--wim-spacing-md);
-  color: #fff;
-  pointer-events: auto;
-
-  // Default Style (Sleek Dark)
-  background: rgb(33 33 33 / 0.9);
-  border: 1px solid rgb(255 255 255 / 0.1);
-  border-radius: var(--wim-radius-md);
-  box-shadow: var(--wim-shadow-lg);
-
-  // Initial state for animation
-  opacity: 0;
-  backdrop-filter: blur(8px);
-  transform: translateY(20px) scale(0.95);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &--visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  &__content {
+@layer component {
+  .wim-snackbar-wrapper {
+    position: fixed;
+    z-index: 9999;
     display: flex;
-    flex: 1;
-    gap: var(--wim-spacing-sm);
-    align-items: center;
+    width: 100%;
+    padding: var(--wim-spacing-lg);
+    pointer-events: none;
+  
+    &--top-left {
+      top: 0;
+      left: 0;
+      justify-content: flex-start;
+    }
+  
+    &--top-center {
+      top: 0;
+      left: 0;
+      justify-content: center;
+    }
+  
+    &--top-right {
+      top: 0;
+      right: 0;
+      justify-content: flex-end;
+    }
+  
+    &--bottom-left {
+      bottom: 0;
+      left: 0;
+      justify-content: flex-start;
+    }
+  
+    &--bottom-center {
+      bottom: 0;
+      left: 0;
+      justify-content: center;
+    }
+  
+    &--bottom-right {
+      right: 0;
+      bottom: 0;
+      justify-content: flex-end;
+    }
   }
-
-  &__icon {
+  
+  .wim-snackbar {
+    position: relative;
     display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    align-self: center; // Vertically center the icon
-  }
-
-  &__message {
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.4;
-  }
-
-  &__actions {
-    display: flex;
-    gap: var(--wim-spacing-xs);
-    align-items: center;
-    margin-left: var(--wim-spacing-md);
-  }
-
-  &__action-button {
-    min-height: auto;
-    padding: 4px 8px;
-    font-weight: 600;
-    color: #90caf9; // Light blue for action on dark background
-
-    &:hover {
-      background: rgb(144 202 249 / 0.1);
+    gap: var(--wim-spacing-md);
+    align-items: flex-start;
+    justify-content: space-between;
+    min-width: 288px;
+    max-width: 560px;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-2xl) var(--wim-spacing-sm) var(--wim-spacing-md);
+    color: #fff;
+    pointer-events: auto;
+  
+    // Default Style (Sleek Dark)
+    background: rgb(33 33 33 / 0.9);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: var(--wim-radius-md);
+    box-shadow: var(--wim-shadow-lg);
+  
+    // Initial state for animation
+    opacity: 0;
+    backdrop-filter: blur(8px);
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+    &--visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
-  }
-
-  &__close-button {
-    position: absolute;
-    top: var(--wim-spacing-xs);
-    right: var(--wim-spacing-xs);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    color: rgb(255 255 255 / 0.7);
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    border-radius: var(--wim-radius-full);
-    transition: var(--wim-transition-fast);
-
-    &:hover {
-      color: #fff;
-      background: rgb(255 255 255 / 0.1);
+  
+    &__content {
+      display: flex;
+      flex: 1;
+      gap: var(--wim-spacing-sm);
+      align-items: center;
     }
-
-    &:active {
-      transform: scale(0.9);
+  
+    &__icon {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      align-self: center; // Vertically center the icon
     }
-  }
-
-  // Variants
-  &--success {
-    background: rgb(46 125 50 / 0.9);
-    border-color: rgb(255 255 255 / 0.1);
-
-    .wim-snackbar__action-button {
-      color: #fff;
+  
+    &__message {
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.4;
     }
-  }
-
-  &--error {
-    background: rgb(211 47 47 / 0.9);
-    border-color: rgb(255 255 255 / 0.1);
-
-    .wim-snackbar__action-button {
-      color: #fff;
+  
+    &__actions {
+      display: flex;
+      gap: var(--wim-spacing-xs);
+      align-items: center;
+      margin-left: var(--wim-spacing-md);
     }
-  }
-
-  &--warning {
-    background: rgb(237 108 2 / 0.9);
-    border-color: rgb(255 255 255 / 0.1);
-
-    .wim-snackbar__action-button {
-      color: #fff;
+  
+    &__action-button {
+      min-height: auto;
+      padding: 4px 8px;
+      font-weight: 600;
+      color: #90caf9; // Light blue for action on dark background
+  
+      &:hover {
+        background: rgb(144 202 249 / 0.1);
+      }
     }
-  }
-
-  &--info {
-    background: rgb(2 136 209 / 0.9);
-    border-color: rgb(255 255 255 / 0.1);
-
-    .wim-snackbar__action-button {
-      color: #fff;
+  
+    &__close-button {
+      position: absolute;
+      top: var(--wim-spacing-xs);
+      right: var(--wim-spacing-xs);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      color: rgb(255 255 255 / 0.7);
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      border-radius: var(--wim-radius-full);
+      transition: var(--wim-transition-fast);
+  
+      &:hover {
+        color: #fff;
+        background: rgb(255 255 255 / 0.1);
+      }
+  
+      &:active {
+        transform: scale(0.9);
+      }
     }
+  
+    // Variants
+    &--success {
+      background: rgb(46 125 50 / 0.9);
+      border-color: rgb(255 255 255 / 0.1);
+  
+      .wim-snackbar__action-button {
+        color: #fff;
+      }
+    }
+  
+    &--error {
+      background: rgb(211 47 47 / 0.9);
+      border-color: rgb(255 255 255 / 0.1);
+  
+      .wim-snackbar__action-button {
+        color: #fff;
+      }
+    }
+  
+    &--warning {
+      background: rgb(237 108 2 / 0.9);
+      border-color: rgb(255 255 255 / 0.1);
+  
+      .wim-snackbar__action-button {
+        color: #fff;
+      }
+    }
+  
+    &--info {
+      background: rgb(2 136 209 / 0.9);
+      border-color: rgb(255 255 255 / 0.1);
+  
+      .wim-snackbar__action-button {
+        color: #fff;
+      }
+    }
+  
+    // Light Mode preference (optional override if we want it to follow system theme)
+    // But usually Snackbars are dark for contrast.
   }
-
-  // Light Mode preference (optional override if we want it to follow system theme)
-  // But usually Snackbars are dark for contrast.
 }
