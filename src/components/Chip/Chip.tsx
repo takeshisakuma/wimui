@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
-import { ComponentSize } from "../../types/tokens";
+import { ComponentSize, IndicatorStatus } from "../../types/tokens";
 import "./chip.scss";
 import { warnDeprecated } from "../../utilities/dev-utils";
 
@@ -24,7 +24,7 @@ export type ChipProps = {
   /** 無効状態 */
   disabled?: boolean;
   /** ステータス */
-  status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
+  status?: IndicatorStatus;
   /** バリアント */
   variant?: "solid" | "outline" | "subtle";
   /** サイズ */

@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../../Icon/Icon";
+import { FieldStatus } from "../../../types/tokens";
 import "./input-base.scss";
 
 export type InputBaseIcon = {
@@ -16,7 +17,7 @@ export type InputBaseIcon = {
 
 export type InputBaseProps = {
   children: React.ReactNode;
-  status?: "default" | "error";
+  status?: FieldStatus;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;

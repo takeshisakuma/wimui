@@ -21,6 +21,7 @@ const meta: Meta<typeof Tag> = {
         "success",
         "warning",
         "error",
+        "info",
         "neutral",
       ],
     },
@@ -91,6 +92,9 @@ export const Colors: Story = {
         </Tag>
         <Tag {...args} status="neutral">
           {t("story_tag_neutral")}
+        </Tag>
+        <Tag {...args} status="info">
+          {t("story_tag_info")}
         </Tag>
       </div>
     );

@@ -1,10 +1,11 @@
 import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../_internal/FieldTemplate";
+import { FieldStatus } from "../../types/tokens";
 import "./textarea.scss";
 
 type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
-  status?: "default" | "error";
+  status?: FieldStatus;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   fieldSizing?: "fixed" | "content";

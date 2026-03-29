@@ -9,15 +9,15 @@ const meta: Meta<typeof RichTextEditor> = {
   component: RichTextEditor,
   argTypes: {
     status: {
-      control: { type: "select" },
+      control: "select",
       options: ["default", "error", "disabled"],
     },
     variant: {
-      control: { type: "select" },
+      control: "select",
       options: ["outline", "ghost"],
     },
     fullWidth: {
-      control: { type: "boolean" },
+      control: "boolean",
     },
   },
 };

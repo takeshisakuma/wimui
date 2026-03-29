@@ -15,21 +15,21 @@ const meta: Meta<typeof Textarea> = {
   },
   argTypes: {
     disabled: {
-      control: { type: "boolean" },
+      control: "boolean",
     },
     status: {
-      control: { type: "select" },
+      control: "select",
       options: ["default", "error"],
     },
     variant: {
-      control: { type: "select" },
+      control: "select",
       options: ["outline", "ghost"],
     },
     fullWidth: {
-      control: { type: "boolean" },
+      control: "boolean",
     },
     fieldSizing: {
-      control: { type: "select" },
+      control: "select",
       options: ["fixed", "content"],
     },
   },

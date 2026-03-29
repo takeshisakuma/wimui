@@ -14,7 +14,7 @@ const meta: Meta<typeof AspectRatio> = {
   },
   argTypes: {
     ratio: {
-      control: { type: "number" },
+      control: "number",
     },
   },
 };

@@ -15,6 +15,7 @@ const meta: Meta<typeof Progress> = {
         "warning",
         "error",
         "neutral",
+        "info",
       ],
     },
     size: {

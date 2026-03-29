@@ -9,6 +9,7 @@ import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { FeedbackIcon } from "../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
+import { FeedbackStatus } from "../../types/tokens";
 import "./notification.scss";
 
 export type NotificationPlacement =
@@ -37,7 +38,7 @@ export type NotificationProps = {
   /**
    * The status of notification
    */
-  status?: "info" | "success" | "error" | "warning";
+  status?: FeedbackStatus;
   /**
    * Callback when notification is closed
    */

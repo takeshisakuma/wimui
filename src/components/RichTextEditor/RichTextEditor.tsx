@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { FieldTemplate } from "../_internal/FieldTemplate";
+import { FieldStatus } from "../../types/tokens";
 import "./rich-text-editor.scss";
 
 // ---- Inline SVG toolbar icons ----
@@ -124,7 +125,7 @@ export type RichTextEditorProps = {
   onChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
-  status?: "default" | "error";
+  status?: FieldStatus;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   minHeight?: number | string;

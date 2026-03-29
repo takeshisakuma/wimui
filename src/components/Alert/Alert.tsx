@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { FeedbackIcon } from "../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
+import { FeedbackStatus } from "../../types/tokens";
 import "./alert.scss";
 
 type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -17,7 +18,7 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
    * アラートのステータス
    */
-  status?: "info" | "success" | "warning" | "error";
+  status?: FeedbackStatus;
   /**
    * カスタムアイコン。指定しない場合はバリアントに応じたデフォルトアイコンが表示されます。
    */

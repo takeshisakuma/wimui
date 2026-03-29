@@ -13,11 +13,11 @@ const meta: Meta<typeof Link> = {
       options: ["small", "medium", "large"],
     },
     priority: {
-      control: { type: "select" },
+      control: "select",
       options: ["primary", "secondary", "tertiary"],
     },
     iconName: {
-      control: { type: "select" },
+      control: "select",
       options: [
         undefined,
         "CircleIcon",
@@ -27,11 +27,11 @@ const meta: Meta<typeof Link> = {
       ],
     },
     iconPosition: {
-      control: { type: "radio" },
+      control: "radio",
       options: ["left", "right"],
     },
     external: {
-      control: { type: "boolean" },
+      control: "boolean",
     },
   },
 };

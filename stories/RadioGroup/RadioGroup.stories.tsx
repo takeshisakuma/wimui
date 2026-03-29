@@ -11,7 +11,7 @@ const meta: Meta<typeof RadioGroup> = {
   argTypes: {
     disabled: { control: "boolean" },
     direction: {
-      control: { type: "radio" },
+      control: "radio",
       options: ["vertical", "horizontal"],
     },
   },

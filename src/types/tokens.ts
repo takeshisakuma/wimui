@@ -11,6 +11,28 @@ export type LiteralWithAutocomplete<T extends string> = T | (string & {});
 export type ComponentSize = "small" | "medium" | "large";
 
 /**
+ * Status values for indicator-style components (Badge, Chip, Tag, Progress).
+ */
+export type IndicatorStatus =
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "error"
+  | "info"
+  | "neutral";
+
+/**
+ * Status values for feedback/notification components (Alert, Banner, Toast, Snackbar).
+ */
+export type FeedbackStatus = "info" | "success" | "warning" | "error";
+
+/**
+ * Status values for form field components (Input, Textarea, DatePicker).
+ */
+export type FieldStatus = "default" | "error";
+
+/**
  * Color tokens available as CSS variables.
  */
 export type WimColorToken =

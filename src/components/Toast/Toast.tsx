@@ -9,9 +9,8 @@ import classNames from "classnames";
 import { Transition } from "../Transition/Transition";
 import { FeedbackIcon } from "../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
+import { FeedbackStatus } from "../../types/tokens";
 import "./toast.scss";
-
-export type ToastStatus = "info" | "success" | "warning" | "error";
 export type ToastPosition =
   | "top-right"
   | "top-left"
@@ -24,7 +23,7 @@ export type ToastProps = {
   id?: string;
   title?: string;
   description?: string;
-  status?: ToastStatus;
+  status?: FeedbackStatus;
   duration?: number;
   isVisible?: boolean;
   onClose?: (id?: string) => void;
@@ -96,7 +95,7 @@ type ToastItem = {
   id: string;
   title?: string;
   description?: string;
-  status?: ToastStatus;
+  status?: FeedbackStatus;
   duration?: number;
 };
 

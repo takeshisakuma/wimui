@@ -5,9 +5,10 @@ import "./input.scss";
 import { Icon } from "../Icon/Icon";
 import { InputBase, InputBaseIcon } from "../_internal/InputBase";
 import { FieldTemplate } from "../_internal/FieldTemplate";
+import { FieldStatus } from "../../types/tokens";
 
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
-  status?: "default" | "error";
+  status?: FieldStatus;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   leftIcon?: React.ComponentProps<typeof Icon>["name"];

@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { FeedbackIcon } from "../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
+import { FeedbackStatus } from "../../types/tokens";
 import "./banner.scss";
 
 type BannerProps = {
@@ -17,7 +18,7 @@ type BannerProps = {
   /**
    * バナーのステータス
    */
-  status?: "info" | "success" | "warning" | "error";
+  status?: FeedbackStatus;
   /**
    * アイコンを表示するかどうか、またはカスタムアイコン
    */

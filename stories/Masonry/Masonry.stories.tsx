@@ -9,7 +9,7 @@ const meta: Meta<typeof Masonry> = {
   tags: [],
   argTypes: {
     columns: { control: { type: "number", min: 1, max: 10 } },
-    spacing: { control: { type: "number" } },
+    spacing: { control: "number" },
   },
 };
 

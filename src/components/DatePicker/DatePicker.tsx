@@ -7,12 +7,13 @@ import "../Input/input.scss";
 import "./datePicker.scss";
 
 import { FieldTemplate } from "../_internal/FieldTemplate";
+import { FieldStatus } from "../../types/tokens";
 
 type DatePickerProps = Omit<
   React.ComponentPropsWithoutRef<"input">,
   "value" | "defaultValue" | "onChange"
 > & {
-  status?: "default" | "error";
+  status?: FieldStatus;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   /** Selected date value */

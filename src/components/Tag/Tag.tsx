@@ -1,20 +1,13 @@
 import React from "react";
 import { IndicatorBase } from "../_internal/IndicatorBase";
-import { ComponentSize } from "../../types/tokens";
+import { ComponentSize, IndicatorStatus } from "../../types/tokens";
 import "./tag.scss";
 
 export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   /** 表示するコンテンツ */
   children?: React.ReactNode;
   /** ステータス */
-  status?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "error"
-    | "neutral"
-    | "info";
+  status?: IndicatorStatus;
   /** バリアント */
   variant?: "solid" | "outline" | "subtle";
   /** サイズ */

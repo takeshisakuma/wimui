@@ -12,7 +12,7 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     color: {
-      control: { type: "select" },
+      control: "select",
       options: [
         "destructive",
         "positive",

@@ -9,14 +9,8 @@ import { Button } from "../Button/Button";
 import classNames from "classnames";
 import { FeedbackIcon } from "../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../_internal/FeedbackCloseButton";
+import { FeedbackStatus } from "../../types/tokens";
 import "./snackbar.scss";
-
-export type SnackbarStatus =
-  | "default"
-  | "success"
-  | "warning"
-  | "error"
-  | "info";
 export type SnackbarPosition =
   | "top-left"
   | "top-center"
@@ -31,7 +25,7 @@ export interface SnackbarProps {
   /** 表示状態 */
   open?: boolean;
   /** 表示するタイプ */
-  status?: SnackbarStatus;
+  status?: FeedbackStatus | "default";
   /** 表示位置 */
   position?: SnackbarPosition;
   /** 自動で閉じるまでの時間（ミリ秒）。0を指定すると自動で閉じません。 */

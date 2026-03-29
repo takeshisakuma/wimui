@@ -70,6 +70,10 @@
     background-color: var(--wim-color-neutral, #e9ecef);
   }
 
+  &--info .wim-progress__bar {
+    background-color: var(--color-informative);
+  }
+
   // Indeterminate animation
   &--indeterminate {
     .wim-progress__bar {

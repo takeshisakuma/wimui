@@ -18,7 +18,7 @@ const meta: Meta<typeof Chip> = {
     disabled: { control: "boolean" },
     status: {
       control: "select",
-      options: ["primary", "secondary", "neutral"],
+      options: ["primary", "secondary", "success", "warning", "error", "info", "neutral"],
     },
     variant: {
       control: "select",
