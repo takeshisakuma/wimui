@@ -35,7 +35,7 @@ export default {
 export const ExLargeParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Paragraph {...args} content={t('story_paragraph_exlarge')} />;
+    return <Paragraph {...args} content={t('story.paragraph_exlarge')} />;
   },
   args: {
     size: "ex-large",
@@ -48,7 +48,7 @@ export const ExLargeParagraph = {
 export const LargeParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Paragraph {...args} content={t('story_paragraph_large')} />;
+    return <Paragraph {...args} content={t('story.paragraph_large')} />;
   },
   args: {
     size: "large",
@@ -61,7 +61,7 @@ export const LargeParagraph = {
 export const MediumParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Paragraph {...args} content={t('story_paragraph_medium')} />;
+    return <Paragraph {...args} content={t('story.paragraph_medium')} />;
   },
   args: {
     size: "medium",
@@ -74,7 +74,7 @@ export const MediumParagraph = {
 export const SmallParagrapht = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Paragraph {...args} content={t('story_paragraph_small')} />;
+    return <Paragraph {...args} content={t('story.paragraph_small')} />;
   },
   args: {
     size: "small",
@@ -87,7 +87,7 @@ export const SmallParagrapht = {
 export const ExSmallParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Paragraph {...args} content={t('story_paragraph_exsmall')} />;
+    return <Paragraph {...args} content={t('story.paragraph_exsmall')} />;
   },
   args: {
     size: "ex-small",
@@ -100,7 +100,7 @@ export const ExSmallParagraph = {
 export const BoldParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Paragraph {...args} content={t('story_paragraph_bold')} />;
+    return <Paragraph {...args} content={t('story.paragraph_bold')} />;
   },
   args: {
     size: "medium",
@@ -111,7 +111,7 @@ export const BoldParagraph = {
 export const StrikethroughParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Paragraph {...args} content={t('story_paragraph_strikethrough')} />;
+    return <Paragraph {...args} content={t('story.paragraph_strikethrough')} />;
   },
   args: {
     size: "medium",
@@ -122,7 +122,7 @@ export const StrikethroughParagraph = {
 export const HighlightParagraph = {
   render: (args: Parameters<typeof Paragraph>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Paragraph {...args} content={t('story_paragraph_highlight')} />;
+    return <Paragraph {...args} content={t('story.paragraph_highlight')} />;
   },
   args: {
     size: "medium",

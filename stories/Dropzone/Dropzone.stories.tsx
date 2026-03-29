@@ -25,8 +25,8 @@ export const Default: Story = {
     return (
       <Dropzone
         {...args}
-        label={t("story_dropzone_label_file")}
-        description={t("story_dropzone_default_desc")}
+        label={t("story.dropzone_label_file")}
+        description={t("story.dropzone_default_desc")}
       />
     );
   },
@@ -38,9 +38,9 @@ export const Multiple: Story = {
     return (
       <Dropzone
         {...args}
-        label={t("story_dropzone_label_multi")}
+        label={t("story.dropzone_label_multi")}
         multiple={true}
-        description={t("story_dropzone_desc_multi")}
+        description={t("story.dropzone_desc_multi")}
       />
     );
   },
@@ -52,10 +52,10 @@ export const AcceptImages: Story = {
     return (
       <Dropzone
         {...args}
-        label={t("story_dropzone_label_image_only")}
+        label={t("story.dropzone_label_image_only")}
         accept="image/*"
         iconName="ImageIcon"
-        description={t("story_dropzone_desc_image")}
+        description={t("story.dropzone_desc_image")}
       />
     );
   },
@@ -67,9 +67,9 @@ export const Disabled: Story = {
     return (
       <Dropzone
         {...args}
-        label={t("story_dropzone_label_disabled")}
+        label={t("story.dropzone_label_disabled")}
         disabled={true}
-        description={t("story_dropzone_desc_disabled")}
+        description={t("story.dropzone_desc_disabled")}
       />
     );
   },
@@ -81,10 +81,10 @@ export const CustomIcon: Story = {
     return (
       <Dropzone
         {...args}
-        label={t("story_dropzone_label_pdf")}
+        label={t("story.dropzone_label_pdf")}
         iconName="PdfIcon"
         accept=".pdf"
-        description={t("story_dropzone_desc_pdf")}
+        description={t("story.dropzone_desc_pdf")}
       />
     );
   },
@@ -96,10 +96,10 @@ export const VideoUpload: Story = {
     return (
       <Dropzone
         {...args}
-        label={t("story_dropzone_label_video")}
+        label={t("story.dropzone_label_video")}
         iconName="VideoIcon"
         accept="video/*"
-        description={t("story_dropzone_desc_video")}
+        description={t("story.dropzone_desc_video")}
       />
     );
   },

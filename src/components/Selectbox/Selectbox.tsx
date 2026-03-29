@@ -60,7 +60,7 @@ export const Selectbox = ({
   options = [],
   value,
   onChange,
-  placeholder = "select_option",
+  placeholder = "select.option",
   label,
   error,
   required,
@@ -69,7 +69,7 @@ export const Selectbox = ({
   disabled = false,
   defaultValue,
   searchable = false,
-  searchPlaceholder = "search_placeholder",
+  searchPlaceholder = "search.placeholder",
   filterOption,
   grouped = false,
   allowClear = false,
@@ -344,7 +344,7 @@ export const Selectbox = ({
                 role="option"
                 aria-selected="false"
               >
-                {t("no_options_found")}
+                {t("no.options_found")}
               </li>
             ) : (
               renderOptions()

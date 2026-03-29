@@ -266,7 +266,7 @@ const SplitterHandle = ({
     <div
       role="separator"
       aria-orientation={orientation}
-      aria-label={t("a11y_resize_panel")}
+      aria-label={t("a11y.resize_panel")}
       tabIndex={0}
       className={classNames(
         "wim-splitter-handle",

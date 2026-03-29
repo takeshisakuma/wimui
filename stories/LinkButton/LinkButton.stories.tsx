@@ -20,7 +20,7 @@ export const Default: Story = {
     return (
       <LinkButton
         {...args}
-        label={t("story_linkbutton_google")}
+        label={t("story.linkbutton_google")}
         href="https://google.com"
         target="_blank"
         icon="ExternalLinkIcon"

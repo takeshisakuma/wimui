@@ -21,11 +21,11 @@ export const Default: Story = {
       <DateRangePicker
         {...args}
         startProps={{
-          placeholder: t("story_daterangepicker_start"),
+          placeholder: t("story.daterangepicker_start"),
           ...args.startProps,
         }}
         endProps={{
-          placeholder: t("story_daterangepicker_end"),
+          placeholder: t("story.daterangepicker_end"),
           ...args.endProps,
         }}
       />

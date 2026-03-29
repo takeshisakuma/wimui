@@ -22,12 +22,12 @@ export const Default: Story = {
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
         <ScrollProgress {...args} />
-        <h1>{t("story_scrollprogress_h1")}</h1>
+        <h1>{t("story.scrollprogress_h1")}</h1>
         <div style={{ marginTop: "100vh" }}>
-          <p>{t("story_scrollprogress_middle")}</p>
+          <p>{t("story.scrollprogress_middle")}</p>
         </div>
         <div style={{ marginTop: "100vh" }}>
-          <p>{t("story_scrollprogress_end")}</p>
+          <p>{t("story.scrollprogress_end")}</p>
         </div>
       </div>
     );
@@ -56,7 +56,7 @@ export const CustomContainer: Story = {
             style={{ position: "sticky", top: 0 }}
           />
           <div style={{ height: "1000px", padding: "10px" }}>
-            <p>{t("story_scrollprogress_inside")}</p>
+            <p>{t("story.scrollprogress_inside")}</p>
           </div>
         </div>
       </div>

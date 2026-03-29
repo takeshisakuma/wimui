@@ -29,8 +29,8 @@ export const Default: Story = {
     return (
       <PhoneInput
         {...args}
-        label={t("story_phoneinput_label")}
-        placeholder={t("story_phoneinput_placeholder")}
+        label={t("story.phoneinput_label")}
+        placeholder={t("story.phoneinput_placeholder")}
         value={value}
         onChange={setValue}
         countryCode={countryCode}
@@ -48,13 +48,13 @@ export const WithError: Story = {
     return (
       <PhoneInput
         {...args}
-        label={t("story_phoneinput_label")}
-        placeholder={t("story_phoneinput_placeholder")}
+        label={t("story.phoneinput_label")}
+        placeholder={t("story.phoneinput_placeholder")}
         value={value}
         onChange={setValue}
         countryCode={countryCode}
         onCountryChange={setCountryCode}
-        error={t("story_phoneinput_error")}
+        error={t("story.phoneinput_error")}
       />
     );
   },
@@ -66,8 +66,8 @@ export const Disabled: Story = {
     return (
       <PhoneInput
         {...args}
-        label={t("story_phoneinput_label")}
-        placeholder={t("story_phoneinput_placeholder")}
+        label={t("story.phoneinput_label")}
+        placeholder={t("story.phoneinput_placeholder")}
         value="090-1234-5678"
         countryCode="JP"
         disabled

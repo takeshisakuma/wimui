@@ -21,8 +21,8 @@ export const Basic: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
-        <p>{t("story_backtop_scroll")}</p>
-        <p>{t("story_backtop_visible_400")}</p>
+        <p>{t("story.backtop_scroll")}</p>
+        <p>{t("story.backtop_visible_400")}</p>
         <BackTop {...args} visibilityHeight={400} />
       </div>
     );
@@ -34,8 +34,8 @@ export const CustomElement: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
-        <p>{t("story_backtop_custom_scroll")}</p>
-        <p>{t("story_backtop_visible_200")}</p>
+        <p>{t("story.backtop_custom_scroll")}</p>
+        <p>{t("story.backtop_visible_200")}</p>
         <BackTop {...args} visibilityHeight={200}>
           <div
             style={{
@@ -50,7 +50,7 @@ export const CustomElement: Story = {
               fontSize: 14,
             }}
           >
-            {t("story_backtop_up")}
+            {t("story.backtop_up")}
           </div>
         </BackTop>
       </div>
@@ -64,7 +64,7 @@ const SpecificTargetStory = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <p>{t("story_backtop_target_msg")}</p>
+      <p>{t("story.backtop_target_msg")}</p>
       <div
         ref={(node) => setContainer(node)}
         tabIndex={0}
@@ -77,7 +77,7 @@ const SpecificTargetStory = () => {
         }}
       >
         <div style={{ height: "1000px" }}>
-          <p>{t("story_backtop_inside_box")}</p>
+          <p>{t("story.backtop_inside_box")}</p>
           <BackTop
             target={() => container}
             visibilityHeight={100}

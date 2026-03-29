@@ -23,10 +23,10 @@ export const Basic: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
-        <p>{t("story_affix_scroll_top")}</p>
+        <p>{t("story.affix_scroll_top")}</p>
         <div style={{ marginTop: "100px" }}>
           <Affix {...args} offsetTop={20}>
-            <Button label={t("story_affix_top")} size="medium" />
+            <Button label={t("story.affix_top")} size="medium" />
           </Affix>
         </div>
       </div>
@@ -39,13 +39,13 @@ export const OffsetBottom: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
-        <p>{t("story_affix_scroll_bottom")}</p>
+        <p>{t("story.affix_scroll_bottom")}</p>
         <div style={{ marginTop: "120vh" }}>
-          <p>{t("story_affix_scroll_bottom_2", "Scroll down here...")}</p>
+          <p>{t("story.affix_scroll_bottom_2", "Scroll down here...")}</p>
           <Affix {...args} offsetBottom={20}>
-            <Button label={t("story_affix_bottom")} size="medium" />
+            <Button label={t("story.affix_bottom")} size="medium" />
           </Affix>
-          <p>{t("story_affix_more")}</p>
+          <p>{t("story.affix_more")}</p>
         </div>
       </div>
     );

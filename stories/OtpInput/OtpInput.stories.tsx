@@ -58,10 +58,10 @@ export const Controlled = () => {
     <div>
       <OtpInput value={value} onChange={setValue} length={6} />
       <p style={{ marginTop: "1rem" }}>
-        {t("story_otp_current_value")}: {value}
+        {t("story.otp_current_value")}: {value}
       </p>
       <button onClick={() => setValue("")} style={{ marginTop: "0.5rem" }}>
-        {t("story_otp_clear")}
+        {t("story.otp_clear")}
       </button>
     </div>
   );

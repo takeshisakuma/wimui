@@ -24,7 +24,7 @@ type Story = StoryObj<typeof IconButton>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <IconButton {...args} iconName="SearchIcon" aria-label={t("story_iconbutton_search")} />;
+    return <IconButton {...args} iconName="SearchIcon" aria-label={t("story.iconbutton_search")} />;
   },
 };
 
@@ -35,7 +35,7 @@ export const Close: Story = {
       <IconButton
         {...args}
         iconName="CloseIcon"
-        aria-label={t("story_iconbutton_close")}
+        aria-label={t("story.iconbutton_close")}
       />
     );
   },

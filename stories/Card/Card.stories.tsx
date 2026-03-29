@@ -47,8 +47,8 @@ export const Default: Story = {
     return (
       <Card {...args}>
         <Card.Body>
-          <h3>{t("story_card_default_title")}</h3>
-          <p>{t("story_card_default_desc")}</p>
+          <h3>{t("story.card_default_title")}</h3>
+          <p>{t("story.card_default_desc")}</p>
         </Card.Body>
       </Card>
     );
@@ -65,8 +65,8 @@ export const Outline: Story = {
     return (
       <Card {...args}>
         <Card.Body>
-          <h3>{t("story_card_outline_title")}</h3>
-          <p>{t("story_card_outline_desc")}</p>
+          <h3>{t("story.card_outline_title")}</h3>
+          <p>{t("story.card_outline_desc")}</p>
         </Card.Body>
       </Card>
     );
@@ -83,8 +83,8 @@ export const Flat: Story = {
     return (
       <Card {...args}>
         <Card.Body>
-          <h3>{t("story_card_flat_title")}</h3>
-          <p>{t("story_card_flat_desc")}</p>
+          <h3>{t("story.card_flat_title")}</h3>
+          <p>{t("story.card_flat_desc")}</p>
         </Card.Body>
       </Card>
     );
@@ -101,17 +101,17 @@ export const WithHeaderAndFooter: Story = {
     return (
       <Card {...args} style={{ width: "400px" }}>
         <Card.Header>
-          <h4 style={{ margin: 0 }}>{t("story_card_header_title")}</h4>
+          <h4 style={{ margin: 0 }}>{t("story.card_header_title")}</h4>
         </Card.Header>
         <Card.Body>
-          <p>{t("story_card_body_text")}</p>
+          <p>{t("story.card_body_text")}</p>
         </Card.Body>
         <Card.Footer>
           <div
             style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}
           >
-            <Button priority="secondary" size="small" label={t("story_card_cancel")} />
-            <Button priority="primary" size="small" label={t("story_card_save")} />
+            <Button priority="secondary" size="small" label={t("story.card_cancel")} />
+            <Button priority="primary" size="small" label={t("story.card_save")} />
           </div>
         </Card.Footer>
       </Card>

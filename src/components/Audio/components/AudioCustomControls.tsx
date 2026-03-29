@@ -72,7 +72,7 @@ export function AudioCustomControls({
             step="0.1"
             onChange={handleSeek}
             className="wim-audio-progress"
-            aria-label={t("a11y_seek")}
+            aria-label={t("a11y.seek")}
           />
           <div
             className="wim-audio-progress-fill"
@@ -155,7 +155,7 @@ export function AudioCustomControls({
               type="button"
               className="wim-audio-btn wim-audio-btn--volume"
               onClick={() => setIsMuted((m) => !m)}
-              aria-label={isMuted ? t("a11y_unmute") : t("a11y_mute")}
+              aria-label={isMuted ? t("a11y.unmute") : t("a11y.mute")}
             >
               <Icon
                 name={isMuted || volume === 0 ? "MuteIcon" : "VolumeIcon"}
@@ -170,7 +170,7 @@ export function AudioCustomControls({
               value={isMuted ? 0 : volume}
               onChange={handleVolumeChange}
               className="wim-audio-volume"
-              aria-label={t("a11y_volume")}
+              aria-label={t("a11y.volume")}
             />
           </div>
         </div>
@@ -194,8 +194,8 @@ export function AudioCustomControls({
             type="button"
             className="wim-audio-btn wim-audio-btn--play"
             onClick={togglePlay}
-            title={isPlaying ? t("a11y_pause") : t("a11y_play")}
-            aria-label={isPlaying ? t("a11y_pause") : t("a11y_play")}
+            title={isPlaying ? t("a11y.pause") : t("a11y.play")}
+            aria-label={isPlaying ? t("a11y.pause") : t("a11y.play")}
           >
             <Icon name={isPlaying ? "PauseIcon" : "PlayIcon"} size="small" />
           </button>

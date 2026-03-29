@@ -38,8 +38,8 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_mentions_label_user")}>
-        <Mentions {...args} options={mockUsers} placeholder={t("story_mentions_placeholder_user")} fullWidth rows={4} />
+      <Label label={t("story.mentions_label_user")}>
+        <Mentions {...args} options={mockUsers} placeholder={t("story.mentions_placeholder_user")} fullWidth rows={4} />
       </Label>
     );
   },
@@ -50,13 +50,13 @@ export const CustomTrigger: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-        <Label label={t("story_mentions_label_char")}>
+        <Label label={t("story.mentions_label_char")}>
           <Mentions
             {...args}
             fullWidth
             rows={3}
             trigger="#"
-            placeholder={t("story_mentions_placeholder_char")}
+            placeholder={t("story.mentions_placeholder_char")}
             options={[
               { id: 1, display: "SuperMario" },
               { id: 2, display: "Luigi" },
@@ -64,13 +64,13 @@ export const CustomTrigger: Story = {
             ]}
           />
         </Label>
-        <Label label={t("story_mentions_label_cmd")}>
+        <Label label={t("story.mentions_label_cmd")}>
           <Mentions
             {...args}
             fullWidth
             rows={3}
             trigger="/"
-            placeholder={t("story_mentions_placeholder_cmd")}
+            placeholder={t("story.mentions_placeholder_cmd")}
             options={[
               { id: 1, display: "help" },
               { id: 2, display: "settings" },

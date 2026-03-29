@@ -35,33 +35,33 @@ export const Default: Story = {
         style={{ height: "100vh", background: "var(--wim-color-surface-variant)", position: "relative" }}
       >
         <div style={{ padding: "20px" }}>
-          {t("story_tabbar_content_prefix")} {activeTab} {t("story_tabbar_tab")}
+          {t("story.tabbar_content_prefix")} {activeTab} {t("story.tabbar_tab")}
         </div>
         <TabBar {...args} style={{}}>
           <TabBar.Item
             active={activeTab === "home"}
             onClick={() => setActiveTab("home")}
             icon={<Icon name="CircleIcon" />}
-            label={t("story_common_home")}
+            label={t("story.common_home")}
           />
           <TabBar.Item
             active={activeTab === "search"}
             onClick={() => setActiveTab("search")}
             icon={<Icon name="SearchIcon" />}
-            label={t("story_common_search")}
+            label={t("story.common_search")}
           />
           <TabBar.Item
             active={activeTab === "notifications"}
             onClick={() => setActiveTab("notifications")}
             icon={<Icon name="StarIcon" />}
-            label={t("story_common_alerts")}
+            label={t("story.common_alerts")}
             badge="3"
           />
           <TabBar.Item
             active={activeTab === "profile"}
             onClick={() => setActiveTab("profile")}
             icon={<Icon name="SquareIcon" />}
-            label={t("story_common_profile")}
+            label={t("story.common_profile")}
           />
         </TabBar>
       </div>
@@ -108,11 +108,11 @@ export const Fixed: Story = {
     return (
       <div style={{ background: "var(--wim-color-surface-variant)", minHeight: "100vh" }}>
         <div style={{ padding: "20px", paddingBottom: "100px" }}>
-          <h2>{t("story_tabbar_fixed_title")}</h2>
-          <p>{t("story_tabbar_fixed_desc")}</p>
+          <h2>{t("story.tabbar_fixed_title")}</h2>
+          <p>{t("story.tabbar_fixed_desc")}</p>
           {Array.from({ length: 20 }).map((_, i) => (
             <p key={i}>
-              {t("story_tabbar_line")} {i + 1} {t("story_tabbar_long_content")}
+              {t("story.tabbar_line")} {i + 1} {t("story.tabbar_long_content")}
             </p>
           ))}
         </div>
@@ -121,19 +121,19 @@ export const Fixed: Story = {
             active={activeTab === "home"}
             onClick={() => setActiveTab("home")}
             icon={<Icon name="HomeIcon" />}
-            label={t("story_common_home")}
+            label={t("story.common_home")}
           />
           <TabBar.Item
             active={activeTab === "search"}
             onClick={() => setActiveTab("search")}
             icon={<Icon name="SearchIcon" />}
-            label={t("story_common_search")}
+            label={t("story.common_search")}
           />
           <TabBar.Item
             active={activeTab === "profile"}
             onClick={() => setActiveTab("profile")}
             icon={<Icon name="UserIcon" />}
-            label={t("story_common_profile")}
+            label={t("story.common_profile")}
           />
         </TabBar>
       </div>

@@ -63,22 +63,22 @@ export const Default: Story = {
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
-          <Button priority="primary" label={t("story_drawer_open_right")} />
+          <Button priority="primary" label={t("story.drawer_open_right")} />
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>{t("story_drawer_title")}</DrawerTitle>
-            <DrawerDescription>{t("story_drawer_desc")}</DrawerDescription>
+            <DrawerTitle>{t("story.drawer_title")}</DrawerTitle>
+            <DrawerDescription>{t("story.drawer_desc")}</DrawerDescription>
           </DrawerHeader>
           <div style={{ padding: "20px" }}>
-            <p>{t("story_drawer_body1")}</p>
-            <p>{t("story_drawer_body2")}</p>
+            <p>{t("story.drawer_body1")}</p>
+            <p>{t("story.drawer_body2")}</p>
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button priority="secondary" label={t("story_dialog_cancel")} />
+              <Button priority="secondary" label={t("story.dialog_cancel")} />
             </DrawerClose>
-            <Button priority="primary" label={t("story_drawer_confirm")} />
+            <Button priority="primary" label={t("story.drawer_confirm")} />
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -95,19 +95,19 @@ export const Left: Story = {
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
-          <Button priority="secondary" label={t("story_drawer_open_left")} />
+          <Button priority="secondary" label={t("story.drawer_open_left")} />
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>{t("story_drawer_left_title")}</DrawerTitle>
-            <DrawerDescription>{t("story_drawer_left_desc")}</DrawerDescription>
+            <DrawerTitle>{t("story.drawer_left_title")}</DrawerTitle>
+            <DrawerDescription>{t("story.drawer_left_desc")}</DrawerDescription>
           </DrawerHeader>
           <div style={{ padding: "20px" }}>
-            <p>{t("story_drawer_left_body")}</p>
+            <p>{t("story.drawer_left_body")}</p>
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button priority="secondary" label={t("story_dialog_cancel")} />
+              <Button priority="secondary" label={t("story.dialog_cancel")} />
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
@@ -125,19 +125,19 @@ export const Top: Story = {
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
-          <Button priority="secondary" label={t("story_drawer_open_top")} />
+          <Button priority="secondary" label={t("story.drawer_open_top")} />
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>{t("story_drawer_top_title")}</DrawerTitle>
-            <DrawerDescription>{t("story_drawer_top_desc")}</DrawerDescription>
+            <DrawerTitle>{t("story.drawer_top_title")}</DrawerTitle>
+            <DrawerDescription>{t("story.drawer_top_desc")}</DrawerDescription>
           </DrawerHeader>
           <div style={{ padding: "20px" }}>
-            <p>{t("story_drawer_top_body")}</p>
+            <p>{t("story.drawer_top_body")}</p>
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button priority="secondary" label={t("story_dialog_cancel")} />
+              <Button priority="secondary" label={t("story.dialog_cancel")} />
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
@@ -155,21 +155,21 @@ export const Bottom: Story = {
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
-          <Button priority="secondary" label={t("story_drawer_open_bottom")} />
+          <Button priority="secondary" label={t("story.drawer_open_bottom")} />
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>{t("story_drawer_bottom_title")}</DrawerTitle>
+            <DrawerTitle>{t("story.drawer_bottom_title")}</DrawerTitle>
             <DrawerDescription>
-              {t("story_drawer_bottom_desc")}
+              {t("story.drawer_bottom_desc")}
             </DrawerDescription>
           </DrawerHeader>
           <div style={{ padding: "20px" }}>
-            <p>{t("story_drawer_bottom_body")}</p>
+            <p>{t("story.drawer_bottom_body")}</p>
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button priority="secondary" label={t("story_dialog_cancel")} />
+              <Button priority="secondary" label={t("story.dialog_cancel")} />
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
@@ -192,34 +192,34 @@ export const Controlled: Story = {
         }}
       >
         <p>
-          {t("story_dialog_curr_state")}: {open ? "Open" : "Closed"}
+          {t("story.dialog_curr_state")}: {open ? "Open" : "Closed"}
         </p>
         <Button
           priority="primary"
-          label={t("story_dialog_state_open")}
+          label={t("story.dialog_state_open")}
           onClick={() => setOpen(true)}
         />
 
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerContent>
             <DrawerHeader>
-              <DrawerTitle>{t("story_drawer_controlled_title")}</DrawerTitle>
+              <DrawerTitle>{t("story.drawer_controlled_title")}</DrawerTitle>
               <DrawerDescription>
-                {t("story_dialog_controlled_desc")}
+                {t("story.dialog_controlled_desc")}
               </DrawerDescription>
             </DrawerHeader>
             <div style={{ padding: "20px" }}>
-              <p>{t("story_dialog_controlled_body")}</p>
+              <p>{t("story.dialog_controlled_body")}</p>
             </div>
             <DrawerFooter>
               <Button
                 priority="secondary"
-                label={t("story_dialog_cancel")}
+                label={t("story.dialog_cancel")}
                 onClick={() => setOpen(false)}
               />
               <Button
                 priority="primary"
-                label={t("story_dialog_state_close")}
+                label={t("story.dialog_state_close")}
                 onClick={() => setOpen(false)}
               />
             </DrawerFooter>
@@ -241,21 +241,21 @@ export const WithoutSlide: Story = {
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
-          <Button priority="primary" label={t("story_drawer_open_no_slide")} />
+          <Button priority="primary" label={t("story.drawer_open_no_slide")} />
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>{t("story_drawer_no_slide_title")}</DrawerTitle>
+            <DrawerTitle>{t("story.drawer_no_slide_title")}</DrawerTitle>
             <DrawerDescription>
-              {t("story_drawer_no_slide_desc")}
+              {t("story.drawer_no_slide_desc")}
             </DrawerDescription>
           </DrawerHeader>
           <div style={{ padding: "20px" }}>
-            <p>{t("story_drawer_no_slide_body")}</p>
+            <p>{t("story.drawer_no_slide_body")}</p>
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button priority="secondary" label={t("story_dialog_cancel")} />
+              <Button priority="secondary" label={t("story.dialog_cancel")} />
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>

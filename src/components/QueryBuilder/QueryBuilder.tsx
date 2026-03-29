@@ -196,7 +196,7 @@ export const QueryBuilder = ({
       };
     };
     updateQuery(deepAdd(currentQuery));
-    announce(t("query_builder.rule_added", "Rule added"));
+    announce(t("query.builder.rule_added", "Rule added"));
   };
 
   const handleAddGroup = (parentId: string) => {
@@ -220,7 +220,7 @@ export const QueryBuilder = ({
       };
     };
     updateQuery(deepAdd(currentQuery));
-    announce(t("query_builder.group_added", "Group added"));
+    announce(t("query.builder.group_added", "Group added"));
   };
 
   const handleRemove = (targetId: string) => {
@@ -236,7 +236,7 @@ export const QueryBuilder = ({
       };
     };
     updateQuery(deepRemove(currentQuery));
-    announce(t("query_builder.removed", "Removed"));
+    announce(t("query.builder.removed", "Removed"));
   };
 
   const renderRule = (rule: QueryRule, _isExcluded: boolean) => {
@@ -256,14 +256,14 @@ export const QueryBuilder = ({
     const isUnaryOperator = rule.operator === "is_null" || rule.operator === "is_not_null";
 
     return (
-      <div key={rule.id} className="wim-query-rule" role="group" aria-label={t("query_builder.rule", "Rule")}>
+      <div key={rule.id} className="wim-query-rule" role="group" aria-label={t("query.builder.rule", "Rule")}>
         <div className="wim-query-rule__fields">
           <Selectbox
             className="wim-query-rule__field"
             options={fields.map((f) => ({ label: t(f.label), value: f.name }))}
             value={rule.field}
             onChange={handleFieldChange}
-            aria-label={t("query_builder.field")}
+            aria-label={t("query.builder.field")}
             fullWidth
           />
           <Selectbox
@@ -271,7 +271,7 @@ export const QueryBuilder = ({
             options={operators.map((op) => ({ label: t(op.label), value: op.value }))}
             value={rule.operator}
             onChange={(val) => handleUpdate(rule.id, { operator: val })}
-            aria-label={t("query_builder.operator")}
+            aria-label={t("query.builder.operator")}
             fullWidth
           />
           {!isUnaryOperator && (
@@ -280,7 +280,7 @@ export const QueryBuilder = ({
                 <NumberInput
                   value={typeof rule.value === "boolean" ? undefined : (rule.value ?? undefined)}
                   onChange={(e) => handleUpdate(rule.id, { value: e.target.value })}
-                  aria-label={t("query_builder.value")}
+                  aria-label={t("query.builder.value")}
                 />
               ) : type === "date" ? (
                 <DatePicker
@@ -288,31 +288,31 @@ export const QueryBuilder = ({
                   onChange={(date) =>
                     handleUpdate(rule.id, { value: date ? date.toISOString() : "" })
                   }
-                  aria-label={t("query_builder.value")}
+                  aria-label={t("query.builder.value")}
                 />
               ) : type === "boolean" ? (
                 <Selectbox
                   options={[
-                    { label: t("query_builder.true"), value: "true" },
-                    { label: t("query_builder.false"), value: "false" },
+                    { label: t("query.builder.true"), value: "true" },
+                    { label: t("query.builder.false"), value: "false" },
                   ]}
                   value={String(rule.value)}
                   onChange={(val) => handleUpdate(rule.id, { value: val === "true" })}
-                  aria-label={t("query_builder.value")}
+                  aria-label={t("query.builder.value")}
                   fullWidth
                 />
               ) : (
                 <Input
                   value={typeof rule.value === "boolean" ? undefined : (rule.value ?? undefined)}
                   onChange={(e) => handleUpdate(rule.id, { value: e.target.value })}
-                  aria-label={t("query_builder.value")}
+                  aria-label={t("query.builder.value")}
                 />
               )}
             </div>
           )}
           <IconButton
             iconName="TrashIcon"
-            aria-label={t("query_builder.remove_rule")}
+            aria-label={t("query.builder.remove_rule")}
             priority="tertiary"
             size="medium"
             color="danger"
@@ -348,7 +348,7 @@ export const QueryBuilder = ({
               ]}
               value={group.combinator}
               onChange={(val) => handleUpdate(group.id, { combinator: val as "and" | "or" })}
-              aria-label={t("query_builder.combinator", "Combinator")}
+              aria-label={t("query.builder.combinator", "Combinator")}
             />
             <Switch
               size="medium"
@@ -360,7 +360,7 @@ export const QueryBuilder = ({
           {depth > 0 && (
             <IconButton
               iconName="TrashIcon"
-              aria-label={t("query_builder.remove_group")}
+              aria-label={t("query.builder.remove_group")}
               priority="tertiary"
               size="medium"
               color="danger"
@@ -383,7 +383,7 @@ export const QueryBuilder = ({
             icon="PlusIcon"
             onClick={() => handleAddRule(group.id)}
           >
-            {t("query_builder.add_rule")}
+            {t("query.builder.add_rule")}
           </Button>
           {depth < maxDepth && (
             <Button
@@ -392,7 +392,7 @@ export const QueryBuilder = ({
               icon="PlusIcon"
               onClick={() => handleAddGroup(group.id)}
             >
-              {t("query_builder.add_group")}
+              {t("query.builder.add_group")}
             </Button>
           )}
         </div>
@@ -404,7 +404,7 @@ export const QueryBuilder = ({
     <div
       id={id}
       role="region"
-      aria-label={t("query_builder.region_label", "Query Builder")}
+      aria-label={t("query.builder.region_label", "Query Builder")}
       className={classNames("wim-query-builder", className)}
     >
       {/* Screen reader live region for dynamic announcements */}

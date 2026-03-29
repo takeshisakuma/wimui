@@ -27,8 +27,8 @@ export const Info: Story = {
     return (
       <Alert
         {...args}
-        title={args.title || t("story_alert_info_title")}
-        description={args.description || t("story_alert_info_desc")}
+        title={args.title || t("story.alert_info_title")}
+        description={args.description || t("story.alert_info_desc")}
       />
     );
   },
@@ -43,8 +43,8 @@ export const Success: Story = {
     return (
       <Alert
         {...args}
-        title={args.title || t("story_alert_success_title")}
-        description={args.description || t("story_alert_success_desc")}
+        title={args.title || t("story.alert_success_title")}
+        description={args.description || t("story.alert_success_desc")}
       />
     );
   },
@@ -59,8 +59,8 @@ export const Warning: Story = {
     return (
       <Alert
         {...args}
-        title={args.title || t("story_alert_warning_title")}
-        description={args.description || t("story_alert_warning_desc")}
+        title={args.title || t("story.alert_warning_title")}
+        description={args.description || t("story.alert_warning_desc")}
       />
     );
   },
@@ -75,8 +75,8 @@ export const ErrorStatus: Story = {
     return (
       <Alert
         {...args}
-        title={args.title || t("story_alert_error_title")}
-        description={args.description || t("story_alert_error_desc")}
+        title={args.title || t("story.alert_error_title")}
+        description={args.description || t("story.alert_error_desc")}
       />
     );
   },
@@ -91,7 +91,7 @@ export const WithoutTitle: Story = {
     return (
       <Alert
         {...args}
-        description={args.description || t("story_alert_no_title_desc")}
+        description={args.description || t("story.alert_no_title_desc")}
       />
     );
   },
@@ -106,8 +106,8 @@ export const WithCloseButton: Story = {
     return (
       <Alert
         {...args}
-        title={args.title || t("story_alert_dismiss_title")}
-        description={args.description || t("story_alert_dismiss_desc")}
+        title={args.title || t("story.alert_dismiss_title")}
+        description={args.description || t("story.alert_dismiss_desc")}
         onClose={args.onClose ?? (() => console.log("Alert closed"))}
       />
     );
@@ -123,8 +123,8 @@ export const LongContent: Story = {
     return (
       <Alert
         {...args}
-        title={args.title || t("story_alert_update_title")}
-        description={args.description || t("story_alert_update_desc")}
+        title={args.title || t("story.alert_update_title")}
+        description={args.description || t("story.alert_update_desc")}
         onClose={args.onClose ?? (() => {})}
       />
     );

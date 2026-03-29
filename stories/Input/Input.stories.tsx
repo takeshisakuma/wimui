@@ -82,8 +82,8 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_input_label_name")}>
-        <Input {...args} placeholder={t("story_input_placeholder_name")} />
+      <Label label={t("story.input_label_name")}>
+        <Input {...args} placeholder={t("story.input_placeholder_name")} />
       </Label>
     );
   },
@@ -94,10 +94,10 @@ export const SelectLike: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const handleClick = () => alert("Dropdown or Modal would open here!");
     return (
-      <Label label={t("story_input_label_dept")}>
+      <Label label={t("story.input_label_dept")}>
         <Input
           {...args}
-          placeholder={t("story_input_placeholder_dept")}
+          placeholder={t("story.input_placeholder_dept")}
           onClick={handleClick}
           onRightIconClick={(e: React.MouseEvent) => {
             e.stopPropagation(); // Prevent duplicate alert
@@ -118,12 +118,12 @@ export const Clearable: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_input_label_keyword")}>
+      <Label label={t("story.input_label_keyword")}>
         <Input
           {...args}
           allowClear
-          placeholder={t("story_input_placeholder_keyword")}
-          defaultValue={t("story_input_value_keyword")}
+          placeholder={t("story.input_placeholder_keyword")}
+          defaultValue={t("story.input_value_keyword")}
         />
       </Label>
     );
@@ -134,8 +134,8 @@ export const Outline: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_input_label_company")}>
-        <Input {...args} placeholder={t("story_input_placeholder_company")} />
+      <Label label={t("story.input_label_company")}>
+        <Input {...args} placeholder={t("story.input_placeholder_company")} />
       </Label>
     );
   },
@@ -148,8 +148,8 @@ export const Ghost: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_input_label_remarks")}>
-        <Input {...args} placeholder={t("story_input_placeholder_remarks")} />
+      <Label label={t("story.input_label_remarks")}>
+        <Input {...args} placeholder={t("story.input_placeholder_remarks")} />
       </Label>
     );
   },
@@ -169,14 +169,14 @@ export const ErrorStatus: Story = {
           gap: "8px",
         }}
       >
-        <Label label={t("story_input_label_email")} required>
+        <Label label={t("story.input_label_email")} required>
           <Input
             {...args}
-            placeholder={t("story_input_placeholder_email")}
+            placeholder={t("story.input_placeholder_email")}
             defaultValue="invalid-email@"
           />
         </Label>
-        <FieldError content={t("story_input_error_email")} />
+        <FieldError content={t("story.input_error_email")} />
       </div>
     );
   },
@@ -189,8 +189,8 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_input_label_userid")}>
-        <Input {...args} placeholder={t("story_input_placeholder_userid")} />
+      <Label label={t("story.input_label_userid")}>
+        <Input {...args} placeholder={t("story.input_placeholder_userid")} />
       </Label>
     );
   },
@@ -203,8 +203,8 @@ export const FullWidth: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_input_label_contact")} style={{ width: "100%" }}>
-        <Input {...args} placeholder={t("story_input_placeholder_contact")} />
+      <Label label={t("story.input_label_contact")} style={{ width: "100%" }}>
+        <Input {...args} placeholder={t("story.input_placeholder_contact")} />
       </Label>
     );
   },
@@ -220,8 +220,8 @@ export const SearchIndicator: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_input_label_search")}>
-        <Input {...args} placeholder={t("story_input_placeholder_search")} />
+      <Label label={t("story.input_label_search")}>
+        <Input {...args} placeholder={t("story.input_placeholder_search")} />
       </Label>
     );
   },

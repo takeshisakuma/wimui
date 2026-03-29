@@ -27,9 +27,9 @@ type Story = StoryObj<typeof ToggleGroup>;
 const useDefaultOptions = (): Option[] => {
   const { t } = useTranslation(ALL_NAMESPACES);
   return [
-    { label: t("story_toggle_left"), value: "left", iconName: "CircleIcon" },
-    { label: t("story_toggle_center"), value: "center", iconName: "SquareIcon" },
-    { label: t("story_toggle_right"), value: "right", iconName: "LoadingIcon" },
+    { label: t("story.toggle_left"), value: "left", iconName: "CircleIcon" },
+    { label: t("story.toggle_center"), value: "center", iconName: "SquareIcon" },
+    { label: t("story.toggle_right"), value: "right", iconName: "LoadingIcon" },
   ];
 };
 
@@ -112,10 +112,10 @@ export const DisabledOptions: Story = {
       <ToggleGroup
         {...args}
         options={[
-          { label: t("story_toggle_available"), value: "avail" },
-          { label: t("story_toggle_disabled"), value: "disabled", disabled: true },
+          { label: t("story.toggle_available"), value: "avail" },
+          { label: t("story.toggle_disabled"), value: "disabled", disabled: true },
           {
-            label: t("story_toggle_selected_disabled"),
+            label: t("story.toggle_selected_disabled"),
             value: "sel-disabled",
             disabled: true,
           },

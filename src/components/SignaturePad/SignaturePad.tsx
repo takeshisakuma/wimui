@@ -57,7 +57,7 @@ export const SignaturePad = ({
   const labelId = label ? `${id}-label` : undefined;
   const errorId = error ? `${id}-error` : undefined;
 
-  const actualClearLabel = clearLabel ?? t("signature_clear");
+  const actualClearLabel = clearLabel ?? t("signature.clear");
 
   const getCoordinates = (
     event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
@@ -181,7 +181,7 @@ export const SignaturePad = ({
             onTouchEnd={stopDrawing}
             aria-labelledby={label ? labelId : undefined}
             role="img"
-            aria-label={label ? undefined : t("signature_canvas_label")}
+            aria-label={label ? undefined : t("signature.canvas_label")}
           />
         </div>
         <div className="wim-signature-pad__footer">

@@ -58,19 +58,19 @@ export const Default: Story = {
             </Header.Section>
             <Header.Section align="end" style={{ gap: "8px" }}>
               <Button priority="tertiary" size="small">
-                {t("story_appshell_docs")}
+                {t("story.appshell_docs")}
               </Button>
               <Button priority="primary" size="small">
-                {t("story_appshell_signin")}
+                {t("story.appshell_signin")}
               </Button>
             </Header.Section>
           </Header>
         }
       >
         <div>
-          <h2>{t("story_appshell_welcome")}</h2>
-          <p>{t("story_appshell_main_content")}</p>
-          <p>{t("story_appshell_flexible_layout")}</p>
+          <h2>{t("story.appshell_welcome")}</h2>
+          <p>{t("story.appshell_main_content")}</p>
+          <p>{t("story.appshell_flexible_layout")}</p>
         </div>
       </AppShell>
     );
@@ -103,7 +103,7 @@ export const ModernApp: Story = {
             <Header.Section align="center">
               <div style={{ width: "100%", maxWidth: 400 }}>
                 <Input
-                  placeholder={t("story_appshell_search_placeholder")}
+                  placeholder={t("story.appshell_search_placeholder")}
                   leftIcon="SearchIcon"
                   fullWidth
                 />
@@ -113,7 +113,7 @@ export const ModernApp: Story = {
               <Icon name="BellIcon" style={{ cursor: "pointer" }} />
               <Icon name="StarIcon" style={{ cursor: "pointer" }} />
               <Button priority="primary" size="small">
-                {t("story_appshell_checkout")}
+                {t("story.appshell_checkout")}
               </Button>
             </Header.Section>
           </Header>
@@ -141,7 +141,7 @@ export const ModernApp: Story = {
                 }}
               />
               <div style={{ fontWeight: "bold" }}>
-                {t("story_appshell_product")} {i}
+                {t("story.appshell_product")} {i}
               </div>
               <div style={{ color: "var(--wim-color-text-secondary)", fontSize: "0.9rem" }}>$99.00</div>
             </div>
@@ -185,10 +185,10 @@ export const WithSidebar: Story = {
                 className="appshell-mobile-trigger"
                 onClick={() => setMobileOpen(true)}
               >
-                {t("story_common_menu", "Menu")}
+                {t("story.common_menu", "Menu")}
               </button>
               <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-                {t("story_appshell_dashboard")}
+                {t("story.appshell_dashboard")}
               </div>
             </Header.Section>
             <Header.Section align="end">
@@ -206,29 +206,29 @@ export const WithSidebar: Story = {
           >
             <Sidebar.Header>
               <div style={{ padding: "16px", fontWeight: "bold" }}>
-                {t("story_appshell_navigation")}
+                {t("story.appshell_navigation")}
               </div>
             </Sidebar.Header>
             <Sidebar.Content>
               <Sidebar.Item icon={<Icon name="HomeIcon" />} active>
-                {t("story_appshell_dashboard")}
+                {t("story.appshell_dashboard")}
               </Sidebar.Item>
               <Sidebar.Item icon={<Icon name="UserIcon" />}>
-                {t("story_appshell_users")}
+                {t("story.appshell_users")}
               </Sidebar.Item>
               <Sidebar.Item icon={<Icon name="SettingsIcon" />}>
-                {t("story_appshell_settings")}
+                {t("story.appshell_settings")}
               </Sidebar.Item>
               <Sidebar.Item icon={<Icon name="FilterIcon" />}>
-                {t("story_appshell_documents")}
+                {t("story.appshell_documents")}
               </Sidebar.Item>
             </Sidebar.Content>
           </Sidebar>
         }
       >
         <div>
-          <h2>{t("story_appshell_dashboard")}</h2>
-          <p>{t("story_appshell_dashboard_desc")}</p>
+          <h2>{t("story.appshell_dashboard")}</h2>
+          <p>{t("story.appshell_dashboard_desc")}</p>
         </div>
       </AppShell>
     );
@@ -254,15 +254,15 @@ export const WithFooter: Story = {
           <Footer bordered>
             <Footer.Section>
               <p style={{ margin: 0, textAlign: "center" }}>
-                {t("story_appshell_rights")}
+                {t("story.appshell_rights")}
               </p>
             </Footer.Section>
           </Footer>
         }
       >
         <div>
-          <h2>{t("story_appshell_footer_title")}</h2>
-          <p>{t("story_appshell_footer_desc")}</p>
+          <h2>{t("story.appshell_footer_title")}</h2>
+          <p>{t("story.appshell_footer_desc")}</p>
         </div>
       </AppShell>
     );
@@ -279,7 +279,7 @@ export const WithNavbar: Story = {
           <Header bordered>
             <Header.Section align="start">
               <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-                {t("story_appshell_mobile_app")}
+                {t("story.appshell_mobile_app")}
               </div>
             </Header.Section>
           </Header>
@@ -288,27 +288,27 @@ export const WithNavbar: Story = {
           <TabBar>
             <TabBar.Item
               icon={<Icon name="HomeIcon" />}
-              label={t("story_common_home")}
+              label={t("story.common_home")}
               active
             />
             <TabBar.Item
               icon={<Icon name="SearchIcon" />}
-              label={t("story_common_search")}
+              label={t("story.common_search")}
             />
             <TabBar.Item
               icon={<Icon name="BellIcon" />}
-              label={t("story_common_alerts")}
+              label={t("story.common_alerts")}
             />
             <TabBar.Item
               icon={<Icon name="UserIcon" />}
-              label={t("story_common_profile")}
+              label={t("story.common_profile")}
             />
           </TabBar>
         }
       >
         <div>
-          <h2>{t("story_appshell_mobile_layout")}</h2>
-          <p>{t("story_appshell_mobile_desc")}</p>
+          <h2>{t("story.appshell_mobile_layout")}</h2>
+          <p>{t("story.appshell_mobile_desc")}</p>
         </div>
       </AppShell>
     );
@@ -332,8 +332,8 @@ export const Playground: Story = {
         }
       >
         <div>
-          <h2>{t("story_appshell_welcome")}</h2>
-          <p>{t("story_appshell_main_content")}</p>
+          <h2>{t("story.appshell_welcome")}</h2>
+          <p>{t("story.appshell_main_content")}</p>
         </div>
       </AppShell>
     );

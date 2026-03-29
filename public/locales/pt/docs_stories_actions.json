@@ -1,4 +1,6 @@
 {
-  "story_button_click_me": "Clique em mim",
-  "story_linkbutton_google": "Ir para o Google"
+  "story": {
+    "button_click_me": "Clique em mim",
+    "linkbutton_google": "Ir para o Google"
+  }
 }

@@ -27,8 +27,8 @@ export const Default: Story = {
     return (
       <Toast
         {...args}
-        title={args.title || t("story_toast_saved_title")}
-        description={args.description || t("story_toast_saved_desc")}
+        title={args.title || t("story.toast_saved_title")}
+        description={args.description || t("story.toast_saved_desc")}
       />
     );
   },
@@ -43,8 +43,8 @@ export const Success: Story = {
     return (
       <Toast
         {...args}
-        title={args.title || t("story_toast_success_title")}
-        description={args.description || t("story_toast_success_desc")}
+        title={args.title || t("story.toast_success_title")}
+        description={args.description || t("story.toast_success_desc")}
       />
     );
   },
@@ -59,8 +59,8 @@ export const Info: Story = {
     return (
       <Toast
         {...args}
-        title={args.title || t("story_toast_update_title")}
-        description={args.description || t("story_toast_update_desc")}
+        title={args.title || t("story.toast_update_title")}
+        description={args.description || t("story.toast_update_desc")}
       />
     );
   },
@@ -75,8 +75,8 @@ export const Warning: Story = {
     return (
       <Toast
         {...args}
-        title={args.title || t("story_toast_connection_title")}
-        description={args.description || t("story_toast_connection_desc")}
+        title={args.title || t("story.toast_connection_title")}
+        description={args.description || t("story.toast_connection_desc")}
       />
     );
   },
@@ -91,8 +91,8 @@ export const ErrorStatus: Story = {
     return (
       <Toast
         {...args}
-        title={args.title || t("story_toast_upload_failed_title")}
-        description={args.description || t("story_toast_upload_failed_desc")}
+        title={args.title || t("story.toast_upload_failed_title")}
+        description={args.description || t("story.toast_upload_failed_desc")}
       />
     );
   },
@@ -110,33 +110,33 @@ const ToastTrigger = () => {
     <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
       <Button
         priority="primary"
-        label={t("story_toast_show_success")}
+        label={t("story.toast_show_success")}
         onClick={() =>
           show({
-            title: t("story_toast_success_title"),
-            description: t("story_toast_success_desc"),
+            title: t("story.toast_success_title"),
+            description: t("story.toast_success_desc"),
             status: "success",
           })
         }
       />
       <Button
         priority="secondary"
-        label={t("story_toast_show_error")}
+        label={t("story.toast_show_error")}
         onClick={() =>
           show({
-            title: t("story_notification_error_title"),
-            description: t("story_notification_error_desc"),
+            title: t("story.notification_error_title"),
+            description: t("story.notification_error_desc"),
             status: "error",
           })
         }
       />
       <Button
         priority="tertiary"
-        label={t("story_toast_show_5s")}
+        label={t("story.toast_show_5s")}
         onClick={() =>
           show({
-            title: t("story_toast_system_notif"),
-            description: t("story_toast_5s_desc"),
+            title: t("story.toast_system_notif"),
+            description: t("story.toast_5s_desc"),
             status: "info",
             duration: 5000,
           })

@@ -34,21 +34,21 @@ const DescriptionListContent = () => {
   return (
     <>
       <DescriptionListItem>
-        <DescriptionListTerm>{t("story_desc_list_user_name")}</DescriptionListTerm>
-        <DescriptionListDetails>{t("story_desc_list_persona")}</DescriptionListDetails>
+        <DescriptionListTerm>{t("story.desc_list_user_name")}</DescriptionListTerm>
+        <DescriptionListDetails>{t("story.desc_list_persona")}</DescriptionListDetails>
       </DescriptionListItem>
       <DescriptionListItem>
-        <DescriptionListTerm>{t("story_desc_list_email")}</DescriptionListTerm>
+        <DescriptionListTerm>{t("story.desc_list_email")}</DescriptionListTerm>
         <DescriptionListDetails>contact@example.com</DescriptionListDetails>
       </DescriptionListItem>
       <DescriptionListItem>
-        <DescriptionListTerm>{t("story_desc_list_position")}</DescriptionListTerm>
-        <DescriptionListDetails>{t("story_desc_list_designer")}</DescriptionListDetails>
+        <DescriptionListTerm>{t("story.desc_list_position")}</DescriptionListTerm>
+        <DescriptionListDetails>{t("story.desc_list_designer")}</DescriptionListDetails>
       </DescriptionListItem>
       <DescriptionListItem>
-        <DescriptionListTerm>{t("story_desc_list_description")}</DescriptionListTerm>
+        <DescriptionListTerm>{t("story.desc_list_description")}</DescriptionListTerm>
         <DescriptionListDetails>
-          {t("story_desc_list_desc_val")}
+          {t("story.desc_list_desc_val")}
         </DescriptionListDetails>
       </DescriptionListItem>
     </>

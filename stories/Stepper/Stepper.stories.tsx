@@ -37,16 +37,16 @@ const useDefaultSteps = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   return [
     {
-      title: t("story_stepper_finished"),
-      description: t("story_stepper_desc"),
+      title: t("story.stepper_finished"),
+      description: t("story.stepper_desc"),
     },
     {
-      title: t("story_stepper_in_progress"),
-      description: t("story_stepper_desc"),
+      title: t("story.stepper_in_progress"),
+      description: t("story.stepper_desc"),
     },
     {
-      title: t("story_stepper_waiting"),
-      description: t("story_stepper_desc"),
+      title: t("story.stepper_waiting"),
+      description: t("story.stepper_desc"),
     },
   ];
 };
@@ -96,19 +96,19 @@ export const CustomIcons: Story = {
         {...args}
         steps={[
           {
-            title: t("story_stepper_login"),
+            title: t("story.stepper_login"),
             icon: <Icon name="EyeIcon" size="small" />,
           },
           {
-            title: t("story_stepper_verification"),
+            title: t("story.stepper_verification"),
             icon: <Icon name="LoadingIcon" size="small" />,
           },
           {
-            title: t("story_stepper_pay"),
+            title: t("story.stepper_pay"),
             icon: <Icon name="StarIcon" size="small" />,
           },
           {
-            title: t("story_stepper_done"),
+            title: t("story.stepper_done"),
             icon: <Icon name="CheckIcon" size="small" />,
           },
         ]}
@@ -123,8 +123,8 @@ export const Interactive: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [current, setCurrent] = useState(0);
     const steps = Array.from({ length: 4 }, (_, i) => ({
-      title: `${t("story_stepper_step")} ${i + 1}`,
-      description: `${t("story_stepper_step_desc")} ${i + 1}`,
+      title: `${t("story.stepper_step")} ${i + 1}`,
+      description: `${t("story.stepper_step_desc")} ${i + 1}`,
     }));
     return (
       <Stepper

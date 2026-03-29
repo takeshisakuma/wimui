@@ -59,12 +59,12 @@ export const Basic: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Grid {...args}>
-        <Box>{t("story_grid_item", "1")}</Box>
-        <Box color="#10b981">{t("story_grid_item", "2")}</Box>
-        <Box color="#f59e0b">{t("story_grid_item", "3")}</Box>
-        <Box color="#ef4444">{t("story_grid_item", "4")}</Box>
-        <Box color="#8b5cf6">{t("story_grid_item", "5")}</Box>
-        <Box color="#ec4899">{t("story_grid_item", "6")}</Box>
+        <Box>{t("story.grid_item", "1")}</Box>
+        <Box color="#10b981">{t("story.grid_item", "2")}</Box>
+        <Box color="#f59e0b">{t("story.grid_item", "3")}</Box>
+        <Box color="#ef4444">{t("story.grid_item", "4")}</Box>
+        <Box color="#8b5cf6">{t("story.grid_item", "5")}</Box>
+        <Box color="#ec4899">{t("story.grid_item", "6")}</Box>
       </Grid>
     );
   },
@@ -95,14 +95,14 @@ export const Responsive: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Grid {...args}>
-        <Box>{t("story_grid_item", "1")}</Box>
-        <Box color="#10b981">{t("story_grid_item", "2")}</Box>
-        <Box color="#f59e0b">{t("story_grid_item", "3")}</Box>
-        <Box color="#ef4444">{t("story_grid_item", "4")}</Box>
-        <Box color="#8b5cf6">{t("story_grid_item", "5")}</Box>
-        <Box color="#ec4899">{t("story_grid_item", "6")}</Box>
-        <Box color="#6366f1">{t("story_grid_item", "7")}</Box>
-        <Box color="#14b8a6">{t("story_grid_item", "8")}</Box>
+        <Box>{t("story.grid_item", "1")}</Box>
+        <Box color="#10b981">{t("story.grid_item", "2")}</Box>
+        <Box color="#f59e0b">{t("story.grid_item", "3")}</Box>
+        <Box color="#ef4444">{t("story.grid_item", "4")}</Box>
+        <Box color="#8b5cf6">{t("story.grid_item", "5")}</Box>
+        <Box color="#ec4899">{t("story.grid_item", "6")}</Box>
+        <Box color="#6366f1">{t("story.grid_item", "7")}</Box>
+        <Box color="#14b8a6">{t("story.grid_item", "8")}</Box>
       </Grid>
     );
   },

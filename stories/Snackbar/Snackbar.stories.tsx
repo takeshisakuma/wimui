@@ -41,7 +41,7 @@ export const Default: Story = {
     return (
       <Snackbar
         {...args}
-        message={args.message || t("story_snackbar_message")}
+        message={args.message || t("story.snackbar_message")}
       />
     );
   },
@@ -58,9 +58,9 @@ export const WithAction: Story = {
     return (
       <Snackbar
         {...args}
-        message={args.message || t("story_snackbar_deleted")}
-        actionLabel={args.actionLabel || t("story_snackbar_undo")}
-        onAction={() => alert(t("story_snackbar_undo_clicked"))}
+        message={args.message || t("story.snackbar_deleted")}
+        actionLabel={args.actionLabel || t("story.snackbar_undo")}
+        onAction={() => alert(t("story.snackbar_undo_clicked"))}
       />
     );
   },
@@ -75,7 +75,7 @@ export const WithCloseButton: Story = {
     return (
       <Snackbar
         {...args}
-        message={args.message || t("story_snackbar_persistent")}
+        message={args.message || t("story.snackbar_persistent")}
       />
     );
   },
@@ -92,7 +92,7 @@ export const Success: Story = {
     return (
       <Snackbar
         {...args}
-        message={args.message || t("story_snackbar_saved")}
+        message={args.message || t("story.snackbar_saved")}
       />
     );
   },
@@ -108,7 +108,7 @@ export const ErrorStatus: Story = {
     return (
       <Snackbar
         {...args}
-        message={args.message || t("story_snackbar_failed")}
+        message={args.message || t("story.snackbar_failed")}
       />
     );
   },
@@ -124,7 +124,7 @@ export const Warning: Story = {
     return (
       <Snackbar
         {...args}
-        message={args.message || t("story_snackbar_storage_full")}
+        message={args.message || t("story.snackbar_storage_full")}
       />
     );
   },
@@ -140,7 +140,7 @@ export const Info: Story = {
     return (
       <Snackbar
         {...args}
-        message={args.message || t("story_snackbar_update_available")}
+        message={args.message || t("story.snackbar_update_available")}
       />
     );
   },
@@ -158,14 +158,14 @@ export const InteractiveDemo: Story = {
       <div style={{ padding: "40px" }}>
         <Button
           onClick={() => setOpen(true)}
-          label={t("story_snackbar_show")}
+          label={t("story.snackbar_show")}
           priority="primary"
         />
         <Snackbar
-          message={t("story_snackbar_interactive")}
+          message={t("story.snackbar_interactive")}
           open={open}
           onClose={() => setOpen(false)}
-          actionLabel={t("story_snackbar_retry")}
+          actionLabel={t("story.snackbar_retry")}
           showCloseButton
         />
       </div>

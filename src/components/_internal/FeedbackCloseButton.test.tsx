@@ -45,13 +45,13 @@ describe("FeedbackCloseButton", () => {
 
   it("translates the default ariaLabel key for aria-label", () => {
     render(<FeedbackCloseButton onClose={() => {}} />);
-    // t("a11y_close") → "Close" from loaded translations
+    // t("a11y.close") → "Close" from loaded translations
     expect(screen.getByRole("button")).toHaveAttribute("aria-label", "Close");
   });
 
   it("translates a custom ariaLabel key for aria-label", () => {
     // Pass a key that exists in translations or falls back to the key itself
-    render(<FeedbackCloseButton onClose={() => {}} ariaLabel="a11y_close" />);
+    render(<FeedbackCloseButton onClose={() => {}} ariaLabel="a11y.close" />);
     expect(screen.getByRole("button")).toHaveAttribute("aria-label", "Close");
   });
 });

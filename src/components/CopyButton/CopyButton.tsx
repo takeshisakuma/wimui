@@ -40,7 +40,7 @@ export const CopyButton = ({
     }
   };
 
-  const labelText = copied ? t("copied") : t("copy_to_clipboard");
+  const labelText = copied ? t("copied") : t("copy.to_clipboard");
 
   return (
     <Tooltip>

@@ -43,9 +43,9 @@ export const Small: Story = {
     const [value, setValue] = useState("day");
     const options = useMemo(
       () => [
-        { label: t("story_segmented_day"), value: "day" },
-        { label: t("story_segmented_week"), value: "week" },
-        { label: t("story_segmented_month"), value: "month" },
+        { label: t("story.segmented_day"), value: "day" },
+        { label: t("story.segmented_week"), value: "week" },
+        { label: t("story.segmented_month"), value: "month" },
       ],
       [t],
     );
@@ -77,9 +77,9 @@ export const Medium: Story = {
     const [value, setValue] = useState("day");
     const options = useMemo(
       () => [
-        { label: t("story_segmented_day"), value: "day" },
-        { label: t("story_segmented_week"), value: "week" },
-        { label: t("story_segmented_month"), value: "month" },
+        { label: t("story.segmented_day"), value: "day" },
+        { label: t("story.segmented_week"), value: "week" },
+        { label: t("story.segmented_month"), value: "month" },
       ],
       [t],
     );
@@ -111,9 +111,9 @@ export const Large: Story = {
     const [value, setValue] = useState("day");
     const options = useMemo(
       () => [
-        { label: t("story_segmented_day"), value: "day" },
-        { label: t("story_segmented_week"), value: "week" },
-        { label: t("story_segmented_month"), value: "month" },
+        { label: t("story.segmented_day"), value: "day" },
+        { label: t("story.segmented_week"), value: "week" },
+        { label: t("story.segmented_month"), value: "month" },
       ],
       [t],
     );
@@ -138,8 +138,8 @@ export const TwoOptions: Story = {
     const [value, setValue] = useState("on");
     const options = useMemo(
       () => [
-        { label: t("story_segmented_on"), value: "on" },
-        { label: t("story_segmented_off"), value: "off" },
+        { label: t("story.segmented_on"), value: "on" },
+        { label: t("story.segmented_off"), value: "off" },
       ],
       [t],
     );
@@ -166,17 +166,17 @@ export const WithIcons: Story = {
       () =>
         [
           {
-            label: t("story_segmented_circle"),
+            label: t("story.segmented_circle"),
             value: "circle",
             iconName: "CircleIcon",
           },
           {
-            label: t("story_segmented_square"),
+            label: t("story.segmented_square"),
             value: "square",
             iconName: "SquareIcon",
           },
           {
-            label: t("story_segmented_external"),
+            label: t("story.segmented_external"),
             value: "external",
             iconName: "ExternalLinkIcon",
           },
@@ -235,14 +235,14 @@ export const LongLabel: Story = {
     const options = useMemo(
       () => [
         {
-          label: t("story_segmented_long_label"),
+          label: t("story.segmented_long_label"),
           value: "long1",
         },
         {
-          label: t("story_segmented_another_long"),
+          label: t("story.segmented_another_long"),
           value: "long2",
         },
-        { label: t("story_segmented_short"), value: "short" },
+        { label: t("story.segmented_short"), value: "short" },
       ],
       [t],
     );

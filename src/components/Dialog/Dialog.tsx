@@ -166,7 +166,7 @@ export const DialogClose = ({
       type="button"
       className={classNames("wim-dialog-close-button", className)}
       onClick={handleClick}
-      aria-label={t("a11y_close_dialog")}
+      aria-label={t("a11y.close_dialog")}
     >
       {children}
     </button>

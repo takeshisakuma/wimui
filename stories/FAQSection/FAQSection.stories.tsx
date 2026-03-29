@@ -14,27 +14,27 @@ type Story = StoryObj<typeof FAQSection>;
 
 const mockItems = [
   {
-    question: "faq_q1",
-    answer: "faq_a1",
+    question: "faq.q1",
+    answer: "faq.a1",
   },
   {
-    question: "faq_q2",
-    answer: "faq_a2",
+    question: "faq.q2",
+    answer: "faq.a2",
   },
   {
-    question: "faq_q3",
-    answer: "faq_a3",
+    question: "faq.q3",
+    answer: "faq.a3",
   },
   {
-    question: "faq_q4",
-    answer: "faq_a4",
+    question: "faq.q4",
+    answer: "faq.a4",
   },
 ];
 
 export const Default: Story = {
   args: {
-    title: "faq_section_default_title",
-    description: "faq_section_default_desc",
+    title: "faq.section_default_title",
+    description: "faq.section_default_desc",
     items: mockItems,
     layout: "top",
   },

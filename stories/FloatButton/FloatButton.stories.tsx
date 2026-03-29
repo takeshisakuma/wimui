@@ -58,7 +58,7 @@ export const Basic: Story = {
 export const Extended: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <FloatButton {...args} label={t("story_floatbutton_send")} />;
+    return <FloatButton {...args} label={t("story.floatbutton_send")} />;
   },
   args: {
     iconName: "CircleIcon",
@@ -108,21 +108,21 @@ export const ExtendedSizes: Story = {
       >
         <FloatButton
           iconName="CircleIcon"
-          label={t("story_floatbutton_small")}
+          label={t("story.floatbutton_small")}
           size="small"
           variant="primary"
           position="static"
         />
         <FloatButton
           iconName="CircleIcon"
-          label={t("story_floatbutton_medium")}
+          label={t("story.floatbutton_medium")}
           size="medium"
           variant="primary"
           position="static"
         />
         <FloatButton
           iconName="CircleIcon"
-          label={t("story_floatbutton_large")}
+          label={t("story.floatbutton_large")}
           size="large"
           variant="primary"
           position="static"
@@ -135,7 +135,7 @@ export const ExtendedSizes: Story = {
 export const AutoShrink: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <AutoShrinkDemo {...args} label={t("story_floatbutton_shrink")} />;
+    return <AutoShrinkDemo {...args} label={t("story.floatbutton_shrink")} />;
   },
   args: {
     iconName: "CircleIcon",
@@ -184,7 +184,7 @@ export const FixedPosition: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "150vh", padding: "20px" }}>
-        <p>{t("story_floatbutton_look_bottom")}</p>
+        <p>{t("story.floatbutton_look_bottom")}</p>
         <FloatButton
           {...args}
           iconName="ChevronUpIcon"
@@ -192,7 +192,7 @@ export const FixedPosition: Story = {
           shape="circle"
           size="medium"
           position="bottom-right"
-          description={t("story_floatbutton_click_me")}
+          description={t("story.floatbutton_click_me")}
         />
       </div>
     );
@@ -207,7 +207,7 @@ export const BackTop: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
-        <p>{t("story_floatbutton_scroll_top_desc")}</p>
+        <p>{t("story.floatbutton_scroll_top_desc")}</p>
         <FloatButton
           {...args}
           backTop
@@ -254,7 +254,7 @@ const AutoShrinkDemo = (args: FloatButtonProps) => {
         onScroll={handleScroll}
       >
         <div style={{ height: "1000px" }}>
-          <p>{t("story_floatbutton_scroll_inside")}</p>
+          <p>{t("story.floatbutton_scroll_inside")}</p>
         </div>
       </div>
       <FloatButton

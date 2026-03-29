@@ -47,7 +47,7 @@ type Story = StoryObj<typeof meta>;
 export const H1Heading: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+    return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
   args: {
     tag: "h1",
@@ -60,7 +60,7 @@ export const H1Heading: Story = {
 export const H2Heading: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+    return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
   args: {
     tag: "h2",
@@ -73,7 +73,7 @@ export const H2Heading: Story = {
 export const H3Heading: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+    return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
   args: {
     tag: "h3",
@@ -86,7 +86,7 @@ export const H3Heading: Story = {
 export const H4Heading: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+    return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
   args: {
     tag: "h4",
@@ -99,7 +99,7 @@ export const H4Heading: Story = {
 export const H5Heading: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+    return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
   args: {
     tag: "h5",
@@ -112,7 +112,7 @@ export const H5Heading: Story = {
 export const H6Heading: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Heading {...args}>{t("story_heading_text")}</Heading>;
+    return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
   args: {
     tag: "h6",
@@ -126,7 +126,7 @@ export const H6Heading: Story = {
 export const UnderlineHeading: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Heading {...args}>{t("story_heading_underline")}</Heading>;
+    return <Heading {...args}>{t("story.heading_underline")}</Heading>;
   },
   args: {
     tag: "h2",
@@ -138,7 +138,7 @@ export const UnderlineHeading: Story = {
 export const HighlightHeading: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Heading {...args}>{t("story_heading_highlight")}</Heading>;
+    return <Heading {...args}>{t("story.heading_highlight")}</Heading>;
   },
   args: {
     tag: "h2",

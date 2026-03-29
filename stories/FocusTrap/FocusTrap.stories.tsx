@@ -31,17 +31,17 @@ export const Default: Story = {
       <Container size="sm" py="xl">
         <Stack gap="xl" align="center">
           <Button onClick={() => setActive(!active)} priority="primary">
-            {active ? t("story_focustrap_deactivate") : t("story_focustrap_activate")}
+            {active ? t("story.focustrap_deactivate") : t("story.focustrap_activate")}
           </Button>
 
           <Card variant="outline" style={{ width: "100%" }}>
             <Card.Header>
-              <strong>{t("story_focustrap_outside_title")}</strong>
+              <strong>{t("story.focustrap_outside_title")}</strong>
             </Card.Header>
             <Card.Body>
               <Stack gap="md">
-                <p>{t("story_focustrap_outside_desc")}</p>
-                <Button priority="secondary">{t("story_focustrap_outside_btn")}</Button>
+                <p>{t("story.focustrap_outside_desc")}</p>
+                <Button priority="secondary">{t("story.focustrap_outside_btn")}</Button>
               </Stack>
             </Card.Body>
           </Card>
@@ -57,18 +57,18 @@ export const Default: Story = {
               >
                 <Card.Header>
                   <strong style={{ color: "var(--wim-primary, #0070f3)" }}>
-                    {t("story_focustrap_trapped_title")}
+                    {t("story.focustrap_trapped_title")}
                   </strong>
                 </Card.Header>
                 <Card.Body>
                   <Stack gap="md">
                     <p>
-                      {t("story_focustrap_trapped_desc")}
+                      {t("story.focustrap_trapped_desc")}
                     </p>
-                    <Input placeholder={t("story_focustrap_input_first")} fullWidth />
-                    <Input placeholder={t("story_focustrap_input_second")} fullWidth />
+                    <Input placeholder={t("story.focustrap_input_first")} fullWidth />
+                    <Input placeholder={t("story.focustrap_input_second")} fullWidth />
                     <Button onClick={() => setActive(false)} priority="primary">
-                      {t("story_focustrap_btn_close")}
+                      {t("story.focustrap_btn_close")}
                     </Button>
                   </Stack>
                 </Card.Body>
@@ -93,7 +93,7 @@ export const AutoFocus: Story = {
       <Container size="sm" py="xl">
         <Stack gap="xl" align="center">
           <Button onClick={() => setActive(!active)} priority="primary">
-            {active ? t("story_focustrap_deactivate_short") : t("story_focustrap_activate_autofocus")}
+            {active ? t("story.focustrap_deactivate_short") : t("story.focustrap_activate_autofocus")}
           </Button>
 
           {active && (
@@ -107,15 +107,15 @@ export const AutoFocus: Story = {
               >
                 <Card.Header>
                   <strong style={{ color: "var(--wim-success, #28a745)" }}>
-                    {t("story_focustrap_autofocus_title")}
+                    {t("story.focustrap_autofocus_title")}
                   </strong>
                 </Card.Header>
                 <Card.Body>
                   <Stack gap="md">
-                    <Input placeholder={t("story_focustrap_input_autofocus")} fullWidth />
-                    <Button priority="secondary">{t("story_focustrap_btn_another")}</Button>
+                    <Input placeholder={t("story.focustrap_input_autofocus")} fullWidth />
+                    <Button priority="secondary">{t("story.focustrap_btn_another")}</Button>
                     <Button onClick={() => setActive(false)} priority="primary">
-                      {t("story_focustrap_btn_close_short")}
+                      {t("story.focustrap_btn_close_short")}
                     </Button>
                   </Stack>
                 </Card.Body>

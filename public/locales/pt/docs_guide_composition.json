@@ -1,12 +1,14 @@
 {
-  "guide_hierarchy_desc": "Visualizando as camadas dos componentes e como eles são compostos para manter uma arquitetura saudável.",
-  "guide_hierarchy_rules_desc": "Regras de design para manter dependências saudáveis no wimui.",
-  "guide_hierarchy_rules_title": "Regras de Design",
-  "guide_hierarchy_tiers_desc": "O wimui foi projetado com quatro camadas (Tiers) baseadas na complexidade e função do componente. Isso mantém as dependências unidirecionais (de cima para baixo) e melhora a manutenibilidade.",
-  "guide_hierarchy_tiers_title": "Camadas de Componentes",
-  "guide_hierarchy_title": "Hierarquia e Composição",
-  "guide_composition_map_desc": "Mapeamento de quais componentes os componentes principais usam (envolvem) internamente. Ao combinar componentes de nível inferior, fornecemos funcionalidade consistente.",
-  "guide_composition_map_title": "Mapa de Composição",
-  "guide_principles_desc": "No wimui, seguimos estes princípios para manter a consistência no gerenciamento de DOM e movimento.",
-  "guide_principles_title": "Princípios de Portais e Animações"
+  "guide": {
+    "hierarchy_desc": "Visualizando as camadas dos componentes e como eles são compostos para manter uma arquitetura saudável.",
+    "hierarchy_rules_desc": "Regras de design para manter dependências saudáveis no wimui.",
+    "hierarchy_rules_title": "Regras de Design",
+    "hierarchy_tiers_desc": "O wimui foi projetado com quatro camadas (Tiers) baseadas na complexidade e função do componente. Isso mantém as dependências unidirecionais (de cima para baixo) e melhora a manutenibilidade.",
+    "hierarchy_tiers_title": "Camadas de Componentes",
+    "hierarchy_title": "Hierarquia e Composição",
+    "composition_map_desc": "Mapeamento de quais componentes os componentes principais usam (envolvem) internamente. Ao combinar componentes de nível inferior, fornecemos funcionalidade consistente.",
+    "composition_map_title": "Mapa de Composição",
+    "principles_desc": "No wimui, seguimos estes princípios para manter a consistência no gerenciamento de DOM e movimento.",
+    "principles_title": "Princípios de Portais e Animações"
+  }
 }

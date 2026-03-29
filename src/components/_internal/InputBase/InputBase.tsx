@@ -88,7 +88,7 @@ export const InputBase = ({
         e.stopPropagation();
         onClear?.();
       },
-      ariaLabel: t("a11y_clear_input"),
+      ariaLabel: t("a11y.clear_input"),
     });
   }
 
@@ -129,7 +129,7 @@ export const InputBase = ({
               type="button"
               onClick={onLeftIconClick}
               className="wim-input-icon-button"
-              aria-label={t("a11y_left_icon_action")}
+              aria-label={t("a11y.left_icon_action")}
             >
               <Icon
                 name={leftIcon}
@@ -169,7 +169,7 @@ export const InputBase = ({
                   type="button"
                   onClick={icon.onClick}
                   className="wim-input-icon-button"
-                  aria-label={icon.ariaLabel || t("a11y_right_icon_action")}
+                  aria-label={icon.ariaLabel || t("a11y.right_icon_action")}
                 >
                   <Icon
                     name={icon.name}

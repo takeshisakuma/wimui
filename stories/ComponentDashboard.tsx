@@ -36,12 +36,12 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
 
   return (
     <div className="component-dashboard">
-      <h1><T k="dashboard_title" /></h1>
-      <p style={{ marginBottom: '16px' }}><T k="dashboard_intro" /></p>
+      <h1><T k="dashboard.title" /></h1>
+      <p style={{ marginBottom: '16px' }}><T k="dashboard.intro" /></p>
       
       <div className="wim-component-dashboard__stat-box">
         <span className="wim-component-dashboard__stat-label">
-          <T k="dashboard_total_components" />
+          <T k="dashboard.total_components" />
         </span>
         <div className="wim-component-dashboard__stat-value">
           {totalComponents}
@@ -49,15 +49,15 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
       </div>
 
       <p className="wim-component-dashboard__note-box">
-        <T k="dashboard_tokens_link" />
+        <T k="dashboard.tokens_link" />
       </p>
 
-      <h2><T k="dashboard_progress" /></h2>
+      <h2><T k="dashboard.progress" /></h2>
       <table>
         <thead>
           <tr>
-            <th><T k="table_header_category" /></th>
-            <th><T k="table_header_progress" /></th>
+            <th><T k="table.header_category" /></th>
+            <th><T k="table.header_progress" /></th>
           </tr>
         </thead>
         <tbody>
@@ -74,13 +74,13 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
 
       <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "32px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <PlatformIcons pc mobile /> <span><T k="legend_all_devices" /></span>
+          <PlatformIcons pc mobile /> <span><T k="legend.all_devices" /></span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <PlatformIcons pc /> <span><T k="legend_pc_only" /></span>
+          <PlatformIcons pc /> <span><T k="legend.pc_only" /></span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <PlatformIcons mobile /> <span><T k="legend_mobile_only" /></span>
+          <PlatformIcons mobile /> <span><T k="legend.mobile_only" /></span>
         </div>
       </div>
 
@@ -94,16 +94,16 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
                 target="_top" 
                 style={{ fontSize: "14px", fontWeight: "normal", marginLeft: "12px" }}
               >
-                <T k="guide_usage" />
+                <T k="guide.usage" />
               </a>
             )}
           </h2>
           <table>
             <thead>
               <tr>
-                <th><T k="table_header_component" /></th>
-                <th><T k="table_header_description" /></th>
-                <th><T k="table_header_platform" /></th>
+                <th><T k="table.header_component" /></th>
+                <th><T k="table.header_description" /></th>
+                <th><T k="table.header_platform" /></th>
               </tr>
             </thead>
             <tbody>

@@ -36,9 +36,9 @@ export const Default: Story = {
     return (
       <Tooltip {...args}>
         <TooltipTrigger asChild>
-          <Button label={t("story_tooltip_hover")} />
+          <Button label={t("story.tooltip_hover")} />
         </TooltipTrigger>
-        <TooltipContent>{t("story_tooltip_text")}</TooltipContent>
+        <TooltipContent>{t("story.tooltip_text")}</TooltipContent>
       </Tooltip>
     );
   },
@@ -53,7 +53,7 @@ export const Top: Story = {
           <TooltipTrigger asChild>
             <Button label={t("top")} />
           </TooltipTrigger>
-          <TooltipContent>{t("story_tooltip_top_text")}</TooltipContent>
+          <TooltipContent>{t("story.tooltip_top_text")}</TooltipContent>
         </Tooltip>
       </div>
     );
@@ -72,7 +72,7 @@ export const Bottom: Story = {
           <TooltipTrigger asChild>
             <Button label={t("bottom")} />
           </TooltipTrigger>
-          <TooltipContent>{t("story_tooltip_bottom_text")}</TooltipContent>
+          <TooltipContent>{t("story.tooltip_bottom_text")}</TooltipContent>
         </Tooltip>
       </div>
     );
@@ -91,7 +91,7 @@ export const Left: Story = {
           <TooltipTrigger asChild>
             <Button label={t("left")} />
           </TooltipTrigger>
-          <TooltipContent>{t("story_tooltip_left_text")}</TooltipContent>
+          <TooltipContent>{t("story.tooltip_left_text")}</TooltipContent>
         </Tooltip>
       </div>
     );
@@ -110,7 +110,7 @@ export const Right: Story = {
           <TooltipTrigger asChild>
             <Button label={t("right")} />
           </TooltipTrigger>
-          <TooltipContent>{t("story_tooltip_right_text")}</TooltipContent>
+          <TooltipContent>{t("story.tooltip_right_text")}</TooltipContent>
         </Tooltip>
       </div>
     );
@@ -126,9 +126,9 @@ export const WithDelay: Story = {
     return (
       <Tooltip {...args} delay={args.delay ?? 1000}>
         <TooltipTrigger asChild>
-          <Button label={t("story_tooltip_hover_1s")} />
+          <Button label={t("story.tooltip_hover_1s")} />
         </TooltipTrigger>
-        <TooltipContent>{t("story_tooltip_delayed")}</TooltipContent>
+        <TooltipContent>{t("story.tooltip_delayed")}</TooltipContent>
       </Tooltip>
     );
   },

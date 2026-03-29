@@ -117,7 +117,7 @@ const useDataGridTranslations = () => {
     ...c,
     header: typeof c.header === 'string' ? t(`story_datagrid_col_${c.key}`) : c.header,
     render: c.key === 'status' ? ((value: unknown) => {
-      const translatedValue = value === "Active" ? t('story_datagrid_status_active') : value === "Inactive" ? t('story_datagrid_status_inactive') : t('story_datagrid_status_pending');
+      const translatedValue = value === "Active" ? t('story.datagrid_status_active') : value === "Inactive" ? t('story.datagrid_status_inactive') : t('story.datagrid_status_pending');
       return (
         <Badge
           content={translatedValue}
@@ -149,7 +149,7 @@ export const WithSelection: Story = {
     return (
       <div>
         <p style={{ marginBottom: "16px" }}>
-          {t('story_datagrid_selected')}{selectedRowKeys.join(", ")}
+          {t('story.datagrid_selected')}{selectedRowKeys.join(", ")}
         </p>
         <DataGrid
           columns={tColumns}
@@ -236,24 +236,24 @@ export const WithActions: Story = {
     const columns = [
       {
         key: "id",
-        header: t("story_datagrid_col_id"),
+        header: t("story.datagrid_col_id"),
         width: 55,
         fixed: true,
       },
       {
         key: "name",
-        header: t("story_datagrid_col_name"),
+        header: t("story.datagrid_col_name"),
         width: 150,
         fixed: false,
       },
       {
         key: "email",
-        header: t("story_datagrid_col_email"),
+        header: t("story.datagrid_col_email"),
         width: 200,
       },
       {
         key: "actions",
-        header: t("story_datagrid_col_actions"),
+        header: t("story.datagrid_col_actions"),
         width: 100,
         render: (_: unknown, row: Record<string, unknown>) => (
           <div style={{ display: "flex", gap: "8px" }}>
@@ -261,7 +261,7 @@ export const WithActions: Story = {
               size="small"
               priority="tertiary"
               onClick={() =>
-                alert(t("story_datagrid_action_edit", { name: row.name }))
+                alert(t("story.datagrid_action_edit", { name: row.name }))
               }
             >
               <Icon name="EditIcon" size="small" />
@@ -272,7 +272,7 @@ export const WithActions: Story = {
               priority="tertiary"
               intent="destructive"
               onClick={() =>
-                alert(t("story_datagrid_action_delete", { name: row.name }))
+                alert(t("story.datagrid_action_delete", { name: row.name }))
               }
             >
               <Icon name="TrashIcon" size="small" />
@@ -301,7 +301,7 @@ export const Empty: Story = {
   render: (args) => {
     const { t, tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
-    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} emptyMessage={t('story_datagrid_empty')} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} emptyMessage={t('story.datagrid_empty')} />;
   },
   args: {
     bordered: true,
@@ -411,42 +411,42 @@ export const WithFixedColumn: Story = {
     const columns = [
       {
         key: "id",
-        header: t("story_datagrid_col_id"),
+        header: t("story.datagrid_col_id"),
         width: 55,
         fixed: true,
       },
       {
         key: "name",
-        header: t("story_datagrid_col_name"),
+        header: t("story.datagrid_col_name"),
         width: 150,
         fixed: false,
       },
       {
         key: "email",
-        header: t("story_datagrid_col_email"),
+        header: t("story.datagrid_col_email"),
         width: 200,
       },
       {
         key: "role",
-        header: t("story_datagrid_col_role"),
+        header: t("story.datagrid_col_role"),
         width: 100,
       },
       {
         key: "joinDate",
-        header: t("story_datagrid_col_joinDate"),
+        header: t("story.datagrid_col_joinDate"),
         width: 150,
       },
       {
         key: "status",
-        header: t("story_datagrid_col_status"),
+        header: t("story.datagrid_col_status"),
         width: 100,
         render: (value: unknown) => {
           const translatedValue =
             value === "Active"
-              ? t("story_datagrid_status_active")
+              ? t("story.datagrid_status_active")
               : value === "Inactive"
-                ? t("story_datagrid_status_inactive")
-                : t("story_datagrid_status_pending");
+                ? t("story.datagrid_status_inactive")
+                : t("story.datagrid_status_pending");
           return (
             <Badge
               content={translatedValue}
@@ -482,32 +482,32 @@ export const WithRightFixedColumn: Story = {
     const columns = [
       {
         key: "id",
-        header: t("story_datagrid_col_id"),
+        header: t("story.datagrid_col_id"),
         width: 55,
       },
       {
         key: "name",
-        header: t("story_datagrid_col_name"),
+        header: t("story.datagrid_col_name"),
         width: 150,
       },
       {
         key: "email",
-        header: t("story_datagrid_col_email"),
+        header: t("story.datagrid_col_email"),
         width: 200,
       },
       {
         key: "role",
-        header: t("story_datagrid_col_role"),
+        header: t("story.datagrid_col_role"),
         width: 100,
       },
       {
         key: "joinDate",
-        header: t("story_datagrid_col_joinDate"),
+        header: t("story.datagrid_col_joinDate"),
         width: 150,
       },
       {
         key: "actions",
-        header: t("story_datagrid_col_actions"),
+        header: t("story.datagrid_col_actions"),
         width: 120,
         fixed: "right" as const,
         align: "center" as const,

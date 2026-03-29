@@ -120,7 +120,7 @@ export const Video = ({
       className={classNames("wim-video-container", className)}
       style={{ width: "100%" }}
       role="region"
-      aria-label={t("icon_VideoIcon")}
+      aria-label={t("icon.VideoIcon")}
     >
       <div
         className={classNames(

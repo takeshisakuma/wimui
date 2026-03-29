@@ -37,28 +37,28 @@ const SidebarContent = () => {
             className="wim-sidebar__hide-collapsed"
             style={{ fontWeight: "bold", fontSize: "1.2rem" }}
           >
-            {t("story_sidebar_wimui")}
+            {t("story.sidebar_wimui")}
           </span>
         </div>
       </Sidebar.Header>
       <Sidebar.Content>
         <Sidebar.Item active icon={<Icon name="HomeIcon" />}>
-          {t("story_sidebar_dashboard")}
+          {t("story.sidebar_dashboard")}
         </Sidebar.Item>
         <Sidebar.Item icon={<Icon name="ProjectIcon" />}>
-          {t("story_sidebar_projects")}
+          {t("story.sidebar_projects")}
         </Sidebar.Item>
         <Sidebar.Item icon={<Icon name="EmailIcon" />}>
-          {t("story_sidebar_messages")}
+          {t("story.sidebar_messages")}
         </Sidebar.Item>
         <Sidebar.Item icon={<Icon name="DocumentIcon" />}>
-          {t("story_sidebar_documents")}
+          {t("story.sidebar_documents")}
         </Sidebar.Item>
         <Sidebar.Item icon={<Icon name="ChartIcon" />}>
-          {t("story_sidebar_analytics")}
+          {t("story.sidebar_analytics")}
         </Sidebar.Item>
         <Sidebar.Item icon={<Icon name="SettingsIcon" />}>
-          {t("story_sidebar_settings")}
+          {t("story.sidebar_settings")}
         </Sidebar.Item>
       </Sidebar.Content>
       <Sidebar.Footer>
@@ -82,10 +82,10 @@ const SidebarContent = () => {
           ></div>
           <div className="wim-sidebar__hide-collapsed">
             <div style={{ fontSize: "0.8rem", fontWeight: "bold" }}>
-              {t("story_sidebar_user_name")}
+              {t("story.sidebar_user_name")}
             </div>
             <div style={{ fontSize: "0.7rem", color: "var(--wim-color-text-secondary)" }}>
-              {t("story_sidebar_user_email")}
+              {t("story.sidebar_user_email")}
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@ export const Default: Story = {
           className="wim-sidebar-mobile-trigger-demo"
           onClick={() => setMobileOpen(true)}
         >
-          {t("story_sidebar_menu")}
+          {t("story.sidebar_menu")}
         </button>
         <Sidebar
           {...args}
@@ -147,8 +147,8 @@ export const Default: Story = {
             marginTop: "40px",
           }}
         >
-          <h1>{t("story_sidebar_content_area")}</h1>
-          <p>{t("story_sidebar_select_item")}</p>
+          <h1>{t("story.sidebar_content_area")}</h1>
+          <p>{t("story.sidebar_select_item")}</p>
         </main>
       </div>
     );

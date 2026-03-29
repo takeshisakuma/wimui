@@ -29,17 +29,17 @@ export const Basic: Story = {
     return (
       <Dropdown {...args}>
         <DropdownTrigger>
-          <Button label={t("story_dropdown_open")} />
+          <Button label={t("story.dropdown_open")} />
         </DropdownTrigger>
         <DropdownMenu>
           <DropdownItem onClick={() => console.log("Profile clicked")}>
-            {t("story_dropdown_profile")}
+            {t("story.dropdown_profile")}
           </DropdownItem>
           <DropdownItem onClick={() => console.log("Settings clicked")}>
-            {t("story_dropdown_settings")}
+            {t("story.dropdown_settings")}
           </DropdownItem>
           <DropdownItem onClick={() => console.log("Logout clicked")}>
-            {t("story_dropdown_logout")}
+            {t("story.dropdown_logout")}
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
@@ -53,17 +53,17 @@ export const WithIcons: Story = {
     return (
       <Dropdown {...args}>
         <DropdownTrigger>
-          <Button priority="secondary" label={t("story_dropdown_options")} />
+          <Button priority="secondary" label={t("story.dropdown_options")} />
         </DropdownTrigger>
         <DropdownMenu>
           <DropdownItem>
-            <Icon name="CheckIcon" size="small" /> {t("story_dropdown_edit")}
+            <Icon name="CheckIcon" size="small" /> {t("story.dropdown_edit")}
           </DropdownItem>
           <DropdownItem>
-            <Icon name="CopyIcon" size="small" /> {t("story_dropdown_duplicate")}
+            <Icon name="CopyIcon" size="small" /> {t("story.dropdown_duplicate")}
           </DropdownItem>
           <DropdownItem disabled>
-            <Icon name="CloseIcon" size="small" /> {t("story_dropdown_delete")}
+            <Icon name="CloseIcon" size="small" /> {t("story.dropdown_delete")}
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
@@ -78,17 +78,17 @@ export const AlignmentRight: Story = {
       <div style={{ paddingLeft: "200px" }}>
         <Dropdown {...args}>
           <DropdownTrigger>
-            <Button label={t("story_dropdown_right_aligned")} />
+            <Button label={t("story.dropdown_right_aligned")} />
           </DropdownTrigger>
           <DropdownMenu align="right">
             <DropdownItem>
-              {t("story_dropdown_item")} 1
+              {t("story.dropdown_item")} 1
             </DropdownItem>
             <DropdownItem>
-              {t("story_dropdown_item")} 2
+              {t("story.dropdown_item")} 2
             </DropdownItem>
             <DropdownItem>
-              {t("story_dropdown_item")} 3
+              {t("story.dropdown_item")} 3
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>

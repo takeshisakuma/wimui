@@ -37,20 +37,20 @@ export const Basic: Story = {
         menu={
           <>
             <ContextMenuItem onClick={() => console.log("Edit clicked")}>
-              {t("story_contextmenu_edit")}
+              {t("story.contextmenu_edit")}
             </ContextMenuItem>
             <ContextMenuItem onClick={() => console.log("Copy clicked")}>
-              {t("story_contextmenu_copy")}
+              {t("story.contextmenu_copy")}
             </ContextMenuItem>
             <ContextMenuItem onClick={() => console.log("Paste clicked")}>
-              {t("story_contextmenu_paste")}
+              {t("story.contextmenu_paste")}
             </ContextMenuItem>
             <ContextMenuDivider />
             <ContextMenuItem
               onClick={() => console.log("Delete clicked")}
               danger
             >
-              {t("story_contextmenu_delete")}
+              {t("story.contextmenu_delete")}
             </ContextMenuItem>
           </>
         }
@@ -65,7 +65,7 @@ export const Basic: Story = {
             cursor: "pointer",
           }}
         >
-          {t("story_contextmenu_right_click")}
+          {t("story.contextmenu_right_click")}
         </div>
       </ContextMenu>
     );
@@ -83,9 +83,9 @@ export const Disabled: Story = {
         {...args}
         menu={
           <>
-            <ContextMenuItem>{t("story_contextmenu_edit")}</ContextMenuItem>
-            <ContextMenuItem>{t("story_contextmenu_copy")}</ContextMenuItem>
-            <ContextMenuItem>{t("story_contextmenu_paste")}</ContextMenuItem>
+            <ContextMenuItem>{t("story.contextmenu_edit")}</ContextMenuItem>
+            <ContextMenuItem>{t("story.contextmenu_copy")}</ContextMenuItem>
+            <ContextMenuItem>{t("story.contextmenu_paste")}</ContextMenuItem>
           </>
         }
       >
@@ -99,7 +99,7 @@ export const Disabled: Story = {
             cursor: "pointer",
           }}
         >
-          {t("story_contextmenu_disabled_menu")}
+          {t("story.contextmenu_disabled_menu")}
         </div>
       </ContextMenu>
     );
@@ -118,19 +118,19 @@ export const WithIcons: Story = {
               icon={<Icon name="CheckIcon" size="small" />}
               onClick={() => console.log("Edit clicked")}
             >
-              {t("story_contextmenu_edit")}
+              {t("story.contextmenu_edit")}
             </ContextMenuItem>
             <ContextMenuItem
               icon={<Icon name="CopyIcon" size="small" />}
               onClick={() => console.log("Copy clicked")}
             >
-              {t("story_contextmenu_copy")}
+              {t("story.contextmenu_copy")}
             </ContextMenuItem>
             <ContextMenuItem
               icon={<Icon name="CheckIcon" size="small" />}
               onClick={() => console.log("Paste clicked")}
             >
-              {t("story_contextmenu_paste")}
+              {t("story.contextmenu_paste")}
             </ContextMenuItem>
             <ContextMenuDivider />
             <ContextMenuItem
@@ -138,7 +138,7 @@ export const WithIcons: Story = {
               onClick={() => console.log("Delete clicked")}
               danger
             >
-              {t("story_contextmenu_delete")}
+              {t("story.contextmenu_delete")}
             </ContextMenuItem>
           </>
         }
@@ -153,7 +153,7 @@ export const WithIcons: Story = {
             cursor: "pointer",
           }}
         >
-          {t("story_contextmenu_with_icons")}
+          {t("story.contextmenu_with_icons")}
         </div>
       </ContextMenu>
     );
@@ -168,17 +168,17 @@ export const WithGroups: Story = {
         {...args}
         menu={
           <>
-            <ContextMenuGroup title={t("story_contextmenu_edit_actions")}>
-              <ContextMenuItem>{t("story_contextmenu_cut")}</ContextMenuItem>
-              <ContextMenuItem>{t("story_contextmenu_copy")}</ContextMenuItem>
-              <ContextMenuItem>{t("story_contextmenu_paste")}</ContextMenuItem>
+            <ContextMenuGroup title={t("story.contextmenu_edit_actions")}>
+              <ContextMenuItem>{t("story.contextmenu_cut")}</ContextMenuItem>
+              <ContextMenuItem>{t("story.contextmenu_copy")}</ContextMenuItem>
+              <ContextMenuItem>{t("story.contextmenu_paste")}</ContextMenuItem>
             </ContextMenuGroup>
             <ContextMenuDivider />
-            <ContextMenuGroup title={t("story_contextmenu_file_actions")}>
-              <ContextMenuItem>{t("story_contextmenu_rename")}</ContextMenuItem>
-              <ContextMenuItem>{t("story_contextmenu_move")}</ContextMenuItem>
+            <ContextMenuGroup title={t("story.contextmenu_file_actions")}>
+              <ContextMenuItem>{t("story.contextmenu_rename")}</ContextMenuItem>
+              <ContextMenuItem>{t("story.contextmenu_move")}</ContextMenuItem>
               <ContextMenuItem danger>
-                {t("story_contextmenu_delete")}
+                {t("story.contextmenu_delete")}
               </ContextMenuItem>
             </ContextMenuGroup>
           </>
@@ -194,7 +194,7 @@ export const WithGroups: Story = {
             cursor: "pointer",
           }}
         >
-          {t("story_contextmenu_with_groups")}
+          {t("story.contextmenu_with_groups")}
         </div>
       </ContextMenu>
     );
@@ -209,13 +209,13 @@ export const WithDisabledItems: Story = {
         {...args}
         menu={
           <>
-            <ContextMenuItem>{t("story_contextmenu_cut")}</ContextMenuItem>
-            <ContextMenuItem>{t("story_contextmenu_copy")}</ContextMenuItem>
+            <ContextMenuItem>{t("story.contextmenu_cut")}</ContextMenuItem>
+            <ContextMenuItem>{t("story.contextmenu_copy")}</ContextMenuItem>
             <ContextMenuItem disabled>
-              {t("story_contextmenu_paste")} (disabled)
+              {t("story.contextmenu_paste")} (disabled)
             </ContextMenuItem>
             <ContextMenuDivider />
-            <ContextMenuItem>{t("story_contextmenu_select_all")}</ContextMenuItem>
+            <ContextMenuItem>{t("story.contextmenu_select_all")}</ContextMenuItem>
           </>
         }
       >
@@ -229,7 +229,7 @@ export const WithDisabledItems: Story = {
             cursor: "pointer",
           }}
         >
-          {t("story_contextmenu_disabled")}
+          {t("story.contextmenu_disabled")}
         </div>
       </ContextMenu>
     );
@@ -245,17 +245,17 @@ export const OnImage: Story = {
         menu={
           <>
             <ContextMenuItem icon={<Icon name="CheckIcon" size="small" />}>
-              {t("story_contextmenu_open_new_tab")}
+              {t("story.contextmenu_open_new_tab")}
             </ContextMenuItem>
             <ContextMenuItem icon={<Icon name="CopyIcon" size="small" />}>
-              {t("story_contextmenu_copy_image")}
+              {t("story.contextmenu_copy_image")}
             </ContextMenuItem>
             <ContextMenuItem icon={<Icon name="CopyIcon" size="small" />}>
-              {t("story_contextmenu_copy_image_address")}
+              {t("story.contextmenu_copy_image_address")}
             </ContextMenuItem>
             <ContextMenuDivider />
             <ContextMenuItem icon={<Icon name="CheckIcon" size="small" />}>
-              {t("story_contextmenu_save_image_as")}
+              {t("story.contextmenu_save_image_as")}
             </ContextMenuItem>
           </>
         }
@@ -275,7 +275,7 @@ export const OnImage: Story = {
             cursor: "pointer",
           }}
         >
-          {t("story_contextmenu_on_image")}
+          {t("story.contextmenu_on_image")}
         </div>
       </ContextMenu>
     );

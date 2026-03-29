@@ -73,8 +73,8 @@ export const Basic: Story = {
         }}
       >
         <div style={{ padding: "20px" }}>
-          <h3>{t("story_loading_overlay_content_title")}</h3>
-          <p>{t("story_loading_overlay_content_desc")}</p>
+          <h3>{t("story.loading_overlay_content_title")}</h3>
+          <p>{t("story.loading_overlay_content_desc")}</p>
         </div>
         <LoadingOverlay {...args} />
       </div>
@@ -102,10 +102,10 @@ export const WithMessage: Story = {
         }}
       >
         <div style={{ padding: "20px" }}>
-          <h3>{t("story_loading_overlay_content_title")}</h3>
-          <p>{t("story_loading_overlay_with_msg_desc")}</p>
+          <h3>{t("story.loading_overlay_content_title")}</h3>
+          <p>{t("story.loading_overlay_with_msg_desc")}</p>
         </div>
-        <LoadingOverlay {...args} message={t("story_loading_overlay_loading_data")} />
+        <LoadingOverlay {...args} message={t("story.loading_overlay_loading_data")} />
       </div>
     );
   },
@@ -161,7 +161,7 @@ export const BackdropVariants: Story = {
           }}
         >
           <div style={{ padding: "20px", color: "white" }}>
-            <h4>{t("story_loading_overlay_light_backdrop")}</h4>
+            <h4>{t("story.loading_overlay_light_backdrop")}</h4>
           </div>
           <LoadingOverlay
             visible={true}
@@ -179,7 +179,7 @@ export const BackdropVariants: Story = {
           }}
         >
           <div style={{ padding: "20px", color: "white" }}>
-            <h4>{t("story_loading_overlay_dark_backdrop")}</h4>
+            <h4>{t("story.loading_overlay_dark_backdrop")}</h4>
           </div>
           <LoadingOverlay
             visible={true}
@@ -223,7 +223,7 @@ export const BlurEffects: Story = {
               }}
             >
               <h4>
-                {t("story_loading_overlay_blur")}: {blurLevel}
+                {t("story.loading_overlay_blur")}: {blurLevel}
               </h4>
             </div>
             <LoadingOverlay visible={true} blur={blurLevel} />
@@ -254,13 +254,13 @@ export const FullScreen: Story = {
     return (
       <div style={{ padding: "20px" }}>
         <Button onClick={handleClick}>
-          {t("story_loading_overlay_show_fullscreen")}
+          {t("story.loading_overlay_show_fullscreen")}
         </Button>
-        <p>{t("story_loading_overlay_fullscreen_desc")}</p>
+        <p>{t("story.loading_overlay_fullscreen_desc")}</p>
         <LoadingOverlay
           {...args}
           visible={loading}
-          message={t("story_loading_overlay_loading_app")}
+          message={t("story.loading_overlay_loading_app")}
         />
       </div>
     );
@@ -287,18 +287,18 @@ export const Interactive: Story = {
           padding: "20px",
         }}
       >
-        <Button onClick={handleClick} disabled={loading} label={t("story_loading_overlay_load_data")} />
+        <Button onClick={handleClick} disabled={loading} label={t("story.loading_overlay_load_data")} />
 
 
         <div style={{ marginTop: "20px" }}>
 
-          <p>{t("story_loading_overlay_long_content")}</p>
+          <p>{t("story.loading_overlay_long_content")}</p>
         </div>
         <LoadingOverlay
           visible={loading}
           loaderType="spinner"
           loaderSize="lg"
-          message={t("story_loading_overlay_fetching_data")}
+          message={t("story.loading_overlay_fetching_data")}
         />
       </div>
     );
@@ -332,8 +332,8 @@ export const CustomLoader: Story = {
         }}
       >
         <div style={{ padding: "20px" }}>
-          <h3>{t("story_loading_overlay_custom_title")}</h3>
-          <p>{t("story_loading_overlay_custom_desc")}</p>
+          <h3>{t("story.loading_overlay_custom_title")}</h3>
+          <p>{t("story.loading_overlay_custom_desc")}</p>
         </div>
         <LoadingOverlay {...args}>
           <div style={{ textAlign: "center", color: "white" }}>
@@ -342,7 +342,7 @@ export const CustomLoader: Story = {
               style={{ width: "48px", height: "48px", marginBottom: "16px" }}
             />
             <div style={{ fontSize: "18px", fontWeight: "bold" }}>
-              {t("story_loading_overlay_wait")}
+              {t("story.loading_overlay_wait")}
             </div>
           </div>
         </LoadingOverlay>

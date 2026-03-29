@@ -21,7 +21,7 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_signaturepad_default")}>
+      <Label label={t("story.signaturepad_default")}>
         <SignaturePad {...args} />
       </Label>
     );
@@ -36,7 +36,7 @@ export const CustomColors: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_signaturepad_colors")}>
+      <Label label={t("story.signaturepad_colors")}>
         <SignaturePad {...args} />
       </Label>
     );
@@ -53,7 +53,7 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_signaturepad_disabled")}>
+      <Label label={t("story.signaturepad_disabled")}>
         <SignaturePad {...args} disabled={true} />
       </Label>
     );
@@ -68,7 +68,7 @@ export const Large: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_signaturepad_large")}>
+      <Label label={t("story.signaturepad_large")}>
         <SignaturePad {...args} />
       </Label>
     );

@@ -27,8 +27,8 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("doc_search")}>
-        <SearchInput {...args} placeholder={t("story_searchinput_placeholder")} />
+      <Label label={t("doc.search")}>
+        <SearchInput {...args} placeholder={t("story.searchinput_placeholder")} />
       </Label>
     );
   },

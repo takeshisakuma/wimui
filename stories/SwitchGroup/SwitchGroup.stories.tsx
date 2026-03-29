@@ -26,9 +26,9 @@ type Story = StoryObj<typeof SwitchGroup>;
 const useOptions = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   return [
-    { label: t("story_switch_wifi"), value: "wifi" },
-    { label: t("story_switch_bluetooth"), value: "bluetooth" },
-    { label: t("story_switch_airplane"), value: "airplane" },
+    { label: t("story.switch_wifi"), value: "wifi" },
+    { label: t("story.switch_bluetooth"), value: "bluetooth" },
+    { label: t("story.switch_airplane"), value: "airplane" },
   ];
 };
 
@@ -63,7 +63,7 @@ export const WithDisabledOption: Story = {
         options={[
           ...options,
           {
-            label: `${t("story_mobile_data")} ${t("story_option_disabled")}`,
+            label: `${t("story.mobile_data")} ${t("story.option_disabled")}`,
             value: "mobile_data",
             disabled: true,
           },

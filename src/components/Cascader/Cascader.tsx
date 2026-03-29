@@ -63,7 +63,7 @@ export const Cascader = ({
 }: CascaderProps) => {
   const { t } = useTranslation("common");
 
-  const actualPlaceholder = placeholder ?? t("select_option");
+  const actualPlaceholder = placeholder ?? t("select.option");
   const generatedId = useId();
   const id = customId || `wim-cascader-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;

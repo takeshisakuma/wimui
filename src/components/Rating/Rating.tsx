@@ -206,7 +206,7 @@ export const Rating = ({
         role={readOnly ? "presentation" : "radio"}
         tabIndex={disabled || readOnly ? -1 : index === activeIndex ? 0 : -1}
         aria-checked={readOnly ? undefined : isChecked}
-        aria-label={readOnly ? undefined : t("rating_stars", { count: index + 1 })}
+        aria-label={readOnly ? undefined : t("rating.stars", { count: index + 1 })}
       >
         <div className="wim-rating__star-background">
           <Icon name="StarIcon" size={size} />
@@ -240,7 +240,7 @@ export const Rating = ({
         role={readOnly ? "img" : "radiogroup"}
         aria-label={
           readOnly
-            ? t("rating_readonly_label", { count: currentValue, max: count })
+            ? t("rating.readonly_label", { count: currentValue, max: count })
             : undefined
         }
         aria-labelledby={!readOnly && label ? labelId : undefined}

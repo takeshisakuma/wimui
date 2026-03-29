@@ -42,7 +42,7 @@ type Story = StoryObj<typeof Tag>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Tag {...args}>{t("story_tag_content")}</Tag>;
+    return <Tag {...args}>{t("story.tag_content")}</Tag>;
   },
   args: {
     status: "primary",
@@ -57,13 +57,13 @@ export const Variants: Story = {
     return (
       <div style={{ display: "flex", gap: "10px" }}>
         <Tag {...args} variant="solid">
-          {t("story_tag_solid")}
+          {t("story.tag_solid")}
         </Tag>
         <Tag {...args} variant="outline">
-          {t("story_tag_outline")}
+          {t("story.tag_outline")}
         </Tag>
         <Tag {...args} variant="subtle">
-          {t("story_tag_subtle")}
+          {t("story.tag_subtle")}
         </Tag>
       </div>
     );
@@ -76,25 +76,25 @@ export const Colors: Story = {
     return (
       <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
         <Tag {...args} status="primary">
-          {t("story_tag_primary")}
+          {t("story.tag_primary")}
         </Tag>
         <Tag {...args} status="secondary">
-          {t("story_tag_secondary")}
+          {t("story.tag_secondary")}
         </Tag>
         <Tag {...args} status="success">
-          {t("story_tag_success")}
+          {t("story.tag_success")}
         </Tag>
         <Tag {...args} status="warning">
-          {t("story_tag_warning")}
+          {t("story.tag_warning")}
         </Tag>
         <Tag {...args} status="error">
-          {t("story_tag_error")}
+          {t("story.tag_error")}
         </Tag>
         <Tag {...args} status="neutral">
-          {t("story_tag_neutral")}
+          {t("story.tag_neutral")}
         </Tag>
         <Tag {...args} status="info">
-          {t("story_tag_info")}
+          {t("story.tag_info")}
         </Tag>
       </div>
     );
@@ -107,10 +107,10 @@ export const Sizes: Story = {
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <Tag {...args} size="small">
-          {t("story_tag_small")}
+          {t("story.tag_small")}
         </Tag>
         <Tag {...args} size="medium">
-          {t("story_tag_medium")}
+          {t("story.tag_medium")}
         </Tag>
       </div>
     );
@@ -122,7 +122,7 @@ export const WithIcon: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Tag {...args} icon={<Icon name="CircleIcon" size="small" />}>
-        {t("story_tag_with_icon")}
+        {t("story.tag_with_icon")}
       </Tag>
     );
   },

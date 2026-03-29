@@ -181,7 +181,7 @@ const TransferList = ({
       >
         {data.length === 0 ? (
           <div className="wim-transfer__empty" aria-live="polite">
-            {t("no_data")}
+            {t("no.data")}
           </div>
         ) : useVirtual ? (
           <VirtualList
@@ -210,7 +210,7 @@ export const Transfer = ({
   dataSource = [],
   targetKeys,
   onChange,
-  titles = ["transfer_source", "transfer_target"],
+  titles = ["transfer.source", "transfer.target"],
   className,
   style,
   disabled = false,
@@ -313,8 +313,8 @@ export const Transfer = ({
     // Announce the move to screen readers
     const msgKey =
       direction === "toRight"
-        ? "transfer_status_moved_to_target"
-        : "transfer_status_moved_to_source";
+        ? "transfer.status_moved_to_target"
+        : "transfer.status_moved_to_source";
     const msg = t(msgKey, { count: moveKeys.length });
     if (statusTimeoutRef.current) clearTimeout(statusTimeoutRef.current);
     setStatusMessage("");
@@ -423,7 +423,7 @@ export const Transfer = ({
               onClick={() => moveItems("toRight")}
               disabled={disabled || moveRightDisabled}
               icon="ChevronRightIcon"
-              aria-label={t("transfer_move_to_target")}
+              aria-label={t("transfer.move_to_target")}
             />
             <Button
               priority="secondary"
@@ -431,7 +431,7 @@ export const Transfer = ({
               onClick={() => moveItems("toLeft")}
               disabled={disabled || moveLeftDisabled}
               icon="ChevronLeftIcon"
-              aria-label={t("transfer_move_to_source")}
+              aria-label={t("transfer.move_to_source")}
             />
           </div>
 

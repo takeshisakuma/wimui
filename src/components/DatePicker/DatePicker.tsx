@@ -82,7 +82,7 @@ export const DatePicker = ({
   const isControlled = value !== undefined;
   const currentValue = isControlled ? value : internalValue;
 
-  const actualPlaceholder = placeholder ?? t("datepicker_placeholder");
+  const actualPlaceholder = placeholder ?? t("datepicker.placeholder");
   const effectiveStatus = disabled ? "disabled" : (error ? "error" : status);
 
   // Close calendar when clicking outside

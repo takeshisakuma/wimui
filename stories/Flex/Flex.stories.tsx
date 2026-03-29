@@ -71,9 +71,9 @@ export const Basic: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <Box>{t("story_flex_item_1", "1")}</Box>
-        <Box color="#10b981">{t("story_flex_item_2", "2")}</Box>
-        <Box color="#f59e0b">{t("story_flex_item_3", "3")}</Box>
+        <Box>{t("story.flex_item_1", "1")}</Box>
+        <Box color="#10b981">{t("story.flex_item_2", "2")}</Box>
+        <Box color="#f59e0b">{t("story.flex_item_3", "3")}</Box>
       </Flex>
     );
   },
@@ -88,9 +88,9 @@ export const Column: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <Box>{t("story_flex_item_1", "Item 1")}</Box>
-        <Box color="#10b981">{t("story_flex_item_2", "Item 2")}</Box>
-        <Box color="#ef4444">{t("story_flex_item_3", "Item 3")}</Box>
+        <Box>{t("story.flex_item_1", "Item 1")}</Box>
+        <Box color="#10b981">{t("story.flex_item_2", "Item 2")}</Box>
+        <Box color="#ef4444">{t("story.flex_item_3", "Item 3")}</Box>
       </Flex>
     );
   },
@@ -105,9 +105,9 @@ export const JustifyBetween: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <Box>{t("story_flex_left")}</Box>
-        <Box color="#8b5cf6">{t("story_flex_middle")}</Box>
-        <Box color="#ec4899">{t("story_flex_right")}</Box>
+        <Box>{t("story.flex_left")}</Box>
+        <Box color="#8b5cf6">{t("story.flex_middle")}</Box>
+        <Box color="#ec4899">{t("story.flex_right")}</Box>
       </Flex>
     );
   },
@@ -123,11 +123,11 @@ export const Wrapped: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Flex {...args}>
-        <Box>{t("story_flex_item_1", "1")}</Box>
-        <Box color="#10b981">{t("story_flex_item_2", "2")}</Box>
-        <Box color="#f59e0b">{t("story_flex_item_3", "3")}</Box>
-        <Box color="#ef4444">{t("story_flex_item_4", "4")}</Box>
-        <Box color="#8b5cf6">{t("story_flex_item_5", "5")}</Box>
+        <Box>{t("story.flex_item_1", "1")}</Box>
+        <Box color="#10b981">{t("story.flex_item_2", "2")}</Box>
+        <Box color="#f59e0b">{t("story.flex_item_3", "3")}</Box>
+        <Box color="#ef4444">{t("story.flex_item_4", "4")}</Box>
+        <Box color="#8b5cf6">{t("story.flex_item_5", "5")}</Box>
       </Flex>
     );
   },

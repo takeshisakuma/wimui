@@ -47,8 +47,8 @@ export const FileUpload = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
 
-  const actualButtonLabel = buttonLabel ?? t("fileupload_button");
-  const actualNoFileLabel = noFileLabel ?? t("fileupload_no_file");
+  const actualButtonLabel = buttonLabel ?? t("fileupload.button");
+  const actualNoFileLabel = noFileLabel ?? t("fileupload.no_file");
 
   const handleClick = () => {
     inputRef.current?.click();

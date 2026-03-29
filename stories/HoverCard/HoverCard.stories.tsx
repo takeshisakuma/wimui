@@ -69,7 +69,7 @@ export const Default: Story = {
                 </div>
               </div>
               <div style={{ fontSize: "14px" }}>
-                {t("story_hovercard_bio")}
+                {t("story.hovercard_bio")}
               </div>
               <div
                 style={{
@@ -85,7 +85,7 @@ export const Default: Story = {
                   >
                     452
                   </span>{" "}
-                  {t("story_hovercard_following")}
+                  {t("story.hovercard_following")}
                 </div>
                 <div>
                   <span
@@ -93,7 +93,7 @@ export const Default: Story = {
                   >
                     2.8k
                   </span>{" "}
-                  {t("story_hovercard_followers")}
+                  {t("story.hovercard_followers")}
                 </div>
               </div>
             </div>
@@ -117,8 +117,8 @@ export const Instant: Story = {
         }}
       >
         <HoverCard openDelay={0} closeDelay={0}>
-          <HoverCardTrigger>{t("story_hovercard_hover_me")}</HoverCardTrigger>
-          <HoverCardContent>{t("story_hovercard_instant_desc")}</HoverCardContent>
+          <HoverCardTrigger>{t("story.hovercard_hover_me")}</HoverCardTrigger>
+          <HoverCardContent>{t("story.hovercard_instant_desc")}</HoverCardContent>
         </HoverCard>
       </div>
     );

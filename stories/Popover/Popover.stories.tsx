@@ -41,11 +41,11 @@ export const Default: Story = {
     return (
       <Popover {...args}>
         <PopoverTrigger asChild>
-          <Button priority="secondary" label={t("story_popover_open")} />
+          <Button priority="secondary" label={t("story.popover_open")} />
         </PopoverTrigger>
         <PopoverContent>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            <h4 style={{ margin: 0 }}>{t("story_popover_dimensions")}</h4>
+            <h4 style={{ margin: 0 }}>{t("story.popover_dimensions")}</h4>
             <p
               style={{
                 margin: 0,
@@ -53,14 +53,14 @@ export const Default: Story = {
                 fontSize: "0.9rem",
               }}
             >
-              {t("story_popover_set_dim")}
+              {t("story.popover_set_dim")}
             </p>
             <div
               style={{ display: "flex", flexDirection: "column", gap: "20px" }}
             >
               <div>
                 <Label
-                  label={t("story_popover_width")}
+                  label={t("story.popover_width")}
                   htmlFor="width"
                   style={{ marginBottom: "5px" }}
                 />
@@ -68,7 +68,7 @@ export const Default: Story = {
               </div>
               <div>
                 <Label
-                  label={t("story_popover_height")}
+                  label={t("story.popover_height")}
                   htmlFor="height"
                   style={{ marginBottom: "5px" }}
                 />
@@ -91,7 +91,7 @@ export const Interactive: Story = {
     return (
       <Popover {...args}>
         <PopoverTrigger asChild>
-          <Button priority="secondary" label={t("story_popover_interactive")} />
+          <Button priority="secondary" label={t("story.popover_interactive")} />
         </PopoverTrigger>
         <PopoverContent
           className="custom-width-popover"
@@ -100,7 +100,7 @@ export const Interactive: Story = {
           <div
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
-            <h4 style={{ margin: 0 }}>{t("story_popover_interactive_dim")}</h4>
+            <h4 style={{ margin: 0 }}>{t("story.popover_interactive_dim")}</h4>
             <p
               style={{
                 margin: 0,
@@ -108,14 +108,14 @@ export const Interactive: Story = {
                 fontSize: "0.9rem",
               }}
             >
-              {t("story_popover_change_val")}
+              {t("story.popover_change_val")}
             </p>
             <div
               style={{ display: "flex", flexDirection: "column", gap: "20px" }}
             >
               <div>
                 <Label
-                  label={t("story_popover_width")}
+                  label={t("story.popover_width")}
                   htmlFor="interactive-width"
                   style={{ marginBottom: "5px" }}
                 />
@@ -127,7 +127,7 @@ export const Interactive: Story = {
               </div>
               <div>
                 <Label
-                  label={t("story_popover_height")}
+                  label={t("story.popover_height")}
                   htmlFor="interactive-height"
                   style={{ marginBottom: "5px" }}
                 />
@@ -160,26 +160,26 @@ export const Alignment: Story = {
       >
         <Popover placement="bottom-start">
           <PopoverTrigger asChild>
-            <Button label={t("story_popover_left_align")} />
+            <Button label={t("story.popover_left_align")} />
           </PopoverTrigger>
           <PopoverContent>
-            <div style={{ padding: "10px" }}>{t("story_popover_left_cont")}</div>
+            <div style={{ padding: "10px" }}>{t("story.popover_left_cont")}</div>
           </PopoverContent>
         </Popover>
         <Popover placement="bottom">
           <PopoverTrigger asChild>
-            <Button label={t("story_popover_center_align")} />
+            <Button label={t("story.popover_center_align")} />
           </PopoverTrigger>
           <PopoverContent>
-            <div style={{ padding: "10px" }}>{t("story_popover_center_cont")}</div>
+            <div style={{ padding: "10px" }}>{t("story.popover_center_cont")}</div>
           </PopoverContent>
         </Popover>
         <Popover placement="bottom-end">
           <PopoverTrigger asChild>
-            <Button label={t("story_popover_right_align")} />
+            <Button label={t("story.popover_right_align")} />
           </PopoverTrigger>
           <PopoverContent>
-            <div style={{ padding: "10px" }}>{t("story_popover_right_cont")}</div>
+            <div style={{ padding: "10px" }}>{t("story.popover_right_cont")}</div>
           </PopoverContent>
         </Popover>
       </div>
@@ -201,18 +201,18 @@ export const Placement: Story = {
       >
         <Popover placement="top">
           <PopoverTrigger asChild>
-            <Button label={t("story_popover_top_place")} />
+            <Button label={t("story.popover_top_place")} />
           </PopoverTrigger>
           <PopoverContent>
-            <div style={{ padding: "10px" }}>{t("story_popover_appears_above")}</div>
+            <div style={{ padding: "10px" }}>{t("story.popover_appears_above")}</div>
           </PopoverContent>
         </Popover>
         <Popover placement="bottom">
           <PopoverTrigger asChild>
-            <Button label={t("story_popover_bottom_place")} />
+            <Button label={t("story.popover_bottom_place")} />
           </PopoverTrigger>
           <PopoverContent>
-            <div style={{ padding: "10px" }}>{t("story_popover_appears_below")}</div>
+            <div style={{ padding: "10px" }}>{t("story.popover_appears_below")}</div>
           </PopoverContent>
         </Popover>
       </div>

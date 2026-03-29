@@ -74,7 +74,7 @@ export const Dropzone = ({
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState<FileList | null>(null);
 
-  const actualDescription = description ?? t("dropzone_description");
+  const actualDescription = description ?? t("dropzone.description");
 
   const handleClick = () => {
     if (disabled) return;

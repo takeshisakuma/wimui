@@ -35,31 +35,31 @@ export const Basic: Story = {
               position="left"
               showAvatar
               avatar={<ChatAvatar fallback="A" color="s5" />}
-              senderName={t("story_chat_alice")}
+              senderName={t("story.chat_alice")}
               timestamp="10:30 AM"
             >
-              {t("story_chat_msg_1")}
+              {t("story.chat_msg_1")}
             </ChatMessage>
             <ChatMessage
               position="right"
               showAvatar
               avatar={<ChatAvatar fallback="Y" />}
-              senderName={t("story_chat_you")}
+              senderName={t("story.chat_you")}
               timestamp="10:31 AM"
             >
-              {t("story_chat_msg_2")}
+              {t("story.chat_msg_2")}
             </ChatMessage>
             <ChatMessage
               position="left"
               showAvatar
               avatar={<ChatAvatar fallback="A" color="s5" />}
-              senderName={t("story_chat_alice")}
+              senderName={t("story.chat_alice")}
               timestamp="10:32 AM"
             >
-              {t("story_chat_msg_3")}
+              {t("story.chat_msg_3")}
             </ChatMessage>
           </ChatMessageList>
-          <ChatInput placeholder={t("chat_placeholder")} />
+          <ChatInput placeholder={t("chat.placeholder")} />
         </ChatContainer>
       </div>
     );
@@ -77,37 +77,37 @@ export const WithAvatarImages: Story = {
               position="left"
               showAvatar
               avatar={
-                <ChatAvatar src="https://i.pravatar.cc/150?img=1" alt={t("story_chat_john")} />
+                <ChatAvatar src="https://i.pravatar.cc/150?img=1" alt={t("story.chat_john")} />
               }
-              senderName={t("story_chat_john")}
+              senderName={t("story.chat_john")}
               timestamp="09:15 AM"
             >
-              {t("story_chat_msg_4")}
+              {t("story.chat_msg_4")}
             </ChatMessage>
             <ChatMessage
               position="right"
               showAvatar
               avatar={
-                <ChatAvatar src="https://i.pravatar.cc/150?img=5" alt={t("story_chat_you")} />
+                <ChatAvatar src="https://i.pravatar.cc/150?img=5" alt={t("story.chat_you")} />
               }
-              senderName={t("story_chat_you")}
+              senderName={t("story.chat_you")}
               timestamp="09:16 AM"
             >
-              {t("story_chat_msg_5")}
+              {t("story.chat_msg_5")}
             </ChatMessage>
             <ChatMessage
               position="left"
               showAvatar
               avatar={
-                <ChatAvatar src="https://i.pravatar.cc/150?img=3" alt={t("story_chat_sarah")} />
+                <ChatAvatar src="https://i.pravatar.cc/150?img=3" alt={t("story.chat_sarah")} />
               }
-              senderName={t("story_chat_sarah")}
+              senderName={t("story.chat_sarah")}
               timestamp="09:17 AM"
             >
-              {t("story_chat_msg_6")}
+              {t("story.chat_msg_6")}
             </ChatMessage>
           </ChatMessageList>
-          <ChatInput placeholder={t("chat_placeholder")} />
+          <ChatInput placeholder={t("chat.placeholder")} />
         </ChatContainer>
       </div>
     );
@@ -126,33 +126,33 @@ export const WithVariants: Story = {
               variant="default"
               showAvatar
               avatar={<ChatAvatar fallback="S" color="s18" />}
-              senderName={t("story_chat_system")}
+              senderName={t("story.chat_system")}
               timestamp="08:00 AM"
             >
-              {t("story_chat_msg_7")}
+              {t("story.chat_msg_7")}
             </ChatMessage>
             <ChatMessage
               position="left"
               variant="primary"
               showAvatar
               avatar={<ChatAvatar fallback="A" color="s1" />}
-              senderName={t("story_chat_admin")}
+              senderName={t("story.chat_admin")}
               timestamp="08:01 AM"
             >
-              {t("story_chat_msg_8")}
+              {t("story.chat_msg_8")}
             </ChatMessage>
             <ChatMessage
               position="left"
               variant="secondary"
               showAvatar
               avatar={<ChatAvatar fallback="B" color="s12" />}
-              senderName={t("story_chat_bot")}
+              senderName={t("story.chat_bot")}
               timestamp="08:02 AM"
             >
-              {t("story_chat_msg_9")}
+              {t("story.chat_msg_9")}
             </ChatMessage>
           </ChatMessageList>
-          <ChatInput placeholder={t("chat_placeholder")} />
+          <ChatInput placeholder={t("chat.placeholder")} />
         </ChatContainer>
       </div>
     );
@@ -173,9 +173,9 @@ export const Interactive: Story = {
     const [messages, setMessages] = useState<Message[]>([
       {
         id: 1,
-        text: t("story_chat_msg_10"),
+        text: t("story.chat_msg_10"),
         position: "left",
-        sender: t("story_chat_support"),
+        sender: t("story.chat_support"),
         timestamp: new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -189,7 +189,7 @@ export const Interactive: Story = {
         id: messages.length + 1,
         text: message,
         position: "right",
-        sender: t("story_chat_you"),
+        sender: t("story.chat_you"),
         timestamp: new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -201,9 +201,9 @@ export const Interactive: Story = {
       setTimeout(() => {
         const response: Message = {
           id: messages.length + 2,
-          text: t("story_chat_msg_11"),
+          text: t("story.chat_msg_11"),
           position: "left",
-          sender: t("story_chat_support"),
+          sender: t("story.chat_support"),
           timestamp: new Date().toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
@@ -236,7 +236,7 @@ export const Interactive: Story = {
               </ChatMessage>
             ))}
           </ChatMessageList>
-          <ChatInput placeholder={t("chat_placeholder_interactive")} onSend={handleSend} />
+          <ChatInput placeholder={t("chat.placeholder_interactive")} onSend={handleSend} />
         </ChatContainer>
       </div>
     );
@@ -269,10 +269,10 @@ export const WithIcons: Story = {
                   <Icon name="UserIcon" size="small" />
                 </div>
               }
-              senderName={t("story_chat_customer_support")}
+              senderName={t("story.chat_customer_support")}
               timestamp="11:00 AM"
             >
-              {t("story_chat_msg_12")}
+              {t("story.chat_msg_12")}
             </ChatMessage>
             <ChatMessage
               position="right"
@@ -293,13 +293,13 @@ export const WithIcons: Story = {
                   <Icon name="UserIcon" size="small" />
                 </div>
               }
-              senderName={t("story_chat_you")}
+              senderName={t("story.chat_you")}
               timestamp="11:01 AM"
             >
-              {t("story_chat_msg_13")}
+              {t("story.chat_msg_13")}
             </ChatMessage>
           </ChatMessageList>
-          <ChatInput placeholder={t("chat_placeholder")} />
+          <ChatInput placeholder={t("chat.placeholder")} />
         </ChatContainer>
       </div>
     );
@@ -316,24 +316,24 @@ export const NoAvatars: Story = {
             <ChatMessage
               position="left"
               showAvatar={false}
-              senderName={t("story_chat_alice")}
+              senderName={t("story.chat_alice")}
               timestamp="10:30 AM"
             >
-              {t("story_chat_msg_14")}
+              {t("story.chat_msg_14")}
             </ChatMessage>
-            <ChatMessage position="right" showAvatar={false} senderName={t("story_chat_you")} timestamp="10:31 AM">
-              {t("story_chat_msg_15")}
+            <ChatMessage position="right" showAvatar={false} senderName={t("story.chat_you")} timestamp="10:31 AM">
+              {t("story.chat_msg_15")}
             </ChatMessage>
             <ChatMessage
               position="left"
               showAvatar={false}
-              senderName={t("story_chat_alice")}
+              senderName={t("story.chat_alice")}
               timestamp="10:32 AM"
             >
-              {t("story_chat_msg_16")}
+              {t("story.chat_msg_16")}
             </ChatMessage>
           </ChatMessageList>
-          <ChatInput placeholder={t("chat_placeholder")} />
+          <ChatInput placeholder={t("chat.placeholder")} />
         </ChatContainer>
       </div>
     );
@@ -354,19 +354,19 @@ export const AvatarSizes: Story = {
       >
         <div>
           <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
-            {t("story_chat_size_small")}
+            {t("story.chat_size_small")}
           </p>
           <ChatAvatar size="small" fallback="S" />
         </div>
         <div>
           <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
-            {t("story_chat_size_medium")}
+            {t("story.chat_size_medium")}
           </p>
           <ChatAvatar size="medium" fallback="M" />
         </div>
         <div>
           <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
-            {t("story_chat_size_large")}
+            {t("story.chat_size_large")}
           </p>
           <ChatAvatar size="large" fallback="L" />
         </div>
@@ -390,9 +390,9 @@ export const AiAssistantIntegration: Story = {
     const [messages, setMessages] = useState<Message[]>([
       {
         id: 1,
-        text: t("story_chat_ai_greeting"),
+        text: t("story.chat_ai_greeting"),
         position: "left",
-        sender: t("story_chat_ai_assistant"),
+        sender: t("story.chat_ai_assistant"),
         timestamp: new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -406,7 +406,7 @@ export const AiAssistantIntegration: Story = {
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === 1
-            ? { ...msg, text: t("story_chat_ai_greeting"), sender: t("story_chat_ai_assistant") }
+            ? { ...msg, text: t("story.chat_ai_greeting"), sender: t("story.chat_ai_assistant") }
             : msg
         )
       );
@@ -417,7 +417,7 @@ export const AiAssistantIntegration: Story = {
         id: Date.now(),
         text: message,
         position: "right",
-        sender: t("story_chat_you"),
+        sender: t("story.chat_you"),
         timestamp: new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -434,7 +434,7 @@ export const AiAssistantIntegration: Story = {
           id: typingMessageId,
           text: "...",
           position: "left",
-          sender: t("story_chat_ai_assistant"),
+          sender: t("story.chat_ai_assistant"),
           timestamp: "",
           isTyping: true,
         },
@@ -452,7 +452,7 @@ export const AiAssistantIntegration: Story = {
 
         // Mocking the AI response for demonstration purposes
         await new Promise((resolve) => setTimeout(resolve, 1500));
-        const responseText = t("story_chat_ai_response", { message });
+        const responseText = t("story.chat_ai_response", { message });
 
         setMessages((prev) =>
           prev
@@ -461,7 +461,7 @@ export const AiAssistantIntegration: Story = {
               id: Date.now() + 2,
               text: responseText,
               position: "left",
-              sender: t("story_chat_ai_assistant"),
+              sender: t("story.chat_ai_assistant"),
               timestamp: new Date().toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
@@ -562,7 +562,7 @@ export const AiAssistantIntegration: Story = {
             ))}
           </ChatMessageList>
           <ChatInput
-            placeholder={t("story_chat_placeholder_ai")}
+            placeholder={t("story.chat_placeholder_ai")}
             onSend={handleSend}
             disabled={isLoading}
           />

@@ -253,7 +253,7 @@ export const PopoverClose = ({
       type="button"
       className={classNames("wim-popover-close", className)}
       onClick={handleClick}
-      aria-label={t("a11y_close")}
+      aria-label={t("a11y.close")}
       {...props}
     >
       {children || <Icon name="CloseSmallIcon" width={15} height={15} />}

@@ -117,7 +117,7 @@ export const LoadingToggle: Story = {
             width: "fit-content",
           }}
         >
-          {loading ? t("story_skeleton_show_content") : t("story_skeleton_show_skeleton")}
+          {loading ? t("story.skeleton_show_content") : t("story.skeleton_show_skeleton")}
         </button>
 
         <div
@@ -194,7 +194,7 @@ export const LoadingToggle: Story = {
                 }}
               />
               <div style={{ lineHeight: "1.6", color: "var(--wim-color-text-secondary)" }}>
-                {t("story_skeleton_demo_desc")}
+                {t("story.skeleton_demo_desc")}
               </div>
             </div>
           )}

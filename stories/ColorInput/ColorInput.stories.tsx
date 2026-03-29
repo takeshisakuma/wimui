@@ -22,7 +22,7 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_colorinput_default")}>
+      <Label label={t("story.colorinput_default")}>
         <ColorInput {...args} />
       </Label>
     );
@@ -36,7 +36,7 @@ export const WithIcon: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_colorinput_icon")}>
+      <Label label={t("story.colorinput_icon")}>
         <ColorInput {...args} />
       </Label>
     );
@@ -51,7 +51,7 @@ export const CustomStates: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_colorinput_states")}>
+      <Label label={t("story.colorinput_states")}>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <ColorInput
             {...args}

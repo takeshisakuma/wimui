@@ -25,7 +25,7 @@ export const Text: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Watermark {...args} content={t("story_watermark_text")}>
+      <Watermark {...args} content={t("story.watermark_text")}>
         <div style={{ height: "400px", background: "var(--wim-color-surface)", padding: "20px" }}>
           <div
             style={{
@@ -37,7 +37,7 @@ export const Text: Story = {
               marginTop: "24px",
             }}
           >
-            {t("story_watermark_confidential_mark")}
+            {t("story.watermark_confidential_mark")}
           </div>
         </div>
       </Watermark>
@@ -52,9 +52,9 @@ export const MultiLine: Story = {
       <Watermark
         {...args}
         content={[
-          t("story_watermark_wimui"),
-          t("story_watermark_confidential_mark"),
-          t("story_watermark_team"),
+          t("story.watermark_wimui"),
+          t("story.watermark_confidential_mark"),
+          t("story.watermark_team"),
         ]}
       >
         <div style={{ height: "400px" }} />

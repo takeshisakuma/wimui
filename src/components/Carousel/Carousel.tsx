@@ -280,7 +280,7 @@ export const Carousel = ({
               }
               role="group"
               aria-roledescription="slide"
-              aria-label={t("story_carousel_slide_label", {
+              aria-label={t("story.carousel_slide_label", {
                 number: (index % originalItemCount) + 1,
               })}
             >
@@ -295,7 +295,7 @@ export const Carousel = ({
           <button
             className="wim-carousel__control wim-carousel__control--prev"
             onClick={prevSlide}
-            aria-label={t("a11y_prev_slide")}
+            aria-label={t("a11y.prev_slide")}
             disabled={!loop && currentIndex === 0}
             tabIndex={-1} // 親要素でフォーカス管理するためボタン自体のタブ移動はスキップしても良いが、好みによる
           >
@@ -304,7 +304,7 @@ export const Carousel = ({
           <button
             className="wim-carousel__control wim-carousel__control--next"
             onClick={nextSlide}
-            aria-label={t("a11y_next_slide")}
+            aria-label={t("a11y.next_slide")}
             disabled={
               !loop && currentIndex >= originalItemCount - displaySlides
             }

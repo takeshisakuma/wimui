@@ -108,7 +108,7 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(
     const { t } = useTranslation(["components"]);
     const [value, setValue] = React.useState("");
 
-    const sendButtonLabel = sendButtonLabelProp || t("chat_send_button");
+    const sendButtonLabel = sendButtonLabelProp || t("chat.send_button");
 
     const handleSend = () => {
       if (value.trim() && onSend) {
@@ -133,7 +133,7 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={props.placeholder || t("chat_placeholder")}
+          placeholder={props.placeholder || t("chat.placeholder")}
           {...props}
         />
         {showSendButton && (
@@ -173,7 +173,7 @@ export const ChatAvatar = ({
   const { t } = useTranslation(["components"]);
   const [imageError, setImageError] = React.useState(false);
 
-  const alt = altProp || t("a11y_avatar");
+  const alt = altProp || t("a11y.avatar");
 
   return (
     <div

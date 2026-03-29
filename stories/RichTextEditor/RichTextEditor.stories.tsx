@@ -31,8 +31,8 @@ export const Basic: Story = {
     return (
       <RichTextEditor
         {...args}
-        label={t("story_rte_label_content")}
-        placeholder={t("story_rte_placeholder_default")}
+        label={t("story.rte_label_content")}
+        placeholder={t("story.rte_placeholder_default")}
       />
     );
   },
@@ -44,8 +44,8 @@ export const WithDefaultValue: Story = {
     return (
       <RichTextEditor
         {...args}
-        label={t("story_rte_label_article")}
-        defaultValue={`<h2>${t("story_rte_default_heading")}</h2><p>${t("story_rte_default_body")}</p>`}
+        label={t("story.rte_label_article")}
+        defaultValue={`<h2>${t("story.rte_default_heading")}</h2><p>${t("story.rte_default_body")}</p>`}
       />
     );
   },
@@ -54,17 +54,17 @@ export const WithDefaultValue: Story = {
 export const Controlled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    const [value, setValue] = React.useState(`<p>${t("story_rte_controlled_initial")}</p>`);
+    const [value, setValue] = React.useState(`<p>${t("story.rte_controlled_initial")}</p>`);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <RichTextEditor
           {...args}
-          label={t("story_rte_label_content")}
+          label={t("story.rte_label_content")}
           value={value}
           onChange={setValue}
         />
         <div>
-          <strong>{t("story_rte_output_label")}</strong>
+          <strong>{t("story.rte_output_label")}</strong>
           <pre style={{ fontSize: "0.75rem", whiteSpace: "pre-wrap", wordBreak: "break-all", padding: "8px", background: "var(--wim-color-surface-variant)", borderRadius: "4px" }}>
             {value}
           </pre>
@@ -80,10 +80,10 @@ export const ErrorStatus: Story = {
     return (
       <RichTextEditor
         {...args}
-        label={t("story_rte_label_content")}
+        label={t("story.rte_label_content")}
         status="error"
-        error={t("story_rte_error_required")}
-        placeholder={t("story_rte_placeholder_default")}
+        error={t("story.rte_error_required")}
+        placeholder={t("story.rte_placeholder_default")}
       />
     );
   },
@@ -95,9 +95,9 @@ export const Disabled: Story = {
     return (
       <RichTextEditor
         {...args}
-        label={t("story_rte_label_content")}
+        label={t("story.rte_label_content")}
         disabled
-        defaultValue={`<p>${t("story_rte_disabled_content")}</p>`}
+        defaultValue={`<p>${t("story.rte_disabled_content")}</p>`}
       />
     );
   },
@@ -109,9 +109,9 @@ export const Ghost: Story = {
     return (
       <RichTextEditor
         {...args}
-        label={t("story_rte_label_note")}
+        label={t("story.rte_label_note")}
         variant="ghost"
-        placeholder={t("story_rte_placeholder_default")}
+        placeholder={t("story.rte_placeholder_default")}
       />
     );
   },
@@ -123,9 +123,9 @@ export const FullWidth: Story = {
     return (
       <RichTextEditor
         {...args}
-        label={t("story_rte_label_article")}
+        label={t("story.rte_label_article")}
         fullWidth
-        placeholder={t("story_rte_placeholder_default")}
+        placeholder={t("story.rte_placeholder_default")}
       />
     );
   },
@@ -137,9 +137,9 @@ export const MinimalToolbar: Story = {
     return (
       <RichTextEditor
         {...args}
-        label={t("story_rte_label_comment")}
+        label={t("story.rte_label_comment")}
         toolbar={["bold", "italic", "underline", "separator", "link"]}
-        placeholder={t("story_rte_placeholder_comment")}
+        placeholder={t("story.rte_placeholder_comment")}
       />
     );
   },

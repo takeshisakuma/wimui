@@ -47,56 +47,56 @@ export const Default: Story = {
       <TreeView {...args} defaultExpandedValues={["1", "2"]}>
         <TreeView.Item
           value="1"
-          label={t("story_tree_documents")}
+          label={t("story.tree_documents")}
           icon={<Icon name="CircleIcon" size="small" />}
         >
           <TreeView.Item
             value="1-1"
-            label={t("story_tree_work")}
+            label={t("story.tree_work")}
             icon={<Icon name="SquareIcon" size="small" />}
           >
             <TreeView.Item
               value="1-1-1"
-              label={t("story_tree_project_a")}
+              label={t("story.tree_project_a")}
               icon={<Icon name="CopyIcon" size="small" />}
             />
             <TreeView.Item
               value="1-1-2"
-              label={t("story_tree_project_b")}
+              label={t("story.tree_project_b")}
               icon={<Icon name="CopyIcon" size="small" />}
             />
           </TreeView.Item>
           <TreeView.Item
             value="1-2"
-            label={t("story_tree_personal")}
+            label={t("story.tree_personal")}
             icon={<Icon name="SquareIcon" size="small" />}
           >
             <TreeView.Item
               value="1-2-1"
-              label={t("story_tree_photos")}
+              label={t("story.tree_photos")}
               icon={<Icon name="CircleIcon" size="small" />}
             />
           </TreeView.Item>
         </TreeView.Item>
         <TreeView.Item
           value="2"
-          label={t("story_tree_music")}
+          label={t("story.tree_music")}
           icon={<Icon name="CircleIcon" size="small" />}
         >
           <TreeView.Item
             value="2-1"
-            label={t("story_tree_rock")}
+            label={t("story.tree_rock")}
             icon={<Icon name="SquareIcon" size="small" />}
           />
           <TreeView.Item
             value="2-2"
-            label={t("story_tree_jazz")}
+            label={t("story.tree_jazz")}
             icon={<Icon name="SquareIcon" size="small" />}
           />
         </TreeView.Item>
         <TreeView.Item
           value="3"
-          label={t("story_tree_videos")}
+          label={t("story.tree_videos")}
           icon={<Icon name="CircleIcon" size="small" />}
         />
       </TreeView>
@@ -109,13 +109,13 @@ export const MultiSelect: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <TreeView multiSelect defaultExpandedValues={["1"]}>
-        <TreeView.Item value="1" label={t("story_tree_system")}>
-          <TreeView.Item value="1-1" label={t("story_tree_logs")} />
-          <TreeView.Item value="1-2" label={t("story_tree_config")} />
+        <TreeView.Item value="1" label={t("story.tree_system")}>
+          <TreeView.Item value="1-1" label={t("story.tree_logs")} />
+          <TreeView.Item value="1-2" label={t("story.tree_config")} />
         </TreeView.Item>
-        <TreeView.Item value="2" label={t("story_tree_users")}>
-          <TreeView.Item value="2-1" label={t("story_tree_admin")} />
-          <TreeView.Item value="2-2" label={t("story_tree_guest")} />
+        <TreeView.Item value="2" label={t("story.tree_users")}>
+          <TreeView.Item value="2-1" label={t("story.tree_admin")} />
+          <TreeView.Item value="2-2" label={t("story.tree_guest")} />
         </TreeView.Item>
       </TreeView>
     );
@@ -127,13 +127,13 @@ export const DisabledItems: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <TreeView defaultExpandedValues={["1"]}>
-        <TreeView.Item value="1" label={t("story_tree_root_enabled")}>
+        <TreeView.Item value="1" label={t("story.tree_root_enabled")}>
           <TreeView.Item
             value="1-1"
-            label={t("story_tree_disabled_item")}
+            label={t("story.tree_disabled_item")}
             disabled
           />
-          <TreeView.Item value="1-2" label={t("story_tree_enabled_item")} />
+          <TreeView.Item value="1-2" label={t("story.tree_enabled_item")} />
         </TreeView.Item>
       </TreeView>
     );
@@ -147,24 +147,24 @@ export const Overflow: Story = {
       <TreeView width={250} defaultExpandedValues={["1"]}>
         <TreeView.Item
           value="1"
-          label={t("story_tree_long_folder")}
+          label={t("story.tree_long_folder")}
           icon={<Icon name="CircleIcon" size="small" />}
         >
           <TreeView.Item
             value="1-1"
-            label={t("story_tree_long_subitem")}
+            label={t("story.tree_long_subitem")}
             icon={<Icon name="SquareIcon" size="small" />}
           >
             <TreeView.Item
               value="1-1-1"
-              label={t("story_tree_deep_nesting")}
+              label={t("story.tree_deep_nesting")}
               icon={<Icon name="CopyIcon" size="small" />}
             />
           </TreeView.Item>
         </TreeView.Item>
         <TreeView.Item
           value="2"
-          label={t("story_tree_regular_item")}
+          label={t("story.tree_regular_item")}
           icon={<Icon name="CircleIcon" size="small" />}
         />
       </TreeView>

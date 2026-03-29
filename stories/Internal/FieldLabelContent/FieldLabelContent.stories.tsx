@@ -26,13 +26,13 @@ export const Default: Story = {
 export const Required: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <FieldLabelContent {...args} label={t("doc_ft_email_label")} required />;
+    return <FieldLabelContent {...args} label={t("doc.ft_email_label")} required />;
   },
 };
 
 export const Optional: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <FieldLabelContent {...args} label={t("phone_number")} showOptional />;
+    return <FieldLabelContent {...args} label={t("phone.number")} showOptional />;
   },
 };

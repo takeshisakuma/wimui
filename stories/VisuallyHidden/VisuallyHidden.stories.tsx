@@ -22,7 +22,7 @@ export const Primary: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <VisuallyHidden {...args}>
-        {t("story_visuallyhidden_accessible")}
+        {t("story.visuallyhidden_accessible")}
       </VisuallyHidden>
     );
   },
@@ -32,9 +32,9 @@ export const WithinButton: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <button aria-label={t("story_visuallyhidden_close")}>
+      <button aria-label={t("story.visuallyhidden_close")}>
         <span aria-hidden="true">×</span>
-        <VisuallyHidden>{t("story_visuallyhidden_close")}</VisuallyHidden>
+        <VisuallyHidden>{t("story.visuallyhidden_close")}</VisuallyHidden>
       </button>
     );
   },

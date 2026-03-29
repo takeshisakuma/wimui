@@ -30,13 +30,13 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options = [
-      { label: t("story_multiselect_apple"), value: "apple" },
-      { label: t("story_multiselect_banana"), value: "banana" },
-      { label: t("story_multiselect_orange"), value: "orange" },
-      { label: t("story_multiselect_grape"), value: "grape" },
-      { label: t("story_selectbox_opt4"), value: "disabled", disabled: true },
+      { label: t("story.multiselect_apple"), value: "apple" },
+      { label: t("story.multiselect_banana"), value: "banana" },
+      { label: t("story.multiselect_orange"), value: "orange" },
+      { label: t("story.multiselect_grape"), value: "grape" },
+      { label: t("story.selectbox_opt4"), value: "disabled", disabled: true },
     ];
-    return <MultiSelect {...args} options={options} placeholder={t("story_multiselect_fruits")} />;
+    return <MultiSelect {...args} options={options} placeholder={t("story.multiselect_fruits")} />;
   },
 };
 
@@ -44,18 +44,18 @@ export const WithLabel: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options = [
-      { label: t("story_multiselect_apple"), value: "apple" },
-      { label: t("story_multiselect_banana"), value: "banana" },
-      { label: t("story_multiselect_orange"), value: "orange" },
-      { label: t("story_multiselect_grape"), value: "grape" },
-      { label: t("story_selectbox_opt4"), value: "disabled", disabled: true },
+      { label: t("story.multiselect_apple"), value: "apple" },
+      { label: t("story.multiselect_banana"), value: "banana" },
+      { label: t("story.multiselect_orange"), value: "orange" },
+      { label: t("story.multiselect_grape"), value: "grape" },
+      { label: t("story.selectbox_opt4"), value: "disabled", disabled: true },
     ];
     return (
       <MultiSelect
         {...args}
-        label={t("story_multiselect_favorites")}
+        label={t("story.multiselect_favorites")}
         options={options}
-        placeholder={t("story_selectbox_placeholder")}
+        placeholder={t("story.selectbox_placeholder")}
       />
     );
   },
@@ -65,11 +65,11 @@ export const MultipleSelected: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options = [
-      { label: t("story_multiselect_apple"), value: "apple" },
-      { label: t("story_multiselect_banana"), value: "banana" },
-      { label: t("story_multiselect_orange"), value: "orange" },
-      { label: t("story_multiselect_grape"), value: "grape" },
-      { label: t("story_selectbox_opt4"), value: "disabled", disabled: true },
+      { label: t("story.multiselect_apple"), value: "apple" },
+      { label: t("story.multiselect_banana"), value: "banana" },
+      { label: t("story.multiselect_orange"), value: "orange" },
+      { label: t("story.multiselect_grape"), value: "grape" },
+      { label: t("story.selectbox_opt4"), value: "disabled", disabled: true },
     ];
     return <MultiSelect {...args} options={options} defaultValue={["apple", "orange"]} />;
   },
@@ -79,11 +79,11 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options = [
-      { label: t("story_multiselect_apple"), value: "apple" },
-      { label: t("story_multiselect_banana"), value: "banana" },
-      { label: t("story_multiselect_orange"), value: "orange" },
-      { label: t("story_multiselect_grape"), value: "grape" },
-      { label: t("story_selectbox_opt4"), value: "disabled", disabled: true },
+      { label: t("story.multiselect_apple"), value: "apple" },
+      { label: t("story.multiselect_banana"), value: "banana" },
+      { label: t("story.multiselect_orange"), value: "orange" },
+      { label: t("story.multiselect_grape"), value: "grape" },
+      { label: t("story.selectbox_opt4"), value: "disabled", disabled: true },
     ];
     return <MultiSelect {...args} options={options} disabled={true} defaultValue={["banana"]} />;
   },
@@ -93,11 +93,11 @@ export const WithClearButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options = [
-      { label: t("story_multiselect_apple"), value: "apple" },
-      { label: t("story_multiselect_banana"), value: "banana" },
-      { label: t("story_multiselect_orange"), value: "orange" },
-      { label: t("story_multiselect_grape"), value: "grape" },
-      { label: t("story_selectbox_opt4"), value: "disabled", disabled: true },
+      { label: t("story.multiselect_apple"), value: "apple" },
+      { label: t("story.multiselect_banana"), value: "banana" },
+      { label: t("story.multiselect_orange"), value: "orange" },
+      { label: t("story.multiselect_grape"), value: "grape" },
+      { label: t("story.selectbox_opt4"), value: "disabled", disabled: true },
     ];
     return (
       <MultiSelect
@@ -105,7 +105,7 @@ export const WithClearButton: Story = {
         options={options}
         allowClear={true}
         defaultValue={["apple", "banana"]}
-        placeholder={t("story_multiselect_fruits")}
+        placeholder={t("story.multiselect_fruits")}
       />
     );
   },

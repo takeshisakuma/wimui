@@ -74,7 +74,7 @@ export const Inline: Story = {
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <Indicator {...args} color="success" inline />
-        <span>{t("story_indicator_online")}</span>
+        <span>{t("story.indicator_online")}</span>
       </div>
     );
   },

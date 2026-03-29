@@ -33,7 +33,7 @@ export type ComboboxProps = {
 export const Combobox = ({
   options = [],
   onSelect,
-  placeholder = "select_option",
+  placeholder = "select.option",
   showSearchIcon = true,
   allowClear = true,
   defaultValue = "",
@@ -196,7 +196,7 @@ export const Combobox = ({
         )}
         {isOpen && filteredOptions.length === 0 && (
           <div className="wim-combobox-empty" role="region" aria-live="polite">
-            {t("no_results_found")}
+            {t("no.results_found")}
           </div>
         )}
       </div>

@@ -56,7 +56,7 @@ export const Breadcrumb = ({
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <nav
-      aria-label={t("a11y_breadcrumb")}
+      aria-label={t("a11y.breadcrumb")}
       className={classNames(
         "wim-breadcrumb",
         `wim-breadcrumb--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,

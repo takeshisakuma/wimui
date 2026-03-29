@@ -16,31 +16,31 @@ type Story = StoryObj<typeof TreeSelect>;
 
 const defaultTreeData: TreeSelectNode[] = [
   {
-    label: "story_treeselect_design",
+    label: "story.treeselect_design",
     value: "design",
     icon: <Icon name="EditIcon" size="small" />,
     children: [
       {
-        label: "story_treeselect_colors",
+        label: "story.treeselect_colors",
         value: "colors",
         children: [
-          { label: "story_treeselect_primary", value: "primary" },
-          { label: "story_treeselect_secondary", value: "secondary" },
+          { label: "story.treeselect_primary", value: "primary" },
+          { label: "story.treeselect_secondary", value: "secondary" },
         ],
       },
       {
-        label: "story_treeselect_typography",
+        label: "story.treeselect_typography",
         value: "typography",
       },
     ],
   },
   {
-    label: "story_treeselect_components",
+    label: "story.treeselect_components",
     value: "components",
     icon: <Icon name="ProjectIcon" size="small" />,
     children: [
-      { label: "story_treeselect_button", value: "button" },
-      { label: "story_treeselect_input", value: "input" },
+      { label: "story.treeselect_button", value: "button" },
+      { label: "story.treeselect_input", value: "input" },
     ],
   },
 ];
@@ -64,7 +64,7 @@ export const Default: Story = {
       <TreeSelect
         {...args}
         treeData={treeData}
-        placeholder={t("story_treeselect_placeholder")}
+        placeholder={t("story.treeselect_placeholder")}
       />
     );
   },
@@ -85,7 +85,7 @@ export const CascadeMultiple: Story = {
         multiple
         checkStrategy="cascade"
         defaultExpandedKeys={["design"]}
-        placeholder={t("story_treeselect_placeholder")}
+        placeholder={t("story.treeselect_placeholder")}
       />
     );
   },
@@ -106,7 +106,7 @@ export const ExclusiveMultiple: Story = {
         multiple
         checkStrategy="exclusive"
         defaultExpandedKeys={["design"]}
-        placeholder={t("story_treeselect_placeholder")}
+        placeholder={t("story.treeselect_placeholder")}
       />
     );
   },
@@ -121,7 +121,7 @@ export const Searchable: Story = {
         {...args}
         treeData={treeData}
         searchable
-        placeholder={t("story_treeselect_placeholder")}
+        placeholder={t("story.treeselect_placeholder")}
       />
     );
   },
@@ -136,7 +136,7 @@ export const DefaultExpanded: Story = {
         {...args}
         treeData={treeData}
         defaultExpandedKeys={["design", "colors"]}
-        placeholder={t("story_treeselect_placeholder")}
+        placeholder={t("story.treeselect_placeholder")}
       />
     );
   },
@@ -151,7 +151,7 @@ export const Disabled: Story = {
         {...args}
         treeData={treeData}
         disabled
-        placeholder={t("story_treeselect_placeholder")}
+        placeholder={t("story.treeselect_placeholder")}
       />
     );
   },

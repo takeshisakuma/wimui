@@ -53,11 +53,11 @@ export const Horizontal: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={30}>
-            <PanelContent color="#3b82f6">{t("story_splitter_left", "Left Panel")}</PanelContent>
+            <PanelContent color="#3b82f6">{t("story.splitter_left", "Left Panel")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={70}>
-            <PanelContent color="#10b981">{t("story_splitter_right", "Right Panel")}</PanelContent>
+            <PanelContent color="#10b981">{t("story.splitter_right", "Right Panel")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>
@@ -77,11 +77,11 @@ export const Vertical: Story = {
       >
         <Splitter orientation="vertical">
           <Splitter.Panel defaultSize={40}>
-            <PanelContent color="#ef4444">{t("story_splitter_top", "Top Panel")}</PanelContent>
+            <PanelContent color="#ef4444">{t("story.splitter_top", "Top Panel")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
-            <PanelContent color="#f59e0b">{t("story_splitter_bottom", "Bottom Panel")}</PanelContent>
+            <PanelContent color="#f59e0b">{t("story.splitter_bottom", "Bottom Panel")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>
@@ -101,15 +101,15 @@ export const MultiplePanels: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={20}>
-            <PanelContent color="#6366f1">{t("story_splitter_panel_1", "Panel 1")}</PanelContent>
+            <PanelContent color="#6366f1">{t("story.splitter_panel_1", "Panel 1")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={60}>
-            <PanelContent color="#8b5cf6">{t("story_splitter_panel_2", "Panel 2")}</PanelContent>
+            <PanelContent color="#8b5cf6">{t("story.splitter_panel_2", "Panel 2")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={20}>
-            <PanelContent color="#ec4899">{t("story_splitter_panel_3", "Panel 3")}</PanelContent>
+            <PanelContent color="#ec4899">{t("story.splitter_panel_3", "Panel 3")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>
@@ -129,17 +129,17 @@ export const Nested: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel defaultSize={25}>
-            <PanelContent color="#374151" textColor="#fff">{t("story_splitter_sidebar", "Sidebar")}</PanelContent>
+            <PanelContent color="#374151" textColor="#fff">{t("story.splitter_sidebar", "Sidebar")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel defaultSize={75}>
             <Splitter orientation="vertical">
               <Splitter.Panel defaultSize={70}>
-                <PanelContent color="#1f2937" textColor="#fff">{t("story_splitter_main", "Main Content")}</PanelContent>
+                <PanelContent color="#1f2937" textColor="#fff">{t("story.splitter_main", "Main Content")}</PanelContent>
               </Splitter.Panel>
               <Splitter.Handle />
               <Splitter.Panel defaultSize={30}>
-                <PanelContent color="#4b5563" textColor="#fff">{t("story_splitter_logs", "Console / Logs")}</PanelContent>
+                <PanelContent color="#4b5563" textColor="#fff">{t("story.splitter_logs", "Console / Logs")}</PanelContent>
               </Splitter.Panel>
             </Splitter>
           </Splitter.Panel>
@@ -161,11 +161,11 @@ export const Constraints: Story = {
       >
         <Splitter orientation="horizontal">
           <Splitter.Panel minSize={20} maxSize={50} defaultSize={30}>
-            <PanelContent color="#14b8a6">{t("story_splitter_minmax", "Min: 20%, Max: 50%")}</PanelContent>
+            <PanelContent color="#14b8a6">{t("story.splitter_minmax", "Min: 20%, Max: 50%")}</PanelContent>
           </Splitter.Panel>
           <Splitter.Handle />
           <Splitter.Panel>
-            <PanelContent color="#06b6d4">{t("story_splitter_flexible", "Flexible Panel")}</PanelContent>
+            <PanelContent color="#06b6d4">{t("story.splitter_flexible", "Flexible Panel")}</PanelContent>
           </Splitter.Panel>
         </Splitter>
       </div>

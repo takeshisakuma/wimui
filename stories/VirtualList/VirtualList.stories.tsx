@@ -35,7 +35,7 @@ export const Default: Story = {
         height={300}
         renderItem={(item) => (
           <div style={{ padding: "0 16px", width: "100%" }}>
-            {t("story_virtuallist_item_label", { id: item.id })}
+            {t("story.virtuallist_item_label", { id: item.id })}
           </div>
         )}
       />
@@ -55,7 +55,7 @@ export const LargeDataset: Story = {
         height={400}
         renderItem={(item) => (
           <div style={{ padding: "0 16px", width: "100%" }}>
-            {t("story_virtuallist_item_label", { id: item.id })}
+            {t("story.virtuallist_item_label", { id: item.id })}
           </div>
         )}
       />
@@ -82,10 +82,10 @@ export const WithCustomItemHeight: Story = {
             }}
           >
             <div style={{ fontWeight: "bold" }}>
-              {t("story_virtuallist_item_label", { id: item.id })}
+              {t("story.virtuallist_item_label", { id: item.id })}
             </div>
             <div style={{ fontSize: "var(--wim-font-size-sm)", color: "var(--wim-color-text-muted, #6b7280)" }}>
-              {t("story_virtuallist_item_sublabel")}
+              {t("story.virtuallist_item_sublabel")}
             </div>
           </div>
         )}
@@ -107,7 +107,7 @@ export const WithOverscan: Story = {
         overscan={10}
         renderItem={(item) => (
           <div style={{ padding: "0 16px", width: "100%" }}>
-            {t("story_virtuallist_item_label", { id: item.id })}
+            {t("story.virtuallist_item_label", { id: item.id })}
           </div>
         )}
       />

@@ -3,10 +3,10 @@ import { describe, it, expect, vi } from "vitest";
 import { QueryBuilder, QueryBuilderProps, QueryGroup } from "./QueryBuilder";
 
 const fields: QueryBuilderProps["fields"] = [
-  { name: "firstName", label: "query_builder.field_first_name", type: "string" },
-  { name: "age", label: "query_builder.field_age", type: "number" },
-  { name: "birthday", label: "query_builder.field_birthday", type: "date" },
-  { name: "isActive", label: "query_builder.field_is_active", type: "boolean" },
+  { name: "firstName", label: "query.builder.field_first_name", type: "string" },
+  { name: "age", label: "query.builder.field_age", type: "number" },
+  { name: "birthday", label: "query.builder.field_birthday", type: "date" },
+  { name: "isActive", label: "query.builder.field_is_active", type: "boolean" },
 ];
 
 const makeGroup = (overrides?: Partial<QueryGroup>): QueryGroup => ({

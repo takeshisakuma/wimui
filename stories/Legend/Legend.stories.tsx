@@ -19,13 +19,13 @@ type Story = StoryObj<typeof Legend>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Legend {...args}>{t("story_legend_title")}</Legend>;
+    return <Legend {...args}>{t("story.legend_title")}</Legend>;
   },
 };
 
 export const LongText: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Legend {...args}>{t("story_legend_long")}</Legend>;
+    return <Legend {...args}>{t("story.legend_long")}</Legend>;
   },
 };

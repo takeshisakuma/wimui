@@ -18,8 +18,8 @@ const useDataSource = () => {
   const { t } = useTranslation("docs");
   return Array.from({ length: 20 }).map((_, i) => ({
     key: i.toString(),
-    title: `${t("story_transfer_item")} ${i + 1}`,
-    description: `${t("story_transfer_desc")} ${i + 1}`,
+    title: `${t("story.transfer_item")} ${i + 1}`,
+    description: `${t("story.transfer_desc")} ${i + 1}`,
     disabled: i % 5 === 0,
   }));
 };
@@ -56,7 +56,7 @@ const CustomTitlesTransfer = (args: React.ComponentProps<typeof Transfer>) => {
     <Transfer
       {...args}
       dataSource={dataSource}
-      titles={[t("story_transfer_available"), t("story_transfer_selected")]}
+      titles={[t("story.transfer_available"), t("story.transfer_selected")]}
       targetKeys={["10", "11"]}
     />
   );

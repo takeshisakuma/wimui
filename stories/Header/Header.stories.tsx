@@ -45,13 +45,13 @@ export const Default: Story = {
         </Header.Section>
         <Header.Section align="center">
           <nav style={{ display: "flex", gap: "20px" }}>
-            <a href="/">{t("story_header_home")}</a>
-            <a href="/">{t("story_header_about")}</a>
-            <a href="/">{t("story_header_contact")}</a>
+            <a href="/">{t("story.header_home")}</a>
+            <a href="/">{t("story.header_about")}</a>
+            <a href="/">{t("story.header_contact")}</a>
           </nav>
         </Header.Section>
         <Header.Section align="end">
-          <button>{t("story_header_login")}</button>
+          <button>{t("story.header_login")}</button>
         </Header.Section>
       </Header>
     );
@@ -68,13 +68,13 @@ export const Bordered: Story = {
         </Header.Section>
         <Header.Section align="center">
           <nav style={{ display: "flex", gap: "20px" }}>
-            <a href="/">{t("story_header_home")}</a>
-            <a href="/">{t("story_header_about")}</a>
-            <a href="/">{t("story_header_contact")}</a>
+            <a href="/">{t("story.header_home")}</a>
+            <a href="/">{t("story.header_about")}</a>
+            <a href="/">{t("story.header_contact")}</a>
           </nav>
         </Header.Section>
         <Header.Section align="end">
-          <button>{t("story_header_login")}</button>
+          <button>{t("story.header_login")}</button>
         </Header.Section>
       </Header>
     );
@@ -94,13 +94,13 @@ export const Glass: Story = {
         </Header.Section>
         <Header.Section align="center">
           <nav style={{ display: "flex", gap: "20px" }}>
-            <a href="/">{t("story_header_home")}</a>
-            <a href="/">{t("story_header_about")}</a>
-            <a href="/">{t("story_header_contact")}</a>
+            <a href="/">{t("story.header_home")}</a>
+            <a href="/">{t("story.header_about")}</a>
+            <a href="/">{t("story.header_contact")}</a>
           </nav>
         </Header.Section>
         <Header.Section align="end">
-          <button>{t("story_header_login")}</button>
+          <button>{t("story.header_login")}</button>
         </Header.Section>
       </Header>
     );
@@ -122,14 +122,14 @@ export const Sticky: Story = {
             <div style={{ fontWeight: "bold" }}>Sticky Header</div>
           </Header.Section>
           <Header.Section align="end">
-            <button>{t("story_header_action")}</button>
+            <button>{t("story.header_action")}</button>
           </Header.Section>
         </Header>
         <div style={{ padding: "20px" }}>
-          <p>{t("story_header_scroll_desc")}</p>
+          <p>{t("story.header_scroll_desc")}</p>
           {Array.from({ length: 10 }).map((_, i) => (
             <p key={i} style={{ margin: "20px 0" }}>
-              {t("story_header_content_block")} {i + 1}
+              {t("story.header_content_block")} {i + 1}
             </p>
           ))}
         </div>
@@ -163,18 +163,18 @@ export const Playground: Story = {
           </Header.Section>
           <Header.Section align="center">
             <nav style={{ display: "flex", gap: "20px" }}>
-              <a href="/">{t("story_header_home")}</a>
-              <a href="/">{t("story_header_about")}</a>
-              <a href="/">{t("story_header_contact")}</a>
+              <a href="/">{t("story.header_home")}</a>
+              <a href="/">{t("story.header_about")}</a>
+              <a href="/">{t("story.header_contact")}</a>
             </nav>
           </Header.Section>
           <Header.Section align="end">
-            <button>{t("story_header_login")}</button>
+            <button>{t("story.header_login")}</button>
           </Header.Section>
         </Header>
         <div style={{ padding: "100px 20px 20px" }}>
-          <p>{t("story_header_playground_desc")}</p>
-          <p>{t("story_header_control_desc")}</p>
+          <p>{t("story.header_playground_desc")}</p>
+          <p>{t("story.header_control_desc")}</p>
         </div>
       </div>
     );

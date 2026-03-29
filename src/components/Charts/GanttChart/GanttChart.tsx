@@ -187,7 +187,7 @@ export const GanttChart = ({
     <div
       className={classNames("wim-gantt-chart", className)}
       role="grid"
-      aria-label={t("ganttchart_aria_chart")}
+      aria-label={t("ganttchart.aria_chart")}
     >
       <div className="wim-gantt-chart__layout">
         {/* Left: task label panel */}
@@ -270,7 +270,7 @@ export const GanttChart = ({
                         backgroundColor: task.color ?? "var(--wim-color-primary, #1976d2)",
                       }}
                       tabIndex={0}
-                      aria-label={t("ganttchart_aria_task_bar", {
+                      aria-label={t("ganttchart.aria_task_bar", {
                         label: task.label,
                         start: startStr,
                         end: endStr,

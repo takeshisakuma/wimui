@@ -34,35 +34,35 @@ const DefaultTemplate = () => {
   const items = [
     {
       id: "1",
-      label: t("story_command_new"),
+      label: t("story.command_new"),
       icon: "CheckIcon",
-      group: t("story_command_actions"),
+      group: t("story.command_actions"),
       shortcut: ["⌘", "N"],
     },
     {
       id: "2",
-      label: t("story_command_open"),
+      label: t("story.command_open"),
       icon: "ChevronRightIcon",
-      group: t("story_command_actions"),
+      group: t("story.command_actions"),
       shortcut: ["⌘", "O"],
     },
     {
       id: "3",
-      label: t("story_command_save"),
+      label: t("story.command_save"),
       icon: "UploadIcon",
-      group: t("story_command_actions"),
+      group: t("story.command_actions"),
       shortcut: ["⌘", "S"],
     },
     {
       id: "4",
-      label: t("story_command_settings"),
+      label: t("story.command_settings"),
       icon: "SquareIcon",
-      group: t("story_command_settings"),
+      group: t("story.command_settings"),
       shortcut: ["⌘", ","],
     },
-    { id: "5", label: t("story_command_profile"), icon: "CircleIcon", group: t("story_command_settings") },
-    { id: "6", label: t("story_command_theme_dark"), icon: "EyeOffIcon", group: t("story_command_pref") },
-    { id: "7", label: t("story_command_theme_light"), icon: "EyeIcon", group: t("story_command_pref") },
+    { id: "5", label: t("story.command_profile"), icon: "CircleIcon", group: t("story.command_settings") },
+    { id: "6", label: t("story.command_theme_dark"), icon: "EyeOffIcon", group: t("story.command_pref") },
+    { id: "7", label: t("story.command_theme_light"), icon: "EyeIcon", group: t("story.command_pref") },
   ];
 
   const filteredItems = items.filter((item) =>
@@ -76,7 +76,7 @@ const DefaultTemplate = () => {
       <CommandPalette>
         <CommandPaletteTrigger>
           <Icon name="SearchIcon" size="small" />
-          <span>{t("story_command_search_commands")}</span>
+          <span>{t("story.command_search_commands")}</span>
           <kbd style={{ marginLeft: "12px", fontSize: "0.8em", opacity: 0.6 }}>
             ⌘K
           </kbd>
@@ -84,7 +84,7 @@ const DefaultTemplate = () => {
 
         <CommandPaletteContent>
           <CommandPaletteInput
-            placeholder={t("story_command_type_command")}
+            placeholder={t("story.command_type_command")}
             onChange={setSearch}
           />
           <CommandPaletteList>
@@ -108,14 +108,14 @@ const DefaultTemplate = () => {
           </CommandPaletteList>
           <CommandPaletteFooter>
             <div className="wim-command-palette-shortcut-hint">
-              <kbd className="wim-kbd wim-kbd--sm">↵</kbd> {t("story_command_to_select")}
+              <kbd className="wim-kbd wim-kbd--sm">↵</kbd> {t("story.command_to_select")}
             </div>
             <div className="wim-command-palette-shortcut-hint">
               <kbd className="wim-kbd wim-kbd--sm">↑</kbd>
-              <kbd className="wim-kbd wim-kbd--sm">↓</kbd> {t("story_command_to_navigate")}
+              <kbd className="wim-kbd wim-kbd--sm">↓</kbd> {t("story.command_to_navigate")}
             </div>
             <div className="wim-command-palette-shortcut-hint">
-              <kbd className="wim-kbd wim-kbd--sm">esc</kbd> {t("story_command_to_close")}
+              <kbd className="wim-kbd wim-kbd--sm">esc</kbd> {t("story.command_to_close")}
             </div>
           </CommandPaletteFooter>
         </CommandPaletteContent>
@@ -144,31 +144,31 @@ const ControlledTemplate = () => {
           cursor: "pointer",
         }}
       >
-        {t("story_command_open_controlled")}
+        {t("story.command_open_controlled")}
       </button>
 
       <CommandPalette open={open} onOpenChange={setOpen}>
         <CommandPaletteContent>
-          <CommandPaletteInput placeholder={t("story_selectbox_placeholder")} />
+          <CommandPaletteInput placeholder={t("story.selectbox_placeholder")} />
           <CommandPaletteList>
-            <CommandPaletteGroup heading={t("story_command_quick_links")}>
+            <CommandPaletteGroup heading={t("story.command_quick_links")}>
               <CommandPaletteItem
                 onSelect={() => {}}
                 icon={<Icon name="SearchIcon" size="small" />}
               >
-                {t("story_command_search_docs")}
+                {t("story.command_search_docs")}
               </CommandPaletteItem>
               <CommandPaletteItem
                 onSelect={() => {}}
                 icon={<Icon name="CopyIcon" size="small" />}
               >
-                {t("story_command_copy_link")}
+                {t("story.command_copy_link")}
               </CommandPaletteItem>
               <CommandPaletteItem
                 onSelect={() => {}}
                 icon={<Icon name="StarIcon" size="small" />}
               >
-                {t("story_command_add_favorites")}
+                {t("story.command_add_favorites")}
               </CommandPaletteItem>
             </CommandPaletteGroup>
           </CommandPaletteList>

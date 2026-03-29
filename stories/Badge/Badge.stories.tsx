@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Badge>;
 export const Primary: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Badge {...args} content={t("story_badge_content")} />;
+    return <Badge {...args} content={t("story.badge_content")} />;
   },
   args: {
     status: "primary",
@@ -30,7 +30,7 @@ export const Primary: Story = {
 export const Secondary: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Badge {...args} content={t("story_badge_secondary")} />;
+    return <Badge {...args} content={t("story.badge_secondary")} />;
   },
   args: {
     status: "secondary",
@@ -40,7 +40,7 @@ export const Secondary: Story = {
 export const Destructive: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Badge {...args} content={t("story_badge_error")} />;
+    return <Badge {...args} content={t("story.badge_error")} />;
   },
   args: {
     status: "error",
@@ -50,7 +50,7 @@ export const Destructive: Story = {
 export const Neutral: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Badge {...args} content={t("story_badge_neutral")} />;
+    return <Badge {...args} content={t("story.badge_neutral")} />;
   },
   args: {
     status: "neutral",
@@ -60,7 +60,7 @@ export const Neutral: Story = {
 export const Outline: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Badge {...args} content={t("story_badge_outline")} />;
+    return <Badge {...args} content={t("story.badge_outline")} />;
   },
   args: {
     variant: "outline",
@@ -71,7 +71,7 @@ export const Outline: Story = {
 export const Small: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Badge {...args} content={t("story_badge_small")} />;
+    return <Badge {...args} content={t("story.badge_small")} />;
   },
   args: {
     size: "small",
@@ -106,7 +106,7 @@ export const WithIcon: Story = {
     return (
       <Badge
         {...args}
-        content={t("story_badge_verified")}
+        content={t("story.badge_verified")}
         icon={<Icon name="CheckIcon" />}
       />
     );

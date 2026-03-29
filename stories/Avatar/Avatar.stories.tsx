@@ -37,7 +37,7 @@ export const Default: Story = {
       <Avatar
         {...args}
         src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&h=120"
-        alt={t("story_avatar_alt")}
+        alt={t("story.avatar_alt")}
       />
     );
   },
@@ -78,7 +78,7 @@ export const Fallback: Story = {
         {...args}
         src="https://invalid-image-url.com"
         initials="FB"
-        alt={t("story_avatar_alt")}
+        alt={t("story.avatar_alt")}
       />
     );
   },

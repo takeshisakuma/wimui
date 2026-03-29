@@ -54,13 +54,13 @@ const DefaultFallback = ({
       <Stack gap="md">
         <Alert
           status="error"
-          title={t("error_boundary_title")}
+          title={t("error.boundary_title")}
           description={error.message}
         />
         <Stack direction="row" gap="sm">
           <Button
             onClick={reset}
-            label={t("error_boundary_retry")}
+            label={t("error.boundary_retry")}
             priority="primary"
             size="small"
           />
@@ -68,8 +68,8 @@ const DefaultFallback = ({
             onClick={() => setShowDetails(!showDetails)}
             label={
               showDetails
-                ? t("error_boundary_hide_details")
-                : t("error_boundary_show_details")
+                ? t("error.boundary_hide_details")
+                : t("error.boundary_show_details")
             }
             priority="secondary"
             size="small"

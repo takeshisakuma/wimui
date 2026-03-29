@@ -18,7 +18,7 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <FieldTemplate {...args} label={args.label || t("doc_ft_email_label")}>
+      <FieldTemplate {...args} label={args.label || t("doc.ft_email_label")}>
         <Input placeholder="example@example.com" fullWidth />
       </FieldTemplate>
     );
@@ -32,7 +32,7 @@ export const Horizontal: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <FieldTemplate {...args} label={t("doc_ft_email_label")} layout="horizontal">
+      <FieldTemplate {...args} label={t("doc.ft_email_label")} layout="horizontal">
         <Input placeholder="example@example.com" fullWidth />
       </FieldTemplate>
     );
@@ -46,7 +46,7 @@ export const WithError: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <FieldTemplate {...args} label={t("doc_ft_email_label")} error={t("doc_ft_email_error")}>
+      <FieldTemplate {...args} label={t("doc.ft_email_label")} error={t("doc.ft_email_error")}>
         <Input placeholder="example@example.com" fullWidth />
       </FieldTemplate>
     );
@@ -61,7 +61,7 @@ export const NoLabel: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <FieldTemplate {...args}>
-        <Input placeholder={t("doc_ft_no_label")} fullWidth />
+        <Input placeholder={t("doc.ft_no_label")} fullWidth />
       </FieldTemplate>
     );
   },

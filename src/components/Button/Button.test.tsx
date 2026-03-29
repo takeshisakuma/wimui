@@ -85,7 +85,7 @@ describe("Button", () => {
     const button = container.querySelector("button");
     expect(button).toHaveClass("wim-button--loading");
     expect(button).toHaveAttribute("aria-busy", "true");
-    expect(button).toHaveAttribute("aria-label", "a11y_loading");
+    expect(button).toHaveAttribute("aria-label", "a11y.loading");
     expect(button).toBeDisabled();
   });
 

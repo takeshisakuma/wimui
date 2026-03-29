@@ -29,21 +29,21 @@ export const Single: Story = {
     return (
       <Accordion {...args} defaultValue="item-1">
         <Accordion.Item value="item-1">
-          <Accordion.Trigger>{t("story_accordion_trigger_1")}</Accordion.Trigger>
+          <Accordion.Trigger>{t("story.accordion_trigger_1")}</Accordion.Trigger>
           <Accordion.Content>
-            {t("story_accordion_content_1")}
+            {t("story.accordion_content_1")}
           </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-2">
-          <Accordion.Trigger>{t("story_accordion_trigger_2")}</Accordion.Trigger>
+          <Accordion.Trigger>{t("story.accordion_trigger_2")}</Accordion.Trigger>
           <Accordion.Content>
-            {t("story_accordion_content_2")}
+            {t("story.accordion_content_2")}
           </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-3">
-          <Accordion.Trigger>{t("story_accordion_trigger_3")}</Accordion.Trigger>
+          <Accordion.Trigger>{t("story.accordion_trigger_3")}</Accordion.Trigger>
           <Accordion.Content>
-            {t("story_accordion_content_3")}
+            {t("story.accordion_content_3")}
           </Accordion.Content>
         </Accordion.Item>
       </Accordion>
@@ -61,18 +61,18 @@ export const Multiple: Story = {
     return (
       <Accordion {...args}>
         <Accordion.Item value="item-1">
-          <Accordion.Trigger>{t("story_accordion_trigger_1")}</Accordion.Trigger>
+          <Accordion.Trigger>{t("story.accordion_trigger_1")}</Accordion.Trigger>
           <Accordion.Content>
-            {t("story_accordion_content_multiple_1")}
+            {t("story.accordion_content_multiple_1")}
           </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-2">
-          <Accordion.Trigger>{t("story_accordion_trigger_2")}</Accordion.Trigger>
-          <Accordion.Content>{t("story_accordion_content_multiple_2")}</Accordion.Content>
+          <Accordion.Trigger>{t("story.accordion_trigger_2")}</Accordion.Trigger>
+          <Accordion.Content>{t("story.accordion_content_multiple_2")}</Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-3">
-          <Accordion.Trigger>{t("story_accordion_trigger_3")}</Accordion.Trigger>
-          <Accordion.Content>{t("story_accordion_content_multiple_3")}</Accordion.Content>
+          <Accordion.Trigger>{t("story.accordion_trigger_3")}</Accordion.Trigger>
+          <Accordion.Content>{t("story.accordion_content_multiple_3")}</Accordion.Content>
         </Accordion.Item>
       </Accordion>
     );
@@ -88,12 +88,12 @@ export const Disabled: Story = {
     return (
       <Accordion {...args}>
         <Accordion.Item value="item-1">
-          <Accordion.Trigger>{t("story_accordion_trigger_enabled")}</Accordion.Trigger>
-          <Accordion.Content>{t("story_accordion_content_enabled")}</Accordion.Content>
+          <Accordion.Trigger>{t("story.accordion_trigger_enabled")}</Accordion.Trigger>
+          <Accordion.Content>{t("story.accordion_content_enabled")}</Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-2" disabled>
-          <Accordion.Trigger>{t("story_accordion_trigger_disabled")}</Accordion.Trigger>
-          <Accordion.Content>{t("story_accordion_content_disabled")}</Accordion.Content>
+          <Accordion.Trigger>{t("story.accordion_trigger_disabled")}</Accordion.Trigger>
+          <Accordion.Content>{t("story.accordion_content_disabled")}</Accordion.Content>
         </Accordion.Item>
       </Accordion>
     );

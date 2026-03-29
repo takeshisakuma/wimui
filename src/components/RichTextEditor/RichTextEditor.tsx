@@ -286,7 +286,7 @@ export const RichTextEditor = ({
     editorRef.current?.focus();
     const selection = window.getSelection();
     const selectedText = selection?.toString() ?? "";
-    const url = window.prompt(t("a11y_rte_link_prompt"), selectedText.startsWith("http") ? selectedText : "https://");
+    const url = window.prompt(t("a11y.rte_link_prompt"), selectedText.startsWith("http") ? selectedText : "https://");
     if (url) {
       execCommand("createLink", url);
     }
@@ -337,73 +337,73 @@ export const RichTextEditor = ({
     switch (item) {
       case "bold":
         return (
-          <ToolbarButton key="bold" {...props} title={t("a11y_rte_bold")} onClick={() => execCommand("bold")}>
+          <ToolbarButton key="bold" {...props} title={t("a11y.rte_bold")} onClick={() => execCommand("bold")}>
             <BoldIcon />
           </ToolbarButton>
         );
       case "italic":
         return (
-          <ToolbarButton key="italic" {...props} title={t("a11y_rte_italic")} onClick={() => execCommand("italic")}>
+          <ToolbarButton key="italic" {...props} title={t("a11y.rte_italic")} onClick={() => execCommand("italic")}>
             <ItalicIcon />
           </ToolbarButton>
         );
       case "underline":
         return (
-          <ToolbarButton key="underline" {...props} title={t("a11y_rte_underline")} onClick={() => execCommand("underline")}>
+          <ToolbarButton key="underline" {...props} title={t("a11y.rte_underline")} onClick={() => execCommand("underline")}>
             <UnderlineIcon />
           </ToolbarButton>
         );
       case "strikethrough":
         return (
-          <ToolbarButton key="strikethrough" {...props} title={t("a11y_rte_strikethrough")} onClick={() => execCommand("strikeThrough")}>
+          <ToolbarButton key="strikethrough" {...props} title={t("a11y.rte_strikethrough")} onClick={() => execCommand("strikeThrough")}>
             <StrikethroughIcon />
           </ToolbarButton>
         );
       case "h1":
         return (
-          <ToolbarButton key="h1" {...props} active={activeFormats.has("h1")} title={t("a11y_rte_h1")} onClick={() => execCommand("formatBlock", "h1")}>
+          <ToolbarButton key="h1" {...props} active={activeFormats.has("h1")} title={t("a11y.rte_h1")} onClick={() => execCommand("formatBlock", "h1")}>
             <span aria-hidden="true">H1</span>
           </ToolbarButton>
         );
       case "h2":
         return (
-          <ToolbarButton key="h2" {...props} active={activeFormats.has("h2")} title={t("a11y_rte_h2")} onClick={() => execCommand("formatBlock", "h2")}>
+          <ToolbarButton key="h2" {...props} active={activeFormats.has("h2")} title={t("a11y.rte_h2")} onClick={() => execCommand("formatBlock", "h2")}>
             <span aria-hidden="true">H2</span>
           </ToolbarButton>
         );
       case "h3":
         return (
-          <ToolbarButton key="h3" {...props} active={activeFormats.has("h3")} title={t("a11y_rte_h3")} onClick={() => execCommand("formatBlock", "h3")}>
+          <ToolbarButton key="h3" {...props} active={activeFormats.has("h3")} title={t("a11y.rte_h3")} onClick={() => execCommand("formatBlock", "h3")}>
             <span aria-hidden="true">H3</span>
           </ToolbarButton>
         );
       case "ul":
         return (
-          <ToolbarButton key="ul" {...props} title={t("a11y_rte_ul")} onClick={() => execCommand("insertUnorderedList")}>
+          <ToolbarButton key="ul" {...props} title={t("a11y.rte_ul")} onClick={() => execCommand("insertUnorderedList")}>
             <ListIcon />
           </ToolbarButton>
         );
       case "ol":
         return (
-          <ToolbarButton key="ol" {...props} title={t("a11y_rte_ol")} onClick={() => execCommand("insertOrderedList")}>
+          <ToolbarButton key="ol" {...props} title={t("a11y.rte_ol")} onClick={() => execCommand("insertOrderedList")}>
             <OrderedListIcon />
           </ToolbarButton>
         );
       case "link":
         return (
-          <ToolbarButton key="link" {...props} title={t("a11y_rte_link")} onClick={handleInsertLink}>
+          <ToolbarButton key="link" {...props} title={t("a11y.rte_link")} onClick={handleInsertLink}>
             <LinkIcon />
           </ToolbarButton>
         );
       case "unlink":
         return (
-          <ToolbarButton key="unlink" {...props} title={t("a11y_rte_unlink")} onClick={() => execCommand("unlink")}>
+          <ToolbarButton key="unlink" {...props} title={t("a11y.rte_unlink")} onClick={() => execCommand("unlink")}>
             <UnlinkIcon />
           </ToolbarButton>
         );
       case "removeFormat":
         return (
-          <ToolbarButton key="removeFormat" {...props} title={t("a11y_rte_remove_format")} onClick={handleRemoveFormat}>
+          <ToolbarButton key="removeFormat" {...props} title={t("a11y.rte_remove_format")} onClick={handleRemoveFormat}>
             <EraseIcon />
           </ToolbarButton>
         );
@@ -434,7 +434,7 @@ export const RichTextEditor = ({
         <div
           className="wim-rte__toolbar"
           role="toolbar"
-          aria-label={t("a11y_rte_toolbar")}
+          aria-label={t("a11y.rte_toolbar")}
           aria-controls={id}
           onMouseDown={handleToolbarMouseDown}
         >

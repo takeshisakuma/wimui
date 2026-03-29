@@ -34,27 +34,27 @@ export const LeftAligned: Story = {
             <TimelinePoint variant="primary" />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>{t("story_timeline_eat")}</TimelineContent>
+          <TimelineContent>{t("story.timeline_eat")}</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
             <TimelinePoint variant="secondary" />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>{t("story_timeline_code")}</TimelineContent>
+          <TimelineContent>{t("story.timeline_code")}</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
             <TimelinePoint variant="success" />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>{t("story_timeline_sleep")}</TimelineContent>
+          <TimelineContent>{t("story.timeline_sleep")}</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
             <TimelinePoint />
           </TimelineSeparator>
-          <TimelineContent>{t("story_timeline_repeat")}</TimelineContent>
+          <TimelineContent>{t("story.timeline_repeat")}</TimelineContent>
         </TimelineItem>
       </Timeline>
     );
@@ -75,7 +75,7 @@ export const Alternate: Story = {
             <TimelinePoint variant="primary" />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>{t("story_timeline_eat")}</TimelineContent>
+          <TimelineContent>{t("story.timeline_eat")}</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineOppositeContent>10:00 AM</TimelineOppositeContent>
@@ -83,7 +83,7 @@ export const Alternate: Story = {
             <TimelinePoint variant="secondary" />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>{t("story_timeline_code")}</TimelineContent>
+          <TimelineContent>{t("story.timeline_code")}</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineOppositeContent>12:00 PM</TimelineOppositeContent>
@@ -91,7 +91,7 @@ export const Alternate: Story = {
             <TimelinePoint variant="success" />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>{t("story_timeline_sleep")}</TimelineContent>
+          <TimelineContent>{t("story.timeline_sleep")}</TimelineContent>
         </TimelineItem>
       </Timeline>
     );
@@ -110,7 +110,7 @@ export const WithIcons: Story = {
             </TimelinePoint>
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>{t("story_timeline_step1_comp")}</TimelineContent>
+          <TimelineContent>{t("story.timeline_step1_comp")}</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
@@ -119,7 +119,7 @@ export const WithIcons: Story = {
             </TimelinePoint>
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>{t("story_timeline_step2_proc")}</TimelineContent>
+          <TimelineContent>{t("story.timeline_step2_proc")}</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
@@ -127,7 +127,7 @@ export const WithIcons: Story = {
               <Icon name="CloseIcon" size="small" />
             </TimelinePoint>
           </TimelineSeparator>
-          <TimelineContent>{t("story_timeline_step3_err")}</TimelineContent>
+          <TimelineContent>{t("story.timeline_step3_err")}</TimelineContent>
         </TimelineItem>
       </Timeline>
     );

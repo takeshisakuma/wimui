@@ -26,15 +26,15 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
-        label: t("story_cascader_tokyo"),
+        label: t("story.cascader_tokyo"),
         value: "tokyo",
         children: [
           {
-            label: t("story_cascader_shibuya"),
+            label: t("story.cascader_shibuya"),
             value: "shibuya",
             children: [
               {
-                label: t("story_cascader_dogenzaka"),
+                label: t("story.cascader_dogenzaka"),
                 value: "dogenzaka",
               },
             ],
@@ -42,15 +42,15 @@ export const Default: Story = {
         ],
       },
       {
-        label: t("story_cascader_osaka"),
+        label: t("story.cascader_osaka"),
         value: "osaka",
         children: [
           {
-            label: t("story_cascader_osaka_city"),
+            label: t("story.cascader_osaka_city"),
             value: "osaka_city",
             children: [
               {
-                label: t("story_cascader_umeda"),
+                label: t("story.cascader_umeda"),
                 value: "umeda",
               },
             ],
@@ -62,8 +62,8 @@ export const Default: Story = {
       <Cascader
         {...args}
         options={options}
-        placeholder={t("story_cascader_placeholder")}
-        aria-label={t("story_cascader_placeholder")}
+        placeholder={t("story.cascader_placeholder")}
+        aria-label={t("story.cascader_placeholder")}
       />
     );
   },
@@ -74,15 +74,15 @@ export const WithLabel: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
-        label: t("story_cascader_tokyo"),
+        label: t("story.cascader_tokyo"),
         value: "tokyo",
         children: [
           {
-            label: t("story_cascader_shibuya"),
+            label: t("story.cascader_shibuya"),
             value: "shibuya",
             children: [
               {
-                label: t("story_cascader_dogenzaka"),
+                label: t("story.cascader_dogenzaka"),
                 value: "dogenzaka",
               },
             ],
@@ -90,15 +90,15 @@ export const WithLabel: Story = {
         ],
       },
       {
-        label: t("story_cascader_osaka"),
+        label: t("story.cascader_osaka"),
         value: "osaka",
         children: [
           {
-            label: t("story_cascader_osaka_city"),
+            label: t("story.cascader_osaka_city"),
             value: "osaka_city",
             children: [
               {
-                label: t("story_cascader_umeda"),
+                label: t("story.cascader_umeda"),
                 value: "umeda",
               },
             ],
@@ -110,8 +110,8 @@ export const WithLabel: Story = {
       <Cascader
         {...args}
         options={options}
-        label={t("story_cascader_placeholder")}
-        placeholder={t("story_cascader_placeholder")}
+        label={t("story.cascader_placeholder")}
+        placeholder={t("story.cascader_placeholder")}
       />
     );
   },
@@ -122,15 +122,15 @@ export const HoverExpand: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
-        label: t("story_cascader_tokyo"),
+        label: t("story.cascader_tokyo"),
         value: "tokyo",
         children: [
           {
-            label: t("story_cascader_shibuya"),
+            label: t("story.cascader_shibuya"),
             value: "shibuya",
             children: [
               {
-                label: t("story_cascader_dogenzaka"),
+                label: t("story.cascader_dogenzaka"),
                 value: "dogenzaka",
               },
             ],
@@ -143,8 +143,8 @@ export const HoverExpand: Story = {
         {...args}
         options={options}
         expandTrigger="hover"
-        placeholder={t("story_cascader_placeholder")}
-        aria-label={t("story_cascader_placeholder")}
+        placeholder={t("story.cascader_placeholder")}
+        aria-label={t("story.cascader_placeholder")}
       />
     );
   },
@@ -157,8 +157,8 @@ export const Disabled: Story = {
       <Cascader
         {...args}
         disabled
-        placeholder={t("story_cascader_placeholder")}
-        aria-label={t("story_cascader_placeholder")}
+        placeholder={t("story.cascader_placeholder")}
+        aria-label={t("story.cascader_placeholder")}
       />
     );
   },
@@ -169,15 +169,15 @@ export const CustomSeparator: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
-        label: t("story_cascader_tokyo"),
+        label: t("story.cascader_tokyo"),
         value: "tokyo",
         children: [
           {
-            label: t("story_cascader_shibuya"),
+            label: t("story.cascader_shibuya"),
             value: "shibuya",
             children: [
               {
-                label: t("story_cascader_dogenzaka"),
+                label: t("story.cascader_dogenzaka"),
                 value: "dogenzaka",
               },
             ],

@@ -32,10 +32,10 @@ export const Unordered: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args} as="ul">
-        <ListItem>{t("story_list_item1")}</ListItem>
-        <ListItem>{t("story_list_item2")}</ListItem>
+        <ListItem>{t("story.list_item1")}</ListItem>
+        <ListItem>{t("story.list_item2")}</ListItem>
         <ListItem>
-          {t("story_list_item3")} {t("story_list_item3_desc")}
+          {t("story.list_item3")} {t("story.list_item3_desc")}
         </ListItem>
       </List>
     );
@@ -47,9 +47,9 @@ export const Ordered: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args} as="ol">
-        <ListItem>{t("story_list_step1")}</ListItem>
-        <ListItem>{t("story_list_step2")}</ListItem>
-        <ListItem>{t("story_list_step3")}</ListItem>
+        <ListItem>{t("story.list_step1")}</ListItem>
+        <ListItem>{t("story.list_step2")}</ListItem>
+        <ListItem>{t("story.list_step3")}</ListItem>
       </List>
     );
   },
@@ -61,10 +61,10 @@ export const Small: Story = {
     return (
       <List {...args} size="small">
         <ListItem>
-          {t("story_list_item_small")} 1
+          {t("story.list_item_small")} 1
         </ListItem>
         <ListItem>
-          {t("story_list_item_small")} 2
+          {t("story.list_item_small")} 2
         </ListItem>
       </List>
     );
@@ -77,10 +77,10 @@ export const Large: Story = {
     return (
       <List {...args} size="large">
         <ListItem>
-          {t("story_list_item_large")} 1
+          {t("story.list_item_large")} 1
         </ListItem>
         <ListItem>
-          {t("story_list_item_large")} 2
+          {t("story.list_item_large")} 2
         </ListItem>
       </List>
     );
@@ -93,10 +93,10 @@ export const LooseSpacing: Story = {
     return (
       <List {...args} spacing="loose">
         <ListItem>
-          {t("story_list_loose")} 1
+          {t("story.list_loose")} 1
         </ListItem>
         <ListItem>
-          {t("story_list_loose")} 2
+          {t("story.list_loose")} 2
         </ListItem>
       </List>
     );
@@ -108,13 +108,13 @@ export const WithIcons: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <List {...args}>
-        <ListItem iconName="CheckIcon">{t("story_list_task_completed")}</ListItem>
-        <ListItem iconName="PdfIcon">{t("story_list_manual_pdf")}</ListItem>
-        <ListItem iconName="ImageIcon">{t("story_list_gallery")}</ListItem>
-        <ListItem iconName="EmailIcon">{t("story_list_email")}</ListItem>
-        <ListItem iconName="PhoneIcon">{t("story_list_phone")}</ListItem>
+        <ListItem iconName="CheckIcon">{t("story.list_task_completed")}</ListItem>
+        <ListItem iconName="PdfIcon">{t("story.list_manual_pdf")}</ListItem>
+        <ListItem iconName="ImageIcon">{t("story.list_gallery")}</ListItem>
+        <ListItem iconName="EmailIcon">{t("story.list_email")}</ListItem>
+        <ListItem iconName="PhoneIcon">{t("story.list_phone")}</ListItem>
         <ListItem iconName="ExternalLinkIcon" iconPosition="right">
-          {t("story_list_view_details")}
+          {t("story.list_view_details")}
         </ListItem>
       </List>
     );

@@ -39,11 +39,11 @@ export const FixedColumns: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <SimpleGrid {...args}>
-        <Box>{t("story_grid_item", "1")}</Box>
-        <Box>{t("story_grid_item", "2")}</Box>
-        <Box>{t("story_grid_item", "3")}</Box>
-        <Box>{t("story_grid_item", "4")}</Box>
-        <Box>{t("story_grid_item", "5")}</Box>
+        <Box>{t("story.grid_item", "1")}</Box>
+        <Box>{t("story.grid_item", "2")}</Box>
+        <Box>{t("story.grid_item", "3")}</Box>
+        <Box>{t("story.grid_item", "4")}</Box>
+        <Box>{t("story.grid_item", "5")}</Box>
       </SimpleGrid>
     );
   },
@@ -58,11 +58,11 @@ export const ResponsiveAuto: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <SimpleGrid {...args}>
-        <Box>{t("story_grid_min_width")}</Box>
-        <Box>{t("story_grid_min_width")}</Box>
-        <Box>{t("story_grid_min_width")}</Box>
-        <Box>{t("story_grid_min_width")}</Box>
-        <Box>{t("story_grid_min_width")}</Box>
+        <Box>{t("story.grid_min_width")}</Box>
+        <Box>{t("story.grid_min_width")}</Box>
+        <Box>{t("story.grid_min_width")}</Box>
+        <Box>{t("story.grid_min_width")}</Box>
+        <Box>{t("story.grid_min_width")}</Box>
       </SimpleGrid>
     );
   },
@@ -77,14 +77,14 @@ export const ResponsiveBreakpoints: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <SimpleGrid {...args}>
-        <Box>{t("story_grid_item", "1")}</Box>
-        <Box>{t("story_grid_item", "2")}</Box>
-        <Box>{t("story_grid_item", "3")}</Box>
-        <Box>{t("story_grid_item", "4")}</Box>
-        <Box>{t("story_grid_item", "5")}</Box>
-        <Box>{t("story_grid_item", "6")}</Box>
-        <Box>{t("story_grid_item", "7")}</Box>
-        <Box>{t("story_grid_item", "8")}</Box>
+        <Box>{t("story.grid_item", "1")}</Box>
+        <Box>{t("story.grid_item", "2")}</Box>
+        <Box>{t("story.grid_item", "3")}</Box>
+        <Box>{t("story.grid_item", "4")}</Box>
+        <Box>{t("story.grid_item", "5")}</Box>
+        <Box>{t("story.grid_item", "6")}</Box>
+        <Box>{t("story.grid_item", "7")}</Box>
+        <Box>{t("story.grid_item", "8")}</Box>
       </SimpleGrid>
     );
   },

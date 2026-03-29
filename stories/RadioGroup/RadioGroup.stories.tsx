@@ -23,9 +23,9 @@ type Story = StoryObj<typeof RadioGroup>;
 const useDefaultOptions = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   return [
-    { label: t("story_radio_option1"), value: "opt1" },
-    { label: `${t("story_radio_option1")} 2`, value: "opt2" },
-    { label: `${t("story_radio_option1")} 3`, value: "opt3" },
+    { label: t("story.radio_option1"), value: "opt1" },
+    { label: `${t("story.radio_option1")} 2`, value: "opt2" },
+    { label: `${t("story.radio_option1")} 3`, value: "opt3" },
   ];
 };
 
@@ -65,13 +65,13 @@ export const WithDisabledOption: Story = {
       <RadioGroup
         {...args}
         options={[
-          { label: t("story_radio_option1"), value: "opt1" },
+          { label: t("story.radio_option1"), value: "opt1" },
           {
-            label: `${t("story_radio_option1")} 2 ${t("story_option_disabled")}`,
+            label: `${t("story.radio_option1")} 2 ${t("story.option_disabled")}`,
             value: "opt2",
             disabled: true,
           },
-          { label: `${t("story_radio_option1")} 3`, value: "opt3" },
+          { label: `${t("story.radio_option1")} 3`, value: "opt3" },
         ]}
         name="disabled-option-group"
         defaultValue="opt1"
@@ -88,7 +88,7 @@ export const Controlled: Story = {
     return (
       <div>
         <div style={{ marginBottom: "1rem" }}>
-          {t("story_radiogroup_selected")}: {value}
+          {t("story.radiogroup_selected")}: {value}
         </div>
         <RadioGroup
           options={options}
@@ -109,11 +109,11 @@ export const LongLabel: Story = {
         {...args}
         options={[
           {
-            label: t("story_radio_long_label"),
+            label: t("story.radio_long_label"),
             value: "long1",
           },
           {
-            label: t("story_radio_long_label"),
+            label: t("story.radio_long_label"),
             value: "long2",
           },
         ]}

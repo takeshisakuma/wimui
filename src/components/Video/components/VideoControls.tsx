@@ -61,7 +61,7 @@ export function VideoControls({
             e.stopPropagation();
             setActiveMenu(activeMenu === "playlist" ? null : "playlist");
           }}
-          aria-label={t("a11y_playlist")}
+          aria-label={t("a11y.playlist")}
         >
           <Icon name="DocumentIcon" size="small" />
         </button>
@@ -75,7 +75,7 @@ export function VideoControls({
             e.stopPropagation();
             skip(-10);
           }}
-          aria-label={t("a11y_skip_backward")}
+          aria-label={t("a11y.skip_backward")}
         >
           <Icon name="ChevronLeftIcon" size="small" />
         </button>
@@ -101,7 +101,7 @@ export function VideoControls({
             e.stopPropagation();
             skip(10);
           }}
-          aria-label={t("a11y_skip_forward")}
+          aria-label={t("a11y.skip_forward")}
         >
           <Icon name="ChevronRightIcon" size="small" />
         </button>
@@ -121,7 +121,7 @@ export function VideoControls({
           style={{
             opacity: currentPlayIndex >= playlist.length - 1 ? 0.5 : 1,
           }}
-          aria-label={t("a11y_next_track")}
+          aria-label={t("a11y.next_track")}
         >
           <Icon name="ChevronRightIcon" size="medium" />
         </button>
@@ -137,7 +137,7 @@ export function VideoControls({
             value={currentTime}
             onChange={handleSeek}
             className="wim-video-progress"
-            aria-label={t("a11y_seek")}
+            aria-label={t("a11y.seek")}
             onClick={(e) => e.stopPropagation()}
           />
           <div
@@ -174,7 +174,7 @@ export function VideoControls({
             handleVolumeChange(e);
           }}
           className="wim-video-volume"
-          aria-label={t("a11y_volume")}
+          aria-label={t("a11y.volume")}
           onClick={(e) => e.stopPropagation()}
         />
       </div>
@@ -187,7 +187,7 @@ export function VideoControls({
             e.stopPropagation();
             setActiveMenu(activeMenu === "main" ? null : "main");
           }}
-          aria-label={t("a11y_settings")}
+          aria-label={t("a11y.settings")}
         >
           <Icon name="SettingsIcon" size="small" />
         </button>
@@ -201,8 +201,8 @@ export function VideoControls({
             e.stopPropagation();
             togglePiP();
           }}
-          aria-label={t("a11y_picture_in_picture")}
-          title={t("a11y_picture_in_picture")}
+          aria-label={t("a11y.picture_in_picture")}
+          title={t("a11y.picture_in_picture")}
         >
           <Icon name="MonitorIcon" size="small" />
         </button>

@@ -21,13 +21,13 @@ export const Default: Story = {
     return (
       <Marquee {...args}>
         <Group gap="xl">
-          <Badge color="primary">{t("story_marquee_new_feature")}</Badge>
+          <Badge color="primary">{t("story.marquee_new_feature")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {t("story_marquee_welcome")}
+            {t("story.marquee_welcome")}
           </span>
-          <Badge color="secondary">{t("story_marquee_update")}</Badge>
+          <Badge color="secondary">{t("story.marquee_update")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {t("story_marquee_check_out")}
+            {t("story.marquee_check_out")}
           </span>
         </Group>
       </Marquee>
@@ -44,13 +44,13 @@ export const Fast: Story = {
     return (
       <Marquee {...args}>
         <Group gap="xl">
-          <Badge color="primary">{t("story_marquee_new_feature")}</Badge>
+          <Badge color="primary">{t("story.marquee_new_feature")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {t("story_marquee_welcome")}
+            {t("story.marquee_welcome")}
           </span>
-          <Badge color="secondary">{t("story_marquee_update")}</Badge>
+          <Badge color="secondary">{t("story.marquee_update")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {t("story_marquee_check_out")}
+            {t("story.marquee_check_out")}
           </span>
         </Group>
       </Marquee>
@@ -67,13 +67,13 @@ export const Slow: Story = {
     return (
       <Marquee {...args}>
         <Group gap="xl">
-          <Badge color="primary">{t("story_marquee_new_feature")}</Badge>
+          <Badge color="primary">{t("story.marquee_new_feature")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {t("story_marquee_welcome")}
+            {t("story.marquee_welcome")}
           </span>
-          <Badge color="secondary">{t("story_marquee_update")}</Badge>
+          <Badge color="secondary">{t("story.marquee_update")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {t("story_marquee_check_out")}
+            {t("story.marquee_check_out")}
           </span>
         </Group>
       </Marquee>
@@ -90,13 +90,13 @@ export const Reverse: Story = {
     return (
       <Marquee {...args}>
         <Group gap="xl">
-          <Badge color="primary">{t("story_marquee_new_feature")}</Badge>
+          <Badge color="primary">{t("story.marquee_new_feature")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {t("story_marquee_welcome")}
+            {t("story.marquee_welcome")}
           </span>
-          <Badge color="secondary">{t("story_marquee_update")}</Badge>
+          <Badge color="secondary">{t("story.marquee_update")}</Badge>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            {t("story_marquee_check_out")}
+            {t("story.marquee_check_out")}
           </span>
         </Group>
       </Marquee>
@@ -113,17 +113,17 @@ export const Vertical: Story = {
           <div
             style={{ padding: "10px", textAlign: "center", fontWeight: "bold" }}
           >
-            {t("story_marquee_item", { count: 1 })}
+            {t("story.marquee_item", { count: 1 })}
           </div>
           <div
             style={{ padding: "10px", textAlign: "center", fontWeight: "bold" }}
           >
-            {t("story_marquee_item", { count: 2 })}
+            {t("story.marquee_item", { count: 2 })}
           </div>
           <div
             style={{ padding: "10px", textAlign: "center", fontWeight: "bold" }}
           >
-            {t("story_marquee_item", { count: 3 })}
+            {t("story.marquee_item", { count: 3 })}
           </div>
         </Marquee>
       </div>

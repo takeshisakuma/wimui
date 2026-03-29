@@ -23,7 +23,7 @@ type Story = StoryObj<typeof Box>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Box {...args}>{t("story_box_default")}</Box>;
+    return <Box {...args}>{t("story.box_default")}</Box>;
   },
   args: {
     bg: "#f0f0f0",
@@ -35,7 +35,7 @@ export const Default: Story = {
 export const WithCustomShadow: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Box {...args}>{t("story_box_shadow")}</Box>;
+    return <Box {...args}>{t("story.box_shadow")}</Box>;
   },
   args: {
     bg: "white",
@@ -49,7 +49,7 @@ export const WithCustomShadow: Story = {
 export const AsButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Box {...args}>{t("story_box_button")}</Box>;
+    return <Box {...args}>{t("story.box_button")}</Box>;
   },
   args: {
     as: "button",
@@ -74,7 +74,7 @@ export const Spacing: Story = {
           radius={4}
           style={{ border: "1px solid #bfdbfe" }}
         >
-          {t("story_box_margin")}
+          {t("story.box_margin")}
         </Box>
         <Box
           bg="#f0fdf4"
@@ -83,7 +83,7 @@ export const Spacing: Story = {
           radius={4}
           style={{ border: "1px solid #bbf7d0" }}
         >
-          {t("story_box_2")}
+          {t("story.box_2")}
         </Box>
       </Box>
     );
@@ -93,7 +93,7 @@ export const Spacing: Story = {
 export const PaddingProps: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Box {...args}>{t("story_box_padding")}</Box>;
+    return <Box {...args}>{t("story.box_padding")}</Box>;
   },
   args: {
     bg: "#fdf2f8",

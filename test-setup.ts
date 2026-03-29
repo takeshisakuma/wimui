@@ -46,26 +46,30 @@ vi.mock("react-i18next", () => {
   const loadJSON = (filePath: string) => {
     try {
       const fullPath = path.join(process.cwd(), filePath);
-      console.log("DEBUG: Loading translation from:", fullPath);
       const content = fs.readFileSync(fullPath, "utf8");
       return JSON.parse(content);
     } catch (e) {
-      console.error("DEBUG: Failed to load translation:", filePath, e);
       return {};
     }
   };
+  // Recursively flatten nested JSON into dot-notation keys
+  const flatten = (obj: Record<string, unknown>, prefix = ""): Record<string, string> => {
+    return Object.entries(obj).reduce((acc, [k, v]) => {
+      const key = prefix ? `${prefix}.${k}` : k;
+      if (v !== null && typeof v === "object" && !Array.isArray(v)) {
+        Object.assign(acc, flatten(v as Record<string, unknown>, key));
+      } else {
+        acc[key] = String(v);
+      }
+      return acc;
+    }, {} as Record<string, string>);
+  };
   const commonData = loadJSON("public/locales/en/common.json");
   const componentsData = loadJSON("public/locales/en/components.json");
-  const translations = { 
-    ...commonData, 
-    ...componentsData,
-    // Add critical keys manually just in case
-    "a11y_close": "Close",
-    "a11y_clear_input": "Clear input",
-    "datepicker_placeholder": "Select date"
+  const translations = {
+    ...flatten(commonData),
+    ...flatten(componentsData),
   };
-  console.log("DEBUG: Translations loaded keys count:", Object.keys(translations).length);
-  console.log("DEBUG: a11y_close value:", translations["a11y_close"]);
 
   return {
     useTranslation: () => {

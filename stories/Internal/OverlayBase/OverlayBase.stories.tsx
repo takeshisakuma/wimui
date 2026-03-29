@@ -26,7 +26,7 @@ export const Default: Story = {
     return (
       <div style={{ padding: "40px", height: "100vh" }}>
         <Button onClick={() => setOpen(true)} priority="primary">
-          {t("doc_ob_open")}
+          {t("doc.ob_open")}
         </Button>
         <OverlayBase 
             open={open} 
@@ -35,12 +35,12 @@ export const Default: Story = {
         >
           <Card style={{ width: "400px" }}>
             <Card.Header>
-              <strong>{t("doc_ob_title")}</strong>
+              <strong>{t("doc.ob_title")}</strong>
             </Card.Header>
             <Card.Body>
               <Stack gap="md">
-                <p>{t("doc_ob_desc")}</p>
-                <Button onClick={() => setOpen(false)} priority="primary">{t("button_close") || "Close"}</Button>
+                <p>{t("doc.ob_desc")}</p>
+                <Button onClick={() => setOpen(false)} priority="primary">{t("button.close") || "Close"}</Button>
               </Stack>
             </Card.Body>
           </Card>
@@ -57,7 +57,7 @@ export const CustomTransition: Story = {
     return (
       <div style={{ padding: "40px", height: "100vh" }}>
         <Button onClick={() => setOpen(true)} priority="primary">
-          {t("doc_ob_slide_open")}
+          {t("doc.ob_slide_open")}
         </Button>
         <OverlayBase 
             open={open} 
@@ -75,8 +75,8 @@ export const CustomTransition: Story = {
           <Card style={{ width: "100%", borderRadius: "0 0 16px 16px" }}>
             <Card.Body>
               <Stack direction="row" justify="space-between" align="center">
-                <p>{t("doc_ob_slide_desc")}</p>
-                <Button onClick={() => setOpen(false)} priority="secondary" label={t("button_dismiss") || "Dismiss"} />
+                <p>{t("doc.ob_slide_desc")}</p>
+                <Button onClick={() => setOpen(false)} priority="secondary" label={t("button.dismiss") || "Dismiss"} />
               </Stack>
             </Card.Body>
           </Card>

@@ -21,27 +21,27 @@ export const Default: Story = {
     const steps = [
       {
         target: "#tour-step-1",
-        title: t("story_tour_welcome_title"),
-        description: t("story_tour_welcome_desc"),
+        title: t("story.tour_welcome_title"),
+        description: t("story.tour_welcome_desc"),
         placement: "bottom" as const,
       },
       {
         target: "#tour-step-2",
-        title: t("story_tour_feature_title"),
-        description: t("story_tour_feature_desc"),
+        title: t("story.tour_feature_title"),
+        description: t("story.tour_feature_desc"),
         placement: "right" as const,
       },
       {
         target: "#tour-step-3",
-        title: t("story_tour_help_title"),
-        description: t("story_tour_help_desc"),
+        title: t("story.tour_help_title"),
+        description: t("story.tour_help_desc"),
         placement: "top" as const,
       },
     ];
 
     return (
       <div style={{ padding: "40px", height: "1000px" }}>
-        <Button label={t("story_tour_start")} onClick={() => setOpen(true)} />
+        <Button label={t("story.tour_start")} onClick={() => setOpen(true)} />
 
         <div
           style={{
@@ -60,7 +60,7 @@ export const Default: Story = {
               minWidth: "120px",
             }}
           >
-            {t("story_tour_step_target", { n: 1 })}
+            {t("story.tour_step_target", { n: 1 })}
           </div>
           <div
             id="tour-step-2"
@@ -71,7 +71,7 @@ export const Default: Story = {
               minWidth: "120px",
             }}
           >
-            {t("story_tour_step_target", { n: 2 })}
+            {t("story.tour_step_target", { n: 2 })}
           </div>
         </div>
 
@@ -85,7 +85,7 @@ export const Default: Story = {
             width: "150px",
           }}
         >
-          {t("story_tour_step_target", { n: 3 })}
+          {t("story.tour_step_target", { n: 3 })}
         </div>
 
         <Tour

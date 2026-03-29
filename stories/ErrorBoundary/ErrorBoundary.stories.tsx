@@ -23,7 +23,7 @@ type Story = StoryObj<typeof meta>;
 
 const BuggyComponent = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
-  throw new Error(t("story_errorboundary_throw_msg"));
+  throw new Error(t("story.errorboundary_throw_msg"));
 };
 
 export const Default: Story = {
@@ -33,17 +33,17 @@ export const Default: Story = {
     return (
       <Container size="sm" py="xl">
         <Stack align="center" gap="lg">
-          <p>{t("story_errorboundary_desc")}</p>
+          <p>{t("story.errorboundary_desc")}</p>
           <Button
             onClick={() => setShouldThrow(true)}
-            label={t("story_errorboundary_btn_trigger")}
+            label={t("story.errorboundary_btn_trigger")}
             priority="primary"
           />
           <ErrorBoundary onReset={() => setShouldThrow(false)}>
             {shouldThrow ? (
               <BuggyComponent />
             ) : (
-              <Alert status="info" title={t("story_errorboundary_status_ok")} />
+              <Alert status="info" title={t("story.errorboundary_status_ok")} />
             )}
           </ErrorBoundary>
         </Stack>
@@ -61,7 +61,7 @@ export const CustomFallback: Story = {
         <Stack align="center" gap="lg">
           <Button
             onClick={() => setShouldThrow(true)}
-            label={t("story_errorboundary_btn_trigger_custom")}
+            label={t("story.errorboundary_btn_trigger_custom")}
             priority="primary"
           />
           <ErrorBoundary
@@ -69,13 +69,13 @@ export const CustomFallback: Story = {
             fallback={(error, _info, reset) => (
               <Alert
                 status="error"
-                title={t("story_errorboundary_oops")}
+                title={t("story.errorboundary_oops")}
                 description={error.message}
               >
                 <div style={{ marginTop: "1rem" }}>
                   <Button
                     onClick={reset}
-                    label={t("story_errorboundary_btn_reset")}
+                    label={t("story.errorboundary_btn_reset")}
                     priority="secondary"
                     size="small"
                   />
@@ -86,7 +86,7 @@ export const CustomFallback: Story = {
             {shouldThrow ? (
               <BuggyComponent />
             ) : (
-              <Alert status="success" title={t("story_errorboundary_status_stable")} />
+              <Alert status="success" title={t("story.errorboundary_status_stable")} />
             )}
           </ErrorBoundary>
         </Stack>

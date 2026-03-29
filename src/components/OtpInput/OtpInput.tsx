@@ -165,7 +165,7 @@ export const OtpInput = ({
             onKeyDown={(e) => handleKeyDown(e, index)}
             onPaste={handlePaste}
             disabled={disabled}
-            aria-label={t("otp_digit", { index: index + 1 })}
+            aria-label={t("otp.digit", { index: index + 1 })}
             aria-invalid={!!error}
             aria-describedby={errorId}
           />

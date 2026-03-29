@@ -36,9 +36,9 @@ export const Basic: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Group {...args}>
-        <Button label={t("story_group_first", "First")} priority="primary" />
-        <Button label={t("story_group_second", "Second")} priority="secondary" />
-        <Button label={t("story_group_third", "Third")} priority="tertiary" />
+        <Button label={t("story.group_first", "First")} priority="primary" />
+        <Button label={t("story.group_second", "Second")} priority="secondary" />
+        <Button label={t("story.group_third", "Third")} priority="tertiary" />
       </Group>
     );
   },
@@ -52,8 +52,8 @@ export const Grow: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Group {...args}>
-        <Button label={t("story_group_first", "First")} priority="primary" />
-        <Button label={t("story_group_second", "Second")} priority="secondary" />
+        <Button label={t("story.group_first", "First")} priority="primary" />
+        <Button label={t("story.group_second", "Second")} priority="secondary" />
       </Group>
     );
   },

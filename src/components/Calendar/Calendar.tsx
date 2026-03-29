@@ -274,7 +274,7 @@ export const Calendar = ({
           className="wim-calendar-nav-btn"
           onClick={handlePrevMonth}
           disabled={disabled}
-          aria-label={t("a11y_prev_month")}
+          aria-label={t("a11y.prev_month")}
         >
           <Icon name="ChevronLeftIcon" size="small" />
         </button>
@@ -284,14 +284,14 @@ export const Calendar = ({
           aria-live="polite"
           aria-atomic="true"
         >
-          {t("calendar_title", { year, month: month + 1 })}
+          {t("calendar.title", { year, month: month + 1 })}
         </div>
         <button
           type="button"
           className="wim-calendar-nav-btn"
           onClick={handleNextMonth}
           disabled={disabled}
-          aria-label={t("a11y_next_month")}
+          aria-label={t("a11y.next_month")}
         >
           <Icon name="ChevronRightIcon" size="small" />
         </button>
@@ -353,7 +353,7 @@ export const Calendar = ({
               tabIndex={focused ? 0 : -1}
               role="gridcell"
               aria-selected={selected}
-              aria-label={t("calendar_aria_date", {
+              aria-label={t("calendar.aria_date", {
                 year: date.getFullYear(),
                 month: date.getMonth() + 1,
                 day: date.getDate(),

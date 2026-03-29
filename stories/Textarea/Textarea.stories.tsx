@@ -42,8 +42,8 @@ export const Basic: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_textarea_label_inquiry")}>
-        <Textarea {...args} placeholder={t("story_textarea_placeholder_forgot")} />
+      <Label label={t("story.textarea_label_inquiry")}>
+        <Textarea {...args} placeholder={t("story.textarea_placeholder_forgot")} />
       </Label>
     );
   },
@@ -53,8 +53,8 @@ export const Ghost: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_textarea_label_feedback")}>
-        <Textarea {...args} placeholder={t("story_textarea_placeholder_slow")} />
+      <Label label={t("story.textarea_label_feedback")}>
+        <Textarea {...args} placeholder={t("story.textarea_placeholder_slow")} />
       </Label>
     );
   },
@@ -68,10 +68,10 @@ export const ErrorStatus: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <Label label={t("story_textarea_label_details")}>
-          <Textarea {...args} placeholder={t("story_textarea_placeholder_error")} />
+        <Label label={t("story.textarea_label_details")}>
+          <Textarea {...args} placeholder={t("story.textarea_placeholder_error")} />
         </Label>
-        <FieldError content={t("story_textarea_error_10chars")} />
+        <FieldError content={t("story.textarea_error_10chars")} />
       </div>
     );
   },
@@ -84,8 +84,8 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_textarea_label_remarks")}>
-        <Textarea {...args} placeholder={t("story_textarea_placeholder_asap")} />
+      <Label label={t("story.textarea_label_remarks")}>
+        <Textarea {...args} placeholder={t("story.textarea_placeholder_asap")} />
       </Label>
     );
   },
@@ -98,8 +98,8 @@ export const FullWidth: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_textarea_label_message")}>
-        <Textarea {...args} placeholder={t("story_textarea_placeholder_thanks")} />
+      <Label label={t("story.textarea_label_message")}>
+        <Textarea {...args} placeholder={t("story.textarea_placeholder_thanks")} />
       </Label>
     );
   },
@@ -112,10 +112,10 @@ export const FieldSizingContent: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_textarea_label_remarks")}>
+      <Label label={t("story.textarea_label_remarks")}>
         <Textarea
           {...args}
-          placeholder={t("story_textarea_placeholder_urgent")}
+          placeholder={t("story.textarea_placeholder_urgent")}
         />
       </Label>
     );
@@ -138,39 +138,39 @@ export const FormPattern: Story = {
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <Label htmlFor="description" required label={t("story_textarea_label_intro")} />
+          <Label htmlFor="description" required label={t("story.textarea_label_intro")} />
           <Textarea
             id="description"
             {...args}
-            placeholder={t("story_textarea_placeholder_engineer")}
+            placeholder={t("story.textarea_placeholder_engineer")}
             rows={3}
             fullWidth
           />
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <Label htmlFor="notes" label={t("story_textarea_label_remarks")} showOptional />
+          <Label htmlFor="notes" label={t("story.textarea_label_remarks")} showOptional />
           <Textarea
             id="notes"
             {...args}
-            placeholder={t("story_textarea_placeholder_phone")}
+            placeholder={t("story.textarea_placeholder_phone")}
             rows={2}
             fullWidth
           />
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <Label htmlFor="motivation" required label={t("story_textarea_label_motivation")}>
+          <Label htmlFor="motivation" required label={t("story.textarea_label_motivation")}>
             <Textarea
               id="motivation"
               {...args}
               status="error"
-              defaultValue={t("story_textarea_value_none")}
+              defaultValue={t("story.textarea_value_none")}
               rows={3}
               fullWidth
             />
           </Label>
-          <FieldError content={t("story_textarea_error_long")} />
+          <FieldError content={t("story.textarea_error_long")} />
         </div>
       </div>
     );

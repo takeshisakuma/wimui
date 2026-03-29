@@ -4,11 +4,11 @@ import { QueryBuilder, type QueryField, type QueryGroup } from "../../src/compon
 import { useTranslation } from "react-i18next";
 
 const fields: QueryField[] = [
-  { name: "firstName", label: "query_builder.field_first_name", type: "string" },
-  { name: "lastName", label: "query_builder.field_last_name", type: "string" },
-  { name: "age", label: "query_builder.field_age", type: "number" },
-  { name: "birthday", label: "query_builder.field_birthday", type: "date" },
-  { name: "isActive", label: "query_builder.field_is_active", type: "boolean" },
+  { name: "firstName", label: "query.builder.field_first_name", type: "string" },
+  { name: "lastName", label: "query.builder.field_last_name", type: "string" },
+  { name: "age", label: "query.builder.field_age", type: "number" },
+  { name: "birthday", label: "query.builder.field_birthday", type: "date" },
+  { name: "isActive", label: "query.builder.field_is_active", type: "boolean" },
 ];
 
 const meta: Meta<typeof QueryBuilder> = {
@@ -31,7 +31,7 @@ export const Default: Story = {
       <div style={{ padding: "20px" }}>
         <QueryBuilder {...args} query={query} onChange={setQuery} />
         <div style={{ marginTop: "20px" }}>
-          <h4>{t("query_builder.generated_json")}:</h4>
+          <h4>{t("query.builder.generated_json")}:</h4>
           <pre style={{ backgroundColor: "var(--wim-color-surface-variant)", padding: "10px", borderRadius: "4px", overflow: "auto" }}>
             {JSON.stringify(query, null, 2)}
           </pre>
@@ -84,7 +84,7 @@ export const Predefined: Story = {
       <div style={{ padding: "20px" }}>
         <QueryBuilder {...args} query={query} onChange={setQuery} />
         <div style={{ marginTop: "20px" }}>
-          <h4>{t("query_builder.generated_json")}:</h4>
+          <h4>{t("query.builder.generated_json")}:</h4>
           <pre style={{ backgroundColor: "var(--wim-color-surface-variant)", padding: "10px", borderRadius: "4px", overflow: "auto" }}>
             {JSON.stringify(query, null, 2)}
           </pre>

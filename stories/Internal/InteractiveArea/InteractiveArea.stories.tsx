@@ -22,8 +22,8 @@ export const Default: Story = {
     return (
       <InteractiveArea 
         {...args} 
-        title={t("doc_ia_empty_title")} 
-        description={t("doc_ia_empty_desc")} 
+        title={t("doc.ia_empty_title")} 
+        description={t("doc.ia_empty_desc")} 
       />
     );
   },
@@ -39,8 +39,8 @@ export const Clickable: Story = {
     return (
       <InteractiveArea 
         {...args} 
-        title={t("doc_ia_empty_title")} 
-        description={t("doc_ia_clickable_desc")} 
+        title={t("doc.ia_empty_title")} 
+        description={t("doc.ia_clickable_desc")} 
       />
     );
   },
@@ -56,12 +56,12 @@ export const WithActions: Story = {
     return (
       <InteractiveArea 
         {...args} 
-        title={t("doc_ia_empty_title")} 
-        description={t("doc_ia_empty_desc")} 
+        title={t("doc.ia_empty_title")} 
+        description={t("doc.ia_empty_desc")} 
         actions={
           <>
             <Button label={t("upload")} priority="primary" />
-            <Button label={t("learn_more")} priority="secondary" />
+            <Button label={t("learn.more")} priority="secondary" />
           </>
         }
       />
@@ -78,8 +78,8 @@ export const Large: Story = {
     return (
       <InteractiveArea 
         {...args} 
-        title={t("doc_ia_empty_title")} 
-        description={t("doc_ia_empty_desc")} 
+        title={t("doc.ia_empty_title")} 
+        description={t("doc.ia_empty_desc")} 
       />
     );
   },
@@ -95,8 +95,8 @@ export const Small: Story = {
     return (
       <InteractiveArea 
         {...args} 
-        title={t("doc_ia_empty_title")} 
-        description={t("doc_ia_compact_desc")} 
+        title={t("doc.ia_empty_title")} 
+        description={t("doc.ia_compact_desc")} 
       />
     );
   },
@@ -113,15 +113,15 @@ export const WithContextMenu: Story = {
       <ContextMenu
         menu={
           <>
-            <ContextMenuItem icon={<Icon name="EditIcon" />}>{t("a11y_edit") || "Edit"}</ContextMenuItem>
-            <ContextMenuItem icon={<Icon name="TrashIcon" />} danger>{t("a11y_delete") || "Delete"}</ContextMenuItem>
+            <ContextMenuItem icon={<Icon name="EditIcon" />}>{t("a11y.edit") || "Edit"}</ContextMenuItem>
+            <ContextMenuItem icon={<Icon name="TrashIcon" />} danger>{t("a11y.delete") || "Delete"}</ContextMenuItem>
           </>
         }
       >
         <InteractiveArea 
           {...args} 
-          title={t("doc_ia_context_title")} 
-          description={t("doc_ia_context_desc")} 
+          title={t("doc.ia_context_title")} 
+          description={t("doc.ia_context_desc")} 
         />
       </ContextMenu>
     );

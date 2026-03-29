@@ -127,7 +127,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       rightIcons.push({
         name: isPasswordVisible ? "EyeOffIcon" : "EyeIcon",
         onClick: (_e: React.MouseEvent<HTMLButtonElement>) => togglePasswordVisibility(),
-        ariaLabel: isPasswordVisible ? t("a11y_hide_password") : t("a11y_show_password"),
+        ariaLabel: isPasswordVisible ? t("a11y.hide_password") : t("a11y.show_password"),
       });
     }
 
@@ -140,7 +140,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           name: rightIcon,
           onClick: onRightIconClick,
           color: rightIconColor,
-          ariaLabel: t("a11y_right_icon_action"),
+          ariaLabel: t("a11y.right_icon_action"),
           className: rightIconClassName,
           rotated: rightIconRotated,
         });

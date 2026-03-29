@@ -31,28 +31,28 @@ export const Default: Story = {
     return (
       <Navbar {...args}>
         <Navbar.Brand>
-          <span>{t("story_navbar_logo")}</span>
+          <span>{t("story.navbar_logo")}</span>
         </Navbar.Brand>
         <Navbar.Content justify="end" hiddenOnMobile>
           <Navbar.Link href="#" active>
-            {t("story_navbar_home")}
+            {t("story.navbar_home")}
           </Navbar.Link>
-          <Navbar.Link href="#">{t("story_navbar_features")}</Navbar.Link>
-          <Navbar.Link href="#">{t("story_navbar_pricing")}</Navbar.Link>
-          <Navbar.Link href="#">{t("story_navbar_about")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story.navbar_features")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story.navbar_pricing")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story.navbar_about")}</Navbar.Link>
         </Navbar.Content>
         <Navbar.Content justify="end" hiddenOnMobile>
           <Button priority="secondary" size="small">
-            {t("story_navbar_login")}
+            {t("story.navbar_login")}
           </Button>
         </Navbar.Content>
         <Navbar.Toggle />
         <Navbar.Menu>
-          <Navbar.MenuItem active>{t("story_navbar_home")}</Navbar.MenuItem>
-          <Navbar.MenuItem>{t("story_navbar_features")}</Navbar.MenuItem>
-          <Navbar.MenuItem>{t("story_navbar_pricing")}</Navbar.MenuItem>
-          <Navbar.MenuItem>{t("story_navbar_about")}</Navbar.MenuItem>
-          <Navbar.MenuItem>{t("story_navbar_login")}</Navbar.MenuItem>
+          <Navbar.MenuItem active>{t("story.navbar_home")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_features")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_pricing")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_about")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_login")}</Navbar.MenuItem>
         </Navbar.Menu>
       </Navbar>
     );
@@ -76,23 +76,23 @@ export const GlassEffect: Story = {
       >
         <Navbar {...args} glass fixed style={{ position: "absolute" }}>
           <Navbar.Brand>
-            <span>{t("story_navbar_glass_ui")}</span>
+            <span>{t("story.navbar_glass_ui")}</span>
           </Navbar.Brand>
           <Navbar.Content justify="end" hiddenOnMobile>
-            <Navbar.Link href="#">{t("story_navbar_design")}</Navbar.Link>
-            <Navbar.Link href="#">{t("story_navbar_components")}</Navbar.Link>
-            <Navbar.Link href="#">{t("story_navbar_docs")}</Navbar.Link>
+            <Navbar.Link href="#">{t("story.navbar_design")}</Navbar.Link>
+            <Navbar.Link href="#">{t("story.navbar_components")}</Navbar.Link>
+            <Navbar.Link href="#">{t("story.navbar_docs")}</Navbar.Link>
           </Navbar.Content>
           <Navbar.Toggle />
           <Navbar.Menu>
-            <Navbar.MenuItem>{t("story_navbar_design")}</Navbar.MenuItem>
-            <Navbar.MenuItem>{t("story_navbar_components")}</Navbar.MenuItem>
-            <Navbar.MenuItem>{t("story_navbar_docs")}</Navbar.MenuItem>
+            <Navbar.MenuItem>{t("story.navbar_design")}</Navbar.MenuItem>
+            <Navbar.MenuItem>{t("story.navbar_components")}</Navbar.MenuItem>
+            <Navbar.MenuItem>{t("story.navbar_docs")}</Navbar.MenuItem>
           </Navbar.Menu>
         </Navbar>
         <div style={{ paddingTop: "80px", paddingLeft: "24px", color: "white" }}>
-          <h1>{t("story_navbar_glass_title")}</h1>
-          <p>{t("story_navbar_glass_desc")}</p>
+          <h1>{t("story.navbar_glass_title")}</h1>
+          <p>{t("story.navbar_glass_desc")}</p>
         </div>
       </div>
     );
@@ -105,16 +105,16 @@ export const WithMobileMenu: Story = {
     return (
       <Navbar bordered>
         <Navbar.Brand>
-          <span>{t("story_navbar_mobile_app")}</span>
+          <span>{t("story.navbar_mobile_app")}</span>
         </Navbar.Brand>
         <Navbar.Content justify="end" hiddenOnMobile>
-          <Navbar.Link href="#">{t("story_navbar_overview")}</Navbar.Link>
-          <Navbar.Link href="#">{t("story_navbar_activity")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story.navbar_overview")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story.navbar_activity")}</Navbar.Link>
         </Navbar.Content>
         <Navbar.Toggle />
         <Navbar.Menu>
-          <Navbar.MenuItem>{t("story_navbar_overview")}</Navbar.MenuItem>
-          <Navbar.MenuItem>{t("story_navbar_activity")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_overview")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_activity")}</Navbar.MenuItem>
         </Navbar.Menu>
       </Navbar>
     );
@@ -127,30 +127,30 @@ export const CenteredLinks: Story = {
     return (
       <Navbar {...args} bordered>
         <Navbar.Brand>
-          <span>{t("story_navbar_center")}</span>
+          <span>{t("story.navbar_center")}</span>
         </Navbar.Brand>
         <Navbar.Content justify="center" hiddenOnMobile>
           <Navbar.Link href="#" active>
-            {t("story_navbar_product")}
+            {t("story.navbar_product")}
           </Navbar.Link>
-          <Navbar.Link href="#">{t("story_navbar_solutions")}</Navbar.Link>
-          <Navbar.Link href="#">{t("story_navbar_resources")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story.navbar_solutions")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story.navbar_resources")}</Navbar.Link>
         </Navbar.Content>
         <Navbar.Content justify="end" hiddenOnMobile>
           <Button priority="tertiary" size="small">
-            {t("story_navbar_signin")}
+            {t("story.navbar_signin")}
           </Button>
           <Button priority="primary" size="small">
-            {t("story_navbar_signup")}
+            {t("story.navbar_signup")}
           </Button>
         </Navbar.Content>
         <Navbar.Toggle />
         <Navbar.Menu>
-          <Navbar.MenuItem active>{t("story_navbar_product")}</Navbar.MenuItem>
-          <Navbar.MenuItem>{t("story_navbar_solutions")}</Navbar.MenuItem>
-          <Navbar.MenuItem>{t("story_navbar_resources")}</Navbar.MenuItem>
-          <Navbar.MenuItem>{t("story_navbar_signin")}</Navbar.MenuItem>
-          <Navbar.MenuItem>{t("story_navbar_signup")}</Navbar.MenuItem>
+          <Navbar.MenuItem active>{t("story.navbar_product")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_solutions")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_resources")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_signin")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_signup")}</Navbar.MenuItem>
         </Navbar.Menu>
       </Navbar>
     );
@@ -174,23 +174,23 @@ export const BuiltInResponsive: Story = {
           style={{ position: "absolute", top: 0, left: 0, right: 0 }}
         >
           <Navbar.Brand>
-            <span>{t("story_navbar_responsive")}</span>
+            <span>{t("story.navbar_responsive")}</span>
           </Navbar.Brand>
           <Navbar.Content justify="end" hiddenOnMobile>
-            <Navbar.Link href="#">{t("story_navbar_dashboard")}</Navbar.Link>
-            <Navbar.Link href="#">{t("story_navbar_settings")}</Navbar.Link>
-            <Navbar.Link href="#">{t("story_navbar_profile")}</Navbar.Link>
+            <Navbar.Link href="#">{t("story.navbar_dashboard")}</Navbar.Link>
+            <Navbar.Link href="#">{t("story.navbar_settings")}</Navbar.Link>
+            <Navbar.Link href="#">{t("story.navbar_profile")}</Navbar.Link>
           </Navbar.Content>
           <Navbar.Toggle />
           <Navbar.Menu>
-            <Navbar.MenuItem>{t("story_navbar_dashboard")}</Navbar.MenuItem>
-            <Navbar.MenuItem>{t("story_navbar_settings")}</Navbar.MenuItem>
-            <Navbar.MenuItem>{t("story_navbar_profile")}</Navbar.MenuItem>
+            <Navbar.MenuItem>{t("story.navbar_dashboard")}</Navbar.MenuItem>
+            <Navbar.MenuItem>{t("story.navbar_settings")}</Navbar.MenuItem>
+            <Navbar.MenuItem>{t("story.navbar_profile")}</Navbar.MenuItem>
           </Navbar.Menu>
         </Navbar>
         <div style={{ padding: "80px 20px" }}>
-          <p>{t("story_navbar_responsive_info")}</p>
-          <p>{t("story_navbar_responsive_desc")}</p>
+          <p>{t("story.navbar_responsive_info")}</p>
+          <p>{t("story.navbar_responsive_desc")}</p>
         </div>
       </div>
     );

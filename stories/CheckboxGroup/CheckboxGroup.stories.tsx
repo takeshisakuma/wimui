@@ -24,10 +24,10 @@ type Story = StoryObj<typeof CheckboxGroup>;
 const useOptions = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   return [
-    { label: t("story_fruit_apple"), value: "apple" },
-    { label: t("story_fruit_banana"), value: "banana" },
-    { label: t("story_fruit_cherry"), value: "cherry" },
-    { label: `${t("story_fruit_date")} ${t("story_option_disabled")}`, value: "date", disabled: true },
+    { label: t("story.fruit_apple"), value: "apple" },
+    { label: t("story.fruit_banana"), value: "banana" },
+    { label: t("story.fruit_cherry"), value: "cherry" },
+    { label: `${t("story.fruit_date")} ${t("story.option_disabled")}`, value: "date", disabled: true },
   ];
 };
 
@@ -59,7 +59,7 @@ export const Controlled = () => {
   return (
     <div>
       <div style={{ marginBottom: "1rem" }}>
-        {t("story_checkboxgroup_selected")}: {value.join(", ")}
+        {t("story.checkboxgroup_selected")}: {value.join(", ")}
       </div>
       <CheckboxGroup options={options} value={value} onChange={setValue} />
     </div>
@@ -74,11 +74,11 @@ export const LongLabel: Story = {
         {...args}
         options={[
           {
-            label: t("story_checkbox_long_label"),
+            label: t("story.checkbox_long_label"),
             value: "long1",
           },
           {
-            label: t("story_checkbox_long_label"), // Reusing similar text
+            label: t("story.checkbox_long_label"), // Reusing similar text
             value: "long2",
           },
         ]}

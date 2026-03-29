@@ -60,15 +60,15 @@ export const OverflowEscape: Story = {
           <div style={{ textAlign: "center", marginBottom: "16px" }}>
             <p
               dangerouslySetInnerHTML={{
-                __html: t("story_portal_desc_overflow"),
+                __html: t("story.portal_desc_overflow"),
               }}
             />
-            <p>{t("story_portal_desc_escape")}</p>
+            <p>{t("story.portal_desc_escape")}</p>
           </div>
 
           <Button
             onClick={() => setShow(!show)}
-            label={show ? t("story_portal_btn_hide") : t("story_portal_btn_show")}
+            label={show ? t("story.portal_btn_hide") : t("story.portal_btn_show")}
             priority="primary"
           />
 
@@ -95,16 +95,16 @@ export const OverflowEscape: Story = {
                               `}</style>
                 <Stack gap="xs">
                   <h4 style={{ margin: "0 0 8px 0", color: "var(--wim-primary)" }}>
-                    {t("story_portal_power_title")}
+                    {t("story.portal_power_title")}
                   </h4>
                   <p
                     style={{ margin: 0, fontSize: "14px", lineHeight: "1.5" }}
-                    dangerouslySetInnerHTML={{ __html: t("story_portal_power_desc") }}
+                    dangerouslySetInnerHTML={{ __html: t("story.portal_power_desc") }}
                   />
                   <Box mt="md" textAlign="right">
                     <Button
                       size="small"
-                      label={t("story_portal_btn_ok")}
+                      label={t("story.portal_btn_ok")}
                       onClick={() => setShow(false)}
                     />
                   </Box>
@@ -127,16 +127,16 @@ export const CustomContainer: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Container size="md">
-        <p>{t("story_portal_container_desc")}</p>
+        <p>{t("story.portal_container_desc")}</p>
 
         <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg" style={{ marginTop: "24px" }}>
           <Card variant="outline">
             <Card.Header>
-              <strong>{t("story_portal_source_title")}</strong>
+              <strong>{t("story.portal_source_title")}</strong>
             </Card.Header>
             <Card.Body>
               <p style={{ fontSize: "12px" }}>
-                {t("story_portal_source_desc")}
+                {t("story.portal_source_desc")}
               </p>
               <Box mt="md" style={{ display: "flex", justifyContent: "center" }}>
                 <Portal container={container}>
@@ -145,7 +145,7 @@ export const CustomContainer: Story = {
                     icon={<Icon name="CheckCircleIcon" />}
                     style={{ width: "fit-content" }}
                   >
-                    {t("story_portal_sent_success")}
+                    {t("story.portal_sent_success")}
                   </Alert>
                 </Portal>
               </Box>
@@ -167,7 +167,7 @@ export const CustomContainer: Story = {
             {/* ここに Portal の 中身が表示される */}
             {!container && (
               <Box textAlign="center" color="primary">
-                {t("story_portal_loading")}
+                {t("story.portal_loading")}
               </Box>
             )}
           </Box>
@@ -218,11 +218,11 @@ export const NotificationCenter: Story = {
                 const newState = !active;
                 setActive(newState);
                 addLog(
-                  `${displayName}${newState ? t("story_portal_log_started") : t("story_portal_log_stopped")}`,
+                  `${displayName}${newState ? t("story.portal_log_started") : t("story.portal_log_stopped")}`,
                   newState ? "success" : "warning",
                 );
               }}
-              label={active ? t("story_portal_btn_stop") : t("story_portal_btn_start")}
+              label={active ? t("story.portal_btn_stop") : t("story.portal_btn_start")}
             />
             {active && (
               <Portal container={logContainer}>
@@ -238,7 +238,7 @@ export const NotificationCenter: Story = {
                   }}
                 >
                   <style>{`@keyframes slideIn { from { opacity:0; transform:translateX(-10px); } to { opacity:1; transform:translateX(0); } }`}</style>
-                  <strong>[{displayName}]</strong> {t("story_portal_status_desc")}
+                  <strong>[{displayName}]</strong> {t("story.portal_status_desc")}
                 </div>
               </Portal>
             )}
@@ -251,15 +251,15 @@ export const NotificationCenter: Story = {
       <Container size="xl">
         <Grid cols={{ base: 1, md: "1fr 300px" }} gap="xl">
           <Stack gap="md">
-            <h4>{t("story_portal_panel_title")}</h4>
+            <h4>{t("story.portal_panel_title")}</h4>
             <p style={{ fontSize: "14px", color: "#666" }}>
-              {t("story_portal_panel_desc")}
+              {t("story.portal_panel_desc")}
             </p>
             <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-              <SenderComponent name="A" displayName={t("story_portal_sensor_a")} color="#ecfdf5" />
-              <SenderComponent name="B" displayName={t("story_portal_sensor_b")} color="#eff6ff" />
-              <SenderComponent name="C" displayName={t("story_portal_camera")} color="#fff7ed" />
-              <SenderComponent name="D" displayName={t("story_portal_alarm")} color="#fef2f2" />
+              <SenderComponent name="A" displayName={t("story.portal_sensor_a")} color="#ecfdf5" />
+              <SenderComponent name="B" displayName={t("story.portal_sensor_b")} color="#eff6ff" />
+              <SenderComponent name="C" displayName={t("story.portal_camera")} color="#fff7ed" />
+              <SenderComponent name="D" displayName={t("story.portal_alarm")} color="#fef2f2" />
             </SimpleGrid>
           </Stack>
 
@@ -278,9 +278,9 @@ export const NotificationCenter: Story = {
             >
               <Stack direction="row" justify="between" align="center">
                 <span style={{ fontSize: "12px", fontWeight: "bold" }}>
-                  {t("story_portal_monitor_title")}
+                  {t("story.portal_monitor_title")}
                 </span>
-                <Badge content={t("story_portal_monitor_live")} color="error" size="small" />
+                <Badge content={t("story.portal_monitor_live")} color="error" size="small" />
               </Stack>
             </Card.Header>
             <Card.Body style={{ flex: 1, overflowY: "auto", padding: "12px" }}>
@@ -297,7 +297,7 @@ export const NotificationCenter: Story = {
               </Box>
               <div style={{ fontSize: "11px", fontFamily: "monospace" }}>
                 <div style={{ color: "#64748b", marginBottom: "8px" }}>
-                  {t("story_portal_history_title")}
+                  {t("story.portal_history_title")}
                 </div>
                 {logs.map((log) => (
                   <div
@@ -316,7 +316,7 @@ export const NotificationCenter: Story = {
                   </div>
                 ))}
                 {logs.length === 0 && (
-                  <div style={{ color: "#475569" }}>{t("story_portal_waiting")}</div>
+                  <div style={{ color: "#475569" }}>{t("story.portal_waiting")}</div>
                 )}
               </div>
             </Card.Body>
@@ -346,18 +346,18 @@ export const SidePanelDetail: Story = {
     const tasks = [
       {
         id: 1,
-        title: t("story_portal_task1_title"),
-        detail: t("story_portal_task1_detail"),
+        title: t("story.portal_task1_title"),
+        detail: t("story.portal_task1_detail"),
       },
       {
         id: 2,
-        title: t("story_portal_task2_title"),
-        detail: t("story_portal_task2_detail"),
+        title: t("story.portal_task2_title"),
+        detail: t("story.portal_task2_detail"),
       },
       {
         id: 3,
-        title: t("story_portal_task3_title"),
-        detail: t("story_portal_task3_detail"),
+        title: t("story.portal_task3_title"),
+        detail: t("story.portal_task3_detail"),
       },
     ];
 
@@ -433,17 +433,17 @@ export const SidePanelDetail: Story = {
                       color: "#64748b",
                     }}
                   >
-                    {t("story_portal_task_memo")}
+                    {t("story.portal_task_memo")}
                   </label>
                   <Textarea
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
-                    placeholder={t("story_portal_memo_placeholder")}
+                    placeholder={t("story.portal_memo_placeholder")}
                     rows={5}
                     fullWidth
                   />
                   <p style={{ fontSize: "11px", color: "#94a3b8" }}>
-                    {t("story_portal_memo_note")}
+                    {t("story.portal_memo_note")}
                   </p>
                 </Stack>
               </div>
@@ -483,7 +483,7 @@ export const SidePanelDetail: Story = {
               }}
             >
               <Box p="md" style={{ borderBottom: "1px solid var(--wim-neutral-200, #e2e8f0)" }}>
-                <h4 style={{ margin: 0 }}>{t("story_portal_task_mgmt")}</h4>
+                <h4 style={{ margin: 0 }}>{t("story.portal_task_mgmt")}</h4>
               </Box>
               <Box p="md" style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
                 {tasks.map((task) => (
@@ -517,12 +517,12 @@ export const SidePanelDetail: Story = {
                     color: "#64748b",
                   }}
                 >
-                  {t("story_portal_preview_title")}
+                  {t("story.portal_preview_title")}
                 </span>
                 {selectedId && (
                   <Button
                     size="small"
-                    label={t("story_visuallyhidden_close")}
+                    label={t("story.visuallyhidden_close")}
                     priority="secondary"
                     onClick={() => setSelectedId(null)}
                   />
@@ -556,7 +556,7 @@ export const SidePanelDetail: Story = {
                         opacity: 0.8,
                       }}
                     />
-                    <p style={{ margin: 0 }}>{t("story_portal_select_task")}</p>
+                    <p style={{ margin: 0 }}>{t("story.portal_select_task")}</p>
                   </Stack>
                 )}
               </Box>

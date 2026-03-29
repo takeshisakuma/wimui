@@ -27,7 +27,7 @@ export const Default: Story = {
     return (
       <Container {...args}>
         <Box bg="#f0f0f0" p={20} style={{ border: "1px solid #ccc" }}>
-          {t("story_container_content")}
+          {t("story.container_content")}
         </Box>
       </Container>
     );
@@ -49,7 +49,7 @@ export const Sizes: Story = {
               p={10}
               style={{ textAlign: "center", border: "1px dashed #3b82f6" }}
             >
-              {t("story_container_size")}: {size}
+              {t("story.container_size")}: {size}
             </Box>
           </Container>
         ))}
@@ -68,7 +68,7 @@ export const Fluid: Story = {
           p={20}
           style={{ textAlign: "center", border: "1px dashed #3b82f6" }}
         >
-          {t("story_container_fluid")}
+          {t("story.container_fluid")}
         </Box>
       </Container>
     );

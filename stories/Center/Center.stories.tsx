@@ -30,7 +30,7 @@ export const Default: Story = {
           radius={8}
           style={{ border: "1px solid #3b82f6" }}
         >
-          {t("story_center_content")}
+          {t("story.center_content")}
         </Box>
       </Center>
     );
@@ -48,7 +48,7 @@ export const Inline: Story = {
       <div style={{ border: "1px solid #ccc", padding: "10px" }}>
         Text before
         <Center inline bg="#fecaca" px={10} mx={5} radius={4}>
-          {t("story_center_inline")}
+          {t("story.center_inline")}
         </Center>
         Text after
       </div>

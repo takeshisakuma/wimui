@@ -21,7 +21,7 @@ type Story = StoryObj<typeof BaseListItem>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <BaseListItem {...args}>{args.children || t("standard_list_item")}</BaseListItem>;
+    return <BaseListItem {...args}>{args.children || t("standard.list_item")}</BaseListItem>;
   },
   args: {
     style: { width: "240px" },
@@ -47,7 +47,7 @@ export const WithRightSection: Story = {
         icon={<Icon name="SettingsIcon" />} 
         rightSection={<Icon name="ChevronRightIcon" size="small" />}
       >
-        {t("a11y_settings")}
+        {t("a11y.settings")}
       </BaseListItem>
     );
   },
@@ -81,8 +81,8 @@ export const States: Story = {
         <div style={{ width: "240px", display: "flex", flexDirection: "column", gap: "4px" }}>
             <BaseListItem {...args}>{t("home")}</BaseListItem>
             <BaseListItem {...args} active>{t("profile")}</BaseListItem>
-            <BaseListItem {...args} disabled>{t("a11y_settings")}</BaseListItem>
-            <BaseListItem {...args} danger icon={<Icon name="TrashIcon" />}>{t("a11y_delete")}</BaseListItem>
+            <BaseListItem {...args} disabled>{t("a11y.settings")}</BaseListItem>
+            <BaseListItem {...args} danger icon={<Icon name="TrashIcon" />}>{t("a11y.delete")}</BaseListItem>
         </div>
     );
   }

@@ -24,7 +24,7 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_slider_default")}>
+      <Label label={t("story.slider_default")}>
         <Slider {...args} />
       </Label>
     );
@@ -38,7 +38,7 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_slider_disabled")}>
+      <Label label={t("story.slider_disabled")}>
         <Slider {...args} />
       </Label>
     );
@@ -53,7 +53,7 @@ export const MinMax: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_slider_minmax")}>
+      <Label label={t("story.slider_minmax")}>
         <Slider {...args} />
       </Label>
     );
@@ -69,7 +69,7 @@ export const Step: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_slider_step")}>
+      <Label label={t("story.slider_step")}>
         <Slider {...args} />
       </Label>
     );
@@ -86,7 +86,7 @@ export const Controlled = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   const [val, setVal] = useState(25);
   return (
-    <Label label={`${t("story_slider_default")} (${t("story_dialog_curr_state")}: ${val})`}>
+    <Label label={`${t("story.slider_default")} (${t("story.dialog_curr_state")}: ${val})`}>
       <Slider value={val} onChange={setVal} />
     </Label>
   );

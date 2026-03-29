@@ -20,12 +20,12 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
 
     const cardLabels: Record<string, string> = {
-      "card-1": t("story_kanban_card_design"),
-      "card-2": t("story_kanban_card_research"),
-      "card-3": t("story_kanban_card_develop"),
-      "card-4": t("story_kanban_card_review"),
-      "card-5": t("story_kanban_card_deploy"),
-      "card-6": t("story_kanban_card_done1"),
+      "card-1": t("story.kanban_card_design"),
+      "card-2": t("story.kanban_card_research"),
+      "card-3": t("story.kanban_card_develop"),
+      "card-4": t("story.kanban_card_review"),
+      "card-5": t("story.kanban_card_deploy"),
+      "card-6": t("story.kanban_card_done1"),
     };
 
     const [columns, setColumns] = useState<Columns>({
@@ -52,7 +52,7 @@ export const Default: Story = {
       <KanbanBoard onCardMove={handleCardMove}>
         <KanbanBoard.Column
           id="todo"
-          title={t("story_kanban_col_todo")}
+          title={t("story.kanban_col_todo")}
           cardCount={columns.todo.length}
         >
           {columns.todo.map((id) => (
@@ -63,7 +63,7 @@ export const Default: Story = {
         </KanbanBoard.Column>
         <KanbanBoard.Column
           id="inProgress"
-          title={t("story_kanban_col_in_progress")}
+          title={t("story.kanban_col_in_progress")}
           cardCount={columns.inProgress.length}
         >
           {columns.inProgress.map((id) => (
@@ -74,7 +74,7 @@ export const Default: Story = {
         </KanbanBoard.Column>
         <KanbanBoard.Column
           id="review"
-          title={t("story_kanban_col_review")}
+          title={t("story.kanban_col_review")}
           cardCount={columns.review.length}
         >
           {columns.review.map((id) => (
@@ -85,7 +85,7 @@ export const Default: Story = {
         </KanbanBoard.Column>
         <KanbanBoard.Column
           id="done"
-          title={t("story_kanban_col_done")}
+          title={t("story.kanban_col_done")}
           cardCount={columns.done.length}
         >
           {columns.done.map((id) => (
@@ -125,23 +125,23 @@ export const WithDisabledCard: Story = {
       <KanbanBoard onCardMove={handleCardMove}>
         <KanbanBoard.Column
           id="todo"
-          title={t("story_kanban_col_todo")}
+          title={t("story.kanban_col_todo")}
           cardCount={columns.todo.length}
         >
           <KanbanBoard.Card id="card-1">
-            {t("story_kanban_card_design")}
+            {t("story.kanban_card_design")}
           </KanbanBoard.Card>
           <KanbanBoard.Card id="card-2" disabled>
-            {t("story_kanban_card_locked")}
+            {t("story.kanban_card_locked")}
           </KanbanBoard.Card>
         </KanbanBoard.Column>
         <KanbanBoard.Column
           id="done"
-          title={t("story_kanban_col_done")}
+          title={t("story.kanban_col_done")}
           cardCount={columns.done.length}
         >
           <KanbanBoard.Card id="card-3">
-            {t("story_kanban_card_done1")}
+            {t("story.kanban_card_done1")}
           </KanbanBoard.Card>
         </KanbanBoard.Column>
       </KanbanBoard>
@@ -160,10 +160,10 @@ export const MobileUI: Story = {
     });
 
     const cardLabels: Record<string, string> = {
-      "card-1": t("story_kanban_card_design"),
-      "card-2": t("story_kanban_card_research"),
-      "card-3": t("story_kanban_card_develop"),
-      "card-4": t("story_kanban_card_done1"),
+      "card-1": t("story.kanban_card_design"),
+      "card-2": t("story.kanban_card_research"),
+      "card-3": t("story.kanban_card_develop"),
+      "card-4": t("story.kanban_card_done1"),
     };
 
     const handleCardMove = (
@@ -183,7 +183,7 @@ export const MobileUI: Story = {
       <KanbanBoard onCardMove={handleCardMove} forceMobileUI>
         <KanbanBoard.Column
           id="todo"
-          title={t("story_kanban_col_todo")}
+          title={t("story.kanban_col_todo")}
           cardCount={columns.todo.length}
         >
           {columns.todo.map((id) => (
@@ -194,7 +194,7 @@ export const MobileUI: Story = {
         </KanbanBoard.Column>
         <KanbanBoard.Column
           id="inProgress"
-          title={t("story_kanban_col_in_progress")}
+          title={t("story.kanban_col_in_progress")}
           cardCount={columns.inProgress.length}
         >
           {columns.inProgress.map((id) => (
@@ -205,7 +205,7 @@ export const MobileUI: Story = {
         </KanbanBoard.Column>
         <KanbanBoard.Column
           id="done"
-          title={t("story_kanban_col_done")}
+          title={t("story.kanban_col_done")}
           cardCount={columns.done.length}
         >
           {columns.done.map((id) => (

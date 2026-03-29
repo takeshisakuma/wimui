@@ -30,7 +30,7 @@ describe("SignaturePad", () => {
   it("renders canvas and clear button", () => {
     render(<SignaturePad label="Sign here" />);
     expect(screen.getByRole("img")).toBeInTheDocument();
-    expect(screen.getByText("signature_clear")).toBeInTheDocument();
+    expect(screen.getByText("signature.clear")).toBeInTheDocument();
   });
 
   it("becomes non-empty when drawing starts", () => {
@@ -42,7 +42,7 @@ describe("SignaturePad", () => {
     fireEvent.mouseMove(canvas, { clientX: 20, clientY: 20 });
     
     // Clear button should become enabled
-    const clearBtn = screen.getByText("signature_clear");
+    const clearBtn = screen.getByText("signature.clear");
     expect(clearBtn.closest("button")).not.toBeDisabled();
   });
 
@@ -69,7 +69,7 @@ describe("SignaturePad", () => {
     fireEvent.mouseUp(canvas);
     
     // Click clear
-    const clearBtn = screen.getByText("signature_clear");
+    const clearBtn = screen.getByText("signature.clear");
     fireEvent.click(clearBtn);
     
     expect(handleChange).toHaveBeenLastCalledWith(null);

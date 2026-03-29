@@ -37,9 +37,9 @@ export const Default: Story = {
     return (
       <FileUpload
         {...args}
-        label={t("story_fileupload_label_profile")}
-        buttonLabel={t("story_fileupload_btn_image")}
-        noFileLabel={t("story_fileupload_no_file")}
+        label={t("story.fileupload_label_profile")}
+        buttonLabel={t("story.fileupload_btn_image")}
+        noFileLabel={t("story.fileupload_no_file")}
       />
     );
   },
@@ -51,9 +51,9 @@ export const Multiple: Story = {
     return (
       <FileUpload
         {...args}
-        label={t("story_fileupload_label_doc")}
-        buttonLabel={t("story_fileupload_btn_file")}
-        noFileLabel={t("story_fileupload_no_file")}
+        label={t("story.fileupload_label_doc")}
+        buttonLabel={t("story.fileupload_btn_file")}
+        noFileLabel={t("story.fileupload_no_file")}
         multiple={true}
       />
     );
@@ -66,9 +66,9 @@ export const AcceptImages: Story = {
     return (
       <FileUpload
         {...args}
-        label={t("story_fileupload_label_image_only")}
-        buttonLabel={t("story_fileupload_btn_image")}
-        noFileLabel={t("story_fileupload_no_file")}
+        label={t("story.fileupload_label_image_only")}
+        buttonLabel={t("story.fileupload_btn_image")}
+        noFileLabel={t("story.fileupload_no_file")}
         accept="image/*"
         iconName="ImageIcon"
         size="large"
@@ -83,9 +83,9 @@ export const Disabled: Story = {
     return (
       <FileUpload
         {...args}
-        label={t("story_fileupload_label_disabled")}
-        buttonLabel={t("story_fileupload_btn_file")}
-        noFileLabel={t("story_fileupload_no_file")}
+        label={t("story.fileupload_label_disabled")}
+        buttonLabel={t("story.fileupload_btn_file")}
+        noFileLabel={t("story.fileupload_no_file")}
         disabled={true}
       />
     );
@@ -98,9 +98,9 @@ export const WithIcon: Story = {
     return (
       <FileUpload
         {...args}
-        label={t("story_fileupload_label_icon")}
-        buttonLabel={t("story_fileupload_btn_upload")}
-        noFileLabel={t("story_fileupload_no_file")}
+        label={t("story.fileupload_label_icon")}
+        buttonLabel={t("story.fileupload_btn_upload")}
+        noFileLabel={t("story.fileupload_no_file")}
         iconName="UploadIcon"
         iconPosition="left"
         size="large"

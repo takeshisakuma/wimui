@@ -28,10 +28,10 @@ export const Basic: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Menu {...args}>
-        <MenuItem>{t("story_menu_home")}</MenuItem>
-        <MenuItem>{t("story_menu_about")}</MenuItem>
-        <MenuItem>{t("story_menu_services")}</MenuItem>
-        <MenuItem>{t("story_menu_contact")}</MenuItem>
+        <MenuItem>{t("story.menu_home")}</MenuItem>
+        <MenuItem>{t("story.menu_about")}</MenuItem>
+        <MenuItem>{t("story.menu_services")}</MenuItem>
+        <MenuItem>{t("story.menu_contact")}</MenuItem>
       </Menu>
     );
   },
@@ -43,13 +43,13 @@ export const WithIcons: Story = {
     return (
       <Menu {...args}>
         <MenuItem icon={<Icon name="CheckIcon" size="small" />}>
-          {t("story_menu_dashboard")}
+          {t("story.menu_dashboard")}
         </MenuItem>
         <MenuItem icon={<Icon name="CopyIcon" size="small" />}>
-          {t("story_menu_projects")}
+          {t("story.menu_projects")}
         </MenuItem>
         <MenuItem icon={<Icon name="CloseIcon" size="small" />}>
-          {t("story_menu_settings")}
+          {t("story.menu_settings")}
         </MenuItem>
       </Menu>
     );
@@ -62,26 +62,26 @@ export const WithSubMenu: Story = {
     return (
       <Menu {...args} defaultOpenKeys={["sub1"]}>
         <MenuItem icon={<Icon name="CheckIcon" size="small" />}>
-          {t("story_menu_dashboard")}
+          {t("story.menu_dashboard")}
         </MenuItem>
         <SubMenu
           itemKey="sub1"
-          title={t("story_menu_products")}
+          title={t("story.menu_products")}
           icon={<Icon name="CopyIcon" size="small" />}
         >
-          <MenuItem>{t("story_menu_product")} 1</MenuItem>
-          <MenuItem>{t("story_menu_product")} 2</MenuItem>
-          <MenuItem>{t("story_menu_product")} 3</MenuItem>
+          <MenuItem>{t("story.menu_product")} 1</MenuItem>
+          <MenuItem>{t("story.menu_product")} 2</MenuItem>
+          <MenuItem>{t("story.menu_product")} 3</MenuItem>
         </SubMenu>
         <SubMenu
           itemKey="sub2"
-          title={t("story_menu_services")}
+          title={t("story.menu_services")}
           icon={<Icon name="CloseIcon" size="small" />}
         >
-          <MenuItem>{t("story_menu_service")} A</MenuItem>
-          <MenuItem>{t("story_menu_service")} B</MenuItem>
+          <MenuItem>{t("story.menu_service")} A</MenuItem>
+          <MenuItem>{t("story.menu_service")} B</MenuItem>
         </SubMenu>
-        <MenuItem>{t("story_menu_contact")}</MenuItem>
+        <MenuItem>{t("story.menu_contact")}</MenuItem>
       </Menu>
     );
   },
@@ -92,16 +92,16 @@ export const WithGroups: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Menu {...args}>
-        <MenuItemGroup title={t("story_menu_main_pages")}>
-          <MenuItem>{t("story_menu_home")}</MenuItem>
-          <MenuItem>{t("story_menu_about")}</MenuItem>
-          <MenuItem>{t("story_menu_contact")}</MenuItem>
+        <MenuItemGroup title={t("story.menu_main_pages")}>
+          <MenuItem>{t("story.menu_home")}</MenuItem>
+          <MenuItem>{t("story.menu_about")}</MenuItem>
+          <MenuItem>{t("story.menu_contact")}</MenuItem>
         </MenuItemGroup>
         <MenuDivider />
-        <MenuItemGroup title={t("story_menu_user_actions")}>
-          <MenuItem>{t("story_menu_profile")}</MenuItem>
-          <MenuItem>{t("story_menu_settings")}</MenuItem>
-          <MenuItem>{t("story_menu_logout")}</MenuItem>
+        <MenuItemGroup title={t("story.menu_user_actions")}>
+          <MenuItem>{t("story.menu_profile")}</MenuItem>
+          <MenuItem>{t("story.menu_settings")}</MenuItem>
+          <MenuItem>{t("story.menu_logout")}</MenuItem>
         </MenuItemGroup>
       </Menu>
     );
@@ -113,10 +113,10 @@ export const Horizontal: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Menu {...args} mode="horizontal">
-        <MenuItem>{t("story_menu_home")}</MenuItem>
-        <MenuItem>{t("story_menu_about")}</MenuItem>
-        <MenuItem>{t("story_menu_services")}</MenuItem>
-        <MenuItem>{t("story_menu_contact")}</MenuItem>
+        <MenuItem>{t("story.menu_home")}</MenuItem>
+        <MenuItem>{t("story.menu_about")}</MenuItem>
+        <MenuItem>{t("story.menu_services")}</MenuItem>
+        <MenuItem>{t("story.menu_contact")}</MenuItem>
       </Menu>
     );
   },
@@ -128,19 +128,19 @@ export const Inline: Story = {
     return (
       <Menu {...args} mode="inline" defaultOpenKeys={["sub1"]}>
         <MenuItem icon={<Icon name="CheckIcon" size="small" />}>
-          {t("story_menu_dashboard")}
+          {t("story.menu_dashboard")}
         </MenuItem>
         <SubMenu
           itemKey="sub1"
-          title={t("story_menu_settings")}
+          title={t("story.menu_settings")}
           icon={<Icon name="CopyIcon" size="small" />}
         >
-          <MenuItem>{t("story_menu_profile_settings")}</MenuItem>
-          <MenuItem>{t("story_menu_account_settings")}</MenuItem>
-          <MenuItem>{t("story_menu_privacy_settings")}</MenuItem>
+          <MenuItem>{t("story.menu_profile_settings")}</MenuItem>
+          <MenuItem>{t("story.menu_account_settings")}</MenuItem>
+          <MenuItem>{t("story.menu_privacy_settings")}</MenuItem>
         </SubMenu>
         <MenuItem icon={<Icon name="CloseIcon" size="small" />}>
-          {t("story_menu_logout")}
+          {t("story.menu_logout")}
         </MenuItem>
       </Menu>
     );
@@ -152,9 +152,9 @@ export const WithDisabledItems: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Menu {...args}>
-        <MenuItem>{t("story_menu_active_item")}</MenuItem>
-        <MenuItem disabled>{t("story_menu_disabled_item")}</MenuItem>
-        <MenuItem>{t("story_menu_another_active_item") || "Another Active Item"}</MenuItem>
+        <MenuItem>{t("story.menu_active_item")}</MenuItem>
+        <MenuItem disabled>{t("story.menu_disabled_item")}</MenuItem>
+        <MenuItem>{t("story.menu_another_active_item") || "Another Active Item"}</MenuItem>
       </Menu>
     );
   },

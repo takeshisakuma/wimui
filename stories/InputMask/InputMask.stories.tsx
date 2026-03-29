@@ -34,7 +34,7 @@ export const ZipCode: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_inputmask_zip")}>
+      <Label label={t("story.inputmask_zip")}>
         <InputMask {...args} />
       </Label>
     );
@@ -49,7 +49,7 @@ export const Phone: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_inputmask_phone")}>
+      <Label label={t("story.inputmask_phone")}>
         <InputMask {...args} />
       </Label>
     );
@@ -64,7 +64,7 @@ export const CreditCard: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_inputmask_credit")}>
+      <Label label={t("story.inputmask_credit")}>
         <InputMask {...args} />
       </Label>
     );
@@ -79,7 +79,7 @@ export const CustomMask: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_inputmask_custom")}>
+      <Label label={t("story.inputmask_custom")}>
         <InputMask {...args} />
       </Label>
     );

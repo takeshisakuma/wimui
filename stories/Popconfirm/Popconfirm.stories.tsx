@@ -25,12 +25,12 @@ export const Default: Story = {
     return (
       <Popconfirm
         {...args}
-        title={t("story_popconfirm_delete_title")}
-        okText={t("story_popconfirm_yes")}
-        cancelText={t("story_popconfirm_no")}
+        title={t("story.popconfirm_delete_title")}
+        okText={t("story.popconfirm_yes")}
+        cancelText={t("story.popconfirm_no")}
         okType="destructive"
       >
-        <Button priority="primary" label={t("story_popconfirm_delete_btn")} />
+        <Button priority="primary" label={t("story.popconfirm_delete_btn")} />
       </Popconfirm>
     );
   },
@@ -42,12 +42,12 @@ export const WithDescription: Story = {
     return (
       <Popconfirm
         {...args}
-        title={t("story_popconfirm_delete_btn")} // Using "Delete the task" title logic in simpler way or re-t
-        description={t("story_popconfirm_delete_desc")}
-        okText={t("story_popconfirm_yes")}
-        cancelText={t("story_popconfirm_no")}
+        title={t("story.popconfirm_delete_btn")} // Using "Delete the task" title logic in simpler way or re-t
+        description={t("story.popconfirm_delete_desc")}
+        okText={t("story.popconfirm_yes")}
+        cancelText={t("story.popconfirm_no")}
       >
-        <Button label={t("story_popconfirm_delete_btn")} />
+        <Button label={t("story.popconfirm_delete_btn")} />
       </Popconfirm>
     );
   },
@@ -57,8 +57,8 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Popconfirm {...args} title={t("story_popconfirm_yes")} disabled>
-        <Button label={t("story_popconfirm_disabled_btn")} />
+      <Popconfirm {...args} title={t("story.popconfirm_yes")} disabled>
+        <Button label={t("story.popconfirm_disabled_btn")} />
       </Popconfirm>
     );
   },

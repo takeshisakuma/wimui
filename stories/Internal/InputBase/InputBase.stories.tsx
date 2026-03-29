@@ -33,7 +33,7 @@ const DummyInput = ({ placeholder }: { placeholder?: string }) => (
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <InputBase {...args}><DummyInput placeholder={t("doc_inputBase_placeholder")} /></InputBase>;
+    return <InputBase {...args}><DummyInput placeholder={t("doc.inputBase_placeholder")} /></InputBase>;
   },
   args: {
     width: "md",
@@ -47,9 +47,9 @@ export const WithIcons: Story = {
       <InputBase 
         {...args} 
         leftIcon="SearchIcon" 
-        rightIcons={[{ name: "CloseIcon", onClick: () => alert(t("button_clear")) }]}
+        rightIcons={[{ name: "CloseIcon", onClick: () => alert(t("button.clear")) }]}
       >
-        <DummyInput placeholder={t("doc_inputBase_placeholder")} />
+        <DummyInput placeholder={t("doc.inputBase_placeholder")} />
       </InputBase>
     );
   },
@@ -63,7 +63,7 @@ export const Error: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InputBase {...args} status="error" leftIcon="AlertCircleIcon">
-        <DummyInput placeholder={t("doc_inputBase_placeholder")} />
+        <DummyInput placeholder={t("doc.inputBase_placeholder")} />
       </InputBase>
     );
   },
@@ -77,7 +77,7 @@ export const Disabled: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InputBase {...args} disabled leftIcon="ClockIcon">
-        <DummyInput placeholder={t("doc_inputBase_placeholder")} />
+        <DummyInput placeholder={t("doc.inputBase_placeholder")} />
       </InputBase>
     );
   },
@@ -91,7 +91,7 @@ export const Ghost: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <InputBase {...args} variant="ghost" leftIcon="SearchIcon">
-        <DummyInput placeholder={t("doc_inputBase_placeholder")} />
+        <DummyInput placeholder={t("doc.inputBase_placeholder")} />
       </InputBase>
     );
   },
@@ -107,11 +107,11 @@ export const MultipleRightIcons: Story = {
       <InputBase 
         {...args} 
         rightIcons={[
-          { name: "EyeIcon", onClick: () => alert(t("a11y_play")) },
+          { name: "EyeIcon", onClick: () => alert(t("a11y.play")) },
           { name: "SettingsIcon", onClick: () => alert(t("settings")) }
         ]}
       >
-        <DummyInput placeholder={t("doc_inputBase_placeholder")} />
+        <DummyInput placeholder={t("doc.inputBase_placeholder")} />
       </InputBase>
     );
   },

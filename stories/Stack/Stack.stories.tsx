@@ -37,7 +37,7 @@ export const Default: Story = {
           radius={8}
           style={{ border: "1px solid #3b82f6" }}
         >
-          {t("story_stack_item_1", "Item 1")}
+          {t("story.stack_item_1", "Item 1")}
         </Box>
         <Box
           key="2"
@@ -46,7 +46,7 @@ export const Default: Story = {
           radius={8}
           style={{ border: "1px solid #22c55e" }}
         >
-          {t("story_stack_item_2", "Item 2")}
+          {t("story.stack_item_2", "Item 2")}
         </Box>
         <Box
           key="3"
@@ -55,7 +55,7 @@ export const Default: Story = {
           radius={8}
           style={{ border: "1px solid #f97316" }}
         >
-          {t("story_stack_item_3", "Item 3")}
+          {t("story.stack_item_3", "Item 3")}
         </Box>
       </Stack>
     );
@@ -78,7 +78,7 @@ export const Row: Story = {
           radius={8}
           style={{ border: "1px solid #3b82f6" }}
         >
-          {t("story_stack_item_1", "Item 1")}
+          {t("story.stack_item_1", "Item 1")}
         </Box>
         <Box
           key="2"
@@ -87,7 +87,7 @@ export const Row: Story = {
           radius={8}
           style={{ border: "1px solid #22c55e" }}
         >
-          {t("story_stack_item_2", "Item 2")}
+          {t("story.stack_item_2", "Item 2")}
         </Box>
         <Box
           key="3"
@@ -96,7 +96,7 @@ export const Row: Story = {
           radius={8}
           style={{ border: "1px solid #f97316" }}
         >
-          {t("story_stack_item_3", "Item 3")}
+          {t("story.stack_item_3", "Item 3")}
         </Box>
       </Stack>
     );
@@ -113,28 +113,28 @@ export const SpacingTokens: Story = {
     return (
       <Stack gap="xl">
         <Box bg="#f8fafc" p={10}>
-          {t("story_stack_gap", "Gap: ")}xl
+          {t("story.stack_gap", "Gap: ")}xl
         </Box>
         <Stack direction="row" gap="xs">
           <Box bg="#eff6ff" p={10}>
-            {t("story_stack_gap", "Gap: ")}xs
+            {t("story.stack_gap", "Gap: ")}xs
           </Box>
           <Box bg="#eff6ff" p={10}>
-            {t("story_stack_gap", "Gap: ")}xs
+            {t("story.stack_gap", "Gap: ")}xs
           </Box>
           <Box bg="#eff6ff" p={10}>
-            {t("story_stack_gap", "Gap: ")}xs
+            {t("story.stack_gap", "Gap: ")}xs
           </Box>
         </Stack>
         <Stack direction="row" gap="lg">
           <Box bg="#f0fdf4" p={10}>
-            {t("story_stack_gap", "Gap: ")}lg
+            {t("story.stack_gap", "Gap: ")}lg
           </Box>
           <Box bg="#f0fdf4" p={10}>
-            {t("story_stack_gap", "Gap: ")}lg
+            {t("story.stack_gap", "Gap: ")}lg
           </Box>
           <Box bg="#f0fdf4" p={10}>
-            {t("story_stack_gap", "Gap: ")}lg
+            {t("story.stack_gap", "Gap: ")}lg
           </Box>
         </Stack>
       </Stack>

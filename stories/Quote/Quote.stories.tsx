@@ -37,7 +37,7 @@ export default {
 export const Default = {
   render: (args: Parameters<typeof Quote>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Quote {...args} content={t('story_quote_default')} />;
+    return <Quote {...args} content={t('story.quote_default')} />;
   },
   args: {}
 };
@@ -45,7 +45,7 @@ export const Default = {
 export const WithCite = {
   render: (args: Parameters<typeof Quote>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Quote {...args} content={t('story_quote_design')} cite="Steve Jobs" />;
+    return <Quote {...args} content={t('story.quote_design')} cite="Steve Jobs" />;
   },
   args: {}
 };
@@ -53,7 +53,7 @@ export const WithCite = {
 export const Large = {
   render: (args: Parameters<typeof Quote>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Quote {...args} content={t('story_quote_work')} cite="Steve Jobs" />;
+    return <Quote {...args} content={t('story.quote_work')} cite="Steve Jobs" />;
   },
   args: { size: "large" }
 };
@@ -61,7 +61,7 @@ export const Large = {
 export const NoBorder = {
   render: (args: Parameters<typeof Quote>[0]) => {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Quote {...args} content={t('story_quote_simple')} cite="Leonardo da Vinci" />;
+    return <Quote {...args} content={t('story.quote_simple')} cite="Leonardo da Vinci" />;
   },
   args: { border: false }
 };
@@ -71,10 +71,10 @@ export const VariousColors = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-        <Quote {...args} content={t('story_quote_black')} color="black" />
-        <Quote {...args} content={t('story_quote_deepgray')} color="deepgray" />
-        <Quote {...args} content={t('story_quote_gray')} color="gray" />
-        <Quote {...args} content={t('story_quote_lightgray')} color="lightgray" />
+        <Quote {...args} content={t('story.quote_black')} color="black" />
+        <Quote {...args} content={t('story.quote_deepgray')} color="deepgray" />
+        <Quote {...args} content={t('story.quote_gray')} color="gray" />
+        <Quote {...args} content={t('story.quote_lightgray')} color="lightgray" />
       </div>
     );
   }

@@ -31,7 +31,7 @@ export const Fade: Story = {
             animateWidth
             priority="primary"
             onClick={() => setShow(!show)}
-            label={show ? t("story_transition_hide_content") : t("story_transition_show_content")}
+            label={show ? t("story.transition_hide_content") : t("story.transition_show_content")}
           />
           <Stack h={100} align="center" justify="center">
             <Transition
@@ -55,7 +55,7 @@ export const Fade: Story = {
                   textAlign: "center",
                 }}
               >
-                {t("story_transition_fade_content")}
+                {t("story.transition_fade_content")}
               </Card>
             </Transition>
           </Stack>
@@ -84,7 +84,7 @@ export const Slide: Story = {
             animateWidth
             priority="primary"
             onClick={() => setShow(!show)}
-            label={show ? t("story_transition_hide_slide") : t("story_transition_show_slide")}
+            label={show ? t("story.transition_hide_slide") : t("story.transition_show_slide")}
           />
           <Stack h={100} align="center" justify="center">
             <Transition
@@ -97,7 +97,7 @@ export const Slide: Story = {
               leaveTo="slide-leave-to"
             >
               <Card variant="outline" padding="md">
-                {t("story_transition_slide_content")}
+                {t("story.transition_slide_content")}
               </Card>
             </Transition>
           </Stack>

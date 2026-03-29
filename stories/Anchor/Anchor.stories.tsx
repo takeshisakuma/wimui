@@ -27,29 +27,29 @@ export const Default: Story = {
       {
         key: "part-1",
         href: "#part-1",
-        title: t("story_anchor_part1"),
+        title: t("story.anchor_part1"),
       },
       {
         key: "part-2",
         href: "#part-2",
-        title: t("story_anchor_part2"),
+        title: t("story.anchor_part2"),
         children: [
           {
             key: "part-2-1",
             href: "#part-2-1",
-            title: t("story_anchor_part2_1"),
+            title: t("story.anchor_part2_1"),
           },
           {
             key: "part-2-2",
             href: "#part-2-2",
-            title: t("story_anchor_part2_2"),
+            title: t("story.anchor_part2_2"),
           },
         ],
       },
       {
         key: "part-3",
         href: "#part-3",
-        title: t("story_anchor_part3"),
+        title: t("story.anchor_part3"),
       },
     ];
 
@@ -101,8 +101,8 @@ export const Default: Story = {
               marginBottom: "20px",
             }}
           >
-            <h2>{t("story_anchor_part1")}</h2>
-            <p>{t("story_anchor_scroll_msg")}</p>
+            <h2>{t("story.anchor_part1")}</h2>
+            <p>{t("story.anchor_scroll_msg")}</p>
           </section>
           <section
             id="part-2"
@@ -113,7 +113,7 @@ export const Default: Story = {
               marginBottom: "20px",
             }}
           >
-            <h2>{t("story_anchor_part2")}</h2>
+            <h2>{t("story.anchor_part2")}</h2>
             <div
               id="part-2-1"
               style={{
@@ -123,7 +123,7 @@ export const Default: Story = {
                 padding: "10px",
               }}
             >
-              <h3>{t("story_anchor_part2_1")}</h3>
+              <h3>{t("story.anchor_part2_1")}</h3>
             </div>
             <div
               id="part-2-2"
@@ -134,14 +134,14 @@ export const Default: Story = {
                 padding: "10px",
               }}
             >
-              <h3>{t("story_anchor_part2_2")}</h3>
+              <h3>{t("story.anchor_part2_2")}</h3>
             </div>
           </section>
           <section
             id="part-3"
             style={{ height: "600px", background: "var(--wim-color-surface-variant)", padding: "20px" }}
           >
-            <h2>{t("story_anchor_part3")}</h2>
+            <h2>{t("story.anchor_part3")}</h2>
           </section>
         </div>
       </div>

@@ -31,7 +31,7 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_datepicker_select")}>
+      <Label label={t("story.datepicker_select")}>
         <DatePicker {...args} />
       </Label>
     );
@@ -43,7 +43,7 @@ export const Outline: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_datepicker_outline")}>
+      <Label label={t("story.datepicker_outline")}>
         <DatePicker {...args} variant="outline" />
       </Label>
     );
@@ -55,7 +55,7 @@ export const Ghost: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_datepicker_ghost")}>
+      <Label label={t("story.datepicker_ghost")}>
         <DatePicker {...args} variant="ghost" />
       </Label>
     );
@@ -67,7 +67,7 @@ export const ErrorStatus: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_picker_error")}>
+      <Label label={t("story.picker_error")}>
         <DatePicker {...args} status="error" />
       </Label>
     );
@@ -79,7 +79,7 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_picker_disabled")}>
+      <Label label={t("story.picker_disabled")}>
         <DatePicker {...args} disabled />
       </Label>
     );
@@ -91,7 +91,7 @@ export const FullWidth: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_picker_fullwidth")} style={{ width: "100%" }}>
+      <Label label={t("story.picker_fullwidth")} style={{ width: "100%" }}>
         <DatePicker {...args} fullWidth />
       </Label>
     );

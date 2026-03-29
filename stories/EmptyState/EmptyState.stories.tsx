@@ -25,10 +25,10 @@ export const Default: Story = {
     return (
       <EmptyState
         {...args}
-        title={t("story_emptystate_nodata_title")}
-        description={t("story_emptystate_nodata_desc")}
+        title={t("story.emptystate_nodata_title")}
+        description={t("story.emptystate_nodata_desc")}
         icon={<Icon name="SearchIcon" size="large" />}
-        extra={<Button label={t("story_emptystate_clear_search")} />}
+        extra={<Button label={t("story.emptystate_clear_search")} />}
       />
     );
   },
@@ -40,8 +40,8 @@ export const Simple: Story = {
     return (
       <EmptyState
         {...args}
-        title={t("story_emptystate_nomessages_title")}
-        description={t("story_emptystate_nomessages_desc")}
+        title={t("story.emptystate_nomessages_title")}
+        description={t("story.emptystate_nomessages_desc")}
         variant="simple"
       />
     );
@@ -54,7 +54,7 @@ export const WithoutDescription: Story = {
     return (
       <EmptyState
         {...args}
-        title={t("story_emptystate_empty_list")}
+        title={t("story.emptystate_empty_list")}
         icon={<Icon name="CircleIcon" size="large" />}
       />
     );
@@ -67,13 +67,13 @@ export const CustomAction: Story = {
     return (
       <EmptyState
         {...args}
-        title={t("story_emptystate_ready_title")}
-        description={t("story_emptystate_ready_desc")}
+        title={t("story.emptystate_ready_title")}
+        description={t("story.emptystate_ready_desc")}
         icon={<Icon name="PlusIcon" style={{ width: 48, height: 48 }} />}
         extra={
           <>
-            <Button label={t("story_emptystate_browse_templates")} priority="secondary" />
-            <Button label={t("story_emptystate_create_project")} priority="primary" />
+            <Button label={t("story.emptystate_browse_templates")} priority="secondary" />
+            <Button label={t("story.emptystate_create_project")} priority="primary" />
           </>
         }
       />
@@ -87,8 +87,8 @@ export const NoMessages: Story = {
     return (
       <EmptyState
         {...args}
-        title={t("story_emptystate_noemails_title")}
-        description={t("story_emptystate_noemails_desc")}
+        title={t("story.emptystate_noemails_title")}
+        description={t("story.emptystate_noemails_desc")}
         icon={<Icon name="EmailIcon" size="large" />}
       />
     );
@@ -101,10 +101,10 @@ export const NoVideos: Story = {
     return (
       <EmptyState
         {...args}
-        title={t("story_emptystate_novideos_title")}
-        description={t("story_emptystate_novideos_desc")}
+        title={t("story.emptystate_novideos_title")}
+        description={t("story.emptystate_novideos_desc")}
         icon={<Icon name="VideoIcon" size="large" />}
-        extra={<Button label={t("story_emptystate_upload_video")} priority="primary" />}
+        extra={<Button label={t("story.emptystate_upload_video")} priority="primary" />}
       />
     );
   },
@@ -116,8 +116,8 @@ export const NoFiles: Story = {
     return (
       <EmptyState
         {...args}
-        title={t("story_emptystate_nofiles_title")}
-        description={t("story_emptystate_nofiles_desc")}
+        title={t("story.emptystate_nofiles_title")}
+        description={t("story.emptystate_nofiles_desc")}
         icon={<Icon name="DocumentIcon" size="large" />}
       />
     );

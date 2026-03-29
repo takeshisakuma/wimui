@@ -32,8 +32,8 @@ export const Info: Story = {
     return (
       <Banner
         {...args}
-        title={args.title || t("story_banner_update_title")}
-        description={args.description || t("story_banner_update_desc")}
+        title={args.title || t("story.banner_update_title")}
+        description={args.description || t("story.banner_update_desc")}
       />
     );
   },
@@ -48,8 +48,8 @@ export const Success: Story = {
     return (
       <Banner
         {...args}
-        title={args.title || t("story_alert_success_title")}
-        description={args.description || t("story_banner_update_desc")}
+        title={args.title || t("story.alert_success_title")}
+        description={args.description || t("story.banner_update_desc")}
       />
     );
   },
@@ -64,8 +64,8 @@ export const Warning: Story = {
     return (
       <Banner
         {...args}
-        title={args.title || t("story_banner_maint_title")}
-        description={args.description || t("story_banner_maint_desc")}
+        title={args.title || t("story.banner_maint_title")}
+        description={args.description || t("story.banner_maint_desc")}
       />
     );
   },
@@ -80,8 +80,8 @@ export const ErrorStatus: Story = {
     return (
       <Banner
         {...args}
-        title={args.title || t("story_banner_conn_error_title")}
-        description={args.description || t("story_banner_conn_error_desc")}
+        title={args.title || t("story.banner_conn_error_title")}
+        description={args.description || t("story.banner_conn_error_desc")}
         onClose={args.onClose ?? (() => {})}
       />
     );
@@ -97,13 +97,13 @@ export const WithAction: Story = {
     return (
       <Banner
         {...args}
-        title={args.title || t("story_banner_cookie_title")}
-        description={args.description || t("story_banner_cookie_desc")}
+        title={args.title || t("story.banner_cookie_title")}
+        description={args.description || t("story.banner_cookie_desc")}
         extra={
           <Button
             size="small"
             priority="secondary"
-            label={t("story_banner_btn_accept")}
+            label={t("story.banner_btn_accept")}
           />
         }
       />
@@ -120,13 +120,13 @@ export const WithCloseAndAction: Story = {
     return (
       <Banner
         {...args}
-        title={args.title || t("story_banner_trial_title")}
-        description={args.description || t("story_banner_trial_desc")}
+        title={args.title || t("story.banner_trial_title")}
+        description={args.description || t("story.banner_trial_desc")}
         extra={
           <Button
             size="small"
             priority="primary"
-            label={t("story_banner_btn_upgrade")}
+            label={t("story.banner_btn_upgrade")}
           />
         }
         onClose={args.onClose ?? (() => {})}
@@ -144,7 +144,7 @@ export const DescriptionOnly: Story = {
     return (
       <Banner
         {...args}
-        description={args.description || t("story_banner_no_title_desc")}
+        description={args.description || t("story.banner_no_title_desc")}
       />
     );
   },
@@ -159,8 +159,8 @@ export const NoIcon: Story = {
     return (
       <Banner
         {...args}
-        title={args.title || t("story_banner_simple_title")}
-        description={args.description || t("story_banner_simple_desc")}
+        title={args.title || t("story.banner_simple_title")}
+        description={args.description || t("story.banner_simple_desc")}
         icon={false}
       />
     );

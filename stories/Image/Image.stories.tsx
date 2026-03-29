@@ -32,7 +32,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Image {...args} alt={t("story_image_alt")} />;
+    return <Image {...args} alt={t("story.image_alt")} />;
   },
   args: {
     src: vibrantLandscape,
@@ -46,8 +46,8 @@ export const WithCaption: Story = {
     return (
       <Image
         {...args}
-        alt={t("story_image_alt")}
-        caption={t("story_image_caption")}
+        alt={t("story.image_alt")}
+        caption={t("story.image_caption")}
       />
     );
   },
@@ -60,7 +60,7 @@ export const WithCaption: Story = {
 export const Rounded: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Image {...args} alt={t("story_image_alt")} />;
+    return <Image {...args} alt={t("story.image_alt")} />;
   },
   args: {
     src: vibrantLandscape,
@@ -74,7 +74,7 @@ export const Rounded: Story = {
 export const Circular: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Image {...args} alt={t("story_image_alt")} />;
+    return <Image {...args} alt={t("story.image_alt")} />;
   },
   args: {
     src: vibrantLandscape,
@@ -89,7 +89,7 @@ export const Circular: Story = {
 export const WithShadow: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Image {...args} alt={t("story_image_alt")} />;
+    return <Image {...args} alt={t("story.image_alt")} />;
   },
   args: {
     src: vibrantLandscape,
@@ -108,7 +108,7 @@ export const Filters: Story = {
           <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>Grayscale to Color (Hover)</p>
           <Image
             {...args}
-            alt={t("story_image_alt")}
+            alt={t("story.image_alt")}
             filter={{ grayscale: "lg" }}
             hoverFilter={{ grayscale: "none" }}
             width={260}
@@ -118,7 +118,7 @@ export const Filters: Story = {
           <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>Blur to Clear (Hover)</p>
           <Image
             {...args}
-            alt={t("story_image_alt")}
+            alt={t("story.image_alt")}
             filter={{ blur: "sm" }}
             hoverFilter={{ blur: "none" }}
             width={260}
@@ -128,7 +128,7 @@ export const Filters: Story = {
           <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>Sepia (Fixed)</p>
           <Image
             {...args}
-            alt={t("story_image_alt")}
+            alt={t("story.image_alt")}
             filter={{ sepia: "md" }}
             width={260}
           />
@@ -171,7 +171,7 @@ export const Glassmorphism: Story = {
         <div style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
           <Image
             {...args}
-            alt={t("story_image_alt")}
+            alt={t("story.image_alt")}
             backdropFilter={{ blur: "md" }}
             hoverBackdropFilter={{ blur: "none" }}
             style={{
@@ -183,7 +183,7 @@ export const Glassmorphism: Story = {
             border
           />
           <p style={{ color: "white", marginTop: "1rem", fontWeight: "bold" }}>
-            {t("story_image_backdrop_hover_clear", { defaultValue: "Hover to clear backdrop blur" })}
+            {t("story.image_backdrop_hover_clear", { defaultValue: "Hover to clear backdrop blur" })}
           </p>
         </div>
       </div>
@@ -200,36 +200,36 @@ export const AdvancedEffects: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
         <div>
-          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_image_advanced_noise")}</p>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_advanced_noise")}</p>
           <div style={{ display: "flex", gap: "1rem" }}>
-            <Image {...args} alt="Low noise" noise="sm" width={200} caption={`${t("common_intensity", { defaultValue: "Intensity" })}: sm`} />
-            <Image {...args} alt="Medium noise" noise="md" width={200} caption={`${t("common_intensity", { defaultValue: "Intensity" })}: md`} />
-            <Image {...args} alt="High noise" noise="lg" width={200} caption={`${t("common_intensity", { defaultValue: "Intensity" })}: lg`} />
+            <Image {...args} alt="Low noise" noise="sm" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: sm`} />
+            <Image {...args} alt="Medium noise" noise="md" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: md`} />
+            <Image {...args} alt="High noise" noise="lg" width={200} caption={`${t("common.intensity", { defaultValue: "Intensity" })}: lg`} />
           </div>
         </div>
 
         <div>
-          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_image_advanced_duotone")}</p>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_advanced_duotone")}</p>
           <div style={{ display: "flex", gap: "1rem" }}>
             <Image
               {...args}
               alt="Duotone gold"
               duotone={{ light: "#f0dfaf", dark: "#3f3f3f" }}
               width={300}
-              caption={t("story_image_advanced_goldish")}
+              caption={t("story.image_advanced_goldish")}
             />
             <Image
               {...args}
               alt="Duotone cyber"
               duotone={{ light: "#00fff2", dark: "#6000ff" }}
               width={300}
-              caption={t("story_image_advanced_cyberpunk")}
+              caption={t("story.image_advanced_cyberpunk")}
             />
           </div>
         </div>
 
         <div>
-          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_image_advanced_overlay_vignette")}</p>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_advanced_overlay_vignette")}</p>
           <div style={{ display: "flex", gap: "1rem" }}>
             <div style={{ position: "relative" }}>
               <Image
@@ -242,8 +242,8 @@ export const AdvancedEffects: Story = {
                 width={300}
               />
               <div style={{ position: "absolute", bottom: "20px", left: "20px", color: "white", zIndex: 2 }}>
-                <h4 style={{ margin: 0 }}>{t("story_image_advanced_text_over")}</h4>
-                <p style={{ margin: 0, fontSize: "0.8rem" }}>{t("story_image_advanced_overlay_readability")}</p>
+                <h4 style={{ margin: 0 }}>{t("story.image_advanced_text_over")}</h4>
+                <p style={{ margin: 0, fontSize: "0.8rem" }}>{t("story.image_advanced_overlay_readability")}</p>
               </div>
             </div>
             
@@ -255,7 +255,7 @@ export const AdvancedEffects: Story = {
                 showOnHover: true,
               }}
               width={300}
-              caption={t("story_image_advanced_hover_brand")}
+              caption={t("story.image_advanced_hover_brand")}
             />
           </div>
         </div>
@@ -277,18 +277,18 @@ export const MotionEffects: Story = {
       <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem" }}>
           <div>
-            <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_image_motion_effects_smooth_zoom")}</p>
+            <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_motion_effects_smooth_zoom")}</p>
             <Image
               {...args}
               alt="Zoom effect"
               zoom={1.1}
               width={300}
               radius="medium"
-              caption={t("story_image_motion_effects_zoom_caption")}
+              caption={t("story.image_motion_effects_zoom_caption")}
             />
           </div>
           <div>
-            <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_image_motion_effects_3d_tilt")}</p>
+            <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_motion_effects_3d_tilt")}</p>
             <Image
               {...args}
               alt="Tilt effect"
@@ -296,19 +296,19 @@ export const MotionEffects: Story = {
               width={300}
               radius="medium"
               shadow
-              caption={t("story_image_motion_effects_tilt_caption")}
+              caption={t("story.image_motion_effects_tilt_caption")}
             />
           </div>
         </div>
 
         <div>
-          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_image_motion_effects_fade_in")}</p>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_motion_effects_fade_in")}</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <div style={{ display: "flex", gap: "1rem" }}>
               <Button
                 priority="primary"
                 onClick={() => setImageKey((prev) => prev + 1)}
-                label={t("story_image_motion_effects_reload")}
+                label={t("story.image_motion_effects_reload")}
                 icon="RefreshIcon"
               />
             </div>
@@ -321,7 +321,7 @@ export const MotionEffects: Story = {
               width={400}
               radius="medium"
               shadow
-              caption={t("story_image_motion_effects_interactive_caption")}
+              caption={t("story.image_motion_effects_interactive_caption")}
             />
           </div>
         </div>
@@ -361,64 +361,64 @@ export const BlendingEffects: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
         <div>
-          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_image_blending_overlay", { defaultValue: "Overlay Blending" })}</p>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_blending_overlay", { defaultValue: "Overlay Blending" })}</p>
           <div style={{ display: "flex", gap: "1rem" }}>
             <Image
               {...args}
-              alt={t("story_image_alt_multiply", { defaultValue: "Multiply overlay" })}
+              alt={t("story.image_alt_multiply", { defaultValue: "Multiply overlay" })}
               overlay={{
                 color: "#3498db",
                 intensity: "medium",
                 blendMode: "multiply",
               }}
               width={300}
-              caption={t("story_image_caption_blue_multiply", { defaultValue: "Blue Multiply (Adds tint)" })}
+              caption={t("story.image_caption_blue_multiply", { defaultValue: "Blue Multiply (Adds tint)" })}
             />
             <Image
               {...args}
-              alt={t("story_image_alt_overlay", { defaultValue: "Overlay blend" })}
+              alt={t("story.image_alt_overlay", { defaultValue: "Overlay blend" })}
               overlay={{
                 color: "#e74c3c",
                 intensity: "medium",
                 blendMode: "overlay",
               }}
               width={300}
-              caption={t("story_image_caption_red_overlay", { defaultValue: "Red Overlay (Increases contrast)" })}
+              caption={t("story.image_caption_red_overlay", { defaultValue: "Red Overlay (Increases contrast)" })}
             />
           </div>
         </div>
 
         <div>
-          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_image_blending_image", { defaultValue: "Image Blending with Background" })}</p>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_blending_image", { defaultValue: "Image Blending with Background" })}</p>
           <div style={{ display: "flex", gap: "1rem" }}>
             <div style={{ padding: "20px", background: "linear-gradient(45deg, #f3f3f3, #ddd)" }}>
               <Image
                 {...args}
-                alt={t("story_image_alt_multiply_bg", { defaultValue: "Multiply image" })}
+                alt={t("story.image_alt_multiply_bg", { defaultValue: "Multiply image" })}
                 blendMode="multiply"
                 bgColor="#f1c40f"
                 width={300}
-                caption={t("story_image_caption_yellow_multiply", { defaultValue: "Image Multiply with Yellow BG" })}
+                caption={t("story.image_caption_yellow_multiply", { defaultValue: "Image Multiply with Yellow BG" })}
               />
             </div>
             <div style={{ padding: "20px", background: "black" }}>
               <Image
                 {...args}
-                alt={t("story_image_alt_screen", { defaultValue: "Screen image" })}
+                alt={t("story.image_alt_screen", { defaultValue: "Screen image" })}
                 blendMode="screen"
                 width={300}
-                caption={t("story_image_caption_screen", { defaultValue: "Image Screen (Whitening effect)" })}
+                caption={t("story.image_caption_screen", { defaultValue: "Image Screen (Whitening effect)" })}
               />
             </div>
           </div>
         </div>
 
         <div>
-          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_image_blending_difference", { defaultValue: "Creative: Difference Mode" })}</p>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_blending_difference", { defaultValue: "Creative: Difference Mode" })}</p>
           <div style={{ position: "relative", width: "400px" }}>
             <Image
               {...args}
-              alt={t("story_image_alt_difference", { defaultValue: "Difference" })}
+              alt={t("story.image_alt_difference", { defaultValue: "Difference" })}
               overlay={{
                 color: "white",
                 intensity: 1,
@@ -427,7 +427,7 @@ export const BlendingEffects: Story = {
               width="100%"
             />
             <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "white", fontSize: "2rem", fontWeight: "bold", mixBlendMode: "difference" }}>
-              {t("story_image_inverted_text", { defaultValue: "INVERTED TEXT" })}
+              {t("story.image_inverted_text", { defaultValue: "INVERTED TEXT" })}
             </div>
           </div>
         </div>

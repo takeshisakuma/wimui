@@ -31,7 +31,7 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_colorpicker_label")}>
+      <Label label={t("story.colorpicker_label")}>
         <ColorPicker {...args} />
       </Label>
     );
@@ -45,7 +45,7 @@ export const Outline: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_colorpicker_outline")}>
+      <Label label={t("story.colorpicker_outline")}>
         <ColorPicker {...args} variant="outline" />
       </Label>
     );
@@ -59,7 +59,7 @@ export const Ghost: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_colorpicker_ghost")}>
+      <Label label={t("story.colorpicker_ghost")}>
         <ColorPicker {...args} variant="ghost" />
       </Label>
     );
@@ -73,7 +73,7 @@ export const ErrorStatus: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_colorpicker_error")}>
+      <Label label={t("story.colorpicker_error")}>
         <ColorPicker {...args} status="error" />
       </Label>
     );
@@ -87,7 +87,7 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_colorpicker_disabled")}>
+      <Label label={t("story.colorpicker_disabled")}>
         <ColorPicker {...args} disabled />
       </Label>
     );
@@ -101,7 +101,7 @@ export const FullWidth: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_colorpicker_fullwidth")} style={{ width: "100%" }}>
+      <Label label={t("story.colorpicker_fullwidth")} style={{ width: "100%" }}>
         <ColorPicker {...args} fullWidth />
       </Label>
     );

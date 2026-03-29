@@ -22,51 +22,51 @@ import { T } from "../T";
     color: "#6c757d",
   }}
 >
-  <T k="doc_textarea_title" />
+  <T k="doc.textarea_title" />
 </p>
 
-<p><T k="doc_textarea_long_desc" /></p>
+<p><T k="doc.textarea_long_desc" /></p>
 
-## <T k="doc_design_intent_title" />
-<p><T k="doc_textarea_design_intent" /></p>
+## <T k="doc.design_intent_title" />
+<p><T k="doc.textarea_design_intent" /></p>
 
-## <T k="doc_choice_matrix_title" />
-<p><T k="doc_textarea_choice_matrix_desc" /></p>
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.textarea_choice_matrix_desc" /></p>
 <table>
   <thead>
     <tr>
-      <th><T k="doc_component" /></th>
-      <th><T k="doc_button_case" /></th>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.button_case" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><b>Textarea</b></td>
-      <td><T k="doc_textarea_choice_textarea_when" /></td>
+      <td><T k="doc.textarea_choice_textarea_when" /></td>
     </tr>
     <tr>
       <td><b>Input</b></td>
-      <td><T k="doc_textarea_choice_input_when" /></td>
+      <td><T k="doc.textarea_choice_input_when" /></td>
     </tr>
   </tbody>
 </table>
 
-## <T k="doc_anatomy_title" />
+## <T k="doc.anatomy_title" />
 <table>
   <thead>
     <tr>
-      <th><T k="doc_component" /></th>
-      <th><T k="doc_description" /></th>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><b><T k="doc_textarea_anatomy_field_label" /></b></td>
-      <td><T k="doc_textarea_anatomy_field" /></td>
+      <td><b><T k="doc.textarea_anatomy_field_label" /></b></td>
+      <td><T k="doc.textarea_anatomy_field" /></td>
     </tr>
     <tr>
-      <td><b><T k="doc_textarea_anatomy_resize_label" /></b></td>
-      <td><T k="doc_textarea_anatomy_resize" /></td>
+      <td><b><T k="doc.textarea_anatomy_resize_label" /></b></td>
+      <td><T k="doc.textarea_anatomy_resize" /></td>
     </tr>
   </tbody>
 </table>
@@ -75,61 +75,61 @@ import { T } from "../T";
 
 <Controls of={TextareaStories.Basic} />
 
-## <T k="doc_variations" />
+## <T k="doc.variations" />
 
-<T k="doc_textarea_variant_desc" />
+<T k="doc.textarea_variant_desc" />
 
-### <T k="doc_ghost" />
-<p><T k="doc_textarea_var_ghost_desc" /></p>
+### <T k="doc.ghost" />
+<p><T k="doc.textarea_var_ghost_desc" /></p>
 <Canvas of={TextareaStories.Ghost} />
 
-## <T k="doc_states" />
+## <T k="doc.states" />
 
-### <T k="doc_status_error" />
+### <T k="doc.status_error" />
 <Canvas of={TextareaStories.ErrorStatus} />
 
-### <T k="doc_status_disabled" />
+### <T k="doc.status_disabled" />
 <Canvas of={TextareaStories.Disabled} />
 
-## <T k="doc_layout" />
+## <T k="doc.layout" />
 
-### <T k="doc_full_width" />
+### <T k="doc.full_width" />
 <Canvas of={TextareaStories.FullWidth} />
 
-## <T k="doc_guidelines_title" />
+## <T k="doc.guidelines_title" />
 
-### <T k="doc_content_guidelines_title" />
+### <T k="doc.content_guidelines_title" />
 <ul>
-  <li><T k="doc_textarea_content_prefill" /></li>
+  <li><T k="doc.textarea_content_prefill" /></li>
 </ul>
 
-## <T k="doc_motion_spec_title" />
-<p><T k="doc_textarea_motion_expand" /></p>
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.textarea_motion_expand" /></p>
 
-## <T k="doc_a11y_spec_title" />
-<p><T k="doc_textarea_a11y_desc" /></p>
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.textarea_a11y_desc" /></p>
 
-## <T k="doc_real_world_scenarios_title" />
+## <T k="doc.real_world_scenarios_title" />
 <ul>
   <li>
-    <strong><T k="doc_scenario_sns_title" />:</strong> <T k="doc_textarea_scenario_comment" />
+    <strong><T k="doc.scenario_sns_title" />:</strong> <T k="doc.textarea_scenario_comment" />
   </li>
   <li>
-    <strong><T k="doc_scenario_form_title" />:</strong> <T k="doc_textarea_scenario_contact" />
+    <strong><T k="doc.scenario_form_title" />:</strong> <T k="doc.textarea_scenario_contact" />
   </li>
 </ul>
 
 
-## <T k="doc_a11y_spec_title" />
-<p><T k="doc_textarea_a11y_desc" /></p>
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.textarea_a11y_desc" /></p>
 
-## <T k="doc_best_practices_title" />
+## <T k="doc.best_practices_title" />
 <ul>
-  <li><T k="doc_textarea_best_practice_1" /></li>
-  <li><T k="doc_textarea_best_practice_2" /></li>
+  <li><T k="doc.textarea_best_practice_1" /></li>
+  <li><T k="doc.textarea_best_practice_2" /></li>
 </ul>
 
-## <T k="doc_basic_usage" />
+## <T k="doc.basic_usage" />
 
 ```tsx
 import { Textarea } from "@/components/Textarea/Textarea";
@@ -137,13 +137,13 @@ import { Textarea } from "@/components/Textarea/Textarea";
 <Textarea placeholder="Type something..." onChange={(e) => console.log(e.target.value)} />;
 ```
 
-## <T k="doc_keyboard_nav_title" />
-<p><T k="doc_textarea_keyboard_desc" /></p>
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.textarea_keyboard_desc" /></p>
 
-## <T k="doc_i18n_title" />
-<p><T k="doc_textarea_i18n_desc" /></p>
+## <T k="doc.i18n_title" />
+<p><T k="doc.textarea_i18n_desc" /></p>
 
-## <T k="doc_test_title" />
+## <T k="doc.test_title" />
 
 ```bash
 npm run test -- Textarea

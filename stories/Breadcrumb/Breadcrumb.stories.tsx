@@ -30,9 +30,9 @@ export const Default: Story = {
       <Breadcrumb
         {...args}
         items={[
-          { label: t("story_breadcrumb_home"), href: "/" },
-          { label: t("story_breadcrumb_category"), href: "/category" },
-          { label: t("story_breadcrumb_current") },
+          { label: t("story.breadcrumb_home"), href: "/" },
+          { label: t("story.breadcrumb_category"), href: "/category" },
+          { label: t("story.breadcrumb_current") },
         ]}
       />
     );
@@ -47,16 +47,16 @@ export const WithIcons: Story = {
         {...args}
         items={[
           {
-            label: t("story_breadcrumb_home"),
+            label: t("story.breadcrumb_home"),
             href: "/",
             iconName: "CircleIcon",
           },
           {
-            label: t("story_breadcrumb_category"),
+            label: t("story.breadcrumb_category"),
             href: "/category",
             iconName: "SquareIcon",
           },
-          { label: t("story_breadcrumb_current"), iconName: "EyeIcon" },
+          { label: t("story.breadcrumb_current"), iconName: "EyeIcon" },
         ]}
       />
     );
@@ -71,9 +71,9 @@ export const Small: Story = {
         {...args}
         size="small"
         items={[
-          { label: t("story_breadcrumb_home"), href: "/" },
-          { label: t("story_breadcrumb_category"), href: "/category" },
-          { label: t("story_breadcrumb_current") },
+          { label: t("story.breadcrumb_home"), href: "/" },
+          { label: t("story.breadcrumb_category"), href: "/category" },
+          { label: t("story.breadcrumb_current") },
         ]}
       />
     );
@@ -88,9 +88,9 @@ export const Large: Story = {
         {...args}
         size="large"
         items={[
-          { label: t("story_breadcrumb_home"), href: "/" },
-          { label: t("story_breadcrumb_category"), href: "/category" },
-          { label: t("story_breadcrumb_current") },
+          { label: t("story.breadcrumb_home"), href: "/" },
+          { label: t("story.breadcrumb_category"), href: "/category" },
+          { label: t("story.breadcrumb_current") },
         ]}
       />
     );
@@ -105,9 +105,9 @@ export const CustomSeparator: Story = {
         {...args}
         separator=">"
         items={[
-          { label: t("story_breadcrumb_home"), href: "/" },
-          { label: t("story_breadcrumb_category"), href: "/category" },
-          { label: t("story_breadcrumb_current") },
+          { label: t("story.breadcrumb_home"), href: "/" },
+          { label: t("story.breadcrumb_category"), href: "/category" },
+          { label: t("story.breadcrumb_current") },
         ]}
       />
     );

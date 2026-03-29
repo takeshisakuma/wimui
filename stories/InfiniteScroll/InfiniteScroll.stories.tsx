@@ -22,7 +22,7 @@ export const Default: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [items, setItems] = useState(
-      Array.from({ length: 20 }, (_, i) => t("story_infscroll_item", { index: i + 1 })),
+      Array.from({ length: 20 }, (_, i) => t("story.infscroll_item", { index: i + 1 })),
     );
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
@@ -33,7 +33,7 @@ export const Default: Story = {
       setTimeout(() => {
         const newItems = Array.from(
           { length: 10 },
-          (_, i) => t("story_infscroll_item", { index: items.length + i + 1 }),
+          (_, i) => t("story.infscroll_item", { index: items.length + i + 1 }),
         );
         setItems((prev) => [...prev, ...newItems]);
         setLoading(false);

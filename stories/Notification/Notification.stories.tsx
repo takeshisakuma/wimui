@@ -23,8 +23,8 @@ export const Default: Story = {
     return (
       <Notification
         {...args}
-        title={args.title || t("story_notification_title")}
-        description={args.description || t("story_notification_desc")}
+        title={args.title || t("story.notification_title")}
+        description={args.description || t("story.notification_desc")}
       />
     );
   },
@@ -36,8 +36,8 @@ export const Success: Story = {
     return (
       <Notification
         {...args}
-        title={args.title || t("story_notification_success_title")}
-        description={args.description || t("story_notification_success_desc")}
+        title={args.title || t("story.notification_success_title")}
+        description={args.description || t("story.notification_success_desc")}
       />
     );
   },
@@ -52,8 +52,8 @@ export const Warning: Story = {
     return (
       <Notification
         {...args}
-        title={args.title || t("story_notification_warning_title")}
-        description={args.description || t("story_notification_warning_desc")}
+        title={args.title || t("story.notification_warning_title")}
+        description={args.description || t("story.notification_warning_desc")}
       />
     );
   },
@@ -68,8 +68,8 @@ export const ErrorStatus: Story = {
     return (
       <Notification
         {...args}
-        title={args.title || t("story_notification_error_title")}
-        description={args.description || t("story_notification_error_desc")}
+        title={args.title || t("story.notification_error_title")}
+        description={args.description || t("story.notification_error_desc")}
       />
     );
   },
@@ -84,8 +84,8 @@ export const Info: Story = {
     return (
       <Notification
         {...args}
-        title={args.title || t("story_notification_info_title")}
-        description={args.description || t("story_notification_info_desc")}
+        title={args.title || t("story.notification_info_title")}
+        description={args.description || t("story.notification_info_desc")}
       />
     );
   },
@@ -104,14 +104,14 @@ export const Trigger: Story = {
           className="wim-button wim-button--primary"
           onClick={() => setVisible(true)}
         >
-          {t("story_notification_show")}
+          {t("story.notification_show")}
         </button>
         {visible && (
           <div style={{ marginTop: "24px" }}>
             <Notification
               status="success"
-              title={t("story_notification_success_title")}
-              description={t("story_notification_triggered_desc")}
+              title={t("story.notification_success_title")}
+              description={t("story.notification_triggered_desc")}
               onClose={() => setVisible(false)}
             />
           </div>

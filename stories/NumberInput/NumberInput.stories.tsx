@@ -17,7 +17,7 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <NumberInput {...args} placeholder={t("story_numberinput_placeholder")} />
+      <NumberInput {...args} placeholder={t("story.numberinput_placeholder")} />
     );
   },
 };

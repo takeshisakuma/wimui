@@ -29,7 +29,7 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_rating_default")}>
+      <Label label={t("story.rating_default")}>
         <Rating {...args} />
       </Label>
     );
@@ -43,7 +43,7 @@ export const AllowHalf: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_rating_half")}>
+      <Label label={t("story.rating_half")}>
         <Rating {...args} />
       </Label>
     );
@@ -58,7 +58,7 @@ export const CustomCount: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_rating_custom")}>
+      <Label label={t("story.rating_custom")}>
         <Rating {...args} />
       </Label>
     );
@@ -74,7 +74,7 @@ export const Sizes: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <Label label={t("story_rating_sizes")}>
+        <Label label={t("story.rating_sizes")}>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             <Rating {...args} size="small" defaultValue={3} />
             <Rating {...args} size="medium" defaultValue={3} />
@@ -90,7 +90,7 @@ export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Label label={t("story_rating_disabled")}>
+      <Label label={t("story.rating_disabled")}>
         <Rating {...args} disabled />
       </Label>
     );
@@ -105,7 +105,7 @@ export const ReadOnly: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <Label label={t("story_rating_readonly")}>
+        <Label label={t("story.rating_readonly")}>
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             <Rating {...args} value={5} readOnly />
             <Rating {...args} value={4} readOnly />
@@ -134,7 +134,7 @@ export const Controlled: Story = {
     };
 
     return (
-      <Label label={t("story_rating_controlled")}>
+      <Label label={t("story.rating_controlled")}>
         <Rating {...args} value={value} onChange={handleChange} />
       </Label>
     );

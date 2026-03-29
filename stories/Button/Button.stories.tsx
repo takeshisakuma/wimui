@@ -26,7 +26,7 @@ type Story = StoryObj<typeof Button>;
 export const LargePrimaryButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("button_label")} />;
+    return <Button {...args} label={t("button.label")} />;
   },
   args: {
     size: "large",
@@ -37,7 +37,7 @@ export const LargePrimaryButton: Story = {
 export const MediumSecondaryButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("button_label")} />;
+    return <Button {...args} label={t("button.label")} />;
   },
   args: {
     size: "medium",
@@ -48,7 +48,7 @@ export const MediumSecondaryButton: Story = {
 export const SmallTertiaryButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("button_label")} />;
+    return <Button {...args} label={t("button.label")} />;
   },
   args: {
     size: "small",
@@ -59,7 +59,7 @@ export const SmallTertiaryButton: Story = {
 export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("button_label")} />;
+    return <Button {...args} label={t("button.label")} />;
   },
   args: {
     size: "small",
@@ -74,7 +74,7 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
 export const DisabledButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("button_label")} />;
+    return <Button {...args} label={t("button.label")} />;
   },
   args: {
     size: "medium",
@@ -123,7 +123,7 @@ export const MediumPrimaryInteractiveLoadingButton: Story = {
     return (
       <Button
         {...args}
-        label={t("button_label")}
+        label={t("button.label")}
         loading={loading}
         onClick={handleClick}
       />
@@ -151,7 +151,7 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
     return (
       <Button
         {...args}
-        label={t("button_label")}
+        label={t("button.label")}
         loading={loading}
         onClick={handleClick}
         icon="CircleIcon"
@@ -171,7 +171,7 @@ export const WithChildren: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Button priority="primary" size="medium">
-        {t("story_button_click_me")}
+        {t("story.button_click_me")}
       </Button>
     );
   },

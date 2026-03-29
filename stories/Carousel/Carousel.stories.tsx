@@ -70,7 +70,7 @@ export const Basic: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const slides = Array.from({ length: 4 }).map((_, i) => (
-      <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
+      <ImagePlaceholder key={i} index={i} label={t("story.carousel_slide")} />
     ));
     return <Carousel {...args}>{slides}</Carousel>;
   },
@@ -80,7 +80,7 @@ export const MultipleItems: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const slides = Array.from({ length: 6 }).map((_, i) => (
-      <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
+      <ImagePlaceholder key={i} index={i} label={t("story.carousel_slide")} />
     ));
     return (
       <Carousel {...args} slidesToShow={3}>
@@ -97,7 +97,7 @@ export const Responsive: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const slides = Array.from({ length: 6 }).map((_, i) => (
-      <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
+      <ImagePlaceholder key={i} index={i} label={t("story.carousel_slide")} />
     ));
     return (
       <Carousel
@@ -122,7 +122,7 @@ export const AutoPlay: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const slides = Array.from({ length: 4 }).map((_, i) => (
-      <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
+      <ImagePlaceholder key={i} index={i} label={t("story.carousel_slide")} />
     ));
     return (
       <Carousel {...args} autoPlay={true} interval={3000}>
@@ -147,9 +147,9 @@ export const CustomContent: Story = {
             }}
           >
             <h3>
-              {t("story_carousel_card")} 1
+              {t("story.carousel_card")} 1
             </h3>
-            <p>{t("story_carousel_msg_loop")}</p>
+            <p>{t("story.carousel_msg_loop")}</p>
           </div>
         </div>
         <div style={{ padding: "0 10px", width: "100%" }}>
@@ -162,9 +162,9 @@ export const CustomContent: Story = {
             }}
           >
             <h3>
-              {t("story_carousel_card")} 2
+              {t("story.carousel_card")} 2
             </h3>
-            <p>{t("story_carousel_msg_multiple")}</p>
+            <p>{t("story.carousel_msg_multiple")}</p>
           </div>
         </div>
         <div style={{ padding: "0 10px", width: "100%" }}>
@@ -177,9 +177,9 @@ export const CustomContent: Story = {
             }}
           >
             <h3>
-              {t("story_carousel_card")} 3
+              {t("story.carousel_card")} 3
             </h3>
-            <p>{t("story_carousel_msg_smooth")}</p>
+            <p>{t("story.carousel_msg_smooth")}</p>
           </div>
         </div>
       </Carousel>
@@ -191,7 +191,7 @@ export const NoLoop: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const slides = Array.from({ length: 3 }).map((_, i) => (
-      <ImagePlaceholder key={i} index={i} label={t("story_carousel_slide")} />
+      <ImagePlaceholder key={i} index={i} label={t("story.carousel_slide")} />
     ));
     return (
       <Carousel {...args} loop={false}>
@@ -210,7 +210,7 @@ export const WithImage: Story = {
           <div key={`img-${i}`} style={{ width: "100%", height: "300px" }}>
             <img
               src={SampleImage}
-              alt={`${t("story_carousel_sample_alt")} ${i + 1}`}
+              alt={`${t("story.carousel_sample_alt")} ${i + 1}`}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
@@ -226,7 +226,7 @@ export const AspectRatioCheck: Story = {
     return (
       <Carousel {...args} aspectRatio="16/9" objectFit="cover">
         {Array.from({ length: 4 }).map((_, i) => (
-          <img key={`img-${i}`} src={SampleImage} alt={`${t("story_carousel_sample_alt")} ${i + 1}`} />
+          <img key={`img-${i}`} src={SampleImage} alt={`${t("story.carousel_sample_alt")} ${i + 1}`} />
         ))}
       </Carousel>
     );

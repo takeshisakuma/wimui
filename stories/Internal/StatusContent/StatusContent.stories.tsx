@@ -24,12 +24,12 @@ export const Default: Story = {
     return (
         <StatusContent 
             {...args}
-            title={t("doc_status_success_title")}
-            description={t("doc_status_success_desc")}
+            title={t("doc.status_success_title")}
+            description={t("doc.status_success_desc")}
             actions={
                 <>
-                    <Button label={t("button_label")} priority="primary" />
-                    <Button label={t("doc_RefTable_desc")} priority="secondary" />
+                    <Button label={t("button.label")} priority="primary" />
+                    <Button label={t("doc.RefTable_desc")} priority="secondary" />
                 </>
             }
         />
@@ -46,8 +46,8 @@ export const Small: Story = {
     return (
         <StatusContent 
             {...args}
-            title={t("doc_status_success_title")}
-            description={t("doc_status_success_desc")}
+            title={t("doc.status_success_title")}
+            description={t("doc.status_success_desc")}
         />
     );
   },
@@ -63,8 +63,8 @@ export const NoAction: Story = {
     return (
         <StatusContent 
             {...args}
-            title={t("doc_status_success_title")}
-            description={t("doc_status_success_desc")}
+            title={t("doc.status_success_title")}
+            description={t("doc.status_success_desc")}
         />
     );
   },

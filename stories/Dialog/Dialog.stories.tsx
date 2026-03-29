@@ -52,26 +52,26 @@ export const Default: Story = {
         <DialogTrigger asChild>
           <Button
             priority="primary"
-            label={t("story_dialog_open")}
+            label={t("story.dialog_open")}
 
           />
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{t("story_dialog_edit_title")}</DialogTitle>
-            <DialogDescription>{t("story_dialog_edit_desc")}</DialogDescription>
+            <DialogTitle>{t("story.dialog_edit_title")}</DialogTitle>
+            <DialogDescription>{t("story.dialog_edit_desc")}</DialogDescription>
           </DialogHeader>
           <div style={{ display: "grid", gap: "1.5rem", padding: "1rem 0" }}>
             <div
               style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
             >
-              <Label htmlFor="name" label={t("story_dialog_name")} />
+              <Label htmlFor="name" label={t("story.dialog_name")} />
               <Input id="name" defaultValue="Pedro Duarte" fullWidth />
             </div>
             <div
               style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
             >
-              <Label htmlFor="username" label={t("story_dialog_username")} />
+              <Label htmlFor="username" label={t("story.dialog_username")} />
               <Input id="username" defaultValue="@peduarte" fullWidth />
             </div>
           </div>
@@ -79,13 +79,13 @@ export const Default: Story = {
             <DialogClose asChild>
               <Button
                 priority="secondary"
-                label={t("story_dialog_cancel")}
+                label={t("story.dialog_cancel")}
 
               />
             </DialogClose>
             <Button
               priority="primary"
-              label={t("story_dialog_save")}
+              label={t("story.dialog_save")}
 
             />
           </DialogFooter>
@@ -103,30 +103,30 @@ export const Uncontrolled: Story = {
         <DialogTrigger asChild>
           <Button
             priority="secondary"
-            label={t("story_dialog_uncontrolled")}
+            label={t("story.dialog_uncontrolled")}
 
           />
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{t("story_dialog_uncontrolled_title")}</DialogTitle>
+            <DialogTitle>{t("story.dialog_uncontrolled_title")}</DialogTitle>
             <DialogDescription>
-              {t("story_dialog_uncontrolled_desc")}
+              {t("story.dialog_uncontrolled_desc")}
             </DialogDescription>
           </DialogHeader>
-          <p>{t("story_dialog_uncontrolled_body")}</p>
+          <p>{t("story.dialog_uncontrolled_body")}</p>
           <DialogFooter>
             <DialogClose asChild>
               <Button
                 priority="secondary"
-                label={t("story_dialog_cancel")}
+                label={t("story.dialog_cancel")}
 
               />
             </DialogClose>
             <Button
               priority="primary"
-              label={t("story_dialog_confirm")}
-              onClick={() => alert(t("story_dialog_confirmed_msg"))}
+              label={t("story.dialog_confirm")}
+              onClick={() => alert(t("story.dialog_confirmed_msg"))}
 
             />
           </DialogFooter>
@@ -150,11 +150,11 @@ export const Controlled: Story = {
         }}
       >
         <p>
-          {t("story_dialog_curr_state")}: {open ? t("story_dialog_open_state") : t("story_dialog_closed_state")}
+          {t("story.dialog_curr_state")}: {open ? t("story.dialog_open_state") : t("story.dialog_closed_state")}
         </p>
         <Button
           priority="primary"
-          label={t("story_dialog_state_open")}
+          label={t("story.dialog_state_open")}
           onClick={() => setOpen(true)}
 
         />
@@ -162,22 +162,22 @@ export const Controlled: Story = {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>{t("story_dialog_controlled_title")}</DialogTitle>
+              <DialogTitle>{t("story.dialog_controlled_title")}</DialogTitle>
               <DialogDescription>
-                {t("story_dialog_controlled_desc")}
+                {t("story.dialog_controlled_desc")}
               </DialogDescription>
             </DialogHeader>
-            <p>{t("story_dialog_controlled_body")}</p>
+            <p>{t("story.dialog_controlled_body")}</p>
             <DialogFooter>
               <Button
                 priority="secondary"
-                label={t("story_dialog_cancel")}
+                label={t("story.dialog_cancel")}
                 onClick={() => setOpen(false)}
 
               />
               <Button
                 priority="primary"
-                label={t("story_dialog_state_close")}
+                label={t("story.dialog_state_close")}
                 onClick={() => setOpen(false)}
 
               />

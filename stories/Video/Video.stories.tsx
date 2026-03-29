@@ -51,7 +51,7 @@ export const AutoPlay: Story = {
         muted={true}
         loop={true}
         controls={false}
-        caption={t("story_video_autoplay_caption")}
+        caption={t("story.video_autoplay_caption")}
       />
     );
   },
@@ -79,7 +79,7 @@ export const CustomControls: Story = {
         customControls={true}
         radius="medium"
         shadow={true}
-        caption={t("story_video_custom_caption")}
+        caption={t("story.video_custom_caption")}
       />
     );
   },
@@ -101,7 +101,7 @@ export const FullFeatured: Story = {
         border={true}
         fit="cover"
         preload="auto"
-        caption={t("story_video_full_caption")}
+        caption={t("story.video_full_caption")}
         customControls={true}
         advancedControls={true}
         qualities={[
@@ -112,11 +112,11 @@ export const FullFeatured: Story = {
         playlist={[
           {
             src: sampleVideo,
-            title: t("story_video_ep1"),
+            title: t("story.video_ep1"),
             poster: videoPoster,
           },
-          { src: sampleVideo, title: t("story_video_ep2"), poster: videoPoster },
-          { src: sampleVideo, title: t("story_video_ep3"), poster: videoPoster },
+          { src: sampleVideo, title: t("story.video_ep2"), poster: videoPoster },
+          { src: sampleVideo, title: t("story.video_ep3"), poster: videoPoster },
         ]}
       />
     );
@@ -130,12 +130,12 @@ export const PremiumFeatures: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
         <div>
-          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_video_premium_features_lazy_load")}</p>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.video_premium_features_lazy_load")}</p>
           <div style={{ marginBottom: "1rem" }}>
             <Button
               priority="primary"
               onClick={() => setVideoKey((prev) => prev + 1)}
-              label={t("story_video_premium_features_reload")}
+              label={t("story.video_premium_features_reload")}
               icon="RefreshIcon"
             />
           </div>
@@ -149,7 +149,7 @@ export const PremiumFeatures: Story = {
             demoDelay={2000}
             radius="medium"
             shadow
-            caption={t("story_video_premium_features_caption")}
+            caption={t("story.video_premium_features_caption")}
           />
         </div>
       </div>

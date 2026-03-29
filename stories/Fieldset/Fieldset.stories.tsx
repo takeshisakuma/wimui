@@ -25,11 +25,11 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Fieldset {...args}>
-        <Legend label={t("story_fieldset_basic")} />
-        <Label label={t("story_fieldset_name")}>
-          <Input placeholder={t("story_fieldset_name_placeholder")} />
+        <Legend label={t("story.fieldset_basic")} />
+        <Label label={t("story.fieldset_name")}>
+          <Input placeholder={t("story.fieldset_name_placeholder")} />
         </Label>
-        <Label label={t("story_header_contact")}>
+        <Label label={t("story.header_contact")}>
           <Input type="email" placeholder="example@wim.ui" />
         </Label>
       </Fieldset>
@@ -42,12 +42,12 @@ export const WithCheckboxGroup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Fieldset {...args}>
-        <Legend label={t("story_fieldset_notif")} />
+        <Legend label={t("story.fieldset_notif")} />
         <CheckboxGroup
           options={[
-            { label: t("story_fieldset_notif_email"), value: "email" },
-            { label: t("story_fieldset_notif_push"), value: "push" },
-            { label: t("story_fieldset_notif_sms"), value: "sms" },
+            { label: t("story.fieldset_notif_email"), value: "email" },
+            { label: t("story.fieldset_notif_push"), value: "push" },
+            { label: t("story.fieldset_notif_sms"), value: "sms" },
           ]}
           defaultValue={["email"]}
         />
@@ -64,14 +64,14 @@ export const Disabled: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Fieldset {...args}>
-        <Legend label={t("story_fieldset_disabled_sec")} />
-        <Label label={t("story_fieldset_name")}>
-          <Input placeholder={t("story_fieldset_disabled_placeholder")} />
+        <Legend label={t("story.fieldset_disabled_sec")} />
+        <Label label={t("story.fieldset_name")}>
+          <Input placeholder={t("story.fieldset_disabled_placeholder")} />
         </Label>
         <CheckboxGroup
           options={[
-            { label: t("story_fieldset_opt1"), value: "1" },
-            { label: t("story_fieldset_opt2"), value: "2" },
+            { label: t("story.fieldset_opt1"), value: "1" },
+            { label: t("story.fieldset_opt2"), value: "2" },
           ]}
         />
       </Fieldset>

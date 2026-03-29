@@ -105,7 +105,7 @@ export const Button = React.forwardRef<
       if (!label && !children && typeof icon === "string") {
         resolvedAriaLabel = t(`icon_${icon}`, { defaultValue: icon });
       } else if (loading) {
-        resolvedAriaLabel = t("a11y_loading");
+        resolvedAriaLabel = t("a11y.loading");
       }
     }
 

@@ -36,7 +36,7 @@ export const Default: Story = {
 export const WithCaption: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Audio {...args} caption={t("story_audio_caption")} />;
+    return <Audio {...args} caption={t("story.audio_caption")} />;
   },
   args: {
     src: audioSample,
@@ -118,12 +118,12 @@ export const PremiumFeatures: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
         <div>
-          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story_audio_premium_features_lazy_load")}</p>
+          <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.audio_premium_features_lazy_load")}</p>
           <div style={{ marginBottom: "1rem" }}>
             <Button
               priority="primary"
               onClick={() => setAudioKey((prev) => prev + 1)}
-              label={t("story_audio_premium_features_reload")}
+              label={t("story.audio_premium_features_reload")}
               icon="RefreshIcon"
             />
           </div>
@@ -136,7 +136,7 @@ export const PremiumFeatures: Story = {
             demoDelay={2000}
             radius="medium"
             shadow
-            caption={t("story_audio_premium_features_caption")}
+            caption={t("story.audio_premium_features_caption")}
           />
         </div>
       </div>

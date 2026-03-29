@@ -49,15 +49,15 @@ export const Default: Story = {
         <BottomSheetTrigger asChild>
           <Button
             priority="primary"
-            label={t("story_bottomsheet_open")}
+            label={t("story.bottomsheet_open")}
 
           />
         </BottomSheetTrigger>
         <BottomSheetContent>
           <BottomSheetHeader>
-            <BottomSheetTitle>{t("story_bottomsheet_title")}</BottomSheetTitle>
+            <BottomSheetTitle>{t("story.bottomsheet_title")}</BottomSheetTitle>
             <BottomSheetDescription>
-              {t("story_bottomsheet_desc")}
+              {t("story.bottomsheet_desc")}
             </BottomSheetDescription>
           </BottomSheetHeader>
           <BottomSheetBody>
@@ -65,7 +65,7 @@ export const Default: Story = {
               className="space-y-4"
               style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
             >
-              <p>{t("story_bottomsheet_body")}</p>
+              <p>{t("story.bottomsheet_body")}</p>
               <div
                 style={{
                   padding: "1rem",
@@ -74,12 +74,12 @@ export const Default: Story = {
                 }}
               >
                 <p style={{ fontSize: "0.875rem" }}>
-                  {t("story_bottomsheet_hint")}
+                  {t("story.bottomsheet_hint")}
                 </p>
               </div>
               {Array.from({ length: 10 }).map((_, i) => (
                 <p key={i}>
-                  {t("story_bottomsheet_scroll_item")} {i + 1}
+                  {t("story.bottomsheet_scroll_item")} {i + 1}
                 </p>
               ))}
             </div>
@@ -88,13 +88,13 @@ export const Default: Story = {
             <BottomSheetClose asChild>
               <Button
                 priority="secondary"
-                label={t("story_bottomsheet_cancel")}
+                label={t("story.bottomsheet_cancel")}
 
               />
             </BottomSheetClose>
             <Button
               priority="primary"
-              label={t("story_bottomsheet_action")}
+              label={t("story.bottomsheet_action")}
 
             />
           </BottomSheetFooter>
@@ -112,13 +112,13 @@ export const SingleAction: Story = {
         <BottomSheetTrigger asChild>
           <Button
             priority="secondary"
-            label={t("story_bottomsheet_quick_actions")}
+            label={t("story.bottomsheet_quick_actions")}
 
           />
         </BottomSheetTrigger>
         <BottomSheetContent>
           <BottomSheetHeader>
-            <BottomSheetTitle>{t("story_bottomsheet_select_option")}</BottomSheetTitle>
+            <BottomSheetTitle>{t("story.bottomsheet_select_option")}</BottomSheetTitle>
           </BottomSheetHeader>
           <BottomSheetBody>
             <div
@@ -135,7 +135,7 @@ export const SingleAction: Story = {
                   borderRadius: "0.375rem",
                 }}
               >
-                <span>{t("story_bottomsheet_share")}</span>
+                <span>{t("story.bottomsheet_share")}</span>
               </button>
               <button
                 style={{
@@ -148,7 +148,7 @@ export const SingleAction: Story = {
                   borderRadius: "0.375rem",
                 }}
               >
-                <span>{t("story_bottomsheet_favorite")}</span>
+                <span>{t("story.bottomsheet_favorite")}</span>
               </button>
               <button
                 style={{
@@ -162,7 +162,7 @@ export const SingleAction: Story = {
                   color: "var(--wim-color-destructive)",
                 }}
               >
-                <span>{t("story_bottomsheet_delete")}</span>
+                <span>{t("story.bottomsheet_delete")}</span>
               </button>
             </div>
           </BottomSheetBody>

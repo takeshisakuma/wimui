@@ -117,9 +117,9 @@ export function DataGrid<T extends Record<string, unknown>>({
   a11y_select_all_rows,
 }: DataGridProps<T>) {
   const { t } = useTranslation(["components", "common"]);
-  const actualEmptyMessage = emptyMessage ?? t("datagrid_empty");
+  const actualEmptyMessage = emptyMessage ?? t("datagrid.empty");
   const actualSelectAllRowsA11y =
-    a11y_select_all_rows ?? t("a11y_select_all_rows");
+    a11y_select_all_rows ?? t("a11y.select_all_rows");
 
   const { focusedCell, setFocusedCell, containerRef, handleKeyDown } =
     useDataGridKeyboard(columns, rows, selection);
@@ -324,7 +324,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                           onChange={(e) =>
                             handleSelectRow(key, e.target.checked)
                           }
-                          aria-label={t("datagrid_select_row", {
+                          aria-label={t("datagrid.select_row", {
                             index: rowIndex + 1,
                           })}
                           tabIndex={-1}
@@ -395,7 +395,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                     ref={loaderRef}
                     className="wim-datagrid__loader"
                     aria-live="polite"
-                    aria-label={loadMore.loading ? t("datagrid_loading_more", "Loading more rows") : undefined}
+                    aria-label={loadMore.loading ? t("datagrid.loading_more", "Loading more rows") : undefined}
                   >
                     {loadMore.loading && <Spinner size="small" />}
                   </div>
