@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
+import { ComponentSize } from "../../types/tokens";
 import "./avatar.scss";
 
 type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -8,7 +9,7 @@ type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
   alt?: string;
   initials?: string;
   icon?: React.ReactNode;
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   shape?: "circle" | "rounded";
   /** ステータス */
   status?: "primary" | "secondary" | "neutral" | "error" | "success";

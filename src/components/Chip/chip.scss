@@ -36,6 +36,18 @@
     }
   }
 
+  &--lg {
+    height: 2.4rem;
+    padding: 0 var(--spacing-lg);
+    font-size: var(--font-size-small);
+
+    .wim-chip__avatar {
+      width: 2.4rem;
+      height: 2.4rem;
+      margin-left: calc(-1 * var(--spacing-lg) - 1px);
+    }
+  }
+
   &--clickable {
     cursor: pointer;
 

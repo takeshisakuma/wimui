@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
+import { ComponentSize } from "../../types/tokens";
 import "./rating.scss";
 
 type RatingProps = {
@@ -33,7 +34,7 @@ type RatingProps = {
   /**
    * サイズ
    */
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   /**
    * 値変更時のコールバック
    */

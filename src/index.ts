@@ -4,6 +4,7 @@ import "./base.scss";
 import "./utilities.scss";
 import "./lang.scss";
 
+export * from "./types/tokens";
 export * from "./components/Accordion/Accordion";
 export * from "./components/Affix/Affix";
 export * from "./components/Alert/Alert";

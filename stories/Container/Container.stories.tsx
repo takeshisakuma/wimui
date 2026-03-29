@@ -12,7 +12,7 @@ const meta: Meta<typeof Container> = {
   tags: [],
   argTypes: {
     size: {
-      control: "select",
+      control: "radio",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },

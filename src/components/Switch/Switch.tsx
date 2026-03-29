@@ -1,11 +1,12 @@
 import React, { useRef, useId } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
+import { ComponentSize } from "../../types/tokens";
 import "./switch.scss";
 
 type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
   label?: string;
-  size?: "small" | "medium";
+  size?: ComponentSize;
   className?: string;
 };
 
@@ -42,7 +43,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           switch=""
           className={classNames(
             "wim-switch-input",
-            size === "small" && "wim-switch-input--small",
+            size === "small" ? "wim-switch-input--sm" : size === "large" ? "wim-switch-input--lg" : null,
           )}
           disabled={disabled}
           ref={resolvedRef}

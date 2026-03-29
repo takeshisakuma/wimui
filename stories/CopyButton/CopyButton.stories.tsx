@@ -7,7 +7,7 @@ const meta: Meta<typeof CopyButton> = {
   tags: [],
   argTypes: {
     size: {
-      control: { type: "select" },
+      control: "radio",
       options: ["small", "medium", "large"],
     },
   },

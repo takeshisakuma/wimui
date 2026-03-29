@@ -15,7 +15,7 @@ const meta: Meta<typeof ToggleGroup> = {
       options: ["single", "multiple"],
     },
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
   },

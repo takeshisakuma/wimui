@@ -6,6 +6,11 @@
 export type LiteralWithAutocomplete<T extends string> = T | (string & {});
 
 /**
+ * Standard size values for components.
+ */
+export type ComponentSize = "small" | "medium" | "large";
+
+/**
  * Color tokens available as CSS variables.
  */
 export type WimColorToken =

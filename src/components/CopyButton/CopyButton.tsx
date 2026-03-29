@@ -4,10 +4,11 @@ import classNames from "classnames";
 import { Button } from "../Button/Button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip/Tooltip";
 import { isDev } from "@/utilities/dev-utils";
+import { ComponentSize } from "../../types/tokens";
 
 type CopyButtonProps = {
   value: string;
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   className?: string;
   "aria-label"?: string;
 };

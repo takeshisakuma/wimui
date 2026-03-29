@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import classNames from "classnames";
+import { ComponentSize } from "../../types/tokens";
 import "./interactiveArea.scss";
 
 export type InteractiveAreaProps = Omit<
@@ -33,7 +34,7 @@ export type InteractiveAreaProps = Omit<
   /**
    * Size variation
    */
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   /**
    * Whether the area is currently in a dragging state (for dropzone)
    */

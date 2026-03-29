@@ -1,5 +1,6 @@
 import React from "react";
 import { IndicatorBase } from "../_internal/IndicatorBase";
+import { ComponentSize } from "../../types/tokens";
 import "./tag.scss";
 
 export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
@@ -17,7 +18,7 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   /** バリアント */
   variant?: "solid" | "outline" | "subtle";
   /** サイズ */
-  size?: "small" | "medium";
+  size?: ComponentSize;
   /** アイコン */
   icon?: React.ReactNode;
 };

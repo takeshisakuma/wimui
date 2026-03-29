@@ -1,6 +1,7 @@
 import React, { useRef, useCallback } from "react";
 import classNames from "classnames";
 import { useIndicator } from "../_internal/useIndicator";
+import { ComponentSize } from "../../types/tokens";
 import "./tab-navigation.scss";
 
 export interface TabNavigationProps extends React.ComponentPropsWithoutRef<"nav"> {
@@ -9,7 +10,7 @@ export interface TabNavigationProps extends React.ComponentPropsWithoutRef<"nav"
   /** Alignment of the tabs */
   align?: "start" | "center" | "end" | "justify";
   /** Size of the tabs */
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
 }
 
 const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(

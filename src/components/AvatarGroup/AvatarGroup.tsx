@@ -2,11 +2,12 @@ import React from "react";
 import classNames from "classnames";
 import "./avatar-group.scss";
 import { Avatar } from "../Avatar/Avatar";
+import { ComponentSize } from "../../types/tokens";
 
 type AvatarGroupProps = {
   children: React.ReactNode;
   max?: number;
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   total?: number;
   className?: string;
 };
@@ -31,7 +32,7 @@ export const AvatarGroup = ({
       {itemsToShow.map((child, index) => {
         if (React.isValidElement(child) && child.type === Avatar) {
           const avatarChild = child as React.ReactElement<{
-            size?: "small" | "medium" | "large";
+            size?: ComponentSize;
           }>;
           return React.cloneElement(avatarChild, {
             size: size || avatarChild.props.size,

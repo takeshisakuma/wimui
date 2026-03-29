@@ -16,7 +16,7 @@ const meta: Meta<typeof Indicator> = {
       options: ["primary", "success", "error", "warning", "neutral"],
     },
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
     position: {

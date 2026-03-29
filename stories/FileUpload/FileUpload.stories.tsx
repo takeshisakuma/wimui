@@ -22,7 +22,7 @@ const meta: Meta<typeof FileUpload> = {
       options: ["left", "right"],
     },
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
   },

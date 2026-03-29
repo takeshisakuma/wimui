@@ -1,12 +1,12 @@
 import React from "react";
 import classNames from "classnames";
-import { WimColor } from "../../types/tokens";
+import { WimColor, ComponentSize } from "../../types/tokens";
 import "./indicator.scss";
 
 type IndicatorProps = {
   children?: React.ReactNode;
   color?: "primary" | "success" | "error" | "warning" | "neutral" | WimColor;
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   position?: "top-right" | "top-left" | "bottom-right" | "bottom-left";
   pulse?: boolean;
   inline?: boolean;

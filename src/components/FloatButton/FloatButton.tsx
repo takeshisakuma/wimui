@@ -3,6 +3,7 @@ import classNames from "classnames";
 import "./float-button.scss";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { ComponentSize } from "../../types/tokens";
 
 export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Icon name from the library */
@@ -18,7 +19,7 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
   /** Shape of the button */
   shape?: "circle" | "square";
   /** Size of the button */
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   /** Label text for extended FAB */
   label?: string;
   /** Whether to shrink the extended FAB (hide label) */

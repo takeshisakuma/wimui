@@ -14,7 +14,7 @@ const meta: Meta<typeof List> = {
       options: ["ul", "ol"],
     },
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
     spacing: {

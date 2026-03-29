@@ -50,6 +50,20 @@
     }
   }
 
+  &--lg {
+    min-width: 1.75em;
+    height: 1.75em;
+    padding: 6px 10px;
+    font-size: 0.875rem;
+
+    &.wim-badge--icon-only {
+      width: 12px;
+      min-width: 0;
+      height: 12px;
+      padding: 0;
+    }
+  }
+
   // Colors and Variants
   @include token-variants("wim-badge");
 }

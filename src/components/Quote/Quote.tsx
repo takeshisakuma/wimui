@@ -2,9 +2,10 @@ import React from "react";
 import classNames from "classnames";
 import "./quote.scss";
 import { useTranslation } from "react-i18next";
+import { ComponentSize } from "../../types/tokens";
 
 type QuoteProps = React.ComponentPropsWithoutRef<"blockquote"> & {
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   color?:
     | "black"
     | "deepgray"

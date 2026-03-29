@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { ComponentSize } from "../../types/tokens";
 import "./kbd.scss";
 
 export type KbdProps = React.ComponentPropsWithoutRef<"kbd"> & {
@@ -10,7 +11,7 @@ export type KbdProps = React.ComponentPropsWithoutRef<"kbd"> & {
   /**
    * サイズ。
    */
-  size?: "small" | "medium";
+  size?: ComponentSize;
 };
 
 /**
@@ -24,7 +25,7 @@ export const Kbd = ({
 }: KbdProps) => {
   return (
     <kbd
-      className={classNames("wim-kbd", `wim-kbd--${size === "small" ? "sm" : "md"}`, className)}
+      className={classNames("wim-kbd", `wim-kbd--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`, className)}
       {...props}
     >
       {children}

@@ -24,7 +24,7 @@ const meta: Meta<typeof Loader> = {
       ],
     },
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
   },

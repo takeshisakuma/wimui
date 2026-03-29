@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
+import { ComponentSize } from "../../types/tokens";
 import "./chip.scss";
 import { warnDeprecated } from "../../utilities/dev-utils";
 
@@ -27,7 +28,7 @@ export type ChipProps = {
   /** バリアント */
   variant?: "solid" | "outline" | "subtle";
   /** サイズ */
-  size?: "small" | "medium";
+  size?: ComponentSize;
   /** 追加のクラス名 */
   className?: string;
   /** その他のprops */
@@ -66,7 +67,7 @@ export const Chip = ({
       "wim-chip",
       `wim-chip--${status}`,
       `wim-chip--${variant}`,
-      `wim-chip--${size === "small" ? "sm" : "md"}`,
+      `wim-chip--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
       selected && "wim-chip--selected",
       onClick && !disabled && "wim-chip--clickable",
       disabled && "wim-chip--disabled",

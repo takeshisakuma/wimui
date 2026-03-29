@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { useIndicator } from "../_internal/useIndicator";
+import { ComponentSize } from "../../types/tokens";
 import "./toggle-group.scss";
 
 export type Option = {
@@ -17,7 +18,7 @@ type ToggleGroupProps = {
   defaultValue?: string | string[];
   onChange?: (value: string | string[]) => void;
   selectionMode?: "single" | "multiple";
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   fullWidth?: boolean;
   className?: string;
   /**

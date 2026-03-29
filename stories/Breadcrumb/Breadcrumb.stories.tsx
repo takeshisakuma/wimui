@@ -14,7 +14,7 @@ const meta: Meta<typeof Breadcrumb> = {
   },
   argTypes: {
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
   },

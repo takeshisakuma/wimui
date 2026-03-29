@@ -13,7 +13,7 @@ const meta: Meta<typeof Avatar> = {
   },
   argTypes: {
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
     shape: {

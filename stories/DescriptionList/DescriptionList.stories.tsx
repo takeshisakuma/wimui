@@ -17,7 +17,7 @@ const meta: Meta<typeof DescriptionList> = {
       options: ["horizontal", "vertical", "compact"],
     },
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
     border: {

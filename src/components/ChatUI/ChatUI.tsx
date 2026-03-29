@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
+import { ComponentSize } from "../../types/tokens";
 import "./chatui.scss";
 
 export interface ChatContainerProps {
@@ -156,7 +157,7 @@ export interface ChatAvatarProps {
   src?: string;
   alt?: string;
   fallback?: string;
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   color?: "s1" | "s3" | "s5" | "s7" | "s10" | "s12" | "s14" | "s16" | "s18" | "s20" | "s22" | "s24";
   className?: string;
 }

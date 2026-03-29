@@ -4,6 +4,7 @@ import "./breadcrumb.scss";
 import { useTranslation } from "react-i18next";
 import { Link } from "../Link/Link";
 import { Icon } from "../Icon/Icon";
+import { ComponentSize } from "../../types/tokens";
 
 type BreadcrumbItem = {
   label: string;
@@ -14,7 +15,7 @@ type BreadcrumbItem = {
 type BreadcrumbProps = {
   items: BreadcrumbItem[];
   separator?: React.ReactNode;
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   className?: string;
 };
 

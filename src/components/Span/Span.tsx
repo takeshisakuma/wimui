@@ -3,7 +3,7 @@ import classNames from "classnames";
 import "./span.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
-import { WimColor } from "../../types/tokens";
+import { WimColor, ComponentSize } from "../../types/tokens";
 
 type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
   size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
@@ -51,7 +51,7 @@ export const Span = ({
   };
 
   // Icon の size プロパティは "small" | "medium" | "large" のみ許容されているためマッピング
-  const iconSizeMap: Record<string, "small" | "medium" | "large"> = {
+  const iconSizeMap: Record<string, ComponentSize> = {
     "ex-small": "small",
     small: "small",
     medium: "medium",

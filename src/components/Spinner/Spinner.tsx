@@ -1,10 +1,10 @@
 import React from "react";
 import classNames from "classnames";
-import { WimColor } from "../../types/tokens";
+import { WimColor, ComponentSize } from "../../types/tokens";
 import "./spinner.scss";
 
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   color?:
   | "primary"
   | "secondary"

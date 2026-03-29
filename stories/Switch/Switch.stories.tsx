@@ -15,7 +15,7 @@ const meta: Meta<typeof Switch> = {
     disabled: { control: "boolean" },
     size: {
       control: "radio",
-      options: ["small", "medium"],
+      options: ["small", "medium", "large"],
     },
   },
 };

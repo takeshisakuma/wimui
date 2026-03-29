@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { ComponentSize } from "../../types/tokens";
 import "./icon.scss";
 
 // SVG
@@ -212,7 +213,7 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
     | "PipIcon";
 
 
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   color?:
     | "destructive"
     | "positive"

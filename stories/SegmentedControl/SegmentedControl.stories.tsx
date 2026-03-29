@@ -14,7 +14,7 @@ const meta: Meta<typeof SegmentedControl> = {
   argTypes: {
     disabled: { control: "boolean" },
     size: {
-      control: { type: "select" },
+      control: "radio",
       options: ["small", "medium", "large"],
     },
     fullWidth: {

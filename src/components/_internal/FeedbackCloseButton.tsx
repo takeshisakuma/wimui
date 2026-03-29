@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
+import { ComponentSize } from "../../types/tokens";
 
 export interface FeedbackCloseButtonProps {
   /**
@@ -22,7 +23,7 @@ export interface FeedbackCloseButtonProps {
   /**
    * アイコンのサイズ
    */
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
 }
 
 /**

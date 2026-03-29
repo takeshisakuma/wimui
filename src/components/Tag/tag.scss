@@ -17,6 +17,11 @@
     font-size: var(--font-size-minus-3);
   }
 
+  &--lg {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-small);
+  }
+
   &__icon {
     display: flex;
     font-size: 1.2em;

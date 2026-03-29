@@ -18,7 +18,7 @@ const meta: Meta<typeof HamburgerMenu> = {
       description: "State of the menu (open/closed)",
     },
     size: {
-      control: { type: "select" },
+      control: "radio",
       options: ["small", "medium", "large"],
       description: "Size of the hamburger menu",
     },

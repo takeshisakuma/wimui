@@ -3,16 +3,17 @@ import classNames from "classnames";
 import "./list.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
+import { ComponentSize } from "../../types/tokens";
 
 type ListContextType = {
-  size: "small" | "medium" | "large";
+  size: ComponentSize;
 };
 
 const ListContext = createContext<ListContextType>({ size: "medium" });
 
 type ListProps = React.ComponentPropsWithoutRef<"ul"> & {
   as?: "ul" | "ol";
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   spacing?: "tight" | "normal" | "loose";
   children: React.ReactNode;
 };

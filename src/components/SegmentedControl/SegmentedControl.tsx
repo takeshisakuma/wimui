@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { useIndicator } from "../_internal/useIndicator";
 import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
+import { ComponentSize } from "../../types/tokens";
 import "./segmented-control.scss";
 
 type Option = {
@@ -15,7 +16,7 @@ type SegmentedControlProps = {
   options: Option[];
   value: string;
   onChange: (value: string) => void;
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   fullWidth?: boolean;
   className?: string;
   /**

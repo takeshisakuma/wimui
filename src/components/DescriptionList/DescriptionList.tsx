@@ -2,12 +2,13 @@ import React from "react";
 import classNames from "classnames";
 import "./descriptionlist.scss";
 import { useTranslation } from "react-i18next";
+import { ComponentSize } from "../../types/tokens";
 
 type DescriptionListProps = {
   children: React.ReactNode;
   className?: string;
   layout?: "horizontal" | "vertical" | "compact";
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   border?: boolean;
 };
 

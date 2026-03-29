@@ -13,7 +13,7 @@ export default {
   tags: [],
   argTypes: {
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
     color: {

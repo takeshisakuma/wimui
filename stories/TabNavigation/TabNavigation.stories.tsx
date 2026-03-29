@@ -19,7 +19,7 @@ const meta: Meta<typeof TabNavigation> = {
       control: "select",
       options: ["start", "center", "end", "justify"],
     },
-    size: { control: "select", options: ["small", "medium", "large"] },
+    size: { control: "radio", options: ["small", "medium", "large"] },
   },
 };
 

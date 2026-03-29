@@ -9,7 +9,7 @@ const meta: Meta<typeof Link> = {
   },
   argTypes: {
     size: {
-      control: { type: "select" },
+      control: "radio",
       options: ["small", "medium", "large"],
     },
     priority: {

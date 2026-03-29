@@ -16,7 +16,7 @@ const meta: Meta<HeadingProps> = {
       options: ["h1", "h2", "h3", "h4", "h5", "h6"],
     },
     size: {
-      control: "select",
+      control: "radio",
       options: ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
     },
     color: {

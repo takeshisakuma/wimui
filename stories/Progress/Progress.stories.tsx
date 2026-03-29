@@ -18,7 +18,7 @@ const meta: Meta<typeof Progress> = {
       ],
     },
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
   },

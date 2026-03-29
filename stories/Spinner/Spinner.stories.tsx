@@ -19,7 +19,7 @@ const meta: Meta<typeof Spinner> = {
       ],
     },
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
     labelPosition: {

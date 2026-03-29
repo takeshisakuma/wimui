@@ -29,8 +29,8 @@ const meta: Meta<typeof Tag> = {
       options: ["solid", "outline", "subtle"],
     },
     size: {
-      control: "select",
-      options: ["small", "medium"],
+      control: "radio",
+      options: ["small", "medium", "large"],
     },
   },
 };

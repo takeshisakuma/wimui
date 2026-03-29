@@ -1,13 +1,14 @@
 import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
+import { ComponentSize } from "../../types/tokens";
 
 export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   children?: React.ReactNode;
   icon?: React.ReactNode;
   status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
   variant?: "solid" | "outline" | "subtle";
-  size?: "small" | "medium";
+  size?: ComponentSize;
   prefixClass: string;
   as?: C;
   className?: string;
@@ -33,7 +34,7 @@ export const IndicatorBase = <C extends React.ElementType = "span">({
         prefixClass,
         `${prefixClass}--${status}`,
         `${prefixClass}--${variant}`,
-        `${prefixClass}--${size === "small" ? "sm" : "md"}`,
+        `${prefixClass}--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
         className,
       )}
       {...props}

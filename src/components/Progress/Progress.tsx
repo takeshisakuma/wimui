@@ -1,12 +1,13 @@
 import React from "react";
 import classNames from "classnames";
+import { ComponentSize } from "../../types/tokens";
 import "./progress.scss";
 
 type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
   value?: number;
   max?: number;
   status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral";
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   label?: string;
   showValue?: boolean;
   indeterminate?: boolean;

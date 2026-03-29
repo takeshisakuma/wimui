@@ -25,8 +25,8 @@ const meta: Meta<typeof Chip> = {
       options: ["solid", "outline"],
     },
     size: {
-      control: "select",
-      options: ["small", "medium"],
+      control: "radio",
+      options: ["small", "medium", "large"],
     },
     onClick: { action: "clicked" },
     onDelete: { action: "deleted" },

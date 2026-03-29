@@ -4,6 +4,7 @@ import { Button } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { FieldTemplate } from "../_internal/FieldTemplate/FieldTemplate";
+import { ComponentSize } from "../../types/tokens";
 import "./file-upload.scss";
 
 type FileUploadProps = {
@@ -17,7 +18,7 @@ type FileUploadProps = {
   className?: string;
   iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
-  size?: "small" | "medium" | "large";
+  size?: ComponentSize;
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";

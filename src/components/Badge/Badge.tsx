@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 import { IndicatorBase } from "../_internal/IndicatorBase";
+import { ComponentSize } from "../../types/tokens";
 import "./badge.scss";
 import { warnDeprecated } from "../../utilities/dev-utils";
 
@@ -24,7 +25,7 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
   /** バリアント */
   variant?: "solid" | "outline" | "subtle";
   /** サイズ */
-  size?: "small" | "medium";
+  size?: ComponentSize;
 };
 
 /**

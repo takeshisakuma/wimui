@@ -16,7 +16,7 @@ const meta: Meta<typeof Rating> = {
     value: { control: "number" },
     count: { control: "number" },
     size: {
-      control: "select",
+      control: "radio",
       options: ["small", "medium", "large"],
     },
   },
