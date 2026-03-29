@@ -15,7 +15,7 @@
     &--with-navbar {
       .wim-appshell__main {
         // TabBar height (56px) + safe area + extra margin
-        padding-bottom: calc(56px + env(safe-area-inset-bottom) + var(--spacing-md, 16px));
+        padding-bottom: calc(56px + env(safe-area-inset-bottom) + var(--wim-spacing-md, 16px));
       }
     }
 
@@ -37,7 +37,7 @@
       background-color: var(--wim-color-bg-primary, #fff);
 
       &--padded {
-        padding: var(--spacing-2xl);
+        padding: var(--wim-spacing-2xl);
       }
 
       &--centered {
@@ -79,7 +79,7 @@
       }
 
       &__main--padded {
-        padding: var(--spacing-xl);
+        padding: var(--wim-spacing-xl);
       }
     }
   }

@@ -2,32 +2,32 @@
 
 $token-colors: (
   "primary": (
-    "base": var(--color-primary),
-    "on": var(--color-text-on-primary),
+    "base": var(--wim-color-primary),
+    "on": var(--wim-color-text-on-primary),
   ),
   "secondary": (
-    "base": var(--color-secondary),
-    "on": var(--color-text-on-secondary),
+    "base": var(--wim-color-secondary),
+    "on": var(--wim-color-text-on-secondary),
   ),
   "success": (
-    "base": var(--color-positive),
-    "on": var(--color-text-on-positive),
+    "base": var(--wim-color-positive),
+    "on": var(--wim-color-text-on-positive),
   ),
   "warning": (
-    "base": var(--color-caution),
-    "on": var(--color-text-on-caution),
+    "base": var(--wim-color-caution),
+    "on": var(--wim-color-text-on-caution),
   ),
   "error": (
-    "base": var(--color-destructive),
-    "on": var(--color-text-on-destructive),
+    "base": var(--wim-color-destructive),
+    "on": var(--wim-color-text-on-destructive),
   ),
   "neutral": (
-    "base": var(--color-disabled),
-    "on": var(--text-primary),
+    "base": var(--wim-color-disabled),
+    "on": var(--wim-color-text-primary),
   ),
   "info": (
-    "base": var(--color-informative),
-    "on": var(--color-text-on-informative),
+    "base": var(--wim-color-informative),
+    "on": var(--wim-color-text-on-informative),
   ),
 );
 

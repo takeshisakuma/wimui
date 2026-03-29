@@ -45,7 +45,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
           border-radius: 12px;
           overflow: hidden;
           border: 1px solid var(--wim-color-border, #e5e5e5);
-          background: var(--bg-component, #fff);
+          background: var(--wim-color-bg-component, #fff);
           display: flex;
           flex-direction: column;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -54,7 +54,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
         .wim-swatch-card:hover {
           transform: translateY(-4px);
           box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-          border-color: var(--color-primary, #007aff);
+          border-color: var(--wim-color-primary, #007aff);
         }
         .wim-swatch-card-preview {
           height: 100px;
@@ -76,13 +76,13 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
         .wim-swatch-name {
           font-weight: 600;
           font-size: 15px;
-          color: var(--text-primary, #1a1a1a);
+          color: var(--wim-color-text-primary, #1a1a1a);
         }
         .wim-swatch-value {
           font-family: "Cascadia Code", "Fira Code", monospace;
           font-size: 12px;
-          color: var(--text-secondary, #666);
-          background: var(--bg-app, #f5f5f5);
+          color: var(--wim-color-text-secondary, #666);
+          background: var(--wim-color-bg-app, #f5f5f5);
           padding: 2px 6px;
           border-radius: 4px;
           width: fit-content;
@@ -118,9 +118,9 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
           box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         .wim-swatch-action-btn:hover {
-          background: var(--color-primary, #007aff);
+          background: var(--wim-color-primary, #007aff);
           color: #fff;
-          border-color: var(--color-primary, #007aff);
+          border-color: var(--wim-color-primary, #007aff);
           transform: scale(1.1);
         }
 
@@ -155,7 +155,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
           font-family: inherit;
           font-weight: 500;
           text-align: center;
-          color: var(--text-tertiary, #999);
+          color: var(--wim-color-text-tertiary, #999);
           word-break: break-all;
           max-width: 100%;
         }

@@ -165,14 +165,14 @@ export const WithClickHandler: Story = {
         label: t("story_ganttchart_task_design"),
         startDate: new Date(2026, 2, 1),
         endDate: new Date(2026, 2, 10),
-        color: "var(--color-primary)",
+        color: "var(--wim-color-primary)",
       },
       {
         id: "task-2",
         label: t("story_ganttchart_task_development"),
         startDate: new Date(2026, 2, 8),
         endDate: new Date(2026, 2, 20),
-        color: "var(--color-positive)",
+        color: "var(--wim-color-positive)",
         progress: 45,
       },
       {
@@ -180,7 +180,7 @@ export const WithClickHandler: Story = {
         label: t("story_ganttchart_task_testing"),
         startDate: new Date(2026, 2, 18),
         endDate: new Date(2026, 2, 28),
-        color: "var(--color-caution)",
+        color: "var(--wim-color-caution)",
       },
     ];
 

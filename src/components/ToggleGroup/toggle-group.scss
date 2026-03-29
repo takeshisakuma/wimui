@@ -1,7 +1,7 @@
 @use "../../styles/indicator-mixins" as indicator;
 
 .wim-toggle-group {
-  @include indicator.indicator-container-segmented($bg: var(--bg-component), $padding: 2px);
+  @include indicator.indicator-container-segmented($bg: var(--wim-color-bg-component), $padding: 2px);
 
   box-sizing: border-box;
   display: inline-flex;
@@ -18,7 +18,7 @@
   }
 
   &__slider {
-    @include indicator.indicator-slider-contained($offset: 2px, $bg: var(--color-primary), $shadow: (0 1px 3px rgb(0 0 0 / 0.1)));
+    @include indicator.indicator-slider-contained($offset: 2px, $bg: var(--wim-color-primary), $shadow: (0 1px 3px rgb(0 0 0 / 0.1)));
 
     z-index: 1;
     opacity: 0;
@@ -38,33 +38,33 @@
   &__item {
     @include indicator.indicator-item-base;
 
-    gap: var(--spacing-xs);
+    gap: var(--wim-spacing-xs);
     font-family: inherit;
     font-weight: 500;
-    color: var(--text-secondary);
+    color: var(--wim-color-text-secondary);
     white-space: nowrap;
-    border-radius: var(--radius-sm);
+    border-radius: var(--wim-radius-sm);
 
     &:hover:not(:disabled, .wim-toggle-group__item--active) {
-      color: var(--color-primary);
+      color: var(--wim-color-primary);
       background-color: var(--wim-color-bg-hover);
     }
 
     &:disabled {
-      color: var(--text-disabled);
+      color: var(--wim-color-text-disabled);
       cursor: not-allowed;
-      opacity: var(--opacity-ghost);
+      opacity: var(--wim-opacity-ghost);
     }
 
     &--active {
-      color: var(--text-white);
+      color: var(--wim-color-text-white);
       
       .wim-toggle-group--single & {
         background-color: transparent;
       }
       
       .wim-toggle-group--multiple & {
-        background-color: var(--color-primary);
+        background-color: var(--wim-color-primary);
         box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
 
         &:hover {
@@ -80,7 +80,7 @@
 
     &:focus-visible {
       outline: none;
-      box-shadow: inset 0 0 0 2px var(--color-primary);
+      box-shadow: inset 0 0 0 2px var(--wim-color-primary);
     }
   }
 
@@ -95,8 +95,8 @@
 
     .wim-toggle-group__item {
       height: 26px; // container height - padding/border
-      padding: 0 var(--spacing-sm);
-      font-size: var(--font-size-small);
+      padding: 0 var(--wim-spacing-sm);
+      font-size: var(--wim-font-size-sm);
     }
   }
 
@@ -105,8 +105,8 @@
 
     .wim-toggle-group__item {
       height: 34px;
-      padding: 0 var(--spacing-md);
-      font-size: var(--font-size-medium);
+      padding: 0 var(--wim-spacing-md);
+      font-size: var(--wim-font-size-md);
     }
   }
 
@@ -115,8 +115,8 @@
 
     .wim-toggle-group__item {
       height: 42px;
-      padding: 0 var(--spacing-lg);
-      font-size: var(--font-size-large);
+      padding: 0 var(--wim-spacing-lg);
+      font-size: var(--wim-font-size-lg);
     }
   }
 }

@@ -10,20 +10,9 @@ vi.mock("react-i18next", () => ({
 }));
 
 describe("Badge", () => {
-  it("renders content (deprecated prop)", () => {
-    render(<Badge content="New" />);
-    expect(screen.getByText("New")).toBeInTheDocument();
-  });
-
   it("renders children", () => {
     render(<Badge>Active</Badge>);
     expect(screen.getByText("Active")).toBeInTheDocument();
-  });
-
-  it("children takes priority over content", () => {
-    render(<Badge content="Old">New</Badge>);
-    expect(screen.getByText("New")).toBeInTheDocument();
-    expect(screen.queryByText("Old")).not.toBeInTheDocument();
   });
 
   it("renders icon", () => {
@@ -33,7 +22,7 @@ describe("Badge", () => {
 
   it("applies variant and status classes", () => {
     const { container } = render(
-      <Badge content="Test" status="error" variant="outline" />,
+      <Badge status="error" variant="outline">Test</Badge>,
     );
     const span = container.firstChild;
     expect(span).toHaveClass("wim-badge--error");
@@ -41,7 +30,7 @@ describe("Badge", () => {
   });
 
   it("applies size class", () => {
-    const { container } = render(<Badge content="Small" size="small" />);
+    const { container } = render(<Badge size="small">Small</Badge>);
     expect(container.firstChild).toHaveClass("wim-badge--sm");
   });
 

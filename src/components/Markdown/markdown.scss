@@ -2,7 +2,7 @@
   .wim-markdown {
     font-family: inherit;
     line-height: 1.6;
-    color: var(--text-primary);
+    color: var(--wim-color-text-primary);
 
     h1,
     h2,
@@ -12,7 +12,7 @@
     h6 {
       margin-top: 1.5em;
       margin-bottom: 0.5em;
-      font-weight: var(--font-weight-bold);
+      font-weight: var(--wim-font-weight-bold);
     }
 
     h1 {
@@ -51,15 +51,15 @@
         ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         "Liberation Mono", "Courier New", monospace;
       font-size: 85%;
-      background-color: var(--bg-surface);
-      border-radius: var(--radius-sm);
+      background-color: var(--wim-color-surface);
+      border-radius: var(--wim-radius-sm);
     }
 
     pre {
       padding: 1em;
       overflow: auto;
-      background-color: var(--bg-surface);
-      border-radius: var(--radius-md);
+      background-color: var(--wim-color-surface);
+      border-radius: var(--wim-radius-md);
 
       code {
         padding: 0;
@@ -71,7 +71,7 @@
       padding-left: 1em;
       margin-right: 0;
       margin-left: 0;
-      color: var(--text-secondary);
+      color: var(--wim-color-text-secondary);
       border-left: 4px solid var(--border-subtle);
     }
 
@@ -87,7 +87,7 @@
       }
 
       th {
-        background-color: var(--bg-surface);
+        background-color: var(--wim-color-surface);
       }
     }
 

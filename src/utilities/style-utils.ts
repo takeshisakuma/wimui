@@ -20,7 +20,7 @@ export const getSpacingValue = (val?: number | string): string | undefined => {
   ];
 
   if (tokens.includes(val)) {
-    return `var(--spacing-${val})`;
+    return `var(--wim-spacing-${val})`;
   }
 
   return val;

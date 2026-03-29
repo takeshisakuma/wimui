@@ -34,11 +34,11 @@
 
   &--disabled {
     cursor: not-allowed;
-    opacity: var(--opacity-disabled);
+    opacity: var(--wim-opacity-disabled);
 
     .wim-signature-pad__canvas-container {
       pointer-events: none;
-      background: var(--color-disabled);
+      background: var(--wim-color-disabled);
     }
   }
 }

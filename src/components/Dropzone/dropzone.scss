@@ -1,15 +1,15 @@
 .wim-dropzone-container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: var(--wim-spacing-xs);
   width: 100%;
   font-family: inherit;
 }
 
 .wim-dropzone__label {
-  font-size: var(--font-size-small);
-  font-weight: var(--font-weight-medium);
-  color: var(--text-secondary);
+  font-size: var(--wim-font-size-sm);
+  font-weight: var(--wim-font-weight-medium);
+  color: var(--wim-color-text-secondary);
 }
 
 .wim-dropzone {
@@ -18,17 +18,17 @@
   &__file-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs);
+    gap: var(--wim-spacing-xs);
     width: 100%;
-    margin-top: var(--spacing-md);
+    margin-top: var(--wim-spacing-md);
   }
 
   &__file-name {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-size: var(--font-size-small);
-    color: var(--text-secondary);
+    padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
     word-break: break-all;
-    background-color: var(--bg-component);
+    background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border-secondary);
     border-radius: 4px;
   }

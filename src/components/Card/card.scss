@@ -3,27 +3,27 @@
   display: flex;
   flex-direction: column;
   overflow: visible;
-  color: var(--text-primary);
-  background-color: var(--bg-component, #fff);
-  transition: var(--transition-base);
+  color: var(--wim-color-text-primary);
+  background-color: var(--wim-color-bg-component, #fff);
+  transition: var(--wim-transition-base);
 
   /* バリアント */
   &--elevated {
     border: 1px solid transparent;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--wim-shadow-sm);
 
     &:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(var(--lift-sm));
+      box-shadow: var(--wim-shadow-lg);
+      transform: translateY(var(--wim-lift-sm));
     }
   }
 
   &--outline {
-    border: 1px solid var(--color-secondary);
+    border: 1px solid var(--wim-color-secondary);
   }
 
   &--flat {
-    background-color: var(--color-disabled);
+    background-color: var(--wim-color-disabled);
     border: 1px solid transparent;
   }
 
@@ -39,32 +39,32 @@
   }
 
   &--padding-sm {
-    padding: var(--spacing-md) var(--spacing-md);
+    padding: var(--wim-spacing-md) var(--wim-spacing-md);
 
     & > .wim-card__header,
     & > .wim-card__body,
     & > .wim-card__footer {
-      padding: var(--spacing-md) var(--spacing-md);
+      padding: var(--wim-spacing-md) var(--wim-spacing-md);
     }
   }
 
   &--padding-md {
-    padding: var(--spacing-xl) var(--spacing-xl);
+    padding: var(--wim-spacing-xl) var(--wim-spacing-xl);
 
     & > .wim-card__header,
     & > .wim-card__body,
     & > .wim-card__footer {
-      padding: var(--spacing-xl) var(--spacing-xl);
+      padding: var(--wim-spacing-xl) var(--wim-spacing-xl);
     }
   }
 
   &--padding-lg {
-    padding: var(--spacing-2xl) var(--spacing-2xl);
+    padding: var(--wim-spacing-2xl) var(--wim-spacing-2xl);
 
     & > .wim-card__header,
     & > .wim-card__body,
     & > .wim-card__footer {
-      padding: var(--spacing-2xl) var(--spacing-2xl);
+      padding: var(--wim-spacing-2xl) var(--wim-spacing-2xl);
     }
   }
 
@@ -73,16 +73,16 @@
     border-radius: 0;
   }
 
-  &--radius-sm {
-    border-radius: var(--radius-sm);
+  &--wim-radius-sm {
+    border-radius: var(--wim-radius-sm);
   }
 
-  &--radius-md {
-    border-radius: var(--radius-md);
+  &--wim-radius-md {
+    border-radius: var(--wim-radius-md);
   }
 
-  &--radius-lg {
-    border-radius: var(--radius-lg);
+  &--wim-radius-lg {
+    border-radius: var(--wim-radius-lg);
   }
 
   /* 内部要素 */

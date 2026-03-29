@@ -12,9 +12,9 @@
   position: fixed;
   z-index: 1001;
   pointer-events: none;
-  border-radius: var(--radius-md, 4px);
+  border-radius: var(--wim-radius-md, 4px);
   box-shadow: 0 0 0 9999px rgb(0 0 0 / 0.5);
-  transition: var(--transition-base);
+  transition: var(--wim-transition-base);
 }
 
 .wim-tour-bubble {
@@ -24,23 +24,23 @@
   max-width: calc(100vw - 32px);
   background-color: var(--wim-color-bg-component);
   border: 1px solid var(--wim-color-border);
-  border-radius: var(--radius-lg, 8px);
-  box-shadow: var(--shadow-lg, 0 5px 10px rgb(0 0 0 / 0.18));
-  transition: var(--transition-base);
+  border-radius: var(--wim-radius-lg, 8px);
+  box-shadow: var(--wim-shadow-lg, 0 5px 10px rgb(0 0 0 / 0.18));
+  transition: var(--wim-transition-base);
 
   &-inner {
-    padding: var(--spacing-2xl, 1rem);
+    padding: var(--wim-spacing-2xl, 1rem);
   }
 }
 
 .wim-tour-title {
-  margin: 0 0 var(--spacing-md, 0.5rem) 0;
+  margin: 0 0 var(--wim-spacing-md, 0.5rem) 0;
   font-size: 1.1rem;
   font-weight: 600;
 }
 
 .wim-tour-description {
-  margin: 0 0 var(--spacing-2xl, 1rem) 0;
+  margin: 0 0 var(--wim-spacing-2xl, 1rem) 0;
   font-size: 0.9rem;
   color: var(--wim-color-text-secondary);
 }
@@ -58,5 +58,5 @@
 
 .wim-tour-buttons {
   display: flex;
-  gap: var(--spacing-sm, 0.4rem);
+  gap: var(--wim-spacing-sm, 0.4rem);
 }

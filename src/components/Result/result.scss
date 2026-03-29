@@ -2,7 +2,7 @@
   // Overrides for Result specifically if needed
   // Result uses StatusContent internally, which already has default layout
   .wim-interactive-area__icon {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--wim-spacing-sm);
 
     .wim-icon,
     svg {
@@ -13,10 +13,10 @@
   }
 
   .wim-interactive-area__content {
-    padding: var(--spacing-md);
-    margin-top: var(--spacing-lg);
+    padding: var(--wim-spacing-md);
+    margin-top: var(--wim-spacing-lg);
     text-align: left;
-    background-color: var(--bg-component-secondary, #f9f9f9);
-    border-radius: var(--radius-sm);
+    background-color: var(--wim-color-bg-component-secondary, #f9f9f9);
+    border-radius: var(--wim-radius-sm);
   }
 }

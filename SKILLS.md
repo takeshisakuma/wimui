@@ -172,6 +172,35 @@ export const WithIcon: Story = { args: { ... } };
 
 MDX から参照する際はエクスポート名と完全一致が必要です。
 
+### argTypes の書き方
+
+control の型指定は**オブジェクト形式でなく文字列の短縮形**を使用してください。
+
+```tsx
+// NG
+control: { type: "select" }
+control: { type: "boolean" }
+
+// OK
+control: "select"
+control: "boolean"
+```
+
+選択肢の数が少ない（2〜4個程度）場合は `"radio"` を使用してください。`size` prop はコンポーネントを問わず常に `"radio"` にしてください。
+
+```tsx
+size: {
+  control: "radio",
+  options: ["small", "medium", "large"],
+},
+status: {
+  control: "select",
+  options: ["primary", "secondary", "success", "warning", "error", "info", "neutral"],
+},
+```
+
+`options` の内容はコンポーネントの prop 型と一致させてください。型を変更した場合はストーリーの `options` も合わせて更新してください。
+
 ```tsx
 // MDX
 <Canvas of={MyComponentStories.Default} />   // ← エクスポート名と一致させる

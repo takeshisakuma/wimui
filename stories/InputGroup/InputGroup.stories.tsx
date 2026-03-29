@@ -28,7 +28,7 @@ export const WithButton: Story = {
   render: (args) => (
     <InputGroup {...args}>
       <Input placeholder="Search..." />
-      <Button priority="primary" iconName="SearchIcon" label="Search" />
+      <Button priority="primary" icon="SearchIcon" label="Search" />
     </InputGroup>
   ),
 };

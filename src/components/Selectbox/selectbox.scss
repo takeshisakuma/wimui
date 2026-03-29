@@ -7,7 +7,7 @@
   width: 100%;
   min-width: 0;
   max-width: 280px;
-  font-family: var(--font-family-base);
+  font-family: var(--wim-font-family-default);
 
   &--full-width {
     width: 100%;
@@ -28,10 +28,10 @@
   width: 100%;
   min-width: 0;
   min-height: var(--wim-height-md); // Match MultiSelect height
-  padding: var(--spacing-md) var(--spacing-md); // Increased from sm to md to prevent text clipping
+  padding: var(--wim-spacing-md) var(--wim-spacing-md); // Increased from sm to md to prevent text clipping
   font-size: 1rem;
   line-height: 1.5;
-  color: var(--text-primary);
+  color: var(--wim-color-text-primary);
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -42,25 +42,25 @@
 
   &:hover:not(.wim-selectbox-trigger--disabled) {
     background-color: var(--wim-color-bg-hover);
-    border-color: var(--color-primary);
+    border-color: var(--wim-color-primary);
   }
 
   &:focus {
     outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-color: var(--wim-color-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
   }
 
   &--open {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-color: var(--wim-color-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
   }
 
   &--disabled {
-    color: var(--text-disabled);
+    color: var(--wim-color-text-disabled);
     cursor: not-allowed;
     background-color: rgb(0 0 0 / 0.05);
-    border-color: var(--color-disabled);
+    border-color: var(--wim-color-disabled);
   }
 }
 
@@ -72,74 +72,74 @@
   white-space: nowrap;
 
   &--placeholder {
-    color: var(--text-placeholder);
+    color: var(--wim-color-text-placeholder);
   }
 }
 
 .wim-selectbox-icons {
   display: flex;
-  gap: var(--spacing-xs);
+  gap: var(--wim-spacing-xs);
   align-items: center;
-  margin-left: var(--spacing-sm);
+  margin-left: var(--wim-spacing-sm);
 }
 
 .wim-selectbox-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
+  color: var(--wim-color-text-secondary);
 }
 
 .wim-selectbox-clear {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-xs);
-  color: var(--text-secondary);
+  padding: var(--wim-spacing-xs);
+  color: var(--wim-color-text-secondary);
   cursor: pointer;
   background: none;
   border: none;
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-base);
+  border-radius: var(--wim-radius-sm);
+  transition: all var(--wim-transition-base);
 
   &:hover {
-    color: var(--color-error);
+    color: var(--wim-color-destructive);
     background-color: rgb(0 0 0 / 0.05);
   }
 }
 
 .wim-selectbox-dropdown {
   position: absolute;
-  top: calc(100% + var(--spacing-xs));
+  top: calc(100% + var(--wim-spacing-xs));
   right: 0;
   left: 0;
   z-index: 1000;
-  background-color: var(--bg-component, #fff);
-  border: 1px solid var(--color-secondary);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
+  background-color: var(--wim-color-bg-component, #fff);
+  border: 1px solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-md);
+  box-shadow: var(--wim-shadow-lg);
 }
 
 .wim-selectbox-search {
-  padding: var(--spacing-sm);
-  border-bottom: 1px solid var(--color-secondary);
+  padding: var(--wim-spacing-sm);
+  border-bottom: 1px solid var(--wim-color-secondary);
 }
 
 .wim-selectbox-search-input {
   width: 100%;
-  padding: var(--spacing-sm);
+  padding: var(--wim-spacing-sm);
   font-size: 0.9rem;
   outline: none;
-  border: 1px solid var(--color-secondary);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-sm);
   transition: border-color 0.2s ease-in-out;
 
   &:focus {
-    border-color: var(--color-primary);
+    border-color: var(--wim-color-primary);
   }
 
   &::placeholder {
-    color: var(--text-placeholder);
+    color: var(--wim-color-text-placeholder);
   }
 }
 
@@ -152,10 +152,10 @@
 }
 
 .wim-selectbox-group-label {
-  padding: var(--spacing-sm) calc(var(--spacing-md) + var(--spacing-xs));
+  padding: var(--wim-spacing-sm) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--wim-color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   pointer-events: none;
@@ -164,29 +164,29 @@
 .wim-selectbox-option {
   .wim-selectbox[data-keyboard-nav="true"] &.wim-base-list-item--active {
     z-index: 1;
-    box-shadow: var(--shadow-focus);
+    box-shadow: var(--wim-shadow-focus);
   }
 
   &--selected {
     font-weight: 500;
-    color: var(--text-primary);
-    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    color: var(--wim-color-text-primary);
+    background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
   }
 }
 
 .wim-selectbox-empty {
-  padding: var(--spacing-md);
+  padding: var(--wim-spacing-md);
   font-size: 0.9rem;
   font-style: italic;
-  color: var(--text-secondary);
+  color: var(--wim-color-text-secondary);
   text-align: center;
 }
 
 .wim-selectbox-separator {
   height: 1px;
-  margin: var(--spacing-xs) var(--spacing-md); // Inset separator
+  margin: var(--wim-spacing-xs) var(--wim-spacing-md); // Inset separator
   overflow: hidden;
-  background-color: var(--color-secondary);
+  background-color: var(--wim-color-secondary);
   opacity: 0.4;
 }
 
@@ -206,35 +206,35 @@
     box-sizing: border-box;
     width: 100%;
     min-height: var(--wim-height-md);
-    padding: var(--spacing-md) calc(var(--spacing-md) * 2.5) var(--spacing-md) var(--spacing-md);
+    padding: var(--wim-spacing-md) calc(var(--wim-spacing-md) * 2.5) var(--wim-spacing-md) var(--wim-spacing-md);
     font-family: inherit;
     font-size: 1rem;
     line-height: 1.5;
-    color: var(--text-primary);
+    color: var(--wim-color-text-primary);
     appearance: none; // Hide default arrow
     cursor: pointer;
-    background-color: var(--bg-component, #fff);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--radius-md);
+    background-color: var(--wim-color-bg-component, #fff);
+    border: 1px solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
     transition:
       border-color 0.2s ease-in-out,
       box-shadow 0.2s ease-in-out;
 
     &:hover:not(:disabled) {
-      border-color: var(--color-primary);
+      border-color: var(--wim-color-primary);
     }
 
     &:focus {
       outline: none;
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
+      border-color: var(--wim-color-primary);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
     }
 
     &:disabled {
-      color: var(--text-disabled);
+      color: var(--wim-color-text-disabled);
       cursor: not-allowed;
       background-color: rgb(0 0 0 / 0.05);
-      border-color: var(--color-disabled);
+      border-color: var(--wim-color-disabled);
     }
 
     // hr support is automatic in modern browsers
@@ -242,8 +242,8 @@
 
   .wim-selectbox-icon {
     position: absolute;
-    right: var(--spacing-md);
-    color: var(--text-secondary);
+    right: var(--wim-spacing-md);
+    color: var(--wim-color-text-secondary);
     pointer-events: none;
   }
 }

@@ -286,7 +286,6 @@ export const MultiSelect = ({
                 ? selectedOptions.map((opt) => (
                   <Chip
                     key={opt.value}
-                    label={opt.label}
                     size="small"
                     color="primary"
                     variant="solid"
@@ -295,7 +294,9 @@ export const MultiSelect = ({
                       !disabled ? (e) => handleRemove(e, opt.value) : undefined
                     }
                     className="wim-multiselect-badge"
-                  />
+                  >
+                    {opt.label}
+                  </Chip>
                 ))
                 : placeholder}
             </div>

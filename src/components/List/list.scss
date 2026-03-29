@@ -24,19 +24,19 @@
 
   // Sizes (Harmonized with Icon sizes)
   &--sm {
-    font-size: var(--font-size-small);
+    font-size: var(--wim-font-size-sm);
   }
 
   &--md {
-    font-size: var(--font-size-medium);
+    font-size: var(--wim-font-size-md);
   }
 
   &--lg {
-    font-size: var(--font-size-large);
+    font-size: var(--wim-font-size-lg);
   }
 
   &__item {
-    line-height: var(--line-height-normal-jpan); // 1.6 に統一
+    line-height: var(--wim-line-height-normal-jp); // 1.6 に統一
 
     &:last-child {
       margin-bottom: 0;

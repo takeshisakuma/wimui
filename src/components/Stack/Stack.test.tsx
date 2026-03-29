@@ -30,7 +30,7 @@ describe("Stack", () => {
   it("applies gap from spacing token", () => {
     const { container } = render(<Stack gap="lg" />);
     const stack = container.firstChild as HTMLElement;
-    expect(stack.style.gap).toBe("var(--spacing-lg)");
+    expect(stack.style.gap).toBe("var(--wim-spacing-lg)");
   });
 
   // gap のバリエーション
@@ -46,7 +46,7 @@ describe("Stack", () => {
 
   it("applies default gap md when gap is not specified", () => {
     const { container } = render(<Stack />);
-    expect((container.firstChild as HTMLElement).style.gap).toBe("var(--spacing-md)");
+    expect((container.firstChild as HTMLElement).style.gap).toBe("var(--wim-spacing-md)");
   });
 
   // align のバリエーション

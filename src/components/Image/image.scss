@@ -10,7 +10,7 @@
   transform-style: preserve-3d;
   
   // Smooth return when mouse leaves
-  transition: transform 0.5s var(--easing-base, ease);
+  transition: transform 0.5s var(--wim-easing-base, ease);
   will-change: transform;
 
   // Smooth follow when active (a bit faster than return)
@@ -27,28 +27,28 @@
   background-color: var(--wim-image-bg-color, transparent);
   transform-style: preserve-3d; // Pass 3D to children
 
-  &.wim-image--radius-small {
+  &.wim-image--wim-radius-small {
     overflow: hidden;
-    border-radius: var(--radius-sm);
+    border-radius: var(--wim-radius-sm);
   }
 
   &.wim-image--radius-medium {
     overflow: hidden;
-    border-radius: var(--radius-md);
+    border-radius: var(--wim-radius-md);
   }
 
   &.wim-image--radius-large {
     overflow: hidden;
-    border-radius: var(--radius-lg);
+    border-radius: var(--wim-radius-lg);
   }
 
-  &.wim-image--radius-full {
+  &.wim-image--wim-radius-full {
     overflow: hidden;
-    border-radius: var(--radius-full);
+    border-radius: var(--wim-radius-full);
   }
 
   &.wim-image--shadow {
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--wim-shadow-md);
     transition: box-shadow 0.6s ease;
 
     &.wim-image--loading {
@@ -57,7 +57,7 @@
   }
 
   &.wim-image--border {
-    border: 1px solid var(--color-border-default, #e0e0e0);
+    border: 1px solid var(--wim-color-border, #e0e0e0);
   }
 
   // Fade-in state
@@ -173,11 +173,11 @@
 }
 
 .wim-image__caption {
-  padding-bottom: var(--spacing-xs);
-  margin-top: var(--spacing-sm);
+  padding-bottom: var(--wim-spacing-xs);
+  margin-top: var(--wim-spacing-sm);
   font-size: 0.875rem;
   line-height: 1.5;
-  color: var(--color-text-secondary, #666);
+  color: var(--wim-color-text-secondary, #666);
   text-align: center;
 }
 

@@ -16,30 +16,30 @@
   min-height: 54px; // Matches standard native player height to avoid jumps
   overflow: hidden; // Clip content to radius
   line-height: normal; // Reset to normal
-  border-radius: var(--radius-full); // Default to pill shape for native audio feel
+  border-radius: var(--wim-radius-full); // Default to pill shape for native audio feel
 
-  &.wim-audio--radius-small {
+  &.wim-audio--wim-radius-small {
     overflow: hidden;
-    border-radius: var(--radius-sm);
+    border-radius: var(--wim-radius-sm);
   }
 
   &.wim-audio--radius-medium {
     overflow: hidden;
-    border-radius: var(--radius-md);
+    border-radius: var(--wim-radius-md);
   }
 
   &.wim-audio--radius-large {
     overflow: hidden;
-    border-radius: var(--radius-lg);
+    border-radius: var(--wim-radius-lg);
   }
 
-  &.wim-audio--radius-full {
+  &.wim-audio--wim-radius-full {
     overflow: hidden;
-    border-radius: var(--radius-full);
+    border-radius: var(--wim-radius-full);
   }
 
   &.wim-audio--shadow {
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--wim-shadow-md);
     transition: box-shadow 0.6s ease;
 
     &.wim-audio--loading {
@@ -106,11 +106,11 @@
 }
 
 .wim-audio__caption {
-  padding-bottom: var(--spacing-xs);
-  margin-top: var(--spacing-sm);
+  padding-bottom: var(--wim-spacing-xs);
+  margin-top: var(--wim-spacing-sm);
   font-size: 0.875rem;
   line-height: 1.5;
-  color: var(--text-secondary);
+  color: var(--wim-color-text-secondary);
   text-align: center;
 }
 
@@ -124,13 +124,13 @@
   flex-direction: column;
   gap: 0.6rem; // Adjusted for 3 rows
   padding: 1rem 0 0.8rem; // More generous padding
-  color: var(--text-white);
+  color: var(--wim-color-text-white);
   background: linear-gradient(135deg, var(--wim-audio-bg-start) 0%, var(--wim-audio-bg-end) 100%);
   mask-image: none;
 }
 
 // When radius is full (pills), we need even more horizontal padding and width
-.wim-audio--radius-full .wim-audio--custom {
+.wim-audio--wim-radius-full .wim-audio--custom {
   min-width: 480px; // Provide more room for deep curves
   padding: 1.5rem 52px 1rem; // Increase top/side padding to clear curves
 }
@@ -153,12 +153,12 @@
   position: relative;
   z-index: 2;
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--wim-spacing-sm);
   align-items: center;
-  padding: 0 var(--spacing-xl) var(--spacing-sm);
-  border-bottom: 1px solid color-mix(in srgb, var(--text-white) 10%, transparent);
+  padding: 0 var(--wim-spacing-xl) var(--wim-spacing-sm);
+  border-bottom: 1px solid color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
 
-  .wim-audio--radius-full & {
+  .wim-audio--wim-radius-full & {
     padding-right: 2rem;
     padding-left: 2rem;
   }
@@ -168,7 +168,7 @@
   width: 48px;
   height: 48px;
   object-fit: cover;
-  border-radius: var(--radius-sm);
+  border-radius: var(--wim-radius-sm);
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
 }
 
@@ -183,13 +183,13 @@
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.2;
-  color: var(--text-white);
+  color: var(--wim-color-text-white);
 }
 
 .wim-audio-artist {
   font-size: 0.75rem;
   line-height: 1.2;
-  color: color-mix(in srgb, var(--text-white) 60%, transparent);
+  color: color-mix(in srgb, var(--wim-color-text-white) 60%, transparent);
 }
 
 .wim-audio-badge {
@@ -203,9 +203,9 @@
   height: 12px;
   font-size: 8px;
   font-weight: bold;
-  color: var(--color-text-on-primary);
-  background: var(--color-primary);
-  border-radius: var(--radius-full);
+  color: var(--wim-color-text-on-primary);
+  background: var(--wim-color-primary);
+  border-radius: var(--wim-radius-full);
 }
 
 .wim-audio-custom-controls {
@@ -219,7 +219,7 @@
 
 .wim-audio-controls-row {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--wim-spacing-sm);
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -239,45 +239,45 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  padding: var(--spacing-xs);
-  color: var(--text-white);
+  padding: var(--wim-spacing-xs);
+  color: var(--wim-color-text-white);
   cursor: pointer;
   background: none;
   border: none;
-  border-radius: var(--radius-full);
+  border-radius: var(--wim-radius-full);
   transition:
     background-color 0.2s,
     color 0.2s;
 
   &:hover {
-    color: var(--color-primary); // Accent color
-    background-color: color-mix(in srgb, var(--text-white) 10%, transparent);
+    color: var(--wim-color-primary); // Accent color
+    background-color: color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
   }
 
   // Active state for toggles
   &.active {
-    color: var(--color-primary);
+    color: var(--wim-color-primary);
     background-color: var(--wim-color-primary-light);
   }
 
   // Text button (e.g. speed)
   &--text {
     width: auto;
-    padding: 0 var(--spacing-xs);
+    padding: 0 var(--wim-spacing-xs);
     font-size: 0.875rem;
     font-weight: 600;
-    border-radius: var(--radius-md);
+    border-radius: var(--wim-radius-md);
   }
 
   &--play {
     flex-shrink: 0;
     width: 40px;
     height: 40px;
-    background-color: var(--color-primary);
+    background-color: var(--wim-color-primary);
 
     &:hover {
-      color: var(--color-text-on-primary);
-      background-color: color-mix(in srgb, var(--color-primary) 85%, var(--text-white));
+      color: var(--wim-color-text-on-primary);
+      background-color: color-mix(in srgb, var(--wim-color-primary) 85%, var(--wim-color-text-white));
     }
 
     .wim-icon {
@@ -295,10 +295,10 @@
   align-items: center;
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
-  color: color-mix(in srgb, var(--text-white) 70%, transparent);
+  color: color-mix(in srgb, var(--wim-color-text-white) 70%, transparent);
 
-  .wim-audio--radius-full & {
-    padding: 0 var(--spacing-3xl);
+  .wim-audio--wim-radius-full & {
+    padding: 0 var(--wim-spacing-3xl);
   }
 }
 
@@ -309,7 +309,7 @@
   flex: 1;
   height: 4px;
   cursor: pointer;
-  background: color-mix(in srgb, var(--text-white) 20%, transparent);
+  background: color-mix(in srgb, var(--wim-color-text-white) 20%, transparent);
   border-radius: 2px;
 
   // Expand click area
@@ -339,7 +339,7 @@
   z-index: 1;
   height: 100%;
   pointer-events: none;
-  background-color: var(--color-primary);
+  background-color: var(--wim-color-primary);
   border-radius: 2px;
 
   &::after {
@@ -349,8 +349,8 @@
     width: 8px;
     height: 8px;
     content: "";
-    background-color: var(--text-white);
-    border-radius: var(--radius-full);
+    background-color: var(--wim-color-text-white);
+    border-radius: var(--wim-radius-full);
     box-shadow: 0 0 4px rgb(0 0 0 / 0.3);
     transform: translateY(-50%);
   }
@@ -368,14 +368,14 @@
   appearance: none;
   cursor: pointer;
   outline: none;
-  background: color-mix(in srgb, var(--text-white) 20%, transparent);
+  background: color-mix(in srgb, var(--wim-color-text-white) 20%, transparent);
   border-radius: 2px;
   transition:
     width 0.3s,
     opacity 0.3s;
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px var(--color-primary);
+    box-shadow: 0 0 0 2px var(--wim-color-primary);
   }
 
   &::-webkit-slider-thumb {
@@ -383,16 +383,16 @@
     height: 10px;
     appearance: none;
     cursor: pointer;
-    background: var(--text-white);
-    border-radius: var(--radius-full);
+    background: var(--wim-color-text-white);
+    border-radius: var(--wim-radius-full);
   }
 
   &::-moz-range-thumb {
     width: 10px;
     height: 10px;
     cursor: pointer;
-    background: var(--text-white);
+    background: var(--wim-color-text-white);
     border: none;
-    border-radius: var(--radius-full);
+    border-radius: var(--wim-radius-full);
   }
 }

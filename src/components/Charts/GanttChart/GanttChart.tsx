@@ -267,7 +267,7 @@ export const GanttChart = ({
                         width,
                         height: rowHeight - 12,
                         top: 6,
-                        backgroundColor: task.color ?? "var(--color-primary, #1976d2)",
+                        backgroundColor: task.color ?? "var(--wim-color-primary, #1976d2)",
                       }}
                       tabIndex={0}
                       aria-label={t("ganttchart_aria_task_bar", {

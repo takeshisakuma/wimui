@@ -1,13 +1,13 @@
 .wim-switch-wrapper {
   display: inline-flex;
-  gap: var(--spacing-sm);
+  gap: var(--wim-spacing-sm);
   align-items: center;
   cursor: pointer;
   user-select: none;
 
   &.wim-switch--disabled {
     cursor: not-allowed;
-    opacity: var(--opacity-ghost);
+    opacity: var(--wim-opacity-ghost);
   }
 }
 
@@ -23,18 +23,18 @@
   cursor: pointer;
   background-color: var(--wim-color-border-secondary);
   border-radius: 9999px;
-  transition: background-color var(--duration-fast) var(--easing-standard);
+  transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
   will-change: background-color, transform;
 
   &:active:not(:disabled) {
-    transform: scale(var(--scale-active));
-    transition: transform var(--duration-instant) var(--easing-standard);
+    transform: scale(var(--wim-scale-active));
+    transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
   }
 
   &::before {
     flex-grow: var(--off);
     content: "";
-    transition: flex-grow var(--duration-base) var(--easing-entrance);
+    transition: flex-grow var(--wim-duration-base) var(--wim-easing-entrance);
     will-change: flex-grow;
   }
 
@@ -42,13 +42,13 @@
     width: 20px;
     height: 20px;
     content: "";
-    background-color: var(--text-white);
-    border-radius: var(--radius-full);
+    background-color: var(--wim-color-text-white);
+    border-radius: var(--wim-radius-full);
     box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
   }
 
   &:checked {
-    background-color: var(--color-primary);
+    background-color: var(--wim-color-primary);
 
     &::before {
       flex-grow: 1; // Transitions to ON state (flex-grow: initial equivalent)
@@ -56,9 +56,9 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--wim-color-primary);
     outline-offset: 2px;
-    box-shadow: var(--shadow-focus);
+    box-shadow: var(--wim-shadow-focus);
   }
 
   &.wim-switch-input--sm {
@@ -83,13 +83,13 @@
 
   &:disabled {
     cursor: not-allowed;
-    opacity: var(--opacity-ghost);
+    opacity: var(--wim-opacity-ghost);
   }
 }
 
 .wim-switch-label {
   font-family: var(--font-sans);
-  font-size: var(--text-base);
-  color: var(--text-primary);
+  font-size: var(--wim-font-size-md);
+  color: var(--wim-color-text-primary);
 }
 

@@ -83,7 +83,7 @@ const DefaultFallback = ({
             style={{
               maxHeight: "300px",
               overflowY: "auto",
-              fontSize: "var(--font-size-minus-1, 0.875rem)",
+              fontSize: "var(--wim-font-size-minus-1, 0.875rem)",
               whiteSpace: "pre-wrap",
               fontFamily: "var(--font-family-mono, monospace)",
               wordBreak: "break-all",

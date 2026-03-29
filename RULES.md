@@ -37,6 +37,11 @@
   - **無効化には `disabled` prop（HTML ネイティブ属性）のみを使用してください。** `status="disabled"` や `state="disabled"` のような形でインタラクション状態を `status` / `state` に混在させないでください。
   - **`status` prop は視覚・意味的状態のみを表します。** 値は `"default" | "error"` などに限定し、`"disabled"` を含めないでください。
   - **`size` prop の値は `"small" | "medium" | "large"` に統一してください。** レイアウト用の幅指定など別用途では `"xs" | "sm" | "md" | "lg" | "xl"` を使用してかまいません。
+  - **共通 prop 型は `src/types/tokens.ts` の型を使用してください。** インラインのユニオン型を重複定義しないでください。定義済みの型は以下の通りです。
+    - `ComponentSize` — `"small" | "medium" | "large"`（`size` prop 共通）
+    - `IndicatorStatus` — `"primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"`（Badge・Chip・Tag・Progress など）
+    - `FeedbackStatus` — `"info" | "success" | "warning" | "error"`（Alert・Banner・Toast・Notification など）
+    - `FieldStatus` — `"default" | "error"`（Input・Textarea・DatePicker・RichTextEditor など）
 - 最新のセマンティックHTMLを使用してください。
 - コンポーネントではデザイントークン（`src/tokens/`）の値を使用してください。ストーリーやdocsのユーティリティコンポーネント（`stories/` 配下のTSX）でインラインスタイルを使う場合も、`color: 'gray'` のようなハードコードされたCSS色名は使わず、`var(--wim-color-text-secondary)` などのCSSカスタムプロパティを使用してください。ダークモードで背景色と同化して読めなくなります。
 - `stories/` 配下のTSXでは、`var(--bg-component)`・`var(--text-primary)`・`var(--text-secondary)` などの内部ショートエイリアスを使用しないでください。ストーリーを持たない純粋なMDXページ（`<Meta title="..." />` のみのページ）ではデコレーターが動作しないため `data-theme` が設定されず、これらの変数が意図した色に解決されないケースがあります。代わりに必ず `var(--wim-color-surface)`・`var(--wim-color-text-primary)`・`var(--wim-color-text-secondary)` などの `--wim-color-*` プレフィックス付きトークンを使用してください。
@@ -73,6 +78,13 @@
 
 - クラス名は `wim-` プレフィックスを付けたkebab-caseにしてください（例: `wim-button`, `wim-button--primary`）。
 - Stylelintで `^[a-z][a-zA-Z0-9-_]+$` パターンが強制されています。
+
+## デザイントークン（CSS カスタムプロパティ）
+
+- グローバルデザイントークンはすべて `--wim-` プレフィックスを使用してください（例: `--wim-color-primary`, `--wim-spacing-md`）。
+- コンポーネント内部でのみ使用するローカル変数（例: `--bg-tooltip`）は対象外です。
+- トークンは `src/tokens/` 以下の SCSS ファイルで定義し、`:root` に CSS カスタムプロパティとして公開してください。
+- 既存のエイリアス（`--wim-color-surface: var(--wim-color-bg-component)` など）は維持しますが、自己参照になる循環エイリアスは作成しないでください。
 
 ## `!important` の使用
 

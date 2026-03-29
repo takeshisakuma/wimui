@@ -7,7 +7,7 @@
   --wim-indicator-dot-large-size: 24px;
   --wim-indicator-line-thickness: 2px;
   --wim-indicator-line-color: var(--wim-color-border-secondary, #e5e7eb);
-  --wim-indicator-active-color: var(--color-primary, #006bff);
+  --wim-indicator-active-color: var(--wim-color-primary, #006bff);
 
   /* Standard Component Heights (Standardized for Button, Input, etc.) */
   --wim-height-sm: 2rem;       // 32px
@@ -28,6 +28,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-full);
-  transition: all var(--transition-base, 0.2s ease);
+  border-radius: var(--wim-radius-full);
+  transition: all var(--wim-transition-base, 0.2s ease);
 }

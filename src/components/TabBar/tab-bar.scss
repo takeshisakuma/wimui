@@ -38,19 +38,19 @@
       align-items: center;
       justify-content: center;
       height: 100%;
-      padding: var(--spacing-xs);
-      color: var(--text-secondary);
+      padding: var(--wim-spacing-xs);
+      color: var(--wim-color-text-secondary);
       cursor: pointer;
       background: none;
       border: none;
-      transition: all var(--transition-base);
+      transition: all var(--wim-transition-base);
 
       &:hover {
         background-color: rgb(0 0 0 / 0.02);
       }
 
       &--active {
-        color: var(--color-primary);
+        color: var(--wim-color-primary);
 
         .wim-tab-bar__icon {
           transform: translateY(-2px);
@@ -64,12 +64,12 @@
       justify-content: center;
       margin-bottom: 2px;
       font-size: 24px;
-      transition: transform var(--transition-base);
+      transition: transform var(--wim-transition-base);
     }
 
     &__label {
       font-size: 10px;
-      font-weight: var(--font-weight-medium);
+      font-weight: var(--wim-font-weight-medium);
       line-height: 1.2;
       white-space: nowrap;
     }
@@ -89,7 +89,7 @@
       line-height: 16px;
       color: white;
       pointer-events: none;
-      background-color: var(--color-destructive);
+      background-color: var(--wim-color-destructive);
       border-radius: 99px;
       box-shadow: 0 0 0 2px var(--wim-color-bg-primary, #fff);
     }

@@ -28,9 +28,9 @@
       scrollbar-gutter: stable;
     }
 
-    color: var(--text-primary);
+    color: var(--wim-color-text-primary);
     overflow-wrap: break-word;
-    background-color: var(--bg-app);
+    background-color: var(--wim-color-bg-app);
     text-rendering: optimizelegibility;
     -webkit-tap-highlight-color: transparent;
   }
@@ -78,7 +78,7 @@
   :focus-visible {
     outline: none;
     border-radius: inherit;
-    box-shadow: var(--shadow-focus);
+    box-shadow: var(--wim-shadow-focus);
   }
 
   /* ユーザー設定によるアニメーションの抑制 */
@@ -102,11 +102,11 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--scrollbar-track, transparent);
+    background: var(--wim-scrollbar-track, transparent);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb, #ccc);
+    background: var(--wim-scrollbar-thumb, #ccc);
     border-radius: 10px;
 
     &:hover {
@@ -116,7 +116,7 @@
 
   /* Firefox */
   * {
-    scrollbar-color: var(--scrollbar-thumb, #ccc) var(--scrollbar-track, transparent);
+    scrollbar-color: var(--wim-scrollbar-thumb, #ccc) var(--wim-scrollbar-track, transparent);
     scrollbar-width: thin;
   }
 }
@@ -124,8 +124,8 @@
 /* ドキュメント用コンチE��の共通スタイル (StorybookのチE��ォルトスタイルを上書きするためレイヤー外で定義) */
 .wim-docs-container {
   padding: 24px;
-  color: var(--text-primary);
-  background-color: var(--bg-app);
+  color: var(--wim-color-text-primary);
+  background-color: var(--wim-color-bg-app);
   border-radius: 12px;
   transition:
     background-color 0.3s ease,
@@ -139,7 +139,7 @@
   h6 {
     margin-top: 1.5em;
     margin-bottom: 0.5em;
-    color: var(--text-primary) !important;
+    color: var(--wim-color-text-primary) !important;
 
     &:first-child {
       margin-top: 0;
@@ -148,55 +148,55 @@
 
   p {
     line-height: 1.6;
-    color: var(--text-primary) !important;
+    color: var(--wim-color-text-primary) !important;
   }
 
   ul,
   ol {
     padding-left: 2em;
     margin: 1em 0;
-    color: var(--text-primary) !important;
+    color: var(--wim-color-text-primary) !important;
 
     li {
       margin-bottom: 0.5em;
-      color: var(--text-primary) !important;
+      color: var(--wim-color-text-primary) !important;
 
       strong {
-        color: var(--text-primary) !important;
+        color: var(--wim-color-text-primary) !important;
       }
     }
   }
 
   strong {
-    color: var(--text-primary) !important;
+    color: var(--wim-color-text-primary) !important;
   }
 
   code {
     padding: 2px 4px;
-    color: var(--text-primary) !important;
+    color: var(--wim-color-text-primary) !important;
     background-color: var(--wim-color-bg-secondary);
     border-radius: 4px;
   }
  
   small {
-    color: var(--text-secondary) !important;
+    color: var(--wim-color-text-secondary) !important;
   }
 
   table {
     width: 100%;
     margin: 16px 0;
-    color: var(--text-primary) !important;
+    color: var(--wim-color-text-primary) !important;
     border-collapse: collapse;
 
     th,
     td {
       padding: 12px;
-      color: var(--text-primary) !important;
-      background-color: var(--bg-component);
+      color: var(--wim-color-text-primary) !important;
+      background-color: var(--wim-color-bg-component);
       border: 1px solid var(--wim-color-border);
 
       strong {
-        color: var(--text-primary) !important;
+        color: var(--wim-color-text-primary) !important;
       }
     }
 

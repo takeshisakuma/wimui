@@ -77,7 +77,7 @@ export const Stack = React.forwardRef(
         "5xl",
       ];
       if (typeof val === "string" && tokens.includes(val)) {
-        return `var(--spacing-${val})`;
+        return `var(--wim-spacing-${val})`;
       }
       return val ? String(val) : undefined;
     };

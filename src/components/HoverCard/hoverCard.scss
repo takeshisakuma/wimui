@@ -10,8 +10,8 @@
 
   &:focus-visible {
     outline: none;
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-focus);
+    border-radius: var(--wim-radius-sm);
+    box-shadow: var(--wim-shadow-focus);
   }
 }
 
@@ -20,15 +20,15 @@
   z-index: 1000;
   width: max-content;
   max-width: 300px;
-  padding: var(--spacing-md);
+  padding: var(--wim-spacing-md);
   font-size: 0.875rem;
   line-height: 1.5;
-  color: var(--text-primary);
+  color: var(--wim-color-text-primary);
   pointer-events: auto;
-  background-color: var(--bg-component, #fff);
+  background-color: var(--wim-color-bg-component, #fff);
   border: 1px solid var(--wim-color-border-secondary);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--wim-radius-md);
+  box-shadow: var(--wim-shadow-lg);
   opacity: 0;
   animation: fadeIn 0.2s forwards;
 

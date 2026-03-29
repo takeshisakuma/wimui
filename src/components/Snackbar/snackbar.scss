@@ -7,7 +7,7 @@
   z-index: 9999;
   display: flex;
   width: 100%;
-  padding: var(--spacing-lg);
+  padding: var(--wim-spacing-lg);
   pointer-events: none;
 
   &--top-left {
@@ -50,20 +50,20 @@
 .wim-snackbar {
   position: relative;
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--wim-spacing-md);
   align-items: flex-start;
   justify-content: space-between;
   min-width: 288px;
   max-width: 560px;
-  padding: var(--spacing-sm) var(--spacing-2xl) var(--spacing-sm) var(--spacing-md);
+  padding: var(--wim-spacing-sm) var(--wim-spacing-2xl) var(--wim-spacing-sm) var(--wim-spacing-md);
   color: #fff;
   pointer-events: auto;
 
   // Default Style (Sleek Dark)
   background: rgb(33 33 33 / 0.9);
   border: 1px solid rgb(255 255 255 / 0.1);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-xl);
+  border-radius: var(--wim-radius-md);
+  box-shadow: var(--wim-shadow-lg);
 
   // Initial state for animation
   opacity: 0;
@@ -79,7 +79,7 @@
   &__content {
     display: flex;
     flex: 1;
-    gap: var(--spacing-sm);
+    gap: var(--wim-spacing-sm);
     align-items: center;
   }
 
@@ -98,9 +98,9 @@
 
   &__actions {
     display: flex;
-    gap: var(--spacing-xs);
+    gap: var(--wim-spacing-xs);
     align-items: center;
-    margin-left: var(--spacing-md);
+    margin-left: var(--wim-spacing-md);
   }
 
   &__action-button {
@@ -116,8 +116,8 @@
 
   &__close-button {
     position: absolute;
-    top: var(--spacing-xs);
-    right: var(--spacing-xs);
+    top: var(--wim-spacing-xs);
+    right: var(--wim-spacing-xs);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,8 +128,8 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: var(--radius-full);
-    transition: var(--transition-fast);
+    border-radius: var(--wim-radius-full);
+    transition: var(--wim-transition-fast);
 
     &:hover {
       color: #fff;

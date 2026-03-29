@@ -3,40 +3,40 @@
     width: 100%;
     margin: 0;
     font-family: inherit;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--wim-font-weight-bold);
     line-height: normal;
 
     /* Sizes */
     &--xs {
-      font-size: var(--font-size-0); // 1rem
+      font-size: var(--wim-font-size-scale-0); // 1rem
     }
 
     &--sm {
-      font-size: var(--font-size-2); // 1.3rem
+      font-size: var(--wim-font-size-scale-2); // 1.3rem
     }
 
     &--md {
-      font-size: var(--font-size-4); // 1.6rem
+      font-size: var(--wim-font-size-scale-4); // 1.6rem
     }
 
     &--lg {
-      font-size: var(--font-size-6); // 2rem
+      font-size: var(--wim-font-size-scale-6); // 2rem
     }
 
     &--xl {
-      font-size: var(--font-size-8); // 2.6rem
+      font-size: var(--wim-font-size-scale-8); // 2.6rem
     }
 
     &--2xl {
-      font-size: var(--font-size-10); // 3.2rem
+      font-size: var(--wim-font-size-scale-10); // 3.2rem
     }
 
     &--3xl {
-      font-size: var(--font-size-12); // 4.1rem
+      font-size: var(--wim-font-size-scale-12); // 4.1rem
     }
 
     &--4xl {
-      font-size: var(--font-size-14); // 5.2rem
+      font-size: var(--wim-font-size-scale-14); // 5.2rem
     }
 
     /* Align */
@@ -54,54 +54,54 @@
 
     /* Colors */
     &--black {
-      color: var(--text-primary);
+      color: var(--wim-color-text-primary);
     }
 
     &--deepgray {
-      color: var(--text-secondary);
+      color: var(--wim-color-text-secondary);
     }
 
     &--gray {
-      color: var(--text-tertiary);
+      color: var(--wim-color-text-tertiary);
     }
 
     &--lightgray {
-      color: var(--text-disabled);
+      color: var(--wim-color-text-disabled);
     }
 
     &--white {
-      color: var(--text-white);
+      color: var(--wim-color-text-white);
     }
 
     &--error {
-      color: var(--text-error);
+      color: var(--wim-color-text-error);
     }
 
     &--primary {
-      color: var(--color-primary);
+      color: var(--wim-color-primary);
     }
 
     &--success {
-      color: var(--color-positive);
+      color: var(--wim-color-positive);
     }
 
     &--warning {
-      color: var(--color-caution);
+      color: var(--wim-color-caution);
     }
 
     &--info {
-      color: var(--color-informative);
+      color: var(--wim-color-informative);
     }
 
     /* Decoration */
     &--underline {
-      text-decoration: var(--decoration-underline);
+      text-decoration: var(--wim-decoration-underline);
       text-decoration-skip-ink: none;
       text-underline-offset: 0.3em;
     }
 
     &__highlight {
-      background-color: var(--decoration-highlight-color);
+      background-color: var(--wim-decoration-highlight-color);
     }
   }
 }

@@ -137,7 +137,7 @@ const ControlledTemplate = () => {
         onClick={() => setOpen(true)}
         style={{
           padding: "10px 20px",
-          backgroundColor: "var(--color-primary)",
+          backgroundColor: "var(--wim-color-primary)",
           color: "white",
           border: "none",
           borderRadius: "6px",

@@ -7,25 +7,25 @@
   display: block;
   width: 100%;
   min-height: var(--wim-height-md);
-  padding: var(--spacing-sm) var(--wim-input-offset-right, var(--spacing-md)) var(--spacing-sm) var(--wim-input-offset-left, var(--spacing-md));
-  font-size: var(--font-size-medium);
-  color: var(--text-primary);
-  background-color: var(--bg-component, #fff);
-  border: var(--wim-border-width-thin) solid var(--color-secondary);
-  border-radius: var(--radius-md);
-  transition: var(--transition-base);
+  padding: var(--wim-spacing-sm) var(--wim-input-offset-right, var(--wim-spacing-md)) var(--wim-spacing-sm) var(--wim-input-offset-left, var(--wim-spacing-md));
+  font-size: var(--wim-font-size-md);
+  color: var(--wim-color-text-primary);
+  background-color: var(--wim-color-bg-component, #fff);
+  border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-md);
+  transition: var(--wim-transition-base);
 
   &::placeholder {
-    color: var(--text-tertiary);
+    color: var(--wim-color-text-tertiary);
   }
 
   &:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-color: var(--wim-color-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
   }
 
   &--outline {
-    border-color: var(--color-secondary);
+    border-color: var(--wim-color-secondary);
   }
 
   &--ghost {
@@ -35,15 +35,15 @@
   }
 
   &--error {
-    border-color: var(--text-error);
+    border-color: var(--wim-color-text-error);
   }
 
   &--disabled {
-    color: var(--color-text-on-disabled);
+    color: var(--wim-color-text-on-disabled);
     pointer-events: none;
     cursor: not-allowed;
-    background-color: var(--color-disabled);
-    border-color: var(--color-disabled);
+    background-color: var(--wim-color-disabled);
+    border-color: var(--wim-color-disabled);
   }
 
   /* type="number" 特有の調整 */

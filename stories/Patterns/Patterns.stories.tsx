@@ -179,12 +179,12 @@ export const DashboardHeader: StoryObj = {
               style={{
                 width: "32px",
                 height: "32px",
-                backgroundColor: "var(--color-primary)",
+                backgroundColor: "var(--wim-color-primary)",
                 borderRadius: "6px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "var(--color-text-on-primary)",
+                color: "var(--wim-color-text-on-primary)",
                 fontWeight: "bold",
               }}
             >
@@ -859,7 +859,7 @@ export const HeroSection: StoryObj = {
         display: "flex",
         alignItems: "center",
         background:
-          "linear-gradient(135deg, var(--color-primary-light, #f0f7ff) 0%, var(--wim-color-surface) 100%)",
+          "linear-gradient(135deg, var(--wim-color-primary-light, #f0f7ff) 0%, var(--wim-color-surface) 100%)",
         padding: "80px 24px",
       }}
     >

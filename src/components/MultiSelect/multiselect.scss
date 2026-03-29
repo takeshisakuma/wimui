@@ -7,7 +7,7 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 280px;
-  font-family: var(--font-family-base);
+  font-family: var(--wim-font-family-default);
 
   &--full-width {
     width: 100%;
@@ -24,10 +24,10 @@
   min-height: 42px;
 
   /* Ensure consistency with inputs */
-  padding: var(--spacing-md) var(--spacing-sm); // Increased from xs to md for vertical consistency
+  padding: var(--wim-spacing-md) var(--wim-spacing-sm); // Increased from xs to md for vertical consistency
   font-size: 1rem;
   line-height: 1.5;
-  color: var(--text-primary);
+  color: var(--wim-color-text-primary);
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -37,25 +37,25 @@
     box-shadow 0.2s ease-in-out;
 
   &:hover:not(.wim-multiselect-trigger--disabled) {
-    border-color: var(--color-primary);
+    border-color: var(--wim-color-primary);
   }
 
   &:focus {
     outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-color: var(--wim-color-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
   }
 
   &--open {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-color: var(--wim-color-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
   }
 
   &--disabled {
-    color: var(--text-disabled);
+    color: var(--wim-color-text-disabled);
     cursor: not-allowed;
     background-color: rgb(0 0 0 / 0.05);
-    border-color: var(--color-disabled);
+    border-color: var(--wim-color-disabled);
   }
 }
 
@@ -63,14 +63,14 @@
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-  gap: var(--spacing-xs);
+  gap: var(--wim-spacing-xs);
   align-items: center;
   min-width: 0;
 
   &--placeholder {
     overflow: hidden;
     text-overflow: ellipsis;
-    color: var(--text-placeholder);
+    color: var(--wim-color-text-placeholder);
     white-space: nowrap;
   }
 }
@@ -83,27 +83,27 @@
   width: 100%;
   max-height: 280px;
   padding: 4px 0; // Standardized padding for focus rings
-  margin: var(--spacing-xs) 0 0;
+  margin: var(--wim-spacing-xs) 0 0;
   overflow-y: auto;
   list-style: none;
-  background-color: var(--bg-component, #fff);
-  border: 1px solid var(--color-secondary);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  background-color: var(--wim-color-bg-component, #fff);
+  border: 1px solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-md);
+  box-shadow: var(--wim-shadow-md);
 }
 
 .wim-multiselect-option {
   .wim-multiselect[data-keyboard-nav="true"] &.wim-base-list-item--active {
     z-index: 1;
-    box-shadow: var(--shadow-focus);
+    box-shadow: var(--wim-shadow-focus);
   }
 
   // Common styles are now handled by BaseListItem
 
   &--selected {
     font-weight: 500;
-    color: var(--color-primary);
-    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    color: var(--wim-color-primary);
+    background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
   }
 }
 
@@ -112,18 +112,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
+  color: var(--wim-color-text-secondary);
 }
 
 .wim-multiselect-clear {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-xs);
-  color: var(--text-secondary);
+  padding: var(--wim-spacing-xs);
+  color: var(--wim-color-text-secondary);
   cursor: pointer;
   background: none;
   border: none;
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-base);
+  border-radius: var(--wim-radius-sm);
+  transition: all var(--wim-transition-base);
 }

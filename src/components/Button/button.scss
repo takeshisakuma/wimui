@@ -7,18 +7,18 @@
     place-items: center;
     padding: 0;
     font: inherit;
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--wim-font-weight-medium);
     line-height: 1.2;
     color: inherit;
     white-space: nowrap;
     cursor: pointer;
     background-color: transparent;
     border: var(--wim-border-width-thick) solid transparent;
-    border-radius: var(--radius-md);
+    border-radius: var(--wim-radius-md);
     opacity: 1;
     transform: translateZ(0);
     backface-visibility: hidden;
-    transition: var(--transition-base);
+    transition: var(--wim-transition-base);
 
     /* アニメーション終了時のテキストの描画ブレ（Jitter）を防止 */
     will-change: transform, box-shadow;
@@ -29,14 +29,14 @@
     }
 
     &:active:not(:disabled) {
-      transform: scale(var(--scale-active)) translateZ(0);
-      transition: transform var(--duration-instant) var(--easing-standard);
+      transform: scale(var(--wim-scale-active)) translateZ(0);
+      transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
     }
 
     &__inner {
       display: flex;
       grid-area: stack;
-      gap: var(--spacing-xs);
+      gap: var(--wim-spacing-xs);
       align-items: center;
       justify-content: center;
       width: 100%;
@@ -71,82 +71,82 @@
     }
 
     &--lg {
-      --wim-button-v-padding-base: var(--spacing-xl);
+      --wim-button-v-padding-base: var(--wim-spacing-xl);
       --wim-button-v-padding: var(--wim-button-v-padding-base);
-      --wim-button-h-padding: var(--spacing-2xl);
+      --wim-button-h-padding: var(--wim-spacing-2xl);
       --wim-button-height: var(--wim-height-lg);
 
       max-width: 100%;
       min-height: var(--wim-button-height);
       padding: var(--wim-button-v-padding) var(--wim-button-h-padding);
-      font-size: var(--font-size-large);
+      font-size: var(--wim-font-size-lg);
     }
 
     &--md {
-      --wim-button-v-padding-base: var(--spacing-lg);
+      --wim-button-v-padding-base: var(--wim-spacing-lg);
       --wim-button-v-padding: var(--wim-button-v-padding-base);
-      --wim-button-h-padding: var(--spacing-2xl);
+      --wim-button-h-padding: var(--wim-spacing-2xl);
       --wim-button-height: var(--wim-height-md);
 
       max-width: 100%;
       min-height: var(--wim-button-height);
       padding: var(--wim-button-v-padding) var(--wim-button-h-padding);
-      font-size: var(--font-size-medium);
+      font-size: var(--wim-font-size-md);
     }
 
     &--sm {
-      --wim-button-v-padding-base: var(--spacing-sm);
+      --wim-button-v-padding-base: var(--wim-spacing-sm);
       --wim-button-v-padding: var(--wim-button-v-padding-base);
-      --wim-button-h-padding: var(--spacing-xl);
+      --wim-button-h-padding: var(--wim-spacing-xl);
       --wim-button-height: var(--wim-height-sm);
 
       max-width: 100%;
       min-height: var(--wim-button-height);
       padding: var(--wim-button-v-padding) var(--wim-button-h-padding);
-      font-size: var(--font-size-small);
+      font-size: var(--wim-font-size-sm);
     }
 
     &--primary {
       --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
 
-      background-image: var(--glass-gradient);
-      box-shadow: var(--shadow-sm), var(--inner-highlight);
+      background-image: var(--wim-glass-gradient);
+      box-shadow: var(--wim-shadow-sm), var(--wim-inner-highlight);
 
       &.wim-button--default {
-        color: var(--color-text-on-primary);
-        background-color: var(--color-primary);
+        color: var(--wim-color-text-on-primary);
+        background-color: var(--wim-color-primary);
       }
 
       &.wim-button--destructive {
-        color: var(--color-text-on-destructive);
-        background-color: var(--color-destructive);
+        color: var(--wim-color-text-on-destructive);
+        background-color: var(--wim-color-destructive);
       }
 
       &.wim-button--positive {
-        color: var(--color-text-on-positive);
-        background-color: var(--color-positive);
+        color: var(--wim-color-text-on-positive);
+        background-color: var(--wim-color-positive);
       }
 
       &:disabled {
-        color: var(--color-text-on-disabled);
-        background-color: var(--color-disabled);
+        color: var(--wim-color-text-on-disabled);
+        background-color: var(--wim-color-disabled);
         border-color: transparent;
         box-shadow: none;
       }
 
       &:hover:not(:disabled) {
-        box-shadow: 0 8px 18px rgb(0 0 0 / 0.12), var(--inner-highlight);
-        transform: translateY(var(--lift-md)) translateZ(0);
+        box-shadow: 0 8px 18px rgb(0 0 0 / 0.12), var(--wim-inner-highlight);
+        transform: translateY(var(--wim-lift-md)) translateZ(0);
         transition:
-          box-shadow var(--duration-fast) var(--easing-standard),
-          transform var(--duration-fast) var(--easing-out-back);
+          box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
+          transform var(--wim-duration-fast) var(--wim-easing-out-back);
       }
 
       &:active:not(:disabled) {
         background-image: none;
-        box-shadow: var(--shadow-xs), var(--shadow-inset);
-        transform: translateY(var(--lift-none)) scale(var(--scale-active)) translateZ(0);
-        transition: transform var(--duration-instant) var(--easing-standard);
+        box-shadow: var(--wim-shadow-xs), var(--wim-shadow-inset);
+        transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
+        transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
       }
     }
 
@@ -154,41 +154,41 @@
       --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
 
       &.wim-button--default {
-        color: var(--color-primary);
+        color: var(--wim-color-primary);
         background-color: var(--wim-color-bg-primary);
-        border-color: var(--color-primary);
+        border-color: var(--wim-color-primary);
       }
 
       &.wim-button--destructive {
-        color: var(--color-destructive);
+        color: var(--wim-color-destructive);
         background-color: var(--wim-color-bg-primary);
-        border-color: var(--color-destructive);
+        border-color: var(--wim-color-destructive);
       }
 
       &.wim-button--positive {
-        color: var(--color-positive);
+        color: var(--wim-color-positive);
         background-color: var(--wim-color-bg-primary);
-        border-color: var(--color-positive);
+        border-color: var(--wim-color-positive);
       }
 
       &:disabled {
-        color: var(--color-disabled);
+        color: var(--wim-color-disabled);
         background-color: transparent;
-        border-color: var(--color-disabled);
+        border-color: var(--wim-color-disabled);
       }
 
       &:hover:not(:disabled) {
-        box-shadow: var(--shadow-md);
-        transform: translateY(var(--lift-sm)) translateZ(0);
+        box-shadow: var(--wim-shadow-md);
+        transform: translateY(var(--wim-lift-sm)) translateZ(0);
         transition:
-          box-shadow var(--duration-fast) var(--easing-base),
-          transform var(--duration-fast) var(--easing-out-back);
+          box-shadow var(--wim-duration-fast) var(--wim-easing-base),
+          transform var(--wim-duration-fast) var(--wim-easing-out-back);
       }
 
       &:active:not(:disabled) {
-        box-shadow: var(--shadow-inset);
-        transform: translateY(var(--lift-none)) scale(var(--scale-active)) translateZ(0);
-        transition: transform 0.1s var(--easing-base);
+        box-shadow: var(--wim-shadow-inset);
+        transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
+        transition: transform 0.1s var(--wim-easing-base);
       }
     }
 
@@ -199,41 +199,41 @@
       border-color: rgb(0 0 0 / 0.08);
 
       &.wim-button--default {
-        color: var(--color-primary);
+        color: var(--wim-color-primary);
       }
 
       &.wim-button--destructive {
-        color: var(--color-destructive);
+        color: var(--wim-color-destructive);
       }
 
       &.wim-button--positive {
-        color: var(--color-positive);
+        color: var(--wim-color-positive);
       }
 
       &:disabled {
-        color: var(--color-disabled);
+        color: var(--wim-color-disabled);
         background-color: transparent;
         border-color: transparent;
       }
 
       &:hover:not(:disabled) {
         background-color: var(--wim-color-bg-hover);
-        border-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
-        box-shadow: var(--shadow-sm);
-        transform: translateY(var(--lift-sm)) translateZ(0);
+        border-color: color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+        box-shadow: var(--wim-shadow-sm);
+        transform: translateY(var(--wim-lift-sm)) translateZ(0);
         transition:
-          background-color var(--duration-fast) var(--easing-base),
-          border-color var(--duration-fast) var(--easing-base),
-          box-shadow var(--duration-fast) var(--easing-base),
-          transform var(--duration-fast) var(--easing-out-back);
+          background-color var(--wim-duration-fast) var(--wim-easing-base),
+          border-color var(--wim-duration-fast) var(--wim-easing-base),
+          box-shadow var(--wim-duration-fast) var(--wim-easing-base),
+          transform var(--wim-duration-fast) var(--wim-easing-out-back);
       }
 
       &:active:not(:disabled) {
         background-color: rgb(0 0 0 / 0.12);
         border-color: rgb(0 0 0 / 0.25);
-        box-shadow: var(--shadow-inset);
-        transform: translateY(var(--lift-none)) scale(var(--scale-active)) translateZ(0);
-        transition: transform 0.1s var(--easing-base);
+        box-shadow: var(--wim-shadow-inset);
+        transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
+        transition: transform 0.1s var(--wim-easing-base);
       }
     }
 
@@ -269,7 +269,7 @@
 
     &:hover:not(:disabled) {
       background-color: var(--wim-color-bg-hover);
-      border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+      border-color: color-mix(in srgb, var(--wim-color-primary) 40%, transparent);
     }
 
     &:active:not(:disabled) {
@@ -294,11 +294,11 @@
   .wim-button {
     &--animated-width {
       transition:
-        width var(--duration-normal) var(--easing-base),
-        background-color var(--duration-fast) var(--easing-base),
-        border-color var(--duration-fast) var(--easing-base),
-        box-shadow var(--duration-fast) var(--easing-base),
-        transform var(--duration-fast) var(--easing-out-back);
+        width var(--wim-duration-base) var(--wim-easing-base),
+        background-color var(--wim-duration-fast) var(--wim-easing-base),
+        border-color var(--wim-duration-fast) var(--wim-easing-base),
+        box-shadow var(--wim-duration-fast) var(--wim-easing-base),
+        transform var(--wim-duration-fast) var(--wim-easing-out-back);
     }
   }
 }

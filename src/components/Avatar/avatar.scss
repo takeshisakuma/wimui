@@ -5,9 +5,9 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  color: var(--color-text-on-disabled, #212529);
+  color: var(--wim-color-text-on-disabled, #212529);
   user-select: none;
-  background-color: var(--color-disabled, #e9ecef);
+  background-color: var(--wim-color-disabled, #e9ecef);
 
   img {
     width: 100%;
@@ -33,7 +33,7 @@
 
   // Shapes
   &--circle {
-    border-radius: var(--radius-full);
+    border-radius: var(--wim-radius-full);
   }
 
   &--rounded {
@@ -61,27 +61,27 @@
 
   // Colors
   &--primary {
-    color: var(--color-text-on-primary);
-    background-color: var(--color-primary);
+    color: var(--wim-color-text-on-primary);
+    background-color: var(--wim-color-primary);
   }
 
   &--secondary {
-    color: var(--color-text-on-secondary);
-    background-color: var(--color-secondary);
+    color: var(--wim-color-text-on-secondary);
+    background-color: var(--wim-color-secondary);
   }
 
   &--error {
-    color: var(--color-text-on-destructive);
-    background-color: var(--color-destructive);
+    color: var(--wim-color-text-on-destructive);
+    background-color: var(--wim-color-destructive);
   }
 
   &--success {
-    color: var(--color-text-on-positive);
-    background-color: var(--color-positive);
+    color: var(--wim-color-text-on-positive);
+    background-color: var(--wim-color-positive);
   }
 
   &--neutral {
-    color: var(--color-text-on-informative);
-    background-color: var(--color-informative);
+    color: var(--wim-color-text-on-informative);
+    background-color: var(--wim-color-informative);
   }
 }

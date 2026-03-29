@@ -51,7 +51,7 @@ export const SpacingSwatch = ({
           style={{
             height: "24px",
             width: size,
-            backgroundColor: "var(--color-primary, #007aff)",
+            backgroundColor: "var(--wim-color-primary, #007aff)",
             borderRadius: "2px",
             opacity: 0.7,
           }}
@@ -88,7 +88,7 @@ export const RadiusSwatch = ({
           width: "100%",
           height: "80px",
           backgroundColor: "var(--wim-color-surface)",
-          border: "2px solid", borderColor: "var(--color-primary, #007aff)",
+          border: "2px solid", borderColor: "var(--wim-color-primary, #007aff)",
           borderRadius: radius,
         }}
       ></div>
@@ -258,7 +258,7 @@ export const MotionSwatch = ({
             height: "32px",
             width: "32px",
             borderRadius: "50%",
-            backgroundColor: "var(--color-primary)",
+            backgroundColor: "var(--wim-color-primary)",
             top: "4px",
             left: active ? "calc(100% - 36px)" : "4px",
             transition: `all ${duration} ${easing}`,
@@ -479,10 +479,10 @@ export const FocusOutlineSwatch = () => {
         style={{
           width: "100px",
           height: "40px",
-          backgroundColor: "var(--color-primary, #007aff)",
-          borderRadius: "var(--radius-md)",
-          outline: "var(--focus-outline-width) solid rgba(0, 122, 255, 0.5)",
-          outlineOffset: "var(--focus-outline-offset)",
+          backgroundColor: "var(--wim-color-primary, #007aff)",
+          borderRadius: "var(--wim-radius-md)",
+          outline: "var(--wim-focus-outline-width) solid rgba(0, 122, 255, 0.5)",
+          outlineOffset: "var(--wim-focus-outline-offset)",
           color: "white",
           display: "flex",
           alignItems: "center",
@@ -496,8 +496,8 @@ export const FocusOutlineSwatch = () => {
       <div style={{ textAlign: "center", marginTop: "8px" }}>
         <div style={{ fontSize: "14px", fontWeight: 600 }}>Focus Ring</div>
         <div style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)", marginTop: "4px" }}>
-          <code style={{ background: "rgba(0,0,0,0.05)", padding: "2px 4px", borderRadius: "4px" }}>--focus-outline-width</code> (2px)<br />
-          <code style={{ background: "rgba(0,0,0,0.05)", padding: "2px 4px", borderRadius: "4px", marginTop: "4px", display: "inline-block" }}>--focus-outline-offset</code> (2px)
+          <code style={{ background: "rgba(0,0,0,0.05)", padding: "2px 4px", borderRadius: "4px" }}>--wim-focus-outline-width</code> (2px)<br />
+          <code style={{ background: "rgba(0,0,0,0.05)", padding: "2px 4px", borderRadius: "4px", marginTop: "4px", display: "inline-block" }}>--wim-focus-outline-offset</code> (2px)
         </div>
       </div>
     </div>
@@ -549,14 +549,14 @@ export const InteractiveSwatch = ({
           height: "60px",
           backgroundColor: "var(--wim-color-surface)",
           border: "1px solid", borderColor: "var(--wim-color-border, #ccc)",
-          borderRadius: "var(--radius-md)",
+          borderRadius: "var(--wim-radius-md)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           fontSize: "14px",
           fontWeight: 600,
           cursor: "pointer",
-          transition: "var(--transition-base, all 0.3s ease-in-out)",
+          transition: "var(--wim-transition-base, all 0.3s ease-in-out)",
           ...(isHovered ? hoverStyle : {}),
           ...(isActive ? activeStyle : {}),
         }}

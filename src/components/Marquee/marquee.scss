@@ -1,7 +1,7 @@
 @layer component {
   .wim-marquee {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--wim-spacing-md);
     width: 100%;
     overflow: hidden;
     user-select: none;
@@ -9,7 +9,7 @@
     &__content {
       display: flex;
       flex-shrink: 0;
-      gap: var(--spacing-md);
+      gap: var(--wim-spacing-md);
       justify-content: space-around;
       min-width: 100%;
       animation: wim-marquee-scroll var(--duration, 20s) linear infinite;
@@ -38,7 +38,7 @@
     }
 
     to {
-      transform: translateX(calc(-100% - var(--spacing-md)));
+      transform: translateX(calc(-100% - var(--wim-spacing-md)));
     }
   }
 
@@ -48,7 +48,7 @@
     }
 
     to {
-      transform: translateY(calc(-100% - var(--spacing-md)));
+      transform: translateY(calc(-100% - var(--wim-spacing-md)));
     }
   }
 }

@@ -8,10 +8,10 @@
     padding: 0;
     cursor: pointer;
     border: none;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--wim-shadow-md);
     transition:
-      background-color var(--duration-fast) var(--easing-base),
-      box-shadow var(--duration-fast) var(--easing-base),
+      background-color var(--wim-duration-fast) var(--wim-easing-base),
+      box-shadow var(--wim-duration-fast) var(--wim-easing-base),
       transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
       width 0.3s ease,
       padding 0.3s ease;
@@ -22,7 +22,7 @@
 
     &__inner {
       display: flex;
-      gap: var(--spacing-xs);
+      gap: var(--wim-spacing-xs);
       align-items: center;
       justify-content: center;
       width: 100%;
@@ -44,7 +44,7 @@
 
     &__label {
       display: inline-block;
-      font-weight: var(--font-weight-medium);
+      font-weight: var(--wim-font-weight-medium);
       line-height: 1.4;
       white-space: nowrap;
       opacity: 1;
@@ -55,27 +55,27 @@
 
     // Sizes
     &--lg {
-      width: var(--spacing-5xl);
-      height: var(--spacing-5xl);
-      font-size: var(--font-size-large);
+      width: var(--wim-spacing-5xl);
+      height: var(--wim-spacing-5xl);
+      font-size: var(--wim-font-size-lg);
 
-      --float-button-shrink-size: var(--spacing-5xl);
+      --float-button-shrink-size: var(--wim-spacing-5xl);
     }
 
     &--md {
-      width: var(--spacing-4xl);
-      height: var(--spacing-4xl);
-      font-size: var(--font-size-medium);
+      width: var(--wim-spacing-4xl);
+      height: var(--wim-spacing-4xl);
+      font-size: var(--wim-font-size-md);
 
-      --float-button-shrink-size: var(--spacing-4xl);
+      --float-button-shrink-size: var(--wim-spacing-4xl);
     }
 
     &--sm {
-      width: var(--spacing-3xl);
-      height: var(--spacing-3xl);
-      font-size: var(--font-size-small);
+      width: var(--wim-spacing-3xl);
+      height: var(--wim-spacing-3xl);
+      font-size: var(--wim-font-size-sm);
 
-      --float-button-shrink-size: var(--spacing-3xl);
+      --float-button-shrink-size: var(--wim-spacing-3xl);
 
       .wim-icon {
         font-size: 0.75rem;
@@ -86,21 +86,21 @@
     &--extended {
       width: max-content; // コンテンツに応じた幅
       min-width: var(--float-button-shrink-size);
-      border-radius: var(--radius-full); // pill型（circle/squareより優先）
+      border-radius: var(--wim-radius-full); // pill型（circle/squareより優先）
 
       &.wim-float-button--lg {
-        height: var(--spacing-5xl); // 高さ固定でpill型を維持
-        padding: 0 var(--spacing-2xl);
+        height: var(--wim-spacing-5xl); // 高さ固定でpill型を維持
+        padding: 0 var(--wim-spacing-2xl);
       }
 
       &.wim-float-button--md {
-        height: var(--spacing-4xl); // 高さ固定でpill型を維持
-        padding: 0 var(--spacing-xl);
+        height: var(--wim-spacing-4xl); // 高さ固定でpill型を維持
+        padding: 0 var(--wim-spacing-xl);
       }
 
       &.wim-float-button--sm {
-        height: var(--spacing-3xl); // 高さ固定でpill型を維持
-        padding: 0 var(--spacing-lg);
+        height: var(--wim-spacing-3xl); // 高さ固定でpill型を維持
+        padding: 0 var(--wim-spacing-lg);
       }
 
       &.wim-float-button--shrink {
@@ -124,31 +124,31 @@
 
     // circle/squareはextendedでない場合のみ適用
     &--circle:not(&--extended) {
-      border-radius: var(--radius-full);
+      border-radius: var(--wim-radius-full);
     }
 
     &--square:not(&--extended) {
-      border-radius: var(--radius-md);
+      border-radius: var(--wim-radius-md);
     }
 
     &--default {
       color: var(--wim-color-text-primary);
       background-color: var(--wim-color-bg-component);
-      border: 1px solid var(--color-disabled);
+      border: 1px solid var(--wim-color-disabled);
 
       &:hover {
-        background-color: var(--color-disabled);
-        box-shadow: var(--shadow-lg);
+        background-color: var(--wim-color-disabled);
+        box-shadow: var(--wim-shadow-lg);
         transform: scale(1.05);
       }
     }
 
     &--primary {
-      color: var(--color-text-on-primary);
-      background-color: var(--color-primary);
+      color: var(--wim-color-text-on-primary);
+      background-color: var(--wim-color-primary);
 
       &:hover {
-        box-shadow: var(--shadow-lg);
+        box-shadow: var(--wim-shadow-lg);
         filter: brightness(1.1);
         transform: scale(1.05);
       }
@@ -157,19 +157,19 @@
     // Positions
     &--bottom-right {
       position: fixed;
-      right: var(--spacing-2xl);
-      bottom: var(--spacing-2xl);
+      right: var(--wim-spacing-2xl);
+      bottom: var(--wim-spacing-2xl);
     }
 
     &--bottom-left {
       position: fixed;
-      bottom: var(--spacing-2xl);
-      left: var(--spacing-2xl);
+      bottom: var(--wim-spacing-2xl);
+      left: var(--wim-spacing-2xl);
     }
 
     &--bottom-center {
       position: fixed;
-      bottom: var(--spacing-2xl);
+      bottom: var(--wim-spacing-2xl);
       left: 50%;
       transform: translateX(-50%);
 
@@ -184,14 +184,14 @@
 
     &--top-right {
       position: fixed;
-      top: var(--spacing-2xl);
-      right: var(--spacing-2xl);
+      top: var(--wim-spacing-2xl);
+      right: var(--wim-spacing-2xl);
     }
 
     &--top-left {
       position: fixed;
-      top: var(--spacing-2xl);
-      left: var(--spacing-2xl);
+      top: var(--wim-spacing-2xl);
+      left: var(--wim-spacing-2xl);
     }
 
     &--static {
@@ -212,7 +212,7 @@
       line-height: 1;
       color: #fff;
       text-align: center;
-      background-color: var(--color-destructive);
+      background-color: var(--wim-color-destructive);
       border-radius: 8px;
       box-shadow: 0 0 0 2px #fff;
 
@@ -222,8 +222,8 @@
         right: 0;
         width: 8px;
         height: 8px;
-        background-color: var(--color-destructive);
-        border-radius: var(--radius-full);
+        background-color: var(--wim-color-destructive);
+        border-radius: var(--wim-radius-full);
         box-shadow: 0 0 0 2px #fff;
       }
     }
@@ -247,13 +247,13 @@
     }
 
     &:active:not(:disabled) {
-      transform: scale(var(--scale-active));
+      transform: scale(var(--wim-scale-active));
     }
 
     &:disabled {
       pointer-events: none;
       cursor: not-allowed;
-      opacity: var(--opacity-ghost);
+      opacity: var(--wim-opacity-ghost);
     }
   }
 }

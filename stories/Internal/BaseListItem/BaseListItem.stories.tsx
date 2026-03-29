@@ -63,7 +63,7 @@ export const WithBadge: Story = {
       <BaseListItem 
         {...args} 
         icon={<Icon name="BellIcon" />} 
-        rightSection={<Chip label={t("new")} size="small" />}
+        rightSection={<Chip size="small">{t("new")}</Chip>}
       >
         {t("notifications")}
       </BaseListItem>

@@ -5,27 +5,27 @@
   justify-content: center;
 
   &--primary {
-    color: var(--color-primary, #007bff);
+    color: var(--wim-color-primary, #007bff);
   }
 
   &--secondary {
-    color: var(--color-secondary, #6c757d);
+    color: var(--wim-color-secondary, #6c757d);
   }
 
   &--success {
-    color: var(--color-positive, #28a745);
+    color: var(--wim-color-positive, #28a745);
   }
 
   &--warning {
-    color: var(--color-caution, #ffc107);
+    color: var(--wim-color-caution, #ffc107);
   }
 
   &--error {
-    color: var(--color-destructive, #dc3545);
+    color: var(--wim-color-destructive, #dc3545);
   }
 
   &--neutral {
-    color: var(--text-secondary, #4a5568);
+    color: var(--wim-color-text-secondary, #4a5568);
   }
 
   &--currentColor {
@@ -88,7 +88,7 @@
       width: 8px;
       height: 8px;
       background-color: currentcolor;
-      border-radius: var(--radius-full);
+      border-radius: var(--wim-radius-full);
       animation: wim-loader-dots 1s ease-in-out infinite;
 
       &:nth-child(2) {
@@ -135,8 +135,8 @@
       width: 100%;
       height: 100%;
       background-color: currentcolor;
-      border-radius: var(--radius-full);
-      opacity: var(--opacity-disabled);
+      border-radius: var(--wim-radius-full);
+      opacity: var(--wim-opacity-disabled);
       animation: wim-loader-pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
       &:nth-child(2) {
@@ -168,7 +168,7 @@
 @keyframes wim-loader-bars {
   0%,
   100% {
-    opacity: var(--opacity-disabled);
+    opacity: var(--wim-opacity-disabled);
     transform: scaleY(0.6);
   }
 

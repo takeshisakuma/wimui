@@ -1,9 +1,7 @@
 import React, { useId } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
-import { warnDeprecated } from "../../utilities/dev-utils";
 import { Transition } from "../Transition/Transition";
-import { Icon } from "../Icon/Icon";
 import { BaseListItem } from "../_internal/BaseListItem";
 import "./selectbox.scss";
 import { useSelectbox } from "./useSelectbox";
@@ -38,8 +36,6 @@ export type SelectboxProps = {
   filterOption?: (option: SelectboxOption, searchValue: string) => boolean;
   /** Whether options are grouped */
   grouped?: boolean;
-  /** @deprecated Internal use only. Native selects do not support all WIM UI styles. */
-  native?: boolean;
   /** Whether to show a clear button when a value is selected */
   allowClear?: boolean;
   /** Whether to take full width of parent */
@@ -76,15 +72,11 @@ export const Selectbox = ({
   searchPlaceholder = "search_placeholder",
   filterOption,
   grouped = false,
-  native = false,
   allowClear = false,
   fullWidth = false,
   id: customId,
   ...props
 }: SelectboxProps) => {
-  if (native) {
-    warnDeprecated("Selectbox", "native", "Native selects do not support all WIM UI styles.");
-  }
   const { t } = useTranslation("common");
   const generatedId = useId();
   const id = customId || `wim-selectbox-${generatedId}`;
@@ -238,73 +230,6 @@ export const Selectbox = ({
       );
     });
   };
-
-  if (native) {
-    return (
-      <FieldTemplate
-        label={label}
-        error={error}
-        required={required}
-        labelId={labelId}
-        className={className}
-      >
-        <div className="wim-selectbox wim-selectbox--native">
-          <div className="wim-selectbox-native-wrapper">
-            <select
-              id={id}
-              className="wim-selectbox-select"
-              value={currentValue}
-              disabled={disabled}
-              onChange={(e) => {
-                if (onChange) onChange(e.target.value);
-              }}
-              {...props}
-            >
-            {!currentValue && (
-              <option value="" disabled>
-                {t(placeholder)}
-              </option>
-            )}
-            {grouped
-              ? (options as SelectboxOptionGroup[]).map((group, gi) => (
-                <optgroup key={gi} label={t(group.label)}>
-                  {group.options.map((opt, oi) =>
-                    opt.type === "separator" ? (
-                      <hr key={`hr-${gi}-${oi}`} />
-                    ) : (
-                      <option
-                        key={opt.value}
-                        value={opt.value}
-                        disabled={opt.disabled}
-                      >
-                        {t(opt.label || "")}
-                      </option>
-                    ),
-                  )}
-                </optgroup>
-              ))
-              : (options as SelectboxOption[]).map((opt, i) =>
-                opt.type === "separator" ? (
-                  <hr key={`hr-${i}`} />
-                ) : (
-                  <option
-                    key={opt.value}
-                    value={opt.value}
-                    disabled={opt.disabled}
-                  >
-                    {t(opt.label || "")}
-                  </option>
-                ),
-              )}
-          </select>
-            <div className="wim-selectbox-icon">
-              <Icon name="ChevronDownIcon" size="medium" />
-            </div>
-          </div>
-        </div>
-      </FieldTemplate>
-    );
-  }
 
   const activeDescendant =
     focusedOption && focusedOption.type !== "separator"

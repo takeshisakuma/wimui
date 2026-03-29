@@ -10,31 +10,31 @@
 
     &__bar {
       height: 100%;
-      background-color: var(--color-primary);
+      background-color: var(--wim-color-primary);
       transition: width 0.1s ease-out;
     }
 
     &--secondary {
       .wim-scroll-progress__bar {
-        background-color: var(--color-secondary);
+        background-color: var(--wim-color-secondary);
       }
     }
 
     &--success {
       .wim-scroll-progress__bar {
-        background-color: var(--color-positive);
+        background-color: var(--wim-color-positive);
       }
     }
 
     &--warning {
       .wim-scroll-progress__bar {
-        background-color: var(--color-caution);
+        background-color: var(--wim-color-caution);
       }
     }
 
     &--error {
       .wim-scroll-progress__bar {
-        background-color: var(--color-destructive);
+        background-color: var(--wim-color-destructive);
       }
     }
   }

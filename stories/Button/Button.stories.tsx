@@ -65,7 +65,7 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
     size: "small",
     priority: "tertiary",
     intent: "destructive",
-    iconName: "CircleIcon",
+    icon: "CircleIcon",
     iconPosition: "left",
     disabled: true,
   },
@@ -154,7 +154,7 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
         label={t("button_label")}
         loading={loading}
         onClick={handleClick}
-        iconName="CircleIcon"
+        icon="CircleIcon"
         iconPosition="left"
       />
     );

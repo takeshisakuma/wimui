@@ -15,28 +15,28 @@
   line-height: 0;
   background-color: #000; // アスペクト比変更時の余白（レターボックス）を黒にする
 
-  &.wim-video--radius-small {
+  &.wim-video--wim-radius-small {
     overflow: hidden;
-    border-radius: var(--radius-sm);
+    border-radius: var(--wim-radius-sm);
   }
 
   &.wim-video--radius-medium {
     overflow: hidden;
-    border-radius: var(--radius-md);
+    border-radius: var(--wim-radius-md);
   }
 
   &.wim-video--radius-large {
     overflow: hidden;
-    border-radius: var(--radius-lg);
+    border-radius: var(--wim-radius-lg);
   }
 
-  &.wim-video--radius-full {
+  &.wim-video--wim-radius-full {
     overflow: hidden;
-    border-radius: var(--radius-full);
+    border-radius: var(--wim-radius-full);
   }
 
   &.wim-video--shadow {
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--wim-shadow-md);
     transition: box-shadow 0.6s ease;
 
     &.wim-video--loading {
@@ -45,7 +45,7 @@
   }
 
   &.wim-video--border {
-    border: 1px solid var(--color-border-default, #e0e0e0);
+    border: 1px solid var(--wim-color-border, #e0e0e0);
   }
 
   // Fade-in state
@@ -121,8 +121,8 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-md);
+  gap: var(--wim-spacing-sm);
+  padding: var(--wim-spacing-md);
   background: linear-gradient(to top, rgb(0 0 0 / 0.7) 0%, rgb(0 0 0 / 0) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -130,13 +130,13 @@
 
 .wim-video-controls-bottom {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--wim-spacing-sm);
   align-items: center;
   width: 100%;
 
   @include bp.down("sm") {
     flex-wrap: wrap;
-    gap: var(--spacing-xs);
+    gap: var(--wim-spacing-xs);
     justify-content: center;
   }
 }
@@ -148,12 +148,12 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  padding: var(--spacing-xs);
+  padding: var(--wim-spacing-xs);
   color: white;
   cursor: pointer;
   background: none;
   border: none;
-  border-radius: var(--radius-full);
+  border-radius: var(--wim-radius-full);
   transition:
     background-color 0.2s,
     color 0.2s;
@@ -176,7 +176,7 @@
 .wim-video-time-container {
   display: flex;
   flex: 1;
-  gap: var(--spacing-xs);
+  gap: var(--wim-spacing-xs);
   align-items: center;
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
@@ -185,7 +185,7 @@
   @include bp.down("sm") {
     flex: 1 1 100%;
     order: -1;
-    padding-bottom: var(--spacing-xs);
+    padding-bottom: var(--wim-spacing-xs);
   }
 }
 
@@ -231,7 +231,7 @@
     height: 12px;
     content: "";
     background-color: white;
-    border-radius: var(--radius-full);
+    border-radius: var(--wim-radius-full);
     box-shadow: 0 0 4px rgb(0 0 0 / 0.5);
     transform: translateY(-50%);
   }
@@ -240,7 +240,7 @@
 .wim-video-volume-container {
   position: relative;
   display: flex;
-  gap: var(--spacing-xs);
+  gap: var(--wim-spacing-xs);
   align-items: center;
 
   &:hover .wim-video-volume {
@@ -274,7 +274,7 @@
     appearance: none;
     cursor: pointer;
     background: white;
-    border-radius: var(--radius-full);
+    border-radius: var(--wim-radius-full);
     box-shadow: 0 0 2px rgb(0 0 0 / 0.5);
   }
 
@@ -292,38 +292,38 @@
 }
 
 .wim-video__caption {
-  padding-bottom: var(--spacing-xs);
-  margin-top: var(--spacing-sm);
+  padding-bottom: var(--wim-spacing-xs);
+  margin-top: var(--wim-spacing-sm);
   font-size: 0.875rem;
   line-height: 1.5;
-  color: var(--color-text-secondary, #666);
+  color: var(--wim-color-text-secondary, #666);
   text-align: center;
 }
 
 // Advanced Menu Styles
 .wim-video-advanced-menu {
   position: absolute;
-  right: var(--spacing-md);
+  right: var(--wim-spacing-md);
   bottom: 60px;
   z-index: 20;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: var(--wim-spacing-xs);
   min-width: 160px;
-  padding: var(--spacing-sm);
+  padding: var(--wim-spacing-sm);
   font-size: 0.875rem;
   color: white;
   background: rgb(28 28 28 / 0.95);
-  border-radius: var(--radius-md);
+  border-radius: var(--wim-radius-md);
   box-shadow: 0 8px 24px rgb(0 0 0 / 0.5);
   backdrop-filter: blur(8px);
 
   .wim-video-menu-title {
     display: flex;
-    gap: var(--spacing-xs);
+    gap: var(--wim-spacing-xs);
     align-items: center;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    margin-bottom: var(--spacing-xs);
+    padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+    margin-bottom: var(--wim-spacing-xs);
     font-weight: 600;
     border-bottom: 1px solid rgb(255 255 255 / 0.1);
 
@@ -337,7 +337,7 @@
   .wim-video-menu-items {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs); // アイテム間の余白を追加
+    gap: var(--wim-spacing-xs); // アイテム間の余白を追加
     max-height: 250px; // 少し高さを広げる
     overflow-y: auto;
 
@@ -353,16 +353,16 @@
 
   button.wim-video-menu-btn {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--wim-spacing-sm);
     align-items: center;
     justify-content: space-between;
-    padding: 10px var(--spacing-sm); // よりゆとりを持たせて 10px に拡大
+    padding: 10px var(--wim-spacing-sm); // よりゆとりを持たせて 10px に拡大
     color: white;
     text-align: left;
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: var(--wim-radius-sm);
     transition: background 0.2s;
 
     &:hover {
@@ -386,12 +386,12 @@
   display: flex;
   gap: 4px;
   align-items: center;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--wim-spacing-md) var(--wim-spacing-lg);
   font-weight: bold;
   color: white;
   pointer-events: none;
   background: rgb(0 0 0 / 0.6);
-  border-radius: var(--radius-full);
+  border-radius: var(--wim-radius-full);
   transform: translate(-50%, -50%);
   animation: skipFadeIn 0.5s ease-out forwards;
 

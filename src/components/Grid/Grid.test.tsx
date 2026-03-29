@@ -81,8 +81,8 @@ describe("Grid", () => {
     render(<Grid gap="md" data-testid="grid" />);
     const grid = screen.getByTestId("grid");
     expect(grid).toHaveStyle({
-      "--wim-grid-col-gap": "var(--spacing-md)",
-      "--wim-grid-row-gap": "var(--spacing-md)",
+      "--wim-grid-col-gap": "var(--wim-spacing-md)",
+      "--wim-grid-row-gap": "var(--wim-spacing-md)",
     });
   });
 

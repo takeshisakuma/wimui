@@ -21,7 +21,7 @@ $lift-md: -1.5px;
 $lift-none: 0;
 
 /* --- フォーカス (Focus) --- */
-$shadow-focus: 0 0 0 2px var(--wim-color-bg-primary), 0 0 0 4px var(--color-focus-outline);
+$shadow-focus: 0 0 0 2px var(--wim-color-bg-primary), 0 0 0 4px var(--wim-color-focus-outline);
 
 /* --- アニメーション (Motion) --- */
 $duration-instant: 0.083s; /* ~83ms (1/12s) */
@@ -49,53 +49,53 @@ $opacity-ghost: 0.5;     // ゴースト・閉じるボタンなど控えめなU
 $opacity-secondary: 0.7; // セカンダリ要素・補助テキスト
 
 :root {
-  --shadow-none: #{$shadow-none};
-  --shadow-color: rgb(0 0 0 / 0.1);
+  --wim-shadow-none: #{$shadow-none};
+  --wim-shadow-color: rgb(0 0 0 / 0.1);
 
   /* 多層レイヤーを構成する基本成分 */
-  --shadow-ambient: 0 4px 12px rgb(0 0 0 / 0.08);
-  --shadow-elevation: 0 2px 4px rgb(0 0 0 / 0.12);
-  --shadow-xs:
+  --wim-shadow-ambient: 0 4px 12px rgb(0 0 0 / 0.08);
+  --wim-shadow-elevation: 0 2px 4px rgb(0 0 0 / 0.12);
+  --wim-shadow-xs:
     0 1px 2px rgb(0 0 0 / 0.08),
     0 1px 1px rgb(0 0 0 / 0.05);
-  --shadow-sm:
+  --wim-shadow-sm:
     0 2px 4px rgb(0 0 0 / 0.08),
     0 1px 2px rgb(0 0 0 / 0.12);
-  --shadow-md:
+  --wim-shadow-md:
     0 4px 12px rgb(0 0 0 / 0.08),
     0 2px 4px rgb(0 0 0 / 0.12);
-  --shadow-lg:
+  --wim-shadow-lg:
     0 12px 24px rgb(0 0 0 / 0.12),
     0 8px 16px rgb(0 0 0 / 0.18);
-  --shadow-inset: inset 0 2px 4px var(--shadow-color);
-  --shadow-focus: #{$shadow-focus};
-  --lift-sm: #{$lift-sm};
-  --lift-md: #{$lift-md};
-  --lift-none: #{$lift-none};
-  --duration-instant: #{$duration-instant};
-  --duration-fast: #{$duration-fast};
-  --duration-base: #{$duration-base};
-  --duration-slow: #{$duration-slow};
-  --easing-standard: #{$easing-standard};
-  --easing-entrance: #{$easing-entrance};
-  --easing-exit: #{$easing-exit};
-  --easing-base: #{$easing-base};
-  --easing-spring: #{$easing-spring};
-  --easing-out-back: #{$easing-out-back};
-  --transition-base: #{$transition-base};
-  --transition-instant: #{$transition-instant};
-  --transition-fast: #{$transition-fast};
-  --scale-active: #{$scale-active};
-  --opacity-disabled: #{$opacity-disabled};
-  --opacity-ghost: #{$opacity-ghost};
-  --opacity-secondary: #{$opacity-secondary};
+  --wim-shadow-inset: inset 0 2px 4px var(--wim-shadow-color);
+  --wim-shadow-focus: #{$shadow-focus};
+  --wim-lift-sm: #{$lift-sm};
+  --wim-lift-md: #{$lift-md};
+  --wim-lift-none: #{$lift-none};
+  --wim-duration-instant: #{$duration-instant};
+  --wim-duration-fast: #{$duration-fast};
+  --wim-duration-base: #{$duration-base};
+  --wim-duration-slow: #{$duration-slow};
+  --wim-easing-standard: #{$easing-standard};
+  --wim-easing-entrance: #{$easing-entrance};
+  --wim-easing-exit: #{$easing-exit};
+  --wim-easing-base: #{$easing-base};
+  --wim-easing-spring: #{$easing-spring};
+  --wim-easing-out-back: #{$easing-out-back};
+  --wim-transition-base: #{$transition-base};
+  --wim-transition-instant: #{$transition-instant};
+  --wim-transition-fast: #{$transition-fast};
+  --wim-scale-active: #{$scale-active};
+  --wim-opacity-disabled: #{$opacity-disabled};
+  --wim-opacity-ghost: #{$opacity-ghost};
+  --wim-opacity-secondary: #{$opacity-secondary};
 
   /* --- 質感・グラデーション (Texture & Gradients) --- */
-  --glass-gradient: linear-gradient(180deg,
+  --wim-glass-gradient: linear-gradient(180deg,
       rgb(255 255 255 / 0.08) 0%,
       rgb(255 255 255 / 0) 100%);
-  --subtle-gradient: linear-gradient(180deg,
+  --wim-subtle-gradient: linear-gradient(180deg,
       rgb(255 255 255 / 0.05) 0%,
       rgb(0 0 0 / 0.02) 100%);
-  --inner-highlight: inset 0 1px 0 0 rgb(255 255 255 / 0.1);
+  --wim-inner-highlight: inset 0 1px 0 0 rgb(255 255 255 / 0.1);
 }

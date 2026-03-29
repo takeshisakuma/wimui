@@ -3,7 +3,7 @@
 .wim-button-group {
   display: flex;
   flex-wrap: wrap;
-  row-gap: var(--spacing-sm);
+  row-gap: var(--wim-spacing-sm);
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -20,13 +20,13 @@
       }
 
       &:first-child {
-        border-top-left-radius: var(--radius-md);
-        border-bottom-left-radius: var(--radius-md);
+        border-top-left-radius: var(--wim-radius-md);
+        border-bottom-left-radius: var(--wim-radius-md);
       }
 
       &:last-child {
-        border-top-right-radius: var(--radius-md);
-        border-bottom-right-radius: var(--radius-md);
+        border-top-right-radius: var(--wim-radius-md);
+        border-bottom-right-radius: var(--wim-radius-md);
       }
 
       // Handle hover/focus state overlap
@@ -54,16 +54,16 @@
         }
 
         &:first-child {
-          border-radius: var(--radius-md) var(--radius-md) 0 0;
+          border-radius: var(--wim-radius-md) var(--wim-radius-md) 0 0;
         }
 
         &:last-child {
-          border-radius: 0 0 var(--radius-md) var(--radius-md);
+          border-radius: 0 0 var(--wim-radius-md) var(--wim-radius-md);
         }
 
         // 1つしかない場合のケア
         &:first-child:last-child {
-          border-radius: var(--radius-md);
+          border-radius: var(--wim-radius-md);
         }
       }
     }

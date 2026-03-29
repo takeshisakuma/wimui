@@ -6,8 +6,8 @@
     text-decoration: none;
     cursor: pointer;
     outline: none;
-    border-radius: var(--radius-sm);
-    transition: var(--transition-base);
+    border-radius: var(--wim-radius-sm);
+    transition: var(--wim-transition-base);
 
     &::after {
       position: absolute;
@@ -31,12 +31,12 @@
 
     &:focus-visible {
       outline: none;
-      box-shadow: var(--shadow-focus);
+      box-shadow: var(--wim-shadow-focus);
     }
 
     &__inner {
       display: inline-flex;
-      gap: var(--spacing-xs);
+      gap: var(--wim-spacing-xs);
       align-items: center;
     }
 
@@ -46,44 +46,44 @@
 
     // Sizes
     &--lg {
-      font-size: var(--font-size-large);
+      font-size: var(--wim-font-size-lg);
     }
 
     &--md {
-      font-size: var(--font-size-medium);
+      font-size: var(--wim-font-size-md);
     }
 
     &--sm {
-      font-size: var(--font-size-small);
+      font-size: var(--wim-font-size-sm);
     }
 
     // Priorities
     &--primary {
-      color: var(--color-primary);
+      color: var(--wim-color-primary);
 
       &:hover {
-        color: var(--color-primary); // More vivid if needed
+        color: var(--wim-color-primary); // More vivid if needed
       }
     }
 
     &--secondary {
-      color: var(--text-primary); // Assume default text color
+      color: var(--wim-color-text-primary); // Assume default text color
 
       &:hover {
-        color: var(--color-primary);
+        color: var(--wim-color-primary);
       }
     }
 
     &--tertiary {
-      color: var(--text-tertiary); // Assume subtle text color
+      color: var(--wim-color-text-tertiary); // Assume subtle text color
 
       &:hover {
-        color: var(--text-primary);
+        color: var(--wim-color-text-primary);
       }
     }
 
     &__external-icon {
-      margin-left: var(--spacing-3xs);
+      margin-left: var(--wim-spacing-3xs);
       font-size: 0.8em;
       opacity: 0.8;
     }

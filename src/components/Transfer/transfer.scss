@@ -22,7 +22,7 @@
 
   &--disabled {
     pointer-events: none;
-    opacity: var(--opacity-disabled);
+    opacity: var(--wim-opacity-disabled);
   }
 
   &__list {
@@ -34,18 +34,18 @@
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
     border-radius: 8px;
-    box-shadow: var(--shadow-xs); // プレミアムな質感を出すためのシャドウ
-    transition: var(--transition-base);
+    box-shadow: var(--wim-shadow-xs); // プレミアムな質感を出すためのシャドウ
+    transition: var(--wim-transition-base);
 
     &:hover {
       border-color: var(--wim-color-primary-light, var(--wim-color-border));
-      box-shadow: var(--shadow-md); // ホバー時に質感を強調
+      box-shadow: var(--wim-shadow-md); // ホバー時に質感を強調
     }
 
     @container (max-width: 768px) {
       width: 100%;
       height: 300px; // 400pxから300pxに変更
-      box-shadow: var(--shadow-md); // モバイルではより存在感を出す
+      box-shadow: var(--wim-shadow-md); // モバイルではより存在感を出す
     }
   }
 
@@ -85,7 +85,7 @@
     outline: none;
 
     &:focus-visible {
-      box-shadow: inset 0 0 0 2px var(--color-primary);
+      box-shadow: inset 0 0 0 2px var(--wim-color-primary);
 
       @media (forced-colors: active) {
         outline: 2px solid Highlight;
@@ -113,8 +113,8 @@
 
     // キーボードフォーカス中のアイテム（aria-activedescendant によるハイライト）
     &.wim-base-list-item--active {
-      background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
-      box-shadow: inset 0 0 0 2px var(--color-primary);
+      background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+      box-shadow: inset 0 0 0 2px var(--wim-color-primary);
 
       @media (forced-colors: active) {
         color: HighlightText;

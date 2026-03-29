@@ -3,26 +3,14 @@ import { describe, it, expect, vi } from "vitest";
 import { Chip } from "./Chip";
 
 describe("Chip", () => {
-  it("renders label (deprecated prop)", () => {
-    render(<Chip label="Test Chip" />);
-    // "Test Chip" might be passed to t(). If t returns the key, it works.
-    expect(screen.getByText("Test Chip")).toBeInTheDocument();
-  });
-
   it("renders children", () => {
-    render(<Chip>Child Content</Chip>);
-    expect(screen.getByText("Child Content")).toBeInTheDocument();
-  });
-
-  it("children takes priority over label", () => {
-    render(<Chip label="Old">New Content</Chip>);
-    expect(screen.getByText("New Content")).toBeInTheDocument();
-    expect(screen.queryByText("Old")).not.toBeInTheDocument();
+    render(<Chip>Test Chip</Chip>);
+    expect(screen.getByText("Test Chip")).toBeInTheDocument();
   });
 
   it("handles onClick", () => {
     const handleClick = vi.fn();
-    render(<Chip label="Clickable" onClick={handleClick} />);
+    render(<Chip onClick={handleClick}>Clickable</Chip>);
 
     fireEvent.click(screen.getByRole("button", { name: /Clickable/i }));
     expect(handleClick).toHaveBeenCalledTimes(1);
@@ -30,7 +18,7 @@ describe("Chip", () => {
 
   it("handles onDelete", () => {
     const handleDelete = vi.fn();
-    render(<Chip label="Deletable" onDelete={handleDelete} />);
+    render(<Chip onDelete={handleDelete}>Deletable</Chip>);
 
     const deleteButton = screen.getByRole("button", { name: /Delete/i });
     fireEvent.click(deleteButton);
@@ -38,13 +26,13 @@ describe("Chip", () => {
   });
 
   it("renders avatar", () => {
-    render(<Chip label="With Avatar" avatar={<span>A</span>} />);
+    render(<Chip avatar={<span>A</span>}>With Avatar</Chip>);
     expect(screen.getByText("A")).toBeInTheDocument();
   });
 
   it("can be disabled", () => {
     const handleClick = vi.fn();
-    render(<Chip label="Disabled" onClick={handleClick} disabled />);
+    render(<Chip onClick={handleClick} disabled>Disabled</Chip>);
     expect(screen.getByRole("button", { name: "Disabled" })).toBeDisabled();
 
     fireEvent.click(screen.getByRole("button", { name: "Disabled" }));
@@ -53,7 +41,7 @@ describe("Chip", () => {
 
   it("triggers onDelete with Enter key on delete button", () => {
     const handleDelete = vi.fn();
-    render(<Chip label="Deletable" onDelete={handleDelete} />);
+    render(<Chip onDelete={handleDelete}>Deletable</Chip>);
     const deleteButton = screen.getByRole("button", { name: /Delete/i });
     fireEvent.keyDown(deleteButton, { key: "Enter" });
     expect(handleDelete).toHaveBeenCalledTimes(1);
@@ -61,7 +49,7 @@ describe("Chip", () => {
 
   it("triggers onDelete with Space key on delete button", () => {
     const handleDelete = vi.fn();
-    render(<Chip label="Deletable" onDelete={handleDelete} />);
+    render(<Chip onDelete={handleDelete}>Deletable</Chip>);
     const deleteButton = screen.getByRole("button", { name: /Delete/i });
     fireEvent.keyDown(deleteButton, { key: " " });
     expect(handleDelete).toHaveBeenCalledTimes(1);
@@ -69,7 +57,7 @@ describe("Chip", () => {
 
   it("does not trigger onDelete for other keys", () => {
     const handleDelete = vi.fn();
-    render(<Chip label="Deletable" onDelete={handleDelete} />);
+    render(<Chip onDelete={handleDelete}>Deletable</Chip>);
     const deleteButton = screen.getByRole("button", { name: /Delete/i });
     fireEvent.keyDown(deleteButton, { key: "Escape" });
     expect(handleDelete).not.toHaveBeenCalled();

@@ -8,7 +8,7 @@
 
   &.wim-radio--disabled {
     cursor: not-allowed;
-    opacity: var(--opacity-disabled);
+    opacity: var(--wim-opacity-disabled);
   }
 }
 
@@ -19,20 +19,20 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  margin: 0 var(--spacing-sm) 0 0;
+  margin: 0 var(--wim-spacing-sm) 0 0;
   appearance: none;
   cursor: pointer;
-  background-color: var(--bg-component);
-  border: 2px solid var(--text-tertiary);
-  border-radius: var(--radius-full);
+  background-color: var(--wim-color-bg-component);
+  border: 2px solid var(--wim-color-text-tertiary);
+  border-radius: var(--wim-radius-full);
   transition: all 0.2s ease-in-out;
 
   &::after {
     width: 10px;
     height: 10px;
     content: "";
-    background-color: var(--color-primary);
-    border-radius: var(--radius-full);
+    background-color: var(--wim-color-primary);
+    border-radius: var(--wim-radius-full);
     opacity: 0;
     transform: scale(0);
     transition: all 0.2s ease-in-out;
@@ -40,7 +40,7 @@
 
   // Checked state
   &:checked {
-    border-color: var(--color-primary);
+    border-color: var(--wim-color-primary);
 
     &::after {
       opacity: 1;
@@ -50,19 +50,19 @@
 
   // Focus state
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--wim-color-primary);
     outline-offset: 2px;
-    box-shadow: var(--shadow-focus);
+    box-shadow: var(--wim-shadow-focus);
   }
 
   // Disabled state
   &:disabled {
     cursor: not-allowed;
-    border-color: var(--color-disabled);
-    opacity: var(--opacity-disabled);
+    border-color: var(--wim-color-disabled);
+    opacity: var(--wim-opacity-disabled);
 
     &::after {
-      background-color: var(--color-text-on-disabled);
+      background-color: var(--wim-color-text-on-disabled);
     }
   }
 }
@@ -70,5 +70,5 @@
 .wim-radio-label {
   font-family: var(--font-sans);
   font-size: 1rem;
-  color: var(--text-primary);
+  color: var(--wim-color-text-primary);
 }

@@ -48,7 +48,7 @@ export const CopyButton = ({
         <Button
           priority="tertiary"
           size={size}
-          iconName={copied ? "CheckIcon" : "CopyIcon"}
+          icon={copied ? "CheckIcon" : "CopyIcon"}
           intent={copied ? "positive" : "default"}
           onClick={handleCopy}
           className={classNames("wim-copy-button", className)}

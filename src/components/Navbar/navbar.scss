@@ -8,9 +8,9 @@
     align-items: center;
     width: 100%;
     height: 64px;
-    padding: 0 var(--spacing-xl);
+    padding: 0 var(--wim-spacing-xl);
     background-color: var(--wim-color-bg-primary, #fff);
-    transition: all var(--transition-base);
+    transition: all var(--wim-transition-base);
 
     &--fixed {
       position: fixed;
@@ -51,17 +51,17 @@
     &__brand {
       display: flex;
       align-items: center;
-      margin-right: var(--spacing-xl);
-      font-size: var(--font-size-large);
-      font-weight: var(--font-weight-bold);
-      color: var(--text-primary);
+      margin-right: var(--wim-spacing-xl);
+      font-size: var(--wim-font-size-lg);
+      font-weight: var(--wim-font-weight-bold);
+      color: var(--wim-color-text-primary);
       white-space: nowrap;
     }
 
     &__content {
       display: flex;
       flex-grow: 1;
-      gap: var(--spacing-md);
+      gap: var(--wim-spacing-md);
       align-items: center;
 
       &--start {
@@ -86,23 +86,23 @@
     &__link {
       display: inline-flex;
       align-items: center;
-      padding: var(--spacing-xs) var(--spacing-sm);
-      font-size: var(--font-size-medium);
-      font-weight: var(--font-weight-medium);
-      color: var(--text-secondary);
+      padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+      font-size: var(--wim-font-size-md);
+      font-weight: var(--wim-font-weight-medium);
+      color: var(--wim-color-text-secondary);
       white-space: nowrap;
       text-decoration: none;
       cursor: pointer;
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-base);
+      border-radius: var(--wim-radius-sm);
+      transition: all var(--wim-transition-base);
 
       &:hover {
         background-color: var(--wim-color-bg-hover);
       }
 
       &--active {
-        font-weight: var(--font-weight-bold);
-        color: var(--color-primary);
+        font-weight: var(--wim-font-weight-bold);
+        color: var(--wim-color-primary);
       }
     }
 
@@ -125,16 +125,16 @@
         left: 0;
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-md);
+        gap: var(--wim-spacing-md);
         width: 100%;
         height: 100%;
-        padding: 80px var(--spacing-xl) var(--spacing-xl);
+        padding: 80px var(--wim-spacing-xl) var(--wim-spacing-xl);
       }
 
       &-item {
         width: 100%;
-        padding: var(--spacing-md);
-        font-size: var(--font-size-large);
+        padding: var(--wim-spacing-md);
+        font-size: var(--wim-font-size-lg);
         border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
 
         &:last-child {

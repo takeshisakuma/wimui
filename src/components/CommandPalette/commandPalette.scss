@@ -22,20 +22,20 @@
   width: 100%;
   max-width: 640px;
   overflow: hidden;
-  background: var(--bg-component, #fff);
+  background: var(--wim-color-bg-component, #fff);
   border: 1px solid var(--wim-color-border-secondary);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--wim-radius-lg);
+  box-shadow: var(--wim-shadow-lg);
   animation: wim-command-palette-in 0.2s ease-out;
 
   [data-theme="dark"] & {
-    background: var(--bg-component, #1a1a1a);
+    background: var(--wim-color-bg-component, #1a1a1a);
     border-color: rgb(255 255 255 / 0.1);
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) & {
-      background: var(--bg-component, #1a1a1a);
+      background: var(--wim-color-bg-component, #1a1a1a);
       border-color: rgb(255 255 255 / 0.1);
     }
   }
@@ -48,7 +48,7 @@
     border-top: none;
     border-right: none;
     border-left: none;
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    border-radius: 0 0 var(--wim-radius-lg) var(--wim-radius-lg);
   }
 }
 
@@ -67,33 +67,33 @@
 .wim-command-palette-input-wrapper {
   display: flex;
   align-items: center;
-  padding: 0 var(--spacing-md);
+  padding: 0 var(--wim-spacing-md);
   border-bottom: 2px solid var(--wim-color-border-secondary); // Slightly thicker for focus transition
-  transition: var(--transition-fast);
+  transition: var(--wim-transition-fast);
 
   .wim-icon {
-    margin-right: var(--spacing-sm);
-    color: var(--text-tertiary);
+    margin-right: var(--wim-spacing-sm);
+    color: var(--wim-color-text-tertiary);
     transition: color 0.2s ease;
   }
 
   &:focus-within {
     background-color: var(--bg-hover, rgb(0 0 0 / 0.02));
-    border-bottom-color: var(--color-primary);
-    transition: var(--transition-fast);
+    border-bottom-color: var(--wim-color-primary);
+    transition: var(--wim-transition-fast);
 
     // Default (mouse) focus indicator: change icon color and light background
     // but NO full outline.
     .wim-icon {
-      color: var(--color-primary);
+      color: var(--wim-color-primary);
     }
 
     // Keyboard navigation: show full "outline" using box-shadow
     // this covers the search icon, input, and right section.
     .wim-command-palette-content[data-keyboard-nav="true"] & {
       border-bottom-color: transparent;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      box-shadow: inset 0 0 0 2px var(--color-primary);
+      border-radius: var(--wim-radius-lg) var(--wim-radius-lg) 0 0;
+      box-shadow: inset 0 0 0 2px var(--wim-color-primary);
     }
   }
 }
@@ -102,21 +102,21 @@
   display: flex;
   align-items: center;
   font-size: 0.875rem;
-  color: var(--text-tertiary);
+  color: var(--wim-color-text-tertiary);
 }
 
 .wim-command-palette-input {
   flex: 1;
   height: 54px; // Adjusted for 2px border to maintain height
   font-size: 1rem;
-  color: var(--text-primary);
+  color: var(--wim-color-text-primary);
   outline: none;
   background: transparent;
   border: none;
   box-shadow: none;
 
   &::placeholder {
-    color: var(--text-tertiary);
+    color: var(--wim-color-text-tertiary);
   }
 }
 
@@ -131,7 +131,7 @@
 }
 
 .wim-command-palette-group {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--wim-spacing-sm);
 
   &:last-child {
     margin-bottom: 0;
@@ -139,10 +139,10 @@
 }
 
 .wim-command-palette-group-heading {
-  padding: var(--spacing-xs) calc(var(--spacing-md) + var(--spacing-xs));
+  padding: var(--wim-spacing-xs) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-tertiary);
+  color: var(--wim-color-text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -151,10 +151,10 @@
   // Common styles are now handled by BaseListItem
   .wim-command-palette-content[data-keyboard-nav="true"] &.wim-base-list-item--active {
     z-index: 1;
-    box-shadow: var(--shadow-focus);
+    box-shadow: var(--wim-shadow-focus);
   }
 
-  border-radius: var(--radius-sm);
+  border-radius: var(--wim-radius-sm);
 
   .wim-command-palette-item-shortcut {
     display: flex;
@@ -168,18 +168,18 @@
 }
 
 .wim-command-palette-empty {
-  padding: var(--spacing-xl) var(--spacing-md);
+  padding: var(--wim-spacing-xl) var(--wim-spacing-md);
   font-size: 0.875rem;
-  color: var(--text-tertiary);
+  color: var(--wim-color-text-tertiary);
   text-align: center;
 }
 
 .wim-command-palette-footer {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--wim-spacing-md);
   align-items: center;
-  padding: var(--spacing-xs) var(--spacing-md);
-  background: var(--bg-app);
+  padding: var(--wim-spacing-xs) var(--wim-spacing-md);
+  background: var(--wim-color-bg-app);
   border-top: 1px solid var(--wim-color-border-secondary);
 
   [data-theme="dark"] & {
@@ -204,7 +204,7 @@
   gap: 6px;
   align-items: center;
   font-size: 0.7rem;
-  color: var(--text-tertiary);
+  color: var(--wim-color-text-tertiary);
 
   .wim-kbd {
     padding: 1px 4px;
@@ -215,19 +215,19 @@
 // Add basic styles for the trigger if needed
 .wim-command-palette-trigger {
   display: inline-flex;
-  gap: var(--spacing-sm);
+  gap: var(--wim-spacing-sm);
   align-items: center;
-  padding: var(--spacing-sm) var(--spacing-md);
-  color: var(--text-secondary);
+  padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+  color: var(--wim-color-text-secondary);
   white-space: nowrap;
   cursor: pointer;
-  background: var(--bg-component);
+  background: var(--wim-color-bg-component);
   border: 1px solid var(--wim-color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--wim-radius-md);
   transition: all 0.2s;
 
   &:hover {
-    color: var(--text-primary);
-    border-color: var(--color-primary);
+    color: var(--wim-color-text-primary);
+    border-color: var(--wim-color-primary);
   }
 }

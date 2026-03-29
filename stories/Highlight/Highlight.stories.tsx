@@ -38,8 +38,8 @@ export const CustomStyle: Story = {
     children: "Custom highlight styles can be applied.",
     highlight: "Custom",
     highlightStyles: {
-      backgroundColor: "var(--color-primary)",
-      color: "var(--color-text-on-primary)",
+      backgroundColor: "var(--wim-color-primary)",
+      color: "var(--wim-color-text-on-primary)",
       borderRadius: "4px",
       padding: "0 4px",
     },

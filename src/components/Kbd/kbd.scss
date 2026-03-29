@@ -4,36 +4,36 @@
     align-items: center;
     justify-content: center;
     font-family: inherit;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--wim-font-weight-bold);
     line-height: 1;
-    color: var(--text-primary);
+    color: var(--wim-color-text-primary);
     white-space: nowrap;
     user-select: none;
-    background-color: var(--bg-component, #fff);
+    background-color: var(--wim-color-bg-component, #fff);
     border: 1px solid var(--wim-color-border, #dee2e6);
     border-bottom-width: 3px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-xs);
+    border-radius: var(--wim-radius-md);
+    box-shadow: var(--wim-shadow-xs);
 
     // Sizes
     &--sm {
       min-width: 1.5rem;
       height: 1.5rem;
-      padding: 0 var(--spacing-xs);
+      padding: 0 var(--wim-spacing-xs);
       font-size: 0.75rem;
     }
 
     &--md {
       min-width: 2rem;
       height: 2rem;
-      padding: 0 var(--spacing-sm);
+      padding: 0 var(--wim-spacing-sm);
       font-size: 0.875rem;
     }
 
     &--lg {
       min-width: 2.5rem;
       height: 2.5rem;
-      padding: 0 var(--spacing-md);
+      padding: 0 var(--wim-spacing-md);
       font-size: 1rem;
     }
 

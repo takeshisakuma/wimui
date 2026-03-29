@@ -92,7 +92,7 @@
 
   /* パディングを増やしました */
   border-radius: var(--wim-radius-lg, 12px);
-  box-shadow: var(--shadow-xs);
+  box-shadow: var(--wim-shadow-xs);
 
   /* 少し影を付けて立体感 */
 }
@@ -197,7 +197,7 @@
 
   &:disabled {
     cursor: not-allowed;
-    opacity: var(--opacity-ghost);
+    opacity: var(--wim-opacity-ghost);
   }
 }
 
@@ -209,7 +209,7 @@
   font-weight: var(--wim-font-weight-medium, 500);
   color: #{$pccs-w};
   background-color: #{$pccs-s18};
-  border-radius: var(--radius-full);
+  border-radius: var(--wim-radius-full);
 
   &--small {
     width: 32px;

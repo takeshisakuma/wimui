@@ -22,27 +22,27 @@
   width: max-content;
   min-width: 200px;
   max-width: calc(100vw - 20px);
-  padding: var(--spacing-md);
+  padding: var(--wim-spacing-md);
   margin: 0;
-  color: var(--text-primary);
-  background-color: var(--bg-component, #fff);
-  border: 1px solid var(--color-secondary);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
+  color: var(--wim-color-text-primary);
+  background-color: var(--wim-color-bg-component, #fff);
+  border: 1px solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-md);
+  box-shadow: var(--wim-shadow-lg);
 }
 
 .wim-popover-close {
   position: absolute;
-  top: var(--spacing-sm);
-  right: var(--spacing-sm);
+  top: var(--wim-spacing-sm);
+  right: var(--wim-spacing-sm);
   padding: 0;
   line-height: 1;
-  color: var(--text-secondary);
+  color: var(--wim-color-text-secondary);
   cursor: pointer;
   background: transparent;
   border: none;
 
   &:hover {
-    color: var(--text-primary);
+    color: var(--wim-color-text-primary);
   }
 }

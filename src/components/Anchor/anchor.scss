@@ -8,7 +8,7 @@
     &--horizontal {
       padding-bottom: 0;
       padding-left: 0;
-      border-bottom: 1px solid var(--scrollbar-track);
+      border-bottom: 1px solid var(--wim-scrollbar-track);
 
       .wim-anchor__ink {
         top: auto;
@@ -35,14 +35,14 @@
       width: 2px;
       height: 100%;
       overflow: hidden;
-      background-color: var(--scrollbar-track); // Use a light gray from track
+      background-color: var(--wim-scrollbar-track); // Use a light gray from track
 
       &-ball {
         position: absolute;
         left: 0;
         z-index: 1;
         width: 2px;
-        background-color: var(--color-primary);
+        background-color: var(--wim-color-primary);
         opacity: 0;
         transition:
           top 0.3s ease-in-out,
@@ -57,13 +57,13 @@
       list-style: none;
 
       .wim-anchor__list {
-        padding-left: var(--spacing-md);
+        padding-left: var(--wim-spacing-md);
       }
 
       &--horizontal {
         display: flex;
         flex-direction: row;
-        gap: var(--spacing-md);
+        gap: var(--wim-spacing-md);
         overflow-x: auto;
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -73,7 +73,7 @@
         }
 
         .wim-anchor__item {
-          padding: var(--spacing-xs) var(--spacing-sm);
+          padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
           white-space: nowrap;
         }
 
@@ -85,13 +85,13 @@
 
     &__item {
       position: relative;
-      padding: var(--spacing-2xs) 0;
-      line-height: var(--spacing-lg);
+      padding: var(--wim-spacing-2xs) 0;
+      line-height: var(--wim-spacing-lg);
 
       &--active {
         > .wim-anchor__link {
           font-weight: 500;
-          color: var(--color-primary);
+          color: var(--wim-color-primary);
         }
       }
     }
@@ -99,11 +99,11 @@
     &__link {
       position: relative;
       display: block;
-      padding-left: var(--spacing-md);
+      padding-left: var(--wim-spacing-md);
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: var(--font-size-medium);
-      color: var(--text-secondary);
+      font-size: var(--wim-font-size-md);
+      color: var(--wim-color-text-secondary);
       word-break: normal;
       overflow-wrap: normal;
       white-space: nowrap;
@@ -111,7 +111,7 @@
       transition: color 0.3s ease;
 
       &:hover {
-        color: var(--color-primary);
+        color: var(--wim-color-primary);
       }
     }
   }

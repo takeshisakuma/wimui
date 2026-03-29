@@ -37,24 +37,24 @@ describe("LinkButton", () => {
   });
 
   it("applies icon-only class when iconName is set and no label", () => {
-    render(<LinkButton href="#" iconName="SearchIcon" />);
+    render(<LinkButton href="#" icon="SearchIcon" />);
     expect(screen.getByRole("link")).toHaveClass("wim-button--icon-only");
   });
 
   it("does not apply icon-only class when label is present", () => {
-    render(<LinkButton href="#" label="Home" iconName="SearchIcon" />);
+    render(<LinkButton href="#" label="Home" icon="SearchIcon" />);
     expect(screen.getByRole("link")).not.toHaveClass("wim-button--icon-only");
   });
 
   it("renders icon on the left by default does not show right container", () => {
-    const { container } = render(<LinkButton href="#" label="Link" iconName="HomeIcon" iconPosition="left" />);
+    const { container } = render(<LinkButton href="#" label="Link" icon="HomeIcon" iconPosition="left" />);
     // icon is rendered before label (left side)
     const inner = container.querySelector(".wim-button__inner");
     expect(inner).toBeInTheDocument();
   });
 
   it("renders icon on the right with iconPosition=right", () => {
-    const { container } = render(<LinkButton href="#" label="Link" iconName="HomeIcon" iconPosition="right" />);
+    const { container } = render(<LinkButton href="#" label="Link" icon="HomeIcon" iconPosition="right" />);
     const inner = container.querySelector(".wim-button__inner");
     expect(inner).toBeInTheDocument();
   });

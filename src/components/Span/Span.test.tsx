@@ -49,10 +49,10 @@ describe("Span", () => {
   });
 
   it("applies custom var() color as inline style", () => {
-    const { container } = render(<Span content="Custom" color="var(--color-primary)" />);
+    const { container } = render(<Span content="Custom" color="var(--wim-color-primary)" />);
     const el = container.firstChild as HTMLElement;
     // Should not add color class but use inline style
-    expect(el).not.toHaveClass("wim-span--var(--color-primary)");
+    expect(el).not.toHaveClass("wim-span--var(--wim-color-primary)");
   });
 
   it("applies decoration class", () => {

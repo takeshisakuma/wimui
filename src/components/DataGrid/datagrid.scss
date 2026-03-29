@@ -1,14 +1,14 @@
 .wim-datagrid {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--wim-spacing-md);
   width: 100%;
   min-width: 0;
 
   &--loading {
     position: relative;
     pointer-events: none;
-    opacity: var(--opacity-disabled);
+    opacity: var(--wim-opacity-disabled);
   }
 
   &__loading-overlay {
@@ -28,7 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: var(--spacing-sm) 0;
+    padding: var(--wim-spacing-sm) 0;
   }
 
   &__empty {
@@ -36,17 +36,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-xl);
+    padding: var(--wim-spacing-xl);
     color: var(--wim-color-text-secondary);
     background-color: var(--wim-color-surface);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--wim-radius-md);
   }
 
   &__loader {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-sm);
+    padding: var(--wim-spacing-sm);
   }
 }

@@ -75,7 +75,7 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
         "5xl",
       ];
       if (typeof val === "string" && tokens.includes(val)) {
-        return `var(--spacing-${val})`;
+        return `var(--wim-spacing-${val})`;
       }
       return val;
     };

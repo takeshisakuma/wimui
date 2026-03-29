@@ -5,7 +5,7 @@
     &__list {
       display: flex;
       flex-wrap: wrap;
-      row-gap: var(--spacing-md);
+      row-gap: var(--wim-spacing-md);
       align-items: center;
       padding: 0;
       margin: 0;
@@ -37,13 +37,13 @@
 
     &__label {
       display: inline-flex;
-      gap: var(--spacing-3xs);
+      gap: var(--wim-spacing-3xs);
       align-items: center;
-      color: var(--text-tertiary); // Default non-link/previous item color
+      color: var(--wim-color-text-tertiary); // Default non-link/previous item color
 
       &--current {
-        font-weight: var(--font-weight-bold);
-        color: var(--text-primary);
+        font-weight: var(--wim-font-weight-bold);
+        color: var(--wim-color-text-primary);
       }
 
       &-icon {
@@ -54,34 +54,34 @@
     &__separator {
       display: flex;
       align-items: center;
-      padding: 0 var(--spacing-xs);
-      color: var(--text-tertiary);
+      padding: 0 var(--wim-spacing-xs);
+      color: var(--wim-color-text-tertiary);
       user-select: none;
 
       &-icon {
         font-size: 0.8em;
-        opacity: var(--opacity-disabled);
+        opacity: var(--wim-opacity-disabled);
       }
     }
 
     // Sizes
     &--lg {
-      font-size: var(--font-size-large);
+      font-size: var(--wim-font-size-lg);
 
       .wim-breadcrumb__separator {
-        padding: 0 var(--spacing-sm);
+        padding: 0 var(--wim-spacing-sm);
       }
     }
 
     &--md {
-      font-size: var(--font-size-medium);
+      font-size: var(--wim-font-size-md);
     }
 
     &--sm {
-      font-size: var(--font-size-small);
+      font-size: var(--wim-font-size-sm);
 
       .wim-breadcrumb__separator {
-        padding: 0 var(--spacing-2xs);
+        padding: 0 var(--wim-spacing-2xs);
       }
     }
   }

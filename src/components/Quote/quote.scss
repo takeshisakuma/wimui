@@ -1,22 +1,22 @@
 ﻿@layer component {
   .wim-quote {
-    padding: var(--spacing-md) 0 var(--spacing-md) var(--spacing-2xl);
-    margin: var(--spacing-2xl) 0;
+    padding: var(--wim-spacing-md) 0 var(--wim-spacing-md) var(--wim-spacing-2xl);
+    margin: var(--wim-spacing-2xl) 0;
     font-family: inherit;
-    transition: var(--transition-fast);
+    transition: var(--wim-transition-fast);
 
     &--border {
-      border-left: 4px solid var(--text-secondary);
+      border-left: 4px solid var(--wim-color-text-secondary);
     }
 
     &__content {
-      font-weight: var(--font-weight-normal);
-      line-height: var(--line-height-normal-latn);
+      font-weight: var(--wim-font-weight-normal);
+      line-height: var(--wim-line-height-normal);
     }
 
     &__cite {
       display: block;
-      margin-top: var(--spacing-sm);
+      margin-top: var(--wim-spacing-sm);
       font-size: 0.9em;
       font-style: italic;
       opacity: 0.8;
@@ -28,95 +28,95 @@
 
     /* Size Variants */
     &--sm {
-      font-size: var(--font-size-small);
+      font-size: var(--wim-font-size-sm);
     }
 
     &--md {
-      font-size: var(--font-size-medium);
+      font-size: var(--wim-font-size-md);
     }
 
     &--lg {
-      font-size: var(--font-size-large);
+      font-size: var(--wim-font-size-lg);
     }
 
     /* Color Variants */
     &--black {
-      color: var(--text-primary);
+      color: var(--wim-color-text-primary);
 
       &.wim-quote--border {
-        border-color: var(--text-primary);
+        border-color: var(--wim-color-text-primary);
       }
     }
 
     &--deepgray {
-      color: var(--text-secondary);
+      color: var(--wim-color-text-secondary);
 
       &.wim-quote--border {
-        border-color: var(--text-secondary);
+        border-color: var(--wim-color-text-secondary);
       }
     }
 
     &--gray {
-      color: var(--text-tertiary);
+      color: var(--wim-color-text-tertiary);
 
       &.wim-quote--border {
-        border-color: var(--text-tertiary);
+        border-color: var(--wim-color-text-tertiary);
       }
     }
 
     &--lightgray {
-      color: var(--text-disabled);
+      color: var(--wim-color-text-disabled);
 
       &.wim-quote--border {
-        border-color: var(--text-disabled);
+        border-color: var(--wim-color-text-disabled);
       }
     }
 
     &--white {
-      color: var(--text-white);
+      color: var(--wim-color-text-white);
 
       &.wim-quote--border {
-        border-color: var(--text-white);
+        border-color: var(--wim-color-text-white);
       }
     }
 
     &--primary {
-      color: var(--color-primary);
+      color: var(--wim-color-primary);
 
       &.wim-quote--border {
-        border-color: var(--color-primary);
+        border-color: var(--wim-color-primary);
       }
     }
 
     &--success {
-      color: var(--color-positive);
+      color: var(--wim-color-positive);
 
       &.wim-quote--border {
-        border-color: var(--color-positive);
+        border-color: var(--wim-color-positive);
       }
     }
 
     &--warning {
-      color: var(--color-caution);
+      color: var(--wim-color-caution);
 
       &.wim-quote--border {
-        border-color: var(--color-caution);
+        border-color: var(--wim-color-caution);
       }
     }
 
     &--error {
-      color: var(--text-error);
+      color: var(--wim-color-text-error);
 
       &.wim-quote--border {
-        border-color: var(--text-error);
+        border-color: var(--wim-color-text-error);
       }
     }
 
     &--info {
-      color: var(--color-informative);
+      color: var(--wim-color-informative);
 
       &.wim-quote--border {
-        border-color: var(--color-informative);
+        border-color: var(--wim-color-informative);
       }
     }
   }

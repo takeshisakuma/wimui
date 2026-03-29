@@ -1,6 +1,6 @@
 ﻿.wim-colorpicker {
   height: 42px; // Match other inputs
-  padding: var(--spacing-3xs);
+  padding: var(--wim-spacing-3xs);
   cursor: pointer;
 
   &::-webkit-color-swatch-wrapper {
@@ -9,11 +9,11 @@
 
   &::-webkit-color-swatch {
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: var(--wim-radius-sm);
   }
 
   &::-moz-color-swatch {
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: var(--wim-radius-sm);
   }
 }

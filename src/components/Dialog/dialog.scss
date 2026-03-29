@@ -18,15 +18,15 @@
   width: 90vw;
   max-width: 450px;
   max-height: 85vh;
-  padding: var(--spacing-2xl);
+  padding: var(--wim-spacing-2xl);
   margin: 0;
   container-type: inline-size;
   overflow: auto;
-  color: var(--text-primary);
-  background-color: var(--bg-component, #fff);
+  color: var(--wim-color-text-primary);
+  background-color: var(--wim-color-bg-component, #fff);
   border: none;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--wim-radius-lg);
+  box-shadow: var(--wim-shadow-lg);
 
   &:focus {
     outline: none;
@@ -36,8 +36,8 @@
 .wim-dialog-header {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
-  margin-bottom: var(--spacing-xl);
+  gap: var(--wim-spacing-xl);
+  margin-bottom: var(--wim-spacing-xl);
   text-align: left;
 }
 
@@ -45,21 +45,21 @@
   margin: 0;
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--wim-color-text-primary);
 }
 
 .wim-dialog-description {
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.5;
-  color: var(--text-secondary);
+  color: var(--wim-color-text-secondary);
 }
 
 .wim-dialog-footer {
   display: flex;
   flex-direction: column-reverse;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-2xl);
+  gap: var(--wim-spacing-md);
+  margin-top: var(--wim-spacing-2xl);
 
   @container (width >= 640px) {
     flex-direction: row;

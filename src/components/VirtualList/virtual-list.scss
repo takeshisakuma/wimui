@@ -3,7 +3,7 @@
   overflow: hidden auto;
 
   // スクロールバーのスタイリング
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-color: var(--wim-scrollbar-thumb) var(--wim-scrollbar-track);
   scrollbar-width: thin;
 
   &::-webkit-scrollbar {
@@ -11,11 +11,11 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
+    background: var(--wim-scrollbar-track);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb);
+    background: var(--wim-scrollbar-thumb);
     border-radius: 3px;
   }
 

@@ -4,13 +4,9 @@ import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 import { ComponentSize, IndicatorStatus } from "../../types/tokens";
 import "./chip.scss";
-import { warnDeprecated } from "../../utilities/dev-utils";
-
 export type ChipProps = {
-  /** 表示するコンテンツ (labelより優先されます) */
+  /** 表示するコンテンツ */
   children?: React.ReactNode;
-  /** @deprecated Use children instead */
-  label?: string | React.ReactNode;
   /** クリック時のイベント。提供されるとボタンとして動作します。 */
   onClick?: (e: React.MouseEvent) => void;
   /** 削除時のイベント。提供されると×ボタンが表示されます。 */
@@ -40,7 +36,6 @@ export type ChipProps = {
  */
 export const Chip = ({
   children,
-  label,
   onClick,
   onDelete,
   avatar,
@@ -54,13 +49,6 @@ export const Chip = ({
   ...props
 }: ChipProps) => {
   const { t } = useTranslation();
-  if (label !== undefined) {
-    warnDeprecated("Chip", "label", "Use `children` instead.");
-  }
-  const displayLabel = children ?? label;
-
-
-
   const Component = onClick ? "button" : "span";
   const commonProps = {
     className: classNames(
@@ -84,7 +72,7 @@ export const Chip = ({
       {avatar && <span className="wim-chip__avatar">{avatar}</span>}
       {!avatar && icon && <span className="wim-chip__icon">{icon}</span>}
       <span className="wim-chip__label">
-        {typeof displayLabel === "string" ? t(displayLabel) : displayLabel}
+        {typeof children === "string" ? t(children) : children}
       </span>
       {onDelete && !disabled && (
         <span

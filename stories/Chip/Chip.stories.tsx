@@ -39,7 +39,7 @@ type Story = StoryObj<typeof Chip>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Chip {...args} label={t("story_chip_default")} />;
+    return <Chip {...args}>{t("story_chip_default")}</Chip>;
   },
 };
 
@@ -49,9 +49,10 @@ export const Clickable: Story = {
     return (
       <Chip
         {...args}
-        label={t("story_chip_clickable")}
         onClick={(e: React.MouseEvent) => console.log("Chip clicked", e)}
-      />
+      >
+        {t("story_chip_clickable")}
+      </Chip>
     );
   },
 };
@@ -62,16 +63,17 @@ export const Deletable: Story = {
     return (
       <Chip
         {...args}
-        label={t("story_chip_deletable")}
         onDelete={(e: React.SyntheticEvent) => console.log("Chip deleted", e)}
-      />
+      >
+        {t("story_chip_deletable")}
+      </Chip>
     );
   },
 };
 
 export const WithAvatar: Story = {
   render: function Render(args) {
-    return <Chip {...args} label="Jane Doe" avatar={<Avatar initials="JD" size="small" />} />;
+    return <Chip {...args} avatar={<Avatar initials="JD" size="small" />}>Jane Doe</Chip>;
   },
 };
 
@@ -91,7 +93,7 @@ export const WithIcon: Story = {
 export const Selected: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Chip {...args} label={t("story_chip_selected")} selected={true} onClick={() => {}} />;
+    return <Chip {...args} selected={true} onClick={() => {}}>{t("story_chip_selected")}</Chip>;
   },
 };
 
@@ -100,15 +102,16 @@ export const Variants: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", gap: "10px" }}>
-        <Chip {...args} label={t("story_chip_solid")} variant="solid" onClick={() => {}} />
-        <Chip {...args} label={t("story_chip_outline")} variant="outline" onClick={() => {}} />
+        <Chip {...args} variant="solid" onClick={() => {}}>{t("story_chip_solid")}</Chip>
+        <Chip {...args} variant="outline" onClick={() => {}}>{t("story_chip_outline")}</Chip>
         <Chip
           {...args}
-          label={t("story_chip_selected_label")}
           variant="outline"
           selected
           onClick={() => {}}
-        />
+        >
+          {t("story_chip_selected_label")}
+        </Chip>
       </div>
     );
   },

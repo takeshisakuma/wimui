@@ -4,11 +4,11 @@
 
 /* または、特定の lang 属性がない場合の共通フォントとして設定 */
 body {
-  font-family: var(--font-family-default);
+  font-family: var(--wim-font-family-default);
   font-optical-sizing: auto;
   font-feature-settings: normal;
   font-kerning: auto;
-  line-height: var(--line-height-normal-latn);
+  line-height: var(--wim-line-height-normal);
   word-spacing: 0;
   letter-spacing: 0;
   line-break: normal;
@@ -21,9 +21,9 @@ body {
 
 /* 日本語のコンテンツに対するフォント指定 */
 body[lang="ja"] {
-  font-family: var(--font-family-ja);
+  font-family: var(--wim-font-family-ja);
   font-feature-settings: "palt";
-  line-height: var(--line-height-normal-jpan);
+  line-height: var(--wim-line-height-normal-jp);
   hyphens: manual;
   line-break: auto;
 
@@ -39,15 +39,15 @@ body[lang="ja"] {
 
 /* 英語 */
 body[lang="en"] {
-  font-family: var(--font-family-en);
-  line-height: var(--line-height-normal-latn);
+  font-family: var(--wim-font-family-en);
+  line-height: var(--wim-line-height-normal);
   hyphens: auto;
 }
 
 /* ポルトガル語 */
 body[lang="pt"] {
-  font-family: var(--font-family-pt);
-  line-height: var(--line-height-normal-latn);
+  font-family: var(--wim-font-family-pt);
+  line-height: var(--wim-line-height-normal);
   hyphens: auto;
 }
 

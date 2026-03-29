@@ -4,7 +4,6 @@ import "./button.scss";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon/Icon";
 import type { WimColor, ComponentSize } from "../../types/tokens";
-import { warnDeprecated } from "../../utilities/dev-utils";
 
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   /** ボタンの背景色をデザイントークンで上書きする。通常は `priority` prop で対応できるため、このpropは最終手段として使用してください。 */
@@ -16,8 +15,6 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   intent?: "default" | "destructive" | "positive";
   /** Icon name or custom icon element */
   icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
-  /** @deprecated Use icon instead */
-  iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
   loading?: boolean;
   justify?: "start" | "center" | "end" | "between";
@@ -38,7 +35,6 @@ export const Button = React.forwardRef<
       priority = "secondary",
       intent = "default",
       icon,
-      iconName,
       iconPosition = "left",
       loading = false,
       backgroundColor,
@@ -56,9 +52,6 @@ export const Button = React.forwardRef<
     const { t } = useTranslation();
     const internalRef = React.useRef<HTMLButtonElement>(null);
 
-    if (iconName !== undefined) {
-      warnDeprecated("Button", "iconName", "Use `icon` instead.");
-    }
     const buttonRef = (forwardedRef as React.RefObject<HTMLButtonElement>) || internalRef;
     const [animatedWidth, setAnimatedWidth] = React.useState<number | "auto">("auto");
     const isInitialMount = React.useRef(true);
@@ -109,8 +102,8 @@ export const Button = React.forwardRef<
       resolvedAriaLabel = t(ariaLabelProp);
     } else if (ariaLabelProp !== false) {
       // アイコンのみボタンはアイコン名をフォールバックとして使用
-      if (!label && !children && iconName) {
-        resolvedAriaLabel = t(`icon_${iconName}`, { defaultValue: iconName });
+      if (!label && !children && typeof icon === "string") {
+        resolvedAriaLabel = t(`icon_${icon}`, { defaultValue: icon });
       } else if (loading) {
         resolvedAriaLabel = t("a11y_loading");
       }
@@ -126,12 +119,11 @@ export const Button = React.forwardRef<
             : justify;
 
     const renderIcon = () => {
-      const effectiveIcon = icon || iconName;
-      if (!effectiveIcon) return null;
-      if (typeof effectiveIcon === "string") {
-        return <Icon name={effectiveIcon as React.ComponentProps<typeof Icon>["name"]} size={size} />;
+      if (!icon) return null;
+      if (typeof icon === "string") {
+        return <Icon name={icon as React.ComponentProps<typeof Icon>["name"]} size={size} />;
       }
-      return effectiveIcon;
+      return icon;
     };
 
     const iconContent = renderIcon();
@@ -200,7 +192,7 @@ export const Button = React.forwardRef<
           loading && "wim-button--loading",
           animateWidth && "wim-button--animated-width",
           fullWidth && "wim-button--full-width",
-          !label && !children && !!(icon || iconName) && "wim-button--icon-only",
+          !label && !children && !!icon && "wim-button--icon-only",
           className,
         )}
         disabled={isDisabled || loading}

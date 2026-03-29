@@ -21,17 +21,17 @@
       justify-content: center;
       width: 100%;
       height: 100%;
-      color: var(--color-text-on-primary);
-      background-color: var(--color-primary);
-      border-radius: var(--radius-full);
-      box-shadow: var(--shadow-lg);
+      color: var(--wim-color-text-on-primary);
+      background-color: var(--wim-color-primary);
+      border-radius: var(--wim-radius-full);
+      box-shadow: var(--wim-shadow-lg);
       transition:
         background-color 0.3s,
         transform 0.3s;
 
       &:hover {
         background-color: var(
-          --color-primary
+          --wim-color-primary
         ); // Fallback or hover state if defined
 
         filter: brightness(1.1);

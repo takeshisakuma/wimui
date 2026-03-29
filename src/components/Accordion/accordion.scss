@@ -2,7 +2,7 @@
   width: 100%;
   overflow: hidden;
   border: 1px solid var(--wim-color-border-secondary, #e2e8f0);
-  border-radius: var(--radius-md, 4px);
+  border-radius: var(--wim-radius-md, 4px);
 
   &__item {
     display: block;
@@ -16,7 +16,7 @@
 
     &--disabled {
       pointer-events: none;
-      opacity: var(--opacity-ghost);
+      opacity: var(--wim-opacity-ghost);
     }
   }
 
@@ -36,22 +36,22 @@
     cursor: pointer;
     background-color: var(--wim-color-bg-hover);
     border: none;
-    transition: var(--transition-fast);
+    transition: var(--wim-transition-fast);
 
     .wim-accordion__item--open & {
       font-weight: 600;
-      color: var(--color-primary);
+      color: var(--wim-color-primary);
       background-color: var(--wim-color-bg-hover); // Use unified hover for open state too for consistency
     }
 
     &:hover:not(:disabled) {
-      color: var(--color-primary);
+      color: var(--wim-color-primary);
       background-color: var(--wim-color-bg-hover);
     }
 
     &:focus-visible {
       outline: none;
-      box-shadow: inset 0 0 0 2px var(--color-primary);
+      box-shadow: inset 0 0 0 2px var(--wim-color-primary);
     }
   }
 

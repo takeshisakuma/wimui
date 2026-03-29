@@ -45,58 +45,47 @@ $scrollbar-track: $pccs-gy8-5;
 
 /* --- 変数としての定義 (基本はライトモード) --- */
 :root {
-  --color-destructive: #{$color-destructive};
-  --color-positive: #{$color-positive};
-  --color-caution: #{$color-caution};
-  --color-primary: #{$color-primary};
-  --color-secondary: #{$color-secondary};
-  --color-informative: #{$color-informative};
-  --color-disabled: #{$color-disabled};
-  --color-text-on-primary: #{$color-text-on-primary};
-  --color-text-on-destructive: #{$color-text-on-destructive};
-  --color-text-on-positive: #{$color-text-on-positive};
-  --color-text-on-caution: #{$color-text-on-caution};
-  --color-text-on-secondary: #{$color-text-on-secondary};
-  --color-text-on-informative: #{$color-text-on-informative};
-  --color-text-on-disabled: #{$color-text-on-disabled};
-  --text-primary: #{$text-black};
-  --text-secondary: #{$text-deepgray};
-  --text-tertiary: #{$text-gray};
-  --text-disabled: #{$text-lightgray};
-  --text-white: #{$text-white};
-  --text-error: #{$text-error};
-  --bg-app: #{$pccs-w}; // アプリ全体の背景
-  --bg-component: #{$pccs-w};
+  --wim-color-destructive: #{$color-destructive};
+  --wim-color-positive: #{$color-positive};
+  --wim-color-caution: #{$color-caution};
+  --wim-color-primary: #{$color-primary};
+  --wim-color-secondary: #{$color-secondary};
+  --wim-color-informative: #{$color-informative};
+  --wim-color-disabled: #{$color-disabled};
+  --wim-color-text-on-primary: #{$color-text-on-primary};
+  --wim-color-text-on-destructive: #{$color-text-on-destructive};
+  --wim-color-text-on-positive: #{$color-text-on-positive};
+  --wim-color-text-on-caution: #{$color-text-on-caution};
+  --wim-color-text-on-secondary: #{$color-text-on-secondary};
+  --wim-color-text-on-informative: #{$color-text-on-informative};
+  --wim-color-text-on-disabled: #{$color-text-on-disabled};
+  --wim-color-text-primary: #{$text-black};
+  --wim-color-text-secondary: #{$text-deepgray};
+  --wim-color-text-tertiary: #{$text-gray};
+  --wim-color-text-disabled: #{$text-lightgray};
+  --wim-color-text-white: #{$text-white};
+  --wim-color-text-error: #{$text-error};
+  --wim-color-bg-app: #{$pccs-w}; // アプリ全体の背景
+  --wim-color-bg-component: #{$pccs-w};
   --wim-color-bg-primary: #{$color-bg-primary};
   --wim-color-bg-secondary: #{$color-bg-secondary};
-  --wim-color-bg-hover: color-mix(in srgb, var(--color-primary) 8%, transparent); // Unified blue hover color
+  --wim-color-bg-hover: color-mix(in srgb, var(--wim-color-primary) 8%, transparent); // Unified blue hover color
   --wim-color-border: #{$pccs-gy7-5};
   --wim-color-border-secondary: #{$pccs-gy8-5};
-  --color-focus-outline: #{$color-focus-outline};
-  --scrollbar-thumb: #{$scrollbar-thumb};
-  --scrollbar-track: #{$scrollbar-track};
-  --color-primary-rgb: #{$pccs-s16-rgb};
-
-  /* Aliases for consistency across components */
-  --wim-color-primary: var(--color-primary);
-  --wim-color-primary-hover: rgba(var(--color-primary-rgb), 0.9);
-  --wim-color-primary-active: rgba(var(--color-primary-rgb), 0.8);
-  --wim-color-primary-light: rgba(var(--color-primary-rgb), 0.1);
-  --wim-color-secondary: var(--color-secondary);
-  --wim-color-text-primary: var(--text-primary);
-  --wim-color-text-secondary: var(--text-secondary);
-  --wim-color-text-tertiary: var(--text-tertiary);
-  --wim-color-text-disabled: var(--text-disabled);
-  --wim-color-text-placeholder: var(--text-tertiary);
-  --wim-color-text-on-primary: var(--color-text-on-primary);
-  --wim-color-text-on-secondary: var(--color-text-on-secondary);
-  --wim-color-surface: var(--bg-component);
+  --wim-color-focus-outline: #{$color-focus-outline};
+  --wim-scrollbar-thumb: #{$scrollbar-thumb};
+  --wim-scrollbar-track: #{$scrollbar-track};
+  --wim-color-primary-rgb: #{$pccs-s16-rgb};
+  --wim-color-primary-hover: rgba(var(--wim-color-primary-rgb), 0.9);
+  --wim-color-primary-active: rgba(var(--wim-color-primary-rgb), 0.8);
+  --wim-color-primary-light: rgba(var(--wim-color-primary-rgb), 0.1);
+  --wim-color-text-placeholder: var(--wim-color-text-tertiary);
+  --wim-color-surface: var(--wim-color-bg-component);
   --wim-color-surface-variant: var(--wim-color-bg-secondary);
   --wim-color-surface-hover: var(--wim-color-bg-hover);
   --wim-color-primary-container-alpha: rgb(0 122 255 / 0.08);
   --wim-color-surface-variant-alpha: rgb(0 0 0 / 0.02);
   --wim-color-bg-tertiary: #{$pccs-gy7-5};
-  --wim-color-bg-component: var(--bg-component);
   --wim-color-overlay-bg: rgb(0 0 0 / 0.5);
   --wim-color-overlay-bg-light: rgb(255 255 255 / 0.8);
   --wim-color-overlay-bg-dark: rgb(0 0 0 / 0.7);
@@ -109,46 +98,43 @@ $scrollbar-track: $pccs-gy8-5;
 
 @mixin dark-theme {
   /* Dark Mode Overrides */
-  --bg-app: #{$pccs-gy2-5}; // Dark Gray Background
-  --bg-component: #{$pccs-gy3-5}; // Slightly Lighter Component BG
-  --text-primary: #{$pccs-w}; // White Text
-  --text-secondary: #{$pccs-gy8-5}; // Light Gray Text (#e5e5e5)
-  --text-tertiary: #{$pccs-gy7-5}; // Medium Gray Text (#b6b6b6)
-  --text-disabled: #{$pccs-gy6-5}; // Darker Gray Text (#8a8a8a)
+  --wim-color-bg-app: #{$pccs-gy2-5}; // Dark Gray Background
+  --wim-color-bg-component: #{$pccs-gy3-5}; // Slightly Lighter Component BG
+  --wim-color-text-primary: #{$pccs-w}; // White Text
+  --wim-color-text-secondary: #{$pccs-gy8-5}; // Light Gray Text (#e5e5e5)
+  --wim-color-text-tertiary: #{$pccs-gy7-5}; // Medium Gray Text (#b6b6b6)
+  --wim-color-text-disabled: #{$pccs-gy6-5}; // Darker Gray Text (#8a8a8a)
   --wim-color-bg-primary: #{$pccs-gy3-5};
   --wim-color-bg-secondary: #{$pccs-gy4-5};
   --wim-color-bg-tertiary: #{$pccs-gy4-5};
-  --wim-color-bg-hover: color-mix(in srgb, var(--color-primary) 12%, transparent); // Hover color for dark mode (slightly opaque)
+  --wim-color-bg-hover: color-mix(in srgb, var(--wim-color-primary) 12%, transparent); // Hover color for dark mode (slightly opaque)
   --wim-color-border: #{$pccs-gy5-5}; // Medium Gray Border
   --wim-color-border-secondary: #{$pccs-gy4-5}; // Darker Gray Border
-  --scrollbar-thumb: #{$pccs-gy5-5};
-  --scrollbar-track: #{$pccs-gy3-5};
+  --wim-scrollbar-thumb: #{$pccs-gy5-5};
+  --wim-scrollbar-track: #{$pccs-gy3-5};
   --wim-color-primary-container-alpha: rgb(0 122 255 / 0.2);
   --wim-color-surface-variant-alpha: rgb(255 255 255 / 0.05);
-  --wim-color-primary-hover: rgba(var(--color-primary-rgb), 1);
-  --wim-color-primary-light: rgba(var(--color-primary-rgb), 0.2);
+  --wim-color-primary-hover: rgba(var(--wim-color-primary-rgb), 1);
+  --wim-color-primary-light: rgba(var(--wim-color-primary-rgb), 0.2);
   --wim-color-overlay-bg: rgb(0 0 0 / 0.7);
   --wim-color-overlay-bg-light: rgb(255 255 255 / 0.2);
   --wim-color-overlay-bg-dark: rgb(0 0 0 / 0.8);
-  --shadow-color: rgb(0 0 0 / 0.4);
-  --color-primary-rgb: #{$pccs-v16-rgb};
+  --wim-shadow-color: rgb(0 0 0 / 0.4);
+  --wim-color-primary-rgb: #{$pccs-v16-rgb};
 
   /* Disabled state – invert for dark backgrounds */
-  --color-disabled: #{$pccs-gy4-5}; // Dark: #4f4f4f (was #e5e5e5 light)
-  --color-text-on-disabled: #{$pccs-gy7-5}; // Dark: #b6b6b6 (was #393939 dark)
+  --wim-color-disabled: #{$pccs-gy4-5}; // Dark: #4f4f4f (was #e5e5e5 light)
+  --wim-color-text-on-disabled: #{$pccs-gy7-5}; // Dark: #b6b6b6 (was #393939 dark)
 
   /* Adjust semantic colors for dark mode visibility/contrast */
-  --color-destructive: #{$pccs-v2};
-  --color-positive: #{$pccs-v12};
-  --color-caution: #{$pccs-v7};
-  --color-informative: #{$pccs-v17};
-  --color-primary: #{$pccs-v16};
-
-  /* Ensure aliases are also updated if they reference these */
-  --wim-color-primary: var(--color-primary);
+  --wim-color-destructive: #{$pccs-v2};
+  --wim-color-positive: #{$pccs-v12};
+  --wim-color-caution: #{$pccs-v7};
+  --wim-color-informative: #{$pccs-v17};
+  --wim-color-primary: #{$pccs-v16};
 
   /* Typography decoration tokens – dark mode overrides */
-  --decoration-highlight-color: #5c4400; // Dark amber: white text stays readable
+  --wim-decoration-highlight-color: #5c4400; // Dark amber: white text stays readable
 }
 
 [data-theme="dark"] {

@@ -23,21 +23,23 @@ export const FieldLabelContent = ({
       <span className="wim-field-label-text">{t(label)}</span>
       {required ? (
         <Badge
-          content="required"
           color="error"
           size="small"
           className="wim-field-label-badge"
           aria-hidden="true"
-        />
+        >
+          required
+        </Badge>
       ) : (
         showOptional && (
           <Badge
-            content="optional"
             color="neutral"
             size="small"
             className="wim-field-label-badge"
             aria-hidden="true"
-          />
+          >
+            optional
+          </Badge>
         )
       )}
     </div>

@@ -105,17 +105,6 @@ describe("Selectbox", () => {
     await waitFor(() => expect(onChange).toHaveBeenCalledWith("2"));
   });
 
-  it("handles native mode", () => {
-    const onChange = vi.fn();
-    render(<Selectbox options={options} native onChange={onChange} />);
-    const trigger = screen.getByRole("combobox");
-    // In native mode, trigger matches [role="combobox"] but it is a SELECT element
-    expect(trigger.tagName).toBe("SELECT");
-    
-    fireEvent.change(trigger, { target: { value: "2" } });
-    expect(onChange).toHaveBeenCalledWith("2");
-  });
-
   it("handles allowClear", () => {
     const onChange = vi.fn();
     render(
@@ -143,22 +132,6 @@ describe("Selectbox", () => {
     const opt2 = screen.getByText("Banana").closest("[role='option']")!;
     fireEvent.mouseEnter(opt2);
     expect(screen.getByText("Banana")).toBeInTheDocument();
-  });
-
-  it("handles grouped native mode", () => {
-    const groupedOptions = [
-      {
-        label: "Fruits",
-        options: [
-          { label: "Apple", value: "apple" },
-          { label: "Banana", value: "banana" },
-        ],
-      },
-    ];
-    render(<Selectbox options={groupedOptions} grouped native />);
-    const select = screen.getByRole("combobox");
-    expect(select.tagName).toBe("SELECT");
-    expect(screen.getByText("Apple")).toBeInTheDocument();
   });
 
   it("renders separator option", async () => {

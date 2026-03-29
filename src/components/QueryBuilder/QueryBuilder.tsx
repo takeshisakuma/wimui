@@ -380,7 +380,7 @@ export const QueryBuilder = ({
           <Button
             size="medium"
             priority="tertiary"
-            iconName="PlusIcon"
+            icon="PlusIcon"
             onClick={() => handleAddRule(group.id)}
           >
             {t("query_builder.add_rule")}
@@ -389,7 +389,7 @@ export const QueryBuilder = ({
             <Button
               size="medium"
               priority="tertiary"
-              iconName="PlusIcon"
+              icon="PlusIcon"
               onClick={() => handleAddGroup(group.id)}
             >
               {t("query_builder.add_group")}

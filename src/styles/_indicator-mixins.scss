@@ -14,7 +14,7 @@
 }
 
 /* A container that has a subtle background and segmented items */
-@mixin indicator-container-segmented($radius: var(--radius-md), $bg: var(--wim-color-bg-secondary, #f4f4f5), $padding: 4px) {
+@mixin indicator-container-segmented($radius: var(--wim-radius-md), $bg: var(--wim-color-bg-secondary, #f4f4f5), $padding: 4px) {
   position: relative;
   display: inline-flex;
   padding: $padding;
@@ -25,7 +25,7 @@
 }
 
 /* The floating slider for segmented/contained variant */
-@mixin indicator-slider-contained($radius: var(--radius-sm), $bg: #fff, $shadow: (0 1px 2px rgb(0 0 0 / 0.1)), $offset: 4px) {
+@mixin indicator-slider-contained($radius: var(--wim-radius-sm), $bg: #fff, $shadow: (0 1px 2px rgb(0 0 0 / 0.1)), $offset: 4px) {
   @include indicator-slider-base;
 
   top: $offset;
@@ -38,7 +38,7 @@
 }
 
 /* Underline slider variant */
-@mixin indicator-slider-underline($height: 2px, $color: var(--color-primary), $bottom: 0) {
+@mixin indicator-slider-underline($height: 2px, $color: var(--wim-color-primary), $bottom: 0) {
   @include indicator-slider-base;
 
   bottom: $bottom;
@@ -46,7 +46,7 @@
   z-index: 2;
   height: $height;
   background-color: $color;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  border-radius: var(--wim-radius-sm) var(--wim-radius-sm) 0 0;
 }
 
 /* Base style for items within an indicator container */
@@ -63,7 +63,7 @@
   user-select: none;
   background: transparent;
   border: none;
-  transition: all var(--transition-base, 0.2s ease);
+  transition: all var(--wim-transition-base, 0.2s ease);
   -webkit-tap-highlight-color: transparent;
 
   &:disabled {

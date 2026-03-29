@@ -5,30 +5,30 @@
 .wim-base-list-item {
     box-sizing: border-box;
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--wim-spacing-sm);
     align-items: center;
-    width: calc(100% - (var(--spacing-xs) * 2));
-    padding: var(--spacing-sm) var(--spacing-md); // Slightly tighter vertical padding for floating style
-    margin: 0 var(--spacing-xs);
-    font-family: var(--font-family-base);
+    width: calc(100% - (var(--wim-spacing-xs) * 2));
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md); // Slightly tighter vertical padding for floating style
+    margin: 0 var(--wim-spacing-xs);
+    font-family: var(--wim-font-family-default);
     font-size: 0.9rem;
-    line-height: var(--line-height-normal, 1.5);
-    color: var(--text-primary);
+    line-height: var(--wim-line-height-normal, 1.5);
+    color: var(--wim-color-text-primary);
     cursor: pointer;
     user-select: none;
     outline: none;
     
     &:focus-visible {
         z-index: 1; // Ensure focus ring is not clipped by siblings
-        box-shadow: var(--shadow-focus);
+        box-shadow: var(--wim-shadow-focus);
     }
 
-    border-radius: var(--radius-md); // More rounded for the 'floating island' look
-    transition: all var(--duration-fast) var(--easing-standard);
+    border-radius: var(--wim-radius-md); // More rounded for the 'floating island' look
+    transition: all var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:active:not(&--disabled) {
-        transform: scale(var(--scale-active));
-        transition: transform var(--duration-instant) var(--easing-standard);
+        transform: scale(var(--wim-scale-active));
+        transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
     }
 
     &:hover:not(&--disabled, &--danger) {
@@ -40,14 +40,14 @@
     }
 
     &--disabled {
-        color: var(--text-disabled);
+        color: var(--wim-color-text-disabled);
         cursor: not-allowed;
         background-color: transparent;
-        opacity: var(--opacity-disabled);
+        opacity: var(--wim-opacity-disabled);
     }
 
     &--danger {
-        color: var(--text-error, #dc2626);
+        color: var(--wim-color-text-error, #dc2626);
 
         &:hover:not(.wim-base-list-item--disabled) {
             background-color: rgb(220 38 38 / 0.1);
@@ -59,7 +59,7 @@
         flex-shrink: 0;
         align-items: center;
         justify-content: center;
-        color: var(--text-secondary);
+        color: var(--wim-color-text-secondary);
 
         svg {
             width: 16px;
@@ -81,7 +81,7 @@
         align-items: center;
         margin-left: auto;
         font-size: 0.75rem;
-        color: var(--text-tertiary);
+        color: var(--wim-color-text-tertiary);
     }
 }
 } // @layer component

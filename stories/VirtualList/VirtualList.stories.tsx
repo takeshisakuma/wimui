@@ -84,7 +84,7 @@ export const WithCustomItemHeight: Story = {
             <div style={{ fontWeight: "bold" }}>
               {t("story_virtuallist_item_label", { id: item.id })}
             </div>
-            <div style={{ fontSize: "var(--font-size-small)", color: "var(--wim-color-text-muted, #6b7280)" }}>
+            <div style={{ fontSize: "var(--wim-font-size-sm)", color: "var(--wim-color-text-muted, #6b7280)" }}>
               {t("story_virtuallist_item_sublabel")}
             </div>
           </div>

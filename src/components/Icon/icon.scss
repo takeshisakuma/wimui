@@ -40,60 +40,60 @@
     }
 
     &:hover {
-      opacity: var(--opacity-disabled);
+      opacity: var(--wim-opacity-disabled);
       transition: opacity 0.2s ease-in-out;
     }
 
     &--xl {
-      font-size: var(--font-size-ex-large);
+      font-size: var(--wim-font-size-xl);
     }
 
     &--lg {
-      font-size: var(--font-size-large);
+      font-size: var(--wim-font-size-lg);
     }
 
     &--md {
-      font-size: var(--font-size-medium);
+      font-size: var(--wim-font-size-md);
     }
 
     &--sm {
-      font-size: var(--font-size-small);
+      font-size: var(--wim-font-size-sm);
     }
 
     &--xs {
-      font-size: var(--font-size-ex-small);
+      font-size: var(--wim-font-size-xs);
     }
 
     &--destructive {
-      color: var(--color-destructive);
+      color: var(--wim-color-destructive);
     }
 
     &--positive {
-      color: var(--color-positive);
+      color: var(--wim-color-positive);
     }
 
     &--caution {
-      color: var(--color-caution);
+      color: var(--wim-color-caution);
     }
 
     &--primary {
-      color: var(--color-primary);
+      color: var(--wim-color-primary);
     }
 
     &--secondary {
-      color: var(--color-secondary);
+      color: var(--wim-color-secondary);
     }
 
     &--tertiary {
-      color: var(--color-tertiary);
+      color: var(--wim-color-text-tertiary);
     }
 
     &--disabled {
-      color: var(--color-text-on-disabled);
+      color: var(--wim-color-text-on-disabled);
     }
 
     &--informative {
-      color: var(--color-informative);
+      color: var(--wim-color-informative);
     }
 
     &--loading {

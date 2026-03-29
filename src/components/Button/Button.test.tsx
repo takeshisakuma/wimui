@@ -55,7 +55,7 @@ describe("Button", () => {
   });
 
   it("renders icon only when no label", () => {
-    const { container } = render(<Button iconName="SearchIcon" />);
+    const { container } = render(<Button icon="SearchIcon" />);
     expect(buttonWithIcon(container)).toHaveClass("wim-button--icon-only");
     expect(screen.getByTestId("icon")).toHaveTextContent("SearchIcon");
   });

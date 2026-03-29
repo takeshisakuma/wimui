@@ -23,7 +23,7 @@ export const Default: Story = {
         label={t("story_linkbutton_google")}
         href="https://google.com"
         target="_blank"
-        iconName="ExternalLinkIcon"
+        icon="ExternalLinkIcon"
         iconPosition="right"
       />
     );

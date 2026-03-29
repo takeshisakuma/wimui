@@ -81,7 +81,7 @@
   height: 12px;
   margin: 6px 0;
   background-color: var(--wim-color-neutral, #bdbdbd);
-  border-radius: var(--radius-full);
+  border-radius: var(--wim-radius-full);
 
   &--primary {
     background-color: var(--wim-color-primary, #007bff);

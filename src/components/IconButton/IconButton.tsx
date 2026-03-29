@@ -17,8 +17,7 @@ export const IconButton = ({ iconName, ...props }: IconButtonProps) => {
   return (
     <Button
       {...props}
-      iconName={iconName}
-      label="" // Clear label to ensure icon-only styling
+      icon={iconName}
     />
   );
 };

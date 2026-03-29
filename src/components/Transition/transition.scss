@@ -4,7 +4,7 @@
 
 /* Common transition helper classes if needed */
 .fade-enter {
-  transition: opacity var(--duration-base) var(--easing-entrance);
+  transition: opacity var(--wim-duration-base) var(--wim-easing-entrance);
 }
 
 .fade-enter-from {
@@ -16,7 +16,7 @@
 }
 
 .fade-leave {
-  transition: opacity var(--duration-fast) var(--easing-exit);
+  transition: opacity var(--wim-duration-fast) var(--wim-easing-exit);
 }
 
 .fade-leave-from {
@@ -30,8 +30,8 @@
 /* Scale transition (for Dialogs/Popovers - Fluent style) */
 .scale-enter {
   transition:
-    opacity var(--duration-base) var(--easing-entrance),
-    transform var(--duration-base) var(--easing-entrance);
+    opacity var(--wim-duration-base) var(--wim-easing-entrance),
+    transform var(--wim-duration-base) var(--wim-easing-entrance);
 }
 
 .scale-enter-from {
@@ -46,8 +46,8 @@
 
 .scale-leave {
   transition:
-    opacity var(--duration-fast) var(--easing-exit),
-    transform var(--duration-fast) var(--easing-exit);
+    opacity var(--wim-duration-fast) var(--wim-easing-exit),
+    transform var(--wim-duration-fast) var(--wim-easing-exit);
 }
 
 .scale-leave-from {
@@ -62,7 +62,7 @@
 
 /* Slide Right transition (for Drawers) */
 .slide-right-enter {
-  transition: transform var(--duration-slow) var(--easing-entrance);
+  transition: transform var(--wim-duration-slow) var(--wim-easing-entrance);
 }
 
 .slide-right-enter-from {
@@ -74,7 +74,7 @@
 }
 
 .slide-right-leave {
-  transition: transform var(--duration-base) var(--easing-exit);
+  transition: transform var(--wim-duration-base) var(--wim-easing-exit);
 }
 
 .slide-right-leave-from {
@@ -87,7 +87,7 @@
 
 /* Slide Left transition */
 .slide-left-enter {
-  transition: transform var(--duration-slow) var(--easing-entrance);
+  transition: transform var(--wim-duration-slow) var(--wim-easing-entrance);
 }
 
 .slide-left-enter-from {
@@ -99,7 +99,7 @@
 }
 
 .slide-left-leave {
-  transition: transform var(--duration-base) var(--easing-exit);
+  transition: transform var(--wim-duration-base) var(--wim-easing-exit);
 }
 
 .slide-left-leave-from {
@@ -112,7 +112,7 @@
 
 /* Slide Top transition */
 .slide-top-enter {
-  transition: transform var(--duration-slow) var(--easing-entrance);
+  transition: transform var(--wim-duration-slow) var(--wim-easing-entrance);
 }
 
 .slide-top-enter-from {
@@ -124,7 +124,7 @@
 }
 
 .slide-top-leave {
-  transition: transform var(--duration-base) var(--easing-exit);
+  transition: transform var(--wim-duration-base) var(--wim-easing-exit);
 }
 
 .slide-top-leave-from {
@@ -137,7 +137,7 @@
 
 /* Slide Bottom transition */
 .slide-bottom-enter {
-  transition: transform var(--duration-slow) var(--easing-entrance);
+  transition: transform var(--wim-duration-slow) var(--wim-easing-entrance);
 }
 
 .slide-bottom-enter-from {
@@ -149,7 +149,7 @@
 }
 
 .slide-bottom-leave {
-  transition: transform var(--duration-base) var(--easing-exit);
+  transition: transform var(--wim-duration-base) var(--wim-easing-exit);
 }
 
 .slide-bottom-leave-from {
@@ -163,8 +163,8 @@
 /* Toast transition */
 .toast-enter {
   transition:
-    opacity var(--duration-base) var(--easing-entrance),
-    transform var(--duration-base) var(--easing-entrance);
+    opacity var(--wim-duration-base) var(--wim-easing-entrance),
+    transform var(--wim-duration-base) var(--wim-easing-entrance);
 }
 
 .toast-enter-from {
@@ -179,8 +179,8 @@
 
 .toast-leave {
   transition:
-    opacity var(--duration-base) var(--easing-base),
-    transform var(--duration-base) var(--easing-base);
+    opacity var(--wim-duration-base) var(--wim-easing-base),
+    transform var(--wim-duration-base) var(--wim-easing-base);
 }
 
 .toast-leave-from {

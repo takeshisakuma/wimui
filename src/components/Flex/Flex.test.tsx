@@ -85,7 +85,7 @@ describe("Flex", () => {
 
   it("gap as spacing token", () => {
     const { container } = render(<Flex gap="md" />);
-    expect((container.firstChild as HTMLElement).style.gap).toBe("var(--spacing-md)");
+    expect((container.firstChild as HTMLElement).style.gap).toBe("var(--wim-spacing-md)");
   });
 
   it("gap as arbitrary string", () => {

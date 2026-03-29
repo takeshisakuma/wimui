@@ -1,7 +1,7 @@
 @layer component {
 .wim-input-base {
-  --wim-input-offset-left: var(--spacing-md);
-  --wim-input-offset-right: var(--spacing-md);
+  --wim-input-offset-left: var(--wim-spacing-md);
+  --wim-input-offset-right: var(--wim-spacing-md);
 
   position: relative;
 
@@ -13,9 +13,9 @@
   min-width: 0;
   max-width: var(--wim-input-width, 280px);
   min-height: var(--wim-height-md);
-  background-color: var(--bg-component, #fff);
-  border: 1px solid var(--color-secondary);
-  border-radius: var(--radius-md);
+  background-color: var(--wim-color-bg-component, #fff);
+  border: 1px solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-md);
   transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 
   &.wim-input--variant-ghost {
@@ -29,9 +29,9 @@
 
   &.wim-input-base--disabled {
     cursor: not-allowed;
-    background-color: var(--color-disabled);
-    border-color: var(--color-disabled);
-    opacity: var(--opacity-disabled);
+    background-color: var(--wim-color-disabled);
+    border-color: var(--wim-color-disabled);
+    opacity: var(--wim-opacity-disabled);
 
     input,
     textarea {
@@ -41,29 +41,29 @@
   }
 
   &.wim-input-base--error {
-    border-color: var(--text-error);
+    border-color: var(--wim-color-text-error);
   }
 
   &:focus-within:not(.wim-input-base--disabled) {
-    border-color: var(--color-primary);
-    box-shadow: inset 0 0 0 1px var(--color-primary);
+    border-color: var(--wim-color-primary);
+    box-shadow: inset 0 0 0 1px var(--wim-color-primary);
     
     &.wim-input-base--error {
-      box-shadow: inset 0 0 0 1px var(--text-error);
+      box-shadow: inset 0 0 0 1px var(--wim-color-text-error);
     }
   }
 
   // Icons padding
   &.wim-input--has-left-icon {
-    --wim-input-offset-left: calc(var(--spacing-2xl) + 1.5rem);
+    --wim-input-offset-left: calc(var(--wim-spacing-2xl) + 1.5rem);
   }
 
   &.wim-input--has-right-icon {
-    --wim-input-offset-right: calc(var(--spacing-2xl) + 1.5rem);
+    --wim-input-offset-right: calc(var(--wim-spacing-2xl) + 1.5rem);
   }
 
   &.wim-input--has-multiple-right-icons {
-    --wim-input-offset-right: calc(var(--spacing-md) + 3rem + var(--spacing-sm) + 8px);
+    --wim-input-offset-right: calc(var(--wim-spacing-md) + 3rem + var(--wim-spacing-sm) + 8px);
   }
 
   // Semantic sizes
@@ -91,7 +91,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-secondary);
+    color: var(--wim-color-text-secondary);
     pointer-events: none;
     transform: translateY(-50%);
     transition: color 0.3s ease-in-out;
@@ -101,7 +101,7 @@
     }
 
     &--left {
-      left: var(--spacing-md);
+      left: var(--wim-spacing-md);
     }
   }
 
@@ -110,14 +110,14 @@
     top: 50%;
     z-index: 1;
     display: flex;
-    gap: var(--spacing-xs);
+    gap: var(--wim-spacing-xs);
     align-items: center;
     pointer-events: none;
     transform: translateY(-50%);
     transition: color 0.3s ease-in-out;
 
     &--right {
-      right: var(--spacing-sm);
+      right: var(--wim-spacing-sm);
     }
   }
 
@@ -125,7 +125,7 @@
     display: flex;
     align-items: center;
     pointer-events: none;
-    transition: transform var(--transition-base, 0.2s ease-in-out);
+    transition: transform var(--wim-transition-base, 0.2s ease-in-out);
 
     &--clickable {
       pointer-events: auto;
@@ -140,20 +140,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-3xs);
+    padding: var(--wim-spacing-3xs);
     color: inherit;
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: var(--wim-radius-sm);
     transition: all 0.2s ease-in-out;
 
     &:hover {
-      background-color: var(--color-tertiary-hover);
+      background-color: var(--wim-color-surface-hover);
     }
 
     &:active {
-      background-color: var(--color-tertiary-active);
+      background-color: var(--wim-color-surface-hover);
     }
   }
 }
@@ -169,9 +169,9 @@
     width: 100%;
     min-width: 0 !important;
     height: 100%;
-    padding-top: var(--spacing-sm);
+    padding-top: var(--wim-spacing-sm);
     padding-right: var(--wim-input-offset-right) !important;
-    padding-bottom: var(--spacing-sm);
+    padding-bottom: var(--wim-spacing-sm);
     padding-left: var(--wim-input-offset-left) !important;
     outline: none !important;
     background: transparent !important;

@@ -9,7 +9,7 @@
   &--border {
     overflow: hidden;
     border: 1px solid var(--wim-color-border, #e2e2e8);
-    border-radius: var(--radius-lg, 8px);
+    border-radius: var(--wim-radius-lg, 8px);
 
     .wim-description-list__item {
       border-bottom: 1px solid var(--wim-color-border-secondary, #f0f0f2);
@@ -22,11 +22,11 @@
 
   &__item {
     display: flex;
-    padding: var(--spacing-2xl, 1rem);
+    padding: var(--wim-spacing-2xl, 1rem);
 
     @container (max-width: 600px) {
       flex-direction: column;
-      gap: var(--spacing-sm, 0.4rem);
+      gap: var(--wim-spacing-sm, 0.4rem);
     }
   }
 
@@ -34,20 +34,20 @@
     flex-shrink: 0;
     margin: 0;
     font-weight: 600;
-    color: var(--text-secondary, #666);
+    color: var(--wim-color-text-secondary, #666);
   }
 
   &__details {
     flex: 1;
     margin: 0;
-    color: var(--text-primary, #1a1a1b);
+    color: var(--wim-color-text-primary, #1a1a1b);
   }
 
   // Layouts
   &--horizontal {
     .wim-description-list__term {
       width: 30%;
-      padding-right: var(--spacing-2xl, 1rem);
+      padding-right: var(--wim-spacing-2xl, 1rem);
 
       @container (max-width: 600px) {
         width: 100%;
@@ -59,7 +59,7 @@
   &--vertical {
     .wim-description-list__item {
       flex-direction: column;
-      gap: var(--spacing-sm, 0.4rem);
+      gap: var(--wim-spacing-sm, 0.4rem);
     }
 
     .wim-description-list__term {
@@ -69,12 +69,12 @@
 
   &--compact {
     .wim-description-list__item {
-      padding: var(--spacing-md, 0.5rem) var(--spacing-2xl, 1rem);
+      padding: var(--wim-spacing-md, 0.5rem) var(--wim-spacing-2xl, 1rem);
     }
 
     .wim-description-list__term {
       width: 20%;
-      padding-right: var(--spacing-2xl, 1rem);
+      padding-right: var(--wim-spacing-2xl, 1rem);
 
       @container (max-width: 600px) {
         width: 100%;
@@ -85,14 +85,14 @@
 
   // Sizes
   &--small {
-    font-size: var(--font-size-small);
+    font-size: var(--wim-font-size-sm);
   }
 
   &--medium {
-    font-size: var(--font-size-medium);
+    font-size: var(--wim-font-size-md);
   }
 
   &--large {
-    font-size: var(--font-size-large);
+    font-size: var(--wim-font-size-lg);
   }
 }

@@ -36,46 +36,28 @@ $decoration-highlight-color: #fff9c4; // Light yellow highlight
 
 :root {
   /* Font Families */
-  --font-family-default: #{$lang-default};
-  --font-family-ja: #{$lang-ja};
-  --font-family-en: #{$lang-en};
-  --font-family-pt: #{$lang-pt};
+  --wim-font-family-default: #{$lang-default};
+  --wim-font-family-ja: #{$lang-ja};
+  --wim-font-family-en: #{$lang-en};
+  --wim-font-family-pt: #{$lang-pt};
 
   /* Font Sizes */
-  --font-size-ex-small: #{$size-ex-small};
-  --font-size-small: #{$size-small};
-  --font-size-medium: #{$size-medium};
-  --font-size-large: #{$size-large};
-  --font-size-ex-large: #{$size-ex-large};
-  --font-weight-normal: #{$weight-normal};
-  --font-weight-medium: #{$weight-medium};
-  --font-weight-bold: #{$weight-bold};
-  --line-height-loose-jpan: #{$line-height-loose-jpan};
-  --line-height-normal-jpan: #{$line-height-normal-jpan};
-  --line-height-tight-jpan: #{$line-height-tight-jpan};
-  --line-height-loose-latn: #{$line-height-loose-latn};
-  --line-height-normal-latn: #{$line-height-normal-latn};
-  --line-height-tight-latn: #{$line-height-tight-latn};
-  --decoration-line-through: #{$decoration-line-through};
-  --decoration-underline: #{$decoration-underline};
-  --decoration-highlight-color: #{$decoration-highlight-color};
+  --wim-font-size-xs: #{$size-ex-small};
+  --wim-font-size-sm: #{$size-small};
+  --wim-font-size-md: #{$size-medium};
+  --wim-font-size-lg: #{$size-large};
+  --wim-font-size-xl: #{$size-ex-large};
+  --wim-font-weight-normal: #{$weight-normal};
+  --wim-font-weight-medium: #{$weight-medium};
+  --wim-font-weight-bold: #{$weight-bold};
+  --wim-line-height-loose-jp: #{$line-height-loose-jpan};
+  --wim-line-height-normal-jp: #{$line-height-normal-jpan};
+  --wim-line-height-tight-jp: #{$line-height-tight-jpan};
+  --wim-line-height-loose: #{$line-height-loose-latn};
+  --wim-line-height-normal: #{$line-height-normal-latn};
+  --wim-line-height-tight: #{$line-height-tight-latn};
+  --wim-decoration-line-through: #{$decoration-line-through};
+  --wim-decoration-underline: #{$decoration-underline};
+  --wim-decoration-highlight-color: #{$decoration-highlight-color};
 
-  /* Aliases for consistency across components */
-  --wim-font-size-xs: var(--font-size-ex-small);
-  --wim-font-size-sm: var(--font-size-small);
-  --wim-font-size-md: var(--font-size-medium);
-  --wim-font-size-lg: var(--font-size-large);
-  --wim-font-size-xl: var(--font-size-ex-large);
-  --wim-font-weight-normal: var(--font-weight-normal);
-  --wim-font-weight-medium: var(--font-weight-medium);
-  --wim-font-weight-bold: var(--font-weight-bold);
-  --wim-line-height-tight: var(--line-height-tight-latn);
-  --wim-line-height-normal: var(--line-height-normal-latn);
-  --wim-line-height-loose: var(--line-height-loose-latn);
-  --wim-line-height-tight-jp: var(--line-height-tight-jpan);
-  --wim-line-height-normal-jp: var(--line-height-normal-jpan);
-  --wim-line-height-loose-jp: var(--line-height-loose-jpan);
-  --wim-decoration-line-through: var(--decoration-line-through);
-  --wim-decoration-underline: var(--decoration-underline);
-  --wim-decoration-highlight-color: var(--decoration-highlight-color);
 }

@@ -97,7 +97,7 @@ export const FileUpload = ({
           onClick={handleClick}
           disabled={disabled}
           priority="secondary"
-          iconName={iconName}
+          icon={iconName}
           iconPosition={iconPosition}
           size={size}
         />

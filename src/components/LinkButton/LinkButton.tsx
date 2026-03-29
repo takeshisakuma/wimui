@@ -17,12 +17,15 @@ export const LinkButton = ({
   intent = "default",
   backgroundColor,
   label,
-  iconName,
+  icon,
   iconPosition = "left",
   "aria-label": ariaLabel,
   ...props
 }: LinkButtonProps) => {
   const { t } = useTranslation();
+  const iconName = typeof icon === "string"
+    ? (icon as React.ComponentProps<typeof Icon>["name"])
+    : undefined;
   return (
     <a
       className={classNames(
@@ -30,7 +33,7 @@ export const LinkButton = ({
         `wim-button--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
         `wim-button--${priority}`,
         `wim-button--${intent}`,
-        !label && iconName && "wim-button--icon-only",
+        !label && !!icon && "wim-button--icon-only",
         className,
       )}
       style={backgroundColor ? { backgroundColor } : undefined}

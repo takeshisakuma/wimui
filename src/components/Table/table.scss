@@ -48,7 +48,7 @@
     &:focus-visible {
       z-index: 3; // Ensure focus ring is above others
       outline: none;
-      box-shadow: inset 0 0 0 2px var(--color-primary, #007aff);
+      box-shadow: inset 0 0 0 2px var(--wim-color-primary, #007aff);
     }
   }
 
@@ -88,7 +88,7 @@
     &:focus-visible {
       z-index: 3;
       outline: none;
-      box-shadow: inset 0 0 0 2px var(--color-primary, #007aff);
+      box-shadow: inset 0 0 0 2px var(--wim-color-primary, #007aff);
     }
   }
 
@@ -246,11 +246,11 @@
 
       .wim-table__row {
         display: block;
-        margin-bottom: var(--spacing-md);
+        margin-bottom: var(--wim-spacing-md);
         overflow: hidden; // 角丸からはみ出ないようにする
         background-color: var(--wim-color-surface, #fff);
         border: 1px solid var(--wim-color-border, #e0e0e0);
-        border-radius: var(--radius-md);
+        border-radius: var(--wim-radius-md);
 
         &:last-child {
           margin-bottom: 0;
@@ -263,7 +263,7 @@
         align-items: center;
         justify-content: space-between;
         width: 100%; // 全幅にする
-        padding: var(--spacing-md);
+        padding: var(--wim-spacing-md);
         text-align: right;
         border-bottom: 1px solid var(--wim-color-border, #e0e0e0);
 
@@ -272,7 +272,7 @@
         }
 
         &::before {
-          margin-right: var(--spacing-md);
+          margin-right: var(--wim-spacing-md);
           font-weight: 600;
           color: var(--wim-color-text-secondary, #666);
           text-align: left;
@@ -284,7 +284,7 @@
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          padding: var(--spacing-sm) var(--spacing-md);
+          padding: var(--wim-spacing-sm) var(--wim-spacing-md);
 
           // カードのタイトル的な位置づけにする場合
           font-weight: bold;

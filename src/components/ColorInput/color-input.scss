@@ -51,7 +51,7 @@
     overflow: hidden;
 
     &:hover:not(.wim-input-base--disabled) {
-      border-color: var(--color-primary);
+      border-color: var(--wim-color-primary);
     }
 
     // Icons color - Default
@@ -71,11 +71,11 @@
     &.wim-input-base--error {
       .wim-input-icon,
       .wim-input-icons {
-        color: var(--text-error);
+        color: var(--wim-color-text-error);
 
         .wim-icon {
           color: inherit;
-          stroke: var(--text-error);
+          stroke: var(--wim-color-text-error);
         }
       }
     }

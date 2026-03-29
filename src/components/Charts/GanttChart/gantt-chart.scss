@@ -9,7 +9,7 @@
   flex-direction: column;
   container-type: inline-size;
   overflow: hidden;
-  font-size: var(--font-size-sm, 0.875rem);
+  font-size: var(--wim-font-size-sm, 0.875rem);
   color: var(--wim-color-text-primary, #212121);
   background-color: var(--wim-color-bg, #fff);
   border: 1px solid var(--wim-color-border, #e0e0e0);
@@ -39,7 +39,7 @@
     align-items: center;
     padding: 0 12px;
     overflow: hidden;
-    font-size: var(--font-size-sm, 0.875rem);
+    font-size: var(--wim-font-size-sm, 0.875rem);
     color: var(--wim-color-text-primary, #212121);
     border-bottom: 1px solid var(--wim-color-border-secondary, #f0f0f0);
   }
@@ -77,8 +77,8 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    font-size: var(--font-size-xs, 0.75rem);
-    font-weight: var(--font-weight-bold, 700);
+    font-size: var(--wim-font-size-xs, 0.75rem);
+    font-weight: var(--wim-font-weight-bold, 700);
     color: var(--wim-color-text-primary, #212121);
     user-select: none;
     background-color: var(--wim-color-bg-subtle, #fafafa);
@@ -97,7 +97,7 @@
   &__body-scroll {
     flex: 1;
     overflow: auto;
-    scrollbar-color: var(--scrollbar-thumb, #c2c2c2) var(--scrollbar-track, #f5f5f5);
+    scrollbar-color: var(--wim-scrollbar-thumb, #c2c2c2) var(--wim-scrollbar-track, #f5f5f5);
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -105,12 +105,12 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: var(--scrollbar-thumb, #c2c2c2);
+      background: var(--wim-scrollbar-thumb, #c2c2c2);
       border-radius: 4px;
     }
 
     &::-webkit-scrollbar-track {
-      background: var(--scrollbar-track, #f5f5f5);
+      background: var(--wim-scrollbar-track, #f5f5f5);
     }
   }
 
@@ -143,11 +143,11 @@
     outline: none;
     border-radius: 4px;
     transition:
-      box-shadow var(--duration-fast, 150ms) var(--easing-standard),
-      opacity var(--duration-fast, 150ms) var(--easing-standard);
+      box-shadow var(--wim-duration-fast, 150ms) var(--wim-easing-standard),
+      opacity var(--wim-duration-fast, 150ms) var(--wim-easing-standard);
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px var(--wim-color-bg, #fff), 0 0 0 4px var(--color-primary, #1976d2);
+      box-shadow: 0 0 0 2px var(--wim-color-bg, #fff), 0 0 0 4px var(--wim-color-primary, #1976d2);
     }
 
     &--clickable {
@@ -158,7 +158,7 @@
       }
 
       &:active {
-        opacity: var(--opacity-secondary);
+        opacity: var(--wim-opacity-secondary);
       }
     }
   }

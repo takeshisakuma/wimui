@@ -87,8 +87,8 @@ const getContrastRatio = (color1: string, color2: string): number => {
 };
 
 export const ContrastChecker: React.FC = () => {
-  const [bgInput, setBgInput] = useState("var(--color-primary)");
-  const [fgInput, setFgInput] = useState("var(--color-text-on-primary)");
+  const [bgInput, setBgInput] = useState("var(--wim-color-primary)");
+  const [fgInput, setFgInput] = useState("var(--wim-color-text-on-primary)");
   const resolvedBg = useMemo(() => resolveToHex(bgInput), [bgInput]);
   const resolvedFg = useMemo(() => resolveToHex(fgInput), [fgInput]);
   const ratio = useMemo(() => getContrastRatio(resolvedBg, resolvedFg), [resolvedBg, resolvedFg]);
@@ -116,7 +116,7 @@ export const ContrastChecker: React.FC = () => {
                     padding: 32px;
                     border: 1px solid var(--wim-color-border, rgba(0,0,0,0.1));
                     border-radius: 24px;
-                    background: var(--bg-component, #fff);
+                    background: var(--wim-color-bg-component, #fff);
                     margin: 32px 0;
                     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
                 }
@@ -148,7 +148,7 @@ export const ContrastChecker: React.FC = () => {
                 .wim-contrast-label {
                     font-size: 13px;
                     font-weight: 700;
-                    color: var(--text-tertiary, #999);
+                    color: var(--wim-color-text-tertiary, #999);
                     text-transform: uppercase;
                     letter-spacing: 0.05em;
                 }

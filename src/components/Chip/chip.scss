@@ -4,47 +4,47 @@
   @include token-base;
 
   box-sizing: border-box;
-  gap: var(--spacing-xs);
+  gap: var(--wim-spacing-xs);
   max-width: 100%;
   font-weight: 500;
   cursor: default;
   user-select: none;
-  border-radius: var(--radius-full);
+  border-radius: var(--wim-radius-full);
   transition: all 0.2s ease-in-out;
 
   &--md {
     height: 2rem;
-    padding: 0 var(--spacing-md);
-    font-size: var(--font-size-minus-2);
+    padding: 0 var(--wim-spacing-md);
+    font-size: var(--wim-font-size-minus-2);
 
     .wim-chip__avatar {
       width: 2rem;
       height: 2rem;
-      margin-left: calc(-1 * var(--spacing-md) - 1px);
+      margin-left: calc(-1 * var(--wim-spacing-md) - 1px);
     }
   }
 
   &--sm {
     height: 1.6rem;
-    padding: 0 var(--spacing-sm);
-    font-size: var(--font-size-minus-3);
+    padding: 0 var(--wim-spacing-sm);
+    font-size: var(--wim-font-size-minus-3);
 
     .wim-chip__avatar {
       width: 1.6rem;
       height: 1.6rem;
-      margin-left: calc(-1 * var(--spacing-sm) - 1px);
+      margin-left: calc(-1 * var(--wim-spacing-sm) - 1px);
     }
   }
 
   &--lg {
     height: 2.4rem;
-    padding: 0 var(--spacing-lg);
-    font-size: var(--font-size-small);
+    padding: 0 var(--wim-spacing-lg);
+    font-size: var(--wim-font-size-sm);
 
     .wim-chip__avatar {
       width: 2.4rem;
       height: 2.4rem;
-      margin-left: calc(-1 * var(--spacing-lg) - 1px);
+      margin-left: calc(-1 * var(--wim-spacing-lg) - 1px);
     }
   }
 
@@ -66,7 +66,7 @@
     justify-content: center;
     overflow: hidden;
     background: rgb(0 0 0 / 0.1);
-    border-radius: var(--radius-full);
+    border-radius: var(--wim-radius-full);
 
     img {
       width: 100%;
@@ -91,10 +91,10 @@
     align-items: center;
     justify-content: center;
     padding: 1px;
-    margin-right: -var(--spacing-xs);
+    margin-right: -var(--wim-spacing-xs);
     cursor: pointer;
-    border-radius: var(--radius-full);
-    opacity: var(--opacity-disabled);
+    border-radius: var(--wim-radius-full);
+    opacity: var(--wim-opacity-disabled);
     transition: opacity 0.2s;
 
     &:hover {
@@ -115,7 +115,7 @@
   &:disabled,
   &--disabled {
     cursor: not-allowed;
-    opacity: var(--opacity-ghost);
+    opacity: var(--wim-opacity-ghost);
     filter: none;
   }
 }

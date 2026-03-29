@@ -8,7 +8,7 @@
 .wim-daterangepicker {
   display: flex;
   flex-direction: row;
-  gap: var(--spacing-xs);
+  gap: var(--wim-spacing-xs);
   align-items: center;
   width: 100%;
 
@@ -34,5 +34,5 @@
 
 .wim-daterangepicker-separator {
   align-self: center;
-  color: var(--text-secondary);
+  color: var(--wim-color-text-secondary);
 }

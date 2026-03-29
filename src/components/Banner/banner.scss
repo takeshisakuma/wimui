@@ -5,27 +5,27 @@
 // Dark-mode colors derived from semantic tokens
 @mixin banner-dark-colors {
   &--info {
-    color: color-mix(in srgb, var(--color-informative) 25%, white);
-    background: color-mix(in srgb, var(--color-informative) 25%, black);
-    border-bottom-color: color-mix(in srgb, var(--color-informative) 30%, transparent);
+    color: color-mix(in srgb, var(--wim-color-informative) 25%, white);
+    background: color-mix(in srgb, var(--wim-color-informative) 25%, black);
+    border-bottom-color: color-mix(in srgb, var(--wim-color-informative) 30%, transparent);
   }
 
   &--success {
-    color: color-mix(in srgb, var(--color-positive) 25%, white);
-    background: color-mix(in srgb, var(--color-positive) 25%, black);
-    border-bottom-color: color-mix(in srgb, var(--color-positive) 30%, transparent);
+    color: color-mix(in srgb, var(--wim-color-positive) 25%, white);
+    background: color-mix(in srgb, var(--wim-color-positive) 25%, black);
+    border-bottom-color: color-mix(in srgb, var(--wim-color-positive) 30%, transparent);
   }
 
   &--warning {
-    color: color-mix(in srgb, var(--color-caution) 25%, white);
-    background: color-mix(in srgb, var(--color-caution) 25%, black);
-    border-bottom-color: color-mix(in srgb, var(--color-caution) 30%, transparent);
+    color: color-mix(in srgb, var(--wim-color-caution) 25%, white);
+    background: color-mix(in srgb, var(--wim-color-caution) 25%, black);
+    border-bottom-color: color-mix(in srgb, var(--wim-color-caution) 30%, transparent);
   }
 
   &--error {
-    color: color-mix(in srgb, var(--color-destructive) 25%, white);
-    background: color-mix(in srgb, var(--color-destructive) 25%, black);
-    border-bottom-color: color-mix(in srgb, var(--color-destructive) 30%, transparent);
+    color: color-mix(in srgb, var(--wim-color-destructive) 25%, white);
+    background: color-mix(in srgb, var(--wim-color-destructive) 25%, black);
+    border-bottom-color: color-mix(in srgb, var(--wim-color-destructive) 30%, transparent);
   }
 
   &__close:hover {
@@ -38,19 +38,19 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--wim-spacing-md) var(--wim-spacing-lg);
   container-type: inline-size;
 
   // Glassmorphism effect base
   background: var(--wim-color-overlay-bg-light);
   border-bottom: 1px solid transparent;
   backdrop-filter: blur(8px);
-  transition: var(--transition-fast);
+  transition: var(--wim-transition-fast);
 
   &__container {
     display: flex;
     flex-wrap: wrap; // Allow wrapping on small screens
-    gap: var(--spacing-lg);
+    gap: var(--wim-spacing-lg);
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -60,7 +60,7 @@
   &__content {
     display: flex;
     flex: 1;
-    gap: var(--spacing-md);
+    gap: var(--wim-spacing-md);
     align-items: center;
     min-width: 0; // Prevent flex item from overflowing
   }
@@ -85,7 +85,7 @@
   &__separator {
     display: none;
     margin: 0 4px;
-    opacity: var(--opacity-ghost);
+    opacity: var(--wim-opacity-ghost);
 
     @container (width >= 640px) {
       display: inline;
@@ -99,7 +99,7 @@
   &__actions {
     display: flex;
     flex-shrink: 0;
-    gap: var(--spacing-md);
+    gap: var(--wim-spacing-md);
     align-items: center;
   }
 
@@ -114,8 +114,8 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: var(--radius-sm);
-    opacity: var(--opacity-disabled);
+    border-radius: var(--wim-radius-sm);
+    opacity: var(--wim-opacity-disabled);
     transition: opacity 0.2s ease;
 
     &:hover {
@@ -125,7 +125,7 @@
 
     &:focus-visible {
       outline: none;
-      box-shadow: var(--shadow-focus);
+      box-shadow: var(--wim-shadow-focus);
     }
 
     svg {
@@ -136,42 +136,42 @@
 
   // Variants — light mode colors derived from semantic tokens
   &--info {
-    color: color-mix(in srgb, var(--color-informative) 60%, black);
-    background: color-mix(in srgb, var(--color-informative) 8%, white);
-    border-bottom-color: color-mix(in srgb, var(--color-informative) 25%, transparent);
+    color: color-mix(in srgb, var(--wim-color-informative) 60%, black);
+    background: color-mix(in srgb, var(--wim-color-informative) 8%, white);
+    border-bottom-color: color-mix(in srgb, var(--wim-color-informative) 25%, transparent);
 
     .wim-banner__icon {
-      color: var(--color-informative);
+      color: var(--wim-color-informative);
     }
   }
 
   &--success {
-    color: color-mix(in srgb, var(--color-positive) 60%, black);
-    background: color-mix(in srgb, var(--color-positive) 8%, white);
-    border-bottom-color: color-mix(in srgb, var(--color-positive) 25%, transparent);
+    color: color-mix(in srgb, var(--wim-color-positive) 60%, black);
+    background: color-mix(in srgb, var(--wim-color-positive) 8%, white);
+    border-bottom-color: color-mix(in srgb, var(--wim-color-positive) 25%, transparent);
 
     .wim-banner__icon {
-      color: var(--color-positive);
+      color: var(--wim-color-positive);
     }
   }
 
   &--warning {
-    color: color-mix(in srgb, var(--color-caution) 80%, black);
-    background: color-mix(in srgb, var(--color-caution) 8%, white);
-    border-bottom-color: color-mix(in srgb, var(--color-caution) 25%, transparent);
+    color: color-mix(in srgb, var(--wim-color-caution) 80%, black);
+    background: color-mix(in srgb, var(--wim-color-caution) 8%, white);
+    border-bottom-color: color-mix(in srgb, var(--wim-color-caution) 25%, transparent);
 
     .wim-banner__icon {
-      color: var(--color-caution);
+      color: var(--wim-color-caution);
     }
   }
 
   &--error {
-    color: color-mix(in srgb, var(--color-destructive) 60%, black);
-    background: color-mix(in srgb, var(--color-destructive) 8%, white);
-    border-bottom-color: color-mix(in srgb, var(--color-destructive) 25%, transparent);
+    color: color-mix(in srgb, var(--wim-color-destructive) 60%, black);
+    background: color-mix(in srgb, var(--wim-color-destructive) 8%, white);
+    border-bottom-color: color-mix(in srgb, var(--wim-color-destructive) 25%, transparent);
 
     .wim-banner__icon {
-      color: var(--color-destructive);
+      color: var(--wim-color-destructive);
     }
   }
 

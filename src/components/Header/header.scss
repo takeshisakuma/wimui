@@ -7,8 +7,8 @@
     align-items: center;
     width: 100%;
     min-height: 64px;
-    padding: 0 var(--spacing-xl);
-    transition: all var(--transition-base);
+    padding: 0 var(--wim-spacing-xl);
+    transition: all var(--wim-transition-base);
 
     @include breakpoints.down(sm) {
       height: auto;
@@ -51,7 +51,7 @@
 
     &__container {
       display: flex;
-      gap: var(--spacing-xl);
+      gap: var(--wim-spacing-xl);
       align-items: center;
       justify-content: space-between;
       width: 100%;
@@ -69,7 +69,7 @@
     &__section {
       display: flex;
       flex-shrink: 0;
-      gap: var(--spacing-md);
+      gap: var(--wim-spacing-md);
       align-items: center;
       white-space: nowrap;
 
@@ -78,7 +78,7 @@
       }
 
       @include breakpoints.down(sm) {
-        padding: var(--spacing-sm) var(--spacing-md);
+        padding: var(--wim-spacing-sm) var(--wim-spacing-md);
       }
 
       &--start {
@@ -88,7 +88,7 @@
           justify-content: center;
           order: 1;
           width: 100%;
-          padding: var(--spacing-md);
+          padding: var(--wim-spacing-md);
           border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
         }
       }
@@ -107,7 +107,7 @@
         &::after {
           display: block;
           flex: 1 0 0%;
-          min-width: var(--spacing-md);
+          min-width: var(--wim-spacing-md);
           content: "";
         }
 
@@ -119,7 +119,7 @@
 
           /* Connect with end section on the same row */
           width: auto;
-          padding: var(--spacing-md);
+          padding: var(--wim-spacing-md);
           padding-bottom: 0;
 
           /* Remove spacers on mobile to left align */

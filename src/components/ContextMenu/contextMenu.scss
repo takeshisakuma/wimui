@@ -7,7 +7,7 @@
 
   &--disabled {
     cursor: not-allowed;
-    opacity: var(--opacity-disabled);
+    opacity: var(--wim-opacity-disabled);
 
     > * {
       pointer-events: none;
@@ -19,11 +19,11 @@
   position: fixed;
   z-index: 9999;
   min-width: 200px;
-  padding: var(--spacing-xs) 0; // The items themselves have margins now
-  background-color: var(--bg-component, #fff);
-  border: 1px solid var(--color-secondary);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
+  padding: var(--wim-spacing-xs) 0; // The items themselves have margins now
+  background-color: var(--wim-color-bg-component, #fff);
+  border: 1px solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-md);
+  box-shadow: var(--wim-shadow-lg);
   animation: fadeIn 0.15s ease-in-out;
 }
 
@@ -33,23 +33,23 @@
   &:focus-visible {
     z-index: 1;
     outline: none;
-    box-shadow: var(--shadow-focus);
+    box-shadow: var(--wim-shadow-focus);
   }
 }
 
 .wim-context-menu-divider {
   height: 1px;
-  margin: var(--spacing-xs) var(--spacing-md); // Inset divider
-  background-color: var(--color-secondary);
+  margin: var(--wim-spacing-xs) var(--wim-spacing-md); // Inset divider
+  background-color: var(--wim-color-secondary);
   opacity: 0.4;
 }
 
 .wim-context-menu-group {
   &__title {
-    padding: var(--spacing-sm) calc(var(--spacing-md) + var(--spacing-xs));
+    padding: var(--wim-spacing-sm) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--text-secondary);
+    color: var(--wim-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }

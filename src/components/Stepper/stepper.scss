@@ -33,12 +33,12 @@
     }
 
     &--horizontal &__item {
-      padding-right: var(--spacing-md);
+      padding-right: var(--wim-spacing-md);
       overflow: visible;
 
       .wim-stepper__line {
         position: absolute;
-        top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
+        top: calc(var(--wim-spacing-3xl) / 2 + var(--wim-spacing-xs));
         right: 0;
         left: 0;
         z-index: 0;
@@ -54,17 +54,17 @@
           height: 100%;
           content: "";
           background-color: var(--wim-color-border-secondary);
-          transition: background-color var(--transition-base);
+          transition: background-color var(--wim-transition-base);
         }
 
         &::before {
           left: 0;
-          width: calc(var(--spacing-3xl) / 2);
+          width: calc(var(--wim-spacing-3xl) / 2);
         }
 
         &::after {
           right: 0;
-          left: calc(var(--spacing-3xl) / 2);
+          left: calc(var(--wim-spacing-3xl) / 2);
           width: auto;
         }
       }
@@ -80,8 +80,8 @@
       // Beside Label Mode (Default)
       &:not(.wim-stepper__item--label-vertical) {
         .wim-stepper__content {
-          padding-right: var(--spacing-md);
-          margin-top: calc(var(--spacing-xs) * -1.2); // Position title further up
+          padding-right: var(--wim-spacing-md);
+          margin-top: calc(var(--wim-spacing-xs) * -1.2); // Position title further up
         }
       }
 
@@ -98,13 +98,13 @@
 
             &::before {
               left: -1px; // Slight overlap to prevent gaps
-              width: calc(50% - var(--spacing-3xl) / 2 + 1px);
+              width: calc(50% - var(--wim-spacing-3xl) / 2 + 1px);
             }
 
             &::after {
               right: -1px; // Slight overlap to prevent gaps
               left: auto;
-              width: calc(50% - var(--spacing-3xl) / 2 + 1px);
+              width: calc(50% - var(--wim-spacing-3xl) / 2 + 1px);
             }
           }
 
@@ -118,11 +118,11 @@
 
           &.wim-stepper__item--finish {
             .wim-stepper__line::after {
-              background-color: var(--color-primary);
+              background-color: var(--wim-color-primary);
             }
 
             & + .wim-stepper__item--label-vertical .wim-stepper__line::before {
-              background-color: var(--color-primary);
+              background-color: var(--wim-color-primary);
             }
           }
         }
@@ -137,12 +137,12 @@
           flex-direction: row;
           width: 100%;
           padding-right: 0;
-          padding-bottom: var(--spacing-lg);
+          padding-bottom: var(--wim-spacing-lg);
 
           .wim-stepper__line {
             position: absolute;
-            top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
-            left: calc(var(--spacing-3xl) / 2);
+            top: calc(var(--wim-spacing-3xl) / 2 + var(--wim-spacing-xs));
+            left: calc(var(--wim-spacing-3xl) / 2);
             z-index: 0;
             width: 2px;
             height: 100%;
@@ -157,13 +157,13 @@
 
           &.wim-stepper__item--finish {
             .wim-stepper__line {
-              background-color: var(--color-primary);
+              background-color: var(--wim-color-primary);
             }
           }
 
           .wim-stepper__content {
-            padding-top: calc(var(--spacing-xs) + (var(--spacing-3xl) - 1lh) / 2);
-            margin-left: var(--spacing-sm);
+            padding-top: calc(var(--wim-spacing-xs) + (var(--wim-spacing-3xl) - 1lh) / 2);
+            margin-left: var(--wim-spacing-sm);
             text-align: left;
           }
 
@@ -188,12 +188,12 @@
 
     &--vertical &__item {
       flex-direction: row;
-      padding-bottom: var(--spacing-lg);
+      padding-bottom: var(--wim-spacing-lg);
 
       .wim-stepper__line {
         position: absolute;
-        top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
-        left: calc(var(--spacing-3xl) / 2);
+        top: calc(var(--wim-spacing-3xl) / 2 + var(--wim-spacing-xs));
+        left: calc(var(--wim-spacing-3xl) / 2);
         z-index: 0;
         width: 2px;
         height: 100%;
@@ -205,7 +205,7 @@
           top: 0;
           left: 0;
           width: 100%;
-          height: calc(100% + var(--spacing-lg)); // Extend line to next icon
+          height: calc(100% + var(--wim-spacing-lg)); // Extend line to next icon
           content: "";
           background-color: inherit;
         }
@@ -216,8 +216,8 @@
       }
 
       .wim-stepper__content {
-        padding-top: calc(var(--spacing-xs) + (var(--spacing-3xl) - 1lh) / 2);
-        margin-left: var(--spacing-sm);
+        padding-top: calc(var(--wim-spacing-xs) + (var(--wim-spacing-3xl) - 1lh) / 2);
+        margin-left: var(--wim-spacing-sm);
       }
     }
 
@@ -228,56 +228,56 @@
       flex-shrink: 0;
       align-items: center;
       justify-content: center;
-      width: var(--spacing-3xl);
-      height: var(--spacing-3xl);
-      margin-top: var(--spacing-xs);
-      font-size: var(--font-size-small);
-      font-weight: var(--font-weight-bold);
-      color: var(--text-secondary);
-      background-color: var(--bg-component, #fff);
+      width: var(--wim-spacing-3xl);
+      height: var(--wim-spacing-3xl);
+      margin-top: var(--wim-spacing-xs);
+      font-size: var(--wim-font-size-sm);
+      font-weight: var(--wim-font-weight-bold);
+      color: var(--wim-color-text-secondary);
+      background-color: var(--wim-color-bg-component, #fff);
       border: 2px solid var(--wim-color-border-secondary);
-      border-radius: var(--radius-full);
-      transition: all var(--transition-base);
+      border-radius: var(--wim-radius-full);
+      transition: all var(--wim-transition-base);
     }
 
     &__item--process &__icon-container {
-      color: var(--color-text-on-primary);
-      background-color: var(--color-primary);
-      border-color: var(--color-primary);
+      color: var(--wim-color-text-on-primary);
+      background-color: var(--wim-color-primary);
+      border-color: var(--wim-color-primary);
       box-shadow: 0 0 0 4px
         color-mix(
           in srgb,
-          var(--color-primary-rgb, 0, 107, 255) 10%,
+          var(--wim-color-primary-rgb, 0, 107, 255) 10%,
           transparent
         );
     }
 
     &__item--finish &__icon-container {
-      color: var(--color-primary);
-      border-color: var(--color-primary);
+      color: var(--wim-color-primary);
+      border-color: var(--wim-color-primary);
     }
 
     &__item--error &__icon-container {
-      color: var(--color-destructive);
-      border-color: var(--color-destructive);
+      color: var(--wim-color-destructive);
+      border-color: var(--wim-color-destructive);
     }
 
     /* Line / Tail */
     &__line {
       position: absolute;
-      top: calc(var(--spacing-3xl) / 2 + var(--spacing-xs));
-      left: var(--spacing-3xl);
+      top: calc(var(--wim-spacing-3xl) / 2 + var(--wim-spacing-xs));
+      left: var(--wim-spacing-3xl);
       z-index: 0;
       height: 2px;
       background-color: var(--wim-color-border-secondary);
       transform: translateY(-50%);
-      transition: background-color var(--transition-base);
+      transition: background-color var(--wim-transition-base);
     }
 
     &__item--finish &__line {
       &::before,
       &::after {
-        background-color: var(--color-primary);
+        background-color: var(--wim-color-primary);
       }
     }
 
@@ -286,35 +286,35 @@
       position: relative;
       z-index: 1;
       flex-shrink: 0;
-      margin-left: var(--spacing-sm);
+      margin-left: var(--wim-spacing-sm);
     }
 
     &__item--label-vertical &__content {
       @container (min-width: 577px) {
         width: 100%;
         min-width: 100px;
-        margin-top: var(--spacing-xs);
+        margin-top: var(--wim-spacing-xs);
         margin-left: 0;
       }
     }
 
     &__title {
       display: block;
-      font-size: var(--font-size-medium);
-      font-weight: var(--font-weight-medium);
-      color: var(--text-primary);
-      transition: color var(--transition-base);
+      font-size: var(--wim-font-size-md);
+      font-weight: var(--wim-font-weight-medium);
+      color: var(--wim-color-text-primary);
+      transition: color var(--wim-transition-base);
     }
 
     &__item--wait &__title {
-      color: var(--text-secondary);
+      color: var(--wim-color-text-secondary);
     }
 
     &__description {
       display: block;
-      margin-top: calc(var(--spacing-xs) * 0.4); // Position description closer to line
-      font-size: var(--font-size-small);
-      color: var(--text-secondary);
+      margin-top: calc(var(--wim-spacing-xs) * 0.4); // Position description closer to line
+      font-size: var(--wim-font-size-sm);
+      color: var(--wim-color-text-secondary);
     }
   }
 }
