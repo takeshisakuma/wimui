@@ -3,8 +3,6 @@ import { ComponentSize, IndicatorStatus } from '../../types/tokens';
 export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
     /** 表示するコンテンツ */
     children?: React.ReactNode;
-    /** @deprecated use children instead */
-    content?: string;
     /** アイコン */
     icon?: React.ReactNode;
     /** ステータス */
@@ -17,4 +15,4 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
 /**
  * 状態やカウントなどを表示するためのバッジコンポーネント。
  */
-export declare const Badge: ({ children, content, icon, className, ...props }: BadgeProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Badge: ({ children, icon, className, ...props }: BadgeProps) => import("react/jsx-runtime").JSX.Element;

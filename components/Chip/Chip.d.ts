@@ -1,10 +1,8 @@
 import { default as React } from '../../../node_modules/react';
 import { ComponentSize, IndicatorStatus } from '../../types/tokens';
 export type ChipProps = {
-    /** 表示するコンテンツ (labelより優先されます) */
+    /** 表示するコンテンツ */
     children?: React.ReactNode;
-    /** @deprecated Use children instead */
-    label?: string | React.ReactNode;
     /** クリック時のイベント。提供されるとボタンとして動作します。 */
     onClick?: (e: React.MouseEvent) => void;
     /** 削除時のイベント。提供されると×ボタンが表示されます。 */
@@ -31,4 +29,4 @@ export type ChipProps = {
 /**
  * 選択、フィルタリング、または入力に使用されるインタラクティブなトークン。
  */
-export declare const Chip: ({ children, label, onClick, onDelete, avatar, icon, selected, disabled, status, variant, size, className, ...props }: ChipProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Chip: ({ children, onClick, onDelete, avatar, icon, selected, disabled, status, variant, size, className, ...props }: ChipProps) => import("react/jsx-runtime").JSX.Element;

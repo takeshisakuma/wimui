@@ -11,8 +11,6 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
     intent?: "default" | "destructive" | "positive";
     /** Icon name or custom icon element */
     icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
-    /** @deprecated Use icon instead */
-    iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";
     loading?: boolean;
     justify?: "start" | "center" | "end" | "between";
@@ -31,8 +29,6 @@ export declare const Button: React.ForwardRefExoticComponent<Omit<React.Detailed
     intent?: "default" | "destructive" | "positive";
     /** Icon name or custom icon element */
     icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
-    /** @deprecated Use icon instead */
-    iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";
     loading?: boolean;
     justify?: "start" | "center" | "end" | "between";
