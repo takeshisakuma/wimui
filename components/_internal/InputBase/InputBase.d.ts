@@ -1,5 +1,6 @@
 import { default as React } from '../../../../node_modules/react';
 import { Icon } from '../../Icon/Icon';
+import { FieldStatus } from '../../../types/tokens';
 export type InputBaseIcon = {
     name: React.ComponentProps<typeof Icon>["name"];
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -11,7 +12,7 @@ export type InputBaseIcon = {
 };
 export type InputBaseProps = {
     children: React.ReactNode;
-    status?: "default" | "error";
+    status?: FieldStatus;
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;

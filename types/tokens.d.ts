@@ -9,6 +9,18 @@ export type LiteralWithAutocomplete<T extends string> = T | (string & {});
  */
 export type ComponentSize = "small" | "medium" | "large";
 /**
+ * Status values for indicator-style components (Badge, Chip, Tag, Progress).
+ */
+export type IndicatorStatus = "primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral";
+/**
+ * Status values for feedback/notification components (Alert, Banner, Toast, Snackbar).
+ */
+export type FeedbackStatus = "info" | "success" | "warning" | "error";
+/**
+ * Status values for form field components (Input, Textarea, DatePicker).
+ */
+export type FieldStatus = "default" | "error";
+/**
  * Color tokens available as CSS variables.
  */
 export type WimColorToken = "var(--color-destructive)" | "var(--color-positive)" | "var(--color-caution)" | "var(--color-primary)" | "var(--color-secondary)" | "var(--color-informative)" | "var(--color-disabled)" | "var(--color-text-on-primary)" | "var(--color-text-on-destructive)" | "var(--color-text-on-positive)" | "var(--color-text-on-caution)" | "var(--color-text-on-secondary)" | "var(--color-text-on-informative)" | "var(--color-text-on-disabled)" | "var(--text-primary)" | "var(--text-secondary)" | "var(--text-tertiary)" | "var(--text-disabled)" | "var(--text-white)" | "var(--text-error)" | "var(--bg-app)" | "var(--bg-component)" | "var(--wim-color-bg-primary)" | "var(--wim-color-bg-secondary)" | "var(--wim-color-bg-hover)" | "var(--wim-color-border)" | "var(--wim-color-border-secondary)" | "var(--color-focus-outline)" | "var(--scrollbar-thumb)" | "var(--scrollbar-track)" | "var(--wim-color-primary)" | "var(--wim-color-primary-hover)" | "var(--wim-color-primary-active)" | "var(--wim-color-primary-light)" | "var(--wim-color-secondary)" | "var(--wim-color-text-primary)" | "var(--wim-color-text-secondary)" | "var(--wim-color-text-tertiary)" | "var(--wim-color-text-disabled)" | "var(--wim-color-text-placeholder)" | "var(--wim-color-text-on-primary)" | "var(--wim-color-text-on-secondary)" | "var(--wim-color-surface)" | "var(--wim-color-surface-variant)" | "var(--wim-color-surface-hover)" | "var(--wim-color-primary-container-alpha)" | "var(--wim-color-surface-variant-alpha)" | "var(--wim-color-bg-tertiary)" | "var(--wim-color-bg-component)" | "var(--wim-color-overlay-bg)" | "var(--wim-color-overlay-bg-light)" | "var(--wim-color-overlay-bg-dark)" | "var(--wim-color-text-on-overlay)";

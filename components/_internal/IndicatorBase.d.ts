@@ -1,9 +1,9 @@
 import { default as React } from '../../../node_modules/react';
-import { ComponentSize } from '../../types/tokens';
+import { ComponentSize, IndicatorStatus } from '../../types/tokens';
 export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
     children?: React.ReactNode;
     icon?: React.ReactNode;
-    status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
+    status?: IndicatorStatus;
     variant?: "solid" | "outline" | "subtle";
     size?: ComponentSize;
     prefixClass: string;

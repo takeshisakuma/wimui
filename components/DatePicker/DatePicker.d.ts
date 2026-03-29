@@ -1,6 +1,7 @@
 import { default as React } from '../../../node_modules/react';
+import { FieldStatus } from '../../types/tokens';
 type DatePickerProps = Omit<React.ComponentPropsWithoutRef<"input">, "value" | "defaultValue" | "onChange"> & {
-    status?: "default" | "error";
+    status?: FieldStatus;
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     /** Selected date value */

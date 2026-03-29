@@ -1,4 +1,5 @@
 import { default as React } from '../../../node_modules/react';
+import { FeedbackStatus } from '../../types/tokens';
 type BannerProps = {
     /**
      * バナーのタイトル
@@ -11,7 +12,7 @@ type BannerProps = {
     /**
      * バナーのステータス
      */
-    status?: "info" | "success" | "warning" | "error";
+    status?: FeedbackStatus;
     /**
      * アイコンを表示するかどうか、またはカスタムアイコン
      */

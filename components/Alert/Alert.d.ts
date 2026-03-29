@@ -1,4 +1,5 @@
 import { default as React } from '../../../node_modules/react';
+import { FeedbackStatus } from '../../types/tokens';
 type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * アラートのタイトル
@@ -11,7 +12,7 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * アラートのステータス
      */
-    status?: "info" | "success" | "warning" | "error";
+    status?: FeedbackStatus;
     /**
      * カスタムアイコン。指定しない場合はバリアントに応じたデフォルトアイコンが表示されます。
      */

@@ -1,11 +1,11 @@
 import { default as React } from '../../../node_modules/react';
-export type ToastStatus = "info" | "success" | "warning" | "error";
+import { FeedbackStatus } from '../../types/tokens';
 export type ToastPosition = "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
 export type ToastProps = {
     id?: string;
     title?: string;
     description?: string;
-    status?: ToastStatus;
+    status?: FeedbackStatus;
     duration?: number;
     isVisible?: boolean;
     onClose?: (id?: string) => void;
@@ -19,7 +19,7 @@ type ToastItem = {
     id: string;
     title?: string;
     description?: string;
-    status?: ToastStatus;
+    status?: FeedbackStatus;
     duration?: number;
 };
 type ToastContextType = {

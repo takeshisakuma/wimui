@@ -1,9 +1,9 @@
 import { default as React } from '../../../node_modules/react';
-import { ComponentSize } from '../../types/tokens';
+import { ComponentSize, IndicatorStatus } from '../../types/tokens';
 type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
     value?: number;
     max?: number;
-    status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral";
+    status?: IndicatorStatus;
     size?: ComponentSize;
     label?: string;
     showValue?: boolean;

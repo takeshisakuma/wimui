@@ -1,3 +1,4 @@
+import { FieldStatus } from '../../types/tokens';
 export type RichTextEditorToolbarItem = "bold" | "italic" | "underline" | "strikethrough" | "h1" | "h2" | "h3" | "ul" | "ol" | "link" | "unlink" | "removeFormat" | "separator";
 export type RichTextEditorProps = {
     value?: string;
@@ -5,7 +6,7 @@ export type RichTextEditorProps = {
     onChange?: (value: string) => void;
     placeholder?: string;
     disabled?: boolean;
-    status?: "default" | "error";
+    status?: FieldStatus;
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     minHeight?: number | string;

@@ -1,5 +1,5 @@
 import { default as React } from '../../../node_modules/react';
-import { ComponentSize } from '../../types/tokens';
+import { ComponentSize, IndicatorStatus } from '../../types/tokens';
 export type ChipProps = {
     /** 表示するコンテンツ (labelより優先されます) */
     children?: React.ReactNode;
@@ -18,7 +18,7 @@ export type ChipProps = {
     /** 無効状態 */
     disabled?: boolean;
     /** ステータス */
-    status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
+    status?: IndicatorStatus;
     /** バリアント */
     variant?: "solid" | "outline" | "subtle";
     /** サイズ */

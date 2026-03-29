@@ -1,11 +1,10 @@
 import { default as React } from '../../../node_modules/react';
-import { ComponentSize } from '../../types/tokens';
-export type FeedbackStatus = "info" | "success" | "warning" | "error" | "default";
+import { ComponentSize, FeedbackStatus } from '../../types/tokens';
 export interface FeedbackIconProps {
     /**
      * フィードバックのステータス
      */
-    status?: FeedbackStatus;
+    status?: FeedbackStatus | "default";
     /**
      * カスタムアイコン
      */

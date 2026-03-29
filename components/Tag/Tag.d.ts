@@ -1,10 +1,10 @@
 import { default as React } from '../../../node_modules/react';
-import { ComponentSize } from '../../types/tokens';
+import { ComponentSize, IndicatorStatus } from '../../types/tokens';
 export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
     /** 表示するコンテンツ */
     children?: React.ReactNode;
     /** ステータス */
-    status?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "info";
+    status?: IndicatorStatus;
     /** バリアント */
     variant?: "solid" | "outline" | "subtle";
     /** サイズ */

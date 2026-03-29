@@ -1,4 +1,5 @@
 import { default as React, ReactNode } from '../../../node_modules/react';
+import { FeedbackStatus } from '../../types/tokens';
 export type NotificationPlacement = "topRight" | "topLeft" | "bottomRight" | "bottomLeft";
 export type NotificationProps = {
     /**
@@ -20,7 +21,7 @@ export type NotificationProps = {
     /**
      * The status of notification
      */
-    status?: "info" | "success" | "error" | "warning";
+    status?: FeedbackStatus;
     /**
      * Callback when notification is closed
      */

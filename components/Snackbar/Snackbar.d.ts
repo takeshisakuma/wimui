@@ -1,5 +1,5 @@
 import { default as React } from '../../../node_modules/react';
-export type SnackbarStatus = "default" | "success" | "warning" | "error" | "info";
+import { FeedbackStatus } from '../../types/tokens';
 export type SnackbarPosition = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
 export interface SnackbarProps {
     /** スナックバーに表示するメッセージ */
@@ -7,7 +7,7 @@ export interface SnackbarProps {
     /** 表示状態 */
     open?: boolean;
     /** 表示するタイプ */
-    status?: SnackbarStatus;
+    status?: FeedbackStatus | "default";
     /** 表示位置 */
     position?: SnackbarPosition;
     /** 自動で閉じるまでの時間（ミリ秒）。0を指定すると自動で閉じません。 */
