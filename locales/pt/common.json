@@ -141,9 +141,8 @@
     "option": "Opção 1"
   },
   "settings": "Configurações",
-  "standard": {
-    "list_item": "Item da lista"
-  },
+  "standard": "Padrão",
+  "standard_list_item": "Item da lista",
   "story": {
     "carousel_slide_label": "Slide {{number}}"
   },

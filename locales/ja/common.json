@@ -141,9 +141,8 @@
     "option": "項目1"
   },
   "settings": "設定",
-  "standard": {
-    "list_item": "リストアイテム"
-  },
+  "standard": "標準",
+  "standard_list_item": "リストアイテム",
   "story": {
     "carousel_slide_label": "スライド {{number}}"
   },
