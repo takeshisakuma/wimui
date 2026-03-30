@@ -5,6 +5,19 @@ import path from 'path';
 // Load all English translations
 const localesPath = path.resolve('public/locales/en');
 const localeFiles = fs.readdirSync(localesPath).filter(f => f.endsWith('.json'));
+function getAllKeys(obj, prefix = '') {
+  let keys = [];
+  for (const key in obj) {
+    const fullKey = prefix ? `${prefix}.${key}` : key;
+    if (typeof obj[key] === 'object' && obj[key] !== null) {
+      keys = keys.concat(getAllKeys(obj[key], fullKey));
+    } else {
+      keys.push(fullKey);
+    }
+  }
+  return keys;
+}
+
 const allTranslations = new Set();
 
 console.log('--- Loading Translations ---');
@@ -12,11 +25,10 @@ localeFiles.forEach(file => {
   const filePath = path.join(localesPath, file);
   try {
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    Object.keys(data).forEach(key => allTranslations.add(key));
+    getAllKeys(data).forEach(key => allTranslations.add(key));
   } catch (err) {
     console.error(`\n❌ ERROR parsing JSON: ${filePath}`);
     console.error(`   Message: ${err.message}`);
-    // If it's a syntax error, try to help locate it (Node's JSON.parse message often includes line/column)
     process.exit(1); 
   }
 });

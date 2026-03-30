@@ -15,12 +15,21 @@ const namespaces = fs.readdirSync(path.join(localesDir, sourceLang))
 
 async function translateKeys(keysAndValues, targetLang) {
   if (!API_KEY) {
-    console.warn('  [Skip] GOOGLE_GENERATIVE_AI_API_KEY not found in .env. Using placeholders.');
-    const mocked = {};
-    Object.keys(keysAndValues).forEach(k => {
-      mocked[k] = `[MISSING_TRANSLATION: ${targetLang}] ${keysAndValues[k]}`;
-    });
-    return mocked;
+    console.log(`  [Skip] GOOGLE_GENERATIVE_AI_API_KEY not found in .env. Using placeholders.`);
+    
+    function generatePlaceholders(src, targetLang) {
+      if (typeof src === 'object' && src !== null && !Array.isArray(src)) {
+        const result = {};
+        for (const key in src) {
+          result[key] = generatePlaceholders(src[key], targetLang);
+        }
+        return result;
+      }
+      return `[MISSING_TRANSLATION: ${targetLang}] ${src}`;
+    }
+
+    const translated = generatePlaceholders(keysAndValues, targetLang);
+    return translated;
   }
 
   const genAI = new GoogleGenerativeAI(API_KEY);
@@ -65,12 +74,26 @@ async function sync() {
         ? JSON.parse(fs.readFileSync(targetPath, 'utf8')) 
         : {};
 
-      const missingKeys = {};
-      Object.keys(sourceData).forEach(key => {
-        if (!targetData[key]) {
-          missingKeys[key] = sourceData[key];
+      function findMissingKeysRecursive(source, target, result = {}) {
+        for (const key in source) {
+          if (typeof source[key] === 'object' && source[key] !== null) {
+            if (!target[key] || typeof target[key] !== 'object') {
+              // If target doesn't have the object, we need the whole object or its children
+              result[key] = source[key];
+            } else {
+              const nestedMissing = findMissingKeysRecursive(source[key], target[key]);
+              if (Object.keys(nestedMissing).length > 0) {
+                result[key] = nestedMissing;
+              }
+            }
+          } else if (!target[key]) {
+            result[key] = source[key];
+          }
         }
-      });
+        return result;
+      }
+
+      const missingKeys = findMissingKeysRecursive(sourceData, targetData);
 
       const missingCount = Object.keys(missingKeys).length;
       if (missingCount > 0) {
@@ -79,15 +102,31 @@ async function sync() {
         // Batch translation if needed, but for now just translate all together
         const translated = await translateKeys(missingKeys, targetLang);
         
-        // Merge
-        targetData = { ...targetData, ...translated };
+        function deepMerge(target, source) {
+          for (const key in source) {
+            if (typeof source[key] === 'object' && source[key] !== null && !Array.isArray(source[key])) {
+              if (!target[key]) target[key] = {};
+              deepMerge(target[key], source[key]);
+            } else {
+              target[key] = source[key];
+            }
+          }
+          return target;
+        }
         
-        // Sort keys alphabetically to keep it clean
-        const sortedData = {};
-        Object.keys(targetData).sort().forEach(k => {
-          sortedData[k] = targetData[k];
-        });
+        // Merge
+        targetData = deepMerge(targetData, translated);
+        
+        function sortObject(obj) {
+          if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) return obj;
+          const sorted = {};
+          Object.keys(obj).sort().forEach(k => {
+            sorted[k] = sortObject(obj[k]);
+          });
+          return sorted;
+        }
 
+        const sortedData = sortObject(targetData);
         fs.writeFileSync(targetPath, JSON.stringify(sortedData, null, 2), 'utf8');
         console.log(`  Successfully updated ${targetPath}`);
       } else {

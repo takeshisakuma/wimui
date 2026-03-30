@@ -55,7 +55,9 @@
   "aspect": {
     "ratio": "Aspect Ratio"
   },
-  "standard": "Standard",
+  "standard": {
+    "list_item": "List Item"
+  },
   "account": "Account",
   "analytics": "Analytics",
   "audience": "Audience",
