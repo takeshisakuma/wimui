@@ -62,10 +62,10 @@ export const Stepper = ({
     if (icon) return icon;
 
     if (stepStatus === "finish") {
-      return <Icon name="CheckIcon" size="small" />;
+      return <Icon name="CheckIcon" size="sm" />;
     }
     if (stepStatus === "error") {
-      return <Icon name="CloseIcon" size="small" />;
+      return <Icon name="CloseIcon" size="sm" />;
     }
     return <span>{index + 1}</span>;
   };

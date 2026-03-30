@@ -46,19 +46,19 @@
     }
 
     /* Sizes */
-    &--small {
+    &--sm {
       --wim-tab-nav-padding: 0 var(--wim-spacing-md);
       --wim-tab-nav-font-size: var(--wim-font-size-sm);
       --wim-tab-nav-height: 32px;
     }
 
-    &--medium {
+    &--md {
       --wim-tab-nav-padding: 0 var(--wim-spacing-lg);
       --wim-tab-nav-font-size: var(--wim-font-size-md);
       --wim-tab-nav-height: var(--wim-height-md);
     }
 
-    &--large {
+    &--lg {
       --wim-tab-nav-padding: 0 var(--wim-spacing-xl);
       --wim-tab-nav-font-size: var(--wim-font-size-lg);
       --wim-tab-nav-height: 48px;

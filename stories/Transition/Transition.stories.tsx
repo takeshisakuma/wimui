@@ -29,7 +29,7 @@ export const Fade: Story = {
         <Stack align="center" gap="xl" py="xl">
           <Button
             animateWidth
-            priority="primary"
+            variant="filled"
             onClick={() => setShow(!show)}
             label={show ? t("story.transition_hide_content") : t("story.transition_show_content")}
           />
@@ -82,7 +82,7 @@ export const Slide: Story = {
                 `}</style>
           <Button
             animateWidth
-            priority="primary"
+            variant="filled"
             onClick={() => setShow(!show)}
             label={show ? t("story.transition_hide_slide") : t("story.transition_show_slide")}
           />

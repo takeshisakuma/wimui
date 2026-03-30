@@ -106,7 +106,7 @@ export const WithIcons: Story = {
         <TimelineItem>
           <TimelineSeparator>
             <TimelinePoint variant="primary">
-              <Icon name="CheckIcon" size="small" />
+              <Icon name="CheckIcon" size="sm" />
             </TimelinePoint>
             <TimelineConnector />
           </TimelineSeparator>
@@ -115,7 +115,7 @@ export const WithIcons: Story = {
         <TimelineItem>
           <TimelineSeparator>
             <TimelinePoint variant="secondary">
-              <Icon name="CircleIcon" size="small" />
+              <Icon name="CircleIcon" size="sm" />
             </TimelinePoint>
             <TimelineConnector />
           </TimelineSeparator>
@@ -124,7 +124,7 @@ export const WithIcons: Story = {
         <TimelineItem>
           <TimelineSeparator>
             <TimelinePoint variant="error">
-              <Icon name="CloseIcon" size="small" />
+              <Icon name="CloseIcon" size="sm" />
             </TimelinePoint>
           </TimelineSeparator>
           <TimelineContent>{t("story.timeline_step3_err")}</TimelineContent>

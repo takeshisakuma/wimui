@@ -30,7 +30,7 @@ describe("Badge", () => {
   });
 
   it("applies size class", () => {
-    const { container } = render(<Badge size="small">Small</Badge>);
+    const { container } = render(<Badge size="sm">Small</Badge>);
     expect(container.firstChild).toHaveClass("wim-badge--sm");
   });
 

@@ -30,7 +30,7 @@ export const Default: Story = {
         cancelText={t("story.popconfirm_no")}
         okType="destructive"
       >
-        <Button priority="primary" label={t("story.popconfirm_delete_btn")} />
+        <Button variant="filled" label={t("story.popconfirm_delete_btn")} />
       </Popconfirm>
     );
   },

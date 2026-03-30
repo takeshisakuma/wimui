@@ -227,7 +227,7 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
 
 export const Icon = ({
   name,
-  size = "medium",
+  size = "md",
   color,
   className,
   ...props
@@ -240,7 +240,7 @@ export const Icon = ({
     <IconComponent
       className={classNames(
         "wim-icon",
-        `wim-icon--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        `wim-icon--${size}`,
         color && `wim-icon--${color}`,
         (name === "LoadingIcon" || name === "SpinnerIcon") &&
           "wim-icon--loading",

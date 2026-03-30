@@ -43,15 +43,15 @@
       color: var(--wim-color-text-tertiary);
       white-space: nowrap;
   
-      &--small {
+      &--sm {
         font-size: var(--wim-font-size-xs);
       }
   
-      &--medium {
+      &--md {
         font-size: var(--wim-font-size-sm);
       }
   
-      &--large {
+      &--lg {
         font-size: var(--wim-font-size-md);
       }
   

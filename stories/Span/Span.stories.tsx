@@ -38,7 +38,7 @@ export const ExLargeSpan = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "ex-large",
+    size: "xl",
     weight: `normal`,
     color: `deepgray`,
     fontStyle: `normal`,
@@ -51,7 +51,7 @@ export const LargeSpan = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "large",
+    size: "lg",
     weight: `normal`,
     color: `deepgray`,
     fontStyle: `normal`,
@@ -64,7 +64,7 @@ export const MediumSpan = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "medium",
+    size: "md",
     weight: `normal`,
     color: `deepgray`,
     fontStyle: `normal`,
@@ -77,7 +77,7 @@ export const SmallSpan = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "small",
+    size: "sm",
     weight: `normal`,
     color: `deepgray`,
     fontStyle: `normal`,
@@ -90,7 +90,7 @@ export const ExSmallSpan = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "ex-small",
+    size: "xs",
     weight: `normal`,
     color: `deepgray`,
     fontStyle: `normal`,
@@ -103,7 +103,7 @@ export const SmallSpanWithIcon = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "small",
+    size: "sm",
     weight: `normal`,
     color: `deepgray`,
     fontStyle: `normal`,
@@ -118,7 +118,7 @@ export const LargeSpanWithIconOnRight = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "large",
+    size: "lg",
     weight: "bold",
     color: "black",
     fontStyle: "italic",
@@ -129,7 +129,7 @@ export const LargeSpanWithIconOnRight = {
 
 export const IconOnlySpan = {
   args: {
-    size: "medium",
+    size: "md",
     content: "", // テキストなし
     iconName: "CircleIcon",
   }
@@ -141,7 +141,7 @@ export const BoldSpan = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "medium",
+    size: "md",
     weight: "bold",
   }
 };
@@ -152,7 +152,7 @@ export const StrikethroughSpan = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "medium",
+    size: "md",
     decoration: "line-through",
   }
 };
@@ -163,7 +163,7 @@ export const HighlightSpan = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "medium",
+    size: "md",
     decoration: "highlight",
   }
 };

@@ -397,7 +397,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                     aria-live="polite"
                     aria-label={loadMore.loading ? t("datagrid.loading_more", "Loading more rows") : undefined}
                   >
-                    {loadMore.loading && <Spinner size="small" />}
+                    {loadMore.loading && <Spinner size="sm" />}
                   </div>
                 </TableCell>
               </TableRow>
@@ -406,7 +406,7 @@ export function DataGrid<T extends Record<string, unknown>>({
         </Table>
         {loading && (
           <div className="wim-datagrid__loading-overlay">
-            <Spinner size="large" />
+            <Spinner size="lg" />
           </div>
         )}
       </div>

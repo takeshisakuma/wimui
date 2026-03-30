@@ -77,6 +77,8 @@ export const InputBase = ({
     if (customColor) return customColor;
     if (isDisabled) return "disabled";
     if (status === "error") return "destructive";
+    if (status === "warning") return "caution";
+    if (status === "success") return "positive";
     return "secondary";
   };
 
@@ -133,14 +135,14 @@ export const InputBase = ({
             >
               <Icon
                 name={leftIcon}
-                size="medium"
+                size="md"
                 color={getIconColor(leftIconColor)}
               />
             </button>
           ) : (
             <Icon
               name={leftIcon}
-              size="medium"
+              size="md"
               color={getIconColor(leftIconColor)}
             />
           )}
@@ -173,14 +175,14 @@ export const InputBase = ({
                 >
                   <Icon
                     name={icon.name}
-                    size="medium"
+                    size="md"
                     color={getIconColor(icon.color)}
                   />
                 </button>
               ) : (
                 <Icon
                   name={icon.name}
-                  size="medium"
+                  size="md"
                   color={getIconColor(icon.color)}
                 />
               )}

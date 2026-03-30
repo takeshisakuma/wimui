@@ -25,7 +25,7 @@ export const Success: Story = {
         title={t("story.result_success_title")}
         description={t("story.result_success_desc")}
         extra={[
-          <Button priority="primary" key="console" label={t("story.result_go_console")} />,
+          <Button variant="filled" key="console" label={t("story.result_go_console")} />,
           <Button key="buy" label={t("story.result_buy_again")} />,
         ]}
       />
@@ -40,7 +40,7 @@ export const Info: Story = {
       <Result
         {...args}
         title={t("story.result_info_title")}
-        extra={<Button priority="primary" label={t("story.result_go_console")} />}
+        extra={<Button variant="filled" label={t("story.result_go_console")} />}
       />
     );
   },
@@ -54,7 +54,7 @@ export const Warning: Story = {
         {...args}
         status="warning"
         title={t("story.result_warning_title")}
-        extra={<Button priority="primary" label={t("story.result_go_console")} />}
+        extra={<Button variant="filled" label={t("story.result_go_console")} />}
       />
     );
   },
@@ -70,7 +70,7 @@ export const ErrorStatus: Story = {
         title={t("story.result_error_title")}
         description={t("story.result_error_desc")}
         extra={[
-          <Button priority="primary" key="console" label={t("story.result_go_console")} />,
+          <Button variant="filled" key="console" label={t("story.result_go_console")} />,
           <Button key="buy" label={t("story.result_buy_again")} />,
         ]}
       />
@@ -87,7 +87,7 @@ export const Status404: Story = {
         status="404"
         title="404"
         description={t("story.result_404_desc")}
-        extra={<Button priority="primary" label={t("story.result_back_home")} />}
+        extra={<Button variant="filled" label={t("story.result_back_home")} />}
       />
     );
   },
@@ -102,7 +102,7 @@ export const Status403: Story = {
         status="403"
         title="403"
         description={t("story.result_403_desc")}
-        extra={<Button priority="primary" label={t("story.result_back_home")} />}
+        extra={<Button variant="filled" label={t("story.result_back_home")} />}
       />
     );
   },
@@ -117,7 +117,7 @@ export const Status500: Story = {
         status="500"
         title="500"
         description={t("story.result_500_desc")}
-        extra={<Button priority="primary" label={t("story.result_back_home")} />}
+        extra={<Button variant="filled" label={t("story.result_back_home")} />}
       />
     );
   },

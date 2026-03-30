@@ -42,7 +42,7 @@ describe("AvatarGroup", () => {
 
   it("applies size to child avatars", () => {
     const { container } = render(
-      <AvatarGroup size="large">
+      <AvatarGroup size="lg">
         <Avatar initials="A" />
       </AvatarGroup>,
     );
@@ -52,7 +52,7 @@ describe("AvatarGroup", () => {
 
   it("applies small size to excess badge", () => {
     const { container } = render(
-      <AvatarGroup max={1} size="small">
+      <AvatarGroup max={1} size="sm">
         <Avatar initials="A" />
         <Avatar initials="B" />
         <Avatar initials="C" />

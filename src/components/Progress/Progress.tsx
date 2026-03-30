@@ -20,7 +20,7 @@ export const Progress = ({
   value = 0,
   max = 100,
   status = "primary",
-  size = "medium",
+  size = "md",
   label,
   showValue = false,
   indeterminate = false,
@@ -33,7 +33,7 @@ export const Progress = ({
     <div
       className={classNames(
         "wim-progress",
-        `wim-progress--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        `wim-progress--${size}`,
         `wim-progress--${status}`,
         indeterminate && "wim-progress--indeterminate",
         className,

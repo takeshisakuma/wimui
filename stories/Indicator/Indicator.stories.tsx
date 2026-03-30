@@ -17,7 +17,7 @@ const meta: Meta<typeof Indicator> = {
     },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
     position: {
       control: "select",
@@ -83,9 +83,9 @@ export const Inline: Story = {
 export const Sizes: Story = {
   render: (args) => (
     <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-      <Indicator {...args} size="small" inline />
-      <Indicator {...args} size="medium" inline />
-      <Indicator {...args} size="large" inline />
+      <Indicator {...args} size="sm" inline />
+      <Indicator {...args} size="md" inline />
+      <Indicator {...args} size="lg" inline />
     </div>
   ),
 };

@@ -23,12 +23,12 @@ describe("Link", () => {
   });
 
   it("applies small size class", () => {
-    render(<Link label="Small" href="#" size="small" />);
+    render(<Link label="Small" href="#" size="sm" />);
     expect(screen.getByRole("link")).toHaveClass("wim-link--sm");
   });
 
   it("applies large size class", () => {
-    render(<Link label="Large" href="#" size="large" />);
+    render(<Link label="Large" href="#" size="lg" />);
     expect(screen.getByRole("link")).toHaveClass("wim-link--lg");
   });
 

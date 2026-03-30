@@ -2,11 +2,18 @@
 @use "../tokens/fonts" as *;
 
 /* --- サイズの意味の定義 --- */
+$size-2xs: $font-size-minus-3;
 $size-ex-small: $font-size-minus-2;
 $size-small: $font-size-minus-1;
 $size-medium: $font-size-0;
 $size-large: $font-size-1;
 $size-ex-large: $font-size-2;
+$size-2xl: $font-size-4;
+$size-3xl: $font-size-6;
+$size-4xl: $font-size-8;
+$size-5xl: $font-size-10;
+$size-6xl: $font-size-12;
+$size-7xl: $font-size-14;
 
 /* ウェイトの意味の定義 */
 $weight-normal: 400;
@@ -42,11 +49,18 @@ $decoration-highlight-color: #fff9c4; // Light yellow highlight
   --wim-font-family-pt: #{$lang-pt};
 
   /* Font Sizes */
+  --wim-font-size-2xs: #{$size-2xs};
   --wim-font-size-xs: #{$size-ex-small};
   --wim-font-size-sm: #{$size-small};
   --wim-font-size-md: #{$size-medium};
   --wim-font-size-lg: #{$size-large};
   --wim-font-size-xl: #{$size-ex-large};
+  --wim-font-size-2xl: #{$size-2xl};
+  --wim-font-size-3xl: #{$size-3xl};
+  --wim-font-size-4xl: #{$size-4xl};
+  --wim-font-size-5xl: #{$size-5xl};
+  --wim-font-size-6xl: #{$size-6xl};
+  --wim-font-size-7xl: #{$size-7xl};
   --wim-font-weight-normal: #{$weight-normal};
   --wim-font-weight-medium: #{$weight-medium};
   --wim-font-weight-bold: #{$weight-bold};

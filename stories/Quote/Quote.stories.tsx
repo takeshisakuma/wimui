@@ -14,7 +14,7 @@ export default {
   argTypes: {
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
     color: {
       control: "select",
@@ -55,7 +55,7 @@ export const Large = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Quote {...args} content={t('story.quote_work')} cite="Steve Jobs" />;
   },
-  args: { size: "large" }
+  args: { size: "lg" }
 };
 
 export const NoBorder = {

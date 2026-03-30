@@ -39,21 +39,21 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 
 
-  <h1><T k="token_type_title" /></h1>
-  <p><T k="token_type_desc1" /></p>
+  <h1><T k="token.type_title" /></h1>
+  <p><T k="token.type_desc1" /></p>
 
-  <p><T k="token_type_desc2" /></p>
+  <p><T k="token.type_desc2" /></p>
 
 <hr />
 
-<h2><T k="token_type_fontfamily" /></h2>
-<p><T k="token_type_ff_desc" /></p>
+<h2><T k="token.type_fontfamily" /></h2>
+<p><T k="token.type_ff_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th><T k="token_type_ff_lang" /></th>
-      <th><T k="token_type_ff_stack" /></th>
+      <th><T k="token.type_ff_lang" /></th>
+      <th><T k="token.type_ff_stack" /></th>
     </tr>
   </thead>
   <tbody>
@@ -62,15 +62,15 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
       <td>`"Noto Sans", "Segoe UI", "Roboto", "Helvetica Neue", "arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`</td>
     </tr>
     <tr>
-      <td><T k="token_type_ff_ja" /> (`lang="ja"`)</td>
+      <td><T k="token.type_ff_ja" /> (`lang="ja"`)</td>
       <td>`"Noto Sans JP", "游ゴシック体", "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ", "Meiryo", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`</td>
     </tr>
     <tr>
-      <td><T k="token_type_ff_en" /> (`lang="en"`)</td>
+      <td><T k="token.type_ff_en" /> (`lang="en"`)</td>
       <td>`"Noto Sans", "Segoe UI", "Roboto", "Helvetica Neue", "arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`</td>
     </tr>
     <tr>
-      <td><T k="token_type_ff_pt" /> (`lang="pt"`)</td>
+      <td><T k="token.type_ff_pt" /> (`lang="pt"`)</td>
       <td>`"Noto Sans", "Segoe UI", "Roboto", "Helvetica Neue", "arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`</td>
     </tr>
   </tbody>
@@ -78,7 +78,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <hr />
 
-<h2><T k="token_type_size" /></h2>
+<h2><T k="token.type_size" /></h2>
 <div style={{ display: "grid", gap: "8px" }}>
   <TypographyVisualizer
     token="--wim-font-size-xl"
@@ -113,7 +113,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <hr />
 
-<h2><T k="token_type_weight" /></h2>
+<h2><T k="token.type_weight" /></h2>
 <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
   <FontWeightVisualizer weight={400} token="--wim-font-weight-normal" name="Normal" />
 
@@ -124,11 +124,11 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <hr />
 
-  <h2><T k="token_type_lineheight" /></h2>
+  <h2><T k="token.type_lineheight" /></h2>
   
   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
     <div>
-      <h3><T k="token_type_lh_jpan" /></h3>
+      <h3><T k="token.type_lh_jpan" /></h3>
       <TypographyVisualizer 
         token="--wim-line-height-loose-jp" 
         textKey="token_type_lh_jpan_loose"
@@ -147,7 +147,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
     </div>
 
     <div>
-      <h3><T k="token_type_lh_latn" /></h3>
+      <h3><T k="token.type_lh_latn" /></h3>
       <TypographyVisualizer
         token="--wim-line-height-loose"
         textKey="token_type_lh_latn_loose"
@@ -169,7 +169,7 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <hr />
 
-<h2><T k="token_type_decor" /></h2>
+<h2><T k="token.type_decor" /></h2>
 <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
   <DecorationVisualizer token="--wim-decoration-line-through" name="Line Through" type="decoration" />
 
@@ -180,14 +180,14 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
 
 <hr />
 
-<h2><T k="token_type_alias" /></h2>
-<p><T k="token_type_alias_desc" /></p>
+<h2><T k="token.type_alias" /></h2>
+<p><T k="token.type_alias_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th><T k="token_type_alias_th1" /></th>
-      <th><T k="token_type_alias_th2" /></th>
+      <th><T k="token.type_alias_th1" /></th>
+      <th><T k="token.type_alias_th2" /></th>
     </tr>
   </thead>
   <tbody>

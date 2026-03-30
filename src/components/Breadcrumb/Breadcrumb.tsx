@@ -22,7 +22,7 @@ type BreadcrumbProps = {
 export const Breadcrumb = ({
   items,
   separator,
-  size = "medium",
+  size = "md",
   className,
 }: BreadcrumbProps) => {
   const { t } = useTranslation();
@@ -59,7 +59,7 @@ export const Breadcrumb = ({
       aria-label={t("a11y.breadcrumb")}
       className={classNames(
         "wim-breadcrumb",
-        `wim-breadcrumb--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        `wim-breadcrumb--${size}`,
         className,
       )}
       onKeyDown={handleKeyDown}

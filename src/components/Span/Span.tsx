@@ -6,7 +6,7 @@ import { Icon } from "../Icon/Icon";
 import { WimColor, ComponentSize } from "../../types/tokens";
 
 type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
-  size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   color?:
   | "black"
   | "deepgray"
@@ -28,7 +28,7 @@ type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
 };
 
 export const Span = ({
-  size = "medium",
+  size = "md",
   content = "span",
   color = "black",
   weight = "normal",
@@ -42,23 +42,15 @@ export const Span = ({
 }: SpanProps) => {
   const { t } = useTranslation();
 
-  const sizeMap = {
-    "ex-small": "xs",
-    small: "sm",
-    medium: "md",
-    large: "lg",
-    "ex-large": "xl",
-  };
-
-  // Icon の size プロパティは "small" | "medium" | "large" のみ許容されているためマッピング
+  // Icon の size プロパティは "sm" | "md" | "lg" のみ許容されているためマッピング
   const iconSizeMap: Record<string, ComponentSize> = {
-    "ex-small": "small",
-    small: "small",
-    medium: "medium",
-    large: "large",
-    "ex-large": "large",
+    xs: "sm",
+    sm: "sm",
+    md: "md",
+    lg: "lg",
+    xl: "lg",
   };
-  const iconSize = iconSizeMap[size] || "medium";
+  const iconSize = iconSizeMap[size] || "md";
 
   const iconComponent = iconName ? (
     <Icon name={iconName} size={iconSize} />
@@ -78,7 +70,7 @@ export const Span = ({
     <span
       className={classNames(
         "wim-span",
-        `wim-span--${sizeMap[size]}`,
+        `wim-span--${size}`,
         !isCustomColor && `wim-span--${color}`,
         weight === "bold" && "wim-span--bold",
         fontStyle === "italic" && "wim-span--italic",

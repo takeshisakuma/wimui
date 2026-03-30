@@ -45,7 +45,7 @@ export const WithRightSection: Story = {
       <BaseListItem 
         {...args} 
         icon={<Icon name="SettingsIcon" />} 
-        rightSection={<Icon name="ChevronRightIcon" size="small" />}
+        rightSection={<Icon name="ChevronRightIcon" size="sm" />}
       >
         {t("a11y.settings")}
       </BaseListItem>
@@ -63,7 +63,7 @@ export const WithBadge: Story = {
       <BaseListItem 
         {...args} 
         icon={<Icon name="BellIcon" />} 
-        rightSection={<Chip size="small">{t("new")}</Chip>}
+        rightSection={<Chip size="sm">{t("new")}</Chip>}
       >
         {t("notifications")}
       </BaseListItem>

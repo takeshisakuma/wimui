@@ -17,7 +17,7 @@ const meta: Meta<typeof Rating> = {
     count: { control: "number" },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
   },
 };
@@ -76,9 +76,9 @@ export const Sizes: Story = {
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <Label label={t("story.rating_sizes")}>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            <Rating {...args} size="small" defaultValue={3} />
-            <Rating {...args} size="medium" defaultValue={3} />
-            <Rating {...args} size="large" defaultValue={3} />
+            <Rating {...args} size="sm" defaultValue={3} />
+            <Rating {...args} size="md" defaultValue={3} />
+            <Rating {...args} size="lg" defaultValue={3} />
           </div>
         </Label>
       </div>

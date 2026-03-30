@@ -44,7 +44,7 @@ export const ToggleGroup = ({
   defaultValue,
   onChange,
   selectionMode = "single",
-  size = "medium",
+  size = "md",
   fullWidth = false,
   className,
   "aria-label": ariaLabel,
@@ -166,7 +166,7 @@ export const ToggleGroup = ({
       ref={containerRef}
       className={classNames(
         "wim-toggle-group",
-        `wim-toggle-group--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        `wim-toggle-group--${size}`,
         `wim-toggle-group--${selectionMode}`,
         fullWidth && "wim-toggle-group--full-width",
         isReady && "wim-toggle-group--ready",

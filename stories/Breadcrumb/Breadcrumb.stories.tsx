@@ -15,7 +15,7 @@ const meta: Meta<typeof Breadcrumb> = {
   argTypes: {
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
   },
 };
@@ -69,7 +69,7 @@ export const Small: Story = {
     return (
       <Breadcrumb
         {...args}
-        size="small"
+        size="sm"
         items={[
           { label: t("story.breadcrumb_home"), href: "/" },
           { label: t("story.breadcrumb_category"), href: "/category" },
@@ -86,7 +86,7 @@ export const Large: Story = {
     return (
       <Breadcrumb
         {...args}
-        size="large"
+        size="lg"
         items={[
           { label: t("story.breadcrumb_home"), href: "/" },
           { label: t("story.breadcrumb_category"), href: "/category" },

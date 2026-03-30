@@ -115,26 +115,26 @@ export const WithIcons: Story = {
         menu={
           <>
             <ContextMenuItem
-              icon={<Icon name="CheckIcon" size="small" />}
+              icon={<Icon name="CheckIcon" size="sm" />}
               onClick={() => console.log("Edit clicked")}
             >
               {t("story.contextmenu_edit")}
             </ContextMenuItem>
             <ContextMenuItem
-              icon={<Icon name="CopyIcon" size="small" />}
+              icon={<Icon name="CopyIcon" size="sm" />}
               onClick={() => console.log("Copy clicked")}
             >
               {t("story.contextmenu_copy")}
             </ContextMenuItem>
             <ContextMenuItem
-              icon={<Icon name="CheckIcon" size="small" />}
+              icon={<Icon name="CheckIcon" size="sm" />}
               onClick={() => console.log("Paste clicked")}
             >
               {t("story.contextmenu_paste")}
             </ContextMenuItem>
             <ContextMenuDivider />
             <ContextMenuItem
-              icon={<Icon name="CloseIcon" size="small" />}
+              icon={<Icon name="CloseIcon" size="sm" />}
               onClick={() => console.log("Delete clicked")}
               danger
             >
@@ -244,17 +244,17 @@ export const OnImage: Story = {
         {...args}
         menu={
           <>
-            <ContextMenuItem icon={<Icon name="CheckIcon" size="small" />}>
+            <ContextMenuItem icon={<Icon name="CheckIcon" size="sm" />}>
               {t("story.contextmenu_open_new_tab")}
             </ContextMenuItem>
-            <ContextMenuItem icon={<Icon name="CopyIcon" size="small" />}>
+            <ContextMenuItem icon={<Icon name="CopyIcon" size="sm" />}>
               {t("story.contextmenu_copy_image")}
             </ContextMenuItem>
-            <ContextMenuItem icon={<Icon name="CopyIcon" size="small" />}>
+            <ContextMenuItem icon={<Icon name="CopyIcon" size="sm" />}>
               {t("story.contextmenu_copy_image_address")}
             </ContextMenuItem>
             <ContextMenuDivider />
-            <ContextMenuItem icon={<Icon name="CheckIcon" size="small" />}>
+            <ContextMenuItem icon={<Icon name="CheckIcon" size="sm" />}>
               {t("story.contextmenu_save_image_as")}
             </ContextMenuItem>
           </>

@@ -40,12 +40,31 @@
   
     &--error {
       border-color: var(--wim-color-text-error);
-  
+
       &:focus-within {
+        border-color: var(--wim-color-text-error);
         box-shadow: inset 0 0 0 1px var(--wim-color-text-error);
       }
     }
-  
+
+    &--warning {
+      border-color: var(--wim-color-caution);
+
+      &:focus-within {
+        border-color: var(--wim-color-caution);
+        box-shadow: inset 0 0 0 1px var(--wim-color-caution);
+      }
+    }
+
+    &--success {
+      border-color: var(--wim-color-positive);
+
+      &:focus-within {
+        border-color: var(--wim-color-positive);
+        box-shadow: inset 0 0 0 1px var(--wim-color-positive);
+      }
+    }
+
     &--disabled {
       cursor: not-allowed;
       background-color: var(--wim-color-disabled);

@@ -42,7 +42,7 @@ export const Default: Story = {
           <Navbar.Link href="#">{t("story.navbar_about")}</Navbar.Link>
         </Navbar.Content>
         <Navbar.Content justify="end" hiddenOnMobile>
-          <Button priority="secondary" size="small">
+          <Button variant="outlined" size="sm">
             {t("story.navbar_login")}
           </Button>
         </Navbar.Content>
@@ -137,10 +137,10 @@ export const CenteredLinks: Story = {
           <Navbar.Link href="#">{t("story.navbar_resources")}</Navbar.Link>
         </Navbar.Content>
         <Navbar.Content justify="end" hiddenOnMobile>
-          <Button priority="tertiary" size="small">
+          <Button variant="ghost" size="sm">
             {t("story.navbar_signin")}
           </Button>
-          <Button priority="primary" size="small">
+          <Button variant="filled" size="sm">
             {t("story.navbar_signup")}
           </Button>
         </Navbar.Content>

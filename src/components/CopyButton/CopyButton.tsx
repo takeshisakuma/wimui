@@ -15,7 +15,7 @@ type CopyButtonProps = {
 
 export const CopyButton = ({
   value,
-  size = "medium",
+  size = "md",
   className,
   "aria-label": ariaLabel,
 }: CopyButtonProps) => {
@@ -46,7 +46,7 @@ export const CopyButton = ({
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          priority="tertiary"
+          variant="ghost"
           size={size}
           icon={copied ? "CheckIcon" : "CopyIcon"}
           intent={copied ? "positive" : "default"}

@@ -61,30 +61,6 @@ $focus-outline-offset: 2px;
   /* 多くのブラウザのデフォルトは16pxなので、1rem = 16px */
   font-size: 100%;
 
-  /* Font Sizes */
-  --wim-font-size-scale-16: #{$font-size-16};
-  --wim-font-size-scale-15: #{$font-size-15};
-  --wim-font-size-scale-14: #{$font-size-14};
-  --wim-font-size-scale-13: #{$font-size-13};
-  --wim-font-size-scale-12: #{$font-size-12};
-  --wim-font-size-scale-11: #{$font-size-11};
-  --wim-font-size-scale-10: #{$font-size-10};
-  --wim-font-size-scale-9: #{$font-size-9};
-  --wim-font-size-scale-8: #{$font-size-8};
-  --wim-font-size-scale-7: #{$font-size-7};
-  --wim-font-size-scale-6: #{$font-size-6};
-  --wim-font-size-scale-5: #{$font-size-5};
-  --wim-font-size-scale-4: #{$font-size-4};
-  --wim-font-size-scale-3: #{$font-size-3};
-  --wim-font-size-scale-2: #{$font-size-2};
-  --wim-font-size-scale-1: #{$font-size-1};
-  --wim-font-size-scale-0: #{$font-size-0};
-  --wim-font-size-minus-1: #{$font-size-minus-1};
-  --wim-font-size-minus-2: #{$font-size-minus-2};
-  --wim-font-size-minus-3: #{$font-size-minus-3};
-  --wim-font-size-minus-4: #{$font-size-minus-4};
-  --wim-font-size-minus-5: #{$font-size-minus-5};
-  --wim-font-size-minus-6: #{$font-size-minus-6};
   --wim-spacing-3xs: #{$spacing-3xs};
   --wim-spacing-2xs: #{$spacing-2xs};
   --wim-spacing-xs: #{$spacing-xs};

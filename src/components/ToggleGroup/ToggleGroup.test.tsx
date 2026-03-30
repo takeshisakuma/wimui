@@ -68,7 +68,7 @@ describe("ToggleGroup", () => {
 
   it("applies size and fullWidth classes", () => {
     const { container } = render(
-      <ToggleGroup options={options} size="large" fullWidth />,
+      <ToggleGroup options={options} size="lg" fullWidth />,
     );
     expect(container.firstChild).toHaveClass("wim-toggle-group--lg");
     expect(container.firstChild).toHaveClass("wim-toggle-group--full-width");

@@ -16,7 +16,7 @@ type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
 
 export const Link = ({
   label,
-  size = "medium",
+  size = "md",
   priority = "primary",
   iconName,
   iconPosition = "left",
@@ -32,7 +32,7 @@ export const Link = ({
     <a
       className={classNames(
         "wim-link",
-        `wim-link--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        `wim-link--${size}`,
         `wim-link--${priority}`,
         external && "wim-link--external",
         className,

@@ -61,8 +61,8 @@ const DefaultFallback = ({
           <Button
             onClick={reset}
             label={t("error.boundary_retry")}
-            priority="primary"
-            size="small"
+            variant="filled"
+            size="sm"
           />
           <Button
             onClick={() => setShowDetails(!showDetails)}
@@ -71,8 +71,8 @@ const DefaultFallback = ({
                 ? t("error.boundary_hide_details")
                 : t("error.boundary_show_details")
             }
-            priority="secondary"
-            size="small"
+            variant="outlined"
+            size="sm"
           />
         </Stack>
         {showDetails && (
@@ -83,7 +83,7 @@ const DefaultFallback = ({
             style={{
               maxHeight: "300px",
               overflowY: "auto",
-              fontSize: "var(--wim-font-size-minus-1, 0.875rem)",
+              fontSize: "var(--wim-font-size-sm)",
               whiteSpace: "pre-wrap",
               fontFamily: "var(--font-family-mono, monospace)",
               wordBreak: "break-all",

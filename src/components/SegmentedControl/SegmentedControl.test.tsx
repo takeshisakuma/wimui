@@ -64,7 +64,7 @@ describe("SegmentedControl", () => {
         options={options}
         value="1"
         onChange={() => {}}
-        size="large"
+        size="lg"
         fullWidth
         className="my-custom"
       />,
@@ -89,11 +89,11 @@ describe("SegmentedControl", () => {
 
   it("applies small and medium size classes", () => {
     const { container, rerender } = render(
-      <SegmentedControl options={options} value="1" onChange={() => {}} size="small" />
+      <SegmentedControl options={options} value="1" onChange={() => {}} size="sm" />
     );
     expect(container.querySelector(".wim-segmented-control")).toHaveClass("wim-segmented-control--sm");
 
-    rerender(<SegmentedControl options={options} value="1" onChange={() => {}} size="medium" />);
+    rerender(<SegmentedControl options={options} value="1" onChange={() => {}} size="md" />);
     expect(container.querySelector(".wim-segmented-control")).toHaveClass("wim-segmented-control--md");
   });
 

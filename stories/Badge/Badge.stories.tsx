@@ -74,7 +74,7 @@ export const Small: Story = {
     return <Badge {...args} content={t("story.badge_small")} />;
   },
   args: {
-    size: "small",
+    size: "sm",
   },
 };
 
@@ -85,7 +85,7 @@ export const Required: Story = {
   },
   args: {
     status: "error",
-    size: "small",
+    size: "sm",
   },
 };
 
@@ -96,7 +96,7 @@ export const Optional: Story = {
   },
   args: {
     status: "neutral",
-    size: "small",
+    size: "sm",
   },
 };
 

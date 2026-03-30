@@ -313,8 +313,8 @@ export const QueryBuilder = ({
           <IconButton
             iconName="TrashIcon"
             aria-label={t("query.builder.remove_rule")}
-            priority="tertiary"
-            size="medium"
+            variant="ghost"
+            size="md"
             color="danger"
             onClick={() => handleRemove(rule.id)}
             className="wim-query-rule__remove"
@@ -341,7 +341,7 @@ export const QueryBuilder = ({
         <div className="wim-query-group__header">
           <div className="wim-query-group__header-left">
             <SegmentedControl
-              size="medium"
+              size="md"
               options={[
                 { label: "AND", value: "and" },
                 { label: "OR", value: "or" },
@@ -351,7 +351,7 @@ export const QueryBuilder = ({
               aria-label={t("query.builder.combinator", "Combinator")}
             />
             <Switch
-              size="medium"
+              size="md"
               label="NOT"
               checked={group.not}
               onChange={(e) => handleUpdate(group.id, { not: e.target.checked })}
@@ -361,8 +361,8 @@ export const QueryBuilder = ({
             <IconButton
               iconName="TrashIcon"
               aria-label={t("query.builder.remove_group")}
-              priority="tertiary"
-              size="medium"
+              variant="ghost"
+              size="md"
               color="danger"
               onClick={() => handleRemove(group.id)}
               className="wim-query-group__remove"
@@ -378,8 +378,8 @@ export const QueryBuilder = ({
         </div>
         <div className="wim-query-group__actions">
           <Button
-            size="medium"
-            priority="tertiary"
+            size="md"
+            variant="ghost"
             icon="PlusIcon"
             onClick={() => handleAddRule(group.id)}
           >
@@ -387,8 +387,8 @@ export const QueryBuilder = ({
           </Button>
           {depth < maxDepth && (
             <Button
-              size="medium"
-              priority="tertiary"
+              size="md"
+              variant="ghost"
               icon="PlusIcon"
               onClick={() => handleAddGroup(group.id)}
             >

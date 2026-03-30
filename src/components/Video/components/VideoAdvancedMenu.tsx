@@ -71,7 +71,7 @@ export function VideoAdvancedMenu({
                 <span>{t("quality")}</span>
                 <span style={{ opacity: 0.7 }}>
                   {qualities[currentQualityIndex].label}{" "}
-                  <Icon name="ChevronRightIcon" size="small" />
+                  <Icon name="ChevronRightIcon" size="sm" />
                 </span>
               </button>
             )}
@@ -81,7 +81,7 @@ export function VideoAdvancedMenu({
             >
               <span>{t("playback.rate")}</span>
               <span style={{ opacity: 0.7 }}>
-                {playbackRate}x <Icon name="ChevronRightIcon" size="small" />
+                {playbackRate}x <Icon name="ChevronRightIcon" size="sm" />
               </span>
             </button>
             <button
@@ -90,7 +90,7 @@ export function VideoAdvancedMenu({
             >
               <span>{t("aspect.ratio")}</span>
               <span style={{ opacity: 0.7 }}>
-                {activeFit} <Icon name="ChevronRightIcon" size="small" />
+                {activeFit} <Icon name="ChevronRightIcon" size="sm" />
               </span>
             </button>
           </div>
@@ -112,7 +112,7 @@ export function VideoAdvancedMenu({
               onClick={() => setActiveMenu("main")}
               className="wim-video-btn"
             >
-              <Icon name="ChevronLeftIcon" size="small" />
+              <Icon name="ChevronLeftIcon" size="sm" />
             </button>
             <span>{t("quality")}</span>
           </div>
@@ -125,7 +125,7 @@ export function VideoAdvancedMenu({
                 onClick={() => handleQualityChange(i)}
               >
                 {currentQualityIndex === i && (
-                  <Icon name="CheckIcon" size="small" />
+                  <Icon name="CheckIcon" size="sm" />
                 )}
                 <span
                   style={{ marginLeft: currentQualityIndex === i ? 0 : 24 }}
@@ -153,7 +153,7 @@ export function VideoAdvancedMenu({
               onClick={() => setActiveMenu("main")}
               className="wim-video-btn"
             >
-              <Icon name="ChevronLeftIcon" size="small" />
+              <Icon name="ChevronLeftIcon" size="sm" />
             </button>
             <span>{t("playback.rate")}</span>
           </div>
@@ -168,7 +168,7 @@ export function VideoAdvancedMenu({
                   setActiveMenu("main");
                 }}
               >
-                {playbackRate === r && <Icon name="CheckIcon" size="small" />}
+                {playbackRate === r && <Icon name="CheckIcon" size="sm" />}
                 <span style={{ marginLeft: playbackRate === r ? 0 : 24 }}>
                   {r === 1.0 ? t("standard") : `${r}x`}
                 </span>
@@ -193,7 +193,7 @@ export function VideoAdvancedMenu({
               onClick={() => setActiveMenu("main")}
               className="wim-video-btn"
             >
-              <Icon name="ChevronLeftIcon" size="small" />
+              <Icon name="ChevronLeftIcon" size="sm" />
             </button>
             <span>{t("aspect.ratio")}</span>
           </div>
@@ -208,7 +208,7 @@ export function VideoAdvancedMenu({
                   setActiveMenu("main");
                 }}
               >
-                {activeFit === f && <Icon name="CheckIcon" size="small" />}
+                {activeFit === f && <Icon name="CheckIcon" size="sm" />}
                 <span style={{ marginLeft: activeFit === f ? 0 : 24 }}>
                   {f}
                 </span>
@@ -236,7 +236,7 @@ export function VideoAdvancedMenu({
               style={{ marginLeft: "auto" }}
               className="wim-video-btn"
             >
-              <Icon name="CloseIcon" size="small" />
+              <Icon name="CloseIcon" size="sm" />
             </button>
           </div>
           <div className="wim-video-menu-items">
@@ -254,7 +254,7 @@ export function VideoAdvancedMenu({
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   {currentPlayIndex === i ? (
-                    <Icon name="PlayIcon" size="small" />
+                    <Icon name="PlayIcon" size="sm" />
                   ) : (
                     <div style={{ width: 20 }} />
                   )}

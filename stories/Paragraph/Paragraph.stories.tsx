@@ -38,7 +38,7 @@ export const ExLargeParagraph = {
     return <Paragraph {...args} content={t('story.paragraph_exlarge')} />;
   },
   args: {
-    size: "ex-large",
+    size: "xl",
     weight: `normal`,
     lineHeight: `normal-latn`,
     fontStyle: `normal`,
@@ -51,7 +51,7 @@ export const LargeParagraph = {
     return <Paragraph {...args} content={t('story.paragraph_large')} />;
   },
   args: {
-    size: "large",
+    size: "lg",
     weight: `normal`,
     lineHeight: `normal-latn`,
     fontStyle: `normal`,
@@ -64,7 +64,7 @@ export const MediumParagraph = {
     return <Paragraph {...args} content={t('story.paragraph_medium')} />;
   },
   args: {
-    size: "medium",
+    size: "md",
     weight: `normal`,
     lineHeight: `normal-latn`,
     fontStyle: `normal`,
@@ -77,7 +77,7 @@ export const SmallParagrapht = {
     return <Paragraph {...args} content={t('story.paragraph_small')} />;
   },
   args: {
-    size: "small",
+    size: "sm",
     weight: `normal`,
     lineHeight: `normal-latn`,
     fontStyle: `normal`,
@@ -90,7 +90,7 @@ export const ExSmallParagraph = {
     return <Paragraph {...args} content={t('story.paragraph_exsmall')} />;
   },
   args: {
-    size: "ex-small",
+    size: "xs",
     weight: `normal`,
     lineHeight: `normal-latn`,
     fontStyle: `normal`,
@@ -103,7 +103,7 @@ export const BoldParagraph = {
     return <Paragraph {...args} content={t('story.paragraph_bold')} />;
   },
   args: {
-    size: "medium",
+    size: "md",
     weight: "bold",
   }
 };
@@ -114,7 +114,7 @@ export const StrikethroughParagraph = {
     return <Paragraph {...args} content={t('story.paragraph_strikethrough')} />;
   },
   args: {
-    size: "medium",
+    size: "md",
     decoration: "line-through",
   }
 };
@@ -125,7 +125,7 @@ export const HighlightParagraph = {
     return <Paragraph {...args} content={t('story.paragraph_highlight')} />;
   },
   args: {
-    size: "medium",
+    size: "md",
     decoration: "highlight",
   }
 };

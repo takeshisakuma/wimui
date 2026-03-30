@@ -9,7 +9,7 @@ describe("Loader", () => {
   });
 
   it("applies variant and size", () => {
-    render(<Loader variant="dots" size="large" />);
+    render(<Loader variant="dots" size="lg" />);
     const loader = screen.getByRole("status");
     expect(loader).toHaveClass("wim-loader--dots");
     expect(loader).toHaveClass("wim-loader--lg");

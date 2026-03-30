@@ -12,8 +12,8 @@ type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> &
  */
 export const LinkButton = ({
   className,
-  size = "medium",
-  priority = "secondary",
+  size = "md",
+  variant = "outlined",
   intent = "default",
   backgroundColor,
   label,
@@ -30,8 +30,8 @@ export const LinkButton = ({
     <a
       className={classNames(
         "wim-button",
-        `wim-button--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
-        `wim-button--${priority}`,
+        `wim-button--${size}`,
+        `wim-button--${variant}`,
         `wim-button--${intent}`,
         !label && !!icon && "wim-button--icon-only",
         className,

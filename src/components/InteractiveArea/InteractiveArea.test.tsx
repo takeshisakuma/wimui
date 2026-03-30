@@ -40,11 +40,11 @@ describe("InteractiveArea", () => {
   });
 
   it("applies variant classes", () => {
-    const { container } = render(<InteractiveArea variant="solid" bgVariant="muted" size="large" />);
+    const { container } = render(<InteractiveArea variant="solid" bgVariant="muted" size="lg" />);
     const area = container.firstChild;
     expect(area).toHaveClass("wim-interactive-area--solid");
     expect(area).toHaveClass("wim-interactive-area--muted");
-    expect(area).toHaveClass("wim-interactive-area--large");
+    expect(area).toHaveClass("wim-interactive-area--lg");
   });
 
   it("triggers onClick with Enter key when isClickable", () => {

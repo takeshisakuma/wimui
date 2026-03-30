@@ -212,19 +212,19 @@
     background-color: #{$pccs-s18};
     border-radius: var(--wim-radius-full);
   
-    &--small {
+    &--sm {
       width: 32px;
       height: 32px;
       font-size: var(--wim-font-size-sm, 14px);
     }
   
-    &--medium {
+    &--md {
       width: 40px;
       height: 40px;
       font-size: var(--wim-font-size-md, 16px);
     }
   
-    &--large {
+    &--lg {
       width: 48px;
       height: 48px;
       font-size: var(--wim-font-size-lg, 18px);

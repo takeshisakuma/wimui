@@ -19,13 +19,13 @@ export type KbdProps = React.ComponentPropsWithoutRef<"kbd"> & {
  */
 export const Kbd = ({
   children,
-  size = "medium",
+  size = "md",
   className,
   ...props
 }: KbdProps) => {
   return (
     <kbd
-      className={classNames("wim-kbd", `wim-kbd--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`, className)}
+      className={classNames("wim-kbd", `wim-kbd--${size}`, className)}
       {...props}
     >
       {children}

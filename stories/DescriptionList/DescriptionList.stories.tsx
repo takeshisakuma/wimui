@@ -18,7 +18,7 @@ const meta: Meta<typeof DescriptionList> = {
     },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
     border: {
       control: "boolean",
@@ -85,14 +85,14 @@ export const WithBorder: Story = {
 
 export const Small: Story = {
   args: {
-    size: "small",
+    size: "sm",
     children: <DescriptionListContent />,
   },
 };
 
 export const Large: Story = {
   args: {
-    size: "large",
+    size: "lg",
     children: <DescriptionListContent />,
   },
 };

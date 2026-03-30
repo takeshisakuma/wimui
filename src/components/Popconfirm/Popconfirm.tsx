@@ -92,7 +92,7 @@ export const Popconfirm = ({
               <FeedbackIcon
                 status="warning"
                 icon={icon}
-                size="small"
+                size="sm"
                 color="caution"
               />
             </span>
@@ -108,18 +108,18 @@ export const Popconfirm = ({
           <div className="wim-popconfirm-actions">
             <PopoverClose asChild>
               <Button
-                size="small"
+                size="sm"
                 label={cancelText}
                 onClick={onCancel}
-                priority="tertiary"
+                variant="ghost"
               />
             </PopoverClose>
             <PopoverClose asChild>
               <Button
-                size="small"
+                size="sm"
                 label={okText}
                 onClick={onConfirm}
-                priority="primary"
+                variant="filled"
                 role={okType}
               />
             </PopoverClose>

@@ -11,25 +11,25 @@ import {
 <Meta title="Token/Effects" />
 
 
-  <h1><T k="guide_effects_title" /></h1>
-  <p><T k="guide_effects_desc" /></p>
+  <h1><T k="guide.effects_title" /></h1>
+  <p><T k="guide.effects_desc" /></p>
 
 <hr />
 
 <h2>
-  <p><T k="guide_effects_shadow" /></p>
+  <p><T k="guide.effects_shadow" /></p>
 </h2>
-<p><T k="guide_effects_shadow_multi_layer_desc" /></p>
+<p><T k="guide.effects_shadow_multi_layer_desc" /></p>
 
 <TokenGrid columns="1fr 1fr">
   <div style={{ padding: "20px", borderRadius: "var(--radius-md)", backgroundColor: "var(--wim-color-bg-secondary)" }}>
-    <h3><T k="guide_effects_shadow_ambient" /></h3>
-    <p><T k="guide_effects_shadow_ambient_desc" /></p>
+    <h3><T k="guide.effects_shadow_ambient" /></h3>
+    <p><T k="guide.effects_shadow_ambient_desc" /></p>
     <div style={{ width: "100%", height: "40px", borderRadius: "var(--radius-sm)", boxShadow: "var(--shadow-ambient)", backgroundColor: "var(--wim-color-surface)" }}></div>
   </div>
   <div style={{ padding: "20px", borderRadius: "var(--radius-md)", backgroundColor: "var(--wim-color-bg-secondary)" }}>
-    <h3><T k="guide_effects_shadow_elevation" /></h3>
-    <p><T k="guide_effects_shadow_elevation_desc" /></p>
+    <h3><T k="guide.effects_shadow_elevation" /></h3>
+    <p><T k="guide.effects_shadow_elevation_desc" /></p>
     <div style={{ width: "100%", height: "40px", borderRadius: "var(--radius-sm)", boxShadow: "var(--shadow-elevation)", backgroundColor: "var(--wim-color-surface)" }}></div>
   </div>
 </TokenGrid>
@@ -70,19 +70,19 @@ import {
 <hr />
 
 <h2>
-  <p><T k="guide_effects_motion" /></p>
+  <p><T k="guide.effects_motion" /></p>
 </h2>
 <p style={{ marginBottom: "20px" }}>
-  <T k="guide_effects_motion_desc" />
+  <T k="guide.effects_motion_desc" />
 </p>
 <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
-  <MotionSwatch name={<T k="guide_effects_motion_instant" />} duration="var(--duration-instant)" easing="var(--easing-standard)" />
-  <MotionSwatch name={<T k="guide_effects_motion_fast" />} duration="var(--duration-fast)" easing="var(--easing-standard)" />
-  <MotionSwatch name={<T k="guide_effects_motion_standard" />} duration="var(--duration-base)" easing="var(--easing-standard)" />
-  <MotionSwatch name={<T k="guide_effects_motion_slow" />} duration="var(--duration-slow)" easing="var(--easing-standard)" />
-  <MotionSwatch name={<T k="guide_effects_motion_entrance" />} duration="var(--duration-base)" easing="var(--easing-entrance)" />
-  <MotionSwatch name={<T k="guide_effects_motion_exit" />} duration="var(--duration-fast)" easing="var(--easing-exit)" />
-  <MotionSwatch name={<T k="guide_effects_motion_spring" />} duration="var(--duration-base)" easing="var(--easing-spring)" />
+  <MotionSwatch name={<T k="guide.effects_motion_instant" />} duration="var(--duration-instant)" easing="var(--easing-standard)" />
+  <MotionSwatch name={<T k="guide.effects_motion_fast" />} duration="var(--duration-fast)" easing="var(--easing-standard)" />
+  <MotionSwatch name={<T k="guide.effects_motion_standard" />} duration="var(--duration-base)" easing="var(--easing-standard)" />
+  <MotionSwatch name={<T k="guide.effects_motion_slow" />} duration="var(--duration-slow)" easing="var(--easing-standard)" />
+  <MotionSwatch name={<T k="guide.effects_motion_entrance" />} duration="var(--duration-base)" easing="var(--easing-entrance)" />
+  <MotionSwatch name={<T k="guide.effects_motion_exit" />} duration="var(--duration-fast)" easing="var(--easing-exit)" />
+  <MotionSwatch name={<T k="guide.effects_motion_spring" />} duration="var(--duration-base)" easing="var(--easing-spring)" />
 
   <InteractiveSwatch name="Scale Active (Tactile)" tokenName="--scale-active" tokenValue="0.98" activeStyle={{ transition: "transform var(--duration-instant) var(--easing-standard)", transform: "scale(var(--scale-active))" }} hoverStyle={{ backgroundColor: "var(--wim-color-bg-hover)" }} />
 
@@ -93,58 +93,58 @@ import {
 
 <hr />
 
-<h2><T k="guide_effects_opacity" /></h2>
-<p><T k="guide_effects_opacity_desc" /></p>
+<h2><T k="guide.effects_opacity" /></h2>
+<p><T k="guide.effects_opacity_desc" /></p>
 
 <table>
   <thead>
     <tr>
-      <th><T k="table_header_item" /></th>
-      <th><T k="table_header_guideline" /></th>
+      <th><T k="table.header_item" /></th>
+      <th><T k="table.header_guideline" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>--opacity-disabled</code> <small>(0.6)</small></td>
-      <td><T k="guide_effects_opacity_disabled" /></td>
+      <td><T k="guide.effects_opacity_disabled" /></td>
     </tr>
     <tr>
       <td><code>--opacity-ghost</code> <small>(0.5)</small></td>
-      <td><T k="guide_effects_opacity_ghost" /></td>
+      <td><T k="guide.effects_opacity_ghost" /></td>
     </tr>
     <tr>
       <td><code>--opacity-secondary</code> <small>(0.7)</small></td>
-      <td><T k="guide_effects_opacity_secondary" /></td>
+      <td><T k="guide.effects_opacity_secondary" /></td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-    <strong><T k="guide_spacings_implementation_guideline" /></strong>
+    <strong><T k="guide.spacings_implementation_guideline" /></strong>
     <table>
       <thead>
         <tr>
-          <th><T k="table_header_item" /></th>
-          <th><T k="table_header_guideline" /></th>
+          <th><T k="table.header_item" /></th>
+          <th><T k="table.header_guideline" /></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong><T k="guide_effects_shadow" /></strong></td>
-          <td><T k="guide_effects_shadow_guideline" /></td>
+          <td><strong><T k="guide.effects_shadow" /></strong></td>
+          <td><T k="guide.effects_shadow_guideline" /></td>
         </tr>
         <tr>
-          <td><strong><T k="guide_effects_motion" /></strong></td>
-          <td><T k="guide_effects_motion_guideline" /></td>
+          <td><strong><T k="guide.effects_motion" /></strong></td>
+          <td><T k="guide.effects_motion_guideline" /></td>
         </tr>
         <tr>
-          <td><strong><T k="guide_effects_opacity" /></strong></td>
-          <td><T k="guide_effects_opacity_guideline" /></td>
+          <td><strong><T k="guide.effects_opacity" /></strong></td>
+          <td><T k="guide.effects_opacity_guideline" /></td>
         </tr>
         <tr>
-          <td><strong><T k="effects_common_vars" /></strong></td>
-          <td><T k="guide_effects_common_vars_guideline" /></td>
+          <td><strong><T k="effects.common_vars" /></strong></td>
+          <td><T k="guide.effects_common_vars_guideline" /></td>
 
         </tr>
       </tbody>

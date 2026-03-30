@@ -200,7 +200,7 @@ export const TableHead = ({
               `wim-table__sort-icon--${sortDirection}`,
             )}
           >
-            <Icon name="ChevronDownIcon" size="small" />
+            <Icon name="ChevronDownIcon" size="sm" />
           </span>
         )}
       </div>

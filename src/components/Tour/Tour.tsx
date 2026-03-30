@@ -170,15 +170,15 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
             <div className="wim-tour-buttons">
               {currentStep > 0 && (
                 <Button
-                  size="small"
-                  priority="secondary"
+                  size="sm"
+                  variant="outlined"
                   label="Back"
                   onClick={handleBack}
                 />
               )}
               <Button
-                size="small"
-                priority="primary"
+                size="sm"
+                variant="filled"
                 label={currentStep === steps.length - 1 ? "Finish" : "Next"}
                 onClick={handleNext}
               />

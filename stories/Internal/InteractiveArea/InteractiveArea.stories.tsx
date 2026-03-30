@@ -60,8 +60,8 @@ export const WithActions: Story = {
         description={t("doc.ia_empty_desc")} 
         actions={
           <>
-            <Button label={t("upload")} priority="primary" />
-            <Button label={t("learn.more")} priority="secondary" />
+            <Button label={t("upload")} variant="filled" />
+            <Button label={t("learn.more")} variant="outlined" />
           </>
         }
       />
@@ -85,7 +85,7 @@ export const Large: Story = {
   },
   args: {
     ...Default.args,
-    size: "large",
+    size: "lg",
   },
 };
 
@@ -102,7 +102,7 @@ export const Small: Story = {
   },
   args: {
     ...Default.args,
-    size: "small",
+    size: "sm",
   },
 };
 

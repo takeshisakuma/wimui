@@ -110,8 +110,8 @@ export const WithHeaderAndFooter: Story = {
           <div
             style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}
           >
-            <Button priority="secondary" size="small" label={t("story.card_cancel")} />
-            <Button priority="primary" size="small" label={t("story.card_save")} />
+            <Button variant="outlined" size="sm" label={t("story.card_cancel")} />
+            <Button variant="filled" size="sm" label={t("story.card_save")} />
           </div>
         </Card.Footer>
       </Card>

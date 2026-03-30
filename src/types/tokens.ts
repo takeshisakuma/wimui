@@ -8,7 +8,7 @@ export type LiteralWithAutocomplete<T extends string> = T | (string & {});
 /**
  * Standard size values for components.
  */
-export type ComponentSize = "small" | "medium" | "large";
+export type ComponentSize = "sm" | "md" | "lg";
 
 /**
  * Status values for indicator-style components (Badge, Chip, Tag, Progress).
@@ -28,67 +28,65 @@ export type IndicatorStatus =
 export type FeedbackStatus = "info" | "success" | "warning" | "error";
 
 /**
- * Status values for form field components (Input, Textarea, DatePicker).
+ * Status values for form field components (Input, Textarea, DatePicker, RichTextEditor).
  */
-export type FieldStatus = "default" | "error";
+export type FieldStatus = "default" | "error" | "warning" | "success";
 
 /**
  * Color tokens available as CSS variables.
  */
 export type WimColorToken =
+  // Semantic brand colors
+  | "var(--wim-color-primary)"
+  | "var(--wim-color-primary-hover)"
+  | "var(--wim-color-primary-active)"
+  | "var(--wim-color-primary-light)"
+  | "var(--wim-color-primary-container-alpha)"
+  | "var(--wim-color-secondary)"
+  | "var(--wim-color-informative)"
   | "var(--wim-color-destructive)"
   | "var(--wim-color-positive)"
   | "var(--wim-color-caution)"
-  | "var(--wim-color-primary)"
-  | "var(--wim-color-secondary)"
-  | "var(--wim-color-informative)"
   | "var(--wim-color-disabled)"
-  | "var(--wim-color-text-on-primary)"
-  | "var(--wim-color-text-on-destructive)"
-  | "var(--wim-color-text-on-positive)"
-  | "var(--wim-color-text-on-caution)"
-  | "var(--wim-color-text-on-secondary)"
-  | "var(--wim-color-text-on-informative)"
-  | "var(--wim-color-text-on-disabled)"
+  // Text colors
   | "var(--wim-color-text-primary)"
   | "var(--wim-color-text-secondary)"
   | "var(--wim-color-text-tertiary)"
   | "var(--wim-color-text-disabled)"
   | "var(--wim-color-text-white)"
   | "var(--wim-color-text-error)"
+  | "var(--wim-color-text-placeholder)"
+  // Text on semantic backgrounds
+  | "var(--wim-color-text-on-primary)"
+  | "var(--wim-color-text-on-secondary)"
+  | "var(--wim-color-text-on-destructive)"
+  | "var(--wim-color-text-on-positive)"
+  | "var(--wim-color-text-on-caution)"
+  | "var(--wim-color-text-on-informative)"
+  | "var(--wim-color-text-on-disabled)"
+  | "var(--wim-color-text-on-overlay)"
+  // Surface / background colors
+  | "var(--wim-color-surface)"
+  | "var(--wim-color-surface-variant)"
+  | "var(--wim-color-surface-hover)"
+  | "var(--wim-color-surface-variant-alpha)"
   | "var(--wim-color-bg-app)"
   | "var(--wim-color-bg-component)"
   | "var(--wim-color-bg-primary)"
   | "var(--wim-color-bg-secondary)"
+  | "var(--wim-color-bg-tertiary)"
   | "var(--wim-color-bg-hover)"
+  // Border / focus colors
   | "var(--wim-color-border)"
   | "var(--wim-color-border-secondary)"
   | "var(--wim-color-focus-outline)"
-  | "var(--wim-scrollbar-thumb)"
-  | "var(--wim-scrollbar-track)"
-  | "var(--wim-color-primary)"
-  | "var(--wim-color-primary-hover)"
-  | "var(--wim-color-primary-active)"
-  | "var(--wim-color-primary-light)"
-  | "var(--wim-color-secondary)"
-  | "var(--wim-color-text-primary)"
-  | "var(--wim-color-text-secondary)"
-  | "var(--wim-color-text-tertiary)"
-  | "var(--wim-color-text-disabled)"
-  | "var(--wim-color-text-placeholder)"
-  | "var(--wim-color-text-on-primary)"
-  | "var(--wim-color-text-on-secondary)"
-  | "var(--wim-color-surface)"
-  | "var(--wim-color-surface-variant)"
-  | "var(--wim-color-surface-hover)"
-  | "var(--wim-color-primary-container-alpha)"
-  | "var(--wim-color-surface-variant-alpha)"
-  | "var(--wim-color-bg-tertiary)"
-  | "var(--wim-color-bg-component)"
+  // Overlay colors
   | "var(--wim-color-overlay-bg)"
   | "var(--wim-color-overlay-bg-light)"
   | "var(--wim-color-overlay-bg-dark)"
-  | "var(--wim-color-text-on-overlay)";
+  // Scrollbar colors
+  | "var(--wim-scrollbar-thumb)"
+  | "var(--wim-scrollbar-track)";
 
 export type WimColor = LiteralWithAutocomplete<WimColorToken>;
 
@@ -106,12 +104,7 @@ export type WimSpacingToken =
   | "var(--wim-spacing-2xl)"
   | "var(--wim-spacing-3xl)"
   | "var(--wim-spacing-4xl)"
-  | "var(--wim-spacing-5xl)"
-  | "var(--wim-spacing-xs)"
-  | "var(--wim-spacing-sm)"
-  | "var(--wim-spacing-md)"
-  | "var(--wim-spacing-lg)"
-  | "var(--wim-spacing-xl)";
+  | "var(--wim-spacing-5xl)";
 
 export type WimSpacing = LiteralWithAutocomplete<WimSpacingToken>;
 
@@ -119,10 +112,6 @@ export type WimSpacing = LiteralWithAutocomplete<WimSpacingToken>;
  * Radius tokens available as CSS variables.
  */
 export type WimRadiusToken =
-  | "var(--wim-radius-sm)"
-  | "var(--wim-radius-md)"
-  | "var(--wim-radius-lg)"
-  | "var(--wim-radius-full)"
   | "var(--wim-radius-sm)"
   | "var(--wim-radius-md)"
   | "var(--wim-radius-lg)"
@@ -148,23 +137,22 @@ export type WimShadow = LiteralWithAutocomplete<WimShadowToken>;
  * Typography tokens available as CSS variables.
  */
 export type WimFontSizeToken =
+  | "var(--wim-font-size-2xs)"
   | "var(--wim-font-size-xs)"
   | "var(--wim-font-size-sm)"
   | "var(--wim-font-size-md)"
   | "var(--wim-font-size-lg)"
   | "var(--wim-font-size-xl)"
-  | "var(--wim-font-size-xs)"
-  | "var(--wim-font-size-sm)"
-  | "var(--wim-font-size-md)"
-  | "var(--wim-font-size-lg)"
-  | "var(--wim-font-size-xl)";
+  | "var(--wim-font-size-2xl)"
+  | "var(--wim-font-size-3xl)"
+  | "var(--wim-font-size-4xl)"
+  | "var(--wim-font-size-5xl)"
+  | "var(--wim-font-size-6xl)"
+  | "var(--wim-font-size-7xl)";
 
 export type WimFontSize = LiteralWithAutocomplete<WimFontSizeToken>;
 
 export type WimFontWeightToken =
-  | "var(--wim-font-weight-normal)"
-  | "var(--wim-font-weight-medium)"
-  | "var(--wim-font-weight-bold)"
   | "var(--wim-font-weight-normal)"
   | "var(--wim-font-weight-medium)"
   | "var(--wim-font-weight-bold)";
@@ -177,13 +165,7 @@ export type WimLineHeightToken =
   | "var(--wim-line-height-tight-jp)"
   | "var(--wim-line-height-loose)"
   | "var(--wim-line-height-normal)"
-  | "var(--wim-line-height-tight)"
-  | "var(--wim-line-height-tight)"
-  | "var(--wim-line-height-normal)"
-  | "var(--wim-line-height-loose)"
-  | "var(--wim-line-height-tight-jp)"
-  | "var(--wim-line-height-normal-jp)"
-  | "var(--wim-line-height-loose-jp)";
+  | "var(--wim-line-height-tight)";
 
 export type WimLineHeight = LiteralWithAutocomplete<WimLineHeightToken>;
 

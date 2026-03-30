@@ -44,7 +44,7 @@ export const Chip = ({
   disabled = false,
   status = "primary",
   variant = "solid",
-  size = "medium",
+  size = "md",
   className,
   ...props
 }: ChipProps) => {
@@ -55,7 +55,7 @@ export const Chip = ({
       "wim-chip",
       `wim-chip--${status}`,
       `wim-chip--${variant}`,
-      `wim-chip--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+      `wim-chip--${size}`,
       selected && "wim-chip--selected",
       onClick && !disabled && "wim-chip--clickable",
       disabled && "wim-chip--disabled",
@@ -92,7 +92,7 @@ export const Chip = ({
             }
           }}
         >
-          <Icon name="CloseIcon" size="small" />
+          <Icon name="CloseIcon" size="sm" />
         </span>
       )}
     </Component>

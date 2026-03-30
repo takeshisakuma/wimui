@@ -73,7 +73,7 @@ export const Toast = ({
       aria-live="polite"
     >
       <div className="wim-toast__icon">
-        <FeedbackIcon status={status} size="small" />
+        <FeedbackIcon status={status} size="sm" />
       </div>
       <div className="wim-toast__content">
         {title && <h5 className="wim-toast__title">{title}</h5>}
@@ -83,7 +83,7 @@ export const Toast = ({
         onClose={onClose ? handleClose : undefined}
         id={id}
         className="wim-toast__close-button"
-        size="medium"
+        size="md"
       />
     </Transition>
   );

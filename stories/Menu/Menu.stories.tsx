@@ -42,13 +42,13 @@ export const WithIcons: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Menu {...args}>
-        <MenuItem icon={<Icon name="CheckIcon" size="small" />}>
+        <MenuItem icon={<Icon name="CheckIcon" size="sm" />}>
           {t("story.menu_dashboard")}
         </MenuItem>
-        <MenuItem icon={<Icon name="CopyIcon" size="small" />}>
+        <MenuItem icon={<Icon name="CopyIcon" size="sm" />}>
           {t("story.menu_projects")}
         </MenuItem>
-        <MenuItem icon={<Icon name="CloseIcon" size="small" />}>
+        <MenuItem icon={<Icon name="CloseIcon" size="sm" />}>
           {t("story.menu_settings")}
         </MenuItem>
       </Menu>
@@ -61,13 +61,13 @@ export const WithSubMenu: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Menu {...args} defaultOpenKeys={["sub1"]}>
-        <MenuItem icon={<Icon name="CheckIcon" size="small" />}>
+        <MenuItem icon={<Icon name="CheckIcon" size="sm" />}>
           {t("story.menu_dashboard")}
         </MenuItem>
         <SubMenu
           itemKey="sub1"
           title={t("story.menu_products")}
-          icon={<Icon name="CopyIcon" size="small" />}
+          icon={<Icon name="CopyIcon" size="sm" />}
         >
           <MenuItem>{t("story.menu_product")} 1</MenuItem>
           <MenuItem>{t("story.menu_product")} 2</MenuItem>
@@ -76,7 +76,7 @@ export const WithSubMenu: Story = {
         <SubMenu
           itemKey="sub2"
           title={t("story.menu_services")}
-          icon={<Icon name="CloseIcon" size="small" />}
+          icon={<Icon name="CloseIcon" size="sm" />}
         >
           <MenuItem>{t("story.menu_service")} A</MenuItem>
           <MenuItem>{t("story.menu_service")} B</MenuItem>
@@ -127,19 +127,19 @@ export const Inline: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Menu {...args} mode="inline" defaultOpenKeys={["sub1"]}>
-        <MenuItem icon={<Icon name="CheckIcon" size="small" />}>
+        <MenuItem icon={<Icon name="CheckIcon" size="sm" />}>
           {t("story.menu_dashboard")}
         </MenuItem>
         <SubMenu
           itemKey="sub1"
           title={t("story.menu_settings")}
-          icon={<Icon name="CopyIcon" size="small" />}
+          icon={<Icon name="CopyIcon" size="sm" />}
         >
           <MenuItem>{t("story.menu_profile_settings")}</MenuItem>
           <MenuItem>{t("story.menu_account_settings")}</MenuItem>
           <MenuItem>{t("story.menu_privacy_settings")}</MenuItem>
         </SubMenu>
-        <MenuItem icon={<Icon name="CloseIcon" size="small" />}>
+        <MenuItem icon={<Icon name="CloseIcon" size="sm" />}>
           {t("story.menu_logout")}
         </MenuItem>
       </Menu>

@@ -9,7 +9,7 @@ type ListContextType = {
   size: ComponentSize;
 };
 
-const ListContext = createContext<ListContextType>({ size: "medium" });
+const ListContext = createContext<ListContextType>({ size: "md" });
 
 type ListProps = React.ComponentPropsWithoutRef<"ul"> & {
   as?: "ul" | "ol";
@@ -20,7 +20,7 @@ type ListProps = React.ComponentPropsWithoutRef<"ul"> & {
 
 export const List = ({
   as: Component = "ul",
-  size = "medium",
+  size = "md",
   spacing = "normal",
   children,
   className,
@@ -31,7 +31,7 @@ export const List = ({
       <Component
         className={classNames(
           "wim-list",
-          `wim-list--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+          `wim-list--${size}`,
           `wim-list--spacing-${spacing}`,
           className,
         )}

@@ -11,9 +11,9 @@ const meta: Meta<typeof IconButton> = {
   tags: [],
   argTypes: {
     disabled: { control: "boolean" },
-    priority: {
+    variant: {
       control: "select",
-      options: ["primary", "secondary", "tertiary"],
+      options: ["filled", "outlined", "ghost"],
     },
   },
 };
@@ -40,6 +40,6 @@ export const Close: Story = {
     );
   },
   args: {
-    priority: "tertiary",
+    variant: "ghost",
   },
 };

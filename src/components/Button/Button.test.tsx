@@ -37,13 +37,13 @@ describe("Button", () => {
     expect(handleClick).not.toHaveBeenCalled();
   });
 
-  it("applies correct classes for size and priority", () => {
+  it("applies correct classes for size and variant", () => {
     const { container } = render(
-      <Button label="Test" size="large" priority="primary" />,
+      <Button label="Test" size="lg" variant="filled" />,
     );
     const button = container.querySelector("button");
     expect(button).toHaveClass("wim-button--lg");
-    expect(button).toHaveClass("wim-button--primary");
+    expect(button).toHaveClass("wim-button--filled");
   });
 
   it("applies custom className", () => {

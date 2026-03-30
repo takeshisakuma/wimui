@@ -159,7 +159,7 @@ export const InteractiveDemo: Story = {
         <Button
           onClick={() => setOpen(true)}
           label={t("story.snackbar_show")}
-          priority="primary"
+          variant="filled"
         />
         <Snackbar
           message={t("story.snackbar_interactive")}

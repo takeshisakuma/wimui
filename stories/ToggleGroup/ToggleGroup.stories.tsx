@@ -16,7 +16,7 @@ const meta: Meta<typeof ToggleGroup> = {
     },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
   },
 };
@@ -78,9 +78,9 @@ export const Sizes: Story = {
     const options = useDefaultOptions();
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-        <ToggleGroup {...args} options={options} size="small" />
-        <ToggleGroup {...args} options={options} size="medium" />
-        <ToggleGroup {...args} options={options} size="large" />
+        <ToggleGroup {...args} options={options} size="sm" />
+        <ToggleGroup {...args} options={options} size="md" />
+        <ToggleGroup {...args} options={options} size="lg" />
       </div>
     );
   },

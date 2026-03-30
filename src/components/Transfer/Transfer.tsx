@@ -418,16 +418,16 @@ export const Transfer = ({
 
           <div className="wim-transfer__operation">
             <Button
-              priority="secondary"
-              size="small"
+              variant="outlined"
+              size="sm"
               onClick={() => moveItems("toRight")}
               disabled={disabled || moveRightDisabled}
               icon="ChevronRightIcon"
               aria-label={t("transfer.move_to_target")}
             />
             <Button
-              priority="secondary"
-              size="small"
+              variant="outlined"
+              size="sm"
               onClick={() => moveItems("toLeft")}
               disabled={disabled || moveLeftDisabled}
               icon="ChevronLeftIcon"

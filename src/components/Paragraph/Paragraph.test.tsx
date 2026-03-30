@@ -16,7 +16,7 @@ describe("Paragraph", () => {
   });
 
   it("applies correct size class", () => {
-    const { container } = render(<Paragraph content="Test" size="large" />);
+    const { container } = render(<Paragraph content="Test" size="lg" />);
     expect(container.firstChild).toHaveClass("wim-paragraph--lg");
   });
 

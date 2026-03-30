@@ -7,8 +7,8 @@ import {
   AccordionContent,
 } from "./Accordion";
 
-const SimpleAccordion = ({ collapsible = true, type = "single" as "single" | "multiple", defaultValue = undefined as string | string[] | undefined, value = undefined as string | string[] | undefined, onValueChange = undefined as ((v: string | string[]) => void) | undefined }) => (
-  <Accordion type={type} collapsible={collapsible} defaultValue={defaultValue} value={value} onValueChange={onValueChange}>
+const SimpleAccordion = ({ collapsible = true, type = "single" as "single" | "multiple", defaultValue = undefined as string | string[] | undefined, value = undefined as string | string[] | undefined, onChange = undefined as ((v: string | string[]) => void) | undefined }) => (
+  <Accordion type={type} collapsible={collapsible} defaultValue={defaultValue} value={value} onChange={onChange}>
     <AccordionItem value="item-1">
       <AccordionTrigger>Item 1</AccordionTrigger>
       <AccordionContent>Content 1</AccordionContent>
@@ -96,11 +96,11 @@ describe("Accordion", () => {
     expect(screen.getByText("Content 2").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
   });
 
-  it("calls onValueChange when item toggled", () => {
-    const onValueChange = vi.fn();
-    render(<SimpleAccordion onValueChange={onValueChange} />);
+  it("calls onChange when item toggled", () => {
+    const onChange = vi.fn();
+    render(<SimpleAccordion onChange={onChange} />);
     fireEvent.click(screen.getByText("Item 1"));
-    expect(onValueChange).toHaveBeenCalledWith("item-1");
+    expect(onChange).toHaveBeenCalledWith("item-1");
   });
 
   it("handles disabled item", () => {
@@ -117,9 +117,9 @@ describe("Accordion", () => {
   });
 
   it("disabled item: keydown is ignored", () => {
-    const onValueChange = vi.fn();
+    const onChange = vi.fn();
     render(
-      <Accordion onValueChange={onValueChange}>
+      <Accordion onChange={onChange}>
         <AccordionItem value="item-1" disabled>
           <AccordionTrigger>Item 1</AccordionTrigger>
           <AccordionContent>Content 1</AccordionContent>
@@ -127,7 +127,7 @@ describe("Accordion", () => {
       </Accordion>,
     );
     fireEvent.keyDown(screen.getByText("Item 1").closest("button")!, { key: "ArrowDown" });
-    expect(onValueChange).not.toHaveBeenCalled();
+    expect(onChange).not.toHaveBeenCalled();
   });
 
   it("keyboard navigation: ArrowDown moves focus", () => {

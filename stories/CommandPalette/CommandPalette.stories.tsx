@@ -75,7 +75,7 @@ const DefaultTemplate = () => {
     <div style={{ padding: "100px 20px", textAlign: "center" }}>
       <CommandPalette>
         <CommandPaletteTrigger>
-          <Icon name="SearchIcon" size="small" />
+          <Icon name="SearchIcon" size="sm" />
           <span>{t("story.command_search_commands")}</span>
           <kbd style={{ marginLeft: "12px", fontSize: "0.8em", opacity: 0.6 }}>
             ⌘K
@@ -98,7 +98,7 @@ const DefaultTemplate = () => {
                       key={item.id}
                       onSelect={() => console.log(`Selected: ${item.label}`)}
                       shortcut={item.shortcut}
-                      icon={<Icon name={item.icon as Parameters<typeof Icon>[0]["name"]} size="small" />}
+                      icon={<Icon name={item.icon as Parameters<typeof Icon>[0]["name"]} size="sm" />}
                     >
                       {item.label}
                     </CommandPaletteItem>
@@ -154,19 +154,19 @@ const ControlledTemplate = () => {
             <CommandPaletteGroup heading={t("story.command_quick_links")}>
               <CommandPaletteItem
                 onSelect={() => {}}
-                icon={<Icon name="SearchIcon" size="small" />}
+                icon={<Icon name="SearchIcon" size="sm" />}
               >
                 {t("story.command_search_docs")}
               </CommandPaletteItem>
               <CommandPaletteItem
                 onSelect={() => {}}
-                icon={<Icon name="CopyIcon" size="small" />}
+                icon={<Icon name="CopyIcon" size="sm" />}
               >
                 {t("story.command_copy_link")}
               </CommandPaletteItem>
               <CommandPaletteItem
                 onSelect={() => {}}
-                icon={<Icon name="StarIcon" size="small" />}
+                icon={<Icon name="StarIcon" size="sm" />}
               >
                 {t("story.command_add_favorites")}
               </CommandPaletteItem>

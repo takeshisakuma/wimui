@@ -101,8 +101,8 @@ export const WithAction: Story = {
         description={args.description || t("story.banner_cookie_desc")}
         extra={
           <Button
-            size="small"
-            priority="secondary"
+            size="sm"
+            variant="outlined"
             label={t("story.banner_btn_accept")}
           />
         }
@@ -124,8 +124,8 @@ export const WithCloseAndAction: Story = {
         description={args.description || t("story.banner_trial_desc")}
         extra={
           <Button
-            size="small"
-            priority="primary"
+            size="sm"
+            variant="filled"
             label={t("story.banner_btn_upgrade")}
           />
         }

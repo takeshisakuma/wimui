@@ -48,7 +48,7 @@ export const Default: Story = {
       <BottomSheet {...args}>
         <BottomSheetTrigger asChild>
           <Button
-            priority="primary"
+            variant="filled"
             label={t("story.bottomsheet_open")}
 
           />
@@ -87,13 +87,13 @@ export const Default: Story = {
           <BottomSheetFooter>
             <BottomSheetClose asChild>
               <Button
-                priority="secondary"
+                variant="outlined"
                 label={t("story.bottomsheet_cancel")}
 
               />
             </BottomSheetClose>
             <Button
-              priority="primary"
+              variant="filled"
               label={t("story.bottomsheet_action")}
 
             />
@@ -111,7 +111,7 @@ export const SingleAction: Story = {
       <BottomSheet {...args}>
         <BottomSheetTrigger asChild>
           <Button
-            priority="secondary"
+            variant="outlined"
             label={t("story.bottomsheet_quick_actions")}
 
           />

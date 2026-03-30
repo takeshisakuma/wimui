@@ -44,12 +44,31 @@
     border-color: var(--wim-color-text-error);
   }
 
+  &.wim-input-base--warning {
+    border-color: var(--wim-color-caution);
+  }
+
+  &.wim-input-base--success {
+    border-color: var(--wim-color-positive);
+  }
+
   &:focus-within:not(.wim-input-base--disabled) {
     border-color: var(--wim-color-primary);
     box-shadow: inset 0 0 0 1px var(--wim-color-primary);
-    
+
     &.wim-input-base--error {
+      border-color: var(--wim-color-text-error);
       box-shadow: inset 0 0 0 1px var(--wim-color-text-error);
+    }
+
+    &.wim-input-base--warning {
+      border-color: var(--wim-color-caution);
+      box-shadow: inset 0 0 0 1px var(--wim-color-caution);
+    }
+
+    &.wim-input-base--success {
+      border-color: var(--wim-color-positive);
+      box-shadow: inset 0 0 0 1px var(--wim-color-positive);
     }
   }
 

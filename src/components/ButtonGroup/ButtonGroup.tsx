@@ -7,7 +7,7 @@ type ButtonGroupProps = {
   gap?: string;
   className?: string;
   joined?: boolean;
-  priority?: "primary" | "secondary" | "tertiary";
+  variant?: "filled" | "outlined" | "ghost";
 };
 
 export const ButtonGroup = ({
@@ -15,15 +15,15 @@ export const ButtonGroup = ({
   gap = "8px",
   className,
   joined = false,
-  priority,
+  variant,
 }: ButtonGroupProps) => {
   const style = joined ? {} : { gap };
 
-  const childrenWithProps = priority
+  const childrenWithProps = variant
     ? React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child as React.ReactElement<{ priority?: "primary" | "secondary" | "tertiary" }>, {
-            priority,
+          return React.cloneElement(child as React.ReactElement<{ variant?: "filled" | "outlined" | "ghost" }>, {
+            variant,
           });
         }
         return child;

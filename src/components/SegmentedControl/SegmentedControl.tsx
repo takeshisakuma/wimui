@@ -45,7 +45,7 @@ export const SegmentedControl = ({
   options,
   value,
   onChange,
-  size = "medium",
+  size = "md",
   fullWidth = false,
   className,
   label,
@@ -103,7 +103,7 @@ export const SegmentedControl = ({
         ref={containerRef}
         className={classNames(
           "wim-segmented-control",
-          `wim-segmented-control--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+          `wim-segmented-control--${size}`,
           fullWidth && "wim-segmented-control--full-width",
           isReady && "wim-segmented-control--ready",
         )}

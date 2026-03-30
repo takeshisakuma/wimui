@@ -169,7 +169,7 @@ export const Video = ({
                   ? "ChevronRightIcon"
                   : "ChevronLeftIcon"
               }
-              size="large"
+              size="lg"
             />
             <Icon
               name={
@@ -177,7 +177,7 @@ export const Video = ({
                   ? "ChevronRightIcon"
                   : "ChevronLeftIcon"
               }
-              size="large"
+              size="lg"
             />
             <Icon
               name={
@@ -185,7 +185,7 @@ export const Video = ({
                   ? "ChevronRightIcon"
                   : "ChevronLeftIcon"
               }
-              size="large"
+              size="lg"
             />
             <span>10秒</span>
           </div>

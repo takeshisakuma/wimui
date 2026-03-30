@@ -29,17 +29,17 @@ const useTabs = () => {
   return context;
 };
 
-export interface TabsProps extends React.ComponentPropsWithoutRef<"div"> {
+export interface TabsProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange"> {
   defaultValue?: string;
   value?: string;
-  onValueChange?: (value: string) => void;
+  onChange?: (value: string) => void;
   orientation?: "horizontal" | "vertical";
 }
 
 const Tabs = ({
   defaultValue,
   value: valueProp,
-  onValueChange,
+  onChange,
   orientation = "horizontal",
   className,
   children,
@@ -59,9 +59,9 @@ const Tabs = ({
       if (!isControlled) {
         setInternalValue(val);
       }
-      onValueChange?.(val);
+      onChange?.(val);
     },
-    [isControlled, onValueChange],
+    [isControlled, onChange],
   );
 
   const registerItem = useCallback((val: string) => {

@@ -100,7 +100,7 @@ export const Default: Story = {
               <Table.Cell label={t("story.table_status")}>
                 <Badge
                   content={row.status}
-                  size="small"
+                  size="sm"
                   color={
                     row.status === t("story.table_active")
                       ? "primary"
@@ -177,14 +177,14 @@ export const WithActions: Story = {
                   <IconButton
                     iconName="EditIcon"
                     aria-label={t("story.dropdown_edit")}
-                    size="small"
-                    priority="tertiary"
+                    size="sm"
+                    variant="ghost"
                   />
                   <IconButton
                     iconName="TrashIcon"
                     aria-label={t("story.dropdown_delete")}
-                    size="small"
-                    priority="tertiary"
+                    size="sm"
+                    variant="ghost"
                     intent="destructive"
                   />
                 </div>
@@ -417,7 +417,7 @@ export const MobileCard: Story = {
               <Table.Cell label={t("story.table_status")}>
                 <Badge
                   content={row.status}
-                  size="small"
+                  size="sm"
                   color={
                     row.status === t("story.table_active")
                       ? "primary"

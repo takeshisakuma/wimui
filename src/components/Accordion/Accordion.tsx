@@ -32,7 +32,7 @@ export interface AccordionProps {
   type?: "single" | "multiple";
   defaultValue?: string | string[];
   value?: string | string[];
-  onValueChange?: (value: string | string[]) => void;
+  onChange?: (value: string | string[]) => void;
   collapsible?: boolean;
   className?: string;
   children: React.ReactNode;
@@ -47,7 +47,7 @@ export const Accordion = ({
   type = "single",
   defaultValue: _defaultValue,
   value: valueProp,
-  onValueChange,
+  onChange,
   collapsible = true,
   className,
   children,
@@ -91,9 +91,9 @@ export const Accordion = ({
         setInternalValue(newValue);
       }
 
-      onValueChange?.(type === "single" ? (newValue[0] ?? "") : newValue);
+      onChange?.(type === "single" ? (newValue[0] ?? "") : newValue);
     },
-    [activeValue, collapsible, isControlled, onValueChange, type],
+    [activeValue, collapsible, isControlled, onChange, type],
   );
 
   return (

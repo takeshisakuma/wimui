@@ -23,7 +23,7 @@ type QuoteProps = React.ComponentPropsWithoutRef<"blockquote"> & {
 };
 
 export const Quote = ({
-  size = "medium",
+  size = "md",
   content,
   cite,
   color = "black",
@@ -37,7 +37,7 @@ export const Quote = ({
     <blockquote
       className={classNames(
         "wim-quote",
-        `wim-quote--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        `wim-quote--${size}`,
         `wim-quote--${color}`,
         border && "wim-quote--border",
         className,

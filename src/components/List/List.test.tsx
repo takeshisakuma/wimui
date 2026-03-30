@@ -24,12 +24,12 @@ describe("List", () => {
   });
 
   it("applies small size class", () => {
-    const { container } = render(<List size="small"><ListItem>X</ListItem></List>);
+    const { container } = render(<List size="sm"><ListItem>X</ListItem></List>);
     expect(container.querySelector(".wim-list--sm")).toBeInTheDocument();
   });
 
   it("applies large size class", () => {
-    const { container } = render(<List size="large"><ListItem>X</ListItem></List>);
+    const { container } = render(<List size="lg"><ListItem>X</ListItem></List>);
     expect(container.querySelector(".wim-list--lg")).toBeInTheDocument();
   });
 

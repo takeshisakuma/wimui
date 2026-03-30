@@ -306,7 +306,7 @@ export const MotionEffects: Story = {
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <div style={{ display: "flex", gap: "1rem" }}>
               <Button
-                priority="primary"
+                variant="filled"
                 onClick={() => setImageKey((prev) => prev + 1)}
                 label={t("story.image_motion_effects_reload")}
                 icon="RefreshIcon"

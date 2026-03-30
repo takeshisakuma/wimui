@@ -97,19 +97,19 @@ export const CustomIcons: Story = {
         steps={[
           {
             title: t("story.stepper_login"),
-            icon: <Icon name="EyeIcon" size="small" />,
+            icon: <Icon name="EyeIcon" size="sm" />,
           },
           {
             title: t("story.stepper_verification"),
-            icon: <Icon name="LoadingIcon" size="small" />,
+            icon: <Icon name="LoadingIcon" size="sm" />,
           },
           {
             title: t("story.stepper_pay"),
-            icon: <Icon name="StarIcon" size="small" />,
+            icon: <Icon name="StarIcon" size="sm" />,
           },
           {
             title: t("story.stepper_done"),
-            icon: <Icon name="CheckIcon" size="small" />,
+            icon: <Icon name="CheckIcon" size="sm" />,
           },
         ]}
         current={1}

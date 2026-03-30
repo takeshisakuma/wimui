@@ -38,7 +38,7 @@ export const FileUpload = ({
   className,
   iconName,
   iconPosition,
-  size = "medium",
+  size = "md",
   error,
   required,
   layout = "vertical",
@@ -96,7 +96,7 @@ export const FileUpload = ({
           label={actualButtonLabel}
           onClick={handleClick}
           disabled={disabled}
-          priority="secondary"
+          variant="outlined"
           icon={iconName}
           iconPosition={iconPosition}
           size={size}

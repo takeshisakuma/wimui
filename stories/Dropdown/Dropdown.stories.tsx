@@ -53,17 +53,17 @@ export const WithIcons: Story = {
     return (
       <Dropdown {...args}>
         <DropdownTrigger>
-          <Button priority="secondary" label={t("story.dropdown_options")} />
+          <Button variant="outlined" label={t("story.dropdown_options")} />
         </DropdownTrigger>
         <DropdownMenu>
           <DropdownItem>
-            <Icon name="CheckIcon" size="small" /> {t("story.dropdown_edit")}
+            <Icon name="CheckIcon" size="sm" /> {t("story.dropdown_edit")}
           </DropdownItem>
           <DropdownItem>
-            <Icon name="CopyIcon" size="small" /> {t("story.dropdown_duplicate")}
+            <Icon name="CopyIcon" size="sm" /> {t("story.dropdown_duplicate")}
           </DropdownItem>
           <DropdownItem disabled>
-            <Icon name="CloseIcon" size="small" /> {t("story.dropdown_delete")}
+            <Icon name="CloseIcon" size="sm" /> {t("story.dropdown_delete")}
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>

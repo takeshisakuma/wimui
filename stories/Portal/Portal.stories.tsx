@@ -69,7 +69,7 @@ export const OverflowEscape: Story = {
           <Button
             onClick={() => setShow(!show)}
             label={show ? t("story.portal_btn_hide") : t("story.portal_btn_show")}
-            priority="primary"
+            variant="filled"
           />
 
           {show && (
@@ -103,7 +103,7 @@ export const OverflowEscape: Story = {
                   />
                   <Box mt="md" textAlign="right">
                     <Button
-                      size="small"
+                      size="sm"
                       label={t("story.portal_btn_ok")}
                       onClick={() => setShow(false)}
                     />
@@ -212,8 +212,8 @@ export const NotificationCenter: Story = {
               <strong>{displayName}</strong>
             </div>
             <Button
-              size="small"
-              priority={active ? "secondary" : "primary"}
+              size="sm"
+              variant={active ? "outlined" : "filled"}
               onClick={() => {
                 const newState = !active;
                 setActive(newState);
@@ -280,7 +280,7 @@ export const NotificationCenter: Story = {
                 <span style={{ fontSize: "12px", fontWeight: "bold" }}>
                   {t("story.portal_monitor_title")}
                 </span>
-                <Badge content={t("story.portal_monitor_live")} color="error" size="small" />
+                <Badge content={t("story.portal_monitor_live")} color="error" size="sm" />
               </Stack>
             </Card.Header>
             <Card.Body style={{ flex: 1, overflowY: "auto", padding: "12px" }}>
@@ -396,7 +396,7 @@ export const SidePanelDetail: Story = {
                 <Badge
                   content={`TASK-00${task.id}`}
                   variant="outline"
-                  size="small"
+                  size="sm"
                   style={{ marginBottom: "12px" }}
                 />
                 <h3 style={{ margin: "0 0 16px 0" }}>{task.title}</h3>
@@ -521,9 +521,9 @@ export const SidePanelDetail: Story = {
                 </span>
                 {selectedId && (
                   <Button
-                    size="small"
+                    size="sm"
                     label={t("story.visuallyhidden_close")}
-                    priority="secondary"
+                    variant="outlined"
                     onClick={() => setSelectedId(null)}
                   />
                 )}

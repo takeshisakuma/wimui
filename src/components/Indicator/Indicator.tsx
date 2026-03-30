@@ -20,7 +20,7 @@ type IndicatorProps = {
 export const Indicator = ({
   children,
   color = "primary",
-  size = "medium",
+  size = "md",
   position = "top-right",
   pulse = false,
   inline = false,
@@ -43,7 +43,7 @@ export const Indicator = ({
         className={classNames(
           "wim-indicator__dot",
           !isCustomColor && `wim-indicator__dot--${color}`,
-          `wim-indicator__dot--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+          `wim-indicator__dot--${size}`,
           !inline && `wim-indicator__dot--${position}`,
           pulse && "wim-indicator__dot--pulse",
         )}

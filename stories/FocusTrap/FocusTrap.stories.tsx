@@ -30,7 +30,7 @@ export const Default: Story = {
     return (
       <Container size="sm" py="xl">
         <Stack gap="xl" align="center">
-          <Button onClick={() => setActive(!active)} priority="primary">
+          <Button onClick={() => setActive(!active)} variant="filled">
             {active ? t("story.focustrap_deactivate") : t("story.focustrap_activate")}
           </Button>
 
@@ -41,7 +41,7 @@ export const Default: Story = {
             <Card.Body>
               <Stack gap="md">
                 <p>{t("story.focustrap_outside_desc")}</p>
-                <Button priority="secondary">{t("story.focustrap_outside_btn")}</Button>
+                <Button variant="outlined">{t("story.focustrap_outside_btn")}</Button>
               </Stack>
             </Card.Body>
           </Card>
@@ -67,7 +67,7 @@ export const Default: Story = {
                     </p>
                     <Input placeholder={t("story.focustrap_input_first")} fullWidth />
                     <Input placeholder={t("story.focustrap_input_second")} fullWidth />
-                    <Button onClick={() => setActive(false)} priority="primary">
+                    <Button onClick={() => setActive(false)} variant="filled">
                       {t("story.focustrap_btn_close")}
                     </Button>
                   </Stack>
@@ -92,7 +92,7 @@ export const AutoFocus: Story = {
     return (
       <Container size="sm" py="xl">
         <Stack gap="xl" align="center">
-          <Button onClick={() => setActive(!active)} priority="primary">
+          <Button onClick={() => setActive(!active)} variant="filled">
             {active ? t("story.focustrap_deactivate_short") : t("story.focustrap_activate_autofocus")}
           </Button>
 
@@ -113,8 +113,8 @@ export const AutoFocus: Story = {
                 <Card.Body>
                   <Stack gap="md">
                     <Input placeholder={t("story.focustrap_input_autofocus")} fullWidth />
-                    <Button priority="secondary">{t("story.focustrap_btn_another")}</Button>
-                    <Button onClick={() => setActive(false)} priority="primary">
+                    <Button variant="outlined">{t("story.focustrap_btn_another")}</Button>
+                    <Button onClick={() => setActive(false)} variant="filled">
                       {t("story.focustrap_btn_close_short")}
                     </Button>
                   </Stack>

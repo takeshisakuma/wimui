@@ -15,7 +15,7 @@ describe("Icon", () => {
 
   it("applies size and color", () => {
     const { container } = render(
-      <Icon name="CircleIcon" size="large" color="primary" />,
+      <Icon name="CircleIcon" size="lg" color="primary" />,
     );
     const svg = container.querySelector("svg");
     expect(svg).toHaveClass("wim-icon--lg");

@@ -28,8 +28,8 @@ export const Default: Story = {
             description={t("doc.status_success_desc")}
             actions={
                 <>
-                    <Button label={t("button.label")} priority="primary" />
-                    <Button label={t("doc.RefTable_desc")} priority="secondary" />
+                    <Button label={t("button.label")} variant="filled" />
+                    <Button label={t("doc.RefTable_desc")} variant="outlined" />
                 </>
             }
         />

@@ -66,12 +66,12 @@ describe("Breadcrumb", () => {
   });
 
   it("applies small size class", () => {
-    const { container } = render(<Breadcrumb items={items} size="small" />);
+    const { container } = render(<Breadcrumb items={items} size="sm" />);
     expect(container.querySelector(".wim-breadcrumb--sm")).toBeInTheDocument();
   });
 
   it("applies large size class", () => {
-    const { container } = render(<Breadcrumb items={items} size="large" />);
+    const { container } = render(<Breadcrumb items={items} size="lg" />);
     expect(container.querySelector(".wim-breadcrumb--lg")).toBeInTheDocument();
   });
 

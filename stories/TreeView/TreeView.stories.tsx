@@ -48,56 +48,56 @@ export const Default: Story = {
         <TreeView.Item
           value="1"
           label={t("story.tree_documents")}
-          icon={<Icon name="CircleIcon" size="small" />}
+          icon={<Icon name="CircleIcon" size="sm" />}
         >
           <TreeView.Item
             value="1-1"
             label={t("story.tree_work")}
-            icon={<Icon name="SquareIcon" size="small" />}
+            icon={<Icon name="SquareIcon" size="sm" />}
           >
             <TreeView.Item
               value="1-1-1"
               label={t("story.tree_project_a")}
-              icon={<Icon name="CopyIcon" size="small" />}
+              icon={<Icon name="CopyIcon" size="sm" />}
             />
             <TreeView.Item
               value="1-1-2"
               label={t("story.tree_project_b")}
-              icon={<Icon name="CopyIcon" size="small" />}
+              icon={<Icon name="CopyIcon" size="sm" />}
             />
           </TreeView.Item>
           <TreeView.Item
             value="1-2"
             label={t("story.tree_personal")}
-            icon={<Icon name="SquareIcon" size="small" />}
+            icon={<Icon name="SquareIcon" size="sm" />}
           >
             <TreeView.Item
               value="1-2-1"
               label={t("story.tree_photos")}
-              icon={<Icon name="CircleIcon" size="small" />}
+              icon={<Icon name="CircleIcon" size="sm" />}
             />
           </TreeView.Item>
         </TreeView.Item>
         <TreeView.Item
           value="2"
           label={t("story.tree_music")}
-          icon={<Icon name="CircleIcon" size="small" />}
+          icon={<Icon name="CircleIcon" size="sm" />}
         >
           <TreeView.Item
             value="2-1"
             label={t("story.tree_rock")}
-            icon={<Icon name="SquareIcon" size="small" />}
+            icon={<Icon name="SquareIcon" size="sm" />}
           />
           <TreeView.Item
             value="2-2"
             label={t("story.tree_jazz")}
-            icon={<Icon name="SquareIcon" size="small" />}
+            icon={<Icon name="SquareIcon" size="sm" />}
           />
         </TreeView.Item>
         <TreeView.Item
           value="3"
           label={t("story.tree_videos")}
-          icon={<Icon name="CircleIcon" size="small" />}
+          icon={<Icon name="CircleIcon" size="sm" />}
         />
       </TreeView>
     );
@@ -148,24 +148,24 @@ export const Overflow: Story = {
         <TreeView.Item
           value="1"
           label={t("story.tree_long_folder")}
-          icon={<Icon name="CircleIcon" size="small" />}
+          icon={<Icon name="CircleIcon" size="sm" />}
         >
           <TreeView.Item
             value="1-1"
             label={t("story.tree_long_subitem")}
-            icon={<Icon name="SquareIcon" size="small" />}
+            icon={<Icon name="SquareIcon" size="sm" />}
           >
             <TreeView.Item
               value="1-1-1"
               label={t("story.tree_deep_nesting")}
-              icon={<Icon name="CopyIcon" size="small" />}
+              icon={<Icon name="CopyIcon" size="sm" />}
             />
           </TreeView.Item>
         </TreeView.Item>
         <TreeView.Item
           value="2"
           label={t("story.tree_regular_item")}
-          icon={<Icon name="CircleIcon" size="small" />}
+          icon={<Icon name="CircleIcon" size="sm" />}
         />
       </TreeView>
     );

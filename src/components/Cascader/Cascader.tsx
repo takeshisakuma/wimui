@@ -327,7 +327,7 @@ export const Cascader = ({
               }}
               rightSection={
                 hasChildren ? (
-                  <Icon name="ChevronRightIcon" size="small" />
+                  <Icon name="ChevronRightIcon" size="sm" />
                 ) : undefined
               }
               role="option"

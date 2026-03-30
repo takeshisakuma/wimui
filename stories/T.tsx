@@ -8,10 +8,7 @@ import { ALL_NAMESPACES } from "./i18nConstants";
 const GLOBALS_UPDATED = "globalsUpdated";
 
 export const T = ({ k }: { k: string }) => {
-  const { t } = useTranslation(
-    ALL_NAMESPACES,
-    { i18n }
-  );
+  const { t } = useTranslation(ALL_NAMESPACES, { i18n });
   const [, setTick] = useState(0);
 
   useEffect(() => {
@@ -44,14 +41,15 @@ export const T = ({ k }: { k: string }) => {
       // ignore if channel is unavailable
     }
 
-    // Re-render when i18n language changes or namespaces finish loading
+    // Force re-render on language change (react-i18next bindI18n handles this,
+    // but explicit tick ensures URL-driven changes also propagate)
     const langHandler = () => setTick((n) => n + 1);
     i18n.on("languageChanged", langHandler);
-    i18n.on("loaded", langHandler);
+    i18n.store.on("added", langHandler);
 
     return () => {
       i18n.off("languageChanged", langHandler);
-      i18n.off("loaded", langHandler);
+      i18n.store.off("added", langHandler);
       try {
         channel?.off(GLOBALS_UPDATED, globalsHandler);
       } catch {
@@ -74,31 +72,14 @@ export const T = ({ k }: { k: string }) => {
         .replace(/'/g, "&#039;");
     };
 
-    // 1. Remove extra indentation (newline followed by multiple spaces)
-    // 2. Convert literal \n to real newlines (if they were double escaped)
-    // 3. Convert all newlines to <br />
     return text
-      .replace(/\\n/g, "\n")              // Handle literal \n text
-      .replace(/\n\s+/g, "\n")            // Remove indentation after newlines
-      .replace(/`([^`]+)`/g, (_match, code) => `<code>${escapeHtml(code)}</code>`) // Convert backticks to code tags and escape content
-      .replace(/\n/g, "<br />");          // Convert to HTML line breaks
+      .replace(/\\n/g, "\n")
+      .replace(/\n\s+/g, "\n")
+      .replace(/`([^`]+)`/g, (_match, code) => `<code>${escapeHtml(code)}</code>`)
+      .replace(/\n/g, "<br />");
   };
 
-  // Attempt to find the key in any of the namespaces if not explicitly prefixed
-  const getTranslated = (key: string) => {
-    if (key.includes(":")) return t(key);
-
-    const namespaces = ALL_NAMESPACES;
-    for (const ns of namespaces) {
-      if (i18n.exists(`${ns}:${key}`)) {
-        return t(`${ns}:${key}`);
-      }
-    }
-    return t(key); // Fallback to default behavior
-  };
-
-  const translated = getTranslated(k);
-  console.log("🔤 Translating", k, "→", translated, `(lang=${i18n.language})`);
+  const translated = t(k);
 
   return <span className="wim-t" dangerouslySetInnerHTML={{ __html: processText(translated) as string }} />;
 };

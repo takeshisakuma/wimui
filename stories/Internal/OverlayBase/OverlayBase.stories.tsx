@@ -25,7 +25,7 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ padding: "40px", height: "100vh" }}>
-        <Button onClick={() => setOpen(true)} priority="primary">
+        <Button onClick={() => setOpen(true)} variant="filled">
           {t("doc.ob_open")}
         </Button>
         <OverlayBase 
@@ -40,7 +40,7 @@ export const Default: Story = {
             <Card.Body>
               <Stack gap="md">
                 <p>{t("doc.ob_desc")}</p>
-                <Button onClick={() => setOpen(false)} priority="primary">{t("button.close") || "Close"}</Button>
+                <Button onClick={() => setOpen(false)} variant="filled">{t("button.close") || "Close"}</Button>
               </Stack>
             </Card.Body>
           </Card>
@@ -56,7 +56,7 @@ export const CustomTransition: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ padding: "40px", height: "100vh" }}>
-        <Button onClick={() => setOpen(true)} priority="primary">
+        <Button onClick={() => setOpen(true)} variant="filled">
           {t("doc.ob_slide_open")}
         </Button>
         <OverlayBase 
@@ -76,7 +76,7 @@ export const CustomTransition: Story = {
             <Card.Body>
               <Stack direction="row" justify="space-between" align="center">
                 <p>{t("doc.ob_slide_desc")}</p>
-                <Button onClick={() => setOpen(false)} priority="secondary" label={t("button.dismiss") || "Dismiss"} />
+                <Button onClick={() => setOpen(false)} variant="outlined" label={t("button.dismiss") || "Dismiss"} />
               </Stack>
             </Card.Body>
           </Card>

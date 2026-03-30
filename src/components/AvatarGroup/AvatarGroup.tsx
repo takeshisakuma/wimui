@@ -45,7 +45,7 @@ export const AvatarGroup = ({
         <span
           className={classNames(
             "wim-avatar-group__excess",
-            `wim-avatar-group__excess--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+            `wim-avatar-group__excess--${size}`,
           )}
         >
           +{excessCount}

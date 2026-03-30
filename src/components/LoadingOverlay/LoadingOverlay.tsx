@@ -78,10 +78,10 @@ export const LoadingOverlay = ({
   }
 
   const sizeMap: Record<"sm" | "md" | "lg" | "xl", ComponentSize> = {
-    sm: "small",
-    md: "medium",
-    lg: "large",
-    xl: "large",
+    sm: "sm",
+    md: "md",
+    lg: "lg",
+    xl: "lg",
   };
   const mappedSize = loaderSize ? sizeMap[loaderSize] : undefined;
 

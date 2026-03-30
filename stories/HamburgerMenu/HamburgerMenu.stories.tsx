@@ -19,7 +19,7 @@ const meta: Meta<typeof HamburgerMenu> = {
     },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
       description: "Size of the hamburger menu",
     },
     color: {
@@ -53,21 +53,21 @@ const renderWithState = (args: HamburgerMenuProps) => {
 export const Default: Story = {
   args: {
     isOpen: false,
-    size: "medium",
+    size: "md",
   },
   render: renderWithState,
 };
 
 export const Small: Story = {
   args: {
-    size: "small",
+    size: "sm",
   },
   render: renderWithState,
 };
 
 export const Large: Story = {
   args: {
-    size: "large",
+    size: "lg",
   },
   render: renderWithState,
 };

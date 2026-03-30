@@ -159,7 +159,7 @@ export const Pagination = ({
               disabled={current === 1}
               aria-label={t("a11y.go_to_prev_page")}
             >
-              <Icon name="ChevronLeftIcon" size="small" />
+              <Icon name="ChevronLeftIcon" size="sm" />
             </button>
           </li>
           <li className="wim-pagination__item wim-pagination__simple-pager">
@@ -179,7 +179,7 @@ export const Pagination = ({
               disabled={current === totalPages}
               aria-label={t("a11y.go_to_next_page")}
             >
-              <Icon name="ChevronRightIcon" size="small" />
+              <Icon name="ChevronRightIcon" size="sm" />
             </button>
           </li>
         </ul>
@@ -210,7 +210,7 @@ export const Pagination = ({
               disabled={current === 1}
               aria-label={t("a11y.go_to_prev_page")}
             >
-              <Icon name="ChevronLeftIcon" size="small" />
+              <Icon name="ChevronLeftIcon" size="sm" />
             </button>
           </li>
 
@@ -269,7 +269,7 @@ export const Pagination = ({
               disabled={current === totalPages}
               aria-label={t("a11y.go_to_next_page")}
             >
-              <Icon name="ChevronRightIcon" size="small" />
+              <Icon name="ChevronRightIcon" size="sm" />
             </button>
           </li>
         </ul>

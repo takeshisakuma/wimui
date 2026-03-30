@@ -10,7 +10,7 @@ const meta: Meta<typeof Link> = {
   argTypes: {
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
     priority: {
       control: "select",
@@ -92,7 +92,7 @@ export const WithIconRight: Story = {
 export const Small: Story = {
   args: {
     label: "Small Link",
-    size: "small",
+    size: "sm",
     href: "#",
   },
 };
@@ -100,7 +100,7 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     label: "Large Link",
-    size: "large",
+    size: "lg",
     href: "#",
   },
 };

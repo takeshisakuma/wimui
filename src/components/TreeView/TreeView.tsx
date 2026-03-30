@@ -539,7 +539,7 @@ const TreeView = ({
                     }
                     tabIndex={-1}
                   >
-                    <Icon name="ChevronRightIcon" size="small" />
+                    <Icon name="ChevronRightIcon" size="sm" />
                   </button>
                 ) : (
                   <span className="wim-tree-view-item__spacer" />
@@ -879,7 +879,7 @@ export const TreeViewItem = ({
                 aria-label={isExpanded ? `Collapse ${typeof label === "string" ? label : ""}` : `Expand ${typeof label === "string" ? label : ""}`}
                 tabIndex={-1}
               >
-                <Icon name="ChevronRightIcon" size="small" />
+                <Icon name="ChevronRightIcon" size="sm" />
               </button>
             )}
             {!hasChildren && <span className="wim-tree-view-item__spacer" />}

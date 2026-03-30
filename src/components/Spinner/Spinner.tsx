@@ -22,7 +22,7 @@ type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
  * 読み込み中であることを示すための回転するインジケーター。
  */
 export const Spinner = ({
-  size = "medium",
+  size = "md",
   color = "primary",
   label,
   labelPosition = "right",
@@ -50,7 +50,7 @@ export const Spinner = ({
       <svg
         className={classNames(
           "wim-spinner",
-          `wim-spinner--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+          `wim-spinner--${size}`,
           !isCustomColor && `wim-spinner--${color}`,
         )}
         viewBox="0 0 50 50"

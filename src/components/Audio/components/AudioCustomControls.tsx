@@ -91,7 +91,7 @@ export function AudioCustomControls({
             onClick={() => setRepeatMode((m) => ((m + 1) % 3) as 0 | 1 | 2)}
             title={`Repeat ${repeatMode === 0 ? "Off" : repeatMode === 1 ? "One" : "All"}`}
           >
-            <Icon name="RepeatIcon" size="small" />
+            <Icon name="RepeatIcon" size="sm" />
             {repeatMode === 1 && <span className="wim-audio-badge">1</span>}
           </button>
           <button
@@ -100,7 +100,7 @@ export function AudioCustomControls({
             onClick={() => setShuffleMode((s) => !s)}
             title="Shuffle"
           >
-            <Icon name="ShuffleIcon" size="small" />
+            <Icon name="ShuffleIcon" size="sm" />
           </button>
           {playbackRate && (
             <button
@@ -127,7 +127,7 @@ export function AudioCustomControls({
               onClick={() => setIsBassBoost(!isBassBoost)}
               title="Bass Boost"
             >
-              <Icon name="ChartIcon" size="small" />
+              <Icon name="ChartIcon" size="sm" />
             </button>
           )}
 
@@ -141,7 +141,7 @@ export function AudioCustomControls({
               onClick={toggleSleepTimer}
               title="Sleep Timer (15m)"
             >
-              <Icon name="ClockIcon" size="small" />
+              <Icon name="ClockIcon" size="sm" />
               {remainingSleepTime !== null && (
                 <span className="wim-audio-badge" style={{ fontSize: "7px" }}>
                   {Math.ceil(remainingSleepTime / 60)}
@@ -159,7 +159,7 @@ export function AudioCustomControls({
             >
               <Icon
                 name={isMuted || volume === 0 ? "MuteIcon" : "VolumeIcon"}
-                size="small"
+                size="sm"
               />
             </button>
             <input
@@ -188,7 +188,7 @@ export function AudioCustomControls({
             onClick={() => playNext(-1)}
             title="Previous"
           >
-            <Icon name="ChevronLeftIcon" size="small" />
+            <Icon name="ChevronLeftIcon" size="sm" />
           </button>
           <button
             type="button"
@@ -197,7 +197,7 @@ export function AudioCustomControls({
             title={isPlaying ? t("a11y.pause") : t("a11y.play")}
             aria-label={isPlaying ? t("a11y.pause") : t("a11y.play")}
           >
-            <Icon name={isPlaying ? "PauseIcon" : "PlayIcon"} size="small" />
+            <Icon name={isPlaying ? "PauseIcon" : "PlayIcon"} size="sm" />
           </button>
           <button
             type="button"
@@ -205,7 +205,7 @@ export function AudioCustomControls({
             onClick={() => playNext(1)}
             title="Next"
           >
-            <Icon name="ChevronRightIcon" size="small" />
+            <Icon name="ChevronRightIcon" size="sm" />
           </button>
         </div>
       </div>

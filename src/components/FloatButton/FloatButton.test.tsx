@@ -77,12 +77,12 @@ describe("FloatButton", () => {
   });
 
   it("renders small size", () => {
-    render(<FloatButton size="small" />);
+    render(<FloatButton size="sm" />);
     expect(screen.getByRole("button")).toHaveClass("wim-float-button--sm");
   });
 
   it("renders large size", () => {
-    render(<FloatButton size="large" />);
+    render(<FloatButton size="lg" />);
     expect(screen.getByRole("button")).toHaveClass("wim-float-button--lg");
   });
 

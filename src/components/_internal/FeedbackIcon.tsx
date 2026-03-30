@@ -31,7 +31,7 @@ export interface FeedbackIconProps {
 export const FeedbackIcon = ({
   status = "info",
   icon,
-  size = "small",
+  size = "sm",
   className,
   color,
 }: FeedbackIconProps) => {

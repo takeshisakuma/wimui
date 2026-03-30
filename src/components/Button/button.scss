@@ -106,7 +106,7 @@
       font-size: var(--wim-font-size-sm);
     }
 
-    &--primary {
+    &--filled {
       --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
 
       background-image: var(--wim-glass-gradient);
@@ -150,7 +150,7 @@
       }
     }
 
-    &--secondary {
+    &--outlined {
       --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
 
       &.wim-button--default {
@@ -192,7 +192,7 @@
       }
     }
 
-    &--tertiary {
+    &--ghost {
       --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
 
       background-color: rgb(0 0 0 / 0.03);
@@ -251,15 +251,15 @@
 // ─── ダークモード上書き ───────────────────────────────────────────────────────
 
 @mixin wim-button-dark {
-  // secondary default: 濃紺テキストが暗背景で消えるため白テキスト+セカンダリ背景に変更
-  &--secondary.wim-button--default {
+  // outlined default: 濃紺テキストが暗背景で消えるため白テキスト+セカンダリ背景に変更
+  &--outlined.wim-button--default {
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-secondary);
     border-color: var(--wim-color-border);
   }
 
-  // tertiary: rgb(0 0 0 / 0.03) は暗背景で不可視になるため白ベース半透明に変更
-  &--tertiary {
+  // ghost: rgb(0 0 0 / 0.03) は暗背景で不可視になるため白ベース半透明に変更
+  &--ghost {
     background-color: rgb(255 255 255 / 0.06);
     border-color: rgb(255 255 255 / 0.15);
 

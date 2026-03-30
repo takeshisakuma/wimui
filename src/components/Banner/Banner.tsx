@@ -71,7 +71,7 @@ export const Banner = ({
               <FeedbackIcon
                 status={status}
                 icon={typeof icon === "boolean" ? undefined : icon}
-                size="small"
+                size="sm"
               />
             </div>
           )}
@@ -92,7 +92,7 @@ export const Banner = ({
           <FeedbackCloseButton
              onClose={onClose}
              className="wim-banner__close"
-             size="small"
+             size="sm"
           />
         </div>
       </div>

@@ -67,7 +67,7 @@ export const Alert = ({
       {...props}
     >
       <div className="wim-alert__icon">
-        <FeedbackIcon status={status} icon={icon} size="small" />
+        <FeedbackIcon status={status} icon={icon} size="sm" />
       </div>
       <div className="wim-alert__content">
         {title && <h4 className="wim-alert__title">{t(title)}</h4>}
@@ -80,7 +80,7 @@ export const Alert = ({
       <FeedbackCloseButton
         onClose={onClose ? handleClose : undefined}
         className="wim-alert__close"
-        size="small"
+        size="sm"
       />
     </div>
   );

@@ -16,14 +16,14 @@ type Story = StoryObj<typeof Kbd>;
 export const Primary: Story = {
   args: {
     children: "⌘",
-    size: "medium",
+    size: "md",
   },
 };
 
 export const Small: Story = {
   args: {
     children: "K",
-    size: "small",
+    size: "sm",
   },
 };
 

@@ -20,7 +20,7 @@ const meta: Meta<typeof Progress> = {
     },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
   },
 };
@@ -67,9 +67,9 @@ export const Sizes: Story = {
         width: "100%",
       }}
     >
-      <Progress {...args} size="small" value={50} label="Small" />
-      <Progress {...args} size="medium" value={50} label="Medium" />
-      <Progress {...args} size="large" value={50} label="Large" />
+      <Progress {...args} size="sm" value={50} label="Small" />
+      <Progress {...args} size="md" value={50} label="Medium" />
+      <Progress {...args} size="lg" value={50} label="Large" />
     </div>
   ),
 };

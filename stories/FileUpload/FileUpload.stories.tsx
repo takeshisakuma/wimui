@@ -23,7 +23,7 @@ const meta: Meta<typeof FileUpload> = {
     },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
   },
 };
@@ -71,7 +71,7 @@ export const AcceptImages: Story = {
         noFileLabel={t("story.fileupload_no_file")}
         accept="image/*"
         iconName="ImageIcon"
-        size="large"
+        size="lg"
       />
     );
   },
@@ -103,7 +103,7 @@ export const WithIcon: Story = {
         noFileLabel={t("story.fileupload_no_file")}
         iconName="UploadIcon"
         iconPosition="left"
-        size="large"
+        size="lg"
       />
     );
   },

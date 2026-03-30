@@ -61,7 +61,7 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
       actions,
       variant = "dashed",
       bgVariant = "default",
-      size = "medium",
+      size = "md",
       isDragging = false,
       isClickable = false,
       disabled = false,

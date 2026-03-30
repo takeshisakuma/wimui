@@ -166,7 +166,7 @@ export const ChatAvatar = ({
   src,
   alt: altProp,
   fallback,
-  size = "medium",
+  size = "md",
   color = "s18",
   className,
 }: ChatAvatarProps): React.ReactElement => {

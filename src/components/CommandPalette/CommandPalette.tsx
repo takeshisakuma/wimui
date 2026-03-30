@@ -323,7 +323,7 @@ export const CommandPaletteInput = ({
 
   return (
     <div className="wim-command-palette-input-wrapper">
-      <Icon name="SearchIcon" size="small" />
+      <Icon name="SearchIcon" size="sm" />
       <input
         className="wim-command-palette-input"
         placeholder={placeholder}

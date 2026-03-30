@@ -152,7 +152,7 @@ export const Snackbar = ({
               <div className="wim-snackbar__icon">
                 <FeedbackIcon
                   status={status}
-                  size="small"
+                  size="sm"
                 />
               </div>
             )}
@@ -162,8 +162,8 @@ export const Snackbar = ({
           <div className="wim-snackbar__actions">
             {actionLabel && (
               <Button
-                priority="tertiary"
-                size="small"
+                variant="ghost"
+                size="sm"
                 onClick={handleAction}
                 className="wim-snackbar__action-button"
                 label={actionLabel}
@@ -172,7 +172,7 @@ export const Snackbar = ({
             <FeedbackCloseButton
               onClose={showCloseButton ? handleClose : undefined}
               className="wim-snackbar__close-button"
-              size="small"
+              size="sm"
             />
           </div>
         </div>

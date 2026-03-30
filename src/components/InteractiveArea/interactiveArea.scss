@@ -42,12 +42,12 @@
     }
   
     // Sizes
-    &--small {
+    &--sm {
       --area-min-height: 100px;
       --area-padding-y: var(--wim-spacing-lg);
     }
   
-    &--large {
+    &--lg {
       --area-min-height: 240px;
       --area-padding-y: var(--wim-spacing-4xl);
       --area-radius: 12px;

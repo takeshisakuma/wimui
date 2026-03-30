@@ -24,7 +24,7 @@ export const HamburgerMenu = React.forwardRef<
     {
       isOpen = false,
       onClick,
-      size = "medium",
+      size = "md",
       color,
       className,
       style,
@@ -38,7 +38,7 @@ export const HamburgerMenu = React.forwardRef<
         type="button"
         className={classNames(
           "wim-hamburger-menu",
-          `wim-hamburger-menu--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+          `wim-hamburger-menu--${size}`,
           isOpen && "wim-hamburger-menu--open",
           className,
         )}

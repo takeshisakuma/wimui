@@ -29,8 +29,8 @@ export const LargePrimaryButton: Story = {
     return <Button {...args} label={t("button.label")} />;
   },
   args: {
-    size: "large",
-    priority: "primary",
+    size: "lg",
+    variant: "filled",
   },
 };
 
@@ -40,8 +40,8 @@ export const MediumSecondaryButton: Story = {
     return <Button {...args} label={t("button.label")} />;
   },
   args: {
-    size: "medium",
-    priority: "secondary",
+    size: "md",
+    variant: "outlined",
   },
 };
 
@@ -51,8 +51,8 @@ export const SmallTertiaryButton: Story = {
     return <Button {...args} label={t("button.label")} />;
   },
   args: {
-    size: "small",
-    priority: "tertiary",
+    size: "sm",
+    variant: "ghost",
   },
 };
 
@@ -62,8 +62,8 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
     return <Button {...args} label={t("button.label")} />;
   },
   args: {
-    size: "small",
-    priority: "tertiary",
+    size: "sm",
+    variant: "ghost",
     intent: "destructive",
     icon: "CircleIcon",
     iconPosition: "left",
@@ -77,8 +77,8 @@ export const DisabledButton: Story = {
     return <Button {...args} label={t("button.label")} />;
   },
   args: {
-    size: "medium",
-    priority: "primary",
+    size: "md",
+    variant: "filled",
     disabled: true,
   },
 };
@@ -89,8 +89,8 @@ export const MediumPrimaryLoadingProcessingButton: Story = {
     return <Button {...args} label={t("processing")} />;
   },
   args: {
-    size: "medium",
-    priority: "primary",
+    size: "md",
+    variant: "filled",
     loading: true,
   },
 };
@@ -101,8 +101,8 @@ export const MediumSecondaryLoadingSavingButton: Story = {
     return <Button {...args} label={t("saving")} />;
   },
   args: {
-    size: "medium",
-    priority: "secondary",
+    size: "md",
+    variant: "outlined",
     loading: true,
   },
 };
@@ -130,8 +130,8 @@ export const MediumPrimaryInteractiveLoadingButton: Story = {
     );
   },
   args: {
-    size: "medium",
-    priority: "primary",
+    size: "md",
+    variant: "filled",
   },
 };
 
@@ -160,8 +160,8 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
     );
   },
   args: {
-    size: "medium",
-    priority: "secondary",
+    size: "md",
+    variant: "outlined",
   },
 };
 
@@ -170,7 +170,7 @@ export const WithChildren: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Button priority="primary" size="medium">
+      <Button variant="filled" size="md">
         {t("story.button_click_me")}
       </Button>
     );

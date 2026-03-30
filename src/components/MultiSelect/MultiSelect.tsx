@@ -286,7 +286,7 @@ export const MultiSelect = ({
                 ? selectedOptions.map((opt) => (
                   <Chip
                     key={opt.value}
-                    size="small"
+                    size="sm"
                     color="primary"
                     variant="solid"
                     disabled={disabled}
@@ -329,7 +329,7 @@ export const MultiSelect = ({
                   onClick={() => !option.disabled && handleSelect(option.value)}
                   onMouseEnter={() => setFocusedIndex(index)}
                   rightSection={
-                    isSelected ? <Icon name="CheckIcon" size="small" /> : undefined
+                    isSelected ? <Icon name="CheckIcon" size="sm" /> : undefined
                   }
                   role="option"
                   aria-selected={isSelected}

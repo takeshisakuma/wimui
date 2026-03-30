@@ -20,7 +20,7 @@ const meta: Meta<typeof Spinner> = {
     },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
     labelPosition: {
       control: "radio",
@@ -55,9 +55,9 @@ export const Colors: Story = {
 export const Sizes: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-      <Spinner {...args} size="small" />
-      <Spinner {...args} size="medium" />
-      <Spinner {...args} size="large" />
+      <Spinner {...args} size="sm" />
+      <Spinner {...args} size="md" />
+      <Spinner {...args} size="lg" />
     </div>
   ),
 };

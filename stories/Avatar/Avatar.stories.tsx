@@ -14,7 +14,7 @@ const meta: Meta<typeof Avatar> = {
   argTypes: {
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
     shape: {
       control: "radio",
@@ -54,9 +54,9 @@ export const Initials: Story = {
 export const Sizes: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-      <Avatar {...args} size="small" initials="SM" status="neutral" />
-      <Avatar {...args} size="medium" initials="MD" status="neutral" />
-      <Avatar {...args} size="large" initials="LG" status="neutral" />
+      <Avatar {...args} size="sm" initials="SM" status="neutral" />
+      <Avatar {...args} size="md" initials="MD" status="neutral" />
+      <Avatar {...args} size="lg" initials="LG" status="neutral" />
     </div>
   ),
 };

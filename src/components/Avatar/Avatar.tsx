@@ -23,7 +23,7 @@ export const Avatar = ({
   alt = "",
   initials,
   icon,
-  size = "medium",
+  size = "md",
   shape = "circle",
   status,
   className,
@@ -52,7 +52,7 @@ export const Avatar = ({
     <div
       className={classNames(
         "wim-avatar",
-        `wim-avatar--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        `wim-avatar--${size}`,
         `wim-avatar--${shape}`,
         status && `wim-avatar--${status}`,
         className,

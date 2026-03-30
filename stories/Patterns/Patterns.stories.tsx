@@ -56,7 +56,7 @@ export const LoginForm: StoryObj = {
             <Paragraph
               content="Please enter your details to sign in"
               color="deepgray"
-              size="small"
+              size="sm"
             />
           </Stack>
 
@@ -101,13 +101,13 @@ export const LoginForm: StoryObj = {
 
               <Stack gap="sm">
                 <Button
-                  priority="primary"
+                  variant="filled"
                   style={{ width: "100%" }}
                   label="Sign In"
                 />
 
                 <Button
-                  priority="secondary"
+                  variant="outlined"
                   style={{ width: "100%" }}
                   onClick={() => {}}
                   label="Sign in with Google"
@@ -119,7 +119,7 @@ export const LoginForm: StoryObj = {
           <Stack direction="row" justify="center" gap="2xs">
             <Paragraph
               content="Don't have an account?"
-              size="small"
+              size="sm"
               color="gray"
             />
             <Link href="#" style={{ fontSize: "0.875rem" }}>
@@ -256,13 +256,13 @@ export const DashboardHeader: StoryObj = {
           >
             <Icon
               name="BellIcon"
-              size="medium"
+              size="md"
               color="secondary"
               aria-label="Notifications"
             />
             <Badge
               status="secondary"
-              size="small"
+              size="sm"
               content="3"
               style={{
                 position: "absolute",
@@ -281,7 +281,7 @@ export const DashboardHeader: StoryObj = {
             gap="sm"
             style={{ cursor: "pointer" }}
           >
-            <Avatar size="medium" />
+            <Avatar size="md" />
             <Stack gap="none" className="desktop-only">
               <span
                 style={{
@@ -321,7 +321,7 @@ export const DashboardHeader: StoryObj = {
               >
                 <Stack justify="space-between" align="center" direction="row">
                   <Stats.Label>Total Revenue</Stats.Label>
-                  <Badge status="neutral" content="+12.5%" size="small" />
+                  <Badge status="neutral" content="+12.5%" size="sm" />
                 </Stack>
                 <Stats.Value>
                   <Heading tag="h3" size="xl" style={{ whiteSpace: "nowrap" }}>
@@ -402,7 +402,7 @@ export const UserProfileForm: StoryObj = {
                   }}
                 >
                   <Avatar
-                    size="large"
+                    size="lg"
                     style={{ width: "80px", height: "80px", fontSize: "2rem" }}
                   />
                   <Stack gap="xs">
@@ -411,11 +411,11 @@ export const UserProfileForm: StoryObj = {
                     </Heading>
                     <div style={{ display: "flex", gap: "12px" }}>
                       <Button
-                        size="small"
-                        priority="secondary"
+                        size="sm"
+                        variant="outlined"
                         label="Change"
                       />
-                      <Button size="small" priority="tertiary" label="Remove" />
+                      <Button size="sm" variant="ghost" label="Remove" />
                     </div>
                   </Stack>
                 </div>
@@ -472,7 +472,7 @@ export const UserProfileForm: StoryObj = {
                       />
                       <Paragraph
                         content="0 / 500 characters"
-                        size="ex-small"
+                        size="xs"
                         color="gray"
                         style={{ textAlign: "right" }}
                       />
@@ -559,8 +559,8 @@ export const UserProfileForm: StoryObj = {
 
                 <Divider />
                 <Group justify="end" gap="md">
-                  <Button priority="tertiary" label="Cancel" />
-                  <Button priority="primary" label="Save Changes" />
+                  <Button variant="ghost" label="Cancel" />
+                  <Button variant="filled" label="Save Changes" />
                 </Group>
               </Stack>
             </form>
@@ -634,7 +634,7 @@ export const PricingTable: StoryObj = {
                   <Paragraph
                     content="/month"
                     color="gray"
-                    size="small"
+                    size="sm"
                     style={{ whiteSpace: "nowrap" }}
                   />
                 </Stack>
@@ -648,7 +648,7 @@ export const PricingTable: StoryObj = {
               >
                 <Paragraph
                   content="Perfect for individuals just getting started."
-                  size="small"
+                  size="sm"
                   color="deepgray"
                   style={{ textAlign: "center", margin: 0 }}
                 />
@@ -672,7 +672,7 @@ export const PricingTable: StoryObj = {
             </Stack>
 
             <Button
-              priority="secondary"
+              variant="outlined"
               label="Get Started"
               style={{ width: "100%" }}
             />
@@ -694,7 +694,7 @@ export const PricingTable: StoryObj = {
               transform: "translateX(-50%)",
             }}
           >
-            <Badge status="primary" content="MOST POPULAR" size="small" />
+            <Badge status="primary" content="MOST POPULAR" size="sm" />
           </div>
           <Stack gap="lg" style={{ height: "100%" }}>
             <Stack gap="lg" align="center" style={{ flex: 1 }}>
@@ -729,7 +729,7 @@ export const PricingTable: StoryObj = {
                   <Paragraph
                     content="/month"
                     color="gray"
-                    size="small"
+                    size="sm"
                     style={{ whiteSpace: "nowrap" }}
                   />
                 </Stack>
@@ -743,7 +743,7 @@ export const PricingTable: StoryObj = {
               >
                 <Paragraph
                   content="Advanced features for growing teams."
-                  size="small"
+                  size="sm"
                   color="deepgray"
                   style={{ textAlign: "center", margin: 0 }}
                 />
@@ -761,7 +761,7 @@ export const PricingTable: StoryObj = {
             </Stack>
 
             <Button
-              priority="primary"
+              variant="filled"
               label="Upgrade to Pro"
               style={{ width: "100%" }}
             />
@@ -807,7 +807,7 @@ export const PricingTable: StoryObj = {
                   <Paragraph
                     content="/month"
                     color="gray"
-                    size="small"
+                    size="sm"
                     style={{ whiteSpace: "nowrap" }}
                   />
                 </Stack>
@@ -821,7 +821,7 @@ export const PricingTable: StoryObj = {
               >
                 <Paragraph
                   content="Custom solutions for large organizations."
-                  size="small"
+                  size="sm"
                   color="deepgray"
                   style={{ textAlign: "center", margin: 0 }}
                 />
@@ -840,7 +840,7 @@ export const PricingTable: StoryObj = {
             </Stack>
 
             <Button
-              priority="secondary"
+              variant="outlined"
               label="Contact Sales"
               style={{ width: "100%" }}
             />
@@ -882,7 +882,7 @@ export const HeroSection: StoryObj = {
                 </Heading>
                 <Paragraph
                   content="WIM UI provides a comprehensive set of premium components and tools to help you create stunning user experiences in Record time."
-                  size="large"
+                  size="lg"
                   color="deepgray"
                 />
               </Stack>
@@ -890,26 +890,26 @@ export const HeroSection: StoryObj = {
 
             <Group gap="xl" wrap="wrap" justify="evenly">
               <Button
-                priority="primary"
-                size="medium"
+                variant="filled"
+                size="md"
                 label="Get Started For Free"
               />
               <Button
-                priority="secondary"
-                size="medium"
+                variant="outlined"
+                size="md"
                 label="View Documentation"
               />
             </Group>
 
             <Stack direction="row" align="center" gap="md">
-              <AvatarGroup size="small">
+              <AvatarGroup size="sm">
                 {[1, 2, 3, 4].map((i) => (
                   <Avatar key={i} />
                 ))}
               </AvatarGroup>
               <Paragraph
                 content="Join 10,000+ developers"
-                size="small"
+                size="sm"
                 color="deepgray"
               />
             </Stack>
@@ -1033,8 +1033,8 @@ export const ErrorPage: StoryObj = {
         </Alert>
 
         <Stack direction={{ base: "column", sm: "row" }} gap="xl">
-          <Button priority="primary" label="Back to Homepage" />
-          <Button priority="secondary" label="Contact Support" />
+          <Button variant="filled" label="Back to Homepage" />
+          <Button variant="outlined" label="Contact Support" />
         </Stack>
       </Stack>
     </Center>

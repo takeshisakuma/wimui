@@ -266,7 +266,7 @@ export const WithIcons: Story = {
                     color: "white",
                   }}
                 >
-                  <Icon name="UserIcon" size="small" />
+                  <Icon name="UserIcon" size="sm" />
                 </div>
               }
               senderName={t("story.chat_customer_support")}
@@ -290,7 +290,7 @@ export const WithIcons: Story = {
                     color: "white",
                   }}
                 >
-                  <Icon name="UserIcon" size="small" />
+                  <Icon name="UserIcon" size="sm" />
                 </div>
               }
               senderName={t("story.chat_you")}
@@ -356,19 +356,19 @@ export const AvatarSizes: Story = {
           <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
             {t("story.chat_size_small")}
           </p>
-          <ChatAvatar size="small" fallback="S" />
+          <ChatAvatar size="sm" fallback="S" />
         </div>
         <div>
           <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
             {t("story.chat_size_medium")}
           </p>
-          <ChatAvatar size="medium" fallback="M" />
+          <ChatAvatar size="md" fallback="M" />
         </div>
         <div>
           <p style={{ marginBottom: "8px", fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
             {t("story.chat_size_large")}
           </p>
-          <ChatAvatar size="large" fallback="L" />
+          <ChatAvatar size="lg" fallback="L" />
         </div>
       </div>
     );
@@ -504,7 +504,7 @@ export const AiAssistantIntegration: Story = {
                         color: "white",
                       }}
                     >
-                      <Icon name="StarIcon" size="small" />
+                      <Icon name="StarIcon" size="sm" />
                     </div>
                   ) : (
                     <ChatAvatar fallback="Y" color="s18" />

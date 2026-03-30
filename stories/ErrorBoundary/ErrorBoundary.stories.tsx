@@ -37,7 +37,7 @@ export const Default: Story = {
           <Button
             onClick={() => setShouldThrow(true)}
             label={t("story.errorboundary_btn_trigger")}
-            priority="primary"
+            variant="filled"
           />
           <ErrorBoundary onReset={() => setShouldThrow(false)}>
             {shouldThrow ? (
@@ -62,7 +62,7 @@ export const CustomFallback: Story = {
           <Button
             onClick={() => setShouldThrow(true)}
             label={t("story.errorboundary_btn_trigger_custom")}
-            priority="primary"
+            variant="filled"
           />
           <ErrorBoundary
             onReset={() => setShouldThrow(false)}
@@ -76,8 +76,8 @@ export const CustomFallback: Story = {
                   <Button
                     onClick={reset}
                     label={t("story.errorboundary_btn_reset")}
-                    priority="secondary"
-                    size="small"
+                    variant="outlined"
+                    size="sm"
                   />
                 </div>
               </Alert>

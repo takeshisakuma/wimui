@@ -24,17 +24,17 @@ describe("Tabs", () => {
     expect(screen.getByText("Content 2")).toBeInTheDocument();
   });
 
-  it("calls onValueChange when a trigger is clicked", () => {
-    const onValueChange = vi.fn();
+  it("calls onChange when a trigger is clicked", () => {
+    const onChange = vi.fn();
     render(
-      <Tabs onValueChange={onValueChange}>
+      <Tabs onChange={onChange}>
         <Tabs.List>
           <Tabs.Trigger value="test">Test</Tabs.Trigger>
         </Tabs.List>
       </Tabs>,
     );
     fireEvent.click(screen.getByText("Test"));
-    expect(onValueChange).toHaveBeenCalledWith("test");
+    expect(onChange).toHaveBeenCalledWith("test");
   });
 
   it("throws error when Tabs.List is used outside Tabs", () => {
@@ -58,9 +58,9 @@ describe("Tabs", () => {
   });
 
   it("handles keyboard navigation (horizontal)", () => {
-    const onValueChange = vi.fn();
+    const onChange = vi.fn();
     render(
-      <Tabs defaultValue="t1" onValueChange={onValueChange}>
+      <Tabs defaultValue="t1" onChange={onChange}>
         <Tabs.List>
           <Tabs.Trigger value="t1">1</Tabs.Trigger>
           <Tabs.Trigger value="t2">2</Tabs.Trigger>
@@ -71,27 +71,27 @@ describe("Tabs", () => {
     const list = screen.getByRole("tablist");
 
     fireEvent.keyDown(list, { key: "ArrowRight" });
-    expect(onValueChange).toHaveBeenCalledWith("t2");
+    expect(onChange).toHaveBeenCalledWith("t2");
 
     fireEvent.keyDown(list, { key: "ArrowLeft" });
     // It was at t2, so left goes to t1
-    expect(onValueChange).toHaveBeenLastCalledWith("t1");
+    expect(onChange).toHaveBeenLastCalledWith("t1");
 
     fireEvent.keyDown(list, { key: "End" });
-    expect(onValueChange).toHaveBeenLastCalledWith("t3");
+    expect(onChange).toHaveBeenLastCalledWith("t3");
 
     fireEvent.keyDown(list, { key: "Home" });
-    expect(onValueChange).toHaveBeenLastCalledWith("t1");
+    expect(onChange).toHaveBeenLastCalledWith("t1");
 
     fireEvent.keyDown(list, { key: "ArrowLeft" });
     // From t1, left goes to t3
-    expect(onValueChange).toHaveBeenLastCalledWith("t3");
+    expect(onChange).toHaveBeenLastCalledWith("t3");
   });
 
   it("handles keyboard navigation (vertical)", () => {
-    const onValueChange = vi.fn();
+    const onChange = vi.fn();
     render(
-      <Tabs defaultValue="t2" orientation="vertical" onValueChange={onValueChange}>
+      <Tabs defaultValue="t2" orientation="vertical" onChange={onChange}>
         <Tabs.List>
           <Tabs.Trigger value="t1">1</Tabs.Trigger>
           <Tabs.Trigger value="t2">2</Tabs.Trigger>
@@ -102,10 +102,10 @@ describe("Tabs", () => {
     const list = screen.getByRole("tablist");
 
     fireEvent.keyDown(list, { key: "ArrowDown" });
-    expect(onValueChange).toHaveBeenLastCalledWith("t3");
+    expect(onChange).toHaveBeenLastCalledWith("t3");
 
     fireEvent.keyDown(list, { key: "ArrowUp" });
-    expect(onValueChange).toHaveBeenLastCalledWith("t2");
+    expect(onChange).toHaveBeenLastCalledWith("t2");
   });
 
   it("handles dragging in horizontal mode", () => {

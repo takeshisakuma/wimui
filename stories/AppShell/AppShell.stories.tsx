@@ -57,10 +57,10 @@ export const Default: Story = {
               </div>
             </Header.Section>
             <Header.Section align="end" style={{ gap: "8px" }}>
-              <Button priority="tertiary" size="small">
+              <Button variant="ghost" size="sm">
                 {t("story.appshell_docs")}
               </Button>
-              <Button priority="primary" size="small">
+              <Button variant="filled" size="sm">
                 {t("story.appshell_signin")}
               </Button>
             </Header.Section>
@@ -112,7 +112,7 @@ export const ModernApp: Story = {
             <Header.Section align="end" style={{ gap: "12px" }}>
               <Icon name="BellIcon" style={{ cursor: "pointer" }} />
               <Icon name="StarIcon" style={{ cursor: "pointer" }} />
-              <Button priority="primary" size="small">
+              <Button variant="filled" size="sm">
                 {t("story.appshell_checkout")}
               </Button>
             </Header.Section>

@@ -205,8 +205,8 @@ describe("ChatAvatar", () => {
   });
 
   it("applies size classes", () => {
-    const { container } = render(<ChatAvatar size="large" />);
-    expect(container.firstChild).toHaveClass("wim-chat-avatar--large");
+    const { container } = render(<ChatAvatar size="lg" />);
+    expect(container.firstChild).toHaveClass("wim-chat-avatar--lg");
   });
 
   it("shows fallback when image fails to load", () => {

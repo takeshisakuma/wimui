@@ -14,14 +14,14 @@ describe("Spinner", () => {
   });
 
   it("applies size and color classes to svg", () => {
-    const { container } = render(<Spinner size="large" color="success" />);
+    const { container } = render(<Spinner size="lg" color="success" />);
     const svg = container.querySelector("svg");
     expect(svg).toHaveClass("wim-spinner--lg");
     expect(svg).toHaveClass("wim-spinner--success");
   });
 
   it("applies small size class", () => {
-    const { container } = render(<Spinner size="small" />);
+    const { container } = render(<Spinner size="sm" />);
     expect(container.querySelector("svg")).toHaveClass("wim-spinner--sm");
   });
 

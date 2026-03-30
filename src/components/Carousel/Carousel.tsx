@@ -299,7 +299,7 @@ export const Carousel = ({
             disabled={!loop && currentIndex === 0}
             tabIndex={-1} // 親要素でフォーカス管理するためボタン自体のタブ移動はスキップしても良いが、好みによる
           >
-            <Icon name="ChevronLeftIcon" size="medium" />
+            <Icon name="ChevronLeftIcon" size="md" />
           </button>
           <button
             className="wim-carousel__control wim-carousel__control--next"
@@ -310,7 +310,7 @@ export const Carousel = ({
             }
             tabIndex={-1}
           >
-            <Icon name="ChevronRightIcon" size="medium" />
+            <Icon name="ChevronRightIcon" size="md" />
           </button>
         </>
       )}

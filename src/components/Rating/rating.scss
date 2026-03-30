@@ -4,19 +4,19 @@
     align-items: center;
 
     // サイズ指定用の変数
-    &--small {
+    &--sm {
       --wim-rating-star-size: 16px;
 
       gap: 2px;
     }
 
-    &--medium {
+    &--md {
       --wim-rating-star-size: 24px;
 
       gap: 4px;
     }
 
-    &--large {
+    &--lg {
       --wim-rating-star-size: 32px;
 
       gap: 6px;

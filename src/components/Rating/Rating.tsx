@@ -71,7 +71,7 @@ export const Rating = ({
   allowHalf = false,
   disabled = false,
   readOnly = false,
-  size = "medium",
+  size = "md",
   onChange,
   className,
   label,

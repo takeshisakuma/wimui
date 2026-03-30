@@ -8,7 +8,7 @@ const meta: Meta<typeof CopyButton> = {
   argTypes: {
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
   },
 };
@@ -25,13 +25,13 @@ export const Default: Story = {
 export const Small: Story = {
   args: {
     value: "Small CopyButton",
-    size: "small",
+    size: "sm",
   },
 };
 
 export const Large: Story = {
   args: {
     value: "Large CopyButton",
-    size: "large",
+    size: "lg",
   },
 };

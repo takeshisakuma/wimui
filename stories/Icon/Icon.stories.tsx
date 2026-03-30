@@ -29,7 +29,7 @@ export default {
   args: {
     onClick: fn(),
     name: "CircleIcon",
-    size: "medium",
+    size: "md",
     color: "destructive",
   },
 };
@@ -39,56 +39,56 @@ export default {
 export const MediumSquareIcon = {
   args: {
     name: "SquareIcon",
-    size: "medium",
+    size: "md",
     color: "primary",
   },
 };
 export const MediumCircleIcon = {
   args: {
     name: "CircleIcon",
-    size: "large",
+    size: "lg",
     color: "destructive",
   },
 };
 export const MediumLoadingIcon = {
   args: {
     name: "LoadingIcon",
-    size: "large",
+    size: "lg",
     color: "primary",
   },
 };
 export const MediumExternalLinkIcon = {
   args: {
     name: "ExternalLinkIcon",
-    size: "medium",
+    size: "md",
     color: "primary",
   },
 };
 export const MediumSpinnerIcon = {
   args: {
     name: "SpinnerIcon",
-    size: "large",
+    size: "lg",
     color: "primary",
   },
 };
 export const MediumMoreHorizontalIcon = {
   args: {
     name: "MoreHorizontalIcon",
-    size: "medium",
+    size: "md",
     color: "primary",
   },
 };
 export const MediumThumbUpIcon = {
   args: {
     name: "ThumbUpIcon",
-    size: "medium",
+    size: "md",
     color: "positive",
   },
 };
 export const MediumThumbDownIcon = {
   args: {
     name: "ThumbDownIcon",
-    size: "medium",
+    size: "md",
     color: "destructive",
   },
 };

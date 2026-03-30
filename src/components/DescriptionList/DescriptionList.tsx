@@ -16,7 +16,7 @@ export const DescriptionList = ({
   children,
   className,
   layout = "horizontal",
-  size = "medium",
+  size = "md",
   border = false,
   ...props
 }: DescriptionListProps) => {

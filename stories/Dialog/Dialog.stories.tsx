@@ -51,7 +51,7 @@ export const Default: Story = {
       <Dialog {...args}>
         <DialogTrigger asChild>
           <Button
-            priority="primary"
+            variant="filled"
             label={t("story.dialog_open")}
 
           />
@@ -78,13 +78,13 @@ export const Default: Story = {
           <DialogFooter>
             <DialogClose asChild>
               <Button
-                priority="secondary"
+                variant="outlined"
                 label={t("story.dialog_cancel")}
 
               />
             </DialogClose>
             <Button
-              priority="primary"
+              variant="filled"
               label={t("story.dialog_save")}
 
             />
@@ -102,7 +102,7 @@ export const Uncontrolled: Story = {
       <Dialog>
         <DialogTrigger asChild>
           <Button
-            priority="secondary"
+            variant="outlined"
             label={t("story.dialog_uncontrolled")}
 
           />
@@ -118,13 +118,13 @@ export const Uncontrolled: Story = {
           <DialogFooter>
             <DialogClose asChild>
               <Button
-                priority="secondary"
+                variant="outlined"
                 label={t("story.dialog_cancel")}
 
               />
             </DialogClose>
             <Button
-              priority="primary"
+              variant="filled"
               label={t("story.dialog_confirm")}
               onClick={() => alert(t("story.dialog_confirmed_msg"))}
 
@@ -153,7 +153,7 @@ export const Controlled: Story = {
           {t("story.dialog_curr_state")}: {open ? t("story.dialog_open_state") : t("story.dialog_closed_state")}
         </p>
         <Button
-          priority="primary"
+          variant="filled"
           label={t("story.dialog_state_open")}
           onClick={() => setOpen(true)}
 
@@ -170,13 +170,13 @@ export const Controlled: Story = {
             <p>{t("story.dialog_controlled_body")}</p>
             <DialogFooter>
               <Button
-                priority="secondary"
+                variant="outlined"
                 label={t("story.dialog_cancel")}
                 onClick={() => setOpen(false)}
 
               />
               <Button
-                priority="primary"
+                variant="filled"
                 label={t("story.dialog_state_close")}
                 onClick={() => setOpen(false)}
 

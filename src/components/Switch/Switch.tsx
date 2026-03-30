@@ -15,7 +15,7 @@ type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
  */
 export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
   (
-    { label, size = "medium", className, disabled, id: customId, ...props },
+    { label, size = "md", className, disabled, id: customId, ...props },
     ref,
   ) => {
     const { t } = useTranslation();
@@ -43,7 +43,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           switch=""
           className={classNames(
             "wim-switch-input",
-            size === "small" ? "wim-switch-input--sm" : size === "large" ? "wim-switch-input--lg" : null,
+            size !== "md" && `wim-switch-input--${size}`,
           )}
           disabled={disabled}
           ref={resolvedRef}

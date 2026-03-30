@@ -15,9 +15,9 @@ const meta: Meta<typeof ButtonGroup> = {
   argTypes: {
     gap: { control: "text" },
     joined: { control: "boolean" },
-    priority: {
+    variant: {
       control: "select",
-      options: ["primary", "secondary", "tertiary"],
+      options: ["filled", "outlined", "ghost"],
     },
   },
 };
@@ -30,9 +30,9 @@ export const LargeGroup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="large" label={t("story.button_click_me")} priority="primary" />
-        <Button size="large" label={t("story.button_click_me")} priority="secondary" />
-        <Button size="large" label={t("story.button_click_me")} priority="tertiary" />
+        <Button size="lg" label={t("story.button_click_me")} variant="filled" />
+        <Button size="lg" label={t("story.button_click_me")} variant="outlined" />
+        <Button size="lg" label={t("story.button_click_me")} variant="ghost" />
       </ButtonGroup>
     );
   },
@@ -43,9 +43,9 @@ export const MediumGroup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="medium" label={t("story.button_click_me")} priority="primary" />
-        <Button size="medium" label={t("story.button_click_me")} priority="secondary" />
-        <Button size="medium" label={t("story.button_click_me")} priority="tertiary" />
+        <Button size="md" label={t("story.button_click_me")} variant="filled" />
+        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
+        <Button size="md" label={t("story.button_click_me")} variant="ghost" />
       </ButtonGroup>
     );
   },
@@ -56,9 +56,9 @@ export const SmallGroup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="small" label={t("story.button_click_me")} priority="primary" />
-        <Button size="small" label={t("story.button_click_me")} priority="secondary" />
-        <Button size="small" label={t("story.button_click_me")} priority="tertiary" />
+        <Button size="sm" label={t("story.button_click_me")} variant="filled" />
+        <Button size="sm" label={t("story.button_click_me")} variant="outlined" />
+        <Button size="sm" label={t("story.button_click_me")} variant="ghost" />
       </ButtonGroup>
     );
   },
@@ -72,9 +72,9 @@ export const JoinedGroup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="medium" label={t("story.button_click_me")} priority="secondary" />
-        <Button size="medium" label={t("story.button_click_me")} priority="secondary" />
-        <Button size="medium" label={t("story.button_click_me")} priority="secondary" />
+        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
+        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
+        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
       </ButtonGroup>
     );
   },
@@ -83,15 +83,15 @@ export const JoinedGroup: Story = {
 export const JoinedGroupPrimary: Story = {
   args: {
     joined: true,
-    priority: "primary",
+    variant: "filled",
   },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="medium" label={t("story.button_click_me")} priority="secondary" />
-        <Button size="medium" label={t("story.button_click_me")} priority="secondary" />
-        <Button size="medium" label={t("story.button_click_me")} priority="secondary" />
+        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
+        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
+        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
       </ButtonGroup>
     );
   },
@@ -99,16 +99,16 @@ export const JoinedGroupPrimary: Story = {
 
 export const PriorityOverride: Story = {
   args: {
-    priority: "tertiary",
+    variant: "ghost",
     gap: "10px",
   },
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="medium" label={t("story.buttongroup_primary")} priority="primary" />
-        <Button size="medium" label={t("story.buttongroup_secondary")} priority="secondary" />
-        <Button size="medium" label={t("story.buttongroup_tertiary")} priority="tertiary" />
+        <Button size="md" label={t("story.buttongroup_primary")} variant="filled" />
+        <Button size="md" label={t("story.buttongroup_secondary")} variant="outlined" />
+        <Button size="md" label={t("story.buttongroup_tertiary")} variant="ghost" />
       </ButtonGroup>
     );
   },

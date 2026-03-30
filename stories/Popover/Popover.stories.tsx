@@ -41,7 +41,7 @@ export const Default: Story = {
     return (
       <Popover {...args}>
         <PopoverTrigger asChild>
-          <Button priority="secondary" label={t("story.popover_open")} />
+          <Button variant="outlined" label={t("story.popover_open")} />
         </PopoverTrigger>
         <PopoverContent>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -91,7 +91,7 @@ export const Interactive: Story = {
     return (
       <Popover {...args}>
         <PopoverTrigger asChild>
-          <Button priority="secondary" label={t("story.popover_interactive")} />
+          <Button variant="outlined" label={t("story.popover_interactive")} />
         </PopoverTrigger>
         <PopoverContent
           className="custom-width-popover"

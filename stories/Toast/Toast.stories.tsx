@@ -109,7 +109,7 @@ const ToastTrigger = () => {
   return (
     <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
       <Button
-        priority="primary"
+        variant="filled"
         label={t("story.toast_show_success")}
         onClick={() =>
           show({
@@ -120,7 +120,7 @@ const ToastTrigger = () => {
         }
       />
       <Button
-        priority="secondary"
+        variant="outlined"
         label={t("story.toast_show_error")}
         onClick={() =>
           show({
@@ -131,7 +131,7 @@ const ToastTrigger = () => {
         }
       />
       <Button
-        priority="tertiary"
+        variant="ghost"
         label={t("story.toast_show_5s")}
         onClick={() =>
           show({

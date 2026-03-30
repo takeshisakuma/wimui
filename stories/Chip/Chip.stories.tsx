@@ -26,7 +26,7 @@ const meta: Meta<typeof Chip> = {
     },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
     onClick: { action: "clicked" },
     onDelete: { action: "deleted" },
@@ -73,7 +73,7 @@ export const Deletable: Story = {
 
 export const WithAvatar: Story = {
   render: function Render(args) {
-    return <Chip {...args} avatar={<Avatar initials="JD" size="small" />}>Jane Doe</Chip>;
+    return <Chip {...args} avatar={<Avatar initials="JD" size="sm" />}>Jane Doe</Chip>;
   },
 };
 
@@ -84,7 +84,7 @@ export const WithIcon: Story = {
       <Chip
         {...args}
         label={t("story.selectbox_opt4")}
-        icon={<Icon name="CircleIcon" size="small" />}
+        icon={<Icon name="CircleIcon" size="sm" />}
       />
     );
   },

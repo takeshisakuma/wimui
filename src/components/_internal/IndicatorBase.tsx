@@ -19,7 +19,7 @@ export const IndicatorBase = <C extends React.ElementType = "span">({
   icon,
   status = "primary",
   variant = "solid",
-  size = "medium",
+  size = "md",
   prefixClass,
   as,
   className,
@@ -34,7 +34,7 @@ export const IndicatorBase = <C extends React.ElementType = "span">({
         prefixClass,
         `${prefixClass}--${status}`,
         `${prefixClass}--${variant}`,
-        `${prefixClass}--${size === "small" ? "sm" : size === "large" ? "lg" : "md"}`,
+        `${prefixClass}--${size}`,
         className,
       )}
       {...props}

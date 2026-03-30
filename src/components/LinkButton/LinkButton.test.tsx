@@ -12,12 +12,12 @@ describe("LinkButton", () => {
   });
 
   it("applies small size class", () => {
-    render(<LinkButton href="#" label="Small" size="small" />);
+    render(<LinkButton href="#" label="Small" size="sm" />);
     expect(screen.getByRole("link")).toHaveClass("wim-button--sm");
   });
 
   it("applies large size class", () => {
-    render(<LinkButton href="#" label="Large" size="large" />);
+    render(<LinkButton href="#" label="Large" size="lg" />);
     expect(screen.getByRole("link")).toHaveClass("wim-button--lg");
   });
 
@@ -26,9 +26,9 @@ describe("LinkButton", () => {
     expect(screen.getByRole("link")).toHaveClass("wim-button--md");
   });
 
-  it("applies priority class", () => {
-    render(<LinkButton href="#" label="Primary" priority="primary" />);
-    expect(screen.getByRole("link")).toHaveClass("wim-button--primary");
+  it("applies variant class", () => {
+    render(<LinkButton href="#" label="Filled" variant="filled" />);
+    expect(screen.getByRole("link")).toHaveClass("wim-button--filled");
   });
 
   it("applies intent class", () => {

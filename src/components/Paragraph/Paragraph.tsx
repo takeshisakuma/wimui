@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { WimColor, WimLineHeight } from "../../types/tokens";
 
 type ParagraphProps = React.ComponentPropsWithoutRef<"p"> & {
-  size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   color?:
   | "black"
   | "deepgray"
@@ -33,7 +33,7 @@ type ParagraphProps = React.ComponentPropsWithoutRef<"p"> & {
 };
 
 export const Paragraph = ({
-  size = "medium",
+  size = "md",
   content = "text",
   color = "black",
   weight = "normal",
@@ -60,7 +60,7 @@ export const Paragraph = ({
     <p
       className={classNames(
         "wim-paragraph",
-        `wim-paragraph--${size === "ex-small" ? "xs" : size === "small" ? "sm" : size === "large" ? "lg" : size === "ex-large" ? "xl" : "md"}`,
+        `wim-paragraph--${size}`,
         !isCustomLineHeight && `wim-paragraph--${lineHeight}`,
         weight === "bold" && "wim-paragraph--bold",
         fontStyle === "italic" && "wim-paragraph--italic",

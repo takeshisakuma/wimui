@@ -20,7 +20,7 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
       children,
       variant = "underline",
       align = "start",
-      size = "medium",
+      size = "md",
       ...props
     },
     ref,

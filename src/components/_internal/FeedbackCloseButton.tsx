@@ -34,7 +34,7 @@ export const FeedbackCloseButton = ({
   id,
   className,
   ariaLabel = "a11y.close",
-  size = "small",
+  size = "sm",
 }: FeedbackCloseButtonProps) => {
   const { t } = useTranslation();
 

@@ -31,14 +31,14 @@ describe("IndicatorBase", () => {
 
   it("maps size small to sm modifier class", () => {
     const { container } = render(
-      <IndicatorBase prefixClass="wim-badge" size="small">ok</IndicatorBase>,
+      <IndicatorBase prefixClass="wim-badge" size="sm">ok</IndicatorBase>,
     );
     expect(container.firstChild).toHaveClass("wim-badge--sm");
   });
 
   it("maps size medium to md modifier class", () => {
     const { container } = render(
-      <IndicatorBase prefixClass="wim-badge" size="medium">ok</IndicatorBase>,
+      <IndicatorBase prefixClass="wim-badge" size="md">ok</IndicatorBase>,
     );
     expect(container.firstChild).toHaveClass("wim-badge--md");
   });

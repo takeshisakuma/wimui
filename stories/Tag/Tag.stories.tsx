@@ -31,7 +31,7 @@ const meta: Meta<typeof Tag> = {
     },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
   },
 };
@@ -47,7 +47,7 @@ export const Default: Story = {
   args: {
     status: "primary",
     variant: "solid",
-    size: "medium",
+    size: "md",
   },
 };
 
@@ -106,10 +106,10 @@ export const Sizes: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <Tag {...args} size="small">
+        <Tag {...args} size="sm">
           {t("story.tag_small")}
         </Tag>
-        <Tag {...args} size="medium">
+        <Tag {...args} size="md">
           {t("story.tag_medium")}
         </Tag>
       </div>
@@ -121,7 +121,7 @@ export const WithIcon: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Tag {...args} icon={<Icon name="CircleIcon" size="small" />}>
+      <Tag {...args} icon={<Icon name="CircleIcon" size="sm" />}>
         {t("story.tag_with_icon")}
       </Tag>
     );

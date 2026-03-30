@@ -35,18 +35,18 @@ describe("ButtonGroup", () => {
     expect(group.style.gap).toBe("");
   });
 
-  it("applies priority to child elements", () => {
+  it("applies variant to child elements", () => {
     render(
-      <ButtonGroup priority="primary">
+      <ButtonGroup variant="filled">
         <button>Btn</button>
       </ButtonGroup>,
     );
     expect(screen.getByText("Btn")).toBeInTheDocument();
   });
 
-  it("skips non-element children when priority is set", () => {
+  it("skips non-element children when variant is set", () => {
     render(
-      <ButtonGroup priority="secondary">
+      <ButtonGroup variant="outlined">
         {"text"}
         <button>Btn</button>
       </ButtonGroup>,

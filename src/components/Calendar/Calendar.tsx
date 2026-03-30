@@ -276,7 +276,7 @@ export const Calendar = ({
           disabled={disabled}
           aria-label={t("a11y.prev_month")}
         >
-          <Icon name="ChevronLeftIcon" size="small" />
+          <Icon name="ChevronLeftIcon" size="sm" />
         </button>
         <div
           id={titleId}
@@ -293,7 +293,7 @@ export const Calendar = ({
           disabled={disabled}
           aria-label={t("a11y.next_month")}
         >
-          <Icon name="ChevronRightIcon" size="small" />
+          <Icon name="ChevronRightIcon" size="sm" />
         </button>
       </div>
       <div

@@ -98,7 +98,7 @@ const basicColumns: DataGridColumn<Record<string, unknown>>[] = [
     render: (value: unknown) => (
       <Badge
         content={value as string}
-        size="small"
+        size="sm"
         color={
           value === "Active"
             ? "primary"
@@ -121,7 +121,7 @@ const useDataGridTranslations = () => {
       return (
         <Badge
           content={translatedValue}
-          size="small"
+          size="sm"
           color={value === "Active" ? "primary" : value === "Inactive" ? "neutral" : "secondary"}
         />
       );
@@ -258,24 +258,24 @@ export const WithActions: Story = {
         render: (_: unknown, row: Record<string, unknown>) => (
           <div style={{ display: "flex", gap: "8px" }}>
             <Button
-              size="small"
-              priority="tertiary"
+              size="sm"
+              variant="ghost"
               onClick={() =>
                 alert(t("story.datagrid_action_edit", { name: row.name }))
               }
             >
-              <Icon name="EditIcon" size="small" />
+              <Icon name="EditIcon" size="sm" />
             </Button>
             { }
             <Button
-              size="small"
-              priority="tertiary"
+              size="sm"
+              variant="ghost"
               intent="destructive"
               onClick={() =>
                 alert(t("story.datagrid_action_delete", { name: row.name }))
               }
             >
-              <Icon name="TrashIcon" size="small" />
+              <Icon name="TrashIcon" size="sm" />
             </Button>
           </div>
         ),
@@ -450,7 +450,7 @@ export const WithFixedColumn: Story = {
           return (
             <Badge
               content={translatedValue}
-              size="small"
+              size="sm"
               color={
                 value === "Active"
                   ? "primary"
@@ -513,11 +513,11 @@ export const WithRightFixedColumn: Story = {
         align: "center" as const,
         render: (_: unknown, _row: Record<string, unknown>) => (
           <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
-            <Button size="small" priority="tertiary">
-              <Icon name="EditIcon" size="small" />
+            <Button size="sm" variant="ghost">
+              <Icon name="EditIcon" size="sm" />
             </Button>
-            <Button size="small" priority="tertiary" intent="destructive">
-              <Icon name="TrashIcon" size="small" />
+            <Button size="sm" variant="ghost" intent="destructive">
+              <Icon name="TrashIcon" size="sm" />
             </Button>
           </div>
         ),

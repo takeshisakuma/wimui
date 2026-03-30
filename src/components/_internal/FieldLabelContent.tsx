@@ -24,7 +24,7 @@ export const FieldLabelContent = ({
       {required ? (
         <Badge
           color="error"
-          size="small"
+          size="sm"
           className="wim-field-label-badge"
           aria-hidden="true"
         >
@@ -34,7 +34,7 @@ export const FieldLabelContent = ({
         showOptional && (
           <Badge
             color="neutral"
-            size="small"
+            size="sm"
             className="wim-field-label-badge"
             aria-hidden="true"
           >

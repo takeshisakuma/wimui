@@ -18,7 +18,7 @@ const defaultTreeData: TreeSelectNode[] = [
   {
     label: "story.treeselect_design",
     value: "design",
-    icon: <Icon name="EditIcon" size="small" />,
+    icon: <Icon name="EditIcon" size="sm" />,
     children: [
       {
         label: "story.treeselect_colors",
@@ -37,7 +37,7 @@ const defaultTreeData: TreeSelectNode[] = [
   {
     label: "story.treeselect_components",
     value: "components",
-    icon: <Icon name="ProjectIcon" size="small" />,
+    icon: <Icon name="ProjectIcon" size="sm" />,
     children: [
       { label: "story.treeselect_button", value: "button" },
       { label: "story.treeselect_input", value: "input" },

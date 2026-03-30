@@ -17,7 +17,7 @@ describe("Span", () => {
 
   it("applies size and color classes", () => {
     const { container } = render(
-      <Span content="Test" size="large" color="error" />,
+      <Span content="Test" size="lg" color="error" />,
     );
     expect(container.firstChild).toHaveClass("wim-span--lg");
     expect(container.firstChild).toHaveClass("wim-span--error");

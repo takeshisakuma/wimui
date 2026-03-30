@@ -275,7 +275,7 @@ export const SubMenu = ({
               isOpen && "wim-menu-submenu__arrow--open",
             )}
           >
-            <Icon name="ChevronRightIcon" size="small" />
+            <Icon name="ChevronRightIcon" size="sm" />
           </span>
         }
         role="menuitem"

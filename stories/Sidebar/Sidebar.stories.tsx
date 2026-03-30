@@ -32,7 +32,7 @@ const SidebarContent = () => {
             justifyContent: "inherit",
           }}
         >
-          <Icon name="CircleIcon" color="primary" size="large" />
+          <Icon name="CircleIcon" color="primary" size="lg" />
           <span
             className="wim-sidebar__hide-collapsed"
             style={{ fontWeight: "bold", fontSize: "1.2rem" }}

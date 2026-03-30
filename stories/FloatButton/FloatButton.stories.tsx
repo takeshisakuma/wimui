@@ -18,7 +18,7 @@ const meta: Meta<typeof FloatButton> = {
   argTypes: {
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
     position: {
       control: "select",
@@ -50,7 +50,7 @@ export const Basic: Story = {
     iconName: "CircleIcon",
     variant: "primary",
     shape: "circle",
-    size: "medium",
+    size: "md",
     position: "static",
   },
 };
@@ -63,7 +63,7 @@ export const Extended: Story = {
   args: {
     iconName: "CircleIcon",
     variant: "primary",
-    size: "medium",
+    size: "md",
     position: "static",
     shrink: false,
   },
@@ -74,19 +74,19 @@ export const Sizes: Story = {
     <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
       <FloatButton
         iconName="CircleIcon"
-        size="small"
+        size="sm"
         variant="primary"
         position="static"
       />
       <FloatButton
         iconName="CircleIcon"
-        size="medium"
+        size="md"
         variant="primary"
         position="static"
       />
       <FloatButton
         iconName="CircleIcon"
-        size="large"
+        size="lg"
         variant="primary"
         position="static"
       />
@@ -109,21 +109,21 @@ export const ExtendedSizes: Story = {
         <FloatButton
           iconName="CircleIcon"
           label={t("story.floatbutton_small")}
-          size="small"
+          size="sm"
           variant="primary"
           position="static"
         />
         <FloatButton
           iconName="CircleIcon"
           label={t("story.floatbutton_medium")}
-          size="medium"
+          size="md"
           variant="primary"
           position="static"
         />
         <FloatButton
           iconName="CircleIcon"
           label={t("story.floatbutton_large")}
-          size="large"
+          size="lg"
           variant="primary"
           position="static"
         />
@@ -140,7 +140,7 @@ export const AutoShrink: Story = {
   args: {
     iconName: "CircleIcon",
     variant: "primary",
-    size: "medium",
+    size: "md",
     position: "static",
     shrink: false,
   },
@@ -151,7 +151,7 @@ export const Primary: Story = {
     iconName: "LoadingIcon",
     variant: "primary",
     shape: "circle",
-    size: "medium",
+    size: "md",
     position: "static",
   },
 };
@@ -161,7 +161,7 @@ export const Square: Story = {
     iconName: "SquareIcon",
     variant: "default",
     shape: "square",
-    size: "medium",
+    size: "md",
     position: "static",
   },
 };
@@ -171,7 +171,7 @@ export const WithBadge: Story = {
     iconName: "CircleIcon",
     badge: 3,
     variant: "primary",
-    size: "medium",
+    size: "md",
     position: "static",
   },
 };
@@ -190,7 +190,7 @@ export const FixedPosition: Story = {
           iconName="ChevronUpIcon"
           variant="primary"
           shape="circle"
-          size="medium"
+          size="md"
           position="bottom-right"
           description={t("story.floatbutton_click_me")}
         />
@@ -213,7 +213,7 @@ export const BackTop: Story = {
           backTop
           visibilityHeight={100}
           variant="primary"
-          size="medium"
+          size="md"
         />
       </div>
     );

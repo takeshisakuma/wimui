@@ -27,7 +27,7 @@ export const Default: Story = {
         {...args}
         title={t("story.emptystate_nodata_title")}
         description={t("story.emptystate_nodata_desc")}
-        icon={<Icon name="SearchIcon" size="large" />}
+        icon={<Icon name="SearchIcon" size="lg" />}
         extra={<Button label={t("story.emptystate_clear_search")} />}
       />
     );
@@ -55,7 +55,7 @@ export const WithoutDescription: Story = {
       <EmptyState
         {...args}
         title={t("story.emptystate_empty_list")}
-        icon={<Icon name="CircleIcon" size="large" />}
+        icon={<Icon name="CircleIcon" size="lg" />}
       />
     );
   },
@@ -72,8 +72,8 @@ export const CustomAction: Story = {
         icon={<Icon name="PlusIcon" style={{ width: 48, height: 48 }} />}
         extra={
           <>
-            <Button label={t("story.emptystate_browse_templates")} priority="secondary" />
-            <Button label={t("story.emptystate_create_project")} priority="primary" />
+            <Button label={t("story.emptystate_browse_templates")} variant="outlined" />
+            <Button label={t("story.emptystate_create_project")} variant="filled" />
           </>
         }
       />
@@ -89,7 +89,7 @@ export const NoMessages: Story = {
         {...args}
         title={t("story.emptystate_noemails_title")}
         description={t("story.emptystate_noemails_desc")}
-        icon={<Icon name="EmailIcon" size="large" />}
+        icon={<Icon name="EmailIcon" size="lg" />}
       />
     );
   },
@@ -103,8 +103,8 @@ export const NoVideos: Story = {
         {...args}
         title={t("story.emptystate_novideos_title")}
         description={t("story.emptystate_novideos_desc")}
-        icon={<Icon name="VideoIcon" size="large" />}
-        extra={<Button label={t("story.emptystate_upload_video")} priority="primary" />}
+        icon={<Icon name="VideoIcon" size="lg" />}
+        extra={<Button label={t("story.emptystate_upload_video")} variant="filled" />}
       />
     );
   },
@@ -118,7 +118,7 @@ export const NoFiles: Story = {
         {...args}
         title={t("story.emptystate_nofiles_title")}
         description={t("story.emptystate_nofiles_desc")}
-        icon={<Icon name="DocumentIcon" size="large" />}
+        icon={<Icon name="DocumentIcon" size="lg" />}
       />
     );
   },

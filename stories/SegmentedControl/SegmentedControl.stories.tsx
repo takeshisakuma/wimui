@@ -15,7 +15,7 @@ const meta: Meta<typeof SegmentedControl> = {
     disabled: { control: "boolean" },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
     fullWidth: {
       control: "boolean",
@@ -28,7 +28,7 @@ type Story = StoryObj<typeof SegmentedControl>;
 
 export const Small: Story = {
   args: {
-    size: "small",
+    size: "sm",
     fullWidth: true,
   },
   decorators: [
@@ -62,7 +62,7 @@ export const Small: Story = {
 
 export const Medium: Story = {
   args: {
-    size: "medium",
+    size: "md",
     fullWidth: true,
   },
   decorators: [
@@ -96,7 +96,7 @@ export const Medium: Story = {
 
 export const Large: Story = {
   args: {
-    size: "large",
+    size: "lg",
     fullWidth: true,
   },
   decorators: [
@@ -130,7 +130,7 @@ export const Large: Story = {
 
 export const TwoOptions: Story = {
   args: {
-    size: "medium",
+    size: "md",
     fullWidth: true,
   },
   render: (args) => {
@@ -156,7 +156,7 @@ export const TwoOptions: Story = {
 
 export const WithIcons: Story = {
   args: {
-    size: "medium",
+    size: "md",
     fullWidth: false,
   },
   render: (args) => {
@@ -196,7 +196,7 @@ export const WithIcons: Story = {
 
 export const IconOnly: Story = {
   args: {
-    size: "medium",
+    size: "md",
     fullWidth: false,
   },
   render: (args) => {
@@ -219,7 +219,7 @@ export const IconOnly: Story = {
 
 export const LongLabel: Story = {
   args: {
-    size: "medium",
+    size: "md",
     fullWidth: true,
   },
   decorators: [

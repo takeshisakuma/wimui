@@ -95,7 +95,7 @@ export const Notification = ({
             <FeedbackIcon
               status={status}
               icon={icon}
-              size="medium"
+              size="md"
               color={status ? typeToColorMap[status] as "destructive" | "positive" | "caution" | "informative" : undefined}
             />
           </div>
@@ -113,7 +113,7 @@ export const Notification = ({
         <FeedbackCloseButton
           onClose={closable ? handleClose : undefined}
           className="wim-notification-close"
-          size="small"
+          size="sm"
         />
       </div>
     </div>

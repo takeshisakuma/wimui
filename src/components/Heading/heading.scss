@@ -8,35 +8,35 @@
 
     /* Sizes */
     &--xs {
-      font-size: var(--wim-font-size-scale-0); // 1rem
+      font-size: var(--wim-font-size-md); // 1rem
     }
 
     &--sm {
-      font-size: var(--wim-font-size-scale-2); // 1.3rem
+      font-size: var(--wim-font-size-xl); // 1.3rem
     }
 
     &--md {
-      font-size: var(--wim-font-size-scale-4); // 1.6rem
+      font-size: var(--wim-font-size-2xl); // 1.6rem
     }
 
     &--lg {
-      font-size: var(--wim-font-size-scale-6); // 2rem
+      font-size: var(--wim-font-size-3xl); // 2rem
     }
 
     &--xl {
-      font-size: var(--wim-font-size-scale-8); // 2.6rem
+      font-size: var(--wim-font-size-4xl); // 2.6rem
     }
 
     &--2xl {
-      font-size: var(--wim-font-size-scale-10); // 3.2rem
+      font-size: var(--wim-font-size-5xl); // 3.2rem
     }
 
     &--3xl {
-      font-size: var(--wim-font-size-scale-12); // 4.1rem
+      font-size: var(--wim-font-size-6xl); // 4.1rem
     }
 
     &--4xl {
-      font-size: var(--wim-font-size-scale-14); // 5.2rem
+      font-size: var(--wim-font-size-7xl); // 5.2rem
     }
 
     /* Align */

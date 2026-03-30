@@ -15,7 +15,7 @@ const meta: Meta<typeof Switch> = {
     disabled: { control: "boolean" },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
   },
 };
@@ -46,7 +46,7 @@ export const Small: Story = {
     return <Switch {...args} label={t("story.switch_airplane")} />;
   },
   args: {
-    size: "small",
+    size: "sm",
   },
 };
 

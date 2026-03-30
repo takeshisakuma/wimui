@@ -26,7 +26,7 @@ export const Basic: Story = {
         <p>{t("story.affix_scroll_top")}</p>
         <div style={{ marginTop: "100px" }}>
           <Affix {...args} offsetTop={20}>
-            <Button label={t("story.affix_top")} size="medium" />
+            <Button label={t("story.affix_top")} size="md" />
           </Affix>
         </div>
       </div>
@@ -43,7 +43,7 @@ export const OffsetBottom: Story = {
         <div style={{ marginTop: "120vh" }}>
           <p>{t("story.affix_scroll_bottom_2", "Scroll down here...")}</p>
           <Affix {...args} offsetBottom={20}>
-            <Button label={t("story.affix_bottom")} size="medium" />
+            <Button label={t("story.affix_bottom")} size="md" />
           </Affix>
           <p>{t("story.affix_more")}</p>
         </div>

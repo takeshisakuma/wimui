@@ -63,7 +63,7 @@ export function VideoControls({
           }}
           aria-label={t("a11y.playlist")}
         >
-          <Icon name="DocumentIcon" size="small" />
+          <Icon name="DocumentIcon" size="sm" />
         </button>
       )}
 
@@ -77,7 +77,7 @@ export function VideoControls({
           }}
           aria-label={t("a11y.skip_backward")}
         >
-          <Icon name="ChevronLeftIcon" size="small" />
+          <Icon name="ChevronLeftIcon" size="sm" />
         </button>
       )}
 
@@ -90,7 +90,7 @@ export function VideoControls({
         }}
         aria-label={isPlaying ? "Pause" : "Play"}
       >
-        <Icon name={isPlaying ? "PauseIcon" : "PlayIcon"} size="small" />
+        <Icon name={isPlaying ? "PauseIcon" : "PlayIcon"} size="sm" />
       </button>
 
       {advancedControls && (
@@ -103,7 +103,7 @@ export function VideoControls({
           }}
           aria-label={t("a11y.skip_forward")}
         >
-          <Icon name="ChevronRightIcon" size="small" />
+          <Icon name="ChevronRightIcon" size="sm" />
         </button>
       )}
 
@@ -123,7 +123,7 @@ export function VideoControls({
           }}
           aria-label={t("a11y.next_track")}
         >
-          <Icon name="ChevronRightIcon" size="medium" />
+          <Icon name="ChevronRightIcon" size="md" />
         </button>
       )}
 
@@ -160,7 +160,7 @@ export function VideoControls({
         >
           <Icon
             name={isMuted || volume === 0 ? "MuteIcon" : "VolumeIcon"}
-            size="small"
+            size="sm"
           />
         </button>
         <input
@@ -189,7 +189,7 @@ export function VideoControls({
           }}
           aria-label={t("a11y.settings")}
         >
-          <Icon name="SettingsIcon" size="small" />
+          <Icon name="SettingsIcon" size="sm" />
         </button>
       )}
 
@@ -204,7 +204,7 @@ export function VideoControls({
           aria-label={t("a11y.picture_in_picture")}
           title={t("a11y.picture_in_picture")}
         >
-          <Icon name="MonitorIcon" size="small" />
+          <Icon name="MonitorIcon" size="sm" />
         </button>
       )}
 
@@ -219,7 +219,7 @@ export function VideoControls({
       >
         <Icon
           name={isFullscreen ? "MinimizeIcon" : "MaximizeIcon"}
-          size="small"
+          size="sm"
         />
       </button>
     </div>

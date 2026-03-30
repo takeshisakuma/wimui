@@ -15,7 +15,7 @@ const meta: Meta<typeof List> = {
     },
     size: {
       control: "radio",
-      options: ["small", "medium", "large"],
+      options: ["sm", "md", "lg"],
     },
     spacing: {
       control: "select",
@@ -59,7 +59,7 @@ export const Small: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <List {...args} size="small">
+      <List {...args} size="sm">
         <ListItem>
           {t("story.list_item_small")} 1
         </ListItem>
@@ -75,7 +75,7 @@ export const Large: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <List {...args} size="large">
+      <List {...args} size="lg">
         <ListItem>
           {t("story.list_item_large")} 1
         </ListItem>

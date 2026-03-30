@@ -137,7 +137,7 @@ export const Dropzone = ({
           iconName && (
             <Icon
               name={iconName}
-              size="large"
+              size="lg"
               color={disabled ? "disabled" : "primary"}
             />
           )
