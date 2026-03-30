@@ -1,0 +1,1 @@
+@layer component{.wim-timepicker::-webkit-calendar-picker-indicator{padding:var(--wim-spacing-xs);cursor:pointer;border-radius:var(--wim-radius-sm);transition:background-color .2s}.wim-timepicker::-webkit-calendar-picker-indicator:hover{background-color:var(--wim-color-surface-hover, rgba(0, 0, 0, .05))}}

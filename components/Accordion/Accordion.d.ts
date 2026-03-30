@@ -3,7 +3,7 @@ export interface AccordionProps {
     type?: "single" | "multiple";
     defaultValue?: string | string[];
     value?: string | string[];
-    onValueChange?: (value: string | string[]) => void;
+    onChange?: (value: string | string[]) => void;
     collapsible?: boolean;
     className?: string;
     children: React.ReactNode;
@@ -14,7 +14,7 @@ export interface AccordionProps {
  * type="single" の場合は一度に一つ、"multiple" の場合は複数開くことができます。
  */
 export declare const Accordion: {
-    ({ type, defaultValue: _defaultValue, value: valueProp, onValueChange, collapsible, className, children, id: customId, }: AccordionProps): import("react/jsx-runtime").JSX.Element;
+    ({ type, defaultValue: _defaultValue, value: valueProp, onChange, collapsible, className, children, id: customId, }: AccordionProps): import("react/jsx-runtime").JSX.Element;
     Item: ({ value, disabled, className, children, }: AccordionItemProps) => import("react/jsx-runtime").JSX.Element;
     Trigger: ({ children, className, ...props }: React.ComponentPropsWithoutRef<"button">) => import("react/jsx-runtime").JSX.Element;
     Content: ({ children, className, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;

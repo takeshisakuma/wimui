@@ -1,0 +1,1 @@
+@layer component{.wim-colorpicker{height:42px;padding:var(--wim-spacing-3xs);cursor:pointer}.wim-colorpicker::-webkit-color-swatch-wrapper{padding:0}.wim-colorpicker::-webkit-color-swatch{border:none;border-radius:var(--wim-radius-sm)}.wim-colorpicker::-moz-color-swatch{border:none;border-radius:var(--wim-radius-sm)}}

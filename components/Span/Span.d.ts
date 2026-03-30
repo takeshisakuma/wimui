@@ -2,7 +2,7 @@ import { default as React } from '../../../node_modules/react';
 import { Icon } from '../Icon/Icon';
 import { WimColor } from '../../types/tokens';
 type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
-    size?: "ex-small" | "small" | "medium" | "large" | "ex-large";
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
     color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error" | "primary" | "success" | "warning" | "info" | WimColor;
     weight?: "normal" | "bold";
     fontStyle?: "normal" | "italic";

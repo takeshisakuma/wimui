@@ -1,11 +1,15 @@
 {
-  "philosophy_a11y": "Accessibility",
-  "philosophy_aria_support": "Leverages WAI-ARIA to enhance support for assistive technologies.",
-  "philosophy_feedback_desc": "Provides rapid and natural feedback for user operations, offering a comfortable \"tangible\" experience.",
-  "philosophy_focus_areas": "We focus on the following points for design and development:",
-  "philosophy_interaction": "Interaction",
-  "philosophy_kb_a11y": "Supports keyboard operations so all users can use it.",
-  "philosophy_tangible_ui": "Pursuing a Tangible UI",
-  "internal_philosophy_desc": "Guidelines for internal design consistency and encapsulation that should be followed when extending wimui or adding new components.",
-  "internal_philosophy_title": "Internal Design Philosophy"
+  "philosophy": {
+    "a11y": "Accessibility",
+    "aria_support": "Leverages WAI-ARIA to enhance support for assistive technologies.",
+    "feedback_desc": "Provides rapid and natural feedback for user operations, offering a comfortable \"tangible\" experience.",
+    "focus_areas": "We focus on the following points for design and development:",
+    "interaction": "Interaction",
+    "kb_a11y": "Supports keyboard operations so all users can use it.",
+    "tangible_ui": "Pursuing a Tangible UI"
+  },
+  "internal": {
+    "philosophy_desc": "Guidelines for internal design consistency and encapsulation that should be followed when extending wimui or adding new components.",
+    "philosophy_title": "Internal Design Philosophy"
+  }
 }

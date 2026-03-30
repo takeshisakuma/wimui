@@ -1,11 +1,15 @@
 {
-  "philosophy_a11y": "アクセシビリティ",
-  "philosophy_aria_support": "WAI-ARIAを活用し、スクリーンリーダー等の支援技術のサポートを強化します。",
-  "philosophy_feedback_desc": "ユーザーの操作に対して、期待通りのフィードバックを迅速かつ自然に行い、「手触りのある」心地よい体験を提供します。",
-  "philosophy_focus_areas": "そのために以下の点に注力して設計・開発を行います。",
-  "philosophy_interaction": "インタラクション",
-  "philosophy_kb_a11y": "すべてのユーザーが利用できるように、キーボード操作に対応します。",
-  "philosophy_tangible_ui": "手触りのあるUIを追求",
-  "internal_philosophy_desc": "wimui を拡張したり、新しいコンポーネントを追加したりする際に従うべき、内部的な設計の一貫性とカプセル化に関するガイドラインです。",
-  "internal_philosophy_title": "内部設計の哲学"
+  "philosophy": {
+    "a11y": "アクセシビリティ",
+    "aria_support": "WAI-ARIAを活用し、スクリーンリーダー等の支援技術のサポートを強化します。",
+    "feedback_desc": "ユーザーの操作に対して、期待通りのフィードバックを迅速かつ自然に行い、「手触りのある」心地よい体験を提供します。",
+    "focus_areas": "そのために以下の点に注力して設計・開発を行います。",
+    "interaction": "インタラクション",
+    "kb_a11y": "すべてのユーザーが利用できるように、キーボード操作に対応します。",
+    "tangible_ui": "手触りのあるUIを追求"
+  },
+  "internal": {
+    "philosophy_desc": "wimui を拡張したり、新しいコンポーネントを追加したりする際に従うべき、内部的な設計の一貫性とカプセル化に関するガイドラインです。",
+    "philosophy_title": "内部設計の哲学"
+  }
 }

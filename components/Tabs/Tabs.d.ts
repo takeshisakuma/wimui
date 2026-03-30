@@ -1,11 +1,11 @@
 import { default as React } from '../../../node_modules/react';
-export interface TabsProps extends React.ComponentPropsWithoutRef<"div"> {
+export interface TabsProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange"> {
     defaultValue?: string;
     value?: string;
-    onValueChange?: (value: string) => void;
+    onChange?: (value: string) => void;
     orientation?: "horizontal" | "vertical";
 }
-declare const Tabs: ({ defaultValue, value: valueProp, onValueChange, orientation, className, children, ...props }: TabsProps) => import("react/jsx-runtime").JSX.Element;
+declare const Tabs: ({ defaultValue, value: valueProp, onChange, orientation, className, children, ...props }: TabsProps) => import("react/jsx-runtime").JSX.Element;
 export type TabsListProps = React.ComponentPropsWithoutRef<"div">;
 export declare const TabsList: ({ className, children, ...props }: TabsListProps) => import("react/jsx-runtime").JSX.Element;
 export interface TabsTriggerProps extends React.ComponentPropsWithoutRef<"button"> {

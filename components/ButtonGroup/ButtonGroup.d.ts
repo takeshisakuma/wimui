@@ -4,7 +4,7 @@ type ButtonGroupProps = {
     gap?: string;
     className?: string;
     joined?: boolean;
-    priority?: "primary" | "secondary" | "tertiary";
+    variant?: "filled" | "outlined" | "ghost";
 };
-export declare const ButtonGroup: ({ children, gap, className, joined, priority, }: ButtonGroupProps) => import("react/jsx-runtime").JSX.Element;
+export declare const ButtonGroup: ({ children, gap, className, joined, variant, }: ButtonGroupProps) => import("react/jsx-runtime").JSX.Element;
 export {};
