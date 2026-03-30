@@ -21,13 +21,27 @@ const langs = fs
   .readdirSync(localesDir)
   .filter((f) => fs.statSync(path.join(localesDir, f)).isDirectory());
 
+function flattenKeys(obj, prefix = "") {
+  let keys = [];
+  for (const key in obj) {
+    const fullKey = prefix ? `${prefix}.${key}` : key;
+    if (typeof obj[key] === "object" && obj[key] !== null && !Array.isArray(obj[key])) {
+      keys = keys.concat(flattenKeys(obj[key], fullKey));
+    } else {
+      keys.push(fullKey);
+    }
+  }
+  return keys;
+}
+
 for (const lang of langs) {
   locales[lang] = {};
   const langDir = path.join(localesDir, lang);
+  if (!fs.existsSync(langDir)) continue;
   for (const file of fs.readdirSync(langDir).filter((f) => f.endsWith(".json"))) {
     const ns = file.replace(".json", "");
     const data = JSON.parse(fs.readFileSync(path.join(langDir, file), "utf8"));
-    locales[lang][ns] = new Set(Object.keys(data));
+    locales[lang][ns] = new Set(flattenKeys(data));
   }
 }
 
@@ -61,17 +75,16 @@ function detectNamespaces(source) {
 // Extract all t("key") / t('key') calls and <T k="key" /> / <T k={"key"} /> usages
 function extractKeys(source) {
   const keys = new Set();
-  // Match t("key") and t('key') — only string literals, not variables
-  // Strip namespace prefix (e.g. "components:key" → "key")
+  // Match t("key") and t('key')
   const reT = /\bt\(\s*["']([^"']+)["']/g;
   let m;
   while ((m = reT.exec(source)) !== null) {
     const raw = m[1];
     keys.add(raw.includes(":") ? raw.split(":")[1] : raw);
   }
-  // Match <T k="key" /> and <T k={'key'} /> and <T k={"key"} />
-  // Only string literals (not dynamic expressions like k={variable})
-  const reJsx = /\bk=["']([a-z][a-z0-9_]*)["']|\bk=\{["']([a-z][a-z0-9_]*)["']\}/g;
+  // Match <T k="key" /> and <T k={'key'} />
+  // Supports dot-separated keys
+  const reJsx = /\bk=["']([a-zA-Z0-9_.]+)["']|\bk=\{["']([a-zA-Z0-9_.]+)["']\}/g;
   while ((m = reJsx.exec(source)) !== null) {
     keys.add(m[1] ?? m[2]);
   }

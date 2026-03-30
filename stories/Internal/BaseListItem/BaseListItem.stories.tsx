@@ -21,7 +21,7 @@ type Story = StoryObj<typeof BaseListItem>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <BaseListItem {...args}>{args.children || t("standard.list_item")}</BaseListItem>;
+    return <BaseListItem {...args}>{args.children || t("standard_list_item")}</BaseListItem>;
   },
   args: {
     style: { width: "240px" },
