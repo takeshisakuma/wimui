@@ -16,22 +16,22 @@
     line-height: 0;
     background-color: #000; // アスペクト比変更時の余白（レターボックス）を黒にする
   
-    &.wim-video--wim-radius-small {
+    &.wim-video--radius-sm {
       overflow: hidden;
       border-radius: var(--wim-radius-sm);
     }
   
-    &.wim-video--radius-medium {
+    &.wim-video--radius-md {
       overflow: hidden;
       border-radius: var(--wim-radius-md);
     }
   
-    &.wim-video--radius-large {
+    &.wim-video--radius-lg {
       overflow: hidden;
       border-radius: var(--wim-radius-lg);
     }
   
-    &.wim-video--wim-radius-full {
+    &.wim-video--radius-full {
       overflow: hidden;
       border-radius: var(--wim-radius-full);
     }

@@ -35,7 +35,7 @@ export type StatusContentProps = {
   /**
    * Size variation
    */
-  size?: "default" | "small";
+  size?: "md" | "sm";
 };
 
 /**
@@ -49,7 +49,7 @@ export const StatusContent = ({
   children,
   className,
   prefixCls = "wim-status-content",
-  size = "default",
+  size = "md",
 }: StatusContentProps) => {
   const { t } = useTranslation();
 

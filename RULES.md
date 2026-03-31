@@ -36,9 +36,9 @@
 - コンポーネントAPIの整合性（Prop名の統一）を保ってください。以下のルールに従ってください。
   - **無効化には `disabled` prop（HTML ネイティブ属性）のみを使用してください。** `status="disabled"` や `state="disabled"` のような形でインタラクション状態を `status` / `state` に混在させないでください。
   - **`status` prop は視覚・意味的状態のみを表します。** 値は `"default" | "error"` などに限定し、`"disabled"` を含めないでください。
-  - **`size` prop の値は `"small" | "medium" | "large"` に統一してください。** レイアウト用の幅指定など別用途では `"xs" | "sm" | "md" | "lg" | "xl"` を使用してかまいません。
+  - **`size`, `radius`, `intensity` 等の prop の値は `"sm" | "md" | "lg"` に統一してください。** レイアウト用の幅指定など別用途では `"xs" | "sm" | "md" | "lg" | "xl"` を使用してかまいません。
   - **共通 prop 型は `src/types/tokens.ts` の型を使用してください。** インラインのユニオン型を重複定義しないでください。定義済みの型は以下の通りです。
-    - `ComponentSize` — `"small" | "medium" | "large"`（`size` prop 共通）
+    - `ComponentSize` — `"sm" | "md" | "lg"`（`size` prop 共通）
     - `IndicatorStatus` — `"primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"`（Badge・Chip・Tag・Progress など）
     - `FeedbackStatus` — `"info" | "success" | "warning" | "error"`（Alert・Banner・Toast・Notification など）
     - `FieldStatus` — `"default" | "error"`（Input・Textarea・DatePicker・RichTextEditor など）

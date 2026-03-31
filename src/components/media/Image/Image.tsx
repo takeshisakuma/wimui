@@ -39,7 +39,7 @@ export interface ImageOverlayOptions {
   /** カラーまたはグラデーション（CSS） */
   color?: string;
   /** 強度（不透明度） */
-  intensity?: number | "light" | "medium" | "heavy";
+  intensity?: number | "sm" | "md" | "lg";
   /** ホバー時のみ表示するか */
   showOnHover?: boolean;
   /** ブレンドモード */
@@ -62,7 +62,7 @@ export type ImageProps = React.ComponentPropsWithoutRef<"img"> & {
   width?: string | number;
   height?: string | number;
   /** 角丸のサイズ */
-  radius?: "none" | "small" | "medium" | "large" | "full";
+  radius?: "none" | "sm" | "md" | "lg" | "full";
   /** シャドウ（影）を表示するか */
   shadow?: boolean;
   /** 枠線を表示するか */
@@ -293,7 +293,7 @@ export const Image = ({
 
     // Overlay
     if (overlay) {
-      const opacityPresets: Record<string, string> = { light: "0.3", medium: "0.6", heavy: "0.9" };
+      const opacityPresets: Record<string, string> = { sm: "0.3", md: "0.6", lg: "0.9" };
       const opacity = typeof overlay.intensity === "number" 
         ? overlay.intensity.toString() 
         : (opacityPresets[overlay.intensity as string] || "0.5");

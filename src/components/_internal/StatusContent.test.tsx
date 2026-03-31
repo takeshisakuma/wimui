@@ -33,9 +33,9 @@ describe("StatusContent", () => {
     expect(screen.getByText("Click me")).toBeInTheDocument();
   });
 
-  it("applies small size class", () => {
-    const { container } = render(<StatusContent size="small" />);
-    expect(container.firstChild).toHaveClass("wim-status-content--small");
+  it("applies sm size class", () => {
+    const { container } = render(<StatusContent size="sm" />);
+    expect(container.firstChild).toHaveClass("wim-status-content--sm");
   });
 
   it("applies custom prefixCls", () => {

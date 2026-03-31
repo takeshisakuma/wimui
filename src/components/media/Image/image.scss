@@ -28,22 +28,22 @@
     background-color: var(--wim-image-bg-color, transparent);
     transform-style: preserve-3d; // Pass 3D to children
   
-    &.wim-image--wim-radius-small {
+    &.wim-image--radius-sm {
       overflow: hidden;
       border-radius: var(--wim-radius-sm);
     }
   
-    &.wim-image--radius-medium {
+    &.wim-image--radius-md {
       overflow: hidden;
       border-radius: var(--wim-radius-md);
     }
   
-    &.wim-image--radius-large {
+    &.wim-image--radius-lg {
       overflow: hidden;
       border-radius: var(--wim-radius-lg);
     }
   
-    &.wim-image--wim-radius-full {
+    &.wim-image--radius-full {
       overflow: hidden;
       border-radius: var(--wim-radius-full);
     }

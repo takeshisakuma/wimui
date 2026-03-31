@@ -53,7 +53,7 @@ export const Small: Story = {
   },
   args: {
     ...Default.args,
-    size: "small",
+    size: "sm",
   },
 };
 

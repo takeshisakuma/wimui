@@ -17,7 +17,7 @@ const meta: Meta<typeof Image> = {
   argTypes: {
     radius: {
       control: "select",
-      options: ["none", "small", "medium", "large", "full"],
+      options: ["none", "sm", "md", "lg", "full"],
     },
     fit: {
       control: "select",
@@ -66,7 +66,7 @@ export const Rounded: Story = {
     src: vibrantLandscape,
     width: 200,
     height: 200,
-    radius: "large",
+    radius: "lg",
     fit: "cover",
   },
 };
@@ -95,7 +95,7 @@ export const WithShadow: Story = {
     src: vibrantLandscape,
     width: 400,
     shadow: true,
-    radius: "medium",
+    radius: "md",
   },
 };
 
@@ -179,7 +179,7 @@ export const Glassmorphism: Story = {
               padding: "20px",
             }}
             width={300}
-            radius="large"
+            radius="lg"
             border
           />
           <p style={{ color: "white", marginTop: "1rem", fontWeight: "bold" }}>
@@ -237,7 +237,7 @@ export const AdvancedEffects: Story = {
                 alt="Overlay"
                 overlay={{
                   color: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
-                  intensity: "medium",
+                  intensity: "md",
                 }}
                 width={300}
               />
@@ -264,7 +264,7 @@ export const AdvancedEffects: Story = {
   },
   args: {
     src: vibrantLandscape,
-    radius: "medium",
+    radius: "md",
   },
 };
 
@@ -283,7 +283,7 @@ export const MotionEffects: Story = {
               alt="Zoom effect"
               zoom={1.1}
               width={300}
-              radius="medium"
+              radius="md"
               caption={t("story.image_motion_effects_zoom_caption")}
             />
           </div>
@@ -294,7 +294,7 @@ export const MotionEffects: Story = {
               alt="Tilt effect"
               tilt
               width={300}
-              radius="medium"
+              radius="md"
               shadow
               caption={t("story.image_motion_effects_tilt_caption")}
             />
@@ -319,7 +319,7 @@ export const MotionEffects: Story = {
               fadeIn
               demoDelay={2000}
               width={400}
-              radius="medium"
+              radius="md"
               shadow
               caption={t("story.image_motion_effects_interactive_caption")}
             />
@@ -342,7 +342,7 @@ export const MotionEffects: Story = {
               filter={{ grayscale: "sm" }}
               hoverFilter={{ grayscale: "none" }}
               width="100%"
-              radius="large"
+              radius="lg"
               shadow
               caption="Zoom + Tilt + Noise + Overlay + Filter"
             />
@@ -368,7 +368,7 @@ export const BlendingEffects: Story = {
               alt={t("story.image_alt_multiply", { defaultValue: "Multiply overlay" })}
               overlay={{
                 color: "#3498db",
-                intensity: "medium",
+                intensity: "md",
                 blendMode: "multiply",
               }}
               width={300}
@@ -379,7 +379,7 @@ export const BlendingEffects: Story = {
               alt={t("story.image_alt_overlay", { defaultValue: "Overlay blend" })}
               overlay={{
                 color: "#e74c3c",
-                intensity: "medium",
+                intensity: "md",
                 blendMode: "overlay",
               }}
               width={300}
@@ -436,6 +436,6 @@ export const BlendingEffects: Story = {
   },
   args: {
     src: vibrantLandscape,
-    radius: "medium",
+    radius: "md",
   },
 };

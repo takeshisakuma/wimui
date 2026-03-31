@@ -164,9 +164,9 @@ describe("Video", () => {
   });
 
   it("applies styling props", () => {
-    const { container } = render(<Video src={src} radius="large" shadow border />);
+    const { container } = render(<Video src={src} radius="lg" shadow border />);
     const inner = container.querySelector(".wim-video-inner");
-    expect(inner).toHaveClass("wim-video--radius-large");
+    expect(inner).toHaveClass("wim-video--radius-lg");
     expect(inner).toHaveClass("wim-video--shadow");
     expect(inner).toHaveClass("wim-video--border");
   });

@@ -19,22 +19,22 @@
     line-height: normal; // Reset to normal
     border-radius: var(--wim-radius-full); // Default to pill shape for native audio feel
   
-    &.wim-audio--wim-radius-small {
+    &.wim-audio--radius-sm {
       overflow: hidden;
       border-radius: var(--wim-radius-sm);
     }
   
-    &.wim-audio--radius-medium {
+    &.wim-audio--radius-md {
       overflow: hidden;
       border-radius: var(--wim-radius-md);
     }
   
-    &.wim-audio--radius-large {
+    &.wim-audio--radius-lg {
       overflow: hidden;
       border-radius: var(--wim-radius-lg);
     }
   
-    &.wim-audio--wim-radius-full {
+    &.wim-audio--radius-full {
       overflow: hidden;
       border-radius: var(--wim-radius-full);
     }
@@ -131,7 +131,7 @@
   }
   
   // When radius is full (pills), we need even more horizontal padding and width
-  .wim-audio--wim-radius-full .wim-audio--custom {
+  .wim-audio--radius-full .wim-audio--custom {
     min-width: 480px; // Provide more room for deep curves
     padding: 1.5rem 52px 1rem; // Increase top/side padding to clear curves
   }
@@ -159,7 +159,7 @@
     padding: 0 var(--wim-spacing-xl) var(--wim-spacing-sm);
     border-bottom: 1px solid color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
   
-    .wim-audio--wim-radius-full & {
+    .wim-audio--radius-full & {
       padding-right: 2rem;
       padding-left: 2rem;
     }
@@ -298,7 +298,7 @@
     font-variant-numeric: tabular-nums;
     color: color-mix(in srgb, var(--wim-color-text-white) 70%, transparent);
   
-    .wim-audio--wim-radius-full & {
+    .wim-audio--radius-full & {
       padding: 0 var(--wim-spacing-3xl);
     }
   }

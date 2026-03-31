@@ -17,7 +17,7 @@ const meta: Meta<typeof Audio> = {
   argTypes: {
     radius: {
       control: "select",
-      options: ["none", "small", "medium", "large", "full"],
+      options: ["none", "sm", "md", "lg", "full"],
     },
   },
 };
@@ -75,7 +75,7 @@ export const CustomControls: Story = {
     },
     customControls: true,
     showMetadata: true,
-    radius: "medium",
+    radius: "md",
     shadow: true,
     border: true,
   },
@@ -96,7 +96,7 @@ export const FullFeatured: Story = {
       },
     ],
     customControls: true,
-    radius: "medium",
+    radius: "md",
     shadow: true,
     border: true,
     visualizer: true,
@@ -134,7 +134,7 @@ export const PremiumFeatures: Story = {
             customControls
             showMetadata
             demoDelay={2000}
-            radius="medium"
+            radius="md"
             shadow
             caption={t("story.audio_premium_features_caption")}
           />

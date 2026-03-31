@@ -20,7 +20,7 @@ const data = [
 
 export const Dashboard: StoryObj = {
   render: () => (
-    <Stack spacing="large">
+    <Stack gap="lg">
       <Heading tag="h3" size="lg">Visualization Suite Overview</Heading>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
         <BarChart title="Sales by Month" data={data} xAxisKey="name" keys={["sales"]} />

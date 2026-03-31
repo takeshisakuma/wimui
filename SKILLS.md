@@ -191,7 +191,7 @@ control: "boolean"
 ```tsx
 size: {
   control: "radio",
-  options: ["small", "medium", "large"],
+  options: ["sm", "md", "lg"],
 },
 status: {
   control: "select",

@@ -16,9 +16,9 @@ describe("Image", () => {
   });
 
   it("applies basic styles (radius, shadow, border)", () => {
-    render(<Image src="test.jpg" alt="Test" radius="medium" shadow border />);
+    render(<Image src="test.jpg" alt="Test" radius="md" shadow border />);
     const inner = screen.getByRole("img").parentElement;
-    expect(inner).toHaveClass("wim-image--radius-medium");
+    expect(inner).toHaveClass("wim-image--radius-md");
     expect(inner).toHaveClass("wim-image--shadow");
     expect(inner).toHaveClass("wim-image--border");
   });
@@ -86,7 +86,7 @@ describe("Image", () => {
       <Image 
         src="test.jpg" 
         alt="Test" 
-        overlay={{ color: "red", intensity: "heavy", blendMode: "multiply" }} 
+        overlay={{ color: "red", intensity: "lg", blendMode: "multiply" }} 
       />
     );
     const figure = container.querySelector("figure");

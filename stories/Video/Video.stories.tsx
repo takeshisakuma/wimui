@@ -18,7 +18,7 @@ const meta: Meta<typeof Video> = {
   argTypes: {
     radius: {
       control: "select",
-      options: ["none", "small", "medium", "large", "full"],
+      options: ["none", "sm", "md", "lg", "full"],
     },
     fit: {
       control: "select",
@@ -62,7 +62,7 @@ export const Rounded: Story = {
     src: sampleVideo,
     poster: videoPoster,
     width: 400,
-    radius: "large",
+    radius: "lg",
     shadow: true,
   },
 };
@@ -77,7 +77,7 @@ export const CustomControls: Story = {
         poster={videoPoster}
         width={600}
         customControls={true}
-        radius="medium"
+        radius="md"
         shadow={true}
         caption={t("story.video_custom_caption")}
       />
@@ -96,7 +96,7 @@ export const FullFeatured: Story = {
         resumePlayback={true}
         autoPlayNext={true}
         controls={false}
-        radius="large"
+        radius="lg"
         shadow={true}
         border={true}
         fit="cover"
@@ -147,7 +147,7 @@ export const PremiumFeatures: Story = {
             width={600}
             fadeIn
             demoDelay={2000}
-            radius="medium"
+            radius="md"
             shadow
             caption={t("story.video_premium_features_caption")}
           />

@@ -99,9 +99,9 @@ describe("Audio", () => {
   });
 
   it("applies radius CSS class to inner container", () => {
-    const { container } = render(<Audio src={src} radius="medium" />);
+    const { container } = render(<Audio src={src} radius="md" />);
     const inner = container.querySelector(".wim-audio-inner");
-    expect(inner).toHaveClass("wim-audio--radius-medium");
+    expect(inner).toHaveClass("wim-audio--radius-md");
   });
 
   it("does not apply radius class when radius is none", () => {
