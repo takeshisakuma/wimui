@@ -190,7 +190,7 @@ export const WithClickHandler: Story = {
         startDate={new Date(2026, 2, 1)}
         endDate={new Date(2026, 2, 31)}
         viewMode="day"
-        onTaskClick={(task) => alert(`Clicked: ${task.label}`)}
+        onTaskClick={(task: any) => alert(`Clicked: ${task.label}`)}
       />
     );
   },
