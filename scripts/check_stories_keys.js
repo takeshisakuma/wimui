@@ -64,27 +64,61 @@ targetFiles.forEach(file => {
   const tMatches = content.matchAll(/\bt\s*\(\s*['"]([^'"]*?)['"]\s*[,)]/g);
   // 2. Capture k="..." in <T k="..." />
   const TMatches = content.matchAll(/<T\s+k\s*=\s*['"]([^'"]*?)['"]/g);
+  // 3. Capture specific props used for translation keys (e.g., textKey, titleKey, descKey)
+  const keyPropMatches = content.matchAll(/\b(text|title|desc|label|name)Key\s*=\s*['"]([^'"]*?)['"]/g);
 
-  const processMatch = (key) => {
-    // Skip keys with interpolation or complex logic
-    if (key.includes('${') || key.includes('`')) return;
-    
-    // Handle namespaces (e.g., "components:...")
-    if (key.includes(':')) {
-      key = key.split(':')[1];
-    }
-
-    // Check if key exists in any translation file
-    if (!allTranslations.has(key)) {
-      missingKeys.add(key);
-      if (!keyToFiles[key]) keyToFiles[key] = [];
-      keyToFiles[key].push(path.relative(process.cwd(), file));
-    }
-  };
-
-  for (const match of tMatches) processMatch(match[1]);
-  for (const match of TMatches) processMatch(match[1]);
+  for (const match of tMatches) processMatch(match[1], file);
+  for (const match of TMatches) processMatch(match[1], file);
+  for (const match of keyPropMatches) processMatch(match[2], file);
 });
+
+// 3. Scan JSON data files (e.g. src/data/components.json)
+const dataPath = path.resolve('src/data');
+if (fs.existsSync(dataPath)) {
+  const dataFiles = getFiles(dataPath).filter(f => f.endsWith('.json'));
+  console.log(`\n--- Scanning ${dataFiles.length} data files ---`);
+  
+  dataFiles.forEach(file => {
+    try {
+      const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+      
+      const findKeys = (obj) => {
+        if (Array.isArray(obj)) {
+          obj.forEach(findKeys);
+        } else if (typeof obj === 'object' && obj !== null) {
+          for (const k in obj) {
+            if (k.endsWith('Key') && typeof obj[k] === 'string') {
+              processMatch(obj[k], file);
+            }
+            findKeys(obj[k]);
+          }
+        }
+      };
+      
+      findKeys(data);
+    } catch (err) {
+      console.error(`\n❌ ERROR parsing JSON: ${file}`);
+    }
+  });
+}
+
+function processMatch(key, sourceFile) {
+  // Skip keys with interpolation or complex logic
+  if (!key || key.includes('${') || key.includes('`')) return;
+  
+  // Handle namespaces (e.g., "components:...")
+  let baseKey = key;
+  if (key.includes(':')) {
+    baseKey = key.split(':')[1];
+  }
+
+  // Check if key exists in any translation file
+  if (!allTranslations.has(baseKey)) {
+    missingKeys.add(key);
+    if (!keyToFiles[key]) keyToFiles[key] = [];
+    keyToFiles[key].push(path.relative(process.cwd(), sourceFile || "unknown"));
+  }
+}
 
 if (missingKeys.size > 0) {
   console.log('\n❌ Missing keys found:');

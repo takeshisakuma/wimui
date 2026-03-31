@@ -39,5 +39,6 @@ export const ALL_NAMESPACES = [
   "docs_guide_qa",
   "docs_guide_internal",
   "docs_guide_a11y_usability",
-  "docs_guide_styling_spacing"
+  "docs_guide_styling_spacing",
+  "docs_stories_recipes"
 ];

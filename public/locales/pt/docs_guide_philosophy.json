@@ -6,7 +6,9 @@
     "focus_areas": "Focamos nos seguintes pontos para design e desenvolvimento:",
     "interaction": "Interação",
     "kb_a11y": "Suporta operações de teclado para que todos os usuários possam usá-lo.",
-    "tangible_ui": "Buscando uma UI Tangível"
+    "tangible_ui": "Buscando uma UI Tangível",
+    "standard_overview_title": "Visão Geral de Padronização",
+    "standard_overview_desc": "Para uma visão de alto nível de nossos padrões de design e implementação, consulte a <a href=\"?path=/docs/architecture-standardization-overview--docs\">Visão Geral de Padronização</a>."
   },
   "internal": {
     "philosophy_desc": "Diretrizes para consistência e encapsulamento de design interno que devem ser seguidas ao estender o wimui ou adicionar novos componentes.",

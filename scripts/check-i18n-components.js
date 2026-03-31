@@ -103,6 +103,53 @@ for (const lang of langs) {
   }
 }
 
+// Also scan src/data/ for keys
+const dataDir = "./src/data";
+if (fs.existsSync(dataDir)) {
+  const dataFiles = globSync(`${dataDir}/**/*.json`, { posix: true });
+  
+  dataFiles.forEach(file => {
+    try {
+      const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+      const usedKeys = new Set();
+      
+      const findKeys = (obj) => {
+        if (Array.isArray(obj)) {
+          obj.forEach(findKeys);
+        } else if (typeof obj === 'object' && obj !== null) {
+          for (const k in obj) {
+            if (k.endsWith('Key') && typeof obj[k] === 'string') {
+              usedKeys.add(obj[k]);
+            }
+            findKeys(obj[k]);
+          }
+        }
+      };
+      
+      findKeys(data);
+      if (usedKeys.size === 0) return;
+
+      const missingByLang = {};
+      for (const lang of langs) {
+        const missing = [...usedKeys].filter((k) => !allKeysByLang[lang].has(k));
+        if (missing.length > 0) {
+          missingByLang[lang] = missing;
+        }
+      }
+
+      if (Object.keys(missingByLang).length > 0) {
+        const relPath = path.relative(".", file).replace(/\\/g, "/");
+        report.push({ file: relPath, ns: "(JSON data)", missingByLang });
+        for (const missing of Object.values(missingByLang)) {
+          totalGaps += missing.length;
+        }
+      }
+    } catch (err) {
+      console.error(`  [Error] Failed to parse ${file}`);
+    }
+  });
+}
+
 for (const file of files.sort()) {
   const source = fs.readFileSync(file, "utf8");
   const namespaces = detectNamespaces(source);

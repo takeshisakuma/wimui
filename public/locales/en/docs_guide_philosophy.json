@@ -6,7 +6,9 @@
     "focus_areas": "We focus on the following points for design and development:",
     "interaction": "Interaction",
     "kb_a11y": "Supports keyboard operations so all users can use it.",
-    "tangible_ui": "Pursuing a Tangible UI"
+    "tangible_ui": "Pursuing a Tangible UI",
+    "standard_overview_title": "Standard Overview",
+    "standard_overview_desc": "For a high-level view of our design and implementation standards, please refer to the <a href=\"?path=/docs/architecture-standardization-overview--docs\">Standardization Overview</a>."
   },
   "internal": {
     "philosophy_desc": "Guidelines for internal design consistency and encapsulation that should be followed when extending wimui or adding new components.",
