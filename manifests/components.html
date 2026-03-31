@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.5s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>7.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -69968,8 +69968,8 @@ import { T } from &quot;../stories/T&quot;;
 
 // GOOD
 .wim-component {
-  color: var(--color-primary);        // Use token
-  padding: var(--spacing-md);        // Use spacing token
+  color: var(--wim-color-primary);        // Use token
+  padding: var(--wim-spacing-md);        // Use spacing token
   min-height: var(--wim-height-md);  // Use shared height token
 }
 ```
@@ -74826,44 +74826,44 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
 &lt;ColorGrid&gt;
   &lt;ColorSwatch
     name=&quot;Primary&quot;
-    value=&quot;--color-primary&quot;
-    color=&quot;var(--color-primary)&quot;
+    value=&quot;--wim-color-primary&quot;
+    color=&quot;var(--wim-color-primary)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Secondary&quot;
-    value=&quot;--color-secondary&quot;
-    color=&quot;var(--color-secondary)&quot;
+    value=&quot;--wim-color-secondary&quot;
+    color=&quot;var(--wim-color-secondary)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Positive (Success)&quot;
-    value=&quot;--color-positive&quot;
-    color=&quot;var(--color-positive)&quot;
+    value=&quot;--wim-color-positive&quot;
+    color=&quot;var(--wim-color-positive)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Caution (Warning)&quot;
-    value=&quot;--color-caution&quot;
-    color=&quot;var(--color-caution)&quot;
+    value=&quot;--wim-color-caution&quot;
+    color=&quot;var(--wim-color-caution)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Destructive (Error)&quot;
-    value=&quot;--color-destructive&quot;
-    color=&quot;var(--color-destructive)&quot;
+    value=&quot;--wim-color-destructive&quot;
+    color=&quot;var(--wim-color-destructive)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Informative (Info)&quot;
-    value=&quot;--color-informative&quot;
-    color=&quot;var(--color-informative)&quot;
+    value=&quot;--wim-color-informative&quot;
+    color=&quot;var(--wim-color-informative)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Disabled&quot;
-    value=&quot;--color-disabled&quot;
-    color=&quot;var(--color-disabled)&quot;
+    value=&quot;--wim-color-disabled&quot;
+    color=&quot;var(--wim-color-disabled)&quot;
   /&gt;
 &lt;/ColorGrid&gt;
 
@@ -74874,72 +74874,72 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
 &lt;ColorGrid&gt;
   &lt;ColorSwatch
     name=&quot;On Primary&quot;
-    value=&quot;--color-text-on-primary&quot;
-    color=&quot;var(--color-primary)&quot;
+    value=&quot;--wim-color-text-on-primary&quot;
+    color=&quot;var(--wim-color-primary)&quot;
   &gt;
     &lt;span
       className=&quot;contrast-label&quot;
-      style={{ color: &quot;var(--color-text-on-primary)&quot; }}
+      style={{ color: &quot;var(--wim-color-text-on-primary)&quot; }}
     &gt;
       Text
     &lt;/span&gt;
   &lt;/ColorSwatch&gt;
   &lt;ColorSwatch
     name=&quot;On Destructive&quot;
-    value=&quot;--color-text-on-destructive&quot;
-    color=&quot;var(--color-destructive)&quot;
+    value=&quot;--wim-color-text-on-destructive&quot;
+    color=&quot;var(--wim-color-destructive)&quot;
   &gt;
     &lt;span
       className=&quot;contrast-label&quot;
-      style={{ color: &quot;var(--color-text-on-destructive)&quot; }}
+      style={{ color: &quot;var(--wim-color-text-on-destructive)&quot; }}
     &gt;
       Text
     &lt;/span&gt;
   &lt;/ColorSwatch&gt;
   &lt;ColorSwatch
     name=&quot;On Positive&quot;
-    value=&quot;--color-text-on-positive&quot;
-    color=&quot;var(--color-positive)&quot;
+    value=&quot;--wim-color-text-on-positive&quot;
+    color=&quot;var(--wim-color-positive)&quot;
   &gt;
     &lt;span
       className=&quot;contrast-label&quot;
-      style={{ color: &quot;var(--color-text-on-positive)&quot; }}
+      style={{ color: &quot;var(--wim-color-text-on-positive)&quot; }}
     &gt;
       Text
     &lt;/span&gt;
   &lt;/ColorSwatch&gt;
   &lt;ColorSwatch
     name=&quot;On Caution&quot;
-    value=&quot;--color-text-on-caution&quot;
-    color=&quot;var(--color-caution)&quot;
+    value=&quot;--wim-color-text-on-caution&quot;
+    color=&quot;var(--wim-color-caution)&quot;
   &gt;
     &lt;span
       className=&quot;contrast-label&quot;
-      style={{ color: &quot;var(--color-text-on-caution)&quot; }}
+      style={{ color: &quot;var(--wim-color-text-on-caution)&quot; }}
     &gt;
       Text
     &lt;/span&gt;
   &lt;/ColorSwatch&gt;
   &lt;ColorSwatch
     name=&quot;On Informative&quot;
-    value=&quot;--color-text-on-informative&quot;
-    color=&quot;var(--color-informative)&quot;
+    value=&quot;--wim-color-text-on-informative&quot;
+    color=&quot;var(--wim-color-informative)&quot;
   &gt;
     &lt;span
       className=&quot;contrast-label&quot;
-      style={{ color: &quot;var(--color-text-on-informative)&quot; }}
+      style={{ color: &quot;var(--wim-color-text-on-informative)&quot; }}
     &gt;
       Text
     &lt;/span&gt;
   &lt;/ColorSwatch&gt;
   &lt;ColorSwatch
     name=&quot;On Disabled&quot;
-    value=&quot;--color-text-on-disabled&quot;
-    color=&quot;var(--color-disabled)&quot;
+    value=&quot;--wim-color-text-on-disabled&quot;
+    color=&quot;var(--wim-color-disabled)&quot;
   &gt;
     &lt;span
       className=&quot;contrast-label&quot;
-      style={{ color: &quot;var(--color-text-on-disabled)&quot; }}
+      style={{ color: &quot;var(--wim-color-text-on-disabled)&quot; }}
     &gt;
       Text
     &lt;/span&gt;
@@ -74955,38 +74955,38 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
 &lt;ColorGrid&gt;
   &lt;ColorSwatch
     name=&quot;Text Primary&quot;
-    value=&quot;--text-primary&quot;
-    color=&quot;var(--text-primary)&quot;
+    value=&quot;--wim-color-text-primary&quot;
+    color=&quot;var(--wim-color-text-primary)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Text Secondary&quot;
-    value=&quot;--text-secondary&quot;
-    color=&quot;var(--text-secondary)&quot;
+    value=&quot;--wim-color-text-secondary&quot;
+    color=&quot;var(--wim-color-text-secondary)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Text Tertiary&quot;
-    value=&quot;--text-tertiary&quot;
-    color=&quot;var(--text-tertiary)&quot;
+    value=&quot;--wim-color-text-tertiary&quot;
+    color=&quot;var(--wim-color-text-tertiary)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Text Disabled&quot;
-    value=&quot;--text-disabled&quot;
-    color=&quot;var(--text-disabled)&quot;
+    value=&quot;--wim-color-text-disabled&quot;
+    color=&quot;var(--wim-color-text-disabled)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Text Error&quot;
-    value=&quot;--text-error&quot;
-    color=&quot;var(--text-error)&quot;
+    value=&quot;--wim-color-text-error&quot;
+    color=&quot;var(--wim-color-text-error)&quot;
   /&gt;
 
   &lt;ColorSwatch
     name=&quot;Text White&quot;
-    value=&quot;--text-white&quot;
-    color=&quot;var(--text-white)&quot;
+    value=&quot;--wim-color-text-white&quot;
+    color=&quot;var(--wim-color-text-white)&quot;
   /&gt;
 &lt;/ColorGrid&gt;
 
@@ -74997,12 +74997,12 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
   &lt;T k=&quot;guide.colors_surface_desc&quot; /&gt;
 &lt;/p&gt;
 &lt;ColorGrid&gt;
-  &lt;ColorSwatch name=&quot;App Background&quot; value=&quot;--bg-app&quot; color=&quot;var(--bg-app)&quot; /&gt;
+  &lt;ColorSwatch name=&quot;App Background&quot; value=&quot;--wim-color-bg-app&quot; color=&quot;var(--wim-color-bg-app)&quot; /&gt;
 
   &lt;ColorSwatch
     name=&quot;Component Background&quot;
-    value=&quot;--bg-component&quot;
-    color=&quot;var(--bg-component)&quot;
+    value=&quot;--wim-color-bg-component&quot;
+    color=&quot;var(--wim-color-bg-component)&quot;
   /&gt;
 &lt;/ColorGrid&gt;
 
@@ -75035,8 +75035,8 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
 &lt;ColorGrid&gt;
   &lt;ColorSwatch
     name=&quot;Scrollbar Thumb&quot;
-    value=&quot;--scrollbar-thumb&quot;
-    color=&quot;var(--scrollbar-thumb)&quot;
+    value=&quot;--wim-scrollbar-thumb&quot;
+    color=&quot;var(--wim-scrollbar-thumb)&quot;
   /&gt;
 &lt;/ColorGrid&gt;
 
@@ -76374,7 +76374,7 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
     transition: border-color 0.3s;
   }
   .tone-header:hover {
-    border-color: var(--color-primary);
+    border-color: var(--wim-color-primary);
   }
   .tone-symbol {
     font-size: 28px;
