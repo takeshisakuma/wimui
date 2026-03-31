@@ -141,6 +141,7 @@ export default [
     files: ["stories/**/*.ts", "stories/**/*.tsx"],
     rules: {
       "jsx-a11y/no-autofocus": "off",
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
 ];
