@@ -157,13 +157,17 @@
     "react-i18next": ">=14.0.0"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
+    "{src,stories}/**/*.{ts,tsx}": [
       "eslint --fix --max-warnings=0",
+      "node scripts/check-i18n-components.js",
       "node scripts/tsc-check.js",
       "node scripts/check-git-casing.cjs"
     ],
-    "src/**/*.{css,scss}": [
+    "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0"
+    ],
+    "docs/**/*.mdx": [
+      "node scripts/check-i18n-components.js"
     ],
     "public/locales/**/*.json": [
       "npm run i18n:check"

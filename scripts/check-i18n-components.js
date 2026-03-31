@@ -45,17 +45,14 @@ for (const lang of langs) {
   }
 }
 
-// Find all component TSX files (exclude tests and stories)
-const componentFiles = globSync(`${srcDir}/**/*.tsx`, { posix: true }).filter(
-  (f) => !f.includes(".test.") && !f.includes(".stories.")
-);
-// Find docs MDX files, stories TSX files, and stories MDX files
-const docsFiles = globSync(`${docsDir}/**/*.mdx`, { posix: true });
-const storiesFiles = [
-  ...globSync(`${storiesDir}/**/*.tsx`, { posix: true }),
-  ...globSync(`${storiesDir}/**/*.mdx`, { posix: true }),
-];
-const files = [...componentFiles, ...docsFiles, ...storiesFiles];
+// Get files from command line arguments if provided (for lint-staged)
+const filesFromArgs = process.argv.slice(2).filter(f => f.endsWith('.tsx') || f.endsWith('.mdx'));
+const files = filesFromArgs.length > 0 
+  ? filesFromArgs 
+  : [...globSync(`${srcDir}/**/*.tsx`, { posix: true }).filter(f => !f.includes(".test.") && !f.includes(".stories.")),
+     ...globSync(`${docsDir}/**/*.mdx`, { posix: true }),
+     ...globSync(`${storiesDir}/**/*.tsx`, { posix: true }),
+     ...globSync(`${storiesDir}/**/*.mdx`, { posix: true })];
 
 // Extract namespaces from useTranslation("ns"), useTranslation(['ns1','ns2']), etc.
 // Returns an array of namespaces. Defaults to ["common"] if not specified.
