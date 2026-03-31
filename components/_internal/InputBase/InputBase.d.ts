@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { Icon } from '../../Icon/Icon';
+import { Icon } from '../../media/Icon/Icon';
 import { FieldStatus } from '../../../types/tokens';
 export type InputBaseIcon = {
     name: React.ComponentProps<typeof Icon>["name"];

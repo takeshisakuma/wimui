@@ -1,5 +1,5 @@
 import { default as React, ReactNode } from '../../../node_modules/react';
-import { Transition } from '../Transition/Transition';
+import { Transition } from '../misc/Transition/Transition';
 export type OverlayBaseProps = {
     open: boolean;
     onOpenChange: (open: boolean) => void;
