@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Group } from "@/components/Group/Group";
-import { Button } from "@/components/Button/Button";
+import { Group } from "@/components/layout/Group/Group";
+import { Button } from "@/components/form/Button/Button";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";

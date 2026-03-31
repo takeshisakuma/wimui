@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { AvatarGroup } from "@/components/AvatarGroup/AvatarGroup";
-import { Avatar } from "@/components/Avatar/Avatar";
+import { AvatarGroup } from "@/components/data-display/AvatarGroup/AvatarGroup";
+import { Avatar } from "@/components/data-display/Avatar/Avatar";
 
 const meta: Meta<typeof AvatarGroup> = {
   title: "Components/Data Indicators/AvatarGroup",
@@ -33,7 +33,7 @@ const users = [
 ];
 
 export const Default: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <AvatarGroup {...args}>
       {users.map((u, i) => (
         <Avatar key={i} src={u.src} initials={u.initials} />
@@ -46,7 +46,7 @@ export const MaxDisplayed: Story = {
   args: {
     max: 3,
   },
-  render: (args) => (
+  render: (args: any) => (
     <AvatarGroup {...args}>
       {users.map((u, i) => (
         <Avatar key={i} src={u.src} initials={u.initials} />
@@ -56,7 +56,7 @@ export const MaxDisplayed: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <AvatarGroup {...args} size="sm">
         {users.map((u, i) => (
@@ -82,7 +82,7 @@ export const TotalCount: Story = {
     max: 2,
     total: 10,
   },
-  render: (args) => (
+  render: (args: any) => (
     <AvatarGroup {...args}>
       {users.slice(0, 2).map((u, i) => (
         <Avatar key={i} src={u.src} initials={u.initials} />

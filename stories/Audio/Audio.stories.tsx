@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Audio } from "@/components/Audio/Audio";
-import { Button } from "@/components/Button/Button";
+import { Audio } from "@/components/media/Audio/Audio";
+import { Button } from "@/components/form/Button/Button";
 import audioSample from "@/media/audiosample.mp3";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";

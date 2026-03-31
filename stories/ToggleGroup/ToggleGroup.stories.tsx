@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { ToggleGroup, type Option } from "@/components/ToggleGroup/ToggleGroup";
+import { ToggleGroup, type Option } from "@/components/form/ToggleGroup/ToggleGroup";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

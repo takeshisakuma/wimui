@@ -1,0 +1,51 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .wim-box {
+    box-sizing: border-box;
+
+    @include breakpoints.up(sm) {
+      width: var(--wim-box-w-sm, var(--wim-box-w)) !important;
+      height: var(--wim-box-h-sm, var(--wim-box-h)) !important;
+    }
+
+    @include breakpoints.up(md) {
+      width: var(
+        --wim-box-w-md,
+        var(--wim-box-w-sm, var(--wim-box-w))
+      ) !important;
+      height: var(
+        --wim-box-h-md,
+        var(--wim-box-h-sm, var(--wim-box-h))
+      ) !important;
+    }
+
+    @include breakpoints.up(lg) {
+      width: var(
+        --wim-box-w-lg,
+        var(--wim-box-w-md, var(--wim-box-w-sm, var(--wim-box-w)))
+      ) !important;
+      height: var(
+        --wim-box-h-lg,
+        var(--wim-box-h-md, var(--wim-box-h-sm, var(--wim-box-h)))
+      ) !important;
+    }
+
+    @include breakpoints.up(xl) {
+      width: var(
+        --wim-box-w-xl,
+        var(
+          --wim-box-w-lg,
+          var(--wim-box-w-md, var(--wim-box-w-sm, var(--wim-box-w)))
+        )
+      ) !important;
+      height: var(
+        --wim-box-h-xl,
+        var(
+          --wim-box-h-lg,
+          var(--wim-box-h-md, var(--wim-box-h-sm, var(--wim-box-h)))
+        )
+      ) !important;
+    }
+  }
+}

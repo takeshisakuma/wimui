@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Treemap } from "@/components/Charts/Treemap/Treemap";
+import { Treemap } from "@/components/charts/Treemap/Treemap";
 
 const meta: Meta<typeof Treemap> = {
   title: "Components/Visualization/Treemap",

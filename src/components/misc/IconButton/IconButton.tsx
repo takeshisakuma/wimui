@@ -1,0 +1,23 @@
+import React from "react";
+import { Button } from "../../form/Button/Button";
+import { Icon } from "../../media/Icon/Icon";
+
+type IconButtonProps = Omit<
+  React.ComponentProps<typeof Button>,
+  "label" | "iconPosition"
+> & {
+  iconName: React.ComponentProps<typeof Icon>["name"];
+  "aria-label": string;
+};
+
+/**
+ * アイコンのみのボタンコンポーネント。
+ */
+export const IconButton = ({ iconName, ...props }: IconButtonProps) => {
+  return (
+    <Button
+      {...props}
+      icon={iconName}
+    />
+  );
+};

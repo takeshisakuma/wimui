@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { KanbanBoard } from "@/components/Kanban/Kanban";
+import { KanbanBoard } from "@/components/data-display/Kanban/Kanban";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

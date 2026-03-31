@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
+import { SegmentedControl } from "@/components/form/SegmentedControl/SegmentedControl";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -38,7 +38,7 @@ export const Small: Story = {
       </div>
     ),
   ],
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("day");
     const options = useMemo(
@@ -72,7 +72,7 @@ export const Medium: Story = {
       </div>
     ),
   ],
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("day");
     const options = useMemo(
@@ -106,7 +106,7 @@ export const Large: Story = {
       </div>
     ),
   ],
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("day");
     const options = useMemo(
@@ -133,7 +133,7 @@ export const TwoOptions: Story = {
     size: "md",
     fullWidth: true,
   },
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("on");
     const options = useMemo(
@@ -159,7 +159,7 @@ export const WithIcons: Story = {
     size: "md",
     fullWidth: false,
   },
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("circle");
     const options = useMemo(
@@ -199,7 +199,7 @@ export const IconOnly: Story = {
     size: "md",
     fullWidth: false,
   },
-  render: (args) => {
+  render: (args: any) => {
     const [value, setValue] = useState("circle");
     const iconOnlyOptions = [
       { value: "circle", iconName: "CircleIcon" },
@@ -229,7 +229,7 @@ export const LongLabel: Story = {
       </div>
     ),
   ],
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("long1");
     const options = useMemo(

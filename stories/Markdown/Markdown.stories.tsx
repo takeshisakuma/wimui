@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Markdown } from "@/components/Markdown/Markdown";
+import { Markdown } from "@/components/data-display/Markdown/Markdown";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -14,7 +14,7 @@ export default meta;
 type Story = StoryObj<typeof Markdown>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Markdown {...args}>{t("story.markdown_sample")}</Markdown>;
   },

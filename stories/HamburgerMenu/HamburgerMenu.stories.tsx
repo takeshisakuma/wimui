@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HamburgerMenu,
   HamburgerMenuProps,
-} from "@/components/HamburgerMenu/HamburgerMenu";
+} from "@/components/navigation/HamburgerMenu/HamburgerMenu";
 import React, { useState, useEffect } from "react";
 
 const meta: Meta<typeof HamburgerMenu> = {

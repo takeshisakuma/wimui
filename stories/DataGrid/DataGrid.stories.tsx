@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { DataGrid, type DataGridColumn, type DataGridProps } from "@/components/DataGrid/DataGrid";
-import { Badge } from "@/components/Badge/Badge";
-import { Button } from "@/components/Button/Button";
-import { Icon } from "@/components/Icon/Icon";
+import { DataGrid, type DataGridColumn, type DataGridProps } from "@/components/data-display/DataGrid/DataGrid";
+import { Badge } from "@/components/data-display/Badge/Badge";
+import { Button } from "@/components/form/Button/Button";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -132,7 +132,7 @@ const useDataGridTranslations = () => {
 };
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
@@ -286,7 +286,7 @@ export const WithActions: Story = {
 };
 
 export const Loading: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
@@ -298,7 +298,7 @@ export const Loading: Story = {
 };
 
 export const Empty: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t, tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} emptyMessage={t('story.datagrid_empty')} />;
@@ -309,7 +309,7 @@ export const Empty: Story = {
 };
 
 export const Striped: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
@@ -321,7 +321,7 @@ export const Striped: Story = {
 };
 
 export const Bordered: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
@@ -332,7 +332,7 @@ export const Bordered: Story = {
 };
 
 export const StickyHeader: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { tColumns } = useDataGridTranslations();
     const rows = manyRows as unknown as Record<string, unknown>[];
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;

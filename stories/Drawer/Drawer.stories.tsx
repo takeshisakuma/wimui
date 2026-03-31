@@ -9,8 +9,8 @@ import {
   DrawerTitle,
   DrawerDescription,
   DrawerClose,
-} from "@/components/Drawer/Drawer";
-import { Button } from "@/components/Button/Button";
+} from "@/components/overlay/Drawer/Drawer";
+import { Button } from "@/components/form/Button/Button";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";

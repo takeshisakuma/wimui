@@ -1,0 +1,106 @@
+@use "../../../styles/token-common.scss" as *;
+
+@layer component {
+  // Use attribute selector so it works even if the class is applied to the wrapper
+  // Use high specificity to override InputBase defaults
+  .wim-input-base > input[type="color"].wim-input {
+    box-sizing: border-box;
+    display: block;
+    align-self: stretch;
+    width: 100%;
+    min-width: 40px;
+    height: auto;
+    min-height: 100%;
+    padding: 0 !important; // Must override InputBase's padding-right/left !important (values differ)
+    margin: 0;
+    appearance: none;
+    cursor: pointer;
+    background: transparent; // Same value as InputBase's !important rule — author specificity wins
+    border: none; // Same value as InputBase's !important rule — author specificity wins
+    border-radius: 0; // No competing rule from InputBase on children
+  
+  
+    &::-webkit-color-swatch-wrapper {
+      box-sizing: border-box;
+      height: 100%;
+      padding: 0;
+      border-radius: 0; // Author styles beat UA stylesheet without !important
+    }
+  
+    &::-webkit-color-swatch {
+      box-sizing: border-box;
+      height: 100%;
+      border: none;
+      border-radius: 0; // Author styles beat UA stylesheet without !important
+    }
+  
+    &::-moz-color-swatch {
+      box-sizing: border-box;
+      height: 100%;
+      border: none;
+      border-radius: 0; // Author styles beat UA stylesheet without !important
+    }
+  }
+  
+  // Ensure the shell looks okay
+  .wim-input-base {
+    &:has(input[type="color"]) {
+      width: 120px; // Solidify width
+      min-width: 120px;
+      max-width: 120px;
+      min-height: 42px;
+      overflow: hidden;
+  
+      &:hover:not(.wim-input-base--disabled) {
+        border-color: var(--wim-color-primary);
+      }
+  
+      // Icons color - Default
+      // :has(input[type="color"]) adds 0,1,1 → total 0,3,1 > InputBase's 0,2,0
+      .wim-input-icon,
+      .wim-input-icons {
+        color: #000;
+  
+        .wim-icon {
+          color: inherit;
+          stroke: #000;
+        }
+      }
+  
+      // Icons color - Destructive (Error)
+      // --error adds another class → total 0,4,1
+      &.wim-input-base--error {
+        .wim-input-icon,
+        .wim-input-icons {
+          color: var(--wim-color-text-error);
+  
+          .wim-icon {
+            color: inherit;
+            stroke: var(--wim-color-text-error);
+          }
+        }
+      }
+  
+      // Center the left icon in its allocated space
+      .wim-input-icon--left {
+        left: 0;
+        justify-content: center;
+        width: var(--wim-input-offset-left);
+      }
+  
+      // Restore padding for the input content area when icons are present
+      // Same value as InputBase's !important rule — both set var(--wim-input-offset-*), result is identical
+      &.wim-input--has-left-icon {
+        input[type="color"].wim-input {
+          padding-left: var(--wim-input-offset-left);
+        }
+      }
+  
+      &.wim-input--has-right-icon {
+        input[type="color"].wim-input {
+          padding-right: var(--wim-input-offset-right);
+        }
+      }
+    }
+  }
+}

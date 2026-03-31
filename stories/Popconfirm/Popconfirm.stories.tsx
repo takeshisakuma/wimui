@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Popconfirm } from "@/components/Popconfirm/Popconfirm";
-import { Button } from "@/components/Button/Button";
+import { Popconfirm } from "@/components/overlay/Popconfirm/Popconfirm";
+import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../i18nConstants";

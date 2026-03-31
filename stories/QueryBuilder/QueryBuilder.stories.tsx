@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { QueryBuilder, type QueryField, type QueryGroup } from "../../src/components/QueryBuilder/QueryBuilder";
+import { QueryBuilder, type QueryField, type QueryGroup } from "../../src/components/misc/QueryBuilder/QueryBuilder";
 import { useTranslation } from "react-i18next";
 
 const fields: QueryField[] = [
@@ -24,7 +24,7 @@ export default meta;
 type Story = StoryObj<typeof QueryBuilder>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation("components");
     const [query, setQuery] = useState<QueryGroup | undefined>(args.query);
     return (
@@ -77,7 +77,7 @@ export const Predefined: Story = {
       ],
     },
   },
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation("components");
     const [query, setQuery] = useState<QueryGroup | undefined>(args.defaultQuery as QueryGroup);
     return (

@@ -1,0 +1,190 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .wim-pagination-container {
+    width: 100%;
+    container-type: inline-size;
+  }
+
+  .wim-pagination-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-lg);
+    align-items: center;
+  }
+
+  .wim-pagination {
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    &--simple {
+      .wim-pagination__simple-pager {
+        padding: 0 var(--wim-spacing-md);
+        color: var(--wim-color-text-primary);
+      }
+    }
+
+    &__mobile-indicator {
+      display: none;
+
+      @include breakpoints.container-down(md) {
+        display: inline-flex;
+        color: var(--wim-color-text-primary);
+        pointer-events: none;
+        cursor: default;
+        background: transparent;
+        border: none;
+      }
+    }
+
+    &__item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: var(--wim-spacing-3xl);
+      height: var(--wim-spacing-3xl);
+      padding: 0 var(--wim-spacing-md);
+      font-size: var(--wim-font-size-md);
+      font-weight: var(--wim-font-weight-medium);
+      color: var(--wim-color-text-secondary);
+      cursor: pointer;
+      user-select: none;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--wim-radius-md);
+      transition: all var(--wim-transition-base);
+
+      &:hover:not(&--disabled, &--active) {
+        color: var(--wim-color-primary);
+        background-color: var(--wim-color-bg-hover);
+      }
+
+      &--active {
+        color: var(--wim-color-text-on-primary);
+        cursor: default;
+        background-color: var(--wim-color-primary);
+      }
+
+      &--disabled {
+        color: var(--wim-color-disabled);
+        cursor: not-allowed;
+        opacity: var(--wim-opacity-ghost);
+      }
+
+      &--ellipsis {
+        cursor: default;
+
+        &:hover {
+          color: var(--wim-color-text-secondary);
+          background-color: transparent;
+        }
+      }
+
+      &--number,
+      &--ellipsis {
+        @include breakpoints.container-down(md) {
+          display: none;
+        }
+      }
+    }
+
+    &__button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      cursor: inherit;
+      outline: none;
+      background: none;
+      border: none;
+
+      &:focus-visible {
+        outline: none;
+        border-radius: var(--wim-radius-sm);
+        box-shadow: var(--wim-shadow-focus);
+      }
+    }
+
+    &__total {
+      font-size: var(--wim-font-size-md);
+      color: var(--wim-color-text-secondary);
+    }
+
+    &__size-changer {
+      display: flex;
+      gap: var(--wim-spacing-sm);
+      align-items: center;
+    }
+
+    &__size-select {
+      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+      font-size: var(--wim-font-size-md);
+      color: var(--wim-color-text-primary);
+      cursor: pointer;
+      outline: none;
+      background-color: var(--wim-color-bg);
+      border: 1px solid var(--wim-color-border);
+      border-radius: var(--wim-radius-md);
+      transition: all var(--wim-transition-base);
+
+      &:hover {
+        border-color: var(--wim-color-primary);
+      }
+
+      &:focus {
+        border-color: var(--wim-color-primary);
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary-rgb) 10%, transparent);
+      }
+    }
+
+    &__quick-jumper {
+      display: flex;
+      gap: var(--wim-spacing-sm);
+      align-items: center;
+      font-size: var(--wim-font-size-md);
+      color: var(--wim-color-text-secondary);
+    }
+
+    &__jump-input {
+      width: 60px;
+      padding: var(--wim-spacing-sm);
+      font-size: var(--wim-font-size-md);
+      color: var(--wim-color-text-primary);
+      text-align: center;
+      outline: none;
+      background-color: var(--wim-color-bg);
+      border: 1px solid var(--wim-color-border);
+      border-radius: var(--wim-radius-md);
+      transition: all var(--wim-transition-base);
+
+      &:hover {
+        border-color: var(--wim-color-primary);
+      }
+
+      &:focus {
+        border-color: var(--wim-color-primary);
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary-rgb) 10%, transparent);
+      }
+
+      /* Chrome, Safari, Edge, Opera */
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        margin: 0;
+        appearance: none;
+      }
+
+      /* Firefox */
+      &[type="number"] {
+        appearance: textfield;
+      }
+    }
+  }
+}

@@ -5,8 +5,8 @@ import {
   ChatMessage,
   ChatInput,
   ChatAvatar,
-} from "@/components/ChatUI/ChatUI";
-import { Icon } from "@/components/Icon/Icon";
+} from "@/components/data-display/ChatUI/ChatUI";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";

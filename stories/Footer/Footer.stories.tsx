@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import Footer from "@/components/Footer/Footer";
-import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
+import Footer from "@/components/layout/Footer/Footer";
+import { SimpleGrid } from "@/components/layout/SimpleGrid/SimpleGrid";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -56,9 +56,9 @@ const FooterDemo = (args: Parameters<typeof Footer>[0]) => {
 };
 
 export const Default: Story = {
-  render: (args) => <FooterDemo {...args} />,
+  render: (args: any) => <FooterDemo {...args} />,
 };
 
 export const Dark: Story = {
-  render: (args) => <FooterDemo {...args} background="dark" />,
+  render: (args: any) => <FooterDemo {...args} background="dark" />,
 };

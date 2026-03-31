@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { RadioGroup } from "@/components/RadioGroup/RadioGroup";
+import { RadioGroup } from "@/components/form/RadioGroup/RadioGroup";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Affix } from "@/components/Affix/Affix";
-import { Button } from "@/components/Button/Button";
+import { Affix } from "@/components/navigation/Affix/Affix";
+import { Button } from "@/components/form/Button/Button";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof Affix>;
 
 export const Basic: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
@@ -35,7 +35,7 @@ export const Basic: Story = {
 };
 
 export const OffsetBottom: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>

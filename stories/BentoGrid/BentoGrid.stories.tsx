@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { BentoGrid, BentoGridItem } from "@/components/BentoGrid/BentoGrid";
+import { BentoGrid, BentoGridItem } from "@/components/layout/BentoGrid/BentoGrid";
 import React from "react";
-import { Icon } from "@/components/Icon/Icon";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

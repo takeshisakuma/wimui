@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Transfer } from "../../src/components/Transfer/Transfer";
+import { Transfer } from "../../src/components/form/Transfer/Transfer";
 
 const meta: Meta<typeof Transfer> = {
   title: "Components/Advanced Inputs/Transfer",
@@ -30,7 +30,7 @@ const DefaultTransfer = (args: React.ComponentProps<typeof Transfer>) => {
 };
 
 export const Default: Story = {
-  render: (args) => <DefaultTransfer {...args} />,
+  render: (args: any) => <DefaultTransfer {...args} />,
 };
 
 const TransferWrapper = () => {
@@ -63,7 +63,7 @@ const CustomTitlesTransfer = (args: React.ComponentProps<typeof Transfer>) => {
 };
 
 export const CustomTitles: Story = {
-  render: (args) => <CustomTitlesTransfer {...args} />,
+  render: (args: any) => <CustomTitlesTransfer {...args} />,
 };
 
 const DisabledTransfer = (args: React.ComponentProps<typeof Transfer>) => {
@@ -79,5 +79,5 @@ const DisabledTransfer = (args: React.ComponentProps<typeof Transfer>) => {
 };
 
 export const Disabled: Story = {
-  render: (args) => <DisabledTransfer {...args} />,
+  render: (args: any) => <DisabledTransfer {...args} />,
 };

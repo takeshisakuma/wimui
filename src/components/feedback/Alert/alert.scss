@@ -1,0 +1,198 @@
+@use "../../../tokens/semantic-colors" as *;
+@use "../../../tokens/spacings" as *;
+@use "../../../tokens/effects" as *;
+
+@layer component {
+  .wim-alert {
+    position: relative;
+    display: flex;
+    gap: var(--wim-spacing-md);
+    align-items: flex-start;
+    padding: var(--wim-spacing-lg) var(--wim-spacing-xl);
+    overflow: hidden;
+  
+    // Glassmorphism effect base
+    background: var(--wim-color-overlay-bg-light);
+    border: 1px solid transparent;
+    border-radius: var(--wim-radius-lg);
+    box-shadow: var(--wim-shadow-sm);
+    backdrop-filter: blur(12px);
+    transition: var(--wim-transition-fast);
+  
+    &__icon {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      align-self: center; // Vertically center the icon
+      font-size: 1.25rem;
+    }
+  
+    &__content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    &__title {
+      margin: 0;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+  
+    &__description {
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      opacity: 0.9;
+  
+      .wim-alert__title + & {
+        margin-top: var(--wim-spacing-xs);
+      }
+    }
+  
+    &__close {
+      position: absolute;
+      top: var(--wim-spacing-xs);
+      right: var(--wim-spacing-xs);
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      margin: 0;
+      color: inherit;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      border-radius: var(--wim-radius-md);
+      opacity: var(--wim-opacity-ghost);
+      transition: var(--wim-transition-fast);
+  
+      &:hover {
+        background: rgb(0 0 0 / 0.05);
+        opacity: 1;
+      }
+  
+      &:active {
+        transform: scale(0.95);
+      }
+  
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  
+    // Variants
+    &--info {
+      color: color-mix(in srgb, var(--wim-color-informative) 70%, black);
+      background: color-mix(in srgb, var(--wim-color-informative) 8%, var(--wim-color-overlay-bg-light));
+      border-color: color-mix(in srgb, var(--wim-color-informative) 30%, transparent);
+  
+      .wim-alert__icon {
+        color: var(--wim-color-informative);
+      }
+    }
+  
+    &--success {
+      color: color-mix(in srgb, var(--wim-color-positive) 70%, black);
+      background: color-mix(in srgb, var(--wim-color-positive) 8%, var(--wim-color-overlay-bg-light));
+      border-color: color-mix(in srgb, var(--wim-color-positive) 30%, transparent);
+  
+      .wim-alert__icon {
+        color: var(--wim-color-positive);
+      }
+    }
+  
+    &--warning {
+      color: color-mix(in srgb, var(--wim-color-caution) 70%, black);
+      background: color-mix(in srgb, var(--wim-color-caution) 8%, var(--wim-color-overlay-bg-light));
+      border-color: color-mix(in srgb, var(--wim-color-caution) 30%, transparent);
+  
+      .wim-alert__icon {
+        color: var(--wim-color-caution);
+      }
+    }
+  
+    &--error {
+      color: color-mix(in srgb, var(--wim-color-destructive) 70%, black);
+      background: color-mix(in srgb, var(--wim-color-destructive) 8%, var(--wim-color-overlay-bg-light));
+      border-color: color-mix(in srgb, var(--wim-color-destructive) 30%, transparent);
+  
+      .wim-alert__icon {
+        color: var(--wim-color-destructive);
+      }
+    }
+  
+    // Dark Mode Support
+    [data-theme="dark"] & {
+      background: color-mix(in srgb, var(--wim-color-bg-component) 60%, transparent);
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+  
+      &--info {
+        color: color-mix(in srgb, var(--wim-color-informative) 20%, white);
+        background: color-mix(in srgb, var(--wim-color-informative) 15%, transparent);
+        border-color: color-mix(in srgb, var(--wim-color-informative) 40%, transparent);
+      }
+  
+      &--success {
+        color: color-mix(in srgb, var(--wim-color-positive) 20%, white);
+        background: color-mix(in srgb, var(--wim-color-positive) 15%, transparent);
+        border-color: color-mix(in srgb, var(--wim-color-positive) 40%, transparent);
+      }
+  
+      &--warning {
+        color: color-mix(in srgb, var(--wim-color-caution) 20%, white);
+        background: color-mix(in srgb, var(--wim-color-caution) 15%, transparent);
+        border-color: color-mix(in srgb, var(--wim-color-caution) 40%, transparent);
+      }
+  
+      &--error {
+        color: color-mix(in srgb, var(--wim-color-destructive) 20%, white);
+        background: color-mix(in srgb, var(--wim-color-destructive) 15%, transparent);
+        border-color: color-mix(in srgb, var(--wim-color-destructive) 40%, transparent);
+      }
+  
+      &__close:hover {
+        background: rgb(255 255 255 / 0.1);
+      }
+    }
+  
+    @media (prefers-color-scheme: dark) {
+      background: color-mix(in srgb, var(--wim-color-bg-component) 60%, transparent);
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+  
+      &--info {
+        color: color-mix(in srgb, var(--wim-color-informative) 20%, white);
+        background: color-mix(in srgb, var(--wim-color-informative) 15%, transparent);
+        border-color: color-mix(in srgb, var(--wim-color-informative) 40%, transparent);
+      }
+  
+      &--success {
+        color: color-mix(in srgb, var(--wim-color-positive) 20%, white);
+        background: color-mix(in srgb, var(--wim-color-positive) 15%, transparent);
+        border-color: color-mix(in srgb, var(--wim-color-positive) 40%, transparent);
+      }
+  
+      &--warning {
+        color: color-mix(in srgb, var(--wim-color-caution) 20%, white);
+        background: color-mix(in srgb, var(--wim-color-caution) 15%, transparent);
+        border-color: color-mix(in srgb, var(--wim-color-caution) 40%, transparent);
+      }
+  
+      &--error {
+        color: color-mix(in srgb, var(--wim-color-destructive) 20%, white);
+        background: color-mix(in srgb, var(--wim-color-destructive) 15%, transparent);
+        border-color: color-mix(in srgb, var(--wim-color-destructive) 40%, transparent);
+      }
+  
+      &__close:hover {
+        background: rgb(255 255 255 / 0.1);
+      }
+    }
+  }
+}

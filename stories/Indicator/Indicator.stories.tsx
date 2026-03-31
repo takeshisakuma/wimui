@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Indicator } from "@/components/Indicator/Indicator";
-import { Avatar } from "@/components/Avatar/Avatar";
-import { Icon } from "@/components/Icon/Icon";
+import { Indicator } from "@/components/feedback/Indicator/Indicator";
+import { Avatar } from "@/components/data-display/Avatar/Avatar";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../i18nConstants";
@@ -38,7 +38,7 @@ export const Default: Story = {
 };
 
 export const Colors: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ display: "flex", gap: "20px" }}>
       <Indicator {...args} color="primary">
         <Avatar initials="P" />
@@ -81,7 +81,7 @@ export const Inline: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
       <Indicator {...args} size="sm" inline />
       <Indicator {...args} size="md" inline />
@@ -91,7 +91,7 @@ export const Sizes: Story = {
 };
 
 export const WithIcons: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ display: "flex", gap: "20px" }}>
       <Indicator {...args} color="error">
         <div

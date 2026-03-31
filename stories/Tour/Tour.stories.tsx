@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Tour } from "@/components/Tour/Tour";
-import { Button } from "@/components/Button/Button";
+import { Tour } from "@/components/feedback/Tour/Tour";
+import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

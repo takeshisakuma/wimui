@@ -1,13 +1,13 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { AppShell } from "@/components/AppShell/AppShell";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-import Sidebar from "@/components/Sidebar/Sidebar";
-import TabBar from "@/components/TabBar/TabBar";
-import { Icon } from "@/components/Icon/Icon";
-import { Button } from "@/components/Button/Button";
-import { Input } from "@/components/Input/Input";
+import { AppShell } from "@/components/layout/AppShell/AppShell";
+import Header from "@/components/layout/Header/Header";
+import Footer from "@/components/layout/Footer/Footer";
+import Sidebar from "@/components/layout/Sidebar/Sidebar";
+import TabBar from "@/components/navigation/TabBar/TabBar";
+import { Icon } from "@/components/media/Icon/Icon";
+import { Button } from "@/components/form/Button/Button";
+import { Input } from "@/components/form/Input/Input";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

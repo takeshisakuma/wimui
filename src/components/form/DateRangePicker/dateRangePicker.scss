@@ -1,0 +1,40 @@
+﻿@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .wim-daterangepicker-container {
+    width: 100%;
+    container-type: inline-size;
+  }
+  
+  .wim-daterangepicker {
+    display: flex;
+    flex-direction: row;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    width: 100%;
+  
+    // Row mode: cap each input so they don't stretch on wide containers
+    .wim-datepicker-wrapper {
+      flex: 1;
+      max-width: 280px;
+    }
+  
+    @include breakpoints.container-down(sm) {
+      flex-direction: column;
+      align-items: stretch;
+  
+      .wim-datepicker-wrapper {
+        max-width: none; // restore full width in column mode
+      }
+  
+      .wim-daterangepicker-separator {
+        display: none;
+      }
+    }
+  }
+  
+  .wim-daterangepicker-separator {
+    align-self: center;
+    color: var(--wim-color-text-secondary);
+  }
+}

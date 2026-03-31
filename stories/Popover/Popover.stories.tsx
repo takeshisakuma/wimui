@@ -3,10 +3,10 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/Popover/Popover";
-import { Button } from "@/components/Button/Button";
-import { Input } from "@/components/Input/Input";
-import { Label } from "@/components/Label/Label";
+} from "@/components/overlay/Popover/Popover";
+import { Button } from "@/components/form/Button/Button";
+import { Input } from "@/components/form/Input/Input";
+import { Label } from "@/components/typography/Label/Label";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import React from "react";

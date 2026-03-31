@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   RangeCalendar,
   RangeCalendarValue,
-} from "@/components/Calendar/RangeCalendar";
+} from "@/components/data-display/Calendar/RangeCalendar";
 
 const meta: Meta<typeof RangeCalendar> = {
   title: "Components/Pickers & Sliders/RangeCalendar",
@@ -46,7 +46,7 @@ export const Disabled: Story = {
 };
 
 export const Controlled: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const [range, setRange] = useState<RangeCalendarValue>([today, nextWeek]);
     return (
       <RangeCalendar {...args} value={range} onChange={setRange} />

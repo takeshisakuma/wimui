@@ -4,8 +4,8 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "@/components/Tooltip/Tooltip";
-import { Button } from "@/components/Button/Button";
+} from "@/components/overlay/Tooltip/Tooltip";
+import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

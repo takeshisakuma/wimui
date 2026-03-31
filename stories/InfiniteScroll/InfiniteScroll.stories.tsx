@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { InfiniteScroll } from "@/components/InfiniteScroll/InfiniteScroll";
-import { Card } from "@/components/Card/Card";
-import { Stack } from "@/components/Stack/Stack";
+import { InfiniteScroll } from "@/components/misc/InfiniteScroll/InfiniteScroll";
+import { Card } from "@/components/data-display/Card/Card";
+import { Stack } from "@/components/layout/Stack/Stack";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof InfiniteScroll>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [items, setItems] = useState(
       Array.from({ length: 20 }, (_, i) => t("story.infscroll_item", { index: i + 1 })),

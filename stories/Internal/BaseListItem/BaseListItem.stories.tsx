@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BaseListItem } from "../../../src/components/_internal/BaseListItem/BaseListItem";
-import { Icon } from "../../../src/components/Icon/Icon";
-import { Chip } from "../../../src/components/Chip/Chip";
+import { Icon } from "../../../src/components/media/Icon/Icon";
+import { Chip } from "../../../src/components/data-display/Chip/Chip";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 

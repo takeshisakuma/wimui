@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import {
   TreeSelect,
   TreeSelectNode,
-} from "../../src/components/TreeSelect/TreeSelect";
-import { Icon } from "../../src/components/Icon/Icon";
+} from "../../src/components/form/TreeSelect/TreeSelect";
+import { Icon } from "../../src/components/media/Icon/Icon";
 
 const meta: Meta<typeof TreeSelect> = {
   title: "Components/Advanced Inputs/TreeSelect",
@@ -57,7 +57,7 @@ const translateTreeData = (
 };
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation("docs");
     const treeData = translateTreeData(defaultTreeData, t);
     return (
@@ -75,7 +75,7 @@ export const Default: Story = {
  * 「Design」を選ぶと Colors・Typography・Primary・Secondary が全て選択される。
  */
 export const CascadeMultiple: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation("docs");
     const treeData = translateTreeData(defaultTreeData, t);
     return (
@@ -96,7 +96,7 @@ export const CascadeMultiple: Story = {
  * 集計粒度の選択（「年」と「月」の同時選択を防ぐ）などに適する。
  */
 export const ExclusiveMultiple: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation("docs");
     const treeData = translateTreeData(defaultTreeData, t);
     return (
@@ -113,7 +113,7 @@ export const ExclusiveMultiple: Story = {
 };
 
 export const Searchable: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation("docs");
     const treeData = translateTreeData(defaultTreeData, t);
     return (
@@ -128,7 +128,7 @@ export const Searchable: Story = {
 };
 
 export const DefaultExpanded: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation("docs");
     const treeData = translateTreeData(defaultTreeData, t);
     return (
@@ -143,7 +143,7 @@ export const DefaultExpanded: Story = {
 };
 
 export const Disabled: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation("docs");
     const treeData = translateTreeData(defaultTreeData, t);
     return (

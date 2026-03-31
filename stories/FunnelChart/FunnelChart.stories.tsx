@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FunnelChart } from "@/components/Charts/FunnelChart/FunnelChart";
+import { FunnelChart } from "@/components/charts/FunnelChart/FunnelChart";
 
 const meta: Meta<typeof FunnelChart> = {
   title: "Components/Visualization/FunnelChart",

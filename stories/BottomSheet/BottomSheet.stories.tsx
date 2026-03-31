@@ -10,8 +10,8 @@ import {
   BottomSheetDescription,
   BottomSheetClose,
   BottomSheetBody,
-} from "@/components/BottomSheet/BottomSheet";
-import { Button } from "@/components/Button/Button";
+} from "@/components/overlay/BottomSheet/BottomSheet";
+import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -42,7 +42,7 @@ export default meta;
 type Story = StoryObj<typeof BottomSheet>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <BottomSheet {...args}>
@@ -105,7 +105,7 @@ export const Default: Story = {
 };
 
 export const SingleAction: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <BottomSheet {...args}>

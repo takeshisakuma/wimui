@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Loader } from "@/components/Loader/Loader";
+import { Loader } from "@/components/feedback/Loader/Loader";
 
 const meta: Meta<typeof Loader> = {
   title: "Components/Loading States/Loader",
@@ -39,11 +39,11 @@ export const Default: Story = {
     color: "primary",
     size: "md",
   },
-  render: (args) => <Loader {...args} />,
+  render: (args: any) => <Loader {...args} />,
 };
 
 export const Variants: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ display: "flex", gap: "48px", alignItems: "center" }}>
       <div
         style={{
@@ -83,7 +83,7 @@ export const Variants: Story = {
 };
 
 export const Colors: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
       <Loader {...args} color="primary" />
       <Loader {...args} color="secondary" />
@@ -96,7 +96,7 @@ export const Colors: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
         <Loader {...args} variant="bars" size="sm" />

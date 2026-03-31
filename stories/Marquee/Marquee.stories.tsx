@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Marquee } from "@/components/Marquee/Marquee";
-import { Badge } from "@/components/Badge/Badge";
-import { Group } from "@/components/Group/Group";
+import { Marquee } from "@/components/data-display/Marquee/Marquee";
+import { Badge } from "@/components/data-display/Badge/Badge";
+import { Group } from "@/components/layout/Group/Group";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -16,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof Marquee>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
@@ -39,7 +39,7 @@ export const Fast: Story = {
   args: {
     duration: 5,
   },
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
@@ -62,7 +62,7 @@ export const Slow: Story = {
   args: {
     duration: 40,
   },
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
@@ -85,7 +85,7 @@ export const Reverse: Story = {
   args: {
     reverse: true,
   },
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
@@ -105,7 +105,7 @@ export const Reverse: Story = {
 };
 
 export const Vertical: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200px", border: "1px solid #ccc" }}>

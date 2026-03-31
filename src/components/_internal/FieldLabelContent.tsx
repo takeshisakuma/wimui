@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Badge } from "../Badge/Badge";
+import { Badge } from "../data-display/Badge/Badge";
 import "./fieldLabelContent.scss";
 
 export type FieldLabelContentProps = {

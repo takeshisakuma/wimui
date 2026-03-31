@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FocusTrap } from "@/components/FocusTrap/FocusTrap";
-import { Button } from "@/components/Button/Button";
-import { Input } from "@/components/Input/Input";
-import { Stack } from "@/components/Stack/Stack";
-import { Card } from "@/components/Card/Card";
-import { Container } from "@/components/Container/Container";
+import { FocusTrap } from "@/components/misc/FocusTrap/FocusTrap";
+import { Button } from "@/components/form/Button/Button";
+import { Input } from "@/components/form/Input/Input";
+import { Stack } from "@/components/layout/Stack/Stack";
+import { Card } from "@/components/data-display/Card/Card";
+import { Container } from "@/components/layout/Container/Container";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -23,7 +23,7 @@ export default meta;
 type Story = StoryObj<typeof FocusTrap>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const [active, setActive] = useState(false);
     const { t } = useTranslation(ALL_NAMESPACES);
 
@@ -85,7 +85,7 @@ export const AutoFocus: Story = {
   args: {
     autoFocus: true,
   },
-  render: (args) => {
+  render: (args: any) => {
     const [active, setActive] = useState(false);
     const { t } = useTranslation(ALL_NAMESPACES);
 

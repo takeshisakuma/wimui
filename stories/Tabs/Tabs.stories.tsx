@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import Tabs from "@/components/Tabs/Tabs";
+import Tabs from "@/components/navigation/Tabs/Tabs";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

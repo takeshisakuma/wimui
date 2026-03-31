@@ -1,8 +1,8 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Textarea } from "@/components/Textarea/Textarea";
-import { Label } from "@/components/Label/Label";
-import { FieldError } from "@/components/FieldError/FieldError";
+import { Textarea } from "@/components/form/Textarea/Textarea";
+import { Label } from "@/components/typography/Label/Label";
+import { FieldError } from "@/components/form/FieldError/FieldError";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

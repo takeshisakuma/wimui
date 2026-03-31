@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "../Icon/Icon";
+import { Icon } from "../media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ComponentSize } from "../../types/tokens";
 

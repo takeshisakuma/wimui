@@ -10,8 +10,8 @@ import {
   CommandPaletteFooter,
   CommandPaletteTrigger,
   CommandPaletteContent,
-} from "@/components/CommandPalette/CommandPalette";
-import { Icon } from "@/components/Icon/Icon";
+} from "@/components/navigation/CommandPalette/CommandPalette";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FAQSection } from "@/components/FAQSection/FAQSection";
+import { FAQSection } from "@/components/data-display/FAQSection/FAQSection";
 
 const meta: Meta<typeof FAQSection> = {
   title: "Components/Layout/FAQSection",

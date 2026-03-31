@@ -1,0 +1,58 @@
+import React, { useRef, useId } from "react";
+import { useTranslation } from "react-i18next";
+import classNames from "classnames";
+import { ComponentSize } from "../../../types/tokens";
+import "./switch.scss";
+
+type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
+  label?: string;
+  size?: ComponentSize;
+  className?: string;
+};
+
+/**
+ * Switch component for toggling a single setting on or off.
+ */
+export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
+  (
+    { label, size = "md", className, disabled, id: customId, ...props },
+    ref,
+  ) => {
+    const { t } = useTranslation();
+    const defaultRef = useRef<HTMLInputElement>(null);
+    const resolvedRef =
+      (ref as React.RefObject<HTMLInputElement>) || defaultRef;
+    const generatedId = useId();
+    const id = customId || generatedId;
+
+    return (
+      <label
+        htmlFor={id}
+        className={classNames(
+          "wim-switch-wrapper",
+          disabled && "wim-switch--disabled",
+          className,
+        )}
+      >
+        <input
+          id={id}
+          type="checkbox"
+          role="switch"
+          // @ts-expect-error - 'switch' attribute is a progressive enhancement for Safari
+          // eslint-disable-next-line react/no-unknown-property
+          switch=""
+          className={classNames(
+            "wim-switch-input",
+            size !== "md" && `wim-switch-input--${size}`,
+          )}
+          disabled={disabled}
+          ref={resolvedRef}
+          {...props}
+        />
+        {label && <span className="wim-switch-label">{t(label)}</span>}
+      </label>
+    );
+  },
+);
+
+Switch.displayName = "Switch";

@@ -6,8 +6,8 @@ import {
   MenuItemGroup,
   SubMenu,
   MenuDivider,
-} from "@/components/Menu/Menu";
-import { Icon } from "@/components/Icon/Icon";
+} from "@/components/overlay/Menu/Menu";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

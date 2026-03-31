@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "../Icon/Icon";
+import { Icon } from "../media/Icon/Icon";
 import { ComponentSize, FeedbackStatus } from "../../types/tokens";
 
 export interface FeedbackIconProps {

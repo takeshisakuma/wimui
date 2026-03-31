@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FieldError } from "@/components/FieldError/FieldError";
+import { FieldError } from "@/components/form/FieldError/FieldError";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

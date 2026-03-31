@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   FloatButton,
   FloatButtonProps,
-} from "@/components/FloatButton/FloatButton";
+} from "@/components/misc/FloatButton/FloatButton";
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
@@ -180,7 +180,7 @@ export const FixedPosition: Story = {
   parameters: {
     layout: "fullscreen",
   },
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "150vh", padding: "20px" }}>
@@ -203,7 +203,7 @@ export const BackTop: Story = {
   parameters: {
     layout: "fullscreen",
   },
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>

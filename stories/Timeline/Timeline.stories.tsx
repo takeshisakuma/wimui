@@ -7,8 +7,8 @@ import {
   TimelinePoint,
   TimelineContent,
   TimelineOppositeContent,
-} from "@/components/Timeline/Timeline";
-import { Icon } from "@/components/Icon/Icon";
+} from "@/components/data-display/Timeline/Timeline";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

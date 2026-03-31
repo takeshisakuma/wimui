@@ -1,0 +1,146 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .wim-header {
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 64px;
+    padding: 0 var(--wim-spacing-xl);
+    transition: all var(--wim-transition-base);
+
+    @include breakpoints.down(sm) {
+      height: auto;
+      padding: 0;
+    }
+
+    &--bg-primary {
+      background-color: var(--wim-color-bg-primary, #fff);
+    }
+
+    &--bg-secondary {
+      background-color: var(--wim-color-bg-secondary, #f4f4f5);
+    }
+
+    &--bg-transparent {
+      background-color: transparent;
+    }
+
+    &--fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    &--sticky {
+      position: sticky;
+      top: 0;
+      width: 100%;
+    }
+
+    &--glass {
+      background-color: rgb(255 255 255 / 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    &--bordered {
+      border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+    }
+
+    &__container {
+      display: flex;
+      gap: var(--wim-spacing-xl);
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+
+      @include breakpoints.down(sm) {
+        flex-wrap: wrap;
+        gap: 0;
+        justify-content: space-between;
+        padding: 0; // セクション側のpaddingで制御するためコンテナは0に
+      }
+    }
+
+    &__section {
+      display: flex;
+      flex-shrink: 0;
+      gap: var(--wim-spacing-md);
+      align-items: center;
+      white-space: nowrap;
+
+      > * {
+        flex-shrink: 0;
+      }
+
+      @include breakpoints.down(sm) {
+        padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+      }
+
+      &--start {
+        justify-content: flex-start;
+
+        @include breakpoints.down(sm) {
+          justify-content: center;
+          order: 1;
+          width: 100%;
+          padding: var(--wim-spacing-md);
+          border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+        }
+      }
+
+      &--center {
+        flex-grow: 1;
+        flex-shrink: 1;
+        justify-content: center;
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+
+        /* For better scrolling experience when centered */
+        &::before,
+        &::after {
+          display: block;
+          flex: 1 0 0%;
+          min-width: var(--wim-spacing-md);
+          content: "";
+        }
+
+        @include breakpoints.down(sm) {
+          /* Reset flex basis to auto so it doesn't try to fill the whole row alone */
+          flex-basis: auto;
+          justify-content: flex-start;
+          order: 2;
+
+          /* Connect with end section on the same row */
+          width: auto;
+          padding: var(--wim-spacing-md);
+          padding-bottom: 0;
+
+          /* Remove spacers on mobile to left align */
+          &::before,
+          &::after {
+            display: none;
+          }
+        }
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      &--end {
+        justify-content: flex-end;
+
+        @include breakpoints.down(sm) {
+          order: 2;
+        }
+      }
+    }
+  }
+}

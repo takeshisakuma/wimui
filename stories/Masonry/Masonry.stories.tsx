@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Masonry } from "@/components/Masonry/Masonry";
-import { Box } from "@/components/Box/Box";
+import { Masonry } from "@/components/layout/Masonry/Masonry";
+import { Box } from "@/components/layout/Box/Box";
 
 const meta: Meta<typeof Masonry> = {
   title: "Components/Layout/Masonry",
@@ -44,7 +44,7 @@ const MasonryDemo = (args: Parameters<typeof Masonry>[0]) => {
 };
 
 export const Default: Story = {
-  render: (args) => <MasonryDemo {...args} />,
+  render: (args: any) => <MasonryDemo {...args} />,
   args: {
     columns: 3,
     spacing: 16,
@@ -52,7 +52,7 @@ export const Default: Story = {
 };
 
 export const ManyColumns: Story = {
-  render: (args) => <MasonryDemo {...args} />,
+  render: (args: any) => <MasonryDemo {...args} />,
   args: {
     ...Default.args,
     columns: 5,
@@ -61,7 +61,7 @@ export const ManyColumns: Story = {
 };
 
 export const LargeSpacing: Story = {
-  render: (args) => <MasonryDemo {...args} />,
+  render: (args: any) => <MasonryDemo {...args} />,
   args: {
     ...Default.args,
     columns: 3,

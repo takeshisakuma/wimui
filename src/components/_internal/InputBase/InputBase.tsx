@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
-import { Icon } from "../../Icon/Icon";
+import { Icon } from "../../media/Icon/Icon";
 import { FieldStatus } from "../../../types/tokens";
 import "./input-base.scss";
 

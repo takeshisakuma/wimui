@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Combobox } from "@/components/Combobox/Combobox";
+import { Combobox } from "@/components/form/Combobox/Combobox";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

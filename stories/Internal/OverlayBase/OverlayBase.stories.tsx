@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { OverlayBase } from "../../../src/components/_internal/OverlayBase";
-import { Button } from "../../../src/components/Button/Button";
-import { Card } from "../../../src/components/Card/Card";
-import { Stack } from "../../../src/components/Stack/Stack";
+import { Button } from "../../../src/components/form/Button/Button";
+import { Card } from "../../../src/components/data-display/Card/Card";
+import { Stack } from "../../../src/components/layout/Stack/Stack";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 

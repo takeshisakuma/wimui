@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
-import { Skeleton } from "@/components/Skeleton/Skeleton";
+import { Skeleton } from "@/components/feedback/Skeleton/Skeleton";
 
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
@@ -37,7 +37,7 @@ export const Default: Story = {
 };
 
 export const Text: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ maxWidth: "300px", width: "100%" }}>
       <Skeleton {...args} variant="text" width="100%" />
       <Skeleton {...args} variant="text" width="80%" />
@@ -70,7 +70,7 @@ export const WaveAnimation: Story = {
 };
 
 export const CardExample: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div
       style={{
         display: "flex",

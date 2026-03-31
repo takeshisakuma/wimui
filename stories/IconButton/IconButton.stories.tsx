@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { IconButton } from "@/components/IconButton/IconButton";
+import { IconButton } from "@/components/misc/IconButton/IconButton";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

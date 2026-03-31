@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { ColorPicker } from "../src/components/ColorPicker/ColorPicker";
+import { ColorPicker } from "../src/components/form/ColorPicker/ColorPicker";
 
 /**
  * Event for signaling color change to ContrastChecker

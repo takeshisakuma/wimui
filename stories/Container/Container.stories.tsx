@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Container } from "@/components/Container/Container";
-import { Box } from "@/components/Box/Box";
+import { Container } from "@/components/layout/Container/Container";
+import { Box } from "@/components/layout/Box/Box";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

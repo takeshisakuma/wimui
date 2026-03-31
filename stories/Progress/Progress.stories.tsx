@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Progress } from "@/components/Progress/Progress";
+import { Progress } from "@/components/feedback/Progress/Progress";
 
 const meta: Meta<typeof Progress> = {
   title: "Components/Loading States/Progress",
@@ -34,11 +34,11 @@ export const Default: Story = {
     label: "Processing...",
     showValue: true,
   },
-  render: (args) => <Progress {...args} />,
+  render: (args: any) => <Progress {...args} />,
 };
 
 export const Colors: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div
       style={{
         display: "flex",
@@ -58,7 +58,7 @@ export const Colors: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div
       style={{
         display: "flex",
@@ -79,5 +79,5 @@ export const Indeterminate: Story = {
     indeterminate: true,
     label: "Uploading...",
   },
-  render: (args) => <Progress {...args} />,
+  render: (args: any) => <Progress {...args} />,
 };

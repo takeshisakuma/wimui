@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Avatar } from "@/components/Avatar/Avatar";
+import { Avatar } from "@/components/data-display/Avatar/Avatar";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../i18nConstants";
@@ -52,7 +52,7 @@ export const Initials: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
       <Avatar {...args} size="sm" initials="SM" status="neutral" />
       <Avatar {...args} size="md" initials="MD" status="neutral" />
@@ -62,7 +62,7 @@ export const Sizes: Story = {
 };
 
 export const Shapes: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ display: "flex", gap: "16px" }}>
       <Avatar {...args} shape="circle" initials="C" status="secondary" />
       <Avatar {...args} shape="rounded" initials="R" status="secondary" />
@@ -86,7 +86,7 @@ export const Fallback: Story = {
 };
 
 export const Colors: Story = {
-  render: (args) => (
+  render: (args: any) => (
     <div style={{ display: "flex", gap: "16px" }}>
       <Avatar {...args} initials="P" status="primary" />
       <Avatar {...args} initials="S" status="secondary" />

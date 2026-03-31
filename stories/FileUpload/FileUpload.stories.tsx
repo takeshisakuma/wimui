@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FileUpload } from "@/components/FileUpload/FileUpload";
+import { FileUpload } from "@/components/form/FileUpload/FileUpload";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

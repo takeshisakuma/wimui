@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Calendar } from "@/components/Calendar/Calendar";
+import { Calendar } from "@/components/data-display/Calendar/Calendar";
 
 const meta: Meta<typeof Calendar> = {
   title: "Components/Data Indicators/Calendar",
@@ -39,7 +39,7 @@ export const Disabled: Story = {
 };
 
 export const Controlled: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const [date, setDate] = useState(new Date());
     return <Calendar {...args} value={date} onChange={setDate} />;
   },

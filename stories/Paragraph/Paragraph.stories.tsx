@@ -1,5 +1,5 @@
 import { fn } from "storybook/test";
-import { Paragraph } from "@/components/Paragraph/Paragraph";
+import { Paragraph } from "@/components/typography/Paragraph/Paragraph";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

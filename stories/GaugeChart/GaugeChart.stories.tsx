@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { GaugeChart } from "@/components/Charts/GaugeChart/GaugeChart";
+import { GaugeChart } from "@/components/charts/GaugeChart/GaugeChart";
 
 const meta: Meta<typeof GaugeChart> = {
   title: "Components/Visualization/GaugeChart",

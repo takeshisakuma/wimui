@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ColorPicker } from "@/components/ColorPicker/ColorPicker";
-import { Label } from "@/components/Label/Label";
+import { ColorPicker } from "@/components/form/ColorPicker/ColorPicker";
+import { Label } from "@/components/typography/Label/Label";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

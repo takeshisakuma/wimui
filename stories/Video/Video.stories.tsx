@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Video } from "@/components/Video/Video";
-import { Button } from "@/components/Button/Button";
+import { Video } from "@/components/media/Video/Video";
+import { Button } from "@/components/form/Button/Button";
 import sampleVideo from "@/media/videosample.mp4";
 import videoPoster from "@/media/video_poster.webp";
 import { useTranslation } from "react-i18next";

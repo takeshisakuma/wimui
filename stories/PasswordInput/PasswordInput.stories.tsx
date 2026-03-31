@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { PasswordInput } from "@/components/PasswordInput/PasswordInput";
-import { Label } from "@/components/Label/Label";
+import { PasswordInput } from "@/components/form/PasswordInput/PasswordInput";
+import { Label } from "@/components/typography/Label/Label";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

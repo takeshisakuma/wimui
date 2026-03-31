@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import Sidebar, { SidebarProps } from "@/components/Sidebar/Sidebar";
-import { Icon } from "@/components/Icon/Icon";
+import Sidebar, { SidebarProps } from "@/components/layout/Sidebar/Sidebar";
+import { Icon } from "@/components/media/Icon/Icon";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";

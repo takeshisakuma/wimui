@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Image } from "@/components/Image/Image";
-import { Button } from "@/components/Button/Button";
+import { Image } from "@/components/media/Image/Image";
+import { Button } from "@/components/form/Button/Button";
 import vibrantLandscape from "@/media/vibrant_landscape.png";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";

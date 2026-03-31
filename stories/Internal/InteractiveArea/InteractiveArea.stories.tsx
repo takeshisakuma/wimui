@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { InteractiveArea } from "../../../src/components/InteractiveArea/InteractiveArea";
-import { Icon } from "../../../src/components/Icon/Icon";
-import { Button } from "../../../src/components/Button/Button";
-import { ContextMenu, ContextMenuItem } from "../../../src/components/ContextMenu/ContextMenu";
+import { InteractiveArea } from "../../../src/components/layout/InteractiveArea/InteractiveArea";
+import { Icon } from "../../../src/components/media/Icon/Icon";
+import { Button } from "../../../src/components/form/Button/Button";
+import { ContextMenu, ContextMenuItem } from "../../../src/components/overlay/ContextMenu/ContextMenu";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 

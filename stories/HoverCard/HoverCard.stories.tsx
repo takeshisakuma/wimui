@@ -3,9 +3,9 @@ import {
   HoverCard,
   HoverCardTrigger,
   HoverCardContent,
-} from "@/components/HoverCard/HoverCard";
+} from "@/components/overlay/HoverCard/HoverCard";
 import React from "react";
-import { Avatar } from "@/components/Avatar/Avatar";
+import { Avatar } from "@/components/data-display/Avatar/Avatar";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

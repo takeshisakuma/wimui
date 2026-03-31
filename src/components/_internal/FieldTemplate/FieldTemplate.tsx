@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import { Label } from "../../Label/Label";
-import { FieldError } from "../../FieldError/FieldError";
+import { Label } from "../../typography/Label/Label";
+import { FieldError } from "../../form/FieldError/FieldError";
 import "./field-template.scss";
 
 export type FieldTemplateProps = {

@@ -1,0 +1,46 @@
+@use "../../../base" as *;
+
+@layer component {
+  .wim-signature-pad {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 90vw;
+    font-family: var(--wim-font-family);
+  
+    &__canvas-container {
+      position: relative;
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow: hidden;
+      touch-action: none; // Prevent scrolling while signing
+      cursor: crosshair;
+      background: var(--wim-color-bg-component);
+      border: 1px solid var(--wim-color-border);
+      border-radius: 8px;
+    }
+  
+    &__canvas {
+      box-sizing: border-box;
+      display: block;
+      max-width: 100%;
+    }
+  
+    &__footer {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+  
+    &--disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+  
+      .wim-signature-pad__canvas-container {
+        pointer-events: none;
+        background: var(--wim-color-disabled);
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { TreeView, TreeViewNode } from "@/components/TreeView/TreeView";
-import { Icon } from "@/components/Icon/Icon";
+import { TreeView, TreeViewNode } from "@/components/data-display/TreeView/TreeView";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

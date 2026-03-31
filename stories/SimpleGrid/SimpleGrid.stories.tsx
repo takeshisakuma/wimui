@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { SimpleGrid } from "@/components/SimpleGrid/SimpleGrid";
+import { SimpleGrid } from "@/components/layout/SimpleGrid/SimpleGrid";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";

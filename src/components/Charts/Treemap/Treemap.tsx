@@ -4,7 +4,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import { CHART_COLORS, CHART_THEME } from "../helpers";
+import { CHART_COLORS, CHART_THEME } from "../../helpers";
 
 export type TreemapProps = {
   data: Record<string, unknown>[];

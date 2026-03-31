@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Rating } from "@/components/Rating/Rating";
+import { Rating } from "@/components/form/Rating/Rating";
 import { useTranslation } from "react-i18next";
-import { Label } from "@/components/Label/Label";
+import { Label } from "@/components/typography/Label/Label";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
 

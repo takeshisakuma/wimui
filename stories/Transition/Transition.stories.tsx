@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Transition } from "@/components/Transition/Transition";
-import { Button } from "@/components/Button/Button";
-import { Stack } from "@/components/Stack/Stack";
-import { Card } from "@/components/Card/Card";
-import { Container } from "@/components/Container/Container";
+import { Transition } from "@/components/misc/Transition/Transition";
+import { Button } from "@/components/form/Button/Button";
+import { Stack } from "@/components/layout/Stack/Stack";
+import { Card } from "@/components/data-display/Card/Card";
+import { Container } from "@/components/layout/Container/Container";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

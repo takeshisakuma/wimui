@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import TabNavigation from "@/components/TabNavigation/TabNavigation";
-import { Icon } from "@/components/Icon/Icon";
+import TabNavigation from "@/components/navigation/TabNavigation/TabNavigation";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -27,7 +27,7 @@ export default meta;
 type Story = StoryObj<typeof TabNavigation>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("overview");
     return (
@@ -66,7 +66,7 @@ export const Default: Story = {
 };
 
 export const Pills: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("all");
     return (
@@ -95,7 +95,7 @@ export const Pills: Story = {
 };
 
 export const Contained: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("daily");
     return (
@@ -124,7 +124,7 @@ export const Contained: Story = {
 };
 
 export const WithIcons: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("code");
     return (

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Highlight } from "@/components/Highlight/Highlight";
+import { Highlight } from "@/components/typography/Highlight/Highlight";
 
 const meta: Meta<typeof Highlight> = {
   title: "Components/Typography & Icons/Highlight",

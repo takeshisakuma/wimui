@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { MultiSelect } from "@/components/MultiSelect/MultiSelect";
+import { MultiSelect } from "@/components/form/MultiSelect/MultiSelect";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

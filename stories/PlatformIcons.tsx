@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "../src/components/Icon/Icon";
+import { Icon } from "../src/components/media/Icon/Icon";
 
 export const PlatformIcons = ({ pc, mobile }: { pc?: boolean; mobile?: boolean }) => (
   <div style={{ display: "inline-flex", gap: "8px", alignItems: "center" }}>

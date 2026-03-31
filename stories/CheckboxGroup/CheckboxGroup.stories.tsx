@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { CheckboxGroup } from "@/components/CheckboxGroup/CheckboxGroup";
+import { CheckboxGroup } from "@/components/form/CheckboxGroup/CheckboxGroup";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";

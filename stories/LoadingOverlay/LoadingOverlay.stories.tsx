@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { LoadingOverlay } from "@/components/LoadingOverlay/LoadingOverlay";
+import { LoadingOverlay } from "@/components/feedback/LoadingOverlay/LoadingOverlay";
 import React from "react";
-import { Button } from "@/components/Button/Button";
-import { Icon } from "@/components/Icon/Icon";
+import { Button } from "@/components/form/Button/Button";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

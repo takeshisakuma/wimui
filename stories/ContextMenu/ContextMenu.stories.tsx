@@ -5,8 +5,8 @@ import {
   ContextMenuItem,
   ContextMenuDivider,
   ContextMenuGroup,
-} from "@/components/ContextMenu/ContextMenu";
-import { Icon } from "@/components/Icon/Icon";
+} from "@/components/overlay/ContextMenu/ContextMenu";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -29,7 +29,7 @@ export const Basic: Story = {
   args: {
     disabled: false,
   },
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
@@ -76,7 +76,7 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
@@ -107,7 +107,7 @@ export const Disabled: Story = {
 };
 
 export const WithIcons: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
@@ -161,7 +161,7 @@ export const WithIcons: Story = {
 };
 
 export const WithGroups: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
@@ -202,7 +202,7 @@ export const WithGroups: Story = {
 };
 
 export const WithDisabledItems: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
@@ -237,7 +237,7 @@ export const WithDisabledItems: Story = {
 };
 
 export const OnImage: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu

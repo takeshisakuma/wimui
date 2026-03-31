@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { AspectRatio } from "@/components/AspectRatio/AspectRatio";
+import { AspectRatio } from "@/components/layout/AspectRatio/AspectRatio";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

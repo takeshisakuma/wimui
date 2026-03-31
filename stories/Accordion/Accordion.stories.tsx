@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Accordion } from "@/components/Accordion/Accordion";
+import { Accordion } from "@/components/data-display/Accordion/Accordion";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

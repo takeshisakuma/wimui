@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { CHART_COLORS, CHART_THEME } from "../helpers";
+import { CHART_COLORS, CHART_THEME } from "../../helpers";
 
 export type BarChartProps = {
   data: Record<string, unknown>[];

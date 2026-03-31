@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ScrollProgress } from "@/components/ScrollProgress/ScrollProgress";
+import { ScrollProgress } from "@/components/feedback/ScrollProgress/ScrollProgress";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof ScrollProgress>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
@@ -35,7 +35,7 @@ export const Default: Story = {
 };
 
 export const CustomContainer: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

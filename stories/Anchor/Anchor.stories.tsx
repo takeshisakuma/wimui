@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react-vite";
-import { Anchor } from "@/components/Anchor/Anchor";
+import { Anchor } from "@/components/navigation/Anchor/Anchor";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof Anchor>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [isMobile, setIsMobile] = React.useState(false);
 

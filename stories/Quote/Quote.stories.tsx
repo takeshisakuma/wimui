@@ -1,5 +1,5 @@
 import React from "react";
-import { Quote } from "@/components/Quote/Quote";
+import { Quote } from "@/components/typography/Quote/Quote";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

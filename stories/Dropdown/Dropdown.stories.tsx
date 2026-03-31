@@ -5,9 +5,9 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-} from "@/components/Dropdown/Dropdown";
-import { Button } from "@/components/Button/Button";
-import { Icon } from "@/components/Icon/Icon";
+} from "@/components/overlay/Dropdown/Dropdown";
+import { Button } from "@/components/form/Button/Button";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

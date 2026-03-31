@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Selectbox,
   SelectboxOption,
-} from "@/components/Selectbox/Selectbox";
+} from "@/components/form/Selectbox/Selectbox";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

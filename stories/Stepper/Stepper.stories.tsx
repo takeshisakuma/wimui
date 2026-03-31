@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Stepper } from "@/components/Stepper/Stepper";
+import { Stepper } from "@/components/navigation/Stepper/Stepper";
 import React, { useState } from "react";
-import { Icon } from "@/components/Icon/Icon";
+import { Icon } from "@/components/media/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -119,7 +119,7 @@ export const CustomIcons: Story = {
 };
 
 export const Interactive: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [current, setCurrent] = useState(0);
     const steps = Array.from({ length: 4 }, (_, i) => ({

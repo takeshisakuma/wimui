@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import Navbar from "@/components/Navbar/Navbar";
-import { Button } from "@/components/Button/Button";
+import Navbar from "@/components/layout/Navbar/Navbar";
+import { Button } from "@/components/form/Button/Button";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -26,7 +26,7 @@ export default meta;
 type Story = StoryObj<typeof Navbar>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Navbar {...args}>
@@ -63,7 +63,7 @@ export const Default: Story = {
 };
 
 export const GlassEffect: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div
@@ -122,7 +122,7 @@ export const WithMobileMenu: Story = {
 };
 
 export const CenteredLinks: Story = {
-  render: (args) => {
+  render: (args: any) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Navbar {...args} bordered>
