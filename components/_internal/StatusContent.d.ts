@@ -31,7 +31,7 @@ export type StatusContentProps = {
     /**
      * Size variation
      */
-    size?: "default" | "small";
+    size?: "md" | "sm";
 };
 /**
  * Internal component to unify layout for Result and EmptyState

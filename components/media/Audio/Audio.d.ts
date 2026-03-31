@@ -12,7 +12,7 @@ type AudioProps = Omit<React.ComponentPropsWithoutRef<"audio">, "src"> & {
     muted?: boolean;
     controls?: boolean;
     preload?: "auto" | "metadata" | "none";
-    radius?: "none" | "small" | "medium" | "large" | "full";
+    radius?: "none" | "sm" | "md" | "lg" | "full";
     shadow?: boolean;
     border?: boolean;
     caption?: string;

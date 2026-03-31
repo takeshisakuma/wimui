@@ -8,7 +8,7 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
     muted?: boolean;
     controls?: boolean;
     poster?: string;
-    radius?: "none" | "small" | "medium" | "large" | "full";
+    radius?: "none" | "sm" | "md" | "lg" | "full";
     shadow?: boolean;
     border?: boolean;
     fit?: "contain" | "cover" | "fill" | "none" | "scale-down";

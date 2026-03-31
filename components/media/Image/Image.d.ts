@@ -33,7 +33,7 @@ export interface ImageOverlayOptions {
     /** カラーまたはグラデーション（CSS） */
     color?: string;
     /** 強度（不透明度） */
-    intensity?: number | "light" | "medium" | "heavy";
+    intensity?: number | "sm" | "md" | "lg";
     /** ホバー時のみ表示するか */
     showOnHover?: boolean;
     /** ブレンドモード */
@@ -54,7 +54,7 @@ export type ImageProps = React.ComponentPropsWithoutRef<"img"> & {
     width?: string | number;
     height?: string | number;
     /** 角丸のサイズ */
-    radius?: "none" | "small" | "medium" | "large" | "full";
+    radius?: "none" | "sm" | "md" | "lg" | "full";
     /** シャドウ（影）を表示するか */
     shadow?: boolean;
     /** 枠線を表示するか */

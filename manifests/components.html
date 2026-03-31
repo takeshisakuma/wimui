@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.6s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.3s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -3449,7 +3449,7 @@ preload?: &quot;auto&quot; | &quot;metadata&quot; | &quot;none&quot;
 
 presets?: boolean = false
 
-radius?: &quot;none&quot; | &quot;small&quot; | &quot;medium&quot; | &quot;large&quot; | &quot;full&quot; = &quot;none&quot;
+radius?: &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;full&quot; = &quot;none&quot;
 
 shadow?: boolean = false
 
@@ -3542,7 +3542,7 @@ visualizer?: boolean = false</code></pre>
     }}
     customControls
     showMetadata
-    radius=&quot;medium&quot;
+    radius=&quot;md&quot;
     shadow
     border /&gt;;</code></pre>
             </div>
@@ -3567,7 +3567,7 @@ visualizer?: boolean = false</code></pre>
       },
     ]}
     customControls
-    radius=&quot;medium&quot;
+    radius=&quot;md&quot;
     shadow
     border
     visualizer
@@ -3608,7 +3608,7 @@ visualizer?: boolean = false</code></pre>
                     customControls
                     showMetadata
                     demoDelay={2000}
-                    radius=&quot;medium&quot;
+                    radius=&quot;md&quot;
                     shadow
                     caption={t(&quot;story.audio_premium_features_caption&quot;)} /&gt;
             &lt;/div&gt;
@@ -10954,7 +10954,7 @@ const data = [
 
 export const Dashboard: StoryObj = {
   render: () =&gt; (
-    &lt;Stack spacing=&quot;large&quot;&gt;
+    &lt;Stack gap=&quot;lg&quot;&gt;
       &lt;Heading tag=&quot;h3&quot; size=&quot;lg&quot;&gt;Visualization Suite Overview&lt;/Heading&gt;
       &lt;div style={{ display: &#39;grid&#39;, gridTemplateColumns: &#39;repeat(auto-fit, minmax(300px, 1fr))&#39;, gap: &#39;20px&#39; }}&gt;
         &lt;BarChart title=&quot;Sales by Month&quot; data={data} xAxisKey=&quot;name&quot; keys={[&quot;sales&quot;]} /&gt;
@@ -10997,7 +10997,7 @@ export const Dashboard: StoryObj = {
               
               
               <pre><code>const Dashboard = () =&gt; (
-  &lt;Stack spacing=&quot;large&quot;&gt;
+  &lt;Stack gap=&quot;lg&quot;&gt;
     &lt;Heading tag=&quot;h3&quot; size=&quot;lg&quot;&gt;Visualization Suite Overview&lt;/Heading&gt;
     &lt;div style={{ display: &#39;grid&#39;, gridTemplateColumns: &#39;repeat(auto-fit, minmax(300px, 1fr))&#39;, gap: &#39;20px&#39; }}&gt;
       &lt;BarChart title=&quot;Sales by Month&quot; data={data} xAxisKey=&quot;name&quot; keys={[&quot;sales&quot;]} /&gt;
@@ -28180,7 +28180,7 @@ priority?: boolean = false
 /**
  * 角丸のサイズ
  */
-radius?: &quot;none&quot; | &quot;small&quot; | &quot;medium&quot; | &quot;large&quot; | &quot;full&quot; = &quot;none&quot;
+radius?: &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;full&quot; = &quot;none&quot;
 
 /**
  * シャドウ（影）を表示するか
@@ -28266,7 +28266,7 @@ zoom?: boolean | number = false</code></pre>
             src={vibrantLandscape}
             width={200}
             height={200}
-            radius=&quot;large&quot;
+            radius=&quot;lg&quot;
             fit=&quot;cover&quot;
             alt={t(&quot;story.image_alt&quot;)} /&gt;
     );
@@ -28309,7 +28309,7 @@ zoom?: boolean | number = false</code></pre>
             src={vibrantLandscape}
             width={400}
             shadow
-            radius=&quot;medium&quot;
+            radius=&quot;md&quot;
             alt={t(&quot;story.image_alt&quot;)} /&gt;
     );
 };</code></pre>
@@ -28399,7 +28399,7 @@ zoom?: boolean | number = false</code></pre>
                       padding: &quot;20px&quot;,
                     }}
                     width={300}
-                    radius=&quot;large&quot;
+                    radius=&quot;lg&quot;
                     border /&gt;
                 &lt;p style={{ color: &quot;white&quot;, marginTop: &quot;1rem&quot;, fontWeight: &quot;bold&quot; }}&gt;
                     {t(&quot;story.image_backdrop_hover_clear&quot;, { defaultValue: &quot;Hover to clear backdrop blur&quot; })}
@@ -28426,21 +28426,21 @@ zoom?: boolean | number = false</code></pre>
                 &lt;div style={{ display: &quot;flex&quot;, gap: &quot;1rem&quot; }}&gt;
                     &lt;Image
                         src={vibrantLandscape}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         alt=&quot;Low noise&quot;
                         noise=&quot;sm&quot;
                         width={200}
                         caption={`${t(&quot;common.intensity&quot;, { defaultValue: &quot;Intensity&quot; })}: sm`} /&gt;
                     &lt;Image
                         src={vibrantLandscape}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         alt=&quot;Medium noise&quot;
                         noise=&quot;md&quot;
                         width={200}
                         caption={`${t(&quot;common.intensity&quot;, { defaultValue: &quot;Intensity&quot; })}: md`} /&gt;
                     &lt;Image
                         src={vibrantLandscape}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         alt=&quot;High noise&quot;
                         noise=&quot;lg&quot;
                         width={200}
@@ -28452,14 +28452,14 @@ zoom?: boolean | number = false</code></pre>
                 &lt;div style={{ display: &quot;flex&quot;, gap: &quot;1rem&quot; }}&gt;
                     &lt;Image
                         src={vibrantLandscape}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         alt=&quot;Duotone gold&quot;
                         duotone={{ light: &quot;#f0dfaf&quot;, dark: &quot;#3f3f3f&quot; }}
                         width={300}
                         caption={t(&quot;story.image_advanced_goldish&quot;)} /&gt;
                     &lt;Image
                         src={vibrantLandscape}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         alt=&quot;Duotone cyber&quot;
                         duotone={{ light: &quot;#00fff2&quot;, dark: &quot;#6000ff&quot; }}
                         width={300}
@@ -28472,11 +28472,11 @@ zoom?: boolean | number = false</code></pre>
                     &lt;div style={{ position: &quot;relative&quot; }}&gt;
                         &lt;Image
                             src={vibrantLandscape}
-                            radius=&quot;medium&quot;
+                            radius=&quot;md&quot;
                             alt=&quot;Overlay&quot;
                             overlay={{
                               color: &quot;linear-gradient(to top, rgba(0,0,0,0.8), transparent)&quot;,
-                              intensity: &quot;medium&quot;,
+                              intensity: &quot;md&quot;,
                             }}
                             width={300} /&gt;
                         &lt;div
@@ -28487,7 +28487,7 @@ zoom?: boolean | number = false</code></pre>
                     &lt;/div&gt;
                     &lt;Image
                         src={vibrantLandscape}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         alt=&quot;Hover overlay&quot;
                         overlay={{
                           color: &quot;rgba(100, 108, 255, 0.4)&quot;,
@@ -28522,7 +28522,7 @@ zoom?: boolean | number = false</code></pre>
                         alt=&quot;Zoom effect&quot;
                         zoom={1.1}
                         width={300}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         caption={t(&quot;story.image_motion_effects_zoom_caption&quot;)} /&gt;
                 &lt;/div&gt;
                 &lt;div&gt;
@@ -28532,7 +28532,7 @@ zoom?: boolean | number = false</code></pre>
                         alt=&quot;Tilt effect&quot;
                         tilt
                         width={300}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         shadow
                         caption={t(&quot;story.image_motion_effects_tilt_caption&quot;)} /&gt;
                 &lt;/div&gt;
@@ -28553,7 +28553,7 @@ zoom?: boolean | number = false</code></pre>
                         fadeIn
                         demoDelay={2000}
                         width={400}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         shadow
                         caption={t(&quot;story.image_motion_effects_interactive_caption&quot;)} /&gt;
                 &lt;/div&gt;
@@ -28574,7 +28574,7 @@ zoom?: boolean | number = false</code></pre>
                         filter={{ grayscale: &quot;sm&quot; }}
                         hoverFilter={{ grayscale: &quot;none&quot; }}
                         width=&quot;100%&quot;
-                        radius=&quot;large&quot;
+                        radius=&quot;lg&quot;
                         shadow
                         caption=&quot;Zoom + Tilt + Noise + Overlay + Filter&quot; /&gt;
                 &lt;/div&gt;
@@ -28600,22 +28600,22 @@ zoom?: boolean | number = false</code></pre>
                 &lt;div style={{ display: &quot;flex&quot;, gap: &quot;1rem&quot; }}&gt;
                     &lt;Image
                         src={vibrantLandscape}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         alt={t(&quot;story.image_alt_multiply&quot;, { defaultValue: &quot;Multiply overlay&quot; })}
                         overlay={{
                           color: &quot;#3498db&quot;,
-                          intensity: &quot;medium&quot;,
+                          intensity: &quot;md&quot;,
                           blendMode: &quot;multiply&quot;,
                         }}
                         width={300}
                         caption={t(&quot;story.image_caption_blue_multiply&quot;, { defaultValue: &quot;Blue Multiply (Adds tint)&quot; })} /&gt;
                     &lt;Image
                         src={vibrantLandscape}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         alt={t(&quot;story.image_alt_overlay&quot;, { defaultValue: &quot;Overlay blend&quot; })}
                         overlay={{
                           color: &quot;#e74c3c&quot;,
-                          intensity: &quot;medium&quot;,
+                          intensity: &quot;md&quot;,
                           blendMode: &quot;overlay&quot;,
                         }}
                         width={300}
@@ -28629,7 +28629,7 @@ zoom?: boolean | number = false</code></pre>
                         style={{ padding: &quot;20px&quot;, background: &quot;linear-gradient(45deg, #f3f3f3, #ddd)&quot; }}&gt;
                         &lt;Image
                             src={vibrantLandscape}
-                            radius=&quot;medium&quot;
+                            radius=&quot;md&quot;
                             alt={t(&quot;story.image_alt_multiply_bg&quot;, { defaultValue: &quot;Multiply image&quot; })}
                             blendMode=&quot;multiply&quot;
                             bgColor=&quot;#f1c40f&quot;
@@ -28639,7 +28639,7 @@ zoom?: boolean | number = false</code></pre>
                     &lt;div style={{ padding: &quot;20px&quot;, background: &quot;black&quot; }}&gt;
                         &lt;Image
                             src={vibrantLandscape}
-                            radius=&quot;medium&quot;
+                            radius=&quot;md&quot;
                             alt={t(&quot;story.image_alt_screen&quot;, { defaultValue: &quot;Screen image&quot; })}
                             blendMode=&quot;screen&quot;
                             width={300}
@@ -28652,7 +28652,7 @@ zoom?: boolean | number = false</code></pre>
                 &lt;div style={{ position: &quot;relative&quot;, width: &quot;400px&quot; }}&gt;
                     &lt;Image
                         src={vibrantLandscape}
-                        radius=&quot;medium&quot;
+                        radius=&quot;md&quot;
                         alt={t(&quot;story.image_alt_difference&quot;, { defaultValue: &quot;Difference&quot; })}
                         overlay={{
                           color: &quot;white&quot;,
@@ -28792,7 +28792,7 @@ import { Image } from &quot;@/components/media/Image/Image&quot;;
   src=&quot;path/to/image.webp&quot;
   alt=&quot;Description&quot;
   width={400}
-  radius=&quot;medium&quot;
+  radius=&quot;md&quot;
   shadow
   caption=&quot;Sample Image&quot;
 /&gt;;
@@ -54828,7 +54828,7 @@ prefixCls?: string = &quot;wim-status-content&quot;
 /**
  * Size variation
  */
-size?: &quot;default&quot; | &quot;small&quot; = &quot;default&quot;
+size?: &quot;md&quot; | &quot;sm&quot; = &quot;md&quot;
 
 /**
  * Main title
@@ -54885,7 +54885,7 @@ title?: ReactNode</code></pre>
 
     return (
         &lt;StatusContent
-            size=&quot;small&quot;
+            size=&quot;sm&quot;
             title={t(&quot;doc.status_success_title&quot;)}
             description={t(&quot;doc.status_success_desc&quot;)} /&gt;
     );
@@ -62965,7 +62965,7 @@ preload?: &quot;auto&quot; | &quot;metadata&quot; | &quot;none&quot;
 
 qualities?: { label: string; src: string }[]
 
-radius?: &quot;none&quot; | &quot;small&quot; | &quot;medium&quot; | &quot;large&quot; | &quot;full&quot; = &quot;none&quot;
+radius?: &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;full&quot; = &quot;none&quot;
 
 resumePlayback?: boolean = false
 
@@ -63030,7 +63030,7 @@ width?: string | number</code></pre>
               </div>
               
               
-              <pre><code>const Rounded = () =&gt; &lt;Video src={sampleVideo} poster={videoPoster} width={400} radius=&quot;large&quot; shadow /&gt;;</code></pre>
+              <pre><code>const Rounded = () =&gt; &lt;Video src={sampleVideo} poster={videoPoster} width={400} radius=&quot;lg&quot; shadow /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -63048,7 +63048,7 @@ width?: string | number</code></pre>
             poster={videoPoster}
             width={600}
             customControls={true}
-            radius=&quot;medium&quot;
+            radius=&quot;md&quot;
             shadow={true}
             caption={t(&quot;story.video_custom_caption&quot;)} /&gt;
     );
@@ -63071,7 +63071,7 @@ width?: string | number</code></pre>
             resumePlayback={true}
             autoPlayNext={true}
             controls={false}
-            radius=&quot;large&quot;
+            radius=&quot;lg&quot;
             shadow={true}
             border={true}
             fit=&quot;cover&quot;
@@ -63125,7 +63125,7 @@ width?: string | number</code></pre>
                     width={600}
                     fadeIn
                     demoDelay={2000}
-                    radius=&quot;medium&quot;
+                    radius=&quot;md&quot;
                     shadow
                     caption={t(&quot;story.video_premium_features_caption&quot;)} /&gt;
             &lt;/div&gt;
@@ -63292,7 +63292,7 @@ import { Video } from &quot;@/components/media/Video/Video&quot;;
   autoPlay
   muted
   loop
-  radius=&quot;medium&quot;
+  radius=&quot;md&quot;
   caption=&#39;&lt;T k=&quot;doc.video_usage_caption&quot; /&gt;&#39;
 /&gt;;
 ```
@@ -64488,7 +64488,7 @@ const data = [
 
 export const Dashboard: StoryObj = {
   render: () =&gt; (
-    &lt;Stack spacing=&quot;large&quot;&gt;
+    &lt;Stack gap=&quot;lg&quot;&gt;
       &lt;Heading tag=&quot;h3&quot; size=&quot;lg&quot;&gt;Visualization Suite Overview&lt;/Heading&gt;
       &lt;div style={{ display: &#39;grid&#39;, gridTemplateColumns: &#39;repeat(auto-fit, minmax(300px, 1fr))&#39;, gap: &#39;20px&#39; }}&gt;
         &lt;BarChart title=&quot;Sales by Month&quot; data={data} xAxisKey=&quot;name&quot; keys={[&quot;sales&quot;]} /&gt;
@@ -64531,7 +64531,7 @@ export const Dashboard: StoryObj = {
               
               
               <pre><code>const Dashboard = () =&gt; (
-  &lt;Stack spacing=&quot;large&quot;&gt;
+  &lt;Stack gap=&quot;lg&quot;&gt;
     &lt;Heading tag=&quot;h3&quot; size=&quot;lg&quot;&gt;Visualization Suite Overview&lt;/Heading&gt;
     &lt;div style={{ display: &#39;grid&#39;, gridTemplateColumns: &#39;repeat(auto-fit, minmax(300px, 1fr))&#39;, gap: &#39;20px&#39; }}&gt;
       &lt;BarChart title=&quot;Sales by Month&quot; data={data} xAxisKey=&quot;name&quot; keys={[&quot;sales&quot;]} /&gt;
