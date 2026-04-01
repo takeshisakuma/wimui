@@ -46,9 +46,16 @@ export function useSelectbox({
 
   const filteredOptions = useMemo(() => {
     if (!searchValue) return flatOptions;
-    const defaultFilter = (option: SelectboxOption, search: string) =>
-      option.type !== "separator" &&
-      (option.label || "").toLowerCase().includes(search.toLowerCase());
+    const defaultFilter = (option: SelectboxOption, search: string) => {
+      if (option.type === "separator") return false;
+      const label = typeof option.label === "string" ? option.label : "";
+      const value = typeof option.value === "string" ? option.value : "";
+      const searchTerm = search.toLowerCase();
+      return (
+        label.toLowerCase().includes(searchTerm) ||
+        value.toLowerCase().includes(searchTerm)
+      );
+    };
     const filterFn = filterOption || defaultFilter;
     return flatOptions.filter((option) => filterFn(option, searchValue));
   }, [flatOptions, searchValue, filterOption]);

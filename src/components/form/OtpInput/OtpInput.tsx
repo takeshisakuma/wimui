@@ -1,8 +1,11 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { FieldTemplate } from "../../_internal/FieldTemplate";
 import "./otp-input.scss";
+
+export type OtpInputLabels = {
+  digitAriaLabel?: (index: number) => string;
+};
 
 type OtpInputProps = {
   length?: number;
@@ -11,9 +14,10 @@ type OtpInputProps = {
   disabled?: boolean;
   error?: string;
   required?: boolean;
-  label?: string;
+  label?: React.ReactNode;
   layout?: "vertical" | "horizontal";
   className?: string;
+  labels?: OtpInputLabels;
 };
 
 /**
@@ -29,8 +33,10 @@ export const OtpInput = ({
   label,
   layout,
   className,
+  labels = {},
 }: OtpInputProps) => {
-  const { t } = useTranslation(["components"]);
+  const { digitAriaLabel = (i: number) => `Digit ${i}` } = labels;
+
   // 内部状態（非制御時にも対応できるようにするが、基本は制御コンポーネントとして使う想定）
   const [internalValues, setInternalValues] = useState<string[]>(
     Array(length).fill(""),
@@ -165,7 +171,7 @@ export const OtpInput = ({
             onKeyDown={(e) => handleKeyDown(e, index)}
             onPaste={handlePaste}
             disabled={disabled}
-            aria-label={t("otp.digit", { index: index + 1 })}
+            aria-label={digitAriaLabel(index + 1)}
             aria-invalid={!!error}
             aria-describedby={errorId}
           />

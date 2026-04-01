@@ -1,5 +1,4 @@
 import React, { useState, useId, useCallback, useRef } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { IconButton } from "../../misc/IconButton/IconButton";
 import { Button } from "../../form/Button/Button";
@@ -15,7 +14,7 @@ export type QueryFieldType = "string" | "number" | "date" | "boolean";
 
 export interface QueryField {
   name: string;
-  label: string;
+  label: React.ReactNode;
   type: QueryFieldType;
 }
 
@@ -31,6 +30,25 @@ export interface QueryGroup {
   combinator: "and" | "or";
   not: boolean;
   rules: (QueryRule | QueryGroup)[];
+}
+
+export interface QueryBuilderLabels {
+  ruleAdded?: string;
+  groupAdded?: string;
+  removed?: string;
+  ruleAriaLabel?: string;
+  fieldAriaLabel?: string;
+  operatorAriaLabel?: string;
+  valueAriaLabel?: string;
+  trueLabel?: string;
+  falseLabel?: string;
+  removeRuleAriaLabel?: string;
+  removeGroupAriaLabel?: string;
+  addRuleLabel?: string;
+  addGroupLabel?: string;
+  regionAriaLabel?: string;
+  combinatorAriaLabel?: string;
+  operators?: Record<string, string>;
 }
 
 export interface QueryBuilderProps {
@@ -62,45 +80,49 @@ export interface QueryBuilderProps {
    * Unique ID for the component
    */
   id?: string;
+  /**
+   * Labels for internationalization
+   */
+  labels?: QueryBuilderLabels;
 }
 
 const generateId = () => Math.random().toString(36).substring(2, 11);
 
-const OPERATORS_BY_TYPE: Record<QueryFieldType, { label: string; value: string }[]> = {
+const DEFAULT_OPERATORS: Record<QueryFieldType, { label: string; value: string; key: string }[]> = {
   string: [
-    { label: "operators.equal", value: "=" },
-    { label: "operators.not_equal", value: "!=" },
-    { label: "operators.contains", value: "contains" },
-    { label: "operators.starts_with", value: "starts_with" },
-    { label: "operators.ends_with", value: "ends_with" },
-    { label: "operators.is_null", value: "is_null" },
-    { label: "operators.is_not_null", value: "is_not_null" },
+    { label: "Equals", value: "=", key: "equal" },
+    { label: "Does not equal", value: "!=", key: "not_equal" },
+    { label: "Contains", value: "contains", key: "contains" },
+    { label: "Starts with", value: "starts_with", key: "starts_with" },
+    { label: "Ends with", value: "ends_with", key: "ends_with" },
+    { label: "Is null", value: "is_null", key: "is_null" },
+    { label: "Is not null", value: "is_not_null", key: "is_not_null" },
   ],
   number: [
-    { label: "operators.equal", value: "=" },
-    { label: "operators.not_equal", value: "!=" },
-    { label: "operators.greater_than", value: ">" },
-    { label: "operators.less_than", value: "<" },
-    { label: "operators.greater_than_or_equal", value: ">=" },
-    { label: "operators.less_than_or_equal", value: "<=" },
-    { label: "operators.is_null", value: "is_null" },
-    { label: "operators.is_not_null", value: "is_not_null" },
+    { label: "Equals", value: "=", key: "equal" },
+    { label: "Does not equal", value: "!=", key: "not_equal" },
+    { label: "Greater than", value: ">", key: "greater_than" },
+    { label: "Less than", value: "<", key: "less_than" },
+    { label: "Greater than or equal", value: ">=", key: "greater_than_or_equal" },
+    { label: "Less than or equal", value: "<=", key: "less_than_or_equal" },
+    { label: "Is null", value: "is_null", key: "is_null" },
+    { label: "Is not null", value: "is_not_null", key: "is_not_null" },
   ],
   date: [
-    { label: "operators.equal", value: "=" },
-    { label: "operators.not_equal", value: "!=" },
-    { label: "operators.after", value: ">" },
-    { label: "operators.before", value: "<" },
-    { label: "operators.after_or_on", value: ">=" },
-    { label: "operators.before_or_on", value: "<=" },
-    { label: "operators.is_null", value: "is_null" },
-    { label: "operators.is_not_null", value: "is_not_null" },
+    { label: "Equals", value: "=", key: "equal" },
+    { label: "Does not equal", value: "!=", key: "not_equal" },
+    { label: "After", value: ">", key: "after" },
+    { label: "Before", value: "<", key: "before" },
+    { label: "After or on", value: ">=", key: "after_or_on" },
+    { label: "Before or on", value: "<=", key: "before_or_on" },
+    { label: "Is null", value: "is_null", key: "is_null" },
+    { label: "Is not null", value: "is_not_null", key: "is_not_null" },
   ],
   boolean: [
-    { label: "operators.equal", value: "=" },
-    { label: "operators.not_equal", value: "!=" },
-    { label: "operators.is_null", value: "is_null" },
-    { label: "operators.is_not_null", value: "is_not_null" },
+    { label: "Equals", value: "=", key: "equal" },
+    { label: "Does not equal", value: "!=", key: "not_equal" },
+    { label: "Is null", value: "is_null", key: "is_null" },
+    { label: "Is not null", value: "is_not_null", key: "is_not_null" },
   ],
 };
 
@@ -115,8 +137,27 @@ export const QueryBuilder = ({
   maxDepth = 3,
   className,
   id: customId,
+  labels = {},
 }: QueryBuilderProps) => {
-  const { t } = useTranslation("components");
+  const {
+    ruleAdded = "Rule added",
+    groupAdded = "Group added",
+    removed = "Removed",
+    ruleAriaLabel = "Rule",
+    fieldAriaLabel = "Field",
+    operatorAriaLabel = "Operator",
+    valueAriaLabel = "Value",
+    trueLabel = "True",
+    falseLabel = "False",
+    removeRuleAriaLabel = "Remove rule",
+    removeGroupAriaLabel = "Remove group",
+    addRuleLabel = "Add rule",
+    addGroupLabel = "Add group",
+    regionAriaLabel = "Query Builder",
+    combinatorAriaLabel = "Combinator",
+    operators: operatorOverrides = {},
+  } = labels;
+
   const generatedId = useId();
   const id = customId || `wim-qb-${generatedId}`;
   const statusRef = useRef<HTMLDivElement>(null);
@@ -196,7 +237,7 @@ export const QueryBuilder = ({
       };
     };
     updateQuery(deepAdd(currentQuery));
-    announce(t("query.builder.rule_added", "Rule added"));
+    announce(ruleAdded);
   };
 
   const handleAddGroup = (parentId: string) => {
@@ -220,7 +261,7 @@ export const QueryBuilder = ({
       };
     };
     updateQuery(deepAdd(currentQuery));
-    announce(t("query.builder.group_added", "Group added"));
+    announce(groupAdded);
   };
 
   const handleRemove = (targetId: string) => {
@@ -236,13 +277,16 @@ export const QueryBuilder = ({
       };
     };
     updateQuery(deepRemove(currentQuery));
-    announce(t("query.builder.removed", "Removed"));
+    announce(removed);
   };
 
-  const renderRule = (rule: QueryRule, _isExcluded: boolean) => {
+  const renderRule = (rule: QueryRule) => {
     const fieldDef = fields.find((f) => f.name === rule.field);
     const type = fieldDef?.type || "string";
-    const operators = OPERATORS_BY_TYPE[type];
+    const operators = DEFAULT_OPERATORS[type].map(op => ({
+      ...op,
+      label: operatorOverrides[op.key] || op.label
+    }));
 
     const handleFieldChange = (val: string) => {
       const newFieldDef = fields.find((f) => f.name === val);
@@ -256,22 +300,22 @@ export const QueryBuilder = ({
     const isUnaryOperator = rule.operator === "is_null" || rule.operator === "is_not_null";
 
     return (
-      <div key={rule.id} className="wim-query-rule" role="group" aria-label={t("query.builder.rule", "Rule")}>
+      <div key={rule.id} className="wim-query-rule" role="group" aria-label={ruleAriaLabel}>
         <div className="wim-query-rule__fields">
           <Selectbox
             className="wim-query-rule__field"
-            options={fields.map((f) => ({ label: t(f.label), value: f.name }))}
+            options={fields.map((f) => ({ label: f.label, value: f.name }))}
             value={rule.field}
             onChange={handleFieldChange}
-            aria-label={t("query.builder.field")}
+            aria-label={fieldAriaLabel}
             fullWidth
           />
           <Selectbox
             className="wim-query-rule__operator"
-            options={operators.map((op) => ({ label: t(op.label), value: op.value }))}
+            options={operators.map((op) => ({ label: op.label, value: op.value }))}
             value={rule.operator}
             onChange={(val) => handleUpdate(rule.id, { operator: val })}
-            aria-label={t("query.builder.operator")}
+            aria-label={operatorAriaLabel}
             fullWidth
           />
           {!isUnaryOperator && (
@@ -280,7 +324,7 @@ export const QueryBuilder = ({
                 <NumberInput
                   value={typeof rule.value === "boolean" ? undefined : (rule.value ?? undefined)}
                   onChange={(e) => handleUpdate(rule.id, { value: e.target.value })}
-                  aria-label={t("query.builder.value")}
+                  aria-label={valueAriaLabel}
                 />
               ) : type === "date" ? (
                 <DatePicker
@@ -288,31 +332,31 @@ export const QueryBuilder = ({
                   onChange={(date) =>
                     handleUpdate(rule.id, { value: date ? date.toISOString() : "" })
                   }
-                  aria-label={t("query.builder.value")}
+                  aria-label={valueAriaLabel}
                 />
               ) : type === "boolean" ? (
                 <Selectbox
                   options={[
-                    { label: t("query.builder.true"), value: "true" },
-                    { label: t("query.builder.false"), value: "false" },
+                    { label: trueLabel, value: "true" },
+                    { label: falseLabel, value: "false" },
                   ]}
                   value={String(rule.value)}
                   onChange={(val) => handleUpdate(rule.id, { value: val === "true" })}
-                  aria-label={t("query.builder.value")}
+                  aria-label={valueAriaLabel}
                   fullWidth
                 />
               ) : (
                 <Input
                   value={typeof rule.value === "boolean" ? undefined : (rule.value ?? undefined)}
                   onChange={(e) => handleUpdate(rule.id, { value: e.target.value })}
-                  aria-label={t("query.builder.value")}
+                  aria-label={valueAriaLabel}
                 />
               )}
             </div>
           )}
           <IconButton
             iconName="TrashIcon"
-            aria-label={t("query.builder.remove_rule")}
+            aria-label={removeRuleAriaLabel}
             variant="ghost"
             size="md"
             color="danger"
@@ -348,7 +392,7 @@ export const QueryBuilder = ({
               ]}
               value={group.combinator}
               onChange={(val) => handleUpdate(group.id, { combinator: val as "and" | "or" })}
-              aria-label={t("query.builder.combinator", "Combinator")}
+              aria-label={combinatorAriaLabel}
             />
             <Switch
               size="md"
@@ -360,7 +404,7 @@ export const QueryBuilder = ({
           {depth > 0 && (
             <IconButton
               iconName="TrashIcon"
-              aria-label={t("query.builder.remove_group")}
+              aria-label={removeGroupAriaLabel}
               variant="ghost"
               size="md"
               color="danger"
@@ -373,7 +417,7 @@ export const QueryBuilder = ({
           {group.rules.map((item) =>
             "rules" in item
               ? renderGroup(item, depth + 1, isExcluded)
-              : renderRule(item, isExcluded),
+              : renderRule(item),
           )}
         </div>
         <div className="wim-query-group__actions">
@@ -383,7 +427,7 @@ export const QueryBuilder = ({
             icon="PlusIcon"
             onClick={() => handleAddRule(group.id)}
           >
-            {t("query.builder.add_rule")}
+            {addRuleLabel}
           </Button>
           {depth < maxDepth && (
             <Button
@@ -392,7 +436,7 @@ export const QueryBuilder = ({
               icon="PlusIcon"
               onClick={() => handleAddGroup(group.id)}
             >
-              {t("query.builder.add_group")}
+              {addGroupLabel}
             </Button>
           )}
         </div>
@@ -404,7 +448,7 @@ export const QueryBuilder = ({
     <div
       id={id}
       role="region"
-      aria-label={t("query.builder.region_label", "Query Builder")}
+      aria-label={regionAriaLabel}
       className={classNames("wim-query-builder", className)}
     >
       {/* Screen reader live region for dynamic announcements */}

@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
 import "./carousel.scss";
 
 export type Breakpoints = {
@@ -16,6 +15,13 @@ export type Breakpoints = {
   md?: number;
   lg?: number;
   xl?: number;
+};
+
+export type CarouselLabels = {
+  slideLabel?: (number: number) => string;
+  prevSlide?: string;
+  nextSlide?: string;
+  goToSlide?: (number: number) => string;
 };
 
 export type CarouselProps = {
@@ -56,9 +62,20 @@ export type CarouselProps = {
    */
   objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down";
   /**
+   * 手動翻訳用のラベル。
+   */
+  labels?: CarouselLabels;
+  /**
    * 追加のクラス名
    */
   className?: string;
+};
+
+const DEFAULT_LABELS: Required<CarouselLabels> = {
+  slideLabel: (number) => `Slide ${number}`,
+  prevSlide: "Previous slide",
+  nextSlide: "Next slide",
+  goToSlide: (number) => `Go to slide ${number}`,
 };
 
 const getSlidesToShow = (
@@ -88,9 +105,10 @@ export const Carousel = ({
   slidesToShow = 1,
   aspectRatio,
   objectFit = "cover",
+  labels,
   className,
 }: CarouselProps) => {
-  const { t } = useTranslation();
+  const mergedLabels = { ...DEFAULT_LABELS, ...labels };
 
   const items = useMemo(() => React.Children.toArray(children), [children]);
   const originalItemCount = items.length;
@@ -280,9 +298,7 @@ export const Carousel = ({
               }
               role="group"
               aria-roledescription="slide"
-              aria-label={t("story.carousel_slide_label", {
-                number: (index % originalItemCount) + 1,
-              })}
+              aria-label={mergedLabels.slideLabel((index % originalItemCount) + 1)}
             >
               {child}
             </div>
@@ -295,7 +311,7 @@ export const Carousel = ({
           <button
             className="wim-carousel__control wim-carousel__control--prev"
             onClick={prevSlide}
-            aria-label={t("a11y.prev_slide")}
+            aria-label={mergedLabels.prevSlide}
             disabled={!loop && currentIndex === 0}
             tabIndex={-1} // 親要素でフォーカス管理するためボタン自体のタブ移動はスキップしても良いが、好みによる
           >
@@ -304,7 +320,7 @@ export const Carousel = ({
           <button
             className="wim-carousel__control wim-carousel__control--next"
             onClick={nextSlide}
-            aria-label={t("a11y.next_slide")}
+            aria-label={mergedLabels.nextSlide}
             disabled={
               !loop && currentIndex >= originalItemCount - displaySlides
             }
@@ -330,7 +346,7 @@ export const Carousel = ({
                   isActive && "wim-carousel__indicator--active",
                 )}
                 onClick={() => goToSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
+                aria-label={mergedLabels.goToSlide(index + 1)}
                 aria-current={isActive ? "true" : "false"}
               />
             );

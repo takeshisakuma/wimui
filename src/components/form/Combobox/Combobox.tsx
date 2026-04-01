@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useId } from "react";
-import { useTranslation } from "react-i18next";
 import { Input } from "../../form/Input/Input";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import "./combobox.scss";
@@ -11,11 +10,15 @@ export type ComboboxOption = {
   value: string;
 };
 
+export type ComboboxLabels = {
+  noResults?: React.ReactNode;
+};
+
 export type ComboboxProps = {
   options: ComboboxOption[];
   onSelect?: (option: ComboboxOption) => void;
   placeholder?: string;
-  label?: string;
+  label?: React.ReactNode;
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
@@ -25,6 +28,7 @@ export type ComboboxProps = {
   className?: string;
   disabled?: boolean;
   id?: string;
+  labels?: ComboboxLabels;
 };
 
 /**
@@ -33,7 +37,7 @@ export type ComboboxProps = {
 export const Combobox = ({
   options = [],
   onSelect,
-  placeholder = "select.option",
+  placeholder = "Select option",
   showSearchIcon = true,
   allowClear = true,
   defaultValue = "",
@@ -44,9 +48,10 @@ export const Combobox = ({
   required,
   layout,
   id: customId,
+  labels = {},
   ...props
 }: ComboboxProps) => {
-  const { t } = useTranslation();
+  const { noResults = "No results found" } = labels;
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(defaultValue);
   const [filteredOptions, setFilteredOptions] =
@@ -145,7 +150,7 @@ export const Combobox = ({
       >
         <Input
           id={id}
-          placeholder={t(placeholder)}
+          placeholder={placeholder}
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
@@ -189,14 +194,14 @@ export const Combobox = ({
                 role="option"
                 aria-selected={index === activeIndex}
               >
-                {t(option.label)}
+                {option.label}
               </BaseListItem>
             ))}
           </ul>
         )}
         {isOpen && filteredOptions.length === 0 && (
           <div className="wim-combobox-empty" role="region" aria-live="polite">
-            {t("no.results_found")}
+            {noResults}
           </div>
         )}
       </div>

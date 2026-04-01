@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import "./span.scss";
-import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
 import { WimColor, ComponentSize } from "../../../types/tokens";
 
@@ -22,14 +21,14 @@ type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
   weight?: "normal" | "bold";
   fontStyle?: "normal" | "italic";
   decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
-  content: string;
+  content?: React.ReactNode;
   iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
 };
 
 export const Span = ({
   size = "md",
-  content = "span",
+  content,
   color = "black",
   weight = "normal",
   fontStyle = "normal",
@@ -38,9 +37,10 @@ export const Span = ({
   decoration = "none",
   className,
   style,
+  children,
   ...props
 }: SpanProps) => {
-  const { t } = useTranslation();
+  const finalContent = content ?? children;
 
   // Icon の size プロパティは "sm" | "md" | "lg" のみ許容されているためマッピング
   const iconSizeMap: Record<string, ComponentSize> = {
@@ -59,7 +59,7 @@ export const Span = ({
   const contentToRender = (
     <>
       {iconName && iconPosition === "left" && iconComponent}
-      <span>{t(content)}</span>
+      <span>{finalContent}</span>
       {iconName && iconPosition === "right" && iconComponent}
     </>
   );

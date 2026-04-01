@@ -13,7 +13,6 @@ import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Pagination } from "../../navigation/Pagination/Pagination";
 import { Spinner } from "../../feedback/Spinner/Spinner";
 import { EmptyState } from "../../data-display/EmptyState/EmptyState";
-import { useTranslation } from "react-i18next";
 import { useDataGridKeyboard } from "./useDataGridKeyboard";
 import { useFixedColumns } from "./useFixedColumns";
 import { useInfiniteScroll } from "./useInfiniteScroll";
@@ -37,6 +36,13 @@ export interface DataGridColumn<T> {
   /** Whether the column is fixed to the left or right */
   fixed?: boolean | "left" | "right";
 }
+
+export type DataGridLabels = {
+  empty?: React.ReactNode;
+  selectAllRows?: string;
+  selectRow?: (index: number) => string;
+  loadingMore?: string;
+};
 
 export interface DataGridProps<T> {
   /** Column definitions */
@@ -89,9 +95,16 @@ export interface DataGridProps<T> {
   className?: string;
   /** Message to show when data is empty */
   emptyMessage?: React.ReactNode;
-  /** Accessibility label for selecting all rows */
-  a11y_select_all_rows?: string;
+  /** 手動翻訳用のラベル */
+  labels?: DataGridLabels;
 }
+
+const DEFAULT_LABELS: Required<DataGridLabels> = {
+  empty: "No data available",
+  selectAllRows: "Select all rows",
+  selectRow: (index: number) => `Select row ${index}`,
+  loadingMore: "Loading more rows",
+};
 
 export function DataGrid<T extends Record<string, unknown>>({
   columns,
@@ -114,12 +127,10 @@ export function DataGrid<T extends Record<string, unknown>>({
   mobileCard = false,
   className,
   emptyMessage,
-  a11y_select_all_rows,
+  labels,
 }: DataGridProps<T>) {
-  const { t } = useTranslation(["components", "common"]);
-  const actualEmptyMessage = emptyMessage ?? t("datagrid.empty");
-  const actualSelectAllRowsA11y =
-    a11y_select_all_rows ?? t("a11y.select_all_rows");
+  const mergedLabels = { ...DEFAULT_LABELS, ...labels };
+  const actualEmptyMessage = emptyMessage ?? mergedLabels.empty;
 
   const { focusedCell, setFocusedCell, containerRef, handleKeyDown } =
     useDataGridKeyboard(columns, rows, selection);
@@ -218,7 +229,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                     checked={isAllSelected}
                     indeterminate={isSomeSelected}
                     onChange={(e) => handleSelectAll(e.target.checked)}
-                    aria-label={actualSelectAllRowsA11y}
+                    aria-label={mergedLabels.selectAllRows}
                     tabIndex={-1}
                   />
                 </TableHead>
@@ -324,9 +335,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                           onChange={(e) =>
                             handleSelectRow(key, e.target.checked)
                           }
-                          aria-label={t("datagrid.select_row", {
-                            index: rowIndex + 1,
-                          })}
+                          aria-label={mergedLabels.selectRow(rowIndex + 1)}
                           tabIndex={-1}
                         />
                       </TableCell>
@@ -395,7 +404,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                     ref={loaderRef}
                     className="wim-datagrid__loader"
                     aria-live="polite"
-                    aria-label={loadMore.loading ? t("datagrid.loading_more", "Loading more rows") : undefined}
+                    aria-label={loadMore.loading ? mergedLabels.loadingMore : undefined}
                   >
                     {loadMore.loading && <Spinner size="sm" />}
                   </div>

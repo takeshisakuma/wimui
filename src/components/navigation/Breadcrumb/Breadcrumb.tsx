@@ -1,13 +1,12 @@
 import React from "react";
 import classNames from "classnames";
 import "./breadcrumb.scss";
-import { useTranslation } from "react-i18next";
 import { Link } from "../../navigation/Link/Link";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
 
 type BreadcrumbItem = {
-  label: string;
+  label: React.ReactNode;
   href?: string;
   iconName?: React.ComponentProps<typeof Icon>["name"];
 };
@@ -17,6 +16,7 @@ type BreadcrumbProps = {
   separator?: React.ReactNode;
   size?: ComponentSize;
   className?: string;
+  ariaLabel?: string;
 };
 
 export const Breadcrumb = ({
@@ -24,9 +24,8 @@ export const Breadcrumb = ({
   separator,
   size = "md",
   className,
+  ariaLabel = "Breadcrumb",
 }: BreadcrumbProps) => {
-  const { t } = useTranslation();
-
   const defaultSeparator = (
     <Icon
       name="ChevronRightIcon"
@@ -56,7 +55,7 @@ export const Breadcrumb = ({
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <nav
-      aria-label={t("a11y.breadcrumb")}
+      aria-label={ariaLabel}
       className={classNames(
         "wim-breadcrumb",
         `wim-breadcrumb--${size}`,
@@ -72,14 +71,14 @@ export const Breadcrumb = ({
             <li key={index} className="wim-breadcrumb__item">
               <div className="wim-breadcrumb__content">
                 {item.href && !isLast ? (
-                  <Link
+                   <Link
                     href={item.href}
                     size={size}
                     priority="secondary"
                     iconName={item.iconName}
                     className="wim-breadcrumb__link"
                   >
-                    {t(item.label)}
+                    {item.label}
                   </Link>
                 ) : (
                   <span
@@ -98,7 +97,7 @@ export const Breadcrumb = ({
                         className="wim-breadcrumb__label-icon"
                       />
                     )}
-                    {t(item.label)}
+                    {item.label}
                   </span>
                 )}
               </div>

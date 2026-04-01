@@ -1,6 +1,4 @@
 import React, { useState, useRef, useEffect, useId, useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import type { TFunction } from "i18next";
 import classNames from "classnames";
 import { Transition } from "../../misc/Transition/Transition";
 import { TreeView, TreeViewNode } from "../../data-display/TreeView/TreeView";
@@ -9,22 +7,21 @@ import "./tree-select.scss";
 
 import { FieldTemplate } from "../../_internal/FieldTemplate";
 
-/** treeData の label（i18nキー）を翻訳済み文字列に展開してツリーを再構築する */
+/** treeData の label をそのまま使ってツリーを再構築する */
 function resolveLabels(
   nodes: TreeSelectNode[],
-  t: TFunction,
 ): TreeViewNode[] {
   return nodes.map((node) => ({
     value: node.value,
-    label: t(node.label),
+    label: node.label,
     disabled: node.disabled,
     icon: node.icon,
-    children: node.children ? resolveLabels(node.children, t) : undefined,
+    children: node.children ? resolveLabels(node.children) : undefined,
   }));
 }
 
 export type TreeSelectNode = {
-  label: string;
+  label: React.ReactNode;
   value: string;
   children?: TreeSelectNode[];
   disabled?: boolean;
@@ -35,8 +32,8 @@ export type TreeSelectProps = {
   treeData: TreeSelectNode[];
   value?: string | string[];
   onChange?: (value: string | string[]) => void;
-  placeholder?: string;
-  label?: string;
+  placeholder?: React.ReactNode;
+  label?: React.ReactNode;
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
@@ -81,7 +78,6 @@ export const TreeSelect = ({
   id: customId,
   ...props
 }: TreeSelectProps) => {
-  const { t } = useTranslation("common");
   const generatedId = useId();
   const id = customId || `wim-tree-select-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
@@ -170,11 +166,13 @@ export const TreeSelect = ({
     if (multiple) {
       const vals = Array.isArray(currentValue) ? currentValue : [];
       if (vals.length === 0) return null;
-      return vals.map((v) => (flatNodes[v] ? t(flatNodes[v].label) : v)).join(", ");
+      // Note: ReactNode might be joined poorly if they are complex JSX.
+      // Usually users will pass strings or translated strings here.
+      return vals.map((v) => (flatNodes[v] ? flatNodes[v].label : v)).reduce((prev, curr) => [prev, ", ", curr]);
     } else {
       const val = currentValue as string;
       if (!val) return null;
-      return flatNodes[val] ? t(flatNodes[val].label) : val;
+      return flatNodes[val] ? flatNodes[val].label : val;
     }
   };
 
@@ -208,10 +206,10 @@ export const TreeSelect = ({
     }
   };
 
-  // treeData を TreeViewNode 形式に変換（ラベルを翻訳済み文字列に展開）
+  // treeData を TreeViewNode 形式に変換
   const resolvedNodes = useMemo(
-    () => resolveLabels(treeData, t),
-    [treeData, t],
+    () => resolveLabels(treeData),
+    [treeData],
   );
 
   const selectedKeys = useMemo(() => {
@@ -227,6 +225,8 @@ export const TreeSelect = ({
     "aria-describedby": ariaDescribedBy,
     ...wrapperProps
   } = props;
+
+  const placeholderStr = typeof placeholder === "string" ? placeholder : "Select";
 
   return (
     <FieldTemplate
@@ -269,7 +269,7 @@ export const TreeSelect = ({
             aria-controls={isOpen ? dropdownId : undefined}
             aria-disabled={disabled}
             aria-labelledby={labelId || ariaLabelledBy}
-            aria-label={label ? undefined : (ariaLabel || t(placeholder))}
+            aria-label={label ? undefined : (ariaLabel || placeholderStr)}
             aria-describedby={errorId || ariaDescribedBy}
             aria-invalid={!!error}
             ref={triggerRef}
@@ -280,7 +280,7 @@ export const TreeSelect = ({
                 !displayValue && "wim-tree-select__value--placeholder",
               )}
             >
-              {displayValue || t(placeholder)}
+              {displayValue || placeholder}
             </div>
           </div>
         </InputBase>

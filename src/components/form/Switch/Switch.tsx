@@ -1,11 +1,10 @@
 import React, { useRef, useId } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { ComponentSize } from "../../../types/tokens";
 import "./switch.scss";
 
 type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
-  label?: string;
+  label?: React.ReactNode;
   size?: ComponentSize;
   className?: string;
 };
@@ -18,7 +17,6 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
     { label, size = "md", className, disabled, id: customId, ...props },
     ref,
   ) => {
-    const { t } = useTranslation();
     const defaultRef = useRef<HTMLInputElement>(null);
     const resolvedRef =
       (ref as React.RefObject<HTMLInputElement>) || defaultRef;
@@ -49,7 +47,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           ref={resolvedRef}
           {...props}
         />
-        {label && <span className="wim-switch-label">{t(label)}</span>}
+        {label && <span className="wim-switch-label">{label}</span>}
       </label>
     );
   },

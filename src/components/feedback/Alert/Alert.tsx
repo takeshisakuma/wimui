@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { FeedbackStatus } from "../../../types/tokens";
@@ -10,11 +9,11 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
    * アラートのタイトル
    */
-  title?: string;
+  title?: React.ReactNode;
   /**
    * アラートの説明文
    */
-  description?: string;
+  description?: React.ReactNode;
   /**
    * アラートのステータス
    */
@@ -50,7 +49,6 @@ export const Alert = ({
   children,
   ...props
 }: AlertProps) => {
-  const { t } = useTranslation();
   const [isVisible, setIsVisible] = React.useState(true);
 
   if (!isVisible) return null;
@@ -70,10 +68,10 @@ export const Alert = ({
         <FeedbackIcon status={status} icon={icon} size="sm" />
       </div>
       <div className="wim-alert__content">
-        {title && <h4 className="wim-alert__title">{t(title)}</h4>}
+        {title && <h4 className="wim-alert__title">{title}</h4>}
         {(description || children) && (
           <div className="wim-alert__description">
-            {description ? t(description) : children}
+            {description ? description : children}
           </div>
         )}
       </div>

@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
 import { InteractiveArea } from "../../layout/InteractiveArea/InteractiveArea";
 import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
 import "./dropzone.scss";
@@ -10,11 +9,11 @@ type DropzoneProps = {
   /**
    * コンポーネントのラベル。
    */
-  label?: string;
+  label?: React.ReactNode;
   /**
    * ドラッグ＆ドロップエリアに表示する説明テキスト。
    */
-  description?: string;
+  description?: React.ReactNode;
   /**
    * 受け付けるファイル形式（例: ".jpg,.png"）。
    */
@@ -58,7 +57,7 @@ type DropzoneProps = {
  */
 export const Dropzone = ({
   label,
-  description,
+  description = "Drag and drop files here, or click to select",
   accept,
   multiple = false,
   disabled = false,
@@ -69,12 +68,9 @@ export const Dropzone = ({
   required,
   layout = "vertical",
 }: DropzoneProps) => {
-  const { t } = useTranslation("common");
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState<FileList | null>(null);
-
-  const actualDescription = description ?? t("dropzone.description");
 
   const handleClick = () => {
     if (disabled) return;
@@ -113,7 +109,7 @@ export const Dropzone = ({
 
   return (
     <FieldTemplate
-      label={label ? t(label) : undefined}
+      label={label}
       error={error}
       required={required}
       layout={layout}
@@ -142,7 +138,7 @@ export const Dropzone = ({
             />
           )
         }
-        description={actualDescription}
+        description={description}
       >
         <input
           type="file"

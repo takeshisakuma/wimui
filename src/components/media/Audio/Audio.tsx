@@ -3,8 +3,10 @@ import classNames from "classnames";
 import { useMediaLoader } from "@/hooks/useMediaLoader";
 import { useAudioPlayer } from "./hooks/useAudioPlayer";
 import { useAudioMetadata } from "./hooks/useAudioMetadata";
-import { AudioCustomControls } from "./components/AudioCustomControls";
+import { AudioCustomControls, type AudioLabels } from "./components/AudioCustomControls";
 import "./audio.scss";
+
+export type { AudioLabels };
 
 export type AudioTrack = {
   src: string;
@@ -23,7 +25,7 @@ type AudioProps = Omit<React.ComponentPropsWithoutRef<"audio">, "src"> & {
   radius?: "none" | "sm" | "md" | "lg" | "full";
   shadow?: boolean;
   border?: boolean;
-  caption?: string;
+  caption?: React.ReactNode;
   customControls?: boolean;
   visualizer?: boolean;
   showMetadata?: boolean;
@@ -38,6 +40,8 @@ type AudioProps = Omit<React.ComponentPropsWithoutRef<"audio">, "src"> & {
   loading?: "eager" | "lazy";
   /** デモ用：読み込み完了を意図的に遅らせるミリ秒 */
   demoDelay?: number;
+  /** 手動翻訳用のラベル */
+  labels?: AudioLabels;
 };
 
 export const Audio = ({
@@ -65,8 +69,10 @@ export const Audio = ({
   sleepTimer = false,
   loading = "lazy",
   demoDelay,
+  labels = {},
   ...props
 }: AudioProps) => {
+  const { unknownTitle = "Unknown Title", unknownArtist = "Unknown Artist" } = labels;
   const playlist: AudioTrack[] = useMemo(() => {
     if (!src) return [];
     const arr = Array.isArray(src) ? src : [src];
@@ -157,8 +163,8 @@ export const Audio = ({
               <img src={metaCover} alt="Cover" className="wim-audio-cover" />
             )}
             <div className="wim-audio-info">
-              <div className="wim-audio-title">{metaTitle || "Unknown Title"}</div>
-              <div className="wim-audio-artist">{metaArtist || "Unknown Artist"}</div>
+              <div className="wim-audio-title">{metaTitle || unknownTitle}</div>
+              <div className="wim-audio-artist">{metaArtist || unknownArtist}</div>
             </div>
           </div>
         )}
@@ -230,6 +236,7 @@ export const Audio = ({
             playNext={player.playNext}
             toggleSleepTimer={player.toggleSleepTimer}
             formatTime={player.formatTime}
+            labels={labels}
           />
         )}
       </div>

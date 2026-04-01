@@ -1,10 +1,9 @@
 import React from "react";
 import classNames from "classnames";
 import "./paragraph.scss";
-import { useTranslation } from "react-i18next";
 import { WimColor, WimLineHeight } from "../../../types/tokens";
 
-type ParagraphProps = React.ComponentPropsWithoutRef<"p"> & {
+type ParagraphProps = Omit<React.ComponentPropsWithoutRef<"p">, "content"> & {
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   color?:
   | "black"
@@ -29,12 +28,12 @@ type ParagraphProps = React.ComponentPropsWithoutRef<"p"> & {
   | WimLineHeight;
   fontStyle?: "normal" | "italic";
   decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
-  content: string;
+  content?: React.ReactNode;
 };
 
 export const Paragraph = ({
   size = "md",
-  content = "text",
+  content,
   color = "black",
   weight = "normal",
   lineHeight = "normal-latn",
@@ -42,15 +41,16 @@ export const Paragraph = ({
   decoration = "none",
   className,
   style,
+  children,
   ...props
 }: ParagraphProps) => {
-  const { t } = useTranslation();
+  const finalContent = content ?? children;
 
   const innerContent =
     decoration !== "none" ? (
-      <span className={`wim-paragraph--${decoration}`}>{t(content)}</span>
+      <span className={`wim-paragraph--${decoration}`}>{finalContent}</span>
     ) : (
-      t(content)
+      finalContent
     );
 
   const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));

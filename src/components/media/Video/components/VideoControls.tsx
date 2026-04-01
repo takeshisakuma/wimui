@@ -1,8 +1,38 @@
 import React from "react";
 import { Icon } from "../../../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
 
 type ActiveMenu = "main" | "quality" | "rate" | "fit" | "playlist" | null;
+
+export type VideoLabels = {
+  playlist?: string;
+  skipBackward?: string;
+  skipForward?: string;
+  play?: string;
+  pause?: string;
+  nextTrack?: string;
+  seek?: string;
+  mute?: string;
+  unmute?: string;
+  volume?: string;
+  settings?: string;
+  pip?: string;
+  fullscreen?: string;
+  exitFullscreen?: string;
+  quality?: string;
+  playbackRate?: string;
+  aspectRatio?: string;
+  standard?: string;
+  back?: string;
+  auto?: string;
+  fit?: string;
+  fill?: string;
+  contain?: string;
+  cover?: string;
+  scaleDown?: string;
+  none?: string;
+  videoAriaLabel?: string;
+  seconds?: string; // e.g. "seconds" or "秒"
+};
 
 interface VideoControlsProps {
   playlist?: { src: string; title?: string; poster?: string }[];
@@ -25,6 +55,7 @@ interface VideoControlsProps {
   isFullscreen: boolean;
   toggleFullscreen: () => void;
   formatTime: (time: number) => string;
+  labels?: VideoLabels;
 }
 
 export function VideoControls({
@@ -48,8 +79,24 @@ export function VideoControls({
   isFullscreen,
   toggleFullscreen,
   formatTime,
+  labels = {},
 }: VideoControlsProps) {
-  const { t } = useTranslation();
+  const {
+    playlist: playlistLabel = "Playlist",
+    skipBackward = "Skip Backward",
+    skipForward = "Skip Forward",
+    play = "Play",
+    pause = "Pause",
+    nextTrack = "Next Track",
+    seek = "Seek",
+    mute = "Mute",
+    unmute = "Unmute",
+    volume: volumeLabel = "Volume",
+    settings = "Settings",
+    pip = "Picture in Picture",
+    fullscreen = "Fullscreen",
+    exitFullscreen = "Exit Fullscreen",
+  } = labels;
 
   return (
     <div className="wim-video-controls-bottom">
@@ -61,7 +108,7 @@ export function VideoControls({
             e.stopPropagation();
             setActiveMenu(activeMenu === "playlist" ? null : "playlist");
           }}
-          aria-label={t("a11y.playlist")}
+          aria-label={playlistLabel}
         >
           <Icon name="DocumentIcon" size="sm" />
         </button>
@@ -75,7 +122,7 @@ export function VideoControls({
             e.stopPropagation();
             skip(-10);
           }}
-          aria-label={t("a11y.skip_backward")}
+          aria-label={skipBackward}
         >
           <Icon name="ChevronLeftIcon" size="sm" />
         </button>
@@ -88,7 +135,7 @@ export function VideoControls({
           e.stopPropagation();
           togglePlay();
         }}
-        aria-label={isPlaying ? "Pause" : "Play"}
+        aria-label={isPlaying ? pause : play}
       >
         <Icon name={isPlaying ? "PauseIcon" : "PlayIcon"} size="sm" />
       </button>
@@ -101,7 +148,7 @@ export function VideoControls({
             e.stopPropagation();
             skip(10);
           }}
-          aria-label={t("a11y.skip_forward")}
+          aria-label={skipForward}
         >
           <Icon name="ChevronRightIcon" size="sm" />
         </button>
@@ -121,7 +168,7 @@ export function VideoControls({
           style={{
             opacity: currentPlayIndex >= playlist.length - 1 ? 0.5 : 1,
           }}
-          aria-label={t("a11y.next_track")}
+          aria-label={nextTrack}
         >
           <Icon name="ChevronRightIcon" size="md" />
         </button>
@@ -137,7 +184,7 @@ export function VideoControls({
             value={currentTime}
             onChange={handleSeek}
             className="wim-video-progress"
-            aria-label={t("a11y.seek")}
+            aria-label={seek}
             onClick={(e) => e.stopPropagation()}
           />
           <div
@@ -156,7 +203,7 @@ export function VideoControls({
             e.stopPropagation();
             toggleMute();
           }}
-          aria-label={isMuted ? "Unmute" : "Mute"}
+          aria-label={isMuted ? unmute : mute}
         >
           <Icon
             name={isMuted || volume === 0 ? "MuteIcon" : "VolumeIcon"}
@@ -174,7 +221,7 @@ export function VideoControls({
             handleVolumeChange(e);
           }}
           className="wim-video-volume"
-          aria-label={t("a11y.volume")}
+          aria-label={volumeLabel}
           onClick={(e) => e.stopPropagation()}
         />
       </div>
@@ -187,7 +234,7 @@ export function VideoControls({
             e.stopPropagation();
             setActiveMenu(activeMenu === "main" ? null : "main");
           }}
-          aria-label={t("a11y.settings")}
+          aria-label={settings}
         >
           <Icon name="SettingsIcon" size="sm" />
         </button>
@@ -201,8 +248,8 @@ export function VideoControls({
             e.stopPropagation();
             togglePiP();
           }}
-          aria-label={t("a11y.picture_in_picture")}
-          title={t("a11y.picture_in_picture")}
+          aria-label={pip}
+          title={pip}
         >
           <Icon name="MonitorIcon" size="sm" />
         </button>
@@ -215,7 +262,7 @@ export function VideoControls({
           e.stopPropagation();
           toggleFullscreen();
         }}
-        aria-label={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+        aria-label={isFullscreen ? exitFullscreen : fullscreen}
       >
         <Icon
           name={isFullscreen ? "MinimizeIcon" : "MaximizeIcon"}

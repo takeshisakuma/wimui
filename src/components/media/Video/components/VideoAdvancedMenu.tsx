@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "../../../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
+import { type VideoLabels } from "./VideoControls";
 
 type FitOption = "contain" | "cover" | "fill" | "none" | "scale-down";
 type ActiveMenu = "main" | "quality" | "rate" | "fit" | "playlist" | null;
@@ -27,6 +27,7 @@ interface VideoAdvancedMenuProps {
   playlist?: { src: string; title?: string; poster?: string }[];
   currentPlayIndex: number;
   playPlaylistItem: (index: number) => void;
+  labels?: VideoLabels;
 }
 
 export function VideoAdvancedMenu({
@@ -42,10 +43,34 @@ export function VideoAdvancedMenu({
   playlist,
   currentPlayIndex,
   playPlaylistItem,
+  labels = {},
 }: VideoAdvancedMenuProps) {
-  const { t } = useTranslation();
+  const {
+    settings = "Settings",
+    quality = "Quality",
+    playbackRate: playbackRateLabel = "Playback Speed",
+    aspectRatio = "Aspect Ratio",
+    standard = "Standard",
+    playlist: playlistLabel = "Playlist",
+    contain = "Contain",
+    cover = "Cover",
+    fill = "Fill",
+    scaleDown = "Scale Down",
+    none = "None",
+  } = labels;
 
   if (!activeMenu) return null;
+
+  const getFitLabel = (f: FitOption) => {
+    switch (f) {
+      case "contain": return contain;
+      case "cover": return cover;
+      case "fill": return fill;
+      case "scale-down": return scaleDown;
+      case "none": return none;
+      default: return f;
+    }
+  };
 
   return (
     <>
@@ -60,7 +85,7 @@ export function VideoAdvancedMenu({
           tabIndex={-1}
         >
           <div className="wim-video-menu-title">
-            <span>{t("settings")}</span>
+            <span>{settings}</span>
           </div>
           <div className="wim-video-menu-items">
             {qualities && qualities.length > 0 && (
@@ -68,7 +93,7 @@ export function VideoAdvancedMenu({
                 className="wim-video-menu-btn"
                 onClick={() => setActiveMenu("quality")}
               >
-                <span>{t("quality")}</span>
+                <span>{quality}</span>
                 <span style={{ opacity: 0.7 }}>
                   {qualities[currentQualityIndex].label}{" "}
                   <Icon name="ChevronRightIcon" size="sm" />
@@ -79,7 +104,7 @@ export function VideoAdvancedMenu({
               className="wim-video-menu-btn"
               onClick={() => setActiveMenu("rate")}
             >
-              <span>{t("playback.rate")}</span>
+              <span>{playbackRateLabel}</span>
               <span style={{ opacity: 0.7 }}>
                 {playbackRate}x <Icon name="ChevronRightIcon" size="sm" />
               </span>
@@ -88,9 +113,9 @@ export function VideoAdvancedMenu({
               className="wim-video-menu-btn"
               onClick={() => setActiveMenu("fit")}
             >
-              <span>{t("aspect.ratio")}</span>
+              <span>{aspectRatio}</span>
               <span style={{ opacity: 0.7 }}>
-                {activeFit} <Icon name="ChevronRightIcon" size="sm" />
+                {getFitLabel(activeFit)} <Icon name="ChevronRightIcon" size="sm" />
               </span>
             </button>
           </div>
@@ -114,7 +139,7 @@ export function VideoAdvancedMenu({
             >
               <Icon name="ChevronLeftIcon" size="sm" />
             </button>
-            <span>{t("quality")}</span>
+            <span>{quality}</span>
           </div>
           <div className="wim-video-menu-items">
             {qualities?.map((q, i) => (
@@ -155,7 +180,7 @@ export function VideoAdvancedMenu({
             >
               <Icon name="ChevronLeftIcon" size="sm" />
             </button>
-            <span>{t("playback.rate")}</span>
+            <span>{playbackRateLabel}</span>
           </div>
           <div className="wim-video-menu-items">
             {RATES.map((r) => (
@@ -170,7 +195,7 @@ export function VideoAdvancedMenu({
               >
                 {playbackRate === r && <Icon name="CheckIcon" size="sm" />}
                 <span style={{ marginLeft: playbackRate === r ? 0 : 24 }}>
-                  {r === 1.0 ? t("standard") : `${r}x`}
+                  {r === 1.0 ? standard : `${r}x`}
                 </span>
               </button>
             ))}
@@ -195,7 +220,7 @@ export function VideoAdvancedMenu({
             >
               <Icon name="ChevronLeftIcon" size="sm" />
             </button>
-            <span>{t("aspect.ratio")}</span>
+            <span>{aspectRatio}</span>
           </div>
           <div className="wim-video-menu-items">
             {FIT_OPTIONS.map((f) => (
@@ -210,7 +235,7 @@ export function VideoAdvancedMenu({
               >
                 {activeFit === f && <Icon name="CheckIcon" size="sm" />}
                 <span style={{ marginLeft: activeFit === f ? 0 : 24 }}>
-                  {f}
+                  {getFitLabel(f)}
                 </span>
               </button>
             ))}
@@ -230,7 +255,7 @@ export function VideoAdvancedMenu({
           tabIndex={-1}
         >
           <div className="wim-video-menu-title">
-            <span>{t("a11y.playlist")}</span>
+            <span>{playlistLabel}</span>
             <button
               onClick={() => setActiveMenu(null)}
               style={{ marginLeft: "auto" }}

@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import "./statusContent.scss";
 
 export type StatusContentProps = {
@@ -51,12 +50,6 @@ export const StatusContent = ({
   prefixCls = "wim-status-content",
   size = "md",
 }: StatusContentProps) => {
-  const { t } = useTranslation();
-
-  const renderText = (text: ReactNode) => {
-    return typeof text === "string" ? t(text) : text;
-  };
-
   return (
     <div
       className={classNames(prefixCls, `${prefixCls}--${size}`, className)}
@@ -65,11 +58,11 @@ export const StatusContent = ({
         {icon && <div className={`${prefixCls}__icon`}>{icon}</div>}
         <div className={`${prefixCls}__content`}>
           {title && (
-            <div className={`${prefixCls}__title`}>{renderText(title)}</div>
+            <div className={`${prefixCls}__title`}>{title}</div>
           )}
           {description && (
             <div className={`${prefixCls}__description`}>
-              {renderText(description)}
+              {description}
             </div>
           )}
         </div>

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useId } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Calendar } from "../../data-display/Calendar/Calendar";
 import { InputBase } from "../../_internal/InputBase";
@@ -8,6 +7,11 @@ import "./datePicker.scss";
 
 import { FieldTemplate } from "../../_internal/FieldTemplate";
 import { FieldStatus } from "../../../types/tokens";
+
+export type DatePickerLabels = {
+  placeholder?: string;
+  calendarLabels?: import("../../data-display/Calendar/Calendar").CalendarLabels;
+};
 
 type DatePickerProps = Omit<
   React.ComponentPropsWithoutRef<"input">,
@@ -38,6 +42,13 @@ type DatePickerProps = Omit<
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
+  /** 手動翻訳用のラベル */
+  labels?: DatePickerLabels;
+};
+
+const DEFAULT_LABELS: Required<DatePickerLabels> = {
+  placeholder: "Select date",
+  calendarLabels: {},
 };
 
 /**
@@ -63,9 +74,10 @@ export const DatePicker = ({
   required,
   layout,
   id: customId,
+  labels,
   ...props
 }: DatePickerProps) => {
-  const { t } = useTranslation("common");
+  const mergedLabels = { ...DEFAULT_LABELS, ...labels };
 
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<Date | null>(
@@ -82,7 +94,7 @@ export const DatePicker = ({
   const isControlled = value !== undefined;
   const currentValue = isControlled ? value : internalValue;
 
-  const actualPlaceholder = placeholder ?? t("datepicker.placeholder");
+  const actualPlaceholder = placeholder ?? mergedLabels.placeholder;
   const effectiveStatus = disabled ? "disabled" : (error ? "error" : status);
 
   // Close calendar when clicking outside
@@ -208,6 +220,7 @@ export const DatePicker = ({
             <Calendar
               value={currentValue || undefined}
               onChange={handleDateChange}
+              labels={mergedLabels.calendarLabels}
             />
           </div>
         )}

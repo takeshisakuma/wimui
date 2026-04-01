@@ -1,12 +1,11 @@
 import React from "react";
 import classNames from "classnames";
 import "./link.scss";
-import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
 
 type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
-  label?: string;
+  label?: React.ReactNode;
   size?: ComponentSize;
   priority?: "primary" | "secondary" | "tertiary";
   iconName?: React.ComponentProps<typeof Icon>["name"];
@@ -26,8 +25,6 @@ export const Link = ({
   target,
   ...props
 }: LinkProps) => {
-  const { t } = useTranslation();
-
   return (
     <a
       className={classNames(
@@ -44,7 +41,7 @@ export const Link = ({
         {iconName && iconPosition === "left" && (
           <Icon name={iconName} size={size} />
         )}
-        <span className="wim-link__label">{label ? t(label) : children}</span>
+        <span className="wim-link__label">{label ?? children}</span>
         {iconName && iconPosition === "right" && (
           <Icon name={iconName} size={size} />
         )}

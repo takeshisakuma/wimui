@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useId } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Transition } from "../../misc/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
@@ -9,8 +8,14 @@ import "./cascader.scss";
 
 import { FieldTemplate } from "../../_internal/FieldTemplate";
 
+function getLabelText(label: React.ReactNode): string {
+  if (typeof label === "string") return label;
+  if (typeof label === "number") return String(label);
+  return "";
+}
+
 export type CascaderOption = {
-  label: string;
+  label: React.ReactNode;
   value: string;
   children?: CascaderOption[];
   disabled?: boolean;
@@ -20,8 +25,8 @@ export type CascaderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange
   options: CascaderOption[];
   value?: string[];
   onChange?: (value: string[], selectedOptions: CascaderOption[]) => void;
-  placeholder?: string;
-  label?: string;
+  placeholder?: React.ReactNode;
+  label?: React.ReactNode;
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
@@ -46,7 +51,7 @@ export const Cascader = ({
   options = [],
   value,
   onChange,
-  placeholder,
+  placeholder = "Select option",
   label,
   error,
   required,
@@ -61,9 +66,6 @@ export const Cascader = ({
   "aria-label": ariaLabel,
   ...props
 }: CascaderProps) => {
-  const { t } = useTranslation("common");
-
-  const actualPlaceholder = placeholder ?? t("select.option");
   const generatedId = useId();
   const id = customId || `wim-cascader-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
@@ -115,20 +117,27 @@ export const Cascader = ({
   const getSelectedLabel = () => {
     if (!currentValue || currentValue.length === 0) return null;
 
-    const labels: string[] = [];
+    const labels: React.ReactNode[] = [];
     let currentOptions = options;
 
     for (const val of currentValue) {
       const opt = currentOptions.find((o) => o.value === val);
       if (opt) {
-        labels.push(t(opt.label));
+        labels.push(opt.label);
         currentOptions = opt.children || [];
       } else {
         break;
       }
     }
 
-    return labels.join(separator);
+    if (labels.length === 0) return null;
+
+    return labels.map((l, i) => (
+      <React.Fragment key={i}>
+        {l}
+        {i < labels.length - 1 && <span>{separator}</span>}
+      </React.Fragment>
+    ));
   };
 
   const handleOptionSelect = (option: CascaderOption, level: number) => {
@@ -335,7 +344,7 @@ export const Cascader = ({
               aria-selected={isSelected}
               tabIndex={-1}
             >
-              {t(option.label)}
+              {option.label}
             </BaseListItem>
           );
         })}
@@ -344,6 +353,21 @@ export const Cascader = ({
   };
 
   const displayValue = getSelectedLabel();
+
+  // For aria-label calculation
+  const getSelectedLabelStr = () => {
+    if (!currentValue || currentValue.length === 0) return "";
+    const labelTexts: string[] = [];
+    let currentOptions = options;
+    for (const val of currentValue) {
+      const opt = currentOptions.find((o) => o.value === val);
+      if (opt) {
+        labelTexts.push(getLabelText(opt.label));
+        currentOptions = opt.children || [];
+      } else break;
+    }
+    return labelTexts.join(separator);
+  };
 
   return (
     <FieldTemplate
@@ -388,7 +412,7 @@ export const Cascader = ({
             aria-haspopup="listbox"
             aria-disabled={disabled}
             aria-labelledby={labelId}
-            aria-label={!labelId ? ariaLabel : undefined}
+            aria-label={!labelId ? (ariaLabel || getSelectedLabelStr() || getLabelText(placeholder)) : undefined}
             aria-describedby={errorId}
             aria-invalid={!!error}
             aria-activedescendant={
@@ -401,7 +425,7 @@ export const Cascader = ({
                 !displayValue && "wim-cascader__value--placeholder",
               )}
             >
-              {displayValue || actualPlaceholder}
+              {displayValue || placeholder}
             </div>
           </div>
         </InputBase>

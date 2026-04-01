@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Icon } from "../../media/Icon/Icon";
@@ -22,7 +21,6 @@ export const LinkButton = ({
   "aria-label": ariaLabel,
   ...props
 }: LinkButtonProps) => {
-  const { t } = useTranslation();
   const iconName = typeof icon === "string"
     ? (icon as React.ComponentProps<typeof Icon>["name"])
     : undefined;
@@ -38,13 +36,13 @@ export const LinkButton = ({
       )}
       style={backgroundColor ? { backgroundColor } : undefined}
       {...props}
-      aria-label={ariaLabel ? t(ariaLabel) : undefined}
+      aria-label={ariaLabel}
     >
       <span className="wim-button__inner">
         {iconName && iconPosition === "left" && (
           <Icon name={iconName} size={size} />
         )}
-        {label && <span className="wim-button__label">{t(label)}</span>}
+        {label && <span className="wim-button__label">{label}</span>}
         {iconName && iconPosition === "right" && (
           <Icon name={iconName} size={size} />
         )}

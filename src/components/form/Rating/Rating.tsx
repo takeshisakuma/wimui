@@ -1,10 +1,14 @@
 import React, { useState, useId, useRef } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
 import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
 import "./rating.scss";
+
+export type RatingLabels = {
+  star?: (count: number) => string;
+  readonly?: (value: number, max: number) => string;
+};
 
 type RatingProps = {
   /**
@@ -46,7 +50,7 @@ type RatingProps = {
   /**
    * アクセシビリティ用のラベル
    */
-  label?: string;
+  label?: React.ReactNode;
   /**
    * エラーメッセージ
    */
@@ -59,6 +63,10 @@ type RatingProps = {
    * レイアウト方向
    */
   layout?: "vertical" | "horizontal";
+  /**
+   * Labels for internationalization
+   */
+  labels?: RatingLabels;
 };
 
 /**
@@ -78,9 +86,14 @@ export const Rating = ({
   error,
   required,
   layout = "vertical",
+  labels = {},
   ...props
 }: RatingProps) => {
-  const { t } = useTranslation("components");
+  const {
+    star = (c: number) => `${c} star${c !== 1 ? "s" : ""}`,
+    readonly = (v: number, m: number) => `Rating: ${v} out of ${m}`,
+  } = labels;
+
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState(defaultValue);
   const [hoverValue, setHoverValue] = useState<number | null>(null);
@@ -206,7 +219,7 @@ export const Rating = ({
         role={readOnly ? "presentation" : "radio"}
         tabIndex={disabled || readOnly ? -1 : index === activeIndex ? 0 : -1}
         aria-checked={readOnly ? undefined : isChecked}
-        aria-label={readOnly ? undefined : t("rating.stars", { count: index + 1 })}
+        aria-label={readOnly ? undefined : star(index + 1)}
       >
         <div className="wim-rating__star-background">
           <Icon name="StarIcon" size={size} />
@@ -222,7 +235,7 @@ export const Rating = ({
 
   return (
     <FieldTemplate
-      label={label ? t(label) : undefined}
+      label={label}
       error={error}
       required={required}
       layout={layout}
@@ -240,7 +253,7 @@ export const Rating = ({
         role={readOnly ? "img" : "radiogroup"}
         aria-label={
           readOnly
-            ? t("rating.readonly_label", { count: currentValue, max: count })
+            ? readonly(currentValue, count)
             : undefined
         }
         aria-labelledby={!readOnly && label ? labelId : undefined}

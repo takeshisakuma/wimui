@@ -6,7 +6,6 @@ import React, {
   createContext,
   useContext,
 } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./splitter.scss";
 
@@ -255,10 +254,9 @@ const SplitterHandle = ({
   index,
   active,
   className,
+  ariaLabel = "Resize panel",
   ...props
-}: SplitterHandleProps) => {
-  const { t } = useTranslation();
-
+}: SplitterHandleProps & { ariaLabel?: string }) => {
   const { onResizeStart, orientation } = useSplitter();
 
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -266,7 +264,7 @@ const SplitterHandle = ({
     <div
       role="separator"
       aria-orientation={orientation}
-      aria-label={t("a11y.resize_panel")}
+      aria-label={ariaLabel}
       tabIndex={0}
       className={classNames(
         "wim-splitter-handle",

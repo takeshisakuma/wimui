@@ -14,6 +14,14 @@ import "./kanban.scss";
 
 type ColumnEntry = { id: string; title: React.ReactNode };
 
+export type KanbanLabels = {
+  cardMovedTo?: (to: string) => string;
+  cardMovedFromTo?: (from: string, to: string) => string;
+  cards?: (count: number) => string;
+  moveCard?: string;
+  moveToColumn?: string;
+};
+
 type KanbanContextType = {
   draggingCardId: string | null;
   draggingFromColumnId: string | null;
@@ -28,9 +36,18 @@ type KanbanContextType = {
   unregisterColumn: (id: string) => void;
   forceMobileUI: boolean;
   announce: (message: string) => void;
+  labels: Required<KanbanLabels>;
 };
 
 const KanbanContext = createContext<KanbanContextType | null>(null);
+
+const DEFAULT_LABELS: Required<KanbanLabels> = {
+  cardMovedTo: (to) => `Card moved to ${to}`,
+  cardMovedFromTo: (from, to) => `Card moved from ${from} to ${to}`,
+  cards: (count) => `${count} cards`,
+  moveCard: "Move card",
+  moveToColumn: "Move to column",
+};
 
 const useKanban = () => {
   const context = useContext(KanbanContext);
@@ -62,6 +79,10 @@ export type KanbanBoardProps = React.ComponentPropsWithoutRef<"div"> & {
    * Storybookでのモバイルプレビューや開発時の確認に使用する。
    */
   forceMobileUI?: boolean;
+  /**
+   * 手動翻訳用のラベル。
+   */
+  labels?: KanbanLabels;
 };
 
 const KanbanBoard = ({
@@ -69,6 +90,7 @@ const KanbanBoard = ({
   className,
   onCardMove,
   forceMobileUI = false,
+  labels,
   ...props
 }: KanbanBoardProps) => {
   const [draggingCardId, setDraggingCardId] = useState<string | null>(null);
@@ -77,6 +99,8 @@ const KanbanBoard = ({
   >(null);
   const [columns, setColumns] = useState<ColumnEntry[]>([]);
   const statusRef = useRef<HTMLDivElement>(null);
+
+  const mergedLabels = useMemo(() => ({ ...DEFAULT_LABELS, ...labels }), [labels]);
 
   const announce = useCallback((message: string) => {
     if (statusRef.current) {
@@ -117,6 +141,7 @@ const KanbanBoard = ({
       unregisterColumn,
       forceMobileUI,
       announce,
+      labels: mergedLabels,
     }),
     [
       draggingCardId,
@@ -128,6 +153,7 @@ const KanbanBoard = ({
       unregisterColumn,
       forceMobileUI,
       announce,
+      mergedLabels,
     ],
   );
 
@@ -198,6 +224,7 @@ export const KanbanColumn = ({
     registerColumn,
     unregisterColumn,
     announce,
+    labels,
   } = useKanban();
   const [isDragOver, setIsDragOver] = useState(false);
 
@@ -225,7 +252,7 @@ export const KanbanColumn = ({
     if (draggingCardId && draggingFromColumnId && draggingFromColumnId !== id) {
       onCardMove?.(draggingCardId, draggingFromColumnId, id);
       const toTitle = typeof title === "string" ? title : id;
-      announce(`Card moved to ${toTitle}`);
+      announce(labels.cardMovedTo(toTitle));
     }
     setDraggingCard(null, null);
   };
@@ -252,7 +279,7 @@ export const KanbanColumn = ({
           {cardCount !== undefined && (
             <span
               className="wim-kanban__column-count"
-              aria-label={`${cardCount} cards`}
+              aria-label={labels.cards(cardCount)}
             >
               {cardCount}
             </span>
@@ -284,7 +311,7 @@ export const KanbanCard = ({
   className,
   ...props
 }: KanbanCardProps) => {
-  const { draggingCardId, setDraggingCard, onCardMove, columns, announce } = useKanban();
+  const { draggingCardId, setDraggingCard, onCardMove, columns, announce, labels } = useKanban();
   const columnContext = useContext(KanbanColumnContext);
   const currentColumnId = columnContext?.columnId ?? null;
   const currentColumnTitle = columnContext?.columnTitle ?? null;
@@ -331,7 +358,7 @@ export const KanbanCard = ({
       onCardMove?.(id, currentColumnId, toColumnId);
       const from = typeof currentColumnTitle === "string" ? currentColumnTitle : currentColumnId;
       const to = typeof toColumnTitle === "string" ? toColumnTitle : toColumnId;
-      announce(`Card moved from ${from} to ${to}`);
+      announce(labels.cardMovedFromTo(from!, to));
     }
     setShowMoveMenu(false);
   };
@@ -373,7 +400,7 @@ export const KanbanCard = ({
             onKeyDown={(e) => {
               if (e.key === "Escape") setShowMoveMenu(false);
             }}
-            aria-label="Move card"
+            aria-label={labels.moveCard}
             aria-expanded={showMoveMenu}
             aria-haspopup="listbox"
           >
@@ -383,7 +410,7 @@ export const KanbanCard = ({
             <div
               className="wim-kanban__card-move-menu"
               role="listbox"
-              aria-label="Move to column"
+              aria-label={labels.moveToColumn}
               tabIndex={-1}
               onKeyDown={handleMenuKeyDown}
             >

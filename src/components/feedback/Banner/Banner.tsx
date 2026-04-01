@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { FeedbackStatus } from "../../../types/tokens";
@@ -10,11 +9,11 @@ type BannerProps = {
   /**
    * バナーのタイトル
    */
-  title?: string;
+  title?: React.ReactNode;
   /**
    * バナーの説明文
    */
-  description?: string;
+  description?: React.ReactNode;
   /**
    * バナーのステータス
    */
@@ -56,7 +55,6 @@ export const Banner = ({
   children,
   ...props
 }: BannerProps) => {
-  const { t } = useTranslation();
 
   return (
     <div
@@ -76,13 +74,13 @@ export const Banner = ({
             </div>
           )}
           <div className="wim-banner__text">
-            {title && <span className="wim-banner__title">{t(title)}</span>}
+            {title && <span className="wim-banner__title">{title}</span>}
             {title && (description || children) && (
               <span className="wim-banner__separator"> - </span>
             )}
             {(description || children) && (
               <span className="wim-banner__description">
-                {description ? t(description) : children}
+                {description ? description : children}
               </span>
             )}
           </div>

@@ -2,15 +2,14 @@ import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Icon } from "../../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
 import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
 import "./file-upload.scss";
 
 type FileUploadProps = {
-  label?: string;
-  buttonLabel?: string;
-  noFileLabel?: string;
+  label?: React.ReactNode;
+  buttonLabel?: React.ReactNode;
+  noFileLabel?: React.ReactNode;
   accept?: string;
   multiple?: boolean;
   disabled?: boolean;
@@ -29,8 +28,8 @@ type FileUploadProps = {
  */
 export const FileUpload = ({
   label,
-  buttonLabel,
-  noFileLabel,
+  buttonLabel = "Choose File",
+  noFileLabel = "No file chosen",
   accept,
   multiple = false,
   disabled = false,
@@ -43,12 +42,8 @@ export const FileUpload = ({
   required,
   layout = "vertical",
 }: FileUploadProps) => {
-  const { t } = useTranslation("common");
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
-
-  const actualButtonLabel = buttonLabel ?? t("fileupload.button");
-  const actualNoFileLabel = noFileLabel ?? t("fileupload.no_file");
 
   const handleClick = () => {
     inputRef.current?.click();
@@ -66,11 +61,11 @@ export const FileUpload = ({
     ? Array.from(selectedFiles)
         .map((file) => file.name)
         .join(", ")
-    : actualNoFileLabel;
+    : noFileLabel;
 
   return (
     <FieldTemplate
-      label={label ? t(label) : undefined}
+      label={label}
       error={error}
       required={required}
       layout={layout}
@@ -93,7 +88,7 @@ export const FileUpload = ({
           tabIndex={-1}
         />
         <Button
-          label={actualButtonLabel}
+          label={buttonLabel}
           onClick={handleClick}
           disabled={disabled}
           variant="outlined"

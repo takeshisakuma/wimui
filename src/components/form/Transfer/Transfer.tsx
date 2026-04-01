@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useId, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Button } from "../../form/Button/Button";
@@ -9,9 +8,17 @@ import { VisuallyHidden } from "../../misc/VisuallyHidden/VisuallyHidden";
 import { VirtualList } from "../../data-display/VirtualList/VirtualList";
 import "./transfer.scss";
 
+export type TransferLabels = {
+  noData?: React.ReactNode;
+  moveToTarget?: string;
+  moveToSource?: string;
+  statusMovedToTarget?: (count: number) => string;
+  statusMovedToSource?: (count: number) => string;
+};
+
 export type TransferItem = {
   key: string;
-  title: string;
+  title: React.ReactNode;
   description?: string;
   disabled?: boolean;
 };
@@ -24,14 +31,15 @@ export type TransferProps = {
     direction: "toLeft" | "toRight",
     moveKeys: string[],
   ) => void;
-  titles?: [string, string];
+  titles?: [React.ReactNode, React.ReactNode];
   className?: string;
   style?: React.CSSProperties;
   disabled?: boolean;
-  label?: string;
+  label?: React.ReactNode;
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
+  labels?: TransferLabels;
 };
 
 /** アイテム1件の固定高さ（px）。BaseListItem の padding + line-height から算出。 */
@@ -44,7 +52,7 @@ const VIRTUAL_THRESHOLD = 50;
 
 type TransferListProps = {
   data: TransferItem[];
-  title: string;
+  title: React.ReactNode;
   listType: "source" | "target";
   id: string;
   disabled: boolean;
@@ -58,6 +66,7 @@ type TransferListProps = {
     listType: "source" | "target",
     data: TransferItem[],
   ) => void;
+  labels?: TransferLabels;
 };
 
 const TransferList = ({
@@ -72,8 +81,9 @@ const TransferList = ({
   onSelect,
   onSelectAll,
   onKeyDown,
+  labels = {},
 }: TransferListProps) => {
-  const { t } = useTranslation("common");
+  const { noData = "No Data" } = labels;
   const bodyRef = useRef<HTMLDivElement>(null);
   const vListRef = useRef<HTMLDivElement>(null);
   const [bodyHeight, setBodyHeight] = useState(0);
@@ -120,6 +130,7 @@ const TransferList = ({
   const renderItem = (item: TransferItem, index: number) => (
     <BaseListItem
       id={`${id}-${listType}-option-${item.key}`}
+      key={item.key}
       className="wim-transfer__item"
       disabled={disabled || item.disabled}
       active={focusedKey === item.key}
@@ -144,9 +155,11 @@ const TransferList = ({
         />
       }
     >
-      {t(item.title)}
+      {item.title}
     </BaseListItem>
   );
+
+  const titleStr = typeof title === "string" ? title : "";
 
   return (
     <div className="wim-transfer__list">
@@ -156,7 +169,7 @@ const TransferList = ({
           indeterminate={isIndeterminate}
           onChange={() => onSelectAll(listKeys, listType)}
           disabled={disabled || listKeys.length === 0}
-          label={t(title)}
+          label={title}
         />
         <span className="wim-transfer__header-count">
           {listSelectedKeys.length}/{data.length}
@@ -167,7 +180,7 @@ const TransferList = ({
         className="wim-transfer__body"
         role="listbox"
         aria-multiselectable="true"
-        aria-label={t(title)}
+        aria-label={titleStr}
         aria-activedescendant={activeDescendantId}
         tabIndex={disabled || data.length === 0 ? -1 : 0}
         onKeyDown={(e) => onKeyDown(e, listType, data)}
@@ -181,7 +194,7 @@ const TransferList = ({
       >
         {data.length === 0 ? (
           <div className="wim-transfer__empty" aria-live="polite">
-            {t("no.data")}
+            {noData}
           </div>
         ) : useVirtual ? (
           <VirtualList
@@ -210,7 +223,7 @@ export const Transfer = ({
   dataSource = [],
   targetKeys,
   onChange,
-  titles = ["transfer.source", "transfer.target"],
+  titles = ["Source", "Target"],
   className,
   style,
   disabled = false,
@@ -218,8 +231,15 @@ export const Transfer = ({
   error,
   required,
   layout = "vertical",
+  labels = {},
 }: TransferProps) => {
-  const { t } = useTranslation("common");
+  const {
+    moveToTarget = "Move to Target",
+    moveToSource = "Move to Source",
+    statusMovedToTarget = (c: number) => `Moved ${c} item${c !== 1 ? "s" : ""} to target`,
+    statusMovedToSource = (c: number) => `Moved ${c} item${c !== 1 ? "s" : ""} to source`,
+  } = labels;
+
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const [internalTargetKeys, setInternalTargetKeys] = useState<string[]>(
     targetKeys || [],
@@ -253,7 +273,7 @@ export const Transfer = ({
   const statusTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Reset focused key if it's no longer in the list (e.g. after move)
-  /* eslint-disable react-hooks/set-state-in-effect */
+   
   useEffect(() => {
     if (focusedSourceKey && !sourceData.some((d) => d.key === focusedSourceKey)) {
       setFocusedSourceKey(null);
@@ -265,7 +285,7 @@ export const Transfer = ({
       setFocusedTargetKey(null);
     }
   }, [targetData, focusedTargetKey]);
-  /* eslint-enable react-hooks/set-state-in-effect */
+   
 
   const handleSelect = (key: string) => {
     if (disabled) return;
@@ -311,11 +331,9 @@ export const Transfer = ({
     setSelectedKeys((prev) => prev.filter((k) => !moveKeys.includes(k)));
 
     // Announce the move to screen readers
-    const msgKey =
-      direction === "toRight"
-        ? "transfer.status_moved_to_target"
-        : "transfer.status_moved_to_source";
-    const msg = t(msgKey, { count: moveKeys.length });
+    const msg = direction === "toRight"
+      ? statusMovedToTarget(moveKeys.length)
+      : statusMovedToSource(moveKeys.length);
     if (statusTimeoutRef.current) clearTimeout(statusTimeoutRef.current);
     setStatusMessage("");
     statusTimeoutRef.current = setTimeout(() => setStatusMessage(msg), 50);
@@ -414,6 +432,7 @@ export const Transfer = ({
             onSelect={handleSelect}
             onSelectAll={handleSelectAll}
             onKeyDown={handleListKeyDown}
+            labels={labels}
           />
 
           <div className="wim-transfer__operation">
@@ -423,7 +442,11 @@ export const Transfer = ({
               onClick={() => moveItems("toRight")}
               disabled={disabled || moveRightDisabled}
               icon="ChevronRightIcon"
-              aria-label={t("transfer.move_to_target")}
+              aria-label={moveToTarget}
+            />
+            <button
+              style={{ display: "none" }}
+              aria-hidden="true"
             />
             <Button
               variant="outlined"
@@ -431,7 +454,7 @@ export const Transfer = ({
               onClick={() => moveItems("toLeft")}
               disabled={disabled || moveLeftDisabled}
               icon="ChevronLeftIcon"
-              aria-label={t("transfer.move_to_source")}
+              aria-label={moveToSource}
             />
           </div>
 
@@ -447,6 +470,7 @@ export const Transfer = ({
             onSelect={handleSelect}
             onSelectAll={handleSelectAll}
             onKeyDown={handleListKeyDown}
+            labels={labels}
           />
         </div>
       </div>

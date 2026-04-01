@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import "./button.scss";
-import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
 import type { WimColor, ComponentSize } from "../../../types/tokens";
 
@@ -9,7 +8,7 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
   backgroundColor?: WimColor;
   size?: ComponentSize;
-  label?: string;
+  label?: React.ReactNode;
   variant?: "filled" | "outlined" | "ghost";
   /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
   intent?: "default" | "destructive" | "positive";
@@ -49,15 +48,11 @@ export const Button = React.forwardRef<
     },
     forwardedRef,
   ) => {
-    const { t } = useTranslation();
     const internalRef = React.useRef<HTMLButtonElement>(null);
 
     const buttonRef = (forwardedRef as React.RefObject<HTMLButtonElement>) || internalRef;
     const [animatedWidth, setAnimatedWidth] = React.useState<number | "auto">("auto");
     const isInitialMount = React.useRef(true);
-
-    // Initial label for tracking changes
-    const memoizedLabel = React.useMemo(() => (label ? t(label) : ""), [label, t]);
 
     React.useLayoutEffect(() => {
       if (!animateWidth || !buttonRef.current) return;
@@ -92,20 +87,20 @@ export const Button = React.forwardRef<
       });
 
       return () => cancelAnimationFrame(frame);
-    }, [memoizedLabel, animateWidth, buttonRef]);
+    }, [label, animateWidth, buttonRef]);
 
     const isDisabled = disabled;
 
     // aria-label の決定ロジックを明示的に整理
     let resolvedAriaLabel: string | undefined;
     if (typeof ariaLabelProp === "string") {
-      resolvedAriaLabel = t(ariaLabelProp);
+      resolvedAriaLabel = ariaLabelProp;
     } else if (ariaLabelProp !== false) {
       // アイコンのみボタンはアイコン名をフォールバックとして使用
       if (!label && !children && typeof icon === "string") {
-        resolvedAriaLabel = t(`icon_${icon}`, { defaultValue: icon });
+        resolvedAriaLabel = icon;
       } else if (loading) {
-        resolvedAriaLabel = t("a11y.loading");
+        resolvedAriaLabel = "Loading";
       }
     }
 
@@ -114,9 +109,7 @@ export const Button = React.forwardRef<
         ? "flex-start"
         : justify === "end"
           ? "flex-end"
-          : justify === "between"
-            ? "space-between"
-            : justify;
+          : justify === "between" ? "space-between" : justify;
 
     const renderIcon = () => {
       if (!icon) return null;
@@ -149,7 +142,7 @@ export const Button = React.forwardRef<
               className="wim-button__label"
               style={{ textAlign: "inherit", width: "100%" }}
             >
-              {t(label)}
+              {label}
             </span>
           )}
           {children}

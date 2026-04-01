@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { useTranslation } from "react-i18next";
 import {
   FloatingPortal,
   useMergeRefs,
@@ -216,12 +215,12 @@ export const PopoverClose = ({
   children,
   className,
   asChild,
+  ariaLabel = "Close",
   ...props
 }: React.ComponentPropsWithoutRef<"button"> & {
   asChild?: boolean;
+  ariaLabel?: string;
 }) => {
-  const { t } = useTranslation();
-
   const context = React.useContext(PopoverContext);
   if (!context) return null;
 
@@ -253,7 +252,7 @@ export const PopoverClose = ({
       type="button"
       className={classNames("wim-popover-close", className)}
       onClick={handleClick}
-      aria-label={t("a11y.close")}
+      aria-label={ariaLabel}
       {...props}
     >
       {children || <Icon name="CloseSmallIcon" width={15} height={15} />}

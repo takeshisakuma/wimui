@@ -1,6 +1,5 @@
 import React from "react";
 import { Icon } from "../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
 import { ComponentSize } from "../../types/tokens";
 
 export interface FeedbackCloseButtonProps {
@@ -17,7 +16,7 @@ export interface FeedbackCloseButtonProps {
    */
   className?: string;
   /**
-   * aria-labelの翻訳キー
+   * aria-label
    */
   ariaLabel?: string;
   /**
@@ -33,11 +32,9 @@ export const FeedbackCloseButton = ({
   onClose,
   id,
   className,
-  ariaLabel = "a11y.close",
+  ariaLabel = "Close",
   size = "sm",
 }: FeedbackCloseButtonProps) => {
-  const { t } = useTranslation();
-
   if (!onClose) return null;
 
   const handleClose = (e: React.MouseEvent) => {
@@ -50,7 +47,7 @@ export const FeedbackCloseButton = ({
       type="button"
       className={className}
       onClick={handleClose}
-      aria-label={t(ariaLabel)}
+      aria-label={ariaLabel}
     >
       <Icon name="CloseIcon" size={size} />
     </button>

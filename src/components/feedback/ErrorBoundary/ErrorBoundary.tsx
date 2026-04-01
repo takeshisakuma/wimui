@@ -1,10 +1,16 @@
 import React, { Component, ErrorInfo, ReactNode, useState } from "react";
 import { isDev } from "../../../utilities/dev-utils";
-import { useTranslation } from "react-i18next";
 import { Alert } from "../../feedback/Alert/Alert";
 import { Button } from "../../form/Button/Button";
 import { Stack } from "../../layout/Stack/Stack";
 import { Box } from "../../layout/Box/Box";
+
+export type ErrorBoundaryLabels = {
+  title?: string;
+  retry?: string;
+  showDetails?: string;
+  hideDetails?: string;
+};
 
 export interface ErrorBoundaryProps {
   /** エラーが発生した時に表示されるコンポーネントまたは要素。
@@ -17,6 +23,8 @@ export interface ErrorBoundaryProps {
   onError?: (error: Error, errorInfo: ErrorInfo) => void;
   /** エラーがリセットされた時に呼び出されるコールバック。 */
   onReset?: () => void;
+  /** 手動翻訳用のラベル。 */
+  labels?: ErrorBoundaryLabels;
   /** 子要素。 */
   children: ReactNode;
 }
@@ -27,6 +35,13 @@ interface State {
   errorInfo: ErrorInfo | null;
 }
 
+const DEFAULT_LABELS: Required<ErrorBoundaryLabels> = {
+  title: "Something went wrong",
+  retry: "Retry",
+  showDetails: "Show details",
+  hideDetails: "Hide details",
+};
+
 /**
  * デフォルトのエラーフォールバックUIを表示するための機能コンポーネント。
  * エラー詳細の表示/非表示を切り替えるボタンと再試行ボタンを提供します。
@@ -35,12 +50,13 @@ const DefaultFallback = ({
   error,
   errorInfo,
   reset,
+  labels,
 }: {
   error: Error;
   errorInfo: ErrorInfo | null;
   reset: () => void;
+  labels: Required<ErrorBoundaryLabels>;
 }) => {
-  const { t } = useTranslation();
   const [showDetails, setShowDetails] = useState(false);
 
   return (
@@ -54,13 +70,13 @@ const DefaultFallback = ({
       <Stack gap="md">
         <Alert
           status="error"
-          title={t("error.boundary_title")}
+          title={labels.title}
           description={error.message}
         />
         <Stack direction="row" gap="sm">
           <Button
             onClick={reset}
-            label={t("error.boundary_retry")}
+            label={labels.retry}
             variant="filled"
             size="sm"
           />
@@ -68,8 +84,8 @@ const DefaultFallback = ({
             onClick={() => setShowDetails(!showDetails)}
             label={
               showDetails
-                ? t("error.boundary_hide_details")
-                : t("error.boundary_show_details")
+                ? labels.hideDetails
+                : labels.showDetails
             }
             variant="outlined"
             size="sm"
@@ -135,7 +151,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
 
   public render() {
     const { hasError, error, errorInfo } = this.state;
-    const { children, fallback } = this.props;
+    const { children, fallback, labels } = this.props;
 
     if (hasError && error) {
       if (typeof fallback === "function") {
@@ -150,6 +166,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
           error={error}
           errorInfo={errorInfo}
           reset={this.reset}
+          labels={{ ...DEFAULT_LABELS, ...labels }}
         />
       );
     }

@@ -1,7 +1,6 @@
 import React from "react";
 import "./heading.scss";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { WimColor } from "../../../types/tokens";
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
@@ -47,9 +46,6 @@ export const Heading = ({
   children,
   ...props
 }: HeadingProps) => {
-  const { t } = useTranslation();
-  const content = typeof children === "string" ? t(children) : children;
-
   const finalContent =
     decoration !== "none" ? (
       <span
@@ -59,10 +55,10 @@ export const Heading = ({
             : `wim-heading--${decoration}`
         }
       >
-        {content}
+        {children}
       </span>
     ) : (
-      content
+      children
     );
 
   const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));

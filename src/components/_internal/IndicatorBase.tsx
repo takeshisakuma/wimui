@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { ComponentSize, IndicatorStatus } from "../../types/tokens";
 
 export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
@@ -26,7 +25,6 @@ export const IndicatorBase = <C extends React.ElementType = "span">({
   ...props
 }: IndicatorBaseProps<C>) => {
   const Component = as || "span";
-  const { t } = useTranslation();
 
   return (
     <Component
@@ -40,7 +38,7 @@ export const IndicatorBase = <C extends React.ElementType = "span">({
       {...props}
     >
       {icon && <span className={`${prefixClass}__icon`}>{icon}</span>}
-      {typeof children === "string" ? t(children) : children}
+      {children}
     </Component>
   );
 };

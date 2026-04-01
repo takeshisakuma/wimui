@@ -6,7 +6,6 @@ import React, {
   useId,
 } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { OverlayBase } from "../../_internal/OverlayBase";
 import "./dialog.scss";
 
@@ -123,15 +122,15 @@ export interface DialogCloseProps {
   children: React.ReactNode;
   asChild?: boolean;
   className?: string;
+  ariaLabel?: string;
 }
 
 export const DialogClose = ({
   children,
   className,
   asChild,
+  ariaLabel = "Close",
 }: DialogCloseProps) => {
-  const { t } = useTranslation();
-
   const { onOpenChange } = useDialog();
 
   const handleClick = () => {
@@ -166,7 +165,7 @@ export const DialogClose = ({
       type="button"
       className={classNames("wim-dialog-close-button", className)}
       onClick={handleClick}
-      aria-label={t("a11y.close_dialog")}
+      aria-label={ariaLabel}
     >
       {children}
     </button>

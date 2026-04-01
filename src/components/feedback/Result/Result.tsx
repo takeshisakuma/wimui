@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
 import { InteractiveArea } from "../../layout/InteractiveArea/InteractiveArea";
 import "./result.scss";
@@ -73,17 +72,11 @@ export const Result = ({
   className,
   children,
 }: ResultProps) => {
-  const { t } = useTranslation();
-
-  const renderText = (text: ReactNode) => {
-    return typeof text === "string" ? t(text) : text;
-  };
-
   return (
     <InteractiveArea
       icon={icon || <DefaultIcon status={status} />}
-      title={renderText(title) ?? undefined}
-      description={renderText(description) ?? undefined}
+      title={title ?? undefined}
+      description={description ?? undefined}
       actions={extra}
       variant="none"
       bgVariant="transparent"

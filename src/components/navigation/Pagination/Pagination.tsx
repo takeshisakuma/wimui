@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import "./pagination.scss";
@@ -31,6 +30,18 @@ export interface PaginationProps {
   showTotal?: (total: number, range: [number, number]) => React.ReactNode;
   /** Whether to show quick jumper */
   showQuickJumper?: boolean;
+  /** Labels for internationalization */
+  labels?: {
+    prevPage?: string;
+    nextPage?: string;
+    pageAriaLabel?: (page: number) => string;
+    itemsPerPage?: string;
+    goTo?: string;
+    pageSizeAriaLabel?: string;
+    jumpToPageAriaLabel?: string;
+    navAriaLabel?: string;
+    totalLabel?: string;
+  };
 }
 
 const ELLIPSIS = "...";
@@ -49,8 +60,18 @@ export const Pagination = ({
   pageSizeOptions = [10, 20, 50, 100],
   showTotal,
   showQuickJumper = false,
+  labels = {},
 }: PaginationProps) => {
-  const { t } = useTranslation();
+  const {
+    prevPage = "Previous page",
+    nextPage = "Next page",
+    pageAriaLabel = (page: number) => `Go to page ${page}`,
+    itemsPerPage = "items / page",
+    goTo = "Go to",
+    pageSizeAriaLabel = "Items per page",
+    jumpToPageAriaLabel = "Jump to page",
+    navAriaLabel = "Pagination",
+  } = labels;
 
   const [internalPageSize, setInternalPageSize] = useState(pageSize);
   const [jumpValue, setJumpValue] = useState("");
@@ -144,7 +165,7 @@ export const Pagination = ({
           "wim-pagination--simple",
           className,
         )}
-        aria-label={t("a11y.pagination_nav")}
+        aria-label={navAriaLabel}
       >
         <ul className="wim-pagination">
           <li
@@ -157,7 +178,7 @@ export const Pagination = ({
               className="wim-pagination__button"
               onClick={() => handlePageChange(current - 1)}
               disabled={current === 1}
-              aria-label={t("a11y.go_to_prev_page")}
+              aria-label={prevPage}
             >
               <Icon name="ChevronLeftIcon" size="sm" />
             </button>
@@ -177,7 +198,7 @@ export const Pagination = ({
               className="wim-pagination__button"
               onClick={() => handlePageChange(current + 1)}
               disabled={current === totalPages}
-              aria-label={t("a11y.go_to_next_page")}
+              aria-label={nextPage}
             >
               <Icon name="ChevronRightIcon" size="sm" />
             </button>
@@ -195,7 +216,7 @@ export const Pagination = ({
           {showTotal(total, [startItem, endItem])}
         </div>
       )}
-      <nav className="wim-pagination" aria-label={t("a11y.pagination_nav")}>
+      <nav className="wim-pagination" aria-label={navAriaLabel}>
         <ul className="wim-pagination">
           {/* Previous Button */}
           <li
@@ -208,7 +229,7 @@ export const Pagination = ({
               className="wim-pagination__button"
               onClick={() => handlePageChange(current - 1)}
               disabled={current === 1}
-              aria-label={t("a11y.go_to_prev_page")}
+              aria-label={prevPage}
             >
               <Icon name="ChevronLeftIcon" size="sm" />
             </button>
@@ -247,7 +268,7 @@ export const Pagination = ({
                 <button
                   className="wim-pagination__button"
                   onClick={() => handlePageChange(pageNumber as number)}
-                  aria-label={t("a11y.go_to_page", { page: pageNumber })}
+                  aria-label={pageAriaLabel(pageNumber as number)}
                   aria-current={pageNumber === current ? "page" : undefined}
                 >
                   {pageNumber}
@@ -267,7 +288,7 @@ export const Pagination = ({
               className="wim-pagination__button"
               onClick={() => handlePageChange(current + 1)}
               disabled={current === totalPages}
-              aria-label={t("a11y.go_to_next_page")}
+              aria-label={nextPage}
             >
               <Icon name="ChevronRightIcon" size="sm" />
             </button>
@@ -282,11 +303,11 @@ export const Pagination = ({
             value={currentPageSize}
             onChange={(e) => handlePageSizeChange(Number(e.target.value))}
             className="wim-pagination__size-select"
-            aria-label={t("a11y.items_per_page")}
+            aria-label={pageSizeAriaLabel}
           >
             {pageSizeOptions.map((size) => (
               <option key={size} value={size}>
-                {size} {t("pagination.items_per_page")}
+                {size} {itemsPerPage}
               </option>
             ))}
           </select>
@@ -296,7 +317,7 @@ export const Pagination = ({
       {/* Quick Jumper */}
       {showQuickJumper && (
         <div className="wim-pagination__quick-jumper">
-          <span>{t("pagination.go_to")}</span>
+          <span>{goTo}</span>
           <input
             type="number"
             min={1}
@@ -305,7 +326,7 @@ export const Pagination = ({
             onChange={(e) => setJumpValue(e.target.value)}
             onKeyDown={handleQuickJump}
             className="wim-pagination__jump-input"
-            aria-label={t("a11y.jump_to_page")}
+            aria-label={jumpToPageAriaLabel}
           />
         </div>
       )}

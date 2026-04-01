@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect, useId, useCallback } from "react";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
-import { useTranslation } from "react-i18next";
 import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
 import "./signature-pad.scss";
 
@@ -17,17 +16,19 @@ export type SignaturePadProps = {
   /** Callback when signature changes or is cleared */
   onChange?: (dataUrl: string | null) => void;
   /** Custom label for the clear button */
-  clearLabel?: string;
+  clearLabel?: React.ReactNode;
   /** Whether the component is disabled */
   disabled?: boolean;
   /** CSS class name */
   className?: string;
   /** Inline styles */
   style?: React.CSSProperties;
-  label?: string;
+  label?: React.ReactNode;
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
+  /** Aria label for the canvas */
+  canvasAriaLabel?: string;
 };
 
 /**
@@ -39,7 +40,7 @@ export const SignaturePad = ({
   penColor = "#000000",
   penWidth = 2,
   onChange,
-  clearLabel,
+  clearLabel = "Clear",
   disabled = false,
   className,
   style,
@@ -47,8 +48,8 @@ export const SignaturePad = ({
   error,
   required,
   layout = "vertical",
+  canvasAriaLabel = "Signature canvas",
 }: SignaturePadProps) => {
-  const { t } = useTranslation(["components"]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
@@ -56,8 +57,6 @@ export const SignaturePad = ({
   const id = `wim-signature-pad-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
   const errorId = error ? `${id}-error` : undefined;
-
-  const actualClearLabel = clearLabel ?? t("signature.clear");
 
   const getCoordinates = (
     event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
@@ -181,7 +180,7 @@ export const SignaturePad = ({
             onTouchEnd={stopDrawing}
             aria-labelledby={label ? labelId : undefined}
             role="img"
-            aria-label={label ? undefined : t("signature.canvas_label")}
+            aria-label={label ? undefined : canvasAriaLabel}
           />
         </div>
         <div className="wim-signature-pad__footer">
@@ -191,7 +190,7 @@ export const SignaturePad = ({
             onClick={clear}
             disabled={disabled || isEmpty}
           >
-            {actualClearLabel}
+            {clearLabel}
           </Button>
         </div>
       </div>

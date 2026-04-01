@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import "./quote.scss";
-import { useTranslation } from "react-i18next";
 import { ComponentSize } from "../../../types/tokens";
 
 type QuoteProps = React.ComponentPropsWithoutRef<"blockquote"> & {
@@ -17,8 +16,8 @@ type QuoteProps = React.ComponentPropsWithoutRef<"blockquote"> & {
     | "warning"
     | "error"
     | "info";
-  content: string;
-  cite?: string;
+  content?: React.ReactNode;
+  cite?: React.ReactNode;
   border?: boolean;
 };
 
@@ -29,9 +28,10 @@ export const Quote = ({
   color = "black",
   border = true,
   className,
+  children,
   ...props
 }: QuoteProps) => {
-  const { t } = useTranslation();
+  const finalContent = content ?? children;
 
   return (
     <blockquote
@@ -44,8 +44,8 @@ export const Quote = ({
       )}
       {...props}
     >
-      <div className="wim-quote__content">{t(content)}</div>
-      {cite && <cite className="wim-quote__cite">{t(cite)}</cite>}
+      <div className="wim-quote__content">{finalContent}</div>
+      {cite && <cite className="wim-quote__cite">{cite}</cite>}
     </blockquote>
   );
 };

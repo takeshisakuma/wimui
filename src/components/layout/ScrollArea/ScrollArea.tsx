@@ -1,10 +1,9 @@
 import React from "react";
 import classNames from "classnames";
 import "./scroll-area.scss";
-import { useTranslation } from "react-i18next";
 
 type ScrollAreaProps = React.ComponentPropsWithoutRef<"div"> & {
-  text?: string;
+  text?: React.ReactNode;
   children?: React.ReactNode;
   scrollAxis?: "x" | "y" | "both";
   maxHeight?: string; //px以外にも対応するため文字列にしている
@@ -19,8 +18,6 @@ export const ScrollArea = ({
   className,
   ...props
 }: ScrollAreaProps) => {
-  const { t } = useTranslation();
-
   const combinedStyle: React.CSSProperties = {
     maxHeight,
     overflowX: scrollAxis === "x" || scrollAxis === "both" ? "auto" : "hidden",
@@ -35,7 +32,7 @@ export const ScrollArea = ({
       tabIndex={0}
       {...props}
     >
-      {children || (text ? t(text) : null)}
+      {children || text}
     </div>
   );
 };

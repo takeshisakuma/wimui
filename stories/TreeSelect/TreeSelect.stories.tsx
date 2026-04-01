@@ -51,7 +51,7 @@ const translateTreeData = (
 ): TreeSelectNode[] => {
   return nodes.map((node) => ({
     ...node,
-    label: t(node.label),
+    label: typeof node.label === "string" ? t(node.label) : node.label,
     children: node.children ? translateTreeData(node.children, t) : undefined,
   }));
 };

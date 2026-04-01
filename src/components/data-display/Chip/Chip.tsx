@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize, IndicatorStatus } from "../../../types/tokens";
 import "./chip.scss";
@@ -25,6 +24,8 @@ export type ChipProps = {
   variant?: "solid" | "outline" | "subtle";
   /** サイズ */
   size?: ComponentSize;
+  /** 削除ボタンのアクセシビリティラベル */
+  deleteAriaLabel?: string;
   /** 追加のクラス名 */
   className?: string;
   /** その他のprops */
@@ -45,10 +46,10 @@ export const Chip = ({
   status = "primary",
   variant = "solid",
   size = "md",
+  deleteAriaLabel = "Delete",
   className,
   ...props
 }: ChipProps) => {
-  const { t } = useTranslation();
   const Component = onClick ? "button" : "span";
   const commonProps = {
     className: classNames(
@@ -72,7 +73,7 @@ export const Chip = ({
       {avatar && <span className="wim-chip__avatar">{avatar}</span>}
       {!avatar && icon && <span className="wim-chip__icon">{icon}</span>}
       <span className="wim-chip__label">
-        {typeof children === "string" ? t(children) : children}
+        {children}
       </span>
       {onDelete && !disabled && (
         <span
@@ -82,7 +83,7 @@ export const Chip = ({
             onDelete(e);
           }}
           role="button"
-          aria-label={t("a11y.delete")}
+          aria-label={deleteAriaLabel}
           tabIndex={0}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {

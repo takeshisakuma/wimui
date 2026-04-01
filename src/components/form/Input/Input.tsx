@@ -1,5 +1,4 @@
 import React, { useId } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./input.scss";
 import { Icon } from "../../media/Icon/Icon";
@@ -22,11 +21,14 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   rightIconClassName?: string;
   rightIconRotated?: boolean;
   width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
-  label?: string;
+  label?: React.ReactNode;
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
   inputClassName?: string;
+  showPasswordAriaLabel?: string;
+  hidePasswordAriaLabel?: string;
+  rightIconAriaLabel?: string;
 };
 
 /**
@@ -61,12 +63,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       layout,
       id: customId,
       inputClassName,
+      showPasswordAriaLabel = "Show password",
+      hidePasswordAriaLabel = "Hide password",
+      rightIconAriaLabel = "Action",
       ...props
     },
     ref,
   ) => {
-    const { t } = useTranslation();
-
     // 内部状態
     const [internalValue, setInternalValue] = React.useState(
       defaultValue ?? "",
@@ -127,7 +130,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       rightIcons.push({
         name: isPasswordVisible ? "EyeOffIcon" : "EyeIcon",
         onClick: (_e: React.MouseEvent<HTMLButtonElement>) => togglePasswordVisibility(),
-        ariaLabel: isPasswordVisible ? t("a11y.hide_password") : t("a11y.show_password"),
+        ariaLabel: isPasswordVisible ? hidePasswordAriaLabel : showPasswordAriaLabel,
       });
     }
 
@@ -140,7 +143,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           name: rightIcon,
           onClick: onRightIconClick,
           color: rightIconColor,
-          ariaLabel: t("a11y.right_icon_action"),
+          ariaLabel: rightIconAriaLabel,
           className: rightIconClassName,
           rotated: rightIconRotated,
         });

@@ -1,6 +1,5 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { ComponentSize } from "../../../types/tokens";
 import "./chatui.scss";
 
@@ -105,10 +104,9 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(
     },
     ref,
   ) => {
-    const { t } = useTranslation(["components"]);
     const [value, setValue] = React.useState("");
 
-    const sendButtonLabel = sendButtonLabelProp || t("chat.send_button");
+    const sendButtonLabel = sendButtonLabelProp || "Send";
 
     const handleSend = () => {
       if (value.trim() && onSend) {
@@ -133,7 +131,7 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={props.placeholder || t("chat.placeholder")}
+          placeholder={props.placeholder || "Type a message..."}
           {...props}
         />
         {showSendButton && (
@@ -170,10 +168,9 @@ export const ChatAvatar = ({
   color = "s18",
   className,
 }: ChatAvatarProps): React.ReactElement => {
-  const { t } = useTranslation(["components"]);
   const [imageError, setImageError] = React.useState(false);
 
-  const alt = altProp || t("a11y.avatar");
+  const alt = altProp || "User Avatar";
 
   return (
     <div

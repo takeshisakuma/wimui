@@ -4,9 +4,10 @@ import { Icon } from "../../media/Icon/Icon";
 import { useMediaLoader } from "@/hooks/useMediaLoader";
 import { useVideoPlayer } from "./hooks/useVideoPlayer";
 import { VideoAdvancedMenu } from "./components/VideoAdvancedMenu";
-import { VideoControls } from "./components/VideoControls";
-import { useTranslation } from "react-i18next";
+import { VideoControls, type VideoLabels } from "./components/VideoControls";
 import "./video.scss";
+
+export type { VideoLabels };
 
 type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
   src?: string;
@@ -22,7 +23,7 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
   border?: boolean;
   fit?: "contain" | "cover" | "fill" | "none" | "scale-down";
   preload?: "auto" | "metadata" | "none";
-  caption?: string;
+  caption?: React.ReactNode;
   customControls?: boolean;
   advancedControls?: boolean;
   videoId?: string;
@@ -36,6 +37,8 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
   fadeIn?: boolean;
   /** デモ用：読み込み完了を意図的に遅らせるミリ秒 */
   demoDelay?: number;
+  /** 手動翻訳用のラベル */
+  labels?: VideoLabels;
 };
 
 export const Video = ({
@@ -65,9 +68,10 @@ export const Video = ({
   loading = "lazy",
   fadeIn = false,
   demoDelay,
+  labels = {},
   ...props
 }: VideoProps) => {
-  const { t } = useTranslation();
+  const { videoAriaLabel = "Video", seconds = "s" } = labels;
   const {
     containerRef: mediaLoaderRef,
     isLoaded,
@@ -120,7 +124,7 @@ export const Video = ({
       className={classNames("wim-video-container", className)}
       style={{ width: "100%" }}
       role="region"
-      aria-label={t("icon.VideoIcon")}
+      aria-label={videoAriaLabel}
     >
       <div
         className={classNames(
@@ -187,7 +191,7 @@ export const Video = ({
               }
               size="lg"
             />
-            <span>10秒</span>
+            <span>10{seconds}</span>
           </div>
         )}
 
@@ -211,6 +215,7 @@ export const Video = ({
                 playlist={playlist}
                 currentPlayIndex={player.currentPlayIndex}
                 playPlaylistItem={player.playPlaylistItem}
+                labels={labels}
               />
             )}
 
@@ -235,6 +240,7 @@ export const Video = ({
               isFullscreen={player.isFullscreen}
               toggleFullscreen={player.toggleFullscreen}
               formatTime={player.formatTime}
+              labels={labels}
             />
           </div>
         )}

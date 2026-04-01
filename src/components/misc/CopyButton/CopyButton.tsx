@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../../overlay/Tooltip/Tooltip";
@@ -11,6 +10,8 @@ type CopyButtonProps = {
   size?: ComponentSize;
   className?: string;
   "aria-label"?: string;
+  copyLabel?: string;
+  copiedLabel?: string;
 };
 
 export const CopyButton = ({
@@ -18,8 +19,9 @@ export const CopyButton = ({
   size = "md",
   className,
   "aria-label": ariaLabel,
+  copyLabel = "Copy to clipboard",
+  copiedLabel = "Copied",
 }: CopyButtonProps) => {
-  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export const CopyButton = ({
     }
   };
 
-  const labelText = copied ? t("copied") : t("copy.to_clipboard");
+  const labelText = copied ? copiedLabel : copyLabel;
 
   return (
     <Tooltip>

@@ -29,6 +29,7 @@ type TreeViewContextType = {
   checkable?: boolean;
   checkStrategy: "cascade" | "exclusive";
   searchQuery?: string;
+  labels?: TreeViewLabels;
 };
 
 const TreeViewContext = createContext<TreeViewContextType | null>(null);
@@ -47,7 +48,7 @@ const useTreeView = () => {
  */
 export type TreeViewNode = {
   value: string;
-  label: string;
+  label: React.ReactNode;
   children?: TreeViewNode[];
   disabled?: boolean;
   icon?: React.ReactNode;
@@ -67,6 +68,12 @@ const DEFAULT_VIRTUAL_THRESHOLD = 100;
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
+function getLabelText(label: React.ReactNode): string {
+  if (typeof label === "string") return label;
+  if (typeof label === "number") return String(label);
+  return "";
+}
+
 /**
  * ツリーデータを展開状態・検索クエリに基づいてフラット配列に変換する。
  */
@@ -79,7 +86,7 @@ function flattenVisible(
   const result: FlatNode[] = [];
 
   for (const node of nodes) {
-    const labelText = node.label;
+    const labelText = getLabelText(node.label);
     const matchesSelf =
       !searchQuery ||
       labelText.toLowerCase().includes(searchQuery.toLowerCase());
@@ -113,7 +120,7 @@ function flattenVisible(
 function hasMatchingChild(nodes: TreeViewNode[], query: string): boolean {
   return nodes.some(
     (node) =>
-      node.label.toLowerCase().includes(query.toLowerCase()) ||
+      getLabelText(node.label).toLowerCase().includes(query.toLowerCase()) ||
       (node.children ? hasMatchingChild(node.children, query) : false),
   );
 }
@@ -205,7 +212,14 @@ function computeCascadeState(
 
 // ─── TreeView (主コンポーネント) ───────────────────────────────────────────────
 
-type TreeViewProps = {
+export type TreeViewLabels = {
+  searchPlaceholder?: string;
+  searchAriaLabel?: string;
+  expandLabel?: (label: string) => string;
+  collapseLabel?: (label: string) => string;
+};
+
+export type TreeViewProps = {
   /** JSX ベースのアイテム（children API）。nodes を使わない場合に指定します。 */
   children?: React.ReactNode;
   /**
@@ -234,6 +248,7 @@ type TreeViewProps = {
    * デフォルトは 100。
    */
   virtualThreshold?: number;
+  labels?: TreeViewLabels;
 };
 
 const TreeView = ({
@@ -251,7 +266,15 @@ const TreeView = ({
   onSelectedChange,
   width,
   virtualThreshold = DEFAULT_VIRTUAL_THRESHOLD,
+  labels = {},
 }: TreeViewProps) => {
+  const {
+    searchPlaceholder = "Search...",
+    searchAriaLabel = "Search tree items",
+    expandLabel = (l: string) => `Expand ${l}`,
+    collapseLabel = (l: string) => `Collapse ${l}`,
+  } = labels;
+
   const [expandedValues, setExpandedValues] = useState<string[]>(
     defaultExpandedValues,
   );
@@ -363,7 +386,7 @@ const TreeView = ({
 
   // ─── Context ───────────────────────────────────────────────────────────────
 
-  const contextValue = useMemo(
+  const contextValue = useMemo<TreeViewContextType>(
     () => ({
       expandedValues,
       selectedValues,
@@ -379,6 +402,10 @@ const TreeView = ({
       checkable,
       checkStrategy,
       searchQuery,
+      labels: {
+        expandLabel,
+        collapseLabel,
+      },
     }),
     [
       expandedValues,
@@ -393,6 +420,8 @@ const TreeView = ({
       checkable,
       checkStrategy,
       searchQuery,
+      expandLabel,
+      collapseLabel,
     ],
   );
 
@@ -476,6 +505,8 @@ const TreeView = ({
       const isExpanded = expandedValues.includes(node.value);
       const isFocused = focusedValue === node.value;
 
+      const labelStr = getLabelText(node.label);
+
       return (
         <div
           className={classNames(
@@ -534,8 +565,8 @@ const TreeView = ({
                     disabled={node.disabled}
                     aria-label={
                       isExpanded
-                        ? `Collapse ${node.label}`
-                        : `Expand ${node.label}`
+                        ? collapseLabel(labelStr)
+                        : expandLabel(labelStr)
                     }
                     tabIndex={-1}
                   >
@@ -559,7 +590,7 @@ const TreeView = ({
                     }}
                     disabled={node.disabled}
                     onClick={(e) => e.stopPropagation()}
-                    aria-label={node.label}
+                    aria-label={labelStr}
                     tabIndex={-1}
                   />
                 )}
@@ -588,6 +619,8 @@ const TreeView = ({
       toggleCheck,
       toggleExpand,
       handleNodeKeyDown,
+      expandLabel,
+      collapseLabel,
     ],
   );
 
@@ -630,10 +663,10 @@ const TreeView = ({
             <input
               type="text"
               className="wim-tree-view__search-input"
-              placeholder="Search..."
+              placeholder={searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              aria-label="Search tree items"
+              aria-label={searchAriaLabel}
             />
           </div>
         )}
@@ -700,7 +733,7 @@ export const TreeViewItem = ({
   const checkboxId = `wim-tree-view-item-checkbox-${generatedId}`;
   const labelId = `wim-tree-view-item-label-${generatedId}`;
 
-  const labelText = typeof label === "string" ? label : "";
+  const labelText = getLabelText(label);
   const matchesSearch =
     !searchQuery || labelText.toLowerCase().includes(searchQuery.toLowerCase());
 
@@ -714,7 +747,7 @@ export const TreeViewItem = ({
 
         const childProps = child.props as TreeViewItemProps;
         const childLabel = childProps.label;
-        const childLabelText = typeof childLabel === "string" ? childLabel : "";
+        const childLabelText = getLabelText(childLabel);
         if (childLabelText.toLowerCase().includes(searchQuery.toLowerCase())) {
           return true;
         }

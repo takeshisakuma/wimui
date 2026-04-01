@@ -1,5 +1,4 @@
 import React, { useRef, useCallback, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./gantt-chart.scss";
 
@@ -14,6 +13,11 @@ export type GanttTask = {
 
 export type GanttViewMode = "day" | "week" | "month";
 
+export type GanttChartLabels = {
+  ariaChart?: string;
+  ariaTaskBar?: (label: string, start: string, end: string) => string;
+};
+
 export type GanttChartProps = {
   tasks: GanttTask[];
   startDate?: Date;
@@ -23,6 +27,13 @@ export type GanttChartProps = {
   rowHeight?: number;
   onTaskClick?: (task: GanttTask) => void;
   className?: string;
+  /** 手動翻訳用のラベル */
+  labels?: GanttChartLabels;
+};
+
+const DEFAULT_LABELS: Required<GanttChartLabels> = {
+  ariaChart: "Gantt Chart",
+  ariaTaskBar: (label, start, end) => `${label}: ${start} - ${end}`,
 };
 
 function startOfDay(date: Date): Date {
@@ -120,8 +131,9 @@ export const GanttChart = ({
   rowHeight = 40,
   onTaskClick,
   className,
+  labels,
 }: GanttChartProps): React.ReactElement => {
-  const { t } = useTranslation("components");
+  const mergedLabels = { ...DEFAULT_LABELS, ...labels };
   const bodyScrollRef = useRef<HTMLDivElement>(null);
   const headerScrollRef = useRef<HTMLDivElement>(null);
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
@@ -187,7 +199,7 @@ export const GanttChart = ({
     <div
       className={classNames("wim-gantt-chart", className)}
       role="grid"
-      aria-label={t("ganttchart.aria_chart")}
+      aria-label={mergedLabels.ariaChart}
     >
       <div className="wim-gantt-chart__layout">
         {/* Left: task label panel */}
@@ -270,11 +282,11 @@ export const GanttChart = ({
                         backgroundColor: task.color ?? "var(--wim-color-primary, #1976d2)",
                       }}
                       tabIndex={0}
-                      aria-label={t("ganttchart.aria_task_bar", {
-                        label: task.label,
-                        start: startStr,
-                        end: endStr,
-                      })}
+                      aria-label={mergedLabels.ariaTaskBar(
+                        task.label,
+                        startStr,
+                        endStr,
+                      )}
                       aria-selected={focusedIndex === index}
                       onClick={() => onTaskClick?.(task)}
                       onKeyDown={(e) => handleTaskKeyDown(e, task, index)}

@@ -7,7 +7,6 @@ import {
 } from "../../overlay/Popover/Popover";
 import { Button } from "../../form/Button/Button";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
-import { useTranslation } from "react-i18next";
 import "./popconfirm.scss";
 
 export type PopconfirmProps = {
@@ -30,11 +29,11 @@ export type PopconfirmProps = {
   /**
    * Text of the confirm button
    */
-  okText?: string;
+  okText?: ReactNode;
   /**
    * Text of the cancel button
    */
-  cancelText?: string;
+  cancelText?: ReactNode;
   /**
    * Color role of the confirm button
    */
@@ -65,7 +64,6 @@ export const Popconfirm = ({
   icon,
   disabled = false,
 }: PopconfirmProps) => {
-  const { t } = useTranslation();
   const titleId = React.useId();
   const descriptionId = React.useId();
 
@@ -97,12 +95,12 @@ export const Popconfirm = ({
               />
             </span>
             <div id={titleId} className="wim-popconfirm-title">
-              {typeof title === "string" ? t(title) : title}
+              {title}
             </div>
           </div>
           {description && (
             <div id={descriptionId} className="wim-popconfirm-description">
-              {typeof description === "string" ? t(description) : description}
+              {description}
             </div>
           )}
           <div className="wim-popconfirm-actions">
@@ -120,7 +118,7 @@ export const Popconfirm = ({
                 label={okText}
                 onClick={onConfirm}
                 variant="filled"
-                role={okType}
+                intent={okType}
               />
             </PopoverClose>
           </div>

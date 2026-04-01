@@ -6,7 +6,6 @@ import React, {
   useContext,
 } from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { FeedbackStatus } from "../../../types/tokens";
@@ -63,7 +62,6 @@ export const Notification = ({
   closable = true,
   className,
 }: NotificationProps) => {
-  const { t } = useTranslation();
   const [isVisible, setIsVisible] = React.useState(true);
 
   if (!isVisible) return null;
@@ -102,11 +100,11 @@ export const Notification = ({
         )}
         <div className="wim-notification-message-container">
           <div className="wim-notification-title">
-            {typeof title === "string" ? t(title) : title}
+            {title}
           </div>
           {description && (
             <div className="wim-notification-description">
-              {typeof description === "string" ? t(description) : description}
+              {description}
             </div>
           )}
         </div>

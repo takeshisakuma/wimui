@@ -1,7 +1,6 @@
 import React, { createContext, useContext } from "react";
 import classNames from "classnames";
 import "./list.scss";
-import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
 
@@ -56,7 +55,6 @@ export const ListItem = ({
   iconPosition = "left",
   ...props
 }: ListItemProps) => {
-  const { t } = useTranslation();
   const { size } = useContext(ListContext);
 
   return (
@@ -75,7 +73,7 @@ export const ListItem = ({
           </div>
         )}
         <div className="wim-list__text">
-          {typeof children === "string" ? t(children) : children}
+          {children}
         </div>
         {iconName && iconPosition === "right" && (
           <div className="wim-list__icon-container wim-list__icon-container--right">

@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { FieldTemplate } from "../../_internal/FieldTemplate";
 import { FieldStatus } from "../../../types/tokens";
 import "./rich-text-editor.scss";
@@ -119,6 +118,23 @@ const DEFAULT_TOOLBAR: RichTextEditorToolbarItem[] = [
   "removeFormat",
 ];
 
+export type RichTextEditorLabels = {
+  bold?: string;
+  italic?: string;
+  underline?: string;
+  strikethrough?: string;
+  h1?: string;
+  h2?: string;
+  h3?: string;
+  ul?: string;
+  ol?: string;
+  link?: string;
+  unlink?: string;
+  removeFormat?: string;
+  toolbar?: string;
+  linkPrompt?: string;
+};
+
 export type RichTextEditorProps = {
   value?: string;
   defaultValue?: string;
@@ -129,13 +145,14 @@ export type RichTextEditorProps = {
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   minHeight?: number | string;
-  label?: string;
+  label?: React.ReactNode;
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
   className?: string;
   id?: string;
   toolbar?: RichTextEditorToolbarItem[];
+  labels?: RichTextEditorLabels;
   "aria-label"?: string;
   "aria-labelledby"?: string;
 };
@@ -187,10 +204,27 @@ export const RichTextEditor = ({
   className,
   id: customId,
   toolbar = DEFAULT_TOOLBAR,
+  labels = {},
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledby,
 }: RichTextEditorProps) => {
-  const { t } = useTranslation();
+  const {
+    bold = "Bold",
+    italic = "Italic",
+    underline = "Underline",
+    strikethrough = "Strikethrough",
+    h1 = "Heading 1",
+    h2 = "Heading 2",
+    h3 = "Heading 3",
+    ul = "Unordered List",
+    ol = "Ordered List",
+    link = "Link",
+    unlink = "Unlink",
+    removeFormat = "Remove Formatting",
+    toolbar: toolbarAriaLabel = "Rich Text Editor Toolbar",
+    linkPrompt = "Enter URL",
+  } = labels;
+
   const editorRef = React.useRef<HTMLDivElement>(null);
   const isComposingRef = React.useRef(false);
   const lastValueRef = React.useRef<string>(value ?? defaultValue);
@@ -286,11 +320,11 @@ export const RichTextEditor = ({
     editorRef.current?.focus();
     const selection = window.getSelection();
     const selectedText = selection?.toString() ?? "";
-    const url = window.prompt(t("a11y.rte_link_prompt"), selectedText.startsWith("http") ? selectedText : "https://");
+    const url = window.prompt(linkPrompt, selectedText.startsWith("http") ? selectedText : "https://");
     if (url) {
       execCommand("createLink", url);
     }
-  }, [isDisabled, execCommand, t]);
+  }, [isDisabled, execCommand, linkPrompt]);
 
   const handleInput = React.useCallback(() => {
     if (isComposingRef.current) return;
@@ -329,7 +363,7 @@ export const RichTextEditor = ({
       return <span key={`sep-${index}`} className="wim-rte__toolbar-sep" aria-hidden="true" />;
     }
 
-    const props = {
+    const itemProps = {
       disabled: isDisabled,
       active: activeFormats.has(item),
     };
@@ -337,73 +371,73 @@ export const RichTextEditor = ({
     switch (item) {
       case "bold":
         return (
-          <ToolbarButton key="bold" {...props} title={t("a11y.rte_bold")} onClick={() => execCommand("bold")}>
+          <ToolbarButton key="bold" {...itemProps} title={bold} onClick={() => execCommand("bold")}>
             <BoldIcon />
           </ToolbarButton>
         );
       case "italic":
         return (
-          <ToolbarButton key="italic" {...props} title={t("a11y.rte_italic")} onClick={() => execCommand("italic")}>
+          <ToolbarButton key="italic" {...itemProps} title={italic} onClick={() => execCommand("italic")}>
             <ItalicIcon />
           </ToolbarButton>
         );
       case "underline":
         return (
-          <ToolbarButton key="underline" {...props} title={t("a11y.rte_underline")} onClick={() => execCommand("underline")}>
+          <ToolbarButton key="underline" {...itemProps} title={underline} onClick={() => execCommand("underline")}>
             <UnderlineIcon />
           </ToolbarButton>
         );
       case "strikethrough":
         return (
-          <ToolbarButton key="strikethrough" {...props} title={t("a11y.rte_strikethrough")} onClick={() => execCommand("strikeThrough")}>
+          <ToolbarButton key="strikethrough" {...itemProps} title={strikethrough} onClick={() => execCommand("strikeThrough")}>
             <StrikethroughIcon />
           </ToolbarButton>
         );
       case "h1":
         return (
-          <ToolbarButton key="h1" {...props} active={activeFormats.has("h1")} title={t("a11y.rte_h1")} onClick={() => execCommand("formatBlock", "h1")}>
+          <ToolbarButton key="h1" {...itemProps} active={activeFormats.has("h1")} title={h1} onClick={() => execCommand("formatBlock", "h1")}>
             <span aria-hidden="true">H1</span>
           </ToolbarButton>
         );
       case "h2":
         return (
-          <ToolbarButton key="h2" {...props} active={activeFormats.has("h2")} title={t("a11y.rte_h2")} onClick={() => execCommand("formatBlock", "h2")}>
+          <ToolbarButton key="h2" {...itemProps} active={activeFormats.has("h2")} title={h2} onClick={() => execCommand("formatBlock", "h2")}>
             <span aria-hidden="true">H2</span>
           </ToolbarButton>
         );
       case "h3":
         return (
-          <ToolbarButton key="h3" {...props} active={activeFormats.has("h3")} title={t("a11y.rte_h3")} onClick={() => execCommand("formatBlock", "h3")}>
+          <ToolbarButton key="h3" {...itemProps} active={activeFormats.has("h3")} title={h3} onClick={() => execCommand("formatBlock", "h3")}>
             <span aria-hidden="true">H3</span>
           </ToolbarButton>
         );
       case "ul":
         return (
-          <ToolbarButton key="ul" {...props} title={t("a11y.rte_ul")} onClick={() => execCommand("insertUnorderedList")}>
+          <ToolbarButton key="ul" {...itemProps} title={ul} onClick={() => execCommand("insertUnorderedList")}>
             <ListIcon />
           </ToolbarButton>
         );
       case "ol":
         return (
-          <ToolbarButton key="ol" {...props} title={t("a11y.rte_ol")} onClick={() => execCommand("insertOrderedList")}>
+          <ToolbarButton key="ol" {...itemProps} title={ol} onClick={() => execCommand("insertOrderedList")}>
             <OrderedListIcon />
           </ToolbarButton>
         );
       case "link":
         return (
-          <ToolbarButton key="link" {...props} title={t("a11y.rte_link")} onClick={handleInsertLink}>
+          <ToolbarButton key="link" {...itemProps} title={link} onClick={handleInsertLink}>
             <LinkIcon />
           </ToolbarButton>
         );
       case "unlink":
         return (
-          <ToolbarButton key="unlink" {...props} title={t("a11y.rte_unlink")} onClick={() => execCommand("unlink")}>
+          <ToolbarButton key="unlink" {...itemProps} title={unlink} onClick={() => execCommand("unlink")}>
             <UnlinkIcon />
           </ToolbarButton>
         );
       case "removeFormat":
         return (
-          <ToolbarButton key="removeFormat" {...props} title={t("a11y.rte_remove_format")} onClick={handleRemoveFormat}>
+          <ToolbarButton key="removeFormat" {...itemProps} title={removeFormat} onClick={handleRemoveFormat}>
             <EraseIcon />
           </ToolbarButton>
         );
@@ -434,7 +468,7 @@ export const RichTextEditor = ({
         <div
           className="wim-rte__toolbar"
           role="toolbar"
-          aria-label={t("a11y.rte_toolbar")}
+          aria-label={toolbarAriaLabel}
           aria-controls={id}
           onMouseDown={handleToolbarMouseDown}
         >
@@ -450,13 +484,13 @@ export const RichTextEditor = ({
           suppressContentEditableWarning
           role="textbox"
           aria-multiline
-          aria-label={ariaLabel ? t(ariaLabel) : undefined}
+          aria-label={ariaLabel}
           aria-labelledby={ariaLabelledby ?? (label ? labelId : undefined)}
           aria-invalid={effectiveStatus === "error"}
           aria-describedby={errorId}
           aria-disabled={isDisabled}
-          aria-placeholder={placeholder ? t(placeholder) : undefined}
-          data-placeholder={placeholder ? t(placeholder) : undefined}
+          aria-placeholder={placeholder}
+          data-placeholder={placeholder}
           tabIndex={isDisabled ? -1 : 0}
           style={{ minHeight: typeof minHeight === "number" ? `${minHeight}px` : minHeight, outline: "none" }}
           onInput={handleInput}

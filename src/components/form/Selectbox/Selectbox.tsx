@@ -1,5 +1,4 @@
 import React, { useId } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Transition } from "../../misc/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
@@ -7,7 +6,7 @@ import "./selectbox.scss";
 import { useSelectbox } from "./useSelectbox";
 
 export type SelectboxOption = {
-  label?: string;
+  label?: React.ReactNode;
   value?: string;
   disabled?: boolean;
   group?: string;
@@ -15,7 +14,7 @@ export type SelectboxOption = {
 };
 
 export type SelectboxOptionGroup = {
-  label: string;
+  label: React.ReactNode;
   options: SelectboxOption[];
 };
 
@@ -23,7 +22,7 @@ export type SelectboxProps = {
   options: SelectboxOption[] | SelectboxOptionGroup[];
   value?: string;
   onChange?: (value: string) => void;
-  placeholder?: string;
+  placeholder?: React.ReactNode;
   label?: string;
   className?: string;
   disabled?: boolean;
@@ -48,6 +47,7 @@ export type SelectboxProps = {
   "aria-label"?: string;
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
+  noOptionsFoundLabel?: string;
 };
 
 import { FieldTemplate } from "../../_internal/FieldTemplate";
@@ -60,7 +60,7 @@ export const Selectbox = ({
   options = [],
   value,
   onChange,
-  placeholder = "select.option",
+  placeholder = "Select an option",
   label,
   error,
   required,
@@ -69,15 +69,15 @@ export const Selectbox = ({
   disabled = false,
   defaultValue,
   searchable = false,
-  searchPlaceholder = "search.placeholder",
+  searchPlaceholder = "Search...",
   filterOption,
   grouped = false,
   allowClear = false,
   fullWidth = false,
   id: customId,
+  noOptionsFoundLabel = "No options found",
   ...props
 }: SelectboxProps) => {
-  const { t } = useTranslation("common");
   const generatedId = useId();
   const id = customId || `wim-selectbox-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
@@ -129,7 +129,7 @@ export const Selectbox = ({
             (
               filterOption ||
               ((o, s) =>
-                (o.label || "").toLowerCase().includes(s.toLowerCase()))
+                (typeof o.label === "string" ? o.label : "").toLowerCase().includes(s.toLowerCase()))
             )(opt, searchValue),
         );
 
@@ -138,7 +138,7 @@ export const Selectbox = ({
         return (
           <React.Fragment key={groupIndex}>
             <li className="wim-selectbox-group-label" role="presentation">
-              {t(group.label)}
+              {group.label}
             </li>
             {groupOptionsFiltered.map((option, optIdx) => {
               const index = flatIndex++;
@@ -178,7 +178,7 @@ export const Selectbox = ({
                   role="option"
                   aria-selected={isSelected}
                 >
-                  {t(option.label || "")}
+                  {option.label}
                 </BaseListItem>
               );
             })}
@@ -225,7 +225,7 @@ export const Selectbox = ({
           role="option"
           aria-selected={isSelected}
         >
-          {t(option.label || "")}
+          {option.label}
         </BaseListItem>
       );
     });
@@ -285,7 +285,7 @@ export const Selectbox = ({
             aria-controls={isOpen ? listId : undefined}
             aria-disabled={disabled}
             aria-labelledby={labelId || ariaLabelledBy}
-            aria-label={label ? undefined : t(ariaLabel || placeholder)}
+            aria-label={label ? undefined : (typeof ariaLabel === "string" ? ariaLabel : (typeof placeholder === "string" ? placeholder : undefined))}
             aria-describedby={errorId || ariaDescribedBy}
             aria-invalid={!!error}
             aria-activedescendant={isOpen ? activeDescendant : undefined}
@@ -297,7 +297,7 @@ export const Selectbox = ({
                 !selectedOption && "wim-selectbox-value--placeholder",
               )}
             >
-              {selectedOption ? t(selectedOption.label || "") : t(placeholder)}
+              {selectedOption ? selectedOption.label : placeholder}
             </div>
           </div>
         </InputBase>
@@ -318,7 +318,7 @@ export const Selectbox = ({
                 ref={searchInputRef}
                 type="text"
                 className="wim-selectbox-search-input"
-                placeholder={t(searchPlaceholder)}
+                placeholder={searchPlaceholder}
                 value={searchValue}
                 onChange={(e) => {
                   setSearchValue(e.target.value);
@@ -326,7 +326,7 @@ export const Selectbox = ({
                 }}
                 onClick={(e) => e.stopPropagation()}
                 onKeyDown={handleKeyDown}
-                aria-label={t(searchPlaceholder)}
+                aria-label={searchPlaceholder}
                 aria-controls={listId}
                 aria-activedescendant={activeDescendant}
               />
@@ -344,7 +344,7 @@ export const Selectbox = ({
                 role="option"
                 aria-selected="false"
               >
-                {t("no.options_found")}
+                {noOptionsFoundLabel}
               </li>
             ) : (
               renderOptions()

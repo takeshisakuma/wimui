@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 import { Icon } from "../../media/Icon/Icon";
 import { FieldStatus } from "../../../types/tokens";
 import "./input-base.scss";
@@ -26,11 +25,13 @@ export type InputBaseProps = {
   leftIcon?: React.ComponentProps<typeof Icon>["name"];
   leftIconColor?: React.ComponentProps<typeof Icon>["color"];
   onLeftIconClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  leftIconAriaLabel?: string;
   rightIcons?: InputBaseIcon[];
   /** Whether to show a clear button when value is present */
   allowClear?: boolean;
   hasValue?: boolean;
   onClear?: () => void;
+  clearAriaLabel?: string;
 };
 
 /**
@@ -48,13 +49,13 @@ export const InputBase = ({
   leftIcon,
   leftIconColor,
   onLeftIconClick,
+  leftIconAriaLabel = "Action",
   rightIcons = [],
   allowClear,
   hasValue,
   onClear,
+  clearAriaLabel = "Clear input",
 }: InputBaseProps) => {
-  const { t } = useTranslation();
-
   const isSemanticWidth =
     typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
 
@@ -90,7 +91,7 @@ export const InputBase = ({
         e.stopPropagation();
         onClear?.();
       },
-      ariaLabel: t("a11y.clear_input"),
+      ariaLabel: clearAriaLabel,
     });
   }
 
@@ -131,7 +132,7 @@ export const InputBase = ({
               type="button"
               onClick={onLeftIconClick}
               className="wim-input-icon-button"
-              aria-label={t("a11y.left_icon_action")}
+              aria-label={leftIconAriaLabel}
             >
               <Icon
                 name={leftIcon}
@@ -171,7 +172,7 @@ export const InputBase = ({
                   type="button"
                   onClick={icon.onClick}
                   className="wim-input-icon-button"
-                  aria-label={icon.ariaLabel || t("a11y.right_icon_action")}
+                  aria-label={icon.ariaLabel || "Action"}
                 >
                   <Icon
                     name={icon.name}

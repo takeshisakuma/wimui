@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { useSliderCommon } from "../../../utilities/slider-utils";
 import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
@@ -49,7 +48,7 @@ type SliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
   /**
    * アクセシビリティ用のラベル
    */
-  label?: string;
+  label?: React.ReactNode;
   /**
    * エラーメッセージ
    */
@@ -93,7 +92,6 @@ export const Slider = ({
   "aria-labelledby": ariaLabelledBy,
   ...props
 }: SliderProps) => {
-  const { t } = useTranslation("common");
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState(defaultValue);
   const currentValue = isControlled ? value! : internalValue;
@@ -218,7 +216,7 @@ export const Slider = ({
 
   return (
     <FieldTemplate
-      label={label ? t(label) : undefined}
+      label={label}
       error={error}
       required={required}
       layout={layout}

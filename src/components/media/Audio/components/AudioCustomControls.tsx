@@ -1,7 +1,26 @@
 import React from "react";
 import classNames from "classnames";
 import { Icon } from "../../../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
+
+export type AudioLabels = {
+  seek?: string;
+  mute?: string;
+  unmute?: string;
+  volume?: string;
+  play?: string;
+  pause?: string;
+  next?: string;
+  prev?: string;
+  repeatMode0?: string; // Off
+  repeatMode1?: string; // One
+  repeatMode2?: string; // All
+  shuffle?: string;
+  playbackSpeed?: string;
+  bassBoost?: string;
+  sleepTimer?: string;
+  unknownTitle?: string;
+  unknownArtist?: string;
+};
 
 interface AudioCustomControlsProps {
   isPlaying: boolean;
@@ -28,6 +47,7 @@ interface AudioCustomControlsProps {
   playNext: (dir: 1 | -1) => void;
   toggleSleepTimer: () => void;
   formatTime: (time: number) => string;
+  labels?: AudioLabels;
 }
 
 export function AudioCustomControls({
@@ -55,8 +75,28 @@ export function AudioCustomControls({
   playNext,
   toggleSleepTimer,
   formatTime,
+  labels = {},
 }: AudioCustomControlsProps) {
-  const { t } = useTranslation();
+  const {
+    seek = "Seek",
+    mute = "Mute",
+    unmute = "Unmute",
+    volume: volumeLabel = "Volume",
+    play = "Play",
+    pause = "Pause",
+    next = "Next",
+    prev = "Previous",
+    repeatMode0 = "Repeat Off",
+    repeatMode1 = "Repeat One",
+    repeatMode2 = "Repeat All",
+    shuffle = "Shuffle",
+    playbackSpeed = "Playback Speed",
+    bassBoost = "Bass Boost",
+    sleepTimer: sleepTimerLabel = "Sleep Timer (15m)",
+  } = labels;
+
+  const repeatTitle =
+    repeatMode === 0 ? repeatMode0 : repeatMode === 1 ? repeatMode1 : repeatMode2;
 
   return (
     <div className="wim-audio-custom-controls">
@@ -72,7 +112,7 @@ export function AudioCustomControls({
             step="0.1"
             onChange={handleSeek}
             className="wim-audio-progress"
-            aria-label={t("a11y.seek")}
+            aria-label={seek}
           />
           <div
             className="wim-audio-progress-fill"
@@ -89,7 +129,7 @@ export function AudioCustomControls({
             type="button"
             className={classNames("wim-audio-btn", repeatMode > 0 && "active")}
             onClick={() => setRepeatMode((m) => ((m + 1) % 3) as 0 | 1 | 2)}
-            title={`Repeat ${repeatMode === 0 ? "Off" : repeatMode === 1 ? "One" : "All"}`}
+            title={repeatTitle}
           >
             <Icon name="RepeatIcon" size="sm" />
             {repeatMode === 1 && <span className="wim-audio-badge">1</span>}
@@ -98,7 +138,7 @@ export function AudioCustomControls({
             type="button"
             className={classNames("wim-audio-btn", shuffleMode && "active")}
             onClick={() => setShuffleMode((s) => !s)}
-            title="Shuffle"
+            title={shuffle}
           >
             <Icon name="ShuffleIcon" size="sm" />
           </button>
@@ -112,7 +152,7 @@ export function AudioCustomControls({
                   rates[(rates.indexOf(currentPlaybackRate) + 1) % rates.length];
                 setCurrentPlaybackRate(nextRate);
               }}
-              title="Playback Speed"
+              title={playbackSpeed}
             >
               {currentPlaybackRate}x
             </button>
@@ -125,7 +165,7 @@ export function AudioCustomControls({
               type="button"
               className={classNames("wim-audio-btn", isBassBoost && "active")}
               onClick={() => setIsBassBoost(!isBassBoost)}
-              title="Bass Boost"
+              title={bassBoost}
             >
               <Icon name="ChartIcon" size="sm" />
             </button>
@@ -139,7 +179,7 @@ export function AudioCustomControls({
                 remainingSleepTime !== null && "active",
               )}
               onClick={toggleSleepTimer}
-              title="Sleep Timer (15m)"
+              title={sleepTimerLabel}
             >
               <Icon name="ClockIcon" size="sm" />
               {remainingSleepTime !== null && (
@@ -155,7 +195,7 @@ export function AudioCustomControls({
               type="button"
               className="wim-audio-btn wim-audio-btn--volume"
               onClick={() => setIsMuted((m) => !m)}
-              aria-label={isMuted ? t("a11y.unmute") : t("a11y.mute")}
+              aria-label={isMuted ? unmute : mute}
             >
               <Icon
                 name={isMuted || volume === 0 ? "MuteIcon" : "VolumeIcon"}
@@ -170,7 +210,7 @@ export function AudioCustomControls({
               value={isMuted ? 0 : volume}
               onChange={handleVolumeChange}
               className="wim-audio-volume"
-              aria-label={t("a11y.volume")}
+              aria-label={volumeLabel}
             />
           </div>
         </div>
@@ -186,7 +226,7 @@ export function AudioCustomControls({
             type="button"
             className="wim-audio-btn"
             onClick={() => playNext(-1)}
-            title="Previous"
+            title={prev}
           >
             <Icon name="ChevronLeftIcon" size="sm" />
           </button>
@@ -194,8 +234,8 @@ export function AudioCustomControls({
             type="button"
             className="wim-audio-btn wim-audio-btn--play"
             onClick={togglePlay}
-            title={isPlaying ? t("a11y.pause") : t("a11y.play")}
-            aria-label={isPlaying ? t("a11y.pause") : t("a11y.play")}
+            title={isPlaying ? pause : play}
+            aria-label={isPlaying ? pause : play}
           >
             <Icon name={isPlaying ? "PauseIcon" : "PlayIcon"} size="sm" />
           </button>
@@ -203,7 +243,7 @@ export function AudioCustomControls({
             type="button"
             className="wim-audio-btn"
             onClick={() => playNext(1)}
-            title="Next"
+            title={next}
           >
             <Icon name="ChevronRightIcon" size="sm" />
           </button>

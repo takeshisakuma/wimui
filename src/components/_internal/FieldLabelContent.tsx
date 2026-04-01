@@ -1,26 +1,27 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { Badge } from "../data-display/Badge/Badge";
 import "./fieldLabelContent.scss";
 
 export type FieldLabelContentProps = {
-  label: string;
+  label: React.ReactNode;
   required?: boolean;
+  requiredLabel?: React.ReactNode;
   showOptional?: boolean;
+  optionalLabel?: React.ReactNode;
   className?: string;
 };
 
 export const FieldLabelContent = ({
   label,
   required = false,
+  requiredLabel = "required",
   showOptional = false,
+  optionalLabel = "optional",
   className,
 }: FieldLabelContentProps) => {
-  const { t } = useTranslation();
-
   return (
     <div className={className}>
-      <span className="wim-field-label-text">{t(label)}</span>
+      <span className="wim-field-label-text">{label}</span>
       {required ? (
         <Badge
           color="error"
@@ -28,7 +29,7 @@ export const FieldLabelContent = ({
           className="wim-field-label-badge"
           aria-hidden="true"
         >
-          required
+          {requiredLabel}
         </Badge>
       ) : (
         showOptional && (
@@ -38,7 +39,7 @@ export const FieldLabelContent = ({
             className="wim-field-label-badge"
             aria-hidden="true"
           >
-            optional
+            {optionalLabel}
           </Badge>
         )
       )}

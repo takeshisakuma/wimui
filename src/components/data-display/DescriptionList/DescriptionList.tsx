@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import "./descriptionlist.scss";
-import { useTranslation } from "react-i18next";
 import { ComponentSize } from "../../../types/tokens";
 
 type DescriptionListProps = {
@@ -66,13 +65,12 @@ export const DescriptionListTerm = ({
   className,
   ...props
 }: DescriptionListTermProps) => {
-  const { t } = useTranslation();
   return (
     <dt
       className={classNames("wim-description-list__term", className)}
       {...props}
     >
-      {typeof children === "string" ? t(children) : children}
+      {children}
     </dt>
   );
 };
@@ -87,13 +85,12 @@ export const DescriptionListDetails = ({
   className,
   ...props
 }: DescriptionListDetailsProps) => {
-  const { t } = useTranslation();
   return (
     <dd
       className={classNames("wim-description-list__details", className)}
       {...props}
     >
-      {typeof children === "string" ? t(children) : children}
+      {children}
     </dd>
   );
 };

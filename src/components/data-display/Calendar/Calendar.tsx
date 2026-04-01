@@ -1,9 +1,22 @@
 import React, { useState, useRef, useEffect, useId } from "react";
-import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { useCalendar, isSameDay, isToday } from "./useCalendar";
 import "./calendar.scss";
+
+export type CalendarLabels = {
+  sun?: string;
+  mon?: string;
+  tue?: string;
+  wed?: string;
+  thu?: string;
+  fri?: string;
+  sat?: string;
+  prevMonth?: string;
+  nextMonth?: string;
+  title?: (year: number, month: number) => string;
+  ariaDate?: (year: number, month: number, day: number) => string;
+};
 
 export type CalendarProps = {
   /**
@@ -62,6 +75,24 @@ export type CalendarProps = {
    * 週の開始曜日。0 = 日曜始まり、1 = 月曜始まり。デフォルトは 0。
    */
   weekStartsOn?: 0 | 1;
+  /**
+   * 手動翻訳用のラベル。
+   */
+  labels?: CalendarLabels;
+};
+
+const DEFAULT_LABELS: Required<CalendarLabels> = {
+  sun: "Sun",
+  mon: "Mon",
+  tue: "Tue",
+  wed: "Wed",
+  thu: "Thu",
+  fri: "Fri",
+  sat: "Sat",
+  prevMonth: "Previous month",
+  nextMonth: "Next month",
+  title: (year, month) => `${year} / ${month}`,
+  ariaDate: (year, month, day) => `${year}-${month}-${day}`,
 };
 
 /**
@@ -82,9 +113,10 @@ export const Calendar = ({
   disabledDates,
   isDateDisabled: isDateDisabledProp,
   weekStartsOn = 0,
+  labels,
   ...props
 }: CalendarProps) => {
-  const { t } = useTranslation();
+  const mergedLabels = { ...DEFAULT_LABELS, ...labels };
 
   const {
     year,
@@ -242,21 +274,21 @@ export const Calendar = ({
   };
 
   const weekDays = [
-    t("sun"),
-    t("mon"),
-    t("tue"),
-    t("wed"),
-    t("thu"),
-    t("fri"),
-    t("sat"),
+    mergedLabels.sun,
+    mergedLabels.mon,
+    mergedLabels.tue,
+    mergedLabels.wed,
+    mergedLabels.thu,
+    mergedLabels.fri,
+    mergedLabels.sat,
   ].slice(weekStartsOn).concat([
-    t("sun"),
-    t("mon"),
-    t("tue"),
-    t("wed"),
-    t("thu"),
-    t("fri"),
-    t("sat"),
+    mergedLabels.sun,
+    mergedLabels.mon,
+    mergedLabels.tue,
+    mergedLabels.wed,
+    mergedLabels.thu,
+    mergedLabels.fri,
+    mergedLabels.sat,
   ].slice(0, weekStartsOn));
 
   return (
@@ -274,7 +306,7 @@ export const Calendar = ({
           className="wim-calendar-nav-btn"
           onClick={handlePrevMonth}
           disabled={disabled}
-          aria-label={t("a11y.prev_month")}
+          aria-label={mergedLabels.prevMonth}
         >
           <Icon name="ChevronLeftIcon" size="sm" />
         </button>
@@ -284,14 +316,14 @@ export const Calendar = ({
           aria-live="polite"
           aria-atomic="true"
         >
-          {t("calendar.title", { year, month: month + 1 })}
+          {mergedLabels.title(year, month + 1)}
         </div>
         <button
           type="button"
           className="wim-calendar-nav-btn"
           onClick={handleNextMonth}
           disabled={disabled}
-          aria-label={t("a11y.next_month")}
+          aria-label={mergedLabels.nextMonth}
         >
           <Icon name="ChevronRightIcon" size="sm" />
         </button>
@@ -353,11 +385,11 @@ export const Calendar = ({
               tabIndex={focused ? 0 : -1}
               role="gridcell"
               aria-selected={selected}
-              aria-label={t("calendar.aria_date", {
-                year: date.getFullYear(),
-                month: date.getMonth() + 1,
-                day: date.getDate(),
-              })}
+              aria-label={mergedLabels.ariaDate(
+                date.getFullYear(),
+                date.getMonth() + 1,
+                date.getDate(),
+              )}
             >
               <span className="wim-calendar-day-text">{date.getDate()}</span>
             </button>

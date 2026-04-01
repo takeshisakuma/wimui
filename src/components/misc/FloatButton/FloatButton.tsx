@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import "./float-button.scss";
 import { Icon } from "../../media/Icon/Icon";
-import { useTranslation } from "react-i18next";
 import { ComponentSize } from "../../../types/tokens";
 
 export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -21,7 +20,7 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
   /** Size of the button */
   size?: ComponentSize;
   /** Label text for extended FAB */
-  label?: string;
+  label?: React.ReactNode;
   /** Whether to shrink the extended FAB (hide label) */
   shrink?: boolean;
   /** Position of the button */
@@ -33,7 +32,7 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
     | "top-left"
     | "static";
   /** Description for tooltip */
-  description?: string;
+  description?: React.ReactNode;
   /** Badge content (number or dot) */
   badge?: number | boolean;
   /** If true, the button will scroll to the top of the page when clicked */
@@ -66,7 +65,6 @@ export const FloatButton = ({
   "aria-label": ariaLabel,
   ...props
 }: FloatButtonProps) => {
-  const { t } = useTranslation();
   const [visible, setVisible] = useState(() => {
     if (!backTop) return true;
     if (typeof window !== "undefined") {
@@ -113,14 +111,14 @@ export const FloatButton = ({
         `wim-float-button--${shape}`,
         `wim-float-button--${size}`,
         `wim-float-button--${position}`,
-        label && "wim-float-button--extended",
-        shrink && "wim-float-button--shrink",
+        !!label && "wim-float-button--extended",
+        !!shrink && "wim-float-button--shrink",
         className,
       )}
       style={style}
       onClick={handleClick}
-      title={description ? t(description) : undefined}
-      aria-label={ariaLabel || (label ? t(label) : iconName)}
+      title={typeof description === "string" ? description : undefined}
+      aria-label={ariaLabel || (typeof label === "string" ? label : iconName)}
       {...props}
     >
       <span className="wim-float-button__inner">
@@ -131,7 +129,7 @@ export const FloatButton = ({
         />
         {label && (
           <span className="wim-float-button__label-wrapper">
-            <span className="wim-float-button__label">{t(label)}</span>
+            <span className="wim-float-button__label">{label}</span>
           </span>
         )}
         {badge && (
@@ -147,7 +145,7 @@ export const FloatButton = ({
         )}
       </span>
       {description && (
-        <span className="wim-float-button__description">{t(description)}</span>
+        <span className="wim-float-button__description">{description}</span>
       )}
     </button>
   );
