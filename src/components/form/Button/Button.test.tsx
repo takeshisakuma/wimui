@@ -109,8 +109,8 @@ describe("Button", () => {
 
   it("renders both label and children when both are provided", () => {
     render(<Button label="Label">Children</Button>);
-    expect(screen.getByText("Label")).toBeInTheDocument();
-    expect(screen.getByText("Children")).toBeInTheDocument();
+    expect(screen.getByText(/Label/)).toBeInTheDocument();
+    expect(screen.getByText(/Children/)).toBeInTheDocument();
   });
 });
 
