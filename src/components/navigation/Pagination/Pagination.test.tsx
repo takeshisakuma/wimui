@@ -22,21 +22,21 @@ describe("Pagination", () => {
     const handleChange = vi.fn();
     render(<Pagination total={50} current={3} onChange={handleChange} />);
 
-    fireEvent.click(screen.getByLabelText("Go to next page"));
+    fireEvent.click(screen.getByLabelText("Next page"));
     expect(handleChange).toHaveBeenCalledWith(4, 10);
 
-    fireEvent.click(screen.getByLabelText("Go to previous page"));
+    fireEvent.click(screen.getByLabelText("Previous page"));
     expect(handleChange).toHaveBeenCalledWith(2, 10);
   });
 
   it("disables previous button on first page", () => {
     render(<Pagination total={50} current={1} />);
-    expect(screen.getByLabelText("Go to previous page")).toBeDisabled();
+    expect(screen.getByLabelText("Previous page")).toBeDisabled();
   });
 
   it("disables next button on last page", () => {
     render(<Pagination total={50} current={5} />);
-    expect(screen.getByLabelText("Go to next page")).toBeDisabled();
+    expect(screen.getByLabelText("Next page")).toBeDisabled();
   });
 
   it("renders ellipsis for many pages", () => {
@@ -109,7 +109,7 @@ describe("Pagination", () => {
     const onChange = vi.fn();
     render(<Pagination total={50} current={1} onChange={onChange} />);
     // Clicking disabled previous button should not call onChange
-    fireEvent.click(screen.getByLabelText("Go to previous page"));
+    fireEvent.click(screen.getByLabelText("Previous page"));
     expect(onChange).not.toHaveBeenCalled();
   });
 

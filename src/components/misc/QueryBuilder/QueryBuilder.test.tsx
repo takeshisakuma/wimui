@@ -3,10 +3,10 @@ import { describe, it, expect, vi } from "vitest";
 import { QueryBuilder, QueryBuilderProps, QueryGroup } from "./QueryBuilder";
 
 const fields: QueryBuilderProps["fields"] = [
-  { name: "firstName", label: "query.builder.field_first_name", type: "string" },
-  { name: "age", label: "query.builder.field_age", type: "number" },
-  { name: "birthday", label: "query.builder.field_birthday", type: "date" },
-  { name: "isActive", label: "query.builder.field_is_active", type: "boolean" },
+  { name: "firstName", label: "First Name", type: "string" },
+  { name: "age", label: "Age", type: "number" },
+  { name: "birthday", label: "Birthday", type: "date" },
+  { name: "isActive", label: "Is Active", type: "boolean" },
 ];
 
 const makeGroup = (overrides?: Partial<QueryGroup>): QueryGroup => ({
@@ -81,7 +81,7 @@ describe("QueryBuilder", () => {
     fireEvent.click(screen.getByText("Add rule"));
     expect(screen.getByRole("group", { name: "Rule" })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Remove" }));
+    fireEvent.click(screen.getByRole("button", { name: "Remove rule" }));
     expect(screen.queryByRole("group", { name: "Rule" })).not.toBeInTheDocument();
   });
 
@@ -91,7 +91,7 @@ describe("QueryBuilder", () => {
     const query = makeGroup({ rules: [existingRule] });
     render(<QueryBuilder fields={fields} query={query} onChange={onChange} />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Remove" }));
+    fireEvent.click(screen.getByRole("button", { name: "Remove rule" }));
 
     expect(onChange).toHaveBeenCalledOnce();
     const newQuery: QueryGroup = onChange.mock.calls[0][0];

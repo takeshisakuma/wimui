@@ -2,13 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { AudioCustomControls } from "./AudioCustomControls";
 
-// Mock i18next
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (str: string) => str,
-  }),
-}));
-
 // Mock Icon
 vi.mock("../../../media/Icon/Icon", () => ({
   Icon: ({ name }: { name: string }) => <span data-testid="icon">{name}</span>,
@@ -51,13 +44,13 @@ describe("AudioCustomControls", () => {
     render(<AudioCustomControls {...defaultProps} />);
     expect(screen.getByText("00:10")).toBeInTheDocument();
     expect(screen.getByText("00:100")).toBeInTheDocument();
-    const progressInput = screen.getByLabelText("a11y.seek");
+    const progressInput = screen.getByLabelText("Seek");
     expect(progressInput).toHaveValue("10");
   });
 
   it("calls togglePlay when play button is clicked", () => {
     render(<AudioCustomControls {...defaultProps} />);
-    const playBtn = screen.getByLabelText("a11y.play");
+    const playBtn = screen.getByLabelText("Play");
     fireEvent.click(playBtn);
     expect(defaultProps.togglePlay).toHaveBeenCalled();
   });
@@ -74,14 +67,14 @@ describe("AudioCustomControls", () => {
 
   it("calls setIsMuted when volume icon is clicked", () => {
     render(<AudioCustomControls {...defaultProps} />);
-    const muteBtn = screen.getByLabelText("a11y.mute");
+    const muteBtn = screen.getByLabelText("Mute");
     fireEvent.click(muteBtn);
     expect(defaultProps.setIsMuted).toHaveBeenCalled();
   });
 
   it("calls handleVolumeChange when volume slider is moved", () => {
     render(<AudioCustomControls {...defaultProps} />);
-    const volumeSlider = screen.getByLabelText("a11y.volume");
+    const volumeSlider = screen.getByLabelText("Volume");
     fireEvent.change(volumeSlider, { target: { value: "0.8" } });
     expect(defaultProps.handleVolumeChange).toHaveBeenCalled();
   });
@@ -121,7 +114,7 @@ describe("AudioCustomControls", () => {
       muted = typeof action === "function" ? action(muted) : action;
     });
     render(<AudioCustomControls {...defaultProps} setIsMuted={setIsMuted} isMuted={false} />);
-    fireEvent.click(screen.getByLabelText("a11y.mute"));
+    fireEvent.click(screen.getByLabelText("Mute"));
     expect(muted).toBe(true);
   });
 
@@ -149,7 +142,7 @@ describe("AudioCustomControls", () => {
 
   it("renders proper muted states", () => {
     render(<AudioCustomControls {...defaultProps} isMuted={true} />);
-    expect(screen.getByLabelText("a11y.unmute")).toBeInTheDocument();
+    expect(screen.getByLabelText("Unmute")).toBeInTheDocument();
   });
 
   it("does not render Playback Speed button when playbackRate is false", () => {
@@ -169,7 +162,7 @@ describe("AudioCustomControls", () => {
 
   it("shows pause label when isPlaying is true", () => {
     render(<AudioCustomControls {...defaultProps} isPlaying={true} />);
-    expect(screen.getByLabelText("a11y.pause")).toBeInTheDocument();
+    expect(screen.getByLabelText("Pause")).toBeInTheDocument();
   });
 
   it("shows active class on Bass Boost button when isBassBoost is true", () => {
@@ -201,7 +194,7 @@ describe("AudioCustomControls", () => {
 
   it("volume slider value is 0 when isMuted is true", () => {
     render(<AudioCustomControls {...defaultProps} isMuted={true} volume={0.5} />);
-    const volumeSlider = screen.getByLabelText("a11y.volume");
+    const volumeSlider = screen.getByLabelText("Volume");
     expect(volumeSlider).toHaveValue("0");
   });
 
@@ -213,7 +206,7 @@ describe("AudioCustomControls", () => {
 
   it("calls handleSeek when progress slider changes", () => {
     render(<AudioCustomControls {...defaultProps} />);
-    const seekSlider = screen.getByLabelText("a11y.seek");
+    const seekSlider = screen.getByLabelText("Seek");
     fireEvent.change(seekSlider, { target: { value: "50" } });
     expect(defaultProps.handleSeek).toHaveBeenCalled();
   });

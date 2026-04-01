@@ -2,13 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { VideoControls } from "./VideoControls";
 
-// Mock i18next
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (str: string) => str,
-  }),
-}));
-
 // Mock Icon
 vi.mock("../../../media/Icon/Icon", () => ({
   Icon: ({ name }: { name: string }) => <span data-testid="icon">{name}</span>,
@@ -41,8 +34,8 @@ describe("VideoControls", () => {
   it("renders playback controls", () => {
     render(<VideoControls {...defaultProps} />);
     expect(screen.getByLabelText("Play")).toBeInTheDocument();
-    expect(screen.getByLabelText("a11y.skip_backward")).toBeInTheDocument();
-    expect(screen.getByLabelText("a11y.skip_forward")).toBeInTheDocument();
+    expect(screen.getByLabelText("Skip Backward")).toBeInTheDocument();
+    expect(screen.getByLabelText("Skip Forward")).toBeInTheDocument();
   });
 
   it("calls togglePlay when play button is clicked", () => {
@@ -53,9 +46,9 @@ describe("VideoControls", () => {
 
   it("calls skip when skip buttons are clicked", () => {
     render(<VideoControls {...defaultProps} />);
-    fireEvent.click(screen.getByLabelText("a11y.skip_backward"));
+    fireEvent.click(screen.getByLabelText("Skip Backward"));
     expect(defaultProps.skip).toHaveBeenCalledWith(-10);
-    fireEvent.click(screen.getByLabelText("a11y.skip_forward"));
+    fireEvent.click(screen.getByLabelText("Skip Forward"));
     expect(defaultProps.skip).toHaveBeenCalledWith(10);
   });
 
@@ -73,19 +66,19 @@ describe("VideoControls", () => {
 
   it("calls handleVolumeChange when volume slider is moved", () => {
     render(<VideoControls {...defaultProps} />);
-    fireEvent.change(screen.getByLabelText("a11y.volume"), { target: { value: "0.8" } });
+    fireEvent.change(screen.getByLabelText("Volume"), { target: { value: "0.8" } });
     expect(defaultProps.handleVolumeChange).toHaveBeenCalled();
   });
 
   it("calls setActiveMenu when settings button is clicked", () => {
     render(<VideoControls {...defaultProps} />);
-    fireEvent.click(screen.getByLabelText("a11y.settings"));
+    fireEvent.click(screen.getByLabelText("Settings"));
     expect(defaultProps.setActiveMenu).toHaveBeenCalledWith("main");
   });
 
   it("calls togglePiP when PiP button is clicked", () => {
     render(<VideoControls {...defaultProps} />);
-    fireEvent.click(screen.getByLabelText("a11y.picture_in_picture"));
+    fireEvent.click(screen.getByLabelText("Picture in Picture"));
     expect(defaultProps.togglePiP).toHaveBeenCalled();
   });
 
@@ -101,7 +94,7 @@ describe("VideoControls", () => {
       { src: "v2.mp4", title: "v2" },
     ];
     render(<VideoControls {...defaultProps} playlist={playlist} />);
-    fireEvent.click(screen.getByLabelText("a11y.next_track"));
+    fireEvent.click(screen.getByLabelText("Next Track"));
     expect(defaultProps.setCurrentPlayIndex).toHaveBeenCalled();
   });
 });

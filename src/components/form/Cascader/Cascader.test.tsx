@@ -80,7 +80,7 @@ describe("Cascader", () => {
         defaultValue={["zhejiang", "hangzhou", "west_lake"]}
       />,
     );
-    expect(screen.getByText("Zhejiang / Hangzhou / West Lake")).toBeDefined();
+    expect(screen.getByLabelText("Zhejiang / Hangzhou / West Lake")).toBeInTheDocument();
   });
 
   it("does not open when disabled", () => {
@@ -191,7 +191,7 @@ describe("Cascader", () => {
         separator=" > "
       />,
     );
-    expect(screen.getByText("Zhejiang > Hangzhou > West Lake")).toBeInTheDocument();
+    expect(screen.getByLabelText("Zhejiang > Hangzhou > West Lake")).toBeInTheDocument();
   });
 
   it("works as a controlled component", () => {
@@ -203,7 +203,7 @@ describe("Cascader", () => {
         onChange={onChange}
       />,
     );
-    expect(screen.getByText("Zhejiang / Hangzhou / West Lake")).toBeInTheDocument();
+    expect(screen.getByLabelText("Zhejiang / Hangzhou / West Lake")).toBeInTheDocument();
   });
 
   it("closes dropdown with Tab key", async () => {

@@ -36,14 +36,14 @@ describe("VideoAdvancedMenu", () => {
 
   it("renders main menu", () => {
     render(<VideoAdvancedMenu {...defaultProps} />);
-    expect(screen.getByText(/Settings|設定/i)).toBeInTheDocument();
-    expect(screen.getByText(/Quality|画質/i)).toBeInTheDocument();
-    expect(screen.getByText(/Playback Rate|再生速度/i)).toBeInTheDocument();
+    expect(screen.getByText(/Settings/i)).toBeInTheDocument();
+    expect(screen.getByText(/Quality/i)).toBeInTheDocument();
+    expect(screen.getByText(/Playback Speed/i)).toBeInTheDocument();
   });
 
   it("switches to quality menu", () => {
     render(<VideoAdvancedMenu {...defaultProps} />);
-    fireEvent.click(screen.getByText(/Quality|画質/i));
+    fireEvent.click(screen.getByText(/Quality/i));
     expect(defaultProps.setActiveMenu).toHaveBeenCalledWith("quality");
   });
 
@@ -57,8 +57,8 @@ describe("VideoAdvancedMenu", () => {
 
   it("renders rate menu and selects rate", () => {
     render(<VideoAdvancedMenu {...defaultProps} activeMenu="rate" />);
-    // In code, r === 1.0 ? "標準" : `${r}x`
-    // For 2.0, it's "2x"
+    // In code, r === 1.0 ? standard : `${r}x`
+    // standard defaults to "Standard"
     const rateBtn = screen.getByRole("button", { name: /2x/ });
     fireEvent.click(rateBtn);
     expect(defaultProps.setPlaybackRate).toHaveBeenCalledWith(2.0);
@@ -67,7 +67,8 @@ describe("VideoAdvancedMenu", () => {
 
   it("renders fit menu and selects fit", () => {
     render(<VideoAdvancedMenu {...defaultProps} activeMenu="fit" />);
-    fireEvent.click(screen.getByText("cover"));
+    // getFitLabel("cover") returns "Cover"
+    fireEvent.click(screen.getByText("Cover"));
     expect(defaultProps.setActiveFit).toHaveBeenCalledWith("cover");
     expect(defaultProps.setActiveMenu).toHaveBeenCalledWith("main");
   });
