@@ -13,7 +13,7 @@ export interface FeedbackCloseButtonProps {
      */
     className?: string;
     /**
-     * aria-labelの翻訳キー
+     * aria-label
      */
     ariaLabel?: string;
     /**

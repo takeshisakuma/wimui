@@ -1,3 +1,4 @@
+import { VideoLabels } from './VideoControls';
 type FitOption = "contain" | "cover" | "fill" | "none" | "scale-down";
 type ActiveMenu = "main" | "quality" | "rate" | "fit" | "playlist" | null;
 interface VideoAdvancedMenuProps {
@@ -20,6 +21,7 @@ interface VideoAdvancedMenuProps {
     }[];
     currentPlayIndex: number;
     playPlaylistItem: (index: number) => void;
+    labels?: VideoLabels;
 }
-export declare function VideoAdvancedMenu({ activeMenu, setActiveMenu, qualities, currentQualityIndex, handleQualityChange, playbackRate, setPlaybackRate, activeFit, setActiveFit, playlist, currentPlayIndex, playPlaylistItem, }: VideoAdvancedMenuProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function VideoAdvancedMenu({ activeMenu, setActiveMenu, qualities, currentQualityIndex, handleQualityChange, playbackRate, setPlaybackRate, activeFit, setActiveFit, playlist, currentPlayIndex, playPlaylistItem, labels, }: VideoAdvancedMenuProps): import("react/jsx-runtime").JSX.Element | null;
 export {};

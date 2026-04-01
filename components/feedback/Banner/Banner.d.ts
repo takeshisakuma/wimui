@@ -4,11 +4,11 @@ type BannerProps = {
     /**
      * バナーのタイトル
      */
-    title?: string;
+    title?: React.ReactNode;
     /**
      * バナーの説明文
      */
-    description?: string;
+    description?: React.ReactNode;
     /**
      * バナーのステータス
      */

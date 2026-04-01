@@ -1,4 +1,10 @@
 import { default as React, Component, ErrorInfo, ReactNode } from '../../../../node_modules/react';
+export type ErrorBoundaryLabels = {
+    title?: string;
+    retry?: string;
+    showDetails?: string;
+    hideDetails?: string;
+};
 export interface ErrorBoundaryProps {
     /** エラーが発生した時に表示されるコンポーネントまたは要素。
      * 関数が渡された場合は (error, errorInfo, reset) => ReactNode として呼び出されます。
@@ -8,6 +14,8 @@ export interface ErrorBoundaryProps {
     onError?: (error: Error, errorInfo: ErrorInfo) => void;
     /** エラーがリセットされた時に呼び出されるコールバック。 */
     onReset?: () => void;
+    /** 手動翻訳用のラベル。 */
+    labels?: ErrorBoundaryLabels;
     /** 子要素。 */
     children: ReactNode;
 }

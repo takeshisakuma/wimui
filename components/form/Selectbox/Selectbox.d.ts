@@ -1,19 +1,20 @@
+import { default as React } from '../../../../node_modules/react';
 export type SelectboxOption = {
-    label?: string;
+    label?: React.ReactNode;
     value?: string;
     disabled?: boolean;
     group?: string;
     type?: "option" | "separator";
 };
 export type SelectboxOptionGroup = {
-    label: string;
+    label: React.ReactNode;
     options: SelectboxOption[];
 };
 export type SelectboxProps = {
     options: SelectboxOption[] | SelectboxOptionGroup[];
     value?: string;
     onChange?: (value: string) => void;
-    placeholder?: string;
+    placeholder?: React.ReactNode;
     label?: string;
     className?: string;
     disabled?: boolean;
@@ -38,8 +39,9 @@ export type SelectboxProps = {
     "aria-label"?: string;
     "aria-labelledby"?: string;
     "aria-describedby"?: string;
+    noOptionsFoundLabel?: string;
 };
 /**
  * ユーザーが定義済みの選択肢から1つを選択するためのプルダウンメニュー。
  */
-export declare const Selectbox: ({ options, value, onChange, placeholder, label, error, required, layout, className, disabled, defaultValue, searchable, searchPlaceholder, filterOption, grouped, allowClear, fullWidth, id: customId, ...props }: SelectboxProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Selectbox: ({ options, value, onChange, placeholder, label, error, required, layout, className, disabled, defaultValue, searchable, searchPlaceholder, filterOption, grouped, allowClear, fullWidth, id: customId, noOptionsFoundLabel, ...props }: SelectboxProps) => import("react/jsx-runtime").JSX.Element;

@@ -1,4 +1,9 @@
+import { default as React } from '../../../../node_modules/react';
 import { ComponentSize } from '../../../types/tokens';
+export type RatingLabels = {
+    star?: (count: number) => string;
+    readonly?: (value: number, max: number) => string;
+};
 type RatingProps = {
     /**
      * 現在の値
@@ -39,7 +44,7 @@ type RatingProps = {
     /**
      * アクセシビリティ用のラベル
      */
-    label?: string;
+    label?: React.ReactNode;
     /**
      * エラーメッセージ
      */
@@ -52,9 +57,13 @@ type RatingProps = {
      * レイアウト方向
      */
     layout?: "vertical" | "horizontal";
+    /**
+     * Labels for internationalization
+     */
+    labels?: RatingLabels;
 };
 /**
  * ユーザーが評価を入力するためのレーティングコンポーネント。
  */
-export declare const Rating: ({ value, defaultValue, count, allowHalf, disabled, readOnly, size, onChange, className, label, error, required, layout, ...props }: RatingProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Rating: ({ value, defaultValue, count, allowHalf, disabled, readOnly, size, onChange, className, label, error, required, layout, labels, ...props }: RatingProps) => import("react/jsx-runtime").JSX.Element;
 export {};

@@ -26,6 +26,18 @@ export interface PaginationProps {
     showTotal?: (total: number, range: [number, number]) => React.ReactNode;
     /** Whether to show quick jumper */
     showQuickJumper?: boolean;
+    /** Labels for internationalization */
+    labels?: {
+        prevPage?: string;
+        nextPage?: string;
+        pageAriaLabel?: (page: number) => string;
+        itemsPerPage?: string;
+        goTo?: string;
+        pageSizeAriaLabel?: string;
+        jumpToPageAriaLabel?: string;
+        navAriaLabel?: string;
+        totalLabel?: string;
+    };
 }
-export declare const Pagination: ({ total, pageSize, current, onChange, onPageSizeChange, siblingCount, className, hideOnSinglePage, simple, showSizeChanger, pageSizeOptions, showTotal, showQuickJumper, }: PaginationProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const Pagination: ({ total, pageSize, current, onChange, onPageSizeChange, siblingCount, className, hideOnSinglePage, simple, showSizeChanger, pageSizeOptions, showTotal, showQuickJumper, labels, }: PaginationProps) => import("react/jsx-runtime").JSX.Element | null;
 export default Pagination;

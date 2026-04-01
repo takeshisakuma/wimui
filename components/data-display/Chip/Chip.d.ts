@@ -21,6 +21,8 @@ export type ChipProps = {
     variant?: "solid" | "outline" | "subtle";
     /** サイズ */
     size?: ComponentSize;
+    /** 削除ボタンのアクセシビリティラベル */
+    deleteAriaLabel?: string;
     /** 追加のクラス名 */
     className?: string;
     /** その他のprops */
@@ -29,4 +31,4 @@ export type ChipProps = {
 /**
  * 選択、フィルタリング、または入力に使用されるインタラクティブなトークン。
  */
-export declare const Chip: ({ children, onClick, onDelete, avatar, icon, selected, disabled, status, variant, size, className, ...props }: ChipProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Chip: ({ children, onClick, onDelete, avatar, icon, selected, disabled, status, variant, size, deleteAriaLabel, className, ...props }: ChipProps) => import("react/jsx-runtime").JSX.Element;

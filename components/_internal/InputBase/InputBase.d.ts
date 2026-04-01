@@ -21,14 +21,16 @@ export type InputBaseProps = {
     leftIcon?: React.ComponentProps<typeof Icon>["name"];
     leftIconColor?: React.ComponentProps<typeof Icon>["color"];
     onLeftIconClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    leftIconAriaLabel?: string;
     rightIcons?: InputBaseIcon[];
     /** Whether to show a clear button when value is present */
     allowClear?: boolean;
     hasValue?: boolean;
     onClear?: () => void;
+    clearAriaLabel?: string;
 };
 /**
  * フォーム入力コンポーネント（Input, SearchInput, Selectbox等）の外殻となる共用語コンポーネント。
  * prefix/suffix（アイコン）や clearable（クリアボタン）の配置とレイアウトを統一します。
  */
-export declare const InputBase: ({ children, status, variant, fullWidth, width, className, disabled, leftIcon, leftIconColor, onLeftIconClick, rightIcons, allowClear, hasValue, onClear, }: InputBaseProps) => import("react/jsx-runtime").JSX.Element;
+export declare const InputBase: ({ children, status, variant, fullWidth, width, className, disabled, leftIcon, leftIconColor, onLeftIconClick, leftIconAriaLabel, rightIcons, allowClear, hasValue, onClear, clearAriaLabel, }: InputBaseProps) => import("react/jsx-runtime").JSX.Element;

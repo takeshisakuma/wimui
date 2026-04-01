@@ -31,7 +31,9 @@ export interface SplitterHandleProps extends React.ComponentPropsWithoutRef<"div
     active?: boolean;
 }
 declare const SplitterHandle: {
-    ({ index, active, className, ...props }: SplitterHandleProps): import("react/jsx-runtime").JSX.Element;
+    ({ index, active, className, ariaLabel, ...props }: SplitterHandleProps & {
+        ariaLabel?: string;
+    }): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 declare const SplitterRoot: typeof Splitter & {

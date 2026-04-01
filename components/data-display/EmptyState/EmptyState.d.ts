@@ -1,13 +1,13 @@
 import { default as React } from '../../../../node_modules/react';
 type EmptyStateProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
-     * 表示するタイトル（翻訳キーも可）。
+     * 表示するタイトル。
      */
-    title: string;
+    title: React.ReactNode;
     /**
-     * 表示する説明文（翻訳キーも可）。
+     * 表示する説明文。
      */
-    description?: string;
+    description?: React.ReactNode;
     /**
      * 表示するアイコン。
      */

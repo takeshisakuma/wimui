@@ -1,7 +1,8 @@
+import { default as React } from '../../../../node_modules/react';
 export type QueryFieldType = "string" | "number" | "date" | "boolean";
 export interface QueryField {
     name: string;
-    label: string;
+    label: React.ReactNode;
     type: QueryFieldType;
 }
 export interface QueryRule {
@@ -15,6 +16,24 @@ export interface QueryGroup {
     combinator: "and" | "or";
     not: boolean;
     rules: (QueryRule | QueryGroup)[];
+}
+export interface QueryBuilderLabels {
+    ruleAdded?: string;
+    groupAdded?: string;
+    removed?: string;
+    ruleAriaLabel?: string;
+    fieldAriaLabel?: string;
+    operatorAriaLabel?: string;
+    valueAriaLabel?: string;
+    trueLabel?: string;
+    falseLabel?: string;
+    removeRuleAriaLabel?: string;
+    removeGroupAriaLabel?: string;
+    addRuleLabel?: string;
+    addGroupLabel?: string;
+    regionAriaLabel?: string;
+    combinatorAriaLabel?: string;
+    operators?: Record<string, string>;
 }
 export interface QueryBuilderProps {
     /**
@@ -45,8 +64,12 @@ export interface QueryBuilderProps {
      * Unique ID for the component
      */
     id?: string;
+    /**
+     * Labels for internationalization
+     */
+    labels?: QueryBuilderLabels;
 }
 /**
  * 複雑な検索条件をネスト状に組み立てるためのクエリビルダーコンポーネント。
  */
-export declare const QueryBuilder: ({ fields, query, defaultQuery, onChange, maxDepth, className, id: customId, }: QueryBuilderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const QueryBuilder: ({ fields, query, defaultQuery, onChange, maxDepth, className, id: customId, labels, }: QueryBuilderProps) => import("react/jsx-runtime").JSX.Element;

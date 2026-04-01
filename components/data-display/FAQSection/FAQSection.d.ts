@@ -2,11 +2,11 @@ import { default as React } from '../../../../node_modules/react';
 import { AccordionProps } from '../../data-display/Accordion/Accordion';
 export interface FAQItem {
     /**
-     * 質問。直前に翻訳キーを渡すか、翻訳済みの文字列を渡します。
+     * 質問。
      */
-    question: string;
+    question: React.ReactNode;
     /**
-     * 回答。React.ReactNodeを渡せます。文字列の場合は翻訳対象となります。
+     * 回答。
      */
     answer: React.ReactNode;
 }
@@ -18,11 +18,11 @@ export interface FAQSectionProps {
     /**
      * セクションのメインタイトル。
      */
-    title?: string;
+    title?: React.ReactNode;
     /**
      * タイトルの下に表示される補足説明。
      */
-    description?: string;
+    description?: React.ReactNode;
     /**
      * レイアウト。
      * - top: タイトルと説明をアコーディオンの上に配置。

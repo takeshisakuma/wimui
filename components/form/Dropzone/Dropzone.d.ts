@@ -4,11 +4,11 @@ type DropzoneProps = {
     /**
      * コンポーネントのラベル。
      */
-    label?: string;
+    label?: React.ReactNode;
     /**
      * ドラッグ＆ドロップエリアに表示する説明テキスト。
      */
-    description?: string;
+    description?: React.ReactNode;
     /**
      * 受け付けるファイル形式（例: ".jpg,.png"）。
      */

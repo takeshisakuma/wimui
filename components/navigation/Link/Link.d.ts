@@ -2,7 +2,7 @@ import { default as React } from '../../../../node_modules/react';
 import { Icon } from '../../media/Icon/Icon';
 import { ComponentSize } from '../../../types/tokens';
 type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
-    label?: string;
+    label?: React.ReactNode;
     size?: ComponentSize;
     priority?: "primary" | "secondary" | "tertiary";
     iconName?: React.ComponentProps<typeof Icon>["name"];

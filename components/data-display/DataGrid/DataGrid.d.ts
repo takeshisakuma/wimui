@@ -17,6 +17,12 @@ export interface DataGridColumn<T> {
     /** Whether the column is fixed to the left or right */
     fixed?: boolean | "left" | "right";
 }
+export type DataGridLabels = {
+    empty?: React.ReactNode;
+    selectAllRows?: string;
+    selectRow?: (index: number) => string;
+    loadingMore?: string;
+};
 export interface DataGridProps<T> {
     /** Column definitions */
     columns: DataGridColumn<T>[];
@@ -71,8 +77,8 @@ export interface DataGridProps<T> {
     className?: string;
     /** Message to show when data is empty */
     emptyMessage?: React.ReactNode;
-    /** Accessibility label for selecting all rows */
-    a11y_select_all_rows?: string;
+    /** 手動翻訳用のラベル */
+    labels?: DataGridLabels;
 }
-export declare function DataGrid<T extends Record<string, unknown>>({ columns, rows, loading, selection, selectedRowKeys, onSelectionChange, rowKey, sortConfig, onSort, pagination, loadMore, striped, bordered, hoverable, stickyHeader, height, maxHeight, mobileCard, className, emptyMessage, a11y_select_all_rows, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
+export declare function DataGrid<T extends Record<string, unknown>>({ columns, rows, loading, selection, selectedRowKeys, onSelectionChange, rowKey, sortConfig, onSort, pagination, loadMore, striped, bordered, hoverable, stickyHeader, height, maxHeight, mobileCard, className, emptyMessage, labels, }: DataGridProps<T>): import("react/jsx-runtime").JSX.Element;
 export default DataGrid;

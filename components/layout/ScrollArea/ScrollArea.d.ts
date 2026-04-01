@@ -1,6 +1,6 @@
 import { default as React } from '../../../../node_modules/react';
 type ScrollAreaProps = React.ComponentPropsWithoutRef<"div"> & {
-    text?: string;
+    text?: React.ReactNode;
     children?: React.ReactNode;
     scrollAxis?: "x" | "y" | "both";
     maxHeight?: string;

@@ -1,4 +1,23 @@
 import { default as React } from '../../../../../node_modules/react';
+export type AudioLabels = {
+    seek?: string;
+    mute?: string;
+    unmute?: string;
+    volume?: string;
+    play?: string;
+    pause?: string;
+    next?: string;
+    prev?: string;
+    repeatMode0?: string;
+    repeatMode1?: string;
+    repeatMode2?: string;
+    shuffle?: string;
+    playbackSpeed?: string;
+    bassBoost?: string;
+    sleepTimer?: string;
+    unknownTitle?: string;
+    unknownArtist?: string;
+};
 interface AudioCustomControlsProps {
     isPlaying: boolean;
     currentTime: number;
@@ -24,6 +43,7 @@ interface AudioCustomControlsProps {
     playNext: (dir: 1 | -1) => void;
     toggleSleepTimer: () => void;
     formatTime: (time: number) => string;
+    labels?: AudioLabels;
 }
-export declare function AudioCustomControls({ isPlaying, currentTime, duration, volume, isMuted, repeatMode, shuffleMode, currentPlaybackRate, isBassBoost, remainingSleepTime, playbackRate, presets, sleepTimer, setRepeatMode, setShuffleMode, setCurrentPlaybackRate, setIsBassBoost, setIsMuted, togglePlay, handleSeek, handleVolumeChange, playNext, toggleSleepTimer, formatTime, }: AudioCustomControlsProps): import("react/jsx-runtime").JSX.Element;
+export declare function AudioCustomControls({ isPlaying, currentTime, duration, volume, isMuted, repeatMode, shuffleMode, currentPlaybackRate, isBassBoost, remainingSleepTime, playbackRate, presets, sleepTimer, setRepeatMode, setShuffleMode, setCurrentPlaybackRate, setIsBassBoost, setIsMuted, togglePlay, handleSeek, handleVolumeChange, playNext, toggleSleepTimer, formatTime, labels, }: AudioCustomControlsProps): import("react/jsx-runtime").JSX.Element;
 export {};

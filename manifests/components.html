@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.3s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.4s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -1351,7 +1351,7 @@ className?: string
 /**
  * アラートの説明文
  */
-description?: string
+description?: React.ReactNode
 
 /**
  * カスタムアイコン。指定しない場合はバリアントに応じたデフォルトアイコンが表示されます。
@@ -1371,7 +1371,7 @@ status?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;er
 /**
  * アラートのタイトル
  */
-title?: string</code></pre>
+title?: React.ReactNode</code></pre>
           </div>
         </div>
     
@@ -3373,7 +3373,7 @@ npm run test -- AspectRatio
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Audio</h2>
       <div class="badges">
-        <label for="c-7-components-media-audio-props" class="badge ok as-toggle">22 prop types</label>
+        <label for="c-7-components-media-audio-props" class="badge ok as-toggle">23 prop types</label>
         <label for="c-7-components-media-audio-info" class="badge info as-toggle">1 info</label>
         <label for="c-7-components-media-audio-stories" class="badge ok as-toggle">7 stories</label>
         <label for="c-7-components-media-audio-docs" class="badge ok as-toggle">1 doc</label>
@@ -3407,7 +3407,7 @@ npm run test -- AspectRatio
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">22 prop types</span>
+              <span class="badge ok">23 prop types</span>
             </div>
             <pre><code>Component: src/components/media/Audio/Audio.tsx::Audio</code></pre>
             <pre><code>Props:</code></pre>
@@ -3415,7 +3415,7 @@ npm run test -- AspectRatio
 
 border?: boolean = false
 
-caption?: string
+caption?: React.ReactNode
 
 controls?: boolean = true
 
@@ -3433,6 +3433,29 @@ fadeIn?: boolean | number = false
 fadeOut?: boolean | number = false
 
 hotkeys?: boolean = false
+
+/**
+ * 手動翻訳用のラベル
+ */
+labels?: {
+  seek?: string;
+  mute?: string;
+  unmute?: string;
+  volume?: string;
+  play?: string;
+  pause?: string;
+  next?: string;
+  prev?: string;
+  repeatMode0?: string; // Off
+  repeatMode1?: string; // One
+  repeatMode2?: string; // All
+  shuffle?: string;
+  playbackSpeed?: string;
+  bassBoost?: string;
+  sleepTimer?: string;
+  unknownTitle?: string;
+  unknownArtist?: string;
+} = {}
 
 /**
  * 読み込み設定。&quot;lazy&quot; の場合に Intersection Observer が有効化されます
@@ -5220,7 +5243,7 @@ className?: string
 /**
  * バナーの説明文
  */
-description?: string
+description?: React.ReactNode
 
 /**
  * アクションボタン要素（例：Buttonコンポーネント）
@@ -5245,7 +5268,7 @@ status?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;er
 /**
  * バナーのタイトル
  */
-title?: string</code></pre>
+title?: React.ReactNode</code></pre>
           </div>
         </div>
     
@@ -7134,7 +7157,7 @@ npm run test -- Box
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Breadcrumb</h2>
       <div class="badges">
-        <label for="c-18-components-navigation-elements-breadcrumb-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-18-components-navigation-elements-breadcrumb-props" class="badge ok as-toggle">5 prop types</label>
         <label for="c-18-components-navigation-elements-breadcrumb-info" class="badge info as-toggle">1 info</label>
         <label for="c-18-components-navigation-elements-breadcrumb-stories" class="badge ok as-toggle">5 stories</label>
         <label for="c-18-components-navigation-elements-breadcrumb-docs" class="badge ok as-toggle">1 doc</label>
@@ -7168,11 +7191,13 @@ npm run test -- Box
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">4 prop types</span>
+              <span class="badge ok">5 prop types</span>
             </div>
             <pre><code>Component: src/components/navigation/Breadcrumb/Breadcrumb.tsx::Breadcrumb</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>className?: string
+            <pre><code>ariaLabel?: string = &quot;Breadcrumb&quot;
+
+className?: string
 
 items: BreadcrumbItem[]
 
@@ -7549,7 +7574,7 @@ intent?: &quot;default&quot; | &quot;destructive&quot; | &quot;positive&quot; = 
 
 justify?: &quot;start&quot; | &quot;center&quot; | &quot;end&quot; | &quot;between&quot; = &quot;center&quot;
 
-label?: string
+label?: React.ReactNode
 
 loading?: boolean = false
 
@@ -8439,7 +8464,7 @@ npm run test -- ButtonGroup
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Calendar</h2>
       <div class="badges">
-        <label for="c-21-components-data-indicators-calendar-props" class="badge ok as-toggle">14 prop types</label>
+        <label for="c-21-components-data-indicators-calendar-props" class="badge ok as-toggle">15 prop types</label>
         
         <label for="c-21-components-data-indicators-calendar-stories" class="badge ok as-toggle">4 stories</label>
         <label for="c-21-components-data-indicators-calendar-docs" class="badge ok as-toggle">1 doc</label>
@@ -8466,7 +8491,7 @@ npm run test -- ButtonGroup
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">14 prop types</span>
+              <span class="badge ok">15 prop types</span>
             </div>
             <pre><code>Component: src/components/data-display/Calendar/Calendar.tsx::Calendar</code></pre>
             <pre><code>Props:</code></pre>
@@ -8499,6 +8524,23 @@ disabledDates?: Date[]
  * 特定の日付を無効化する関数。
  */
 isDateDisabled?: (date: Date) =&gt; boolean
+
+/**
+ * 手動翻訳用のラベル。
+ */
+labels?: {
+  sun?: string;
+  mon?: string;
+  tue?: string;
+  wed?: string;
+  thu?: string;
+  fri?: string;
+  sat?: string;
+  prevMonth?: string;
+  nextMonth?: string;
+  title?: (year: number, month: number) =&gt; string;
+  ariaDate?: (year: number, month: number, day: number) =&gt; string;
+}
 
 /**
  * 選択可能な最大日付。
@@ -9301,7 +9343,7 @@ npm run test -- Card
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Carousel</h2>
       <div class="badges">
-        <label for="c-23-components-media-carousel-props" class="badge ok as-toggle">10 prop types</label>
+        <label for="c-23-components-media-carousel-props" class="badge ok as-toggle">11 prop types</label>
         
         <label for="c-23-components-media-carousel-stories" class="badge ok as-toggle">8 stories</label>
         <label for="c-23-components-media-carousel-docs" class="badge ok as-toggle">1 doc</label>
@@ -9328,7 +9370,7 @@ npm run test -- Card
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">10 prop types</span>
+              <span class="badge ok">11 prop types</span>
             </div>
             <pre><code>Component: src/components/data-display/Carousel/Carousel.tsx::Carousel</code></pre>
             <pre><code>Props:</code></pre>
@@ -9356,6 +9398,16 @@ className?: string
  * 自動再生の間隔（ミリ秒）
  */
 interval?: number = 5000
+
+/**
+ * 手動翻訳用のラベル。
+ */
+labels?: {
+  slideLabel?: (number: number) =&gt; string;
+  prevSlide?: string;
+  nextSlide?: string;
+  goToSlide?: (number: number) =&gt; string;
+}
 
 /**
  * 無限ループするかどうか（シームレスな切り替え）
@@ -10084,7 +10136,7 @@ expandTrigger?: &quot;click&quot; | &quot;hover&quot; = &quot;click&quot;
 
 id?: string
 
-label?: string
+label?: React.ReactNode
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
 
@@ -10092,7 +10144,7 @@ onChange?: (value: string[], selectedOptions: CascaderOption[]) =&gt; void
 
 options?: CascaderOption[] = []
 
-placeholder?: string
+placeholder?: React.ReactNode = &quot;Select option&quot;
 
 required?: boolean
 
@@ -12028,7 +12080,7 @@ import { T } from &quot;../T&quot;;
 
 indeterminate?: boolean = false
 
-label?: string</code></pre>
+label?: React.ReactNode</code></pre>
           </div>
         </div>
     
@@ -12634,7 +12686,7 @@ npm run test -- CheckboxGroup
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Chip</h2>
       <div class="badges">
-        <label for="c-30-components-selection-controls-chip-props" class="badge ok as-toggle">11 prop types</label>
+        <label for="c-30-components-selection-controls-chip-props" class="badge ok as-toggle">12 prop types</label>
         
         <label for="c-30-components-selection-controls-chip-stories" class="badge ok as-toggle">7 stories</label>
         <label for="c-30-components-selection-controls-chip-docs" class="badge ok as-toggle">1 doc</label>
@@ -12661,7 +12713,7 @@ npm run test -- CheckboxGroup
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">11 prop types</span>
+              <span class="badge ok">12 prop types</span>
             </div>
             <pre><code>Component: src/components/data-display/Chip/Chip.tsx::Chip</code></pre>
             <pre><code>Props:</code></pre>
@@ -12679,6 +12731,11 @@ children?: React.ReactNode
  * 追加のクラス名
  */
 className?: string
+
+/**
+ * 削除ボタンのアクセシビリティラベル
+ */
+deleteAriaLabel?: string = &quot;Delete&quot;
 
 /**
  * 無効状態
@@ -13841,7 +13898,7 @@ npm run test -- ColorPicker
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Combobox</h2>
       <div class="badges">
-        <label for="c-34-components-selection-controls-combobox-props" class="badge ok as-toggle">13 prop types</label>
+        <label for="c-34-components-selection-controls-combobox-props" class="badge ok as-toggle">14 prop types</label>
         
         <label for="c-34-components-selection-controls-combobox-stories" class="badge ok as-toggle">3 stories</label>
         <label for="c-34-components-selection-controls-combobox-docs" class="badge ok as-toggle">1 doc</label>
@@ -13868,7 +13925,7 @@ npm run test -- ColorPicker
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">13 prop types</span>
+              <span class="badge ok">14 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Combobox/Combobox.tsx::Combobox</code></pre>
             <pre><code>Props:</code></pre>
@@ -13884,7 +13941,11 @@ error?: string
 
 id?: string
 
-label?: string
+label?: React.ReactNode
+
+labels?: {
+  noResults?: React.ReactNode;
+} = {}
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
 
@@ -13892,7 +13953,7 @@ onSelect?: (option: ComboboxOption) =&gt; void
 
 options?: ComboboxOption[] = []
 
-placeholder?: string = &quot;select.option&quot;
+placeholder?: string = &quot;Select option&quot;
 
 required?: boolean
 
@@ -15506,7 +15567,7 @@ npm run test -- ContextMenu
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> CopyButton</h2>
       <div class="badges">
-        <label for="c-38-components-buttons-copybutton-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-38-components-buttons-copybutton-props" class="badge ok as-toggle">6 prop types</label>
         <label for="c-38-components-buttons-copybutton-info" class="badge info as-toggle">1 info</label>
         <label for="c-38-components-buttons-copybutton-stories" class="badge ok as-toggle">3 stories</label>
         <label for="c-38-components-buttons-copybutton-docs" class="badge ok as-toggle">1 doc</label>
@@ -15540,13 +15601,17 @@ npm run test -- ContextMenu
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">4 prop types</span>
+              <span class="badge ok">6 prop types</span>
             </div>
             <pre><code>Component: src/components/misc/CopyButton/CopyButton.tsx::CopyButton</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>aria-label?: string
 
 className?: string
+
+copiedLabel?: string = &quot;Copied&quot;
+
+copyLabel?: string = &quot;Copy to clipboard&quot;
 
 size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;
 
@@ -15799,11 +15864,6 @@ npm run test -- CopyButton
             <pre><code>Component: src/components/data-display/DataGrid/DataGrid.tsx::DataGrid</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Accessibility label for selecting all rows
- */
-a11y_select_all_rows?: string
-
-/**
  * Whether to show borders
  */
 bordered?: boolean = false
@@ -15832,6 +15892,16 @@ height?: string | number
  * Whether to highlight rows on hover
  */
 hoverable?: boolean = true
+
+/**
+ * 手動翻訳用のラベル
+ */
+labels?: {
+  empty?: React.ReactNode;
+  selectAllRows?: string;
+  selectRow?: (index: number) =&gt; string;
+  loadingMore?: string;
+}
 
 /**
  * Loading state
@@ -17001,7 +17071,7 @@ npm run test -- DataGrid
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DatePicker</h2>
       <div class="badges">
-        <label for="c-40-components-pickers-sliders-datepicker-props" class="badge ok as-toggle">16 prop types</label>
+        <label for="c-40-components-pickers-sliders-datepicker-props" class="badge ok as-toggle">17 prop types</label>
         
         <label for="c-40-components-pickers-sliders-datepicker-stories" class="badge ok as-toggle">6 stories</label>
         <label for="c-40-components-pickers-sliders-datepicker-docs" class="badge ok as-toggle">1 doc</label>
@@ -17028,7 +17098,7 @@ npm run test -- DataGrid
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">16 prop types</span>
+              <span class="badge ok">17 prop types</span>
             </div>
             <pre><code>Component: src/components/form/DatePicker/DatePicker.tsx::DatePicker</code></pre>
             <pre><code>Props:</code></pre>
@@ -17057,6 +17127,14 @@ format?: string = &quot;YYYY-MM-DD&quot;
 fullWidth?: boolean = false
 
 label?: string
+
+/**
+ * 手動翻訳用のラベル
+ */
+labels?: {
+  placeholder?: string;
+  calendarLabels?: import(&quot;../../data-display/Calendar/Calendar&quot;).CalendarLabels;
+}
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
 
@@ -19426,7 +19504,7 @@ className?: string
 /**
  * ドラッグ＆ドロップエリアに表示する説明テキスト。
  */
-description?: string
+description?: React.ReactNode = &quot;Drag and drop files here, or click to select&quot;
 
 /**
  * 無効状態にするかどうか。
@@ -19446,7 +19524,7 @@ iconName?: React.ComponentProps&lt;typeof Icon&gt;[&quot;name&quot;] = &quot;Upl
 /**
  * コンポーネントのラベル。
  */
-label?: string
+label?: React.ReactNode
 
 /**
  * レイアウト方向
@@ -19780,9 +19858,9 @@ npm run test -- Dropzone
             <pre><code>Component: src/components/data-display/EmptyState/EmptyState.tsx::EmptyState</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * 表示する説明文（翻訳キーも可）。
+ * 表示する説明文。
  */
-description?: string
+description?: React.ReactNode
 
 /**
  * アクションとして表示する要素（ボタンなど）。
@@ -19795,9 +19873,9 @@ extra?: React.ReactNode
 icon?: React.ReactNode
 
 /**
- * 表示するタイトル（翻訳キーも可）。
+ * 表示するタイトル。
  */
-title: string
+title: React.ReactNode
 
 /**
  * デザインバリエーション。
@@ -20138,7 +20216,7 @@ npm run test -- EmptyState
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ErrorBoundary</h2>
       <div class="badges">
-        <label for="c-49-components-utilities-errorboundary-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-49-components-utilities-errorboundary-props" class="badge ok as-toggle">5 prop types</label>
         
         <label for="c-49-components-utilities-errorboundary-stories" class="badge ok as-toggle">2 stories</label>
         <label for="c-49-components-utilities-errorboundary-docs" class="badge ok as-toggle">1 doc</label>
@@ -20165,7 +20243,7 @@ npm run test -- EmptyState
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">4 prop types</span>
+              <span class="badge ok">5 prop types</span>
             </div>
             <pre><code>Component: src/components/feedback/ErrorBoundary/ErrorBoundary.tsx::ErrorBoundary</code></pre>
             <pre><code>Props:</code></pre>
@@ -20180,6 +20258,16 @@ children: ReactNode
  */
 fallback?: | ReactNode
 | ((error: Error, errorInfo: ErrorInfo | null, reset: () =&gt; void) =&gt; ReactNode)
+
+/**
+ * 手動翻訳用のラベル。
+ */
+labels?: {
+  title?: string;
+  retry?: string;
+  showDetails?: string;
+  hideDetails?: string;
+}
 
 /**
  * エラーが発生した時に呼び出されるコールバック。
@@ -20520,7 +20608,7 @@ className?: string
 /**
  * タイトルの下に表示される補足説明。
  */
-description?: string
+description?: React.ReactNode
 
 /**
  * FAQの各項目。
@@ -20537,7 +20625,7 @@ layout?: &quot;top&quot; | &quot;left&quot; = &quot;top&quot;
 /**
  * セクションのメインタイトル。
  */
-title?: string</code></pre>
+title?: React.ReactNode</code></pre>
           </div>
         </div>
     
@@ -20965,7 +21053,7 @@ npm run test -- FieldError
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> FieldLabelContent</h2>
       <div class="badges">
-        <label for="c-52-components-internal-fieldlabelcontent-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-52-components-internal-fieldlabelcontent-props" class="badge ok as-toggle">6 prop types</label>
         <label for="c-52-components-internal-fieldlabelcontent-info" class="badge info as-toggle">1 info</label>
         <label for="c-52-components-internal-fieldlabelcontent-stories" class="badge ok as-toggle">3 stories</label>
         <label for="c-52-components-internal-fieldlabelcontent-docs" class="badge ok as-toggle">1 doc</label>
@@ -20999,15 +21087,19 @@ npm run test -- FieldError
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">4 prop types</span>
+              <span class="badge ok">6 prop types</span>
             </div>
             <pre><code>Component: src/components/_internal/FieldLabelContent.tsx::FieldLabelContent</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>className?: string
 
-label: string
+label: React.ReactNode
+
+optionalLabel?: React.ReactNode = &quot;optional&quot;
 
 required?: boolean = false
+
+requiredLabel?: React.ReactNode = &quot;required&quot;
 
 showOptional?: boolean = false</code></pre>
           </div>
@@ -21477,7 +21569,7 @@ errorId?: string
 /**
  * フィールドのラベルテキスト
  */
-label?: string
+label?: React.ReactNode
 
 /**
  * アクセシビリティ用のラベルID
@@ -21678,7 +21770,7 @@ import * as Stories from &quot;./FieldTemplate.stories&quot;;
             <pre><code>Props:</code></pre>
             <pre><code>accept?: string
 
-buttonLabel?: string
+buttonLabel?: React.ReactNode = &quot;Choose File&quot;
 
 className?: string
 
@@ -21690,13 +21782,13 @@ iconName?: React.ComponentProps&lt;typeof Icon&gt;[&quot;name&quot;]
 
 iconPosition?: &quot;left&quot; | &quot;right&quot;
 
-label?: string
+label?: React.ReactNode
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot; = &quot;vertical&quot;
 
 multiple?: boolean = false
 
-noFileLabel?: string
+noFileLabel?: React.ReactNode = &quot;No file chosen&quot;
 
 onChange?: (files: FileList | null) =&gt; void
 
@@ -22414,7 +22506,7 @@ className?: string
 /**
  * Description for tooltip
  */
-description?: string
+description?: React.ReactNode
 
 /**
  * Icon name from the library
@@ -22429,7 +22521,7 @@ iconName?: | &quot;CircleIcon&quot;
 /**
  * Label text for extended FAB
  */
-label?: string
+label?: React.ReactNode
 
 /**
  * Position of the button
@@ -23682,7 +23774,7 @@ import { T } from &quot;../T&quot;;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> GanttChart</h2>
       <div class="badges">
-        <label for="c-61-components-data-structures-ganttchart-props" class="badge ok as-toggle">8 prop types</label>
+        <label for="c-61-components-data-structures-ganttchart-props" class="badge ok as-toggle">9 prop types</label>
         <label for="c-61-components-data-structures-ganttchart-info" class="badge info as-toggle">1 info</label>
         <label for="c-61-components-data-structures-ganttchart-stories" class="badge ok as-toggle">4 stories</label>
         <label for="c-61-components-data-structures-ganttchart-docs" class="badge ok as-toggle">1 doc</label>
@@ -23716,7 +23808,7 @@ import { T } from &quot;../T&quot;;
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">8 prop types</span>
+              <span class="badge ok">9 prop types</span>
             </div>
             <pre><code>Component: src/components/charts/GanttChart/GanttChart.tsx::GanttChart</code></pre>
             <pre><code>Props:</code></pre>
@@ -23725,6 +23817,14 @@ import { T } from &quot;../T&quot;;
 columnWidth?: number
 
 endDate?: Date
+
+/**
+ * 手動翻訳用のラベル
+ */
+labels?: {
+  ariaChart?: string;
+  ariaTaskBar?: (label: string, start: string, end: string) =&gt; string;
+}
 
 onTaskClick?: (task: GanttTask) =&gt; void
 
@@ -29708,7 +29808,7 @@ npm run test -- InfiniteScroll
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Input</h2>
       <div class="badges">
-        <label for="c-77-components-basic-inputs-input-props" class="badge ok as-toggle">19 prop types</label>
+        <label for="c-77-components-basic-inputs-input-props" class="badge ok as-toggle">22 prop types</label>
         
         <label for="c-77-components-basic-inputs-input-stories" class="badge ok as-toggle">10 stories</label>
         <label for="c-77-components-basic-inputs-input-docs" class="badge ok as-toggle">1 doc</label>
@@ -29735,7 +29835,7 @@ npm run test -- InfiniteScroll
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">19 prop types</span>
+              <span class="badge ok">22 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Input/Input.tsx::Input</code></pre>
             <pre><code>Props:</code></pre>
@@ -29745,9 +29845,11 @@ error?: string
 
 fullWidth?: boolean = false
 
+hidePasswordAriaLabel?: string = &quot;Hide password&quot;
+
 inputClassName?: string
 
-label?: string
+label?: React.ReactNode
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
 
@@ -29763,11 +29865,15 @@ required?: boolean
 
 rightIcon?: React.ComponentProps&lt;typeof Icon&gt;[&quot;name&quot;]
 
+rightIconAriaLabel?: string = &quot;Action&quot;
+
 rightIconClassName?: string
 
 rightIconColor?: React.ComponentProps&lt;typeof Icon&gt;[&quot;color&quot;]
 
 rightIconRotated?: boolean
+
+showPasswordAriaLabel?: string = &quot;Show password&quot;
 
 showPasswordToggle?: boolean = true
 
@@ -30255,7 +30361,7 @@ npm run test -- Input
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> InputBase</h2>
       <div class="badges">
-        <label for="c-78-components-internal-inputbase-props" class="badge ok as-toggle">14 prop types</label>
+        <label for="c-78-components-internal-inputbase-props" class="badge ok as-toggle">16 prop types</label>
         
         <label for="c-78-components-internal-inputbase-stories" class="badge ok as-toggle">6 stories</label>
         <label for="c-78-components-internal-inputbase-docs" class="badge ok as-toggle">1 doc</label>
@@ -30282,7 +30388,7 @@ npm run test -- Input
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">14 prop types</span>
+              <span class="badge ok">16 prop types</span>
             </div>
             <pre><code>Component: src/components/_internal/InputBase/InputBase.tsx::InputBase</code></pre>
             <pre><code>Props:</code></pre>
@@ -30295,6 +30401,8 @@ children: React.ReactNode
 
 className?: string
 
+clearAriaLabel?: string = &quot;Clear input&quot;
+
 disabled?: boolean
 
 fullWidth?: boolean = false
@@ -30302,6 +30410,8 @@ fullWidth?: boolean = false
 hasValue?: boolean
 
 leftIcon?: React.ComponentProps&lt;typeof Icon&gt;[&quot;name&quot;]
+
+leftIconAriaLabel?: string = &quot;Action&quot;
 
 leftIconColor?: React.ComponentProps&lt;typeof Icon&gt;[&quot;color&quot;]
 
@@ -31413,7 +31523,7 @@ npm run test -- InteractiveArea
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> KanbanBoard</h2>
       <div class="badges">
-        <label for="c-82-components-data-structures-kanban-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-82-components-data-structures-kanban-props" class="badge ok as-toggle">3 prop types</label>
         <label for="c-82-components-data-structures-kanban-info" class="badge info as-toggle">1 info</label>
         <label for="c-82-components-data-structures-kanban-stories" class="badge ok as-toggle">3 stories</label>
         <label for="c-82-components-data-structures-kanban-docs" class="badge ok as-toggle">1 doc</label>
@@ -31447,7 +31557,7 @@ npm run test -- InteractiveArea
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">2 prop types</span>
+              <span class="badge ok">3 prop types</span>
             </div>
             <pre><code>Component: src/components/data-display/Kanban/Kanban.tsx</code></pre>
             <pre><code>Props:</code></pre>
@@ -31456,6 +31566,17 @@ npm run test -- InteractiveArea
  * Storybookでのモバイルプレビューや開発時の確認に使用する。
  */
 forceMobileUI?: boolean = false
+
+/**
+ * 手動翻訳用のラベル。
+ */
+labels?: {
+  cardMovedTo?: (to: string) =&gt; string;
+  cardMovedFromTo?: (from: string, to: string) =&gt; string;
+  cards?: (count: number) =&gt; string;
+  moveCard?: string;
+  moveToColumn?: string;
+}
 
 /**
  * カードが別の列にドロップ／移動された際に呼び出されるコールバック。
@@ -32159,7 +32280,7 @@ npm run test -- Kbd
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Label</h2>
       <div class="badges">
-        <label for="c-84-components-form-layout-label-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-84-components-form-layout-label-props" class="badge ok as-toggle">6 prop types</label>
         
         <label for="c-84-components-form-layout-label-stories" class="badge ok as-toggle">3 stories</label>
         <label for="c-84-components-form-layout-label-docs" class="badge ok as-toggle">1 doc</label>
@@ -32186,15 +32307,19 @@ npm run test -- Kbd
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">4 prop types</span>
+              <span class="badge ok">6 prop types</span>
             </div>
             <pre><code>Component: src/components/typography/Label/Label.tsx::Label</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>className?: string
 
-label: string
+label: React.ReactNode
+
+optionalLabel?: React.ReactNode
 
 required?: boolean = false
+
+requiredLabel?: React.ReactNode
 
 showOptional?: boolean = false</code></pre>
           </div>
@@ -32390,7 +32515,7 @@ import { T } from &quot;../T&quot;;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Legend</h2>
       <div class="badges">
-        <label for="c-85-components-form-layout-legend-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-85-components-form-layout-legend-props" class="badge ok as-toggle">6 prop types</label>
         
         <label for="c-85-components-form-layout-legend-stories" class="badge ok as-toggle">2 stories</label>
         <label for="c-85-components-form-layout-legend-docs" class="badge ok as-toggle">1 doc</label>
@@ -32417,15 +32542,19 @@ import { T } from &quot;../T&quot;;
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">4 prop types</span>
+              <span class="badge ok">6 prop types</span>
             </div>
             <pre><code>Component: src/components/typography/Legend/Legend.tsx::Legend</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>className?: string
 
-label: string
+label: React.ReactNode
+
+optionalLabel?: React.ReactNode
 
 required?: boolean
+
+requiredLabel?: React.ReactNode
 
 showOptional?: boolean</code></pre>
           </div>
@@ -32899,7 +33028,7 @@ iconName?: React.ComponentProps&lt;typeof Icon&gt;[&quot;name&quot;]
 
 iconPosition?: &quot;left&quot; | &quot;right&quot; = &quot;left&quot;
 
-label?: string
+label?: React.ReactNode
 
 priority?: &quot;primary&quot; | &quot;secondary&quot; | &quot;tertiary&quot; = &quot;primary&quot;
 
@@ -37846,7 +37975,7 @@ npm run test -- NumberInput
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> OtpInput</h2>
       <div class="badges">
-        <label for="c-101-components-basic-inputs-otpinput-props" class="badge ok as-toggle">9 prop types</label>
+        <label for="c-101-components-basic-inputs-otpinput-props" class="badge ok as-toggle">10 prop types</label>
         
         <label for="c-101-components-basic-inputs-otpinput-stories" class="badge ok as-toggle">5 stories</label>
         <label for="c-101-components-basic-inputs-otpinput-docs" class="badge ok as-toggle">1 doc</label>
@@ -37873,7 +38002,7 @@ npm run test -- NumberInput
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">9 prop types</span>
+              <span class="badge ok">10 prop types</span>
             </div>
             <pre><code>Component: src/components/form/OtpInput/OtpInput.tsx::OtpInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -37883,7 +38012,11 @@ disabled?: boolean = false
 
 error?: string
 
-label?: string
+label?: React.ReactNode
+
+labels?: {
+  digitAriaLabel?: (index: number) =&gt; string;
+} = {}
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
 
@@ -38340,7 +38473,7 @@ import * as Stories from &quot;./OverlayBase.stories&quot;;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Pagination</h2>
       <div class="badges">
-        <label for="c-103-components-navigation-elements-pagination-props" class="badge ok as-toggle">13 prop types</label>
+        <label for="c-103-components-navigation-elements-pagination-props" class="badge ok as-toggle">14 prop types</label>
         <label for="c-103-components-navigation-elements-pagination-info" class="badge info as-toggle">1 info</label>
         <label for="c-103-components-navigation-elements-pagination-stories" class="badge ok as-toggle">4 stories</label>
         <label for="c-103-components-navigation-elements-pagination-docs" class="badge ok as-toggle">1 doc</label>
@@ -38374,7 +38507,7 @@ import * as Stories from &quot;./OverlayBase.stories&quot;;
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">13 prop types</span>
+              <span class="badge ok">14 prop types</span>
             </div>
             <pre><code>Component: src/components/navigation/Pagination/Pagination.tsx::Pagination</code></pre>
             <pre><code>Props:</code></pre>
@@ -38392,6 +38525,21 @@ current?: number = 1
  * Whether to hide the pagination if there is only one page
  */
 hideOnSinglePage?: boolean = false
+
+/**
+ * Labels for internationalization
+ */
+labels?: {
+  prevPage?: string;
+  nextPage?: string;
+  pageAriaLabel?: (page: number) =&gt; string;
+  itemsPerPage?: string;
+  goTo?: string;
+  pageSizeAriaLabel?: string;
+  jumpToPageAriaLabel?: string;
+  navAriaLabel?: string;
+  totalLabel?: string;
+} = {}
 
 /**
  * Callback function when page changes
@@ -38861,7 +39009,7 @@ npm run test -- Pagination
 | &quot;info&quot;
 | WimColor = &quot;black&quot;
 
-content?: string = &quot;text&quot;
+content?: React.ReactNode
 
 decoration?: &quot;line-through&quot; | &quot;underline&quot; | &quot;highlight&quot; | &quot;none&quot; = &quot;none&quot;
 
@@ -40004,7 +40152,7 @@ import { T } from &quot;../T&quot;;
             <pre><code>/**
  * Text of the cancel button
  */
-cancelText?: string = &quot;Cancel&quot;
+cancelText?: ReactNode = &quot;Cancel&quot;
 
 /**
  * The target element which the Popconfirm will be attached to
@@ -40029,7 +40177,7 @@ icon?: ReactNode
 /**
  * Text of the confirm button
  */
-okText?: string = &quot;OK&quot;
+okText?: ReactNode = &quot;OK&quot;
 
 /**
  * Color role of the confirm button
@@ -42219,7 +42367,7 @@ npm run test -- QRCode
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> QueryBuilder</h2>
       <div class="badges">
-        <label for="c-113-components-data-structures-querybuilder-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-113-components-data-structures-querybuilder-props" class="badge ok as-toggle">8 prop types</label>
         
         <label for="c-113-components-data-structures-querybuilder-stories" class="badge ok as-toggle">2 stories</label>
         <label for="c-113-components-data-structures-querybuilder-docs" class="badge ok as-toggle">1 doc</label>
@@ -42246,7 +42394,7 @@ npm run test -- QRCode
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">7 prop types</span>
+              <span class="badge ok">8 prop types</span>
             </div>
             <pre><code>Component: src/components/misc/QueryBuilder/QueryBuilder.tsx::QueryBuilder</code></pre>
             <pre><code>Props:</code></pre>
@@ -42269,6 +42417,11 @@ fields: QueryField[]
  * Unique ID for the component
  */
 id?: string
+
+/**
+ * Labels for internationalization
+ */
+labels?: QueryBuilderLabels = {}
 
 /**
  * Maximum nesting depth
@@ -42656,7 +42809,7 @@ npm run test -- QueryBuilder
             <pre><code>Props:</code></pre>
             <pre><code>border?: boolean = true
 
-cite?: string
+cite?: React.ReactNode
 
 color?: | &quot;black&quot;
 | &quot;deepgray&quot;
@@ -42669,7 +42822,7 @@ color?: | &quot;black&quot;
 | &quot;error&quot;
 | &quot;info&quot; = &quot;black&quot;
 
-content: string
+content?: React.ReactNode
 
 size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code></pre>
           </div>
@@ -43150,7 +43303,7 @@ import { T } from &quot;../T&quot;;
             <pre><code>Props:</code></pre>
             <pre><code>className?: string
 
-label?: string</code></pre>
+label?: React.ReactNode</code></pre>
           </div>
         </div>
     
@@ -44356,7 +44509,7 @@ npm run test -- RangeSlider
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Rating</h2>
       <div class="badges">
-        <label for="c-120-components-advanced-inputs-rating-props" class="badge ok as-toggle">13 prop types</label>
+        <label for="c-120-components-advanced-inputs-rating-props" class="badge ok as-toggle">14 prop types</label>
         
         <label for="c-120-components-advanced-inputs-rating-stories" class="badge ok as-toggle">7 stories</label>
         <label for="c-120-components-advanced-inputs-rating-docs" class="badge ok as-toggle">1 doc</label>
@@ -44383,7 +44536,7 @@ npm run test -- RangeSlider
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">13 prop types</span>
+              <span class="badge ok">14 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Rating/Rating.tsx::Rating</code></pre>
             <pre><code>Props:</code></pre>
@@ -44420,7 +44573,15 @@ error?: string
 /**
  * アクセシビリティ用のラベル
  */
-label?: string
+label?: React.ReactNode
+
+/**
+ * Labels for internationalization
+ */
+labels?: {
+  star?: (count: number) =&gt; string;
+  readonly?: (value: number, max: number) =&gt; string;
+} = {}
 
 /**
  * レイアウト方向
@@ -47568,7 +47729,7 @@ npm run test -- Result
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> RichTextEditor</h2>
       <div class="badges">
-        <label for="c-123-components-basic-inputs-richtexteditor-props" class="badge ok as-toggle">18 prop types</label>
+        <label for="c-123-components-basic-inputs-richtexteditor-props" class="badge ok as-toggle">19 prop types</label>
         
         <label for="c-123-components-basic-inputs-richtexteditor-stories" class="badge ok as-toggle">8 stories</label>
         <label for="c-123-components-basic-inputs-richtexteditor-docs" class="badge ok as-toggle">1 doc</label>
@@ -47595,7 +47756,7 @@ npm run test -- Result
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">18 prop types</span>
+              <span class="badge ok">19 prop types</span>
             </div>
             <pre><code>Component: src/components/form/RichTextEditor/RichTextEditor.tsx::RichTextEditor</code></pre>
             <pre><code>Props:</code></pre>
@@ -47615,7 +47776,24 @@ fullWidth?: boolean = false
 
 id?: string
 
-label?: string
+label?: React.ReactNode
+
+labels?: {
+  bold?: string;
+  italic?: string;
+  underline?: string;
+  strikethrough?: string;
+  h1?: string;
+  h2?: string;
+  h3?: string;
+  ul?: string;
+  ol?: string;
+  link?: string;
+  unlink?: string;
+  removeFormat?: string;
+  toolbar?: string;
+  linkPrompt?: string;
+} = {}
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
 
@@ -48274,7 +48452,7 @@ maxHeight?: string
 
 scrollAxis?: &quot;x&quot; | &quot;y&quot; | &quot;both&quot; = &quot;y&quot;
 
-text?: string</code></pre>
+text?: React.ReactNode</code></pre>
           </div>
         </div>
     
@@ -49799,7 +49977,7 @@ npm run test -- SegmentedControl
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Selectbox</h2>
       <div class="badges">
-        <label for="c-129-components-selection-controls-selectbox-props" class="badge ok as-toggle">21 prop types</label>
+        <label for="c-129-components-selection-controls-selectbox-props" class="badge ok as-toggle">22 prop types</label>
         
         <label for="c-129-components-selection-controls-selectbox-stories" class="badge ok as-toggle">9 stories</label>
         <label for="c-129-components-selection-controls-selectbox-docs" class="badge ok as-toggle">1 doc</label>
@@ -49826,7 +50004,7 @@ npm run test -- SegmentedControl
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">21 prop types</span>
+              <span class="badge ok">22 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Selectbox/Selectbox.tsx::Selectbox</code></pre>
             <pre><code>Props:</code></pre>
@@ -49873,11 +50051,13 @@ label?: string
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
 
+noOptionsFoundLabel?: string = &quot;No options found&quot;
+
 onChange?: (value: string) =&gt; void
 
 options?: SelectboxOption[] | SelectboxOptionGroup[] = []
 
-placeholder?: string = &quot;select.option&quot;
+placeholder?: React.ReactNode = &quot;Select an option&quot;
 
 required?: boolean
 
@@ -49889,7 +50069,7 @@ searchable?: boolean = false
 /**
  * Placeholder text for search input
  */
-searchPlaceholder?: string = &quot;search.placeholder&quot;
+searchPlaceholder?: string = &quot;Search...&quot;
 
 value?: string</code></pre>
           </div>
@@ -50805,7 +50985,7 @@ npm run test -- Sidebar
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SignaturePad</h2>
       <div class="badges">
-        <label for="c-131-components-advanced-inputs-signaturepad-props" class="badge ok as-toggle">13 prop types</label>
+        <label for="c-131-components-advanced-inputs-signaturepad-props" class="badge ok as-toggle">14 prop types</label>
         
         <label for="c-131-components-advanced-inputs-signaturepad-stories" class="badge ok as-toggle">4 stories</label>
         <label for="c-131-components-advanced-inputs-signaturepad-docs" class="badge ok as-toggle">1 doc</label>
@@ -50832,11 +51012,16 @@ npm run test -- Sidebar
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">13 prop types</span>
+              <span class="badge ok">14 prop types</span>
             </div>
             <pre><code>Component: src/components/form/SignaturePad/SignaturePad.tsx::SignaturePad</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
+ * Aria label for the canvas
+ */
+canvasAriaLabel?: string = &quot;Signature canvas&quot;
+
+/**
  * CSS class name
  */
 className?: string
@@ -50844,7 +51029,7 @@ className?: string
 /**
  * Custom label for the clear button
  */
-clearLabel?: string
+clearLabel?: React.ReactNode = &quot;Clear&quot;
 
 /**
  * Whether the component is disabled
@@ -50858,7 +51043,7 @@ error?: string
  */
 height?: number = 200
 
-label?: string
+label?: React.ReactNode
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot; = &quot;vertical&quot;
 
@@ -51931,7 +52116,7 @@ id?: string
 /**
  * アクセシビリティ用のラベル
  */
-label?: string
+label?: React.ReactNode
 
 /**
  * レイアウト方向
@@ -52733,7 +52918,7 @@ npm run test -- Snackbar
 | &quot;info&quot;
 | WimColor = &quot;black&quot;
 
-content?: string = &quot;span&quot;
+content?: React.ReactNode
 
 decoration?: &quot;line-through&quot; | &quot;underline&quot; | &quot;highlight&quot; | &quot;none&quot; = &quot;none&quot;
 
@@ -55487,7 +55672,7 @@ npm run test -- Stepper
             <pre><code>Props:</code></pre>
             <pre><code>className?: string
 
-label?: string
+label?: React.ReactNode
 
 size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code></pre>
           </div>
@@ -60787,7 +60972,7 @@ npm run test -- Tour
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Transfer</h2>
       <div class="badges">
-        <label for="c-157-components-advanced-inputs-transfer-props" class="badge ok as-toggle">11 prop types</label>
+        <label for="c-157-components-advanced-inputs-transfer-props" class="badge ok as-toggle">12 prop types</label>
         
         <label for="c-157-components-advanced-inputs-transfer-stories" class="badge ok as-toggle">4 stories</label>
         <label for="c-157-components-advanced-inputs-transfer-docs" class="badge ok as-toggle">1 doc</label>
@@ -60814,7 +60999,7 @@ npm run test -- Tour
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">11 prop types</span>
+              <span class="badge ok">12 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Transfer/Transfer.tsx::Transfer</code></pre>
             <pre><code>Props:</code></pre>
@@ -60826,7 +61011,15 @@ disabled?: boolean = false
 
 error?: string
 
-label?: string
+label?: React.ReactNode
+
+labels?: {
+  noData?: React.ReactNode;
+  moveToTarget?: string;
+  moveToSource?: string;
+  statusMovedToTarget?: (count: number) =&gt; string;
+  statusMovedToSource?: (count: number) =&gt; string;
+} = {}
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot; = &quot;vertical&quot;
 
@@ -60842,7 +61035,7 @@ style?: React.CSSProperties
 
 targetKeys?: string[]
 
-titles?: [string, string] = [&quot;transfer.source&quot;, &quot;transfer.target&quot;]</code></pre>
+titles?: [React.ReactNode, React.ReactNode] = [&quot;Source&quot;, &quot;Target&quot;]</code></pre>
           </div>
         </div>
     
@@ -61778,7 +61971,7 @@ error?: string
 
 id?: string
 
-label?: string
+label?: React.ReactNode
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
 
@@ -61786,7 +61979,7 @@ multiple?: boolean = false
 
 onChange?: (value: string | string[]) =&gt; void
 
-placeholder?: string = &quot;Select&quot;
+placeholder?: React.ReactNode = &quot;Select&quot;
 
 required?: boolean
 
@@ -62083,7 +62276,7 @@ npm run test -- TreeSelect
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TreeView</h2>
       <div class="badges">
-        <label for="c-161-components-data-structures-treeview-props" class="badge ok as-toggle">14 prop types</label>
+        <label for="c-161-components-data-structures-treeview-props" class="badge ok as-toggle">15 prop types</label>
         <label for="c-161-components-data-structures-treeview-info" class="badge info as-toggle">1 info</label>
         <label for="c-161-components-data-structures-treeview-stories" class="badge ok as-toggle">6 stories</label>
         <label for="c-161-components-data-structures-treeview-docs" class="badge ok as-toggle">1 doc</label>
@@ -62117,7 +62310,7 @@ npm run test -- TreeSelect
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">14 prop types</span>
+              <span class="badge ok">15 prop types</span>
             </div>
             <pre><code>Component: src/components/data-display/TreeView/TreeView.tsx</code></pre>
             <pre><code>Props:</code></pre>
@@ -62142,6 +62335,13 @@ defaultCheckedValues?: string[] = []
 defaultExpandedValues?: string[] = []
 
 defaultSelectedValues?: string[] = []
+
+labels?: {
+  searchPlaceholder?: string;
+  searchAriaLabel?: string;
+  expandLabel?: (label: string) =&gt; string;
+  collapseLabel?: (label: string) =&gt; string;
+} = {}
 
 multiSelect?: boolean = false
 
@@ -62882,7 +63082,7 @@ npm run test -- TreeView
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Video</h2>
       <div class="badges">
-        <label for="c-162-components-media-video-props" class="badge ok as-toggle">24 prop types</label>
+        <label for="c-162-components-media-video-props" class="badge ok as-toggle">25 prop types</label>
         <label for="c-162-components-media-video-info" class="badge info as-toggle">1 info</label>
         <label for="c-162-components-media-video-stories" class="badge ok as-toggle">6 stories</label>
         <label for="c-162-components-media-video-docs" class="badge ok as-toggle">1 doc</label>
@@ -62916,7 +63116,7 @@ npm run test -- TreeView
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">24 prop types</span>
+              <span class="badge ok">25 prop types</span>
             </div>
             <pre><code>Component: src/components/media/Video/Video.tsx::Video</code></pre>
             <pre><code>Props:</code></pre>
@@ -62928,7 +63128,7 @@ autoPlayNext?: boolean = false
 
 border?: boolean = false
 
-caption?: string
+caption?: React.ReactNode
 
 controls?: boolean = true
 
@@ -62947,6 +63147,40 @@ fadeIn?: boolean = false
 fit?: &quot;contain&quot; | &quot;cover&quot; | &quot;fill&quot; | &quot;none&quot; | &quot;scale-down&quot; = &quot;cover&quot;
 
 height?: string | number
+
+/**
+ * 手動翻訳用のラベル
+ */
+labels?: {
+  playlist?: string;
+  skipBackward?: string;
+  skipForward?: string;
+  play?: string;
+  pause?: string;
+  nextTrack?: string;
+  seek?: string;
+  mute?: string;
+  unmute?: string;
+  volume?: string;
+  settings?: string;
+  pip?: string;
+  fullscreen?: string;
+  exitFullscreen?: string;
+  quality?: string;
+  playbackRate?: string;
+  aspectRatio?: string;
+  standard?: string;
+  back?: string;
+  auto?: string;
+  fit?: string;
+  fill?: string;
+  contain?: string;
+  cover?: string;
+  scaleDown?: string;
+  none?: string;
+  videoAriaLabel?: string;
+  seconds?: string; // e.g. &quot;seconds&quot; or &quot;秒&quot;
+} = {}
 
 /**
  * 読み込み設定。&quot;lazy&quot; の場合に Intersection Observer が有効化されます

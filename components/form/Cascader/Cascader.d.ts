@@ -1,6 +1,6 @@
 import { default as React } from '../../../../node_modules/react';
 export type CascaderOption = {
-    label: string;
+    label: React.ReactNode;
     value: string;
     children?: CascaderOption[];
     disabled?: boolean;
@@ -9,8 +9,8 @@ export type CascaderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange
     options: CascaderOption[];
     value?: string[];
     onChange?: (value: string[], selectedOptions: CascaderOption[]) => void;
-    placeholder?: string;
-    label?: string;
+    placeholder?: React.ReactNode;
+    label?: React.ReactNode;
     error?: string;
     required?: boolean;
     layout?: "vertical" | "horizontal";

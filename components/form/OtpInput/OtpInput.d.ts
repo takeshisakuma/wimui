@@ -1,3 +1,7 @@
+import { default as React } from '../../../../node_modules/react';
+export type OtpInputLabels = {
+    digitAriaLabel?: (index: number) => string;
+};
 type OtpInputProps = {
     length?: number;
     value?: string;
@@ -5,12 +9,13 @@ type OtpInputProps = {
     disabled?: boolean;
     error?: string;
     required?: boolean;
-    label?: string;
+    label?: React.ReactNode;
     layout?: "vertical" | "horizontal";
     className?: string;
+    labels?: OtpInputLabels;
 };
 /**
  * OTP（ワンタイムパスワード）入力用コンポーネント。
  */
-export declare const OtpInput: ({ length, value, onChange, disabled, error, required, label, layout, className, }: OtpInputProps) => import("react/jsx-runtime").JSX.Element;
+export declare const OtpInput: ({ length, value, onChange, disabled, error, required, label, layout, className, labels, }: OtpInputProps) => import("react/jsx-runtime").JSX.Element;
 export {};

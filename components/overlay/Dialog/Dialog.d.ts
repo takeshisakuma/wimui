@@ -16,8 +16,9 @@ export interface DialogCloseProps {
     children: React.ReactNode;
     asChild?: boolean;
     className?: string;
+    ariaLabel?: string;
 }
-export declare const DialogClose: ({ children, className, asChild, }: DialogCloseProps) => import("react/jsx-runtime").JSX.Element;
+export declare const DialogClose: ({ children, className, asChild, ariaLabel, }: DialogCloseProps) => import("react/jsx-runtime").JSX.Element;
 export interface DialogContentProps {
     children: React.ReactNode;
     className?: string;

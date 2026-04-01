@@ -19,11 +19,11 @@ export type PopconfirmProps = {
     /**
      * Text of the confirm button
      */
-    okText?: string;
+    okText?: ReactNode;
     /**
      * Text of the cancel button
      */
-    cancelText?: string;
+    cancelText?: ReactNode;
     /**
      * Color role of the confirm button
      */

@@ -8,6 +8,10 @@ export type GanttTask = {
     progress?: number;
 };
 export type GanttViewMode = "day" | "week" | "month";
+export type GanttChartLabels = {
+    ariaChart?: string;
+    ariaTaskBar?: (label: string, start: string, end: string) => string;
+};
 export type GanttChartProps = {
     tasks: GanttTask[];
     startDate?: Date;
@@ -17,5 +21,7 @@ export type GanttChartProps = {
     rowHeight?: number;
     onTaskClick?: (task: GanttTask) => void;
     className?: string;
+    /** 手動翻訳用のラベル */
+    labels?: GanttChartLabels;
 };
-export declare const GanttChart: ({ tasks, startDate, endDate, viewMode, columnWidth, rowHeight, onTaskClick, className, }: GanttChartProps) => React.ReactElement;
+export declare const GanttChart: ({ tasks, startDate, endDate, viewMode, columnWidth, rowHeight, onTaskClick, className, labels, }: GanttChartProps) => React.ReactElement;

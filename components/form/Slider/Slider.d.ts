@@ -43,7 +43,7 @@ type SliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
     /**
      * アクセシビリティ用のラベル
      */
-    label?: string;
+    label?: React.ReactNode;
     /**
      * エラーメッセージ
      */

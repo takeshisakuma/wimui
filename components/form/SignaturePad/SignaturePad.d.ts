@@ -11,19 +11,21 @@ export type SignaturePadProps = {
     /** Callback when signature changes or is cleared */
     onChange?: (dataUrl: string | null) => void;
     /** Custom label for the clear button */
-    clearLabel?: string;
+    clearLabel?: React.ReactNode;
     /** Whether the component is disabled */
     disabled?: boolean;
     /** CSS class name */
     className?: string;
     /** Inline styles */
     style?: React.CSSProperties;
-    label?: string;
+    label?: React.ReactNode;
     error?: string;
     required?: boolean;
     layout?: "vertical" | "horizontal";
+    /** Aria label for the canvas */
+    canvasAriaLabel?: string;
 };
 /**
  * マウスやタッチ操作で手書きの署名を入力するためのコンポーネント。
  */
-export declare const SignaturePad: ({ width, height, penColor, penWidth, onChange, clearLabel, disabled, className, style, label, error, required, layout, }: SignaturePadProps) => import("react/jsx-runtime").JSX.Element;
+export declare const SignaturePad: ({ width, height, penColor, penWidth, onChange, clearLabel, disabled, className, style, label, error, required, layout, canvasAriaLabel, }: SignaturePadProps) => import("react/jsx-runtime").JSX.Element;

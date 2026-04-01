@@ -1,5 +1,35 @@
 import { default as React } from '../../../../../node_modules/react';
 type ActiveMenu = "main" | "quality" | "rate" | "fit" | "playlist" | null;
+export type VideoLabels = {
+    playlist?: string;
+    skipBackward?: string;
+    skipForward?: string;
+    play?: string;
+    pause?: string;
+    nextTrack?: string;
+    seek?: string;
+    mute?: string;
+    unmute?: string;
+    volume?: string;
+    settings?: string;
+    pip?: string;
+    fullscreen?: string;
+    exitFullscreen?: string;
+    quality?: string;
+    playbackRate?: string;
+    aspectRatio?: string;
+    standard?: string;
+    back?: string;
+    auto?: string;
+    fit?: string;
+    fill?: string;
+    contain?: string;
+    cover?: string;
+    scaleDown?: string;
+    none?: string;
+    videoAriaLabel?: string;
+    seconds?: string;
+};
 interface VideoControlsProps {
     playlist?: {
         src: string;
@@ -25,6 +55,7 @@ interface VideoControlsProps {
     isFullscreen: boolean;
     toggleFullscreen: () => void;
     formatTime: (time: number) => string;
+    labels?: VideoLabels;
 }
-export declare function VideoControls({ playlist, advancedControls, currentPlayIndex, setCurrentPlayIndex, skip, isPlaying, togglePlay, currentTime, duration, handleSeek, volume, isMuted, toggleMute, handleVolumeChange, activeMenu, setActiveMenu, togglePiP, isFullscreen, toggleFullscreen, formatTime, }: VideoControlsProps): import("react/jsx-runtime").JSX.Element;
+export declare function VideoControls({ playlist, advancedControls, currentPlayIndex, setCurrentPlayIndex, skip, isPlaying, togglePlay, currentTime, duration, handleSeek, volume, isMuted, toggleMute, handleVolumeChange, activeMenu, setActiveMenu, togglePiP, isFullscreen, toggleFullscreen, formatTime, labels, }: VideoControlsProps): import("react/jsx-runtime").JSX.Element;
 export {};

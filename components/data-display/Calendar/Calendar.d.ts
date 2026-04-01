@@ -1,3 +1,16 @@
+export type CalendarLabels = {
+    sun?: string;
+    mon?: string;
+    tue?: string;
+    wed?: string;
+    thu?: string;
+    fri?: string;
+    sat?: string;
+    prevMonth?: string;
+    nextMonth?: string;
+    title?: (year: number, month: number) => string;
+    ariaDate?: (year: number, month: number, day: number) => string;
+};
 export type CalendarProps = {
     /**
      * 現在選択されている日付。
@@ -64,8 +77,12 @@ export type CalendarProps = {
      * 週の開始曜日。0 = 日曜始まり、1 = 月曜始まり。デフォルトは 0。
      */
     weekStartsOn?: 0 | 1;
+    /**
+     * 手動翻訳用のラベル。
+     */
+    labels?: CalendarLabels;
 };
 /**
  * ユーザーが日付を閲覧し、選択するためのカレンダーコンポーネント。
  */
-export declare const Calendar: ({ value, onChange, defaultValue, className, disabled, rangeMode, range, defaultRange, onRangeChange, minDate, maxDate, disabledDates, isDateDisabled: isDateDisabledProp, weekStartsOn, ...props }: CalendarProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Calendar: ({ value, onChange, defaultValue, className, disabled, rangeMode, range, defaultRange, onRangeChange, minDate, maxDate, disabledDates, isDateDisabled: isDateDisabledProp, weekStartsOn, labels, ...props }: CalendarProps) => import("react/jsx-runtime").JSX.Element;

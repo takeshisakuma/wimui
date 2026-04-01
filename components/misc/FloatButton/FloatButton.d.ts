@@ -10,13 +10,13 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
     /** Size of the button */
     size?: ComponentSize;
     /** Label text for extended FAB */
-    label?: string;
+    label?: React.ReactNode;
     /** Whether to shrink the extended FAB (hide label) */
     shrink?: boolean;
     /** Position of the button */
     position?: "bottom-right" | "bottom-left" | "bottom-center" | "top-right" | "top-left" | "static";
     /** Description for tooltip */
-    description?: string;
+    description?: React.ReactNode;
     /** Badge content (number or dot) */
     badge?: number | boolean;
     /** If true, the button will scroll to the top of the page when clicked */

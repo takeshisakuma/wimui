@@ -7,9 +7,9 @@ type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
     weight?: "normal" | "bold";
     fontStyle?: "normal" | "italic";
     decoration?: "line-through" | "underline" | "highlight" | "none";
-    content: string;
+    content?: React.ReactNode;
     iconName?: React.ComponentProps<typeof Icon>["name"];
     iconPosition?: "left" | "right";
 };
-export declare const Span: ({ size, content, color, weight, fontStyle, iconName, iconPosition, decoration, className, style, ...props }: SpanProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Span: ({ size, content, color, weight, fontStyle, iconName, iconPosition, decoration, className, style, children, ...props }: SpanProps) => import("react/jsx-runtime").JSX.Element;
 export {};

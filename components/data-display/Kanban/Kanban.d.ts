@@ -1,4 +1,11 @@
 import { default as React } from '../../../../node_modules/react';
+export type KanbanLabels = {
+    cardMovedTo?: (to: string) => string;
+    cardMovedFromTo?: (from: string, to: string) => string;
+    cards?: (count: number) => string;
+    moveCard?: string;
+    moveToColumn?: string;
+};
 export type KanbanBoardProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * カードが別の列にドロップ／移動された際に呼び出されるコールバック。
@@ -9,8 +16,12 @@ export type KanbanBoardProps = React.ComponentPropsWithoutRef<"div"> & {
      * Storybookでのモバイルプレビューや開発時の確認に使用する。
      */
     forceMobileUI?: boolean;
+    /**
+     * 手動翻訳用のラベル。
+     */
+    labels?: KanbanLabels;
 };
-declare const KanbanBoard: ({ children, className, onCardMove, forceMobileUI, ...props }: KanbanBoardProps) => import("react/jsx-runtime").JSX.Element;
+declare const KanbanBoard: ({ children, className, onCardMove, forceMobileUI, labels, ...props }: KanbanBoardProps) => import("react/jsx-runtime").JSX.Element;
 export type KanbanColumnProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * 列を識別する一意のID。カード移動時に使用される。

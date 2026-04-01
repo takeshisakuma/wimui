@@ -3,7 +3,7 @@ export type FieldTemplateProps = {
     /**
      * フィールドのラベルテキスト
      */
-    label?: string;
+    label?: React.ReactNode;
     /**
      * エラーメッセージ
      */

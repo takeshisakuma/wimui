@@ -2,9 +2,9 @@ import { default as React } from '../../../../node_modules/react';
 import { Icon } from '../../media/Icon/Icon';
 import { ComponentSize } from '../../../types/tokens';
 type FileUploadProps = {
-    label?: string;
-    buttonLabel?: string;
-    noFileLabel?: string;
+    label?: React.ReactNode;
+    buttonLabel?: React.ReactNode;
+    noFileLabel?: React.ReactNode;
     accept?: string;
     multiple?: boolean;
     disabled?: boolean;

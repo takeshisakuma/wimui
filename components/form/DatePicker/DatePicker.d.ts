@@ -1,5 +1,9 @@
 import { default as React } from '../../../../node_modules/react';
 import { FieldStatus } from '../../../types/tokens';
+export type DatePickerLabels = {
+    placeholder?: string;
+    calendarLabels?: import('../../data-display/Calendar/Calendar').CalendarLabels;
+};
 type DatePickerProps = Omit<React.ComponentPropsWithoutRef<"input">, "value" | "defaultValue" | "onChange"> & {
     status?: FieldStatus;
     variant?: "outline" | "ghost";
@@ -26,9 +30,11 @@ type DatePickerProps = Omit<React.ComponentPropsWithoutRef<"input">, "value" | "
     error?: string;
     required?: boolean;
     layout?: "vertical" | "horizontal";
+    /** 手動翻訳用のラベル */
+    labels?: DatePickerLabels;
 };
 /**
  * ユーザーが日付を選択するためのコンポーネント。
  */
-export declare const DatePicker: ({ status, variant, fullWidth, className, disabled, value, defaultValue, onChange, format, clearable, placeholder, minDate: _minDate, maxDate: _maxDate, disabledDates: _disabledDates, label, error, required, layout, id: customId, ...props }: DatePickerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const DatePicker: ({ status, variant, fullWidth, className, disabled, value, defaultValue, onChange, format, clearable, placeholder, minDate: _minDate, maxDate: _maxDate, disabledDates: _disabledDates, label, error, required, layout, id: customId, labels, ...props }: DatePickerProps) => import("react/jsx-runtime").JSX.Element;
 export {};

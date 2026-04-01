@@ -36,6 +36,7 @@ export type PopoverContentProps = {
     modal?: boolean;
 };
 export declare const PopoverContent: React.ForwardRefExoticComponent<PopoverContentProps & React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
-export declare const PopoverClose: ({ children, className, asChild, ...props }: React.ComponentPropsWithoutRef<"button"> & {
+export declare const PopoverClose: ({ children, className, asChild, ariaLabel, ...props }: React.ComponentPropsWithoutRef<"button"> & {
     asChild?: boolean;
+    ariaLabel?: string;
 }) => import("react/jsx-runtime").JSX.Element | null;

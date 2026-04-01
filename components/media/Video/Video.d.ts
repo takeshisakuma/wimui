@@ -1,4 +1,6 @@
 import { default as React } from '../../../../node_modules/react';
+import { VideoLabels } from './components/VideoControls';
+export type { VideoLabels };
 type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
     src?: string;
     width?: string | number;
@@ -13,7 +15,7 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
     border?: boolean;
     fit?: "contain" | "cover" | "fill" | "none" | "scale-down";
     preload?: "auto" | "metadata" | "none";
-    caption?: string;
+    caption?: React.ReactNode;
     customControls?: boolean;
     advancedControls?: boolean;
     videoId?: string;
@@ -34,6 +36,7 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
     fadeIn?: boolean;
     /** デモ用：読み込み完了を意図的に遅らせるミリ秒 */
     demoDelay?: number;
+    /** 手動翻訳用のラベル */
+    labels?: VideoLabels;
 };
-export declare const Video: ({ src, width: _width, height, autoPlay, loop, muted, controls, poster, radius, shadow, border, fit, preload, caption, className, style, customControls, advancedControls, videoId, resumePlayback, playlist, autoPlayNext, qualities, loading, fadeIn, demoDelay, ...props }: VideoProps) => import("react/jsx-runtime").JSX.Element;
-export {};
+export declare const Video: ({ src, width: _width, height, autoPlay, loop, muted, controls, poster, radius, shadow, border, fit, preload, caption, className, style, customControls, advancedControls, videoId, resumePlayback, playlist, autoPlayNext, qualities, loading, fadeIn, demoDelay, labels, ...props }: VideoProps) => import("react/jsx-runtime").JSX.Element;

@@ -6,6 +6,12 @@ export type Breakpoints = {
     lg?: number;
     xl?: number;
 };
+export type CarouselLabels = {
+    slideLabel?: (number: number) => string;
+    prevSlide?: string;
+    nextSlide?: string;
+    goToSlide?: (number: number) => string;
+};
 export type CarouselProps = {
     /**
      * カルーセル内のコンテンツ
@@ -44,6 +50,10 @@ export type CarouselProps = {
      */
     objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down";
     /**
+     * 手動翻訳用のラベル。
+     */
+    labels?: CarouselLabels;
+    /**
      * 追加のクラス名
      */
     className?: string;
@@ -51,4 +61,4 @@ export type CarouselProps = {
 /**
  * `Carousel` は複数のコンテンツをスライドさせて表示するコンポーネントです。
  */
-export declare const Carousel: ({ children, autoPlay, interval, showIndicators, showControls, loop, slidesToShow, aspectRatio, objectFit, className, }: CarouselProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const Carousel: ({ children, autoPlay, interval, showIndicators, showControls, loop, slidesToShow, aspectRatio, objectFit, labels, className, }: CarouselProps) => import("react/jsx-runtime").JSX.Element | null;

@@ -1,6 +1,6 @@
 import { default as React } from '../../../../node_modules/react';
 export type TreeSelectNode = {
-    label: string;
+    label: React.ReactNode;
     value: string;
     children?: TreeSelectNode[];
     disabled?: boolean;
@@ -10,8 +10,8 @@ export type TreeSelectProps = {
     treeData: TreeSelectNode[];
     value?: string | string[];
     onChange?: (value: string | string[]) => void;
-    placeholder?: string;
-    label?: string;
+    placeholder?: React.ReactNode;
+    label?: React.ReactNode;
     error?: string;
     required?: boolean;
     layout?: "vertical" | "horizontal";

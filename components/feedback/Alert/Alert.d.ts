@@ -4,11 +4,11 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * アラートのタイトル
      */
-    title?: string;
+    title?: React.ReactNode;
     /**
      * アラートの説明文
      */
-    description?: string;
+    description?: React.ReactNode;
     /**
      * アラートのステータス
      */

@@ -16,11 +16,14 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
     rightIconClassName?: string;
     rightIconRotated?: boolean;
     width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
-    label?: string;
+    label?: React.ReactNode;
     error?: string;
     required?: boolean;
     layout?: "vertical" | "horizontal";
     inputClassName?: string;
+    showPasswordAriaLabel?: string;
+    hidePasswordAriaLabel?: string;
+    rightIconAriaLabel?: string;
 };
 /**
  * ユーザーからの入力を受け付けるための基本コンポーネント。
@@ -40,9 +43,12 @@ export declare const Input: React.ForwardRefExoticComponent<Omit<React.DetailedH
     rightIconClassName?: string;
     rightIconRotated?: boolean;
     width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
-    label?: string;
+    label?: React.ReactNode;
     error?: string;
     required?: boolean;
     layout?: "vertical" | "horizontal";
     inputClassName?: string;
+    showPasswordAriaLabel?: string;
+    hidePasswordAriaLabel?: string;
+    rightIconAriaLabel?: string;
 } & React.RefAttributes<HTMLInputElement>>;

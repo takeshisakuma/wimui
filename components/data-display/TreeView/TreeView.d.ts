@@ -5,12 +5,18 @@ import { default as React } from '../../../../node_modules/react';
  */
 export type TreeViewNode = {
     value: string;
-    label: string;
+    label: React.ReactNode;
     children?: TreeViewNode[];
     disabled?: boolean;
     icon?: React.ReactNode;
 };
-type TreeViewProps = {
+export type TreeViewLabels = {
+    searchPlaceholder?: string;
+    searchAriaLabel?: string;
+    expandLabel?: (label: string) => string;
+    collapseLabel?: (label: string) => string;
+};
+export type TreeViewProps = {
     /** JSX ベースのアイテム（children API）。nodes を使わない場合に指定します。 */
     children?: React.ReactNode;
     /**
@@ -39,8 +45,9 @@ type TreeViewProps = {
      * デフォルトは 100。
      */
     virtualThreshold?: number;
+    labels?: TreeViewLabels;
 };
-declare const TreeView: ({ children, nodes, className, multiSelect, checkable, checkStrategy, searchable, defaultExpandedValues, defaultSelectedValues, defaultCheckedValues, onCheckedChange, onSelectedChange, width, virtualThreshold, }: TreeViewProps) => import("react/jsx-runtime").JSX.Element;
+declare const TreeView: ({ children, nodes, className, multiSelect, checkable, checkStrategy, searchable, defaultExpandedValues, defaultSelectedValues, defaultCheckedValues, onCheckedChange, onSelectedChange, width, virtualThreshold, labels, }: TreeViewProps) => import("react/jsx-runtime").JSX.Element;
 type TreeViewItemProps = {
     value: string;
     label: React.ReactNode;
