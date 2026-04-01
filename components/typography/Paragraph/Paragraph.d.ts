@@ -2,9 +2,9 @@ import { default as React } from '../../../../node_modules/react';
 import { WimColor, WimLineHeight } from '../../../types/tokens';
 type ParagraphProps = Omit<React.ComponentPropsWithoutRef<"p">, "content"> & {
     size?: "xs" | "sm" | "md" | "lg" | "xl";
-    color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error" | "primary" | "success" | "warning" | "info" | WimColor;
-    weight?: "normal" | "bold";
-    lineHeight?: "normal-jpan" | "tight-jpan" | "loose-jpan" | "normal-latn" | "tight-latn" | "loose-latn" | WimLineHeight;
+    color?: WimColor;
+    weight?: "normal" | "bold" | "medium";
+    lineHeight?: WimLineHeight;
     fontStyle?: "normal" | "italic";
     decoration?: "line-through" | "underline" | "highlight" | "none";
     content?: React.ReactNode;

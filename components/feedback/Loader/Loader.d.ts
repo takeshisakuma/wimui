@@ -13,7 +13,7 @@ export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * ローダーの色。
      */
-    color?: "primary" | "secondary" | "success" | "warning" | "error" | "neutral" | "currentColor" | WimColor;
+    color?: "currentColor" | WimColor;
 };
 /**
  * データの読み込み中や処理中であることを示すためのコンポーネント。

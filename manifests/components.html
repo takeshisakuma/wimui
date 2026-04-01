@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.2s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.7s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -25926,17 +25926,7 @@ children: React.ReactNode
 /**
  * Text color.
  */
-color?: | &quot;black&quot;
-| &quot;deepgray&quot;
-| &quot;gray&quot;
-| &quot;lightgray&quot;
-| &quot;white&quot;
-| &quot;error&quot;
-| &quot;primary&quot;
-| &quot;success&quot;
-| &quot;warning&quot;
-| &quot;info&quot;
-| WimColor = &quot;black&quot;
+color?: T | (string &amp; {})
 
 decoration?: &quot;underline&quot; | &quot;highlight&quot; | &quot;none&quot; = &quot;none&quot;
 
@@ -28986,7 +28976,7 @@ npm run test -- Image
 
 className?: string
 
-color?: &quot;primary&quot; | &quot;success&quot; | &quot;error&quot; | &quot;warning&quot; | &quot;neutral&quot; | WimColor = &quot;primary&quot;
+color?: T | (string &amp; {}) = &quot;primary&quot;
 
 inline?: boolean = false
 
@@ -33912,14 +33902,7 @@ npm run test -- List
             <pre><code>/**
  * ローダーの色。
  */
-color?: | &quot;primary&quot;
-| &quot;secondary&quot;
-| &quot;success&quot;
-| &quot;warning&quot;
-| &quot;error&quot;
-| &quot;neutral&quot;
-| &quot;currentColor&quot;
-| WimColor = &quot;primary&quot;
+color?: &quot;currentColor&quot; | WimColor = &quot;primary&quot;
 
 /**
  * ローダーのサイズ。
@@ -38990,17 +38973,7 @@ npm run test -- Pagination
             </div>
             <pre><code>Component: src/components/typography/Paragraph/Paragraph.tsx::Paragraph</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>color?: | &quot;black&quot;
-| &quot;deepgray&quot;
-| &quot;gray&quot;
-| &quot;lightgray&quot;
-| &quot;white&quot;
-| &quot;error&quot;
-| &quot;primary&quot;
-| &quot;success&quot;
-| &quot;warning&quot;
-| &quot;info&quot;
-| WimColor = &quot;black&quot;
+            <pre><code>color?: T | (string &amp; {})
 
 content?: React.ReactNode
 
@@ -39008,17 +38981,11 @@ decoration?: &quot;line-through&quot; | &quot;underline&quot; | &quot;highlight&
 
 fontStyle?: &quot;normal&quot; | &quot;italic&quot; = &quot;normal&quot;
 
-lineHeight?: | &quot;normal-jpan&quot;
-| &quot;tight-jpan&quot;
-| &quot;loose-jpan&quot;
-| &quot;normal-latn&quot;
-| &quot;tight-latn&quot;
-| &quot;loose-latn&quot;
-| WimLineHeight = &quot;normal-latn&quot;
+lineHeight?: T | (string &amp; {})
 
 size?: &quot;xs&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;xl&quot; = &quot;md&quot;
 
-weight?: &quot;normal&quot; | &quot;bold&quot; = &quot;normal&quot;</code></pre>
+weight?: &quot;normal&quot; | &quot;bold&quot; | &quot;medium&quot; = &quot;normal&quot;</code></pre>
           </div>
         </div>
     
@@ -52912,17 +52879,7 @@ npm run test -- Snackbar
             </div>
             <pre><code>Component: src/components/typography/Span/Span.tsx::Span</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>color?: | &quot;black&quot;
-| &quot;deepgray&quot;
-| &quot;gray&quot;
-| &quot;lightgray&quot;
-| &quot;white&quot;
-| &quot;error&quot;
-| &quot;primary&quot;
-| &quot;success&quot;
-| &quot;warning&quot;
-| &quot;info&quot;
-| WimColor = &quot;black&quot;
+            <pre><code>color?: T | (string &amp; {})
 
 content?: React.ReactNode
 
@@ -52936,7 +52893,7 @@ iconPosition?: &quot;left&quot; | &quot;right&quot; = &quot;left&quot;
 
 size?: &quot;xs&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;xl&quot; = &quot;md&quot;
 
-weight?: &quot;normal&quot; | &quot;bold&quot; = &quot;normal&quot;</code></pre>
+weight?: &quot;normal&quot; | &quot;bold&quot; | &quot;medium&quot; = &quot;normal&quot;</code></pre>
           </div>
         </div>
     
@@ -53371,14 +53328,7 @@ npm run test -- Span
             </div>
             <pre><code>Component: src/components/feedback/Spinner/Spinner.tsx::Spinner</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>color?: | &quot;primary&quot;
-| &quot;secondary&quot;
-| &quot;success&quot;
-| &quot;warning&quot;
-| &quot;error&quot;
-| &quot;neutral&quot;
-| &quot;currentColor&quot;
-| WimColor = &quot;primary&quot;
+            <pre><code>color?: &quot;currentColor&quot; | WimColor = &quot;primary&quot;
 
 label?: string
 

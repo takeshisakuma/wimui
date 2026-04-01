@@ -2,7 +2,7 @@ import { default as React } from '../../../../node_modules/react';
 import { WimColor, ComponentSize } from '../../../types/tokens';
 type IndicatorProps = {
     children?: React.ReactNode;
-    color?: "primary" | "success" | "error" | "warning" | "neutral" | WimColor;
+    color?: WimColor;
     size?: ComponentSize;
     position?: "top-right" | "top-left" | "bottom-right" | "bottom-left";
     pulse?: boolean;

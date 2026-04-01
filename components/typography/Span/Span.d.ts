@@ -3,8 +3,8 @@ import { Icon } from '../../media/Icon/Icon';
 import { WimColor } from '../../../types/tokens';
 type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
     size?: "xs" | "sm" | "md" | "lg" | "xl";
-    color?: "black" | "deepgray" | "gray" | "lightgray" | "white" | "error" | "primary" | "success" | "warning" | "info" | WimColor;
-    weight?: "normal" | "bold";
+    color?: WimColor;
+    weight?: "normal" | "bold" | "medium";
     fontStyle?: "normal" | "italic";
     decoration?: "line-through" | "underline" | "highlight" | "none";
     content?: React.ReactNode;

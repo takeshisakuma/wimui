@@ -1,0 +1,1 @@
+const o=(n,s,l)=>{if(n===void 0)return{};const d=l||(t=>String(t));if(typeof n=="object"&&n!==null&&!Array.isArray(n)){const t={},i=n;return i.base!==void 0&&(t[s]=d(i.base)),i.sm!==void 0&&(t[`${s}-sm`]=d(i.sm)),i.md!==void 0&&(t[`${s}-md`]=d(i.md)),i.lg!==void 0&&(t[`${s}-lg`]=d(i.lg)),i.xl!==void 0&&(t[`${s}-xl`]=d(i.xl)),t}return{[s]:d(n)}};export{o as g};
