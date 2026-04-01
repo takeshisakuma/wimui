@@ -30,7 +30,7 @@ interface User {
   name: string;
   email: string;
   role: string;
-  status: "Active" | "Inactive" | "Pending";
+  intent: "Active" | "Inactive" | "Pending";
   joinDate: string;
 }
 
@@ -39,7 +39,7 @@ const sampleData: User[] = [
     id: 1,
     name: "John Doe",
     email: "john@example.com",
-    status: "Active",
+    intent: "Active",
     role: "Admin",
     joinDate: "2024-01-15",
   },
@@ -47,7 +47,7 @@ const sampleData: User[] = [
     id: 2,
     name: "Jane Smith",
     email: "jane@example.com",
-    status: "Inactive",
+    intent: "Inactive",
     role: "User",
     joinDate: "2024-02-20",
   },
@@ -55,7 +55,7 @@ const sampleData: User[] = [
     id: 3,
     name: "Bob Johnson",
     email: "bob@example.com",
-    status: "Active",
+    intent: "Active",
     role: "Editor",
     joinDate: "2024-03-10",
   },
@@ -63,7 +63,7 @@ const sampleData: User[] = [
     id: 4,
     name: "Alice Brown",
     email: "alice@example.com",
-    status: "Pending",
+    intent: "Pending",
     role: "User",
     joinDate: "2024-04-05",
   },
@@ -71,7 +71,7 @@ const sampleData: User[] = [
     id: 5,
     name: "Charlie Wilson",
     email: "charlie@example.com",
-    status: "Active",
+    intent: "Active",
     role: "Admin",
     joinDate: "2024-05-12",
   },
@@ -82,7 +82,7 @@ const manyRows: User[] = Array.from({ length: 50 }).map((_, i) => ({
   name: `User ${i + 1}`,
   email: `user${i + 1}@example.com`,
   role: i % 3 === 0 ? "Admin" : i % 2 === 0 ? "Editor" : "User",
-  status: i % 3 === 0 ? "Active" : i % 2 === 0 ? "Inactive" : "Pending",
+  intent: i % 3 === 0 ? "Active" : i % 2 === 0 ? "Inactive" : "Pending",
   joinDate: `2024-${String((i % 12) + 1).padStart(2, "0")}-${String((i % 28) + 1).padStart(2, "0")}`,
 }));
 

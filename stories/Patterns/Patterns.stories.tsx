@@ -268,7 +268,7 @@ export const DashboardHeader: StoryObj = {
                 aria-label="Notifications"
               />
               <Badge
-                status="secondary"
+                intent="secondary"
                 size="sm"
                 content="3"
                 style={{
@@ -328,7 +328,7 @@ export const DashboardHeader: StoryObj = {
                 >
                   <Stack justify="space-between" align="center" direction="row">
                     <Stats.Label>{t("dashboard.stats_revenue")}</Stats.Label>
-                    <Badge status="neutral" content="+12.5%" size="sm" />
+                    <Badge intent="neutral" content="+12.5%" size="sm" />
                   </Stack>
                   <Stats.Value>
                     <Heading tag="h3" size="xl" style={{ whiteSpace: "nowrap" }}>
@@ -588,7 +588,7 @@ export const PricingTable: StoryObj = {
     return (
       <Container style={{ padding: "80px 24px", background: "#fff" }}>
         <Stack align="center" gap="lg" style={{ marginBottom: "64px" }}>
-          <Badge status="primary" content={t("pricing.badge")} />
+          <Badge intent="primary" content={t("pricing.badge")} />
           <Stack align="center" gap="3xl">
             <Heading tag="h2" size="xl" align="center">
               {t("pricing.title")}
@@ -707,7 +707,7 @@ export const PricingTable: StoryObj = {
                 transform: "translateX(-50%)",
               }}
             >
-              <Badge status="primary" content={t("pricing.pro_badge")} size="sm" />
+              <Badge intent="primary" content={t("pricing.pro_badge")} size="sm" />
             </div>
             <Stack gap="lg" style={{ height: "100%" }}>
               <Stack gap="lg" align="center" style={{ flex: 1 }}>
@@ -882,7 +882,7 @@ export const HeroSection: StoryObj = {
             <Stack gap="3xl">
               <Stack gap="3xl">
                 <Badge
-                  status="primary"
+                  intent="primary"
                   content={t("hero.badge")}
                   style={{ width: "fit-content" }}
                 />
@@ -1045,7 +1045,7 @@ export const ErrorPage: StoryObj = {
             />
           </Stack>
 
-          <Alert status="info" title={t("error.help_title")} style={{ textAlign: "left" }}>
+          <Alert intent="info" title={t("error.help_title")} style={{ textAlign: "left" }}>
             {t("error.help_desc")}
           </Alert>
 

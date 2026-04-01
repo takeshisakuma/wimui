@@ -15,9 +15,9 @@ export type ResultStatus =
 
 export type ResultProps = {
   /**
-   * result status, decide icons and colors
+   * result intent, decide icons and colors
    */
-  status?: ResultStatus;
+  intent?: ResultStatus;
   /**
    * The title
    */
@@ -44,8 +44,8 @@ export type ResultProps = {
   children?: ReactNode;
 };
 
-const DefaultIcon = ({ status }: { status: ResultStatus }) => {
-  switch (status) {
+const DefaultIcon = ({ intent }: { intent: ResultStatus }) => {
+  switch (intent) {
     case "success":
       return <Icon name="CheckIcon" color="positive" />;
     case "error":
@@ -64,7 +64,7 @@ const DefaultIcon = ({ status }: { status: ResultStatus }) => {
 };
 
 export const Result = ({
-  status = "info",
+  intent = "info",
   title,
   description,
   extra,
@@ -74,13 +74,13 @@ export const Result = ({
 }: ResultProps) => {
   return (
     <InteractiveArea
-      icon={icon || <DefaultIcon status={status} />}
+      icon={icon || <DefaultIcon intent={intent} />}
       title={title ?? undefined}
       description={description ?? undefined}
       actions={extra}
       variant="none"
       bgVariant="transparent"
-      className={classNames("wim-result", `wim-result--${status}`, className)}
+      className={classNames("wim-result", `wim-result--${intent}`, className)}
     >
       {children}
     </InteractiveArea>

@@ -1,12 +1,12 @@
 import React from "react";
 import { Icon } from "../media/Icon/Icon";
-import { ComponentSize, FeedbackStatus } from "../../types/tokens";
+import { ComponentSize, WimIntent } from "../../types/tokens";
 
 export interface FeedbackIconProps {
   /**
-   * フィードバックのステータス
+   * フィードバックのインテント
    */
-  status?: FeedbackStatus | "default";
+  intent?: WimIntent | "default";
   /**
    * カスタムアイコン
    */
@@ -29,7 +29,7 @@ export interface FeedbackIconProps {
  * 通知系コンポーネントで共通して使用されるアイコン表示用コンポーネント（内部用）
  */
 export const FeedbackIcon = ({
-  status = "info",
+  intent = "info",
   icon,
   size = "sm",
   className,
@@ -39,8 +39,8 @@ export const FeedbackIcon = ({
   if (icon === false) return null;
 
   // Notification.tsx などで明示的に指定されている色を優先、
-  // 指定がない場合はステータスに基づいてデフォルトアイコンを返す
-  switch (status) {
+  // 指定がない場合はインテントに基づいてデフォルトアイコンを返す
+  switch (intent) {
     case "success":
       return (
         <Icon

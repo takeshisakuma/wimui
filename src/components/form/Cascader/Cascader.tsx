@@ -391,7 +391,7 @@ export const Cascader = ({
           allowClear={allowClear}
           hasValue={!!displayValue}
           onClear={handleClear}
-          status={error ? "error" : "default"}
+          intent={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && "wim-cascader__trigger--open",

@@ -8,7 +8,7 @@ import React, {
 import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
-import { FeedbackStatus } from "../../../types/tokens";
+import { WimIntent } from "../../../types/tokens";
 import "./notification.scss";
 
 export type NotificationPlacement =
@@ -37,7 +37,7 @@ export type NotificationProps = {
   /**
    * The status of notification
    */
-  status?: FeedbackStatus;
+  intent?: WimIntent;
   /**
    * Callback when notification is closed
    */
@@ -56,8 +56,7 @@ export const Notification = ({
   id,
   title,
   description,
-  icon,
-  status,
+  icon, intent,
   onClose,
   closable = true,
   className,
@@ -82,19 +81,19 @@ export const Notification = ({
     <div
       className={classNames(
         "wim-notification",
-        status && `wim-notification--${status}`,
+        intent && `wim-notification--${ intent }`,
         className,
       )}
       role="alert"
     >
       <div className="wim-notification-content">
-        {(icon || status) && (
+        {(icon || intent) && (
           <div className="wim-notification-icon">
             <FeedbackIcon
-              status={status}
+              intent={ intent }
               icon={icon}
               size="md"
-              color={status ? typeToColorMap[status] as "destructive" | "positive" | "caution" | "informative" : undefined}
+              color={intent ? typeToColorMap[intent] as "destructive" | "positive" | "caution" | "informative" : undefined}
             />
           </div>
         )}

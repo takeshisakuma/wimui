@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize, IndicatorStatus } from "../../../types/tokens";
+import { ComponentSize, WimIntent } from "../../../types/tokens";
 import "./chip.scss";
 export type ChipProps = {
   /** 表示するコンテンツ */
@@ -19,7 +19,7 @@ export type ChipProps = {
   /** 無効状態 */
   disabled?: boolean;
   /** ステータス */
-  status?: IndicatorStatus;
+  intent?: WimIntent;
   /** バリアント */
   variant?: "solid" | "outline" | "subtle";
   /** サイズ */
@@ -43,7 +43,7 @@ export const Chip = ({
   icon,
   selected = false,
   disabled = false,
-  status = "primary",
+  intent = "primary",
   variant = "solid",
   size = "md",
   deleteAriaLabel = "Delete",
@@ -54,7 +54,7 @@ export const Chip = ({
   const commonProps = {
     className: classNames(
       "wim-chip",
-      `wim-chip--${status}`,
+      `wim-chip--${ intent }`,
       `wim-chip--${variant}`,
       `wim-chip--${size}`,
       selected && "wim-chip--selected",

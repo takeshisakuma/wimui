@@ -141,7 +141,7 @@ export const CustomContainer: Story = {
               <Box mt="md" style={{ display: "flex", justifyContent: "center" }}>
                 <Portal container={container}>
                   <Alert
-                    status="success"
+                    intent="success"
                     icon={<Icon name="CheckCircleIcon" />}
                     style={{ width: "fit-content" }}
                   >

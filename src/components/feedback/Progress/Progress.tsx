@@ -1,12 +1,12 @@
 import React from "react";
 import classNames from "classnames";
-import { ComponentSize, IndicatorStatus } from "../../../types/tokens";
+import { ComponentSize, WimIntent } from "../../../types/tokens";
 import "./progress.scss";
 
 type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
   value?: number;
   max?: number;
-  status?: IndicatorStatus;
+  intent?: WimIntent;
   size?: ComponentSize;
   label?: string;
   showValue?: boolean;
@@ -19,7 +19,7 @@ type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
 export const Progress = ({
   value = 0,
   max = 100,
-  status = "primary",
+  intent = "primary",
   size = "md",
   label,
   showValue = false,
@@ -34,7 +34,7 @@ export const Progress = ({
       className={classNames(
         "wim-progress",
         `wim-progress--${size}`,
-        `wim-progress--${status}`,
+        `wim-progress--${ intent }`,
         indeterminate && "wim-progress--indeterminate",
         className,
       )}

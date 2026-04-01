@@ -265,7 +265,7 @@ export const Selectbox = ({
           allowClear={allowClear}
           hasValue={!!currentValue}
           onClear={handleClear}
-          status={error ? "error" : "default"}
+          intent={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           fullWidth={fullWidth}
         >

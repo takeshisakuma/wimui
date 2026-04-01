@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
-import { FeedbackStatus } from "../../../types/tokens";
+import { WimIntent } from "../../../types/tokens";
 import "./alert.scss";
 
 type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -15,9 +15,9 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
    */
   description?: React.ReactNode;
   /**
-   * アラートのステータス
+   * アラートのインテント
    */
-  status?: FeedbackStatus;
+  intent?: WimIntent;
   /**
    * カスタムアイコン。指定しない場合はバリアントに応じたデフォルトアイコンが表示されます。
    */
@@ -42,7 +42,7 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
 export const Alert = ({
   title,
   description,
-  status = "info",
+  intent = "info",
   icon,
   onClose,
   className,
@@ -60,12 +60,12 @@ export const Alert = ({
 
   return (
     <div
-      className={classNames("wim-alert", `wim-alert--${status}`, className)}
+      className={classNames("wim-alert", `wim-alert--${intent}`, className)}
       role="alert"
       {...props}
     >
       <div className="wim-alert__icon">
-        <FeedbackIcon status={status} icon={icon} size="sm" />
+        <FeedbackIcon intent={intent} icon={icon} size="sm" />
       </div>
       <div className="wim-alert__content">
         {title && <h4 className="wim-alert__title">{title}</h4>}

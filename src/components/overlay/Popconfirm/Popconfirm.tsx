@@ -88,7 +88,7 @@ export const Popconfirm = ({
           <div className="wim-popconfirm-message">
             <span className="wim-popconfirm-icon">
               <FeedbackIcon
-                status="warning"
+                intent="warning"
                 icon={icon}
                 size="sm"
                 color="caution"

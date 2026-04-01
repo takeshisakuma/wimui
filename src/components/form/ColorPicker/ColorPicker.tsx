@@ -15,7 +15,7 @@ export type ColorPickerProps = Omit<InputProps, "type">;
  * ユーザーが色を選択するためのコンポーネント。
  */
 export const ColorPicker = ({
-  status = "default",
+  intent = "default",
   variant = "outline",
   fullWidth = false,
   className,
@@ -25,7 +25,7 @@ export const ColorPicker = ({
   return (
     <Input
       type="color"
-      status={status}
+      intent={ intent }
       variant={variant}
       fullWidth={fullWidth}
       className={classNames("wim-colorpicker", className)}

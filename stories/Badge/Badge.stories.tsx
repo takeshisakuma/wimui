@@ -23,7 +23,7 @@ export const Primary: Story = {
     return <Badge {...args} content={t("story.badge_content")} />;
   },
   args: {
-    status: "primary",
+    intent: "primary",
   },
 };
 
@@ -33,7 +33,7 @@ export const Secondary: Story = {
     return <Badge {...args} content={t("story.badge_secondary")} />;
   },
   args: {
-    status: "secondary",
+    intent: "secondary",
   },
 };
 
@@ -43,7 +43,7 @@ export const Destructive: Story = {
     return <Badge {...args} content={t("story.badge_error")} />;
   },
   args: {
-    status: "error",
+    intent: "error",
   },
 };
 
@@ -53,7 +53,7 @@ export const Neutral: Story = {
     return <Badge {...args} content={t("story.badge_neutral")} />;
   },
   args: {
-    status: "neutral",
+    intent: "neutral",
   },
 };
 
@@ -64,7 +64,7 @@ export const Outline: Story = {
   },
   args: {
     variant: "outline",
-    status: "primary",
+    intent: "primary",
   },
 };
 
@@ -84,7 +84,7 @@ export const Required: Story = {
     return <Badge {...args} content={t("required")} />;
   },
   args: {
-    status: "error",
+    intent: "error",
     size: "sm",
   },
 };
@@ -95,7 +95,7 @@ export const Optional: Story = {
     return <Badge {...args} content={t("optional")} />;
   },
   args: {
-    status: "neutral",
+    intent: "neutral",
     size: "sm",
   },
 };
@@ -112,7 +112,7 @@ export const WithIcon: Story = {
     );
   },
   args: {
-    status: "primary",
+    intent: "primary",
   },
 };
 
@@ -121,6 +121,6 @@ export const IconOnly: Story = {
     icon: (
       <Icon name="CheckIcon" />
     ),
-    status: "primary",
+    intent: "primary",
   },
 };

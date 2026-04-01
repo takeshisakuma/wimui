@@ -36,7 +36,7 @@ describe("Banner", () => {
   });
 
   it("renders with icon=true (default icon)", () => {
-    const { container } = render(<Banner title="Info" icon={true} status="info" />);
+    const { container } = render(<Banner title="Info" icon={true} intent="info" />);
     expect(container.querySelector(".wim-banner__icon")).toBeInTheDocument();
   });
 

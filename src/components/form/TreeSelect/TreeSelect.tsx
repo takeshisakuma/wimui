@@ -248,7 +248,7 @@ export const TreeSelect = ({
           allowClear={allowClear}
           hasValue={!!displayValue}
           onClear={handleClear}
-          status={error ? "error" : "default"}
+          intent={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && "wim-tree-select__trigger--open",

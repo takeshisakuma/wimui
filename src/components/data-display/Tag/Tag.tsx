@@ -1,13 +1,13 @@
 import React from "react";
 import { IndicatorBase } from "../../_internal/IndicatorBase";
-import { ComponentSize, IndicatorStatus } from "../../../types/tokens";
+import { ComponentSize, WimIntent } from "../../../types/tokens";
 import "./tag.scss";
 
 export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   /** 表示するコンテンツ */
   children?: React.ReactNode;
   /** ステータス */
-  status?: IndicatorStatus;
+  intent?: WimIntent;
   /** バリアント */
   variant?: "solid" | "outline" | "subtle";
   /** サイズ */

@@ -39,7 +39,7 @@ describe("Toast", () => {
   });
 
   it("applies status class", () => {
-    const { container } = render(<Toast title="Message" status="success" />);
+    const { container } = render(<Toast title="Message" intent="success" />);
     expect(container.firstChild).toHaveClass("wim-toast--success");
   });
 });

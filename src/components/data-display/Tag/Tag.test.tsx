@@ -16,7 +16,7 @@ describe("Tag", () => {
 
   it("applies variant and status classes", () => {
     const { container } = render(
-      <Tag variant="outline" status="success">
+      <Tag variant="outline" intent="success">
         Success
       </Tag>,
     );

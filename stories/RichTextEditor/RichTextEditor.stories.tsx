@@ -8,7 +8,7 @@ const meta: Meta<typeof RichTextEditor> = {
   title: "Components/Basic Inputs/RichTextEditor",
   component: RichTextEditor,
   argTypes: {
-    status: {
+    intent: {
       control: "select",
       options: ["default", "error", "disabled"],
     },
@@ -81,7 +81,7 @@ export const ErrorStatus: Story = {
       <RichTextEditor
         {...args}
         label={t("story.rte_label_content")}
-        status="error"
+        intent="error"
         error={t("story.rte_error_required")}
         placeholder={t("story.rte_placeholder_default")}
       />

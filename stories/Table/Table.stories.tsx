@@ -37,28 +37,28 @@ const useSampleData = () => {
       id: 1,
       name: "John Doe",
       email: "john@example.com",
-      status: t("story.table_active"),
+      intent: t("story.table_active"),
       role: t("story.table_admin"),
     },
     {
       id: 2,
       name: "Jane Smith",
       email: "jane@example.com",
-      status: t("story.table_inactive"),
+      intent: t("story.table_inactive"),
       role: t("story.table_user"),
     },
     {
       id: 3,
       name: "Bob Johnson",
       email: "bob@example.com",
-      status: t("story.table_active"),
+      intent: t("story.table_active"),
       role: t("story.table_editor"),
     },
     {
       id: 4,
       name: "Alice Brown",
       email: "alice@example.com",
-      status: t("story.table_pending"),
+      intent: t("story.table_pending"),
       role: t("story.table_user"),
     },
   ];
@@ -71,7 +71,7 @@ const useManyRows = () => {
     name: `${t("story.table_user")} ${i + 1}`,
     email: `user${i + 1}@example.com`,
     role: i % 3 === 0 ? t("story.table_admin") : t("story.table_member"),
-    status: i % 2 === 0 ? t("story.table_active") : t("story.table_inactive"),
+    intent: i % 2 === 0 ? t("story.table_active") : t("story.table_inactive"),
   }));
 };
 
@@ -99,10 +99,10 @@ export const Default: Story = {
               <Table.Cell label={t("story.table_role")}>{row.role}</Table.Cell>
               <Table.Cell label={t("story.table_status")}>
                 <Badge
-                  content={row.status}
+                  content={row.intent}
                   size="sm"
                   color={
-                    row.status === t("story.table_active")
+                    row.intent === t("story.table_active")
                       ? "primary"
                       : "neutral"
                   }
@@ -416,10 +416,10 @@ export const MobileCard: Story = {
               <Table.Cell label={t("story.table_role")}>{row.role}</Table.Cell>
               <Table.Cell label={t("story.table_status")}>
                 <Badge
-                  content={row.status}
+                  content={row.intent}
                   size="sm"
                   color={
-                    row.status === t("story.table_active")
+                    row.intent === t("story.table_active")
                       ? "primary"
                       : "neutral"
                   }

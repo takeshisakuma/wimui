@@ -21,7 +21,7 @@ export const Success: Story = {
     return (
       <Result
         {...args}
-        status="success"
+        intent="success"
         title={t("story.result_success_title")}
         description={t("story.result_success_desc")}
         extra={[
@@ -52,7 +52,7 @@ export const Warning: Story = {
     return (
       <Result
         {...args}
-        status="warning"
+        intent="warning"
         title={t("story.result_warning_title")}
         extra={<Button variant="filled" label={t("story.result_go_console")} />}
       />
@@ -66,7 +66,7 @@ export const ErrorStatus: Story = {
     return (
       <Result
         {...args}
-        status="error"
+        intent="error"
         title={t("story.result_error_title")}
         description={t("story.result_error_desc")}
         extra={[
@@ -84,7 +84,7 @@ export const Status404: Story = {
     return (
       <Result
         {...args}
-        status="404"
+        intent="404"
         title="404"
         description={t("story.result_404_desc")}
         extra={<Button variant="filled" label={t("story.result_back_home")} />}
@@ -99,7 +99,7 @@ export const Status403: Story = {
     return (
       <Result
         {...args}
-        status="403"
+        intent="403"
         title="403"
         description={t("story.result_403_desc")}
         extra={<Button variant="filled" label={t("story.result_back_home")} />}
@@ -114,7 +114,7 @@ export const Status500: Story = {
     return (
       <Result
         {...args}
-        status="500"
+        intent="500"
         title="500"
         description={t("story.result_500_desc")}
         extra={<Button variant="filled" label={t("story.result_back_home")} />}

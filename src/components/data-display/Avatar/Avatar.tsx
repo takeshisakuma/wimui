@@ -12,7 +12,7 @@ type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
   size?: ComponentSize;
   shape?: "circle" | "rounded";
   /** ステータス */
-  status?: "primary" | "secondary" | "neutral" | "error" | "success";
+  intent?: "primary" | "secondary" | "neutral" | "error" | "success";
 };
 
 /**
@@ -24,8 +24,7 @@ export const Avatar = ({
   initials,
   icon,
   size = "md",
-  shape = "circle",
-  status,
+  shape = "circle", intent,
   className,
   ...props
 }: AvatarProps) => {
@@ -54,7 +53,7 @@ export const Avatar = ({
         "wim-avatar",
         `wim-avatar--${size}`,
         `wim-avatar--${shape}`,
-        status && `wim-avatar--${status}`,
+        status && `wim-avatar--${ intent }`,
         className,
       )}
       {...props}

@@ -17,7 +17,7 @@ describe("IndicatorBase", () => {
 
   it("applies status modifier class", () => {
     const { container } = render(
-      <IndicatorBase prefixClass="wim-badge" status="success">ok</IndicatorBase>,
+      <IndicatorBase prefixClass="wim-badge" intent="success">ok</IndicatorBase>,
     );
     expect(container.firstChild).toHaveClass("wim-badge--success");
   });

@@ -20,7 +20,7 @@ const meta: Meta<typeof Avatar> = {
       control: "radio",
       options: ["circle", "rounded"],
     },
-    status: {
+    intent: {
       control: "select",
       options: ["primary", "secondary", "neutral", "error", "success"],
     },
@@ -47,16 +47,16 @@ export const Default: Story = {
 export const Initials: Story = {
   args: {
     initials: "JD",
-    status: "primary",
+    intent: "primary",
   },
 };
 
 export const Sizes: Story = {
   render: (args: any) => (
     <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-      <Avatar {...args} size="sm" initials="SM" status="neutral" />
-      <Avatar {...args} size="md" initials="MD" status="neutral" />
-      <Avatar {...args} size="lg" initials="LG" status="neutral" />
+      <Avatar {...args} size="sm" initials="SM" intent="neutral" />
+      <Avatar {...args} size="md" initials="MD" intent="neutral" />
+      <Avatar {...args} size="lg" initials="LG" intent="neutral" />
     </div>
   ),
 };
@@ -64,8 +64,8 @@ export const Sizes: Story = {
 export const Shapes: Story = {
   render: (args: any) => (
     <div style={{ display: "flex", gap: "16px" }}>
-      <Avatar {...args} shape="circle" initials="C" status="secondary" />
-      <Avatar {...args} shape="rounded" initials="R" status="secondary" />
+      <Avatar {...args} shape="circle" initials="C" intent="secondary" />
+      <Avatar {...args} shape="rounded" initials="R" intent="secondary" />
     </div>
   ),
 };
@@ -88,11 +88,11 @@ export const Fallback: Story = {
 export const Colors: Story = {
   render: (args: any) => (
     <div style={{ display: "flex", gap: "16px" }}>
-      <Avatar {...args} initials="P" status="primary" />
-      <Avatar {...args} initials="S" status="secondary" />
-      <Avatar {...args} initials="N" status="neutral" />
-      <Avatar {...args} initials="E" status="error" />
-      <Avatar {...args} initials="SU" status="success" />
+      <Avatar {...args} initials="P" intent="primary" />
+      <Avatar {...args} initials="S" intent="secondary" />
+      <Avatar {...args} initials="N" intent="neutral" />
+      <Avatar {...args} initials="E" intent="error" />
+      <Avatar {...args} initials="SU" intent="success" />
     </div>
   ),
 };

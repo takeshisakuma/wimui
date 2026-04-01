@@ -22,7 +22,7 @@ describe("Badge", () => {
 
   it("applies variant and status classes", () => {
     const { container } = render(
-      <Badge status="error" variant="outline">Test</Badge>,
+      <Badge intent="error" variant="outline">Test</Badge>,
     );
     const span = container.firstChild;
     expect(span).toHaveClass("wim-badge--error");

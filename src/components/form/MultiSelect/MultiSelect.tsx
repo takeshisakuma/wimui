@@ -244,7 +244,7 @@ export const MultiSelect = ({
           allowClear={allowClear}
           hasValue={currentValues && currentValues.length > 0}
           onClear={handleClearAll}
-          status={error ? "error" : "default"}
+          intent={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && "wim-multiselect-trigger--open",

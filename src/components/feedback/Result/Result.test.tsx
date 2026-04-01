@@ -10,32 +10,32 @@ describe("Result", () => {
   });
 
   it("renders status class for success", () => {
-    const { container } = render(<Result status="success" />);
+    const { container } = render(<Result intent="success" />);
     expect(container.firstChild).toHaveClass("wim-result--success");
   });
 
   it("renders status class for error", () => {
-    const { container } = render(<Result status="error" />);
+    const { container } = render(<Result intent="error" />);
     expect(container.firstChild).toHaveClass("wim-result--error");
   });
 
   it("renders status class for warning", () => {
-    const { container } = render(<Result status="warning" />);
+    const { container } = render(<Result intent="warning" />);
     expect(container.firstChild).toHaveClass("wim-result--warning");
   });
 
   it("renders status class for 404", () => {
-    const { container } = render(<Result status="404" />);
+    const { container } = render(<Result intent="404" />);
     expect(container.firstChild).toHaveClass("wim-result--404");
   });
 
   it("renders status class for 403", () => {
-    const { container } = render(<Result status="403" />);
+    const { container } = render(<Result intent="403" />);
     expect(container.firstChild).toHaveClass("wim-result--403");
   });
 
   it("renders status class for 500", () => {
-    const { container } = render(<Result status="500" />);
+    const { container } = render(<Result intent="500" />);
     expect(container.firstChild).toHaveClass("wim-result--500");
   });
 

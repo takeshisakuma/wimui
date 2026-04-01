@@ -1,11 +1,11 @@
 import React from "react";
 import classNames from "classnames";
-import { ComponentSize, IndicatorStatus } from "../../types/tokens";
+import { ComponentSize, WimIntent } from "../../types/tokens";
 
 export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   children?: React.ReactNode;
   icon?: React.ReactNode;
-  status?: IndicatorStatus;
+  intent?: WimIntent;
   variant?: "solid" | "outline" | "subtle";
   size?: ComponentSize;
   prefixClass: string;
@@ -16,7 +16,7 @@ export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
 export const IndicatorBase = <C extends React.ElementType = "span">({
   children,
   icon,
-  status = "primary",
+  intent = "primary",
   variant = "solid",
   size = "md",
   prefixClass,
@@ -30,7 +30,7 @@ export const IndicatorBase = <C extends React.ElementType = "span">({
     <Component
       className={classNames(
         prefixClass,
-        `${prefixClass}--${status}`,
+        `${prefixClass}--${intent}`,
         `${prefixClass}--${variant}`,
         `${prefixClass}--${size}`,
         className,

@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { FieldStatus } from "../../../types/tokens";
+import { WimIntent } from "../../../types/tokens";
 import "./input-base.scss";
 
 export type InputBaseIcon = {
@@ -16,7 +16,7 @@ export type InputBaseIcon = {
 
 export type InputBaseProps = {
   children: React.ReactNode;
-  status?: FieldStatus;
+  intent?: WimIntent;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
@@ -40,7 +40,7 @@ export type InputBaseProps = {
  */
 export const InputBase = ({
   children,
-  status = "default",
+  intent = "default",
   variant = "outline",
   fullWidth = false,
   width,
@@ -60,7 +60,7 @@ export const InputBase = ({
     typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
 
   const isDisabled = disabled;
-  const effectiveStatus = isDisabled ? "disabled" : status;
+  const effectiveIntent = isDisabled ? "disabled" : intent;
 
   const disabledChildren = isDisabled
     ? React.Children.map(children, (child) =>
@@ -77,9 +77,9 @@ export const InputBase = ({
   ) => {
     if (customColor) return customColor;
     if (isDisabled) return "disabled";
-    if (status === "error") return "destructive";
-    if (status === "warning") return "caution";
-    if (status === "success") return "positive";
+    if (intent === "error") return "destructive";
+    if (intent === "warning") return "caution";
+    if (intent === "success") return "positive";
     return "secondary";
   };
 
@@ -99,7 +99,7 @@ export const InputBase = ({
     <div
       className={classNames(
         "wim-input-base",
-        `wim-input-base--${effectiveStatus}`,
+        `wim-input-base--${effectiveIntent}`,
         `wim-input--variant-${variant}`,
         fullWidth && "wim-input--full-width",
         effectiveHasCustomWidth && "wim-input--has-custom-width",

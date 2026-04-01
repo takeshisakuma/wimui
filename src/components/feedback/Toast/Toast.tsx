@@ -9,7 +9,7 @@ import classNames from "classnames";
 import { Transition } from "../../misc/Transition/Transition";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
-import { FeedbackStatus } from "../../../types/tokens";
+import { WimIntent } from "../../../types/tokens";
 import "./toast.scss";
 export type ToastPosition =
   | "top-right"
@@ -23,7 +23,7 @@ export type ToastProps = {
   id?: string;
   title?: string;
   description?: string;
-  status?: FeedbackStatus;
+  intent?: WimIntent;
   duration?: number;
   isVisible?: boolean;
   onClose?: (id?: string) => void;
@@ -37,7 +37,7 @@ export const Toast = ({
   id,
   title,
   description,
-  status = "info",
+  intent = "info",
   duration = 3000,
   isVisible = true,
   onClose,
@@ -68,12 +68,12 @@ export const Toast = ({
       leave="toast-leave"
       leaveFrom="toast-leave-from"
       leaveTo="toast-leave-to"
-      className={classNames("wim-toast", `wim-toast--${status}`, className)}
+      className={classNames("wim-toast", `wim-toast--${ intent }`, className)}
       role="status"
       aria-live="polite"
     >
       <div className="wim-toast__icon">
-        <FeedbackIcon status={status} size="sm" />
+        <FeedbackIcon intent={ intent } size="sm" />
       </div>
       <div className="wim-toast__content">
         {title && <h5 className="wim-toast__title">{title}</h5>}
@@ -95,7 +95,7 @@ type ToastItem = {
   id: string;
   title?: string;
   description?: string;
-  status?: FeedbackStatus;
+  intent?: WimIntent;
   duration?: number;
 };
 

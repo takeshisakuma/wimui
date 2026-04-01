@@ -5,10 +5,10 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import { Icon } from "../../media/Icon/Icon";
 import { InputBase, InputBaseIcon } from "../../_internal/InputBase";
 import { FieldTemplate } from "../../_internal/FieldTemplate";
-import { FieldStatus } from "../../../types/tokens";
+import { WimIntent } from "../../../types/tokens";
 
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
-  status?: FieldStatus;
+  intent?: WimIntent;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   leftIcon?: React.ComponentProps<typeof Icon>["name"];
@@ -38,7 +38,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      status = "default",
+      intent = "default",
       variant = "outline",
       fullWidth = false,
       className,
@@ -152,7 +152,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }
 
     const inputType = type === "password" && isPasswordVisible ? "text" : type;
-    const effectiveStatus = isDisabled ? "disabled" : (error ? "error" : status);
+    const effectiveIntent = isDisabled ? "disabled" : (error ? "error" : intent);
 
     const generatedId = useId();
     const id = customId || `wim-input-${generatedId}`;
@@ -170,7 +170,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         className={className}
       >
         <InputBase
-          status={error ? "error" : status}
+          intent={error ? "error" : intent}
           variant={variant}
           fullWidth={fullWidth}
           width={width}
@@ -188,7 +188,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={mergedRef}
             className={classNames(
               "wim-input",
-              `wim-input--${effectiveStatus}`,
+              `wim-input--${effectiveIntent}`,
               `wim-input--${variant}`,
               fullWidth && "wim-input--full-width",
               leftIcon && "wim-input--has-left-icon",
@@ -199,7 +199,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             value={currentValue}
             onChange={handleInputChange}
             type={inputType}
-            aria-invalid={effectiveStatus === "error"}
+            aria-invalid={effectiveIntent === "error"}
             aria-describedby={errorId}
             aria-labelledby={label ? labelId : undefined}
             {...props}

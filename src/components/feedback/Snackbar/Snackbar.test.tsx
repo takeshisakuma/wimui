@@ -34,14 +34,14 @@ describe("Snackbar", () => {
   });
 
   it("renders with success status", () => {
-    render(<Snackbar message="Success" open={true} status="success" />);
+    render(<Snackbar message="Success" open={true} intent="success" />);
     const el = document.querySelector(".wim-snackbar--success");
     expect(el).toBeInTheDocument();
     expect(el).toHaveAttribute("role", "status");
   });
 
   it("renders with error status and role=alert", () => {
-    render(<Snackbar message="Error" open={true} status="error" />);
+    render(<Snackbar message="Error" open={true} intent="error" />);
     const el = document.querySelector(".wim-snackbar--error");
     expect(el).toBeInTheDocument();
     expect(el).toHaveAttribute("role", "alert");
@@ -49,14 +49,14 @@ describe("Snackbar", () => {
   });
 
   it("renders with warning status and role=alert", () => {
-    render(<Snackbar message="Warning" open={true} status="warning" />);
+    render(<Snackbar message="Warning" open={true} intent="warning" />);
     const el = document.querySelector(".wim-snackbar--warning");
     expect(el).toHaveAttribute("role", "alert");
     expect(el).toHaveAttribute("aria-live", "assertive");
   });
 
   it("renders with info status", () => {
-    render(<Snackbar message="Info" open={true} status="info" />);
+    render(<Snackbar message="Info" open={true} intent="info" />);
     expect(document.querySelector(".wim-snackbar--info")).toBeInTheDocument();
   });
 
@@ -139,7 +139,7 @@ describe("SnackbarProvider and useSnackbar", () => {
     return (
       <div>
         <button onClick={() => showMessage("Hello")}>Show String</button>
-        <button onClick={() => showMessage({ message: "Object", status: "success" })}>Show Object</button>
+        <button onClick={() => showMessage({ message: "Object", intent: "success" })}>Show Object</button>
         <button onClick={hideMessage}>Hide</button>
       </div>
     );

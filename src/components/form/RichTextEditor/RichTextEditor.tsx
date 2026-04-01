@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../../_internal/FieldTemplate";
-import { FieldStatus } from "../../../types/tokens";
+import { WimIntent } from "../../../types/tokens";
 import "./rich-text-editor.scss";
 
 // ---- Inline SVG toolbar icons ----
@@ -141,7 +141,7 @@ export type RichTextEditorProps = {
   onChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
-  status?: FieldStatus;
+  intent?: WimIntent;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   minHeight?: number | string;
@@ -193,7 +193,7 @@ export const RichTextEditor = ({
   onChange,
   placeholder,
   disabled,
-  status = "default",
+  intent = "default",
   variant = "outline",
   fullWidth = false,
   minHeight = 200,
@@ -236,7 +236,7 @@ export const RichTextEditor = ({
   const labelId = label ? `${id}-label` : undefined;
 
   const isDisabled = disabled;
-  const effectiveStatus = isDisabled ? "disabled" : (error ? "error" : status);
+  const effectiveIntent = isDisabled ? "disabled" : (error ? "error" : intent);
 
   // Set initial content imperatively on mount (avoids dangerouslySetInnerHTML reset on re-render)
   const initialContentRef = React.useRef(value !== undefined ? value : defaultValue);
@@ -459,7 +459,7 @@ export const RichTextEditor = ({
       <div
         className={classNames(
           "wim-rte",
-          `wim-rte--${effectiveStatus}`,
+          `wim-rte--${effectiveIntent}`,
           `wim-rte--${variant}`,
           fullWidth && "wim-rte--full-width",
         )}
@@ -486,7 +486,7 @@ export const RichTextEditor = ({
           aria-multiline
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledby ?? (label ? labelId : undefined)}
-          aria-invalid={effectiveStatus === "error"}
+          aria-invalid={effectiveIntent === "error"}
           aria-describedby={errorId}
           aria-disabled={isDisabled}
           aria-placeholder={placeholder}

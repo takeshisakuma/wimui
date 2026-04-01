@@ -14,13 +14,13 @@ describe("FeedbackIcon", () => {
   });
 
   it("renders a default icon for success status", () => {
-    const { container } = render(<FeedbackIcon status="success" />);
+    const { container } = render(<FeedbackIcon intent="success" />);
     expect(container.firstChild).not.toBeNull();
   });
 
   it("renders a default icon for each non-success status", () => {
-    for (const status of ["info", "warning", "error", "default"] as const) {
-      const { container } = render(<FeedbackIcon status={status} />);
+    for (const intent of ["info", "warning", "error", "default"] as const) {
+      const { container } = render(<FeedbackIcon intent={ intent } />);
       expect(container.firstChild).not.toBeNull();
     }
   });
