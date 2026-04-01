@@ -62,7 +62,7 @@ test.describe("Accessibility (axe-core / WCAG 2.1 AA)", () => {
         test(`${story.title} › ${story.name}`, async ({ page }) => {
           const url = `/iframe.html?id=${story.id}&viewMode=story&globals=theme:${theme};locale:en`;
 
-          await page.goto(url, { waitUntil: "networkidle" });
+          await page.goto(url, { waitUntil: "load" });
           await page.waitForTimeout(300);
 
           const results = await new AxeBuilder({ page })
