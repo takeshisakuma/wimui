@@ -8,10 +8,10 @@ type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
     size?: ComponentSize;
     shape?: "circle" | "rounded";
     /** ステータス */
-    status?: "primary" | "secondary" | "neutral" | "error" | "success";
+    intent?: "primary" | "secondary" | "neutral" | "error" | "success";
 };
 /**
  * ユーザーのアイコンやイニシャルを表示するためのアバターコンポーネント。
  */
-export declare const Avatar: ({ src, alt, initials, icon, size, shape, status, className, ...props }: AvatarProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Avatar: ({ src, alt, initials, icon, size, shape, intent, className, ...props }: AvatarProps) => import("react/jsx-runtime").JSX.Element;
 export {};

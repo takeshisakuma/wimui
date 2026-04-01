@@ -9,17 +9,24 @@ export type LiteralWithAutocomplete<T extends string> = T | (string & {});
  */
 export type ComponentSize = "sm" | "md" | "lg";
 /**
- * Status values for indicator-style components (Badge, Chip, Tag, Progress).
+ * Unified semantic intent values for components.
  */
-export type IndicatorStatus = "primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral";
+export type WimIntent = "primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral" | "default" | "destructive" | "positive";
+/**
+ * Status values for indicator-style components (Badge, Chip, Tag, Progress).
+ * @deprecated Use WimIntent instead.
+ */
+export type IndicatorStatus = WimIntent;
 /**
  * Status values for feedback/notification components (Alert, Banner, Toast, Snackbar).
+ * @deprecated Use WimIntent instead.
  */
-export type FeedbackStatus = "info" | "success" | "warning" | "error";
+export type FeedbackStatus = WimIntent;
 /**
  * Status values for form field components (Input, Textarea, DatePicker, RichTextEditor).
+ * @deprecated Use WimIntent instead.
  */
-export type FieldStatus = "default" | "error" | "warning" | "success";
+export type FieldStatus = WimIntent;
 /**
  * Color tokens keys available as CSS variables.
  */

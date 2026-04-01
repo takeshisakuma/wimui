@@ -1,11 +1,11 @@
 import { default as React } from '../../../../node_modules/react';
-import { FeedbackStatus } from '../../../types/tokens';
+import { WimIntent } from '../../../types/tokens';
 export type ToastPosition = "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
 export type ToastProps = {
     id?: string;
     title?: string;
     description?: string;
-    status?: FeedbackStatus;
+    intent?: WimIntent;
     duration?: number;
     isVisible?: boolean;
     onClose?: (id?: string) => void;
@@ -14,12 +14,12 @@ export type ToastProps = {
 /**
  * ユーザーに通知やフィードバックを伝えるためのトーストコンポーネント。
  */
-export declare const Toast: ({ id, title, description, status, duration, isVisible, onClose, className, }: ToastProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Toast: ({ id, title, description, intent, duration, isVisible, onClose, className, }: ToastProps) => import("react/jsx-runtime").JSX.Element;
 type ToastItem = {
     id: string;
     title?: string;
     description?: string;
-    status?: FeedbackStatus;
+    intent?: WimIntent;
     duration?: number;
 };
 type ToastContextType = {

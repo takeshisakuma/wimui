@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { FeedbackStatus } from '../../../types/tokens';
+import { WimIntent } from '../../../types/tokens';
 type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * アラートのタイトル
@@ -10,9 +10,9 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
      */
     description?: React.ReactNode;
     /**
-     * アラートのステータス
+     * アラートのインテント
      */
-    status?: FeedbackStatus;
+    intent?: WimIntent;
     /**
      * カスタムアイコン。指定しない場合はバリアントに応じたデフォルトアイコンが表示されます。
      */
@@ -33,5 +33,5 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
 /**
  * ユーザーに重要な情報を伝えるためのアラートコンポーネント。
  */
-export declare const Alert: ({ title, description, status, icon, onClose, className, children, ...props }: AlertProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const Alert: ({ title, description, intent, icon, onClose, className, children, ...props }: AlertProps) => import("react/jsx-runtime").JSX.Element | null;
 export {};

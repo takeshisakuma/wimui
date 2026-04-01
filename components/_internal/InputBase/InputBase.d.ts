@@ -1,6 +1,6 @@
 import { default as React } from '../../../../node_modules/react';
 import { Icon } from '../../media/Icon/Icon';
-import { FieldStatus } from '../../../types/tokens';
+import { WimIntent } from '../../../types/tokens';
 export type InputBaseIcon = {
     name: React.ComponentProps<typeof Icon>["name"];
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -12,7 +12,7 @@ export type InputBaseIcon = {
 };
 export type InputBaseProps = {
     children: React.ReactNode;
-    status?: FieldStatus;
+    intent?: WimIntent;
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
@@ -33,4 +33,4 @@ export type InputBaseProps = {
  * フォーム入力コンポーネント（Input, SearchInput, Selectbox等）の外殻となる共用語コンポーネント。
  * prefix/suffix（アイコン）や clearable（クリアボタン）の配置とレイアウトを統一します。
  */
-export declare const InputBase: ({ children, status, variant, fullWidth, width, className, disabled, leftIcon, leftIconColor, onLeftIconClick, leftIconAriaLabel, rightIcons, allowClear, hasValue, onClear, clearAriaLabel, }: InputBaseProps) => import("react/jsx-runtime").JSX.Element;
+export declare const InputBase: ({ children, intent, variant, fullWidth, width, className, disabled, leftIcon, leftIconColor, onLeftIconClick, leftIconAriaLabel, rightIcons, allowClear, hasValue, onClear, clearAriaLabel, }: InputBaseProps) => import("react/jsx-runtime").JSX.Element;

@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.2s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.8s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -1359,14 +1359,23 @@ description?: React.ReactNode
 icon?: React.ReactNode
 
 /**
+ * アラートのインテント
+ */
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot; = &quot;info&quot;
+
+/**
  * 閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。
  */
 onClose?: () =&gt; void
-
-/**
- * アラートのステータス
- */
-status?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;error&quot; = &quot;info&quot;
 
 /**
  * アラートのタイトル
@@ -1399,7 +1408,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Alert
-            status=&quot;info&quot;
+            intent=&quot;info&quot;
             title={args.title || t(&quot;story.alert_info_title&quot;)}
             description={args.description || t(&quot;story.alert_info_desc&quot;)} /&gt;
     );
@@ -1417,7 +1426,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Alert
-            status=&quot;success&quot;
+            intent=&quot;success&quot;
             title={args.title || t(&quot;story.alert_success_title&quot;)}
             description={args.description || t(&quot;story.alert_success_desc&quot;)} /&gt;
     );
@@ -1435,7 +1444,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Alert
-            status=&quot;warning&quot;
+            intent=&quot;warning&quot;
             title={args.title || t(&quot;story.alert_warning_title&quot;)}
             description={args.description || t(&quot;story.alert_warning_desc&quot;)} /&gt;
     );
@@ -1453,7 +1462,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Alert
-            status=&quot;error&quot;
+            intent=&quot;error&quot;
             title={args.title || t(&quot;story.alert_error_title&quot;)}
             description={args.description || t(&quot;story.alert_error_desc&quot;)} /&gt;
     );
@@ -1471,7 +1480,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Alert
-            status=&quot;info&quot;
+            intent=&quot;info&quot;
             description={args.description || t(&quot;story.alert_no_title_desc&quot;)} /&gt;
     );
 };</code></pre>
@@ -1488,7 +1497,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Alert
-            status=&quot;success&quot;
+            intent=&quot;success&quot;
             title={args.title || t(&quot;story.alert_dismiss_title&quot;)}
             description={args.description || t(&quot;story.alert_dismiss_desc&quot;)}
             onClose={args.onClose ?? (() =&gt; console.log(&quot;Alert closed&quot;))} /&gt;
@@ -1507,7 +1516,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Alert
-            status=&quot;info&quot;
+            intent=&quot;info&quot;
             title={args.title || t(&quot;story.alert_update_title&quot;)}
             description={args.description || t(&quot;story.alert_update_desc&quot;)}
             onClose={args.onClose ?? (() =&gt; {})} /&gt;
@@ -3904,16 +3913,16 @@ icon?: React.ReactNode
 
 initials?: string
 
+/**
+ * ステータス
+ */
+intent?: &quot;primary&quot; | &quot;secondary&quot; | &quot;neutral&quot; | &quot;error&quot; | &quot;success&quot;
+
 shape?: &quot;circle&quot; | &quot;rounded&quot; = &quot;circle&quot;
 
 size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;
 
-src?: string
-
-/**
- * ステータス
- */
-status?: &quot;primary&quot; | &quot;secondary&quot; | &quot;neutral&quot; | &quot;error&quot; | &quot;success&quot;</code></pre>
+src?: string</code></pre>
           </div>
         </div>
     
@@ -3953,7 +3962,7 @@ status?: &quot;primary&quot; | &quot;secondary&quot; | &quot;neutral&quot; | &qu
               </div>
               
               
-              <pre><code>const Initials = () =&gt; &lt;Avatar initials=&quot;JD&quot; status=&quot;primary&quot; /&gt;;</code></pre>
+              <pre><code>const Initials = () =&gt; &lt;Avatar initials=&quot;JD&quot; intent=&quot;primary&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -3963,9 +3972,9 @@ status?: &quot;primary&quot; | &quot;secondary&quot; | &quot;neutral&quot; | &qu
               
               
               <pre><code>const Sizes = () =&gt; &lt;div style={{ display: &quot;flex&quot;, gap: &quot;16px&quot;, alignItems: &quot;center&quot; }}&gt;
-    &lt;Avatar size=&quot;sm&quot; initials=&quot;SM&quot; status=&quot;neutral&quot; /&gt;
-    &lt;Avatar size=&quot;md&quot; initials=&quot;MD&quot; status=&quot;neutral&quot; /&gt;
-    &lt;Avatar size=&quot;lg&quot; initials=&quot;LG&quot; status=&quot;neutral&quot; /&gt;
+    &lt;Avatar size=&quot;sm&quot; initials=&quot;SM&quot; intent=&quot;neutral&quot; /&gt;
+    &lt;Avatar size=&quot;md&quot; initials=&quot;MD&quot; intent=&quot;neutral&quot; /&gt;
+    &lt;Avatar size=&quot;lg&quot; initials=&quot;LG&quot; intent=&quot;neutral&quot; /&gt;
 &lt;/div&gt;;</code></pre>
             </div>
             <div class="note ok">
@@ -3976,8 +3985,8 @@ status?: &quot;primary&quot; | &quot;secondary&quot; | &quot;neutral&quot; | &qu
               
               
               <pre><code>const Shapes = () =&gt; &lt;div style={{ display: &quot;flex&quot;, gap: &quot;16px&quot; }}&gt;
-    &lt;Avatar shape=&quot;circle&quot; initials=&quot;C&quot; status=&quot;secondary&quot; /&gt;
-    &lt;Avatar shape=&quot;rounded&quot; initials=&quot;R&quot; status=&quot;secondary&quot; /&gt;
+    &lt;Avatar shape=&quot;circle&quot; initials=&quot;C&quot; intent=&quot;secondary&quot; /&gt;
+    &lt;Avatar shape=&quot;rounded&quot; initials=&quot;R&quot; intent=&quot;secondary&quot; /&gt;
 &lt;/div&gt;;</code></pre>
             </div>
             <div class="note ok">
@@ -4006,11 +4015,11 @@ status?: &quot;primary&quot; | &quot;secondary&quot; | &quot;neutral&quot; | &qu
               
               
               <pre><code>const Colors = () =&gt; &lt;div style={{ display: &quot;flex&quot;, gap: &quot;16px&quot; }}&gt;
-    &lt;Avatar initials=&quot;P&quot; status=&quot;primary&quot; /&gt;
-    &lt;Avatar initials=&quot;S&quot; status=&quot;secondary&quot; /&gt;
-    &lt;Avatar initials=&quot;N&quot; status=&quot;neutral&quot; /&gt;
-    &lt;Avatar initials=&quot;E&quot; status=&quot;error&quot; /&gt;
-    &lt;Avatar initials=&quot;SU&quot; status=&quot;success&quot; /&gt;
+    &lt;Avatar initials=&quot;P&quot; intent=&quot;primary&quot; /&gt;
+    &lt;Avatar initials=&quot;S&quot; intent=&quot;secondary&quot; /&gt;
+    &lt;Avatar initials=&quot;N&quot; intent=&quot;neutral&quot; /&gt;
+    &lt;Avatar initials=&quot;E&quot; intent=&quot;error&quot; /&gt;
+    &lt;Avatar initials=&quot;SU&quot; intent=&quot;success&quot; /&gt;
 &lt;/div&gt;;</code></pre>
             </div>
         </div>
@@ -4298,17 +4307,17 @@ total?: number</code></pre>
               <pre><code>const Sizes = () =&gt; &lt;div style={{ display: &quot;flex&quot;, flexDirection: &quot;column&quot;, gap: &quot;24px&quot; }}&gt;
     &lt;AvatarGroup size=&quot;sm&quot;&gt;
         {users.map((u, i) =&gt; (
-          &lt;Avatar key={i} initials={u.initials} status=&quot;primary&quot; /&gt;
+          &lt;Avatar key={i} initials={u.initials} intent=&quot;primary&quot; /&gt;
         ))}
     &lt;/AvatarGroup&gt;
     &lt;AvatarGroup size=&quot;md&quot;&gt;
         {users.map((u, i) =&gt; (
-          &lt;Avatar key={i} initials={u.initials} status=&quot;secondary&quot; /&gt;
+          &lt;Avatar key={i} initials={u.initials} intent=&quot;secondary&quot; /&gt;
         ))}
     &lt;/AvatarGroup&gt;
     &lt;AvatarGroup size=&quot;lg&quot;&gt;
         {users.map((u, i) =&gt; (
-          &lt;Avatar key={i} initials={u.initials} status=&quot;neutral&quot; /&gt;
+          &lt;Avatar key={i} initials={u.initials} intent=&quot;neutral&quot; /&gt;
         ))}
     &lt;/AvatarGroup&gt;
 &lt;/div&gt;;</code></pre>
@@ -4861,20 +4870,23 @@ children?: React.ReactNode
 icon?: React.ReactNode
 
 /**
- * サイズ
- */
-size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;
-
-/**
  * ステータス
  */
-status?: | &quot;primary&quot;
+intent?: | &quot;primary&quot;
 | &quot;secondary&quot;
 | &quot;success&quot;
 | &quot;warning&quot;
 | &quot;error&quot;
 | &quot;info&quot;
 | &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot;
+
+/**
+ * サイズ
+ */
+size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;
 
 /**
  * バリアント
@@ -4904,7 +4916,7 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
               
               <pre><code>const Primary = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Badge status=&quot;primary&quot; content={t(&quot;story.badge_content&quot;)} /&gt;;
+    return &lt;Badge intent=&quot;primary&quot; content={t(&quot;story.badge_content&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -4916,7 +4928,7 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
               
               <pre><code>const Secondary = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Badge status=&quot;secondary&quot; content={t(&quot;story.badge_secondary&quot;)} /&gt;;
+    return &lt;Badge intent=&quot;secondary&quot; content={t(&quot;story.badge_secondary&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -4928,7 +4940,7 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
               
               <pre><code>const Destructive = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Badge status=&quot;error&quot; content={t(&quot;story.badge_error&quot;)} /&gt;;
+    return &lt;Badge intent=&quot;error&quot; content={t(&quot;story.badge_error&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -4940,7 +4952,7 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
               
               <pre><code>const Neutral = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Badge status=&quot;neutral&quot; content={t(&quot;story.badge_neutral&quot;)} /&gt;;
+    return &lt;Badge intent=&quot;neutral&quot; content={t(&quot;story.badge_neutral&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -4952,7 +4964,7 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
               
               <pre><code>const Outline = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Badge variant=&quot;outline&quot; status=&quot;primary&quot; content={t(&quot;story.badge_outline&quot;)} /&gt;;
+    return &lt;Badge variant=&quot;outline&quot; intent=&quot;primary&quot; content={t(&quot;story.badge_outline&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -4976,7 +4988,7 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
               
               <pre><code>const Required = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Badge status=&quot;error&quot; size=&quot;sm&quot; content={t(&quot;required&quot;)} /&gt;;
+    return &lt;Badge intent=&quot;error&quot; size=&quot;sm&quot; content={t(&quot;required&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -4988,7 +5000,7 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
               
               <pre><code>const Optional = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Badge status=&quot;neutral&quot; size=&quot;sm&quot; content={t(&quot;optional&quot;)} /&gt;;
+    return &lt;Badge intent=&quot;neutral&quot; size=&quot;sm&quot; content={t(&quot;optional&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -5003,7 +5015,7 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
 
     return (
         &lt;Badge
-            status=&quot;primary&quot;
+            intent=&quot;primary&quot;
             content={t(&quot;story.badge_verified&quot;)}
             icon={&lt;Icon name=&quot;CheckIcon&quot; /&gt;} /&gt;
     );
@@ -5016,7 +5028,7 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
               </div>
               
               
-              <pre><code>const IconOnly = () =&gt; &lt;Badge icon={(&lt;Icon name=&quot;CheckIcon&quot; /&gt;)} status=&quot;primary&quot; /&gt;;</code></pre>
+              <pre><code>const IconOnly = () =&gt; &lt;Badge icon={(&lt;Icon name=&quot;CheckIcon&quot; /&gt;)} intent=&quot;primary&quot; /&gt;;</code></pre>
             </div>
         </div>
     
@@ -5256,14 +5268,23 @@ extra?: React.ReactNode
 icon?: boolean | React.ReactNode = true
 
 /**
+ * バナーのインテント
+ */
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot; = &quot;info&quot;
+
+/**
  * 閉じるボタンをクリックした時のコールバック。指定すると閉じるボタンが表示されます。
  */
 onClose?: () =&gt; void
-
-/**
- * バナーのステータス
- */
-status?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;error&quot; = &quot;info&quot;
 
 /**
  * バナーのタイトル
@@ -5296,7 +5317,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Banner
-            status=&quot;info&quot;
+            intent=&quot;info&quot;
             title={args.title || t(&quot;story.banner_update_title&quot;)}
             description={args.description || t(&quot;story.banner_update_desc&quot;)} /&gt;
     );
@@ -5314,7 +5335,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Banner
-            status=&quot;success&quot;
+            intent=&quot;success&quot;
             title={args.title || t(&quot;story.alert_success_title&quot;)}
             description={args.description || t(&quot;story.banner_update_desc&quot;)} /&gt;
     );
@@ -5332,7 +5353,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Banner
-            status=&quot;warning&quot;
+            intent=&quot;warning&quot;
             title={args.title || t(&quot;story.banner_maint_title&quot;)}
             description={args.description || t(&quot;story.banner_maint_desc&quot;)} /&gt;
     );
@@ -5350,7 +5371,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Banner
-            status=&quot;error&quot;
+            intent=&quot;error&quot;
             title={args.title || t(&quot;story.banner_conn_error_title&quot;)}
             description={args.description || t(&quot;story.banner_conn_error_desc&quot;)}
             onClose={args.onClose ?? (() =&gt; {})} /&gt;
@@ -5369,7 +5390,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Banner
-            status=&quot;info&quot;
+            intent=&quot;info&quot;
             title={args.title || t(&quot;story.banner_cookie_title&quot;)}
             description={args.description || t(&quot;story.banner_cookie_desc&quot;)}
             extra={
@@ -5394,7 +5415,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Banner
-            status=&quot;warning&quot;
+            intent=&quot;warning&quot;
             title={args.title || t(&quot;story.banner_trial_title&quot;)}
             description={args.description || t(&quot;story.banner_trial_desc&quot;)}
             extra={
@@ -5420,7 +5441,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Banner
-            status=&quot;info&quot;
+            intent=&quot;info&quot;
             description={args.description || t(&quot;story.banner_no_title_desc&quot;)} /&gt;
     );
 };</code></pre>
@@ -5437,7 +5458,7 @@ title?: React.ReactNode</code></pre>
 
     return (
         &lt;Banner
-            status=&quot;info&quot;
+            intent=&quot;info&quot;
             title={args.title || t(&quot;story.banner_simple_title&quot;)}
             description={args.description || t(&quot;story.banner_simple_desc&quot;)}
             icon={false} /&gt;
@@ -12741,6 +12762,20 @@ disabled?: boolean = false
 icon?: React.ReactNode
 
 /**
+ * ステータス
+ */
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot; = &quot;primary&quot;
+
+/**
  * クリック時のイベント。提供されるとボタンとして動作します。
  */
 onClick?: (e: React.MouseEvent) =&gt; void
@@ -12759,17 +12794,6 @@ selected?: boolean = false
  * サイズ
  */
 size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;
-
-/**
- * ステータス
- */
-status?: | &quot;primary&quot;
-| &quot;secondary&quot;
-| &quot;success&quot;
-| &quot;warning&quot;
-| &quot;error&quot;
-| &quot;info&quot;
-| &quot;neutral&quot; = &quot;primary&quot;
 
 /**
  * バリアント
@@ -13429,8 +13453,8 @@ npm run test -- Code
     return (
         &lt;Label label={t(&quot;story.colorinput_states&quot;)}&gt;
             &lt;div style={{ display: &quot;flex&quot;, flexDirection: &quot;column&quot;, gap: &quot;1rem&quot; }}&gt;
-                &lt;ColorInput status=&quot;default&quot; defaultValue=&quot;#10b981&quot; leftIcon=&quot;CheckCircleIcon&quot; /&gt;
-                &lt;ColorInput status=&quot;error&quot; defaultValue=&quot;#ef4444&quot; leftIcon=&quot;AlertCircleIcon&quot; /&gt;
+                &lt;ColorInput intent=&quot;default&quot; defaultValue=&quot;#10b981&quot; leftIcon=&quot;CheckCircleIcon&quot; /&gt;
+                &lt;ColorInput intent=&quot;error&quot; defaultValue=&quot;#ef4444&quot; leftIcon=&quot;AlertCircleIcon&quot; /&gt;
                 &lt;ColorInput disabled defaultValue=&quot;#6b7280&quot; leftIcon=&quot;SettingsIcon&quot; /&gt;
             &lt;/div&gt;
         &lt;/Label&gt;
@@ -13600,7 +13624,7 @@ npm run test -- ColorInput
             <pre><code>Props:</code></pre>
             <pre><code>fullWidth?: any = false
 
-status?: any = &quot;default&quot;
+intent?: any = &quot;default&quot;
 
 variant?: any = &quot;outline&quot;</code></pre>
           </div>
@@ -13681,7 +13705,7 @@ variant?: any = &quot;outline&quot;</code></pre>
 
     return (
         &lt;Label label={t(&quot;story.colorpicker_error&quot;)}&gt;
-            &lt;ColorPicker defaultValue=&quot;#ef4444&quot; status=&quot;error&quot; /&gt;
+            &lt;ColorPicker defaultValue=&quot;#ef4444&quot; intent=&quot;error&quot; /&gt;
         &lt;/Label&gt;
     );
 };</code></pre>
@@ -17119,6 +17143,17 @@ format?: string = &quot;YYYY-MM-DD&quot;
 
 fullWidth?: boolean = false
 
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot; = &quot;default&quot;
+
 label?: string
 
 /**
@@ -17152,8 +17187,6 @@ onChange?: (date: Date | null) =&gt; void
 placeholder?: string
 
 required?: boolean
-
-status?: &quot;default&quot; | &quot;error&quot; | &quot;warning&quot; | &quot;success&quot; = &quot;default&quot;
 
 /**
  * Selected date value
@@ -17239,7 +17272,7 @@ variant?: &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;</code></
 
     return (
         &lt;Label label={t(&quot;story.picker_error&quot;)}&gt;
-            &lt;DatePicker status=&quot;error&quot; /&gt;
+            &lt;DatePicker intent=&quot;error&quot; /&gt;
         &lt;/Label&gt;
     );
 };</code></pre>
@@ -20309,7 +20342,7 @@ onReset?: () =&gt; void</code></pre>
           {shouldThrow ? (
             &lt;BuggyComponent /&gt;
           ) : (
-            &lt;Alert status=&quot;info&quot; title={t(&quot;story.errorboundary_status_ok&quot;)} /&gt;
+            &lt;Alert intent=&quot;info&quot; title={t(&quot;story.errorboundary_status_ok&quot;)} /&gt;
           )}
         &lt;/ErrorBoundary&gt;
       &lt;/Stack&gt;
@@ -20339,7 +20372,7 @@ onReset?: () =&gt; void</code></pre>
           onReset={() =&gt; setShouldThrow(false)}
           fallback={(error, _info, reset) =&gt; (
             &lt;Alert
-              status=&quot;error&quot;
+              intent=&quot;error&quot;
               title={t(&quot;story.errorboundary_oops&quot;)}
               description={error.message}
             &gt;
@@ -20357,7 +20390,7 @@ onReset?: () =&gt; void</code></pre>
           {shouldThrow ? (
             &lt;BuggyComponent /&gt;
           ) : (
-            &lt;Alert status=&quot;success&quot; title={t(&quot;story.errorboundary_status_stable&quot;)} /&gt;
+            &lt;Alert intent=&quot;success&quot; title={t(&quot;story.errorboundary_status_stable&quot;)} /&gt;
           )}
         &lt;/ErrorBoundary&gt;
       &lt;/Stack&gt;
@@ -29832,6 +29865,17 @@ hidePasswordAriaLabel?: string = &quot;Hide password&quot;
 
 inputClassName?: string
 
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot; = &quot;default&quot;
+
 label?: React.ReactNode
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
@@ -29859,8 +29903,6 @@ rightIconRotated?: boolean
 showPasswordAriaLabel?: string = &quot;Show password&quot;
 
 showPasswordToggle?: boolean = true
-
-status?: &quot;default&quot; | &quot;error&quot; | &quot;warning&quot; | &quot;success&quot; = &quot;default&quot;
 
 variant?: &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;
 
@@ -30020,7 +30062,7 @@ width?: &quot;xs&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quo
                     width=&quot;md&quot;
                     fullWidth={false}
                     disabled={false}
-                    status=&quot;error&quot;
+                    intent=&quot;error&quot;
                     placeholder={t(&quot;story.input_placeholder_email&quot;)}
                     defaultValue=&quot;invalid-email@&quot; /&gt;
             &lt;/Label&gt;
@@ -30392,6 +30434,17 @@ fullWidth?: boolean = false
 
 hasValue?: boolean
 
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot; = &quot;default&quot;
+
 leftIcon?: React.ComponentProps&lt;typeof Icon&gt;[&quot;name&quot;]
 
 leftIconAriaLabel?: string = &quot;Action&quot;
@@ -30403,8 +30456,6 @@ onClear?: () =&gt; void
 onLeftIconClick?: (e: React.MouseEvent&lt;HTMLButtonElement&gt;) =&gt; void
 
 rightIcons?: InputBaseIcon[] = []
-
-status?: &quot;default&quot; | &quot;error&quot; | &quot;warning&quot; | &quot;success&quot; = &quot;default&quot;
 
 variant?: &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;
 
@@ -30466,7 +30517,7 @@ width?: &quot;xs&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quo
     const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
-        &lt;InputBase status=&quot;error&quot; leftIcon=&quot;AlertCircleIcon&quot;&gt;
+        &lt;InputBase intent=&quot;error&quot; leftIcon=&quot;AlertCircleIcon&quot;&gt;
             &lt;DummyInput placeholder={t(&quot;doc.inputBase_placeholder&quot;)} /&gt;
         &lt;/InputBase&gt;
     );
@@ -37328,14 +37379,23 @@ icon?: ReactNode
 id?: string
 
 /**
+ * The status of notification
+ */
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot;
+
+/**
  * Callback when notification is closed
  */
 onClose?: (id?: string) =&gt; void
-
-/**
- * The status of notification
- */
-status?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;error&quot;
 
 /**
  * The title of notification
@@ -37385,7 +37445,7 @@ title: ReactNode</code></pre>
 
     return (
         &lt;Notification
-            status=&quot;success&quot;
+            intent=&quot;success&quot;
             title={args.title || t(&quot;story.notification_success_title&quot;)}
             description={args.description || t(&quot;story.notification_success_desc&quot;)} /&gt;
     );
@@ -37403,7 +37463,7 @@ title: ReactNode</code></pre>
 
     return (
         &lt;Notification
-            status=&quot;warning&quot;
+            intent=&quot;warning&quot;
             title={args.title || t(&quot;story.notification_warning_title&quot;)}
             description={args.description || t(&quot;story.notification_warning_desc&quot;)} /&gt;
     );
@@ -37421,7 +37481,7 @@ title: ReactNode</code></pre>
 
     return (
         &lt;Notification
-            status=&quot;error&quot;
+            intent=&quot;error&quot;
             title={args.title || t(&quot;story.notification_error_title&quot;)}
             description={args.description || t(&quot;story.notification_error_desc&quot;)} /&gt;
     );
@@ -37439,7 +37499,7 @@ title: ReactNode</code></pre>
 
     return (
         &lt;Notification
-            status=&quot;info&quot;
+            intent=&quot;info&quot;
             title={args.title || t(&quot;story.notification_info_title&quot;)}
             description={args.description || t(&quot;story.notification_info_desc&quot;)} /&gt;
     );
@@ -37466,7 +37526,7 @@ title: ReactNode</code></pre>
       {visible &amp;&amp; (
         &lt;div style={{ marginTop: &quot;24px&quot; }}&gt;
           &lt;Notification
-            status=&quot;success&quot;
+            intent=&quot;success&quot;
             title={t(&quot;story.notification_success_title&quot;)}
             description={t(&quot;story.notification_triggered_desc&quot;)}
             onClose={() =&gt; setVisible(false)}
@@ -41067,7 +41127,7 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
             &lt;Box mt=&quot;md&quot; style={{ display: &quot;flex&quot;, justifyContent: &quot;center&quot; }}&gt;
               &lt;Portal container={container}&gt;
                 &lt;Alert
-                  status=&quot;success&quot;
+                  intent=&quot;success&quot;
                   icon={&lt;Icon name=&quot;CheckCircleIcon&quot; /&gt;}
                   style={{ width: &quot;fit-content&quot; }}
                 &gt;
@@ -41777,6 +41837,17 @@ npm run test -- Portal
             <pre><code>Props:</code></pre>
             <pre><code>indeterminate?: boolean = false
 
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot; = &quot;primary&quot;
+
 label?: string
 
 max?: number = 100
@@ -41784,14 +41855,6 @@ max?: number = 100
 showValue?: boolean = false
 
 size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;
-
-status?: | &quot;primary&quot;
-| &quot;secondary&quot;
-| &quot;success&quot;
-| &quot;warning&quot;
-| &quot;error&quot;
-| &quot;info&quot;
-| &quot;neutral&quot; = &quot;primary&quot;
 
 value?: number = 0</code></pre>
           </div>
@@ -41832,12 +41895,12 @@ value?: number = 0</code></pre>
       gap: &quot;16px&quot;,
       width: &quot;100%&quot;,
     }}&gt;
-    &lt;Progress status=&quot;primary&quot; value={20} label=&quot;Primary&quot; /&gt;
-    &lt;Progress status=&quot;secondary&quot; value={40} label=&quot;Secondary&quot; /&gt;
-    &lt;Progress status=&quot;success&quot; value={60} label=&quot;Success&quot; /&gt;
-    &lt;Progress status=&quot;warning&quot; value={80} label=&quot;Warning&quot; /&gt;
-    &lt;Progress status=&quot;error&quot; value={90} label=&quot;Error&quot; /&gt;
-    &lt;Progress status=&quot;neutral&quot; value={50} label=&quot;Neutral&quot; /&gt;
+    &lt;Progress intent=&quot;primary&quot; value={20} label=&quot;Primary&quot; /&gt;
+    &lt;Progress intent=&quot;secondary&quot; value={40} label=&quot;Secondary&quot; /&gt;
+    &lt;Progress intent=&quot;success&quot; value={60} label=&quot;Success&quot; /&gt;
+    &lt;Progress intent=&quot;warning&quot; value={80} label=&quot;Warning&quot; /&gt;
+    &lt;Progress intent=&quot;error&quot; value={90} label=&quot;Error&quot; /&gt;
+    &lt;Progress intent=&quot;neutral&quot; value={50} label=&quot;Neutral&quot; /&gt;
 &lt;/div&gt;;</code></pre>
             </div>
             <div class="note ok">
@@ -45215,7 +45278,7 @@ export const DashboardHeader: StoryObj = {
                 aria-label=&quot;Notifications&quot;
               /&gt;
               &lt;Badge
-                status=&quot;secondary&quot;
+                intent=&quot;secondary&quot;
                 size=&quot;sm&quot;
                 content=&quot;3&quot;
                 style={{
@@ -45275,7 +45338,7 @@ export const DashboardHeader: StoryObj = {
                 &gt;
                   &lt;Stack justify=&quot;space-between&quot; align=&quot;center&quot; direction=&quot;row&quot;&gt;
                     &lt;Stats.Label&gt;{t(&quot;dashboard.stats_revenue&quot;)}&lt;/Stats.Label&gt;
-                    &lt;Badge status=&quot;neutral&quot; content=&quot;+12.5%&quot; size=&quot;sm&quot; /&gt;
+                    &lt;Badge intent=&quot;neutral&quot; content=&quot;+12.5%&quot; size=&quot;sm&quot; /&gt;
                   &lt;/Stack&gt;
                   &lt;Stats.Value&gt;
                     &lt;Heading tag=&quot;h3&quot; size=&quot;xl&quot; style={{ whiteSpace: &quot;nowrap&quot; }}&gt;
@@ -45535,7 +45598,7 @@ export const PricingTable: StoryObj = {
     return (
       &lt;Container style={{ padding: &quot;80px 24px&quot;, background: &quot;#fff&quot; }}&gt;
         &lt;Stack align=&quot;center&quot; gap=&quot;lg&quot; style={{ marginBottom: &quot;64px&quot; }}&gt;
-          &lt;Badge status=&quot;primary&quot; content={t(&quot;pricing.badge&quot;)} /&gt;
+          &lt;Badge intent=&quot;primary&quot; content={t(&quot;pricing.badge&quot;)} /&gt;
           &lt;Stack align=&quot;center&quot; gap=&quot;3xl&quot;&gt;
             &lt;Heading tag=&quot;h2&quot; size=&quot;xl&quot; align=&quot;center&quot;&gt;
               {t(&quot;pricing.title&quot;)}
@@ -45654,7 +45717,7 @@ export const PricingTable: StoryObj = {
                 transform: &quot;translateX(-50%)&quot;,
               }}
             &gt;
-              &lt;Badge status=&quot;primary&quot; content={t(&quot;pricing.pro_badge&quot;)} size=&quot;sm&quot; /&gt;
+              &lt;Badge intent=&quot;primary&quot; content={t(&quot;pricing.pro_badge&quot;)} size=&quot;sm&quot; /&gt;
             &lt;/div&gt;
             &lt;Stack gap=&quot;lg&quot; style={{ height: &quot;100%&quot; }}&gt;
               &lt;Stack gap=&quot;lg&quot; align=&quot;center&quot; style={{ flex: 1 }}&gt;
@@ -45829,7 +45892,7 @@ export const HeroSection: StoryObj = {
             &lt;Stack gap=&quot;3xl&quot;&gt;
               &lt;Stack gap=&quot;3xl&quot;&gt;
                 &lt;Badge
-                  status=&quot;primary&quot;
+                  intent=&quot;primary&quot;
                   content={t(&quot;hero.badge&quot;)}
                   style={{ width: &quot;fit-content&quot; }}
                 /&gt;
@@ -45992,7 +46055,7 @@ export const ErrorPage: StoryObj = {
             /&gt;
           &lt;/Stack&gt;
 
-          &lt;Alert status=&quot;info&quot; title={t(&quot;error.help_title&quot;)} style={{ textAlign: &quot;left&quot; }}&gt;
+          &lt;Alert intent=&quot;info&quot; title={t(&quot;error.help_title&quot;)} style={{ textAlign: &quot;left&quot; }}&gt;
             {t(&quot;error.help_desc&quot;)}
           &lt;/Alert&gt;
 
@@ -46299,7 +46362,7 @@ export const ErrorPage: StoryObj = {
               aria-label=&quot;Notifications&quot;
             /&gt;
             &lt;Badge
-              status=&quot;secondary&quot;
+              intent=&quot;secondary&quot;
               size=&quot;sm&quot;
               content=&quot;3&quot;
               style={{
@@ -46359,7 +46422,7 @@ export const ErrorPage: StoryObj = {
               &gt;
                 &lt;Stack justify=&quot;space-between&quot; align=&quot;center&quot; direction=&quot;row&quot;&gt;
                   &lt;Stats.Label&gt;{t(&quot;dashboard.stats_revenue&quot;)}&lt;/Stats.Label&gt;
-                  &lt;Badge status=&quot;neutral&quot; content=&quot;+12.5%&quot; size=&quot;sm&quot; /&gt;
+                  &lt;Badge intent=&quot;neutral&quot; content=&quot;+12.5%&quot; size=&quot;sm&quot; /&gt;
                 &lt;/Stack&gt;
                 &lt;Stats.Value&gt;
                   &lt;Heading tag=&quot;h3&quot; size=&quot;xl&quot; style={{ whiteSpace: &quot;nowrap&quot; }}&gt;
@@ -46629,7 +46692,7 @@ export const ErrorPage: StoryObj = {
   return (
     &lt;Container style={{ padding: &quot;80px 24px&quot;, background: &quot;#fff&quot; }}&gt;
       &lt;Stack align=&quot;center&quot; gap=&quot;lg&quot; style={{ marginBottom: &quot;64px&quot; }}&gt;
-        &lt;Badge status=&quot;primary&quot; content={t(&quot;pricing.badge&quot;)} /&gt;
+        &lt;Badge intent=&quot;primary&quot; content={t(&quot;pricing.badge&quot;)} /&gt;
         &lt;Stack align=&quot;center&quot; gap=&quot;3xl&quot;&gt;
           &lt;Heading tag=&quot;h2&quot; size=&quot;xl&quot; align=&quot;center&quot;&gt;
             {t(&quot;pricing.title&quot;)}
@@ -46748,7 +46811,7 @@ export const ErrorPage: StoryObj = {
               transform: &quot;translateX(-50%)&quot;,
             }}
           &gt;
-            &lt;Badge status=&quot;primary&quot; content={t(&quot;pricing.pro_badge&quot;)} size=&quot;sm&quot; /&gt;
+            &lt;Badge intent=&quot;primary&quot; content={t(&quot;pricing.pro_badge&quot;)} size=&quot;sm&quot; /&gt;
           &lt;/div&gt;
           &lt;Stack gap=&quot;lg&quot; style={{ height: &quot;100%&quot; }}&gt;
             &lt;Stack gap=&quot;lg&quot; align=&quot;center&quot; style={{ flex: 1 }}&gt;
@@ -46928,7 +46991,7 @@ export const ErrorPage: StoryObj = {
           &lt;Stack gap=&quot;3xl&quot;&gt;
             &lt;Stack gap=&quot;3xl&quot;&gt;
               &lt;Badge
-                status=&quot;primary&quot;
+                intent=&quot;primary&quot;
                 content={t(&quot;hero.badge&quot;)}
                 style={{ width: &quot;fit-content&quot; }}
               /&gt;
@@ -47096,7 +47159,7 @@ export const ErrorPage: StoryObj = {
           /&gt;
         &lt;/Stack&gt;
 
-        &lt;Alert status=&quot;info&quot; title={t(&quot;error.help_title&quot;)} style={{ textAlign: &quot;left&quot; }}&gt;
+        &lt;Alert intent=&quot;info&quot; title={t(&quot;error.help_title&quot;)} style={{ textAlign: &quot;left&quot; }}&gt;
           {t(&quot;error.help_desc&quot;)}
         &lt;/Alert&gt;
 
@@ -47333,9 +47396,9 @@ extra?: ReactNode
 icon?: ReactNode
 
 /**
- * result status, decide icons and colors
+ * result intent, decide icons and colors
  */
-status?: | &quot;success&quot;
+intent?: | &quot;success&quot;
 | &quot;error&quot;
 | &quot;info&quot;
 | &quot;warning&quot;
@@ -47374,7 +47437,7 @@ title?: ReactNode</code></pre>
 
     return (
         &lt;Result
-            status=&quot;success&quot;
+            intent=&quot;success&quot;
             title={t(&quot;story.result_success_title&quot;)}
             description={t(&quot;story.result_success_desc&quot;)}
             extra={[
@@ -47413,7 +47476,7 @@ title?: ReactNode</code></pre>
 
     return (
         &lt;Result
-            status=&quot;warning&quot;
+            intent=&quot;warning&quot;
             title={t(&quot;story.result_warning_title&quot;)}
             extra={&lt;Button variant=&quot;filled&quot; label={t(&quot;story.result_go_console&quot;)} /&gt;} /&gt;
     );
@@ -47431,7 +47494,7 @@ title?: ReactNode</code></pre>
 
     return (
         &lt;Result
-            status=&quot;error&quot;
+            intent=&quot;error&quot;
             title={t(&quot;story.result_error_title&quot;)}
             description={t(&quot;story.result_error_desc&quot;)}
             extra={[
@@ -47453,7 +47516,7 @@ title?: ReactNode</code></pre>
 
     return (
         &lt;Result
-            status=&quot;404&quot;
+            intent=&quot;404&quot;
             title=&quot;404&quot;
             description={t(&quot;story.result_404_desc&quot;)}
             extra={&lt;Button variant=&quot;filled&quot; label={t(&quot;story.result_back_home&quot;)} /&gt;} /&gt;
@@ -47472,7 +47535,7 @@ title?: ReactNode</code></pre>
 
     return (
         &lt;Result
-            status=&quot;403&quot;
+            intent=&quot;403&quot;
             title=&quot;403&quot;
             description={t(&quot;story.result_403_desc&quot;)}
             extra={&lt;Button variant=&quot;filled&quot; label={t(&quot;story.result_back_home&quot;)} /&gt;} /&gt;
@@ -47491,7 +47554,7 @@ title?: ReactNode</code></pre>
 
     return (
         &lt;Result
-            status=&quot;500&quot;
+            intent=&quot;500&quot;
             title=&quot;500&quot;
             description={t(&quot;story.result_500_desc&quot;)}
             extra={&lt;Button variant=&quot;filled&quot; label={t(&quot;story.result_back_home&quot;)} /&gt;} /&gt;
@@ -47749,6 +47812,17 @@ fullWidth?: boolean = false
 
 id?: string
 
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot; = &quot;default&quot;
+
 label?: React.ReactNode
 
 labels?: {
@@ -47777,8 +47851,6 @@ onChange?: (value: string) =&gt; void
 placeholder?: string
 
 required?: boolean
-
-status?: &quot;default&quot; | &quot;error&quot; | &quot;warning&quot; | &quot;success&quot; = &quot;default&quot;
 
 toolbar?: RichTextEditorToolbarItem[] = [
   &quot;bold&quot;,
@@ -47889,7 +47961,7 @@ variant?: &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;</code></
     return (
         &lt;RichTextEditor
             label={t(&quot;story.rte_label_content&quot;)}
-            status=&quot;error&quot;
+            intent=&quot;error&quot;
             error={t(&quot;story.rte_error_required&quot;)}
             placeholder={t(&quot;story.rte_placeholder_default&quot;)} /&gt;
     );
@@ -52439,6 +52511,11 @@ autoHideDuration?: number = 5000
 className?: string
 
 /**
+ * 表示するタイプ
+ */
+intent?: WimIntent | &quot;default&quot; = &quot;default&quot;
+
+/**
  * スナックバーに表示するメッセージ
  */
 message: string
@@ -52471,12 +52548,7 @@ position?: | &quot;top-left&quot;
 /**
  * 閉じるボタンを表示するかどうか
  */
-showCloseButton?: boolean = false
-
-/**
- * 表示するタイプ
- */
-status?: FeedbackStatus | &quot;default&quot; = &quot;default&quot;</code></pre>
+showCloseButton?: boolean = false</code></pre>
           </div>
         </div>
     
@@ -52505,7 +52577,7 @@ status?: FeedbackStatus | &quot;default&quot; = &quot;default&quot;</code></pre>
     return (
         &lt;Snackbar
             open
-            status=&quot;default&quot;
+            intent=&quot;default&quot;
             position=&quot;bottom-center&quot;
             message={args.message || t(&quot;story.snackbar_message&quot;)} /&gt;
     );
@@ -52558,7 +52630,7 @@ status?: FeedbackStatus | &quot;default&quot; = &quot;default&quot;</code></pre>
               
               <pre><code>const Success = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Snackbar open status=&quot;success&quot; message={args.message || t(&quot;story.snackbar_saved&quot;)} /&gt;;
+    return &lt;Snackbar open intent=&quot;success&quot; message={args.message || t(&quot;story.snackbar_saved&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -52570,7 +52642,7 @@ status?: FeedbackStatus | &quot;default&quot; = &quot;default&quot;</code></pre>
               
               <pre><code>const ErrorStatus = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Snackbar open status=&quot;error&quot; message={args.message || t(&quot;story.snackbar_failed&quot;)} /&gt;;
+    return &lt;Snackbar open intent=&quot;error&quot; message={args.message || t(&quot;story.snackbar_failed&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -52586,7 +52658,7 @@ status?: FeedbackStatus | &quot;default&quot; = &quot;default&quot;</code></pre>
     return (
         &lt;Snackbar
             open
-            status=&quot;warning&quot;
+            intent=&quot;warning&quot;
             message={args.message || t(&quot;story.snackbar_storage_full&quot;)} /&gt;
     );
 };</code></pre>
@@ -52604,7 +52676,7 @@ status?: FeedbackStatus | &quot;default&quot; = &quot;default&quot;</code></pre>
     return (
         &lt;Snackbar
             open
-            status=&quot;info&quot;
+            intent=&quot;info&quot;
             message={args.message || t(&quot;story.snackbar_update_available&quot;)} /&gt;
     );
 };</code></pre>
@@ -55168,6 +55240,11 @@ current?: number = 0
 direction?: &quot;horizontal&quot; | &quot;vertical&quot; = &quot;horizontal&quot;
 
 /**
+ * Status of the current step
+ */
+intent?: &quot;wait&quot; | &quot;process&quot; | &quot;finish&quot; | &quot;error&quot; = &quot;process&quot;
+
+/**
  * Placement of the labels
  */
 labelPlacement?: &quot;horizontal&quot; | &quot;vertical&quot; = &quot;horizontal&quot;
@@ -55176,11 +55253,6 @@ labelPlacement?: &quot;horizontal&quot; | &quot;vertical&quot; = &quot;horizonta
  * Callback function when a step is clicked (if applicable)
  */
 onChange?: (current: number) =&gt; void
-
-/**
- * Status of the current step
- */
-status?: &quot;wait&quot; | &quot;process&quot; | &quot;finish&quot; | &quot;error&quot; = &quot;process&quot;
 
 /**
  * Array of step configurations
@@ -55246,7 +55318,7 @@ steps?: Step[] = []</code></pre>
               
               <pre><code>const ErrorStatus = () =&gt; {
     const steps = useDefaultSteps();
-    return &lt;Stepper status=&quot;error&quot; steps={steps} current={1} /&gt;;
+    return &lt;Stepper intent=&quot;error&quot; steps={steps} current={1} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -56650,10 +56722,10 @@ striped?: boolean = false</code></pre>
                     &lt;Table.Cell label={t(&quot;story.table_role&quot;)}&gt;{row.role}&lt;/Table.Cell&gt;
                     &lt;Table.Cell label={t(&quot;story.table_status&quot;)}&gt;
                       &lt;Badge
-                        content={row.status}
+                        content={row.intent}
                         size=&quot;sm&quot;
                         color={
-                          row.status === t(&quot;story.table_active&quot;)
+                          row.intent === t(&quot;story.table_active&quot;)
                             ? &quot;primary&quot;
                             : &quot;neutral&quot;
                         }
@@ -57000,10 +57072,10 @@ striped?: boolean = false</code></pre>
                     &lt;Table.Cell label={t(&quot;story.table_role&quot;)}&gt;{row.role}&lt;/Table.Cell&gt;
                     &lt;Table.Cell label={t(&quot;story.table_status&quot;)}&gt;
                       &lt;Badge
-                        content={row.status}
+                        content={row.intent}
                         size=&quot;sm&quot;
                         color={
-                          row.status === t(&quot;story.table_active&quot;)
+                          row.intent === t(&quot;story.table_active&quot;)
                             ? &quot;primary&quot;
                             : &quot;neutral&quot;
                         }
@@ -58110,20 +58182,23 @@ children?: React.ReactNode
 icon?: React.ReactNode
 
 /**
- * サイズ
- */
-size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;
-
-/**
  * ステータス
  */
-status?: | &quot;primary&quot;
+intent?: | &quot;primary&quot;
 | &quot;secondary&quot;
 | &quot;success&quot;
 | &quot;warning&quot;
 | &quot;error&quot;
 | &quot;info&quot;
 | &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot;
+
+/**
+ * サイズ
+ */
+size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;
 
 /**
  * バリアント
@@ -58153,7 +58228,7 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
               
               <pre><code>const Default = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Tag status=&quot;primary&quot; variant=&quot;solid&quot; size=&quot;md&quot;&gt;{t(&quot;story.tag_content&quot;)}&lt;/Tag&gt;;
+    return &lt;Tag intent=&quot;primary&quot; variant=&quot;solid&quot; size=&quot;md&quot;&gt;{t(&quot;story.tag_content&quot;)}&lt;/Tag&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -58193,25 +58268,25 @@ variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;subtle&quot;</code></p
 
     return (
         &lt;div style={{ display: &quot;flex&quot;, flexWrap: &quot;wrap&quot;, gap: &quot;10px&quot; }}&gt;
-            &lt;Tag status=&quot;primary&quot;&gt;
+            &lt;Tag intent=&quot;primary&quot;&gt;
                 {t(&quot;story.tag_primary&quot;)}
             &lt;/Tag&gt;
-            &lt;Tag status=&quot;secondary&quot;&gt;
+            &lt;Tag intent=&quot;secondary&quot;&gt;
                 {t(&quot;story.tag_secondary&quot;)}
             &lt;/Tag&gt;
-            &lt;Tag status=&quot;success&quot;&gt;
+            &lt;Tag intent=&quot;success&quot;&gt;
                 {t(&quot;story.tag_success&quot;)}
             &lt;/Tag&gt;
-            &lt;Tag status=&quot;warning&quot;&gt;
+            &lt;Tag intent=&quot;warning&quot;&gt;
                 {t(&quot;story.tag_warning&quot;)}
             &lt;/Tag&gt;
-            &lt;Tag status=&quot;error&quot;&gt;
+            &lt;Tag intent=&quot;error&quot;&gt;
                 {t(&quot;story.tag_error&quot;)}
             &lt;/Tag&gt;
-            &lt;Tag status=&quot;neutral&quot;&gt;
+            &lt;Tag intent=&quot;neutral&quot;&gt;
                 {t(&quot;story.tag_neutral&quot;)}
             &lt;/Tag&gt;
-            &lt;Tag status=&quot;info&quot;&gt;
+            &lt;Tag intent=&quot;info&quot;&gt;
                 {t(&quot;story.tag_info&quot;)}
             &lt;/Tag&gt;
         &lt;/div&gt;
@@ -58470,13 +58545,22 @@ fieldSizing?: &quot;fixed&quot; | &quot;content&quot; = &quot;fixed&quot;
 
 fullWidth?: boolean = false
 
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot; = &quot;default&quot;
+
 label?: string
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
 
 required?: boolean
-
-status?: &quot;default&quot; | &quot;error&quot; | &quot;warning&quot; | &quot;success&quot; = &quot;default&quot;
 
 variant?: &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;</code></pre>
           </div>
@@ -58546,7 +58630,7 @@ variant?: &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;</code></
             &lt;Label label={t(&quot;story.textarea_label_details&quot;)}&gt;
                 &lt;Textarea
                     disabled={false}
-                    status=&quot;error&quot;
+                    intent=&quot;error&quot;
                     placeholder={t(&quot;story.textarea_placeholder_error&quot;)} /&gt;
             &lt;/Label&gt;
             &lt;FieldError content={t(&quot;story.textarea_error_10chars&quot;)} /&gt;
@@ -58655,7 +58739,7 @@ variant?: &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;</code></
                     &lt;Textarea
                         id=&quot;motivation&quot;
                         disabled={false}
-                        status=&quot;error&quot;
+                        intent=&quot;error&quot;
                         defaultValue={t(&quot;story.textarea_value_none&quot;)}
                         rows={3}
                         fullWidth /&gt;
@@ -59233,7 +59317,7 @@ npm run test -- Timeline
 
 fullWidth?: any = false
 
-status?: any = &quot;default&quot;
+intent?: any = &quot;default&quot;
 
 variant?: any = &quot;outline&quot;</code></pre>
           </div>
@@ -59314,7 +59398,7 @@ variant?: any = &quot;outline&quot;</code></pre>
 
     return (
         &lt;Label label={t(&quot;story.picker_error&quot;)}&gt;
-            &lt;TimePicker status=&quot;error&quot; /&gt;
+            &lt;TimePicker intent=&quot;error&quot; /&gt;
         &lt;/Label&gt;
     );
 };</code></pre>
@@ -59563,11 +59647,20 @@ duration?: number = 3000
 
 id?: string
 
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot; = &quot;info&quot;
+
 isVisible?: boolean = true
 
 onClose?: (id?: string) =&gt; void
-
-status?: &quot;info&quot; | &quot;success&quot; | &quot;warning&quot; | &quot;error&quot; = &quot;info&quot;
 
 title?: string</code></pre>
           </div>
@@ -59597,7 +59690,7 @@ title?: string</code></pre>
 
     return (
         &lt;Toast
-            status=&quot;success&quot;
+            intent=&quot;success&quot;
             title={args.title || t(&quot;story.toast_saved_title&quot;)}
             description={args.description || t(&quot;story.toast_saved_desc&quot;)} /&gt;
     );
@@ -59615,7 +59708,7 @@ title?: string</code></pre>
 
     return (
         &lt;Toast
-            status=&quot;success&quot;
+            intent=&quot;success&quot;
             title={args.title || t(&quot;story.toast_success_title&quot;)}
             description={args.description || t(&quot;story.toast_success_desc&quot;)} /&gt;
     );
@@ -59633,7 +59726,7 @@ title?: string</code></pre>
 
     return (
         &lt;Toast
-            status=&quot;info&quot;
+            intent=&quot;info&quot;
             title={args.title || t(&quot;story.toast_update_title&quot;)}
             description={args.description || t(&quot;story.toast_update_desc&quot;)} /&gt;
     );
@@ -59651,7 +59744,7 @@ title?: string</code></pre>
 
     return (
         &lt;Toast
-            status=&quot;warning&quot;
+            intent=&quot;warning&quot;
             title={args.title || t(&quot;story.toast_connection_title&quot;)}
             description={args.description || t(&quot;story.toast_connection_desc&quot;)} /&gt;
     );
@@ -59669,7 +59762,7 @@ title?: string</code></pre>
 
     return (
         &lt;Toast
-            status=&quot;error&quot;
+            intent=&quot;error&quot;
             title={args.title || t(&quot;story.toast_upload_failed_title&quot;)}
             description={args.description || t(&quot;story.toast_upload_failed_desc&quot;)} /&gt;
     );
@@ -65103,7 +65196,7 @@ export const DashboardHeader: StoryObj = {
                 aria-label=&quot;Notifications&quot;
               /&gt;
               &lt;Badge
-                status=&quot;secondary&quot;
+                intent=&quot;secondary&quot;
                 size=&quot;sm&quot;
                 content=&quot;3&quot;
                 style={{
@@ -65163,7 +65256,7 @@ export const DashboardHeader: StoryObj = {
                 &gt;
                   &lt;Stack justify=&quot;space-between&quot; align=&quot;center&quot; direction=&quot;row&quot;&gt;
                     &lt;Stats.Label&gt;{t(&quot;dashboard.stats_revenue&quot;)}&lt;/Stats.Label&gt;
-                    &lt;Badge status=&quot;neutral&quot; content=&quot;+12.5%&quot; size=&quot;sm&quot; /&gt;
+                    &lt;Badge intent=&quot;neutral&quot; content=&quot;+12.5%&quot; size=&quot;sm&quot; /&gt;
                   &lt;/Stack&gt;
                   &lt;Stats.Value&gt;
                     &lt;Heading tag=&quot;h3&quot; size=&quot;xl&quot; style={{ whiteSpace: &quot;nowrap&quot; }}&gt;
@@ -65423,7 +65516,7 @@ export const PricingTable: StoryObj = {
     return (
       &lt;Container style={{ padding: &quot;80px 24px&quot;, background: &quot;#fff&quot; }}&gt;
         &lt;Stack align=&quot;center&quot; gap=&quot;lg&quot; style={{ marginBottom: &quot;64px&quot; }}&gt;
-          &lt;Badge status=&quot;primary&quot; content={t(&quot;pricing.badge&quot;)} /&gt;
+          &lt;Badge intent=&quot;primary&quot; content={t(&quot;pricing.badge&quot;)} /&gt;
           &lt;Stack align=&quot;center&quot; gap=&quot;3xl&quot;&gt;
             &lt;Heading tag=&quot;h2&quot; size=&quot;xl&quot; align=&quot;center&quot;&gt;
               {t(&quot;pricing.title&quot;)}
@@ -65542,7 +65635,7 @@ export const PricingTable: StoryObj = {
                 transform: &quot;translateX(-50%)&quot;,
               }}
             &gt;
-              &lt;Badge status=&quot;primary&quot; content={t(&quot;pricing.pro_badge&quot;)} size=&quot;sm&quot; /&gt;
+              &lt;Badge intent=&quot;primary&quot; content={t(&quot;pricing.pro_badge&quot;)} size=&quot;sm&quot; /&gt;
             &lt;/div&gt;
             &lt;Stack gap=&quot;lg&quot; style={{ height: &quot;100%&quot; }}&gt;
               &lt;Stack gap=&quot;lg&quot; align=&quot;center&quot; style={{ flex: 1 }}&gt;
@@ -65717,7 +65810,7 @@ export const HeroSection: StoryObj = {
             &lt;Stack gap=&quot;3xl&quot;&gt;
               &lt;Stack gap=&quot;3xl&quot;&gt;
                 &lt;Badge
-                  status=&quot;primary&quot;
+                  intent=&quot;primary&quot;
                   content={t(&quot;hero.badge&quot;)}
                   style={{ width: &quot;fit-content&quot; }}
                 /&gt;
@@ -65880,7 +65973,7 @@ export const ErrorPage: StoryObj = {
             /&gt;
           &lt;/Stack&gt;
 
-          &lt;Alert status=&quot;info&quot; title={t(&quot;error.help_title&quot;)} style={{ textAlign: &quot;left&quot; }}&gt;
+          &lt;Alert intent=&quot;info&quot; title={t(&quot;error.help_title&quot;)} style={{ textAlign: &quot;left&quot; }}&gt;
             {t(&quot;error.help_desc&quot;)}
           &lt;/Alert&gt;
 
@@ -66187,7 +66280,7 @@ export const ErrorPage: StoryObj = {
               aria-label=&quot;Notifications&quot;
             /&gt;
             &lt;Badge
-              status=&quot;secondary&quot;
+              intent=&quot;secondary&quot;
               size=&quot;sm&quot;
               content=&quot;3&quot;
               style={{
@@ -66247,7 +66340,7 @@ export const ErrorPage: StoryObj = {
               &gt;
                 &lt;Stack justify=&quot;space-between&quot; align=&quot;center&quot; direction=&quot;row&quot;&gt;
                   &lt;Stats.Label&gt;{t(&quot;dashboard.stats_revenue&quot;)}&lt;/Stats.Label&gt;
-                  &lt;Badge status=&quot;neutral&quot; content=&quot;+12.5%&quot; size=&quot;sm&quot; /&gt;
+                  &lt;Badge intent=&quot;neutral&quot; content=&quot;+12.5%&quot; size=&quot;sm&quot; /&gt;
                 &lt;/Stack&gt;
                 &lt;Stats.Value&gt;
                   &lt;Heading tag=&quot;h3&quot; size=&quot;xl&quot; style={{ whiteSpace: &quot;nowrap&quot; }}&gt;
@@ -66517,7 +66610,7 @@ export const ErrorPage: StoryObj = {
   return (
     &lt;Container style={{ padding: &quot;80px 24px&quot;, background: &quot;#fff&quot; }}&gt;
       &lt;Stack align=&quot;center&quot; gap=&quot;lg&quot; style={{ marginBottom: &quot;64px&quot; }}&gt;
-        &lt;Badge status=&quot;primary&quot; content={t(&quot;pricing.badge&quot;)} /&gt;
+        &lt;Badge intent=&quot;primary&quot; content={t(&quot;pricing.badge&quot;)} /&gt;
         &lt;Stack align=&quot;center&quot; gap=&quot;3xl&quot;&gt;
           &lt;Heading tag=&quot;h2&quot; size=&quot;xl&quot; align=&quot;center&quot;&gt;
             {t(&quot;pricing.title&quot;)}
@@ -66636,7 +66729,7 @@ export const ErrorPage: StoryObj = {
               transform: &quot;translateX(-50%)&quot;,
             }}
           &gt;
-            &lt;Badge status=&quot;primary&quot; content={t(&quot;pricing.pro_badge&quot;)} size=&quot;sm&quot; /&gt;
+            &lt;Badge intent=&quot;primary&quot; content={t(&quot;pricing.pro_badge&quot;)} size=&quot;sm&quot; /&gt;
           &lt;/div&gt;
           &lt;Stack gap=&quot;lg&quot; style={{ height: &quot;100%&quot; }}&gt;
             &lt;Stack gap=&quot;lg&quot; align=&quot;center&quot; style={{ flex: 1 }}&gt;
@@ -66816,7 +66909,7 @@ export const ErrorPage: StoryObj = {
           &lt;Stack gap=&quot;3xl&quot;&gt;
             &lt;Stack gap=&quot;3xl&quot;&gt;
               &lt;Badge
-                status=&quot;primary&quot;
+                intent=&quot;primary&quot;
                 content={t(&quot;hero.badge&quot;)}
                 style={{ width: &quot;fit-content&quot; }}
               /&gt;
@@ -66984,7 +67077,7 @@ export const ErrorPage: StoryObj = {
           /&gt;
         &lt;/Stack&gt;
 
-        &lt;Alert status=&quot;info&quot; title={t(&quot;error.help_title&quot;)} style={{ textAlign: &quot;left&quot; }}&gt;
+        &lt;Alert intent=&quot;info&quot; title={t(&quot;error.help_title&quot;)} style={{ textAlign: &quot;left&quot; }}&gt;
           {t(&quot;error.help_desc&quot;)}
         &lt;/Alert&gt;
 
@@ -67380,7 +67473,7 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
             &lt;Box mt=&quot;md&quot; style={{ display: &quot;flex&quot;, justifyContent: &quot;center&quot; }}&gt;
               &lt;Portal container={container}&gt;
                 &lt;Alert
-                  status=&quot;success&quot;
+                  intent=&quot;success&quot;
                   icon={&lt;Icon name=&quot;CheckCircleIcon&quot; /&gt;}
                   style={{ width: &quot;fit-content&quot; }}
                 &gt;

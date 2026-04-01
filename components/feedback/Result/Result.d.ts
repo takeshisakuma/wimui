@@ -2,9 +2,9 @@ import { ReactNode } from '../../../../node_modules/react';
 export type ResultStatus = "success" | "error" | "info" | "warning" | "404" | "403" | "500";
 export type ResultProps = {
     /**
-     * result status, decide icons and colors
+     * result intent, decide icons and colors
      */
-    status?: ResultStatus;
+    intent?: ResultStatus;
     /**
      * The title
      */
@@ -30,4 +30,4 @@ export type ResultProps = {
      */
     children?: ReactNode;
 };
-export declare const Result: ({ status, title, description, extra, icon, className, children, }: ResultProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Result: ({ intent, title, description, extra, icon, className, children, }: ResultProps) => import("react/jsx-runtime").JSX.Element;

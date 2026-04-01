@@ -8,7 +8,7 @@ export interface Step {
     /** Custom icon for the step */
     icon?: React.ReactNode;
     /** Status of the step. If not provided, it will be calculated based on currentStep. */
-    status?: StepperStatus;
+    intent?: StepperStatus;
     /** Whether the step is disabled */
     disabled?: boolean;
 }
@@ -22,11 +22,11 @@ export interface StepperProps {
     /** Placement of the labels */
     labelPlacement?: "horizontal" | "vertical";
     /** Status of the current step */
-    status?: StepperStatus;
+    intent?: StepperStatus;
     /** Additional class names */
     className?: string;
     /** Callback function when a step is clicked (if applicable) */
     onChange?: (current: number) => void;
 }
-export declare const Stepper: ({ steps, current, direction, labelPlacement, status, className, onChange, }: StepperProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Stepper: ({ steps, current, direction, labelPlacement, intent, className, onChange, }: StepperProps) => import("react/jsx-runtime").JSX.Element;
 export default Stepper;

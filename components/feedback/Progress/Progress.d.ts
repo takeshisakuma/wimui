@@ -1,9 +1,9 @@
 import { default as React } from '../../../../node_modules/react';
-import { ComponentSize, IndicatorStatus } from '../../../types/tokens';
+import { ComponentSize, WimIntent } from '../../../types/tokens';
 type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
     value?: number;
     max?: number;
-    status?: IndicatorStatus;
+    intent?: WimIntent;
     size?: ComponentSize;
     label?: string;
     showValue?: boolean;
@@ -12,5 +12,5 @@ type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
 /**
  * プログレスバーを表示するためのコンポーネント。
  */
-export declare const Progress: ({ value, max, status, size, label, showValue, indeterminate, className, ...props }: ProgressProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Progress: ({ value, max, intent, size, label, showValue, indeterminate, className, ...props }: ProgressProps) => import("react/jsx-runtime").JSX.Element;
 export {};

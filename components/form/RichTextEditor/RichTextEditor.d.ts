@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { FieldStatus } from '../../../types/tokens';
+import { WimIntent } from '../../../types/tokens';
 export type RichTextEditorToolbarItem = "bold" | "italic" | "underline" | "strikethrough" | "h1" | "h2" | "h3" | "ul" | "ol" | "link" | "unlink" | "removeFormat" | "separator";
 export type RichTextEditorLabels = {
     bold?: string;
@@ -23,7 +23,7 @@ export type RichTextEditorProps = {
     onChange?: (value: string) => void;
     placeholder?: string;
     disabled?: boolean;
-    status?: FieldStatus;
+    intent?: WimIntent;
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     minHeight?: number | string;
@@ -42,6 +42,6 @@ export type RichTextEditorProps = {
  * リッチテキスト入力を受け付けるWYSIWYGエディタコンポーネント。
  */
 export declare const RichTextEditor: {
-    ({ value, defaultValue, onChange, placeholder, disabled, status, variant, fullWidth, minHeight, label, error, required, layout, className, id: customId, toolbar, labels, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledby, }: RichTextEditorProps): import("react/jsx-runtime").JSX.Element;
+    ({ value, defaultValue, onChange, placeholder, disabled, intent, variant, fullWidth, minHeight, label, error, required, layout, className, id: customId, toolbar, labels, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledby, }: RichTextEditorProps): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };

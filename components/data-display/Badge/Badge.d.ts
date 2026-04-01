@@ -1,12 +1,12 @@
 import { default as React } from '../../../../node_modules/react';
-import { ComponentSize, IndicatorStatus } from '../../../types/tokens';
+import { ComponentSize, WimIntent } from '../../../types/tokens';
 export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
     /** 表示するコンテンツ */
     children?: React.ReactNode;
     /** アイコン */
     icon?: React.ReactNode;
     /** ステータス */
-    status?: IndicatorStatus;
+    intent?: WimIntent;
     /** バリアント */
     variant?: "solid" | "outline" | "subtle";
     /** サイズ */

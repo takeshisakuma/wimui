@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { ComponentSize, IndicatorStatus } from '../../../types/tokens';
+import { ComponentSize, WimIntent } from '../../../types/tokens';
 export type ChipProps = {
     /** 表示するコンテンツ */
     children?: React.ReactNode;
@@ -16,7 +16,7 @@ export type ChipProps = {
     /** 無効状態 */
     disabled?: boolean;
     /** ステータス */
-    status?: IndicatorStatus;
+    intent?: WimIntent;
     /** バリアント */
     variant?: "solid" | "outline" | "subtle";
     /** サイズ */
@@ -31,4 +31,4 @@ export type ChipProps = {
 /**
  * 選択、フィルタリング、または入力に使用されるインタラクティブなトークン。
  */
-export declare const Chip: ({ children, onClick, onDelete, avatar, icon, selected, disabled, status, variant, size, deleteAriaLabel, className, ...props }: ChipProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Chip: ({ children, onClick, onDelete, avatar, icon, selected, disabled, intent, variant, size, deleteAriaLabel, className, ...props }: ChipProps) => import("react/jsx-runtime").JSX.Element;

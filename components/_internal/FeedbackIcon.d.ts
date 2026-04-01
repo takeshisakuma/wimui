@@ -1,10 +1,10 @@
 import { default as React } from '../../../node_modules/react';
-import { ComponentSize, FeedbackStatus } from '../../types/tokens';
+import { ComponentSize, WimIntent } from '../../types/tokens';
 export interface FeedbackIconProps {
     /**
-     * フィードバックのステータス
+     * フィードバックのインテント
      */
-    status?: FeedbackStatus | "default";
+    intent?: WimIntent | "default";
     /**
      * カスタムアイコン
      */
@@ -25,4 +25,4 @@ export interface FeedbackIconProps {
 /**
  * 通知系コンポーネントで共通して使用されるアイコン表示用コンポーネント（内部用）
  */
-export declare const FeedbackIcon: ({ status, icon, size, className, color, }: FeedbackIconProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const FeedbackIcon: ({ intent, icon, size, className, color, }: FeedbackIconProps) => import("react/jsx-runtime").JSX.Element | null;

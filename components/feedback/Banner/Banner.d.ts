@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { FeedbackStatus } from '../../../types/tokens';
+import { WimIntent } from '../../../types/tokens';
 type BannerProps = {
     /**
      * バナーのタイトル
@@ -10,9 +10,9 @@ type BannerProps = {
      */
     description?: React.ReactNode;
     /**
-     * バナーのステータス
+     * バナーのインテント
      */
-    status?: FeedbackStatus;
+    intent?: WimIntent;
     /**
      * アイコンを表示するかどうか、またはカスタムアイコン
      */
@@ -38,5 +38,5 @@ type BannerProps = {
  * 重要なメッセージやアクションをユーザーに提示するためのバナーコンポーネント。
  * 通常、ページの上部に表示されます。
  */
-export declare const Banner: ({ title, description, status, icon, extra, onClose, className, children, ...props }: BannerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Banner: ({ title, description, intent, icon, extra, onClose, className, children, ...props }: BannerProps) => import("react/jsx-runtime").JSX.Element;
 export {};

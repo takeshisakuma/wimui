@@ -1,8 +1,8 @@
 import { default as React } from '../../../../node_modules/react';
 import { Icon } from '../../media/Icon/Icon';
-import { FieldStatus } from '../../../types/tokens';
+import { WimIntent } from '../../../types/tokens';
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
-    status?: FieldStatus;
+    intent?: WimIntent;
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     leftIcon?: React.ComponentProps<typeof Icon>["name"];
@@ -29,7 +29,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
  * ユーザーからの入力を受け付けるための基本コンポーネント。
  */
 export declare const Input: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "ref"> & {
-    status?: FieldStatus;
+    intent?: WimIntent;
     variant?: "outline" | "ghost";
     fullWidth?: boolean;
     leftIcon?: React.ComponentProps<typeof Icon>["name"];

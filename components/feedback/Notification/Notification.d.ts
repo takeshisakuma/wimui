@@ -1,5 +1,5 @@
 import { default as React, ReactNode } from '../../../../node_modules/react';
-import { FeedbackStatus } from '../../../types/tokens';
+import { WimIntent } from '../../../types/tokens';
 export type NotificationPlacement = "topRight" | "topLeft" | "bottomRight" | "bottomLeft";
 export type NotificationProps = {
     /**
@@ -21,7 +21,7 @@ export type NotificationProps = {
     /**
      * The status of notification
      */
-    status?: FeedbackStatus;
+    intent?: WimIntent;
     /**
      * Callback when notification is closed
      */
@@ -35,7 +35,7 @@ export type NotificationProps = {
      */
     className?: string;
 };
-export declare const Notification: ({ id, title, description, icon, status, onClose, closable, className, }: NotificationProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const Notification: ({ id, title, description, icon, intent, onClose, closable, className, }: NotificationProps) => import("react/jsx-runtime").JSX.Element | null;
 type NotificationItem = Omit<NotificationProps, "onClose"> & {
     id: string;
 };
