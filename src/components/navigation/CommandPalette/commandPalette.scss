@@ -23,23 +23,11 @@
     width: 100%;
     max-width: 640px;
     overflow: hidden;
-    background: var(--wim-color-bg-component, #fff);
-    border: 1px solid var(--wim-color-border-secondary);
+    background: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-lg);
     box-shadow: var(--wim-shadow-lg);
     animation: wim-command-palette-in 0.2s ease-out;
-  
-    [data-theme="dark"] & {
-      background: var(--wim-color-bg-component, #1a1a1a);
-      border-color: rgb(255 255 255 / 0.1);
-    }
-  
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) & {
-        background: var(--wim-color-bg-component, #1a1a1a);
-        border-color: rgb(255 255 255 / 0.1);
-      }
-    }
   
     // Mobile: full width and no border radius at top
     @media (width <=640px) {
@@ -180,18 +168,8 @@
     gap: var(--wim-spacing-md);
     align-items: center;
     padding: var(--wim-spacing-xs) var(--wim-spacing-md);
-    background: var(--wim-color-bg-app);
+    background: var(--wim-color-surface-inset);
     border-top: 1px solid var(--wim-color-border-secondary);
-  
-    [data-theme="dark"] & {
-      background: rgb(0 0 0 / 0.2);
-    }
-  
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) & {
-        background: rgb(0 0 0 / 0.2);
-      }
-    }
   
     // Hide footer on very small screens or make it more compact
     @media (width <=480px) {

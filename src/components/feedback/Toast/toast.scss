@@ -53,21 +53,21 @@
     justify-content: space-between;
     min-width: 280px;
     max-width: calc(100vw - var(--wim-spacing-lg) * 2);
-    padding: var(--wim-spacing-md) var(--wim-spacing-xl) var(--wim-spacing-md) var(--wim-spacing-lg); // More padding on right for X
+    padding: var(--wim-spacing-md) var(--wim-spacing-xl) var(--wim-spacing-md) var(--wim-spacing-lg);
     pointer-events: auto;
   
-    // Glassmorphism effect
-    background: rgb(255 255 255 / 0.85);
+    // Glassmorphism effect — auto-switches via glass tokens
+    background: var(--wim-color-glass-bg);
     border: 1px solid transparent;
     border-radius: var(--wim-radius-lg);
-    box-shadow: var(--wim-shadow-lg);
+    box-shadow: var(--wim-shadow-glass);
     backdrop-filter: blur(12px);
   
     &__icon {
       display: flex;
       flex-shrink: 0;
       align-items: center;
-      align-self: center; // Vertically center the icon
+      align-self: center;
       font-size: 1.25rem;
     }
   
@@ -116,7 +116,7 @@
       transition: var(--wim-transition-fast);
   
       &:hover {
-        background: rgb(0 0 0 / 0.05);
+        background: var(--wim-color-close-hover);
         opacity: 1;
       }
   
@@ -130,107 +130,40 @@
       }
     }
   
-    // Variants
+    // Variants — use feedback mixing tokens for automatic light/dark switching
     &--info {
-      color: #1e40af;
-      border-color: rgb(59 130 246 / 0.3);
+      color: color-mix(in srgb, var(--wim-color-informative) 65%, var(--wim-color-feedback-text-base));
+      border-color: color-mix(in srgb, var(--wim-color-informative) var(--wim-color-feedback-border-strength), transparent);
   
       .wim-toast__icon {
-        color: #3b82f6;
+        color: var(--wim-color-informative);
       }
     }
   
     &--success {
-      color: #166534;
-      border-color: rgb(34 197 94 / 0.3);
+      color: color-mix(in srgb, var(--wim-color-positive) 65%, var(--wim-color-feedback-text-base));
+      border-color: color-mix(in srgb, var(--wim-color-positive) var(--wim-color-feedback-border-strength), transparent);
   
       .wim-toast__icon {
-        color: #22c55e;
+        color: var(--wim-color-positive);
       }
     }
   
     &--warning {
-      color: #854d0e;
-      border-color: rgb(234 179 8 / 0.3);
+      color: color-mix(in srgb, var(--wim-color-caution) 75%, var(--wim-color-feedback-text-base));
+      border-color: color-mix(in srgb, var(--wim-color-caution) var(--wim-color-feedback-border-strength), transparent);
   
       .wim-toast__icon {
-        color: #eab308;
+        color: var(--wim-color-caution);
       }
     }
   
     &--error {
-      color: #991b1b;
-      border-color: rgb(239 68 68 / 0.3);
+      color: color-mix(in srgb, var(--wim-color-destructive) 65%, var(--wim-color-feedback-text-base));
+      border-color: color-mix(in srgb, var(--wim-color-destructive) var(--wim-color-feedback-border-strength), transparent);
   
       .wim-toast__icon {
-        color: #ef4448;
-      }
-    }
-  
-    // Dark Mode Support
-    [data-theme="dark"] & {
-      background: rgb(30 30 30 / 0.8);
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4);
-  
-      &--info {
-        color: #dbeafe;
-        background: rgb(30 58 138 / 0.8);
-        border-color: rgb(59 130 246 / 0.4);
-      }
-  
-      &--success {
-        color: #dcfce7;
-        background: rgb(20 83 45 / 0.8);
-        border-color: rgb(34 197 94 / 0.4);
-      }
-  
-      &--warning {
-        color: #fef9c3;
-        background: rgb(113 63 18 / 0.8);
-        border-color: rgb(234 179 8 / 0.4);
-      }
-  
-      &--error {
-        color: #fee2e2;
-        background: rgb(127 29 29 / 0.8);
-        border-color: rgb(239 68 68 / 0.4);
-      }
-  
-      &__close:hover {
-        background: rgb(255 255 255 / 0.1);
-      }
-    }
-  
-    @media (prefers-color-scheme: dark) {
-      background: rgb(30 30 30 / 0.8);
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4);
-  
-      &--info {
-        color: #dbeafe;
-        background: rgb(30 58 138 / 0.8);
-        border-color: rgb(59 130 246 / 0.4);
-      }
-  
-      &--success {
-        color: #dcfce7;
-        background: rgb(20 83 45 / 0.8);
-        border-color: rgb(34 197 94 / 0.4);
-      }
-  
-      &--warning {
-        color: #fef9c3;
-        background: rgb(113 63 18 / 0.8);
-        border-color: rgb(234 179 8 / 0.4);
-      }
-  
-      &--error {
-        color: #fee2e2;
-        background: rgb(127 29 29 / 0.8);
-        border-color: rgb(239 68 68 / 0.4);
-      }
-  
-      &__close:hover {
-        background: rgb(255 255 255 / 0.1);
+        color: var(--wim-color-destructive);
       }
     }
   }

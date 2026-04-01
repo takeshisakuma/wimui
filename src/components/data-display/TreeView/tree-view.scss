@@ -13,8 +13,8 @@
     padding: var(--wim-spacing-xs) 0; // Use small vertical padding, horizontal is handled by item margins
     overflow: hidden;
     outline: none;
-    background: var(--wim-color-bg-component, #fff);
-    border: 1px solid var(--wim-color-secondary);
+    background: var(--wim-color-surface-glass);
+    border: 1px solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-lg);
     box-shadow:
       0 4px 6px -1px rgb(0 0 0 / 0.1),
@@ -226,37 +226,5 @@
   .wim-tree-view--data-driven > .wim-tree-view-item {
     animation: wim-tree-item-enter 0.2s cubic-bezier(0.4, 0, 0.2, 1) both;
   }
-  
-  /* Glassmorphism adjustment for dark mode if needed */
-  [data-theme="dark"] {
-    .wim-tree-view {
-      background: rgb(0 0 0 / 0.2);
-      border-color: rgb(255 255 255 / 0.1);
-    }
-  
-    .wim-tree-view-item__label-container:hover {
-      background: var(--wim-color-bg-hover);
-    }
-  
-    .wim-tree-view-item__expand-btn {
-      color: var(--wim-color-text-secondary);
-    }
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      .wim-tree-view {
-        background: rgb(0 0 0 / 0.2);
-        border-color: rgb(255 255 255 / 0.1);
-      }
-  
-      .wim-tree-view-item__label-container:hover {
-        background: var(--wim-color-bg-hover);
-      }
-  
-      .wim-tree-view-item__expand-btn {
-        color: var(--wim-color-text-secondary);
-      }
-    }
-  }
 }
+

@@ -12,7 +12,7 @@
     overflow: hidden;
   
     // Glassmorphism effect base
-    background: var(--wim-color-overlay-bg-light);
+    background: var(--wim-color-frosted-bg);
     border: 1px solid transparent;
     border-radius: var(--wim-radius-lg);
     box-shadow: var(--wim-shadow-sm);
@@ -73,7 +73,7 @@
       transition: var(--wim-transition-fast);
   
       &:hover {
-        background: rgb(0 0 0 / 0.05);
+        background: var(--wim-color-close-hover);
         opacity: 1;
       }
   
@@ -87,11 +87,11 @@
       }
     }
   
-    // Variants
+    // Variants — use feedback mixing tokens for automatic light/dark switching
     &--info {
-      color: color-mix(in srgb, var(--wim-color-informative) 70%, black);
-      background: color-mix(in srgb, var(--wim-color-informative) 8%, var(--wim-color-overlay-bg-light));
-      border-color: color-mix(in srgb, var(--wim-color-informative) 30%, transparent);
+      color: color-mix(in srgb, var(--wim-color-informative) 65%, var(--wim-color-feedback-text-base));
+      background: color-mix(in srgb, var(--wim-color-informative) 10%, var(--wim-color-feedback-bg-base));
+      border-color: color-mix(in srgb, var(--wim-color-informative) var(--wim-color-feedback-border-strength), transparent);
   
       .wim-alert__icon {
         color: var(--wim-color-informative);
@@ -99,9 +99,9 @@
     }
   
     &--success {
-      color: color-mix(in srgb, var(--wim-color-positive) 70%, black);
-      background: color-mix(in srgb, var(--wim-color-positive) 8%, var(--wim-color-overlay-bg-light));
-      border-color: color-mix(in srgb, var(--wim-color-positive) 30%, transparent);
+      color: color-mix(in srgb, var(--wim-color-positive) 65%, var(--wim-color-feedback-text-base));
+      background: color-mix(in srgb, var(--wim-color-positive) 10%, var(--wim-color-feedback-bg-base));
+      border-color: color-mix(in srgb, var(--wim-color-positive) var(--wim-color-feedback-border-strength), transparent);
   
       .wim-alert__icon {
         color: var(--wim-color-positive);
@@ -109,9 +109,9 @@
     }
   
     &--warning {
-      color: color-mix(in srgb, var(--wim-color-caution) 70%, black);
-      background: color-mix(in srgb, var(--wim-color-caution) 8%, var(--wim-color-overlay-bg-light));
-      border-color: color-mix(in srgb, var(--wim-color-caution) 30%, transparent);
+      color: color-mix(in srgb, var(--wim-color-caution) 65%, var(--wim-color-feedback-text-base));
+      background: color-mix(in srgb, var(--wim-color-caution) 10%, var(--wim-color-feedback-bg-base));
+      border-color: color-mix(in srgb, var(--wim-color-caution) var(--wim-color-feedback-border-strength), transparent);
   
       .wim-alert__icon {
         color: var(--wim-color-caution);
@@ -119,79 +119,12 @@
     }
   
     &--error {
-      color: color-mix(in srgb, var(--wim-color-destructive) 70%, black);
-      background: color-mix(in srgb, var(--wim-color-destructive) 8%, var(--wim-color-overlay-bg-light));
-      border-color: color-mix(in srgb, var(--wim-color-destructive) 30%, transparent);
+      color: color-mix(in srgb, var(--wim-color-destructive) 65%, var(--wim-color-feedback-text-base));
+      background: color-mix(in srgb, var(--wim-color-destructive) 10%, var(--wim-color-feedback-bg-base));
+      border-color: color-mix(in srgb, var(--wim-color-destructive) var(--wim-color-feedback-border-strength), transparent);
   
       .wim-alert__icon {
         color: var(--wim-color-destructive);
-      }
-    }
-  
-    // Dark Mode Support
-    [data-theme="dark"] & {
-      background: color-mix(in srgb, var(--wim-color-bg-component) 60%, transparent);
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
-  
-      &--info {
-        color: color-mix(in srgb, var(--wim-color-informative) 20%, white);
-        background: color-mix(in srgb, var(--wim-color-informative) 15%, transparent);
-        border-color: color-mix(in srgb, var(--wim-color-informative) 40%, transparent);
-      }
-  
-      &--success {
-        color: color-mix(in srgb, var(--wim-color-positive) 20%, white);
-        background: color-mix(in srgb, var(--wim-color-positive) 15%, transparent);
-        border-color: color-mix(in srgb, var(--wim-color-positive) 40%, transparent);
-      }
-  
-      &--warning {
-        color: color-mix(in srgb, var(--wim-color-caution) 20%, white);
-        background: color-mix(in srgb, var(--wim-color-caution) 15%, transparent);
-        border-color: color-mix(in srgb, var(--wim-color-caution) 40%, transparent);
-      }
-  
-      &--error {
-        color: color-mix(in srgb, var(--wim-color-destructive) 20%, white);
-        background: color-mix(in srgb, var(--wim-color-destructive) 15%, transparent);
-        border-color: color-mix(in srgb, var(--wim-color-destructive) 40%, transparent);
-      }
-  
-      &__close:hover {
-        background: rgb(255 255 255 / 0.1);
-      }
-    }
-  
-    @media (prefers-color-scheme: dark) {
-      background: color-mix(in srgb, var(--wim-color-bg-component) 60%, transparent);
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
-  
-      &--info {
-        color: color-mix(in srgb, var(--wim-color-informative) 20%, white);
-        background: color-mix(in srgb, var(--wim-color-informative) 15%, transparent);
-        border-color: color-mix(in srgb, var(--wim-color-informative) 40%, transparent);
-      }
-  
-      &--success {
-        color: color-mix(in srgb, var(--wim-color-positive) 20%, white);
-        background: color-mix(in srgb, var(--wim-color-positive) 15%, transparent);
-        border-color: color-mix(in srgb, var(--wim-color-positive) 40%, transparent);
-      }
-  
-      &--warning {
-        color: color-mix(in srgb, var(--wim-color-caution) 20%, white);
-        background: color-mix(in srgb, var(--wim-color-caution) 15%, transparent);
-        border-color: color-mix(in srgb, var(--wim-color-caution) 40%, transparent);
-      }
-  
-      &--error {
-        color: color-mix(in srgb, var(--wim-color-destructive) 20%, white);
-        background: color-mix(in srgb, var(--wim-color-destructive) 15%, transparent);
-        border-color: color-mix(in srgb, var(--wim-color-destructive) 40%, transparent);
-      }
-  
-      &__close:hover {
-        background: rgb(255 255 255 / 0.1);
       }
     }
   }

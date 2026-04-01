@@ -91,21 +91,31 @@ padding: var(--wim-spacing-md);
 
 ## ダークモード対応
 
-新規コンポーネントの SCSS には以下の両方を記述します。
+セマンティックカラートークンを使っていれば自動対応されるため、コンポーネントSCSSに `[data-theme="dark"]` や `@media (prefers-color-scheme: dark)` を書く必要はありません。
 
 ```scss
-[data-theme="dark"] .wim-component {
-  // ダークモード用スタイル
+// トークンを使うだけでライト/ダーク両対応（個別のダークモード記述は不要）
+.wim-component {
+  color: var(--wim-color-text-primary);
+  background: var(--wim-color-surface-glass);     // 半透明ガラス効果
+  border-color: var(--wim-color-glass-border);     // ガラスボーダー
 }
 
-@media (prefers-color-scheme: dark) {
-  .wim-component {
-    // システム設定連動用
-  }
+// ゴーストスタイルのコントロール
+.wim-component--ghost {
+  background: var(--wim-color-ghost-bg);
+  border-color: var(--wim-color-ghost-border);
+}
+
+// フィードバックコンポーネントのバリアント色
+.wim-component--info {
+  color: color-mix(in srgb, var(--wim-color-informative) 65%, var(--wim-color-feedback-text-base));
+  background: color-mix(in srgb, var(--wim-color-informative) 10%, var(--wim-color-feedback-bg-base));
+  border-color: color-mix(in srgb, var(--wim-color-informative) var(--wim-color-feedback-border-strength), transparent);
 }
 ```
 
-セマンティックカラートークンを使っていれば自動対応されるため、個別のダークモード記述は不要になる場合が多いです。
+新しい暗色/明色切替が必要な場合は、`src/tokens/_semantic-colors.scss` の `:root` と `@mixin dark-theme` の両方にトークンを追加してください。
 
 ---
 

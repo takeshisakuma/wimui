@@ -91,6 +91,39 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-overlay-bg-dark: rgb(0 0 0 / 0.7);
   --wim-color-text-on-overlay: #fff;
 
+  /* ── Ghost / Subtle Surface ─────────────────────────────── */
+  --wim-color-ghost-bg: rgb(0 0 0 / 0.03);
+  --wim-color-ghost-border: rgb(0 0 0 / 0.08);
+  --wim-color-ghost-bg-active: rgb(0 0 0 / 0.12);
+  --wim-color-ghost-border-active: rgb(0 0 0 / 0.25);
+  --wim-color-ghost-border-hover: color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+
+  /* ── Glass / Frosted Surface ────────────────────────────── */
+  --wim-color-glass-bg: rgb(255 255 255 / 0.85);
+  --wim-color-glass-border: var(--wim-color-border-secondary);
+  --wim-color-surface-glass: var(--wim-color-bg-component);
+  --wim-color-surface-inset: var(--wim-color-bg-app);
+  --wim-shadow-glass: var(--wim-shadow-lg);
+
+  /* ── Skeleton ───────────────────────────────────────────── */
+  --wim-color-skeleton-bg: rgb(0 0 0 / 0.11);
+  --wim-color-skeleton-shine: rgb(255 255 255 / 0.3);
+
+  /* ── Control (outlined / ghost default accent) ──────────── */
+  --wim-color-control-default-fg: var(--wim-color-primary);
+  --wim-color-control-default-bg: var(--wim-color-bg-primary);
+  --wim-color-control-default-border: var(--wim-color-primary);
+
+  /* ── Feedback variant mixing bases (Alert / Banner / Toast) */
+  --wim-color-feedback-text-base: black;
+  --wim-color-feedback-bg-base: white;
+  --wim-color-feedback-border-strength: 30%;
+  --wim-color-frosted-bg: var(--wim-color-overlay-bg-light);
+
+  /* ── Utility ────────────────────────────────────────────── */
+  --wim-color-bg-subtle: #fafafa;
+  --wim-color-close-hover: rgb(0 0 0 / 0.05);
+
   /* Helper variables for toggle states */
   --on: initial;
   --off: ;
@@ -132,6 +165,39 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-caution: #{$pccs-v7};
   --wim-color-informative: #{$pccs-v17};
   --wim-color-primary: #{$pccs-v16};
+
+  /* ── Ghost / Subtle Surface (dark) ──────────────────────── */
+  --wim-color-ghost-bg: rgb(255 255 255 / 0.06);
+  --wim-color-ghost-border: rgb(255 255 255 / 0.15);
+  --wim-color-ghost-bg-active: rgb(255 255 255 / 0.12);
+  --wim-color-ghost-border-active: rgb(255 255 255 / 0.3);
+  --wim-color-ghost-border-hover: color-mix(in srgb, var(--wim-color-primary) 40%, transparent);
+
+  /* ── Glass / Frosted Surface (dark) ─────────────────────── */
+  --wim-color-glass-bg: rgb(30 30 30 / 0.8);
+  --wim-color-glass-border: rgb(255 255 255 / 0.1);
+  --wim-color-surface-glass: rgb(0 0 0 / 0.2);
+  --wim-color-surface-inset: rgb(0 0 0 / 0.2);
+  --wim-shadow-glass: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+
+  /* ── Skeleton (dark) ────────────────────────────────────── */
+  --wim-color-skeleton-bg: rgb(255 255 255 / 0.13);
+  --wim-color-skeleton-shine: rgb(255 255 255 / 0.08);
+
+  /* ── Control (dark) ─────────────────────────────────────── */
+  --wim-color-control-default-fg: var(--wim-color-text-primary);
+  --wim-color-control-default-bg: var(--wim-color-bg-secondary);
+  --wim-color-control-default-border: var(--wim-color-border);
+
+  /* ── Feedback variant mixing bases (dark) ────────────────── */
+  --wim-color-feedback-text-base: white;
+  --wim-color-feedback-bg-base: black;
+  --wim-color-feedback-border-strength: 40%;
+  --wim-color-frosted-bg: color-mix(in srgb, var(--wim-color-bg-component) 60%, transparent);
+
+  /* ── Utility (dark) ─────────────────────────────────────── */
+  --wim-color-bg-subtle: #262626;
+  --wim-color-close-hover: rgb(255 255 255 / 0.1);
 
   /* Typography decoration tokens – dark mode overrides */
   --wim-decoration-highlight-color: #5c4400; // Dark amber: white text stays readable

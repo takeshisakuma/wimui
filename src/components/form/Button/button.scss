@@ -154,9 +154,9 @@
       --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
 
       &.wim-button--default {
-        color: var(--wim-color-primary);
-        background-color: var(--wim-color-bg-primary);
-        border-color: var(--wim-color-primary);
+        color: var(--wim-color-control-default-fg);
+        background-color: var(--wim-color-control-default-bg);
+        border-color: var(--wim-color-control-default-border);
       }
 
       &.wim-button--destructive {
@@ -195,11 +195,11 @@
     &--ghost {
       --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
 
-      background-color: rgb(0 0 0 / 0.03);
-      border-color: rgb(0 0 0 / 0.08);
+      background-color: var(--wim-color-ghost-bg);
+      border-color: var(--wim-color-ghost-border);
 
       &.wim-button--default {
-        color: var(--wim-color-primary);
+        color: var(--wim-color-control-default-fg);
       }
 
       &.wim-button--destructive {
@@ -218,7 +218,7 @@
 
       &:hover:not(:disabled) {
         background-color: var(--wim-color-bg-hover);
-        border-color: color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+        border-color: var(--wim-color-ghost-border-hover);
         box-shadow: var(--wim-shadow-sm);
         transform: translateY(var(--wim-lift-sm)) translateZ(0);
         transition:
@@ -229,8 +229,8 @@
       }
 
       &:active:not(:disabled) {
-        background-color: rgb(0 0 0 / 0.12);
-        border-color: rgb(0 0 0 / 0.25);
+        background-color: var(--wim-color-ghost-bg-active);
+        border-color: var(--wim-color-ghost-border-active);
         box-shadow: var(--wim-shadow-inset);
         transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
         transition: transform 0.1s var(--wim-easing-base);
@@ -245,53 +245,7 @@
     &--loading {
       pointer-events: none;
     }
-  }
-}
 
-// ─── ダークモード上書き ───────────────────────────────────────────────────────
-
-@mixin wim-button-dark {
-  // outlined default: 濃紺テキストが暗背景で消えるため白テキスト+セカンダリ背景に変更
-  &--outlined.wim-button--default {
-    color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-bg-secondary);
-    border-color: var(--wim-color-border);
-  }
-
-  // ghost: rgb(0 0 0 / 0.03) は暗背景で不可視になるため白ベース半透明に変更
-  &--ghost {
-    background-color: rgb(255 255 255 / 0.06);
-    border-color: rgb(255 255 255 / 0.15);
-
-    &.wim-button--default {
-      color: var(--wim-color-text-primary);
-    }
-
-    &:hover:not(:disabled) {
-      background-color: var(--wim-color-bg-hover);
-      border-color: color-mix(in srgb, var(--wim-color-primary) 40%, transparent);
-    }
-
-    &:active:not(:disabled) {
-      background-color: rgb(255 255 255 / 0.12);
-      border-color: rgb(255 255 255 / 0.3);
-    }
-  }
-}
-
-@layer component {
-  [data-theme="dark"] .wim-button {
-    @include wim-button-dark;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .wim-button {
-      @include wim-button-dark;
-    }
-  }
-
-  // dummy to close @layer (以下は元のブロックを閉じるための構造維持)
-  .wim-button {
     &--animated-width {
       transition:
         width var(--wim-duration-base) var(--wim-easing-base),
