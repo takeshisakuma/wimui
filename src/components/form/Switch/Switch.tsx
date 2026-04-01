@@ -1,6 +1,7 @@
 import React, { useRef, useId } from "react";
 import classNames from "classnames";
 import { ComponentSize } from "../../../types/tokens";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import "./switch.scss";
 
 type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
@@ -20,8 +21,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
     ref,
   ) => {
     const defaultRef = useRef<HTMLInputElement>(null);
-    const resolvedRef =
-      (ref as React.RefObject<HTMLInputElement>) || defaultRef;
+    const mergedRef = useMergedRef(defaultRef, ref);
     const generatedId = useId();
     const id = customId || generatedId;
 
@@ -46,7 +46,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
             size !== "md" && `wim-switch-input--${size}`,
           )}
           disabled={disabled}
-          ref={resolvedRef}
+          ref={mergedRef}
           {...props}
         />
         {(label || children) && (

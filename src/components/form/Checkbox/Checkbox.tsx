@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import "./checkbox.scss";
 
 type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -16,14 +17,13 @@ type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, children, indeterminate = false, className, disabled, ...props }, ref) => {
     const defaultRef = useRef<HTMLInputElement>(null);
-    const resolvedRef =
-      (ref as React.RefObject<HTMLInputElement>) || defaultRef;
+    const mergedRef = useMergedRef(defaultRef, ref);
 
     useEffect(() => {
-      if (resolvedRef.current) {
-        resolvedRef.current.indeterminate = indeterminate;
+      if (defaultRef.current) {
+        defaultRef.current.indeterminate = indeterminate;
       }
-    }, [indeterminate, resolvedRef]);
+    }, [indeterminate]);
 
     return (
       <label
@@ -37,7 +37,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           type="checkbox"
           className="wim-checkbox-input"
           disabled={disabled}
-          ref={resolvedRef}
+          ref={mergedRef}
           {...props}
         />
         {(label || children) && (

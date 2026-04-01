@@ -1,6 +1,7 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef } from "react";
 import classNames from "classnames";
 import { useIndicator } from "../../_internal/useIndicator";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import { ComponentSize } from "../../../types/tokens";
 import "./tab-navigation.scss";
 
@@ -31,18 +32,11 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
       variant,
     });
 
-    const setRefs = useCallback(
-      (node: HTMLElement) => {
-        localNavRef.current = node;
-        containerRef.current = node?.querySelector(".wim-tab-navigation__list");
-        if (typeof ref === "function") {
-          ref(node);
-        } else if (ref) {
-          (ref as React.MutableRefObject<HTMLElement | null>).current = node;
-        }
-      },
-      [ref, containerRef],
-    );
+    const setRefs = useMergedRef(localNavRef, ref, (node) => {
+      if (containerRef) {
+        containerRef.current = node?.querySelector(".wim-tab-navigation__list") || null;
+      }
+    });
 
     const handleTablistKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
       const keys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"];

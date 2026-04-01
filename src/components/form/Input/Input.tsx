@@ -1,6 +1,7 @@
 import React, { useId } from "react";
 import classNames from "classnames";
 import "./input.scss";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import { Icon } from "../../media/Icon/Icon";
 import { InputBase, InputBaseIcon } from "../../_internal/InputBase";
 import { FieldTemplate } from "../../_internal/FieldTemplate";
@@ -77,7 +78,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
     // クリアボタン用に input の DOM ref を保持
     const inputRef = React.useRef<HTMLInputElement>(null);
-    const mergedRef = useMergeRef(ref, inputRef);
+    const mergedRef = useMergedRef(ref, inputRef);
 
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
@@ -214,23 +215,3 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
 Input.displayName = "Input";
 
-/**
- * 複数の ref を1つにマージするユーティリティ
- */
-function useMergeRef<T>(
-  ...refs: (React.Ref<T> | null | undefined)[]
-): React.RefCallback<T> {
-  return React.useCallback(
-    (value: T | null) => {
-      refs.forEach((ref) => {
-        if (typeof ref === "function") {
-          ref(value);
-        } else if (ref != null) {
-          (ref as React.MutableRefObject<T | null>).current = value;
-        }
-      });
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    refs,
-  );
-}

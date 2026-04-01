@@ -4,6 +4,7 @@ import "./button.scss";
 import { Icon } from "../../media/Icon/Icon";
 import type { WimColor, ComponentSize } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
@@ -51,20 +52,19 @@ export const Button = React.forwardRef<
     forwardedRef,
   ) => {
     const internalRef = React.useRef<HTMLButtonElement>(null);
-
-    const buttonRef = (forwardedRef as React.RefObject<HTMLButtonElement>) || internalRef;
+    const mergedRef = useMergedRef<HTMLButtonElement>(internalRef, forwardedRef);
     const [animatedWidth, setAnimatedWidth] = React.useState<number | "auto">("auto");
     const isInitialMount = React.useRef(true);
 
     React.useLayoutEffect(() => {
-      if (!animateWidth || !buttonRef.current) return;
+      if (!animateWidth || !internalRef.current) return;
 
       if (isInitialMount.current) {
         isInitialMount.current = false;
         return;
       }
 
-      const node = buttonRef.current;
+      const node = internalRef.current;
       
       // 1. 現在の幅をピクセルで固定する（autoだと遷移しないため）
       const currentWidth = node.getBoundingClientRect().width;
@@ -89,7 +89,7 @@ export const Button = React.forwardRef<
       });
 
       return () => cancelAnimationFrame(frame);
-    }, [label, children, animateWidth, buttonRef]);
+    }, [label, children, animateWidth]);
 
     const isDisabled = disabled;
 
@@ -160,7 +160,7 @@ export const Button = React.forwardRef<
 
     return (
       <button
-        ref={forwardedRef || internalRef}
+        ref={mergedRef}
         type="button"
         style={{
           ...props.style,
