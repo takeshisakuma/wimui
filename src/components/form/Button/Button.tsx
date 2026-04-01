@@ -3,6 +3,7 @@ import classNames from "classnames";
 import "./button.scss";
 import { Icon } from "../../media/Icon/Icon";
 import type { WimColor, ComponentSize } from "../../../types/tokens";
+import { getColorValue } from "../../../utilities/style-utils";
 
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
@@ -163,7 +164,7 @@ export const Button = React.forwardRef<
         type="button"
         style={{
           ...props.style,
-          ...(backgroundColor ? { backgroundColor } : {}),
+          ...(backgroundColor ? { backgroundColor: getColorValue(backgroundColor) } : {}),
           ...(animateWidth && animatedWidth !== "auto"
             ? {
                 width: `${animatedWidth}px`,

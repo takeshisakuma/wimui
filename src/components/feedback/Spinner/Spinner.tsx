@@ -1,19 +1,12 @@
 import React from "react";
 import classNames from "classnames";
 import { WimColor, ComponentSize } from "../../../types/tokens";
+import { getColorValue } from "../../../utilities/style-utils";
 import "./spinner.scss";
 
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
   size?: ComponentSize;
-  color?:
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "error"
-  | "neutral"
-  | "currentColor"
-  | WimColor;
+  color?: "currentColor" | WimColor;
   label?: string;
   labelPosition?: "right" | "bottom";
 };
@@ -30,7 +23,8 @@ export const Spinner = ({
   style,
   ...props
 }: SpinnerProps) => {
-  const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));
+  const mappedColors = ["primary", "secondary", "success", "warning", "error", "neutral"];
+  const useClassNameForColor = typeof color === "string" && mappedColors.includes(color);
 
   return (
     <div
@@ -42,7 +36,7 @@ export const Spinner = ({
       role="status"
       aria-live="polite"
       style={{
-        color: isCustomColor ? (color as string) : undefined,
+        color: !useClassNameForColor ? getColorValue(color) : undefined,
         ...(style as React.CSSProperties),
       }}
       {...props}
@@ -51,7 +45,7 @@ export const Spinner = ({
         className={classNames(
           "wim-spinner",
           `wim-spinner--${size}`,
-          !isCustomColor && `wim-spinner--${color}`,
+          useClassNameForColor && `wim-spinner--${color}`,
         )}
         viewBox="0 0 50 50"
         fill="none"

@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { WimColor, ComponentSize } from "../../../types/tokens";
+import { getColorValue } from "../../../utilities/style-utils";
 import "./loader.scss";
 
 export type LoaderVariant = "bars" | "dots" | "pulse";
@@ -17,15 +18,7 @@ export type LoaderProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
    * ローダーの色。
    */
-  color?:
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "error"
-  | "neutral"
-  | "currentColor"
-  | WimColor;
+  color?: "currentColor" | WimColor;
 };
 
 /**
@@ -39,7 +32,8 @@ export const Loader = ({
   style,
   ...props
 }: LoaderProps) => {
-  const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));
+  const mappedColors = ["primary", "secondary", "success", "warning", "error", "neutral"];
+  const useClassNameForColor = typeof color === "string" && mappedColors.includes(color);
 
   return (
     <div
@@ -47,11 +41,11 @@ export const Loader = ({
         "wim-loader",
         `wim-loader--${variant}`,
         `wim-loader--${size}`,
-        !isCustomColor && `wim-loader--${color}`,
+        useClassNameForColor && `wim-loader--${color}`,
         className,
       )}
       style={{
-        color: isCustomColor ? (color as string) : undefined,
+        color: !useClassNameForColor ? getColorValue(color) : undefined,
         ...(style as React.CSSProperties),
       }}
       role="status"

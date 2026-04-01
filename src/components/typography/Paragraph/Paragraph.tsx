@@ -1,42 +1,30 @@
 import React from "react";
 import classNames from "classnames";
 import "./paragraph.scss";
-import { WimColor, WimLineHeight } from "../../../types/tokens";
+import { WimColor, WimLineHeight, WimFontSize, WimFontWeight } from "../../../types/tokens";
+import {
+  getColorValue,
+  getFontSizeValue,
+  getLineHeightValue,
+  getFontWeightValue,
+} from "../../../utilities/style-utils";
 
 type ParagraphProps = Omit<React.ComponentPropsWithoutRef<"p">, "content"> & {
   size?: "xs" | "sm" | "md" | "lg" | "xl";
-  color?:
-  | "black"
-  | "deepgray"
-  | "gray"
-  | "lightgray"
-  | "white"
-  | "error"
-  | "primary"
-  | "success"
-  | "warning"
-  | "info"
-  | WimColor;
-  weight?: "normal" | "bold";
-  lineHeight?:
-  | "normal-jpan"
-  | "tight-jpan"
-  | "loose-jpan"
-  | "normal-latn"
-  | "tight-latn"
-  | "loose-latn"
-  | WimLineHeight;
+  color?: WimColor;
+  weight?: "normal" | "bold" | "medium";
+  lineHeight?: WimLineHeight;
   fontStyle?: "normal" | "italic";
-  decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
+  decoration?: "line-through" | "underline" | "highlight" | "none";
   content?: React.ReactNode;
 };
 
 export const Paragraph = ({
   size = "md",
   content,
-  color = "black",
+  color,
   weight = "normal",
-  lineHeight = "normal-latn",
+  lineHeight,
   fontStyle = "normal",
   decoration = "none",
   className,
@@ -53,23 +41,36 @@ export const Paragraph = ({
       finalContent
     );
 
-  const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));
-  const isCustomLineHeight = lineHeight && lineHeight.startsWith("var(");
+  // For backward compatibility with CSS classes for certain colors
+  const mappedColors = [
+    "black",
+    "deepgray",
+    "gray",
+    "lightgray",
+    "white",
+    "error",
+    "primary",
+    "success",
+    "warning",
+    "info",
+  ];
+  const useClassNameForColor = typeof color === "string" && mappedColors.includes(color);
 
   return (
     <p
       className={classNames(
         "wim-paragraph",
         `wim-paragraph--${size}`,
-        !isCustomLineHeight && `wim-paragraph--${lineHeight}`,
         weight === "bold" && "wim-paragraph--bold",
         fontStyle === "italic" && "wim-paragraph--italic",
-        !isCustomColor && `wim-paragraph--${color}`,
+        useClassNameForColor && `wim-paragraph--${color}`,
         className,
       )}
       style={{
-        color: isCustomColor ? color : undefined,
-        lineHeight: isCustomLineHeight ? lineHeight : undefined,
+        color: !useClassNameForColor ? getColorValue(color) : undefined,
+        fontSize: getFontSizeValue(size as WimFontSize),
+        lineHeight: getLineHeightValue(lineHeight),
+        fontWeight: getFontWeightValue(weight as WimFontWeight),
         ...(style as React.CSSProperties),
       }}
       {...props}

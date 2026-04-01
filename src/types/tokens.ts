@@ -33,148 +33,180 @@ export type FeedbackStatus = "info" | "success" | "warning" | "error";
 export type FieldStatus = "default" | "error" | "warning" | "success";
 
 /**
- * Color tokens available as CSS variables.
+ * Color tokens keys available as CSS variables.
+ */
+export type WimColorKey =
+  // Semantic brand colors
+  | "primary"
+  | "primary-hover"
+  | "primary-active"
+  | "primary-light"
+  | "primary-container-alpha"
+  | "secondary"
+  | "informative"
+  | "destructive"
+  | "positive"
+  | "caution"
+  | "disabled"
+  // Text colors
+  | "text-primary"
+  | "text-secondary"
+  | "text-tertiary"
+  | "text-disabled"
+  | "text-white"
+  | "text-error"
+  | "text-placeholder"
+  // Text on semantic backgrounds
+  | "text-on-primary"
+  | "text-on-secondary"
+  | "text-on-destructive"
+  | "text-on-positive"
+  | "text-on-caution"
+  | "text-on-informative"
+  | "text-on-disabled"
+  | "text-on-overlay"
+  // Surface / background colors
+  | "surface"
+  | "surface-variant"
+  | "surface-hover"
+  | "surface-variant-alpha"
+  | "bg-app"
+  | "bg-component"
+  | "bg-primary"
+  | "bg-secondary"
+  | "bg-tertiary"
+  | "bg-hover"
+  // Border / focus colors
+  | "border"
+  | "border-secondary"
+  | "focus-outline"
+  // Overlay colors
+  | "overlay-bg"
+  | "overlay-bg-light"
+  | "overlay-bg-dark"
+  // Scrollbar colors
+  | "scrollbar-thumb"
+  | "scrollbar-track";
+
+/**
+ * Color tokens available as CSS variable strings.
  */
 export type WimColorToken =
-  // Semantic brand colors
-  | "var(--wim-color-primary)"
-  | "var(--wim-color-primary-hover)"
-  | "var(--wim-color-primary-active)"
-  | "var(--wim-color-primary-light)"
-  | "var(--wim-color-primary-container-alpha)"
-  | "var(--wim-color-secondary)"
-  | "var(--wim-color-informative)"
-  | "var(--wim-color-destructive)"
-  | "var(--wim-color-positive)"
-  | "var(--wim-color-caution)"
-  | "var(--wim-color-disabled)"
-  // Text colors
-  | "var(--wim-color-text-primary)"
-  | "var(--wim-color-text-secondary)"
-  | "var(--wim-color-text-tertiary)"
-  | "var(--wim-color-text-disabled)"
-  | "var(--wim-color-text-white)"
-  | "var(--wim-color-text-error)"
-  | "var(--wim-color-text-placeholder)"
-  // Text on semantic backgrounds
-  | "var(--wim-color-text-on-primary)"
-  | "var(--wim-color-text-on-secondary)"
-  | "var(--wim-color-text-on-destructive)"
-  | "var(--wim-color-text-on-positive)"
-  | "var(--wim-color-text-on-caution)"
-  | "var(--wim-color-text-on-informative)"
-  | "var(--wim-color-text-on-disabled)"
-  | "var(--wim-color-text-on-overlay)"
-  // Surface / background colors
-  | "var(--wim-color-surface)"
-  | "var(--wim-color-surface-variant)"
-  | "var(--wim-color-surface-hover)"
-  | "var(--wim-color-surface-variant-alpha)"
-  | "var(--wim-color-bg-app)"
-  | "var(--wim-color-bg-component)"
-  | "var(--wim-color-bg-primary)"
-  | "var(--wim-color-bg-secondary)"
-  | "var(--wim-color-bg-tertiary)"
-  | "var(--wim-color-bg-hover)"
-  // Border / focus colors
-  | "var(--wim-color-border)"
-  | "var(--wim-color-border-secondary)"
-  | "var(--wim-color-focus-outline)"
-  // Overlay colors
-  | "var(--wim-color-overlay-bg)"
-  | "var(--wim-color-overlay-bg-light)"
-  | "var(--wim-color-overlay-bg-dark)"
-  // Scrollbar colors
-  | "var(--wim-scrollbar-thumb)"
-  | "var(--wim-scrollbar-track)";
+  | `var(--wim-color-${WimColorKey})`
+  | `var(--wim-${WimColorKey})`;
 
-export type WimColor = LiteralWithAutocomplete<WimColorToken>;
+export type WimColor = LiteralWithAutocomplete<WimColorKey | WimColorToken>;
 
 /**
- * Spacing tokens available as CSS variables.
+ * Spacing tokens keys.
  */
-export type WimSpacingToken =
-  | "var(--wim-spacing-3xs)"
-  | "var(--wim-spacing-2xs)"
-  | "var(--wim-spacing-xs)"
-  | "var(--wim-spacing-sm)"
-  | "var(--wim-spacing-md)"
-  | "var(--wim-spacing-lg)"
-  | "var(--wim-spacing-xl)"
-  | "var(--wim-spacing-2xl)"
-  | "var(--wim-spacing-3xl)"
-  | "var(--wim-spacing-4xl)"
-  | "var(--wim-spacing-5xl)";
-
-export type WimSpacing = LiteralWithAutocomplete<WimSpacingToken>;
+export type WimSpacingKey =
+  | "3xs"
+  | "2xs"
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "2xl"
+  | "3xl"
+  | "4xl"
+  | "5xl";
 
 /**
- * Radius tokens available as CSS variables.
+ * Spacing tokens available as CSS variable strings.
  */
-export type WimRadiusToken =
-  | "var(--wim-radius-sm)"
-  | "var(--wim-radius-md)"
-  | "var(--wim-radius-lg)"
-  | "var(--wim-radius-full)";
+export type WimSpacingToken = `var(--wim-spacing-${WimSpacingKey})`;
 
-export type WimRadius = LiteralWithAutocomplete<WimRadiusToken>;
+export type WimSpacing = LiteralWithAutocomplete<WimSpacingKey | WimSpacingToken>;
 
 /**
- * Shadow tokens available as CSS variables.
+ * Radius tokens keys.
  */
-export type WimShadowToken =
-  | "var(--wim-shadow-none)"
-  | "var(--wim-shadow-xs)"
-  | "var(--wim-shadow-sm)"
-  | "var(--wim-shadow-md)"
-  | "var(--wim-shadow-lg)"
-  | "var(--wim-shadow-inset)"
-  | "var(--wim-shadow-focus)";
-
-export type WimShadow = LiteralWithAutocomplete<WimShadowToken>;
+export type WimRadiusKey = "sm" | "md" | "lg" | "full";
 
 /**
- * Typography tokens available as CSS variables.
+ * Radius tokens available as CSS variable strings.
  */
-export type WimFontSizeToken =
-  | "var(--wim-font-size-2xs)"
-  | "var(--wim-font-size-xs)"
-  | "var(--wim-font-size-sm)"
-  | "var(--wim-font-size-md)"
-  | "var(--wim-font-size-lg)"
-  | "var(--wim-font-size-xl)"
-  | "var(--wim-font-size-2xl)"
-  | "var(--wim-font-size-3xl)"
-  | "var(--wim-font-size-4xl)"
-  | "var(--wim-font-size-5xl)"
-  | "var(--wim-font-size-6xl)"
-  | "var(--wim-font-size-7xl)";
+export type WimRadiusToken = `var(--wim-radius-${WimRadiusKey})`;
 
-export type WimFontSize = LiteralWithAutocomplete<WimFontSizeToken>;
-
-export type WimFontWeightToken =
-  | "var(--wim-font-weight-normal)"
-  | "var(--wim-font-weight-medium)"
-  | "var(--wim-font-weight-bold)";
-
-export type WimFontWeight = LiteralWithAutocomplete<WimFontWeightToken>;
-
-export type WimLineHeightToken =
-  | "var(--wim-line-height-loose-jp)"
-  | "var(--wim-line-height-normal-jp)"
-  | "var(--wim-line-height-tight-jp)"
-  | "var(--wim-line-height-loose)"
-  | "var(--wim-line-height-normal)"
-  | "var(--wim-line-height-tight)";
-
-export type WimLineHeight = LiteralWithAutocomplete<WimLineHeightToken>;
+export type WimRadius = LiteralWithAutocomplete<WimRadiusKey | WimRadiusToken>;
 
 /**
- * Opacity tokens available as CSS variables.
+ * Shadow tokens keys.
  */
-export type WimOpacityToken =
-  | "var(--wim-opacity-disabled)"
-  | "var(--wim-opacity-ghost)"
-  | "var(--wim-opacity-secondary)";
+export type WimShadowKey = "none" | "xs" | "sm" | "md" | "lg" | "inset" | "focus";
 
-export type WimOpacity = LiteralWithAutocomplete<WimOpacityToken>;
+/**
+ * Shadow tokens available as CSS variable strings.
+ */
+export type WimShadowToken = `var(--wim-shadow-${WimShadowKey})`;
+
+export type WimShadow = LiteralWithAutocomplete<WimShadowKey | WimShadowToken>;
+
+/**
+ * Font size tokens keys.
+ */
+export type WimFontSizeKey =
+  | "2xs"
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "2xl"
+  | "3xl"
+  | "4xl"
+  | "5xl"
+  | "6xl"
+  | "7xl";
+
+/**
+ * Font size tokens available as CSS variable strings.
+ */
+export type WimFontSizeToken = `var(--wim-font-size-${WimFontSizeKey})`;
+
+export type WimFontSize = LiteralWithAutocomplete<WimFontSizeKey | WimFontSizeToken>;
+
+/**
+ * Font weight tokens keys.
+ */
+export type WimFontWeightKey = "normal" | "medium" | "bold";
+
+/**
+ * Font weight tokens available as CSS variable strings.
+ */
+export type WimFontWeightToken = `var(--wim-font-weight-${WimFontWeightKey})`;
+
+export type WimFontWeight = LiteralWithAutocomplete<WimFontWeightKey | WimFontWeightToken>;
+
+/**
+ * Line height tokens keys.
+ */
+export type WimLineHeightKey =
+  | "loose-jp"
+  | "normal-jp"
+  | "tight-jp"
+  | "loose"
+  | "normal"
+  | "tight";
+
+/**
+ * Line height tokens available as CSS variable strings.
+ */
+export type WimLineHeightToken = `var(--wim-line-height-${WimLineHeightKey})`;
+
+export type WimLineHeight = LiteralWithAutocomplete<WimLineHeightKey | WimLineHeightToken>;
+
+/**
+ * Opacity tokens keys.
+ */
+export type WimOpacityKey = "disabled" | "ghost" | "secondary";
+
+/**
+ * Opacity tokens available as CSS variable strings.
+ */
+export type WimOpacityToken = `var(--wim-opacity-${WimOpacityKey})`;
+
+export type WimOpacity = LiteralWithAutocomplete<WimOpacityKey | WimOpacityToken>;
+

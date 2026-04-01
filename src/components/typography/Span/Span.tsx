@@ -2,23 +2,13 @@ import React from "react";
 import classNames from "classnames";
 import "./span.scss";
 import { Icon } from "../../media/Icon/Icon";
-import { WimColor, ComponentSize } from "../../../types/tokens";
+import { WimColor, ComponentSize, WimFontWeight } from "../../../types/tokens";
+import { getColorValue, getFontWeightValue } from "../../../utilities/style-utils";
 
 type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
   size?: "xs" | "sm" | "md" | "lg" | "xl";
-  color?:
-  | "black"
-  | "deepgray"
-  | "gray"
-  | "lightgray"
-  | "white"
-  | "error"
-  | "primary"
-  | "success"
-  | "warning"
-  | "info"
-  | WimColor;
-  weight?: "normal" | "bold";
+  color?: WimColor;
+  weight?: "normal" | "bold" | "medium";
   fontStyle?: "normal" | "italic";
   decoration?: "line-through" | "underline" | "highlight" | "none"; // 追加
   content?: React.ReactNode;
@@ -29,7 +19,7 @@ type SpanProps = React.ComponentPropsWithoutRef<"span"> & {
 export const Span = ({
   size = "md",
   content,
-  color = "black",
+  color,
   weight = "normal",
   fontStyle = "normal",
   iconName = undefined,
@@ -64,21 +54,34 @@ export const Span = ({
     </>
   );
 
-  const isCustomColor = color && (color.startsWith("var(") || color.includes("#") || color.includes("rgb"));
+  const mappedColors = [
+    "black",
+    "deepgray",
+    "gray",
+    "lightgray",
+    "white",
+    "error",
+    "primary",
+    "success",
+    "warning",
+    "info",
+  ];
+  const useClassNameForColor = typeof color === "string" && mappedColors.includes(color);
 
   return (
     <span
       className={classNames(
         "wim-span",
         `wim-span--${size}`,
-        !isCustomColor && `wim-span--${color}`,
+        useClassNameForColor && `wim-span--${color}`,
         weight === "bold" && "wim-span--bold",
         fontStyle === "italic" && "wim-span--italic",
         decoration !== "none" && `wim-span--${decoration}`,
         className,
       )}
       style={{
-        color: isCustomColor ? (color as string) : undefined,
+        color: !useClassNameForColor ? getColorValue(color) : undefined,
+        fontWeight: getFontWeightValue(weight as WimFontWeight),
         ...(style as React.CSSProperties),
       }}
       {...props}

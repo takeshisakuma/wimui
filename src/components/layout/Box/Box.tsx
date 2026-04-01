@@ -6,7 +6,12 @@ import {
   WimRadius,
   WimShadow,
 } from "../../../types/tokens";
-import { getSpacingValue } from "../../../utilities/style-utils";
+import {
+  getColorValue,
+  getSpacingValue,
+  getRadiusValue,
+  getShadowValue,
+} from "../../../utilities/style-utils";
 import { generateResponsiveVars, ResponsiveProp } from "../../layout/Grid/grid-utils";
 import "./box.scss";
 
@@ -107,7 +112,7 @@ export const Box = React.forwardRef(
       marginRight: getSpacingValue(mr ?? mx ?? m),
       marginBottom: getSpacingValue(mb ?? my ?? m),
       marginLeft: getSpacingValue(ml ?? mx ?? m),
-      backgroundColor: bg,
+      backgroundColor: getColorValue(bg),
       width:
         typeof w === "object"
           ? "var(--wim-box-w)"
@@ -116,8 +121,8 @@ export const Box = React.forwardRef(
         typeof h === "object"
           ? "var(--wim-box-h)"
           : getSpacingValue(h),
-      borderRadius: getSpacingValue(radius),
-      boxShadow: shadow,
+      borderRadius: getRadiusValue(radius),
+      boxShadow: getShadowValue(shadow),
       display,
       position,
       ...(wVars as React.CSSProperties),
