@@ -1,0 +1,52 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{u as c,M as l,C as d,a as r}from"./blocks-CvY7VvN2.js";import{T as t,S as x,M as j,I as h,a as g,F as _,D as p}from"./ToggleGroup.stories-CBQF-VF7.js";import{T as s}from"./T-CD3mXOKe.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-00CRNq2O.js";import"./index-TLWsG8hr.js";import"./index-BKfDsxAZ.js";import"./index-DpixjxJs.js";import"./index-BH-P-2NS.js";import"./index-Gwnravlj.js";import"./Icon-DuncFQFu.js";import"./useIndicator-CobD1Drh.js";import"./useTranslation-BYdSjFhs.js";function i(n){const o={code:"code",h1:"h1",h2:"h2",h3:"h3",pre:"pre",...c(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(l,{of:t}),`
+`,e.jsx(o.h1,{id:"togglegroup",children:"ToggleGroup"}),`
+`,e.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:e.jsx(s,{k:"doc.togglegroup_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_long_desc"})}),`
+`,e.jsx(o.h2,{id:"",children:e.jsx(s,{k:"doc.togglegroup_when_to_use"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(s,{k:"doc.togglegroup_reason_1"})}),e.jsx("li",{children:e.jsx(s,{k:"doc.togglegroup_toolbar"})}),e.jsx("li",{children:e.jsx(s,{k:"doc.togglegroup_group"})})]}),`
+`,e.jsx(o.h2,{id:"-1",children:e.jsx(s,{k:"doc.basic_usage"})}),`
+`,e.jsx(o.h3,{id:"-2",children:e.jsx(s,{k:"doc.togglegroup_single"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_single_desc"})}),`
+`,e.jsx(o.h2,{id:"-3",children:e.jsx(s,{k:"doc.design_intent_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_design_intent"})}),`
+`,e.jsx(o.h2,{id:"-4",children:e.jsx(s,{k:"doc.choice_matrix_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_choice_matrix_desc"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc.component"})}),e.jsx("th",{children:e.jsx(s,{k:"doc.usage_scenario"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"ToggleGroup"})}),e.jsx("td",{children:e.jsx(s,{k:"doc.togglegroup_choice_self_when"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"SegmentedControl"})}),e.jsx("td",{children:e.jsx(s,{k:"doc.togglegroup_choice_alt_when"})})]})]})]}),`
+`,e.jsx(o.h2,{id:"-5",children:e.jsx(s,{k:"doc.anatomy_title"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(s,{k:"doc.component"})}),e.jsx("th",{children:e.jsx(s,{k:"doc.description"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:e.jsx(s,{k:"doc.togglegroup_anatomy_root_label"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc.togglegroup_anatomy_root"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:e.jsx(s,{k:"doc.togglegroup_anatomy_content_label"})})}),e.jsx("td",{children:e.jsx(s,{k:"doc.togglegroup_anatomy_content"})})]})]})]}),`
+`,e.jsx(o.h2,{id:"-6",children:e.jsx(s,{k:"doc.content_guidelines_title"})}),`
+`,e.jsx("ul",{children:e.jsx("li",{children:e.jsx(s,{k:"doc.togglegroup_content_guideline"})})}),`
+`,e.jsx(o.h2,{id:"-7",children:e.jsx(s,{k:"doc.motion_spec_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_motion_desc"})}),`
+`,e.jsx(o.h2,{id:"-8",children:e.jsx(s,{k:"doc.a11y_spec_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_a11y_desc"})}),`
+`,e.jsx(o.h2,{id:"-9",children:e.jsx(s,{k:"doc.real_world_scenarios_title"})}),`
+`,e.jsxs("ul",{children:[e.jsxs("li",{children:[e.jsxs("strong",{children:[e.jsx(s,{k:"doc.scenario_form_title"}),":"]}),e.jsx(s,{k:"doc.togglegroup_scenario_1"})]}),e.jsxs("li",{children:[e.jsxs("strong",{children:[e.jsx(s,{k:"doc.scenario_dashboard_title"}),":"]}),e.jsx(s,{k:"doc.togglegroup_scenario_2"})]})]}),`
+`,e.jsx(o.h2,{id:"-10",children:e.jsx(s,{k:"doc.best_practices_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(s,{k:"doc.togglegroup_best_practice_1"})}),e.jsx("li",{children:e.jsx(s,{k:"doc.togglegroup_best_practice_2"})})]}),`
+`,e.jsx(d,{of:x}),`
+`,e.jsx(o.h3,{id:"-11",children:e.jsx(s,{k:"doc.togglegroup_multi"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_multi_desc"})}),`
+`,e.jsx(d,{of:j}),`
+`,e.jsx(o.h2,{id:"-12",children:e.jsx(s,{k:"doc.props"})}),`
+`,e.jsx(r,{}),`
+`,e.jsx(o.h2,{id:"-13",children:e.jsx(s,{k:"doc.variations"})}),`
+`,e.jsx(o.h3,{id:"-14",children:e.jsx(s,{k:"doc.togglegroup_icon_only"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_icon_only_desc"})}),`
+`,e.jsx(d,{of:h}),`
+`,e.jsx(o.h3,{id:"-15",children:e.jsx(s,{k:"doc.sizes"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.loader_sizes_desc"})}),`
+`,e.jsx(d,{of:g}),`
+`,e.jsx(o.h3,{id:"-16",children:e.jsx(s,{k:"doc.full_width"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.textarea_lay_full_desc"})}),`
+`,e.jsx(d,{of:_}),`
+`,e.jsx(o.h3,{id:"-17",children:e.jsx(s,{k:"doc.togglegroup_disabled_options"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_disabled_options_desc"})}),`
+`,e.jsx(d,{of:p}),`
+`,e.jsx(o.h2,{id:"-18",children:e.jsx(s,{k:"doc.keyboard_nav_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_keyboard_desc"})}),`
+`,e.jsx(o.h2,{id:"-19",children:e.jsx(s,{k:"doc.i18n_title"})}),`
+`,e.jsx("p",{children:e.jsx(s,{k:"doc.togglegroup_i18n_desc"})}),`
+`,e.jsx(o.h2,{id:"-20",children:e.jsx(s,{k:"doc.test_title"})}),`
+`,e.jsx(o.pre,{children:e.jsx(o.code,{className:"language-bash",children:`npm run test -- ToggleGroup
+`})})]})}function G(n={}){const{wrapper:o}={...c(),...n.components};return o?e.jsx(o,{...n,children:e.jsx(i,{...n})}):i(n)}export{G as default};
