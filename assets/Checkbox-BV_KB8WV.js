@@ -1,0 +1,41 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{u as o,M as x,T as t,D as r,P as h,a as j,C as d,S as l}from"./blocks-BQuleDMs.js";import{C as a,a as _,I as k,D as b,b as m}from"./Checkbox.stories-BkFPPTgv.js";import{T as c}from"./T-TNNEUm04.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-BCX1a7Lk.js";import"./index-B4Twl_Px.js";import"./index-YA5fVPQj.js";import"./index-BdAYfIyh.js";import"./index-aL2Q4C4G.js";import"./Checkbox-hU5BdN79.js";import"./index-ClwcDBe6.js";import"./useMergedRef-BWkrHS9U.js";import"./useTranslation-C4U93Ik6.js";function i(n){const s={code:"code",h2:"h2",h3:"h3",pre:"pre",...o(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(x,{of:a}),`
+`,e.jsx(t,{}),`
+`,e.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:e.jsx(c,{k:"doc.checkbox_title"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc.checkbox_long_desc"})}),`
+`,e.jsx(r,{}),`
+`,e.jsx(s.h2,{id:"",children:e.jsx(c,{k:"doc.design_intent_title"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc.checkbox_design_intent"})}),`
+`,e.jsx(s.h2,{id:"-1",children:e.jsx(c,{k:"doc.choice_matrix_title"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc.checkbox_choice_matrix_desc"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(c,{k:"doc.component"})}),e.jsx("th",{children:e.jsx(c,{k:"doc.usage_scenario"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"Checkbox"})}),e.jsx("td",{children:e.jsx(c,{k:"doc.checkbox_choice_check_when"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"Radio"})}),e.jsx("td",{children:e.jsx(c,{k:"doc.checkbox_choice_radio_when"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:"Switch"})}),e.jsx("td",{children:e.jsx(c,{k:"doc.checkbox_choice_switch_when"})})]})]})]}),`
+`,e.jsx(s.h2,{id:"-2",children:e.jsx(c,{k:"doc.anatomy_title"})}),`
+`,e.jsxs("table",{children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:e.jsx(c,{k:"doc.component"})}),e.jsx("th",{children:e.jsx(c,{k:"doc.description"})})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:e.jsx(c,{k:"doc.checkbox_anatomy_input_label"})})}),e.jsx("td",{children:e.jsx(c,{k:"doc.checkbox_anatomy_input"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:e.jsx(c,{k:"doc.checkbox_anatomy_box_label"})})}),e.jsx("td",{children:e.jsx(c,{k:"doc.checkbox_anatomy_box"})})]}),e.jsxs("tr",{children:[e.jsx("td",{children:e.jsx("b",{children:e.jsx(c,{k:"doc.checkbox_anatomy_label_label"})})}),e.jsx("td",{children:e.jsx(c,{k:"doc.checkbox_anatomy_label"})})]})]})]}),`
+`,e.jsx(s.h2,{id:"-3",children:e.jsx(c,{k:"doc.content_guidelines_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(c,{k:"doc.checkbox_content_positive"})}),e.jsx("li",{children:e.jsx(c,{k:"doc.checkbox_content_no_period"})})]}),`
+`,e.jsx(s.h2,{id:"-4",children:e.jsx(c,{k:"doc.motion_spec_title"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc.checkbox_motion_check"})}),`
+`,e.jsx(s.h2,{id:"-5",children:e.jsx(c,{k:"doc.a11y_spec_title"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(c,{k:"doc.checkbox_a11y_keyboard"})}),e.jsx("li",{children:e.jsx(c,{k:"doc.checkbox_a11y_label"})})]}),`
+`,e.jsx(s.h2,{id:"-6",children:e.jsx(c,{k:"doc.real_world_scenarios_title"})}),`
+`,e.jsxs("ul",{children:[e.jsxs("li",{children:[e.jsxs("strong",{children:[e.jsx(c,{k:"doc.scenario_agreement_title"}),":"]}),e.jsx(c,{k:"doc.checkbox_scenario_agreement"})]}),e.jsxs("li",{children:[e.jsxs("strong",{children:[e.jsx(c,{k:"doc.scenario_filter_title"}),":"]}),e.jsx(c,{k:"doc.checkbox_scenario_filter"})]}),e.jsxs("li",{children:[e.jsxs("strong",{children:[e.jsx(c,{k:"doc.scenario_form_title"}),":"]}),e.jsx(c,{k:"doc.checkbox_scenario_newsletter"})]})]}),`
+`,e.jsx(s.h2,{id:"-7",children:e.jsx(c,{k:"doc.best_practices"})}),`
+`,e.jsxs("ul",{children:[e.jsx("li",{children:e.jsx(c,{k:"doc.checkbox_note_default"})}),e.jsx("li",{children:e.jsx(c,{k:"doc.checkbox_note_layout"})})]}),`
+`,e.jsx(h,{}),`
+`,e.jsx(j,{}),`
+`,e.jsx(s.h2,{id:"-8",children:e.jsx(c,{k:"doc.states"})}),`
+`,e.jsx(s.h3,{id:"-9",children:e.jsx(c,{k:"doc.checked"})}),`
+`,e.jsx(d,{of:_}),`
+`,e.jsx(s.h3,{id:"-10",children:e.jsx(c,{k:"doc.checkbox_state_indeterminate"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc.checkbox_state_indeterminate_desc"})}),`
+`,e.jsx(d,{of:k}),`
+`,e.jsx(s.h3,{id:"-11",children:e.jsx(c,{k:"doc.disabled"})}),`
+`,e.jsx(d,{of:b}),`
+`,e.jsx(d,{of:m}),`
+`,e.jsx(s.h2,{id:"-12",children:e.jsx(c,{k:"doc.keyboard_nav_title"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc.checkbox_keyboard_desc"})}),`
+`,e.jsx(s.h2,{id:"-13",children:e.jsx(c,{k:"doc.i18n_title"})}),`
+`,e.jsx("p",{children:e.jsx(c,{k:"doc.checkbox_i18n_desc"})}),`
+`,e.jsx(s.h2,{id:"-14",children:e.jsx(c,{k:"doc.test_title"})}),`
+`,e.jsx(s.pre,{children:e.jsx(s.code,{className:"language-bash",children:`npm run test -- Checkbox
+`})}),`
+`,e.jsx(l,{})]})}function P(n={}){const{wrapper:s}={...o(),...n.components};return s?e.jsx(s,{...n,children:e.jsx(i,{...n})}):i(n)}export{P as default};

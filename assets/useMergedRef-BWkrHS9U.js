@@ -1,0 +1,1 @@
+import{R as a}from"./iframe-BCX1a7Lk.js";function n(...e){return a.useCallback(t=>{e.forEach(r=>{if(r)if(typeof r=="function")r(t);else try{r.current=t}catch(o){console.error(`Failed to assign ref: ${o}`)}})},[...e])}export{n as u};

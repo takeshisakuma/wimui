@@ -1,0 +1,10 @@
+import{j as a}from"./jsx-runtime-u17CrQMm.js";import{R as s}from"./iframe-BCX1a7Lk.js";import{I as r}from"./Icon-CCssd2AI.js";const u=({intent:i="info",icon:e,size:n="sm",className:l,color:t})=>e&&s.isValidElement(e)?a.jsx(a.Fragment,{children:e}):e===!1?null:i==="success"?a.jsx(r,{name:"CheckIcon",size:n,className:l,color:t}):a.jsx(r,{name:"CircleIcon",size:n,className:l,color:t});u.__docgenInfo={description:"通知系コンポーネントで共通して使用されるアイコン表示用コンポーネント（内部用）",methods:[],displayName:"FeedbackIcon",props:{intent:{required:!1,tsType:{name:"union",raw:'WimIntent | "default"',elements:[{name:"union",raw:`| "primary"
+| "secondary"
+| "success"
+| "warning"
+| "error"
+| "info"
+| "neutral"
+| "default"
+| "destructive"
+| "positive"`,elements:[{name:"literal",value:'"primary"'},{name:"literal",value:'"secondary"'},{name:"literal",value:'"success"'},{name:"literal",value:'"warning"'},{name:"literal",value:'"error"'},{name:"literal",value:'"info"'},{name:"literal",value:'"neutral"'},{name:"literal",value:'"default"'},{name:"literal",value:'"destructive"'},{name:"literal",value:'"positive"'}]},{name:"literal",value:'"default"'}]},description:"フィードバックのインテント",defaultValue:{value:'"info"',computed:!1}},icon:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:"カスタムアイコン"},size:{required:!1,tsType:{name:"union",raw:'"sm" | "md" | "lg"',elements:[{name:"literal",value:'"sm"'},{name:"literal",value:'"md"'},{name:"literal",value:'"lg"'}]},description:"アイコンのサイズ",defaultValue:{value:'"sm"',computed:!1}},className:{required:!1,tsType:{name:"string"},description:"追加のクラス名"},color:{required:!1,tsType:{name:"union",raw:'"destructive" | "positive" | "caution" | "informative"',elements:[{name:"literal",value:'"destructive"'},{name:"literal",value:'"positive"'},{name:"literal",value:'"caution"'},{name:"literal",value:'"informative"'}]},description:"アイコンの色（Iconコンポーネントに渡されます）"}}};export{u as F};

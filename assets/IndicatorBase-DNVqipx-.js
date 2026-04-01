@@ -1,0 +1,10 @@
+import{j as l}from"./jsx-runtime-u17CrQMm.js";import{c as d}from"./index-ClwcDBe6.js";const c=({children:n,icon:a,intent:r="primary",variant:t="solid",size:i="md",prefixClass:e,as:s,className:u,...m})=>{const o=s||"span";return l.jsxs(o,{className:d(e,`${e}--${r}`,`${e}--${t}`,`${e}--${i}`,u),...m,children:[a&&l.jsx("span",{className:`${e}__icon`,children:a}),n]})};c.__docgenInfo={description:"",methods:[],displayName:"IndicatorBase",props:{children:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:""},icon:{required:!1,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:""},intent:{required:!1,tsType:{name:"union",raw:`| "primary"
+| "secondary"
+| "success"
+| "warning"
+| "error"
+| "info"
+| "neutral"
+| "default"
+| "destructive"
+| "positive"`,elements:[{name:"literal",value:'"primary"'},{name:"literal",value:'"secondary"'},{name:"literal",value:'"success"'},{name:"literal",value:'"warning"'},{name:"literal",value:'"error"'},{name:"literal",value:'"info"'},{name:"literal",value:'"neutral"'},{name:"literal",value:'"default"'},{name:"literal",value:'"destructive"'},{name:"literal",value:'"positive"'}]},description:"",defaultValue:{value:'"primary"',computed:!1}},variant:{required:!1,tsType:{name:"union",raw:'"solid" | "outline" | "subtle"',elements:[{name:"literal",value:'"solid"'},{name:"literal",value:'"outline"'},{name:"literal",value:'"subtle"'}]},description:"",defaultValue:{value:'"solid"',computed:!1}},size:{required:!1,tsType:{name:"union",raw:'"sm" | "md" | "lg"',elements:[{name:"literal",value:'"sm"'},{name:"literal",value:'"md"'},{name:"literal",value:'"lg"'}]},description:"",defaultValue:{value:'"md"',computed:!1}},prefixClass:{required:!0,tsType:{name:"string"},description:""},as:{required:!1,tsType:{name:"C"},description:""},className:{required:!1,tsType:{name:"string"},description:""}}};export{c as I};
