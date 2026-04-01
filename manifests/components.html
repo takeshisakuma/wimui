@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.4s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.2s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -7574,6 +7574,9 @@ intent?: &quot;default&quot; | &quot;destructive&quot; | &quot;positive&quot; = 
 
 justify?: &quot;start&quot; | &quot;center&quot; | &quot;end&quot; | &quot;between&quot; = &quot;center&quot;
 
+/**
+ * @deprecated Use `children` instead.
+ */
 label?: React.ReactNode
 
 loading?: boolean = false
@@ -7605,7 +7608,7 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot; = &quot;
               
               <pre><code>const LargePrimaryButton = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Button onClick={fn()} size=&quot;lg&quot; variant=&quot;filled&quot; label={t(&quot;button.label&quot;)} /&gt;;
+    return &lt;Button onClick={fn()} size=&quot;lg&quot; variant=&quot;filled&quot;&gt;{t(&quot;button.label&quot;)}&lt;/Button&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -7617,7 +7620,7 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot; = &quot;
               
               <pre><code>const MediumSecondaryButton = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;outlined&quot; label={t(&quot;button.label&quot;)} /&gt;;
+    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;outlined&quot;&gt;{t(&quot;button.label&quot;)}&lt;/Button&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -7629,7 +7632,7 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot; = &quot;
               
               <pre><code>const SmallTertiaryButton = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Button onClick={fn()} size=&quot;sm&quot; variant=&quot;ghost&quot; label={t(&quot;button.label&quot;)} /&gt;;
+    return &lt;Button onClick={fn()} size=&quot;sm&quot; variant=&quot;ghost&quot;&gt;{t(&quot;button.label&quot;)}&lt;/Button&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -7650,8 +7653,7 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot; = &quot;
             intent=&quot;destructive&quot;
             icon=&quot;CircleIcon&quot;
             iconPosition=&quot;left&quot;
-            disabled
-            label={t(&quot;button.label&quot;)} /&gt;
+            disabled&gt;{t(&quot;button.label&quot;)}&lt;/Button&gt;
     );
 };</code></pre>
             </div>
@@ -7664,15 +7666,7 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot; = &quot;
               
               <pre><code>const DisabledButton = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-
-    return (
-        &lt;Button
-            onClick={fn()}
-            size=&quot;md&quot;
-            variant=&quot;filled&quot;
-            disabled
-            label={t(&quot;button.label&quot;)} /&gt;
-    );
+    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;filled&quot; disabled&gt;{t(&quot;button.label&quot;)}&lt;/Button&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -7684,7 +7678,7 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot; = &quot;
               
               <pre><code>const MediumPrimaryLoadingProcessingButton = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;filled&quot; loading label={t(&quot;processing&quot;)} /&gt;;
+    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;filled&quot; loading&gt;{t(&quot;processing&quot;)}&lt;/Button&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -7696,7 +7690,7 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot; = &quot;
               
               <pre><code>const MediumSecondaryLoadingSavingButton = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;outlined&quot; loading label={t(&quot;saving&quot;)} /&gt;;
+    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;outlined&quot; loading&gt;{t(&quot;saving&quot;)}&lt;/Button&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -7719,12 +7713,9 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot; = &quot;
     };
 
     return (
-        &lt;Button
-            size=&quot;md&quot;
-            variant=&quot;filled&quot;
-            label={t(&quot;button.label&quot;)}
-            loading={loading}
-            onClick={handleClick} /&gt;
+        &lt;Button size=&quot;md&quot; variant=&quot;filled&quot; loading={loading} onClick={handleClick}&gt;
+            {t(&quot;button.label&quot;)}
+        &lt;/Button&gt;
     );
 };</code></pre>
             </div>
@@ -7751,11 +7742,12 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot; = &quot;
         &lt;Button
             size=&quot;md&quot;
             variant=&quot;outlined&quot;
-            label={t(&quot;button.label&quot;)}
             loading={loading}
             onClick={handleClick}
             icon=&quot;CircleIcon&quot;
-            iconPosition=&quot;left&quot; /&gt;
+            iconPosition=&quot;left&quot;&gt;
+            {t(&quot;button.label&quot;)}
+        &lt;/Button&gt;
     );
 };</code></pre>
             </div>
@@ -12045,7 +12037,7 @@ import { T } from &quot;../T&quot;;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Checkbox</h2>
       <div class="badges">
-        <label for="c-28-components-selection-controls-checkbox-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-28-components-selection-controls-checkbox-props" class="badge ok as-toggle">4 prop types</label>
         
         <label for="c-28-components-selection-controls-checkbox-stories" class="badge ok as-toggle">7 stories</label>
         <label for="c-28-components-selection-controls-checkbox-docs" class="badge ok as-toggle">1 doc</label>
@@ -12072,14 +12064,19 @@ import { T } from &quot;../T&quot;;
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">3 prop types</span>
+              <span class="badge ok">4 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Checkbox/Checkbox.tsx::Checkbox</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>className?: string
+            <pre><code>children?: React.ReactNode
+
+className?: string
 
 indeterminate?: boolean = false
 
+/**
+ * @deprecated Use `children` instead.
+ */
 label?: React.ReactNode</code></pre>
           </div>
         </div>
@@ -12105,7 +12102,7 @@ label?: React.ReactNode</code></pre>
               
               <pre><code>const Default = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Checkbox label={t(&quot;story.checkbox_accept&quot;)} /&gt;;
+    return &lt;Checkbox&gt;{t(&quot;story.checkbox_accept&quot;)}&lt;/Checkbox&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -12119,10 +12116,9 @@ label?: React.ReactNode</code></pre>
     const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
-        &lt;Checkbox
-            checked
-            label={t(&quot;story.checkbox_newsletter&quot;)}
-            onChange={args.onChange ?? (() =&gt; {})} /&gt;
+        &lt;Checkbox checked onChange={args.onChange ?? (() =&gt; {})}&gt;
+            {t(&quot;story.checkbox_newsletter&quot;)}
+        &lt;/Checkbox&gt;
     );
 };</code></pre>
             </div>
@@ -12135,7 +12131,7 @@ label?: React.ReactNode</code></pre>
               
               <pre><code>const Disabled = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Checkbox disabled label={t(&quot;story.checkbox_disabled&quot;)} /&gt;;
+    return &lt;Checkbox disabled&gt;{t(&quot;story.checkbox_disabled&quot;)}&lt;/Checkbox&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -12149,11 +12145,9 @@ label?: React.ReactNode</code></pre>
     const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
-        &lt;Checkbox
-            disabled
-            checked
-            label={t(&quot;story.checkbox_dis_checked&quot;)}
-            onChange={args.onChange ?? (() =&gt; {})} /&gt;
+        &lt;Checkbox disabled checked onChange={args.onChange ?? (() =&gt; {})}&gt;
+            {t(&quot;story.checkbox_dis_checked&quot;)}
+        &lt;/Checkbox&gt;
     );
 };</code></pre>
             </div>
@@ -12168,11 +12162,9 @@ label?: React.ReactNode</code></pre>
     const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
-        &lt;Checkbox
-            indeterminate
-            checked
-            label={t(&quot;story.checkbox_indeterminate&quot;)}
-            onChange={args.onChange ?? (() =&gt; {})} /&gt;
+        &lt;Checkbox indeterminate checked onChange={args.onChange ?? (() =&gt; {})}&gt;
+            {t(&quot;story.checkbox_indeterminate&quot;)}
+        &lt;/Checkbox&gt;
     );
 };</code></pre>
             </div>
@@ -12188,12 +12180,13 @@ label?: React.ReactNode</code></pre>
   const [checked, setChecked] = useState(false);
   return (
     &lt;Checkbox
-      label={`${t(&quot;story.checkbox_controlled&quot;)}: ${
-        checked ? t(&quot;story.checkbox_on&quot;) : t(&quot;story.checkbox_off&quot;)
-      }`}
       checked={checked}
       onChange={(e) =&gt; setChecked(e.target.checked)}
-    /&gt;
+    &gt;
+      {`${t(&quot;story.checkbox_controlled&quot;)}: ${
+        checked ? t(&quot;story.checkbox_on&quot;) : t(&quot;story.checkbox_off&quot;)
+      }`}
+    &lt;/Checkbox&gt;
   );
 };</code></pre>
             </div>
@@ -12206,7 +12199,7 @@ label?: React.ReactNode</code></pre>
               
               <pre><code>const LongLabel = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Checkbox label={t(&quot;story.checkbox_long_label&quot;)} /&gt;;
+    return &lt;Checkbox&gt;{t(&quot;story.checkbox_long_label&quot;)}&lt;/Checkbox&gt;;
 };</code></pre>
             </div>
         </div>
@@ -43270,7 +43263,7 @@ import { T } from &quot;../T&quot;;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Radio</h2>
       <div class="badges">
-        <label for="c-116-components-selection-controls-radio-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-116-components-selection-controls-radio-props" class="badge ok as-toggle">3 prop types</label>
         
         <label for="c-116-components-selection-controls-radio-stories" class="badge ok as-toggle">5 stories</label>
         <label for="c-116-components-selection-controls-radio-docs" class="badge ok as-toggle">1 doc</label>
@@ -43297,12 +43290,17 @@ import { T } from &quot;../T&quot;;
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">2 prop types</span>
+              <span class="badge ok">3 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Radio/Radio.tsx::Radio</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>className?: string
+            <pre><code>children?: React.ReactNode
 
+className?: string
+
+/**
+ * @deprecated Use `children` instead.
+ */
 label?: React.ReactNode</code></pre>
           </div>
         </div>
@@ -43328,7 +43326,7 @@ label?: React.ReactNode</code></pre>
               
               <pre><code>const Default = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Radio label={t(&quot;story.radio_option1&quot;)} value=&quot;option1&quot; /&gt;;
+    return &lt;Radio value=&quot;option1&quot;&gt;{t(&quot;story.radio_option1&quot;)}&lt;/Radio&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -43340,7 +43338,12 @@ label?: React.ReactNode</code></pre>
               
               <pre><code>const Checked = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Radio checked label={t(&quot;story.radio_checked&quot;)} value=&quot;checked&quot; /&gt;;
+
+    return (
+        &lt;Radio checked value=&quot;checked&quot;&gt;
+            {t(&quot;story.radio_checked&quot;)}
+        &lt;/Radio&gt;
+    );
 };</code></pre>
             </div>
             <div class="note ok">
@@ -43352,7 +43355,12 @@ label?: React.ReactNode</code></pre>
               
               <pre><code>const Disabled = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Radio disabled label={t(&quot;story.radio_disabled&quot;)} value=&quot;disabled&quot; /&gt;;
+
+    return (
+        &lt;Radio disabled value=&quot;disabled&quot;&gt;
+            {t(&quot;story.radio_disabled&quot;)}
+        &lt;/Radio&gt;
+    );
 };</code></pre>
             </div>
             <div class="note ok">
@@ -43366,11 +43374,9 @@ label?: React.ReactNode</code></pre>
     const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
-        &lt;Radio
-            disabled
-            checked
-            label={t(&quot;story.radio_dis_checked&quot;)}
-            value=&quot;disabled-checked&quot; /&gt;
+        &lt;Radio disabled checked value=&quot;disabled-checked&quot;&gt;
+            {t(&quot;story.radio_dis_checked&quot;)}
+        &lt;/Radio&gt;
     );
 };</code></pre>
             </div>
@@ -43383,7 +43389,7 @@ label?: React.ReactNode</code></pre>
               
               <pre><code>const LongLabel = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Radio label={t(&quot;story.radio_long_label&quot;)} value=&quot;long&quot; /&gt;;
+    return &lt;Radio value=&quot;long&quot;&gt;{t(&quot;story.radio_long_label&quot;)}&lt;/Radio&gt;;
 };</code></pre>
             </div>
         </div>
@@ -55639,7 +55645,7 @@ npm run test -- Stepper
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Switch</h2>
       <div class="badges">
-        <label for="c-143-components-selection-controls-switch-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-143-components-selection-controls-switch-props" class="badge ok as-toggle">4 prop types</label>
         
         <label for="c-143-components-selection-controls-switch-stories" class="badge ok as-toggle">6 stories</label>
         <label for="c-143-components-selection-controls-switch-docs" class="badge ok as-toggle">1 doc</label>
@@ -55666,12 +55672,17 @@ npm run test -- Stepper
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">3 prop types</span>
+              <span class="badge ok">4 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Switch/Switch.tsx::Switch</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>className?: string
+            <pre><code>children?: React.ReactNode
 
+className?: string
+
+/**
+ * @deprecated Use `children` instead.
+ */
 label?: React.ReactNode
 
 size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code></pre>
@@ -55699,7 +55710,7 @@ size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code><
               
               <pre><code>const Default = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Switch label={t(&quot;story.switch_notif&quot;)} /&gt;;
+    return &lt;Switch&gt;{t(&quot;story.switch_notif&quot;)}&lt;/Switch&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -55711,7 +55722,7 @@ size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code><
               
               <pre><code>const Checked = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Switch defaultChecked label={t(&quot;story.switch_wifi&quot;)} /&gt;;
+    return &lt;Switch defaultChecked&gt;{t(&quot;story.switch_wifi&quot;)}&lt;/Switch&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -55723,7 +55734,7 @@ size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code><
               
               <pre><code>const Small = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Switch size=&quot;sm&quot; label={t(&quot;story.switch_airplane&quot;)} /&gt;;
+    return &lt;Switch size=&quot;sm&quot;&gt;{t(&quot;story.switch_airplane&quot;)}&lt;/Switch&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -55735,7 +55746,7 @@ size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code><
               
               <pre><code>const Disabled = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Switch disabled label={t(&quot;story.switch_bluetooth&quot;)} /&gt;;
+    return &lt;Switch disabled&gt;{t(&quot;story.switch_bluetooth&quot;)}&lt;/Switch&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -55747,7 +55758,12 @@ size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code><
               
               <pre><code>const DisabledChecked = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Switch disabled defaultChecked label={t(&quot;story.switch_bluetooth&quot;)} /&gt;;
+
+    return (
+        &lt;Switch disabled defaultChecked&gt;
+            {t(&quot;story.switch_bluetooth&quot;)}
+        &lt;/Switch&gt;
+    );
 };</code></pre>
             </div>
             <div class="note ok">
