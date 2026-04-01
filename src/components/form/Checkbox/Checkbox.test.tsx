@@ -3,14 +3,14 @@ import { describe, it, expect, vi } from "vitest";
 import { Checkbox } from "./Checkbox";
 
 describe("Checkbox", () => {
-  it("renders with label", () => {
-    render(<Checkbox label="Accept terms" />);
+  it("renders with children", () => {
+    render(<Checkbox>Accept terms</Checkbox>);
     expect(screen.getByLabelText("Accept terms")).toBeInTheDocument();
   });
 
   it("handles changes", () => {
     const handleChange = vi.fn();
-    render(<Checkbox label="Check me" onChange={handleChange} />);
+    render(<Checkbox onChange={handleChange}>Check me</Checkbox>);
 
     const checkbox = screen.getByLabelText("Check me");
     fireEvent.click(checkbox);
@@ -20,13 +20,13 @@ describe("Checkbox", () => {
   });
 
   it("supports indeterminate state", () => {
-    render(<Checkbox label="Indeterminate" indeterminate />);
+    render(<Checkbox indeterminate>Indeterminate</Checkbox>);
     const checkbox: HTMLInputElement = screen.getByLabelText("Indeterminate");
     expect(checkbox.indeterminate).toBe(true);
   });
 
   it("can be disabled", () => {
-    render(<Checkbox label="Disabled" disabled />);
+    render(<Checkbox disabled>Disabled</Checkbox>);
     expect(screen.getByLabelText("Disabled")).toBeDisabled();
   });
 });

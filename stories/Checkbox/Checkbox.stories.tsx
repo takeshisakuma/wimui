@@ -24,7 +24,7 @@ type Story = StoryObj<typeof Checkbox>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Checkbox {...args} label={t("story.checkbox_accept")} />;
+    return <Checkbox {...args}>{t("story.checkbox_accept")}</Checkbox>;
   },
 };
 
@@ -34,9 +34,10 @@ export const Checked: Story = {
     return (
       <Checkbox
         {...args}
-        label={t("story.checkbox_newsletter")}
         onChange={args.onChange ?? (() => {})}
-      />
+      >
+        {t("story.checkbox_newsletter")}
+      </Checkbox>
     );
   },
   args: {
@@ -47,7 +48,7 @@ export const Checked: Story = {
 export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Checkbox {...args} label={t("story.checkbox_disabled")} />;
+    return <Checkbox {...args}>{t("story.checkbox_disabled")}</Checkbox>;
   },
   args: {
     disabled: true,
@@ -60,9 +61,10 @@ export const DisabledChecked: Story = {
     return (
       <Checkbox
         {...args}
-        label={t("story.checkbox_dis_checked")}
         onChange={args.onChange ?? (() => {})}
-      />
+      >
+        {t("story.checkbox_dis_checked")}
+      </Checkbox>
     );
   },
   args: {
@@ -77,9 +79,10 @@ export const Indeterminate: Story = {
     return (
       <Checkbox
         {...args}
-        label={t("story.checkbox_indeterminate")}
         onChange={args.onChange ?? (() => {})}
-      />
+      >
+        {t("story.checkbox_indeterminate")}
+      </Checkbox>
     );
   },
   args: {
@@ -93,18 +96,19 @@ export const Controlled = () => {
   const [checked, setChecked] = useState(false);
   return (
     <Checkbox
-      label={`${t("story.checkbox_controlled")}: ${
-        checked ? t("story.checkbox_on") : t("story.checkbox_off")
-      }`}
       checked={checked}
       onChange={(e) => setChecked(e.target.checked)}
-    />
+    >
+      {`${t("story.checkbox_controlled")}: ${
+        checked ? t("story.checkbox_on") : t("story.checkbox_off")
+      }`}
+    </Checkbox>
   );
 };
 
 export const LongLabel: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Checkbox {...args} label={t("story.checkbox_long_label")} />;
+    return <Checkbox {...args}>{t("story.checkbox_long_label")}</Checkbox>;
   },
 };

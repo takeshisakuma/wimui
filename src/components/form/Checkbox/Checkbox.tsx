@@ -3,7 +3,9 @@ import classNames from "classnames";
 import "./checkbox.scss";
 
 type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  /** @deprecated Use `children` instead. */
   label?: React.ReactNode;
+  children?: React.ReactNode;
   indeterminate?: boolean;
   className?: string;
 };
@@ -12,7 +14,7 @@ type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
  * Checkbox component for boolean user input.
  */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, indeterminate = false, className, disabled, ...props }, ref) => {
+  ({ label, children, indeterminate = false, className, disabled, ...props }, ref) => {
     const defaultRef = useRef<HTMLInputElement>(null);
     const resolvedRef =
       (ref as React.RefObject<HTMLInputElement>) || defaultRef;
@@ -38,7 +40,12 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           ref={resolvedRef}
           {...props}
         />
-        {label && <span className="wim-checkbox-label">{label}</span>}
+        {(label || children) && (
+          <span className="wim-checkbox-label">
+            {label}
+            {children}
+          </span>
+        )}
       </label>
     );
   },

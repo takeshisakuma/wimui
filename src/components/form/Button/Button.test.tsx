@@ -8,14 +8,14 @@ vi.mock("../../media/Icon/Icon", () => ({
 }));
 
 describe("Button", () => {
-  it("renders with label", () => {
-    render(<Button label="Click me" />);
+  it("renders with children", () => {
+    render(<Button>Click me</Button>);
     expect(screen.getByText("Click me")).toBeInTheDocument();
   });
 
   it("calls onClick when clicked", () => {
     const handleClick = vi.fn();
-    render(<Button label="Click me" onClick={handleClick} />);
+    render(<Button onClick={handleClick}>Click me</Button>);
     fireEvent.click(screen.getByText("Click me"));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -23,7 +23,7 @@ describe("Button", () => {
   it("does not call onClick when disabled", () => {
     const handleClick = vi.fn();
     const { container } = render(
-      <Button label="Click me" onClick={handleClick} disabled />,
+      <Button onClick={handleClick} disabled>Click me</Button>,
     );
     expect(container.querySelector("button")).toBeDisabled();
     fireEvent.click(screen.getByText("Click me"));
@@ -32,7 +32,7 @@ describe("Button", () => {
 
   it("applies correct classes for size and variant", () => {
     const { container } = render(
-      <Button label="Test" size="lg" variant="filled" />,
+      <Button size="lg" variant="filled">Test</Button>,
     );
     const button = container.querySelector("button");
     expect(button).toHaveClass("wim-button--lg");
@@ -41,7 +41,7 @@ describe("Button", () => {
 
   it("applies custom className", () => {
     const { container } = render(
-      <Button label="Test" className="custom-class" />,
+      <Button className="custom-class">Test</Button>,
     );
     const button = container.querySelector("button");
     expect(button).toHaveClass("custom-class");
@@ -55,26 +55,26 @@ describe("Button", () => {
 
   it("renders icon via icon prop (JSX element)", () => {
     const { container } = render(
-      <Button label="Search" icon={<span data-testid="custom-icon">★</span>} />,
+      <Button icon={<span data-testid="custom-icon">★</span>}>Search</Button>,
     );
     expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
     expect(buttonWithIcon(container)).not.toHaveClass("wim-button--icon-only");
   });
 
   it("applies fullWidth class", () => {
-    const { container } = render(<Button label="Full" fullWidth />);
+    const { container } = render(<Button fullWidth>Full</Button>);
     const button = container.querySelector("button");
     expect(button).toHaveClass("wim-button--full-width");
   });
 
   it("does not apply fullWidth class by default", () => {
-    const { container } = render(<Button label="Normal" />);
+    const { container } = render(<Button>Normal</Button>);
     const button = container.querySelector("button");
     expect(button).not.toHaveClass("wim-button--full-width");
   });
 
   it("handles loading state properly", () => {
-    const { container } = render(<Button label="Load" loading />);
+    const { container } = render(<Button loading>Load</Button>);
     const button = container.querySelector("button");
     expect(button).toHaveClass("wim-button--loading");
     expect(button).toHaveAttribute("aria-busy", "true");
@@ -92,19 +92,25 @@ describe("Button", () => {
     };
     window.cancelAnimationFrame = vi.fn();
 
-    const { rerender, container } = render(<Button label="Initial" animateWidth />);
+    const { rerender, container } = render(<Button animateWidth>Initial</Button>);
     const button = container.querySelector("button") as HTMLButtonElement;
     
     // Mock getBoundingClientRect
     button.getBoundingClientRect = vi.fn().mockReturnValue({ width: 100 });
 
     // Rerender with new label to trigger effect
-    rerender(<Button label="Updated" animateWidth />);
+    rerender(<Button animateWidth>Updated</Button>);
 
     expect(button).toHaveStyle({ width: "102px" }); // targetWidth is 100 + 2=102
 
     window.requestAnimationFrame = originalRequestAnimationFrame;
     window.cancelAnimationFrame = originalCancelAnimationFrame;
+  });
+
+  it("renders both label and children when both are provided", () => {
+    render(<Button label="Label">Children</Button>);
+    expect(screen.getByText("Label")).toBeInTheDocument();
+    expect(screen.getByText("Children")).toBeInTheDocument();
   });
 });
 

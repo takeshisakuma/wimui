@@ -8,6 +8,7 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
   backgroundColor?: WimColor;
   size?: ComponentSize;
+  /** @deprecated Use `children` instead. */
   label?: React.ReactNode;
   variant?: "filled" | "outlined" | "ghost";
   /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
@@ -87,7 +88,7 @@ export const Button = React.forwardRef<
       });
 
       return () => cancelAnimationFrame(frame);
-    }, [label, animateWidth, buttonRef]);
+    }, [label, children, animateWidth, buttonRef]);
 
     const isDisabled = disabled;
 
@@ -137,15 +138,15 @@ export const Button = React.forwardRef<
           }}
         >
           {iconContent && iconPosition === "left" && iconContent}
-          {label && (
+          {(label || children) && (
             <span
               className="wim-button__label"
               style={{ textAlign: "inherit", width: "100%" }}
             >
               {label}
+              {children}
             </span>
           )}
-          {children}
           {iconContent && iconPosition === "right" && iconContent}
         </span>
         {loading && (

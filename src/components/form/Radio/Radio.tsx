@@ -3,7 +3,9 @@ import classNames from "classnames";
 import "./radio.scss";
 
 type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  /** @deprecated Use `children` instead. */
   label?: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
 };
 
@@ -12,7 +14,7 @@ type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & {
  */
 
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
-  ({ label, className, disabled, ...props }, ref) => {
+  ({ label, children, className, disabled, ...props }, ref) => {
     const defaultRef = useRef<HTMLInputElement>(null);
     const resolvedRef =
       (ref as React.RefObject<HTMLInputElement>) || defaultRef;
@@ -32,7 +34,12 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           ref={resolvedRef}
           {...props}
         />
-        {label && <span className="wim-radio-label">{label}</span>}
+        {(label || children) && (
+          <span className="wim-radio-label">
+            {label}
+            {children}
+          </span>
+        )}
       </label>
     );
   },

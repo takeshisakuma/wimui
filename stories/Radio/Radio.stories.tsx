@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Radio>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Radio {...args} label={t("story.radio_option1")} value="option1" />;
+    return <Radio {...args} value="option1">{t("story.radio_option1")}</Radio>;
   },
 };
 
@@ -31,9 +31,10 @@ export const Checked: Story = {
     return (
       <Radio
         {...args}
-        label={t("story.radio_checked")}
         value="checked"
-      />
+      >
+        {t("story.radio_checked")}
+      </Radio>
     );
   },
   args: {
@@ -47,9 +48,10 @@ export const Disabled: Story = {
     return (
       <Radio
         {...args}
-        label={t("story.radio_disabled")}
         value="disabled"
-      />
+      >
+        {t("story.radio_disabled")}
+      </Radio>
     );
   },
   args: {
@@ -63,9 +65,10 @@ export const DisabledChecked: Story = {
     return (
       <Radio
         {...args}
-        label={t("story.radio_dis_checked")}
         value="disabled-checked"
-      />
+      >
+        {t("story.radio_dis_checked")}
+      </Radio>
     );
   },
   args: {
@@ -77,6 +80,6 @@ export const DisabledChecked: Story = {
 export const LongLabel: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Radio {...args} label={t("story.radio_long_label")} value="long" />;
+    return <Radio {...args} value="long">{t("story.radio_long_label")}</Radio>;
   },
 };

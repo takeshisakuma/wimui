@@ -26,14 +26,14 @@ type Story = StoryObj<typeof Switch>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Switch {...args} label={t("story.switch_notif")} />;
+    return <Switch {...args}>{t("story.switch_notif")}</Switch>;
   },
 };
 
 export const Checked: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Switch {...args} label={t("story.switch_wifi")} />;
+    return <Switch {...args}>{t("story.switch_wifi")}</Switch>;
   },
   args: {
     defaultChecked: true,
@@ -43,7 +43,7 @@ export const Checked: Story = {
 export const Small: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Switch {...args} label={t("story.switch_airplane")} />;
+    return <Switch {...args}>{t("story.switch_airplane")}</Switch>;
   },
   args: {
     size: "sm",
@@ -53,7 +53,7 @@ export const Small: Story = {
 export const Disabled: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Switch {...args} label={t("story.switch_bluetooth")} />;
+    return <Switch {...args}>{t("story.switch_bluetooth")}</Switch>;
   },
   args: {
     disabled: true,
@@ -66,8 +66,9 @@ export const DisabledChecked: Story = {
     return (
       <Switch
         {...args}
-        label={t("story.switch_bluetooth")}
-      />
+      >
+        {t("story.switch_bluetooth")}
+      </Switch>
     );
   },
   args: {

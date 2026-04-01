@@ -4,9 +4,11 @@ import { ComponentSize } from "../../../types/tokens";
 import "./switch.scss";
 
 type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
+  /** @deprecated Use `children` instead. */
   label?: React.ReactNode;
   size?: ComponentSize;
   className?: string;
+  children?: React.ReactNode;
 };
 
 /**
@@ -14,7 +16,7 @@ type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
  */
 export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
   (
-    { label, size = "md", className, disabled, id: customId, ...props },
+    { label, children, size = "md", className, disabled, id: customId, ...props },
     ref,
   ) => {
     const defaultRef = useRef<HTMLInputElement>(null);
@@ -47,7 +49,12 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           ref={resolvedRef}
           {...props}
         />
-        {label && <span className="wim-switch-label">{label}</span>}
+        {(label || children) && (
+          <span className="wim-switch-label">
+            {label}
+            {children}
+          </span>
+        )}
       </label>
     );
   },

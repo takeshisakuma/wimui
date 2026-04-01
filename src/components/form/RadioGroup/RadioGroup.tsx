@@ -79,13 +79,14 @@ export const RadioGroup = ({
         {options.map((option) => (
           <Radio
             key={option.value}
-            label={option.label}
             value={option.value}
             checked={currentValue === option.value}
             disabled={disabled || option.disabled}
             name={name}
             onChange={() => handleChange(option.value)}
-          />
+          >
+            {option.label}
+          </Radio>
         ))}
       </div>
     </FieldTemplate>

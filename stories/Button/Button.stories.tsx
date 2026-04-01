@@ -26,7 +26,7 @@ type Story = StoryObj<typeof Button>;
 export const LargePrimaryButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("button.label")} />;
+    return <Button {...args}>{t("button.label")}</Button>;
   },
   args: {
     size: "lg",
@@ -37,7 +37,7 @@ export const LargePrimaryButton: Story = {
 export const MediumSecondaryButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("button.label")} />;
+    return <Button {...args}>{t("button.label")}</Button>;
   },
   args: {
     size: "md",
@@ -48,7 +48,7 @@ export const MediumSecondaryButton: Story = {
 export const SmallTertiaryButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("button.label")} />;
+    return <Button {...args}>{t("button.label")}</Button>;
   },
   args: {
     size: "sm",
@@ -59,7 +59,7 @@ export const SmallTertiaryButton: Story = {
 export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("button.label")} />;
+    return <Button {...args}>{t("button.label")}</Button>;
   },
   args: {
     size: "sm",
@@ -74,7 +74,7 @@ export const SmallTertiaryDestructiveWithCircleIconButton: Story = {
 export const DisabledButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("button.label")} />;
+    return <Button {...args}>{t("button.label")}</Button>;
   },
   args: {
     size: "md",
@@ -86,7 +86,7 @@ export const DisabledButton: Story = {
 export const MediumPrimaryLoadingProcessingButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("processing")} />;
+    return <Button {...args}>{t("processing")}</Button>;
   },
   args: {
     size: "md",
@@ -98,7 +98,7 @@ export const MediumPrimaryLoadingProcessingButton: Story = {
 export const MediumSecondaryLoadingSavingButton: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return <Button {...args} label={t("saving")} />;
+    return <Button {...args}>{t("saving")}</Button>;
   },
   args: {
     size: "md",
@@ -123,10 +123,11 @@ export const MediumPrimaryInteractiveLoadingButton: Story = {
     return (
       <Button
         {...args}
-        label={t("button.label")}
         loading={loading}
         onClick={handleClick}
-      />
+      >
+        {t("button.label")}
+      </Button>
     );
   },
   args: {
@@ -151,12 +152,13 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
     return (
       <Button
         {...args}
-        label={t("button.label")}
         loading={loading}
         onClick={handleClick}
         icon="CircleIcon"
         iconPosition="left"
-      />
+      >
+        {t("button.label")}
+      </Button>
     );
   },
   args: {

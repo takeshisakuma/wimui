@@ -3,14 +3,14 @@ import { describe, it, expect, vi } from "vitest";
 import { Switch } from "./Switch";
 
 describe("Switch", () => {
-  it("renders with label", () => {
-    render(<Switch label="Enable Notifications" />);
+  it("renders with children", () => {
+    render(<Switch>Enable Notifications</Switch>);
     expect(screen.getByLabelText("Enable Notifications")).toBeInTheDocument();
   });
 
   it("calls onChange when toggled", () => {
     const onChange = vi.fn();
-    render(<Switch label="Toggle" onChange={onChange} />);
+    render(<Switch onChange={onChange}>Toggle</Switch>);
     const input = screen.getByRole("switch");
     fireEvent.click(input);
     expect(onChange).toHaveBeenCalled();
