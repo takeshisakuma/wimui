@@ -21,7 +21,7 @@ import {
 } from "@floating-ui/react";
 import { Transition } from "../../misc/Transition/Transition";
 import { BaseListItem } from "../../misc/BaseListItem";
-import "./contextMenu.scss";
+import "./context-menu.scss";
 
 export type ContextMenuProps = {
   children: ReactNode;

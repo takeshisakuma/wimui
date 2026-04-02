@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Calendar } from "../../data-display/Calendar/Calendar";
 import { InputBase } from "../InputBase";
 import "../../form/Input/input.scss";
-import "./datePicker.scss";
+import "./date-picker.scss";
 
 import { FieldTemplate } from "../FieldTemplate";
 import { WimIntent } from "../../../types/tokens";

@@ -13,7 +13,7 @@ import { Transition } from "../../misc/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
 import { FocusTrap } from "../../misc/FocusTrap/FocusTrap";
 import { BaseListItem } from "../../misc/BaseListItem";
-import "./commandPalette.scss";
+import "./command-palette.scss";
 
 // --- Context ---
 type CommandPaletteContextType = {
