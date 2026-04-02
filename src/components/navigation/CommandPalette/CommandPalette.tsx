@@ -12,7 +12,7 @@ import { Portal } from "../../misc/Portal/Portal";
 import { Transition } from "../../misc/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
 import { FocusTrap } from "../../misc/FocusTrap/FocusTrap";
-import { BaseListItem } from "../../_internal/BaseListItem";
+import { BaseListItem } from "../../misc/BaseListItem";
 import "./commandPalette.scss";
 
 // --- Context ---

@@ -2,11 +2,11 @@ import React, { useState, useRef, useEffect, useId } from "react";
 import classNames from "classnames";
 import { Transition } from "../../misc/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
-import { BaseListItem } from "../../_internal/BaseListItem";
-import { InputBase } from "../../_internal/InputBase";
+import { BaseListItem } from "../../misc/BaseListItem";
+import { InputBase } from "../InputBase";
 import "./cascader.scss";
 
-import { FieldTemplate } from "../../_internal/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 
 function getLabelText(label: React.ReactNode): string {
   if (typeof label === "string") return label;

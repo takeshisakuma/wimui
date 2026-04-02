@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { FieldTemplate } from "../../_internal/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import { WimIntent } from "../../../types/tokens";
 import "./textarea.scss";
 

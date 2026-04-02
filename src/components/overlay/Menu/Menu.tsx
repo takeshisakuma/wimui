@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import classNames from "classnames";
-import { BaseListItem } from "../../_internal/BaseListItem";
+import { BaseListItem } from "../../misc/BaseListItem";
 import { Transition } from "../../misc/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
 import "./menu.scss";

@@ -1,7 +1,7 @@
 import React, { useState, useId, useRef } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
 import "./rating.scss";
 

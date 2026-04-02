@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Icon } from "../../media/Icon/Icon";
-import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
 import "./file-upload.scss";
 

@@ -20,7 +20,7 @@ import {
   FloatingList,
 } from "@floating-ui/react";
 import { Transition } from "../../misc/Transition/Transition";
-import { BaseListItem } from "../../_internal/BaseListItem";
+import { BaseListItem } from "../../misc/BaseListItem";
 import "./contextMenu.scss";
 
 export type ContextMenuProps = {

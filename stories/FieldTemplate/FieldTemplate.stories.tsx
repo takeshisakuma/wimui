@@ -1,13 +1,13 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FieldTemplate } from "../../../src/components/_internal/FieldTemplate/FieldTemplate";
-import { Input } from "../../../src/components/form/Input/Input";
+import { FieldTemplate } from "@/components/form/FieldTemplate/FieldTemplate";
+import { Input } from "@/components/form/Input/Input";
 import { useTranslation } from "react-i18next";
-import { ALL_NAMESPACES } from "../../i18nConstants";
+import { ALL_NAMESPACES } from "../i18nConstants";
 
 
 const meta: Meta<typeof FieldTemplate> = {
-  title: "Components/Internal/FieldTemplate",
+  title: "Components/Form Layout/FieldTemplate",
   component: FieldTemplate,
 };
 

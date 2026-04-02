@@ -1,7 +1,7 @@
 import React, { useId } from "react";
 import classNames from "classnames";
 import { Transition } from "../../misc/Transition/Transition";
-import { BaseListItem } from "../../_internal/BaseListItem";
+import { BaseListItem } from "../../misc/BaseListItem";
 import "./selectbox.scss";
 import { useSelectbox } from "./useSelectbox";
 
@@ -50,8 +50,8 @@ export type SelectboxProps = {
   noOptionsFoundLabel?: string;
 };
 
-import { FieldTemplate } from "../../_internal/FieldTemplate";
-import { InputBase } from "../../_internal/InputBase";
+import { FieldTemplate } from "../FieldTemplate";
+import { InputBase } from "../InputBase";
 
 /**
  * ユーザーが定義済みの選択肢から1つを選択するためのプルダウンメニュー。

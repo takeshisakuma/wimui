@@ -1,14 +1,14 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { BaseListItem } from "../../../src/components/_internal/BaseListItem/BaseListItem";
-import { Icon } from "../../../src/components/media/Icon/Icon";
-import { Chip } from "../../../src/components/data-display/Chip/Chip";
+import { BaseListItem } from "@/components/misc/BaseListItem/BaseListItem";
+import { Icon } from "@/components/media/Icon/Icon";
+import { Chip } from "@/components/data-display/Chip/Chip";
 import { useTranslation } from "react-i18next";
-import { ALL_NAMESPACES } from "../../i18nConstants";
+import { ALL_NAMESPACES } from "../i18nConstants";
 
 
 const meta: Meta<typeof BaseListItem> = {
-  title: "Components/Internal/BaseListItem",
+  title: "Components/Data Structures/BaseListItem",
   component: BaseListItem,
   parameters: {
     layout: "centered",

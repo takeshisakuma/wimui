@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { InteractiveArea } from "../../layout/InteractiveArea/InteractiveArea";
-import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import "./dropzone.scss";
 
 type DropzoneProps = {

@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect, useId } from "react";
 import classNames from "classnames";
 import { Calendar } from "../../data-display/Calendar/Calendar";
-import { InputBase } from "../../_internal/InputBase";
+import { InputBase } from "../InputBase";
 import "../../form/Input/input.scss";
 import "./datePicker.scss";
 
-import { FieldTemplate } from "../../_internal/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import { WimIntent } from "../../../types/tokens";
 
 export type DatePickerLabels = {

@@ -1,12 +1,12 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { InputBase } from "../../../src/components/_internal/InputBase/InputBase";
+import { InputBase } from "@/components/form/InputBase/InputBase";
 import { useTranslation } from "react-i18next";
-import { ALL_NAMESPACES } from "../../i18nConstants";
+import { ALL_NAMESPACES } from "../i18nConstants";
 
 
 const meta: Meta<typeof InputBase> = {
-  title: "Components/Internal/InputBase",
+  title: "Components/Form Layout/InputBase",
   component: InputBase,
   parameters: {
     layout: "centered",

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, ReactNode, useId } from "react";
 import classNames from "classnames";
-import { BaseListItem } from "../../_internal/BaseListItem";
+import { BaseListItem } from "../../misc/BaseListItem";
 import "./dropdown.scss";
 
 // Context to share state between components

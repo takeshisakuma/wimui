@@ -3,8 +3,8 @@ import classNames from "classnames";
 import "./input.scss";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { Icon } from "../../media/Icon/Icon";
-import { InputBase, InputBaseIcon } from "../../_internal/InputBase";
-import { FieldTemplate } from "../../_internal/FieldTemplate";
+import { InputBase, InputBaseIcon } from "../InputBase";
+import { FieldTemplate } from "../FieldTemplate";
 import { WimIntent } from "../../../types/tokens";
 
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {

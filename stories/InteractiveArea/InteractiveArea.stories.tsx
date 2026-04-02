@@ -1,15 +1,15 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { InteractiveArea } from "../../../src/components/layout/InteractiveArea/InteractiveArea";
-import { Icon } from "../../../src/components/media/Icon/Icon";
-import { Button } from "../../../src/components/form/Button/Button";
-import { ContextMenu, ContextMenuItem } from "../../../src/components/overlay/ContextMenu/ContextMenu";
+import { InteractiveArea } from "@/components/layout/InteractiveArea/InteractiveArea";
+import { Icon } from "@/components/media/Icon/Icon";
+import { Button } from "@/components/form/Button/Button";
+import { ContextMenu, ContextMenuItem } from "@/components/overlay/ContextMenu/ContextMenu";
 import { useTranslation } from "react-i18next";
-import { ALL_NAMESPACES } from "../../i18nConstants";
+import { ALL_NAMESPACES } from "../i18nConstants";
 
 
 const meta: Meta<typeof InteractiveArea> = {
-  title: "Components/Internal/InteractiveArea",
+  title: "Components/Layout/InteractiveArea",
   component: InteractiveArea,
 };
 

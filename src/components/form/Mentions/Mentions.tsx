@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Textarea } from "../../form/Textarea/Textarea";
-import { BaseListItem } from "../../_internal/BaseListItem";
+import { BaseListItem } from "../../misc/BaseListItem";
 import "./mentions.scss";
 
 type MentionOption = {

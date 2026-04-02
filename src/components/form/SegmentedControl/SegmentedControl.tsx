@@ -2,7 +2,7 @@ import React, { useId, useRef } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
-import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
 import "./segmented-control.scss";
 

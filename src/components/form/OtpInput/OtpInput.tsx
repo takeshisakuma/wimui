@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
-import { FieldTemplate } from "../../_internal/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import "./otp-input.scss";
 
 export type OtpInputLabels = {

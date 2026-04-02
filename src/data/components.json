@@ -360,6 +360,12 @@
         "mobile": true
       },
       {
+        "name": "BaseListItem",
+        "descKey": "doc.base_list_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
         "name": "DescriptionList",
         "descKey": "doc.descriptionList_desc",
         "pc": true,
@@ -443,6 +449,18 @@
         "descKey": "doc.legend_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "FieldTemplate",
+        "descKey": "doc.field_template_desc",
+        "pc": true,
+        "mobile": true
+      },
+      {
+        "name": "InputBase",
+        "descKey": "doc.input_base_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -522,6 +540,12 @@
         "descKey": "doc.splitter_desc",
         "pc": true,
         "mobile": false
+      },
+      {
+        "name": "InteractiveArea",
+        "descKey": "doc.interactiveArea_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },
@@ -1008,55 +1032,31 @@
       }
     ]
   },
-  {
-    "id": "internal",
-    "nameKey": "cat.internal",
-    "guideUrl": "./?path=/docs/architecture-internal-core-components--docs",
-    "components": [
-      {
-        "name": "BaseListItem",
-        "descKey": "doc.base_list_desc",
-        "pc": true,
-        "mobile": true
-      },
-      {
-        "name": "FieldTemplate",
-        "descKey": "doc.field_template_desc",
-        "pc": true,
-        "mobile": true
-      },
-      {
-        "name": "IndicatorBase",
-        "descKey": "doc.indicator_base_desc",
-        "pc": true,
-        "mobile": true
-      },
-      {
-        "name": "InputBase",
-        "descKey": "doc.input_base_desc",
-        "pc": true,
-        "mobile": true
-      },
-      {
-        "name": "InteractiveArea",
-        "descKey": "doc.interactiveArea_desc",
-        "pc": true,
-        "mobile": true
-      },
-      {
-        "name": "OverlayBase",
-        "descKey": "doc.overlay_base_desc",
-        "pc": true,
-        "mobile": true
-      },
-      {
-        "name": "StatusContent",
-        "descKey": "doc.status_content_desc",
-        "pc": true,
-        "mobile": true
-      }
-    ]
-  },
+    {
+      "id": "internal",
+      "nameKey": "cat.internal",
+      "guideUrl": "./?path=/docs/architecture-internal-core-components--docs",
+      "components": [
+        {
+          "name": "IndicatorBase",
+          "descKey": "doc.indicator_base_desc",
+          "pc": true,
+          "mobile": true
+        },
+        {
+          "name": "OverlayBase",
+          "descKey": "doc.overlay_base_desc",
+          "pc": true,
+          "mobile": true
+        },
+        {
+          "name": "StatusContent",
+          "descKey": "doc.status_content_desc",
+          "pc": true,
+          "mobile": true
+        }
+      ]
+    },
   {
     "id": "visualization",
     "nameKey": "cat.visualization",

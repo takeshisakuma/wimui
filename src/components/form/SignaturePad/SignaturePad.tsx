@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, useId, useCallback } from "react";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
-import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import "./signature-pad.scss";
 
 export type SignaturePadProps = {

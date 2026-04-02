@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useId } from "react";
 import { DatePicker } from "../../form/DatePicker/DatePicker";
-import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import "./dateRangePicker.scss";
 
 type DateRangePickerProps = {

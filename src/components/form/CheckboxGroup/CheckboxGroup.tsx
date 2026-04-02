@@ -9,7 +9,7 @@ type Option = {
   disabled?: boolean;
 };
 
-import { FieldTemplate } from "../../_internal/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 
 type CheckboxGroupProps = {
   options: Option[];

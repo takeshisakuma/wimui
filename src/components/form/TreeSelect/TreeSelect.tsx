@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect, useId, useMemo } from "react";
 import classNames from "classnames";
 import { Transition } from "../../misc/Transition/Transition";
 import { TreeView, TreeViewNode } from "../../data-display/TreeView/TreeView";
-import { InputBase } from "../../_internal/InputBase";
+import { InputBase } from "../InputBase";
 import "./tree-select.scss";
 
-import { FieldTemplate } from "../../_internal/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 
 /** treeData の label をそのまま使ってツリーを再構築する */
 function resolveLabels(

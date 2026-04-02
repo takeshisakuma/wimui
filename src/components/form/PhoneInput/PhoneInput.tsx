@@ -1,6 +1,6 @@
 import React, { useId } from "react";
 import classNames from "classnames";
-import { FieldTemplate } from "../../_internal/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import "./phone-input.scss";
 
 // ─── Country Data ─────────────────────────────────────────────────────────────

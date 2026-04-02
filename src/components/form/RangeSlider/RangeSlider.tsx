@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import classNames from "classnames";
 import { useSliderCommon } from "../../../utilities/slider-utils";
-import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import "./rangeSlider.scss";
 
 type RangeSliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue"> & {

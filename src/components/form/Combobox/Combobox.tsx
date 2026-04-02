@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect, useId } from "react";
 import { Input } from "../../form/Input/Input";
-import { BaseListItem } from "../../_internal/BaseListItem";
+import { BaseListItem } from "../../misc/BaseListItem";
 import "./combobox.scss";
 
-import { FieldTemplate } from "../../_internal/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 
 export type ComboboxOption = {
   label: string;

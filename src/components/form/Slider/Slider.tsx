@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import classNames from "classnames";
 import { useSliderCommon } from "../../../utilities/slider-utils";
-import { FieldTemplate } from "../../_internal/FieldTemplate/FieldTemplate";
+import { FieldTemplate } from "../FieldTemplate";
 import "./slider.scss";
 
 type SliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
