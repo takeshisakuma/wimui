@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.1s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -16021,7 +16021,7 @@ striped?: boolean = false</code></pre>
               </div>
               
               
-              <pre><code>const Default = (args: any) =&gt; {
+              <pre><code>const Default = (args) =&gt; {
   const { tColumns, tSampleData } = useDataGridTranslations();
   const rows = tSampleData;
   return &lt;DataGrid {...(args as DataGridProps&lt;Record&lt;string, unknown&gt;&gt;)} columns={tColumns} rows={rows} /&gt;;
@@ -16197,7 +16197,7 @@ striped?: boolean = false</code></pre>
               </div>
               
               
-              <pre><code>const Loading = (args: any) =&gt; {
+              <pre><code>const Loading = (args) =&gt; {
   const { tColumns, tSampleData } = useDataGridTranslations();
   const rows = tSampleData;
   return &lt;DataGrid {...(args as DataGridProps&lt;Record&lt;string, unknown&gt;&gt;)} columns={tColumns} rows={rows} /&gt;;
@@ -16210,7 +16210,7 @@ striped?: boolean = false</code></pre>
               </div>
               
               
-              <pre><code>const Empty = (args: any) =&gt; {
+              <pre><code>const Empty = (args) =&gt; {
   const { t, tColumns, tSampleData } = useDataGridTranslations();
   const rows = tSampleData;
   return &lt;DataGrid {...(args as DataGridProps&lt;Record&lt;string, unknown&gt;&gt;)} columns={tColumns} rows={rows} emptyMessage={t(&#39;story.datagrid_empty&#39;)} /&gt;;
@@ -16223,7 +16223,7 @@ striped?: boolean = false</code></pre>
               </div>
               
               
-              <pre><code>const Striped = (args: any) =&gt; {
+              <pre><code>const Striped = (args) =&gt; {
   const { tColumns, tSampleData } = useDataGridTranslations();
   const rows = tSampleData;
   return &lt;DataGrid {...(args as DataGridProps&lt;Record&lt;string, unknown&gt;&gt;)} columns={tColumns} rows={rows} /&gt;;
@@ -16236,7 +16236,7 @@ striped?: boolean = false</code></pre>
               </div>
               
               
-              <pre><code>const Bordered = (args: any) =&gt; {
+              <pre><code>const Bordered = (args) =&gt; {
   const { tColumns, tSampleData } = useDataGridTranslations();
   const rows = tSampleData;
   return &lt;DataGrid {...(args as DataGridProps&lt;Record&lt;string, unknown&gt;&gt;)} columns={tColumns} rows={rows} /&gt;;
@@ -16249,7 +16249,7 @@ striped?: boolean = false</code></pre>
               </div>
               
               
-              <pre><code>const StickyHeader = (args: any) =&gt; {
+              <pre><code>const StickyHeader = (args) =&gt; {
   const { tColumns } = useDataGridTranslations();
   const rows = manyRows as unknown as Record&lt;string, unknown&gt;[];
   return &lt;DataGrid {...(args as DataGridProps&lt;Record&lt;string, unknown&gt;&gt;)} columns={tColumns} rows={rows} /&gt;;
@@ -22925,7 +22925,7 @@ className?: string</code></pre>
               </div>
               
               
-              <pre><code>const Default = (args: any) =&gt; {
+              <pre><code>const Default = (args) =&gt; {
   const [active, setActive] = useState(false);
   const { t } = useTranslation(ALL_NAMESPACES);
 
@@ -22989,7 +22989,7 @@ className?: string</code></pre>
               </div>
               
               
-              <pre><code>const AutoFocus = (args: any) =&gt; {
+              <pre><code>const AutoFocus = (args) =&gt; {
   const [active, setActive] = useState(false);
   const { t } = useTranslation(ALL_NAMESPACES);
 
@@ -23910,7 +23910,7 @@ viewMode?: &quot;day&quot; | &quot;week&quot; | &quot;month&quot; = &quot;day&qu
       startDate={new Date(2026, 2, 1)}
       endDate={new Date(2026, 2, 31)}
       viewMode=&quot;day&quot;
-      onTaskClick={(task: any) =&gt; alert(`Clicked: ${task.label}`)}
+      onTaskClick={(task: GanttTask) =&gt; alert(`Clicked: ${task.label}`)}
     /&gt;
   );
 };</code></pre>
