@@ -68,9 +68,9 @@ export const OverflowEscape: Story = {
 
           <Button
             onClick={() => setShow(!show)}
-            label={show ? t("story.portal_btn_hide") : t("story.portal_btn_show")}
             variant="filled"
-          />
+
+          >{show ? t("story.portal_btn_hide") : t("story.portal_btn_show")}</Button>
 
           {show && (
             <Portal>
@@ -104,9 +104,9 @@ export const OverflowEscape: Story = {
                   <Box mt="md" textAlign="right">
                     <Button
                       size="sm"
-                      label={t("story.portal_btn_ok")}
                       onClick={() => setShow(false)}
-                    />
+
+                    >{t("story.portal_btn_ok")}</Button>
                   </Box>
                 </Stack>
               </Card>
@@ -222,8 +222,8 @@ export const NotificationCenter: Story = {
                   newState ? "success" : "warning",
                 );
               }}
-              label={active ? t("story.portal_btn_stop") : t("story.portal_btn_start")}
-            />
+
+            >{active ? t("story.portal_btn_stop") : t("story.portal_btn_start")}</Button>
             {active && (
               <Portal container={logContainer}>
                 <div
@@ -522,10 +522,10 @@ export const SidePanelDetail: Story = {
                 {selectedId && (
                   <Button
                     size="sm"
-                    label={t("story.visuallyhidden_close")}
                     variant="outlined"
                     onClick={() => setSelectedId(null)}
-                  />
+
+                  >{t("story.visuallyhidden_close")}</Button>
                 )}
               </Box>
               <Box

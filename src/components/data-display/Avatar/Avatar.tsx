@@ -53,7 +53,7 @@ export const Avatar = ({
         "wim-avatar",
         `wim-avatar--${size}`,
         `wim-avatar--${shape}`,
-        status && `wim-avatar--${ intent }`,
+        intent && `wim-avatar--${intent}`,
         className,
       )}
       {...props}

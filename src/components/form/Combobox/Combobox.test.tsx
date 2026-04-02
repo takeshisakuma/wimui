@@ -33,9 +33,9 @@ describe("Combobox", () => {
     expect(screen.getByText("Banana")).toBeInTheDocument();
   });
 
-  it("calls onSelect when option clicked", () => {
+  it("calls onChange when option is clicked", () => {
     const handleSelect = vi.fn();
-    render(<Combobox options={options} onSelect={handleSelect} />);
+    render(<Combobox options={options} onChange={handleSelect} />);
     const input = screen.getByRole("combobox");
 
     fireEvent.focus(input);
@@ -48,7 +48,7 @@ describe("Combobox", () => {
     expect(input).toHaveValue("Cherry");
   });
 
-  it("selects option without onSelect callback", () => {
+  it("selects option without onChange handler", () => {
     render(<Combobox options={options} />);
     const input = screen.getByRole("combobox");
 
@@ -133,7 +133,7 @@ describe("Combobox", () => {
 
   it("selects active option with Enter key", () => {
     const handleSelect = vi.fn();
-    render(<Combobox options={options} onSelect={handleSelect} />);
+    render(<Combobox options={options} onChange={handleSelect} />);
     const input = screen.getByRole("combobox");
 
     fireEvent.focus(input);
@@ -146,7 +146,7 @@ describe("Combobox", () => {
 
   it("does nothing on Enter when no option is active", () => {
     const handleSelect = vi.fn();
-    render(<Combobox options={options} onSelect={handleSelect} />);
+    render(<Combobox options={options} onChange={handleSelect} />);
     const input = screen.getByRole("combobox");
 
     fireEvent.focus(input);

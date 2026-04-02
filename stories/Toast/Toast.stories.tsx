@@ -110,7 +110,6 @@ const ToastTrigger = () => {
     <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
       <Button
         variant="filled"
-        label={t("story.toast_show_success")}
         onClick={() =>
           show({
             title: t("story.toast_success_title"),
@@ -118,10 +117,10 @@ const ToastTrigger = () => {
             intent: "success",
           })
         }
-      />
+
+      >{t("story.toast_show_success")}</Button>
       <Button
         variant="outlined"
-        label={t("story.toast_show_error")}
         onClick={() =>
           show({
             title: t("story.notification_error_title"),
@@ -129,10 +128,10 @@ const ToastTrigger = () => {
             intent: "error",
           })
         }
-      />
+
+      >{t("story.toast_show_error")}</Button>
       <Button
         variant="ghost"
-        label={t("story.toast_show_5s")}
         onClick={() =>
           show({
             title: t("story.toast_system_notif"),
@@ -141,7 +140,8 @@ const ToastTrigger = () => {
             duration: 5000,
           })
         }
-      />
+
+      >{t("story.toast_show_5s")}</Button>
     </div>
   );
 };

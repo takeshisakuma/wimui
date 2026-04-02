@@ -87,13 +87,12 @@ export const SwitchGroup = ({
         {options.map((option) => (
           <Switch
             key={option.value}
-            label={option.label}
             value={option.value}
             checked={(currentValue || []).includes(option.value)}
             disabled={disabled || option.disabled}
             name={name}
             onChange={(e) => handleChange(option.value, e.target.checked)}
-          />
+          >{option.label}</Switch>
         ))}
       </div>
     </FieldTemplate>

@@ -41,7 +41,7 @@ export const Default: Story = {
     return (
       <Popover {...args}>
         <PopoverTrigger asChild>
-          <Button variant="outlined" label={t("story.popover_open")} />
+          <Button variant="outlined">{t("story.popover_open")}</Button>
         </PopoverTrigger>
         <PopoverContent>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -91,7 +91,7 @@ export const Interactive: Story = {
     return (
       <Popover {...args}>
         <PopoverTrigger asChild>
-          <Button variant="outlined" label={t("story.popover_interactive")} />
+          <Button variant="outlined">{t("story.popover_interactive")}</Button>
         </PopoverTrigger>
         <PopoverContent
           className="custom-width-popover"
@@ -160,7 +160,7 @@ export const Alignment: Story = {
       >
         <Popover placement="bottom-start">
           <PopoverTrigger asChild>
-            <Button label={t("story.popover_left_align")} />
+            <Button >{t("story.popover_left_align")}</Button>
           </PopoverTrigger>
           <PopoverContent>
             <div style={{ padding: "10px" }}>{t("story.popover_left_cont")}</div>
@@ -168,7 +168,7 @@ export const Alignment: Story = {
         </Popover>
         <Popover placement="bottom">
           <PopoverTrigger asChild>
-            <Button label={t("story.popover_center_align")} />
+            <Button >{t("story.popover_center_align")}</Button>
           </PopoverTrigger>
           <PopoverContent>
             <div style={{ padding: "10px" }}>{t("story.popover_center_cont")}</div>
@@ -176,7 +176,7 @@ export const Alignment: Story = {
         </Popover>
         <Popover placement="bottom-end">
           <PopoverTrigger asChild>
-            <Button label={t("story.popover_right_align")} />
+            <Button >{t("story.popover_right_align")}</Button>
           </PopoverTrigger>
           <PopoverContent>
             <div style={{ padding: "10px" }}>{t("story.popover_right_cont")}</div>
@@ -201,7 +201,7 @@ export const Placement: Story = {
       >
         <Popover placement="top">
           <PopoverTrigger asChild>
-            <Button label={t("story.popover_top_place")} />
+            <Button >{t("story.popover_top_place")}</Button>
           </PopoverTrigger>
           <PopoverContent>
             <div style={{ padding: "10px" }}>{t("story.popover_appears_above")}</div>
@@ -209,7 +209,7 @@ export const Placement: Story = {
         </Popover>
         <Popover placement="bottom">
           <PopoverTrigger asChild>
-            <Button label={t("story.popover_bottom_place")} />
+            <Button >{t("story.popover_bottom_place")}</Button>
           </PopoverTrigger>
           <PopoverContent>
             <div style={{ padding: "10px" }}>{t("story.popover_appears_below")}</div>

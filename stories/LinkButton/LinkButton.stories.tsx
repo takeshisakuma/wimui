@@ -18,14 +18,10 @@ export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <LinkButton
-        {...args}
-        label={t("story.linkbutton_google")}
-        href="https://google.com"
+      <LinkButton {...args} href="https://google.com"
         target="_blank"
         icon="ExternalLinkIcon"
-        iconPosition="right"
-      />
+        iconPosition="right">{t("story.linkbutton_google")}</LinkButton>
     );
   },
 };

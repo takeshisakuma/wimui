@@ -29,7 +29,7 @@ export const Basic: Story = {
     return (
       <Dropdown {...args}>
         <DropdownTrigger>
-          <Button label={t("story.dropdown_open")} />
+          <Button >{t("story.dropdown_open")}</Button>
         </DropdownTrigger>
         <DropdownMenu>
           <DropdownItem onClick={() => console.log("Profile clicked")}>
@@ -53,7 +53,7 @@ export const WithIcons: Story = {
     return (
       <Dropdown {...args}>
         <DropdownTrigger>
-          <Button variant="outlined" label={t("story.dropdown_options")} />
+          <Button variant="outlined">{t("story.dropdown_options")}</Button>
         </DropdownTrigger>
         <DropdownMenu>
           <DropdownItem>
@@ -78,7 +78,7 @@ export const AlignmentRight: Story = {
       <div style={{ paddingLeft: "200px" }}>
         <Dropdown {...args}>
           <DropdownTrigger>
-            <Button label={t("story.dropdown_right_aligned")} />
+            <Button >{t("story.dropdown_right_aligned")}</Button>
           </DropdownTrigger>
           <DropdownMenu align="right">
             <DropdownItem>

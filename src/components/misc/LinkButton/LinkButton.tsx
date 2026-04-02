@@ -15,7 +15,7 @@ export const LinkButton = ({
   variant = "outlined",
   intent = "default",
   backgroundColor,
-  label,
+  children,
   icon,
   iconPosition = "left",
   "aria-label": ariaLabel,
@@ -31,7 +31,7 @@ export const LinkButton = ({
         `wim-button--${size}`,
         `wim-button--${variant}`,
         `wim-button--${intent}`,
-        !label && !!icon && "wim-button--icon-only",
+        !children && !!icon && "wim-button--icon-only",
         className,
       )}
       style={backgroundColor ? { backgroundColor } : undefined}
@@ -42,7 +42,7 @@ export const LinkButton = ({
         {iconName && iconPosition === "left" && (
           <Icon name={iconName} size={size} />
         )}
-        {label && <span className="wim-button__label">{label}</span>}
+        {children && <span className="wim-button__label">{children}</span>}
         {iconName && iconPosition === "right" && (
           <Icon name={iconName} size={size} />
         )}

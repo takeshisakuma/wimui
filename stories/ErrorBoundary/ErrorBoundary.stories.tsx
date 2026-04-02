@@ -36,9 +36,9 @@ export const Default: Story = {
           <p>{t("story.errorboundary_desc")}</p>
           <Button
             onClick={() => setShouldThrow(true)}
-            label={t("story.errorboundary_btn_trigger")}
             variant="filled"
-          />
+
+          >{t("story.errorboundary_btn_trigger")}</Button>
           <ErrorBoundary onReset={() => setShouldThrow(false)}>
             {shouldThrow ? (
               <BuggyComponent />
@@ -61,9 +61,9 @@ export const CustomFallback: Story = {
         <Stack align="center" gap="lg">
           <Button
             onClick={() => setShouldThrow(true)}
-            label={t("story.errorboundary_btn_trigger_custom")}
             variant="filled"
-          />
+
+          >{t("story.errorboundary_btn_trigger_custom")}</Button>
           <ErrorBoundary
             onReset={() => setShouldThrow(false)}
             fallback={(error, _info, reset) => (
@@ -73,12 +73,8 @@ export const CustomFallback: Story = {
                 description={error.message}
               >
                 <div style={{ marginTop: "1rem" }}>
-                  <Button
-                    onClick={reset}
-                    label={t("story.errorboundary_btn_reset")}
-                    variant="outlined"
-                    size="sm"
-                  />
+                  <Button onClick={reset} variant="outlined"
+                    size="sm">{t("story.errorboundary_btn_reset")}</Button>
                 </div>
               </Alert>
             )}

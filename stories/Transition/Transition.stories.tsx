@@ -31,8 +31,8 @@ export const Fade: Story = {
             animateWidth
             variant="filled"
             onClick={() => setShow(!show)}
-            label={show ? t("story.transition_hide_content") : t("story.transition_show_content")}
-          />
+
+          >{show ? t("story.transition_hide_content") : t("story.transition_show_content")}</Button>
           <Stack h={100} align="center" justify="center">
             <Transition
               show={show}
@@ -84,8 +84,8 @@ export const Slide: Story = {
             animateWidth
             variant="filled"
             onClick={() => setShow(!show)}
-            label={show ? t("story.transition_hide_slide") : t("story.transition_show_slide")}
-          />
+
+          >{show ? t("story.transition_hide_slide") : t("story.transition_show_slide")}</Button>
           <Stack h={100} align="center" justify="center">
             <Transition
               show={show}

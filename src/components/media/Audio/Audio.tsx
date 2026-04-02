@@ -1,4 +1,5 @@
 import React, { useMemo, useEffect } from "react";
+import type { WimRadiusKey } from "../../../types/tokens";
 import classNames from "classnames";
 import { useMediaLoader } from "@/hooks/useMediaLoader";
 import { useAudioPlayer } from "./hooks/useAudioPlayer";
@@ -22,7 +23,7 @@ type AudioProps = Omit<React.ComponentPropsWithoutRef<"audio">, "src"> & {
   muted?: boolean;
   controls?: boolean;
   preload?: "auto" | "metadata" | "none";
-  radius?: "none" | "sm" | "md" | "lg" | "full";
+  radius?: WimRadiusKey | "none";
   shadow?: boolean;
   border?: boolean;
   caption?: React.ReactNode;

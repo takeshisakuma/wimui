@@ -4,8 +4,6 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import "./checkbox.scss";
 
 type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  /** @deprecated Use `children` instead. */
-  label?: React.ReactNode;
   children?: React.ReactNode;
   indeterminate?: boolean;
   className?: string;
@@ -15,7 +13,7 @@ type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
  * Checkbox component for boolean user input.
  */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, children, indeterminate = false, className, disabled, ...props }, ref) => {
+  ({ children, indeterminate = false, className, disabled, ...props }, ref) => {
     const defaultRef = useRef<HTMLInputElement>(null);
     const mergedRef = useMergedRef(defaultRef, ref);
 
@@ -40,9 +38,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           ref={mergedRef}
           {...props}
         />
-        {(label || children) && (
+        {children && (
           <span className="wim-checkbox-label">
-            {label}
             {children}
           </span>
         )}

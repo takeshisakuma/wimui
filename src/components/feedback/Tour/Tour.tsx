@@ -172,16 +172,14 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
                 <Button
                   size="sm"
                   variant="outlined"
-                  label="Back"
                   onClick={handleBack}
-                />
+                >Back</Button>
               )}
               <Button
                 size="sm"
                 variant="filled"
-                label={currentStep === steps.length - 1 ? "Finish" : "Next"}
                 onClick={handleNext}
-              />
+              >{currentStep === steps.length - 1 ? "Finish" : "Next"}</Button>
             </div>
           </div>
         </div>

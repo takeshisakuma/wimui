@@ -28,7 +28,7 @@ export const Default: Story = {
         title={t("story.emptystate_nodata_title")}
         description={t("story.emptystate_nodata_desc")}
         icon={<Icon name="SearchIcon" size="lg" />}
-        extra={<Button label={t("story.emptystate_clear_search")} />}
+        extra={<Button >{t("story.emptystate_clear_search")}</Button>}
       />
     );
   },
@@ -72,8 +72,8 @@ export const CustomAction: Story = {
         icon={<Icon name="PlusIcon" style={{ width: 48, height: 48 }} />}
         extra={
           <>
-            <Button label={t("story.emptystate_browse_templates")} variant="outlined" />
-            <Button label={t("story.emptystate_create_project")} variant="filled" />
+            <Button variant="outlined">{t("story.emptystate_browse_templates")}</Button>
+            <Button variant="filled">{t("story.emptystate_create_project")}</Button>
           </>
         }
       />
@@ -104,7 +104,7 @@ export const NoVideos: Story = {
         title={t("story.emptystate_novideos_title")}
         description={t("story.emptystate_novideos_desc")}
         icon={<Icon name="VideoIcon" size="lg" />}
-        extra={<Button label={t("story.emptystate_upload_video")} variant="filled" />}
+        extra={<Button variant="filled">{t("story.emptystate_upload_video")}</Button>}
       />
     );
   },

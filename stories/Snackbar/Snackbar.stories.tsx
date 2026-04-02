@@ -158,9 +158,9 @@ export const InteractiveDemo: Story = {
       <div style={{ padding: "40px" }}>
         <Button
           onClick={() => setOpen(true)}
-          label={t("story.snackbar_show")}
           variant="filled"
-        />
+
+        >{t("story.snackbar_show")}</Button>
         <Snackbar
           message={t("story.snackbar_interactive")}
           open={open}

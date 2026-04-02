@@ -308,9 +308,9 @@ export const MotionEffects: Story = {
               <Button
                 variant="filled"
                 onClick={() => setImageKey((prev) => prev + 1)}
-                label={t("story.image_motion_effects_reload")}
                 icon="RefreshIcon"
-              />
+
+              >{t("story.image_motion_effects_reload")}</Button>
             </div>
             <Image
               {...args}

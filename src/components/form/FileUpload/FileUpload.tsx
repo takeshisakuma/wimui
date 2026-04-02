@@ -88,14 +88,13 @@ export const FileUpload = ({
           tabIndex={-1}
         />
         <Button
-          label={buttonLabel}
           onClick={handleClick}
           disabled={disabled}
           variant="outlined"
           icon={iconName}
           iconPosition={iconPosition}
           size={size}
-        />
+        >{buttonLabel}</Button>
         <span
           className={classNames(
             "wim-file-upload__file-names",

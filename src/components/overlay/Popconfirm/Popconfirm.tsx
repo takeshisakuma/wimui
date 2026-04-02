@@ -107,19 +107,17 @@ export const Popconfirm = ({
             <PopoverClose asChild>
               <Button
                 size="sm"
-                label={cancelText}
                 onClick={onCancel}
                 variant="ghost"
-              />
+              >{cancelText}</Button>
             </PopoverClose>
             <PopoverClose asChild>
               <Button
                 size="sm"
-                label={okText}
                 onClick={onConfirm}
                 variant="filled"
                 intent={okType}
-              />
+              >{okText}</Button>
             </PopoverClose>
           </div>
         </div>

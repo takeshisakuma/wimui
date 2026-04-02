@@ -107,9 +107,8 @@ describe("Button", () => {
     window.cancelAnimationFrame = originalCancelAnimationFrame;
   });
 
-  it("renders both label and children when both are provided", () => {
-    render(<Button label="Label">Children</Button>);
-    expect(screen.getByText(/Label/)).toBeInTheDocument();
+  it("renders children", () => {
+    render(<Button>Children</Button>);
     expect(screen.getByText(/Children/)).toBeInTheDocument();
   });
 });

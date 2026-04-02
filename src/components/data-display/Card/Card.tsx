@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import type { ComponentSize } from "../../../types/tokens";
 import "./card.scss";
 
 export type CardProps<C extends React.ElementType = "div"> = {
@@ -10,11 +11,11 @@ export type CardProps<C extends React.ElementType = "div"> = {
   /**
    * パディングのサイズ
    */
-  padding?: "none" | "sm" | "md" | "lg";
+  padding?: ComponentSize | "none";
   /**
    * 角丸のサイズ
    */
-  radius?: "none" | "sm" | "md" | "lg";
+  radius?: ComponentSize | "none";
   /**
    * レンダリングするHTML要素
    */

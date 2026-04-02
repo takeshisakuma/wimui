@@ -11,7 +11,6 @@ const meta: Meta<typeof Radio> = {
   argTypes: {
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
-    label: { control: "text" },
   },
 };
 

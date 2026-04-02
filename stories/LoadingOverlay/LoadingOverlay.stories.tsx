@@ -287,7 +287,7 @@ export const Interactive: Story = {
           padding: "20px",
         }}
       >
-        <Button onClick={handleClick} disabled={loading} label={t("story.loading_overlay_load_data")} />
+        <Button onClick={handleClick} disabled={loading}>{t("story.loading_overlay_load_data")}</Button>
 
 
         <div style={{ marginTop: "20px" }}>

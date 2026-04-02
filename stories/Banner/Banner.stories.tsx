@@ -100,11 +100,8 @@ export const WithAction: Story = {
         title={args.title || t("story.banner_cookie_title")}
         description={args.description || t("story.banner_cookie_desc")}
         extra={
-          <Button
-            size="sm"
-            variant="outlined"
-            label={t("story.banner_btn_accept")}
-          />
+          <Button size="sm"
+            variant="outlined">{t("story.banner_btn_accept")}</Button>
         }
       />
     );
@@ -123,11 +120,8 @@ export const WithCloseAndAction: Story = {
         title={args.title || t("story.banner_trial_title")}
         description={args.description || t("story.banner_trial_desc")}
         extra={
-          <Button
-            size="sm"
-            variant="filled"
-            label={t("story.banner_btn_upgrade")}
-          />
+          <Button size="sm"
+            variant="filled">{t("story.banner_btn_upgrade")}</Button>
         }
         onClose={args.onClose ?? (() => {})}
       />

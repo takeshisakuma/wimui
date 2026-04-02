@@ -14,7 +14,6 @@ const meta: Meta<typeof Checkbox> = {
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
     indeterminate: { control: "boolean" },
-    label: { control: "text" },
   },
 };
 

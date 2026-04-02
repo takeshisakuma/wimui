@@ -36,9 +36,9 @@ export const Basic: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Group {...args}>
-        <Button label={t("story.group_first", "First")} variant="filled" />
-        <Button label={t("story.group_second", "Second")} variant="outlined" />
-        <Button label={t("story.group_third", "Third")} variant="ghost" />
+        <Button variant="filled">{t("story.group_first", "First")}</Button>
+        <Button variant="outlined">{t("story.group_second", "Second")}</Button>
+        <Button variant="ghost">{t("story.group_third", "Third")}</Button>
       </Group>
     );
   },
@@ -52,8 +52,8 @@ export const Grow: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Group {...args}>
-        <Button label={t("story.group_first", "First")} variant="filled" />
-        <Button label={t("story.group_second", "Second")} variant="outlined" />
+        <Button variant="filled">{t("story.group_first", "First")}</Button>
+        <Button variant="outlined">{t("story.group_second", "Second")}</Button>
       </Group>
     );
   },

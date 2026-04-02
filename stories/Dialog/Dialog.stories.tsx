@@ -50,11 +50,7 @@ export const Default: Story = {
     return (
       <Dialog {...args}>
         <DialogTrigger asChild>
-          <Button
-            variant="filled"
-            label={t("story.dialog_open")}
-
-          />
+          <Button variant="filled">{t("story.dialog_open")}</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -77,17 +73,9 @@ export const Default: Story = {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button
-                variant="outlined"
-                label={t("story.dialog_cancel")}
-
-              />
+              <Button variant="outlined">{t("story.dialog_cancel")}</Button>
             </DialogClose>
-            <Button
-              variant="filled"
-              label={t("story.dialog_save")}
-
-            />
+            <Button variant="filled">{t("story.dialog_save")}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -101,11 +89,7 @@ export const Uncontrolled: Story = {
     return (
       <Dialog>
         <DialogTrigger asChild>
-          <Button
-            variant="outlined"
-            label={t("story.dialog_uncontrolled")}
-
-          />
+          <Button variant="outlined">{t("story.dialog_uncontrolled")}</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -117,18 +101,13 @@ export const Uncontrolled: Story = {
           <p>{t("story.dialog_uncontrolled_body")}</p>
           <DialogFooter>
             <DialogClose asChild>
-              <Button
-                variant="outlined"
-                label={t("story.dialog_cancel")}
-
-              />
+              <Button variant="outlined">{t("story.dialog_cancel")}</Button>
             </DialogClose>
             <Button
               variant="filled"
-              label={t("story.dialog_confirm")}
               onClick={() => alert(t("story.dialog_confirmed_msg"))}
 
-            />
+          >{t("story.dialog_confirm")}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -154,10 +133,9 @@ export const Controlled: Story = {
         </p>
         <Button
           variant="filled"
-          label={t("story.dialog_state_open")}
           onClick={() => setOpen(true)}
 
-        />
+        >{t("story.dialog_state_open")}</Button>
 
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent>
@@ -171,16 +149,14 @@ export const Controlled: Story = {
             <DialogFooter>
               <Button
                 variant="outlined"
-                label={t("story.dialog_cancel")}
                 onClick={() => setOpen(false)}
 
-              />
+              >{t("story.dialog_cancel")}</Button>
               <Button
                 variant="filled"
-                label={t("story.dialog_state_close")}
                 onClick={() => setOpen(false)}
 
-              />
+              >{t("story.dialog_state_close")}</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>

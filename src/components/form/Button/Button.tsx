@@ -10,8 +10,6 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
   backgroundColor?: WimColor;
   size?: ComponentSize;
-  /** @deprecated Use `children` instead. */
-  label?: React.ReactNode;
   variant?: "filled" | "outlined" | "ghost";
   /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
   intent?: "default" | "destructive" | "positive";
@@ -33,7 +31,6 @@ export const Button = React.forwardRef<
   (
     {
       size = "md",
-      label,
       variant = "outlined",
       intent = "default",
       icon,
@@ -89,7 +86,7 @@ export const Button = React.forwardRef<
       });
 
       return () => cancelAnimationFrame(frame);
-    }, [label, children, animateWidth]);
+    }, [children, animateWidth]);
 
     const isDisabled = disabled;
 
@@ -99,7 +96,7 @@ export const Button = React.forwardRef<
       resolvedAriaLabel = ariaLabelProp;
     } else if (ariaLabelProp !== false) {
       // アイコンのみボタンはアイコン名をフォールバックとして使用
-      if (!label && !children && typeof icon === "string") {
+      if (!children && typeof icon === "string") {
         resolvedAriaLabel = icon;
       } else if (loading) {
         resolvedAriaLabel = "Loading";
@@ -139,12 +136,11 @@ export const Button = React.forwardRef<
           }}
         >
           {iconContent && iconPosition === "left" && iconContent}
-          {(label || children) && (
+          {children && (
             <span
               className="wim-button__label"
               style={{ textAlign: "inherit", width: "100%" }}
             >
-              {label}
               {children}
             </span>
           )}
@@ -187,7 +183,7 @@ export const Button = React.forwardRef<
           loading && "wim-button--loading",
           animateWidth && "wim-button--animated-width",
           fullWidth && "wim-button--full-width",
-          !label && !children && !!icon && "wim-button--icon-only",
+          !children && !!icon && "wim-button--icon-only",
           className,
         )}
         disabled={isDisabled || loading}

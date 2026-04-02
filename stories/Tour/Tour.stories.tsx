@@ -41,7 +41,7 @@ export const Default: Story = {
 
     return (
       <div style={{ padding: "40px", height: "1000px" }}>
-        <Button label={t("story.tour_start")} onClick={() => setOpen(true)} />
+        <Button onClick={() => setOpen(true)}>{t("story.tour_start")}</Button>
 
         <div
           style={{

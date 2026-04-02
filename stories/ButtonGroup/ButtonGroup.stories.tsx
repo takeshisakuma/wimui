@@ -30,9 +30,9 @@ export const LargeGroup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="lg" label={t("story.button_click_me")} variant="filled" />
-        <Button size="lg" label={t("story.button_click_me")} variant="outlined" />
-        <Button size="lg" label={t("story.button_click_me")} variant="ghost" />
+        <Button size="lg" variant="filled">{t("story.button_click_me")}</Button>
+        <Button size="lg" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="lg" variant="ghost">{t("story.button_click_me")}</Button>
       </ButtonGroup>
     );
   },
@@ -43,9 +43,9 @@ export const MediumGroup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="md" label={t("story.button_click_me")} variant="filled" />
-        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
-        <Button size="md" label={t("story.button_click_me")} variant="ghost" />
+        <Button size="md" variant="filled">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="ghost">{t("story.button_click_me")}</Button>
       </ButtonGroup>
     );
   },
@@ -56,9 +56,9 @@ export const SmallGroup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="sm" label={t("story.button_click_me")} variant="filled" />
-        <Button size="sm" label={t("story.button_click_me")} variant="outlined" />
-        <Button size="sm" label={t("story.button_click_me")} variant="ghost" />
+        <Button size="sm" variant="filled">{t("story.button_click_me")}</Button>
+        <Button size="sm" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="sm" variant="ghost">{t("story.button_click_me")}</Button>
       </ButtonGroup>
     );
   },
@@ -72,9 +72,9 @@ export const JoinedGroup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
-        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
-        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
+        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
       </ButtonGroup>
     );
   },
@@ -89,9 +89,9 @@ export const JoinedGroupPrimary: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
-        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
-        <Button size="md" label={t("story.button_click_me")} variant="outlined" />
+        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
       </ButtonGroup>
     );
   },
@@ -106,9 +106,9 @@ export const PriorityOverride: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="md" label={t("story.buttongroup_primary")} variant="filled" />
-        <Button size="md" label={t("story.buttongroup_secondary")} variant="outlined" />
-        <Button size="md" label={t("story.buttongroup_tertiary")} variant="ghost" />
+        <Button size="md" variant="filled">{t("story.buttongroup_primary")}</Button>
+        <Button size="md" variant="outlined">{t("story.buttongroup_secondary")}</Button>
+        <Button size="md" variant="ghost">{t("story.buttongroup_tertiary")}</Button>
       </ButtonGroup>
     );
   },

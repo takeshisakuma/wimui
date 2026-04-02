@@ -5,8 +5,6 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import "./switch.scss";
 
 type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
-  /** @deprecated Use `children` instead. */
-  label?: React.ReactNode;
   size?: ComponentSize;
   className?: string;
   children?: React.ReactNode;
@@ -17,7 +15,7 @@ type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
  */
 export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
   (
-    { label, children, size = "md", className, disabled, id: customId, ...props },
+    { children, size = "md", className, disabled, id: customId, ...props },
     ref,
   ) => {
     const defaultRef = useRef<HTMLInputElement>(null);
@@ -49,9 +47,8 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           ref={mergedRef}
           {...props}
         />
-        {(label || children) && (
+        {children && (
           <span className="wim-switch-label">
-            {label}
             {children}
           </span>
         )}

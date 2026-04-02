@@ -16,7 +16,7 @@ export type ComboboxLabels = {
 
 export type ComboboxProps = {
   options: ComboboxOption[];
-  onSelect?: (option: ComboboxOption) => void;
+  onChange?: (option: ComboboxOption) => void;
   placeholder?: string;
   label?: React.ReactNode;
   error?: string;
@@ -36,7 +36,7 @@ export type ComboboxProps = {
  */
 export const Combobox = ({
   options = [],
-  onSelect,
+  onChange,
   placeholder = "Select option",
   showSearchIcon = true,
   allowClear = true,
@@ -95,8 +95,8 @@ export const Combobox = ({
   const handleOptionClick = (option: ComboboxOption) => {
     setInputValue(option.label);
     setIsOpen(false);
-    if (onSelect) {
-      onSelect(option);
+    if (onChange) {
+      onChange(option);
     }
   };
 

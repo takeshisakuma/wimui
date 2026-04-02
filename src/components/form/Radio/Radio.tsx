@@ -4,8 +4,6 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import "./radio.scss";
 
 type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  /** @deprecated Use `children` instead. */
-  label?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
 };
@@ -15,7 +13,7 @@ type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & {
  */
 
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
-  ({ label, children, className, disabled, ...props }, ref) => {
+  ({ children, className, disabled, ...props }, ref) => {
     const defaultRef = useRef<HTMLInputElement>(null);
     const mergedRef = useMergedRef(defaultRef, ref);
 
@@ -34,9 +32,8 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           ref={mergedRef}
           {...props}
         />
-        {(label || children) && (
+        {children && (
           <span className="wim-radio-label">
-            {label}
             {children}
           </span>
         )}

@@ -169,8 +169,7 @@ const TransferList = ({
           indeterminate={isIndeterminate}
           onChange={() => onSelectAll(listKeys, listType)}
           disabled={disabled || listKeys.length === 0}
-          label={title}
-        />
+        >{title}</Checkbox>
         <span className="wim-transfer__header-count">
           {listSelectedKeys.length}/{data.length}
         </span>

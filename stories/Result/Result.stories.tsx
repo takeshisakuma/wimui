@@ -25,8 +25,8 @@ export const Success: Story = {
         title={t("story.result_success_title")}
         description={t("story.result_success_desc")}
         extra={[
-          <Button variant="filled" key="console" label={t("story.result_go_console")} />,
-          <Button key="buy" label={t("story.result_buy_again")} />,
+          <Button variant="filled" key="console">{t("story.result_go_console")}</Button>,
+          <Button key="buy">{t("story.result_buy_again")}</Button>,
         ]}
       />
     );
@@ -40,7 +40,7 @@ export const Info: Story = {
       <Result
         {...args}
         title={t("story.result_info_title")}
-        extra={<Button variant="filled" label={t("story.result_go_console")} />}
+        extra={<Button variant="filled">{t("story.result_go_console")}</Button>}
       />
     );
   },
@@ -54,7 +54,7 @@ export const Warning: Story = {
         {...args}
         intent="warning"
         title={t("story.result_warning_title")}
-        extra={<Button variant="filled" label={t("story.result_go_console")} />}
+        extra={<Button variant="filled">{t("story.result_go_console")}</Button>}
       />
     );
   },
@@ -70,8 +70,8 @@ export const ErrorStatus: Story = {
         title={t("story.result_error_title")}
         description={t("story.result_error_desc")}
         extra={[
-          <Button variant="filled" key="console" label={t("story.result_go_console")} />,
-          <Button key="buy" label={t("story.result_buy_again")} />,
+          <Button variant="filled" key="console">{t("story.result_go_console")}</Button>,
+          <Button key="buy">{t("story.result_buy_again")}</Button>,
         ]}
       />
     );
@@ -87,7 +87,7 @@ export const Status404: Story = {
         intent="404"
         title="404"
         description={t("story.result_404_desc")}
-        extra={<Button variant="filled" label={t("story.result_back_home")} />}
+        extra={<Button variant="filled">{t("story.result_back_home")}</Button>}
       />
     );
   },
@@ -102,7 +102,7 @@ export const Status403: Story = {
         intent="403"
         title="403"
         description={t("story.result_403_desc")}
-        extra={<Button variant="filled" label={t("story.result_back_home")} />}
+        extra={<Button variant="filled">{t("story.result_back_home")}</Button>}
       />
     );
   },
@@ -117,7 +117,7 @@ export const Status500: Story = {
         intent="500"
         title="500"
         description={t("story.result_500_desc")}
-        extra={<Button variant="filled" label={t("story.result_back_home")} />}
+        extra={<Button variant="filled">{t("story.result_back_home")}</Button>}
       />
     );
   },

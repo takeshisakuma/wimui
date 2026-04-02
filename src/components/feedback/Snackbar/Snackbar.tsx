@@ -166,8 +166,7 @@ export const Snackbar = ({
                 size="sm"
                 onClick={handleAction}
                 className="wim-snackbar__action-button"
-                label={actionLabel}
-              />
+              >{actionLabel}</Button>
             )}
             <FeedbackCloseButton
               onClose={showCloseButton ? handleClose : undefined}

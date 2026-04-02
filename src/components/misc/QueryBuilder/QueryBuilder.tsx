@@ -396,10 +396,9 @@ export const QueryBuilder = ({
             />
             <Switch
               size="md"
-              label="NOT"
               checked={group.not}
               onChange={(e) => handleUpdate(group.id, { not: e.target.checked })}
-            />
+            >NOT</Switch>
           </div>
           {depth > 0 && (
             <IconButton

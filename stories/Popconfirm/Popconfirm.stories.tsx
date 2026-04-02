@@ -30,7 +30,7 @@ export const Default: Story = {
         cancelText={t("story.popconfirm_no")}
         okType="destructive"
       >
-        <Button variant="filled" label={t("story.popconfirm_delete_btn")} />
+        <Button variant="filled">{t("story.popconfirm_delete_btn")}</Button>
       </Popconfirm>
     );
   },
@@ -47,7 +47,7 @@ export const WithDescription: Story = {
         okText={t("story.popconfirm_yes")}
         cancelText={t("story.popconfirm_no")}
       >
-        <Button label={t("story.popconfirm_delete_btn")} />
+        <Button >{t("story.popconfirm_delete_btn")}</Button>
       </Popconfirm>
     );
   },
@@ -58,7 +58,7 @@ export const Disabled: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Popconfirm {...args} title={t("story.popconfirm_yes")} disabled>
-        <Button label={t("story.popconfirm_disabled_btn")} />
+        <Button >{t("story.popconfirm_disabled_btn")}</Button>
       </Popconfirm>
     );
   },

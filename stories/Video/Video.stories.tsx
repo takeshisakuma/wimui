@@ -135,9 +135,9 @@ export const PremiumFeatures: Story = {
             <Button
               variant="filled"
               onClick={() => setVideoKey((prev) => prev + 1)}
-              label={t("story.video_premium_features_reload")}
               icon="RefreshIcon"
-            />
+
+            >{t("story.video_premium_features_reload")}</Button>
           </div>
           <Video
             {...args}
