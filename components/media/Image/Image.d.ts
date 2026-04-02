@@ -1,8 +1,9 @@
 import { default as React } from '../../../../node_modules/react';
+import { ComponentSize, WimRadiusKey } from '../../../types/tokens';
 /**
  * フィルタの強さを定義する型
  */
-export type ImageFilterIntensity = "none" | "sm" | "md" | "lg";
+export type ImageFilterIntensity = ComponentSize | "none";
 /**
  * 画像に適用するフィルタオプション
  */
@@ -54,7 +55,7 @@ export type ImageProps = React.ComponentPropsWithoutRef<"img"> & {
     width?: string | number;
     height?: string | number;
     /** 角丸のサイズ */
-    radius?: "none" | "sm" | "md" | "lg" | "full";
+    radius?: WimRadiusKey | "none";
     /** シャドウ（影）を表示するか */
     shadow?: boolean;
     /** 枠線を表示するか */

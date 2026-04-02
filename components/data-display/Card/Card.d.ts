@@ -1,4 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
+import { ComponentSize } from '../../../types/tokens';
 export type CardProps<C extends React.ElementType = "div"> = {
     /**
      * カードのバリアント
@@ -7,11 +8,11 @@ export type CardProps<C extends React.ElementType = "div"> = {
     /**
      * パディングのサイズ
      */
-    padding?: "none" | "sm" | "md" | "lg";
+    padding?: ComponentSize | "none";
     /**
      * 角丸のサイズ
      */
-    radius?: "none" | "sm" | "md" | "lg";
+    radius?: ComponentSize | "none";
     /**
      * レンダリングするHTML要素
      */

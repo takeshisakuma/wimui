@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.7s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -1091,7 +1091,7 @@ target?: () =&gt; HTMLElement | Window | null = () =&gt; window</code></pre>
             &lt;p&gt;{t(&quot;story.affix_scroll_top&quot;)}&lt;/p&gt;
             &lt;div style={{ marginTop: &quot;100px&quot; }}&gt;
                 &lt;Affix offsetTop={20}&gt;
-                    &lt;Button label={t(&quot;story.affix_top&quot;)} size=&quot;md&quot; /&gt;
+                    &lt;Button size=&quot;md&quot;&gt;{t(&quot;story.affix_top&quot;)}&lt;/Button&gt;
                 &lt;/Affix&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -1114,7 +1114,7 @@ target?: () =&gt; HTMLElement | Window | null = () =&gt; window</code></pre>
             &lt;div style={{ marginTop: &quot;120vh&quot; }}&gt;
                 &lt;p&gt;{t(&quot;story.affix_scroll_bottom_2&quot;, &quot;Scroll down here...&quot;)}&lt;/p&gt;
                 &lt;Affix offsetBottom={20}&gt;
-                    &lt;Button label={t(&quot;story.affix_bottom&quot;)} size=&quot;md&quot; /&gt;
+                    &lt;Button size=&quot;md&quot;&gt;{t(&quot;story.affix_bottom&quot;)}&lt;/Button&gt;
                 &lt;/Affix&gt;
                 &lt;p&gt;{t(&quot;story.affix_more&quot;)}&lt;/p&gt;
             &lt;/div&gt;
@@ -3481,7 +3481,7 @@ preload?: &quot;auto&quot; | &quot;metadata&quot; | &quot;none&quot;
 
 presets?: boolean = false
 
-radius?: &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;full&quot; = &quot;none&quot;
+radius?: WimRadiusKey | &quot;none&quot; = &quot;none&quot;
 
 shadow?: boolean = false
 
@@ -3631,8 +3631,7 @@ visualizer?: boolean = false</code></pre>
                     &lt;Button
                         variant=&quot;filled&quot;
                         onClick={() =&gt; setAudioKey((prev) =&gt; prev + 1)}
-                        label={t(&quot;story.audio_premium_features_reload&quot;)}
-                        icon=&quot;RefreshIcon&quot; /&gt;
+                        icon=&quot;RefreshIcon&quot;&gt;{t(&quot;story.audio_premium_features_reload&quot;)}&lt;/Button&gt;
                 &lt;/div&gt;
                 &lt;Audio
                     key={audioKey}
@@ -5394,11 +5393,8 @@ title?: React.ReactNode</code></pre>
             title={args.title || t(&quot;story.banner_cookie_title&quot;)}
             description={args.description || t(&quot;story.banner_cookie_desc&quot;)}
             extra={
-              &lt;Button
-                size=&quot;sm&quot;
-                variant=&quot;outlined&quot;
-                label={t(&quot;story.banner_btn_accept&quot;)}
-              /&gt;
+              &lt;Button size=&quot;sm&quot;
+                variant=&quot;outlined&quot;&gt;{t(&quot;story.banner_btn_accept&quot;)}&lt;/Button&gt;
             } /&gt;
     );
 };</code></pre>
@@ -5419,11 +5415,8 @@ title?: React.ReactNode</code></pre>
             title={args.title || t(&quot;story.banner_trial_title&quot;)}
             description={args.description || t(&quot;story.banner_trial_desc&quot;)}
             extra={
-              &lt;Button
-                size=&quot;sm&quot;
-                variant=&quot;filled&quot;
-                label={t(&quot;story.banner_btn_upgrade&quot;)}
-              /&gt;
+              &lt;Button size=&quot;sm&quot;
+                variant=&quot;filled&quot;&gt;{t(&quot;story.banner_btn_upgrade&quot;)}&lt;/Button&gt;
             }
             onClose={args.onClose ?? (() =&gt; {})} /&gt;
     );
@@ -6487,7 +6480,7 @@ open?: boolean</code></pre>
     return (
         &lt;BottomSheet&gt;
             &lt;BottomSheetTrigger asChild&gt;
-                &lt;Button variant=&quot;filled&quot; label={t(&quot;story.bottomsheet_open&quot;)} /&gt;
+                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.bottomsheet_open&quot;)}&lt;/Button&gt;
             &lt;/BottomSheetTrigger&gt;
             &lt;BottomSheetContent&gt;
                 &lt;BottomSheetHeader&gt;
@@ -6520,9 +6513,9 @@ open?: boolean</code></pre>
                 &lt;/BottomSheetBody&gt;
                 &lt;BottomSheetFooter&gt;
                     &lt;BottomSheetClose asChild&gt;
-                        &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.bottomsheet_cancel&quot;)} /&gt;
+                        &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.bottomsheet_cancel&quot;)}&lt;/Button&gt;
                     &lt;/BottomSheetClose&gt;
-                    &lt;Button variant=&quot;filled&quot; label={t(&quot;story.bottomsheet_action&quot;)} /&gt;
+                    &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.bottomsheet_action&quot;)}&lt;/Button&gt;
                 &lt;/BottomSheetFooter&gt;
             &lt;/BottomSheetContent&gt;
         &lt;/BottomSheet&gt;
@@ -6542,7 +6535,7 @@ open?: boolean</code></pre>
     return (
         &lt;BottomSheet&gt;
             &lt;BottomSheetTrigger asChild&gt;
-                &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.bottomsheet_quick_actions&quot;)} /&gt;
+                &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.bottomsheet_quick_actions&quot;)}&lt;/Button&gt;
             &lt;/BottomSheetTrigger&gt;
             &lt;BottomSheetContent&gt;
                 &lt;BottomSheetHeader&gt;
@@ -7526,7 +7519,7 @@ npm run test -- Breadcrumb
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Button</h2>
       <div class="badges">
-        <label for="c-19-components-buttons-button-props" class="badge ok as-toggle">12 prop types</label>
+        <label for="c-19-components-buttons-button-props" class="badge ok as-toggle">11 prop types</label>
         <label for="c-19-components-buttons-button-info" class="badge info as-toggle">1 info</label>
         <label for="c-19-components-buttons-button-stories" class="badge ok as-toggle">10 stories</label>
         <label for="c-19-components-buttons-button-docs" class="badge ok as-toggle">1 doc</label>
@@ -7560,7 +7553,7 @@ npm run test -- Breadcrumb
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">12 prop types</span>
+              <span class="badge ok">11 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Button/Button.tsx::Button</code></pre>
             <pre><code>Props:</code></pre>
@@ -7594,11 +7587,6 @@ iconPosition?: &quot;left&quot; | &quot;right&quot; = &quot;left&quot;
 intent?: &quot;default&quot; | &quot;destructive&quot; | &quot;positive&quot; = &quot;default&quot;
 
 justify?: &quot;start&quot; | &quot;center&quot; | &quot;end&quot; | &quot;between&quot; = &quot;center&quot;
-
-/**
- * @deprecated Use `children` instead.
- */
-label?: React.ReactNode
 
 loading?: boolean = false
 
@@ -8176,9 +8164,9 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot;</code></
 
     return (
         &lt;ButtonGroup&gt;
-            &lt;Button size=&quot;lg&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;filled&quot; /&gt;
-            &lt;Button size=&quot;lg&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;outlined&quot; /&gt;
-            &lt;Button size=&quot;lg&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;ghost&quot; /&gt;
+            &lt;Button size=&quot;lg&quot; variant=&quot;filled&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;lg&quot; variant=&quot;outlined&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;lg&quot; variant=&quot;ghost&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
         &lt;/ButtonGroup&gt;
     );
 };</code></pre>
@@ -8195,9 +8183,9 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot;</code></
 
     return (
         &lt;ButtonGroup&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;filled&quot; /&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;outlined&quot; /&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;ghost&quot; /&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;filled&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;outlined&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;ghost&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
         &lt;/ButtonGroup&gt;
     );
 };</code></pre>
@@ -8214,9 +8202,9 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot;</code></
 
     return (
         &lt;ButtonGroup&gt;
-            &lt;Button size=&quot;sm&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;filled&quot; /&gt;
-            &lt;Button size=&quot;sm&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;outlined&quot; /&gt;
-            &lt;Button size=&quot;sm&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;ghost&quot; /&gt;
+            &lt;Button size=&quot;sm&quot; variant=&quot;filled&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;sm&quot; variant=&quot;outlined&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;sm&quot; variant=&quot;ghost&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
         &lt;/ButtonGroup&gt;
     );
 };</code></pre>
@@ -8233,9 +8221,9 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot;</code></
 
     return (
         &lt;ButtonGroup joined&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;outlined&quot; /&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;outlined&quot; /&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;outlined&quot; /&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;outlined&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;outlined&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;outlined&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
         &lt;/ButtonGroup&gt;
     );
 };</code></pre>
@@ -8252,9 +8240,9 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot;</code></
 
     return (
         &lt;ButtonGroup joined variant=&quot;filled&quot;&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;outlined&quot; /&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;outlined&quot; /&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.button_click_me&quot;)} variant=&quot;outlined&quot; /&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;outlined&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;outlined&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;outlined&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
         &lt;/ButtonGroup&gt;
     );
 };</code></pre>
@@ -8271,9 +8259,9 @@ variant?: &quot;filled&quot; | &quot;outlined&quot; | &quot;ghost&quot;</code></
 
     return (
         &lt;ButtonGroup variant=&quot;ghost&quot; gap=&quot;10px&quot;&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.buttongroup_primary&quot;)} variant=&quot;filled&quot; /&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.buttongroup_secondary&quot;)} variant=&quot;outlined&quot; /&gt;
-            &lt;Button size=&quot;md&quot; label={t(&quot;story.buttongroup_tertiary&quot;)} variant=&quot;ghost&quot; /&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;filled&quot;&gt;{t(&quot;story.buttongroup_primary&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;outlined&quot;&gt;{t(&quot;story.buttongroup_secondary&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;ghost&quot;&gt;{t(&quot;story.buttongroup_tertiary&quot;)}&lt;/Button&gt;
         &lt;/ButtonGroup&gt;
     );
 };</code></pre>
@@ -9007,12 +8995,12 @@ as?: C
 /**
  * パディングのサイズ
  */
-padding?: &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;
+padding?: ComponentSize | &quot;none&quot; = &quot;md&quot;
 
 /**
  * 角丸のサイズ
  */
-radius?: &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;
+radius?: ComponentSize | &quot;none&quot; = &quot;md&quot;
 
 /**
  * カードのバリアント
@@ -9113,8 +9101,8 @@ variant?: &quot;elevated&quot; | &quot;outline&quot; | &quot;flat&quot; = &quot;
             &lt;/Card.Body&gt;
             &lt;Card.Footer&gt;
                 &lt;div style={{ display: &quot;flex&quot;, justifyContent: &quot;flex-end&quot;, gap: &quot;8px&quot; }}&gt;
-                    &lt;Button variant=&quot;outlined&quot; size=&quot;sm&quot; label={t(&quot;story.card_cancel&quot;)} /&gt;
-                    &lt;Button variant=&quot;filled&quot; size=&quot;sm&quot; label={t(&quot;story.card_save&quot;)} /&gt;
+                    &lt;Button variant=&quot;outlined&quot; size=&quot;sm&quot;&gt;{t(&quot;story.card_cancel&quot;)}&lt;/Button&gt;
+                    &lt;Button variant=&quot;filled&quot; size=&quot;sm&quot;&gt;{t(&quot;story.card_save&quot;)}&lt;/Button&gt;
                 &lt;/div&gt;
             &lt;/Card.Footer&gt;
         &lt;/Card&gt;
@@ -12058,7 +12046,7 @@ import { T } from &quot;../T&quot;;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Checkbox</h2>
       <div class="badges">
-        <label for="c-28-components-selection-controls-checkbox-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-28-components-selection-controls-checkbox-props" class="badge ok as-toggle">3 prop types</label>
         
         <label for="c-28-components-selection-controls-checkbox-stories" class="badge ok as-toggle">7 stories</label>
         <label for="c-28-components-selection-controls-checkbox-docs" class="badge ok as-toggle">1 doc</label>
@@ -12085,7 +12073,7 @@ import { T } from &quot;../T&quot;;
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">4 prop types</span>
+              <span class="badge ok">3 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Checkbox/Checkbox.tsx::Checkbox</code></pre>
             <pre><code>Props:</code></pre>
@@ -12093,12 +12081,7 @@ import { T } from &quot;../T&quot;;
 
 className?: string
 
-indeterminate?: boolean = false
-
-/**
- * @deprecated Use `children` instead.
- */
-label?: React.ReactNode</code></pre>
+indeterminate?: boolean = false</code></pre>
           </div>
         </div>
     
@@ -13966,7 +13949,7 @@ labels?: {
 
 layout?: &quot;vertical&quot; | &quot;horizontal&quot;
 
-onSelect?: (option: ComboboxOption) =&gt; void
+onChange?: (option: ComboboxOption) =&gt; void
 
 options?: ComboboxOption[] = []
 
@@ -18125,7 +18108,7 @@ open?: boolean</code></pre>
     return (
         &lt;Dialog&gt;
             &lt;DialogTrigger asChild&gt;
-                &lt;Button variant=&quot;filled&quot; label={t(&quot;story.dialog_open&quot;)} /&gt;
+                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.dialog_open&quot;)}&lt;/Button&gt;
             &lt;/DialogTrigger&gt;
             &lt;DialogContent&gt;
                 &lt;DialogHeader&gt;
@@ -18144,9 +18127,9 @@ open?: boolean</code></pre>
                 &lt;/div&gt;
                 &lt;DialogFooter&gt;
                     &lt;DialogClose asChild&gt;
-                        &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.dialog_cancel&quot;)} /&gt;
+                        &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
                     &lt;/DialogClose&gt;
-                    &lt;Button variant=&quot;filled&quot; label={t(&quot;story.dialog_save&quot;)} /&gt;
+                    &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.dialog_save&quot;)}&lt;/Button&gt;
                 &lt;/DialogFooter&gt;
             &lt;/DialogContent&gt;
         &lt;/Dialog&gt;
@@ -18165,11 +18148,7 @@ open?: boolean</code></pre>
   return (
     &lt;Dialog&gt;
       &lt;DialogTrigger asChild&gt;
-        &lt;Button
-          variant=&quot;outlined&quot;
-          label={t(&quot;story.dialog_uncontrolled&quot;)}
-
-        /&gt;
+        &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.dialog_uncontrolled&quot;)}&lt;/Button&gt;
       &lt;/DialogTrigger&gt;
       &lt;DialogContent&gt;
         &lt;DialogHeader&gt;
@@ -18181,18 +18160,13 @@ open?: boolean</code></pre>
         &lt;p&gt;{t(&quot;story.dialog_uncontrolled_body&quot;)}&lt;/p&gt;
         &lt;DialogFooter&gt;
           &lt;DialogClose asChild&gt;
-            &lt;Button
-              variant=&quot;outlined&quot;
-              label={t(&quot;story.dialog_cancel&quot;)}
-
-            /&gt;
+            &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
           &lt;/DialogClose&gt;
           &lt;Button
             variant=&quot;filled&quot;
-            label={t(&quot;story.dialog_confirm&quot;)}
             onClick={() =&gt; alert(t(&quot;story.dialog_confirmed_msg&quot;))}
 
-          /&gt;
+        &gt;{t(&quot;story.dialog_confirm&quot;)}&lt;/Button&gt;
         &lt;/DialogFooter&gt;
       &lt;/DialogContent&gt;
     &lt;/Dialog&gt;
@@ -18223,10 +18197,9 @@ open?: boolean</code></pre>
       &lt;/p&gt;
       &lt;Button
         variant=&quot;filled&quot;
-        label={t(&quot;story.dialog_state_open&quot;)}
         onClick={() =&gt; setOpen(true)}
 
-      /&gt;
+      &gt;{t(&quot;story.dialog_state_open&quot;)}&lt;/Button&gt;
 
       &lt;Dialog open={open} onOpenChange={setOpen}&gt;
         &lt;DialogContent&gt;
@@ -18240,16 +18213,14 @@ open?: boolean</code></pre>
           &lt;DialogFooter&gt;
             &lt;Button
               variant=&quot;outlined&quot;
-              label={t(&quot;story.dialog_cancel&quot;)}
               onClick={() =&gt; setOpen(false)}
 
-            /&gt;
+            &gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
             &lt;Button
               variant=&quot;filled&quot;
-              label={t(&quot;story.dialog_state_close&quot;)}
               onClick={() =&gt; setOpen(false)}
 
-            /&gt;
+            &gt;{t(&quot;story.dialog_state_close&quot;)}&lt;/Button&gt;
           &lt;/DialogFooter&gt;
         &lt;/DialogContent&gt;
       &lt;/Dialog&gt;
@@ -18748,7 +18719,7 @@ slideOut?: boolean = true</code></pre>
     return (
         &lt;Drawer side=&quot;right&quot;&gt;
             &lt;DrawerTrigger asChild&gt;
-                &lt;Button variant=&quot;filled&quot; label={t(&quot;story.drawer_open_right&quot;)} /&gt;
+                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.drawer_open_right&quot;)}&lt;/Button&gt;
             &lt;/DrawerTrigger&gt;
             &lt;DrawerContent&gt;
                 &lt;DrawerHeader&gt;
@@ -18761,9 +18732,9 @@ slideOut?: boolean = true</code></pre>
                 &lt;/div&gt;
                 &lt;DrawerFooter&gt;
                     &lt;DrawerClose asChild&gt;
-                        &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.dialog_cancel&quot;)} /&gt;
+                        &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
                     &lt;/DrawerClose&gt;
-                    &lt;Button variant=&quot;filled&quot; label={t(&quot;story.drawer_confirm&quot;)} /&gt;
+                    &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.drawer_confirm&quot;)}&lt;/Button&gt;
                 &lt;/DrawerFooter&gt;
             &lt;/DrawerContent&gt;
         &lt;/Drawer&gt;
@@ -18783,7 +18754,7 @@ slideOut?: boolean = true</code></pre>
     return (
         &lt;Drawer side=&quot;left&quot;&gt;
             &lt;DrawerTrigger asChild&gt;
-                &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.drawer_open_left&quot;)} /&gt;
+                &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.drawer_open_left&quot;)}&lt;/Button&gt;
             &lt;/DrawerTrigger&gt;
             &lt;DrawerContent&gt;
                 &lt;DrawerHeader&gt;
@@ -18795,7 +18766,7 @@ slideOut?: boolean = true</code></pre>
                 &lt;/div&gt;
                 &lt;DrawerFooter&gt;
                     &lt;DrawerClose asChild&gt;
-                        &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.dialog_cancel&quot;)} /&gt;
+                        &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
                     &lt;/DrawerClose&gt;
                 &lt;/DrawerFooter&gt;
             &lt;/DrawerContent&gt;
@@ -18816,7 +18787,7 @@ slideOut?: boolean = true</code></pre>
     return (
         &lt;Drawer side=&quot;top&quot;&gt;
             &lt;DrawerTrigger asChild&gt;
-                &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.drawer_open_top&quot;)} /&gt;
+                &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.drawer_open_top&quot;)}&lt;/Button&gt;
             &lt;/DrawerTrigger&gt;
             &lt;DrawerContent&gt;
                 &lt;DrawerHeader&gt;
@@ -18828,7 +18799,7 @@ slideOut?: boolean = true</code></pre>
                 &lt;/div&gt;
                 &lt;DrawerFooter&gt;
                     &lt;DrawerClose asChild&gt;
-                        &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.dialog_cancel&quot;)} /&gt;
+                        &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
                     &lt;/DrawerClose&gt;
                 &lt;/DrawerFooter&gt;
             &lt;/DrawerContent&gt;
@@ -18849,7 +18820,7 @@ slideOut?: boolean = true</code></pre>
     return (
         &lt;Drawer side=&quot;bottom&quot;&gt;
             &lt;DrawerTrigger asChild&gt;
-                &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.drawer_open_bottom&quot;)} /&gt;
+                &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.drawer_open_bottom&quot;)}&lt;/Button&gt;
             &lt;/DrawerTrigger&gt;
             &lt;DrawerContent&gt;
                 &lt;DrawerHeader&gt;
@@ -18863,7 +18834,7 @@ slideOut?: boolean = true</code></pre>
                 &lt;/div&gt;
                 &lt;DrawerFooter&gt;
                     &lt;DrawerClose asChild&gt;
-                        &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.dialog_cancel&quot;)} /&gt;
+                        &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
                     &lt;/DrawerClose&gt;
                 &lt;/DrawerFooter&gt;
             &lt;/DrawerContent&gt;
@@ -18895,9 +18866,9 @@ slideOut?: boolean = true</code></pre>
       &lt;/p&gt;
       &lt;Button
         variant=&quot;filled&quot;
-        label={t(&quot;story.dialog_state_open&quot;)}
         onClick={() =&gt; setOpen(true)}
-      /&gt;
+
+      &gt;{t(&quot;story.dialog_state_open&quot;)}&lt;/Button&gt;
 
       &lt;Drawer open={open} onOpenChange={setOpen}&gt;
         &lt;DrawerContent&gt;
@@ -18913,14 +18884,14 @@ slideOut?: boolean = true</code></pre>
           &lt;DrawerFooter&gt;
             &lt;Button
               variant=&quot;outlined&quot;
-              label={t(&quot;story.dialog_cancel&quot;)}
               onClick={() =&gt; setOpen(false)}
-            /&gt;
+
+            &gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
             &lt;Button
               variant=&quot;filled&quot;
-              label={t(&quot;story.dialog_state_close&quot;)}
               onClick={() =&gt; setOpen(false)}
-            /&gt;
+
+            &gt;{t(&quot;story.dialog_state_close&quot;)}&lt;/Button&gt;
           &lt;/DrawerFooter&gt;
         &lt;/DrawerContent&gt;
       &lt;/Drawer&gt;
@@ -18941,7 +18912,7 @@ slideOut?: boolean = true</code></pre>
     return (
         &lt;Drawer side=&quot;right&quot; slideIn={false} slideOut={false}&gt;
             &lt;DrawerTrigger asChild&gt;
-                &lt;Button variant=&quot;filled&quot; label={t(&quot;story.drawer_open_no_slide&quot;)} /&gt;
+                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.drawer_open_no_slide&quot;)}&lt;/Button&gt;
             &lt;/DrawerTrigger&gt;
             &lt;DrawerContent&gt;
                 &lt;DrawerHeader&gt;
@@ -18955,7 +18926,7 @@ slideOut?: boolean = true</code></pre>
                 &lt;/div&gt;
                 &lt;DrawerFooter&gt;
                     &lt;DrawerClose asChild&gt;
-                        &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.dialog_cancel&quot;)} /&gt;
+                        &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
                     &lt;/DrawerClose&gt;
                 &lt;/DrawerFooter&gt;
             &lt;/DrawerContent&gt;
@@ -19205,7 +19176,7 @@ className?: string</code></pre>
     return (
         &lt;Dropdown&gt;
             &lt;DropdownTrigger&gt;
-                &lt;Button label={t(&quot;story.dropdown_open&quot;)} /&gt;
+                &lt;Button&gt;{t(&quot;story.dropdown_open&quot;)}&lt;/Button&gt;
             &lt;/DropdownTrigger&gt;
             &lt;DropdownMenu&gt;
                 &lt;DropdownItem onClick={() =&gt; console.log(&quot;Profile clicked&quot;)}&gt;
@@ -19235,7 +19206,7 @@ className?: string</code></pre>
     return (
         &lt;Dropdown&gt;
             &lt;DropdownTrigger&gt;
-                &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.dropdown_options&quot;)} /&gt;
+                &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.dropdown_options&quot;)}&lt;/Button&gt;
             &lt;/DropdownTrigger&gt;
             &lt;DropdownMenu&gt;
                 &lt;DropdownItem&gt;
@@ -19266,7 +19237,7 @@ className?: string</code></pre>
         &lt;div style={{ paddingLeft: &quot;200px&quot; }}&gt;
             &lt;Dropdown&gt;
                 &lt;DropdownTrigger&gt;
-                    &lt;Button label={t(&quot;story.dropdown_right_aligned&quot;)} /&gt;
+                    &lt;Button&gt;{t(&quot;story.dropdown_right_aligned&quot;)}&lt;/Button&gt;
                 &lt;/DropdownTrigger&gt;
                 &lt;DropdownMenu align=&quot;right&quot;&gt;
                     &lt;DropdownItem&gt;
@@ -19937,7 +19908,7 @@ variant?: &quot;default&quot; | &quot;simple&quot; = &quot;default&quot;</code><
             title={t(&quot;story.emptystate_nodata_title&quot;)}
             description={t(&quot;story.emptystate_nodata_desc&quot;)}
             icon={&lt;Icon name=&quot;SearchIcon&quot; size=&quot;lg&quot; /&gt;}
-            extra={&lt;Button label={t(&quot;story.emptystate_clear_search&quot;)} /&gt;} /&gt;
+            extra={&lt;Button &gt;{t(&quot;story.emptystate_clear_search&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -19993,8 +19964,8 @@ variant?: &quot;default&quot; | &quot;simple&quot; = &quot;default&quot;</code><
             icon={&lt;Icon name=&quot;PlusIcon&quot; style={{ width: 48, height: 48 }} /&gt;}
             extra={
               &lt;&gt;
-                &lt;Button label={t(&quot;story.emptystate_browse_templates&quot;)} variant=&quot;outlined&quot; /&gt;
-                &lt;Button label={t(&quot;story.emptystate_create_project&quot;)} variant=&quot;filled&quot; /&gt;
+                &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.emptystate_browse_templates&quot;)}&lt;/Button&gt;
+                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.emptystate_create_project&quot;)}&lt;/Button&gt;
               &lt;/&gt;
             } /&gt;
     );
@@ -20033,7 +20004,7 @@ variant?: &quot;default&quot; | &quot;simple&quot; = &quot;default&quot;</code><
             title={t(&quot;story.emptystate_novideos_title&quot;)}
             description={t(&quot;story.emptystate_novideos_desc&quot;)}
             icon={&lt;Icon name=&quot;VideoIcon&quot; size=&quot;lg&quot; /&gt;}
-            extra={&lt;Button label={t(&quot;story.emptystate_upload_video&quot;)} variant=&quot;filled&quot; /&gt;} /&gt;
+            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.emptystate_upload_video&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -20335,9 +20306,9 @@ onReset?: () =&gt; void</code></pre>
         &lt;p&gt;{t(&quot;story.errorboundary_desc&quot;)}&lt;/p&gt;
         &lt;Button
           onClick={() =&gt; setShouldThrow(true)}
-          label={t(&quot;story.errorboundary_btn_trigger&quot;)}
           variant=&quot;filled&quot;
-        /&gt;
+
+        &gt;{t(&quot;story.errorboundary_btn_trigger&quot;)}&lt;/Button&gt;
         &lt;ErrorBoundary onReset={() =&gt; setShouldThrow(false)}&gt;
           {shouldThrow ? (
             &lt;BuggyComponent /&gt;
@@ -20365,9 +20336,9 @@ onReset?: () =&gt; void</code></pre>
       &lt;Stack align=&quot;center&quot; gap=&quot;lg&quot;&gt;
         &lt;Button
           onClick={() =&gt; setShouldThrow(true)}
-          label={t(&quot;story.errorboundary_btn_trigger_custom&quot;)}
           variant=&quot;filled&quot;
-        /&gt;
+
+        &gt;{t(&quot;story.errorboundary_btn_trigger_custom&quot;)}&lt;/Button&gt;
         &lt;ErrorBoundary
           onReset={() =&gt; setShouldThrow(false)}
           fallback={(error, _info, reset) =&gt; (
@@ -20377,12 +20348,8 @@ onReset?: () =&gt; void</code></pre>
               description={error.message}
             &gt;
               &lt;div style={{ marginTop: &quot;1rem&quot; }}&gt;
-                &lt;Button
-                  onClick={reset}
-                  label={t(&quot;story.errorboundary_btn_reset&quot;)}
-                  variant=&quot;outlined&quot;
-                  size=&quot;sm&quot;
-                /&gt;
+                &lt;Button onClick={reset} variant=&quot;outlined&quot;
+                  size=&quot;sm&quot;&gt;{t(&quot;story.errorboundary_btn_reset&quot;)}&lt;/Button&gt;
               &lt;/div&gt;
             &lt;/Alert&gt;
           )}
@@ -24792,9 +24759,9 @@ wrap?: &quot;nowrap&quot; | &quot;wrap&quot; | &quot;wrap-reverse&quot; = &quot;
 
     return (
         &lt;Group gap={16}&gt;
-            &lt;Button label={t(&quot;story.group_first&quot;, &quot;First&quot;)} variant=&quot;filled&quot; /&gt;
-            &lt;Button label={t(&quot;story.group_second&quot;, &quot;Second&quot;)} variant=&quot;outlined&quot; /&gt;
-            &lt;Button label={t(&quot;story.group_third&quot;, &quot;Third&quot;)} variant=&quot;ghost&quot; /&gt;
+            &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.group_first&quot;, &quot;First&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.group_second&quot;, &quot;Second&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;ghost&quot;&gt;{t(&quot;story.group_third&quot;, &quot;Third&quot;)}&lt;/Button&gt;
         &lt;/Group&gt;
     );
 };</code></pre>
@@ -24811,8 +24778,8 @@ wrap?: &quot;nowrap&quot; | &quot;wrap&quot; | &quot;wrap-reverse&quot; = &quot;
 
     return (
         &lt;Group grow gap={16}&gt;
-            &lt;Button label={t(&quot;story.group_first&quot;, &quot;First&quot;)} variant=&quot;filled&quot; /&gt;
-            &lt;Button label={t(&quot;story.group_second&quot;, &quot;Second&quot;)} variant=&quot;outlined&quot; /&gt;
+            &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.group_first&quot;, &quot;First&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.group_second&quot;, &quot;Second&quot;)}&lt;/Button&gt;
         &lt;/Group&gt;
     );
 };</code></pre>
@@ -28116,7 +28083,7 @@ loading?: &quot;eager&quot; | &quot;lazy&quot;
 /**
  * フィルムグレイン（ノイズ）の強度
  */
-noise?: &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;
+noise?: ComponentSize | &quot;none&quot;
 
 /**
  * オーバーレイ設定
@@ -28131,7 +28098,7 @@ priority?: boolean = false
 /**
  * 角丸のサイズ
  */
-radius?: &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;full&quot; = &quot;none&quot;
+radius?: WimRadiusKey | &quot;none&quot; = &quot;none&quot;
 
 /**
  * シャドウ（影）を表示するか
@@ -28495,8 +28462,7 @@ zoom?: boolean | number = false</code></pre>
                         &lt;Button
                             variant=&quot;filled&quot;
                             onClick={() =&gt; setImageKey((prev) =&gt; prev + 1)}
-                            label={t(&quot;story.image_motion_effects_reload&quot;)}
-                            icon=&quot;RefreshIcon&quot; /&gt;
+                            icon=&quot;RefreshIcon&quot;&gt;{t(&quot;story.image_motion_effects_reload&quot;)}&lt;/Button&gt;
                     &lt;/div&gt;
                     &lt;Image
                         key={imageKey}
@@ -30315,7 +30281,7 @@ fullWidth?: boolean = false</code></pre>
               
               <pre><code>const WithButton = () =&gt; &lt;InputGroup&gt;
     &lt;Input placeholder=&quot;Search...&quot; /&gt;
-    &lt;Button variant=&quot;filled&quot; icon=&quot;SearchIcon&quot; label=&quot;Search&quot; /&gt;
+    &lt;Button variant=&quot;filled&quot; icon=&quot;SearchIcon&quot;&gt;Search&lt;/Button&gt;
 &lt;/InputGroup&gt;;</code></pre>
             </div>
             <div class="note ok">
@@ -30355,7 +30321,7 @@ fullWidth?: boolean = false</code></pre>
     &lt;InputGroup fullWidth&gt;
         &lt;InputGroupText&gt;Search&lt;/InputGroupText&gt;
         &lt;Input placeholder=&quot;Type something...&quot; /&gt;
-        &lt;Button variant=&quot;filled&quot; label=&quot;Go&quot; /&gt;
+        &lt;Button variant=&quot;filled&quot;&gt;Go&lt;/Button&gt;
     &lt;/InputGroup&gt;
 &lt;/div&gt;;</code></pre>
             </div>
@@ -30977,8 +30943,8 @@ variant?: &quot;dashed&quot; | &quot;solid&quot; | &quot;none&quot; = &quot;dash
             description={t(&quot;doc.ia_empty_desc&quot;)}
             actions={
               &lt;&gt;
-                &lt;Button label={t(&quot;upload&quot;)} variant=&quot;filled&quot; /&gt;
-                &lt;Button label={t(&quot;learn.more&quot;)} variant=&quot;outlined&quot; /&gt;
+                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;upload&quot;)}&lt;/Button&gt;
+                &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;learn.more&quot;)}&lt;/Button&gt;
               &lt;/&gt;
             } /&gt;
     );
@@ -33017,11 +32983,10 @@ variant?: any = &quot;outlined&quot;</code></pre>
 
     return (
         &lt;LinkButton
-            label={t(&quot;story.linkbutton_google&quot;)}
             href=&quot;https://google.com&quot;
             target=&quot;_blank&quot;
             icon=&quot;ExternalLinkIcon&quot;
-            iconPosition=&quot;right&quot; /&gt;
+            iconPosition=&quot;right&quot;&gt;{t(&quot;story.linkbutton_google&quot;)}&lt;/LinkButton&gt;
     );
 };</code></pre>
             </div>
@@ -34195,7 +34160,7 @@ zIndex?: number</code></pre>
         padding: &quot;20px&quot;,
       }}
     &gt;
-      &lt;Button onClick={handleClick} disabled={loading} label={t(&quot;story.loading_overlay_load_data&quot;)} /&gt;
+      &lt;Button onClick={handleClick} disabled={loading}&gt;{t(&quot;story.loading_overlay_load_data&quot;)}&lt;/Button&gt;
 
 
       &lt;div style={{ marginTop: &quot;20px&quot; }}&gt;
@@ -39628,7 +39593,7 @@ title: ReactNode</code></pre>
             okText={t(&quot;story.popconfirm_yes&quot;)}
             cancelText={t(&quot;story.popconfirm_no&quot;)}
             okType=&quot;destructive&quot;&gt;
-            &lt;Button variant=&quot;filled&quot; label={t(&quot;story.popconfirm_delete_btn&quot;)} /&gt;
+            &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.popconfirm_delete_btn&quot;)}&lt;/Button&gt;
         &lt;/Popconfirm&gt;
     );
 };</code></pre>
@@ -39650,7 +39615,7 @@ title: ReactNode</code></pre>
             description={t(&quot;story.popconfirm_delete_desc&quot;)}
             okText={t(&quot;story.popconfirm_yes&quot;)}
             cancelText={t(&quot;story.popconfirm_no&quot;)}&gt;
-            &lt;Button label={t(&quot;story.popconfirm_delete_btn&quot;)} /&gt;
+            &lt;Button&gt;{t(&quot;story.popconfirm_delete_btn&quot;)}&lt;/Button&gt;
         &lt;/Popconfirm&gt;
     );
 };</code></pre>
@@ -39667,7 +39632,7 @@ title: ReactNode</code></pre>
 
     return (
         &lt;Popconfirm title={t(&quot;story.popconfirm_yes&quot;)} disabled&gt;
-            &lt;Button label={t(&quot;story.popconfirm_disabled_btn&quot;)} /&gt;
+            &lt;Button&gt;{t(&quot;story.popconfirm_disabled_btn&quot;)}&lt;/Button&gt;
         &lt;/Popconfirm&gt;
     );
 };</code></pre>
@@ -39941,7 +39906,7 @@ placement?: Placement = &quot;bottom-start&quot;</code></pre>
     return (
         &lt;Popover&gt;
             &lt;PopoverTrigger asChild&gt;
-                &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.popover_open&quot;)} /&gt;
+                &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.popover_open&quot;)}&lt;/Button&gt;
             &lt;/PopoverTrigger&gt;
             &lt;PopoverContent&gt;
                 &lt;div style={{ display: &quot;flex&quot;, flexDirection: &quot;column&quot;, gap: &quot;10px&quot; }}&gt;
@@ -39991,7 +39956,7 @@ placement?: Placement = &quot;bottom-start&quot;</code></pre>
     return (
         &lt;Popover&gt;
             &lt;PopoverTrigger asChild&gt;
-                &lt;Button variant=&quot;outlined&quot; label={t(&quot;story.popover_interactive&quot;)} /&gt;
+                &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;story.popover_interactive&quot;)}&lt;/Button&gt;
             &lt;/PopoverTrigger&gt;
             &lt;PopoverContent className=&quot;custom-width-popover&quot; style={{ width, height }}&gt;
                 &lt;div style={{ display: &quot;flex&quot;, flexDirection: &quot;column&quot;, gap: &quot;10px&quot; }}&gt;
@@ -40053,7 +40018,7 @@ placement?: Placement = &quot;bottom-start&quot;</code></pre>
     &gt;
       &lt;Popover placement=&quot;bottom-start&quot;&gt;
         &lt;PopoverTrigger asChild&gt;
-          &lt;Button label={t(&quot;story.popover_left_align&quot;)} /&gt;
+          &lt;Button &gt;{t(&quot;story.popover_left_align&quot;)}&lt;/Button&gt;
         &lt;/PopoverTrigger&gt;
         &lt;PopoverContent&gt;
           &lt;div style={{ padding: &quot;10px&quot; }}&gt;{t(&quot;story.popover_left_cont&quot;)}&lt;/div&gt;
@@ -40061,7 +40026,7 @@ placement?: Placement = &quot;bottom-start&quot;</code></pre>
       &lt;/Popover&gt;
       &lt;Popover placement=&quot;bottom&quot;&gt;
         &lt;PopoverTrigger asChild&gt;
-          &lt;Button label={t(&quot;story.popover_center_align&quot;)} /&gt;
+          &lt;Button &gt;{t(&quot;story.popover_center_align&quot;)}&lt;/Button&gt;
         &lt;/PopoverTrigger&gt;
         &lt;PopoverContent&gt;
           &lt;div style={{ padding: &quot;10px&quot; }}&gt;{t(&quot;story.popover_center_cont&quot;)}&lt;/div&gt;
@@ -40069,7 +40034,7 @@ placement?: Placement = &quot;bottom-start&quot;</code></pre>
       &lt;/Popover&gt;
       &lt;Popover placement=&quot;bottom-end&quot;&gt;
         &lt;PopoverTrigger asChild&gt;
-          &lt;Button label={t(&quot;story.popover_right_align&quot;)} /&gt;
+          &lt;Button &gt;{t(&quot;story.popover_right_align&quot;)}&lt;/Button&gt;
         &lt;/PopoverTrigger&gt;
         &lt;PopoverContent&gt;
           &lt;div style={{ padding: &quot;10px&quot; }}&gt;{t(&quot;story.popover_right_cont&quot;)}&lt;/div&gt;
@@ -40099,7 +40064,7 @@ placement?: Placement = &quot;bottom-start&quot;</code></pre>
     &gt;
       &lt;Popover placement=&quot;top&quot;&gt;
         &lt;PopoverTrigger asChild&gt;
-          &lt;Button label={t(&quot;story.popover_top_place&quot;)} /&gt;
+          &lt;Button &gt;{t(&quot;story.popover_top_place&quot;)}&lt;/Button&gt;
         &lt;/PopoverTrigger&gt;
         &lt;PopoverContent&gt;
           &lt;div style={{ padding: &quot;10px&quot; }}&gt;{t(&quot;story.popover_appears_above&quot;)}&lt;/div&gt;
@@ -40107,7 +40072,7 @@ placement?: Placement = &quot;bottom-start&quot;</code></pre>
       &lt;/Popover&gt;
       &lt;Popover placement=&quot;bottom&quot;&gt;
         &lt;PopoverTrigger asChild&gt;
-          &lt;Button label={t(&quot;story.popover_bottom_place&quot;)} /&gt;
+          &lt;Button &gt;{t(&quot;story.popover_bottom_place&quot;)}&lt;/Button&gt;
         &lt;/PopoverTrigger&gt;
         &lt;PopoverContent&gt;
           &lt;div style={{ padding: &quot;10px&quot; }}&gt;{t(&quot;story.popover_appears_below&quot;)}&lt;/div&gt;
@@ -40431,9 +40396,9 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
 
         &lt;Button
           onClick={() =&gt; setShow(!show)}
-          label={show ? t(&quot;story.portal_btn_hide&quot;) : t(&quot;story.portal_btn_show&quot;)}
           variant=&quot;filled&quot;
-        /&gt;
+
+        &gt;{show ? t(&quot;story.portal_btn_hide&quot;) : t(&quot;story.portal_btn_show&quot;)}&lt;/Button&gt;
 
         {show &amp;&amp; (
           &lt;Portal&gt;
@@ -40467,9 +40432,9 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
                 &lt;Box mt=&quot;md&quot; textAlign=&quot;right&quot;&gt;
                   &lt;Button
                     size=&quot;sm&quot;
-                    label={t(&quot;story.portal_btn_ok&quot;)}
                     onClick={() =&gt; setShow(false)}
-                  /&gt;
+
+                  &gt;{t(&quot;story.portal_btn_ok&quot;)}&lt;/Button&gt;
                 &lt;/Box&gt;
               &lt;/Stack&gt;
             &lt;/Card&gt;
@@ -40587,8 +40552,8 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
                 newState ? &quot;success&quot; : &quot;warning&quot;,
               );
             }}
-            label={active ? t(&quot;story.portal_btn_stop&quot;) : t(&quot;story.portal_btn_start&quot;)}
-          /&gt;
+
+          &gt;{active ? t(&quot;story.portal_btn_stop&quot;) : t(&quot;story.portal_btn_start&quot;)}&lt;/Button&gt;
           {active &amp;&amp; (
             &lt;Portal container={logContainer}&gt;
               &lt;div
@@ -40884,10 +40849,10 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
               {selectedId &amp;&amp; (
                 &lt;Button
                   size=&quot;sm&quot;
-                  label={t(&quot;story.visuallyhidden_close&quot;)}
                   variant=&quot;outlined&quot;
                   onClick={() =&gt; setSelectedId(null)}
-                /&gt;
+
+                &gt;{t(&quot;story.visuallyhidden_close&quot;)}&lt;/Button&gt;
               )}
             &lt;/Box&gt;
             &lt;Box
@@ -42672,7 +42637,7 @@ import { T } from &quot;../T&quot;;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Radio</h2>
       <div class="badges">
-        <label for="c-113-components-selection-controls-radio-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-113-components-selection-controls-radio-props" class="badge ok as-toggle">2 prop types</label>
         
         <label for="c-113-components-selection-controls-radio-stories" class="badge ok as-toggle">5 stories</label>
         <label for="c-113-components-selection-controls-radio-docs" class="badge ok as-toggle">1 doc</label>
@@ -42699,18 +42664,13 @@ import { T } from &quot;../T&quot;;
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">3 prop types</span>
+              <span class="badge ok">2 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Radio/Radio.tsx::Radio</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>children?: React.ReactNode
 
-className?: string
-
-/**
- * @deprecated Use `children` instead.
- */
-label?: React.ReactNode</code></pre>
+className?: string</code></pre>
           </div>
         </div>
     
@@ -44493,18 +44453,14 @@ export const LoginForm: StoryObj = {
                 &lt;/Stack&gt;
 
                 &lt;Stack gap=&quot;sm&quot;&gt;
-                  &lt;Button
-                    variant=&quot;filled&quot;
-                    style={{ width: &quot;100%&quot; }}
-                    label={t(&quot;login.sign_in&quot;)}
-                  /&gt;
+                  &lt;Button variant=&quot;filled&quot;
+                    style={{ width: &quot;100%&quot; }}&gt;{t(&quot;login.sign_in&quot;)}&lt;/Button&gt;
 
                   &lt;Button
                     variant=&quot;outlined&quot;
                     style={{ width: &quot;100%&quot; }}
                     onClick={() =&gt; {}}
-                    label={t(&quot;login.sign_in_google&quot;)}
-                  /&gt;
+                  &gt;{t(&quot;login.sign_in_google&quot;)}&lt;/Button&gt;
                 &lt;/Stack&gt;
               &lt;/Stack&gt;
             &lt;/form&gt;
@@ -44809,12 +44765,9 @@ export const UserProfileForm: StoryObj = {
                         {t(&quot;profile.pic_title&quot;)}
                       &lt;/Heading&gt;
                       &lt;div style={{ display: &quot;flex&quot;, gap: &quot;12px&quot; }}&gt;
-                        &lt;Button
-                          size=&quot;sm&quot;
-                          variant=&quot;outlined&quot;
-                          label={t(&quot;profile.btn_change&quot;)}
-                        /&gt;
-                        &lt;Button size=&quot;sm&quot; variant=&quot;ghost&quot; label={t(&quot;profile.btn_remove&quot;)} /&gt;
+                        &lt;Button size=&quot;sm&quot;
+                          variant=&quot;outlined&quot;&gt;{t(&quot;profile.btn_change&quot;)}&lt;/Button&gt;
+                        &lt;Button size=&quot;sm&quot; variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_remove&quot;)}&lt;/Button&gt;
                       &lt;/div&gt;
                     &lt;/Stack&gt;
                   &lt;/div&gt;
@@ -44949,8 +44902,8 @@ export const UserProfileForm: StoryObj = {
 
                       &lt;Label label={t(&quot;profile.notif_label&quot;)}&gt;
                         &lt;Stack gap=&quot;sm&quot;&gt;
-                          &lt;Switch label={t(&quot;profile.notif_email&quot;)} defaultChecked /&gt;
-                          &lt;Switch label={t(&quot;profile.notif_push&quot;)} /&gt;
+                          &lt;Switch defaultChecked&gt;{t(&quot;profile.notif_email&quot;)}&lt;/Switch&gt;
+                          &lt;Switch &gt;{t(&quot;profile.notif_push&quot;)}&lt;/Switch&gt;
                         &lt;/Stack&gt;
                       &lt;/Label&gt;
                     &lt;/Stack&gt;
@@ -44958,8 +44911,8 @@ export const UserProfileForm: StoryObj = {
 
                   &lt;Divider /&gt;
                   &lt;Group justify=&quot;end&quot; gap=&quot;md&quot;&gt;
-                    &lt;Button variant=&quot;ghost&quot; label={t(&quot;profile.btn_cancel&quot;)} /&gt;
-                    &lt;Button variant=&quot;filled&quot; label={t(&quot;profile.btn_save&quot;)} /&gt;
+                    &lt;Button variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_cancel&quot;)}&lt;/Button&gt;
+                    &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
                   &lt;/Group&gt;
                 &lt;/Stack&gt;
               &lt;/form&gt;
@@ -45073,11 +45026,7 @@ export const PricingTable: StoryObj = {
                 &lt;/List&gt;
               &lt;/Stack&gt;
 
-              &lt;Button
-                variant=&quot;outlined&quot;
-                label={t(&quot;pricing.starter_btn&quot;)}
-                style={{ width: &quot;100%&quot; }}
-              /&gt;
+              &lt;Button variant=&quot;outlined&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.starter_btn&quot;)}&lt;/Button&gt;
             &lt;/Stack&gt;
           &lt;/Card&gt;
 
@@ -45162,11 +45111,7 @@ export const PricingTable: StoryObj = {
                 &lt;/List&gt;
               &lt;/Stack&gt;
 
-              &lt;Button
-                variant=&quot;filled&quot;
-                label={t(&quot;pricing.pro_btn&quot;)}
-                style={{ width: &quot;100%&quot; }}
-              /&gt;
+              &lt;Button variant=&quot;filled&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
             &lt;/Stack&gt;
           &lt;/Card&gt;
 
@@ -45239,11 +45184,7 @@ export const PricingTable: StoryObj = {
                 &lt;/List&gt;
               &lt;/Stack&gt;
 
-              &lt;Button
-                variant=&quot;outlined&quot;
-                label={t(&quot;pricing.ent_btn&quot;)}
-                style={{ width: &quot;100%&quot; }}
-              /&gt;
+              &lt;Button variant=&quot;outlined&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.ent_btn&quot;)}&lt;/Button&gt;
             &lt;/Stack&gt;
           &lt;/Card&gt;
         &lt;/Grid&gt;
@@ -45292,16 +45233,10 @@ export const HeroSection: StoryObj = {
               &lt;/Stack&gt;
 
               &lt;Group gap=&quot;xl&quot; wrap=&quot;wrap&quot; justify=&quot;evenly&quot;&gt;
-                &lt;Button
-                  variant=&quot;filled&quot;
-                  size=&quot;md&quot;
-                  label={t(&quot;hero.btn_started&quot;)}
-                /&gt;
-                &lt;Button
-                  variant=&quot;outlined&quot;
-                  size=&quot;md&quot;
-                  label={t(&quot;hero.btn_docs&quot;)}
-                /&gt;
+                &lt;Button variant=&quot;filled&quot;
+                  size=&quot;md&quot;&gt;{t(&quot;hero.btn_started&quot;)}&lt;/Button&gt;
+                &lt;Button variant=&quot;outlined&quot;
+                  size=&quot;md&quot;&gt;{t(&quot;hero.btn_docs&quot;)}&lt;/Button&gt;
               &lt;/Group&gt;
 
               &lt;Stack direction=&quot;row&quot; align=&quot;center&quot; gap=&quot;md&quot;&gt;
@@ -45439,8 +45374,8 @@ export const ErrorPage: StoryObj = {
           &lt;/Alert&gt;
 
           &lt;Stack direction={{ base: &quot;column&quot;, sm: &quot;row&quot; }} gap=&quot;xl&quot;&gt;
-            &lt;Button variant=&quot;filled&quot; label={t(&quot;error.btn_home&quot;)} /&gt;
-            &lt;Button variant=&quot;outlined&quot; label={t(&quot;error.btn_support&quot;)} /&gt;
+            &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;error.btn_support&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Stack&gt;
       &lt;/Center&gt;
@@ -45572,18 +45507,14 @@ export const ErrorPage: StoryObj = {
               &lt;/Stack&gt;
 
               &lt;Stack gap=&quot;sm&quot;&gt;
-                &lt;Button
-                  variant=&quot;filled&quot;
-                  style={{ width: &quot;100%&quot; }}
-                  label={t(&quot;login.sign_in&quot;)}
-                /&gt;
+                &lt;Button variant=&quot;filled&quot;
+                  style={{ width: &quot;100%&quot; }}&gt;{t(&quot;login.sign_in&quot;)}&lt;/Button&gt;
 
                 &lt;Button
                   variant=&quot;outlined&quot;
                   style={{ width: &quot;100%&quot; }}
                   onClick={() =&gt; {}}
-                  label={t(&quot;login.sign_in_google&quot;)}
-                /&gt;
+                &gt;{t(&quot;login.sign_in_google&quot;)}&lt;/Button&gt;
               &lt;/Stack&gt;
             &lt;/Stack&gt;
           &lt;/form&gt;
@@ -45898,12 +45829,9 @@ export const ErrorPage: StoryObj = {
                       {t(&quot;profile.pic_title&quot;)}
                     &lt;/Heading&gt;
                     &lt;div style={{ display: &quot;flex&quot;, gap: &quot;12px&quot; }}&gt;
-                      &lt;Button
-                        size=&quot;sm&quot;
-                        variant=&quot;outlined&quot;
-                        label={t(&quot;profile.btn_change&quot;)}
-                      /&gt;
-                      &lt;Button size=&quot;sm&quot; variant=&quot;ghost&quot; label={t(&quot;profile.btn_remove&quot;)} /&gt;
+                      &lt;Button size=&quot;sm&quot;
+                        variant=&quot;outlined&quot;&gt;{t(&quot;profile.btn_change&quot;)}&lt;/Button&gt;
+                      &lt;Button size=&quot;sm&quot; variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_remove&quot;)}&lt;/Button&gt;
                     &lt;/div&gt;
                   &lt;/Stack&gt;
                 &lt;/div&gt;
@@ -46038,8 +45966,8 @@ export const ErrorPage: StoryObj = {
 
                     &lt;Label label={t(&quot;profile.notif_label&quot;)}&gt;
                       &lt;Stack gap=&quot;sm&quot;&gt;
-                        &lt;Switch label={t(&quot;profile.notif_email&quot;)} defaultChecked /&gt;
-                        &lt;Switch label={t(&quot;profile.notif_push&quot;)} /&gt;
+                        &lt;Switch defaultChecked&gt;{t(&quot;profile.notif_email&quot;)}&lt;/Switch&gt;
+                        &lt;Switch &gt;{t(&quot;profile.notif_push&quot;)}&lt;/Switch&gt;
                       &lt;/Stack&gt;
                     &lt;/Label&gt;
                   &lt;/Stack&gt;
@@ -46047,8 +45975,8 @@ export const ErrorPage: StoryObj = {
 
                 &lt;Divider /&gt;
                 &lt;Group justify=&quot;end&quot; gap=&quot;md&quot;&gt;
-                  &lt;Button variant=&quot;ghost&quot; label={t(&quot;profile.btn_cancel&quot;)} /&gt;
-                  &lt;Button variant=&quot;filled&quot; label={t(&quot;profile.btn_save&quot;)} /&gt;
+                  &lt;Button variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_cancel&quot;)}&lt;/Button&gt;
+                  &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
                 &lt;/Group&gt;
               &lt;/Stack&gt;
             &lt;/form&gt;
@@ -46167,11 +46095,7 @@ export const ErrorPage: StoryObj = {
               &lt;/List&gt;
             &lt;/Stack&gt;
 
-            &lt;Button
-              variant=&quot;outlined&quot;
-              label={t(&quot;pricing.starter_btn&quot;)}
-              style={{ width: &quot;100%&quot; }}
-            /&gt;
+            &lt;Button variant=&quot;outlined&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.starter_btn&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Card&gt;
 
@@ -46256,11 +46180,7 @@ export const ErrorPage: StoryObj = {
               &lt;/List&gt;
             &lt;/Stack&gt;
 
-            &lt;Button
-              variant=&quot;filled&quot;
-              label={t(&quot;pricing.pro_btn&quot;)}
-              style={{ width: &quot;100%&quot; }}
-            /&gt;
+            &lt;Button variant=&quot;filled&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Card&gt;
 
@@ -46333,11 +46253,7 @@ export const ErrorPage: StoryObj = {
               &lt;/List&gt;
             &lt;/Stack&gt;
 
-            &lt;Button
-              variant=&quot;outlined&quot;
-              label={t(&quot;pricing.ent_btn&quot;)}
-              style={{ width: &quot;100%&quot; }}
-            /&gt;
+            &lt;Button variant=&quot;outlined&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.ent_btn&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Card&gt;
       &lt;/Grid&gt;
@@ -46391,16 +46307,10 @@ export const ErrorPage: StoryObj = {
             &lt;/Stack&gt;
 
             &lt;Group gap=&quot;xl&quot; wrap=&quot;wrap&quot; justify=&quot;evenly&quot;&gt;
-              &lt;Button
-                variant=&quot;filled&quot;
-                size=&quot;md&quot;
-                label={t(&quot;hero.btn_started&quot;)}
-              /&gt;
-              &lt;Button
-                variant=&quot;outlined&quot;
-                size=&quot;md&quot;
-                label={t(&quot;hero.btn_docs&quot;)}
-              /&gt;
+              &lt;Button variant=&quot;filled&quot;
+                size=&quot;md&quot;&gt;{t(&quot;hero.btn_started&quot;)}&lt;/Button&gt;
+              &lt;Button variant=&quot;outlined&quot;
+                size=&quot;md&quot;&gt;{t(&quot;hero.btn_docs&quot;)}&lt;/Button&gt;
             &lt;/Group&gt;
 
             &lt;Stack direction=&quot;row&quot; align=&quot;center&quot; gap=&quot;md&quot;&gt;
@@ -46543,8 +46453,8 @@ export const ErrorPage: StoryObj = {
         &lt;/Alert&gt;
 
         &lt;Stack direction={{ base: &quot;column&quot;, sm: &quot;row&quot; }} gap=&quot;xl&quot;&gt;
-          &lt;Button variant=&quot;filled&quot; label={t(&quot;error.btn_home&quot;)} /&gt;
-          &lt;Button variant=&quot;outlined&quot; label={t(&quot;error.btn_support&quot;)} /&gt;
+          &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
+          &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;error.btn_support&quot;)}&lt;/Button&gt;
         &lt;/Stack&gt;
       &lt;/Stack&gt;
     &lt;/Center&gt;
@@ -46820,8 +46730,8 @@ title?: ReactNode</code></pre>
             title={t(&quot;story.result_success_title&quot;)}
             description={t(&quot;story.result_success_desc&quot;)}
             extra={[
-              &lt;Button variant=&quot;filled&quot; key=&quot;console&quot; label={t(&quot;story.result_go_console&quot;)} /&gt;,
-              &lt;Button key=&quot;buy&quot; label={t(&quot;story.result_buy_again&quot;)} /&gt;,
+              &lt;Button variant=&quot;filled&quot; key=&quot;console&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;,
+              &lt;Button key=&quot;buy&quot;&gt;{t(&quot;story.result_buy_again&quot;)}&lt;/Button&gt;,
             ]} /&gt;
     );
 };</code></pre>
@@ -46839,7 +46749,7 @@ title?: ReactNode</code></pre>
     return (
         &lt;Result
             title={t(&quot;story.result_info_title&quot;)}
-            extra={&lt;Button variant=&quot;filled&quot; label={t(&quot;story.result_go_console&quot;)} /&gt;} /&gt;
+            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -46857,7 +46767,7 @@ title?: ReactNode</code></pre>
         &lt;Result
             intent=&quot;warning&quot;
             title={t(&quot;story.result_warning_title&quot;)}
-            extra={&lt;Button variant=&quot;filled&quot; label={t(&quot;story.result_go_console&quot;)} /&gt;} /&gt;
+            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -46877,8 +46787,8 @@ title?: ReactNode</code></pre>
             title={t(&quot;story.result_error_title&quot;)}
             description={t(&quot;story.result_error_desc&quot;)}
             extra={[
-              &lt;Button variant=&quot;filled&quot; key=&quot;console&quot; label={t(&quot;story.result_go_console&quot;)} /&gt;,
-              &lt;Button key=&quot;buy&quot; label={t(&quot;story.result_buy_again&quot;)} /&gt;,
+              &lt;Button variant=&quot;filled&quot; key=&quot;console&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;,
+              &lt;Button key=&quot;buy&quot;&gt;{t(&quot;story.result_buy_again&quot;)}&lt;/Button&gt;,
             ]} /&gt;
     );
 };</code></pre>
@@ -46898,7 +46808,7 @@ title?: ReactNode</code></pre>
             intent=&quot;404&quot;
             title=&quot;404&quot;
             description={t(&quot;story.result_404_desc&quot;)}
-            extra={&lt;Button variant=&quot;filled&quot; label={t(&quot;story.result_back_home&quot;)} /&gt;} /&gt;
+            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -46917,7 +46827,7 @@ title?: ReactNode</code></pre>
             intent=&quot;403&quot;
             title=&quot;403&quot;
             description={t(&quot;story.result_403_desc&quot;)}
-            extra={&lt;Button variant=&quot;filled&quot; label={t(&quot;story.result_back_home&quot;)} /&gt;} /&gt;
+            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -46936,7 +46846,7 @@ title?: ReactNode</code></pre>
             intent=&quot;500&quot;
             title=&quot;500&quot;
             description={t(&quot;story.result_500_desc&quot;)}
-            extra={&lt;Button variant=&quot;filled&quot; label={t(&quot;story.result_back_home&quot;)} /&gt;} /&gt;
+            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -52074,9 +51984,9 @@ showCloseButton?: boolean = false</code></pre>
     &lt;div style={{ padding: &quot;40px&quot; }}&gt;
       &lt;Button
         onClick={() =&gt; setOpen(true)}
-        label={t(&quot;story.snackbar_show&quot;)}
         variant=&quot;filled&quot;
-      /&gt;
+
+      &gt;{t(&quot;story.snackbar_show&quot;)}&lt;/Button&gt;
       &lt;Snackbar
         message={t(&quot;story.snackbar_interactive&quot;)}
         open={open}
@@ -54837,7 +54747,7 @@ npm run test -- Stepper
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Switch</h2>
       <div class="badges">
-        <label for="c-139-components-selection-controls-switch-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-139-components-selection-controls-switch-props" class="badge ok as-toggle">3 prop types</label>
         
         <label for="c-139-components-selection-controls-switch-stories" class="badge ok as-toggle">6 stories</label>
         <label for="c-139-components-selection-controls-switch-docs" class="badge ok as-toggle">1 doc</label>
@@ -54864,18 +54774,13 @@ npm run test -- Stepper
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">4 prop types</span>
+              <span class="badge ok">3 prop types</span>
             </div>
             <pre><code>Component: src/components/form/Switch/Switch.tsx::Switch</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>children?: React.ReactNode
 
 className?: string
-
-/**
- * @deprecated Use `children` instead.
- */
-label?: React.ReactNode
 
 size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code></pre>
           </div>
@@ -59617,7 +59522,7 @@ placement?: Placement = &quot;top&quot;</code></pre>
     return (
         &lt;Tooltip&gt;
             &lt;TooltipTrigger asChild&gt;
-                &lt;Button label={t(&quot;story.tooltip_hover&quot;)} /&gt;
+                &lt;Button&gt;{t(&quot;story.tooltip_hover&quot;)}&lt;/Button&gt;
             &lt;/TooltipTrigger&gt;
             &lt;TooltipContent&gt;{t(&quot;story.tooltip_text&quot;)}&lt;/TooltipContent&gt;
         &lt;/Tooltip&gt;
@@ -59638,7 +59543,7 @@ placement?: Placement = &quot;top&quot;</code></pre>
         &lt;div style={{ padding: &quot;50px&quot; }}&gt;
             &lt;Tooltip placement=&quot;top&quot;&gt;
                 &lt;TooltipTrigger asChild&gt;
-                    &lt;Button label={t(&quot;top&quot;)} /&gt;
+                    &lt;Button&gt;{t(&quot;top&quot;)}&lt;/Button&gt;
                 &lt;/TooltipTrigger&gt;
                 &lt;TooltipContent&gt;{t(&quot;story.tooltip_top_text&quot;)}&lt;/TooltipContent&gt;
             &lt;/Tooltip&gt;
@@ -59660,7 +59565,7 @@ placement?: Placement = &quot;top&quot;</code></pre>
         &lt;div style={{ padding: &quot;50px&quot; }}&gt;
             &lt;Tooltip placement=&quot;bottom&quot;&gt;
                 &lt;TooltipTrigger asChild&gt;
-                    &lt;Button label={t(&quot;bottom&quot;)} /&gt;
+                    &lt;Button&gt;{t(&quot;bottom&quot;)}&lt;/Button&gt;
                 &lt;/TooltipTrigger&gt;
                 &lt;TooltipContent&gt;{t(&quot;story.tooltip_bottom_text&quot;)}&lt;/TooltipContent&gt;
             &lt;/Tooltip&gt;
@@ -59682,7 +59587,7 @@ placement?: Placement = &quot;top&quot;</code></pre>
         &lt;div style={{ padding: &quot;50px&quot; }}&gt;
             &lt;Tooltip placement=&quot;left&quot;&gt;
                 &lt;TooltipTrigger asChild&gt;
-                    &lt;Button label={t(&quot;left&quot;)} /&gt;
+                    &lt;Button&gt;{t(&quot;left&quot;)}&lt;/Button&gt;
                 &lt;/TooltipTrigger&gt;
                 &lt;TooltipContent&gt;{t(&quot;story.tooltip_left_text&quot;)}&lt;/TooltipContent&gt;
             &lt;/Tooltip&gt;
@@ -59704,7 +59609,7 @@ placement?: Placement = &quot;top&quot;</code></pre>
         &lt;div style={{ padding: &quot;50px&quot; }}&gt;
             &lt;Tooltip placement=&quot;right&quot;&gt;
                 &lt;TooltipTrigger asChild&gt;
-                    &lt;Button label={t(&quot;right&quot;)} /&gt;
+                    &lt;Button&gt;{t(&quot;right&quot;)}&lt;/Button&gt;
                 &lt;/TooltipTrigger&gt;
                 &lt;TooltipContent&gt;{t(&quot;story.tooltip_right_text&quot;)}&lt;/TooltipContent&gt;
             &lt;/Tooltip&gt;
@@ -59725,7 +59630,7 @@ placement?: Placement = &quot;top&quot;</code></pre>
     return (
         &lt;Tooltip delay={args.delay ?? 1000}&gt;
             &lt;TooltipTrigger asChild&gt;
-                &lt;Button label={t(&quot;story.tooltip_hover_1s&quot;)} /&gt;
+                &lt;Button&gt;{t(&quot;story.tooltip_hover_1s&quot;)}&lt;/Button&gt;
             &lt;/TooltipTrigger&gt;
             &lt;TooltipContent&gt;{t(&quot;story.tooltip_delayed&quot;)}&lt;/TooltipContent&gt;
         &lt;/Tooltip&gt;
@@ -60001,7 +59906,7 @@ steps: TourStep[]</code></pre>
 
     return (
         &lt;div style={{ padding: &quot;40px&quot;, height: &quot;1000px&quot; }}&gt;
-            &lt;Button label={t(&quot;story.tour_start&quot;)} onClick={() =&gt; setOpen(true)} /&gt;
+            &lt;Button onClick={() =&gt; setOpen(true)}&gt;{t(&quot;story.tour_start&quot;)}&lt;/Button&gt;
             &lt;div
                 style={{
                   marginTop: &quot;100px&quot;,
@@ -60611,8 +60516,8 @@ unmount?: boolean = true</code></pre>
           animateWidth
           variant=&quot;filled&quot;
           onClick={() =&gt; setShow(!show)}
-          label={show ? t(&quot;story.transition_hide_content&quot;) : t(&quot;story.transition_show_content&quot;)}
-        /&gt;
+
+        &gt;{show ? t(&quot;story.transition_hide_content&quot;) : t(&quot;story.transition_show_content&quot;)}&lt;/Button&gt;
         &lt;Stack h={100} align=&quot;center&quot; justify=&quot;center&quot;&gt;
           &lt;Transition
             show={show}
@@ -60669,8 +60574,8 @@ unmount?: boolean = true</code></pre>
           animateWidth
           variant=&quot;filled&quot;
           onClick={() =&gt; setShow(!show)}
-          label={show ? t(&quot;story.transition_hide_slide&quot;) : t(&quot;story.transition_show_slide&quot;)}
-        /&gt;
+
+        &gt;{show ? t(&quot;story.transition_hide_slide&quot;) : t(&quot;story.transition_show_slide&quot;)}&lt;/Button&gt;
         &lt;Stack h={100} align=&quot;center&quot; justify=&quot;center&quot;&gt;
           &lt;Transition
             show={show}
@@ -62428,7 +62333,7 @@ preload?: &quot;auto&quot; | &quot;metadata&quot; | &quot;none&quot;
 
 qualities?: { label: string; src: string }[]
 
-radius?: &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;full&quot; = &quot;none&quot;
+radius?: WimRadiusKey | &quot;none&quot; = &quot;none&quot;
 
 resumePlayback?: boolean = false
 
@@ -62578,8 +62483,7 @@ width?: string | number</code></pre>
                     &lt;Button
                         variant=&quot;filled&quot;
                         onClick={() =&gt; setVideoKey((prev) =&gt; prev + 1)}
-                        label={t(&quot;story.video_premium_features_reload&quot;)}
-                        icon=&quot;RefreshIcon&quot; /&gt;
+                        icon=&quot;RefreshIcon&quot;&gt;{t(&quot;story.video_premium_features_reload&quot;)}&lt;/Button&gt;
                 &lt;/div&gt;
                 &lt;Video
                     key={videoKey}
@@ -64202,18 +64106,14 @@ export const LoginForm: StoryObj = {
                 &lt;/Stack&gt;
 
                 &lt;Stack gap=&quot;sm&quot;&gt;
-                  &lt;Button
-                    variant=&quot;filled&quot;
-                    style={{ width: &quot;100%&quot; }}
-                    label={t(&quot;login.sign_in&quot;)}
-                  /&gt;
+                  &lt;Button variant=&quot;filled&quot;
+                    style={{ width: &quot;100%&quot; }}&gt;{t(&quot;login.sign_in&quot;)}&lt;/Button&gt;
 
                   &lt;Button
                     variant=&quot;outlined&quot;
                     style={{ width: &quot;100%&quot; }}
                     onClick={() =&gt; {}}
-                    label={t(&quot;login.sign_in_google&quot;)}
-                  /&gt;
+                  &gt;{t(&quot;login.sign_in_google&quot;)}&lt;/Button&gt;
                 &lt;/Stack&gt;
               &lt;/Stack&gt;
             &lt;/form&gt;
@@ -64518,12 +64418,9 @@ export const UserProfileForm: StoryObj = {
                         {t(&quot;profile.pic_title&quot;)}
                       &lt;/Heading&gt;
                       &lt;div style={{ display: &quot;flex&quot;, gap: &quot;12px&quot; }}&gt;
-                        &lt;Button
-                          size=&quot;sm&quot;
-                          variant=&quot;outlined&quot;
-                          label={t(&quot;profile.btn_change&quot;)}
-                        /&gt;
-                        &lt;Button size=&quot;sm&quot; variant=&quot;ghost&quot; label={t(&quot;profile.btn_remove&quot;)} /&gt;
+                        &lt;Button size=&quot;sm&quot;
+                          variant=&quot;outlined&quot;&gt;{t(&quot;profile.btn_change&quot;)}&lt;/Button&gt;
+                        &lt;Button size=&quot;sm&quot; variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_remove&quot;)}&lt;/Button&gt;
                       &lt;/div&gt;
                     &lt;/Stack&gt;
                   &lt;/div&gt;
@@ -64658,8 +64555,8 @@ export const UserProfileForm: StoryObj = {
 
                       &lt;Label label={t(&quot;profile.notif_label&quot;)}&gt;
                         &lt;Stack gap=&quot;sm&quot;&gt;
-                          &lt;Switch label={t(&quot;profile.notif_email&quot;)} defaultChecked /&gt;
-                          &lt;Switch label={t(&quot;profile.notif_push&quot;)} /&gt;
+                          &lt;Switch defaultChecked&gt;{t(&quot;profile.notif_email&quot;)}&lt;/Switch&gt;
+                          &lt;Switch &gt;{t(&quot;profile.notif_push&quot;)}&lt;/Switch&gt;
                         &lt;/Stack&gt;
                       &lt;/Label&gt;
                     &lt;/Stack&gt;
@@ -64667,8 +64564,8 @@ export const UserProfileForm: StoryObj = {
 
                   &lt;Divider /&gt;
                   &lt;Group justify=&quot;end&quot; gap=&quot;md&quot;&gt;
-                    &lt;Button variant=&quot;ghost&quot; label={t(&quot;profile.btn_cancel&quot;)} /&gt;
-                    &lt;Button variant=&quot;filled&quot; label={t(&quot;profile.btn_save&quot;)} /&gt;
+                    &lt;Button variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_cancel&quot;)}&lt;/Button&gt;
+                    &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
                   &lt;/Group&gt;
                 &lt;/Stack&gt;
               &lt;/form&gt;
@@ -64782,11 +64679,7 @@ export const PricingTable: StoryObj = {
                 &lt;/List&gt;
               &lt;/Stack&gt;
 
-              &lt;Button
-                variant=&quot;outlined&quot;
-                label={t(&quot;pricing.starter_btn&quot;)}
-                style={{ width: &quot;100%&quot; }}
-              /&gt;
+              &lt;Button variant=&quot;outlined&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.starter_btn&quot;)}&lt;/Button&gt;
             &lt;/Stack&gt;
           &lt;/Card&gt;
 
@@ -64871,11 +64764,7 @@ export const PricingTable: StoryObj = {
                 &lt;/List&gt;
               &lt;/Stack&gt;
 
-              &lt;Button
-                variant=&quot;filled&quot;
-                label={t(&quot;pricing.pro_btn&quot;)}
-                style={{ width: &quot;100%&quot; }}
-              /&gt;
+              &lt;Button variant=&quot;filled&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
             &lt;/Stack&gt;
           &lt;/Card&gt;
 
@@ -64948,11 +64837,7 @@ export const PricingTable: StoryObj = {
                 &lt;/List&gt;
               &lt;/Stack&gt;
 
-              &lt;Button
-                variant=&quot;outlined&quot;
-                label={t(&quot;pricing.ent_btn&quot;)}
-                style={{ width: &quot;100%&quot; }}
-              /&gt;
+              &lt;Button variant=&quot;outlined&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.ent_btn&quot;)}&lt;/Button&gt;
             &lt;/Stack&gt;
           &lt;/Card&gt;
         &lt;/Grid&gt;
@@ -65001,16 +64886,10 @@ export const HeroSection: StoryObj = {
               &lt;/Stack&gt;
 
               &lt;Group gap=&quot;xl&quot; wrap=&quot;wrap&quot; justify=&quot;evenly&quot;&gt;
-                &lt;Button
-                  variant=&quot;filled&quot;
-                  size=&quot;md&quot;
-                  label={t(&quot;hero.btn_started&quot;)}
-                /&gt;
-                &lt;Button
-                  variant=&quot;outlined&quot;
-                  size=&quot;md&quot;
-                  label={t(&quot;hero.btn_docs&quot;)}
-                /&gt;
+                &lt;Button variant=&quot;filled&quot;
+                  size=&quot;md&quot;&gt;{t(&quot;hero.btn_started&quot;)}&lt;/Button&gt;
+                &lt;Button variant=&quot;outlined&quot;
+                  size=&quot;md&quot;&gt;{t(&quot;hero.btn_docs&quot;)}&lt;/Button&gt;
               &lt;/Group&gt;
 
               &lt;Stack direction=&quot;row&quot; align=&quot;center&quot; gap=&quot;md&quot;&gt;
@@ -65148,8 +65027,8 @@ export const ErrorPage: StoryObj = {
           &lt;/Alert&gt;
 
           &lt;Stack direction={{ base: &quot;column&quot;, sm: &quot;row&quot; }} gap=&quot;xl&quot;&gt;
-            &lt;Button variant=&quot;filled&quot; label={t(&quot;error.btn_home&quot;)} /&gt;
-            &lt;Button variant=&quot;outlined&quot; label={t(&quot;error.btn_support&quot;)} /&gt;
+            &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;error.btn_support&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Stack&gt;
       &lt;/Center&gt;
@@ -65281,18 +65160,14 @@ export const ErrorPage: StoryObj = {
               &lt;/Stack&gt;
 
               &lt;Stack gap=&quot;sm&quot;&gt;
-                &lt;Button
-                  variant=&quot;filled&quot;
-                  style={{ width: &quot;100%&quot; }}
-                  label={t(&quot;login.sign_in&quot;)}
-                /&gt;
+                &lt;Button variant=&quot;filled&quot;
+                  style={{ width: &quot;100%&quot; }}&gt;{t(&quot;login.sign_in&quot;)}&lt;/Button&gt;
 
                 &lt;Button
                   variant=&quot;outlined&quot;
                   style={{ width: &quot;100%&quot; }}
                   onClick={() =&gt; {}}
-                  label={t(&quot;login.sign_in_google&quot;)}
-                /&gt;
+                &gt;{t(&quot;login.sign_in_google&quot;)}&lt;/Button&gt;
               &lt;/Stack&gt;
             &lt;/Stack&gt;
           &lt;/form&gt;
@@ -65607,12 +65482,9 @@ export const ErrorPage: StoryObj = {
                       {t(&quot;profile.pic_title&quot;)}
                     &lt;/Heading&gt;
                     &lt;div style={{ display: &quot;flex&quot;, gap: &quot;12px&quot; }}&gt;
-                      &lt;Button
-                        size=&quot;sm&quot;
-                        variant=&quot;outlined&quot;
-                        label={t(&quot;profile.btn_change&quot;)}
-                      /&gt;
-                      &lt;Button size=&quot;sm&quot; variant=&quot;ghost&quot; label={t(&quot;profile.btn_remove&quot;)} /&gt;
+                      &lt;Button size=&quot;sm&quot;
+                        variant=&quot;outlined&quot;&gt;{t(&quot;profile.btn_change&quot;)}&lt;/Button&gt;
+                      &lt;Button size=&quot;sm&quot; variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_remove&quot;)}&lt;/Button&gt;
                     &lt;/div&gt;
                   &lt;/Stack&gt;
                 &lt;/div&gt;
@@ -65747,8 +65619,8 @@ export const ErrorPage: StoryObj = {
 
                     &lt;Label label={t(&quot;profile.notif_label&quot;)}&gt;
                       &lt;Stack gap=&quot;sm&quot;&gt;
-                        &lt;Switch label={t(&quot;profile.notif_email&quot;)} defaultChecked /&gt;
-                        &lt;Switch label={t(&quot;profile.notif_push&quot;)} /&gt;
+                        &lt;Switch defaultChecked&gt;{t(&quot;profile.notif_email&quot;)}&lt;/Switch&gt;
+                        &lt;Switch &gt;{t(&quot;profile.notif_push&quot;)}&lt;/Switch&gt;
                       &lt;/Stack&gt;
                     &lt;/Label&gt;
                   &lt;/Stack&gt;
@@ -65756,8 +65628,8 @@ export const ErrorPage: StoryObj = {
 
                 &lt;Divider /&gt;
                 &lt;Group justify=&quot;end&quot; gap=&quot;md&quot;&gt;
-                  &lt;Button variant=&quot;ghost&quot; label={t(&quot;profile.btn_cancel&quot;)} /&gt;
-                  &lt;Button variant=&quot;filled&quot; label={t(&quot;profile.btn_save&quot;)} /&gt;
+                  &lt;Button variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_cancel&quot;)}&lt;/Button&gt;
+                  &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
                 &lt;/Group&gt;
               &lt;/Stack&gt;
             &lt;/form&gt;
@@ -65876,11 +65748,7 @@ export const ErrorPage: StoryObj = {
               &lt;/List&gt;
             &lt;/Stack&gt;
 
-            &lt;Button
-              variant=&quot;outlined&quot;
-              label={t(&quot;pricing.starter_btn&quot;)}
-              style={{ width: &quot;100%&quot; }}
-            /&gt;
+            &lt;Button variant=&quot;outlined&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.starter_btn&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Card&gt;
 
@@ -65965,11 +65833,7 @@ export const ErrorPage: StoryObj = {
               &lt;/List&gt;
             &lt;/Stack&gt;
 
-            &lt;Button
-              variant=&quot;filled&quot;
-              label={t(&quot;pricing.pro_btn&quot;)}
-              style={{ width: &quot;100%&quot; }}
-            /&gt;
+            &lt;Button variant=&quot;filled&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Card&gt;
 
@@ -66042,11 +65906,7 @@ export const ErrorPage: StoryObj = {
               &lt;/List&gt;
             &lt;/Stack&gt;
 
-            &lt;Button
-              variant=&quot;outlined&quot;
-              label={t(&quot;pricing.ent_btn&quot;)}
-              style={{ width: &quot;100%&quot; }}
-            /&gt;
+            &lt;Button variant=&quot;outlined&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.ent_btn&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Card&gt;
       &lt;/Grid&gt;
@@ -66100,16 +65960,10 @@ export const ErrorPage: StoryObj = {
             &lt;/Stack&gt;
 
             &lt;Group gap=&quot;xl&quot; wrap=&quot;wrap&quot; justify=&quot;evenly&quot;&gt;
-              &lt;Button
-                variant=&quot;filled&quot;
-                size=&quot;md&quot;
-                label={t(&quot;hero.btn_started&quot;)}
-              /&gt;
-              &lt;Button
-                variant=&quot;outlined&quot;
-                size=&quot;md&quot;
-                label={t(&quot;hero.btn_docs&quot;)}
-              /&gt;
+              &lt;Button variant=&quot;filled&quot;
+                size=&quot;md&quot;&gt;{t(&quot;hero.btn_started&quot;)}&lt;/Button&gt;
+              &lt;Button variant=&quot;outlined&quot;
+                size=&quot;md&quot;&gt;{t(&quot;hero.btn_docs&quot;)}&lt;/Button&gt;
             &lt;/Group&gt;
 
             &lt;Stack direction=&quot;row&quot; align=&quot;center&quot; gap=&quot;md&quot;&gt;
@@ -66252,8 +66106,8 @@ export const ErrorPage: StoryObj = {
         &lt;/Alert&gt;
 
         &lt;Stack direction={{ base: &quot;column&quot;, sm: &quot;row&quot; }} gap=&quot;xl&quot;&gt;
-          &lt;Button variant=&quot;filled&quot; label={t(&quot;error.btn_home&quot;)} /&gt;
-          &lt;Button variant=&quot;outlined&quot; label={t(&quot;error.btn_support&quot;)} /&gt;
+          &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
+          &lt;Button variant=&quot;outlined&quot;&gt;{t(&quot;error.btn_support&quot;)}&lt;/Button&gt;
         &lt;/Stack&gt;
       &lt;/Stack&gt;
     &lt;/Center&gt;
@@ -66568,9 +66422,9 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
 
         &lt;Button
           onClick={() =&gt; setShow(!show)}
-          label={show ? t(&quot;story.portal_btn_hide&quot;) : t(&quot;story.portal_btn_show&quot;)}
           variant=&quot;filled&quot;
-        /&gt;
+
+        &gt;{show ? t(&quot;story.portal_btn_hide&quot;) : t(&quot;story.portal_btn_show&quot;)}&lt;/Button&gt;
 
         {show &amp;&amp; (
           &lt;Portal&gt;
@@ -66604,9 +66458,9 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
                 &lt;Box mt=&quot;md&quot; textAlign=&quot;right&quot;&gt;
                   &lt;Button
                     size=&quot;sm&quot;
-                    label={t(&quot;story.portal_btn_ok&quot;)}
                     onClick={() =&gt; setShow(false)}
-                  /&gt;
+
+                  &gt;{t(&quot;story.portal_btn_ok&quot;)}&lt;/Button&gt;
                 &lt;/Box&gt;
               &lt;/Stack&gt;
             &lt;/Card&gt;
@@ -66724,8 +66578,8 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
                 newState ? &quot;success&quot; : &quot;warning&quot;,
               );
             }}
-            label={active ? t(&quot;story.portal_btn_stop&quot;) : t(&quot;story.portal_btn_start&quot;)}
-          /&gt;
+
+          &gt;{active ? t(&quot;story.portal_btn_stop&quot;) : t(&quot;story.portal_btn_start&quot;)}&lt;/Button&gt;
           {active &amp;&amp; (
             &lt;Portal container={logContainer}&gt;
               &lt;div
@@ -67021,10 +66875,10 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
               {selectedId &amp;&amp; (
                 &lt;Button
                   size=&quot;sm&quot;
-                  label={t(&quot;story.visuallyhidden_close&quot;)}
                   variant=&quot;outlined&quot;
                   onClick={() =&gt; setSelectedId(null)}
-                /&gt;
+
+                &gt;{t(&quot;story.visuallyhidden_close&quot;)}&lt;/Button&gt;
               )}
             &lt;/Box&gt;
             &lt;Box

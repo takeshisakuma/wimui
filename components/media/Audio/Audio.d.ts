@@ -1,4 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
+import { WimRadiusKey } from '../../../types/tokens';
 import { AudioLabels } from './components/AudioCustomControls';
 export type { AudioLabels };
 export type AudioTrack = {
@@ -14,7 +15,7 @@ type AudioProps = Omit<React.ComponentPropsWithoutRef<"audio">, "src"> & {
     muted?: boolean;
     controls?: boolean;
     preload?: "auto" | "metadata" | "none";
-    radius?: "none" | "sm" | "md" | "lg" | "full";
+    radius?: WimRadiusKey | "none";
     shadow?: boolean;
     border?: boolean;
     caption?: React.ReactNode;

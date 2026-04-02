@@ -8,7 +8,7 @@ export type ComboboxLabels = {
 };
 export type ComboboxProps = {
     options: ComboboxOption[];
-    onSelect?: (option: ComboboxOption) => void;
+    onChange?: (option: ComboboxOption) => void;
     placeholder?: string;
     label?: React.ReactNode;
     error?: string;
@@ -25,4 +25,4 @@ export type ComboboxProps = {
 /**
  * 入力とサジェストリストを組み合わせたコンボボックスコンポーネント。
  */
-export declare const Combobox: ({ options, onSelect, placeholder, showSearchIcon, allowClear, defaultValue, className, disabled, label, error, required, layout, id: customId, labels, ...props }: ComboboxProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Combobox: ({ options, onChange, placeholder, showSearchIcon, allowClear, defaultValue, className, disabled, label, error, required, layout, id: customId, labels, ...props }: ComboboxProps) => import("react/jsx-runtime").JSX.Element;

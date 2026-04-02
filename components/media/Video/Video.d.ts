@@ -1,4 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
+import { WimRadiusKey } from '../../../types/tokens';
 import { VideoLabels } from './components/VideoControls';
 export type { VideoLabels };
 type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
@@ -10,7 +11,7 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
     muted?: boolean;
     controls?: boolean;
     poster?: string;
-    radius?: "none" | "sm" | "md" | "lg" | "full";
+    radius?: WimRadiusKey | "none";
     shadow?: boolean;
     border?: boolean;
     fit?: "contain" | "cover" | "fill" | "none" | "scale-down";
