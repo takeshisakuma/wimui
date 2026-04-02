@@ -10,3 +10,4 @@ export * from './components/misc/Transition/Transition';
 export * from './components/misc/VisuallyHidden/VisuallyHidden';
 export * from './components/misc/Watermark/Watermark';
 export * from './components/misc/QueryBuilder/QueryBuilder';
+export * from './components/misc/BaseListItem/BaseListItem';

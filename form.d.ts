@@ -37,4 +37,6 @@ export * from './components/form/Textarea/Textarea';
 export * from './components/form/TimePicker/TimePicker';
 export * from './components/form/ToggleGroup/ToggleGroup';
 export * from './components/form/Transfer/Transfer';
+export * from './components/form/FieldTemplate/FieldTemplate';
+export * from './components/form/InputBase/InputBase';
 export * from './components/form/TreeSelect/TreeSelect';
