@@ -32,7 +32,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Check translation key consistency (locale vs locale)
         run: npm run i18n:check

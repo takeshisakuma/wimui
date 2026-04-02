@@ -41,6 +41,10 @@
       "limit": "350 kB"
     }
   ],
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build && vite build --mode umd",
