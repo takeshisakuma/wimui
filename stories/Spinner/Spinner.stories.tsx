@@ -36,11 +36,11 @@ export const Default: Story = {
   args: {
     label: "Loading...",
   },
-  render: (args: any) => <Spinner {...args} />,
+  render: (args) => <Spinner {...args} />,
 };
 
 export const Colors: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
       <Spinner {...args} color="primary" />
       <Spinner {...args} color="secondary" />
@@ -53,7 +53,7 @@ export const Colors: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
       <Spinner {...args} size="sm" />
       <Spinner {...args} size="md" />
@@ -63,7 +63,7 @@ export const Sizes: Story = {
 };
 
 export const WithLabel: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <Spinner {...args} label="Loading right..." labelPosition="right" />
       <Spinner {...args} label="Loading bottom..." labelPosition="bottom" />

@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof BackTop>;
 
 export const Basic: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
@@ -30,7 +30,7 @@ export const Basic: Story = {
 };
 
 export const CustomElement: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>

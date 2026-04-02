@@ -39,11 +39,11 @@ export const Default: Story = {
     color: "primary",
     size: "md",
   },
-  render: (args: any) => <Loader {...args} />,
+  render: (args) => <Loader {...args} />,
 };
 
 export const Variants: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", gap: "48px", alignItems: "center" }}>
       <div
         style={{
@@ -83,7 +83,7 @@ export const Variants: Story = {
 };
 
 export const Colors: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
       <Loader {...args} color="primary" />
       <Loader {...args} color="secondary" />
@@ -96,7 +96,7 @@ export const Colors: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
         <Loader {...args} variant="bars" size="sm" />

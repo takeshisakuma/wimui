@@ -22,7 +22,7 @@ export default meta;
 type Story = StoryObj<typeof Cascader>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
@@ -70,7 +70,7 @@ export const Default: Story = {
 };
 
 export const WithLabel: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
@@ -118,7 +118,7 @@ export const WithLabel: Story = {
 };
 
 export const HoverExpand: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {
@@ -151,7 +151,7 @@ export const HoverExpand: Story = {
 };
 
 export const Disabled: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Cascader
@@ -165,7 +165,7 @@ export const Disabled: Story = {
 };
 
 export const CustomSeparator: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const options: CascaderOption[] = [
       {

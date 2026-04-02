@@ -33,7 +33,7 @@ const users = [
 ];
 
 export const Default: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <AvatarGroup {...args}>
       {users.map((u, i) => (
         <Avatar key={i} src={u.src} initials={u.initials} />
@@ -46,7 +46,7 @@ export const MaxDisplayed: Story = {
   args: {
     max: 3,
   },
-  render: (args: any) => (
+  render: (args) => (
     <AvatarGroup {...args}>
       {users.map((u, i) => (
         <Avatar key={i} src={u.src} initials={u.initials} />
@@ -56,7 +56,7 @@ export const MaxDisplayed: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <AvatarGroup {...args} size="sm">
         {users.map((u, i) => (
@@ -82,7 +82,7 @@ export const TotalCount: Story = {
     max: 2,
     total: 10,
   },
-  render: (args: any) => (
+  render: (args) => (
     <AvatarGroup {...args}>
       {users.slice(0, 2).map((u, i) => (
         <Avatar key={i} src={u.src} initials={u.initials} />

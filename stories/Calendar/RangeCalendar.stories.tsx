@@ -46,7 +46,7 @@ export const Disabled: Story = {
 };
 
 export const Controlled: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const [range, setRange] = useState<RangeCalendarValue>([today, nextWeek]);
     return (
       <RangeCalendar {...args} value={range} onChange={setRange} />

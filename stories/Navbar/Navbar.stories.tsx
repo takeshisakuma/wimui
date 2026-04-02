@@ -26,7 +26,7 @@ export default meta;
 type Story = StoryObj<typeof Navbar>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Navbar {...args}>
@@ -63,7 +63,7 @@ export const Default: Story = {
 };
 
 export const GlassEffect: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div
@@ -122,7 +122,7 @@ export const WithMobileMenu: Story = {
 };
 
 export const CenteredLinks: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Navbar {...args} bordered>

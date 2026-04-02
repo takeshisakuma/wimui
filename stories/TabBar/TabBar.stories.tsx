@@ -27,7 +27,7 @@ export default meta;
 type Story = StoryObj<typeof TabBar>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [activeTab, setActiveTab] = React.useState("home");
     return (
@@ -70,7 +70,7 @@ export const Default: Story = {
 };
 
 export const WithoutLabels: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const [activeTab, setActiveTab] = React.useState("home");
     return (
       <div
@@ -102,7 +102,7 @@ export const WithoutLabels: Story = {
 };
 
 export const Fixed: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [activeTab, setActiveTab] = React.useState("home");
     return (

@@ -16,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof InputGroup>;
 
 export const Basic: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <InputGroup {...args}>
       <InputGroupText>@</InputGroupText>
       <Input placeholder="username" />
@@ -25,7 +25,7 @@ export const Basic: Story = {
 };
 
 export const WithButton: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <InputGroup {...args}>
       <Input placeholder="Search..." />
       <Button variant="filled" icon="SearchIcon" label="Search" />
@@ -34,7 +34,7 @@ export const WithButton: Story = {
 };
 
 export const Suffix: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <InputGroup {...args}>
       <Input placeholder="Recipient's username" />
       <InputGroupText>@example.com</InputGroupText>
@@ -43,7 +43,7 @@ export const Suffix: Story = {
 };
 
 export const MultipleAddons: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <InputGroup {...args}>
       <InputGroupText>$</InputGroupText>
       <InputGroupText>0.00</InputGroupText>
@@ -57,7 +57,7 @@ export const FullWidth: Story = {
   args: {
     fullWidth: true,
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ width: "100%", maxWidth: "600px" }}>
       <InputGroup {...args}>
         <InputGroupText>Search</InputGroupText>

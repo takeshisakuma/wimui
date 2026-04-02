@@ -45,7 +45,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const H1Heading: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
@@ -58,7 +58,7 @@ export const H1Heading: Story = {
 };
 
 export const H2Heading: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
@@ -71,7 +71,7 @@ export const H2Heading: Story = {
 };
 
 export const H3Heading: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
@@ -84,7 +84,7 @@ export const H3Heading: Story = {
 };
 
 export const H4Heading: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
@@ -97,7 +97,7 @@ export const H4Heading: Story = {
 };
 
 export const H5Heading: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
@@ -110,7 +110,7 @@ export const H5Heading: Story = {
 };
 
 export const H6Heading: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story.heading_text")}</Heading>;
   },
@@ -124,7 +124,7 @@ export const H6Heading: Story = {
 
 
 export const UnderlineHeading: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story.heading_underline")}</Heading>;
   },
@@ -136,7 +136,7 @@ export const UnderlineHeading: Story = {
 };
 
 export const HighlightHeading: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return <Heading {...args}>{t("story.heading_highlight")}</Heading>;
   },

@@ -132,7 +132,7 @@ const useDataGridTranslations = () => {
 };
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
@@ -286,7 +286,7 @@ export const WithActions: Story = {
 };
 
 export const Loading: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
@@ -298,7 +298,7 @@ export const Loading: Story = {
 };
 
 export const Empty: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t, tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} emptyMessage={t('story.datagrid_empty')} />;
@@ -309,7 +309,7 @@ export const Empty: Story = {
 };
 
 export const Striped: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
@@ -321,7 +321,7 @@ export const Striped: Story = {
 };
 
 export const Bordered: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
     const rows = tSampleData;
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
@@ -332,7 +332,7 @@ export const Bordered: Story = {
 };
 
 export const StickyHeader: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { tColumns } = useDataGridTranslations();
     const rows = manyRows as unknown as Record<string, unknown>[];
     return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;

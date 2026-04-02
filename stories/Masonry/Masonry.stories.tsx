@@ -44,7 +44,7 @@ const MasonryDemo = (args: Parameters<typeof Masonry>[0]) => {
 };
 
 export const Default: Story = {
-  render: (args: any) => <MasonryDemo {...args} />,
+  render: (args) => <MasonryDemo {...args} />,
   args: {
     columns: 3,
     spacing: 16,
@@ -52,7 +52,7 @@ export const Default: Story = {
 };
 
 export const ManyColumns: Story = {
-  render: (args: any) => <MasonryDemo {...args} />,
+  render: (args) => <MasonryDemo {...args} />,
   args: {
     ...Default.args,
     columns: 5,
@@ -61,7 +61,7 @@ export const ManyColumns: Story = {
 };
 
 export const LargeSpacing: Story = {
-  render: (args: any) => <MasonryDemo {...args} />,
+  render: (args) => <MasonryDemo {...args} />,
   args: {
     ...Default.args,
     columns: 3,

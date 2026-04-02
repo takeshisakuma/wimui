@@ -27,7 +27,7 @@ export default meta;
 type Story = StoryObj<typeof TabNavigation>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("overview");
     return (
@@ -66,7 +66,7 @@ export const Default: Story = {
 };
 
 export const Pills: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("all");
     return (
@@ -95,7 +95,7 @@ export const Pills: Story = {
 };
 
 export const Contained: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("daily");
     return (
@@ -124,7 +124,7 @@ export const Contained: Story = {
 };
 
 export const WithIcons: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [active, setActive] = React.useState("code");
     return (

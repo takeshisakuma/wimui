@@ -29,7 +29,7 @@ export const Basic: Story = {
   args: {
     disabled: false,
   },
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
@@ -76,7 +76,7 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
@@ -107,7 +107,7 @@ export const Disabled: Story = {
 };
 
 export const WithIcons: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
@@ -161,7 +161,7 @@ export const WithIcons: Story = {
 };
 
 export const WithGroups: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
@@ -202,7 +202,7 @@ export const WithGroups: Story = {
 };
 
 export const WithDisabledItems: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu
@@ -237,7 +237,7 @@ export const WithDisabledItems: Story = {
 };
 
 export const OnImage: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ContextMenu

@@ -52,7 +52,7 @@ export const Initials: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
       <Avatar {...args} size="sm" initials="SM" intent="neutral" />
       <Avatar {...args} size="md" initials="MD" intent="neutral" />
@@ -62,7 +62,7 @@ export const Sizes: Story = {
 };
 
 export const Shapes: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", gap: "16px" }}>
       <Avatar {...args} shape="circle" initials="C" intent="secondary" />
       <Avatar {...args} shape="rounded" initials="R" intent="secondary" />
@@ -86,7 +86,7 @@ export const Fallback: Story = {
 };
 
 export const Colors: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", gap: "16px" }}>
       <Avatar {...args} initials="P" intent="primary" />
       <Avatar {...args} initials="S" intent="secondary" />

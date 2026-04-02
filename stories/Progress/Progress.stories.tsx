@@ -34,11 +34,11 @@ export const Default: Story = {
     label: "Processing...",
     showValue: true,
   },
-  render: (args: any) => <Progress {...args} />,
+  render: (args) => <Progress {...args} />,
 };
 
 export const Colors: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div
       style={{
         display: "flex",
@@ -58,7 +58,7 @@ export const Colors: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div
       style={{
         display: "flex",
@@ -79,5 +79,5 @@ export const Indeterminate: Story = {
     indeterminate: true,
     label: "Uploading...",
   },
-  render: (args: any) => <Progress {...args} />,
+  render: (args) => <Progress {...args} />,
 };

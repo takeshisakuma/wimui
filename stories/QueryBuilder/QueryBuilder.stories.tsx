@@ -24,7 +24,7 @@ export default meta;
 type Story = StoryObj<typeof QueryBuilder>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation("components");
     const [query, setQuery] = useState<QueryGroup | undefined>(args.query);
     return (
@@ -77,7 +77,7 @@ export const Predefined: Story = {
       ],
     },
   },
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation("components");
     const [query, setQuery] = useState<QueryGroup | undefined>(args.defaultQuery as QueryGroup);
     return (

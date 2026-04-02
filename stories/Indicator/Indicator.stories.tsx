@@ -38,7 +38,7 @@ export const Default: Story = {
 };
 
 export const Colors: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", gap: "20px" }}>
       <Indicator {...args} color="primary">
         <Avatar initials="P" />
@@ -81,7 +81,7 @@ export const Inline: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
       <Indicator {...args} size="sm" inline />
       <Indicator {...args} size="md" inline />
@@ -91,7 +91,7 @@ export const Sizes: Story = {
 };
 
 export const WithIcons: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: "flex", gap: "20px" }}>
       <Indicator {...args} color="error">
         <div

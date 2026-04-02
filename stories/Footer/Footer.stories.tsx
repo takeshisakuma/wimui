@@ -56,9 +56,9 @@ const FooterDemo = (args: Parameters<typeof Footer>[0]) => {
 };
 
 export const Default: Story = {
-  render: (args: any) => <FooterDemo {...args} />,
+  render: (args) => <FooterDemo {...args} />,
 };
 
 export const Dark: Story = {
-  render: (args: any) => <FooterDemo {...args} background="dark" />,
+  render: (args) => <FooterDemo {...args} background="dark" />,
 };

@@ -22,7 +22,7 @@ export default meta;
 type Story = StoryObj<typeof Pagination>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     return <Pagination {...args} />;
   },
   args: {
@@ -33,7 +33,7 @@ export const Default: Story = {
 };
 
 export const ManyPages: Story = {
-  render: (args: any) => {
+  render: (args) => {
     return <Pagination {...args} />;
   },
   args: {
@@ -44,7 +44,7 @@ export const ManyPages: Story = {
 };
 
 export const LargeSiblingCount: Story = {
-  render: (args: any) => {
+  render: (args) => {
     return <Pagination {...args} />;
   },
   args: {
@@ -56,7 +56,7 @@ export const LargeSiblingCount: Story = {
 };
 
 export const Interactive: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const [currentPage, setCurrentPage] = useState(1);
     return (
       <Pagination

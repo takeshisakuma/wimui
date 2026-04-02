@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof ScrollProgress>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
@@ -35,7 +35,7 @@ export const Default: Story = {
 };
 
 export const CustomContainer: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
     const { t } = useTranslation(ALL_NAMESPACES);
     return (

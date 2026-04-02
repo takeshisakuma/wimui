@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof Anchor>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [isMobile, setIsMobile] = React.useState(false);
 

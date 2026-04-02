@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { GanttChart } from "@/components/charts/GanttChart/GanttChart";
+import { GanttChart, GanttTask } from "@/components/charts/GanttChart/GanttChart";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -190,7 +190,7 @@ export const WithClickHandler: Story = {
         startDate={new Date(2026, 2, 1)}
         endDate={new Date(2026, 2, 31)}
         viewMode="day"
-        onTaskClick={(task: any) => alert(`Clicked: ${task.label}`)}
+        onTaskClick={(task: GanttTask) => alert(`Clicked: ${task.label}`)}
       />
     );
   },

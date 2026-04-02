@@ -37,7 +37,7 @@ export const Default: Story = {
 };
 
 export const Text: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ maxWidth: "300px", width: "100%" }}>
       <Skeleton {...args} variant="text" width="100%" />
       <Skeleton {...args} variant="text" width="80%" />
@@ -70,7 +70,7 @@ export const WaveAnimation: Story = {
 };
 
 export const CardExample: Story = {
-  render: (args: any) => (
+  render: (args) => (
     <div
       style={{
         display: "flex",

@@ -38,7 +38,7 @@ export const Small: Story = {
       </div>
     ),
   ],
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("day");
     const options = useMemo(
@@ -72,7 +72,7 @@ export const Medium: Story = {
       </div>
     ),
   ],
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("day");
     const options = useMemo(
@@ -106,7 +106,7 @@ export const Large: Story = {
       </div>
     ),
   ],
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("day");
     const options = useMemo(
@@ -133,7 +133,7 @@ export const TwoOptions: Story = {
     size: "md",
     fullWidth: true,
   },
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("on");
     const options = useMemo(
@@ -159,7 +159,7 @@ export const WithIcons: Story = {
     size: "md",
     fullWidth: false,
   },
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("circle");
     const options = useMemo(
@@ -199,7 +199,7 @@ export const IconOnly: Story = {
     size: "md",
     fullWidth: false,
   },
-  render: (args: any) => {
+  render: (args) => {
     const [value, setValue] = useState("circle");
     const iconOnlyOptions = [
       { value: "circle", iconName: "CircleIcon" },
@@ -229,7 +229,7 @@ export const LongLabel: Story = {
       </div>
     ),
   ],
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [value, setValue] = useState("long1");
     const options = useMemo(

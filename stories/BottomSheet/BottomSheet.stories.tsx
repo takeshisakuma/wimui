@@ -42,7 +42,7 @@ export default meta;
 type Story = StoryObj<typeof BottomSheet>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <BottomSheet {...args}>
@@ -105,7 +105,7 @@ export const Default: Story = {
 };
 
 export const SingleAction: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <BottomSheet {...args}>

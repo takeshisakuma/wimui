@@ -180,7 +180,7 @@ export const FixedPosition: Story = {
   parameters: {
     layout: "fullscreen",
   },
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "150vh", padding: "20px" }}>
@@ -203,7 +203,7 @@ export const BackTop: Story = {
   parameters: {
     layout: "fullscreen",
   },
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>

@@ -23,7 +23,7 @@ export default meta;
 type Story = StoryObj<typeof FocusTrap>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const [active, setActive] = useState(false);
     const { t } = useTranslation(ALL_NAMESPACES);
 
@@ -85,7 +85,7 @@ export const AutoFocus: Story = {
   args: {
     autoFocus: true,
   },
-  render: (args: any) => {
+  render: (args) => {
     const [active, setActive] = useState(false);
     const { t } = useTranslation(ALL_NAMESPACES);
 

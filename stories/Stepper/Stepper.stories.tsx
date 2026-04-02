@@ -119,7 +119,7 @@ export const CustomIcons: Story = {
 };
 
 export const Interactive: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [current, setCurrent] = useState(0);
     const steps = Array.from({ length: 4 }, (_, i) => ({

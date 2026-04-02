@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof InfiniteScroll>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [items, setItems] = useState(
       Array.from({ length: 20 }, (_, i) => t("story.infscroll_item", { index: i + 1 })),

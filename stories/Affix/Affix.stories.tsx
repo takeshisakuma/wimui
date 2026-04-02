@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof Affix>;
 
 export const Basic: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
@@ -35,7 +35,7 @@ export const Basic: Story = {
 };
 
 export const OffsetBottom: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200vh", padding: "20px" }}>

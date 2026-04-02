@@ -16,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof Marquee>;
 
 export const Default: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
@@ -39,7 +39,7 @@ export const Fast: Story = {
   args: {
     duration: 5,
   },
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
@@ -62,7 +62,7 @@ export const Slow: Story = {
   args: {
     duration: 40,
   },
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
@@ -85,7 +85,7 @@ export const Reverse: Story = {
   args: {
     reverse: true,
   },
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Marquee {...args}>
@@ -105,7 +105,7 @@ export const Reverse: Story = {
 };
 
 export const Vertical: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ height: "200px", border: "1px solid #ccc" }}>

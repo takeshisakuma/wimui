@@ -39,7 +39,7 @@ export const Disabled: Story = {
 };
 
 export const Controlled: Story = {
-  render: (args: any) => {
+  render: (args) => {
     const [date, setDate] = useState(new Date());
     return <Calendar {...args} value={date} onChange={setDate} />;
   },

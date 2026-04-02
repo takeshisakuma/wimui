@@ -30,7 +30,7 @@ const DefaultTransfer = (args: React.ComponentProps<typeof Transfer>) => {
 };
 
 export const Default: Story = {
-  render: (args: any) => <DefaultTransfer {...args} />,
+  render: (args) => <DefaultTransfer {...args} />,
 };
 
 const TransferWrapper = () => {
@@ -63,7 +63,7 @@ const CustomTitlesTransfer = (args: React.ComponentProps<typeof Transfer>) => {
 };
 
 export const CustomTitles: Story = {
-  render: (args: any) => <CustomTitlesTransfer {...args} />,
+  render: (args) => <CustomTitlesTransfer {...args} />,
 };
 
 const DisabledTransfer = (args: React.ComponentProps<typeof Transfer>) => {
@@ -79,5 +79,5 @@ const DisabledTransfer = (args: React.ComponentProps<typeof Transfer>) => {
 };
 
 export const Disabled: Story = {
-  render: (args: any) => <DisabledTransfer {...args} />,
+  render: (args) => <DisabledTransfer {...args} />,
 };
