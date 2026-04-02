@@ -29,6 +29,7 @@ const config: StorybookConfig = {
     // Viteの設定をマージ
     return mergeConfig(config, {
       base: "./",
+      publicDir: false,
       resolve: {
         alias: [
           {
