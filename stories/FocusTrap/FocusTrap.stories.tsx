@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FocusTrap } from "@/components/misc/FocusTrap/FocusTrap";
+import { FocusTrap } from "@/components/overlay/FocusTrap/FocusTrap";
 import { Button } from "@/components/form/Button/Button";
 import { Input } from "@/components/form/Input/Input";
 import { Stack } from "@/components/layout/Stack/Stack";

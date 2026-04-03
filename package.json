@@ -29,7 +29,6 @@
     "./typography": { "types": "./dist/typography.d.ts", "import": "./dist/typography.js", "require": "./dist/typography.cjs" },
     "./media": { "types": "./dist/media.d.ts", "import": "./dist/media.js", "require": "./dist/media.cjs" },
     "./charts": { "types": "./dist/charts.d.ts", "import": "./dist/charts.js", "require": "./dist/charts.cjs" },
-    "./misc": { "types": "./dist/misc.d.ts", "import": "./dist/misc.js", "require": "./dist/misc.cjs" },
     "./tokens": { "types": "./dist/tokens.d.ts", "import": "./dist/tokens.js", "require": "./dist/tokens.cjs" }
   },
   "size-limit": [

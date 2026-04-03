@@ -71,7 +71,7 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    expect(container.querySelector(".subtle-scrollbar")).toBeInTheDocument();
+    expect(container.querySelector(".wim-subtle-scrollbar")).toBeInTheDocument();
   });
 
   it("applies scrollbar hidden class", () => {
@@ -82,7 +82,7 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    expect(container.querySelector(".no-scrollbar")).toBeInTheDocument();
+    expect(container.querySelector(".wim-no-scrollbar")).toBeInTheDocument();
   });
 
   it("applies height and overflow style", () => {

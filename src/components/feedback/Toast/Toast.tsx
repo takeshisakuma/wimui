@@ -6,7 +6,7 @@ import React, {
   useContext,
 } from "react";
 import classNames from "classnames";
-import { Transition } from "../../misc/Transition/Transition";
+import { Transition } from "../../layout/Transition/Transition";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { WimIntent } from "../../../types/tokens";

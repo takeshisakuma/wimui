@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
-import { Portal } from "../../misc/Portal/Portal";
+import { Portal } from "../../overlay/Portal/Portal";
 import { Button } from "../../form/Button/Button";
 import "./tour.scss";
 

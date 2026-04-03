@@ -63,7 +63,6 @@ export default defineConfig(({ mode }) => {
               typography: path.resolve(__dirname, "src/typography.ts"),
               media: path.resolve(__dirname, "src/media.ts"),
               charts: path.resolve(__dirname, "src/charts.ts"),
-              misc: path.resolve(__dirname, "src/misc.ts"),
               tokens: path.resolve(__dirname, "src/tokens.ts"),
             },
             formats: ["es", "cjs"],

@@ -1,7 +1,7 @@
 /* --- スクロール制御 --- */
 
 /* スクロール機能を維持したまま、スクロールバー（見た目）を隠す */
-.no-scrollbar {
+.wim-no-scrollbar {
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
 
@@ -11,7 +11,7 @@
 }
 
 /* モダンで控えめなスクロールバー */
-.subtle-scrollbar {
+.wim-subtle-scrollbar {
   scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track) !important;
   scrollbar-width: thin !important;
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useId } from "react";
 import { Input } from "../../form/Input/Input";
-import { BaseListItem } from "../../misc/BaseListItem";
+import { BaseListItem } from "../../_internal/BaseListItem";
 import "./combobox.scss";
 
 import { FieldTemplate } from "../FieldTemplate";

@@ -8,11 +8,11 @@ import React, {
   ReactNode,
 } from "react";
 import classNames from "classnames";
-import { Portal } from "../../misc/Portal/Portal";
-import { Transition } from "../../misc/Transition/Transition";
+import { Portal } from "../../overlay/Portal/Portal";
+import { Transition } from "../../layout/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
-import { FocusTrap } from "../../misc/FocusTrap/FocusTrap";
-import { BaseListItem } from "../../misc/BaseListItem";
+import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
+import { BaseListItem } from "../../_internal/BaseListItem";
 import "./command-palette.scss";
 
 // --- Context ---

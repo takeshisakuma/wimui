@@ -8,7 +8,7 @@ import {
   FloatingFocusManager,
 } from "@floating-ui/react";
 import classNames from "classnames";
-import { Transition } from "../../misc/Transition/Transition";
+import { Transition } from "../../layout/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
 import "./popover.scss";
 

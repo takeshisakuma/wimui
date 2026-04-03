@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Table } from "@/components/data-display/Table/Table";
 import { Badge } from "@/components/data-display/Badge/Badge";
 import { Checkbox } from "@/components/form/Checkbox/Checkbox";
-import { IconButton } from "@/components/misc/IconButton/IconButton";
+import { IconButton } from "@/components/form/IconButton/IconButton";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useId, useMemo } from "react";
 import classNames from "classnames";
-import { Transition } from "../../misc/Transition/Transition";
+import { Transition } from "../../layout/Transition/Transition";
 import { TreeView, TreeViewNode } from "../../data-display/TreeView/TreeView";
 import { InputBase } from "../InputBase";
 import "./tree-select.scss";

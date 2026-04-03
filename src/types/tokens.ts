@@ -40,23 +40,6 @@ export type WimIntent =
   | "destructive"
   | "positive";
 
-/**
- * Status values for indicator-style components (Badge, Chip, Tag, Progress).
- * @deprecated Use WimIntent instead.
- */
-export type IndicatorStatus = WimIntent;
-
-/**
- * Status values for feedback/notification components (Alert, Banner, Toast, Snackbar).
- * @deprecated Use WimIntent instead.
- */
-export type FeedbackStatus = WimIntent;
-
-/**
- * Status values for form field components (Input, Textarea, DatePicker, RichTextEditor).
- * @deprecated Use WimIntent instead.
- */
-export type FieldStatus = WimIntent;
 
 /**
  * Color tokens keys available as CSS variables.

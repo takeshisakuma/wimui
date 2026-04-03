@@ -8,3 +8,5 @@ export * from "./components/overlay/Menu/Menu";
 export * from "./components/overlay/Popconfirm/Popconfirm";
 export * from "./components/overlay/Popover/Popover";
 export * from "./components/overlay/Tooltip/Tooltip";
+export * from "./components/overlay/Portal/Portal";
+export * from "./components/overlay/FocusTrap/FocusTrap";

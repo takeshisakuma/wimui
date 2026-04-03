@@ -1,6 +1,6 @@
 import React, { useState, useId, useCallback, useRef } from "react";
 import classNames from "classnames";
-import { IconButton } from "../../misc/IconButton/IconButton";
+import { IconButton } from "../IconButton/IconButton";
 import { Button } from "../../form/Button/Button";
 import { Selectbox } from "../../form/Selectbox/Selectbox";
 import { Input } from "../../form/Input/Input";

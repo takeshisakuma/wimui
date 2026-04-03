@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect } from "react";
-import { Portal } from "../misc/Portal/Portal";
-import { Transition } from "../misc/Transition/Transition";
-import { FocusTrap } from "../misc/FocusTrap/FocusTrap";
+import { Portal } from "../overlay/Portal/Portal";
+import { Transition } from "../layout/Transition/Transition";
+import { FocusTrap } from "../overlay/FocusTrap/FocusTrap";
 import classNames from "classnames";
 
 export type OverlayBaseProps = {

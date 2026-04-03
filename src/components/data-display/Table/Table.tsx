@@ -53,8 +53,8 @@ const Table = ({
       className={classNames(
         "wim-table-container",
         stickyHeader && "wim-table-container--sticky",
-        scrollbar === "subtle" && "subtle-scrollbar",
-        scrollbar === "hidden" && "no-scrollbar",
+        scrollbar === "subtle" && "wim-subtle-scrollbar",
+        scrollbar === "hidden" && "wim-no-scrollbar",
       )}
       style={containerStyle}
     >

@@ -1,5 +1,6 @@
 import React from "react";
-import { Badge } from "../data-display/Badge/Badge";
+import { IndicatorBase } from "./IndicatorBase";
+import "../data-display/Badge/badge.scss";
 import "./fieldLabelContent.scss";
 
 export type FieldLabelContentProps = {
@@ -23,24 +24,26 @@ export const FieldLabelContent = ({
     <div className={className}>
       <span className="wim-field-label-text">{label}</span>
       {required ? (
-        <Badge
-          color="error"
+        <IndicatorBase
+          prefixClass="wim-badge"
+          intent="error"
           size="sm"
           className="wim-field-label-badge"
           aria-hidden="true"
         >
           {requiredLabel}
-        </Badge>
+        </IndicatorBase>
       ) : (
         showOptional && (
-          <Badge
-            color="neutral"
+          <IndicatorBase
+            prefixClass="wim-badge"
+            intent="neutral"
             size="sm"
             className="wim-field-label-badge"
             aria-hidden="true"
           >
             {optionalLabel}
-          </Badge>
+          </IndicatorBase>
         )
       )}
     </div>

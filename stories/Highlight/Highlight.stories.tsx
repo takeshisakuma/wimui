@@ -50,7 +50,7 @@ export const CustomComponent: Story = {
   args: {
     children: "This is a paragraph with a highlight.",
     highlight: "paragraph",
-    component: "p",
+    as: "p",
     style: { fontSize: "20px", color: "gray" },
   },
 };

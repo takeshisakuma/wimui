@@ -8,7 +8,7 @@ import React, {
 import classNames from "classnames";
 import "./tree-view.scss";
 import { Icon } from "../../media/Icon/Icon";
-import { BaseListItem } from "../../misc/BaseListItem";
+import { BaseListItem } from "../../_internal/BaseListItem";
 import { useTreeViewItemExpansion } from "./useTreeViewItemExpansion";
 import { VirtualList } from "../../data-display/VirtualList/VirtualList";
 

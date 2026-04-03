@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { QueryBuilder, type QueryField, type QueryGroup } from "../../src/components/misc/QueryBuilder/QueryBuilder";
+import { QueryBuilder, type QueryField, type QueryGroup } from "../../src/components/form/QueryBuilder/QueryBuilder";
 import { useTranslation } from "react-i18next";
 
 const fields: QueryField[] = [

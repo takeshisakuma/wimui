@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { LinkButton } from "@/components/misc/LinkButton/LinkButton";
+import { LinkButton } from "@/components/form/LinkButton/LinkButton";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

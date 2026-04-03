@@ -1,7 +1,7 @@
 import React, { useId } from "react";
 import classNames from "classnames";
-import { Transition } from "../../misc/Transition/Transition";
-import { BaseListItem } from "../../misc/BaseListItem";
+import { Transition } from "../../layout/Transition/Transition";
+import { BaseListItem } from "../../_internal/BaseListItem";
 import "./selectbox.scss";
 import { useSelectbox } from "./useSelectbox";
 

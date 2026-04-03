@@ -48,7 +48,7 @@ describe("Highlight", () => {
 
   it("uses custom component", () => {
     const { container } = render(
-      <Highlight highlight="test" component="div">
+      <Highlight highlight="test" as="div">
         test
       </Highlight>,
     );

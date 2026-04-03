@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useId } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { Chip } from "../../data-display/Chip/Chip";
-import { BaseListItem } from "../../misc/BaseListItem";
+import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
 import "./multiselect.scss";
 

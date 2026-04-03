@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { VisuallyHidden } from "@/components/misc/VisuallyHidden/VisuallyHidden";
+import { VisuallyHidden } from "@/components/layout/VisuallyHidden/VisuallyHidden";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 

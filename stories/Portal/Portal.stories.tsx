@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Portal } from "@/components/misc/Portal/Portal";
+import { Portal } from "@/components/overlay/Portal/Portal";
 import { Button } from "@/components/form/Button/Button";
 import { Icon } from "@/components/media/Icon/Icon";
 import { Card } from "@/components/data-display/Card/Card";

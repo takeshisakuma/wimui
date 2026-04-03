@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import classNames from "classnames";
+import { ComponentSize } from "../../types/tokens";
 import "./statusContent.scss";
 
 export type StatusContentProps = {
@@ -34,7 +35,7 @@ export type StatusContentProps = {
   /**
    * Size variation
    */
-  size?: "md" | "sm";
+  size?: ComponentSize;
 };
 
 /**

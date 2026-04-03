@@ -2,9 +2,9 @@ import React, { useState, useMemo, useId, useEffect, useRef } from "react";
 import classNames from "classnames";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Button } from "../../form/Button/Button";
-import { BaseListItem } from "../../misc/BaseListItem";
+import { BaseListItem } from "../../_internal/BaseListItem";
 import { FieldTemplate } from "../FieldTemplate";
-import { VisuallyHidden } from "../../misc/VisuallyHidden/VisuallyHidden";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import { VirtualList } from "../../data-display/VirtualList/VirtualList";
 import "./transfer.scss";
 

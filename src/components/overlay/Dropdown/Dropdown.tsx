@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, ReactNode, useId } from "react";
 import classNames from "classnames";
-import { BaseListItem } from "../../misc/BaseListItem";
+import { BaseListItem } from "../../_internal/BaseListItem";
 import "./dropdown.scss";
 
 // Context to share state between components
@@ -182,7 +182,7 @@ export type DropdownMenuProps = {
   align?: "left" | "right";
 };
 
-import { Transition } from "../../misc/Transition/Transition";
+import { Transition } from "../../layout/Transition/Transition";
 
 export const DropdownMenu = ({
   children,

@@ -12,7 +12,7 @@ export type HighlightProps = React.ComponentPropsWithoutRef<"span"> & {
   /** Custom styles for the highlighted `<mark>` element. */
   highlightStyles?: React.CSSProperties;
   /** The HTML tag or component to use for the container. Default is "span". */
-  component?: React.ElementType;
+  as?: React.ElementType;
 };
 
 /**
@@ -23,7 +23,7 @@ export const Highlight = ({
   highlight,
   highlightClassName,
   highlightStyles,
-  component: Component = "span",
+  as: Component = "span",
   className,
   ...props
 }: HighlightProps) => {
