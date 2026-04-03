@@ -1,6 +1,6 @@
 import React from "react";
 import { IndicatorBase } from "../../_internal/IndicatorBase";
-import { ComponentSize, WimIntent } from "../../../types/tokens";
+import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/tokens";
 import "./tag.scss";
 
 export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
@@ -9,7 +9,7 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   /** ステータス */
   intent?: WimIntent;
   /** バリアント */
-  variant?: "solid" | "outline" | "subtle";
+  variant?: IndicatorVariant;
   /** サイズ */
   size?: ComponentSize;
   /** アイコン */

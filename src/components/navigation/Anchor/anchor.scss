@@ -8,7 +8,7 @@
     &--horizontal {
       padding-bottom: 0;
       padding-left: 0;
-      border-bottom: 1px solid var(--wim-scrollbar-track);
+      border-bottom: 1px solid var(--wim-color-scrollbar-track);
 
       .wim-anchor__ink {
         top: auto;
@@ -35,7 +35,7 @@
       width: 2px;
       height: 100%;
       overflow: hidden;
-      background-color: var(--wim-scrollbar-track); // Use a light gray from track
+      background-color: var(--wim-color-scrollbar-track); // Use a light gray from track
 
       &-ball {
         position: absolute;

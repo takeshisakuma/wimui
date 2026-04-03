@@ -9,6 +9,11 @@
   "files": [
     "dist"
   ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss",
+    "./dist/index.js"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -75,6 +80,7 @@
     "check:hierarchy": "node scripts/check_hierarchy.js",
     "check:stories": "node scripts/check_stories_keys.js",
     "check:casing": "node scripts/check-git-casing.cjs",
+    "tokens:check": "node scripts/check-token-types.js",
     "prepare": "husky"
   },
   "repository": {

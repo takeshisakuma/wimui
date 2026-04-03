@@ -12,7 +12,7 @@
 
 /* モダンで控えめなスクロールバー */
 .subtle-scrollbar {
-  scrollbar-color: var(--wim-scrollbar-thumb) var(--wim-scrollbar-track) !important;
+  scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track) !important;
   scrollbar-width: thin !important;
 
   &::-webkit-scrollbar {
@@ -21,17 +21,17 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: var(--wim-scrollbar-track) !important;
+    background: var(--wim-color-scrollbar-track) !important;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--wim-scrollbar-thumb) !important;
+    background-color: var(--wim-color-scrollbar-thumb) !important;
     background-clip: content-box !important;
     border: 1px solid transparent !important;
     border-radius: 10px !important;
 
     &:hover {
-      background-color: var(--wim-scrollbar-thumb) !important;
+      background-color: var(--wim-color-scrollbar-thumb) !important;
       filter: brightness(0.9);
     }
   }

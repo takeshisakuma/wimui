@@ -1,12 +1,12 @@
 import React from "react";
 import classNames from "classnames";
-import { ComponentSize, WimIntent } from "../../types/tokens";
+import { ComponentSize, WimIntent, IndicatorVariant } from "../../types/tokens";
 
 export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   children?: React.ReactNode;
   icon?: React.ReactNode;
   intent?: WimIntent;
-  variant?: "solid" | "outline" | "subtle";
+  variant?: IndicatorVariant;
   size?: ComponentSize;
   prefixClass: string;
   as?: C;

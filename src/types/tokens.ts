@@ -11,6 +11,21 @@ export type LiteralWithAutocomplete<T extends string> = T | (string & {});
 export type ComponentSize = "sm" | "md" | "lg";
 
 /**
+ * Variant values for button-style components (Button, ButtonGroup, LinkButton).
+ */
+export type ButtonVariant = "filled" | "outline" | "ghost";
+
+/**
+ * Variant values for form field components (Input, Textarea, DatePicker, RichTextEditor).
+ */
+export type FieldVariant = "outline" | "ghost";
+
+/**
+ * Variant values for indicator-style components (Badge, Chip, Tag).
+ */
+export type IndicatorVariant = "solid" | "outline" | "subtle";
+
+/**
  * Unified semantic intent values for components.
  */
 export type WimIntent =

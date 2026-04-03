@@ -46,7 +46,7 @@ describe("ButtonGroup", () => {
 
   it("skips non-element children when variant is set", () => {
     render(
-      <ButtonGroup variant="outlined">
+      <ButtonGroup variant="outline">
         {"text"}
         <button>Btn</button>
       </ButtonGroup>,

@@ -37,7 +37,7 @@ export const Basic: Story = {
     return (
       <Group {...args}>
         <Button variant="filled">{t("story.group_first", "First")}</Button>
-        <Button variant="outlined">{t("story.group_second", "Second")}</Button>
+        <Button variant="outline">{t("story.group_second", "Second")}</Button>
         <Button variant="ghost">{t("story.group_third", "Third")}</Button>
       </Group>
     );
@@ -53,7 +53,7 @@ export const Grow: Story = {
     return (
       <Group {...args}>
         <Button variant="filled">{t("story.group_first", "First")}</Button>
-        <Button variant="outlined">{t("story.group_second", "Second")}</Button>
+        <Button variant="outline">{t("story.group_second", "Second")}</Button>
       </Group>
     );
   },

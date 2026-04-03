@@ -185,7 +185,7 @@ export const SignaturePad = ({
         </div>
         <div className="wim-signature-pad__footer">
           <Button
-            variant="outlined"
+            variant="outline"
             size="sm"
             onClick={clear}
             disabled={disabled || isEmpty}

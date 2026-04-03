@@ -73,8 +73,8 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-border: #{$pccs-gy7-5};
   --wim-color-border-secondary: #{$pccs-gy8-5};
   --wim-color-focus-outline: #{$color-focus-outline};
-  --wim-scrollbar-thumb: #{$scrollbar-thumb};
-  --wim-scrollbar-track: #{$scrollbar-track};
+  --wim-color-scrollbar-thumb: #{$scrollbar-thumb};
+  --wim-color-scrollbar-track: #{$scrollbar-track};
   --wim-color-primary-rgb: #{$pccs-s16-rgb};
   --wim-color-primary-hover: rgba(var(--wim-color-primary-rgb), 0.9);
   --wim-color-primary-active: rgba(var(--wim-color-primary-rgb), 0.8);
@@ -143,8 +143,8 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-bg-hover: color-mix(in srgb, var(--wim-color-primary) 12%, transparent); // Hover color for dark mode (slightly opaque)
   --wim-color-border: #{$pccs-gy5-5}; // Medium Gray Border
   --wim-color-border-secondary: #{$pccs-gy4-5}; // Darker Gray Border
-  --wim-scrollbar-thumb: #{$pccs-gy5-5};
-  --wim-scrollbar-track: #{$pccs-gy3-5};
+  --wim-color-scrollbar-thumb: #{$pccs-gy5-5};
+  --wim-color-scrollbar-track: #{$pccs-gy3-5};
   --wim-color-primary-container-alpha: rgb(0 122 255 / 0.2);
   --wim-color-surface-variant-alpha: rgb(255 255 255 / 0.05);
   --wim-color-primary-hover: rgba(var(--wim-color-primary-rgb), 1);

@@ -17,7 +17,7 @@ const meta: Meta<typeof ButtonGroup> = {
     joined: { control: "boolean" },
     variant: {
       control: "select",
-      options: ["filled", "outlined", "ghost"],
+      options: ["filled", "outline", "ghost"],
     },
   },
 };
@@ -31,7 +31,7 @@ export const LargeGroup: Story = {
     return (
       <ButtonGroup {...args}>
         <Button size="lg" variant="filled">{t("story.button_click_me")}</Button>
-        <Button size="lg" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="lg" variant="outline">{t("story.button_click_me")}</Button>
         <Button size="lg" variant="ghost">{t("story.button_click_me")}</Button>
       </ButtonGroup>
     );
@@ -44,7 +44,7 @@ export const MediumGroup: Story = {
     return (
       <ButtonGroup {...args}>
         <Button size="md" variant="filled">{t("story.button_click_me")}</Button>
-        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outline">{t("story.button_click_me")}</Button>
         <Button size="md" variant="ghost">{t("story.button_click_me")}</Button>
       </ButtonGroup>
     );
@@ -57,7 +57,7 @@ export const SmallGroup: Story = {
     return (
       <ButtonGroup {...args}>
         <Button size="sm" variant="filled">{t("story.button_click_me")}</Button>
-        <Button size="sm" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="sm" variant="outline">{t("story.button_click_me")}</Button>
         <Button size="sm" variant="ghost">{t("story.button_click_me")}</Button>
       </ButtonGroup>
     );
@@ -72,9 +72,9 @@ export const JoinedGroup: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
-        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
-        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outline">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outline">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outline">{t("story.button_click_me")}</Button>
       </ButtonGroup>
     );
   },
@@ -89,9 +89,9 @@ export const JoinedGroupPrimary: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ButtonGroup {...args}>
-        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
-        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
-        <Button size="md" variant="outlined">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outline">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outline">{t("story.button_click_me")}</Button>
+        <Button size="md" variant="outline">{t("story.button_click_me")}</Button>
       </ButtonGroup>
     );
   },
@@ -107,7 +107,7 @@ export const PriorityOverride: Story = {
     return (
       <ButtonGroup {...args}>
         <Button size="md" variant="filled">{t("story.buttongroup_primary")}</Button>
-        <Button size="md" variant="outlined">{t("story.buttongroup_secondary")}</Button>
+        <Button size="md" variant="outline">{t("story.buttongroup_secondary")}</Button>
         <Button size="md" variant="ghost">{t("story.buttongroup_tertiary")}</Button>
       </ButtonGroup>
     );

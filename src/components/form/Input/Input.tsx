@@ -5,11 +5,11 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import { Icon } from "../../media/Icon/Icon";
 import { InputBase, InputBaseIcon } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
-import { WimIntent } from "../../../types/tokens";
+import { WimIntent, FieldVariant } from "../../../types/tokens";
 
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   intent?: WimIntent;
-  variant?: "outline" | "ghost";
+  variant?: FieldVariant;
   fullWidth?: boolean;
   leftIcon?: React.ComponentProps<typeof Icon>["name"];
   rightIcon?: React.ComponentProps<typeof Icon>["name"];

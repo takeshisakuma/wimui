@@ -13,7 +13,7 @@ const meta: Meta<typeof IconButton> = {
     disabled: { control: "boolean" },
     variant: {
       control: "select",
-      options: ["filled", "outlined", "ghost"],
+      options: ["filled", "outline", "ghost"],
     },
   },
 };

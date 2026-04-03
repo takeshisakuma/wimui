@@ -1,14 +1,14 @@
 {
   "guide": {
     "hierarchy_desc": "Visualizing the layers of components and how they are composed to maintain a healthy architecture.",
-    "hierarchy_rules_desc": "Design rules for maintaining healthy dependencies in wimui.",
+    "hierarchy_rules_desc": "Design rules for maintaining healthy dependencies in WIM UI.",
     "hierarchy_rules_title": "Design Rules",
-    "hierarchy_tiers_desc": "wimui is designed with four tiers based on component complexity and role. This keeps dependencies unidirectional (top-down) and improves maintainability.",
+    "hierarchy_tiers_desc": "WIM UI is designed with four tiers based on component complexity and role. This keeps dependencies unidirectional (top-down) and improves maintainability.",
     "hierarchy_tiers_title": "Component Tiers",
     "hierarchy_title": "Hierarchy & Composition",
     "composition_map_desc": "Mapping of which components major components use (wrap) internally. By combining lower-tier components, we provide consistent functionality.",
     "composition_map_title": "Composition Map",
-    "principles_desc": "In wimui, we follow these principles to maintain consistency in DOM management and motion.",
+    "principles_desc": "In WIM UI, we follow these principles to maintain consistency in DOM management and motion.",
     "principles_title": "Principles of Portals and Animations"
   }
 }

@@ -1,12 +1,12 @@
 import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
-import { WimIntent } from "../../../types/tokens";
+import { WimIntent, FieldVariant } from "../../../types/tokens";
 import "./textarea.scss";
 
 type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
   intent?: WimIntent;
-  variant?: "outline" | "ghost";
+  variant?: FieldVariant;
   fullWidth?: boolean;
   fieldSizing?: "fixed" | "content";
   label?: string;

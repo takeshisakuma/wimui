@@ -1,7 +1,6 @@
 import {
   Meta,
   Title,
-  Description,
   Primary,
   Controls,
   Stories,
@@ -26,7 +25,6 @@ import { T } from "../T";
 
 <p><T k="doc.divider_long_desc" /></p>
 
-<Description />
 
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.divider_design_intent" /></p>
@@ -93,17 +91,28 @@ import { T } from "../T";
 </ul>
 
 ## <T k="doc.real_world_scenarios_title" />
-<ul>
-  <li>
-    <strong><T k="doc.scenario_form_title" />:</strong> <T k="doc.divider_scenario_form" />
-  </li>
-  <li>
-    <strong><T k="doc.scenario_list_title" />:</strong> <T k="doc.divider_scenario_list" />
-  </li>
-  <li>
-    <strong><T k="doc.scenario_nav_title" />:</strong> <T k="doc.divider_scenario_nav" />
-  </li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.divider_scenario_form" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_list_title" /></strong></td>
+      <td><T k="doc.divider_scenario_list" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_nav_title" /></strong></td>
+      <td><T k="doc.divider_scenario_nav" /></td>
+    </tr>
+  </tbody>
+</table>
 
 
 ## <T k="doc.best_practices_title" />

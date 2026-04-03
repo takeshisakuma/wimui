@@ -5,7 +5,6 @@ import {
   Title,
   Primary,
   Stories,
-  Description,
 } from "@storybook/addon-docs/blocks";
 import * as DialogStories from "./Dialog.stories";
 import { T } from "../T";
@@ -25,7 +24,6 @@ import { T } from "../T";
   <T k="doc.dialog_title" />
 </p>
 
-<Description />
 
 <p><T k="doc.dialog_long_desc" /></p>
 
@@ -95,14 +93,24 @@ import { T } from "../T";
 </ul>
 
 ## <T k="doc.real_world_scenarios_title" />
-<ul>
-  <li>
-    <strong><T k="doc.scenario_confirm_title" />:</strong> <T k="doc.dialog_scenario_confirm" />
-  </li>
-  <li>
-    <strong><T k="doc.scenario_form_title" />:</strong> <T k="doc.dialog_scenario_form" />
-  </li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_confirm_title" /></strong></td>
+      <td><T k="doc.dialog_scenario_confirm" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.dialog_scenario_form" /></td>
+    </tr>
+  </tbody>
+</table>
 
 ## <T k="doc.best_practices_title" />
 <ul>

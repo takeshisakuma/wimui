@@ -101,7 +101,7 @@ export const WithAction: Story = {
         description={args.description || t("story.banner_cookie_desc")}
         extra={
           <Button size="sm"
-            variant="outlined">{t("story.banner_btn_accept")}</Button>
+            variant="outline">{t("story.banner_btn_accept")}</Button>
         }
       />
     );

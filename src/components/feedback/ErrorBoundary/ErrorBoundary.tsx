@@ -81,7 +81,7 @@ const DefaultFallback = ({
           >{labels.retry}</Button>
           <Button
             onClick={() => setShowDetails(!showDetails)}
-            variant="outlined"
+            variant="outline"
             size="sm"
           >{showDetails ? labels.hideDetails : labels.showDetails}</Button>
         </Stack>

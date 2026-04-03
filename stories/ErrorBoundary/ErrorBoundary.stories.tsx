@@ -73,7 +73,7 @@ export const CustomFallback: Story = {
                 description={error.message}
               >
                 <div style={{ marginTop: "1rem" }}>
-                  <Button onClick={reset} variant="outlined"
+                  <Button onClick={reset} variant="outline"
                     size="sm">{t("story.errorboundary_btn_reset")}</Button>
                 </div>
               </Alert>

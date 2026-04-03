@@ -436,7 +436,7 @@ export const Transfer = ({
 
           <div className="wim-transfer__operation">
             <Button
-              variant="outlined"
+              variant="outline"
               size="sm"
               onClick={() => moveItems("toRight")}
               disabled={disabled || moveRightDisabled}
@@ -448,7 +448,7 @@ export const Transfer = ({
               aria-hidden="true"
             />
             <Button
-              variant="outlined"
+              variant="outline"
               size="sm"
               onClick={() => moveItems("toLeft")}
               disabled={disabled || moveLeftDisabled}

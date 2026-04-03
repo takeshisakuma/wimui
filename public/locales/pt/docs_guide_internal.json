@@ -1,6 +1,6 @@
 {
   "internal": {
-    "category_desc": "Estes são componentes de bloco de construção fundamentais usados internamente em vários outros componentes. Eles não se destinam ao uso direto no código do aplicativo, mas compreendê-los ajuda a contribuir ou estender a wimui.",
+    "category_desc": "Estes são componentes de bloco de construção fundamentais usados internamente em vários outros componentes. Eles não se destinam ao uso direto no código do aplicativo, mas compreendê-los ajuda a contribuir ou estender a WIM UI.",
     "category_note": "Estes componentes são detalhes de implementação interna. Prefira usar os componentes públicos de nível superior que os encapsulam.",
     "category_title": "Componentes Internos (Internal Components)",
     "comp_base_list_role": "Padroniza o layout e os estados de interação para itens do tipo lista usados em Menus, Selectboxes e TreeViews.",
@@ -41,12 +41,12 @@
     "overlay_base_features_transitions_desc": "Fornece animações padronizadas de entrada/saída.",
     "overlay_base_features_perf": "Performance",
     "overlay_base_features_perf_desc": "Usa `will-change: transform` para animações de alta frequência para garantir 60fps, descarregando para a GPU.",
-    "philosophy_desc": "Diretrizes para consistência e encapsulamento de design interno que devem ser seguidas ao estender o wimui ou adicionar novos componentes.",
+    "philosophy_desc": "Diretrizes para consistência e encapsulamento de design interno que devem ser seguidas ao estender o WIM UI ou adicionar novos componentes.",
     "philosophy_title": "Filosofia de Design Interno"
   },
   "guide": {
     "internal_title": "Componentes Internos Principais",
-    "internal_desc": "Visão geral dos componentes internos que sustentam a API pública do wimui. Entendê-los ajuda você a contribuir com ou estender a biblioteca de forma consistente."
+    "internal_desc": "Visão geral dos componentes internos que sustentam a API pública do WIM UI. Entendê-los ajuda você a contribuir com ou estender a biblioteca de forma consistente."
   },
   "principle": {
     "dom_title": "DOM Mínimo",

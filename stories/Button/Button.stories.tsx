@@ -41,7 +41,7 @@ export const MediumSecondaryButton: Story = {
   },
   args: {
     size: "md",
-    variant: "outlined",
+    variant: "outline",
   },
 };
 
@@ -102,7 +102,7 @@ export const MediumSecondaryLoadingSavingButton: Story = {
   },
   args: {
     size: "md",
-    variant: "outlined",
+    variant: "outline",
     loading: true,
   },
 };
@@ -163,7 +163,7 @@ export const MediumSecondaryInteractiveLoadingWithIconButton: Story = {
   },
   args: {
     size: "md",
-    variant: "outlined",
+    variant: "outline",
   },
 };
 

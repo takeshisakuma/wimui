@@ -120,7 +120,7 @@ const ToastTrigger = () => {
 
       >{t("story.toast_show_success")}</Button>
       <Button
-        variant="outlined"
+        variant="outline"
         onClick={() =>
           show({
             title: t("story.notification_error_title"),

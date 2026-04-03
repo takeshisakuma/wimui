@@ -6,7 +6,7 @@ export interface FeedbackIconProps {
   /**
    * フィードバックのインテント
    */
-  intent?: WimIntent | "default";
+  intent?: WimIntent;
   /**
    * カスタムアイコン
    */

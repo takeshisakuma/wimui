@@ -102,11 +102,11 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--wim-scrollbar-track, transparent);
+    background: var(--wim-color-scrollbar-track, transparent);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--wim-scrollbar-thumb, #ccc);
+    background: var(--wim-color-scrollbar-thumb, #ccc);
     border-radius: 10px;
 
     &:hover {
@@ -116,7 +116,7 @@
 
   /* Firefox */
   * {
-    scrollbar-color: var(--wim-scrollbar-thumb, #ccc) var(--wim-scrollbar-track, transparent);
+    scrollbar-color: var(--wim-color-scrollbar-thumb, #ccc) var(--wim-color-scrollbar-track, transparent);
     scrollbar-width: thin;
   }
 }

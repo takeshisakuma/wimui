@@ -12,7 +12,7 @@ type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> &
 export const LinkButton = ({
   className,
   size = "md",
-  variant = "outlined",
+  variant = "outline",
   intent = "default",
   backgroundColor,
   children,

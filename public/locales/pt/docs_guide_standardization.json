@@ -1,7 +1,7 @@
 {
   "guide": {
     "std_overview_title": "Visão Geral da Padronização",
-    "std_overview_desc": "Na wimui, mantemos padrões rigorosos tanto no design quanto na implementação para oferecer uma experiência consistente ao usuário. Esta página serve como índice para supervisionar esses documentos de padronização e entender nossa filosofia de design.",
+    "std_overview_desc": "Na WIM UI, mantemos padrões rigorosos tanto no design quanto na implementação para oferecer uma experiência consistente ao usuário. Esta página serve como índice para supervisionar esses documentos de padronização e entender nossa filosofia de design.",
     "std_core_pillars_heading": "Pilares Fundamentais (Core Pillars)",
     "std_pillar_1_title": "Consistência (Consistency)",
     "std_pillar_1_desc": "Oferece uma aparência e comportamento unificados em todos os componentes, minimizando os custos de aprendizado do usuário.",
@@ -103,7 +103,7 @@
     "state_std_rule_4_title": "Suporte de Tradução",
     "state_std_rule_4_desc": "Permita chaves de tradução para títulos e descrições para facilitar o suporte a vários idiomas.",
     "styling_std_title": "Padronização de Estilo e Tokens",
-    "styling_std_desc": "Diretrizes sobre a distinção entre variáveis SCSS e propriedades personalizadas CSS, e regras para gerenciamento de tokens no wimui.",
+    "styling_std_desc": "Diretrizes sobre a distinção entre variáveis SCSS e propriedades personalizadas CSS, e regras para gerenciamento de tokens no WIM UI.",
     "styling_std_concept_title": "Conceito Principal",
     "styling_std_concept_desc": "A lógica estática é gerenciada via SCSS, enquanto temas e extensibilidade em tempo de execução são gerenciados via propriedades personalizadas CSS (Design Tokens).",
     "styling_std_rules_title": "Regras de Uso",

@@ -77,6 +77,8 @@ const config: StorybookConfig = {
       build: {
         chunkSizeWarningLimit: 2000,
         rollupOptions: {
+          // jsmediatags/build2/jsmediatags.js が ReactNativeFileReader 経由で
+          // require("react-native-fs") を呼ぶため、ブラウザビルドでのエラーを防ぐために external 指定が必要
           external: ["react-native-fs"],
         },
       },

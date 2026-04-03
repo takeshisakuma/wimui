@@ -1,13 +1,14 @@
 import React from "react";
 import classNames from "classnames";
 import "./button-group.scss";
+import type { ButtonVariant } from "../../../types/tokens";
 
 type ButtonGroupProps = {
   children: React.ReactNode;
   gap?: string;
   className?: string;
   joined?: boolean;
-  variant?: "filled" | "outlined" | "ghost";
+  variant?: ButtonVariant;
 };
 
 export const ButtonGroup = ({
@@ -22,7 +23,7 @@ export const ButtonGroup = ({
   const childrenWithProps = variant
     ? React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child as React.ReactElement<{ variant?: "filled" | "outlined" | "ghost" }>, {
+          return React.cloneElement(child as React.ReactElement<{ variant?: ButtonVariant }>, {
             variant,
           });
         }

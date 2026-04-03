@@ -73,6 +73,8 @@ export default defineConfig(({ mode }) => {
           "react",
           "react-dom",
           "react/jsx-runtime",
+          // jsmediatags/build2/jsmediatags.js が ReactNativeFileReader 経由で
+          // require("react-native-fs") を呼ぶため、ブラウザビルドでのエラーを防ぐために external 指定が必要
           "react-native-fs",
           "i18next",
           "react-i18next",

@@ -8,7 +8,7 @@
     "diagram_right_panel": "Right Panel",
     "diagram_footer": "Footer",
     "guide_title": "Layout Component Selection Guide",
-    "flexibility": "wimui provides a rich set of layout components from simple linear stacks to multi-dimensional grids. Choose the right one based on the structure and flexibility you need.",
+    "flexibility": "WIM UI provides a rich set of layout components from simple linear stacks to multi-dimensional grids. Choose the right one based on the structure and flexibility you need.",
     "compare_methods": "Comparing Layout Methods",
     "base_technology": "Base Technology",
     "linear_stack": "Linear stacking of elements in one direction",

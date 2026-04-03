@@ -72,7 +72,7 @@ export const CustomAction: Story = {
         icon={<Icon name="PlusIcon" style={{ width: 48, height: 48 }} />}
         extra={
           <>
-            <Button variant="outlined">{t("story.emptystate_browse_templates")}</Button>
+            <Button variant="outline">{t("story.emptystate_browse_templates")}</Button>
             <Button variant="filled">{t("story.emptystate_create_project")}</Button>
           </>
         }

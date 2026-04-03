@@ -54,7 +54,7 @@ export const LoginForm: StoryObj = {
         >
           <Stack gap="xl">
             <Stack align="center" gap="md">
-              <Heading tag="h2" size="xl" style={{ lineHeight: 1 }}>
+              <Heading tag="h2" size="xl" align="center" style={{ lineHeight: 1 }}>
                 {t("login.title")}
               </Heading>
               <Paragraph
@@ -83,7 +83,7 @@ export const LoginForm: StoryObj = {
                   />
                 </Label>
 
-                <Stack direction="row" justify="space-between" align="center">
+                <Stack direction="column" gap="sm" align="start">
                   <label
                     htmlFor="remember-me"
                     style={{
@@ -108,7 +108,7 @@ export const LoginForm: StoryObj = {
                     style={{ width: "100%" }}>{t("login.sign_in")}</Button>
 
                   <Button
-                    variant="outlined"
+                    variant="outline"
                     style={{ width: "100%" }}
                     onClick={() => {}}
                   >{t("login.sign_in_google")}</Button>
@@ -139,12 +139,12 @@ export const DashboardHeader: StoryObj = {
     return (
       <div style={{ minHeight: "400px", backgroundColor: "var(--wim-color-surface)" }}>
         <style>{`
-                  @media (max-width: 768px) {
+                  @media (max-width: 992px) {
                       .desktop-only { display: none !important; }
                       .mobile-only { display: block !important; }
                       .header-search { width: 100% !important; max-width: 160px; }
                   }
-                  @media (min-width: 769px) {
+                  @media (min-width: 993px) {
                       .mobile-only { display: none !important; }
                       .header-search { width: 240px; }
                   }
@@ -417,7 +417,7 @@ export const UserProfileForm: StoryObj = {
                       </Heading>
                       <div style={{ display: "flex", gap: "12px" }}>
                         <Button size="sm"
-                          variant="outlined">{t("profile.btn_change")}</Button>
+                          variant="outline">{t("profile.btn_change")}</Button>
                         <Button size="sm" variant="ghost">{t("profile.btn_remove")}</Button>
                       </div>
                     </Stack>
@@ -580,9 +580,7 @@ export const PricingTable: StoryObj = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Container style={{ padding: "80px 24px", background: "#fff" }}>
-        <Stack align="center" gap="lg" style={{ marginBottom: "64px" }}>
-          <Badge intent="primary" content={t("pricing.badge")} />
-          <Stack align="center" gap="3xl">
+          <Stack align="center" gap="3xl" style={{ marginBottom: "64px" }}>
             <Heading tag="h2" size="xl" align="center">
               {t("pricing.title")}
             </Heading>
@@ -594,7 +592,6 @@ export const PricingTable: StoryObj = {
               />
             </Container>
           </Stack>
-        </Stack>
 
         <Grid
           cols={{ base: 1, md: 3 }}
@@ -627,23 +624,24 @@ export const PricingTable: StoryObj = {
                       {t("pricing.starter_title")}
                     </Heading>
                   </div>
-                  <Stack
-                    direction="row"
-                    align="baseline"
-                    gap="none"
-                    justify="center"
-                    style={{ whiteSpace: "nowrap" }}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "baseline",
+                      justifyContent: "center",
+                      whiteSpace: "nowrap",
+                    }}
                   >
-                    <Heading tag="h4" size="2xl" style={{ whiteSpace: "nowrap" }}>
+                    <Heading tag="h4" size="2xl" style={{ margin: 0 }}>
                       $0
                     </Heading>
                     <Paragraph
                       content={t("pricing.period")}
                       color="gray"
                       size="sm"
-                      style={{ whiteSpace: "nowrap" }}
+                      style={{ marginLeft: "2px" }}
                     />
-                  </Stack>
+                  </div>
                 </Stack>
                 <div
                   style={{
@@ -677,7 +675,7 @@ export const PricingTable: StoryObj = {
                 </List>
               </Stack>
 
-              <Button variant="outlined" style={{ width: "100%" }}>{t("pricing.starter_btn")}</Button>
+              <Button variant="outline" style={{ width: "100%" }}>{t("pricing.starter_btn")}</Button>
             </Stack>
           </Card>
 
@@ -688,16 +686,7 @@ export const PricingTable: StoryObj = {
               position: "relative",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                top: "-14px",
-                left: "50%",
-                transform: "translateX(-50%)",
-              }}
-            >
-              <Badge intent="primary" content={t("pricing.pro_badge")} size="sm" />
-            </div>
+
             <Stack gap="lg" style={{ height: "100%" }}>
               <Stack gap="lg" align="center" style={{ flex: 1 }}>
                 <Stack gap="xs" align="center">
@@ -718,23 +707,24 @@ export const PricingTable: StoryObj = {
                       {t("pricing.pro_title")}
                     </Heading>
                   </div>
-                  <Stack
-                    direction="row"
-                    align="baseline"
-                    gap="none"
-                    justify="center"
-                    style={{ whiteSpace: "nowrap" }}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "baseline",
+                      justifyContent: "center",
+                      whiteSpace: "nowrap",
+                    }}
                   >
-                    <Heading tag="h4" size="2xl" style={{ whiteSpace: "nowrap" }}>
+                    <Heading tag="h4" size="2xl" style={{ margin: 0 }}>
                       $29
                     </Heading>
                     <Paragraph
                       content={t("pricing.period")}
                       color="gray"
                       size="sm"
-                      style={{ whiteSpace: "nowrap" }}
+                      style={{ marginLeft: "2px" }}
                     />
-                  </Stack>
+                  </div>
                 </Stack>
                 <div
                   style={{
@@ -792,23 +782,24 @@ export const PricingTable: StoryObj = {
                       {t("pricing.ent_title")}
                     </Heading>
                   </div>
-                  <Stack
-                    direction="row"
-                    align="baseline"
-                    gap="none"
-                    justify="center"
-                    style={{ whiteSpace: "nowrap" }}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "baseline",
+                      justifyContent: "center",
+                      whiteSpace: "nowrap",
+                    }}
                   >
-                    <Heading tag="h4" size="2xl" style={{ whiteSpace: "nowrap" }}>
+                    <Heading tag="h4" size="2xl" style={{ margin: 0 }}>
                       $99
                     </Heading>
                     <Paragraph
                       content={t("pricing.period")}
                       color="gray"
                       size="sm"
-                      style={{ whiteSpace: "nowrap" }}
+                      style={{ marginLeft: "2px" }}
                     />
-                  </Stack>
+                  </div>
                 </Stack>
                 <div
                   style={{
@@ -835,7 +826,7 @@ export const PricingTable: StoryObj = {
                 </List>
               </Stack>
 
-              <Button variant="outlined" style={{ width: "100%" }}>{t("pricing.ent_btn")}</Button>
+              <Button variant="outline" style={{ width: "100%" }}>{t("pricing.ent_btn")}</Button>
             </Stack>
           </Card>
         </Grid>
@@ -886,7 +877,7 @@ export const HeroSection: StoryObj = {
               <Group gap="xl" wrap="wrap" justify="evenly">
                 <Button variant="filled"
                   size="md">{t("hero.btn_started")}</Button>
-                <Button variant="outlined"
+                <Button variant="outline"
                   size="md">{t("hero.btn_docs")}</Button>
               </Group>
 
@@ -1026,7 +1017,7 @@ export const ErrorPage: StoryObj = {
 
           <Stack direction={{ base: "column", sm: "row" }} gap="xl">
             <Button variant="filled">{t("error.btn_home")}</Button>
-            <Button variant="outlined">{t("error.btn_support")}</Button>
+            <Button variant="outline">{t("error.btn_support")}</Button>
           </Stack>
         </Stack>
       </Center>

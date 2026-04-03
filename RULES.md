@@ -81,10 +81,39 @@
 
 ## デザイントークン（CSS カスタムプロパティ）
 
-- グローバルデザイントークンはすべて `--wim-` プレフィックスを使用してください（例: `--wim-color-primary`, `--wim-spacing-md`）。
-- コンポーネント内部でのみ使用するローカル変数（例: `--bg-tooltip`）は対象外です。
+- グローバルデザイントークンはすべて `--wim-[カテゴリ]-[意味]-[修飾]` の構造で命名してください。
+  - **カテゴリ**は下表の既存カテゴリから選択してください。新しいカテゴリを追加する場合は下表に追記してください。
+  - **意味**・**修飾**はkebab-caseで記述してください（例: `text-on-primary`, `bg-app`）。
+
+| カテゴリ | 用途 | 例 |
+|---|---|---|
+| `color` | セマンティックカラー全般 | `--wim-color-primary`, `--wim-color-text-secondary` |
+| `spacing` | 余白・間隔 | `--wim-spacing-md` |
+| `radius` | 角丸 | `--wim-radius-lg` |
+| `shadow` | 影・elevation | `--wim-shadow-sm` |
+| `font-size` | フォントサイズ | `--wim-font-size-xl` |
+| `font-weight` | フォントウェイト | `--wim-font-weight-bold` |
+| `font-family` | フォントファミリー | `--wim-font-family-ja` |
+| `line-height` | 行高 | `--wim-line-height-normal` |
+| `opacity` | 透明度 | `--wim-opacity-disabled` |
+| `border` | ボーダー幅など | `--wim-border-width-thin` |
+| `focus` | フォーカスリング | `--wim-focus-outline-width` |
+| `duration` | アニメーション時間 | `--wim-duration-fast` |
+| `easing` | イージング関数 | `--wim-easing-standard` |
+| `transition` | transition ショートハンド | `--wim-transition-base` |
+| `lift` | translate-Y 値 | `--wim-lift-sm` |
+| `scale` | scale 値 | `--wim-scale-active` |
+| `decoration` | テキスト装飾 | `--wim-decoration-underline` |
+| `gradient` | グラデーション | `--wim-gradient-glass` |
+
+- コンポーネント内部でのみ使用するローカル変数（例: `--bg-tooltip`）は `--wim-` プレフィックス不要です。
 - トークンは `src/tokens/` 以下の SCSS ファイルで定義し、`:root` に CSS カスタムプロパティとして公開してください。
 - 既存のエイリアス（`--wim-color-surface: var(--wim-color-bg-component)` など）は維持しますが、自己参照になる循環エイリアスは作成しないでください。
+- `src/tokens/` の SCSS トークンを追加・変更・削除した場合は、`npm run tokens:check` を実行して `src/types/tokens.ts` との整合性を確認してください。型に不整合がある場合は `src/types/tokens.ts` を手動で更新してください。
+  - `WimColorKey` → `src/tokens/_semantic-colors.scss` の `--wim-color-*`
+  - `WimSpacingKey` → `src/tokens/_spacings.scss` の `--wim-spacing-*`
+  - `WimRadiusKey` → `src/tokens/_spacings.scss` の `--wim-radius-*`
+  - `WimShadowKey` → `src/tokens/_effects.scss` の `--wim-shadow-*`（`color`・`ambient`・`elevation` は内部専用のため型に含めない）
 
 ## `!important` の使用
 

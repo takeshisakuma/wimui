@@ -53,7 +53,7 @@ export const WithIcons: Story = {
     return (
       <Dropdown {...args}>
         <DropdownTrigger>
-          <Button variant="outlined">{t("story.dropdown_options")}</Button>
+          <Button variant="outline">{t("story.dropdown_options")}</Button>
         </DropdownTrigger>
         <DropdownMenu>
           <DropdownItem>

@@ -1,7 +1,6 @@
 import {
   Meta,
   Title,
-  Description,
   Primary,
   Controls,
   Stories,
@@ -26,7 +25,6 @@ import { T } from "../T";
 
 <p><T k="doc.combobox_long_desc" /></p>
 
-<Description />
 
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.combobox_design_intent" /></p>
@@ -84,14 +82,24 @@ import { T } from "../T";
 <p><T k="doc.combobox_a11y_autocomplete" /></p>
 
 ## <T k="doc.real_world_scenarios_title" />
-<ul>
-  <li>
-    <strong><T k="doc.scenario_form_title" />:</strong> <T k="doc.combobox_scenario_tag" />
-  </li>
-  <li>
-    <strong><T k="doc.scenario_ec_title" />:</strong> <T k="doc.combobox_scenario_address" />
-  </li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.combobox_scenario_tag" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_ec_title" /></strong></td>
+      <td><T k="doc.combobox_scenario_address" /></td>
+    </tr>
+  </tbody>
+</table>
 
 ## <T k="doc.best_practices_title" />
 <ul>

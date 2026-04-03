@@ -171,7 +171,7 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
               {currentStep > 0 && (
                 <Button
                   size="sm"
-                  variant="outlined"
+                  variant="outline"
                   onClick={handleBack}
                 >Back</Button>
               )}

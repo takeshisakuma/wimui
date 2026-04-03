@@ -250,7 +250,7 @@
     "video_title": "ビデオ再生",
     "video_usage_caption": "背景動画のサンプル",
     "video_variant_autoplay": "`autoPlay`、`muted`、`loop` を有効にした状態です。",
-    "video_variant_custom": "wimui独自のカスタムコントロールUIを適用した状態です。",
+    "video_variant_custom": "WIM UI独自のカスタムコントロールUIを適用した状態です。",
     "video_variant_default": "標準的なビデオプレイヤーです。",
     "video_variant_full": "すべての高度な機能（プレイリスト、アスペクト比、画質、レジューム再生、ショートカット等）を有効にした完全なプレイヤーです。",
     "video_variant_rounded": "角丸と影を適用したデザインです。",

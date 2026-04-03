@@ -1,6 +1,6 @@
 {
   "internal": {
-    "category_desc": "These are fundamental building block components used internally across various other components. They are not intended for direct use in application code, but understanding them helps when contributing to or extending wimui.",
+    "category_desc": "These are fundamental building block components used internally across various other components. They are not intended for direct use in application code, but understanding them helps when contributing to or extending WIM UI.",
     "category_note": "These components are internal implementation details. Prefer using the higher-level public components that encapsulate them.",
     "category_title": "Internal Components",
     "comp_base_list_role": "Standardizes layout and interaction states for list-like items used in Menus, Selectboxes, and TreeViews.",
@@ -41,12 +41,12 @@
     "overlay_base_features_transitions_desc": "Provides standardized enter/exit animations.",
     "overlay_base_features_perf": "Performance",
     "overlay_base_features_perf_desc": "Uses `will-change: transform` for high-frequency animations to ensure 60fps, offloading to the GPU.",
-    "philosophy_desc": "Guidelines for internal design consistency and encapsulation that should be followed when extending wimui or adding new components.",
+    "philosophy_desc": "Guidelines for internal design consistency and encapsulation that should be followed when extending WIM UI or adding new components.",
     "philosophy_title": "Internal Design Philosophy"
   },
   "guide": {
     "internal_title": "Internal Core Components",
-    "internal_desc": "Overview of the internal building-block components that underpin wimui's public API. Understanding these helps you contribute to or extend the library consistently."
+    "internal_desc": "Overview of the internal building-block components that underpin WIM UI's public API. Understanding these helps you contribute to or extend the library consistently."
   },
   "principle": {
     "dom_title": "Minimal DOM",

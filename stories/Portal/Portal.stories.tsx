@@ -182,14 +182,79 @@ export const CustomContainer: Story = {
  * ページ内の特定のエリアを「通知受取用」として定義し、様々なコンポーネントから
  * 情報を Portal で送り込む例です。
  */
+const SenderComponent = ({
+  displayName,
+  color,
+  logContainer,
+  addLog,
+  t,
+}: {
+  displayName: string;
+  color: string;
+  logContainer: HTMLElement | null;
+  addLog: (msg: string, type?: string) => void;
+  t: (key: string) => string;
+}) => {
+  const [active, setActive] = useState(false);
+  return (
+    <Card variant="outline" padding="sm">
+      <Stack gap="xs">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <strong>{displayName}</strong>
+        </div>
+        <Button
+          size="sm"
+          variant={active ? "outline" : "filled"}
+          onClick={() => {
+            const newState = !active;
+            setActive(newState);
+            addLog(
+              `${displayName}${
+                newState ? t("story.portal_log_started") : t("story.portal_log_stopped")
+              }`,
+              newState ? "success" : "warning",
+            );
+          }}
+        >
+          {active ? t("story.portal_btn_stop") : t("story.portal_btn_start")}
+        </Button>
+        {active && logContainer && (
+          <Portal container={logContainer}>
+            <div
+              style={{
+                padding: "8px 12px",
+                marginBottom: "8px",
+                borderRadius: "4px",
+                fontSize: "12px",
+                background: color,
+                color: "#1e293b", // 明示的に濃い色に指定して可読性を確保
+                border: "1px solid rgba(0,0,0,0.1)",
+                animation: "slideIn 0.2s ease-out",
+              }}
+            >
+              <style>{`@keyframes slideIn { from { opacity:0; transform:translateX(-10px); } to { opacity:1; transform:translateX(0); } }`}</style>
+              <strong>[{displayName}]</strong> {t("story.portal_status_desc")}
+            </div>
+          </Portal>
+        )}
+      </Stack>
+    </Card>
+  );
+};
+
 export const NotificationCenter: Story = {
+  parameters: {
+    layout: "fullscreen",
+  },
   render: function Render() {
-    const [logContainer, setLogContainer] = useState<HTMLElement | null>(
-      null,
-    );
-    const [logs, setLogs] = useState<{ id: string; msg: string; type: string }[]>(
-      [],
-    );
+    const [logContainer, setLogContainer] = useState<HTMLElement | null>(null);
+    const [logs, setLogs] = useState<{ id: string; msg: string; type: string }[]>([]);
     const { t } = useTranslation(ALL_NAMESPACES);
 
     const addLog = (msg: string, type: string = "info") => {
@@ -197,69 +262,44 @@ export const NotificationCenter: Story = {
       setLogs((prev) => [{ id, msg, type }, ...prev].slice(0, 10));
     };
 
-    const SenderComponent = ({ name: _name, type: _type, color, displayName }: { name?: string; type?: string; color: string; displayName: string }) => {
-      const [active, setActive] = useState(false);
-      return (
-        <Card variant="outline" padding="sm">
-          <Stack gap="xs">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <strong>{displayName}</strong>
-            </div>
-            <Button
-              size="sm"
-              variant={active ? "outlined" : "filled"}
-              onClick={() => {
-                const newState = !active;
-                setActive(newState);
-                addLog(
-                  `${displayName}${newState ? t("story.portal_log_started") : t("story.portal_log_stopped")}`,
-                  newState ? "success" : "warning",
-                );
-              }}
-
-            >{active ? t("story.portal_btn_stop") : t("story.portal_btn_start")}</Button>
-            {active && (
-              <Portal container={logContainer}>
-                <div
-                  style={{
-                    padding: "8px 12px",
-                    marginBottom: "8px",
-                    borderRadius: "4px",
-                    fontSize: "12px",
-                    background: color,
-                    border: "1px solid rgba(0,0,0,0.1)",
-                    animation: "slideIn 0.2s ease-out",
-                  }}
-                >
-                  <style>{`@keyframes slideIn { from { opacity:0; transform:translateX(-10px); } to { opacity:1; transform:translateX(0); } }`}</style>
-                  <strong>[{displayName}]</strong> {t("story.portal_status_desc")}
-                </div>
-              </Portal>
-            )}
-          </Stack>
-        </Card>
-      );
-    };
-
     return (
-      <Container size="xl">
-        <Grid cols={{ base: 1, md: "1fr 300px" }} gap="xl">
+      <Box p="xl">
+        <Container size="xl">
+          <Grid cols={{ base: 1, md: "1fr 300px" }} gap="xl">
           <Stack gap="md">
             <h4>{t("story.portal_panel_title")}</h4>
             <p style={{ fontSize: "14px", color: "#666" }}>
               {t("story.portal_panel_desc")}
             </p>
             <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-              <SenderComponent name="A" displayName={t("story.portal_sensor_a")} color="#ecfdf5" />
-              <SenderComponent name="B" displayName={t("story.portal_sensor_b")} color="#eff6ff" />
-              <SenderComponent name="C" displayName={t("story.portal_camera")} color="#fff7ed" />
-              <SenderComponent name="D" displayName={t("story.portal_alarm")} color="#fef2f2" />
+              <SenderComponent
+                displayName={t("story.portal_sensor_a")}
+                color="#ecfdf5"
+                logContainer={logContainer}
+                addLog={addLog}
+                t={t}
+              />
+              <SenderComponent
+                displayName={t("story.portal_sensor_b")}
+                color="#eff6ff"
+                logContainer={logContainer}
+                addLog={addLog}
+                t={t}
+              />
+              <SenderComponent
+                displayName={t("story.portal_camera")}
+                color="#fff7ed"
+                logContainer={logContainer}
+                addLog={addLog}
+                t={t}
+              />
+              <SenderComponent
+                displayName={t("story.portal_alarm")}
+                color="#fef2f2"
+                logContainer={logContainer}
+                addLog={addLog}
+                t={t}
+              />
             </SimpleGrid>
           </Stack>
 
@@ -280,7 +320,7 @@ export const NotificationCenter: Story = {
                 <span style={{ fontSize: "12px", fontWeight: "bold" }}>
                   {t("story.portal_monitor_title")}
                 </span>
-                <Badge content={t("story.portal_monitor_live")} color="error" size="sm" />
+                <Badge intent="error" size="sm">{t("story.portal_monitor_live")}</Badge>
               </Stack>
             </Card.Header>
             <Card.Body style={{ flex: 1, overflowY: "auto", padding: "12px" }}>
@@ -323,6 +363,7 @@ export const NotificationCenter: Story = {
           </Card>
         </Grid>
       </Container>
+      </Box>
     );
   },
 };
@@ -522,7 +563,7 @@ export const SidePanelDetail: Story = {
                 {selectedId && (
                   <Button
                     size="sm"
-                    variant="outlined"
+                    variant="outline"
                     onClick={() => setSelectedId(null)}
 
                   >{t("story.visuallyhidden_close")}</Button>

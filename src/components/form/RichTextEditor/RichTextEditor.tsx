@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
-import { WimIntent } from "../../../types/tokens";
+import { WimIntent, FieldVariant } from "../../../types/tokens";
 import "./rich-text-editor.scss";
 
 // ---- Inline SVG toolbar icons ----
@@ -142,7 +142,7 @@ export type RichTextEditorProps = {
   placeholder?: string;
   disabled?: boolean;
   intent?: WimIntent;
-  variant?: "outline" | "ghost";
+  variant?: FieldVariant;
   fullWidth?: boolean;
   minHeight?: number | string;
   label?: React.ReactNode;

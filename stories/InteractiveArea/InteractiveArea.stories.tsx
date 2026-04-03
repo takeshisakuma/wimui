@@ -61,7 +61,7 @@ export const WithActions: Story = {
         actions={
           <>
             <Button variant="filled">{t("upload")}</Button>
-            <Button variant="outlined">{t("learn.more")}</Button>
+            <Button variant="outline">{t("learn.more")}</Button>
           </>
         }
       />

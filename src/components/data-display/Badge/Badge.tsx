@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 import { IndicatorBase } from "../../_internal/IndicatorBase";
-import { ComponentSize, WimIntent } from "../../../types/tokens";
+import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/tokens";
 import "./badge.scss";
 export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
   /** 表示するコンテンツ */
@@ -12,7 +12,7 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
   /** ステータス */
   intent?: WimIntent;
   /** バリアント */
-  variant?: "solid" | "outline" | "subtle";
+  variant?: IndicatorVariant;
   /** サイズ */
   size?: ComponentSize;
 };

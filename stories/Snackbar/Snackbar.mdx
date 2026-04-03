@@ -17,7 +17,6 @@ import { T } from "../T";
   <T k="doc.snackbar_title" />
 </p>
 
-<Description />
 
 <p><T k="doc.snackbar_long_desc" /></p>
 
@@ -149,7 +148,7 @@ const MyComponent = () => {
       onClick={() =>
         showMessage({
           message: "Data saved",
-          status: "success",
+          intent: "success",
           actionLabel: "Undo",
         })
       }

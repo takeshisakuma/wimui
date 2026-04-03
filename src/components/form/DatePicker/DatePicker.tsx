@@ -6,7 +6,7 @@ import "../../form/Input/input.scss";
 import "./date-picker.scss";
 
 import { FieldTemplate } from "../FieldTemplate";
-import { WimIntent } from "../../../types/tokens";
+import { WimIntent, FieldVariant } from "../../../types/tokens";
 
 export type DatePickerLabels = {
   placeholder?: string;
@@ -18,7 +18,7 @@ type DatePickerProps = Omit<
   "value" | "defaultValue" | "onChange"
 > & {
   intent?: WimIntent;
-  variant?: "outline" | "ghost";
+  variant?: FieldVariant;
   fullWidth?: boolean;
   /** Selected date value */
   value?: Date;

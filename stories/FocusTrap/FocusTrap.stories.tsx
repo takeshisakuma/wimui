@@ -41,7 +41,7 @@ export const Default: Story = {
             <Card.Body>
               <Stack gap="md">
                 <p>{t("story.focustrap_outside_desc")}</p>
-                <Button variant="outlined">{t("story.focustrap_outside_btn")}</Button>
+                <Button variant="outline">{t("story.focustrap_outside_btn")}</Button>
               </Stack>
             </Card.Body>
           </Card>
@@ -113,7 +113,7 @@ export const AutoFocus: Story = {
                 <Card.Body>
                   <Stack gap="md">
                     <Input placeholder={t("story.focustrap_input_autofocus")} fullWidth />
-                    <Button variant="outlined">{t("story.focustrap_btn_another")}</Button>
+                    <Button variant="outline">{t("story.focustrap_btn_another")}</Button>
                     <Button onClick={() => setActive(false)} variant="filled">
                       {t("story.focustrap_btn_close_short")}
                     </Button>

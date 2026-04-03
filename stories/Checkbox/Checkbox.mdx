@@ -1,7 +1,6 @@
 import {
   Meta,
   Title,
-  Description,
   Primary,
   Controls,
   Stories,
@@ -26,7 +25,6 @@ import { T } from "../T";
 
 <p><T k="doc.checkbox_long_desc" /></p>
 
-<Description />
 
 ## <T k="doc.design_intent_title" />
 <p><T k="doc.checkbox_design_intent" /></p>
@@ -97,17 +95,28 @@ import { T } from "../T";
 </ul>
 
 ## <T k="doc.real_world_scenarios_title" />
-<ul>
-  <li>
-    <strong><T k="doc.scenario_agreement_title" />:</strong> <T k="doc.checkbox_scenario_agreement" />
-  </li>
-  <li>
-    <strong><T k="doc.scenario_filter_title" />:</strong> <T k="doc.checkbox_scenario_filter" />
-  </li>
-  <li>
-    <strong><T k="doc.scenario_form_title" />:</strong> <T k="doc.checkbox_scenario_newsletter" />
-  </li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_agreement_title" /></strong></td>
+      <td><T k="doc.checkbox_scenario_agreement" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_filter_title" /></strong></td>
+      <td><T k="doc.checkbox_scenario_filter" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.checkbox_scenario_newsletter" /></td>
+    </tr>
+  </tbody>
+</table>
 
 ## <T k="doc.best_practices" />
 <ul>

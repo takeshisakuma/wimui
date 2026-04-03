@@ -90,7 +90,7 @@ export const FileUpload = ({
         <Button
           onClick={handleClick}
           disabled={disabled}
-          variant="outlined"
+          variant="outline"
           icon={iconName}
           iconPosition={iconPosition}
           size={size}

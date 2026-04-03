@@ -76,7 +76,7 @@ export const Default: Story = {
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button variant="outlined">{t("story.dialog_cancel")}</Button>
+              <Button variant="outline">{t("story.dialog_cancel")}</Button>
             </DrawerClose>
             <Button variant="filled">{t("story.drawer_confirm")}</Button>
           </DrawerFooter>
@@ -95,7 +95,7 @@ export const Left: Story = {
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
-          <Button variant="outlined">{t("story.drawer_open_left")}</Button>
+          <Button variant="outline">{t("story.drawer_open_left")}</Button>
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
@@ -107,7 +107,7 @@ export const Left: Story = {
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button variant="outlined">{t("story.dialog_cancel")}</Button>
+              <Button variant="outline">{t("story.dialog_cancel")}</Button>
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
@@ -125,7 +125,7 @@ export const Top: Story = {
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
-          <Button variant="outlined">{t("story.drawer_open_top")}</Button>
+          <Button variant="outline">{t("story.drawer_open_top")}</Button>
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
@@ -137,7 +137,7 @@ export const Top: Story = {
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button variant="outlined">{t("story.dialog_cancel")}</Button>
+              <Button variant="outline">{t("story.dialog_cancel")}</Button>
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
@@ -155,7 +155,7 @@ export const Bottom: Story = {
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
-          <Button variant="outlined">{t("story.drawer_open_bottom")}</Button>
+          <Button variant="outline">{t("story.drawer_open_bottom")}</Button>
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
@@ -169,7 +169,7 @@ export const Bottom: Story = {
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button variant="outlined">{t("story.dialog_cancel")}</Button>
+              <Button variant="outline">{t("story.dialog_cancel")}</Button>
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
@@ -213,7 +213,7 @@ export const Controlled: Story = {
             </div>
             <DrawerFooter>
               <Button
-                variant="outlined"
+                variant="outline"
                 onClick={() => setOpen(false)}
 
               >{t("story.dialog_cancel")}</Button>
@@ -255,7 +255,7 @@ export const WithoutSlide: Story = {
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button variant="outlined">{t("story.dialog_cancel")}</Button>
+              <Button variant="outline">{t("story.dialog_cancel")}</Button>
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>

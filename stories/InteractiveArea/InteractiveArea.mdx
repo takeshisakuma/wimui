@@ -18,19 +18,55 @@ import { T } from "../T";
 
 ## {useTranslation("docs_guide_common").t("doc.choice_matrix_title")}
 
-| {useTranslation("docs_guide_common").t("doc.comparison_item")} | {useTranslation("docs_guide_common").t("doc.choice_self_title")} | {useTranslation("docs_guide_common").t("doc.choice_alt_title")} |
-| :--- | :--- | :--- |
-| **{useTranslation("docs_guide_common").t("doc.usage_context")}** | {useTranslation("docs_display").t("doc.interactiveArea_choice_self_when")} | {useTranslation("docs_display").t("doc.interactiveArea_choice_alt_when")} |
-| **{useTranslation("docs_guide_common").t("doc.complexity_interaction")}** | {useTranslation("docs_display").t("doc.interactiveArea_choice_matrix_desc")} | {useTranslation("docs_guide_common").t("doc.choice_alt_desc")} |
+<table>
+  <thead>
+    <tr>
+      <th>{useTranslation("docs_guide_common").t("doc.comparison_item")}</th>
+      <th>{useTranslation("docs_guide_common").t("doc.choice_self_title")}</th>
+      <th>{useTranslation("docs_guide_common").t("doc.choice_alt_title")}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>{useTranslation("docs_guide_common").t("doc.usage_context")}</strong></td>
+      <td>{useTranslation("docs_display").t("doc.interactiveArea_choice_self_when")}</td>
+      <td>{useTranslation("docs_display").t("doc.interactiveArea_choice_alt_when")}</td>
+    </tr>
+    <tr>
+      <td><strong>{useTranslation("docs_guide_common").t("doc.complexity_interaction")}</strong></td>
+      <td>{useTranslation("docs_display").t("doc.interactiveArea_choice_matrix_desc")}</td>
+      <td>{useTranslation("docs_guide_common").t("doc.choice_alt_desc")}</td>
+    </tr>
+  </tbody>
+</table>
 
 ## {useTranslation("docs_guide_common").t("doc.anatomy_title")}
 
-- **{useTranslation("docs_display").t("doc.interactiveArea_anatomy_root_label")}**: {useTranslation("docs_display").t("doc.interactiveArea_anatomy_root")}
-- **{useTranslation("docs_display").t("doc.interactiveArea_anatomy_content_label")}**: {useTranslation("docs_display").t("doc.interactiveArea_anatomy_content")}
+<table>
+  <thead>
+    <tr>
+      <th>{useTranslation("docs_guide_common").t("doc.component")}</th>
+      <th>{useTranslation("docs_guide_common").t("doc.table_header_description")}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>{useTranslation("docs_display").t("doc.interactiveArea_anatomy_root_label")}</strong></td>
+      <td>{useTranslation("docs_display").t("doc.interactiveArea_anatomy_root")}</td>
+    </tr>
+    <tr>
+      <td><strong>{useTranslation("docs_display").t("doc.interactiveArea_anatomy_content_label")}</strong></td>
+      <td>{useTranslation("docs_display").t("doc.interactiveArea_anatomy_content")}</td>
+    </tr>
+  </tbody>
+</table>
 
-## {useTranslation("docs_guide_common").t("doc.guidelines_title")}
+## {useTranslation("docs_guide_common").t("doc.content_guidelines_title")}
 
-### {useTranslation("docs_guide_common").t("doc.guideline_best_practices")}
+- {useTranslation("docs_display").t("doc.interactiveArea_content_guidelines_1")}
+- {useTranslation("docs_display").t("doc.interactiveArea_content_guidelines_2")}
+
+## {useTranslation("docs_guide_common").t("doc.best_practices_title")}
 
 - {useTranslation("docs_display").t("doc.interactiveArea_best_practice_1")}
 - {useTranslation("docs_display").t("doc.interactiveArea_best_practice_2")}
@@ -61,6 +97,10 @@ import { T } from "../T";
 ### With Context Menu
 
 <Canvas of={InteractiveAreaStories.WithContextMenu} />
+
+## {useTranslation("docs_guide_common").t("doc.keyboard_nav_title")}
+
+<p>{useTranslation("docs_display").t("doc.interactiveArea_keyboard_desc")}</p>
 
 ## {useTranslation("docs_guide_common").t("doc.test_title")}
 

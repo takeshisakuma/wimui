@@ -42,7 +42,7 @@ export const Default: Story = {
           <Navbar.Link href="#">{t("story.navbar_about")}</Navbar.Link>
         </Navbar.Content>
         <Navbar.Content justify="end" hiddenOnMobile>
-          <Button variant="outlined" size="sm">
+          <Button variant="outline" size="sm">
             {t("story.navbar_login")}
           </Button>
         </Navbar.Content>

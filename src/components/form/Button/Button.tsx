@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import "./button.scss";
 import { Icon } from "../../media/Icon/Icon";
-import type { WimColor, ComponentSize } from "../../../types/tokens";
+import type { WimColor, ComponentSize, ButtonVariant } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 
@@ -10,7 +10,7 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
   backgroundColor?: WimColor;
   size?: ComponentSize;
-  variant?: "filled" | "outlined" | "ghost";
+  variant?: ButtonVariant;
   /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
   intent?: "default" | "destructive" | "positive";
   /** Icon name or custom icon element */
@@ -31,7 +31,7 @@ export const Button = React.forwardRef<
   (
     {
       size = "md",
-      variant = "outlined",
+      variant = "outline",
       intent = "default",
       icon,
       iconPosition = "left",

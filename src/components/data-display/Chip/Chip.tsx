@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize, WimIntent } from "../../../types/tokens";
+import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/tokens";
 import "./chip.scss";
 export type ChipProps = {
   /** 表示するコンテンツ */
@@ -21,7 +21,7 @@ export type ChipProps = {
   /** ステータス */
   intent?: WimIntent;
   /** バリアント */
-  variant?: "solid" | "outline" | "subtle";
+  variant?: IndicatorVariant;
   /** サイズ */
   size?: ComponentSize;
   /** 削除ボタンのアクセシビリティラベル */
