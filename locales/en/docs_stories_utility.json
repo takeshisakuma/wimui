@@ -14,7 +14,7 @@
     "marquee_item": "Item {{count}}",
     "marquee_new_feature": "New Feature",
     "marquee_update": "Update",
-    "marquee_welcome": "Welcome to wimui! This is a flexible marquee component.",
+    "marquee_welcome": "Welcome to WIM UI! This is a flexible marquee component.",
     "scrollarea_both_desc": "This container has content that overflows both vertically and horizontally. ScrollArea handles both directions when scrollAxis=\"both\" is set.",
     "scrollarea_both_title": "Both Axes Scrolling",
     "scrollarea_box": "Box {{count}}",

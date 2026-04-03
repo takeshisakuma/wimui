@@ -236,7 +236,7 @@
     "video_title": "A component for embedding and controlling local or remote video content",
     "video_usage_caption": "Background video sample",
     "video_variant_autoplay": "With `autoPlay`, `muted`, and `loop` enabled.",
-    "video_variant_custom": "With wimui's unique custom control UI applied.",
+    "video_variant_custom": "With WIM UI's unique custom control UI applied.",
     "video_variant_default": "A standard video player.",
     "video_variant_full": "A full-featured player with all advanced features (playlist, aspect ratio, quality, resume playback, shortcuts, etc.) enabled.",
     "video_variant_rounded": "A design with rounded corners and shadows.",

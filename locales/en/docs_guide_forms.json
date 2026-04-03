@@ -82,7 +82,7 @@
     "guide_title": "Basic Input Component Usage Guide",
     "input_usage": "Name, email address, phone number, etc.",
     "label_aria": "Use together with `label` or `aria-describedby` etc.",
-    "label_visible": "Always display `&lt;label&gt;` outside",
+    "label_visible": "Always display `<label>` outside",
     "mask_usage": "Credit cards, dates, fixed format inputs.",
     "masked_text": "Masked text",
     "mentions": "Mentions",

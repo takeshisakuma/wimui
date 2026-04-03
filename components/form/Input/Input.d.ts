@@ -1,9 +1,9 @@
 import { default as React } from '../../../../node_modules/react';
 import { Icon } from '../../media/Icon/Icon';
-import { WimIntent } from '../../../types/tokens';
+import { WimIntent, FieldVariant } from '../../../types/tokens';
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
     intent?: WimIntent;
-    variant?: "outline" | "ghost";
+    variant?: FieldVariant;
     fullWidth?: boolean;
     leftIcon?: React.ComponentProps<typeof Icon>["name"];
     rightIcon?: React.ComponentProps<typeof Icon>["name"];
@@ -30,7 +30,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
  */
 export declare const Input: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "ref"> & {
     intent?: WimIntent;
-    variant?: "outline" | "ghost";
+    variant?: FieldVariant;
     fullWidth?: boolean;
     leftIcon?: React.ComponentProps<typeof Icon>["name"];
     rightIcon?: React.ComponentProps<typeof Icon>["name"];

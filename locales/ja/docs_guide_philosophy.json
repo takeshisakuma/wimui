@@ -11,7 +11,7 @@
     "standard_overview_desc": "設計および実装の標準に関する全体像については、<a href=\"?path=/docs/architecture-standardization-overview--docs\">標準化の概要 (Standardization Overview)</a> を参照してください。"
   },
   "internal": {
-    "philosophy_desc": "wimui を拡張したり、新しいコンポーネントを追加したりする際に従うべき、内部的な設計の一貫性とカプセル化に関するガイドラインです。",
+    "philosophy_desc": "WIM UI を拡張したり、新しいコンポーネントを追加したりする際に従うべき、内部的な設計の一貫性とカプセル化に関するガイドラインです。",
     "philosophy_title": "内部設計の哲学"
   }
 }

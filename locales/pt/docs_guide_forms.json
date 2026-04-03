@@ -82,7 +82,7 @@
     "guide_title": "Guia de Uso de Componentes de Entrada Básicos",
     "input_usage": "Nome, endereço de e-mail, número de telefone, etc.",
     "label_aria": "Use junto com `label` ou `aria-describedby` etc.",
-    "label_visible": "Sempre mostre `&lt;label&gt;` por fora",
+    "label_visible": "Sempre mostre `<label>` por fora",
     "mask_usage": "Cartões de crédito, datas, entradas de formato fixo.",
     "masked_text": "Texto com máscara",
     "mentions": "Menções",

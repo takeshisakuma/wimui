@@ -1,12 +1,12 @@
 import { default as React } from '../../../../node_modules/react';
-import { ComponentSize, WimIntent } from '../../../types/tokens';
+import { ComponentSize, WimIntent, IndicatorVariant } from '../../../types/tokens';
 export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
     /** 表示するコンテンツ */
     children?: React.ReactNode;
     /** ステータス */
     intent?: WimIntent;
     /** バリアント */
-    variant?: "solid" | "outline" | "subtle";
+    variant?: IndicatorVariant;
     /** サイズ */
     size?: ComponentSize;
     /** アイコン */

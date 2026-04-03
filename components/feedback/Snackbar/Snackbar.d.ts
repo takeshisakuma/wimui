@@ -7,7 +7,7 @@ export interface SnackbarProps {
     /** 表示状態 */
     open?: boolean;
     /** 表示するタイプ */
-    intent?: WimIntent | "default";
+    intent?: WimIntent;
     /** 表示位置 */
     position?: SnackbarPosition;
     /** 自動で閉じるまでの時間（ミリ秒）。0を指定すると自動で閉じません。 */

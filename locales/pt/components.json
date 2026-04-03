@@ -27,7 +27,7 @@
   },
   "btn": {
     "guide_link_btn": "Guia: Link vs Button (A diferença e o seu uso)",
-    "page_transition": "Quando mudar de página, mas for necessário dar ênfase visual como botão (semântica é `&lt;a&gt;`)."
+    "page_transition": "Quando mudar de página, mas for necessário dar ênfase visual como botão (semântica é `<a>`)."
   },
   "chat": {
     "placeholder": "Olá!",
@@ -41,7 +41,7 @@
     "info_only_in_p_desc": "Fornecendo informações críticas apenas através de placeholders."
   },
   "dashboard": {
-    "desc": "Painel para gerenciar o status de desenvolvimento dos componentes wimui.",
+    "desc": "Painel para gerenciar o status de desenvolvimento dos componentes WIM UI.",
     "overall_progress": "Progresso Geral",
     "progress": "Progresso Geral do Desenvolvimento",
     "title": "Painel de Desenvolvimento de Componentes",
@@ -459,7 +459,7 @@
     "comparison_table": "Tabela de Comparação de Unidades",
     "fixed_desc": "Use `px` para elementos que não devem borrar ou perder suas proporções devido ao dimensionamento, como bordas de 1px.",
     "fixed_title": "Precisão Gráfica (px)",
-    "guide_desc": "Diretrizes para selecionar unidades CSS no wimui para equilibrar acessibilidade e manutenibilidade.",
+    "guide_desc": "Diretrizes para selecionar unidades CSS no WIM UI para equilibrar acessibilidade e manutenibilidade.",
     "guide_title": "Seleção de Unidades",
     "item_px_desc": "Unidade de pixel. Usada quando um tamanho fixo deve ser mantido independentemente do dispositivo ou configurações.",
     "item_relative_desc": "Relativo ao elemento pai ou contêiner. Ideal para layouts responsivos e configurações de grade.",
@@ -512,7 +512,7 @@
     "visual_utilities": "Utilidades Visuais"
   },
   "utility": {
-    "guide": "O wimui providencia vários componentes auxiliares de baixo nível que gerenciam a construção do IU. Sendo eles essenciais para o enriquecimento da facilidade."
+    "guide": "O WIM UI providencia vários componentes auxiliares de baixo nível que gerenciam a construção do IU. Sendo eles essenciais para o enriquecimento da facilidade."
   },
   "vis": {
     "absolute_diff": "Diferenças absolutas entre itens",

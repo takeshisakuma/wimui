@@ -14,7 +14,7 @@
     "marquee_item": "アイテム {{count}}",
     "marquee_new_feature": "新機能",
     "marquee_update": "アップデート",
-    "marquee_welcome": "wimuiへようこそ！これは柔軟なマーキーコンポーネントです。",
+    "marquee_welcome": "WIM UIへようこそ！これは柔軟なマーキーコンポーネントです。",
     "scrollarea_both_desc": "このコンテナには、垂直方向と水平方向の両方にはみ出すコンテンツがあります。scrollAxis=\"both\" が設定されている場合、ScrollAreaは両方向を処理します。",
     "scrollarea_both_title": "両方向スクロール",
     "scrollarea_box": "ボックス {{count}}",

@@ -1,11 +1,11 @@
 import { default as React } from '../../../../node_modules/react';
 import { Icon } from '../../media/Icon/Icon';
-import { WimColor, ComponentSize } from '../../../types/tokens';
+import { WimColor, ComponentSize, ButtonVariant } from '../../../types/tokens';
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
     /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
     backgroundColor?: WimColor;
     size?: ComponentSize;
-    variant?: "filled" | "outlined" | "ghost";
+    variant?: ButtonVariant;
     /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
     intent?: "default" | "destructive" | "positive";
     /** Icon name or custom icon element */
@@ -22,7 +22,7 @@ export declare const Button: React.ForwardRefExoticComponent<Omit<React.Detailed
     /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
     backgroundColor?: WimColor;
     size?: ComponentSize;
-    variant?: "filled" | "outlined" | "ghost";
+    variant?: ButtonVariant;
     /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
     intent?: "default" | "destructive" | "positive";
     /** Icon name or custom icon element */

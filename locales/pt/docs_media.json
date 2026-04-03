@@ -250,7 +250,7 @@
     "video_title": "Reprodução de vídeo",
     "video_usage_caption": "Exemplo de vídeo de fundo",
     "video_variant_autoplay": "Com `autoPlay`, `muted` e `loop` ativados.",
-    "video_variant_custom": "Com a UI de controle personalizada exclusiva da wimui aplicada.",
+    "video_variant_custom": "Com a UI de controle personalizada exclusiva da WIM UI aplicada.",
     "video_variant_default": "Um player de vídeo padrão.",
     "video_variant_full": "Um player com todos os recursos avançados (playlist, proporção, qualidade, retomada de reprodução, atalhos, etc.) ativados.",
     "video_variant_rounded": "Um design com cantos arredondados e sombras.",

@@ -14,7 +14,7 @@
     "marquee_item": "Item {{count}}",
     "marquee_new_feature": "Nova Funcionalidade",
     "marquee_update": "Atualização",
-    "marquee_welcome": "Bem-vindo ao wimui! Este é um componente de letreiro flexível.",
+    "marquee_welcome": "Bem-vindo ao WIM UI! Este é um componente de letreiro flexível.",
     "scrollarea_both_desc": "Este contentor tem conteúdo que transborda tanto vertical como horizontalmente. O ScrollArea lida com ambas as direções quando scrollAxis=\"both\" está definido.",
     "scrollarea_both_title": "Scroll em Ambos os Eixos",
     "scrollarea_box": "Caixa {{count}}",

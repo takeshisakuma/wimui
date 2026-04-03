@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { WimIntent } from '../../../types/tokens';
+import { WimIntent, FieldVariant } from '../../../types/tokens';
 export type RichTextEditorToolbarItem = "bold" | "italic" | "underline" | "strikethrough" | "h1" | "h2" | "h3" | "ul" | "ol" | "link" | "unlink" | "removeFormat" | "separator";
 export type RichTextEditorLabels = {
     bold?: string;
@@ -24,7 +24,7 @@ export type RichTextEditorProps = {
     placeholder?: string;
     disabled?: boolean;
     intent?: WimIntent;
-    variant?: "outline" | "ghost";
+    variant?: FieldVariant;
     fullWidth?: boolean;
     minHeight?: number | string;
     label?: React.ReactNode;

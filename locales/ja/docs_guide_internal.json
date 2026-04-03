@@ -1,6 +1,6 @@
 {
   "internal": {
-    "category_desc": "これらは複数のコンポーネントで内部的に使用される基盤となる要素です。アプリケーションコードから直接使用することは想定されていませんが、wimui へのコントリビュートや拡張を行う際に理解しておくと役立ちます。",
+    "category_desc": "これらは複数のコンポーネントで内部的に使用される基盤となる要素です。アプリケーションコードから直接使用することは想定されていませんが、WIM UI へのコントリビュートや拡張を行う際に理解しておくと役立ちます。",
     "category_note": "これらのコンポーネントは内部実装の詳細です。基本的には、これらをラップした上位の公開コンポーネントを使用してください。",
     "category_title": "内部コンポーネント (Internal Components)",
     "comp_base_list_role": "Menu, Selectbox, TreeView 等で使用されるリスト形式の項目のレイアウトとインタラクション状態を標準化します。",
@@ -41,12 +41,12 @@
     "overlay_base_features_transitions_desc": "標準化された登場・退場アニメーションを提供します。",
     "overlay_base_features_perf": "パフォーマンス",
     "overlay_base_features_perf_desc": "高頻度なアニメーションにおいて `will-change: transform` を使用し、GPUによる60fpsの滑らかな描画を保証します。",
-    "philosophy_desc": "wimui を拡張したり、新しいコンポーネントを追加したりする際に従うべき、内部的な設計の一貫性とカプセル化に関するガイドラインです。",
+    "philosophy_desc": "WIM UI を拡張したり、新しいコンポーネントを追加したりする際に従うべき、内部的な設計の一貫性とカプセル化に関するガイドラインです。",
     "philosophy_title": "内部設計の哲学"
   },
   "guide": {
     "internal_title": "内部コアコンポーネント",
-    "internal_desc": "wimui のパブリック API を支える内部の基盤コンポーネントの概要です。これらを理解することで、ライブラリへのコントリビュートや拡張を一貫して行えます。"
+    "internal_desc": "WIM UI のパブリック API を支える内部の基盤コンポーネントの概要です。これらを理解することで、ライブラリへのコントリビュートや拡張を一貫して行えます。"
   },
   "principle": {
     "dom_title": "最小DOM",

@@ -85,7 +85,7 @@
   },
   "btn": {
     "guide_link_btn": "Guide: Link vs Button",
-    "page_transition": "When transitioning pages but needing visual emphasis as a button (semantics is `&lt;a&gt;`)."
+    "page_transition": "When transitioning pages but needing visual emphasis as a button (semantics is `<a>`)."
   },
   "chat": {
     "placeholder": "Hello!",
@@ -99,7 +99,7 @@
     "info_only_in_p_desc": "Providing critical info only through placeholders."
   },
   "dashboard": {
-    "desc": "Dashboard for managing wimui component development status.",
+    "desc": "Dashboard for managing WIM UI component development status.",
     "overall_progress": "Overall Progress",
     "progress": "Overall Development Progress",
     "title": "Component Development Dashboard",
@@ -449,7 +449,7 @@
     "visual_utilities": "Visual Utilities"
   },
   "utility": {
-    "guide": "wimui provides many low-level auxiliary components that support UI construction. Though not direct UI parts, they are essential for enhancing functionality and operability."
+    "guide": "WIM UI provides many low-level auxiliary components that support UI construction. Though not direct UI parts, they are essential for enhancing functionality and operability."
   },
   "vis": {
     "absolute_diff": "Absolute differences among items",
@@ -471,7 +471,7 @@
   },
   "unit": {
     "guide_title": "Unit Selection",
-    "guide_desc": "Guidelines for selecting CSS units in wimui to balance accessibility and maintainability.",
+    "guide_desc": "Guidelines for selecting CSS units in WIM UI to balance accessibility and maintainability.",
     "comparison_table": "Unit Comparison Table",
     "item_rem_desc": "Relative to the root element (html) font size. The most recommended unit for ensuring accessibility (respecting user browser settings).",
     "item_px_desc": "Pixel unit. Used when a fixed size must be maintained regardless of device or settings.",

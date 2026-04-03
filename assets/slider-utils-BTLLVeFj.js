@@ -1,1 +1,0 @@
-import{r as l}from"./iframe-GzHoau5L.js";const s=(t,e,r)=>Math.max(e,Math.min(t,r)),h=(t,e,r)=>{const c=l.useCallback(a=>{const o=Math.round((a-t)/r);return s(t+o*r,t,e)},[t,e,r]),n=l.useCallback((a,o)=>{if(!o)return t;const u=o.getBoundingClientRect(),p=s((a-u.left)/u.width,0,1),d=t+p*(e-t);return c(d)},[c,e,t]);return{clamp:s,alignToStep:c,calculateValue:n}};export{h as u};

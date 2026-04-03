@@ -8,7 +8,7 @@
     "diagram_right_panel": "Right Panel (ライトパネル)",
     "diagram_footer": "Footer (フッター)",
     "guide_title": "レイアウトコンポーネントの使い分けガイド",
-    "flexibility": "wimui はシンプルな線形スタックから多次元グリッドまで、豊富なレイアウトコンポーネントを提供しています。必要な構造と柔軟性に基づいて適切なものを選択してください。",
+    "flexibility": "WIM UI はシンプルな線形スタックから多次元グリッドまで、豊富なレイアウトコンポーネントを提供しています。必要な構造と柔軟性に基づいて適切なものを選択してください。",
     "compare_methods": "レイアウト方式の比較",
     "base_technology": "基盤技術",
     "linear_stack": "一方向への要素の線形積み重ね",

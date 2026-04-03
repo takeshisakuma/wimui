@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { ComponentSize, WimIntent } from '../../../types/tokens';
+import { ComponentSize, WimIntent, IndicatorVariant } from '../../../types/tokens';
 export type ChipProps = {
     /** 表示するコンテンツ */
     children?: React.ReactNode;
@@ -18,7 +18,7 @@ export type ChipProps = {
     /** ステータス */
     intent?: WimIntent;
     /** バリアント */
-    variant?: "solid" | "outline" | "subtle";
+    variant?: IndicatorVariant;
     /** サイズ */
     size?: ComponentSize;
     /** 削除ボタンのアクセシビリティラベル */

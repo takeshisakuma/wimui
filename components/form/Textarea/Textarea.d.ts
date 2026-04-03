@@ -1,11 +1,11 @@
 import { default as React } from '../../../../node_modules/react';
-import { WimIntent } from '../../../types/tokens';
+import { WimIntent, FieldVariant } from '../../../types/tokens';
 /**
  * 複数行のテキスト入力を受け付けるコンポーネント。
  */
 export declare const Textarea: React.ForwardRefExoticComponent<Omit<React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>, "ref"> & {
     intent?: WimIntent;
-    variant?: "outline" | "ghost";
+    variant?: FieldVariant;
     fullWidth?: boolean;
     fieldSizing?: "fixed" | "content";
     label?: string;

@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { ComponentSize, WimIntent } from '../../../types/tokens';
+import { ComponentSize, WimIntent, IndicatorVariant } from '../../../types/tokens';
 export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
     /** 表示するコンテンツ */
     children?: React.ReactNode;
@@ -8,7 +8,7 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
     /** ステータス */
     intent?: WimIntent;
     /** バリアント */
-    variant?: "solid" | "outline" | "subtle";
+    variant?: IndicatorVariant;
     /** サイズ */
     size?: ComponentSize;
 };

@@ -1,7 +1,7 @@
 {
   "guide": {
     "std_overview_title": "標準化の全体方針",
-    "std_overview_desc": "wimui では、一貫したユーザー体験を提供するために、設計・実装の両面で厳格な標準を設けています。このページは、それらの標準化ドキュメントを俯瞰し、設計思想を理解するためのインデックスです。",
+    "std_overview_desc": "WIM UI では、一貫したユーザー体験を提供するために、設計・実装の両面で厳格な標準を設けています。このページは、それらの標準化ドキュメントを俯瞰し、設計思想を理解するためのインデックスです。",
     "std_core_pillars_heading": "核心となる3つの柱 (Core Pillars)",
     "std_pillar_1_title": "一貫性 (Consistency)",
     "std_pillar_1_desc": "すべてのコンポーネントで統一された見た目と振る舞いを提供し、ユーザーの学習コストを最小化します。",
@@ -103,7 +103,7 @@
     "state_std_rule_4_title": "翻訳のサポート",
     "state_std_rule_4_desc": "タイトルや説明文には翻訳キーを指定可能にし、多言語対応を容易にします。",
     "styling_std_title": "スタイリングとトークンの標準化",
-    "styling_std_desc": "wimuiにおけるSCSS変数とCSSカスタムプロパティの使い分け、およびトークン管理のルールについて説明します。",
+    "styling_std_desc": "WIM UIにおけるSCSS変数とCSSカスタムプロパティの使い分け、およびトークン管理のルールについて説明します。",
     "styling_std_concept_title": "基本コンセプト",
     "styling_std_concept_desc": "静的なロジックはSCSSで、テーマや実行時の拡張性はCSSカスタムプロパティ（デザイン・トークン）で管理します。",
     "styling_std_rules_title": "使用ルール",

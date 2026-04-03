@@ -11,7 +11,7 @@
     "standard_overview_desc": "Para uma visão de alto nível de nossos padrões de design e implementação, consulte a <a href=\"?path=/docs/architecture-standardization-overview--docs\">Visão Geral de Padronização</a>."
   },
   "internal": {
-    "philosophy_desc": "Diretrizes para consistência e encapsulamento de design interno que devem ser seguidas ao estender o wimui ou adicionar novos componentes.",
+    "philosophy_desc": "Diretrizes para consistência e encapsulamento de design interno que devem ser seguidas ao estender o WIM UI ou adicionar novos componentes.",
     "philosophy_title": "Filosofia de Design Interno"
   }
 }

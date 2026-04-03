@@ -1,12 +1,12 @@
 import { default as React } from '../../../../node_modules/react';
-import { WimIntent } from '../../../types/tokens';
+import { WimIntent, FieldVariant } from '../../../types/tokens';
 export type DatePickerLabels = {
     placeholder?: string;
     calendarLabels?: import('../../data-display/Calendar/Calendar').CalendarLabels;
 };
 type DatePickerProps = Omit<React.ComponentPropsWithoutRef<"input">, "value" | "defaultValue" | "onChange"> & {
     intent?: WimIntent;
-    variant?: "outline" | "ghost";
+    variant?: FieldVariant;
     fullWidth?: boolean;
     /** Selected date value */
     value?: Date;

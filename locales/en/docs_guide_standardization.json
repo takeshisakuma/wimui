@@ -1,7 +1,7 @@
 {
   "guide": {
     "std_overview_title": "Standardization Overview",
-    "std_overview_desc": "At wimui, we maintain strict standards for both design and implementation to provide a consistent user experience. This page serves as an index to oversee these standardization documents and understand our design philosophy.",
+    "std_overview_desc": "At WIM UI, we maintain strict standards for both design and implementation to provide a consistent user experience. This page serves as an index to oversee these standardization documents and understand our design philosophy.",
     "std_core_pillars_heading": "Core Pillars",
     "std_pillar_1_title": "Consistency",
     "std_pillar_1_desc": "Provides a unified look and feel across all components, minimizing user learning costs.",
@@ -103,7 +103,7 @@
     "state_std_rule_4_title": "Translation Support",
     "state_std_rule_4_desc": "Allow translation keys for titles and descriptions to facilitate multi-language support.",
     "styling_std_title": "Styling & Tokens Standardization",
-    "styling_std_desc": "Guidelines on distinguishing between SCSS variables and CSS custom properties, and rules for token management in wimui.",
+    "styling_std_desc": "Guidelines on distinguishing between SCSS variables and CSS custom properties, and rules for token management in WIM UI.",
     "styling_std_concept_title": "Core Concept",
     "styling_std_concept_desc": "Static logic is managed via SCSS, while themes and runtime extensibility are managed via CSS custom properties (Design Tokens).",
     "styling_std_rules_title": "Usage Rules",
