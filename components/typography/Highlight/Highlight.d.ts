@@ -9,9 +9,9 @@ export type HighlightProps = React.ComponentPropsWithoutRef<"span"> & {
     /** Custom styles for the highlighted `<mark>` element. */
     highlightStyles?: React.CSSProperties;
     /** The HTML tag or component to use for the container. Default is "span". */
-    component?: React.ElementType;
+    as?: React.ElementType;
 };
 /**
  * Highlight component that emphasizes specific parts of a text.
  */
-export declare const Highlight: ({ children, highlight, highlightClassName, highlightStyles, component: Component, className, ...props }: HighlightProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Highlight: ({ children, highlight, highlightClassName, highlightStyles, as: Component, className, ...props }: HighlightProps) => import("react/jsx-runtime").JSX.Element;

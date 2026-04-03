@@ -18,3 +18,6 @@ export * from './components/layout/SimpleGrid/SimpleGrid';
 export * from './components/layout/Splitter/Splitter';
 export * from './components/layout/Stack/Stack';
 export * from './components/layout/Sidebar/Sidebar';
+export * from './components/layout/Transition/Transition';
+export * from './components/layout/VisuallyHidden/VisuallyHidden';
+export * from './components/layout/Watermark/Watermark';

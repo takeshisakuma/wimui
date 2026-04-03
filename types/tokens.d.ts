@@ -25,21 +25,6 @@ export type IndicatorVariant = "solid" | "outline" | "subtle";
  */
 export type WimIntent = "primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral" | "default" | "destructive" | "positive";
 /**
- * Status values for indicator-style components (Badge, Chip, Tag, Progress).
- * @deprecated Use WimIntent instead.
- */
-export type IndicatorStatus = WimIntent;
-/**
- * Status values for feedback/notification components (Alert, Banner, Toast, Snackbar).
- * @deprecated Use WimIntent instead.
- */
-export type FeedbackStatus = WimIntent;
-/**
- * Status values for form field components (Input, Textarea, DatePicker, RichTextEditor).
- * @deprecated Use WimIntent instead.
- */
-export type FieldStatus = WimIntent;
-/**
  * Color tokens keys available as CSS variables.
  */
 export type WimColorKey = "primary" | "primary-hover" | "primary-active" | "primary-light" | "primary-container-alpha" | "secondary" | "informative" | "destructive" | "positive" | "caution" | "disabled" | "text-primary" | "text-secondary" | "text-tertiary" | "text-disabled" | "text-white" | "text-error" | "text-placeholder" | "text-on-primary" | "text-on-secondary" | "text-on-destructive" | "text-on-positive" | "text-on-caution" | "text-on-informative" | "text-on-disabled" | "text-on-overlay" | "surface" | "surface-variant" | "surface-hover" | "surface-variant-alpha" | "bg-app" | "bg-component" | "bg-primary" | "bg-secondary" | "bg-tertiary" | "bg-hover" | "border" | "border-secondary" | "focus-outline" | "overlay-bg" | "overlay-bg-light" | "overlay-bg-dark" | "scrollbar-thumb" | "scrollbar-track";

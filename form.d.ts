@@ -40,3 +40,8 @@ export * from './components/form/Transfer/Transfer';
 export * from './components/form/FieldTemplate/FieldTemplate';
 export * from './components/form/InputBase/InputBase';
 export * from './components/form/TreeSelect/TreeSelect';
+export * from './components/form/CopyButton/CopyButton';
+export * from './components/form/IconButton/IconButton';
+export * from './components/form/LinkButton/LinkButton';
+export * from './components/form/FloatButton/FloatButton';
+export * from './components/form/QueryBuilder/QueryBuilder';

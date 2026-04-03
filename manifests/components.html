@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.7s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.8s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -5966,7 +5966,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">7 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/BaseListItem/BaseListItem.tsx::BaseListItem</code></pre>
+            <pre><code>Component: src/components/_internal/BaseListItem/BaseListItem.tsx::BaseListItem</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * Whether the item is currently highlighted or active
@@ -15883,7 +15883,7 @@ npm run test -- ContextMenu
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">6 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/CopyButton/CopyButton.tsx::CopyButton</code></pre>
+            <pre><code>Component: src/components/form/CopyButton/CopyButton.tsx::CopyButton</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>aria-label?: string
 
@@ -16063,7 +16063,7 @@ import * as CopyButtonStories from &quot;./CopyButton.stories&quot;;
 &lt;/ul&gt;
 
 ```tsx
-import { CopyButton } from &quot;@/components/misc/CopyButton/CopyButton&quot;;
+import { CopyButton } from &quot;@/components/form/CopyButton/CopyButton&quot;;
 
 &lt;CopyButton value=&quot;Text to be copied&quot; /&gt;;
 ```
@@ -22749,7 +22749,7 @@ npm run test -- Flex
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">14 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/FloatButton/FloatButton.tsx::FloatButton</code></pre>
+            <pre><code>Component: src/components/form/FloatButton/FloatButton.tsx::FloatButton</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * Aria label for accessibility
@@ -23299,7 +23299,7 @@ npm run test -- FloatButton
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">4 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/FocusTrap/FocusTrap.tsx::FocusTrap</code></pre>
+            <pre><code>Component: src/components/overlay/FocusTrap/FocusTrap.tsx::FocusTrap</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * トラップが有効かどうか。
@@ -26861,14 +26861,14 @@ npm run test -- Heatmap
             <pre><code>Component: src/components/typography/Highlight/Highlight.tsx::Highlight</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
+ * The HTML tag or component to use for the container. Default is &quot;span&quot;.
+ */
+as?: React.ElementType = &quot;span&quot;
+
+/**
  * The full text to highlight substrings in.
  */
 children: string
-
-/**
- * The HTML tag or component to use for the container. Default is &quot;span&quot;.
- */
-component?: React.ElementType = &quot;span&quot;
 
 /**
  * Substring(s) to highlight.
@@ -26949,10 +26949,7 @@ highlightStyles?: React.CSSProperties</code></pre>
               </div>
               
               
-              <pre><code>const CustomComponent = () =&gt; &lt;Highlight
-    highlight=&quot;paragraph&quot;
-    component=&quot;p&quot;
-    style={{ fontSize: &quot;20px&quot;, color: &quot;gray&quot; }}&gt;This is a paragraph with a highlight.&lt;/Highlight&gt;;</code></pre>
+              <pre><code>const CustomComponent = () =&gt; &lt;Highlight highlight=&quot;paragraph&quot; as=&quot;p&quot; style={{ fontSize: &quot;20px&quot;, color: &quot;gray&quot; }}&gt;This is a paragraph with a highlight.&lt;/Highlight&gt;;</code></pre>
             </div>
         </div>
     
@@ -28370,7 +28367,7 @@ npm run test -- Icon
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">2 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/IconButton/IconButton.tsx::IconButton</code></pre>
+            <pre><code>Component: src/components/form/IconButton/IconButton.tsx::IconButton</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>aria-label: string
 
@@ -29737,7 +29734,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">6 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/InfiniteScroll/InfiniteScroll.tsx::InfiniteScroll</code></pre>
+            <pre><code>Component: src/components/data-display/InfiniteScroll/InfiniteScroll.tsx::InfiniteScroll</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * まだ読み込むデータがあるかどうか。
@@ -33695,7 +33692,7 @@ npm run test -- Link
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">4 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/LinkButton/LinkButton.tsx::LinkButton</code></pre>
+            <pre><code>Component: src/components/form/LinkButton/LinkButton.tsx::LinkButton</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>iconPosition?: any = &quot;left&quot;
 
@@ -41182,7 +41179,7 @@ npm run test -- Popover
           
     <div class="note err">
       <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>File: /home/runner/work/wimui/wimui/src/components/misc/Portal/Portal.tsx
+      <div class="note-body"><pre><code>File: /home/runner/work/wimui/wimui/src/components/overlay/Portal/Portal.tsx
 Error:
 No suitable component definition found.
 You can debug your component file in this playground: https://react-docgen.dev/playground
@@ -42379,7 +42376,7 @@ npm run test -- Progress
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">9 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/QRCode/QRCode.tsx::QRCode</code></pre>
+            <pre><code>Component: src/components/data-display/QRCode/QRCode.tsx::QRCode</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>bgColor?: string = &quot;#FFFFFF&quot;
 
@@ -42660,7 +42657,7 @@ npm run test -- QRCode
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">8 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/QueryBuilder/QueryBuilder.tsx::QueryBuilder</code></pre>
+            <pre><code>Component: src/components/form/QueryBuilder/QueryBuilder.tsx::QueryBuilder</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * Additional class name
@@ -42955,7 +42952,7 @@ import { T } from &quot;../T&quot;;
 ## &lt;T k=&quot;doc.basic_usage&quot; /&gt;
 
 ```tsx
-import { QueryBuilder } from &quot;@/components/misc/QueryBuilder/QueryBuilder&quot;;
+import { QueryBuilder } from &quot;@/components/form/QueryBuilder/QueryBuilder&quot;;
 
 const fields = [
   { name: &quot;firstName&quot;, label: &quot;First Name&quot;, type: &quot;string&quot; },
@@ -61713,7 +61710,7 @@ import { T } from &quot;../T&quot;;
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">11 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/Transition/Transition.tsx::Transition</code></pre>
+            <pre><code>Component: src/components/layout/Transition/Transition.tsx::Transition</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * Whether to animate on initial mount
@@ -64579,7 +64576,7 @@ npm run test -- VirtualList
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">1 prop type</span>
             </div>
-            <pre><code>Component: src/components/misc/VisuallyHidden/VisuallyHidden.tsx::VisuallyHidden</code></pre>
+            <pre><code>Component: src/components/layout/VisuallyHidden/VisuallyHidden.tsx::VisuallyHidden</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * 表示されないが、スクリーンリーダーには読み上げられるコンテンツ。
@@ -64860,7 +64857,7 @@ npm run test -- VisuallyHidden
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
               <span class="badge ok">11 prop types</span>
             </div>
-            <pre><code>Component: src/components/misc/Watermark/Watermark.tsx::Watermark</code></pre>
+            <pre><code>Component: src/components/layout/Watermark/Watermark.tsx::Watermark</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>children?: React.ReactNode
 
@@ -67684,7 +67681,7 @@ npm run test -- Patterns
           
     <div class="note err">
       <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>File: /home/runner/work/wimui/wimui/src/components/misc/Portal/Portal.tsx
+      <div class="note-body"><pre><code>File: /home/runner/work/wimui/wimui/src/components/overlay/Portal/Portal.tsx
 Error:
 No suitable component definition found.
 You can debug your component file in this playground: https://react-docgen.dev/playground

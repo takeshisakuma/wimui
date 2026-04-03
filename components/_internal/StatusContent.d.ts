@@ -1,4 +1,5 @@
 import { ReactNode } from '../../../node_modules/react';
+import { ComponentSize } from '../../types/tokens';
 export type StatusContentProps = {
     /**
      * Status-based icon or custom icon
@@ -31,7 +32,7 @@ export type StatusContentProps = {
     /**
      * Size variation
      */
-    size?: "md" | "sm";
+    size?: ComponentSize;
 };
 /**
  * Internal component to unify layout for Result and EmptyState
