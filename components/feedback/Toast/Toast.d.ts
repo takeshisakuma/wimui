@@ -7,14 +7,14 @@ export type ToastProps = {
     description?: string;
     intent?: WimIntent;
     duration?: number;
-    isVisible?: boolean;
+    open?: boolean;
     onClose?: (id?: string) => void;
     className?: string;
 };
 /**
  * ユーザーに通知やフィードバックを伝えるためのトーストコンポーネント。
  */
-export declare const Toast: ({ id, title, description, intent, duration, isVisible, onClose, className, }: ToastProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Toast: ({ id, title, description, intent, duration, open, onClose, className, }: ToastProps) => import("react/jsx-runtime").JSX.Element;
 type ToastItem = {
     id: string;
     title?: string;

@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.8s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.7s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -3961,10 +3961,16 @@ icon?: React.ReactNode
 
 initials?: string
 
-/**
- * ステータス
- */
-intent?: &quot;primary&quot; | &quot;secondary&quot; | &quot;neutral&quot; | &quot;error&quot; | &quot;success&quot;
+intent?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;success&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;info&quot;
+| &quot;neutral&quot;
+| &quot;default&quot;
+| &quot;destructive&quot;
+| &quot;positive&quot;
 
 shape?: &quot;circle&quot; | &quot;rounded&quot; = &quot;circle&quot;
 
@@ -25547,14 +25553,14 @@ className?: string
 color?: string
 
 /**
- * Check if the menu is open
- */
-isOpen?: boolean = false
-
-/**
  * Callback function when the menu is toggled
  */
 onClick?: React.MouseEventHandler&lt;HTMLButtonElement&gt;
+
+/**
+ * Whether the menu is open
+ */
+open?: boolean = false
 
 /**
  * Size of the hamburger menu
@@ -25583,18 +25589,18 @@ size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code><
               
               
               <pre><code>const Default = () =&gt; {
-    const [isOpen, setIsOpen] = useState(args.isOpen || false);
+    const [open, setIsOpen] = useState(args.open || false);
 
     useEffect(() =&gt; {
-      setIsOpen(args.isOpen || false);
-    }, [args.isOpen]);
+      setIsOpen(args.open || false);
+    }, [args.open]);
 
     const toggle = (e: React.MouseEvent&lt;HTMLButtonElement&gt;) =&gt; {
       setIsOpen((prev) =&gt; !prev);
       args.onClick?.(e);
     };
 
-    return &lt;HamburgerMenu size=&quot;md&quot; isOpen={isOpen} onClick={toggle} /&gt;;
+    return &lt;HamburgerMenu size=&quot;md&quot; open={open} onClick={toggle} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -25605,18 +25611,18 @@ size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code><
               
               
               <pre><code>const Small = () =&gt; {
-    const [isOpen, setIsOpen] = useState(args.isOpen || false);
+    const [open, setIsOpen] = useState(args.open || false);
 
     useEffect(() =&gt; {
-      setIsOpen(args.isOpen || false);
-    }, [args.isOpen]);
+      setIsOpen(args.open || false);
+    }, [args.open]);
 
     const toggle = (e: React.MouseEvent&lt;HTMLButtonElement&gt;) =&gt; {
       setIsOpen((prev) =&gt; !prev);
       args.onClick?.(e);
     };
 
-    return &lt;HamburgerMenu size=&quot;sm&quot; isOpen={isOpen} onClick={toggle} /&gt;;
+    return &lt;HamburgerMenu size=&quot;sm&quot; open={open} onClick={toggle} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -25627,18 +25633,18 @@ size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code><
               
               
               <pre><code>const Large = () =&gt; {
-    const [isOpen, setIsOpen] = useState(args.isOpen || false);
+    const [open, setIsOpen] = useState(args.open || false);
 
     useEffect(() =&gt; {
-      setIsOpen(args.isOpen || false);
-    }, [args.isOpen]);
+      setIsOpen(args.open || false);
+    }, [args.open]);
 
     const toggle = (e: React.MouseEvent&lt;HTMLButtonElement&gt;) =&gt; {
       setIsOpen((prev) =&gt; !prev);
       args.onClick?.(e);
     };
 
-    return &lt;HamburgerMenu size=&quot;lg&quot; isOpen={isOpen} onClick={toggle} /&gt;;
+    return &lt;HamburgerMenu size=&quot;lg&quot; open={open} onClick={toggle} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -25649,18 +25655,18 @@ size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code><
               
               
               <pre><code>const Colored = () =&gt; {
-    const [isOpen, setIsOpen] = useState(args.isOpen || false);
+    const [open, setIsOpen] = useState(args.open || false);
 
     useEffect(() =&gt; {
-      setIsOpen(args.isOpen || false);
-    }, [args.isOpen]);
+      setIsOpen(args.open || false);
+    }, [args.open]);
 
     const toggle = (e: React.MouseEvent&lt;HTMLButtonElement&gt;) =&gt; {
       setIsOpen((prev) =&gt; !prev);
       args.onClick?.(e);
     };
 
-    return &lt;HamburgerMenu color=&quot;#ff5722&quot; isOpen={isOpen} onClick={toggle} /&gt;;
+    return &lt;HamburgerMenu color=&quot;#ff5722&quot; open={open} onClick={toggle} /&gt;;
 };</code></pre>
             </div>
         </div>
@@ -27163,14 +27169,14 @@ className?: string
 closeDelay?: number = 300
 
 /**
- * If provided, controls the open state.
- */
-isOpen?: boolean
-
-/**
  * Callback when open state changes.
  */
 onOpenChange?: (open: boolean) =&gt; void
+
+/**
+ * If provided, controls the open state.
+ */
+open?: boolean
 
 /**
  * Delay before showing the hover card in ms.
@@ -47576,7 +47582,7 @@ npm run test -- Patterns
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Result</h2>
       <div class="badges">
-        <label for="c-119-components-alerts-notifications-result-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-119-components-alerts-notifications-result-props" class="badge ok as-toggle">8 prop types</label>
         <label for="c-119-components-alerts-notifications-result-info" class="badge info as-toggle">1 info</label>
         <label for="c-119-components-alerts-notifications-result-stories" class="badge ok as-toggle">7 stories</label>
         <label for="c-119-components-alerts-notifications-result-docs" class="badge ok as-toggle">1 doc</label>
@@ -47610,7 +47616,7 @@ npm run test -- Patterns
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">7 prop types</span>
+              <span class="badge ok">8 prop types</span>
             </div>
             <pre><code>Component: src/components/feedback/Result/Result.tsx::Result</code></pre>
             <pre><code>Props:</code></pre>
@@ -47640,15 +47646,15 @@ extra?: ReactNode
 icon?: ReactNode
 
 /**
- * result intent, decide icons and colors
+ * Semantic intent — determines the icon and color.
  */
-intent?: | &quot;success&quot;
-| &quot;error&quot;
-| &quot;info&quot;
-| &quot;warning&quot;
-| &quot;404&quot;
-| &quot;403&quot;
-| &quot;500&quot; = &quot;info&quot;
+intent?: &quot;success&quot; | &quot;error&quot; | &quot;info&quot; | &quot;warning&quot; = &quot;info&quot;
+
+/**
+ * HTTP error status — adds a status-specific CSS class and shows a neutral icon.
+ * Use for error pages (404, 403, 500).
+ */
+status?: &quot;404&quot; | &quot;403&quot; | &quot;500&quot;
 
 /**
  * The title
@@ -47760,7 +47766,7 @@ title?: ReactNode</code></pre>
 
     return (
         &lt;Result
-            intent=&quot;404&quot;
+            status=&quot;404&quot;
             title=&quot;404&quot;
             description={t(&quot;story.result_404_desc&quot;)}
             extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
@@ -47779,7 +47785,7 @@ title?: ReactNode</code></pre>
 
     return (
         &lt;Result
-            intent=&quot;403&quot;
+            status=&quot;403&quot;
             title=&quot;403&quot;
             description={t(&quot;story.result_403_desc&quot;)}
             extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
@@ -47798,7 +47804,7 @@ title?: ReactNode</code></pre>
 
     return (
         &lt;Result
-            intent=&quot;500&quot;
+            status=&quot;500&quot;
             title=&quot;500&quot;
             description={t(&quot;story.result_500_desc&quot;)}
             extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
@@ -59984,9 +59990,9 @@ intent?: | &quot;primary&quot;
 | &quot;destructive&quot;
 | &quot;positive&quot; = &quot;info&quot;
 
-isVisible?: boolean = true
-
 onClose?: (id?: string) =&gt; void
+
+open?: boolean = true
 
 title?: string</code></pre>
           </div>
@@ -60741,14 +60747,14 @@ className?: string
 delay?: number = 200
 
 /**
- * If provided, controls the open state.
- */
-isOpen?: boolean
-
-/**
  * Callback when open state changes.
  */
 onOpenChange?: (open: boolean) =&gt; void
+
+/**
+ * If provided, controls the open state.
+ */
+open?: boolean
 
 /**
  * Preferred placement of the tooltip.

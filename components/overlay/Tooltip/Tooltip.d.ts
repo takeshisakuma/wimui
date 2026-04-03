@@ -10,7 +10,7 @@ export type TooltipProps = {
     /**
      * If provided, controls the open state.
      */
-    isOpen?: boolean;
+    open?: boolean;
     /**
      * Callback when open state changes.
      */
@@ -20,7 +20,7 @@ export type TooltipProps = {
      */
     placement?: Placement;
 };
-export declare const Tooltip: ({ children, className, delay, isOpen: controlledOpen, onOpenChange, placement, }: TooltipProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Tooltip: ({ children, className, delay, open: controlledOpen, onOpenChange, placement, }: TooltipProps) => import("react/jsx-runtime").JSX.Element;
 export type TooltipTriggerProps = {
     children: ReactNode;
     className?: string;

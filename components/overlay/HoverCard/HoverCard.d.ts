@@ -13,13 +13,13 @@ export type HoverCardProps = {
     /**
      * If provided, controls the open state.
      */
-    isOpen?: boolean;
+    open?: boolean;
     /**
      * Callback when open state changes.
      */
     onOpenChange?: (open: boolean) => void;
 };
-export declare const HoverCard: ({ children, className, openDelay, closeDelay, isOpen: controlledOpen, onOpenChange, }: HoverCardProps) => import("react/jsx-runtime").JSX.Element;
+export declare const HoverCard: ({ children, className, openDelay, closeDelay, open: controlledOpen, onOpenChange, }: HoverCardProps) => import("react/jsx-runtime").JSX.Element;
 export type HoverCardTriggerProps = {
     children: ReactNode;
     className?: string;

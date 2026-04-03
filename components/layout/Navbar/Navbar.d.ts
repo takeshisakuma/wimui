@@ -35,7 +35,7 @@ export interface NavbarLinkProps extends React.ComponentPropsWithoutRef<"a"> {
     active?: boolean;
 }
 export declare const NavbarLink: React.ForwardRefExoticComponent<NavbarLinkProps & React.RefAttributes<HTMLAnchorElement>>;
-export type NavbarToggleProps = Omit<React.ComponentPropsWithoutRef<typeof HamburgerMenu>, "isOpen" | "onClick">;
+export type NavbarToggleProps = Omit<React.ComponentPropsWithoutRef<typeof HamburgerMenu>, "open" | "onClick">;
 export declare const NavbarToggle: React.ForwardRefExoticComponent<NavbarToggleProps & React.RefAttributes<HTMLButtonElement>>;
 export interface NavbarMenuProps extends React.ComponentPropsWithoutRef<"div"> {
     position?: "right" | "left" | "top" | "bottom";

@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { ComponentSize } from '../../../types/tokens';
+import { ComponentSize, WimIntent } from '../../../types/tokens';
 type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
     src?: string;
     alt?: string;
@@ -7,8 +7,7 @@ type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
     icon?: React.ReactNode;
     size?: ComponentSize;
     shape?: "circle" | "rounded";
-    /** ステータス */
-    intent?: "primary" | "secondary" | "neutral" | "error" | "success";
+    intent?: WimIntent;
 };
 /**
  * ユーザーのアイコンやイニシャルを表示するためのアバターコンポーネント。

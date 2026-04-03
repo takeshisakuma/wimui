@@ -1,10 +1,16 @@
 import { ReactNode } from '../../../../node_modules/react';
-export type ResultStatus = "success" | "error" | "info" | "warning" | "404" | "403" | "500";
+export type ResultIntent = "success" | "error" | "info" | "warning";
+export type ResultHttpStatus = "404" | "403" | "500";
 export type ResultProps = {
     /**
-     * result intent, decide icons and colors
+     * Semantic intent — determines the icon and color.
      */
-    intent?: ResultStatus;
+    intent?: ResultIntent;
+    /**
+     * HTTP error status — adds a status-specific CSS class and shows a neutral icon.
+     * Use for error pages (404, 403, 500).
+     */
+    status?: ResultHttpStatus;
     /**
      * The title
      */
@@ -30,4 +36,4 @@ export type ResultProps = {
      */
     children?: ReactNode;
 };
-export declare const Result: ({ intent, title, description, extra, icon, className, children, }: ResultProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Result: ({ intent, status, title, description, extra, icon, className, children, }: ResultProps) => import("react/jsx-runtime").JSX.Element;

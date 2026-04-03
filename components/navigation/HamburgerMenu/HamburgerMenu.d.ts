@@ -1,8 +1,8 @@
 import { default as React } from '../../../../node_modules/react';
 import { ComponentSize } from '../../../types/tokens';
 export interface HamburgerMenuProps extends React.ComponentPropsWithoutRef<"button"> {
-    /** Check if the menu is open */
-    isOpen?: boolean;
+    /** Whether the menu is open */
+    open?: boolean;
     /** Callback function when the menu is toggled */
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     /** Size of the hamburger menu */
