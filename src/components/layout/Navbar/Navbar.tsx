@@ -176,7 +176,7 @@ NavbarLink.displayName = "Navbar.Link";
 
 export type NavbarToggleProps = Omit<
   React.ComponentPropsWithoutRef<typeof HamburgerMenu>,
-  "isOpen" | "onClick"
+  "open" | "onClick"
 >;
 
 export const NavbarToggle = React.forwardRef<
@@ -193,7 +193,7 @@ export const NavbarToggle = React.forwardRef<
     <div className="wim-navbar__toggle">
       <HamburgerMenu
         ref={ref}
-        isOpen={isMenuOpen}
+        open={isMenuOpen}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className={className}
         {...props}

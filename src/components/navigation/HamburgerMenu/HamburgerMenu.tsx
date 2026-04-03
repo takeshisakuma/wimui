@@ -4,8 +4,8 @@ import { ComponentSize } from "../../../types/tokens";
 import "./hamburger-menu.scss";
 
 export interface HamburgerMenuProps extends React.ComponentPropsWithoutRef<"button"> {
-  /** Check if the menu is open */
-  isOpen?: boolean;
+  /** Whether the menu is open */
+  open?: boolean;
   /** Callback function when the menu is toggled */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   /** Size of the hamburger menu */
@@ -22,7 +22,7 @@ export const HamburgerMenu = React.forwardRef<
 >(
   (
     {
-      isOpen = false,
+      open = false,
       onClick,
       size = "md",
       color,
@@ -39,12 +39,12 @@ export const HamburgerMenu = React.forwardRef<
         className={classNames(
           "wim-hamburger-menu",
           `wim-hamburger-menu--${size}`,
-          isOpen && "wim-hamburger-menu--open",
+          open && "wim-hamburger-menu--open",
           className,
         )}
         onClick={onClick}
-        aria-expanded={isOpen}
-        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+        aria-label={open ? "Close menu" : "Open menu"}
         style={{
           ...style,
           ...(color

@@ -85,5 +85,30 @@
       color: var(--wim-color-text-on-informative);
       background-color: var(--wim-color-informative);
     }
+
+    &--info {
+      color: var(--wim-color-text-on-informative);
+      background-color: var(--wim-color-informative);
+    }
+
+    &--warning {
+      color: var(--wim-color-text-on-caution);
+      background-color: var(--wim-color-caution);
+    }
+
+    &--destructive {
+      color: var(--wim-color-text-on-destructive);
+      background-color: var(--wim-color-destructive);
+    }
+
+    &--positive {
+      color: var(--wim-color-text-on-positive);
+      background-color: var(--wim-color-positive);
+    }
+
+    &--default {
+      color: var(--wim-color-text-on-disabled);
+      background-color: var(--wim-color-disabled);
+    }
   }
 }

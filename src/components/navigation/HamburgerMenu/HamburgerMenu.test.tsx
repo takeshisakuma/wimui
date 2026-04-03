@@ -11,7 +11,7 @@ describe("HamburgerMenu", () => {
   });
 
   it("toggles state class", () => {
-    render(<HamburgerMenu isOpen />);
+    render(<HamburgerMenu open />);
     const button = screen.getByRole("button", { name: "Close menu" });
     expect(button).toHaveClass("wim-hamburger-menu--open");
   });

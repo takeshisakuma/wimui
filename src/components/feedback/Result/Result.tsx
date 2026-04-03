@@ -4,20 +4,20 @@ import { Icon } from "../../media/Icon/Icon";
 import { InteractiveArea } from "../../layout/InteractiveArea/InteractiveArea";
 import "./result.scss";
 
-export type ResultStatus =
-  | "success"
-  | "error"
-  | "info"
-  | "warning"
-  | "404"
-  | "403"
-  | "500";
+export type ResultIntent = "success" | "error" | "info" | "warning";
+
+export type ResultHttpStatus = "404" | "403" | "500";
 
 export type ResultProps = {
   /**
-   * result intent, decide icons and colors
+   * Semantic intent — determines the icon and color.
    */
-  intent?: ResultStatus;
+  intent?: ResultIntent;
+  /**
+   * HTTP error status — adds a status-specific CSS class and shows a neutral icon.
+   * Use for error pages (404, 403, 500).
+   */
+  status?: ResultHttpStatus;
   /**
    * The title
    */
@@ -44,7 +44,14 @@ export type ResultProps = {
   children?: ReactNode;
 };
 
-const DefaultIcon = ({ intent }: { intent: ResultStatus }) => {
+const DefaultIcon = ({
+  intent,
+  status,
+}: {
+  intent?: ResultIntent;
+  status?: ResultHttpStatus;
+}) => {
+  if (status) return <Icon name="CircleIcon" color="secondary" />;
   switch (intent) {
     case "success":
       return <Icon name="CheckIcon" color="positive" />;
@@ -54,10 +61,6 @@ const DefaultIcon = ({ intent }: { intent: ResultStatus }) => {
       return <Icon name="CircleIcon" color="caution" />;
     case "info":
       return <Icon name="CircleIcon" color="informative" />;
-    case "404":
-    case "403":
-    case "500":
-      return <Icon name="CircleIcon" color="secondary" />;
     default:
       return null;
   }
@@ -65,6 +68,7 @@ const DefaultIcon = ({ intent }: { intent: ResultStatus }) => {
 
 export const Result = ({
   intent = "info",
+  status,
   title,
   description,
   extra,
@@ -74,13 +78,18 @@ export const Result = ({
 }: ResultProps) => {
   return (
     <InteractiveArea
-      icon={icon || <DefaultIcon intent={intent} />}
+      icon={icon || <DefaultIcon intent={intent} status={status} />}
       title={title ?? undefined}
       description={description ?? undefined}
       actions={extra}
       variant="none"
       bgVariant="transparent"
-      className={classNames("wim-result", `wim-result--${intent}`, className)}
+      className={classNames(
+        "wim-result",
+        intent && `wim-result--${intent}`,
+        status && `wim-result--${status}`,
+        className,
+      )}
     >
       {children}
     </InteractiveArea>

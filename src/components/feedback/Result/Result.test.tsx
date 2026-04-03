@@ -25,17 +25,17 @@ describe("Result", () => {
   });
 
   it("renders status class for 404", () => {
-    const { container } = render(<Result intent="404" />);
+    const { container } = render(<Result status="404" />);
     expect(container.firstChild).toHaveClass("wim-result--404");
   });
 
   it("renders status class for 403", () => {
-    const { container } = render(<Result intent="403" />);
+    const { container } = render(<Result status="403" />);
     expect(container.firstChild).toHaveClass("wim-result--403");
   });
 
   it("renders status class for 500", () => {
-    const { container } = render(<Result intent="500" />);
+    const { container } = render(<Result status="500" />);
     expect(container.firstChild).toHaveClass("wim-result--500");
   });
 

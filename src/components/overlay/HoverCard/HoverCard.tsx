@@ -27,7 +27,7 @@ export type HoverCardProps = {
   /**
    * If provided, controls the open state.
    */
-  isOpen?: boolean;
+  open?: boolean;
   /**
    * Callback when open state changes.
    */
@@ -39,7 +39,7 @@ export const HoverCard = ({
   className,
   openDelay = 700,
   closeDelay = 300,
-  isOpen: controlledOpen,
+  open: controlledOpen,
   onOpenChange,
 }: HoverCardProps) => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);

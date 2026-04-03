@@ -52,7 +52,7 @@ export type TooltipProps = {
   /**
    * If provided, controls the open state.
    */
-  isOpen?: boolean;
+  open?: boolean;
   /**
    * Callback when open state changes.
    */
@@ -67,7 +67,7 @@ export const Tooltip = ({
   children,
   className,
   delay = 200,
-  isOpen: controlledOpen,
+  open: controlledOpen,
   onOpenChange,
   placement = "top",
 }: TooltipProps) => {

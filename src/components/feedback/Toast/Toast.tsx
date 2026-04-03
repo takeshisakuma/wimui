@@ -25,7 +25,7 @@ export type ToastProps = {
   description?: string;
   intent?: WimIntent;
   duration?: number;
-  isVisible?: boolean;
+  open?: boolean;
   onClose?: (id?: string) => void;
   className?: string;
 };
@@ -39,7 +39,7 @@ export const Toast = ({
   description,
   intent = "info",
   duration = 3000,
-  isVisible = true,
+  open = true,
   onClose,
   className,
 }: ToastProps) => {
@@ -51,17 +51,17 @@ export const Toast = ({
   }, [onClose, id]);
 
   useEffect(() => {
-    if (isVisible && duration > 0 && internalVisible) {
+    if (open && duration > 0 && internalVisible) {
       const timer = setTimeout(() => {
         handleClose();
       }, duration + 300); // Add extra buffer for animation
       return () => clearTimeout(timer);
     }
-  }, [isVisible, duration, id, onClose, internalVisible, handleClose]);
+  }, [open, duration, id, onClose, internalVisible, handleClose]);
 
   return (
     <Transition
-      show={isVisible && internalVisible}
+      show={open && internalVisible}
       enter="toast-enter"
       enterFrom="toast-enter-from"
       enterTo="toast-enter-to"

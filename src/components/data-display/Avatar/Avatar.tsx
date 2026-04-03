@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize } from "../../../types/tokens";
+import { ComponentSize, WimIntent } from "../../../types/tokens";
 import "./avatar.scss";
 
 type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -11,8 +11,7 @@ type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
   icon?: React.ReactNode;
   size?: ComponentSize;
   shape?: "circle" | "rounded";
-  /** ステータス */
-  intent?: "primary" | "secondary" | "neutral" | "error" | "success";
+  intent?: WimIntent;
 };
 
 /**

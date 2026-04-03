@@ -84,7 +84,7 @@ export const Status404: Story = {
     return (
       <Result
         {...args}
-        intent="404"
+        status="404"
         title="404"
         description={t("story.result_404_desc")}
         extra={<Button variant="filled">{t("story.result_back_home")}</Button>}
@@ -99,7 +99,7 @@ export const Status403: Story = {
     return (
       <Result
         {...args}
-        intent="403"
+        status="403"
         title="403"
         description={t("story.result_403_desc")}
         extra={<Button variant="filled">{t("story.result_back_home")}</Button>}
@@ -114,7 +114,7 @@ export const Status500: Story = {
     return (
       <Result
         {...args}
-        intent="500"
+        status="500"
         title="500"
         description={t("story.result_500_desc")}
         extra={<Button variant="filled">{t("story.result_back_home")}</Button>}

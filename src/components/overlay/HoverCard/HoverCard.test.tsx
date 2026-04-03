@@ -110,9 +110,9 @@ describe("HoverCard", () => {
     expect(screen.queryByText("Content")).not.toBeInTheDocument();
   });
 
-  it("respects controlled isOpen=true", () => {
+  it("respects controlled open=true", () => {
     render(
-      <HoverCard isOpen={true}>
+      <HoverCard open={true}>
         <HoverCardTrigger>Trigger</HoverCardTrigger>
         <HoverCardContent>Controlled Content</HoverCardContent>
       </HoverCard>,
@@ -194,7 +194,7 @@ describe("HoverCard", () => {
 
   it("HoverCardContent renders with align and side classes", () => {
     render(
-      <HoverCard isOpen={true}>
+      <HoverCard open={true}>
         <HoverCardTrigger>Trigger</HoverCardTrigger>
         <HoverCardContent align="left" side="top">Content</HoverCardContent>
       </HoverCard>,

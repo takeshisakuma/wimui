@@ -13,7 +13,7 @@ const meta: Meta<typeof HamburgerMenu> = {
   },
   tags: [],
   argTypes: {
-    isOpen: {
+    open: {
       control: "boolean",
       description: "State of the menu (open/closed)",
     },
@@ -36,23 +36,23 @@ type Story = StoryObj<typeof HamburgerMenu>;
 
 // Define a render function that uses hooks
 const renderWithState = (args: HamburgerMenuProps) => {
-  const [isOpen, setIsOpen] = useState(args.isOpen || false);
+  const [open, setIsOpen] = useState(args.open || false);
 
   useEffect(() => {
-    setIsOpen(args.isOpen || false);
-  }, [args.isOpen]);
+    setIsOpen(args.open || false);
+  }, [args.open]);
 
   const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsOpen((prev) => !prev);
     args.onClick?.(e);
   };
 
-  return <HamburgerMenu {...args} isOpen={isOpen} onClick={toggle} />;
+  return <HamburgerMenu {...args} open={open} onClick={toggle} />;
 };
 
 export const Default: Story = {
   args: {
-    isOpen: false,
+    open: false,
     size: "md",
   },
   render: renderWithState,

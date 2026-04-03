@@ -19,7 +19,7 @@ const meta: Meta<typeof Tooltip> = {
 
   argTypes: {
     delay: { control: "number" },
-    isOpen: { control: "boolean" },
+    open: { control: "boolean" },
     placement: {
       control: "select",
       options: ["top", "bottom", "left", "right"],
