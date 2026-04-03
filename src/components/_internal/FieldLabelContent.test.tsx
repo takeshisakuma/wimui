@@ -39,7 +39,7 @@ describe("FieldLabelContent", () => {
     const badge = container.querySelector(".wim-field-label-badge");
     expect(badge).toBeInTheDocument();
     // required badge uses error color, optional uses neutral
-    expect(badge).toHaveAttribute("color", "error");
+    expect(badge).toHaveClass("wim-badge--error");
   });
 
   it("applies custom className to the wrapper", () => {
