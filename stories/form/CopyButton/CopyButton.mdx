@@ -1,0 +1,148 @@
+import { Canvas, Meta, Controls, Story } from "@storybook/addon-docs/blocks";
+import { T } from "../../T";
+import * as CopyButtonStories from "./CopyButton.stories";
+
+<Meta of={CopyButtonStories} />
+
+# CopyButton
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.copybutton_title" />
+</p>
+
+<p><T k="doc.copybutton_long_desc" /></p>
+
+## <T k="doc.copybutton_comparison" />
+
+<p><T k="doc.copybutton_comparison_desc" /></p>
+
+<p><T k="doc.copybutton_comparison_1" /></p>
+<p><T k="doc.copybutton_comparison_2" /></p>
+
+## Usage
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.copybutton_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.copybutton_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>CopyButton</b></td>
+      <td><T k="doc.copybutton_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Button</b></td>
+      <td><T k="doc.copybutton_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.copybutton_anatomy_root_label" /></b></td>
+      <td><T k="doc.copybutton_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.copybutton_anatomy_content_label" /></b></td>
+      <td><T k="doc.copybutton_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.copybutton_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.copybutton_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.copybutton_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.copybutton_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_admin_title" /></strong></td>
+      <td><T k="doc.copybutton_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.copybutton_best_practice_1" /></li>
+  <li><T k="doc.copybutton_best_practice_2" /></li>
+</ul>
+
+```tsx
+import { CopyButton } from "@/components/form/CopyButton/CopyButton";
+
+<CopyButton value="Text to be copied" />;
+```
+
+## <T k="doc.example" />
+
+### <T k="doc.default" />
+
+<Canvas of={CopyButtonStories.Default} />
+
+### Sizes
+
+#### Small
+
+<Canvas of={CopyButtonStories.Small} />
+#### Large
+<Canvas of={CopyButtonStories.Large} />
+
+## Props
+
+<Controls />
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.copybutton_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.copybutton_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- CopyButton
+```

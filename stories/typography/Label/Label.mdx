@@ -1,0 +1,122 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import * as LabelStories from "./Label.stories";
+import { T } from "../../T";
+
+<Meta of={LabelStories} />
+
+# Label
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.label_title" />
+</p>
+
+<p><T k="doc.label_long_desc" /></p>
+
+## <T k="doc.basic_usage" />
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.label_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.label_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Label</b></td>
+      <td><T k="doc.label_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Heading</b></td>
+      <td><T k="doc.label_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.label_anatomy_root_label" /></b></td>
+      <td><T k="doc.label_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.label_anatomy_content_label" /></b></td>
+      <td><T k="doc.label_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.label_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.label_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.label_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.scenario_form_title" /></b></td>
+      <td><T k="doc.label_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.scenario_admin_title" /></b></td>
+      <td><T k="doc.label_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.label_best_practice_1" /></li>
+  <li><T k="doc.label_best_practice_2" /></li>
+</ul>
+
+<Canvas of={LabelStories.Default} />
+
+## <T k="doc.label_req_opt" />
+
+<p><T k="doc.label_req_opt_desc" /></p>
+
+### <T k="doc.required" />
+
+<Canvas of={LabelStories.Required} />
+
+### <T k="doc.optional" />
+
+<Canvas of={LabelStories.Optional} />
+
+## <T k="doc.props" />
+
+<Controls />

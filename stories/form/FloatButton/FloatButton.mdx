@@ -1,0 +1,183 @@
+import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import * as FloatButtonStories from "./FloatButton.stories";
+import { T } from "../../T";
+
+<Meta of={FloatButtonStories} />
+
+# FloatButton
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.floatbutton_title" />
+</p>
+
+<p><T k="doc.floatbutton_long_desc" /></p>
+
+## <T k="doc.example" />
+
+### <T k="doc.basic_usage" />
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.floatbutton_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.floatbutton_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>FloatButton</b></td>
+      <td><T k="doc.floatbutton_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Button</b></td>
+      <td><T k="doc.floatbutton_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.floatbutton_anatomy_root_label" /></b></td>
+      <td><T k="doc.floatbutton_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.floatbutton_anatomy_content_label" /></b></td>
+      <td><T k="doc.floatbutton_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.floatbutton_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.floatbutton_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.floatbutton_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_cta_title" /></strong></td>
+      <td><T k="doc.floatbutton_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
+      <td><T k="doc.floatbutton_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.floatbutton_best_practice_1" /></li>
+  <li><T k="doc.floatbutton_best_practice_2" /></li>
+</ul>
+
+<Canvas of={FloatButtonStories.Basic} />
+
+### <T k="doc.floatbutton_extended" />
+
+<p><T k="doc.floatbutton_extended_desc" /></p>
+
+<Canvas of={FloatButtonStories.Extended} />
+
+### <T k="doc.size_variants" />
+
+<p><T k="doc.floatbutton_sizes_desc" /></p>
+
+<Canvas of={FloatButtonStories.Sizes} />
+
+### <T k="doc.floatbutton_extended_sizes" />
+
+<p><T k="doc.floatbutton_extended_sizes_desc" /></p>
+
+<Canvas of={FloatButtonStories.ExtendedSizes} />
+
+### <T k="doc.floatbutton_auto_shrink" />
+
+<p><T k="doc.floatbutton_auto_shrink_desc" /></p>
+
+<Canvas of={FloatButtonStories.AutoShrink} />
+
+### <T k="doc.floatbutton_primary" />
+
+<Canvas of={FloatButtonStories.Primary} />
+
+### <T k="doc.floatbutton_square" />
+
+<Canvas of={FloatButtonStories.Square} />
+
+### <T k="doc.floatbutton_with_badge" />
+
+<Canvas of={FloatButtonStories.WithBadge} />
+
+### <T k="doc.floatbutton_fixed_pos" />
+
+<p><T k="doc.floatbutton_fixed_pos_desc" /></p>
+
+<Canvas of={FloatButtonStories.FixedPosition} />
+
+### <T k="doc.floatbutton_backtop" />
+
+<p><T k="doc.floatbutton_backtop_desc" /></p>
+
+<Canvas of={FloatButtonStories.BackTop} />
+
+## <T k="doc.features" />
+
+<ul>
+  <li><T k="doc.floatbutton_feat_1" /></li>
+  <li><T k="doc.floatbutton_feat_2" /></li>
+  <li><T k="doc.floatbutton_feat_3" /></li>
+  <li><T k="doc.floatbutton_feat_4" /></li>
+  <li><T k="doc.floatbutton_feat_5" /></li>
+</ul>
+
+## <T k="doc.props" />
+
+<Controls />
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.floatbutton_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.floatbutton_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- FloatButton
+```

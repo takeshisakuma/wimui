@@ -1,0 +1,399 @@
+import { Meta, Primary, Controls, Canvas, Title } from "@storybook/addon-docs/blocks";
+import * as CarouselStories from "./Carousel.stories";
+import { T } from "../../T";
+
+<Meta of={CarouselStories} />
+
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.carousel_title" />
+</p>
+
+<p><T k="doc.carousel_long_desc" /></p>
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.carousel_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.carousel_choice_matrix_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Carousel</b></td>
+      <td><T k="doc.carousel_choice_carousel_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Slideshow</b></td>
+      <td><T k="doc.carousel_choice_slideshow_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Slider</b></td>
+      <td><T k="doc.carousel_choice_slider_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.carousel_anatomy_viewport_label" /></b></td>
+      <td><T k="doc.carousel_anatomy_viewport" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.carousel_anatomy_slide_label" /></b></td>
+      <td><T k="doc.carousel_anatomy_slide" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.carousel_anatomy_nav_buttons_label" /></b></td>
+      <td><T k="doc.carousel_anatomy_nav_buttons" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.carousel_anatomy_indicators_label" /></b></td>
+      <td><T k="doc.carousel_anatomy_indicators" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.carousel_content_guidelines" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<ul>
+  <li><T k="doc.carousel_motion_spec" /></li>
+</ul>
+
+## <T k="doc.a11y_spec_title" />
+<ul>
+  <li><T k="doc.carousel_a11y_spec" /></li>
+</ul>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.scenario_hero_title" /></b></td>
+      <td><T k="doc.carousel_scenario_hero" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.scenario_products_title" /></b></td>
+      <td><T k="doc.carousel_scenario_products" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.scenario_gallery_title" /></b></td>
+      <td><T k="doc.carousel_scenario_gallery" /></td>
+    </tr>
+  </tbody>
+</table>
+## <T k="doc.guidelines_title" />
+<ul>
+  <li><T k="doc.carousel_guideline_1" /></li>
+  <li><T k="doc.carousel_guideline_2" /></li>
+  <li><T k="doc.carousel_best_practice_1" /></li>
+  <li><T k="doc.carousel_best_practice_2" /></li>
+</ul>
+
+
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.carousel_best_practice_1" /></li>
+  <li><T k="doc.carousel_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.features" />
+
+<p><T k="doc.carousel_features_desc" /></p>
+
+## <T k="doc.usage_examples" />
+
+### <T k="doc.basic_usage" />
+
+<p><T k="doc.carousel_basic_desc" /></p>
+
+<Canvas of={CarouselStories.Basic} />
+
+### <T k="doc.carousel_specify_slides" />
+
+<p><T k="doc.carousel_specify_slides_desc" /></p>
+
+<Canvas of={CarouselStories.MultipleItems} />
+
+### <T k="doc.carousel_responsive" />
+
+<p><T k="doc.carousel_responsive_desc" /></p>
+
+```tsx
+<Carousel
+  slidesToShow={{
+    base: 1, // Smartphone
+    sm: 2, // Tablet
+    md: 3, // PC
+    lg: 4, // Wide
+  }}
+>
+  {/* slides */}
+</Carousel>
+```
+
+<Canvas of={CarouselStories.Responsive} />
+
+### <T k="doc.carousel_autoplay" />
+
+<p><T k="doc.carousel_autoplay_desc" /></p>
+
+<Canvas of={CarouselStories.AutoPlay} />
+
+### <T k="doc.carousel_no_loop" />
+
+<p><T k="doc.carousel_no_loop_desc" /></p>
+
+<Canvas of={CarouselStories.NoLoop} />
+
+### <T k="doc.carousel_image_example" />
+
+<p><T k="doc.carousel_image_example_desc" /></p>
+
+<Canvas of={CarouselStories.WithImage} />
+
+### <T k="doc.carousel_aspect_ratio" />
+
+<p><T k="doc.carousel_aspect_ratio_desc" /></p>
+
+<Canvas of={CarouselStories.AspectRatioCheck} />
+
+## Props
+
+<Controls />
+
+## <T k="doc.accessibility" />
+
+<p><T k="doc.carousel_accessibility_desc" /></p>
+
+## <T k="doc.carousel_what_is" />
+
+<p><T k="doc.carousel_what_is_desc" /></p>
+
+### <T k="doc.carousel_differences" />
+
+<p><T k="doc.carousel_differences_intro" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.carousel_term_header" /></th>
+      <th><T k="doc.carousel_characteristic_header" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_term_carousel" /></strong>
+      </td>
+      <td><T k="doc.carousel_char_carousel" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_term_slideshow" /></strong>
+      </td>
+      <td><T k="doc.carousel_char_slideshow" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_term_slider" /></strong>
+      </td>
+      <td><T k="doc.carousel_char_slider" /></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## <T k="doc.carousel_benefits" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.carousel_benefit_header" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_benefit_space" /></strong>
+      </td>
+      <td><T k="doc.carousel_benefit_space_desc" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_benefit_attention" /></strong>
+      </td>
+      <td><T k="doc.carousel_benefit_attention_desc" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_benefit_emphasis" /></strong>
+      </td>
+      <td><T k="doc.carousel_benefit_emphasis_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.carousel_drawbacks" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.carousel_challenge_header" /></th>
+      <th><T k="doc.description" /></th>
+      <th><T k="doc.carousel_solution_header" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_challenge_unseen" /></strong>
+      </td>
+      <td><T k="doc.carousel_challenge_unseen_desc" /></td>
+      <td><T k="doc.carousel_challenge_unseen_sol" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_challenge_perf" /></strong>
+      </td>
+      <td><T k="doc.carousel_challenge_perf_desc" /></td>
+      <td><T k="doc.carousel_challenge_perf_sol" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_challenge_stress" /></strong>
+      </td>
+      <td><T k="doc.carousel_challenge_stress_desc" /></td>
+      <td><T k="doc.carousel_challenge_stress_sol" /></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## <T k="doc.carousel_functional_reqs" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.carousel_req_header" /></th>
+      <th><T k="doc.carousel_details_header" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_req_nav" /></strong>
+      </td>
+      <td><T k="doc.carousel_req_nav_desc" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_req_touch" /></strong>
+      </td>
+      <td><T k="doc.carousel_req_touch_desc" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_req_indicator" /></strong>
+      </td>
+      <td><T k="doc.carousel_req_indicator_desc" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_req_auto" /></strong>
+      </td>
+      <td><T k="doc.carousel_req_auto_desc" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_req_loop" /></strong>
+      </td>
+      <td><T k="doc.carousel_req_loop_desc" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.keyboard_navigation" /></strong>
+      </td>
+      <td><T k="doc.carousel_req_kbd_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.carousel_implementation_points" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.carousel_point_header" /></th>
+      <th><T k="doc.carousel_details_header" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_point_content" /></strong>
+      </td>
+      <td><T k="doc.carousel_point_content_desc" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_point_responsive" /></strong>
+      </td>
+      <td><T k="doc.carousel_point_responsive_desc" /></td>
+    </tr>
+    <tr>
+      <td>
+        <strong><T k="doc.carousel_point_affordance" /></strong>
+      </td>
+      <td><T k="doc.carousel_point_affordance_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.carousel_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.carousel_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Carousel
+```

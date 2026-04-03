@@ -1,0 +1,266 @@
+import { Canvas, Meta } from "@storybook/addon-docs/blocks";
+import * as ChatUIStories from "./ChatUI.stories";
+import { T } from "../../T";
+
+<Meta of={ChatUIStories} />
+
+# ChatUI
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.chatui_desc" />
+</p>
+
+## <T k="doc.subcomponents" />
+
+<p><T k="doc.chatui_subcomponents" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>ChatContainer</strong></td>
+      <td><T k="doc.chatui_c_container" /></td>
+    </tr>
+    <tr>
+      <td><strong>ChatMessageList</strong></td>
+      <td><T k="doc.chatui_c_list" /></td>
+    </tr>
+    <tr>
+      <td><strong>ChatMessage</strong></td>
+      <td><T k="doc.chatui_c_message" /></td>
+    </tr>
+    <tr>
+      <td><strong>ChatInput</strong></td>
+      <td><T k="doc.chatui_c_input" /></td>
+    </tr>
+    <tr>
+      <td><strong>ChatAvatar</strong></td>
+      <td><T k="doc.chatui_c_avatar" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.usage" />
+
+### <T k="doc.chatui_basic_ui" />
+
+<Canvas of={ChatUIStories.Basic} />
+
+### <T k="doc.chatui_with_avatars" />
+
+<Canvas of={ChatUIStories.WithAvatarImages} />
+
+### <T k="doc.chatui_msg_variants" />
+
+<p><T k="doc.chatui_msg_variants_desc" /></p>
+
+<Canvas of={ChatUIStories.WithVariants} />
+
+### <T k="doc.chatui_interactive_ex" />
+
+<p><T k="doc.chatui_interactive_desc" /></p>
+
+<Canvas of={ChatUIStories.Interactive} />
+
+### <T k="doc.chatui_custom_avatars" />
+
+<Canvas of={ChatUIStories.WithIcons} />
+
+### <T k="doc.chatui_no_avatars" />
+
+<Canvas of={ChatUIStories.NoAvatars} />
+
+### <T k="doc.chatui_avatar_sizes" />
+
+<Canvas of={ChatUIStories.AvatarSizes} />
+
+## <T k="doc.features" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.feature" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.chatui_f_flex" /></strong></td>
+      <td><T k="doc.chatui_f_flex_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_f_avatar" /></strong></td>
+      <td><T k="doc.chatui_f_avatar_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_f_timestamp" /></strong></td>
+      <td><T k="doc.chatui_f_timestamp_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_f_sender" /></strong></td>
+      <td><T k="doc.chatui_f_sender_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_f_variants" /></strong></td>
+      <td><T k="doc.chatui_f_variants_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_f_input" /></strong></td>
+      <td><T k="doc.chatui_f_input_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_f_autoscroll" /></strong></td>
+      <td><T k="doc.chatui_f_autoscroll_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_f_responsive" /></strong></td>
+      <td><T k="doc.chatui_f_responsive_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.appshell_best_practices" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.practice" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.chatui_bp_position" /></strong></td>
+      <td><T k="doc.chatui_bp_position_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_bp_avatars" /></strong></td>
+      <td><T k="doc.chatui_bp_avatars_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_bp_timestamp" /></strong></td>
+      <td><T k="doc.chatui_bp_timestamp_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_bp_autoscroll" /></strong></td>
+      <td><T k="doc.chatui_bp_autoscroll_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_bp_grouping" /></strong></td>
+      <td><T k="doc.chatui_bp_grouping_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.chatui_bp_loading" /></strong></td>
+      <td><T k="doc.chatui_bp_loading_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.accessibility" /></strong></td>
+      <td><T k="doc.chatui_bp_a11y_desc" /> (Wait, I used common one)
+        Ensure proper ARIA labels and keyboard navigation</td>
+    </tr>
+  </tbody>
+</table>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.chatui_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.chatui_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>ChatUI</b></td>
+      <td><T k="doc.chatui_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Dialog</b></td>
+      <td><T k="doc.chatui_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.chatui_anatomy_root_label" /></b></td>
+      <td><T k="doc.chatui_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.chatui_anatomy_content_label" /></b></td>
+      <td><T k="doc.chatui_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.chatui_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.chatui_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.chatui_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_chat_title" /></strong></td>
+      <td><T k="doc.chatui_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_sns_title" /></strong></td>
+      <td><T k="doc.chatui_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.chatui_best_practice_1" /></li>
+  <li><T k="doc.chatui_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.accessibility" />
+
+<ul>
+  <li><T k="doc.chatui_a11y_1" /></li>
+  <li><T k="doc.chatui_a11y_2" /></li>
+  <li><T k="doc.chatui_a11y_3" /></li>
+  <li><T k="doc.chatui_a11y_4" /></li>
+  <li><T k="doc.chatui_a11y_5" /></li>
+</ul>

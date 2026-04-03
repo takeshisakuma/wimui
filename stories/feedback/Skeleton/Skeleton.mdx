@@ -1,0 +1,169 @@
+import { Meta, Canvas, Controls, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
+import * as SkeletonStories from "./Skeleton.stories";
+import { T } from "../../T";
+
+<Meta of={SkeletonStories} />
+
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.skeleton_title" />
+</p>
+
+<p><T k="doc.skeleton_long_desc" /></p>
+
+## <T k="guide.progress_std_pattern_skeleton_title" />
+
+<p><T k="guide.progress_pattern_skeleton_desc" /></p>
+<p><T k="guide.progress_pattern_skeleton_benefit" /></p>
+
+<p><T k="doc.see_more" /> [Progress Indicator Standardization](?path=/docs/architecture-progress-indicator-standardization--docs)</p>
+
+## <T k="doc.features" />
+
+<ul>
+  <li><T k="doc.skeleton_features_1" /></li>
+  <li><T k="doc.skeleton_features_2" /></li>
+  <li><T k="doc.skeleton_features_3" /></li>
+</ul>
+
+## <T k="doc.usage_examples" />
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.skeleton_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.skeleton_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Skeleton</b></td>
+      <td><T k="doc.skeleton_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Loader</b></td>
+      <td><T k="doc.skeleton_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.skeleton_anatomy_root_label" /></b></td>
+      <td><T k="doc.skeleton_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.skeleton_anatomy_content_label" /></b></td>
+      <td><T k="doc.skeleton_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.skeleton_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.skeleton_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.skeleton_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
+      <td><T k="doc.skeleton_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_ec_title" /></strong></td>
+      <td><T k="doc.skeleton_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.skeleton_best_practice_1" /></li>
+  <li><T k="doc.skeleton_best_practice_2" /></li>
+</ul>
+
+<Canvas of={SkeletonStories.Default} />
+
+<Primary />
+
+## <T k="doc.props" />
+
+<Controls />
+
+## <T k="doc.variations" />
+
+### <T k="doc.skeleton_shape" />
+
+<p><T k="doc.skeleton_shape_desc" /></p>
+
+<Canvas of={SkeletonStories.Text} />
+<Canvas of={SkeletonStories.Circle} />
+<Canvas of={SkeletonStories.Rect} />
+
+### <T k="doc.skeleton_animation" />
+
+<p><T k="doc.skeleton_animation_desc" /></p>
+
+<Canvas of={SkeletonStories.WaveAnimation} />
+
+### <T k="doc.skeleton_usage_example" />
+
+<p><T k="doc.skeleton_usage_example_desc" /></p>
+
+<Canvas of={SkeletonStories.CardExample} />
+
+### <T k="doc.skeleton_loading_state" />
+
+<p><T k="doc.skeleton_loading_state_desc" /></p>
+
+<Canvas of={SkeletonStories.LoadingToggle} />
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.skeleton_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.skeleton_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Skeleton
+```
+
+<Stories />

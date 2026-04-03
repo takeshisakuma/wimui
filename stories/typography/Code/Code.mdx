@@ -1,0 +1,161 @@
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as CodeStories from "./Code.stories";
+
+import { T } from "../../T";
+
+<Meta of={CodeStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.code_long_desc" />
+</p>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.code_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.code_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Code</b></td>
+      <td><T k="doc.code_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Markdown</b></td>
+      <td><T k="doc.code_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.code_anatomy_root_label" /></b></td>
+      <td><T k="doc.code_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.code_anatomy_content_label" /></b></td>
+      <td><T k="doc.code_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.code_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.code_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.code_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_article_title" /></strong></td>
+      <td><T k="doc.code_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_admin_title" /></strong></td>
+      <td><T k="doc.code_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.code_best_practice_1" /></li>
+  <li><T k="doc.code_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.usage" />
+
+```tsx
+import { Code } from "./Code";
+import { T } from "../../T";
+
+const Example = () => (
+  <>
+    {/* Inline */}
+    <Code>npm install wimui</Code>
+
+    {/* Block */}
+    <Code block language="bash">
+      npm install wimui
+    </Code>
+  </>
+);
+```
+
+<Canvas of={CodeStories.Inline} />
+
+<Controls />
+
+## <T k="doc.variants" />
+
+### <T k="doc.inline" />
+
+<Canvas of={CodeStories.Inline} />
+
+### <T k="doc.block" />
+
+<Canvas of={CodeStories.Block} />
+
+### <T k="doc.long_content" />
+
+<Canvas of={CodeStories.LongContent} />
+
+<p><T k="doc.code_note_title" /></p>
+<p><T k="doc.code_note_desc" /></p>
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.code_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.code_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Code
+```

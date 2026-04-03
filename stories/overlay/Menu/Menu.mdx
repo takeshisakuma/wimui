@@ -1,0 +1,220 @@
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as MenuStories from "./Menu.stories";
+import { T } from "../../T";
+
+<Meta of={MenuStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.menu_title" />
+</p>
+
+<p><T k="doc.menu_long_desc" /></p>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.menu_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.menu_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Menu</b></td>
+      <td><T k="doc.menu_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Dropdown</b></td>
+      <td><T k="doc.menu_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.menu_anatomy_root_label" /></b></td>
+      <td><T k="doc.menu_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.menu_anatomy_content_label" /></b></td>
+      <td><T k="doc.menu_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.menu_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.menu_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.menu_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_nav_title" /></strong></td>
+      <td><T k="doc.menu_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_admin_title" /></strong></td>
+      <td><T k="doc.menu_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.menu_best_practice_1" /></li>
+  <li><T k="doc.menu_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.usage" />
+
+```tsx
+import { Menu, MenuItem, SubMenu, MenuItemGroup, MenuDivider } from "wimui";
+
+<Menu>
+  <MenuItem icon={<Icon name="CheckIcon" />}>Home</MenuItem>
+  <MenuItem>About</MenuItem>
+  <SubMenu itemKey="services" title="Services">
+    <MenuItem>Service 1</MenuItem>
+    <MenuItem>Service 2</MenuItem>
+  </SubMenu>
+</Menu>;
+```
+
+<Primary />
+
+## <T k="doc.components" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Menu</strong></td>
+      <td>
+        <T k="doc.menu_comp_menu_desc" /><br />
+        <code>mode</code>: <T k="doc.menu_props_mode" /> (<code>"vertical"</code> | <code>"horizontal"</code> | <code>"inline"</code>)<br />
+        <code>defaultOpenKeys</code>: <T k="doc.menu_props_default_open_keys" />
+      </td>
+    </tr>
+    <tr>
+      <td><strong>MenuItem</strong></td>
+      <td><T k="doc.menu_comp_menuitem_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong>SubMenu</strong></td>
+      <td><T k="doc.menu_comp_submenu_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong>MenuItemGroup</strong></td>
+      <td><T k="doc.menu_comp_itemgroup_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong>MenuDivider</strong></td>
+      <td><T k="doc.menu_comp_divider_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.props" />
+<Controls />
+
+## <T k="doc.examples" />
+
+### <T k="doc.with_icons" />
+
+<p><T k="doc.menu_stories_icons_desc" /></p>
+
+<Canvas of={MenuStories.WithIcons} />
+
+### <T k="doc.with_submenu" />
+
+<p><T k="doc.menu_stories_submenu_desc" /></p>
+
+<Canvas of={MenuStories.WithSubMenu} />
+
+### <T k="doc.with_groups" />
+
+<p><T k="doc.menu_stories_groups_desc" /></p>
+
+<Canvas of={MenuStories.WithGroups} />
+
+### <T k="doc.horizontal" />
+
+<p><T k="doc.menu_stories_horizontal_desc" /></p>
+
+<Canvas of={MenuStories.Horizontal} />
+
+### <T k="doc.inline" />
+
+<p><T k="doc.menu_stories_inline_desc" /></p>
+
+<Canvas of={MenuStories.Inline} />
+
+## <T k="doc.accessibility" />
+
+<ul>
+  <li><T k="doc.menu_a11y_1" /></li>
+  <li><T k="doc.menu_a11y_2" /></li>
+  <li><T k="doc.menu_a11y_3" /></li>
+  <li><T k="doc.menu_a11y_4" /></li>
+</ul>
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.menu_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.menu_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Menu
+```
+

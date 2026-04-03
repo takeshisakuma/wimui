@@ -1,0 +1,150 @@
+import {
+  Meta,
+  Title,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as SimpleGridStories from "./SimpleGrid.stories";
+import { T } from "../../T";
+
+<Meta of={SimpleGridStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.simplegrid_subtitle" />
+</p>
+
+<p><T k="doc.simplegrid_long_desc" /></p>
+
+<h2><T k="doc.features" /></h2>
+<table>
+  <tr>
+    <td><T k="doc.simplegrid_feat_fixed" /></td>
+    <td><T k="doc.simplegrid_feat_fixed_desc" /></td>
+  </tr>
+  <tr>
+    <td><T k="doc.simplegrid_feat_auto" /></td>
+    <td>
+      <p><T k="doc.simplegrid_feat_auto_desc" /></p>
+    </td>
+  </tr>
+</table>
+
+<h2><T k="doc.props" /> (Actually Properties but I'll change header)</h2>
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.simplegrid_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.simplegrid_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>SimpleGrid</b></td>
+      <td><T k="doc.simplegrid_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Grid</b></td>
+      <td><T k="doc.simplegrid_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.simplegrid_anatomy_root_label" /></b></td>
+      <td><T k="doc.simplegrid_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.simplegrid_anatomy_content_label" /></b></td>
+      <td><T k="doc.simplegrid_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.simplegrid_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.simplegrid_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.simplegrid_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
+      <td><T k="doc.simplegrid_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_ec_title" /></strong></td>
+      <td><T k="doc.simplegrid_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.simplegrid_best_practice_1" /></li>
+  <li><T k="doc.simplegrid_best_practice_2" /></li>
+</ul>
+
+<Controls />
+
+<h2><T k="doc.simplegrid_ex_fixed" /></h2>
+<Canvas of={SimpleGridStories.FixedColumns} />
+
+<h2><T k="doc.simplegrid_ex_auto" /></h2>
+<p><T k="doc.simplegrid_ex_auto_desc" /></p>
+<Canvas of={SimpleGridStories.ResponsiveAuto} />
+
+<h2><T k="doc.simplegrid_ex_break" /></h2>
+<p><T k="doc.simplegrid_ex_break_desc" /></p>
+<Canvas of={SimpleGridStories.ResponsiveBreakpoints} />
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.simplegrid_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.simplegrid_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- SimpleGrid
+```
+
+<Stories />

@@ -1,0 +1,182 @@
+import {
+  Meta,
+  Title,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as DropdownStories from "./Dropdown.stories";
+import { T } from "../../T";
+
+<Meta of={DropdownStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.dropdown_title" />
+</p>
+
+<p><T k="doc.dropdown_long_desc" /></p>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.dropdown_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.dropdown_choice_matrix_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Dropdown</b></td>
+      <td><T k="doc.dropdown_choice_dropdown_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Selectbox</b></td>
+      <td><T k="doc.dropdown_choice_selectbox_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Popover</b></td>
+      <td><T k="doc.dropdown_choice_popover_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.dropdown_anatomy_trigger_label" /></b></td>
+      <td><T k="doc.dropdown_anatomy_trigger" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.dropdown_anatomy_menu_label" /></b></td>
+      <td><T k="doc.dropdown_anatomy_menu" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.dropdown_anatomy_item_label" /></b></td>
+      <td><T k="doc.dropdown_anatomy_item" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<p><T k="doc.dropdown_content_guidelines" /></p>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.dropdown_motion_spec" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.dropdown_a11y_spec" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_collab_title" /></strong></td>
+      <td><T k="doc.dropdown_scenario_collab" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_nav_title" /></strong></td>
+      <td><T k="doc.dropdown_scenario_nav" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_admin_title" /></strong></td>
+      <td><T k="doc.dropdown_scenario_admin" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li>
+    <strong><T k="doc.dropdown_bp_access" />:</strong> <T k="doc.dropdown_bp_access_desc" />
+  </li>
+  <li>
+    <strong><T k="doc.dropdown_bp_feedback" />:</strong> <T k="doc.dropdown_bp_feedback_desc" />
+  </li>
+  <li>
+    <strong><T k="doc.dropdown_bp_layout" />:</strong> <T k="doc.dropdown_bp_layout_desc" />
+  </li>
+</ul>
+
+<Primary />
+
+## <T k="doc.components" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Dropdown</code></td>
+      <td><T k="doc.dropdown_api_dropdown" /></td>
+    </tr>
+    <tr>
+      <td><code>DropdownTrigger</code></td>
+      <td><T k="doc.dropdown_api_trigger" /></td>
+    </tr>
+    <tr>
+      <td><code>DropdownMenu</code></td>
+      <td><T k="doc.dropdown_api_menu" /></td>
+    </tr>
+    <tr>
+      <td><code>DropdownItem</code></td>
+      <td><T k="doc.dropdown_api_item" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Controls of={DropdownStories.Basic} />
+
+## <T k="doc.variations" />
+
+### <T k="doc.dropdown_with_icons" />
+<p><T k="doc.dropdown_with_icons_desc" /></p>
+<Canvas of={DropdownStories.WithIcons} />
+
+### <T k="doc.right_alignment" />
+<p><T k="doc.dropdown_right_alignment_desc" /></p>
+<Canvas of={DropdownStories.AlignmentRight} />
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.dropdown_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.dropdown_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Dropdown
+```
+
+<Stories />

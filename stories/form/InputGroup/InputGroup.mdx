@@ -1,0 +1,153 @@
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as InputGroupStories from "./InputGroup.stories";
+import { T } from "../../T";
+
+<Meta of={InputGroupStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.inputgroup_long_desc" />
+</p>
+
+> <T k="doc.inputgroup_note" />
+
+## <T k="doc.basic_usage" />
+
+<p><T k="doc.inputgroup_basic_desc" /></p>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.inputgroup_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.inputgroup_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>InputGroup</b></td>
+      <td><T k="doc.inputgroup_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Fieldset</b></td>
+      <td><T k="doc.inputgroup_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.inputgroup_anatomy_root_label" /></b></td>
+      <td><T k="doc.inputgroup_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.inputgroup_anatomy_content_label" /></b></td>
+      <td><T k="doc.inputgroup_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.inputgroup_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.inputgroup_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.inputgroup_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.scenario_form_title" /></b></td>
+      <td><T k="doc.inputgroup_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.scenario_admin_title" /></b></td>
+      <td><T k="doc.inputgroup_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.inputgroup_best_practice_1" /></li>
+  <li><T k="doc.inputgroup_best_practice_2" /></li>
+</ul>
+
+<Canvas of={InputGroupStories.Basic} />
+
+## <T k="doc.inputgroup_with_button" />
+
+<p><T k="doc.inputgroup_with_button_desc" /></p>
+
+<Canvas of={InputGroupStories.WithButton} />
+
+## <T k="doc.inputgroup_suffix" />
+
+<p><T k="doc.inputgroup_suffix_desc" /></p>
+
+<Canvas of={InputGroupStories.Suffix} />
+
+## <T k="doc.inputgroup_multi" />
+
+<p><T k="doc.inputgroup_multi_desc" /></p>
+
+<Canvas of={InputGroupStories.MultipleAddons} />
+
+## <T k="doc.full_width" />
+
+<p><T k="doc.inputgroup_fullwidth_desc" /></p>
+
+<Canvas of={InputGroupStories.FullWidth} />
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.inputgroup_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.inputgroup_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- InputGroup
+```
+
+<Controls />

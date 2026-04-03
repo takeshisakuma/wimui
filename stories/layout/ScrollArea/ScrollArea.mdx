@@ -1,0 +1,179 @@
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as ScrollAreaStories from "./ScrollArea.stories";
+import { T } from "../../T";
+
+<Meta of={ScrollAreaStories} />
+
+<Title />
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.scrollarea_long_desc" />
+</p>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.scrollarea_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.scrollarea_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>ScrollArea</b></td>
+      <td><T k="doc.scrollarea_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Box</b></td>
+      <td><T k="doc.scrollarea_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.scrollarea_anatomy_root_label" /></b></td>
+      <td><T k="doc.scrollarea_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.scrollarea_anatomy_content_label" /></b></td>
+      <td><T k="doc.scrollarea_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.scrollarea_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.scrollarea_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.scrollarea_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_article_title" /></strong></td>
+      <td><T k="doc.scrollarea_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_admin_title" /></strong></td>
+      <td><T k="doc.scrollarea_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.scrollarea_best_practice_1" /></li>
+  <li><T k="doc.scrollarea_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.usage" />
+
+```tsx
+import { ScrollArea } from "./ScrollArea";
+import { T } from "../../T";
+
+<ScrollArea maxHeight="10rem">
+  <p><T k="doc.long_content_placeholder" /></p>
+</ScrollArea>;
+```
+
+<Canvas of={ScrollAreaStories.Default} />
+
+<Controls />
+
+## <T k="doc.variants" />
+
+### <T k="doc.horizontal_scroll" />
+
+<Canvas of={ScrollAreaStories.HorizontalScroll} />
+
+> <T k="doc.scrollarea_note_title" />
+> <T k="doc.scrollarea_note_desc" />
+
+### <T k="doc.both_axes_scroll" />
+
+<Canvas of={ScrollAreaStories.Both} />
+
+ <p><T k="doc.scrollarea_both_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.use_case" /></th>
+      <th><T k="doc.content" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scrollarea_uc_sheet" /></strong></td>
+      <td><T k="doc.scrollarea_uc_sheet_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scrollarea_uc_map" /></strong></td>
+      <td><T k="doc.scrollarea_uc_map_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scrollarea_uc_diag" /></strong></td>
+      <td><T k="doc.scrollarea_uc_diag_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+ <p><T k="doc.scrollarea_simple_desc" /></p>
+
+### <T k="doc.with_children" />
+
+<Canvas of={ScrollAreaStories.WithChildren} />
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.scrollarea_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.scrollarea_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- ScrollArea
+```

@@ -1,0 +1,159 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import * as SpanStories from "./Span.stories";
+import { T } from "../../T";
+
+<Meta of={SpanStories} />
+
+# Span
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.span_title" />
+</p>
+
+<p><T k="doc.span_long_desc" /></p>
+
+## <T k="doc.basic_usage" />
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.span_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.span_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Span</b></td>
+      <td><T k="doc.span_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Paragraph</b></td>
+      <td><T k="doc.span_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.span_anatomy_root_label" /></b></td>
+      <td><T k="doc.span_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.span_anatomy_content_label" /></b></td>
+      <td><T k="doc.span_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.span_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.span_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.span_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_article_title" /></strong></td>
+      <td><T k="doc.span_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.span_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.span_best_practice_1" /></li>
+  <li><T k="doc.span_best_practice_2" /></li>
+</ul>
+
+<Canvas of={SpanStories.MediumSpan} />
+
+## <T k="doc.sizes" />
+
+<p><T k="doc.span_size_desc" /></p>
+
+### Extra Large
+
+<Canvas of={SpanStories.ExLargeSpan} />
+
+### Large
+
+<Canvas of={SpanStories.LargeSpan} />
+
+### Small
+
+<Canvas of={SpanStories.SmallSpan} />
+
+## <T k="doc.span_with_icon" />
+
+<p><T k="doc.span_with_icon_desc" /></p>
+
+<Canvas of={SpanStories.SmallSpanWithIcon} />
+
+## <T k="doc.decorations" /> (Wait, I'll use common or add)
+        Decorations
+
+Actually specify decoration. (Wait, I'll use common or add)
+        Specify text decoration with the \`decoration\` property.
+
+### Strikethrough
+
+<Canvas of={SpanStories.StrikethroughSpan} />
+
+### Highlight
+
+<Canvas of={SpanStories.HighlightSpan} />
+
+## <T k="doc.props" />
+
+<Controls />
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.span_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.span_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Span
+```

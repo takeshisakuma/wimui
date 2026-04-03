@@ -1,0 +1,100 @@
+import React, { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Tour } from "@/components/feedback/Tour/Tour";
+import { Button } from "@/components/form/Button/Button";
+import { useTranslation } from "react-i18next";
+import { ALL_NAMESPACES } from "../../i18nConstants";
+
+
+const meta: Meta<typeof Tour> = {
+  title: "Components/Overlays/Tour",
+  component: Tour,
+};
+
+export default meta;
+type Story = StoryObj<typeof Tour>;
+
+export const Default: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const [open, setOpen] = useState(false);
+    const steps = [
+      {
+        target: "#tour-step-1",
+        title: t("story.tour_welcome_title"),
+        description: t("story.tour_welcome_desc"),
+        placement: "bottom" as const,
+      },
+      {
+        target: "#tour-step-2",
+        title: t("story.tour_feature_title"),
+        description: t("story.tour_feature_desc"),
+        placement: "right" as const,
+      },
+      {
+        target: "#tour-step-3",
+        title: t("story.tour_help_title"),
+        description: t("story.tour_help_desc"),
+        placement: "top" as const,
+      },
+    ];
+
+    return (
+      <div style={{ padding: "40px", height: "1000px" }}>
+        <Button onClick={() => setOpen(true)}>{t("story.tour_start")}</Button>
+
+        <div
+          style={{
+            marginTop: "100px",
+            display: "flex",
+            gap: "20px",
+            flexWrap: "wrap",
+          }}
+        >
+          <div
+            id="tour-step-1"
+            style={{
+              padding: "20px",
+              background: "var(--wim-color-surface-variant)",
+              border: "1px solid var(--wim-color-border)",
+              minWidth: "120px",
+            }}
+          >
+            {t("story.tour_step_target", { n: 1 })}
+          </div>
+          <div
+            id="tour-step-2"
+            style={{
+              padding: "20px",
+              background: "var(--wim-color-surface-variant)",
+              border: "1px solid var(--wim-color-border)",
+              minWidth: "120px",
+            }}
+          >
+            {t("story.tour_step_target", { n: 2 })}
+          </div>
+        </div>
+
+        <div
+          id="tour-step-3"
+          style={{
+            marginTop: "400px",
+            padding: "20px",
+            background: "var(--wim-color-surface-variant)",
+            border: "1px solid var(--wim-color-border)",
+            width: "150px",
+          }}
+        >
+          {t("story.tour_step_target", { n: 3 })}
+        </div>
+
+        <Tour
+          {...args}
+          open={open}
+          steps={steps}
+          onClose={() => setOpen(false)}
+        />
+      </div>
+    );
+  },
+};

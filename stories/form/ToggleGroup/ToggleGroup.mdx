@@ -1,0 +1,167 @@
+import { Canvas, Meta, Controls, Primary, Story } from "@storybook/addon-docs/blocks";
+import * as ToggleGroupStories from "./ToggleGroup.stories";
+import { T } from "../../T";
+
+<Meta of={ToggleGroupStories} />
+
+# ToggleGroup
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.togglegroup_title" />
+</p>
+
+<p><T k="doc.togglegroup_long_desc" /></p>
+
+## <T k="doc.togglegroup_when_to_use" />
+
+<ul>
+  <li><T k="doc.togglegroup_reason_1" /></li>
+  <li><T k="doc.togglegroup_toolbar" /></li>
+  <li><T k="doc.togglegroup_group" /></li>
+</ul>
+
+## <T k="doc.basic_usage" />
+
+### <T k="doc.togglegroup_single" />
+
+<p><T k="doc.togglegroup_single_desc" /></p>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.togglegroup_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.togglegroup_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>ToggleGroup</b></td>
+      <td><T k="doc.togglegroup_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>SegmentedControl</b></td>
+      <td><T k="doc.togglegroup_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.togglegroup_anatomy_root_label" /></b></td>
+      <td><T k="doc.togglegroup_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.togglegroup_anatomy_content_label" /></b></td>
+      <td><T k="doc.togglegroup_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.togglegroup_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.togglegroup_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.togglegroup_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.togglegroup_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
+      <td><T k="doc.togglegroup_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.togglegroup_best_practice_1" /></li>
+  <li><T k="doc.togglegroup_best_practice_2" /></li>
+</ul>
+
+<Canvas of={ToggleGroupStories.SingleSelection} />
+
+### <T k="doc.togglegroup_multi" />
+
+<p><T k="doc.togglegroup_multi_desc" /></p>
+
+<Canvas of={ToggleGroupStories.MultipleSelection} />
+
+## <T k="doc.props" />
+
+<Controls />
+
+## <T k="doc.variations" />
+
+### <T k="doc.togglegroup_icon_only" />
+
+<p><T k="doc.togglegroup_icon_only_desc" /></p>
+
+<Canvas of={ToggleGroupStories.IconOnly} />
+
+### <T k="doc.sizes" />
+
+<p><T k="doc.loader_sizes_desc" /></p>
+
+<Canvas of={ToggleGroupStories.Sizes} />
+
+### <T k="doc.full_width" />
+
+<p><T k="doc.textarea_lay_full_desc" /></p>
+
+<Canvas of={ToggleGroupStories.FullWidth} />
+
+### <T k="doc.togglegroup_disabled_options" />
+
+<p><T k="doc.togglegroup_disabled_options_desc" /></p>
+
+<Canvas of={ToggleGroupStories.DisabledOptions} />
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.togglegroup_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.togglegroup_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- ToggleGroup
+```

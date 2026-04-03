@@ -1,0 +1,160 @@
+import {
+  Meta,
+  Title,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from "@storybook/addon-docs/blocks";
+import * as TextareaStories from "./Textarea.stories";
+import { T } from "../../T";
+
+<Meta of={TextareaStories} />
+
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.textarea_title" />
+</p>
+
+<p><T k="doc.textarea_long_desc" /></p>
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.textarea_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.textarea_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.button_case" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Textarea</b></td>
+      <td><T k="doc.textarea_choice_textarea_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Input</b></td>
+      <td><T k="doc.textarea_choice_input_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.textarea_anatomy_field_label" /></b></td>
+      <td><T k="doc.textarea_anatomy_field" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.textarea_anatomy_resize_label" /></b></td>
+      <td><T k="doc.textarea_anatomy_resize" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Canvas of={TextareaStories.Basic} />
+
+<Controls of={TextareaStories.Basic} />
+
+## <T k="doc.variations" />
+
+<T k="doc.textarea_variant_desc" />
+
+### <T k="doc.ghost" />
+<p><T k="doc.textarea_var_ghost_desc" /></p>
+<Canvas of={TextareaStories.Ghost} />
+
+## <T k="doc.states" />
+
+### <T k="doc.status_error" />
+<Canvas of={TextareaStories.ErrorStatus} />
+
+### <T k="doc.status_disabled" />
+<Canvas of={TextareaStories.Disabled} />
+
+## <T k="doc.layout" />
+
+### <T k="doc.full_width" />
+<Canvas of={TextareaStories.FullWidth} />
+
+## <T k="doc.guidelines_title" />
+
+### <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.textarea_content_prefill" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.textarea_motion_expand" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.textarea_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_sns_title" /></strong></td>
+      <td><T k="doc.textarea_scenario_comment" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.textarea_scenario_contact" /></td>
+    </tr>
+  </tbody>
+</table>
+
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.textarea_a11y_desc" /></p>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.textarea_best_practice_1" /></li>
+  <li><T k="doc.textarea_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.basic_usage" />
+
+```tsx
+import { Textarea } from "@/components/form/Textarea/Textarea";
+
+<Textarea placeholder="Type something..." onChange={(e) => console.log(e.target.value)} />;
+```
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.textarea_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.textarea_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Textarea
+```

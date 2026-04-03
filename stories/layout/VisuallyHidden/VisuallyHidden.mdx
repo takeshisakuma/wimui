@@ -1,0 +1,161 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import * as VisuallyHiddenStories from "./VisuallyHidden.stories";
+import { T } from "../../T";
+
+<Meta of={VisuallyHiddenStories} />
+
+# VisuallyHidden
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.visuallyhidden_title" />
+</p>
+
+<p><T k="doc.visuallyhidden_long_desc" /></p>
+
+## <T k="doc.basic_usage" />
+
+<p><T k="doc.visuallyhidden_usage_desc" /></p>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.visuallyhidden_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.visuallyhidden_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>VisuallyHidden</b></td>
+      <td><T k="doc.visuallyhidden_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Portal</b></td>
+      <td><T k="doc.visuallyhidden_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.visuallyhidden_anatomy_root_label" /></b></td>
+      <td><T k="doc.visuallyhidden_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.visuallyhidden_anatomy_content_label" /></b></td>
+      <td><T k="doc.visuallyhidden_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.visuallyhidden_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.visuallyhidden_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.visuallyhidden_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.visuallyhidden_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_admin_title" /></strong></td>
+      <td><T k="doc.visuallyhidden_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.visuallyhidden_best_practice_1" /></li>
+  <li><T k="doc.visuallyhidden_best_practice_2" /></li>
+</ul>
+
+<Canvas of={VisuallyHiddenStories.Primary} />
+
+## <T k="doc.use_case" />
+
+### <T k="doc.visuallyhidden_case_button" />
+
+<p><T k="doc.visuallyhidden_case_button_desc" /></p>
+
+<Canvas of={VisuallyHiddenStories.WithinButton} />
+
+## <T k="doc.visuallyhidden_a11y_title" />
+
+<p><T k="doc.visuallyhidden_a11y_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.step" /></th>
+      <th><T k="doc.content" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.visuallyhidden_a11y_step_1_title" /></strong></td>
+      <td><T k="doc.visuallyhidden_a11y_step_1_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.visuallyhidden_a11y_step_2_title" /></strong></td>
+      <td><T k="doc.visuallyhidden_a11y_step_2_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.visuallyhidden_a11y_step_3_title" /></strong></td>
+      <td><T k="doc.visuallyhidden_a11y_step_3_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.props" />
+
+<Controls />
+
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.visuallyhidden_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.visuallyhidden_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- VisuallyHidden
+```

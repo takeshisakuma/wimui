@@ -1,0 +1,186 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import { T } from "../../T";
+import * as ImageStories from "./Image.stories";
+
+<Meta of={ImageStories} />
+
+# Image
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.image_title" />
+</p>
+
+<p><T k="doc.image_long_desc" /></p>
+
+## <T k="doc.features" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.features" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.image_feat_aspect" /></strong></td>
+      <td><T k="doc.image_feat_aspect_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.image_feat_styling" /></strong></td>
+      <td><T k="doc.image_feat_styling_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.image_feat_caption" /></strong></td>
+      <td><T k="doc.image_feat_caption_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.image_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.image_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Image</b></td>
+      <td><T k="doc.image_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>AspectRatio</b></td>
+      <td><T k="doc.image_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.image_anatomy_root_label" /></b></td>
+      <td><T k="doc.image_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.image_anatomy_content_label" /></b></td>
+      <td><T k="doc.image_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.image_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.image_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.image_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_article_title" /></strong></td>
+      <td><T k="doc.image_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_ec_title" /></strong></td>
+      <td><T k="doc.image_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.image_best_practice_1" /></li>
+  <li><T k="doc.image_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.usage" />
+
+```tsx
+import { Image } from "@/components/media/Image/Image";
+
+<Image
+  src="path/to/image.webp"
+  alt="Description"
+  width={400}
+  radius="md"
+  shadow
+  caption="Sample Image"
+/>;
+```
+
+## <T k="doc.props" />
+
+<Controls />
+
+## <T k="doc.variants" />
+
+### <T k="doc.default" />
+
+<p><T k="doc.image_variant_default" /></p>
+
+<Canvas of={ImageStories.Default} />
+
+### Rounded & Circular
+
+<p><T k="doc.image_variant_rounded" /></p>
+
+<Canvas of={ImageStories.Rounded} />
+<Canvas of={ImageStories.Circular} />
+
+### With Caption
+
+<p><T k="doc.image_variant_caption" /></p>
+
+<Canvas of={ImageStories.WithCaption} />
+
+### With Shadow
+
+<p><T k="doc.image_variant_shadow" /></p>
+
+<Canvas of={ImageStories.WithShadow} />
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.image_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.image_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Image
+```

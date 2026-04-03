@@ -1,0 +1,211 @@
+import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import * as TransitionStories from "./Transition.stories";
+import { T } from "../../T";
+
+<Meta of={TransitionStories} />
+
+# Transition
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.transition_title" />
+</p>
+
+<p><T k="doc.transition_long_desc" /></p>
+
+## <T k="doc.features" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.feature" /></th>
+      <th><T k="doc.content" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.transition_feat_1" /></strong></td>
+      <td><T k="doc.transition_feat_1_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.transition_feat_2" /></strong></td>
+      <td><T k="doc.transition_feat_2_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.transition_feat_3" /></strong></td>
+      <td><T k="doc.transition_feat_3_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.transition_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.transition_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Transition</b></td>
+      <td><T k="doc.transition_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Portal</b></td>
+      <td><T k="doc.transition_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.transition_anatomy_root_label" /></b></td>
+      <td><T k="doc.transition_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.transition_anatomy_content_label" /></b></td>
+      <td><T k="doc.transition_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.transition_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.transition_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.transition_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.transition_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
+      <td><T k="doc.transition_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.transition_best_practice_1" /></li>
+  <li><T k="doc.transition_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.usage" />
+
+```tsx
+<Transition
+  show={isOpen}
+  enter="transition-opacity duration-300"
+  enterFrom="opacity-0"
+  enterTo="opacity-100"
+  leave="transition-opacity duration-200"
+  leaveFrom="opacity-100"
+  leaveTo="opacity-0"
+>
+  <div><T k="doc.transition_usage_content" /></div>
+</Transition>
+```
+
+## <T k="doc.example" />
+
+### <T k="doc.transition_fade_title" />
+
+<p><T k="doc.transition_fade_desc" /></p>
+
+<Canvas of={TransitionStories.Fade} />
+
+### <T k="doc.transition_slide_title" />
+
+<p><T k="doc.transition_slide_desc" /></p>
+
+<Canvas of={TransitionStories.Slide} />
+
+## <T k="doc.transition_stages_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.stage" /></th>
+      <th><T k="doc.transition_stages_timing" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.enter" /></strong></td>
+      <td><T k="doc.transition_stage_enter_timing" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.enter_from" /></strong></td>
+      <td><T k="doc.transition_stage_enterFrom_timing" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.enter_to" /></strong></td>
+      <td><T k="doc.transition_stage_enterTo_timing" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.leave" /></strong></td>
+      <td><T k="doc.transition_stage_leave_timing" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.leave_from" /></strong></td>
+      <td><T k="doc.transition_stage_leaveFrom_timing" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.leave_to" /></strong></td>
+      <td><T k="doc.transition_stage_leaveTo_timing" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.props" />
+
+<Controls />
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.transition_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.transition_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Transition
+```

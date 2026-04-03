@@ -1,0 +1,180 @@
+import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import * as FlexStories from "./Flex.stories";
+import { T } from "../../T";
+
+<Meta of={FlexStories} />
+
+# Flex
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.flex_title" />
+</p>
+
+
+
+<p><T k="doc.flex_long_desc" /></p>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.flex_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.flex_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Flex</b></td>
+      <td><T k="doc.flex_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Grid</b></td>
+      <td><T k="doc.flex_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.flex_anatomy_root_label" /></b></td>
+      <td><T k="doc.flex_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.flex_anatomy_content_label" /></b></td>
+      <td><T k="doc.flex_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.flex_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.flex_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.flex_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.flex_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
+      <td><T k="doc.flex_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.flex_best_practice_1" /></li>
+  <li><T k="doc.flex_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.usage" />
+
+```tsx
+import { Flex } from "@/components/layout/Flex/Flex";
+
+const Demo = () => (
+  <Flex direction="row" align="center" justify="between" gap={16}>
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+  </Flex>
+);
+```
+
+<Canvas of={FlexStories.Basic} />
+
+## <T k="doc.features" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.features" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.flex_feat_1" /></strong></td>
+      <td><T k="doc.flex_feat_1_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.flex_feat_2" /></strong></td>
+      <td><T k="doc.flex_feat_2_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.flex_feat_3" /></strong></td>
+      <td><T k="doc.flex_feat_3_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.api_reference" />
+
+<Controls />
+
+## <T k="doc.flex_column" />
+
+<p><T k="doc.flex_column_desc" /></p>
+
+<Canvas of={FlexStories.Column} />
+
+## <T k="doc.flex_justify" />
+
+<p><T k="doc.flex_justify_desc" /></p>
+
+<Canvas of={FlexStories.JustifyBetween} />
+
+## <T k="doc.flex_wrap" />
+
+<p><T k="doc.flex_wrap_desc" /></p>
+
+<Canvas of={FlexStories.Wrapped} />
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.flex_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.flex_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Flex
+```

@@ -1,0 +1,313 @@
+import { Canvas, Meta, Controls, Primary, Title, Stories } from "@storybook/addon-docs/blocks";
+import * as TableStories from "./Table.stories";
+import { T } from "../../T";
+
+<Meta of={TableStories} />
+
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.table_title" />
+</p>
+
+<p><T k="doc.table_long_desc" /></p>
+
+## <T k="doc.usage_examples" />
+
+### <T k="doc.table_basic" />
+
+<p><T k="doc.table_basic_desc" /></p>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.table_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.table_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Table</b></td>
+      <td><T k="doc.table_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>DataGrid</b></td>
+      <td><T k="doc.table_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.table_anatomy_root_label" /></b></td>
+      <td><T k="doc.table_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.table_anatomy_content_label" /></b></td>
+      <td><T k="doc.table_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.table_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.table_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.table_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
+      <td><T k="doc.table_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_admin_title" /></strong></td>
+      <td><T k="doc.table_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.table_best_practice_1" /></li>
+  <li><T k="doc.table_best_practice_2" /></li>
+</ul>
+
+<Primary />
+
+<Controls />
+
+### <T k="doc.table_striped" />
+
+<p><T k="doc.table_striped_desc" /></p>
+
+<Canvas of={TableStories.Striped} />
+
+### <T k="doc.table_bordered" />
+
+<p><T k="doc.table_bordered_desc" /></p>
+
+<Canvas of={TableStories.Bordered} />
+
+### <T k="doc.table_hoverable" />
+
+<p><T k="doc.table_hoverable_desc" /></p>
+
+<Canvas of={TableStories.Hoverable} />
+
+### <T k="doc.table_fullwidth" />
+
+<p><T k="doc.table_fullwidth_desc" /></p>
+
+<Canvas of={TableStories.FullWidth} />
+
+### <T k="doc.table_with_actions" />
+
+<p><T k="doc.table_with_actions_desc" /></p>
+
+<Canvas of={TableStories.WithActions} />
+
+## <T k="doc.features" />
+
+### <T k="doc.table_sticky_header" />
+
+<p><T k="doc.table_sticky_header_desc" /></p>
+
+<Canvas of={TableStories.StickyHeader} />
+
+### <T k="doc.table_scrollbar" />
+
+<p><T k="doc.table_scrollbar_desc" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.variant" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>subtle</code></td>
+      <td><T k="doc.table_scrollbar_subtle" /></td>
+    </tr>
+    <tr>
+      <td><code>hidden</code></td>
+      <td><T k="doc.table_scrollbar_hidden" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Canvas of={TableStories.SubtleScrollbar} />
+
+### <T k="doc.table_sortable" />
+
+<p><T k="doc.table_sortable_desc" /></p>
+
+#### <T k="doc.table_usetablesort" />
+
+<p><T k="doc.table_usetablesort_desc" /></p>
+
+```jsx
+import { Table, useTableSort } from "./Table";
+
+function MyTable() {
+  const data = [
+    { id: 1, name: "Alice", age: 25, email: "alice@example.com" },
+    { id: 2, name: "Bob", age: 30, email: "bob@example.com" },
+    { id: 3, name: "Charlie", age: 22, email: "charlie@example.com" },
+  ];
+
+  const { sortedData, handleSort, getSortDirection } = useTableSort(data);
+
+  return (
+    <Table fullWidth>
+      <Table.Header>
+        <Table.Row>
+          <Table.Head
+            sortable
+            sortDirection={getSortDirection("id")}
+            onSort={() => handleSort("id")}
+          >
+            ID
+          </Table.Head>
+          <Table.Head
+            sortable
+            sortDirection={getSortDirection("name")}
+            onSort={() => handleSort("name")}
+          >
+            Name
+          </Table.Head>
+          <Table.Head
+            sortable
+            sortDirection={getSortDirection("age")}
+            onSort={() => handleSort("age")}
+          >
+            Age
+          </Table.Head>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {sortedData.map((row) => (
+          <Table.Row key={row.id}>
+            <Table.Cell>{row.id}</Table.Cell>
+            <Table.Cell>{row.name}</Table.Cell>
+            <Table.Cell>{row.age}</Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
+  );
+}
+```
+
+#### <T k="doc.table_usetablesort_features" />
+
+<ul>
+  <li><T k="doc.table_usetablesort_feature_logic" /></li>
+  <li><T k="doc.table_usetablesort_feature_tri" /></li>
+  <li><T k="doc.table_usetablesort_feature_ts" /></li>
+  <li><T k="doc.table_usetablesort_feature_custom" /></li>
+</ul>
+
+```typescript
+const {
+  sortedData, // Sorted data
+  sortConfig, // Current sort configuration
+  handleSort, // Function to execute sort
+  getSortDirection, // Get sort direction for a specific key
+} = useTableSort(data, {
+  initialSort: { key: "name", direction: "asc" },
+  onSortChange: (config) => console.log("Sort changed:", config),
+});
+```
+
+#### <T k="doc.table_sort_manual" />
+
+<p><T k="doc.table_sort_manual_desc" /></p>
+
+<Canvas of={TableStories.Sortable} />
+
+### <T k="doc.table_row_selection" />
+
+<p><T k="doc.table_row_selection_desc" /></p>
+
+<Canvas of={TableStories.RowSelection} />
+
+## <T k="doc.table_ts_support" />
+
+<p><T k="doc.table_ts_support_desc" /></p>
+
+```typescript
+import { Table, useTableSort, SortDirection, SortConfig } from "./Table";
+import { T } from "../../T";
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+const { sortedData } = useTableSort<User>(users);
+```
+
+## <T k="doc.compound_components" />
+
+<p><T k="doc.table_compound_desc" /></p>
+
+<ul>
+  <li><code>Table.Header</code> (<code>&lt;thead&gt;</code>)</li>
+  <li><code>Table.Body</code> (<code>&lt;tbody&gt;</code>)</li>
+  <li><code>Table.Footer</code> (<code>&lt;tfoot&gt;</code>)</li>
+  <li><code>Table.Row</code> (<code>&lt;tr&gt;</code>)</li>
+  <li><code>Table.Head</code> (<code>&lt;th&gt;</code>)</li>
+  <li><code>Table.Cell</code> (<code>&lt;td&gt;</code>)</li>
+</ul>
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.table_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.table_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Table
+```
+
+<Stories />

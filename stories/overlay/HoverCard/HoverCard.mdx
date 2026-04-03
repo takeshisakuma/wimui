@@ -1,0 +1,181 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import * as HoverCardStories from "./HoverCard.stories";
+import { T } from "../../T";
+
+<Meta of={HoverCardStories} />
+
+# HoverCard
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.hovercard_title" />
+</p>
+
+<p><T k="doc.hovercard_long_desc" /></p>
+
+> **<T k="doc.hovercard_pc_only" />**: <T k="doc.hovercard_pc_only_desc" />
+
+## <T k="doc.example" />
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.hovercard_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.hovercard_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>HoverCard</b></td>
+      <td><T k="doc.hovercard_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Tooltip</b></td>
+      <td><T k="doc.hovercard_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.hovercard_anatomy_root_label" /></b></td>
+      <td><T k="doc.hovercard_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.hovercard_anatomy_content_label" /></b></td>
+      <td><T k="doc.hovercard_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.hovercard_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.hovercard_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.hovercard_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_sns_title" /></strong></td>
+      <td><T k="doc.hovercard_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_nav_title" /></strong></td>
+      <td><T k="doc.hovercard_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.hovercard_best_practice_1" /></li>
+  <li><T k="doc.hovercard_best_practice_2" /></li>
+</ul>
+
+<Canvas of={HoverCardStories.Default} />
+
+## <T k="doc.props" />
+
+<Controls />
+
+## <T k="doc.hovercard_usage_guide" />
+
+<p><T k="doc.hovercard_vs_tooltip" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.comparison_item" /></th>
+      <th><T k="doc.features" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.hovercard_feat_complexity" /></strong></td>
+      <td><T k="doc.hovercard_feat_complexity_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.hovercard_feat_interaction" /></strong></td>
+      <td><T k="doc.hovercard_feat_interaction_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.hovercard_feat_delay" /></strong></td>
+      <td><T k="doc.hovercard_feat_delay_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+### <T k="doc.hovercard_comp_summary" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.complexity_interaction" /></th>
+      <th><T k="doc.use_cases" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tooltip</strong></td>
+      <td><T k="doc.tooltip_feat_interaction_short" /></td>
+      <td><T k="doc.tooltip_use_cases" /></td>
+    </tr>
+    <tr>
+      <td><strong>HoverCard</strong></td>
+      <td><T k="doc.hovercard_feat_interaction_rich" /></td>
+      <td><T k="doc.hovercard_use_cases" /></td>
+    </tr>
+    <tr>
+      <td><strong>Popover</strong></td>
+      <td><T k="doc.popover_feat_interaction_complex" /></td>
+      <td><T k="doc.popover_use_cases" /></td>
+    </tr>
+  </tbody>
+</table>
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.hovercard_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.hovercard_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- HoverCard
+```

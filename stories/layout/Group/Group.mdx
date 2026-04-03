@@ -1,0 +1,174 @@
+import { Canvas, Meta, Controls } from "@storybook/addon-docs/blocks";
+import * as GroupStories from "./Group.stories";
+import { T } from "../../T";
+
+<Meta of={GroupStories} />
+
+# Group
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "#6c757d",
+  }}
+>
+  <T k="doc.group_title" />
+</p>
+
+
+
+<p><T k="doc.group_long_desc" /></p>
+
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.group_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.group_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Group</b></td>
+      <td><T k="doc.group_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Flex</b></td>
+      <td><T k="doc.group_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.group_anatomy_root_label" /></b></td>
+      <td><T k="doc.group_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.group_anatomy_content_label" /></b></td>
+      <td><T k="doc.group_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.group_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.group_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.group_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_form_title" /></strong></td>
+      <td><T k="doc.group_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
+      <td><T k="doc.group_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.group_best_practice_1" /></li>
+  <li><T k="doc.group_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.usage" />
+
+```tsx
+import { Group } from "@/components/layout/Group/Group";
+import { Button } from "../Button/Button";
+
+const Demo = () => (
+  <Group gap={16}>
+    <Button>Submit</Button>
+    <Button variant="outline">Cancel</Button>
+  </Group>
+);
+```
+
+<Canvas of={GroupStories.Basic} />
+
+## <T k="doc.features" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.features" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.group_feat_grow" /></strong></td>
+      <td><T k="doc.group_feat_grow_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.group_feat_align" /></strong></td>
+      <td><T k="doc.group_feat_align_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.group_feat_gap" /></strong></td>
+      <td><T k="doc.group_feat_gap_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.api_reference" />
+
+<Controls />
+
+## <T k="doc.group_grow" />
+
+<p><T k="doc.group_grow_desc" /></p>
+
+<Canvas of={GroupStories.Grow} />
+
+## <T k="doc.group_align" />
+
+<p><T k="doc.group_align_desc" /></p>
+
+<Canvas of={GroupStories.AlignEnd} />
+
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.group_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.group_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+
+```bash
+npm run test -- Group
+```
