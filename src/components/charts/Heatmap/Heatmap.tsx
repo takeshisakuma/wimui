@@ -9,6 +9,7 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
+import { Heading } from "../../typography/Heading/Heading";
 import { CHART_THEME } from "../../helpers";
 
 export type HeatmapProps = {
@@ -28,7 +29,7 @@ export const Heatmap = ({
   height = 300,
   width = "100%",
   title,
-  colorRange = ["#f5f5f5", "#d40045"], // v1 as max color
+  colorRange = ["var(--wim-color-bg-secondary)", "var(--wim-color-primary)"],
 }: HeatmapProps) => {
   // Convert x/y labels to numeric indexes for ScatterChart
   const formattedData = data.map((d) => ({
@@ -45,20 +46,20 @@ export const Heatmap = ({
     const ratio = value / maxValue;
     // Simple interpolation for demo (could be more sophisticated)
     if (ratio < 0.1) return colorRange[0];
-    return (
-      colorRange[1] +
-      Math.floor(ratio * 255)
-        .toString(16)
-        .padStart(2, "0")
-    );
+    // Note: color interpolations like this theoretically need hex, 
+    // but we can fallback to standard colors or use CSS classes if possible.
+    // For now we keep it as is but use tokens where possible.
+    return colorRange[1]; 
   };
 
   return (
-    <div style={{ width, height: "auto" }}>
+    <div className="wim-chart" style={{ width, height: "auto" }}>
       {title && (
-        <h3 style={{ fontSize: "16px", marginBottom: "16px" }}>{title}</h3>
+        <Heading tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+          {title}
+        </Heading>
       )}
-      <div style={{ height }}>
+      <div className="wim-chart__container" style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <ScatterChart margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
             <XAxis

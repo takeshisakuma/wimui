@@ -99,11 +99,11 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-ghost-border-hover: color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
 
   /* ── Glass / Frosted Surface ────────────────────────────── */
-  --wim-color-glass-bg: rgb(255 255 255 / 0.85);
-  --wim-color-glass-border: var(--wim-color-border-secondary);
-  --wim-color-surface-glass: var(--wim-color-bg-component);
+  --wim-color-glass-bg: rgb(255 255 255 / 0.7);
+  --wim-color-glass-border: rgb(0 0 0 / 0.12);
+  --wim-color-surface-glass: var(--wim-color-glass-bg);
   --wim-color-surface-inset: var(--wim-color-bg-app);
-  --wim-shadow-glass: var(--wim-shadow-lg);
+  --wim-shadow-glass: var(--wim-shadow-md);
 
   /* ── Skeleton ───────────────────────────────────────────── */
   --wim-color-skeleton-bg: rgb(0 0 0 / 0.11);
@@ -174,11 +174,11 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-ghost-border-hover: color-mix(in srgb, var(--wim-color-primary) 40%, transparent);
 
   /* ── Glass / Frosted Surface (dark) ─────────────────────── */
-  --wim-color-glass-bg: rgb(30 30 30 / 0.8);
-  --wim-color-glass-border: rgb(255 255 255 / 0.1);
-  --wim-color-surface-glass: rgb(0 0 0 / 0.2);
-  --wim-color-surface-inset: rgb(0 0 0 / 0.2);
-  --wim-shadow-glass: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+  --wim-color-glass-bg: rgb(20 20 20 / 0.75);
+  --wim-color-glass-border: rgb(255 255 255 / 0.15);
+  --wim-color-surface-glass: var(--wim-color-glass-bg);
+  --wim-color-surface-inset: rgb(0 0 0 / 0.3);
+  --wim-shadow-glass: 0 10px 20px -5px rgb(0 0 0 / 0.6);
 
   /* ── Skeleton (dark) ────────────────────────────────────── */
   --wim-color-skeleton-bg: rgb(255 255 255 / 0.13);

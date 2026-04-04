@@ -7,6 +7,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { Heading } from "../../typography/Heading/Heading";
 import { CHART_COLORS, CHART_THEME } from "../../helpers";
 
 export type PieChartProps = {
@@ -25,11 +26,13 @@ export const PieChart = ({
   donut = false,
 }: PieChartProps) => {
   return (
-    <div style={{ width, height: "auto" }}>
+    <div className="wim-chart" style={{ width, height: "auto" }}>
       {title && (
-        <h3 style={{ fontSize: "16px", marginBottom: "16px" }}>{title}</h3>
+        <Heading tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+          {title}
+        </Heading>
       )}
-      <div style={{ height }}>
+      <div className="wim-chart__container" style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <RechartsPieChart>
             <Pie

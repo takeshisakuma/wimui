@@ -13,6 +13,8 @@ export type GaugeChartProps = {
   color?: string;
 };
 
+import { Heading } from "../../typography/Heading/Heading";
+
 export const GaugeChart = ({
   value,
   min = 0,
@@ -33,11 +35,13 @@ export const GaugeChart = ({
   const fill = color || CHART_COLORS[0];
 
   return (
-    <div style={{ width, textAlign: "center" }}>
+    <div className="wim-chart wim-chart--gauge" style={{ width, textAlign: "center" }}>
       {title && (
-        <h3 style={{ fontSize: "16px", marginBottom: "16px" }}>{title}</h3>
+        <Heading tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+          {title}
+        </Heading>
       )}
-      <div style={{ height, position: "relative" }}>
+      <div className="wim-chart__container" style={{ height, position: "relative" }}>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -54,19 +58,20 @@ export const GaugeChart = ({
               isAnimationActive={true}
             >
               <Cell fill={fill} />
-              <Cell fill="#f0f0f0" />
+              <Cell fill="var(--wim-color-bg-secondary)" />
             </Pie>
           </PieChart>
         </ResponsiveContainer>
         <div
+          className="wim-chart__gauge-label"
           style={{
             position: "absolute",
             bottom: "20%",
             left: "50%",
             transform: "translateX(-50%)",
-            fontSize: "24px",
-            fontWeight: "bold",
-            color: "#333",
+            fontSize: "var(--wim-font-size-2xl)",
+            fontWeight: "var(--wim-font-weight-bold)",
+            color: "var(--wim-color-text-primary)",
           }}
         >
           {label || value}

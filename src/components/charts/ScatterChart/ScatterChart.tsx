@@ -10,6 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { Heading } from "../../typography/Heading/Heading";
 import { CHART_COLORS, CHART_THEME } from "../../helpers";
 
 export type ScatterChartProps = {
@@ -30,11 +31,13 @@ export const ScatterChart = ({
   title,
 }: ScatterChartProps) => {
   return (
-    <div style={{ width, height: "auto" }}>
+    <div className="wim-chart" style={{ width, height: "auto" }}>
       {title && (
-        <h3 style={{ fontSize: "16px", marginBottom: "16px" }}>{title}</h3>
+        <Heading tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+          {title}
+        </Heading>
       )}
-      <div style={{ height }}>
+      <div className="wim-chart__container" style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <RechartsScatterChart
             margin={{ top: 20, right: 20, bottom: 20, left: 20 }}

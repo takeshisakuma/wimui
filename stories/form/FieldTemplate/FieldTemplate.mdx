@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls } from "@storybook addon-docs/blocks";
 import { T } from "../../T";
 import * as Stories from "./FieldTemplate.stories";
 
@@ -10,9 +10,90 @@ import * as Stories from "./FieldTemplate.stories";
 
 ---
 
-## <T k="doc.usage" />
+## <T k="doc.design_intent_title" />
+<p><T k="doc.fieldTemplate_design_intent" /></p>
 
-<T k="doc.fieldTemplate_usage_desc" />
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.fieldTemplate_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>FieldTemplate</b></td>
+      <td><T k="doc.fieldTemplate_choice_use_when" /></td>
+    </tr>
+    <tr>
+      <td><b>InputBase</b></td>
+      <td><T k="doc.fieldTemplate_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.fieldTemplate_anatomy_label_label" /></b></td>
+      <td><T k="doc.fieldTemplate_anatomy_label_desc" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.fieldTemplate_anatomy_required_label" /></b></td>
+      <td><T k="doc.fieldTemplate_anatomy_required_desc" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.fieldTemplate_anatomy_content_label" /></b></td>
+      <td><T k="doc.fieldTemplate_anatomy_content_desc" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.fieldTemplate_anatomy_error_label" /></b></td>
+      <td><T k="doc.fieldTemplate_anatomy_error_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.fieldTemplate_content_guideline_1" /></li>
+  <li><T k="doc.fieldTemplate_content_guideline_2" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.fieldTemplate_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.fieldTemplate_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<ul>
+  <li>
+    <strong><T k="doc.scenario_form_title" />:</strong> <T k="doc.fieldTemplate_scenario_1" />
+  </li>
+  <li>
+    <strong><T k="doc.scenario_settings_title" />:</strong> <T k="doc.fieldTemplate_scenario_2" />
+  </li>
+</ul>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.fieldTemplate_best_practice_1" /></li>
+  <li><T k="doc.fieldTemplate_best_practice_2" /></li>
+</ul>
+
+---
+
+## <T k="doc.usage" />
+<p><T k="doc.fieldTemplate_usage_desc" /></p>
 
 <Canvas of={Stories.Default} />
 <Controls of={Stories.Default} />

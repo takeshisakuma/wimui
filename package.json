@@ -100,7 +100,7 @@
     "test:report": "npm run test:coverage && npm run test:check",
     "prestorybook": "npx kill-port 6006",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "rimraf storybook-static && storybook build",
+    "build-storybook": "node scripts/cleanup-storybook.cjs && storybook build",
     "format": "prettier --write .",
     "lint": "eslint src stories --ignore-pattern \"**/*.mdx\" --max-warnings=0",
     "lint:fix": "eslint src stories --ignore-pattern \"**/*.mdx\" --fix --max-warnings=0",

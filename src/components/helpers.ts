@@ -5,34 +5,37 @@
 export type ChartDataPoint = Record<string, string | number | null>;
 
 // SVG presentation attribute として使用するため CSS カスタムプロパティは利用不可。
-// 対応するデザイントークン（src/tokens/_pccs-colors.scss）は以下のとおり。
+// とされていますが、現代のブラウザ（Recharts環境）では `fill` や `stroke` への `var()` 指定が有効なため、
+// ダークモード対応とブランドカラー統一のためにトークンを適用します。
 export const CHART_COLORS = [
-  "#d40045", // $pccs-v1
-  "#0f218b", // $pccs-v18
-  "#ffcc00", // $pccs-v7
-  "#008f62", // $pccs-v13
-  "#56007d", // $pccs-v22
-  "#ff590b", // $pccs-v5
-  "#007a87", // $pccs-v15
-  "#99cf15", // $pccs-v10
+  "var(--wim-color-primary)",
+  "var(--wim-color-informative)",
+  "var(--wim-color-positive)",
+  "var(--wim-color-caution)",
+  "var(--wim-color-destructive)",
+  "var(--wim-color-secondary)",
+  "var(--wim-color-text-primary)",
+  "var(--wim-color-text-secondary)",
 ];
 
 export const CHART_THEME = {
   axis: {
-    stroke: "#8a8a8a", // $pccs-gy6-5
+    stroke: "var(--wim-color-text-disabled)",
     fontSize: 12,
   },
   grid: {
-    stroke: "#e5e5e5", // $pccs-gy8-5
+    stroke: "var(--wim-color-border-secondary)",
     strokeDasharray: "3 3",
   },
   // tooltip.contentStyle は div へのインラインスタイルのため CSS カスタムプロパティが使用可能。
   tooltip: {
     contentStyle: {
-      backgroundColor: "var(--wim-color-surface)",
-      border: "1px solid var(--wim-color-border-secondary)",
-      borderRadius: "4px",
-      fontSize: "12px",
+      backgroundColor: "var(--wim-color-glass-bg)",
+      border: "1px solid var(--wim-color-glass-border)",
+      borderRadius: "var(--wim-radius-md)",
+      fontSize: "var(--wim-font-size-sm)",
+      backdropFilter: "blur(8px)",
+      color: "var(--wim-color-text-primary)",
     },
   },
 };

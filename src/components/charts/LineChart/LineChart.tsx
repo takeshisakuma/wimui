@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { Heading } from "../../typography/Heading/Heading";
 import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
 
 export type LineChartProps = {
@@ -31,11 +32,13 @@ export const LineChart = ({
   smooth = false,
 }: LineChartProps) => {
   return (
-    <div style={{ width, height: "auto" }}>
+    <div className="wim-chart" style={{ width, height: "auto" }}>
       {title && (
-        <h3 style={{ fontSize: "16px", marginBottom: "16px" }}>{title}</h3>
+        <Heading tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+          {title}
+        </Heading>
       )}
-      <div style={{ height }}>
+      <div className="wim-chart__container" style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <RechartsLineChart
             data={data}
