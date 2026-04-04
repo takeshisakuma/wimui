@@ -19,6 +19,8 @@ export declare const CHART_THEME: {
             border: string;
             borderRadius: string;
             fontSize: string;
+            backdropFilter: string;
+            color: string;
         };
     };
 };
