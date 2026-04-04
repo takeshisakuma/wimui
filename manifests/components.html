@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.2s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -47924,7 +47924,7 @@ icon?: ReactNode
 /**
  * Semantic intent — determines the icon and color.
  */
-intent?: &quot;success&quot; | &quot;error&quot; | &quot;info&quot; | &quot;warning&quot; = &quot;info&quot;
+intent?: Extract&lt;WimIntent, &quot;success&quot; | &quot;error&quot; | &quot;info&quot; | &quot;warning&quot;&gt; = &quot;info&quot;
 
 /**
  * HTTP error status — adds a status-specific CSS class and shows a neutral icon.
@@ -55730,11 +55730,6 @@ current?: number = 0
 direction?: &quot;horizontal&quot; | &quot;vertical&quot; = &quot;horizontal&quot;
 
 /**
- * Status of the current step
- */
-intent?: &quot;wait&quot; | &quot;process&quot; | &quot;finish&quot; | &quot;error&quot; = &quot;process&quot;
-
-/**
  * Placement of the labels
  */
 labelPlacement?: &quot;horizontal&quot; | &quot;vertical&quot; = &quot;horizontal&quot;
@@ -55743,6 +55738,11 @@ labelPlacement?: &quot;horizontal&quot; | &quot;vertical&quot; = &quot;horizonta
  * Callback function when a step is clicked (if applicable)
  */
 onChange?: (current: number) =&gt; void
+
+/**
+ * Workflow status shown on the current active step (default: &quot;process&quot;)
+ */
+status?: &quot;wait&quot; | &quot;process&quot; | &quot;finish&quot; | &quot;error&quot; = &quot;process&quot;
 
 /**
  * Array of step configurations
@@ -55808,7 +55808,7 @@ steps?: Step[] = []</code></pre>
               
               <pre><code>const ErrorStatus = () =&gt; {
     const steps = useDefaultSteps();
-    return &lt;Stepper intent=&quot;error&quot; steps={steps} current={1} /&gt;;
+    return &lt;Stepper status=&quot;error&quot; steps={steps} current={1} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">

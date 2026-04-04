@@ -1,5 +1,6 @@
 import { ReactNode } from '../../../../node_modules/react';
-export type ResultIntent = "success" | "error" | "info" | "warning";
+import { WimIntent } from '../../../types/tokens';
+export type ResultIntent = Extract<WimIntent, "success" | "error" | "info" | "warning">;
 export type ResultHttpStatus = "404" | "403" | "500";
 export type ResultProps = {
     /**
