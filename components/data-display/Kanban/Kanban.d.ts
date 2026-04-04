@@ -21,7 +21,10 @@ export type KanbanBoardProps = React.ComponentPropsWithoutRef<"div"> & {
      */
     labels?: KanbanLabels;
 };
-declare const KanbanBoard: ({ children, className, onCardMove, forceMobileUI, labels, ...props }: KanbanBoardProps) => import("react/jsx-runtime").JSX.Element;
+declare const KanbanBoard: {
+    ({ children, className, onCardMove, forceMobileUI, labels, ...props }: KanbanBoardProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 export type KanbanColumnProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * 列を識別する一意のID。カード移動時に使用される。
@@ -36,7 +39,10 @@ export type KanbanColumnProps = React.ComponentPropsWithoutRef<"div"> & {
      */
     cardCount?: number;
 };
-export declare const KanbanColumn: ({ id, title, cardCount, children, className, ...props }: KanbanColumnProps) => import("react/jsx-runtime").JSX.Element;
+export declare const KanbanColumn: {
+    ({ id, title, cardCount, children, className, ...props }: KanbanColumnProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 export type KanbanCardProps = React.ComponentPropsWithoutRef<"div"> & {
     /**
      * カードを識別する一意のID。
@@ -47,7 +53,10 @@ export type KanbanCardProps = React.ComponentPropsWithoutRef<"div"> & {
      */
     disabled?: boolean;
 };
-export declare const KanbanCard: ({ id, disabled, children, className, ...props }: KanbanCardProps) => import("react/jsx-runtime").JSX.Element;
+export declare const KanbanCard: {
+    ({ id, disabled, children, className, ...props }: KanbanCardProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 declare const KanbanBoardComponent: typeof KanbanBoard & {
     Column: typeof KanbanColumn;
     Card: typeof KanbanCard;

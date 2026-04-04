@@ -1,5 +1,6 @@
+import { ChartDataPoint } from '../../helpers';
 export type FunnelChartProps = {
-    data: Record<string, unknown>[];
+    data: ChartDataPoint[];
     dataKey: string;
     nameKey: string;
     height?: number;

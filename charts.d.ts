@@ -1,3 +1,4 @@
+export type { ChartDataPoint } from './components/helpers';
 export * from './components/charts/AreaChart/AreaChart';
 export * from './components/charts/BarChart/BarChart';
 export * from './components/charts/FunnelChart/FunnelChart';

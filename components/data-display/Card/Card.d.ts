@@ -23,10 +23,28 @@ export type CardProps<C extends React.ElementType = "div"> = {
  */
 export declare const Card: {
     <C extends React.ElementType = "div">({ variant, padding, radius, as, className, children, ...props }: CardProps<C>): import("react/jsx-runtime").JSX.Element;
-    Header: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
-    Body: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
-    Footer: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
+    Header: {
+        ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">): import("react/jsx-runtime").JSX.Element;
+        displayName: string;
+    };
+    Body: {
+        ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">): import("react/jsx-runtime").JSX.Element;
+        displayName: string;
+    };
+    Footer: {
+        ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">): import("react/jsx-runtime").JSX.Element;
+        displayName: string;
+    };
 };
-export declare const CardHeader: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
-export declare const CardBody: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
-export declare const CardFooter: ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
+export declare const CardHeader: {
+    ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
+export declare const CardBody: {
+    ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
+export declare const CardFooter: {
+    ({ className, children, ...props }: React.ComponentPropsWithoutRef<"div">): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};

@@ -1,5 +1,6 @@
+import { ChartDataPoint } from '../../helpers';
 export type RadarChartProps = {
-    data: Record<string, unknown>[];
+    data: ChartDataPoint[];
     keys: string[];
     indexKey: string;
     height?: number;

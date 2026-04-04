@@ -1,5 +1,6 @@
+import { ChartDataPoint } from '../../helpers';
 export type LineChartProps = {
-    data: Record<string, unknown>[];
+    data: ChartDataPoint[];
     keys: string[];
     xAxisKey: string;
     height?: number;

@@ -17,14 +17,29 @@ type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
     className?: string;
     children: React.ReactNode;
 };
-declare const Table: ({ striped, bordered, hoverable, fullWidth, stickyHeader, scrollbar, mobileCard, height, maxHeight, className, children, ...props }: TableProps) => import("react/jsx-runtime").JSX.Element;
-export declare const TableHeader: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => import("react/jsx-runtime").JSX.Element;
-export declare const TableBody: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => import("react/jsx-runtime").JSX.Element;
-export declare const TableFooter: ({ className, children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => import("react/jsx-runtime").JSX.Element;
+declare const Table: {
+    ({ striped, bordered, hoverable, fullWidth, stickyHeader, scrollbar, mobileCard, height, maxHeight, className, children, ...props }: TableProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
+export declare const TableHeader: {
+    ({ className, children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
+export declare const TableBody: {
+    ({ className, children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
+export declare const TableFooter: {
+    ({ className, children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 type TableRowProps = React.HTMLAttributes<HTMLTableRowElement> & {
     selected?: boolean;
 };
-export declare const TableRow: ({ selected, className, children, ...props }: TableRowProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TableRow: {
+    ({ selected, className, children, ...props }: TableRowProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
     sortable?: boolean;
     sortDirection?: "asc" | "desc" | "none";
@@ -36,7 +51,10 @@ type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
     rightOffset?: string | number;
     stickyZIndex?: number;
 };
-export declare const TableHead: ({ sortable, sortDirection, onSort, stickyLeft, stickyRight, leftOffset, rightOffset, stickyZIndex, className, style, children, ...props }: TableHeadProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TableHead: {
+    ({ sortable, sortDirection, onSort, stickyLeft, stickyRight, leftOffset, rightOffset, stickyZIndex, className, style, children, ...props }: TableHeadProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
     selection?: boolean;
     label?: string;
@@ -46,7 +64,10 @@ type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
     rightOffset?: string | number;
     stickyZIndex?: number;
 };
-export declare const TableCell: ({ selection, label, stickyLeft, stickyRight, leftOffset, rightOffset, stickyZIndex, className, style, children, ...props }: TableCellProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TableCell: {
+    ({ selection, label, stickyLeft, stickyRight, leftOffset, rightOffset, stickyZIndex, className, style, children, ...props }: TableCellProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 declare const TableComponent: typeof Table & {
     Header: typeof TableHeader;
     Body: typeof TableBody;

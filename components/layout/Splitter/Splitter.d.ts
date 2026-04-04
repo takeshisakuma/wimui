@@ -9,7 +9,10 @@ export interface SplitterProps extends React.ComponentPropsWithoutRef<"div"> {
  * Splitter component that allows resizing of multiple panels.
  * Supports both mouse and touch events.
  */
-declare const Splitter: ({ orientation, className, children, ...props }: SplitterProps) => import("react/jsx-runtime").JSX.Element;
+declare const Splitter: {
+    ({ orientation, className, children, ...props }: SplitterProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 export interface SplitterPanelProps extends React.ComponentPropsWithoutRef<"div"> {
     /** The default size of the panel in percentage. */
     defaultSize?: number;

@@ -15,9 +15,19 @@ export interface AccordionProps {
  */
 export declare const Accordion: {
     ({ type, defaultValue: _defaultValue, value: valueProp, onChange, collapsible, className, children, id: customId, }: AccordionProps): import("react/jsx-runtime").JSX.Element;
-    Item: ({ value, disabled, className, children, }: AccordionItemProps) => import("react/jsx-runtime").JSX.Element;
-    Trigger: ({ children, className, ...props }: React.ComponentPropsWithoutRef<"button">) => import("react/jsx-runtime").JSX.Element;
-    Content: ({ children, className, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+    Item: {
+        ({ value, disabled, className, children, }: AccordionItemProps): import("react/jsx-runtime").JSX.Element;
+        displayName: string;
+    };
+    Trigger: {
+        ({ children, className, ...props }: React.ComponentPropsWithoutRef<"button">): import("react/jsx-runtime").JSX.Element;
+        displayName: string;
+    };
+    Content: {
+        ({ children, className, ...props }: React.ComponentPropsWithoutRef<"div">): import("react/jsx-runtime").JSX.Element;
+        displayName: string;
+    };
 };
 export interface AccordionItemProps {
     value: string;
@@ -28,13 +38,22 @@ export interface AccordionItemProps {
 /**
  * 各アコーディオン項目。
  */
-export declare const AccordionItem: ({ value, disabled, className, children, }: AccordionItemProps) => import("react/jsx-runtime").JSX.Element;
+export declare const AccordionItem: {
+    ({ value, disabled, className, children, }: AccordionItemProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 /**
  * アコーディオンを切り替えるトリガー。
  */
-export declare const AccordionTrigger: ({ children, className, ...props }: React.ComponentPropsWithoutRef<"button">) => import("react/jsx-runtime").JSX.Element;
+export declare const AccordionTrigger: {
+    ({ children, className, ...props }: React.ComponentPropsWithoutRef<"button">): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 /**
  * アコーディオンのコンテンツ領域。
  */
-export declare const AccordionContent: ({ children, className, ...props }: React.ComponentPropsWithoutRef<"div">) => import("react/jsx-runtime").JSX.Element;
+export declare const AccordionContent: {
+    ({ children, className, ...props }: React.ComponentPropsWithoutRef<"div">): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 export default Accordion;

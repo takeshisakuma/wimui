@@ -5,17 +5,29 @@ export interface TabsProps extends Omit<React.ComponentPropsWithoutRef<"div">, "
     onChange?: (value: string) => void;
     orientation?: "horizontal" | "vertical";
 }
-declare const Tabs: ({ defaultValue, value: valueProp, onChange, orientation, className, children, ...props }: TabsProps) => import("react/jsx-runtime").JSX.Element;
+declare const Tabs: {
+    ({ defaultValue, value: valueProp, onChange, orientation, className, children, ...props }: TabsProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 export type TabsListProps = React.ComponentPropsWithoutRef<"div">;
-export declare const TabsList: ({ className, children, ...props }: TabsListProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TabsList: {
+    ({ className, children, ...props }: TabsListProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 export interface TabsTriggerProps extends React.ComponentPropsWithoutRef<"button"> {
     value: string;
 }
-export declare const TabsTrigger: ({ value, disabled, className, children, ...props }: TabsTriggerProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TabsTrigger: {
+    ({ value, disabled, className, children, ...props }: TabsTriggerProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 export interface TabsContentProps extends React.ComponentPropsWithoutRef<"div"> {
     value: string;
 }
-export declare const TabsContent: ({ value, className, children, ...props }: TabsContentProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const TabsContent: {
+    ({ value, className, children, ...props }: TabsContentProps): import("react/jsx-runtime").JSX.Element | null;
+    displayName: string;
+};
 declare const TabsRoot: typeof Tabs & {
     List: typeof TabsList;
     Trigger: typeof TabsTrigger;

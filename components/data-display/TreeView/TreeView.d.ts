@@ -47,7 +47,10 @@ export type TreeViewProps = {
     virtualThreshold?: number;
     labels?: TreeViewLabels;
 };
-declare const TreeView: ({ children, nodes, className, multiSelect, checkable, checkStrategy, searchable, defaultExpandedValues, defaultSelectedValues, defaultCheckedValues, onCheckedChange, onSelectedChange, width, virtualThreshold, labels, }: TreeViewProps) => import("react/jsx-runtime").JSX.Element;
+declare const TreeView: {
+    ({ children, nodes, className, multiSelect, checkable, checkStrategy, searchable, defaultExpandedValues, defaultSelectedValues, defaultCheckedValues, onCheckedChange, onSelectedChange, width, virtualThreshold, labels, }: TreeViewProps): import("react/jsx-runtime").JSX.Element;
+    displayName: string;
+};
 type TreeViewItemProps = {
     value: string;
     label: React.ReactNode;
@@ -56,7 +59,10 @@ type TreeViewItemProps = {
     className?: string;
     disabled?: boolean;
 };
-export declare const TreeViewItem: ({ value, label, icon, children, className, disabled, }: TreeViewItemProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const TreeViewItem: {
+    ({ value, label, icon, children, className, disabled, }: TreeViewItemProps): import("react/jsx-runtime").JSX.Element | null;
+    displayName: string;
+};
 declare const TreeViewComponent: typeof TreeView & {
     Item: typeof TreeViewItem;
 };

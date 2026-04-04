@@ -1,5 +1,6 @@
+import { ChartDataPoint } from '../../helpers';
 export type TreemapProps = {
-    data: Record<string, unknown>[];
+    data: ChartDataPoint[];
     dataKey: string;
     aspectRatio?: number;
     height?: number;
