@@ -1,158 +1,156 @@
 @use "../../../base" as *;
 @use "../../../tokens/breakpoints" as bp;
 
-@layer component {
-  .wim-cascader {
-    position: relative;
+.wim-cascader {
+  position: relative;
+  width: 100%;
+  font-family: var(--wim-font-family);
+
+  &__label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wim-color-text-primary);
+  }
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    font-family: var(--wim-font-family);
-  
-    &__label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--wim-color-text-primary);
+    min-height: 40px;
+    padding: 8px 12px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    transition: var(--wim-transition-fast);
+
+    &:hover:not(&--disabled) {
+      border-color: var(--wim-color-primary);
     }
-  
-    &__trigger {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+
+    &:focus:not(&--disabled) {
+      outline: none;
+    }
+
+    &--open {
+      border-color: var(--wim-color-primary);
+    }
+
+    &--disabled {
+      color: var(--wim-color-text-on-disabled);
+      pointer-events: none;
+      cursor: not-allowed;
+      background: var(--wim-color-disabled);
+      border-color: var(--wim-color-disabled);
+      opacity: var(--wim-opacity-disabled);
+    }
+  }
+
+  &__value {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: var(--wim-color-text-primary);
+    white-space: nowrap;
+
+    &--placeholder {
+      color: var(--wim-color-text-placeholder);
+    }
+  }
+
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    color: var(--wim-color-text-secondary);
+  }
+
+  &__clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    transition: var(--wim-transition-fast);
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    margin-top: 4px;
+    overflow: hidden;
+    background: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: 8px;
+    box-shadow: var(--wim-shadow-md);
+
+    @include bp.down(sm) {
+      flex-direction: column;
       width: 100%;
-      min-height: 40px;
-      padding: 8px 12px;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      transition: var(--wim-transition-fast);
-  
-      &:hover:not(&--disabled) {
-        border-color: var(--wim-color-primary);
-      }
-  
-      &:focus:not(&--disabled) {
-        outline: none;
-      }
-  
-      &--open {
-        border-color: var(--wim-color-primary);
-      }
-  
-      &--disabled {
-        color: var(--wim-color-text-on-disabled);
-        pointer-events: none;
-        cursor: not-allowed;
-        background: var(--wim-color-disabled);
-        border-color: var(--wim-color-disabled);
-        opacity: var(--wim-opacity-disabled);
-      }
     }
-  
-    &__value {
-      flex: 1;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 14px;
-      color: var(--wim-color-text-primary);
-      white-space: nowrap;
-  
-      &--placeholder {
-        color: var(--wim-color-text-placeholder);
-      }
-    }
-  
-  
-    &__icon {
-      display: flex;
-      align-items: center;
-      color: var(--wim-color-text-secondary);
-    }
-  
-    &__clear {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4px;
-      color: var(--wim-color-text-secondary);
-      cursor: pointer;
-      background: none;
-      border: none;
-      border-radius: 4px;
-      transition: var(--wim-transition-fast);
-    }
-  
-    &__dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      z-index: 1000;
-      display: flex;
-      margin-top: 4px;
-      overflow: hidden;
-      background: var(--wim-color-bg-component);
-      border: 1px solid var(--wim-color-border);
-      border-radius: 8px;
-      box-shadow: var(--wim-shadow-md);
-  
-      @include bp.down(sm) {
-        flex-direction: column;
-        width: 100%;
-      }
-    }
-  
-    &__menu {
-      min-width: 180px;
-      max-height: 240px;
-      padding: 4px 0; // Standardized padding for focus rings
-      overflow-y: auto;
-      border-right: 1px solid var(--wim-color-border);
-  
-      @include bp.down(sm) {
-        width: 100%;
-        min-width: unset;
-        max-height: 200px;
-        border-right: none;
-        border-bottom: 1px solid var(--wim-color-border);
-  
-        &:last-child {
-          border-bottom: none;
-        }
-      }
-  
+  }
+
+  &__menu {
+    min-width: 180px;
+    max-height: 240px;
+    padding: 4px 0; // Standardized padding for focus rings
+    overflow-y: auto;
+    border-right: 1px solid var(--wim-color-border);
+
+    @include bp.down(sm) {
+      width: 100%;
+      min-width: unset;
+      max-height: 200px;
+      border-right: none;
+      border-bottom: 1px solid var(--wim-color-border);
+
       &:last-child {
-        border-right: none;
-      }
-  
-      &::-webkit-scrollbar {
-        width: 6px;
-      }
-  
-      &::-webkit-scrollbar-thumb {
-        background: var(--wim-color-border);
-        border-radius: 3px;
+        border-bottom: none;
       }
     }
-  
-    &__menu-item {
-      // Common styles are now handled by BaseListItem
-      .wim-cascader[data-keyboard-nav="true"] &.wim-base-list-item--active {
-        z-index: 1;
-        box-shadow: var(--wim-shadow-focus);
-      }
-  
-      &--active {
-        font-weight: 500;
-        color: var(--wim-color-primary);
-      }
-  
-      &--selected {
-        font-weight: 500;
-        color: var(--wim-color-primary);
-        background: var(--wim-color-primary-alpha-10);
-      }
+
+    &:last-child {
+      border-right: none;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--wim-color-border);
+      border-radius: 3px;
+    }
+  }
+
+  &__menu-item {
+    // Common styles are now handled by BaseListItem
+    .wim-cascader[data-keyboard-nav="true"] &.wim-base-list-item--active {
+      z-index: 1;
+      box-shadow: var(--wim-shadow-focus);
+    }
+
+    &--active {
+      font-weight: 500;
+      color: var(--wim-color-primary);
+    }
+
+    &--selected {
+      font-weight: 500;
+      color: var(--wim-color-primary);
+      background: var(--wim-color-primary-alpha-10);
     }
   }
 }

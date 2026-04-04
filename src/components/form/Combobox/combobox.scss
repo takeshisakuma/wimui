@@ -1,69 +1,67 @@
-@layer component {
-  /* ------------------------------------------------------------------
-     Combobox Styles
-     Re-compiled to invalidate potential stale Vite cache.
-  ------------------------------------------------------------------ */
-  
-  .wim-combobox {
-    position: relative;
-    width: 320px;
-    max-width: 100%;
-  
-    &.wim-input--full-width {
-      width: 100%;
-      max-width: none;
-    }
+/* ------------------------------------------------------------------
+   Combobox Styles
+   Re-compiled to invalidate potential stale Vite cache.
+------------------------------------------------------------------ */
+
+.wim-combobox {
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+
+  &.wim-input--full-width {
+    width: 100%;
+    max-width: none;
   }
-  
-  .wim-combobox-list {
-    position: absolute;
-    top: calc(100% + var(--wim-spacing-xs));
-    right: 0;
-    left: 0;
-    z-index: 1000;
-    max-height: 240px;
-    padding: 4px 0; // Standardized padding for focus rings
-    margin: 0;
-    overflow-y: auto;
-    list-style: none;
-    background-color: var(--wim-color-bg-component, #fff);
-    border: 1px solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
-    box-shadow: var(--wim-shadow-lg);
+}
+
+.wim-combobox-list {
+  position: absolute;
+  top: calc(100% + var(--wim-spacing-xs));
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  max-height: 240px;
+  padding: 4px 0; // Standardized padding for focus rings
+  margin: 0;
+  overflow-y: auto;
+  list-style: none;
+  background-color: var(--wim-color-bg-component, #fff);
+  border: 1px solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-md);
+  box-shadow: var(--wim-shadow-lg);
+}
+
+.wim-combobox-icon {
+  transition: transform var(--wim-transition-base);
+
+  &--rotated {
+    transform: rotate(180deg);
   }
-  
-  .wim-combobox-icon {
-    transition: transform var(--wim-transition-base);
-  
-    &--rotated {
-      transform: rotate(180deg);
-    }
+}
+
+.wim-combobox-option {
+  .wim-combobox[data-keyboard-nav="true"] &.wim-base-list-item--active {
+    z-index: 1;
+    box-shadow: var(--wim-shadow-focus);
   }
-  
-  .wim-combobox-option {
-    .wim-combobox[data-keyboard-nav="true"] &.wim-base-list-item--active {
-      z-index: 1;
-      box-shadow: var(--wim-shadow-focus);
-    }
-  
-    &:active {
-      background-color: rgb(0 0 0 / 0.1);
-    }
+
+  &:active {
+    background-color: rgb(0 0 0 / 0.1);
   }
-  
-  .wim-combobox-empty {
-    position: absolute;
-    top: calc(100% + var(--wim-spacing-xs));
-    right: 0;
-    left: 0;
-    z-index: 1000;
-    padding: var(--wim-spacing-md);
-    font-size: 0.9rem;
-    color: var(--wim-color-text-secondary);
-    text-align: center;
-    background-color: var(--wim-color-bg-component, #fff);
-    border: 1px solid rgb(0 0 0 / 0.1);
-    border-radius: var(--wim-radius-md);
-    box-shadow: var(--wim-shadow-lg);
-  }
+}
+
+.wim-combobox-empty {
+  position: absolute;
+  top: calc(100% + var(--wim-spacing-xs));
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  padding: var(--wim-spacing-md);
+  font-size: 0.9rem;
+  color: var(--wim-color-text-secondary);
+  text-align: center;
+  background-color: var(--wim-color-bg-component, #fff);
+  border: 1px solid rgb(0 0 0 / 0.1);
+  border-radius: var(--wim-radius-md);
+  box-shadow: var(--wim-shadow-lg);
 }

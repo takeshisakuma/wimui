@@ -1,70 +1,68 @@
-@layer component {
-  /* ------------------------------------------------------------------
-     Dialog Styles
-  ------------------------------------------------------------------ */
-  
-  .wim-dialog-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    display: grid;
-    place-items: center;
-    overflow-y: auto;
-    background-color: rgb(0 0 0 / 0.4);
-    backdrop-filter: blur(2px);
+/* ------------------------------------------------------------------
+   Dialog Styles
+------------------------------------------------------------------ */
+
+.wim-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  background-color: rgb(0 0 0 / 0.4);
+  backdrop-filter: blur(2px);
+}
+
+.wim-dialog-content {
+  position: relative;
+  width: 90vw;
+  max-width: 450px;
+  max-height: 85vh;
+  padding: var(--wim-spacing-2xl);
+  margin: 0;
+  container-type: inline-size;
+  overflow: auto;
+  color: var(--wim-color-text-primary);
+  background-color: var(--wim-color-bg-component, #fff);
+  border: none;
+  border-radius: var(--wim-radius-lg);
+  box-shadow: var(--wim-shadow-lg);
+
+  &:focus {
+    outline: none;
   }
-  
-  .wim-dialog-content {
-    position: relative;
-    width: 90vw;
-    max-width: 450px;
-    max-height: 85vh;
-    padding: var(--wim-spacing-2xl);
-    margin: 0;
-    container-type: inline-size;
-    overflow: auto;
-    color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-bg-component, #fff);
-    border: none;
-    border-radius: var(--wim-radius-lg);
-    box-shadow: var(--wim-shadow-lg);
-  
-    &:focus {
-      outline: none;
-    }
-  }
-  
-  .wim-dialog-header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--wim-spacing-xl);
-    margin-bottom: var(--wim-spacing-xl);
-    text-align: left;
-  }
-  
-  .wim-dialog-title {
-    margin: 0;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--wim-color-text-primary);
-  }
-  
-  .wim-dialog-description {
-    margin: 0;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: var(--wim-color-text-secondary);
-  }
-  
-  .wim-dialog-footer {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: var(--wim-spacing-md);
-    margin-top: var(--wim-spacing-2xl);
-  
-    @container (width >= 640px) {
-      flex-direction: row;
-      justify-content: flex-end;
-    }
+}
+
+.wim-dialog-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wim-spacing-xl);
+  margin-bottom: var(--wim-spacing-xl);
+  text-align: left;
+}
+
+.wim-dialog-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--wim-color-text-primary);
+}
+
+.wim-dialog-description {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--wim-color-text-secondary);
+}
+
+.wim-dialog-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--wim-spacing-md);
+  margin-top: var(--wim-spacing-2xl);
+
+  @container (width >= 640px) {
+    flex-direction: row;
+    justify-content: flex-end;
   }
 }

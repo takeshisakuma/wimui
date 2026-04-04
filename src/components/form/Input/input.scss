@@ -1,72 +1,70 @@
-@layer component {
-  .wim-input {
-    &:not([type="color"]) {
-      all: unset;
-    }
-  
-    box-sizing: border-box;
-    display: block;
-    width: 100%;
-    min-height: var(--wim-height-md);
-    padding: var(--wim-spacing-sm) var(--wim-input-offset-right, var(--wim-spacing-md)) var(--wim-spacing-sm) var(--wim-input-offset-left, var(--wim-spacing-md));
-    font-size: var(--wim-font-size-md);
-    color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-bg-component, #fff);
-    border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
-    transition: var(--wim-transition-base);
-  
-    &::placeholder {
-      color: var(--wim-color-text-tertiary);
-    }
-  
-    &:focus {
-      border-color: var(--wim-color-primary);
-      box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
-    }
-  
-    &--outline {
-      border-color: var(--wim-color-secondary);
-    }
-  
-    &--ghost {
-      background-color: transparent;
-      border-color: transparent;
-      &:hover { background-color: rgb(0 0 0 / 0.05); }
-    }
-  
-    &--error {
-      border-color: var(--wim-color-text-error);
-    }
-  
-    &--disabled {
-      color: var(--wim-color-text-on-disabled);
-      pointer-events: none;
-      cursor: not-allowed;
-      background-color: var(--wim-color-disabled);
-      border-color: var(--wim-color-disabled);
-    }
-  
-    /* type="number" 特有の調整 */
-    &[type="number"] {
-      /* スピンボタンを非表示にする */
-      &.wim-input--hide-spin {
-        appearance: textfield;
-  
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-          margin: 0;
-          appearance: none;
-        }
+.wim-input {
+  &:not([type="color"]) {
+    all: unset;
+  }
+
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: var(--wim-height-md);
+  padding: var(--wim-spacing-sm) var(--wim-input-offset-right, var(--wim-spacing-md)) var(--wim-spacing-sm) var(--wim-input-offset-left, var(--wim-spacing-md));
+  font-size: var(--wim-font-size-md);
+  color: var(--wim-color-text-primary);
+  background-color: var(--wim-color-bg-component, #fff);
+  border: var(--wim-border-width-thin) solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-md);
+  transition: var(--wim-transition-base);
+
+  &::placeholder {
+    color: var(--wim-color-text-tertiary);
+  }
+
+  &:focus {
+    border-color: var(--wim-color-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+  }
+
+  &--outline {
+    border-color: var(--wim-color-secondary);
+  }
+
+  &--ghost {
+    background-color: transparent;
+    border-color: transparent;
+    &:hover { background-color: rgb(0 0 0 / 0.05); }
+  }
+
+  &--error {
+    border-color: var(--wim-color-text-error);
+  }
+
+  &--disabled {
+    color: var(--wim-color-text-on-disabled);
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: var(--wim-color-disabled);
+    border-color: var(--wim-color-disabled);
+  }
+
+  /* type="number" 特有の調整 */
+  &[type="number"] {
+    /* スピンボタンを非表示にする */
+    &.wim-input--hide-spin {
+      appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        margin: 0;
+        appearance: none;
       }
     }
   }
-  
-  // When inside InputBase, let it handle the shell
-  // InputBase (@layer) sets the same values with !important; same result either way
-  .wim-input-base > .wim-input {
-      background-color: transparent;
-      border: none;
-      box-shadow: none;
-  }
+}
+
+// When inside InputBase, let it handle the shell
+// InputBase (@layer) sets the same values with !important; same result either way
+.wim-input-base > .wim-input {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
 }

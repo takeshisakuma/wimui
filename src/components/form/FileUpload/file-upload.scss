@@ -1,63 +1,61 @@
-@layer component {
-  .wim-file-upload {
+.wim-file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wim-spacing-xs);
+  font-family: inherit;
+
+  &__label {
+    display: block;
+    margin-bottom: var(--wim-spacing-xs);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-secondary);
+
+    .wim-file-upload--small & {
+      font-size: var(--wim-font-size-xs);
+    }
+
+    .wim-file-upload--medium & {
+      font-size: var(--wim-font-size-sm);
+    }
+
+    .wim-file-upload--large & {
+      font-size: var(--wim-font-size-md);
+    }
+  }
+
+  &__controls {
     display: flex;
-    flex-direction: column;
-    gap: var(--wim-spacing-xs);
-    font-family: inherit;
-  
-    &__label {
-      display: block;
-      margin-bottom: var(--wim-spacing-xs);
-      font-weight: var(--wim-font-weight-medium);
-      color: var(--wim-color-text-secondary);
-  
-      .wim-file-upload--small & {
-        font-size: var(--wim-font-size-xs);
-      }
-  
-      .wim-file-upload--medium & {
-        font-size: var(--wim-font-size-sm);
-      }
-  
-      .wim-file-upload--large & {
-        font-size: var(--wim-font-size-md);
-      }
+    gap: var(--wim-spacing-md);
+    align-items: center;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__file-names {
+    display: inline-block;
+    max-width: 300px;
+    padding: 8px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--wim-color-text-tertiary);
+    white-space: nowrap;
+
+    &--sm {
+      font-size: var(--wim-font-size-xs);
     }
-  
-    &__controls {
-      display: flex;
-      gap: var(--wim-spacing-md);
-      align-items: center;
+
+    &--md {
+      font-size: var(--wim-font-size-sm);
     }
-  
-    &__input {
-      display: none;
+
+    &--lg {
+      font-size: var(--wim-font-size-md);
     }
-  
-    &__file-names {
-      display: inline-block;
-      max-width: 300px;
-      padding: 8px 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: var(--wim-color-text-tertiary);
-      white-space: nowrap;
-  
-      &--sm {
-        font-size: var(--wim-font-size-xs);
-      }
-  
-      &--md {
-        font-size: var(--wim-font-size-sm);
-      }
-  
-      &--lg {
-        font-size: var(--wim-font-size-md);
-      }
-  
-      &--disabled {
-        color: var(--wim-color-disabled);
-      }
+
+    &--disabled {
+      color: var(--wim-color-disabled);
     }
   }
 }

@@ -1,251 +1,249 @@
-@layer component {
-  /* ------------------------------------------------------------------
-     Selectbox Styles
-  ------------------------------------------------------------------ */
-  
-  .wim-selectbox {
-    position: relative;
+/* ------------------------------------------------------------------
+   Selectbox Styles
+------------------------------------------------------------------ */
+
+.wim-selectbox {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  max-width: 280px;
+  font-family: var(--wim-font-family-default);
+
+  &--full-width {
     width: 100%;
-    min-width: 0;
-    max-width: 280px;
-    font-family: var(--wim-font-family-default);
-  
-    &--full-width {
+    max-width: none;
+
+    .wim-input-base {
       width: 100%;
       max-width: none;
-  
-      .wim-input-base {
-        width: 100%;
-        max-width: none;
-      }
     }
   }
-  
-  .wim-selectbox-trigger {
-    box-sizing: border-box;
+}
+
+.wim-selectbox-trigger {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--wim-height-md); // Match MultiSelect height
+  padding: var(--wim-spacing-md) var(--wim-spacing-md); // Increased from sm to md to prevent text clipping
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--wim-color-text-primary);
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  transition:
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+
+  &:hover:not(.wim-selectbox-trigger--disabled) {
+    background-color: var(--wim-color-bg-hover);
+    border-color: var(--wim-color-primary);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--wim-color-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+  }
+
+  &--open {
+    border-color: var(--wim-color-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+  }
+
+  &--disabled {
+    color: var(--wim-color-text-disabled);
+    cursor: not-allowed;
+    background-color: rgb(0 0 0 / 0.05);
+    border-color: var(--wim-color-disabled);
+  }
+}
+
+.wim-selectbox-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &--placeholder {
+    color: var(--wim-color-text-placeholder);
+  }
+}
+
+.wim-selectbox-icons {
+  display: flex;
+  gap: var(--wim-spacing-xs);
+  align-items: center;
+  margin-left: var(--wim-spacing-sm);
+}
+
+.wim-selectbox-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--wim-color-text-secondary);
+}
+
+.wim-selectbox-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wim-spacing-xs);
+  color: var(--wim-color-text-secondary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: var(--wim-radius-sm);
+  transition: all var(--wim-transition-base);
+
+  &:hover {
+    color: var(--wim-color-destructive);
+    background-color: rgb(0 0 0 / 0.05);
+  }
+}
+
+.wim-selectbox-dropdown {
+  position: absolute;
+  top: calc(100% + var(--wim-spacing-xs));
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: var(--wim-color-bg-component, #fff);
+  border: 1px solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-md);
+  box-shadow: var(--wim-shadow-lg);
+}
+
+.wim-selectbox-search {
+  padding: var(--wim-spacing-sm);
+  border-bottom: 1px solid var(--wim-color-secondary);
+}
+
+.wim-selectbox-search-input {
+  width: 100%;
+  padding: var(--wim-spacing-sm);
+  font-size: 0.9rem;
+  outline: none;
+  border: 1px solid var(--wim-color-secondary);
+  border-radius: var(--wim-radius-sm);
+  transition: border-color 0.2s ease-in-out;
+
+  &:focus {
+    border-color: var(--wim-color-primary);
+  }
+
+  &::placeholder {
+    color: var(--wim-color-text-placeholder);
+  }
+}
+
+.wim-selectbox-list {
+  max-height: 240px;
+  padding: 4px 0; // Standardized padding for focus rings
+  margin: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.wim-selectbox-group-label {
+  padding: var(--wim-spacing-sm) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--wim-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+.wim-selectbox-option {
+  .wim-selectbox[data-keyboard-nav="true"] &.wim-base-list-item--active {
+    z-index: 1;
+    box-shadow: var(--wim-shadow-focus);
+  }
+
+  &--selected {
+    font-weight: 500;
+    color: var(--wim-color-text-primary);
+    background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+  }
+}
+
+.wim-selectbox-empty {
+  padding: var(--wim-spacing-md);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--wim-color-text-secondary);
+  text-align: center;
+}
+
+.wim-selectbox-separator {
+  height: 1px;
+  margin: var(--wim-spacing-xs) var(--wim-spacing-md); // Inset separator
+  overflow: hidden;
+  background-color: var(--wim-color-secondary);
+  opacity: 0.4;
+}
+
+/* ------------------------------------------------------------------
+   Native Selectbox Styles
+------------------------------------------------------------------ */
+
+.wim-selectbox--native {
+  .wim-selectbox-native-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
-    min-width: 0;
-    min-height: var(--wim-height-md); // Match MultiSelect height
-    padding: var(--wim-spacing-md) var(--wim-spacing-md); // Increased from sm to md to prevent text clipping
+  }
+
+  .wim-selectbox-select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: var(--wim-height-md);
+    padding: var(--wim-spacing-md) calc(var(--wim-spacing-md) * 2.5) var(--wim-spacing-md) var(--wim-spacing-md);
+    font-family: inherit;
     font-size: 1rem;
     line-height: 1.5;
     color: var(--wim-color-text-primary);
+    appearance: none; // Hide default arrow
     cursor: pointer;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
+    background-color: var(--wim-color-bg-component, #fff);
+    border: 1px solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
     transition:
       border-color 0.2s ease-in-out,
       box-shadow 0.2s ease-in-out;
-  
-    &:hover:not(.wim-selectbox-trigger--disabled) {
-      background-color: var(--wim-color-bg-hover);
+
+    &:hover:not(:disabled) {
       border-color: var(--wim-color-primary);
     }
-  
+
     &:focus {
       outline: none;
       border-color: var(--wim-color-primary);
       box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
     }
-  
-    &--open {
-      border-color: var(--wim-color-primary);
-      box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
-    }
-  
-    &--disabled {
+
+    &:disabled {
       color: var(--wim-color-text-disabled);
       cursor: not-allowed;
       background-color: rgb(0 0 0 / 0.05);
       border-color: var(--wim-color-disabled);
     }
+
+    // hr support is automatic in modern browsers
   }
-  
-  .wim-selectbox-value {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  
-    &--placeholder {
-      color: var(--wim-color-text-placeholder);
-    }
-  }
-  
-  .wim-selectbox-icons {
-    display: flex;
-    gap: var(--wim-spacing-xs);
-    align-items: center;
-    margin-left: var(--wim-spacing-sm);
-  }
-  
+
   .wim-selectbox-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--wim-color-text-secondary);
-  }
-  
-  .wim-selectbox-clear {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--wim-spacing-xs);
-    color: var(--wim-color-text-secondary);
-    cursor: pointer;
-    background: none;
-    border: none;
-    border-radius: var(--wim-radius-sm);
-    transition: all var(--wim-transition-base);
-  
-    &:hover {
-      color: var(--wim-color-destructive);
-      background-color: rgb(0 0 0 / 0.05);
-    }
-  }
-  
-  .wim-selectbox-dropdown {
     position: absolute;
-    top: calc(100% + var(--wim-spacing-xs));
-    right: 0;
-    left: 0;
-    z-index: 1000;
-    background-color: var(--wim-color-bg-component, #fff);
-    border: 1px solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
-    box-shadow: var(--wim-shadow-lg);
-  }
-  
-  .wim-selectbox-search {
-    padding: var(--wim-spacing-sm);
-    border-bottom: 1px solid var(--wim-color-secondary);
-  }
-  
-  .wim-selectbox-search-input {
-    width: 100%;
-    padding: var(--wim-spacing-sm);
-    font-size: 0.9rem;
-    outline: none;
-    border: 1px solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-sm);
-    transition: border-color 0.2s ease-in-out;
-  
-    &:focus {
-      border-color: var(--wim-color-primary);
-    }
-  
-    &::placeholder {
-      color: var(--wim-color-text-placeholder);
-    }
-  }
-  
-  .wim-selectbox-list {
-    max-height: 240px;
-    padding: 4px 0; // Standardized padding for focus rings
-    margin: 0;
-    overflow-y: auto;
-    list-style: none;
-  }
-  
-  .wim-selectbox-group-label {
-    padding: var(--wim-spacing-sm) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
-    font-size: 0.75rem;
-    font-weight: 600;
+    right: var(--wim-spacing-md);
     color: var(--wim-color-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     pointer-events: none;
-  }
-  
-  .wim-selectbox-option {
-    .wim-selectbox[data-keyboard-nav="true"] &.wim-base-list-item--active {
-      z-index: 1;
-      box-shadow: var(--wim-shadow-focus);
-    }
-  
-    &--selected {
-      font-weight: 500;
-      color: var(--wim-color-text-primary);
-      background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
-    }
-  }
-  
-  .wim-selectbox-empty {
-    padding: var(--wim-spacing-md);
-    font-size: 0.9rem;
-    font-style: italic;
-    color: var(--wim-color-text-secondary);
-    text-align: center;
-  }
-  
-  .wim-selectbox-separator {
-    height: 1px;
-    margin: var(--wim-spacing-xs) var(--wim-spacing-md); // Inset separator
-    overflow: hidden;
-    background-color: var(--wim-color-secondary);
-    opacity: 0.4;
-  }
-  
-  /* ------------------------------------------------------------------
-     Native Selectbox Styles
-  ------------------------------------------------------------------ */
-  
-  .wim-selectbox--native {
-    .wim-selectbox-native-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      width: 100%;
-    }
-  
-    .wim-selectbox-select {
-      box-sizing: border-box;
-      width: 100%;
-      min-height: var(--wim-height-md);
-      padding: var(--wim-spacing-md) calc(var(--wim-spacing-md) * 2.5) var(--wim-spacing-md) var(--wim-spacing-md);
-      font-family: inherit;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: var(--wim-color-text-primary);
-      appearance: none; // Hide default arrow
-      cursor: pointer;
-      background-color: var(--wim-color-bg-component, #fff);
-      border: 1px solid var(--wim-color-secondary);
-      border-radius: var(--wim-radius-md);
-      transition:
-        border-color 0.2s ease-in-out,
-        box-shadow 0.2s ease-in-out;
-  
-      &:hover:not(:disabled) {
-        border-color: var(--wim-color-primary);
-      }
-  
-      &:focus {
-        outline: none;
-        border-color: var(--wim-color-primary);
-        box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
-      }
-  
-      &:disabled {
-        color: var(--wim-color-text-disabled);
-        cursor: not-allowed;
-        background-color: rgb(0 0 0 / 0.05);
-        border-color: var(--wim-color-disabled);
-      }
-  
-      // hr support is automatic in modern browsers
-    }
-  
-    .wim-selectbox-icon {
-      position: absolute;
-      right: var(--wim-spacing-md);
-      color: var(--wim-color-text-secondary);
-      pointer-events: none;
-    }
   }
 }
