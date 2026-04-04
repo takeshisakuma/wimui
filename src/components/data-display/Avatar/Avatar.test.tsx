@@ -35,9 +35,9 @@ describe("Avatar", () => {
     expect(container.querySelector("svg")).toBeInTheDocument();
   });
 
-  it("fallback icon container has role=img", () => {
-    render(<Avatar />);
-    expect(screen.getByRole("img")).toBeInTheDocument();
+  it("fallback icon container without label is decorative (no role=img)", () => {
+    const { container } = render(<Avatar />);
+    expect(container.firstChild).not.toHaveAttribute("role");
   });
 
   it("applies size and shape classes", () => {
@@ -81,9 +81,10 @@ describe("Avatar", () => {
     expect(screen.getByText("AB")).toBeInTheDocument();
   });
 
-  it("fallback has no aria-label when alt and initials are both empty/absent", () => {
-    render(<Avatar />);
-    const avatar = screen.getByRole("img");
+  it("fallback has no role or aria-label when alt and initials are both empty/absent", () => {
+    const { container } = render(<Avatar />);
+    const avatar = container.firstChild as HTMLElement;
+    expect(avatar).not.toHaveAttribute("role");
     expect(avatar).not.toHaveAttribute("aria-label");
   });
 });
