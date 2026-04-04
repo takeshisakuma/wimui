@@ -159,6 +159,7 @@ $scrollbar-track: $pccs-gy8-5;
   /* Disabled state – invert for dark backgrounds */
   --wim-color-disabled: #{$pccs-gy4-5}; // Dark: #4f4f4f (was #e5e5e5 light)
   --wim-color-text-on-disabled: #{$pccs-gy7-5}; // Dark: #b6b6b6 (was #393939 dark)
+  --wim-color-text-error: #ff8c8c; // Light red for dark mode (6.26:1 on #262626)
 
   /* Adjust semantic colors for dark mode visibility/contrast */
   --wim-color-destructive: #{$pccs-v2};

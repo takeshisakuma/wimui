@@ -26,7 +26,7 @@ export const Default: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Container {...args}>
-        <Box bg="#f0f0f0" p={20} style={{ border: "1px solid #ccc" }}>
+        <Box bg="var(--wim-color-bg-component)" p={20} style={{ border: "1px solid var(--wim-color-border)" }}>
           {t("story.container_content")}
         </Box>
       </Container>
@@ -43,11 +43,11 @@ export const Sizes: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
-          <Container key={size} size={size} bg="#f8fafc" p={10}>
+          <Container key={size} size={size} bg="var(--wim-color-bg-secondary)" p={10}>
             <Box
-              bg="#eff6ff"
+              bg="var(--wim-color-bg-component)"
               p={10}
-              style={{ textAlign: "center", border: "1px dashed #3b82f6" }}
+              style={{ textAlign: "center", border: "1px solid var(--wim-color-border)" }}
             >
               {t("story.container_size")}: {size}
             </Box>
@@ -64,9 +64,9 @@ export const Fluid: Story = {
     return (
       <Container {...args} fluid>
         <Box
-          bg="#eff6ff"
+          bg="var(--wim-color-bg-component)"
           p={20}
-          style={{ textAlign: "center", border: "1px dashed #3b82f6" }}
+          style={{ textAlign: "center", border: "1px solid var(--wim-color-border)" }}
         >
           {t("story.container_fluid")}
         </Box>
@@ -74,6 +74,6 @@ export const Fluid: Story = {
     );
   },
   args: {
-    bg: "#f8fafc",
+    bg: "var(--wim-color-bg-secondary)",
   },
 };

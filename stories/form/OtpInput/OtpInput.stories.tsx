@@ -60,7 +60,7 @@ export const Controlled = () => {
       <p style={{ marginTop: "1rem" }}>
         {t("story.otp_current_value")}: {value}
       </p>
-      <button onClick={() => setValue("")} style={{ marginTop: "0.5rem" }}>
+      <button onClick={() => setValue("")} style={{ marginTop: "0.5rem", color: "var(--wim-color-text-primary)", backgroundColor: "var(--wim-color-bg-component)", border: "1px solid var(--wim-color-border)" }}>
         {t("story.otp_clear")}
       </button>
     </div>

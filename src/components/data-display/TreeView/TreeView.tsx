@@ -952,7 +952,7 @@ export const TreeViewItem = ({
             gridTemplateRows: isVisualExpanded ? "1fr" : "0fr",
           }}
         >
-          <div className="wim-tree-view-item__children-inner">{children}</div>
+          <div className="wim-tree-view-item__children-inner" role="group">{children}</div>
         </div>
       )}
     </div>

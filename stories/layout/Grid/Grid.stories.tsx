@@ -31,17 +31,27 @@ const meta: Meta<typeof Grid> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+type BoxIntent = "primary" | "positive" | "caution" | "destructive" | "secondary" | "informative";
+const intentStyles: Record<BoxIntent, { bg: string; text: string }> = {
+  primary:     { bg: "var(--wim-color-primary)",     text: "var(--wim-color-text-on-primary)" },
+  positive:    { bg: "var(--wim-color-positive)",    text: "var(--wim-color-text-on-positive)" },
+  caution:     { bg: "var(--wim-color-caution)",     text: "var(--wim-color-text-on-caution)" },
+  destructive: { bg: "var(--wim-color-destructive)", text: "var(--wim-color-text-on-destructive)" },
+  secondary:   { bg: "var(--wim-color-secondary)",   text: "var(--wim-color-text-on-secondary)" },
+  informative: { bg: "var(--wim-color-informative)", text: "var(--wim-color-text-on-informative)" },
+};
+
 const Box = ({
   children,
-  color = "#3b82f6",
+  intent = "primary",
 }: {
   children: React.ReactNode;
-  color?: string;
+  intent?: BoxIntent;
 }) => (
   <div
     style={{
-      backgroundColor: color,
-      color: "white",
+      backgroundColor: intentStyles[intent].bg,
+      color: intentStyles[intent].text,
       padding: "20px",
       borderRadius: "8px",
       display: "flex",
@@ -60,11 +70,11 @@ export const Basic: Story = {
     return (
       <Grid {...args}>
         <Box>{t("story.grid_item", "1")}</Box>
-        <Box color="#10b981">{t("story.grid_item", "2")}</Box>
-        <Box color="#f59e0b">{t("story.grid_item", "3")}</Box>
-        <Box color="#ef4444">{t("story.grid_item", "4")}</Box>
-        <Box color="#8b5cf6">{t("story.grid_item", "5")}</Box>
-        <Box color="#ec4899">{t("story.grid_item", "6")}</Box>
+        <Box intent="positive">{t("story.grid_item", "2")}</Box>
+        <Box intent="caution">{t("story.grid_item", "3")}</Box>
+        <Box intent="destructive">{t("story.grid_item", "4")}</Box>
+        <Box intent="secondary">{t("story.grid_item", "5")}</Box>
+        <Box intent="informative">{t("story.grid_item", "6")}</Box>
       </Grid>
     );
   },
@@ -79,8 +89,8 @@ export const CustomColumns: Story = {
     return (
       <Grid {...args}>
         <Box>1fr</Box>
-        <Box color="#10b981">2fr</Box>
-        <Box color="#f59e0b">1fr</Box>
+        <Box intent="positive">2fr</Box>
+        <Box intent="caution">1fr</Box>
       </Grid>
     );
   },
@@ -93,16 +103,12 @@ export const CustomColumns: Story = {
 export const Responsive: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
+    const intents: BoxIntent[] = ["primary", "positive", "caution", "destructive", "secondary", "informative", "secondary", "positive"];
     return (
       <Grid {...args}>
-        <Box>{t("story.grid_item", "1")}</Box>
-        <Box color="#10b981">{t("story.grid_item", "2")}</Box>
-        <Box color="#f59e0b">{t("story.grid_item", "3")}</Box>
-        <Box color="#ef4444">{t("story.grid_item", "4")}</Box>
-        <Box color="#8b5cf6">{t("story.grid_item", "5")}</Box>
-        <Box color="#ec4899">{t("story.grid_item", "6")}</Box>
-        <Box color="#6366f1">{t("story.grid_item", "7")}</Box>
-        <Box color="#14b8a6">{t("story.grid_item", "8")}</Box>
+        {intents.map((intent, i) => (
+          <Box key={i} intent={intent}>{t("story.grid_item", String(i + 1))}</Box>
+        ))}
       </Grid>
     );
   },

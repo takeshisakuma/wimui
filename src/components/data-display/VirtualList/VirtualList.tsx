@@ -76,6 +76,7 @@ export function VirtualList<T = unknown>({
       style={{ ...style, height, overflowY: "auto" }}
       onScroll={handleScroll}
       role="list"
+      tabIndex={0}
       {...props}
     >
       <div

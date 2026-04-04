@@ -298,6 +298,7 @@ export const Calendar = ({
         disabled && "wim-calendar--disabled",
         className,
       )}
+      aria-disabled={disabled || undefined}
       {...props}
     >
       <div className="wim-calendar-header">
@@ -349,6 +350,7 @@ export const Calendar = ({
                 )}
                 role="columnheader"
                 aria-label={day}
+                aria-disabled={disabled || undefined}
               >
                 {day}
               </div>

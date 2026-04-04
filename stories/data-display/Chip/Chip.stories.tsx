@@ -28,8 +28,8 @@ const meta: Meta<typeof Chip> = {
       control: "radio",
       options: ["sm", "md", "lg"],
     },
-    onClick: { action: "clicked" },
-    onDelete: { action: "deleted" },
+    onClick: { control: false },
+    onDelete: { control: false },
   },
 };
 

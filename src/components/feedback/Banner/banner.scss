@@ -125,10 +125,10 @@
   }
   
   &--warning {
-    color: color-mix(in srgb, var(--wim-color-caution) 75%, var(--wim-color-feedback-text-base));
+    color: color-mix(in srgb, var(--wim-color-caution) 50%, var(--wim-color-feedback-text-base));
     background: color-mix(in srgb, var(--wim-color-caution) 10%, var(--wim-color-feedback-bg-base));
     border-bottom-color: color-mix(in srgb, var(--wim-color-caution) var(--wim-color-feedback-border-strength), transparent);
-  
+
     .wim-banner__icon {
       color: var(--wim-color-caution);
     }

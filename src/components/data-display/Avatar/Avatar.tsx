@@ -48,11 +48,12 @@ export const Avatar = ({
 
   const isFallback = !src || hasError;
   const fallbackAriaLabel = alt || initials?.substring(0, 2) || undefined;
+  const hasFallbackLabel = Boolean(fallbackAriaLabel);
 
   return (
     <div
-      role={isFallback ? "img" : undefined}
-      aria-label={isFallback ? fallbackAriaLabel : undefined}
+      role={isFallback && hasFallbackLabel ? "img" : undefined}
+      aria-label={isFallback && hasFallbackLabel ? fallbackAriaLabel : undefined}
       {...props}
       className={classNames(
         "wim-avatar",

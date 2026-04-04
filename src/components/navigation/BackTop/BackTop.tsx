@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
+import { useTranslation } from "react-i18next";
 import "./backtop.scss";
 
 export interface BackTopProps {
@@ -16,6 +17,8 @@ export interface BackTopProps {
   className?: string;
   /** Style attribute */
   style?: React.CSSProperties;
+  /** Accessible label for the button */
+  "aria-label"?: string;
 }
 
 export const BackTop = ({
@@ -25,7 +28,9 @@ export const BackTop = ({
   children,
   className,
   style,
+  "aria-label": ariaLabel,
 }: BackTopProps) => {
+  const { t } = useTranslation("common");
   const [visible, setVisible] = useState(false);
 
   const getScrollTop = useCallback(
@@ -103,6 +108,7 @@ export const BackTop = ({
       onClick={scrollToTop}
       role="button"
       tabIndex={0}
+      aria-label={ariaLabel ?? t("a11y.back_to_top")}
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.currentTarget.click(); } }}
     >
       {children || defaultElement}

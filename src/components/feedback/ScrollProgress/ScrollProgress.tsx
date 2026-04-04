@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
+import { useTranslation } from "react-i18next";
 import "./scrollprogress.scss";
 
 export type ScrollProgressProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -20,8 +21,10 @@ export const ScrollProgress = ({
   color = "primary",
   target,
   className,
+  "aria-label": ariaLabel,
   ...props
 }: ScrollProgressProps) => {
+  const { t } = useTranslation("common");
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -63,6 +66,7 @@ export const ScrollProgress = ({
       aria-valuenow={Math.round(progress)}
       aria-valuemin={0}
       aria-valuemax={100}
+      aria-label={ariaLabel ?? t("a11y.scroll_progress")}
       {...props}
     >
       <div

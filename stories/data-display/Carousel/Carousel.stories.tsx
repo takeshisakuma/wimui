@@ -33,38 +33,43 @@ const meta: Meta<typeof Carousel> = {
 export default meta;
 type Story = StoryObj<typeof Carousel>;
 
+const slideColors = [
+  { bg: "var(--wim-color-destructive)", text: "var(--wim-color-text-on-destructive)" },
+  { bg: "var(--wim-color-primary)",     text: "var(--wim-color-text-on-primary)" },
+  { bg: "var(--wim-color-positive)",    text: "var(--wim-color-text-on-positive)" },
+  { bg: "var(--wim-color-caution)",     text: "var(--wim-color-text-on-caution)" },
+  { bg: "var(--wim-color-secondary)",   text: "var(--wim-color-text-on-secondary)" },
+  { bg: "var(--wim-color-informative)", text: "var(--wim-color-text-on-informative)" },
+];
+
 const ImagePlaceholder = ({
   index,
   label,
 }: {
   index: number;
   label: string;
-}) => (
-  <div
-    style={{
-      width: "100%",
-      height: "300px",
-      backgroundColor: [
-        "#f44336",
-        "#2196f3",
-        "#4caf50",
-        "#ff9800",
-        "#9c27b0",
-        "#3f51b5",
-      ][index % 6],
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "white",
-      fontSize: "32px",
-      fontWeight: "bold",
-      border: "4px solid rgba(255,255,255,0.2)",
-      boxSizing: "border-box",
-    }}
-  >
-    {label} {index + 1}
-  </div>
-);
+}) => {
+  const { bg, text } = slideColors[index % slideColors.length];
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "300px",
+        backgroundColor: bg,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: text,
+        fontSize: "32px",
+        fontWeight: "bold",
+        border: "4px solid rgba(255,255,255,0.2)",
+        boxSizing: "border-box",
+      }}
+    >
+      {label} {index + 1}
+    </div>
+  );
+};
 
 export const Basic: Story = {
   render: function Render(args) {

@@ -46,9 +46,9 @@ export const HorizontalScroll: Story = {
         <div
           style={{
             width: "150rem",
-            background: "#3b82f6",
+            background: "var(--wim-color-primary)",
             padding: "1rem",
-            color: "white",
+            color: "var(--wim-color-text-on-primary)",
           }}
         >
           {t("story.scrollarea_wide_content")} {t("story.selectbox_opt4")} {t("story.scrollarea_wide_content")}{" "}

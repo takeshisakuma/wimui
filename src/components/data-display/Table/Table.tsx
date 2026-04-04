@@ -57,6 +57,7 @@ const Table = ({
         scrollbar === "hidden" && "wim-no-scrollbar",
       )}
       style={containerStyle}
+      tabIndex={height || maxHeight ? 0 : undefined}
     >
       <table
         className={classNames(

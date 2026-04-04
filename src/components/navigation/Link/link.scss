@@ -59,10 +59,10 @@
 
     // Priorities
     &--primary {
-      color: var(--wim-color-primary);
+      color: color-mix(in srgb, var(--wim-color-primary) 50%, var(--wim-color-text-primary));
 
       &:hover {
-        color: var(--wim-color-primary); // More vivid if needed
+        color: color-mix(in srgb, var(--wim-color-primary) 50%, var(--wim-color-text-primary));
       }
     }
 

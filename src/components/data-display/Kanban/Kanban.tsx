@@ -285,7 +285,7 @@ export const KanbanColumn = ({
             </span>
           )}
         </div>
-        <div className="wim-kanban__column-body">{children}</div>
+        <div className="wim-kanban__column-body" role="list">{children}</div>
       </div>
     </KanbanColumnContext.Provider>
   );

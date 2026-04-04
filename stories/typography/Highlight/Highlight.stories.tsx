@@ -51,6 +51,6 @@ export const CustomComponent: Story = {
     children: "This is a paragraph with a highlight.",
     highlight: "paragraph",
     as: "p",
-    style: { fontSize: "20px", color: "gray" },
+    style: { fontSize: "20px", color: "var(--wim-color-text-secondary)" },
   },
 };

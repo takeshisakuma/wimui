@@ -194,8 +194,6 @@ export function DataGrid<T extends Record<string, unknown>>({
         className,
       )}
       role="grid"
-      aria-rowcount={rows.length + 1}
-      aria-colcount={totalCols}
       tabIndex={0}
       onKeyDown={handleKeyDown}
     >
@@ -209,6 +207,9 @@ export function DataGrid<T extends Record<string, unknown>>({
           height={height}
           maxHeight={maxHeight}
           mobileCard={mobileCard}
+          role="grid"
+          aria-rowcount={rows.length + 1}
+          aria-colcount={totalCols}
         >
           <TableHeader>
             <TableRow>

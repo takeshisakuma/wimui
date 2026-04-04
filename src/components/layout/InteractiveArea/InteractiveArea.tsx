@@ -86,6 +86,7 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
         )}
         role={isClickable && !disabled ? "button" : undefined}
         tabIndex={isClickable && !disabled ? 0 : undefined}
+        aria-disabled={disabled || undefined}
         onKeyDown={(e) => {
           if (isClickable && !disabled && (e.key === "Enter" || e.key === " ")) {
             e.preventDefault();

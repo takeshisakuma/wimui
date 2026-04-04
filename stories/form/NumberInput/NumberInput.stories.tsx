@@ -29,6 +29,7 @@ export const NumericMode: Story = {
   args: {
     mode: "number",
     hideSpinButton: true,
+    "aria-label": "Number",
   },
 };
 

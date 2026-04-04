@@ -42,17 +42,26 @@ const meta: Meta<typeof Flex> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+type BoxIntent = "primary" | "positive" | "caution" | "destructive" | "secondary";
+const intentStyles: Record<BoxIntent, { bg: string; text: string }> = {
+  primary:     { bg: "var(--wim-color-primary)",     text: "var(--wim-color-text-on-primary)" },
+  positive:    { bg: "var(--wim-color-positive)",    text: "var(--wim-color-text-on-positive)" },
+  caution:     { bg: "var(--wim-color-caution)",     text: "var(--wim-color-text-on-caution)" },
+  destructive: { bg: "var(--wim-color-destructive)", text: "var(--wim-color-text-on-destructive)" },
+  secondary:   { bg: "var(--wim-color-secondary)",   text: "var(--wim-color-text-on-secondary)" },
+};
+
 const Box = ({
   children,
-  color = "#3b82f6",
+  intent = "primary",
 }: {
   children: React.ReactNode;
-  color?: string;
+  intent?: BoxIntent;
 }) => (
   <div
     style={{
-      backgroundColor: color,
-      color: "white",
+      backgroundColor: intentStyles[intent].bg,
+      color: intentStyles[intent].text,
       padding: "20px",
       borderRadius: "8px",
       display: "flex",
@@ -72,8 +81,8 @@ export const Basic: Story = {
     return (
       <Flex {...args}>
         <Box>{t("story.flex_item_1", "1")}</Box>
-        <Box color="#10b981">{t("story.flex_item_2", "2")}</Box>
-        <Box color="#f59e0b">{t("story.flex_item_3", "3")}</Box>
+        <Box intent="positive">{t("story.flex_item_2", "2")}</Box>
+        <Box intent="caution">{t("story.flex_item_3", "3")}</Box>
       </Flex>
     );
   },
@@ -89,8 +98,8 @@ export const Column: Story = {
     return (
       <Flex {...args}>
         <Box>{t("story.flex_item_1", "Item 1")}</Box>
-        <Box color="#10b981">{t("story.flex_item_2", "Item 2")}</Box>
-        <Box color="#ef4444">{t("story.flex_item_3", "Item 3")}</Box>
+        <Box intent="positive">{t("story.flex_item_2", "Item 2")}</Box>
+        <Box intent="destructive">{t("story.flex_item_3", "Item 3")}</Box>
       </Flex>
     );
   },
@@ -106,8 +115,8 @@ export const JustifyBetween: Story = {
     return (
       <Flex {...args}>
         <Box>{t("story.flex_left")}</Box>
-        <Box color="#8b5cf6">{t("story.flex_middle")}</Box>
-        <Box color="#ec4899">{t("story.flex_right")}</Box>
+        <Box intent="secondary">{t("story.flex_middle")}</Box>
+        <Box intent="secondary">{t("story.flex_right")}</Box>
       </Flex>
     );
   },
@@ -124,10 +133,10 @@ export const Wrapped: Story = {
     return (
       <Flex {...args}>
         <Box>{t("story.flex_item_1", "1")}</Box>
-        <Box color="#10b981">{t("story.flex_item_2", "2")}</Box>
-        <Box color="#f59e0b">{t("story.flex_item_3", "3")}</Box>
-        <Box color="#ef4444">{t("story.flex_item_4", "4")}</Box>
-        <Box color="#8b5cf6">{t("story.flex_item_5", "5")}</Box>
+        <Box intent="positive">{t("story.flex_item_2", "2")}</Box>
+        <Box intent="caution">{t("story.flex_item_3", "3")}</Box>
+        <Box intent="destructive">{t("story.flex_item_4", "4")}</Box>
+        <Box intent="secondary">{t("story.flex_item_5", "5")}</Box>
       </Flex>
     );
   },

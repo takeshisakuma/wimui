@@ -170,7 +170,7 @@
 
       &--active {
         font-weight: var(--wim-font-weight-bold);
-        color: var(--wim-color-primary);
+        color: color-mix(in srgb, var(--wim-color-primary) 50%, var(--wim-color-text-primary));
         background-color: var(--wim-color-bg-hover);
       }
 

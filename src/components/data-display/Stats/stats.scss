@@ -40,12 +40,12 @@
       border-radius: var(--wim-radius-sm);
   
       &--up {
-        color: var(--wim-color-positive);
+        color: color-mix(in srgb, var(--wim-color-positive) 60%, var(--wim-color-text-primary));
         background-color: color-mix(in srgb, var(--wim-color-positive) 15%, transparent);
       }
-  
+
       &--down {
-        color: var(--wim-color-destructive);
+        color: color-mix(in srgb, var(--wim-color-destructive) 60%, var(--wim-color-text-primary));
         background-color: color-mix(in srgb, var(--wim-color-destructive) 15%, transparent);
       }
   

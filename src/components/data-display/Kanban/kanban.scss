@@ -34,9 +34,9 @@
     &__column-title {
       font-size: var(--wim-font-size-md);
       font-weight: 600;
-      color: var(--wim-color-text, #111827);
+      color: var(--wim-color-text-primary);
     }
-  
+
     &__column-count {
       display: inline-flex;
       align-items: center;
@@ -46,8 +46,8 @@
       padding: 0 0.375rem;
       font-size: var(--wim-font-size-sm);
       font-weight: 600;
-      color: var(--wim-color-text-muted, #6b7280);
-      background: var(--wim-color-bg-muted, #d1d5db);
+      color: var(--wim-color-text-secondary);
+      background: var(--wim-color-bg-secondary);
       border-radius: var(--wim-radius-full);
     }
   

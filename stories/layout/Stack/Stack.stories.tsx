@@ -32,28 +32,28 @@ export const Default: Story = {
       <Stack {...args}>
         <Box
           key="1"
-          bg="#eff6ff"
+          bg="var(--wim-color-primary-container-alpha)"
           p={20}
           radius={8}
-          style={{ border: "1px solid #3b82f6" }}
+          style={{ border: "1px solid var(--wim-color-primary)" }}
         >
           {t("story.stack_item_1", "Item 1")}
         </Box>
         <Box
           key="2"
-          bg="#f0fdf4"
+          bg="color-mix(in srgb, var(--wim-color-positive) 15%, transparent)"
           p={20}
           radius={8}
-          style={{ border: "1px solid #22c55e" }}
+          style={{ border: "1px solid var(--wim-color-positive)" }}
         >
           {t("story.stack_item_2", "Item 2")}
         </Box>
         <Box
           key="3"
-          bg="#fff7ed"
+          bg="color-mix(in srgb, var(--wim-color-caution) 15%, transparent)"
           p={20}
           radius={8}
-          style={{ border: "1px solid #f97316" }}
+          style={{ border: "1px solid var(--wim-color-caution)" }}
         >
           {t("story.stack_item_3", "Item 3")}
         </Box>
@@ -73,28 +73,28 @@ export const Row: Story = {
       <Stack {...args}>
         <Box
           key="1"
-          bg="#eff6ff"
+          bg="var(--wim-color-primary-container-alpha)"
           p={20}
           radius={8}
-          style={{ border: "1px solid #3b82f6" }}
+          style={{ border: "1px solid var(--wim-color-primary)" }}
         >
           {t("story.stack_item_1", "Item 1")}
         </Box>
         <Box
           key="2"
-          bg="#f0fdf4"
+          bg="color-mix(in srgb, var(--wim-color-positive) 15%, transparent)"
           p={20}
           radius={8}
-          style={{ border: "1px solid #22c55e" }}
+          style={{ border: "1px solid var(--wim-color-positive)" }}
         >
           {t("story.stack_item_2", "Item 2")}
         </Box>
         <Box
           key="3"
-          bg="#fff7ed"
+          bg="color-mix(in srgb, var(--wim-color-caution) 15%, transparent)"
           p={20}
           radius={8}
-          style={{ border: "1px solid #f97316" }}
+          style={{ border: "1px solid var(--wim-color-caution)" }}
         >
           {t("story.stack_item_3", "Item 3")}
         </Box>
@@ -112,28 +112,28 @@ export const SpacingTokens: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Stack gap="xl">
-        <Box bg="#f8fafc" p={10}>
+        <Box bg="var(--wim-color-bg-secondary)" p={10}>
           {t("story.stack_gap", "Gap: ")}xl
         </Box>
         <Stack direction="row" gap="xs">
-          <Box bg="#eff6ff" p={10}>
+          <Box bg="var(--wim-color-primary-container-alpha)" p={10}>
             {t("story.stack_gap", "Gap: ")}xs
           </Box>
-          <Box bg="#eff6ff" p={10}>
+          <Box bg="var(--wim-color-primary-container-alpha)" p={10}>
             {t("story.stack_gap", "Gap: ")}xs
           </Box>
-          <Box bg="#eff6ff" p={10}>
+          <Box bg="var(--wim-color-primary-container-alpha)" p={10}>
             {t("story.stack_gap", "Gap: ")}xs
           </Box>
         </Stack>
         <Stack direction="row" gap="lg">
-          <Box bg="#f0fdf4" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-positive) 15%, transparent)" p={10}>
             {t("story.stack_gap", "Gap: ")}lg
           </Box>
-          <Box bg="#f0fdf4" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-positive) 15%, transparent)" p={10}>
             {t("story.stack_gap", "Gap: ")}lg
           </Box>
-          <Box bg="#f0fdf4" p={10}>
+          <Box bg="color-mix(in srgb, var(--wim-color-positive) 15%, transparent)" p={10}>
             {t("story.stack_gap", "Gap: ")}lg
           </Box>
         </Stack>

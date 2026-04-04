@@ -7,6 +7,7 @@ import {
 } from "../../overlay/Popover/Popover";
 import { Button } from "../../form/Button/Button";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
+import type { ButtonIntent } from "../../../types/tokens";
 import "./popconfirm.scss";
 
 export type PopconfirmProps = {
@@ -37,7 +38,7 @@ export type PopconfirmProps = {
   /**
    * Color role of the confirm button
    */
-  okType?: "default" | "destructive" | "positive";
+  okType?: ButtonIntent;
   /**
    * The target element which the Popconfirm will be attached to
    */

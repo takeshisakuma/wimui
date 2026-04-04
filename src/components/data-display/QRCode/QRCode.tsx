@@ -13,6 +13,8 @@ type QRCodeProps = {
   renderAs?: "svg" | "canvas";
   imageSettings?: React.ComponentProps<typeof QRCodeSVG>["imageSettings"];
   className?: string;
+  /** Accessible label describing what the QR code represents */
+  "aria-label"?: string;
 };
 
 export const QRCode = ({
@@ -25,6 +27,7 @@ export const QRCode = ({
   renderAs = "svg",
   imageSettings,
   className,
+  "aria-label": ariaLabel,
 }: QRCodeProps) => {
   const Component = renderAs === "svg" ? QRCodeSVG : QRCodeCanvas;
 
@@ -38,6 +41,7 @@ export const QRCode = ({
         fgColor={fgColor}
         marginSize={marginSize}
         imageSettings={imageSettings}
+        aria-label={ariaLabel ?? value}
       />
     </div>
   );
