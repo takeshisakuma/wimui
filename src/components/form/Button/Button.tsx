@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./button.scss";
 import { Icon } from "../../media/Icon/Icon";
-import type { WimColor, ComponentSize, ButtonVariant } from "../../../types/tokens";
+import type { WimColor, ComponentSize, ButtonVariant, ButtonIntent } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 
@@ -13,7 +13,7 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   size?: ComponentSize;
   variant?: ButtonVariant;
   /** ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。 */
-  intent?: "default" | "destructive" | "positive";
+  intent?: ButtonIntent;
   /** Icon name or custom icon element */
   icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
   iconPosition?: "left" | "right";

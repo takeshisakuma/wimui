@@ -16,6 +16,13 @@ export type ComponentSize = "sm" | "md" | "lg";
 export type ButtonVariant = "solid" | "outline" | "ghost";
 
 /**
+ * Semantic intent values available on Button.
+ * A deliberate subset of WimIntent — buttons express danger/positive/neutral,
+ * not the full palette of feedback intents.
+ */
+export type ButtonIntent = "default" | "destructive" | "positive";
+
+/**
  * Variant values for form field components (Input, Textarea, DatePicker, RichTextEditor).
  */
 export type FieldVariant = "outline" | "ghost";

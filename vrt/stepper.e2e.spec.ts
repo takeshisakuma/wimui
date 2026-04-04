@@ -39,7 +39,7 @@ test.describe("Stepper", () => {
       await page.goto(STORY_URL(ERROR_STORY));
       await page.waitForLoadState("networkidle");
 
-      // ErrorStatus story has current=1 and intent="error", so item at index 1 has error class
+      // ErrorStatus story has current=1 and status="error", so item at index 1 has error class
       await expect(page.locator(".wim-stepper__item").nth(1)).toHaveClass(
         /wim-stepper__item--error/,
       );

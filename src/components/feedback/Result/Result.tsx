@@ -2,9 +2,10 @@ import React, { ReactNode } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { InteractiveArea } from "../../layout/InteractiveArea/InteractiveArea";
+import type { WimIntent } from "../../../types/tokens";
 import "./result.scss";
 
-export type ResultIntent = "success" | "error" | "info" | "warning";
+export type ResultIntent = Extract<WimIntent, "success" | "error" | "info" | "warning">;
 
 export type ResultHttpStatus = "404" | "403" | "500";
 

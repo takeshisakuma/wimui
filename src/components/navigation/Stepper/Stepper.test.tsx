@@ -6,7 +6,7 @@ import { Stepper } from "./Stepper";
 describe("Stepper", () => {
   const steps = [
     { title: "Step 1", description: "First step" },
-    { title: "Step 2", intent: "error" as const },
+    { title: "Step 2", status: "error" as const },
     { title: "Step 3" },
   ];
 
@@ -19,7 +19,7 @@ describe("Stepper", () => {
 
   it("applies status classes correctly", () => {
     const { container } = render(
-      <Stepper steps={steps} current={0} intent="process" />,
+      <Stepper steps={steps} current={0} status="process" />,
     );
     const items = container.querySelectorAll(".wim-stepper__item");
     expect(items[0]).toHaveClass("wim-stepper__item--process");

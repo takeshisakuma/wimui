@@ -12,8 +12,8 @@ export interface Step {
   description?: React.ReactNode;
   /** Custom icon for the step */
   icon?: React.ReactNode;
-  /** Status of the step. If not provided, it will be calculated based on currentStep. */
-  intent?: StepperStatus;
+  /** Explicit workflow status for this step. If omitted, computed from `current` index. */
+  status?: StepperStatus;
   /** Whether the step is disabled */
   disabled?: boolean;
 }
@@ -27,8 +27,8 @@ export interface StepperProps {
   direction?: "horizontal" | "vertical";
   /** Placement of the labels */
   labelPlacement?: "horizontal" | "vertical";
-  /** Status of the current step */
-  intent?: StepperStatus;
+  /** Workflow status shown on the current active step (default: "process") */
+  status?: StepperStatus;
   /** Additional class names */
   className?: string;
   /** Callback function when a step is clicked (if applicable) */
@@ -40,7 +40,7 @@ export const Stepper = ({
   current = 0,
   direction = "horizontal",
   labelPlacement = "horizontal",
-  intent = "process",
+  status = "process",
   className,
   onChange,
 }: StepperProps) => {
@@ -50,7 +50,7 @@ export const Stepper = ({
   ): StepperStatus => {
     if (stepStatus) return stepStatus;
     if (index < current) return "finish";
-    if (index === current) return intent;
+    if (index === current) return status;
     return "wait";
   };
 
@@ -118,7 +118,7 @@ export const Stepper = ({
         onKeyDown={handleContainerKeyDown}
       >
         {steps.map((step, index) => {
-          const stepStatus = getStepStatus(index, step.intent);
+          const stepStatus = getStepStatus(index, step.status);
           const isClickable = !!onChange && !step.disabled;
 
           return (
