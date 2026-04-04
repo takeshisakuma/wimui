@@ -186,6 +186,7 @@ export function DataGrid<T extends Record<string, unknown>>({
   const totalCols = columns.length + (selection ? 1 : 0);
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
       ref={containerRef}
       className={classNames(
@@ -193,7 +194,6 @@ export function DataGrid<T extends Record<string, unknown>>({
         loading && "wim-datagrid--loading",
         className,
       )}
-      role="grid"
       tabIndex={0}
       onKeyDown={handleKeyDown}
     >
