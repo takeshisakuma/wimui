@@ -60,7 +60,7 @@ export const Default: Story = {
               <Button variant="ghost" size="sm">
                 {t("story.appshell_docs")}
               </Button>
-              <Button variant="filled" size="sm">
+              <Button variant="solid" size="sm">
                 {t("story.appshell_signin")}
               </Button>
             </Header.Section>
@@ -112,7 +112,7 @@ export const ModernApp: Story = {
             <Header.Section align="end" style={{ gap: "12px" }}>
               <Icon name="BellIcon" style={{ cursor: "pointer" }} />
               <Icon name="StarIcon" style={{ cursor: "pointer" }} />
-              <Button variant="filled" size="sm">
+              <Button variant="solid" size="sm">
                 {t("story.appshell_checkout")}
               </Button>
             </Header.Section>

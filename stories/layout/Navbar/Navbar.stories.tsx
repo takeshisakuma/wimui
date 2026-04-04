@@ -140,7 +140,7 @@ export const CenteredLinks: Story = {
           <Button variant="ghost" size="sm">
             {t("story.navbar_signin")}
           </Button>
-          <Button variant="filled" size="sm">
+          <Button variant="solid" size="sm">
             {t("story.navbar_signup")}
           </Button>
         </Navbar.Content>

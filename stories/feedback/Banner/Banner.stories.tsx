@@ -121,7 +121,7 @@ export const WithCloseAndAction: Story = {
         description={args.description || t("story.banner_trial_desc")}
         extra={
           <Button size="sm"
-            variant="filled">{t("story.banner_btn_upgrade")}</Button>
+            variant="solid">{t("story.banner_btn_upgrade")}</Button>
         }
         onClose={args.onClose ?? (() => {})}
       />

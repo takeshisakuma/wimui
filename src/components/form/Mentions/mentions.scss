@@ -12,7 +12,7 @@
     padding: var(--wim-spacing-xs) 0; // Floating items have margins
     margin-top: 4px;
     overflow-y: auto;
-    background-color: var(--wim-color-bg-component, #fff);
+    background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-lg);

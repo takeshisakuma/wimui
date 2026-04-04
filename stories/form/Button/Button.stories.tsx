@@ -30,7 +30,7 @@ export const LargePrimaryButton: Story = {
   },
   args: {
     size: "lg",
-    variant: "filled",
+    variant: "solid",
   },
 };
 
@@ -78,7 +78,7 @@ export const DisabledButton: Story = {
   },
   args: {
     size: "md",
-    variant: "filled",
+    variant: "solid",
     disabled: true,
   },
 };
@@ -90,7 +90,7 @@ export const MediumPrimaryLoadingProcessingButton: Story = {
   },
   args: {
     size: "md",
-    variant: "filled",
+    variant: "solid",
     loading: true,
   },
 };
@@ -132,7 +132,7 @@ export const MediumPrimaryInteractiveLoadingButton: Story = {
   },
   args: {
     size: "md",
-    variant: "filled",
+    variant: "solid",
   },
 };
 
@@ -172,7 +172,7 @@ export const WithChildren: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Button variant="filled" size="md">
+      <Button variant="solid" size="md">
         {t("story.button_click_me")}
       </Button>
     );

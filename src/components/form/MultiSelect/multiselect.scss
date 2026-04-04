@@ -43,18 +43,18 @@
   &:focus {
     outline: none;
     border-color: var(--wim-color-primary);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+    box-shadow: var(--wim-shadow-field-focus);
   }
 
   &--open {
     border-color: var(--wim-color-primary);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+    box-shadow: var(--wim-shadow-field-focus);
   }
 
   &--disabled {
     color: var(--wim-color-text-disabled);
     cursor: not-allowed;
-    background-color: rgb(0 0 0 / 0.05);
+    background-color: var(--wim-color-ghost-bg-hover);
     border-color: var(--wim-color-disabled);
   }
 }
@@ -86,7 +86,7 @@
   margin: var(--wim-spacing-xs) 0 0;
   overflow-y: auto;
   list-style: none;
-  background-color: var(--wim-color-bg-component, #fff);
+  background-color: var(--wim-color-bg-component);
   border: 1px solid var(--wim-color-secondary);
   border-radius: var(--wim-radius-md);
   box-shadow: var(--wim-shadow-md);

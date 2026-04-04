@@ -64,7 +64,7 @@
     &:active {
       z-index: 2;
       cursor: grabbing;
-      box-shadow: 0 0 0 6px color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+      box-shadow: 0 0 0 6px var(--wim-color-ghost-border-hover);
     }
   }
 }

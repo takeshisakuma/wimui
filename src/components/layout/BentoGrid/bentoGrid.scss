@@ -27,15 +27,11 @@
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
     border-radius: 1rem;
-    box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.1),
-      0 2px 4px -1px rgb(0 0 0 / 0.06);
+    box-shadow: var(--wim-shadow-sm);
     transition: all 0.2s ease-in-out;
 
     &:hover {
-      box-shadow:
-        0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -2px rgb(0 0 0 / 0.05);
+      box-shadow: var(--wim-shadow-md);
       transform: translateY(-2px);
     }
 

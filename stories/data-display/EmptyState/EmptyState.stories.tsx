@@ -73,7 +73,7 @@ export const CustomAction: Story = {
         extra={
           <>
             <Button variant="outline">{t("story.emptystate_browse_templates")}</Button>
-            <Button variant="filled">{t("story.emptystate_create_project")}</Button>
+            <Button variant="solid">{t("story.emptystate_create_project")}</Button>
           </>
         }
       />
@@ -104,7 +104,7 @@ export const NoVideos: Story = {
         title={t("story.emptystate_novideos_title")}
         description={t("story.emptystate_novideos_desc")}
         icon={<Icon name="VideoIcon" size="lg" />}
-        extra={<Button variant="filled">{t("story.emptystate_upload_video")}</Button>}
+        extra={<Button variant="solid">{t("story.emptystate_upload_video")}</Button>}
       />
     );
   },

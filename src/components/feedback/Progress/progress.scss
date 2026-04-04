@@ -10,21 +10,21 @@
       align-items: center;
       justify-content: space-between;
       font-size: 0.875rem;
-      color: var(--wim-color-text-body, #4a5568);
+      color: var(--wim-color-text-secondary);
     }
   
     &__track {
       position: relative;
       width: 100%;
       overflow: hidden;
-      background-color: var(--wim-color-neutral-light, #edf2f7);
-      border-radius: 999px;
+      background-color: var(--wim-color-bg-secondary);
+      border-radius: var(--wim-radius-full);
     }
   
     &__bar {
       height: 100%;
-      border-radius: 999px;
-      transition: width 0.3s ease;
+      border-radius: var(--wim-radius-full);
+      transition: width var(--wim-duration-base) var(--wim-easing-standard);
     }
   
     // Sizes
@@ -56,19 +56,19 @@
     }
   
     &--success .wim-progress__bar {
-      background-color: var(--wim-color-success, #28a745);
+      background-color: var(--wim-color-positive);
     }
   
     &--warning .wim-progress__bar {
-      background-color: var(--wim-color-warning, #ffc107);
+      background-color: var(--wim-color-caution);
     }
   
     &--error .wim-progress__bar {
-      background-color: var(--wim-color-error, #dc3545);
+      background-color: var(--wim-color-destructive);
     }
   
     &--neutral .wim-progress__bar {
-      background-color: var(--wim-color-neutral, #e9ecef);
+      background-color: var(--wim-color-disabled);
     }
   
     &--info .wim-progress__bar {

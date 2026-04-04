@@ -27,6 +27,12 @@ describe("Skeleton", () => {
     expect(container.firstChild).toHaveClass("wim-skeleton--wave");
   });
 
+  it("has aria-hidden and aria-busy by default", () => {
+    const { container } = render(<Skeleton />);
+    expect(container.firstChild).toHaveAttribute("aria-hidden", "true");
+    expect(container.firstChild).toHaveAttribute("aria-busy", "true");
+  });
+
   it("applies no animation class when animation is none", () => {
     const { container } = render(<Skeleton animation="none" />);
     expect(container.firstChild).not.toHaveClass("wim-skeleton--pulse");

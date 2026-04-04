@@ -38,8 +38,7 @@ test.describe("DatePicker", () => {
       // Click any visible day cell that is not disabled
       const dayCell = page
         .getByRole("dialog")
-        .getByRole("button")
-        .filter({ hasNotText: /prev|next/i })
+        .getByRole("gridcell")
         .first();
       await dayCell.click();
 
@@ -54,8 +53,7 @@ test.describe("DatePicker", () => {
       await input.click();
       const dayButton = page
         .getByRole("dialog")
-        .getByRole("button")
-        .filter({ hasNotText: /prev|next/i })
+        .getByRole("gridcell")
         .first();
       await dayButton.click();
 

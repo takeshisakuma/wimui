@@ -42,6 +42,7 @@ export const Progress = ({
       aria-valuenow={indeterminate ? undefined : value}
       aria-valuemin={0}
       aria-valuemax={max}
+      aria-label={label}
       {...props}
     >
       {(label || showValue) && (

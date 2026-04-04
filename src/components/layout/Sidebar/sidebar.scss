@@ -185,7 +185,7 @@
     position: fixed;
     inset: 0;
     z-index: 999;
-    background-color: rgb(0 0 0 / 0.4);
+    background-color: var(--wim-color-overlay-bg);
     backdrop-filter: blur(2px);
     animation: fadeIn 0.2s ease-in-out;
   }

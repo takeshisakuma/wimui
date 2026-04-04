@@ -177,7 +177,7 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
               )}
               <Button
                 size="sm"
-                variant="filled"
+                variant="solid"
                 onClick={handleNext}
               >{currentStep === steps.length - 1 ? "Finish" : "Next"}</Button>
             </div>

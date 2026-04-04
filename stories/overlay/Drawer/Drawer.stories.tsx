@@ -63,7 +63,7 @@ export const Default: Story = {
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
-          <Button variant="filled">{t("story.drawer_open_right")}</Button>
+          <Button variant="solid">{t("story.drawer_open_right")}</Button>
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
@@ -78,7 +78,7 @@ export const Default: Story = {
             <DrawerClose asChild>
               <Button variant="outline">{t("story.dialog_cancel")}</Button>
             </DrawerClose>
-            <Button variant="filled">{t("story.drawer_confirm")}</Button>
+            <Button variant="solid">{t("story.drawer_confirm")}</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -195,7 +195,7 @@ export const Controlled: Story = {
           {t("story.dialog_curr_state")}: {open ? "Open" : "Closed"}
         </p>
         <Button
-          variant="filled"
+          variant="solid"
           onClick={() => setOpen(true)}
 
         >{t("story.dialog_state_open")}</Button>
@@ -218,7 +218,7 @@ export const Controlled: Story = {
 
               >{t("story.dialog_cancel")}</Button>
               <Button
-                variant="filled"
+                variant="solid"
                 onClick={() => setOpen(false)}
 
               >{t("story.dialog_state_close")}</Button>
@@ -241,7 +241,7 @@ export const WithoutSlide: Story = {
     return (
       <Drawer {...args}>
         <DrawerTrigger asChild>
-          <Button variant="filled">{t("story.drawer_open_no_slide")}</Button>
+          <Button variant="solid">{t("story.drawer_open_no_slide")}</Button>
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>

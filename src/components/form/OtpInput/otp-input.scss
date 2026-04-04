@@ -29,7 +29,7 @@
     font-size: 1.25rem;
     color: var(--wim-color-text-primary);
     text-align: center;
-    background-color: var(--wim-color-bg-component, #fff);
+    background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-md);
     transition: var(--wim-transition-base);
@@ -42,8 +42,7 @@
   
     &:focus {
       border-color: var(--wim-color-primary);
-      box-shadow: 0 0 0 2px
-        color-mix(in srgb, var(--wim-color-primary) 20%, transparent);
+      box-shadow: var(--wim-shadow-field-focus);
     }
   
     &--error {

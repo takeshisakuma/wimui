@@ -34,6 +34,23 @@ describe("Badge", () => {
     expect(container.firstChild).toHaveClass("wim-badge--sm");
   });
 
+  it("sets role='img' when aria-label is provided", () => {
+    render(<Badge aria-label="5件の通知">5</Badge>);
+    expect(screen.getByRole("img", { name: "5件の通知" })).toBeInTheDocument();
+  });
+
+  it("does not set role='img' when no aria-label", () => {
+    render(<Badge>Active</Badge>);
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+  });
+
+  it("respects explicit role over aria-label default", () => {
+    const { container } = render(
+      <Badge aria-label="読み込み中" role="status">3</Badge>,
+    );
+    expect(container.firstChild).toHaveAttribute("role", "status");
+  });
+
   it("applies icon-only class when no content", () => {
     const { container } = render(<Badge icon={<span>Icon</span>} />);
     expect(container.firstChild).toHaveClass("wim-badge--icon-only");

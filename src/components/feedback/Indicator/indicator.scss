@@ -12,8 +12,8 @@
       flex-shrink: 0;
       width: 10px;
       height: 10px;
-      background-color: var(--wim-neutral, #ccc);
-      border: 2px solid #fff;
+      background-color: var(--wim-color-secondary);
+      border: 2px solid var(--wim-color-bg-component);
       border-radius: var(--wim-radius-full);
   
       &--sm {
@@ -36,23 +36,23 @@
   
       // Colors
       &--primary {
-        background-color: var(--wim-primary, #007bff);
+        background-color: var(--wim-color-primary);
       }
   
       &--success {
-        background-color: var(--wim-success, #28a745);
+        background-color: var(--wim-color-positive);
       }
   
       &--error {
-        background-color: var(--wim-error, #dc3545);
+        background-color: var(--wim-color-destructive);
       }
   
       &--warning {
-        background-color: var(--wim-warning, #ffc107);
+        background-color: var(--wim-color-caution);
       }
   
       &--neutral {
-        background-color: var(--wim-neutral, #6c757d);
+        background-color: var(--wim-color-secondary);
       }
   
       // Positions

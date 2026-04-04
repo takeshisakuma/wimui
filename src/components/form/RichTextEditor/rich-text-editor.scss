@@ -6,7 +6,7 @@
     width: 320px;
     max-width: 100%;
     overflow: hidden;
-    background-color: var(--wim-color-bg-component, #fff);
+    background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-md);
     transition: var(--wim-transition-base);
@@ -29,7 +29,7 @@
       border-color: transparent;
   
       &:hover {
-        background-color: rgb(0 0 0 / 0.05);
+        background-color: var(--wim-color-ghost-bg-hover);
       }
   
       &:focus-within {

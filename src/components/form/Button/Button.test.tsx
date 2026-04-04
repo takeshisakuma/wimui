@@ -32,11 +32,11 @@ describe("Button", () => {
 
   it("applies correct classes for size and variant", () => {
     const { container } = render(
-      <Button size="lg" variant="filled">Test</Button>,
+      <Button size="lg" variant="solid">Test</Button>,
     );
     const button = container.querySelector("button");
     expect(button).toHaveClass("wim-button--lg");
-    expect(button).toHaveClass("wim-button--filled");
+    expect(button).toHaveClass("wim-button--solid");
   });
 
   it("applies custom className", () => {

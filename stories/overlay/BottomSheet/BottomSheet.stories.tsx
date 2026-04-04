@@ -47,7 +47,7 @@ export const Default: Story = {
     return (
       <BottomSheet {...args}>
         <BottomSheetTrigger asChild>
-          <Button variant="filled">{t("story.bottomsheet_open")}</Button>
+          <Button variant="solid">{t("story.bottomsheet_open")}</Button>
         </BottomSheetTrigger>
         <BottomSheetContent>
           <BottomSheetHeader>
@@ -84,7 +84,7 @@ export const Default: Story = {
             <BottomSheetClose asChild>
               <Button variant="outline">{t("story.bottomsheet_cancel")}</Button>
             </BottomSheetClose>
-            <Button variant="filled">{t("story.bottomsheet_action")}</Button>
+            <Button variant="solid">{t("story.bottomsheet_action")}</Button>
           </BottomSheetFooter>
         </BottomSheetContent>
       </BottomSheet>

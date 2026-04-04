@@ -13,7 +13,7 @@ export type ComponentSize = "sm" | "md" | "lg";
 /**
  * Variant values for button-style components (Button, ButtonGroup, LinkButton).
  */
-export type ButtonVariant = "filled" | "outline" | "ghost";
+export type ButtonVariant = "solid" | "outline" | "ghost";
 
 /**
  * Variant values for form field components (Input, Textarea, DatePicker, RichTextEditor).
@@ -85,6 +85,7 @@ export type WimColorKey =
   | "bg-secondary"
   | "bg-tertiary"
   | "bg-hover"
+  | "ghost-bg-hover"
   // Border / focus colors
   | "border"
   | "border-secondary"
@@ -144,7 +145,7 @@ export type WimRadius = LiteralWithAutocomplete<WimRadiusKey | WimRadiusToken>;
 /**
  * Shadow tokens keys.
  */
-export type WimShadowKey = "none" | "xs" | "sm" | "md" | "lg" | "inset" | "focus";
+export type WimShadowKey = "none" | "xs" | "sm" | "md" | "lg" | "inset" | "focus" | "field-focus";
 
 /**
  * Shadow tokens available as CSS variable strings.

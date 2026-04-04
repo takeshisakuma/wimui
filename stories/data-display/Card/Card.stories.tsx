@@ -111,7 +111,7 @@ export const WithHeaderAndFooter: Story = {
             style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}
           >
             <Button variant="outline" size="sm">{t("story.card_cancel")}</Button>
-            <Button variant="filled" size="sm">{t("story.card_save")}</Button>
+            <Button variant="solid" size="sm">{t("story.card_save")}</Button>
           </div>
         </Card.Footer>
       </Card>

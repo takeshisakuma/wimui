@@ -25,7 +25,7 @@
   margin: 0;
   overflow-y: auto;
   list-style: none;
-  background-color: var(--wim-color-bg-component, #fff);
+  background-color: var(--wim-color-bg-component);
   border: 1px solid var(--wim-color-secondary);
   border-radius: var(--wim-radius-md);
   box-shadow: var(--wim-shadow-lg);
@@ -60,7 +60,7 @@
   font-size: 0.9rem;
   color: var(--wim-color-text-secondary);
   text-align: center;
-  background-color: var(--wim-color-bg-component, #fff);
+  background-color: var(--wim-color-bg-component);
   border: 1px solid rgb(0 0 0 / 0.1);
   border-radius: var(--wim-radius-md);
   box-shadow: var(--wim-shadow-lg);

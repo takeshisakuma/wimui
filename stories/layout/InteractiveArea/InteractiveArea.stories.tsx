@@ -60,7 +60,7 @@ export const WithActions: Story = {
         description={t("doc.ia_empty_desc")} 
         actions={
           <>
-            <Button variant="filled">{t("upload")}</Button>
+            <Button variant="solid">{t("upload")}</Button>
             <Button variant="outline">{t("learn.more")}</Button>
           </>
         }

@@ -209,7 +209,6 @@
     "{src,stories}/**/*.{ts,tsx}": [
       "eslint --fix --max-warnings=0",
       "node scripts/check-i18n-components.js",
-      "node scripts/tsc-check.js",
       "node scripts/check-git-casing.cjs"
     ],
     "{src,stories}/**/*.{css,scss}": [

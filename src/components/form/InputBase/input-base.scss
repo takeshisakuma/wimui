@@ -13,7 +13,7 @@
   min-width: 0;
   max-width: var(--wim-input-width, 280px);
   min-height: var(--wim-height-md);
-  background-color: var(--wim-color-bg-component, #fff);
+  background-color: var(--wim-color-bg-component);
   border: 1px solid var(--wim-color-secondary);
   border-radius: var(--wim-radius-md);
   transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
@@ -23,7 +23,7 @@
     border-color: transparent;
 
     &:hover:not(.wim-input-base--disabled) {
-        background-color: rgb(0 0 0 / 0.05);
+        background-color: var(--wim-color-ghost-bg-hover);
     }
   }
 

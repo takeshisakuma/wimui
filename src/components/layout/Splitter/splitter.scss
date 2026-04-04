@@ -53,7 +53,7 @@
     &--active {
       background-color: var(
         --wim-splitter-handle-hover-bg,
-        rgb(0 0 0 / 0.05)
+        var(--wim-color-ghost-bg-hover)
       );
 
       &::after {

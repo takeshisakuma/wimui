@@ -60,12 +60,12 @@ test.describe("MultiSelect", () => {
 
       await page.locator(".wim-multiselect-trigger").click();
       const firstOption = page.getByRole("option").first();
+      // Select the option (dropdown stays open in multi-select)
       await firstOption.click();
+      await expect(page.locator(".wim-multiselect-badge")).toHaveCount(1);
 
-      // Re-open and click again to deselect
-      await page.locator(".wim-multiselect-trigger").click();
+      // Click the same option again to deselect (dropdown is still open)
       await firstOption.click();
-
       await expect(page.locator(".wim-multiselect-badge")).toHaveCount(0);
     });
 
@@ -77,7 +77,8 @@ test.describe("MultiSelect", () => {
       const initialCount = await badges.count();
       expect(initialCount).toBeGreaterThan(0);
 
-      await page.locator(".wim-multiselect-badge-remove").first().click();
+      // Delete button is rendered by Chip component as .wim-chip__delete
+      await page.locator(".wim-chip__delete").first().click();
       await expect(badges).toHaveCount(initialCount - 1);
     });
 
@@ -87,9 +88,8 @@ test.describe("MultiSelect", () => {
 
       await page.locator(".wim-multiselect-trigger").click();
       const options = page.getByRole("option");
+      // Select two options in one open session (dropdown stays open)
       await options.nth(0).click();
-
-      await page.locator(".wim-multiselect-trigger").click();
       await options.nth(1).click();
 
       await expect(page.locator(".wim-multiselect-badge")).toHaveCount(2);

@@ -109,7 +109,7 @@ const ToastTrigger = () => {
   return (
     <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
       <Button
-        variant="filled"
+        variant="solid"
         onClick={() =>
           show({
             title: t("story.toast_success_title"),

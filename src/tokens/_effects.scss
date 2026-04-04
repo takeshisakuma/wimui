@@ -22,6 +22,7 @@ $lift-none: 0;
 
 /* --- フォーカス (Focus) --- */
 $shadow-focus: 0 0 0 2px var(--wim-color-bg-primary), 0 0 0 4px var(--wim-color-focus-outline);
+$shadow-field-focus: 0 0 0 2px var(--wim-color-ghost-border-hover);
 
 /* --- アニメーション (Motion) --- */
 $duration-instant: 0.083s; /* ~83ms (1/12s) */
@@ -69,6 +70,7 @@ $opacity-secondary: 0.7; // セカンダリ要素・補助テキスト
     0 8px 16px rgb(0 0 0 / 0.18);
   --wim-shadow-inset: inset 0 2px 4px var(--wim-shadow-color);
   --wim-shadow-focus: #{$shadow-focus};
+  --wim-shadow-field-focus: #{$shadow-field-focus};
   --wim-lift-sm: #{$lift-sm};
   --wim-lift-md: #{$lift-md};
   --wim-lift-none: #{$lift-none};

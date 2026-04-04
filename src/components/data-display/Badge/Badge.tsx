@@ -24,6 +24,8 @@ export const Badge = ({
   children,
   icon,
   className,
+  role,
+  "aria-label": ariaLabel,
   ...props
 }: BadgeProps) => {
   return (
@@ -31,6 +33,8 @@ export const Badge = ({
       prefixClass="wim-badge"
       icon={icon}
       className={classNames(!children && "wim-badge--icon-only", className)}
+      role={role ?? (ariaLabel ? "img" : undefined)}
+      aria-label={ariaLabel}
       {...props}
     >
       {children}

@@ -55,6 +55,7 @@ export const Skeleton = ({
       )}
       style={skeletonStyle}
       aria-hidden="true"
+      aria-busy="true"
       {...props}
     />
   );

@@ -155,6 +155,7 @@ export const DrawerClose = ({
           handleClick();
         },
         className: classNames(
+          "wim-drawer-close-button",
           className,
           (children as React.ReactElement<{ className?: string }>).props
             .className,

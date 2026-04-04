@@ -15,7 +15,7 @@
     &__backdrop {
       position: absolute;
       inset: 0;
-      background-color: var(--wim-color-overlay-bg, rgb(0 0 0 / 0.5));
+      background-color: var(--wim-color-overlay-bg);
       backdrop-filter: blur(2px);
       transition: opacity var(--wim-transition-duration-normal, 200ms)
         var(--wim-transition-timing-ease-out, ease-out);

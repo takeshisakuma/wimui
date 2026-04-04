@@ -201,8 +201,7 @@ export const ContextMenuItem = ({
   const { ref, index } = useListItem();
   const context = useContext(ContextMenuContext);
 
-  const handleClick = (e: React.SyntheticEvent) => {
-    e.stopPropagation();
+  const handleClick = () => {
     if (disabled) return;
 
     if (onClick) {
@@ -212,11 +211,11 @@ export const ContextMenuItem = ({
 
   const itemProps = context ? context.getItemProps({
     index,
-    onClick: (e: React.SyntheticEvent) => handleClick(e),
+    onClick: () => handleClick(),
     onKeyDown: (e: React.KeyboardEvent) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        handleClick(e);
+        handleClick();
       }
     },
   }) : {};
@@ -266,7 +265,7 @@ export const ContextMenuGroup = ({
   className,
 }: ContextMenuGroupProps) => {
   return (
-    <div className={classNames("wim-context-menu-group", className)}>
+    <div role="group" className={classNames("wim-context-menu-group", className)}>
       {title && <div className="wim-context-menu-group__title">{title}</div>}
       {children}
     </div>

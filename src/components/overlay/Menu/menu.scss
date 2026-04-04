@@ -8,7 +8,7 @@
   padding: var(--wim-spacing-xs) 0; // Container padding for floating items
   margin: 0;
   list-style: none;
-  background-color: var(--wim-color-bg-component, #fff);
+  background-color: var(--wim-color-bg-component);
   border: 1px solid var(--wim-color-secondary);
   border-radius: var(--wim-radius-md);
   box-shadow: var(--wim-shadow-md);

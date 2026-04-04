@@ -36,7 +36,7 @@ export const Basic: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Group {...args}>
-        <Button variant="filled">{t("story.group_first", "First")}</Button>
+        <Button variant="solid">{t("story.group_first", "First")}</Button>
         <Button variant="outline">{t("story.group_second", "Second")}</Button>
         <Button variant="ghost">{t("story.group_third", "Third")}</Button>
       </Group>
@@ -52,7 +52,7 @@ export const Grow: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Group {...args}>
-        <Button variant="filled">{t("story.group_first", "First")}</Button>
+        <Button variant="solid">{t("story.group_first", "First")}</Button>
         <Button variant="outline">{t("story.group_second", "Second")}</Button>
       </Group>
     );

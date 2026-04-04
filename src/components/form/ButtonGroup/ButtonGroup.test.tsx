@@ -37,7 +37,7 @@ describe("ButtonGroup", () => {
 
   it("applies variant to child elements", () => {
     render(
-      <ButtonGroup variant="filled">
+      <ButtonGroup variant="solid">
         <button>Btn</button>
       </ButtonGroup>,
     );

@@ -234,7 +234,7 @@
       font-size: var(--wim-font-size-sm);
       font-weight: var(--wim-font-weight-bold);
       color: var(--wim-color-text-secondary);
-      background-color: var(--wim-color-bg-component, #fff);
+      background-color: var(--wim-color-bg-component);
       border: 2px solid var(--wim-color-border-secondary);
       border-radius: var(--wim-radius-full);
       transition: all var(--wim-transition-base);

@@ -7,7 +7,7 @@
     align-items: flex-start;
     justify-content: center;
     padding-top: 20vh;
-    background-color: rgb(0 0 0 / 0.4);
+    background-color: var(--wim-color-overlay-bg);
     backdrop-filter: blur(4px);
   
     // Mobile: sticky to top and less padding

@@ -16,14 +16,16 @@ test.describe("Stepper", () => {
       await page.waitForLoadState("networkidle");
     });
 
-    test("first step has process status class", async ({ page }) => {
-      const firstItem = page.locator(".wim-stepper__item").first();
-      await expect(firstItem).toHaveClass(/wim-stepper__item--process/);
+    test("current step has process status class", async ({ page }) => {
+      // Default story has current=1, so the second item (index 1) is in process
+      const currentItem = page.locator(".wim-stepper__item").nth(1);
+      await expect(currentItem).toHaveClass(/wim-stepper__item--process/);
     });
 
     test("steps after the current have wait status class", async ({ page }) => {
-      const secondItem = page.locator(".wim-stepper__item").nth(1);
-      await expect(secondItem).toHaveClass(/wim-stepper__item--wait/);
+      // Default story has current=1, so the third item (index 2) is waiting
+      const thirdItem = page.locator(".wim-stepper__item").nth(2);
+      await expect(thirdItem).toHaveClass(/wim-stepper__item--wait/);
     });
 
     test("renders step titles", async ({ page }) => {
@@ -37,11 +39,10 @@ test.describe("Stepper", () => {
       await page.goto(STORY_URL(ERROR_STORY));
       await page.waitForLoadState("networkidle");
 
-      const items = page.locator(".wim-stepper__item");
-      const hasError = await items
-        .filter({ has: page.locator(".wim-stepper__item--error") })
-        .count();
-      expect(hasError).toBeGreaterThan(0);
+      // ErrorStatus story has current=1 and intent="error", so item at index 1 has error class
+      await expect(page.locator(".wim-stepper__item").nth(1)).toHaveClass(
+        /wim-stepper__item--error/,
+      );
     });
   });
 

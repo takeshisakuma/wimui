@@ -27,8 +27,8 @@ describe("LinkButton", () => {
   });
 
   it("applies variant class", () => {
-    render(<LinkButton href="#" variant="filled">Filled</LinkButton>);
-    expect(screen.getByRole("link")).toHaveClass("wim-button--filled");
+    render(<LinkButton href="#" variant="solid">Filled</LinkButton>);
+    expect(screen.getByRole("link")).toHaveClass("wim-button--solid");
   });
 
   it("applies intent class", () => {

@@ -306,7 +306,7 @@ export const MotionEffects: Story = {
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <div style={{ display: "flex", gap: "1rem" }}>
               <Button
-                variant="filled"
+                variant="solid"
                 onClick={() => setImageKey((prev) => prev + 1)}
                 icon="RefreshIcon"
 

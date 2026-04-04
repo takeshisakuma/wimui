@@ -8,7 +8,7 @@
     font-weight: normal;
     line-height: 1;
     text-decoration: none;
-    border-radius: 999px;
+    border-radius: var(--wim-radius-full);
 
     &__icon {
       display: inline-flex;

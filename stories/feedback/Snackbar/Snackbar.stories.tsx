@@ -158,7 +158,7 @@ export const InteractiveDemo: Story = {
       <div style={{ padding: "40px" }}>
         <Button
           onClick={() => setOpen(true)}
-          variant="filled"
+          variant="solid"
 
         >{t("story.snackbar_show")}</Button>
         <Snackbar

@@ -133,7 +133,7 @@ export const PremiumFeatures: Story = {
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.video_premium_features_lazy_load")}</p>
           <div style={{ marginBottom: "1rem" }}>
             <Button
-              variant="filled"
+              variant="solid"
               onClick={() => setVideoKey((prev) => prev + 1)}
               icon="RefreshIcon"
 

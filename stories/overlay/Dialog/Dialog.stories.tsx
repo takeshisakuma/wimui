@@ -50,7 +50,7 @@ export const Default: Story = {
     return (
       <Dialog {...args}>
         <DialogTrigger asChild>
-          <Button variant="filled">{t("story.dialog_open")}</Button>
+          <Button variant="solid">{t("story.dialog_open")}</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -75,7 +75,7 @@ export const Default: Story = {
             <DialogClose asChild>
               <Button variant="outline">{t("story.dialog_cancel")}</Button>
             </DialogClose>
-            <Button variant="filled">{t("story.dialog_save")}</Button>
+            <Button variant="solid">{t("story.dialog_save")}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -104,7 +104,7 @@ export const Uncontrolled: Story = {
               <Button variant="outline">{t("story.dialog_cancel")}</Button>
             </DialogClose>
             <Button
-              variant="filled"
+              variant="solid"
               onClick={() => alert(t("story.dialog_confirmed_msg"))}
 
           >{t("story.dialog_confirm")}</Button>
@@ -132,7 +132,7 @@ export const Controlled: Story = {
           {t("story.dialog_curr_state")}: {open ? t("story.dialog_open_state") : t("story.dialog_closed_state")}
         </p>
         <Button
-          variant="filled"
+          variant="solid"
           onClick={() => setOpen(true)}
 
         >{t("story.dialog_state_open")}</Button>
@@ -153,7 +153,7 @@ export const Controlled: Story = {
 
               >{t("story.dialog_cancel")}</Button>
               <Button
-                variant="filled"
+                variant="solid"
                 onClick={() => setOpen(false)}
 
               >{t("story.dialog_state_close")}</Button>

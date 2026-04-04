@@ -17,6 +17,12 @@ describe("Progress", () => {
     expect(screen.getByText("75%")).toBeInTheDocument();
   });
 
+  it("sets aria-label from label prop", () => {
+    render(<Progress value={50} label="ファイルのアップロード中" />);
+    const progressbar = screen.getByRole("progressbar");
+    expect(progressbar).toHaveAttribute("aria-label", "ファイルのアップロード中");
+  });
+
   it("renders indeterminate state", () => {
     render(<Progress indeterminate />);
     const progress = screen.getByRole("progressbar");

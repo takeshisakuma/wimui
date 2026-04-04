@@ -10,7 +10,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    background-color: rgb(0 0 0 / 0.4);
+    background-color: var(--wim-color-overlay-bg);
     backdrop-filter: blur(2px);
     animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -27,7 +27,7 @@
     max-height: 90vh;
     overflow: hidden;
     color: var(--wim-color-text-primary);
-    background-color: var(--wim-color-bg-component, #fff);
+    background-color: var(--wim-color-bg-component);
     border-radius: 16px 16px 0 0;
     box-shadow: var(--wim-shadow-lg);
     animation: slideUp 300ms cubic-bezier(0.16, 1, 0.3, 1);

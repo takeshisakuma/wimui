@@ -104,7 +104,7 @@ export const LoginForm: StoryObj = {
                 </Stack>
 
                 <Stack gap="sm">
-                  <Button variant="filled"
+                  <Button variant="solid"
                     style={{ width: "100%" }}>{t("login.sign_in")}</Button>
 
                   <Button
@@ -563,7 +563,7 @@ export const UserProfileForm: StoryObj = {
                   <Divider />
                   <Group justify="end" gap="md">
                     <Button variant="ghost">{t("profile.btn_cancel")}</Button>
-                    <Button variant="filled">{t("profile.btn_save")}</Button>
+                    <Button variant="solid">{t("profile.btn_save")}</Button>
                   </Group>
                 </Stack>
               </form>
@@ -752,7 +752,7 @@ export const PricingTable: StoryObj = {
                 </List>
               </Stack>
 
-              <Button variant="filled" style={{ width: "100%" }}>{t("pricing.pro_btn")}</Button>
+              <Button variant="solid" style={{ width: "100%" }}>{t("pricing.pro_btn")}</Button>
             </Stack>
           </Card>
 
@@ -875,7 +875,7 @@ export const HeroSection: StoryObj = {
               </Stack>
 
               <Group gap="xl" wrap="wrap" justify="evenly">
-                <Button variant="filled"
+                <Button variant="solid"
                   size="md">{t("hero.btn_started")}</Button>
                 <Button variant="outline"
                   size="md">{t("hero.btn_docs")}</Button>
@@ -1016,7 +1016,7 @@ export const ErrorPage: StoryObj = {
           </Alert>
 
           <Stack direction={{ base: "column", sm: "row" }} gap="xl">
-            <Button variant="filled">{t("error.btn_home")}</Button>
+            <Button variant="solid">{t("error.btn_home")}</Button>
             <Button variant="outline">{t("error.btn_support")}</Button>
           </Stack>
         </Stack>

@@ -23,7 +23,7 @@
     appearance: none;
     cursor: pointer;
     background-color: var(--wim-color-border-secondary);
-    border-radius: 9999px;
+    border-radius: var(--wim-radius-full);
     transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
     will-change: background-color, transform;
   

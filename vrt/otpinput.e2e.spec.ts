@@ -91,8 +91,12 @@ test.describe("OtpInput", () => {
       // Simulate paste via clipboard API
       await page.evaluate(() => {
         const clipboardData = new DataTransfer();
-        clipboardData.setData("text/plain", "1234");
-        const event = new ClipboardEvent("paste", { clipboardData });
+        clipboardData.setData("text", "1234");
+        const event = new ClipboardEvent("paste", {
+          clipboardData,
+          bubbles: true,
+          cancelable: true,
+        });
         document.activeElement?.dispatchEvent(event);
       });
 

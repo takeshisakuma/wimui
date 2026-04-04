@@ -68,7 +68,7 @@ export const OverflowEscape: Story = {
 
           <Button
             onClick={() => setShow(!show)}
-            variant="filled"
+            variant="solid"
 
           >{show ? t("story.portal_btn_hide") : t("story.portal_btn_show")}</Button>
 
@@ -210,7 +210,7 @@ const SenderComponent = ({
         </div>
         <Button
           size="sm"
-          variant={active ? "outline" : "filled"}
+          variant={active ? "outline" : "solid"}
           onClick={() => {
             const newState = !active;
             setActive(newState);

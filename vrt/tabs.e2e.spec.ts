@@ -46,7 +46,7 @@ test.describe("Tabs", () => {
       const secondTab = page.getByRole("tab").nth(1);
       const firstTab = page.getByRole("tab").first();
 
-      await secondTab.focus();
+      await secondTab.click();
       await page.keyboard.press("ArrowLeft");
       await expect(firstTab).toBeFocused();
     });
@@ -96,7 +96,7 @@ test.describe("Tabs", () => {
       const secondTab = page.getByRole("tab").nth(1);
       const firstTab = page.getByRole("tab").first();
 
-      await secondTab.focus();
+      await secondTab.click();
       await page.keyboard.press("ArrowUp");
       await expect(firstTab).toBeFocused();
     });

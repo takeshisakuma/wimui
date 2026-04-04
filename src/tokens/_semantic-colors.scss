@@ -123,6 +123,7 @@ $scrollbar-track: $pccs-gy8-5;
   /* ── Utility ────────────────────────────────────────────── */
   --wim-color-bg-subtle: #fafafa;
   --wim-color-close-hover: rgb(0 0 0 / 0.05);
+  --wim-color-ghost-bg-hover: rgb(0 0 0 / 0.05);
 
   /* Helper variables for toggle states */
   --on: initial;
@@ -198,6 +199,7 @@ $scrollbar-track: $pccs-gy8-5;
   /* ── Utility (dark) ─────────────────────────────────────── */
   --wim-color-bg-subtle: #262626;
   --wim-color-close-hover: rgb(255 255 255 / 0.1);
+  --wim-color-ghost-bg-hover: rgb(255 255 255 / 0.08);
 
   /* Typography decoration tokens – dark mode overrides */
   --wim-decoration-highlight-color: #5c4400; // Dark amber: white text stays readable

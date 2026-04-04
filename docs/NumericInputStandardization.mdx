@@ -1,7 +1,9 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
-<Meta title="Architecture/Numeric Input Standardization" />
+{/* useTranslation(["common", "docs_guide_standardization"]) */}
+
+<Meta title="Guides/Numeric Input Standardization" />
 
 # <T k="guide.numeric_std_title" />
 
@@ -9,35 +11,14 @@ import { T } from "../stories/T";
 
 ---
 
-## <T k="guide.numeric_std_concept_title" />
-
+## <T k="doc.design_intent_title" />
 <p><T k="guide.numeric_std_concept_desc" /></p>
+<p><T k="guide.numeric_std_usage_warning_desc" /></p>
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', margin: '24px 0' }}>
-  <div style={{ padding: '16px', borderRadius: '8px', border: '1px solid var(--wim-color-border)', backgroundColor: 'var(--wim-color-surface-variant)' }}>
-    <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--color-positive)' }}><T k="common.do" /></strong>
-    <ul style={{ margin: 0, paddingLeft: '20px' }}>
-      <li><T k="guide.numeric_std_usage_warning_desc" /></li>
-      <li><T k="guide.numeric_std_usage_do_1" /></li>
-    </ul>
-  </div>
-  <div style={{ padding: '16px', borderRadius: '8px', border: '1px solid var(--wim-color-border)', backgroundColor: 'var(--wim-color-surface-variant)' }}>
-    <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--color-destructive)' }}><T k="common.dont" /></strong>
-    <ul style={{ margin: 0, paddingLeft: '20px' }}>
-      <li><T k="guide.numeric_std_usage_dont_1" /></li>
-      <li><T k="guide.numeric_std_usage_dont_2" /></li>
-      <li><T k="guide.numeric_std_usage_dont_3" /></li>
-    </ul>
-  </div>
-</div>
+## <T k="doc.choice_matrix_title" />
+<p><T k="guide.numeric_std_recommend_desc" /></p>
 
----
-
-## <T k="guide.numeric_std_problems_title" />
-
-### <T k="guide.numeric_std_problem_1_title" />
-<p><T k="guide.numeric_std_problem_1_desc" /></p>
-
+## <T k="doc.anatomy_title" />
 <table>
   <thead>
     <tr>
@@ -47,85 +28,58 @@ import { T } from "../stories/T";
   </thead>
   <tbody>
     <tr>
-      <td>Chrome</td>
+      <td><b>Safari (Desktop/iOS)</b></td>
       <td><T k="guide.numeric_std_table_input_disabled" /></td>
     </tr>
     <tr>
-      <td>Safari / Firefox</td>
+      <td><b>Chrome / Firefox</b></td>
       <td><T k="guide.numeric_std_table_input_js_empty" /></td>
     </tr>
   </tbody>
 </table>
 
-### <T k="guide.numeric_std_problem_2_title" />
+## <T k="doc.usage" />
+<p><T k="guide.numeric_std_usage_desc" /></p>
+<ul>
+  <li><T k="guide.numeric_std_usage_do_1" /></li>
+  <li><T k="guide.numeric_std_usage_dont_1" /></li>
+  <li><T k="guide.numeric_std_usage_dont_2" /></li>
+  <li><T k="guide.numeric_std_usage_dont_3" /></li>
+</ul>
+
+## <T k="doc.content_guidelines_title" />
 <p><T k="guide.numeric_std_problem_2_desc" /></p>
+<ul>
+  <li><T k="guide.numeric_std_exp_notation_desc" /></li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th><T k="guide.numeric_std_table_browser" /></th>
-      <th><T k="guide.numeric_std_table_behavior" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Safari</td>
-      <td><T k="guide.numeric_std_safari_behavior" /></td>
-    </tr>
-    <tr>
-      <td>Firefox</td>
-      <td><T k="guide.numeric_std_firefox_behavior" /></td>
-    </tr>
-  </tbody>
-</table>
-
-### <T k="guide.numeric_std_problem_3_title" />
-<p><T k="guide.numeric_std_problem_3_desc" /></p>
-
-```css
-/* Firefox adjustment example */
-@-moz-document url-prefix() {
-  input[type="number"] {
-    padding: 0 1rem;
-  }
-}
-```
-
-### <T k="guide.numeric_std_problem_4_title" />
-<p><T k="guide.numeric_std_problem_4_desc" /></p>
-
+## <T k="doc.motion_spec_title" />
 <p><T k="guide.numeric_std_spin_button_warning" /></p>
 
-```css
-/* Hiding spin buttons */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  appearance: none;
-  margin: 0;
-}
-input[type="number"] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
+## <T k="doc.a11y_spec_title" />
+<p><T k="guide.numeric_std_problem_4_desc" /></p>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="guide.numeric_std_usage_do_1" /></li>
+  <li><T k="guide.numeric_std_usage_dont_1" /></li>
+</ul>
+
+## <T k="doc.tokens_title" />
+<p><T k="guide.numeric_std_tokens_desc" /></p>
+
+## <T k="doc.responsive_title" />
+<p><T k="guide.numeric_std_responsive_desc" /></p>
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="guide.numeric_std_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="guide.numeric_std_i18n_desc" /></p>
+
+## <T k="doc.test_title" />
+<p><T k="guide.numeric_std_test_desc" /></p>
+
+```bash
+npm run test:i18n
 ```
-
----
-
-## <T k="guide.numeric_std_recommend_title" />
-
-<p><T k="guide.numeric_std_recommend_desc" /></p>
-
-```html
-<!-- Recommended format for credit cards, etc. -->
-<input 
-  type="text" 
-  inputmode="numeric" 
-  pattern="[0-9]*" 
-/>
-```
-
-<blockquote>
-  <strong><T k="guide.numeric_std_usage_warning_title" /></strong><br />
-  <T k="guide.numeric_std_exp_notation_desc" />
-</blockquote>

@@ -36,7 +36,7 @@ export const Default: Story = {
           <p>{t("story.errorboundary_desc")}</p>
           <Button
             onClick={() => setShouldThrow(true)}
-            variant="filled"
+            variant="solid"
 
           >{t("story.errorboundary_btn_trigger")}</Button>
           <ErrorBoundary onReset={() => setShouldThrow(false)}>
@@ -61,7 +61,7 @@ export const CustomFallback: Story = {
         <Stack align="center" gap="lg">
           <Button
             onClick={() => setShouldThrow(true)}
-            variant="filled"
+            variant="solid"
 
           >{t("story.errorboundary_btn_trigger_custom")}</Button>
           <ErrorBoundary

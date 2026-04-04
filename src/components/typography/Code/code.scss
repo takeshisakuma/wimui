@@ -10,7 +10,7 @@
     &--inline {
       padding: 0.2em 0.4em;
       color: #eb5757;
-      background-color: rgb(0 0 0 / 0.05);
+      background-color: var(--wim-color-ghost-bg-hover);
     }
 
     &--block {

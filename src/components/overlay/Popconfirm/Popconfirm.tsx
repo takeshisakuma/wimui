@@ -115,7 +115,7 @@ export const Popconfirm = ({
               <Button
                 size="sm"
                 onClick={onConfirm}
-                variant="filled"
+                variant="solid"
                 intent={okType}
               >{okText}</Button>
             </PopoverClose>

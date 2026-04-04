@@ -76,7 +76,7 @@ const DefaultFallback = ({
         <Stack direction="row" gap="sm">
           <Button
             onClick={reset}
-            variant="filled"
+            variant="solid"
             size="sm"
           >{labels.retry}</Button>
           <Button

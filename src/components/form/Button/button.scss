@@ -106,7 +106,7 @@
       font-size: var(--wim-font-size-sm);
     }
 
-    &--filled {
+    &--solid {
       --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
 
       background-image: var(--wim-glass-gradient);
