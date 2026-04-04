@@ -111,6 +111,21 @@ export const DatePicker = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Handle Escape key globally when open
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        setIsOpen(false);
+        inputRef.current?.focus();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
   const formatDate = (date: Date | null): string => {
     if (!date) return "";
 
@@ -150,13 +165,39 @@ export const DatePicker = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (disabled) return;
+
     if (e.key === "Escape") {
       setIsOpen(false);
-    } else if (e.key === "Enter" || e.key === " ") {
+      inputRef.current?.focus();
+    } else if (
+      e.key === "Enter" ||
+      e.key === " " ||
+      (e.key === "ArrowDown" && (e.altKey || !isOpen))
+    ) {
       e.preventDefault();
       setIsOpen(!isOpen);
     }
   };
+
+  // Focus management when opening
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        const focusedDay = containerRef.current?.querySelector<HTMLButtonElement>(
+          ".wim-calendar-day--focused:not(:disabled), .wim-calendar-day--selected:not(:disabled)",
+        );
+        if (focusedDay) {
+          focusedDay.focus();
+        } else {
+          containerRef.current?.querySelector<HTMLButtonElement>(
+            ".wim-calendar-day:not(.wim-calendar-day--other-month):not(:disabled)",
+          )?.focus();
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   return (
     <FieldTemplate

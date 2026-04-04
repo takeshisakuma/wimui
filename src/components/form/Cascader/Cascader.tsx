@@ -99,6 +99,18 @@ export const Cascader = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Ensure keyboard-focused item is scrolled into view
+  useEffect(() => {
+    if (isOpen && focusedLevel >= 0) {
+      const activeIdx = focusedIndexes[focusedLevel];
+      const itemId = `${id}-menu-${focusedLevel}-option-${activeIdx}`;
+      const el = containerRef.current?.querySelector(`#${itemId}`);
+      if (el) {
+        el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    }
+  }, [focusedLevel, focusedIndexes, isOpen, id]);
+
   const handleToggle = () => {
     if (!disabled) {
       const nextOpen = !isOpen;
@@ -190,7 +202,7 @@ export const Cascader = ({
     if (disabled) return;
 
     if (!isOpen) {
-      if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+      if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown" || (e.key === "ArrowDown" && e.altKey)) {
         e.preventDefault();
         handleToggle();
       }
@@ -306,7 +318,7 @@ export const Cascader = ({
     }
 
     return menus.map((menuOptions, level) => (
-      <div key={level} className="wim-cascader__menu" role="menu">
+      <div key={level} className="wim-cascader__menu" role="listbox">
         {menuOptions.map((option, index) => {
           const isActive = activePath[level] === option.value;
           const isFocused = focusedLevel === level && focusedIndexes[level] === index;

@@ -336,65 +336,71 @@ export const Calendar = ({
         tabIndex={-1}
         onKeyDown={handleKeyDown}
       >
-        {weekDays.map((day, index) => {
-          const dayOfWeek = (index + weekStartsOn) % 7;
-          return (
-            <div
-              key={day}
-              className={classNames(
-                "wim-calendar-weekday",
-                dayOfWeek === 0 && "wim-calendar-weekday--sunday",
-                dayOfWeek === 6 && "wim-calendar-weekday--saturday",
-              )}
-              role="columnheader"
-              aria-label={day}
-            >
-              {day}
-            </div>
-          );
-        })}
-        {daysGrid.map(({ date, currentMonth }, index) => {
-          const selected = isSelected(date);
-          const focused = isSameDay(date, focusedDate);
-          const today = isToday(date);
-          const inRange = isInRange(date);
-          const dateDisabled = isDateDisabled(date);
-          const isStart = rangeMode && rangeStart && isSameDay(date, rangeStart);
-          const isEnd = rangeMode && rangeEnd && isSameDay(date, rangeEnd);
+        <div role="row">
+          {weekDays.map((day, index) => {
+            const dayOfWeek = (index + weekStartsOn) % 7;
+            return (
+              <div
+                key={day}
+                className={classNames(
+                  "wim-calendar-weekday",
+                  dayOfWeek === 0 && "wim-calendar-weekday--sunday",
+                  dayOfWeek === 6 && "wim-calendar-weekday--saturday",
+                )}
+                role="columnheader"
+                aria-label={day}
+              >
+                {day}
+              </div>
+            );
+          })}
+        </div>
+        {Array.from({ length: Math.ceil(daysGrid.length / 7) }).map((_, rowIndex) => (
+          <div key={rowIndex} role="row">
+            {daysGrid.slice(rowIndex * 7, (rowIndex + 1) * 7).map(({ date, currentMonth }, index) => {
+              const selected = isSelected(date);
+              const focused = isSameDay(date, focusedDate);
+              const today = isToday(date);
+              const inRange = isInRange(date);
+              const dateDisabled = isDateDisabled(date);
+              const isStart = rangeMode && rangeStart && isSameDay(date, rangeStart);
+              const isEnd = rangeMode && rangeEnd && isSameDay(date, rangeEnd);
 
-          return (
-            <button
-              key={index}
-              type="button"
-              className={classNames(
-                "wim-calendar-day",
-                date.getDay() === 0 && "wim-calendar-day--sunday",
-                date.getDay() === 6 && "wim-calendar-day--saturday",
-                !currentMonth && "wim-calendar-day--other-month",
-                selected && "wim-calendar-day--selected",
-                focused && "wim-calendar-day--focused",
-                today && "wim-calendar-day--today",
-                inRange && "wim-calendar-day--in-range",
-                dateDisabled && "wim-calendar-day--disabled",
-                isStart && "wim-calendar-day--range-start",
-                isEnd && "wim-calendar-day--range-end",
-              )}
-              onClick={() => handleDateClick(date)}
-              onFocus={() => setFocusedDate(date)}
-              disabled={disabled || dateDisabled}
-              tabIndex={focused ? 0 : -1}
-              role="gridcell"
-              aria-selected={selected}
-              aria-label={mergedLabels.ariaDate(
-                date.getFullYear(),
-                date.getMonth() + 1,
-                date.getDate(),
-              )}
-            >
-              <span className="wim-calendar-day-text">{date.getDate()}</span>
-            </button>
-          );
-        })}
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  className={classNames(
+                    "wim-calendar-day",
+                    date.getDay() === 0 && "wim-calendar-day--sunday",
+                    date.getDay() === 6 && "wim-calendar-day--saturday",
+                    !currentMonth && "wim-calendar-day--other-month",
+                    selected && "wim-calendar-day--selected",
+                    focused && "wim-calendar-day--focused",
+                    today && "wim-calendar-day--today",
+                    inRange && "wim-calendar-day--in-range",
+                    dateDisabled && "wim-calendar-day--disabled",
+                    isStart && "wim-calendar-day--range-start",
+                    isEnd && "wim-calendar-day--range-end",
+                  )}
+                  onClick={() => handleDateClick(date)}
+                  onFocus={() => setFocusedDate(date)}
+                  disabled={disabled || dateDisabled}
+                  tabIndex={focused ? 0 : -1}
+                  role="gridcell"
+                  aria-selected={selected}
+                  aria-label={mergedLabels.ariaDate(
+                    date.getFullYear(),
+                    date.getMonth() + 1,
+                    date.getDate(),
+                  )}
+                >
+                  <span className="wim-calendar-day-text">{date.getDate()}</span>
+                </button>
+              );
+            })}
+          </div>
+        ))}
       </div>
     </div>
   );
