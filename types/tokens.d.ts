@@ -11,7 +11,7 @@ export type ComponentSize = "sm" | "md" | "lg";
 /**
  * Variant values for button-style components (Button, ButtonGroup, LinkButton).
  */
-export type ButtonVariant = "filled" | "outline" | "ghost";
+export type ButtonVariant = "solid" | "outline" | "ghost";
 /**
  * Variant values for form field components (Input, Textarea, DatePicker, RichTextEditor).
  */
@@ -27,7 +27,7 @@ export type WimIntent = "primary" | "secondary" | "success" | "warning" | "error
 /**
  * Color tokens keys available as CSS variables.
  */
-export type WimColorKey = "primary" | "primary-hover" | "primary-active" | "primary-light" | "primary-container-alpha" | "secondary" | "informative" | "destructive" | "positive" | "caution" | "disabled" | "text-primary" | "text-secondary" | "text-tertiary" | "text-disabled" | "text-white" | "text-error" | "text-placeholder" | "text-on-primary" | "text-on-secondary" | "text-on-destructive" | "text-on-positive" | "text-on-caution" | "text-on-informative" | "text-on-disabled" | "text-on-overlay" | "surface" | "surface-variant" | "surface-hover" | "surface-variant-alpha" | "bg-app" | "bg-component" | "bg-primary" | "bg-secondary" | "bg-tertiary" | "bg-hover" | "border" | "border-secondary" | "focus-outline" | "overlay-bg" | "overlay-bg-light" | "overlay-bg-dark" | "scrollbar-thumb" | "scrollbar-track";
+export type WimColorKey = "primary" | "primary-hover" | "primary-active" | "primary-light" | "primary-container-alpha" | "secondary" | "informative" | "destructive" | "positive" | "caution" | "disabled" | "text-primary" | "text-secondary" | "text-tertiary" | "text-disabled" | "text-white" | "text-error" | "text-placeholder" | "text-on-primary" | "text-on-secondary" | "text-on-destructive" | "text-on-positive" | "text-on-caution" | "text-on-informative" | "text-on-disabled" | "text-on-overlay" | "surface" | "surface-variant" | "surface-hover" | "surface-variant-alpha" | "bg-app" | "bg-component" | "bg-primary" | "bg-secondary" | "bg-tertiary" | "bg-hover" | "ghost-bg-hover" | "border" | "border-secondary" | "focus-outline" | "overlay-bg" | "overlay-bg-light" | "overlay-bg-dark" | "scrollbar-thumb" | "scrollbar-track";
 /**
  * Color tokens available as CSS variable strings.
  */
@@ -54,7 +54,7 @@ export type WimRadius = LiteralWithAutocomplete<WimRadiusKey | WimRadiusToken>;
 /**
  * Shadow tokens keys.
  */
-export type WimShadowKey = "none" | "xs" | "sm" | "md" | "lg" | "inset" | "focus";
+export type WimShadowKey = "none" | "xs" | "sm" | "md" | "lg" | "inset" | "focus" | "field-focus";
 /**
  * Shadow tokens available as CSS variable strings.
  */

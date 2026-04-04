@@ -15,4 +15,4 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
 /**
  * 状態やカウントなどを表示するためのバッジコンポーネント。
  */
-export declare const Badge: ({ children, icon, className, ...props }: BadgeProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Badge: ({ children, icon, className, role, "aria-label": ariaLabel, ...props }: BadgeProps) => import("react/jsx-runtime").JSX.Element;

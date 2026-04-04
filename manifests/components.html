@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.2s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -2256,7 +2256,7 @@ sidebar?: React.ReactNode</code></pre>
                   &lt;Button variant=&quot;ghost&quot; size=&quot;sm&quot;&gt;
                     {t(&quot;story.appshell_docs&quot;)}
                   &lt;/Button&gt;
-                  &lt;Button variant=&quot;filled&quot; size=&quot;sm&quot;&gt;
+                  &lt;Button variant=&quot;solid&quot; size=&quot;sm&quot;&gt;
                     {t(&quot;story.appshell_signin&quot;)}
                   &lt;/Button&gt;
                 &lt;/Header.Section&gt;
@@ -2312,7 +2312,7 @@ sidebar?: React.ReactNode</code></pre>
                 &lt;Header.Section align=&quot;end&quot; style={{ gap: &quot;12px&quot; }}&gt;
                   &lt;Icon name=&quot;BellIcon&quot; style={{ cursor: &quot;pointer&quot; }} /&gt;
                   &lt;Icon name=&quot;StarIcon&quot; style={{ cursor: &quot;pointer&quot; }} /&gt;
-                  &lt;Button variant=&quot;filled&quot; size=&quot;sm&quot;&gt;
+                  &lt;Button variant=&quot;solid&quot; size=&quot;sm&quot;&gt;
                     {t(&quot;story.appshell_checkout&quot;)}
                   &lt;/Button&gt;
                 &lt;/Header.Section&gt;
@@ -3667,7 +3667,7 @@ visualizer?: boolean = false</code></pre>
                 &lt;p style={{ marginBottom: &quot;1rem&quot;, fontWeight: &quot;bold&quot; }}&gt;{t(&quot;story.audio_premium_features_lazy_load&quot;)}&lt;/p&gt;
                 &lt;div style={{ marginBottom: &quot;1rem&quot; }}&gt;
                     &lt;Button
-                        variant=&quot;filled&quot;
+                        variant=&quot;solid&quot;
                         onClick={() =&gt; setAudioKey((prev) =&gt; prev + 1)}
                         icon=&quot;RefreshIcon&quot;&gt;{t(&quot;story.audio_premium_features_reload&quot;)}&lt;/Button&gt;
                 &lt;/div&gt;
@@ -5481,7 +5481,7 @@ title?: React.ReactNode</code></pre>
             description={args.description || t(&quot;story.banner_trial_desc&quot;)}
             extra={
               &lt;Button size=&quot;sm&quot;
-                variant=&quot;filled&quot;&gt;{t(&quot;story.banner_btn_upgrade&quot;)}&lt;/Button&gt;
+                variant=&quot;solid&quot;&gt;{t(&quot;story.banner_btn_upgrade&quot;)}&lt;/Button&gt;
             }
             onClose={args.onClose ?? (() =&gt; {})} /&gt;
     );
@@ -6124,6 +6124,98 @@ import * as Stories from &quot;./BaseListItem.stories&quot;;
 
 ---
 
+## &lt;T k=&quot;doc.design_intent_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.baseListItem_design_intent&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.choice_matrix_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.baseListItem_choice_matrix_desc&quot; /&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;&lt;T k=&quot;doc.component&quot; /&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;T k=&quot;doc.usage_scenario&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;b&gt;BaseListItem&lt;/b&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;T k=&quot;doc.baseListItem_choice_use_when&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;b&gt;Paragraph&lt;/b&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;T k=&quot;doc.baseListItem_choice_alt_when&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+## &lt;T k=&quot;doc.anatomy_title&quot; /&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;&lt;T k=&quot;doc.component&quot; /&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;T k=&quot;doc.description&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;b&gt;&lt;T k=&quot;doc.baseListItem_anatomy_root_label&quot; /&gt;&lt;/b&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;T k=&quot;doc.baseListItem_anatomy_root_desc&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;b&gt;&lt;T k=&quot;doc.baseListItem_anatomy_content_label&quot; /&gt;&lt;/b&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;T k=&quot;doc.baseListItem_anatomy_content_desc&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+## &lt;T k=&quot;doc.content_guidelines_title&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;T k=&quot;doc.baseListItem_content_guideline_1&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;T k=&quot;doc.baseListItem_content_guideline_2&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+## &lt;T k=&quot;doc.motion_spec_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.baseListItem_motion_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.a11y_spec_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.baseListItem_a11y_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.real_world_scenarios_title&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;strong&gt;&lt;T k=&quot;doc.scenario_settings_title&quot; /&gt;:&lt;/strong&gt; &lt;T k=&quot;doc.baseListItem_scenario_1&quot; /&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;strong&gt;&lt;T k=&quot;doc.scenario_form_title&quot; /&gt;:&lt;/strong&gt; &lt;T k=&quot;doc.baseListItem_scenario_2&quot; /&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+## &lt;T k=&quot;doc.best_practices_title&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;T k=&quot;doc.baseListItem_best_practice_1&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;T k=&quot;doc.baseListItem_best_practice_2&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+## &lt;T k=&quot;doc.tokens_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.baseListItem_tokens_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.responsive_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.baseListItem_responsive_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.keyboard_nav_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.baseListItem_keyboard_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.i18n_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.baseListItem_i18n_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.test_title&quot; /&gt;
+
+```bash
+npm run test -- BaseListItem
+```
+
+---
+
 ## &lt;T k=&quot;doc.usage&quot; /&gt;
 
 &lt;T k=&quot;doc.baseListItem_usage_desc&quot; /&gt;
@@ -6559,7 +6651,7 @@ open?: boolean</code></pre>
     return (
         &lt;BottomSheet&gt;
             &lt;BottomSheetTrigger asChild&gt;
-                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.bottomsheet_open&quot;)}&lt;/Button&gt;
+                &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.bottomsheet_open&quot;)}&lt;/Button&gt;
             &lt;/BottomSheetTrigger&gt;
             &lt;BottomSheetContent&gt;
                 &lt;BottomSheetHeader&gt;
@@ -6594,7 +6686,7 @@ open?: boolean</code></pre>
                     &lt;BottomSheetClose asChild&gt;
                         &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;story.bottomsheet_cancel&quot;)}&lt;/Button&gt;
                     &lt;/BottomSheetClose&gt;
-                    &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.bottomsheet_action&quot;)}&lt;/Button&gt;
+                    &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.bottomsheet_action&quot;)}&lt;/Button&gt;
                 &lt;/BottomSheetFooter&gt;
             &lt;/BottomSheetContent&gt;
         &lt;/BottomSheet&gt;
@@ -7700,7 +7792,7 @@ loading?: boolean = false
 
 size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;
 
-variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;</code></pre>
+variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;ghost&quot; = &quot;outline&quot;</code></pre>
           </div>
         </div>
     
@@ -7725,7 +7817,7 @@ variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot; = &quot;o
               
               <pre><code>const LargePrimaryButton = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Button onClick={fn()} size=&quot;lg&quot; variant=&quot;filled&quot;&gt;{t(&quot;button.label&quot;)}&lt;/Button&gt;;
+    return &lt;Button onClick={fn()} size=&quot;lg&quot; variant=&quot;solid&quot;&gt;{t(&quot;button.label&quot;)}&lt;/Button&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -7783,7 +7875,7 @@ variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot; = &quot;o
               
               <pre><code>const DisabledButton = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;filled&quot; disabled&gt;{t(&quot;button.label&quot;)}&lt;/Button&gt;;
+    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;solid&quot; disabled&gt;{t(&quot;button.label&quot;)}&lt;/Button&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -7795,7 +7887,7 @@ variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot; = &quot;o
               
               <pre><code>const MediumPrimaryLoadingProcessingButton = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;filled&quot; loading&gt;{t(&quot;processing&quot;)}&lt;/Button&gt;;
+    return &lt;Button onClick={fn()} size=&quot;md&quot; variant=&quot;solid&quot; loading&gt;{t(&quot;processing&quot;)}&lt;/Button&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -7830,7 +7922,7 @@ variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot; = &quot;o
     };
 
     return (
-        &lt;Button size=&quot;md&quot; variant=&quot;filled&quot; loading={loading} onClick={handleClick}&gt;
+        &lt;Button size=&quot;md&quot; variant=&quot;solid&quot; loading={loading} onClick={handleClick}&gt;
             {t(&quot;button.label&quot;)}
         &lt;/Button&gt;
     );
@@ -7878,7 +7970,7 @@ variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot; = &quot;o
               <pre><code>const WithChildren = function Render() {
   const { t } = useTranslation(ALL_NAMESPACES);
   return (
-    &lt;Button variant=&quot;filled&quot; size=&quot;md&quot;&gt;
+    &lt;Button variant=&quot;solid&quot; size=&quot;md&quot;&gt;
       {t(&quot;story.button_click_me&quot;)}
     &lt;/Button&gt;
   );
@@ -8242,7 +8334,7 @@ gap?: string = &quot;8px&quot;
 
 joined?: boolean = false
 
-variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot;</code></pre>
+variant?: &quot;solid&quot; | &quot;outline&quot; | &quot;ghost&quot;</code></pre>
           </div>
         </div>
     
@@ -8270,7 +8362,7 @@ variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot;</code></p
 
     return (
         &lt;ButtonGroup&gt;
-            &lt;Button size=&quot;lg&quot; variant=&quot;filled&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;lg&quot; variant=&quot;solid&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
             &lt;Button size=&quot;lg&quot; variant=&quot;outline&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
             &lt;Button size=&quot;lg&quot; variant=&quot;ghost&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
         &lt;/ButtonGroup&gt;
@@ -8289,7 +8381,7 @@ variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot;</code></p
 
     return (
         &lt;ButtonGroup&gt;
-            &lt;Button size=&quot;md&quot; variant=&quot;filled&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;solid&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
             &lt;Button size=&quot;md&quot; variant=&quot;outline&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
             &lt;Button size=&quot;md&quot; variant=&quot;ghost&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
         &lt;/ButtonGroup&gt;
@@ -8308,7 +8400,7 @@ variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot;</code></p
 
     return (
         &lt;ButtonGroup&gt;
-            &lt;Button size=&quot;sm&quot; variant=&quot;filled&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;sm&quot; variant=&quot;solid&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
             &lt;Button size=&quot;sm&quot; variant=&quot;outline&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
             &lt;Button size=&quot;sm&quot; variant=&quot;ghost&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
         &lt;/ButtonGroup&gt;
@@ -8345,7 +8437,7 @@ variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot;</code></p
     const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
-        &lt;ButtonGroup joined variant=&quot;filled&quot;&gt;
+        &lt;ButtonGroup joined variant=&quot;solid&quot;&gt;
             &lt;Button size=&quot;md&quot; variant=&quot;outline&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
             &lt;Button size=&quot;md&quot; variant=&quot;outline&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
             &lt;Button size=&quot;md&quot; variant=&quot;outline&quot;&gt;{t(&quot;story.button_click_me&quot;)}&lt;/Button&gt;
@@ -8365,7 +8457,7 @@ variant?: &quot;filled&quot; | &quot;outline&quot; | &quot;ghost&quot;</code></p
 
     return (
         &lt;ButtonGroup variant=&quot;ghost&quot; gap=&quot;10px&quot;&gt;
-            &lt;Button size=&quot;md&quot; variant=&quot;filled&quot;&gt;{t(&quot;story.buttongroup_primary&quot;)}&lt;/Button&gt;
+            &lt;Button size=&quot;md&quot; variant=&quot;solid&quot;&gt;{t(&quot;story.buttongroup_primary&quot;)}&lt;/Button&gt;
             &lt;Button size=&quot;md&quot; variant=&quot;outline&quot;&gt;{t(&quot;story.buttongroup_secondary&quot;)}&lt;/Button&gt;
             &lt;Button size=&quot;md&quot; variant=&quot;ghost&quot;&gt;{t(&quot;story.buttongroup_tertiary&quot;)}&lt;/Button&gt;
         &lt;/ButtonGroup&gt;
@@ -9218,7 +9310,7 @@ variant?: &quot;elevated&quot; | &quot;outline&quot; | &quot;flat&quot; = &quot;
             &lt;Card.Footer&gt;
                 &lt;div style={{ display: &quot;flex&quot;, justifyContent: &quot;flex-end&quot;, gap: &quot;8px&quot; }}&gt;
                     &lt;Button variant=&quot;outline&quot; size=&quot;sm&quot;&gt;{t(&quot;story.card_cancel&quot;)}&lt;/Button&gt;
-                    &lt;Button variant=&quot;filled&quot; size=&quot;sm&quot;&gt;{t(&quot;story.card_save&quot;)}&lt;/Button&gt;
+                    &lt;Button variant=&quot;solid&quot; size=&quot;sm&quot;&gt;{t(&quot;story.card_save&quot;)}&lt;/Button&gt;
                 &lt;/div&gt;
             &lt;/Card.Footer&gt;
         &lt;/Card&gt;
@@ -18439,7 +18531,7 @@ open?: boolean</code></pre>
     return (
         &lt;Dialog&gt;
             &lt;DialogTrigger asChild&gt;
-                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.dialog_open&quot;)}&lt;/Button&gt;
+                &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.dialog_open&quot;)}&lt;/Button&gt;
             &lt;/DialogTrigger&gt;
             &lt;DialogContent&gt;
                 &lt;DialogHeader&gt;
@@ -18460,7 +18552,7 @@ open?: boolean</code></pre>
                     &lt;DialogClose asChild&gt;
                         &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
                     &lt;/DialogClose&gt;
-                    &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.dialog_save&quot;)}&lt;/Button&gt;
+                    &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.dialog_save&quot;)}&lt;/Button&gt;
                 &lt;/DialogFooter&gt;
             &lt;/DialogContent&gt;
         &lt;/Dialog&gt;
@@ -18494,7 +18586,7 @@ open?: boolean</code></pre>
             &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
           &lt;/DialogClose&gt;
           &lt;Button
-            variant=&quot;filled&quot;
+            variant=&quot;solid&quot;
             onClick={() =&gt; alert(t(&quot;story.dialog_confirmed_msg&quot;))}
 
         &gt;{t(&quot;story.dialog_confirm&quot;)}&lt;/Button&gt;
@@ -18527,7 +18619,7 @@ open?: boolean</code></pre>
         {t(&quot;story.dialog_curr_state&quot;)}: {open ? t(&quot;story.dialog_open_state&quot;) : t(&quot;story.dialog_closed_state&quot;)}
       &lt;/p&gt;
       &lt;Button
-        variant=&quot;filled&quot;
+        variant=&quot;solid&quot;
         onClick={() =&gt; setOpen(true)}
 
       &gt;{t(&quot;story.dialog_state_open&quot;)}&lt;/Button&gt;
@@ -18548,7 +18640,7 @@ open?: boolean</code></pre>
 
             &gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
             &lt;Button
-              variant=&quot;filled&quot;
+              variant=&quot;solid&quot;
               onClick={() =&gt; setOpen(false)}
 
             &gt;{t(&quot;story.dialog_state_close&quot;)}&lt;/Button&gt;
@@ -19067,7 +19159,7 @@ slideOut?: boolean = true</code></pre>
     return (
         &lt;Drawer side=&quot;right&quot;&gt;
             &lt;DrawerTrigger asChild&gt;
-                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.drawer_open_right&quot;)}&lt;/Button&gt;
+                &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.drawer_open_right&quot;)}&lt;/Button&gt;
             &lt;/DrawerTrigger&gt;
             &lt;DrawerContent&gt;
                 &lt;DrawerHeader&gt;
@@ -19082,7 +19174,7 @@ slideOut?: boolean = true</code></pre>
                     &lt;DrawerClose asChild&gt;
                         &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
                     &lt;/DrawerClose&gt;
-                    &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.drawer_confirm&quot;)}&lt;/Button&gt;
+                    &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.drawer_confirm&quot;)}&lt;/Button&gt;
                 &lt;/DrawerFooter&gt;
             &lt;/DrawerContent&gt;
         &lt;/Drawer&gt;
@@ -19213,7 +19305,7 @@ slideOut?: boolean = true</code></pre>
         {t(&quot;story.dialog_curr_state&quot;)}: {open ? &quot;Open&quot; : &quot;Closed&quot;}
       &lt;/p&gt;
       &lt;Button
-        variant=&quot;filled&quot;
+        variant=&quot;solid&quot;
         onClick={() =&gt; setOpen(true)}
 
       &gt;{t(&quot;story.dialog_state_open&quot;)}&lt;/Button&gt;
@@ -19236,7 +19328,7 @@ slideOut?: boolean = true</code></pre>
 
             &gt;{t(&quot;story.dialog_cancel&quot;)}&lt;/Button&gt;
             &lt;Button
-              variant=&quot;filled&quot;
+              variant=&quot;solid&quot;
               onClick={() =&gt; setOpen(false)}
 
             &gt;{t(&quot;story.dialog_state_close&quot;)}&lt;/Button&gt;
@@ -19260,7 +19352,7 @@ slideOut?: boolean = true</code></pre>
     return (
         &lt;Drawer side=&quot;right&quot; slideIn={false} slideOut={false}&gt;
             &lt;DrawerTrigger asChild&gt;
-                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.drawer_open_no_slide&quot;)}&lt;/Button&gt;
+                &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.drawer_open_no_slide&quot;)}&lt;/Button&gt;
             &lt;/DrawerTrigger&gt;
             &lt;DrawerContent&gt;
                 &lt;DrawerHeader&gt;
@@ -20331,7 +20423,7 @@ variant?: &quot;default&quot; | &quot;simple&quot; = &quot;default&quot;</code><
             extra={
               &lt;&gt;
                 &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;story.emptystate_browse_templates&quot;)}&lt;/Button&gt;
-                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.emptystate_create_project&quot;)}&lt;/Button&gt;
+                &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.emptystate_create_project&quot;)}&lt;/Button&gt;
               &lt;/&gt;
             } /&gt;
     );
@@ -20370,7 +20462,7 @@ variant?: &quot;default&quot; | &quot;simple&quot; = &quot;default&quot;</code><
             title={t(&quot;story.emptystate_novideos_title&quot;)}
             description={t(&quot;story.emptystate_novideos_desc&quot;)}
             icon={&lt;Icon name=&quot;VideoIcon&quot; size=&quot;lg&quot; /&gt;}
-            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.emptystate_upload_video&quot;)}&lt;/Button&gt;} /&gt;
+            extra={&lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.emptystate_upload_video&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -20672,7 +20764,7 @@ onReset?: () =&gt; void</code></pre>
         &lt;p&gt;{t(&quot;story.errorboundary_desc&quot;)}&lt;/p&gt;
         &lt;Button
           onClick={() =&gt; setShouldThrow(true)}
-          variant=&quot;filled&quot;
+          variant=&quot;solid&quot;
 
         &gt;{t(&quot;story.errorboundary_btn_trigger&quot;)}&lt;/Button&gt;
         &lt;ErrorBoundary onReset={() =&gt; setShouldThrow(false)}&gt;
@@ -20702,7 +20794,7 @@ onReset?: () =&gt; void</code></pre>
       &lt;Stack align=&quot;center&quot; gap=&quot;lg&quot;&gt;
         &lt;Button
           onClick={() =&gt; setShouldThrow(true)}
-          variant=&quot;filled&quot;
+          variant=&quot;solid&quot;
 
         &gt;{t(&quot;story.errorboundary_btn_trigger_custom&quot;)}&lt;/Button&gt;
         &lt;ErrorBoundary
@@ -23445,7 +23537,7 @@ className?: string</code></pre>
   return (
     &lt;Container size=&quot;sm&quot; py=&quot;xl&quot;&gt;
       &lt;Stack gap=&quot;xl&quot; align=&quot;center&quot;&gt;
-        &lt;Button onClick={() =&gt; setActive(!active)} variant=&quot;filled&quot;&gt;
+        &lt;Button onClick={() =&gt; setActive(!active)} variant=&quot;solid&quot;&gt;
           {active ? t(&quot;story.focustrap_deactivate&quot;) : t(&quot;story.focustrap_activate&quot;)}
         &lt;/Button&gt;
 
@@ -23482,7 +23574,7 @@ className?: string</code></pre>
                   &lt;/p&gt;
                   &lt;Input placeholder={t(&quot;story.focustrap_input_first&quot;)} fullWidth /&gt;
                   &lt;Input placeholder={t(&quot;story.focustrap_input_second&quot;)} fullWidth /&gt;
-                  &lt;Button onClick={() =&gt; setActive(false)} variant=&quot;filled&quot;&gt;
+                  &lt;Button onClick={() =&gt; setActive(false)} variant=&quot;solid&quot;&gt;
                     {t(&quot;story.focustrap_btn_close&quot;)}
                   &lt;/Button&gt;
                 &lt;/Stack&gt;
@@ -23509,7 +23601,7 @@ className?: string</code></pre>
   return (
     &lt;Container size=&quot;sm&quot; py=&quot;xl&quot;&gt;
       &lt;Stack gap=&quot;xl&quot; align=&quot;center&quot;&gt;
-        &lt;Button onClick={() =&gt; setActive(!active)} variant=&quot;filled&quot;&gt;
+        &lt;Button onClick={() =&gt; setActive(!active)} variant=&quot;solid&quot;&gt;
           {active ? t(&quot;story.focustrap_deactivate_short&quot;) : t(&quot;story.focustrap_activate_autofocus&quot;)}
         &lt;/Button&gt;
 
@@ -23531,7 +23623,7 @@ className?: string</code></pre>
                 &lt;Stack gap=&quot;md&quot;&gt;
                   &lt;Input placeholder={t(&quot;story.focustrap_input_autofocus&quot;)} fullWidth /&gt;
                   &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;story.focustrap_btn_another&quot;)}&lt;/Button&gt;
-                  &lt;Button onClick={() =&gt; setActive(false)} variant=&quot;filled&quot;&gt;
+                  &lt;Button onClick={() =&gt; setActive(false)} variant=&quot;solid&quot;&gt;
                     {t(&quot;story.focustrap_btn_close_short&quot;)}
                   &lt;/Button&gt;
                 &lt;/Stack&gt;
@@ -25353,7 +25445,7 @@ wrap?: &quot;nowrap&quot; | &quot;wrap&quot; | &quot;wrap-reverse&quot; = &quot;
 
     return (
         &lt;Group gap={16}&gt;
-            &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.group_first&quot;, &quot;First&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.group_first&quot;, &quot;First&quot;)}&lt;/Button&gt;
             &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;story.group_second&quot;, &quot;Second&quot;)}&lt;/Button&gt;
             &lt;Button variant=&quot;ghost&quot;&gt;{t(&quot;story.group_third&quot;, &quot;Third&quot;)}&lt;/Button&gt;
         &lt;/Group&gt;
@@ -25372,7 +25464,7 @@ wrap?: &quot;nowrap&quot; | &quot;wrap&quot; | &quot;wrap-reverse&quot; = &quot;
 
     return (
         &lt;Group grow gap={16}&gt;
-            &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.group_first&quot;, &quot;First&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.group_first&quot;, &quot;First&quot;)}&lt;/Button&gt;
             &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;story.group_second&quot;, &quot;Second&quot;)}&lt;/Button&gt;
         &lt;/Group&gt;
     );
@@ -29141,7 +29233,7 @@ zoom?: boolean | number = false</code></pre>
                 &lt;div style={{ display: &quot;flex&quot;, flexDirection: &quot;column&quot;, gap: &quot;1rem&quot; }}&gt;
                     &lt;div style={{ display: &quot;flex&quot;, gap: &quot;1rem&quot; }}&gt;
                         &lt;Button
-                            variant=&quot;filled&quot;
+                            variant=&quot;solid&quot;
                             onClick={() =&gt; setImageKey((prev) =&gt; prev + 1)}
                             icon=&quot;RefreshIcon&quot;&gt;{t(&quot;story.image_motion_effects_reload&quot;)}&lt;/Button&gt;
                     &lt;/div&gt;
@@ -30965,6 +31057,24 @@ import * as Stories from &quot;./InputBase.stories&quot;;
   &lt;li&gt;&lt;T k=&quot;doc.inputBase_best_practice_2&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
+## &lt;T k=&quot;doc.tokens_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.inputBase_tokens_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.responsive_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.inputBase_responsive_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.keyboard_nav_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.inputBase_keyboard_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.i18n_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.inputBase_i18n_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.test_title&quot; /&gt;
+
+```bash
+npm run test -- InputBase
+```
+
 ---
 
 ## &lt;T k=&quot;doc.usage&quot; /&gt;
@@ -31088,7 +31198,7 @@ fullWidth?: boolean = false</code></pre>
               
               <pre><code>const WithButton = () =&gt; &lt;InputGroup&gt;
     &lt;Input placeholder=&quot;Search...&quot; /&gt;
-    &lt;Button variant=&quot;filled&quot; icon=&quot;SearchIcon&quot;&gt;Search&lt;/Button&gt;
+    &lt;Button variant=&quot;solid&quot; icon=&quot;SearchIcon&quot;&gt;Search&lt;/Button&gt;
 &lt;/InputGroup&gt;;</code></pre>
             </div>
             <div class="note ok">
@@ -31128,7 +31238,7 @@ fullWidth?: boolean = false</code></pre>
     &lt;InputGroup fullWidth&gt;
         &lt;InputGroupText&gt;Search&lt;/InputGroupText&gt;
         &lt;Input placeholder=&quot;Type something...&quot; /&gt;
-        &lt;Button variant=&quot;filled&quot;&gt;Go&lt;/Button&gt;
+        &lt;Button variant=&quot;solid&quot;&gt;Go&lt;/Button&gt;
     &lt;/InputGroup&gt;
 &lt;/div&gt;;</code></pre>
             </div>
@@ -31777,7 +31887,7 @@ variant?: &quot;dashed&quot; | &quot;solid&quot; | &quot;none&quot; = &quot;dash
             description={t(&quot;doc.ia_empty_desc&quot;)}
             actions={
               &lt;&gt;
-                &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;upload&quot;)}&lt;/Button&gt;
+                &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;upload&quot;)}&lt;/Button&gt;
                 &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;learn.more&quot;)}&lt;/Button&gt;
               &lt;/&gt;
             } /&gt;
@@ -33744,7 +33854,7 @@ import * as LinkStories from &quot;./Link.stories&quot;;
 ```tsx
 import { Link } from &quot;@/components/navigation/Link/Link&quot;;
 
-&lt;Link label=&quot;Go to Home&quot; href=&quot;/&quot; variant=&quot;filled&quot; /&gt;;
+&lt;Link label=&quot;Go to Home&quot; href=&quot;/&quot; variant=&quot;solid&quot; /&gt;;
 ```
 
 ## &lt;T k=&quot;doc.props&quot; /&gt;
@@ -37637,7 +37747,7 @@ transparent?: boolean</code></pre>
                 &lt;Button variant=&quot;ghost&quot; size=&quot;sm&quot;&gt;
                     {t(&quot;story.navbar_signin&quot;)}
                 &lt;/Button&gt;
-                &lt;Button variant=&quot;filled&quot; size=&quot;sm&quot;&gt;
+                &lt;Button variant=&quot;solid&quot; size=&quot;sm&quot;&gt;
                     {t(&quot;story.navbar_signup&quot;)}
                 &lt;/Button&gt;
             &lt;/Navbar.Content&gt;
@@ -40659,7 +40769,7 @@ title: ReactNode</code></pre>
             okText={t(&quot;story.popconfirm_yes&quot;)}
             cancelText={t(&quot;story.popconfirm_no&quot;)}
             okType=&quot;destructive&quot;&gt;
-            &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.popconfirm_delete_btn&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.popconfirm_delete_btn&quot;)}&lt;/Button&gt;
         &lt;/Popconfirm&gt;
     );
 };</code></pre>
@@ -41461,7 +41571,7 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
 
         &lt;Button
           onClick={() =&gt; setShow(!show)}
-          variant=&quot;filled&quot;
+          variant=&quot;solid&quot;
 
         &gt;{show ? t(&quot;story.portal_btn_hide&quot;) : t(&quot;story.portal_btn_show&quot;)}&lt;/Button&gt;
 
@@ -45588,7 +45698,7 @@ export const LoginForm: StoryObj = {
                 &lt;/Stack&gt;
 
                 &lt;Stack gap=&quot;sm&quot;&gt;
-                  &lt;Button variant=&quot;filled&quot;
+                  &lt;Button variant=&quot;solid&quot;
                     style={{ width: &quot;100%&quot; }}&gt;{t(&quot;login.sign_in&quot;)}&lt;/Button&gt;
 
                   &lt;Button
@@ -46047,7 +46157,7 @@ export const UserProfileForm: StoryObj = {
                   &lt;Divider /&gt;
                   &lt;Group justify=&quot;end&quot; gap=&quot;md&quot;&gt;
                     &lt;Button variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_cancel&quot;)}&lt;/Button&gt;
-                    &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
+                    &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
                   &lt;/Group&gt;
                 &lt;/Stack&gt;
               &lt;/form&gt;
@@ -46236,7 +46346,7 @@ export const PricingTable: StoryObj = {
                 &lt;/List&gt;
               &lt;/Stack&gt;
 
-              &lt;Button variant=&quot;filled&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
+              &lt;Button variant=&quot;solid&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
             &lt;/Stack&gt;
           &lt;/Card&gt;
 
@@ -46359,7 +46469,7 @@ export const HeroSection: StoryObj = {
               &lt;/Stack&gt;
 
               &lt;Group gap=&quot;xl&quot; wrap=&quot;wrap&quot; justify=&quot;evenly&quot;&gt;
-                &lt;Button variant=&quot;filled&quot;
+                &lt;Button variant=&quot;solid&quot;
                   size=&quot;md&quot;&gt;{t(&quot;hero.btn_started&quot;)}&lt;/Button&gt;
                 &lt;Button variant=&quot;outline&quot;
                   size=&quot;md&quot;&gt;{t(&quot;hero.btn_docs&quot;)}&lt;/Button&gt;
@@ -46500,7 +46610,7 @@ export const ErrorPage: StoryObj = {
           &lt;/Alert&gt;
 
           &lt;Stack direction={{ base: &quot;column&quot;, sm: &quot;row&quot; }} gap=&quot;xl&quot;&gt;
-            &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
             &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;error.btn_support&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Stack&gt;
@@ -46633,7 +46743,7 @@ export const ErrorPage: StoryObj = {
               &lt;/Stack&gt;
 
               &lt;Stack gap=&quot;sm&quot;&gt;
-                &lt;Button variant=&quot;filled&quot;
+                &lt;Button variant=&quot;solid&quot;
                   style={{ width: &quot;100%&quot; }}&gt;{t(&quot;login.sign_in&quot;)}&lt;/Button&gt;
 
                 &lt;Button
@@ -47102,7 +47212,7 @@ export const ErrorPage: StoryObj = {
                 &lt;Divider /&gt;
                 &lt;Group justify=&quot;end&quot; gap=&quot;md&quot;&gt;
                   &lt;Button variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_cancel&quot;)}&lt;/Button&gt;
-                  &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
+                  &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
                 &lt;/Group&gt;
               &lt;/Stack&gt;
             &lt;/form&gt;
@@ -47296,7 +47406,7 @@ export const ErrorPage: StoryObj = {
               &lt;/List&gt;
             &lt;/Stack&gt;
 
-            &lt;Button variant=&quot;filled&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;solid&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Card&gt;
 
@@ -47424,7 +47534,7 @@ export const ErrorPage: StoryObj = {
             &lt;/Stack&gt;
 
             &lt;Group gap=&quot;xl&quot; wrap=&quot;wrap&quot; justify=&quot;evenly&quot;&gt;
-              &lt;Button variant=&quot;filled&quot;
+              &lt;Button variant=&quot;solid&quot;
                 size=&quot;md&quot;&gt;{t(&quot;hero.btn_started&quot;)}&lt;/Button&gt;
               &lt;Button variant=&quot;outline&quot;
                 size=&quot;md&quot;&gt;{t(&quot;hero.btn_docs&quot;)}&lt;/Button&gt;
@@ -47570,7 +47680,7 @@ export const ErrorPage: StoryObj = {
         &lt;/Alert&gt;
 
         &lt;Stack direction={{ base: &quot;column&quot;, sm: &quot;row&quot; }} gap=&quot;xl&quot;&gt;
-          &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
+          &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
           &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;error.btn_support&quot;)}&lt;/Button&gt;
         &lt;/Stack&gt;
       &lt;/Stack&gt;
@@ -47857,7 +47967,7 @@ title?: ReactNode</code></pre>
             title={t(&quot;story.result_success_title&quot;)}
             description={t(&quot;story.result_success_desc&quot;)}
             extra={[
-              &lt;Button variant=&quot;filled&quot; key=&quot;console&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;,
+              &lt;Button variant=&quot;solid&quot; key=&quot;console&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;,
               &lt;Button key=&quot;buy&quot;&gt;{t(&quot;story.result_buy_again&quot;)}&lt;/Button&gt;,
             ]} /&gt;
     );
@@ -47876,7 +47986,7 @@ title?: ReactNode</code></pre>
     return (
         &lt;Result
             title={t(&quot;story.result_info_title&quot;)}
-            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;} /&gt;
+            extra={&lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -47894,7 +48004,7 @@ title?: ReactNode</code></pre>
         &lt;Result
             intent=&quot;warning&quot;
             title={t(&quot;story.result_warning_title&quot;)}
-            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;} /&gt;
+            extra={&lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -47914,7 +48024,7 @@ title?: ReactNode</code></pre>
             title={t(&quot;story.result_error_title&quot;)}
             description={t(&quot;story.result_error_desc&quot;)}
             extra={[
-              &lt;Button variant=&quot;filled&quot; key=&quot;console&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;,
+              &lt;Button variant=&quot;solid&quot; key=&quot;console&quot;&gt;{t(&quot;story.result_go_console&quot;)}&lt;/Button&gt;,
               &lt;Button key=&quot;buy&quot;&gt;{t(&quot;story.result_buy_again&quot;)}&lt;/Button&gt;,
             ]} /&gt;
     );
@@ -47935,7 +48045,7 @@ title?: ReactNode</code></pre>
             status=&quot;404&quot;
             title=&quot;404&quot;
             description={t(&quot;story.result_404_desc&quot;)}
-            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
+            extra={&lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -47954,7 +48064,7 @@ title?: ReactNode</code></pre>
             status=&quot;403&quot;
             title=&quot;403&quot;
             description={t(&quot;story.result_403_desc&quot;)}
-            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
+            extra={&lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -47973,7 +48083,7 @@ title?: ReactNode</code></pre>
             status=&quot;500&quot;
             title=&quot;500&quot;
             description={t(&quot;story.result_500_desc&quot;)}
-            extra={&lt;Button variant=&quot;filled&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
+            extra={&lt;Button variant=&quot;solid&quot;&gt;{t(&quot;story.result_back_home&quot;)}&lt;/Button&gt;} /&gt;
     );
 };</code></pre>
             </div>
@@ -53235,7 +53345,7 @@ showCloseButton?: boolean = false</code></pre>
     &lt;div style={{ padding: &quot;40px&quot; }}&gt;
       &lt;Button
         onClick={() =&gt; setOpen(true)}
-        variant=&quot;filled&quot;
+        variant=&quot;solid&quot;
 
       &gt;{t(&quot;story.snackbar_show&quot;)}&lt;/Button&gt;
       &lt;Snackbar
@@ -61965,7 +62075,7 @@ unmount?: boolean = true</code></pre>
       &lt;Stack align=&quot;center&quot; gap=&quot;xl&quot; py=&quot;xl&quot;&gt;
         &lt;Button
           animateWidth
-          variant=&quot;filled&quot;
+          variant=&quot;solid&quot;
           onClick={() =&gt; setShow(!show)}
 
         &gt;{show ? t(&quot;story.transition_hide_content&quot;) : t(&quot;story.transition_show_content&quot;)}&lt;/Button&gt;
@@ -62023,7 +62133,7 @@ unmount?: boolean = true</code></pre>
               `}&lt;/style&gt;
         &lt;Button
           animateWidth
-          variant=&quot;filled&quot;
+          variant=&quot;solid&quot;
           onClick={() =&gt; setShow(!show)}
 
         &gt;{show ? t(&quot;story.transition_hide_slide&quot;) : t(&quot;story.transition_show_slide&quot;)}&lt;/Button&gt;
@@ -63972,7 +64082,7 @@ width?: string | number</code></pre>
                 &lt;p style={{ marginBottom: &quot;1rem&quot;, fontWeight: &quot;bold&quot; }}&gt;{t(&quot;story.video_premium_features_lazy_load&quot;)}&lt;/p&gt;
                 &lt;div style={{ marginBottom: &quot;1rem&quot; }}&gt;
                     &lt;Button
-                        variant=&quot;filled&quot;
+                        variant=&quot;solid&quot;
                         onClick={() =&gt; setVideoKey((prev) =&gt; prev + 1)}
                         icon=&quot;RefreshIcon&quot;&gt;{t(&quot;story.video_premium_features_reload&quot;)}&lt;/Button&gt;
                 &lt;/div&gt;
@@ -65655,7 +65765,7 @@ export const LoginForm: StoryObj = {
                 &lt;/Stack&gt;
 
                 &lt;Stack gap=&quot;sm&quot;&gt;
-                  &lt;Button variant=&quot;filled&quot;
+                  &lt;Button variant=&quot;solid&quot;
                     style={{ width: &quot;100%&quot; }}&gt;{t(&quot;login.sign_in&quot;)}&lt;/Button&gt;
 
                   &lt;Button
@@ -66114,7 +66224,7 @@ export const UserProfileForm: StoryObj = {
                   &lt;Divider /&gt;
                   &lt;Group justify=&quot;end&quot; gap=&quot;md&quot;&gt;
                     &lt;Button variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_cancel&quot;)}&lt;/Button&gt;
-                    &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
+                    &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
                   &lt;/Group&gt;
                 &lt;/Stack&gt;
               &lt;/form&gt;
@@ -66303,7 +66413,7 @@ export const PricingTable: StoryObj = {
                 &lt;/List&gt;
               &lt;/Stack&gt;
 
-              &lt;Button variant=&quot;filled&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
+              &lt;Button variant=&quot;solid&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
             &lt;/Stack&gt;
           &lt;/Card&gt;
 
@@ -66426,7 +66536,7 @@ export const HeroSection: StoryObj = {
               &lt;/Stack&gt;
 
               &lt;Group gap=&quot;xl&quot; wrap=&quot;wrap&quot; justify=&quot;evenly&quot;&gt;
-                &lt;Button variant=&quot;filled&quot;
+                &lt;Button variant=&quot;solid&quot;
                   size=&quot;md&quot;&gt;{t(&quot;hero.btn_started&quot;)}&lt;/Button&gt;
                 &lt;Button variant=&quot;outline&quot;
                   size=&quot;md&quot;&gt;{t(&quot;hero.btn_docs&quot;)}&lt;/Button&gt;
@@ -66567,7 +66677,7 @@ export const ErrorPage: StoryObj = {
           &lt;/Alert&gt;
 
           &lt;Stack direction={{ base: &quot;column&quot;, sm: &quot;row&quot; }} gap=&quot;xl&quot;&gt;
-            &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
             &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;error.btn_support&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Stack&gt;
@@ -66700,7 +66810,7 @@ export const ErrorPage: StoryObj = {
               &lt;/Stack&gt;
 
               &lt;Stack gap=&quot;sm&quot;&gt;
-                &lt;Button variant=&quot;filled&quot;
+                &lt;Button variant=&quot;solid&quot;
                   style={{ width: &quot;100%&quot; }}&gt;{t(&quot;login.sign_in&quot;)}&lt;/Button&gt;
 
                 &lt;Button
@@ -67169,7 +67279,7 @@ export const ErrorPage: StoryObj = {
                 &lt;Divider /&gt;
                 &lt;Group justify=&quot;end&quot; gap=&quot;md&quot;&gt;
                   &lt;Button variant=&quot;ghost&quot;&gt;{t(&quot;profile.btn_cancel&quot;)}&lt;/Button&gt;
-                  &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
+                  &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;profile.btn_save&quot;)}&lt;/Button&gt;
                 &lt;/Group&gt;
               &lt;/Stack&gt;
             &lt;/form&gt;
@@ -67363,7 +67473,7 @@ export const ErrorPage: StoryObj = {
               &lt;/List&gt;
             &lt;/Stack&gt;
 
-            &lt;Button variant=&quot;filled&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
+            &lt;Button variant=&quot;solid&quot; style={{ width: &quot;100%&quot; }}&gt;{t(&quot;pricing.pro_btn&quot;)}&lt;/Button&gt;
           &lt;/Stack&gt;
         &lt;/Card&gt;
 
@@ -67491,7 +67601,7 @@ export const ErrorPage: StoryObj = {
             &lt;/Stack&gt;
 
             &lt;Group gap=&quot;xl&quot; wrap=&quot;wrap&quot; justify=&quot;evenly&quot;&gt;
-              &lt;Button variant=&quot;filled&quot;
+              &lt;Button variant=&quot;solid&quot;
                 size=&quot;md&quot;&gt;{t(&quot;hero.btn_started&quot;)}&lt;/Button&gt;
               &lt;Button variant=&quot;outline&quot;
                 size=&quot;md&quot;&gt;{t(&quot;hero.btn_docs&quot;)}&lt;/Button&gt;
@@ -67637,7 +67747,7 @@ export const ErrorPage: StoryObj = {
         &lt;/Alert&gt;
 
         &lt;Stack direction={{ base: &quot;column&quot;, sm: &quot;row&quot; }} gap=&quot;xl&quot;&gt;
-          &lt;Button variant=&quot;filled&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
+          &lt;Button variant=&quot;solid&quot;&gt;{t(&quot;error.btn_home&quot;)}&lt;/Button&gt;
           &lt;Button variant=&quot;outline&quot;&gt;{t(&quot;error.btn_support&quot;)}&lt;/Button&gt;
         &lt;/Stack&gt;
       &lt;/Stack&gt;
@@ -67963,7 +68073,7 @@ export const Portal = ({ children, container }: PortalProps) =&gt; {
 
         &lt;Button
           onClick={() =&gt; setShow(!show)}
-          variant=&quot;filled&quot;
+          variant=&quot;solid&quot;
 
         &gt;{show ? t(&quot;story.portal_btn_hide&quot;) : t(&quot;story.portal_btn_show&quot;)}&lt;/Button&gt;
 
@@ -69050,6 +69160,53 @@ import { T } from &quot;../stories/T&quot;;
   &lt;T k=&quot;guide.action_std_note_desc&quot; /&gt;
 &lt;/blockquote&gt;
 
+---
+
+## &lt;T k=&quot;doc.design_intent_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.action_std_concept_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.choice_matrix_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.std_column_component&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.anatomy_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.description&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.content_guidelines_title&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;T k=&quot;guide.action_std_rule_3_desc&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+## &lt;T k=&quot;doc.motion_spec_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.action_std_rule_2_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.a11y_spec_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.action_std_rule_4_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.real_world_scenarios_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.action_std_affected_components&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.best_practices_title&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;T k=&quot;guide.action_std_rule_header_desc&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+## &lt;T k=&quot;doc.tokens_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.action_std_rule_1_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.responsive_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.responsive_title&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.keyboard_nav_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.keyboard_nav_title&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.i18n_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.i18n_title&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.test_title&quot; /&gt;
+```bash
+npm run test:vrt -- Button
+```
+
 </code></pre>
           </div>
         </div>
@@ -69995,171 +70152,10 @@ import { T } from &quot;../stories/T&quot;;
   aria-label="Docs">
   <div class="head">
     <div class="title">
-      <h2><span class="status-dot dot-ok"></span> Architecture/Numeric Input Standardization</h2>
-      <div class="badges">
-        
-        <label for="doc-11-architecture-numeric-input-standardization-docs-content" class="badge ok as-toggle">view content</label>
-      </div>
-    </div>
-    <div class="meta" title="./docs/NumericInputStandardization.mdx">architecture-numeric-input-standardization--docs · ./docs/NumericInputStandardization.mdx</div>
-    
-  </div>
-
-  <!-- Hidden toggles must be siblings BEFORE .panels -->
-  
-  <input id="doc-11-architecture-numeric-input-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
-
-  <div class="panels">
-    
-    
-        <div class="panel panel-content">
-          <div class="mdx-content">
-            <pre><code>import { Meta } from &quot;@storybook/addon-docs/blocks&quot;;
-import { T } from &quot;../stories/T&quot;;
-
-&lt;Meta title=&quot;Architecture/Numeric Input Standardization&quot; /&gt;
-
-# &lt;T k=&quot;guide.numeric_std_title&quot; /&gt;
-
-&lt;p&gt;&lt;T k=&quot;guide.numeric_std_desc&quot; /&gt;&lt;/p&gt;
-
----
-
-## &lt;T k=&quot;guide.numeric_std_concept_title&quot; /&gt;
-
-&lt;p&gt;&lt;T k=&quot;guide.numeric_std_concept_desc&quot; /&gt;&lt;/p&gt;
-
-&lt;div style={{ display: &#39;grid&#39;, gridTemplateColumns: &#39;1fr 1fr&#39;, gap: &#39;24px&#39;, margin: &#39;24px 0&#39; }}&gt;
-  &lt;div style={{ padding: &#39;16px&#39;, borderRadius: &#39;8px&#39;, border: &#39;1px solid var(--wim-color-border)&#39;, backgroundColor: &#39;var(--wim-color-surface-variant)&#39; }}&gt;
-    &lt;strong style={{ display: &#39;block&#39;, marginBottom: &#39;8px&#39;, color: &#39;var(--color-positive)&#39; }}&gt;&lt;T k=&quot;common.do&quot; /&gt;&lt;/strong&gt;
-    &lt;ul style={{ margin: 0, paddingLeft: &#39;20px&#39; }}&gt;
-      &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_warning_desc&quot; /&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_do_1&quot; /&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-  &lt;div style={{ padding: &#39;16px&#39;, borderRadius: &#39;8px&#39;, border: &#39;1px solid var(--wim-color-border)&#39;, backgroundColor: &#39;var(--wim-color-surface-variant)&#39; }}&gt;
-    &lt;strong style={{ display: &#39;block&#39;, marginBottom: &#39;8px&#39;, color: &#39;var(--color-destructive)&#39; }}&gt;&lt;T k=&quot;common.dont&quot; /&gt;&lt;/strong&gt;
-    &lt;ul style={{ margin: 0, paddingLeft: &#39;20px&#39; }}&gt;
-      &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_dont_1&quot; /&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_dont_2&quot; /&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_dont_3&quot; /&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
----
-
-## &lt;T k=&quot;guide.numeric_std_problems_title&quot; /&gt;
-
-### &lt;T k=&quot;guide.numeric_std_problem_1_title&quot; /&gt;
-&lt;p&gt;&lt;T k=&quot;guide.numeric_std_problem_1_desc&quot; /&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;&lt;T k=&quot;guide.numeric_std_table_browser&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;T k=&quot;guide.numeric_std_table_input_status&quot; /&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Chrome&lt;/td&gt;
-      &lt;td&gt;&lt;T k=&quot;guide.numeric_std_table_input_disabled&quot; /&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Safari / Firefox&lt;/td&gt;
-      &lt;td&gt;&lt;T k=&quot;guide.numeric_std_table_input_js_empty&quot; /&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-### &lt;T k=&quot;guide.numeric_std_problem_2_title&quot; /&gt;
-&lt;p&gt;&lt;T k=&quot;guide.numeric_std_problem_2_desc&quot; /&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;&lt;T k=&quot;guide.numeric_std_table_browser&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;T k=&quot;guide.numeric_std_table_behavior&quot; /&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Safari&lt;/td&gt;
-      &lt;td&gt;&lt;T k=&quot;guide.numeric_std_safari_behavior&quot; /&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Firefox&lt;/td&gt;
-      &lt;td&gt;&lt;T k=&quot;guide.numeric_std_firefox_behavior&quot; /&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-### &lt;T k=&quot;guide.numeric_std_problem_3_title&quot; /&gt;
-&lt;p&gt;&lt;T k=&quot;guide.numeric_std_problem_3_desc&quot; /&gt;&lt;/p&gt;
-
-```css
-/* Firefox adjustment example */
-@-moz-document url-prefix() {
-  input[type=&quot;number&quot;] {
-    padding: 0 1rem;
-  }
-}
-```
-
-### &lt;T k=&quot;guide.numeric_std_problem_4_title&quot; /&gt;
-&lt;p&gt;&lt;T k=&quot;guide.numeric_std_problem_4_desc&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;T k=&quot;guide.numeric_std_spin_button_warning&quot; /&gt;&lt;/p&gt;
-
-```css
-/* Hiding spin buttons */
-input[type=&quot;number&quot;]::-webkit-outer-spin-button,
-input[type=&quot;number&quot;]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  appearance: none;
-  margin: 0;
-}
-input[type=&quot;number&quot;] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
-```
-
----
-
-## &lt;T k=&quot;guide.numeric_std_recommend_title&quot; /&gt;
-
-&lt;p&gt;&lt;T k=&quot;guide.numeric_std_recommend_desc&quot; /&gt;&lt;/p&gt;
-
-```html
-&lt;!-- Recommended format for credit cards, etc. --&gt;
-&lt;input 
-  type=&quot;text&quot; 
-  inputmode=&quot;numeric&quot; 
-  pattern=&quot;[0-9]*&quot; 
-/&gt;
-```
-
-&lt;blockquote&gt;
-  &lt;strong&gt;&lt;T k=&quot;guide.numeric_std_usage_warning_title&quot; /&gt;&lt;/strong&gt;&lt;br /&gt;
-  &lt;T k=&quot;guide.numeric_std_exp_notation_desc&quot; /&gt;
-&lt;/blockquote&gt;
-</code></pre>
-          </div>
-        </div>
-  </div>
-</article>
-<article
-  class="card is-doc no-doc-error"
-  role="listitem"
-  aria-label="Docs">
-  <div class="head">
-    <div class="title">
       <h2><span class="status-dot dot-ok"></span> Architecture/Overlay Standardization</h2>
       <div class="badges">
         
-        <label for="doc-12-architecture-overlay-standardization-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-11-architecture-overlay-standardization-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/OverlayStandardization.mdx">architecture-overlay-standardization--docs · ./docs/OverlayStandardization.mdx</div>
@@ -70168,7 +70164,7 @@ input[type=&quot;number&quot;] {
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-12-architecture-overlay-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-11-architecture-overlay-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -70261,7 +70257,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Architecture/Progress Indicator Standardization</h2>
       <div class="badges">
         
-        <label for="doc-13-architecture-progress-indicator-standardization-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-12-architecture-progress-indicator-standardization-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/ProgressIndicatorStandardization.mdx">architecture-progress-indicator-standardization--docs · ./docs/ProgressIndicatorStandardization.mdx</div>
@@ -70270,7 +70266,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-13-architecture-progress-indicator-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-12-architecture-progress-indicator-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -70399,7 +70395,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Architecture/Range Selection Standardization</h2>
       <div class="badges">
         
-        <label for="doc-14-architecture-range-selection-standardization-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-13-architecture-range-selection-standardization-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/RangeSelectionStandardization.mdx">architecture-range-selection-standardization--docs · ./docs/RangeSelectionStandardization.mdx</div>
@@ -70408,7 +70404,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-14-architecture-range-selection-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-13-architecture-range-selection-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -70500,7 +70496,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Architecture/Selection Group Standardization</h2>
       <div class="badges">
         
-        <label for="doc-15-architecture-selection-group-standardization-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-14-architecture-selection-group-standardization-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/SelectionGroupStandardization.mdx">architecture-selection-group-standardization--docs · ./docs/SelectionGroupStandardization.mdx</div>
@@ -70509,7 +70505,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-15-architecture-selection-group-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-14-architecture-selection-group-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -70601,7 +70597,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Architecture/Sequence Standardization</h2>
       <div class="badges">
         
-        <label for="doc-16-architecture-sequence-standardization-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-15-architecture-sequence-standardization-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/SequenceStandardization.mdx">architecture-sequence-standardization--docs · ./docs/SequenceStandardization.mdx</div>
@@ -70610,7 +70606,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-16-architecture-sequence-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-15-architecture-sequence-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -70700,7 +70696,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Architecture/State Area Standardization</h2>
       <div class="badges">
         
-        <label for="doc-17-architecture-state-area-standardization-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-16-architecture-state-area-standardization-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/StateAreaStandardization.mdx">architecture-state-area-standardization--docs · ./docs/StateAreaStandardization.mdx</div>
@@ -70709,7 +70705,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-17-architecture-state-area-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-16-architecture-state-area-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -70800,7 +70796,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Architecture/Styling Standardization</h2>
       <div class="badges">
         
-        <label for="doc-18-architecture-styling-standardization-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-17-architecture-styling-standardization-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/StylingStandardization.mdx">architecture-styling-standardization--docs · ./docs/StylingStandardization.mdx</div>
@@ -70809,7 +70805,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-18-architecture-styling-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-17-architecture-styling-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -70891,7 +70887,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Architecture/Table Standardization</h2>
       <div class="badges">
         
-        <label for="doc-19-architecture-table-standardization-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-18-architecture-table-standardization-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/TableStandardization.mdx">architecture-table-standardization--docs · ./docs/TableStandardization.mdx</div>
@@ -70900,7 +70896,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-19-architecture-table-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-18-architecture-table-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -70990,7 +70986,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Architecture/TextArea Standardization</h2>
       <div class="badges">
         
-        <label for="doc-20-architecture-textarea-standardization-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-19-architecture-textarea-standardization-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/TextAreaStandardization.mdx">architecture-textarea-standardization--docs · ./docs/TextAreaStandardization.mdx</div>
@@ -70999,7 +70995,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-20-architecture-textarea-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-19-architecture-textarea-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -71089,7 +71085,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Architecture/Unit Selection</h2>
       <div class="badges">
         
-        <label for="doc-21-architecture-unit-selection-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-20-architecture-unit-selection-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/UnitSelection.mdx">architecture-unit-selection--docs · ./docs/UnitSelection.mdx</div>
@@ -71098,7 +71094,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-21-architecture-unit-selection-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-20-architecture-unit-selection-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -71190,7 +71186,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Application Shell/Overview</h2>
       <div class="badges">
         
-        <label for="doc-22-components-application-shell-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-21-components-application-shell-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/AppShellSelection.mdx">components-application-shell-overview--docs · ./docs/AppShellSelection.mdx</div>
@@ -71199,7 +71195,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-22-components-application-shell-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-21-components-application-shell-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -71328,7 +71324,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Basic Inputs/Overview</h2>
       <div class="badges">
         
-        <label for="doc-23-components-basic-inputs-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-22-components-basic-inputs-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/BasicInputSelection.mdx">components-basic-inputs-overview--docs · ./docs/BasicInputSelection.mdx</div>
@@ -71337,7 +71333,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-23-components-basic-inputs-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-22-components-basic-inputs-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -71547,7 +71543,7 @@ import { Meta } from &quot;@storybook/addon-docs/blocks&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Advanced Inputs/Overview</h2>
       <div class="badges">
         
-        <label for="doc-24-components-advanced-inputs-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-23-components-advanced-inputs-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/AdvancedInputSelection.mdx">components-advanced-inputs-overview--docs · ./docs/AdvancedInputSelection.mdx</div>
@@ -71556,7 +71552,7 @@ import { Meta } from &quot;@storybook/addon-docs/blocks&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-24-components-advanced-inputs-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-23-components-advanced-inputs-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -71700,7 +71696,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Buttons/Overview</h2>
       <div class="badges">
         
-        <label for="doc-25-components-buttons-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-24-components-buttons-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/ButtonSelection.mdx">components-buttons-overview--docs · ./docs/ButtonSelection.mdx</div>
@@ -71709,7 +71705,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-25-components-buttons-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-24-components-buttons-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -71870,7 +71866,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Form Layout/Overview</h2>
       <div class="badges">
         
-        <label for="doc-26-components-form-layout-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-25-components-form-layout-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/FormLayoutSelection.mdx">components-form-layout-overview--docs · ./docs/FormLayoutSelection.mdx</div>
@@ -71879,7 +71875,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-26-components-form-layout-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-25-components-form-layout-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -71979,7 +71975,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Selection Controls/Overview</h2>
       <div class="badges">
         
-        <label for="doc-27-components-selection-controls-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-26-components-selection-controls-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/SelectionSelection.mdx">components-selection-controls-overview--docs · ./docs/SelectionSelection.mdx</div>
@@ -71988,7 +71984,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-27-components-selection-controls-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-26-components-selection-controls-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -72463,7 +72459,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Pickers &amp; Sliders/Overview</h2>
       <div class="badges">
         
-        <label for="doc-28-components-pickers-sliders-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-27-components-pickers-sliders-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/PickerSelection.mdx">components-pickers-sliders-overview--docs · ./docs/PickerSelection.mdx</div>
@@ -72472,7 +72468,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-28-components-pickers-sliders-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-27-components-pickers-sliders-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -72679,7 +72675,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Data Containers/Overview</h2>
       <div class="badges">
         
-        <label for="doc-29-components-data-containers-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-28-components-data-containers-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/DataContainerSelection.mdx">components-data-containers-overview--docs · ./docs/DataContainerSelection.mdx</div>
@@ -72688,7 +72684,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-29-components-data-containers-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-28-components-data-containers-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -72753,7 +72749,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Data Indicators/Overview</h2>
       <div class="badges">
         
-        <label for="doc-30-components-data-indicators-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-29-components-data-indicators-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/DataIndicatorSelection.mdx">components-data-indicators-overview--docs · ./docs/DataIndicatorSelection.mdx</div>
@@ -72762,7 +72758,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-30-components-data-indicators-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-29-components-data-indicators-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -72869,7 +72865,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Data Structures/Overview</h2>
       <div class="badges">
         
-        <label for="doc-31-components-data-structures-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-30-components-data-structures-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/DataStructureSelection.mdx">components-data-structures-overview--docs · ./docs/DataStructureSelection.mdx</div>
@@ -72878,7 +72874,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-31-components-data-structures-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-30-components-data-structures-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -73037,7 +73033,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Alerts &amp; Notifications/Overview</h2>
       <div class="badges">
         
-        <label for="doc-32-components-alerts-notifications-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-31-components-alerts-notifications-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/AlertSelection.mdx">components-alerts-notifications-overview--docs · ./docs/AlertSelection.mdx</div>
@@ -73046,7 +73042,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-32-components-alerts-notifications-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-31-components-alerts-notifications-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -73155,7 +73151,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Overlays/Overview</h2>
       <div class="badges">
         
-        <label for="doc-33-components-overlays-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-32-components-overlays-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/OverlaySelection.mdx">components-overlays-overview--docs · ./docs/OverlaySelection.mdx</div>
@@ -73164,7 +73160,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-33-components-overlays-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-32-components-overlays-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -73423,7 +73419,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Loading States/Overview</h2>
       <div class="badges">
         
-        <label for="doc-34-components-loading-states-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-33-components-loading-states-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/LoadingSelection.mdx">components-loading-states-overview--docs · ./docs/LoadingSelection.mdx</div>
@@ -73432,7 +73428,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-34-components-loading-states-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-33-components-loading-states-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -73559,7 +73555,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Navigation Elements/Overview</h2>
       <div class="badges">
         
-        <label for="doc-35-components-navigation-elements-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-34-components-navigation-elements-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/NavigationSelection.mdx">components-navigation-elements-overview--docs · ./docs/NavigationSelection.mdx</div>
@@ -73568,7 +73564,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-35-components-navigation-elements-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-34-components-navigation-elements-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -73698,7 +73694,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Navigation Utilities/Overview</h2>
       <div class="badges">
         
-        <label for="doc-36-components-navigation-utilities-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-35-components-navigation-utilities-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/NavUtilitySelection.mdx">components-navigation-utilities-overview--docs · ./docs/NavUtilitySelection.mdx</div>
@@ -73707,7 +73703,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-36-components-navigation-utilities-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-35-components-navigation-utilities-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -73799,7 +73795,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Layout/Overview</h2>
       <div class="badges">
         
-        <label for="doc-37-components-layout-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-36-components-layout-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/LayoutSelection.mdx">components-layout-overview--docs · ./docs/LayoutSelection.mdx</div>
@@ -73808,7 +73804,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-37-components-layout-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-36-components-layout-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -74008,7 +74004,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Media/Overview</h2>
       <div class="badges">
         
-        <label for="doc-38-components-media-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-37-components-media-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/MediaSelection.mdx">components-media-overview--docs · ./docs/MediaSelection.mdx</div>
@@ -74017,7 +74013,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-38-components-media-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-37-components-media-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -74129,7 +74125,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Typography &amp; Icons/Overview</h2>
       <div class="badges">
         
-        <label for="doc-39-components-typography-icons-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-38-components-typography-icons-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/TypographySelection.mdx">components-typography-icons-overview--docs · ./docs/TypographySelection.mdx</div>
@@ -74138,7 +74134,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-39-components-typography-icons-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-38-components-typography-icons-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -74335,7 +74331,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Visualization/Overview</h2>
       <div class="badges">
         
-        <label for="doc-40-components-visualization-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-39-components-visualization-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/VisualizationSelection.mdx">components-visualization-overview--docs · ./docs/VisualizationSelection.mdx</div>
@@ -74344,7 +74340,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-40-components-visualization-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-39-components-visualization-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -74684,7 +74680,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Components/Utilities/Overview</h2>
       <div class="badges">
         
-        <label for="doc-41-components-utilities-overview-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-40-components-utilities-overview-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/UtilitySelection.mdx">components-utilities-overview--docs · ./docs/UtilitySelection.mdx</div>
@@ -74693,7 +74689,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-41-components-utilities-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-40-components-utilities-overview-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -74897,7 +74893,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Configure</h2>
       <div class="badges">
         
-        <label for="doc-42-configure-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-41-configure-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/Configure.mdx">configure--docs · ./docs/Configure.mdx</div>
@@ -74906,7 +74902,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-42-configure-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-41-configure-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -75118,7 +75114,7 @@ export const RightArrow = () =&gt; (
       <h2><span class="status-dot dot-ok"></span> Guides/App Layout</h2>
       <div class="badges">
         
-        <label for="doc-43-guides-app-layout-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-42-guides-app-layout-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/AppLayout.mdx">guides-app-layout--docs · ./docs/AppLayout.mdx</div>
@@ -75127,7 +75123,7 @@ export const RightArrow = () =&gt; (
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-43-guides-app-layout-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-42-guides-app-layout-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -75421,7 +75417,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Token/Breakpoints</h2>
       <div class="badges">
         
-        <label for="doc-44-token-breakpoints-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-43-token-breakpoints-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/Breakpoints.mdx">token-breakpoints--docs · ./docs/Breakpoints.mdx</div>
@@ -75430,7 +75426,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-44-token-breakpoints-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-43-token-breakpoints-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -75588,7 +75584,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Token/Colors</h2>
       <div class="badges">
         
-        <label for="doc-45-token-colors-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-44-token-colors-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/Colors.mdx">token-colors--docs · ./docs/Colors.mdx</div>
@@ -75597,7 +75593,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-45-token-colors-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-44-token-colors-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -75941,7 +75937,7 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
       <h2><span class="status-dot dot-ok"></span> Token/Effects</h2>
       <div class="badges">
         
-        <label for="doc-46-token-effects-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-45-token-effects-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/Effects.mdx">token-effects--docs · ./docs/Effects.mdx</div>
@@ -75950,7 +75946,7 @@ import { ContrastChecker } from &quot;../stories/ContrastChecker&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-46-token-effects-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-45-token-effects-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -76123,7 +76119,7 @@ import {
       <h2><span class="status-dot dot-ok"></span> Guides/Form Labels</h2>
       <div class="badges">
         
-        <label for="doc-47-guides-form-labels-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-46-guides-form-labels-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/FormLabels.mdx">guides-form-labels--docs · ./docs/FormLabels.mdx</div>
@@ -76132,7 +76128,7 @@ import {
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-47-guides-form-labels-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-46-guides-form-labels-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -76257,7 +76253,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Guides/Form UI</h2>
       <div class="badges">
         
-        <label for="doc-48-guides-form-ui-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-47-guides-form-ui-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/FormUI.mdx">guides-form-ui--docs · ./docs/FormUI.mdx</div>
@@ -76266,7 +76262,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-48-guides-form-ui-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-47-guides-form-ui-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -76584,7 +76580,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Guides/Hierarchy &amp; Composition</h2>
       <div class="badges">
         
-        <label for="doc-49-guides-hierarchy-composition-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-48-guides-hierarchy-composition-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/Hierarchy.mdx">guides-hierarchy-composition--docs · ./docs/Hierarchy.mdx</div>
@@ -76593,7 +76589,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-49-guides-hierarchy-composition-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-48-guides-hierarchy-composition-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -76915,7 +76911,7 @@ import { T } from &quot;../stories/T&quot;;
       <h2><span class="status-dot dot-ok"></span> Guides/Link vs Button</h2>
       <div class="badges">
         
-        <label for="doc-50-guides-link-vs-button-docs-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-49-guides-link-vs-button-docs-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./docs/LinkVsButton.mdx">guides-link-vs-button--docs · ./docs/LinkVsButton.mdx</div>
@@ -76924,7 +76920,7 @@ import { T } from &quot;../stories/T&quot;;
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-50-guides-link-vs-button-docs-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-49-guides-link-vs-button-docs-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -77138,6 +77134,121 @@ import { T } from &quot;../stories/T&quot;;
 &lt;a href=&quot;#&quot; onClick={saveData}&gt;Save (Bad)&lt;/a&gt;
 ```
 
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Guides/Numeric Input Standardization</h2>
+      <div class="badges">
+        
+        <label for="doc-50-guides-numeric-input-standardization-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./docs/NumericInputStandardization.mdx">guides-numeric-input-standardization--docs · ./docs/NumericInputStandardization.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-50-guides-numeric-input-standardization-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &quot;@storybook/addon-docs/blocks&quot;;
+import { T } from &quot;../stories/T&quot;;
+
+{/* useTranslation([&quot;common&quot;, &quot;docs_guide_standardization&quot;]) */}
+
+&lt;Meta title=&quot;Guides/Numeric Input Standardization&quot; /&gt;
+
+# &lt;T k=&quot;guide.numeric_std_title&quot; /&gt;
+
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_desc&quot; /&gt;&lt;/p&gt;
+
+---
+
+## &lt;T k=&quot;doc.design_intent_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_concept_desc&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_usage_warning_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.choice_matrix_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_recommend_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.anatomy_title&quot; /&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;&lt;T k=&quot;guide.numeric_std_table_browser&quot; /&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;T k=&quot;guide.numeric_std_table_input_status&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;b&gt;Safari (Desktop/iOS)&lt;/b&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;T k=&quot;guide.numeric_std_table_input_disabled&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;b&gt;Chrome / Firefox&lt;/b&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;T k=&quot;guide.numeric_std_table_input_js_empty&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+## &lt;T k=&quot;doc.usage&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_usage_desc&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_do_1&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_dont_1&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_dont_2&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_dont_3&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+## &lt;T k=&quot;doc.content_guidelines_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_problem_2_desc&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;T k=&quot;guide.numeric_std_exp_notation_desc&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+## &lt;T k=&quot;doc.motion_spec_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_spin_button_warning&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.a11y_spec_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_problem_4_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.best_practices_title&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_do_1&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;T k=&quot;guide.numeric_std_usage_dont_1&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+## &lt;T k=&quot;doc.tokens_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_tokens_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.responsive_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_responsive_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.keyboard_nav_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_keyboard_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.i18n_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_i18n_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.test_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;guide.numeric_std_test_desc&quot; /&gt;&lt;/p&gt;
+
+```bash
+npm run test:i18n
+```
 </code></pre>
           </div>
         </div>
@@ -77538,6 +77649,53 @@ import { T } from &quot;../stories/T&quot;;
   &lt;li&gt;&lt;a href=&quot;./?path=/docs/token-pccs--docs&quot; target=&quot;_top&quot;&gt;&lt;T k=&quot;token.pccs&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;./?path=/docs/token-breakpoints--docs&quot; target=&quot;_top&quot;&gt;&lt;T k=&quot;token.breakpoints&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+---
+
+## &lt;T k=&quot;doc.design_intent_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;token.overview_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.choice_matrix_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;token.overview_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.anatomy_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;token.overview_title&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.content_guidelines_title&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;T k=&quot;token.type_alias_desc&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+## &lt;T k=&quot;doc.motion_spec_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;token.effects&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.a11y_spec_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;token.color_checker_desc&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.real_world_scenarios_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;token.overview_title&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.best_practices_title&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;T k=&quot;token.type_alias_desc&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+## &lt;T k=&quot;doc.tokens_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.tokens_title&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.responsive_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.responsive_title&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.keyboard_nav_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.keyboard_nav_title&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.i18n_title&quot; /&gt;
+&lt;p&gt;&lt;T k=&quot;doc.i18n_title&quot; /&gt;&lt;/p&gt;
+
+## &lt;T k=&quot;doc.test_title&quot; /&gt;
+```bash
+npm run tokens:check
+```
 </code></pre>
           </div>
         </div>

@@ -1,0 +1,55 @@
+import{j as d}from"./jsx-runtime-u17CrQMm.js";import{u as o,M as r,C as c,a as t}from"./blocks-lf0vCmjx.js";import{A as x,D as l,a as j,C as h,R as a,F as _,P as u}from"./Audio.stories-syKeOUO8.js";import{T as s}from"./T-fSy696bf.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-CiRA90at.js";import"./index-CLBEe97B.js";import"./index-CxnFX8s-.js";import"./index-DIw5TbUQ.js";import"./index-C0gzyH78.js";import"./index-CERe7Zud.js";import"./useMediaLoader-DjFxMhmP.js";import"./Icon-CQf8-Dej.js";import"./Button-B4aZ_nMo.js";import"./style-utils-Bzkn8Zxa.js";import"./useMergedRef-KckkDrE5.js";import"./useTranslation-BEAd_Ta8.js";function n(e){const i={code:"code",h1:"h1",h2:"h2",h3:"h3",pre:"pre",...o(),...e.components};return d.jsxs(d.Fragment,{children:[d.jsx(r,{of:x}),`
+`,d.jsx(i.h1,{id:"audio",children:"Audio"}),`
+`,d.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:d.jsx(s,{k:"doc.audio_title"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_long_desc"})}),`
+`,d.jsx(i.h2,{id:"",children:d.jsx(s,{k:"doc.basic_usage"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_basic_desc"})}),`
+`,d.jsx(i.h2,{id:"-1",children:d.jsx(s,{k:"doc.design_intent_title"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_design_intent"})}),`
+`,d.jsx(i.h2,{id:"-2",children:d.jsx(s,{k:"doc.choice_matrix_title"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_choice_matrix_desc"})}),`
+`,d.jsxs("table",{children:[d.jsx("thead",{children:d.jsxs("tr",{children:[d.jsx("th",{children:d.jsx(s,{k:"doc.component"})}),d.jsx("th",{children:d.jsx(s,{k:"doc.usage_scenario"})})]})}),d.jsxs("tbody",{children:[d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("b",{children:"Audio"})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_choice_self_when"})})]}),d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("b",{children:"Video"})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_choice_alt_when"})})]})]})]}),`
+`,d.jsx(i.h2,{id:"-3",children:d.jsx(s,{k:"doc.anatomy_title"})}),`
+`,d.jsxs("table",{children:[d.jsx("thead",{children:d.jsxs("tr",{children:[d.jsx("th",{children:d.jsx(s,{k:"doc.component"})}),d.jsx("th",{children:d.jsx(s,{k:"doc.description"})})]})}),d.jsxs("tbody",{children:[d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("b",{children:d.jsx(s,{k:"doc.audio_anatomy_root_label"})})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_anatomy_root"})})]}),d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("b",{children:d.jsx(s,{k:"doc.audio_anatomy_content_label"})})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_anatomy_content"})})]})]})]}),`
+`,d.jsx(i.h2,{id:"-4",children:d.jsx(s,{k:"doc.content_guidelines_title"})}),`
+`,d.jsx("ul",{children:d.jsx("li",{children:d.jsx(s,{k:"doc.audio_content_guideline"})})}),`
+`,d.jsx(i.h2,{id:"-5",children:d.jsx(s,{k:"doc.motion_spec_title"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_motion_desc"})}),`
+`,d.jsx(i.h2,{id:"-6",children:d.jsx(s,{k:"doc.a11y_spec_title"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_a11y_desc"})}),`
+`,d.jsx(i.h2,{id:"-7",children:d.jsx(s,{k:"doc.real_world_scenarios_title"})}),`
+`,d.jsxs("table",{children:[d.jsx("thead",{children:d.jsxs("tr",{children:[d.jsx("th",{children:d.jsx(s,{k:"doc.usage_scenario"})}),d.jsx("th",{children:d.jsx(s,{k:"doc.table_header_description"})})]})}),d.jsxs("tbody",{children:[d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("strong",{children:d.jsx(s,{k:"doc.scenario_article_title"})})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_scenario_1"})})]}),d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("strong",{children:d.jsx(s,{k:"doc.scenario_chat_title"})})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_scenario_2"})})]}),d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("strong",{children:d.jsx(s,{k:"doc.scenario_gallery_title"})})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_scenario_3"})})]})]})]}),`
+`,d.jsx(i.h2,{id:"-8",children:d.jsx(s,{k:"doc.best_practices_title"})}),`
+`,d.jsxs("ul",{children:[d.jsx("li",{children:d.jsx(s,{k:"doc.audio_best_practice_1"})}),d.jsx("li",{children:d.jsx(s,{k:"doc.audio_best_practice_2"})})]}),`
+`,d.jsx(c,{of:l}),`
+`,d.jsx(i.h2,{id:"-9",children:d.jsx(s,{k:"doc.audio_autoplay_title"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_autoplay_desc"})}),`
+`,d.jsx(c,{of:j}),`
+`,d.jsx(i.h2,{id:"-10",children:d.jsx(s,{k:"doc.audio_custom_controls"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_custom_controls_desc"})}),`
+`,d.jsx(c,{of:h}),`
+`,d.jsx(i.h2,{id:"-11",children:d.jsx(s,{k:"doc.audio_styling"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_styling_desc"})}),`
+`,d.jsx(c,{of:a}),`
+`,d.jsx(i.h3,{id:"-12",children:d.jsx(s,{k:"doc.audio_important_notice"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_important_notice_desc"})}),`
+`,d.jsx(i.h2,{id:"-13",children:d.jsx(s,{k:"doc.audio_customization"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_customization_desc"})}),`
+`,d.jsxs("ul",{children:[d.jsx("li",{children:d.jsx(s,{k:"doc.audio_feature_speed"})}),d.jsx("li",{children:d.jsx(s,{k:"doc.audio_feature_seek"})}),d.jsx("li",{children:d.jsx(s,{k:"doc.audio_feature_loop"})}),d.jsx("li",{children:d.jsx(s,{k:"doc.audio_feature_waveform"})})]}),`
+`,d.jsx(i.h2,{id:"-14",children:d.jsx(s,{k:"doc.audio_full_featured_title"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_full_featured_desc"})}),`
+`,d.jsx(c,{of:_}),`
+`,d.jsx(i.h2,{id:"-15",children:d.jsx(s,{k:"doc.audio_premium_features_mdx_title"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_premium_features_mdx_desc"})}),`
+`,d.jsx(c,{of:u}),`
+`,d.jsx(i.h2,{id:"-16",children:d.jsx(s,{k:"doc.design_tokens_title"})}),`
+`,d.jsxs("table",{children:[d.jsx("thead",{children:d.jsxs("tr",{children:[d.jsx("th",{children:d.jsx(s,{k:"doc.token"})}),d.jsx("th",{children:d.jsx(s,{k:"doc.usage"})})]})}),d.jsxs("tbody",{children:[d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("code",{children:"--wim-color-primary"})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_token_primary"})})]}),d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("code",{children:"--wim-color-primary-light"})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_token_primary_light"})})]}),d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("code",{children:"--wim-color-border"})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_token_border"})})]}),d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("code",{children:"--wim-color-text-secondary"})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_token_text_secondary"})})]}),d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("code",{children:"--wim-radius-full"})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_token_radius_full"})})]}),d.jsxs("tr",{children:[d.jsx("td",{children:d.jsx("code",{children:"--wim-shadow-md"})}),d.jsx("td",{children:d.jsx(s,{k:"doc.audio_token_shadow"})})]})]})]}),`
+`,d.jsx(i.h2,{id:"props",children:"Props"}),`
+`,d.jsx(t,{}),`
+`,d.jsx(i.h2,{id:"-17",children:d.jsx(s,{k:"doc.keyboard_nav_title"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_keyboard_desc"})}),`
+`,d.jsx(i.h2,{id:"-18",children:d.jsx(s,{k:"doc.i18n_title"})}),`
+`,d.jsx("p",{children:d.jsx(s,{k:"doc.audio_i18n_desc"})}),`
+`,d.jsx(i.h2,{id:"-19",children:d.jsx(s,{k:"doc.test_title"})}),`
+`,d.jsx(i.pre,{children:d.jsx(i.code,{className:"language-bash",children:`npm run test -- Audio
+`})})]})}function X(e={}){const{wrapper:i}={...o(),...e.components};return i?d.jsx(i,{...e,children:d.jsx(n,{...e})}):n(e)}export{X as default};
