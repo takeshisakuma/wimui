@@ -1,4 +1,5 @@
 import { ReactNode } from '../../../../node_modules/react';
+import { ButtonIntent } from '../../../types/tokens';
 export type PopconfirmProps = {
     /**
      * The title of the confirmation box
@@ -27,7 +28,7 @@ export type PopconfirmProps = {
     /**
      * Color role of the confirm button
      */
-    okType?: "default" | "destructive" | "positive";
+    okType?: ButtonIntent;
     /**
      * The target element which the Popconfirm will be attached to
      */

@@ -4575,7 +4575,7 @@ npm run test -- AvatarGroup
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> BackTop</h2>
       <div class="badges">
-        <label for="c-10-components-navigation-utilities-backtop-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-10-components-navigation-utilities-backtop-props" class="badge ok as-toggle">7 prop types</label>
         <label for="c-10-components-navigation-utilities-backtop-info" class="badge info as-toggle">1 info</label>
         <label for="c-10-components-navigation-utilities-backtop-stories" class="badge ok as-toggle">3 stories</label>
         <label for="c-10-components-navigation-utilities-backtop-docs" class="badge ok as-toggle">1 doc</label>
@@ -4609,11 +4609,16 @@ npm run test -- AvatarGroup
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">6 prop types</span>
+              <span class="badge ok">7 prop types</span>
             </div>
             <pre><code>Component: src/components/navigation/BackTop/BackTop.tsx::BackTop</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
+ * Accessible label for the button
+ */
+aria-label?: string
+
+/**
  * Children to be rendered inside the button
  */
 children?: React.ReactNode
@@ -13750,9 +13755,21 @@ npm run test -- Code
     return (
         &lt;Label label={t(&quot;story.colorinput_states&quot;)}&gt;
             &lt;div style={{ display: &quot;flex&quot;, flexDirection: &quot;column&quot;, gap: &quot;1rem&quot; }}&gt;
-                &lt;ColorInput intent=&quot;default&quot; defaultValue=&quot;#10b981&quot; leftIcon=&quot;CheckCircleIcon&quot; /&gt;
-                &lt;ColorInput intent=&quot;error&quot; defaultValue=&quot;#ef4444&quot; leftIcon=&quot;AlertCircleIcon&quot; /&gt;
-                &lt;ColorInput disabled defaultValue=&quot;#6b7280&quot; leftIcon=&quot;SettingsIcon&quot; /&gt;
+                &lt;ColorInput
+                    intent=&quot;default&quot;
+                    defaultValue=&quot;#10b981&quot;
+                    leftIcon=&quot;CheckCircleIcon&quot;
+                    aria-label={t(&quot;story.colorinput_states&quot;)} /&gt;
+                &lt;ColorInput
+                    intent=&quot;error&quot;
+                    defaultValue=&quot;#ef4444&quot;
+                    leftIcon=&quot;AlertCircleIcon&quot;
+                    aria-label={t(&quot;story.colorinput_states&quot;)} /&gt;
+                &lt;ColorInput
+                    disabled
+                    defaultValue=&quot;#6b7280&quot;
+                    leftIcon=&quot;SettingsIcon&quot;
+                    aria-label={t(&quot;story.colorinput_states&quot;)} /&gt;
             &lt;/div&gt;
         &lt;/Label&gt;
     );
@@ -15044,7 +15061,10 @@ w?: | T
 
     return (
         &lt;Container bg=&quot;#f9f9f9&quot;&gt;
-            &lt;Box bg=&quot;#f0f0f0&quot; p={20} style={{ border: &quot;1px solid #ccc&quot; }}&gt;
+            &lt;Box
+                bg=&quot;var(--wim-color-bg-component)&quot;
+                p={20}
+                style={{ border: &quot;1px solid var(--wim-color-border)&quot; }}&gt;
                 {t(&quot;story.container_content&quot;)}
             &lt;/Box&gt;
         &lt;/Container&gt;
@@ -15063,11 +15083,11 @@ w?: | T
   return (
     &lt;div style={{ display: &quot;flex&quot;, flexDirection: &quot;column&quot;, gap: &quot;20px&quot; }}&gt;
       {([&quot;xs&quot;, &quot;sm&quot;, &quot;md&quot;, &quot;lg&quot;, &quot;xl&quot;] as const).map((size) =&gt; (
-        &lt;Container key={size} size={size} bg=&quot;#f8fafc&quot; p={10}&gt;
+        &lt;Container key={size} size={size} bg=&quot;var(--wim-color-bg-secondary)&quot; p={10}&gt;
           &lt;Box
-            bg=&quot;#eff6ff&quot;
+            bg=&quot;var(--wim-color-bg-component)&quot;
             p={10}
-            style={{ textAlign: &quot;center&quot;, border: &quot;1px dashed #3b82f6&quot; }}
+            style={{ textAlign: &quot;center&quot;, border: &quot;1px solid var(--wim-color-border)&quot; }}
           &gt;
             {t(&quot;story.container_size&quot;)}: {size}
           &lt;/Box&gt;
@@ -15088,11 +15108,11 @@ w?: | T
     const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
-        &lt;Container bg=&quot;#f8fafc&quot; fluid&gt;
+        &lt;Container bg=&quot;var(--wim-color-bg-secondary)&quot; fluid&gt;
             &lt;Box
-                bg=&quot;#eff6ff&quot;
+                bg=&quot;var(--wim-color-bg-component)&quot;
                 p={20}
-                style={{ textAlign: &quot;center&quot;, border: &quot;1px dashed #3b82f6&quot; }}&gt;
+                style={{ textAlign: &quot;center&quot;, border: &quot;1px solid var(--wim-color-border)&quot; }}&gt;
                 {t(&quot;story.container_fluid&quot;)}
             &lt;/Box&gt;
         &lt;/Container&gt;
@@ -22621,8 +22641,8 @@ wrap?: &quot;nowrap&quot; | &quot;wrap&quot; | &quot;wrap-reverse&quot;</code></
     return (
         &lt;Flex direction=&quot;row&quot; gap={16}&gt;
             &lt;Box&gt;{t(&quot;story.flex_item_1&quot;, &quot;1&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#10b981&quot;&gt;{t(&quot;story.flex_item_2&quot;, &quot;2&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#f59e0b&quot;&gt;{t(&quot;story.flex_item_3&quot;, &quot;3&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;positive&quot;&gt;{t(&quot;story.flex_item_2&quot;, &quot;2&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;caution&quot;&gt;{t(&quot;story.flex_item_3&quot;, &quot;3&quot;)}&lt;/Box&gt;
         &lt;/Flex&gt;
     );
 };</code></pre>
@@ -22640,8 +22660,8 @@ wrap?: &quot;nowrap&quot; | &quot;wrap&quot; | &quot;wrap-reverse&quot;</code></
     return (
         &lt;Flex direction=&quot;column&quot; gap=&quot;1rem&quot;&gt;
             &lt;Box&gt;{t(&quot;story.flex_item_1&quot;, &quot;Item 1&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#10b981&quot;&gt;{t(&quot;story.flex_item_2&quot;, &quot;Item 2&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#ef4444&quot;&gt;{t(&quot;story.flex_item_3&quot;, &quot;Item 3&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;positive&quot;&gt;{t(&quot;story.flex_item_2&quot;, &quot;Item 2&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;destructive&quot;&gt;{t(&quot;story.flex_item_3&quot;, &quot;Item 3&quot;)}&lt;/Box&gt;
         &lt;/Flex&gt;
     );
 };</code></pre>
@@ -22662,8 +22682,8 @@ wrap?: &quot;nowrap&quot; | &quot;wrap&quot; | &quot;wrap-reverse&quot;</code></
             gap={16}
             style={{ width: &quot;100%&quot;, border: &quot;1px solid #ddd&quot;, padding: &quot;10px&quot; }}&gt;
             &lt;Box&gt;{t(&quot;story.flex_left&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#8b5cf6&quot;&gt;{t(&quot;story.flex_middle&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#ec4899&quot;&gt;{t(&quot;story.flex_right&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;secondary&quot;&gt;{t(&quot;story.flex_middle&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;secondary&quot;&gt;{t(&quot;story.flex_right&quot;)}&lt;/Box&gt;
         &lt;/Flex&gt;
     );
 };</code></pre>
@@ -22684,10 +22704,10 @@ wrap?: &quot;nowrap&quot; | &quot;wrap&quot; | &quot;wrap-reverse&quot;</code></
             gap={16}
             style={{ width: &quot;200px&quot;, padding: &quot;10px&quot;, border: &quot;1px solid #ccc&quot; }}&gt;
             &lt;Box&gt;{t(&quot;story.flex_item_1&quot;, &quot;1&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#10b981&quot;&gt;{t(&quot;story.flex_item_2&quot;, &quot;2&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#f59e0b&quot;&gt;{t(&quot;story.flex_item_3&quot;, &quot;3&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#ef4444&quot;&gt;{t(&quot;story.flex_item_4&quot;, &quot;4&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#8b5cf6&quot;&gt;{t(&quot;story.flex_item_5&quot;, &quot;5&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;positive&quot;&gt;{t(&quot;story.flex_item_2&quot;, &quot;2&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;caution&quot;&gt;{t(&quot;story.flex_item_3&quot;, &quot;3&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;destructive&quot;&gt;{t(&quot;story.flex_item_4&quot;, &quot;4&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;secondary&quot;&gt;{t(&quot;story.flex_item_5&quot;, &quot;5&quot;)}&lt;/Box&gt;
         &lt;/Flex&gt;
     );
 };</code></pre>
@@ -25136,11 +25156,11 @@ rows?: number | string</code></pre>
     return (
         &lt;Grid cols={3} gap={16}&gt;
             &lt;Box&gt;{t(&quot;story.grid_item&quot;, &quot;1&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#10b981&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;2&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#f59e0b&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;3&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#ef4444&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;4&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#8b5cf6&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;5&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#ec4899&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;6&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;positive&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;2&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;caution&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;3&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;destructive&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;4&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;secondary&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;5&quot;)}&lt;/Box&gt;
+            &lt;Box intent=&quot;informative&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;6&quot;)}&lt;/Box&gt;
         &lt;/Grid&gt;
     );
 };</code></pre>
@@ -25156,8 +25176,8 @@ rows?: number | string</code></pre>
     return (
         &lt;Grid cols=&quot;1fr 2fr 1fr&quot; gap=&quot;1rem&quot;&gt;
             &lt;Box&gt;1fr&lt;/Box&gt;
-            &lt;Box color=&quot;#10b981&quot;&gt;2fr&lt;/Box&gt;
-            &lt;Box color=&quot;#f59e0b&quot;&gt;1fr&lt;/Box&gt;
+            &lt;Box intent=&quot;positive&quot;&gt;2fr&lt;/Box&gt;
+            &lt;Box intent=&quot;caution&quot;&gt;1fr&lt;/Box&gt;
         &lt;/Grid&gt;
     );
 };</code></pre>
@@ -25171,17 +25191,13 @@ rows?: number | string</code></pre>
               
               <pre><code>const Responsive = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
+    const intents: BoxIntent[] = [&quot;primary&quot;, &quot;positive&quot;, &quot;caution&quot;, &quot;destructive&quot;, &quot;secondary&quot;, &quot;informative&quot;, &quot;secondary&quot;, &quot;positive&quot;];
 
     return (
         &lt;Grid cols={{ base: 1, sm: 2, md: 3, lg: 4 }} gap={16}&gt;
-            &lt;Box&gt;{t(&quot;story.grid_item&quot;, &quot;1&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#10b981&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;2&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#f59e0b&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;3&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#ef4444&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;4&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#8b5cf6&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;5&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#ec4899&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;6&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#6366f1&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;7&quot;)}&lt;/Box&gt;
-            &lt;Box color=&quot;#14b8a6&quot;&gt;{t(&quot;story.grid_item&quot;, &quot;8&quot;)}&lt;/Box&gt;
+            {intents.map((intent, i) =&gt; (
+              &lt;Box key={i} intent={intent}&gt;{t(&quot;story.grid_item&quot;, String(i + 1))}&lt;/Box&gt;
+            ))}
         &lt;/Grid&gt;
     );
 };</code></pre>
@@ -27137,7 +27153,10 @@ highlightStyles?: React.CSSProperties</code></pre>
               </div>
               
               
-              <pre><code>const CustomComponent = () =&gt; &lt;Highlight highlight=&quot;paragraph&quot; as=&quot;p&quot; style={{ fontSize: &quot;20px&quot;, color: &quot;gray&quot; }}&gt;This is a paragraph with a highlight.&lt;/Highlight&gt;;</code></pre>
+              <pre><code>const CustomComponent = () =&gt; &lt;Highlight
+    highlight=&quot;paragraph&quot;
+    as=&quot;p&quot;
+    style={{ fontSize: &quot;20px&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;This is a paragraph with a highlight.&lt;/Highlight&gt;;</code></pre>
             </div>
         </div>
     
@@ -38061,7 +38080,7 @@ icon?: ReactNode
 id?: string
 
 /**
- * The status of notification
+ * The intent of notification
  */
 intent?: | &quot;primary&quot;
 | &quot;secondary&quot;
@@ -38483,7 +38502,7 @@ mode?: &quot;number&quot; | &quot;text&quot; = &quot;number&quot;</code></pre>
               </div>
               
               <div class="hint">数量の入力など、数値の増減が必要な場合（デフォルト）</div>
-              <pre><code>const NumericMode = () =&gt; &lt;NumberInput mode=&quot;number&quot; hideSpinButton /&gt;;</code></pre>
+              <pre><code>const NumericMode = () =&gt; &lt;NumberInput mode=&quot;number&quot; hideSpinButton aria-label=&quot;Number&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -38819,7 +38838,7 @@ value?: string = &quot;&quot;</code></pre>
       &lt;p style={{ marginTop: &quot;1rem&quot; }}&gt;
         {t(&quot;story.otp_current_value&quot;)}: {value}
       &lt;/p&gt;
-      &lt;button onClick={() =&gt; setValue(&quot;&quot;)} style={{ marginTop: &quot;0.5rem&quot; }}&gt;
+      &lt;button onClick={() =&gt; setValue(&quot;&quot;)} style={{ marginTop: &quot;0.5rem&quot;, color: &quot;var(--wim-color-text-primary)&quot;, backgroundColor: &quot;var(--wim-color-bg-component)&quot;, border: &quot;1px solid var(--wim-color-border)&quot; }}&gt;
         {t(&quot;story.otp_clear&quot;)}
       &lt;/button&gt;
     &lt;/div&gt;
@@ -42619,7 +42638,7 @@ npm run test -- Progress
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> QRCode</h2>
       <div class="badges">
-        <label for="c-109-components-data-indicators-qrcode-props" class="badge ok as-toggle">9 prop types</label>
+        <label for="c-109-components-data-indicators-qrcode-props" class="badge ok as-toggle">10 prop types</label>
         <label for="c-109-components-data-indicators-qrcode-info" class="badge info as-toggle">1 info</label>
         <label for="c-109-components-data-indicators-qrcode-stories" class="badge ok as-toggle">4 stories</label>
         <label for="c-109-components-data-indicators-qrcode-docs" class="badge ok as-toggle">1 doc</label>
@@ -42653,11 +42672,16 @@ npm run test -- Progress
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">9 prop types</span>
+              <span class="badge ok">10 prop types</span>
             </div>
             <pre><code>Component: src/components/data-display/QRCode/QRCode.tsx::QRCode</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>bgColor?: string = &quot;#FFFFFF&quot;
+            <pre><code>/**
+ * Accessible label describing what the QR code represents
+ */
+aria-label?: string
+
+bgColor?: string = &quot;#FFFFFF&quot;
 
 className?: string
 
@@ -43453,7 +43477,10 @@ size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;</code><
             &lt;Quote content={t(&#39;story.quote_black&#39;)} color=&quot;black&quot; /&gt;
             &lt;Quote content={t(&#39;story.quote_deepgray&#39;)} color=&quot;deepgray&quot; /&gt;
             &lt;Quote content={t(&#39;story.quote_gray&#39;)} color=&quot;gray&quot; /&gt;
-            &lt;Quote content={t(&#39;story.quote_lightgray&#39;)} color=&quot;lightgray&quot; /&gt;
+            &lt;div
+                style={{ backgroundColor: &quot;#1a1a1a&quot;, padding: &quot;12px&quot;, borderRadius: &quot;4px&quot; }}&gt;
+                &lt;Quote content={t(&#39;story.quote_lightgray&#39;)} color=&quot;lightgray&quot; /&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
     );
 };</code></pre>
@@ -49084,9 +49111,9 @@ text?: React.ReactNode</code></pre>
             &lt;div
                 style={{
                   width: &quot;150rem&quot;,
-                  background: &quot;#3b82f6&quot;,
+                  background: &quot;var(--wim-color-primary)&quot;,
                   padding: &quot;1rem&quot;,
-                  color: &quot;white&quot;,
+                  color: &quot;var(--wim-color-text-on-primary)&quot;,
                 }}&gt;
                 {t(&quot;story.scrollarea_wide_content&quot;)} {t(&quot;story.selectbox_opt4&quot;)} {t(&quot;story.scrollarea_wide_content&quot;)}{&quot; &quot;}
                 {t(&quot;story.selectbox_opt4&quot;)} {t(&quot;story.scrollarea_wide_content&quot;)} {t(&quot;story.selectbox_opt4&quot;)}
@@ -52850,7 +52877,7 @@ value?: number</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { Label, Slider } from "wimui";</code></pre>
+                <pre><code>import { Slider } from "wimui";</code></pre>
               </div>
           
           
@@ -52863,12 +52890,7 @@ value?: number</code></pre>
               
               <pre><code>const Default = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-
-    return (
-        &lt;Label label={t(&quot;story.slider_default&quot;)}&gt;
-            &lt;Slider defaultValue={50} /&gt;
-        &lt;/Label&gt;
-    );
+    return &lt;Slider defaultValue={50} label={t(&quot;story.slider_default&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -52880,12 +52902,7 @@ value?: number</code></pre>
               
               <pre><code>const Disabled = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-
-    return (
-        &lt;Label label={t(&quot;story.slider_disabled&quot;)}&gt;
-            &lt;Slider defaultValue={30} disabled /&gt;
-        &lt;/Label&gt;
-    );
+    return &lt;Slider defaultValue={30} disabled label={t(&quot;story.slider_disabled&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -52897,12 +52914,7 @@ value?: number</code></pre>
               
               <pre><code>const MinMax = () =&gt; {
     const { t } = useTranslation(ALL_NAMESPACES);
-
-    return (
-        &lt;Label label={t(&quot;story.slider_minmax&quot;)}&gt;
-            &lt;Slider min={-50} max={50} defaultValue={0} /&gt;
-        &lt;/Label&gt;
-    );
+    return &lt;Slider min={-50} max={50} defaultValue={0} label={t(&quot;story.slider_minmax&quot;)} /&gt;;
 };</code></pre>
             </div>
             <div class="note ok">
@@ -52916,9 +52928,12 @@ value?: number</code></pre>
     const { t } = useTranslation(ALL_NAMESPACES);
 
     return (
-        &lt;Label label={t(&quot;story.slider_step&quot;)}&gt;
-            &lt;Slider min={0} max={100} step={10} defaultValue={20} /&gt;
-        &lt;/Label&gt;
+        &lt;Slider
+            min={0}
+            max={100}
+            step={10}
+            defaultValue={20}
+            label={t(&quot;story.slider_step&quot;)} /&gt;
     );
 };</code></pre>
             </div>
@@ -52933,9 +52948,11 @@ value?: number</code></pre>
   const { t } = useTranslation(ALL_NAMESPACES);
   const [val, setVal] = useState(25);
   return (
-    &lt;Label label={`${t(&quot;story.slider_default&quot;)} (${t(&quot;story.dialog_curr_state&quot;)}: ${val})`}&gt;
-      &lt;Slider value={val} onChange={setVal} /&gt;
-    &lt;/Label&gt;
+    &lt;Slider
+      label={`${t(&quot;story.slider_default&quot;)} (${t(&quot;story.dialog_curr_state&quot;)}: ${val})`}
+      value={val}
+      onChange={setVal}
+    /&gt;
   );
 };</code></pre>
             </div>
@@ -55019,26 +55036,26 @@ w?: | T
         &lt;Stack direction=&quot;column&quot; gap=&quot;md&quot;&gt;
             &lt;Box
                 key=&quot;1&quot;
-                bg=&quot;#eff6ff&quot;
+                bg=&quot;var(--wim-color-primary-container-alpha)&quot;
                 p={20}
                 radius={8}
-                style={{ border: &quot;1px solid #3b82f6&quot; }}&gt;
+                style={{ border: &quot;1px solid var(--wim-color-primary)&quot; }}&gt;
                 {t(&quot;story.stack_item_1&quot;, &quot;Item 1&quot;)}
             &lt;/Box&gt;
             &lt;Box
                 key=&quot;2&quot;
-                bg=&quot;#f0fdf4&quot;
+                bg=&quot;color-mix(in srgb, var(--wim-color-positive) 15%, transparent)&quot;
                 p={20}
                 radius={8}
-                style={{ border: &quot;1px solid #22c55e&quot; }}&gt;
+                style={{ border: &quot;1px solid var(--wim-color-positive)&quot; }}&gt;
                 {t(&quot;story.stack_item_2&quot;, &quot;Item 2&quot;)}
             &lt;/Box&gt;
             &lt;Box
                 key=&quot;3&quot;
-                bg=&quot;#fff7ed&quot;
+                bg=&quot;color-mix(in srgb, var(--wim-color-caution) 15%, transparent)&quot;
                 p={20}
                 radius={8}
-                style={{ border: &quot;1px solid #f97316&quot; }}&gt;
+                style={{ border: &quot;1px solid var(--wim-color-caution)&quot; }}&gt;
                 {t(&quot;story.stack_item_3&quot;, &quot;Item 3&quot;)}
             &lt;/Box&gt;
         &lt;/Stack&gt;
@@ -55059,26 +55076,26 @@ w?: | T
         &lt;Stack direction=&quot;row&quot; gap=&quot;lg&quot;&gt;
             &lt;Box
                 key=&quot;1&quot;
-                bg=&quot;#eff6ff&quot;
+                bg=&quot;var(--wim-color-primary-container-alpha)&quot;
                 p={20}
                 radius={8}
-                style={{ border: &quot;1px solid #3b82f6&quot; }}&gt;
+                style={{ border: &quot;1px solid var(--wim-color-primary)&quot; }}&gt;
                 {t(&quot;story.stack_item_1&quot;, &quot;Item 1&quot;)}
             &lt;/Box&gt;
             &lt;Box
                 key=&quot;2&quot;
-                bg=&quot;#f0fdf4&quot;
+                bg=&quot;color-mix(in srgb, var(--wim-color-positive) 15%, transparent)&quot;
                 p={20}
                 radius={8}
-                style={{ border: &quot;1px solid #22c55e&quot; }}&gt;
+                style={{ border: &quot;1px solid var(--wim-color-positive)&quot; }}&gt;
                 {t(&quot;story.stack_item_2&quot;, &quot;Item 2&quot;)}
             &lt;/Box&gt;
             &lt;Box
                 key=&quot;3&quot;
-                bg=&quot;#fff7ed&quot;
+                bg=&quot;color-mix(in srgb, var(--wim-color-caution) 15%, transparent)&quot;
                 p={20}
                 radius={8}
-                style={{ border: &quot;1px solid #f97316&quot; }}&gt;
+                style={{ border: &quot;1px solid var(--wim-color-caution)&quot; }}&gt;
                 {t(&quot;story.stack_item_3&quot;, &quot;Item 3&quot;)}
             &lt;/Box&gt;
         &lt;/Stack&gt;
@@ -55096,28 +55113,28 @@ w?: | T
   const { t } = useTranslation(ALL_NAMESPACES);
   return (
     &lt;Stack gap=&quot;xl&quot;&gt;
-      &lt;Box bg=&quot;#f8fafc&quot; p={10}&gt;
+      &lt;Box bg=&quot;var(--wim-color-bg-secondary)&quot; p={10}&gt;
         {t(&quot;story.stack_gap&quot;, &quot;Gap: &quot;)}xl
       &lt;/Box&gt;
       &lt;Stack direction=&quot;row&quot; gap=&quot;xs&quot;&gt;
-        &lt;Box bg=&quot;#eff6ff&quot; p={10}&gt;
+        &lt;Box bg=&quot;var(--wim-color-primary-container-alpha)&quot; p={10}&gt;
           {t(&quot;story.stack_gap&quot;, &quot;Gap: &quot;)}xs
         &lt;/Box&gt;
-        &lt;Box bg=&quot;#eff6ff&quot; p={10}&gt;
+        &lt;Box bg=&quot;var(--wim-color-primary-container-alpha)&quot; p={10}&gt;
           {t(&quot;story.stack_gap&quot;, &quot;Gap: &quot;)}xs
         &lt;/Box&gt;
-        &lt;Box bg=&quot;#eff6ff&quot; p={10}&gt;
+        &lt;Box bg=&quot;var(--wim-color-primary-container-alpha)&quot; p={10}&gt;
           {t(&quot;story.stack_gap&quot;, &quot;Gap: &quot;)}xs
         &lt;/Box&gt;
       &lt;/Stack&gt;
       &lt;Stack direction=&quot;row&quot; gap=&quot;lg&quot;&gt;
-        &lt;Box bg=&quot;#f0fdf4&quot; p={10}&gt;
+        &lt;Box bg=&quot;color-mix(in srgb, var(--wim-color-positive) 15%, transparent)&quot; p={10}&gt;
           {t(&quot;story.stack_gap&quot;, &quot;Gap: &quot;)}lg
         &lt;/Box&gt;
-        &lt;Box bg=&quot;#f0fdf4&quot; p={10}&gt;
+        &lt;Box bg=&quot;color-mix(in srgb, var(--wim-color-positive) 15%, transparent)&quot; p={10}&gt;
           {t(&quot;story.stack_gap&quot;, &quot;Gap: &quot;)}lg
         &lt;/Box&gt;
-        &lt;Box bg=&quot;#f0fdf4&quot; p={10}&gt;
+        &lt;Box bg=&quot;color-mix(in srgb, var(--wim-color-positive) 15%, transparent)&quot; p={10}&gt;
           {t(&quot;story.stack_gap&quot;, &quot;Gap: &quot;)}lg
         &lt;/Box&gt;
       &lt;/Stack&gt;

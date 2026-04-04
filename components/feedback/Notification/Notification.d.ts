@@ -19,7 +19,7 @@ export type NotificationProps = {
      */
     icon?: ReactNode;
     /**
-     * The status of notification
+     * The intent of notification
      */
     intent?: WimIntent;
     /**

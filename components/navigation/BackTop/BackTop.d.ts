@@ -12,6 +12,8 @@ export interface BackTopProps {
     className?: string;
     /** Style attribute */
     style?: React.CSSProperties;
+    /** Accessible label for the button */
+    "aria-label"?: string;
 }
-export declare const BackTop: ({ target, visibilityHeight, onClick, children, className, style, }: BackTopProps) => import("react/jsx-runtime").JSX.Element;
+export declare const BackTop: ({ target, visibilityHeight, onClick, children, className, style, "aria-label": ariaLabel, }: BackTopProps) => import("react/jsx-runtime").JSX.Element;
 export default BackTop;

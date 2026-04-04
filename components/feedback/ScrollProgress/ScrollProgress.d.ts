@@ -12,4 +12,4 @@ export type ScrollProgressProps = React.ComponentPropsWithoutRef<"div"> & {
 /**
  * 読み込みの進捗やスクロール位置を視覚的に表示するためのコンポーネント。
  */
-export declare const ScrollProgress: ({ color, target, className, ...props }: ScrollProgressProps) => import("react/jsx-runtime").JSX.Element;
+export declare const ScrollProgress: ({ color, target, className, "aria-label": ariaLabel, ...props }: ScrollProgressProps) => import("react/jsx-runtime").JSX.Element;
