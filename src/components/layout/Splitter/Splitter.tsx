@@ -6,6 +6,7 @@ import React, {
   createContext,
   useContext,
 } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./splitter.scss";
 
@@ -241,7 +242,7 @@ const SplitterPanel = ({
     </div>
   );
 };
-SplitterPanel.displayName = "SplitterPanel";
+SplitterPanel.displayName = "Splitter.Panel";
 
 export interface SplitterHandleProps extends React.ComponentPropsWithoutRef<"div"> {
   /** @internal Injected index from parent Splitter. */
@@ -254,9 +255,11 @@ const SplitterHandle = ({
   index,
   active,
   className,
-  ariaLabel = "Resize panel",
+  ariaLabel,
   ...props
 }: SplitterHandleProps & { ariaLabel?: string }) => {
+  const { t } = useTranslation("common");
+  const resolvedAriaLabel = ariaLabel ?? t("a11y.resize_panel");
   const { onResizeStart, orientation } = useSplitter();
 
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -264,7 +267,7 @@ const SplitterHandle = ({
     <div
       role="separator"
       aria-orientation={orientation}
-      aria-label={ariaLabel}
+      aria-label={resolvedAriaLabel}
       tabIndex={0}
       className={classNames(
         "wim-splitter-handle",
@@ -283,7 +286,8 @@ const SplitterHandle = ({
   );
   /* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
 };
-SplitterHandle.displayName = "SplitterHandle";
+SplitterHandle.displayName = "Splitter.Handle";
+Splitter.displayName = "Splitter";
 
 const SplitterRoot = Splitter as typeof Splitter & {
   Panel: typeof SplitterPanel;

@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useId, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { FieldTemplate } from "../FieldTemplate";
@@ -40,7 +41,7 @@ export const SignaturePad = ({
   penColor = "#000000",
   penWidth = 2,
   onChange,
-  clearLabel = "Clear",
+  clearLabel,
   disabled = false,
   className,
   style,
@@ -48,8 +49,11 @@ export const SignaturePad = ({
   error,
   required,
   layout = "vertical",
-  canvasAriaLabel = "Signature canvas",
+  canvasAriaLabel,
 }: SignaturePadProps) => {
+  const { t } = useTranslation("common");
+  const resolvedClearLabel = clearLabel ?? t("button.clear");
+  const resolvedCanvasAriaLabel = canvasAriaLabel ?? t("a11y.signature_canvas");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
@@ -180,7 +184,7 @@ export const SignaturePad = ({
             onTouchEnd={stopDrawing}
             aria-labelledby={label ? labelId : undefined}
             role="img"
-            aria-label={label ? undefined : canvasAriaLabel}
+            aria-label={label ? undefined : resolvedCanvasAriaLabel}
           />
         </div>
         <div className="wim-signature-pad__footer">
@@ -190,7 +194,7 @@ export const SignaturePad = ({
             onClick={clear}
             disabled={disabled || isEmpty}
           >
-            {clearLabel}
+            {resolvedClearLabel}
           </Button>
         </div>
       </div>

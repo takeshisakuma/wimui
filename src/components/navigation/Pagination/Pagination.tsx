@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import "./pagination.scss";
@@ -62,15 +63,16 @@ export const Pagination = ({
   showQuickJumper = false,
   labels = {},
 }: PaginationProps) => {
+  const { t } = useTranslation("common");
   const {
-    prevPage = "Previous page",
-    nextPage = "Next page",
-    pageAriaLabel = (page: number) => `Go to page ${page}`,
-    itemsPerPage = "items / page",
-    goTo = "Go to",
-    pageSizeAriaLabel = "Items per page",
-    jumpToPageAriaLabel = "Jump to page",
-    navAriaLabel = "Pagination",
+    prevPage = t("a11y.go_to_prev_page"),
+    nextPage = t("a11y.go_to_next_page"),
+    pageAriaLabel = (page: number) => t("a11y.go_to_page", { page: String(page) }),
+    itemsPerPage = t("pagination.items_per_page"),
+    goTo = t("pagination.go_to"),
+    pageSizeAriaLabel = t("a11y.items_per_page"),
+    jumpToPageAriaLabel = t("a11y.jump_to_page"),
+    navAriaLabel = t("a11y.pagination_nav"),
   } = labels;
 
   const [internalPageSize, setInternalPageSize] = useState(pageSize);

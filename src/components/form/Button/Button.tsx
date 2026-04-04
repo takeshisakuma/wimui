@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./button.scss";
 import { Icon } from "../../media/Icon/Icon";
@@ -88,6 +89,7 @@ export const Button = React.forwardRef<
       return () => cancelAnimationFrame(frame);
     }, [children, animateWidth]);
 
+    const { t } = useTranslation("common");
     const isDisabled = disabled;
 
     // aria-label の決定ロジックを明示的に整理
@@ -99,7 +101,7 @@ export const Button = React.forwardRef<
       if (!children && typeof icon === "string") {
         resolvedAriaLabel = icon;
       } else if (loading) {
-        resolvedAriaLabel = "Loading";
+        resolvedAriaLabel = t("a11y.loading");
       }
     }
 

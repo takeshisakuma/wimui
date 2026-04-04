@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/tokens";
@@ -46,10 +47,12 @@ export const Chip = ({
   intent = "primary",
   variant = "solid",
   size = "md",
-  deleteAriaLabel = "Delete",
+  deleteAriaLabel,
   className,
   ...props
 }: ChipProps) => {
+  const { t } = useTranslation("common");
+  const resolvedDeleteAriaLabel = deleteAriaLabel ?? t("a11y.delete");
   const Component = onClick ? "button" : "span";
   const commonProps = {
     className: classNames(
@@ -83,7 +86,7 @@ export const Chip = ({
             onDelete(e);
           }}
           role="button"
-          aria-label={deleteAriaLabel}
+          aria-label={resolvedDeleteAriaLabel}
           tabIndex={0}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {

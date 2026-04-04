@@ -5,6 +5,7 @@ export const ALL_NAMESPACES = [
   "docs_display",
   "docs_display2",
   "docs_inputs",
+  "docs_inputs2",
   "docs_layout",
   "docs_navigation",
   "docs_overlay",

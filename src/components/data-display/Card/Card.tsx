@@ -81,6 +81,10 @@ export const CardFooter = ({
   </div>
 );
 
+CardHeader.displayName = "Card.Header";
+CardBody.displayName = "Card.Body";
+CardFooter.displayName = "Card.Footer";
+
 Card.Header = CardHeader;
 Card.Body = CardBody;
 Card.Footer = CardFooter;

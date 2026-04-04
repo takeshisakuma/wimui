@@ -1,4 +1,5 @@
 import React, { useId } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./input.scss";
 import { useMergedRef } from "../../../hooks/useMergedRef";
@@ -64,13 +65,18 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       layout,
       id: customId,
       inputClassName,
-      showPasswordAriaLabel = "Show password",
-      hidePasswordAriaLabel = "Hide password",
-      rightIconAriaLabel = "Action",
+      showPasswordAriaLabel,
+      hidePasswordAriaLabel,
+      rightIconAriaLabel,
       ...props
     },
     ref,
   ) => {
+    const { t } = useTranslation("common");
+    const resolvedShowPasswordAriaLabel = showPasswordAriaLabel ?? t("a11y.show_password");
+    const resolvedHidePasswordAriaLabel = hidePasswordAriaLabel ?? t("a11y.hide_password");
+    const resolvedRightIconAriaLabel = rightIconAriaLabel ?? t("a11y.right_icon_action");
+
     // 内部状態
     const [internalValue, setInternalValue] = React.useState(
       defaultValue ?? "",
@@ -131,7 +137,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       rightIcons.push({
         name: isPasswordVisible ? "EyeOffIcon" : "EyeIcon",
         onClick: (_e: React.MouseEvent<HTMLButtonElement>) => togglePasswordVisibility(),
-        ariaLabel: isPasswordVisible ? hidePasswordAriaLabel : showPasswordAriaLabel,
+        ariaLabel: isPasswordVisible ? resolvedHidePasswordAriaLabel : resolvedShowPasswordAriaLabel,
       });
     }
 
@@ -144,7 +150,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           name: rightIcon,
           onClick: onRightIconClick,
           color: rightIconColor,
-          ariaLabel: rightIconAriaLabel,
+          ariaLabel: resolvedRightIconAriaLabel,
           className: rightIconClassName,
           rotated: rightIconRotated,
         });

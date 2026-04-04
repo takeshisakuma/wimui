@@ -436,6 +436,10 @@ export const KanbanCard = ({
 
 // ─── Compound export ──────────────────────────────────────────────────────────
 
+KanbanBoard.displayName = "Kanban";
+KanbanColumn.displayName = "Kanban.Column";
+KanbanCard.displayName = "Kanban.Card";
+
 const KanbanBoardComponent = KanbanBoard as typeof KanbanBoard & {
   Column: typeof KanbanColumn;
   Card: typeof KanbanCard;

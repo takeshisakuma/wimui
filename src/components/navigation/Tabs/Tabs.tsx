@@ -272,6 +272,11 @@ export const TabsContent = ({
   );
 };
 
+Tabs.displayName = "Tabs";
+TabsList.displayName = "Tabs.List";
+TabsTrigger.displayName = "Tabs.Trigger";
+TabsContent.displayName = "Tabs.Content";
+
 const TabsRoot = Tabs as typeof Tabs & {
   List: typeof TabsList;
   Trigger: typeof TabsTrigger;

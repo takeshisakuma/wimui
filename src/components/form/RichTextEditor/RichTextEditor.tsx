@@ -167,7 +167,7 @@ type ToolbarButtonProps = {
   children: React.ReactNode;
 };
 
-const ToolbarButton = ({ onClick, active, disabled, title, children }: ToolbarButtonProps) => (
+const ToolbarButton = React.memo(({ onClick, active, disabled, title, children }: ToolbarButtonProps) => (
   <button
     type="button"
     className={classNames("wim-rte__toolbar-btn", active && "wim-rte__toolbar-btn--active")}
@@ -180,7 +180,9 @@ const ToolbarButton = ({ onClick, active, disabled, title, children }: ToolbarBu
   >
     {children}
   </button>
-);
+));
+
+ToolbarButton.displayName = "ToolbarButton";
 
 // ---- Main component ----
 
@@ -358,7 +360,7 @@ export const RichTextEditor = ({
     e.preventDefault();
   }, []);
 
-  const renderToolbarItem = (item: RichTextEditorToolbarItem, index: number) => {
+  const renderToolbarItem = React.useCallback((item: RichTextEditorToolbarItem, index: number) => {
     if (item === "separator") {
       return <span key={`sep-${index}`} className="wim-rte__toolbar-sep" aria-hidden="true" />;
     }
@@ -444,7 +446,14 @@ export const RichTextEditor = ({
       default:
         return null;
     }
-  };
+  }, [
+    activeFormats,
+    isDisabled,
+    bold, italic, underline, strikethrough, h1, h2, h3, ul, ol, link, unlink, removeFormat,
+    execCommand,
+    handleInsertLink,
+    handleRemoveFormat,
+  ]);
 
   return (
     <FieldTemplate

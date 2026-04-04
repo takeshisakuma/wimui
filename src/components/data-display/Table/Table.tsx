@@ -252,6 +252,14 @@ export const TableCell = ({
   </td>
 );
 
+Table.displayName = "Table";
+TableHeader.displayName = "Table.Header";
+TableBody.displayName = "Table.Body";
+TableFooter.displayName = "Table.Footer";
+TableRow.displayName = "Table.Row";
+TableHead.displayName = "Table.Head";
+TableCell.displayName = "Table.Cell";
+
 const TableComponent = Table as typeof Table & {
   Header: typeof TableHeader;
   Body: typeof TableBody;

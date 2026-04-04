@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import "./breadcrumb.scss";
 import { Link } from "../../navigation/Link/Link";
@@ -24,8 +25,10 @@ export const Breadcrumb = ({
   separator,
   size = "md",
   className,
-  ariaLabel = "Breadcrumb",
+  ariaLabel,
 }: BreadcrumbProps) => {
+  const { t } = useTranslation("common");
+  const resolvedAriaLabel = ariaLabel ?? t("a11y.breadcrumb");
   const defaultSeparator = (
     <Icon
       name="ChevronRightIcon"
@@ -55,7 +58,7 @@ export const Breadcrumb = ({
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <nav
-      aria-label={ariaLabel}
+      aria-label={resolvedAriaLabel}
       className={classNames(
         "wim-breadcrumb",
         `wim-breadcrumb--${size}`,

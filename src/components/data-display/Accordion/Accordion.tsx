@@ -272,6 +272,11 @@ export const AccordionContent = ({
   );
 };
 
+Accordion.displayName = "Accordion";
+AccordionItem.displayName = "Accordion.Item";
+AccordionTrigger.displayName = "Accordion.Trigger";
+AccordionContent.displayName = "Accordion.Content";
+
 Accordion.Item = AccordionItem;
 Accordion.Trigger = AccordionTrigger;
 Accordion.Content = AccordionContent;

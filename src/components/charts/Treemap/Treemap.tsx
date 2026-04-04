@@ -4,10 +4,10 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import { CHART_COLORS, CHART_THEME } from "../../helpers";
+import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
 
 export type TreemapProps = {
-  data: Record<string, unknown>[];
+  data: ChartDataPoint[];
   dataKey: string;
   aspectRatio?: number;
   height?: number;

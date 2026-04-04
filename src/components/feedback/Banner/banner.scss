@@ -2,147 +2,145 @@
 @use "../../../tokens/spacings" as *;
 @use "../../../tokens/typography" as *;
 
-@layer component {
-  .wim-banner {
-    position: relative;
+.wim-banner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+  container-type: inline-size;
+  
+  // Glassmorphism effect base
+  background: var(--wim-color-overlay-bg-light);
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(8px);
+  transition: var(--wim-transition-fast);
+  
+  &__container {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap; // Allow wrapping on small screens
+    gap: var(--wim-spacing-lg);
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
-    container-type: inline-size;
+    max-width: 1200px; // Optional: limit max width for content
+  }
   
-    // Glassmorphism effect base
-    background: var(--wim-color-overlay-bg-light);
-    border-bottom: 1px solid transparent;
-    backdrop-filter: blur(8px);
-    transition: var(--wim-transition-fast);
+  &__content {
+    display: flex;
+    flex: 1;
+    gap: var(--wim-spacing-md);
+    align-items: center;
+    min-width: 0; // Prevent flex item from overflowing
+  }
   
-    &__container {
-      display: flex;
-      flex-wrap: wrap; // Allow wrapping on small screens
-      gap: var(--wim-spacing-lg);
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1200px; // Optional: limit max width for content
+  &__icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &__text {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: inherit;
+  }
+  
+  &__title {
+    font-weight: 600;
+  }
+  
+  &__separator {
+    display: none;
+    margin: 0 4px;
+    opacity: var(--wim-opacity-ghost);
+  
+    @container (width >= 640px) {
+      display: inline;
+    }
+  }
+  
+  &__description {
+    opacity: 0.9;
+  }
+  
+  &__actions {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--wim-spacing-md);
+    align-items: center;
+  }
+  
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-sm);
+    opacity: var(--wim-opacity-disabled);
+    transition: opacity 0.2s ease;
+  
+    &:hover {
+      background: var(--wim-color-close-hover);
+      opacity: 1;
     }
   
-    &__content {
-      display: flex;
-      flex: 1;
-      gap: var(--wim-spacing-md);
-      align-items: center;
-      min-width: 0; // Prevent flex item from overflowing
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--wim-shadow-focus);
     }
   
-    &__icon {
-      display: flex;
-      flex-shrink: 0;
-      align-items: center;
-      justify-content: center;
+    svg {
+      width: 16px;
+      height: 16px;
     }
+  }
   
-    &__text {
-      font-size: 0.875rem;
-      line-height: 1.5;
-      color: inherit;
+  // Variants — use feedback mixing tokens for automatic light/dark switching
+  &--info {
+    color: color-mix(in srgb, var(--wim-color-informative) 60%, var(--wim-color-feedback-text-base));
+    background: color-mix(in srgb, var(--wim-color-informative) 10%, var(--wim-color-feedback-bg-base));
+    border-bottom-color: color-mix(in srgb, var(--wim-color-informative) var(--wim-color-feedback-border-strength), transparent);
+  
+    .wim-banner__icon {
+      color: var(--wim-color-informative);
     }
+  }
   
-    &__title {
-      font-weight: 600;
+  &--success {
+    color: color-mix(in srgb, var(--wim-color-positive) 60%, var(--wim-color-feedback-text-base));
+    background: color-mix(in srgb, var(--wim-color-positive) 10%, var(--wim-color-feedback-bg-base));
+    border-bottom-color: color-mix(in srgb, var(--wim-color-positive) var(--wim-color-feedback-border-strength), transparent);
+  
+    .wim-banner__icon {
+      color: var(--wim-color-positive);
     }
+  }
   
-    &__separator {
-      display: none;
-      margin: 0 4px;
-      opacity: var(--wim-opacity-ghost);
+  &--warning {
+    color: color-mix(in srgb, var(--wim-color-caution) 75%, var(--wim-color-feedback-text-base));
+    background: color-mix(in srgb, var(--wim-color-caution) 10%, var(--wim-color-feedback-bg-base));
+    border-bottom-color: color-mix(in srgb, var(--wim-color-caution) var(--wim-color-feedback-border-strength), transparent);
   
-      @container (width >= 640px) {
-        display: inline;
-      }
+    .wim-banner__icon {
+      color: var(--wim-color-caution);
     }
+  }
   
-    &__description {
-      opacity: 0.9;
-    }
+  &--error {
+    color: color-mix(in srgb, var(--wim-color-destructive) 60%, var(--wim-color-feedback-text-base));
+    background: color-mix(in srgb, var(--wim-color-destructive) 10%, var(--wim-color-feedback-bg-base));
+    border-bottom-color: color-mix(in srgb, var(--wim-color-destructive) var(--wim-color-feedback-border-strength), transparent);
   
-    &__actions {
-      display: flex;
-      flex-shrink: 0;
-      gap: var(--wim-spacing-md);
-      align-items: center;
-    }
-  
-    &__close {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      padding: 0;
-      color: inherit;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      border-radius: var(--wim-radius-sm);
-      opacity: var(--wim-opacity-disabled);
-      transition: opacity 0.2s ease;
-  
-      &:hover {
-        background: var(--wim-color-close-hover);
-        opacity: 1;
-      }
-  
-      &:focus-visible {
-        outline: none;
-        box-shadow: var(--wim-shadow-focus);
-      }
-  
-      svg {
-        width: 16px;
-        height: 16px;
-      }
-    }
-  
-    // Variants — use feedback mixing tokens for automatic light/dark switching
-    &--info {
-      color: color-mix(in srgb, var(--wim-color-informative) 60%, var(--wim-color-feedback-text-base));
-      background: color-mix(in srgb, var(--wim-color-informative) 10%, var(--wim-color-feedback-bg-base));
-      border-bottom-color: color-mix(in srgb, var(--wim-color-informative) var(--wim-color-feedback-border-strength), transparent);
-  
-      .wim-banner__icon {
-        color: var(--wim-color-informative);
-      }
-    }
-  
-    &--success {
-      color: color-mix(in srgb, var(--wim-color-positive) 60%, var(--wim-color-feedback-text-base));
-      background: color-mix(in srgb, var(--wim-color-positive) 10%, var(--wim-color-feedback-bg-base));
-      border-bottom-color: color-mix(in srgb, var(--wim-color-positive) var(--wim-color-feedback-border-strength), transparent);
-  
-      .wim-banner__icon {
-        color: var(--wim-color-positive);
-      }
-    }
-  
-    &--warning {
-      color: color-mix(in srgb, var(--wim-color-caution) 75%, var(--wim-color-feedback-text-base));
-      background: color-mix(in srgb, var(--wim-color-caution) 10%, var(--wim-color-feedback-bg-base));
-      border-bottom-color: color-mix(in srgb, var(--wim-color-caution) var(--wim-color-feedback-border-strength), transparent);
-  
-      .wim-banner__icon {
-        color: var(--wim-color-caution);
-      }
-    }
-  
-    &--error {
-      color: color-mix(in srgb, var(--wim-color-destructive) 60%, var(--wim-color-feedback-text-base));
-      background: color-mix(in srgb, var(--wim-color-destructive) 10%, var(--wim-color-feedback-bg-base));
-      border-bottom-color: color-mix(in srgb, var(--wim-color-destructive) var(--wim-color-feedback-border-strength), transparent);
-  
-      .wim-banner__icon {
-        color: var(--wim-color-destructive);
-      }
+    .wim-banner__icon {
+      color: var(--wim-color-destructive);
     }
   }
 }

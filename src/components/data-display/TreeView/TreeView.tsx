@@ -959,6 +959,9 @@ export const TreeViewItem = ({
   );
 };
 
+TreeView.displayName = "TreeView";
+TreeViewItem.displayName = "TreeView.Item";
+
 const TreeViewComponent = TreeView as typeof TreeView & {
   Item: typeof TreeViewItem;
 };

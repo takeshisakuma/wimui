@@ -87,6 +87,12 @@ export const StatsTrend = ({
   );
 };
 
+Stats.displayName = "Stats";
+StatsLabel.displayName = "Stats.Label";
+StatsValue.displayName = "Stats.Value";
+StatsDescription.displayName = "Stats.Description";
+StatsTrend.displayName = "Stats.Trend";
+
 Stats.Label = StatsLabel;
 Stats.Value = StatsValue;
 Stats.Description = StatsDescription;

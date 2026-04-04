@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { WimIntent } from "../../../types/tokens";
@@ -49,13 +50,16 @@ export const InputBase = ({
   leftIcon,
   leftIconColor,
   onLeftIconClick,
-  leftIconAriaLabel = "Action",
+  leftIconAriaLabel,
   rightIcons = [],
   allowClear,
   hasValue,
   onClear,
-  clearAriaLabel = "Clear input",
+  clearAriaLabel,
 }: InputBaseProps) => {
+  const { t } = useTranslation("common");
+  const resolvedLeftIconAriaLabel = leftIconAriaLabel ?? t("a11y.left_icon_action");
+  const resolvedClearAriaLabel = clearAriaLabel ?? t("a11y.clear_input");
   const isSemanticWidth =
     typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
 
@@ -91,7 +95,7 @@ export const InputBase = ({
         e.stopPropagation();
         onClear?.();
       },
-      ariaLabel: clearAriaLabel,
+      ariaLabel: resolvedClearAriaLabel,
     });
   }
 
@@ -132,7 +136,7 @@ export const InputBase = ({
               type="button"
               onClick={onLeftIconClick}
               className="wim-input-icon-button"
-              aria-label={leftIconAriaLabel}
+              aria-label={resolvedLeftIconAriaLabel}
             >
               <Icon
                 name={leftIcon}
@@ -172,7 +176,7 @@ export const InputBase = ({
                   type="button"
                   onClick={icon.onClick}
                   className="wim-input-icon-button"
-                  aria-label={icon.ariaLabel || "Action"}
+                  aria-label={icon.ariaLabel ?? t("a11y.right_icon_action")}
                 >
                   <Icon
                     name={icon.name}

@@ -1,3 +1,9 @@
+/**
+ * チャートコンポーネントの `data` prop に渡す1件分のデータ型。
+ * 各キーの値は文字列・数値・null のいずれかです。
+ */
+export type ChartDataPoint = Record<string, string | number | null>;
+
 // SVG presentation attribute として使用するため CSS カスタムプロパティは利用不可。
 // 対応するデザイントークン（src/tokens/_pccs-colors.scss）は以下のとおり。
 export const CHART_COLORS = [

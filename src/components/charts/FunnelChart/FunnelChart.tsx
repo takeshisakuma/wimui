@@ -7,10 +7,10 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
-import { CHART_COLORS, CHART_THEME } from "../../helpers";
+import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
 
 export type FunnelChartProps = {
-  data: Record<string, unknown>[];
+  data: ChartDataPoint[];
   dataKey: string;
   nameKey: string;
   height?: number;

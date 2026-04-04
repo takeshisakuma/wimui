@@ -46,8 +46,14 @@ export const Avatar = ({
     );
   };
 
+  const isFallback = !src || hasError;
+  const fallbackAriaLabel = alt || initials?.substring(0, 2) || undefined;
+
   return (
     <div
+      role={isFallback ? "img" : undefined}
+      aria-label={isFallback ? fallbackAriaLabel : undefined}
+      {...props}
       className={classNames(
         "wim-avatar",
         `wim-avatar--${size}`,
@@ -55,7 +61,6 @@ export const Avatar = ({
         intent && `wim-avatar--${intent}`,
         className,
       )}
-      {...props}
     >
       {src && !hasError ? (
         <img src={src} alt={alt} onError={() => setHasError(true)} />
