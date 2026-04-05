@@ -49,6 +49,15 @@ $opacity-disabled: 0.6;  // disabled状態のコントロール
 $opacity-ghost: 0.5;     // ゴースト・閉じるボタンなど控えめなUI
 $opacity-secondary: 0.7; // セカンダリ要素・補助テキスト
 
+/* --- Z-index 階層 (Stacking Layers) --- */
+// ローカルな相対スタッキング（0 / 1 / 2 / -1 など）はコンポーネント内でそのまま使用可。
+// 以下は複数コンポーネント間で競合しうるグローバル値。必ずトークン経由で使用すること。
+$z-sidebar: 900;        // サイドバー（非オーバーレイ時）
+$z-overlay: 1000;       // Dialog・Drawer・Dropdown・Tooltip・Popover 等
+$z-overlay-panel: 1001; // オーバーレイ上に重なるパネル（Drawer コンテンツ等）
+$z-overlay-step: 1002;  // Tour ステップバブル
+$z-toast: 9999;         // Toast・Snackbar・Notification（常に最前面）
+
 :root {
   --wim-shadow-none: #{$shadow-none};
   --wim-shadow-color: rgb(0 0 0 / 0.1);
@@ -91,6 +100,13 @@ $opacity-secondary: 0.7; // セカンダリ要素・補助テキスト
   --wim-opacity-disabled: #{$opacity-disabled};
   --wim-opacity-ghost: #{$opacity-ghost};
   --wim-opacity-secondary: #{$opacity-secondary};
+
+  /* --- Z-index 階層 (Stacking Layers) --- */
+  --wim-z-sidebar: #{$z-sidebar};
+  --wim-z-overlay: #{$z-overlay};
+  --wim-z-overlay-panel: #{$z-overlay-panel};
+  --wim-z-overlay-step: #{$z-overlay-step};
+  --wim-z-toast: #{$z-toast};
 
   /* --- 質感・グラデーション (Texture & Gradients) --- */
   --wim-glass-gradient: linear-gradient(180deg,

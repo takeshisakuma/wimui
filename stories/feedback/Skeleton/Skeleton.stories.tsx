@@ -115,6 +115,8 @@ export const LoadingToggle: Story = {
             border: "1px solid var(--wim-color-border)",
             cursor: "pointer",
             width: "fit-content",
+            color: "var(--wim-color-text-primary)",
+            background: "var(--wim-color-bg-component)",
           }}
         >
           {loading ? t("story.skeleton_show_content") : t("story.skeleton_show_skeleton")}

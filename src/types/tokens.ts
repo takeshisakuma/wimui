@@ -227,3 +227,43 @@ export type WimOpacityToken = `var(--wim-opacity-${WimOpacityKey})`;
 
 export type WimOpacity = LiteralWithAutocomplete<WimOpacityKey | WimOpacityToken>;
 
+/**
+ * Status values for indicator-style components (Badge, Chip, Tag, Progress).
+ */
+export type IndicatorStatus =
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "error"
+  | "info"
+  | "neutral";
+
+/**
+ * Status values for feedback-style components (Alert, Banner, Toast, Notification).
+ */
+export type FeedbackStatus = "info" | "success" | "warning" | "error";
+
+/**
+ * Status values for form field components (Input, Textarea, DatePicker, RichTextEditor).
+ */
+export type FieldStatus = "default" | "error";
+
+/**
+ * Z-index stacking layer keys.
+ * Use these tokens for any z-index value above the local stacking context (i.e. values > 10).
+ * Local relative stacking within a component (z-index: 0/1/2/-1) may use raw values.
+ */
+export type WimZIndexKey =
+  | "sidebar"       // 900  — サイドバー（非オーバーレイ時）
+  | "overlay"       // 1000 — Dialog・Drawer・Dropdown・Tooltip・Popover 等
+  | "overlay-panel" // 1001 — オーバーレイ上に重なるパネル（Drawer コンテンツ等）
+  | "overlay-step"  // 1002 — Tour ステップバブル
+  | "toast";        // 9999 — Toast・Snackbar・Notification（常に最前面）
+
+/**
+ * Z-index tokens available as CSS variable strings.
+ */
+export type WimZIndexToken = `var(--wim-z-${WimZIndexKey})`;
+
+export type WimZIndex = LiteralWithAutocomplete<WimZIndexToken>;

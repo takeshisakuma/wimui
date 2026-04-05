@@ -78,13 +78,13 @@ export const WithCustomItemHeight: Story = {
             style={{
               padding: "8px 16px",
               width: "100%",
-              borderBottom: "1px solid var(--wim-color-border, #e5e7eb)",
+              borderBottom: "1px solid var(--wim-color-border)",
             }}
           >
-            <div style={{ fontWeight: "bold" }}>
+            <div style={{ fontWeight: "bold", color: "var(--wim-color-text-primary)" }}>
               {t("story.virtuallist_item_label", { id: item.id })}
             </div>
-            <div style={{ fontSize: "var(--wim-font-size-sm)", color: "var(--wim-color-text-muted, #6b7280)" }}>
+            <div style={{ fontSize: "var(--wim-font-size-sm)", color: "var(--wim-color-text-secondary)" }}>
               {t("story.virtuallist_item_sublabel")}
             </div>
           </div>

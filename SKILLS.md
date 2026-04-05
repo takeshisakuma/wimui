@@ -84,8 +84,28 @@ border-color: var(--wim-color-border);
 padding: var(--wim-spacing-md);
 ```
 
-ハードコードされた CSS 色名（`gray`, `#333` など）は使用禁止です。
+ハードコードされた CSS 色名（`gray`, `#333` など）は使用禁止です。色以外の CSS 値（`padding`, `border-radius`, `font-size`, `font-weight`, `box-shadow`, `opacity`, `transition`, `z-index` 等）も同様にトークンを使用してください。
 `stories/` 配下の TSX では `--wim-color-*` プレフィックス付きトークンのみ使用可（内部ショートエイリアス `--bg-component` 等は不可）。
+
+---
+
+## 既存トークンが不足している場合のフロー
+
+必要な値が `src/tokens/` に存在しない場合、独自値を直接 SCSS に書かずに以下の手順でトークンを追加してください。
+
+1. `src/tokens/` の適切なファイルにSCSSトークン変数を追加（カテゴリが既存のファイルと合うもの）
+   - 色 → `_semantic-colors.scss`
+   - spacing / radius / border → `_spacings.scss`
+   - shadow / opacity / duration / easing / z-index → `_effects.scss`
+   - font-size / font-weight / line-height → `_typography.scss`
+2. 同ファイルの `:root {}` ブロックに `--wim-[カテゴリ]-[意味]` として CSS カスタムプロパティを追加
+3. `npm run tokens:check` を実行して `src/types/tokens.ts` との整合性を確認
+4. 不整合がある場合は `src/types/tokens.ts` の対応する `WimXxxKey` 型に値を追記
+5. コンポーネントで `var(--wim-[カテゴリ]-[意味])` を使用
+
+### 新しいカテゴリ自体が必要な場合
+
+既存カテゴリに収まらない場合は `RULES.md` のデザイントークンカテゴリ表に追記し、適切な `_*.scss` ファイルを作成または既存ファイルに追加してください。
 
 ---
 

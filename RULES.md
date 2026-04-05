@@ -39,11 +39,17 @@
   - **`size`, `radius`, `intensity` 等の prop の値は `"sm" | "md" | "lg"` に統一してください。** レイアウト用の幅指定など別用途では `"xs" | "sm" | "md" | "lg" | "xl"` を使用してかまいません。
   - **共通 prop 型は `src/types/tokens.ts` の型を使用してください。** インラインのユニオン型を重複定義しないでください。定義済みの型は以下の通りです。
     - `ComponentSize` — `"sm" | "md" | "lg"`（`size` prop 共通）
+    - `ButtonVariant` — `"solid" | "outline" | "ghost"`（Button・ButtonGroup・LinkButton）
+    - `ButtonIntent` — `"default" | "destructive" | "positive"`（Button の意味的意図）
+    - `FieldVariant` — `"outline" | "ghost"`（Input・Textarea・DatePicker など）
+    - `IndicatorVariant` — `"solid" | "outline" | "subtle"`（Badge・Chip・Tag）
     - `IndicatorStatus` — `"primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"`（Badge・Chip・Tag・Progress など）
     - `FeedbackStatus` — `"info" | "success" | "warning" | "error"`（Alert・Banner・Toast・Notification など）
     - `FieldStatus` — `"default" | "error"`（Input・Textarea・DatePicker・RichTextEditor など）
+    - `WimIntent` — 上記すべてを含む全意図値のユニオン（汎用）
+  - **新しい共通 prop 型が必要になった場合は、インラインで定義せず `src/types/tokens.ts` に追加してください。** 追加後は `npm run tokens:check` で整合性を確認してください。
 - 最新のセマンティックHTMLを使用してください。
-- コンポーネントではデザイントークン（`src/tokens/`）の値を使用してください。ストーリーやdocsのユーティリティコンポーネント（`stories/` 配下のTSX）でインラインスタイルを使う場合も、`color: 'gray'` のようなハードコードされたCSS色名は使わず、`var(--wim-color-text-secondary)` などのCSSカスタムプロパティを使用してください。ダークモードで背景色と同化して読めなくなります。
+- コンポーネントではデザイントークン（`src/tokens/`）の値を使用してください。**CSS値のハードコードはカラーに限らずすべて禁止です。** `padding`, `border-radius`, `font-size`, `font-weight`, `box-shadow`, `opacity`, `transition`, `animation-duration` なども対応する `--wim-*` トークンを使用してください。既存トークンで対応できない値が必要な場合は独自値を直接書かず、先に `src/tokens/` にトークンを追加してから使用してください（追加手順は `SKILLS.md` を参照）。ストーリーやdocsのユーティリティコンポーネント（`stories/` 配下のTSX）でインラインスタイルを使う場合も、`color: 'gray'` のようなハードコードされたCSS色名は使わず、`var(--wim-color-text-secondary)` などのCSSカスタムプロパティを使用してください。ダークモードで背景色と同化して読めなくなります。
 - `stories/` 配下のTSXでは、`var(--bg-component)`・`var(--text-primary)`・`var(--text-secondary)` などの内部ショートエイリアスを使用しないでください。ストーリーを持たない純粋なMDXページ（`<Meta title="..." />` のみのページ）ではデコレーターが動作しないため `data-theme` が設定されず、これらの変数が意図した色に解決されないケースがあります。代わりに必ず `var(--wim-color-surface)`・`var(--wim-color-text-primary)`・`var(--wim-color-text-secondary)` などの `--wim-color-*` プレフィックス付きトークンを使用してください。
 - レスポンシブデザインに対応してください。ブレークポイントの使い分けは以下のルールに従ってください。
 
@@ -105,8 +111,15 @@
 | `scale` | scale 値 | `--wim-scale-active` |
 | `decoration` | テキスト装飾 | `--wim-decoration-underline` |
 | `gradient` | グラデーション | `--wim-gradient-glass` |
+| `z` | Z-index 階層 | `--wim-z-overlay` |
 
 - コンポーネント内部でのみ使用するローカル変数（例: `--bg-tooltip`）は `--wim-` プレフィックス不要です。
+- **`z-index` の使用ルール：** z-index はスタッキングコンテキスト内でしか比較されません（`position` + `z-index` / `transform` / `opacity < 1` 等を持つ要素は新しいスタッキングコンテキストを作成し、その内側の値は外と競合しません）。そのため、**コンポーネント自身がスタッキングコンテキストを作成している場合、その内部での相対的な上下順は生値のままで構いません**（例: トラックの上にサムブを重ねる Slider 内の `z-index: 1` / `2`、固定列を浮かせる Table 内の `z-index: 100` / `110` など）。それに対して、**スタッキングコンテキストをまたいで他のコンポーネントと競合しうる値**（画面全体を覆うオーバーレイ、サイドバー、トースト等）は必ず `var(--wim-z-*)` トークンを使用してください。利用可能なキーは `WimZIndexKey`（`src/types/tokens.ts`）を参照してください。
+  - `--wim-z-sidebar: 900` — サイドバー（非オーバーレイ時）
+  - `--wim-z-overlay: 1000` — Dialog・Drawer・Dropdown・Tooltip・Popover 等
+  - `--wim-z-overlay-panel: 1001` — オーバーレイ上に重なるパネル
+  - `--wim-z-overlay-step: 1002` — Tour ステップバブル
+  - `--wim-z-toast: 9999` — Toast・Snackbar・Notification（常に最前面）
 - トークンは `src/tokens/` 以下の SCSS ファイルで定義し、`:root` に CSS カスタムプロパティとして公開してください。
 - 既存のエイリアス（`--wim-color-surface: var(--wim-color-bg-component)` など）は維持しますが、自己参照になる循環エイリアスは作成しないでください。
 - `src/tokens/` の SCSS トークンを追加・変更・削除した場合は、`npm run tokens:check` を実行して `src/types/tokens.ts` との整合性を確認してください。型に不整合がある場合は `src/types/tokens.ts` を手動で更新してください。
@@ -114,6 +127,7 @@
   - `WimSpacingKey` → `src/tokens/_spacings.scss` の `--wim-spacing-*`
   - `WimRadiusKey` → `src/tokens/_spacings.scss` の `--wim-radius-*`
   - `WimShadowKey` → `src/tokens/_effects.scss` の `--wim-shadow-*`（`color`・`ambient`・`elevation` は内部専用のため型に含めない）
+  - `WimZIndexKey` → `src/tokens/_effects.scss` の `--wim-z-*`（`tokens:check` スクリプトの対象外のため手動で整合性を確認してください）
 
 ## `!important` の使用
 
