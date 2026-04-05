@@ -1,0 +1,39 @@
+import{j as i}from"./jsx-runtime-u17CrQMm.js";import{u as r,M as o,C as c,a as t}from"./blocks-Das5ePhh.js";import{I as x,D as j,C as l,P as h,a,S as _}from"./Indicator.stories-DRMo2r5E.js";import{T as n}from"./T-DFeMGBq7.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-DKMOQHZ-.js";import"./index-CMyPUdhB.js";import"./index-Dzf6hAOo.js";import"./index-PPengh_I.js";import"./index-DN0Xo9UP.js";import"./index-CGUrc0iP.js";import"./style-utils-Bzkn8Zxa.js";import"./Avatar-ULt6W4lW.js";import"./Icon-KewsHWdb.js";import"./useTranslation-CMEx9zdK.js";function e(d){const s={h1:"h1",h2:"h2",h3:"h3",...r(),...d.components};return i.jsxs(i.Fragment,{children:[i.jsx(o,{of:x}),`
+`,i.jsx(s.h1,{id:"indicator",children:"Indicator"}),`
+`,i.jsx("p",{style:{margin:"0 0 16px 0",fontSize:"18px",lineHeight:"28px",color:"#6c757d"},children:i.jsx(n,{k:"doc.indicator_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc.indicator_long_desc"})}),`
+`,i.jsx(s.h2,{id:"",children:i.jsx(n,{k:"doc.example"})}),`
+`,i.jsx(s.h3,{id:"-1",children:i.jsx(n,{k:"doc.basic_usage"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc.indicator_basic_desc"})}),`
+`,i.jsx(s.h2,{id:"-2",children:i.jsx(n,{k:"doc.design_intent_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc.indicator_design_intent"})}),`
+`,i.jsx(s.h2,{id:"-3",children:i.jsx(n,{k:"doc.choice_matrix_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc.indicator_choice_matrix_desc"})}),`
+`,i.jsxs("table",{children:[i.jsx("thead",{children:i.jsxs("tr",{children:[i.jsx("th",{children:i.jsx(n,{k:"doc.component"})}),i.jsx("th",{children:i.jsx(n,{k:"doc.usage_scenario"})})]})}),i.jsxs("tbody",{children:[i.jsxs("tr",{children:[i.jsx("td",{children:i.jsx("b",{children:"Indicator"})}),i.jsx("td",{children:i.jsx(n,{k:"doc.indicator_choice_self_when"})})]}),i.jsxs("tr",{children:[i.jsx("td",{children:i.jsx("b",{children:"Badge"})}),i.jsx("td",{children:i.jsx(n,{k:"doc.indicator_choice_alt_when"})})]})]})]}),`
+`,i.jsx(s.h2,{id:"-4",children:i.jsx(n,{k:"doc.anatomy_title"})}),`
+`,i.jsxs("table",{children:[i.jsx("thead",{children:i.jsxs("tr",{children:[i.jsx("th",{children:i.jsx(n,{k:"doc.component"})}),i.jsx("th",{children:i.jsx(n,{k:"doc.description"})})]})}),i.jsxs("tbody",{children:[i.jsxs("tr",{children:[i.jsx("td",{children:i.jsx("b",{children:i.jsx(n,{k:"doc.indicator_anatomy_root_label"})})}),i.jsx("td",{children:i.jsx(n,{k:"doc.indicator_anatomy_root"})})]}),i.jsxs("tr",{children:[i.jsx("td",{children:i.jsx("b",{children:i.jsx(n,{k:"doc.indicator_anatomy_content_label"})})}),i.jsx("td",{children:i.jsx(n,{k:"doc.indicator_anatomy_content"})})]})]})]}),`
+`,i.jsx(s.h2,{id:"-5",children:i.jsx(n,{k:"doc.content_guidelines_title"})}),`
+`,i.jsx("ul",{children:i.jsx("li",{children:i.jsx(n,{k:"doc.indicator_content_guideline"})})}),`
+`,i.jsx(s.h2,{id:"-6",children:i.jsx(n,{k:"doc.motion_spec_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc.indicator_motion_desc"})}),`
+`,i.jsx(s.h2,{id:"-7",children:i.jsx(n,{k:"doc.a11y_spec_title"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc.indicator_a11y_desc"})}),`
+`,i.jsx(s.h2,{id:"-8",children:i.jsx(n,{k:"doc.real_world_scenarios_title"})}),`
+`,i.jsxs("table",{children:[i.jsx("thead",{children:i.jsxs("tr",{children:[i.jsx("th",{children:i.jsx(n,{k:"doc.usage_scenario"})}),i.jsx("th",{children:i.jsx(n,{k:"doc.table_header_description"})})]})}),i.jsxs("tbody",{children:[i.jsxs("tr",{children:[i.jsx("td",{children:i.jsx("strong",{children:i.jsx(n,{k:"doc.scenario_nav_title"})})}),i.jsx("td",{children:i.jsx(n,{k:"doc.indicator_scenario_1"})})]}),i.jsxs("tr",{children:[i.jsx("td",{children:i.jsx("strong",{children:i.jsx(n,{k:"doc.scenario_dashboard_title"})})}),i.jsx("td",{children:i.jsx(n,{k:"doc.indicator_scenario_2"})})]})]})]}),`
+`,i.jsx(s.h2,{id:"-9",children:i.jsx(n,{k:"doc.best_practices_title"})}),`
+`,i.jsxs("ul",{children:[i.jsx("li",{children:i.jsx(n,{k:"doc.indicator_best_practice_1"})}),i.jsx("li",{children:i.jsx(n,{k:"doc.indicator_best_practice_2"})})]}),`
+`,i.jsx(c,{of:j}),`
+`,i.jsx(s.h3,{id:"-10",children:i.jsx(n,{k:"doc.indicator_colors"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc.indicator_colors_desc"})}),`
+`,i.jsx(c,{of:l}),`
+`,i.jsx(s.h3,{id:"-11",children:i.jsx(n,{k:"doc.indicator_pulse"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc.indicator_pulse_desc"})}),`
+`,i.jsx(c,{of:h}),`
+`,i.jsx(s.h3,{id:"-12",children:i.jsx(n,{k:"doc.indicator_inline"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc.indicator_inline_desc"})}),`
+`,i.jsx(c,{of:a}),`
+`,i.jsx(s.h3,{id:"-13",children:i.jsx(n,{k:"doc.size"})}),`
+`,i.jsx("p",{children:i.jsx(n,{k:"doc.icon_size_desc"})}),`
+`,i.jsx(c,{of:_}),`
+`,i.jsx(s.h2,{id:"-14",children:i.jsx(n,{k:"doc.props"})}),`
+`,i.jsx(t,{})]})}function X(d={}){const{wrapper:s}={...r(),...d.components};return s?i.jsx(s,{...d,children:i.jsx(e,{...d})}):e(d)}export{X as default};

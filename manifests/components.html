@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>6.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>5.9s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -52471,6 +52471,8 @@ width?: string | number</code></pre>
           border: &quot;1px solid var(--wim-color-border)&quot;,
           cursor: &quot;pointer&quot;,
           width: &quot;fit-content&quot;,
+          color: &quot;var(--wim-color-text-primary)&quot;,
+          background: &quot;var(--wim-color-bg-component)&quot;,
         }}
       &gt;
         {loading ? t(&quot;story.skeleton_show_content&quot;) : t(&quot;story.skeleton_show_skeleton&quot;)}
@@ -64627,13 +64629,13 @@ renderItem: (item: T, index: number) =&gt; React.ReactNode</code></pre>
                 style={{
                   padding: &quot;8px 16px&quot;,
                   width: &quot;100%&quot;,
-                  borderBottom: &quot;1px solid var(--wim-color-border, #e5e7eb)&quot;,
+                  borderBottom: &quot;1px solid var(--wim-color-border)&quot;,
                 }}
               &gt;
-                &lt;div style={{ fontWeight: &quot;bold&quot; }}&gt;
+                &lt;div style={{ fontWeight: &quot;bold&quot;, color: &quot;var(--wim-color-text-primary)&quot; }}&gt;
                   {t(&quot;story.virtuallist_item_label&quot;, { id: item.id })}
                 &lt;/div&gt;
-                &lt;div style={{ fontSize: &quot;var(--wim-font-size-sm)&quot;, color: &quot;var(--wim-color-text-muted, #6b7280)&quot; }}&gt;
+                &lt;div style={{ fontSize: &quot;var(--wim-font-size-sm)&quot;, color: &quot;var(--wim-color-text-secondary)&quot; }}&gt;
                   {t(&quot;story.virtuallist_item_sublabel&quot;)}
                 &lt;/div&gt;
               &lt;/div&gt;
