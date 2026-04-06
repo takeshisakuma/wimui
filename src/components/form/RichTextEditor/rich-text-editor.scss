@@ -130,7 +130,7 @@
   
       &:hover:not(:disabled) {
         color: var(--wim-color-text-primary);
-        background-color: var(--wim-color-secondary-hover, rgb(0 0 0 / 0.08));
+        background-color: var(--wim-color-ghost-bg-hover);
       }
   
       &--active {

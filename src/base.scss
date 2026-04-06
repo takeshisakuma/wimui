@@ -97,17 +97,17 @@
 
   /* Chrome, Edge, Safari (Webkit) */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: var(--wim-spacing-sm);
+    height: var(--wim-spacing-sm);
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--wim-color-scrollbar-track, transparent);
+    background: var(--wim-color-scrollbar-track);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--wim-color-scrollbar-thumb, #ccc);
-    border-radius: 10px;
+    background: var(--wim-color-scrollbar-thumb);
+    border-radius: var(--wim-radius-full);
 
     &:hover {
       filter: brightness(0.9);
@@ -116,7 +116,7 @@
 
   /* Firefox */
   * {
-    scrollbar-color: var(--wim-color-scrollbar-thumb, #ccc) var(--wim-color-scrollbar-track, transparent);
+    scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track);
     scrollbar-width: thin;
   }
 }
@@ -207,7 +207,7 @@
   }
 
   a {
-    color: var(--wim-color-primary, #0052cc);
+    color: var(--wim-color-primary);
   }
 }
 
@@ -215,7 +215,7 @@
   display: inline-block;
   padding: 3px 5px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 13px;
+  font-size: var(--wim-font-size-xs);
   line-height: 1;
   vertical-align: middle;
   color: var(--wim-color-text-primary) !important;

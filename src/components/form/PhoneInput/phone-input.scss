@@ -5,18 +5,18 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    background: var(--wim-color-bg, #fff);
-    border: 1px solid var(--wim-color-border, #d1d5db);
+    background: var(--wim-color-bg-primary);
+    border: 1px solid var(--wim-color-border);
     border-radius: 6px;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
   
     &:focus-within:not(&--disabled) {
-      border-color: var(--wim-color-primary, #3b82f6);
+      border-color: var(--wim-color-primary);
       box-shadow: 0 0 0 3px rgb(59 130 246 / 0.15);
     }
   
     &--error {
-      border-color: var(--wim-color-error, #ef4444);
+      border-color: var(--wim-color-destructive);
   
       &:focus-within {
         box-shadow: 0 0 0 3px rgb(239 68 68 / 0.15);
@@ -25,7 +25,7 @@
   
     &--disabled {
       cursor: not-allowed;
-      background: var(--wim-color-bg-subtle, #f3f4f6);
+      background: var(--wim-color-bg-subtle);
       opacity: var(--wim-opacity-disabled);
     }
   
@@ -68,7 +68,7 @@
       flex-shrink: 0;
       width: 1px;
       height: 1.25rem;
-      background: var(--wim-color-border, #d1d5db);
+      background: var(--wim-color-border);
     }
   
     &__number {
@@ -79,14 +79,14 @@
       min-width: 0;
       padding: 0.5rem 0.75rem;
       font-size: var(--wim-font-size-md);
-      color: var(--wim-color-text, #111827);
+      color: var(--wim-color-text-primary);
       appearance: none;
       outline: none;
       background: transparent;
       border: none;
   
       &::placeholder {
-        color: var(--wim-color-text-muted, #9ca3af);
+        color: var(--wim-color-text-tertiary);
       }
   
       &:disabled {

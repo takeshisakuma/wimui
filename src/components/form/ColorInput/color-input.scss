@@ -59,11 +59,11 @@
       // :has(input[type="color"]) adds 0,1,1 → total 0,3,1 > InputBase's 0,2,0
       .wim-input-icon,
       .wim-input-icons {
-        color: #000;
-  
+        color: var(--wim-color-text-primary);
+
         .wim-icon {
           color: inherit;
-          stroke: #000;
+          stroke: var(--wim-color-text-primary);
         }
       }
   

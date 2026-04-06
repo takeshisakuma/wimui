@@ -127,6 +127,7 @@
     "numeric_std_recommend_title": "推奨事項",
     "numeric_std_responsive_desc": "タッチフレンドリーなヒット領域を維持しながら、特殊な数値入力フィールドがモバイルデバイスで適切にスケールすることを確認します。",
     "numeric_std_safari_behavior": "'e' を許可し、指数表記として処理する",
+    "numeric_std_scenarios_desc": "数値の精度とブラウザ間の整合性が重要な大規模なデータ入力フォームを標準化する場合に有用です。",
     "numeric_std_spin_button_warning": "より一貫したUIのために、CSSでネイティブのスピンボタンを非表示にすることを検討してください。",
     "numeric_std_table_behavior": "動作",
     "numeric_std_table_browser": "ブラウザ",

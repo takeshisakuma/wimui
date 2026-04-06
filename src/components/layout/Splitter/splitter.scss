@@ -42,7 +42,7 @@
       content: "";
       background-color: var(
         --wim-splitter-handle-color,
-        var(--wim-color-border-subtle, #e5e7eb)
+        var(--wim-color-border)
       );
       transition:
         background-color 0.2s,
@@ -59,7 +59,7 @@
       &::after {
         background-color: var(
           --wim-splitter-handle-active-color,
-          var(--wim-color-primary, #3b82f6)
+          var(--wim-color-primary)
         );
       }
     }

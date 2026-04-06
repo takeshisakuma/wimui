@@ -14,7 +14,7 @@
     display: block;
     width: 100%;
     line-height: 0;
-    background-color: #000; // アスペクト比変更時の余白（レターボックス）を黒にする
+    background-color: var(--wim-color-bg-void); // アスペクト比変更時の余白（レターボックス）を黒にする
   
     &.wim-video--radius-sm {
       overflow: hidden;
@@ -46,7 +46,7 @@
     }
   
     &.wim-video--border {
-      border: 1px solid var(--wim-color-border, #e0e0e0);
+      border: 1px solid var(--wim-color-border);
     }
   
     // Fade-in state
@@ -72,9 +72,9 @@
       content: "";
       background: linear-gradient(
         90deg,
-        #f2f2f2 25%,
-        #fafafa 50%,
-        #f2f2f2 75%
+        var(--wim-color-bg-secondary) 25%,
+        var(--wim-color-bg-subtle) 50%,
+        var(--wim-color-bg-secondary) 75%
       );
       background-size: 200% 100%;
       opacity: 0;
@@ -124,7 +124,7 @@
     flex-direction: column;
     gap: var(--wim-spacing-sm);
     padding: var(--wim-spacing-md);
-    background: linear-gradient(to top, rgb(0 0 0 / 0.7) 0%, rgb(0 0 0 / 0) 100%);
+    background: linear-gradient(to top, var(--wim-color-overlay-bg-dark) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -150,7 +150,7 @@
     width: 32px;
     height: 32px;
     padding: var(--wim-spacing-xs);
-    color: white;
+    color: var(--wim-color-text-on-overlay);
     cursor: pointer;
     background: none;
     border: none;
@@ -158,18 +158,18 @@
     transition:
       background-color 0.2s,
       color 0.2s;
-  
+
     &:hover {
-      background-color: rgb(255 255 255 / 0.2);
+      background-color: var(--wim-color-overlay-control-hover);
     }
-  
+
     &--play {
       // Can be larger if desired, but sticking to consistent size for toolbar
       width: 40px;
       height: 40px;
-  
+
       &:hover {
-        background-color: rgb(255 255 255 / 0.3);
+        background-color: var(--wim-color-overlay-control-active);
       }
     }
   }
@@ -181,7 +181,7 @@
     align-items: center;
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
-    color: rgb(255 255 255 / 0.9);
+    color: var(--wim-color-text-on-overlay);
   
     @include bp.down("sm") {
       flex: 1 1 100%;
@@ -197,10 +197,10 @@
     align-items: center;
     height: 4px;
     cursor: pointer;
-    background: rgb(255 255 255 / 0.3);
+    background: var(--wim-color-overlay-control-track);
     border-radius: 2px;
   }
-  
+
   .wim-video-progress {
     position: absolute;
     top: 0;
@@ -221,9 +221,9 @@
     z-index: 1;
     height: 100%;
     pointer-events: none;
-    background-color: #646cff; // Brand color
+    background-color: var(--wim-color-primary);
     border-radius: 2px;
-  
+
     &::after {
       position: absolute;
       top: 50%;
@@ -231,9 +231,9 @@
       width: 12px;
       height: 12px;
       content: "";
-      background-color: white;
+      background-color: var(--wim-color-text-on-overlay);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 4px rgb(0 0 0 / 0.5);
+      box-shadow: 0 0 4px var(--wim-color-overlay-bg);
       transform: translateY(-50%);
     }
   }
@@ -258,25 +258,25 @@
     pointer-events: none;
     cursor: pointer;
     outline: none;
-    background: rgb(255 255 255 / 0.3);
+    background: var(--wim-color-overlay-control-track);
     border-radius: 2px;
     opacity: 0;
     transition:
       width 0.3s,
       opacity 0.3s;
-  
+
     &:focus-visible {
-      box-shadow: 0 0 0 2px #646cff;
+      box-shadow: 0 0 0 2px var(--wim-color-primary);
     }
-  
+
     &::-webkit-slider-thumb {
       width: 12px;
       height: 12px;
       appearance: none;
       cursor: pointer;
-      background: white;
+      background: var(--wim-color-text-on-overlay);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 2px rgb(0 0 0 / 0.5);
+      box-shadow: 0 0 2px var(--wim-color-overlay-bg);
     }
   
     // Show on focus/active too if needed
@@ -297,7 +297,7 @@
     margin-top: var(--wim-spacing-sm);
     font-size: 0.875rem;
     line-height: 1.5;
-    color: var(--wim-color-text-secondary, #666);
+    color: var(--wim-color-text-secondary);
     text-align: center;
   }
   
@@ -313,10 +313,10 @@
     min-width: 160px;
     padding: var(--wim-spacing-sm);
     font-size: 0.875rem;
-    color: white;
-    background: rgb(28 28 28 / 0.95);
+    color: var(--wim-color-text-on-overlay);
+    background: var(--wim-color-overlay-menu-bg);
     border-radius: var(--wim-radius-md);
-    box-shadow: 0 8px 24px rgb(0 0 0 / 0.5);
+    box-shadow: var(--wim-shadow-lg);
     backdrop-filter: blur(8px);
   
     .wim-video-menu-title {
@@ -326,7 +326,7 @@
       padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
       margin-bottom: var(--wim-spacing-xs);
       font-weight: 600;
-      border-bottom: 1px solid rgb(255 255 255 / 0.1);
+      border-bottom: 1px solid var(--wim-color-overlay-divider);
   
       button {
         width: auto;
@@ -347,7 +347,7 @@
       }
   
       &::-webkit-scrollbar-thumb {
-        background: rgb(255 255 255 / 0.3);
+        background: var(--wim-color-overlay-control-track);
         border-radius: 2px;
       }
     }
@@ -358,22 +358,22 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px var(--wim-spacing-sm); // よりゆとりを持たせて 10px に拡大
-      color: white;
+      color: var(--wim-color-text-on-overlay);
       text-align: left;
       cursor: pointer;
       background: transparent;
       border: none;
       border-radius: var(--wim-radius-sm);
       transition: background 0.2s;
-  
+
       &:hover {
-        background: rgb(255 255 255 / 0.15);
+        background: var(--wim-color-overlay-item-hover);
       }
-  
+
       &.active,
       &[data-active="true"] {
         font-weight: 500;
-        background: rgb(255 255 255 / 0.25);
+        background: var(--wim-color-overlay-control-active);
       }
     }
   }
@@ -389,9 +389,9 @@
     align-items: center;
     padding: var(--wim-spacing-md) var(--wim-spacing-lg);
     font-weight: bold;
-    color: white;
+    color: var(--wim-color-text-on-overlay);
     pointer-events: none;
-    background: rgb(0 0 0 / 0.6);
+    background: var(--wim-color-overlay-bg);
     border-radius: var(--wim-radius-full);
     transform: translate(-50%, -50%);
     animation: skipFadeIn 0.5s ease-out forwards;

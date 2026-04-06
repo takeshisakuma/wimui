@@ -210,7 +210,7 @@
       padding: 0 4px;
       font-size: 10px;
       line-height: 1;
-      color: #fff;
+      color: var(--wim-color-text-on-primary);
       text-align: center;
       background-color: var(--wim-color-destructive);
       border-radius: 8px;
@@ -233,7 +233,7 @@
       right: 52px;
       padding: 4px 8px;
       font-size: 12px;
-      color: #fff;
+      color: var(--wim-color-text-on-overlay);
       white-space: nowrap;
       pointer-events: none;
       background-color: var(--wim-color-overlay-bg-dark);

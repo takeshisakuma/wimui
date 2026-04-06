@@ -5,7 +5,7 @@
 
     /* デフォルトの境界線色（後でトークンに合わせる） */
     margin: 0;
-    background-color: var(--wim-color-border, #e5e7eb);
+    background-color: var(--wim-color-border);
     border: none;
 
     &--horizontal {

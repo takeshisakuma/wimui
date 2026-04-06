@@ -35,7 +35,7 @@
       }
 
       &-background {
-        color: var(--wim-color-gray-300, #e0e0e0);
+        color: var(--wim-color-border);
 
         .wim-icon {
           display: block;
@@ -52,7 +52,7 @@
         width: 0;
         height: 100%;
         overflow: hidden;
-        color: var(--wim-color-warning, #f59e0b);
+        color: var(--wim-color-caution);
         white-space: nowrap;
         pointer-events: none; // クリック判定は親で行う
         transition: width 0.2s ease;
@@ -82,7 +82,7 @@
         cursor: default;
 
         &-foreground {
-          color: var(--wim-color-gray-400, #9ca3af);
+          color: var(--wim-color-text-tertiary);
         }
       }
     }

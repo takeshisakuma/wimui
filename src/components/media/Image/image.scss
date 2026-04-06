@@ -58,7 +58,7 @@
     }
   
     &.wim-image--border {
-      border: 1px solid var(--wim-color-border, #e0e0e0);
+      border: 1px solid var(--wim-color-border);
     }
   
     // Fade-in state
@@ -178,7 +178,7 @@
     margin-top: var(--wim-spacing-sm);
     font-size: 0.875rem;
     line-height: 1.5;
-    color: var(--wim-color-text-secondary, #666);
+    color: var(--wim-color-text-secondary);
     text-align: center;
   }
   

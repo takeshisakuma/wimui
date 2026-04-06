@@ -8,34 +8,34 @@
 
     &--bg-primary {
       color: var(--wim-color-text-primary);
-      background-color: var(--wim-color-bg-primary, #fff);
+      background-color: var(--wim-color-bg-primary);
     }
 
     &--bg-secondary {
       color: var(--wim-color-text-primary);
-      background-color: var(--wim-color-bg-secondary, #f4f4f5);
+      background-color: var(--wim-color-bg-secondary);
     }
 
     &--bg-dark {
-      color: #fff;
-      background-color: #18181b;
+      color: var(--wim-color-text-on-dark);
+      background-color: var(--wim-color-surface-inverse);
 
       .wim-footer__section-title {
-        color: #fff;
+        color: var(--wim-color-text-on-dark);
       }
 
       .wim-footer__bottom {
-        color: #a1a1aa;
-        border-top-color: #27272a;
+        color: var(--wim-color-text-muted-on-inverted);
+        border-top-color: var(--wim-color-border-inverted);
       }
 
       .wim-footer__section-content {
-        color: #fff;
+        color: var(--wim-color-text-on-dark);
       }
     }
 
     &--bordered {
-      border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+      border-top: 1px solid var(--wim-color-border-secondary);
     }
 
     &__container {
@@ -75,7 +75,7 @@
       margin-top: var(--wim-spacing-xl);
       font-size: var(--wim-font-size-sm);
       color: var(--wim-color-text-secondary);
-      border-top: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+      border-top: 1px solid var(--wim-color-border-secondary);
 
       @include breakpoints.up(sm) {
         flex-direction: row;

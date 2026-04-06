@@ -63,9 +63,9 @@ const DefaultFallback = ({
     <Box
       p="lg"
       radius="md"
-      bg="var(--wim-color-destructive-bg, #fff1f0)"
+      bg="var(--wim-color-destructive-subtle)"
       className="wim-error-boundary-fallback"
-      style={{ border: "1px solid var(--wim-color-destructive, #ff4d4f)" }}
+      style={{ border: "1px solid var(--wim-color-destructive)" }}
     >
       <Stack gap="md">
         <Alert

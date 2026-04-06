@@ -23,7 +23,7 @@ export function useAudioMetadata({
     const cover = currentTrack.coverArt || "";
 
     if (showMetadata && !title && !artist && !cover) {
-      import("jsmediatags/build2/jsmediatags.js")
+      import("jsmediatags")
         .then((jsmediatagsModule) => {
           const jmt = jsmediatagsModule.default || jsmediatagsModule;
           jmt.read(currentTrack.src, {

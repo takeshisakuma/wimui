@@ -9,11 +9,11 @@
   
     &--border {
       overflow: hidden;
-      border: 1px solid var(--wim-color-border, #e2e2e8);
+      border: 1px solid var(--wim-color-border);
       border-radius: var(--wim-radius-lg, 8px);
   
       .wim-description-list__item {
-        border-bottom: 1px solid var(--wim-color-border-secondary, #f0f0f2);
+        border-bottom: 1px solid var(--wim-color-border-secondary);
   
         &:last-child {
           border-bottom: none;
@@ -35,13 +35,13 @@
       flex-shrink: 0;
       margin: 0;
       font-weight: 600;
-      color: var(--wim-color-text-secondary, #666);
+      color: var(--wim-color-text-secondary);
     }
   
     &__details {
       flex: 1;
       margin: 0;
-      color: var(--wim-color-text-primary, #1a1a1b);
+      color: var(--wim-color-text-primary);
     }
   
     // Layouts

@@ -1,4 +1,4 @@
-declare module "jsmediatags/build2/jsmediatags.js" {
+declare module "jsmediatags" {
   interface JsMediaTags {
     read(
       url: string,

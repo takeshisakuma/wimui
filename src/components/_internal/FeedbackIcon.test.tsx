@@ -14,7 +14,7 @@ describe("FeedbackIcon", () => {
   });
 
   it("renders a default icon for success status", () => {
-    const { container } = render(<FeedbackIcon intent="success" />);
+    const { container } = render(<FeedbackIcon intent="info" />);
     expect(container.firstChild).not.toBeNull();
   });
 

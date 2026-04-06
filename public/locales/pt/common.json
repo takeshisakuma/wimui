@@ -73,7 +73,27 @@
     "clear": "Limpar",
     "close": "Fechar",
     "dismiss": "Descartar",
-    "label": "Botão"
+    "label": "Botão",
+    "guide_title": "Visão Geral dos Botões",
+    "guide_desc": "Diretrizes para escolher e implementar o tipo de botão correto para sua interface.",
+    "priority_weighting": "Uma matriz descrevendo quando usar botões Primários, Secundários ou Terciários.",
+    "semantics_desc": "Botões acionam ações, enquanto Links alteram a localização da página ou a posição de rolagem.",
+    "semantics_guide_ref": "Consulte o guia Link vs Botão para informações mais detalhadas.",
+    "standard_desc": "Botão retangular padrão para ações gerais.",
+    "standard_usage": "CTAs principais como Enviar, Salvar ou Adicionar Item.",
+    "icon_usage": "Barras de ferramentas densas, controles de mídia ou compartilhamento social.",
+    "link_desc": "Um botão estilizado como um link de texto para ações de navegação secundárias.",
+    "group_desc": "Um contêiner que agrupa vários botões logicamente relacionados.",
+    "group_usage": "Barras de filtro, paginação ou ações de formulário de várias etapas.",
+    "copy_desc": "Um botão especializado para copiar texto para a área de transferência com feedback visual.",
+    "copy_usage": "Chaves de API, IDs de transação ou links de compartilhamento.",
+    "guideline_principle": "Princípio",
+    "guideline_detail": "Detalhe",
+    "consistency": "Consistência",
+    "consistency_desc": "Mantenha o mesmo uso de maiúsculas no rótulo (Frase) e o posicionamento do ícone em todos os botões.",
+    "placement_desc": "Os botões devem ser agrupados no canto inferior direito para modais ou inferior esquerdo para formulários.",
+    "placement_conflict": "Conflito de Posicionamento",
+    "placement_conflict_desc": "Evite colocar vários botões primários na mesma visualização."
   },
   "calendar": {
     "aria_date": "{{day}}/{{month}}/{{year}}",
@@ -144,6 +164,10 @@
     "a11y_spec_title": "Especificações de Acessibilidade",
     "anatomy_title": "Anatomia",
     "api_reference": "Referência da API",
+    "button_a11y_desc": "Funções de botão acessíveis e navegação por teclado.",
+    "button_motion_desc": "Transições de botão padrão e efeitos de foco.",
+    "button_scenario_desc": "Padrões comuns de botão em todo o aplicativo.",
+    "iconButton_desc": "Um botão quadrado contendo apenas um ícone sem um rótulo de texto.",
     "baseListItem_a11y_desc": "Suporta aria-selected e mapeamento de função adequado em controles complexos.",
     "baseListItem_anatomy_content_desc": "Área central para o conteúdo de texto principal.",
     "baseListItem_anatomy_content_label": "Área do rótulo",
@@ -197,8 +221,28 @@
     "fieldTemplate_responsive_desc": "Suporta layouts verticais e horizontais com base no breakpoint/largura do contêiner.",
     "fieldTemplate_scenario_1": "Formulários de registro padrão.",
     "fieldTemplate_scenario_2": "Páginas de configurações com layouts verticais ou horizontais.",
-    "fieldTemplate_tokens_desc": "Usa tokens semânticos para rótulos e texto de erro.",
     "fieldTemplate_usage_desc": "Envolve qualquer componente de formulário para fornecer um rótulo padronizado e um layout de tratamento de erros.",
+    "label_title": "Texto descritivo para campos de entrada, incluindo marcas obrigatórias/opcionais",
+    "label_long_desc": "Um componente para exibir descrições ou legendas para elementos de formulário.",
+    "label_design_intent": "Fornece rótulos claros e acessíveis para controles de formulário para guiar a entrada do usuário.",
+    "label_choice_self_when": "Use quando precisar fornecer um rótulo de texto para uma única entrada de formulário.",
+    "label_choice_alt_when": "Use Heading para títulos de seção ou FieldTemplate para um wrapper de campo completo com tratamento de erros.",
+    "label_choice_matrix_desc": "Comparando Label com Heading e FieldTemplate.",
+    "label_anatomy_root_label": "Contêiner",
+    "label_anatomy_root": "O elemento raiz que envolve o texto e os indicadores.",
+    "label_anatomy_content_label": "Texto do Rótulo",
+    "label_anatomy_content": "O texto descritivo real para o elemento de formulário.",
+    "label_content_guideline": "Mantenha os rótulos curtos, descritivos e evite usá-los para texto de ajuda.",
+    "label_motion_desc": "Sem interações ou animações específicas.",
+    "label_a11y_desc": "Certifique-se de que o Label esteja associado a uma entrada via htmlFor/id.",
+    "label_scenario_1": "Um formulário de contato padrão.",
+    "label_scenario_2": "Um painel de configurações de painel administrativo.",
+    "label_best_practice_1": "Mantenha os rótulos visíveis o tempo todo.",
+    "label_best_practice_2": "Use frases para o texto do rótulo.",
+    "label_tokens_desc": "Tokens de tipografia e cor são usados para tamanho da fonte, peso e cor do texto.",
+    "label_responsive_desc": "O rótulo permanece legível em todos os breakpoints; o tamanho da fonte é fixo para manter a hierarquia visual.",
+    "label_keyboard_desc": "Os rótulos não são interativos por si só e não recebem foco.",
+    "label_i18n_desc": "Os rótulos são fornecidos pelo consumidor; o componente não possui strings codificadas.",
     "i18n_title": "Internacionalização (i18n)",
     "inputBase_a11y_desc": "Garante que os ícones interativos tenham funções e rótulos corretos.",
     "inputBase_anatomy_content_desc": "Espaço para a entrada real ou o valor selecionado.",
@@ -301,7 +345,8 @@
     "test_title": "Testes",
     "tokens_title": "Tokens de Design",
     "usage": "Uso",
-    "usage_scenario": "Cenário de Uso"
+    "usage_scenario": "Cenário de Uso",
+    "transfer_i18n_desc": "Suporte total para localização de rótulos, espaços reservados e mensagens de status."
   },
   "dropzone": {
     "description": "Arraste e solte os arquivos aqui ou clique para selecionar"
@@ -566,5 +611,14 @@
   "upload": "Upload",
   "username": "Nome de usuário",
   "wed": "Qua",
+  "table": {
+    "header_component": "Componente",
+    "header_overview": "Visão Geral",
+    "header_usage": "Cenário de Uso",
+    "header_placement": "Posicionamento"
+  },
+  "btn": {
+    "page_transition": "Transições de página padrão ou links de rodapé."
+  },
   "welcome": "Bem-vindo ao nosso aplicativo"
-}
+}

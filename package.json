@@ -223,7 +223,6 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",
-    "ajv": "^8.18.0",
     "classnames": "^2.5.1",
     "jsmediatags": "^3.9.7",
     "qrcode.react": "^4.2.0",

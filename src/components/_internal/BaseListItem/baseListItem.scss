@@ -11,8 +11,8 @@
     padding: var(--wim-spacing-sm) var(--wim-spacing-md); // Slightly tighter vertical padding for floating style
     margin: 0 var(--wim-spacing-xs);
     font-family: var(--wim-font-family-default);
-    font-size: 0.9rem;
-    line-height: var(--wim-line-height-normal, 1.5);
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-normal);
     color: var(--wim-color-text-primary);
     cursor: pointer;
     user-select: none;
@@ -47,10 +47,10 @@
     }
 
     &--danger {
-        color: var(--wim-color-text-error, #dc2626);
+        color: var(--wim-color-text-error);
 
         &:hover:not(.wim-base-list-item--disabled) {
-            background-color: rgb(220 38 38 / 0.1);
+            background-color: var(--wim-color-destructive-subtle);
         }
     }
 
@@ -62,15 +62,15 @@
         color: var(--wim-color-text-secondary);
 
         svg {
-            width: 16px;
-            height: 16px;
+            width: var(--wim-spacing-2xl);
+            height: var(--wim-spacing-2xl);
         }
     }
 
     &__content {
         flex: 1;
         min-width: 0;
-        padding: 2px 0; // Prevent clipping from overflow: hidden
+        padding: var(--wim-spacing-2xs) 0; // Prevent clipping from overflow: hidden
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -80,7 +80,7 @@
         display: flex;
         align-items: center;
         margin-left: auto;
-        font-size: 0.75rem;
+        font-size: var(--wim-font-size-xs);
         color: var(--wim-color-text-tertiary);
     }
 }

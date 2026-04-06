@@ -32,27 +32,27 @@
   
     // Colors
     &--primary {
-      color: var(--wim-color-primary, #007bff);
+      color: var(--wim-color-primary);
     }
   
     &--secondary {
-      color: var(--wim-color-secondary, #6c757d);
+      color: var(--wim-color-secondary);
     }
   
     &--success {
-      color: var(--wim-color-positive, #28a745);
+      color: var(--wim-color-positive);
     }
   
     &--warning {
-      color: var(--wim-color-caution, #ffc107);
+      color: var(--wim-color-caution);
     }
   
     &--error {
-      color: var(--wim-color-destructive, #dc3545);
+      color: var(--wim-color-destructive);
     }
   
     &--neutral {
-      color: var(--wim-color-text-secondary, #4a5568);
+      color: var(--wim-color-text-secondary);
     }
   
     &--currentColor {
@@ -69,7 +69,7 @@
   
     &__label {
       font-size: 0.875rem;
-      color: var(--wim-color-text-secondary, #4a5568);
+      color: var(--wim-color-text-secondary);
     }
   }
   

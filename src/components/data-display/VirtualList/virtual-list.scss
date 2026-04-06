@@ -1,5 +1,8 @@
 @layer component {
   .wim-virtual-list {
+    // Component-specific scrollbar dimensions
+    --virtual-list-scrollbar-width: var(--wim-spacing-sm); // 6px approx
+
     position: relative;
     overflow: hidden auto;
   
@@ -8,7 +11,7 @@
     scrollbar-width: thin;
   
     &::-webkit-scrollbar {
-      width: 6px;
+      width: var(--virtual-list-scrollbar-width);
     }
   
     &::-webkit-scrollbar-track {
@@ -17,7 +20,7 @@
   
     &::-webkit-scrollbar-thumb {
       background: var(--wim-color-scrollbar-thumb);
-      border-radius: 3px;
+      border-radius: var(--wim-radius-sm);
     }
   
     &__inner {

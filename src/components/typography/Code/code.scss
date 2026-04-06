@@ -22,11 +22,11 @@
       padding: 1rem;
       margin: 1rem 0;
       overflow-x: auto;
-      color: #333;
+      color: var(--wim-color-text-primary);
       word-break: normal;
       white-space: pre;
-      background-color: #f8f9fa;
-      border: 1px solid #dee2e6;
+      background-color: var(--wim-color-bg-subtle);
+      border: 1px solid var(--wim-color-border-secondary);
 
       code {
         padding: 0;

@@ -29,7 +29,7 @@
     }
 
     &__backdrop--dark {
-      background-color: var(--wim-color-overlay-bg-dark, rgb(0 0 0 / 0.7));
+      background-color: var(--wim-color-overlay-bg-dark);
     }
 
     &__backdrop--blur-sm {
@@ -61,7 +61,7 @@
       max-width: 300px;
       font-size: var(--wim-font-size-md, 14px);
       font-weight: var(--wim-font-weight-medium, 500);
-      color: var(--wim-color-text-on-overlay, #fff);
+      color: var(--wim-color-text-on-overlay);
       text-align: center;
     }
 

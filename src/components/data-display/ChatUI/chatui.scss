@@ -1,5 +1,3 @@
-@use "../../../tokens/pccs-colors" as *;
-
 @layer component {
   .wim-chat-container {
     display: flex;
@@ -7,8 +5,8 @@
     height: 100%;
     container-type: inline-size;
     overflow: hidden;
-    background-color: var(--wim-color-bg-primary, #fff);
-    border: 1px solid var(--wim-color-border, #e2e2e8);
+    background-color: var(--wim-color-bg-primary);
+    border: 1px solid var(--wim-color-border);
     border-radius: var(--wim-radius-md, 8px);
   }
   
@@ -21,8 +19,8 @@
     overflow-y: auto;
   
     /* Increased from lg to xl for spacing */
-    background-color: #f0f2f5;
-  
+    background-color: var(--wim-color-surface-variant);
+
     /* モダンなSNS風の微かな青みグレー */
   }
   
@@ -32,35 +30,35 @@
     align-items: flex-start;
     max-width: 80%;
   
-    --wim-chat-bubble-bg: var(--wim-color-bg-secondary, #f4f4f7);
-    --wim-chat-bubble-color: var(--wim-color-text-primary, #1a1a1a);
+    --wim-chat-bubble-bg: var(--wim-color-bg-secondary);
+    --wim-chat-bubble-color: var(--wim-color-text-primary);
   
     &--left {
       align-self: flex-start;
-  
-      --wim-chat-bubble-bg: #{$pccs-p7};
-      --wim-chat-bubble-color: var(--wim-color-text-primary, #1a1a1a);
+
+      --wim-chat-bubble-bg: var(--wim-color-chat-bubble-received);
+      --wim-chat-bubble-color: var(--wim-color-text-primary);
     }
-  
+
     &--right {
       align-self: flex-end;
-  
-      --wim-chat-bubble-bg: #{$pccs-p18};
-      --wim-chat-bubble-color: var(--wim-color-text-primary, #1a1a1a);
-  
+
+      --wim-chat-bubble-bg: var(--wim-color-chat-bubble-sent);
+      --wim-chat-bubble-color: var(--wim-color-text-primary);
+
       .wim-chat-message__content-wrapper {
         align-items: flex-end;
       }
     }
-  
+
     &--primary {
-      --wim-chat-bubble-bg: #{$pccs-p7};
-      --wim-chat-bubble-color: var(--wim-color-text-primary, #1a1a1a);
+      --wim-chat-bubble-bg: var(--wim-color-chat-bubble-received);
+      --wim-chat-bubble-color: var(--wim-color-text-primary);
     }
-  
+
     &--secondary {
-      --wim-chat-bubble-bg: #{$pccs-p7};
-      --wim-chat-bubble-color: var(--wim-color-text-primary, #1a1a1a);
+      --wim-chat-bubble-bg: var(--wim-color-chat-bubble-received);
+      --wim-chat-bubble-color: var(--wim-color-text-primary);
     }
   }
   
@@ -78,7 +76,7 @@
   .wim-chat-message__sender {
     font-size: var(--wim-font-size-sm, 14px);
     font-weight: var(--wim-font-weight-medium, 500);
-    color: var(--wim-color-text-secondary, #666);
+    color: var(--wim-color-text-secondary);
   }
   
   .wim-chat-message__bubble {
@@ -124,15 +122,15 @@
   
   .wim-chat-message__timestamp {
     font-size: var(--wim-font-size-xs, 12px);
-    color: var(--wim-color-text-tertiary, #999);
+    color: var(--wim-color-text-tertiary);
   }
   
   .wim-chat-input {
     display: flex;
     gap: var(--wim-spacing-sm, 12px);
     padding: var(--wim-spacing-md, 16px);
-    background-color: var(--wim-color-bg-primary, #fff);
-    border-top: 1px solid var(--wim-color-border, #e2e2e8);
+    background-color: var(--wim-color-bg-primary);
+    border-top: 1px solid var(--wim-color-border);
   
     @container (max-width: 480px) {
       gap: 8px;
@@ -150,23 +148,23 @@
     font-family: inherit;
     font-size: var(--wim-font-size-md, 16px);
     line-height: normal;
-    color: var(--wim-color-text-primary, #1a1a1a);
+    color: var(--wim-color-text-primary);
   
     /* グローバルのトリム設定をこの要素だけ解除 */
     appearance: none;
     outline: none;
-    background-color: var(--wim-color-bg-primary, #fff);
-    border: 1px solid var(--wim-color-border, #e2e2e8);
+    background-color: var(--wim-color-bg-primary);
+    border: 1px solid var(--wim-color-border);
     border-radius: var(--wim-radius-md, 8px);
     transition: border-color 0.2s ease;
     text-box-trim: none;
   
     &:focus {
-      border-color: var(--wim-color-primary, #0052cc);
+      border-color: var(--wim-color-primary);
     }
   
     &::placeholder {
-      color: var(--wim-color-text-tertiary, #999);
+      color: var(--wim-color-text-tertiary);
     }
   }
   
@@ -175,9 +173,9 @@
     padding: var(--wim-spacing-sm, 12px) var(--wim-spacing-lg, 24px);
     font-size: var(--wim-font-size-md, 16px);
     font-weight: var(--wim-font-weight-medium, 500);
-    color: var(--wim-color-text-on-primary, #fff);
+    color: var(--wim-color-text-on-primary);
     cursor: pointer;
-    background-color: var(--wim-color-primary, #0052cc);
+    background-color: var(--wim-color-primary);
     border: none;
     border-radius: var(--wim-radius-md, 8px);
     transition:
@@ -189,11 +187,11 @@
     }
   
     &:hover:not(:disabled) {
-      background-color: var(--wim-color-primary-hover, #0047b3);
+      background-color: var(--wim-color-primary-hover);
     }
   
     &:active:not(:disabled) {
-      background-color: var(--wim-color-primary-active, #003d99);
+      background-color: var(--wim-color-primary-active);
     }
   
     &:disabled {
@@ -208,8 +206,8 @@
     justify-content: center;
     overflow: hidden;
     font-weight: var(--wim-font-weight-medium, 500);
-    color: #{$pccs-w};
-    background-color: #{$pccs-s18};
+    color: var(--wim-color-text-white);
+    background-color: var(--wim-color-avatar-default);
     border-radius: var(--wim-radius-full);
   
     &--sm {
@@ -232,51 +230,51 @@
   
     /* Strong Tone Colors */
     &--s1 {
-      background-color: #{$pccs-s1};
+      background-color: var(--wim-color-avatar-s1);
     }
-  
+
     &--s3 {
-      background-color: #{$pccs-s3};
+      background-color: var(--wim-color-avatar-s3);
     }
-  
+
     &--s5 {
-      background-color: #{$pccs-s5};
+      background-color: var(--wim-color-avatar-s5);
     }
-  
+
     &--s7 {
-      background-color: #{$pccs-s7};
+      background-color: var(--wim-color-avatar-s7);
     }
-  
+
     &--s10 {
-      background-color: #{$pccs-s10};
+      background-color: var(--wim-color-avatar-s10);
     }
-  
+
     &--s12 {
-      background-color: #{$pccs-s12};
+      background-color: var(--wim-color-avatar-s12);
     }
-  
+
     &--s14 {
-      background-color: #{$pccs-s14};
+      background-color: var(--wim-color-avatar-s14);
     }
-  
+
     &--s16 {
-      background-color: #{$pccs-s16};
+      background-color: var(--wim-color-avatar-s16);
     }
-  
+
     &--s18 {
-      background-color: #{$pccs-s18};
+      background-color: var(--wim-color-avatar-s18);
     }
-  
+
     &--s20 {
-      background-color: #{$pccs-s20};
+      background-color: var(--wim-color-avatar-s20);
     }
-  
+
     &--s22 {
-      background-color: #{$pccs-s22};
+      background-color: var(--wim-color-avatar-s22);
     }
-  
+
     &--s24 {
-      background-color: #{$pccs-s24};
+      background-color: var(--wim-color-avatar-s24);
     }
   }
   

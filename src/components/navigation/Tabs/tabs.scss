@@ -12,7 +12,7 @@
     flex-direction: column;
     width: 100%;
     overflow: hidden;
-    border: 1px solid var(--wim-color-border-secondary, #e2e8f0);
+    border: 1px solid var(--wim-color-border-secondary);
     border-radius: var(--wim-radius-md, 4px);
 
     &--vertical {
@@ -25,8 +25,8 @@
       .wim-tabs__list {
         flex-direction: column;
         width: 200px;
-        background-color: rgb(59 130 246 / 0.04);
-        border-right: 1px solid var(--wim-color-border-secondary, #e2e8f0);
+        background-color: var(--wim-color-primary-subtle);
+        border-right: 1px solid var(--wim-color-border-secondary);
         border-bottom: none;
         border-radius: 0;
         mask-image: linear-gradient(to bottom,
@@ -40,7 +40,7 @@
           width: 100%;
           overflow-x: auto;
           border-right: none;
-          border-bottom: 1px solid var(--wim-color-border-secondary, #e2e8f0);
+          border-bottom: 1px solid var(--wim-color-border-secondary);
           mask-image: linear-gradient(to right,
               transparent,
               black 15px,
@@ -95,8 +95,8 @@
 
       /* IE and Edge */
       scrollbar-width: none;
-      background-color: rgb(59 130 246 / 0.04);
-      border-bottom: 1px solid var(--wim-color-border-secondary, #e2e8f0);
+      background-color: var(--wim-color-primary-subtle);
+      border-bottom: 1px solid var(--wim-color-border-secondary);
       border-radius: 0;
 
       /* Firefox */

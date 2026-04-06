@@ -48,11 +48,11 @@
   
     // Colors
     &--primary .wim-progress__bar {
-      background-color: var(--wim-color-primary, #007bff);
+      background-color: var(--wim-color-primary);
     }
   
     &--secondary .wim-progress__bar {
-      background-color: var(--wim-color-secondary, #6c757d);
+      background-color: var(--wim-color-secondary);
     }
   
     &--success .wim-progress__bar {

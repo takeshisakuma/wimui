@@ -16,11 +16,11 @@
     }
 
     &--bg-primary {
-      background-color: var(--wim-color-bg-primary, #fff);
+      background-color: var(--wim-color-bg-primary);
     }
 
     &--bg-secondary {
-      background-color: var(--wim-color-bg-secondary, #f4f4f5);
+      background-color: var(--wim-color-bg-secondary);
     }
 
     &--bg-transparent {
@@ -46,7 +46,7 @@
     }
 
     &--bordered {
-      border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+      border-bottom: 1px solid var(--wim-color-border-secondary);
     }
 
     &__container {
@@ -89,7 +89,7 @@
           order: 1;
           width: 100%;
           padding: var(--wim-spacing-md);
-          border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+          border-bottom: 1px solid var(--wim-color-border-secondary);
         }
       }
 

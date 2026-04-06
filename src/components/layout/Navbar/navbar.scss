@@ -9,7 +9,7 @@
     width: 100%;
     height: 64px;
     padding: 0 var(--wim-spacing-xl);
-    background-color: var(--wim-color-bg-primary, #fff);
+    background-color: var(--wim-color-bg-primary);
     transition: all var(--wim-transition-base);
 
     &--fixed {
@@ -35,7 +35,7 @@
     }
 
     &--bordered {
-      border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+      border-bottom: 1px solid var(--wim-color-border-secondary);
     }
 
     &__container {
@@ -135,7 +135,7 @@
         width: 100%;
         padding: var(--wim-spacing-md);
         font-size: var(--wim-font-size-lg);
-        border-bottom: 1px solid var(--wim-color-border-secondary, #e2e2e8);
+        border-bottom: 1px solid var(--wim-color-border-secondary);
 
         &:last-child {
           border-bottom: none;

@@ -2,7 +2,7 @@
  * Shared indicator patterns for components like Tabs, SegmentedControl, etc.
  */
 
-@mixin indicator-slider-base($duration: 0.2s) {
+@mixin indicator-slider-base($duration: var(--wim-duration-base)) {
   position: absolute;
   z-index: 1;
   pointer-events: none;
@@ -14,7 +14,7 @@
 }
 
 /* A container that has a subtle background and segmented items */
-@mixin indicator-container-segmented($radius: var(--wim-radius-md), $bg: var(--wim-color-bg-secondary, #f4f4f5), $padding: 4px) {
+@mixin indicator-container-segmented($radius: var(--wim-radius-md), $bg: var(--wim-color-bg-secondary), $padding: var(--wim-spacing-md)) {
   position: relative;
   display: inline-flex;
   padding: $padding;
@@ -25,7 +25,7 @@
 }
 
 /* The floating slider for segmented/contained variant */
-@mixin indicator-slider-contained($radius: var(--wim-radius-sm), $bg: #fff, $shadow: (0 1px 2px rgb(0 0 0 / 0.1)), $offset: 4px) {
+@mixin indicator-slider-contained($radius: var(--wim-radius-sm), $bg: var(--wim-color-surface), $shadow: var(--wim-shadow-sm), $offset: var(--wim-spacing-md)) {
   @include indicator-slider-base;
 
   top: $offset;
@@ -38,7 +38,7 @@
 }
 
 /* Underline slider variant */
-@mixin indicator-slider-underline($height: 2px, $color: var(--wim-color-primary), $bottom: 0) {
+@mixin indicator-slider-underline($height: var(--wim-border-width-thick), $color: var(--wim-color-primary), $bottom: 0) {
   @include indicator-slider-base;
 
   bottom: $bottom;
@@ -63,7 +63,7 @@
   user-select: none;
   background: transparent;
   border: none;
-  transition: all var(--wim-transition-base, 0.2s ease);
+  transition: all var(--wim-transition-base);
   -webkit-tap-highlight-color: transparent;
 
   &:disabled {

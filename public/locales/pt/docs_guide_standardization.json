@@ -127,6 +127,7 @@
     "numeric_std_recommend_title": "Recomendação",
     "numeric_std_responsive_desc": "Garante que campos de entrada numérica especializados se dimensionem adequadamente em dispositivos móveis, mantendo áreas de toque amigáveis.",
     "numeric_std_safari_behavior": "Permite 'e' e trata como notação científica",
+    "numeric_std_scenarios_desc": "Útil ao padronizar formulários de entrada de dados em larga escala onde a precisão numérica e a consistência entre navegadores são críticas.",
     "numeric_std_spin_button_warning": "Considere ocultar os botões de incremento nativos via CSS para uma UI mais consistente.",
     "numeric_std_table_behavior": "Comportamento",
     "numeric_std_table_browser": "Navegador",

@@ -125,6 +125,53 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-close-hover: rgb(0 0 0 / 0.05);
   --wim-color-ghost-bg-hover: rgb(0 0 0 / 0.05);
 
+  /* ── Primary subtle tint (4% – tab list backgrounds etc.) ── */
+  --wim-color-primary-subtle: color-mix(in srgb, var(--wim-color-primary) 4%, transparent);
+
+  /* ── Destructive subtle tint (10% – danger hover) ─────── */
+  --wim-color-destructive-subtle: color-mix(in srgb, var(--wim-color-destructive) 10%, transparent);
+
+  /* ── Inverted surface (always-dark variant, e.g. dark footer) ── */
+  --wim-color-bg-inverted: #{$pccs-gy2-5};
+  --wim-color-border-inverted: #{$pccs-gy3-5};
+  --wim-color-text-muted-on-inverted: #{$pccs-gy6-5};
+  --wim-color-surface-inverse: var(--wim-color-bg-inverted);
+  --wim-color-text-on-dark: var(--wim-color-text-white);
+
+  /* ── Void background (always pure black, e.g. video letterbox) ── */
+  --wim-color-bg-void: #{$pccs-bk};
+
+  /* ── Typography decoration ──────────────────────────────────── */
+  --wim-decoration-highlight-color: #fff9c4;
+
+  /* ── Overlay controls (always-dark, e.g. video player controls) ── */
+  --wim-color-overlay-control-track: rgb(255 255 255 / 0.3);
+  --wim-color-overlay-control-hover: rgb(255 255 255 / 0.2);
+  --wim-color-overlay-control-active: rgb(255 255 255 / 0.25);
+  --wim-color-overlay-item-hover: rgb(255 255 255 / 0.15);
+  --wim-color-overlay-menu-bg: rgb(28 28 28 / 0.95);
+  --wim-color-overlay-divider: rgb(255 255 255 / 0.1);
+  --wim-color-overlay-bg-medium: rgb(0 0 0 / 0.35);
+
+  /* ── Avatar colors (PCCS s-tones, light mode) ────────────── */
+  --wim-color-avatar-default: #{$pccs-s18};
+  --wim-color-avatar-s1: #{$pccs-s1};
+  --wim-color-avatar-s3: #{$pccs-s3};
+  --wim-color-avatar-s5: #{$pccs-s5};
+  --wim-color-avatar-s7: #{$pccs-s7};
+  --wim-color-avatar-s10: #{$pccs-s10};
+  --wim-color-avatar-s12: #{$pccs-s12};
+  --wim-color-avatar-s14: #{$pccs-s14};
+  --wim-color-avatar-s16: #{$pccs-s16};
+  --wim-color-avatar-s18: #{$pccs-s18};
+  --wim-color-avatar-s20: #{$pccs-s20};
+  --wim-color-avatar-s22: #{$pccs-s22};
+  --wim-color-avatar-s24: #{$pccs-s24};
+
+  /* ── Chat bubble backgrounds ─────────────────────────────── */
+  --wim-color-chat-bubble-received: #{$pccs-p7};
+  --wim-color-chat-bubble-sent: #{$pccs-p18};
+
   /* Helper variables for toggle states */
   --on: initial;
   --off: ;
@@ -201,6 +248,25 @@ $scrollbar-track: $pccs-gy8-5;
   --wim-color-bg-subtle: #262626;
   --wim-color-close-hover: rgb(255 255 255 / 0.1);
   --wim-color-ghost-bg-hover: rgb(255 255 255 / 0.08);
+
+  /* ── Avatar colors (PCCS b-tones, dark mode — brighter for contrast) */
+  --wim-color-avatar-default: #{$pccs-b18};
+  --wim-color-avatar-s1: #{$pccs-b1};
+  --wim-color-avatar-s3: #{$pccs-b3};
+  --wim-color-avatar-s5: #{$pccs-b5};
+  --wim-color-avatar-s7: #{$pccs-b7};
+  --wim-color-avatar-s10: #{$pccs-b10};
+  --wim-color-avatar-s12: #{$pccs-b12};
+  --wim-color-avatar-s14: #{$pccs-b14};
+  --wim-color-avatar-s16: #{$pccs-b16};
+  --wim-color-avatar-s18: #{$pccs-b18};
+  --wim-color-avatar-s20: #{$pccs-b20};
+  --wim-color-avatar-s22: #{$pccs-b22};
+  --wim-color-avatar-s24: #{$pccs-b24};
+
+  /* ── Chat bubble backgrounds (dark mode) ─────────────────── */
+  --wim-color-chat-bubble-received: color-mix(in srgb, var(--wim-color-caution) 15%, var(--wim-color-bg-secondary));
+  --wim-color-chat-bubble-sent: color-mix(in srgb, var(--wim-color-primary) 15%, var(--wim-color-bg-secondary));
 
   /* Typography decoration tokens – dark mode overrides */
   --wim-decoration-highlight-color: #5c4400; // Dark amber: white text stays readable

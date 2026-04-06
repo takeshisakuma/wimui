@@ -101,9 +101,42 @@ export type WimColorKey =
   | "overlay-bg"
   | "overlay-bg-light"
   | "overlay-bg-dark"
+  | "overlay-bg-medium"
+  | "overlay-control-track"
+  | "overlay-control-hover"
+  | "overlay-control-active"
+  | "overlay-item-hover"
+  | "overlay-menu-bg"
+  | "overlay-divider"
   // Scrollbar colors
   | "scrollbar-thumb"
-  | "scrollbar-track";
+  | "scrollbar-track"
+  // Tinted accent backgrounds
+  | "primary-subtle"
+  | "destructive-subtle"
+  // Inverted surface (always-dark variant)
+  | "bg-inverted"
+  | "border-inverted"
+  | "text-muted-on-inverted"
+  // Void background (always pure black)
+  | "bg-void"
+  // Avatar colors (theme-adaptive PCCS tones)
+  | "avatar-default"
+  | "avatar-s1"
+  | "avatar-s3"
+  | "avatar-s5"
+  | "avatar-s7"
+  | "avatar-s10"
+  | "avatar-s12"
+  | "avatar-s14"
+  | "avatar-s16"
+  | "avatar-s18"
+  | "avatar-s20"
+  | "avatar-s22"
+  | "avatar-s24"
+  // Chat bubble backgrounds
+  | "chat-bubble-received"
+  | "chat-bubble-sent";
 
 /**
  * Color tokens available as CSS variable strings.
@@ -140,7 +173,7 @@ export type WimSpacing = LiteralWithAutocomplete<WimSpacingKey | WimSpacingToken
 /**
  * Radius tokens keys.
  */
-export type WimRadiusKey = "sm" | "md" | "lg" | "full";
+export type WimRadiusKey = "sm" | "md" | "lg" | "xl" | "full";
 
 /**
  * Radius tokens available as CSS variable strings.

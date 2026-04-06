@@ -125,7 +125,7 @@
   
     &--selected {
       font-weight: 600;
-      color: #fff;
+      color: var(--wim-color-text-on-primary);
       background-color: var(--wim-color-primary);
   
       &:hover:not(:disabled) {

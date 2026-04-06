@@ -18,6 +18,7 @@ $shadow-inset: inset 0 2px 4px rgb(0 0 0 / 0.1);
 /* --- 浮き上がり (Elevation / Lift) --- */
 $lift-sm: -1px;
 $lift-md: -1.5px;
+$lift-lg: -2px;
 $lift-none: 0;
 
 /* --- フォーカス (Focus) --- */
@@ -82,6 +83,7 @@ $z-toast: 9999;         // Toast・Snackbar・Notification（常に最前面）
   --wim-shadow-field-focus: #{$shadow-field-focus};
   --wim-lift-sm: #{$lift-sm};
   --wim-lift-md: #{$lift-md};
+  --wim-lift-lg: #{$lift-lg};
   --wim-lift-none: #{$lift-none};
   --wim-duration-instant: #{$duration-instant};
   --wim-duration-fast: #{$duration-fast};

@@ -77,11 +77,13 @@ export default defineConfig(({ mode }) => {
           "react-native-fs",
           "i18next",
           "react-i18next",
-          // UMD では charts/Markdown/QRCode は任意機能のため external 化してサイズを削減。
-          // UMD 利用者がこれらのコンポーネントを使う場合は別途 CDN で読み込むこと。
-          ...(isUMD
-            ? ["recharts", "react-markdown", "remark-gfm", "qrcode.react"]
-            : []),
+          "jsmediatags",
+          "classnames",
+          "@floating-ui/react",
+          "recharts",
+          "react-markdown",
+          "remark-gfm",
+          "qrcode.react",
         ],
         output: isUMD
           ? {
@@ -95,6 +97,10 @@ export default defineConfig(({ mode }) => {
                 "react-markdown": "ReactMarkdown",
                 "remark-gfm": "remarkGfm",
                 "qrcode.react": "QrcodeReact",
+                "react-native-fs": "ReactNativeFs",
+                jsmediatags: "jsmediatags",
+                classnames: "classNames",
+                "@floating-ui/react": "FloatingUI",
               },
             }
           : [

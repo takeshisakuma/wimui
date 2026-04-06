@@ -6,9 +6,9 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    color: var(--wim-color-text-on-disabled, #212529);
+    color: var(--wim-color-text-on-disabled);
     user-select: none;
-    background-color: var(--wim-color-disabled, #e9ecef);
+    background-color: var(--wim-color-disabled);
   
     img {
       width: 100%;
