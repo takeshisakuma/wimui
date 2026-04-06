@@ -33,6 +33,13 @@ const config: StorybookConfig = {
       resolve: {
         alias: [
           {
+            find: "jsmediatags",
+            replacement: path.resolve(
+              process.cwd(),
+              "node_modules/jsmediatags/dist/jsmediatags.min.js",
+            ),
+          },
+          {
             find: "storybook/theming",
             replacement: path.resolve(
               process.cwd(),
@@ -72,7 +79,7 @@ const config: StorybookConfig = {
         }),
       ],
       optimizeDeps: {
-        exclude: ["jsmediatags"],
+        include: ["jsmediatags"],
       },
       build: {
         chunkSizeWarningLimit: 2000,
