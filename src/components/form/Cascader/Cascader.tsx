@@ -83,6 +83,7 @@ export const Cascader = ({
   const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
   const isControlled = value !== undefined;
   const currentValue = isControlled ? value : internalValue;
 
@@ -176,6 +177,7 @@ export const Cascader = ({
         onChange(newPath, selectedOptions);
       }
       setIsOpen(false);
+      triggerRef.current?.focus();
     }
   };
 
@@ -272,7 +274,7 @@ export const Cascader = ({
         e.preventDefault();
         setIsOpen(false);
         setFocusedLevel(-1);
-        (containerRef.current?.querySelector(".wim-cascader__trigger") as HTMLElement)?.focus();
+        triggerRef.current?.focus();
         break;
       case "Home":
         e.preventDefault();
@@ -411,6 +413,7 @@ export const Cascader = ({
         >
           <div
             id={triggerId}
+            ref={triggerRef}
             className={classNames(
               "wim-cascader__trigger",
               disabled && "wim-cascader__trigger--disabled",

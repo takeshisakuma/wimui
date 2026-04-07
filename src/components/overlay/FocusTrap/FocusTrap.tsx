@@ -14,7 +14,7 @@ export type FocusTrapProps = {
   /**
    * マウント時に最初の要素にフォーカスするかどうか。
    */
-  autoFocus?: boolean;
+  initialFocus?: boolean;
   /**
    * 追加のクラス名。
    */
@@ -28,7 +28,7 @@ export type FocusTrapProps = {
 export const FocusTrap = ({
   children,
   active = true,
-  autoFocus = true,
+  initialFocus = true,
   className,
 }: FocusTrapProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -57,7 +57,7 @@ export const FocusTrap = ({
       });
     };
 
-    if (autoFocus) {
+    if (initialFocus) {
       const focusableElements = getFocusableElements();
       if (focusableElements.length > 0) {
         focusableElements[0].focus();
@@ -99,7 +99,7 @@ export const FocusTrap = ({
         previouslyFocusedElement.current.focus();
       }
     };
-  }, [active, autoFocus]);
+  }, [active, initialFocus]);
 
   return (
     <div ref={rootRef} className={classNames("wim-focus-trap", className)}>

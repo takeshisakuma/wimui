@@ -81,9 +81,9 @@ export const Default: Story = {
   },
 };
 
-export const AutoFocus: Story = {
+export const InitialFocus: Story = {
   args: {
-    autoFocus: true,
+    initialFocus: true,
   },
   render: (args) => {
     const [active, setActive] = useState(false);

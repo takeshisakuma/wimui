@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Transition } from "../../layout/Transition/Transition";
 import { TreeView, TreeViewNode } from "../../data-display/TreeView/TreeView";
 import { InputBase } from "../InputBase";
+import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import "./tree-select.scss";
 
 import { FieldTemplate } from "../FieldTemplate";
@@ -110,10 +111,15 @@ export const TreeSelect = ({
 
   useEffect(() => {
     if (isOpen) {
-      // Move focus to the tree when it opens
+      // Move focus to the search input if searchable, otherwise to the tree
       const timer = setTimeout(() => {
-        const tree = containerRef.current?.querySelector(".wim-tree-view") as HTMLElement;
-        tree?.focus();
+        const searchInput = containerRef.current?.querySelector(".wim-tree-view__search-input") as HTMLElement;
+        if (searchInput) {
+          searchInput.focus();
+        } else {
+          const tree = containerRef.current?.querySelector(".wim-tree-view") as HTMLElement;
+          tree?.focus();
+        }
       }, 100);
       return () => clearTimeout(timer);
     }
@@ -144,9 +150,6 @@ export const TreeSelect = ({
       e.preventDefault();
       setIsOpen(false);
       triggerRef.current?.focus();
-    } else if (e.key === "Tab") {
-      // Tab closes the popup without overriding natural focus movement
-      setIsOpen(false);
     }
   };
 
@@ -184,6 +187,7 @@ export const TreeSelect = ({
     } else {
       newValue = selectedKeys[0] || "";
       setIsOpen(false);
+      triggerRef.current?.focus();
     }
 
     if (!isControlled) {
@@ -295,19 +299,23 @@ export const TreeSelect = ({
           leaveTo="fade-leave-to"
           className="wim-tree-select__dropdown"
         >
-          <div id={dropdownId}>
-            <TreeView
-              multiSelect={multiple}
-              defaultSelectedValues={selectedKeys}
-              defaultCheckedValues={multiple ? selectedKeys : []}
-              nodes={resolvedNodes}
-              onCheckedChange={handleSelect}
-              onSelectedChange={handleSelect}
-              checkable={multiple}
-              checkStrategy={checkStrategy}
-              searchable={searchable}
-              defaultExpandedValues={defaultExpandedKeys}
-            />
+          <div id={dropdownId} className="wim-tree-select__dropdown-inner">
+            <FocusTrap active={isOpen} initialFocus={false}>
+              <div role="dialog" aria-modal="true" aria-labelledby={labelId}>
+                <TreeView
+                  multiSelect={multiple}
+                  defaultSelectedValues={selectedKeys}
+                  defaultCheckedValues={multiple ? selectedKeys : []}
+                  nodes={resolvedNodes}
+                  onCheckedChange={handleSelect}
+                  onSelectedChange={handleSelect}
+                  checkable={multiple}
+                  checkStrategy={checkStrategy}
+                  searchable={searchable}
+                  defaultExpandedValues={defaultExpandedKeys}
+                />
+              </div>
+            </FocusTrap>
           </div>
         </Transition>
       </div>

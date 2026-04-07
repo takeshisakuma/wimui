@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect, useId } from "react";
 import classNames from "classnames";
 import { Calendar } from "../../data-display/Calendar/Calendar";
 import { InputBase } from "../InputBase";
+import { Transition } from "../../layout/Transition/Transition";
+import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import "../../form/Input/input.scss";
 import "./date-picker.scss";
 
@@ -251,20 +253,27 @@ export const DatePicker = ({
             {...props}
           />
         </InputBase>
-        {isOpen && !disabled && (
-          <div
-            id={dropdownId}
-            className="wim-datepicker-dropdown"
-            role="dialog"
-            aria-modal="false"
-          >
-            <Calendar
-              value={currentValue || undefined}
-              onChange={handleDateChange}
-              labels={mergedLabels.calendarLabels}
-            />
-          </div>
-        )}
+        <Transition
+          show={isOpen && !disabled}
+          enter="fade-enter"
+          enterFrom="fade-enter-from"
+          enterTo="fade-enter-to"
+          leave="fade-leave"
+          leaveFrom="fade-leave-from"
+          leaveTo="fade-leave-to"
+          id={dropdownId}
+          className="wim-datepicker-dropdown"
+        >
+          <FocusTrap active={isOpen} initialFocus={false}>
+            <div role="dialog" aria-modal="true" aria-labelledby={labelId}>
+              <Calendar
+                value={currentValue || undefined}
+                onChange={handleDateChange}
+                labels={mergedLabels.calendarLabels}
+              />
+            </div>
+          </FocusTrap>
+        </Transition>
       </div>
     </FieldTemplate>
   );

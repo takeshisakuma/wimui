@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { DatePicker } from "./DatePicker";
 
@@ -69,13 +69,15 @@ describe("DatePicker", () => {
     expect(document.querySelector(".wim-datepicker-dropdown")).toBeInTheDocument();
   });
 
-  it("closes calendar with Escape key", () => {
+  it("closes calendar with Escape key", async () => {
     render(<DatePicker />);
     const input = screen.getByRole("combobox");
     fireEvent.click(input);
     expect(document.querySelector(".wim-datepicker-dropdown")).toBeInTheDocument();
     fireEvent.keyDown(input, { key: "Escape" });
-    expect(document.querySelector(".wim-datepicker-dropdown")).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(document.querySelector(".wim-datepicker-dropdown")).not.toBeInTheDocument();
+    });
   });
 
   it("does not open when disabled", () => {

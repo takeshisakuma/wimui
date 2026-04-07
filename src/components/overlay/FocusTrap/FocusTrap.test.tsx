@@ -22,15 +22,14 @@ describe("FocusTrap", () => {
     expect(screen.getByText("First")).toHaveFocus();
   });
 
-  it("does not auto focus when autoFocus=false", () => {
+  it("does not auto focus when initialFocus=false", () => {
     const btn = document.createElement("button");
     btn.textContent = "Outside";
     document.body.appendChild(btn);
     btn.focus();
 
     render(
-      /* eslint-disable-next-line jsx-a11y/no-autofocus */
-      <FocusTrap autoFocus={false}>
+      <FocusTrap initialFocus={false}>
         <button>Inside</button>
       </FocusTrap>,
     );
