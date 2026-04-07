@@ -4,7 +4,7 @@
 
 .wim-toast-container {
   position: fixed;
-  z-index: 9999;
+  z-index: var(--wim-z-toast);
   display: flex;
   flex-direction: column;
   gap: var(--wim-spacing-md);

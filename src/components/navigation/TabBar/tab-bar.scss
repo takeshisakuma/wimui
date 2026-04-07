@@ -1,6 +1,6 @@
-﻿@layer component {
+@layer component {
   .wim-tab-bar {
-    z-index: 1000;
+    z-index: var(--wim-z-overlay);
     width: 100%;
     height: 56px; // Standard mobile tab bar height
     padding-bottom: env(safe-area-inset-bottom); // iOS safe area
@@ -76,22 +76,22 @@
 
     &__badge {
       position: absolute;
-      top: 4px;
+      top: var(--wim-spacing-sm);
       right: calc(50% - 14px); // Adjust based on icon size
       display: flex;
       align-items: center;
       justify-content: center;
       min-width: 16px;
       height: 16px;
-      padding: 0 4px;
+      padding: 0 var(--wim-spacing-sm);
       font-size: 10px;
       font-weight: bold;
       line-height: 16px;
       color: var(--wim-color-text-on-primary);
       pointer-events: none;
       background-color: var(--wim-color-destructive);
-      border-radius: 99px;
-      box-shadow: 0 0 0 2px var(--wim-color-bg-primary);
+      border-radius: var(--wim-radius-full);
+      box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-bg-primary);
     }
   }
 }

@@ -18,7 +18,7 @@
   
   .wim-context-menu {
     position: fixed;
-    z-index: 9999;
+    z-index: var(--wim-z-toast);
     min-width: 200px;
     padding: var(--wim-spacing-xs) 0; // The items themselves have margins now
     background-color: var(--wim-color-bg-component);

@@ -29,7 +29,7 @@ export const Small: Story = {
 
 export const Combined: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
+    <div style={{ display: "flex", gap: "var(--wim-spacing-xs)", alignItems: "center" }}>
       <Kbd>⌘</Kbd>
       <span>+</span>
       <Kbd>K</Kbd>
@@ -39,7 +39,7 @@ export const Combined: Story = {
 
 export const KeyboardSymbols: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: "var(--wim-spacing-md)", flexWrap: "wrap" }}>
       <Kbd>Shift</Kbd>
       <Kbd>Ctrl</Kbd>
       <Kbd>Option</Kbd>

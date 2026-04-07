@@ -80,7 +80,7 @@
   
   .wim-notification-container {
     position: fixed;
-    z-index: 9999;
+    z-index: var(--wim-z-toast);
     display: flex;
     flex-direction: column;
     pointer-events: none;

@@ -38,7 +38,7 @@ export type SignaturePadProps = {
 export const SignaturePad = ({
   width = 400,
   height = 200,
-  penColor = "#000000",
+  penColor = "var(--wim-color-text-primary)",
   penWidth = 2,
   onChange,
   clearLabel,

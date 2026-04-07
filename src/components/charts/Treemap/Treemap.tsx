@@ -26,7 +26,7 @@ export const Treemap = ({
   return (
     <div style={{ width, height: "auto" }}>
       {title && (
-        <h3 style={{ fontSize: "16px", marginBottom: "16px" }}>{title}</h3>
+        <h3 style={{ fontSize: "var(--wim-font-size-md)", marginBottom: "var(--wim-spacing-xl)" }}>{title}</h3>
       )}
       <div style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
@@ -34,7 +34,7 @@ export const Treemap = ({
             data={data}
             dataKey={dataKey}
             aspectRatio={aspectRatio}
-            stroke="#fff"
+            stroke="var(--wim-color-bg-primary)"
             fill={CHART_COLORS[0]}
           >
             <Tooltip contentStyle={CHART_THEME.tooltip.contentStyle} />

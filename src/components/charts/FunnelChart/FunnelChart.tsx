@@ -29,7 +29,7 @@ export const FunnelChart = ({
   return (
     <div style={{ width, height: "auto" }}>
       {title && (
-        <h3 style={{ fontSize: "16px", marginBottom: "16px" }}>{title}</h3>
+        <h3 style={{ fontSize: "var(--wim-spacing-xl)", marginBottom: "var(--wim-spacing-xl)" }}>{title}</h3>
       )}
       <div style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
@@ -38,7 +38,7 @@ export const FunnelChart = ({
             <Funnel dataKey={dataKey} data={data} isAnimationActive>
               <LabelList
                 position="right"
-                fill="#888"
+                fill="var(--wim-color-text-secondary)"
                 dataKey={nameKey}
                 stroke="none"
               />

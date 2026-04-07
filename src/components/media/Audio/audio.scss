@@ -116,8 +116,8 @@
   }
   
   .wim-audio--custom {
-    --wim-audio-bg-start: #1e1e24;
-    --wim-audio-bg-end: #292930;
+    --wim-audio-bg-start: var(--wim-color-bg-inverted);
+    --wim-audio-bg-end: var(--wim-color-bg-inverted); // Using same for now or a variation if exists
   
     position: relative;
     z-index: 1;

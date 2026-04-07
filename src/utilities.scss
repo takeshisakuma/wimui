@@ -16,8 +16,8 @@
   scrollbar-width: thin !important;
 
   &::-webkit-scrollbar {
-    width: 6px !important;
-    height: 6px !important;
+    width: var(--wim-spacing-lg) !important;
+    height: var(--wim-spacing-lg) !important;
   }
 
   &::-webkit-scrollbar-track {
@@ -28,7 +28,7 @@
     background-color: var(--wim-color-scrollbar-thumb) !important;
     background-clip: content-box !important;
     border: 1px solid transparent !important;
-    border-radius: 10px !important;
+    border-radius: var(--wim-radius-lg) !important;
 
     &:hover {
       background-color: var(--wim-color-scrollbar-thumb) !important;
@@ -82,10 +82,10 @@
 
     &::before {
       position: absolute;
-      inset: -10px;
+      inset: calc(-1 * var(--wim-spacing-lg));
       content: "";
 
-      /* 周囲10px分クリック判定を広げる */
+      /* 周囲 ~10px 分クリック判定を広げる */
     }
   }
 

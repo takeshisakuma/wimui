@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: var(--wim-z-overlay);
   width: 100vw;
   height: 100vh;
   background: var(--wim-color-overlay-bg);
@@ -10,7 +10,7 @@
 
 .wim-tour-highlight {
   position: fixed;
-  z-index: 1001;
+  z-index: var(--wim-z-overlay-panel);
   pointer-events: none;
   border-radius: var(--wim-radius-md, 4px);
   box-shadow: 0 0 0 9999px var(--wim-color-overlay-bg);
@@ -19,7 +19,7 @@
 
 .wim-tour-bubble {
   position: fixed;
-  z-index: 1002;
+  z-index: var(--wim-z-overlay-step);
   width: 300px;
   max-width: calc(100vw - 32px);
   background-color: var(--wim-color-bg-component);

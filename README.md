@@ -167,3 +167,10 @@ git commit -m "commit message" --no-verify
 ## コーディングルール
 
 - CSSクラス名：`wim-` プレフィックスを付けたkebab-case（例: `wim-button`, `wim-button--primary`）
+
+
+## ドキュメントの欠落確認
+node scripts/audit-mdx.js
+
+## トークンの整合性確認
+npm run tokens:check

@@ -5,7 +5,7 @@
 .wim-drawer-overlay {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: var(--wim-z-overlay);
   display: flex;
   background-color: var(--wim-color-overlay-bg);
   backdrop-filter: blur(2px);
@@ -13,7 +13,7 @@
 
 .wim-drawer-content {
   position: fixed;
-  z-index: 1001;
+  z-index: var(--wim-z-overlay-panel);
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -64,7 +64,7 @@
   flex-direction: column;
   gap: var(--wim-spacing-xs);
   padding: var(--wim-spacing-lg);
-  border-bottom: 1px solid var(--border-subtle, #e5e7eb);
+  border-bottom: 1px solid var(--border-subtle, var(--wim-color-border));
 }
 
 .wim-drawer-title {
@@ -87,5 +87,5 @@
   justify-content: flex-end;
   padding: var(--wim-spacing-lg);
   margin-top: auto;
-  border-top: 1px solid var(--border-subtle, #e5e7eb);
+  border-top: 1px solid var(--border-subtle, var(--wim-color-border));
 }

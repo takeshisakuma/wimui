@@ -16,14 +16,14 @@
   .wim-dropdown-menu {
     position: absolute;
     top: calc(100% + var(--wim-spacing-xs));
-    z-index: 1000;
+    z-index: var(--wim-z-overlay);
     display: flex;
     flex-direction: column;
     min-width: 200px;
     padding: var(--wim-spacing-xs) 0;
     margin: 0;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-secondary);
+    border: 1px solid var(--wim-color-border);
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-lg);
   

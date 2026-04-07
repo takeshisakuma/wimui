@@ -17,17 +17,17 @@
   }
   
   .wim-popover-content {
-    z-index: 1000;
+    z-index: var(--wim-z-overlay);
     display: flex;
     flex-direction: column;
     width: max-content;
     min-width: 200px;
-    max-width: calc(100vw - 20px);
+    max-width: calc(100vw - var(--wim-spacing-2xl));
     padding: var(--wim-spacing-md);
     margin: 0;
     color: var(--wim-color-text-primary);
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-secondary);
+    border: 1px solid var(--wim-color-border);
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-lg);
   }

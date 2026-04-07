@@ -47,8 +47,9 @@ export const LoginForm: StoryObj = {
       <Center style={{ height: "100vh", backgroundColor: "var(--wim-color-surface)" }}>
         <Card
           style={{
-            width: "400px",
-            padding: "32px",
+            width: "var(--wim-spacing-5xl)", // Close to 400px? No, 5xl is 2.2rem. 400px is 25rem.
+            maxWidth: "400px",
+            padding: "var(--wim-spacing-3xl)",
             border: "1px solid", borderColor: "var(--wim-color-border-secondary)",
           }}
         >
@@ -89,8 +90,8 @@ export const LoginForm: StoryObj = {
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      gap: "8px",
-                      fontSize: "0.875rem",
+                      gap: "var(--wim-spacing-md)",
+                      fontSize: "var(--wim-font-size-sm)",
                       cursor: "pointer",
                       color: "var(--wim-color-text-secondary)",
                     }}
@@ -98,7 +99,7 @@ export const LoginForm: StoryObj = {
                     <Checkbox id="remember-me" />
                     {t("login.remember_me")}
                   </label>
-                  <Link href="#" style={{ fontSize: "0.875rem" }}>
+                  <Link href="#" style={{ fontSize: "var(--wim-font-size-sm)" }}>
                     {t("login.forgot_password")}
                   </Link>
                 </Stack>
@@ -153,7 +154,7 @@ export const DashboardHeader: StoryObj = {
           bordered
           sticky
           background="primary"
-          style={{ padding: "0 24px" }}
+          style={{ padding: "0 var(--wim-spacing-xl)" }}
         >
           <Header.Section
             align="start"
@@ -165,9 +166,9 @@ export const DashboardHeader: StoryObj = {
               style={{
                 background: "none",
                 border: "none",
-                fontSize: "20px",
+                fontSize: "var(--wim-font-size-lg)",
                 cursor: "pointer",
-                padding: "8px",
+                padding: "var(--wim-spacing-lg)",
               }}
             >
               ☰
@@ -180,10 +181,10 @@ export const DashboardHeader: StoryObj = {
             >
               <div
                 style={{
-                  width: "32px",
-                  height: "32px",
+                  width: "var(--wim-spacing-4xl)",
+                  height: "var(--wim-spacing-4xl)",
                   backgroundColor: "var(--wim-color-primary)",
-                  borderRadius: "6px",
+                  borderRadius: "var(--wim-radius-md)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -209,7 +210,7 @@ export const DashboardHeader: StoryObj = {
               direction="row"
               gap="lg"
               className="desktop-only"
-              style={{ marginLeft: "32px" }}
+              style={{ marginLeft: "var(--wim-spacing-4xl)" }}
             >
               <Link
                 href="#"
@@ -247,7 +248,7 @@ export const DashboardHeader: StoryObj = {
               <Input placeholder={t("dashboard.header_search_placeholder")} fullWidth leftIcon="SearchIcon" />
             </div>
 
-            <Divider orientation="vertical" style={{ height: "24px" }} />
+            <Divider orientation="vertical" style={{ height: "var(--wim-spacing-4xl)" }} />
 
             <div
               style={{
@@ -269,10 +270,10 @@ export const DashboardHeader: StoryObj = {
                 content="3"
                 style={{
                   position: "absolute",
-                  top: "-4px",
-                  right: "-4px",
-                  minWidth: "16px",
-                  height: "16px",
+                  top: "calc(-1 * var(--wim-spacing-sm))",
+                  right: "calc(-1 * var(--wim-spacing-sm))",
+                  minWidth: "var(--wim-spacing-xl)",
+                  height: "var(--wim-spacing-xl)",
                   padding: 0,
                 }}
               />
@@ -346,7 +347,7 @@ export const UserProfileForm: StoryObj = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Center style={{ backgroundColor: "var(--wim-color-surface)", padding: "20px" }}>
+      <Center style={{ backgroundColor: "var(--wim-color-surface)", padding: "var(--wim-spacing-xl)" }}>
         <Card
           style={{
             maxWidth: "1000px",
@@ -358,7 +359,7 @@ export const UserProfileForm: StoryObj = {
         >
           <div
             style={{
-              padding: "24px",
+              padding: "var(--wim-spacing-xl)",
               borderBottom: "1px solid var(--wim-color-border-secondary)",
             }}
           >
@@ -368,7 +369,7 @@ export const UserProfileForm: StoryObj = {
             <Paragraph
               content={t("profile.subtitle")}
               color="deepgray"
-              style={{ marginTop: "4px" }}
+              style={{ marginTop: "var(--wim-spacing-xs)" }}
             />
           </div>
 
@@ -384,7 +385,7 @@ export const UserProfileForm: StoryObj = {
                 backgroundColor: "var(--wim-color-surface)",
               }}
             >
-              <div style={{ padding: "24px" }}>
+              <div style={{ padding: "var(--wim-spacing-xl)" }}>
                 <Stack gap="sm" align="stretch">
                   <Sidebar.Item active>{t("profile.nav_general")}</Sidebar.Item>
                   <Sidebar.Item>{t("profile.nav_security")}</Sidebar.Item>
@@ -403,19 +404,19 @@ export const UserProfileForm: StoryObj = {
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      gap: "24px",
+                      gap: "var(--wim-spacing-xl)",
                       flexWrap: "wrap",
                     }}
                   >
                     <Avatar
                       size="lg"
-                      style={{ width: "80px", height: "80px", fontSize: "2rem" }}
+                      style={{ width: "var(--wim-spacing-5xl)", height: "var(--wim-spacing-5xl)", fontSize: "var(--wim-font-size-2xl)" }}
                     />
                     <Stack gap="xs">
                       <Heading tag="h3" size="sm">
                         {t("profile.pic_title")}
                       </Heading>
-                      <div style={{ display: "flex", gap: "12px" }}>
+                      <div style={{ display: "flex", gap: "var(--wim-spacing-md)" }}>
                         <Button size="sm"
                           variant="outline">{t("profile.btn_change")}</Button>
                         <Button size="sm" variant="ghost">{t("profile.btn_remove")}</Button>
@@ -437,7 +438,7 @@ export const UserProfileForm: StoryObj = {
                           display: "grid",
                           gridTemplateColumns:
                             "repeat(auto-fit, minmax(200px, 1fr))",
-                          gap: "24px",
+                          gap: "var(--wim-spacing-xl)",
                         }}
                       >
                         <Label label={t("profile.first_name")} htmlFor="profile-first-name">
@@ -496,7 +497,7 @@ export const UserProfileForm: StoryObj = {
                         display: "grid",
                         gridTemplateColumns:
                           "repeat(auto-fit, minmax(200px, 1fr))",
-                        gap: "24px",
+                        gap: "var(--wim-spacing-xl)",
                       }}
                     >
                       <Selectbox
@@ -660,7 +661,7 @@ export const PricingTable: StoryObj = {
 
                 <List
                   spacing="normal"
-                  style={{ marginTop: "24px", alignSelf: "stretch" }}
+                  style={{ marginTop: "var(--wim-spacing-xl)", alignSelf: "stretch" }}
                 >
                   <ListItem iconName="CheckIcon">{t("pricing.starter_feat_1")}</ListItem>
                   <ListItem iconName="CheckIcon">{t("pricing.starter_feat_2")}</ListItem>
@@ -681,8 +682,8 @@ export const PricingTable: StoryObj = {
 
           <Card
             style={{
-              padding: "32px",
-              border: "2px solid #3b82f6",
+              padding: "var(--wim-spacing-xl)",
+              border: "var(--wim-border-width-thick) solid var(--wim-color-primary)",
               position: "relative",
             }}
           >
@@ -743,7 +744,7 @@ export const PricingTable: StoryObj = {
 
                 <List
                   spacing="normal"
-                  style={{ marginTop: "24px", alignSelf: "stretch" }}
+                  style={{ marginTop: "var(--wim-spacing-xl)", alignSelf: "stretch" }}
                 >
                   <ListItem iconName="CheckIcon">{t("pricing.pro_feat_1")}</ListItem>
                   <ListItem iconName="CheckIcon">{t("pricing.pro_feat_2")}</ListItem>
@@ -758,8 +759,8 @@ export const PricingTable: StoryObj = {
 
           <Card
             style={{
-              padding: "32px",
-              border: "2px solid", borderColor: "var(--wim-color-border-secondary)",
+              padding: "var(--wim-spacing-xl)",
+              border: "var(--wim-border-width-thick) solid", borderColor: "var(--wim-color-border-secondary)",
             }}
           >
             <Stack gap="lg" style={{ height: "100%" }}>
@@ -818,7 +819,7 @@ export const PricingTable: StoryObj = {
 
                 <List
                   spacing="normal"
-                  style={{ marginTop: "24px", alignSelf: "stretch" }}
+                  style={{ marginTop: "var(--wim-spacing-xl)", alignSelf: "stretch" }}
                 >
                   <ListItem iconName="CheckIcon">{t("pricing.ent_feat_1")}</ListItem>
                   <ListItem iconName="CheckIcon">{t("pricing.ent_feat_2")}</ListItem>
@@ -845,8 +846,8 @@ export const HeroSection: StoryObj = {
           display: "flex",
           alignItems: "center",
           background:
-            "linear-gradient(135deg, var(--wim-color-primary-light, #f0f7ff) 0%, var(--wim-color-surface) 100%)",
-          padding: "80px 24px",
+            "linear-gradient(135deg, var(--wim-color-primary-light) 0%, var(--wim-color-surface) 100%)",
+          padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl)",
         }}
       >
         <Container>
@@ -911,34 +912,34 @@ export const HeroSection: StoryObj = {
                     gap="xs"
                     align="center"
                     style={{
-                      height: "32px",
-                      background: "#f3f4f6",
-                      borderBottom: "1px solid #e5e7eb",
-                      padding: "0 12px",
+                      height: "var(--wim-spacing-4xl)",
+                      background: "var(--wim-color-bg-secondary)",
+                      borderBottom: "1px solid var(--wim-color-border)",
+                      padding: "0 var(--wim-spacing-md)",
                     }}
                   >
                     <div
                       style={{
                         width: "10px",
                         height: "10px",
-                        borderRadius: "50%",
-                        background: "#ef4444",
+                        borderRadius: "var(--wim-radius-full)",
+                        background: "var(--wim-color-destructive)",
                       }}
                     />
                     <div
                       style={{
                         width: "10px",
                         height: "10px",
-                        borderRadius: "50%",
-                        background: "#f59e0b",
+                        borderRadius: "var(--wim-radius-full)",
+                        background: "var(--wim-color-caution)",
                       }}
                     />
                     <div
                       style={{
                         width: "10px",
                         height: "10px",
-                        borderRadius: "50%",
-                        background: "#10b981",
+                        borderRadius: "var(--wim-radius-full)",
+                        background: "var(--wim-color-positive)",
                       }}
                     />
                   </Stack>
@@ -991,7 +992,7 @@ export const ErrorPage: StoryObj = {
           <p
             aria-hidden="true"
             style={{
-              fontSize: "120px",
+              fontSize: "var(--wim-spacing-5xl)", // Use a large token if possible, or rem
               fontWeight: "900",
               color: "var(--wim-color-border-secondary)",
               lineHeight: "1",

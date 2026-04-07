@@ -249,7 +249,7 @@ export const TooltipContent = React.forwardRef<
         <FloatingArrow
           ref={arrowRef}
           context={floatingContext}
-          fill="var(--bg-tooltip, #333)"
+          fill="var(--wim-color-bg-inverted)"
           strokeWidth={0}
           className="wim-tooltip-arrow"
         />

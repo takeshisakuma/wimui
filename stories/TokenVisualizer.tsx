@@ -15,12 +15,12 @@ export const SpacingSwatch = ({
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "16px",
-        marginBottom: "12px",
+        gap: "var(--wim-spacing-xl)",
+        marginBottom: "var(--wim-spacing-lg)",
         backgroundColor: "var(--wim-color-surface)",
-        padding: "12px",
-        borderRadius: "8px",
-        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
+        padding: "var(--wim-spacing-lg)",
+        borderRadius: "var(--wim-radius-lg)",
+        border: "1px solid", borderColor: "var(--wim-color-border)",
       }}
     >
       <div
@@ -76,11 +76,11 @@ export const RadiusSwatch = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "12px",
-        padding: "16px",
+        gap: "var(--wim-spacing-lg)",
+        padding: "var(--wim-spacing-xl)",
         backgroundColor: "var(--wim-color-surface)",
-        borderRadius: "12px",
-        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
+        borderRadius: "var(--wim-radius-xl)",
+        border: "1px solid", borderColor: "var(--wim-color-border)",
       }}
     >
       <div
@@ -141,11 +141,11 @@ export const ShadowSwatch = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "16px",
-        padding: "40px 24px",
-        background: "#ffffff",
-        borderRadius: "16px",
-        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
+        gap: "var(--wim-spacing-xl)",
+        padding: "var(--wim-spacing-4xl) var(--wim-spacing-xl)",
+        background: "var(--wim-color-bg-primary)",
+        borderRadius: "var(--wim-radius-xl)",
+        border: "1px solid", borderColor: "var(--wim-color-border)",
         textAlign: "center",
       }}
     >
@@ -163,7 +163,7 @@ export const ShadowSwatch = ({
           color: "var(--wim-color-text-primary)",
           fontWeight: 800,
           // Very thin border to make the white box shape recognizable on the white background
-          border: name === "Inset" ? "none" : "1px solid rgba(0,0,0,0.06)",
+          border: name === "Inset" ? "none" : "1px solid var(--wim-color-surface-variant-alpha)",
         }}
       >
         {name}
@@ -221,11 +221,11 @@ export const MotionSwatch = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "12px",
-        padding: "16px",
+        gap: "var(--wim-spacing-lg)",
+        padding: "var(--wim-spacing-xl)",
         backgroundColor: "var(--wim-color-surface)",
-        borderRadius: "12px",
-        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
+        borderRadius: "var(--wim-radius-xl)",
+        border: "1px solid", borderColor: "var(--wim-color-border)",
         cursor: "pointer",
       }}
       onClick={() => setActive(!active)}
@@ -294,10 +294,10 @@ export const TypographyVisualizer = ({
 
   const style: React.CSSProperties = {
     backgroundColor: "var(--wim-color-surface)",
-    padding: "24px",
-    borderRadius: "8px",
-    border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
-    marginTop: "8px",
+    padding: "var(--wim-spacing-xl)",
+    borderRadius: "var(--wim-radius-lg)",
+    border: "1px solid", borderColor: "var(--wim-color-border)",
+    marginTop: "var(--wim-spacing-md)",
     fontSize: "16px",
     color: "var(--wim-color-text-primary)",
     whiteSpace: "pre-wrap",
@@ -328,12 +328,12 @@ export const TypographyVisualizer = ({
         {title}
         <code
           style={{
-            marginLeft: "12px",
-            fontSize: "13px",
+            marginLeft: "var(--wim-spacing-lg)",
+            fontSize: "var(--wim-font-size-sm)",
             color: "var(--wim-color-text-secondary)",
-            background: "rgba(0, 0, 0, 0.05)",
-            padding: "4px 8px",
-            borderRadius: "4px",
+            background: "var(--wim-color-surface-variant-alpha)",
+            padding: "var(--wim-spacing-xs) var(--wim-spacing-md)",
+            borderRadius: "var(--wim-radius-md)",
             fontWeight: "normal",
             fontFamily: "monospace",
             verticalAlign: "middle"
@@ -526,11 +526,11 @@ export const InteractiveSwatch = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "16px",
-        padding: "24px",
+        gap: "var(--wim-spacing-xl)",
+        padding: "var(--wim-spacing-xl)",
         backgroundColor: "var(--wim-color-surface)",
-        borderRadius: "12px",
-        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
+        borderRadius: "var(--wim-radius-xl)",
+        border: "1px solid", borderColor: "var(--wim-color-border)",
       }}
     >
       <div
@@ -583,9 +583,9 @@ export const TokenGrid: React.FC<{
       style={{
         display: "grid",
         gridTemplateColumns: columns,
-        gap: "20px",
-        marginTop: "20px",
-        marginBottom: "40px",
+        gap: "var(--wim-spacing-xl)",
+        marginTop: "var(--wim-spacing-xl)",
+        marginBottom: "var(--wim-spacing-3xl)",
       }}
     >
       {children}

@@ -2,7 +2,7 @@
   .wim-command-palette-overlay {
     position: fixed;
     inset: 0;
-    z-index: 1000;
+    z-index: var(--wim-z-overlay);
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -111,7 +111,7 @@
   
   .wim-command-palette-list {
     max-height: 400px;
-    padding: 4px 0; // Standardized padding for focus rings
+    padding: var(--wim-spacing-sm) 0; // Standardized padding for focus rings
     overflow-y: auto;
   
     @media (width <=640px) {
@@ -147,7 +147,7 @@
   
     .wim-command-palette-item-shortcut {
       display: flex;
-      gap: 4px;
+      gap: var(--wim-spacing-sm);
   
       // Hide shortcuts on small screens
       @media (width <=480px) {

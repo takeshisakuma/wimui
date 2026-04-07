@@ -5,7 +5,7 @@
 .wim-dialog-overlay {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: var(--wim-z-overlay);
   display: grid;
   place-items: center;
   overflow-y: auto;
