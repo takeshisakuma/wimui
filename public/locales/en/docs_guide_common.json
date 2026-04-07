@@ -120,6 +120,7 @@
     "variant": "Variant",
     "state": "State",
     "design_tokens_title": "Design Tokens",
+    "tokens_title": "Design Tokens",
     "token": "Token",
     "responsive_title": "Responsive Design",
     "keyboard_nav_title": "Keyboard Navigation",

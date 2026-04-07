@@ -11,6 +11,8 @@ const requiredKeys = [
   'doc.a11y_spec_title',
   'doc.real_world_scenarios_title',
   'doc.best_practices_title',
+  'doc.tokens_title',
+  'doc.responsive_title',
   'doc.keyboard_nav_title',
   'doc.i18n_title',
   'doc.test_title'

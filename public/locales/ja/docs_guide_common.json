@@ -120,6 +120,7 @@
     "variant": "バリエーション (Variant)",
     "state": "状態 (State)",
     "design_tokens_title": "デザイン・トークン",
+    "tokens_title": "デザイン・トークン",
     "token": "トークン",
     "responsive_title": "レスポンシブ対応",
     "keyboard_nav_title": "キーボードナビゲーション",

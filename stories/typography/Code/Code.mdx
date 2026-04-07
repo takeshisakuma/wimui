@@ -1,155 +1,181 @@
-import {
-  Meta,
-  Title,
-  Description,
-  Primary,
-  Controls,
-  Stories,
-  Canvas,
-} from "@storybook/addon-docs/blocks";
-import * as CodeStories from "./Code.stories";
-
-import { T } from "../../T";
+import { Meta, Story, Canvas, Controls, Unstyled } from '@storybook/blocks';
+import * as CodeStories from './Code.stories';
+import { MultiSourceCanvas } from '../../../.storybook/components/MultiSourceCanvas';
+import { Title, Subtitle, T, Anatomy, ChoiceMatrix, BestPractices, Scenarios, MotionSpec, A11ySpec, KeyboardNavigation, TestExecution, i18nSpec, Section, ResponsiveDesign, Tokens } from '../../../.storybook/components';
 
 <Meta of={CodeStories} />
 
-<Title />
-<p
-  style={{
-    margin: "0 0 16px 0",
-    fontSize: "18px",
-    lineHeight: "28px",
-    color: "#6c757d",
-  }}
->
+<Title k="doc.code_title" />
+<Subtitle k="doc.code_desc" />
+
+{/* 1. Overview */}
+<Section title={<T k="doc.overview_title" />} id="overview">
   <T k="doc.code_long_desc" />
-</p>
+  <Canvas of={CodeStories.Default} />
+  <Controls />
+</Section>
 
+{/* 2. Design Intent */}
+<Section title={<T k="doc.design_intent_title" />} id="design-intent">
+  <T k="doc.code_design_intent" />
+</Section>
 
-## <T k="doc.design_intent_title" />
-<p><T k="doc.code_design_intent" /></p>
+{/* 3. Choice Matrix */}
+<Section title={<T k="doc.choice_matrix_title" />} id="choice-matrix">
+  <ChoiceMatrix
+    desc={<T k="doc.code_choice_matrix_desc" />}
+    self={{
+      name: 'Code',
+      when: <T k="doc.code_choice_self_when" />,
+    }}
+    alternative={{
+      name: 'Markdown',
+      when: <T k="doc.code_choice_alt_when" />,
+    }}
+  />
+</Section>
 
-## <T k="doc.choice_matrix_title" />
-<p><T k="doc.code_choice_matrix_desc" /></p>
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.usage_scenario" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>Code</b></td>
-      <td><T k="doc.code_choice_self_when" /></td>
-    </tr>
-    <tr>
-      <td><b>Markdown</b></td>
-      <td><T k="doc.code_choice_alt_when" /></td>
-    </tr>
-  </tbody>
-</table>
+{/* 4. Anatomy */}
+<Section title={<T k="doc.anatomy_title" />} id="anatomy">
+  <Anatomy
+    items={[
+      {
+        label: <T k="doc.code_anatomy_root_label" />,
+        description: <T k="doc.code_anatomy_root" />,
+      },
+      {
+        label: <T k="doc.code_anatomy_content_label" />,
+        description: <T k="doc.code_anatomy_content" />,
+      },
+    ]}
+  />
+</Section>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.code_anatomy_root_label" /></b></td>
-      <td><T k="doc.code_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.code_anatomy_content_label" /></b></td>
-      <td><T k="doc.code_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+{/* 5. Content Guidelines */}
+<Section title={<T k="doc.content_guidelines_title" />} id="content-guidelines">
+  <T k="doc.code_content_guideline" />
+</Section>
 
-## <T k="doc.content_guidelines_title" />
-<ul>
-  <li><T k="doc.code_content_guideline" /></li>
-</ul>
+{/* 6. Motion Spec */}
+<Section title={<T k="doc.motion_spec_title" />} id="motion-spec">
+  <MotionSpec
+    items={[
+      {
+        feature: <T k="doc.code_title" />,
+        description: <T k="doc.code_motion_desc" />,
+      },
+    ]}
+  />
+</Section>
 
-## <T k="doc.motion_spec_title" />
-<p><T k="doc.code_motion_desc" /></p>
+{/* 7. A11y Spec */}
+<Section title={<T k="doc.a11y_spec_title" />} id="a11y-spec">
+  <A11ySpec
+    items={[
+      {
+        feature: <T k="doc.code_title" />,
+        description: <T k="doc.code_a11y_desc" />,
+      },
+    ]}
+  />
+</Section>
 
-## <T k="doc.a11y_spec_title" />
-<p><T k="doc.code_a11y_desc" /></p>
+{/* 8. Real World Scenarios */}
+<Section title={<T k="doc.real_world_scenarios_title" />} id="scenarios">
+  <Scenarios
+    items={[
+      {
+        title: <T k="doc.code_scenario_1" />,
+        description: <T k="doc.code_long_desc" />,
+      },
+      {
+        title: <T k="doc.code_scenario_2" />,
+        description: <T k="doc.code_long_desc" />,
+      },
+    ]}
+  />
+</Section>
 
-## <T k="doc.real_world_scenarios_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.usage_scenario" /></th>
-      <th><T k="doc.table_header_description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><T k="doc.scenario_article_title" /></strong></td>
-      <td><T k="doc.code_scenario_1" /></td>
-    </tr>
-    <tr>
-      <td><strong><T k="doc.scenario_admin_title" /></strong></td>
-      <td><T k="doc.code_scenario_2" /></td>
-    </tr>
-  </tbody>
-</table>
+{/* 9. Best Practices */}
+<Section title={<T k="doc.best_practices_title" />} id="best-practices">
+  <BestPractices
+    doItems={[
+      <T k="doc.code_best_practice_1" />,
+      <T k="doc.code_best_practice_2" />,
+    ]}
+  />
+</Section>
 
-## <T k="doc.best_practices_title" />
-<ul>
-  <li><T k="doc.code_best_practice_1" /></li>
-  <li><T k="doc.code_best_practice_2" /></li>
-</ul>
+{/* 10. Tokens */}
+<Section title={<T k="doc.tokens_title" />} id="tokens">
+  <Tokens
+    desc={<T k="doc.code_tokens_desc" />}
+    items={[
+      {
+        token: '--wim-font-family-mono',
+        description: 'Typography Mono font',
+      }
+    ]}
+  />
+</Section>
 
-## <T k="doc.usage" />
+{/* 11. Responsive Design */}
+<Section title={<T k="doc.responsive_title" />} id="responsive">
+  <ResponsiveDesign
+    desc={<T k="doc.code_responsive_desc" />}
+  />
+</Section>
 
-```tsx
-import { Code } from "./Code";
-import { T } from "../../T";
+{/* 12. Keyboard Navigation */}
+<Section title={<T k="doc.keyboard_nav_title" />} id="keyboard-navigation">
+  <KeyboardNavigation
+    items={[
+      {
+        key: 'Tab',
+        description: <T k="doc.code_keyboard_desc" />,
+      },
+    ]}
+  />
+</Section>
 
-const Example = () => (
-  <>
-    {/* Inline */}
-    <Code>npm install wimui</Code>
+{/* 13. Test Execution */}
+<Section title={<T k="doc.test_title" />} id="test-execution">
+  <TestExecution
+    items={[
+      {
+        feature: 'Copy functionality',
+        test: 'Verify code is copied to clipboard when clicking copy button',
+      },
+      {
+        feature: 'Block rendering',
+        test: 'Verify block property correctly renders preformatted block',
+      }
+    ]}
+  />
+</Section>
 
-    {/* Block */}
-    <Code block language="bash">
-      npm install wimui
-    </Code>
-  </>
-);
-```
+{/* 14. i18n */}
+<Section title={<T k="doc.i18n_title" />} id="i18n">
+  <i18nSpec
+    desc={<T k="doc.code_i18n_desc" />}
+  />
+</Section>
 
-<Canvas of={CodeStories.Inline} />
+{/* Variants */}
+<Section title="Variants" id="variants">
+  ### Inline
+  <Canvas of={CodeStories.Inline} />
 
-<Controls />
+  ### Block
+  <Canvas of={CodeStories.Block} />
 
-## <T k="doc.variants" />
+  ### Color
+  <Canvas of={CodeStories.Color} />
 
-### <T k="doc.inline" />
-
-<Canvas of={CodeStories.Inline} />
-
-### <T k="doc.block" />
-
-<Canvas of={CodeStories.Block} />
-
-### <T k="doc.long_content" />
-
-<Canvas of={CodeStories.LongContent} />
-
+  ### With Copy Button
+  <Canvas of={CodeStories.WithCopyButton} />
+</Section>
 <p><T k="doc.code_note_title" /></p>
-<p><T k="doc.code_note_desc" /></p>
-
-
-## <T k="doc.keyboard_nav_title" />
-<p><T k="doc.code_keyboard_desc" /></p>
 
 ## <T k="doc.i18n_title" />
 <p><T k="doc.code_i18n_desc" /></p>
