@@ -347,6 +347,7 @@
     "small": "小",
     "source": "ソースコード",
     "spacing": "スペーシング",
+    "span_decoration_desc": "decoration プロパティでテキストの装飾を指定します。",
     "span_a11y_desc": "WAI-ARIAガイドラインに従い、適切なロール、ラベル、キーボードナビゲーションをサポートします。",
     "span_anatomy_content": "コンテンツ：メインコンテンツまたは子要素がレンダリングされるプライマリエリア。",
     "span_anatomy_content_label": "Content",

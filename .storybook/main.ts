@@ -46,9 +46,19 @@ const config: StorybookConfig = {
               "node_modules/storybook/dist/theming",
             ),
           },
+
         ],
       },
       plugins: [
+        {
+          name: 'force-resolve-storybook-blocks',
+          enforce: 'pre',
+          resolveId(id: string) {
+            if (id === '@storybook/blocks') {
+              return path.resolve(process.cwd(), 'node_modules/@storybook/blocks/dist/index.mjs');
+            }
+          }
+        },
         {
           name: "fix-vitest-path",
           transformIndexHtml(html: string) {
@@ -80,6 +90,7 @@ const config: StorybookConfig = {
       ],
       optimizeDeps: {
         include: ["jsmediatags"],
+        exclude: ["@storybook/blocks"],
       },
       build: {
         chunkSizeWarningLimit: 2000,

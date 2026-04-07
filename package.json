@@ -142,6 +142,7 @@
     "@storybook/addon-mcp": "^0.4.2",
     "@storybook/addon-themes": "^10.3.3",
     "@storybook/addon-vitest": "^10.3.3",
+    "@storybook/blocks": "8.6.14",
     "@storybook/eslint-config-storybook": "^4.0.0",
     "@storybook/react-vite": "^10.3.3",
     "@testing-library/dom": "^10.4.1",
@@ -226,6 +227,7 @@
     "classnames": "^2.5.1",
     "jsmediatags": "^3.9.7",
     "qrcode.react": "^4.2.0",
+    "react-is": "19.2.4",
     "react-markdown": "^10.1.0",
     "recharts": "^3.8.1",
     "remark-gfm": "^4.0.1"
