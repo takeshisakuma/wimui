@@ -13,19 +13,38 @@ function extractTokens(scssContent) {
 }
 
 /**
- * Anatomy（構成要素）の修正。SCSSのクラス名から抽出
+ * Anatomy（構成要素）の抽出。SCSSのクラス名から抽出
  */
 function extractAnatomy(scssContent, componentName) {
   const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-  const anatomyRegex = new RegExp(`\\.wim-${kebabName}__([\\w-]+)`, 'g');
-  const matches = [];
+  
+  // 従来の wim-{component}__part 形式
+  const legacyRegex = new RegExp(`\\.wim-${kebabName}__([\\w-]+)`, 'g');
+  // CSS Modules 形式（.partName）
+  const moduleRegex = /^\s*\.([a-z][a-zA-Z0-9]+)/gm;
+  
+  const matches = new Set();
   let match;
-  while ((match = anatomyRegex.exec(scssContent)) !== null) {
-    if (!matches.includes(match[1])) {
-      matches.push(match[1]);
+  
+  while ((match = legacyRegex.exec(scssContent)) !== null) {
+    matches.add(match[1]);
+  }
+  
+  // 共通の修飾子やルートクラスを除外
+  const ignoredClasses = [
+    'root', 'sm', 'md', 'lg', 'xl', 'xs', 
+    'primary', 'secondary', 'success', 'warning', 'error', 'info', 'neutral',
+    'solid', 'outline', 'subtle', 'ghost', 'iconOnly'
+  ];
+  
+  while ((match = moduleRegex.exec(scssContent)) !== null) {
+    const className = match[1];
+    if (!ignoredClasses.includes(className)) {
+      matches.add(className);
     }
   }
-  return matches.sort();
+  
+  return [...matches].sort();
 }
 
 async function generate() {
@@ -34,8 +53,14 @@ async function generate() {
 
   for (const componentPath of components) {
     const componentName = path.basename(componentPath, '.tsx');
+    process.stdout.write(`Processing ${componentName}... `);
     const componentDir = path.dirname(componentPath);
-    const scssPath = path.join(componentDir, `${componentName.toLowerCase()}.scss`);
+    let scssPath = path.join(componentDir, `${componentName.toLowerCase()}.scss`);
+    
+    if (!fs.existsSync(scssPath)) {
+      // CSS Modules 用のパスも確認
+      scssPath = path.join(componentDir, `${componentName.toLowerCase()}.module.scss`);
+    }
 
     let tokens = [];
     let anatomy = [];

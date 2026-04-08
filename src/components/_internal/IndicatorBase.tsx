@@ -13,7 +13,8 @@ export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   intent?: WimIntent;
   variant?: IndicatorVariant;
   size?: ComponentSize;
-  prefixClass: string;
+  prefixClass?: string;
+  styles?: { [key: string]: string };
   as?: C;
   className?: string;
 } & React.ComponentPropsWithoutRef<C>;
@@ -35,6 +36,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
     variant = "solid",
     size = "md",
     prefixClass,
+    styles,
     as,
     className,
     ...props
@@ -44,19 +46,31 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
 ) => {
   const Component = asChild ? Slot : (as || "span");
 
-  return (
-    <Component
-      ref={ref}
-      className={classNames(
+  const resolvedClassName = styles 
+    ? classNames(
+        styles.root,
+        styles[intent],
+        styles[variant],
+        styles[size],
+        className,
+      )
+    : classNames(
         prefixClass,
         `${prefixClass}--${intent}`,
         `${prefixClass}--${variant}`,
         `${prefixClass}--${size}`,
         className,
-      )}
+      );
+
+  const iconClassName = styles ? styles.icon : `${prefixClass}__icon`;
+
+  return (
+    <Component
+      ref={ref}
+      className={resolvedClassName}
       {...props}
     >
-      {icon && <span className={`${prefixClass}__icon`}>{icon}</span>}
+      {icon && <span className={iconClassName}>{icon}</span>}
       <Slottable>{children}</Slottable>
     </Component>
   );

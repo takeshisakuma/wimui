@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Badge } from "./Badge";
+import styles from "./badge.module.scss";
 
 // Mock useTranslation
 vi.mock("react-i18next", () => ({
@@ -25,13 +26,13 @@ describe("Badge", () => {
       <Badge intent="error" variant="outline">Test</Badge>,
     );
     const span = container.firstChild;
-    expect(span).toHaveClass("wim-badge--error");
-    expect(span).toHaveClass("wim-badge--outline");
+    expect(span).toHaveClass(styles.error);
+    expect(span).toHaveClass(styles.outline);
   });
 
   it("applies size class", () => {
     const { container } = render(<Badge size="sm">Small</Badge>);
-    expect(container.firstChild).toHaveClass("wim-badge--sm");
+    expect(container.firstChild).toHaveClass(styles.sm);
   });
 
   it("sets role='img' when aria-label is provided", () => {
@@ -53,6 +54,6 @@ describe("Badge", () => {
 
   it("applies icon-only class when no content", () => {
     const { container } = render(<Badge icon={<span>Icon</span>} />);
-    expect(container.firstChild).toHaveClass("wim-badge--icon-only");
+    expect(container.firstChild).toHaveClass(styles.iconOnly);
   });
 });

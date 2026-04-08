@@ -59,8 +59,8 @@ public/
 
 ## コンポーネント新規作成の手順
 
-1. `src/components/ComponentName/` を作成し `ComponentName.tsx` と `component-name.scss` を配置
-2. `ComponentName.tsx` 内で `import "./component-name.scss"` を必ず記述
+1. `src/components/ComponentName/` を作成し `ComponentName.tsx` と `component-name.module.scss` を配置
+2. `ComponentName.tsx` 内で `import styles from "./component-name.module.scss"` を記述
 3. `src/index.ts` にエクスポートを追加
 4. `ComponentName.test.tsx` を作成し `npm run test` で通過を確認
 5. `stories/ComponentName/ComponentName.stories.tsx` を作成
@@ -281,7 +281,7 @@ import { Docgen } from "../../Docgen";
 ### 自動抽出の仕組み
 - **Props**: `react-docgen` を使用して TypeScript の型定義から抽出します。
 - **Tokens**: `.scss` ファイル内から `--wim-` で始まるデザイントークンを抽出します。
-- **Anatomy**: `.scss` ファイル内の `.wim-{component}__part` 形式のクラス名から構成要素を抽出します。
+- **Anatomy**: `.scss`（または `.module.scss`）ファイル内のクラス名から構成要素を抽出します。CSS Modules では、`.root` や共通修飾子を除いたクラス名が自動抽出されます。
 - **更新タイミング**: Vite プラグインによって、ビルド開始時およびコンポーネント/SCSS の保存時に `src/data/docgen.json` が自動更新されます。
 
 ---
@@ -341,7 +341,7 @@ Node.js 向けの古いパッケージ（`jsmediatags` 等）は、ブラウザ�
 
 | ミス | 対策 |
 |---|---|
-| SCSS をインポートしていない | `ComponentName.tsx` で `import "./component-name.scss"` を必ず記述 |
+| SCSS をインポートしていない | `ComponentName.tsx` で `import styles from "./component-name.module.scss"` を記述 |
 | MDX でストーリー名が一致しない | ストーリーのエクスポート名（PascalCase）と `<Canvas of={...}>` の参照名を一致させる |
 | 翻訳キーが一部のロケールだけに存在する | `npm run i18n:sync` → `npm run i18n:check` で確認 |
 | `ALL_NAMESPACES` に追加されていない | ファイル名が `.json` か、`public/locales/en/` に配置されているか確認 |

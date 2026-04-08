@@ -82,10 +82,15 @@
 
 - アイコンは個別のコンポーネントやストーリーに持たせず、共通で使えるように `src/icon/` または `src/svg/` に配置してください。
 
-## CSSクラス名
+## CSS クラス名とスタイリング
 
-- クラス名は `wim-` プレフィックスを付けたkebab-caseにしてください（例: `wim-button`, `wim-button--primary`）。
-- Stylelintで `^[a-z][a-zA-Z0-9-_]+$` パターンが強制されています。
+- 新規コンポーネントでは **CSS Modules**（`*.module.scss`）を使用してください。
+- クラス名は JS から参照しやすい標準的なケバブケースまたはキャメルケースを使用します（`wim-` プレフィックスは不要です）。
+- ルート要素には `.root`、内部パーツには `.icon`, `.label` などの名称を使用してください。
+- **Anatomy**: `.scss`（または `.module.scss`）ファイル内のクラス名から構成要素を抽出します。CSS Modules の場合、`.root` や共通のサイズ・色修飾子（`.sm`, `.primary` 等）を除いたユニークなクラス名が自動的に抽出されます。
+- 外部からの上書きが必要な場合は、CSS Variables（デザイントークン）を使用するか、ルート要素にのみ `:global(.wim-component-name)` を付与して安定したオーバーライドポイントを提供してください。
+- 共通ベースコンポーネント（`IndicatorBase` 等）を使用する場合は、`prefixClass` の代わりに `styles` prop を渡してください。
+- 既存のグローバルクラス形式（`wim-` プレフィックス付き）は段階的に履行しますが、新規開発は CSS Modules を優先します。
 
 ## デザイントークン（CSS カスタムプロパティ）
 
@@ -176,7 +181,6 @@
 
 CSS カスケードでは「非レイヤーのルール」が「@layer 内のルール」よりも常に優先されます。この性質を利用することで、使う側のコンポーネントは `!important` なしに使われる側のスタイルを上書きできます。
 
-```scss
 // Button は @layer component 内
 // Snackbar は非レイヤー → Snackbar の Button 上書きが !important 不要で機能する
 .wim-snackbar .wim-button {

@@ -64,3 +64,30 @@ $token-colors: (
     }
   }
 }
+
+@mixin module-token-variants {
+  @each $name, $pairs in $token-colors {
+    $base: map.get($pairs, "base");
+    $on: map.get($pairs, "on");
+
+    &.#{$name} {
+      &.solid {
+        color: $on;
+        background-color: $base;
+        border: 1px solid transparent;
+      }
+
+      &.outline {
+        color: $base;
+        background-color: transparent;
+        border: 1px solid $base;
+      }
+
+      &.subtle {
+        color: $base;
+        background-color: color-mix(in srgb, $base 15%, transparent);
+        border: 1px solid transparent;
+      }
+    }
+  }
+}

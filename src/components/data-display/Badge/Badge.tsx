@@ -3,7 +3,8 @@ import classNames from "classnames";
 
 import { IndicatorBase } from "../../_internal/IndicatorBase";
 import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/tokens";
-import "./badge.scss";
+import styles from "./badge.module.scss";
+
 export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
   /**
    * If true, the badge will be rendered as its child, merging its props onto that child.
@@ -29,9 +30,9 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     return (
       <IndicatorBase
         ref={ref}
-        prefixClass="wim-badge"
+        styles={styles}
         icon={icon}
-        className={classNames(!children && "wim-badge--icon-only", className)}
+        className={classNames(!children && styles.iconOnly, className)}
         role={role ?? (ariaLabel ? "img" : undefined)}
         aria-label={ariaLabel}
         {...props}

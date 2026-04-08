@@ -169,7 +169,8 @@ git commit -m "commit message" --no-verify
 
 ## コーディングルール
 
-- CSSクラス名：`wim-` プレフィックスを付けたkebab-case（例: `wim-button`, `wim-button--primary`）
+- スタイリング：新規コンポーネントは **CSS Modules**（`*.module.scss`）を推奨
+- CSSクラス名：従来のグローバルクラスは `wim-` プレフィックスを使用（詳細は `RULES.md` を参照）
 
 
 ## ドキュメントの自動抽出 (Docgen)
