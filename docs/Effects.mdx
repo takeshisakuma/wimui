@@ -22,48 +22,48 @@ import {
 <p><T k="guide.effects_shadow_multi_layer_desc" /></p>
 
 <TokenGrid columns="1fr 1fr">
-  <div style={{ padding: "20px", borderRadius: "var(--radius-md)", backgroundColor: "var(--wim-color-bg-secondary)" }}>
+  <div style={{ padding: "20px", borderRadius: "var(--wim-radius-md)", backgroundColor: "var(--wim-color-bg-secondary)" }}>
     <h3><T k="guide.effects_shadow_ambient" /></h3>
     <p><T k="guide.effects_shadow_ambient_desc" /></p>
-    <div style={{ width: "100%", height: "40px", borderRadius: "var(--radius-sm)", boxShadow: "var(--shadow-ambient)", backgroundColor: "var(--wim-color-surface)" }}></div>
+    <div style={{ width: "100%", height: "40px", borderRadius: "var(--wim-radius-sm)", boxShadow: "var(--wim-shadow-ambient)", backgroundColor: "var(--wim-color-surface)" }}></div>
   </div>
-  <div style={{ padding: "20px", borderRadius: "var(--radius-md)", backgroundColor: "var(--wim-color-bg-secondary)" }}>
+  <div style={{ padding: "20px", borderRadius: "var(--wim-radius-md)", backgroundColor: "var(--wim-color-bg-secondary)" }}>
     <h3><T k="guide.effects_shadow_elevation" /></h3>
     <p><T k="guide.effects_shadow_elevation_desc" /></p>
-    <div style={{ width: "100%", height: "40px", borderRadius: "var(--radius-sm)", boxShadow: "var(--shadow-elevation)", backgroundColor: "var(--wim-color-surface)" }}></div>
+    <div style={{ width: "100%", height: "40px", borderRadius: "var(--wim-radius-sm)", boxShadow: "var(--wim-shadow-elevation)", backgroundColor: "var(--wim-color-surface)" }}></div>
   </div>
 </TokenGrid>
 <TokenGrid columns="repeat(auto-fill, minmax(200px, 1fr))">
-  <ShadowSwatch name="XS" value="var(--shadow-xs)" shadow="var(--shadow-xs)" />
+  <ShadowSwatch name="XS" value="var(--wim-shadow-xs)" shadow="var(--wim-shadow-xs)" />
 
   <ShadowSwatch
     name="Small"
-    value="var(--shadow-sm)"
-    shadow="var(--shadow-sm)"
+    value="var(--wim-shadow-sm)"
+    shadow="var(--wim-shadow-sm)"
   />
 
   <ShadowSwatch
     name="Medium"
-    value="var(--shadow-md)"
-    shadow="var(--shadow-md)"
+    value="var(--wim-shadow-md)"
+    shadow="var(--wim-shadow-md)"
   />
 
   <ShadowSwatch
     name="Large"
-    value="var(--shadow-lg)"
-    shadow="var(--shadow-lg)"
+    value="var(--wim-shadow-lg)"
+    shadow="var(--wim-shadow-lg)"
   />
 
   <ShadowSwatch
     name="Inset"
-    value="var(--shadow-inset)"
-    shadow="var(--shadow-inset)"
+    value="var(--wim-shadow-inset)"
+    shadow="var(--wim-shadow-inset)"
   />
 
   <ShadowSwatch
     name="Focus"
-    value="var(--shadow-focus)"
-    shadow="var(--shadow-focus)"
+    value="var(--wim-shadow-focus)"
+    shadow="var(--wim-shadow-focus)"
   />
 </TokenGrid>
 
@@ -76,19 +76,19 @@ import {
   <T k="guide.effects_motion_desc" />
 </p>
 <TokenGrid columns="repeat(auto-fill, minmax(280px, 1fr))">
-  <MotionSwatch name={<T k="guide.effects_motion_instant" />} duration="var(--duration-instant)" easing="var(--easing-standard)" />
-  <MotionSwatch name={<T k="guide.effects_motion_fast" />} duration="var(--duration-fast)" easing="var(--easing-standard)" />
-  <MotionSwatch name={<T k="guide.effects_motion_standard" />} duration="var(--duration-base)" easing="var(--easing-standard)" />
-  <MotionSwatch name={<T k="guide.effects_motion_slow" />} duration="var(--duration-slow)" easing="var(--easing-standard)" />
-  <MotionSwatch name={<T k="guide.effects_motion_entrance" />} duration="var(--duration-base)" easing="var(--easing-entrance)" />
-  <MotionSwatch name={<T k="guide.effects_motion_exit" />} duration="var(--duration-fast)" easing="var(--easing-exit)" />
-  <MotionSwatch name={<T k="guide.effects_motion_spring" />} duration="var(--duration-base)" easing="var(--easing-spring)" />
+  <MotionSwatch name={<T k="guide.effects_motion_instant" />} duration="var(--wim-duration-instant)" easing="var(--wim-easing-standard)" />
+  <MotionSwatch name={<T k="guide.effects_motion_fast" />} duration="var(--wim-duration-fast)" easing="var(--wim-easing-standard)" />
+  <MotionSwatch name={<T k="guide.effects_motion_standard" />} duration="var(--wim-duration-base)" easing="var(--wim-easing-standard)" />
+  <MotionSwatch name={<T k="guide.effects_motion_slow" />} duration="var(--wim-duration-slow)" easing="var(--wim-easing-standard)" />
+  <MotionSwatch name={<T k="guide.effects_motion_entrance" />} duration="var(--wim-duration-base)" easing="var(--wim-easing-entrance)" />
+  <MotionSwatch name={<T k="guide.effects_motion_exit" />} duration="var(--wim-duration-fast)" easing="var(--wim-easing-exit)" />
+  <MotionSwatch name={<T k="guide.effects_motion_spring" />} duration="var(--wim-duration-base)" easing="var(--wim-easing-spring)" />
 
-  <InteractiveSwatch name="Scale Active (Tactile)" tokenName="--scale-active" tokenValue="0.98" activeStyle={{ transition: "transform var(--duration-instant) var(--easing-standard)", transform: "scale(var(--scale-active))" }} hoverStyle={{ backgroundColor: "var(--wim-color-bg-hover)" }} />
+  <InteractiveSwatch name="Scale Active (Tactile)" tokenName="--wim-scale-active" tokenValue="0.98" activeStyle={{ transition: "transform var(--wim-duration-instant) var(--wim-easing-standard)", transform: "scale(var(--wim-scale-active))" }} hoverStyle={{ backgroundColor: "var(--wim-color-bg-hover)" }} />
 
-  <InteractiveSwatch name="Lift Small" tokenName="--lift-sm" tokenValue="-1px" hoverStyle={{ transition: "all var(--duration-fast) var(--easing-standard)", transform: "translateY(var(--lift-sm))", boxShadow: "var(--shadow-sm)" }} />
+  <InteractiveSwatch name="Lift Small" tokenName="--wim-lift-sm" tokenValue="-1px" hoverStyle={{ transition: "all var(--wim-duration-fast) var(--wim-easing-standard)", transform: "translateY(var(--wim-lift-sm))", boxShadow: "var(--wim-shadow-sm)" }} />
 
-  <InteractiveSwatch name="Lift Medium" tokenName="--lift-md" tokenValue="-1.5px" hoverStyle={{ transition: "all var(--duration-fast) var(--easing-standard)", transform: "translateY(var(--lift-md))", boxShadow: "var(--shadow-md)" }} />
+  <InteractiveSwatch name="Lift Medium" tokenName="--wim-lift-md" tokenValue="-1.5px" hoverStyle={{ transition: "all var(--wim-duration-fast) var(--wim-easing-standard)", transform: "translateY(var(--wim-lift-md))", boxShadow: "var(--wim-shadow-md)" }} />
 </TokenGrid>
 
 <hr />
@@ -105,15 +105,15 @@ import {
   </thead>
   <tbody>
     <tr>
-      <td><code>--opacity-disabled</code> <small>(0.6)</small></td>
+      <td><code>--wim-opacity-disabled</code> <small>(0.6)</small></td>
       <td><T k="guide.effects_opacity_disabled" /></td>
     </tr>
     <tr>
-      <td><code>--opacity-ghost</code> <small>(0.5)</small></td>
+      <td><code>--wim-opacity-ghost</code> <small>(0.5)</small></td>
       <td><T k="guide.effects_opacity_ghost" /></td>
     </tr>
     <tr>
-      <td><code>--opacity-secondary</code> <small>(0.7)</small></td>
+      <td><code>--wim-opacity-secondary</code> <small>(0.7)</small></td>
       <td><T k="guide.effects_opacity_secondary" /></td>
     </tr>
   </tbody>

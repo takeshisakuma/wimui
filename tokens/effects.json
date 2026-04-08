@@ -21,6 +21,28 @@
       "inset": { "value": "inset 0 2px 4px rgba(0, 0, 0, 0.1)" },
       "focus": { "value": "0 0 0 2px #ffffff, 0 0 0 4px rgba(2, 136, 209, 0.5)" },
       "field-focus": { "value": "0 0 0 2px rgba(2, 136, 209, 0.2)" }
+    },
+    "duration": {
+      "instant": { "value": "0.083s" },
+      "fast": { "value": "0.167s" },
+      "base": { "value": "0.25s" },
+      "slow": { "value": "0.333s" }
+    },
+    "easing": {
+      "standard": { "value": "cubic-bezier(0.55, 0, 0.1, 1)" },
+      "entrance": { "value": "cubic-bezier(0, 0, 0, 1)" },
+      "exit": { "value": "cubic-bezier(1, 0, 1, 1)" },
+      "spring": { "value": "cubic-bezier(0.34, 1.56, 0.64, 1)" },
+      "out-back": { "value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)" }
+    },
+    "lift": {
+      "sm": { "value": "-1px" },
+      "md": { "value": "-1.5px" },
+      "lg": { "value": "-2px" },
+      "none": { "value": "0" }
+    },
+    "scale": {
+      "active": { "value": "0.98" }
     }
   }
 }

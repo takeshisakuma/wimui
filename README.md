@@ -172,5 +172,23 @@ git commit -m "commit message" --no-verify
 ## ドキュメントの欠落確認
 node scripts/audit-mdx.js
 
-## トークンの整合性確認
-npm run tokens:check
+## デザイントークン
+
+WIM UI は、**Style Dictionary** を使用してデザイントークンを一元管理（Single Source of Truth）しています。
+
+### 基本構成
+
+- **ソース**: `tokens/**/*.json`
+- **生成物（自動生成）**:
+    - `src/tokens/generated/` (SCSS変数, CSSカスタムプロパティ)
+    - `src/types/generated-tokens.ts` (TypeScript 型定義)
+
+### ビルドコマンド
+
+トークン（JSON）を編集した後は、必ず以下のコマンドを実行してコードに反映させてください。
+
+```bash
+npm run tokens:build   # JSONからSCSS/TypeScript定義を自動生成
+```
+
+このコマンドにより、コンポーネント開発時に最新のトークンが型補完として利用可能になります。

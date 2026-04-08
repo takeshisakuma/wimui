@@ -120,7 +120,6 @@
     "check:stories": "node scripts/check_stories_keys.js",
     "check:casing": "node scripts/check-git-casing.cjs",
     "tokens:build": "node style-dictionary.config.js",
-    "tokens:check": "npm run tokens:build",
     "prepare": "husky"
   },
   "repository": {

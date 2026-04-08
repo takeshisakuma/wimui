@@ -92,6 +92,28 @@ export type WimShadowKey =
   | "sm"
   | "xs";
 
+export type WimDurationKey = 
+  | "base"
+  | "fast"
+  | "instant"
+  | "slow";
+
+export type WimEasingKey = 
+  | "entrance"
+  | "exit"
+  | "out-back"
+  | "spring"
+  | "standard";
+
+export type WimLiftKey = 
+  | "lg"
+  | "md"
+  | "none"
+  | "sm";
+
+export type WimScaleKey = 
+  | "active";
+
 export type WimSpacingKey = 
   | "2xl"
   | "2xs"

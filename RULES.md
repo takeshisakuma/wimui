@@ -47,7 +47,7 @@
     - `FeedbackStatus` — `"info" | "success" | "warning" | "error"`（Alert・Banner・Toast・Notification など）
     - `FieldStatus` — `"default" | "error"`（Input・Textarea・DatePicker・RichTextEditor など）
     - `WimIntent` — 上記すべてを含む全意図値のユニオン（汎用）
-  - **新しい共通 prop 型が必要になった場合は、インラインで定義せず `src/types/tokens.ts` に追加してください。** 追加後は `npm run tokens:check` で整合性を確認してください。
+  - **新しい共通 prop 型が必要になった場合は、インラインで定義せず `src/types/tokens.ts` に追加してください。**
 - 最新のセマンティックHTMLを使用してください。
 - コンポーネントではデザイントークン（`src/tokens/`）の値を使用してください。**CSS値のハードコードはカラーに限らずすべて禁止です。** `padding`, `border-radius`, `font-size`, `font-weight`, `box-shadow`, `opacity`, `transition`, `animation-duration` なども対応する `--wim-*` トークンを使用してください。既存トークンで対応できない値が必要な場合は独自値を直接書かず、先に `src/tokens/` にトークンを追加してから使用してください（追加手順は `SKILLS.md` を参照）。ストーリーやdocsのユーティリティコンポーネント（`stories/` 配下のTSX）でインラインスタイルを使う場合も、`color: 'gray'` のようなハードコードされたCSS色名は使わず、`var(--wim-color-text-secondary)` などのCSSカスタムプロパティを使用してください。ダークモードで背景色と同化して読めなくなります。
 - `stories/` 配下のTSXでは、`var(--bg-component)`・`var(--text-primary)`・`var(--text-secondary)` などの内部ショートエイリアスを使用しないでください。ストーリーを持たない純粋なMDXページ（`<Meta title="..." />` のみのページ）ではデコレーターが動作しないため `data-theme` が設定されず、これらの変数が意図した色に解決されないケースがあります。代わりに必ず `var(--wim-color-surface)`・`var(--wim-color-text-primary)`・`var(--wim-color-text-secondary)` などの `--wim-color-*` プレフィックス付きトークンを使用してください。
@@ -122,12 +122,10 @@
   - `--wim-z-toast: 9999` — Toast・Snackbar・Notification（常に最前面）
 - トークンは `src/tokens/` 以下の SCSS ファイルで定義し、`:root` に CSS カスタムプロパティとして公開してください。
 - 既存のエイリアス（`--wim-color-surface: var(--wim-color-bg-component)` など）は維持しますが、自己参照になる循環エイリアスは作成しないでください。
-- `src/tokens/` の SCSS トークンを追加・変更・削除した場合は、`npm run tokens:check` を実行して `src/types/tokens.ts` との整合性を確認してください。型に不整合がある場合は `src/types/tokens.ts` を手動で更新してください。
-  - `WimColorKey` → `src/tokens/_semantic-colors.scss` の `--wim-color-*`
-  - `WimSpacingKey` → `src/tokens/_spacings.scss` の `--wim-spacing-*`
-  - `WimRadiusKey` → `src/tokens/_spacings.scss` の `--wim-radius-*`
-  - `WimShadowKey` → `src/tokens/_effects.scss` の `--wim-shadow-*`（`color`・`ambient`・`elevation` は内部専用のため型に含めない）
-  - `WimZIndexKey` → `src/tokens/_effects.scss` の `--wim-z-*`（`tokens:check` スクリプトの対象外のため手動で整合性を確認してください）
+- デザイントークンの追加・変更は `tokens/` ディレクトリの JSON ファイルを編集し、`npm run tokens:build` を実行してください。これにより SCSS 変数と TypeScript 型定義が自動更新されます。手動での SCSS 編集や `src/types/tokens.ts` の型追加は原則不要です。
+  - **カラー**: `tokens/color/base.json` (生色), `tokens/color/semantic.json` (意味的定義)
+  - **サイズ・間隔**: `tokens/spacing.json`
+  - **効果（影・透明度・Z-Index・モーション）**: `tokens/effects.json`
 
 ## `!important` の使用
 
@@ -210,9 +208,9 @@ Q2. このコンポーネント自身が他の多くのコンポーネントか�
 
 ## ダークモード
 
-- コンポーネントのSCSSに `[data-theme="dark"]` セレクターや `@media (prefers-color-scheme: dark)` を**書かないでください。** カラーやサーフェス・影・ゴースト・フィードバック等の値はすべて `src/tokens/_semantic-colors.scss` のセマンティックトークンとして定義されており、`:root` レベルで自動的にライト/ダークが切り替わります。
-- コンポーネントSCSSでは**トークンを参照するだけ**でダークモード対応は完了します。
-- 新しいダークモード固有の値が必要な場合は、`_semantic-colors.scss` の `:root` ブロックと `@mixin dark-theme` ブロックの両方にトークンを追加してください。
+- コンポーネントのSCSSに `[data-theme="dark"]` セレクターや `@media (prefers-color-scheme: dark)` を**書かないでください。** カラーやサーフェス・影・ゴースト・フィードバック等の値はすべて `tokens/` 配下の JSON で定義されており、Style Dictionary によって `src/tokens/generated/` にライト/ダーク切り替え可能な変数として出力されます。
+- コンポーネントSCSSでは**トークン（生成された変数）を参照するだけ**でダークモード対応は完了します。
+- 新しいダークモード固有の値が必要な場合は、`tokens/color/semantic.json` や `tokens/themes/dark.json` を編集し、`npm run tokens:build` を実行してください。
 - 利用可能なトークンカテゴリ: Ghost/Subtle Surface、Glass/Frosted Surface、Skeleton、Control、Feedback variant、Utility（詳細は `_semantic-colors.scss` を参照）。
 
 ## ファイル・エクスポート

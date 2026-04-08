@@ -28,15 +28,15 @@
 ## ディレクトリ構成
 
 ```
-src/
-  components/          # 公開コンポーネント（PascalCase ディレクトリ）
-    Button/
-      Button.tsx
-      button.scss
-      Button.test.tsx
-  components/_internal/ # 内部コンポーネント（外部非公開）
-  tokens/              # デザイントークン（SCSS変数・カスタムプロパティ）
-    _semantic-colors.scss
+  tokens/              # デザイントークンソース（JSON）
+    color/
+      base.json
+      semantic.json
+    spacing.json
+    effects.json
+  src/
+    tokens/
+      generated/       # 自動生成された SCSS/CSS 変数
   icon/                # SVGアイコンコンポーネント
   svg/                 # SVGアセット
   index.ts             # 公開エクスポート一覧
@@ -70,9 +70,7 @@ public/
 
 ---
 
-## デザイントークンの使い方
-
-`src/tokens/` の SCSS 変数・カスタムプロパティを使用します。
+`src/tokens/generated/_tokens.scss` または `_css-vars.scss` の変数を使用します。
 
 ```scss
 // 色はセマンティックカラートークンを使う（ダークモード自動対応）
@@ -84,24 +82,23 @@ border-color: var(--wim-color-border);
 padding: var(--wim-spacing-md);
 ```
 
-ハードコードされた CSS 色名（`gray`, `#333` など）は使用禁止です。色以外の CSS 値（`padding`, `border-radius`, `font-size`, `font-weight`, `box-shadow`, `opacity`, `transition`, `z-index` 等）も同様にトークンを使用してください。
-`stories/` 配下の TSX では `--wim-color-*` プレフィックス付きトークンのみ使用可（内部ショートエイリアス `--bg-component` 等は不可）。
+### 重要なルール
+- ハードコードされた CSS 色名（`gray`, `#333` など）は使用禁止です。
+- 色以外の CSS 値（`padding`, `border-radius`, `font-size`, `font-weight`, `box-shadow`, `opacity`, `transition`, `z-index`, `motion` 等）もすべてトークンを使用してください。
+- `stories/` 配下の TSX では `--wim-color-*` プレフィックス付きトークンを推奨します。
 
 ---
 
 ## 既存トークンが不足している場合のフロー
 
-必要な値が `src/tokens/` に存在しない場合、独自値を直接 SCSS に書かずに以下の手順でトークンを追加してください。
-
-1. `src/tokens/` の適切なファイルにSCSSトークン変数を追加（カテゴリが既存のファイルと合うもの）
-   - 色 → `_semantic-colors.scss`
-   - spacing / radius / border → `_spacings.scss`
-   - shadow / opacity / duration / easing / z-index → `_effects.scss`
-   - font-size / font-weight / line-height → `_typography.scss`
-2. 同ファイルの `:root {}` ブロックに `--wim-[カテゴリ]-[意味]` として CSS カスタムプロパティを追加
-3. `npm run tokens:check` を実行して `src/types/tokens.ts` との整合性を確認
-4. 不整合がある場合は `src/types/tokens.ts` の対応する `WimXxxKey` 型に値を追記
-5. コンポーネントで `var(--wim-[カテゴリ]-[意味])` を使用
+1. `tokens/` 配下の適切な JSON ファイルにトークンを追記します。
+   - 生色（Palette） → `color/base.json`
+   - セマンティックカラー → `color/semantic.json`
+   - Spacing / Radius → `spacing.json`
+   - Shadow / Opacity / Z-Index / Motion → `effects.json`
+2. `npm run tokens:build` を実行します。
+3. `src/tokens/generated/` および `src/types/generated-tokens.ts` が自動更新されたことを確認します。
+4. コンポーネントで `var(--wim-[カテゴリ]-[意味])` を使用します。
 
 ### 新しいカテゴリ自体が必要な場合
 
