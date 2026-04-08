@@ -19,6 +19,14 @@
       "lg": { "value": "8px" },
       "xl": { "value": "1rem" },
       "full": { "value": "9999px" }
+    },
+    "border-width": {
+      "thin": { "value": "1px" },
+      "thick": { "value": "2px" }
+    },
+    "focus-outline": {
+      "width": { "value": "2px" },
+      "offset": { "value": "2px" }
     }
   }
 }

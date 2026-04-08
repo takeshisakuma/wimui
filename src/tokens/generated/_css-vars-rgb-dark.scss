@@ -1,0 +1,13 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+[data-theme="dark"] {
+  --wim-color-primary-rgb: 5, 93, 135;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --wim-color-primary-rgb: 5, 93, 135;
+  }
+}

@@ -1,77 +1,14 @@
-@use "../tokens/spacings" as *;
-@use "../tokens/fonts" as *;
+@use "generated/css-vars";
 
-/* --- サイズの意味の定義 --- */
-$size-2xs: $font-size-minus-3;
-$size-ex-small: $font-size-minus-2;
-$size-small: $font-size-minus-1;
-$size-medium: $font-size-0;
-$size-large: $font-size-1;
-$size-ex-large: $font-size-2;
-$size-2xl: $font-size-4;
-$size-3xl: $font-size-6;
-$size-4xl: $font-size-8;
-$size-5xl: $font-size-10;
-$size-6xl: $font-size-12;
-$size-7xl: $font-size-14;
+/* 
+   --- タイポグラフィのシングルソース化 ---
+   Style Dictionary が生成した CSS 変数を利用します。
+   Font Family, Size, Weight, Line Height 等はすべて 
+   --wim-font-* 変数として定義されています。
+*/
 
-/* ウェイトの意味の定義 */
-$weight-normal: 400;
-$weight-medium: 500; // buttonラベル用
-$weight-bold: 700;
-
-/* スタイルの意味の定義 */
-$style-normal: normal;
-$style-italic: italic;
-
-/* line-heightの意味の定義 */
-
-/* 日本語のline-height(ISO 15924コード: Jpan) */
-$line-height-loose-jpan: 1.8;
-$line-height-normal-jpan: 1.6;
-$line-height-tight-jpan: 1.4;
-
-/* アルファベットのline-height(ISO 15924コード: Latn) */
-$line-height-loose-latn: 1.6;
-$line-height-normal-latn: 1.4;
-$line-height-tight-latn: 1.2;
-
-/* 装飾の定義 */
-$decoration-line-through: line-through;
-$decoration-underline: underline;
-$decoration-highlight-color: #fff9c4; // Light yellow highlight
-
-:root {
-  /* Font Families */
-  --wim-font-family-default: #{$lang-default};
-  --wim-font-family-ja: #{$lang-ja};
-  --wim-font-family-en: #{$lang-en};
-  --wim-font-family-pt: #{$lang-pt};
-
-  /* Font Sizes */
-  --wim-font-size-2xs: #{$size-2xs};
-  --wim-font-size-xs: #{$size-ex-small};
-  --wim-font-size-sm: #{$size-small};
-  --wim-font-size-md: #{$size-medium};
-  --wim-font-size-lg: #{$size-large};
-  --wim-font-size-xl: #{$size-ex-large};
-  --wim-font-size-2xl: #{$size-2xl};
-  --wim-font-size-3xl: #{$size-3xl};
-  --wim-font-size-4xl: #{$size-4xl};
-  --wim-font-size-5xl: #{$size-5xl};
-  --wim-font-size-6xl: #{$size-6xl};
-  --wim-font-size-7xl: #{$size-7xl};
-  --wim-font-weight-normal: #{$weight-normal};
-  --wim-font-weight-medium: #{$weight-medium};
-  --wim-font-weight-bold: #{$weight-bold};
-  --wim-line-height-loose-jp: #{$line-height-loose-jpan};
-  --wim-line-height-normal-jp: #{$line-height-normal-jpan};
-  --wim-line-height-tight-jp: #{$line-height-tight-jpan};
-  --wim-line-height-loose: #{$line-height-loose-latn};
-  --wim-line-height-normal: #{$line-height-normal-latn};
-  --wim-line-height-tight: #{$line-height-tight-latn};
-  --wim-decoration-line-through: #{$decoration-line-through};
-  --wim-decoration-underline: #{$decoration-underline};
-  --wim-decoration-highlight-color: #{$decoration-highlight-color};
-
-}
+/* 
+   各言語に応じたフォントファミリーの自動適用などは、
+   必要に応じてコンポーネントまたはグローバルCSSで
+   var(--wim-font-family-ja) 等を指定してください。
+*/

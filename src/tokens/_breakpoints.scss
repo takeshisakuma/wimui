@@ -1,9 +1,11 @@
 @use "sass:map";
+@use "generated/tokens" as tokens;
 
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1200px;
+/* --- ブレイクポイントのシングルソース化 --- */
+$sm: tokens.$wim-breakpoint-sm;
+$md: tokens.$wim-breakpoint-md;
+$lg: tokens.$wim-breakpoint-lg;
+$xl: tokens.$wim-breakpoint-xl;
 $breakpoints: (
   sm: $sm,
   md: $md,

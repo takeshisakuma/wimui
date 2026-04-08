@@ -1,5 +1,83 @@
 {
   "wim": {
-    "color": {}
+    "color": {
+      "bg-app": { "value": "{pccs.gy2-5}" },
+      "bg-component": { "value": "{pccs.gy3-5}" },
+      "text-primary": { "value": "{pccs.w}" },
+      "text-secondary": { "value": "{pccs.gy8-5}" },
+      "text-tertiary": { "value": "{pccs.gy7-5}" },
+      "text-disabled": { "value": "{pccs.gy6-5}" },
+      "bg-primary": { "value": "{pccs.gy3-5}" },
+      "bg-secondary": { "value": "{pccs.gy4-5}" },
+      "bg-tertiary": { "value": "{pccs.gy4-5}" },
+      "bg-hover": { "value": "color-mix(in srgb, var(--wim-color-primary) 12%, transparent)" },
+      "border": { "value": "{pccs.gy5-5}" },
+      "border-secondary": { "value": "{pccs.gy4-5}" },
+      "scrollbar-thumb": { "value": "{pccs.gy5-5}" },
+      "scrollbar-track": { "value": "{pccs.gy3-5}" },
+      "primary-container-alpha": { "value": "rgba(0, 122, 255, 0.2)" },
+      "surface-variant-alpha": { "value": "rgba(255, 255, 255, 0.05)" },
+      "primary-hover": { "value": "rgba(var(--wim-color-primary-rgb), 1)" },
+      "primary-light": { "value": "rgba(var(--wim-color-primary-rgb), 0.2)" },
+      "overlay-bg": { "value": "rgba(0, 0, 0, 0.7)" },
+      "overlay-bg-light": { "value": "rgba(255, 255, 255, 0.2)" },
+      "overlay-bg-dark": { "value": "rgba(0, 0, 0, 0.8)" },
+      "disabled": { "value": "{pccs.gy4-5}" },
+      "text-on-disabled": { "value": "{pccs.gy7-5}" },
+      "text-error": { "value": "#ff8c8c" },
+      "destructive": { "value": "{pccs.v2}" },
+      "positive": { "value": "{pccs.v12}" },
+      "caution": { "value": "{pccs.v7}" },
+      "informative": { "value": "{pccs.v17}" },
+      "primary": { "value": "{pccs.v16}" },
+      "primary-rgb": { "value": "{wim.color.primary}" },
+
+      "ghost-bg": { "value": "rgba(255, 255, 255, 0.06)" },
+      "ghost-border": { "value": "rgba(255, 255, 255, 0.15)" },
+      "ghost-bg-active": { "value": "rgba(255, 255, 255, 0.12)" },
+      "ghost-border-active": { "value": "rgba(255, 255, 255, 0.3)" },
+      "ghost-border-hover": { "value": "color-mix(in srgb, var(--wim-color-primary) 40%, transparent)" },
+
+      "glass-bg": { "value": "rgba(20, 20, 20, 0.75)" },
+      "glass-border": { "value": "rgba(255, 255, 255, 0.15)" },
+      "surface-glass": { "value": "var(--wim-color-glass-bg)" },
+      "surface-inset": { "value": "rgba(0, 0, 0, 0.3)" },
+      "shadow-glass": { "value": "0 10px 20px -5px rgba(0, 0, 0, 0.6)" },
+
+      "skeleton-bg": { "value": "rgba(255, 255, 255, 0.13)" },
+      "skeleton-shine": { "value": "rgba(255, 255, 255, 0.08)" },
+
+      "control-default-fg": { "value": "var(--wim-color-text-primary)" },
+      "control-default-bg": { "value": "var(--wim-color-bg-secondary)" },
+      "control-default-border": { "value": "var(--wim-color-border)" },
+
+      "feedback-text-base": { "value": "white" },
+      "feedback-bg-base": { "value": "black" },
+      "feedback-border-strength": { "value": "40%" },
+      "frosted-bg": { "value": "color-mix(in srgb, var(--wim-color-bg-component) 60%, transparent)" },
+
+      "bg-subtle": { "value": "#262626" },
+      "close-hover": { "value": "rgba(255, 255, 255, 0.1)" },
+      "ghost-bg-hover": { "value": "rgba(255, 255, 255, 0.08)" },
+
+      "avatar-default": { "value": "{pccs.b18}" },
+      "avatar-s1": { "value": "{pccs.b1}" },
+      "avatar-s3": { "value": "{pccs.b3}" },
+      "avatar-s5": { "value": "{pccs.b5}" },
+      "avatar-s7": { "value": "{pccs.b7}" },
+      "avatar-s10": { "value": "{pccs.b10}" },
+      "avatar-s12": { "value": "{pccs.b12}" },
+      "avatar-s14": { "value": "{pccs.b14}" },
+      "avatar-s16": { "value": "{pccs.b16}" },
+      "avatar-s18": { "value": "{pccs.b18}" },
+      "avatar-s20": { "value": "{pccs.b20}" },
+      "avatar-s22": { "value": "{pccs.b22}" },
+      "avatar-s24": { "value": "{pccs.b24}" },
+
+      "chat-bubble-received": { "value": "color-mix(in srgb, var(--wim-color-caution) 15%, var(--wim-color-bg-secondary))" },
+      "chat-bubble-sent": { "value": "color-mix(in srgb, var(--wim-color-primary) 15%, var(--wim-color-bg-secondary))" },
+
+      "decoration-highlight-color": { "value": "#5c4400" }
+    }
   }
 }

@@ -1,0 +1,41 @@
+{
+  "wim": {
+    "font-family": {
+      "default": { "value": "\"Noto Sans\", \"Segoe UI\", \"Roboto\", \"Helvetica Neue\", arial, \"sans-serif\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"" },
+      "ja": { "value": "\"Noto Sans JP\", \"游ゴシック体\", \"YuGothic\", \"Yu Gothic\", \"Hiragino Kaku Gothic ProN\", \"ヒラギノ角ゴ ProN W3\", \"メイリオ\", \"Meiryo\", \"sans-serif\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"" },
+      "en": { "value": "\"Noto Sans\", \"Segoe UI\", \"Roboto\", \"Helvetica Neue\", arial, \"sans-serif\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"" },
+      "pt": { "value": "\"Noto Sans\", \"Segoe UI\", \"Roboto\", \"Helvetica Neue\", arial, \"sans-serif\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"" }
+    },
+    "font-size": {
+      "2xs": { "value": "0.702rem" },
+      "xs": { "value": "0.79rem" },
+      "sm": { "value": "0.889rem" },
+      "md": { "value": "1rem" },
+      "lg": { "value": "1.125rem" },
+      "xl": { "value": "1.266rem" },
+      "2xl": { "value": "1.602rem" },
+      "3xl": { "value": "2.027rem" },
+      "4xl": { "value": "2.566rem" },
+      "5xl": { "value": "3.247rem" },
+      "6xl": { "value": "4.11rem" },
+      "7xl": { "value": "5.202rem" }
+    },
+    "font-weight": {
+      "normal": { "value": "400" },
+      "medium": { "value": "500" },
+      "bold": { "value": "700" }
+    },
+    "line-height": {
+      "loose-jp": { "value": "1.8" },
+      "normal-jp": { "value": "1.6" },
+      "tight-jp": { "value": "1.4" },
+      "loose": { "value": "1.6" },
+      "normal": { "value": "1.4" },
+      "tight": { "value": "1.2" }
+    },
+    "decoration": {
+      "line-through": { "value": "line-through" },
+      "underline": { "value": "underline" }
+    }
+  }
+}

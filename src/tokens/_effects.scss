@@ -1,116 +1,14 @@
-/* --- 影 (Shadows) --- */
-$shadow-none: none;
+@use "generated/css-vars";
 
-/* 多層レイヤーのシャドウ構成:
-   1. 環境光 (Ambient) - 拡散された広範囲の柔らかな影
-   2. 指向性ライト (Elevation) - 近接した輪郭のはっきりした影
+/* 
+   --- エフェクトのシングルソース化 ---
+   Style Dictionary が生成した CSS 変数を利用します。
+   Shadow, Z-index, Opacity, Duration, Easing 等はすべて
+   --wim-* 変数として定義されています。
 */
-$shadow-xs: 0 1px 2px rgb(0 0 0 / 0.08),
-  0 1px 1px rgb(0 0 0 / 0.05);
-$shadow-sm: 0 2px 4px rgb(0 0 0 / 0.08),
-  0 1px 2px rgb(0 0 0 / 0.12);
-$shadow-md: 0 4px 12px rgb(0 0 0 / 0.08),
-  0 2px 4px rgb(0 0 0 / 0.12);
-$shadow-lg: 0 12px 24px rgb(0 0 0 / 0.12),
-  0 8px 16px rgb(0 0 0 / 0.18);
-$shadow-inset: inset 0 2px 4px rgb(0 0 0 / 0.1);
-
-/* --- 浮き上がり (Elevation / Lift) --- */
-$lift-sm: -1px;
-$lift-md: -1.5px;
-$lift-lg: -2px;
-$lift-none: 0;
-
-/* --- フォーカス (Focus) --- */
-$shadow-focus: 0 0 0 2px var(--wim-color-bg-primary), 0 0 0 4px var(--wim-color-focus-outline);
-$shadow-field-focus: 0 0 0 2px var(--wim-color-ghost-border-hover);
-
-/* --- アニメーション (Motion) --- */
-$duration-instant: 0.083s; /* ~83ms (1/12s) */
-$duration-fast: 0.167s;    /* ~167ms (2/12s) */
-$duration-base: 0.25s;     /* 250ms (3/12s) */
-$duration-slow: 0.333s;    /* ~333ms (4/12s) */
-
-/* Fluent Design 2 Easings */
-$easing-standard: cubic-bezier(0.55, 0, 0.1, 1);   /* Fast-Out, Fast-In */
-$easing-entrance: cubic-bezier(0, 0, 0, 1);       /* Fast-Out, Slow-In */
-$easing-exit: cubic-bezier(1, 0, 1, 1);           /* Slow-Out, Fast-In */
-$easing-base: $easing-standard;
-$easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-$easing-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-$transition-base: all $duration-base $easing-standard;
-$transition-instant: all $duration-instant $easing-standard;
-$transition-fast: all $duration-fast $easing-standard;
-
-/* --- インタラクション (Interaction) --- */
-$scale-active: 0.98;
-
-/* --- 不透明度 (Opacity) --- */
-$opacity-disabled: 0.6;  // disabled状態のコントロール
-$opacity-ghost: 0.5;     // ゴースト・閉じるボタンなど控えめなUI
-$opacity-secondary: 0.7; // セカンダリ要素・補助テキスト
-
-/* --- Z-index 階層 (Stacking Layers) --- */
-// ローカルな相対スタッキング（0 / 1 / 2 / -1 など）はコンポーネント内でそのまま使用可。
-// 以下は複数コンポーネント間で競合しうるグローバル値。必ずトークン経由で使用すること。
-$z-sidebar: 900;        // サイドバー（非オーバーレイ時）
-$z-overlay: 1000;       // Dialog・Drawer・Dropdown・Tooltip・Popover 等
-$z-overlay-panel: 1001; // オーバーレイ上に重なるパネル（Drawer コンテンツ等）
-$z-overlay-step: 1002;  // Tour ステップバブル
-$z-toast: 9999;         // Toast・Snackbar・Notification（常に最前面）
 
 :root {
-  --wim-shadow-none: #{$shadow-none};
-  --wim-shadow-color: rgb(0 0 0 / 0.1);
-
-  /* 多層レイヤーを構成する基本成分 */
-  --wim-shadow-ambient: 0 4px 12px rgb(0 0 0 / 0.08);
-  --wim-shadow-elevation: 0 2px 4px rgb(0 0 0 / 0.12);
-  --wim-shadow-xs:
-    0 1px 2px rgb(0 0 0 / 0.08),
-    0 1px 1px rgb(0 0 0 / 0.05);
-  --wim-shadow-sm:
-    0 2px 4px rgb(0 0 0 / 0.08),
-    0 1px 2px rgb(0 0 0 / 0.12);
-  --wim-shadow-md:
-    0 4px 12px rgb(0 0 0 / 0.08),
-    0 2px 4px rgb(0 0 0 / 0.12);
-  --wim-shadow-lg:
-    0 12px 24px rgb(0 0 0 / 0.12),
-    0 8px 16px rgb(0 0 0 / 0.18);
-  --wim-shadow-inset: inset 0 2px 4px var(--wim-shadow-color);
-  --wim-shadow-focus: #{$shadow-focus};
-  --wim-shadow-field-focus: #{$shadow-field-focus};
-  --wim-lift-sm: #{$lift-sm};
-  --wim-lift-md: #{$lift-md};
-  --wim-lift-lg: #{$lift-lg};
-  --wim-lift-none: #{$lift-none};
-  --wim-duration-instant: #{$duration-instant};
-  --wim-duration-fast: #{$duration-fast};
-  --wim-duration-base: #{$duration-base};
-  --wim-duration-slow: #{$duration-slow};
-  --wim-easing-standard: #{$easing-standard};
-  --wim-easing-entrance: #{$easing-entrance};
-  --wim-easing-exit: #{$easing-exit};
-  --wim-easing-base: #{$easing-base};
-  --wim-easing-spring: #{$easing-spring};
-  --wim-easing-out-back: #{$easing-out-back};
-  --wim-transition-base: #{$transition-base};
-  --wim-transition-instant: #{$transition-instant};
-  --wim-transition-fast: #{$transition-fast};
-  --wim-scale-active: #{$scale-active};
-  --wim-opacity-disabled: #{$opacity-disabled};
-  --wim-opacity-ghost: #{$opacity-ghost};
-  --wim-opacity-secondary: #{$opacity-secondary};
-
-  /* --- Z-index 階層 (Stacking Layers) --- */
-  --wim-z-sidebar: #{$z-sidebar};
-  --wim-z-overlay: #{$z-overlay};
-  --wim-z-overlay-panel: #{$z-overlay-panel};
-  --wim-z-overlay-step: #{$z-overlay-step};
-  --wim-z-toast: #{$z-toast};
-
-  /* --- 質感・グラデーション (Texture & Gradients) --- */
+  /* 手動管理が必要な特殊なテクスチャ定義 */
   --wim-glass-gradient: linear-gradient(180deg,
       rgb(255 255 255 / 0.08) 0%,
       rgb(255 255 255 / 0) 100%);

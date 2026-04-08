@@ -13,12 +13,10 @@ StyleDictionary.registerFormat({
     const categories = {};
     
     dictionary.allTokens.forEach(token => {
-      // Group tokens by category (the second part of the path: wim.category.token)
       if (token.path[0] === 'wim') {
         const cat = token.path[1];
         if (!categories[cat]) categories[cat] = [];
         
-        // Join the rest of the path to form the key
         const key = token.path.slice(2).join('-');
         if (key && !categories[cat].includes(key)) {
           categories[cat].push(key);
@@ -30,7 +28,6 @@ StyleDictionary.registerFormat({
 
     Object.entries(categories).forEach(([cat, keys]) => {
       let typeName = `Wim${toPascalCase(cat)}Key`;
-      // Specific mapping for clarity
       if (cat === 'z') typeName = 'WimZIndexKey';
       
       output += `export type ${typeName} = \n  | ${keys.sort().map(k => `"${k}"`).join('\n  | ')};\n\n`;
@@ -40,40 +37,122 @@ StyleDictionary.registerFormat({
   }
 });
 
-const sd = new StyleDictionary({
-  source: ['tokens/**/*.json'],
-  platforms: {
-    scss: {
-      transformGroup: 'scss',
-      buildPath: 'src/tokens/generated/',
-      files: [
-        {
-          destination: '_tokens.scss',
-          format: 'scss/variables',
-          filter: (token) => token.path[0] === 'wim'
-        },
-        {
-          destination: '_css-vars.scss',
-          format: 'css/variables',
-          options: {
-            selector: ':root'
-          },
-          filter: (token) => token.path[0] === 'wim'
-        }
-      ],
-    },
-    ts: {
-      transformGroup: 'js',
-      buildPath: 'src/types/',
-      files: [
-        {
-          destination: 'generated-tokens.ts',
-          format: 'typescript/union',
-        },
-      ],
-    },
-  },
+// Custom format for theme-aware CSS variables
+StyleDictionary.registerFormat({
+  name: 'css/theme-vars',
+  format: ({ dictionary, options }) => {
+    const { selector, autoDark } = options;
+    let output = `/**\n * Do not edit directly, this file was auto-generated.\n */\n\n`;
+    
+    output += `${selector} {\n`;
+    dictionary.allTokens.forEach(token => {
+      output += `  --${token.name}: ${token.value};\n`;
+    });
+    output += `}\n`;
+    
+    if (autoDark) {
+      output += `\n@media (prefers-color-scheme: dark) {\n  :root:not([data-theme="light"]) {\n`;
+      dictionary.allTokens.forEach(token => {
+        output += `    --${token.name}: ${token.value};\n`;
+      });
+      output += `  }\n}\n`;
+    }
+    return output;
+  }
 });
 
-await sd.buildAllPlatforms();
-console.log('Style Dictionary build complete.');
+// Register transform to generate RGB values from Hex
+StyleDictionary.registerTransform({
+  name: 'color/rgb-values',
+  type: 'value',
+  matcher: (token) => token.attributes.category === 'color' || token.path.includes('color'),
+  transform: (token) => {
+    const val = token.value;
+    if (typeof val !== 'string' || !val.startsWith('#')) return val;
+    
+    let hex = val.replace('#', '');
+    if (hex.length === 3) {
+      hex = hex.split('').map(char => char + char).join('');
+    }
+    
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    
+    return `${r}, ${g}, ${b}`;
+  }
+});
+
+const getSDConfig = (theme) => {
+  const isDark = theme === 'dark';
+  const isLight = theme === 'light';
+  
+  const config = {
+    source: isDark 
+      ? ['tokens/**/*.json'] 
+      : ['tokens/**/*.json', '!tokens/themes/dark.json'],
+    platforms: {
+      scss: {
+        transformGroup: 'scss',
+        buildPath: 'src/tokens/generated/',
+        files: [
+          {
+            destination: isDark ? '_tokens-dark.scss' : '_tokens.scss',
+            format: 'scss/variables',
+            filter: (token) => token.path[0] === 'wim'
+          },
+          {
+            destination: isDark ? '_css-vars-dark.scss' : '_css-vars.scss',
+            format: 'css/theme-vars',
+            options: {
+              selector: isDark ? '[data-theme="dark"]' : ':root',
+              autoDark: isDark // Only dark theme outputs media query block
+            },
+            filter: (token) => token.path[0] === 'wim'
+          }
+        ],
+      },
+      // RGB values platform
+      rgb: {
+        transforms: ['attribute/cti', 'name/kebab', 'color/rgb-values'],
+        buildPath: 'src/tokens/generated/',
+        files: [
+          {
+            destination: isDark ? '_css-vars-rgb-dark.scss' : '_css-vars-rgb.scss',
+            format: 'css/theme-vars',
+            options: {
+              selector: isDark ? '[data-theme="dark"]' : ':root',
+              autoDark: isDark
+            },
+            filter: (token) => token.path[0] === 'wim' && token.name.endsWith('-rgb')
+          }
+        ]
+      },
+      ts: {
+        transformGroup: 'js',
+        buildPath: 'src/types/',
+        files: [
+          {
+            destination: 'generated-tokens.ts',
+            format: 'typescript/union',
+          },
+        ],
+      },
+    },
+  };
+  
+  if (isDark) {
+    delete config.platforms.ts;
+  }
+  
+  return config;
+};
+
+// Build both themes
+const themes = ['light', 'dark'];
+for (const theme of themes) {
+  const sd = new StyleDictionary(getSDConfig(theme));
+  await sd.buildAllPlatforms();
+}
+
+console.log('Style Dictionary build complete for all themes.');
