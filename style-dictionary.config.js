@@ -89,8 +89,8 @@ const getSDConfig = (theme) => {
   
   const config = {
     source: isDark 
-      ? ['tokens/**/*.json'] 
-      : ['tokens/**/*.json', '!tokens/themes/dark.json'],
+      ? ['tokens/color/*.json', 'tokens/themes/dark.json', 'tokens/*.json'] 
+      : ['tokens/color/*.json', 'tokens/*.json'],
     platforms: {
       scss: {
         transformGroup: 'scss',

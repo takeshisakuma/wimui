@@ -115,7 +115,7 @@ const useDataGridTranslations = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   const tColumns = basicColumns.map(c => ({
     ...c,
-    header: typeof c.header === 'string' ? t(`story_datagrid_col_${c.key}`) : c.header,
+    header: typeof c.header === 'string' ? t(`story.datagrid_col_${c.key}`) : c.header,
     render: c.key === 'status' ? ((value: unknown) => {
       const translatedValue = value === "Active" ? t('story.datagrid_status_active') : value === "Inactive" ? t('story.datagrid_status_inactive') : t('story.datagrid_status_pending');
       return (

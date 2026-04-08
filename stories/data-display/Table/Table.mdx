@@ -111,6 +111,37 @@ import { T } from "../../T";
 
 <Controls />
 
+## <T k="doc.polymorphism_title" />
+
+<p><T k="doc.polymorphism_desc" /></p>
+
+> [!NOTE]
+> <T k="doc.polymorphism_note" />
+
+`Table` and all its sub-components (`Table.Header`, `Table.Body`, `Table.Footer`, `Table.Row`, `Table.Head`, `Table.Cell`) support `asChild`. 
+This is particularly useful for integrating with animation libraries like **Framer Motion**.
+
+```tsx
+import { motion, AnimatePresence } from "framer-motion";
+
+<Table.Body asChild>
+  <AnimatePresence>
+    {data.map(item => (
+      <Table.Row key={item.id} asChild>
+        <motion.tr
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 20 }}
+        >
+          <Table.Cell>{item.name}</Table.Cell>
+          <Table.Cell>{item.value}</Table.Cell>
+        </motion.tr>
+      </Table.Row>
+    ))}
+  </AnimatePresence>
+</Table.Body>
+```
+
 ### <T k="doc.table_striped" />
 
 <p><T k="doc.table_striped_desc" /></p>

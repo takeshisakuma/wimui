@@ -63,7 +63,7 @@
       "skeleton-shine": { "value": "rgba(255, 255, 255, 0.3)" },
 
       "control-default-fg": { "value": "var(--wim-color-primary)" },
-      "control-default-bg": { "value": "var(--wim-color-bg-primary)" },
+      "control-default-bg": { "value": "var(--wim-color-bg-component)" },
       "control-default-border": { "value": "var(--wim-color-primary)" },
 
       "feedback-text-base": { "value": "black" },

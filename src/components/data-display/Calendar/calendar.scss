@@ -63,6 +63,10 @@
     display: grid;
     grid-template-columns: repeat(7, minmax(min-content, 1fr));
     gap: var(--wim-spacing-xs);
+
+    [role="row"] {
+      display: contents;
+    }
   }
   
   .wim-calendar-weekday {

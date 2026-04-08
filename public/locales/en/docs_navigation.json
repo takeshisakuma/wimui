@@ -479,6 +479,7 @@
     "tabnavigation_keyboard_desc": "Tab focuses the tab navigation. Arrow keys navigate between tab items. Enter or Space activates the focused tab.",
     "tabnavigation_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each tab item's label prop.",
     "tour_keyboard_desc": "Tab moves focus through the Previous, Next, and Close buttons within each tour step. Enter or Space activates the focused button. Escape closes the tour.",
-    "tour_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each step's title, description, and button label props."
+    "tour_i18n_desc": "All visible text uses i18n keys. Pass translated strings through each step's title, description, and button label props.",
+    "affix_target_note": "When using Affix for the entire page scroll, the default window target works perfectly. However, if you are using Affix inside a modal or a specific scrollable view, remember to pass the parent container to the target prop."
   }
 }

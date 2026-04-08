@@ -21,7 +21,7 @@ export const QRCode = ({
   value,
   size = 128,
   level = "M",
-  bgColor = "var(--wim-color-bg-primary)",
+  bgColor = "var(--wim-color-bg-component)",
   fgColor = "var(--wim-color-text-primary)",
   marginSize = 0,
   renderAs = "svg",

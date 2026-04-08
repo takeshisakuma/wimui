@@ -249,4 +249,55 @@ describe("Table", () => {
     );
     expect(container.querySelector(".wim-table--mobile-card")).toBeInTheDocument();
   });
+
+  it("supports asChild on Table", () => {
+    render(
+      <Table asChild>
+        <div data-testid="table-slot">
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell>X</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </div>
+      </Table>
+    );
+    const tableElement = screen.getByTestId("table-slot");
+    expect(tableElement.tagName).toBe("DIV");
+    expect(tableElement).toHaveClass("wim-table");
+  });
+
+  it("supports asChild on TableRow", () => {
+    render(
+      <Table>
+        <Table.Body>
+          <Table.Row asChild>
+            <div data-testid="row-slot">
+              <Table.Cell>X</Table.Cell>
+            </div>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    );
+    const rowElement = screen.getByTestId("row-slot");
+    expect(rowElement.tagName).toBe("DIV");
+    expect(rowElement).toHaveClass("wim-table__row");
+  });
+
+  it("supports asChild on TableCell", () => {
+    render(
+      <Table>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell asChild>
+              <div data-testid="cell-slot">X</div>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    );
+    const cellElement = screen.getByTestId("cell-slot");
+    expect(cellElement.tagName).toBe("DIV");
+    expect(cellElement).toHaveClass("wim-table__cell");
+  });
 });

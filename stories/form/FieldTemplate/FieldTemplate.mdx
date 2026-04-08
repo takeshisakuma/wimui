@@ -1,8 +1,8 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../../T";
-import * as Stories from "./FieldTemplate.stories";
+import * as FieldTemplateStories from "./FieldTemplate.stories";
 
-<Meta of={Stories} />
+<Meta of={FieldTemplateStories} />
 
 # FieldTemplate
 
@@ -101,24 +101,39 @@ import * as Stories from "./FieldTemplate.stories";
 ## <T k="doc.usage" />
 <p><T k="doc.fieldTemplate_usage_desc" /></p>
 
-<Canvas of={Stories.Default} />
-<Controls of={Stories.Default} />
+<Canvas of={FieldTemplateStories.Default} />
+<Controls of={FieldTemplateStories.Default} />
+
+## <T k="doc.polymorphism_title" />
+
+<p><T k="doc.polymorphism_desc" /></p>
+
+> [!NOTE]
+> <T k="doc.polymorphism_note" />
+
+```tsx
+<FieldTemplate asChild label="My Field">
+  <section className="custom-field-section">
+    <input type="text" />
+  </section>
+</FieldTemplate>
+```
 
 ---
 
 ## <T k="doc.stories" />
 
 ### <T k="doc.story_default" />
-<Canvas of={Stories.Default} />
+<Canvas of={FieldTemplateStories.Default} />
 
 ### <T k="doc.story_horizontal" />
-<Canvas of={Stories.Horizontal} />
+<Canvas of={FieldTemplateStories.Horizontal} />
 
 ### <T k="doc.story_error" />
-<Canvas of={Stories.WithError} />
+<Canvas of={FieldTemplateStories.WithError} />
 
 ### <T k="doc.story_no_label" />
-<Canvas of={Stories.NoLabel} />
+<Canvas of={FieldTemplateStories.NoLabel} />
 
 ---
 

@@ -158,13 +158,13 @@
 
       &.wim-button--destructive {
         color: var(--wim-color-destructive);
-        background-color: var(--wim-color-bg-primary);
+        background-color: var(--wim-color-bg-component);
         border-color: var(--wim-color-destructive);
       }
 
       &.wim-button--positive {
         color: var(--wim-color-positive);
-        background-color: var(--wim-color-bg-primary);
+        background-color: var(--wim-color-bg-component);
         border-color: var(--wim-color-positive);
       }
 

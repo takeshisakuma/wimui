@@ -1,49 +1,40 @@
 import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import "./checkbox.scss";
 
-type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
+export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  asChild?: boolean;
   children?: React.ReactNode;
   indeterminate?: boolean;
-  className?: string;
-};
+}
 
 /**
  * Checkbox component for boolean user input.
  */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ children, indeterminate = false, className, disabled, ...props }, ref) => {
-    const defaultRef = useRef<HTMLInputElement>(null);
-    const mergedRef = useMergedRef(defaultRef, ref);
+  ({ asChild = false, children, indeterminate = false, className, disabled, ...props }, ref) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+    const mergedRef = useMergedRef(inputRef, ref);
 
     useEffect(() => {
-      if (defaultRef.current) {
-        defaultRef.current.indeterminate = indeterminate;
+      if (inputRef.current) {
+        inputRef.current.indeterminate = indeterminate;
       }
     }, [indeterminate]);
 
+    const Component = asChild ? Slot : "label";
+
     return (
-      <label
-        className={classNames(
-          "wim-checkbox-wrapper",
-          disabled && "wim-checkbox--disabled",
-          className,
-        )}
+      <Component
+        className={classNames("wim-checkbox-wrapper", disabled && "wim-checkbox--disabled", className)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        {...(props as any)}
       >
-        <input
-          type="checkbox"
-          className="wim-checkbox-input"
-          disabled={disabled}
-          ref={mergedRef}
-          {...props}
-        />
-        {children && (
-          <span className="wim-checkbox-label">
-            {children}
-          </span>
-        )}
-      </label>
+        <input type="checkbox" className="wim-checkbox-input" disabled={disabled} ref={mergedRef} />
+        <Slottable>{children}</Slottable>
+      </Component>
     );
   },
 );

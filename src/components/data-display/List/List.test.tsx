@@ -77,4 +77,30 @@ describe("List", () => {
     const { container } = render(<List className="my-list"><ListItem>X</ListItem></List>);
     expect(container.querySelector(".my-list")).toBeInTheDocument();
   });
+
+  it("supports asChild on List", () => {
+    render(
+      <List asChild>
+        <div data-testid="list-slot">
+          <ListItem>Item 1</ListItem>
+        </div>
+      </List>
+    );
+    const element = screen.getByTestId("list-slot");
+    expect(element.tagName).toBe("DIV");
+    expect(element).toHaveClass("wim-list");
+  });
+
+  it("supports asChild on ListItem", () => {
+    render(
+      <List>
+        <ListItem asChild>
+          <div data-testid="item-slot">Item 1</div>
+        </ListItem>
+      </List>
+    );
+    const element = screen.getByTestId("item-slot");
+    expect(element.tagName).toBe("DIV");
+    expect(element).toHaveClass("wim-list__item");
+  });
 });

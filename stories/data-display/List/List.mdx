@@ -147,4 +147,24 @@ import { T } from "../../T";
 npm run test -- List
 ```
 
+## <T k="doc.polymorphism_title" />
+
+<p><T k="doc.polymorphism_desc" /></p>
+
+> [!NOTE]
+> <T k="doc.polymorphism_note" />
+
+Both `List` and `ListItem` support `asChild`. For example, you can use `ListItem` with a navigation link from a library like `react-router-dom`.
+
+```tsx
+<List>
+  <ListItem asChild iconName="HomeIcon">
+    <NavLink to="/home">Home</NavLink>
+  </ListItem>
+  <ListItem asChild iconName="SettingsIcon">
+    <NavLink to="/settings">Settings</NavLink>
+  </ListItem>
+</List>
+```
+
 <Controls />

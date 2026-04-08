@@ -1,17 +1,14 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import "./table.scss";
 import { Icon } from "../../media/Icon/Icon";
 
 export { useTableSort, getNextSortDirection } from "./useTableSort";
-export type {
-  SortDirection,
-  SortConfig,
-  UseTableSortOptions,
-  UseTableSortReturn,
-} from "./useTableSort";
+export type { SortDirection, SortConfig, UseTableSortOptions, UseTableSortReturn } from "./useTableSort";
 
-type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
+export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> {
+  asChild?: boolean;
   striped?: boolean;
   bordered?: boolean;
   hoverable?: boolean;
@@ -24,113 +21,138 @@ type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
   mobileCard?: boolean;
   height?: string | number;
   maxHeight?: string | number;
-  className?: string;
-  children: React.ReactNode;
-};
+}
 
-const Table = ({
-  striped = false,
-  bordered = false,
-  hoverable = false,
-  fullWidth = false,
-  stickyHeader = false,
-  scrollbar = "default",
-  mobileCard = false,
-  height,
-  maxHeight,
-  className,
-  children,
-  ...props
-}: TableProps) => {
-  const containerStyle: React.CSSProperties = {
-    height,
-    maxHeight,
-    overflow: height || maxHeight ? "auto" : undefined,
-  };
-
-  return (
-    <div
-      className={classNames(
-        "wim-table-container",
-        stickyHeader && "wim-table-container--sticky",
-        scrollbar === "subtle" && "wim-subtle-scrollbar",
-        scrollbar === "hidden" && "wim-no-scrollbar",
-      )}
-      style={containerStyle}
-      tabIndex={height || maxHeight ? 0 : undefined}
-    >
-      <table
-        className={classNames(
-          "wim-table",
-          striped && "wim-table--striped",
-          bordered && "wim-table--bordered",
-          hoverable && "wim-table--hoverable",
-          fullWidth && "wim-table--full-width",
-          stickyHeader && "wim-table--sticky-header",
-          mobileCard && "wim-table--mobile-card",
-          className,
-        )}
-        {...props}
-      >
-        {children}
-      </table>
-    </div>
-  );
-};
-
-export const TableHeader = ({
-  className,
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLTableSectionElement>) => (
-  <thead className={classNames("wim-table__header", className)} {...props}>
-    {children}
-  </thead>
-);
-
-export const TableBody = ({
-  className,
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLTableSectionElement>) => (
-  <tbody className={classNames("wim-table__body", className)} {...props}>
-    {children}
-  </tbody>
-);
-
-export const TableFooter = ({
-  className,
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLTableSectionElement>) => (
-  <tfoot className={classNames("wim-table__footer", className)} {...props}>
-    {children}
-  </tfoot>
-);
-
-type TableRowProps = React.HTMLAttributes<HTMLTableRowElement> & {
-  selected?: boolean;
-};
-
-export const TableRow = ({
-  selected = false,
-  className,
-  children,
-  ...props
-}: TableRowProps) => (
-  <tr
-    className={classNames(
-      "wim-table__row",
-      selected && "wim-table__row--selected",
+const Table = React.forwardRef<HTMLTableElement, TableProps>(
+  (
+    {
+      asChild = false,
+      striped = false,
+      bordered = false,
+      hoverable = false,
+      fullWidth = false,
+      stickyHeader = false,
+      scrollbar = "default",
+      mobileCard = false,
+      height,
+      maxHeight,
       className,
-    )}
-    {...props}
-  >
-    {children}
-  </tr>
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const containerStyle: React.CSSProperties = {
+      height,
+      maxHeight,
+      overflow: height || maxHeight ? "auto" : undefined,
+    };
+
+    const Component = asChild ? Slot : "table";
+
+    return (
+      <div
+        className={classNames(
+          "wim-table-container",
+          stickyHeader && "wim-table-container--sticky",
+          scrollbar === "subtle" && "wim-subtle-scrollbar",
+          scrollbar === "hidden" && "wim-no-scrollbar",
+        )}
+        style={containerStyle}
+        tabIndex={height || maxHeight ? 0 : undefined}
+      >
+        <Component
+          className={classNames(
+            "wim-table",
+            striped && "wim-table--striped",
+            bordered && "wim-table--bordered",
+            hoverable && "wim-table--hoverable",
+            fullWidth && "wim-table--full-width",
+            stickyHeader && "wim-table--sticky-header",
+            mobileCard && "wim-table--mobile-card",
+            className,
+          )}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          ref={ref as any}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          {...(props as any)}
+        >
+          <Slottable>{children}</Slottable>
+        </Component>
+      </div>
+    );
+  },
 );
 
-type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
+export interface TableHeaderProps extends React.HTMLAttributes<HTMLTableSectionElement> {
+  asChild?: boolean;
+}
+export const TableHeader = React.forwardRef<HTMLTableSectionElement, TableHeaderProps>(
+  ({ asChild = false, className, children, ...props }, ref) => {
+    const Component = asChild ? Slot : "thead";
+    return (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      <Component className={classNames("wim-table__header", className)} ref={ref as any} {...(props as any)}>
+        <Slottable>{children}</Slottable>
+      </Component>
+    );
+  },
+);
+
+export interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionElement> {
+  asChild?: boolean;
+}
+export const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProps>(
+  ({ asChild = false, className, children, ...props }, ref) => {
+    const Component = asChild ? Slot : "tbody";
+    return (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      <Component className={classNames("wim-table__body", className)} ref={ref as any} {...(props as any)}>
+        <Slottable>{children}</Slottable>
+      </Component>
+    );
+  },
+);
+
+export interface TableFooterProps extends React.HTMLAttributes<HTMLTableSectionElement> {
+  asChild?: boolean;
+}
+export const TableFooter = React.forwardRef<HTMLTableSectionElement, TableFooterProps>(
+  ({ asChild = false, className, children, ...props }, ref) => {
+    const Component = asChild ? Slot : "tfoot";
+    return (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      <Component className={classNames("wim-table__footer", className)} ref={ref as any} {...(props as any)}>
+        <Slottable>{children}</Slottable>
+      </Component>
+    );
+  },
+);
+
+export interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
+  asChild?: boolean;
+  selected?: boolean;
+}
+
+export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
+  ({ asChild = false, selected = false, className, children, ...props }, ref) => {
+    const Component = asChild ? Slot : "tr";
+    return (
+      <Component
+        className={classNames("wim-table__row", selected && "wim-table__row--selected", className)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        {...(props as any)}
+      >
+        <Slottable>{children}</Slottable>
+      </Component>
+    );
+  },
+);
+
+export interface TableHeadProps extends React.ThHTMLAttributes<HTMLTableCellElement> {
+  asChild?: boolean;
   sortable?: boolean;
   sortDirection?: "asc" | "desc" | "none";
   onSort?: (e: React.SyntheticEvent) => void;
@@ -140,76 +162,77 @@ type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> & {
   leftOffset?: string | number;
   rightOffset?: string | number;
   stickyZIndex?: number;
-};
+}
 
-export const TableHead = ({
-  sortable = false,
-  sortDirection = "none",
-  onSort,
-  stickyLeft = false,
-  stickyRight = false,
-  leftOffset,
-  rightOffset,
-  stickyZIndex,
-  className,
-  style,
-  children,
-  ...props
-}: TableHeadProps) => {
-  return (
-    <th
-      className={classNames(
-        "wim-table__head",
-        sortable && "wim-table__head--sortable",
-        props.selection && "wim-table__head--selection",
-        stickyLeft && "wim-table__head--sticky-left",
-        stickyRight && "wim-table__head--sticky-right",
-        className,
-      )}
-      style={{
-        ...style,
-        left: stickyLeft ? (leftOffset !== undefined ? leftOffset : 0) : undefined,
-        right: stickyRight ? (rightOffset !== undefined ? rightOffset : 0) : undefined,
-        zIndex: stickyZIndex !== undefined ? stickyZIndex : undefined,
-      }}
-      {...props}
-      onClick={sortable ? onSort : props.onClick}
-      tabIndex={props.tabIndex !== undefined ? props.tabIndex : (sortable ? 0 : undefined)}
-      aria-sort={
-        sortable
-          ? sortDirection === "asc"
-            ? "ascending"
-            : sortDirection === "desc"
-              ? "descending"
-              : "none"
-          : undefined
-      }
-      onKeyDown={(e) => {
-        if (sortable && onSort && (e.key === "Enter" || e.key === " ")) {
-          e.preventDefault();
-          onSort(e);
-        }
-        props.onKeyDown?.(e);
-      }}
-    >
-      <div className="wim-table__head-content">
-        {children}
-        {sortable && (
-          <span
-            className={classNames(
-              "wim-table__sort-icon",
-              `wim-table__sort-icon--${sortDirection}`,
-            )}
-          >
-            <Icon name="ChevronDownIcon" size="sm" />
-          </span>
+export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
+  (
+    {
+      asChild = false,
+      sortable = false,
+      sortDirection = "none",
+      onSort,
+      stickyLeft = false,
+      stickyRight = false,
+      leftOffset,
+      rightOffset,
+      stickyZIndex,
+      className,
+      style,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const Component = asChild ? Slot : "th";
+    return (
+      <Component
+        className={classNames(
+          "wim-table__head",
+          sortable && "wim-table__head--sortable",
+          props.selection && "wim-table__head--selection",
+          stickyLeft && "wim-table__head--sticky-left",
+          stickyRight && "wim-table__head--sticky-right",
+          className,
         )}
-      </div>
-    </th>
-  );
-};
+        style={{
+          ...style,
+          left: stickyLeft ? (leftOffset !== undefined ? leftOffset : 0) : undefined,
+          right: stickyRight ? (rightOffset !== undefined ? rightOffset : 0) : undefined,
+          zIndex: stickyZIndex !== undefined ? stickyZIndex : undefined,
+        }}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        {...(props as any)}
+        onClick={sortable ? onSort : props.onClick}
+        tabIndex={props.tabIndex !== undefined ? props.tabIndex : sortable ? 0 : undefined}
+        aria-sort={
+          sortable ? (sortDirection === "asc" ? "ascending" : sortDirection === "desc" ? "descending" : "none") : undefined
+        }
+        onKeyDown={(e: React.KeyboardEvent<HTMLElement>) => {
+          if (sortable && onSort && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            onSort(e);
+          }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          props.onKeyDown?.(e as any);
+        }}
+      >
+        <div className="wim-table__head-content">
+          <Slottable>{children}</Slottable>
+          {sortable && (
+            <span className={classNames("wim-table__sort-icon", `wim-table__sort-icon--${sortDirection}`)}>
+              <Icon name="ChevronDownIcon" size="sm" />
+            </span>
+          )}
+        </div>
+      </Component>
+    );
+  },
+);
 
-type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
+export interface TableCellProps extends React.TdHTMLAttributes<HTMLTableCellElement> {
+  asChild?: boolean;
   selection?: boolean;
   label?: string;
   stickyLeft?: boolean;
@@ -217,40 +240,52 @@ type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
   leftOffset?: string | number;
   rightOffset?: string | number;
   stickyZIndex?: number;
-};
+}
 
-export const TableCell = ({
-  selection = false,
-  label,
-  stickyLeft = false,
-  stickyRight = false,
-  leftOffset,
-  rightOffset,
-  stickyZIndex,
-  className,
-  style,
-  children,
-  ...props
-}: TableCellProps) => (
-  <td
-    className={classNames(
-      "wim-table__cell",
-      selection && "wim-table__cell--selection",
-      stickyLeft && "wim-table__cell--sticky-left",
-      stickyRight && "wim-table__cell--sticky-right",
+export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
+  (
+    {
+      asChild = false,
+      selection = false,
+      label,
+      stickyLeft = false,
+      stickyRight = false,
+      leftOffset,
+      rightOffset,
+      stickyZIndex,
       className,
-    )}
-    style={{
-      ...style,
-      left: stickyLeft ? (leftOffset !== undefined ? leftOffset : 0) : undefined,
-      right: stickyRight ? (rightOffset !== undefined ? rightOffset : 0) : undefined,
-      zIndex: stickyZIndex !== undefined ? stickyZIndex : undefined,
-    }}
-    data-label={label}
-    {...props}
-  >
-    {children}
-  </td>
+      style,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const Component = asChild ? Slot : "td";
+    return (
+      <Component
+        className={classNames(
+          "wim-table__cell",
+          selection && "wim-table__cell--selection",
+          stickyLeft && "wim-table__cell--sticky-left",
+          stickyRight && "wim-table__cell--sticky-right",
+          className,
+        )}
+        style={{
+          ...style,
+          left: stickyLeft ? (leftOffset !== undefined ? leftOffset : 0) : undefined,
+          right: stickyRight ? (rightOffset !== undefined ? rightOffset : 0) : undefined,
+          zIndex: stickyZIndex !== undefined ? stickyZIndex : undefined,
+        }}
+        data-label={label}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        {...(props as any)}
+      >
+        <Slottable>{children}</Slottable>
+      </Component>
+    );
+  },
 );
 
 Table.displayName = "Table";

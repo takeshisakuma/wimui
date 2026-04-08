@@ -86,7 +86,7 @@
   gap: var(--wim-spacing-md);
   align-items: center;
   padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-  background-color: var(--wim-color-bg-primary);
+  background-color: var(--wim-color-bg-component);
   border-bottom: 1px solid var(--wim-color-border);
   border-radius: var(--wim-radius-lg) var(--wim-radius-lg) 0 0;
 }
@@ -142,7 +142,7 @@
   animation: slideIn 0.2s ease-out;
 
   &:hover {
-    background-color: var(--wim-color-bg-primary);
+    background-color: var(--wim-color-bg-hover);
     border-color: var(--wim-color-primary);
   }
 
@@ -159,7 +159,7 @@
   align-items: center;
   padding: var(--wim-spacing-sm) var(--wim-spacing-md);
   margin-top: auto;
-  background-color: var(--wim-color-bg-primary);
+  background-color: var(--wim-color-bg-component);
   border-top: 1px solid var(--wim-color-border);
   border-radius: 0 0 var(--wim-radius-lg) var(--wim-radius-lg);
 

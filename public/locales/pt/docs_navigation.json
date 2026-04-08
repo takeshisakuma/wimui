@@ -479,6 +479,7 @@
     "tour_keyboard_desc": "Tab move o foco pelos botões Anterior, Próximo e Fechar dentro de cada etapa do tour. Enter ou Espaço ativa o botão focado. Escape fecha o tour.",
     "tour_motion_desc": "As transições são mínimas e propositais, respeitando as preferências de movimento reduzido do usuário.",
     "tour_scenario_1": "Destaque de Recurso: Apresentando uma ferramenta analítica recém-adicionada a usuários existentes ao fazer login.",
-    "tour_scenario_2": "Orientação da Plataforma: Um guia obrigatório de primeira viagem para dashboards SaaS complexos."
+    "tour_scenario_2": "Orientação da Plataforma: Um guia obrigatório de primeira viagem para dashboards SaaS complexos.",
+    "affix_target_note": "Ao usar o Affix para a rolagem de toda a página, o alvo padrão da janela funciona perfeitamente. Contudo, se estiver a usar o Affix dentro de um modal ou numa visualização de rolagem específica, lembre-se de passar o recipiente pai para a propriedade target."
   }
 }

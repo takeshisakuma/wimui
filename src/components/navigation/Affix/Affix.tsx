@@ -58,23 +58,20 @@ export const Affix = ({
     let newAffixStyle: React.CSSProperties | undefined;
     let newPlaceholderStyle: React.CSSProperties | undefined;
 
-    if (offsetTop !== undefined) {
-      if (placeholderRect.top < targetRect.top + offsetTop) {
-        newIsAffixed = true;
-        newAffixStyle = {
-          position: "fixed",
-          top: targetRect.top + offsetTop,
-          width: placeholderRect.width,
-          height: placeholderRect.height,
-          zIndex: 1000,
-        };
-        newPlaceholderStyle = {
-          width: placeholderRect.width,
-          height: placeholderRect.height,
-        };
-      }
-    } else if (offsetBottom !== undefined) {
-      if (placeholderRect.bottom > targetRect.bottom - offsetBottom) {
+    if (offsetTop !== undefined && placeholderRect.top < targetRect.top + offsetTop) {
+      newIsAffixed = true;
+      newAffixStyle = {
+        position: "fixed",
+        top: targetRect.top + offsetTop,
+        width: placeholderRect.width,
+        height: placeholderRect.height,
+        zIndex: 1000,
+      };
+      newPlaceholderStyle = {
+        width: placeholderRect.width,
+        height: placeholderRect.height,
+      };
+    } else if (offsetBottom !== undefined && placeholderRect.bottom > targetRect.bottom - offsetBottom) {
         newIsAffixed = true;
         newAffixStyle = {
           position: "fixed",
@@ -87,7 +84,6 @@ export const Affix = ({
           width: placeholderRect.width,
           height: placeholderRect.height,
         };
-      }
     }
 
     if (newIsAffixed !== affixedRef.current) {

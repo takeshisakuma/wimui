@@ -1,6 +1,4 @@
-@use "./tokens/fonts" as *;
-@use "./tokens/typography" as *;
-@use "./tokens/semantic-colors" as color;
+@use "./tokens/generated/tokens" as *;
 
 /* または、特定の lang 属性がない場合の共通フォントとして設定 */
 body {
@@ -53,89 +51,89 @@ body[lang="pt"] {
 
 /* サイズ */
 .font-size-ex-large {
-  font-size: $size-ex-large;
+  font-size: var(--wim-font-size-xl);
 }
 
 .font-size-large {
-  font-size: $size-large;
+  font-size: var(--wim-font-size-lg);
 }
 
 .font-size-medium {
-  font-size: $size-medium;
+  font-size: var(--wim-font-size-md);
 }
 
 .font-size-small {
-  font-size: $size-small;
+  font-size: var(--wim-font-size-sm);
 }
 
 .font-size-ex-small {
-  font-size: $size-ex-small;
+  font-size: var(--wim-font-size-xs);
 }
 
 /* 色 */
 .text-color-white {
-  color: color.$text-white;
+  color: var(--wim-color-text-white);
 }
 
 .text-color-deepgray {
-  color: color.$text-deepgray;
+  color: var(--wim-color-text-primary);
 }
 
 .text-color-gray {
-  color: color.$text-gray;
+  color: var(--wim-color-text-secondary);
 }
 
 .text-color-lightgray {
-  color: color.$text-lightgray;
+  color: var(--wim-color-text-tertiary);
 }
 
 .text-color-black {
-  color: color.$text-black;
+  color: var(--wim-color-bg-app);
 }
 
 .text-color-error {
-  color: color.$text-error;
+  color: var(--wim-color-text-error);
 }
 
 /* 太さ */
 .font-weight-normal {
-  font-weight: $weight-normal;
+  font-weight: var(--wim-font-weight-normal);
 }
 
 .font-weight-bold {
-  font-weight: $weight-bold;
+  font-weight: var(--wim-font-weight-bold);
 }
 
 /* スタイル */
 .font-style-normal {
-  font-style: $style-normal;
+  font-style: normal;
 }
 
 .font-style-italic {
-  font-style: $style-italic;
+  font-style: italic;
 }
 
 /* 行間 */
 .font-lines-loose-jpan {
-  line-height: $line-height-loose-jpan;
+  line-height: var(--wim-line-height-loose-jp);
 }
 
 .font-lines-normal-jpan {
-  line-height: $line-height-normal-jpan;
+  line-height: var(--wim-line-height-normal-jp);
 }
 
 .font-lines-tight-jpan {
-  line-height: $line-height-tight-jpan;
+  line-height: var(--wim-line-height-tight-jp);
 }
 
 .font-lines-loose-latn {
-  line-height: $line-height-loose-latn;
+  line-height: var(--wim-line-height-loose);
 }
 
 .font-lines-normal-latn {
-  line-height: $line-height-normal-latn;
+  line-height: var(--wim-line-height-normal);
 }
 
 .font-lines-tight-latn {
-  line-height: $line-height-tight-latn;
+  line-height: var(--wim-line-height-tight);
 }

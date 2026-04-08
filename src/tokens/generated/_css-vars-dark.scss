@@ -3,10 +3,6 @@
  */
 
 [data-theme="dark"] {
-  --wim-breakpoint-sm: 576px;
-  --wim-breakpoint-md: 768px;
-  --wim-breakpoint-lg: 992px;
-  --wim-breakpoint-xl: 1200px;
   --wim-color-destructive: #ee0026;
   --wim-color-positive: #33a23d;
   --wim-color-caution: #fc0;
@@ -105,6 +101,10 @@
   --wim-color-avatar-s24: #df4c93;
   --wim-color-chat-bubble-received: color-mix(in srgb, var(--wim-color-caution) 15%, var(--wim-color-bg-secondary));
   --wim-color-chat-bubble-sent: color-mix(in srgb, var(--wim-color-primary) 15%, var(--wim-color-bg-secondary));
+  --wim-breakpoint-sm: 576px;
+  --wim-breakpoint-md: 768px;
+  --wim-breakpoint-lg: 992px;
+  --wim-breakpoint-xl: 1200px;
   --wim-z-sidebar: 900;
   --wim-z-overlay: 1000;
   --wim-z-overlay-panel: 1001;
@@ -186,10 +186,6 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --wim-breakpoint-sm: 576px;
-    --wim-breakpoint-md: 768px;
-    --wim-breakpoint-lg: 992px;
-    --wim-breakpoint-xl: 1200px;
     --wim-color-destructive: #ee0026;
     --wim-color-positive: #33a23d;
     --wim-color-caution: #fc0;
@@ -288,6 +284,10 @@
     --wim-color-avatar-s24: #df4c93;
     --wim-color-chat-bubble-received: color-mix(in srgb, var(--wim-color-caution) 15%, var(--wim-color-bg-secondary));
     --wim-color-chat-bubble-sent: color-mix(in srgb, var(--wim-color-primary) 15%, var(--wim-color-bg-secondary));
+    --wim-breakpoint-sm: 576px;
+    --wim-breakpoint-md: 768px;
+    --wim-breakpoint-lg: 992px;
+    --wim-breakpoint-xl: 1200px;
     --wim-z-sidebar: 900;
     --wim-z-overlay: 1000;
     --wim-z-overlay-panel: 1001;

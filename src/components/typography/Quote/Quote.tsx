@@ -1,9 +1,11 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import "./quote.scss";
 import { ComponentSize } from "../../../types/tokens";
 
-type QuoteProps = React.ComponentPropsWithoutRef<"blockquote"> & {
+export interface QuoteProps extends Omit<React.BlockquoteHTMLAttributes<HTMLQuoteElement>, "cite" | "content"> {
+  asChild?: boolean;
   size?: ComponentSize;
   color?:
     | "black"
@@ -19,33 +21,36 @@ type QuoteProps = React.ComponentPropsWithoutRef<"blockquote"> & {
   content?: React.ReactNode;
   cite?: React.ReactNode;
   border?: boolean;
-};
+}
 
-export const Quote = ({
-  size = "md",
-  content,
-  cite,
-  color = "black",
-  border = true,
-  className,
-  children,
-  ...props
-}: QuoteProps) => {
-  const finalContent = content ?? children;
+export const Quote = React.forwardRef<HTMLQuoteElement, QuoteProps>(
+  (
+    { asChild = false, size = "md", content, cite, color = "black", border = true, className, children, ...props },
+    ref,
+  ) => {
+    const Component = asChild ? Slot : "blockquote";
+    const finalContent = content ?? children;
 
-  return (
-    <blockquote
-      className={classNames(
-        "wim-quote",
-        `wim-quote--${size}`,
-        `wim-quote--${color}`,
-        border && "wim-quote--border",
-        className,
-      )}
-      {...props}
-    >
-      <div className="wim-quote__content">{finalContent}</div>
-      {cite && <cite className="wim-quote__cite">{cite}</cite>}
-    </blockquote>
-  );
-};
+    return (
+      <Component
+        className={classNames(
+          "wim-quote",
+          `wim-quote--${size}`,
+          `wim-quote--${color}`,
+          border && "wim-quote--border",
+          className,
+        )}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
+        {...props}
+      >
+        <div className="wim-quote__content">
+          <Slottable>{finalContent}</Slottable>
+        </div>
+        {cite && <cite className="wim-quote__cite">{cite}</cite>}
+      </Component>
+    );
+  },
+);
+
+Quote.displayName = "Quote";

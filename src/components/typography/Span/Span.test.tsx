@@ -64,4 +64,15 @@ describe("Span", () => {
     const { container } = render(<Span content="Bold" weight="bold" />);
     expect(container.firstChild).toHaveClass("wim-span--bold");
   });
+
+  it("supports asChild prop", () => {
+    render(
+      <Span asChild>
+        <strong data-testid="inner-strong">Strong Text</strong>
+      </Span>
+    );
+    const element = screen.getByTestId("inner-strong");
+    expect(element.tagName).toBe("STRONG");
+    expect(element).toHaveClass("wim-span");
+  });
 });

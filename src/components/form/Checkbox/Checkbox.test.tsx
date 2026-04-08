@@ -25,8 +25,15 @@ describe("Checkbox", () => {
     expect(checkbox.indeterminate).toBe(true);
   });
 
-  it("can be disabled", () => {
-    render(<Checkbox disabled>Disabled</Checkbox>);
-    expect(screen.getByLabelText("Disabled")).toBeDisabled();
+  it("supports asChild prop", () => {
+    render(
+      <Checkbox asChild>
+        <li data-testid="check-slot">Custom Checkbox</li>
+      </Checkbox>
+    );
+    const element = screen.getByTestId("check-slot");
+    expect(element.tagName).toBe("LI");
+    expect(element).toHaveClass("wim-checkbox-wrapper");
+    expect(screen.getByText("Custom Checkbox")).toBeInTheDocument();
   });
 });

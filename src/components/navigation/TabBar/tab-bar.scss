@@ -4,7 +4,7 @@
     width: 100%;
     height: 56px; // Standard mobile tab bar height
     padding-bottom: env(safe-area-inset-bottom); // iOS safe area
-    background-color: var(--wim-color-bg-primary);
+    background-color: var(--wim-color-bg-component);
 
     &--fixed {
       position: fixed;
@@ -91,7 +91,7 @@
       pointer-events: none;
       background-color: var(--wim-color-destructive);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-bg-primary);
+      box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-color-bg-component);
     }
   }
 }
