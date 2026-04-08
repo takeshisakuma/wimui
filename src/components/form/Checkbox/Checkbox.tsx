@@ -29,10 +29,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     return (
       <Component
         className={classNames("wim-checkbox-wrapper", disabled && "wim-checkbox--disabled", className)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
       >
-        <input type="checkbox" className="wim-checkbox-input" disabled={disabled} ref={mergedRef} />
+        <input type="checkbox" className="wim-checkbox-input" disabled={disabled} ref={mergedRef} {...props} />
         <Slottable>{children}</Slottable>
       </Component>
     );

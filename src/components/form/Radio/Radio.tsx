@@ -22,10 +22,8 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     return (
       <Component
         className={classNames("wim-radio-wrapper", disabled && "wim-radio--disabled", className)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
       >
-        <input type="radio" className="wim-radio-input" disabled={disabled} ref={mergedRef} />
+        <input type="radio" className="wim-radio-input" disabled={disabled} ref={mergedRef} {...props} />
         <Slottable>{children}</Slottable>
       </Component>
     );
