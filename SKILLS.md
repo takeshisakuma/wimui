@@ -284,6 +284,23 @@ describe("MyComponent", () => {
 
 ---
 
+## ビルドの安定化と最適化
+
+### 開発サーバーの起動高速化
+Vite の設定（`vite.config.ts`, `.storybook/main.ts`）で以下の最適化を行っています。
+
+- **imagemin の限定実行**: 重い画像圧縮処理（`vite-plugin-imagemin`）は `mode === "production"` の時のみ実行されます。開発時はスキップされ、起動時間が短縮されます。
+- **optimizeDeps の活用**: 頻繁に使用する巨大なライブラリ（`react`, `recharts` 等）を `optimizeDeps.include` に明示することで、初動の依存解決を高速化しています。
+
+### 依存関係のトラブルシューティング（jsmediatags 等）
+Node.js 向けの古いパッケージ（`jsmediatags` 等）は、ブラウザビルドで `fs` や `path` のエラーを引き起こすことがあります。
+
+1. **Vite での define**: `optimizeDeps.esbuildOptions.define` で `global: "globalThis"` を定義し、Node.js 固有のグローバル変数参照を解決します。
+2. **Storybook での Alias**: `jsmediatags` は Storybook の `viteFinal` で `dist/jsmediatags.min.js` を直接参照するようにエイリアスを貼っています。これにより、内部で外部モジュールを require しようとする挙動を防ぎます。
+3. **External 指定**: ライブラリビルド（`vite.config.ts` の `rollupOptions.external`）では、利用側で解決してもらうためにこれらを external に含めています。
+
+---
+
 ## pre-commit フックで自動チェックされる内容
 
 `git commit` 時に lint-staged が以下を自動実行します。

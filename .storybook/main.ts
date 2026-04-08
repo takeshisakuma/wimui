@@ -69,28 +69,34 @@ const config: StorybookConfig = {
           },
         },
         svgr(),
-        viteImagemin({
-          gifsicle: { optimizationLevel: 7 },
-          mozjpeg: { quality: 80 },
-          pngquant: { quality: [0.65, 0.8] },
-          webp: { quality: 80 },
-          svgo: {
-            plugins: [
-              {
-                name: "removeViewBox",
-                active: false,
-              },
-              {
-                name: "removeEmptyAttrs",
-                active: false,
-              },
-            ],
-          },
-        }),
-      ],
+        config.mode !== "development" &&
+          viteImagemin({
+            gifsicle: { optimizationLevel: 7 },
+            mozjpeg: { quality: 80 },
+            pngquant: { quality: [0.65, 0.8] },
+            webp: { quality: 80 },
+            svgo: {
+              plugins: [
+                {
+                  name: "removeViewBox",
+                  active: false,
+                },
+                {
+                  name: "removeEmptyAttrs",
+                  active: false,
+                },
+              ],
+            },
+          }),
+      ].filter(Boolean) as any,
       optimizeDeps: {
         include: ["jsmediatags"],
         exclude: ["@storybook/blocks"],
+        esbuildOptions: {
+          define: {
+            global: "globalThis",
+          },
+        },
       },
       build: {
         chunkSizeWarningLimit: 2000,

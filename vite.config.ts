@@ -16,24 +16,26 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       svgr(),
-      viteImagemin({
-        gifsicle: { optimizationLevel: 7 },
-        mozjpeg: { quality: 80 },
-        pngquant: { quality: [0.65, 0.8] },
-        webp: { quality: 80 },
-        svgo: {
-          plugins: [
-            {
-              name: "removeViewBox",
-              active: false,
-            },
-            {
-              name: "removeEmptyAttrs",
-              active: false,
-            },
-          ],
-        },
-      }),
+      // 開発サーバーの起動高速化のため、imageminはビルド時のみ実行
+      mode !== "development" &&
+        viteImagemin({
+          gifsicle: { optimizationLevel: 7 },
+          mozjpeg: { quality: 80 },
+          pngquant: { quality: [0.65, 0.8] },
+          webp: { quality: 80 },
+          svgo: {
+            plugins: [
+              {
+                name: "removeViewBox",
+                active: false,
+              },
+              {
+                name: "removeEmptyAttrs",
+                active: false,
+              },
+            ],
+          },
+        }),
       // Only generate types once
       !isUMD &&
         dts({
@@ -42,6 +44,23 @@ export default defineConfig(({ mode }) => {
           insertTypesEntry: true,
         }),
     ].filter(Boolean),
+    optimizeDeps: {
+      // 依存関係の事前ビルド対象。ここに追加することで起動時の動的解決を減らし高速化
+      include: [
+        "react",
+        "react-dom",
+        "classnames",
+        "@floating-ui/react",
+        "recharts",
+        "jsmediatags",
+      ],
+      // jsmediatags が Node.js 依存（fsなど）を持つのを回避
+      esbuildOptions: {
+        define: {
+          global: "globalThis",
+        },
+      },
+    },
     build: {
       emptyOutDir: !isUMD,
       lib: isUMD
