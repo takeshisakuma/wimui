@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { FieldLabelContent } from "./FieldLabelContent";
+import badgeStyles from "../data-display/Badge/badge.module.scss";
 
 describe("FieldLabelContent", () => {
   it("renders the label text", () => {
@@ -39,7 +40,7 @@ describe("FieldLabelContent", () => {
     const badge = container.querySelector(".wim-field-label-badge");
     expect(badge).toBeInTheDocument();
     // required badge uses error color, optional uses neutral
-    expect(badge).toHaveClass("wim-badge--error");
+    expect(badge).toHaveClass(badgeStyles.error);
   });
 
   it("applies custom className to the wrapper", () => {
