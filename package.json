@@ -90,8 +90,9 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && vite build --mode umd",
+    "dev": "npm run generate:icons && vite",
+    "build": "npm run generate:icons && vite build && vite build --mode umd",
+    "generate:icons": "node scripts/generate-icons.js",
     "size": "size-limit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -220,6 +221,10 @@
     ],
     "public/locales/**/*.json": [
       "npm run i18n:check"
+    ],
+    "src/icon/*.svg": [
+      "npm run generate:icons",
+      "git add src/icon/index.ts"
     ]
   },
   "dependencies": {

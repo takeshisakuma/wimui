@@ -37,9 +37,10 @@
   src/
     tokens/
       generated/       # 自動生成された SCSS/CSS 変数
-  icon/                # SVGアイコンコンポーネント
-  svg/                 # SVGアセット
-  index.ts             # 公開エクスポート一覧
+    icon/              # SVGアイコンソース (*.svg)
+      index.ts         # 自動生成されたエクスポート定義
+    logo/              # ロゴ等のSVGアセット
+    index.ts           # 公開エクスポート一覧
 
 stories/
   ComponentName/
@@ -322,6 +323,32 @@ Node.js 向けの古いパッケージ（`jsmediatags` 等）は、ブラウザ�
 1. **Vite での define**: `optimizeDeps.esbuildOptions.define` で `global: "globalThis"` を定義し、Node.js 固有のグローバル変数参照を解決します。
 2. **Storybook での Alias**: `jsmediatags` は Storybook の `viteFinal` で `dist/jsmediatags.min.js` を直接参照するようにエイリアスを貼っています。これにより、内部で外部モジュールを require しようとする挙動を防ぎます。
 3. **External 指定**: ライブラリビルド（`vite.config.ts` の `rollupOptions.external`）では、利用側で解決してもらうためにこれらを external に含めています。
+
+---
+
+## アイコン・パイプライン (SVGR Integration)
+
+`src/icon/` に SVG を追加するだけで React コンポーネントとして利用可能になる自動化パイプラインが導入されています。
+
+### 使用方法
+
+1.  **SVG を追加**: `src/icon/` ディレクトリに新しい `.svg` ファイルを置きます（例: `my-icon.svg`）。
+2.  **自動生成**: 保存時またはビルド時に `src/icon/index.ts` が自動更新され、`MyIconIcon` としてエクスポートされます。
+3.  **コンポーネントで使う**:
+    -   **動的指定 (Name-based Lookup)**:
+        ```tsx
+        <Icon name="MyIconIcon" />
+        ```
+    -   **静的インポート (Tree-shaking 向け)**:
+        ```tsx
+        import { MyIconIcon } from "@/icon";
+        <Icon component={MyIconIcon} />
+        ```
+
+### メリット
+-   **手動更新の排除**: `Icon.tsx` の巨大な `switch` 文やマッピングオブジェクトを手動で管理する必要がなくなります。
+-   **Tree-shaking**: 個別のエクスポート形式を提供しているため、使用していないアイコンは最終ビルドから削除されます。
+-   **TypeScript サポート**: `IconName` 型が自動的に更新され、無効なアイコン名を指定するとコンパイルエラーになります。
 
 ---
 
