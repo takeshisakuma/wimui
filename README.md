@@ -172,6 +172,12 @@ git commit -m "commit message" --no-verify
 - CSSクラス名：`wim-` プレフィックスを付けたkebab-case（例: `wim-button`, `wim-button--primary`）
 
 
+## ドキュメントの自動抽出 (Docgen)
+
+WIM UI では、コンポーネントの仕様（Props、デザイントークン、構成要素）を自動抽出し、MDX に埋め込む仕組みを構築しています。
+Vite の開発サーバー起動時やファイル保存時に `src/data/docgen.json` が自動更新されるため、手動でスクリプトを実行する必要はありません。
+MDX の記述方法の詳細は `SKILLS.md` を参照してください。
+
 ## ドキュメントの欠落確認
 node scripts/audit-mdx.js
 

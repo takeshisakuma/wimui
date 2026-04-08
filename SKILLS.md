@@ -240,22 +240,49 @@ status: {
 
 ```
 - コンポーネントの概要
+- Props (自動抽出)
 - Design Intent（デザイン意図）
 - Choice Matrix（使い分け基準）
-- Anatomy（構成要素）
+- Anatomy（構成要素、自動抽出可能）
 - Content Guidelines（コンテンツ指針）
 - Motion Spec（モーション仕様）
 - A11y Spec（アクセシビリティ仕様）
 - Real World Scenarios（ユースケース）
 - Best Practices（ベストプラクティス）
-- デザイントークンを使用している箇所
+- デザイントークンを使用している箇所 (自動抽出)
 - レスポンシブデザインへの対応
 - キーボードナビゲーション
-- テストの実行方法
+- テストの実行方法 (自動生成)
 - 多言語化の対応
 ```
 
 表は `<table>` タグ、リストは `<ul><li>` タグで記述します（Markdown 記法は使用禁止）。
+
+---
+
+## MDX ドキュメントの自動化 (Docgen)
+
+コンポーネントの Props、デザイントークン、Anatomy（構成要素）は自動抽出されます。MDX 内で `<Docgen />` コンポーネントを使用してください。
+
+### 基本的な使い方
+
+```tsx
+import { Docgen } from "../../Docgen";
+
+// すべての情報（Tokens, Anatomy, Props）をまとめて表示
+<Docgen componentName="Button" />
+
+// 特定のセクションのみ表示
+<Docgen componentName="Button" section="tokens" />
+<Docgen componentName="Button" section="anatomy" />
+<Docgen componentName="Button" section="props" />
+```
+
+### 自動抽出の仕組み
+- **Props**: `react-docgen` を使用して TypeScript の型定義から抽出します。
+- **Tokens**: `.scss` ファイル内から `--wim-` で始まるデザイントークンを抽出します。
+- **Anatomy**: `.scss` ファイル内の `.wim-{component}__part` 形式のクラス名から構成要素を抽出します。
+- **更新タイミング**: Vite プラグインによって、ビルド開始時およびコンポーネント/SCSS の保存時に `src/data/docgen.json` が自動更新されます。
 
 ---
 
