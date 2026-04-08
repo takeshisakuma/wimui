@@ -48,95 +48,19 @@ export type WimIntent =
   | "positive";
 
 
+import type {
+  WimColorKey as GeneratedColorKey,
+  WimSpacingKey as GeneratedSpacingKey,
+  WimRadiusKey as GeneratedRadiusKey,
+  WimShadowKey as GeneratedShadowKey,
+  WimZIndexKey as GeneratedZIndexKey,
+  WimOpacityKey as GeneratedOpacityKey
+} from './generated-tokens';
+
 /**
  * Color tokens keys available as CSS variables.
  */
-export type WimColorKey =
-  // Semantic brand colors
-  | "primary"
-  | "primary-hover"
-  | "primary-active"
-  | "primary-light"
-  | "primary-container-alpha"
-  | "secondary"
-  | "informative"
-  | "destructive"
-  | "positive"
-  | "caution"
-  | "disabled"
-  // Text colors
-  | "text-primary"
-  | "text-secondary"
-  | "text-tertiary"
-  | "text-disabled"
-  | "text-white"
-  | "text-error"
-  | "text-placeholder"
-  // Text on semantic backgrounds
-  | "text-on-primary"
-  | "text-on-secondary"
-  | "text-on-destructive"
-  | "text-on-positive"
-  | "text-on-caution"
-  | "text-on-informative"
-  | "text-on-disabled"
-  | "text-on-overlay"
-  // Surface / background colors
-  | "surface"
-  | "surface-variant"
-  | "surface-hover"
-  | "surface-variant-alpha"
-  | "bg-app"
-  | "bg-component"
-  | "bg-primary"
-  | "bg-secondary"
-  | "bg-tertiary"
-  | "bg-hover"
-  | "ghost-bg-hover"
-  // Border / focus colors
-  | "border"
-  | "border-secondary"
-  | "focus-outline"
-  // Overlay colors
-  | "overlay-bg"
-  | "overlay-bg-light"
-  | "overlay-bg-dark"
-  | "overlay-bg-medium"
-  | "overlay-control-track"
-  | "overlay-control-hover"
-  | "overlay-control-active"
-  | "overlay-item-hover"
-  | "overlay-menu-bg"
-  | "overlay-divider"
-  // Scrollbar colors
-  | "scrollbar-thumb"
-  | "scrollbar-track"
-  // Tinted accent backgrounds
-  | "primary-subtle"
-  | "destructive-subtle"
-  // Inverted surface (always-dark variant)
-  | "bg-inverted"
-  | "border-inverted"
-  | "text-muted-on-inverted"
-  // Void background (always pure black)
-  | "bg-void"
-  // Avatar colors (theme-adaptive PCCS tones)
-  | "avatar-default"
-  | "avatar-s1"
-  | "avatar-s3"
-  | "avatar-s5"
-  | "avatar-s7"
-  | "avatar-s10"
-  | "avatar-s12"
-  | "avatar-s14"
-  | "avatar-s16"
-  | "avatar-s18"
-  | "avatar-s20"
-  | "avatar-s22"
-  | "avatar-s24"
-  // Chat bubble backgrounds
-  | "chat-bubble-received"
-  | "chat-bubble-sent";
+export type WimColorKey = GeneratedColorKey;
 
 /**
  * Color tokens available as CSS variable strings.
@@ -150,18 +74,7 @@ export type WimColor = LiteralWithAutocomplete<WimColorKey | WimColorToken>;
 /**
  * Spacing tokens keys.
  */
-export type WimSpacingKey =
-  | "3xs"
-  | "2xs"
-  | "xs"
-  | "sm"
-  | "md"
-  | "lg"
-  | "xl"
-  | "2xl"
-  | "3xl"
-  | "4xl"
-  | "5xl";
+export type WimSpacingKey = GeneratedSpacingKey;
 
 /**
  * Spacing tokens available as CSS variable strings.
@@ -173,7 +86,7 @@ export type WimSpacing = LiteralWithAutocomplete<WimSpacingKey | WimSpacingToken
 /**
  * Radius tokens keys.
  */
-export type WimRadiusKey = "sm" | "md" | "lg" | "xl" | "full";
+export type WimRadiusKey = GeneratedRadiusKey;
 
 /**
  * Radius tokens available as CSS variable strings.
@@ -185,7 +98,7 @@ export type WimRadius = LiteralWithAutocomplete<WimRadiusKey | WimRadiusToken>;
 /**
  * Shadow tokens keys.
  */
-export type WimShadowKey = "none" | "xs" | "sm" | "md" | "lg" | "inset" | "focus" | "field-focus";
+export type WimShadowKey = GeneratedShadowKey;
 
 /**
  * Shadow tokens available as CSS variable strings.
@@ -251,7 +164,7 @@ export type WimLineHeight = LiteralWithAutocomplete<WimLineHeightKey | WimLineHe
 /**
  * Opacity tokens keys.
  */
-export type WimOpacityKey = "disabled" | "ghost" | "secondary";
+export type WimOpacityKey = GeneratedOpacityKey;
 
 /**
  * Opacity tokens available as CSS variable strings.
@@ -284,15 +197,8 @@ export type FieldStatus = "default" | "error";
 
 /**
  * Z-index stacking layer keys.
- * Use these tokens for any z-index value above the local stacking context (i.e. values > 10).
- * Local relative stacking within a component (z-index: 0/1/2/-1) may use raw values.
  */
-export type WimZIndexKey =
-  | "sidebar"       // 900  — サイドバー（非オーバーレイ時）
-  | "overlay"       // 1000 — Dialog・Drawer・Dropdown・Tooltip・Popover 等
-  | "overlay-panel" // 1001 — オーバーレイ上に重なるパネル（Drawer コンテンツ等）
-  | "overlay-step"  // 1002 — Tour ステップバブル
-  | "toast";        // 9999 — Toast・Snackbar・Notification（常に最前面）
+export type WimZIndexKey = GeneratedZIndexKey;
 
 /**
  * Z-index tokens available as CSS variable strings.

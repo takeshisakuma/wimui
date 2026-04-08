@@ -119,7 +119,8 @@
     "check:hierarchy": "node scripts/check_hierarchy.js",
     "check:stories": "node scripts/check_stories_keys.js",
     "check:casing": "node scripts/check-git-casing.cjs",
-    "tokens:check": "node scripts/check-token-types.js",
+    "tokens:build": "node style-dictionary.config.js",
+    "tokens:check": "npm run tokens:build",
     "prepare": "husky"
   },
   "repository": {
@@ -188,6 +189,7 @@
     "size-limit": "^12.0.1",
     "storybook": "^10.3.3",
     "storybook-react-i18next": "^10.1.1",
+    "style-dictionary": "5.4.0",
     "stylelint": "^17.6.0",
     "stylelint-config-recess-order": "^7.7.0",
     "stylelint-config-standard-scss": "^17.0.0",
