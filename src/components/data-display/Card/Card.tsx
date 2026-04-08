@@ -1,9 +1,14 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot } from "@radix-ui/react-slot";
 import type { ComponentSize } from "../../../types/tokens";
 import "./card.scss";
 
 export type CardProps<C extends React.ElementType = "div"> = {
+  /**
+   * If true, the card will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /**
    * カードのバリアント
    */
@@ -22,21 +27,35 @@ export type CardProps<C extends React.ElementType = "div"> = {
   as?: C;
 } & React.ComponentPropsWithoutRef<C>;
 
-/**
- * `Card` はコンテンツをグループ化して表示するためのコンテナコンポーネントです。
- */
-export const Card = <C extends React.ElementType = "div">({
-  variant = "elevated",
-  padding = "md",
-  radius = "md",
-  as,
-  className,
-  children,
-  ...props
-}: CardProps<C>) => {
-  const Component = as || "div";
+interface CardComponent {
+  <C extends React.ElementType = "div">(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    props: CardProps<C> & { ref?: React.Ref<any> },
+  ): React.ReactElement;
+  displayName?: string;
+  Header: typeof CardHeader;
+  Body: typeof CardBody;
+  Footer: typeof CardFooter;
+}
+
+const CardInner = <C extends React.ElementType = "div">(
+  {
+    asChild = false,
+    variant = "elevated",
+    padding = "md",
+    radius = "md",
+    as,
+    className,
+    children,
+    ...props
+  }: CardProps<C>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref: React.Ref<any>,
+) => {
+  const Component = asChild ? Slot : (as || "div");
   return (
     <Component
+      ref={ref}
       className={classNames(
         "wim-card",
         `wim-card--${variant}`,
@@ -50,6 +69,14 @@ export const Card = <C extends React.ElementType = "div">({
     </Component>
   );
 };
+
+/**
+ * `Card` はコンテンツをグループ化して表示するためのコンテナコンポーネントです。
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Card: CardComponent = React.forwardRef(CardInner as any) as any;
+
+Card.displayName = "Card";
 
 export const CardHeader = ({
   className,

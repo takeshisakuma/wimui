@@ -224,6 +224,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",
+    "@radix-ui/react-slot": "1.2.4",
     "classnames": "^2.5.1",
     "jsmediatags": "^3.9.7",
     "qrcode.react": "^4.2.0",

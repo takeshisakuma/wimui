@@ -4,6 +4,10 @@ import { Flex } from "../../layout/Flex/Flex";
 import "./group.scss";
 
 export type GroupProps = React.ComponentPropsWithoutRef<"div"> & {
+  /**
+   * If true, the group will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** Vertical alignment */
   align?: "start" | "center" | "end" | "stretch" | "baseline";
   /** Horizontal alignment */

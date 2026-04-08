@@ -1,10 +1,15 @@
 import React from "react";
-import "./heading.scss";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
+import "./heading.scss";
 import { WimColor } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  /**
+   * If true, the heading will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /**
    * The semantic HTML tag to use.
    */
@@ -25,62 +30,73 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   children: React.ReactNode;
 }
 
-export const Heading = ({
-  tag = "h1",
-  size = "xl",
-  color,
-  align = "left",
-  decoration = "none",
-  className,
-  style,
-  children,
-  ...props
-}: HeadingProps) => {
-  const finalContent =
-    decoration !== "none" ? (
-      <span
-        className={
-          decoration === "highlight"
-            ? "wim-heading__highlight"
-            : `wim-heading--${decoration}`
-        }
-      >
-        {children}
-      </span>
-    ) : (
-      children
-    );
-
-  const mappedColors = [
-    "black",
-    "deepgray",
-    "gray",
-    "lightgray",
-    "white",
-    "error",
-    "primary",
-    "success",
-    "warning",
-    "info",
-  ];
-  const useClassNameForColor = typeof color === "string" && mappedColors.includes(color);
-
-  return React.createElement(
-    tag,
+export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
+  (
     {
-      className: classNames(
-        "wim-heading",
-        `wim-heading--${size}`,
-        useClassNameForColor && `wim-heading--${color}`,
-        `wim-heading--${align}`,
-        className,
-      ),
-      style: {
-        color: !useClassNameForColor ? getColorValue(color) : undefined,
-        ...(style as React.CSSProperties),
-      },
-      ...props,
+      asChild = false,
+      tag = "h1",
+      size = "xl",
+      color,
+      align = "left",
+      decoration = "none",
+      className,
+      style,
+      children,
+      ...props
     },
-    finalContent,
-  );
-};
+    ref,
+  ) => {
+    const finalContent =
+      decoration !== "none" ? (
+        <span
+          className={
+            decoration === "highlight"
+              ? "wim-heading__highlight"
+              : `wim-heading--${decoration}`
+          }
+        >
+          <Slottable>{children}</Slottable>
+        </span>
+      ) : (
+        <Slottable>{children}</Slottable>
+      );
+
+    const mappedColors = [
+      "black",
+      "deepgray",
+      "gray",
+      "lightgray",
+      "white",
+      "error",
+      "primary",
+      "success",
+      "warning",
+      "info",
+    ];
+    const useClassNameForColor = typeof color === "string" && mappedColors.includes(color);
+
+    const Component = asChild ? Slot : tag;
+
+    return (
+      <Component
+        ref={ref}
+        className={classNames(
+          "wim-heading",
+          `wim-heading--${size}`,
+          useClassNameForColor && `wim-heading--${color}`,
+          `wim-heading--${align}`,
+          className,
+        )}
+        style={{
+          color: !useClassNameForColor ? getColorValue(color) : undefined,
+          ...(style as React.CSSProperties),
+        }}
+        {...props}
+      >
+        {finalContent}
+      </Component>
+    );
+  },
+);
+
+Heading.displayName = "Heading";

@@ -1,14 +1,20 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/tokens";
 import "./chip.scss";
-export type ChipProps = {
+
+export type ChipProps = React.HTMLAttributes<HTMLElement> & {
+  /**
+   * If true, the chip will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** 表示するコンテンツ */
   children?: React.ReactNode;
   /** クリック時のイベント。提供されるとボタンとして動作します。 */
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>) => void;
   /** 削除時のイベント。提供されると×ボタンが表示されます。 */
   onDelete?: (e: React.SyntheticEvent) => void;
   /** アバター（画像や頭文字など） */
@@ -29,77 +35,86 @@ export type ChipProps = {
   deleteAriaLabel?: string;
   /** 追加のクラス名 */
   className?: string;
-  /** その他のprops */
-  [key: string]: unknown;
 };
 
 /**
  * 選択、フィルタリング、または入力に使用されるインタラクティブなトークン。
  */
-export const Chip = ({
-  children,
-  onClick,
-  onDelete,
-  avatar,
-  icon,
-  selected = false,
-  disabled = false,
-  intent = "primary",
-  variant = "solid",
-  size = "md",
-  deleteAriaLabel,
-  className,
-  ...props
-}: ChipProps) => {
-  const { t } = useTranslation("common");
-  const resolvedDeleteAriaLabel = deleteAriaLabel ?? t("a11y.delete");
-  const Component = onClick ? "button" : "span";
-  const commonProps = {
-    className: classNames(
-      "wim-chip",
-      `wim-chip--${ intent }`,
-      `wim-chip--${variant}`,
-      `wim-chip--${size}`,
-      selected && "wim-chip--selected",
-      onClick && !disabled && "wim-chip--clickable",
-      disabled && "wim-chip--disabled",
+export const Chip = React.forwardRef<HTMLElement, ChipProps>(
+  (
+    {
+      asChild = false,
+      children,
+      onClick,
+      onDelete,
+      avatar,
+      icon,
+      selected = false,
+      disabled = false,
+      intent = "primary",
+      variant = "solid",
+      size = "md",
+      deleteAriaLabel,
       className,
-    ),
-    onClick: !disabled ? onClick : undefined,
-    disabled: disabled,
-    type: onClick ? ("button" as const) : undefined,
-    ...props,
-  };
-
-  return (
-    <Component {...commonProps}>
-      {avatar && <span className="wim-chip__avatar">{avatar}</span>}
-      {!avatar && icon && <span className="wim-chip__icon">{icon}</span>}
-      <span className="wim-chip__label">
-        {children}
-      </span>
-      {onDelete && !disabled && (
-        <span
-          className="wim-chip__delete"
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete(e);
-          }}
-          role="button"
-          aria-label={resolvedDeleteAriaLabel}
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
+      ...props
+    },
+    ref,
+  ) => {
+    const { t } = useTranslation("common");
+    const resolvedDeleteAriaLabel = deleteAriaLabel ?? t("a11y.delete");
+    const Component = asChild ? Slot : (onClick ? "button" : "span");
+    
+    return (
+      <Component
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
+        className={classNames(
+          "wim-chip",
+          `wim-chip--${intent}`,
+          `wim-chip--${variant}`,
+          `wim-chip--${size}`,
+          selected && "wim-chip--selected",
+          onClick && !disabled && "wim-chip--clickable",
+          disabled && "wim-chip--disabled",
+          className,
+        )}
+        onClick={!disabled ? onClick : undefined}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        disabled={asChild ? undefined : (disabled as any)}
+        type={asChild ? undefined : (onClick ? "button" : undefined)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        {...(props as any)}
+      >
+        {avatar && <span className="wim-chip__avatar">{avatar}</span>}
+        {!avatar && icon && <span className="wim-chip__icon">{icon}</span>}
+        <span className="wim-chip__label">
+          <Slottable>{children}</Slottable>
+        </span>
+        {onDelete && !disabled && (
+          <span
+            className="wim-chip__delete"
+            onClick={(e) => {
               e.stopPropagation();
               onDelete(e);
-            }
-          }}
-        >
-          <Icon name="CloseIcon" size="sm" />
-        </span>
-      )}
-    </Component>
-  );
-};
+            }}
+            role="button"
+            aria-label={resolvedDeleteAriaLabel}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                e.stopPropagation();
+                onDelete(e);
+              }
+            }}
+          >
+            <Icon name="CloseIcon" size="sm" />
+          </span>
+        )}
+      </Component>
+    );
+  },
+);
+
+Chip.displayName = "Chip";
 

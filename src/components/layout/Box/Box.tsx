@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot } from "@radix-ui/react-slot";
 import {
   WimColor,
   WimSpacing,
@@ -18,6 +19,10 @@ import "./box.scss";
 export type BoxProps<C extends React.ElementType = "div"> = {
   /** The component used for the root node. Either a string to use a HTML element or a component. */
   as?: C;
+  /**
+   * If true, the box will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** Padding */
   p?: number | WimSpacing;
   /** Padding top */
@@ -70,6 +75,7 @@ export const Box = React.forwardRef(
   <C extends React.ElementType = "div">(
     {
       as,
+      asChild = false,
       p,
       pt,
       pr,
@@ -98,7 +104,7 @@ export const Box = React.forwardRef(
     }: BoxProps<C>,
     ref: React.Ref<HTMLElement>,
   ) => {
-    const Component = as || "div";
+    const Component = asChild ? Slot : (as || "div");
 
     const wVars = generateResponsiveVars(w, "--wim-box-w", (v) => getSpacingValue(v) || "");
     const hVars = generateResponsiveVars(h, "--wim-box-h", (v) => getSpacingValue(v) || "");

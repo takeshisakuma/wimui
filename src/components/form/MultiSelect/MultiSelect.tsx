@@ -291,7 +291,7 @@ export const MultiSelect = ({
                     variant="solid"
                     disabled={disabled}
                     onDelete={
-                      !disabled ? (e) => handleRemove(e, opt.value) : undefined
+                      !disabled ? (e: React.SyntheticEvent) => handleRemove(e, opt.value) : undefined
                     }
                     className="wim-multiselect-badge"
                   >

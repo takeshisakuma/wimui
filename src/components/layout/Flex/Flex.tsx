@@ -1,9 +1,14 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot } from "@radix-ui/react-slot";
 import { WimSpacing } from "../../../types/tokens";
 import "./flex.scss";
 
 export type FlexProps = React.ComponentPropsWithoutRef<"div"> & {
+  /**
+   * If true, the flex will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** Flex direction */
   direction?: "row" | "row-reverse" | "column" | "column-reverse";
   /** Align-items */
@@ -46,6 +51,7 @@ const mapJustify = (val?: string) => {
 export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
   (
     {
+      asChild = false,
       direction = "row",
       align,
       justify,
@@ -90,15 +96,17 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
       ...style,
     };
 
+    const Component = asChild ? Slot : "div";
+
     return (
-      <div
+      <Component
         ref={ref}
         className={classNames("wim-flex", className)}
         style={flexStyle}
         {...props}
       >
         {children}
-      </div>
+      </Component>
     );
   },
 );

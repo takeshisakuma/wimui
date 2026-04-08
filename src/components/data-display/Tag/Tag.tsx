@@ -4,6 +4,10 @@ import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/token
 import "./tag.scss";
 
 export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
+  /**
+   * If true, the tag will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** 表示するコンテンツ */
   children?: React.ReactNode;
   /** ステータス */
@@ -19,11 +23,15 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
 /**
  * カテゴリ分けや属性のラベルとして使用される非インタラクティブなコンポーネント。
  */
-export const Tag = ({ children, icon, ...props }: TagProps) => {
-  return (
-    <IndicatorBase prefixClass="wim-tag" icon={icon} {...props}>
-      {children}
-    </IndicatorBase>
-  );
-};
+export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
+  ({ children, icon, ...props }, ref) => {
+    return (
+      <IndicatorBase ref={ref} prefixClass="wim-tag" icon={icon} {...props}>
+        {children}
+      </IndicatorBase>
+    );
+  },
+);
+
+Tag.displayName = "Tag";
 

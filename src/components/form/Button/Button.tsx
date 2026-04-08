@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import "./button.scss";
 import { Icon } from "../../media/Icon/Icon";
 import type { WimColor, ComponentSize, ButtonVariant, ButtonIntent } from "../../../types/tokens";
@@ -8,6 +9,11 @@ import { getColorValue } from "../../../utilities/style-utils";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
+  /**
+   * If true, the button will be rendered as its child, merging its props onto that child.
+   * Useful for using the button styles with Link components (e.g. from React Router or Next.js).
+   */
+  asChild?: boolean;
   /** ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。 */
   backgroundColor?: WimColor;
   size?: ComponentSize;
@@ -31,6 +37,7 @@ export const Button = React.forwardRef<
 >(
   (
     {
+      asChild = false,
       size = "md",
       variant = "outline",
       intent = "default",
@@ -143,7 +150,7 @@ export const Button = React.forwardRef<
               className="wim-button__label"
               style={{ textAlign: "inherit", width: "100%" }}
             >
-              {children}
+              <Slottable>{children}</Slottable>
             </span>
           )}
           {iconContent && iconPosition === "right" && iconContent}
@@ -156,10 +163,12 @@ export const Button = React.forwardRef<
       </>
     );
 
+    const Root = asChild ? Slot : "button";
+
     return (
-      <button
+      <Root
         ref={mergedRef}
-        type="button"
+        type={asChild ? undefined : "button"}
         style={{
           ...props.style,
           ...(backgroundColor ? { backgroundColor: getColorValue(backgroundColor) } : {}),
@@ -188,13 +197,13 @@ export const Button = React.forwardRef<
           !children && !!icon && "wim-button--icon-only",
           className,
         )}
-        disabled={isDisabled || loading}
+        disabled={(isDisabled || loading) && !asChild ? true : undefined}
         aria-label={resolvedAriaLabel}
         aria-busy={loading || undefined}
-        {...props}
+        {...(asChild ? props : { ...props })}
       >
         {content}
-      </button>
+      </Root>
     );
   },
 );

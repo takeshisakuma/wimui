@@ -5,6 +5,10 @@ import { ResponsiveProp } from "../../layout/Grid/grid-utils";
 import "./stack.scss";
 
 export type StackProps<C extends React.ElementType = "div"> = BoxProps<C> & {
+  /**
+   * If true, the stack will be rendered as its child, merging its props onto that child.
+   */
+  asChild?: boolean;
   /** Gap between children. Can be a number (px) or a spacing token (e.g., 'sm', 'md', 'lg'). */
   gap?: number | string;
   /** Stack direction */
@@ -50,6 +54,7 @@ const mapJustify = (val?: string) => {
 export const Stack = React.forwardRef(
   <C extends React.ElementType = "div">(
     {
+      asChild = false,
       direction = "column",
       gap = "md",
       align,
@@ -75,6 +80,8 @@ export const Stack = React.forwardRef(
         "3xl",
         "4xl",
         "5xl",
+        "6xl",
+        "7xl",
       ];
       if (typeof val === "string" && tokens.includes(val)) {
         return `var(--wim-spacing-${val})`;
@@ -102,6 +109,7 @@ export const Stack = React.forwardRef(
 
     return (
       <Box
+        asChild={asChild}
         ref={ref}
         display="flex"
         className={classNames("wim-stack", className)}

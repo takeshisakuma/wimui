@@ -83,9 +83,10 @@ export const WithIcon: Story = {
     return (
       <Chip
         {...args}
-        label={t("story.selectbox_opt4")}
         icon={<Icon name="CircleIcon" size="sm" />}
-      />
+      >
+        {t("story.selectbox_opt4")}
+      </Chip>
     );
   },
 };

@@ -1,52 +1,23 @@
 import React from "react";
-import classNames from "classnames";
-import { Button } from "../../form/Button/Button";
-import { Icon } from "../../media/Icon/Icon";
+import { Button, ButtonProps } from "../../form/Button/Button";
 
-type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> &
-  Omit<React.ComponentPropsWithoutRef<typeof Button>, "onClick" | "type">;
+export type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> &
+  Omit<ButtonProps, "onClick" | "type">;
 
 /**
  * ボタンの見た目をしたアンカー（リンク）コンポーネント。
+ * internally uses Button with asChild pattern.
  */
-export const LinkButton = ({
-  className,
-  size = "md",
-  variant = "outline",
-  intent = "default",
-  backgroundColor,
-  children,
-  icon,
-  iconPosition = "left",
-  "aria-label": ariaLabel,
-  ...props
-}: LinkButtonProps) => {
-  const iconName = typeof icon === "string"
-    ? (icon as React.ComponentProps<typeof Icon>["name"])
-    : undefined;
-  return (
-    <a
-      className={classNames(
-        "wim-button",
-        `wim-button--${size}`,
-        `wim-button--${variant}`,
-        `wim-button--${intent}`,
-        !children && !!icon && "wim-button--icon-only",
-        className,
-      )}
-      style={backgroundColor ? { backgroundColor } : undefined}
-      {...props}
-      aria-label={ariaLabel}
-    >
-      <span className="wim-button__inner">
-        {iconName && iconPosition === "left" && (
-          <Icon name={iconName} size={size} />
-        )}
-        {children && <span className="wim-button__label">{children}</span>}
-        {iconName && iconPosition === "right" && (
-          <Icon name={iconName} size={size} />
-        )}
-      </span>
-    </a>
-  );
-};
+export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
+  ({ children, ...props }, ref) => {
+    return (
+      <Button asChild {...(props as unknown as ButtonProps)}>
+        <a ref={ref} {...props}>
+          {children}
+        </a>
+      </Button>
+    );
+  },
+);
+
+LinkButton.displayName = "LinkButton";

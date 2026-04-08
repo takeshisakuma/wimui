@@ -1,10 +1,16 @@
 import React from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import "./link.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
 
-type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
+export type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
+  /**
+   * If true, the link will be rendered as its child, merging its props onto that child.
+   * Useful for using the link styles with Link components from React Router or Next.js.
+   */
+  asChild?: boolean;
   label?: React.ReactNode;
   size?: ComponentSize;
   priority?: "primary" | "secondary" | "tertiary";
@@ -13,46 +19,60 @@ type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
   external?: boolean;
 };
 
-export const Link = ({
-  label,
-  size = "md",
-  priority = "primary",
-  iconName,
-  iconPosition = "left",
-  external = false,
-  className,
-  children,
-  target,
-  ...props
-}: LinkProps) => {
-  return (
-    <a
-      className={classNames(
-        "wim-link",
-        `wim-link--${size}`,
-        `wim-link--${priority}`,
-        external && "wim-link--external",
-        className,
-      )}
-      target={external ? "_blank" : target}
-      {...props}
-    >
-      <span className="wim-link__inner">
-        {iconName && iconPosition === "left" && (
-          <Icon name={iconName} size={size} />
+export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
+  (
+    {
+      asChild = false,
+      label,
+      size = "md",
+      priority = "primary",
+      iconName,
+      iconPosition = "left",
+      external = false,
+      className,
+      children,
+      target,
+      ...props
+    },
+    ref,
+  ) => {
+    const Component = asChild ? Slot : "a";
+    const resolvedTarget = external ? "_blank" : target;
+
+    return (
+      <Component
+        ref={ref}
+        className={classNames(
+          "wim-link",
+          `wim-link--${size}`,
+          `wim-link--${priority}`,
+          external && "wim-link--external",
+          className,
         )}
-        <span className="wim-link__label">{label ?? children}</span>
-        {iconName && iconPosition === "right" && (
-          <Icon name={iconName} size={size} />
-        )}
-        {external && (
-          <Icon
-            name="ExternalLinkIcon"
-            size={size}
-            className="wim-link__external-icon"
-          />
-        )}
-      </span>
-    </a>
-  );
-};
+        target={resolvedTarget}
+        {...props}
+      >
+        <span className="wim-link__inner">
+          {iconName && iconPosition === "left" && (
+            <Icon name={iconName} size={size} />
+          )}
+          <span className="wim-link__label">
+            <Slottable>{label ?? children}</Slottable>
+          </span>
+          {iconName && iconPosition === "right" && (
+            <Icon name={iconName} size={size} />
+          )}
+          {external && (
+            <Icon
+              name="ExternalLinkIcon"
+              size={size}
+              className="wim-link__external-icon"
+            />
+          )}
+        </span>
+      </Component>
+    );
+  },
+);
+
+Link.displayName = "Link";
