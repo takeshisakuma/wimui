@@ -3,6 +3,7 @@ import { mergeConfig } from "vite";
 import viteImagemin from "vite-plugin-imagemin";
 import svgr from "vite-plugin-svgr";
 import path from "path";
+import i18nAutoNamespacePlugin from "../scripts/i18n-namespace-plugin.js";
 
 const config: StorybookConfig = {
   stories: [
@@ -50,6 +51,7 @@ const config: StorybookConfig = {
         ],
       },
       plugins: [
+        i18nAutoNamespacePlugin(),
         {
           name: 'force-resolve-storybook-blocks',
           enforce: 'pre',

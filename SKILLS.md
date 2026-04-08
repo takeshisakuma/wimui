@@ -161,8 +161,8 @@ public/locales/pt/namespace.json
 
 ### 新しいネームスペース（JSONファイル）を追加するとき
 
-`stories/i18nConstants.ts` の `ALL_NAMESPACES` 配列にも必ず追加してください。
-追加しないと Storybook 上で翻訳キーがそのまま表示されます（テスト・lint では検出不可）。
+`public/locales/en/` に JSON ファイルを作成すると、Vite のプラグインによって `stories/i18nConstants.ts` に自動的に登録されます。
+Storybook や開発サーバーが起動していれば、ファイル作成後すぐに反映されます。
 
 ### MDX での翻訳表示
 
@@ -317,6 +317,6 @@ Node.js 向けの古いパッケージ（`jsmediatags` 等）は、ブラウザ�
 | SCSS をインポートしていない | `ComponentName.tsx` で `import "./component-name.scss"` を必ず記述 |
 | MDX でストーリー名が一致しない | ストーリーのエクスポート名（PascalCase）と `<Canvas of={...}>` の参照名を一致させる |
 | 翻訳キーが一部のロケールだけに存在する | `npm run i18n:sync` → `npm run i18n:check` で確認 |
-| `ALL_NAMESPACES` に追加していない | 新規 JSON ファイル作成時は `stories/i18nConstants.ts` も更新 |
+| `ALL_NAMESPACES` に追加されていない | ファイル名が `.json` か、`public/locales/en/` に配置されているか確認 |
 | `--wim-color-*` 以外の色変数を stories/ で使う | `--wim-color-*` プレフィックス付きトークンに統一 |
 | `src/index.ts` へのエクスポート漏れ | 新規コンポーネントは必ず追加 |

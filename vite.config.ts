@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 import viteImagemin from "vite-plugin-imagemin";
 import svgr from "vite-plugin-svgr";
 import dts from "vite-plugin-dts";
+import i18nAutoNamespacePlugin from "./scripts/i18n-namespace-plugin.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +17,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       svgr(),
+      i18nAutoNamespacePlugin(),
       // 開発サーバーの起動高速化のため、imageminはビルド時のみ実行
       mode !== "development" &&
         viteImagemin({

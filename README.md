@@ -121,6 +121,9 @@ npm run i18n:sync               # enを基準にja/ptへGoogle AIで自動翻訳
 | `i18n:check` | ロケール間の欠落（en に翻訳があるが ja/pt に未追加） |
 | `i18n:check:components` | コードで `t("key")` を使い始めたがどのロケールにも未登録 |
 
+**Namespace の自動登録：**
+`public/locales/en/` に 新しい JSON ファイルを追加すると、Vite のビルド時に `stories/i18nConstants.ts` へ自動的に登録されます。手動での更新は不要です。
+
 **推奨フロー：**
 1. `npm run i18n:check:components` でコード上の未登録キーを検出
 2. EN の翻訳ファイルにキーを追加
