@@ -2,9 +2,10 @@
   .wim-button {
     position: relative;
     box-sizing: border-box;
-    display: inline-grid;
-    grid-template-areas: "stack";
-    place-items: center;
+    display: inline-flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    justify-content: center;
     padding: 0;
     font: inherit;
     font-weight: var(--wim-font-weight-medium);
@@ -34,19 +35,15 @@
     }
 
     &__inner {
-      display: flex;
-      grid-area: stack;
-      gap: var(--wim-spacing-xs);
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      min-width: 0;
-      height: 100%;
+      /* Removed separate inner styles, layout moved to root */
+      display: contents;
     }
 
     &__loader {
+      position: absolute;
+      top: 0;
+      left: 0;
       display: flex;
-      grid-area: stack;
       align-items: center;
       justify-content: center;
       width: 100%;

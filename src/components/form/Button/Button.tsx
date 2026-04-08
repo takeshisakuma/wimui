@@ -129,40 +129,6 @@ export const Button = React.forwardRef<
 
     const iconContent = renderIcon();
 
-    const content = (
-      <>
-        <span
-          className="wim-button__inner"
-          style={{
-            ...(loading ? { visibility: "hidden" } : {}),
-            justifyContent: justifyStyle,
-            textAlign:
-              justify === "start"
-                ? "left"
-                : justify === "end"
-                  ? "right"
-                  : "center",
-          }}
-        >
-          {iconContent && iconPosition === "left" && iconContent}
-          {children && (
-            <span
-              className="wim-button__label"
-              style={{ textAlign: "inherit", width: "100%" }}
-            >
-              <Slottable>{children}</Slottable>
-            </span>
-          )}
-          {iconContent && iconPosition === "right" && iconContent}
-        </span>
-        {loading && (
-          <span className="wim-button__loader">
-            <Icon name="LoadingIcon" size={size} />
-          </span>
-        )}
-      </>
-    );
-
     const Root = asChild ? Slot : "button";
 
     return (
@@ -171,19 +137,20 @@ export const Button = React.forwardRef<
         type={asChild ? undefined : "button"}
         style={{
           ...props.style,
+          justifyContent: justifyStyle,
           ...(backgroundColor ? { backgroundColor: getColorValue(backgroundColor) } : {}),
           ...(animateWidth && animatedWidth !== "auto"
             ? {
-                width: `${animatedWidth}px`,
-                transitionProperty:
-                  props.style?.transitionProperty ||
-                  "width, background-color, border-color, box-shadow, transform",
-                transitionDuration: props.style?.transitionDuration || "0.3s",
-                transitionTimingFunction: props.style?.transitionTimingFunction || "ease",
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                textOverflow: "clip",
-              }
+              width: `${animatedWidth}px`,
+              transitionProperty:
+                props.style?.transitionProperty ||
+                "width, background-color, border-color, box-shadow, transform",
+              transitionDuration: props.style?.transitionDuration || "0.3s",
+              transitionTimingFunction: props.style?.transitionTimingFunction || "ease",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "clip",
+            }
             : {}),
         }}
         className={classNames(
@@ -202,7 +169,14 @@ export const Button = React.forwardRef<
         aria-busy={loading || undefined}
         {...(asChild ? props : { ...props })}
       >
-        {content}
+        {iconContent && iconPosition === "left" && iconContent}
+        <Slottable>{children}</Slottable>
+        {iconContent && iconPosition === "right" && iconContent}
+        {loading && (
+          <span className="wim-button__loader">
+            <Icon name="LoadingIcon" size={size} />
+          </span>
+        )}
       </Root>
     );
   },

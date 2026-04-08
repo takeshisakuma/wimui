@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, ButtonProps } from "../../form/Button/Button";
 
+import classNames from "classnames";
+
 export type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> &
   Omit<ButtonProps, "onClick" | "type">;
 
@@ -9,10 +11,15 @@ export type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> &
  * internally uses Button with asChild pattern.
  */
 export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, icon, className, ...props }, ref) => {
     return (
-      <Button asChild {...(props as unknown as ButtonProps)}>
-        <a ref={ref} {...props}>
+      <Button
+        asChild
+        icon={icon}
+        className={classNames({ "wim-button--icon-only": !children && !!icon }, className)}
+        {...(props as ButtonProps)}
+      >
+        <a ref={ref} href={props.href}>
           {children}
         </a>
       </Button>

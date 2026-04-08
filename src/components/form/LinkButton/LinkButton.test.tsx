@@ -1,6 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { LinkButton } from "./LinkButton";
+import { vi } from "vitest";
+
+// Mock Icon because it might use assets/etc
+vi.mock("../../media/Icon/Icon", () => ({
+  Icon: ({ name }: { name: string }) => <span data-testid="icon">{name}</span>,
+}));
 
 describe("LinkButton", () => {
   it("renders like a button but is anchor", () => {
@@ -37,7 +43,7 @@ describe("LinkButton", () => {
   });
 
   it("applies icon-only class when iconName is set and no children", () => {
-    render(<LinkButton href="#" icon="SearchIcon" />);
+    render(<LinkButton href="#" icon="SearchIcon" aria-label="search" />);
     expect(screen.getByRole("link")).toHaveClass("wim-button--icon-only");
   });
 
@@ -46,22 +52,26 @@ describe("LinkButton", () => {
     expect(screen.getByRole("link")).not.toHaveClass("wim-button--icon-only");
   });
 
-  it("renders icon on the left by default does not show right container", () => {
-    const { container } = render(<LinkButton href="#" icon="HomeIcon" iconPosition="left">Link</LinkButton>);
-    const inner = container.querySelector(".wim-button__inner");
-    expect(inner).toBeInTheDocument();
+  it("renders icon on the left by default", () => {
+    const { container } = render(<LinkButton href="#" icon="HomeIcon">Home</LinkButton>);
+    const icon = container.querySelector('[data-testid="icon"]');
+    expect(icon).toBeInTheDocument();
   });
 
   it("renders icon on the right with iconPosition=right", () => {
-    const { container } = render(<LinkButton href="#" icon="HomeIcon" iconPosition="right">Link</LinkButton>);
-    const inner = container.querySelector(".wim-button__inner");
-    expect(inner).toBeInTheDocument();
+    const { container } = render(
+      <LinkButton href="#" icon="HomeIcon" iconPosition="right">
+        Home
+      </LinkButton>,
+    );
+    const icon = container.querySelector('[data-testid="icon"]');
+    expect(icon).toBeInTheDocument();
   });
 
   it("applies backgroundColor style attribute", () => {
     const { container } = render(<LinkButton href="#" backgroundColor="red">Styled</LinkButton>);
     const link = container.querySelector("a");
-    expect(link?.getAttribute("style")).toContain("background-color");
+    expect(link).toHaveStyle({ "background-color": "rgb(255, 0, 0)" });
   });
 
   it("applies custom className", () => {
