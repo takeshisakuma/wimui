@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { SwitchGroup } from "./SwitchGroup";
+import styles from "./switch-group.module.scss";
 
 describe("SwitchGroup", () => {
   const options = [
@@ -69,7 +70,7 @@ describe("SwitchGroup", () => {
 
   it("applies horizontal direction class", () => {
     const { container } = render(<SwitchGroup options={options} direction="horizontal" />);
-    expect(container.querySelector(".wim-switch-group--horizontal")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.horizontal}`)).toBeInTheDocument();
   });
 
   it("renders label and sets aria-labelledby", () => {

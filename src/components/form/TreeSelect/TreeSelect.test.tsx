@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { TreeSelect, TreeSelectNode } from "./TreeSelect";
+import styles from "./tree-select.module.scss";
 
 const treeData: TreeSelectNode[] = [
   {
@@ -49,7 +50,7 @@ describe("TreeSelect", () => {
 
     expect(onChange).toHaveBeenCalledWith("node-2");
     // Verify it's displayed in the trigger
-    const triggerValue = screen.getByRole("combobox").querySelector(".wim-tree-select__value");
+    const triggerValue = screen.getByRole("combobox").querySelector(`.${styles.value}`);
     expect(triggerValue?.textContent).toBe("Node 2");
   });
 
@@ -68,7 +69,7 @@ describe("TreeSelect", () => {
     expect(onChange).toHaveBeenLastCalledWith("child-1-1");
     
     // Verify it's displayed in the trigger (should NOT be parent "Node 1")
-    const triggerValue = screen.getByRole("combobox").querySelector(".wim-tree-select__value");
+    const triggerValue = screen.getByRole("combobox").querySelector(`.${styles.value}`);
     expect(triggerValue?.textContent).toBe("Child 1-1");
   });
 

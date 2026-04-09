@@ -1,13 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { SearchInput } from "./SearchInput";
+import inputBaseStyles from "../InputBase/input-base.module.scss";
 
 describe("SearchInput", () => {
   it("renders with search icon", () => {
     const { container } = render(<SearchInput />);
     // SearchIcon should be present (via Input component)
     expect(
-      container.querySelector(".wim-input-icon--left"),
+      container.querySelector(`.${inputBaseStyles.icon}.${inputBaseStyles.left}`),
     ).toBeInTheDocument();
   });
 

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { PhoneInput, PHONE_COUNTRIES } from "./PhoneInput";
+import styles from "./phone-input.module.scss";
 
 describe("PhoneInput", () => {
   it("renders the phone number input", () => {
@@ -15,13 +16,13 @@ describe("PhoneInput", () => {
 
   it("shows default country US dial code in preview", () => {
     const { container } = render(<PhoneInput />);
-    const preview = container.querySelector(".wim-phone-input__dial-preview");
+    const preview = container.querySelector(`.${styles.dialPreview}`);
     expect(preview).toHaveTextContent("🇺🇸 +1");
   });
 
   it("shows selected country dial code in preview when countryCode prop changes", () => {
     const { container } = render(<PhoneInput countryCode="JP" />);
-    const preview = container.querySelector(".wim-phone-input__dial-preview");
+    const preview = container.querySelector(`.${styles.dialPreview}`);
     expect(preview).toHaveTextContent("🇯🇵 +81");
   });
 
@@ -77,11 +78,11 @@ describe("PhoneInput", () => {
 
   it("applies error class when error is set", () => {
     const { container } = render(<PhoneInput error="Error" />);
-    expect(container.querySelector(".wim-phone-input--error")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.error}`)).toBeInTheDocument();
   });
 
   it("applies disabled class when disabled", () => {
     const { container } = render(<PhoneInput disabled />);
-    expect(container.querySelector(".wim-phone-input--disabled")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.disabled}`)).toBeInTheDocument();
   });
 });

@@ -1,6 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Slider } from "./Slider";
+import styles from "./slider.module.scss";
+import fieldStyles from "../FieldTemplate/field-template.module.scss";
 
 describe("Slider", () => {
   it("renders with initial value", () => {
@@ -57,8 +59,8 @@ describe("Slider", () => {
       <Slider defaultValue={50} min={0} max={100} onChange={onChange} onAfterChange={onAfterChange} />
     );
     
-    const sliderContainer = container.querySelector(".wim-slider") as HTMLDivElement;
-    const trackContainer = container.querySelector(".wim-slider__track-container") as HTMLDivElement;
+    const sliderContainer = container.querySelector('[role="presentation"]') as HTMLDivElement;
+    const trackContainer = container.querySelector(`.${styles.trackContainer}`) as HTMLDivElement;
     
     if (trackContainer) {
       trackContainer.getBoundingClientRect = vi.fn().mockReturnValue({
@@ -81,8 +83,8 @@ describe("Slider", () => {
   it("handles touch events", () => {
     const onChange = vi.fn();
     const { container } = render(<Slider min={0} max={100} onChange={onChange} />);
-    const slider = container.querySelector(".wim-slider") as HTMLElement;
-    const track = container.querySelector(".wim-slider__track-container") as HTMLElement;
+    const slider = container.querySelector('[role="presentation"]') as HTMLElement;
+    const track = container.querySelector(`.${styles.trackContainer}`) as HTMLElement;
     
     vi.spyOn(track, "getBoundingClientRect").mockReturnValue({
       left: 0, width: 100, top: 0, height: 10, bottom: 10, right: 100, x: 0, y: 0, toJSON: () => {},
@@ -111,9 +113,10 @@ describe("Slider", () => {
         disabled
       />
     );
-    expect(container.querySelector(".wim-field-template")).toHaveClass("wim-field-template--horizontal");
-    expect(container.querySelector(".wim-slider")).toHaveClass("wim-slider--disabled");
-    expect(container.querySelector(".wim-slider-container")).toHaveClass("custom-slider");
+    expect(container.querySelector(`.${fieldStyles.root}`)).toHaveClass(fieldStyles.horizontal);
+    const sliderRoot = container.querySelector('[role="presentation"]');
+    expect(sliderRoot).toHaveClass(styles.disabled);
+    expect(container.querySelector(`.${fieldStyles.root}`)).toHaveClass("custom-slider");
     expect(screen.getByRole("alert")).toHaveTextContent("Field error");
   });
 });

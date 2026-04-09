@@ -1,6 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { SegmentedControl } from "./SegmentedControl";
+import styles from "./segmented-control.module.scss";
+import fieldStyles from "../FieldTemplate/field-template.module.scss";
 
 describe("SegmentedControl", () => {
   const options = [
@@ -32,7 +34,7 @@ describe("SegmentedControl", () => {
       <SegmentedControl options={options} value="2" onChange={() => {}} />,
     );
     const activeItem = screen.getByText("Option 2").closest("button");
-    expect(activeItem).toHaveClass("wim-segmented-control__item--active");
+    expect(activeItem).toHaveClass(styles.active);
   });
 
   it("handles keyboard navigation (ArrowRight, ArrowDown, ArrowLeft, ArrowUp)", () => {
@@ -69,9 +71,9 @@ describe("SegmentedControl", () => {
         className="my-custom"
       />,
     );
-    const el = container.querySelector(".wim-segmented-control");
-    expect(el).toHaveClass("wim-segmented-control--lg");
-    expect(el).toHaveClass("wim-segmented-control--full-width");
+    const el = screen.getByRole("radiogroup");
+    expect(el).toHaveClass(styles.lg);
+    expect(el).toHaveClass(styles.fullWidth);
     expect(container.firstChild).toHaveClass("my-custom"); // FieldTemplate container
   });
 
@@ -82,25 +84,25 @@ describe("SegmentedControl", () => {
       <SegmentedControl options={iconOptions} value="1" onChange={() => {}} />,
     );
     const btn = screen.getByRole("radio");
-    expect(btn).toHaveClass("wim-segmented-control__item--icon-only");
+    expect(btn).toHaveClass(styles.iconOnly);
     // Icon renders svg
     expect(btn.querySelector("svg")).toBeInTheDocument();
   });
 
   it("applies small and medium size classes", () => {
-    const { container, rerender } = render(
+    const { rerender } = render(
       <SegmentedControl options={options} value="1" onChange={() => {}} size="sm" />
     );
-    expect(container.querySelector(".wim-segmented-control")).toHaveClass("wim-segmented-control--sm");
+    expect(screen.getByRole("radiogroup")).toHaveClass(styles.sm);
 
     rerender(<SegmentedControl options={options} value="1" onChange={() => {}} size="md" />);
-    expect(container.querySelector(".wim-segmented-control")).toHaveClass("wim-segmented-control--md");
+    expect(screen.getByRole("radiogroup")).toHaveClass(styles.md);
   });
 
   it("applies horizontal layout class", () => {
     const { container } = render(
       <SegmentedControl options={options} value="1" onChange={() => {}} layout="horizontal" />
     );
-    expect(container.querySelector(".wim-field-template")).toHaveClass("wim-field-template--horizontal");
+    expect(container.querySelector(`.${fieldStyles.root}`)).toHaveClass(fieldStyles.horizontal);
   });
 });

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { OtpInput } from "./OtpInput";
+import styles from "./otp-input.module.scss";
 
 describe("OtpInput", () => {
   it("renders the correct number of input boxes", () => {
@@ -105,7 +106,7 @@ describe("OtpInput", () => {
   it("renders with error state", () => {
     const { container } = render(<OtpInput length={1} error="error" />);
     const input = container.querySelector("input");
-    expect(input).toHaveClass("wim-otp-input--error");
+    expect(input).toHaveClass(styles.error);
   });
 
   it("is disabled when disabled prop is true", () => {

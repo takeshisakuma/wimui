@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { ColorInput } from "./ColorInput";
+import styles from "./color-input.module.scss";
 
 describe("ColorInput", () => {
   it("renders color input", () => {
@@ -14,15 +15,14 @@ describe("ColorInput", () => {
     const { container } = render(
       <ColorInput defaultValue="#000000" aria-label="dark color" />,
     );
-    const fieldTemplate = container.firstChild as HTMLElement;
-    expect(fieldTemplate.className).toContain("wim-color-input--dark");
+    // ColorInput has className applied to its root component (Input, which delegates to FieldTemplate)
+    expect(container.firstChild).toHaveClass(styles.dark);
   });
 
   it("does not apply --dark class when the selected color is light", () => {
     const { container } = render(
       <ColorInput defaultValue="#ffffff" aria-label="light color" />,
     );
-    const fieldTemplate = container.firstChild as HTMLElement;
-    expect(fieldTemplate.className).not.toContain("wim-color-input--dark");
+    expect(container.firstChild).not.toHaveClass(styles.dark);
   });
 });

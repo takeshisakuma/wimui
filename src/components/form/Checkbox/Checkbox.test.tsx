@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Checkbox } from "./Checkbox";
+import styles from "./checkbox.module.scss";
 
 describe("Checkbox", () => {
   it("renders with children", () => {
@@ -33,7 +34,7 @@ describe("Checkbox", () => {
     );
     const element = screen.getByTestId("check-slot");
     expect(element.tagName).toBe("LI");
-    expect(element).toHaveClass("wim-checkbox-wrapper");
+    expect(element).toHaveClass(styles.root);
     expect(screen.getByText("Custom Checkbox")).toBeInTheDocument();
   });
 });

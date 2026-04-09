@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { FloatButton } from "./FloatButton";
+import styles from "./float-button.module.scss";
 
 // Mock translation
 vi.mock("react-i18next", () => ({
@@ -21,7 +22,7 @@ describe("FloatButton", () => {
     render(<FloatButton label="Create" />);
     expect(screen.getByText("Create")).toBeInTheDocument();
     expect(screen.getByRole("button")).toHaveClass(
-      "wim-float-button--extended",
+      styles.extended,
     );
   });
 
@@ -68,7 +69,7 @@ describe("FloatButton", () => {
 
   it("renders dot badge", () => {
     const { container } = render(<FloatButton badge={true} />);
-    expect(container.querySelector(".wim-float-button__badge--dot")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.dot}`)).toBeInTheDocument();
   });
 
   it("renders description", () => {
@@ -78,23 +79,23 @@ describe("FloatButton", () => {
 
   it("renders small size", () => {
     render(<FloatButton size="sm" />);
-    expect(screen.getByRole("button")).toHaveClass("wim-float-button--sm");
+    expect(screen.getByRole("button")).toHaveClass(styles.sm);
   });
 
   it("renders large size", () => {
     render(<FloatButton size="lg" />);
-    expect(screen.getByRole("button")).toHaveClass("wim-float-button--lg");
+    expect(screen.getByRole("button")).toHaveClass(styles.lg);
   });
 
   it("renders primary variant and square shape", () => {
     render(<FloatButton variant="primary" shape="square" />);
     const btn = screen.getByRole("button");
-    expect(btn).toHaveClass("wim-float-button--primary");
-    expect(btn).toHaveClass("wim-float-button--square");
+    expect(btn).toHaveClass(styles.primary);
+    expect(btn).toHaveClass(styles.square);
   });
 
   it("renders shrink class", () => {
     render(<FloatButton label="Create" shrink />);
-    expect(screen.getByRole("button")).toHaveClass("wim-float-button--shrink");
+    expect(screen.getByRole("button")).toHaveClass(styles.shrink);
   });
 });

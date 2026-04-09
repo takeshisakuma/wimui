@@ -1,6 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { RangeSlider } from "./RangeSlider";
+import styles from "./range-slider.module.scss";
+import fieldStyles from "../FieldTemplate/field-template.module.scss";
 
 describe("RangeSlider", () => {
   it("renders with default values", () => {
@@ -49,7 +51,7 @@ describe("RangeSlider", () => {
     const { container } = render(<RangeSlider min={0} max={100} defaultValue={[20, 80]} onChange={onChange} />);
     
     // Mock getBoundingClientRect for track container
-    const track = container.querySelector(".wim-range-slider__track-container") as HTMLDivElement;
+    const track = container.querySelector(`.${styles.trackContainer}`) as HTMLDivElement;
     if (track) {
       track.getBoundingClientRect = vi.fn().mockReturnValue({
         left: 0,
@@ -65,7 +67,7 @@ describe("RangeSlider", () => {
     }
 
     // Click at 50%
-    fireEvent.mouseDown(container.querySelector(".wim-range-slider")!, { clientX: 50 });
+    fireEvent.mouseDown(container.querySelector('[role="presentation"]')!, { clientX: 50 });
     // Since 50 is exactly between 20 and 80, but the code does:
     // distMin = |20 - 50| = 30. distMax = |80 - 50| = 30.
     // else { targetHandle = clickValue < currentValue[0] ? "min" : "max"; }
@@ -76,7 +78,7 @@ describe("RangeSlider", () => {
   it("handles mouse move and up on global document", () => {
     const onAfterChange = vi.fn();
     const { container } = render(<RangeSlider min={0} max={100} defaultValue={[20, 80]} onAfterChange={onAfterChange} />);
-    const track = container.querySelector(".wim-range-slider__track-container") as HTMLElement;
+    const track = container.querySelector(`.${styles.trackContainer}`) as HTMLElement;
     vi.spyOn(track, "getBoundingClientRect").mockReturnValue({
       left: 0, width: 100, top: 0, height: 10, bottom: 10, right: 100, x: 0, y: 0, toJSON: () => {},
     } as DOMRect);
@@ -92,7 +94,7 @@ describe("RangeSlider", () => {
   it("handles touch events on handle", () => {
     const onChange = vi.fn();
     const { container } = render(<RangeSlider min={0} max={100} defaultValue={[20, 80]} onChange={onChange} />);
-    const track = container.querySelector(".wim-range-slider__track-container") as HTMLElement;
+    const track = container.querySelector(`.${styles.trackContainer}`) as HTMLElement;
     vi.spyOn(track, "getBoundingClientRect").mockReturnValue({
       left: 0, width: 100, top: 0, height: 10, bottom: 10, right: 100, x: 0, y: 0, toJSON: () => {},
     } as DOMRect);
@@ -125,7 +127,7 @@ describe("RangeSlider", () => {
         className="custom-range" 
       />
     );
-    expect(container.querySelector(".wim-field-template")).toHaveClass("wim-field-template--horizontal");
-    expect(container.querySelector(".wim-range-slider-container")).toHaveClass("custom-range");
+    expect(container.querySelector(`.${fieldStyles.root}`)).toHaveClass(fieldStyles.horizontal);
+    expect(container.querySelector('[role="presentation"]')).toHaveClass(styles.root);
   });
 });

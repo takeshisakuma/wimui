@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Input } from "./Input";
 import { createRef as reactCreateRef } from "react";
+import baseStyles from "../InputBase/input-base.module.scss";
 
 describe("Input", () => {
   it("renders input", () => {
@@ -59,7 +60,7 @@ describe("Input", () => {
     expect(input).toHaveValue("hello");
 
     // Find and click the clear button
-    const clearBtn = document.querySelector(".wim-input-base__clear-button") as HTMLElement;
+    const clearBtn = document.querySelector(`.${baseStyles.iconButton}`) as HTMLElement;
     if (clearBtn) fireEvent.click(clearBtn);
   });
 
@@ -77,13 +78,15 @@ describe("Input", () => {
 
   it("applies fullWidth class", () => {
     render(<Input fullWidth />);
-    expect(screen.getByRole("textbox")).toHaveClass("wim-input--full-width");
+    const input = screen.getByRole("textbox");
+    const inputBase = input.parentElement!;
+    expect(inputBase).toHaveClass(baseStyles.fullWidth);
   });
 
   it("renders clickable left icon with onLeftIconClick", () => {
     const onLeftIconClick = vi.fn();
     render(<Input leftIcon="SearchIcon" onLeftIconClick={onLeftIconClick} />);
-    const btn = document.querySelector(".wim-input-icon-button") as HTMLElement;
+    const btn = document.querySelector(`.${baseStyles.iconButton}`) as HTMLElement;
     if (btn) {
       fireEvent.click(btn);
       expect(onLeftIconClick).toHaveBeenCalled();
@@ -91,21 +94,24 @@ describe("Input", () => {
   });
 
   it("renders with numeric width", () => {
-    const { container } = render(<Input width={200} />);
-    const wrapper = container.querySelector(".wim-input-base") as HTMLElement;
+    render(<Input width={200} />);
+    const input = screen.getByRole("textbox");
+    const wrapper = input.parentElement!;
     // Numeric width should set custom width CSS variable
     expect(wrapper).toBeInTheDocument();
   });
 
   it("renders with semantic width", () => {
-    const { container } = render(<Input width="md" />);
-    const wrapper = container.querySelector(".wim-input--width-md") as HTMLElement;
-    expect(wrapper).toBeInTheDocument();
+    render(<Input width="md" />);
+    const input = screen.getByRole("textbox");
+    const wrapper = input.parentElement!;
+    expect(wrapper).toHaveClass(baseStyles.widthMd);
   });
 
   it("renders with string custom width", () => {
-    const { container } = render(<Input width="300px" />);
-    const wrapper = container.querySelector(".wim-input--has-custom-width") as HTMLElement;
-    expect(wrapper).toBeInTheDocument();
+    render(<Input width="300px" />);
+    const input = screen.getByRole("textbox");
+    const wrapper = input.parentElement!;
+    expect(wrapper).toHaveClass(baseStyles.hasCustomWidth);
   });
 });

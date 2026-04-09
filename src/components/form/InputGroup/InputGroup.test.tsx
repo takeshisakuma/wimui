@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { InputGroup, InputGroupText } from "./InputGroup";
+import styles from "./input-group.module.scss";
 
 describe("InputGroup", () => {
   it("renders children", () => {
@@ -20,10 +21,7 @@ describe("InputGroup", () => {
         <input />
       </InputGroup>,
     );
-    // Need to check container class.
-    // We can add testId or inspect parent of child.
     const input = screen.getByRole("textbox");
-    // InputGroup is div.
-    expect(input.parentElement).toHaveClass("wim-input-group--full-width");
+    expect(input.parentElement).toHaveClass(styles.fullWidth);
   });
 });

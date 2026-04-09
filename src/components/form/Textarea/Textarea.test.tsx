@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Textarea } from "./Textarea";
+import styles from "./textarea.module.scss";
 
 describe("Textarea", () => {
   it("renders and accepts input", () => {
@@ -18,18 +19,18 @@ describe("Textarea", () => {
 
   it("applies fullWidth class", () => {
     render(<Textarea fullWidth />);
-    expect(screen.getByRole("textbox")).toHaveClass("wim-textarea--full-width");
+    expect(screen.getByRole("textbox")).toHaveClass(styles.fullWidth);
   });
 
   it("applies fieldSizing content class", () => {
     render(<Textarea fieldSizing="content" />);
-    expect(screen.getByRole("textbox")).toHaveClass("wim-textarea--field-sizing-content");
+    expect(screen.getByRole("textbox")).toHaveClass(styles.fieldSizingContent);
   });
 
   it("handles error state and aria-describedby", () => {
     render(<Textarea error="This is required" />);
     const textarea = screen.getByRole("textbox");
-    expect(textarea).toHaveClass("wim-textarea--error");
+    expect(textarea).toHaveClass(styles.error);
     expect(textarea).toHaveAttribute("aria-invalid", "true");
     
     // The error message is rendered within a div with role="alert"
@@ -40,9 +41,9 @@ describe("Textarea", () => {
 
   it("applies variant classes", () => {
     const { rerender } = render(<Textarea variant="outline" />);
-    expect(screen.getByRole("textbox")).toHaveClass("wim-textarea--outline");
+    expect(screen.getByRole("textbox")).toHaveClass(styles.outline);
 
     rerender(<Textarea variant="ghost" />);
-    expect(screen.getByRole("textbox")).toHaveClass("wim-textarea--ghost");
+    expect(screen.getByRole("textbox")).toHaveClass(styles.ghost);
   });
 });

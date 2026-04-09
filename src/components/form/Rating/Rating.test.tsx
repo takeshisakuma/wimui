@@ -1,30 +1,32 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Rating } from "./Rating";
+import styles from "./rating.module.scss";
+import fieldStyles from "../FieldTemplate/field-template.module.scss";
 
 describe("Rating", () => {
   it("renders correct number of stars", () => {
     const { container } = render(<Rating count={5} />);
-    expect(container.querySelectorAll(".wim-rating__star")).toHaveLength(5);
+    expect(container.querySelectorAll(`.${styles.star}`)).toHaveLength(5);
   });
 
   it("calls onChange when a star is clicked", () => {
     const onChange = vi.fn();
     const { container } = render(<Rating count={5} onChange={onChange} />);
-    const stars = container.querySelectorAll(".wim-rating__star");
+    const stars = container.querySelectorAll(`.${styles.star}`);
     fireEvent.click(stars[2]); // 3rd star
     expect(onChange).toHaveBeenCalledWith(3);
   });
 
   it("shows half stars when displayValue has .5", () => {
     const { container } = render(<Rating value={2.5} allowHalf />);
-    const stars = container.querySelectorAll(".wim-rating__star");
-    expect(stars[2]).toHaveClass("wim-rating__star--half");
+    const stars = container.querySelectorAll(`.${styles.star}`);
+    expect(stars[2]).toHaveClass(styles.half);
   });
 
   it("is disabled when disabled prop is true", () => {
     render(<Rating disabled />);
-    expect(screen.getByRole("radiogroup")).toHaveClass("wim-rating--disabled");
+    expect(screen.getByRole("radiogroup")).toHaveClass(styles.disabled);
   });
 
   describe("roving tabindex", () => {
@@ -219,7 +221,7 @@ describe("Rating", () => {
       const { container } = render(
         <Rating value={3} count={5} readOnly onChange={onChange} />,
       );
-      const stars = container.querySelectorAll(".wim-rating__star");
+      const stars = container.querySelectorAll(`.${styles.star}`);
       fireEvent.click(stars[4]);
       expect(onChange).not.toHaveBeenCalled();
     });
@@ -229,14 +231,14 @@ describe("Rating", () => {
       const { container } = render(
         <Rating value={3} count={5} readOnly onChange={onChange} />,
       );
-      const stars = container.querySelectorAll(".wim-rating__star");
+      const stars = container.querySelectorAll(`.${styles.star}`);
       fireEvent.keyDown(stars[2], { key: "ArrowRight" });
       expect(onChange).not.toHaveBeenCalled();
     });
 
     it("sets all stars to tabIndex=-1 in readOnly mode", () => {
       const { container } = render(<Rating value={3} count={5} readOnly />);
-      const stars = container.querySelectorAll(".wim-rating__star");
+      const stars = container.querySelectorAll(`.${styles.star}`);
       stars.forEach((star) => {
         expect(star).toHaveAttribute("tabindex", "-1");
       });
@@ -244,8 +246,8 @@ describe("Rating", () => {
 
     it("does not apply disabled styling in readOnly mode", () => {
       const { container } = render(<Rating value={3} count={5} readOnly />);
-      expect(container.querySelector(".wim-rating")).not.toHaveClass(
-        "wim-rating--disabled",
+      expect(container.querySelector(`.${styles.root}`)).not.toHaveClass(
+        styles.disabled,
       );
     });
   });
@@ -269,14 +271,14 @@ describe("Rating", () => {
 
     it("applies layout classes and custom className", () => {
       const { container } = render(<Rating layout="horizontal" className="custom-rating" />);
-      expect(container.querySelector(".wim-field-template")).toHaveClass("wim-field-template--horizontal");
-      expect(container.querySelector(".wim-rating-container")).toHaveClass("custom-rating");
+      expect(container.querySelector(`.${fieldStyles.root}`)).toHaveClass(fieldStyles.horizontal);
+      expect(container.querySelector(`.${styles.root}`)).toHaveClass("custom-rating");
     });
 
     it("handles click for half stars when allowHalf is true", () => {
       const onChange = vi.fn();
       const { container } = render(<Rating allowHalf count={5} onChange={onChange} />);
-      const stars = container.querySelectorAll(".wim-rating__star");
+      const stars = container.querySelectorAll(`.${styles.star}`);
       
       // Mock getBoundingClientRect for the star
       const star = stars[2];

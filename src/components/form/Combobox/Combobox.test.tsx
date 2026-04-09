@@ -127,6 +127,7 @@ describe("Combobox", () => {
     fireEvent.keyDown(input, { key: "ArrowDown" }); // index=0
     fireEvent.keyDown(input, { key: "ArrowUp" });   // index=-1 → length-1=2
 
+    
     const descendant = input.getAttribute("aria-activedescendant");
     expect(descendant).toMatch(/-option-2$/);
   });
@@ -236,8 +237,8 @@ describe("Combobox", () => {
   });
 
   it("resets keyboard navigation flag on mouse move", () => {
-    render(<Combobox options={options} />);
-    const combobox = document.querySelector(".wim-combobox")!;
+    const { container } = render(<Combobox options={options} />);
+    const combobox = container.querySelector("[data-keyboard-nav]")!;
 
     fireEvent.focus(screen.getByRole("combobox"));
     fireEvent.keyDown(screen.getByRole("combobox"), { key: "ArrowDown" });

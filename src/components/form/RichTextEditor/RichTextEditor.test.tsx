@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { RichTextEditor } from "./RichTextEditor";
+import styles from "./rich-text-editor.module.scss";
 
 describe("RichTextEditor", () => {
   it("renders the toolbar and editor area", () => {
@@ -62,12 +63,12 @@ describe("RichTextEditor", () => {
 
   it("applies fullWidth class", () => {
     const { container } = render(<RichTextEditor fullWidth />);
-    expect(container.querySelector(".wim-rte--full-width")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.fullWidth}`)).toBeInTheDocument();
   });
 
   it("applies ghost variant class", () => {
     const { container } = render(<RichTextEditor variant="ghost" />);
-    expect(container.querySelector(".wim-rte--ghost")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.ghost}`)).toBeInTheDocument();
   });
 
   it("has correct aria-label on toolbar", () => {

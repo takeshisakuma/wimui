@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { DatePicker } from "./DatePicker";
+import styles from "./date-picker.module.scss";
 
 describe("DatePicker", () => {
   it("renders input", () => {
@@ -12,17 +13,14 @@ describe("DatePicker", () => {
     render(<DatePicker />);
     const input = screen.getByPlaceholderText(/Select date/i);
 
-    // Ideally checking for calendar presence visually.
-    // Calendar component implementation details not fully known, but usually has days.
-    // Or we can check if dropdown container appears.
     expect(
-      document.querySelector(".wim-datepicker-dropdown"),
+      document.querySelector(`.${styles.dropdown}`),
     ).not.toBeInTheDocument();
 
     fireEvent.click(input);
 
     expect(
-      document.querySelector(".wim-datepicker-dropdown"),
+      document.querySelector(`.${styles.dropdown}`),
     ).toBeInTheDocument();
   });
 
@@ -59,24 +57,24 @@ describe("DatePicker", () => {
     render(<DatePicker />);
     const input = screen.getByRole("combobox");
     fireEvent.keyDown(input, { key: "Enter" });
-    expect(document.querySelector(".wim-datepicker-dropdown")).toBeInTheDocument();
+    expect(document.querySelector(`.${styles.dropdown}`)).toBeInTheDocument();
   });
 
   it("opens calendar with Space key", () => {
     render(<DatePicker />);
     const input = screen.getByRole("combobox");
     fireEvent.keyDown(input, { key: " " });
-    expect(document.querySelector(".wim-datepicker-dropdown")).toBeInTheDocument();
+    expect(document.querySelector(`.${styles.dropdown}`)).toBeInTheDocument();
   });
 
   it("closes calendar with Escape key", async () => {
     render(<DatePicker />);
     const input = screen.getByRole("combobox");
     fireEvent.click(input);
-    expect(document.querySelector(".wim-datepicker-dropdown")).toBeInTheDocument();
+    expect(document.querySelector(`.${styles.dropdown}`)).toBeInTheDocument();
     fireEvent.keyDown(input, { key: "Escape" });
     await waitFor(() => {
-      expect(document.querySelector(".wim-datepicker-dropdown")).not.toBeInTheDocument();
+      expect(document.querySelector(`.${styles.dropdown}`)).not.toBeInTheDocument();
     });
   });
 
@@ -84,6 +82,6 @@ describe("DatePicker", () => {
     render(<DatePicker disabled />);
     const input = screen.getByRole("combobox");
     fireEvent.click(input);
-    expect(document.querySelector(".wim-datepicker-dropdown")).not.toBeInTheDocument();
+    expect(document.querySelector(`.${styles.dropdown}`)).not.toBeInTheDocument();
   });
 });

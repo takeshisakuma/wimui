@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Dropzone } from "./Dropzone";
+import styles from "./dropzone.module.scss";
 
 describe("Dropzone", () => {
   it("renders label and description", () => {
@@ -11,9 +12,6 @@ describe("Dropzone", () => {
 
   it("handles drag events visually", () => {
     render(<Dropzone />);
-    // dropzone container which is the click target as well
-    // Look for the div with class wim-dropzone (which is inner div)
-    // Since we don't have role on inner div easily (it says role="button"), let's find by role.
     const dropzone = screen.getByRole("button");
 
     fireEvent.dragOver(dropzone);
@@ -75,8 +73,8 @@ describe("Dropzone", () => {
 
   it("does not drop files when disabled", () => {
     const handleChange = vi.fn();
-    render(<Dropzone disabled onChange={handleChange} />);
-    const dropzone = document.querySelector(".wim-dropzone")!;
+    const { container } = render(<Dropzone disabled onChange={handleChange} />);
+    const dropzone = container.querySelector(`.${styles.dropzone}`)!;
 
     const file = new File(["content"], "test.png", { type: "image/png" });
     fireEvent.drop(dropzone, { dataTransfer: { files: [file] } });

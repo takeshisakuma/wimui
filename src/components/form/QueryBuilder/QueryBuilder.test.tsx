@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { QueryBuilder, QueryBuilderProps, QueryGroup } from "./QueryBuilder";
+import styles from "./querybuilder.module.scss";
 
 const fields: QueryBuilderProps["fields"] = [
   { name: "firstName", label: "First Name", type: "string" },
@@ -49,7 +50,7 @@ describe("QueryBuilder", () => {
 
   it("applies custom className", () => {
     const { container } = render(<QueryBuilder fields={fields} className="custom" />);
-    expect(container.querySelector(".wim-query-builder.custom")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.root}.custom`)).toBeInTheDocument();
   });
 
   // ─── Add / remove rules ───────────────────────────────────────────────────────

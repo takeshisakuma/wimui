@@ -1,6 +1,7 @@
 import { render, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { TimePicker } from "./TimePicker";
+import inputStyles from "../Input/input.module.scss";
 
 describe("TimePicker", () => {
   it("renders input with type time", () => {
@@ -20,8 +21,8 @@ describe("TimePicker", () => {
   });
 
   it("applies error state class", () => {
-    const { container } = render(<TimePicker intent="error" />);
+    const { container } = render(<TimePicker error="Required" />);
     const input = container.querySelector("input");
-    expect(input).toHaveClass("wim-input--error");
+    expect(input).toHaveClass(inputStyles.error);
   });
 });

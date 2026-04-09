@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
 import { ToggleGroup } from "./ToggleGroup";
+import styles from "./toggle-group.module.scss";
 
 describe("ToggleGroup", () => {
   const options = [
@@ -37,8 +38,8 @@ describe("ToggleGroup", () => {
     expect(handleChange).toHaveBeenCalledWith("opt1");
     // Slider position/visibility might update asynchronously via rAF
     await waitFor(() => {
-      expect(screen.getByText("Option 1").closest(".wim-toggle-group__item")).toHaveClass(
-        "wim-toggle-group__item--active",
+      expect(screen.getByText("Option 1").closest(`.${styles.item}`)).toHaveClass(
+        styles.active,
       );
     });
 
@@ -70,8 +71,8 @@ describe("ToggleGroup", () => {
     const { container } = render(
       <ToggleGroup options={options} size="lg" fullWidth />,
     );
-    expect(container.firstChild).toHaveClass("wim-toggle-group--lg");
-    expect(container.firstChild).toHaveClass("wim-toggle-group--full-width");
+    expect(container.firstChild).toHaveClass(styles.lg);
+    expect(container.firstChild).toHaveClass(styles.fullWidth);
   });
 
   it("disables options when disabled prop is set", () => {
@@ -322,11 +323,11 @@ describe("ToggleGroup", () => {
     const onChange = vi.fn();
     render(<ToggleGroup options={options} defaultValue="opt2" onChange={onChange} />);
     const radios = screen.getAllByRole("radio");
-    expect(radios[1]).toHaveClass("wim-toggle-group__item--active");
+    expect(radios[1]).toHaveClass(styles.active);
     
     fireEvent.click(radios[0]);
     expect(onChange).toHaveBeenCalledWith("opt1");
-    expect(radios[0]).toHaveClass("wim-toggle-group__item--active");
+    expect(radios[0]).toHaveClass(styles.active);
   });
 
   it("toggles off in single mode when clicking active item", () => {
@@ -343,7 +344,7 @@ describe("ToggleGroup", () => {
     ];
     render(<ToggleGroup options={iconOptions} />);
     const buttons = screen.getAllByRole("radio");
-    expect(buttons[0]).toHaveClass("wim-toggle-group__item--icon-only");
+    expect(buttons[0]).toHaveClass(styles.iconOnly);
     expect(buttons[0].querySelector("svg")).toBeInTheDocument();
   });
 });

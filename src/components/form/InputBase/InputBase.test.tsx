@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { InputBase } from "./InputBase";
+import styles from "./input-base.module.scss";
 
 vi.mock("../../media/Icon/Icon", () => ({
   Icon: ({ name }: { name: string }) => <span data-testid="icon">{name}</span>,
@@ -14,32 +15,32 @@ describe("InputBase", () => {
 
   it("applies default intent class", () => {
     const { container } = render(<InputBase><input /></InputBase>);
-    expect(container.firstChild).toHaveClass("wim-input-base--default");
+    expect(container.firstChild).toHaveClass(styles.default);
   });
 
   it("applies error intent class", () => {
     const { container } = render(<InputBase intent="error"><input /></InputBase>);
-    expect(container.firstChild).toHaveClass("wim-input-base--error");
+    expect(container.firstChild).toHaveClass(styles.error);
   });
 
   it("applies outline variant class by default", () => {
     const { container } = render(<InputBase><input /></InputBase>);
-    expect(container.firstChild).toHaveClass("wim-input--variant-outline");
+    expect(container.firstChild).toHaveClass(styles.outline);
   });
 
   it("applies ghost variant class when specified", () => {
     const { container } = render(<InputBase variant="ghost"><input /></InputBase>);
-    expect(container.firstChild).toHaveClass("wim-input--variant-ghost");
+    expect(container.firstChild).toHaveClass(styles.ghost);
   });
 
   it("applies fullWidth class when fullWidth is true", () => {
     const { container } = render(<InputBase fullWidth><input /></InputBase>);
-    expect(container.firstChild).toHaveClass("wim-input--full-width");
+    expect(container.firstChild).toHaveClass(styles.fullWidth);
   });
 
   it("does not apply fullWidth class by default", () => {
     const { container } = render(<InputBase><input /></InputBase>);
-    expect(container.firstChild).not.toHaveClass("wim-input--full-width");
+    expect(container.firstChild).not.toHaveClass(styles.fullWidth);
   });
 
   it("renders left icon when leftIcon is provided", () => {
@@ -49,7 +50,7 @@ describe("InputBase", () => {
 
   it("applies has-left-icon class when leftIcon is provided", () => {
     const { container } = render(<InputBase leftIcon="SearchIcon"><input /></InputBase>);
-    expect(container.firstChild).toHaveClass("wim-input--has-left-icon");
+    expect(container.firstChild).toHaveClass(styles.hasLeftIcon);
   });
 
   it("renders left icon as button when onLeftIconClick is provided", () => {
@@ -84,14 +85,14 @@ describe("InputBase", () => {
     const { container } = render(
       <InputBase rightIcons={[{ name: "CloseIcon" }]}><input /></InputBase>,
     );
-    expect(container.firstChild).toHaveClass("wim-input--has-right-icon");
+    expect(container.firstChild).toHaveClass(styles.hasRightIcon);
   });
 
   it("applies has-multiple-right-icons class when rightIcons has 2+ items", () => {
     const { container } = render(
       <InputBase rightIcons={[{ name: "CloseIcon" }, { name: "SearchIcon" }]}><input /></InputBase>,
     );
-    expect(container.firstChild).toHaveClass("wim-input--has-multiple-right-icons");
+    expect(container.firstChild).toHaveClass(styles.hasMultipleRightIcons);
   });
 
   it("calls right icon onClick handler when clicked", () => {
@@ -138,7 +139,7 @@ describe("InputBase", () => {
 
   it("applies disabled intent class when disabled", () => {
     const { container } = render(<InputBase disabled><input /></InputBase>);
-    expect(container.firstChild).toHaveClass("wim-input-base--disabled");
+    expect(container.firstChild).toHaveClass(styles.disabled);
   });
 
   it("does not show clear button when disabled, even if allowClear and hasValue", () => {
@@ -153,12 +154,12 @@ describe("InputBase", () => {
 
   it("applies semantic width class", () => {
     const { container } = render(<InputBase width="md"><input /></InputBase>);
-    expect(container.firstChild).toHaveClass("wim-input--width-md");
+    expect(container.firstChild).toHaveClass(styles.widthMd);
   });
 
   it("applies has-custom-width class for numeric width", () => {
     const { container } = render(<InputBase width={300}><input /></InputBase>);
-    expect(container.firstChild).toHaveClass("wim-input--has-custom-width");
+    expect(container.firstChild).toHaveClass(styles.hasCustomWidth);
   });
 
   it("sets CSS custom property for numeric width", () => {
@@ -169,18 +170,18 @@ describe("InputBase", () => {
 
   it("applies has-custom-width class for arbitrary string width", () => {
     const { container } = render(<InputBase width="50%"><input /></InputBase>);
-    expect(container.firstChild).toHaveClass("wim-input--has-custom-width");
+    expect(container.firstChild).toHaveClass(styles.hasCustomWidth);
   });
 
   it("does not apply semantic width class when fullWidth is true", () => {
     const { container } = render(<InputBase width="md" fullWidth><input /></InputBase>);
-    expect(container.firstChild).not.toHaveClass("wim-input--width-md");
+    expect(container.firstChild).not.toHaveClass(styles.widthMd);
   });
 
   it("renders rotated class on right icon when rotated=true", () => {
     const { container } = render(
       <InputBase rightIcons={[{ name: "ChevronDownIcon", rotated: true }]}><input /></InputBase>,
     );
-    expect(container.querySelector(".wim-input-icon-item--rotated")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.rotated}`)).toBeInTheDocument();
   });
 });

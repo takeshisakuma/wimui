@@ -176,10 +176,10 @@ describe("MultiSelect", () => {
   });
 
   it("resets keyboard nav state on mouse move", () => {
-    render(<MultiSelect options={options} />);
-    const container = document.querySelector(".wim-multiselect")!;
-    fireEvent.mouseMove(container);
-    expect(container).toHaveAttribute("data-keyboard-nav", "false");
+    const { container } = render(<MultiSelect options={options} />);
+    const root = container.querySelector("[data-keyboard-nav]")!;
+    fireEvent.mouseMove(root);
+    expect(root).toHaveAttribute("data-keyboard-nav", "false");
   });
 
   it("works in controlled mode", () => {

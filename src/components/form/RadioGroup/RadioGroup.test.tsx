@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { RadioGroup } from "./RadioGroup";
+import styles from "./radio-group.module.scss";
 
 describe("RadioGroup", () => {
   const options = [
@@ -33,7 +34,7 @@ describe("RadioGroup", () => {
     render(
       <RadioGroup options={options} direction="horizontal" />,
     );
-    expect(screen.getByRole("radiogroup")).toHaveClass("wim-radio-group--horizontal");
+    expect(screen.getByRole("radiogroup")).toHaveClass(styles.horizontal);
   });
 
   it("uncontrolled: updates internal value on change", () => {

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { FieldTemplate } from "./FieldTemplate";
+import styles from "./field-template.module.scss";
 
 describe("FieldTemplate", () => {
   it("renders children", () => {
@@ -15,7 +16,7 @@ describe("FieldTemplate", () => {
 
   it("does not render label wrapper when label is omitted", () => {
     const { container } = render(<FieldTemplate><input /></FieldTemplate>);
-    expect(container.querySelector(".wim-field-template-label-wrapper")).not.toBeInTheDocument();
+    expect(container.querySelector(`.${styles.labelWrapper}`)).not.toBeInTheDocument();
   });
 
   it("renders error message when provided", () => {
@@ -25,17 +26,17 @@ describe("FieldTemplate", () => {
 
   it("does not render error when omitted", () => {
     const { container } = render(<FieldTemplate><input /></FieldTemplate>);
-    expect(container.querySelector(".wim-field-template-error")).not.toBeInTheDocument();
+    expect(container.querySelector(`.${styles.error}`)).not.toBeInTheDocument();
   });
 
   it("applies vertical layout class by default", () => {
     const { container } = render(<FieldTemplate><input /></FieldTemplate>);
-    expect(container.firstChild).toHaveClass("wim-field-template--vertical");
+    expect(container.firstChild).toHaveClass(styles.vertical);
   });
 
   it("applies horizontal layout class when specified", () => {
     const { container } = render(<FieldTemplate layout="horizontal"><input /></FieldTemplate>);
-    expect(container.firstChild).toHaveClass("wim-field-template--horizontal");
+    expect(container.firstChild).toHaveClass(styles.horizontal);
   });
 
   it("passes labelId to Label as id", () => {
@@ -49,8 +50,9 @@ describe("FieldTemplate", () => {
   });
 
   it("shows required badge on Label when required is true", () => {
-    const { container } = render(<FieldTemplate label="Name" required><input /></FieldTemplate>);
-    expect(container.querySelector(".wim-field-label-badge")).toBeInTheDocument();
+    render(<FieldTemplate label="Name" required><input /></FieldTemplate>);
+    // The badge is inside FieldLabelContent which uses Badge component.
+    expect(screen.getByText(/Required/i)).toBeInTheDocument();
   });
 
   it("applies custom className to root element", () => {
@@ -58,9 +60,9 @@ describe("FieldTemplate", () => {
     expect(container.firstChild).toHaveClass("my-field");
   });
 
-  it("always renders wim-field-template on root", () => {
+  it("always renders styles.root on root", () => {
     const { container } = render(<FieldTemplate><input /></FieldTemplate>);
-    expect(container.firstChild).toHaveClass("wim-field-template");
+    expect(container.firstChild).toHaveClass(styles.root);
   });
 
   it("renders label as ReactNode", () => {

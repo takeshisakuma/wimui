@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { ButtonGroup } from "./ButtonGroup";
+import styles from "./button-group.module.scss";
 
 describe("ButtonGroup", () => {
   it("renders children", () => {
@@ -31,7 +32,7 @@ describe("ButtonGroup", () => {
       </ButtonGroup>,
     );
     const group = container.firstChild as HTMLElement;
-    expect(group).toHaveClass("wim-button-group--joined");
+    expect(group).toHaveClass(styles.joined);
     expect(group.style.gap).toBe("");
   });
 

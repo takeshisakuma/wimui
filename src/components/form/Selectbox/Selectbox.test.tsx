@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import { Selectbox } from "./Selectbox";
 import React from "react";
+import styles from "./selectbox.module.scss";
 
 // Mock scrollIntoView
 window.HTMLElement.prototype.scrollIntoView = vi.fn();
@@ -94,7 +95,6 @@ describe("Selectbox", () => {
     trigger.focus();
     fireEvent.keyDown(trigger, { key: "Enter" });
     await waitFor(() => {
-      screen.debug();
       expect(screen.queryByRole("listbox")).not.toBeNull();
     });
     
@@ -144,7 +144,7 @@ describe("Selectbox", () => {
     fireEvent.click(screen.getByRole("combobox"));
 
     await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
-    const separator = document.querySelector(".wim-selectbox-separator");
+    const separator = document.querySelector(`.${styles.separator}`);
     expect(separator).toBeInTheDocument();
   });
 
