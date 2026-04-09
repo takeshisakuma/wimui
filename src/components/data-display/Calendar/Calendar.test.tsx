@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Calendar } from "./Calendar";
 import React from "react";
+import styles from "./calendar.module.scss";
 
 describe("Calendar", () => {
   it("renders and shows current month", () => {
@@ -61,72 +62,72 @@ describe("Calendar", () => {
 
   it("navigates days with ArrowRight key", () => {
     const date = new Date(2024, 0, 15);
-    render(<Calendar defaultValue={date} />);
-    const grid = document.querySelector(".wim-calendar-grid")!;
+    const { container } = render(<Calendar defaultValue={date} />);
+    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "ArrowRight" });
     expect(screen.getByText("2024 / 1")).toBeInTheDocument();
   });
 
   it("navigates weeks with ArrowUp key", () => {
     const date = new Date(2024, 0, 15);
-    render(<Calendar defaultValue={date} />);
-    const grid = document.querySelector(".wim-calendar-grid")!;
+    const { container } = render(<Calendar defaultValue={date} />);
+    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "ArrowUp" });
     expect(screen.getByText("2024 / 1")).toBeInTheDocument();
   });
 
   it("navigates weeks with ArrowDown key", () => {
     const date = new Date(2024, 0, 15);
-    render(<Calendar defaultValue={date} />);
-    const grid = document.querySelector(".wim-calendar-grid")!;
+    const { container } = render(<Calendar defaultValue={date} />);
+    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "ArrowDown" });
     expect(screen.getByText("2024 / 1")).toBeInTheDocument();
   });
 
   it("navigates to previous month with PageUp key", () => {
     const date = new Date(2024, 5, 15);
-    render(<Calendar defaultValue={date} />);
-    const grid = document.querySelector(".wim-calendar-grid")!;
+    const { container } = render(<Calendar defaultValue={date} />);
+    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "PageUp" });
     expect(screen.getByText("2024 / 5")).toBeInTheDocument();
   });
 
   it("navigates to next month with PageDown key", () => {
     const date = new Date(2024, 5, 15);
-    render(<Calendar defaultValue={date} />);
-    const grid = document.querySelector(".wim-calendar-grid")!;
+    const { container } = render(<Calendar defaultValue={date} />);
+    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "PageDown" });
     expect(screen.getByText("2024 / 7")).toBeInTheDocument();
   });
 
   it("navigates to previous year with Ctrl+PageUp", () => {
     const date = new Date(2024, 5, 15);
-    render(<Calendar defaultValue={date} />);
-    const grid = document.querySelector(".wim-calendar-grid")!;
+    const { container } = render(<Calendar defaultValue={date} />);
+    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "PageUp", ctrlKey: true });
     expect(screen.getByText("2023 / 6")).toBeInTheDocument();
   });
 
   it("navigates to next year with Ctrl+PageDown", () => {
     const date = new Date(2024, 5, 15);
-    render(<Calendar defaultValue={date} />);
-    const grid = document.querySelector(".wim-calendar-grid")!;
+    const { container } = render(<Calendar defaultValue={date} />);
+    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "PageDown", ctrlKey: true });
     expect(screen.getByText("2025 / 6")).toBeInTheDocument();
   });
 
   it("navigates to start of week with Home key", () => {
     const date = new Date(2024, 0, 17); // Wednesday
-    render(<Calendar defaultValue={date} />);
-    const grid = document.querySelector(".wim-calendar-grid")!;
+    const { container } = render(<Calendar defaultValue={date} />);
+    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "Home" });
     expect(screen.getByText("2024 / 1")).toBeInTheDocument();
   });
 
   it("navigates to end of week with End key", () => {
     const date = new Date(2024, 0, 17); // Wednesday
-    render(<Calendar defaultValue={date} />);
-    const grid = document.querySelector(".wim-calendar-grid")!;
+    const { container } = render(<Calendar defaultValue={date} />);
+    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "End" });
     expect(screen.getByText("2024 / 1")).toBeInTheDocument();
   });
@@ -209,8 +210,8 @@ describe("Calendar", () => {
 
   it("ignores keydown when disabled", () => {
     const onChange = vi.fn();
-    render(<Calendar defaultValue={new Date(2024, 0, 15)} disabled onChange={onChange} />);
-    const grid = document.querySelector(".wim-calendar-grid")!;
+    const { container } = render(<Calendar defaultValue={new Date(2024, 0, 15)} disabled onChange={onChange} />);
+    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "ArrowRight" });
     expect(onChange).not.toHaveBeenCalled();
   });

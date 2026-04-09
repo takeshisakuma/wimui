@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { FAQSection, FAQItem } from "./FAQSection";
+import styles from "./faq-section.module.scss";
 
 // useTranslation is mocked globally in some projects, but SKILLS.md says to mock it in each test
 vi.mock("react-i18next", () => ({
@@ -52,6 +53,6 @@ describe("FAQSection", () => {
       <FAQSection items={mockItems} layout="left" />
     );
 
-    expect(container.firstChild).toHaveClass("wim-faq-section--layout-left");
+    expect(container.firstChild).toHaveClass(styles["layout-left"]);
   });
 });

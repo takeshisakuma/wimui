@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { Stats } from "./Stats";
+import styles from "./stats.module.scss";
 
 describe("Stats", () => {
   it("renders labels and values", () => {
@@ -23,6 +24,6 @@ describe("Stats", () => {
     const { container } = render(
       <Stats.Trend direction="down">-5%</Stats.Trend>,
     );
-    expect(container.firstChild).toHaveClass("wim-stats__trend--down");
+    expect(container.firstChild).toHaveClass(styles.down);
   });
 });

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Tag } from "./Tag";
+import styles from "./tag.module.scss";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -20,8 +21,8 @@ describe("Tag", () => {
         Success
       </Tag>,
     );
-    expect(container.firstChild).toHaveClass("wim-tag--outline");
-    expect(container.firstChild).toHaveClass("wim-tag--success");
+    expect(container.firstChild).toHaveClass(styles.outline);
+    expect(container.firstChild).toHaveClass(styles.success);
   });
 
   it("renders with icon", () => {

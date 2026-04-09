@@ -164,7 +164,7 @@ export function DataGrid<T extends Record<string, unknown>>({
   };
 
   // 3. Keyboard Navigation
-  const { handleKeyDown, containerRef } = useDataGridKeyboard(
+  const { focusedCell, handleKeyDown, containerRef } = useDataGridKeyboard(
     columns,
     data,
     !!selection,
@@ -199,7 +199,15 @@ export function DataGrid<T extends Record<string, unknown>>({
           <Table.Header>
             <Table.Row>
               {selection && (
-                <Table.Head selection stickyLeft leftOffset={0} stickyZIndex={30}>
+                <Table.Head
+                  selection
+                  stickyLeft
+                  leftOffset={0}
+                  stickyZIndex={30}
+                  data-row={-1}
+                  data-col={-1}
+                  tabIndex={focusedCell.row === -1 && focusedCell.col === -1 ? 0 : -1}
+                >
                   {(selection.type ?? "checkbox") === "checkbox" && (
                     <Checkbox
                       checked={isAllSelected}
@@ -209,7 +217,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                   )}
                 </Table.Head>
               )}
-              {columns.map((col) => {
+              {columns.map((col, colIndex) => {
                 const stickyProps = getStickyProps(col.key);
                 return (
                   <Table.Head
@@ -230,6 +238,9 @@ export function DataGrid<T extends Record<string, unknown>>({
                       onSortChange(col.key, nextDir);
                     }}
                     {...stickyProps}
+                    tabIndex={focusedCell.row === -1 && focusedCell.col === (selection ? colIndex + 1 : colIndex) ? 0 : -1}
+                    data-row={-1}
+                    data-col={selection ? colIndex + 1 : colIndex}
                   >
                     {col.title}
                   </Table.Head>
@@ -245,14 +256,22 @@ export function DataGrid<T extends Record<string, unknown>>({
               return (
                 <Table.Row key={key} selected={isSelected}>
                   {selection && (
-                    <Table.Cell selection stickyLeft leftOffset={0} stickyZIndex={10}>
+                    <Table.Cell
+                      selection
+                      stickyLeft
+                      leftOffset={0}
+                      stickyZIndex={10}
+                      data-row={rowIndex}
+                      data-col={-1}
+                      tabIndex={focusedCell.row === rowIndex && focusedCell.col === -1 ? 0 : -1}
+                    >
                       <Checkbox
                         checked={isSelected}
                         onChange={(e) => handleSelectRow(record, e)}
                       />
                     </Table.Cell>
                   )}
-                  {columns.map((col) => {
+                  {columns.map((col, colIndex) => {
                     const stickyProps = getStickyProps(col.key);
                     const fieldKey = col.dataIndex ?? col.key;
                     const value = record[fieldKey];
@@ -261,6 +280,9 @@ export function DataGrid<T extends Record<string, unknown>>({
                         key={col.key}
                         label={typeof col.title === "string" ? col.title : undefined}
                         {...stickyProps}
+                        data-row={rowIndex}
+                        data-col={selection ? colIndex + 1 : colIndex}
+                        tabIndex={focusedCell.row === rowIndex && focusedCell.col === (selection ? colIndex + 1 : colIndex) ? 0 : -1}
                       >
                         {col.render ? col.render(value, record, rowIndex) : (value as React.ReactNode)}
                       </Table.Cell>

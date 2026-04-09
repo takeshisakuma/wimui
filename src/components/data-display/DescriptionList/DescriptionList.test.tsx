@@ -6,6 +6,7 @@ import {
   DescriptionListTerm,
   DescriptionListDetails,
 } from "./DescriptionList";
+import styles from "./description-list.module.scss";
 
 // Mock translation
 vi.mock("react-i18next", () => ({
@@ -39,7 +40,7 @@ describe("DescriptionList", () => {
     );
     const term = screen.getByText("Term");
     const dl = term.closest("dl");
-    expect(dl).toHaveClass("wim-description-list--vertical");
+    expect(dl).toHaveClass(styles.vertical);
   });
 
   it("applies border class", () => {
@@ -51,8 +52,8 @@ describe("DescriptionList", () => {
         </DescriptionListItem>
       </DescriptionList>,
     );
-    const dl = screen.getByText("Term").closest("dl");
-    expect(dl).toHaveClass("wim-description-list--border");
+    const dl = screen.getByText("Term").closest("dl")!;
+    expect(dl).toHaveClass(styles.border);
   });
 
   it("renders ReactNode children in Term and Details", () => {

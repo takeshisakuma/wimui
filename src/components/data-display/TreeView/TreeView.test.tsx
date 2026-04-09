@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { TreeView, TreeViewItem } from "./TreeView";
+import styles from "./tree-view.module.scss";
 
 describe("TreeView", () => {
   beforeEach(() => {
@@ -50,14 +51,14 @@ describe("TreeView", () => {
       </TreeView>,
     );
 
-    const item1 = screen.getByText("Root 1").closest(".wim-tree-view-item");
-    const item2 = screen.getByText("Root 2").closest(".wim-tree-view-item");
+    const item1 = screen.getByText("Root 1").closest(`.${styles.item}`);
+    const item2 = screen.getByText("Root 2").closest(`.${styles.item}`);
 
-    expect(item1).toHaveClass("wim-tree-view-item--selected");
+    expect(item1).toHaveClass(styles.selected);
 
     fireEvent.click(screen.getByText("Root 2"));
-    expect(item2).toHaveClass("wim-tree-view-item--selected");
-    expect(item1).not.toHaveClass("wim-tree-view-item--selected");
+    expect(item2).toHaveClass(styles.selected);
+    expect(item1).not.toHaveClass(styles.selected);
     expect(onSelectedChange).toHaveBeenCalledWith(["2"]);
   });
 
@@ -73,16 +74,16 @@ describe("TreeView", () => {
     fireEvent.click(screen.getByText("Root 1"));
     fireEvent.click(screen.getByText("Root 2"));
 
-    const item1 = screen.getByText("Root 1").closest(".wim-tree-view-item");
-    const item2 = screen.getByText("Root 2").closest(".wim-tree-view-item");
+    const item1 = screen.getByText("Root 1").closest(`.${styles.item}`);
+    const item2 = screen.getByText("Root 2").closest(`.${styles.item}`);
 
-    expect(item1).toHaveClass("wim-tree-view-item--selected");
-    expect(item2).toHaveClass("wim-tree-view-item--selected");
+    expect(item1).toHaveClass(styles.selected);
+    expect(item2).toHaveClass(styles.selected);
     expect(onSelectedChange).toHaveBeenLastCalledWith(["1", "2"]);
     
     // Toggle off
     fireEvent.click(screen.getByText("Root 1"));
-    expect(item1).not.toHaveClass("wim-tree-view-item--selected");
+    expect(item1).not.toHaveClass(styles.selected);
     expect(onSelectedChange).toHaveBeenLastCalledWith(["2"]);
   });
 
@@ -248,8 +249,8 @@ describe("TreeView", () => {
       </TreeView>,
     );
 
-    const item = screen.getByText("Disabled").closest(".wim-tree-view-item");
-    expect(item).toHaveClass("wim-tree-view-item--disabled");
+    const item = screen.getByText("Disabled").closest(`.${styles.item}`);
+    expect(item).toHaveClass(styles.disabled);
 
     fireEvent.click(screen.getByText("Disabled"));
     expect(onSelectedChange).not.toHaveBeenCalled();
@@ -264,7 +265,7 @@ describe("TreeView", () => {
         <TreeViewItem value="1" label="Item" />
       </TreeView>,
     );
-    const tree = container.querySelector(".wim-tree-view");
+    const tree = container.querySelector(`.${styles.root}`);
     expect(tree).toHaveStyle({ width: "500px" });
   });
 

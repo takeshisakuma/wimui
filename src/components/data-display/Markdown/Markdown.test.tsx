@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Markdown } from "./Markdown";
 import { describe, it, expect } from "vitest";
+import styles from "./markdown.module.scss";
 
 describe("Markdown", () => {
   it("should render markdown correctly", () => {
@@ -25,6 +26,6 @@ describe("Markdown", () => {
   it("should render without GFM when gfm=false", () => {
     const content = "Plain **bold** text";
     const { container } = render(<Markdown gfm={false}>{content}</Markdown>);
-    expect(container.querySelector(".wim-markdown")).toBeInTheDocument();
+    expect(container.firstChild).toHaveClass(styles.root);
   });
 });

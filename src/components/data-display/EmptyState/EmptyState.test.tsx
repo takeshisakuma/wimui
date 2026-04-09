@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { EmptyState } from "./EmptyState";
+import styles from "./empty-state.module.scss";
 
 describe("EmptyState", () => {
   it("renders title and description", () => {
@@ -15,11 +16,9 @@ describe("EmptyState", () => {
   });
 
   it("applies variant class", () => {
-    render(<EmptyState title="Title" variant="simple" />);
-    // We need to find the wrapper. It has class wim-empty-state
-    const title = screen.getByText("Title");
-    const wrapper = title.closest(".wim-empty-state");
-    expect(wrapper).toHaveClass("wim-empty-state--simple");
+    const { container } = render(<EmptyState title="Title" variant="simple" />);
+    // We need to find the root element
+    expect(container.firstChild).toHaveClass(styles.simple);
   });
 
   it("renders with custom icon", () => {

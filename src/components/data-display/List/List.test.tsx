@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { List, ListItem } from "./List";
+import styles from "./list.module.scss";
 
 describe("List", () => {
   it("renders list items", () => {
@@ -25,25 +26,25 @@ describe("List", () => {
 
   it("applies small size class", () => {
     const { container } = render(<List size="sm"><ListItem>X</ListItem></List>);
-    expect(container.querySelector(".wim-list--sm")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.sm}`)).toBeInTheDocument();
   });
 
   it("applies large size class", () => {
     const { container } = render(<List size="lg"><ListItem>X</ListItem></List>);
-    expect(container.querySelector(".wim-list--lg")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.lg}`)).toBeInTheDocument();
   });
 
   it("applies medium size class by default", () => {
     const { container } = render(<List><ListItem>X</ListItem></List>);
-    expect(container.querySelector(".wim-list--md")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.md}`)).toBeInTheDocument();
   });
 
   it("applies spacing classes", () => {
     const { container: c1 } = render(<List spacing="tight"><ListItem>X</ListItem></List>);
-    expect(c1.querySelector(".wim-list--spacing-tight")).toBeInTheDocument();
+    expect(c1.firstChild).toHaveClass(styles["spacing-tight"]);
 
     const { container: c2 } = render(<List spacing="loose"><ListItem>X</ListItem></List>);
-    expect(c2.querySelector(".wim-list--spacing-loose")).toBeInTheDocument();
+    expect(c2.firstChild).toHaveClass(styles["spacing-loose"]);
   });
 
   it("renders ListItem with left icon", () => {
@@ -52,7 +53,7 @@ describe("List", () => {
         <ListItem iconName="SearchIcon" iconPosition="left">Item</ListItem>
       </List>,
     );
-    expect(container.querySelector(".wim-list__icon-container--left")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.iconContainer}.${styles.left}`)).toBeInTheDocument();
   });
 
   it("renders ListItem with right icon", () => {
@@ -61,7 +62,7 @@ describe("List", () => {
         <ListItem iconName="SearchIcon" iconPosition="right">Item</ListItem>
       </List>,
     );
-    expect(container.querySelector(".wim-list__icon-container--right")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.iconContainer}.${styles.right}`)).toBeInTheDocument();
   });
 
   it("renders ListItem with non-string children", () => {
@@ -88,7 +89,7 @@ describe("List", () => {
     );
     const element = screen.getByTestId("list-slot");
     expect(element.tagName).toBe("DIV");
-    expect(element).toHaveClass("wim-list");
+    expect(element).toHaveClass(styles.root);
   });
 
   it("supports asChild on ListItem", () => {
@@ -101,6 +102,6 @@ describe("List", () => {
     );
     const element = screen.getByTestId("item-slot");
     expect(element.tagName).toBe("DIV");
-    expect(element).toHaveClass("wim-list__item");
+    expect(element).toHaveClass(styles.item);
   });
 });

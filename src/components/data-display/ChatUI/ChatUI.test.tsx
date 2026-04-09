@@ -7,6 +7,7 @@ import {
   ChatInput,
   ChatAvatar,
 } from "./ChatUI";
+import styles from "./chat-ui.module.scss";
 
 describe("ChatContainer", () => {
   it("renders children correctly", () => {
@@ -25,7 +26,7 @@ describe("ChatContainer", () => {
       </ChatContainer>,
     );
     expect(container.firstChild).toHaveClass(
-      "wim-chat-container",
+      styles.container,
       "custom-class",
     );
   });
@@ -50,7 +51,7 @@ describe("ChatMessageList", () => {
       </ChatMessageList>,
     );
     expect(container.firstChild).toHaveClass(
-      "wim-chat-message-list",
+      styles.messageList,
       "custom-list",
     );
   });
@@ -64,14 +65,14 @@ describe("ChatMessage", () => {
 
   it("renders with left position by default", () => {
     const { container } = render(<ChatMessage>Test</ChatMessage>);
-    expect(container.firstChild).toHaveClass("wim-chat-message--left");
+    expect(container.firstChild).toHaveClass(styles.left);
   });
 
   it("renders with right position", () => {
     const { container } = render(
       <ChatMessage position="right">Test</ChatMessage>,
     );
-    expect(container.firstChild).toHaveClass("wim-chat-message--right");
+    expect(container.firstChild).toHaveClass(styles.right);
   });
 
   it("renders sender name when provided", () => {
@@ -106,7 +107,7 @@ describe("ChatMessage", () => {
     const { container } = render(
       <ChatMessage variant="primary">Test</ChatMessage>,
     );
-    expect(container.firstChild).toHaveClass("wim-chat-message--primary");
+    expect(container.firstChild).toHaveClass(styles.primary);
   });
 });
 
@@ -206,7 +207,7 @@ describe("ChatAvatar", () => {
 
   it("applies size classes", () => {
     const { container } = render(<ChatAvatar size="lg" />);
-    expect(container.firstChild).toHaveClass("wim-chat-avatar--lg");
+    expect(container.firstChild).toHaveClass(styles.lg);
   });
 
   it("shows fallback when image fails to load", () => {

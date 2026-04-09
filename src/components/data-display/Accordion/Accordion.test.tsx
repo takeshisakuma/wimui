@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "./Accordion";
+import styles from "./accordion.module.scss";
 
 const SimpleAccordion = ({ collapsible = true, type = "single" as "single" | "multiple", defaultValue = undefined as string | string[] | undefined, value = undefined as string | string[] | undefined, onChange = undefined as ((v: string | string[]) => void) | undefined }) => (
   <Accordion type={type} collapsible={collapsible} defaultValue={defaultValue} value={value} onChange={onChange}>
@@ -36,13 +37,13 @@ describe("Accordion", () => {
     fireEvent.click(screen.getByText("Item 1"));
 
     await waitFor(() => {
-      expect(screen.getByText("Content 1").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
+      expect(screen.getByText("Content 1").closest(`.${styles.content}`)).toHaveClass(styles.open);
     });
 
     fireEvent.click(screen.getByText("Item 2"));
 
     await waitFor(() => {
-      expect(screen.getByText("Content 2").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
+      expect(screen.getByText("Content 2").closest(`.${styles.content}`)).toHaveClass(styles.open);
     });
   });
 
@@ -53,47 +54,47 @@ describe("Accordion", () => {
     fireEvent.click(screen.getByText("Item 2"));
 
     await waitFor(() => {
-      expect(screen.getByText("Content 1").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
-      expect(screen.getByText("Content 2").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
+      expect(screen.getByText("Content 1").closest(`.${styles.content}`)).toHaveClass(styles.open);
+      expect(screen.getByText("Content 2").closest(`.${styles.content}`)).toHaveClass(styles.open);
     });
   });
 
   it("multiple: clicking open item removes it", async () => {
     render(<SimpleAccordion type="multiple" defaultValue={["item-1", "item-2"]} />);
     await waitFor(() => {
-      expect(screen.getByText("Content 1").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
+      expect(screen.getByText("Content 1").closest(`.${styles.content}`)).toHaveClass(styles.open);
     });
 
     fireEvent.click(screen.getByText("Item 1"));
     await waitFor(() => {
-      expect(screen.getByText("Content 1").closest(".wim-accordion__content")).not.toHaveClass("wim-accordion__content--open");
+      expect(screen.getByText("Content 1").closest(`.${styles.content}`)).not.toHaveClass(styles.open);
     });
   });
 
   it("respects default string value", async () => {
     render(<SimpleAccordion defaultValue="item-1" />);
     await waitFor(() => {
-      expect(screen.getByText("Content 1").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
+      expect(screen.getByText("Content 1").closest(`.${styles.content}`)).toHaveClass(styles.open);
     });
   });
 
   it("respects default array value", async () => {
     render(<SimpleAccordion type="multiple" defaultValue={["item-1", "item-2"]} />);
     await waitFor(() => {
-      expect(screen.getByText("Content 1").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
-      expect(screen.getByText("Content 2").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
+      expect(screen.getByText("Content 1").closest(`.${styles.content}`)).toHaveClass(styles.open);
+      expect(screen.getByText("Content 2").closest(`.${styles.content}`)).toHaveClass(styles.open);
     });
   });
 
   it("collapsible=false: does not close open item", () => {
     render(<SimpleAccordion collapsible={false} defaultValue="item-1" />);
     fireEvent.click(screen.getByText("Item 1"));
-    expect(screen.getByText("Content 1").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
+    expect(screen.getByText("Content 1").closest(`.${styles.content}`)).toHaveClass(styles.open);
   });
 
   it("controlled mode: renders open item", () => {
     render(<SimpleAccordion value="item-2" />);
-    expect(screen.getByText("Content 2").closest(".wim-accordion__content")).toHaveClass("wim-accordion__content--open");
+    expect(screen.getByText("Content 2").closest(`.${styles.content}`)).toHaveClass(styles.open);
   });
 
   it("calls onChange when item toggled", () => {
@@ -113,7 +114,7 @@ describe("Accordion", () => {
       </Accordion>,
     );
     fireEvent.click(screen.getByText("Item 1"));
-    expect(screen.getByText("Content 1").closest(".wim-accordion__content")).not.toHaveClass("wim-accordion__content--open");
+    expect(screen.getByText("Content 1").closest(`.${styles.content}`)).not.toHaveClass(styles.open);
   });
 
   it("disabled item: keydown is ignored", () => {

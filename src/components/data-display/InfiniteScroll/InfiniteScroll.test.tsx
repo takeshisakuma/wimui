@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { InfiniteScroll } from "./InfiniteScroll";
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import styles from "./infinite-scroll.module.scss";
 
 describe("InfiniteScroll", () => {
   class MockIntersectionObserver {
@@ -39,7 +40,7 @@ describe("InfiniteScroll", () => {
       </InfiniteScroll>,
     );
     expect(
-      container.querySelector(".wim-infinite-scroll__trigger"),
+      container.querySelector(`.${styles.trigger}`),
     ).not.toBeInTheDocument();
   });
 });

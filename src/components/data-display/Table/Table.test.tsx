@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Table } from "./Table";
+import styles from "./table.module.scss";
 
 describe("Table", () => {
   it("renders table with children", () => {
@@ -32,11 +33,11 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    const table = container.querySelector("table");
-    expect(table).toHaveClass("wim-table--striped");
-    expect(table).toHaveClass("wim-table--bordered");
-    expect(table).toHaveClass("wim-table--hoverable");
-    expect(table).toHaveClass("wim-table--full-width");
+    const table = container.querySelector("table")!;
+    expect(table).toHaveClass(styles.striped);
+    expect(table).toHaveClass(styles.bordered);
+    expect(table).toHaveClass(styles.hoverable);
+    expect(table).toHaveClass(styles.fullWidth);
   });
 
   it("renders TableFooter", () => {
@@ -60,7 +61,7 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    expect(container.querySelector(".wim-table-container--sticky")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.container}.${styles.sticky}`)).toBeInTheDocument();
   });
 
   it("applies scrollbar subtle class", () => {
@@ -93,7 +94,7 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    const wrapper = container.querySelector(".wim-table-container") as HTMLElement;
+    const wrapper = container.querySelector(`.${styles.container}`) as HTMLElement;
     expect(wrapper.style.overflow).toBe("auto");
   });
 
@@ -107,7 +108,7 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    expect(container.querySelector(".wim-table__row--selected")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.row}.${styles.selected}`)).toBeInTheDocument();
   });
 
   it("renders sortable TableHead with asc sort", () => {
@@ -219,7 +220,7 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    const th = container.querySelector(".wim-table__head--sticky-left") as HTMLElement;
+    const th = container.querySelector(`.${styles.head}.${styles.stickyLeft}`) as HTMLElement;
     expect(th).toBeInTheDocument();
     expect(th.style.left).toBe("50px");
   });
@@ -234,7 +235,7 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    const td = container.querySelector(".wim-table__cell--sticky-right") as HTMLElement;
+    const td = container.querySelector(`.${styles.cell}.${styles.stickyRight}`) as HTMLElement;
     expect(td).toBeInTheDocument();
     expect(td.style.right).toBe("20px");
   });
@@ -247,7 +248,8 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    expect(container.querySelector(".wim-table--mobile-card")).toBeInTheDocument();
+    const table = container.querySelector("table")!;
+    expect(table).toHaveClass(styles.mobileCard);
   });
 
   it("supports asChild on Table", () => {
@@ -264,7 +266,7 @@ describe("Table", () => {
     );
     const tableElement = screen.getByTestId("table-slot");
     expect(tableElement.tagName).toBe("DIV");
-    expect(tableElement).toHaveClass("wim-table");
+    expect(tableElement).toHaveClass(styles.root);
   });
 
   it("supports asChild on TableRow", () => {
@@ -281,7 +283,7 @@ describe("Table", () => {
     );
     const rowElement = screen.getByTestId("row-slot");
     expect(rowElement.tagName).toBe("DIV");
-    expect(rowElement).toHaveClass("wim-table__row");
+    expect(rowElement).toHaveClass(styles.row);
   });
 
   it("supports asChild on TableCell", () => {
@@ -298,6 +300,6 @@ describe("Table", () => {
     );
     const cellElement = screen.getByTestId("cell-slot");
     expect(cellElement.tagName).toBe("DIV");
-    expect(cellElement).toHaveClass("wim-table__cell");
+    expect(cellElement).toHaveClass(styles.cell);
   });
 });

@@ -3,6 +3,9 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import { DataGrid } from "./DataGrid";
+import styles from "./datagrid.module.scss";
+import tableStyles from "../Table/table.module.scss";
+import paginationStyles from "../../navigation/Pagination/pagination.module.scss";
 
 describe("DataGrid", () => {
   const mockColumns = [
@@ -38,11 +41,9 @@ describe("DataGrid", () => {
   });
 
   it("renders loading state", () => {
-    render(<DataGrid columns={mockColumns} data={mockRows} loading />);
+    const { container } = render(<DataGrid columns={mockColumns} data={mockRows} loading />);
 
-    expect(
-      document.querySelector(".wim-datagrid--loading"),
-    ).toBeInTheDocument();
+    expect(container.firstChild).toHaveClass(styles.loading);
   });
 
   it("handles selection", async () => {
@@ -82,7 +83,7 @@ describe("DataGrid", () => {
     const selectAllCheckbox = screen.getAllByRole("checkbox")[0];
     await user.click(selectAllCheckbox);
 
-    expect(onSelectionChange).toHaveBeenCalledWith([1, 2, 3]);
+    expect(onSelectionChange).toHaveBeenCalledWith(["1", "2", "3"]);
   });
 
   it("handles sorting", async () => {
@@ -114,7 +115,7 @@ describe("DataGrid", () => {
       onChange: vi.fn(),
     };
 
-    render(
+    const { container } = render(
       <DataGrid
         columns={mockColumns}
         data={mockRows}
@@ -122,7 +123,7 @@ describe("DataGrid", () => {
       />,
     );
 
-    expect(document.querySelector(".wim-pagination")).toBeInTheDocument();
+    expect(container.querySelector(`.${paginationStyles.root}`)).toBeInTheDocument();
   });
 
   it("applies custom render function", () => {
@@ -290,7 +291,7 @@ describe("DataGrid", () => {
 
     const checkbox = screen.getAllByRole("checkbox")[1];
     fireEvent.click(checkbox);
-    expect(onSelectionChange).toHaveBeenCalledWith(["u1"]);
+    expect(onSelectionChange).toHaveBeenCalledWith(["u1"], expect.any(Array));
   });
 
   it("shows indeterminate state when some (but not all) rows are selected", () => {
@@ -340,7 +341,7 @@ describe("DataGrid", () => {
     );
     const selectAllCheckbox = screen.getAllByRole("checkbox")[0];
     await user.click(selectAllCheckbox);
-    expect(onSelectionChange).toHaveBeenCalledWith([]);
+    expect(onSelectionChange).toHaveBeenCalledWith([], []);
   });
 
   it("uses dataIndex to read cell value when different from key", () => {
@@ -417,15 +418,15 @@ describe("DataGrid", () => {
     const { container } = render(
       <DataGrid columns={mockColumns} data={mockRows} striped bordered />,
     );
-    expect(container.querySelector(".wim-table--striped")).toBeInTheDocument();
-    expect(container.querySelector(".wim-table--bordered")).toBeInTheDocument();
+    expect(container.querySelector(`.${tableStyles.striped}`)).toBeInTheDocument();
+    expect(container.querySelector(`.${tableStyles.bordered}`)).toBeInTheDocument();
   });
 
   it("renders with mobileCard layout without error", () => {
     const { container } = render(
       <DataGrid columns={mockColumns} data={mockRows} mobileCard />,
     );
-    expect(container.querySelector(".wim-table--mobile-card")).toBeInTheDocument();
+    expect(container.querySelector(`.${tableStyles.mobileCard}`)).toBeInTheDocument();
   });
 
   it("empty state live region has role=status", () => {

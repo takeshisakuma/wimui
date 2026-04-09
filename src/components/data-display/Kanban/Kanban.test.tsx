@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { KanbanBoard, KanbanColumn, KanbanCard } from "./Kanban";
+import { KanbanBoard } from "./Kanban";
+import styles from "./kanban.module.scss";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -8,19 +9,24 @@ vi.mock("react-i18next", () => ({
   }),
 }));
 
+const mockColumns = [
+  { id: "todo", title: "To Do", items: [] },
+  { id: "done", title: "Done", items: [] },
+];
+
 const DefaultBoard = ({
   onCardMove,
 }: {
   onCardMove?: (cardId: string, fromColumnId: string, toColumnId: string) => void;
 }) => (
-  <KanbanBoard onCardMove={onCardMove}>
-    <KanbanColumn id="todo" title="To Do" cardCount={2}>
-      <KanbanCard id="card-1">Card 1</KanbanCard>
-      <KanbanCard id="card-2">Card 2</KanbanCard>
-    </KanbanColumn>
-    <KanbanColumn id="done" title="Done" cardCount={1}>
-      <KanbanCard id="card-3">Card 3</KanbanCard>
-    </KanbanColumn>
+  <KanbanBoard onCardMove={onCardMove} columns={mockColumns}>
+    <KanbanBoard.Column id="todo" title="To Do" cardCount={2}>
+      <KanbanBoard.Card id="card-1">Card 1</KanbanBoard.Card>
+      <KanbanBoard.Card id="card-2">Card 2</KanbanBoard.Card>
+    </KanbanBoard.Column>
+    <KanbanBoard.Column id="done" title="Done" cardCount={1}>
+      <KanbanBoard.Card id="card-3">Card 3</KanbanBoard.Card>
+    </KanbanBoard.Column>
   </KanbanBoard>
 );
 
@@ -53,12 +59,18 @@ describe("KanbanBoard", () => {
     const onCardMove = vi.fn();
     const { container } = render(<DefaultBoard onCardMove={onCardMove} />);
 
-    const card = container.querySelector(".wim-kanban__card")!;
-    const doneColumn = container.querySelectorAll(".wim-kanban__column")[1]!;
+    const card = container.querySelector(`.${styles.card}`)!;
+    const doneColumn = container.querySelectorAll(`.${styles.column}`)[1]!;
 
-    fireEvent.dragStart(card, { dataTransfer: { effectAllowed: "" } });
+    const dataTransfer = {
+      setData: vi.fn(),
+      getData: vi.fn(() => "todo:card-1"),
+      effectAllowed: "",
+    };
+
+    fireEvent.dragStart(card, { dataTransfer });
     fireEvent.dragOver(doneColumn);
-    fireEvent.drop(doneColumn);
+    fireEvent.drop(doneColumn, { dataTransfer });
 
     expect(onCardMove).toHaveBeenCalledWith("card-1", "todo", "done");
   });
@@ -67,38 +79,44 @@ describe("KanbanBoard", () => {
     const onCardMove = vi.fn();
     const { container } = render(<DefaultBoard onCardMove={onCardMove} />);
 
-    const card = container.querySelector(".wim-kanban__card")!;
-    const todoColumn = container.querySelector(".wim-kanban__column")!;
+    const card = container.querySelector(`.${styles.card}`)!;
+    const todoColumn = container.querySelector(`.${styles.column}`)!;
 
-    fireEvent.dragStart(card, { dataTransfer: { effectAllowed: "" } });
+    const dataTransfer = {
+      setData: vi.fn(),
+      getData: vi.fn(() => "todo:card-1"),
+      effectAllowed: "",
+    };
+
+    fireEvent.dragStart(card, { dataTransfer });
     fireEvent.dragOver(todoColumn);
-    fireEvent.drop(todoColumn);
+    fireEvent.drop(todoColumn, { dataTransfer });
 
     expect(onCardMove).not.toHaveBeenCalled();
   });
 
   it("disabled card is not draggable", () => {
     render(
-      <KanbanBoard>
-        <KanbanColumn id="col" title="Col">
-          <KanbanCard id="card-disabled" disabled>
+      <KanbanBoard columns={mockColumns}>
+        <KanbanBoard.Column id="todo" title="To Do">
+          <KanbanBoard.Card id="card-disabled" disabled>
             Disabled Card
-          </KanbanCard>
-        </KanbanColumn>
+          </KanbanBoard.Card>
+        </KanbanBoard.Column>
       </KanbanBoard>,
     );
-    const card = screen.getByText("Disabled Card").closest(".wim-kanban__card")!;
-    expect(card).toHaveClass("wim-kanban__card--disabled");
+    const card = screen.getByText("Disabled Card").closest(`.${styles.card}`)!;
+    expect(card).toHaveClass(styles.disabled);
     expect(card).not.toHaveAttribute("draggable", "true");
   });
 
   it("applies custom className to board", () => {
     const { container } = render(
       <KanbanBoard className="custom-board">
-        <KanbanColumn id="col" title="Col" />
+        <KanbanBoard.Column id="col" title="Col" />
       </KanbanBoard>,
     );
-    expect(container.querySelector(".wim-kanban.custom-board")).toBeInTheDocument();
+    expect(container.firstChild).toHaveClass("custom-board");
   });
 
   it("supports compound component syntax", () => {

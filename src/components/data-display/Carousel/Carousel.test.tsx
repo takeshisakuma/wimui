@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { Carousel } from "./Carousel";
+import styles from "./carousel.module.scss";
 
 describe("Carousel", () => {
   beforeEach(() => {
@@ -31,8 +32,8 @@ describe("Carousel", () => {
       </Carousel>,
     );
     
-    const nextButton = container.querySelector(".wim-carousel__control--next") as HTMLButtonElement;
-    const prevButton = container.querySelector(".wim-carousel__control--prev") as HTMLButtonElement;
+    const nextButton = container.querySelector(`.${styles.control}.${styles.next}`) as HTMLButtonElement;
+    const prevButton = container.querySelector(`.${styles.control}.${styles.prev}`) as HTMLButtonElement;
 
     expect(prevButton).toBeDisabled();
     expect(nextButton).not.toBeDisabled();
@@ -52,7 +53,7 @@ describe("Carousel", () => {
       </Carousel>,
     );
     
-    const indicators = container.querySelectorAll(".wim-carousel__indicator");
+    const indicators = container.querySelectorAll(`.${styles.indicator}`);
     expect(indicators).toHaveLength(2);
     expect(indicators[0]).toHaveAttribute("aria-current", "true");
 
@@ -71,7 +72,7 @@ describe("Carousel", () => {
       </Carousel>,
     );
 
-    const nextButton = container.querySelector(".wim-carousel__control--next") as HTMLButtonElement;
+    const nextButton = container.querySelector(`.${styles.control}.${styles.next}`) as HTMLButtonElement;
     expect(nextButton).not.toBeDisabled();
 
     act(() => {
@@ -89,8 +90,8 @@ describe("Carousel", () => {
       </Carousel>,
     );
 
-    const carousel = container.querySelector(".wim-carousel")!;
-    const nextButton = container.querySelector(".wim-carousel__control--next") as HTMLButtonElement;
+    const carousel = container.querySelector(`.${styles.root}`)!;
+    const nextButton = container.querySelector(`.${styles.control}.${styles.next}`) as HTMLButtonElement;
 
     act(() => {
       fireEvent.mouseEnter(carousel);
@@ -122,8 +123,8 @@ describe("Carousel", () => {
       </Carousel>,
     );
 
-    const carousel = container.querySelector(".wim-carousel") as HTMLElement;
-    const nextButton = container.querySelector(".wim-carousel__control--next") as HTMLButtonElement;
+    const carousel = container.querySelector(`.${styles.root}`) as HTMLElement;
+    const nextButton = container.querySelector(`.${styles.control}.${styles.next}`) as HTMLButtonElement;
 
     act(() => {
       carousel.focus();
@@ -136,7 +137,7 @@ describe("Carousel", () => {
     act(() => {
       fireEvent.keyDown(carousel, { key: "ArrowLeft" });
     });
-    expect(container.querySelector(".wim-carousel__control--prev")).toBeDisabled();
+    expect(container.querySelector(`.${styles.control}.${styles.prev}`)).toBeDisabled();
   });
 
   it("handles swipe gestures", () => {
@@ -147,7 +148,7 @@ describe("Carousel", () => {
       </Carousel>,
     );
 
-    const track = container.querySelector(".wim-carousel__track")!;
+    const track = container.querySelector(`.${styles.track}`)!;
     
     // Swipe left (next)
     act(() => {
@@ -156,7 +157,7 @@ describe("Carousel", () => {
       fireEvent.touchEnd(track);
     });
 
-    expect(container.querySelector(".wim-carousel__control--next")).toBeDisabled();
+    expect(container.querySelector(`.${styles.control}.${styles.next}`)).toBeDisabled();
 
     // Swipe right (prev)
     act(() => {
@@ -165,7 +166,7 @@ describe("Carousel", () => {
       fireEvent.touchEnd(track);
     });
 
-    expect(container.querySelector(".wim-carousel__control--prev")).toBeDisabled();
+    expect(container.querySelector(`.${styles.control}.${styles.prev}`)).toBeDisabled();
   });
 
   it("handles window resize and slidesToShow", () => {
@@ -222,7 +223,7 @@ describe("Carousel", () => {
     // Indices: 0, 1, 2, 3, 4, 5
     // Initial: 2
     
-    const track = screen.getByRole("region").querySelector(".wim-carousel__track")!;
+    const track = screen.getByRole("region").querySelector(`.${styles.track}`)!;
     
     // Trigger transition end at end boundary
     // Simulate being at index 4 (last original item + 1)

@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { AvatarGroup } from "./AvatarGroup";
 import { Avatar } from "../../data-display/Avatar/Avatar";
+import styles from "./avatar-group.module.scss";
+import avatarStyles from "../Avatar/avatar.module.scss";
 
 describe("AvatarGroup", () => {
   it("renders children avatars", () => {
@@ -41,13 +43,13 @@ describe("AvatarGroup", () => {
   });
 
   it("applies size to child avatars", () => {
-    const { container } = render(
+    render(
       <AvatarGroup size="lg">
         <Avatar initials="A" />
       </AvatarGroup>,
     );
-    const avatar = container.querySelector(".wim-avatar");
-    expect(avatar).toHaveClass("wim-avatar--lg");
+    const avatar = screen.getByRole("img", { name: "A" });
+    expect(avatar).toHaveClass(avatarStyles.lg);
   });
 
   it("applies small size to excess badge", () => {
@@ -58,7 +60,7 @@ describe("AvatarGroup", () => {
         <Avatar initials="C" />
       </AvatarGroup>,
     );
-    const excess = container.querySelector(".wim-avatar-group__excess");
-    expect(excess).toHaveClass("wim-avatar-group__excess--sm");
+    const excess = container.querySelector(`.${styles.excess}`);
+    expect(excess).toHaveClass(styles.sm);
   });
 });

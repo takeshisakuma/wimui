@@ -30,27 +30,35 @@ export const AvatarGroup = ({
   return (
     <div className={classNames(styles.root, className)}>
       {itemsToShow.map((child, index) => {
-        if (React.isValidElement(child) && child.type === Avatar) {
-          const avatarChild = child as React.ReactElement<{
-            size?: ComponentSize;
-          }>;
-          return React.cloneElement(avatarChild, {
-            size: size || avatarChild.props.size,
-            key: index,
-          });
+        if (React.isValidElement(child)) {
+          const childType = child.type as React.ComponentType | string;
+          const isAvatar =
+            childType === Avatar ||
+            (typeof childType !== "string" && childType?.displayName === "Avatar") ||
+            (typeof childType !== "string" && childType?.name === "Avatar");
+
+          if (isAvatar) {
+            const avatarProps = child.props as React.ComponentProps<typeof Avatar>;
+            return React.cloneElement(child as React.ReactElement<React.ComponentProps<typeof Avatar>>, {
+              size: size || avatarProps.size,
+              key: index,
+            });
+          }
         }
         return child;
       })}
-      {excessCount > 0 && (
-        <span
-          className={classNames(
-            styles.excess,
-            styles[size],
-          )}
-        >
-          +{excessCount}
-        </span>
-      )}
-    </div>
-  );
-};
+        {excessCount > 0 && (
+          <span
+            className={classNames(
+              styles.excess,
+              styles[size],
+            )}
+          >
+            +{excessCount}
+          </span>
+        )}
+      </div>
+    );
+  };
+  
+AvatarGroup.displayName = "AvatarGroup";

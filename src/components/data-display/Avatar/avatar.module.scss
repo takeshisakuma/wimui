@@ -15,85 +15,85 @@
       height: 100%;
       object-fit: cover;
     }
+  }
 
-    // Shapes
-    &.circle {
-      border-radius: var(--wim-radius-full);
-    }
+  // Shapes
+  .circle {
+    border-radius: var(--wim-radius-full);
+  }
 
-    &.rounded {
-      border-radius: 8px;
-    }
+  .rounded {
+    border-radius: 8px;
+  }
 
-    // Sizes
-    &.sm {
-      width: 32px;
-      height: 32px;
-      font-size: 0.75rem;
-    }
+  // Sizes
+  .sm {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
 
-    &.md {
-      width: 40px;
-      height: 40px;
-      font-size: 0.875rem;
-    }
+  .md {
+    width: 40px;
+    height: 40px;
+    font-size: 0.875rem;
+  }
 
-    &.lg {
-      width: 48px;
-      height: 48px;
-      font-size: 1.125rem;
-    }
+  .lg {
+    width: 48px;
+    height: 48px;
+    font-size: 1.125rem;
+  }
 
-    // Colors / Intents
-    &.primary {
-      color: var(--wim-color-text-on-primary);
-      background-color: var(--wim-color-primary);
-    }
+  // Colors / Intents
+  .primary {
+    color: var(--wim-color-text-on-primary);
+    background-color: var(--wim-color-primary);
+  }
 
-    &.secondary {
-      color: var(--wim-color-text-on-secondary);
-      background-color: var(--wim-color-secondary);
-    }
+  .secondary {
+    color: var(--wim-color-text-on-secondary);
+    background-color: var(--wim-color-secondary);
+  }
 
-    &.error {
-      color: var(--wim-color-text-on-destructive);
-      background-color: var(--wim-color-destructive);
-    }
+  .error {
+    color: var(--wim-color-text-on-destructive);
+    background-color: var(--wim-color-destructive);
+  }
 
-    &.success {
-      color: var(--wim-color-text-on-positive);
-      background-color: var(--wim-color-positive);
-    }
+  .success {
+    color: var(--wim-color-text-on-positive);
+    background-color: var(--wim-color-positive);
+  }
 
-    &.neutral {
-      color: var(--wim-color-text-on-informative);
-      background-color: var(--wim-color-informative);
-    }
+  .neutral {
+    color: var(--wim-color-text-on-informative);
+    background-color: var(--wim-color-informative);
+  }
 
-    &.info {
-      color: var(--wim-color-text-on-informative);
-      background-color: var(--wim-color-informative);
-    }
+  .info {
+    color: var(--wim-color-text-on-informative);
+    background-color: var(--wim-color-informative);
+  }
 
-    &.warning {
-      color: var(--wim-color-text-on-caution);
-      background-color: var(--wim-color-caution);
-    }
+  .warning {
+    color: var(--wim-color-text-on-caution);
+    background-color: var(--wim-color-caution);
+  }
 
-    &.destructive {
-      color: var(--wim-color-text-on-destructive);
-      background-color: var(--wim-color-destructive);
-    }
+  .destructive {
+    color: var(--wim-color-text-on-destructive);
+    background-color: var(--wim-color-destructive);
+  }
 
-    &.positive {
-      color: var(--wim-color-text-on-positive);
-      background-color: var(--wim-color-positive);
-    }
+  .positive {
+    color: var(--wim-color-text-on-positive);
+    background-color: var(--wim-color-positive);
+  }
 
-    &.default {
-      color: var(--wim-color-text-on-disabled);
-      background-color: var(--wim-color-disabled);
-    }
+  .default {
+    color: var(--wim-color-text-on-disabled);
+    background-color: var(--wim-color-disabled);
   }
 
   .initials {

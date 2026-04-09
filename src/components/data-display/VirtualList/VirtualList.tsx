@@ -92,6 +92,8 @@ const VirtualListInner = <T,>(
                 transform: `translateY(${actualIndex * itemHeight}px)`,
               }}
               role={itemRole}
+              aria-setsize={items.length}
+              aria-posinset={actualIndex + 1}
             >
               {renderItem(item, actualIndex)}
             </div>

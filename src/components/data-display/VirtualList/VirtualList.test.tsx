@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { VirtualList } from "./VirtualList";
+import styles from "./virtual-list.module.scss";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -71,7 +72,8 @@ describe("VirtualList", () => {
         className="custom-class"
       />,
     );
-    expect(container.querySelector(".wim-virtual-list.custom-class")).toBeInTheDocument();
+    expect(container.firstChild).toHaveClass(styles.root);
+    expect(container.firstChild).toHaveClass("custom-class");
   });
 
   it("applies aria-setsize with total items length", () => {
@@ -95,7 +97,7 @@ describe("VirtualList", () => {
         renderItem={(item) => <span>{item}</span>}
       />,
     );
-    const list = container.querySelector(".wim-virtual-list")!;
+    const list = container.firstChild!;
     fireEvent.scroll(list, { target: { scrollTop: 2000 } });
     // スクロール後は後半のアイテムが表示される
     expect(screen.queryByText("Item 1")).not.toBeInTheDocument();
@@ -110,6 +112,6 @@ describe("VirtualList", () => {
         renderItem={(item) => <span>{item as string}</span>}
       />,
     );
-    expect(container.querySelector(".wim-virtual-list")).toBeInTheDocument();
+    expect(container.firstChild).toHaveClass(styles.root);
   });
 });

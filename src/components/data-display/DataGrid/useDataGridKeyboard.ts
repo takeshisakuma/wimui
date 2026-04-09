@@ -54,7 +54,7 @@ export function useDataGridKeyboard<T>(
       case " ": {
         const activeEl = document.activeElement as HTMLElement;
         if (activeEl?.getAttribute("role") === "columnheader") return;
-        if (activeEl?.classList.contains("wim-table__cell")) {
+        if (activeEl?.tagName === "TD" || activeEl?.tagName === "TH" || activeEl?.getAttribute("role") === "gridcell") {
           const innerInteractive = activeEl.querySelector(
             'input, button, [role="button"]',
           ) as HTMLElement;

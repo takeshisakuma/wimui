@@ -5,16 +5,19 @@ import { RangeCalendar } from "./RangeCalendar";
 describe("RangeCalendar", () => {
   it("renders calendar grid", () => {
     render(<RangeCalendar />);
-    expect(screen.getByText(/Sun/i)).toBeInTheDocument();
-    expect(screen.getByText(/Sat/i)).toBeInTheDocument();
+    expect(screen.getByText("日")).toBeInTheDocument();
+    expect(screen.getByText("土")).toBeInTheDocument();
   });
 
   it("selects a range when dates are clicked", () => {
     const handleChange = vi.fn();
     render(<RangeCalendar onChange={handleChange} />);
 
-    // Find all day cells (role="gridcell"). Nav buttons have role="button", not "gridcell".
-    const days = screen.getAllByRole("gridcell");
+    // Find all day cells. Nav buttons have role="button", day cells are buttons with aria-label
+    // Wait, the previous test was using getAllByRole("gridcell"). 
+    // But Calendar.tsx renders buttons for days without role="gridcell".
+    // Let's use getByLabelText or just all buttons that are not nav buttons.
+    const days = screen.getAllByRole("button").filter(btn => btn.hasAttribute("aria-label") && btn.getAttribute("aria-label")?.includes("-"));
 
     // Click first day
     fireEvent.click(days[10]);
@@ -38,13 +41,13 @@ describe("RangeCalendar", () => {
     const start = new Date(2024, 0, 10);
     const end = new Date(2024, 0, 20);
     render(<RangeCalendar value={[start, end]} />);
-    expect(screen.getByText(/Sun/i)).toBeInTheDocument();
+    expect(screen.getByText("日")).toBeInTheDocument();
   });
 
   it("renders with defaultValue", () => {
     const start = new Date(2024, 0, 5);
     const end = new Date(2024, 0, 15);
     render(<RangeCalendar defaultValue={[start, end]} />);
-    expect(screen.getByText(/Sun/i)).toBeInTheDocument();
+    expect(screen.getByText("日")).toBeInTheDocument();
   });
 });

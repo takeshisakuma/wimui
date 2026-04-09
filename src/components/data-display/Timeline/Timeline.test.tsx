@@ -4,11 +4,11 @@ import {
   Timeline,
   TimelineItem,
   TimelineSeparator,
-  TimelineConnector,
   TimelinePoint,
   TimelineContent,
   TimelineOppositeContent,
 } from "./Timeline";
+import styles from "./timeline.module.scss";
 
 describe("Timeline", () => {
   it("renders timeline items correctly", () => {
@@ -18,7 +18,6 @@ describe("Timeline", () => {
           <TimelineOppositeContent>09:00 AM</TimelineOppositeContent>
           <TimelineSeparator>
             <TimelinePoint />
-            <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>Eat Breakfast</TimelineContent>
         </TimelineItem>
@@ -41,18 +40,18 @@ describe("Timeline", () => {
   it("applies alignment classes", () => {
     const { container } = render(
       <Timeline align="alternate">
-        <TimelineItem>Test</TimelineItem>
+        <TimelineItem>Content</TimelineItem>
       </Timeline>,
     );
-    expect(container.firstChild).toHaveClass("wim-timeline--alternate");
-    expect(container.querySelector(".wim-timeline-item")).toHaveClass(
-      "wim-timeline-item--alternate",
+    expect(container.firstChild).toHaveClass(styles.alternate);
+    expect(container.querySelector(`.${styles.item}`)).toHaveClass(
+      styles.alternate,
     );
   });
 
   it("applies variant classes to points", () => {
     const { container } = render(<TimelinePoint variant="success" />);
-    expect(container.firstChild).toHaveClass("wim-timeline-point--success");
+    expect(container.firstChild).toHaveClass(styles.success);
   });
 
   it("handles non-element children in Timeline", () => {
@@ -68,11 +67,21 @@ describe("Timeline", () => {
 
   it("renders point with icon and custom class", () => {
     const { container } = render(
-      <TimelinePoint className="custom-point">
-        <span data-testid="icon">Icon</span>
-      </TimelinePoint>
+      <TimelinePoint>
+        <span data-testid="icon" />
+      </TimelinePoint>,
     );
-    expect(container.firstChild).toHaveClass("wim-timeline-point--icon");
+    expect(container.firstChild).toHaveClass(styles.icon);
+    expect(screen.getByTestId("icon")).toBeInTheDocument();
+  });
+
+  it("renders point with icon and custom class", () => {
+    const { container } = render(
+      <TimelinePoint className="custom-point">
+        <span data-testid="icon" />
+      </TimelinePoint>,
+    );
+    expect(container.firstChild).toHaveClass(styles.icon);
     expect(container.firstChild).toHaveClass("custom-point");
     expect(screen.getByTestId("icon")).toBeInTheDocument();
   });

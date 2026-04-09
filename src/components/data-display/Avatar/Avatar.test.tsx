@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { Avatar } from "./Avatar";
+import styles from "./avatar.module.scss";
 
 describe("Avatar", () => {
   it("renders image when src provided", () => {
@@ -14,7 +15,7 @@ describe("Avatar", () => {
     const { container } = render(<Avatar initials="TS" />);
     expect(screen.getByText("TS")).toBeInTheDocument();
     expect(
-      container.querySelector(".wim-avatar__initials"),
+      container.querySelector(`.${styles.initials}`),
     ).toBeInTheDocument();
   });
 
@@ -42,8 +43,8 @@ describe("Avatar", () => {
 
   it("applies size and shape classes", () => {
     const { container } = render(<Avatar size="lg" shape="rounded" />);
-    expect(container.firstChild).toHaveClass("wim-avatar--lg");
-    expect(container.firstChild).toHaveClass("wim-avatar--rounded");
+    expect(container.firstChild).toHaveClass(styles.lg);
+    expect(container.firstChild).toHaveClass(styles.rounded);
   });
 
   it("falls back to initials when image fails to load", () => {
@@ -73,7 +74,7 @@ describe("Avatar", () => {
 
   it("applies intent class", () => {
     const { container } = render(<Avatar intent="primary" />);
-    expect(container.firstChild).toHaveClass("wim-avatar--primary");
+    expect(container.firstChild).toHaveClass(styles.primary);
   });
 
   it("truncates initials to 2 characters", () => {
