@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 import classNames from "classnames";
 import { HamburgerMenu } from "../../navigation/HamburgerMenu/HamburgerMenu";
 import { Drawer, DrawerContent } from "../../overlay/Drawer/Drawer";
-import "./navbar.scss";
+import styles from "./navbar.module.scss";
 
 type NavbarContextType = {
   isMenuOpen: boolean;
@@ -12,21 +12,13 @@ type NavbarContextType = {
 const NavbarContext = createContext<NavbarContextType | undefined>(undefined);
 
 export interface NavbarProps extends React.ComponentPropsWithoutRef<"nav"> {
-  /** Fixed position at the top */
   fixed?: boolean;
-  /** Sticky position at the top */
   sticky?: boolean;
-  /** Transparent background */
   transparent?: boolean;
-  /** Glassmorphism effect */
   glass?: boolean;
-  /** Border at the bottom */
   bordered?: boolean;
-  /** Initial state for mobile menu */
   defaultMenuOpen?: boolean;
-  /** Controlled state for mobile menu */
   isMenuOpen?: boolean;
-  /** Callback when menu state changes */
   onMenuOpenChange?: (isOpen: boolean) => void;
 }
 
@@ -61,17 +53,17 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
         <nav
           ref={ref}
           className={classNames(
-            "wim-navbar",
-            fixed && "wim-navbar--fixed",
-            sticky && "wim-navbar--sticky",
-            transparent && "wim-navbar--transparent",
-            glass && "wim-navbar--glass",
-            bordered && "wim-navbar--bordered",
+            styles.root,
+            fixed && styles.fixed,
+            sticky && styles.sticky,
+            transparent && styles.transparent,
+            glass && styles.glass,
+            bordered && styles.bordered,
             className,
           )}
           {...props}
         >
-          <div className="wim-navbar__container">{children}</div>
+          <div className={styles.container}>{children}</div>
         </nav>
       </NavbarContext.Provider>
     );
@@ -87,7 +79,7 @@ export const NavbarBrand = React.forwardRef<HTMLDivElement, NavbarBrandProps>(
     return (
       <div
         ref={ref}
-        className={classNames("wim-navbar__brand", className)}
+        className={classNames(styles.brand, className)}
         {...props}
       >
         {children}
@@ -100,7 +92,6 @@ NavbarBrand.displayName = "Navbar.Brand";
 
 export interface NavbarContentProps extends React.ComponentPropsWithoutRef<"div"> {
   justify?: "start" | "end" | "center";
-  /** Hide content on mobile screens */
   hiddenOnMobile?: boolean;
 }
 
@@ -112,9 +103,9 @@ export const NavbarContent = React.forwardRef<
     <div
       ref={ref}
       className={classNames(
-        "wim-navbar__content",
-        `wim-navbar__content--${justify}`,
-        hiddenOnMobile && "wim-navbar__content--hidden-mobile",
+        styles.content,
+        styles[justify],
+        hiddenOnMobile && styles.hiddenMobile,
         className,
       )}
       {...props}
@@ -136,8 +127,8 @@ export const NavbarItem = React.forwardRef<HTMLDivElement, NavbarItemProps>(
       <div
         ref={ref}
         className={classNames(
-          "wim-navbar__item",
-          active && "wim-navbar__item--active",
+          styles.item,
+          active && styles.active,
           className,
         )}
         {...props}
@@ -160,8 +151,8 @@ export const NavbarLink = React.forwardRef<HTMLAnchorElement, NavbarLinkProps>(
       <a
         ref={ref}
         className={classNames(
-          "wim-navbar__link",
-          active && "wim-navbar__link--active",
+          styles.link,
+          active && styles.active,
           className,
         )}
         {...props}
@@ -190,7 +181,7 @@ export const NavbarToggle = React.forwardRef<
   const { isMenuOpen, setIsMenuOpen } = context;
 
   return (
-    <div className="wim-navbar__toggle">
+    <div className={styles.toggle}>
       <HamburgerMenu
         ref={ref}
         open={isMenuOpen}
@@ -218,13 +209,7 @@ export const NavbarMenu = React.forwardRef<HTMLDivElement, NavbarMenuProps>(
 
     return (
       <Drawer open={isMenuOpen} onOpenChange={setIsMenuOpen} side={position}>
-        <DrawerContent className={classNames("wim-navbar__menu", className)}>
-          {/* DrawerContent does not forward ref, so we attach it to a div if needed, 
-                        but to keep structure clean we just pass props to DrawerContent essentially. 
-                        Since we can't fully forward props/ref to DrawerContent easily without wrapper,
-                        we will render children directly. 
-                        The className handles the styling.
-                    */}
+        <DrawerContent className={classNames(styles.menu, className)}>
           {children}
         </DrawerContent>
       </Drawer>
@@ -254,8 +239,8 @@ export const NavbarMenuItem = React.forwardRef<
     <div
       ref={ref}
       className={classNames(
-        "wim-navbar__menu-item",
-        active && "wim-navbar__menu-item--active",
+        styles.menuItem,
+        active && styles.active,
         className,
       )}
       onClick={handleClick}

@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { FieldLabelContent } from "./FieldLabelContent";
 import badgeStyles from "../data-display/Badge/badge.module.scss";
+import styles from "./field-label-content.module.scss";
 
 describe("FieldLabelContent", () => {
   it("renders the label text", () => {
@@ -12,22 +13,22 @@ describe("FieldLabelContent", () => {
   it("shows required badge when required is true", () => {
     const { container } = render(<FieldLabelContent label="Name" required />);
     // Badge renders content with parentheses e.g. "(Required)"
-    expect(container.querySelector(".wim-field-label-badge")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.badge}`)).toBeInTheDocument();
   });
 
   it("does not show required badge by default", () => {
     const { container } = render(<FieldLabelContent label="Name" />);
-    expect(container.querySelector(".wim-field-label-badge")).not.toBeInTheDocument();
+    expect(container.querySelector(`.${styles.badge}`)).not.toBeInTheDocument();
   });
 
   it("shows optional badge when showOptional is true", () => {
     const { container } = render(<FieldLabelContent label="Name" showOptional />);
-    expect(container.querySelector(".wim-field-label-badge")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.badge}`)).toBeInTheDocument();
   });
 
   it("does not show optional badge by default", () => {
     const { container } = render(<FieldLabelContent label="Name" />);
-    expect(container.querySelector(".wim-field-label-badge")).not.toBeInTheDocument();
+    expect(container.querySelector(`.${styles.badge}`)).not.toBeInTheDocument();
   });
 
   it("required badge has aria-hidden to avoid screen reader duplication", () => {
@@ -37,7 +38,7 @@ describe("FieldLabelContent", () => {
 
   it("required takes priority over showOptional", () => {
     const { container } = render(<FieldLabelContent label="Name" required showOptional />);
-    const badge = container.querySelector(".wim-field-label-badge");
+    const badge = container.querySelector(`.${styles.badge}`);
     expect(badge).toBeInTheDocument();
     // required badge uses error color, optional uses neutral
     expect(badge).toHaveClass(badgeStyles.error);

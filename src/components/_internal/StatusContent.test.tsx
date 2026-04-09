@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { StatusContent } from "./StatusContent";
+import styles from "./status-content.module.scss";
 
 describe("StatusContent", () => {
   it("renders string title through translation", () => {
@@ -35,7 +36,7 @@ describe("StatusContent", () => {
 
   it("applies sm size class", () => {
     const { container } = render(<StatusContent size="sm" />);
-    expect(container.firstChild).toHaveClass("wim-status-content--sm");
+    expect(container.firstChild).toHaveClass(styles.sm);
   });
 
   it("applies custom prefixCls", () => {

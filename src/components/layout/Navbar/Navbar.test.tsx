@@ -9,6 +9,7 @@ import {
   NavbarToggle,
   NavbarMenuItem,
 } from "./Navbar";
+import styles from "./navbar.module.scss";
 
 describe("Navbar", () => {
   it("renders children content", () => {
@@ -29,16 +30,16 @@ describe("Navbar", () => {
   it("applies fixed and sticky classes", () => {
     const { container } = render(<Navbar fixed sticky />);
     const nav = container.querySelector("nav");
-    expect(nav).toHaveClass("wim-navbar--fixed");
-    expect(nav).toHaveClass("wim-navbar--sticky");
+    expect(nav).toHaveClass(styles.fixed);
+    expect(nav).toHaveClass(styles.sticky);
   });
 
   it("applies transparent, glass, and bordered classes", () => {
     const { container } = render(<Navbar transparent glass bordered />);
     const nav = container.querySelector("nav");
-    expect(nav).toHaveClass("wim-navbar--transparent");
-    expect(nav).toHaveClass("wim-navbar--glass");
-    expect(nav).toHaveClass("wim-navbar--bordered");
+    expect(nav).toHaveClass(styles.transparent);
+    expect(nav).toHaveClass(styles.glass);
+    expect(nav).toHaveClass(styles.bordered);
   });
 
   it("applies active class to NavbarItem and NavbarLink", () => {
@@ -50,33 +51,29 @@ describe("Navbar", () => {
         </NavbarLink>
       </Navbar>,
     );
-    expect(screen.getByText("Active Item")).toHaveClass(
-      "wim-navbar__item--active",
-    );
-    expect(screen.getByText("Active Link")).toHaveClass(
-      "wim-navbar__link--active",
-    );
+    expect(screen.getByText("Active Item")).toHaveClass(styles.active);
+    expect(screen.getByText("Active Link")).toHaveClass(styles.active);
   });
 
   it("applies justify class to NavbarContent", () => {
     const { container } = render(
       <NavbarContent justify="center">Content</NavbarContent>,
     );
-    expect(container.firstChild).toHaveClass("wim-navbar__content--center");
+    expect(container.firstChild).toHaveClass(styles.center);
   });
 
   it("applies justify start and end to NavbarContent", () => {
     const { rerender, container } = render(<NavbarContent justify="start">C</NavbarContent>);
-    expect(container.firstChild).toHaveClass("wim-navbar__content--start");
+    expect(container.firstChild).toHaveClass(styles.start);
     rerender(<NavbarContent justify="end">C</NavbarContent>);
-    expect(container.firstChild).toHaveClass("wim-navbar__content--end");
+    expect(container.firstChild).toHaveClass(styles.end);
   });
 
   it("applies hidden-mobile class to NavbarContent", () => {
     const { container } = render(
       <NavbarContent hiddenOnMobile>Content</NavbarContent>,
     );
-    expect(container.firstChild).toHaveClass("wim-navbar__content--hidden-mobile");
+    expect(container.firstChild).toHaveClass(styles.hiddenMobile);
   });
 
   it("applies custom className to Navbar", () => {
@@ -85,12 +82,12 @@ describe("Navbar", () => {
   });
 
   it("uses defaultMenuOpen to initialize internal state", () => {
-    render(
+    const { container } = render(
       <Navbar defaultMenuOpen={false}>
         <NavbarToggle />
       </Navbar>,
     );
-    const toggleWrapper = document.querySelector(".wim-navbar__toggle");
+    const toggleWrapper = container.querySelector(`.${styles.toggle}`);
     expect(toggleWrapper).toBeInTheDocument();
   });
 
@@ -101,7 +98,8 @@ describe("Navbar", () => {
         <NavbarToggle />
       </Navbar>,
     );
-    const btn = document.querySelector(".wim-hamburger-menu") as HTMLElement;
+    // Find by aria-label which is more stable
+    const btn = screen.getByRole("button", { name: /open menu/i });
     fireEvent.click(btn);
     expect(onMenuOpenChange).toHaveBeenCalledWith(true);
   });
@@ -112,16 +110,19 @@ describe("Navbar", () => {
         <NavbarToggle />
       </Navbar>,
     );
-    const btn = document.querySelector("[aria-expanded]");
+    const btn = screen.getByRole("button", { name: /close menu/i });
     expect(btn).toHaveAttribute("aria-expanded", "true");
   });
 });
 
 describe("NavbarToggle", () => {
   it("throws when used outside Navbar", () => {
+    // Silence error log for expected throw
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => render(<NavbarToggle />)).toThrow(
       "NavbarToggle must be used within a Navbar",
     );
+    spy.mockRestore();
   });
 });
 
@@ -132,7 +133,7 @@ describe("NavbarMenuItem", () => {
         <NavbarMenuItem active>Active Menu Item</NavbarMenuItem>
       </Navbar>,
     );
-    expect(screen.getByText("Active Menu Item")).toHaveClass("wim-navbar__menu-item--active");
+    expect(screen.getByText("Active Menu Item")).toHaveClass(styles.active);
   });
 
   it("calls onClick and closes menu", () => {
