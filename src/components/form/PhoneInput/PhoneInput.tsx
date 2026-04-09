@@ -1,7 +1,7 @@
 import React, { useId } from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
-import "./phone-input.scss";
+import styles from "./phone-input.module.scss";
 
 // ─── Country Data ─────────────────────────────────────────────────────────────
 
@@ -114,15 +114,15 @@ export const PhoneInput = ({
     >
       <div
         className={classNames(
-          "wim-phone-input",
-          disabled && "wim-phone-input--disabled",
-          error && "wim-phone-input--error",
+          styles.root,
+          disabled && styles.disabled,
+          error && styles.error,
           className,
         )}
       >
-        <div className="wim-phone-input__country-wrapper">
+        <div className={styles.countryWrapper}>
           <select
-            className="wim-phone-input__country"
+            className={styles.country}
             value={countryCode}
             disabled={disabled}
             aria-label="Country code"
@@ -134,15 +134,15 @@ export const PhoneInput = ({
               </option>
             ))}
           </select>
-          <span className="wim-phone-input__dial-preview" aria-hidden="true">
+          <span className={styles.dialPreview} aria-hidden="true">
             {selectedCountry.flag} {selectedCountry.dialCode}
           </span>
         </div>
-        <span className="wim-phone-input__divider" aria-hidden="true" />
+        <span className={styles.divider} aria-hidden="true" />
         <input
           id={inputId}
           type="tel"
-          className="wim-phone-input__number"
+          className={styles.number}
           value={value}
           placeholder={placeholder}
           disabled={disabled}

@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { QRCodeSVG, QRCodeCanvas } from "qrcode.react";
-import "./qrcode.scss";
+import styles from "./qrcode.module.scss";
 
 type QRCodeProps = {
   value: string;
@@ -32,7 +32,7 @@ export const QRCode = ({
   const Component = renderAs === "svg" ? QRCodeSVG : QRCodeCanvas;
 
   return (
-    <div className={classNames("wim-qrcode", className)}>
+    <div className={classNames(styles.root, className)}>
       <Component
         value={value}
         size={size}

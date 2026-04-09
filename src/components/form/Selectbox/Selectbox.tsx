@@ -2,7 +2,7 @@ import React, { useId } from "react";
 import classNames from "classnames";
 import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
-import "./selectbox.scss";
+import styles from "./selectbox.module.scss";
 import { useSelectbox } from "./useSelectbox";
 
 export type SelectboxOption = {
@@ -137,7 +137,7 @@ export const Selectbox = ({
 
         return (
           <React.Fragment key={groupIndex}>
-            <li className="wim-selectbox-group-label" role="presentation">
+            <li className={styles.groupLabel} role="presentation">
               {group.label}
             </li>
             {groupOptionsFiltered.map((option, optIdx) => {
@@ -146,7 +146,7 @@ export const Selectbox = ({
                 return (
                   <li
                     key={`sep-${groupIndex}-${optIdx}`}
-                    className="wim-selectbox-separator"
+                    className={styles.separator}
                     role="presentation"
                   />
                 );
@@ -167,8 +167,8 @@ export const Selectbox = ({
                   active={isFocused}
                   disabled={option.disabled}
                   className={classNames(
-                    "wim-selectbox-option",
-                    isSelected && "wim-selectbox-option--selected",
+                    styles.option,
+                    isSelected && styles.selected,
                   )}
                   onClick={(e: React.MouseEvent) => {
                     e.stopPropagation();
@@ -193,7 +193,7 @@ export const Selectbox = ({
         return (
           <li
             key={`sep-${index}`}
-            className="wim-selectbox-separator"
+            className={styles.separator}
             role="presentation"
           />
         );
@@ -214,8 +214,8 @@ export const Selectbox = ({
           active={isFocused}
           disabled={option.disabled}
           className={classNames(
-            "wim-selectbox-option",
-            isSelected && "wim-selectbox-option--selected",
+            styles.option,
+            isSelected && styles.selected,
           )}
           onClick={(e: React.MouseEvent) => {
             e.stopPropagation();
@@ -254,7 +254,7 @@ export const Selectbox = ({
       className={className}
     >
       <div
-        className={classNames("wim-selectbox", fullWidth && "wim-selectbox--full-width")}
+        className={classNames(styles.root, fullWidth && styles.fullWidth)}
         ref={containerRef}
         onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}
@@ -272,9 +272,9 @@ export const Selectbox = ({
           <div
             id={triggerId}
             className={classNames(
-              "wim-selectbox-trigger",
-              isOpen && "wim-selectbox-trigger--open",
-              disabled && "wim-selectbox-trigger--disabled",
+              styles.trigger,
+              isOpen && styles.open,
+              disabled && styles.disabled,
             )}
             onClick={handleToggle}
             onKeyDown={handleKeyDown}
@@ -293,8 +293,8 @@ export const Selectbox = ({
           >
             <div
               className={classNames(
-                "wim-selectbox-value",
-                !selectedOption && "wim-selectbox-value--placeholder",
+                styles.value,
+                !selectedOption && styles.placeholder,
               )}
             >
               {selectedOption ? selectedOption.label : placeholder}
@@ -310,14 +310,14 @@ export const Selectbox = ({
           leave="fade-leave"
           leaveFrom="fade-leave-from"
           leaveTo="fade-leave-to"
-          className="wim-selectbox-dropdown"
+          className={styles.dropdown}
         >
           {searchable && (
-            <div className="wim-selectbox-search">
+            <div className={styles.search}>
               <input
                 ref={searchInputRef}
                 type="text"
-                className="wim-selectbox-search-input"
+                className={styles.searchInput}
                 placeholder={searchPlaceholder}
                 value={searchValue}
                 onChange={(e) => {
@@ -334,13 +334,13 @@ export const Selectbox = ({
           )}
           <ul
             id={listId}
-            className="wim-selectbox-list"
+            className={styles.list}
             role="listbox"
             aria-labelledby={label ? labelId : ariaLabelledBy || undefined}
           >
             {filteredOptions.length === 0 ? (
               <li
-                className="wim-selectbox-empty"
+                className={styles.empty}
                 role="option"
                 aria-selected="false"
               >
@@ -355,3 +355,5 @@ export const Selectbox = ({
     </FieldTemplate>
   );
 };
+
+Selectbox.displayName = "Selectbox";

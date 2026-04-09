@@ -138,7 +138,7 @@ const ControlledTemplate = () => {
         style={{
           padding: "10px 20px",
           backgroundColor: "var(--wim-color-primary)",
-          color: "white",
+          color: "var(--wim-color-text-on-primary)",
           border: "none",
           borderRadius: "6px",
           cursor: "pointer",

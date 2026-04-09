@@ -2,20 +2,20 @@ import { useRef, useEffect } from "react";
 import type { DataGridProps } from "./DataGrid";
 
 export function useInfiniteScroll(
-  loadMore: DataGridProps<Record<string, unknown>>["loadMore"],
+  infiniteScroll: DataGridProps<Record<string, unknown>>["infiniteScroll"],
 ) {
   const loaderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!loadMore || !loadMore.hasMore || loadMore.loading) return;
+    if (!infiniteScroll || !infiniteScroll.hasMore) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          loadMore.onLoadMore();
+          infiniteScroll.onLoadMore();
         }
       },
-      { threshold: loadMore.threshold || 0.1 },
+      { threshold: infiniteScroll.threshold || 0.1 },
     );
 
     if (loaderRef.current) {
@@ -23,7 +23,7 @@ export function useInfiniteScroll(
     }
 
     return () => observer.disconnect();
-  }, [loadMore]);
+  }, [infiniteScroll]);
 
   return { loaderRef };
 }

@@ -1,90 +1,79 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import classNames from "classnames";
-import { Loader } from "../../feedback/Loader/Loader";
-import "./infinitescroll.scss";
+import styles from "./infinite-scroll.module.scss";
 
-export type InfiniteScrollProps = React.ComponentPropsWithoutRef<"div"> & {
-  /**
-   * 次のデータを読み込む際に呼び出されるコールバック関数。
-   */
-  onLoadMore: () => void;
-  /**
-   * 読み込み中かどうか。
-   */
-  loading?: boolean;
-  /**
-   * まだ読み込むデータがあるかどうか。
-   */
+export interface InfiniteScrollProps {
+  /** 表示するコンテンツ。 */
+  children: React.ReactNode;
+  /** さらに読み込むデータがあるかどうか。 */
   hasMore?: boolean;
-  /**
-   * 読み込み中に表示する要素。デフォルトは `Loader` コンポーネント。
-   */
+  /** ローディング中かどうか。 */
+  loading?: boolean;
+  /** 次のデータを読み込むためのコールバック。 */
+  onLoadMore: () => void;
+  /** ローディング中に表示する要素。 */
   loader?: React.ReactNode;
-  /**
-   * スクロールを検知する閾値。0から1までの値を指定。デフォルトは 0。
-   */
+  /** スクロールのしきい値（px）。最下部からこの距離に近づくと onLoadMore が呼ばれます。 */
   threshold?: number;
-  /**
-   * スクロールを検知する際のオフセット。root からの距離を指定。
-   */
-  rootMargin?: string;
-};
+  /** 追加のクラス名。 */
+  className?: string;
+  /** スクロールイベントを監視するターゲット（デフォルトは window）。 */
+  container?: React.RefObject<HTMLElement | null>;
+}
 
 /**
- * スクロールに応じて自動的に次のデータを読み込むためのコンポーネント。
+ * ユーザーがページの最下部に到達したときに自動的にコンテンツを読み込む
+ * インフィニットスクロールコンポーネント。
  */
 export const InfiniteScroll = ({
-  onLoadMore,
-  loading = false,
-  hasMore = true,
-  loader,
-  threshold = 0,
-  rootMargin = "0px",
-  className,
   children,
-  ...props
+  hasMore = false,
+  loading = false,
+  onLoadMore,
+  loader,
+  threshold = 250,
+  className,
+  container,
 }: InfiniteScrollProps) => {
-  const triggerRef = useRef<HTMLDivElement>(null);
+  const observerTarget = useRef<HTMLDivElement>(null);
+
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const [target] = entries;
+      if (target.isIntersecting && hasMore) {
+        onLoadMore();
+      }
+    },
+    [hasMore, onLoadMore],
+  );
 
   useEffect(() => {
-    const trigger = triggerRef.current;
-    if (!trigger || !hasMore || loading) return;
+    const option = {
+      root: container?.current || null,
+      rootMargin: `0px 0px ${threshold}px 0px`,
+      threshold: 0,
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          onLoadMore();
-        }
-      },
-      {
-        threshold,
-        rootMargin,
-      },
-    );
+    const observer = new IntersectionObserver(handleObserver, option);
 
-    observer.observe(trigger);
+    const target = observerTarget.current;
+    if (target) {
+      observer.observe(target);
+    }
 
     return () => {
-      if (trigger) {
-        observer.unobserve(trigger);
+      if (target) {
+        observer.unobserve(target);
       }
     };
-  }, [onLoadMore, loading, hasMore, threshold, rootMargin]);
+  }, [handleObserver, container, threshold]);
 
   return (
-    <div className={classNames("wim-infinite-scroll", className)} {...props}>
+    <div className={classNames(styles.root, className)}>
       {children}
+      {loading && <div role="status" className={styles.loading}>{loader}</div>}
       {hasMore && (
-        <div
-          ref={triggerRef}
-          className="wim-infinite-scroll__trigger"
-          aria-hidden="true"
-        />
-      )}
-      {loading && (
-        <div className="wim-infinite-scroll__loader">
-          {loader || <Loader />}
-        </div>
+        <div ref={observerTarget} className={styles.loader} />
       )}
     </div>
   );

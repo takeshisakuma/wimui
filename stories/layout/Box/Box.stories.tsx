@@ -26,7 +26,7 @@ export const Default: Story = {
     return <Box {...args}>{t("story.box_default")}</Box>;
   },
   args: {
-    bg: "#f0f0f0",
+    bg: "var(--wim-color-bg-secondary)",
     p: 20,
     radius: 8,
   },
@@ -38,11 +38,11 @@ export const WithCustomShadow: Story = {
     return <Box {...args}>{t("story.box_shadow")}</Box>;
   },
   args: {
-    bg: "white",
+    bg: "var(--wim-color-surface)",
     p: 40,
     radius: 12,
     shadow:
-      "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+      "var(--wim-shadow-md)",
   },
 };
 
@@ -53,11 +53,11 @@ export const AsButton: Story = {
   },
   args: {
     as: "button",
-    bg: "#eff6ff",
-    color: "#1d4ed8",
+    bg: "var(--wim-color-primary-subtle)",
+    color: "var(--wim-color-primary)",
     p: "10px 20px",
     radius: 6,
-    style: { border: "1px solid #bfdbfe", cursor: "pointer", fontWeight: 600 },
+    style: { border: "1px solid var(--wim-color-primary)", cursor: "pointer", fontWeight: 600 },
   },
 };
 
@@ -65,23 +65,23 @@ export const Spacing: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Box bg="#f8fafc" p={20} radius={8} style={{ border: "1px solid #e2e8f0" }}>
+      <Box bg="var(--wim-color-bg-secondary)" p={20} radius={8} style={{ border: "1px solid var(--wim-color-border)" }}>
         <Box
-          bg="#eff6ff"
+          bg="var(--wim-color-primary-subtle)"
           p={15}
           mb={15}
-          color="#1d4ed8"
+          color="var(--wim-color-primary)"
           radius={4}
-          style={{ border: "1px solid #bfdbfe" }}
+          style={{ border: "1px solid var(--wim-color-primary)" }}
         >
           {t("story.box_margin")}
         </Box>
         <Box
-          bg="#f0fdf4"
+          bg="var(--wim-color-positive-subtle)"
           p={15}
-          color="#15803d"
+          color="var(--wim-color-positive)"
           radius={4}
-          style={{ border: "1px solid #bbf7d0" }}
+          style={{ border: "1px solid var(--wim-color-positive)" }}
         >
           {t("story.box_2")}
         </Box>
@@ -96,11 +96,11 @@ export const PaddingProps: Story = {
     return <Box {...args}>{t("story.box_padding")}</Box>;
   },
   args: {
-    bg: "#fdf2f8",
-    color: "#be185d",
+    bg: "var(--wim-color-destructive-subtle)",
+    color: "var(--wim-color-destructive)",
     px: 40, // Left and right padding
     py: 10, // Top and bottom padding
     radius: 8,
-    style: { border: "1px solid #fbcfe8", display: "inline-block" },
+    style: { border: "1px solid var(--wim-color-destructive)", display: "inline-block" },
   },
 };

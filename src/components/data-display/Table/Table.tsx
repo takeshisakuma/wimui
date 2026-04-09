@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import "./table.scss";
+import styles from "./table.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 
 export { useTableSort, getNextSortDirection } from "./useTableSort";
@@ -53,8 +53,8 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
     return (
       <div
         className={classNames(
-          "wim-table-container",
-          stickyHeader && "wim-table-container--sticky",
+          styles.container,
+          stickyHeader && styles.sticky,
           scrollbar === "subtle" && "wim-subtle-scrollbar",
           scrollbar === "hidden" && "wim-no-scrollbar",
         )}
@@ -63,13 +63,13 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
       >
         <Component
           className={classNames(
-            "wim-table",
-            striped && "wim-table--striped",
-            bordered && "wim-table--bordered",
-            hoverable && "wim-table--hoverable",
-            fullWidth && "wim-table--full-width",
-            stickyHeader && "wim-table--sticky-header",
-            mobileCard && "wim-table--mobile-card",
+            styles.root,
+            striped && styles.striped,
+            bordered && styles.bordered,
+            hoverable && styles.hoverable,
+            fullWidth && styles.fullWidth,
+            stickyHeader && styles.stickyHeader,
+            mobileCard && styles.mobileCard,
             className,
           )}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -92,7 +92,7 @@ export const TableHeader = React.forwardRef<HTMLTableSectionElement, TableHeader
     const Component = asChild ? Slot : "thead";
     return (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <Component className={classNames("wim-table__header", className)} ref={ref as any} {...(props as any)}>
+      <Component className={classNames(styles.header, className)} ref={ref as any} {...(props as any)}>
         <Slottable>{children}</Slottable>
       </Component>
     );
@@ -107,7 +107,7 @@ export const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProp
     const Component = asChild ? Slot : "tbody";
     return (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <Component className={classNames("wim-table__body", className)} ref={ref as any} {...(props as any)}>
+      <Component className={classNames(styles.body, className)} ref={ref as any} {...(props as any)}>
         <Slottable>{children}</Slottable>
       </Component>
     );
@@ -122,7 +122,7 @@ export const TableFooter = React.forwardRef<HTMLTableSectionElement, TableFooter
     const Component = asChild ? Slot : "tfoot";
     return (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <Component className={classNames("wim-table__footer", className)} ref={ref as any} {...(props as any)}>
+      <Component className={classNames(styles.footer, className)} ref={ref as any} {...(props as any)}>
         <Slottable>{children}</Slottable>
       </Component>
     );
@@ -139,7 +139,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
     const Component = asChild ? Slot : "tr";
     return (
       <Component
-        className={classNames("wim-table__row", selected && "wim-table__row--selected", className)}
+        className={classNames(styles.row, selected && styles.selected, className)}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -187,11 +187,11 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
     return (
       <Component
         className={classNames(
-          "wim-table__head",
-          sortable && "wim-table__head--sortable",
-          props.selection && "wim-table__head--selection",
-          stickyLeft && "wim-table__head--sticky-left",
-          stickyRight && "wim-table__head--sticky-right",
+          styles.head,
+          sortable && styles.sortable,
+          props.selection && styles.selection,
+          stickyLeft && styles.stickyLeft,
+          stickyRight && styles.stickyRight,
           className,
         )}
         style={{
@@ -218,10 +218,10 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
           props.onKeyDown?.(e as any);
         }}
       >
-        <div className="wim-table__head-content">
+        <div className={styles.headContent}>
           <Slottable>{children}</Slottable>
           {sortable && (
-            <span className={classNames("wim-table__sort-icon", `wim-table__sort-icon--${sortDirection}`)}>
+            <span className={classNames(styles.sortIcon, styles[sortDirection])}>
               <Icon name="ChevronDownIcon" size="sm" />
             </span>
           )}
@@ -264,10 +264,10 @@ export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
     return (
       <Component
         className={classNames(
-          "wim-table__cell",
-          selection && "wim-table__cell--selection",
-          stickyLeft && "wim-table__cell--sticky-left",
-          stickyRight && "wim-table__cell--sticky-right",
+          styles.cell,
+          selection && styles.selection,
+          stickyLeft && styles.stickyLeft,
+          stickyRight && styles.stickyRight,
           className,
         )}
         style={{

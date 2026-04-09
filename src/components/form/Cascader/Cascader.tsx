@@ -4,8 +4,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
-import "./cascader.scss";
-
+import styles from "./cascader.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 
 function getLabelText(label: React.ReactNode): string {
@@ -320,7 +319,7 @@ export const Cascader = ({
     }
 
     return menus.map((menuOptions, level) => (
-      <div key={level} className="wim-cascader__menu" role="listbox">
+      <div key={level} className={styles.menu} role="listbox">
         {menuOptions.map((option, index) => {
           const isActive = activePath[level] === option.value;
           const isFocused = focusedLevel === level && focusedIndexes[level] === index;
@@ -331,8 +330,8 @@ export const Cascader = ({
             <BaseListItem
               key={option.value}
               className={classNames(
-                "wim-cascader__menu-item",
-                isSelected && "wim-cascader__menu-item--selected",
+                styles.menuItem,
+                isSelected && styles.selected,
               )}
               active={isFocused || isActive}
               disabled={option.disabled}
@@ -394,7 +393,7 @@ export const Cascader = ({
       className={className}
     >
       <div
-        className="wim-cascader"
+        className={styles.root}
         ref={containerRef}
         onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}
@@ -408,15 +407,15 @@ export const Cascader = ({
           intent={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
-            isOpen && "wim-cascader__trigger--open",
+            isOpen && styles.open,
           )}
         >
           <div
             id={triggerId}
             ref={triggerRef}
             className={classNames(
-              "wim-cascader__trigger",
-              disabled && "wim-cascader__trigger--disabled",
+              styles.trigger,
+              disabled && styles.disabled,
             )}
             onClick={handleToggle}
             onKeyDown={handleKeyDown}
@@ -436,8 +435,8 @@ export const Cascader = ({
           >
             <div
               className={classNames(
-                "wim-cascader__value",
-                !displayValue && "wim-cascader__value--placeholder",
+                styles.value,
+                !displayValue && styles.placeholder,
               )}
             >
               {displayValue || placeholder}
@@ -454,7 +453,7 @@ export const Cascader = ({
           leaveFrom="fade-leave-from"
           leaveTo="fade-leave-to"
           id={popupId}
-          className="wim-cascader__dropdown"
+          className={styles.dropdown}
         >
           {renderMenus()}
         </Transition>
@@ -462,3 +461,5 @@ export const Cascader = ({
     </FieldTemplate>
   );
 };
+
+Cascader.displayName = "Cascader";

@@ -1,0 +1,89 @@
+@layer component {
+  .root {
+    display: inline-flex;
+    align-items: center;
+
+    &.sm {
+      --wim-rating-star-size: 16px;
+
+      gap: 2px;
+    }
+
+    &.md {
+      --wim-rating-star-size: 24px;
+
+      gap: 4px;
+    }
+
+    &.lg {
+      --wim-rating-star-size: 32px;
+
+      gap: 6px;
+    }
+
+    &.disabled {
+      pointer-events: none;
+
+      .star {
+        cursor: default;
+
+        .foreground {
+          color: var(--wim-color-text-tertiary);
+        }
+      }
+    }
+  }
+
+  .star {
+    position: relative;
+    display: block;
+    width: var(--wim-rating-star-size);
+    height: var(--wim-rating-star-size);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &.full .foreground {
+      width: 100%;
+    }
+
+    &.half .foreground {
+      width: 50%;
+    }
+  }
+
+  .background {
+    color: var(--wim-color-border);
+
+    :global(.wim-icon) {
+      display: block;
+      width: var(--wim-rating-star-size);
+      height: var(--wim-rating-star-size);
+      fill: currentcolor;
+    }
+  }
+
+  .foreground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    color: var(--wim-color-caution);
+    white-space: nowrap;
+    pointer-events: none;
+    transition: width 0.2s ease;
+
+    :global(.wim-icon) {
+      display: block;
+      width: var(--wim-rating-star-size);
+      min-width: var(--wim-rating-star-size);
+      height: var(--wim-rating-star-size);
+      fill: currentcolor;
+    }
+  }
+}

@@ -1,0 +1,210 @@
+@layer component {
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--wim-z-overlay);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20vh;
+    background-color: var(--wim-color-overlay-bg);
+    backdrop-filter: blur(4px);
+
+    // Mobile: sticky to top and less padding
+    @media (width <= 640px) {
+      align-items: flex-start;
+      padding-top: 0;
+    }
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 640px;
+    overflow: hidden;
+    background: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-glass-border);
+    border-radius: var(--wim-radius-lg);
+    box-shadow: var(--wim-shadow-lg);
+    animation: slideIn 0.2s ease-out;
+
+    // Mobile: full width and no border radius at top
+    @media (width <= 640px) {
+      max-width: 100%;
+      height: auto;
+      max-height: 100vh;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-radius: 0 0 var(--wim-radius-lg) var(--wim-radius-lg);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  .inputWrapper {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--wim-spacing-md);
+    border-bottom: 2px solid var(--wim-color-border-secondary); // Slightly thicker for focus transition
+    transition: var(--wim-transition-fast);
+  
+    :global(.wim-icon) {
+      margin-right: var(--wim-spacing-sm);
+      color: var(--wim-color-text-tertiary);
+      transition: color 0.2s ease;
+    }
+  
+    &:focus-within {
+      background-color: var(--bg-hover, rgb(0 0 0 / 0.02));
+      border-bottom-color: var(--wim-color-primary);
+      transition: var(--wim-transition-fast);
+  
+      // Default (mouse) focus indicator: change icon color and light background
+      :global(.wim-icon) {
+        color: var(--wim-color-primary);
+      }
+  
+      // Keyboard navigation: show full "outline" using box-shadow
+      .content[data-keyboard-nav="true"] & {
+        border-bottom-color: transparent;
+        border-radius: var(--wim-radius-lg) var(--wim-radius-lg) 0 0;
+        box-shadow: inset 0 0 0 2px var(--wim-color-primary);
+      }
+    }
+  }
+  
+  .inputRight {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--wim-color-text-tertiary);
+  }
+  
+  .input {
+    flex: 1;
+    height: 54px; // Adjusted for 2px border to maintain height
+    font-size: 1rem;
+    color: var(--wim-color-text-primary);
+    outline: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  
+    &::placeholder {
+      color: var(--wim-color-text-tertiary);
+    }
+  }
+  
+  .list {
+    max-height: 400px;
+    padding: var(--wim-spacing-sm) 0; // Standardized padding for focus rings
+    overflow-y: auto;
+  
+    @media (width <= 640px) {
+      max-height: calc(100vh - 120px); // Adjust based on header/footer
+    }
+  }
+  
+  .group {
+    margin-bottom: var(--wim-spacing-sm);
+  
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .groupHeading {
+    padding: var(--wim-spacing-xs) calc(var(--wim-spacing-md) + var(--wim-spacing-xs));
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--wim-color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .item {
+    border-radius: var(--wim-radius-sm);
+
+    .content[data-keyboard-nav="true"] &.active {
+      z-index: 1;
+      box-shadow: var(--wim-shadow-focus);
+    }
+  
+    .shortcut {
+      display: flex;
+      gap: var(--wim-spacing-sm);
+  
+      // Hide shortcuts on small screens
+      @media (width <= 480px) {
+        display: none;
+      }
+    }
+  }
+  
+  .empty {
+    padding: var(--wim-spacing-xl) var(--wim-spacing-md);
+    font-size: 0.875rem;
+    color: var(--wim-color-text-tertiary);
+    text-align: center;
+  }
+  
+  .footer {
+    display: flex;
+    gap: var(--wim-spacing-md);
+    align-items: center;
+    padding: var(--wim-spacing-xs) var(--wim-spacing-md);
+    background: var(--wim-color-surface-inset);
+    border-top: 1px solid var(--wim-color-border-secondary);
+  
+    // Hide footer on very small screens or make it more compact
+    @media (width <= 480px) {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
+  
+  .shortcutHint {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--wim-color-text-tertiary);
+  
+    :global(.wim-kbd) {
+      padding: 1px 4px;
+      font-size: 0.6rem;
+    }
+  }
+  
+  // Add basic styles for the trigger if needed
+  .trigger {
+    display: inline-flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    color: var(--wim-color-text-secondary);
+    white-space: nowrap;
+    cursor: pointer;
+    background: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+    transition: all 0.2s;
+  
+    &:hover {
+      color: var(--wim-color-text-primary);
+      border-color: var(--wim-color-primary);
+    }
+  }
+}

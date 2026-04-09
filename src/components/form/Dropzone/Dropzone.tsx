@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { InteractiveArea } from "../../layout/InteractiveArea/InteractiveArea";
 import { FieldTemplate } from "../FieldTemplate";
-import "./dropzone.scss";
+import styles from "./dropzone.module.scss";
 
 type DropzoneProps = {
   /**
@@ -113,10 +113,10 @@ export const Dropzone = ({
       error={error}
       required={required}
       layout={layout}
-      className={classNames("wim-dropzone-container", className)}
+      className={classNames(styles.container, className)}
     >
       <InteractiveArea
-        className="wim-dropzone"
+        className={styles.dropzone}
         isDragging={isDragging}
         disabled={disabled}
         isClickable={!disabled}
@@ -147,15 +147,14 @@ export const Dropzone = ({
           multiple={multiple}
           disabled={disabled}
           onChange={handleFileChange}
-          className="wim-dropzone__input"
           style={{ display: "none" }}
           aria-hidden="true"
           tabIndex={-1}
         />
         {files && files.length > 0 && (
-          <div className="wim-dropzone__file-list">
+          <div className={styles.fileList}>
             {Array.from(files).map((file, index) => (
-              <span key={index} className="wim-dropzone__file-name">
+              <span key={index} className={styles.fileName}>
                 {file.name}
               </span>
             ))}

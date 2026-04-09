@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Label } from "../../typography/Label/Label";
 import { FieldError } from "../../form/FieldError/FieldError";
-import "./field-template.scss";
+import styles from "./field-template.module.scss";
 
 export interface FieldTemplateProps extends React.HTMLAttributes<HTMLDivElement> {
   asChild?: boolean;
@@ -47,18 +47,20 @@ export const FieldTemplate = React.forwardRef<HTMLDivElement, FieldTemplateProps
 
     return (
       <Component
-        className={classNames("wim-field-template", `wim-field-template--${layout}`, className)}
+        className={classNames(styles.root, styles[layout], className)}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
         {...props}
       >
         {label && (
-          <div className="wim-field-template-label-wrapper">
-            <Label label={label} required={required} id={labelId} className="wim-field-template-label" />
+          <div className={styles.labelWrapper}>
+            <Label label={label} required={required} id={labelId} className={styles.label} />
           </div>
         )}
-        <Slottable>{children}</Slottable>
-        {error && <FieldError id={errorId} content={error} className="wim-field-template-error" />}
+        <div className={styles.content}>
+          <Slottable>{children}</Slottable>
+          {error && <FieldError id={errorId} content={error} className={styles.error} />}
+        </div>
       </Component>
     );
   },

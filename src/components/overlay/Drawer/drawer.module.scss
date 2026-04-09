@@ -1,0 +1,97 @@
+@layer component {
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--wim-z-overlay);
+    display: flex;
+    background-color: var(--wim-color-overlay-bg);
+    backdrop-filter: blur(2px);
+  }
+
+  .content {
+    position: fixed;
+    z-index: var(--wim-z-overlay-panel);
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    color: var(--wim-color-text-primary);
+    pointer-events: auto;
+    background-color: var(--wim-color-bg-component);
+    box-shadow: var(--wim-shadow-lg);
+
+    &:focus {
+      outline: none;
+    }
+
+    &.top {
+      top: 0;
+      right: 0;
+      left: 0;
+      height: auto;
+      max-height: 80vh;
+    }
+
+    &.right {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    &.bottom {
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: auto;
+      max-height: 80vh;
+    }
+
+    &.left {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+
+  .trigger {
+    // Placeholder
+  }
+
+  .closeButton {
+    // Placeholder
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    padding: var(--wim-spacing-lg);
+    border-bottom: 1px solid var(--border-subtle, var(--wim-color-border));
+  }
+
+  .title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--wim-color-text-primary);
+  }
+
+  .description {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--wim-color-text-secondary);
+  }
+
+  .footer {
+    display: flex;
+    gap: var(--wim-spacing-md);
+    justify-content: flex-end;
+    padding: var(--wim-spacing-lg);
+    margin-top: auto;
+    border-top: 1px solid var(--border-subtle, var(--wim-color-border));
+  }
+}

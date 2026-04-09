@@ -175,14 +175,14 @@ export const Glassmorphism: Story = {
             backdropFilter={{ blur: "md" }}
             hoverBackdropFilter={{ blur: "none" }}
             style={{
-              backgroundColor: "rgba(255, 255, 255, 0.2)",
+              backgroundColor: "var(--wim-color-surface-glass)",
               padding: "20px",
             }}
             width={300}
             radius="lg"
             border
           />
-          <p style={{ color: "white", marginTop: "1rem", fontWeight: "bold" }}>
+          <p style={{ color: "var(--wim-color-text-on-primary)", marginTop: "1rem", fontWeight: "bold" }}>
             {t("story.image_backdrop_hover_clear", { defaultValue: "Hover to clear backdrop blur" })}
           </p>
         </div>
@@ -241,7 +241,7 @@ export const AdvancedEffects: Story = {
                 }}
                 width={300}
               />
-              <div style={{ position: "absolute", bottom: "20px", left: "20px", color: "white", zIndex: 2 }}>
+              <div style={{ position: "absolute", bottom: "20px", left: "20px", color: "var(--wim-color-text-on-primary)", zIndex: 2 }}>
                 <h4 style={{ margin: 0 }}>{t("story.image_advanced_text_over")}</h4>
                 <p style={{ margin: 0, fontSize: "0.8rem" }}>{t("story.image_advanced_overlay_readability")}</p>
               </div>
@@ -391,7 +391,7 @@ export const BlendingEffects: Story = {
         <div>
           <p style={{ marginBottom: "1rem", fontWeight: "bold" }}>{t("story.image_blending_image", { defaultValue: "Image Blending with Background" })}</p>
           <div style={{ display: "flex", gap: "1rem" }}>
-            <div style={{ padding: "20px", background: "linear-gradient(45deg, #f3f3f3, #ddd)" }}>
+            <div style={{ padding: "20px", background: "var(--wim-color-bg-secondary)" }}>
               <Image
                 {...args}
                 alt={t("story.image_alt_multiply_bg", { defaultValue: "Multiply image" })}
@@ -401,7 +401,7 @@ export const BlendingEffects: Story = {
                 caption={t("story.image_caption_yellow_multiply", { defaultValue: "Image Multiply with Yellow BG" })}
               />
             </div>
-            <div style={{ padding: "20px", background: "black" }}>
+            <div style={{ padding: "20px", background: "var(--wim-color-bg-inverted)" }}>
               <Image
                 {...args}
                 alt={t("story.image_alt_screen", { defaultValue: "Screen image" })}
@@ -426,7 +426,7 @@ export const BlendingEffects: Story = {
               }}
               width="100%"
             />
-            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "white", fontSize: "2rem", fontWeight: "bold", mixBlendMode: "difference" }}>
+            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "var(--wim-color-text-on-primary)", fontSize: "2rem", fontWeight: "bold", mixBlendMode: "difference" }}>
               {t("story.image_inverted_text", { defaultValue: "INVERTED TEXT" })}
             </div>
           </div>

@@ -65,7 +65,7 @@ describe("Dialog", () => {
 
     expect(screen.getByText("Dialog Body")).toBeInTheDocument();
 
-    const overlay = document.querySelector(".wim-dialog-overlay");
+    const overlay = screen.getByTestId("wim-overlay");
     if (overlay) fireEvent.click(overlay);
 
     await waitFor(() => {
@@ -277,7 +277,7 @@ describe("Dialog section components", () => {
         </DialogContent>
       </Dialog>,
     );
-    const header = screen.getByText("Header").closest(".wim-dialog-header");
+    const header = screen.getByTestId("dialog-header");
     expect(header).toHaveClass("my-header");
   });
 
@@ -289,7 +289,7 @@ describe("Dialog section components", () => {
         </DialogContent>
       </Dialog>,
     );
-    const footer = screen.getByText("Footer").closest(".wim-dialog-footer");
+    const footer = screen.getByTestId("dialog-footer");
     expect(footer).toHaveClass("my-footer");
   });
 

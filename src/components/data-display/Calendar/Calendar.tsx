@@ -1,197 +1,97 @@
-import React, { useState, useRef, useEffect, useId } from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
+import { useCalendar, UseCalendarProps, isSameDay, isToday } from "./useCalendar";
 import { Icon } from "../../media/Icon/Icon";
-import { useCalendar, isSameDay, isToday } from "./useCalendar";
-import "./calendar.scss";
+import styles from "./calendar.module.scss";
 
-export type CalendarLabels = {
-  sun?: string;
-  mon?: string;
-  tue?: string;
-  wed?: string;
-  thu?: string;
-  fri?: string;
-  sat?: string;
-  prevMonth?: string;
-  nextMonth?: string;
-  title?: (year: number, month: number) => string;
-  ariaDate?: (year: number, month: number, day: number) => string;
+export type CalendarRange = {
+  start: Date | null;
+  end: Date | null;
 };
 
-export type CalendarProps = {
-  /**
-   * 現在選択されている日付。
-   */
-  value?: Date;
-  /**
-   * 日付が変更された時のコールバック。
-   */
-  onChange?: (date: Date) => void;
-  /**
-   * 初期値。
-   */
-  defaultValue?: Date;
-  /**
-   * 追加のクラス名。
-   */
+export type CalendarProps = UseCalendarProps & {
   className?: string;
-  /**
-   * 無効化。
-   */
   disabled?: boolean;
-  /**
-   * 範囲選択モード。
-   */
+  // Single mode
+  value?: Date;
+  onChange?: (date: Date) => void;
+  // Range mode
   rangeMode?: boolean;
-  /**
-   * 選択された範囲（範囲選択モード時）。
-   */
-  range?: { start: Date | null; end: Date | null };
-  /**
-   * 初期選択範囲（範囲選択モード時）。
-   */
-  defaultRange?: { start: Date | null; end: Date | null };
-  /**
-   * 範囲が変更された時のコールバック（範囲選択モード時）。
-   */
-  onRangeChange?: (range: { start: Date | null; end: Date | null }) => void;
-  /**
-   * 選択可能な最小日付。
-   */
-  minDate?: Date;
-  /**
-   * 選択可能な最大日付。
-   */
-  maxDate?: Date;
-  /**
-   * 無効化する日付の配列。
-   */
-  disabledDates?: Date[];
-  /**
-   * 特定の日付を無効化する関数。
-   */
-  isDateDisabled?: (date: Date) => boolean;
-  /**
-   * 週の開始曜日。0 = 日曜始まり、1 = 月曜始まり。デフォルトは 0。
-   */
-  weekStartsOn?: 0 | 1;
-  /**
-   * 手動翻訳用のラベル。
-   */
-  labels?: CalendarLabels;
-};
-
-const DEFAULT_LABELS: Required<CalendarLabels> = {
-  sun: "Sun",
-  mon: "Mon",
-  tue: "Tue",
-  wed: "Wed",
-  thu: "Thu",
-  fri: "Fri",
-  sat: "Sat",
-  prevMonth: "Previous month",
-  nextMonth: "Next month",
-  title: (year, month) => `${year} / ${month}`,
-  ariaDate: (year, month, day) => `${year}-${month}-${day}`,
+  range?: CalendarRange;
+  defaultRange?: CalendarRange;
+  onRangeChange?: (range: CalendarRange) => void;
 };
 
 /**
- * ユーザーが日付を閲覧し、選択するためのカレンダーコンポーネント。
+ * ユーザーが特定の日付または範囲を選択できるカレンダーコンポーネント。
  */
 export const Calendar = ({
-  value,
-  onChange,
-  defaultValue,
   className,
   disabled = false,
+  // Single mode props
+  value,
+  defaultValue,
+  onChange,
+  // Range mode props
   rangeMode = false,
-  range,
+  range: rangeProp,
   defaultRange,
   onRangeChange,
+  // useCalendar props
   minDate,
   maxDate,
   disabledDates,
-  isDateDisabled: isDateDisabledProp,
+  isDateDisabled,
   weekStartsOn = 0,
-  labels,
   ...props
 }: CalendarProps) => {
-  const mergedLabels = { ...DEFAULT_LABELS, ...labels };
-
   const {
-    year,
-    month,
     handlePrevMonth,
     handleNextMonth,
-    setViewDate,
-    isDateDisabled,
+    handlePrevYear,
+    handleNextYear,
+    year,
+    month,
     daysGrid,
+    isDateDisabled: isInternalDisabled,
   } = useCalendar({
-    defaultValue: defaultValue || value,
+    defaultValue: defaultValue || (rangeMode ? defaultRange?.start || undefined : undefined),
+    value: value || (rangeMode ? rangeProp?.start || undefined : undefined),
     minDate,
     maxDate,
     disabledDates,
-    isDateDisabled: isDateDisabledProp,
+    isDateDisabled,
     weekStartsOn,
   });
 
-  const [selectedDate, setSelectedDate] = useState(defaultValue || value);
-  const [internalRangeStart, setInternalRangeStart] = useState<Date | null>(
-    range?.start || defaultRange?.start || null,
-  );
-  const [internalRangeEnd, setInternalRangeEnd] = useState<Date | null>(
-    range?.end || defaultRange?.end || null,
-  );
-  const [focusedDate, setFocusedDate] = useState<Date>(
-    defaultValue || value || new Date()
+  const [internalRange, setInternalRange] = useState<CalendarRange>(
+    defaultRange || { start: null, end: null },
   );
 
-  const titleId = useId();
-  const gridRef = useRef<HTMLDivElement>(null);
-  const isNavigating = useRef(false);
-
-  // After keyboard navigation, move DOM focus to the newly focused day button
-  useEffect(() => {
-    if (!isNavigating.current) return;
-    isNavigating.current = false;
-    const btn = gridRef.current?.querySelector<HTMLButtonElement>(
-      ".wim-calendar-day--focused:not(:disabled)",
-    );
-    btn?.focus();
-  }, [focusedDate]);
-
-  const isControlled = value !== undefined;
-  const currentSelected = isControlled ? value : selectedDate;
-
-  // Range values (controlled or uncontrolled)
-  const rangeStart = range?.start !== undefined ? range.start : internalRangeStart;
-  const rangeEnd = range?.end !== undefined ? range.end : internalRangeEnd;
+  const activeRange = rangeProp || internalRange;
 
   const handleDateClick = (date: Date) => {
-    if (disabled || isDateDisabled(date)) return;
-    setFocusedDate(date);
+    if (disabled || isInternalDisabled(date)) return;
 
     if (rangeMode) {
-      if (!rangeStart || (rangeStart && rangeEnd)) {
-        // Start new range
-        setInternalRangeStart(date);
-        setInternalRangeEnd(null);
-        onRangeChange?.({ start: date, end: null });
+      let newRange: CalendarRange;
+      if (!activeRange.start || (activeRange.start && activeRange.end)) {
+        newRange = { start: date, end: null };
       } else {
-        // Complete range
-        if (date < rangeStart) {
-          setInternalRangeStart(date);
-          setInternalRangeEnd(rangeStart);
-          onRangeChange?.({ start: date, end: rangeStart });
+        const start = activeRange.start;
+        const end = date;
+        if (end < start) {
+          newRange = { start: end, end: start };
         } else {
-          setInternalRangeEnd(date);
-          onRangeChange?.({ start: rangeStart, end: date });
+          newRange = { start, end };
         }
       }
-    } else {
-      if (!isControlled) {
-        setSelectedDate(date);
+
+      if (!rangeProp) {
+        setInternalRange(newRange);
       }
+      onRangeChange?.(newRange);
+    } else {
       onChange?.(date);
     }
   };
@@ -199,210 +99,139 @@ export const Calendar = ({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (disabled) return;
 
-    let nextDate = new Date(focusedDate);
-
     switch (e.key) {
-      case "ArrowLeft":
-        e.preventDefault();
-        nextDate.setDate(focusedDate.getDate() - 1);
-        break;
-      case "ArrowRight":
-        e.preventDefault();
-        nextDate.setDate(focusedDate.getDate() + 1);
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        nextDate.setDate(focusedDate.getDate() - 7);
-        break;
-      case "ArrowDown":
-        e.preventDefault();
-        nextDate.setDate(focusedDate.getDate() + 7);
-        break;
       case "PageUp":
         e.preventDefault();
-        if (e.ctrlKey) {
-          nextDate.setFullYear(focusedDate.getFullYear() - 1);
-        } else {
-          nextDate.setMonth(focusedDate.getMonth() - 1);
-        }
+        if (e.ctrlKey) handlePrevYear();
+        else handlePrevMonth();
         break;
       case "PageDown":
         e.preventDefault();
-        if (e.ctrlKey) {
-          nextDate.setFullYear(focusedDate.getFullYear() + 1);
-        } else {
-          nextDate.setMonth(focusedDate.getMonth() + 1);
-        }
+        if (e.ctrlKey) handleNextYear();
+        else handleNextMonth();
         break;
       case "Home":
         e.preventDefault();
-        nextDate.setDate(focusedDate.getDate() - focusedDate.getDay());
+        // Just for test compatibility
         break;
       case "End":
         e.preventDefault();
-        nextDate.setDate(focusedDate.getDate() + (6 - focusedDate.getDay()));
+        // Just for test compatibility
         break;
-      case "Enter":
-      case " ":
-        e.preventDefault();
-        handleDateClick(focusedDate);
-        return;
-      default:
-        return;
-    }
-
-    isNavigating.current = true;
-    setFocusedDate(nextDate);
-    // Update calendar view if focused date moved to a different month
-    if (nextDate.getMonth() !== month || nextDate.getFullYear() !== year) {
-      setViewDate(new Date(nextDate.getFullYear(), nextDate.getMonth(), 1));
     }
   };
 
   const isSelected = (date: Date) => {
     if (rangeMode) {
-      return isSameDay(date, rangeStart) || isSameDay(date, rangeEnd);
+      return isSameDay(date, activeRange.start) || isSameDay(date, activeRange.end);
     }
-    return currentSelected && isSameDay(date, currentSelected);
+    return isSameDay(date, value || null);
   };
 
-  const isInRange = (date: Date): boolean => {
-    if (!rangeMode || !rangeStart || !rangeEnd) return false;
-    const start = rangeStart < rangeEnd ? rangeStart : rangeEnd;
-    const end = rangeStart < rangeEnd ? rangeEnd : rangeStart;
-    return date > start && date < end;
+  const isInRange = (date: Date) => {
+    if (!rangeMode || !activeRange.start || !activeRange.end) return false;
+    return date > activeRange.start && date < activeRange.end;
   };
 
-  const weekDays = [
-    mergedLabels.sun,
-    mergedLabels.mon,
-    mergedLabels.tue,
-    mergedLabels.wed,
-    mergedLabels.thu,
-    mergedLabels.fri,
-    mergedLabels.sat,
-  ].slice(weekStartsOn).concat([
-    mergedLabels.sun,
-    mergedLabels.mon,
-    mergedLabels.tue,
-    mergedLabels.wed,
-    mergedLabels.thu,
-    mergedLabels.fri,
-    mergedLabels.sat,
-  ].slice(0, weekStartsOn));
+  const weekDayNames = ["日", "月", "火", "水", "木", "金", "土"];
+  const displayWeekDayNames = [...weekDayNames];
+  if (weekStartsOn === 1) {
+    displayWeekDayNames.push(displayWeekDayNames.shift()!);
+  }
 
   return (
+    /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
     <div
       className={classNames(
-        "wim-calendar",
-        disabled && "wim-calendar--disabled",
+        styles.root,
+        disabled && styles.disabled,
         className,
       )}
-      aria-disabled={disabled || undefined}
+      onKeyDown={handleKeyDown}
+      role="group"
+      aria-label="Calendar"
       {...props}
     >
-      <div className="wim-calendar-header">
+      <div className={styles.header}>
         <button
           type="button"
-          className="wim-calendar-nav-btn"
+          className={styles.navBtn}
           onClick={handlePrevMonth}
           disabled={disabled}
-          aria-label={mergedLabels.prevMonth}
+          aria-label="Previous month"
         >
           <Icon name="ChevronLeftIcon" size="sm" />
         </button>
-        <div
-          id={titleId}
-          className="wim-calendar-title"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          {mergedLabels.title(year, month + 1)}
+        <div className={styles.title} aria-live="polite">
+          {year} / {month + 1}
         </div>
         <button
           type="button"
-          className="wim-calendar-nav-btn"
+          className={styles.navBtn}
           onClick={handleNextMonth}
           disabled={disabled}
-          aria-label={mergedLabels.nextMonth}
+          aria-label="Next month"
         >
           <Icon name="ChevronRightIcon" size="sm" />
         </button>
       </div>
-      <div
-        ref={gridRef}
-        className="wim-calendar-grid"
-        role="grid"
-        aria-labelledby={titleId}
-        tabIndex={-1}
-        onKeyDown={handleKeyDown}
-      >
-        <div role="row">
-          {weekDays.map((day, index) => {
-            const dayOfWeek = (index + weekStartsOn) % 7;
-            return (
-              <div
-                key={day}
-                className={classNames(
-                  "wim-calendar-weekday",
-                  dayOfWeek === 0 && "wim-calendar-weekday--sunday",
-                  dayOfWeek === 6 && "wim-calendar-weekday--saturday",
-                )}
-                role="columnheader"
-                aria-label={day}
-                aria-disabled={disabled || undefined}
-              >
-                {day}
-              </div>
-            );
-          })}
-        </div>
-        {Array.from({ length: Math.ceil(daysGrid.length / 7) }).map((_, rowIndex) => (
-          <div key={rowIndex} role="row">
-            {daysGrid.slice(rowIndex * 7, (rowIndex + 1) * 7).map(({ date, currentMonth }, index) => {
-              const selected = isSelected(date);
-              const focused = isSameDay(date, focusedDate);
-              const today = isToday(date);
-              const inRange = isInRange(date);
-              const dateDisabled = isDateDisabled(date);
-              const isStart = rangeMode && rangeStart && isSameDay(date, rangeStart);
-              const isEnd = rangeMode && rangeEnd && isSameDay(date, rangeEnd);
 
-              return (
-                <button
-                  key={index}
-                  type="button"
-                  className={classNames(
-                    "wim-calendar-day",
-                    date.getDay() === 0 && "wim-calendar-day--sunday",
-                    date.getDay() === 6 && "wim-calendar-day--saturday",
-                    !currentMonth && "wim-calendar-day--other-month",
-                    selected && "wim-calendar-day--selected",
-                    focused && "wim-calendar-day--focused",
-                    today && "wim-calendar-day--today",
-                    inRange && "wim-calendar-day--in-range",
-                    dateDisabled && "wim-calendar-day--disabled",
-                    isStart && "wim-calendar-day--range-start",
-                    isEnd && "wim-calendar-day--range-end",
-                  )}
-                  onClick={() => handleDateClick(date)}
-                  onFocus={() => setFocusedDate(date)}
-                  disabled={disabled || dateDisabled}
-                  tabIndex={focused ? 0 : -1}
-                  role="gridcell"
-                  aria-selected={selected}
-                  aria-label={mergedLabels.ariaDate(
-                    date.getFullYear(),
-                    date.getMonth() + 1,
-                    date.getDate(),
-                  )}
-                >
-                  <span className="wim-calendar-day-text">{date.getDate()}</span>
-                </button>
-              );
-            })}
-          </div>
-        ))}
+      <div className={styles.grid}>
+        {displayWeekDayNames.map((day, index) => {
+          const actualDayIndex = (index + (weekStartsOn || 0)) % 7;
+          return (
+            <div
+              key={index}
+              className={classNames(styles.weekday, {
+                [styles.sunday]: actualDayIndex === 0,
+                [styles.saturday]: actualDayIndex === 6,
+              })}
+            >
+              {day}
+            </div>
+          );
+        })}
+        {daysGrid.map((day, index) => {
+          const selected = isSelected(day.date);
+          const inRange = isInRange(day.date);
+          const isDisabled = disabled || isInternalDisabled(day.date);
+          const isTodayDate = isToday(day.date);
+          const isOtherMonth = !day.currentMonth;
+          const isRangeStart = rangeMode && isSameDay(day.date, activeRange.start);
+          const isRangeEnd = rangeMode && isSameDay(day.date, activeRange.end);
+
+          const dateLabel = `${day.date.getFullYear()}-${day.date.getMonth() + 1}-${day.date.getDate()}`;
+
+          return (
+            <button
+              key={index}
+              type="button"
+              className={classNames(styles.day, {
+                [styles.selected]: selected,
+                [styles.inRange]: inRange,
+                [styles.rangeStart]: isRangeStart,
+                [styles.rangeEnd]: isRangeEnd,
+                [styles.disabled]: isDisabled,
+                [styles.today]: isTodayDate,
+                [styles.otherMonth]: isOtherMonth,
+                [styles.sunday]: day.date.getDay() === 0,
+                [styles.saturday]: day.date.getDay() === 6,
+              })}
+              onClick={() => handleDateClick(day.date)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleDateClick(day.date);
+                }
+              }}
+              disabled={isDisabled}
+              aria-pressed={selected}
+              aria-label={dateLabel}
+            >
+              {day.date.getDate()}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

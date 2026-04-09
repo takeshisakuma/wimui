@@ -5,7 +5,8 @@ import React, {
   useCallback,
 } from "react";
 import classNames from "classnames";
-import "./bottomSheet.scss";
+import { OverlayBase } from "../../_internal/OverlayBase";
+import styles from "./bottom-sheet.module.scss";
 
 // --- BottomSheet Context ---
 type BottomSheetContextType = {
@@ -107,7 +108,7 @@ export const BottomSheetTrigger = ({
 
   return (
     <button
-      className={classNames("wim-bottom-sheet-trigger", className)}
+      className={classNames(styles.trigger, className)}
       onClick={handleClick}
     >
       {children}
@@ -159,20 +160,13 @@ export const BottomSheetClose = ({
   return (
     <button
       type="button"
-      className={classNames("wim-bottom-sheet-close-button", className)}
+      className={classNames(styles.close, className)}
       onClick={handleClick}
     >
       {children}
     </button>
   );
 };
-
-// --- BottomSheet Content ---
-import { OverlayBase } from "../../_internal/OverlayBase";
-import "./bottomSheet.scss";
-
-// --- BottomSheet Context ---
-// ...
 
 // --- BottomSheet Content ---
 export interface BottomSheetContentProps {
@@ -199,11 +193,11 @@ export const BottomSheetContent = ({
     <OverlayBase
       open={open}
       onOpenChange={onOpenChange}
-      overlayClassName="wim-bottom-sheet-overlay"
-      contentClassName={classNames("wim-bottom-sheet-content", className)}
+      overlayClassName={styles.overlay}
+      contentClassName={classNames(styles.content, className)}
       transitionProps={slideTransition}
     >
-      <div className="wim-bottom-sheet-handle" />
+      <div className={styles.handle} />
       {children}
     </OverlayBase>
   );
@@ -218,7 +212,7 @@ export const BottomSheetHeader = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={classNames("wim-bottom-sheet-header", className)}>
+  <div className={classNames(styles.header, className)} data-testid="bottom-sheet-header">
     {children}
   </div>
 );
@@ -230,7 +224,7 @@ export const BottomSheetFooter = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={classNames("wim-bottom-sheet-footer", className)}>
+  <div className={classNames(styles.footer, className)} data-testid="bottom-sheet-footer">
     {children}
   </div>
 );
@@ -242,7 +236,7 @@ export const BottomSheetTitle = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <h2 className={classNames("wim-bottom-sheet-title", className)}>
+  <h2 className={classNames(styles.title, className)} data-testid="bottom-sheet-title">
     {children}
   </h2>
 );
@@ -254,7 +248,7 @@ export const BottomSheetDescription = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <p className={classNames("wim-bottom-sheet-description", className)}>
+  <p className={classNames(styles.description, className)} data-testid="bottom-sheet-description">
     {children}
   </p>
 );
@@ -266,7 +260,8 @@ export const BottomSheetBody = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={classNames("wim-bottom-sheet-body", className)}>
+  <div className={classNames(styles.body, className)} data-testid="bottom-sheet-body">
     {children}
   </div>
 );
+

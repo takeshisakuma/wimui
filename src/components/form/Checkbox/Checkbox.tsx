@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useMergedRef } from "../../../hooks/useMergedRef";
-import "./checkbox.scss";
+import styles from "./checkbox.module.scss";
 
 export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   asChild?: boolean;
@@ -28,9 +28,15 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <Component
-        className={classNames("wim-checkbox-wrapper", disabled && "wim-checkbox--disabled", className)}
+        className={classNames(styles.root, disabled && styles.disabled, className)}
       >
-        <input type="checkbox" className="wim-checkbox-input" disabled={disabled} ref={mergedRef} {...props} />
+        <input
+          type="checkbox"
+          className={styles.input}
+          disabled={disabled}
+          ref={mergedRef}
+          {...props}
+        />
         <Slottable>{children}</Slottable>
       </Component>
     );

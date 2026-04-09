@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { TabNavigation } from "./TabNavigation";
+import styles from "./tab-navigation.module.scss";
 
 const renderTabs = (activeTab = "home") => {
   const onClickHome = vi.fn();
@@ -46,7 +47,7 @@ describe("TabNavigation", () => {
     );
     const homeLink = screen.getByText("Home");
     expect(homeLink).toHaveAttribute("href", "/home");
-    expect(homeLink).toHaveClass("wim-tab-navigation__item--active");
+    expect(homeLink).toHaveClass(styles.active);
   });
 
   it("prevents click and doesn't call onClick when disabled", () => {

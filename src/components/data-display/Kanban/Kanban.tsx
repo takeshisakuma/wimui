@@ -1,451 +1,302 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  useEffect,
-  useRef,
-  useMemo,
-} from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
-import "./kanban.scss";
+import { Icon } from "../../media/Icon/Icon";
+import styles from "./kanban.module.scss";
 
-// ─── Board Context ────────────────────────────────────────────────────────────
+export interface KanbanItem {
+  id: string;
+  content: React.ReactNode;
+}
 
-type ColumnEntry = { id: string; title: React.ReactNode };
+export interface KanbanColumnData {
+  id: string;
+  title: string;
+  items: KanbanItem[];
+}
 
-export type KanbanLabels = {
-  cardMovedTo?: (to: string) => string;
-  cardMovedFromTo?: (from: string, to: string) => string;
-  cards?: (count: number) => string;
-  moveCard?: string;
-  moveToColumn?: string;
-};
-
-type KanbanContextType = {
-  draggingCardId: string | null;
-  draggingFromColumnId: string | null;
-  setDraggingCard: (cardId: string | null, columnId: string | null) => void;
-  onCardMove?: (
-    cardId: string,
-    fromColumnId: string,
-    toColumnId: string,
-  ) => void;
-  columns: ColumnEntry[];
-  registerColumn: (id: string, title: React.ReactNode) => void;
-  unregisterColumn: (id: string) => void;
-  forceMobileUI: boolean;
-  announce: (message: string) => void;
-  labels: Required<KanbanLabels>;
-};
-
-const KanbanContext = createContext<KanbanContextType | null>(null);
-
-const DEFAULT_LABELS: Required<KanbanLabels> = {
-  cardMovedTo: (to) => `Card moved to ${to}`,
-  cardMovedFromTo: (from, to) => `Card moved from ${from} to ${to}`,
-  cards: (count) => `${count} cards`,
-  moveCard: "Move card",
-  moveToColumn: "Move to column",
-};
-
-const useKanban = () => {
-  const context = useContext(KanbanContext);
-  if (!context) {
-    throw new Error("Kanban components must be used within a KanbanBoard");
-  }
-  return context;
-};
-
-// ─── Column Context ───────────────────────────────────────────────────────────
-
-type KanbanColumnContextType = { columnId: string; columnTitle: React.ReactNode };
-
-const KanbanColumnContext = createContext<KanbanColumnContextType | null>(null);
-
-// ─── KanbanBoard ──────────────────────────────────────────────────────────────
-
-export type KanbanBoardProps = React.ComponentPropsWithoutRef<"div"> & {
+export interface KanbanProps {
   /**
-   * カードが別の列にドロップ／移動された際に呼び出されるコールバック。
+   * カンバンのカラムデータ（Prop-driven用）。
    */
-  onCardMove?: (
-    cardId: string,
-    fromColumnId: string,
-    toColumnId: string,
-  ) => void;
+  columns?: KanbanColumnData[];
   /**
-   * タッチデバイス向けの移動ボタンUIを強制表示する。
-   * Storybookでのモバイルプレビューや開発時の確認に使用する。
+   * カードの移動が発生した時のコールバック。
+   */
+  onMove?: (itemId: string, fromColumnId: string, toColumnId: string) => void;
+  /**
+   * カードの移動が発生した時のコールバック (Legacy/Alternative name)。
+   */
+  onCardMove?: (itemId: string, fromColumnId: string, toColumnId: string) => void;
+  /**
+   * 追加のクラス名。
+   */
+  className?: string;
+  /**
+   * タッチデバイス向けのUIを強制的に表示するか。
    */
   forceMobileUI?: boolean;
   /**
-   * 手動翻訳用のラベル。
+   * 子要素（Compound Component用）。
    */
-  labels?: KanbanLabels;
-};
+  children?: React.ReactNode;
+}
 
-const KanbanBoard = ({
-  children,
-  className,
+/**
+ * プロジェクト管理などに適したカンバンボードコンポーネント。
+ */
+export const Kanban = ({
+  columns: columnsProp,
+  onMove,
   onCardMove,
+  className,
   forceMobileUI = false,
-  labels,
-  ...props
-}: KanbanBoardProps) => {
-  const [draggingCardId, setDraggingCardId] = useState<string | null>(null);
-  const [draggingFromColumnId, setDraggingFromColumnId] = useState<
-    string | null
-  >(null);
-  const [columns, setColumns] = useState<ColumnEntry[]>([]);
-  const statusRef = useRef<HTMLDivElement>(null);
+  children,
+}: KanbanProps) => {
+  const [draggedItem, setDraggedItem] = useState<{
+    itemId: string;
+    columnId: string;
+  } | null>(null);
+  const [dragOverColumn, setDragOverColumn] = useState<string | null>(null);
+  const [activeMobileMenu, setActiveMobileMenu] = useState<string | null>(null);
 
-  const mergedLabels = useMemo(() => ({ ...DEFAULT_LABELS, ...labels }), [labels]);
+  const handleMove = onMove || onCardMove;
 
-  const announce = useCallback((message: string) => {
-    if (statusRef.current) {
-      statusRef.current.textContent = "";
-      setTimeout(() => {
-        if (statusRef.current) statusRef.current.textContent = message;
-      }, 50);
-    }
-  }, []);
+  // ドラッグ開始
+  const handleDragStart = (
+    e: React.DragEvent,
+    itemId: string,
+    columnId: string,
+  ) => {
+    setDraggedItem({ itemId, columnId });
+    e.dataTransfer.setData("text/plain", `${columnId}:${itemId}`);
+    e.dataTransfer.effectAllowed = "move";
+  };
 
-  const setDraggingCard = useCallback(
-    (cardId: string | null, columnId: string | null) => {
-      setDraggingCardId(cardId);
-      setDraggingFromColumnId(columnId);
-    },
-    [],
-  );
+  // ドロップ先の上を通過中
+  const handleDragOver = (e: React.DragEvent, columnId: string) => {
+    e.preventDefault();
+    setDragOverColumn(columnId);
+  };
 
-  const registerColumn = useCallback((id: string, title: React.ReactNode) => {
-    setColumns((prev) => {
-      if (prev.some((c) => c.id === id)) return prev;
-      return [...prev, { id, title }];
-    });
-  }, []);
+  // ドロップ処理
+  const handleDrop = (e: React.DragEvent, toColumnId: string) => {
+    e.preventDefault();
+    setDragOverColumn(null);
 
-  const unregisterColumn = useCallback((id: string) => {
-    setColumns((prev) => prev.filter((c) => c.id !== id));
-  }, []);
+    const data = e.dataTransfer.getData("text/plain");
+    const [fromColumnId, itemId] = data.split(":");
 
-  const contextValue = useMemo(
-    () => ({
-      draggingCardId,
-      draggingFromColumnId,
-      setDraggingCard,
-      onCardMove,
-      columns,
-      registerColumn,
-      unregisterColumn,
-      forceMobileUI,
-      announce,
-      labels: mergedLabels,
-    }),
-    [
-      draggingCardId,
-      draggingFromColumnId,
-      setDraggingCard,
-      onCardMove,
-      columns,
-      registerColumn,
-      unregisterColumn,
-      forceMobileUI,
-      announce,
-      mergedLabels,
-    ],
-  );
+    if (fromColumnId === toColumnId) return;
 
-  return (
-    <KanbanContext.Provider value={contextValue}>
-      <div
-        className={classNames(
-          "wim-kanban",
-          forceMobileUI && "wim-kanban--touch",
-          className,
-        )}
-        role="region"
-        {...props}
+    handleMove?.(itemId, fromColumnId, toColumnId);
+    setDraggedItem(null);
+  };
+
+  // モバイル向け移動処理
+  const handleMobileMove = (itemId: string, fromColumnId: string, toColumnId: string) => {
+    handleMove?.(itemId, fromColumnId, toColumnId);
+    setActiveMobileMenu(null);
+  };
+
+  const renderContent = () => {
+    if (children) return children;
+    if (!columnsProp) return null;
+
+    return columnsProp.map((column) => (
+      <KanbanColumn
+        key={column.id}
+        id={column.id}
+        title={column.title}
+        cardCount={column.items.length}
       >
-        {/* Screen reader live region for card move announcements */}
-        <div
-          ref={statusRef}
-          aria-live="polite"
-          aria-atomic="true"
-          style={{
-            position: "absolute",
-            width: "1px",
-            height: "1px",
-            padding: 0,
-            margin: "-1px",
-            overflow: "hidden",
-            clip: "rect(0,0,0,0)",
-            whiteSpace: "nowrap",
-            border: 0,
-          }}
-        />
-        {children}
+        {column.items.map((item) => (
+          <KanbanCard key={item.id} id={item.id}>
+            {item.content}
+          </KanbanCard>
+        ))}
+      </KanbanColumn>
+    ));
+  };
+
+  // Context-like passing of state via cloning is one way, 
+  // but for simplicity here we'll just use the DOM/Props if children are used.
+  // However, compound components usually need a context.
+  
+  return (
+    <KanbanContext.Provider value={{ 
+      draggedItem, 
+      dragOverColumn, 
+      setDragOverColumn, 
+      handleDragStart, 
+      handleDragOver, 
+      handleDrop,
+      handleMobileMove,
+      activeMobileMenu,
+      setActiveMobileMenu,
+      columns: columnsProp || [], // Used for mobile move menu search
+    }}>
+      <div 
+        className={classNames(styles.root, forceMobileUI && styles.touch, className)}
+        role="region"
+        aria-label="Kanban Board"
+      >
+        {renderContent()}
       </div>
     </KanbanContext.Provider>
   );
 };
 
-// ─── KanbanColumn ─────────────────────────────────────────────────────────────
+// --- Context ---
+const KanbanContext = React.createContext<{
+  draggedItem: { itemId: string; columnId: string } | null;
+  dragOverColumn: string | null;
+  setDragOverColumn: (id: string | null) => void;
+  handleDragStart: (e: React.DragEvent, itemId: string, columnId: string) => void;
+  handleDragOver: (e: React.DragEvent, columnId: string) => void;
+  handleDrop: (e: React.DragEvent, toColumnId: string) => void;
+  handleMobileMove: (itemId: string, fromColumnId: string, toColumnId: string) => void;
+  activeMobileMenu: string | null;
+  setActiveMobileMenu: (id: string | null) => void;
+  columns: KanbanColumnData[];
+} | null>(null);
 
-export type KanbanColumnProps = React.ComponentPropsWithoutRef<"div"> & {
-  /**
-   * 列を識別する一意のID。カード移動時に使用される。
-   */
+const useKanban = () => {
+  const context = React.useContext(KanbanContext);
+  if (!context) throw new Error("Kanban compound components must be used within Kanban");
+  return context;
+};
+
+// --- KanbanColumn ---
+interface KanbanColumnProps {
   id: string;
-  /**
-   * 列のヘッダーに表示するタイトル。
-   */
-  title: React.ReactNode;
-  /**
-   * ヘッダーに表示するカード枚数バッジ。
-   */
+  title: string;
   cardCount?: number;
-};
+  children?: React.ReactNode;
+  className?: string;
+}
 
-export const KanbanColumn = ({
-  id,
-  title,
-  cardCount,
-  children,
-  className,
-  ...props
-}: KanbanColumnProps) => {
-  const {
-    draggingCardId,
-    draggingFromColumnId,
-    setDraggingCard,
-    onCardMove,
-    registerColumn,
-    unregisterColumn,
-    announce,
-    labels,
-  } = useKanban();
-  const [isDragOver, setIsDragOver] = useState(false);
-
-  useEffect(() => {
-    registerColumn(id, title);
-    return () => unregisterColumn(id);
-    // titleは意図的に除外 — idが変わったときのみ再登録する
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, registerColumn, unregisterColumn]);
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragOver(true);
-  };
-
-  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-      setIsDragOver(false);
-    }
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragOver(false);
-    if (draggingCardId && draggingFromColumnId && draggingFromColumnId !== id) {
-      onCardMove?.(draggingCardId, draggingFromColumnId, id);
-      const toTitle = typeof title === "string" ? title : id;
-      announce(labels.cardMovedTo(toTitle));
-    }
-    setDraggingCard(null, null);
-  };
-
-  const isDraggingActive = !!draggingCardId;
-
-  return (
-    <KanbanColumnContext.Provider value={{ columnId: id, columnTitle: title }}>
-      <div
-        className={classNames(
-          "wim-kanban__column",
-          isDragOver && "wim-kanban__column--drag-over",
-          className,
-        )}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-        aria-label={typeof title === "string" ? title : undefined}
-        aria-dropeffect={isDraggingActive ? "move" : undefined}
-        {...props}
-      >
-        <div className="wim-kanban__column-header">
-          <span className="wim-kanban__column-title">{title}</span>
-          {cardCount !== undefined && (
-            <span
-              className="wim-kanban__column-count"
-              aria-label={labels.cards(cardCount)}
-            >
-              {cardCount}
-            </span>
-          )}
-        </div>
-        <div className="wim-kanban__column-body" role="list">{children}</div>
-      </div>
-    </KanbanColumnContext.Provider>
-  );
-};
-
-// ─── KanbanCard ───────────────────────────────────────────────────────────────
-
-export type KanbanCardProps = React.ComponentPropsWithoutRef<"div"> & {
-  /**
-   * カードを識別する一意のID。
-   */
-  id: string;
-  /**
-   * trueの場合、ドラッグ・移動操作が不可になる。
-   */
-  disabled?: boolean;
-};
-
-export const KanbanCard = ({
-  id,
-  disabled = false,
-  children,
-  className,
-  ...props
-}: KanbanCardProps) => {
-  const { draggingCardId, setDraggingCard, onCardMove, columns, announce, labels } = useKanban();
-  const columnContext = useContext(KanbanColumnContext);
-  const currentColumnId = columnContext?.columnId ?? null;
-  const currentColumnTitle = columnContext?.columnTitle ?? null;
-  const isDragging = draggingCardId === id;
-
-  const [showMoveMenu, setShowMoveMenu] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const moveBtnRef = useRef<HTMLButtonElement>(null);
-
-  const otherColumns = columns.filter((c) => c.id !== currentColumnId);
-
-  // メニュー外クリックで閉じる
-  useEffect(() => {
-    if (!showMoveMenu) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setShowMoveMenu(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [showMoveMenu]);
-
-  // メニューが閉じたらボタンにフォーカスを戻す
-  useEffect(() => {
-    if (!showMoveMenu) {
-      moveBtnRef.current?.focus();
-    }
-  }, [showMoveMenu]);
-
-  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    if (e.dataTransfer) {
-      e.dataTransfer.effectAllowed = "move";
-    }
-    setDraggingCard(id, currentColumnId);
-  };
-
-  const handleDragEnd = () => {
-    setDraggingCard(null, null);
-  };
-
-  const handleMoveTo = (toColumnId: string, toColumnTitle: React.ReactNode) => {
-    if (currentColumnId) {
-      onCardMove?.(id, currentColumnId, toColumnId);
-      const from = typeof currentColumnTitle === "string" ? currentColumnTitle : currentColumnId;
-      const to = typeof toColumnTitle === "string" ? toColumnTitle : toColumnId;
-      announce(labels.cardMovedFromTo(from!, to));
-    }
-    setShowMoveMenu(false);
-  };
-
-  const handleMenuKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Escape") {
-      setShowMoveMenu(false);
-    }
-  };
+export const KanbanColumn = ({ id, title, cardCount, children, className }: KanbanColumnProps) => {
+  const { dragOverColumn, handleDragOver, handleDrop, setDragOverColumn } = useKanban();
 
   return (
     <div
-      className={classNames(
-        "wim-kanban__card",
-        isDragging && "wim-kanban__card--dragging",
-        disabled && "wim-kanban__card--disabled",
-        className,
-      )}
-      draggable={!disabled}
-      onDragStart={disabled ? undefined : handleDragStart}
-      onDragEnd={handleDragEnd}
-      role="listitem"
-      aria-grabbed={!disabled ? isDragging : undefined}
-      {...props}
+      className={classNames(styles.column, {
+        [styles.dragOver]: dragOverColumn === id,
+      }, className)}
+      onDragOver={(e) => handleDragOver(e, id)}
+      onDrop={(e) => handleDrop(e, id)}
+      onDragLeave={() => setDragOverColumn(null)}
     >
-      <div className="wim-kanban__card-content">{children}</div>
-
-      {/* 移動ボタン: マウス操作ではCSSで表示制御、キーボードユーザーは常にアクセス可能 */}
-      {!disabled && otherColumns.length > 0 && (
-        <div className="wim-kanban__card-move" ref={menuRef}>
-          <button
-            ref={moveBtnRef}
-            type="button"
-            className="wim-kanban__card-move-btn"
-            onClick={(e) => {
-              e.stopPropagation();
-              setShowMoveMenu((v) => !v);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Escape") setShowMoveMenu(false);
-            }}
-            aria-label={labels.moveCard}
-            aria-expanded={showMoveMenu}
-            aria-haspopup="listbox"
-          >
-            ⋯
-          </button>
-          {showMoveMenu && (
-            <div
-              className="wim-kanban__card-move-menu"
-              role="listbox"
-              aria-label={labels.moveToColumn}
-              tabIndex={-1}
-              onKeyDown={handleMenuKeyDown}
-            >
-              {otherColumns.map((col) => (
-                <button
-                  key={col.id}
-                  type="button"
-                  className="wim-kanban__card-move-option"
-                  role="option"
-                  aria-selected={false}
-                  onClick={() => handleMoveTo(col.id, col.title)}
-                >
-                  {col.title}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+      <div className={styles.columnHeader}>
+        <div className={styles.columnTitle}>{title}</div>
+        {cardCount !== undefined && (
+          <div className={styles.columnCount} aria-label={`${cardCount} cards`}>
+            {cardCount}
+          </div>
+        )}
+      </div>
+      <div className={styles.columnBody}>
+        {children}
+      </div>
     </div>
   );
 };
 
-// ─── Compound export ──────────────────────────────────────────────────────────
+// --- KanbanCard ---
+interface KanbanCardProps {
+  id: string;
+  children: React.ReactNode;
+  disabled?: boolean;
+  className?: string;
+}
 
-KanbanBoard.displayName = "Kanban";
-KanbanColumn.displayName = "Kanban.Column";
-KanbanCard.displayName = "Kanban.Card";
+export const KanbanCard = ({ id, children, disabled, className }: KanbanCardProps) => {
+  const { 
+    draggedItem, 
+    handleDragStart, 
+    handleMobileMove, 
+    activeMobileMenu, 
+    setActiveMobileMenu,
+    columns
+  } = useKanban();
 
-const KanbanBoardComponent = KanbanBoard as typeof KanbanBoard & {
-  Column: typeof KanbanColumn;
+  // Find current column of this card if we are in prop-driven mode
+  // In compound mode, we'd ideally need to know the parent column ID.
+  // For now, we'll assume the context can help or just leave it for dragging.
+  
+  // Note: we need the parent column ID for handleDragStart.
+  // We can get it via another Context or by passing it down.
+  // Let's use a ColumnContext.
+  
+  const colId = React.useContext(ColumnContext);
+
+  return (
+    <div
+      className={classNames(styles.card, {
+        [styles.dragging]: draggedItem?.itemId === id,
+        [styles.disabled]: disabled,
+      }, className)}
+      draggable={!disabled}
+      onDragStart={(e) => colId && handleDragStart(e, id, colId)}
+      // onDragEnd handled by dropping
+    >
+      <div className={styles.cardContent}>{children}</div>
+
+      <div className={styles.cardMove}>
+        <button
+          type="button"
+          className={styles.cardMoveBtn}
+          onClick={() => setActiveMobileMenu(activeMobileMenu === id ? null : id)}
+          aria-label="Move card"
+          disabled={disabled}
+        >
+          <Icon name="MoreHorizontalIcon" size="sm" />
+        </button>
+
+        {activeMobileMenu === id && (
+          <div className={styles.cardMoveMenu} role="listbox" aria-label="Move to column">
+            {columns
+              .filter((c) => c.id !== colId)
+              .map((c) => (
+                <button
+                  key={c.id}
+                  type="button"
+                  className={styles.cardMoveOption}
+                  onClick={() => colId && handleMobileMove(id, colId, c.id)}
+                  role="option"
+                  aria-selected={false}
+                >
+                  {c.title}
+                </button>
+              ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const ColumnContext = React.createContext<string | null>(null);
+
+// Wrapper for Column to provide ID to cards
+const KanbanColumnWrapper = (props: KanbanColumnProps) => {
+  return (
+    <ColumnContext.Provider value={props.id}>
+      <KanbanColumn {...props} />
+    </ColumnContext.Provider>
+  );
+};
+
+// Assign sub-components
+export const KanbanBoard = Kanban as typeof Kanban & {
+  Column: typeof KanbanColumnWrapper;
   Card: typeof KanbanCard;
 };
 
-KanbanBoardComponent.Column = KanbanColumn;
-KanbanBoardComponent.Card = KanbanCard;
+KanbanBoard.Column = KanbanColumnWrapper;
+KanbanBoard.Card = KanbanCard;
 
-export { KanbanBoardComponent as KanbanBoard };
+Kanban.displayName = "Kanban";
+KanbanBoard.displayName = "KanbanBoard";
+KanbanColumn.displayName = "KanbanColumn";
+KanbanCard.displayName = "KanbanCard";

@@ -4,8 +4,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { Chip } from "../../data-display/Chip/Chip";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
-import "./multiselect.scss";
-
+import styles from "./multiselect.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 
 export type MultiSelectOption = {
@@ -233,7 +232,7 @@ export const MultiSelect = ({
       className={className}
     >
       <div
-        className="wim-multiselect"
+        className={styles.root}
         ref={containerRef}
         onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}
@@ -247,14 +246,14 @@ export const MultiSelect = ({
           intent={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
-            isOpen && "wim-multiselect-trigger--open",
+            isOpen && styles.open,
           )}
         >
           <div
             id={triggerId}
             className={classNames(
-              "wim-multiselect-trigger",
-              disabled && "wim-multiselect-trigger--disabled",
+              styles.trigger,
+              disabled && styles.disabled,
             )}
             onClick={handleToggle}
             tabIndex={disabled ? -1 : 0}
@@ -277,9 +276,9 @@ export const MultiSelect = ({
           >
             <div
               className={classNames(
-                "wim-multiselect-value",
+                styles.value,
                 selectedOptions.length === 0 &&
-                "wim-multiselect-value--placeholder",
+                styles.placeholder,
               )}
             >
               {selectedOptions.length > 0
@@ -293,7 +292,6 @@ export const MultiSelect = ({
                     onDelete={
                       !disabled ? (e: React.SyntheticEvent) => handleRemove(e, opt.value) : undefined
                     }
-                    className="wim-multiselect-badge"
                   >
                     {opt.label}
                   </Chip>
@@ -307,7 +305,7 @@ export const MultiSelect = ({
           <ul
             id={listId}
             ref={listRef}
-            className="wim-multiselect-list"
+            className={styles.list}
             role="listbox"
             aria-multiselectable="true"
             aria-labelledby={labelId || ariaLabelledBy || undefined}
@@ -321,8 +319,8 @@ export const MultiSelect = ({
                   key={option.value}
                   id={`${id}-option-${index}`}
                   className={classNames(
-                    "wim-multiselect-option",
-                    isSelected && "wim-multiselect-option--selected",
+                    styles.option,
+                    isSelected && styles.selected,
                   )}
                   active={isFocused}
                   disabled={option.disabled}
@@ -345,3 +343,5 @@ export const MultiSelect = ({
     </FieldTemplate>
   );
 };
+
+MultiSelect.displayName = "MultiSelect";

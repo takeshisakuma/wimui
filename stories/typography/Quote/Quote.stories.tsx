@@ -74,7 +74,7 @@ export const VariousColors = {
         <Quote {...args} content={t('story.quote_black')} color="black" />
         <Quote {...args} content={t('story.quote_deepgray')} color="deepgray" />
         <Quote {...args} content={t('story.quote_gray')} color="gray" />
-        <div style={{ backgroundColor: "#1a1a1a", padding: "12px", borderRadius: "4px" }}>
+        <div style={{ backgroundColor: "var(--wim-color-bg-inverted)", padding: "12px", borderRadius: "4px" }}>
           <Quote {...args} content={t('story.quote_lightgray')} color="lightgray" />
         </div>
       </div>

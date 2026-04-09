@@ -192,16 +192,16 @@ describe("HoverCard", () => {
     expect(screen.queryByText("Content")).not.toBeInTheDocument();
   });
 
-  it("HoverCardContent renders with align and side classes", () => {
+  it("HoverCardContent renders with align and side attributes", () => {
     render(
       <HoverCard open={true}>
         <HoverCardTrigger>Trigger</HoverCardTrigger>
         <HoverCardContent align="left" side="top">Content</HoverCardContent>
       </HoverCard>,
     );
-    const content = document.querySelector(".wim-hover-card-content");
-    expect(content).toHaveClass("wim-hover-card-content--align-left");
-    expect(content).toHaveClass("wim-hover-card-content--top");
+    const content = screen.getByText("Content");
+    expect(content).toHaveAttribute("data-align", "left");
+    expect(content).toHaveAttribute("data-side", "top");
   });
 
   it("HoverCardContent mouse enter/leave keeps card open/closes", () => {
@@ -217,7 +217,7 @@ describe("HoverCard", () => {
     expect(screen.getByText("Content")).toBeInTheDocument();
 
     // Mouse enters content area — should stay open
-    const content = screen.getByText("Content").closest(".wim-hover-card-content") as HTMLElement;
+    const content = screen.getByText("Content").closest('[data-side]') as HTMLElement;
     fireEvent.mouseEnter(content);
     act(() => { vi.runAllTimers(); });
     expect(screen.getByText("Content")).toBeInTheDocument();
@@ -234,6 +234,6 @@ describe("HoverCard", () => {
         <HoverCardTrigger>T</HoverCardTrigger>
       </HoverCard>,
     );
-    expect(container.querySelector(".wim-hover-card")).toHaveClass("my-card");
+    expect(container.firstChild).toHaveClass("my-card");
   });
 });

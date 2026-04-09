@@ -1,0 +1,196 @@
+@layer component {
+  .container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: var(--wim-color-bg-component);
+  
+    &.sticky {
+      overflow: auto;
+    }
+  }
+
+  .root {
+    width: 100%;
+    margin-bottom: var(--wim-spacing-xl);
+    vertical-align: top;
+    color: var(--wim-color-text-primary);
+    border-collapse: collapse;
+  
+    &.fullWidth {
+      width: 100%;
+    }
+  
+    &.striped {
+      tbody tr:nth-of-type(odd) {
+        background-color: var(--wim-color-bg-subtle-alpha);
+      }
+    }
+  
+    &.bordered {
+      border: 1px solid var(--wim-color-border);
+  
+      th,
+      td {
+        border: 1px solid var(--wim-color-border);
+      }
+    }
+  
+    &.hoverable {
+      tbody tr:hover {
+        background-color: var(--wim-color-bg-hover);
+      }
+    }
+  
+    &.stickyHeader {
+      thead th {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: var(--wim-color-bg-component);
+        box-shadow: 0 1px 0 var(--wim-color-border);
+      }
+    }
+
+    &.mobileCard {
+      @media screen and (width <= 768px) {
+        display: block;
+        border: none;
+  
+        thead {
+          display: none;
+        }
+  
+        tbody {
+          display: block;
+  
+          tr {
+            display: block;
+            margin-bottom: var(--wim-spacing-lg);
+            border: 1px solid var(--wim-color-border);
+            border-radius: var(--wim-radius-md);
+            box-shadow: var(--wim-shadow-sm);
+  
+            td {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: var(--wim-spacing-md);
+              text-align: right;
+              border-bottom: 1px solid var(--wim-color-border-secondary);
+  
+              &:last-child {
+                border-bottom: none;
+              }
+  
+              &::before {
+                flex-shrink: 0;
+                font-weight: 600;
+                color: var(--wim-color-text-secondary);
+                text-align: left;
+                content: attr(data-label);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* Internal elements */
+  .header {
+    background-color: var(--wim-color-bg-subtle);
+  }
+
+  .body {
+    // Basic body styles
+  }
+
+  .row {
+    border-bottom: 1px solid var(--wim-color-border);
+
+    &.selected {
+      background-color: var(--wim-color-primary-alpha);
+    }
+  }
+
+  .head {
+    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--wim-color-border);
+  
+    &.sortable {
+      cursor: pointer;
+      user-select: none;
+  
+      &:hover {
+        background-color: var(--wim-color-bg-hover);
+      }
+    }
+  
+    &.selection {
+      width: 48px;
+      text-align: center;
+    }
+  
+    &.stickyLeft {
+      position: sticky;
+      z-index: 20;
+      background-color: inherit;
+      box-shadow: 1px 0 0 var(--wim-color-border);
+    }
+  
+    &.stickyRight {
+      position: sticky;
+      z-index: 20;
+      background-color: inherit;
+      box-shadow: -1px 0 0 var(--wim-color-border);
+    }
+  }
+
+  .cell {
+    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+    vertical-align: middle;
+  
+    &.selection {
+      width: 48px;
+      text-align: center;
+    }
+  
+    &.stickyLeft {
+      position: sticky;
+      z-index: 10;
+      background-color: inherit;
+      box-shadow: 1px 0 0 var(--wim-color-border);
+    }
+  
+    &.stickyRight {
+      position: sticky;
+      z-index: 10;
+      background-color: inherit;
+      box-shadow: -1px 0 0 var(--wim-color-border);
+    }
+  }
+
+  .headContent {
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+  }
+
+  .sortIcon {
+    display: inline-flex;
+    color: var(--wim-color-text-tertiary);
+    transition: transform 0.2s;
+  
+    &.asc {
+      color: var(--wim-color-primary);
+      transform: rotate(180deg);
+    }
+  
+    &.desc {
+      color: var(--wim-color-primary);
+    }
+  }
+}

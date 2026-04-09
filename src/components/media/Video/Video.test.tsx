@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Video } from "./Video";
+import styles from "./video.module.scss";
 
 describe("Video", () => {
   const src = "https://example.com/video.mp4";
@@ -10,7 +11,7 @@ describe("Video", () => {
     window.HTMLMediaElement.prototype.play = vi.fn().mockResolvedValue(undefined);
     window.HTMLMediaElement.prototype.pause = vi.fn();
     window.HTMLMediaElement.prototype.load = vi.fn();
-    
+
     // Mock requestFullscreen
     window.Element.prototype.requestFullscreen = vi.fn().mockResolvedValue(undefined);
     document.exitFullscreen = vi.fn().mockResolvedValue(undefined);
@@ -40,11 +41,11 @@ describe("Video", () => {
   it("handles time update and seeking", () => {
     const { container } = render(<Video src={src} customControls />);
     const video = container.querySelector("video")!;
-    
+
     // Mock duration
     Object.defineProperty(video, "duration", { value: 100 });
     fireEvent(video, new Event("loadedmetadata"));
-    
+
     // Time update
     let currentTime = 50;
     Object.defineProperty(video, "currentTime", {
@@ -55,10 +56,10 @@ describe("Video", () => {
       configurable: true,
     });
     fireEvent(video, new Event("timeupdate"));
-    
+
     expect(screen.getByText("0:50")).toBeInTheDocument();
     expect(screen.getByText("1:40")).toBeInTheDocument();
-    
+
     // Seek
     const slider = screen.getByRole("slider", { name: /seek/i });
     fireEvent.change(slider, { target: { value: "80" } });
@@ -90,11 +91,11 @@ describe("Video", () => {
   it("renders advanced controls", () => {
     const qualities = [{ label: "720p", src: "720.mp4" }, { label: "1080p", src: "1080.mp4" }];
     render(<Video src={src} advancedControls qualities={qualities} />);
-    
+
     // Settings button
     const settingsBtn = screen.getByLabelText(/settings/i);
     fireEvent.click(settingsBtn);
-    
+
     // Should see quality option
     expect(screen.getByText(/quality|画質/i)).toBeInTheDocument();
   });
@@ -102,7 +103,7 @@ describe("Video", () => {
   it("handles double skip on double click (simulation)", () => {
     render(<Video src={src} customControls />);
     const video = document.querySelector("video")!;
-    
+
     // Mock duration
     Object.defineProperty(video, "duration", { value: 100, configurable: true });
     fireEvent(video, new Event("loadedmetadata"));
@@ -123,7 +124,7 @@ describe("Video", () => {
     fireEvent.click(video, { clientX: 300 }); // Right side
     // Second click within 300ms
     fireEvent.click(video, { clientX: 300 });
-    
+
     expect(video.currentTime).toBeGreaterThan(0);
   });
 
@@ -150,24 +151,24 @@ describe("Video", () => {
       { src: "v2.mp4", title: "Video 2" },
     ];
     render(<Video playlist={playlist} advancedControls />);
-    
+
     // Open playlist menu to see titles
     const playlistBtn = screen.getByLabelText(/playlist/i);
     fireEvent.click(playlistBtn);
-    
+
     expect(screen.getByText("Video 1")).toBeInTheDocument();
-    
+
     const nextBtn = screen.getByLabelText(/next track/i);
     fireEvent.click(nextBtn);
-    
+
     expect(screen.getByText("Video 2")).toBeInTheDocument();
   });
 
   it("applies styling props", () => {
     const { container } = render(<Video src={src} radius="lg" shadow border />);
     const inner = container.querySelector(".wim-video-inner");
-    expect(inner).toHaveClass("wim-video--radius-lg");
-    expect(inner).toHaveClass("wim-video--shadow");
-    expect(inner).toHaveClass("wim-video--border");
+    expect(inner).toHaveClass(styles.radiusLg);
+    expect(inner).toHaveClass(styles.shadow);
+    expect(inner).toHaveClass(styles.border);
   });
 });

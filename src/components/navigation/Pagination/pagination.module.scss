@@ -1,0 +1,190 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .container {
+    width: 100%;
+    container-type: inline-size;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-lg);
+    align-items: center;
+  }
+
+  .root {
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    &.simple {
+      .simplePager {
+        padding: 0 var(--wim-spacing-md);
+        color: var(--wim-color-text-primary);
+      }
+    }
+
+    .mobileIndicator {
+      display: none;
+
+      @include breakpoints.container-down(md) {
+        display: inline-flex;
+        color: var(--wim-color-text-primary);
+        pointer-events: none;
+        cursor: default;
+        background: transparent;
+        border: none;
+      }
+    }
+
+    .item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: var(--wim-spacing-3xl);
+      height: var(--wim-spacing-3xl);
+      padding: 0 var(--wim-spacing-md);
+      font-size: var(--wim-font-size-md);
+      font-weight: var(--wim-font-weight-medium);
+      color: var(--wim-color-text-secondary);
+      cursor: pointer;
+      user-select: none;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--wim-radius-md);
+      transition: all var(--wim-transition-base);
+
+      &:hover:not(.disabled, .active) {
+        color: var(--wim-color-primary);
+        background-color: var(--wim-color-bg-hover);
+      }
+
+      &.active {
+        color: var(--wim-color-text-on-primary);
+        cursor: default;
+        background-color: var(--wim-color-primary);
+      }
+
+      &.disabled {
+        color: var(--wim-color-disabled);
+        cursor: not-allowed;
+        opacity: var(--wim-opacity-ghost);
+      }
+
+      &.ellipsis {
+        cursor: default;
+
+        &:hover {
+          color: var(--wim-color-text-secondary);
+          background-color: transparent;
+        }
+      }
+
+      &.number,
+      &.ellipsis {
+        @include breakpoints.container-down(md) {
+          display: none;
+        }
+      }
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      cursor: inherit;
+      outline: none;
+      background: none;
+      border: none;
+
+      &:focus-visible {
+        outline: none;
+        border-radius: var(--wim-radius-sm);
+        box-shadow: var(--wim-shadow-focus);
+      }
+    }
+
+    .total {
+      font-size: var(--wim-font-size-md);
+      color: var(--wim-color-text-secondary);
+    }
+
+    .sizeChanger {
+      display: flex;
+      gap: var(--wim-spacing-sm);
+      align-items: center;
+    }
+
+    .sizeSelect {
+      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+      font-size: var(--wim-font-size-md);
+      color: var(--wim-color-text-primary);
+      cursor: pointer;
+      outline: none;
+      background-color: var(--wim-color-bg-component);
+      border: 1px solid var(--wim-color-secondary);
+      border-radius: var(--wim-radius-md);
+      transition: all var(--wim-transition-base);
+
+      &:hover {
+        border-color: var(--wim-color-primary);
+      }
+
+      &:focus {
+        border-color: var(--wim-color-primary);
+        box-shadow: var(--wim-shadow-field-focus);
+      }
+    }
+
+    .quickJumper {
+      display: flex;
+      gap: var(--wim-spacing-sm);
+      align-items: center;
+      font-size: var(--wim-font-size-md);
+      color: var(--wim-color-text-secondary);
+    }
+
+    .jumpInput {
+      width: 60px;
+      padding: var(--wim-spacing-sm);
+      font-size: var(--wim-font-size-md);
+      color: var(--wim-color-text-primary);
+      text-align: center;
+      outline: none;
+      background-color: var(--wim-color-bg-component);
+      border: 1px solid var(--wim-color-secondary);
+      border-radius: var(--wim-radius-md);
+      transition: all var(--wim-transition-base);
+
+      &:hover {
+        border-color: var(--wim-color-primary);
+      }
+
+      &:focus {
+        border-color: var(--wim-color-primary);
+        box-shadow: var(--wim-shadow-field-focus);
+      }
+
+      /* Chrome, Safari, Edge, Opera */
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        margin: 0;
+        appearance: none;
+      }
+
+      /* Firefox */
+      &[type="number"] {
+        appearance: textfield;
+      }
+    }
+  }
+}

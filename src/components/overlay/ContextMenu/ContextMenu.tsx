@@ -21,7 +21,7 @@ import {
 } from "@floating-ui/react";
 import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
-import "./context-menu.scss";
+import styles from "./context-menu.module.scss";
 
 export type ContextMenuProps = {
   children: ReactNode;
@@ -133,7 +133,7 @@ export const ContextMenu = ({
   return (
     <div
       ref={containerRef}
-      className={classNames("wim-context-menu-container", disabled && "wim-context-menu-container--disabled", className)}
+      className={classNames(styles.container, disabled && styles.disabled, className)}
       onContextMenu={handleContextMenu}
       onKeyDown={handleKeyDown}
       tabIndex={disabled ? -1 : 0}
@@ -158,7 +158,7 @@ export const ContextMenu = ({
           >
             <div
               ref={refs.setFloating} // eslint-disable-line react-hooks/refs
-              className="wim-context-menu"
+              className={styles.menu}
               style={floatingStyles}
               {...(getFloatingProps({
                 onClick: handleClose,
@@ -224,7 +224,7 @@ export const ContextMenuItem = ({
     <BaseListItem
       ref={ref}
       className={classNames(
-        "wim-context-menu-item",
+        styles.item,
         className,
         context?.activeIndex === index && "wim-base-list-item--active"
       )}
@@ -247,7 +247,7 @@ export type ContextMenuDividerProps = {
 export const ContextMenuDivider = ({ className }: ContextMenuDividerProps) => {
   return (
     <div
-      className={classNames("wim-context-menu-divider", className)}
+      className={classNames(styles.divider, className)}
       role="separator"
     />
   );
@@ -265,9 +265,10 @@ export const ContextMenuGroup = ({
   className,
 }: ContextMenuGroupProps) => {
   return (
-    <div role="group" className={classNames("wim-context-menu-group", className)}>
-      {title && <div className="wim-context-menu-group__title">{title}</div>}
+    <div role="group" className={classNames(styles.group, className)} data-testid="context-menu-group">
+      {title && <div className={styles.groupTitle} data-testid="context-menu-group-title">{title}</div>}
       {children}
     </div>
   );
 };
+

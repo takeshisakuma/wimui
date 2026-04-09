@@ -6,7 +6,7 @@ import { useMediaLoader } from "@/hooks/useMediaLoader";
 import { useVideoPlayer } from "./hooks/useVideoPlayer";
 import { VideoAdvancedMenu } from "./components/VideoAdvancedMenu";
 import { VideoControls, type VideoLabels } from "./components/VideoControls";
-import "./video.scss";
+import styles from "./video.module.scss";
 
 export type { VideoLabels };
 
@@ -120,23 +120,26 @@ export const Video = ({
     ...style,
   };
 
+  const radiusClass = radius !== "none" ? styles[`radius${radius.charAt(0).toUpperCase() + radius.slice(1)}`] : null;
+
   return (
     <figure
-      className={classNames("wim-video-container", className)}
+      className={classNames(styles.root, "wim-video-container", className)}
       style={{ width: "100%" }}
       role="region"
       aria-label={videoAriaLabel}
     >
       <div
         className={classNames(
+          styles.inner,
           "wim-video-inner",
-          radius !== "none" && `wim-video--radius-${radius}`,
-          shadow && "wim-video--shadow",
-          border && "wim-video--border",
-          (customControls || advancedControls) && "wim-video--custom",
-          fadeIn && "wim-video--fade-in",
-          fadeIn && isLoaded && "wim-video--is-loaded",
-          shouldShowSkeleton && "wim-video--loading",
+          radiusClass,
+          shadow && styles.shadow,
+          border && styles.border,
+          (customControls || advancedControls) && styles.custom,
+          fadeIn && styles.fadeIn,
+          fadeIn && isLoaded && styles.isLoaded,
+          shouldShowSkeleton && styles.loading,
         )}
         ref={mediaLoaderRef}
       >
@@ -145,7 +148,7 @@ export const Video = ({
           <video
             ref={videoRef}
             src={activeSrc}
-            className="wim-video"
+            className={classNames(styles.video, "wim-video")}
             style={videoStyles}
             autoPlay={autoPlay && isLoaded}
             loop={loop && (!playlist || playlist.length <= 1)}
@@ -167,7 +170,7 @@ export const Video = ({
         {/* eslint-enable jsx-a11y/media-has-caption */}
 
         {skipIndicator.show && (
-          <div className="wim-video-skip-indicator">
+          <div className={classNames(styles.skipIndicator, "wim-video-skip-indicator")}>
             <Icon
               name={
                 skipIndicator.direction === "forward"
@@ -199,11 +202,12 @@ export const Video = ({
         {(customControls || advancedControls) && (
           <div
             role="none"
-            className="wim-video-custom-controls"
+            className={classNames(styles.customControls, "wim-video-custom-controls")}
             onClick={() => activeMenu && setActiveMenu(null)}
           >
             {advancedControls && (
               <VideoAdvancedMenu
+                styles={styles}
                 activeMenu={activeMenu}
                 setActiveMenu={setActiveMenu}
                 qualities={qualities}
@@ -221,6 +225,7 @@ export const Video = ({
             )}
 
             <VideoControls
+              styles={styles}
               playlist={playlist}
               advancedControls={advancedControls}
               currentPlayIndex={player.currentPlayIndex}
@@ -247,7 +252,7 @@ export const Video = ({
         )}
       </div>
       {caption && (
-        <figcaption className="wim-video__caption">{caption}</figcaption>
+        <figcaption className={classNames(styles.caption, "wim-video__caption")}>{caption}</figcaption>
       )}
     </figure>
   );

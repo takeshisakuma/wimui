@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useMediaLoader } from "@/hooks/useMediaLoader";
 import type { ComponentSize, WimRadiusKey } from "../../../types/tokens";
-import "./image.scss";
+import styles from "./image.module.scss";
 
 /**
  * フィルタの強さを定義する型
@@ -260,36 +260,36 @@ export const Image = ({
   };
 
   const filterStyles = React.useMemo(() => {
-    const styles: Record<string, string> = {};
+    const stylesMap: Record<string, string> = {};
 
     // Zoom
     if (zoom) {
       const scale = typeof zoom === "number" ? zoom : 1.05;
-      styles["--wim-image-zoom-scale"] = scale.toString();
+      stylesMap["--wim-image-zoom-scale"] = scale.toString();
     }
     // Base filters
     const baseFilter = buildFilterString(filter);
-    if (baseFilter) styles["--wim-image-filter"] = baseFilter;
+    if (baseFilter) stylesMap["--wim-image-filter"] = baseFilter;
 
     // Duotone
     if (duotone) {
-      styles["--wim-image-filter"] = `${styles["--wim-image-filter"] || ""} url(#${filterId})`.trim();
+      stylesMap["--wim-image-filter"] = `${stylesMap["--wim-image-filter"] || ""} url(#${filterId})`.trim();
     }
 
     const baseBackdrop = buildFilterString(backdropFilter);
-    if (baseBackdrop) styles["--wim-image-backdrop"] = baseBackdrop;
+    if (baseBackdrop) stylesMap["--wim-image-backdrop"] = baseBackdrop;
 
     // Hover filters
     const hFilter = buildFilterString(hoverFilter);
-    if (hFilter) styles["--wim-image-hover-filter"] = hFilter;
+    if (hFilter) stylesMap["--wim-image-hover-filter"] = hFilter;
 
     const hBackdrop = buildFilterString(hoverBackdropFilter);
-    if (hBackdrop) styles["--wim-image-hover-backdrop"] = hBackdrop;
+    if (hBackdrop) stylesMap["--wim-image-hover-backdrop"] = hBackdrop;
 
     // Noise
     if (noise && noise !== "none") {
       const opacity = { sm: "0.05", md: "0.1", lg: "0.2" }[noise];
-      styles["--wim-image-noise-opacity"] = opacity || "0";
+      stylesMap["--wim-image-noise-opacity"] = opacity || "0";
     }
 
     // Overlay
@@ -299,23 +299,23 @@ export const Image = ({
         ? overlay.intensity.toString() 
         : (opacityPresets[overlay.intensity as string] || "0.5");
       
-      styles["--wim-image-overlay-color"] = overlay.color || "rgba(0,0,0,0.5)";
-      styles["--wim-image-overlay-opacity"] = overlay.showOnHover ? "0" : opacity;
-      styles["--wim-image-overlay-hover-opacity"] = opacity;
+      stylesMap["--wim-image-overlay-color"] = overlay.color || "rgba(0,0,0,0.5)";
+      stylesMap["--wim-image-overlay-opacity"] = overlay.showOnHover ? "0" : opacity;
+      stylesMap["--wim-image-overlay-hover-opacity"] = opacity;
       if (overlay.blendMode) {
-        styles["--wim-image-overlay-blend"] = overlay.blendMode;
+        stylesMap["--wim-image-overlay-blend"] = overlay.blendMode;
       }
     }
 
     // Blend mode & BG color for image
-    if (blendMode) styles["--wim-image-blend-mode"] = blendMode;
-    if (bgColor) styles["--wim-image-bg-color"] = bgColor;
+    if (blendMode) stylesMap["--wim-image-blend-mode"] = blendMode;
+    if (bgColor) stylesMap["--wim-image-bg-color"] = bgColor;
 
     // Transition duration
     const durations = { none: "0s", fast: "0.2s", normal: "0.3s", slow: "0.5s" };
-    styles["--wim-image-transition-duration"] = durations[transition];
+    stylesMap["--wim-image-transition-duration"] = durations[transition];
 
-    return styles;
+    return stylesMap;
   }, [filter, hoverFilter, backdropFilter, hoverBackdropFilter, transition, noise, duotone, overlay, filterId, zoom, blendMode, bgColor]);
 
   const duotoneMatrix = React.useMemo(() => {
@@ -343,10 +343,13 @@ export const Image = ({
     ...style,
   };
 
+  // 18:51:30 - CamelCase mapping for radius
+  const radiusClass = radius !== "none" ? styles[`radius${radius.charAt(0).toUpperCase() + radius.slice(1)}`] : null;
+
   return (
     <figure
       ref={containerRef}
-      className={classNames("wim-image-container", className)}
+      className={classNames(styles.root, "wim-image-container", className)}
       style={{
         maxWidth: width || "100%",
         width: "100%",
@@ -365,17 +368,18 @@ export const Image = ({
       )}
       <div
         className={classNames(
+          styles.inner,
           "wim-image-inner",
-          radius !== "none" && `wim-image--radius-${radius}`,
-          shadow && "wim-image--shadow",
-          border && "wim-image--border",
-          (backdropFilter || hoverBackdropFilter) && "wim-image--has-backdrop",
-          noise && noise !== "none" && "wim-image--has-noise",
-          overlay && "wim-image--has-overlay",
-          zoom && "wim-image--zoomable",
-          fadeIn && "wim-image--fade-in",
-          fadeIn && isLoaded && "wim-image--is-loaded",
-          shouldShowSkeleton && fadeIn && "wim-image--loading",
+          radiusClass,
+          shadow && styles.shadow,
+          border && styles.border,
+          (backdropFilter || hoverBackdropFilter) && styles.hasBackdrop,
+          noise && noise !== "none" && styles.hasNoise,
+          overlay && styles.hasOverlay,
+          zoom && styles.zoomable,
+          fadeIn && styles.fadeIn,
+          fadeIn && isLoaded && styles.isLoaded,
+          shouldShowSkeleton && fadeIn && styles.loading,
         )}
       >
         {isIntersecting && (
@@ -384,8 +388,9 @@ export const Image = ({
             alt={alt}
             onLoad={notifyLoaded}
             className={classNames(
+              styles.image,
               "wim-image",
-              (filter || hoverFilter || duotone) && "wim-image--has-filter",
+              (filter || hoverFilter || duotone) && styles.hasFilter,
             )}
             style={imageStyles}
             loading={loading}
@@ -395,7 +400,9 @@ export const Image = ({
         )}
       </div>
       {caption && (
-        <figcaption className="wim-image__caption">{caption}</figcaption>
+        <figcaption className={classNames(styles.caption, "wim-image__caption")}>
+          {caption}
+        </figcaption>
       )}
     </figure>
   );

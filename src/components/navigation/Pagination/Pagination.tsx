@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import "./pagination.scss";
+import styles from "./pagination.module.scss";
 
 export interface PaginationProps {
   /** Total number of items */
@@ -163,21 +163,21 @@ export const Pagination = ({
     return (
       <nav
         className={classNames(
-          "wim-pagination",
-          "wim-pagination--simple",
+          styles.root,
+          styles.simple,
           className,
         )}
         aria-label={navAriaLabel}
       >
-        <ul className="wim-pagination">
+        <ul className={styles.root}>
           <li
             className={classNames(
-              "wim-pagination__item",
-              current === 1 && "wim-pagination__item--disabled",
+              styles.item,
+              current === 1 && styles.disabled,
             )}
           >
             <button
-              className="wim-pagination__button"
+              className={styles.button}
               onClick={() => handlePageChange(current - 1)}
               disabled={current === 1}
               aria-label={prevPage}
@@ -185,19 +185,19 @@ export const Pagination = ({
               <Icon name="ChevronLeftIcon" size="sm" />
             </button>
           </li>
-          <li className="wim-pagination__item wim-pagination__simple-pager">
+          <li className={classNames(styles.item, styles.simplePager)}>
             <span>
               {current} / {totalPages}
             </span>
           </li>
           <li
             className={classNames(
-              "wim-pagination__item",
-              current === totalPages && "wim-pagination__item--disabled",
+              styles.item,
+              current === totalPages && styles.disabled,
             )}
           >
             <button
-              className="wim-pagination__button"
+              className={styles.button}
               onClick={() => handlePageChange(current + 1)}
               disabled={current === totalPages}
               aria-label={nextPage}
@@ -211,128 +211,128 @@ export const Pagination = ({
   }
 
   return (
-    <div className="wim-pagination-container">
-    <div className={classNames("wim-pagination-wrapper", className)}>
-      {showTotal && (
-        <div className="wim-pagination__total">
-          {showTotal(total, [startItem, endItem])}
-        </div>
-      )}
-      <nav className="wim-pagination" aria-label={navAriaLabel}>
-        <ul className="wim-pagination">
-          {/* Previous Button */}
-          <li
-            className={classNames(
-              "wim-pagination__item",
-              current === 1 && "wim-pagination__item--disabled",
-            )}
-          >
-            <button
-              className="wim-pagination__button"
-              onClick={() => handlePageChange(current - 1)}
-              disabled={current === 1}
-              aria-label={prevPage}
+    <div className={styles.container}>
+      <div className={classNames(styles.wrapper, className)}>
+        {showTotal && (
+          <div className={styles.total}>
+            {showTotal(total, [startItem, endItem])}
+          </div>
+        )}
+        <nav className={styles.root} aria-label={navAriaLabel}>
+          <ul className={styles.root}>
+            {/* Previous Button */}
+            <li
+              className={classNames(
+                styles.item,
+                current === 1 && styles.disabled,
+              )}
             >
-              <Icon name="ChevronLeftIcon" size="sm" />
-            </button>
-          </li>
+              <button
+                className={styles.button}
+                onClick={() => handlePageChange(current - 1)}
+                disabled={current === 1}
+                aria-label={prevPage}
+              >
+                <Icon name="ChevronLeftIcon" size="sm" />
+              </button>
+            </li>
 
-          {/* Mobile Page Indicator */}
-          <li className="wim-pagination__item wim-pagination__mobile-indicator">
-            <span>
-              {current} / {totalPages}
-            </span>
-          </li>
+            {/* Mobile Page Indicator */}
+            <li className={classNames(styles.item, styles.mobileIndicator)}>
+              <span>
+                {current} / {totalPages}
+              </span>
+            </li>
 
-          {/* Page Numbers */}
-          {paginationRange.map((pageNumber, index) => {
-            if (pageNumber === ELLIPSIS) {
+            {/* Page Numbers */}
+            {paginationRange.map((pageNumber, index) => {
+              if (pageNumber === ELLIPSIS) {
+                return (
+                  <li
+                    key={`ellipsis-${index}`}
+                    className={classNames(styles.item, styles.ellipsis)}
+                    aria-hidden="true"
+                  >
+                    {ELLIPSIS}
+                  </li>
+                );
+              }
+
               return (
                 <li
-                  key={`ellipsis-${index}`}
-                  className="wim-pagination__item wim-pagination__item--ellipsis"
-                  aria-hidden="true"
+                  key={pageNumber}
+                  className={classNames(
+                    styles.item,
+                    styles.number,
+                    pageNumber === current && styles.active,
+                  )}
                 >
-                  {ELLIPSIS}
+                  <button
+                    className={styles.button}
+                    onClick={() => handlePageChange(pageNumber as number)}
+                    aria-label={pageAriaLabel(pageNumber as number)}
+                    aria-current={pageNumber === current ? "page" : undefined}
+                  >
+                    {pageNumber}
+                  </button>
                 </li>
               );
-            }
+            })}
 
-            return (
-              <li
-                key={pageNumber}
-                className={classNames(
-                  "wim-pagination__item",
-                  "wim-pagination__item--number",
-                  pageNumber === current && "wim-pagination__item--active",
-                )}
-              >
-                <button
-                  className="wim-pagination__button"
-                  onClick={() => handlePageChange(pageNumber as number)}
-                  aria-label={pageAriaLabel(pageNumber as number)}
-                  aria-current={pageNumber === current ? "page" : undefined}
-                >
-                  {pageNumber}
-                </button>
-              </li>
-            );
-          })}
-
-          {/* Next Button */}
-          <li
-            className={classNames(
-              "wim-pagination__item",
-              current === totalPages && "wim-pagination__item--disabled",
-            )}
-          >
-            <button
-              className="wim-pagination__button"
-              onClick={() => handlePageChange(current + 1)}
-              disabled={current === totalPages}
-              aria-label={nextPage}
+            {/* Next Button */}
+            <li
+              className={classNames(
+                styles.item,
+                current === totalPages && styles.disabled,
+              )}
             >
-              <Icon name="ChevronRightIcon" size="sm" />
-            </button>
-          </li>
-        </ul>
-      </nav>
+              <button
+                className={styles.button}
+                onClick={() => handlePageChange(current + 1)}
+                disabled={current === totalPages}
+                aria-label={nextPage}
+              >
+                <Icon name="ChevronRightIcon" size="sm" />
+              </button>
+            </li>
+          </ul>
+        </nav>
 
-      {/* Page Size Changer */}
-      {showSizeChanger && (
-        <div className="wim-pagination__size-changer">
-          <select
-            value={currentPageSize}
-            onChange={(e) => handlePageSizeChange(Number(e.target.value))}
-            className="wim-pagination__size-select"
-            aria-label={pageSizeAriaLabel}
-          >
-            {pageSizeOptions.map((size) => (
-              <option key={size} value={size}>
-                {size} {itemsPerPage}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
+        {/* Page Size Changer */}
+        {showSizeChanger && (
+          <div className={styles.sizeChanger}>
+            <select
+              value={currentPageSize}
+              onChange={(e) => handlePageSizeChange(Number(e.target.value))}
+              className={styles.sizeSelect}
+              aria-label={pageSizeAriaLabel}
+            >
+              {pageSizeOptions.map((size) => (
+                <option key={size} value={size}>
+                  {size} {itemsPerPage}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
-      {/* Quick Jumper */}
-      {showQuickJumper && (
-        <div className="wim-pagination__quick-jumper">
-          <span>{goTo}</span>
-          <input
-            type="number"
-            min={1}
-            max={totalPages}
-            value={jumpValue}
-            onChange={(e) => setJumpValue(e.target.value)}
-            onKeyDown={handleQuickJump}
-            className="wim-pagination__jump-input"
-            aria-label={jumpToPageAriaLabel}
-          />
-        </div>
-      )}
-    </div>
+        {/* Quick Jumper */}
+        {showQuickJumper && (
+          <div className={styles.quickJumper}>
+            <span>{goTo}</span>
+            <input
+              type="number"
+              min={1}
+              max={totalPages}
+              value={jumpValue}
+              onChange={(e) => setJumpValue(e.target.value)}
+              onKeyDown={handleQuickJump}
+              className={styles.jumpInput}
+              aria-label={jumpToPageAriaLabel}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize, WimIntent } from "../../../types/tokens";
-import "./avatar.scss";
+import styles from "./avatar.module.scss";
 
 type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
   src?: string;
@@ -23,7 +23,8 @@ export const Avatar = ({
   initials,
   icon,
   size = "md",
-  shape = "circle", intent,
+  shape = "circle",
+  intent,
   className,
   ...props
 }: AvatarProps) => {
@@ -32,15 +33,15 @@ export const Avatar = ({
   const renderFallback = () => {
     if (initials) {
       return (
-        <span className="wim-avatar__initials">{initials.substring(0, 2)}</span>
+        <span className={styles.initials}>{initials.substring(0, 2)}</span>
       );
     }
     if (icon) {
-      return <span className="wim-avatar__icon">{icon}</span>;
+      return <span className={styles.icon}>{icon}</span>;
     }
     // Default Icon (User)
     return (
-      <span className="wim-avatar__icon">
+      <span className={styles.icon}>
         <Icon name="UserIcon" />
       </span>
     );
@@ -56,10 +57,11 @@ export const Avatar = ({
       aria-label={isFallback && hasFallbackLabel ? fallbackAriaLabel : undefined}
       {...props}
       className={classNames(
+        styles.root,
         "wim-avatar",
-        `wim-avatar--${size}`,
-        `wim-avatar--${shape}`,
-        intent && `wim-avatar--${intent}`,
+        styles[size],
+        styles[shape],
+        intent && styles[intent],
         className,
       )}
     >

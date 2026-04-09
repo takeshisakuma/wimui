@@ -5,7 +5,8 @@ import React, {
   useCallback,
 } from "react";
 import classNames from "classnames";
-import "./drawer.scss";
+import { OverlayBase } from "../../_internal/OverlayBase";
+import styles from "./drawer.module.scss";
 
 // --- Drawer Context ---
 type DrawerSide = "top" | "right" | "bottom" | "left";
@@ -114,7 +115,7 @@ export const DrawerTrigger = ({
 
   return (
     <button
-      className={classNames("wim-drawer-trigger", className)}
+      className={classNames(styles.trigger, className)}
       onClick={handleClick}
     >
       {children}
@@ -155,7 +156,7 @@ export const DrawerClose = ({
           handleClick();
         },
         className: classNames(
-          "wim-drawer-close-button",
+          styles.closeButton,
           className,
           (children as React.ReactElement<{ className?: string }>).props
             .className,
@@ -167,21 +168,13 @@ export const DrawerClose = ({
   return (
     <button
       type="button"
-      className={classNames("wim-drawer-close-button", className)}
+      className={classNames(styles.closeButton, className)}
       onClick={handleClick}
     >
       {children}
     </button>
   );
 };
-
-// --- Drawer Content ---
-import { OverlayBase } from "../../_internal/OverlayBase";
-import "./drawer.scss";
-
-// --- Drawer Context ---
-// ... (rest of context and root remains)
-// Skipping to DrawerContent refactor
 
 // --- Drawer Content ---
 export interface DrawerContentProps {
@@ -206,19 +199,19 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
     <OverlayBase
       open={open}
       onOpenChange={onOpenChange}
-      overlayClassName="wim-drawer-overlay"
+      overlayClassName={styles.overlay}
       contentClassName={classNames(
-        "wim-drawer-content",
-        `wim-drawer-content--${side}`,
+        styles.content,
+        styles[side],
         className,
       )}
       transitionProps={slideTransition}
+      data-side={side}
     >
       {children}
     </OverlayBase>
   );
 };
-
 
 // --- Drawer Sections ---
 export const DrawerHeader = ({
@@ -228,7 +221,7 @@ export const DrawerHeader = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={classNames("wim-drawer-header", className)}>{children}</div>
+  <div className={classNames(styles.header, className)}>{children}</div>
 );
 
 export const DrawerFooter = ({
@@ -238,7 +231,7 @@ export const DrawerFooter = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={classNames("wim-drawer-footer", className)}>{children}</div>
+  <div className={classNames(styles.footer, className)}>{children}</div>
 );
 
 export const DrawerTitle = ({
@@ -247,7 +240,7 @@ export const DrawerTitle = ({
 }: {
   children: React.ReactNode;
   className?: string;
-}) => <h2 className={classNames("wim-drawer-title", className)}>{children}</h2>;
+}) => <h2 className={classNames(styles.title, className)}>{children}</h2>;
 
 export const DrawerDescription = ({
   children,
@@ -256,5 +249,6 @@ export const DrawerDescription = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <p className={classNames("wim-drawer-description", className)}>{children}</p>
+  <p className={classNames(styles.description, className)}>{children}</p>
 );
+

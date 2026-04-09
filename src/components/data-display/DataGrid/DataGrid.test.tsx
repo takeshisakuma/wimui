@@ -6,19 +6,19 @@ import { DataGrid } from "./DataGrid";
 
 describe("DataGrid", () => {
   const mockColumns = [
-    { key: "id", header: "ID", sortable: true },
-    { key: "name", header: "Name", sortable: true },
-    { key: "age", header: "Age", sortable: false },
+    { key: "id", title: "ID", sortable: true },
+    { key: "name", title: "Name", sortable: true },
+    { key: "age", title: "Age", sortable: false },
   ];
 
   const mockRows = [
-    { id: 1, name: "Alice", age: 25 },
-    { id: 2, name: "Bob", age: 30 },
-    { id: 3, name: "Charlie", age: 35 },
+    { id: "1", name: "Alice", age: 25 },
+    { id: "2", name: "Bob", age: 30 },
+    { id: "3", name: "Charlie", age: 35 },
   ];
 
   it("renders the DataGrid with columns and rows", () => {
-    render(<DataGrid columns={mockColumns} rows={mockRows} />);
+    render(<DataGrid columns={mockColumns} data={mockRows} />);
 
     expect(screen.getByText("ID")).toBeInTheDocument();
     expect(screen.getByText("Name")).toBeInTheDocument();
@@ -31,14 +31,14 @@ describe("DataGrid", () => {
 
   it("renders empty state when no rows", () => {
     render(
-      <DataGrid columns={mockColumns} rows={[]} emptyMessage="No data found" />,
+      <DataGrid columns={mockColumns} data={[]} emptyMessage="No data found" />,
     );
 
     expect(screen.getByText("No data found")).toBeInTheDocument();
   });
 
   it("renders loading state", () => {
-    render(<DataGrid columns={mockColumns} rows={mockRows} loading />);
+    render(<DataGrid columns={mockColumns} data={mockRows} loading />);
 
     expect(
       document.querySelector(".wim-datagrid--loading"),
@@ -52,7 +52,7 @@ describe("DataGrid", () => {
     render(
       <DataGrid
         columns={mockColumns}
-        rows={mockRows}
+        data={mockRows}
         selection
         selectedRowKeys={[]}
         onSelectionChange={onSelectionChange}
@@ -62,7 +62,7 @@ describe("DataGrid", () => {
     const checkboxes = screen.getAllByRole("checkbox");
     await user.click(checkboxes[1]); // Click first row checkbox
 
-    expect(onSelectionChange).toHaveBeenCalledWith([1]);
+    expect(onSelectionChange).toHaveBeenCalledWith(["1"]);
   });
 
   it("handles select all", async () => {
@@ -72,7 +72,7 @@ describe("DataGrid", () => {
     render(
       <DataGrid
         columns={mockColumns}
-        rows={mockRows}
+        data={mockRows}
         selection
         selectedRowKeys={[]}
         onSelectionChange={onSelectionChange}
@@ -92,9 +92,9 @@ describe("DataGrid", () => {
     render(
       <DataGrid
         columns={mockColumns}
-        rows={mockRows}
+        data={mockRows}
         sortConfig={{ key: "id", direction: "none" }}
-        onSort={onSort}
+        onSortChange={onSort}
       />,
     );
 
@@ -111,13 +111,13 @@ describe("DataGrid", () => {
       total: 100,
       pageSize: 10,
       current: 1,
-      onPageChange: vi.fn(),
+      onChange: vi.fn(),
     };
 
     render(
       <DataGrid
         columns={mockColumns}
-        rows={mockRows}
+        data={mockRows}
         pagination={pagination}
       />,
     );
@@ -129,14 +129,14 @@ describe("DataGrid", () => {
     const columnsWithRender = [
       {
         key: "name",
-        header: "Name",
+        title: "Name",
         render: (value: unknown) => (
           <strong>{(value as string).toUpperCase()}</strong>
         ),
       },
     ];
 
-    render(<DataGrid columns={columnsWithRender} rows={mockRows} />);
+    render(<DataGrid columns={columnsWithRender} data={mockRows} />);
 
     expect(screen.getByText("ALICE")).toBeInTheDocument();
     expect(screen.getByText("BOB")).toBeInTheDocument();
@@ -147,12 +147,12 @@ describe("DataGrid", () => {
       ...mockColumns,
       {
         key: "action",
-        header: "Action",
+        title: "Action",
         render: (_: unknown, row: { id: number | string }) => <button data-testid={`btn-${row.id}`}>Action</button>
       }
     ];
 
-    const { container } = render(<DataGrid columns={interactiveCols} rows={mockRows} />);
+    const { container } = render(<DataGrid columns={interactiveCols} data={mockRows} />);
     const grid = screen.getByRole("grid");
     
     // Initial state: -1, 0
@@ -253,11 +253,10 @@ describe("DataGrid", () => {
     render(
       <DataGrid
         columns={mockColumns}
-        rows={mockRows}
-        loadMore={{
+        data={mockRows}
+        infiniteScroll={{
           onLoadMore,
           hasMore: true,
-          loading: false,
         }}
       />
     );
@@ -279,11 +278,13 @@ describe("DataGrid", () => {
     ];
     render(
       <DataGrid
-        columns={[{ key: "name", header: "Name" }]}
-        rows={rowsWithUuid}
-        selection
+        columns={[{ key: "name", title: "Name" }]}
+        data={rowsWithUuid}
+        selection={{
+          selectedRowKeys: [],
+          onChange: onSelectionChange,
+        }}
         rowKey="uuid"
-        onSelectionChange={onSelectionChange}
       />
     );
 
@@ -296,10 +297,11 @@ describe("DataGrid", () => {
     render(
       <DataGrid
         columns={mockColumns}
-        rows={mockRows}
-        selection
-        selectedRowKeys={[1]}
-        onSelectionChange={vi.fn()}
+        data={mockRows}
+        selection={{
+          selectedRowKeys: ["1"],
+          onChange: vi.fn(),
+        }}
       />,
     );
     const selectAllCheckbox = screen.getAllByRole("checkbox")[0] as HTMLInputElement;
@@ -311,10 +313,11 @@ describe("DataGrid", () => {
     render(
       <DataGrid
         columns={mockColumns}
-        rows={mockRows}
-        selection
-        selectedRowKeys={[1, 2, 3]}
-        onSelectionChange={vi.fn()}
+        data={mockRows}
+        selection={{
+          selectedRowKeys: ["1", "2", "3"],
+          onChange: vi.fn(),
+        }}
       />,
     );
     const selectAllCheckbox = screen.getAllByRole("checkbox")[0] as HTMLInputElement;
@@ -328,10 +331,11 @@ describe("DataGrid", () => {
     render(
       <DataGrid
         columns={mockColumns}
-        rows={mockRows}
-        selection
-        selectedRowKeys={[1, 2, 3]}
-        onSelectionChange={onSelectionChange}
+        data={mockRows}
+        selection={{
+          selectedRowKeys: ["1", "2", "3"],
+          onChange: onSelectionChange,
+        }}
       />,
     );
     const selectAllCheckbox = screen.getAllByRole("checkbox")[0];
@@ -341,9 +345,9 @@ describe("DataGrid", () => {
 
   it("uses dataIndex to read cell value when different from key", () => {
     const columnsWithDataIndex = [
-      { key: "display_name", header: "Name", dataIndex: "name" as const },
+      { key: "display_name", title: "Name", dataIndex: "name" as const },
     ];
-    render(<DataGrid columns={columnsWithDataIndex} rows={mockRows} />);
+    render(<DataGrid columns={columnsWithDataIndex} data={mockRows} />);
     expect(screen.getByText("Alice")).toBeInTheDocument();
     expect(screen.getByText("Bob")).toBeInTheDocument();
   });
@@ -353,7 +357,7 @@ describe("DataGrid", () => {
     render(
       <DataGrid
         columns={mockColumns}
-        rows={mockRows}
+        data={mockRows}
         selection
         rowKey={(row) => `row-${row.id}`}
         onSelectionChange={onSelectionChange}
@@ -368,7 +372,7 @@ describe("DataGrid", () => {
     render(
       <DataGrid
         columns={mockColumns}
-        rows={[]}
+        data={[]}
         emptyMessage={<span data-testid="custom-empty">Nothing here</span>}
       />,
     );
@@ -376,7 +380,7 @@ describe("DataGrid", () => {
   });
 
   it("applies aria-rowcount and aria-colcount on the grid element", () => {
-    render(<DataGrid columns={mockColumns} rows={mockRows} />);
+    render(<DataGrid columns={mockColumns} data={mockRows} />);
     const grid = screen.getByRole("grid");
     // rows.length + 1 (header row)
     expect(grid).toHaveAttribute("aria-rowcount", "4");
@@ -388,7 +392,7 @@ describe("DataGrid", () => {
     render(
       <DataGrid
         columns={mockColumns}
-        rows={mockRows}
+        data={mockRows}
         selection
         selectedRowKeys={[]}
         onSelectionChange={vi.fn()}
@@ -400,18 +404,18 @@ describe("DataGrid", () => {
 
   it("renders fixed-left and fixed-right columns without error", () => {
     const fixedColumns = [
-      { key: "id", header: "ID", fixed: "left" as const, width: "80px" },
-      { key: "name", header: "Name" },
-      { key: "action", header: "Action", fixed: "right" as const, width: "100px" },
+      { key: "id", title: "ID", fixed: "left" as const, width: "80px" },
+      { key: "name", title: "Name" },
+      { key: "action", title: "Action", fixed: "right" as const, width: "100px" },
     ];
-    render(<DataGrid columns={fixedColumns} rows={mockRows} />);
+    render(<DataGrid columns={fixedColumns} data={mockRows} />);
     expect(screen.getByText("ID")).toBeInTheDocument();
     expect(screen.getByText("Action")).toBeInTheDocument();
   });
 
   it("renders striped and bordered variants without error", () => {
     const { container } = render(
-      <DataGrid columns={mockColumns} rows={mockRows} striped bordered />,
+      <DataGrid columns={mockColumns} data={mockRows} striped bordered />,
     );
     expect(container.querySelector(".wim-table--striped")).toBeInTheDocument();
     expect(container.querySelector(".wim-table--bordered")).toBeInTheDocument();
@@ -419,13 +423,13 @@ describe("DataGrid", () => {
 
   it("renders with mobileCard layout without error", () => {
     const { container } = render(
-      <DataGrid columns={mockColumns} rows={mockRows} mobileCard />,
+      <DataGrid columns={mockColumns} data={mockRows} mobileCard />,
     );
     expect(container.querySelector(".wim-table--mobile-card")).toBeInTheDocument();
   });
 
   it("empty state live region has role=status", () => {
-    render(<DataGrid columns={mockColumns} rows={[]} emptyMessage="Empty" />);
+    render(<DataGrid columns={mockColumns} data={[]} emptyMessage="Empty" />);
     const statusEl = document.querySelector('[role="status"]');
     expect(statusEl).toBeInTheDocument();
   });

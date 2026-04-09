@@ -1,0 +1,9 @@
+@layer component {
+  .root {
+    &.affixed {
+      // Ensure the affixed element doesn't have unintended margins
+      margin: 0;
+      transition: none;
+    }
+  }
+}

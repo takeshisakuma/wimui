@@ -1,0 +1,109 @@
+@use "../../../styles/indicator-mixins" as indicator;
+
+@layer component {
+  .wim-segmented-control {
+    @include indicator.indicator-container-segmented($padding: 2px);
+  
+    display: inline-grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    user-select: none;
+  
+    &.wim-segmented-control--full-width {
+      display: grid;
+      width: 100%;
+    }
+  
+    .wim-segmented-control__slider {
+      @include indicator.indicator-slider-contained($offset: 2px);
+  
+      opacity: 0;
+  
+      .wim-segmented-control--ready & {
+        transition: 
+          transform 0.2s cubic-bezier(0.2, 0, 0, 1),
+          width 0.2s cubic-bezier(0.2, 0, 0, 1),
+          opacity 0.2s ease;
+      }
+    }
+  
+    .wim-segmented-control__item {
+      @include indicator.indicator-item-base;
+  
+      gap: var(--wim-spacing-sm);
+      height: var(--wim-tab-nav-height);
+      padding: var(--wim-tab-nav-padding);
+      font-size: var(--wim-tab-nav-font-size);
+      font-weight: var(--wim-font-weight-medium);
+      color: var(--wim-color-text-secondary);
+      white-space: nowrap;
+      text-decoration: none;
+  
+      &:hover {
+        color: var(--wim-color-text-primary);
+      }
+  
+      &.wim-segmented-control__item--active {
+        color: var(--wim-color-primary);
+      }
+  
+      &.wim-segmented-control__item--icon-only {
+        padding-right: 0;
+        padding-left: 0;
+      }
+  
+      &:focus-visible {
+        outline: none;
+        box-shadow: inset 0 0 0 2px var(--wim-color-primary);
+      }
+    }
+  
+    .wim-icon {
+      font-size: 0.7em; // Buttonコンポーネントと一貫性を持たせる
+    }
+  
+    &.wim-segmented-control--sm {
+      .wim-segmented-control__item {
+        padding: var(--wim-spacing-xs) var(--wim-spacing-md);
+        font-size: var(--wim-font-size-sm);
+  
+        &.wim-segmented-control__item--icon-only {
+          width: 30px;
+          padding: var(--wim-spacing-xs) 0;
+        }
+      }
+    }
+  
+    &.wim-segmented-control--md {
+      .wim-segmented-control__item {
+        padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
+        font-size: var(--wim-font-size-md);
+  
+        &.wim-segmented-control__item--icon-only {
+          width: 36px;
+          padding: var(--wim-spacing-sm) 0;
+        }
+      }
+    }
+  
+    &.wim-segmented-control--lg {
+      .wim-segmented-control__item {
+        padding: var(--wim-spacing-md) var(--wim-spacing-xl);
+        font-size: var(--wim-font-size-lg);
+  
+        &.wim-segmented-control__item--icon-only {
+          width: 44px;
+          padding: var(--wim-spacing-md) 0;
+        }
+      }
+    }
+  
+    .wim-segmented-control__label {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: var(--wim-line-height-normal);
+      white-space: nowrap;
+    }
+  }
+}

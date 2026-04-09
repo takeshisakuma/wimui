@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, ReactNode } from "react";
 import classNames from "classnames";
-import "./hoverCard.scss";
+import styles from "./hover-card.module.scss";
 
 // Context to share state and handlers between components
 const HoverCardContext = React.createContext<{
@@ -95,7 +95,7 @@ export const HoverCard = ({
 
   return (
     <HoverCardContext.Provider value={{ isOpen, open, close }}>
-      <div className={classNames("wim-hover-card", className)}>{children}</div>
+      <div className={classNames(styles.root, className)}>{children}</div>
     </HoverCardContext.Provider>
   );
 };
@@ -155,7 +155,7 @@ export const HoverCardTrigger = ({
 
   return (
     <div
-      className={classNames("wim-hover-card-trigger", className)}
+      className={classNames(styles.trigger, className)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleMouseEnter}
@@ -187,19 +187,25 @@ export const HoverCardContent = ({
 
   if (!isOpen) return null;
 
+  const sideClass = styles[side];
+  const alignClass = align === "left" ? styles.alignLeft : align === "right" ? styles.alignRight : "";
+
   return (
     <div
       className={classNames(
-        "wim-hover-card-content",
-        `wim-hover-card-content--align-${align}`,
-        `wim-hover-card-content--${side}`,
+        styles.content,
+        sideClass,
+        alignClass,
         className,
       )}
       onMouseEnter={open}
       onMouseLeave={close}
+      data-side={side}
+      data-align={align}
       {...props}
     >
       {children}
     </div>
   );
 };
+

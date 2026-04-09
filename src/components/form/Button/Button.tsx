@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import "./button.scss";
+import styles from "./button.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import type { WimColor, ComponentSize, ButtonVariant, ButtonIntent } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
@@ -71,24 +71,19 @@ export const Button = React.forwardRef<
 
       const node = internalRef.current;
       
-      // 1. 現在の幅をピクセルで固定する（autoだと遷移しないため）
       const currentWidth = node.getBoundingClientRect().width;
       setAnimatedWidth(currentWidth);
 
-      // 2. 次のラベルでの「理想の幅」を計測する
       const originalWidth = node.style.width;
       const originalMinWidth = node.style.minWidth;
       
       node.style.width = "auto";
       node.style.minWidth = "0";
-      // わずかな計算誤差と、アニメーション中の ellipsis 回避のためにバッファを追加
       const targetWidth = Math.ceil(node.getBoundingClientRect().width) + 2;
       
-      // 元の状態に戻す
       node.style.width = originalWidth;
       node.style.minWidth = originalMinWidth;
 
-      // 3. 次のフレームで目標の幅を適用して transition を発動させる
       const frame = requestAnimationFrame(() => {
         setAnimatedWidth(targetWidth);
       });
@@ -99,12 +94,10 @@ export const Button = React.forwardRef<
     const { t } = useTranslation("common");
     const isDisabled = disabled;
 
-    // aria-label の決定ロジックを明示的に整理
     let resolvedAriaLabel: string | undefined;
     if (typeof ariaLabelProp === "string") {
       resolvedAriaLabel = ariaLabelProp;
     } else if (ariaLabelProp !== false) {
-      // アイコンのみボタンはアイコン名をフォールバックとして使用
       if (!children && typeof icon === "string") {
         resolvedAriaLabel = icon;
       } else if (loading) {
@@ -141,27 +134,27 @@ export const Button = React.forwardRef<
           ...(backgroundColor ? { backgroundColor: getColorValue(backgroundColor) } : {}),
           ...(animateWidth && animatedWidth !== "auto"
             ? {
-              width: `${animatedWidth}px`,
-              transitionProperty:
-                props.style?.transitionProperty ||
-                "width, background-color, border-color, box-shadow, transform",
-              transitionDuration: props.style?.transitionDuration || "0.3s",
-              transitionTimingFunction: props.style?.transitionTimingFunction || "ease",
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              textOverflow: "clip",
-            }
+                width: `${animatedWidth}px`,
+                transitionProperty:
+                  props.style?.transitionProperty ||
+                  "width, background-color, border-color, box-shadow, transform",
+                transitionDuration: props.style?.transitionDuration || "0.3s",
+                transitionTimingFunction: props.style?.transitionTimingFunction || "ease",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "clip",
+              }
             : {}),
         }}
         className={classNames(
-          "wim-button",
-          `wim-button--${size}`,
-          `wim-button--${variant}`,
-          `wim-button--${intent}`,
-          loading && "wim-button--loading",
-          animateWidth && "wim-button--animated-width",
-          fullWidth && "wim-button--full-width",
-          !children && !!icon && "wim-button--icon-only",
+          styles.root,
+          styles[size],
+          styles[variant],
+          styles[intent],
+          loading && styles.loading,
+          animateWidth && styles.animatedWidth,
+          fullWidth && styles.fullWidth,
+          !children && !!icon && styles.iconOnly,
           className,
         )}
         disabled={(isDisabled || loading) && !asChild ? true : undefined}
@@ -173,7 +166,7 @@ export const Button = React.forwardRef<
         <Slottable>{children}</Slottable>
         {iconContent && iconPosition === "right" && iconContent}
         {loading && (
-          <span className="wim-button__loader">
+          <span className={styles.loader}>
             <Icon name="LoadingIcon" size={size} />
           </span>
         )}

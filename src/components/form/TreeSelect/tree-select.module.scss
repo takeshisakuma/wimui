@@ -1,0 +1,157 @@
+@use "../../../base" as *;
+
+@layer component {
+  .container {
+    width: 100%;
+    container-type: inline-size;
+  }
+
+  .root {
+    position: relative;
+    align-self: flex-start;
+    width: 100%;
+    min-width: 200px;
+    max-width: var(--wim-input-width, 280px);
+    font-family: var(--wim-font-family);
+
+    @container (max-width: 480px) {
+      min-width: 160px;
+    }
+
+    &.fullWidth {
+      min-width: 0;
+      max-width: none;
+    }
+  }
+
+  .label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wim-color-text-primary);
+  }
+
+  .trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 12px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    transition: var(--wim-transition-fast);
+
+    &:hover:not(.disabled) {
+      border-color: var(--wim-color-primary);
+    }
+
+    &:focus:not(.disabled) {
+      outline: none;
+    }
+
+    &:focus-visible:not(.disabled) {
+      @media (forced-colors: active) {
+        outline: 2px solid Highlight;
+        outline-offset: 2px;
+      }
+    }
+
+    &.open {
+      border-color: var(--wim-color-primary);
+    }
+
+    &.disabled {
+      color: var(--wim-color-text-on-disabled);
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+
+  .value {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: var(--wim-color-text-primary);
+    white-space: nowrap;
+
+    &.placeholder {
+      color: var(--wim-color-text-placeholder);
+    }
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    color: var(--wim-color-text-secondary);
+  }
+
+  .clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    transition: var(--wim-transition-fast);
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width: max-content;
+    min-width: 100%;
+    max-width: min(480px, calc(100vw - 32px));
+    max-height: 320px;
+    padding: 4px 0;
+    margin-top: 4px;
+    overflow: hidden auto;
+    background: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: 8px;
+    box-shadow: var(--wim-shadow-md);
+
+    @media (forced-colors: active) {
+      border: 2px solid ButtonBorder;
+      box-shadow: none;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--wim-color-border);
+      border-radius: 3px;
+    }
+
+    // Adapt TreeView styles for Selectbox dropdown
+    :global(.wim-tree-view) {
+      width: max-content;
+      min-width: 100%;
+      padding: 4px 0;
+      overflow: visible;
+      border: none;
+      box-shadow: none;
+
+      :global(.wim-tree-view-item) {
+        container-type: normal;
+      }
+
+      :global(.wim-tree-view__search) {
+        padding: 4px 12px;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

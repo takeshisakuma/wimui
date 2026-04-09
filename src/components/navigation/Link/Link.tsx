@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import "./link.scss";
+import styles from "./link.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
 
@@ -43,20 +43,20 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
       <Component
         ref={ref}
         className={classNames(
-          "wim-link",
-          `wim-link--${size}`,
-          `wim-link--${priority}`,
-          external && "wim-link--external",
+          styles.root,
+          styles[size],
+          styles[priority],
+          external && styles.external,
           className,
         )}
         target={resolvedTarget}
         {...props}
       >
-        <span className="wim-link__inner">
+        <span className={styles.inner}>
           {iconName && iconPosition === "left" && (
             <Icon name={iconName} size={size} />
           )}
-          <span className="wim-link__label">
+          <span className={styles.label}>
             <Slottable>{label ?? children}</Slottable>
           </span>
           {iconName && iconPosition === "right" && (
@@ -66,7 +66,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
             <Icon
               name="ExternalLinkIcon"
               size={size}
-              className="wim-link__external-icon"
+              className={styles.externalIcon}
             />
           )}
         </span>

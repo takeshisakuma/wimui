@@ -40,12 +40,17 @@ export async function generateDocgenData() {
     const componentName = path.basename(componentPath, '.tsx');
     const componentDir = path.dirname(componentPath);
     const scssPath = path.join(componentDir, `${componentName.toLowerCase()}.scss`);
+    const moduleScssPath = path.join(componentDir, `${componentName.toLowerCase()}.module.scss`);
 
     let tokens = [];
     let anatomy = [];
 
     if (fs.existsSync(scssPath)) {
       const scssContent = fs.readFileSync(scssPath, 'utf8');
+      tokens = extractTokens(scssContent);
+      anatomy = extractAnatomy(scssContent, componentName);
+    } else if (fs.existsSync(moduleScssPath)) {
+      const scssContent = fs.readFileSync(moduleScssPath, 'utf8');
       tokens = extractTokens(scssContent);
       anatomy = extractAnatomy(scssContent, componentName);
     }

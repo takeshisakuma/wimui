@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { Icon } from "./Icon";
+import styles from "./icon.module.scss";
 
 describe("Icon", () => {
   it("renders icon", () => {
@@ -10,6 +11,7 @@ describe("Icon", () => {
     // IconComponent is SVG.
     const svg = container.querySelector("svg");
     expect(svg).toBeInTheDocument();
+    expect(svg).toHaveClass(styles.root);
     expect(svg).toHaveClass("wim-icon");
   });
 
@@ -18,8 +20,8 @@ describe("Icon", () => {
       <Icon name="CircleIcon" size="lg" color="primary" />,
     );
     const svg = container.querySelector("svg");
-    expect(svg).toHaveClass("wim-icon--lg");
-    expect(svg).toHaveClass("wim-icon--primary");
+    expect(svg).toHaveClass(styles.lg);
+    expect(svg).toHaveClass(styles.primary);
   });
 
   it("returns null if name not found", () => {

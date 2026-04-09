@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./descriptionlist.scss";
+import styles from "./description-list.module.scss";
 import { ComponentSize } from "../../../types/tokens";
 
 type DescriptionListProps = {
@@ -22,10 +22,10 @@ export const DescriptionList = ({
   return (
     <dl
       className={classNames(
-        "wim-description-list",
-        `wim-description-list--${layout}`,
-        `wim-description-list--${size}`,
-        border && "wim-description-list--border",
+        styles.root,
+        styles[layout],
+        styles[size],
+        border && styles.border,
         className,
       )}
       {...props}
@@ -47,7 +47,7 @@ export const DescriptionListItem = ({
 }: DescriptionListItemProps) => {
   return (
     <div
-      className={classNames("wim-description-list__item", className)}
+      className={classNames(styles.item, className)}
       {...props}
     >
       {children}
@@ -67,7 +67,7 @@ export const DescriptionListTerm = ({
 }: DescriptionListTermProps) => {
   return (
     <dt
-      className={classNames("wim-description-list__term", className)}
+      className={classNames(styles.term, className)}
       {...props}
     >
       {children}
@@ -87,7 +87,7 @@ export const DescriptionListDetails = ({
 }: DescriptionListDetailsProps) => {
   return (
     <dd
-      className={classNames("wim-description-list__details", className)}
+      className={classNames(styles.details, className)}
       {...props}
     >
       {children}

@@ -6,7 +6,7 @@ import { BaseListItem } from "../../_internal/BaseListItem";
 import { FieldTemplate } from "../FieldTemplate";
 import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import { VirtualList } from "../../data-display/VirtualList/VirtualList";
-import "./transfer.scss";
+import styles from "./transfer.module.scss";
 
 export type TransferLabels = {
   noData?: React.ReactNode;
@@ -131,7 +131,7 @@ const TransferList = ({
     <BaseListItem
       id={`${id}-${listType}-option-${item.key}`}
       key={item.key}
-      className="wim-transfer__item"
+      className={styles.item}
       disabled={disabled || item.disabled}
       active={focusedKey === item.key}
       onClick={() => {
@@ -162,21 +162,21 @@ const TransferList = ({
   const titleStr = typeof title === "string" ? title : "";
 
   return (
-    <div className="wim-transfer__list">
-      <div className="wim-transfer__header">
+    <div className={styles.list}>
+      <div className={styles.header}>
         <Checkbox
           checked={isAllSelected}
           indeterminate={isIndeterminate}
           onChange={() => onSelectAll(listKeys, listType)}
           disabled={disabled || listKeys.length === 0}
         >{title}</Checkbox>
-        <span className="wim-transfer__header-count">
+        <span className={styles.headerCount}>
           {listSelectedKeys.length}/{data.length}
         </span>
       </div>
       <div
         ref={bodyRef}
-        className="wim-transfer__body"
+        className={styles.body}
         role="listbox"
         aria-multiselectable="true"
         aria-label={titleStr}
@@ -192,7 +192,7 @@ const TransferList = ({
         style={useVirtual ? { overflow: "hidden", padding: 0 } : undefined}
       >
         {data.length === 0 ? (
-          <div className="wim-transfer__empty" aria-live="polite">
+          <div className={styles.empty} aria-live="polite">
             {noData}
           </div>
         ) : useVirtual ? (
@@ -202,7 +202,7 @@ const TransferList = ({
             height={bodyHeight}
             renderItem={renderItem}
             itemRole="none"
-            containerRef={vListRef}
+            ref={vListRef}
             role="presentation"
           />
         ) : (
@@ -406,14 +406,14 @@ export const Transfer = ({
       errorId={errorId}
       className={className}
     >
-      <div className="wim-transfer-container">
+      <div className={styles.container}>
         <VisuallyHidden aria-live="polite" aria-atomic="true">
           {statusMessage}
         </VisuallyHidden>
         <div
           className={classNames(
-            "wim-transfer",
-            disabled && "wim-transfer--disabled",
+            styles.root,
+            disabled && styles.disabled,
           )}
           style={style}
           role="group"
@@ -434,7 +434,7 @@ export const Transfer = ({
             labels={labels}
           />
 
-          <div className="wim-transfer__operation">
+          <div className={styles.operation}>
             <Button
               variant="outline"
               size="sm"

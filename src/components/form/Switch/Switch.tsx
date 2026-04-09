@@ -2,7 +2,7 @@ import React, { useRef, useId } from "react";
 import classNames from "classnames";
 import { ComponentSize } from "../../../types/tokens";
 import { useMergedRef } from "../../../hooks/useMergedRef";
-import "./switch.scss";
+import styles from "./switch.module.scss";
 
 type SwitchProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
   size?: ComponentSize;
@@ -27,8 +27,8 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
       <label
         htmlFor={id}
         className={classNames(
-          "wim-switch-wrapper",
-          disabled && "wim-switch--disabled",
+          styles.root,
+          disabled && styles.disabled,
           className,
         )}
       >
@@ -40,15 +40,15 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           // eslint-disable-next-line react/no-unknown-property
           switch=""
           className={classNames(
-            "wim-switch-input",
-            size !== "md" && `wim-switch-input--${size}`,
+            styles.input,
+            size !== "md" && styles[size],
           )}
           disabled={disabled}
           ref={mergedRef}
           {...props}
         />
         {children && (
-          <span className="wim-switch-label">
+          <span className={styles.label}>
             {children}
           </span>
         )}

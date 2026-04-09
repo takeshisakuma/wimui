@@ -8,7 +8,7 @@ import {
 import { Button } from "../../form/Button/Button";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import type { ButtonIntent } from "../../../types/tokens";
-import "./popconfirm.scss";
+import styles from "./popconfirm.module.scss";
 
 export type PopconfirmProps = {
   /**
@@ -81,13 +81,13 @@ export const Popconfirm = ({
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
       <PopoverContent
-        className="wim-popconfirm-content"
+        className={styles.content}
         aria-labelledby={titleId}
         aria-describedby={description ? descriptionId : undefined}
       >
-        <div className="wim-popconfirm-inner">
-          <div className="wim-popconfirm-message">
-            <span className="wim-popconfirm-icon">
+        <div className={styles.inner}>
+          <div className={styles.message}>
+            <span className={styles.icon}>
               <FeedbackIcon
                 intent="warning"
                 icon={icon}
@@ -95,16 +95,16 @@ export const Popconfirm = ({
                 color="caution"
               />
             </span>
-            <div id={titleId} className="wim-popconfirm-title">
+            <div id={titleId} className={styles.title}>
               {title}
             </div>
           </div>
           {description && (
-            <div id={descriptionId} className="wim-popconfirm-description">
+            <div id={descriptionId} className={styles.description}>
               {description}
             </div>
           )}
-          <div className="wim-popconfirm-actions">
+          <div className={styles.actions}>
             <PopoverClose asChild>
               <Button
                 size="sm"
@@ -126,3 +126,4 @@ export const Popconfirm = ({
     </Popover>
   );
 };
+

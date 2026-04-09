@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./button-group.scss";
+import styles from "./button-group.module.scss";
 import type { ButtonVariant } from "../../../types/tokens";
 
 type ButtonGroupProps = {
@@ -34,8 +34,8 @@ export const ButtonGroup = ({
   return (
     <div
       className={classNames(
-        "wim-button-group",
-        joined && "wim-button-group--joined",
+        styles.root,
+        joined && styles.joined,
         className,
       )}
       style={style}

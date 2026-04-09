@@ -28,9 +28,24 @@ type Story = StoryObj<typeof ScrollArea>;
 
 export const Default: Story = {
   args: {
-    text: "sampletextforscrollarea",
     scrollAxis: "y",
     maxHeight: "10rem",
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <ScrollArea {...args}>
+        <div style={{ padding: "var(--wim-spacing-md)" }}>
+          <p>{t("story.scrollarea_custom_desc")}</p>
+          <ul>
+            {[...Array(10)].map((_, i) => (
+              <li key={i}>{t("story.scrollarea_item", { count: i + 1 })}</li>
+            ))}
+          </ul>
+          <p>{t("story.scrollarea_scrolling_works")}</p>
+        </div>
+      </ScrollArea>
+    );
   },
 };
 
@@ -47,7 +62,7 @@ export const HorizontalScroll: Story = {
           style={{
             width: "150rem",
             background: "var(--wim-color-primary)",
-            padding: "1rem",
+            padding: "var(--wim-spacing-md)",
             color: "var(--wim-color-text-on-primary)",
           }}
         >
@@ -68,7 +83,7 @@ export const WithChildren: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <ScrollArea {...args}>
-        <div style={{ padding: "1rem" }}>
+        <div style={{ padding: "var(--wim-spacing-md)" }}>
           <h4 style={{ margin: "0 0 1rem 0" }}>{t("story.scrollarea_custom_title")}</h4>
           <p>{t("story.scrollarea_custom_desc")}</p>
           <ul>
@@ -97,32 +112,31 @@ export const Both: Story = {
       <ScrollArea {...args}>
         <div
           style={{
-            width: "40rem",
+            width: "150rem",
             height: "40rem",
-            background:
-              "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%)",
-            padding: "1rem",
+            background: "var(--wim-gradient-glass)",
+            padding: "var(--wim-spacing-md)",
           }}
         >
-          <h4 style={{ color: "#333" }}>{t("story.scrollarea_both_title")}</h4>
-          <p style={{ color: "#555" }}>
+          <h4 style={{ color: "var(--wim-color-text-primary)" }}>{t("story.scrollarea_both_title")}</h4>
+          <p style={{ color: "var(--wim-color-text-secondary)" }}>
             {t("story.scrollarea_both_desc")}
           </p>
           <div
             style={{
-              marginTop: "2rem",
+              marginTop: "var(--wim-spacing-lg)",
               display: "grid",
-              gridTemplateColumns: "repeat(5, 1fr)",
-              gap: "1rem",
+              gridTemplateColumns: "repeat(15, 8rem)",
+              gap: "var(--wim-spacing-md)",
             }}
           >
-            {[...Array(20)].map((_, i) => (
+            {[...Array(30)].map((_, i) => (
               <div
                 key={i}
                 style={{
-                  background: "rgba(255,255,255,0.5)",
-                  padding: "1rem",
-                  borderRadius: "4px",
+                  background: "var(--wim-color-surface)",
+                  padding: "var(--wim-spacing-md)",
+                  borderRadius: "var(--wim-radius-md)",
                 }}
               >
                 {t("story.scrollarea_box", { count: i + 1 })}

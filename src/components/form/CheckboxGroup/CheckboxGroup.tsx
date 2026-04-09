@@ -1,15 +1,14 @@
 import React, { useState, useId } from "react";
 import classNames from "classnames";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
-import "./checkbox-group.scss";
+import styles from "./checkbox-group.module.scss";
+import { FieldTemplate } from "../FieldTemplate";
 
 type Option = {
   label: string;
   value: string;
   disabled?: boolean;
 };
-
-import { FieldTemplate } from "../FieldTemplate";
 
 type CheckboxGroupProps = {
   options: Option[];
@@ -75,8 +74,8 @@ export const CheckboxGroup = ({
     >
       <div
         className={classNames(
-          "wim-checkbox-group",
-          direction === "horizontal" && "wim-checkbox-group--horizontal",
+          styles.root,
+          direction === "horizontal" && styles.horizontal,
         )}
         role="group"
         aria-labelledby={label ? labelId : undefined}
@@ -97,4 +96,3 @@ export const CheckboxGroup = ({
     </FieldTemplate>
   );
 };
-

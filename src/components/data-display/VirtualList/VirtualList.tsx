@@ -1,106 +1,109 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import classNames from "classnames";
-import "./virtual-list.scss";
+import styles from "./virtual-list.module.scss";
 
-export type VirtualListProps<T = unknown> = Omit<
-  React.ComponentPropsWithoutRef<"div">,
-  "children"
-> & {
-  /**
-   * レンダリング対象のアイテム配列。
-   */
+export interface VirtualListProps<T> {
+  /** 表示するアイテムの配列 */
   items: T[];
-  /**
-   * 各アイテムの高さ（px）。
-   */
+  /** 1行あたりの高さ (px) */
   itemHeight: number;
-  /**
-   * リストコンテナの表示高さ（px）。
-   */
-  height: number;
-  /**
-   * 各アイテムをレンダリングする関数。
-   */
+  /** リスト全体の高さ (px) */
+  height: number | string;
+  /** 各アイテムのレンダリング関数 */
   renderItem: (item: T, index: number) => React.ReactNode;
-  /**
-   * 表示領域の外側に追加レンダリングするアイテム数。デフォルトは 3。
-   */
+  /** 表示範囲外に追加でレンダリングするアイテム数 */
   overscan?: number;
-  /**
-   * 各アイテムラッパーの role 属性。デフォルトは "listitem"。
-   * listbox など別の親ロールと組み合わせる場合は "none" を指定してください。
-   */
+  /** 追加のクラス名 */
+  className?: string;
+  /** アイテムをラップする要素の役割 (アクセシビリティ用) */
   itemRole?: string;
-  /**
-   * スクロールコンテナの DOM ref。外部からプログラム的にスクロール位置を制御する場合に使用します。
-   */
-  containerRef?: React.RefObject<HTMLDivElement | null>;
-};
+  /** リスト全体の役割 (アクセシビリティ用) */
+  role?: string;
+}
 
-/**
- * 大量のデータを効率よく表示するための仮想化リストコンポーネント。
- * 表示領域内のアイテムのみをレンダリングすることで、パフォーマンスを最適化します。
- */
-export function VirtualList<T = unknown>({
-  items,
-  itemHeight,
-  height,
-  renderItem,
-  overscan = 3,
-  itemRole = "listitem",
-  containerRef,
-  className,
-  style,
-  ...props
-}: VirtualListProps<T>) {
+const VirtualListInner = <T,>(
+  {
+    items,
+    itemHeight,
+    height,
+    renderItem,
+    overscan = 3,
+    className,
+    itemRole = "listitem",
+    role = "list",
+  }: VirtualListProps<T>,
+  ref: React.ForwardedRef<HTMLDivElement>
+) => {
+  const localRef = useRef<HTMLDivElement>(null);
+  const containerRef = (ref as React.RefObject<HTMLDivElement>) || localRef;
   const [scrollTop, setScrollTop] = useState(0);
 
+  // コンテナの高さをピクセル値として取得（文字列の場合は 0 になることがあるが、通常は数値が渡される想定）
+  const containerHeight = typeof height === "number" ? height : 0;
+
+  useEffect(() => {
+    const handleScroll = (e: Event) => {
+      setScrollTop((e.target as HTMLDivElement).scrollTop);
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [containerRef]);
+
+  // 現在のスクロール位置から表示すべきアイテムのインデックスを計算
+  const visibleInfo = useMemo(() => {
+    const startNode = Math.max(0, Math.floor(scrollTop / itemHeight) - overscan);
+    const visibleNodeCount =
+      containerHeight > 0 ? Math.ceil(containerHeight / itemHeight) + overscan * 2 : 20; // fallback count
+    const endNode = Math.min(items.length, startNode + visibleNodeCount);
+
+    return { startNode, endNode };
+  }, [scrollTop, itemHeight, containerHeight, items.length, overscan]);
+
+  const visibleItems = items.slice(visibleInfo.startNode, visibleInfo.endNode);
   const totalHeight = items.length * itemHeight;
-  const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight) - overscan);
-  const endIndex = Math.min(
-    items.length - 1,
-    Math.ceil((scrollTop + height) / itemHeight) + overscan,
-  );
-
-  const visibleItems = items.slice(startIndex, endIndex + 1);
-  const offsetY = startIndex * itemHeight;
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    setScrollTop((e.target as HTMLDivElement).scrollTop);
-  };
 
   return (
     <div
       ref={containerRef}
-      className={classNames("wim-virtual-list", className)}
-      style={{ ...style, height, overflowY: "auto" }}
-      onScroll={handleScroll}
-      role="list"
-      tabIndex={0}
-      {...props}
+      className={classNames(styles.root, className)}
+      style={{ height }}
+      role={role}
     >
       <div
-        className="wim-virtual-list__inner"
-        style={{ height: totalHeight, position: "relative" }}
+        className={styles.viewport}
+        style={{ height: totalHeight }}
       >
-        <div
-          className="wim-virtual-list__viewport"
-          style={{ transform: `translateY(${offsetY}px)` }}
-        >
-          {visibleItems.map((item, i) => (
+        {visibleItems.map((item, index) => {
+          const actualIndex = visibleInfo.startNode + index;
+          return (
             <div
-              key={startIndex + i}
-              className="wim-virtual-list__item"
-              style={{ height: itemHeight }}
+              key={actualIndex}
+              className={styles.item}
+              style={{
+                height: itemHeight,
+                transform: `translateY(${actualIndex * itemHeight}px)`,
+              }}
               role={itemRole}
-              aria-setsize={itemRole === "listitem" ? items.length : undefined}
-              aria-posinset={itemRole === "listitem" ? startIndex + i + 1 : undefined}
             >
-              {renderItem(item, startIndex + i)}
+              {renderItem(item, actualIndex)}
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </div>
   );
-}
+};
+
+export const VirtualList = React.forwardRef(VirtualListInner) as <T>(
+  props: VirtualListProps<T> & { ref?: React.ForwardedRef<HTMLDivElement> }
+) => React.ReactElement;
+
+

@@ -1,0 +1,24 @@
+@layer component {
+  .container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .list {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    max-height: 200px;
+    padding: var(--wim-spacing-xs) 0; // Floating items have margins
+    margin-top: 4px;
+    overflow-y: auto;
+    background-color: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+    box-shadow: var(--wim-shadow-lg);
+  }
+  
+  .item {
+    // Common styles are now handled by BaseListItem
+  }
+}

@@ -154,9 +154,9 @@ export const CustomContainer: Story = {
 
           <Box
             ref={setContainer}
-            bg="var(--wim-neutral-50, #f8fafc)"
+            bg="var(--wim-color-bg-secondary)"
             style={{
-              border: "2px dashed", borderColor: "var(--wim-primary, #3b82f6)",
+              border: "2px dashed", borderColor: "var(--wim-color-primary)",
               minHeight: "150px",
               display: "flex",
               alignItems: "center",
@@ -233,8 +233,8 @@ const SenderComponent = ({
                 borderRadius: "4px",
                 fontSize: "12px",
                 background: color,
-                color: "#1e293b", // 明示的に濃い色に指定して可読性を確保
-                border: "1px solid rgba(0,0,0,0.1)",
+                color: "var(--wim-color-text-primary)",
+                border: "1px solid var(--wim-color-border-subtle)",
                 animation: "slideIn 0.2s ease-out",
               }}
             >
@@ -268,34 +268,34 @@ export const NotificationCenter: Story = {
           <Grid cols={{ base: 1, md: "1fr 300px" }} gap="xl">
           <Stack gap="md">
             <h4>{t("story.portal_panel_title")}</h4>
-            <p style={{ fontSize: "14px", color: "#666" }}>
+            <p style={{ fontSize: "14px", color: "var(--wim-color-text-secondary)" }}>
               {t("story.portal_panel_desc")}
             </p>
             <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
               <SenderComponent
                 displayName={t("story.portal_sensor_a")}
-                color="#ecfdf5"
+                color="var(--wim-color-positive-subtle)"
                 logContainer={logContainer}
                 addLog={addLog}
                 t={t}
               />
               <SenderComponent
                 displayName={t("story.portal_sensor_b")}
-                color="#eff6ff"
+                color="var(--wim-color-informative-subtle)"
                 logContainer={logContainer}
                 addLog={addLog}
                 t={t}
               />
               <SenderComponent
                 displayName={t("story.portal_camera")}
-                color="#fff7ed"
+                color="var(--wim-color-caution-subtle)"
                 logContainer={logContainer}
                 addLog={addLog}
                 t={t}
               />
               <SenderComponent
                 displayName={t("story.portal_alarm")}
-                color="#fef2f2"
+                color="var(--wim-color-destructive-subtle)"
                 logContainer={logContainer}
                 addLog={addLog}
                 t={t}
@@ -306,15 +306,15 @@ export const NotificationCenter: Story = {
           <Card
             variant="flat"
             style={{
-              background: "#1e293b",
-              color: "#f8fafc",
+              background: "var(--wim-color-bg-inverted)",
+              color: "var(--wim-color-text-on-inverted)",
               minHeight: "400px",
               display: "flex",
               flexDirection: "column",
             }}
           >
             <Card.Header
-              style={{ borderBottom: "1px solid #334155", color: "#94a3b8" }}
+              style={{ borderBottom: "1px solid var(--wim-color-border-subtle)", color: "var(--wim-color-text-tertiary)" }}
             >
               <Stack direction="row" justify="between" align="center">
                 <span style={{ fontSize: "12px", fontWeight: "bold" }}>
@@ -328,7 +328,7 @@ export const NotificationCenter: Story = {
                 ref={setLogContainer}
                 style={{
                   marginBottom: "16px",
-                  borderBottom: "1px solid #334155",
+                  borderBottom: "1px solid var(--wim-color-border-subtle)",
                   paddingBottom: "16px",
                   minHeight: "20px",
                 }}
@@ -336,7 +336,7 @@ export const NotificationCenter: Story = {
                 {/* ここに Portal からの「稼働中メッセージ」が表示される */}
               </Box>
               <div style={{ fontSize: "11px", fontFamily: "monospace" }}>
-                <div style={{ color: "#64748b", marginBottom: "8px" }}>
+                <div style={{ color: "var(--wim-color-text-tertiary)", marginBottom: "8px" }}>
                   {t("story.portal_history_title")}
                 </div>
                 {logs.map((log) => (
@@ -346,17 +346,17 @@ export const NotificationCenter: Story = {
                       marginBottom: "4px",
                       color:
                         log.type === "success"
-                           ? "#4ade80"
+                           ? "var(--wim-color-positive)"
                           : log.type === "warning"
-                             ? "#fbbf24"
-                            : "#94a3b8",
+                             ? "var(--wim-color-caution)"
+                            : "var(--wim-color-text-tertiary)",
                     }}
                   >
                     {`> ${log.msg}`}
                   </div>
                 ))}
                 {logs.length === 0 && (
-                  <div style={{ color: "#475569" }}>{t("story.portal_waiting")}</div>
+                  <div style={{ color: "var(--wim-color-text-secondary)" }}>{t("story.portal_waiting")}</div>
                 )}
               </div>
             </Card.Body>
@@ -414,10 +414,10 @@ export const SidePanelDetail: Story = {
           style={{
             padding: "16px",
             border: "1px solid",
-            borderColor: isSelected ? "#3b82f6" : "#e2e8f0",
+            borderColor: isSelected ? "var(--wim-color-primary)" : "var(--wim-color-border)",
             marginBottom: "12px",
             cursor: "pointer",
-            background: isSelected ? "#eff6ff" : "white",
+            background: isSelected ? "var(--wim-color-primary-subtle)" : "var(--wim-color-surface)",
             borderRadius: "8px",
             transition: "all 0.2s",
           }}
@@ -426,7 +426,7 @@ export const SidePanelDetail: Story = {
             <strong>{task.title}</strong>
             <Icon
               name="ChevronRightIcon"
-              style={{ color: isSelected ? "#3b82f6" : "#cbd5e1" }}
+              style={{ color: isSelected ? "var(--wim-color-primary)" : "var(--wim-color-text-disabled)" }}
             />
           </Stack>
 
@@ -444,14 +444,14 @@ export const SidePanelDetail: Story = {
 
                 <Card
                   variant="flat"
-                  style={{ background: "#f8fafc", marginBottom: "20px" }}
+                  style={{ background: "var(--wim-color-bg-secondary)", marginBottom: "20px" }}
                 >
                   <p
                     style={{
                       margin: 0,
                       fontSize: "14px",
                       lineHeight: "1.6",
-                      color: "#334155",
+                      color: "var(--wim-color-text-primary)",
                     }}
                   >
                     {task.detail}
@@ -471,7 +471,7 @@ export const SidePanelDetail: Story = {
                     style={{
                       fontSize: "13px",
                       fontWeight: "bold",
-                      color: "#64748b",
+                      color: "var(--wim-color-text-secondary)",
                     }}
                   >
                     {t("story.portal_task_memo")}
@@ -483,7 +483,7 @@ export const SidePanelDetail: Story = {
                     rows={5}
                     fullWidth
                   />
-                  <p style={{ fontSize: "11px", color: "#94a3b8" }}>
+                  <p style={{ fontSize: "11px", color: "var(--wim-color-text-tertiary)" }}>
                     {t("story.portal_memo_note")}
                   </p>
                 </Stack>
@@ -503,10 +503,10 @@ export const SidePanelDetail: Story = {
             @media (min-width: 576px) {
               .portal-side-container { height: calc(100vh - 40px); }
               .side-panel-card { height: 100%; border-radius: 12px; }
-              .sidebar-border { border-right: 1px solid var(--wim-neutral-200, #e2e8f0); border-bottom: none !important; }
+              .sidebar-border { border-right: 1px solid var(--wim-color-border); border-bottom: none !important; }
             }
             @media (max-width: 575px) {
-              .sidebar-border { border-bottom: 1px solid var(--wim-neutral-200, #e2e8f0); border-right: none !important; }
+              .sidebar-border { border-bottom: 1px solid var(--wim-color-border); border-right: none !important; }
             }
           `}</style>
           <Stack direction={{ base: "column", sm: "row" }} gap="none" align="stretch" style={{ height: "100%", width: "100%", flex: 1 }}>
@@ -517,13 +517,13 @@ export const SidePanelDetail: Story = {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                background: "#fcfcfd",
+                background: "var(--wim-color-bg-secondary)",
                 height: "100%",
                 flexShrink: 0,
                 overflowX: "hidden"
               }}
             >
-              <Box p="md" style={{ borderBottom: "1px solid var(--wim-neutral-200, #e2e8f0)" }}>
+              <Box p="md" style={{ borderBottom: "1px solid var(--wim-color-border)" }}>
                 <h4 style={{ margin: 0 }}>{t("story.portal_task_mgmt")}</h4>
               </Box>
               <Box p="md" style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
@@ -543,9 +543,9 @@ export const SidePanelDetail: Story = {
             <Box style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
               <Box
                 p="md"
-                bg="var(--wim-neutral-50, #f8fafc)"
+                bg="var(--wim-color-bg-secondary)"
                 style={{
-                  borderBottom: "1px solid var(--wim-neutral-200, #e2e8f0)",
+                  borderBottom: "1px solid var(--wim-color-border)",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
@@ -555,7 +555,7 @@ export const SidePanelDetail: Story = {
                   style={{
                     fontSize: "14px",
                     fontWeight: "bold",
-                    color: "#64748b",
+                    color: "var(--wim-color-text-secondary)",
                   }}
                 >
                   {t("story.portal_preview_title")}
@@ -587,7 +587,7 @@ export const SidePanelDetail: Story = {
                     align="center"
                     justify="center"
                     gap="xs"
-                    style={{ flex: 1, minHeight: "100%", color: "#94a3b8" }}
+                    style={{ flex: 1, minHeight: "100%", color: "var(--wim-color-text-tertiary)" }}
                   >
                     <Icon
                       name="InfoCircleIcon"

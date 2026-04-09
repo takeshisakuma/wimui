@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { ComponentSize } from "../../../types/tokens";
-import "./tab-navigation.scss";
+import styles from "./tab-navigation.module.scss";
 
 export interface TabNavigationProps extends React.ComponentPropsWithoutRef<"nav"> {
   /** Visual style of the tabs */
@@ -28,13 +28,13 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
   ) => {
     const localNavRef = useRef<HTMLElement>(null);
     const { containerRef, sliderStyle, isReady } = useIndicator({
-      activeSelector: ".wim-tab-navigation__item--active",
+      activeSelector: `.${styles.active}`,
       variant,
     });
 
     const setRefs = useMergedRef(localNavRef, ref, (node) => {
       if (containerRef) {
-        containerRef.current = node?.querySelector(".wim-tab-navigation__list") || null;
+        containerRef.current = node?.querySelector(`.${styles.list}`) || null;
       }
     });
 
@@ -74,23 +74,23 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
       <nav
         ref={setRefs}
         className={classNames(
-          "wim-tab-navigation",
-          `wim-tab-navigation--${variant}`,
-          `wim-tab-navigation--${align}`,
-          `wim-tab-navigation--${size}`,
-          isReady && "wim-tab-navigation--ready",
+          styles.root,
+          styles[variant],
+          styles[align],
+          styles[size],
+          isReady && styles.ready,
           className,
         )}
         {...props}
       >
         {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
         <div
-          className="wim-tab-navigation__list"
+          className={styles.list}
           role="tablist"
           onKeyDown={handleTablistKeyDown}
         >
           <div
-            className="wim-tab-navigation__slider"
+            className={styles.slider}
             style={sliderStyle}
             aria-hidden="true"
           />
@@ -137,9 +137,9 @@ export const TabNavigationItem = React.forwardRef<
         href={href}
         onClick={handleClick}
         className={classNames(
-          "wim-tab-navigation__item",
-          active && "wim-tab-navigation__item--active",
-          disabled && "wim-tab-navigation__item--disabled",
+          styles.item,
+          active && styles.active,
+          disabled && styles.disabled,
           className,
         )}
         role="tab"
@@ -149,7 +149,7 @@ export const TabNavigationItem = React.forwardRef<
         tabIndex={active && !disabled ? 0 : -1}
         {...props}
       >
-        {icon && <span className="wim-tab-navigation__icon">{icon}</span>}
+        {icon && <span className={styles.icon}>{icon}</span>}
         {children}
       </a>
     );

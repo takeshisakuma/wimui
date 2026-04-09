@@ -1,0 +1,43 @@
+@layer component {
+  .root {
+    display: inline-block;
+  }
+  
+  .trigger {
+    display: inline-flex;
+    padding: 0;
+    cursor: default;
+    background: none;
+    border: none;
+  }
+  
+  .content {
+    z-index: var(--wim-z-overlay);
+    padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: var(--text-tooltip, var(--wim-color-text-on-dark));
+    white-space: nowrap;
+    pointer-events: none;
+    background-color: var(--bg-tooltip, var(--wim-color-bg-inverted));
+    border-radius: var(--wim-radius-md);
+    box-shadow: var(--wim-shadow-md);
+    opacity: 0;
+    animation: fadeIn 0.2s forwards;
+    will-change: opacity;
+  
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  }
+  
+  .arrow {
+    fill: var(--bg-tooltip, var(--wim-color-bg-inverted));
+  }
+}

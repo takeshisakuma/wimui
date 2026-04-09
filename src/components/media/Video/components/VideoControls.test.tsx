@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { VideoControls } from "./VideoControls";
+import styles from "../video.module.scss";
 
 // Mock Icon
 vi.mock("../../../media/Icon/Icon", () => ({
@@ -29,6 +30,7 @@ describe("VideoControls", () => {
     isFullscreen: false,
     toggleFullscreen: vi.fn(),
     formatTime: (s: number) => `00:${s}`,
+    styles,
   };
 
   it("renders playback controls", () => {

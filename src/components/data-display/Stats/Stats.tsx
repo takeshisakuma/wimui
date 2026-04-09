@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Card } from "../../data-display/Card/Card";
-import "./stats.scss";
+import styles from "./stats.module.scss";
 
 export type StatsProps = React.ComponentPropsWithoutRef<typeof Card>;
 
@@ -17,11 +17,11 @@ export const Stats = ({
   return (
     <Card
       variant={variant}
-      className={classNames("wim-stats", className)}
+      className={classNames(styles.root, className)}
       padding="none"
       {...props}
     >
-      <div className="wim-stats__inner">
+      <div className={styles.inner}>
         {children}
       </div>
     </Card>
@@ -33,7 +33,7 @@ export const StatsLabel = ({
   children,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-  <div className={classNames("wim-stats__label", className)} {...props}>
+  <div className={classNames(styles.label, className)} {...props}>
     {children}
   </div>
 );
@@ -43,7 +43,7 @@ export const StatsValue = ({
   children,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-  <div className={classNames("wim-stats__value", className)} {...props}>
+  <div className={classNames(styles.value, className)} {...props}>
     {children}
   </div>
 );
@@ -53,7 +53,7 @@ export const StatsDescription = ({
   children,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-  <div className={classNames("wim-stats__description", className)} {...props}>
+  <div className={classNames(styles.description, className)} {...props}>
     {children}
   </div>
 );
@@ -71,18 +71,18 @@ export const StatsTrend = ({
   return (
     <div
       className={classNames(
-        "wim-stats__trend",
-        `wim-stats__trend--${direction}`,
+        styles.trend,
+        styles[direction],
         className,
       )}
       {...props}
     >
-      <span className="wim-stats__trend-icon">
+      <span className={styles.trendIcon}>
         {direction === "up" && "↑"}
         {direction === "down" && "↓"}
         {direction === "neutral" && "→"}
       </span>
-      <span className="wim-stats__trend-value">{children}</span>
+      <span className={styles.trendValue}>{children}</span>
     </div>
   );
 };
@@ -97,3 +97,5 @@ Stats.Label = StatsLabel;
 Stats.Value = StatsValue;
 Stats.Description = StatsDescription;
 Stats.Trend = StatsTrend;
+
+export default Stats;

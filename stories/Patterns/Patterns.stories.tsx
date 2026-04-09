@@ -580,7 +580,7 @@ export const PricingTable: StoryObj = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <Container style={{ padding: "80px 24px", background: "#fff" }}>
+      <Container style={{ padding: "80px 24px", background: "var(--wim-color-surface)" }}>
           <Stack align="center" gap="3xl" style={{ marginBottom: "64px" }}>
             <Heading tag="h2" size="xl" align="center">
               {t("pricing.title")}
@@ -902,7 +902,7 @@ export const HeroSection: StoryObj = {
                   padding: "0",
                   borderRadius: "24px",
                   boxShadow:
-                    "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                    "var(--wim-shadow-lg)",
                   overflow: "hidden",
                 }}
               >

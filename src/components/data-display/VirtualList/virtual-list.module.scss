@@ -1,0 +1,27 @@
+@layer component {
+  .root {
+    position: relative;
+    width: 100%;
+    overflow-y: auto;
+    outline: none;
+    background-color: transparent;
+    border: none;
+  
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--wim-color-primary);
+    }
+  }
+
+  .viewport {
+    position: relative;
+    width: 100%;
+  }
+
+  .item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+  }
+}

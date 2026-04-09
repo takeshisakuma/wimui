@@ -1,0 +1,183 @@
+@layer component {
+  .root {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+
+    // Tilt (3D) effect
+    transform-style: preserve-3d;
+
+    // Smooth return when mouse leaves
+    transition: transform 0.5s var(--wim-easing-base, ease);
+    will-change: transform;
+
+    // Smooth follow when active (a bit faster than return)
+    &:hover {
+      transition: transform 0.1s ease-out;
+    }
+  }
+
+  .inner {
+    position: relative; // For pseudo-elements
+    display: block;
+    width: 100%;
+    line-height: 0;
+    background-color: var(--wim-image-bg-color, transparent);
+    transform-style: preserve-3d; // Pass 3D to children
+
+    &.radiusSm {
+      overflow: hidden;
+      border-radius: var(--wim-radius-sm);
+    }
+
+    &.radiusMd {
+      overflow: hidden;
+      border-radius: var(--wim-radius-md);
+    }
+
+    &.radiusLg {
+      overflow: hidden;
+      border-radius: var(--wim-radius-lg);
+    }
+
+    &.radiusFull {
+      overflow: hidden;
+      border-radius: var(--wim-radius-full);
+    }
+
+    &.shadow {
+      box-shadow: var(--wim-shadow-md);
+      transition: box-shadow 0.6s ease;
+
+      &.loading {
+        box-shadow: none;
+      }
+    }
+
+    &.border {
+      border: 1px solid var(--wim-color-border);
+    }
+
+    // Fade-in state
+    &.fadeIn {
+      .image {
+        opacity: 0;
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      &.isLoaded {
+        .image {
+          opacity: 1;
+        }
+      }
+    }
+
+    // Skeleton / Loading state (Using pseudo-element to allow fade-out)
+    &::before {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(
+        90deg,
+        var(--wim-color-skeleton-bg) 25%,
+        var(--wim-color-skeleton-shine) 50%,
+        var(--wim-color-skeleton-bg) 75%
+      );
+      background-size: 200% 100%;
+      opacity: 0;
+      transition: opacity 0.4s ease-out;
+      animation: skeleton-loading 1.5s infinite;
+    }
+
+    &.loading::before {
+      opacity: 1;
+    }
+
+    // Backdrop Filter
+    &.hasBackdrop {
+      backdrop-filter: var(--wim-image-backdrop, none);
+      transition: backdrop-filter var(--wim-image-transition-duration, 0.3s) ease;
+    }
+
+    .root:hover &.hasBackdrop {
+      backdrop-filter: var(--wim-image-hover-backdrop, var(--wim-image-backdrop, none));
+    }
+
+    // Noise (Grain)
+    &.hasNoise::after {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      content: "";
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: var(--wim-image-noise-opacity, 0);
+    }
+
+    // Overlay
+    &.hasOverlay::before {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      content: "";
+      background: var(--wim-image-overlay-color, transparent);
+      mix-blend-mode: var(--wim-image-overlay-blend, normal);
+      opacity: var(--wim-image-overlay-opacity, 0);
+      transition: opacity var(--wim-image-transition-duration, 0.3s) ease;
+    }
+
+    .root:hover &.hasOverlay::before {
+      opacity: var(--wim-image-overlay-hover-opacity, var(--wim-image-overlay-opacity, 0));
+    }
+  }
+
+  .image {
+    display: block;
+    max-width: 100%;
+    mix-blend-mode: var(--wim-image-blend-mode, normal);
+    transform: scale(1);
+    backface-visibility: hidden;
+    will-change: transform, filter;
+
+    // Zoom
+    .zoomable & {
+      transition:
+        transform var(--wim-image-transition-duration, 0.3s) cubic-bezier(0.34, 1.56, 0.64, 1), // Spring-like feel
+        filter var(--wim-image-transition-duration, 0.3s) ease;
+    }
+
+    .root:hover .zoomable & {
+      transform: scale(var(--wim-image-zoom-scale, 1.05));
+    }
+
+    // Image Filter
+    &.hasFilter {
+      filter: var(--wim-image-filter, none);
+      transition: filter var(--wim-image-transition-duration, 0.3s) ease;
+    }
+
+    .root:hover &.hasFilter {
+      filter: var(--wim-image-hover-filter, var(--wim-image-filter, none));
+    }
+  }
+
+  .caption {
+    padding-bottom: var(--wim-spacing-xs);
+    margin-top: var(--wim-spacing-sm);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--wim-color-text-secondary);
+    text-align: center;
+  }
+
+  @keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}

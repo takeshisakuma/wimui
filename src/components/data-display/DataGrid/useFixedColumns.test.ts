@@ -10,8 +10,8 @@ describe("useFixedColumns", () => {
 
   it("returns empty offsets when no columns are fixed", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", width: "100px" },
-      { key: "b", header: "B", width: "200px" },
+      { key: "a", title: "A", width: "100px" },
+      { key: "b", title: "B", width: "200px" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
     expect(result.current.fixedLeftOffsets).toEqual({});
@@ -20,7 +20,7 @@ describe("useFixedColumns", () => {
 
   it("first fixed-left column gets offset 0 (number) without selection", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", fixed: "left", width: "80px" },
+      { key: "a", title: "A", fixed: "left", width: "80px" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
     expect(result.current.fixedLeftOffsets["a"].offset).toBe(0);
@@ -29,8 +29,8 @@ describe("useFixedColumns", () => {
 
   it("second fixed-left column accumulates offset from first", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", fixed: "left", width: "80px" },
-      { key: "b", header: "B", fixed: "left", width: "120px" },
+      { key: "a", title: "A", fixed: "left", width: "80px" },
+      { key: "b", title: "B", fixed: "left", width: "120px" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
     expect(result.current.fixedLeftOffsets["a"].offset).toBe(0);
@@ -42,27 +42,18 @@ describe("useFixedColumns", () => {
 
   it("adds 48px for selection column when selection=true", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", fixed: "left", width: "100px" },
+      { key: "a", title: "A", fixed: "left", width: "100px" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, true));
     // first fixed-left starts at 48px (selection column)
     expect(result.current.fixedLeftOffsets["a"].offset).toBe("48px");
   });
 
-  it("fixed: true is treated the same as fixed: 'left'", () => {
-    const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", fixed: true, width: "60px" },
-    ];
-    const { result } = renderHook(() => useFixedColumns(columns, false));
-    expect(result.current.fixedLeftOffsets["a"]).toBeDefined();
-    expect(result.current.fixedRightOffsets["a"]).toBeUndefined();
-  });
-
   it("fixed-right columns are processed right-to-left with offset 0 for the rightmost", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", width: "100px" },
-      { key: "b", header: "B", fixed: "right", width: "80px" },
-      { key: "c", header: "C", fixed: "right", width: "60px" },
+      { key: "a", title: "A", width: "100px" },
+      { key: "b", title: "B", fixed: "right", width: "80px" },
+      { key: "c", title: "C", fixed: "right", width: "60px" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
     // rightmost (c) gets offset 0; b gets 60px
@@ -72,8 +63,8 @@ describe("useFixedColumns", () => {
 
   it("fixed-right zIndex decrements from rightmost to left", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "b", header: "B", fixed: "right", width: "80px" },
-      { key: "c", header: "C", fixed: "right", width: "60px" },
+      { key: "b", title: "B", fixed: "right", width: "80px" },
+      { key: "c", title: "C", fixed: "right", width: "60px" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
     expect(result.current.fixedRightOffsets["c"].zIndex).toBe(20);
@@ -82,8 +73,8 @@ describe("useFixedColumns", () => {
 
   it("handles numeric width in fixed columns", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", fixed: "left", width: 100 },
-      { key: "b", header: "B", fixed: "left", width: 150 },
+      { key: "a", title: "A", fixed: "left", width: 100 },
+      { key: "b", title: "B", fixed: "left", width: 150 },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
     expect(result.current.fixedLeftOffsets["b"].offset).toBe("100px");
@@ -91,8 +82,8 @@ describe("useFixedColumns", () => {
 
   it("treats non-px string width as 0 (e.g., percentage)", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", fixed: "left", width: "20%" },
-      { key: "b", header: "B", fixed: "left", width: "30%" },
+      { key: "a", title: "A", fixed: "left", width: "20%" },
+      { key: "b", title: "B", fixed: "left", width: "30%" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
     // parsePixelWidth returns 0 for non-px strings, so b offset stays 0
@@ -101,8 +92,8 @@ describe("useFixedColumns", () => {
 
   it("handles undefined width in fixed columns as 0", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", fixed: "left" },
-      { key: "b", header: "B", fixed: "left" },
+      { key: "a", title: "A", fixed: "left" },
+      { key: "b", title: "B", fixed: "left" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
     expect(result.current.fixedLeftOffsets["a"].offset).toBe(0);
@@ -112,7 +103,7 @@ describe("useFixedColumns", () => {
 
   it("returns empty right offsets when no right-fixed columns exist", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", fixed: "left", width: "100px" },
+      { key: "a", title: "A", fixed: "left", width: "100px" },
     ];
     const { result } = renderHook(() => useFixedColumns(columns, false));
     expect(result.current.fixedRightOffsets).toEqual({});
@@ -126,7 +117,7 @@ describe("useFixedColumns", () => {
 
   it("memoizes: does not change reference when inputs are same", () => {
     const columns: DataGridColumn<Row>[] = [
-      { key: "a", header: "A", fixed: "left", width: "100px" },
+      { key: "a", title: "A", fixed: "left", width: "100px" },
     ];
     const { result, rerender } = renderHook(
       ({ cols, sel }: { cols: DataGridColumn<Row>[]; sel: boolean }) =>

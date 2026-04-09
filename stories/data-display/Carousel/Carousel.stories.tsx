@@ -62,7 +62,7 @@ const ImagePlaceholder = ({
         color: text,
         fontSize: "32px",
         fontWeight: "bold",
-        border: "4px solid rgba(255,255,255,0.2)",
+        border: "4px solid var(--wim-color-border-subtle)",
         boxSizing: "border-box",
       }}
     >

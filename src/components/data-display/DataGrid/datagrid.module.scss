@@ -1,0 +1,57 @@
+@layer component {
+  .root {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    background: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+  }
+
+  .container {
+    flex: 1;
+    width: 100%;
+    overflow: auto;
+  }
+
+  /* Header & Footer */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--wim-spacing-md);
+    border-bottom: 1px solid var(--wim-color-border);
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--wim-spacing-md);
+    background: var(--wim-color-bg-subtle);
+    border-top: 1px solid var(--wim-color-border);
+  }
+
+  .pagination {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+  }
+
+  /* DataGrid specific highlights */
+  :global(.wim-datagrid-cell--fixed) {
+    position: sticky;
+    z-index: 2;
+    background-color: var(--wim-color-bg-component);
+  }
+
+  :global(.wim-datagrid-cell--fixed-left-last) {
+    box-shadow: 2px 0 5px -2px rgb(0 0 0 / 0.1);
+  }
+
+  :global(.wim-datagrid-cell--fixed-right-first) {
+    box-shadow: -2px 0 5px -2px rgb(0 0 0 / 0.1);
+  }
+}

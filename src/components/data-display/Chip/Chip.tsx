@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/tokens";
-import "./chip.scss";
+import styles from "./chip.module.scss";
 
 export type ChipProps = React.HTMLAttributes<HTMLElement> & {
   /**
@@ -69,13 +69,13 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
         className={classNames(
-          "wim-chip",
-          `wim-chip--${intent}`,
-          `wim-chip--${variant}`,
-          `wim-chip--${size}`,
-          selected && "wim-chip--selected",
-          onClick && !disabled && "wim-chip--clickable",
-          disabled && "wim-chip--disabled",
+          styles.root,
+          styles[intent],
+          styles[variant],
+          styles[size],
+          selected && styles.selected,
+          onClick && !disabled && styles.clickable,
+          disabled && styles.disabled,
           className,
         )}
         onClick={!disabled ? onClick : undefined}
@@ -85,14 +85,14 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         {...(props as any)}
       >
-        {avatar && <span className="wim-chip__avatar">{avatar}</span>}
-        {!avatar && icon && <span className="wim-chip__icon">{icon}</span>}
-        <span className="wim-chip__label">
+        {avatar && <span className={styles.avatar}>{avatar}</span>}
+        {!avatar && icon && <span className={styles.icon}>{icon}</span>}
+        <span className={styles.label}>
           <Slottable>{children}</Slottable>
         </span>
         {onDelete && !disabled && (
           <span
-            className="wim-chip__delete"
+            className={styles.delete}
             onClick={(e) => {
               e.stopPropagation();
               onDelete(e);
@@ -117,4 +117,3 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
 );
 
 Chip.displayName = "Chip";
-

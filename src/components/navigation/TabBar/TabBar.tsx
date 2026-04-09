@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./tab-bar.scss";
+import styles from "./tab-bar.module.scss";
 
 export interface TabBarProps extends React.ComponentPropsWithoutRef<"nav"> {
   /** Fixed position at the bottom of the screen */
@@ -27,15 +27,15 @@ const TabBarInner = React.forwardRef<HTMLElement, TabBarProps>(
       <nav
         ref={ref}
         className={classNames(
-          "wim-tab-bar",
-          fixed && "wim-tab-bar--fixed",
-          bordered && "wim-tab-bar--bordered",
-          glass && "wim-tab-bar--glass",
+          styles.root,
+          fixed && styles.fixed,
+          bordered && styles.bordered,
+          glass && styles.glass,
           className,
         )}
         {...props}
       >
-        <div className="wim-tab-bar__container">{children}</div>
+        <div className={styles.container}>{children}</div>
       </nav>
     );
   },
@@ -61,16 +61,16 @@ export const TabBarItem = React.forwardRef<HTMLButtonElement, TabBarItemProps>(
         ref={ref}
         type="button"
         className={classNames(
-          "wim-tab-bar__item",
-          active && "wim-tab-bar__item--active",
+          styles.item,
+          active && styles.active,
           className,
         )}
         aria-pressed={active}
         {...props}
       >
-        {badge && <span className="wim-tab-bar__badge">{badge}</span>}
-        {icon && <span className="wim-tab-bar__icon">{icon}</span>}
-        {label && <span className="wim-tab-bar__label">{label}</span>}
+        {badge && <span className={styles.badge}>{badge}</span>}
+        {icon && <span className={styles.icon}>{icon}</span>}
+        {label && <span className={styles.label}>{label}</span>}
         {children}
       </button>
     );

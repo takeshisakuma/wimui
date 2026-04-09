@@ -108,7 +108,7 @@ export const Vertical: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ height: "200px", border: "1px solid #ccc" }}>
+      <div style={{ height: "200px", border: "1px solid var(--wim-color-border)" }}>
         <Marquee {...args} vertical duration={5}>
           <div
             style={{ padding: "10px", textAlign: "center", fontWeight: "bold" }}

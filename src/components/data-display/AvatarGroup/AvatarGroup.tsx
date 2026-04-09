@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./avatar-group.scss";
+import styles from "./avatar-group.module.scss";
 import { Avatar } from "../../data-display/Avatar/Avatar";
 import { ComponentSize } from "../../../types/tokens";
 
@@ -18,7 +18,7 @@ type AvatarGroupProps = {
 export const AvatarGroup = ({
   children,
   max,
-  size,
+  size = "md",
   total,
   className,
 }: AvatarGroupProps) => {
@@ -28,7 +28,7 @@ export const AvatarGroup = ({
   const excessCount = totalAvatars - itemsToShow.length;
 
   return (
-    <div className={classNames("wim-avatar-group", className)}>
+    <div className={classNames(styles.root, className)}>
       {itemsToShow.map((child, index) => {
         if (React.isValidElement(child) && child.type === Avatar) {
           const avatarChild = child as React.ReactElement<{
@@ -44,8 +44,8 @@ export const AvatarGroup = ({
       {excessCount > 0 && (
         <span
           className={classNames(
-            "wim-avatar-group__excess",
-            `wim-avatar-group__excess--${size}`,
+            styles.excess,
+            styles[size],
           )}
         >
           +{excessCount}

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { WimIntent } from "../../../types/tokens";
-import "./input-base.scss";
+import styles from "./input-base.module.scss";
 
 export type InputBaseIcon = {
   name: React.ComponentProps<typeof Icon>["name"];
@@ -99,18 +99,22 @@ export const InputBase = ({
     });
   }
 
+  const widthClassName = effectiveSemanticWidth 
+    ? styles[`width${effectiveSemanticWidth.charAt(0).toUpperCase()}${effectiveSemanticWidth.slice(1)}`]
+    : undefined;
+
   return (
     <div
       className={classNames(
-        "wim-input-base",
-        `wim-input-base--${effectiveIntent}`,
-        `wim-input--variant-${variant}`,
-        fullWidth && "wim-input--full-width",
-        effectiveHasCustomWidth && "wim-input--has-custom-width",
-        effectiveSemanticWidth && `wim-input--width-${effectiveSemanticWidth}`,
-        leftIcon && "wim-input--has-left-icon",
-        finalRightIcons.length > 0 && "wim-input--has-right-icon",
-        finalRightIcons.length >= 2 && "wim-input--has-multiple-right-icons",
+        styles.root,
+        styles[effectiveIntent],
+        styles[variant],
+        fullWidth && styles.fullWidth,
+        effectiveHasCustomWidth && styles.hasCustomWidth,
+        widthClassName,
+        leftIcon && styles.hasLeftIcon,
+        finalRightIcons.length > 0 && styles.hasRightIcon,
+        finalRightIcons.length >= 2 && styles.hasMultipleRightIcons,
         className,
       )}
 
@@ -126,16 +130,16 @@ export const InputBase = ({
       {leftIcon && (
         <div
           className={classNames(
-            "wim-input-icon",
-            "wim-input-icon--left",
-            onLeftIconClick && "wim-input-icon--clickable",
+            styles.icon,
+            styles.left,
+            onLeftIconClick && styles.clickable,
           )}
         >
           {onLeftIconClick ? (
             <button
               type="button"
               onClick={onLeftIconClick}
-              className="wim-input-icon-button"
+              className={styles.iconButton}
               aria-label={resolvedLeftIconAriaLabel}
             >
               <Icon
@@ -157,17 +161,17 @@ export const InputBase = ({
       {finalRightIcons.length > 0 && (
         <div
           className={classNames(
-            "wim-input-icons",
-            "wim-input-icons--right",
+            styles.icons,
+            styles.right,
           )}
         >
           {finalRightIcons.map((icon, index) => (
             <div
               key={`${icon.name}-${index}`}
               className={classNames(
-                "wim-input-icon-item",
-                icon.onClick && "wim-input-icon-item--clickable",
-                icon.rotated && "wim-input-icon-item--rotated",
+                styles.iconItem,
+                icon.onClick && styles.clickable,
+                icon.rotated && styles.rotated,
                 icon.className,
               )}
             >
@@ -175,7 +179,7 @@ export const InputBase = ({
                 <button
                   type="button"
                   onClick={icon.onClick}
-                  className="wim-input-icon-button"
+                  className={styles.iconButton}
                   aria-label={icon.ariaLabel ?? t("a11y.right_icon_action")}
                 >
                   <Icon

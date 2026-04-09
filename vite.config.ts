@@ -48,10 +48,11 @@ export default defineConfig(({ mode }) => {
     ].filter(Boolean),
     optimizeDeps: {
       // 依存関係の事前ビルド対象。ここに追加することで起動時の動的解決を減らし高速化
+      // classnames は Vite が自動スキャンで発見するため明示指定不要
+      // （明示指定すると Storybook との二重処理で esbuild 競合エラーが発生する）
       include: [
         "react",
         "react-dom",
-        "classnames",
         "@floating-ui/react",
         "recharts",
         "jsmediatags",

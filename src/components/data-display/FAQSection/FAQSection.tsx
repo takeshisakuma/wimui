@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Accordion, AccordionProps } from "../../data-display/Accordion/Accordion";
 import { Heading } from "../../typography/Heading/Heading";
 import { Paragraph } from "../../typography/Paragraph/Paragraph";
-import "./faq-section.scss";
+import styles from "./faq-section.module.scss";
 
 export interface FAQItem {
   /**
@@ -62,15 +62,15 @@ export const FAQSection = ({
   return (
     <section
       className={classNames(
-        "wim-faq-section",
-        `wim-faq-section--layout-${layout}`,
+        styles.root,
+        styles[`layout-${layout}`],
         className
       )}
     >
       {hasHeader && (
-        <div className="wim-faq-section__header">
+        <div className={styles.header}>
           {title && (
-            <Heading tag="h2" size="xl" className="wim-faq-section__title">
+            <Heading tag="h2" size="xl" className={styles.title}>
               {title}
             </Heading>
           )}
@@ -78,19 +78,19 @@ export const FAQSection = ({
             <Paragraph
               content={description}
               color="deepgray"
-              className="wim-faq-section__description"
+              className={styles.description}
             />
           )}
         </div>
       )}
 
-      <div className="wim-faq-section__content">
+      <div className={styles.content}>
         <Accordion
           type="multiple"
           collapsible
           {...accordionProps}
           className={classNames(
-            "wim-faq-section__accordion",
+            styles.accordion,
             accordionProps?.className
           )}
         >

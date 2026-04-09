@@ -87,13 +87,13 @@ const manyRows: User[] = Array.from({ length: 50 }).map((_, i) => ({
 }));
 
 const basicColumns: DataGridColumn<Record<string, unknown>>[] = [
-  { key: "id", header: "ID", width: 80, sortable: true, fixed: true },
-  { key: "name", header: "Name", width: 150, sortable: true, fixed: false },
-  { key: "email", header: "Email", sortable: true, width: 200 },
-  { key: "role", header: "Role", width: 100 },
+  { key: "id", title: "ID", width: 80, sortable: true, fixed: "left" },
+  { key: "name", title: "Name", width: 150, sortable: true },
+  { key: "email", title: "Email", sortable: true, width: 200 },
+  { key: "role", title: "Role", width: 100 },
   {
     key: "status",
-    header: "Status",
+    title: "Status",
     width: 100,
     render: (value: unknown) => (
       <Badge
@@ -115,7 +115,7 @@ const useDataGridTranslations = () => {
   const { t } = useTranslation(ALL_NAMESPACES);
   const tColumns = basicColumns.map(c => ({
     ...c,
-    header: typeof c.header === 'string' ? t(`story.datagrid_col_${c.key}`) : c.header,
+    title: typeof c.title === 'string' ? t(`story.datagrid_col_${c.key}`) : c.title,
     render: c.key === 'status' ? ((value: unknown) => {
       const translatedValue = value === "Active" ? t('story.datagrid_status_active') : value === "Inactive" ? t('story.datagrid_status_inactive') : t('story.datagrid_status_pending');
       return (
@@ -127,15 +127,14 @@ const useDataGridTranslations = () => {
       );
     }) : c.render
   }));
-  const tSampleData = sampleData as unknown as Record<string, unknown>[]; // cast for DataGrid generic
+  const tSampleData = sampleData as unknown as Record<string, unknown>[];
   return { t, tColumns, tSampleData };
 };
 
 export const Default: Story = {
   render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
-    const rows = tSampleData;
-    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} data={tSampleData} />;
   },
   args: {
     bordered: true,
@@ -145,7 +144,7 @@ export const Default: Story = {
 export const WithSelection: Story = {
   render: () => {
     const { t, tColumns, tSampleData } = useDataGridTranslations();
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<string[]>([]);
     return (
       <div>
         <p style={{ marginBottom: "16px" }}>
@@ -153,10 +152,12 @@ export const WithSelection: Story = {
         </p>
         <DataGrid
           columns={tColumns}
-          rows={tSampleData}
-          selection
-          selectedRowKeys={selectedRowKeys}
-          onSelectionChange={setSelectedRowKeys}
+          data={tSampleData}
+          selection={{
+            type: "checkbox",
+            selectedRowKeys,
+            onChange: (keys) => setSelectedRowKeys(keys),
+          }}
           bordered
         />
       </div>
@@ -196,9 +197,9 @@ export const WithSorting: Story = {
     return (
       <DataGrid
         columns={tColumns}
-        rows={data as unknown as Record<string, unknown>[]}
+        data={data as unknown as Record<string, unknown>[]}
         sortConfig={sortConfig}
-        onSort={handleSort}
+        onSortChange={handleSort}
         bordered
       />
     );
@@ -217,12 +218,12 @@ export const WithPagination: Story = {
     return (
       <DataGrid
         columns={tColumns}
-        rows={currentData as unknown as Record<string, unknown>[]}
+        data={currentData as unknown as Record<string, unknown>[]}
         pagination={{
           total: manyRows.length,
           pageSize,
           current: currentPage,
-          onPageChange: setCurrentPage,
+          onChange: (page) => setCurrentPage(page),
         }}
         bordered
       />
@@ -236,25 +237,25 @@ export const WithActions: Story = {
     const columns = [
       {
         key: "id",
-        header: t("story.datagrid_col_id"),
+        title: t("story.datagrid_col_id"),
         width: 55,
-        fixed: true,
+        fixed: "left" as const,
       },
       {
         key: "name",
-        header: t("story.datagrid_col_name"),
+        title: t("story.datagrid_col_name"),
         width: 150,
-        fixed: false,
       },
       {
         key: "email",
-        header: t("story.datagrid_col_email"),
+        title: t("story.datagrid_col_email"),
         width: 200,
       },
       {
         key: "actions",
-        header: t("story.datagrid_col_actions"),
+        title: t("story.datagrid_col_actions"),
         width: 100,
+        fixed: "right" as const,
         render: (_: unknown, row: Record<string, unknown>) => (
           <div style={{ display: "flex", gap: "8px" }}>
             <Button
@@ -266,7 +267,6 @@ export const WithActions: Story = {
             >
               <Icon name="EditIcon" size="sm" />
             </Button>
-            { }
             <Button
               size="sm"
               variant="ghost"
@@ -281,15 +281,14 @@ export const WithActions: Story = {
         ),
       },
     ];
-    return <DataGrid columns={columns} rows={sampleData as unknown as Record<string, unknown>[]} bordered />;
+    return <DataGrid columns={columns} data={sampleData as unknown as Record<string, unknown>[]} bordered />;
   },
 };
 
 export const Loading: Story = {
   render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
-    const rows = tSampleData;
-    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} data={tSampleData} />;
   },
   args: {
     loading: true,
@@ -299,9 +298,8 @@ export const Loading: Story = {
 
 export const Empty: Story = {
   render: (args) => {
-    const { t, tColumns, tSampleData } = useDataGridTranslations();
-    const rows = tSampleData;
-    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} emptyMessage={t('story.datagrid_empty')} />;
+    const { tColumns } = useDataGridTranslations();
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} data={[]} />;
   },
   args: {
     bordered: true,
@@ -311,8 +309,7 @@ export const Empty: Story = {
 export const Striped: Story = {
   render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
-    const rows = tSampleData;
-    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} data={tSampleData} />;
   },
   args: {
     striped: true,
@@ -323,8 +320,7 @@ export const Striped: Story = {
 export const Bordered: Story = {
   render: (args) => {
     const { tColumns, tSampleData } = useDataGridTranslations();
-    const rows = tSampleData;
-    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} data={tSampleData} />;
   },
   args: {
     bordered: true,
@@ -335,7 +331,7 @@ export const StickyHeader: Story = {
   render: (args) => {
     const { tColumns } = useDataGridTranslations();
     const rows = manyRows as unknown as Record<string, unknown>[];
-    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} rows={rows} />;
+    return <DataGrid {...(args as DataGridProps<Record<string, unknown>>)} columns={tColumns} data={rows} />;
   },
   args: {
     stickyHeader: true,
@@ -347,7 +343,7 @@ export const StickyHeader: Story = {
 export const FullFeatured: Story = {
   render: () => {
     const { tColumns } = useDataGridTranslations();
-    const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<string[]>([]);
     const [currentPage, setCurrentPage] = React.useState(1);
     const [sortConfig, setSortConfig] = React.useState<{
       key: string;
@@ -384,17 +380,19 @@ export const FullFeatured: Story = {
       <div>
         <DataGrid
           columns={tColumns}
-          rows={currentData as unknown as Record<string, unknown>[]}
-          selection
-          selectedRowKeys={selectedRowKeys}
-          onSelectionChange={setSelectedRowKeys}
+          data={currentData as unknown as Record<string, unknown>[]}
+          selection={{
+            type: "checkbox",
+            selectedRowKeys,
+            onChange: (keys) => setSelectedRowKeys(keys),
+          }}
           sortConfig={sortConfig}
-          onSort={handleSort}
+          onSortChange={handleSort}
           pagination={{
             total: data.length,
             pageSize,
             current: currentPage,
-            onPageChange: setCurrentPage,
+            onChange: (page) => setCurrentPage(page),
           }}
           striped
           hoverable
@@ -403,137 +401,6 @@ export const FullFeatured: Story = {
       </div>
     );
   },
-};
-
-export const WithFixedColumn: Story = {
-  render: () => {
-    const { t } = useTranslation(ALL_NAMESPACES);
-    const columns = [
-      {
-        key: "id",
-        header: t("story.datagrid_col_id"),
-        width: 55,
-        fixed: true,
-      },
-      {
-        key: "name",
-        header: t("story.datagrid_col_name"),
-        width: 150,
-        fixed: false,
-      },
-      {
-        key: "email",
-        header: t("story.datagrid_col_email"),
-        width: 200,
-      },
-      {
-        key: "role",
-        header: t("story.datagrid_col_role"),
-        width: 100,
-      },
-      {
-        key: "joinDate",
-        header: t("story.datagrid_col_joinDate"),
-        width: 150,
-      },
-      {
-        key: "status",
-        header: t("story.datagrid_col_status"),
-        width: 100,
-        render: (value: unknown) => {
-          const translatedValue =
-            value === "Active"
-              ? t("story.datagrid_status_active")
-              : value === "Inactive"
-                ? t("story.datagrid_status_inactive")
-                : t("story.datagrid_status_pending");
-          return (
-            <Badge
-              content={translatedValue}
-              size="sm"
-              color={
-                value === "Active"
-                  ? "primary"
-                  : value === "Inactive"
-                    ? "neutral"
-                    : "secondary"
-              }
-            />
-          );
-        },
-      },
-    ];
-    return (
-      <DataGrid columns={columns} rows={sampleData as unknown as Record<string, unknown>[]} selection bordered />
-    );
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ maxWidth: "100vw" }}>
-        <Story />
-      </div>
-    ),
-  ],
-};
-
-export const WithRightFixedColumn: Story = {
-  render: () => {
-    const { t } = useTranslation(ALL_NAMESPACES);
-    const columns = [
-      {
-        key: "id",
-        header: t("story.datagrid_col_id"),
-        width: 55,
-      },
-      {
-        key: "name",
-        header: t("story.datagrid_col_name"),
-        width: 150,
-      },
-      {
-        key: "email",
-        header: t("story.datagrid_col_email"),
-        width: 200,
-      },
-      {
-        key: "role",
-        header: t("story.datagrid_col_role"),
-        width: 100,
-      },
-      {
-        key: "joinDate",
-        header: t("story.datagrid_col_joinDate"),
-        width: 150,
-      },
-      {
-        key: "actions",
-        header: t("story.datagrid_col_actions"),
-        width: 120,
-        fixed: "right" as const,
-        align: "center" as const,
-        render: (_: unknown, _row: Record<string, unknown>) => (
-          <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
-            <Button size="sm" variant="ghost">
-              <Icon name="EditIcon" size="sm" />
-            </Button>
-            <Button size="sm" variant="ghost" intent="destructive">
-              <Icon name="TrashIcon" size="sm" />
-            </Button>
-          </div>
-        ),
-      },
-    ];
-    return (
-      <DataGrid columns={columns} rows={sampleData as unknown as Record<string, unknown>[]} selection bordered />
-    );
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ maxWidth: "100vw" }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export const InfiniteScroll: Story = {
@@ -562,14 +429,13 @@ export const InfiniteScroll: Story = {
     return (
       <DataGrid
         columns={tColumns}
-        rows={data as unknown as Record<string, unknown>[]}
+        data={data as unknown as Record<string, unknown>[]}
         bordered
         stickyHeader
         maxHeight="400px"
-        loadMore={{
+        infiniteScroll={{
           onLoadMore: loadMoreData,
           hasMore,
-          loading,
         }}
       />
     );

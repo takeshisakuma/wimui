@@ -6,7 +6,7 @@ import React, {
   useMemo,
 } from "react";
 import classNames from "classnames";
-import "./tree-view.scss";
+import styles from "./tree-view.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { useTreeViewItemExpansion } from "./useTreeViewItemExpansion";
@@ -44,7 +44,6 @@ const useTreeView = () => {
 
 /**
  * データ駆動モードで使用するノード型。
- * TreeSelectNode と互換性があります。
  */
 export type TreeViewNode = {
   value: string;
@@ -196,7 +195,7 @@ function computeCascadeState(
     const someActive = childStates.some((s) => s !== "unchecked");
 
     if (allChecked) {
-      effective.add(node.value); // 子が全員 checked なら親も実効 checked
+      effective.add(node.value);
       return "checked";
     }
     if (someActive) {
@@ -224,16 +223,13 @@ export type TreeViewProps = {
   children?: React.ReactNode;
   /**
    * データ駆動モードのノード配列。
-   * 指定した場合は children より優先され、大量データで自動的に仮想化されます。
    */
   nodes?: TreeViewNode[];
   className?: string;
   multiSelect?: boolean;
   checkable?: boolean;
   /**
-   * チェック選択の動作モード（checkable かつ data-driven モード時に有効）。
-   * - cascade: 親チェック→子全選択、子の一部→親は indeterminate（デフォルト）
-   * - exclusive: 親子排他（親選択→子解除、子選択→親解除）
+   * チェック選択の動作モード。
    */
   checkStrategy?: "cascade" | "exclusive";
   searchable?: boolean;
@@ -244,8 +240,7 @@ export type TreeViewProps = {
   onSelectedChange?: (selected: string[]) => void;
   width?: string | number;
   /**
-   * データ駆動モードで仮想化を開始するノード数のしきい値。
-   * デフォルトは 100。
+   * 仮想化を開始するしきい値。
    */
   virtualThreshold?: number;
   labels?: TreeViewLabels;
@@ -336,7 +331,6 @@ const TreeView = ({
         let newChecked: string[];
 
         if (!nodes) {
-          // children モード: 戦略なし、単純トグル
           newChecked = prev.includes(value)
             ? prev.filter((v) => v !== value)
             : [...prev, value];
@@ -349,7 +343,6 @@ const TreeView = ({
             nodes,
             new Set(prev),
           );
-          // indeterminate なノードをクリックした場合は「チェックする」方向に解決する
           const isEffectivelyChecked =
             prev.includes(value) && !currentIndet.includes(value);
           const descendants = getAllDescendantValues(nodes, value) ?? [];
@@ -359,14 +352,12 @@ const TreeView = ({
             ? prev.filter((v) => !related.includes(v))
             : [...prev, ...related.filter((v) => !prev.includes(v))];
 
-          // onCheckedChange には indeterminate でない実効 checked のみを返す
           const { indeterminateValues: newIndet, effectiveCheckedSet: newEff } =
             computeCascadeState(nodes, new Set(newChecked));
           onCheckedChange?.(
             [...newEff].filter((v) => !newIndet.includes(v)),
           );
         } else {
-          // exclusive: 選択時に祖先・子孫を全解除
           if (prev.includes(value)) {
             newChecked = prev.filter((v) => v !== value);
           } else {
@@ -510,9 +501,9 @@ const TreeView = ({
       return (
         <div
           className={classNames(
-            "wim-tree-view-item",
-            isSelected && "wim-tree-view-item--selected",
-            node.disabled && "wim-tree-view-item--disabled",
+            styles.item,
+            isSelected && styles.selected,
+            node.disabled && styles.disabled,
           )}
           role="treeitem"
           aria-expanded={node.hasChildren ? isExpanded : undefined}
@@ -546,17 +537,17 @@ const TreeView = ({
           style={{ paddingLeft: node.depth * 20 }}
         >
           <BaseListItem
-            className="wim-tree-view-item__label-container"
+            className={styles.labelContainer}
             active={isSelected}
             disabled={node.disabled}
             icon={
-              <div className="wim-tree-view-item__icon-wrapper">
+              <div className={styles.iconWrapper}>
                 {node.hasChildren ? (
                   <button
                     type="button"
                     className={classNames(
-                      "wim-tree-view-item__expand-btn",
-                      isExpanded && "wim-tree-view-item__expand-btn--expanded",
+                      styles.expandBtn,
+                      isExpanded && styles.expanded,
                     )}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -573,13 +564,13 @@ const TreeView = ({
                     <Icon name="ChevronRightIcon" size="sm" />
                   </button>
                 ) : (
-                  <span className="wim-tree-view-item__spacer" />
+                  <span className={styles.spacer} />
                 )}
 
                 {checkable && (
                   <input
                     type="checkbox"
-                    className="wim-tree-view-item__checkbox"
+                    className={styles.checkbox}
                     checked={isChecked && !isIndeterminate}
                     ref={(el) => {
                       if (el) el.indeterminate = isIndeterminate;
@@ -596,7 +587,7 @@ const TreeView = ({
                 )}
 
                 {node.icon && (
-                  <span className="wim-tree-view-item__icon">{node.icon}</span>
+                  <span className={styles.icon}>{node.icon}</span>
                 )}
               </div>
             }
@@ -624,13 +615,11 @@ const TreeView = ({
     ],
   );
 
-  // ─── レンダリング ──────────────────────────────────────────────────────────
-
   return (
     <TreeViewContext.Provider value={contextValue}>
       <div
         ref={containerRef}
-        className={classNames("wim-tree-view", !!nodes && "wim-tree-view--data-driven", className)}
+        className={classNames(styles.root, !!nodes && styles.dataDriven, className)}
         role="tree"
         style={{ width, maxWidth: "100%" }}
         tabIndex={focusedValue ? -1 : 0}
@@ -659,10 +648,10 @@ const TreeView = ({
         }}
       >
         {searchable && (
-          <div className="wim-tree-view__search">
+          <div className={styles.search}>
             <input
               type="text"
-              className="wim-tree-view__search-input"
+              className={styles.searchInput}
               placeholder={searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -672,7 +661,6 @@ const TreeView = ({
         )}
 
         {nodes ? (
-          // ─── データ駆動モード ────────────────────────────────────────────
           useVirtual ? (
             <VirtualList
               items={flatNodes}
@@ -686,7 +674,6 @@ const TreeView = ({
             flatNodes.map((node, index) => renderFlatNode(node, index))
           )
         ) : (
-          // ─── children モード（既存 API） ────────────────────────────────
           children
         )}
       </div>
@@ -878,9 +865,9 @@ export const TreeViewItem = ({
   return (
     <div
       className={classNames(
-        "wim-tree-view-item",
-        isSelected && "wim-tree-view-item--selected",
-        disabled && "wim-tree-view-item--disabled",
+        styles.item,
+        isSelected && styles.selected,
+        disabled && styles.disabled,
         className,
       )}
       role="treeitem"
@@ -895,17 +882,17 @@ export const TreeViewItem = ({
     >
       <BaseListItem
         id={labelId}
-        className="wim-tree-view-item__label-container"
+        className={styles.labelContainer}
         active={isSelected}
         disabled={disabled}
         icon={
-          <div className="wim-tree-view-item__icon-wrapper">
+          <div className={styles.iconWrapper}>
             {hasChildren && (
               <button
                 type="button"
                 className={classNames(
-                  "wim-tree-view-item__expand-btn",
-                  isExpanded && "wim-tree-view-item__expand-btn--expanded",
+                  styles.expandBtn,
+                  isExpanded && styles.expanded,
                 )}
                 onClick={handleToggleExpand}
                 disabled={disabled}
@@ -915,13 +902,13 @@ export const TreeViewItem = ({
                 <Icon name="ChevronRightIcon" size="sm" />
               </button>
             )}
-            {!hasChildren && <span className="wim-tree-view-item__spacer" />}
+            {!hasChildren && <span className={styles.spacer} />}
 
             {checkable && (
               <input
                 id={checkboxId}
                 type="checkbox"
-                className="wim-tree-view-item__checkbox"
+                className={styles.checkbox}
                 checked={isChecked && !isIndeterminate}
                 ref={(el) => {
                   if (el) el.indeterminate = isIndeterminate;
@@ -934,7 +921,7 @@ export const TreeViewItem = ({
               />
             )}
 
-            {icon && <span className="wim-tree-view-item__icon">{icon}</span>}
+            {icon && <span className={styles.icon}>{icon}</span>}
           </div>
         }
       >
@@ -944,15 +931,15 @@ export const TreeViewItem = ({
       {hasChildren && shouldRender && (
         <div
           className={classNames(
-            "wim-tree-view-item__children",
-            isVisualExpanded && "wim-tree-view-item__children--expanded",
+            styles.children,
+            isVisualExpanded && styles.expanded,
           )}
           onTransitionEnd={handleTransitionEnd}
           style={{
             gridTemplateRows: isVisualExpanded ? "1fr" : "0fr",
           }}
         >
-          <div className="wim-tree-view-item__children-inner" role="group">{children}</div>
+          <div className={styles.childrenInner} role="group">{children}</div>
         </div>
       )}
     </div>

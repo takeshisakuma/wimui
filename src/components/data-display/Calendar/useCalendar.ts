@@ -50,6 +50,14 @@ export const useCalendar = ({
     setViewDate(new Date(year, month + 1, 1));
   };
 
+  const handlePrevYear = () => {
+    setViewDate(new Date(year - 1, month, 1));
+  };
+
+  const handleNextYear = () => {
+    setViewDate(new Date(year + 1, month, 1));
+  };
+
   const isDateDisabledInternal = (date: Date): boolean => {
     if (isDateDisabled && isDateDisabled(date)) return true;
     if (disabledDates && disabledDates.some((d) => isSameDay(d, date))) return true;
@@ -109,6 +117,8 @@ export const useCalendar = ({
     month,
     handlePrevMonth,
     handleNextMonth,
+    handlePrevYear,
+    handleNextYear,
     isDateDisabled: isDateDisabledInternal,
     daysGrid,
   };

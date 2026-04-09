@@ -33,7 +33,7 @@ export const Default: Story = {
     );
   },
   args: {
-    bg: "#f9f9f9",
+    bg: "var(--wim-color-bg-secondary)",
   },
 };
 

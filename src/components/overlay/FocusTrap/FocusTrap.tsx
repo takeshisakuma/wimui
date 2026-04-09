@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
-import "./focusTrap.scss";
+import styles from "./focus-trap.module.scss";
 
 export type FocusTrapProps = {
   /**
@@ -102,8 +102,9 @@ export const FocusTrap = ({
   }, [active, initialFocus]);
 
   return (
-    <div ref={rootRef} className={classNames("wim-focus-trap", className)}>
+    <div ref={rootRef} className={classNames(styles.root, className)}>
       {children}
     </div>
   );
 };
+

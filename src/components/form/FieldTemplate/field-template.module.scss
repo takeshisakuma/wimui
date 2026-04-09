@@ -1,0 +1,59 @@
+@layer component {
+  .root {
+    display: flex;
+
+    &.vertical {
+      flex-direction: column;
+      gap: 8px;
+
+      .label {
+        display: block;
+        margin-bottom: 0;
+      }
+
+      :global(.wim-input-base):has(input[type="color"]) {
+        width: fit-content;
+        min-width: 120px;
+        max-width: 120px;
+        min-height: 42px;
+      }
+    }
+
+    &.horizontal {
+      flex-direction: row;
+      gap: 16px;
+      align-items: flex-start;
+
+      :global(.wim-input-base):has(input[type="color"]) {
+        position: relative;
+        width: var(--wim-input-width, fit-content);
+        min-width: 160px;
+        max-width: 320px;
+      }
+
+      .labelWrapper {
+          flex-shrink: 0;
+          width: 150px;
+          padding-top: 10px;
+      }
+      
+      .content {
+          flex: 1;
+      }
+      
+      .label {
+          display: block;
+      }
+    }
+
+    .error {
+        margin-top: 4px;
+    }
+  }
+
+  .content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+  }
+}

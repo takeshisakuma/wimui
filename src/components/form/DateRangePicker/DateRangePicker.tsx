@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useId } from "react";
 import { DatePicker } from "../../form/DatePicker/DatePicker";
 import { FieldTemplate } from "../FieldTemplate";
-import "./dateRangePicker.scss";
+import styles from "./date-range-picker.module.scss";
 
 type DateRangePickerProps = {
   startProps?: React.ComponentProps<typeof DatePicker>;
@@ -40,12 +40,16 @@ export const DateRangePicker = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames("wim-daterangepicker-container", className)}
+      className={classNames(styles.container, className)}
     >
-      <div className="wim-daterangepicker">
-        <DatePicker {...startProps} fullWidth />
-        <span className="wim-daterangepicker-separator">~</span>
-        <DatePicker {...endProps} fullWidth />
+      <div className={styles.root}>
+        <div className={styles.pickerWrapper}>
+          <DatePicker {...startProps} fullWidth />
+        </div>
+        <span className={styles.separator}>~</span>
+        <div className={styles.pickerWrapper}>
+          <DatePicker {...endProps} fullWidth />
+        </div>
       </div>
     </FieldTemplate>
   );

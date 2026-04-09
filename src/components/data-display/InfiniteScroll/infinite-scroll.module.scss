@@ -1,0 +1,12 @@
+@layer component {
+  .root {
+    width: 100%;
+  }
+
+  .loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wim-spacing-md);
+  }
+}

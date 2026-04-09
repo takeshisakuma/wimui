@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./marquee.scss";
+import styles from "./marquee.module.scss";
 
 export type MarqueeProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -41,9 +41,9 @@ export const Marquee = ({
 }: MarqueeProps) => {
   const content = (
     <div
-      className={classNames("wim-marquee__content", {
-        "wim-marquee__content--reverse": reverse,
-        "wim-marquee__content--vertical": vertical,
+      className={classNames(styles.content, {
+        [styles.reverse]: reverse,
+        [styles.vertical]: vertical,
       })}
     >
       {children}
@@ -52,7 +52,7 @@ export const Marquee = ({
 
   return (
     <div
-      className={classNames("wim-marquee", className)}
+      className={classNames(styles.root, className)}
       style={
         {
           "--duration": `${duration}s`,

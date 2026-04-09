@@ -74,7 +74,7 @@ export const Large: Story = {
 
 export const Colored: Story = {
   args: {
-    color: "#ff5722",
+    color: "var(--wim-color-destructive)",
   },
   render: renderWithState,
 };

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
 import { ComponentSize } from "../../../types/tokens";
-import "./toggle-group.scss";
+import styles from "./toggle-group.module.scss";
 
 export type Option = {
   label?: string;
@@ -59,7 +59,7 @@ export const ToggleGroup = ({
   const currentValue = isControlled ? value : internalValue;
 
   const { containerRef, sliderStyle, isReady } = useIndicator({
-    activeSelector: ".wim-toggle-group__item--active",
+    activeSelector: `.${styles.active}`,
     dependence: options.length,
   });
 
@@ -165,11 +165,11 @@ export const ToggleGroup = ({
     <div
       ref={containerRef}
       className={classNames(
-        "wim-toggle-group",
-        `wim-toggle-group--${size}`,
-        `wim-toggle-group--${selectionMode}`,
-        fullWidth && "wim-toggle-group--full-width",
-        isReady && "wim-toggle-group--ready",
+        styles.root,
+        styles[size],
+        styles[selectionMode],
+        fullWidth && styles.fullWidth,
+        isReady && styles.ready,
         className,
       )}
       role={containerRole}
@@ -177,7 +177,15 @@ export const ToggleGroup = ({
       aria-labelledby={ariaLabelledBy}
       aria-orientation="horizontal"
     >
-      <div className="wim-toggle-group__slider" style={sliderStyle} aria-hidden="true" />
+      <div
+        className={classNames(
+          styles.slider,
+          styles[selectionMode],
+          isReady && styles.ready,
+        )}
+        style={sliderStyle}
+        aria-hidden="true"
+      />
       {options.map((option, index) => (
         <button
           key={option.value}
@@ -186,11 +194,12 @@ export const ToggleGroup = ({
           }}
           type="button"
           className={classNames(
-            "wim-toggle-group__item",
-            isSelected(option.value) && "wim-toggle-group__item--active",
+            styles.item,
+            styles[selectionMode],
+            isSelected(option.value) && styles.active,
             !option.label &&
               option.iconName &&
-              "wim-toggle-group__item--icon-only",
+              styles.iconOnly,
           )}
           onClick={() => {
             setFocusedIndex(index);
@@ -207,7 +216,7 @@ export const ToggleGroup = ({
         >
           {option.iconName && <Icon name={option.iconName} size={size} />}
           {option.label && (
-            <span className="wim-toggle-group__label">{option.label}</span>
+            <span className={styles.label}>{option.label}</span>
           )}
         </button>
       ))}

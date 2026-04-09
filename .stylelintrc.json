@@ -10,6 +10,13 @@
     "color-function-alias-notation": null,
     "at-rule-no-unknown": null,
     "alpha-value-notation": "number",
-    "scss/at-rule-no-unknown": true
+    "scss/at-rule-no-unknown": true,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ],
+    "media-feature-range-notation": null
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { StatusContent } from "../../_internal/StatusContent";
 import classNames from "classnames";
-import "./emptystate.scss";
+import styles from "./empty-state.module.scss";
 
 type EmptyStateProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -45,8 +45,8 @@ export const EmptyState = ({
       icon={icon}
       actions={extra}
       className={classNames(
-        "wim-empty-state",
-        `wim-empty-state--${variant}`,
+        styles.root,
+        styles[variant],
         className,
       )}
       {...props}

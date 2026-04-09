@@ -21,7 +21,7 @@ import {
   ReferenceType,
 } from "@floating-ui/react";
 import classNames from "classnames";
-import "./tooltip.scss";
+import styles from "./tooltip.module.scss";
 
 type TooltipContextValue = {
   open: boolean;
@@ -143,7 +143,7 @@ export const Tooltip = ({
         placement: finalPlacement,
       }}
     >
-      <div className={classNames("wim-tooltip-root", className)}>
+      <div className={classNames(styles.root, className)}>
         {children}
       </div>
     </TooltipContext.Provider>
@@ -197,7 +197,7 @@ export const TooltipTrigger = React.forwardRef<
     <button
       ref={ref as React.Ref<HTMLButtonElement>}
       type="button"
-      className={classNames("wim-tooltip-trigger", className)}
+      className={classNames(styles.trigger, className)}
       data-state={context.open ? "open" : "closed"}
       {...(context.getReferenceProps(
         props,
@@ -242,7 +242,7 @@ export const TooltipContent = React.forwardRef<
       <div
         ref={ref}
         style={{ ...floatingStyles, ...style }}
-        className={classNames("wim-tooltip-content", className)}
+        className={classNames(styles.content, className)}
         {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
       >
         {children}
@@ -251,7 +251,7 @@ export const TooltipContent = React.forwardRef<
           context={floatingContext}
           fill="var(--wim-color-bg-inverted)"
           strokeWidth={0}
-          className="wim-tooltip-arrow"
+          className={styles.arrow}
         />
       </div>
     </FloatingPortal>
@@ -259,3 +259,4 @@ export const TooltipContent = React.forwardRef<
 });
 
 TooltipContent.displayName = "TooltipContent";
+

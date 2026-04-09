@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
 import { WimIntent, FieldVariant } from "../../../types/tokens";
-import "./textarea.scss";
+import styles from "./textarea.module.scss";
 
 type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
   intent?: WimIntent;
@@ -58,12 +58,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           id={id}
           ref={ref}
           className={classNames(
-            "wim-textarea",
-            `wim-textarea--${effectiveIntent}`,
-            `wim-textarea--${variant}`,
-            fullWidth && "wim-textarea--full-width",
-            fieldSizing === "content" &&
-              "wim-textarea--field-sizing-content",
+            styles.root,
+            styles[effectiveIntent],
+            styles[variant],
+            fullWidth && styles.fullWidth,
+            fieldSizing === "content" && styles.fieldSizingContent,
           )}
           disabled={isDisabled}
           aria-invalid={effectiveIntent === "error"}

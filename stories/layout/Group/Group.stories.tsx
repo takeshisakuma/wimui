@@ -69,13 +69,13 @@ export const AlignEnd: Story = {
     children: (
       <>
         <div
-          style={{ height: "40px", width: "40px", backgroundColor: "#3b82f6" }}
+          style={{ height: "40px", width: "40px", backgroundColor: "var(--wim-color-primary)" }}
         />
         <div
-          style={{ height: "80px", width: "40px", backgroundColor: "#10b981" }}
+          style={{ height: "80px", width: "40px", backgroundColor: "var(--wim-color-positive)" }}
         />
         <div
-          style={{ height: "60px", width: "40px", backgroundColor: "#ef4444" }}
+          style={{ height: "60px", width: "40px", backgroundColor: "var(--wim-color-destructive)" }}
         />
       </>
     ),

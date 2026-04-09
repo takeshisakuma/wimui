@@ -1,0 +1,200 @@
+@layer component {
+  .root {
+    --wim-input-offset-left: var(--wim-spacing-md);
+    --wim-input-offset-right: var(--wim-spacing-md);
+
+    position: relative;
+
+    // Shell styles
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    max-width: var(--wim-input-width, 280px);
+    min-height: var(--wim-height-md);
+    background-color: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+
+    &.ghost {
+      background-color: transparent;
+      border-color: transparent;
+
+      &:hover:not(.disabled) {
+          background-color: var(--wim-color-ghost-bg-hover);
+      }
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      background-color: var(--wim-color-disabled);
+      border-color: var(--wim-color-disabled);
+      opacity: var(--wim-opacity-disabled);
+
+      input,
+      textarea {
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+    }
+
+    &.error {
+      border-color: var(--wim-color-text-error);
+    }
+
+    &.warning {
+      border-color: var(--wim-color-caution);
+    }
+
+    &.success {
+      border-color: var(--wim-color-positive);
+    }
+
+    &:focus-within:not(.disabled) {
+      border-color: var(--wim-color-primary);
+      box-shadow: inset 0 0 0 1px var(--wim-color-primary);
+
+      &.error {
+        border-color: var(--wim-color-text-error);
+        box-shadow: inset 0 0 0 1px var(--wim-color-text-error);
+      }
+
+      &.warning {
+        border-color: var(--wim-color-caution);
+        box-shadow: inset 0 0 0 1px var(--wim-color-caution);
+      }
+
+      &.success {
+        border-color: var(--wim-color-positive);
+        box-shadow: inset 0 0 0 1px var(--wim-color-positive);
+      }
+    }
+
+    // Icons padding
+    &.hasLeftIcon {
+      --wim-input-offset-left: calc(var(--wim-spacing-2xl) + 1.5rem);
+    }
+
+    &.hasRightIcon {
+      --wim-input-offset-right: calc(var(--wim-spacing-2xl) + 1.5rem);
+    }
+
+    &.hasMultipleRightIcons {
+      --wim-input-offset-right: calc(var(--wim-spacing-md) + 3rem + var(--wim-spacing-sm) + 8px);
+    }
+
+    // Semantic sizes
+    &.widthXs { --wim-input-width: 80px; }
+    &.widthSm { --wim-input-width: 160px; }
+    &.widthMd { --wim-input-width: 280px; }
+    &.widthLg { --wim-input-width: 480px; }
+    &.widthXl { --wim-input-width: 640px; }
+
+    &.hasCustomWidth,
+    [class*="width"] {
+      width: 100%;
+      max-width: var(--wim-input-width);
+    }
+
+    &.fullWidth {
+      width: 100% !important;
+      max-width: none !important;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wim-color-text-secondary);
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: color 0.3s ease-in-out;
+
+    &.clickable {
+      pointer-events: auto;
+    }
+
+    &.left {
+      left: var(--wim-spacing-md);
+    }
+  }
+
+  .icons {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: color 0.3s ease-in-out;
+
+    &.right {
+      right: var(--wim-spacing-sm);
+    }
+  }
+
+  .iconItem {
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    transition: transform var(--wim-transition-base, 0.2s ease-in-out);
+
+    &.clickable {
+      pointer-events: auto;
+    }
+
+    &.rotated {
+      transform: rotate(180deg);
+    }
+  }
+
+  .iconButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wim-spacing-3xs);
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-sm);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: var(--wim-color-surface-hover);
+    }
+
+    &:active {
+      background-color: var(--wim-color-surface-hover);
+    }
+  }
+
+  // Make sure children (inputs, triggers) don't have their own borders
+  .root > :global(input),
+  .root > :global(.wim-input),
+  .root > :global(.wim-selectbox-trigger),
+  .root > :global(.wim-tree-select__trigger),
+  .root > :global(.wim-cascader__trigger),
+  .root > :global(.wim-multiselect-trigger) {
+      box-sizing: border-box !important;
+      width: 100%;
+      min-width: 0 !important;
+      height: 100%;
+      padding-top: var(--wim-spacing-sm);
+      padding-right: var(--wim-input-offset-right) !important;
+      padding-bottom: var(--wim-spacing-sm);
+      padding-left: var(--wim-input-offset-left) !important;
+      outline: none !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+  }
+}

@@ -1,0 +1,78 @@
+@layer component {
+  .root {
+    display: inline-flex;
+    align-items: stretch;
+    width: auto;
+    max-width: 100%;
+
+    &.fullWidth {
+      display: flex;
+      width: 100%;
+    }
+
+    // Children styling - target direct children to handle grouping
+    > * {
+      position: relative;
+      box-sizing: border-box;
+      flex: 1 1 auto;
+      margin-bottom: 0;
+
+      &:not(:first-child) {
+        margin-left: -1px; // Standard overlap for 1px borders
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+
+        // Also reach deeper for components that wrap the actual input
+        :global(.wim-input),
+        :global([class*="_root_"]) {
+           border-top-left-radius: 0 !important;
+           border-bottom-left-radius: 0 !important;
+        }
+      }
+
+      &:not(:last-child) {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+
+        // Also reach deeper for components that wrap the actual input
+        :global(.wim-input),
+        :global([class*="_root_"]) {
+           border-top-right-radius: 0 !important;
+           border-bottom-right-radius: 0 !important;
+        }
+      }
+
+      // Handle focus state z-index and interaction resets
+      &:focus-within,
+      &:focus,
+      &:hover {
+        z-index: 2;
+        box-shadow: none; // Prevent "floating" effects inside group
+        transform: none; // Prevent "lift" effects inside group
+      }
+    }
+
+    // Ad-ons and Buttons should not grow as much as inputs
+    .text,
+    :global(.wim-button),
+    button {
+      flex: 0 0 auto;
+    }
+  }
+
+  .text {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--wim-color-text-secondary);
+    text-align: center;
+    white-space: nowrap;
+    background-color: var(--wim-color-disabled);
+    border: 1px solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
+  }
+}

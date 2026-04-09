@@ -4,15 +4,13 @@ import { Calendar } from "../../data-display/Calendar/Calendar";
 import { InputBase } from "../InputBase";
 import { Transition } from "../../layout/Transition/Transition";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
-import "../../form/Input/input.scss";
-import "./date-picker.scss";
-
 import { FieldTemplate } from "../FieldTemplate";
 import { WimIntent, FieldVariant } from "../../../types/tokens";
+import styles from "./date-picker.module.scss";
+import inputStyles from "../../form/Input/input.module.scss";
 
 export type DatePickerLabels = {
   placeholder?: string;
-  calendarLabels?: import("../../data-display/Calendar/Calendar").CalendarLabels;
 };
 
 type DatePickerProps = Omit<
@@ -50,7 +48,6 @@ type DatePickerProps = Omit<
 
 const DEFAULT_LABELS: Required<DatePickerLabels> = {
   placeholder: "Select date",
-  calendarLabels: {},
 };
 
 /**
@@ -187,13 +184,13 @@ export const DatePicker = ({
     if (isOpen) {
       const timer = setTimeout(() => {
         const focusedDay = containerRef.current?.querySelector<HTMLButtonElement>(
-          ".wim-calendar-day--focused:not(:disabled), .wim-calendar-day--selected:not(:disabled)",
+          ":global(.wim-calendar-day--focused):not(:disabled), :global(.wim-calendar-day--selected):not(:disabled)",
         );
         if (focusedDay) {
           focusedDay.focus();
         } else {
           containerRef.current?.querySelector<HTMLButtonElement>(
-            ".wim-calendar-day:not(.wim-calendar-day--other-month):not(:disabled)",
+            ":global(.wim-calendar-day):not(:global(.wim-calendar-day--other-month)):not(:disabled)",
           )?.focus();
         }
       }, 50);
@@ -214,8 +211,8 @@ export const DatePicker = ({
       <div
         ref={containerRef}
         className={classNames(
-          "wim-datepicker-wrapper",
-          fullWidth && "wim-input--full-width",
+          styles.root,
+          fullWidth && styles.fullWidth,
         )}
       >
         <InputBase
@@ -235,9 +232,9 @@ export const DatePicker = ({
             readOnly
             role="combobox"
             className={classNames(
-              "wim-input",
-              "wim-datepicker-input",
-              fullWidth && "wim-input--full-width",
+              inputStyles.input,
+              styles.input,
+              fullWidth && inputStyles.fullWidth,
             )}
             value={formatDate(currentValue || null)}
             placeholder={actualPlaceholder}
@@ -255,21 +252,20 @@ export const DatePicker = ({
         </InputBase>
         <Transition
           show={isOpen && !disabled}
-          enter="fade-enter"
-          enterFrom="fade-enter-from"
-          enterTo="fade-enter-to"
-          leave="fade-leave"
-          leaveFrom="fade-leave-from"
-          leaveTo="fade-leave-to"
+          enter=":global(fade-enter)"
+          enterFrom=":global(fade-enter-from)"
+          enterTo=":global(fade-enter-to)"
+          leave=":global(fade-leave)"
+          leaveFrom=":global(fade-leave-from)"
+          leaveTo=":global(fade-leave-to)"
           id={dropdownId}
-          className="wim-datepicker-dropdown"
+          className={styles.dropdown}
         >
           <FocusTrap active={isOpen} initialFocus={false}>
             <div role="dialog" aria-modal="true" aria-labelledby={labelId}>
               <Calendar
                 value={currentValue || undefined}
                 onChange={handleDateChange}
-                labels={mergedLabels.calendarLabels}
               />
             </div>
           </FocusTrap>

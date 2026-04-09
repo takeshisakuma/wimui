@@ -205,7 +205,7 @@ describe("ContextMenu", () => {
         <div>Trigger</div>
       </ContextMenu>,
     );
-    expect(container.querySelector(".wim-context-menu-container")).toHaveClass("my-class");
+    expect(container.firstChild).toHaveClass("my-class");
   });
 
   it("sets tabIndex -1 on container when disabled", () => {
@@ -387,9 +387,7 @@ describe("ContextMenuGroup", () => {
     );
 
     fireEvent.contextMenu(screen.getByTestId("trigger"));
-    expect(
-      document.querySelector(".wim-context-menu-group__title"),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId("context-menu-group-title")).not.toBeInTheDocument();
   });
 
   it("applies custom className", () => {
@@ -402,6 +400,6 @@ describe("ContextMenuGroup", () => {
     );
 
     fireEvent.contextMenu(screen.getByTestId("trigger"));
-    expect(document.querySelector(".wim-context-menu-group")).toHaveClass("my-group");
+    expect(screen.getByTestId("context-menu-group")).toHaveClass("my-group");
   });
 });

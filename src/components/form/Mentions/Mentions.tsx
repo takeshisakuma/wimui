@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Textarea } from "../../form/Textarea/Textarea";
 import { BaseListItem } from "../../_internal/BaseListItem";
-import "./mentions.scss";
+import styles from "./mentions.module.scss";
 
 type MentionOption = {
   id: string | number;
@@ -133,7 +133,7 @@ export const Mentions = ({
   };
 
   return (
-    <div className="wim-mentions-container" ref={containerRef}>
+    <div className={styles.container} ref={containerRef}>
       <Textarea
         {...props}
         ref={textareaRef}
@@ -146,11 +146,11 @@ export const Mentions = ({
         }}
       />
       {isOpen && filteredOptions.length > 0 && (
-        <div className="wim-mentions-list" role="listbox">
+        <div className={styles.list} role="listbox">
           {filteredOptions.map((opt, index) => (
             <BaseListItem
               key={opt.id}
-              className="wim-mentions-item"
+              className={styles.item}
               active={index === selectedIndex}
               onClick={() => insertMention(opt)}
               onMouseEnter={() => setSelectedIndex(index)}

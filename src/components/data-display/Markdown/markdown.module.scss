@@ -1,0 +1,119 @@
+@layer component {
+  .root {
+    line-height: var(--wim-line-height-normal);
+    color: var(--wim-color-text-primary);
+  
+    & > *:first-child {
+      margin-top: 0;
+    }
+  
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+  
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: var(--wim-spacing-xl);
+      margin-bottom: var(--wim-spacing-md);
+      font-weight: 600;
+      line-height: var(--wim-line-height-tight);
+    }
+  
+    h1 {
+      font-size: var(--wim-font-size-2xl);
+    }
+  
+    h2 {
+      padding-bottom: var(--wim-spacing-xs);
+      font-size: var(--wim-font-size-xl);
+      border-bottom: 1px solid var(--wim-color-border);
+    }
+  
+    p {
+      margin-bottom: var(--wim-spacing-md);
+    }
+  
+    ul,
+    ol {
+      padding-left: var(--wim-spacing-xl);
+      margin-bottom: var(--wim-spacing-md);
+    }
+  
+    li {
+      margin-bottom: var(--wim-spacing-xs);
+    }
+  
+    code {
+      padding: 0.2em 0.4em;
+      font-family: var(--wim-font-family-mono);
+      font-size: 0.9em;
+      background-color: var(--wim-color-bg-subtle-alpha);
+      border-radius: var(--wim-radius-xs);
+    }
+  
+    pre {
+      padding: var(--wim-spacing-md);
+      margin-bottom: var(--wim-spacing-md);
+      overflow: auto;
+      background-color: var(--wim-color-bg-subtle);
+      border-radius: var(--wim-radius-md);
+  
+      code {
+        padding: 0;
+        background-color: transparent;
+      }
+    }
+  
+    blockquote {
+      padding-left: var(--wim-spacing-md);
+      margin: 0 0 var(--wim-spacing-md) 0;
+      font-style: italic;
+      color: var(--wim-color-text-secondary);
+      border-left: 4px solid var(--wim-color-border);
+    }
+  
+    table {
+      width: 100%;
+      margin-bottom: var(--wim-spacing-md);
+      border-collapse: collapse;
+  
+      th,
+      td {
+        padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+        border: 1px solid var(--wim-color-border);
+      }
+  
+      th {
+        font-weight: 600;
+        background-color: var(--wim-color-bg-subtle);
+      }
+    }
+  
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: var(--wim-spacing-md);
+      border-radius: var(--wim-radius-md);
+    }
+  
+    hr {
+      height: 1px;
+      margin: var(--wim-spacing-xl) 0;
+      background-color: var(--wim-color-border);
+      border: none;
+    }
+  
+    a {
+      color: var(--wim-color-primary);
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

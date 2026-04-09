@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { ComponentSize } from "../../../types/tokens";
-import "./hamburger-menu.scss";
+import styles from "./hamburger-menu.module.scss";
 
 export interface HamburgerMenuProps extends React.ComponentPropsWithoutRef<"button"> {
   /** Whether the menu is open */
@@ -37,9 +37,9 @@ export const HamburgerMenu = React.forwardRef<
         ref={ref}
         type="button"
         className={classNames(
-          "wim-hamburger-menu",
-          `wim-hamburger-menu--${size}`,
-          open && "wim-hamburger-menu--open",
+          styles.root,
+          styles[size],
+          open && styles.open,
           className,
         )}
         onClick={onClick}
@@ -53,8 +53,8 @@ export const HamburgerMenu = React.forwardRef<
         }}
         {...props}
       >
-        <div className="wim-hamburger-menu__box">
-          <div className="wim-hamburger-menu__inner" />
+        <div className={styles.box}>
+          <div className={styles.inner} />
         </div>
       </button>
     );

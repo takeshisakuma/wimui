@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
 import { ComponentSize } from "../../../types/tokens";
-import "./chatui.scss";
+import styles from "./chat-ui.module.scss";
 
 export interface ChatContainerProps {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ export const ChatContainer = ({
   className,
 }: ChatContainerProps): React.ReactElement => {
   return (
-    <div className={classNames("wim-chat-container", className)}>
+    <div className={classNames(styles.container, className)}>
       {children}
     </div>
   );
@@ -27,7 +27,7 @@ export interface ChatMessageListProps {
 export const ChatMessageList = forwardRef<HTMLDivElement, ChatMessageListProps>(
   ({ children, className }, ref) => {
     return (
-      <div ref={ref} className={classNames("wim-chat-message-list", className)}>
+      <div ref={ref} className={classNames(styles.messageList, className)}>
         {children}
       </div>
     );
@@ -60,27 +60,27 @@ export const ChatMessage = ({
   return (
     <div
       className={classNames(
-        "wim-chat-message",
-        `wim-chat-message--${position}`,
-        `wim-chat-message--${variant}`,
-        { "wim-chat-message--has-avatar": showAvatar },
+        styles.message,
+        styles[position],
+        styles[variant],
+        { [styles.hasAvatar]: showAvatar },
         className,
       )}
     >
       {showAvatar && position === "left" && (
-        <div className="wim-chat-message__avatar">{avatar}</div>
+        <div className={styles.messageAvatar}>{avatar}</div>
       )}
-      <div className="wim-chat-message__content-wrapper">
+      <div className={styles.contentWrapper}>
         {senderName && (
-          <div className="wim-chat-message__sender">{senderName}</div>
+          <div className={styles.sender}>{senderName}</div>
         )}
-        <div className="wim-chat-message__bubble">{children}</div>
+        <div className={styles.bubble}>{children}</div>
         {timestamp && (
-          <div className="wim-chat-message__timestamp">{timestamp}</div>
+          <div className={styles.timestamp}>{timestamp}</div>
         )}
       </div>
       {showAvatar && position === "right" && (
-        <div className="wim-chat-message__avatar">{avatar}</div>
+        <div className={styles.messageAvatar}>{avatar}</div>
       )}
     </div>
   );
@@ -123,11 +123,11 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(
     };
 
     return (
-      <div className={classNames("wim-chat-input", className)}>
+      <div className={classNames(styles.input, className)}>
         <input
           ref={ref}
           type="text"
-          className="wim-chat-input__field"
+          className={styles.field}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -136,7 +136,7 @@ export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(
         />
         {showSendButton && (
           <button
-            className="wim-chat-input__send-button"
+            className={styles.sendButton}
             onClick={handleSend}
             disabled={!value.trim()}
             type="button"
@@ -175,9 +175,9 @@ export const ChatAvatar = ({
   return (
     <div
       className={classNames(
-        "wim-chat-avatar",
-        `wim-chat-avatar--${size}`,
-        `wim-chat-avatar--${color}`,
+        styles.avatar,
+        styles[size],
+        styles[color],
         className,
       )}
     >
@@ -185,11 +185,11 @@ export const ChatAvatar = ({
         <img
           src={src}
           alt={alt}
-          className="wim-chat-avatar__image"
+          className={styles.image}
           onError={() => setImageError(true)}
         />
       ) : (
-        <div className="wim-chat-avatar__fallback">
+        <div className={styles.fallback}>
           {fallback || alt.charAt(0).toUpperCase()}
         </div>
       )}

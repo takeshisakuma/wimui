@@ -1,0 +1,11 @@
+@layer component {
+  .root {
+    display: flex;
+    align-items: flex-start;
+    min-height: 1.5rem;
+
+    :global(p.wim-paragraph) {
+      margin: 0;
+    }
+  }
+}

@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import "./carousel.scss";
+import styles from "./carousel.module.scss";
 
 export type Breakpoints = {
   base?: number;
@@ -140,7 +140,6 @@ export const Carousel = ({
   }, [slidesToShow, windowWidth]);
 
   // 無限ループ用のデータ作成
-  // [Cloned End] + [Original Items] + [Cloned Start]
   const extendedItems = useMemo(() => {
     if (!loop || originalItemCount === 0) return items;
     return [...items, ...items, ...items];
@@ -189,10 +188,8 @@ export const Carousel = ({
     setIsTransitioning(false);
 
     if (currentIndex >= originalItemCount * 2) {
-      // 最後まで到達したら最初に戻る（アニメーションなし）
       setCurrentIndex(currentIndex - originalItemCount);
     } else if (currentIndex < originalItemCount) {
-      // 最初より前に戻ったら最後に飛ぶ（アニメーションなし）
       setCurrentIndex(currentIndex + originalItemCount);
     }
   };
@@ -214,7 +211,6 @@ export const Carousel = ({
     isPaused,
   ]);
 
-  // キーボード操作
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
       prevSlide();
@@ -223,7 +219,6 @@ export const Carousel = ({
     }
   };
 
-  // スワイプ操作
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;
   };
@@ -252,25 +247,25 @@ export const Carousel = ({
   const slideWidth = 100 / displaySlides;
   const offsetX = -currentIndex * slideWidth;
 
-  /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   return (
+    /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
     <div
-      className={classNames("wim-carousel", className)}
+      className={classNames(styles.root, className)}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
       onBlur={() => setIsPaused(false)}
       onKeyDown={handleKeyDown}
-      tabIndex={0} // フォーカス可能にしてキーボードイベントを受け取る
+      tabIndex={0}
       role="region"
       aria-roledescription="carousel"
     >
-      <div className="wim-carousel__viewport">
+      <div className={styles.viewport}>
         <div
           ref={trackRef}
           className={classNames(
-            "wim-carousel__track",
-            isTransitioning && "wim-carousel__track--transition",
+            styles.track,
+            isTransitioning && styles.transition,
           )}
           style={{
             transform: `translateX(${offsetX}%)`,
@@ -284,8 +279,8 @@ export const Carousel = ({
             <div
               key={index}
               className={classNames(
-                "wim-carousel__item",
-                aspectRatio && "wim-carousel__item--has-aspect-ratio",
+                styles.item,
+                aspectRatio && styles.hasAspectRatio,
               )}
               style={
                 {
@@ -309,16 +304,16 @@ export const Carousel = ({
       {showControls && originalItemCount > displaySlides && (
         <>
           <button
-            className="wim-carousel__control wim-carousel__control--prev"
+            className={classNames(styles.control, styles.prev)}
             onClick={prevSlide}
             aria-label={mergedLabels.prevSlide}
             disabled={!loop && currentIndex === 0}
-            tabIndex={-1} // 親要素でフォーカス管理するためボタン自体のタブ移動はスキップしても良いが、好みによる
+            tabIndex={-1}
           >
             <Icon name="ChevronLeftIcon" size="md" />
           </button>
           <button
-            className="wim-carousel__control wim-carousel__control--next"
+            className={classNames(styles.control, styles.next)}
             onClick={nextSlide}
             aria-label={mergedLabels.nextSlide}
             disabled={
@@ -332,7 +327,7 @@ export const Carousel = ({
       )}
 
       {showIndicators && originalItemCount > 1 && (
-        <div className="wim-carousel__indicators">
+        <div className={styles.indicators}>
           {items.map((_, index) => {
             const isActive = loop
               ? currentIndex % originalItemCount === index
@@ -342,8 +337,8 @@ export const Carousel = ({
               <button
                 key={index}
                 className={classNames(
-                  "wim-carousel__indicator",
-                  isActive && "wim-carousel__indicator--active",
+                  styles.indicator,
+                  isActive && styles.active,
                 )}
                 onClick={() => goToSlide(index)}
                 aria-label={mergedLabels.goToSlide(index + 1)}
@@ -355,5 +350,4 @@ export const Carousel = ({
       )}
     </div>
   );
-  /* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
 };

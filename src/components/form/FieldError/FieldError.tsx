@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Paragraph } from "../../typography/Paragraph/Paragraph";
-import "./field-error.scss";
+import styles from "./field-error.module.scss";
 
 type FieldErrorProps = {
   content: string;
@@ -20,7 +20,7 @@ export const FieldError = ({
   return (
     <div
       id={id}
-      className={classNames("wim-field-error", className)}
+      className={classNames(styles.root, className)}
       role="alert"
       aria-live="polite"
     >

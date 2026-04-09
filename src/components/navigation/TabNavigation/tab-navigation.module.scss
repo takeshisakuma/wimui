@@ -1,0 +1,203 @@
+@use "sass:color";
+@use "../../../styles/indicator-mixins" as indicator;
+
+@layer component {
+  .root {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .list {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-width: min-content;
+    }
+
+    /* Alignment */
+    &.start .list {
+      justify-content: flex-start;
+    }
+
+    &.center .list {
+      justify-content: center;
+    }
+
+    &.end .list {
+      justify-content: flex-end;
+    }
+
+    &.justify .list {
+      justify-content: space-between;
+
+      .item {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
+    /* Sizes */
+    &.sm {
+      --wim-tab-nav-padding: 0 var(--wim-spacing-md);
+      --wim-tab-nav-font-size: var(--wim-font-size-sm);
+      --wim-tab-nav-height: 32px;
+    }
+
+    &.md {
+      --wim-tab-nav-padding: 0 var(--wim-spacing-lg);
+      --wim-tab-nav-font-size: var(--wim-font-size-md);
+      --wim-tab-nav-height: var(--wim-height-md);
+    }
+
+    &.lg {
+      --wim-tab-nav-padding: 0 var(--wim-spacing-xl);
+      --wim-tab-nav-font-size: var(--wim-font-size-lg);
+      --wim-tab-nav-height: 48px;
+    }
+
+    /* Base Item Styles */
+    .item {
+      @include indicator.indicator-item-base;
+
+      height: var(--wim-tab-nav-height);
+      padding: var(--wim-tab-nav-padding);
+      font-size: var(--wim-tab-nav-font-size);
+      font-weight: var(--wim-font-weight-medium);
+      color: var(--wim-color-text-secondary);
+      white-space: nowrap;
+      text-decoration: none;
+
+      &:hover:not(.disabled) {
+        color: var(--wim-color-primary);
+        background-color: var(--wim-color-bg-hover);
+      }
+
+      &.disabled {
+        color: var(--wim-color-text-disabled);
+        cursor: not-allowed;
+      }
+
+      &:focus-visible {
+        outline: none;
+        box-shadow: inset 0 0 0 2px var(--wim-color-primary);
+      }
+
+      .icon {
+        display: flex;
+        margin-right: var(--wim-spacing-xs);
+      }
+    }
+
+    /* Variant: Underline (Default) */
+    &.underline {
+      border-bottom: 1px solid var(--wim-color-border-secondary);
+
+      .slider {
+        @include indicator.indicator-slider-underline($bottom: -1px);
+
+        opacity: 0;
+      }
+
+      &.ready .slider {
+        pointer-events: none; // ensure it doesn't block clicks
+      }
+
+      .item {
+        margin-bottom: -1px;
+        border-bottom: 2px solid transparent;
+        border-radius: var(--wim-radius-sm) var(--wim-radius-sm) 0 0;
+
+        &:hover:not(.disabled) {
+          color: var(--wim-color-primary);
+          background-color: transparent;
+        }
+
+        &.active {
+          font-weight: var(--wim-font-weight-bold);
+          color: var(--wim-color-primary);
+        }
+      }
+    }
+
+    /* Variant: Pill */
+    &.pill {
+      .list {
+        gap: var(--wim-spacing-xs);
+      }
+
+      .slider {
+        @include indicator.indicator-slider-contained($radius: 99px, $bg: var(--wim-color-primary), $shadow: none, $offset: 0);
+
+        z-index: -1;
+        transition: background-color var(--wim-duration-fast) var(--wim-easing-base);
+      }
+
+      .list:has(.item.active:hover:not(.disabled)) .slider {
+        background-color: color-mix(in srgb, var(--wim-color-primary) 90%, black);
+      }
+
+      &.ready .slider {
+        transition:
+          transform 0.2s cubic-bezier(0.2, 0, 0, 1),
+          width 0.2s cubic-bezier(0.2, 0, 0, 1),
+          background-color var(--wim-duration-fast) var(--wim-easing-base);
+      }
+
+      .item {
+        padding-inline: var(--wim-spacing-xl);
+        border-radius: 99px;
+
+        &.active {
+          color: var(--wim-color-text-on-primary);
+
+          &:hover:not(.disabled) {
+            color: var(--wim-color-text-on-primary);
+          }
+
+          &:focus-visible {
+            box-shadow: inset 0 0 0 2px var(--wim-color-text-on-primary);
+          }
+        }
+      }
+    }
+
+    /* Variant: Contained */
+    &.contained {
+      @include indicator.indicator-container-segmented($bg: var(--wim-color-bg-secondary));
+
+      display: inline-flex; // Shrink to fit content
+
+      .list {
+        gap: 4px;
+      }
+
+      .slider {
+        @include indicator.indicator-slider-contained($offset: 0);
+
+        opacity: 0;
+      }
+
+      &.ready .slider {
+        pointer-events: none;
+      }
+
+      .item {
+        height: calc(var(--wim-tab-nav-height) - 8px); // Adjust for padding
+        border-radius: var(--wim-radius-sm);
+
+        &.active {
+          color: var(--wim-color-text-primary);
+        }
+      }
+    }
+  }
+}

@@ -45,8 +45,8 @@ export const CustomElement: Story = {
               alignItems: "center",
               justifyContent: "center",
               borderRadius: 4,
-              backgroundColor: "#108ee9",
-              color: "#fff",
+              backgroundColor: "var(--wim-color-primary)",
+              color: "var(--wim-color-text-on-primary)",
               fontSize: 14,
             }}
           >
@@ -71,7 +71,7 @@ const SpecificTargetStory = () => {
         style={{
           height: "300px",
           overflowY: "scroll",
-          border: "1px solid #108ee9",
+          border: "1px solid var(--wim-color-primary)",
           padding: "20px",
           position: "relative",
         }}

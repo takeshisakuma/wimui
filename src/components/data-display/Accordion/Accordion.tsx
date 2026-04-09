@@ -7,7 +7,7 @@ import React, {
   useId,
 } from "react";
 import classNames from "classnames";
-import "./accordion.scss";
+import styles from "./accordion.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 
 type AccordionContextType = {
@@ -108,7 +108,7 @@ export const Accordion = ({
     >
       <div
         ref={containerRef}
-        className={classNames("wim-accordion", className)}
+        className={classNames(styles.root, className)}
       >
         {children}
       </div>
@@ -151,9 +151,9 @@ export const AccordionItem = ({
     >
       <div
         className={classNames(
-          "wim-accordion__item",
-          disabled && "wim-accordion__item--disabled",
-          isLogicOpen && "wim-accordion__item--open",
+          styles.item,
+          disabled && styles.disabled,
+          isLogicOpen && styles.open,
           className,
         )}
       >
@@ -190,7 +190,7 @@ export const AccordionTrigger = ({
     if (item.disabled) return;
 
     const triggers = Array.from(
-      containerRef.current?.querySelectorAll(".wim-accordion__trigger:not(:disabled)") || [],
+      containerRef.current?.querySelectorAll(`.${styles.trigger}:not(:disabled)`) || [],
     ) as HTMLElement[];
     const index = triggers.indexOf(e.currentTarget as HTMLElement);
 
@@ -220,7 +220,7 @@ export const AccordionTrigger = ({
     <button
       type="button"
       id={item.triggerId}
-      className={classNames("wim-accordion__trigger", className)}
+      className={classNames(styles.trigger, className)}
       aria-expanded={item.isLogicOpen}
       aria-controls={item.contentId}
       aria-disabled={item.disabled}
@@ -229,12 +229,12 @@ export const AccordionTrigger = ({
       onKeyDown={handleKeyDown}
       {...props}
     >
-      <span className="wim-accordion__trigger-content">{children}</span>
+      <span className={styles.triggerContent}>{children}</span>
       <Icon
         name="ChevronDownIcon"
         className={classNames(
-          "wim-accordion__chevron",
-          item.isLogicOpen && "wim-accordion__chevron--open",
+          styles.chevron,
+          item.isLogicOpen && styles.open,
         )}
       />
     </button>
@@ -259,14 +259,14 @@ export const AccordionContent = ({
       role="region"
       aria-labelledby={item.triggerId}
       className={classNames(
-        "wim-accordion__content",
-        item.isLogicOpen && "wim-accordion__content--open",
+        styles.content,
+        item.isLogicOpen && styles.open,
         className,
       )}
       {...props}
     >
-      <div className="wim-accordion__content-inner">
-        <div className="wim-accordion__content-body">{children}</div>
+      <div className={styles.contentInner}>
+        <div className={styles.contentBody}>{children}</div>
       </div>
     </div>
   );

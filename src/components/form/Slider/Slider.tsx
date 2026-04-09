@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import classNames from "classnames";
 import { useSliderCommon } from "../../../utilities/slider-utils";
 import { FieldTemplate } from "../FieldTemplate";
-import "./slider.scss";
+import styles from "./slider.module.scss";
 
 type SliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
   /**
@@ -113,7 +113,6 @@ export const Slider = ({
     [min, max],
   );
 
-  // DOM を直接更新してレンダリングをスキップ
   const applyDomPosition = useCallback(
     (val: number) => {
       const pct = toPct(val);
@@ -127,7 +126,6 @@ export const Slider = ({
     [toPct],
   );
 
-  // 制御モードで value が外部から変わったとき（ドラッグ中でなければ）DOM を同期
   useEffect(() => {
     if (!isDragging.current) {
       applyDomPosition(currentValue);
@@ -188,7 +186,6 @@ export const Slider = ({
     };
   }, [handleGlobalMouseMove, handleGlobalMouseUp]);
 
-  // キーボード操作
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (disabled) return;
 
@@ -222,24 +219,24 @@ export const Slider = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames("wim-slider-container", className)}
+      className={className}
     >
       <div
         role="presentation"
-        className={classNames("wim-slider", disabled && "wim-slider--disabled")}
+        className={classNames(styles.root, disabled && styles.disabled)}
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}
         {...props}
       >
-        <div className="wim-slider__track-container" ref={trackRef}>
+        <div className={styles.trackContainer} ref={trackRef}>
           <div
             ref={trackFillRef}
-            className="wim-slider__track"
+            className={styles.track}
             style={{ width: `${percentage}%` }}
           />
           <div
             ref={thumbRef}
-            className="wim-slider__thumb"
+            className={styles.thumb}
             style={{ left: `${percentage}%` }}
             role="slider"
             aria-valuemin={min}
@@ -257,3 +254,5 @@ export const Slider = ({
     </FieldTemplate>
   );
 };
+
+Slider.displayName = "Slider";

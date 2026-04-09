@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./input-group.scss";
+import styles from "./input-group.module.scss";
 
 type InputGroupProps = {
   children: React.ReactNode;
@@ -19,8 +19,8 @@ export const InputGroup = ({
   return (
     <div
       className={classNames(
-        "wim-input-group",
-        fullWidth && "wim-input-group--full-width",
+        styles.root,
+        fullWidth && styles.fullWidth,
         className,
       )}
     >
@@ -42,7 +42,7 @@ export const InputGroupText = ({
   className,
 }: InputGroupTextProps) => {
   return (
-    <span className={classNames("wim-input-group-text", className)}>
+    <span className={classNames(styles.text, className)}>
       {children}
     </span>
   );

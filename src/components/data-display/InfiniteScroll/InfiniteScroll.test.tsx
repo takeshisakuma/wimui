@@ -16,7 +16,7 @@ describe("InfiniteScroll", () => {
 
   it("should render children", () => {
     render(
-      <InfiniteScroll onLoadMore={() => {}}>
+      <InfiniteScroll onLoadMore={() => {}} hasMore={false}>
         <div>Content</div>
       </InfiniteScroll>,
     );
@@ -25,7 +25,7 @@ describe("InfiniteScroll", () => {
 
   it("should show loader when loading is true", () => {
     render(
-      <InfiniteScroll onLoadMore={() => {}} loading={true}>
+      <InfiniteScroll onLoadMore={() => {}} hasMore={false} loading={true}>
         <div>Content</div>
       </InfiniteScroll>,
     );

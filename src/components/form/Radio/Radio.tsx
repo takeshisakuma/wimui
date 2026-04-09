@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useMergedRef } from "../../../hooks/useMergedRef";
-import "./radio.scss";
+import styles from "./radio.module.scss";
 
 export interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
   asChild?: boolean;
@@ -21,9 +21,15 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
 
     return (
       <Component
-        className={classNames("wim-radio-wrapper", disabled && "wim-radio--disabled", className)}
+        className={classNames(styles.root, disabled && styles.disabled, className)}
       >
-        <input type="radio" className="wim-radio-input" disabled={disabled} ref={mergedRef} {...props} />
+        <input
+          type="radio"
+          className={styles.input}
+          disabled={disabled}
+          ref={mergedRef}
+          {...props}
+        />
         <Slottable>{children}</Slottable>
       </Component>
     );

@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { Stepper } from "./Stepper";
+import styles from "./stepper.module.scss";
 
 describe("Stepper", () => {
   const steps = [
@@ -21,10 +22,10 @@ describe("Stepper", () => {
     const { container } = render(
       <Stepper steps={steps} current={0} status="process" />,
     );
-    const items = container.querySelectorAll(".wim-stepper__item");
-    expect(items[0]).toHaveClass("wim-stepper__item--process");
-    expect(items[1]).toHaveClass("wim-stepper__item--error"); // Custom status
-    expect(items[2]).toHaveClass("wim-stepper__item--wait");
+    const items = container.querySelectorAll(`.${styles.item}`);
+    expect(items[0]).toHaveClass(styles.process);
+    expect(items[1]).toHaveClass(styles.error); // Custom status
+    expect(items[2]).toHaveClass(styles.wait);
   });
 
   it("calls onChange when clickable step is clicked", () => {

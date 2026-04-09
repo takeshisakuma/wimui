@@ -1,0 +1,60 @@
+@layer component {
+.wim-field-template {
+  display: flex;
+
+  &--vertical {
+    flex-direction: column;
+    gap: 8px;
+
+    .wim-field-template-label {
+      display: block;
+      margin-bottom: 0; // FieldTemplate handles gaps via flex-gap
+    }
+
+    .wim-input-base:has(input[type="color"]) {
+      width: fit-content;
+      min-width: 120px;
+      max-width: 120px; // Lock width to avoid stretch
+      min-height: 42px;
+    }
+  }
+
+  &--horizontal {
+    flex-direction: row;
+    gap: 16px;
+    align-items: flex-start;
+
+    .wim-input-base:has(input[type="color"]) {
+      position: relative;
+      width: var(--wim-input-width, fit-content);
+      min-width: 160px;
+      max-width: 320px;
+    }
+
+    .wim-field-template-label-wrapper {
+        flex-shrink: 0;
+        width: 150px; // default label width for horizontal layout
+        padding-top: 10px; // align with input start
+    }
+    
+    .wim-field-template-content {
+        flex: 1;
+    }
+    
+    .wim-field-template-label {
+        display: block;
+    }
+  }
+
+  .wim-field-template-error {
+      margin-top: 4px;
+  }
+}
+
+// In case we're wrapping a group that might have its own gap
+.wim-field-template-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+} // @layer component

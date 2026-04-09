@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Breadcrumb } from "./Breadcrumb";
 import React from "react";
+import styles from "./breadcrumb.module.scss";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -31,10 +32,10 @@ describe("Breadcrumb", () => {
 
   it("handles keyboard navigation (ArrowRight, ArrowLeft)", () => {
     const { container } = render(<Breadcrumb items={items} />);
-    const nav = container.querySelector(".wim-breadcrumb") as HTMLElement;
+    const nav = container.querySelector(`.${styles.root}`) as HTMLElement;
     
-    // items rendered as Links are inside wim-breadcrumb__content
-    const linkItems = container.querySelectorAll(".wim-breadcrumb__link, .wim-breadcrumb__label--current") as NodeListOf<HTMLElement>;
+    // items rendered as Links are inside wim-breadcrumb__content (now styles.content)
+    const linkItems = container.querySelectorAll(`.${styles.link}, .${styles.label}.${styles.current}`) as NodeListOf<HTMLElement>;
     
     linkItems[0].focus(); // Focus "Home"
     expect(document.activeElement).toBe(linkItems[0]);
@@ -46,7 +47,7 @@ describe("Breadcrumb", () => {
     // Arrow Right -> Data
     fireEvent.keyDown(nav, { key: "ArrowRight" });
     expect(document.activeElement).toBe(linkItems[2]);
-
+    
     // Arrow Right -> loops to Home
     fireEvent.keyDown(nav, { key: "ArrowRight" });
     expect(document.activeElement).toBe(linkItems[0]);
@@ -67,12 +68,12 @@ describe("Breadcrumb", () => {
 
   it("applies small size class", () => {
     const { container } = render(<Breadcrumb items={items} size="sm" />);
-    expect(container.querySelector(".wim-breadcrumb--sm")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.sm}`)).toBeInTheDocument();
   });
 
   it("applies large size class", () => {
     const { container } = render(<Breadcrumb items={items} size="lg" />);
-    expect(container.querySelector(".wim-breadcrumb--lg")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.lg}`)).toBeInTheDocument();
   });
 
   it("renders custom separator", () => {
@@ -90,7 +91,7 @@ describe("Breadcrumb", () => {
     ];
     const { container } = render(<Breadcrumb items={itemsNoHref} />);
     // Middle item with no href should be a span without aria-current
-    const spans = container.querySelectorAll(".wim-breadcrumb__label");
+    const spans = container.querySelectorAll(`.${styles.label}`);
     expect(spans.length).toBeGreaterThan(0);
   });
 

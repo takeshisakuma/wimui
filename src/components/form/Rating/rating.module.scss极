@@ -1,0 +1,90 @@
+@layer component {
+  .wim-rating {
+    display: inline-flex;
+    align-items: center;
+
+    // サイズ指定用の変数
+    &--sm {
+      --wim-rating-star-size: 16px;
+
+      gap: 2px;
+    }
+
+    &--md {
+      --wim-rating-star-size: 24px;
+
+      gap: 4px;
+    }
+
+    &--lg {
+      --wim-rating-star-size: 32px;
+
+      gap: 6px;
+    }
+
+    &__star {
+      position: relative;
+      display: block; // ブロック要素として扱う
+      width: var(--wim-rating-star-size);
+      height: var(--wim-rating-star-size);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &-background {
+        color: var(--wim-color-border);
+
+        .wim-icon {
+          display: block;
+          width: var(--wim-rating-star-size);
+          height: var(--wim-rating-star-size);
+          fill: currentcolor;
+        }
+      }
+
+      &-foreground {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        overflow: hidden;
+        color: var(--wim-color-caution);
+        white-space: nowrap;
+        pointer-events: none; // クリック判定は親で行う
+        transition: width 0.2s ease;
+
+        .wim-icon {
+          display: block;
+          width: var(--wim-rating-star-size);
+          min-width: var(--wim-rating-star-size); // 縮小防止
+          height: var(--wim-rating-star-size);
+          fill: currentcolor;
+        }
+      }
+
+      &--full &-foreground {
+        width: 100%;
+      }
+
+      &--half &-foreground {
+        width: 50%;
+      }
+    }
+
+    &--disabled {
+      pointer-events: none;
+
+      .wim-rating__star {
+        cursor: default;
+
+        &-foreground {
+          color: var(--wim-color-text-tertiary);
+        }
+      }
+    }
+  }
+}

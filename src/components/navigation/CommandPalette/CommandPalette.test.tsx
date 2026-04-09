@@ -11,6 +11,7 @@ import {
   CommandPaletteEmpty,
   CommandPaletteGroup,
 } from "./CommandPalette";
+import styles from "./command-palette.module.scss";
 
 describe("CommandPalette", () => {
   beforeEach(() => {
@@ -104,7 +105,7 @@ describe("CommandPalette", () => {
       </CommandPalette>,
     );
 
-    const container = document.querySelector(".wim-command-palette-content")!;
+    const container = document.querySelector(`.${styles.content}`)!;
 
     expect(screen.getByText("Item 1").closest(".wim-base-list-item")).toHaveAttribute("aria-selected", "true");
 
@@ -134,7 +135,7 @@ describe("CommandPalette", () => {
       </CommandPalette>,
     );
 
-    const container = document.querySelector(".wim-command-palette-content")!;
+    const container = document.querySelector(`.${styles.content}`)!;
 
     fireEvent.keyDown(container, { key: "End" });
     expect(screen.getByText("Item 3").closest(".wim-base-list-item")).toHaveAttribute("aria-selected", "true");
@@ -155,7 +156,7 @@ describe("CommandPalette", () => {
       </CommandPalette>,
     );
 
-    const container = document.querySelector(".wim-command-palette-content")!;
+    const container = document.querySelector(`.${styles.content}`)!;
     fireEvent.keyDown(container, { key: "Enter" });
 
     expect(handleSelect).toHaveBeenCalled();
@@ -208,7 +209,7 @@ describe("CommandPalette", () => {
     fireEvent.click(screen.getByText("Open"));
     expect(screen.getByTestId("child")).toBeInTheDocument();
 
-    const overlay = document.querySelector(".wim-command-palette-overlay")!;
+    const overlay = document.querySelector(`.${styles.overlay}`)!;
     
     fireEvent.click(screen.getByTestId("child"));
     expect(screen.queryByTestId("child")).toBeInTheDocument();
@@ -234,7 +235,7 @@ describe("CommandPalette", () => {
 
     await waitFor(() => {
       expect(screen.getByText("Nothing found")).toBeInTheDocument();
-    });
+    }, { timeout: 1000 });
   });
 
   it("handles mouse move to reset keyboard navigation state", () => {
@@ -248,7 +249,7 @@ describe("CommandPalette", () => {
       </CommandPalette>,
     );
 
-    const content = document.querySelector(".wim-command-palette-content")!;
+    const content = document.querySelector(`.${styles.content}`)!;
     
     fireEvent.keyDown(content, { key: "ArrowDown" });
     expect(content).toHaveAttribute("data-keyboard-nav", "true");

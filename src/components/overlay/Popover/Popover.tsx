@@ -11,7 +11,7 @@ import {
 import classNames from "classnames";
 import { Transition } from "../../layout/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
-import "./popover.scss";
+import styles from "./popover.module.scss";
 
 import { useFloatingElement } from "../../_internal/useFloatingElement";
 
@@ -95,7 +95,7 @@ export const Popover = ({
         close,
       }}
     >
-      <div className={classNames("wim-popover", className)}>{children}</div>
+      <div className={classNames(styles.root, className)}>{children}</div>
     </PopoverContext.Provider>
   );
 };
@@ -148,7 +148,7 @@ export const PopoverTrigger = React.forwardRef<
     <button
       ref={ref as React.Ref<HTMLButtonElement>}
       type="button"
-      className={classNames("wim-popover-trigger", className)}
+      className={classNames(styles.trigger, className)}
       data-state={context.open ? "open" : "closed"}
       {...(context.getReferenceProps(
         props,
@@ -198,7 +198,7 @@ export const PopoverContent = React.forwardRef<
           <div
             ref={ref}
             style={{ ...floatingStyles, ...style }}
-            className={classNames("wim-popover-content", className)}
+            className={classNames(styles.content, className)}
             role="dialog"
             {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
           >
@@ -253,7 +253,7 @@ export const PopoverClose = ({
   return (
     <button
       type="button"
-      className={classNames("wim-popover-close", className)}
+      className={classNames(styles.close, className)}
       onClick={handleClick}
       aria-label={resolvedAriaLabel}
       {...props}
@@ -262,3 +262,4 @@ export const PopoverClose = ({
     </button>
   );
 };
+

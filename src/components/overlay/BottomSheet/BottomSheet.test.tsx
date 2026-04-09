@@ -47,7 +47,7 @@ describe("BottomSheet", () => {
 
     expect(screen.getByText("Sheet Content")).toBeInTheDocument();
 
-    const overlay = document.querySelector(".wim-bottom-sheet-overlay");
+    const overlay = screen.getByTestId("wim-overlay");
     if (overlay) fireEvent.click(overlay);
 
     await waitFor(() => {
@@ -279,7 +279,7 @@ describe("BottomSheet section components", () => {
         </BottomSheetContent>
       </BottomSheet>,
     );
-    const header = screen.getByText("Header").closest(".wim-bottom-sheet-header");
+    const header = screen.getByTestId("bottom-sheet-header");
     expect(header).toHaveClass("my-header");
   });
 
@@ -291,7 +291,7 @@ describe("BottomSheet section components", () => {
         </BottomSheetContent>
       </BottomSheet>,
     );
-    const footer = screen.getByText("Footer").closest(".wim-bottom-sheet-footer");
+    const footer = screen.getByTestId("bottom-sheet-footer");
     expect(footer).toBeInTheDocument();
     expect(footer).toHaveClass("my-footer");
   });
@@ -330,7 +330,7 @@ describe("BottomSheet section components", () => {
         </BottomSheetContent>
       </BottomSheet>,
     );
-    const body = screen.getByText("Body").closest(".wim-bottom-sheet-body");
+    const body = screen.getByTestId("bottom-sheet-body");
     expect(body).toBeInTheDocument();
     expect(body).toHaveClass("my-body");
   });

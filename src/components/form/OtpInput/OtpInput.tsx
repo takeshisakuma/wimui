@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
-import "./otp-input.scss";
+import styles from "./otp-input.module.scss";
 
 export type OtpInputLabels = {
   digitAriaLabel?: (index: number) => string;
@@ -145,38 +145,38 @@ export const OtpInput = ({
       errorId={errorId}
       className={className}
     >
-      <div className="wim-otp-input-wrapper">
-      <div
-        className={classNames(
-          "wim-otp-input-container",
-          disabled && "wim-otp-input-container--disabled",
-        )}
-      >
-        {Array.from({ length }).map((_, index) => (
-          <input
-            key={index}
-            id={index === 0 ? id : undefined}
-            ref={(el) => {
-              inputRefs.current[index] = el;
-            }}
-            className={classNames(
-              "wim-otp-input",
-              error && "wim-otp-input--error",
-              disabled && "wim-otp-input--disabled",
-            )}
-            type="text"
-            maxLength={1} // 基本的に1文字だが、onChange制御で上書きも許可している
-            value={internalValues[index]}
-            onChange={(e) => handleInputChange(e, index)}
-            onKeyDown={(e) => handleKeyDown(e, index)}
-            onPaste={handlePaste}
-            disabled={disabled}
-            aria-label={digitAriaLabel(index + 1)}
-            aria-invalid={!!error}
-            aria-describedby={errorId}
-          />
-        ))}
-      </div>
+      <div className={styles.root}>
+        <div
+          className={classNames(
+            styles.container,
+            disabled && styles.disabled,
+          )}
+        >
+          {Array.from({ length }).map((_, index) => (
+            <input
+              key={index}
+              id={index === 0 ? id : undefined}
+              ref={(el) => {
+                inputRefs.current[index] = el;
+              }}
+              className={classNames(
+                styles.input,
+                error && styles.error,
+                disabled && styles.disabled,
+              )}
+              type="text"
+              maxLength={1}
+              value={internalValues[index]}
+              onChange={(e) => handleInputChange(e, index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              onPaste={handlePaste}
+              disabled={disabled}
+              aria-label={digitAriaLabel(index + 1)}
+              aria-invalid={!!error}
+              aria-describedby={errorId}
+            />
+          ))}
+        </div>
       </div>
     </FieldTemplate>
   );

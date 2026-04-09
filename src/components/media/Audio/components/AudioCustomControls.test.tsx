@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { AudioCustomControls } from "./AudioCustomControls";
+import styles from "../audio.module.scss";
 
 // Mock Icon
 vi.mock("../../../media/Icon/Icon", () => ({
@@ -34,6 +35,7 @@ describe("AudioCustomControls", () => {
     playNext: vi.fn(),
     toggleSleepTimer: vi.fn(),
     formatTime: (s: number) => `00:${s}`,
+    styles,
   };
 
   beforeEach(() => {
@@ -167,23 +169,23 @@ describe("AudioCustomControls", () => {
 
   it("shows active class on Bass Boost button when isBassBoost is true", () => {
     render(<AudioCustomControls {...defaultProps} isBassBoost={true} />);
-    expect(screen.getByTitle("Bass Boost")).toHaveClass("active");
+    expect(screen.getByTitle("Bass Boost")).toHaveClass(styles.active);
   });
 
   it("shows active class on Shuffle button when shuffleMode is true", () => {
     render(<AudioCustomControls {...defaultProps} shuffleMode={true} />);
-    expect(screen.getByTitle("Shuffle")).toHaveClass("active");
+    expect(screen.getByTitle("Shuffle")).toHaveClass(styles.active);
   });
 
   it("shows active class on Repeat button when repeatMode is greater than 0", () => {
     render(<AudioCustomControls {...defaultProps} repeatMode={1} />);
-    expect(screen.getByTitle("Repeat One")).toHaveClass("active");
+    expect(screen.getByTitle("Repeat One")).toHaveClass(styles.active);
   });
 
   it("shows badge with 1 when repeatMode is 1", () => {
     render(<AudioCustomControls {...defaultProps} repeatMode={1} />);
     const badges = screen.getAllByText("1");
-    const badge = badges.find((el) => el.classList.contains("wim-audio-badge"));
+    const badge = badges.find((el) => el.classList.contains(styles.badge));
     expect(badge).toBeInTheDocument();
   });
 
@@ -221,6 +223,6 @@ describe("AudioCustomControls", () => {
     render(<AudioCustomControls {...defaultProps} remainingSleepTime={null} />);
     // The badge inside sleep timer should not exist
     const sleepBtn = screen.getByTitle("Sleep Timer (15m)");
-    expect(sleepBtn.querySelector(".wim-audio-badge")).not.toBeInTheDocument();
+    expect(sleepBtn.querySelector(`.${styles.badge}`)).not.toBeInTheDocument();
   });
 });

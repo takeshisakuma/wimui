@@ -16,7 +16,7 @@ export type OverlayBaseProps = {
   ariaModal?: boolean;
   closeOnOverlayClick?: boolean;
   closeOnEscape?: boolean;
-};
+} & React.ComponentPropsWithoutRef<"div">;
 
 export const OverlayBase = ({
   open,
@@ -30,6 +30,7 @@ export const OverlayBase = ({
   ariaModal = true,
   closeOnOverlayClick = true,
   closeOnEscape = true,
+  ...rest
 }: OverlayBaseProps) => {
   // Close on Escape
   useEffect(() => {
@@ -74,6 +75,7 @@ export const OverlayBase = ({
       <Transition
         show={open}
         className={classNames("wim-overlay", overlayClassName)}
+        data-testid="wim-overlay"
         onClick={(e) => {
           if (closeOnOverlayClick && e.target === e.currentTarget) {
             onOpenChange(false);
@@ -85,10 +87,12 @@ export const OverlayBase = ({
         <Transition
           show={open}
           className={contentClassName}
+          data-testid="wim-overlay-content"
           role={role}
           aria-modal={ariaModal}
           onClick={(e) => e.stopPropagation()}
           {...transitionProps}
+          {...rest}
         >
           <FocusTrap active={open}>
             {children}
@@ -98,4 +102,5 @@ export const OverlayBase = ({
     </Portal>
   );
 };
+
 

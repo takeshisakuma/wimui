@@ -68,7 +68,7 @@ export const Basic: Story = {
         style={{
           position: "relative",
           height: "400px",
-          border: "1px solid #ddd",
+          border: "1px solid var(--wim-color-border)",
           borderRadius: "8px",
         }}
       >
@@ -97,7 +97,7 @@ export const WithMessage: Story = {
         style={{
           position: "relative",
           height: "400px",
-          border: "1px solid #ddd",
+          border: "1px solid var(--wim-color-border)",
           borderRadius: "8px",
         }}
       >
@@ -126,7 +126,7 @@ export const DifferentLoaderTypes: Story = {
           style={{
             position: "relative",
             height: "300px",
-            border: "1px solid #ddd",
+            border: "1px solid var(--wim-color-border)",
             borderRadius: "8px",
           }}
         >
@@ -155,12 +155,12 @@ export const BackdropVariants: Story = {
           style={{
             position: "relative",
             height: "300px",
-            border: "1px solid #ddd",
+            border: "1px solid var(--wim-color-border)",
             borderRadius: "8px",
-            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            background: "var(--wim-gradient-glass)",
           }}
         >
-          <div style={{ padding: "20px", color: "white" }}>
+          <div style={{ padding: "20px", color: "var(--wim-color-text-on-primary)" }}>
             <h4>{t("story.loading_overlay_light_backdrop")}</h4>
           </div>
           <LoadingOverlay
@@ -173,12 +173,12 @@ export const BackdropVariants: Story = {
           style={{
             position: "relative",
             height: "300px",
-            border: "1px solid #ddd",
+            border: "1px solid var(--wim-color-border)",
             borderRadius: "8px",
-            background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+            background: "var(--wim-gradient-glass)",
           }}
         >
-          <div style={{ padding: "20px", color: "white" }}>
+          <div style={{ padding: "20px", color: "var(--wim-color-text-on-primary)" }}>
             <h4>{t("story.loading_overlay_dark_backdrop")}</h4>
           </div>
           <LoadingOverlay
@@ -209,7 +209,7 @@ export const BlurEffects: Story = {
             style={{
               position: "relative",
               height: "300px",
-              border: "1px solid #ddd",
+              border: "1px solid var(--wim-color-border)",
               borderRadius: "8px",
               backgroundImage: "url(https://picsum.photos/400/300)",
               backgroundSize: "cover",
@@ -218,7 +218,7 @@ export const BlurEffects: Story = {
             <div
               style={{
                 padding: "20px",
-                color: "white",
+                color: "var(--wim-color-text-on-primary)",
                 textShadow: "0 0 4px black",
               }}
             >
@@ -282,7 +282,7 @@ export const Interactive: Story = {
         style={{
           position: "relative",
           height: "400px",
-          border: "1px solid #ddd",
+          border: "1px solid var(--wim-color-border)",
           borderRadius: "8px",
           padding: "20px",
         }}
@@ -309,7 +309,7 @@ export const CustomLoader: Story = {
   args: {
     visible: true,
     children: (
-      <div style={{ textAlign: "center", color: "white" }}>
+      <div style={{ textAlign: "center", color: "var(--wim-color-text-on-primary)" }}>
         <Icon
           name="ClockIcon"
           style={{ width: "48px", height: "48px", marginBottom: "16px" }}
@@ -327,7 +327,7 @@ export const CustomLoader: Story = {
         style={{
           position: "relative",
           height: "400px",
-          border: "1px solid #ddd",
+          border: "1px solid var(--wim-color-border)",
           borderRadius: "8px",
         }}
       >
@@ -336,7 +336,7 @@ export const CustomLoader: Story = {
           <p>{t("story.loading_overlay_custom_desc")}</p>
         </div>
         <LoadingOverlay {...args}>
-          <div style={{ textAlign: "center", color: "white" }}>
+          <div style={{ textAlign: "center", color: "var(--wim-color-text-on-primary)" }}>
             <Icon
               name="ClockIcon"
               style={{ width: "48px", height: "48px", marginBottom: "16px" }}

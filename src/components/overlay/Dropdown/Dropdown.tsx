@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, ReactNode, useId } from "react";
 import classNames from "classnames";
 import { BaseListItem } from "../../_internal/BaseListItem";
-import "./dropdown.scss";
+import styles from "./dropdown.module.scss";
 
 // Context to share state between components
 const DropdownContext = React.createContext<{
@@ -135,7 +135,7 @@ export const Dropdown = ({ children, className }: DropdownProps) => {
     <DropdownContext.Provider
       value={{ isOpen, toggle, close, menuId, triggerId, focusedIndex, setFocusedIndex, registerItem, containerRef }}
     >
-      <div role="none" className={classNames("wim-dropdown", className)} ref={containerRef} onKeyDown={handleKeyDown}>
+      <div role="none" className={classNames(styles.root, className)} ref={containerRef} onKeyDown={handleKeyDown}>
         {children}
       </div>
     </DropdownContext.Provider>
@@ -157,7 +157,7 @@ export const DropdownTrigger = ({
   return (
     <div
       id={triggerId}
-      className={classNames("wim-dropdown-trigger", className)}
+      className={classNames(styles.trigger, className)}
       onClick={toggle}
       aria-haspopup="menu"
       aria-expanded={isOpen}
@@ -190,6 +190,7 @@ export const DropdownMenu = ({
   align = "left",
 }: DropdownMenuProps) => {
   const { isOpen, menuId, triggerId } = React.useContext(DropdownContext);
+  const alignClass = align === "left" ? styles.alignLeft : styles.alignRight;
 
   return (
     <Transition
@@ -202,8 +203,8 @@ export const DropdownMenu = ({
       leaveTo="fade-leave-to"
       id={menuId}
       className={classNames(
-        "wim-dropdown-menu",
-        `wim-dropdown-menu--align-${align}`,
+        styles.menu,
+        alignClass,
         className,
       )}
       role="menu"
@@ -242,7 +243,7 @@ export const DropdownItem = ({
 
   return (
     <BaseListItem
-      className={classNames("wim-dropdown-item", className)}
+      className={classNames(styles.item, className)}
       onClick={handleClick}
       onFocus={() => setFocusedIndex(index)}
       disabled={disabled}
@@ -259,3 +260,4 @@ export const DropdownItem = ({
     </BaseListItem>
   );
 };
+

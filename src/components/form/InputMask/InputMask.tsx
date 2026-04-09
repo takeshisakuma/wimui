@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from "react";
 
 import { Input } from "../../form/Input/Input";
-import "./input-mask.scss";
+import classNames from "classnames";
+import styles from "./input-mask.module.scss";
 
 type InputMaskProps = React.ComponentProps<typeof Input> & {
   mask: string;
@@ -86,6 +87,7 @@ export const InputMask = ({
   return (
     <Input
       {...props}
+      className={classNames(styles.root, props.className)}
       value={currentValue}
       onChange={handleInputChange}
       placeholder={props.placeholder || mask.replace(/[9a*]/g, maskChar)}

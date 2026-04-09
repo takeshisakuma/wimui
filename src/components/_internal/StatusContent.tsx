@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import classNames from "classnames";
 import { ComponentSize } from "../../types/tokens";
-import "./statusContent.scss";
+import styles from "./status-content.module.scss";
 
 export type StatusContentProps = {
   /**
@@ -29,13 +29,13 @@ export type StatusContentProps = {
    */
   className?: string;
   /**
-   * Prefix for BEM classes
-   */
-  prefixCls?: string;
-  /**
    * Size variation
    */
   size?: ComponentSize;
+  /**
+   * Custom prefix class name applied to the root element
+   */
+  prefixCls?: string;
 };
 
 /**
@@ -48,28 +48,28 @@ export const StatusContent = ({
   actions,
   children,
   className,
-  prefixCls = "wim-status-content",
   size = "md",
+  prefixCls,
 }: StatusContentProps) => {
   return (
     <div
-      className={classNames(prefixCls, `${prefixCls}--${size}`, className)}
+      className={classNames(styles.root, styles[size], prefixCls, className)}
     >
-      <div className={`${prefixCls}__container`}>
-        {icon && <div className={`${prefixCls}__icon`}>{icon}</div>}
-        <div className={`${prefixCls}__content`}>
+      <div className={styles.container}>
+        {icon && <div className={styles.icon}>{icon}</div>}
+        <div className={styles.content}>
           {title && (
-            <div className={`${prefixCls}__title`}>{title}</div>
+            <div className={styles.title}>{title}</div>
           )}
           {description && (
-            <div className={`${prefixCls}__description`}>
+            <div className={styles.description}>
               {description}
             </div>
           )}
         </div>
       </div>
-      {children && <div className={`${prefixCls}__body`}>{children}</div>}
-      {actions && <div className={`${prefixCls}__actions`}>{actions}</div>}
+      {children && <div className={styles.body}>{children}</div>}
+      {actions && <div className={styles.actions}>{actions}</div>}
     </div>
   );
 };

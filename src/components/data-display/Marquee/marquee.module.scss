@@ -1,0 +1,54 @@
+@layer component {
+  .root {
+    display: flex;
+    gap: var(--wim-spacing-md);
+    width: 100%;
+    overflow: hidden;
+    user-select: none;
+
+    &:hover .content {
+      animation-play-state: var(--pause-on-hover, running);
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--wim-spacing-md);
+    justify-content: space-around;
+    min-width: 100%;
+    animation: scroll var(--duration, 20s) linear infinite;
+    will-change: transform;
+
+    &.reverse {
+      animation-direction: reverse;
+    }
+
+    &.vertical {
+      flex-direction: column;
+      animation: scrollVertical var(--duration, 20s) linear
+        infinite;
+      will-change: transform;
+    }
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-100% - var(--wim-spacing-md)));
+    }
+  }
+
+  @keyframes scrollVertical {
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(calc(-100% - var(--wim-spacing-md)));
+    }
+  }
+}

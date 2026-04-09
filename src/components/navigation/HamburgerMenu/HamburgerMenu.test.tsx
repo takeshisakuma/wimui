@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { HamburgerMenu } from "./HamburgerMenu";
+import styles from "./hamburger-menu.module.scss";
 
 describe("HamburgerMenu", () => {
   it("renders correctly", () => {
@@ -13,7 +14,7 @@ describe("HamburgerMenu", () => {
   it("toggles state class", () => {
     render(<HamburgerMenu open />);
     const button = screen.getByRole("button", { name: "Close menu" });
-    expect(button).toHaveClass("wim-hamburger-menu--open");
+    expect(button).toHaveClass(styles.open);
   });
 
   it("handles click", () => {

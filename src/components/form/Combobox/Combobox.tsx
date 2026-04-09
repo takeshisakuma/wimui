@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect, useId } from "react";
+import classNames from "classnames";
 import { Input } from "../../form/Input/Input";
 import { BaseListItem } from "../../_internal/BaseListItem";
-import "./combobox.scss";
-
+import styles from "./combobox.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 
 export type ComboboxOption = {
@@ -143,7 +143,7 @@ export const Combobox = ({
       className={className}
     >
       <div
-        className="wim-combobox"
+        className={styles.root}
         ref={containerRef}
         onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}
@@ -176,35 +176,44 @@ export const Combobox = ({
           {...props}
         />
         {isOpen && filteredOptions.length > 0 && (
-          <ul
-            id={listboxId}
-            className="wim-combobox-list"
-            role="listbox"
-            aria-labelledby={labelId}
-          >
-            {filteredOptions.map((option, index) => (
-              <BaseListItem
-                as="li"
-                key={option.value}
-                id={`${listboxId}-option-${index}`}
-                className="wim-combobox-option"
-                active={index === activeIndex}
-                onClick={() => handleOptionClick(option)}
-                onMouseEnter={() => setActiveIndex(index)}
-                role="option"
-                aria-selected={index === activeIndex}
-              >
-                {option.label}
-              </BaseListItem>
-            ))}
-          </ul>
+          <div className={styles.dropdown}>
+            <ul
+              id={listboxId}
+              className={styles.list}
+              role="listbox"
+              aria-labelledby={labelId}
+            >
+              {filteredOptions.map((option, index) => (
+                <BaseListItem
+                  as="li"
+                  key={option.value}
+                  id={`${listboxId}-option-${index}`}
+                  className={classNames(
+                    styles.option,
+                    index === activeIndex && styles.selected,
+                  )}
+                  active={index === activeIndex}
+                  onClick={() => handleOptionClick(option)}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  role="option"
+                  aria-selected={index === activeIndex}
+                >
+                  {option.label}
+                </BaseListItem>
+              ))}
+            </ul>
+          </div>
         )}
         {isOpen && filteredOptions.length === 0 && (
-          <div className="wim-combobox-empty" role="region" aria-live="polite">
-            {noResults}
+          <div className={styles.dropdown}>
+            <div className={styles.empty} role="region" aria-live="polite">
+              {noResults}
+            </div>
           </div>
         )}
       </div>
     </FieldTemplate>
   );
 };
+
+Combobox.displayName = "Combobox";

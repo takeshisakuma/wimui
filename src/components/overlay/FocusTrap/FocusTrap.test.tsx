@@ -99,7 +99,7 @@ describe("FocusTrap", () => {
         <button>X</button>
       </FocusTrap>,
     );
-    expect(container.querySelector(".wim-focus-trap")).toHaveClass("my-trap");
+    expect(container.firstChild).toHaveClass("my-trap");
   });
 
   it("restores focus to previously focused element on unmount", () => {

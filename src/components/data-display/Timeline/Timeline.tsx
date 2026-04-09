@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./timeline.scss";
+import styles from "./timeline.module.scss";
 
 export interface TimelineProps {
   children: React.ReactNode;
@@ -16,8 +16,8 @@ export const Timeline = ({
   return (
     <div
       className={classNames(
-        "wim-timeline",
-        `wim-timeline--${align}`,
+        styles.root,
+        styles[align],
         className,
       )}
     >
@@ -47,8 +47,8 @@ export const TimelineItem = ({
   return (
     <div
       className={classNames(
-        "wim-timeline-item",
-        `wim-timeline-item--${align}`,
+        styles.item,
+        align && styles[align],
         className,
       )}
     >
@@ -67,7 +67,7 @@ export const TimelineSeparator = ({
   className,
 }: TimelineSeparatorProps): React.ReactElement => {
   return (
-    <div className={classNames("wim-timeline-separator", className)}>
+    <div className={classNames(styles.separator, className)}>
       {children}
     </div>
   );
@@ -80,7 +80,7 @@ export interface TimelineConnectorProps {
 export const TimelineConnector = ({
   className,
 }: TimelineConnectorProps): React.ReactElement => {
-  return <div className={classNames("wim-timeline-connector", className)} />;
+  return <div className={classNames(styles.connector, className)} />;
 };
 
 export interface TimelinePointProps {
@@ -98,9 +98,9 @@ export const TimelinePoint = ({
   return (
     <div
       className={classNames(
-        "wim-timeline-point",
-        variant && `wim-timeline-point--${variant}`,
-        isIcon && "wim-timeline-point--icon",
+        styles.point,
+        variant && styles[variant],
+        isIcon && styles.icon,
         className,
       )}
     >
@@ -119,7 +119,7 @@ export const TimelineContent = ({
   className,
 }: TimelineContentProps): React.ReactElement => {
   return (
-    <div className={classNames("wim-timeline-content", className)}>
+    <div className={classNames(styles.content, className)}>
       {children}
     </div>
   );
@@ -135,7 +135,7 @@ export const TimelineOppositeContent = ({
   className,
 }: TimelineOppositeContentProps): React.ReactElement => {
   return (
-    <div className={classNames("wim-timeline-opposite-content", className)}>
+    <div className={classNames(styles.oppositeContent, className)}>
       {children}
     </div>
   );

@@ -123,7 +123,7 @@ export const JustifyBetween: Story = {
   args: {
     justify: "between",
     gap: 16,
-    style: { width: "100%", border: "1px solid #ddd", padding: "10px" },
+    style: { width: "100%", border: "1px solid var(--wim-color-border)", padding: "10px" },
   },
 };
 
@@ -143,6 +143,6 @@ export const Wrapped: Story = {
   args: {
     wrap: "wrap",
     gap: 16,
-    style: { width: "200px", padding: "10px", border: "1px solid #ccc" },
+    style: { width: "200px", padding: "10px", border: "1px solid var(--wim-color-border)" },
   },
 };

@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
 import { WimIntent, FieldVariant } from "../../../types/tokens";
-import "./rich-text-editor.scss";
+import styles from "./rich-text-editor.module.scss";
 
 // ---- Inline SVG toolbar icons ----
 
@@ -170,7 +170,7 @@ type ToolbarButtonProps = {
 const ToolbarButton = React.memo(({ onClick, active, disabled, title, children }: ToolbarButtonProps) => (
   <button
     type="button"
-    className={classNames("wim-rte__toolbar-btn", active && "wim-rte__toolbar-btn--active")}
+    className={classNames(styles.toolbarBtn, active && styles.active)}
     onClick={onClick}
     disabled={disabled}
     title={title}
@@ -362,7 +362,7 @@ export const RichTextEditor = ({
 
   const renderToolbarItem = React.useCallback((item: RichTextEditorToolbarItem, index: number) => {
     if (item === "separator") {
-      return <span key={`sep-${index}`} className="wim-rte__toolbar-sep" aria-hidden="true" />;
+      return <span key={`sep-${index}`} className={styles.toolbarSep} aria-hidden="true" />;
     }
 
     const itemProps = {
@@ -467,15 +467,15 @@ export const RichTextEditor = ({
     >
       <div
         className={classNames(
-          "wim-rte",
-          `wim-rte--${effectiveIntent}`,
-          `wim-rte--${variant}`,
-          fullWidth && "wim-rte--full-width",
+          styles.root,
+          styles[effectiveIntent],
+          styles[variant],
+          fullWidth && styles.fullWidth,
         )}
       >
         {/* Toolbar */}
         <div
-          className="wim-rte__toolbar"
+          className={styles.toolbar}
           role="toolbar"
           aria-label={toolbarAriaLabel}
           aria-controls={id}
@@ -488,7 +488,7 @@ export const RichTextEditor = ({
         <div
           ref={editorRef}
           id={id}
-          className="wim-rte__content"
+          className={styles.content}
           contentEditable={!isDisabled}
           suppressContentEditableWarning
           role="textbox"

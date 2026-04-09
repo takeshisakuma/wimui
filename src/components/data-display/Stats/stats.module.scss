@@ -1,0 +1,66 @@
+@layer component {
+  .root {
+    min-width: 160px;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: var(--wim-spacing-2xl);
+  }
+
+  .label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    color: var(--wim-color-text-secondary);
+  }
+
+  .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 2rem;
+    color: var(--wim-color-text-primary);
+  }
+
+  .description {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: var(--wim-color-text-tertiary);
+  }
+
+  .trend {
+    display: inline-flex;
+    gap: var(--wim-spacing-2xs);
+    align-items: center;
+    width: fit-content;
+    padding: var(--wim-spacing-3xs) var(--wim-spacing-xs);
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: var(--wim-radius-sm);
+
+    &.up {
+      color: color-mix(in srgb, var(--wim-color-positive) 60%, var(--wim-color-text-primary));
+      background-color: color-mix(in srgb, var(--wim-color-positive) 15%, transparent);
+    }
+
+    &.down {
+      color: color-mix(in srgb, var(--wim-color-destructive) 60%, var(--wim-color-text-primary));
+      background-color: color-mix(in srgb, var(--wim-color-destructive) 15%, transparent);
+    }
+
+    &.neutral {
+      color: var(--wim-color-text-tertiary);
+      background-color: var(--wim-color-disabled);
+    }
+  }
+
+  .trendIcon {
+    // Styling for trend icon span
+  }
+
+  .trendValue {
+    // Styling for trend value span
+  }
+}

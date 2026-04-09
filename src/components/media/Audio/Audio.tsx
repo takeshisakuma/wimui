@@ -5,7 +5,7 @@ import { useMediaLoader } from "@/hooks/useMediaLoader";
 import { useAudioPlayer } from "./hooks/useAudioPlayer";
 import { useAudioMetadata } from "./hooks/useAudioMetadata";
 import { AudioCustomControls, type AudioLabels } from "./components/AudioCustomControls";
-import "./audio.scss";
+import styles from "./audio.module.scss";
 
 export type { AudioLabels };
 
@@ -132,40 +132,43 @@ export const Audio = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTrackIndex, currentTrack]);
 
+  const radiusClass = radius !== "none" ? styles[`radius${radius.charAt(0).toUpperCase() + radius.slice(1)}`] : null;
+
   return (
     <figure
-      className={classNames("wim-audio-container", className)}
+      className={classNames(styles.root, "wim-audio-container", className)}
       style={style}
     >
       <div
         ref={mediaLoaderRef}
         className={classNames(
+          styles.inner,
           "wim-audio-inner",
-          radius !== "none" && `wim-audio--radius-${radius}`,
-          customControls && shadow && "wim-audio--shadow",
-          customControls && border && "wim-audio--border",
-          customControls && "wim-audio--custom",
-          visualizer && customControls && "wim-audio--has-visualizer",
-          fadeIn && "wim-audio--fade-in",
-          fadeIn && isLoaded && "wim-audio--is-loaded",
-          shouldShowSkeleton && "wim-audio--loading",
+          radiusClass,
+          customControls && shadow && styles.shadow,
+          customControls && border && styles.border,
+          customControls && styles.custom,
+          visualizer && customControls && styles.hasVisualizer,
+          fadeIn && styles.fadeIn,
+          fadeIn && isLoaded && styles.isLoaded,
+          shouldShowSkeleton && styles.loading,
         )}
       >
         {visualizer && customControls && (
-          <canvas ref={canvasRef} className="wim-audio-visualizer-canvas" />
+          <canvas ref={canvasRef} className={classNames(styles.visualizerCanvas, "wim-audio-visualizer-canvas")} />
         )}
 
         {customControls && showMetadata && (metaTitle || metaArtist || metaCover) && (
           <div
-            className="wim-audio-metadata"
+            className={classNames(styles.metadata, "wim-audio-metadata")}
             style={{ position: "relative", zIndex: 2 }}
           >
             {metaCover && (
-              <img src={metaCover} alt="Cover" className="wim-audio-cover" />
+              <img src={metaCover} alt="Cover" className={classNames(styles.cover, "wim-audio-cover")} />
             )}
-            <div className="wim-audio-info">
-              <div className="wim-audio-title">{metaTitle || unknownTitle}</div>
-              <div className="wim-audio-artist">{metaArtist || unknownArtist}</div>
+            <div className={classNames(styles.info, "wim-audio-info")}>
+              <div className={classNames(styles.title, "wim-audio-title")}>{metaTitle || unknownTitle}</div>
+              <div className={classNames(styles.artist, "wim-audio-artist")}>{metaArtist || unknownArtist}</div>
             </div>
           </div>
         )}
@@ -178,7 +181,7 @@ export const Audio = ({
             <audio
               ref={activeAudioRef}
               src={currentTrack?.src}
-              className="wim-audio"
+              className={classNames(styles.audio, "wim-audio")}
               loop={player.repeatMode === 1 && playlist.length === 1}
               muted={player.isMuted}
               controls={!customControls && controls}
@@ -213,6 +216,7 @@ export const Audio = ({
 
         {customControls && (
           <AudioCustomControls
+            styles={styles}
             isPlaying={isPlaying}
             currentTime={player.currentTime}
             duration={player.duration}
@@ -242,7 +246,7 @@ export const Audio = ({
         )}
       </div>
       {caption && (
-        <figcaption className="wim-audio__caption">{caption}</figcaption>
+        <figcaption className={classNames(styles.caption, "wim-audio__caption")}>{caption}</figcaption>
       )}
     </figure>
   );

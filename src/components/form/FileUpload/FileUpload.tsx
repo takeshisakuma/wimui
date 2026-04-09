@@ -4,7 +4,7 @@ import { Button } from "../../form/Button/Button";
 import { Icon } from "../../media/Icon/Icon";
 import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
-import "./file-upload.scss";
+import styles from "./file-upload.module.scss";
 
 type FileUploadProps = {
   label?: React.ReactNode;
@@ -70,12 +70,12 @@ export const FileUpload = ({
       required={required}
       layout={layout}
       className={classNames(
-        "wim-file-upload",
-        `wim-file-upload--${size}`,
+        styles.root,
+        styles[size],
         className,
       )}
     >
-      <div className="wim-file-upload__controls">
+      <div className={styles.controls}>
         <input
           type="file"
           ref={inputRef}
@@ -83,7 +83,7 @@ export const FileUpload = ({
           multiple={multiple}
           disabled={disabled}
           onChange={handleFileChange}
-          className="wim-file-upload__input"
+          className={styles.input}
           aria-hidden="true"
           tabIndex={-1}
         />
@@ -97,9 +97,9 @@ export const FileUpload = ({
         >{buttonLabel}</Button>
         <span
           className={classNames(
-            "wim-file-upload__file-names",
-            `wim-file-upload__file-names--${size}`,
-            disabled && "wim-file-upload__file-names--disabled",
+            styles.fileNames,
+            styles[size],
+            disabled && styles.disabled,
           )}
         >
           {fileNames}

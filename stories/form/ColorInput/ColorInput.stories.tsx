@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { Label } from "@/components/typography/Label/Label";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 
-
 const meta: Meta<typeof ColorInput> = {
   title: "Components/Pickers & Sliders/ColorInput",
   component: ColorInput,
@@ -42,8 +41,8 @@ export const WithIcon: Story = {
     );
   },
   args: {
-    defaultValue: "#3b82f6",
-    leftIcon: "ImageIcon",
+    defaultValue: "\n\n",
+    leftIcon: "CheckIcon",
   },
 };
 

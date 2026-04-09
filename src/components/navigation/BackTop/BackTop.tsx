@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { useTranslation } from "react-i18next";
-import "./backtop.scss";
+import styles from "./backtop.module.scss";
 
 export interface BackTopProps {
   /** Target container that will be scrolled */
@@ -92,16 +92,16 @@ export const BackTop = ({
   };
 
   const defaultElement = (
-    <div className="wim-back-top__content">
-      <Icon name="ChevronUpIcon" className="wim-back-top__icon" />
+    <div className={styles.content}>
+      <Icon name="ChevronUpIcon" className={styles.icon} />
     </div>
   );
 
   return (
     <div
       className={classNames(
-        "wim-back-top",
-        !visible && "wim-back-top--hidden",
+        styles.root,
+        !visible && styles.hidden,
         className,
       )}
       style={style}

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { Anchor } from "./Anchor";
+import styles from "./anchor.module.scss";
 
 describe("Anchor", () => {
   const items = [
@@ -25,7 +26,7 @@ describe("Anchor", () => {
       "section2": { offsetTop: 500, getBoundingClientRect: () => ({ top: 500, height: 50 }) },
     };
 
-    vi.spyOn(document, "getElementById").mockImplementation((id) => (mockElements[id] as HTMLElement) || null);
+    vi.spyOn(document, "getElementById").mockImplementation((id) => (mockElements[id] as unknown as HTMLElement) || null);
     
     // Mock getBoundingClientRect for container and links
     vi.spyOn(Element.prototype, "getBoundingClientRect").mockImplementation(function(this: HTMLElement) {
@@ -81,7 +82,7 @@ describe("Anchor", () => {
       fireEvent.scroll(window);
     });
 
-    const activeItem = container.querySelector(".wim-anchor__item--active");
+    const activeItem = container.querySelector(`.${styles.active}`);
     expect(activeItem?.querySelector("a")?.getAttribute("href")).toBe("#section1");
   });
 
@@ -98,13 +99,13 @@ describe("Anchor", () => {
       fireEvent.scroll(window);
     });
 
-    const activeItem = container.querySelector(".wim-anchor__item--active");
+    const activeItem = container.querySelector(`.${styles.active}`);
     expect(activeItem?.textContent).toContain("Section 2");
   });
 
   it("handles horizontal placement", () => {
     const { container } = render(<Anchor items={items} direction="horizontal" />);
-    expect(container.querySelector(".wim-anchor--horizontal")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.horizontal}`)).toBeInTheDocument();
   });
 
   it("applies marker styles correctly", () => {
@@ -120,12 +121,12 @@ describe("Anchor", () => {
       fireEvent.scroll(window);
     });
 
-    const ball = container.querySelector(".wim-anchor__ink-ball");
+    const ball = container.querySelector(`.${styles.inkBall}`);
     expect(ball).toHaveStyle({ opacity: "1" });
   });
 
   it("handles empty items array", () => {
     const { container } = render(<Anchor items={[]} />);
-    expect(container.querySelector(".wim-anchor__list")).toBeEmptyDOMElement();
+    expect(container.querySelector(`.${styles.list}`)).toBeEmptyDOMElement();
   });
 });

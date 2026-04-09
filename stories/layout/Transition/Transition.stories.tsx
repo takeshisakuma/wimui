@@ -47,9 +47,9 @@ export const Fade: Story = {
                 variant="elevated"
                 padding="lg"
                 style={{
-                  backgroundColor: "var(--wim-color-surface, #ffffff)",
-                  border: "2px solid", borderColor: "var(--wim-color-primary, #3b82f6)",
-                  color: "var(--wim-color-text-primary, #1e293b)",
+                  backgroundColor: "var(--wim-color-surface)",
+                  border: "2px solid", borderColor: "var(--wim-color-primary)",
+                  color: "var(--wim-color-text-primary)",
                   fontWeight: "bold",
                   minWidth: "150px",
                   textAlign: "center",

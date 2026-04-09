@@ -65,7 +65,7 @@ describe("Menu", () => {
     );
 
     const item = screen.getByText("Disabled Item").parentElement;
-    expect(item).toHaveClass("wim-base-list-item--disabled");
+    expect(item).toHaveAttribute("aria-disabled", "true");
 
     fireEvent.click(screen.getByText("Disabled Item"));
     expect(handleClick).not.toHaveBeenCalled();
@@ -82,7 +82,7 @@ describe("Menu", () => {
       </Menu>,
     );
 
-    const menu = container.querySelector(".wim-menu") as HTMLElement;
+    const menu = screen.getByRole("menu");
     const items = container.querySelectorAll('[role="menuitem"]');
     
     // Focus first
@@ -119,7 +119,7 @@ describe("Menu", () => {
       </Menu>,
     );
 
-    const menu = container.querySelector(".wim-menu") as HTMLElement;
+    const menu = screen.getByRole("menu");
     const items = container.querySelectorAll('[role="menuitem"]');
     (items[0] as HTMLElement).focus();
 

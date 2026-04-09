@@ -4,8 +4,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import { TreeView, TreeViewNode } from "../../data-display/TreeView/TreeView";
 import { InputBase } from "../InputBase";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
-import "./tree-select.scss";
-
+import styles from "./tree-select.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 
 /** treeData の label をそのまま使ってツリーを再構築する */
@@ -240,10 +239,10 @@ export const TreeSelect = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames("wim-tree-select-container", className)}
+      className={classNames(styles.container, className)}
     >
       <div
-        className="wim-tree-select"
+        className={styles.root}
         ref={containerRef}
         {...wrapperProps}
       >
@@ -255,14 +254,14 @@ export const TreeSelect = ({
           intent={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
-            isOpen && "wim-tree-select__trigger--open",
+            isOpen && styles.open,
           )}
         >
           <div
             id={triggerId}
             className={classNames(
-              "wim-tree-select__trigger",
-              disabled && "wim-tree-select__trigger--disabled",
+              styles.trigger,
+              disabled && styles.disabled,
             )}
             onClick={handleToggle}
             onKeyDown={handleKeyDown}
@@ -280,8 +279,8 @@ export const TreeSelect = ({
           >
             <div
               className={classNames(
-                "wim-tree-select__value",
-                !displayValue && "wim-tree-select__value--placeholder",
+                styles.value,
+                !displayValue && styles.placeholder,
               )}
             >
               {displayValue || placeholder}
@@ -297,9 +296,9 @@ export const TreeSelect = ({
           leave="fade-leave"
           leaveFrom="fade-leave-from"
           leaveTo="fade-leave-to"
-          className="wim-tree-select__dropdown"
+          className={styles.dropdown}
         >
-          <div id={dropdownId} className="wim-tree-select__dropdown-inner">
+          <div id={dropdownId}>
             <FocusTrap active={isOpen} initialFocus={false}>
               <div role="dialog" aria-modal="true" aria-labelledby={labelId}>
                 <TreeView
@@ -322,3 +321,5 @@ export const TreeSelect = ({
     </FieldTemplate>
   );
 };
+
+TreeSelect.displayName = "TreeSelect";

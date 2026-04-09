@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { VideoAdvancedMenu } from "./VideoAdvancedMenu";
+import styles from "../video.module.scss";
 
 // Mock Icon
 vi.mock("../../../media/Icon/Icon", () => ({
@@ -27,6 +28,7 @@ describe("VideoAdvancedMenu", () => {
     ],
     currentPlayIndex: 0,
     playPlaylistItem: vi.fn(),
+    styles,
   };
 
   it("renders null when activeMenu is null", () => {
@@ -82,7 +84,7 @@ describe("VideoAdvancedMenu", () => {
 
   it("goes back to main menu from submenus", () => {
     const { container } = render(<VideoAdvancedMenu {...defaultProps} activeMenu="quality" />);
-    const backBtn = container.querySelector(".wim-video-menu-title button");
+    const backBtn = container.querySelector(`.${styles.menuTitle} button`);
     if (backBtn) fireEvent.click(backBtn);
     expect(defaultProps.setActiveMenu).toHaveBeenCalledWith("main");
   });

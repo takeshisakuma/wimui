@@ -1,0 +1,102 @@
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    padding: var(--wim-spacing-4xl) var(--wim-spacing-md);
+    text-align: center;
+  
+    &.sm {
+      gap: var(--wim-spacing-md);
+      align-items: flex-start;
+      padding: var(--wim-spacing-lg) var(--wim-spacing-md);
+      text-align: left;
+  
+      .container {
+        flex-direction: row;
+        gap: var(--wim-spacing-md);
+        align-items: center;
+      }
+  
+      .icon {
+        margin-bottom: 0;
+  
+        svg {
+          width: 32px;
+          height: 32px;
+          font-size: 32px;
+        }
+      }
+  
+      .title {
+        font-size: var(--wim-font-size-md);
+      }
+  
+      .description {
+        font-size: var(--wim-font-size-sm);
+      }
+  
+      .actions {
+        justify-content: flex-start;
+        margin-top: var(--wim-spacing-md);
+      }
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--wim-spacing-sm);
+
+    svg {
+      width: 80px;
+      height: 80px;
+      font-size: 80px;
+    }
+  }
+
+  .title {
+    font-size: var(--wim-font-size-xl);
+    font-weight: var(--wim-font-weight-bold);
+    line-height: var(--wim-line-height-tight);
+    color: var(--wim-color-text-primary);
+  }
+
+  .description {
+    max-width: 600px;
+    font-size: var(--wim-font-size-md);
+    line-height: var(--wim-line-height-normal-jp);
+    color: var(--wim-color-text-secondary);
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    justify-content: center;
+    margin-top: var(--wim-spacing-lg);
+  }
+
+  .body {
+    width: 100%;
+    max-width: 800px;
+    padding: var(--wim-spacing-md);
+    margin-top: var(--wim-spacing-lg);
+    text-align: left;
+    background-color: var(--wim-color-bg-subtle);
+    border-radius: var(--wim-radius-sm);
+  }
+}

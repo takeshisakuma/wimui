@@ -86,7 +86,7 @@ describe("Dropdown", () => {
     
     // items should be rendered
     const items = screen.getAllByRole("menuitem");
-    const dropdown = items[0].closest(".wim-dropdown") as HTMLElement;
+    const dropdown = items[0].closest('[role="none"]') as HTMLElement;
 
     fireEvent.keyDown(dropdown, { key: "ArrowDown" });
     expect(document.activeElement).toBe(items[1]);

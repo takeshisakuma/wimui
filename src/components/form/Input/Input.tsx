@@ -1,7 +1,7 @@
 import React, { useId } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
-import "./input.scss";
+import styles from "./input.module.scss";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { Icon } from "../../media/Icon/Icon";
 import { InputBase, InputBaseIcon } from "../InputBase";
@@ -77,12 +77,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const resolvedHidePasswordAriaLabel = hidePasswordAriaLabel ?? t("a11y.hide_password");
     const resolvedRightIconAriaLabel = rightIconAriaLabel ?? t("a11y.right_icon_action");
 
-    // 内部状態
     const [internalValue, setInternalValue] = React.useState(
       defaultValue ?? "",
     );
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
-    // クリアボタン用に input の DOM ref を保持
     const inputRef = React.useRef<HTMLInputElement>(null);
     const mergedRef = useMergedRef(ref, inputRef);
 
@@ -99,11 +97,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     const handleClear = () => {
-      // 実際の DOM input に対してネイティブイベントをディスパッチ
       const input = inputRef.current;
       if (!input) return;
 
-      // nativeInputValueSetter を使って React の合成イベントを正しく発火させる
       const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
         window.HTMLInputElement.prototype,
         "value",
@@ -113,7 +109,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         nativeInputValueSetter.call(input, "");
         input.dispatchEvent(new Event("input", { bubbles: true }));
       } else {
-        // フォールバック: nativeInputValueSetter が存在しない極めてまれな環境向け
         if (!isControlled) setInternalValue("");
         if (onChange) {
           input.value = "";
@@ -128,7 +123,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       setIsPasswordVisible((prev) => !prev);
     };
 
-    // アイコン決定ロジック
     const showPasswordToggleBtn = type === "password" && showPasswordToggle;
 
     const rightIcons: InputBaseIcon[] = [];
@@ -141,9 +135,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       });
     }
 
-    // カスタム右アイコン
     if (rightIcon) {
-      // 重複を避ける（名前が同じで既に存在する場合）
       const exists = rightIcons.some((icon) => icon.name === rightIcon);
       if (!exists) {
         rightIcons.push({
@@ -193,12 +185,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             id={id}
             ref={mergedRef}
             className={classNames(
-              "wim-input",
-              `wim-input--${effectiveIntent}`,
-              `wim-input--${variant}`,
-              fullWidth && "wim-input--full-width",
-              leftIcon && "wim-input--has-left-icon",
-              rightIcons.length > 0 && "wim-input--has-right-icon",
+              styles.root,
+              styles[effectiveIntent],
+              styles[variant],
               inputClassName,
             )}
             disabled={isDisabled}
@@ -218,6 +207,4 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   },
 );
 
-
 Input.displayName = "Input";
-

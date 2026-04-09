@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./fieldset.scss";
+import styles from "./fieldset.module.scss";
 
 type FieldsetProps = React.ComponentPropsWithoutRef<"fieldset"> & {
   children: React.ReactNode;
@@ -22,8 +22,8 @@ export const Fieldset = ({
   return (
     <fieldset
       className={classNames(
-        "wim-fieldset",
-        `wim-fieldset--${variant}`,
+        styles.root,
+        variant === "full-width" && styles.fullWidth,
         className,
       )}
       disabled={disabled}

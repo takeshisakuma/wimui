@@ -8,7 +8,7 @@ import React, {
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { OverlayBase } from "../../_internal/OverlayBase";
-import "./dialog.scss";
+import styles from "./dialog.module.scss";
 
 // --- Dialog Context ---
 type DialogContextType = {
@@ -110,7 +110,7 @@ export const DialogTrigger = ({
 
   return (
     <button
-      className={classNames("wim-dialog-trigger", className)}
+      className={classNames(styles.trigger, className)}
       onClick={handleClick}
     >
       {children}
@@ -166,7 +166,7 @@ export const DialogClose = ({
   return (
     <button
       type="button"
-      className={classNames("wim-dialog-close-button", className)}
+      className={classNames(styles.closeButton, className)}
       onClick={handleClick}
       aria-label={resolvedAriaLabel}
     >
@@ -192,8 +192,8 @@ export const DialogContent = ({ children, className }: DialogContentProps) => {
     <OverlayBase
       open={open}
       onOpenChange={onOpenChange}
-      overlayClassName="wim-dialog-overlay"
-      contentClassName={classNames("wim-dialog-content", className)}
+      overlayClassName={styles.overlay}
+      contentClassName={classNames(styles.content, className)}
       role="dialog"
       transitionProps={{
         enter: "scale-enter",
@@ -207,14 +207,13 @@ export const DialogContent = ({ children, className }: DialogContentProps) => {
       <div
         aria-labelledby={titleId}
         aria-describedby={descriptionId}
-        className="wim-dialog-content-inner"
+        className={styles.contentInner}
       >
         {children}
       </div>
     </OverlayBase>
   );
 };
-
 
 // --- Dialog Sections ---
 export const DialogHeader = ({
@@ -224,7 +223,7 @@ export const DialogHeader = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={classNames("wim-dialog-header", className)}>{children}</div>
+  <div className={classNames(styles.header, className)} data-testid="dialog-header">{children}</div>
 );
 
 export const DialogFooter = ({
@@ -234,7 +233,7 @@ export const DialogFooter = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={classNames("wim-dialog-footer", className)}>{children}</div>
+  <div className={classNames(styles.footer, className)} data-testid="dialog-footer">{children}</div>
 );
 
 export const DialogTitle = ({
@@ -246,7 +245,7 @@ export const DialogTitle = ({
 }) => {
   const { titleId } = useDialog();
   return (
-    <h2 id={titleId} className={classNames("wim-dialog-title", className)}>
+    <h2 id={titleId} className={classNames(styles.title, className)} data-testid="dialog-title">
       {children}
     </h2>
   );
@@ -263,9 +262,11 @@ export const DialogDescription = ({
   return (
     <p
       id={descriptionId}
-      className={classNames("wim-dialog-description", className)}
+      className={classNames(styles.description, className)}
+      data-testid="dialog-description"
     >
       {children}
     </p>
   );
 };
+

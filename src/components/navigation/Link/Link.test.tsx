@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Link } from "./Link";
+import styles from "./link.module.scss";
 
 // Mock translation
 vi.mock("react-i18next", () => ({
@@ -24,12 +25,12 @@ describe("Link", () => {
 
   it("applies small size class", () => {
     render(<Link label="Small" href="#" size="sm" />);
-    expect(screen.getByRole("link")).toHaveClass("wim-link--sm");
+    expect(screen.getByRole("link")).toHaveClass(styles.sm);
   });
 
   it("applies large size class", () => {
     render(<Link label="Large" href="#" size="lg" />);
-    expect(screen.getByRole("link")).toHaveClass("wim-link--lg");
+    expect(screen.getByRole("link")).toHaveClass(styles.lg);
   });
 
   it("renders children when no label", () => {
@@ -44,6 +45,6 @@ describe("Link", () => {
 
   it("applies secondary priority class", () => {
     render(<Link label="Sec" href="#" priority="secondary" />);
-    expect(screen.getByRole("link")).toHaveClass("wim-link--secondary");
+    expect(screen.getByRole("link")).toHaveClass(styles.secondary);
   });
 });

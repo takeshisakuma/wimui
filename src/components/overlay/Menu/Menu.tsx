@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { Transition } from "../../layout/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
-import "./menu.scss";
+import styles from "./menu.module.scss";
 
 // Context to share state between components
 const MenuContext = React.createContext<{
@@ -149,7 +149,7 @@ export const Menu = ({
     >
       <ul
         ref={containerRef}
-        className={classNames("wim-menu", `wim-menu--${mode}`, className)}
+        className={classNames(styles.root, styles[mode], className)}
         role="menu"
         onKeyDown={handleKeyDown}
       >
@@ -189,7 +189,7 @@ export const MenuItem = ({
   return (
     <BaseListItem
       as="li"
-      className={classNames("wim-menu-item", className)}
+      className={classNames(styles.item, className)}
       onClick={handleClick}
       onFocus={() => setFocusedIndex(index)}
       disabled={disabled}
@@ -220,9 +220,9 @@ export const MenuItemGroup = ({
   className,
 }: MenuItemGroupProps) => {
   return (
-    <li className={classNames("wim-menu-item-group", className)}>
-      {title && <div className="wim-menu-item-group__title">{title}</div>}
-      <ul className="wim-menu-item-group__list" role="group">
+    <li className={classNames(styles.itemGroup, className)}>
+      {title && <div className={styles.itemGroupTitle}>{title}</div>}
+      <ul className={styles.itemGroupList} role="group">
         {children}
       </ul>
     </li>
@@ -258,21 +258,21 @@ export const SubMenu = ({
   return (
     <li
       className={classNames(
-        "wim-menu-submenu",
-        isOpen && "wim-menu-submenu--open",
+        styles.submenu,
+        isOpen && styles.open,
         className,
       )}
     >
       <BaseListItem
-        className="wim-menu-submenu__title"
+        className={styles.submenuTitle}
         onClick={handleToggle}
         onFocus={() => setFocusedIndex(index)}
         icon={icon}
         rightSection={
           <span
             className={classNames(
-              "wim-menu-submenu__arrow",
-              isOpen && "wim-menu-submenu__arrow--open",
+              styles.submenuArrow,
+              isOpen && styles.open,
             )}
           >
             <Icon name="ChevronRightIcon" size="sm" />
@@ -300,10 +300,10 @@ export const SubMenu = ({
         leave="fade-leave"
         leaveFrom="fade-leave-from"
         leaveTo="fade-leave-to"
-        className="wim-menu-submenu__list"
+        className={styles.submenuList}
         role="menu"
       >
-        <ul className="wim-menu-submenu__list">{children}</ul>
+        <ul className={styles.submenuList}>{children}</ul>
       </Transition>
     </li>
   );
@@ -316,8 +316,9 @@ export type MenuDividerProps = {
 export const MenuDivider = ({ className }: MenuDividerProps) => {
   return (
     <li
-      className={classNames("wim-menu-divider", className)}
+      className={classNames(styles.divider, className)}
       role="separator"
     />
   );
 };
+

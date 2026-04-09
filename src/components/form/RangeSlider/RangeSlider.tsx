@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import classNames from "classnames";
 import { useSliderCommon } from "../../../utilities/slider-utils";
 import { FieldTemplate } from "../FieldTemplate";
-import "./rangeSlider.scss";
+import styles from "./range-slider.module.scss";
 
 type RangeSliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue"> & {
   /**
@@ -46,8 +46,7 @@ type RangeSliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | 
    */
   className?: string;
   /**
-   * 名前の属性。フォーム送信時には name-min と name-max として送信されることを想定するか、
-   * あるいはJSON文字列として送信するかなど検討が必要だが、ここでは隠しinputを2つつくる。
+   * 名前の属性
    */
   name?: string;
   /**
@@ -123,7 +122,7 @@ export const RangeSlider = ({
   const trackFillRef = useRef<HTMLDivElement>(null);
   const hiddenMinRef = useRef<HTMLInputElement>(null);
   const hiddenMaxRef = useRef<HTMLInputElement>(null);
-  const isDragging = useRef<"min" | "max" | null>(null);
+  const [draggingHandle, setDraggingHandle] = useState<"min" | "max" | null>(null);
   const dragValueRef = useRef<[number, number]>([...currentValue]);
 
   const getPercentage = useCallback(
@@ -131,7 +130,6 @@ export const RangeSlider = ({
     [min, max],
   );
 
-  // DOM を直接更新してレンダリングをスキップ
   const applyDomPosition = useCallback(
     (vals: [number, number]) => {
       const leftPct = getPercentage(vals[0]);
@@ -156,24 +154,22 @@ export const RangeSlider = ({
     [getPercentage],
   );
 
-  // 制御モードで value が外部から変わったとき DOM を同期
   useEffect(() => {
-    if (!isDragging.current) {
+    if (!draggingHandle) {
       applyDomPosition(currentValue);
     }
-  }, [currentValue, applyDomPosition]);
+  }, [currentValue, draggingHandle, applyDomPosition]);
 
   const handleMouseDown = (
     e: React.MouseEvent | React.TouchEvent,
     handle: "min" | "max",
   ) => {
     if (disabled) return;
-    isDragging.current = handle;
+    setDraggingHandle(handle);
     e.stopPropagation();
     e.preventDefault();
   };
 
-  // トラッククリック時の挙動：近い方のハンドルを動かす
   const handleTrackMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     if (disabled) return;
     const clientX =
@@ -190,7 +186,7 @@ export const RangeSlider = ({
       targetHandle = clickValue < currentValue[0] ? "min" : "max";
     }
 
-    isDragging.current = targetHandle;
+    setDraggingHandle(targetHandle);
 
     const nextValues: [number, number] = [...dragValueRef.current];
     if (targetHandle === "min") {
@@ -205,13 +201,13 @@ export const RangeSlider = ({
 
   const handleGlobalMouseMoveRef = useCallback(
     (e: MouseEvent | TouchEvent) => {
-      if (!isDragging.current || disabled) return;
+      if (!draggingHandle || disabled) return;
       const clientX =
         "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
       const newValue = calculateValue(clientX, trackRef.current);
 
       const nextValues: [number, number] = [...dragValueRef.current];
-      if (isDragging.current === "min") {
+      if (draggingHandle === "min") {
         nextValues[0] = Math.min(newValue, allowCross ? max : nextValues[1]);
       } else {
         nextValues[1] = Math.max(newValue, allowCross ? min : nextValues[0]);
@@ -220,19 +216,19 @@ export const RangeSlider = ({
       applyDomPosition(nextValues);
       onChange?.(nextValues);
     },
-    [disabled, onChange, allowCross, calculateValue, min, max, applyDomPosition],
+    [disabled, onChange, allowCross, calculateValue, min, max, applyDomPosition, draggingHandle],
   );
 
   const handleGlobalMouseUp = useCallback(() => {
-    if (isDragging.current) {
-      isDragging.current = null;
+    if (draggingHandle) {
+      setDraggingHandle(null);
       const finalValue = dragValueRef.current;
       if (!isControlled) {
         setInternalValue([...finalValue]);
       }
       onAfterChange?.(finalValue);
     }
-  }, [isControlled, onAfterChange]);
+  }, [isControlled, onAfterChange, draggingHandle]);
 
   useEffect(() => {
     document.addEventListener("mousemove", handleGlobalMouseMoveRef);
@@ -250,7 +246,6 @@ export const RangeSlider = ({
     };
   }, [handleGlobalMouseMoveRef, handleGlobalMouseUp]);
 
-  // キーボード操作
   const handleKeyDown = (e: React.KeyboardEvent, handle: "min" | "max") => {
     if (disabled) return;
 
@@ -296,22 +291,22 @@ export const RangeSlider = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames("wim-range-slider-container", className)}
+      className={className}
     >
       <div
         role="presentation"
         className={classNames(
-          "wim-range-slider",
-          disabled && "wim-range-slider--disabled",
+          styles.root,
+          disabled && styles.disabled,
         )}
         onMouseDown={handleTrackMouseDown}
         onTouchStart={handleTrackMouseDown}
         {...props}
       >
-        <div className="wim-range-slider__track-container" ref={trackRef}>
+        <div className={styles.trackContainer} ref={trackRef}>
           <div
             ref={trackFillRef}
-            className="wim-range-slider__track"
+            className={styles.track}
             style={{
               left: `${leftPerc}%`,
               width: `${rightPerc - leftPerc}%`,
@@ -319,7 +314,7 @@ export const RangeSlider = ({
           />
           <div
             ref={thumbMinRef}
-            className="wim-range-slider__thumb"
+            className={classNames(styles.thumb, draggingHandle === "min" && styles.active)}
             style={{ left: `${leftPerc}%` }}
             role="slider"
             aria-valuemin={min}
@@ -335,7 +330,7 @@ export const RangeSlider = ({
           />
           <div
             ref={thumbMaxRef}
-            className="wim-range-slider__thumb"
+            className={classNames(styles.thumb, draggingHandle === "max" && styles.active)}
             style={{ left: `${rightPerc}%` }}
             role="slider"
             aria-valuemin={currentValue[0]}
@@ -366,3 +361,5 @@ export const RangeSlider = ({
     </FieldTemplate>
   );
 };
+
+RangeSlider.displayName = "RangeSlider";

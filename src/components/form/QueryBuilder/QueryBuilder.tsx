@@ -8,7 +8,7 @@ import { NumberInput } from "../../form/NumberInput/NumberInput";
 import { DatePicker } from "../../form/DatePicker/DatePicker";
 import { Switch } from "../../form/Switch/Switch";
 import { SegmentedControl } from "../../form/SegmentedControl/SegmentedControl";
-import "./querybuilder.scss";
+import styles from "./querybuilder.module.scss";
 
 export type QueryFieldType = "string" | "number" | "date" | "boolean";
 
@@ -300,10 +300,10 @@ export const QueryBuilder = ({
     const isUnaryOperator = rule.operator === "is_null" || rule.operator === "is_not_null";
 
     return (
-      <div key={rule.id} className="wim-query-rule" role="group" aria-label={ruleAriaLabel}>
-        <div className="wim-query-rule__fields">
+      <div key={rule.id} className={styles.rule} role="group" aria-label={ruleAriaLabel}>
+        <div className={styles.ruleFields}>
           <Selectbox
-            className="wim-query-rule__field"
+            className={styles.field}
             options={fields.map((f) => ({ label: f.label, value: f.name }))}
             value={rule.field}
             onChange={handleFieldChange}
@@ -311,7 +311,7 @@ export const QueryBuilder = ({
             fullWidth
           />
           <Selectbox
-            className="wim-query-rule__operator"
+            className={styles.operator}
             options={operators.map((op) => ({ label: op.label, value: op.value }))}
             value={rule.operator}
             onChange={(val) => handleUpdate(rule.id, { operator: val })}
@@ -319,7 +319,7 @@ export const QueryBuilder = ({
             fullWidth
           />
           {!isUnaryOperator && (
-            <div className="wim-query-rule__value">
+            <div className={styles.value}>
               {type === "number" ? (
                 <NumberInput
                   value={typeof rule.value === "boolean" ? undefined : (rule.value ?? undefined)}
@@ -361,7 +361,7 @@ export const QueryBuilder = ({
             size="md"
             color="danger"
             onClick={() => handleRemove(rule.id)}
-            className="wim-query-rule__remove"
+            className={styles.removeRule}
           />
         </div>
       </div>
@@ -377,13 +377,13 @@ export const QueryBuilder = ({
         role="group"
         aria-label={groupLabel}
         className={classNames(
-          "wim-query-group",
-          depth > 0 && "wim-query-group--nested",
-          isExcluded && "wim-query-group--excluded",
+          styles.group,
+          depth > 0 && styles.nested,
+          isExcluded && styles.excluded,
         )}
       >
-        <div className="wim-query-group__header">
-          <div className="wim-query-group__header-left">
+        <div className={styles.groupHeader}>
+          <div className={styles.groupHeaderLeft}>
             <SegmentedControl
               size="md"
               options={[
@@ -408,18 +408,18 @@ export const QueryBuilder = ({
               size="md"
               color="danger"
               onClick={() => handleRemove(group.id)}
-              className="wim-query-group__remove"
+              className={styles.removeGroup}
             />
           )}
         </div>
-        <div className="wim-query-builder__rule-list">
+        <div className={styles.ruleList}>
           {group.rules.map((item) =>
             "rules" in item
               ? renderGroup(item, depth + 1, isExcluded)
               : renderRule(item),
           )}
         </div>
-        <div className="wim-query-group__actions">
+        <div className={styles.groupActions}>
           <Button
             size="md"
             variant="ghost"
@@ -448,7 +448,7 @@ export const QueryBuilder = ({
       id={id}
       role="region"
       aria-label={regionAriaLabel}
-      className={classNames("wim-query-builder", className)}
+      className={classNames(styles.root, className)}
     >
       {/* Screen reader live region for dynamic announcements */}
       <div

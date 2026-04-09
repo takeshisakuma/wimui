@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { FieldTemplate } from "../FieldTemplate";
-import "./signature-pad.scss";
+import styles from "./signature-pad.module.scss";
 
 export type SignaturePadProps = {
   /** Width of the canvas */
@@ -151,17 +151,17 @@ export const SignaturePad = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames("wim-signature-pad-container", className)}
+      className={className}
     >
       <div
         className={classNames(
-          "wim-signature-pad",
-          disabled && "wim-signature-pad--disabled",
+          styles.root,
+          disabled && styles.disabled,
         )}
         style={style}
       >
         <div
-          className="wim-signature-pad__canvas-container"
+          className={styles.canvasContainer}
           style={{
             width,
             maxWidth: "100%",
@@ -173,7 +173,7 @@ export const SignaturePad = ({
             ref={canvasRef}
             width={width}
             height={height}
-            className="wim-signature-pad__canvas"
+            className={styles.canvas}
             style={{ width: "100%", height: "100%", display: "block" }}
             onMouseDown={startDrawing}
             onMouseMove={draw}
@@ -187,7 +187,7 @@ export const SignaturePad = ({
             aria-label={label ? undefined : resolvedCanvasAriaLabel}
           />
         </div>
-        <div className="wim-signature-pad__footer">
+        <div className={styles.footer}>
           <Button
             variant="outline"
             size="sm"

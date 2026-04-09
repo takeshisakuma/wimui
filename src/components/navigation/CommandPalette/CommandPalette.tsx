@@ -13,7 +13,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { BaseListItem } from "../../_internal/BaseListItem";
-import "./command-palette.scss";
+import styles from "./command-palette.module.scss";
 
 // --- Context ---
 type CommandPaletteContextType = {
@@ -176,7 +176,7 @@ export const CommandPaletteTrigger = ({
 
   return (
     <button
-      className={classNames("wim-command-palette-trigger", className)}
+      className={classNames(styles.trigger, className)}
       onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -232,7 +232,7 @@ export const CommandPaletteContent = ({
         >
           <div
             role="presentation"
-            className="wim-command-palette-overlay"
+            className={styles.overlay}
             onClick={(e) => {
               if (e.target === e.currentTarget) {
                 onOpenChange(false);
@@ -253,7 +253,7 @@ export const CommandPaletteContent = ({
                 <div
                   role="dialog"
                   aria-modal="true"
-                  className={classNames("wim-command-palette-content", className)}
+                  className={classNames(styles.content, className)}
                   onClick={(e) => e.stopPropagation()}
                   onMouseMove={handleMouseMove}
                   data-keyboard-nav={isKeyboardNavigating}
@@ -261,7 +261,7 @@ export const CommandPaletteContent = ({
                     setIsKeyboardNavigating(true);
                     
                     // Query items in the DOM to get the most accurate count
-                    const items = e.currentTarget.querySelectorAll('.wim-command-palette-item:not(.wim-base-list-item--disabled)');
+                    const items = e.currentTarget.querySelectorAll(`.${styles.item}:not(.wim-base-list-item--disabled)`);
                     const itemCount = items.length;
                     
                     if (itemCount === 0) return;
@@ -322,10 +322,10 @@ export const CommandPaletteInput = ({
   };
 
   return (
-    <div className="wim-command-palette-input-wrapper">
+    <div className={styles.inputWrapper}>
       <Icon name="SearchIcon" size="sm" />
       <input
-        className="wim-command-palette-input"
+        className={styles.input}
         placeholder={placeholder}
         value={value ?? search}
         onChange={handleChange}
@@ -338,7 +338,7 @@ export const CommandPaletteInput = ({
         aria-activedescendant={`wim-command-palette-item-${activeIndex}`}
       />
       {rightSection && (
-        <div className="wim-command-palette-input-right">
+        <div className={styles.inputRight}>
           {rightSection}
         </div>
       )}
@@ -350,7 +350,7 @@ export const CommandPaletteInput = ({
 export const CommandPaletteList = ({ children }: { children: ReactNode }) => {
   return (
     <div
-      className="wim-command-palette-list"
+      className={styles.list}
       role="listbox"
       id="wim-command-palette-listbox"
     >
@@ -368,9 +368,9 @@ export const CommandPaletteGroup = ({
   heading?: string;
 }) => {
   return (
-    <div className="wim-command-palette-group">
+    <div className={styles.group}>
       {heading && (
-        <div className="wim-command-palette-group-heading">{heading}</div>
+        <div className={styles.groupHeading}>{heading}</div>
       )}
       {children}
     </div>
@@ -412,13 +412,13 @@ export const CommandPaletteItem = ({
       role="option"
       id={`wim-command-palette-item-${index}`}
       aria-selected={isActive}
-      className="wim-command-palette-item"
+      className={styles.item}
       active={isActive}
       disabled={disabled}
       icon={icon}
       rightSection={
         shortcut && (
-          <div className="wim-command-palette-item-shortcut">
+          <div className={styles.shortcut}>
             {shortcut.map((s) => (
               <kbd key={s} className="wim-kbd wim-kbd--sm">
                 {s}
@@ -453,7 +453,7 @@ export const CommandPaletteEmpty = ({
     if (open) {
       // Small delay to allow items to register/render
       const timer = setTimeout(() => {
-        const items = document.querySelectorAll(".wim-command-palette-item");
+        const items = document.querySelectorAll(`.${styles.item}`);
         setIsEmpty(items.length === 0);
       }, 0);
       return () => clearTimeout(timer);
@@ -461,10 +461,10 @@ export const CommandPaletteEmpty = ({
   }, [open, search]);
 
   if (!open || !isEmpty) return null;
-  return <div className="wim-command-palette-empty">{children}</div>;
+  return <div className={styles.empty}>{children}</div>;
 };
 
 // --- Footer ---
 export const CommandPaletteFooter = ({ children }: { children: ReactNode }) => {
-  return <div className="wim-command-palette-footer">{children}</div>;
+  return <div className={styles.footer}>{children}</div>;
 };

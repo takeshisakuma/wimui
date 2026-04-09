@@ -44,7 +44,7 @@ describe("Drawer", () => {
       </Drawer>,
     );
     const content = screen.getByRole("dialog");
-    expect(content).toHaveClass("wim-drawer-content--left");
+    expect(content).toHaveAttribute("data-side", "left");
   });
 
   it("applies top side class", () => {
@@ -53,7 +53,7 @@ describe("Drawer", () => {
         <DrawerContent>content</DrawerContent>
       </Drawer>,
     );
-    expect(screen.getByRole("dialog")).toHaveClass("wim-drawer-content--top");
+    expect(screen.getByRole("dialog")).toHaveAttribute("data-side", "top");
   });
 
   it("applies bottom side class", () => {
@@ -62,7 +62,7 @@ describe("Drawer", () => {
         <DrawerContent>content</DrawerContent>
       </Drawer>,
     );
-    expect(screen.getByRole("dialog")).toHaveClass("wim-drawer-content--bottom");
+    expect(screen.getByRole("dialog")).toHaveAttribute("data-side", "bottom");
   });
 
   it("controlled mode: respects open prop", () => {

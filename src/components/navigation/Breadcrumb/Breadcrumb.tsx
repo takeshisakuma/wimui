@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
-import "./breadcrumb.scss";
+import styles from "./breadcrumb.module.scss";
 import { Link } from "../../navigation/Link/Link";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
@@ -33,25 +33,25 @@ export const Breadcrumb = ({
     <Icon
       name="ChevronRightIcon"
       size={size}
-      className="wim-breadcrumb__separator-icon"
+      className={styles.separatorIcon}
     />
   );
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     const list = e.currentTarget;
-    const items = Array.from(list.querySelectorAll(".wim-breadcrumb__link, .wim-breadcrumb__label--current"));
-    const currentIndex = items.indexOf(document.activeElement as HTMLElement);
+    const itemElements = Array.from(list.querySelectorAll(`.${styles.link}, .${styles.label}.${styles.current}`));
+    const currentIndex = itemElements.indexOf(document.activeElement as HTMLElement);
 
     if (currentIndex === -1) return;
 
     if (e.key === "ArrowRight") {
       e.preventDefault();
-      const nextIndex = (currentIndex + 1) % items.length;
-      (items[nextIndex] as HTMLElement).focus();
+      const nextIndex = (currentIndex + 1) % itemElements.length;
+      (itemElements[nextIndex] as HTMLElement).focus();
     } else if (e.key === "ArrowLeft") {
       e.preventDefault();
-      const prevIndex = (currentIndex - 1 + items.length) % items.length;
-      (items[prevIndex] as HTMLElement).focus();
+      const prevIndex = (currentIndex - 1 + itemElements.length) % itemElements.length;
+      (itemElements[prevIndex] as HTMLElement).focus();
     }
   };
 
@@ -60,34 +60,34 @@ export const Breadcrumb = ({
     <nav
       aria-label={resolvedAriaLabel}
       className={classNames(
-        "wim-breadcrumb",
-        `wim-breadcrumb--${size}`,
+        styles.root,
+        styles[size],
         className,
       )}
       onKeyDown={handleKeyDown}
     >
-      <ol className="wim-breadcrumb__list">
+      <ol className={styles.list}>
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
 
           return (
-            <li key={index} className="wim-breadcrumb__item">
-              <div className="wim-breadcrumb__content">
+            <li key={index} className={styles.item}>
+              <div className={styles.content}>
                 {item.href && !isLast ? (
                    <Link
                     href={item.href}
                     size={size}
                     priority="secondary"
                     iconName={item.iconName}
-                    className="wim-breadcrumb__link"
+                    className={styles.link}
                   >
                     {item.label}
                   </Link>
                 ) : (
                   <span
                     className={classNames(
-                      "wim-breadcrumb__label",
-                      isLast && "wim-breadcrumb__label--current",
+                      styles.label,
+                      isLast && styles.current,
                     )}
                     aria-current={isLast ? "page" : undefined}
                     tabIndex={isLast ? 0 : undefined}
@@ -97,7 +97,7 @@ export const Breadcrumb = ({
                       <Icon
                         name={item.iconName}
                         size={size}
-                        className="wim-breadcrumb__label-icon"
+                        className={styles.labelIcon}
                       />
                     )}
                     {item.label}
@@ -105,7 +105,7 @@ export const Breadcrumb = ({
                 )}
               </div>
               {!isLast && (
-                <span className="wim-breadcrumb__separator" aria-hidden="true">
+                <span className={styles.separator} aria-hidden="true">
                   {separator || defaultSeparator}
                 </span>
               )}

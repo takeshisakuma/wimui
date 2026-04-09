@@ -114,7 +114,7 @@ export const Sticky: Story = {
       <div
         style={{
           height: "200vh",
-          background: "linear-gradient(to bottom, #f0f0f0, #e0e0e0)",
+          background: "linear-gradient(to bottom, var(--wim-color-bg-secondary), var(--wim-color-bg-tertiary))",
         }}
       >
         <Header {...args} sticky bordered>
@@ -151,7 +151,7 @@ export const Playground: Story = {
         style={{
           height: "300px",
           position: "relative",
-          border: "1px dashed #ccc",
+          border: "1px dashed var(--wim-color-border)",
         }}
       >
         <Header

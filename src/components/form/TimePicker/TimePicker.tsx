@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import "../../form/Input/input.scss";
-import "./timePicker.scss";
+import inputStyles from "../../form/Input/input.module.scss";
+import styles from "./time-picker.module.scss";
 
 import { Input, InputProps } from "../../form/Input/Input";
 
@@ -26,7 +26,8 @@ export const TimePicker = ({
       intent={ intent }
       variant={variant}
       fullWidth={fullWidth}
-      className={classNames("wim-timepicker", className)}
+      className={className}
+      inputClassName={classNames(inputStyles.input, styles.input)}
       disabled={disabled}
       {...props}
     />

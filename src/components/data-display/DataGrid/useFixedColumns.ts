@@ -23,7 +23,7 @@ export function useFixedColumns<T>(
     let currentLeftZIndex = 20;
 
     columns.forEach((col) => {
-      if (col.fixed === true || col.fixed === "left") {
+      if (col.fixed === "left") {
         fixedLeftOffsets[col.key] = {
           offset: currentLeftOffset === 0 ? 0 : `${currentLeftOffset}px`,
           zIndex: currentLeftZIndex--,

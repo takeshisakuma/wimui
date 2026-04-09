@@ -58,8 +58,8 @@ export const Basic: Story = {
         <div
           style={{
             padding: "60px 100px",
-            backgroundColor: "#f0f0f0",
-            border: "2px dashed #ccc",
+            backgroundColor: "var(--wim-color-bg-secondary)",
+            border: "2px dashed var(--wim-color-border)",
             borderRadius: "8px",
             textAlign: "center",
             cursor: "pointer",
@@ -92,8 +92,8 @@ export const Disabled: Story = {
         <div
           style={{
             padding: "60px 100px",
-            backgroundColor: "#f0f0f0",
-            border: "2px dashed #ccc",
+            backgroundColor: "var(--wim-color-bg-secondary)",
+            border: "2px dashed var(--wim-color-border)",
             borderRadius: "8px",
             textAlign: "center",
             cursor: "pointer",
@@ -146,8 +146,8 @@ export const WithIcons: Story = {
         <div
           style={{
             padding: "60px 100px",
-            backgroundColor: "#e0f2fe",
-            border: "2px dashed #0ea5e9",
+            backgroundColor: "var(--wim-color-informative-subtle)",
+            border: "2px dashed var(--wim-color-informative)",
             borderRadius: "8px",
             textAlign: "center",
             cursor: "pointer",
@@ -187,8 +187,8 @@ export const WithGroups: Story = {
         <div
           style={{
             padding: "60px 100px",
-            backgroundColor: "#fef3c7",
-            border: "2px dashed #f59e0b",
+            backgroundColor: "var(--wim-color-caution-subtle)",
+            border: "2px dashed var(--wim-color-caution)",
             borderRadius: "8px",
             textAlign: "center",
             cursor: "pointer",
@@ -222,8 +222,8 @@ export const WithDisabledItems: Story = {
         <div
           style={{
             padding: "60px 100px",
-            backgroundColor: "#dcfce7",
-            border: "2px dashed #22c55e",
+            backgroundColor: "var(--wim-color-positive-subtle)",
+            border: "2px dashed var(--wim-color-positive)",
             borderRadius: "8px",
             textAlign: "center",
             cursor: "pointer",
@@ -264,12 +264,12 @@ export const OnImage: Story = {
           style={{
             width: "300px",
             height: "200px",
-            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            background: "var(--wim-gradient-glass)",
             borderRadius: "8px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "white",
+            color: "var(--wim-color-text-on-primary)",
             fontSize: "18px",
             fontWeight: "bold",
             cursor: "pointer",

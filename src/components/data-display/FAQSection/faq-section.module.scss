@@ -1,0 +1,47 @@
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xl);
+    width: 100%;
+
+    &.layout-left {
+      @media (width >= 768px) {
+        flex-direction: row;
+        align-items: flex-start;
+  
+        .header {
+          position: sticky;
+          top: var(--wim-spacing-md);
+          flex: 1;
+          margin-bottom: 0;
+        }
+  
+        .content {
+          flex: 2;
+        }
+      }
+    }
+  }
+
+  .header {
+    margin-bottom: var(--wim-spacing-md);
+  }
+
+  .title {
+    margin: 0 0 var(--wim-spacing-sm) 0;
+  }
+
+  .description {
+    max-width: 800px;
+    margin: 0;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .accordion {
+    // No explicit style needed, but class is there for override
+  }
+}

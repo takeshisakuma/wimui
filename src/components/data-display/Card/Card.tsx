@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Slot } from "@radix-ui/react-slot";
 import type { ComponentSize } from "../../../types/tokens";
-import "./card.scss";
+import styles from "./card.module.scss";
 
 export type CardProps<C extends React.ElementType = "div"> = {
   /**
@@ -57,10 +57,10 @@ const CardInner = <C extends React.ElementType = "div">(
     <Component
       ref={ref}
       className={classNames(
-        "wim-card",
-        `wim-card--${variant}`,
-        `wim-card--padding-${padding}`,
-        `wim-card--radius-${radius}`,
+        styles.root,
+        styles[variant],
+        styles[`padding-${padding}`],
+        styles[`radius-${radius}`],
         className,
       )}
       {...props}
@@ -83,7 +83,7 @@ export const CardHeader = ({
   children,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-  <div className={classNames("wim-card__header", className)} {...props}>
+  <div className={classNames(styles.header, className)} {...props}>
     {children}
   </div>
 );
@@ -93,7 +93,7 @@ export const CardBody = ({
   children,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-  <div className={classNames("wim-card__body", className)} {...props}>
+  <div className={classNames(styles.body, className)} {...props}>
     {children}
   </div>
 );
@@ -103,7 +103,7 @@ export const CardFooter = ({
   children,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-  <div className={classNames("wim-card__footer", className)} {...props}>
+  <div className={classNames(styles.footer, className)} {...props}>
     {children}
   </div>
 );
@@ -115,3 +115,5 @@ CardFooter.displayName = "Card.Footer";
 Card.Header = CardHeader;
 Card.Body = CardBody;
 Card.Footer = CardFooter;
+
+export default Card;

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
-import "./rating.scss";
+import styles from "./rating.module.scss";
 
 export type RatingLabels = {
   star?: (count: number) => string;
@@ -194,9 +194,9 @@ export const Rating = ({
           starRefs.current[index] = el;
         }}
         className={classNames(
-          "wim-rating__star",
-          isFull && "wim-rating__star--full",
-          isHalf && "wim-rating__star--half",
+          styles.star,
+          isFull && styles.full,
+          isHalf && styles.half,
         )}
         onMouseMove={(e) => handleMouseMove(index, e)}
         onClick={(e) => {
@@ -221,10 +221,10 @@ export const Rating = ({
         aria-checked={readOnly ? undefined : isChecked}
         aria-label={readOnly ? undefined : star(index + 1)}
       >
-        <div className="wim-rating__star-background">
+        <div className={styles.background}>
           <Icon name="StarIcon" size={size} />
         </div>
-        <div className="wim-rating__star-foreground">
+        <div className={styles.foreground}>
           <Icon name="StarIcon" size={size} />
         </div>
       </div>
@@ -241,13 +241,13 @@ export const Rating = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames("wim-rating-container", className)}
+      className={className}
     >
       <div
         className={classNames(
-          "wim-rating",
-          `wim-rating--${size}`,
-          disabled && "wim-rating--disabled",
+          styles.root,
+          styles[size],
+          disabled && styles.disabled,
         )}
         onMouseLeave={readOnly ? undefined : handleMouseLeave}
         role={readOnly ? "img" : "radiogroup"}

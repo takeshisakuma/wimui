@@ -1,7 +1,7 @@
 import React from "react";
 import { IndicatorBase } from "../../_internal/IndicatorBase";
 import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/tokens";
-import "./tag.scss";
+import styles from "./tag.module.scss";
 
 export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
   /**
@@ -26,7 +26,7 @@ export type TagProps = React.ComponentPropsWithoutRef<"span"> & {
 export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
   ({ children, icon, ...props }, ref) => {
     return (
-      <IndicatorBase ref={ref} prefixClass="wim-tag" icon={icon} {...props}>
+      <IndicatorBase ref={ref} styles={styles} icon={icon} {...props}>
         {children}
       </IndicatorBase>
     );
@@ -34,4 +34,3 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
 );
 
 Tag.displayName = "Tag";
-

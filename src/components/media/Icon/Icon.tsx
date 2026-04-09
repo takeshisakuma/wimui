@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { ComponentSize } from "../../../types/tokens";
-import "./icon.scss";
+import styles from "./icon.module.scss";
 import { ALL_ICONS, IconName } from "../../../icon";
 
 type IconProps = Omit<React.SVGProps<SVGSVGElement>, "name"> & {
@@ -33,11 +33,12 @@ export const Icon = ({
   return (
     <IconComponent
       className={classNames(
+        styles.root,
         "wim-icon",
-        `wim-icon--${size}`,
-        color && `wim-icon--${color}`,
+        styles[size],
+        color && styles[color],
         name && (name === "LoadingIcon" || name === "SpinnerIcon") &&
-          "wim-icon--loading",
+          styles.loading,
         className,
       )}
       {...props}

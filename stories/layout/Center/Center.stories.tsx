@@ -25,10 +25,10 @@ export const Default: Story = {
     return (
       <Center {...args}>
         <Box
-          bg="#eff6ff"
+          bg="var(--wim-color-primary-subtle)"
           p={40}
           radius={8}
-          style={{ border: "1px solid #3b82f6" }}
+          style={{ border: "1px solid var(--wim-color-primary)" }}
         >
           {t("story.center_content")}
         </Box>
@@ -37,7 +37,7 @@ export const Default: Story = {
   },
   args: {
     h: 200,
-    bg: "#f8fafc",
+    bg: "var(--wim-color-bg-secondary)",
   },
 };
 
@@ -45,9 +45,9 @@ export const Inline: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ border: "1px solid #ccc", padding: "10px" }}>
+      <div style={{ border: "1px solid var(--wim-color-border)", padding: "10px" }}>
         Text before
-        <Center inline bg="#fecaca" px={10} mx={5} radius={4}>
+        <Center inline bg="var(--wim-color-destructive-subtle)" px={10} mx={5} radius={4}>
           {t("story.center_inline")}
         </Center>
         Text after
@@ -58,7 +58,7 @@ export const Inline: Story = {
 
 export const Icons: Story = {
   render: () => (
-    <Center w={40} h={40} bg="#3b82f6" color="white" radius="full">
+    <Center w={40} h={40} bg="var(--wim-color-primary)" color="var(--wim-color-text-on-primary)" radius="full">
       <Icon name="PlusIcon" />
     </Center>
   ),

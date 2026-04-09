@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { TabBar } from "./TabBar";
+import styles from "./tab-bar.module.scss";
 
 describe("TabBar", () => {
   it("renders children and applies fixed class by default", () => {
@@ -9,7 +10,7 @@ describe("TabBar", () => {
         <TabBar.Item label="Home" />
       </TabBar>,
     );
-    expect(container.firstChild).toHaveClass("wim-tab-bar--fixed");
+    expect(container.firstChild).toHaveClass(styles.fixed);
     expect(screen.getByText("Home")).toBeInTheDocument();
   });
 

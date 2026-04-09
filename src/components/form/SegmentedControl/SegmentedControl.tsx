@@ -4,7 +4,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
 import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
-import "./segmented-control.scss";
+import styles from "./segmented-control.module.scss";
 
 type Option = {
   label?: string;
@@ -60,7 +60,7 @@ export const SegmentedControl = ({
   const errorId = `wim-segmented-error-${generatedId}`;
 
   const { containerRef, sliderStyle, isReady } = useIndicator({
-    activeSelector: ".wim-segmented-control__item--active",
+    activeSelector: `.${styles.active}`,
     dependence: options.length, // Recalculate if options change
   });
 
@@ -97,21 +97,21 @@ export const SegmentedControl = ({
       layout={layout}
       labelId={labelId}
       errorId={errorId}
-      className={classNames("wim-segmented-control-container", className)}
+      className={className}
     >
       <div
         ref={containerRef}
         className={classNames(
-          "wim-segmented-control",
-          `wim-segmented-control--${size}`,
-          fullWidth && "wim-segmented-control--full-width",
-          isReady && "wim-segmented-control--ready",
+          styles.root,
+          styles[size],
+          fullWidth && styles.fullWidth,
+          isReady && styles.ready,
         )}
         role="radiogroup"
         aria-labelledby={label ? labelId : undefined}
       >
         <div
-          className="wim-segmented-control__slider"
+          className={styles.slider}
           style={sliderStyle}
           aria-hidden="true"
         />
@@ -129,11 +129,11 @@ export const SegmentedControl = ({
               }}
               type="button"
               className={classNames(
-                "wim-segmented-control__item",
-                isSelected && "wim-segmented-control__item--active",
+                styles.item,
+                isSelected && styles.active,
                 !option.label &&
                   option.iconName &&
-                  "wim-segmented-control__item--icon-only",
+                  styles.iconOnly,
               )}
               onClick={() => onChange(option.value)}
               onKeyDown={(e) => handleKeyDown(e, index)}
@@ -147,7 +147,7 @@ export const SegmentedControl = ({
             >
               {option.iconName && <Icon name={option.iconName} size={size} />}
               {option.label && (
-                <span className="wim-segmented-control__label">
+                <span className={styles.label}>
                   {option.label}
                 </span>
               )}

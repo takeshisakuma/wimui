@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { Icon } from "../../../media/Icon/Icon";
 
 type ActiveMenu = "main" | "quality" | "rate" | "fit" | "playlist" | null;
@@ -56,6 +57,7 @@ interface VideoControlsProps {
   toggleFullscreen: () => void;
   formatTime: (time: number) => string;
   labels?: VideoLabels;
+  styles: Record<string, string>;
 }
 
 export function VideoControls({
@@ -80,6 +82,7 @@ export function VideoControls({
   toggleFullscreen,
   formatTime,
   labels = {},
+  styles,
 }: VideoControlsProps) {
   const {
     playlist: playlistLabel = "Playlist",
@@ -99,11 +102,11 @@ export function VideoControls({
   } = labels;
 
   return (
-    <div className="wim-video-controls-bottom">
+    <div className={classNames(styles.controlsBottom, "wim-video-controls-bottom")}>
       {playlist && playlist.length > 0 && advancedControls && (
         <button
           type="button"
-          className="wim-video-btn"
+          className={classNames(styles.btn, "wim-video-btn")}
           onClick={(e) => {
             e.stopPropagation();
             setActiveMenu(activeMenu === "playlist" ? null : "playlist");
@@ -117,7 +120,7 @@ export function VideoControls({
       {advancedControls && (
         <button
           type="button"
-          className="wim-video-btn"
+          className={classNames(styles.btn, "wim-video-btn")}
           onClick={(e) => {
             e.stopPropagation();
             skip(-10);
@@ -130,7 +133,7 @@ export function VideoControls({
 
       <button
         type="button"
-        className="wim-video-btn wim-video-btn--play"
+        className={classNames(styles.btn, styles.btnPlay, "wim-video-btn", "wim-video-btn--play")}
         onClick={(e) => {
           e.stopPropagation();
           togglePlay();
@@ -143,7 +146,7 @@ export function VideoControls({
       {advancedControls && (
         <button
           type="button"
-          className="wim-video-btn"
+          className={classNames(styles.btn, "wim-video-btn")}
           onClick={(e) => {
             e.stopPropagation();
             skip(10);
@@ -157,7 +160,7 @@ export function VideoControls({
       {playlist && playlist.length > 0 && advancedControls && (
         <button
           type="button"
-          className="wim-video-btn"
+          className={classNames(styles.btn, "wim-video-btn")}
           onClick={(e) => {
             e.stopPropagation();
             if (currentPlayIndex < playlist.length - 1) {
@@ -174,31 +177,31 @@ export function VideoControls({
         </button>
       )}
 
-      <div className="wim-video-time-container">
+      <div className={classNames(styles.timeContainer, "wim-video-time-container")}>
         <span className="wim-video-time__current">{formatTime(currentTime)}</span>
-        <div className="wim-video-progress-container">
+        <div className={classNames(styles.progressContainer, "wim-video-progress-container")}>
           <input
             type="range"
             min="0"
             max={duration || 0}
             value={currentTime}
             onChange={handleSeek}
-            className="wim-video-progress"
+            className={classNames(styles.progress, "wim-video-progress")}
             aria-label={seek}
             onClick={(e) => e.stopPropagation()}
           />
           <div
-            className="wim-video-progress-fill"
+            className={classNames(styles.progressFill, "wim-video-progress-fill")}
             style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
           />
         </div>
         <span className="wim-video-time__total">{formatTime(duration)}</span>
       </div>
 
-      <div className="wim-video-volume-container">
+      <div className={classNames(styles.volumeContainer, "wim-video-volume-container")}>
         <button
           type="button"
-          className="wim-video-btn wim-video-btn--volume"
+          className={classNames(styles.btn, "wim-video-btn", "wim-video-btn--volume")}
           onClick={(e) => {
             e.stopPropagation();
             toggleMute();
@@ -220,7 +223,7 @@ export function VideoControls({
             e.stopPropagation();
             handleVolumeChange(e);
           }}
-          className="wim-video-volume"
+          className={classNames(styles.volume, "wim-video-volume")}
           aria-label={volumeLabel}
           onClick={(e) => e.stopPropagation()}
         />
@@ -229,7 +232,7 @@ export function VideoControls({
       {advancedControls && (
         <button
           type="button"
-          className="wim-video-btn wim-video-btn--settings"
+          className={classNames(styles.btn, "wim-video-btn", "wim-video-btn--settings")}
           onClick={(e) => {
             e.stopPropagation();
             setActiveMenu(activeMenu === "main" ? null : "main");
@@ -243,7 +246,7 @@ export function VideoControls({
       {advancedControls && (
         <button
           type="button"
-          className="wim-video-btn"
+          className={classNames(styles.btn, "wim-video-btn")}
           onClick={(e) => {
             e.stopPropagation();
             togglePiP();
@@ -257,7 +260,7 @@ export function VideoControls({
 
       <button
         type="button"
-        className="wim-video-btn wim-video-btn--fullscreen"
+        className={classNames(styles.btn, "wim-video-btn", "wim-video-btn--fullscreen")}
         onClick={(e) => {
           e.stopPropagation();
           toggleFullscreen();

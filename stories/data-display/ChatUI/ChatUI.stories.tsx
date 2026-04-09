@@ -263,7 +263,7 @@ export const WithIcons: Story = {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "white",
+                    color: "var(--wim-color-text-on-primary)",
                   }}
                 >
                   <Icon name="UserIcon" size="sm" />
@@ -287,7 +287,7 @@ export const WithIcons: Story = {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "white",
+                    color: "var(--wim-color-text-on-secondary)",
                   }}
                 >
                   <Icon name="UserIcon" size="sm" />
@@ -501,7 +501,7 @@ export const AiAssistantIntegration: Story = {
                         height: 40,
                         borderRadius: "50%",
                         backgroundColor: "var(--wim-color-primary)",
-                        color: "white",
+                        color: "var(--wim-color-text-on-primary)",
                       }}
                     >
                       <Icon name="StarIcon" size="sm" />

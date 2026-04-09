@@ -1,0 +1,75 @@
+@layer component {
+  .root {
+    position: relative;
+    width: 100%;
+  }
+
+  .trigger {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    
+    input {
+      flex: 1;
+      min-width: 0;
+      padding: 8px 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--wim-color-text-primary);
+      outline: none;
+      background: transparent;
+      border: none;
+
+      &::placeholder {
+        color: var(--wim-color-text-placeholder);
+      }
+
+      &:disabled {
+        color: var(--wim-color-text-disabled);
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    max-height: 280px;
+    padding: 4px 0;
+    margin-top: 4px;
+    overflow-y: auto;
+    background: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: 8px;
+    box-shadow: var(--wim-shadow-md);
+  }
+
+  .list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .option {
+    :global(.wim-combobox)[data-keyboard-nav="true"] &.active {
+      z-index: 1;
+      box-shadow: var(--wim-shadow-focus);
+    }
+
+    &.selected {
+      font-weight: 500;
+      color: var(--wim-color-primary);
+      background: var(--wim-color-primary-alpha-10);
+    }
+  }
+
+  .empty {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--wim-color-text-secondary);
+    text-align: center;
+  }
+}

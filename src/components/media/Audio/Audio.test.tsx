@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Audio } from "./Audio";
+import styles from "./audio.module.scss";
 
 describe("Audio", () => {
   const src = "https://example.com/audio.mp3";
@@ -81,7 +82,7 @@ describe("Audio", () => {
     const { container } = render(<Audio src={src} customControls visualizer />);
     const canvas = container.querySelector("canvas");
     expect(canvas).toBeInTheDocument();
-    expect(canvas).toHaveClass("wim-audio-visualizer-canvas");
+    expect(canvas).toHaveClass(styles.visualizerCanvas);
   });
 
   it("renders metadata when showMetadata is true", () => {
@@ -101,39 +102,39 @@ describe("Audio", () => {
   it("applies radius CSS class to inner container", () => {
     const { container } = render(<Audio src={src} radius="md" />);
     const inner = container.querySelector(".wim-audio-inner");
-    expect(inner).toHaveClass("wim-audio--radius-md");
+    expect(inner).toHaveClass(styles.radiusMd);
   });
 
   it("does not apply radius class when radius is none", () => {
     const { container } = render(<Audio src={src} radius="none" />);
     const inner = container.querySelector(".wim-audio-inner");
-    expect(inner?.className).not.toMatch(/wim-audio--radius/);
+    expect(inner?.className).not.toMatch(/radius/);
   });
 
   it("applies shadow and border classes when customControls is true", () => {
     const { container } = render(<Audio src={src} customControls shadow border />);
     const inner = container.querySelector(".wim-audio-inner");
-    expect(inner).toHaveClass("wim-audio--shadow");
-    expect(inner).toHaveClass("wim-audio--border");
+    expect(inner).toHaveClass(styles.shadow);
+    expect(inner).toHaveClass(styles.border);
   });
 
   it("does not apply shadow/border without customControls", () => {
     const { container } = render(<Audio src={src} shadow border />);
     const inner = container.querySelector(".wim-audio-inner");
-    expect(inner?.className).not.toContain("wim-audio--shadow");
-    expect(inner?.className).not.toContain("wim-audio--border");
+    expect(inner?.className).not.toContain(styles.shadow);
+    expect(inner?.className).not.toContain(styles.border);
   });
 
-  it("applies wim-audio--custom class when customControls is true", () => {
+  it("applies styles.custom class when customControls is true", () => {
     const { container } = render(<Audio src={src} customControls />);
     const inner = container.querySelector(".wim-audio-inner");
-    expect(inner).toHaveClass("wim-audio--custom");
+    expect(inner).toHaveClass(styles.custom);
   });
 
-  it("applies wim-audio--has-visualizer class when both customControls and visualizer are true", () => {
+  it("applies styles.hasVisualizer class when both customControls and visualizer are true", () => {
     const { container } = render(<Audio src={src} customControls visualizer />);
     const inner = container.querySelector(".wim-audio-inner");
-    expect(inner).toHaveClass("wim-audio--has-visualizer");
+    expect(inner).toHaveClass(styles.hasVisualizer);
   });
 
   it("does not render canvas when visualizer is true but customControls is false", () => {
@@ -167,7 +168,7 @@ describe("Audio", () => {
     const { container } = render(<Audio src={src} caption="My Caption" />);
     const figcaption = container.querySelector("figcaption");
     expect(figcaption).toBeInTheDocument();
-    expect(figcaption).toHaveClass("wim-audio__caption");
+    expect(figcaption).toHaveClass(styles.caption);
     expect(figcaption).toHaveTextContent("My Caption");
   });
 
@@ -212,5 +213,6 @@ describe("Audio", () => {
   it("wraps content in a figure element", () => {
     const { container } = render(<Audio src={src} />);
     expect(container.querySelector("figure.wim-audio-container")).toBeInTheDocument();
+    expect(container.querySelector("figure")).toHaveClass(styles.root);
   });
 });

@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import "./list.scss";
+import styles from "./list.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
 
@@ -25,7 +25,12 @@ export const List = React.forwardRef<HTMLElement, ListProps>(
     return (
       <ListContext.Provider value={{ size }}>
         <Component
-          className={classNames("wim-list", `wim-list--${size}`, `wim-list--spacing-${spacing}`, className)}
+          className={classNames(
+            styles.root,
+            styles[size],
+            styles[`spacing-${spacing}`],
+            className
+          )}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ref={ref as any}
           {...props}
@@ -51,24 +56,28 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
 
     return (
       <Component
-        className={classNames("wim-list__item", iconName && "wim-list__item--with-icon", className)}
+        className={classNames(
+          styles.item,
+          iconName && styles.withIcon,
+          className
+        )}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
         {...props}
       >
         {iconName ? (
-          <div className="wim-list__item-content">
+          <div className={styles.itemContent}>
             {iconPosition === "left" && (
-              <div className="wim-list__icon-container wim-list__icon-container--left">
-                <Icon name={iconName} size={size} className="wim-list__icon" />
+              <div className={classNames(styles.iconContainer, styles.left)}>
+                <Icon name={iconName} size={size} className={styles.icon} />
               </div>
             )}
-            <div className="wim-list__text">
+            <div className={styles.text}>
               <Slottable>{children}</Slottable>
             </div>
             {iconPosition === "right" && (
-              <div className="wim-list__icon-container wim-list__icon-container--right">
-                <Icon name={iconName} size={size} className="wim-list__icon" />
+              <div className={classNames(styles.iconContainer, styles.right)}>
+                <Icon name={iconName} size={size} className={styles.icon} />
               </div>
             )}
           </div>

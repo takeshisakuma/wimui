@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Image } from "./Image";
+import styles from "./image.module.scss";
 
 describe("Image", () => {
   it("renders image with src and alt", () => {
@@ -18,9 +19,9 @@ describe("Image", () => {
   it("applies basic styles (radius, shadow, border)", () => {
     render(<Image src="test.jpg" alt="Test" radius="md" shadow border />);
     const inner = screen.getByRole("img").parentElement;
-    expect(inner).toHaveClass("wim-image--radius-md");
-    expect(inner).toHaveClass("wim-image--shadow");
-    expect(inner).toHaveClass("wim-image--border");
+    expect(inner).toHaveClass(styles.radiusMd);
+    expect(inner).toHaveClass(styles.shadow);
+    expect(inner).toHaveClass(styles.border);
   });
 
   it("applies width and height props", () => {
@@ -78,7 +79,7 @@ describe("Image", () => {
     const figure = container.querySelector("figure");
     expect(figure?.getAttribute("style")).toContain("--wim-image-noise-opacity: 0.1");
     const inner = container.querySelector(".wim-image-inner");
-    expect(inner).toHaveClass("wim-image--has-noise");
+    expect(inner).toHaveClass(styles.hasNoise);
   });
 
   it("applies overlay settings", () => {
@@ -164,7 +165,7 @@ describe("Image", () => {
   it("applies fadeIn effect class", () => {
     const { container } = render(<Image src="test.jpg" alt="Test" fadeIn />);
     const inner = container.querySelector(".wim-image-inner");
-    expect(inner).toHaveClass("wim-image--fade-in");
+    expect(inner).toHaveClass(styles.fadeIn);
   });
 
   it("applies blendMode and bgColor", () => {

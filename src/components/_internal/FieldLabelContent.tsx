@@ -1,6 +1,6 @@
 import React from "react";
 import { Badge } from "../data-display/Badge/Badge";
-import "./fieldLabelContent.scss";
+import styles from "./field-label-content.module.scss";
 
 export type FieldLabelContentProps = {
   label: React.ReactNode;
@@ -21,12 +21,12 @@ export const FieldLabelContent = ({
 }: FieldLabelContentProps) => {
   return (
     <div className={className}>
-      <span className="wim-field-label-text">{label}</span>
+      <span className={styles.text}>{label}</span>
       {required ? (
         <Badge
           intent="error"
           size="sm"
-          className="wim-field-label-badge"
+          className={styles.badge}
           aria-hidden="true"
         >
           {requiredLabel}
@@ -36,7 +36,7 @@ export const FieldLabelContent = ({
           <Badge
             intent="neutral"
             size="sm"
-            className="wim-field-label-badge"
+            className={styles.badge}
             aria-hidden="true"
           >
             {optionalLabel}

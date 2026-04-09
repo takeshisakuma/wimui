@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, ButtonProps } from "../../form/Button/Button";
-
+import buttonStyles from "../../form/Button/button.module.scss";
 import classNames from "classnames";
 
 export type LinkButtonProps = React.ComponentPropsWithoutRef<"a"> &
@@ -16,7 +16,7 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
       <Button
         asChild
         icon={icon}
-        className={classNames({ "wim-button--icon-only": !children && !!icon }, className)}
+        className={classNames({ [buttonStyles.iconOnly]: !children && !!icon }, className)}
         {...(props as ButtonProps)}
       >
         <a ref={ref} href={props.href}>

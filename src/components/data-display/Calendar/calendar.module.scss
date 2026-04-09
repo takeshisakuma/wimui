@@ -1,0 +1,174 @@
+@layer component {
+  .root {
+    width: 100%;
+    max-width: 340px;
+    padding: var(--wim-spacing-md);
+    font-family: var(--wim-font-family-default);
+    user-select: none;
+    background-color: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-secondary);
+    border-radius: var(--wim-radius-md);
+    box-shadow: var(--wim-shadow-md);
+  
+    &.disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+    }
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--wim-spacing-md);
+  }
+  
+  .title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--wim-color-text-primary);
+  }
+  
+  .navBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--wim-radius-sm);
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  
+    &:hover:not(:disabled) {
+      color: var(--wim-color-text-primary);
+      background-color: var(--wim-color-bg-hover);
+    }
+  
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(min-content, 1fr));
+    gap: var(--wim-spacing-xs);
+
+    [role="row"] {
+      display: contents;
+    }
+  }
+  
+  .weekday {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--wim-color-text-tertiary);
+    white-space: nowrap;
+  
+    &.sunday {
+      color: var(--wim-color-destructive);
+    }
+  
+    &.saturday {
+      color: var(--wim-color-informative);
+    }
+  }
+  
+  .day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    padding: 0;
+    font-size: 1rem;
+    color: var(--wim-color-text-primary);
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--wim-radius-sm);
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+  
+    &:hover:not(:disabled, .selected) {
+      background-color: var(--wim-color-bg-hover);
+    }
+  
+    &.sunday {
+      color: var(--wim-color-destructive);
+    }
+  
+    &.saturday {
+      color: var(--wim-color-informative);
+    }
+  
+    &.otherMonth {
+      color: var(--wim-color-text-tertiary);
+    }
+  
+    &.today {
+      font-weight: bold;
+      color: var(--wim-color-primary);
+      border-color: color-mix(in srgb, var(--wim-color-primary) 30%, transparent);
+    }
+  
+    &.selected {
+      font-weight: 600;
+      color: var(--wim-color-text-on-primary);
+      background-color: var(--wim-color-primary);
+  
+      &:hover:not(:disabled) {
+        background-color: var(--wim-color-primary);
+      }
+    }
+  
+    &.inRange {
+      background-color: color-mix(in srgb, var(--wim-color-primary) 10%, transparent);
+      border-radius: 0;
+  
+      &:hover:not(:disabled) {
+        background-color: color-mix(
+          in srgb,
+          var(--wim-color-primary) 20%,
+          transparent
+        );
+      }
+    }
+  
+    &.rangeStart {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  
+    &.rangeEnd {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  
+    &.disabled {
+      color: var(--wim-color-text-disabled);
+      text-decoration: line-through;
+      cursor: not-allowed;
+      background-color: var(--wim-color-surface-variant-alpha);
+  
+      &:hover {
+        background-color: var(--wim-color-surface-variant-alpha);
+      }
+    }
+  
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}

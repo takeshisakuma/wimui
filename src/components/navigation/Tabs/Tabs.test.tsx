@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
 import { Tabs } from "./Tabs";
+import styles from "./tabs.module.scss";
 
 describe("Tabs", () => {
   it("switches content when triggers are clicked", () => {
@@ -120,19 +121,19 @@ describe("Tabs", () => {
 
     // Start drag
     fireEvent.mouseDown(list, { pageX: 100 });
-    expect(list).toHaveClass("wim-tabs__list--dragging");
+    expect(list).toHaveClass(styles.dragging);
 
     // Move drag
     fireEvent.mouseMove(list, { pageX: 50 });
 
     // End drag via mouseLeave
     fireEvent.mouseLeave(list);
-    expect(list).not.toHaveClass("wim-tabs__list--dragging");
+    expect(list).not.toHaveClass(styles.dragging);
 
     // End drag via mouseUp
     fireEvent.mouseDown(list, { pageX: 100 });
     fireEvent.mouseUp(list);
-    expect(list).not.toHaveClass("wim-tabs__list--dragging");
+    expect(list).not.toHaveClass(styles.dragging);
   });
 
   it("ignores dragging and specific keys in vertical mode", () => {
@@ -147,7 +148,7 @@ describe("Tabs", () => {
 
     // Drag ignored
     fireEvent.mouseDown(list, { pageX: 100 });
-    expect(list).not.toHaveClass("wim-tabs__list--dragging");
+    expect(list).not.toHaveClass(styles.dragging);
     
     fireEvent.mouseMove(list, { pageX: 50 }); // shouldn't do anything
     

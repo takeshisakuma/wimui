@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import "./stepper.scss";
+import styles from "./stepper.module.scss";
 
 export type StepperStatus = "wait" | "process" | "finish" | "error";
 
@@ -105,12 +105,12 @@ export const Stepper = ({
   };
 
   return (
-    <div className="wim-stepper-container">
+    <div className={styles.container}>
       <div
         className={classNames(
-          "wim-stepper",
-          `wim-stepper--${direction}`,
-          labelPlacement === "vertical" && "wim-stepper--label-vertical",
+          styles.root,
+          styles[direction],
+          labelPlacement === "vertical" && styles.labelVertical,
           className,
         )}
         role={onChange ? "tablist" : undefined}
@@ -125,11 +125,10 @@ export const Stepper = ({
             <div
               key={index}
               className={classNames(
-                "wim-stepper__item",
-                `wim-stepper__item--${stepStatus}`,
-                labelPlacement === "vertical" &&
-                  "wim-stepper__item--label-vertical",
-                step.disabled && "wim-stepper__item--disabled",
+                styles.item,
+                styles[stepStatus],
+                labelPlacement === "vertical" && styles.labelVertical,
+                step.disabled && styles.disabled,
               )}
               onClick={() => isClickable && onChange(index)}
               style={{ cursor: isClickable ? "pointer" : "default" }}
@@ -148,14 +147,14 @@ export const Stepper = ({
                 }
               }}
             >
-              <div className="wim-stepper__line" />
-              <div className="wim-stepper__icon-container">
+              <div className={styles.line} />
+              <div className={styles.iconContainer}>
                 {renderIcon(index, stepStatus, step.icon)}
               </div>
-              <div className="wim-stepper__content">
-                <span className="wim-stepper__title">{step.title}</span>
+              <div className={styles.content}>
+                <span className={styles.title}>{step.title}</span>
                 {step.description && (
-                  <span className="wim-stepper__description">
+                  <span className={styles.description}>
                     {step.description}
                   </span>
                 )}

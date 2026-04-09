@@ -1,15 +1,14 @@
 import React, { useState, useId } from "react";
 import classNames from "classnames";
 import { Switch } from "../../form/Switch/Switch";
-import "./switch-group.scss";
+import styles from "./switch-group.module.scss";
+import { FieldTemplate } from "../FieldTemplate";
 
 type Option = {
   label: string;
   value: string;
   disabled?: boolean;
 };
-
-import { FieldTemplate } from "../FieldTemplate";
 
 type SwitchGroupProps = {
   options: Option[];
@@ -78,8 +77,8 @@ export const SwitchGroup = ({
     >
       <div
         className={classNames(
-          "wim-switch-group",
-          direction === "horizontal" && "wim-switch-group--horizontal",
+          styles.root,
+          direction === "horizontal" && styles.horizontal,
         )}
         role="group"
         aria-labelledby={label ? labelId : undefined}
@@ -98,4 +97,3 @@ export const SwitchGroup = ({
     </FieldTemplate>
   );
 };
-

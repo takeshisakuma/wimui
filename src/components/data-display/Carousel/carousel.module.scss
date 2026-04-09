@@ -1,0 +1,119 @@
+@layer component {
+  .root {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    outline: none;
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--wim-color-primary);
+    }
+  }
+
+  .viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .track {
+    display: flex;
+    will-change: transform;
+
+    &.transition {
+      transition: transform 0.5s ease;
+    }
+  }
+
+  .item {
+    position: relative;
+    flex-shrink: 0;
+    min-width: 0;
+  
+    &.hasAspectRatio {
+      &::before {
+        display: block;
+        padding-top: calc(100% / (var(--aspect-ratio)));
+        content: "";
+      }
+  
+      & > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: var(--wim-carousel-object-fit, cover);
+      }
+    }
+  }
+
+  /* Controls */
+  .control {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--wim-color-text-on-primary);
+    cursor: pointer;
+    background-color: rgb(0 0 0 / 0.3);
+    border: none;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: background-color 0.2s;
+  
+    &:hover:not(:disabled) {
+      background-color: rgb(0 0 0 / 0.5);
+    }
+  
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.3;
+    }
+  
+    &.prev {
+      left: var(--wim-spacing-md);
+    }
+  
+    &.next {
+      right: var(--wim-spacing-md);
+    }
+  }
+
+  /* Indicators */
+  .indicators {
+    position: absolute;
+    bottom: var(--wim-spacing-md);
+    left: 50%;
+    z-index: 10;
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    transform: translateX(-50%);
+  }
+
+  .indicator {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    cursor: pointer;
+    background-color: rgb(255 255 255 / 0.5);
+    border: none;
+    border-radius: 50%;
+    transition:
+      background-color 0.2s,
+      width 0.2s;
+  
+    &.active {
+      width: 24px;
+      background-color: var(--wim-color-primary);
+      border-radius: 4px;
+    }
+  
+    &:hover:not(.active) {
+      background-color: rgb(255 255 255 / 0.8);
+    }
+  }
+}

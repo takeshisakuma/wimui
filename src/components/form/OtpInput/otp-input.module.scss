@@ -1,0 +1,62 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+@layer component {
+  .root {
+    width: 100%;
+    container-type: inline-size;
+  }
+  
+  .container {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+  
+    @include breakpoints.container-down(sm) {
+      gap: var(--wim-spacing-xs);
+    }
+  
+    &.disabled {
+      pointer-events: none;
+      opacity: var(--wim-opacity-secondary);
+    }
+  }
+  
+  .input {
+    all: unset;
+    box-sizing: border-box;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+    color: var(--wim-color-text-primary);
+    text-align: center;
+    background-color: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-md);
+    transition: var(--wim-transition-base);
+  
+    @include breakpoints.container-down(sm) {
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1rem;
+    }
+  
+    &:focus {
+      border-color: var(--wim-color-primary);
+      box-shadow: var(--wim-shadow-field-focus);
+    }
+  
+    &.error {
+      border-color: var(--wim-color-text-error);
+  
+      &:focus {
+        box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2);
+      }
+    }
+  
+    &.disabled {
+      color: var(--wim-color-text-disabled);
+      cursor: not-allowed;
+      background-color: var(--wim-color-disabled);
+    }
+  }
+}

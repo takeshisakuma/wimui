@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import classNames from "classnames";
-import "./affix.scss";
+import styles from "./affix.module.scss";
 
 export interface AffixProps {
   /** Office distance from the top of the window (in pixels) */
@@ -144,7 +144,7 @@ export const Affix = ({
     >
       <div
         ref={fixedRef}
-        className={classNames(state.isAffixed && "wim-affix--affixed")}
+        className={classNames(styles.root, state.isAffixed && styles.affixed)}
         style={state.affixStyle}
       >
         {children}

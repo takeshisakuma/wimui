@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Input } from "../../form/Input/Input";
+import inputStyles from "../../form/Input/input.module.scss";
 
 export type NumberInputProps = React.ComponentProps<typeof Input> & {
   /**
@@ -45,8 +46,6 @@ export const NumberInput = ({
         e.preventDefault();
       }
     }
-    // mode="text" の場合、英字などはブラウザ側で制限されないため、
-    // 必要ならここで制御するが、基本的には inputmode="numeric" と pattern で制御する
 
     onKeyDown?.(e);
   };
@@ -60,7 +59,7 @@ export const NumberInput = ({
       onKeyDown={handleKeyDown}
       className={className}
       inputClassName={classNames(
-        hideSpinButton && "wim-input--hide-spin"
+        hideSpinButton && inputStyles.hideSpin
       )}
     />
   );

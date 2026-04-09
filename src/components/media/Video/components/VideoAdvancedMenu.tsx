@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "../../../media/Icon/Icon";
 import { type VideoLabels } from "./VideoControls";
+import classNames from "classnames";
 
 type FitOption = "contain" | "cover" | "fill" | "none" | "scale-down";
 type ActiveMenu = "main" | "quality" | "rate" | "fit" | "playlist" | null;
@@ -28,6 +29,7 @@ interface VideoAdvancedMenuProps {
   currentPlayIndex: number;
   playPlaylistItem: (index: number) => void;
   labels?: VideoLabels;
+  styles: Record<string, string>;
 }
 
 export function VideoAdvancedMenu({
@@ -44,6 +46,7 @@ export function VideoAdvancedMenu({
   currentPlayIndex,
   playPlaylistItem,
   labels = {},
+  styles,
 }: VideoAdvancedMenuProps) {
   const {
     settings = "Settings",
@@ -76,7 +79,7 @@ export function VideoAdvancedMenu({
     <>
       {activeMenu === "main" && (
         <div
-          className="wim-video-advanced-menu"
+          className={classNames(styles.advancedMenu, "wim-video-advanced-menu")}
           onClick={(e) => e.stopPropagation()}
           onKeyDown={(e) => {
             if (e.key === "Escape") setActiveMenu(null);
@@ -84,13 +87,13 @@ export function VideoAdvancedMenu({
           role="menu"
           tabIndex={-1}
         >
-          <div className="wim-video-menu-title">
+          <div className={classNames(styles.menuTitle, "wim-video-menu-title")}>
             <span>{settings}</span>
           </div>
-          <div className="wim-video-menu-items">
+          <div className={classNames(styles.menuItems, "wim-video-menu-items")}>
             {qualities && qualities.length > 0 && (
               <button
-                className="wim-video-menu-btn"
+                className={classNames(styles.menuBtn, "wim-video-menu-btn")}
                 onClick={() => setActiveMenu("quality")}
               >
                 <span>{quality}</span>
@@ -101,7 +104,7 @@ export function VideoAdvancedMenu({
               </button>
             )}
             <button
-              className="wim-video-menu-btn"
+              className={classNames(styles.menuBtn, "wim-video-menu-btn")}
               onClick={() => setActiveMenu("rate")}
             >
               <span>{playbackRateLabel}</span>
@@ -110,7 +113,7 @@ export function VideoAdvancedMenu({
               </span>
             </button>
             <button
-              className="wim-video-menu-btn"
+              className={classNames(styles.menuBtn, "wim-video-menu-btn")}
               onClick={() => setActiveMenu("fit")}
             >
               <span>{aspectRatio}</span>
@@ -124,7 +127,7 @@ export function VideoAdvancedMenu({
 
       {activeMenu === "quality" && (
         <div
-          className="wim-video-advanced-menu"
+          className={classNames(styles.advancedMenu, "wim-video-advanced-menu")}
           onClick={(e) => e.stopPropagation()}
           onKeyDown={(e) => {
             if (e.key === "Escape") setActiveMenu("main");
@@ -132,20 +135,20 @@ export function VideoAdvancedMenu({
           role="menu"
           tabIndex={-1}
         >
-          <div className="wim-video-menu-title">
+          <div className={classNames(styles.menuTitle, "wim-video-menu-title")}>
             <button
               onClick={() => setActiveMenu("main")}
-              className="wim-video-btn"
+              className={classNames(styles.btn, "wim-video-btn")}
             >
               <Icon name="ChevronLeftIcon" size="sm" />
             </button>
             <span>{quality}</span>
           </div>
-          <div className="wim-video-menu-items">
+          <div className={classNames(styles.menuItems, "wim-video-menu-items")}>
             {qualities?.map((q, i) => (
               <button
                 key={i}
-                className="wim-video-menu-btn"
+                className={classNames(styles.menuBtn, "wim-video-menu-btn")}
                 data-active={currentQualityIndex === i}
                 onClick={() => handleQualityChange(i)}
               >
@@ -165,7 +168,7 @@ export function VideoAdvancedMenu({
 
       {activeMenu === "rate" && (
         <div
-          className="wim-video-advanced-menu"
+          className={classNames(styles.advancedMenu, "wim-video-advanced-menu")}
           onClick={(e) => e.stopPropagation()}
           onKeyDown={(e) => {
             if (e.key === "Escape") setActiveMenu("main");
@@ -173,20 +176,20 @@ export function VideoAdvancedMenu({
           role="menu"
           tabIndex={-1}
         >
-          <div className="wim-video-menu-title">
+          <div className={classNames(styles.menuTitle, "wim-video-menu-title")}>
             <button
               onClick={() => setActiveMenu("main")}
-              className="wim-video-btn"
+              className={classNames(styles.btn, "wim-video-btn")}
             >
               <Icon name="ChevronLeftIcon" size="sm" />
             </button>
             <span>{playbackRateLabel}</span>
           </div>
-          <div className="wim-video-menu-items">
+          <div className={classNames(styles.menuItems, "wim-video-menu-items")}>
             {RATES.map((r) => (
               <button
                 key={r}
-                className="wim-video-menu-btn"
+                className={classNames(styles.menuBtn, "wim-video-menu-btn")}
                 data-active={playbackRate === r}
                 onClick={() => {
                   setPlaybackRate(r);
@@ -205,7 +208,7 @@ export function VideoAdvancedMenu({
 
       {activeMenu === "fit" && (
         <div
-          className="wim-video-advanced-menu"
+          className={classNames(styles.advancedMenu, "wim-video-advanced-menu")}
           onClick={(e) => e.stopPropagation()}
           onKeyDown={(e) => {
             if (e.key === "Escape") setActiveMenu("main");
@@ -213,20 +216,20 @@ export function VideoAdvancedMenu({
           role="menu"
           tabIndex={-1}
         >
-          <div className="wim-video-menu-title">
+          <div className={classNames(styles.menuTitle, "wim-video-menu-title")}>
             <button
               onClick={() => setActiveMenu("main")}
-              className="wim-video-btn"
+              className={classNames(styles.btn, "wim-video-btn")}
             >
               <Icon name="ChevronLeftIcon" size="sm" />
             </button>
             <span>{aspectRatio}</span>
           </div>
-          <div className="wim-video-menu-items">
+          <div className={classNames(styles.menuItems, "wim-video-menu-items")}>
             {FIT_OPTIONS.map((f) => (
               <button
                 key={f}
-                className="wim-video-menu-btn"
+                className={classNames(styles.menuBtn, "wim-video-menu-btn")}
                 data-active={activeFit === f}
                 onClick={() => {
                   setActiveFit(f);
@@ -245,7 +248,7 @@ export function VideoAdvancedMenu({
 
       {activeMenu === "playlist" && (
         <div
-          className="wim-video-advanced-menu"
+          className={classNames(styles.advancedMenu, "wim-video-advanced-menu")}
           onClick={(e) => e.stopPropagation()}
           onKeyDown={(e) => {
             if (e.key === "Escape") setActiveMenu(null);
@@ -254,21 +257,21 @@ export function VideoAdvancedMenu({
           role="menu"
           tabIndex={-1}
         >
-          <div className="wim-video-menu-title">
+          <div className={classNames(styles.menuTitle, "wim-video-menu-title")}>
             <span>{playlistLabel}</span>
             <button
               onClick={() => setActiveMenu(null)}
               style={{ marginLeft: "auto" }}
-              className="wim-video-btn"
+              className={classNames(styles.btn, "wim-video-btn")}
             >
               <Icon name="CloseIcon" size="sm" />
             </button>
           </div>
-          <div className="wim-video-menu-items">
+          <div className={classNames(styles.menuItems, "wim-video-menu-items")}>
             {playlist?.map((p, i) => (
               <button
                 key={i}
-                className="wim-video-menu-btn"
+                className={classNames(styles.menuBtn, "wim-video-menu-btn")}
                 data-active={currentPlayIndex === i}
                 onClick={() => playPlaylistItem(i)}
                 style={{

@@ -1,15 +1,14 @@
 import React, { useState, useId } from "react";
 import classNames from "classnames";
 import { Radio } from "../../form/Radio/Radio";
-import "./radio-group.scss";
+import styles from "./radio-group.module.scss";
+import { FieldTemplate } from "../FieldTemplate";
 
 type Option = {
   label: string;
   value: string;
   disabled?: boolean;
 };
-
-import { FieldTemplate } from "../FieldTemplate";
 
 type RadioGroupProps = {
   options: Option[];
@@ -70,8 +69,8 @@ export const RadioGroup = ({
     >
       <div
         className={classNames(
-          "wim-radio-group",
-          direction === "horizontal" && "wim-radio-group--horizontal",
+          styles.root,
+          direction === "horizontal" && styles.horizontal,
         )}
         role="radiogroup"
         aria-labelledby={label ? labelId : undefined}
@@ -92,4 +91,3 @@ export const RadioGroup = ({
     </FieldTemplate>
   );
 };
-

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import BackTop from "./BackTop";
+import styles from "./backtop.module.scss";
 
 describe("BackTop", () => {
   it("renders children when provided", () => {
@@ -14,13 +15,13 @@ describe("BackTop", () => {
 
   it("renders default icon when no children", () => {
     const { container } = render(<BackTop />);
-    expect(container.querySelector(".wim-back-top__content")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.content}`)).toBeInTheDocument();
   });
 
   it("is hidden when scroll position is less than visibilityHeight", () => {
     const { container } = render(<BackTop visibilityHeight={400} />);
     const backTop = container.firstChild as HTMLElement;
-    expect(backTop).toHaveClass("wim-back-top--hidden");
+    expect(backTop).toHaveClass(styles.hidden);
   });
 
   it("calls onClick and scrollTo when clicked", () => {
@@ -32,7 +33,7 @@ describe("BackTop", () => {
       <BackTop visibilityHeight={-1} onClick={onClick} />,
     );
 
-    const backTop = renderContainer.querySelector(".wim-back-top") as HTMLElement;
+    const backTop = renderContainer.querySelector(`.${styles.root}`) as HTMLElement;
     fireEvent.click(backTop);
 
     expect(onClick).toHaveBeenCalled();
@@ -61,8 +62,8 @@ describe("BackTop", () => {
       div.dispatchEvent(new Event("scroll"));
     });
 
-    const backTop = container.querySelector(".wim-back-top") as HTMLElement;
-    expect(backTop).not.toHaveClass("wim-back-top--hidden");
+    const backTop = container.querySelector(`.${styles.root}`) as HTMLElement;
+    expect(backTop).not.toHaveClass(styles.hidden);
 
     // Click to scroll to top
     fireEvent.click(backTop);
@@ -75,14 +76,14 @@ describe("BackTop", () => {
     const onClick = vi.fn();
     window.scrollTo = vi.fn();
     const { container } = render(<BackTop visibilityHeight={-1} onClick={onClick} />);
-    const backTop = container.querySelector(".wim-back-top") as HTMLElement;
+    const backTop = container.querySelector(`.${styles.root}`) as HTMLElement;
     fireEvent.keyDown(backTop, { key: "Enter" });
     expect(onClick).toHaveBeenCalled();
   });
 
   it("applies custom className and style", () => {
     const { container } = render(<BackTop className="my-bt" style={{ color: "red" }} />);
-    const backTop = container.querySelector(".wim-back-top");
+    const backTop = container.querySelector(`.${styles.root}`);
     expect(backTop).toHaveClass("my-bt");
     expect(backTop).toHaveStyle({ color: "rgb(255, 0, 0)" });
   });
@@ -93,7 +94,7 @@ describe("BackTop", () => {
     const { container } = render(
       <BackTop target={() => document} visibilityHeight={-1} />,
     );
-    const backTop = container.querySelector(".wim-back-top") as HTMLElement;
+    const backTop = container.querySelector(`.${styles.root}`) as HTMLElement;
     fireEvent.click(backTop);
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
   });

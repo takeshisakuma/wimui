@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import { useIndicator } from "../../_internal/useIndicator";
-import "./tabs.scss";
+import styles from "./tabs.module.scss";
 
 type TabsContextType = {
   value?: string;
@@ -84,11 +84,11 @@ const Tabs = ({
         unregisterItem,
       }}
     >
-      <div className="wim-tabs-container">
+      <div className={styles.container}>
         <div
           className={classNames(
-            "wim-tabs",
-            `wim-tabs--${orientation}`,
+            styles.root,
+            styles[orientation],
             className,
           )}
           {...props}
@@ -109,7 +109,7 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
   const [scrollLeft, setScrollLeft] = React.useState(0);
 
   const { containerRef, sliderStyle, isReady } = useIndicator({
-    activeSelector: ".wim-tabs__trigger--active",
+    activeSelector: `.${styles.trigger}.${styles.active}`,
     orientation,
     dependence: value,
   });
@@ -173,9 +173,9 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
       aria-orientation={orientation}
       tabIndex={0}
       className={classNames(
-        "wim-tabs__list",
-        isDragging && "wim-tabs__list--dragging",
-        isReady && "wim-tabs__list--ready",
+        styles.list,
+        isDragging && styles.dragging,
+        isReady && styles.ready,
         className,
       )}
       onMouseDown={handleMouseDown}
@@ -186,7 +186,7 @@ export const TabsList = ({ className, children, ...props }: TabsListProps) => {
       {...props}
     >
       <div
-        className="wim-tabs__slider"
+        className={styles.slider}
         style={sliderStyle}
         aria-hidden="true"
       />
@@ -231,8 +231,8 @@ export const TabsTrigger = ({
       disabled={disabled}
       tabIndex={isActive ? 0 : -1}
       className={classNames(
-        "wim-tabs__trigger",
-        isActive && "wim-tabs__trigger--active",
+        styles.trigger,
+        isActive && styles.active,
         className,
       )}
       onClick={() => onValueChange(value)}
@@ -264,7 +264,7 @@ export const TabsContent = ({
       id={`wim-tabs-${id}-panel-${value}`}
       aria-labelledby={`wim-tabs-${id}-tab-${value}`}
       tabIndex={0}
-      className={classNames("wim-tabs__content", className)}
+      className={classNames(styles.content, className)}
       {...props}
     >
       {children}

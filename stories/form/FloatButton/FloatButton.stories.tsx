@@ -243,7 +243,7 @@ const AutoShrinkDemo = (args: FloatButtonProps) => {
         width: "100%",
         maxWidth: "400px",
         overflow: "hidden",
-        border: "1px solid #ccc",
+        border: "1px solid var(--wim-color-border)",
         position: "relative",
         display: "flex",
         flexDirection: "column",

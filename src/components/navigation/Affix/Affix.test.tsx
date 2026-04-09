@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import Affix from "./Affix";
+import styles from "./affix.module.scss";
 
 describe("Affix", () => {
   beforeEach(() => {
@@ -46,7 +47,7 @@ describe("Affix", () => {
     });
 
     const innerDiv = container.firstChild?.firstChild as HTMLElement;
-    expect(innerDiv).toHaveClass("wim-affix--affixed");
+    expect(innerDiv).toHaveClass(styles.affixed);
   });
 
   it("becomes affixed when scrolled past offsetBottom threshold", () => {
@@ -75,7 +76,7 @@ describe("Affix", () => {
     });
 
     const innerDiv = container.firstChild?.firstChild as HTMLElement;
-    expect(innerDiv).toHaveClass("wim-affix--affixed");
+    expect(innerDiv).toHaveClass(styles.affixed);
   });
 
   it("calls onChange when affixed state changes", () => {
@@ -170,6 +171,6 @@ describe("Affix", () => {
     );
 
     const innerDiv = container.firstChild?.firstChild as HTMLElement;
-    expect(innerDiv).not.toHaveClass("wim-affix--affixed");
+    expect(innerDiv).not.toHaveClass(styles.affixed);
   });
 });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
-import "./anchor.scss";
+import styles from "./anchor.module.scss";
 
 export interface AnchorLinkItem {
   /** Unique key for the link */
@@ -142,7 +142,7 @@ export const Anchor = ({
         });
       } else {
         const listScrollContainer = containerRef.current.querySelector(
-          ".wim-anchor__list",
+          `.${styles.list}`,
         ) as HTMLElement;
 
         if (listScrollContainer) {
@@ -180,7 +180,7 @@ export const Anchor = ({
         } else {
           const rect = activeLink.getBoundingClientRect();
           setMarkerStyle({
-            left: rect.left - containerRect.left,
+            left: rect.left - containerRef.current.getBoundingClientRect().left,
             width: rect.width,
             opacity: 1,
           });
@@ -195,21 +195,21 @@ export const Anchor = ({
     return (
       <ul
         className={classNames(
-          "wim-anchor__list",
-          `wim-anchor__list--${direction}`,
+          styles.list,
+          styles[direction],
         )}
       >
         {links.map((item) => (
           <li
             key={item.key}
             className={classNames(
-              "wim-anchor__item",
-              activeId === item.href && "wim-anchor__item--active",
+              styles.item,
+              activeId === item.href && styles.active,
             )}
           >
             <a
               href={item.href}
-              className="wim-anchor__link"
+              className={styles.link}
               onClick={(e) => handleClick(e, item.href)}
               title={typeof item.title === "string" ? item.title : undefined}
             >
@@ -227,15 +227,15 @@ export const Anchor = ({
   return (
     <div
       className={classNames(
-        "wim-anchor",
-        `wim-anchor--${direction}`,
+        styles.root,
+        styles[direction],
         className,
       )}
       style={style}
       ref={containerRef}
     >
-      <div className="wim-anchor__ink">
-        <span className="wim-anchor__ink-ball" style={markerStyle} />
+      <div className={styles.ink}>
+        <span className={styles.inkBall} style={markerStyle} />
       </div>
       {renderLinks(items)}
     </div>

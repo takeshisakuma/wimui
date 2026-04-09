@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import "./float-button.scss";
+import styles from "./float-button.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
 
@@ -113,18 +113,32 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
 
     const Component = asChild ? Slot : "button";
 
+    const positionClass =
+      position === "bottom-right"
+        ? styles.bottomRight
+        : position === "bottom-left"
+          ? styles.bottomLeft
+          : position === "bottom-center"
+            ? styles.bottomCenter
+            : position === "top-right"
+              ? styles.topRight
+              : position === "top-left"
+                ? styles.topLeft
+                : styles.static;
+
     return (
       <Component
         ref={ref}
         type={asChild ? undefined : "button"}
         className={classNames(
-          "wim-float-button",
-          `wim-float-button--${variant}`,
-          `wim-float-button--${shape}`,
-          `wim-float-button--${size}`,
-          `wim-float-button--${position}`,
-          !!label && "wim-float-button--extended",
-          !!shrink && "wim-float-button--shrink",
+          styles.root,
+          styles[variant],
+          styles[shape],
+          styles[size],
+          positionClass,
+          !!label && styles.extended,
+          !!shrink && styles.shrink,
+          backTop && !!label && styles.backtop,
           className,
         )}
         style={style}
@@ -134,27 +148,26 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
         {...props}
       >
         <Slottable>{children}</Slottable>
-        <span className="wim-float-button__inner">
+        <span className={styles.inner}>
           <Icon
             name={
               (backTop
-                ? "ChevronDownIcon"
+                ? "ChevronUpIcon"
                 : iconName) as React.ComponentProps<typeof Icon>["name"]
             }
             size={size}
-            className={classNames(backTop && "wim-float-button__icon--backtop")}
+            className={classNames(backTop && styles.iconBacktop)}
           />
           {label && (
-            <span className="wim-float-button__label-wrapper">
-              <span className="wim-float-button__label">{label}</span>
+            <span className={styles.labelWrapper}>
+              <span className={styles.label}>{label}</span>
             </span>
           )}
           {badge && (
             <span
               className={classNames(
-                badge === true
-                  ? "wim-float-button__badge--dot"
-                  : "wim-float-button__badge",
+                styles.badge,
+                badge === true && styles.dot,
               )}
             >
               {typeof badge === "number" ? badge : ""}
@@ -162,7 +175,7 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
           )}
         </span>
         {description && (
-          <span className="wim-float-button__description">{description}</span>
+          <span className={styles.description}>{description}</span>
         )}
       </Component>
     );

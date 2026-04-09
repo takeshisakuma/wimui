@@ -52,11 +52,11 @@ export const Default: Story = {
                 variant="elevated"
                 style={{
                   width: "100%",
-                  border: "2px solid", borderColor: "var(--wim-primary, #0070f3)",
+                  border: "2px solid", borderColor: "var(--wim-color-primary)",
                 }}
               >
                 <Card.Header>
-                  <strong style={{ color: "var(--wim-primary, #0070f3)" }}>
+                  <strong style={{ color: "var(--wim-color-primary)" }}>
                     {t("story.focustrap_trapped_title")}
                   </strong>
                 </Card.Header>
@@ -102,11 +102,11 @@ export const InitialFocus: Story = {
                 variant="elevated"
                 style={{
                   width: "100%",
-                  border: "2px solid", borderColor: "var(--wim-success, #28a745)",
+                  border: "2px solid", borderColor: "var(--wim-color-positive)",
                 }}
               >
                 <Card.Header>
-                  <strong style={{ color: "var(--wim-success, #28a745)" }}>
+                  <strong style={{ color: "var(--wim-color-positive)" }}>
                     {t("story.focustrap_autofocus_title")}
                   </strong>
                 </Card.Header>
