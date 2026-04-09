@@ -1,14 +1,14 @@
 @use "../../../tokens/breakpoints" as *;
 
-.wim-query-builder {
+.root {
   display: flex;
   flex-direction: column;
   gap: var(--wim-spacing-lg);
   width: 100%;
   container-type: inline-size;
 
-  .wim-query-rule__remove,
-  .wim-query-group__remove {
+  .removeRule,
+  .removeGroup {
     display: flex;
     flex: 0 0 auto;
     align-items: center;
@@ -22,7 +22,7 @@
     color: var(--wim-color-destructive);
     transition: var(--wim-transition-fast);
 
-    .wim-icon,
+    :global(.wim-icon),
     svg {
       color: inherit;
       fill: currentcolor;
@@ -34,8 +34,8 @@
     }
   }
 
-  .wim-query-rule__remove {
-    align-self: center; // Align with inputs
+  .removeRule {
+    align-self: center;
     margin-left: auto;
 
     @include container-down(md) {
@@ -44,43 +44,42 @@
     }
   }
 
-  .wim-query-group__remove {
+  .removeGroup {
     align-self: flex-start;
     margin-left: 0;
   }
 }
 
-.wim-query-group {
+.group {
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: var(--wim-color-bg-secondary); // Correct background token for groups
-  border: 1px solid var(--wim-color-border); // Correct border token
+  background-color: var(--wim-color-bg-secondary);
+  border: 1px solid var(--wim-color-border);
   border-radius: var(--wim-radius-lg);
-
-  &--excluded {
-    border-color: color-mix(in srgb, var(--wim-color-destructive) 20%, var(--wim-color-border-secondary));
-
-    & > .wim-query-builder__rule-list {
-      background-color: color-mix(in srgb, var(--wim-color-destructive) 6%, var(--wim-color-bg-component));
-    }
-  }
-
   transition: var(--wim-transition-fast);
 
   &:hover {
     border-color: var(--wim-color-primary);
   }
+}
 
-  &--nested {
-    margin-top: var(--wim-spacing-sm);
-    margin-bottom: var(--wim-spacing-sm);
-    background-color: var(--wim-color-bg-secondary);
-    border: 1px solid var(--wim-color-border);
+.excluded {
+  border-color: color-mix(in srgb, var(--wim-color-destructive) 20%, var(--wim-color-border-secondary));
+
+  > .ruleList {
+    background-color: color-mix(in srgb, var(--wim-color-destructive) 6%, var(--wim-color-bg-component));
   }
 }
 
-.wim-query-group__header {
+.nested {
+  margin-top: var(--wim-spacing-sm);
+  margin-bottom: var(--wim-spacing-sm);
+  background-color: var(--wim-color-bg-secondary);
+  border: 1px solid var(--wim-color-border);
+}
+
+.groupHeader {
   display: flex;
   flex-wrap: wrap;
   gap: var(--wim-spacing-md);
@@ -91,7 +90,7 @@
   border-radius: var(--wim-radius-lg) var(--wim-radius-lg) 0 0;
 }
 
-.wim-query-group__header-left {
+.groupHeaderLeft {
   display: flex;
   flex: 1;
   flex-wrap: wrap;
@@ -99,18 +98,18 @@
   align-items: center;
   min-width: 0;
 
-  .wim-segmented-control {
+  :global(.wim-segmented-control) {
     align-items: stretch;
     height: var(--wim-height-md);
     padding: 2px;
 
-    .wim-segmented-control__item {
+    :global(.wim-segmented-control__item) {
       height: calc(var(--wim-height-md) - 4px);
       padding-top: 0;
       padding-bottom: 0;
     }
 
-    .wim-segmented-control__slider {
+    :global(.wim-segmented-control__slider) {
       top: 2px;
       bottom: 2px;
     }
@@ -121,7 +120,7 @@
   }
 }
 
-.wim-query-builder__rule-list {
+.ruleList {
   display: flex;
   flex-direction: column;
   gap: var(--wim-spacing-sm);
@@ -130,13 +129,13 @@
   background-color: var(--wim-color-primary-container-alpha);
 }
 
-.wim-query-rule {
+.rule {
   position: relative;
   display: flex;
   gap: var(--wim-spacing-sm);
   align-items: flex-start;
   padding: var(--wim-spacing-md);
-  background-color: var(--wim-color-bg-component); // White background inside grey group
+  background-color: var(--wim-color-bg-component);
   border: 1px solid var(--wim-color-border);
   border-radius: var(--wim-radius-lg);
   animation: slideIn 0.2s ease-out;
@@ -152,7 +151,7 @@
   }
 }
 
-.wim-query-group__actions {
+.groupActions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--wim-spacing-sm);
@@ -170,7 +169,7 @@
   }
 }
 
-.wim-query-rule__fields {
+.ruleFields {
   display: flex;
   flex: 1;
   flex-wrap: wrap;
@@ -187,23 +186,23 @@
     min-width: 0;
     height: 42px;
 
-    &.wim-query-rule__operator {
+    &.operator {
       flex: 1 1 180px;
     }
 
-    .wim-field-template-content {
+    :global(.wim-field-template-content) {
       width: 100%;
       min-width: 0;
     }
 
-    .wim-selectbox {
+    :global(.wim-selectbox) {
       width: 100%;
       min-width: 0;
     }
 
-    .wim-input-base,
-    .wim-input,
-    .wim-selectbox-trigger {
+    :global(.wim-input-base),
+    :global(.wim-input),
+    :global(.wim-selectbox-trigger) {
       width: 100%;
       height: var(--wim-height-md);
       padding-top: 0;
@@ -213,7 +212,7 @@
     }
   }
 
-  .wim-query-rule__value {
+  .value {
     display: flex;
     flex: 1 1 240px;
     align-items: stretch;
@@ -233,29 +232,30 @@
       max-width: none;
     }
 
-    .wim-query-rule__field {
+    .field {
       flex: 0 0 calc(100% - 54px);
       order: 1;
-      width: calc(100% - 54px); // 42px (icon) + 12px (gap)
+      width: calc(100% - 54px);
     }
 
-    .wim-query-rule__remove {
+    .removeRule {
       flex: 0 0 auto;
       order: 2;
       width: var(--wim-height-md);
     }
 
-    .wim-query-rule__operator {
+    .operator {
       flex: 1 1 100%;
       order: 3;
     }
 
-    .wim-query-rule__value {
+    .value {
       flex: 1 1 100%;
       order: 4;
     }
   }
 }
+
 
 @keyframes slideIn {
   from {

@@ -152,6 +152,11 @@ export default defineConfig(({ mode }) => {
       globals: true,
       environment: "jsdom",
       setupFiles: "./test-setup.ts",
+      css: {
+        modules: {
+          classNameStrategy: "non-scoped",
+        },
+      },
       exclude: ["**/node_modules/**", "**/dist/**", "**/vrt/**"],
       coverage: {
         provider: "v8" as const,
