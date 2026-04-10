@@ -85,7 +85,7 @@ export const MultiSelect = ({
 
   const handleToggle = (e?: React.MouseEvent) => {
     if (disabled) return;
-    if (e && (e.target as HTMLElement).closest(".wim-multiselect-badge-remove"))
+    if (e && (e.target as HTMLElement).closest("[data-chip-delete]"))
       return;
 
     const nextOpen = !isOpen;
@@ -251,6 +251,7 @@ export const MultiSelect = ({
         >
           <div
             id={triggerId}
+            data-testid="multiselect-trigger"
             className={classNames(
               styles.trigger,
               disabled && styles.disabled,
@@ -285,6 +286,7 @@ export const MultiSelect = ({
                 ? selectedOptions.map((opt) => (
                   <Chip
                     key={opt.value}
+                    data-testid="multiselect-chip"
                     size="sm"
                     color="primary"
                     variant="solid"

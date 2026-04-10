@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./visuallyHidden.scss";
+import styles from "./visuallyHidden.module.scss";
 
 export type VisuallyHiddenProps = React.ComponentPropsWithoutRef<"span"> & {
   /**
@@ -18,7 +18,7 @@ export const VisuallyHidden = ({
   ...props
 }: VisuallyHiddenProps) => {
   return (
-    <span className={classNames("wim-visually-hidden", className)} {...props}>
+    <span className={classNames(styles.root, className)} {...props}>
       {children}
     </span>
   );

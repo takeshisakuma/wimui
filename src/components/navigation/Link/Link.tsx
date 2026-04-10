@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import styles from "./link.module.scss";
+import localStyles from "./link.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
 
@@ -17,6 +17,13 @@ export type LinkProps = React.ComponentPropsWithoutRef<"a"> & {
   iconName?: React.ComponentProps<typeof Icon>["name"];
   iconPosition?: "left" | "right";
   external?: boolean;
+  /** Custom styles for internal parts */
+  styles?: {
+    root?: string;
+    label?: string;
+    inner?: string;
+    externalIcon?: string;
+  };
 };
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
@@ -29,6 +36,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
       iconName,
       iconPosition = "left",
       external = false,
+      styles: stylesProp,
       className,
       children,
       target,
@@ -43,20 +51,21 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
       <Component
         ref={ref}
         className={classNames(
-          styles.root,
-          styles[size],
-          styles[priority],
-          external && styles.external,
+          localStyles.root,
+          localStyles[size],
+          localStyles[priority],
+          external && localStyles.external,
           className,
+          stylesProp?.root,
         )}
         target={resolvedTarget}
         {...props}
       >
-        <span className={styles.inner}>
+        <span className={classNames(localStyles.inner, stylesProp?.inner)}>
           {iconName && iconPosition === "left" && (
             <Icon name={iconName} size={size} />
           )}
-          <span className={styles.label}>
+          <span className={classNames(localStyles.label, stylesProp?.label)}>
             <Slottable>{label ?? children}</Slottable>
           </span>
           {iconName && iconPosition === "right" && (
@@ -66,7 +75,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
             <Icon
               name="ExternalLinkIcon"
               size={size}
-              className={styles.externalIcon}
+              className={classNames(localStyles.externalIcon, stylesProp?.externalIcon)}
             />
           )}
         </span>

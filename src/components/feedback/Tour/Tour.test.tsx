@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Tour } from "./Tour";
+import styles from "./tour.module.scss";
 
 describe("Tour", () => {
   const steps = [
@@ -118,7 +119,7 @@ describe("Tour", () => {
     const handleClose = vi.fn();
     render(<Tour steps={steps} open={true} onClose={handleClose} />);
 
-    const mask = document.querySelector(".wim-tour-mask");
+    const mask = document.querySelector(`.${styles.mask}`);
     if (mask) fireEvent.click(mask);
 
     expect(handleClose).toHaveBeenCalled();
@@ -128,7 +129,7 @@ describe("Tour", () => {
     const handleClose = vi.fn();
     render(<Tour steps={steps} open={true} onClose={handleClose} />);
 
-    const mask = document.querySelector(".wim-tour-mask");
+    const mask = document.querySelector(`.${styles.mask}`);
     if (mask) fireEvent.keyDown(mask, { key: "Enter" });
 
     expect(handleClose).toHaveBeenCalled();
@@ -138,7 +139,7 @@ describe("Tour", () => {
     const handleClose = vi.fn();
     render(<Tour steps={steps} open={true} onClose={handleClose} />);
 
-    const mask = document.querySelector(".wim-tour-mask");
+    const mask = document.querySelector(`.${styles.mask}`);
     if (mask) fireEvent.keyDown(mask, { key: " " });
 
     expect(handleClose).toHaveBeenCalled();
@@ -198,7 +199,7 @@ describe("Tour", () => {
     });
 
     expect(screen.getByText("Top Step")).toBeInTheDocument();
-    const bubble = document.querySelector(".wim-tour-bubble--top");
+    const bubble = document.querySelector(`.${styles.bubble}.${styles.top}`);
     expect(bubble).toBeInTheDocument();
   });
 
@@ -213,7 +214,7 @@ describe("Tour", () => {
     });
 
     expect(screen.getByText("Left Step")).toBeInTheDocument();
-    const bubble = document.querySelector(".wim-tour-bubble--left");
+    const bubble = document.querySelector(`.${styles.bubble}.${styles.left}`);
     expect(bubble).toBeInTheDocument();
   });
 
@@ -228,7 +229,7 @@ describe("Tour", () => {
     });
 
     expect(screen.getByText("Right Step")).toBeInTheDocument();
-    const bubble = document.querySelector(".wim-tour-bubble--right");
+    const bubble = document.querySelector(`.${styles.bubble}.${styles.right}`);
     expect(bubble).toBeInTheDocument();
   });
 

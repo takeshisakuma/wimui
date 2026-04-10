@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { ErrorBoundary } from "./ErrorBoundary";
 import React from "react";
+import styles from "./errorboundary.module.scss";
 
 const ThrowError = ({ shouldThrow }: { shouldThrow?: boolean }) => {
   if (shouldThrow) {
@@ -34,6 +35,10 @@ describe("ErrorBoundary", () => {
     expect(screen.getByText(/Something went wrong/i)).toBeInTheDocument();
     expect(screen.getByText(/Test Error/)).toBeInTheDocument();
 
+    // Verify CSS module class is applied
+    const fallback = document.querySelector(`.${styles.fallback}`);
+    expect(fallback).toBeInTheDocument();
+
     // Verify detail toggle button exists
     const detailButton = screen.getByText(/Show details/i);
     expect(detailButton).toBeInTheDocument();
@@ -41,6 +46,10 @@ describe("ErrorBoundary", () => {
     // Toggle details
     fireEvent.click(detailButton);
     expect(screen.getByText(/hide details/i)).toBeInTheDocument();
+    
+    // Verify details box has module class
+    const details = document.querySelector(`.${styles.details}`);
+    expect(details).toBeInTheDocument();
 
     consoleSpy.mockRestore();
   });

@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
-import "./splitter.scss";
+import styles from "./splitter.module.scss";
 
 type SplitterContextType = {
   orientation: "horizontal" | "vertical";
@@ -194,15 +194,17 @@ const Splitter = ({
       <div
         ref={containerRef}
         className={classNames(
-          "wim-splitter",
-          `wim-splitter--${orientation}`,
-          resizingIndex !== null && "wim-splitter--resizing",
+          styles.root,
+          styles[orientation],
+          resizingIndex !== null && styles.resizing,
           className,
         )}
+        data-testid="wim-splitter-root"
         {...props}
       >
         {items}
       </div>
+
     </SplitterContext.Provider>
   );
 };
@@ -230,7 +232,8 @@ const SplitterPanel = ({
 }: SplitterPanelProps) => {
   return (
     <div
-      className={classNames("wim-splitter-panel", className)}
+      className={classNames(styles.panel, className)}
+      data-testid="wim-splitter-panel"
       style={{
         ...style,
         flex: size !== undefined ? `0 0 ${size}%` : "1 1 0%",
@@ -270,10 +273,11 @@ const SplitterHandle = ({
       aria-label={resolvedAriaLabel}
       tabIndex={0}
       className={classNames(
-        "wim-splitter-handle",
-        active && "wim-splitter-handle--active",
+        styles.handle,
+        active && styles.active,
         className,
       )}
+      data-testid="wim-splitter-handle"
       onMouseDown={(e) => index !== undefined && onResizeStart(index, e)}
       onTouchStart={(e) => index !== undefined && onResizeStart(index, e)}
       onKeyDown={(e) => {

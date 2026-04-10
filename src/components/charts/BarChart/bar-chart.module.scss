@@ -1,0 +1,18 @@
+@use "../../../tokens/breakpoints" as *;
+@use "../../../tokens/semantic-colors" as *;
+@use "../../../tokens/spacings" as *;
+
+@layer component {
+  .root {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+
+    // Height is controlled by height prop in TSX
+  }
+}

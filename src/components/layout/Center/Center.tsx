@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Box, BoxProps } from "../../layout/Box/Box";
-import "./center.scss";
+import styles from "./center.module.scss";
 
 export type CenterProps<C extends React.ElementType = "div"> = BoxProps<C> & {
   /** Whether to use inline-flex */
@@ -20,7 +20,8 @@ export const Center = React.forwardRef(
       <Box
         ref={ref}
         display={inline ? "inline-flex" : "flex"}
-        className={classNames("wim-center", className)}
+        className={classNames(styles.root, className)}
+
         style={{
           alignItems: "center",
           justifyContent: "center",

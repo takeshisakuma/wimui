@@ -1,0 +1,100 @@
+@layer component {
+  .root {
+    display: inline-flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+
+    svg {
+      font-size: 0.7em;
+    }
+
+    &.xl {
+      font-size: var(--wim-font-size-xl);
+    }
+
+    &.lg {
+      font-size: var(--wim-font-size-lg);
+    }
+
+    &.md {
+      font-size: var(--wim-font-size-md);
+    }
+
+    &.sm {
+      font-size: var(--wim-font-size-sm);
+    }
+
+    &.xs {
+      font-size: var(--wim-font-size-xs);
+    }
+
+    &.black {
+      color: var(--wim-color-text-primary);
+    }
+
+    &.deepgray {
+      color: var(--wim-color-text-secondary);
+    }
+
+    &.gray {
+      color: var(--wim-color-text-tertiary);
+    }
+
+    &.lightgray {
+      color: var(--wim-color-text-disabled);
+    }
+
+    &.white {
+      color: var(--wim-color-text-white);
+    }
+
+    &.error {
+      color: var(--wim-color-text-error);
+    }
+
+    &.primary {
+      color: var(--wim-color-primary);
+    }
+
+    &.destructive {
+      color: var(--wim-color-destructive);
+    }
+
+    &.success {
+      color: var(--wim-color-positive);
+    }
+
+    &.warning {
+      color: var(--wim-color-caution);
+    }
+
+    &.info {
+      color: var(--wim-color-informative);
+    }
+
+    &.bold {
+      font-weight: var(--wim-font-weight-bold);
+    }
+
+    &.italic {
+      font-style: italic;
+    }
+
+    &.line-through {
+      text-decoration: var(--wim-decoration-line-through);
+    }
+
+    &.underline {
+      text-decoration: var(--wim-decoration-underline);
+      text-decoration-skip-ink: none;
+      text-underline-offset: 0.3em;
+    }
+
+    &.highlight {
+      background-color: var(--wim-decoration-highlight-color);
+    }
+  }
+}

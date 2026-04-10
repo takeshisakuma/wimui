@@ -1,0 +1,85 @@
+@use "../../../tokens/semantic-colors" as *;
+@use "../../../tokens/spacings" as *;
+
+.root {
+    box-sizing: border-box;
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    width: calc(100% - (var(--wim-spacing-xs) * 2));
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    margin: 0 var(--wim-spacing-xs);
+    font-family: var(--wim-font-family-default);
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-normal);
+    color: var(--wim-color-text-primary);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    
+    &:focus-visible {
+        z-index: 1;
+        box-shadow: var(--wim-shadow-focus);
+    }
+
+    border-radius: var(--wim-radius-md);
+    transition: all var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &:active:not(.disabled) {
+        transform: scale(var(--wim-scale-active));
+        transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
+    }
+
+    &:hover:not(.disabled, .danger) {
+        background-color: var(--wim-color-bg-hover);
+    }
+
+    &.active {
+        background-color: var(--wim-color-bg-hover);
+    }
+
+    &.disabled {
+        color: var(--wim-color-text-disabled);
+        cursor: not-allowed;
+        background-color: transparent;
+        opacity: var(--wim-opacity-disabled);
+    }
+
+    &.danger {
+        color: var(--wim-color-text-error);
+
+        &:hover:not(.disabled) {
+            background-color: var(--wim-color-destructive-subtle);
+        }
+    }
+}
+
+.icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    color: var(--wim-color-text-secondary);
+
+    svg {
+        width: var(--wim-spacing-2xl);
+        height: var(--wim-spacing-2xl);
+    }
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+    padding: var(--wim-spacing-2xs) 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rightSection {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    font-size: var(--wim-font-size-xs);
+    color: var(--wim-color-text-tertiary);
+}

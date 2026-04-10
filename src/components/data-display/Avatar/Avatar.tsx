@@ -58,7 +58,6 @@ export const Avatar = ({
       {...props}
       className={classNames(
         styles.root,
-        "wim-avatar",
         styles[size],
         styles[shape],
         intent && styles[intent],

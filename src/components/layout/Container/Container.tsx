@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Box, BoxProps } from "../../layout/Box/Box";
-import "./container.scss";
+import styles from "./container.module.scss";
 
 export type ContainerProps<C extends React.ElementType = "div"> =
   BoxProps<C> & {
@@ -42,7 +42,7 @@ export const Container = React.forwardRef(
     return (
       <Box
         ref={ref}
-        className={classNames("wim-container", className)}
+        className={classNames(styles.root, className)}
         mx="auto"
         w="100%"
         style={{ maxWidth, ...style }}

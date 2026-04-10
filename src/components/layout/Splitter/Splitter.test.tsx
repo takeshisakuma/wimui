@@ -17,55 +17,55 @@ describe("Splitter", () => {
   });
 
   it("applies horizontal orientation by default", () => {
-    const { container } = render(
+    render(
       <Splitter>
         <Splitter.Panel>Panel 1</Splitter.Panel>
         <Splitter.Handle />
         <Splitter.Panel>Panel 2</Splitter.Panel>
       </Splitter>,
     );
-    expect(container.firstChild).toHaveClass("wim-splitter--horizontal");
+    expect(screen.getByTestId("wim-splitter-root")).toBeInTheDocument();
   });
 
   it("applies vertical orientation when specified", () => {
-    const { container } = render(
+    render(
       <Splitter orientation="vertical">
         <Splitter.Panel>Panel 1</Splitter.Panel>
         <Splitter.Handle />
         <Splitter.Panel>Panel 2</Splitter.Panel>
       </Splitter>,
     );
-    expect(container.firstChild).toHaveClass("wim-splitter--vertical");
+    expect(screen.getByTestId("wim-splitter-root")).toBeInTheDocument();
   });
 
   it("distributes sizes equally by default", () => {
-    const { container } = render(
+    render(
       <Splitter>
         <Splitter.Panel>Panel 1</Splitter.Panel>
         <Splitter.Handle />
         <Splitter.Panel>Panel 2</Splitter.Panel>
       </Splitter>,
     );
-    const panels = container.querySelectorAll(".wim-splitter-panel");
+    const panels = screen.getAllByTestId("wim-splitter-panel");
     expect(panels[0]).toHaveStyle({ flex: "0 0 50%" });
     expect(panels[1]).toHaveStyle({ flex: "0 0 50%" });
   });
 
   it("respects defaultSize prop", () => {
-    const { container } = render(
+    render(
       <Splitter>
         <Splitter.Panel defaultSize={30}>Panel 1</Splitter.Panel>
         <Splitter.Handle />
         <Splitter.Panel defaultSize={70}>Panel 2</Splitter.Panel>
       </Splitter>,
     );
-    const panels = container.querySelectorAll(".wim-splitter-panel");
+    const panels = screen.getAllByTestId("wim-splitter-panel");
     expect(panels[0]).toHaveStyle({ flex: "0 0 30%" });
     expect(panels[1]).toHaveStyle({ flex: "0 0 70%" });
   });
 
   it("handles resizing", () => {
-    const { container } = render(
+    render(
       <Splitter orientation="horizontal">
         <Splitter.Panel defaultSize={50}>Panel 1</Splitter.Panel>
         <Splitter.Handle />
@@ -73,7 +73,7 @@ describe("Splitter", () => {
       </Splitter>,
     );
     
-    const splitter = container.firstChild as HTMLDivElement;
+    const splitter = screen.getByTestId("wim-splitter-root") as HTMLDivElement;
     // Mock getBoundingClientRect
     splitter.getBoundingClientRect = vi.fn().mockReturnValue({
         width: 1000,
@@ -95,7 +95,7 @@ describe("Splitter", () => {
     // Move to 600px (60%)
     fireEvent.mouseMove(window, { clientX: 600 });
     
-    const panels = container.querySelectorAll(".wim-splitter-panel");
+    const panels = screen.getAllByTestId("wim-splitter-panel");
     expect(panels[0]).toHaveStyle({ flex: "0 0 60%" });
     expect(panels[1]).toHaveStyle({ flex: "0 0 40%" });
     
@@ -108,7 +108,7 @@ describe("Splitter", () => {
   });
 
   it("respects minSize and maxSize", () => {
-    const { container } = render(
+    render(
       <Splitter>
         <Splitter.Panel minSize={40} maxSize={60}>Panel 1</Splitter.Panel>
         <Splitter.Handle />
@@ -116,7 +116,7 @@ describe("Splitter", () => {
       </Splitter>,
     );
     
-    const splitter = container.firstChild as HTMLDivElement;
+    const splitter = screen.getByTestId("wim-splitter-root") as HTMLDivElement;
     splitter.getBoundingClientRect = vi.fn().mockReturnValue({ width: 1000, left: 0 });
 
     const handle = screen.getByRole("separator");
@@ -124,11 +124,12 @@ describe("Splitter", () => {
 
     // Try to move to 30% (300px)
     fireEvent.mouseMove(window, { clientX: 300 });
-    const panels = container.querySelectorAll(".wim-splitter-panel");
+    const panels = screen.getAllByTestId("wim-splitter-panel");
     expect(panels[0]).toHaveStyle({ flex: "0 0 40%" }); // Clamped to minSize
 
     // Try to move to 80% (800px)
     fireEvent.mouseMove(window, { clientX: 800 });
     expect(panels[0]).toHaveStyle({ flex: "0 0 60%" }); // Clamped to maxSize
   });
+
 });

@@ -1,0 +1,18 @@
+@use "../../styles/indicator-mixins" as indicator;
+
+.container {
+  position: relative;
+}
+
+.root {
+  @include indicator.indicator-slider-base;
+  
+  // Default style if none provided via mixins in parent
+  &.underline {
+    @include indicator.indicator-slider-underline($bottom: 0);
+  }
+  
+  &.contained {
+    @include indicator.indicator-slider-contained;
+  }
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import "./code.scss";
+import styles from "./code.module.scss";
 
 export interface CodeProps extends Omit<React.HTMLAttributes<HTMLElement>, "content"> {
   asChild?: boolean;
@@ -18,8 +18,8 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(
     return (
       <Component
         className={classNames(
-          "wim-code",
-          block ? "wim-code--block" : "wim-code--inline",
+          styles.root,
+          block ? styles.block : styles.inline,
           language && `language-${language}`,
           className,
         )}

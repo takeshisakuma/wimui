@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./aspect-ratio.scss";
+import styles from "./aspect-ratio.module.scss";
 
 export type AspectRatioProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -21,11 +21,11 @@ export const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
     return (
       <div
         ref={ref}
-        className={classNames("wim-aspect-ratio", className)}
+        className={classNames(styles.root, className)}
         style={{ "--wim-aspect-ratio": ratio, ...style } as React.CSSProperties}
         {...props}
       >
-        <div className="wim-aspect-ratio__inner">{children}</div>
+        <div className={styles.inner}>{children}</div>
       </div>
     );
   },

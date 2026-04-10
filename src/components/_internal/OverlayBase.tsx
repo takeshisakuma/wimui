@@ -3,6 +3,7 @@ import { Portal } from "../overlay/Portal/Portal";
 import { Transition } from "../layout/Transition/Transition";
 import { FocusTrap } from "../overlay/FocusTrap/FocusTrap";
 import classNames from "classnames";
+import styles from "./overlay-base.module.scss";
 
 export type OverlayBaseProps = {
   open: boolean;
@@ -61,27 +62,18 @@ export const OverlayBase = ({
     }
   }, [open]);
 
-  const defaultOverlayTransition = {
-    enter: "fade-enter",
-    enterFrom: "fade-enter-from",
-    enterTo: "fade-enter-to",
-    leave: "fade-leave",
-    leaveFrom: "fade-leave-from",
-    leaveTo: "fade-leave-to",
-  };
-
   return (
     <Portal>
       <Transition
         show={open}
-        className={classNames("wim-overlay", overlayClassName)}
+        className={classNames(styles.root, overlayClassName)}
         data-testid="wim-overlay"
         onClick={(e) => {
           if (closeOnOverlayClick && e.target === e.currentTarget) {
             onOpenChange(false);
           }
         }}
-        {...defaultOverlayTransition}
+        preset="fade"
         {...overlayTransitionProps}
       >
         <Transition
@@ -91,9 +83,11 @@ export const OverlayBase = ({
           role={role}
           aria-modal={ariaModal}
           onClick={(e) => e.stopPropagation()}
+          preset="scale"
           {...transitionProps}
           {...rest}
         >
+
           <FocusTrap active={open}>
             {children}
           </FocusTrap>
@@ -102,5 +96,6 @@ export const OverlayBase = ({
     </Portal>
   );
 };
+
 
 

@@ -52,8 +52,9 @@ describe("Highlight", () => {
         test
       </Highlight>,
     );
-    expect(
-      container.querySelector("div.wim-highlight-container"),
-    ).toBeDefined();
+    // Check for the rendered div
+    const div = container.querySelector("div");
+    expect(div).toBeDefined();
+    expect(div?.className).toContain("root");
   });
 });

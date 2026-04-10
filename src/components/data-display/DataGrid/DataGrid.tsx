@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Table } from "../Table/Table";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Pagination } from "../../navigation/Pagination/Pagination";
-import { useFixedColumns } from "./useFixedColumns";
+import { useFixedColumns, type FixedColumnInfo } from "./useFixedColumns";
 import { useDataGridKeyboard } from "./useDataGridKeyboard";
 import { useInfiniteScroll } from "./useInfiniteScroll";
 import styles from "./datagrid.module.scss";
@@ -109,18 +109,28 @@ export function DataGrid<T extends Record<string, unknown>>({
   const { fixedLeftOffsets, fixedRightOffsets } = useFixedColumns(columns, !!selection);
 
   const getStickyProps = (columnKey: string) => {
-    if (fixedLeftOffsets[columnKey]) {
+    const leftInfo = fixedLeftOffsets[columnKey] as FixedColumnInfo & { isLast?: boolean };
+    if (leftInfo) {
       return {
         stickyLeft: true,
-        leftOffset: fixedLeftOffsets[columnKey].offset,
-        stickyZIndex: fixedLeftOffsets[columnKey].zIndex,
+        leftOffset: leftInfo.offset,
+        stickyZIndex: leftInfo.zIndex,
+        className: classNames(
+          styles.cellFixed,
+          leftInfo.isLast && styles.cellFixedLeftLast,
+        ),
       };
     }
-    if (fixedRightOffsets[columnKey]) {
+    const rightInfo = fixedRightOffsets[columnKey] as FixedColumnInfo & { isFirst?: boolean };
+    if (rightInfo) {
       return {
         stickyRight: true,
-        rightOffset: fixedRightOffsets[columnKey].offset,
-        stickyZIndex: fixedRightOffsets[columnKey].zIndex,
+        rightOffset: rightInfo.offset,
+        stickyZIndex: rightInfo.zIndex,
+        className: classNames(
+          styles.cellFixed,
+          rightInfo.isFirst && styles.cellFixedRightFirst,
+        ),
       };
     }
     return {};

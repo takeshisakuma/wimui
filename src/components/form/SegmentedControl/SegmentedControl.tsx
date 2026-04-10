@@ -4,7 +4,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
 import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSize } from "../../../types/tokens";
-import styles from "./segmented-control.module.scss";
+import localStyles from "./segmented-control.module.scss";
 
 type Option = {
   label?: string;
@@ -39,6 +39,15 @@ type SegmentedControlProps = {
    * 無効状態にするかどうか
    */
   disabled?: boolean;
+  /**
+   * Custom styles for internal parts
+   */
+  styles?: {
+    root?: string;
+    item?: string;
+    slider?: string;
+    label?: string;
+  };
 };
 
 export const SegmentedControl = ({
@@ -53,6 +62,7 @@ export const SegmentedControl = ({
   required,
   layout = "vertical",
   disabled = false,
+  styles: stylesProp,
 }: SegmentedControlProps) => {
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const generatedId = useId();
@@ -60,7 +70,7 @@ export const SegmentedControl = ({
   const errorId = `wim-segmented-error-${generatedId}`;
 
   const { containerRef, sliderStyle, isReady } = useIndicator({
-    activeSelector: `.${styles.active}`,
+    activeSelector: `.${localStyles.active}`,
     dependence: options.length, // Recalculate if options change
   });
 
@@ -102,16 +112,17 @@ export const SegmentedControl = ({
       <div
         ref={containerRef}
         className={classNames(
-          styles.root,
-          styles[size],
-          fullWidth && styles.fullWidth,
-          isReady && styles.ready,
+          localStyles.root,
+          localStyles[size],
+          fullWidth && localStyles.fullWidth,
+          isReady && localStyles.ready,
+          stylesProp?.root,
         )}
         role="radiogroup"
         aria-labelledby={label ? labelId : undefined}
       >
         <div
-          className={styles.slider}
+          className={classNames(localStyles.slider, stylesProp?.slider)}
           style={sliderStyle}
           aria-hidden="true"
         />
@@ -129,11 +140,12 @@ export const SegmentedControl = ({
               }}
               type="button"
               className={classNames(
-                styles.item,
-                isSelected && styles.active,
+                localStyles.item,
+                isSelected && localStyles.active,
                 !option.label &&
                   option.iconName &&
-                  styles.iconOnly,
+                  localStyles.iconOnly,
+                stylesProp?.item,
               )}
               onClick={() => onChange(option.value)}
               onKeyDown={(e) => handleKeyDown(e, index)}
@@ -145,9 +157,9 @@ export const SegmentedControl = ({
               aria-label={option.label || option.value}
               disabled={disabled}
             >
-              {option.iconName && <Icon name={option.iconName} size={size} />}
+              {option.iconName && <Icon name={option.iconName} size={size} className={localStyles.icon} />}
               {option.label && (
-                <span className={styles.label}>
+                <span className={classNames(localStyles.label, stylesProp?.label)}>
                   {option.label}
                 </span>
               )}

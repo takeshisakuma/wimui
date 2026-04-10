@@ -2,6 +2,7 @@ import { render, screen, act } from "@testing-library/react";
 import { ScrollProgress } from "./ScrollProgress";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { useRef as reactUseRef } from "react";
+import styles from "./scrollprogress.module.scss";
 
 describe("ScrollProgress", () => {
   beforeEach(() => {
@@ -20,18 +21,18 @@ describe("ScrollProgress", () => {
   });
 
   it("renders with different color variants", () => {
-    const { container } = render(<ScrollProgress color="success" />);
-    expect(container.querySelector(".wim-scroll-progress--success")).toBeInTheDocument();
+    render(<ScrollProgress color="success" />);
+    expect(screen.getByRole("progressbar")).toHaveClass(styles.success);
   });
 
   it("renders with secondary color", () => {
-    const { container } = render(<ScrollProgress color="secondary" />);
-    expect(container.querySelector(".wim-scroll-progress--secondary")).toBeInTheDocument();
+    render(<ScrollProgress color="secondary" />);
+    expect(screen.getByRole("progressbar")).toHaveClass(styles.secondary);
   });
 
   it("renders with error color", () => {
-    const { container } = render(<ScrollProgress color="error" />);
-    expect(container.querySelector(".wim-scroll-progress--error")).toBeInTheDocument();
+    render(<ScrollProgress color="error" />);
+    expect(screen.getByRole("progressbar")).toHaveClass(styles.error);
   });
 
   it("applies custom className", () => {

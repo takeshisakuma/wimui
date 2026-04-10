@@ -3,26 +3,24 @@
 @layer component {
   .root {
     // This is applied to FieldTemplate
-    &.dark {
-      :global(.wim-input-base) {
-        :global(.wim-input-icon),
-        :global(.wim-input-icons) {
-          --color-input-icon: #fff;
-        }
+  &.dark {
+    .inputBase {
+      .inputIcon,
+      .inputIcons {
+        --color-input-icon: #fff;
+      }
 
-        & :global(.wim-input-base--error) {
-          :global(.wim-input-icon),
-          :global(.wim-input-icons) {
-            --color-input-icon: #fff;
-          }
+      &[class*="error"] {
+        .inputIcon,
+        .inputIcons {
+          --color-input-icon: #fff;
         }
       }
     }
   }
 
   // Overrides for the input[type="color"] itself
-  // These stay relatively same but scoped
-  :global(.wim-input-base) > input[type="color"]:global(.wim-input) {
+  .input {
     box-sizing: border-box;
     display: block;
     align-self: stretch;
@@ -61,59 +59,58 @@
   }
 
   // Shell overrides
-  :global(.wim-input-base) {
-    &:has(input[type="color"]) {
-      width: 120px;
-      min-width: 120px;
-      max-width: 120px;
-      min-height: 42px;
-      overflow: hidden;
+  .inputBase {
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 42px;
+    overflow: hidden;
 
-      &:hover:not(:global(.disabled)) {
-        border-color: var(--wim-color-primary);
+    &:hover:not([class*="disabled"]) {
+      border-color: var(--wim-color-primary);
+    }
+
+    .inputIcon,
+    .inputIcons {
+      color: var(--color-input-icon, var(--wim-color-text-primary));
+      transition: color var(--wim-duration-fast) var(--wim-easing-standard);
+
+      svg {
+        color: inherit;
+        stroke: var(--color-input-icon, var(--wim-color-text-primary));
+        transition: stroke var(--wim-duration-fast) var(--wim-easing-standard);
       }
+    }
 
-      :global(.wim-input-icon),
-      :global(.wim-input-icons) {
-        color: var(--color-input-icon, var(--wim-color-text-primary));
-        transition: color var(--wim-duration-fast) var(--wim-easing-standard);
+    &[class*="error"] {
+      .inputIcon,
+      .inputIcons {
+        color: var(--color-input-icon, var(--wim-color-text-error));
 
-        :global(.wim-icon) {
+        svg {
           color: inherit;
-          stroke: var(--color-input-icon, var(--wim-color-text-primary));
-          transition: stroke var(--wim-duration-fast) var(--wim-easing-standard);
-        }
-      }
-
-      &[class*="error"] {
-        :global(.wim-input-icon),
-        :global(.wim-input-icons) {
-          color: var(--color-input-icon, var(--wim-color-text-error));
-
-          :global(.wim-icon) {
-            color: inherit;
-            stroke: var(--color-input-icon, var(--wim-color-text-error));
-          }
-        }
-      }
-
-      :global(.wim-input-icon):global(.left) {
-        left: 0;
-        justify-content: center;
-        width: var(--wim-input-offset-left);
-      }
-
-      &[class*="hasLeftIcon"] {
-        input[type="color"]:global(.wim-input) {
-          padding-left: var(--wim-input-offset-left);
-        }
-      }
-
-      &[class*="hasRightIcon"] {
-        input[type="color"]:global(.wim-input) {
-          padding-right: var(--wim-input-offset-right);
+          stroke: var(--color-input-icon, var(--wim-color-text-error));
         }
       }
     }
+
+    .inputIcon[class*="left"] {
+      left: 0;
+      justify-content: center;
+      width: var(--wim-input-offset-left);
+    }
+
+    &[class*="hasLeftIcon"] {
+      .input {
+        padding-left: var(--wim-input-offset-left);
+      }
+    }
+
+    &[class*="hasRightIcon"] {
+      .input {
+        padding-right: var(--wim-input-offset-right);
+      }
+    }
   }
+}
 }

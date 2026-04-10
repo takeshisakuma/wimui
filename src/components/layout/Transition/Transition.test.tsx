@@ -70,4 +70,28 @@ describe("Transition", () => {
 
     expect(screen.queryByTestId("content")).not.toBeInTheDocument();
   });
+ 
+  it("applies preset classes", async () => {
+    const { rerender, container } = render(
+      <Transition show={false} preset="fade">
+        <div>Content</div>
+      </Transition>,
+    );
+
+    rerender(
+      <Transition show={true} preset="fade">
+        <div>Content</div>
+      </Transition>,
+    );
+
+    const wrapper = container.firstChild as HTMLElement;
+    // Check if some hashed class is applied (since we use CSS modules, we can't easily check the name without importing styles,
+    // but we can check if it HAS classes that are not our 'className' prop if we provide one)
+    expect(wrapper.className).not.toBe("");
+    
+    await waitFor(() => {
+        // It should still be showing after transition
+        expect(wrapper).toBeInTheDocument();
+    });
+  });
 });

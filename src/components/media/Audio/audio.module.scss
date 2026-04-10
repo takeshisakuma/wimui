@@ -283,7 +283,7 @@
         background-color: color-mix(in srgb, var(--wim-color-primary) 85%, var(--wim-color-text-white));
       }
 
-      :global(.wim-icon) {
+      svg {
         width: 20px;
         height: 20px;
       }

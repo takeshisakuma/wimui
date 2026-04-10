@@ -18,11 +18,12 @@ describe("Header", () => {
     expect(screen.getByText("Section")).toBeInTheDocument();
   });
 
-  it("applies styling classes", () => {
+  it("applies styling attributes", () => {
     render(<Header fixed sticky bordered />);
     const header = screen.getByRole("banner");
-    expect(header).toHaveClass("wim-header--fixed");
-    expect(header).toHaveClass("wim-header--sticky");
-    expect(header).toHaveClass("wim-header--bordered");
+    expect(header).toHaveAttribute("data-fixed", "true");
+    expect(header).toHaveAttribute("data-sticky", "true");
+    expect(header).toHaveAttribute("data-bordered", "true");
   });
+
 });

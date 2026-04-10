@@ -195,13 +195,9 @@ export const DropdownMenu = ({
   return (
     <Transition
       show={isOpen}
-      enter="fade-enter"
-      enterFrom="fade-enter-from"
-      enterTo="fade-enter-to"
-      leave="fade-leave"
-      leaveFrom="fade-leave-from"
-      leaveTo="fade-leave-to"
+      preset="fade"
       id={menuId}
+
       className={classNames(
         styles.menu,
         alignClass,

@@ -34,7 +34,6 @@ export const Icon = ({
     <IconComponent
       className={classNames(
         styles.root,
-        "wim-icon",
         styles[size],
         color && styles[color],
         name && (name === "LoadingIcon" || name === "SpinnerIcon") &&

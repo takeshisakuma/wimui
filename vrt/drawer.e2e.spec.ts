@@ -14,9 +14,9 @@ test.describe("Drawer", () => {
       await page.goto(STORY_URL(DEFAULT_STORY));
       await page.waitForLoadState("networkidle");
 
-      await expect(page.locator(".wim-drawer-content")).not.toBeVisible();
+      await expect(page.getByTestId("drawer-content")).not.toBeVisible();
       await page.getByRole("button", { name: /open/i }).click();
-      await expect(page.locator(".wim-drawer-content")).toBeVisible();
+      await expect(page.getByTestId("drawer-content")).toBeVisible();
     });
 
     test("closes with close button", async ({ page }) => {
@@ -24,10 +24,10 @@ test.describe("Drawer", () => {
       await page.waitForLoadState("networkidle");
 
       await page.getByRole("button", { name: /open/i }).click();
-      await expect(page.locator(".wim-drawer-content")).toBeVisible();
+      await expect(page.getByTestId("drawer-content")).toBeVisible();
 
-      await page.locator(".wim-drawer-close-button").click();
-      await expect(page.locator(".wim-drawer-content")).not.toBeVisible();
+      await page.getByTestId("drawer-close").click();
+      await expect(page.getByTestId("drawer-content")).not.toBeVisible();
     });
 
     test("closes on Escape key", async ({ page }) => {
@@ -35,9 +35,9 @@ test.describe("Drawer", () => {
       await page.waitForLoadState("networkidle");
 
       await page.getByRole("button", { name: /open/i }).click();
-      await expect(page.locator(".wim-drawer-content")).toBeVisible();
+      await expect(page.getByTestId("drawer-content")).toBeVisible();
       await page.keyboard.press("Escape");
-      await expect(page.locator(".wim-drawer-content")).not.toBeVisible();
+      await expect(page.getByTestId("drawer-content")).not.toBeVisible();
     });
 
     test("returns focus to trigger button after closing", async ({ page }) => {
@@ -55,7 +55,7 @@ test.describe("Drawer", () => {
       await page.waitForLoadState("networkidle");
 
       await page.getByRole("button", { name: /open/i }).click();
-      await expect(page.locator(".wim-drawer-title")).toBeVisible();
+      await expect(page.getByTestId("drawer-title")).toBeVisible();
     });
   });
 
@@ -65,7 +65,7 @@ test.describe("Drawer", () => {
       await page.waitForLoadState("networkidle");
 
       await page.getByRole("button", { name: /open/i }).click();
-      await expect(page.locator(".wim-drawer-content--left")).toBeVisible();
+      await expect(page.locator('[data-testid="drawer-content"][data-side="left"]')).toBeVisible();
     });
 
     test("Top drawer has top side class", async ({ page }) => {
@@ -73,7 +73,7 @@ test.describe("Drawer", () => {
       await page.waitForLoadState("networkidle");
 
       await page.getByRole("button", { name: /open/i }).click();
-      await expect(page.locator(".wim-drawer-content--top")).toBeVisible();
+      await expect(page.locator('[data-testid="drawer-content"][data-side="top"]')).toBeVisible();
     });
 
     test("Bottom drawer has bottom side class", async ({ page }) => {
@@ -81,7 +81,7 @@ test.describe("Drawer", () => {
       await page.waitForLoadState("networkidle");
 
       await page.getByRole("button", { name: /open/i }).click();
-      await expect(page.locator(".wim-drawer-content--bottom")).toBeVisible();
+      await expect(page.locator('[data-testid="drawer-content"][data-side="bottom"]')).toBeVisible();
     });
   });
 });

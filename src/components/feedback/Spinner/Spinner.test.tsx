@@ -16,13 +16,13 @@ describe("Spinner", () => {
   it("applies size and color classes to svg", () => {
     const { container } = render(<Spinner size="lg" color="success" />);
     const svg = container.querySelector("svg");
-    expect(svg).toHaveClass("wim-spinner--lg");
-    expect(svg).toHaveClass("wim-spinner--success");
+    expect(svg).toHaveClass(/lg/);
+    expect(svg).toHaveClass(/success/);
   });
 
   it("applies small size class", () => {
     const { container } = render(<Spinner size="sm" />);
-    expect(container.querySelector("svg")).toHaveClass("wim-spinner--sm");
+    expect(container.querySelector("svg")).toHaveClass(/sm/);
   });
 
   it("applies custom hex color as inline style", () => {

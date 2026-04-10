@@ -112,11 +112,11 @@ export const TreeSelect = ({
     if (isOpen) {
       // Move focus to the search input if searchable, otherwise to the tree
       const timer = setTimeout(() => {
-        const searchInput = containerRef.current?.querySelector(".wim-tree-view__search-input") as HTMLElement;
+        const searchInput = containerRef.current?.querySelector('[data-testid="tree-view-search-input"]') as HTMLElement;
         if (searchInput) {
           searchInput.focus();
         } else {
-          const tree = containerRef.current?.querySelector(".wim-tree-view") as HTMLElement;
+          const tree = containerRef.current?.querySelector('[data-testid="tree-view-root"]') as HTMLElement;
           tree?.focus();
         }
       }, 100);
@@ -290,12 +290,7 @@ export const TreeSelect = ({
 
         <Transition
           show={isOpen && !disabled}
-          enter="fade-enter"
-          enterFrom="fade-enter-from"
-          enterTo="fade-enter-to"
-          leave="fade-leave"
-          leaveFrom="fade-leave-from"
-          leaveTo="fade-leave-to"
+          preset="fade"
           className={styles.dropdown}
         >
           <div id={dropdownId}>
@@ -312,6 +307,11 @@ export const TreeSelect = ({
                   checkStrategy={checkStrategy}
                   searchable={searchable}
                   defaultExpandedValues={defaultExpandedKeys}
+                  styles={{
+                    root: styles.treeView,
+                    item: styles.treeViewItem,
+                    search: styles.treeViewSearch,
+                  }}
                 />
               </div>
             </FocusTrap>

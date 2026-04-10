@@ -86,7 +86,7 @@
   }
 
   .option {
-    :global(.wim-multiselect)[data-keyboard-nav="true"] &.active {
+    .root[data-keyboard-nav="true"] &.active {
       z-index: 1;
       box-shadow: var(--wim-shadow-focus);
     }

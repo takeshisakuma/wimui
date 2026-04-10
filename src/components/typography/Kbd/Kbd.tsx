@@ -1,33 +1,32 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { ComponentSize } from "../../../types/tokens";
-import "./kbd.scss";
+import styles from "./kbd.module.scss";
 
 export interface KbdProps extends React.HTMLAttributes<HTMLElement> {
+  /**
+   * If true, the Kbd will be rendered as its child, merging its props onto that child.
+   */
   asChild?: boolean;
-  /**
-   * キーボードのラベル（または子要素）。
-   */
-  children: React.ReactNode;
-  /**
-   * サイズ。
-   */
-  size?: ComponentSize;
+  size?: "sm" | "md" | "lg";
+  children?: React.ReactNode;
 }
 
-/**
- * ユーザーが入力するキーボードのショートカットやキーを表示するためのコンポーネント。
- */
-export const Kbd = React.forwardRef<HTMLElement, KbdProps>(({ asChild = false, children, size = "md", className, ...props }, ref) => {
-  const Component = asChild ? Slot : "kbd";
+export const Kbd = React.forwardRef<HTMLElement, KbdProps>(
+  ({ asChild = false, size = "md", children, className, ...props }, ref) => {
+    const Component = asChild ? Slot : "kbd";
 
-  return (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    <Component className={classNames("wim-kbd", `wim-kbd--${size}`, className)} ref={ref as any} {...props}>
-      <Slottable>{children}</Slottable>
-    </Component>
-  );
-});
+    return (
+      <Component
+        className={classNames(styles.root, styles[size], className)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
+        {...props}
+      >
+        <Slottable>{children}</Slottable>
+      </Component>
+    );
+  },
+);
 
 Kbd.displayName = "Kbd";

@@ -9,8 +9,10 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
-import { Heading } from "../../typography/Heading/Heading";
+import { Title } from "../../typography/Title/Title";
 import { CHART_THEME } from "../../helpers";
+
+import styles from "./heatmap.module.scss";
 
 export type HeatmapProps = {
   data: { x: string; y: string; value: number }[];
@@ -53,13 +55,13 @@ export const Heatmap = ({
   };
 
   return (
-    <div className="wim-chart" style={{ width, height: "auto" }}>
+    <div className={styles.root} style={{ width }}>
       {title && (
-        <Heading tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
           {title}
-        </Heading>
+        </Title>
       )}
-      <div className="wim-chart__container" style={{ height }}>
+      <div className={styles.container} style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <ScatterChart margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
             <XAxis

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Notification, NotificationProvider, useNotification } from "./Notification";
+import styles from "./notification.module.scss";
 
 describe("Notification", () => {
   it("renders title and description", () => {
@@ -18,7 +19,7 @@ describe("Notification", () => {
     const { container } = render(
       <Notification title="Success" intent="success" />,
     );
-    const icon = container.querySelector(".wim-notification-icon");
+    const icon = container.querySelector(`.${styles.icon}`);
     expect(icon).toBeInTheDocument();
   });
 
@@ -111,7 +112,8 @@ describe("NotificationProvider and useNotification", () => {
         <div />
       </NotificationProvider>,
     );
-    expect(container.querySelector(".wim-notification-container--bottomLeft")).toBeInTheDocument();
+    const notificationContainer = container.querySelector(`.${styles.container}`);
+    expect(notificationContainer).toHaveClass(styles.bottomLeft);
   });
 
   it("throws when useNotification is used outside NotificationProvider", () => {
@@ -120,8 +122,10 @@ describe("NotificationProvider and useNotification", () => {
       return null;
     };
 
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => render(<BadComponent />)).toThrow(
       "useNotification must be used within a NotificationProvider",
     );
+    consoleSpy.mockRestore();
   });
 });

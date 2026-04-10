@@ -41,17 +41,17 @@
   }
 
   /* DataGrid specific highlights */
-  :global(.wim-datagrid-cell--fixed) {
+  .cellFixed {
     position: sticky;
     z-index: 2;
     background-color: var(--wim-color-bg-component);
   }
 
-  :global(.wim-datagrid-cell--fixed-left-last) {
+  .cellFixedLeftLast {
     box-shadow: 2px 0 5px -2px rgb(0 0 0 / 0.1);
   }
 
-  :global(.wim-datagrid-cell--fixed-right-first) {
+  .cellFixedRightFirst {
     box-shadow: -2px 0 5px -2px rgb(0 0 0 / 0.1);
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./header.scss";
+import styles from "./header.module.scss";
 
 export interface HeaderProps extends React.ComponentPropsWithoutRef<"header"> {
   /** Fixed position at the top */
@@ -33,17 +33,20 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
       <header
         ref={ref}
         className={classNames(
-          "wim-header",
-          fixed && "wim-header--fixed",
-          sticky && "wim-header--sticky",
-          bordered && "wim-header--bordered",
-          glass && "wim-header--glass",
-          background && `wim-header--bg-${background}`,
+          styles.root,
+          fixed && styles.fixed,
+          sticky && styles.sticky,
+          bordered && styles.bordered,
+          glass && styles.glass,
+          background && styles[`bg-${background}`],
           className,
         )}
+        data-fixed={fixed}
+        data-sticky={sticky}
+        data-bordered={bordered}
         {...props}
       >
-        <div className="wim-header__container">{children}</div>
+        <div className={styles.container}>{children}</div>
       </header>
     );
   },
@@ -63,8 +66,8 @@ export const HeaderSection = React.forwardRef<
     <div
       ref={ref}
       className={classNames(
-        "wim-header__section",
-        `wim-header__section--${align}`,
+        styles.section,
+        align && styles[align],
         className,
       )}
       {...props}

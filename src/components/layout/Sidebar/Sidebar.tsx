@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./sidebar.scss";
+import styles from "./sidebar.module.scss";
 
 export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
   /** Fixed position */
@@ -43,7 +43,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       <>
         {responsive && mobileOpen && (
           <div
-            className="wim-sidebar-overlay"
+            className={styles.overlay}
             onClick={onOverlayClick}
             aria-hidden="true"
           />
@@ -52,17 +52,19 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           ref={ref}
           style={style}
           className={classNames(
-            "wim-sidebar",
-            fixed && "wim-sidebar--fixed",
-            collapsed && "wim-sidebar--collapsed",
-            bordered && "wim-sidebar--bordered",
-            responsive && "wim-sidebar--responsive",
-            mobileOpen && "wim-sidebar--mobile-open",
+            styles.root,
+            fixed && styles.fixed,
+            collapsed && styles.collapsed,
+            bordered && styles.bordered,
+            responsive && styles.responsive,
+            mobileOpen && styles["mobile-open"],
             className,
           )}
+          data-collapsed={collapsed}
           {...props}
         >
-          <div className="wim-sidebar__container">{children}</div>
+
+          <div className={styles.container}>{children}</div>
         </aside>
       </>
     );
@@ -78,7 +80,7 @@ export const SidebarHeader = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
-    className={classNames("wim-sidebar__header", className)}
+    className={classNames(styles.header, className)}
     {...props}
   >
     {children}
@@ -93,7 +95,7 @@ export const SidebarContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
-    className={classNames("wim-sidebar__content", className)}
+    className={classNames(styles.content, className)}
     {...props}
   >
     {children}
@@ -108,7 +110,7 @@ export const SidebarFooter = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
-    className={classNames("wim-sidebar__footer", className)}
+    className={classNames(styles.footer, className)}
     {...props}
   >
     {children}
@@ -126,15 +128,15 @@ export const SidebarItem = React.forwardRef<HTMLDivElement, SidebarItemProps>(
     <div
       ref={ref}
       className={classNames(
-        "wim-sidebar__item",
-        active && "wim-sidebar__item--active",
-        disabled && "wim-sidebar__item--disabled",
+        styles.item,
+        active && styles.active,
+        disabled && styles.disabled,
         className,
       )}
       {...props}
     >
-      {icon && <span className="wim-sidebar__item-icon">{icon}</span>}
-      <span className="wim-sidebar__item-text">{children}</span>
+      {icon && <span className={styles.itemIcon}>{icon}</span>}
+      <span className={styles.itemText}>{children}</span>
     </div>
   ),
 );

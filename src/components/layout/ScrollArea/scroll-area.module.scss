@@ -1,0 +1,27 @@
+.root {
+  display: block;
+  width: 100%;
+  scrollbar-color: var(--wim-color-border-secondary) transparent;
+
+  /* Firefox */
+  scrollbar-width: thin;
+
+  /* Scrollbar styles */
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--wim-color-border-secondary);
+    border-radius: 10px;
+
+    &:hover {
+      background: var(--wim-color-border);
+    }
+  }
+}

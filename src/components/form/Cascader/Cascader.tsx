@@ -446,12 +446,7 @@ export const Cascader = ({
 
         <Transition
           show={isOpen && !disabled}
-          enter="fade-enter"
-          enterFrom="fade-enter-from"
-          enterTo="fade-enter-to"
-          leave="fade-leave"
-          leaveFrom="fade-leave-from"
-          leaveTo="fade-leave-to"
+          preset="fade"
           id={popupId}
           className={styles.dropdown}
         >

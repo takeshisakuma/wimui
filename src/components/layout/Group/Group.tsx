@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Flex } from "../../layout/Flex/Flex";
-import "./group.scss";
+import styles from "./group.module.scss";
 
 export type GroupProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -60,7 +60,7 @@ export const Group = React.forwardRef<HTMLDivElement, GroupProps>(
         justify={justify}
         gap={gap}
         wrap={wrap}
-        className={classNames("wim-group", className)}
+        className={classNames(styles.root, className)}
         {...props}
       >
         {items}

@@ -1,0 +1,132 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/addon-docs/blocks";
+import * as TitleStories from "./Title.stories";
+import { T } from "../../T";
+
+<Meta of={TitleStories} />
+
+# Title
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "18px",
+    lineHeight: "28px",
+    color: "var(--wim-color-text-secondary)",
+  }}
+>
+  <T k="doc.title_desc" />
+</p>
+
+<p><T k="doc.heading_long_desc" /></p>
+
+<Canvas of={TitleStories.H1Title} />
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.heading_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.heading_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Title</b></td>
+      <td><T k="doc.heading_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Text</b></td>
+      <td><T k="doc.heading_choice_alt_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.anatomy_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><T k="doc.heading_anatomy_root_label" /></b></td>
+      <td><T k="doc.heading_anatomy_root" /></td>
+    </tr>
+    <tr>
+      <td><b><T k="doc.heading_anatomy_content_label" /></b></td>
+      <td><T k="doc.heading_anatomy_content" /></td>
+    </tr>
+  </tbody>
+</table>
+
+### <T k="doc.heading_levels" />
+<p><T k="doc.heading_levels_desc" /></p>
+<Canvas of={TitleStories.H1Title} />
+<Canvas of={TitleStories.H2Title} />
+<Canvas of={TitleStories.H3Title} />
+<Canvas of={TitleStories.H4Title} />
+<Canvas of={TitleStories.H5Title} />
+<Canvas of={TitleStories.H6Title} />
+
+## <T k="doc.content_guidelines_title" />
+<ul>
+  <li><T k="doc.heading_content_guideline" /></li>
+</ul>
+
+## <T k="doc.motion_spec_title" />
+<p><T k="doc.heading_motion_desc" /></p>
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.heading_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.scenario_article_title" /></strong></td>
+      <td><T k="doc.heading_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.scenario_dashboard_title" /></strong></td>
+      <td><T k="doc.heading_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.heading_best_practice_1" /></li>
+  <li><T k="doc.heading_best_practice_2" /></li>
+</ul>
+
+## <T k="doc.tokens_title" />
+<p><T k="doc.heading_tokens_desc" /></p>
+
+## <T k="doc.responsive_title" />
+<p><T k="doc.heading_responsive_desc" /></p>
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.heading_keyboard_desc" /></p>
+
+## <T k="doc.test_title" />
+```bash
+npm run test -- Title
+```
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.heading_i18n_desc" /></p>
+
+## <T k="doc.props" />
+<Controls />

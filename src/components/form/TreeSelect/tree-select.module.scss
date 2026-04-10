@@ -136,7 +136,7 @@
     }
 
     // Adapt TreeView styles for Selectbox dropdown
-    :global(.wim-tree-view) {
+    .treeView {
       width: max-content;
       min-width: 100%;
       padding: 4px 0;
@@ -144,11 +144,11 @@
       border: none;
       box-shadow: none;
 
-      :global(.wim-tree-view-item) {
+      .treeViewItem {
         container-type: normal;
       }
 
-      :global(.wim-tree-view__search) {
+      .treeViewSearch {
         padding: 4px 12px;
         margin-bottom: 8px;
       }

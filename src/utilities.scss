@@ -1,44 +1,43 @@
-/* --- スクロール制御 --- */
-
-/* スクロール機能を維持したまま、スクロールバー（見た目）を隠す */
-.wim-no-scrollbar {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
-
-  &::-webkit-scrollbar {
-    display: none !important;
-  }
-}
-
-/* モダンで控えめなスクロールバー */
-.wim-subtle-scrollbar {
-  scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track) !important;
-  scrollbar-width: thin !important;
-
-  &::-webkit-scrollbar {
-    width: var(--wim-spacing-lg) !important;
-    height: var(--wim-spacing-lg) !important;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: var(--wim-color-scrollbar-track) !important;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--wim-color-scrollbar-thumb) !important;
-    background-clip: content-box !important;
-    border: 1px solid transparent !important;
-    border-radius: var(--wim-radius-lg) !important;
-
-    &:hover {
-      background-color: var(--wim-color-scrollbar-thumb) !important;
-      filter: brightness(0.9);
-    }
-  }
-}
-
 @layer utilities {
   /* 便利なユーティリティ */
+
+  /* スクロール機能を維持したまま、スクロールバー（見た目）を隠す */
+  .no-scrollbar {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+  }
+
+  /* モダンで控えめなスクロールバー */
+  .subtle-scrollbar {
+    scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track) !important;
+    scrollbar-width: thin !important;
+
+    &::-webkit-scrollbar {
+      width: var(--wim-spacing-lg) !important;
+      height: var(--wim-spacing-lg) !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--wim-color-scrollbar-track) !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--wim-color-scrollbar-thumb) !important;
+      background-clip: content-box !important;
+      border: 1px solid transparent !important;
+      border-radius: var(--wim-radius-lg) !important;
+
+      &:hover {
+        background-color: var(--wim-color-scrollbar-thumb) !important;
+        filter: brightness(0.9);
+      }
+    }
+  }
+
 
   /* 要素を視覚的に隠すが、スクリーンリーダーからはアクセス可能にする */
   .visually-hidden {

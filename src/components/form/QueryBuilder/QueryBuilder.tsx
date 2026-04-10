@@ -280,97 +280,8 @@ export const QueryBuilder = ({
     announce(removed);
   };
 
-  const renderRule = (rule: QueryRule) => {
-    const fieldDef = fields.find((f) => f.name === rule.field);
-    const type = fieldDef?.type || "string";
-    const operators = DEFAULT_OPERATORS[type].map(op => ({
-      ...op,
-      label: operatorOverrides[op.key] || op.label
-    }));
-
-    const handleFieldChange = (val: string) => {
-      const newFieldDef = fields.find((f) => f.name === val);
-      handleUpdate(rule.id, {
-        field: val,
-        operator: "=",
-        value: newFieldDef?.type === "boolean" ? false : "",
-      });
-    };
-
-    const isUnaryOperator = rule.operator === "is_null" || rule.operator === "is_not_null";
-
-    return (
-      <div key={rule.id} className={styles.rule} role="group" aria-label={ruleAriaLabel}>
-        <div className={styles.ruleFields}>
-          <Selectbox
-            className={styles.field}
-            options={fields.map((f) => ({ label: f.label, value: f.name }))}
-            value={rule.field}
-            onChange={handleFieldChange}
-            aria-label={fieldAriaLabel}
-            fullWidth
-          />
-          <Selectbox
-            className={styles.operator}
-            options={operators.map((op) => ({ label: op.label, value: op.value }))}
-            value={rule.operator}
-            onChange={(val) => handleUpdate(rule.id, { operator: val })}
-            aria-label={operatorAriaLabel}
-            fullWidth
-          />
-          {!isUnaryOperator && (
-            <div className={styles.value}>
-              {type === "number" ? (
-                <NumberInput
-                  value={typeof rule.value === "boolean" ? undefined : (rule.value ?? undefined)}
-                  onChange={(e) => handleUpdate(rule.id, { value: e.target.value })}
-                  aria-label={valueAriaLabel}
-                />
-              ) : type === "date" ? (
-                <DatePicker
-                  value={typeof rule.value === "string" || typeof rule.value === "number" ? new Date(rule.value) : undefined}
-                  onChange={(date) =>
-                    handleUpdate(rule.id, { value: date ? date.toISOString() : "" })
-                  }
-                  aria-label={valueAriaLabel}
-                />
-              ) : type === "boolean" ? (
-                <Selectbox
-                  options={[
-                    { label: trueLabel, value: "true" },
-                    { label: falseLabel, value: "false" },
-                  ]}
-                  value={String(rule.value)}
-                  onChange={(val) => handleUpdate(rule.id, { value: val === "true" })}
-                  aria-label={valueAriaLabel}
-                  fullWidth
-                />
-              ) : (
-                <Input
-                  value={typeof rule.value === "boolean" ? undefined : (rule.value ?? undefined)}
-                  onChange={(e) => handleUpdate(rule.id, { value: e.target.value })}
-                  aria-label={valueAriaLabel}
-                />
-              )}
-            </div>
-          )}
-          <IconButton
-            iconName="TrashIcon"
-            aria-label={removeRuleAriaLabel}
-            variant="ghost"
-            size="md"
-            color="danger"
-            onClick={() => handleRemove(rule.id)}
-            className={styles.removeRule}
-          />
-        </div>
-      </div>
-    );
-  };
-
-  const renderGroup = (group: QueryGroup, depth: number, isParentExcluded = false) => {
-    const isExcluded = group.not ? !isParentExcluded : isParentExcluded;
-    const groupLabel = `${group.combinator.toUpperCase()}${group.not ? " NOT" : ""} group`;
+  const renderGroup = (group: QueryGroup, depth: number, isExcluded: boolean) => {
+    const groupLabel = `${group.combinator.toUpperCase()} group`;
     return (
       <div
         key={group.id}
@@ -393,6 +304,11 @@ export const QueryBuilder = ({
               value={group.combinator}
               onChange={(val) => handleUpdate(group.id, { combinator: val as "and" | "or" })}
               aria-label={combinatorAriaLabel}
+              styles={{
+                root: styles.segmentedControl,
+                item: styles.segmentedControlItem,
+                slider: styles.segmentedControlSlider,
+              }}
             />
             <Switch
               size="md"
@@ -443,6 +359,118 @@ export const QueryBuilder = ({
     );
   };
 
+  const renderRule = (rule: QueryRule) => {
+    const fieldDef = fields.find((f) => f.name === rule.field);
+    const type = fieldDef?.type || "string";
+    const operators = DEFAULT_OPERATORS[type].map(op => ({
+      ...op,
+      label: operatorOverrides[op.key] || op.label
+    }));
+
+    const handleFieldChange = (val: string) => {
+      const newFieldDef = fields.find((f) => f.name === val);
+      handleUpdate(rule.id, {
+        field: val,
+        operator: "=",
+        value: newFieldDef?.type === "boolean" ? false : "",
+      });
+    };
+
+    const isUnaryOperator = rule.operator === "is_null" || rule.operator === "is_not_null";
+
+    return (
+      <div key={rule.id} className={styles.rule} role="group" aria-label={ruleAriaLabel}>
+        <div className={styles.ruleFields}>
+          <Selectbox
+            className={styles.field}
+            options={fields.map((f) => ({ label: f.label, value: f.name }))}
+            value={rule.field}
+            onChange={handleFieldChange}
+            aria-label={fieldAriaLabel}
+            fullWidth
+            styles={{
+              root: styles.selectbox,
+              trigger: styles.selectboxTrigger,
+              inputBase: {
+                root: styles.inputBase,
+              }
+            }}
+          />
+          <Selectbox
+            className={styles.operator}
+            options={operators.map((op) => ({ label: op.label, value: op.value }))}
+            value={rule.operator}
+            onChange={(val) => handleUpdate(rule.id, { operator: val })}
+            aria-label={operatorAriaLabel}
+            fullWidth
+            styles={{
+              root: styles.selectbox,
+              trigger: styles.selectboxTrigger,
+              inputBase: {
+                root: styles.inputBase,
+              }
+            }}
+          />
+          {!isUnaryOperator && (
+            <div className={styles.value}>
+              {type === "number" ? (
+                <NumberInput
+                  value={typeof rule.value === "boolean" ? undefined : (rule.value ?? undefined)}
+                  onChange={(e) => handleUpdate(rule.id, { value: e.target.value })}
+                  aria-label={valueAriaLabel}
+                />
+              ) : type === "date" ? (
+                <DatePicker
+                  value={typeof rule.value === "string" || typeof rule.value === "number" ? new Date(rule.value) : undefined}
+                  onChange={(date) =>
+                    handleUpdate(rule.id, { value: date ? date.toISOString() : "" })
+                  }
+                  aria-label={valueAriaLabel}
+                />
+              ) : type === "boolean" ? (
+                <Selectbox
+                  options={[
+                    { label: trueLabel, value: "true" },
+                    { label: falseLabel, value: "false" },
+                  ]}
+                  value={String(rule.value)}
+                  onChange={(val) => handleUpdate(rule.id, { value: val === "true" })}
+                  aria-label={valueAriaLabel}
+                  fullWidth
+                  styles={{
+                    root: styles.selectbox,
+                    trigger: styles.selectboxTrigger,
+                    inputBase: {
+                      root: styles.inputBase,
+                    }
+                  }}
+                />
+              ) : (
+                <Input
+                  value={typeof rule.value === "boolean" ? undefined : (rule.value ?? undefined)}
+                  onChange={(e) => handleUpdate(rule.id, { value: e.target.value })}
+                  aria-label={valueAriaLabel}
+                  styles={{
+                    root: styles.inputBase,
+                  }}
+                />
+              )}
+            </div>
+          )}
+          <IconButton
+            iconName="TrashIcon"
+            aria-label={removeRuleAriaLabel}
+            variant="ghost"
+            size="md"
+            color="danger"
+            onClick={() => handleRemove(rule.id)}
+            className={styles.removeRule}
+          />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div
       id={id}
@@ -450,22 +478,11 @@ export const QueryBuilder = ({
       aria-label={regionAriaLabel}
       className={classNames(styles.root, className)}
     >
-      {/* Screen reader live region for dynamic announcements */}
       <div
         ref={statusRef}
         aria-live="polite"
         aria-atomic="true"
-        style={{
-          position: "absolute",
-          width: "1px",
-          height: "1px",
-          padding: 0,
-          margin: "-1px",
-          overflow: "hidden",
-          clip: "rect(0,0,0,0)",
-          whiteSpace: "nowrap",
-          border: 0,
-        }}
+        className={styles.srOnly}
       />
       {renderGroup(currentQuery, 0, false)}
     </div>

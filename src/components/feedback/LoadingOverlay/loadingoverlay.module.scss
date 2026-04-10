@@ -1,0 +1,83 @@
+@layer component {
+  .root {
+    position: absolute;
+    inset: 0;
+    z-index: var(--wim-z-index-overlay, 1000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+
+    &.fixed {
+      position: fixed;
+    }
+
+    &.hidden {
+      display: none;
+    }
+
+    // Fade in/out animation
+    &.entering,
+    &.entered {
+      opacity: 1;
+    }
+
+    &.exiting,
+    &.exited {
+      opacity: 0;
+    }
+  }
+
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: var(--wim-color-overlay-bg);
+    backdrop-filter: blur(2px);
+    transition: opacity var(--wim-transition-duration-normal, 200ms)
+      var(--wim-transition-timing-ease-out, ease-out);
+
+    &.light {
+      background-color: var(
+        --wim-color-overlay-bg-light,
+        rgb(255 255 255 / 0.8)
+      );
+    }
+
+    &.dark {
+      background-color: var(--wim-color-overlay-bg-dark);
+    }
+
+    &.blur-sm {
+      backdrop-filter: blur(1px);
+    }
+
+    &.blur-md {
+      backdrop-filter: blur(4px);
+    }
+
+    &.blur-lg {
+      backdrop-filter: blur(8px);
+    }
+
+    &.blur-none {
+      backdrop-filter: none;
+    }
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-md, 12px);
+    align-items: center;
+  }
+
+  .message {
+    max-width: 300px;
+    font-size: var(--wim-font-size-md, 14px);
+    font-weight: var(--wim-font-weight-medium, 500);
+    color: var(--wim-color-text-on-overlay);
+    text-align: center;
+  }
+}

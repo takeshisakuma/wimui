@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Spinner } from "../../feedback/Spinner/Spinner";
 import { Loader } from "../../feedback/Loader/Loader";
 import { ComponentSize } from "../../../types/tokens";
-import "./loadingoverlay.scss";
+import styles from "./loadingoverlay.module.scss";
 
 export type LoadingOverlayProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -106,8 +106,8 @@ export const LoadingOverlay = ({
   return (
     <div
       className={classNames(
-        "wim-loading-overlay",
-        fixed && "wim-loading-overlay--fixed",
+        styles.root,
+        fixed && styles.fixed,
         className,
       )}
       style={{
@@ -115,21 +115,22 @@ export const LoadingOverlay = ({
         ...(zIndex !== undefined && { zIndex }),
       }}
       role="status"
+      data-testid="loading-overlay"
       aria-live="polite"
       aria-busy="true"
       {...props}
     >
       <div
         className={classNames(
-          "wim-loading-overlay__backdrop",
-          `wim-loading-overlay__backdrop--${backdropVariant}`,
-          `wim-loading-overlay__backdrop--blur-${blur}`,
+          styles.backdrop,
+          styles[backdropVariant],
+          styles[`blur-${blur}`],
         )}
       />
-      <div className="wim-loading-overlay__content">
+      <div className={styles.content}>
         {renderLoader()}
         {message && (
-          <div className="wim-loading-overlay__message">{message}</div>
+          <div className={styles.message}>{message}</div>
         )}
       </div>
     </div>

@@ -17,12 +17,11 @@ describe("Sidebar", () => {
     expect(screen.getByText("Footer")).toBeInTheDocument();
   });
 
-  it("applies collapsed class", () => {
+  it("applies collapsed attribute", () => {
     const { container } = render(<Sidebar collapsed />);
-    expect(container.querySelector("aside")).toHaveClass(
-      "wim-sidebar--collapsed",
-    );
+    expect(container.querySelector("aside")).toHaveAttribute("data-collapsed", "true");
   });
+
 
   it("renders sidebar items with icons", () => {
     render(

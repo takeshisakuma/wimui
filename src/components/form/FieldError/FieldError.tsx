@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { Paragraph } from "../../typography/Paragraph/Paragraph";
+import { Text } from "../../typography/Text/Text";
 import styles from "./field-error.module.scss";
 
 type FieldErrorProps = {
@@ -24,7 +24,8 @@ export const FieldError = ({
       role="alert"
       aria-live="polite"
     >
-      <Paragraph content={content} color="error" size="sm" />
+      <Text content={content} color="error" size="sm" />
     </div>
   );
 };
+

@@ -222,10 +222,10 @@ export const Rating = ({
         aria-label={readOnly ? undefined : star(index + 1)}
       >
         <div className={styles.background}>
-          <Icon name="StarIcon" size={size} />
+          <Icon name="StarIcon" size={size} className={styles.icon} />
         </div>
         <div className={styles.foreground}>
-          <Icon name="StarIcon" size={size} />
+          <Icon name="StarIcon" size={size} className={styles.icon} />
         </div>
       </div>
     );

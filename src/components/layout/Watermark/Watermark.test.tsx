@@ -25,26 +25,20 @@ describe("Watermark", () => {
   });
 
   it("renders watermark overlay", () => {
-    const { container } = render(<Watermark content="Confidential" />);
-    const watermarkDiv = container.querySelector(".wim-watermark");
+    render(<Watermark content="Confidential" />);
+    const watermarkDiv = screen.getByTestId("wim-watermark");
     expect(watermarkDiv).toBeInTheDocument();
   });
 
   it("applies opacity and z-index", () => {
-    const { container } = render(
-      <Watermark content="Confidential" zIndex={100} />,
-    );
-    const watermarkDiv = container.querySelector(
-      ".wim-watermark",
-    ) as HTMLElement;
+    render(<Watermark content="Confidential" zIndex={100} />);
+    const watermarkDiv = screen.getByTestId("wim-watermark");
     expect(watermarkDiv.style.zIndex).toBe("100");
   });
 
   it("renders with array content", () => {
-    const { container } = render(
-      <Watermark content={["Line 1", "Line 2"]} />,
-    );
-    expect(container.querySelector(".wim-watermark")).toBeInTheDocument();
+    render(<Watermark content={["Line 1", "Line 2"]} />);
+    expect(screen.getByTestId("wim-watermark")).toBeInTheDocument();
   });
 
   it("renders with custom className", () => {
@@ -55,21 +49,18 @@ describe("Watermark", () => {
   });
 
   it("renders with no content and no image (no canvas drawing)", () => {
-    const { container } = render(<Watermark />);
-    expect(container.querySelector(".wim-watermark")).toBeInTheDocument();
+    render(<Watermark />);
+    expect(screen.getByTestId("wim-watermark")).toBeInTheDocument();
   });
 
   it("renders with image prop", () => {
-    const { container } = render(
-      <Watermark image="https://example.com/logo.png" />,
-    );
-    expect(container.querySelector(".wim-watermark")).toBeInTheDocument();
+    render(<Watermark image="https://example.com/logo.png" />);
+    expect(screen.getByTestId("wim-watermark")).toBeInTheDocument();
   });
 
   it("renders with custom width, height, rotate", () => {
-    const { container } = render(
-      <Watermark content="Custom" width={200} height={80} rotate={-45} />,
-    );
-    expect(container.querySelector(".wim-watermark")).toBeInTheDocument();
+    render(<Watermark content="Custom" width={200} height={80} rotate={-45} />);
+    expect(screen.getByTestId("wim-watermark")).toBeInTheDocument();
   });
+
 });

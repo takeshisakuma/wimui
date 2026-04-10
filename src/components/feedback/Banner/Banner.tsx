@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { WimIntent } from "../../../types/tokens";
-import "./banner.scss";
+import styles from "./banner.module.scss";
 
 type BannerProps = {
   /**
@@ -58,14 +58,14 @@ export const Banner = ({
 
   return (
     <div
-      className={classNames("wim-banner", `wim-banner--${intent}`, className)}
+      className={classNames(styles.root, styles[intent], className)}
       role="banner"
       {...props}
     >
-      <div className="wim-banner__container">
-        <div className="wim-banner__content">
+      <div className={styles.container}>
+        <div className={styles.content}>
           {icon !== false && (
-            <div className="wim-banner__icon">
+            <div className={styles.icon}>
               <FeedbackIcon
                 intent={intent}
                 icon={typeof icon === "boolean" ? undefined : icon}
@@ -73,23 +73,23 @@ export const Banner = ({
               />
             </div>
           )}
-          <div className="wim-banner__text">
-            {title && <span className="wim-banner__title">{title}</span>}
+          <div className={styles.text}>
+            {title && <span className={styles.title}>{title}</span>}
             {title && (description || children) && (
-              <span className="wim-banner__separator"> - </span>
+              <span className={styles.separator}> - </span>
             )}
             {(description || children) && (
-              <span className="wim-banner__description">
+              <span className={styles.description}>
                 {description ? description : children}
               </span>
             )}
           </div>
         </div>
-        <div className="wim-banner__actions">
-          {extra && <div className="wim-banner__action">{extra}</div>}
+        <div className={styles.actions}>
+          {extra && <div className={styles.action}>{extra}</div>}
           <FeedbackCloseButton
              onClose={onClose}
-             className="wim-banner__close"
+             className={styles.close}
              size="sm"
           />
         </div>

@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { WimColor, ComponentSize } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
-import "./spinner.scss";
+import styles from "./spinner.module.scss";
 
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
   size?: ComponentSize;
@@ -29,8 +29,8 @@ export const Spinner = ({
   return (
     <div
       className={classNames(
-        "wim-spinner-container",
-        label && `wim-spinner--with-label-${labelPosition}`,
+        styles.container,
+        label && styles[`label-${labelPosition}`],
         className,
       )}
       role="status"
@@ -43,16 +43,16 @@ export const Spinner = ({
     >
       <svg
         className={classNames(
-          "wim-spinner",
-          `wim-spinner--${size}`,
-          useClassNameForColor && `wim-spinner--${color}`,
+          styles.root,
+          styles[size],
+          useClassNameForColor && styles[color as string],
         )}
         viewBox="0 0 50 50"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <circle
-          className="wim-spinner__track"
+          className={styles.track}
           cx="25"
           cy="25"
           r="20"
@@ -60,7 +60,7 @@ export const Spinner = ({
           strokeWidth="4"
         />
         <circle
-          className="wim-spinner__head"
+          className={styles.head}
           cx="25"
           cy="25"
           r="20"
@@ -71,7 +71,7 @@ export const Spinner = ({
           strokeDashoffset="100"
         />
       </svg>
-      {label && <span className="wim-spinner__label">{label}</span>}
+      {label && <span className={styles.label}>{label}</span>}
     </div>
   );
 };

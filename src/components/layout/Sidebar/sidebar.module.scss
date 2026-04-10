@@ -1,0 +1,118 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  background-color: rgb(0 0 0 / 0.4);
+  backdrop-filter: blur(2px);
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: var(--wim-sidebar-width);
+  height: 100%;
+  background-color: var(--wim-color-bg-component);
+  transition: all var(--wim-transition-base);
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  &.collapsed {
+    width: 64px;
+
+    .itemText {
+      display: none;
+    }
+  }
+
+  &.bordered {
+    border-right: 1px solid var(--wim-color-border-secondary);
+  }
+
+  &.responsive {
+    @include breakpoints.down(sm) {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: calc(-1 * var(--wim-sidebar-width));
+      z-index: 2000;
+
+      &.mobile-open {
+        left: 0;
+      }
+    }
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  padding: var(--wim-spacing-md);
+  border-bottom: 1px solid var(--wim-color-border-secondary);
+}
+
+.content {
+  flex: 1;
+  padding: var(--wim-spacing-sm) 0;
+  overflow-y: auto;
+}
+
+.footer {
+  padding: var(--wim-spacing-md);
+  border-top: 1px solid var(--wim-color-border-secondary);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+  color: var(--wim-color-text-primary);
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--wim-color-bg-hover);
+  }
+
+  &.active {
+    font-weight: var(--wim-font-weight-bold);
+    color: var(--wim-color-primary);
+    background-color: var(--wim-color-primary-light);
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &Icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    margin-right: var(--wim-spacing-sm);
+    font-size: 1.25rem;
+  }
+
+  &Text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

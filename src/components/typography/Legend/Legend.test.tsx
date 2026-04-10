@@ -4,9 +4,14 @@ import { Legend } from "./Legend";
 
 describe("Legend", () => {
   it("renders children", () => {
+    // label prop is passed to FieldLabelContent
     render(<Legend label="Details" />);
-    // Role of legend is not implicitly 'legend' in all browsers/testing-lib versions sometimes?
-    // But usually it is. Or simply getByText.
     expect(screen.getByText("Details")).toBeInTheDocument();
+  });
+  
+  it("renders children alongside label", () => {
+    render(<Legend label="Title">Subcontent</Legend>);
+    expect(screen.getByText("Title")).toBeInTheDocument();
+    expect(screen.getByText("Subcontent")).toBeInTheDocument();
   });
 });

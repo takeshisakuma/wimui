@@ -22,7 +22,7 @@ describe("Alert", () => {
 
   it("applies status class", () => {
     const { container } = render(<Alert intent="error" title="Error" />);
-    expect(container.firstChild).toHaveClass("wim-alert--error");
+    expect(container.firstChild).toHaveClass(/error/);
   });
 
   it("renders close button when onClose provided", () => {

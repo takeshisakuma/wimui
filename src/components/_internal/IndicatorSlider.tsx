@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useIndicator, IndicatorOrientation } from "./useIndicator";
+import styles from "./indicator-slider.module.scss";
 
 export type IndicatorSliderProps = {
   activeSelector: string;
@@ -33,19 +34,24 @@ export const IndicatorSlider = ({
   return (
     <div
       ref={containerRef}
-      className={classNames("wim-indicator-slider-container")}
-      style={{ position: "relative" }}
+      className={classNames(styles.container)}
     >
       <div
-        className={classNames("wim-indicator-slider", className)}
+        className={classNames(
+            styles.root, 
+            variant && styles[variant], 
+            className
+        )}
         style={{
           ...sliderStyle,
           ...style,
           opacity: isReady ? sliderStyle.opacity : 0,
           transition: isReady ? "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
         }}
+        data-testid="wim-indicator-slider"
         aria-hidden="true"
       />
     </div>
   );
 };
+

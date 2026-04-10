@@ -93,6 +93,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
         {onDelete && !disabled && (
           <span
             className={styles.delete}
+            data-chip-delete
             onClick={(e) => {
               e.stopPropagation();
               onDelete(e);

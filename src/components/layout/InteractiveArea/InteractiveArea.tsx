@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import classNames from "classnames";
 import { ComponentSize } from "../../../types/tokens";
-import "./interactiveArea.scss";
+import localStyles from "./interactive-area.module.scss";
 
 export type InteractiveAreaProps = Omit<
   React.ComponentPropsWithoutRef<"div">,
@@ -47,6 +47,17 @@ export type InteractiveAreaProps = Omit<
    * Whether the area is disabled
    */
   disabled?: boolean;
+  /**
+   * Custom styles for internal parts
+   */
+  styles?: {
+    inner?: string;
+    icon?: string;
+    title?: string;
+    description?: string;
+    content?: string;
+    actions?: string;
+  };
 };
 
 /**
@@ -67,6 +78,7 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
       disabled = false,
       className,
       children,
+      styles: stylesProp,
       ...props
     },
     ref,
@@ -75,15 +87,20 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
       <div
         ref={ref}
         className={classNames(
-          "wim-interactive-area",
-          `wim-interactive-area--${variant}`,
-          `wim-interactive-area--${bgVariant}`,
-          `wim-interactive-area--${size}`,
-          isDragging && "wim-interactive-area--dragging",
-          isClickable && !disabled && "wim-interactive-area--clickable",
-          disabled && "wim-interactive-area--disabled",
+          localStyles.root,
+          localStyles[variant],
+          localStyles[bgVariant],
+          localStyles[size],
+          isDragging && localStyles.dragging,
+          isClickable && !disabled && localStyles.clickable,
+          disabled && localStyles.disabled,
           className,
         )}
+        data-variant={variant}
+        data-bg-variant={bgVariant}
+        data-size={size}
+        data-disabled={disabled}
+        data-dragging={isDragging}
         role={isClickable && !disabled ? "button" : undefined}
         tabIndex={isClickable && !disabled ? 0 : undefined}
         aria-disabled={disabled || undefined}
@@ -103,16 +120,37 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
           props.onClick?.(e);
         }}
       >
-        <div className="wim-interactive-area__inner">
-          {icon && <div className="wim-interactive-area__icon">{icon}</div>}
-          {title && <div className="wim-interactive-area__title">{title}</div>}
+        <div className={classNames(localStyles.inner, stylesProp?.inner)}>
+          {icon && (
+            <div className={classNames(localStyles.icon, stylesProp?.icon)}>
+              {icon}
+            </div>
+          )}
+          {title && (
+            <div className={classNames(localStyles.title, stylesProp?.title)}>
+              {title}
+            </div>
+          )}
           {description && (
-            <div className="wim-interactive-area__description">{description}</div>
+            <div
+              className={classNames(
+                localStyles.description,
+                stylesProp?.description,
+              )}
+            >
+              {description}
+            </div>
           )}
           {children && (
-            <div className="wim-interactive-area__content">{children}</div>
+            <div className={classNames(localStyles.content, stylesProp?.content)}>
+              {children}
+            </div>
           )}
-          {actions && <div className="wim-interactive-area__actions">{actions}</div>}
+          {actions && (
+            <div className={classNames(localStyles.actions, stylesProp?.actions)}>
+              {actions}
+            </div>
+          )}
         </div>
       </div>
     );

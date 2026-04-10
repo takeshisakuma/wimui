@@ -6,7 +6,7 @@ describe("Container", () => {
   it("renders children", () => {
     render(<Container>Content</Container>);
     expect(screen.getByText("Content")).toBeInTheDocument();
-    expect(screen.getByText("Content")).toHaveClass("wim-container");
+    expect(screen.getByText("Content").className).toMatch(/root/);
   });
 
   it("applies fluid styling", () => {

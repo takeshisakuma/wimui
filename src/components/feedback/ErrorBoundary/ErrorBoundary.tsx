@@ -5,6 +5,8 @@ import { Button } from "../../form/Button/Button";
 import { Stack } from "../../layout/Stack/Stack";
 import { Box } from "../../layout/Box/Box";
 
+import styles from "./errorboundary.module.scss";
+
 export type ErrorBoundaryLabels = {
   title?: string;
   retry?: string;
@@ -64,8 +66,7 @@ const DefaultFallback = ({
       p="lg"
       radius="md"
       bg="var(--wim-color-destructive-subtle)"
-      className="wim-error-boundary-fallback"
-      style={{ border: "1px solid var(--wim-color-destructive)" }}
+      className={styles.fallback}
     >
       <Stack gap="md">
         <Alert
@@ -90,15 +91,7 @@ const DefaultFallback = ({
             p="md"
             bg="rgba(0, 0, 0, 0.05)"
             radius="sm"
-            style={{
-              maxHeight: "300px",
-              overflowY: "auto",
-              fontSize: "var(--wim-font-size-sm)",
-              whiteSpace: "pre-wrap",
-              fontFamily: "var(--font-family-mono, monospace)",
-              wordBreak: "break-all",
-              border: "1px solid rgba(0, 0, 0, 0.1)",
-            }}
+            className={styles.details}
           >
             <code>
               {error.toString()}

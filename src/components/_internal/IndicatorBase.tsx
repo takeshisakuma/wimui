@@ -13,7 +13,6 @@ export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   intent?: WimIntent;
   variant?: IndicatorVariant;
   size?: ComponentSize;
-  prefixClass?: string;
   styles?: { [key: string]: string };
   as?: C;
   className?: string;
@@ -35,7 +34,6 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
     intent = "primary",
     variant = "solid",
     size = "md",
-    prefixClass,
     styles,
     as,
     className,
@@ -46,23 +44,15 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
 ) => {
   const Component = asChild ? Slot : (as || "span");
 
-  const resolvedClassName = styles 
-    ? classNames(
-        styles.root,
-        styles[intent],
-        styles[variant],
-        styles[size],
-        className,
-      )
-    : classNames(
-        prefixClass,
-        `${prefixClass}--${intent}`,
-        `${prefixClass}--${variant}`,
-        `${prefixClass}--${size}`,
-        className,
-      );
+  const resolvedClassName = classNames(
+    styles?.root,
+    styles?.[intent],
+    styles?.[variant],
+    styles?.[size],
+    className,
+  );
 
-  const iconClassName = styles ? styles.icon : `${prefixClass}__icon`;
+  const iconClassName = styles?.icon;
 
   return (
     <Component
@@ -80,3 +70,4 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
 export const IndicatorBase: IndicatorBaseComponent = React.forwardRef(IndicatorBaseInner as any) as any;
 
 IndicatorBase.displayName = "IndicatorBase";
+

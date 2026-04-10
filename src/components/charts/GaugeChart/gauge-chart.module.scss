@@ -1,0 +1,30 @@
+@use "../../../tokens/breakpoints" as *;
+@use "../../../tokens/semantic-colors" as *;
+@use "../../../tokens/spacings" as *;
+
+@layer component {
+  .root {
+    display: block;
+    width: 100%;
+    text-align: center;
+    
+    &.gauge {
+      // Gauge specific styles if any
+    }
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+  }
+
+  .gaugeLabel {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    font-size: var(--wim-font-size-2xl);
+    font-weight: var(--wim-font-weight-bold);
+    color: var(--wim-color-text-primary);
+    transform: translateX(-50%);
+  }
+}

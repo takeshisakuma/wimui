@@ -223,12 +223,7 @@ export const CommandPaletteContent = ({
       <Portal>
         <Transition
           show={open}
-          enter="fade-enter"
-          enterFrom="fade-enter-from"
-          enterTo="fade-enter-to"
-          leave="fade-leave"
-          leaveFrom="fade-leave-from"
-          leaveTo="fade-leave-to"
+          preset="fade"
         >
           <div
             role="presentation"
@@ -241,12 +236,7 @@ export const CommandPaletteContent = ({
           >
             <Transition
               show={open}
-              enter="scale-enter"
-              enterFrom="scale-enter-from"
-              enterTo="scale-enter-to"
-              leave="scale-leave"
-              leaveFrom="scale-leave-from"
-              leaveTo="scale-leave-to"
+              preset="scale"
             >
               <FocusTrap active={open}>
                 {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
@@ -261,7 +251,8 @@ export const CommandPaletteContent = ({
                     setIsKeyboardNavigating(true);
                     
                     // Query items in the DOM to get the most accurate count
-                    const items = e.currentTarget.querySelectorAll(`.${styles.item}:not(.wim-base-list-item--disabled)`);
+                    const items = e.currentTarget.querySelectorAll(`.${styles.item}:not([aria-disabled="true"])`);
+
                     const itemCount = items.length;
                     
                     if (itemCount === 0) return;
@@ -420,12 +411,13 @@ export const CommandPaletteItem = ({
         shortcut && (
           <div className={styles.shortcut}>
             {shortcut.map((s) => (
-              <kbd key={s} className="wim-kbd wim-kbd--sm">
+              <kbd key={s} className={styles.kbd}>
                 {s}
               </kbd>
             ))}
           </div>
         )
+
       }
       onMouseEnter={() => !disabled && setActiveIndex(index)}
       onClick={() => {

@@ -25,8 +25,8 @@ describe("Image", () => {
   });
 
   it("applies width and height props", () => {
-    const { container } = render(<Image src="test.jpg" alt="Test" width={500} height="300px" />);
-    const figure = container.querySelector("figure");
+    render(<Image src="test.jpg" alt="Test" width={500} height="300px" />);
+    const figure = screen.getByTestId("image-root");
     expect(figure).toHaveStyle({ maxWidth: "500px" });
     const img = screen.getByRole("img");
     expect(img).toHaveStyle({ height: "300px" });
@@ -39,26 +39,26 @@ describe("Image", () => {
   });
 
   it("applies filter presets", () => {
-    const { container } = render(
+    render(
       <Image 
         src="test.jpg" 
         alt="Test" 
         filter={{ blur: "sm", grayscale: true, brightness: "md", contrast: "lg", sepia: "sm", saturate: "md", invert: "lg", opacity: "sm" }} 
       />
     );
-    const figure = container.querySelector("figure");
-    const style = figure?.getAttribute("style") || "";
+    const figure = screen.getByTestId("image-root");
+    const style = figure.getAttribute("style") || "";
     expect(style).toContain("--wim-image-filter: blur(4px) grayscale(100%) brightness(0.5) contrast(2) sepia(33%) saturate(2) invert(100%) opacity(0.8)");
   });
 
   it("applies hueRotate filter", () => {
-    const { container } = render(<Image src="test.jpg" alt="Test" filter={{ hueRotate: "90" }} />);
-    const figure = container.querySelector("figure");
-    expect(figure?.getAttribute("style")).toContain("--wim-image-filter: hue-rotate(90deg)");
+    render(<Image src="test.jpg" alt="Test" filter={{ hueRotate: "90" }} />);
+    const figure = screen.getByTestId("image-root");
+    expect(figure.getAttribute("style")).toContain("--wim-image-filter: hue-rotate(90deg)");
   });
 
   it("applies hoverFilter and backdropFilter", () => {
-    const { container } = render(
+    render(
       <Image 
         src="test.jpg" 
         alt="Test" 
@@ -67,30 +67,31 @@ describe("Image", () => {
         hoverBackdropFilter={{ blur: "lg" }}
       />
     );
-    const figure = container.querySelector("figure");
-    const style = figure?.getAttribute("style") || "";
+    const figure = screen.getByTestId("image-root");
+    const style = figure.getAttribute("style") || "";
     expect(style).toContain("--wim-image-hover-filter: blur(8px)");
     expect(style).toContain("--wim-image-backdrop: blur(4px)");
     expect(style).toContain("--wim-image-hover-backdrop: blur(16px)");
   });
 
   it("applies noise effect", () => {
-    const { container } = render(<Image src="test.jpg" alt="Test" noise="md" />);
-    const figure = container.querySelector("figure");
+    render(<Image src="test.jpg" alt="Test" noise="md" />);
+    const figure = screen.getByTestId("image-root");
     expect(figure?.getAttribute("style")).toContain("--wim-image-noise-opacity: 0.1");
-    const inner = container.querySelector(".wim-image-inner");
+    const inner = screen.getByTestId("image-inner");
     expect(inner).toHaveClass(styles.hasNoise);
   });
 
+
   it("applies overlay settings", () => {
-    const { container } = render(
+    render(
       <Image 
         src="test.jpg" 
         alt="Test" 
         overlay={{ color: "red", intensity: "lg", blendMode: "multiply" }} 
       />
     );
-    const figure = container.querySelector("figure");
+    const figure = screen.getByTestId("image-root");
     const style = figure?.getAttribute("style") || "";
     expect(style).toContain("--wim-image-overlay-color: red");
     expect(style).toContain("--wim-image-overlay-opacity: 0.9");
@@ -98,34 +99,34 @@ describe("Image", () => {
   });
 
   it("applies overlay with numeric intensity and showOnHover", () => {
-    const { container } = render(
+    render(
       <Image 
         src="test.jpg" 
         alt="Test" 
         overlay={{ intensity: 0.4, showOnHover: true }} 
       />
     );
-    const figure = container.querySelector("figure");
-    const style = figure?.getAttribute("style") || "";
+    const figure = screen.getByTestId("image-root");
+    const style = figure.getAttribute("style") || "";
     expect(style).toContain("--wim-image-overlay-opacity: 0");
     expect(style).toContain("--wim-image-overlay-hover-opacity: 0.4");
   });
 
   it("applies zoom effect", () => {
-    const { container } = render(<Image src="test.jpg" alt="Test" zoom={1.2} />);
-    const figure = container.querySelector("figure");
-    expect(figure?.getAttribute("style")).toContain("--wim-image-zoom-scale: 1.2");
+    render(<Image src="test.jpg" alt="Test" zoom={1.2} />);
+    const figure = screen.getByTestId("image-root");
+    expect(figure.getAttribute("style")).toContain("--wim-image-zoom-scale: 1.2");
   });
 
   it("applies zoom boolean effect", () => {
-    const { container } = render(<Image src="test.jpg" alt="Test" zoom />);
-    const figure = container.querySelector("figure");
-    expect(figure?.getAttribute("style")).toContain("--wim-image-zoom-scale: 1.05");
+    render(<Image src="test.jpg" alt="Test" zoom />);
+    const figure = screen.getByTestId("image-root");
+    expect(figure.getAttribute("style")).toContain("--wim-image-zoom-scale: 1.05");
   });
 
   it("applies tilt effect on mouse move", () => {
-    const { container } = render(<Image src="test.jpg" alt="Test" tilt />);
-    const figure = container.querySelector("figure")!;
+    render(<Image src="test.jpg" alt="Test" tilt />);
+    const figure = screen.getByTestId("image-root");
     
     // Resize figure to mock dimensions
     vi.spyOn(figure, "getBoundingClientRect").mockReturnValue({
@@ -163,15 +164,15 @@ describe("Image", () => {
   });
 
   it("applies fadeIn effect class", () => {
-    const { container } = render(<Image src="test.jpg" alt="Test" fadeIn />);
-    const inner = container.querySelector(".wim-image-inner");
+    render(<Image src="test.jpg" alt="Test" fadeIn />);
+    const inner = screen.getByTestId("image-inner");
     expect(inner).toHaveClass(styles.fadeIn);
   });
 
   it("applies blendMode and bgColor", () => {
-    const { container } = render(<Image src="test.jpg" alt="Test" blendMode="screen" bgColor="blue" />);
-    const figure = container.querySelector("figure");
-    const style = figure?.getAttribute("style") || "";
+    render(<Image src="test.jpg" alt="Test" blendMode="screen" bgColor="blue" />);
+    const figure = screen.getByTestId("image-root");
+    const style = figure.getAttribute("style") || "";
     expect(style).toContain("--wim-image-blend-mode: screen");
     expect(style).toContain("--wim-image-bg-color: blue");
   });
@@ -184,8 +185,8 @@ describe("Image", () => {
   });
 
   it("handles transition preset none", () => {
-    const { container } = render(<Image src="test.jpg" alt="Test" transition="none" />);
-    const figure = container.querySelector("figure");
-    expect(figure?.getAttribute("style")).toContain("--wim-image-transition-duration: 0s");
+    render(<Image src="test.jpg" alt="Test" transition="none" />);
+    const figure = screen.getByTestId("image-root");
+    expect(figure.getAttribute("style")).toContain("--wim-image-transition-duration: 0s");
   });
 });

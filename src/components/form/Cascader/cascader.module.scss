@@ -139,7 +139,7 @@
   .menuItem {
     // Handling focus state for keyboard navigation
     // This is applied on top of BaseListItem via :global
-    :global(.wim-cascader)[data-keyboard-nav="true"] &.active {
+    .root[data-keyboard-nav="true"] &.active {
       z-index: 1;
       box-shadow: var(--wim-shadow-focus);
     }

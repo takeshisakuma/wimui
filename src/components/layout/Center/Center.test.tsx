@@ -6,7 +6,8 @@ describe("Center", () => {
   it("renders children centered", () => {
     render(<Center>Centered Content</Center>);
     const center = screen.getByText("Centered Content");
-    expect(center).toHaveClass("wim-center");
+    expect(center).toBeInTheDocument();
+
     expect(center).toHaveStyle({
       display: "flex",
       alignItems: "center",

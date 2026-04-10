@@ -1,0 +1,65 @@
+@layer component {
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--wim-z-overlay);
+    width: 100vw;
+    height: 100vh;
+    background: var(--wim-color-overlay-bg);
+  }
+
+  .highlight {
+    position: fixed;
+    z-index: var(--wim-z-overlay-panel);
+    pointer-events: none;
+    border-radius: var(--wim-radius-md, 4px);
+    box-shadow: 0 0 0 9999px var(--wim-color-overlay-bg);
+    transition: var(--wim-transition-base);
+  }
+
+  .bubble {
+    position: fixed;
+    z-index: var(--wim-z-overlay-step);
+    width: 300px;
+    max-width: calc(100vw - 32px);
+    background-color: var(--wim-color-bg-component);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-lg, 8px);
+    box-shadow: var(--wim-shadow-lg, 0 5px 10px rgb(0 0 0 / 0.18));
+    transition: var(--wim-transition-base);
+
+  }
+
+  .inner {
+    padding: var(--wim-spacing-2xl, 1rem);
+  }
+
+  .title {
+    margin: 0 0 var(--wim-spacing-md, 0.5rem) 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .description {
+    margin: 0 0 var(--wim-spacing-2xl, 1rem) 0;
+    font-size: 0.9rem;
+    color: var(--wim-color-text-secondary);
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .progress {
+    font-size: 0.8rem;
+    color: var(--wim-color-text-tertiary);
+  }
+
+  .buttons {
+    display: flex;
+    gap: var(--wim-spacing-sm, 0.4rem);
+  }
+}

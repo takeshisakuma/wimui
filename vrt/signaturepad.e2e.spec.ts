@@ -30,13 +30,13 @@ test.describe("SignaturePad", () => {
   test.describe("initial state", () => {
     test("canvas is rendered", async ({ page }) => {
       await page.goto(STORY_URL(DEFAULT_STORY));
-      const canvas = page.locator("canvas.wim-signature-pad__canvas");
+      const canvas = page.locator('[data-testid="signature-canvas"]');
       await expect(canvas).toBeVisible();
     });
 
     test("clear button is disabled when canvas is empty", async ({ page }) => {
       await page.goto(STORY_URL(DEFAULT_STORY));
-      const clearButton = page.getByRole("button");
+      const clearButton = page.getByRole("button", { name: /clear/i });
       await expect(clearButton).toBeDisabled();
     });
   });
@@ -44,8 +44,8 @@ test.describe("SignaturePad", () => {
   test.describe("drawing behavior", () => {
     test("clear button becomes enabled after drawing", async ({ page }) => {
       await page.goto(STORY_URL(DEFAULT_STORY));
-      const canvas = page.locator("canvas.wim-signature-pad__canvas");
-      const clearButton = page.getByRole("button");
+      const canvas = page.locator('[data-testid="signature-canvas"]');
+      const clearButton = page.getByRole("button", { name: /clear/i });
 
       await expect(clearButton).toBeDisabled();
       await drawOnCanvas(page, canvas, 50, 50, 150, 100);
@@ -54,14 +54,14 @@ test.describe("SignaturePad", () => {
 
     test("canvas has non-empty pixel data after drawing", async ({ page }) => {
       await page.goto(STORY_URL(DEFAULT_STORY));
-      const canvas = page.locator("canvas.wim-signature-pad__canvas");
+      const canvas = page.locator('[data-testid="signature-canvas"]');
 
       await drawOnCanvas(page, canvas, 50, 50, 200, 100);
 
       // Evaluate canvas pixel data to verify something was drawn
       const hasDrawnPixels = await page.evaluate(() => {
         const canvas = document.querySelector(
-          "canvas.wim-signature-pad__canvas",
+          '[data-testid="signature-canvas"]',
         ) as HTMLCanvasElement;
         const ctx = canvas.getContext("2d");
         if (!ctx) return false;
@@ -75,8 +75,8 @@ test.describe("SignaturePad", () => {
 
     test("clicking clear button resets the canvas", async ({ page }) => {
       await page.goto(STORY_URL(DEFAULT_STORY));
-      const canvas = page.locator("canvas.wim-signature-pad__canvas");
-      const clearButton = page.getByRole("button");
+      const canvas = page.locator('[data-testid="signature-canvas"]');
+      const clearButton = page.getByRole("button", { name: /clear/i });
 
       await drawOnCanvas(page, canvas, 50, 50, 150, 100);
       await expect(clearButton).toBeEnabled();
@@ -87,15 +87,15 @@ test.describe("SignaturePad", () => {
 
     test("canvas is transparent after clearing", async ({ page }) => {
       await page.goto(STORY_URL(DEFAULT_STORY));
-      const canvas = page.locator("canvas.wim-signature-pad__canvas");
-      const clearButton = page.getByRole("button");
+      const canvas = page.locator('[data-testid="signature-canvas"]');
+      const clearButton = page.getByRole("button", { name: /clear/i });
 
       await drawOnCanvas(page, canvas, 50, 50, 150, 100);
       await clearButton.click();
 
       const isEmpty = await page.evaluate(() => {
         const canvas = document.querySelector(
-          "canvas.wim-signature-pad__canvas",
+          '[data-testid="signature-canvas"]',
         ) as HTMLCanvasElement;
         const ctx = canvas.getContext("2d");
         if (!ctx) return true;
@@ -108,14 +108,14 @@ test.describe("SignaturePad", () => {
 
     test("pen color is applied when drawing", async ({ page }) => {
       await page.goto(STORY_URL(CUSTOM_COLORS_STORY));
-      const canvas = page.locator("canvas.wim-signature-pad__canvas");
+      const canvas = page.locator('[data-testid="signature-canvas"]');
 
       await drawOnCanvas(page, canvas, 50, 80, 200, 80);
 
       // Verify red pixels exist (penColor is #ff4d4f in the custom colors story)
       const hasRedPixels = await page.evaluate(() => {
         const canvas = document.querySelector(
-          "canvas.wim-signature-pad__canvas",
+          '[data-testid="signature-canvas"]',
         ) as HTMLCanvasElement;
         const ctx = canvas.getContext("2d");
         if (!ctx) return false;
@@ -137,23 +137,23 @@ test.describe("SignaturePad", () => {
   test.describe("disabled state", () => {
     test("clear button is disabled", async ({ page }) => {
       await page.goto(STORY_URL(DISABLED_STORY));
-      const clearButton = page.getByRole("button");
+      const clearButton = page.getByRole("button", { name: /clear/i });
       await expect(clearButton).toBeDisabled();
     });
 
     test("canvas remains empty after drawing attempt", async ({ page }) => {
       await page.goto(STORY_URL(DISABLED_STORY));
-      const canvas = page.locator("canvas.wim-signature-pad__canvas");
+      const canvas = page.locator('[data-testid="signature-canvas"]');
 
       await drawOnCanvas(page, canvas, 50, 50, 150, 100);
 
       // Clear button stays disabled → canvas is still empty
-      const clearButton = page.getByRole("button");
+      const clearButton = page.getByRole("button", { name: /clear/i });
       await expect(clearButton).toBeDisabled();
 
       const isEmpty = await page.evaluate(() => {
         const canvas = document.querySelector(
-          "canvas.wim-signature-pad__canvas",
+          '[data-testid="signature-canvas"]',
         ) as HTMLCanvasElement;
         const ctx = canvas.getContext("2d");
         if (!ctx) return true;

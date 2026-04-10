@@ -14,9 +14,10 @@ import {
   getShadowValue,
 } from "../../../utilities/style-utils";
 import { generateResponsiveVars, ResponsiveProp } from "../../layout/Grid/grid-utils";
-import "./box.scss";
+import styles from "./box.module.scss";
 
 export type BoxProps<C extends React.ElementType = "div"> = {
+
   /** The component used for the root node. Either a string to use a HTML element or a component. */
   as?: C;
   /**
@@ -139,10 +140,11 @@ export const Box = React.forwardRef(
     return (
       <Component
         ref={ref as React.Ref<HTMLDivElement>}
-        className={classNames("wim-box", className)}
+        className={classNames(styles.root, className)}
         style={boxStyle}
         {...props}
       >
+
         {children}
       </Component>
     );

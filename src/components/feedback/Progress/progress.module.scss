@@ -1,0 +1,98 @@
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--wim-color-text-secondary);
+  }
+
+  .track {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--wim-color-bg-secondary);
+    border-radius: var(--wim-radius-full);
+  }
+
+  .bar {
+    height: 100%;
+    border-radius: var(--wim-radius-full);
+    transition: width var(--wim-duration-base) var(--wim-easing-standard);
+  }
+
+  // Sizes
+  .sm {
+    .track {
+      height: 4px;
+    }
+  }
+
+  .md {
+    .track {
+      height: 8px;
+    }
+  }
+
+  .lg {
+    .track {
+      height: 12px;
+    }
+  }
+
+  // Colors
+  .primary .bar {
+    background-color: var(--wim-color-primary);
+  }
+
+  .secondary .bar {
+    background-color: var(--wim-color-secondary);
+  }
+
+  .success .bar {
+    background-color: var(--wim-color-positive);
+  }
+
+  .warning .bar {
+    background-color: var(--wim-color-caution);
+  }
+
+  .error .bar {
+    background-color: var(--wim-color-destructive);
+  }
+
+  .neutral .bar {
+    background-color: var(--wim-color-disabled);
+  }
+
+  .info .bar {
+    background-color: var(--wim-color-informative);
+  }
+
+  // Indeterminate animation
+  .indeterminate {
+    .bar {
+      position: absolute;
+      left: -30%;
+      width: 30% !important;
+      animation: progress-indeterminate 1.5s infinite linear;
+    }
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    left: -30%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}

@@ -1,0 +1,21 @@
+.root {
+  display: block;
+  flex-shrink: 0;
+  margin: 0;
+  background-color: var(--wim-color-border);
+  border: none;
+
+  &.horizontal {
+    width: 100%;
+    height: var(--wim-divider-thickness, 1px);
+    margin: 8px 0;
+  }
+
+  &.vertical {
+    display: inline-block;
+    align-self: stretch;
+    width: var(--wim-divider-thickness, 1px);
+    height: 100%;
+    margin: 0 8px;
+  }
+}

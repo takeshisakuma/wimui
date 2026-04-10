@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
-import "./watermark.scss";
+import styles from "./watermark.module.scss";
 
 type WatermarkProps = {
   content?: string | string[];
@@ -70,16 +70,18 @@ export const Watermark = ({
   }, [content, image, width, height, rotate, opacity, gap, offset]);
 
   return (
-    <div className={classNames("wim-watermark-wrapper", className)}>
+    <div className={classNames(styles.wrapper, className)}>
       {children}
       <div
-        className="wim-watermark"
+        className={styles.root}
+        data-testid="wim-watermark"
         style={{
           zIndex,
           backgroundImage: `url(${base64})`,
           backgroundSize: `${gap[0] + width}px ${gap[1] + height}px`,
         }}
       />
+
     </div>
   );
 };

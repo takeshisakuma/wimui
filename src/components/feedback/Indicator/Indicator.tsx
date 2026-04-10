@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { WimColor, ComponentSize } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
-import "./indicator.scss";
+import styles from "./indicator.module.scss";
 
 type IndicatorProps = {
   children?: React.ReactNode;
@@ -34,8 +34,8 @@ export const Indicator = ({
   return (
     <span
       className={classNames(
-        "wim-indicator",
-        inline && "wim-indicator--inline",
+        styles.root,
+        inline && styles.inlineRoot,
         className,
       )}
       style={style}
@@ -43,11 +43,11 @@ export const Indicator = ({
       {children}
       <span
         className={classNames(
-          "wim-indicator__dot",
-          useClassNameForColor && `wim-indicator__dot--${color}`,
-          `wim-indicator__dot--${size}`,
-          !inline && `wim-indicator__dot--${position}`,
-          pulse && "wim-indicator__dot--pulse",
+          styles.dot,
+          useClassNameForColor && styles[color as string],
+          styles[size],
+          !inline && styles[position],
+          pulse && styles.pulse,
         )}
         style={{
           backgroundColor: !useClassNameForColor ? getColorValue(color) : undefined,

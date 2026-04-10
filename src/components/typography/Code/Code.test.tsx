@@ -7,25 +7,21 @@ describe("Code", () => {
     render(<Code code="const a = 1;" />);
     const code = screen.getByText("const a = 1;");
     expect(code.tagName).toBe("CODE");
-    expect(code).toHaveClass("wim-code--inline");
+    expect(code.className).toContain("inline");
   });
 
   it("renders block code", () => {
     render(<Code block code='console.log("hello")' />);
     const pre = screen.getByText('console.log("hello")').closest("pre");
     expect(pre).toBeInTheDocument();
-    expect(pre).toHaveClass("wim-code--block");
+    expect(pre?.className).toContain("block");
   });
 
   it("applies language class", () => {
     render(<Code code="var x = 10;" language="javascript" />);
-    expect(screen.getByText("var x = 10;")).toHaveClass("wim-code");
-    // Inline code doesn't wrap in pre, wrapper is 'code'.
-    // Implementation:
-    // const Component = block ? "pre" : "code";
-    // return <Component className="... language-javascript ...">...</Component>
-
+    // The component uses styles.root, so we check if it has a class (modular)
     const element = screen.getByText("var x = 10;");
+    expect(element.className).toContain("root");
     expect(element).toHaveClass("language-javascript");
   });
 
@@ -49,6 +45,6 @@ describe("Code", () => {
   it("renders block without language class", () => {
     render(<Code block code="x = 1" />);
     const pre = screen.getByText("x = 1").closest("pre");
-    expect(pre).toHaveClass("wim-code--block");
+    expect(pre?.className).toContain("block");
   });
 });

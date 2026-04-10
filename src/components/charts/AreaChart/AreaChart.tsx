@@ -9,7 +9,9 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { Title } from "../../typography/Title/Title";
 import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import styles from "./area-chart.module.scss";
 
 export type AreaChartProps = {
   data: ChartDataPoint[];
@@ -33,11 +35,13 @@ export const AreaChart = ({
   smooth = true,
 }: AreaChartProps) => {
   return (
-    <div style={{ width, height: "auto" }}>
+    <div className={styles.root} style={{ width }}>
       {title && (
-        <h3 style={{ fontSize: "16px", marginBottom: "16px" }}>{title}</h3>
+        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+          {title}
+        </Title>
       )}
-      <div style={{ height }}>
+      <div className={styles.container} style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <RechartsAreaChart
             data={data}

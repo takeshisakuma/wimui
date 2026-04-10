@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./divider.scss";
+import styles from "./divider.module.scss";
 
 export type DividerProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -33,8 +33,8 @@ export const Divider = ({
       role="separator"
       aria-orientation={orientation}
       className={classNames(
-        "wim-divider",
-        `wim-divider--${orientation}`,
+        styles.root,
+        styles[orientation],
         className,
       )}
       style={customStyle}

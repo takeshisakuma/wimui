@@ -1,0 +1,5 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--wim-z-index-overlay, 1000);
+}

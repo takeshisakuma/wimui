@@ -39,13 +39,14 @@ describe("InteractiveArea", () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
-  it("applies variant classes", () => {
+  it("applies variant attributes", () => {
     const { container } = render(<InteractiveArea variant="solid" bgVariant="muted" size="lg" />);
-    const area = container.firstChild;
-    expect(area).toHaveClass("wim-interactive-area--solid");
-    expect(area).toHaveClass("wim-interactive-area--muted");
-    expect(area).toHaveClass("wim-interactive-area--lg");
+    const area = container.firstChild as HTMLElement;
+    expect(area).toHaveAttribute("data-variant", "solid");
+    expect(area).toHaveAttribute("data-bg-variant", "muted");
+    expect(area).toHaveAttribute("data-size", "lg");
   });
+
 
   it("triggers onClick with Enter key when isClickable", () => {
     const onClick = vi.fn();

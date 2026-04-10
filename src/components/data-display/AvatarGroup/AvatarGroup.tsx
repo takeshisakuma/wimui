@@ -41,6 +41,7 @@ export const AvatarGroup = ({
             const avatarProps = child.props as React.ComponentProps<typeof Avatar>;
             return React.cloneElement(child as React.ReactElement<React.ComponentProps<typeof Avatar>>, {
               size: size || avatarProps.size,
+              className: classNames(avatarProps.className, styles.avatar),
               key: index,
             });
           }

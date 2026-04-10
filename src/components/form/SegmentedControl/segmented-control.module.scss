@@ -97,4 +97,8 @@
     line-height: var(--wim-line-height-normal);
     white-space: nowrap;
   }
+
+  .icon {
+    font-size: 0.7em; // Button コンポーネントと一貫性を持たせる
+  }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./appshell.scss";
+import styles from "./appshell.module.scss";
 
 // ─────────────────────────────────────────────
 // AppShell Root
@@ -84,37 +84,37 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
       <div
         ref={ref}
         className={classNames(
-          "wim-appshell",
-          !!sidebar && "wim-appshell--with-sidebar",
-          !!navbar && "wim-appshell--with-navbar",
+          styles.root,
+          !!sidebar && styles.withSidebar,
+          !!navbar && styles.withNavbar,
           className,
         )}
         style={style}
         {...props}
       >
-        {header && <div className="wim-appshell__header">{header}</div>}
+        {header && <div className={styles.header}>{header}</div>}
 
-        <div className="wim-appshell__body">
-          {sidebar && <div className="wim-appshell__sidebar">{sidebar}</div>}
+        <div className={styles.body}>
+          {sidebar && <div className={styles.sidebar}>{sidebar}</div>}
 
           <main
             className={classNames(
-              "wim-appshell__main",
-              padding && "wim-appshell__main--padded",
-              centered && "wim-appshell__main--centered",
+              styles.main,
+              padding && styles.padded,
+              centered && styles.centered,
             )}
             tabIndex={0}
           >
             {centered ? (
-              <div className="wim-appshell__content">{children}</div>
+              <div className={styles.content}>{children}</div>
             ) : (
               children
             )}
           </main>
         </div>
 
-        {navbar && <div className="wim-appshell__navbar">{navbar}</div>}
-        {footer && <div className="wim-appshell__footer">{footer}</div>}
+        {navbar && <div className={styles.navbar}>{navbar}</div>}
+        {footer && <div className={styles.footer}>{footer}</div>}
       </div>
     );
   },
@@ -146,16 +146,16 @@ export const AppShellMain = React.forwardRef<HTMLElement, AppShellMainProps>(
       <main
         ref={ref}
         className={classNames(
-          "wim-appshell__main",
-          padding && "wim-appshell__main--padded",
-          centered && "wim-appshell__main--centered",
+          styles.main,
+          padding && styles.padded,
+          centered && styles.centered,
           className,
         )}
         tabIndex={0}
         {...props}
       >
         {centered ? (
-          <div className="wim-appshell__content">{children}</div>
+          <div className={styles.content}>{children}</div>
         ) : (
           children
         )}
@@ -180,7 +180,7 @@ export const AppShellBody = React.forwardRef<HTMLDivElement, AppShellBodyProps>(
   ({ className, children, ...props }, ref) => (
     <div
       ref={ref}
-      className={classNames("wim-appshell__body", className)}
+      className={classNames(styles.body, className)}
       {...props}
     >
       {children}
@@ -200,7 +200,7 @@ export const AppShellHeader = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
-    className={classNames("wim-appshell__header", className)}
+    className={classNames(styles.header, className)}
     {...props}
   >
     {children}
@@ -215,7 +215,7 @@ export const AppShellSidebar = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
-    className={classNames("wim-appshell__sidebar", className)}
+    className={classNames(styles.sidebar, className)}
     {...props}
   >
     {children}
@@ -230,7 +230,7 @@ export const AppShellFooter = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
-    className={classNames("wim-appshell__footer", className)}
+    className={classNames(styles.footer, className)}
     {...props}
   >
     {children}
@@ -245,7 +245,7 @@ export const AppShellNavbar = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
-    className={classNames("wim-appshell__navbar", className)}
+    className={classNames(styles.navbar, className)}
     {...props}
   >
     {children}

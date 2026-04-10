@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./bentoGrid.scss";
+import styles from "./bento-grid.module.scss";
 
 type BentoGridProps = React.ComponentPropsWithoutRef<"div"> & {
   children?: React.ReactNode;
@@ -12,8 +12,8 @@ export const BentoGrid = ({
   ...props
 }: BentoGridProps) => {
   return (
-    <div className="wim-bento-grid-container">
-      <div className={classNames("wim-bento-grid", className)} {...props}>
+    <div className={styles.container}>
+      <div className={classNames(styles.root, className)} {...props}>
         {children}
       </div>
     </div>
@@ -38,14 +38,14 @@ export const BentoGridItem = ({
   ...props
 }: BentoGridItemProps) => {
   return (
-    <div className={classNames("wim-bento-grid-item", className)} {...props}>
-      {header && <div className="wim-bento-grid-item__header">{header}</div>}
-      <div className="wim-bento-grid-item__content">
-        {icon && <div className="wim-bento-grid-item__icon">{icon}</div>}
-        <div className="wim-bento-grid-item__text">
-          {title && <div className="wim-bento-grid-item__title">{title}</div>}
+    <div className={classNames(styles.item, className)} {...props}>
+      {header && <div className={styles.itemHeader}>{header}</div>}
+      <div className={styles.itemContent}>
+        {icon && <div className={styles.itemIcon}>{icon}</div>}
+        <div className={styles.itemText}>
+          {title && <div className={styles.itemTitle}>{title}</div>}
           {description && (
-            <div className="wim-bento-grid-item__description">
+            <div className={styles.itemDescription}>
               {description}
             </div>
           )}

@@ -1,0 +1,30 @@
+@layer component {
+  .root {
+    // Overrides for Result specifically
+    // Result uses InteractiveArea internally
+    .inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .icon {
+      margin-bottom: var(--wim-spacing-sm);
+  
+      svg {
+        width: 80px;
+        height: 80px;
+        font-size: 80px;
+      }
+    }
+  
+    .content {
+      padding: var(--wim-spacing-md);
+      margin-top: var(--wim-spacing-lg);
+      text-align: left;
+      background-color: var(--wim-color-bg-subtle);
+      border-radius: var(--wim-radius-sm);
+    }
+  }
+
+}

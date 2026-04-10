@@ -1,0 +1,15 @@
+@layer component {
+  .fallback {
+    border: 1px solid var(--wim-color-destructive);
+  }
+
+  .details {
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: var(--font-family-mono, monospace);
+    font-size: var(--wim-font-size-sm);
+    word-break: break-all;
+    white-space: pre-wrap;
+    border: 1px solid rgb(0 0 0 / 0.1);
+  }
+}

@@ -1,12 +1,15 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import "./span.scss";
+import styles from "./span.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { WimColor, ComponentSize, WimFontWeight } from "../../../types/tokens";
 import { getColorValue, getFontWeightValue } from "../../../utilities/style-utils";
 
 export interface SpanProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, "color" | "content"> {
+  /**
+   * If true, the span will be rendered as its child, merging its props onto that child.
+   */
   asChild?: boolean;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   color?: WimColor;
@@ -71,6 +74,7 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
       "white",
       "error",
       "primary",
+      "destructive",
       "success",
       "warning",
       "info",
@@ -84,12 +88,12 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
         className={classNames(
-          "wim-span",
-          `wim-span--${size}`,
-          useClassNameForColor && `wim-span--${color}`,
-          weight === "bold" && "wim-span--bold",
-          fontStyle === "italic" && "wim-span--italic",
-          decoration !== "none" && `wim-span--${decoration}`,
+          styles.root,
+          styles[size],
+          useClassNameForColor && styles[color as keyof typeof styles],
+          weight === "bold" && styles.bold,
+          fontStyle === "italic" && styles.italic,
+          decoration !== "none" && styles[decoration],
           className,
         )}
         style={{

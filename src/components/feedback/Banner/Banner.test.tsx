@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Banner } from "./Banner";
 import React from "react";
+import styles from "./banner.module.scss";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -37,11 +38,11 @@ describe("Banner", () => {
 
   it("renders with icon=true (default icon)", () => {
     const { container } = render(<Banner title="Info" icon={true} intent="info" />);
-    expect(container.querySelector(".wim-banner__icon")).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.icon}`)).toBeInTheDocument();
   });
 
   it("renders with icon=false (no icon)", () => {
     const { container } = render(<Banner title="No icon" icon={false} />);
-    expect(container.querySelector(".wim-banner__icon")).not.toBeInTheDocument();
+    expect(container.querySelector(`.${styles.icon}`)).not.toBeInTheDocument();
   });
 });

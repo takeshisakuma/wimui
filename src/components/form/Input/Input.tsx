@@ -31,6 +31,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   showPasswordAriaLabel?: string;
   hidePasswordAriaLabel?: string;
   rightIconAriaLabel?: string;
+  styles?: React.ComponentProps<typeof InputBase>["styles"];
 };
 
 /**
@@ -68,6 +69,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       showPasswordAriaLabel,
       hidePasswordAriaLabel,
       rightIconAriaLabel,
+      styles: stylesProp,
       ...props
     },
     ref,
@@ -180,6 +182,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           allowClear={allowClear}
           hasValue={!!currentValue}
           onClear={handleClear}
+          styles={stylesProp}
         >
           <input
             id={id}

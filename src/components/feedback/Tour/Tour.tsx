@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import { Portal } from "../../overlay/Portal/Portal";
 import { Button } from "../../form/Button/Button";
-import "./tour.scss";
+import styles from "./tour.module.scss";
 
 type TourStep = {
   target: string; // CSS selector
@@ -134,7 +134,7 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
   return (
     <Portal>
       <div
-        className="wim-tour-mask"
+        className={styles.mask}
         onClick={onClose}
         role="button"
         tabIndex={0}
@@ -144,7 +144,7 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
       />
       {targetRect && (
         <div
-          className="wim-tour-highlight"
+          className={styles.highlight}
           style={{
             top: targetRect.top - 4,
             left: targetRect.left - 4,
@@ -155,19 +155,19 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
       )}
       <div
         className={classNames(
-          "wim-tour-bubble",
-          `wim-tour-bubble--${step.placement || "bottom"}`,
+          styles.bubble,
+          step.placement && styles[step.placement],
         )}
         style={bubbleStyle}
       >
-        <div className="wim-tour-bubble-inner">
-          <h3 className="wim-tour-title">{step.title}</h3>
-          <p className="wim-tour-description">{step.description}</p>
-          <div className="wim-tour-footer">
-            <span className="wim-tour-progress">
+        <div className={styles.inner}>
+          <h3 className={styles.title}>{step.title}</h3>
+          <p className={styles.description}>{step.description}</p>
+          <div className={styles.footer}>
+            <span className={styles.progress}>
               {currentStep + 1} / {steps.length}
             </span>
-            <div className="wim-tour-buttons">
+            <div className={styles.buttons}>
               {currentStep > 0 && (
                 <Button
                   size="sm"

@@ -193,4 +193,39 @@
       color: var(--wim-color-primary);
     }
   }
+
+  .noScrollbar {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+  }
+
+  .subtleScrollbar {
+    scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track) !important;
+    scrollbar-width: thin !important;
+
+    &::-webkit-scrollbar {
+      width: var(--wim-spacing-lg) !important;
+      height: var(--wim-spacing-lg) !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--wim-color-scrollbar-track) !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--wim-color-scrollbar-thumb) !important;
+      background-clip: content-box !important;
+      border: 1px solid transparent !important;
+      border-radius: var(--wim-radius-lg) !important;
+
+      &:hover {
+        background-color: var(--wim-color-scrollbar-thumb) !important;
+        filter: brightness(0.9);
+      }
+    }
+  }
 }

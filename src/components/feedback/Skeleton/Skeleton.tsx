@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./skeleton.scss";
+import styles from "./skeleton.module.scss";
 
 type SkeletonProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -48,9 +48,9 @@ export const Skeleton = ({
   return (
     <div
       className={classNames(
-        "wim-skeleton",
-        `wim-skeleton--${variant}`,
-        animation !== "none" && `wim-skeleton--${animation}`,
+        styles.root,
+        styles[variant],
+        animation !== "none" && styles[animation],
         className,
       )}
       style={skeletonStyle}

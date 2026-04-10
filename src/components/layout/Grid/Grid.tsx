@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./grid.scss";
+import styles from "./grid.module.scss";
 
 import { generateResponsiveVars, ResponsiveProp } from "./grid-utils";
 import { getSpacingValue } from "../../../utilities/style-utils";
@@ -107,10 +107,10 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     };
 
     return (
-      <div className="wim-grid-container">
+      <div className={styles.container}>
         <div
           ref={ref}
-          className={classNames("wim-grid", className)}
+          className={classNames(styles.root, className)}
           style={gridStyle}
           {...props}
         >

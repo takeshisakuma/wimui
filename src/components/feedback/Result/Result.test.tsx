@@ -11,32 +11,32 @@ describe("Result", () => {
 
   it("renders status class for success", () => {
     const { container } = render(<Result intent="success" />);
-    expect(container.firstChild).toHaveClass("wim-result--success");
+    expect(container.firstChild).toHaveClass(/success/);
   });
 
   it("renders status class for error", () => {
     const { container } = render(<Result intent="error" />);
-    expect(container.firstChild).toHaveClass("wim-result--error");
+    expect(container.firstChild).toHaveClass(/error/);
   });
 
   it("renders status class for warning", () => {
     const { container } = render(<Result intent="warning" />);
-    expect(container.firstChild).toHaveClass("wim-result--warning");
+    expect(container.firstChild).toHaveClass(/warning/);
   });
 
   it("renders status class for 404", () => {
     const { container } = render(<Result status="404" />);
-    expect(container.firstChild).toHaveClass("wim-result--404");
+    expect(container.firstChild).toHaveClass(/404/);
   });
 
   it("renders status class for 403", () => {
     const { container } = render(<Result status="403" />);
-    expect(container.firstChild).toHaveClass("wim-result--403");
+    expect(container.firstChild).toHaveClass(/403/);
   });
 
   it("renders status class for 500", () => {
     const { container } = render(<Result status="500" />);
-    expect(container.firstChild).toHaveClass("wim-result--500");
+    expect(container.firstChild).toHaveClass(/500/);
   });
 
   it("renders children in content area", () => {

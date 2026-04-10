@@ -295,6 +295,7 @@ export const RangeSlider = ({
     >
       <div
         role="presentation"
+        data-testid="range-slider-root"
         className={classNames(
           styles.root,
           disabled && styles.disabled,

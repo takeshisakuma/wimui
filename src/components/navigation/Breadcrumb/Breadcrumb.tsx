@@ -80,6 +80,7 @@ export const Breadcrumb = ({
                     priority="secondary"
                     iconName={item.iconName}
                     className={styles.link}
+                    styles={{ label: styles.linkLabel }}
                   >
                     {item.label}
                   </Link>

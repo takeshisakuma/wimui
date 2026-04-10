@@ -1,0 +1,36 @@
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: max-content;
+    max-width: 100%;
+
+    &:has([class*="inputBase"]) {
+      width: max-content;
+    }
+
+    &:has([class*="fullWidth"]) {
+      width: 100%;
+    }
+
+    .headerWrapper {
+      display: block;
+      cursor: pointer; // Ensure the header is clickable
+    }
+
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .text {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--wim-color-text-primary);
+      overflow-wrap: break-word;
+    }
+  }
+}

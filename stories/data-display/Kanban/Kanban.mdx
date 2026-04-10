@@ -6,6 +6,7 @@ import {
 } from "@storybook/addon-docs/blocks";
 import * as KanbanStories from "./Kanban.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={KanbanStories} />
 
@@ -15,7 +16,7 @@ import { T } from "../../T";
     margin: "0 0 16px 0",
     fontSize: "18px",
     lineHeight: "28px",
-    color: "#6c757d",
+    color: "var(--wim-color-text-secondary)",
   }}
 >
   <T k="doc.kanban_long_desc" />
@@ -50,28 +51,7 @@ import { T } from "../../T";
 </table>
 
 ## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>KanbanBoard</b></td>
-      <td><T k="doc.kanban_anatomy_board" /></td>
-    </tr>
-    <tr>
-      <td><b>KanbanBoard.Column</b></td>
-      <td><T k="doc.kanban_anatomy_column" /></td>
-    </tr>
-    <tr>
-      <td><b>KanbanBoard.Card</b></td>
-      <td><T k="doc.kanban_anatomy_card" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Kanban" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -112,39 +92,11 @@ import { T } from "../../T";
   <li><T k="doc.kanban_best_practice_3" /></li>
 </ul>
 
-## <T k="doc.design_tokens_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.token" /></th>
-      <th><T k="doc.usage" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>--wim-color-bg-muted</code></td>
-      <td><T k="doc.kanban_token_bg" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-color-border</code></td>
-      <td><T k="doc.kanban_token_border" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-radius-md</code></td>
-      <td><T k="doc.kanban_token_radius" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-shadow-sm</code></td>
-      <td><T k="doc.kanban_token_shadow" /></td>
-    </tr>
-  </tbody>
-</table>
-
 ## <T k="doc.responsive_title" />
 <p><T k="doc.kanban_responsive_desc" /></p>
 
 ## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Kanban" section="tokens" />
 
 ## <T k="doc.keyboard_nav_title" />
 <p><T k="doc.kanban_keyboard_desc" /></p>
@@ -163,5 +115,7 @@ npm run test -- Kanban
 <h3><T k="doc.kanban_disabled_card" /></h3>
 <p><T k="doc.kanban_disabled_card_desc" /></p>
 <Canvas of={KanbanStories.WithDisabledCard} />
+
+<Docgen componentName="Kanban" section="props" />
 
 <Controls />

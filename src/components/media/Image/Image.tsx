@@ -349,7 +349,8 @@ export const Image = ({
   return (
     <figure
       ref={containerRef}
-      className={classNames(styles.root, "wim-image-container", className)}
+      className={classNames(styles.root, className)}
+      data-testid="image-root"
       style={{
         maxWidth: width || "100%",
         width: "100%",
@@ -369,7 +370,6 @@ export const Image = ({
       <div
         className={classNames(
           styles.inner,
-          "wim-image-inner",
           radiusClass,
           shadow && styles.shadow,
           border && styles.border,
@@ -381,6 +381,7 @@ export const Image = ({
           fadeIn && isLoaded && styles.isLoaded,
           shouldShowSkeleton && fadeIn && styles.loading,
         )}
+        data-testid="image-inner"
       >
         {isIntersecting && (
           <img
@@ -389,18 +390,18 @@ export const Image = ({
             onLoad={notifyLoaded}
             className={classNames(
               styles.image,
-              "wim-image",
               (filter || hoverFilter || duotone) && styles.hasFilter,
             )}
             style={imageStyles}
             loading={loading}
             fetchPriority={priority ? "high" : undefined}
+            data-testid="image-element"
             {...props}
           />
         )}
       </div>
       {caption && (
-        <figcaption className={classNames(styles.caption, "wim-image__caption")}>
+        <figcaption className={styles.caption} data-testid="image-caption">
           {caption}
         </figcaption>
       )}

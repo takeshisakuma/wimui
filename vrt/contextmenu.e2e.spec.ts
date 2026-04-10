@@ -16,13 +16,13 @@ test.describe("ContextMenu", () => {
     });
 
     test("right-click opens the context menu", async ({ page }) => {
-      const trigger = page.locator("[style*='cursor: pointer'], [style*='cursor:pointer']").first();
+      const trigger = page.getByTestId("context-menu-trigger").first();
       await trigger.click({ button: "right" });
       await expect(page.getByRole("menu")).toBeVisible();
     });
 
     test("clicking a menu item closes the menu", async ({ page }) => {
-      const trigger = page.locator("[style*='cursor: pointer'], [style*='cursor:pointer']").first();
+      const trigger = page.getByTestId("context-menu-trigger").first();
       await trigger.click({ button: "right" });
       await expect(page.getByRole("menu")).toBeVisible();
 
@@ -31,7 +31,7 @@ test.describe("ContextMenu", () => {
     });
 
     test("Escape key closes the menu", async ({ page }) => {
-      const trigger = page.locator("[style*='cursor: pointer'], [style*='cursor:pointer']").first();
+      const trigger = page.getByTestId("context-menu-trigger").first();
       await trigger.click({ button: "right" });
       await expect(page.getByRole("menu")).toBeVisible();
 
@@ -45,7 +45,7 @@ test.describe("ContextMenu", () => {
       await page.goto(STORY_URL(DISABLED_ITEMS_STORY));
       await page.waitForLoadState("networkidle");
 
-      const trigger = page.locator("[style*='cursor: pointer'], [style*='cursor:pointer']").first();
+      const trigger = page.getByTestId("context-menu-trigger").first();
       await trigger.click({ button: "right" });
       await expect(page.getByRole("menu")).toBeVisible();
 
@@ -63,7 +63,7 @@ test.describe("ContextMenu", () => {
       await page.goto(STORY_URL(WITH_GROUPS_STORY));
       await page.waitForLoadState("networkidle");
 
-      const trigger = page.locator("[style*='cursor: pointer'], [style*='cursor:pointer']").first();
+      const trigger = page.getByTestId("context-menu-trigger").first();
       await trigger.click({ button: "right" });
 
       // Groups should have a title element visible
@@ -77,7 +77,7 @@ test.describe("ContextMenu", () => {
       await page.goto(STORY_URL(BASIC_STORY));
       await page.waitForLoadState("networkidle");
 
-      const trigger = page.locator("[style*='cursor: pointer'], [style*='cursor:pointer']").first();
+      const trigger = page.getByTestId("context-menu-trigger").first();
       await trigger.click({ button: "right" });
       await expect(page.getByRole("menu")).toBeVisible();
 

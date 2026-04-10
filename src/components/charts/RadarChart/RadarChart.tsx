@@ -9,7 +9,9 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { Title } from "../../typography/Title/Title";
 import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import styles from "./radar-chart.module.scss";
 
 export type RadarChartProps = {
   data: ChartDataPoint[];
@@ -29,11 +31,13 @@ export const RadarChart = ({
   title,
 }: RadarChartProps) => {
   return (
-    <div style={{ width, height: "auto" }}>
+    <div className={styles.root} style={{ width }}>
       {title && (
-        <h3 style={{ fontSize: "16px", marginBottom: "16px" }}>{title}</h3>
+        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+          {title}
+        </Title>
       )}
-      <div style={{ height }}>
+      <div className={styles.container} style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <RechartsRadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
             <PolarGrid stroke={CHART_THEME.grid.stroke} />

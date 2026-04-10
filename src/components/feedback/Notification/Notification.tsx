@@ -9,7 +9,7 @@ import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { WimIntent } from "../../../types/tokens";
-import "./notification.scss";
+import styles from "./notification.module.scss";
 
 export type NotificationPlacement =
   | "topRight"
@@ -80,15 +80,15 @@ export const Notification = ({
   return (
     <div
       className={classNames(
-        "wim-notification",
-        intent && `wim-notification--${ intent }`,
+        styles.root,
+        intent && styles[intent],
         className,
       )}
       role="alert"
     >
-      <div className="wim-notification-content">
+      <div className={styles.content}>
         {(icon || intent) && (
-          <div className="wim-notification-icon">
+          <div className={styles.icon}>
             <FeedbackIcon
               intent={ intent }
               icon={icon}
@@ -97,19 +97,19 @@ export const Notification = ({
             />
           </div>
         )}
-        <div className="wim-notification-message-container">
-          <div className="wim-notification-title">
+        <div className={styles.messageContainer}>
+          <div className={styles.title}>
             {title}
           </div>
           {description && (
-            <div className="wim-notification-description">
+            <div className={styles.description}>
               {description}
             </div>
           )}
         </div>
         <FeedbackCloseButton
           onClose={closable ? handleClose : undefined}
-          className="wim-notification-close"
+          className={styles.close}
           size="sm"
         />
       </div>
@@ -155,8 +155,8 @@ export const NotificationProvider = ({
       {children}
       <div
         className={classNames(
-          "wim-notification-container",
-          `wim-notification-container--${placement}`,
+          styles.container,
+          styles[placement],
         )}
       >
         {notifications.map((notification) => (

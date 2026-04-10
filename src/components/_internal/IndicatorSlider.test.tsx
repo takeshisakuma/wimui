@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { IndicatorSlider } from "./IndicatorSlider";
 
@@ -13,27 +13,28 @@ vi.mock("./useIndicator", () => ({
 
 describe("IndicatorSlider", () => {
   it("renders with basic props", () => {
-    const { container } = render(
+    render(
       <IndicatorSlider activeSelector=".active" />
     );
-    const slider = container.querySelector(".wim-indicator-slider");
+    const slider = screen.getByTestId("wim-indicator-slider");
     expect(slider).toBeInTheDocument();
   });
 
   it("applies custom className", () => {
-    const { container } = render(
+    render(
       <IndicatorSlider activeSelector=".active" className="custom-class" />
     );
-    const slider = container.querySelector(".wim-indicator-slider");
+    const slider = screen.getByTestId("wim-indicator-slider");
     expect(slider).toHaveClass("custom-class");
   });
 
   it("passes style from useIndicator", () => {
-    const { container } = render(
+    render(
       <IndicatorSlider activeSelector=".active" />
     );
-    const slider = container.querySelector(".wim-indicator-slider") as HTMLElement;
+    const slider = screen.getByTestId("wim-indicator-slider") as HTMLElement;
     expect(slider.style.width).toBe("100px");
     expect(slider.style.left).toBe("10px");
   });
 });
+

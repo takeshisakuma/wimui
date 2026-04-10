@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./scroll-area.scss";
+import styles from "./scroll-area.module.scss";
 
 type ScrollAreaProps = React.ComponentPropsWithoutRef<"div"> & {
   text?: React.ReactNode;
@@ -27,7 +27,7 @@ export const ScrollArea = ({
 
   return (
     <div
-      className={classNames("wim-scroll-area", className)}
+      className={classNames(styles.root, className)}
       style={combinedStyle}
       tabIndex={0}
       {...props}

@@ -1,0 +1,44 @@
+/* Generic Transitions */
+.fadeEnter {
+  opacity: 0;
+}
+
+.fadeEnterTo {
+  opacity: 1;
+  transition: opacity var(--wim-transition-base, 200ms ease);
+}
+
+.fadeLeave {
+  opacity: 1;
+}
+
+.fadeLeaveTo {
+  opacity: 0;
+  transition: opacity var(--wim-transition-base, 200ms ease);
+}
+
+.scaleEnter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.scaleEnterTo {
+  opacity: 1;
+  transform: scale(1);
+  transition: all var(--wim-transition-base, 200ms ease);
+}
+
+.scaleLeave {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scaleLeaveTo {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all var(--wim-transition-base, 200ms ease);
+}
+
+.hidden {
+  display: none !important;
+}

@@ -1,6 +1,7 @@
 import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
 import * as QueryBuilderStories from "./QueryBuilder.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={QueryBuilderStories} />
 
@@ -42,36 +43,7 @@ import { T } from "../../T";
 </table>
 
 ## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.querybuilder_anatomy_root_label" /></b></td>
-      <td><T k="doc.querybuilder_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.querybuilder_anatomy_group_label" /></b></td>
-      <td><T k="doc.querybuilder_anatomy_group" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.querybuilder_anatomy_rule_label" /></b></td>
-      <td><T k="doc.querybuilder_anatomy_rule" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.querybuilder_anatomy_combinator_label" /></b></td>
-      <td><T k="doc.querybuilder_anatomy_combinator" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.querybuilder_anatomy_not_label" /></b></td>
-      <td><T k="doc.querybuilder_anatomy_not" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="QueryBuilder" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -157,47 +129,11 @@ const MyComponent = () => {
 
 <Canvas of={QueryBuilderStories.Predefined} />
 
-## <T k="doc.design_tokens_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.token" /></th>
-      <th><T k="doc.usage" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>--wim-color-destructive</code></td>
-      <td><T k="doc.querybuilder_token_destructive" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-color-border</code></td>
-      <td><T k="doc.querybuilder_token_border" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-color-bg-secondary</code></td>
-      <td><T k="doc.querybuilder_token_bg_secondary" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-color-bg-component</code></td>
-      <td><T k="doc.querybuilder_token_bg_component" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-radius-lg</code></td>
-      <td><T k="doc.querybuilder_token_radius" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-transition-fast</code></td>
-      <td><T k="doc.querybuilder_token_transition" /></td>
-    </tr>
-  </tbody>
-</table>
-
 ## <T k="doc.responsive_title" />
 <p><T k="doc.querybuilder_responsive_desc" /></p>
 
 ## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="QueryBuilder" section="tokens" />
 
 ## <T k="doc.keyboard_nav_title" />
 <p><T k="doc.querybuilder_keyboard_desc" /></p>
@@ -212,5 +148,7 @@ npm run test -- QueryBuilder
 ```
 
 ## <T k="doc.props" />
+
+<Docgen componentName="QueryBuilder" section="props" />
 
 <Controls />

@@ -9,11 +9,6 @@
     &.fullWidth {
       width: 100%;
       max-width: none;
-
-      :global(.wim-input-base) {
-        width: 100%;
-        max-width: none;
-      }
     }
   }
 
@@ -166,7 +161,7 @@
     }
   }
 
-  .root[data-keyboard-nav="true"] .option:global(.wim-base-list-item--active) {
+  .root[data-keyboard-nav="true"] .option {
     z-index: 1;
     box-shadow: var(--wim-shadow-focus);
   }

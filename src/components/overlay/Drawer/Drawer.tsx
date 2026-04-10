@@ -117,6 +117,7 @@ export const DrawerTrigger = ({
     <button
       className={classNames(styles.trigger, className)}
       onClick={handleClick}
+      data-testid="drawer-trigger"
     >
       {children}
     </button>
@@ -170,6 +171,7 @@ export const DrawerClose = ({
       type="button"
       className={classNames(styles.closeButton, className)}
       onClick={handleClick}
+      data-testid="drawer-close"
     >
       {children}
     </button>
@@ -207,6 +209,7 @@ export const DrawerContent = ({ children, className }: DrawerContentProps) => {
       )}
       transitionProps={slideTransition}
       data-side={side}
+      data-testid="drawer-content"
     >
       {children}
     </OverlayBase>
@@ -240,7 +243,7 @@ export const DrawerTitle = ({
 }: {
   children: React.ReactNode;
   className?: string;
-}) => <h2 className={classNames(styles.title, className)}>{children}</h2>;
+}) => <h2 className={classNames(styles.title, className)} data-testid="drawer-title">{children}</h2>;
 
 export const DrawerDescription = ({
   children,

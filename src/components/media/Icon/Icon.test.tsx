@@ -12,7 +12,6 @@ describe("Icon", () => {
     const svg = container.querySelector("svg");
     expect(svg).toBeInTheDocument();
     expect(svg).toHaveClass(styles.root);
-    expect(svg).toHaveClass("wim-icon");
   });
 
   it("applies size and color", () => {

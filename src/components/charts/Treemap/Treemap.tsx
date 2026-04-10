@@ -4,7 +4,9 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+import { Title } from "../../typography/Title/Title";
 import { CHART_COLORS, CHART_THEME, type ChartDataPoint } from "../../helpers";
+import styles from "./treemap.module.scss";
 
 export type TreemapProps = {
   data: ChartDataPoint[];
@@ -24,11 +26,13 @@ export const Treemap = ({
   title,
 }: TreemapProps) => {
   return (
-    <div style={{ width, height: "auto" }}>
+    <div className={styles.root} style={{ width }}>
       {title && (
-        <h3 style={{ fontSize: "var(--wim-font-size-md)", marginBottom: "var(--wim-spacing-xl)" }}>{title}</h3>
+        <Title tag="h3" size="md" style={{ marginBottom: "var(--wim-spacing-md)" }}>
+          {title}
+        </Title>
       )}
-      <div style={{ height }}>
+      <div className={styles.container} style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
           <RechartsTreemap
             data={data}

@@ -55,11 +55,12 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
         className={classNames(
           styles.container,
           stickyHeader && styles.sticky,
-          scrollbar === "subtle" && "wim-subtle-scrollbar",
-          scrollbar === "hidden" && "wim-no-scrollbar",
+          scrollbar === "subtle" && styles.subtleScrollbar,
+          scrollbar === "hidden" && styles.noScrollbar,
         )}
         style={containerStyle}
         tabIndex={height || maxHeight ? 0 : undefined}
+        data-testid="table-container"
       >
         <Component
           className={classNames(
@@ -74,6 +75,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
           )}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ref={ref as any}
+          data-testid="table-root"
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           {...(props as any)}
         >
@@ -91,8 +93,14 @@ export const TableHeader = React.forwardRef<HTMLTableSectionElement, TableHeader
   ({ asChild = false, className, children, ...props }, ref) => {
     const Component = asChild ? Slot : "thead";
     return (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <Component className={classNames(styles.header, className)} ref={ref as any} {...(props as any)}>
+      <Component
+        className={classNames(styles.header, className)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
+        data-testid="table-header"
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        {...(props as any)}
+      >
         <Slottable>{children}</Slottable>
       </Component>
     );
@@ -106,8 +114,14 @@ export const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProp
   ({ asChild = false, className, children, ...props }, ref) => {
     const Component = asChild ? Slot : "tbody";
     return (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <Component className={classNames(styles.body, className)} ref={ref as any} {...(props as any)}>
+      <Component
+        className={classNames(styles.body, className)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
+        data-testid="table-body"
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        {...(props as any)}
+      >
         <Slottable>{children}</Slottable>
       </Component>
     );
@@ -121,8 +135,14 @@ export const TableFooter = React.forwardRef<HTMLTableSectionElement, TableFooter
   ({ asChild = false, className, children, ...props }, ref) => {
     const Component = asChild ? Slot : "tfoot";
     return (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <Component className={classNames(styles.footer, className)} ref={ref as any} {...(props as any)}>
+      <Component
+        className={classNames(styles.footer, className)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
+        data-testid="table-footer"
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        {...(props as any)}
+      >
         <Slottable>{children}</Slottable>
       </Component>
     );
@@ -142,6 +162,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         className={classNames(styles.row, selected && styles.selected, className)}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
+        data-testid="table-row"
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         {...(props as any)}
       >
@@ -202,6 +223,7 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
         }}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
+        data-testid="table-head"
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         {...(props as any)}
         onClick={sortable ? onSort : props.onClick}
@@ -279,6 +301,7 @@ export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
         data-label={label}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
+        data-testid="table-cell"
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         {...(props as any)}
       >

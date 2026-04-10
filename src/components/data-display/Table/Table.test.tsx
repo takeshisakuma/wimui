@@ -24,7 +24,7 @@ describe("Table", () => {
   });
 
   it("applies variant classes", () => {
-    const { container } = render(
+    render(
       <Table striped bordered hoverable fullWidth>
         <Table.Body>
           <Table.Row>
@@ -33,7 +33,8 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    const table = container.querySelector("table")!;
+    const table = screen.getByTestId("table-root");
+    expect(table).toHaveClass(styles.root);
     expect(table).toHaveClass(styles.striped);
     expect(table).toHaveClass(styles.bordered);
     expect(table).toHaveClass(styles.hoverable);
@@ -54,52 +55,56 @@ describe("Table", () => {
   });
 
   it("applies stickyHeader class", () => {
-    const { container } = render(
+    render(
       <Table stickyHeader>
         <Table.Body>
           <Table.Row><Table.Cell>X</Table.Cell></Table.Row>
         </Table.Body>
       </Table>,
     );
-    expect(container.querySelector(`.${styles.container}.${styles.sticky}`)).toBeInTheDocument();
+    const container = screen.getByTestId("table-container");
+    expect(container).toHaveClass(styles.container);
+    expect(container).toHaveClass(styles.sticky);
   });
 
   it("applies scrollbar subtle class", () => {
-    const { container } = render(
+    render(
       <Table scrollbar="subtle">
         <Table.Body>
           <Table.Row><Table.Cell>X</Table.Cell></Table.Row>
         </Table.Body>
       </Table>,
     );
-    expect(container.querySelector(".wim-subtle-scrollbar")).toBeInTheDocument();
+    expect(screen.getByTestId("table-container")).toHaveClass(styles.subtleScrollbar);
   });
 
   it("applies scrollbar hidden class", () => {
-    const { container } = render(
+    render(
       <Table scrollbar="hidden">
         <Table.Body>
           <Table.Row><Table.Cell>X</Table.Cell></Table.Row>
         </Table.Body>
       </Table>,
     );
-    expect(container.querySelector(".wim-no-scrollbar")).toBeInTheDocument();
+    expect(screen.getByTestId("table-container")).toHaveClass(styles.noScrollbar);
   });
 
   it("applies height and overflow style", () => {
-    const { container } = render(
+    render(
       <Table height="400px" maxHeight="600px">
         <Table.Body>
           <Table.Row><Table.Cell>X</Table.Cell></Table.Row>
         </Table.Body>
       </Table>,
     );
-    const wrapper = container.querySelector(`.${styles.container}`) as HTMLElement;
+    const wrapper = screen.getByTestId("table-container");
     expect(wrapper.style.overflow).toBe("auto");
+    expect(wrapper.style.height).toBe("400px");
+    expect(wrapper.style.maxHeight).toBe("600px");
   });
 
   it("renders TableRow with selected class", () => {
-    const { container } = render(
+    render(
       <Table>
         <Table.Body>
           <Table.Row selected>
@@ -108,7 +113,7 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    expect(container.querySelector(`.${styles.row}.${styles.selected}`)).toBeInTheDocument();
+    expect(screen.getByTestId("table-row")).toHaveClass(styles.selected);
   });
 
   it("renders sortable TableHead with asc sort", () => {
@@ -208,7 +213,7 @@ describe("Table", () => {
   });
 
   it("renders TableHead with stickyLeft and leftOffset", () => {
-    const { container } = render(
+    render(
       <Table>
         <Table.Header>
           <Table.Row>
@@ -220,13 +225,13 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    const th = container.querySelector(`.${styles.head}.${styles.stickyLeft}`) as HTMLElement;
+    const th = screen.getByTestId("table-head");
     expect(th).toBeInTheDocument();
     expect(th.style.left).toBe("50px");
   });
 
   it("renders TableCell with stickyRight and rightOffset", () => {
-    const { container } = render(
+    render(
       <Table>
         <Table.Body>
           <Table.Row>
@@ -235,20 +240,20 @@ describe("Table", () => {
         </Table.Body>
       </Table>,
     );
-    const td = container.querySelector(`.${styles.cell}.${styles.stickyRight}`) as HTMLElement;
+    const td = screen.getByTestId("table-cell");
     expect(td).toBeInTheDocument();
     expect(td.style.right).toBe("20px");
   });
 
   it("renders mobileCard class", () => {
-    const { container } = render(
+    render(
       <Table mobileCard>
         <Table.Body>
           <Table.Row><Table.Cell>X</Table.Cell></Table.Row>
         </Table.Body>
       </Table>,
     );
-    const table = container.querySelector("table")!;
+    const table = screen.getByTestId("table-root");
     expect(table).toHaveClass(styles.mobileCard);
   });
 

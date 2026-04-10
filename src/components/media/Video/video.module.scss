@@ -396,7 +396,7 @@
     transform: translate(-50%, -50%);
     animation: skipFadeIn 0.5s ease-out forwards;
   
-    :global(.wim-icon) {
+    svg {
       margin: 0 -4px; // アイコン同士を寄せる
     }
   }

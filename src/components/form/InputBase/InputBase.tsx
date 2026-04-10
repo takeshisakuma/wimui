@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { WimIntent } from "../../../types/tokens";
-import styles from "./input-base.module.scss";
+import localStyles from "./input-base.module.scss";
 
 export type InputBaseIcon = {
   name: React.ComponentProps<typeof Icon>["name"];
@@ -33,6 +33,15 @@ export type InputBaseProps = {
   hasValue?: boolean;
   onClear?: () => void;
   clearAriaLabel?: string;
+  /** Custom styles for internal parts */
+  styles?: {
+    root?: string;
+    inner?: string;
+    icon?: string;
+    icons?: string;
+    iconItem?: string;
+    iconButton?: string;
+  };
 };
 
 /**
@@ -56,6 +65,7 @@ export const InputBase = ({
   hasValue,
   onClear,
   clearAriaLabel,
+  styles: stylesProp,
 }: InputBaseProps) => {
   const { t } = useTranslation("common");
   const resolvedLeftIconAriaLabel = leftIconAriaLabel ?? t("a11y.left_icon_action");
@@ -66,13 +76,17 @@ export const InputBase = ({
   const isDisabled = disabled;
   const effectiveIntent = isDisabled ? "disabled" : intent;
 
-  const disabledChildren = isDisabled
-    ? React.Children.map(children, (child) =>
-        React.isValidElement(child)
-          ? React.cloneElement(child, { disabled: true } as React.HTMLAttributes<HTMLElement>)
-          : child,
-      )
-    : children;
+  const childrenWithClasses = React.Children.map(children, (child) => {
+    if (!React.isValidElement(child)) return child;
+    
+    return React.cloneElement(child, {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      disabled: isDisabled ? true : (child.props as any).disabled,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      className: classNames((child.props as any).className, localStyles.inner, stylesProp?.inner),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
+  });
   const effectiveHasCustomWidth = width !== undefined && !isSemanticWidth && !fullWidth;
   const effectiveSemanticWidth = isSemanticWidth && !fullWidth ? width : undefined;
 
@@ -100,22 +114,23 @@ export const InputBase = ({
   }
 
   const widthClassName = effectiveSemanticWidth 
-    ? styles[`width${effectiveSemanticWidth.charAt(0).toUpperCase()}${effectiveSemanticWidth.slice(1)}`]
+    ? localStyles[`width${effectiveSemanticWidth.charAt(0).toUpperCase()}${effectiveSemanticWidth.slice(1)}`]
     : undefined;
 
   return (
     <div
       className={classNames(
-        styles.root,
-        styles[effectiveIntent],
-        styles[variant],
-        fullWidth && styles.fullWidth,
-        effectiveHasCustomWidth && styles.hasCustomWidth,
+        localStyles.root,
+        localStyles[effectiveIntent],
+        localStyles[variant],
+        fullWidth && localStyles.fullWidth,
+        effectiveHasCustomWidth && localStyles.hasCustomWidth,
         widthClassName,
-        leftIcon && styles.hasLeftIcon,
-        finalRightIcons.length > 0 && styles.hasRightIcon,
-        finalRightIcons.length >= 2 && styles.hasMultipleRightIcons,
+        leftIcon && localStyles.hasLeftIcon,
+        finalRightIcons.length > 0 && localStyles.hasRightIcon,
+        finalRightIcons.length >= 2 && localStyles.hasMultipleRightIcons,
         className,
+        stylesProp?.root,
       )}
 
       style={
@@ -130,16 +145,17 @@ export const InputBase = ({
       {leftIcon && (
         <div
           className={classNames(
-            styles.icon,
-            styles.left,
-            onLeftIconClick && styles.clickable,
+            localStyles.icon,
+            localStyles.left,
+            onLeftIconClick && localStyles.clickable,
+            stylesProp?.icon,
           )}
         >
           {onLeftIconClick ? (
             <button
               type="button"
               onClick={onLeftIconClick}
-              className={styles.iconButton}
+              className={classNames(localStyles.iconButton, stylesProp?.iconButton)}
               aria-label={resolvedLeftIconAriaLabel}
             >
               <Icon
@@ -157,29 +173,31 @@ export const InputBase = ({
           )}
         </div>
       )}
-      {disabledChildren}
+      {childrenWithClasses}
       {finalRightIcons.length > 0 && (
         <div
           className={classNames(
-            styles.icons,
-            styles.right,
+            localStyles.icons,
+            localStyles.right,
+            stylesProp?.icons,
           )}
         >
           {finalRightIcons.map((icon, index) => (
             <div
               key={`${icon.name}-${index}`}
               className={classNames(
-                styles.iconItem,
-                icon.onClick && styles.clickable,
-                icon.rotated && styles.rotated,
+                localStyles.iconItem,
+                icon.onClick && localStyles.clickable,
+                icon.rotated && localStyles.rotated,
                 icon.className,
+                stylesProp?.iconItem,
               )}
             >
               {icon.onClick ? (
                 <button
                   type="button"
                   onClick={icon.onClick}
-                  className={styles.iconButton}
+                  className={classNames(localStyles.iconButton, stylesProp?.iconButton)}
                   aria-label={icon.ariaLabel ?? t("a11y.right_icon_action")}
                 >
                   <Icon

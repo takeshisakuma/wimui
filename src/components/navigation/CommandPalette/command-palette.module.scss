@@ -60,7 +60,7 @@
     border-bottom: 2px solid var(--wim-color-border-secondary); // Slightly thicker for focus transition
     transition: var(--wim-transition-fast);
   
-    :global(.wim-icon) {
+    svg {
       margin-right: var(--wim-spacing-sm);
       color: var(--wim-color-text-tertiary);
       transition: color 0.2s ease;
@@ -72,7 +72,7 @@
       transition: var(--wim-transition-fast);
   
       // Default (mouse) focus indicator: change icon color and light background
-      :global(.wim-icon) {
+      svg {
         color: var(--wim-color-primary);
       }
   
@@ -175,19 +175,15 @@
     }
   }
   
-  .shortcutHint {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    font-size: 0.7rem;
-    color: var(--wim-color-text-tertiary);
-  
-    :global(.wim-kbd) {
-      padding: 1px 4px;
-      font-size: 0.6rem;
-    }
+  .kbd {
+    padding: 1px 4px;
+    font-family: inherit;
+    font-size: 0.6rem;
+    background-color: var(--wim-color-bg-secondary);
+    border: 1px solid var(--wim-color-border);
+    border-radius: var(--wim-radius-xs);
   }
-  
+
   // Add basic styles for the trigger if needed
   .trigger {
     display: inline-flex;

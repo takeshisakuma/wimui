@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import styles from "./button.module.scss";
+import localStyles from "./button.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import type { WimColor, ComponentSize, ButtonVariant, ButtonIntent } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
@@ -29,6 +29,12 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   animateWidth?: boolean;
   /** Whether the button should take up the full width of its container */
   fullWidth?: boolean;
+  /** Custom styles for internal parts */
+  styles?: {
+    root?: string;
+    loader?: string;
+    icon?: string;
+  };
 };
 
 export const Button = React.forwardRef<
@@ -48,6 +54,7 @@ export const Button = React.forwardRef<
       justify = "center",
       animateWidth = false,
       fullWidth = false,
+      styles: stylesProp,
       "aria-label": ariaLabelProp,
       className,
       disabled,
@@ -115,7 +122,7 @@ export const Button = React.forwardRef<
     const renderIcon = () => {
       if (!icon) return null;
       if (typeof icon === "string") {
-        return <Icon name={icon as React.ComponentProps<typeof Icon>["name"]} size={size} />;
+        return <Icon name={icon as React.ComponentProps<typeof Icon>["name"]} size={size} className={stylesProp?.icon} />;
       }
       return icon;
     };
@@ -147,15 +154,16 @@ export const Button = React.forwardRef<
             : {}),
         }}
         className={classNames(
-          styles.root,
-          styles[size],
-          styles[variant],
-          styles[intent],
-          loading && styles.loading,
-          animateWidth && styles.animatedWidth,
-          fullWidth && styles.fullWidth,
-          !children && !!icon && styles.iconOnly,
+          localStyles.root,
+          localStyles[size],
+          localStyles[variant],
+          localStyles[intent],
+          loading && localStyles.loading,
+          animateWidth && localStyles.animatedWidth,
+          fullWidth && localStyles.fullWidth,
+          !children && !!icon && localStyles.iconOnly,
           className,
+          stylesProp?.root,
         )}
         disabled={(isDisabled || loading) && !asChild ? true : undefined}
         aria-label={resolvedAriaLabel}
@@ -166,7 +174,7 @@ export const Button = React.forwardRef<
         <Slottable>{children}</Slottable>
         {iconContent && iconPosition === "right" && iconContent}
         {loading && (
-          <span className={styles.loader}>
+          <span className={classNames(localStyles.loader, stylesProp?.loader)}>
             <Icon name="LoadingIcon" size={size} />
           </span>
         )}

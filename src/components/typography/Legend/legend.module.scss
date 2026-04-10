@@ -1,0 +1,19 @@
+@layer component {
+  .root {
+    float: left;
+    box-sizing: border-box;
+    display: table;
+    width: 100%;
+    padding: 0 4px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--wim-color-text-primary);
+  }
+
+  /* ブラウザのデフォルトスタイルを上書きして配置を制御しやすくする */
+  :global(fieldset) > .root {
+    float: none;
+    width: auto;
+  }
+}

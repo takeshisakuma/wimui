@@ -10,7 +10,8 @@ import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { WimIntent } from "../../../types/tokens";
-import "./snackbar.scss";
+import styles from "./snackbar.module.scss";
+
 export type SnackbarPosition =
   | "top-left"
   | "top-center"
@@ -129,15 +130,15 @@ export const Snackbar = ({
     return (
       <div
         className={classNames(
-          "wim-snackbar-wrapper",
-          `wim-snackbar-wrapper--${position}`,
+          styles.wrapper,
+          styles[position],
         )}
       >
         <div
           className={classNames(
-            "wim-snackbar",
-            `wim-snackbar--${ intent }`,
-            isVisible && "wim-snackbar--visible",
+            styles.root,
+            intent && styles[intent],
+            isVisible && styles.visible,
             className,
           )}
           role={role}
@@ -147,30 +148,30 @@ export const Snackbar = ({
           onFocus={handleMouseEnter}
           onBlur={handleMouseLeave}
         >
-          <div className="wim-snackbar__content">
+          <div className={styles.content}>
             {intent !== "default" && (
-              <div className="wim-snackbar__icon">
+              <div className={styles.icon}>
                 <FeedbackIcon
                   intent={ intent }
                   size="sm"
                 />
               </div>
             )}
-            <span className="wim-snackbar__message">{message}</span>
+            <span className={styles.message}>{message}</span>
           </div>
 
-          <div className="wim-snackbar__actions">
+          <div className={styles.actions}>
             {actionLabel && (
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleAction}
-                className="wim-snackbar__action-button"
+                className={styles.actionButton}
               >{actionLabel}</Button>
             )}
             <FeedbackCloseButton
               onClose={showCloseButton ? handleClose : undefined}
-              className="wim-snackbar__close-button"
+              className={styles.closeButton}
               size="sm"
             />
           </div>

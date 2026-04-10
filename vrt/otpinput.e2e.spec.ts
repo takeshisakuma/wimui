@@ -14,14 +14,14 @@ test.describe("OtpInput", () => {
       await page.goto(STORY_URL(DEFAULT_STORY));
       await page.waitForLoadState("networkidle");
 
-      await expect(page.locator(".wim-otp-input")).toHaveCount(4);
+      await expect(page.locator('[data-testid="otp-input"]')).toHaveCount(4);
     });
 
     test("Length6 story renders 6 inputs", async ({ page }) => {
       await page.goto(STORY_URL(LENGTH6_STORY));
       await page.waitForLoadState("networkidle");
 
-      await expect(page.locator(".wim-otp-input")).toHaveCount(6);
+      await expect(page.locator('[data-testid="otp-input"]')).toHaveCount(6);
     });
   });
 
@@ -32,14 +32,14 @@ test.describe("OtpInput", () => {
     });
 
     test("typing a digit moves focus to next input", async ({ page }) => {
-      const inputs = page.locator(".wim-otp-input");
+      const inputs = page.locator('[data-testid="otp-input"]');
       await inputs.first().click();
       await page.keyboard.press("1");
       await expect(inputs.nth(1)).toBeFocused();
     });
 
     test("typing fills each input sequentially", async ({ page }) => {
-      const inputs = page.locator(".wim-otp-input");
+      const inputs = page.locator('[data-testid="otp-input"]');
       await inputs.first().click();
 
       for (const digit of ["1", "2", "3", "4"]) {
@@ -54,7 +54,7 @@ test.describe("OtpInput", () => {
     test("Backspace clears current field and moves to previous", async ({
       page,
     }) => {
-      const inputs = page.locator(".wim-otp-input");
+      const inputs = page.locator('[data-testid="otp-input"]');
       await inputs.first().click();
       await page.keyboard.press("1");
       await page.keyboard.press("2");
@@ -66,14 +66,14 @@ test.describe("OtpInput", () => {
     });
 
     test("Arrow Right moves focus to next input", async ({ page }) => {
-      const inputs = page.locator(".wim-otp-input");
+      const inputs = page.locator('[data-testid="otp-input"]');
       await inputs.first().click();
       await page.keyboard.press("ArrowRight");
       await expect(inputs.nth(1)).toBeFocused();
     });
 
     test("Arrow Left moves focus to previous input", async ({ page }) => {
-      const inputs = page.locator(".wim-otp-input");
+      const inputs = page.locator('[data-testid="otp-input"]');
       await inputs.nth(1).click();
       await page.keyboard.press("ArrowLeft");
       await expect(inputs.first()).toBeFocused();
@@ -85,7 +85,7 @@ test.describe("OtpInput", () => {
       await page.goto(STORY_URL(DEFAULT_STORY));
       await page.waitForLoadState("networkidle");
 
-      const inputs = page.locator(".wim-otp-input");
+      const inputs = page.locator('[data-testid="otp-input"]');
       await inputs.first().click();
 
       // Simulate paste via clipboard API
@@ -110,7 +110,7 @@ test.describe("OtpInput", () => {
       await page.goto(STORY_URL(DISABLED_STORY));
       await page.waitForLoadState("networkidle");
 
-      const inputs = page.locator(".wim-otp-input");
+      const inputs = page.locator('[data-testid="otp-input"]');
       const count = await inputs.count();
       for (let i = 0; i < count; i++) {
         await expect(inputs.nth(i)).toBeDisabled();
@@ -122,7 +122,7 @@ test.describe("OtpInput", () => {
       await page.waitForLoadState("networkidle");
 
       await expect(
-        page.locator(".wim-otp-input-container--disabled"),
+        page.locator('[data-testid="otp-input-container"][data-disabled="true"]'),
       ).toBeVisible();
     });
   });
@@ -132,7 +132,7 @@ test.describe("OtpInput", () => {
       await page.goto(STORY_URL(CONTROLLED_STORY));
       await page.waitForLoadState("networkidle");
 
-      const inputs = page.locator(".wim-otp-input");
+      const inputs = page.locator('[data-testid="otp-input"]');
       expect(await inputs.count()).toBeGreaterThan(0);
     });
   });

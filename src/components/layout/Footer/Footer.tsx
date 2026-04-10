@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./footer.scss";
+import styles from "./footer.module.scss";
 
 export interface FooterProps extends React.ComponentPropsWithoutRef<"footer"> {
   /** Border at the top */
@@ -18,14 +18,15 @@ export const Footer = React.forwardRef<HTMLElement, FooterProps>(
       <footer
         ref={ref}
         className={classNames(
-          "wim-footer",
-          bordered && "wim-footer--bordered",
-          background && `wim-footer--bg-${background}`,
+          styles.root,
+          bordered && styles.bordered,
+          background && styles[`bg-${background}`],
           className,
         )}
+        data-bordered={bordered}
         {...props}
       >
-        <div className="wim-footer__container">{children}</div>
+        <div className={styles.container}>{children}</div>
       </footer>
     );
   },
@@ -40,15 +41,15 @@ export interface FooterSectionProps extends React.ComponentPropsWithoutRef<"div"
 export const FooterSection = React.forwardRef<
   HTMLDivElement,
   FooterSectionProps
->(({ className, children, title, ...props }, ref) => {
+ >(({ className, children, title, ...props }, ref) => {
   return (
     <div
       ref={ref}
-      className={classNames("wim-footer__section", className)}
+      className={classNames(styles.section, className)}
       {...props}
     >
-      {title && <h4 className="wim-footer__section-title">{title}</h4>}
-      <div className="wim-footer__section-content">{children}</div>
+      {title && <h4 className={styles.sectionTitle}>{title}</h4>}
+      <div className={styles.sectionContent}>{children}</div>
     </div>
   );
 });
@@ -62,7 +63,7 @@ export const FooterBottom = React.forwardRef<HTMLDivElement, FooterBottomProps>(
     return (
       <div
         ref={ref}
-        className={classNames("wim-footer__bottom", className)}
+        className={classNames(styles.bottom, className)}
         {...props}
       >
         {children}

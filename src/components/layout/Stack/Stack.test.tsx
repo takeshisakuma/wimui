@@ -173,7 +173,7 @@ describe("Stack", () => {
   it("merges custom className", () => {
     const { container } = render(<Stack className="my-stack" />);
     const el = container.firstChild as HTMLElement;
-    expect(el).toHaveClass("wim-stack");
+    expect(el.className).toMatch(/root/);
     expect(el).toHaveClass("my-stack");
   });
 

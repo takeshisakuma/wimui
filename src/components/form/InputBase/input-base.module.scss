@@ -178,12 +178,7 @@
   }
 
   // Make sure children (inputs, triggers) don't have their own borders
-  .root > :global(input),
-  .root > :global(.wim-input),
-  .root > :global(.wim-selectbox-trigger),
-  .root > :global(.wim-tree-select__trigger),
-  .root > :global(.wim-cascader__trigger),
-  .root > :global(.wim-multiselect-trigger) {
+  .inner {
       box-sizing: border-box !important;
       width: 100%;
       min-width: 0 !important;

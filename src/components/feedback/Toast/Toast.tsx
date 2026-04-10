@@ -10,7 +10,8 @@ import { Transition } from "../../layout/Transition/Transition";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { WimIntent } from "../../../types/tokens";
-import "./toast.scss";
+import styles from "./toast.module.scss";
+
 export type ToastPosition =
   | "top-right"
   | "top-left"
@@ -62,27 +63,27 @@ export const Toast = ({
   return (
     <Transition
       show={open && internalVisible}
-      enter="toast-enter"
-      enterFrom="toast-enter-from"
-      enterTo="toast-enter-to"
-      leave="toast-leave"
-      leaveFrom="toast-leave-from"
-      leaveTo="toast-leave-to"
-      className={classNames("wim-toast", `wim-toast--${ intent }`, className)}
+      enter={styles.enter}
+      enterFrom={styles.enterFrom}
+      enterTo={styles.enterTo}
+      leave={styles.leave}
+      leaveFrom={styles.leaveFrom}
+      leaveTo={styles.leaveTo}
+      className={classNames(styles.root, styles[intent], className)}
       role="status"
       aria-live="polite"
     >
-      <div className="wim-toast__icon">
+      <div className={styles.icon}>
         <FeedbackIcon intent={ intent } size="sm" />
       </div>
-      <div className="wim-toast__content">
-        {title && <h5 className="wim-toast__title">{title}</h5>}
-        {description && <p className="wim-toast__description">{description}</p>}
+      <div className={styles.content}>
+        {title && <h5 className={styles.title}>{title}</h5>}
+        {description && <p className={styles.description}>{description}</p>}
       </div>
       <FeedbackCloseButton
         onClose={onClose ? handleClose : undefined}
         id={id}
-        className="wim-toast__close-button"
+        className={styles.closeButton}
         size="md"
       />
     </Transition>
@@ -129,8 +130,8 @@ export const ToastProvider = ({
       {children}
       <div
         className={classNames(
-          "wim-toast-container",
-          `wim-toast-container--${position}`,
+          styles.container,
+          styles[position],
         )}
       >
         {toasts.map((toast) => (

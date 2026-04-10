@@ -16,8 +16,8 @@ describe("Audio", () => {
   });
 
   it("renders audio element with src", () => {
-    const { container } = render(<Audio src={src} />);
-    const audioElement = container.querySelector("audio");
+    render(<Audio src={src} />);
+    const audioElement = screen.getByTestId("audio-active");
     expect(audioElement).toHaveAttribute("src", src);
   });
 
@@ -45,7 +45,7 @@ describe("Audio", () => {
     const onLoadedData = vi.fn();
     const onCanPlay = vi.fn();
 
-    const { container } = render(
+    render(
       <Audio
         src={src}
         onLoadedMetadata={onLoadedMetadata}
@@ -53,14 +53,12 @@ describe("Audio", () => {
         onCanPlay={onCanPlay}
       />
     );
-    const audioElement = container.querySelector("audio");
+    const audioElement = screen.getByTestId("audio-active");
 
     // Simulate events
-    if (audioElement) {
-      fireEvent.loadedMetadata(audioElement);
-      fireEvent.loadedData(audioElement);
-      fireEvent.canPlay(audioElement);
-    }
+    fireEvent.loadedMetadata(audioElement);
+    fireEvent.loadedData(audioElement);
+    fireEvent.canPlay(audioElement);
 
     expect(onLoadedMetadata).toHaveBeenCalled();
     expect(onLoadedData).toHaveBeenCalled();
@@ -68,19 +66,19 @@ describe("Audio", () => {
   });
 
   it("handles array of sources", () => {
-    const { container, rerender } = render(<Audio src={["src1.mp3", "src2.mp3"]} />);
-    let audioElement = container.querySelector("audio");
+    const { rerender } = render(<Audio src={["src1.mp3", "src2.mp3"]} />);
+    let audioElement = screen.getByTestId("audio-active");
     expect(audioElement).toHaveAttribute("src", "src1.mp3");
 
     // Re-render with array of objects
     rerender(<Audio src={[{ src: "obj1.mp3" }]} />);
-    audioElement = container.querySelector("audio");
+    audioElement = screen.getByTestId("audio-active");
     expect(audioElement).toHaveAttribute("src", "obj1.mp3");
   });
 
   it("renders visualizer canvas when customControls and visualizer are true", () => {
-    const { container } = render(<Audio src={src} customControls visualizer />);
-    const canvas = container.querySelector("canvas");
+    render(<Audio src={src} customControls visualizer />);
+    const canvas = screen.getByTestId("audio-canvas");
     expect(canvas).toBeInTheDocument();
     expect(canvas).toHaveClass(styles.visualizerCanvas);
   });
@@ -100,67 +98,68 @@ describe("Audio", () => {
   });
 
   it("applies radius CSS class to inner container", () => {
-    const { container } = render(<Audio src={src} radius="md" />);
-    const inner = container.querySelector(".wim-audio-inner");
+    render(<Audio src={src} radius="md" />);
+    const inner = screen.getByTestId("audio-inner");
     expect(inner).toHaveClass(styles.radiusMd);
   });
 
   it("does not apply radius class when radius is none", () => {
-    const { container } = render(<Audio src={src} radius="none" />);
-    const inner = container.querySelector(".wim-audio-inner");
-    expect(inner?.className).not.toMatch(/radius/);
+    render(<Audio src={src} radius="none" />);
+    const inner = screen.getByTestId("audio-inner");
+    expect(inner.className).not.toMatch(/radius/);
   });
 
   it("applies shadow and border classes when customControls is true", () => {
-    const { container } = render(<Audio src={src} customControls shadow border />);
-    const inner = container.querySelector(".wim-audio-inner");
+    render(<Audio src={src} customControls shadow border />);
+    const inner = screen.getByTestId("audio-inner");
     expect(inner).toHaveClass(styles.shadow);
     expect(inner).toHaveClass(styles.border);
   });
 
   it("does not apply shadow/border without customControls", () => {
-    const { container } = render(<Audio src={src} shadow border />);
-    const inner = container.querySelector(".wim-audio-inner");
-    expect(inner?.className).not.toContain(styles.shadow);
-    expect(inner?.className).not.toContain(styles.border);
+    render(<Audio src={src} shadow border />);
+    const inner = screen.getByTestId("audio-inner");
+    expect(inner.className).not.toContain(styles.shadow);
+    expect(inner.className).not.toContain(styles.border);
   });
 
   it("applies styles.custom class when customControls is true", () => {
-    const { container } = render(<Audio src={src} customControls />);
-    const inner = container.querySelector(".wim-audio-inner");
+    render(<Audio src={src} customControls />);
+    const inner = screen.getByTestId("audio-inner");
     expect(inner).toHaveClass(styles.custom);
   });
 
   it("applies styles.hasVisualizer class when both customControls and visualizer are true", () => {
-    const { container } = render(<Audio src={src} customControls visualizer />);
-    const inner = container.querySelector(".wim-audio-inner");
+    render(<Audio src={src} customControls visualizer />);
+    const inner = screen.getByTestId("audio-inner");
     expect(inner).toHaveClass(styles.hasVisualizer);
   });
 
+
   it("does not render canvas when visualizer is true but customControls is false", () => {
-    const { container } = render(<Audio src={src} visualizer />);
-    expect(container.querySelector("canvas")).not.toBeInTheDocument();
+    render(<Audio src={src} visualizer />);
+    expect(screen.queryByTestId("audio-canvas")).not.toBeInTheDocument();
   });
 
   it("renders native controls on the audio element by default", () => {
-    const { container } = render(<Audio src={src} />);
-    const audioEl = container.querySelector("audio.wim-audio");
+    render(<Audio src={src} />);
+    const audioEl = screen.getByTestId("audio-active");
     expect(audioEl).toHaveAttribute("controls");
   });
 
   it("does not apply controls attribute to audio element when customControls is true", () => {
-    const { container } = render(<Audio src={src} customControls />);
-    const audioEls = container.querySelectorAll("audio");
-    audioEls.forEach((el) => {
-      expect(el).not.toHaveAttribute("controls");
-    });
+    render(<Audio src={src} customControls />);
+    const audioActive = screen.getByTestId("audio-active");
+    const audioNext = screen.getByTestId("audio-next");
+    expect(audioActive).not.toHaveAttribute("controls");
+    expect(audioNext).not.toHaveAttribute("controls");
   });
 
   it("renders src from a single AudioTrack object", () => {
-    const { container } = render(
+    render(
       <Audio src={{ src: "track.mp3", title: "Track Title" }} />
     );
-    const audioEl = container.querySelector("audio");
+    const audioEl = screen.getByTestId("audio-active");
     expect(audioEl).toHaveAttribute("src", "track.mp3");
   });
 
@@ -173,25 +172,25 @@ describe("Audio", () => {
   });
 
   it("does not render metadata section when showMetadata is false", () => {
-    const { container } = render(
+    render(
       <Audio
         src={{ src, title: "Title", artist: "Artist" }}
         customControls
         showMetadata={false}
       />
     );
-    expect(container.querySelector(".wim-audio-metadata")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("audio-metadata")).not.toBeInTheDocument();
   });
 
   it("renders cover art image when coverArt is provided with showMetadata", () => {
-    const { container } = render(
+    render(
       <Audio
         src={{ src, title: "Title", artist: "Artist", coverArt: "cover.jpg" }}
         customControls
         showMetadata
       />
     );
-    const img = container.querySelector(".wim-audio-cover");
+    const img = screen.getByTestId("audio-cover");
     expect(img).toBeInTheDocument();
     expect(img).toHaveAttribute("src", "cover.jpg");
   });
@@ -211,8 +210,8 @@ describe("Audio", () => {
   });
 
   it("wraps content in a figure element", () => {
-    const { container } = render(<Audio src={src} />);
-    expect(container.querySelector("figure.wim-audio-container")).toBeInTheDocument();
-    expect(container.querySelector("figure")).toHaveClass(styles.root);
+    render(<Audio src={src} />);
+    expect(screen.getByTestId("audio-root")).toBeInTheDocument();
   });
+
 });

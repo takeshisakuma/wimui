@@ -1,6 +1,7 @@
 import { render, screen, act, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Snackbar, SnackbarProvider, useSnackbar } from "./Snackbar";
+import styles from "./snackbar.module.scss";
 
 describe("Snackbar", () => {
   it("does not render when open is false", () => {
@@ -35,14 +36,14 @@ describe("Snackbar", () => {
 
   it("renders with success status", () => {
     render(<Snackbar message="Success" open={true} intent="success" />);
-    const el = document.querySelector(".wim-snackbar--success");
+    const el = document.querySelector(`.${styles.success}`);
     expect(el).toBeInTheDocument();
     expect(el).toHaveAttribute("role", "status");
   });
 
   it("renders with error status and role=alert", () => {
     render(<Snackbar message="Error" open={true} intent="error" />);
-    const el = document.querySelector(".wim-snackbar--error");
+    const el = document.querySelector(`.${styles.error}`);
     expect(el).toBeInTheDocument();
     expect(el).toHaveAttribute("role", "alert");
     expect(el).toHaveAttribute("aria-live", "assertive");
@@ -50,19 +51,19 @@ describe("Snackbar", () => {
 
   it("renders with warning status and role=alert", () => {
     render(<Snackbar message="Warning" open={true} intent="warning" />);
-    const el = document.querySelector(".wim-snackbar--warning");
+    const el = document.querySelector(`.${styles.warning}`);
     expect(el).toHaveAttribute("role", "alert");
     expect(el).toHaveAttribute("aria-live", "assertive");
   });
 
   it("renders with info status", () => {
     render(<Snackbar message="Info" open={true} intent="info" />);
-    expect(document.querySelector(".wim-snackbar--info")).toBeInTheDocument();
+    expect(document.querySelector(`.${styles.info}`)).toBeInTheDocument();
   });
 
   it("renders with top-right position", () => {
     render(<Snackbar message="Test" open={true} position="top-right" />);
-    expect(document.querySelector(".wim-snackbar-wrapper--top-right")).toBeInTheDocument();
+    expect(document.querySelector(`.${styles.wrapper}.${styles["top-right"]}`)).toBeInTheDocument();
   });
 
   it("renders action button when actionLabel is provided", () => {
@@ -113,7 +114,7 @@ describe("Snackbar", () => {
       />,
     );
 
-    const snackbar = document.querySelector(".wim-snackbar") as HTMLElement;
+    const snackbar = document.querySelector(`.${styles.root}`) as HTMLElement;
 
     act(() => { vi.advanceTimersByTime(500); });
     fireEvent.mouseEnter(snackbar);

@@ -16,8 +16,9 @@ describe("Footer", () => {
     expect(screen.getByText("Bottom Content")).toBeInTheDocument();
   });
 
-  it("applies border class", () => {
+  it("applies border attribute", () => {
     render(<Footer bordered />);
-    expect(screen.getByRole("contentinfo")).toHaveClass("wim-footer--bordered");
+    expect(screen.getByRole("contentinfo")).toHaveAttribute("data-bordered", "true");
   });
+
 });

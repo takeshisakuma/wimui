@@ -135,6 +135,8 @@ export const Stepper = ({
               role={onChange ? "tab" : undefined}
               aria-selected={onChange ? index === current : undefined}
               aria-disabled={step.disabled ? "true" : undefined}
+              data-testid="stepper-item"
+              data-status={stepStatus}
               tabIndex={
                 onChange
                   ? !step.disabled && index === current ? 0 : -1
@@ -152,7 +154,7 @@ export const Stepper = ({
                 {renderIcon(index, stepStatus, step.icon)}
               </div>
               <div className={styles.content}>
-                <span className={styles.title}>{step.title}</span>
+                <span className={styles.title} data-testid="stepper-title">{step.title}</span>
                 {step.description && (
                   <span className={styles.description}>
                     {step.description}

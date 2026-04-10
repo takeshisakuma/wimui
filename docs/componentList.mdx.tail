@@ -1729,9 +1729,9 @@
   </thead>
   <tbody>
     <tr>
-      <td>Heading</td>
+      <td>Title</td>
       <td>
-        <p><T k="doc_heading_desc" /></p>
+        <p><T k="doc.title_desc" /></p>
 
       </td>
       <td>
@@ -1740,9 +1740,9 @@
       </td>
     </tr>
     <tr>
-      <td>Paragraph</td>
+      <td>Text</td>
       <td>
-        <p><T k="doc_paragraph_desc" /></p>
+        <p><T k="doc.text_desc" /></p>
 
       </td>
       <td>
@@ -1762,9 +1762,9 @@
       </td>
     </tr>
     <tr>
-      <td>Quote</td>
+      <td>Blockquote</td>
       <td>
-        <p><T k="doc_quote_desc" /></p>
+        <p><T k="doc.blockquote_desc" /></p>
 
       </td>
       <td>

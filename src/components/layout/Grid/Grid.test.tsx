@@ -163,7 +163,7 @@ describe("Grid", () => {
   it("merges custom className", () => {
     render(<Grid className="my-class" data-testid="grid" />);
     const grid = screen.getByTestId("grid");
-    expect(grid).toHaveClass("wim-grid");
+    expect(grid.className).toMatch(/root/);
     expect(grid).toHaveClass("my-class");
   });
 

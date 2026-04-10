@@ -173,6 +173,7 @@ export const SignaturePad = ({
             ref={canvasRef}
             width={width}
             height={height}
+            data-testid="signature-canvas"
             className={styles.canvas}
             style={{ width: "100%", height: "100%", display: "block" }}
             onMouseDown={startDrawing}

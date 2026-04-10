@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
-import "./scrollprogress.scss";
+import styles from "./scrollprogress.module.scss";
 
 export type ScrollProgressProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -58,8 +58,8 @@ export const ScrollProgress = ({
   return (
     <div
       className={classNames(
-        "wim-scroll-progress",
-        `wim-scroll-progress--${color}`,
+        styles.root,
+        color && styles[color],
         className,
       )}
       role="progressbar"
@@ -70,7 +70,7 @@ export const ScrollProgress = ({
       {...props}
     >
       <div
-        className="wim-scroll-progress__bar"
+        className={styles.bar}
         style={{ width: `${progress}%` }}
       />
     </div>

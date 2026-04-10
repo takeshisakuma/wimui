@@ -19,8 +19,8 @@ describe("Span", () => {
     const { container } = render(
       <Span content="Test" size="lg" color="error" />,
     );
-    expect(container.firstChild).toHaveClass("wim-span--lg");
-    expect(container.firstChild).toHaveClass("wim-span--error");
+    expect(container.firstChild).toHaveClass(/lg/);
+    expect(container.firstChild).toHaveClass(/error/);
   });
 
   it("renders with icon", () => {
@@ -32,7 +32,7 @@ describe("Span", () => {
 
   it("applies fontStyle italic class", () => {
     const { container } = render(<Span content="Italic" fontStyle="italic" />);
-    expect(container.firstChild).toHaveClass("wim-span--italic");
+    expect(container.firstChild).toHaveClass(/italic/);
   });
 
   it("renders icon on right side", () => {
@@ -52,17 +52,17 @@ describe("Span", () => {
     const { container } = render(<Span content="Custom" color="var(--wim-color-primary)" />);
     const el = container.firstChild as HTMLElement;
     // Should not add color class but use inline style
-    expect(el).not.toHaveClass("wim-span--var(--wim-color-primary)");
+    expect(el.className).not.toMatch(/var/);
   });
 
   it("applies decoration class", () => {
     const { container } = render(<Span content="Underline" decoration="underline" />);
-    expect(container.firstChild).toHaveClass("wim-span--underline");
+    expect(container.firstChild).toHaveClass(/underline/);
   });
 
   it("applies bold weight class", () => {
     const { container } = render(<Span content="Bold" weight="bold" />);
-    expect(container.firstChild).toHaveClass("wim-span--bold");
+    expect(container.firstChild).toHaveClass(/bold/);
   });
 
   it("supports asChild prop", () => {
@@ -73,6 +73,6 @@ describe("Span", () => {
     );
     const element = screen.getByTestId("inner-strong");
     expect(element.tagName).toBe("STRONG");
-    expect(element).toHaveClass("wim-span");
+    expect(element.className).toContain("root");
   });
 });

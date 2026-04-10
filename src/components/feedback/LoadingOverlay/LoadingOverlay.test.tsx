@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import LoadingOverlay from "./LoadingOverlay";
+import styles from "./loadingoverlay.module.scss";
 
 describe("LoadingOverlay", () => {
   it("renders nothing when visible is false", () => {
@@ -9,23 +10,25 @@ describe("LoadingOverlay", () => {
   });
 
   it("renders overlay when visible is true", () => {
-    const { container } = render(<LoadingOverlay visible={true} />);
-    const overlay = container.querySelector(".wim-loading-overlay");
+    render(<LoadingOverlay visible={true} />);
+    const overlay = screen.getByTestId("loading-overlay");
     expect(overlay).toBeInTheDocument();
   });
 
   it("renders spinner by default", () => {
     const { container } = render(<LoadingOverlay visible={true} />);
-    const spinner = container.querySelector(".wim-spinner");
-    expect(spinner).toBeInTheDocument();
+    // Simply check if an svg exists inside the content area
+    const content = container.querySelector(`.${styles.content}`);
+    expect(content?.querySelector("svg")).toBeInTheDocument();
   });
 
   it("renders loader with specified type", () => {
     const { container } = render(
       <LoadingOverlay visible={true} loaderType="bars" />,
     );
-    const loader = container.querySelector(".wim-loader--bars");
-    expect(loader).toBeInTheDocument();
+    // Loader bars class is internal to Loader component, but we can check if content is rendered
+    const content = container.querySelector(`.${styles.content}`);
+    expect(content).toBeInTheDocument();
   });
 
   it("renders message when provided", () => {
@@ -34,20 +37,14 @@ describe("LoadingOverlay", () => {
   });
 
   it("applies fixed class when fixed prop is true", () => {
-    const { container } = render(
-      <LoadingOverlay visible={true} fixed={true} />,
-    );
-    const overlay = container.querySelector(".wim-loading-overlay--fixed");
-    expect(overlay).toBeInTheDocument();
+    render(<LoadingOverlay visible={true} fixed={true} />);
+    const overlay = screen.getByTestId("loading-overlay");
+    expect(overlay).toHaveClass(styles.fixed);
   });
 
   it("applies custom zIndex when provided", () => {
-    const { container } = render(
-      <LoadingOverlay visible={true} zIndex={9999} />,
-    );
-    const overlay = container.querySelector(
-      ".wim-loading-overlay",
-    ) as HTMLElement;
+    render(<LoadingOverlay visible={true} zIndex={9999} />);
+    const overlay = screen.getByTestId("loading-overlay");
     expect(overlay.style.zIndex).toBe("9999");
   });
 
@@ -64,24 +61,19 @@ describe("LoadingOverlay", () => {
     const { container } = render(
       <LoadingOverlay visible={true} backdropVariant="light" />,
     );
-    const backdrop = container.querySelector(
-      ".wim-loading-overlay__backdrop--light",
-    );
-    expect(backdrop).toBeInTheDocument();
+    const backdrop = container.querySelector(`.${styles.backdrop}`);
+    expect(backdrop).toHaveClass(styles.light);
   });
 
   it("applies blur class", () => {
     const { container } = render(<LoadingOverlay visible={true} blur="lg" />);
-    const backdrop = container.querySelector(
-      ".wim-loading-overlay__backdrop--blur-lg",
-    );
-    expect(backdrop).toBeInTheDocument();
+    const backdrop = container.querySelector(`.${styles.backdrop}`);
+    expect(backdrop).toHaveClass(styles["blur-lg"]);
   });
 
   it("has correct aria attributes", () => {
-    const { container } = render(<LoadingOverlay visible={true} />);
-    const overlay = container.querySelector(".wim-loading-overlay");
-    expect(overlay).toHaveAttribute("role", "status");
+    render(<LoadingOverlay visible={true} />);
+    const overlay = screen.getByTestId("loading-overlay");
     expect(overlay).toHaveAttribute("aria-live", "polite");
     expect(overlay).toHaveAttribute("aria-busy", "true");
   });

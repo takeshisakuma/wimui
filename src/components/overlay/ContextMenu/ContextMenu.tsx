@@ -139,17 +139,13 @@ export const ContextMenu = ({
       tabIndex={disabled ? -1 : 0}
       role="button"
       aria-haspopup="menu"
+      data-testid="context-menu-trigger"
     >
       {children}
       <FloatingPortal>
         <Transition
           show={isOpen}
-          enter="fade-enter"
-          enterFrom="fade-enter-from"
-          enterTo="fade-enter-to"
-          leave="fade-leave"
-          leaveFrom="fade-leave-from"
-          leaveTo="fade-leave-to"
+          preset="fade"
         >
           <FloatingFocusManager
             context={context}
@@ -226,7 +222,6 @@ export const ContextMenuItem = ({
       className={classNames(
         styles.item,
         className,
-        context?.activeIndex === index && "wim-base-list-item--active"
       )}
       disabled={disabled}
       danger={danger}

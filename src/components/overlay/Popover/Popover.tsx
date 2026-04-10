@@ -187,12 +187,7 @@ export const PopoverContent = React.forwardRef<
     <FloatingPortal>
       <Transition
         show={open}
-        enter="fade-enter"
-        enterFrom="fade-enter-from"
-        enterTo="fade-enter-to"
-        leave="fade-leave"
-        leaveFrom="fade-leave-from"
-        leaveTo="fade-leave-to"
+        preset="fade"
       >
         <FloatingFocusManager context={floatingContext} modal={modal}>
           <div

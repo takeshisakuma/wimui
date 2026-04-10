@@ -81,7 +81,7 @@ describe("OverlayBase", () => {
         <button>Content</button>
       </OverlayBase>,
     );
-    const overlay = document.querySelector(".wim-overlay") as HTMLElement;
+    const overlay = screen.getByTestId("wim-overlay");
     fireEvent.click(overlay);
     expect(onOpenChange).toHaveBeenCalledWith(false);
   });
@@ -93,10 +93,11 @@ describe("OverlayBase", () => {
         <button>Content</button>
       </OverlayBase>,
     );
-    const overlay = document.querySelector(".wim-overlay") as HTMLElement;
+    const overlay = screen.getByTestId("wim-overlay");
     fireEvent.click(overlay);
     expect(onOpenChange).not.toHaveBeenCalled();
   });
+
 
   it("does not call onOpenChange when the dialog content itself is clicked", () => {
     const onOpenChange = vi.fn();

@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import "./highlight.scss";
+import styles from "./highlight.module.scss";
 
 export interface HighlightProps extends React.HTMLAttributes<HTMLElement> {
   /** The full text to highlight substrings in. */
@@ -41,7 +41,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
       // Fallsave if children is not a string
       return (
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        <Component className={className} ref={ref as any} {...props}>
+        <Component className={classNames(styles.root, className)} ref={ref as any} {...props}>
           <Slottable>{children}</Slottable>
         </Component>
       );
@@ -50,7 +50,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
     if (!highlight || (Array.isArray(highlight) && highlight.length === 0)) {
       return (
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        <Component className={className} ref={ref as any} {...props}>
+        <Component className={classNames(styles.root, className)} ref={ref as any} {...props}>
           <Slottable>{children}</Slottable>
         </Component>
       );
@@ -63,7 +63,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
     if (queries.length === 0) {
       return (
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        <Component className={className} ref={ref as any} {...props}>
+        <Component className={classNames(styles.root, className)} ref={ref as any} {...props}>
           <Slottable>{children}</Slottable>
         </Component>
       );
@@ -74,7 +74,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
 
     return (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <Component className={classNames("wim-highlight-container", className)} ref={ref as any} {...props}>
+      <Component className={classNames(styles.root, className)} ref={ref as any} {...props}>
         <Slottable>
           {parts.map((part, i) => {
             const isMatch = regex.test(part);
@@ -82,7 +82,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
             regex.lastIndex = 0;
 
             return isMatch ? (
-              <mark key={i} className={classNames("wim-highlight", highlightClassName)} style={highlightStyles}>
+              <mark key={i} className={classNames(styles.mark, highlightClassName)} style={highlightStyles}>
                 {part}
               </mark>
             ) : (

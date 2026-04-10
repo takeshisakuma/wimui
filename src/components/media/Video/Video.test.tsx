@@ -18,8 +18,8 @@ describe("Video", () => {
   });
 
   it("renders video element with src", () => {
-    const { container } = render(<Video src={src} />);
-    const videoElement = container.querySelector("video");
+    render(<Video src={src} />);
+    const videoElement = screen.getByTestId("video-element");
     expect(videoElement).toHaveAttribute("src", src);
   });
 
@@ -39,8 +39,8 @@ describe("Video", () => {
   });
 
   it("handles time update and seeking", () => {
-    const { container } = render(<Video src={src} customControls />);
-    const video = container.querySelector("video")!;
+    render(<Video src={src} customControls />);
+    const video = screen.getByTestId("video-element");
 
     // Mock duration
     Object.defineProperty(video, "duration", { value: 100 });
@@ -63,7 +63,7 @@ describe("Video", () => {
     // Seek
     const slider = screen.getByRole("slider", { name: /seek/i });
     fireEvent.change(slider, { target: { value: "80" } });
-    expect(video.currentTime).toBe(80);
+    expect((video as HTMLVideoElement).currentTime).toBe(80);
   });
 
   it("handles volume change and mute toggle", () => {
@@ -72,12 +72,12 @@ describe("Video", () => {
     const volumeSlider = screen.getByRole("slider", { name: /volume/i });
 
     fireEvent.click(muteBtn);
-    const video = document.querySelector("video")!;
-    expect(video.muted).toBe(true);
+    const video = screen.getByTestId("video-element");
+    expect(video).toHaveProperty("muted", true);
 
     fireEvent.change(volumeSlider, { target: { value: "0.5" } });
-    expect(video.volume).toBe(0.5);
-    expect(video.muted).toBe(false);
+    expect((video as HTMLVideoElement).volume).toBe(0.5);
+    expect((video as HTMLVideoElement).muted).toBe(false);
   });
 
   it("handles fullscreen toggle", () => {
@@ -102,7 +102,7 @@ describe("Video", () => {
 
   it("handles double skip on double click (simulation)", () => {
     render(<Video src={src} customControls />);
-    const video = document.querySelector("video")!;
+    const video = screen.getByTestId("video-element");
 
     // Mock duration
     Object.defineProperty(video, "duration", { value: 100, configurable: true });
@@ -125,7 +125,7 @@ describe("Video", () => {
     // Second click within 300ms
     fireEvent.click(video, { clientX: 300 });
 
-    expect(video.currentTime).toBeGreaterThan(0);
+    expect((video as HTMLVideoElement).currentTime).toBeGreaterThan(0);
   });
 
   it("handles keyboard shortcuts", () => {
@@ -141,8 +141,8 @@ describe("Video", () => {
     act(() => {
       fireEvent.keyDown(window, { key: "m" });
     });
-    const video = document.querySelector("video")!;
-    expect(video.muted).toBe(true);
+    const video = screen.getByTestId("video-element");
+    expect(video).toHaveProperty("muted", true);
   });
 
   it("handles playlist navigation", () => {
@@ -165,8 +165,8 @@ describe("Video", () => {
   });
 
   it("applies styling props", () => {
-    const { container } = render(<Video src={src} radius="lg" shadow border />);
-    const inner = container.querySelector(".wim-video-inner");
+    render(<Video src={src} radius="lg" shadow border />);
+    const inner = screen.getByTestId("video-inner");
     expect(inner).toHaveClass(styles.radiusLg);
     expect(inner).toHaveClass(styles.shadow);
     expect(inner).toHaveClass(styles.border);

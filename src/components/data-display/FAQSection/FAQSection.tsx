@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import { Accordion, AccordionProps } from "../../data-display/Accordion/Accordion";
-import { Heading } from "../../typography/Heading/Heading";
-import { Paragraph } from "../../typography/Paragraph/Paragraph";
+import { Title } from "../../typography/Title/Title";
+import { Text } from "../../typography/Text/Text";
 import styles from "./faq-section.module.scss";
 
 export interface FAQItem {
@@ -70,12 +70,12 @@ export const FAQSection = ({
       {hasHeader && (
         <div className={styles.header}>
           {title && (
-            <Heading tag="h2" size="xl" className={styles.title}>
+            <Title tag="h2" size="xl" className={styles.title}>
               {title}
-            </Heading>
+            </Title>
           )}
           {description && (
-            <Paragraph
+            <Text
               content={description}
               color="deepgray"
               className={styles.description}

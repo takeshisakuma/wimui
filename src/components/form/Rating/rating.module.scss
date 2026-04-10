@@ -58,7 +58,7 @@
   .background {
     color: var(--wim-color-border);
 
-    :global(.wim-icon) {
+    .icon {
       display: block;
       width: var(--wim-rating-star-size);
       height: var(--wim-rating-star-size);
@@ -78,7 +78,7 @@
     pointer-events: none;
     transition: width 0.2s ease;
 
-    :global(.wim-icon) {
+    .icon {
       display: block;
       width: var(--wim-rating-star-size);
       min-width: var(--wim-rating-star-size);

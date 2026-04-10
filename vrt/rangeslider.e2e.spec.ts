@@ -156,7 +156,7 @@ test.describe("RangeSlider", () => {
       const thumbs = page.getByRole("slider");
 
       // Track is between 0%–100%. Click near the left end → moves min handle
-      const track = page.locator(".wim-range-slider");
+      const track = page.locator('[data-testid="range-slider-root"]');
       const trackBox = await track.boundingBox();
       if (!trackBox) throw new Error("Could not get track bounding box");
 

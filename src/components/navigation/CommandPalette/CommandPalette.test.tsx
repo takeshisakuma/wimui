@@ -107,19 +107,19 @@ describe("CommandPalette", () => {
 
     const container = document.querySelector(`.${styles.content}`)!;
 
-    expect(screen.getByText("Item 1").closest(".wim-base-list-item")).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByText("Item 1").closest('[role="option"]')).toHaveAttribute("aria-selected", "true");
 
     fireEvent.keyDown(container, { key: "ArrowDown" });
-    expect(screen.getByText("Item 2").closest(".wim-base-list-item")).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByText("Item 2").closest('[role="option"]')).toHaveAttribute("aria-selected", "true");
 
     fireEvent.keyDown(container, { key: "ArrowDown" });
-    expect(screen.getByText("Item 3").closest(".wim-base-list-item")).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByText("Item 3").closest('[role="option"]')).toHaveAttribute("aria-selected", "true");
 
     fireEvent.keyDown(container, { key: "ArrowDown" });
-    expect(screen.getByText("Item 1").closest(".wim-base-list-item")).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByText("Item 1").closest('[role="option"]')).toHaveAttribute("aria-selected", "true");
 
     fireEvent.keyDown(container, { key: "ArrowUp" });
-    expect(screen.getByText("Item 3").closest(".wim-base-list-item")).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByText("Item 3").closest('[role="option"]')).toHaveAttribute("aria-selected", "true");
   });
 
   it("moves focus to Home and End", () => {
@@ -138,11 +138,12 @@ describe("CommandPalette", () => {
     const container = document.querySelector(`.${styles.content}`)!;
 
     fireEvent.keyDown(container, { key: "End" });
-    expect(screen.getByText("Item 3").closest(".wim-base-list-item")).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByText("Item 3").closest('[role="option"]')).toHaveAttribute("aria-selected", "true");
 
     fireEvent.keyDown(container, { key: "Home" });
-    expect(screen.getByText("Item 1").closest(".wim-base-list-item")).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByText("Item 1").closest('[role="option"]')).toHaveAttribute("aria-selected", "true");
   });
+
 
   it("selects item with Enter key", () => {
     const handleSelect = vi.fn();

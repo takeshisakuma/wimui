@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Box, BoxProps } from "../../layout/Box/Box";
 import { ResponsiveProp } from "../../layout/Grid/grid-utils";
-import "./stack.scss";
+import styles from "./stack.module.scss";
 
 export type StackProps<C extends React.ElementType = "div"> = BoxProps<C> & {
   /**
@@ -112,7 +112,7 @@ export const Stack = React.forwardRef(
         asChild={asChild}
         ref={ref}
         display="flex"
-        className={classNames("wim-stack", className)}
+        className={classNames(styles.root, className)}
         style={{
           flexDirection:
             "var(--wim-stack-dir)" as React.CSSProperties["flexDirection"],

@@ -101,11 +101,11 @@ export function AudioCustomControls({
     repeatMode === 0 ? repeatMode0 : repeatMode === 1 ? repeatMode1 : repeatMode2;
 
   return (
-    <div className={classNames(styles.customControls, "wim-audio-custom-controls")}>
+    <div className={classNames(styles.customControls)}>
       {/* Row 1: Progress & Time */}
-      <div className={classNames(styles.time, "wim-audio-time")}>
-        <span className="wim-audio-time__current">{formatTime(currentTime)}</span>
-        <div className={classNames(styles.progressContainer, "wim-audio-progress-container")}>
+      <div className={classNames(styles.time)}>
+        <span className={styles.timeCurrent}>{formatTime(currentTime)}</span>
+        <div className={classNames(styles.progressContainer)}>
           <input
             type="range"
             min="0"
@@ -113,32 +113,32 @@ export function AudioCustomControls({
             value={currentTime}
             step="0.1"
             onChange={handleSeek}
-            className={classNames(styles.progress, "wim-audio-progress")}
+            className={classNames(styles.progress)}
             aria-label={seek}
           />
           <div
-            className={classNames(styles.progressFill, "wim-audio-progress-fill")}
+            className={classNames(styles.progressFill)}
             style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
           />
         </div>
-        <span className="wim-audio-time__total">{formatTime(duration)}</span>
+        <span className={styles.timeTotal}>{formatTime(duration)}</span>
       </div>
 
       {/* Row 2: Secondary Features & Volume */}
-      <div className={classNames(styles.controlsRow, "wim-audio-controls-row")}>
-        <div className={classNames(styles.controlsGroup, "wim-audio-controls-group")}>
+      <div className={classNames(styles.controlsRow)}>
+        <div className={classNames(styles.controlsGroup)}>
           <button
             type="button"
-            className={classNames(styles.btn, repeatMode > 0 && styles.active, "wim-audio-btn")}
+            className={classNames(styles.btn, repeatMode > 0 && styles.active)}
             onClick={() => setRepeatMode((m) => ((m + 1) % 3) as 0 | 1 | 2)}
             title={repeatTitle}
           >
             <Icon name="RepeatIcon" size="sm" />
-            {repeatMode === 1 && <span className={classNames(styles.badge, "wim-audio-badge")}>1</span>}
+            {repeatMode === 1 && <span className={classNames(styles.badge)}>1</span>}
           </button>
           <button
             type="button"
-            className={classNames(styles.btn, shuffleMode && styles.active, "wim-audio-btn")}
+            className={classNames(styles.btn, shuffleMode && styles.active)}
             onClick={() => setShuffleMode((s) => !s)}
             title={shuffle}
           >
@@ -147,7 +147,7 @@ export function AudioCustomControls({
           {playbackRate && (
             <button
               type="button"
-              className={classNames(styles.btn, styles.btnText, "wim-audio-btn", "wim-audio-btn--text")}
+              className={classNames(styles.btn, styles.btnText)}
               onClick={() => {
                 const rates = [0.5, 1, 1.5, 2];
                 const nextRate =
@@ -161,11 +161,11 @@ export function AudioCustomControls({
           )}
         </div>
 
-        <div className={classNames(styles.controlsGroup, "wim-audio-controls-group")}>
+        <div className={classNames(styles.controlsGroup)}>
           {presets && (
             <button
               type="button"
-              className={classNames(styles.btn, isBassBoost && styles.active, "wim-audio-btn")}
+              className={classNames(styles.btn, isBassBoost && styles.active)}
               onClick={() => setIsBassBoost(!isBassBoost)}
               title={bassBoost}
             >
@@ -179,24 +179,23 @@ export function AudioCustomControls({
               className={classNames(
                 styles.btn,
                 remainingSleepTime !== null && styles.active,
-                "wim-audio-btn",
               )}
               onClick={toggleSleepTimer}
               title={sleepTimerLabel}
             >
               <Icon name="ClockIcon" size="sm" />
               {remainingSleepTime !== null && (
-                <span className={classNames(styles.badge, "wim-audio-badge")} style={{ fontSize: "7px" }}>
+                <span className={classNames(styles.badge)} style={{ fontSize: "7px" }}>
                   {Math.ceil(remainingSleepTime / 60)}
                 </span>
               )}
             </button>
           )}
 
-          <div className={classNames(styles.volumeContainer, "wim-audio-volume-container")}>
+          <div className={classNames(styles.volumeContainer)}>
             <button
               type="button"
-              className={classNames(styles.btn, "wim-audio-btn", "wim-audio-btn--volume")}
+              className={classNames(styles.btn)}
               onClick={() => setIsMuted((m) => !m)}
               aria-label={isMuted ? unmute : mute}
             >
@@ -212,7 +211,7 @@ export function AudioCustomControls({
               step="0.05"
               value={isMuted ? 0 : volume}
               onChange={handleVolumeChange}
-              className={classNames(styles.volume, "wim-audio-volume")}
+              className={classNames(styles.volume)}
               aria-label={volumeLabel}
             />
           </div>
@@ -221,13 +220,13 @@ export function AudioCustomControls({
 
       {/* Row 3: Primary Playback Controls */}
       <div
-        className={classNames(styles.controlsRow, "wim-audio-controls-row")}
+        className={classNames(styles.controlsRow)}
         style={{ justifyContent: "center", marginTop: "0.2rem" }}
       >
-        <div className={classNames(styles.controlsGroup, "wim-audio-controls-group")}>
+        <div className={classNames(styles.controlsGroup)}>
           <button
             type="button"
-            className={classNames(styles.btn, "wim-audio-btn")}
+            className={classNames(styles.btn)}
             onClick={() => playNext(-1)}
             title={prev}
           >
@@ -235,7 +234,7 @@ export function AudioCustomControls({
           </button>
           <button
             type="button"
-            className={classNames(styles.btn, styles.btnPlay, "wim-audio-btn", "wim-audio-btn--play")}
+            className={classNames(styles.btn, styles.btnPlay)}
             onClick={togglePlay}
             title={isPlaying ? pause : play}
             aria-label={isPlaying ? pause : play}
@@ -244,7 +243,7 @@ export function AudioCustomControls({
           </button>
           <button
             type="button"
-            className={classNames(styles.btn, "wim-audio-btn")}
+            className={classNames(styles.btn)}
             onClick={() => playNext(1)}
             title={next}
           >
@@ -252,6 +251,7 @@ export function AudioCustomControls({
           </button>
         </div>
       </div>
+
     </div>
   );
 }

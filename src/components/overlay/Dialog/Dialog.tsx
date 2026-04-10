@@ -196,12 +196,7 @@ export const DialogContent = ({ children, className }: DialogContentProps) => {
       contentClassName={classNames(styles.content, className)}
       role="dialog"
       transitionProps={{
-        enter: "scale-enter",
-        enterFrom: "scale-enter-from",
-        enterTo: "scale-enter-to",
-        leave: "scale-leave",
-        leaveFrom: "scale-leave-from",
-        leaveTo: "scale-leave-to",
+        preset: "scale",
       }}
     >
       <div

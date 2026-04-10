@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../../overlay/Tooltip/Tooltip";
 import { isDev } from "@/utilities/dev-utils";
@@ -53,8 +52,9 @@ export const CopyButton = ({
           icon={copied ? "CheckIcon" : "CopyIcon"}
           intent={copied ? "positive" : "default"}
           onClick={handleCopy}
-          className={classNames("wim-copy-button", className)}
+          className={className}
           aria-label={ariaLabel || labelText}
+
         />
       </TooltipTrigger>
       <TooltipContent>{labelText}</TooltipContent>

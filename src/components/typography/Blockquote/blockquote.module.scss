@@ -1,0 +1,123 @@
+@layer component {
+  .root {
+    padding: var(--wim-spacing-md) 0 var(--wim-spacing-md) var(--wim-spacing-2xl);
+    margin: var(--wim-spacing-2xl) 0;
+    font-family: inherit;
+    transition: var(--wim-transition-fast);
+
+    &.border {
+      border-left: 4px solid var(--wim-color-text-secondary);
+    }
+
+    .content {
+      font-weight: var(--wim-font-weight-normal);
+      line-height: var(--wim-line-height-normal);
+    }
+
+    .cite {
+      display: block;
+      margin-top: var(--wim-spacing-sm);
+      font-size: 0.9em;
+      font-style: italic;
+      opacity: 0.8;
+
+      &::before {
+        content: "— ";
+      }
+    }
+
+    /* Size Variants */
+    &.sm {
+      font-size: var(--wim-font-size-sm);
+    }
+
+    &.md {
+      font-size: var(--wim-font-size-md);
+    }
+
+    &.lg {
+      font-size: var(--wim-font-size-lg);
+    }
+
+    /* Color Variants */
+    &.black {
+      color: var(--wim-color-text-primary);
+
+      &.border {
+        border-color: var(--wim-color-text-primary);
+      }
+    }
+
+    &.deepgray {
+      color: var(--wim-color-text-secondary);
+
+      &.border {
+        border-color: var(--wim-color-text-secondary);
+      }
+    }
+
+    &.gray {
+      color: var(--wim-color-text-tertiary);
+
+      &.border {
+        border-color: var(--wim-color-text-tertiary);
+      }
+    }
+
+    &.lightgray {
+      color: var(--wim-color-text-disabled);
+
+      &.border {
+        border-color: var(--wim-color-text-disabled);
+      }
+    }
+
+    &.white {
+      color: var(--wim-color-text-white);
+
+      &.border {
+        border-color: var(--wim-color-text-white);
+      }
+    }
+
+    &.primary {
+      color: var(--wim-color-primary);
+
+      &.border {
+        border-color: var(--wim-color-primary);
+      }
+    }
+
+    &.success {
+      color: var(--wim-color-positive);
+
+      &.border {
+        border-color: var(--wim-color-positive);
+      }
+    }
+
+    &.warning {
+      color: var(--wim-color-caution);
+
+      &.border {
+        border-color: var(--wim-color-caution);
+      }
+    }
+
+    &.error {
+      color: var(--wim-color-text-error);
+
+      &.border {
+        border-color: var(--wim-color-text-error);
+      }
+    }
+
+    &.info {
+      color: var(--wim-color-informative);
+
+      &.border {
+        border-color: var(--wim-color-informative);
+      }
+    }
+  }
+}

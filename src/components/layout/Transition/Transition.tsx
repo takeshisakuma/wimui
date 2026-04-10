@@ -7,13 +7,17 @@ import React, {
   useCallback,
 } from "react";
 import classNames from "classnames";
-import "./transition.scss";
+import styles from "./transition.module.scss";
+
+export type TransitionPreset = "fade" | "scale";
 
 export interface TransitionProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Whether the component should be shown or hidden */
   show: boolean;
   /** The content to be transitioned */
   children: React.ReactNode;
+  /** Built-in transition preset */
+  preset?: TransitionPreset;
   /** Transition classes applied when entering */
   enter?: string;
   /** Startup classes for the entry transition */
@@ -43,6 +47,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     {
       show,
       children,
+      preset,
       enter = "",
       enterFrom = "",
       enterTo = "",
@@ -62,6 +67,40 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     const [activeClasses, setActiveClasses] = useState("");
     const internalRef = useRef<HTMLDivElement>(null);
     const isInitialRender = useRef(true);
+
+    // Built-in presets mapping
+    const getPresetClasses = (p: TransitionPreset) => {
+      switch (p) {
+        case "fade":
+          return {
+            enter: styles.fadeEnterTo,
+            enterFrom: styles.fadeEnter,
+            enterTo: styles.fadeEnterTo,
+            leave: styles.fadeLeaveTo,
+            leaveFrom: styles.fadeLeave,
+            leaveTo: styles.fadeLeaveTo,
+          };
+        case "scale":
+          return {
+            enter: styles.scaleEnterTo,
+            enterFrom: styles.scaleEnter,
+            enterTo: styles.scaleEnterTo,
+            leave: styles.scaleLeaveTo,
+            leaveFrom: styles.scaleLeave,
+            leaveTo: styles.scaleLeaveTo,
+          };
+        default:
+          return {};
+      }
+    };
+
+    const presetClasses = preset ? getPresetClasses(preset) : {};
+    const effectiveEnter = classNames(presetClasses.enter, enter);
+    const effectiveEnterFrom = classNames(presetClasses.enterFrom, enterFrom);
+    const effectiveEnterTo = classNames(presetClasses.enterTo, enterTo);
+    const effectiveLeave = classNames(presetClasses.leave, leave);
+    const effectiveLeaveFrom = classNames(presetClasses.leaveFrom, leaveFrom);
+    const effectiveLeaveTo = classNames(presetClasses.leaveTo, leaveTo);
 
     // Sync ref with state for synchronous access in fallback
     useEffect(() => {
@@ -97,31 +136,27 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
 
       const completeTransition = () => {
         if (import.meta.env.MODE === "test") {
-          // In tests, complete transition after a tiny delay so tests can see the 'to' classes
-          // and to avoid issues with sync requestAnimationFrame mocks.
           const timer = setTimeout(() => {
             if (internalRef.current) {
-              // React.TransitionEvent は多くの必須フィールドを持つため、
-              // テスト用最小モックオブジェクトには as unknown as が必要
               handleTransitionEnd({
                 target: internalRef.current,
                 currentTarget: internalRef.current,
               } as unknown as React.TransitionEvent);
             }
-          }, 100); // Increased delay for tests to see classes
+          }, 100);
           return () => clearTimeout(timer);
         }
         return () => {};
       };
 
-      /* eslint-disable react-hooks/set-state-in-effect */
       if (show) {
+        /* eslint-disable react-hooks/set-state-in-effect */
         setShouldRender(true);
         setState("entering");
         stateRef.current = "entering";
-        setActiveClasses(classNames(enter, enterFrom));
+        setActiveClasses(classNames(effectiveEnter, effectiveEnterFrom));
+        /* eslint-enable react-hooks/set-state-in-effect */
 
-        // Force reflow
         void internalRef.current?.offsetHeight;
 
         let cleanup: () => void = () => {};
@@ -129,7 +164,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
         const frame = requestAnimationFrame(() => {
           frame2 = requestAnimationFrame(() => {
             if (internalRef.current) {
-              setActiveClasses(classNames(enter, enterTo));
+              setActiveClasses(classNames(effectiveEnter, effectiveEnterTo));
               cleanup = completeTransition();
             }
           });
@@ -143,9 +178,8 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       } else {
         setState("leaving");
         stateRef.current = "leaving";
-        setActiveClasses(classNames(leave, leaveFrom));
+        setActiveClasses(classNames(effectiveLeave, effectiveLeaveFrom));
 
-        // Force reflow
         void internalRef.current?.offsetHeight;
 
         let cleanup: () => void = () => {};
@@ -153,7 +187,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
         const frame = requestAnimationFrame(() => {
           frame2 = requestAnimationFrame(() => {
             if (internalRef.current) {
-              setActiveClasses(classNames(leave, leaveTo));
+              setActiveClasses(classNames(effectiveLeave, effectiveLeaveTo));
               cleanup = completeTransition();
             }
           });
@@ -165,8 +199,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
           cleanup();
         };
       }
-      /* eslint-enable react-hooks/set-state-in-effect */
-    }, [show, enter, enterFrom, enterTo, leave, leaveFrom, leaveTo, appear, handleTransitionEnd]);
+    }, [show, effectiveEnter, effectiveEnterFrom, effectiveEnterTo, effectiveLeave, effectiveLeaveFrom, effectiveLeaveTo, appear, handleTransitionEnd]);
 
     if (!shouldRender && unmount) return null;
 
@@ -174,7 +207,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       <div
         ref={internalRef}
         className={classNames(className, activeClasses, {
-          "wim-transition-hidden": !show && state === "idle" && !unmount,
+          [styles.hidden]: !show && state === "idle" && !unmount,
         })}
         onTransitionEnd={handleTransitionEnd}
         {...props}
@@ -182,6 +215,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
         {children}
       </div>
     );
+
   },
 );
 

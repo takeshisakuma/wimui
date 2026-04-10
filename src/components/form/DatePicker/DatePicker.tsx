@@ -184,13 +184,13 @@ export const DatePicker = ({
     if (isOpen) {
       const timer = setTimeout(() => {
         const focusedDay = containerRef.current?.querySelector<HTMLButtonElement>(
-          ":global(.wim-calendar-day--focused):not(:disabled), :global(.wim-calendar-day--selected):not(:disabled)",
+          '[data-calendar-day][data-selected]:not(:disabled), [data-calendar-day]:focus',
         );
         if (focusedDay) {
           focusedDay.focus();
         } else {
           containerRef.current?.querySelector<HTMLButtonElement>(
-            ":global(.wim-calendar-day):not(:global(.wim-calendar-day--other-month)):not(:disabled)",
+            '[data-calendar-day]:not([data-other-month]):not(:disabled)',
           )?.focus();
         }
       }, 50);
@@ -252,12 +252,7 @@ export const DatePicker = ({
         </InputBase>
         <Transition
           show={isOpen && !disabled}
-          enter=":global(fade-enter)"
-          enterFrom=":global(fade-enter-from)"
-          enterTo=":global(fade-enter-to)"
-          leave=":global(fade-leave)"
-          leaveFrom=":global(fade-leave-from)"
-          leaveTo=":global(fade-leave-to)"
+          preset="fade"
           id={dropdownId}
           className={styles.dropdown}
         >

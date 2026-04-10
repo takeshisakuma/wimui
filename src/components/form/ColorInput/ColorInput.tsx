@@ -84,6 +84,12 @@ export const ColorInput = ({
       value={currentColor}
       onChange={handleChange}
       style={style}
+      styles={{
+        root: styles.inputBase,
+        icon: styles.inputIcon,
+        icons: styles.inputIcons,
+      }}
+      inputClassName={styles.input}
       {...props}
     />
   );

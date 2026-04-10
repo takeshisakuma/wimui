@@ -25,7 +25,7 @@
     .link {
       text-decoration: none;
 
-      :global(.wim-link__label) {
+      .linkLabel {
         line-height: inherit;
       }
 

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { SimpleGrid } from "./SimpleGrid";
+import styles from "./simple-grid.module.scss";
 
 describe("SimpleGrid", () => {
   it("renders children in grid layout", () => {
@@ -18,7 +19,7 @@ describe("SimpleGrid", () => {
 
   it("applies correct grid style for columns", () => {
     const { container } = render(<SimpleGrid cols={4} />);
-    const grid = container.querySelector(".wim-simple-grid") as HTMLElement;
+    const grid = container.querySelector(`.${styles.root}`) as HTMLElement;
     expect(grid).toHaveStyle({
       "--wim-simple-grid-cols": "repeat(4, minmax(0, 1fr))",
     });
@@ -26,7 +27,7 @@ describe("SimpleGrid", () => {
 
   it("applies minChildWidth if provided", () => {
     const { container } = render(<SimpleGrid minChildWidth={200} />);
-    const grid = container.querySelector(".wim-simple-grid") as HTMLElement;
+    const grid = container.querySelector(`.${styles.root}`) as HTMLElement;
     expect(grid.style.gridTemplateColumns).toBe(
       "repeat(auto-fill, minmax(200px, 1fr))",
     );
@@ -34,7 +35,7 @@ describe("SimpleGrid", () => {
 
   it("applies string minChildWidth", () => {
     const { container } = render(<SimpleGrid minChildWidth="20rem" />);
-    const grid = container.querySelector(".wim-simple-grid") as HTMLElement;
+    const grid = container.querySelector(`.${styles.root}`) as HTMLElement;
     expect(grid.style.gridTemplateColumns).toBe(
       "repeat(auto-fill, minmax(20rem, 1fr))",
     );

@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { WimColor, ComponentSize } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
-import "./loader.scss";
+import styles from "./loader.module.scss";
 
 export type LoaderVariant = "bars" | "dots" | "pulse";
 
@@ -38,10 +38,10 @@ export const Loader = ({
   return (
     <div
       className={classNames(
-        "wim-loader",
-        `wim-loader--${variant}`,
-        `wim-loader--${size}`,
-        useClassNameForColor && `wim-loader--${color}`,
+        styles.root,
+        styles[variant],
+        styles[size],
+        useClassNameForColor && styles[color as string],
         className,
       )}
       style={{
@@ -52,9 +52,9 @@ export const Loader = ({
       aria-live="polite"
       {...props}
     >
-      <span className="wim-loader__item"></span>
-      <span className="wim-loader__item"></span>
-      <span className="wim-loader__item"></span>
+      <span className={styles.item}></span>
+      <span className={styles.item}></span>
+      <span className={styles.item}></span>
     </div>
   );
 };

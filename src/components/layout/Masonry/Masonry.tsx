@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./masonry.scss";
+import styles from "./masonry.module.scss";
 
 export type MasonryProps = React.ComponentPropsWithoutRef<"div"> & {
   /** Number of columns */
@@ -25,13 +25,14 @@ export const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
     };
 
     const itemStyle: React.CSSProperties = {
+      breakInside: "avoid",
       marginBottom: typeof spacing === "number" ? `${spacing}px` : spacing,
     };
 
     return (
       <div
         ref={ref}
-        className={classNames("wim-masonry", className)}
+        className={classNames(styles.root, className)}
         style={masonryStyle}
         {...props}
       >
@@ -42,10 +43,12 @@ export const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
             return React.cloneElement(typedChild, {
               style: { ...itemStyle, ...existingStyle },
               className: classNames(
-                "wim-masonry-item",
+                styles.item,
                 typedChild.props.className,
               ),
-            });
+              "data-testid": "wim-masonry-item",
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } as any);
           }
           return child;
         })}

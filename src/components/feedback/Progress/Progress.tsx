@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { ComponentSize, WimIntent } from "../../../types/tokens";
-import "./progress.scss";
+import styles from "./progress.module.scss";
 
 type ProgressProps = React.ComponentPropsWithoutRef<"div"> & {
   value?: number;
@@ -32,10 +32,10 @@ export const Progress = ({
   return (
     <div
       className={classNames(
-        "wim-progress",
-        `wim-progress--${size}`,
-        `wim-progress--${ intent }`,
-        indeterminate && "wim-progress--indeterminate",
+        styles.root,
+        styles[size],
+        styles[intent],
+        indeterminate && styles.indeterminate,
         className,
       )}
       role="progressbar"
@@ -46,18 +46,18 @@ export const Progress = ({
       {...props}
     >
       {(label || showValue) && (
-        <div className="wim-progress__info">
-          {label && <span className="wim-progress__label">{label}</span>}
+        <div className={styles.header}>
+          {label && <span className={styles.label}>{label}</span>}
           {showValue && !indeterminate && (
-            <span className="wim-progress__value">
+            <span className={styles.value}>
               {Math.round(percentage)}%
             </span>
           )}
         </div>
       )}
-      <div className="wim-progress__track">
+      <div className={styles.track}>
         <div
-          className="wim-progress__bar"
+          className={styles.bar}
           style={{ width: indeterminate ? "100%" : `${percentage}%` }}
         />
       </div>

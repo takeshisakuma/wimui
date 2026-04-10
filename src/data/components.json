@@ -904,14 +904,14 @@
     "guideUrl": "./?path=/docs/components-typography-icons-overview--docs",
     "components": [
       {
-        "name": "Heading",
-        "descKey": "doc.heading_desc",
+        "name": "Title",
+        "descKey": "doc.title_desc",
         "pc": true,
         "mobile": true
       },
       {
-        "name": "Paragraph",
-        "descKey": "doc.paragraph_desc",
+        "name": "Text",
+        "descKey": "doc.text_desc",
         "pc": true,
         "mobile": true
       },
@@ -922,8 +922,8 @@
         "mobile": true
       },
       {
-        "name": "Quote",
-        "descKey": "doc.quote_desc",
+        "name": "Blockquote",
+        "descKey": "doc.blockquote_desc",
         "pc": true,
         "mobile": true
       },

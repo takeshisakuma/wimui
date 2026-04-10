@@ -22,11 +22,10 @@
         border-top-left-radius: 0 !important;
         border-bottom-left-radius: 0 !important;
 
-        // Also reach deeper for components that wrap the actual input
-        :global(.wim-input),
-        :global([class*="_root_"]) {
-           border-top-left-radius: 0 !important;
-           border-bottom-left-radius: 0 !important;
+        // Reset radius for nested wrapper elements
+        * {
+          border-top-left-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
         }
       }
 
@@ -34,11 +33,10 @@
         border-top-right-radius: 0 !important;
         border-bottom-right-radius: 0 !important;
 
-        // Also reach deeper for components that wrap the actual input
-        :global(.wim-input),
-        :global([class*="_root_"]) {
-           border-top-right-radius: 0 !important;
-           border-bottom-right-radius: 0 !important;
+        // Reset radius for nested wrapper elements
+        * {
+          border-top-right-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
         }
       }
 
@@ -54,8 +52,8 @@
 
     // Ad-ons and Buttons should not grow as much as inputs
     .text,
-    :global(.wim-button),
-    button {
+    button,
+    [role="button"] {
       flex: 0 0 auto;
     }
   }

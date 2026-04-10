@@ -22,7 +22,6 @@
     color: var(--wim-color-destructive);
     transition: var(--wim-transition-fast);
 
-    :global(.wim-icon),
     svg {
       color: inherit;
       fill: currentcolor;
@@ -98,18 +97,18 @@
   align-items: center;
   min-width: 0;
 
-  :global(.wim-segmented-control) {
+  .segmentedControl {
     align-items: stretch;
     height: var(--wim-height-md);
     padding: 2px;
 
-    :global(.wim-segmented-control__item) {
+    .segmentedControlItem {
       height: calc(var(--wim-height-md) - 4px);
       padding-top: 0;
       padding-bottom: 0;
     }
 
-    :global(.wim-segmented-control__slider) {
+    .segmentedControlSlider {
       top: 2px;
       bottom: 2px;
     }
@@ -190,19 +189,13 @@
       flex: 1 1 180px;
     }
 
-    :global(.wim-field-template-content) {
+    .selectbox {
       width: 100%;
       min-width: 0;
     }
 
-    :global(.wim-selectbox) {
-      width: 100%;
-      min-width: 0;
-    }
-
-    :global(.wim-input-base),
-    :global(.wim-input),
-    :global(.wim-selectbox-trigger) {
+    .inputBase,
+    .selectboxTrigger {
       width: 100%;
       height: var(--wim-height-md);
       padding-top: 0;
@@ -256,6 +249,19 @@
   }
 }
 
+
+// Visually-hidden utility for screen reader live regions (WAI-ARIA pattern)
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
+}
 
 @keyframes slideIn {
   from {

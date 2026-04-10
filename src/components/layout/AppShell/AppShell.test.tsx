@@ -42,27 +42,28 @@ describe("AppShell", () => {
 
   it("applies padding by default", () => {
     const { container } = render(<AppShell>Content</AppShell>);
-    const main = container.querySelector(".wim-appshell__main");
-    expect(main).toHaveClass("wim-appshell__main--padded");
+    const main = container.querySelector("main");
+    expect(main?.className).toMatch(/main/);
+    expect(main?.className).toMatch(/padded/);
   });
 
   it("removes padding when padding is false", () => {
     const { container } = render(<AppShell padding={false}>Content</AppShell>);
-    const main = container.querySelector(".wim-appshell__main");
-    expect(main).not.toHaveClass("wim-appshell__main--padded");
+    const main = container.querySelector("main");
+    expect(main?.className).not.toMatch(/padded/);
   });
 
   it("applies centered class when centered is true", () => {
     const { container } = render(<AppShell centered>Content</AppShell>);
-    const main = container.querySelector(".wim-appshell__main");
-    expect(main).toHaveClass("wim-appshell__main--centered");
+    const main = container.querySelector("main");
+    expect(main?.className).toMatch(/centered/);
   });
 
   it("applies custom className", () => {
     const { container } = render(
       <AppShell className="custom-class">Content</AppShell>,
     );
-    const appshell = container.querySelector(".wim-appshell");
+    const appshell = container.firstChild as HTMLElement;
     expect(appshell).toHaveClass("custom-class");
   });
 
@@ -70,32 +71,36 @@ describe("AppShell", () => {
     const { container } = render(
       <AppShell sidebar={<div>Sidebar</div>}>Content</AppShell>,
     );
-    const appshell = container.querySelector(".wim-appshell");
-    expect(appshell).toHaveClass("wim-appshell--with-sidebar");
+    const appshell = container.firstChild as HTMLElement;
+    expect(appshell.className).toMatch(/withSidebar/);
   });
 
   it("renders AppShellHeader as standalone component", () => {
     const { container } = render(<AppShellHeader className="my-header">Header</AppShellHeader>);
     expect(screen.getByText("Header")).toBeInTheDocument();
-    expect(container.firstChild).toHaveClass("wim-appshell__header", "my-header");
+    expect(container.firstChild).toHaveClass("my-header");
+    expect((container.firstChild as HTMLElement).className).toMatch(/header/);
   });
 
   it("renders AppShellSidebar as standalone component", () => {
     const { container } = render(<AppShellSidebar className="my-sidebar">Sidebar</AppShellSidebar>);
     expect(screen.getByText("Sidebar")).toBeInTheDocument();
-    expect(container.firstChild).toHaveClass("wim-appshell__sidebar", "my-sidebar");
+    expect(container.firstChild).toHaveClass("my-sidebar");
+    expect((container.firstChild as HTMLElement).className).toMatch(/sidebar/);
   });
 
   it("renders AppShellFooter as standalone component", () => {
     const { container } = render(<AppShellFooter className="my-footer">Footer</AppShellFooter>);
     expect(screen.getByText("Footer")).toBeInTheDocument();
-    expect(container.firstChild).toHaveClass("wim-appshell__footer", "my-footer");
+    expect(container.firstChild).toHaveClass("my-footer");
+    expect((container.firstChild as HTMLElement).className).toMatch(/footer/);
   });
 
   it("renders AppShellNavbar as standalone component", () => {
     const { container } = render(<AppShellNavbar className="my-navbar">Navbar</AppShellNavbar>);
     expect(screen.getByText("Navbar")).toBeInTheDocument();
-    expect(container.firstChild).toHaveClass("wim-appshell__navbar", "my-navbar");
+    expect(container.firstChild).toHaveClass("my-navbar");
+    expect((container.firstChild as HTMLElement).className).toMatch(/navbar/);
   });
 
   it("renders all sections together", () => {

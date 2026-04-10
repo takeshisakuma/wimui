@@ -151,6 +151,8 @@ export const OtpInput = ({
             styles.container,
             disabled && styles.disabled,
           )}
+          data-testid="otp-input-container"
+          data-disabled={disabled}
         >
           {Array.from({ length }).map((_, index) => (
             <input
@@ -159,6 +161,7 @@ export const OtpInput = ({
               ref={(el) => {
                 inputRefs.current[index] = el;
               }}
+              data-testid="otp-input"
               className={classNames(
                 styles.input,
                 error && styles.error,

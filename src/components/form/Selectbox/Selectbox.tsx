@@ -2,7 +2,7 @@ import React, { useId } from "react";
 import classNames from "classnames";
 import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
-import styles from "./selectbox.module.scss";
+import localStyles from "./selectbox.module.scss";
 import { useSelectbox } from "./useSelectbox";
 
 export type SelectboxOption = {
@@ -48,6 +48,21 @@ export type SelectboxProps = {
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
   noOptionsFoundLabel?: string;
+  /** Custom styles for internal parts */
+  styles?: {
+    root?: string;
+    trigger?: string;
+    value?: string;
+    dropdown?: string;
+    list?: string;
+    option?: string;
+    search?: string;
+    searchInput?: string;
+    groupLabel?: string;
+    separator?: string;
+    empty?: string;
+    inputBase?: React.ComponentProps<typeof InputBase>["styles"];
+  };
 };
 
 import { FieldTemplate } from "../FieldTemplate";
@@ -76,6 +91,7 @@ export const Selectbox = ({
   fullWidth = false,
   id: customId,
   noOptionsFoundLabel = "No options found",
+  styles: stylesProp,
   ...props
 }: SelectboxProps) => {
   const generatedId = useId();
@@ -137,7 +153,7 @@ export const Selectbox = ({
 
         return (
           <React.Fragment key={groupIndex}>
-            <li className={styles.groupLabel} role="presentation">
+            <li className={classNames(localStyles.groupLabel, stylesProp?.groupLabel)} role="presentation">
               {group.label}
             </li>
             {groupOptionsFiltered.map((option, optIdx) => {
@@ -146,7 +162,7 @@ export const Selectbox = ({
                 return (
                   <li
                     key={`sep-${groupIndex}-${optIdx}`}
-                    className={styles.separator}
+                    className={classNames(localStyles.separator, stylesProp?.separator)}
                     role="presentation"
                   />
                 );
@@ -167,8 +183,9 @@ export const Selectbox = ({
                   active={isFocused}
                   disabled={option.disabled}
                   className={classNames(
-                    styles.option,
-                    isSelected && styles.selected,
+                    localStyles.option,
+                    isSelected && localStyles.selected,
+                    stylesProp?.option,
                   )}
                   onClick={(e: React.MouseEvent) => {
                     e.stopPropagation();
@@ -193,7 +210,7 @@ export const Selectbox = ({
         return (
           <li
             key={`sep-${index}`}
-            className={styles.separator}
+            className={classNames(localStyles.separator, stylesProp?.separator)}
             role="presentation"
           />
         );
@@ -214,8 +231,9 @@ export const Selectbox = ({
           active={isFocused}
           disabled={option.disabled}
           className={classNames(
-            styles.option,
-            isSelected && styles.selected,
+            localStyles.option,
+            isSelected && localStyles.selected,
+            stylesProp?.option,
           )}
           onClick={(e: React.MouseEvent) => {
             e.stopPropagation();
@@ -254,7 +272,7 @@ export const Selectbox = ({
       className={className}
     >
       <div
-        className={classNames(styles.root, fullWidth && styles.fullWidth)}
+        className={classNames(localStyles.root, fullWidth && localStyles.fullWidth, stylesProp?.root)}
         ref={containerRef}
         onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}
@@ -268,13 +286,15 @@ export const Selectbox = ({
           intent={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           fullWidth={fullWidth}
+          styles={stylesProp?.inputBase}
         >
           <div
             id={triggerId}
             className={classNames(
-              styles.trigger,
-              isOpen && styles.open,
-              disabled && styles.disabled,
+              localStyles.trigger,
+              isOpen && localStyles.open,
+              disabled && localStyles.disabled,
+              stylesProp?.trigger,
             )}
             onClick={handleToggle}
             onKeyDown={handleKeyDown}
@@ -293,8 +313,9 @@ export const Selectbox = ({
           >
             <div
               className={classNames(
-                styles.value,
-                !selectedOption && styles.placeholder,
+                localStyles.value,
+                !selectedOption && localStyles.placeholder,
+                stylesProp?.value,
               )}
             >
               {selectedOption ? selectedOption.label : placeholder}
@@ -304,20 +325,15 @@ export const Selectbox = ({
 
         <Transition
           show={isOpen && !disabled}
-          enter="fade-enter"
-          enterFrom="fade-enter-from"
-          enterTo="fade-enter-to"
-          leave="fade-leave"
-          leaveFrom="fade-leave-from"
-          leaveTo="fade-leave-to"
-          className={styles.dropdown}
+          preset="fade"
+          className={classNames(localStyles.dropdown, stylesProp?.dropdown)}
         >
           {searchable && (
-            <div className={styles.search}>
+            <div className={classNames(localStyles.search, stylesProp?.search)}>
               <input
                 ref={searchInputRef}
                 type="text"
-                className={styles.searchInput}
+                className={classNames(localStyles.searchInput, stylesProp?.searchInput)}
                 placeholder={searchPlaceholder}
                 value={searchValue}
                 onChange={(e) => {
@@ -334,13 +350,13 @@ export const Selectbox = ({
           )}
           <ul
             id={listId}
-            className={styles.list}
+            className={classNames(localStyles.list, stylesProp?.list)}
             role="listbox"
             aria-labelledby={label ? labelId : ariaLabelledBy || undefined}
           >
             {filteredOptions.length === 0 ? (
               <li
-                className={styles.empty}
+                className={classNames(localStyles.empty, stylesProp?.empty)}
                 role="option"
                 aria-selected="false"
               >

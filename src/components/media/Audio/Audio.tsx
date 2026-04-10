@@ -136,14 +136,14 @@ export const Audio = ({
 
   return (
     <figure
-      className={classNames(styles.root, "wim-audio-container", className)}
+      className={classNames(styles.root, className)}
       style={style}
+      data-testid="audio-root"
     >
       <div
         ref={mediaLoaderRef}
         className={classNames(
           styles.inner,
-          "wim-audio-inner",
           radiusClass,
           customControls && shadow && styles.shadow,
           customControls && border && styles.border,
@@ -153,22 +153,24 @@ export const Audio = ({
           fadeIn && isLoaded && styles.isLoaded,
           shouldShowSkeleton && styles.loading,
         )}
+        data-testid="audio-inner"
       >
         {visualizer && customControls && (
-          <canvas ref={canvasRef} className={classNames(styles.visualizerCanvas, "wim-audio-visualizer-canvas")} />
+          <canvas ref={canvasRef} className={styles.visualizerCanvas} data-testid="audio-canvas" />
         )}
 
         {customControls && showMetadata && (metaTitle || metaArtist || metaCover) && (
           <div
-            className={classNames(styles.metadata, "wim-audio-metadata")}
+            className={styles.metadata}
             style={{ position: "relative", zIndex: 2 }}
+            data-testid="audio-metadata"
           >
             {metaCover && (
-              <img src={metaCover} alt="Cover" className={classNames(styles.cover, "wim-audio-cover")} />
+              <img src={metaCover} alt="Cover" className={styles.cover} data-testid="audio-cover" />
             )}
-            <div className={classNames(styles.info, "wim-audio-info")}>
-              <div className={classNames(styles.title, "wim-audio-title")}>{metaTitle || unknownTitle}</div>
-              <div className={classNames(styles.artist, "wim-audio-artist")}>{metaArtist || unknownArtist}</div>
+            <div className={styles.info}>
+              <div className={styles.title} data-testid="audio-title">{metaTitle || unknownTitle}</div>
+              <div className={styles.artist} data-testid="audio-artist">{metaArtist || unknownArtist}</div>
             </div>
           </div>
         )}
@@ -181,7 +183,8 @@ export const Audio = ({
             <audio
               ref={activeAudioRef}
               src={currentTrack?.src}
-              className={classNames(styles.audio, "wim-audio")}
+              className={styles.audio}
+              data-testid="audio-active"
               loop={player.repeatMode === 1 && playlist.length === 1}
               muted={player.isMuted}
               controls={!customControls && controls}
@@ -210,6 +213,7 @@ export const Audio = ({
             muted={player.isMuted}
             preload="auto"
             crossOrigin="anonymous"
+            data-testid="audio-next"
           />
           {/* eslint-enable jsx-a11y/media-has-caption */}
         </div>
@@ -246,7 +250,7 @@ export const Audio = ({
         )}
       </div>
       {caption && (
-        <figcaption className={classNames(styles.caption, "wim-audio__caption")}>{caption}</figcaption>
+        <figcaption className={styles.caption}>{caption}</figcaption>
       )}
     </figure>
   );

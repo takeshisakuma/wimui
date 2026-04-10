@@ -6,7 +6,7 @@ import React, {
   useMemo,
 } from "react";
 import classNames from "classnames";
-import styles from "./tree-view.module.scss";
+import localStyles from "./tree-view.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { useTreeViewItemExpansion } from "./useTreeViewItemExpansion";
@@ -244,6 +244,18 @@ export type TreeViewProps = {
    */
   virtualThreshold?: number;
   labels?: TreeViewLabels;
+  /** Custom styles for internal parts */
+  styles?: {
+    root?: string;
+    item?: string;
+    search?: string;
+    searchInput?: string;
+    labelContainer?: string;
+    iconWrapper?: string;
+    expandBtn?: string;
+    checkbox?: string;
+    icon?: string;
+  };
 };
 
 const TreeView = ({
@@ -262,6 +274,7 @@ const TreeView = ({
   width,
   virtualThreshold = DEFAULT_VIRTUAL_THRESHOLD,
   labels = {},
+  styles: stylesProp,
 }: TreeViewProps) => {
   const {
     searchPlaceholder = "Search...",
@@ -501,9 +514,10 @@ const TreeView = ({
       return (
         <div
           className={classNames(
-            styles.item,
-            isSelected && styles.selected,
-            node.disabled && styles.disabled,
+            localStyles.item,
+            isSelected && localStyles.selected,
+            node.disabled && localStyles.disabled,
+            stylesProp?.item,
           )}
           role="treeitem"
           aria-expanded={node.hasChildren ? isExpanded : undefined}
@@ -537,17 +551,18 @@ const TreeView = ({
           style={{ paddingLeft: node.depth * 20 }}
         >
           <BaseListItem
-            className={styles.labelContainer}
+            className={classNames(localStyles.labelContainer, stylesProp?.labelContainer)}
             active={isSelected}
             disabled={node.disabled}
             icon={
-              <div className={styles.iconWrapper}>
+              <div className={classNames(localStyles.iconWrapper, stylesProp?.iconWrapper)}>
                 {node.hasChildren ? (
                   <button
                     type="button"
                     className={classNames(
-                      styles.expandBtn,
-                      isExpanded && styles.expanded,
+                      localStyles.expandBtn,
+                      isExpanded && localStyles.expanded,
+                      stylesProp?.expandBtn,
                     )}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -564,13 +579,13 @@ const TreeView = ({
                     <Icon name="ChevronRightIcon" size="sm" />
                   </button>
                 ) : (
-                  <span className={styles.spacer} />
+                  <span className={localStyles.spacer} />
                 )}
 
                 {checkable && (
                   <input
                     type="checkbox"
-                    className={styles.checkbox}
+                    className={classNames(localStyles.checkbox, stylesProp?.checkbox)}
                     checked={isChecked && !isIndeterminate}
                     ref={(el) => {
                       if (el) el.indeterminate = isIndeterminate;
@@ -587,7 +602,7 @@ const TreeView = ({
                 )}
 
                 {node.icon && (
-                  <span className={styles.icon}>{node.icon}</span>
+                  <span className={classNames(localStyles.icon, stylesProp?.icon)}>{node.icon}</span>
                 )}
               </div>
             }
@@ -612,6 +627,7 @@ const TreeView = ({
       handleNodeKeyDown,
       expandLabel,
       collapseLabel,
+      stylesProp,
     ],
   );
 
@@ -619,7 +635,8 @@ const TreeView = ({
     <TreeViewContext.Provider value={contextValue}>
       <div
         ref={containerRef}
-        className={classNames(styles.root, !!nodes && styles.dataDriven, className)}
+        data-testid="tree-view-root"
+        className={classNames(localStyles.root, !!nodes && localStyles.dataDriven, className, stylesProp?.root)}
         role="tree"
         style={{ width, maxWidth: "100%" }}
         tabIndex={focusedValue ? -1 : 0}
@@ -648,10 +665,11 @@ const TreeView = ({
         }}
       >
         {searchable && (
-          <div className={styles.search}>
+          <div className={classNames(localStyles.search, stylesProp?.search)}>
             <input
               type="text"
-              className={styles.searchInput}
+              data-testid="tree-view-search-input"
+              className={classNames(localStyles.searchInput, stylesProp?.searchInput)}
               placeholder={searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -865,9 +883,9 @@ export const TreeViewItem = ({
   return (
     <div
       className={classNames(
-        styles.item,
-        isSelected && styles.selected,
-        disabled && styles.disabled,
+        localStyles.item,
+        isSelected && localStyles.selected,
+        disabled && localStyles.disabled,
         className,
       )}
       role="treeitem"
@@ -882,17 +900,17 @@ export const TreeViewItem = ({
     >
       <BaseListItem
         id={labelId}
-        className={styles.labelContainer}
+        className={localStyles.labelContainer}
         active={isSelected}
         disabled={disabled}
         icon={
-          <div className={styles.iconWrapper}>
+          <div className={localStyles.iconWrapper}>
             {hasChildren && (
               <button
                 type="button"
                 className={classNames(
-                  styles.expandBtn,
-                  isExpanded && styles.expanded,
+                  localStyles.expandBtn,
+                  isExpanded && localStyles.expanded,
                 )}
                 onClick={handleToggleExpand}
                 disabled={disabled}
@@ -902,13 +920,13 @@ export const TreeViewItem = ({
                 <Icon name="ChevronRightIcon" size="sm" />
               </button>
             )}
-            {!hasChildren && <span className={styles.spacer} />}
+            {!hasChildren && <span className={localStyles.spacer} />}
 
             {checkable && (
               <input
                 id={checkboxId}
                 type="checkbox"
-                className={styles.checkbox}
+                className={localStyles.checkbox}
                 checked={isChecked && !isIndeterminate}
                 ref={(el) => {
                   if (el) el.indeterminate = isIndeterminate;
@@ -921,7 +939,7 @@ export const TreeViewItem = ({
               />
             )}
 
-            {icon && <span className={styles.icon}>{icon}</span>}
+            {icon && <span className={localStyles.icon}>{icon}</span>}
           </div>
         }
       >
@@ -931,15 +949,15 @@ export const TreeViewItem = ({
       {hasChildren && shouldRender && (
         <div
           className={classNames(
-            styles.children,
-            isVisualExpanded && styles.expanded,
+            localStyles.children,
+            isVisualExpanded && localStyles.expanded,
           )}
           onTransitionEnd={handleTransitionEnd}
           style={{
             gridTemplateRows: isVisualExpanded ? "1fr" : "0fr",
           }}
         >
-          <div className={styles.childrenInner} role="group">{children}</div>
+          <div className={localStyles.childrenInner} role="group">{children}</div>
         </div>
       )}
     </div>

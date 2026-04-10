@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { WimIntent } from "../../../types/tokens";
-import "./alert.scss";
+import styles from "./alert.module.scss";
 
 type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -60,24 +60,24 @@ export const Alert = ({
 
   return (
     <div
-      className={classNames("wim-alert", `wim-alert--${intent}`, className)}
+      className={classNames(styles.root, styles[intent], className)}
       role="alert"
       {...props}
     >
-      <div className="wim-alert__icon">
+      <div className={styles.icon}>
         <FeedbackIcon intent={intent} icon={icon} size="sm" />
       </div>
-      <div className="wim-alert__content">
-        {title && <h4 className="wim-alert__title">{title}</h4>}
+      <div className={styles.content}>
+        {title && <h4 className={styles.title}>{title}</h4>}
         {(description || children) && (
-          <div className="wim-alert__description">
+          <div className={styles.description}>
             {description ? description : children}
           </div>
         )}
       </div>
       <FeedbackCloseButton
         onClose={onClose ? handleClose : undefined}
-        className="wim-alert__close"
+        className={styles.close}
         size="sm"
       />
     </div>

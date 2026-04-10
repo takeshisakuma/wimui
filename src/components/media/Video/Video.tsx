@@ -124,15 +124,15 @@ export const Video = ({
 
   return (
     <figure
-      className={classNames(styles.root, "wim-video-container", className)}
+      className={classNames(styles.root, className)}
       style={{ width: "100%" }}
       role="region"
       aria-label={videoAriaLabel}
+      data-testid="video-root"
     >
       <div
         className={classNames(
           styles.inner,
-          "wim-video-inner",
           radiusClass,
           shadow && styles.shadow,
           border && styles.border,
@@ -142,13 +142,14 @@ export const Video = ({
           shouldShowSkeleton && styles.loading,
         )}
         ref={mediaLoaderRef}
+        data-testid="video-inner"
       >
         {/* eslint-disable jsx-a11y/media-has-caption */}
         {isIntersecting && (
           <video
             ref={videoRef}
             src={activeSrc}
-            className={classNames(styles.video, "wim-video")}
+            className={styles.video}
             style={videoStyles}
             autoPlay={autoPlay && isLoaded}
             loop={loop && (!playlist || playlist.length <= 1)}
@@ -164,13 +165,14 @@ export const Video = ({
             onPlay={() => {}}
             onPause={() => {}}
             onClick={player.handleVideoClick}
+            data-testid="video-element"
             {...props}
           />
         )}
         {/* eslint-enable jsx-a11y/media-has-caption */}
 
         {skipIndicator.show && (
-          <div className={classNames(styles.skipIndicator, "wim-video-skip-indicator")}>
+          <div className={styles.skipIndicator}>
             <Icon
               name={
                 skipIndicator.direction === "forward"
@@ -202,7 +204,7 @@ export const Video = ({
         {(customControls || advancedControls) && (
           <div
             role="none"
-            className={classNames(styles.customControls, "wim-video-custom-controls")}
+            className={styles.customControls}
             onClick={() => activeMenu && setActiveMenu(null)}
           >
             {advancedControls && (
@@ -252,7 +254,7 @@ export const Video = ({
         )}
       </div>
       {caption && (
-        <figcaption className={classNames(styles.caption, "wim-video__caption")}>{caption}</figcaption>
+        <figcaption className={styles.caption} data-testid="video-caption">{caption}</figcaption>
       )}
     </figure>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Slot } from "@radix-ui/react-slot";
 import { WimSpacing } from "../../../types/tokens";
-import "./flex.scss";
+import styles from "./flex.module.scss";
 
 export type FlexProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -101,7 +101,8 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
     return (
       <Component
         ref={ref}
-        className={classNames("wim-flex", className)}
+        className={classNames(styles.root, className)}
+
         style={flexStyle}
         {...props}
       >

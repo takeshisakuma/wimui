@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./baseListItem.scss";
+import styles from "./base-list-item.module.scss";
 
 export type BaseListItemProps<C extends React.ElementType = "div"> = {
     /** The component used for the root node. */
@@ -43,19 +43,19 @@ export const BaseListItem = React.forwardRef(
             <Component
                 ref={ref as React.Ref<HTMLDivElement>}
                 className={classNames(
-                    "wim-base-list-item",
-                    active && "wim-base-list-item--active",
-                    disabled && "wim-base-list-item--disabled",
-                    danger && "wim-base-list-item--danger",
+                    styles.root,
+                    active && styles.active,
+                    disabled && styles.disabled,
+                    danger && styles.danger,
                     className,
                 )}
                 aria-disabled={disabled}
                 {...props}
             >
-                {icon && <span className="wim-base-list-item__icon">{icon}</span>}
-                <span className="wim-base-list-item__content">{children}</span>
+                {icon && <span className={styles.icon}>{icon}</span>}
+                <span className={styles.content}>{children}</span>
                 {rightSection && (
-                    <span className="wim-base-list-item__right-section">
+                    <span className={styles.rightSection}>
                         {rightSection}
                     </span>
                 )}
@@ -63,5 +63,6 @@ export const BaseListItem = React.forwardRef(
         );
     },
 );
+
 
 BaseListItem.displayName = "BaseListItem";

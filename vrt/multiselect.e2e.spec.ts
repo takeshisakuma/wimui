@@ -20,21 +20,21 @@ test.describe("MultiSelect", () => {
 
     test("opens listbox on trigger click", async ({ page }) => {
       await expect(page.getByRole("listbox")).not.toBeVisible();
-      await page.locator(".wim-multiselect-trigger").click();
+      await page.getByRole("combobox").click();
       await expect(page.getByRole("listbox")).toBeVisible();
     });
 
     test("closes listbox on Escape", async ({ page }) => {
-      await page.locator(".wim-multiselect-trigger").click();
+      await page.getByRole("combobox").click();
       await expect(page.getByRole("listbox")).toBeVisible();
       await page.keyboard.press("Escape");
       await expect(page.getByRole("listbox")).not.toBeVisible();
     });
 
     test("closes listbox on second trigger click", async ({ page }) => {
-      await page.locator(".wim-multiselect-trigger").click();
+      await page.getByRole("combobox").click();
       await expect(page.getByRole("listbox")).toBeVisible();
-      await page.locator(".wim-multiselect-trigger").click();
+      await page.getByRole("combobox").click();
       await expect(page.getByRole("listbox")).not.toBeVisible();
     });
   });
@@ -44,13 +44,13 @@ test.describe("MultiSelect", () => {
       await page.goto(STORY_URL(DEFAULT_STORY));
       await page.waitForLoadState("networkidle");
 
-      await page.locator(".wim-multiselect-trigger").click();
+      await page.getByRole("combobox").click();
       const firstOption = page.getByRole("option").first();
       const optionText = await firstOption.innerText();
       await firstOption.click();
 
       await expect(
-        page.locator(".wim-multiselect-badge").filter({ hasText: optionText }),
+        page.locator('[data-testid="multiselect-chip"]').filter({ hasText: optionText }),
       ).toBeVisible();
     });
 
@@ -58,27 +58,27 @@ test.describe("MultiSelect", () => {
       await page.goto(STORY_URL(DEFAULT_STORY));
       await page.waitForLoadState("networkidle");
 
-      await page.locator(".wim-multiselect-trigger").click();
+      await page.getByRole("combobox").click();
       const firstOption = page.getByRole("option").first();
       // Select the option (dropdown stays open in multi-select)
       await firstOption.click();
-      await expect(page.locator(".wim-multiselect-badge")).toHaveCount(1);
+      await expect(page.locator('[data-testid="multiselect-chip"]')).toHaveCount(1);
 
       // Click the same option again to deselect (dropdown is still open)
       await firstOption.click();
-      await expect(page.locator(".wim-multiselect-badge")).toHaveCount(0);
+      await expect(page.locator('[data-testid="multiselect-chip"]')).toHaveCount(0);
     });
 
     test("badge remove button deselects the option", async ({ page }) => {
       await page.goto(STORY_URL(MULTI_SELECTED_STORY));
       await page.waitForLoadState("networkidle");
 
-      const badges = page.locator(".wim-multiselect-badge");
+      const badges = page.locator('[data-testid="multiselect-chip"]');
       const initialCount = await badges.count();
       expect(initialCount).toBeGreaterThan(0);
 
-      // Delete button is rendered by Chip component as .wim-chip__delete
-      await page.locator(".wim-chip__delete").first().click();
+      // Delete button is rendered by Chip component.
+      await page.getByRole("button", { name: /delete/i }).first().click();
       await expect(badges).toHaveCount(initialCount - 1);
     });
 
@@ -86,13 +86,13 @@ test.describe("MultiSelect", () => {
       await page.goto(STORY_URL(DEFAULT_STORY));
       await page.waitForLoadState("networkidle");
 
-      await page.locator(".wim-multiselect-trigger").click();
+      await page.getByRole("combobox").click();
       const options = page.getByRole("option");
       // Select two options in one open session (dropdown stays open)
       await options.nth(0).click();
       await options.nth(1).click();
 
-      await expect(page.locator(".wim-multiselect-badge")).toHaveCount(2);
+      await expect(page.locator('[data-testid="multiselect-chip"]')).toHaveCount(2);
     });
   });
 
@@ -102,13 +102,13 @@ test.describe("MultiSelect", () => {
       await page.waitForLoadState("networkidle");
 
       // Select an option first
-      await page.locator(".wim-multiselect-trigger").click();
+      await page.getByRole("combobox").click();
       await page.getByRole("option").first().click();
-      await expect(page.locator(".wim-multiselect-badge")).toHaveCount(1);
+      await expect(page.locator('[data-testid="multiselect-chip"]')).toHaveCount(1);
 
       // Clear all
       await page.getByRole("button", { name: /clear/i }).click();
-      await expect(page.locator(".wim-multiselect-badge")).toHaveCount(0);
+      await expect(page.locator('[data-testid="multiselect-chip"]')).toHaveCount(0);
     });
   });
 
@@ -119,16 +119,16 @@ test.describe("MultiSelect", () => {
     });
 
     test("Arrow Down opens the listbox", async ({ page }) => {
-      await page.locator(".wim-multiselect-trigger").focus();
+      await page.getByRole("combobox").focus();
       await page.keyboard.press("ArrowDown");
       await expect(page.getByRole("listbox")).toBeVisible();
     });
 
     test("Enter selects focused option", async ({ page }) => {
-      await page.locator(".wim-multiselect-trigger").click();
+      await page.getByRole("combobox").click();
       await page.keyboard.press("ArrowDown");
       await page.keyboard.press("Enter");
-      await expect(page.locator(".wim-multiselect-badge")).toHaveCount(1);
+      await expect(page.locator('[data-testid="multiselect-chip"]')).toHaveCount(1);
     });
   });
 
@@ -137,7 +137,7 @@ test.describe("MultiSelect", () => {
       await page.goto(STORY_URL(DISABLED_STORY));
       await page.waitForLoadState("networkidle");
 
-      await page.locator(".wim-multiselect-trigger").click({ force: true });
+      await page.getByRole("combobox").click({ force: true });
       await expect(page.getByRole("listbox")).not.toBeVisible();
     });
 
@@ -145,7 +145,7 @@ test.describe("MultiSelect", () => {
       await page.goto(STORY_URL(DISABLED_STORY));
       await page.waitForLoadState("networkidle");
 
-      await expect(page.locator(".wim-multiselect-trigger")).toHaveAttribute(
+      await expect(page.getByRole("combobox")).toHaveAttribute(
         "aria-disabled",
         "true",
       );

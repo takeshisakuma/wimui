@@ -1,6 +1,6 @@
 import React, { useRef, useCallback, useMemo, useState } from "react";
 import classNames from "classnames";
-import "./gantt-chart.scss";
+import styles from "./gantt-chart.module.scss";
 
 export type GanttTask = {
   id: string;
@@ -182,13 +182,13 @@ export const GanttChart = ({
         e.preventDefault();
         const next = Math.min(index + 1, tasks.length - 1);
         setFocusedIndex(next);
-        const rows = document.querySelectorAll<HTMLElement>(".wim-gantt-chart__bar");
+        const rows = document.querySelectorAll<HTMLElement>("[data-gantt-bar=\"true\"]");
         rows[next]?.focus();
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
         const prev = Math.max(index - 1, 0);
         setFocusedIndex(prev);
-        const rows = document.querySelectorAll<HTMLElement>(".wim-gantt-chart__bar");
+        const rows = document.querySelectorAll<HTMLElement>("[data-gantt-bar=\"true\"]");
         rows[prev]?.focus();
       }
     },
@@ -197,44 +197,47 @@ export const GanttChart = ({
 
   return (
     <div
-      className={classNames("wim-gantt-chart", className)}
+      className={classNames(styles.root, className)}
       role="grid"
       aria-label={mergedLabels.ariaChart}
     >
-      <div className="wim-gantt-chart__layout">
+      <div className={styles.layout}>
         {/* Left: task label panel */}
-        <div className="wim-gantt-chart__label-panel" aria-hidden="true">
+        <div className={styles.labelPanel} aria-hidden="true">
           <div
-            className="wim-gantt-chart__header-cell wim-gantt-chart__header-cell--label"
+            className={styles.headerCell}
+            data-gantt-header-cell="label"
             style={{ height: rowHeight }}
           />
           {tasks.map((task) => (
             <div
               key={task.id}
-              className="wim-gantt-chart__label-row"
+              className={styles.labelRow}
               style={{ height: rowHeight }}
             >
-              <span className="wim-gantt-chart__label-text">{task.label}</span>
+              <span className={styles.labelText}>{task.label}</span>
             </div>
           ))}
         </div>
 
         {/* Right: scrollable timeline */}
-        <div className="wim-gantt-chart__timeline-wrapper">
+        <div className={styles.timelineWrapper}>
           {/* Header */}
           <div
             ref={headerScrollRef}
-            className="wim-gantt-chart__header-scroll"
+            className={styles.headerScroll}
+            data-gantt-header-scroll="true"
           >
             <div
-              className="wim-gantt-chart__header"
+              className={styles.header}
               style={{ width: totalWidth, height: rowHeight }}
               role="row"
             >
               {headerCells.map((cell) => (
                 <div
                   key={cell.date.toISOString()}
-                  className="wim-gantt-chart__header-cell"
+                  className={styles.headerCell}
+                  data-gantt-header-cell="true"
                   style={{ width: colWidth }}
                   role="columnheader"
                 >
@@ -247,11 +250,12 @@ export const GanttChart = ({
           {/* Body */}
           <div
             ref={bodyScrollRef}
-            className="wim-gantt-chart__body-scroll"
+            className={styles.bodyScroll}
+            data-gantt-body-scroll="true"
             onScroll={onBodyScroll}
           >
             <div
-              className="wim-gantt-chart__body"
+              className={styles.body}
               style={{ width: totalWidth, "--gantt-col-width": `${colWidth}px`, "--gantt-row-height": `${rowHeight}px` } as React.CSSProperties}
             >
               {/* Task rows */}
@@ -264,15 +268,16 @@ export const GanttChart = ({
                 return (
                   <div
                     key={task.id}
-                    className="wim-gantt-chart__row"
+                    className={styles.row}
                     style={{ height: rowHeight }}
                     role="row"
                   >
                     <div
                       role="gridcell"
-                      className={classNames("wim-gantt-chart__bar", {
-                        "wim-gantt-chart__bar--clickable": !!onTaskClick,
-                        "wim-gantt-chart__bar--focused": focusedIndex === index,
+                      data-gantt-bar="true"
+                      className={classNames(styles.bar, {
+                        [styles.clickable]: !!onTaskClick,
+                        [styles.focused]: focusedIndex === index,
                       })}
                       style={{
                         left,
@@ -294,7 +299,8 @@ export const GanttChart = ({
                     >
                       {task.progress !== undefined && (
                         <div
-                          className="wim-gantt-chart__progress"
+                          className={styles.progress}
+                          data-gantt-progress="true"
                           style={{ width: `${Math.min(task.progress, 100)}%` }}
                           aria-hidden="true"
                         />

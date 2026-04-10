@@ -206,6 +206,9 @@ export const Calendar = ({
             <button
               key={index}
               type="button"
+              data-calendar-day
+              data-selected={selected || undefined}
+              data-other-month={isOtherMonth || undefined}
               className={classNames(styles.day, {
                 [styles.selected]: selected,
                 [styles.inRange]: inRange,

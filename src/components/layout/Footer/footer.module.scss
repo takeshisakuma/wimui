@@ -1,0 +1,85 @@
+@use "../../../tokens/breakpoints" as breakpoints;
+
+.root {
+  width: 100%;
+  padding: var(--wim-spacing-2xl) 0 var(--wim-spacing-xl);
+  transition: all var(--wim-transition-base);
+
+  &.bg-primary {
+    color: var(--wim-color-text-primary);
+    background-color: var(--wim-color-bg-component);
+  }
+
+  &.bg-secondary {
+    color: var(--wim-color-text-primary);
+    background-color: var(--wim-color-bg-secondary);
+  }
+
+  &.bg-dark {
+    color: var(--wim-color-text-on-dark);
+    background-color: var(--wim-color-surface-inverse);
+
+    .sectionTitle {
+      color: var(--wim-color-text-on-dark);
+    }
+
+    .bottom {
+      color: var(--wim-color-text-muted-on-inverted);
+      border-top-color: var(--wim-color-border-inverted);
+    }
+
+    .sectionContent {
+      color: var(--wim-color-text-on-dark);
+    }
+  }
+
+  &.bordered {
+    border-top: 1px solid var(--wim-color-border-secondary);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wim-spacing-2xl);
+  max-width: 1200px;
+  padding: 0 var(--wim-spacing-xl);
+  margin: 0 auto;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wim-spacing-md);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: var(--wim-font-size-md);
+  font-weight: var(--wim-font-weight-bold);
+  color: var(--wim-color-text-primary);
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wim-spacing-xs);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--wim-spacing-md);
+  align-items: center;
+  padding-top: var(--wim-spacing-xl);
+  margin-top: var(--wim-spacing-xl);
+  font-size: var(--wim-font-size-sm);
+  color: var(--wim-color-text-secondary);
+  border-top: 1px solid var(--wim-color-border-secondary);
+
+  @include breakpoints.up(sm) {
+    flex-direction: row;
+    gap: 0;
+    justify-content: space-between;
+  }
+}

@@ -267,7 +267,7 @@ describe("ContextMenuItem", () => {
 
     fireEvent.contextMenu(screen.getByTestId("trigger"));
     const item = screen.getByText("Delete").closest('[role="menuitem"]');
-    expect(item).toHaveClass("wim-base-list-item--danger");
+    expect(item?.className).toMatch(/danger/);
   });
 
   it("works without onClick callback", () => {

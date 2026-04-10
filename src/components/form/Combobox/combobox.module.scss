@@ -54,7 +54,7 @@
   }
 
   .option {
-    :global(.wim-combobox)[data-keyboard-nav="true"] &.active {
+    .root[data-keyboard-nav="true"] & {
       z-index: 1;
       box-shadow: var(--wim-shadow-focus);
     }
