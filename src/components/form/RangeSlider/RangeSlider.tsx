@@ -324,6 +324,7 @@ export const RangeSlider = ({
             aria-disabled={disabled}
             aria-labelledby={label ? labelId : ariaLabelledBy}
             aria-label={label ? `Start ${label}` : ariaLabel || "Start"}
+            aria-describedby={error ? errorId : undefined}
             tabIndex={disabled ? -1 : 0}
             onMouseDown={(e) => handleMouseDown(e, "min")}
             onTouchStart={(e) => handleMouseDown(e, "min")}
@@ -340,6 +341,7 @@ export const RangeSlider = ({
             aria-disabled={disabled}
             aria-labelledby={label ? labelId : ariaLabelledBy}
             aria-label={label ? `End ${label}` : ariaLabel || "End"}
+            aria-describedby={error ? errorId : undefined}
             tabIndex={disabled ? -1 : 0}
             onMouseDown={(e) => handleMouseDown(e, "max")}
             onTouchStart={(e) => handleMouseDown(e, "max")}

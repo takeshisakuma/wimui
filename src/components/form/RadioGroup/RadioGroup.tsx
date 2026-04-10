@@ -45,7 +45,9 @@ export const RadioGroup = ({
     defaultValue,
   );
   const generatedId = useId();
-  const labelId = `wim-radio-group-label-${generatedId}`;
+  const id = `wim-radio-group-${generatedId}`;
+  const labelId = `${id}-label`;
+  const errorId = error ? `${id}-error` : undefined;
 
   const currentValue = isControlled ? value : internalValue;
 
@@ -65,6 +67,7 @@ export const RadioGroup = ({
       error={error}
       required={required}
       labelId={labelId}
+      errorId={errorId}
       className={className}
     >
       <div
@@ -74,6 +77,9 @@ export const RadioGroup = ({
         )}
         role="radiogroup"
         aria-labelledby={label ? labelId : undefined}
+        aria-describedby={errorId}
+        aria-required={required}
+        aria-invalid={!!error}
       >
         {options.map((option) => (
           <Radio

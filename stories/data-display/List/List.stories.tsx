@@ -9,10 +9,6 @@ const meta: Meta<typeof List> = {
   title: "Components/Data Structures/List",
   component: List,
   argTypes: {
-    as: {
-      control: "select",
-      options: ["ul", "ol"],
-    },
     size: {
       control: "radio",
       options: ["sm", "md", "lg"],
@@ -31,7 +27,7 @@ export const Unordered: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <List {...args} as="ul">
+      <List {...args}>
         <ListItem>{t("story.list_item1")}</ListItem>
         <ListItem>{t("story.list_item2")}</ListItem>
         <ListItem>
@@ -46,10 +42,12 @@ export const Ordered: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <List {...args} as="ol">
-        <ListItem>{t("story.list_step1")}</ListItem>
-        <ListItem>{t("story.list_step2")}</ListItem>
-        <ListItem>{t("story.list_step3")}</ListItem>
+      <List {...args} asChild>
+        <ol>
+          <ListItem>{t("story.list_step1")}</ListItem>
+          <ListItem>{t("story.list_step2")}</ListItem>
+          <ListItem>{t("story.list_step3")}</ListItem>
+        </ol>
       </List>
     );
   },

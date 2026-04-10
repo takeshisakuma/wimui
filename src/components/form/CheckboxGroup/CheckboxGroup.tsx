@@ -43,7 +43,9 @@ export const CheckboxGroup = ({
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
   const generatedId = useId();
-  const labelId = `wim-checkbox-group-label-${generatedId}`;
+  const id = `wim-checkbox-group-${generatedId}`;
+  const labelId = `${id}-label`;
+  const errorId = error ? `${id}-error` : undefined;
 
   const currentValue = isControlled ? value : internalValue;
 
@@ -70,6 +72,7 @@ export const CheckboxGroup = ({
       error={error}
       required={required}
       labelId={labelId}
+      errorId={errorId}
       className={className}
     >
       <div
@@ -79,6 +82,7 @@ export const CheckboxGroup = ({
         )}
         role="group"
         aria-labelledby={label ? labelId : undefined}
+        aria-describedby={errorId}
       >
         {options.map((option) => (
           <Checkbox

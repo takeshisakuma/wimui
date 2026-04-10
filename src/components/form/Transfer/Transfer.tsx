@@ -418,6 +418,7 @@ export const Transfer = ({
           style={style}
           role="group"
           aria-labelledby={label ? labelId : undefined}
+          aria-describedby={errorId}
         >
           <TransferList
             data={sourceData}

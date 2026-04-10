@@ -167,6 +167,7 @@ export const Combobox = ({
           aria-controls={isOpen ? listboxId : undefined}
           aria-labelledby={labelId}
           aria-describedby={errorId}
+          required={required}
           aria-invalid={!!error}
           aria-activedescendant={
             isOpen && activeIndex >= 0

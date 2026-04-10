@@ -15,10 +15,12 @@ describe("List", () => {
     expect(screen.getByText("Item 2")).toBeInTheDocument();
   });
 
-  it("renders as ol when as=ol", () => {
+  it("renders as ol when using asChild", () => {
     const { container } = render(
-      <List as="ol">
-        <ListItem>Item 1</ListItem>
+      <List asChild>
+        <ol>
+          <ListItem>Item 1</ListItem>
+        </ol>
       </List>,
     );
     expect(container.querySelector("ol")).toBeInTheDocument();

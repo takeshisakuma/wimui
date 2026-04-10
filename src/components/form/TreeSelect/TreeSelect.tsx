@@ -278,6 +278,7 @@ export const TreeSelect = ({
             aria-labelledby={labelId || ariaLabelledBy}
             aria-label={label ? undefined : (ariaLabel || placeholderStr)}
             aria-describedby={errorId || ariaDescribedBy}
+            aria-required={required}
             aria-invalid={!!error}
             ref={triggerRef}
           >

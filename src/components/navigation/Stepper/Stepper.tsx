@@ -31,6 +31,8 @@ export interface StepperProps {
   intent?: StepperIntent;
   /** Additional class names */
   className?: string;
+  /** Accessibility label for the navigation */
+  ariaLabel?: string;
   /** Callback function when a step is clicked (if applicable) */
   onChange?: (current: number) => void;
 }
@@ -42,6 +44,7 @@ export const Stepper = ({
   labelPlacement = "horizontal",
   intent = "process",
   className,
+  ariaLabel,
   onChange,
 }: StepperProps) => {
   const getStepStatus = (
@@ -114,6 +117,7 @@ export const Stepper = ({
           className,
         )}
         role={onChange ? "tablist" : undefined}
+        aria-label={ariaLabel}
         aria-orientation={onChange ? direction : undefined}
         onKeyDown={handleContainerKeyDown}
       >

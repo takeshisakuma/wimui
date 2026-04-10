@@ -148,6 +148,7 @@ export const PhoneInput = ({
           disabled={disabled}
           required={required}
           aria-labelledby={labelId}
+          aria-required={required}
           aria-invalid={error ? "true" : undefined}
           aria-describedby={errorId}
           onChange={(e) => {

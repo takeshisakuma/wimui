@@ -251,6 +251,7 @@ export const DatePicker = ({
             aria-invalid={currentIntent === "error"}
             aria-describedby={errorId}
             aria-labelledby={labelId}
+            aria-required={required}
             {...props}
           />
         </InputBase>

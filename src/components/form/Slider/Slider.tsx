@@ -245,6 +245,7 @@ export const Slider = ({
             aria-disabled={disabled}
             aria-labelledby={label ? labelId : ariaLabelledBy}
             aria-label={label ? undefined : ariaLabel}
+            aria-describedby={error ? errorId : undefined}
             tabIndex={disabled ? -1 : 0}
             onKeyDown={handleKeyDown}
           />

@@ -177,6 +177,7 @@ export const OtpInput = ({
               aria-label={digitAriaLabel(index + 1)}
               aria-invalid={!!error}
               aria-describedby={errorId}
+              aria-required={required}
             />
           ))}
         </div>

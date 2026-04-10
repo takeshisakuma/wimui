@@ -42,6 +42,11 @@ export const FileUpload = ({
   required,
   layout = "vertical",
 }: FileUploadProps) => {
+  const generatedId = React.useId();
+  const id = `wim-fileupload-${generatedId}`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
+
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
 
@@ -69,6 +74,8 @@ export const FileUpload = ({
       error={error}
       required={required}
       layout={layout}
+      labelId={labelId}
+      errorId={errorId}
       className={classNames(
         styles.root,
         styles[size],
@@ -94,6 +101,9 @@ export const FileUpload = ({
           icon={iconName}
           iconPosition={iconPosition}
           size={size}
+          aria-labelledby={labelId}
+          aria-describedby={errorId}
+          aria-required={required}
         >{buttonLabel}</Button>
         <span
           className={classNames(

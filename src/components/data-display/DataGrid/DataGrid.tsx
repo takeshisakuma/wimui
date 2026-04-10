@@ -1,4 +1,5 @@
 import React, { useMemo, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Table } from "../Table/Table";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
@@ -66,6 +67,8 @@ export type DataGridProps<T> = {
     threshold?: number;
   };
   className?: string;
+  /** Accessibility label for the grid */
+  ariaLabel?: string;
 };
 
 export function DataGrid<T extends Record<string, unknown>>({
@@ -89,7 +92,9 @@ export function DataGrid<T extends Record<string, unknown>>({
   pagination,
   infiniteScroll,
   className,
+  ariaLabel,
 }: DataGridProps<T>) {
+  const { t } = useTranslation("common");
   // Normalize selection to a consistent object form
   const selection: SelectionConfig<T> | null = useMemo(() => {
     if (!selectionProp) return null;
@@ -194,7 +199,7 @@ export function DataGrid<T extends Record<string, unknown>>({
         onKeyDown={handleKeyDown}
         tabIndex={0}
         role="grid"
-        aria-label="Data Grid"
+        aria-label={ariaLabel ?? t("a11y.data_grid")}
         aria-rowcount={data.length + 1}
         aria-colcount={colCount}
       >
@@ -223,6 +228,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                       checked={isAllSelected}
                       indeterminate={isSomeSelected}
                       onChange={handleSelectAll}
+                      aria-label={t("a11y.select_all_rows")}
                     />
                   )}
                 </Table.Head>
@@ -278,6 +284,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                       <Checkbox
                         checked={isSelected}
                         onChange={(e) => handleSelectRow(record, e)}
+                        aria-label={t("a11y.select_row")}
                       />
                     </Table.Cell>
                   )}

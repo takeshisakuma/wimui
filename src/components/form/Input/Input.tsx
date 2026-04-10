@@ -201,6 +201,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={currentIntent === "error"}
             aria-describedby={errorId}
             aria-labelledby={label ? labelId : undefined}
+            aria-required={required}
             {...props}
             placeholder={props.placeholder}
             aria-label={props["aria-label"]}

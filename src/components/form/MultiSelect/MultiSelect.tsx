@@ -269,6 +269,7 @@ export const MultiSelect = ({
             aria-disabled={disabled}
             aria-labelledby={labelId || ariaLabelledBy}
             aria-describedby={errorId || ariaDescribedBy}
+            aria-required={required}
             aria-invalid={!!error}
             aria-label={label ? undefined : ariaLabel || placeholder}
             onKeyDown={handleKeyDown}

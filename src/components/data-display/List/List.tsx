@@ -13,14 +13,13 @@ const ListContext = createContext<ListContextType>({ size: "md" });
 
 export interface ListProps extends React.HTMLAttributes<HTMLElement> {
   asChild?: boolean;
-  as?: "ul" | "ol";
   size?: ComponentSize;
   spacing?: "tight" | "normal" | "loose";
 }
 
 export const List = React.forwardRef<HTMLElement, ListProps>(
-  ({ asChild = false, as: ComponentTag = "ul", size = "md", spacing = "normal", children, className, ...props }, ref) => {
-    const Component = asChild ? Slot : ComponentTag;
+  ({ asChild = false, size = "md", spacing = "normal", children, className, ...props }, ref) => {
+    const Component = asChild ? Slot : "ul";
 
     return (
       <ListContext.Provider value={{ size }}>

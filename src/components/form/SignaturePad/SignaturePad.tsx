@@ -184,6 +184,7 @@ export const SignaturePad = ({
             onTouchMove={draw}
             onTouchEnd={stopDrawing}
             aria-labelledby={label ? labelId : undefined}
+            aria-describedby={errorId}
             role="img"
             aria-label={label ? undefined : resolvedCanvasAriaLabel}
           />

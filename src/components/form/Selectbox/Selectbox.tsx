@@ -315,6 +315,7 @@ export const Selectbox = ({
             aria-labelledby={labelId || ariaLabelledBy}
             aria-label={label ? undefined : (typeof ariaLabel === "string" ? ariaLabel : (typeof placeholder === "string" ? placeholder : undefined))}
             aria-describedby={errorId || ariaDescribedBy}
+            aria-required={required}
             aria-invalid={currentIntent === "error"}
             aria-activedescendant={isOpen ? activeDescendant : undefined}
             ref={triggerRef}

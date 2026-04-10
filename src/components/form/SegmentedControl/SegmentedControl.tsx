@@ -120,6 +120,8 @@ export const SegmentedControl = ({
         )}
         role="radiogroup"
         aria-labelledby={label ? labelId : undefined}
+        aria-required={required}
+        aria-describedby={error ? errorId : undefined}
       >
         <div
           className={classNames(localStyles.slider, stylesProp?.slider)}

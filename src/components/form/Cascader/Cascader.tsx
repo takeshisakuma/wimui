@@ -432,6 +432,7 @@ export const Cascader = ({
             aria-labelledby={labelId}
             aria-label={!labelId ? (ariaLabel || getSelectedLabelStr() || getLabelText(placeholder)) : undefined}
             aria-describedby={errorId}
+            aria-required={required}
             aria-invalid={!!error}
             aria-activedescendant={
               isOpen && focusedLevel >= 0 ? `${id}-menu-${focusedLevel}-option-${focusedIndexes[focusedLevel]}` : undefined

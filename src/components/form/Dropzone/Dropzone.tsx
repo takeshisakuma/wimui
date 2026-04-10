@@ -68,6 +68,11 @@ export const Dropzone = ({
   required,
   layout = "vertical",
 }: DropzoneProps) => {
+  const generatedId = React.useId();
+  const id = `wim-dropzone-${generatedId}`;
+  const labelId = label ? `${id}-label` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
+
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState<FileList | null>(null);
@@ -113,6 +118,8 @@ export const Dropzone = ({
       error={error}
       required={required}
       layout={layout}
+      labelId={labelId}
+      errorId={errorId}
       className={classNames(styles.container, className)}
     >
       <InteractiveArea
@@ -129,6 +136,10 @@ export const Dropzone = ({
             handleClick();
           }
         }}
+        aria-labelledby={labelId}
+        aria-describedby={errorId}
+        aria-required={required}
+        aria-invalid={!!error}
         icon={
           iconName && (
             <Icon

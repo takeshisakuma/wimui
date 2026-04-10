@@ -42,7 +42,12 @@ export const DateRangePicker = ({
       errorId={errorId}
       className={classNames(styles.container, className)}
     >
-      <div className={styles.root}>
+      <div
+        className={styles.root}
+        role="group"
+        aria-labelledby={labelId}
+        aria-describedby={errorId}
+      >
         <div className={styles.pickerWrapper}>
           <DatePicker {...startProps} fullWidth />
         </div>

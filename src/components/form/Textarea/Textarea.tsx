@@ -87,6 +87,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={currentIntent === "error"}
           aria-describedby={errorId}
           aria-labelledby={label ? labelId : undefined}
+          aria-required={required}
           {...props}
           placeholder={props.placeholder}
           aria-label={props["aria-label"]}

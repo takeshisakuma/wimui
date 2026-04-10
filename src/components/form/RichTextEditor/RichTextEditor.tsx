@@ -519,6 +519,7 @@ export const RichTextEditor = ({
           aria-labelledby={ariaLabelledby ?? (label ? labelId : undefined)}
           aria-invalid={currentIntent === "error"}
           aria-describedby={errorId}
+          aria-required={required}
           aria-disabled={isDisabled}
           aria-placeholder={placeholder}
           data-placeholder={placeholder}

@@ -216,6 +216,7 @@ export type TreeViewLabels = {
   searchAriaLabel?: string;
   expandLabel?: (label: string) => string;
   collapseLabel?: (label: string) => string;
+  treeAriaLabel?: string;
 };
 
 export type TreeViewProps = {
@@ -244,6 +245,8 @@ export type TreeViewProps = {
    */
   virtualThreshold?: number;
   labels?: TreeViewLabels;
+  /** Accessibility label ID */
+  labelId?: string;
   /** Custom styles for internal parts */
   styles?: {
     root?: string;
@@ -274,6 +277,7 @@ const TreeView = ({
   width,
   virtualThreshold = DEFAULT_VIRTUAL_THRESHOLD,
   labels = {},
+  labelId,
   styles: stylesProp,
 }: TreeViewProps) => {
   const {
@@ -638,6 +642,8 @@ const TreeView = ({
         data-testid="tree-view-root"
         className={classNames(localStyles.root, !!nodes && localStyles.dataDriven, className, stylesProp?.root)}
         role="tree"
+        aria-label={labels.treeAriaLabel}
+        aria-labelledby={!labels.treeAriaLabel ? labelId : undefined}
         style={{ width, maxWidth: "100%" }}
         tabIndex={focusedValue ? -1 : 0}
         onFocus={(e) => {
