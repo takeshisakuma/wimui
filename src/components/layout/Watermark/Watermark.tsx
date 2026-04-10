@@ -74,7 +74,7 @@ export const Watermark = ({
       {children}
       <div
         className={styles.root}
-        data-testid="wim-watermark"
+        data-testid="watermark"
         style={{
           zIndex,
           backgroundImage: `url(${base64})`,

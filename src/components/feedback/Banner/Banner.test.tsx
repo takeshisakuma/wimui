@@ -37,7 +37,7 @@ describe("Banner", () => {
   });
 
   it("renders with icon=true (default icon)", () => {
-    const { container } = render(<Banner title="Info" icon={true} intent="info" />);
+    const { container } = render(<Banner title="Info" icon={true} status="info" />);
     expect(container.querySelector(`.${styles.icon}`)).toBeInTheDocument();
   });
 

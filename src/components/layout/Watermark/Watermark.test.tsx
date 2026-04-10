@@ -26,19 +26,19 @@ describe("Watermark", () => {
 
   it("renders watermark overlay", () => {
     render(<Watermark content="Confidential" />);
-    const watermarkDiv = screen.getByTestId("wim-watermark");
+    const watermarkDiv = screen.getByTestId("watermark");
     expect(watermarkDiv).toBeInTheDocument();
   });
 
   it("applies opacity and z-index", () => {
     render(<Watermark content="Confidential" zIndex={100} />);
-    const watermarkDiv = screen.getByTestId("wim-watermark");
+    const watermarkDiv = screen.getByTestId("watermark");
     expect(watermarkDiv.style.zIndex).toBe("100");
   });
 
   it("renders with array content", () => {
     render(<Watermark content={["Line 1", "Line 2"]} />);
-    expect(screen.getByTestId("wim-watermark")).toBeInTheDocument();
+    expect(screen.getByTestId("watermark")).toBeInTheDocument();
   });
 
   it("renders with custom className", () => {
@@ -50,17 +50,17 @@ describe("Watermark", () => {
 
   it("renders with no content and no image (no canvas drawing)", () => {
     render(<Watermark />);
-    expect(screen.getByTestId("wim-watermark")).toBeInTheDocument();
+    expect(screen.getByTestId("watermark")).toBeInTheDocument();
   });
 
   it("renders with image prop", () => {
     render(<Watermark image="https://example.com/logo.png" />);
-    expect(screen.getByTestId("wim-watermark")).toBeInTheDocument();
+    expect(screen.getByTestId("watermark")).toBeInTheDocument();
   });
 
   it("renders with custom width, height, rotate", () => {
     render(<Watermark content="Custom" width={200} height={80} rotate={-45} />);
-    expect(screen.getByTestId("wim-watermark")).toBeInTheDocument();
+    expect(screen.getByTestId("watermark")).toBeInTheDocument();
   });
 
 });

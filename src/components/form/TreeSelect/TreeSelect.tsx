@@ -251,7 +251,7 @@ export const TreeSelect = ({
           allowClear={allowClear}
           hasValue={!!displayValue}
           onClear={handleClear}
-          intent={error ? "error" : "default"}
+          status={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && styles.open,

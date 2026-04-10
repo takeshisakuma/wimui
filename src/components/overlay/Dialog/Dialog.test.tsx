@@ -65,7 +65,7 @@ describe("Dialog", () => {
 
     expect(screen.getByText("Dialog Body")).toBeInTheDocument();
 
-    const overlay = screen.getByTestId("wim-overlay");
+    const overlay = screen.getByTestId("overlay");
     if (overlay) fireEvent.click(overlay);
 
     await waitFor(() => {

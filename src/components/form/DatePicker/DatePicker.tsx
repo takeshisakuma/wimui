@@ -5,7 +5,7 @@ import { InputBase } from "../InputBase";
 import { Transition } from "../../layout/Transition/Transition";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { FieldTemplate } from "../FieldTemplate";
-import { WimIntent, FieldVariant } from "../../../types/tokens";
+import { FieldStatus, FieldVariant } from "../../../types/tokens";
 import styles from "./date-picker.module.scss";
 import inputStyles from "../../form/Input/input.module.scss";
 
@@ -17,7 +17,7 @@ type DatePickerProps = Omit<
   React.ComponentPropsWithoutRef<"input">,
   "value" | "defaultValue" | "onChange"
 > & {
-  intent?: WimIntent;
+  status?: FieldStatus;
   variant?: FieldVariant;
   fullWidth?: boolean;
   /** Selected date value */
@@ -54,7 +54,7 @@ const DEFAULT_LABELS: Required<DatePickerLabels> = {
  * ユーザーが日付を選択するためのコンポーネント。
  */
 export const DatePicker = ({
-  intent = "default",
+  status = "default",
   variant = "outline",
   fullWidth = false,
   className,
@@ -94,7 +94,8 @@ export const DatePicker = ({
   const currentValue = isControlled ? value : internalValue;
 
   const actualPlaceholder = placeholder ?? mergedLabels.placeholder;
-  const effectiveIntent = disabled ? "disabled" : (error ? "error" : intent);
+  const isDisabled = disabled;
+  const currentStatus = error ? "error" : status;
 
   // Close calendar when clicking outside
   useEffect(() => {
@@ -149,7 +150,7 @@ export const DatePicker = ({
 
   const handleClear = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    if (!disabled) {
+    if (!isDisabled) {
       if (!isControlled) {
         setInternalValue(null);
       }
@@ -158,13 +159,13 @@ export const DatePicker = ({
   };
 
   const handleInputClick = () => {
-    if (!disabled) {
+    if (!isDisabled) {
       setIsOpen(!isOpen);
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (disabled) return;
+    if (isDisabled) return;
 
     if (e.key === "Escape") {
       setIsOpen(false);
@@ -216,10 +217,10 @@ export const DatePicker = ({
         )}
       >
         <InputBase
-          intent={error ? "error" : intent}
+          status={currentStatus}
           variant={variant}
           fullWidth={fullWidth}
-          disabled={disabled}
+          disabled={isDisabled}
           allowClear={clearable}
           hasValue={!!currentValue}
           onClear={handleClear}
@@ -238,13 +239,13 @@ export const DatePicker = ({
             )}
             value={formatDate(currentValue || null)}
             placeholder={actualPlaceholder}
-            disabled={disabled}
+            disabled={isDisabled}
             onClick={handleInputClick}
             onKeyDown={handleKeyDown}
             aria-haspopup="dialog"
             aria-expanded={isOpen}
             aria-controls={isOpen ? dropdownId : undefined}
-            aria-invalid={effectiveIntent === "error"}
+            aria-invalid={currentStatus === "error"}
             aria-describedby={errorId}
             aria-labelledby={labelId}
             {...props}

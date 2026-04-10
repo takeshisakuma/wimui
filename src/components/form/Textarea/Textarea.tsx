@@ -1,11 +1,11 @@
 import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
-import { WimIntent, FieldVariant } from "../../../types/tokens";
+import { FieldStatus, FieldVariant } from "../../../types/tokens";
 import styles from "./textarea.module.scss";
 
 type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
-  intent?: WimIntent;
+  status?: FieldStatus;
   variant?: FieldVariant;
   fullWidth?: boolean;
   fieldSizing?: "fixed" | "content";
@@ -21,7 +21,7 @@ type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
-      intent = "default",
+      status = "default",
       variant = "outline",
       fullWidth = false,
       fieldSizing = "fixed",
@@ -37,7 +37,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     ref,
   ) => {
     const isDisabled = disabled;
-    const effectiveIntent = isDisabled ? "disabled" : (error ? "error" : intent);
+    const currentStatus = error ? "error" : status;
 
     const generatedId = React.useId();
     const id = customId || `wim-textarea-${generatedId}`;
@@ -59,13 +59,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           className={classNames(
             styles.root,
-            styles[effectiveIntent],
+            styles[currentStatus],
+            isDisabled && styles.disabled,
             styles[variant],
             fullWidth && styles.fullWidth,
             fieldSizing === "content" && styles.fieldSizingContent,
           )}
           disabled={isDisabled}
-          aria-invalid={effectiveIntent === "error"}
+          aria-invalid={currentStatus === "error"}
           aria-describedby={errorId}
           aria-labelledby={label ? labelId : undefined}
           {...props}

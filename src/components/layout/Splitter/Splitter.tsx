@@ -199,7 +199,7 @@ const Splitter = ({
           resizingIndex !== null && styles.resizing,
           className,
         )}
-        data-testid="wim-splitter-root"
+        data-testid="splitter-root"
         {...props}
       >
         {items}
@@ -233,7 +233,7 @@ const SplitterPanel = ({
   return (
     <div
       className={classNames(styles.panel, className)}
-      data-testid="wim-splitter-panel"
+      data-testid="splitter-panel"
       style={{
         ...style,
         flex: size !== undefined ? `0 0 ${size}%` : "1 1 0%",
@@ -277,7 +277,7 @@ const SplitterHandle = ({
         active && styles.active,
         className,
       )}
-      data-testid="wim-splitter-handle"
+      data-testid="splitter-handle"
       onMouseDown={(e) => index !== undefined && onResizeStart(index, e)}
       onTouchStart={(e) => index !== undefined && onResizeStart(index, e)}
       onKeyDown={(e) => {

@@ -18,8 +18,7 @@ export const Legend = React.forwardRef<HTMLLegendElement, LegendProps>(
     return (
       <Component
         className={classNames(styles.root, className)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         {...props}
       >
         <FieldLabelContent label={label} required={required} showOptional={showOptional} />

@@ -12,7 +12,7 @@ describe("ColorPicker", () => {
   });
 
   it("applies state classes", () => {
-    render(<ColorPicker intent="error" data-testid="error-picker" id="error-picker" />);
+    render(<ColorPicker status="error" data-testid="error-picker" id="error-picker" />);
     // Check if the input itself or its wrapper has the error class.
     // In Input component, the input element gets styles.error
     expect(screen.getByTestId("error-picker")).toHaveClass(inputStyles.error);

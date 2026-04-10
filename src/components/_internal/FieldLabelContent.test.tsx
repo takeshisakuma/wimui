@@ -49,3 +49,4 @@ describe("FieldLabelContent", () => {
     expect(container.firstChild).toHaveClass("my-label");
   });
 });
+

@@ -17,7 +17,7 @@ const meta: Meta<typeof Textarea> = {
     disabled: {
       control: "boolean",
     },
-    intent: {
+    status: {
       control: "select",
       options: ["default", "error"],
     },
@@ -76,7 +76,7 @@ export const ErrorStatus: Story = {
     );
   },
   args: {
-    intent: "error",
+    status: "error",
   },
 };
 
@@ -164,7 +164,7 @@ export const FormPattern: Story = {
             <Textarea
               id="motivation"
               {...args}
-              intent="error"
+              status="error"
               defaultValue={t("story.textarea_value_none")}
               rows={3}
               fullWidth

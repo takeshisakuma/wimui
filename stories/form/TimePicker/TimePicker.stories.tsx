@@ -13,7 +13,7 @@ const meta: Meta<typeof TimePicker> = {
     layout: "centered",
   },
   argTypes: {
-    intent: {
+    status: {
       control: "select",
       options: ["default", "error", "disabled"],
     },
@@ -68,7 +68,7 @@ export const ErrorStatus: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.picker_error")}>
-        <TimePicker {...args} intent="error" />
+        <TimePicker {...args} status="error" />
       </Label>
     );
   },

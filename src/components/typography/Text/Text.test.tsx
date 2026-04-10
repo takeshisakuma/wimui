@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Text } from "./Text";
+import styles from "./text.module.scss";
 
 // Mock translation
 vi.mock("react-i18next", () => ({
@@ -15,7 +16,7 @@ describe("Text", () => {
 
   it("applies size class", () => {
     render(<Text size="lg">Test Text</Text>);
-    expect(screen.getByText("Test Text").className).toContain("lg");
+    expect(screen.getByText("Test Text")).toHaveClass(styles.lg);
   });
 
   it("applies weight and style classes", () => {
@@ -25,14 +26,14 @@ describe("Text", () => {
       </Text>,
     );
     const element = screen.getByText("Test Text");
-    expect(element.className).toContain("bold");
-    expect(element.className).toContain("italic");
+    expect(element).toHaveClass(styles.bold);
+    expect(element).toHaveClass(styles.italic);
   });
 
   it("handles decoration", () => {
     render(<Text decoration="underline">Test Text</Text>);
     const span = screen.getByText("Test Text");
-    expect(span.className).toContain("underline");
+    expect(span).toHaveClass(styles.underline);
   });
 
   it("renders as child when asChild is true", () => {
@@ -43,6 +44,7 @@ describe("Text", () => {
     );
     const span = screen.getByText("Test Text");
     expect(span.tagName).toBe("SPAN");
-    expect(span.className).toContain("root");
+    expect(span).toHaveClass(styles.root);
   });
 });
+

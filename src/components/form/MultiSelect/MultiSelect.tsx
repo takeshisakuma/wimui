@@ -243,7 +243,7 @@ export const MultiSelect = ({
           allowClear={allowClear}
           hasValue={currentValues && currentValues.length > 0}
           onClear={handleClearAll}
-          intent={error ? "error" : "default"}
+          status={error ? "error" : "default"}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && styles.open,

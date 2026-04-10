@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { WimIntent } from "../../../types/tokens";
+import { WimIntent, FieldStatus } from "../../../types/tokens";
 import localStyles from "./input-base.module.scss";
 
 export type InputBaseIcon = {
@@ -17,7 +17,7 @@ export type InputBaseIcon = {
 
 export type InputBaseProps = {
   children: React.ReactNode;
-  intent?: WimIntent;
+  status?: FieldStatus | WimIntent;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
@@ -50,12 +50,12 @@ export type InputBaseProps = {
  */
 export const InputBase = ({
   children,
-  intent = "default",
+  status = "default",
   variant = "outline",
   fullWidth = false,
   width,
   className,
-  disabled,
+  disabled: isDisabled,
   leftIcon,
   leftIconColor,
   onLeftIconClick,
@@ -73,19 +73,14 @@ export const InputBase = ({
   const isSemanticWidth =
     typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
 
-  const isDisabled = disabled;
-  const effectiveIntent = isDisabled ? "disabled" : intent;
-
   const childrenWithClasses = React.Children.map(children, (child) => {
     if (!React.isValidElement(child)) return child;
     
-    return React.cloneElement(child, {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      disabled: isDisabled ? true : (child.props as any).disabled,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      className: classNames((child.props as any).className, localStyles.inner, stylesProp?.inner),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any);
+    return React.cloneElement(child as React.ReactElement<any>, {
+      disabled: isDisabled ? true : (child.props as Record<string, unknown>).disabled,
+      className: classNames((child.props as Record<string, unknown>).className as string, localStyles.inner, stylesProp?.inner),
+    });
   });
   const effectiveHasCustomWidth = width !== undefined && !isSemanticWidth && !fullWidth;
   const effectiveSemanticWidth = isSemanticWidth && !fullWidth ? width : undefined;
@@ -95,9 +90,9 @@ export const InputBase = ({
   ) => {
     if (customColor) return customColor;
     if (isDisabled) return "disabled";
-    if (intent === "error") return "destructive";
-    if (intent === "warning") return "caution";
-    if (intent === "success") return "positive";
+    if (status === "error") return "destructive";
+    if (status === "warning") return "caution";
+    if (status === "success") return "positive";
     return "secondary";
   };
 
@@ -121,7 +116,8 @@ export const InputBase = ({
     <div
       className={classNames(
         localStyles.root,
-        localStyles[effectiveIntent],
+        status && localStyles[status],
+        isDisabled && localStyles.disabled,
         localStyles[variant],
         fullWidth && localStyles.fullWidth,
         effectiveHasCustomWidth && localStyles.hasCustomWidth,

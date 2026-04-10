@@ -40,8 +40,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
     if (typeof children !== "string") {
       // Fallsave if children is not a string
       return (
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        <Component className={classNames(styles.root, className)} ref={ref as any} {...props}>
+        <Component className={classNames(styles.root, className)} ref={ref} {...props}>
           <Slottable>{children}</Slottable>
         </Component>
       );
@@ -49,8 +48,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
 
     if (!highlight || (Array.isArray(highlight) && highlight.length === 0)) {
       return (
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        <Component className={classNames(styles.root, className)} ref={ref as any} {...props}>
+        <Component className={classNames(styles.root, className)} ref={ref} {...props}>
           <Slottable>{children}</Slottable>
         </Component>
       );
@@ -62,8 +60,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
 
     if (queries.length === 0) {
       return (
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        <Component className={classNames(styles.root, className)} ref={ref as any} {...props}>
+        <Component className={classNames(styles.root, className)} ref={ref} {...props}>
           <Slottable>{children}</Slottable>
         </Component>
       );
@@ -73,8 +70,7 @@ export const Highlight = React.forwardRef<HTMLElement, HighlightProps>(
     const parts = children.split(regex);
 
     return (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <Component className={classNames(styles.root, className)} ref={ref as any} {...props}>
+      <Component className={classNames(styles.root, className)} ref={ref} {...props}>
         <Slottable>
           {parts.map((part, i) => {
             const isMatch = regex.test(part);

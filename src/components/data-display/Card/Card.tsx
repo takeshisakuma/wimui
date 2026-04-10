@@ -29,8 +29,7 @@ export type CardProps<C extends React.ElementType = "div"> = {
 
 interface CardComponent {
   <C extends React.ElementType = "div">(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    props: CardProps<C> & { ref?: React.Ref<any> },
+    props: CardProps<C> & { ref?: React.Ref<React.ComponentRef<C>> },
   ): React.ReactElement;
   displayName?: string;
   Header: typeof CardHeader;
@@ -49,13 +48,13 @@ const CardInner = <C extends React.ElementType = "div">(
     children,
     ...props
   }: CardProps<C>,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref: React.Ref<any>,
+  ref: React.Ref<React.ComponentRef<C>>,
 ) => {
   const Component = asChild ? Slot : (as || "div");
   return (
     <Component
-      ref={ref}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref={ref as any}
       className={classNames(
         styles.root,
         styles[variant],
@@ -74,7 +73,7 @@ const CardInner = <C extends React.ElementType = "div">(
  * `Card` はコンテンツをグループ化して表示するためのコンテナコンポーネントです。
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Card: CardComponent = React.forwardRef(CardInner as any) as any;
+export const Card = React.forwardRef(CardInner as any) as unknown as CardComponent;
 
 Card.displayName = "Card";
 

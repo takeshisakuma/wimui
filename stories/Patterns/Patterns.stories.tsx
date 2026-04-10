@@ -5,7 +5,7 @@ import { Button } from "@/components/form/Button/Button";
 import { Card } from "@/components/data-display/Card/Card";
 import { Checkbox } from "@/components/form/Checkbox/Checkbox";
 import { Link } from "@/components/navigation/Link/Link";
-import { Heading } from "@/components/typography/Heading/Heading";
+import { Title } from "@/components/typography/Title/Title";
 import { Stack } from "@/components/layout/Stack/Stack";
 import { Center } from "@/components/layout/Center/Center";
 import { Container } from "@/components/layout/Container/Container";
@@ -19,7 +19,7 @@ import { RadioGroup } from "@/components/form/RadioGroup/RadioGroup";
 import { Textarea } from "@/components/form/Textarea/Textarea";
 import { Switch } from "@/components/form/Switch/Switch";
 import { Grid } from "@/components/layout/Grid/Grid";
-import { Paragraph } from "@/components/typography/Paragraph/Paragraph";
+import { Text } from "@/components/typography/Text/Text";
 import { Alert } from "@/components/feedback/Alert/Alert";
 import { Icon } from "@/components/media/Icon/Icon";
 import { Label } from "@/components/typography/Label/Label";
@@ -55,10 +55,10 @@ export const LoginForm: StoryObj = {
         >
           <Stack gap="xl">
             <Stack align="center" gap="md">
-              <Heading tag="h2" size="xl" align="center" style={{ lineHeight: 1 }}>
+              <Title tag="h2" size="xl" align="center" style={{ lineHeight: 1 }}>
                 {t("login.title")}
-              </Heading>
-              <Paragraph
+              </Title>
+              <Text
                 content={t("login.subtitle")}
                 color="deepgray"
                 size="sm"
@@ -118,7 +118,7 @@ export const LoginForm: StoryObj = {
             </form>
 
             <Stack direction="row" justify="center" gap="2xs">
-              <Paragraph
+              <Text
                 content={t("login.no_account")}
                 size="sm"
                 color="gray"
@@ -265,7 +265,7 @@ export const DashboardHeader: StoryObj = {
                 aria-label="Notifications"
               />
               <Badge
-                intent="secondary"
+                status="secondary"
                 size="sm"
                 content="3"
                 style={{
@@ -308,9 +308,9 @@ export const DashboardHeader: StoryObj = {
 
         <Container style={{ padding: "32px" }}>
           <Stack gap="xl">
-            <Heading tag="h2" size="xl">
+            <Title tag="h2" size="xl">
               {t("dashboard.overview_title")}
-            </Heading>
+            </Title>
             <Grid
               cols="repeat(auto-fit, minmax(280px, 1fr))"
               gap={24}
@@ -325,12 +325,12 @@ export const DashboardHeader: StoryObj = {
                 >
                   <Stack justify="space-between" align="center" direction="row">
                     <Stats.Label>{t("dashboard.stats_revenue")}</Stats.Label>
-                    <Badge intent="neutral" content="+12.5%" size="sm" />
+                    <Badge status="neutral" content="+12.5%" size="sm" />
                   </Stack>
                   <Stats.Value>
-                    <Heading tag="h3" size="xl" style={{ whiteSpace: "nowrap" }}>
+                    <Title tag="h3" size="xl" style={{ whiteSpace: "nowrap" }}>
                       $45,231.89
-                    </Heading>
+                    </Title>
                   </Stats.Value>
                   <Stats.Description>{t("dashboard.stats_last_month")}</Stats.Description>
                 </Stats>
@@ -363,10 +363,10 @@ export const UserProfileForm: StoryObj = {
               borderBottom: "1px solid var(--wim-color-border-secondary)",
             }}
           >
-            <Heading tag="h2" size="lg">
+            <Title tag="h2" size="lg">
               {t("profile.title")}
-            </Heading>
-            <Paragraph
+            </Title>
+            <Text
               content={t("profile.subtitle")}
               color="deepgray"
               style={{ marginTop: "var(--wim-spacing-xs)" }}
@@ -413,9 +413,9 @@ export const UserProfileForm: StoryObj = {
                       style={{ width: "var(--wim-spacing-5xl)", height: "var(--wim-spacing-5xl)", fontSize: "var(--wim-font-size-2xl)" }}
                     />
                     <Stack gap="xs">
-                      <Heading tag="h3" size="sm">
+                      <Title tag="h3" size="sm">
                         {t("profile.pic_title")}
-                      </Heading>
+                      </Title>
                       <div style={{ display: "flex", gap: "var(--wim-spacing-md)" }}>
                         <Button size="sm"
                           variant="outline">{t("profile.btn_change")}</Button>
@@ -428,9 +428,9 @@ export const UserProfileForm: StoryObj = {
 
                   {/* Personal Information */}
                   <Stack gap="2xl">
-                    <Heading tag="h3" size="md">
+                    <Title tag="h3" size="md">
                       {t("profile.info_title")}
-                    </Heading>
+                    </Title>
 
                     <Stack gap="lg">
                       <div
@@ -474,9 +474,9 @@ export const UserProfileForm: StoryObj = {
                           fullWidth
                           defaultValue="I am a software engineer based in Tokyo."
                         />
-                        <Paragraph
+                        <Text
                           content={t("profile.bio_char_count")}
-                          size="xs"
+                          size="sm"
                           color="gray"
                           style={{ textAlign: "right" }}
                         />
@@ -488,9 +488,9 @@ export const UserProfileForm: StoryObj = {
 
                   {/* Regional Settings */}
                   <Stack gap="2xl">
-                    <Heading tag="h3" size="md">
+                    <Title tag="h3" size="md">
                       {t("profile.reg_title")}
-                    </Heading>
+                    </Title>
 
                     <div
                       style={{
@@ -525,9 +525,9 @@ export const UserProfileForm: StoryObj = {
 
                   {/* Preferences */}
                   <Stack gap="2xl">
-                    <Heading tag="h3" size="md">
+                    <Title tag="h3" size="md">
                       {t("profile.pref_title")}
-                    </Heading>
+                    </Title>
 
                     <Stack gap="lg">
                       <Label label={t("profile.visibility")}>
@@ -582,11 +582,11 @@ export const PricingTable: StoryObj = {
     return (
       <Container style={{ padding: "80px 24px", background: "var(--wim-color-surface)" }}>
           <Stack align="center" gap="3xl" style={{ marginBottom: "64px" }}>
-            <Heading tag="h2" size="xl" align="center">
+            <Title tag="h2" size="xl" align="center">
               {t("pricing.title")}
-            </Heading>
+            </Title>
             <Container size="sm">
-              <Paragraph
+              <Text
                 content={t("pricing.subtitle")}
                 color="deepgray"
                 style={{ textAlign: "center" }}
@@ -616,14 +616,14 @@ export const PricingTable: StoryObj = {
                       justifyContent: "center",
                     }}
                   >
-                    <Heading
+                    <Title
                       tag="h3"
                       size="sm"
                       align="center"
                       style={{ margin: 0 }}
                     >
                       {t("pricing.starter_title")}
-                    </Heading>
+                    </Title>
                   </div>
                   <div
                     style={{
@@ -633,10 +633,10 @@ export const PricingTable: StoryObj = {
                       whiteSpace: "nowrap",
                     }}
                   >
-                    <Heading tag="h4" size="2xl" style={{ margin: 0 }}>
+                    <Title tag="h4" size="2xl" style={{ margin: 0 }}>
                       $0
-                    </Heading>
-                    <Paragraph
+                    </Title>
+                    <Text
                       content={t("pricing.period")}
                       color="gray"
                       size="sm"
@@ -651,7 +651,7 @@ export const PricingTable: StoryObj = {
                     alignItems: "center",
                   }}
                 >
-                  <Paragraph
+                  <Text
                     content={t("pricing.starter_desc")}
                     size="sm"
                     color="deepgray"
@@ -699,14 +699,14 @@ export const PricingTable: StoryObj = {
                       justifyContent: "center",
                     }}
                   >
-                    <Heading
+                    <Title
                       tag="h3"
                       size="sm"
                       align="center"
                       style={{ margin: 0 }}
                     >
                       {t("pricing.pro_title")}
-                    </Heading>
+                    </Title>
                   </div>
                   <div
                     style={{
@@ -716,10 +716,10 @@ export const PricingTable: StoryObj = {
                       whiteSpace: "nowrap",
                     }}
                   >
-                    <Heading tag="h4" size="2xl" style={{ margin: 0 }}>
+                    <Title tag="h4" size="2xl" style={{ margin: 0 }}>
                       $29
-                    </Heading>
-                    <Paragraph
+                    </Title>
+                    <Text
                       content={t("pricing.period")}
                       color="gray"
                       size="sm"
@@ -734,7 +734,7 @@ export const PricingTable: StoryObj = {
                     alignItems: "center",
                   }}
                 >
-                  <Paragraph
+                  <Text
                     content={t("pricing.pro_desc")}
                     size="sm"
                     color="deepgray"
@@ -774,14 +774,14 @@ export const PricingTable: StoryObj = {
                       justifyContent: "center",
                     }}
                   >
-                    <Heading
+                    <Title
                       tag="h3"
                       size="sm"
                       align="center"
                       style={{ margin: 0 }}
                     >
                       {t("pricing.ent_title")}
-                    </Heading>
+                    </Title>
                   </div>
                   <div
                     style={{
@@ -791,10 +791,10 @@ export const PricingTable: StoryObj = {
                       whiteSpace: "nowrap",
                     }}
                   >
-                    <Heading tag="h4" size="2xl" style={{ margin: 0 }}>
+                    <Title tag="h4" size="2xl" style={{ margin: 0 }}>
                       $99
-                    </Heading>
-                    <Paragraph
+                    </Title>
+                    <Text
                       content={t("pricing.period")}
                       color="gray"
                       size="sm"
@@ -809,7 +809,7 @@ export const PricingTable: StoryObj = {
                     alignItems: "center",
                   }}
                 >
-                  <Paragraph
+                  <Text
                     content={t("pricing.ent_desc")}
                     size="sm"
                     color="deepgray"
@@ -855,19 +855,19 @@ export const HeroSection: StoryObj = {
             <Stack gap="3xl">
               <Stack gap="3xl">
                 <Badge
-                  intent="primary"
+                  status="primary"
                   content={t("hero.badge")}
                   style={{ width: "fit-content" }}
                 />
                 <Stack gap="2xl">
-                  <Heading
+                  <Title
                     tag="h1"
                     size="2xl"
                     style={{ lineHeight: "1", fontWeight: "800" }}
                   >
                     {t("hero.title")}
-                  </Heading>
-                  <Paragraph
+                  </Title>
+                  <Text
                     content={t("hero.desc")}
                     size="lg"
                     color="deepgray"
@@ -888,7 +888,7 @@ export const HeroSection: StoryObj = {
                     <Avatar key={i} />
                   ))}
                 </AvatarGroup>
-                <Paragraph
+                <Text
                   content={t("hero.dev_count")}
                   size="sm"
                   color="deepgray"
@@ -1002,17 +1002,17 @@ export const ErrorPage: StoryObj = {
             404
           </p>
           <Stack gap="2xl" align="center">
-            <Heading tag="h1" size="xl" align="center">
+            <Title tag="h1" size="xl" align="center">
               {t("error.title")}
-            </Heading>
-            <Paragraph
+            </Title>
+            <Text
               content={t("error.desc")}
               color="gray"
               style={{ textAlign: "center" }}
             />
           </Stack>
 
-          <Alert intent="info" title={t("error.help_title")} style={{ textAlign: "left" }}>
+          <Alert status="info" title={t("error.help_title")} style={{ textAlign: "left" }}>
             {t("error.help_desc")}
           </Alert>
 

@@ -20,7 +20,7 @@ describe("StatusContent", () => {
   });
 
   it("renders icon when provided", () => {
-    render(<StatusContent icon={<span data-testid="icon">★</span>} />);
+    render(<StatusContent icon={<span data-testid="icon"></span>} />);
     expect(screen.getByTestId("icon")).toBeInTheDocument();
   });
 
@@ -44,3 +44,4 @@ describe("StatusContent", () => {
     expect(container.firstChild).toHaveClass("my-prefix");
   });
 });
+

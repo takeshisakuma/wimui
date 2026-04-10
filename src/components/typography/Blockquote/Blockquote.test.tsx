@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Blockquote } from "./Blockquote";
+import styles from "./blockquote.module.scss";
 
 // Mock translation
 vi.mock("react-i18next", () => ({
@@ -17,13 +18,14 @@ describe("Blockquote", () => {
   it("applies size and color classes", () => {
     render(<Blockquote size="sm" color="primary">Quote</Blockquote>);
     const element = screen.getByRole("blockquote");
-    expect(element.className).toContain("sm");
-    expect(element.className).toContain("primary");
+    expect(element).toHaveClass(styles.sm);
+    expect(element).toHaveClass(styles.primary);
   });
 
   it("handles border prop", () => {
     render(<Blockquote border={false}>Quote</Blockquote>);
     const element = screen.getByRole("blockquote");
-    expect(element.className).not.toContain("border");
+    expect(element).not.toHaveClass(styles.border);
   });
 });
+

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Span } from "./Span";
+import styles from "./span.module.scss";
 
 // Mock i18next
 vi.mock("react-i18next", () => ({
@@ -19,8 +20,8 @@ describe("Span", () => {
     const { container } = render(
       <Span content="Test" size="lg" color="error" />,
     );
-    expect(container.firstChild).toHaveClass(/lg/);
-    expect(container.firstChild).toHaveClass(/error/);
+    expect(container.firstChild).toHaveClass(styles.lg);
+    expect(container.firstChild).toHaveClass(styles.error);
   });
 
   it("renders with icon", () => {
@@ -32,7 +33,7 @@ describe("Span", () => {
 
   it("applies fontStyle italic class", () => {
     const { container } = render(<Span content="Italic" fontStyle="italic" />);
-    expect(container.firstChild).toHaveClass(/italic/);
+    expect(container.firstChild).toHaveClass(styles.italic);
   });
 
   it("renders icon on right side", () => {
@@ -52,17 +53,17 @@ describe("Span", () => {
     const { container } = render(<Span content="Custom" color="var(--wim-color-primary)" />);
     const el = container.firstChild as HTMLElement;
     // Should not add color class but use inline style
-    expect(el.className).not.toMatch(/var/);
+    expect(el.className).not.toContain("var");
   });
 
   it("applies decoration class", () => {
     const { container } = render(<Span content="Underline" decoration="underline" />);
-    expect(container.firstChild).toHaveClass(/underline/);
+    expect(container.firstChild).toHaveClass(styles.underline);
   });
 
   it("applies bold weight class", () => {
     const { container } = render(<Span content="Bold" weight="bold" />);
-    expect(container.firstChild).toHaveClass(/bold/);
+    expect(container.firstChild).toHaveClass(styles.bold);
   });
 
   it("supports asChild prop", () => {
@@ -73,6 +74,7 @@ describe("Span", () => {
     );
     const element = screen.getByTestId("inner-strong");
     expect(element.tagName).toBe("STRONG");
-    expect(element.className).toContain("root");
+    expect(element).toHaveClass(styles.root);
   });
 });
+

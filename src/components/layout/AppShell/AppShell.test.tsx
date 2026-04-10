@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { AppShell, AppShellHeader, AppShellSidebar, AppShellFooter, AppShellNavbar } from "./AppShell";
+import styles from "./appshell.module.scss";
 
 describe("AppShell", () => {
   it("renders children correctly", () => {
@@ -43,20 +44,20 @@ describe("AppShell", () => {
   it("applies padding by default", () => {
     const { container } = render(<AppShell>Content</AppShell>);
     const main = container.querySelector("main");
-    expect(main?.className).toMatch(/main/);
-    expect(main?.className).toMatch(/padded/);
+    expect(main).toHaveClass(styles.main);
+    expect(main).toHaveClass(styles.padded);
   });
 
   it("removes padding when padding is false", () => {
     const { container } = render(<AppShell padding={false}>Content</AppShell>);
     const main = container.querySelector("main");
-    expect(main?.className).not.toMatch(/padded/);
+    expect(main).not.toHaveClass(styles.padded);
   });
 
   it("applies centered class when centered is true", () => {
     const { container } = render(<AppShell centered>Content</AppShell>);
     const main = container.querySelector("main");
-    expect(main?.className).toMatch(/centered/);
+    expect(main).toHaveClass(styles.centered);
   });
 
   it("applies custom className", () => {
@@ -72,35 +73,35 @@ describe("AppShell", () => {
       <AppShell sidebar={<div>Sidebar</div>}>Content</AppShell>,
     );
     const appshell = container.firstChild as HTMLElement;
-    expect(appshell.className).toMatch(/withSidebar/);
+    expect(appshell).toHaveClass(styles.withSidebar);
   });
 
   it("renders AppShellHeader as standalone component", () => {
     const { container } = render(<AppShellHeader className="my-header">Header</AppShellHeader>);
     expect(screen.getByText("Header")).toBeInTheDocument();
     expect(container.firstChild).toHaveClass("my-header");
-    expect((container.firstChild as HTMLElement).className).toMatch(/header/);
+    expect(container.firstChild).toHaveClass(styles.header);
   });
 
   it("renders AppShellSidebar as standalone component", () => {
     const { container } = render(<AppShellSidebar className="my-sidebar">Sidebar</AppShellSidebar>);
     expect(screen.getByText("Sidebar")).toBeInTheDocument();
     expect(container.firstChild).toHaveClass("my-sidebar");
-    expect((container.firstChild as HTMLElement).className).toMatch(/sidebar/);
+    expect(container.firstChild).toHaveClass(styles.sidebar);
   });
 
   it("renders AppShellFooter as standalone component", () => {
     const { container } = render(<AppShellFooter className="my-footer">Footer</AppShellFooter>);
     expect(screen.getByText("Footer")).toBeInTheDocument();
     expect(container.firstChild).toHaveClass("my-footer");
-    expect((container.firstChild as HTMLElement).className).toMatch(/footer/);
+    expect(container.firstChild).toHaveClass(styles.footer);
   });
 
   it("renders AppShellNavbar as standalone component", () => {
     const { container } = render(<AppShellNavbar className="my-navbar">Navbar</AppShellNavbar>);
     expect(screen.getByText("Navbar")).toBeInTheDocument();
     expect(container.firstChild).toHaveClass("my-navbar");
-    expect((container.firstChild as HTMLElement).className).toMatch(/navbar/);
+    expect(container.firstChild).toHaveClass(styles.navbar);
   });
 
   it("renders all sections together", () => {
@@ -121,3 +122,4 @@ describe("AppShell", () => {
     expect(screen.getByText("Navbar")).toBeInTheDocument();
   });
 });
+

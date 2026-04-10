@@ -70,7 +70,7 @@ const DefaultFallback = ({
     >
       <Stack gap="md">
         <Alert
-          intent="error"
+          status="error"
           title={labels.title}
           description={error.message}
         />

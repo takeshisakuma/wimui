@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/tokens";
+import { ComponentSize, IndicatorStatus, IndicatorVariant } from "../../../types/tokens";
 import styles from "./chip.module.scss";
 
 export type ChipProps = React.HTMLAttributes<HTMLElement> & {
@@ -26,7 +26,7 @@ export type ChipProps = React.HTMLAttributes<HTMLElement> & {
   /** 無効状態 */
   disabled?: boolean;
   /** ステータス */
-  intent?: WimIntent;
+  status?: IndicatorStatus;
   /** バリアント */
   variant?: IndicatorVariant;
   /** サイズ */
@@ -51,7 +51,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
       icon,
       selected = false,
       disabled = false,
-      intent = "primary",
+      status = "primary",
       variant = "solid",
       size = "md",
       deleteAriaLabel,
@@ -70,7 +70,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
         ref={ref as any}
         className={classNames(
           styles.root,
-          styles[intent],
+          styles[status],
           styles[variant],
           styles[size],
           selected && styles.selected,
@@ -79,11 +79,9 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
           className,
         )}
         onClick={!disabled ? onClick : undefined}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        disabled={asChild ? undefined : (disabled as any)}
+        {...((!asChild && onClick) ? { disabled } : {})}
         type={asChild ? undefined : (onClick ? "button" : undefined)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
+        {...(props as React.HTMLAttributes<HTMLElement>)}
       >
         {avatar && <span className={styles.avatar}>{avatar}</span>}
         {!avatar && icon && <span className={styles.icon}>{icon}</span>}

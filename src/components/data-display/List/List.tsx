@@ -61,8 +61,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
           iconName && styles.withIcon,
           className
         )}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         {...props}
       >
         {iconName ? (
@@ -91,3 +90,4 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
 
 List.displayName = "List";
 ListItem.displayName = "List.Item";
+

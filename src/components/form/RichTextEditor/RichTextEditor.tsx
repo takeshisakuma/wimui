@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
-import { WimIntent, FieldVariant } from "../../../types/tokens";
+import { FieldStatus, FieldVariant } from "../../../types/tokens";
 import styles from "./rich-text-editor.module.scss";
 
 // ---- Inline SVG toolbar icons ----
@@ -141,7 +141,7 @@ export type RichTextEditorProps = {
   onChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
-  intent?: WimIntent;
+  status?: FieldStatus;
   variant?: FieldVariant;
   fullWidth?: boolean;
   minHeight?: number | string;
@@ -195,7 +195,7 @@ export const RichTextEditor = ({
   onChange,
   placeholder,
   disabled,
-  intent = "default",
+  status = "default",
   variant = "outline",
   fullWidth = false,
   minHeight = 200,
@@ -238,7 +238,7 @@ export const RichTextEditor = ({
   const labelId = label ? `${id}-label` : undefined;
 
   const isDisabled = disabled;
-  const effectiveIntent = isDisabled ? "disabled" : (error ? "error" : intent);
+  const currentStatus = error ? "error" : status;
 
   // Set initial content imperatively on mount (avoids dangerouslySetInnerHTML reset on re-render)
   const initialContentRef = React.useRef(value !== undefined ? value : defaultValue);
@@ -468,7 +468,8 @@ export const RichTextEditor = ({
       <div
         className={classNames(
           styles.root,
-          styles[effectiveIntent],
+          styles[currentStatus],
+          isDisabled && styles.disabled,
           styles[variant],
           fullWidth && styles.fullWidth,
         )}
@@ -495,12 +496,13 @@ export const RichTextEditor = ({
           aria-multiline
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledby ?? (label ? labelId : undefined)}
-          aria-invalid={effectiveIntent === "error"}
+          aria-invalid={currentStatus === "error"}
           aria-describedby={errorId}
           aria-disabled={isDisabled}
           aria-placeholder={placeholder}
           data-placeholder={placeholder}
           tabIndex={isDisabled ? -1 : 0}
+
           style={{ minHeight: typeof minHeight === "number" ? `${minHeight}px` : minHeight, outline: "none" }}
           onInput={handleInput}
           onKeyUp={handleKeyUp}

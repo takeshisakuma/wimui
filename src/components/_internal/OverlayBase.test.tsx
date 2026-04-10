@@ -81,7 +81,7 @@ describe("OverlayBase", () => {
         <button>Content</button>
       </OverlayBase>,
     );
-    const overlay = screen.getByTestId("wim-overlay");
+    const overlay = screen.getByTestId("overlay");
     fireEvent.click(overlay);
     expect(onOpenChange).toHaveBeenCalledWith(false);
   });
@@ -93,7 +93,7 @@ describe("OverlayBase", () => {
         <button>Content</button>
       </OverlayBase>,
     );
-    const overlay = screen.getByTestId("wim-overlay");
+    const overlay = screen.getByTestId("overlay");
     fireEvent.click(overlay);
     expect(onOpenChange).not.toHaveBeenCalled();
   });
@@ -135,3 +135,4 @@ describe("OverlayBase", () => {
     expect(document.body.style.overflow).toBe("auto");
   });
 });
+

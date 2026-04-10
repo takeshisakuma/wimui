@@ -53,3 +53,4 @@ describe("FeedbackCloseButton", () => {
     expect(screen.getByRole("button")).toHaveAttribute("aria-label", "Custom Close");
   });
 });
+

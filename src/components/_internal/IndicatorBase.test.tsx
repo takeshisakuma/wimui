@@ -26,7 +26,7 @@ describe("IndicatorBase", () => {
 
   it("applies status modifier class", () => {
     const { container } = render(
-      <IndicatorBase styles={mockStyles} intent="success">ok</IndicatorBase>,
+      <IndicatorBase styles={mockStyles} status="success">ok</IndicatorBase>,
     );
     expect(container.firstChild).toHaveClass("test-success");
   });
@@ -84,4 +84,5 @@ describe("IndicatorBase", () => {
     expect(container.firstChild).toHaveClass("extra");
   });
 });
+
 

@@ -17,7 +17,7 @@ describe("Notification", () => {
 
   it("renders status-specific icon", () => {
     const { container } = render(
-      <Notification title="Success" intent="success" />,
+      <Notification title="Success" status="success" />,
     );
     const icon = container.querySelector(`.${styles.icon}`);
     expect(icon).toBeInTheDocument();

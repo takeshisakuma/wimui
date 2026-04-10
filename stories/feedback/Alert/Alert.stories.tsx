@@ -11,7 +11,7 @@ const meta: Meta<typeof Alert> = {
   tags: [],
   argTypes: {
     onClose: { action: "closed" },
-    intent: {
+    status: {
       control: "select",
       options: ["info", "success", "warning", "error"],
     },
@@ -33,7 +33,7 @@ export const Info: Story = {
     );
   },
   args: {
-    intent: "info",
+    status: "info",
   },
 };
 
@@ -49,7 +49,7 @@ export const Success: Story = {
     );
   },
   args: {
-    intent: "success",
+    status: "success",
   },
 };
 
@@ -65,7 +65,7 @@ export const Warning: Story = {
     );
   },
   args: {
-    intent: "warning",
+    status: "warning",
   },
 };
 
@@ -81,7 +81,7 @@ export const ErrorStatus: Story = {
     );
   },
   args: {
-    intent: "error",
+    status: "error",
   },
 };
 
@@ -96,7 +96,7 @@ export const WithoutTitle: Story = {
     );
   },
   args: {
-    intent: "info",
+    status: "info",
   },
 };
 
@@ -113,7 +113,7 @@ export const WithCloseButton: Story = {
     );
   },
   args: {
-    intent: "success",
+    status: "success",
   },
 };
 
@@ -130,6 +130,6 @@ export const LongContent: Story = {
     );
   },
   args: {
-    intent: "info",
+    status: "info",
   },
 };

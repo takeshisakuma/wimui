@@ -11,7 +11,7 @@ export interface SpanProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, "
    * If true, the span will be rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  size?: ComponentSize;
   color?: WimColor;
   weight?: "normal" | "bold" | "medium";
   fontStyle?: "normal" | "italic";
@@ -43,12 +43,10 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
     const finalContent = content ?? children;
 
     // Icon の size プロパティは "sm" | "md" | "lg" のみ許容されているためマッピング
-    const iconSizeMap: Record<string, ComponentSize> = {
-      xs: "sm",
+    const iconSizeMap: Record<ComponentSize, ComponentSize> = {
       sm: "sm",
       md: "md",
       lg: "lg",
-      xl: "lg",
     };
     const iconSize = iconSizeMap[size] || "md";
 
@@ -85,8 +83,7 @@ export const Span = React.forwardRef<HTMLSpanElement, SpanProps>(
 
     return (
       <Component
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         className={classNames(
           styles.root,
           styles[size],

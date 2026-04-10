@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 import { IndicatorBase } from "../../_internal/IndicatorBase";
-import { ComponentSize, WimIntent, IndicatorVariant } from "../../../types/tokens";
+import { ComponentSize, IndicatorStatus, IndicatorVariant } from "../../../types/tokens";
 import styles from "./badge.module.scss";
 
 export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
@@ -15,7 +15,7 @@ export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
   /** アイコン */
   icon?: React.ReactNode;
   /** ステータス */
-  intent?: WimIntent;
+  status?: IndicatorStatus;
   /** バリアント */
   variant?: IndicatorVariant;
   /** サイズ */

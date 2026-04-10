@@ -8,28 +8,28 @@ import localStyles from "./field-template.module.scss";
 export interface FieldTemplateProps extends React.HTMLAttributes<HTMLDivElement> {
   asChild?: boolean;
   /**
-   * フィールドのラベルテキスト
+   * フィールド�EラベルチE��スチE
    */
   label?: React.ReactNode;
   /**
-   * エラーメッセージ
+   * エラーメチE��ージ
    */
   error?: string;
   /**
-   * フィールドのメインコンテンツ
+   * フィールド�EメインコンチE��チE
    */
   children: React.ReactNode;
   /**
-   * 必須表示にするかどうか
+   * 忁E��表示にするかどぁE��
    */
   required?: boolean;
   /**
-   * レイアウト方向
+   * レイアウト方吁E
    * @default "vertical"
    */
   layout?: "vertical" | "horizontal";
   /**
-   * アクセシビリティ用のラベルID
+   * アクセシビリチE��用のラベルID
    */
   labelId?: string;
   /**
@@ -49,7 +49,7 @@ export interface FieldTemplateProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 /**
- * フォーム系コンポーネントの共通レイアウト（ラベル、エラー表示、配置）を管理する内部コンポーネント。
+ * フォーム系コンポ�Eネント�E共通レイアウト（ラベル、エラー表示、E�E置�E�を管琁E��る�E部コンポ�Eネント、E
  */
 export const FieldTemplate = React.forwardRef<HTMLDivElement, FieldTemplateProps>(
   ({ asChild = false, label, error, children, required, layout = "vertical", labelId, errorId, className, styles: stylesProp, ...props }, ref) => {
@@ -58,8 +58,7 @@ export const FieldTemplate = React.forwardRef<HTMLDivElement, FieldTemplateProps
     return (
       <Component
         className={classNames(localStyles.root, localStyles[layout], className, stylesProp?.root)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         {...props}
       >
         {label && (
@@ -77,3 +76,4 @@ export const FieldTemplate = React.forwardRef<HTMLDivElement, FieldTemplateProps
 );
 
 FieldTemplate.displayName = "FieldTemplate";
+

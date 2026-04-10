@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./text.module.scss";
-import { WimColor, WimLineHeight, WimFontSize, WimFontWeight } from "../../../types/tokens";
+import { WimColor, WimLineHeight, WimFontSize, WimFontWeight, ComponentSize } from "../../../types/tokens";
 import {
   getColorValue,
   getFontSizeValue,
@@ -15,7 +15,7 @@ export type TextProps = Omit<React.ComponentPropsWithoutRef<"p">, "content"> & {
    * If true, the text будет rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  size?: ComponentSize;
   color?: WimColor;
   weight?: "normal" | "bold" | "medium";
   lineHeight?: WimLineHeight;

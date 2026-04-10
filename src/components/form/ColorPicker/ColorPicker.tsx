@@ -13,7 +13,7 @@ export type ColorPickerProps = Omit<InputProps, "type">;
  * ユーザーが色を選択するためのコンポーネント。
  */
 export const ColorPicker = ({
-  intent = "default",
+  status = "default",
   variant = "outline",
   fullWidth = false,
   className,
@@ -23,7 +23,7 @@ export const ColorPicker = ({
   return (
     <Input
       type="color"
-      intent={ intent }
+      status={status}
       variant={variant}
       fullWidth={fullWidth}
       className={className}

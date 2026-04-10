@@ -60,17 +60,17 @@ export const Sizes: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <AvatarGroup {...args} size="sm">
         {users.map((u, i) => (
-          <Avatar key={i} initials={u.initials} intent="primary" />
+          <Avatar key={i} initials={u.initials} status="primary" />
         ))}
       </AvatarGroup>
       <AvatarGroup {...args} size="md">
         {users.map((u, i) => (
-          <Avatar key={i} initials={u.initials} intent="secondary" />
+          <Avatar key={i} initials={u.initials} status="secondary" />
         ))}
       </AvatarGroup>
       <AvatarGroup {...args} size="lg">
         {users.map((u, i) => (
-          <Avatar key={i} initials={u.initials} intent="neutral" />
+          <Avatar key={i} initials={u.initials} status="neutral" />
         ))}
       </AvatarGroup>
     </div>

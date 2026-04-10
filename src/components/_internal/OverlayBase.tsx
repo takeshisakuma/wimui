@@ -67,7 +67,7 @@ export const OverlayBase = ({
       <Transition
         show={open}
         className={classNames(styles.root, overlayClassName)}
-        data-testid="wim-overlay"
+        data-testid="overlay"
         onClick={(e) => {
           if (closeOnOverlayClick && e.target === e.currentTarget) {
             onOpenChange(false);
@@ -79,7 +79,7 @@ export const OverlayBase = ({
         <Transition
           show={open}
           className={contentClassName}
-          data-testid="wim-overlay-content"
+          data-testid="overlay-content"
           role={role}
           aria-modal={ariaModal}
           onClick={(e) => e.stopPropagation()}

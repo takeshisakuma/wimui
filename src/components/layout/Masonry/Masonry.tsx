@@ -38,17 +38,16 @@ export const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
       >
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
-            const typedChild = child as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
-            const existingStyle = typedChild.props.style || {};
-            return React.cloneElement(typedChild, {
+            const childProps = child.props as React.HTMLAttributes<HTMLElement>;
+            const existingStyle = childProps.style || {};
+            return React.cloneElement(child, {
               style: { ...itemStyle, ...existingStyle },
               className: classNames(
                 styles.item,
-                typedChild.props.className,
+                childProps.className,
               ),
-              "data-testid": "wim-masonry-item",
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            } as any);
+              "data-testid": "masonry-item",
+            } as React.Attributes & React.HTMLAttributes<HTMLElement>);
           }
           return child;
         })}

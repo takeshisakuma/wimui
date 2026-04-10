@@ -13,7 +13,7 @@ const meta: Meta<typeof Banner> = {
   argTypes: {
     onClose: { action: "closed" },
     icon: { control: "boolean" },
-    intent: {
+    status: {
       control: "select",
       options: ["info", "success", "warning", "error"],
     },
@@ -38,7 +38,7 @@ export const Info: Story = {
     );
   },
   args: {
-    intent: "info",
+    status: "info",
   },
 };
 
@@ -54,7 +54,7 @@ export const Success: Story = {
     );
   },
   args: {
-    intent: "success",
+    status: "success",
   },
 };
 
@@ -70,7 +70,7 @@ export const Warning: Story = {
     );
   },
   args: {
-    intent: "warning",
+    status: "warning",
   },
 };
 
@@ -87,7 +87,7 @@ export const ErrorStatus: Story = {
     );
   },
   args: {
-    intent: "error",
+    status: "error",
   },
 };
 
@@ -107,7 +107,7 @@ export const WithAction: Story = {
     );
   },
   args: {
-    intent: "info",
+    status: "info",
   },
 };
 
@@ -128,7 +128,7 @@ export const WithCloseAndAction: Story = {
     );
   },
   args: {
-    intent: "warning",
+    status: "warning",
   },
 };
 
@@ -143,7 +143,7 @@ export const DescriptionOnly: Story = {
     );
   },
   args: {
-    intent: "info",
+    status: "info",
   },
 };
 
@@ -160,6 +160,6 @@ export const NoIcon: Story = {
     );
   },
   args: {
-    intent: "info",
+    status: "info",
   },
 };

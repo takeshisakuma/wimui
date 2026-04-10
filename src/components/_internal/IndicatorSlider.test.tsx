@@ -16,7 +16,7 @@ describe("IndicatorSlider", () => {
     render(
       <IndicatorSlider activeSelector=".active" />
     );
-    const slider = screen.getByTestId("wim-indicator-slider");
+    const slider = screen.getByTestId("indicator-slider");
     expect(slider).toBeInTheDocument();
   });
 
@@ -24,7 +24,7 @@ describe("IndicatorSlider", () => {
     render(
       <IndicatorSlider activeSelector=".active" className="custom-class" />
     );
-    const slider = screen.getByTestId("wim-indicator-slider");
+    const slider = screen.getByTestId("indicator-slider");
     expect(slider).toHaveClass("custom-class");
   });
 
@@ -32,9 +32,10 @@ describe("IndicatorSlider", () => {
     render(
       <IndicatorSlider activeSelector=".active" />
     );
-    const slider = screen.getByTestId("wim-indicator-slider") as HTMLElement;
+    const slider = screen.getByTestId("indicator-slider") as HTMLElement;
     expect(slider.style.width).toBe("100px");
     expect(slider.style.left).toBe("10px");
   });
 });
+
 

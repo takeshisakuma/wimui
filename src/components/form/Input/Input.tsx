@@ -6,10 +6,10 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import { Icon } from "../../media/Icon/Icon";
 import { InputBase, InputBaseIcon } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
-import { WimIntent, FieldVariant } from "../../../types/tokens";
+import { FieldStatus, FieldVariant } from "../../../types/tokens";
 
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
-  intent?: WimIntent;
+  status?: FieldStatus;
   variant?: FieldVariant;
   fullWidth?: boolean;
   leftIcon?: React.ComponentProps<typeof Icon>["name"];
@@ -40,7 +40,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      intent = "default",
+      status = "default",
       variant = "outline",
       fullWidth = false,
       className,
@@ -152,7 +152,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }
 
     const inputType = type === "password" && isPasswordVisible ? "text" : type;
-    const effectiveIntent = isDisabled ? "disabled" : (error ? "error" : intent);
+    const currentStatus = error ? "error" : status;
 
     const generatedId = useId();
     const id = customId || `wim-input-${generatedId}`;
@@ -170,7 +170,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         className={className}
       >
         <InputBase
-          intent={error ? "error" : intent}
+          status={currentStatus}
           variant={variant}
           fullWidth={fullWidth}
           width={width}
@@ -189,7 +189,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={mergedRef}
             className={classNames(
               styles.root,
-              styles[effectiveIntent],
+              styles[currentStatus],
+              isDisabled && styles.disabled,
               styles[variant],
               inputClassName,
             )}
@@ -197,7 +198,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             value={currentValue}
             onChange={handleInputChange}
             type={inputType}
-            aria-invalid={effectiveIntent === "error"}
+            aria-invalid={currentStatus === "error"}
             aria-describedby={errorId}
             aria-labelledby={label ? labelId : undefined}
             {...props}

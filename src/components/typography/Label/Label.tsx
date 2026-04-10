@@ -19,8 +19,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       <Component
         className={classNames(styles.root, className)}
         htmlFor={htmlFor}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         {...props}
       >
         <span className={styles.headerWrapper}>

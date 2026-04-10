@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Title } from "./Title";
+import styles from "./title.module.scss";
 
 // Mock translation
 vi.mock("react-i18next", () => ({
@@ -22,14 +23,15 @@ describe("Title", () => {
       </Title>,
     );
     const heading = screen.getByRole("heading");
-    expect(heading.className).toContain("xl");
-    expect(heading.className).toContain("primary");
-    expect(heading.className).toContain("center");
+    expect(heading).toHaveClass(styles.xl);
+    expect(heading).toHaveClass(styles.primary);
+    expect(heading).toHaveClass(styles.center);
   });
 
   it("handles decoration", () => {
     render(<Title decoration="underline">Title Text</Title>);
     const textElement = screen.getByText("Title Text");
-    expect(textElement.className).toContain("underline");
+    expect(textElement).toHaveClass(styles.underline);
   });
 });
+

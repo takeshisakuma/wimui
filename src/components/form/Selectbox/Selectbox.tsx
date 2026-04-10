@@ -4,6 +4,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import localStyles from "./selectbox.module.scss";
 import { useSelectbox } from "./useSelectbox";
+import { type FieldStatus } from "../../../types/tokens";
 
 export type SelectboxOption = {
   label?: React.ReactNode;
@@ -41,6 +42,7 @@ export type SelectboxProps = {
   fullWidth?: boolean;
   /** Unique ID for the component */
   id?: string;
+  status?: FieldStatus;
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
@@ -89,6 +91,7 @@ export const Selectbox = ({
   grouped = false,
   allowClear = false,
   fullWidth = false,
+  status = "default",
   id: customId,
   noOptionsFoundLabel = "No options found",
   styles: stylesProp,
@@ -100,6 +103,8 @@ export const Selectbox = ({
   const errorId = error ? `${id}-error` : undefined;
   const listId = `${id}-list`;
   const triggerId = `${id}-trigger`;
+
+  const currentStatus = error ? "error" : status;
 
   const {
     isOpen,
@@ -283,7 +288,7 @@ export const Selectbox = ({
           allowClear={allowClear}
           hasValue={!!currentValue}
           onClear={handleClear}
-          intent={error ? "error" : "default"}
+          status={currentStatus}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           fullWidth={fullWidth}
           styles={stylesProp?.inputBase}
@@ -307,7 +312,7 @@ export const Selectbox = ({
             aria-labelledby={labelId || ariaLabelledBy}
             aria-label={label ? undefined : (typeof ariaLabel === "string" ? ariaLabel : (typeof placeholder === "string" ? placeholder : undefined))}
             aria-describedby={errorId || ariaDescribedBy}
-            aria-invalid={!!error}
+            aria-invalid={currentStatus === "error"}
             aria-activedescendant={isOpen ? activeDescendant : undefined}
             ref={triggerRef}
           >

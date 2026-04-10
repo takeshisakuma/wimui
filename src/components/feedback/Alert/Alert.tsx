@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
-import { WimIntent } from "../../../types/tokens";
+import { FeedbackStatus } from "../../../types/tokens";
 import styles from "./alert.module.scss";
 
 type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -15,9 +15,9 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
    */
   description?: React.ReactNode;
   /**
-   * アラートのインテント
+   * アラートのステータス
    */
-  intent?: WimIntent;
+  status?: FeedbackStatus;
   /**
    * カスタムアイコン。指定しない場合はバリアントに応じたデフォルトアイコンが表示されます。
    */
@@ -42,7 +42,7 @@ type AlertProps = React.ComponentPropsWithoutRef<"div"> & {
 export const Alert = ({
   title,
   description,
-  intent = "info",
+  status = "info",
   icon,
   onClose,
   className,
@@ -60,12 +60,12 @@ export const Alert = ({
 
   return (
     <div
-      className={classNames(styles.root, styles[intent], className)}
+      className={classNames(styles.root, styles[status], className)}
       role="alert"
       {...props}
     >
       <div className={styles.icon}>
-        <FeedbackIcon intent={intent} icon={icon} size="sm" />
+        <FeedbackIcon status={status} icon={icon} size="sm" />
       </div>
       <div className={styles.content}>
         {title && <h4 className={styles.title}>{title}</h4>}

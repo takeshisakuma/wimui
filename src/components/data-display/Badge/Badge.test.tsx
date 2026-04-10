@@ -23,7 +23,7 @@ describe("Badge", () => {
 
   it("applies variant and status classes", () => {
     const { container } = render(
-      <Badge intent="error" variant="outline">Test</Badge>,
+      <Badge status="error" variant="outline">Test</Badge>,
     );
     const span = container.firstChild;
     expect(span).toHaveClass(styles.error);

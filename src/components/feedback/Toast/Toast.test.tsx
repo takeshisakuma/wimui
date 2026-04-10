@@ -39,7 +39,7 @@ describe("Toast", () => {
   });
 
   it("applies status class", () => {
-    const { container } = render(<Toast title="Message" intent="success" />);
+    const { container } = render(<Toast title="Message" status="success" />);
     expect(container.firstChild).toHaveClass(/success/);
   });
 });

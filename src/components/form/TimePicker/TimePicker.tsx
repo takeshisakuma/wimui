@@ -11,7 +11,7 @@ export type TimePickerProps = Omit<InputProps, "type" | "rightIcon">;
  * ユーザーが時間を選択するためのコンポーネント。
  */
 export const TimePicker = ({
-  intent = "default",
+  status = "default",
   variant = "outline",
   fullWidth = false,
   className,
@@ -23,7 +23,7 @@ export const TimePicker = ({
     <Input
       type="time"
       allowClear={allowClear}
-      intent={ intent }
+      status={status}
       variant={variant}
       fullWidth={fullWidth}
       className={className}

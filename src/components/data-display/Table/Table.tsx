@@ -73,11 +73,9 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
             mobileCard && styles.mobileCard,
             className,
           )}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ref={ref as any}
+          ref={ref}
           data-testid="table-root"
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          {...(props as any)}
+          {...(props as React.TableHTMLAttributes<HTMLTableElement>)}
         >
           <Slottable>{children}</Slottable>
         </Component>
@@ -95,11 +93,9 @@ export const TableHeader = React.forwardRef<HTMLTableSectionElement, TableHeader
     return (
       <Component
         className={classNames(styles.header, className)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         data-testid="table-header"
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
+        {...(props as React.HTMLAttributes<HTMLTableSectionElement>)}
       >
         <Slottable>{children}</Slottable>
       </Component>
@@ -116,11 +112,9 @@ export const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProp
     return (
       <Component
         className={classNames(styles.body, className)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         data-testid="table-body"
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
+        {...(props as React.HTMLAttributes<HTMLTableSectionElement>)}
       >
         <Slottable>{children}</Slottable>
       </Component>
@@ -137,11 +131,9 @@ export const TableFooter = React.forwardRef<HTMLTableSectionElement, TableFooter
     return (
       <Component
         className={classNames(styles.footer, className)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         data-testid="table-footer"
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
+        {...(props as React.HTMLAttributes<HTMLTableSectionElement>)}
       >
         <Slottable>{children}</Slottable>
       </Component>
@@ -160,11 +152,9 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
     return (
       <Component
         className={classNames(styles.row, selected && styles.selected, className)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         data-testid="table-row"
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
+        {...(props as React.HTMLAttributes<HTMLTableRowElement>)}
       >
         <Slottable>{children}</Slottable>
       </Component>
@@ -221,23 +211,20 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
           right: stickyRight ? (rightOffset !== undefined ? rightOffset : 0) : undefined,
           zIndex: stickyZIndex !== undefined ? stickyZIndex : undefined,
         }}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         data-testid="table-head"
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
+        {...(props as React.ThHTMLAttributes<HTMLTableCellElement>)}
         onClick={sortable ? onSort : props.onClick}
         tabIndex={props.tabIndex !== undefined ? props.tabIndex : sortable ? 0 : undefined}
         aria-sort={
           sortable ? (sortDirection === "asc" ? "ascending" : sortDirection === "desc" ? "descending" : "none") : undefined
         }
-        onKeyDown={(e: React.KeyboardEvent<HTMLElement>) => {
+        onKeyDown={(e: React.KeyboardEvent<HTMLTableCellElement>) => {
           if (sortable && onSort && (e.key === "Enter" || e.key === " ")) {
             e.preventDefault();
             onSort(e);
           }
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          props.onKeyDown?.(e as any);
+          props.onKeyDown?.(e);
         }}
       >
         <div className={styles.headContent}>
@@ -299,11 +286,9 @@ export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
           zIndex: stickyZIndex !== undefined ? stickyZIndex : undefined,
         }}
         data-label={label}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         data-testid="table-cell"
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
+        {...(props as React.TdHTMLAttributes<HTMLTableCellElement>)}
       >
         <Slottable>{children}</Slottable>
       </Component>
@@ -337,3 +322,4 @@ TableComponent.Cell = TableCell;
 
 export { TableComponent as Table };
 export default TableComponent;
+

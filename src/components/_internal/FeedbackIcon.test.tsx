@@ -4,7 +4,7 @@ import { FeedbackIcon } from "./FeedbackIcon";
 
 describe("FeedbackIcon", () => {
   it("renders a custom ReactElement icon", () => {
-    render(<FeedbackIcon icon={<span data-testid="custom-icon">★</span>} />);
+    render(<FeedbackIcon icon={<span data-testid="custom-icon"></span>} />);
     expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
   });
 
@@ -14,13 +14,13 @@ describe("FeedbackIcon", () => {
   });
 
   it("renders a default icon for success status", () => {
-    const { container } = render(<FeedbackIcon intent="info" />);
+    const { container } = render(<FeedbackIcon status="info" />);
     expect(container.firstChild).not.toBeNull();
   });
 
   it("renders a default icon for each non-success status", () => {
     for (const intent of ["info", "warning", "error", "default"] as const) {
-      const { container } = render(<FeedbackIcon intent={ intent } />);
+      const { container } = render(<FeedbackIcon status={ intent } />);
       expect(container.firstChild).not.toBeNull();
     }
   });
@@ -30,3 +30,4 @@ describe("FeedbackIcon", () => {
     expect(container.querySelector(".my-icon")).toBeInTheDocument();
   });
 });
+

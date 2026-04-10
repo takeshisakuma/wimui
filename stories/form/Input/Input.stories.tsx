@@ -24,7 +24,7 @@ const meta: Meta<typeof Input> = {
       control: "select",
       options: ["default", "outline", "ghost"],
     },
-    intent: {
+    status: {
       control: "select",
       options: ["default", "error"],
     },
@@ -181,7 +181,7 @@ export const ErrorStatus: Story = {
     );
   },
   args: {
-    intent: "error",
+    status: "error",
   },
 };
 

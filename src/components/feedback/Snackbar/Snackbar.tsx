@@ -9,7 +9,7 @@ import { Button } from "../../form/Button/Button";
 import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
-import { WimIntent } from "../../../types/tokens";
+import { FeedbackStatus } from "../../../types/tokens";
 import styles from "./snackbar.module.scss";
 
 export type SnackbarPosition =
@@ -26,7 +26,7 @@ export interface SnackbarProps {
   /** 表示状態 */
   open?: boolean;
   /** 表示するタイプ */
-  intent?: WimIntent;
+  status?: FeedbackStatus;
   /** 表示位置 */
   position?: SnackbarPosition;
   /** 自動で閉じるまでの時間（ミリ秒）。0を指定すると自動で閉じません。 */
@@ -49,7 +49,7 @@ export interface SnackbarProps {
 export const Snackbar = ({
   message,
   open = false,
-  intent = "default",
+  status = "info",
   position = "bottom-center",
   autoHideDuration = 5000,
   showCloseButton = false,
@@ -124,8 +124,8 @@ export const Snackbar = ({
 
     if (!isRendered && !open) return null;
 
-    const role = intent === "error" || intent === "warning" ? "alert" : "status";
-    const ariaLive = intent === "error" || intent === "warning" ? "assertive" : "polite";
+    const role = status === "error" || status === "warning" ? "alert" : "status";
+    const ariaLive = status === "error" || status === "warning" ? "assertive" : "polite";
 
     return (
       <div
@@ -137,7 +137,7 @@ export const Snackbar = ({
         <div
           className={classNames(
             styles.root,
-            intent && styles[intent],
+            status && styles[status],
             isVisible && styles.visible,
             className,
           )}
@@ -149,10 +149,10 @@ export const Snackbar = ({
           onBlur={handleMouseLeave}
         >
           <div className={styles.content}>
-            {intent !== "default" && (
+            {status !== "info" && (
               <div className={styles.icon}>
                 <FeedbackIcon
-                  intent={ intent }
+                  status={ status }
                   size="sm"
                 />
               </div>

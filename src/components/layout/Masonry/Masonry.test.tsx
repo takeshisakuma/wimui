@@ -15,7 +15,7 @@ describe("Masonry", () => {
     const masonry = container.firstChild as HTMLElement;
     expect(masonry).toBeInTheDocument();
     expect(masonry.style.columnCount).toBe("3");
-    expect(screen.getAllByTestId("wim-masonry-item")).toHaveLength(3);
+    expect(screen.getAllByTestId("masonry-item")).toHaveLength(3);
   });
 
   it("applies custom spacing", () => {
@@ -26,7 +26,7 @@ describe("Masonry", () => {
     );
     const masonry = container.firstChild as HTMLElement;
     expect(masonry.style.columnGap).toBe("20px");
-    const item = screen.getByTestId("wim-masonry-item");
+    const item = screen.getByTestId("masonry-item");
     expect(item.style.marginBottom).toBe("20px");
   });
 
@@ -37,7 +37,7 @@ describe("Masonry", () => {
         <div>Element</div>
       </Masonry>,
     );
-    expect(screen.getAllByTestId("wim-masonry-item")).toHaveLength(1);
+    expect(screen.getAllByTestId("masonry-item")).toHaveLength(1);
   });
 
 });

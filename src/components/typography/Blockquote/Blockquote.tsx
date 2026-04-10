@@ -40,8 +40,7 @@ export const Blockquote = React.forwardRef<HTMLQuoteElement, BlockquoteProps>(
           border && styles.border,
           className,
         )}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         {...props}
       >
         <div className={styles.content}>

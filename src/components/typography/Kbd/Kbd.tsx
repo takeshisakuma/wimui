@@ -19,8 +19,7 @@ export const Kbd = React.forwardRef<HTMLElement, KbdProps>(
     return (
       <Component
         className={classNames(styles.root, styles[size], className)}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={ref}
         {...props}
       >
         <Slottable>{children}</Slottable>

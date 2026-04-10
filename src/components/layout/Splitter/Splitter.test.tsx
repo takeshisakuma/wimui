@@ -24,7 +24,7 @@ describe("Splitter", () => {
         <Splitter.Panel>Panel 2</Splitter.Panel>
       </Splitter>,
     );
-    expect(screen.getByTestId("wim-splitter-root")).toBeInTheDocument();
+    expect(screen.getByTestId("splitter-root")).toBeInTheDocument();
   });
 
   it("applies vertical orientation when specified", () => {
@@ -35,7 +35,7 @@ describe("Splitter", () => {
         <Splitter.Panel>Panel 2</Splitter.Panel>
       </Splitter>,
     );
-    expect(screen.getByTestId("wim-splitter-root")).toBeInTheDocument();
+    expect(screen.getByTestId("splitter-root")).toBeInTheDocument();
   });
 
   it("distributes sizes equally by default", () => {
@@ -46,7 +46,7 @@ describe("Splitter", () => {
         <Splitter.Panel>Panel 2</Splitter.Panel>
       </Splitter>,
     );
-    const panels = screen.getAllByTestId("wim-splitter-panel");
+    const panels = screen.getAllByTestId("splitter-panel");
     expect(panels[0]).toHaveStyle({ flex: "0 0 50%" });
     expect(panels[1]).toHaveStyle({ flex: "0 0 50%" });
   });
@@ -59,7 +59,7 @@ describe("Splitter", () => {
         <Splitter.Panel defaultSize={70}>Panel 2</Splitter.Panel>
       </Splitter>,
     );
-    const panels = screen.getAllByTestId("wim-splitter-panel");
+    const panels = screen.getAllByTestId("splitter-panel");
     expect(panels[0]).toHaveStyle({ flex: "0 0 30%" });
     expect(panels[1]).toHaveStyle({ flex: "0 0 70%" });
   });
@@ -73,7 +73,7 @@ describe("Splitter", () => {
       </Splitter>,
     );
     
-    const splitter = screen.getByTestId("wim-splitter-root") as HTMLDivElement;
+    const splitter = screen.getByTestId("splitter-root") as HTMLDivElement;
     // Mock getBoundingClientRect
     splitter.getBoundingClientRect = vi.fn().mockReturnValue({
         width: 1000,
@@ -95,7 +95,7 @@ describe("Splitter", () => {
     // Move to 600px (60%)
     fireEvent.mouseMove(window, { clientX: 600 });
     
-    const panels = screen.getAllByTestId("wim-splitter-panel");
+    const panels = screen.getAllByTestId("splitter-panel");
     expect(panels[0]).toHaveStyle({ flex: "0 0 60%" });
     expect(panels[1]).toHaveStyle({ flex: "0 0 40%" });
     
@@ -116,7 +116,7 @@ describe("Splitter", () => {
       </Splitter>,
     );
     
-    const splitter = screen.getByTestId("wim-splitter-root") as HTMLDivElement;
+    const splitter = screen.getByTestId("splitter-root") as HTMLDivElement;
     splitter.getBoundingClientRect = vi.fn().mockReturnValue({ width: 1000, left: 0 });
 
     const handle = screen.getByRole("separator");
@@ -124,7 +124,7 @@ describe("Splitter", () => {
 
     // Try to move to 30% (300px)
     fireEvent.mouseMove(window, { clientX: 300 });
-    const panels = screen.getAllByTestId("wim-splitter-panel");
+    const panels = screen.getAllByTestId("splitter-panel");
     expect(panels[0]).toHaveStyle({ flex: "0 0 40%" }); // Clamped to minSize
 
     // Try to move to 80% (800px)

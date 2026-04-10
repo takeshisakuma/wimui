@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { ComponentSize, WimIntent, IndicatorVariant } from "../../types/tokens";
+import { ComponentSize, IndicatorStatus, IndicatorVariant } from "../../types/tokens";
 
 export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   /**
@@ -10,7 +10,7 @@ export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   asChild?: boolean;
   children?: React.ReactNode;
   icon?: React.ReactNode;
-  intent?: WimIntent;
+  status?: IndicatorStatus;
   variant?: IndicatorVariant;
   size?: ComponentSize;
   styles?: { [key: string]: string };
@@ -20,8 +20,7 @@ export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
 
 interface IndicatorBaseComponent {
   <C extends React.ElementType = "span">(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    props: IndicatorBaseProps<C> & { ref?: React.Ref<any> },
+    props: IndicatorBaseProps<C> & { ref?: React.Ref<React.ComponentRef<C>> },
   ): React.ReactElement;
   displayName?: string;
 }
@@ -31,7 +30,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
     asChild = false,
     children,
     icon,
-    intent = "primary",
+    status = "primary",
     variant = "solid",
     size = "md",
     styles,
@@ -39,14 +38,13 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
     className,
     ...props
   }: IndicatorBaseProps<C>,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref: React.Ref<any>,
+  ref: React.Ref<React.ComponentRef<C>>,
 ) => {
   const Component = asChild ? Slot : (as || "span");
 
   const resolvedClassName = classNames(
     styles?.root,
-    styles?.[intent],
+    styles?.[status],
     styles?.[variant],
     styles?.[size],
     className,
@@ -56,7 +54,8 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
 
   return (
     <Component
-      ref={ref}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref={ref as any}
       className={resolvedClassName}
       {...props}
     >
@@ -67,7 +66,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const IndicatorBase: IndicatorBaseComponent = React.forwardRef(IndicatorBaseInner as any) as any;
+export const IndicatorBase = React.forwardRef(IndicatorBaseInner as any) as IndicatorBaseComponent;
 
 IndicatorBase.displayName = "IndicatorBase";
 
