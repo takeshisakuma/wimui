@@ -11,6 +11,11 @@ export type LiteralWithAutocomplete<T extends string> = T | (string & {});
 export type ComponentSize = "sm" | "md" | "lg";
 
 /**
+ * Standard width values for form field components.
+ */
+export type FieldWidth = "xs" | "sm" | "md" | "lg" | "xl";
+
+/**
  * Variant values for button-style components (Button, ButtonGroup, LinkButton).
  */
 export type ButtonVariant = "solid" | "outline" | "ghost";

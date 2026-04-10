@@ -29,8 +29,16 @@ export interface FloatingElementOptions {
 }
 
 /**
- * Popover, Dropdown, Menu, Tooltip 等の「浮遊系」コンポーネントで共有されるロジック。
- * Floating UI を利用した位置計算、インタラクション（クリック / ホバー）、アクセシビリティ管理を一元化します。
+ * useFloatingElement is a shared internal hook for "floating" components like Popover, 
+ * Dropdown, Menu, and Tooltip.
+ * 
+ * Composition Contract:
+ * - Centralizes Floating UI logic for automated position calculation.
+ * - Handles standard interaction triggers (click, hover, focus).
+ * - Manages accessibility attributes via `useRole`.
+ * - Provides dismiss behavior (outside click, escape key).
+ * 
+ * @param options Configuration options for positioning and interaction.
  */
 export const useFloatingElement = ({
   placement = "bottom-start",

@@ -4,7 +4,8 @@
     box-sizing: border-box;
     display: block;
     width: 100%;
-    max-width: 280px;
+    min-width: 0;
+    max-width: var(--wim-input-width, 280px);
 
     /* Allow vertical resizing by default */
     min-height: 80px;
@@ -68,8 +69,20 @@
     }
 
     &.fullWidth {
+      width: 100% !important;
+      max-width: none !important;
+    }
+
+    // Semantic widths
+    &.widthXs { --wim-input-width: 80px; }
+    &.widthSm { --wim-input-width: 160px; }
+    &.widthMd { --wim-input-width: 280px; }
+    &.widthLg { --wim-input-width: 480px; }
+    &.widthXl { --wim-input-width: 640px; }
+
+    &.hasCustomWidth {
       width: 100%;
-      max-width: none;
+      max-width: var(--wim-input-width);
     }
 
     &.fieldSizingContent {

@@ -5,7 +5,7 @@ import { InputBase } from "../InputBase";
 import { Transition } from "../../layout/Transition/Transition";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { FieldTemplate } from "../FieldTemplate";
-import { FieldIntent, FieldVariant } from "../../../types/tokens";
+import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./date-picker.module.scss";
 import inputStyles from "../../form/Input/input.module.scss";
 
@@ -44,6 +44,7 @@ type DatePickerProps = Omit<
   layout?: "vertical" | "horizontal";
   /** 手動翻訳用のラベル */
   labels?: DatePickerLabels;
+  width?: FieldWidth | string | number;
 };
 
 const DEFAULT_LABELS: Required<DatePickerLabels> = {
@@ -74,6 +75,7 @@ export const DatePicker = ({
   layout,
   id: customId,
   labels,
+  width,
   ...props
 }: DatePickerProps) => {
   const mergedLabels = { ...DEFAULT_LABELS, ...labels };
@@ -219,6 +221,7 @@ export const DatePicker = ({
         <InputBase
           intent={currentIntent}
           variant={variant}
+          width={width}
           fullWidth={fullWidth}
           disabled={isDisabled}
           allowClear={clearable}

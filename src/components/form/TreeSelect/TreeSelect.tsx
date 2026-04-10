@@ -6,6 +6,7 @@ import { InputBase } from "../InputBase";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import styles from "./tree-select.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
+import { FieldWidth } from "../../../types/tokens";
 
 /** treeData の label をそのまま使ってツリーを再構築する */
 function resolveLabels(
@@ -54,6 +55,7 @@ export type TreeSelectProps = {
   "aria-label"?: string;
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
+  width?: FieldWidth | string | number;
 };
 
 /**
@@ -76,6 +78,7 @@ export const TreeSelect = ({
   allowClear = false,
   checkStrategy = "cascade",
   id: customId,
+  width,
   ...props
 }: TreeSelectProps) => {
   const generatedId = useId();
@@ -252,6 +255,7 @@ export const TreeSelect = ({
           hasValue={!!displayValue}
           onClear={handleClear}
           intent={error ? "error" : "default"}
+          width={width}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && styles.open,

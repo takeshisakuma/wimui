@@ -2,26 +2,53 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./base-list-item.module.scss";
 
+/**
+ * Props for the BaseListItem component.
+ * Extends standard HTML attributes of the element specified by the `as` prop.
+ */
 export type BaseListItemProps<C extends React.ElementType = "div"> = {
-    /** The component used for the root node. */
+    /** 
+     * The component or element used for the root node. 
+     * @default "div"
+     */
     as?: C;
-    /** Left icon or element */
+    /** 
+     * Left icon or element to display before the children.
+     */
     icon?: React.ReactNode;
-    /** Right section (shortcuts, arrows, etc.) */
+    /** 
+     * Right section (e.g., shortcuts, arrows, status indicators) to display after the children.
+     */
     rightSection?: React.ReactNode;
-    /** Whether the item is currently highlighted or active */
+    /** 
+     * If true, the item will be rendered in an active/highlighted state.
+     */
     active?: boolean;
-    /** Whether the item is disabled */
+    /** 
+     * If true, the item will be rendered in a disabled state and become non-interactive.
+     */
     disabled?: boolean;
-    /** Whether the item represents a dangerous action */
+    /** 
+     * If true, the item will be styled to indicate a dangerous or destructive action.
+     */
     danger?: boolean;
-    /** Custom class name */
+    /** 
+     * Additional CSS class name.
+     */
     className?: string;
 } & React.ComponentPropsWithoutRef<C>;
 
 /**
- * Internal component for consistent list items across Select, Menu, Dropdown, etc.
- * Not intended for direct public use.
+ * BaseListItem is an internal component that provides a consistent layout and styling 
+ * for items used in lists, menus, and dropdowns.
+ * 
+ * Composition Contract:
+ * - Supports polymorphic rendering via the `as` prop.
+ * - Provides standardized slots for `icon` (start) and `rightSection` (end).
+ * - Implements hover, active, and disabled states consistently.
+ * - Handles basic accessibility (aria-disabled).
+ * 
+ * This component is intended for internal use by components like Select, Menu, and Dropdown.
  */
 export const BaseListItem = React.forwardRef(
     <C extends React.ElementType = "div">(

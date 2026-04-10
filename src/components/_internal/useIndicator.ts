@@ -17,8 +17,16 @@ export interface UseIndicatorOptions {
 }
 
 /**
- * A hook to manage the position and size of a sliding indicator (slider) 
- * that follows an active element within a container.
+ * useIndicator is a private hook used to calculate the position and size 
+ * of a sliding indicator that tracks an active element (e.g., in Tabs or SegmentedControl).
+ * 
+ * Composition Contract:
+ * - Monitors the container element for DOM and layout changes.
+ * - Uses ResizeObserver and MutationObserver for reactive positioning.
+ * - Resolves the target element using the provided `activeSelector`.
+ * - Manages an `isReady` state to prevent layout flickering on mount.
+ * 
+ * @param options Configuration for tracking the active element.
  */
 export const useIndicator = ({
   activeSelector,

@@ -2,31 +2,42 @@ import React from "react";
 import { Icon } from "../media/Icon/Icon";
 import { ComponentSize, WimIntent } from "../../types/tokens";
 
+/**
+ * Props for the FeedbackIcon component.
+ */
 export interface FeedbackIconProps {
   /**
-   * フィードバックのインテント
+   * Semantic intent of the feedback.
+   * @default "info"
    */
   intent?: WimIntent;
   /**
-   * カスタムアイコン
+   * Custom icon node. If false, no icon will be rendered.
    */
   icon?: React.ReactNode;
   /**
-   * アイコンのサイズ
+   * Size of the icon.
+   * @default "sm"
    */
   size?: ComponentSize;
   /**
-   * 追加のクラス名
+   * Additional CSS class name.
    */
   className?: string;
   /**
-   * アイコンの色（Iconコンポーネントに渡されます）
+   * Explicit color for the icon.
    */
   color?: "destructive" | "positive" | "caution" | "informative";
 }
 
 /**
- * 通知系コンポーネントで共通して使用されるアイコン表示用コンポーネント（内部用）
+ * FeedbackIcon is an internal component that resolves and displays the appropriate 
+ * icon based on component intent or a custom icon prop.
+ * 
+ * Composition Contract:
+ * - Prioritizes the `icon` prop if it is a valid React element.
+ * - Returns null if `icon` is explicitly `false`.
+ * - Maps `intent` to default system icons (e.g., success -> CheckIcon).
  */
 export const FeedbackIcon = ({
   intent = "info",

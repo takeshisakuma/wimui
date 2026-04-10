@@ -3,31 +3,42 @@ import { useTranslation } from "react-i18next";
 import { Icon } from "../media/Icon/Icon";
 import { ComponentSize } from "../../types/tokens";
 
+/**
+ * Props for the FeedbackCloseButton component.
+ */
 export interface FeedbackCloseButtonProps {
   /**
-   * 閉じるボタンをクリックした時のコールバック。指定するとボタンが表示されます。
+   * Callback fired when the close button is clicked.
+   * If not provided, the button will not be rendered (returns null).
    */
   onClose?: (id?: string) => void;
   /**
-   * ターゲットID（Toastなどで使用）
+   * Optional identifier for the target being closed (e.g., Toast ID).
    */
   id?: string;
   /**
-   * 追加のクラス名
+   * Additional CSS class name.
    */
   className?: string;
   /**
-   * aria-label
+   * ARIA label for accessibility. Defaults to translated "Close" label.
    */
   ariaLabel?: string;
   /**
-   * アイコンのサイズ
+   * Size of the close icon.
+   * @default "sm"
    */
   size?: ComponentSize;
 }
 
 /**
- * 通知系コンポーネントで共通して使用される閉じるボタン（内部用）
+ * FeedbackCloseButton is an internal component providing a standardized close button 
+ * for feedback components like Toast, Notification, and Alert.
+ * 
+ * Composition Contract:
+ * - Automatically handles click propagation stoppage.
+ * - Integrates with i18next for localized accessibility labels.
+ * - Returns null if onClose is not provided.
  */
 export const FeedbackCloseButton = ({
   onClose,

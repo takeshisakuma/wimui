@@ -6,6 +6,7 @@ import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
 import styles from "./cascader.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
+import { FieldWidth } from "../../../types/tokens";
 
 function getLabelText(label: React.ReactNode): string {
   if (typeof label === "string") return label;
@@ -41,6 +42,7 @@ export type CascaderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange
   allowClear?: boolean;
   /** Accessible label for the trigger when no visible label is provided */
   "aria-label"?: string;
+  width?: FieldWidth | string | number;
 };
 
 /**
@@ -63,6 +65,7 @@ export const Cascader = ({
   separator = " / ",
   allowClear = false,
   "aria-label": ariaLabel,
+  width,
   ...props
 }: CascaderProps) => {
   const generatedId = useId();
@@ -405,6 +408,7 @@ export const Cascader = ({
           hasValue={!!displayValue}
           onClear={handleClear}
           intent={error ? "error" : "default"}
+          width={width}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && styles.open,

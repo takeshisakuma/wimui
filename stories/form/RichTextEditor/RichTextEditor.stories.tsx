@@ -19,6 +19,10 @@ const meta: Meta<typeof RichTextEditor> = {
     fullWidth: {
       control: "boolean",
     },
+    width: {
+      control: "select",
+      options: ["xs", "sm", "md", "lg", "xl", "100%", "200px", "10ch"],
+    },
   },
 };
 

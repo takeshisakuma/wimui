@@ -32,6 +32,7 @@
 ## 実装
 
 - 可能な限り既存コンポーネント（`src/components/_internal/` の内部コンポーネントを含む）を活用し、独自実装しないようにしてください。
+  - 内部コンポーネントを設計・修正する際は、JSDoc に **「Composition Contract（合成契約）」** を明記してください。これにより、上位コンポーネントとの責任分界点（Portalの管理、スクロールロックの要否、イベントの伝搬制御など）を明確にし、暗黙的な挙動によるバグを防ぎます。
 - `any` の使用は禁止です。Props は `interface` または `type` で明示的に型定義してください。
 - HTML要素を拡張するコンポーネントでは `React.ComponentPropsWithoutRef<"element">` を使って HTML属性を継承してください。不要な属性は `Omit` で除外してください。
 - コンポーネントAPIの整合性（Prop名の統一）を保ってください。以下のルールに従ってください。
@@ -49,6 +50,7 @@
     - `IndicatorIntent` — `"primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"`（Badge・Chip・Tag・Progress など）
     - `FeedbackIntent` — `"info" | "success" | "warning" | "error"`（Alert・Banner・Toast・Notification など）
     - `FieldIntent` — `"default" | "error"`（Input・Textarea・DatePicker・RichTextEditor など）
+    - `FieldWidth` — `"xs" | "sm" | "md" | "lg" | "xl"`（Input・Selectbox・DatePicker などの幅指定）
     - `WimIntent` — 上記すべてを含む全意図値のユニオン（汎用）
   - **新しい共通 prop 型が必要になった場合は、インラインで定義せず `src/types/tokens.ts` に追加してください。**
 - 最新のセマンティックHTMLを使用してください。

@@ -6,7 +6,7 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import { Icon } from "../../media/Icon/Icon";
 import { InputBase, InputBaseIcon } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
-import { FieldIntent, FieldVariant } from "../../../types/tokens";
+import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 
 export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   intent?: FieldIntent;
@@ -22,7 +22,7 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   showPasswordToggle?: boolean;
   rightIconClassName?: string;
   rightIconRotated?: boolean;
-  width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
+  width?: FieldWidth | string | number;
   label?: React.ReactNode;
   error?: string;
   required?: boolean;

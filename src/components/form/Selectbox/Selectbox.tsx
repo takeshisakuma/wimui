@@ -4,7 +4,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import localStyles from "./selectbox.module.scss";
 import { useSelectbox } from "./useSelectbox";
-import { type FieldIntent } from "../../../types/tokens";
+import { type FieldIntent, type FieldWidth } from "../../../types/tokens";
 
 export type SelectboxOption = {
   label?: React.ReactNode;
@@ -50,6 +50,7 @@ export type SelectboxProps = {
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
   noOptionsFoundLabel?: string;
+  width?: FieldWidth | string | number;
   /** Custom styles for internal parts */
   styles?: {
     root?: string;
@@ -94,6 +95,7 @@ export const Selectbox = ({
   intent = "default",
   id: customId,
   noOptionsFoundLabel = "No options found",
+  width,
   styles: stylesProp,
   ...props
 }: SelectboxProps) => {
@@ -290,6 +292,7 @@ export const Selectbox = ({
           onClear={handleClear}
           intent={currentIntent}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
+          width={width}
           fullWidth={fullWidth}
           styles={stylesProp?.inputBase}
         >

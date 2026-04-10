@@ -32,6 +32,10 @@ const meta: Meta<typeof Textarea> = {
       control: "select",
       options: ["fixed", "content"],
     },
+    width: {
+      control: "select",
+      options: ["xs", "sm", "md", "lg", "xl", "100%", "200px", "10ch"],
+    },
   },
 };
 

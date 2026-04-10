@@ -6,6 +6,7 @@ import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
 import styles from "./multiselect.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
+import { FieldWidth } from "../../../types/tokens";
 
 export type MultiSelectOption = {
   label: string;
@@ -32,6 +33,7 @@ export type MultiSelectProps = {
   "aria-label"?: string;
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
+  width?: FieldWidth | string | number;
 };
 
 /**
@@ -51,6 +53,7 @@ export const MultiSelect = ({
   defaultValue = [],
   allowClear = false,
   id: customId,
+  width,
   ...props
 }: MultiSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -244,6 +247,7 @@ export const MultiSelect = ({
           hasValue={currentValues && currentValues.length > 0}
           onClear={handleClearAll}
           intent={error ? "error" : "default"}
+          width={width}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           className={classNames(
             isOpen && styles.open,

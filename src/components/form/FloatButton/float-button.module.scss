@@ -1,7 +1,7 @@
 @layer component {
   .root {
     position: relative;
-    z-index: 1000;
+    z-index: var(--wim-z-overlay);
     display: inline-flex;
     align-items: center;
     justify-content: center;

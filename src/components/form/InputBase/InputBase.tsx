@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { WimIntent, FieldIntent } from "../../../types/tokens";
+import { WimIntent, FieldIntent, FieldWidth } from "../../../types/tokens";
 import localStyles from "./input-base.module.scss";
 
 export type InputBaseIcon = {
@@ -20,7 +20,7 @@ export type InputBaseProps = {
   intent?: FieldIntent | WimIntent;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
-  width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
+  width?: FieldWidth | string | number;
   className?: string;
   disabled?: boolean;
   leftIcon?: React.ComponentProps<typeof Icon>["name"];

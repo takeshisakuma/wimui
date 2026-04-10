@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
-import { FieldIntent, FieldVariant } from "../../../types/tokens";
+import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./rich-text-editor.module.scss";
 
 // ---- Inline SVG toolbar icons ----
@@ -144,6 +144,7 @@ export type RichTextEditorProps = {
   intent?: FieldIntent;
   variant?: FieldVariant;
   fullWidth?: boolean;
+  width?: FieldWidth | string | number;
   minHeight?: number | string;
   label?: React.ReactNode;
   error?: string;
@@ -198,6 +199,7 @@ export const RichTextEditor = ({
   intent = "default",
   variant = "outline",
   fullWidth = false,
+  width,
   minHeight = 200,
   label,
   error,
@@ -239,6 +241,15 @@ export const RichTextEditor = ({
 
   const isDisabled = disabled;
   const currentIntent = error ? "error" : intent;
+
+  const isSemanticWidth =
+    typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
+  const effectiveHasCustomWidth = width !== undefined && !isSemanticWidth && !fullWidth;
+  const effectiveSemanticWidth = isSemanticWidth && !fullWidth ? width : undefined;
+
+  const widthClassName = effectiveSemanticWidth 
+    ? styles[`width${effectiveSemanticWidth.charAt(0).toUpperCase()}${effectiveSemanticWidth.slice(1)}`]
+    : undefined;
 
   // Set initial content imperatively on mount (avoids dangerouslySetInnerHTML reset on re-render)
   const initialContentRef = React.useRef(value !== undefined ? value : defaultValue);
@@ -472,7 +483,17 @@ export const RichTextEditor = ({
           isDisabled && styles.disabled,
           styles[variant],
           fullWidth && styles.fullWidth,
+          effectiveHasCustomWidth && styles.hasCustomWidth,
+          widthClassName,
         )}
+        style={
+          effectiveHasCustomWidth
+            ? ({
+                "--wim-input-width":
+                  typeof width === "number" ? `${width}px` : width,
+              } as React.CSSProperties)
+            : undefined
+        }
       >
         {/* Toolbar */}
         <div

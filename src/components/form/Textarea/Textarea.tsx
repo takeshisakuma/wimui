@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
-import { FieldIntent, FieldVariant } from "../../../types/tokens";
+import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./textarea.module.scss";
 
 type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
@@ -13,6 +13,7 @@ type TextareaProps = React.ComponentPropsWithoutRef<"textarea"> & {
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
+  width?: FieldWidth | string | number;
 };
 
 /**
@@ -32,6 +33,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       required,
       layout,
       id: customId,
+      width,
       ...props
     },
     ref,
@@ -43,6 +45,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const id = customId || `wim-textarea-${generatedId}`;
     const errorId = error ? `${id}-error` : undefined;
     const labelId = label ? `${id}-label` : undefined;
+    const isSemanticWidth =
+      typeof width === "string" && ["xs", "sm", "md", "lg", "xl"].includes(width);
+    const effectiveHasCustomWidth = width !== undefined && !isSemanticWidth && !fullWidth;
+    const effectiveSemanticWidth = isSemanticWidth && !fullWidth ? width : undefined;
+
+    const widthClassName = effectiveSemanticWidth 
+      ? styles[`width${effectiveSemanticWidth.charAt(0).toUpperCase()}${effectiveSemanticWidth.slice(1)}`]
+      : undefined;
 
     return (
       <FieldTemplate
@@ -63,8 +73,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             isDisabled && styles.disabled,
             styles[variant],
             fullWidth && styles.fullWidth,
+            effectiveHasCustomWidth && styles.hasCustomWidth,
+            widthClassName,
             fieldSizing === "content" && styles.fieldSizingContent,
           )}
+          style={{
+            ...(effectiveHasCustomWidth ? {
+              "--wim-input-width": typeof width === "number" ? `${width}px` : width,
+            } as React.CSSProperties : {}),
+            ...props.style,
+          }}
           disabled={isDisabled}
           aria-invalid={currentIntent === "error"}
           aria-describedby={errorId}
