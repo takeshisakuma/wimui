@@ -23,7 +23,7 @@ const meta: Meta<typeof Stepper> = {
       control: "radio",
       options: ["horizontal", "vertical"],
     },
-    status: {
+    intent: {
       control: "select",
       options: ["wait", "process", "finish", "error"],
     },
@@ -84,7 +84,7 @@ export const ErrorStatus: Story = {
     return <Stepper {...args} steps={steps} current={1} />;
   },
   args: {
-    status: "error",
+    intent: "error",
   },
 };
 

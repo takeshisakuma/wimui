@@ -62,7 +62,7 @@ export const Error: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <InputBase {...args} status="error" leftIcon="AlertCircleIcon">
+      <InputBase {...args} intent="error" leftIcon="AlertCircleIcon">
         <DummyInput placeholder={t("doc.inputBase_placeholder")} />
       </InputBase>
     );

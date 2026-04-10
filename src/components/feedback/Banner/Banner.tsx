@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
-import { FeedbackStatus } from "../../../types/tokens";
+import { FeedbackIntent } from "../../../types/tokens";
 import styles from "./banner.module.scss";
 
 type BannerProps = {
@@ -15,9 +15,9 @@ type BannerProps = {
    */
   description?: React.ReactNode;
   /**
-   * バナーのステータス
+   * バナーのインテント（意味的状態）
    */
-  status?: FeedbackStatus;
+  intent?: FeedbackIntent;
   /**
    * アイコンを表示するかどうか、またはカスタムアイコン
    */
@@ -47,7 +47,7 @@ type BannerProps = {
 export const Banner = ({
   title,
   description,
-  status = "info",
+  intent = "info",
   icon = true,
   extra,
   onClose,
@@ -58,7 +58,7 @@ export const Banner = ({
 
   return (
     <div
-      className={classNames(styles.root, styles[status], className)}
+      className={classNames(styles.root, styles[intent], className)}
       role="banner"
       {...props}
     >
@@ -67,7 +67,7 @@ export const Banner = ({
           {icon !== false && (
             <div className={styles.icon}>
               <FeedbackIcon
-                status={status}
+                intent={intent}
                 icon={typeof icon === "boolean" ? undefined : icon}
                 size="sm"
               />

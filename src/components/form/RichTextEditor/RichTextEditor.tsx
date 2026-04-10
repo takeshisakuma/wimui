@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate";
-import { FieldStatus, FieldVariant } from "../../../types/tokens";
+import { FieldIntent, FieldVariant } from "../../../types/tokens";
 import styles from "./rich-text-editor.module.scss";
 
 // ---- Inline SVG toolbar icons ----
@@ -141,7 +141,7 @@ export type RichTextEditorProps = {
   onChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
-  status?: FieldStatus;
+  intent?: FieldIntent;
   variant?: FieldVariant;
   fullWidth?: boolean;
   minHeight?: number | string;
@@ -195,7 +195,7 @@ export const RichTextEditor = ({
   onChange,
   placeholder,
   disabled,
-  status = "default",
+  intent = "default",
   variant = "outline",
   fullWidth = false,
   minHeight = 200,
@@ -238,7 +238,7 @@ export const RichTextEditor = ({
   const labelId = label ? `${id}-label` : undefined;
 
   const isDisabled = disabled;
-  const currentStatus = error ? "error" : status;
+  const currentIntent = error ? "error" : intent;
 
   // Set initial content imperatively on mount (avoids dangerouslySetInnerHTML reset on re-render)
   const initialContentRef = React.useRef(value !== undefined ? value : defaultValue);
@@ -468,7 +468,7 @@ export const RichTextEditor = ({
       <div
         className={classNames(
           styles.root,
-          styles[currentStatus],
+          styles[currentIntent],
           isDisabled && styles.disabled,
           styles[variant],
           fullWidth && styles.fullWidth,
@@ -496,7 +496,7 @@ export const RichTextEditor = ({
           aria-multiline
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledby ?? (label ? labelId : undefined)}
-          aria-invalid={currentStatus === "error"}
+          aria-invalid={currentIntent === "error"}
           aria-describedby={errorId}
           aria-disabled={isDisabled}
           aria-placeholder={placeholder}

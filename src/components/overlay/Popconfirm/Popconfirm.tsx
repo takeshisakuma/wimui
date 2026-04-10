@@ -89,7 +89,7 @@ export const Popconfirm = ({
           <div className={styles.message}>
             <span className={styles.icon}>
               <FeedbackIcon
-                status="warning"
+                intent="warning"
                 icon={icon}
                 size="sm"
                 color="caution"

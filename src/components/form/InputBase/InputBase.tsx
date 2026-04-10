@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { WimIntent, FieldStatus } from "../../../types/tokens";
+import { WimIntent, FieldIntent } from "../../../types/tokens";
 import localStyles from "./input-base.module.scss";
 
 export type InputBaseIcon = {
@@ -17,7 +17,7 @@ export type InputBaseIcon = {
 
 export type InputBaseProps = {
   children: React.ReactNode;
-  status?: FieldStatus | WimIntent;
+  intent?: FieldIntent | WimIntent;
   variant?: "outline" | "ghost";
   fullWidth?: boolean;
   width?: "xs" | "sm" | "md" | "lg" | "xl" | string | number;
@@ -50,7 +50,7 @@ export type InputBaseProps = {
  */
 export const InputBase = ({
   children,
-  status = "default",
+  intent = "default",
   variant = "outline",
   fullWidth = false,
   width,
@@ -90,9 +90,9 @@ export const InputBase = ({
   ) => {
     if (customColor) return customColor;
     if (isDisabled) return "disabled";
-    if (status === "error") return "destructive";
-    if (status === "warning") return "caution";
-    if (status === "success") return "positive";
+    if (intent === "error") return "destructive";
+    if (intent === "warning") return "caution";
+    if (intent === "success") return "positive";
     return "secondary";
   };
 
@@ -116,7 +116,7 @@ export const InputBase = ({
     <div
       className={classNames(
         localStyles.root,
-        status && localStyles[status],
+        intent && localStyles[intent],
         isDisabled && localStyles.disabled,
         localStyles[variant],
         fullWidth && localStyles.fullWidth,

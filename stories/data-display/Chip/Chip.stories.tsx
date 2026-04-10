@@ -16,7 +16,7 @@ const meta: Meta<typeof Chip> = {
   tags: [], // mdxファイルがあるためautodocsは無効にする
   argTypes: {
     disabled: { control: "boolean" },
-    status: {
+    intent: {
       control: "select",
       options: ["primary", "secondary", "success", "warning", "error", "info", "neutral"],
     },

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./stepper.module.scss";
 
-export type StepperStatus = "wait" | "process" | "finish" | "error";
+export type StepperIntent = "wait" | "process" | "finish" | "error";
 
 export interface Step {
   /** Title of the step */
@@ -12,8 +12,8 @@ export interface Step {
   description?: React.ReactNode;
   /** Custom icon for the step */
   icon?: React.ReactNode;
-  /** Explicit workflow status for this step. If omitted, computed from `current` index. */
-  status?: StepperStatus;
+  /** Explicit workflow intent for this step. If omitted, computed from `current` index. */
+  intent?: StepperIntent;
   /** Whether the step is disabled */
   disabled?: boolean;
 }
@@ -27,8 +27,8 @@ export interface StepperProps {
   direction?: "horizontal" | "vertical";
   /** Placement of the labels */
   labelPlacement?: "horizontal" | "vertical";
-  /** Workflow status shown on the current active step (default: "process") */
-  status?: StepperStatus;
+  /** Workflow intent shown on the current active step (default: "process") */
+  intent?: StepperIntent;
   /** Additional class names */
   className?: string;
   /** Callback function when a step is clicked (if applicable) */
@@ -40,31 +40,31 @@ export const Stepper = ({
   current = 0,
   direction = "horizontal",
   labelPlacement = "horizontal",
-  status = "process",
+  intent = "process",
   className,
   onChange,
 }: StepperProps) => {
   const getStepStatus = (
     index: number,
-    stepStatus?: StepperStatus,
-  ): StepperStatus => {
-    if (stepStatus) return stepStatus;
+    stepIntent?: StepperIntent,
+  ): StepperIntent => {
+    if (stepIntent) return stepIntent;
     if (index < current) return "finish";
-    if (index === current) return status;
+    if (index === current) return intent;
     return "wait";
   };
 
   const renderIcon = (
     index: number,
-    stepStatus: StepperStatus,
+    stepIntent: StepperIntent,
     icon?: React.ReactNode,
   ) => {
     if (icon) return icon;
 
-    if (stepStatus === "finish") {
+    if (stepIntent === "finish") {
       return <Icon name="CheckIcon" size="sm" />;
     }
-    if (stepStatus === "error") {
+    if (stepIntent === "error") {
       return <Icon name="CloseIcon" size="sm" />;
     }
     return <span>{index + 1}</span>;
@@ -118,7 +118,7 @@ export const Stepper = ({
         onKeyDown={handleContainerKeyDown}
       >
         {steps.map((step, index) => {
-          const stepStatus = getStepStatus(index, step.status);
+          const stepIntent = getStepStatus(index, step.intent);
           const isClickable = !!onChange && !step.disabled;
 
           return (
@@ -126,7 +126,7 @@ export const Stepper = ({
               key={index}
               className={classNames(
                 styles.item,
-                styles[stepStatus],
+                styles[stepIntent],
                 labelPlacement === "vertical" && styles.labelVertical,
                 step.disabled && styles.disabled,
               )}
@@ -136,7 +136,7 @@ export const Stepper = ({
               aria-selected={onChange ? index === current : undefined}
               aria-disabled={step.disabled ? "true" : undefined}
               data-testid="stepper-item"
-              data-status={stepStatus}
+              data-intent={stepIntent}
               tabIndex={
                 onChange
                   ? !step.disabled && index === current ? 0 : -1
@@ -151,7 +151,7 @@ export const Stepper = ({
             >
               <div className={styles.line} />
               <div className={styles.iconContainer}>
-                {renderIcon(index, stepStatus, step.icon)}
+                {renderIcon(index, stepIntent, step.icon)}
               </div>
               <div className={styles.content}>
                 <span className={styles.title} data-testid="stepper-title">{step.title}</span>

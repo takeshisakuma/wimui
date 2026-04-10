@@ -36,7 +36,8 @@
 - HTML要素を拡張するコンポーネントでは `React.ComponentPropsWithoutRef<"element">` を使って HTML属性を継承してください。不要な属性は `Omit` で除外してください。
 - コンポーネントAPIの整合性（Prop名の統一）を保ってください。以下のルールに従ってください。
   - **無効化には `disabled` prop（HTML ネイティブ属性）のみを使用してください。** `status="disabled"` や `state="disabled"` のような形でインタラクション状態を `status` / `state` に混在させないでください。
-  - **`status` prop は視覚・意味的状態のみを表します。** 値は `"default" | "error"` などに限定し、`"disabled"` を含めないでください。
+  - **`intent` prop は視覚・意味的状態のみを表します。** 値は `"default" | "error"` などに限定し、`"disabled"` を含めないでください。
+    - **例外（Resultコンポーネント）**: 意味的な状態（success, error等）は `intent` プロパティ、HTTPステータスコード（404, 500等）は `status` プロパティとして使い分けます。
   - **`size`, `radius`, `intensity` 等の prop の値は `"sm" | "md" | "lg"` に統一してください。** レイアウト用の幅指定など別用途では `"xs" | "sm" | "md" | "lg" | "xl"` を使用してかまいません。
   - **ポリモーフィズムには `asChild` prop（Slot パターン）を導入してください。** 従来の `as` prop によるタグ切り替えよりも、複雑なコンポーネント（React Router の Link 等）との統合が容易になります。実装には `@radix-ui/react-slot` を使用し、内部構造を維持する場合は `Slottable` を併用してください。
   - **共通 prop 型は `src/types/tokens.ts` の型を使用してください。** インラインのユニオン型を重複定義しないでください。定義済みの型は以下の通りです。
@@ -45,9 +46,9 @@
     - `ButtonIntent` — `"default" | "destructive" | "positive"`（Button の意味的意図）
     - `FieldVariant` — `"outline" | "ghost"`（Input・Textarea・DatePicker など）
     - `IndicatorVariant` — `"solid" | "outline" | "subtle"`（Badge・Chip・Tag）
-    - `IndicatorStatus` — `"primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"`（Badge・Chip・Tag・Progress など）
-    - `FeedbackStatus` — `"info" | "success" | "warning" | "error"`（Alert・Banner・Toast・Notification など）
-    - `FieldStatus` — `"default" | "error"`（Input・Textarea・DatePicker・RichTextEditor など）
+    - `IndicatorIntent` — `"primary" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"`（Badge・Chip・Tag・Progress など）
+    - `FeedbackIntent` — `"info" | "success" | "warning" | "error"`（Alert・Banner・Toast・Notification など）
+    - `FieldIntent` — `"default" | "error"`（Input・Textarea・DatePicker・RichTextEditor など）
     - `WimIntent` — 上記すべてを含む全意図値のユニオン（汎用）
   - **新しい共通 prop 型が必要になった場合は、インラインで定義せず `src/types/tokens.ts` に追加してください。**
 - 最新のセマンティックHTMLを使用してください。

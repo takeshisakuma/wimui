@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { ComponentSize, IndicatorStatus, IndicatorVariant } from "../../types/tokens";
+import { ComponentSize, IndicatorIntent, IndicatorVariant } from "../../types/tokens";
 
 export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   /**
@@ -10,7 +10,7 @@ export type IndicatorBaseProps<C extends React.ElementType = "span"> = {
   asChild?: boolean;
   children?: React.ReactNode;
   icon?: React.ReactNode;
-  status?: IndicatorStatus;
+  intent?: IndicatorIntent;
   variant?: IndicatorVariant;
   size?: ComponentSize;
   styles?: { [key: string]: string };
@@ -30,7 +30,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
     asChild = false,
     children,
     icon,
-    status = "primary",
+    intent = "primary",
     variant = "solid",
     size = "md",
     styles,
@@ -44,7 +44,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
 
   const resolvedClassName = classNames(
     styles?.root,
-    styles?.[status],
+    styles?.[intent],
     styles?.[variant],
     styles?.[size],
     className,

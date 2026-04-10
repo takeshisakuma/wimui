@@ -161,3 +161,5 @@ missing_en_*.txt
 # Temporary work scripts and files
 tmp/
 scripts/tmp_*.cjs
+# Temporary scratch scripts
+scratch/

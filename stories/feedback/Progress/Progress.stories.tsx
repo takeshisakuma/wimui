@@ -6,7 +6,7 @@ const meta: Meta<typeof Progress> = {
   component: Progress,
   tags: [],
   argTypes: {
-    status: {
+    intent: {
       control: "select",
       options: [
         "primary",
@@ -47,12 +47,12 @@ export const Colors: Story = {
         width: "100%",
       }}
     >
-      <Progress {...args} status="primary" value={20} label="Primary" />
-      <Progress {...args} status="secondary" value={40} label="Secondary" />
-      <Progress {...args} status="success" value={60} label="Success" />
-      <Progress {...args} status="warning" value={80} label="Warning" />
-      <Progress {...args} status="error" value={90} label="Error" />
-      <Progress {...args} status="neutral" value={50} label="Neutral" />
+      <Progress {...args} intent="primary" value={20} label="Primary" />
+      <Progress {...args} intent="secondary" value={40} label="Secondary" />
+      <Progress {...args} intent="success" value={60} label="Success" />
+      <Progress {...args} intent="warning" value={80} label="Warning" />
+      <Progress {...args} intent="error" value={90} label="Error" />
+      <Progress {...args} intent="neutral" value={50} label="Neutral" />
     </div>
   ),
 };

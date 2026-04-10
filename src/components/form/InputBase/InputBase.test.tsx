@@ -19,7 +19,7 @@ describe("InputBase", () => {
   });
 
   it("applies error intent class", () => {
-    const { container } = render(<InputBase status="error"><input /></InputBase>);
+    const { container } = render(<InputBase intent="error"><input /></InputBase>);
     expect(container.firstChild).toHaveClass(styles.error);
   });
 

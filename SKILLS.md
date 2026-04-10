@@ -221,7 +221,7 @@ size: {
   control: "radio",
   options: ["sm", "md", "lg"],
 },
-status: {
+intent: {
   control: "select",
   options: ["primary", "secondary", "success", "warning", "error", "info", "neutral"],
 },

@@ -5,7 +5,7 @@ import { InputBase } from "../InputBase";
 import { Transition } from "../../layout/Transition/Transition";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { FieldTemplate } from "../FieldTemplate";
-import { FieldStatus, FieldVariant } from "../../../types/tokens";
+import { FieldIntent, FieldVariant } from "../../../types/tokens";
 import styles from "./date-picker.module.scss";
 import inputStyles from "../../form/Input/input.module.scss";
 
@@ -17,7 +17,7 @@ type DatePickerProps = Omit<
   React.ComponentPropsWithoutRef<"input">,
   "value" | "defaultValue" | "onChange"
 > & {
-  status?: FieldStatus;
+  intent?: FieldIntent;
   variant?: FieldVariant;
   fullWidth?: boolean;
   /** Selected date value */
@@ -54,7 +54,7 @@ const DEFAULT_LABELS: Required<DatePickerLabels> = {
  * ユーザーが日付を選択するためのコンポーネント。
  */
 export const DatePicker = ({
-  status = "default",
+  intent = "default",
   variant = "outline",
   fullWidth = false,
   className,
@@ -95,7 +95,7 @@ export const DatePicker = ({
 
   const actualPlaceholder = placeholder ?? mergedLabels.placeholder;
   const isDisabled = disabled;
-  const currentStatus = error ? "error" : status;
+  const currentIntent = error ? "error" : intent;
 
   // Close calendar when clicking outside
   useEffect(() => {
@@ -217,7 +217,7 @@ export const DatePicker = ({
         )}
       >
         <InputBase
-          status={currentStatus}
+          intent={currentIntent}
           variant={variant}
           fullWidth={fullWidth}
           disabled={isDisabled}
@@ -245,7 +245,7 @@ export const DatePicker = ({
             aria-haspopup="dialog"
             aria-expanded={isOpen}
             aria-controls={isOpen ? dropdownId : undefined}
-            aria-invalid={currentStatus === "error"}
+            aria-invalid={currentIntent === "error"}
             aria-describedby={errorId}
             aria-labelledby={labelId}
             {...props}

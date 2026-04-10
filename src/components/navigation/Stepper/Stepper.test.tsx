@@ -7,7 +7,7 @@ import styles from "./stepper.module.scss";
 describe("Stepper", () => {
   const steps = [
     { title: "Step 1", description: "First step" },
-    { title: "Step 2", status: "error" as const },
+    { title: "Step 2", intent: "error" as const },
     { title: "Step 3" },
   ];
 
@@ -18,13 +18,13 @@ describe("Stepper", () => {
     expect(screen.getByText("Step 3")).toBeInTheDocument();
   });
 
-  it("applies status classes correctly", () => {
+  it("applies intent classes correctly", () => {
     const { container } = render(
-      <Stepper steps={steps} current={0} status="process" />,
+      <Stepper steps={steps} current={0} intent="process" />,
     );
     const items = container.querySelectorAll(`.${styles.item}`);
     expect(items[0]).toHaveClass(styles.process);
-    expect(items[1]).toHaveClass(styles.error); // Custom status
+    expect(items[1]).toHaveClass(styles.error); // Custom intent
     expect(items[2]).toHaveClass(styles.wait);
   });
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize, IndicatorStatus } from "../../../types/tokens";
+import { ComponentSize, IndicatorIntent } from "../../../types/tokens";
 import styles from "./avatar.module.scss";
 
 type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -11,7 +11,7 @@ type AvatarProps = React.ComponentPropsWithoutRef<"div"> & {
   icon?: React.ReactNode;
   size?: ComponentSize;
   shape?: "circle" | "rounded";
-  status?: IndicatorStatus;
+  intent?: IndicatorIntent;
 };
 
 /**
@@ -24,7 +24,7 @@ export const Avatar = ({
   icon,
   size = "md",
   shape = "circle",
-  status,
+  intent,
   className,
   ...props
 }: AvatarProps) => {
@@ -60,7 +60,7 @@ export const Avatar = ({
         styles.root,
         styles[size],
         styles[shape],
-        status && styles[status],
+        intent && styles[intent],
         className,
       )}
     >

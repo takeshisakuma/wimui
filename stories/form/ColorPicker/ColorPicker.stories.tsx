@@ -13,7 +13,7 @@ const meta: Meta<typeof ColorPicker> = {
     layout: "centered",
   },
   argTypes: {
-    status: {
+    intent: {
       control: "select",
       options: ["default", "error", "disabled"],
     },
@@ -74,7 +74,7 @@ export const ErrorStatus: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <Label label={t("story.colorpicker_error")}>
-        <ColorPicker {...args} status="error" />
+        <ColorPicker {...args} intent="error" />
       </Label>
     );
   },

@@ -73,7 +73,7 @@ describe("Avatar", () => {
   });
 
   it("applies intent class", () => {
-    const { container } = render(<Avatar status="primary" />);
+    const { container } = render(<Avatar intent="primary" />);
     expect(container.firstChild).toHaveClass(styles.primary);
   });
 

@@ -174,9 +174,9 @@ export type WimOpacityToken = `var(--wim-opacity-${WimOpacityKey})`;
 export type WimOpacity = LiteralWithAutocomplete<WimOpacityKey | WimOpacityToken>;
 
 /**
- * Status values for indicator-style components (Badge, Chip, Tag, Progress).
+ * Intent values for indicator-style components (Badge, Chip, Tag, Progress).
  */
-export type IndicatorStatus =
+export type IndicatorIntent =
   | "primary"
   | "secondary"
   | "success"
@@ -186,14 +186,14 @@ export type IndicatorStatus =
   | "neutral";
 
 /**
- * Status values for feedback-style components (Alert, Banner, Toast, Notification).
+ * Intent values for feedback-style components (Alert, Banner, Toast, Notification).
  */
-export type FeedbackStatus = "info" | "success" | "warning" | "error";
+export type FeedbackIntent = "info" | "success" | "warning" | "error";
 
 /**
- * Status values for form field components (Input, Textarea, DatePicker, RichTextEditor).
+ * Intent values for form field components (Input, Textarea, DatePicker, RichTextEditor).
  */
-export type FieldStatus = "default" | "error";
+export type FieldIntent = "default" | "error";
 
 /**
  * Z-index stacking layer keys.

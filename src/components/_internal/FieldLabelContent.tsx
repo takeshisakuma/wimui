@@ -24,7 +24,7 @@ export const FieldLabelContent = ({
       <span className={styles.text}>{label}</span>
       {required ? (
         <Badge
-          status="error"
+          intent="error"
           size="sm"
           className={styles.badge}
           aria-hidden="true"
@@ -34,7 +34,7 @@ export const FieldLabelContent = ({
       ) : (
         showOptional && (
           <Badge
-            status="neutral"
+            intent="neutral"
             size="sm"
             className={styles.badge}
             aria-hidden="true"

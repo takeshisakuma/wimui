@@ -265,7 +265,7 @@ export const DashboardHeader: StoryObj = {
                 aria-label="Notifications"
               />
               <Badge
-                status="secondary"
+                intent="secondary"
                 size="sm"
                 content="3"
                 style={{
@@ -325,7 +325,7 @@ export const DashboardHeader: StoryObj = {
                 >
                   <Stack justify="space-between" align="center" direction="row">
                     <Stats.Label>{t("dashboard.stats_revenue")}</Stats.Label>
-                    <Badge status="neutral" content="+12.5%" size="sm" />
+                    <Badge intent="neutral" content="+12.5%" size="sm" />
                   </Stack>
                   <Stats.Value>
                     <Title tag="h3" size="xl" style={{ whiteSpace: "nowrap" }}>
@@ -855,7 +855,7 @@ export const HeroSection: StoryObj = {
             <Stack gap="3xl">
               <Stack gap="3xl">
                 <Badge
-                  status="primary"
+                  intent="primary"
                   content={t("hero.badge")}
                   style={{ width: "fit-content" }}
                 />
@@ -1012,7 +1012,7 @@ export const ErrorPage: StoryObj = {
             />
           </Stack>
 
-          <Alert status="info" title={t("error.help_title")} style={{ textAlign: "left" }}>
+          <Alert intent="info" title={t("error.help_title")} style={{ textAlign: "left" }}>
             {t("error.help_desc")}
           </Alert>
 

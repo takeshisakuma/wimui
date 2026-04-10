@@ -141,7 +141,7 @@ export const CustomContainer: Story = {
               <Box mt="md" style={{ display: "flex", justifyContent: "center" }}>
                 <Portal container={container}>
                   <Alert
-                    status="success"
+                    intent="success"
                     icon={<Icon name="CheckCircleIcon" />}
                     style={{ width: "fit-content" }}
                   >
@@ -320,7 +320,7 @@ export const NotificationCenter: Story = {
                 <span style={{ fontSize: "12px", fontWeight: "bold" }}>
                   {t("story.portal_monitor_title")}
                 </span>
-                <Badge status="error" size="sm">{t("story.portal_monitor_live")}</Badge>
+                <Badge intent="error" size="sm">{t("story.portal_monitor_live")}</Badge>
               </Stack>
             </Card.Header>
             <Card.Body style={{ flex: 1, overflowY: "auto", padding: "12px" }}>

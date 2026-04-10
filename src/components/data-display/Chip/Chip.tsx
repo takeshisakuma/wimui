@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
-import { ComponentSize, IndicatorStatus, IndicatorVariant } from "../../../types/tokens";
+import { ComponentSize, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
 import styles from "./chip.module.scss";
 
 export type ChipProps = React.HTMLAttributes<HTMLElement> & {
@@ -25,8 +25,8 @@ export type ChipProps = React.HTMLAttributes<HTMLElement> & {
   selected?: boolean;
   /** 無効状態 */
   disabled?: boolean;
-  /** ステータス */
-  status?: IndicatorStatus;
+  /** インテント（意味的状態） */
+  intent?: IndicatorIntent;
   /** バリアント */
   variant?: IndicatorVariant;
   /** サイズ */
@@ -51,7 +51,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
       icon,
       selected = false,
       disabled = false,
-      status = "primary",
+      intent = "primary",
       variant = "solid",
       size = "md",
       deleteAriaLabel,
@@ -70,7 +70,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
         ref={ref as any}
         className={classNames(
           styles.root,
-          styles[status],
+          styles[intent],
           styles[variant],
           styles[size],
           selected && styles.selected,

@@ -4,7 +4,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import localStyles from "./selectbox.module.scss";
 import { useSelectbox } from "./useSelectbox";
-import { type FieldStatus } from "../../../types/tokens";
+import { type FieldIntent } from "../../../types/tokens";
 
 export type SelectboxOption = {
   label?: React.ReactNode;
@@ -42,7 +42,7 @@ export type SelectboxProps = {
   fullWidth?: boolean;
   /** Unique ID for the component */
   id?: string;
-  status?: FieldStatus;
+  intent?: FieldIntent;
   error?: string;
   required?: boolean;
   layout?: "vertical" | "horizontal";
@@ -91,7 +91,7 @@ export const Selectbox = ({
   grouped = false,
   allowClear = false,
   fullWidth = false,
-  status = "default",
+  intent = "default",
   id: customId,
   noOptionsFoundLabel = "No options found",
   styles: stylesProp,
@@ -104,7 +104,7 @@ export const Selectbox = ({
   const listId = `${id}-list`;
   const triggerId = `${id}-trigger`;
 
-  const currentStatus = error ? "error" : status;
+  const currentIntent = error ? "error" : intent;
 
   const {
     isOpen,
@@ -288,7 +288,7 @@ export const Selectbox = ({
           allowClear={allowClear}
           hasValue={!!currentValue}
           onClear={handleClear}
-          status={currentStatus}
+          intent={currentIntent}
           rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
           fullWidth={fullWidth}
           styles={stylesProp?.inputBase}
@@ -312,7 +312,7 @@ export const Selectbox = ({
             aria-labelledby={labelId || ariaLabelledBy}
             aria-label={label ? undefined : (typeof ariaLabel === "string" ? ariaLabel : (typeof placeholder === "string" ? placeholder : undefined))}
             aria-describedby={errorId || ariaDescribedBy}
-            aria-invalid={currentStatus === "error"}
+            aria-invalid={currentIntent === "error"}
             aria-activedescendant={isOpen ? activeDescendant : undefined}
             ref={triggerRef}
           >

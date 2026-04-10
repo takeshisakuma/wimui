@@ -13,7 +13,7 @@ const meta: Meta<typeof Tag> = {
   component: Tag,
   tags: [], // mdxファイルがあるためautodocsは無効にする
   argTypes: {
-    status: {
+    intent: {
       control: "select",
       options: [
         "primary",
@@ -45,7 +45,7 @@ export const Default: Story = {
     return <Tag {...args}>{t("story.tag_content")}</Tag>;
   },
   args: {
-    status: "primary",
+    intent: "primary",
     variant: "solid",
     size: "md",
   },
@@ -75,25 +75,25 @@ export const Colors: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-        <Tag {...args} status="primary">
+        <Tag {...args} intent="primary">
           {t("story.tag_primary")}
         </Tag>
-        <Tag {...args} status="secondary">
+        <Tag {...args} intent="secondary">
           {t("story.tag_secondary")}
         </Tag>
-        <Tag {...args} status="success">
+        <Tag {...args} intent="success">
           {t("story.tag_success")}
         </Tag>
-        <Tag {...args} status="warning">
+        <Tag {...args} intent="warning">
           {t("story.tag_warning")}
         </Tag>
-        <Tag {...args} status="error">
+        <Tag {...args} intent="error">
           {t("story.tag_error")}
         </Tag>
-        <Tag {...args} status="neutral">
+        <Tag {...args} intent="neutral">
           {t("story.tag_neutral")}
         </Tag>
-        <Tag {...args} status="info">
+        <Tag {...args} intent="info">
           {t("story.tag_info")}
         </Tag>
       </div>
