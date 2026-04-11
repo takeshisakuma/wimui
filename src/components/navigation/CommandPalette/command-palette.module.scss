@@ -67,7 +67,7 @@
     }
   
     &:focus-within {
-      background-color: var(--bg-hover, rgb(0 0 0 / 0.02));
+      background-color: var(--bg-hover, var(--wim-color-bg-surface-subtle));
       border-bottom-color: var(--wim-color-primary);
       transition: var(--wim-transition-fast);
   

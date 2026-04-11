@@ -60,21 +60,21 @@
 
     &:focus-within:not(.disabled) {
       border-color: var(--wim-color-primary);
-      box-shadow: inset 0 0 0 1px var(--wim-color-primary);
+      box-shadow: var(--wim-shadow-focus-ring);
 
       &.error {
         border-color: var(--wim-color-text-error);
-        box-shadow: inset 0 0 0 1px var(--wim-color-text-error);
+        box-shadow: var(--wim-shadow-error-ring);
       }
 
       &.warning {
         border-color: var(--wim-color-caution);
-        box-shadow: inset 0 0 0 1px var(--wim-color-caution);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--wim-color-caution) 15%, transparent);
       }
 
       &.success {
         border-color: var(--wim-color-positive);
-        box-shadow: inset 0 0 0 1px var(--wim-color-positive);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--wim-color-positive) 15%, transparent);
       }
     }
 

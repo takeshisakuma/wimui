@@ -50,11 +50,10 @@ const CardInner = <C extends React.ElementType = "div">(
   }: CardProps<C>,
   ref: React.Ref<React.ComponentRef<C>>,
 ) => {
-  const Component = asChild ? Slot : (as || "div");
+  const Component = (asChild ? Slot : (as || "div")) as React.ElementType;
   return (
     <Component
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ref={ref as any}
+      ref={ref}
       className={classNames(
         styles.root,
         styles[variant],

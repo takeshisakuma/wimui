@@ -20,6 +20,22 @@
   /* 手動管理が必要な特殊なロジックや、Style Dictionaryで管理しきれないフォールバックなど */
   --wim-theme-transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
   
+  /* Generic Colors */
+  --wim-color-bg-white: #{$pccs-w};
+
+  /* Carousel */
+  --wim-carousel-control-bg: rgb(0 0 0 / 0.3);
+  --wim-carousel-control-hover-bg: rgb(0 0 0 / 0.5);
+  --wim-carousel-indicator-bg: rgb(255 255 255 / 0.5);
+  --wim-carousel-indicator-hover-bg: rgb(255 255 255 / 0.8);
+
+  /* Sidebar/Overlay */
+  --wim-color-overlay-bg: rgb(0 0 0 / 0.5); // Default overlay
+  --wim-color-overlay-bg-sidebar: rgb(0 0 0 / 0.4);
+
+  /* Semantic UI States */
+  --wim-color-bg-surface-subtle: rgb(0 0 0 / 0.02);
+  
   /* ダークモード切替用のヘルパー */
   --on: initial;
   --off: ;

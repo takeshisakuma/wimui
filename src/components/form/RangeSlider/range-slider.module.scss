@@ -48,7 +48,7 @@
     background-color: var(--wim-color-text-white);
     border: 2px solid var(--wim-color-primary);
     border-radius: var(--wim-radius-full);
-    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    box-shadow: var(--wim-shadow-sm);
     transform: translate(-50%, -50%);
     transition:
       box-shadow 0.2s,

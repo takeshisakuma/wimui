@@ -19,7 +19,7 @@
     }
   
     .slider {
-      @include indicator.indicator-slider-contained($offset: 2px, $bg: var(--wim-color-primary), $shadow: (0 1px 3px rgb(0 0 0 / 0.1)));
+      @include indicator.indicator-slider-contained($offset: 2px, $bg: var(--wim-color-primary));
   
       z-index: 1;
       opacity: 0;
@@ -66,7 +66,7 @@
         
         &.multiple {
           background-color: var(--wim-color-primary);
-          box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+          box-shadow: var(--wim-shadow-sm);
   
           &:hover {
             filter: brightness(1.1);
@@ -87,7 +87,7 @@
   
     // multiple モードの選択済みアイテムはプライマリ色の背景なので白いフォーカスリングを使う
     &.multiple .item.active:focus-visible {
-      box-shadow: inset 0 0 0 2px white, 0 1px 3px rgb(0 0 0 / 0.1);
+      box-shadow: inset 0 0 0 2px white, var(--wim-shadow-sm);
     }
   
     // Sizes

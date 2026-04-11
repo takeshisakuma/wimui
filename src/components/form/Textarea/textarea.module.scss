@@ -30,7 +30,7 @@
 
     &:focus {
       border-color: var(--wim-color-primary);
-      box-shadow: var(--wim-shadow-field-focus);
+      box-shadow: var(--wim-shadow-focus-ring);
     }
 
     &.outline {
@@ -59,7 +59,7 @@
       border-color: var(--wim-color-text-error);
 
       &:focus {
-        box-shadow: 0 0 0 2px rgb(255 0 0 / 0.2);
+        box-shadow: var(--wim-shadow-error-ring);
       }
     }
 

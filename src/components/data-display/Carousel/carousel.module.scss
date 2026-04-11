@@ -59,14 +59,14 @@
     height: 40px;
     color: var(--wim-color-text-on-primary);
     cursor: pointer;
-    background-color: rgb(0 0 0 / 0.3);
+    background-color: var(--wim-carousel-control-bg);
     border: none;
     border-radius: 50%;
     transform: translateY(-50%);
     transition: background-color 0.2s;
   
     &:hover:not(:disabled) {
-      background-color: rgb(0 0 0 / 0.5);
+      background-color: var(--wim-carousel-control-hover-bg);
     }
   
     &:disabled {
@@ -99,7 +99,7 @@
     height: 8px;
     padding: 0;
     cursor: pointer;
-    background-color: rgb(255 255 255 / 0.5);
+    background-color: var(--wim-carousel-indicator-bg);
     border: none;
     border-radius: 50%;
     transition:
@@ -113,7 +113,7 @@
     }
   
     &:hover:not(.active) {
-      background-color: rgb(255 255 255 / 0.8);
+      background-color: var(--wim-carousel-indicator-hover-bg);
     }
   }
 }

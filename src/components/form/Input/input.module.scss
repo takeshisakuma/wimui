@@ -27,7 +27,7 @@
 
     &:focus {
       border-color: var(--wim-color-primary);
-      box-shadow: var(--wim-field-shadow, var(--wim-shadow-field-focus));
+      box-shadow: var(--wim-field-shadow, var(--wim-shadow-focus-ring));
     }
 
     &.outline {
@@ -45,6 +45,10 @@
 
     &.error {
       border-color: var(--wim-color-text-error);
+
+      &:focus {
+        box-shadow: var(--wim-shadow-error-ring);
+      }
     }
 
     &.disabled {

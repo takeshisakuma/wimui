@@ -1,4 +1,4 @@
-﻿import { Meta } from "@storybook/addon-docs/blocks";
+import { Meta } from "@storybook/addon-docs/blocks";
 import { T } from "../stories/T";
 
 import {
@@ -64,6 +64,18 @@ import {
     name="Focus"
     value="var(--wim-shadow-focus)"
     shadow="var(--wim-shadow-focus)"
+  />
+
+  <ShadowSwatch
+    name="Focus Ring"
+    value="var(--wim-shadow-focus-ring)"
+    shadow="var(--wim-shadow-focus-ring)"
+  />
+
+  <ShadowSwatch
+    name="Error Ring"
+    value="var(--wim-shadow-error-ring)"
+    shadow="var(--wim-shadow-error-ring)"
   />
 </TokenGrid>
 
@@ -190,6 +202,6 @@ import {
 
 ## <T k="doc.test_title" />
 
-\`\`\`bash
+```bash
 npm run test:i18n
-\`\`\`
+```

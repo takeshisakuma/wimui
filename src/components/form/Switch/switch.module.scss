@@ -45,7 +45,7 @@
       content: "";
       background-color: var(--wim-color-text-white);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+      box-shadow: var(--wim-shadow-sm);
     }
 
     &:checked {

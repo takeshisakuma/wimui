@@ -7,20 +7,20 @@
     overflow: hidden;
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
-    border-radius: 6px;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    border-radius: var(--wim-radius-md);
+    transition: var(--wim-transition-base);
 
     &:focus-within:not(.disabled) {
       border-color: var(--wim-color-primary);
-      box-shadow: 0 0 0 3px rgb(59 130 246 / 0.15);
+      box-shadow: var(--wim-shadow-focus-ring);
     }
   }
 
   .error {
-    border-color: var(--wim-color-destructive);
+    border-color: var(--wim-color-text-error);
 
     &:focus-within {
-      box-shadow: 0 0 0 3px rgb(239 68 68 / 0.15);
+      box-shadow: var(--wim-shadow-error-ring);
     }
   }
 
