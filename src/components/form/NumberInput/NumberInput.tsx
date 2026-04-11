@@ -72,7 +72,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
         className={className}
         inputClassName={classNames(hideSpinButton && inputStyles.hideSpin)}
       >
-        <Slottable>{children}</Slottable>
+        {asChild ? <Slottable>{children}</Slottable> : null}
       </Component>
     );
   },

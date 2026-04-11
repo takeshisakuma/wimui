@@ -98,7 +98,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
     const isControlled = value !== undefined;
     const [internalValue, setInternalValue] = useState(defaultValue);
     const currentValue = isControlled ? value! : internalValue;
-    const trackRef = useRef<HTMLDivElement>(null);
+    const trackContainerRef = useRef<HTMLDivElement>(null);
     const thumbRef = useRef<HTMLDivElement>(null);
     const trackFillRef = useRef<HTMLDivElement>(null);
     const hiddenInputRef = useRef<HTMLInputElement>(null);
@@ -108,18 +108,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
     const id = customId || generatedId;
     const labelId = `wim-slider-label-${id}`;
     const errorId = `wim-slider-error-${id}`;
-
-    // Combine multiple refs
-    const combinedRef = (node: HTMLDivElement) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (trackRef as any).current = node;
-      if (typeof ref === "function") {
-        ref(node);
-      } else if (ref) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (ref as any).current = node;
-      }
-    };
 
     const { calculateValue } = useSliderCommon(min, max, step);
 
@@ -152,7 +140,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       isDragging.current = true;
 
       const clientX = "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
-      const newValue = calculateValue(clientX, trackRef.current);
+      const newValue = calculateValue(clientX, trackContainerRef.current);
       dragValueRef.current = newValue;
       applyDomPosition(newValue);
       onChange?.(newValue);
@@ -166,7 +154,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
 
         const clientX =
           "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
-        const newValue = calculateValue(clientX, trackRef.current);
+        const newValue = calculateValue(clientX, trackContainerRef.current);
         dragValueRef.current = newValue;
         applyDomPosition(newValue);
         onChange?.(newValue);
@@ -242,11 +230,11 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
           className={classNames(styles.root, disabled && styles.disabled)}
           onMouseDown={handleMouseDown}
           onTouchStart={handleMouseDown}
-          ref={combinedRef}
+          ref={ref}
           {...props}
         >
           <Slottable>
-            <div className={styles.trackContainer}>
+            <div className={styles.trackContainer} ref={trackContainerRef}>
               <div
                 ref={trackFillRef}
                 className={styles.track}
@@ -275,7 +263,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
               value={currentValue}
             />
           </Slottable>
-          {children}
+          {asChild ? children : null}
         </Component>
       </FieldTemplate>
     );

@@ -109,7 +109,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
         window.HTMLInputElement.prototype,
         "value",
-      )?.set;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      )?.set as any;
 
       if (nativeInputValueSetter) {
         nativeInputValueSetter.call(input, "");
@@ -209,10 +210,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-labelledby={label ? labelId : undefined}
             aria-required={required}
             {...props}
-            placeholder={props.placeholder}
-            aria-label={props["aria-label"]}
           >
-            <Slottable>{children}</Slottable>
+            {asChild ? <Slottable>{children}</Slottable> : null}
           </Component>
         </InputBase>
       </FieldTemplate>

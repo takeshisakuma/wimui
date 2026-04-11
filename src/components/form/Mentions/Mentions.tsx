@@ -156,20 +156,24 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
 
     const Component = asChild ? Slot : "div";
 
-    // Omit event handlers that conflict between div and textarea
+    // Separate props to avoid duplicates on the wrapper
     const {
       /* eslint-disable @typescript-eslint/no-unused-vars */
       onCopy: _unusedOnCopy,
       onCut: _unusedOnCut,
       onPaste: _unusedOnPaste,
       onSelect: _unusedOnSelectProp,
+      placeholder,
+      rows,
+      cols,
+      defaultValue: _unusedDefaultValue,
       /* eslint-enable @typescript-eslint/no-unused-vars */
       ...divProps
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } = props as any;
 
     return (
-      <Component className={styles.container} ref={combinedRef} {...divProps}>
+      <Component className={styles.container} ref={combinedRef} {...(asChild ? props : divProps)}>
         <Slottable>
           <Textarea
             {...props}
@@ -201,7 +205,7 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
             </div>
           )}
         </Slottable>
-        {children}
+        {asChild ? children : null}
       </Component>
     );
   },
