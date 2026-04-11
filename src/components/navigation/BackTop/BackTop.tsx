@@ -58,8 +58,8 @@ export const BackTop = ({
     const targetElement = target();
     if (!targetElement) return;
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    handleScroll(); // Initial check
+     
+    requestAnimationFrame(handleScroll); // Initial check
 
     targetElement.addEventListener("scroll", handleScroll);
     return () => {

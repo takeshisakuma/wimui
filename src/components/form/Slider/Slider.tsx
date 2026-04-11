@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect, useCallback, useId } from "react";
+import React, { useState, useRef, useEffect, useCallback, useId, forwardRef } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useSliderCommon } from "../../../utilities/slider-utils";
 import { FieldTemplate } from "../FieldTemplate";
 import styles from "./slider.module.scss";
 
-type SliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
+export interface SliderProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
   /**
    * 現在の値
    */
@@ -38,10 +39,6 @@ type SliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
    */
   onAfterChange?: (value: number) => void;
   /**
-   * 追加のクラス名
-   */
-  className?: string;
-  /**
    * 名前の属性
    */
   name?: string;
@@ -65,195 +62,226 @@ type SliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
    * カスタムID
    */
   id?: string;
-  "aria-label"?: string;
-  "aria-labelledby"?: string;
-};
+  /** Whether to render as a child element. */
+  asChild?: boolean;
+}
 
 /**
  * ユーザーが値の範囲から1つの値を選択するためのスライダーコンポーネント。
  */
-export const Slider = ({
-  value,
-  defaultValue = 0,
-  min = 0,
-  max = 100,
-  step = 1,
-  disabled = false,
-  onChange,
-  onAfterChange,
-  className,
-  name,
-  label,
-  error,
-  required,
-  layout = "vertical",
-  id: customId,
-  "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledBy,
-  ...props
-}: SliderProps) => {
-  const isControlled = value !== undefined;
-  const [internalValue, setInternalValue] = useState(defaultValue);
-  const currentValue = isControlled ? value! : internalValue;
-  const trackRef = useRef<HTMLDivElement>(null);
-  const thumbRef = useRef<HTMLDivElement>(null);
-  const trackFillRef = useRef<HTMLDivElement>(null);
-  const hiddenInputRef = useRef<HTMLInputElement>(null);
-  const isDragging = useRef(false);
-  const dragValueRef = useRef(currentValue);
-  const generatedId = useId();
-  const id = customId || generatedId;
-  const labelId = `wim-slider-label-${id}`;
-  const errorId = `wim-slider-error-${id}`;
-
-  const { calculateValue } = useSliderCommon(min, max, step);
-
-  const toPct = useCallback(
-    (val: number) => ((val - min) / (max - min)) * 100,
-    [min, max],
-  );
-
-  const applyDomPosition = useCallback(
-    (val: number) => {
-      const pct = toPct(val);
-      if (trackFillRef.current) trackFillRef.current.style.width = `${pct}%`;
-      if (thumbRef.current) {
-        thumbRef.current.style.left = `${pct}%`;
-        thumbRef.current.setAttribute("aria-valuenow", String(val));
-      }
-      if (hiddenInputRef.current) hiddenInputRef.current.value = String(val);
+export const Slider = forwardRef<HTMLDivElement, SliderProps>(
+  (
+    {
+      value,
+      defaultValue = 0,
+      min = 0,
+      max = 100,
+      step = 1,
+      disabled = false,
+      onChange,
+      onAfterChange,
+      className,
+      name,
+      label,
+      error,
+      required,
+      layout = "vertical",
+      id: customId,
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      asChild = false,
+      children,
+      ...props
     },
-    [toPct],
-  );
+    ref,
+  ) => {
+    const isControlled = value !== undefined;
+    const [internalValue, setInternalValue] = useState(defaultValue);
+    const currentValue = isControlled ? value! : internalValue;
+    const trackRef = useRef<HTMLDivElement>(null);
+    const thumbRef = useRef<HTMLDivElement>(null);
+    const trackFillRef = useRef<HTMLDivElement>(null);
+    const hiddenInputRef = useRef<HTMLInputElement>(null);
+    const isDragging = useRef(false);
+    const dragValueRef = useRef(currentValue);
+    const generatedId = useId();
+    const id = customId || generatedId;
+    const labelId = `wim-slider-label-${id}`;
+    const errorId = `wim-slider-error-${id}`;
 
-  useEffect(() => {
-    if (!isDragging.current) {
-      applyDomPosition(currentValue);
-    }
-  }, [currentValue, applyDomPosition]);
+    // Combine multiple refs
+    const combinedRef = (node: HTMLDivElement) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (trackRef as any).current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (ref as any).current = node;
+      }
+    };
 
-  const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
-    if (disabled) return;
-    isDragging.current = true;
+    const { calculateValue } = useSliderCommon(min, max, step);
 
-    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const newValue = calculateValue(clientX, trackRef.current);
-    dragValueRef.current = newValue;
-    applyDomPosition(newValue);
-    onChange?.(newValue);
+    const toPct = useCallback(
+      (val: number) => ((val - min) / (max - min)) * 100,
+      [min, max],
+    );
 
-    e.preventDefault();
-  };
+    const applyDomPosition = useCallback(
+      (val: number) => {
+        const pct = toPct(val);
+        if (trackFillRef.current) trackFillRef.current.style.width = `${pct}%`;
+        if (thumbRef.current) {
+          thumbRef.current.style.left = `${pct}%`;
+          thumbRef.current.setAttribute("aria-valuenow", String(val));
+        }
+        if (hiddenInputRef.current) hiddenInputRef.current.value = String(val);
+      },
+      [toPct],
+    );
 
-  const handleGlobalMouseMove = useCallback(
-    (e: MouseEvent | TouchEvent) => {
-      if (!isDragging.current || disabled) return;
+    useEffect(() => {
+      if (!isDragging.current) {
+        applyDomPosition(currentValue);
+      }
+    }, [currentValue, applyDomPosition]);
 
-      const clientX =
-        "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
+    const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
+      if (disabled) return;
+      isDragging.current = true;
+
+      const clientX = "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
       const newValue = calculateValue(clientX, trackRef.current);
       dragValueRef.current = newValue;
       applyDomPosition(newValue);
       onChange?.(newValue);
-    },
-    [disabled, calculateValue, onChange, applyDomPosition],
-  );
 
-  const handleGlobalMouseUp = useCallback(() => {
-    if (isDragging.current) {
-      isDragging.current = false;
-      const finalValue = dragValueRef.current;
-      if (!isControlled) {
-        setInternalValue(finalValue);
-      }
-      onAfterChange?.(finalValue);
-    }
-  }, [isControlled, onAfterChange]);
-
-  useEffect(() => {
-    document.addEventListener("mousemove", handleGlobalMouseMove);
-    document.addEventListener("mouseup", handleGlobalMouseUp);
-    document.addEventListener("touchmove", handleGlobalMouseMove, {
-      passive: false,
-    });
-    document.addEventListener("touchend", handleGlobalMouseUp);
-
-    return () => {
-      document.removeEventListener("mousemove", handleGlobalMouseMove);
-      document.removeEventListener("mouseup", handleGlobalMouseUp);
-      document.removeEventListener("touchmove", handleGlobalMouseMove);
-      document.removeEventListener("touchend", handleGlobalMouseUp);
+      e.preventDefault();
     };
-  }, [handleGlobalMouseMove, handleGlobalMouseUp]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (disabled) return;
+    const handleGlobalMouseMove = useCallback(
+      (e: MouseEvent | TouchEvent) => {
+        if (!isDragging.current || disabled) return;
 
-    let newValue = currentValue;
-    if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
-      newValue = Math.max(min, currentValue - step);
-    } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
-      newValue = Math.min(max, currentValue + step);
-    } else if (e.key === "Home") {
-      newValue = min;
-    } else if (e.key === "End") {
-      newValue = max;
-    } else {
-      return;
-    }
+        const clientX =
+          "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
+        const newValue = calculateValue(clientX, trackRef.current);
+        dragValueRef.current = newValue;
+        applyDomPosition(newValue);
+        onChange?.(newValue);
+      },
+      [disabled, calculateValue, onChange, applyDomPosition],
+    );
 
-    if (!isControlled) {
-      setInternalValue(newValue);
-    }
-    onChange?.(newValue);
-    e.preventDefault();
-  };
+    const handleGlobalMouseUp = useCallback(() => {
+      if (isDragging.current) {
+        isDragging.current = false;
+        const finalValue = dragValueRef.current;
+        if (!isControlled) {
+          setInternalValue(finalValue);
+        }
+        onAfterChange?.(finalValue);
+      }
+    }, [isControlled, onAfterChange]);
 
-  const percentage = toPct(currentValue);
+    useEffect(() => {
+      document.addEventListener("mousemove", handleGlobalMouseMove);
+      document.addEventListener("mouseup", handleGlobalMouseUp);
+      document.addEventListener("touchmove", handleGlobalMouseMove, {
+        passive: false,
+      });
+      document.addEventListener("touchend", handleGlobalMouseUp);
 
-  return (
-    <FieldTemplate
-      label={label}
-      error={error}
-      required={required}
-      layout={layout}
-      labelId={labelId}
-      errorId={errorId}
-      className={className}
-    >
-      <div
-        role="presentation"
-        className={classNames(styles.root, disabled && styles.disabled)}
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleMouseDown}
-        {...props}
+      return () => {
+        document.removeEventListener("mousemove", handleGlobalMouseMove);
+        document.removeEventListener("mouseup", handleGlobalMouseUp);
+        document.removeEventListener("touchmove", handleGlobalMouseMove);
+        document.removeEventListener("touchend", handleGlobalMouseUp);
+      };
+    }, [handleGlobalMouseMove, handleGlobalMouseUp]);
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (disabled) return;
+
+      let newValue = currentValue;
+      if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+        newValue = Math.max(min, currentValue - step);
+      } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+        newValue = Math.min(max, currentValue + step);
+      } else if (e.key === "Home") {
+        newValue = min;
+      } else if (e.key === "End") {
+        newValue = max;
+      } else {
+        return;
+      }
+
+      if (!isControlled) {
+        setInternalValue(newValue);
+      }
+      onChange?.(newValue);
+      e.preventDefault();
+    };
+
+    const percentage = toPct(currentValue);
+    const Component = asChild ? Slot : "div";
+
+    return (
+      <FieldTemplate
+        label={label}
+        error={error}
+        required={required}
+        layout={layout}
+        labelId={labelId}
+        errorId={errorId}
+        className={className}
       >
-        <div className={styles.trackContainer} ref={trackRef}>
-          <div
-            ref={trackFillRef}
-            className={styles.track}
-            style={{ width: `${percentage}%` }}
-          />
-          <div
-            ref={thumbRef}
-            className={styles.thumb}
-            style={{ left: `${percentage}%` }}
-            role="slider"
-            aria-valuemin={min}
-            aria-valuemax={max}
-            aria-valuenow={currentValue}
-            aria-disabled={disabled}
-            aria-labelledby={label ? labelId : ariaLabelledBy}
-            aria-label={label ? undefined : ariaLabel}
-            aria-describedby={error ? errorId : undefined}
-            tabIndex={disabled ? -1 : 0}
-            onKeyDown={handleKeyDown}
-          />
-        </div>
-        <input ref={hiddenInputRef} type="hidden" name={name} value={currentValue} />
-      </div>
-    </FieldTemplate>
-  );
-};
+        <Component
+          role="presentation"
+          className={classNames(styles.root, disabled && styles.disabled)}
+          onMouseDown={handleMouseDown}
+          onTouchStart={handleMouseDown}
+          ref={combinedRef}
+          {...props}
+        >
+          <Slottable>
+            <div className={styles.trackContainer}>
+              <div
+                ref={trackFillRef}
+                className={styles.track}
+                style={{ width: `${percentage}%` }}
+              />
+              <div
+                ref={thumbRef}
+                className={styles.thumb}
+                style={{ left: `${percentage}%` }}
+                role="slider"
+                aria-valuemin={min}
+                aria-valuemax={max}
+                aria-valuenow={currentValue}
+                aria-disabled={disabled}
+                aria-labelledby={label ? labelId : ariaLabelledBy}
+                aria-label={label ? undefined : ariaLabel}
+                aria-describedby={error ? errorId : undefined}
+                tabIndex={disabled ? -1 : 0}
+                onKeyDown={handleKeyDown}
+              />
+            </div>
+            <input
+              ref={hiddenInputRef}
+              type="hidden"
+              name={name}
+              value={currentValue}
+            />
+          </Slottable>
+          {children}
+        </Component>
+      </FieldTemplate>
+    );
+  },
+);
 
 Slider.displayName = "Slider";
+
+export default Slider;

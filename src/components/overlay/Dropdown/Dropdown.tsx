@@ -1,6 +1,8 @@
-import React, { useState, useRef, useEffect, ReactNode, useId } from "react";
+import React, { useState, useRef, useEffect, ReactNode, useId, forwardRef } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { BaseListItem } from "../../_internal/BaseListItem";
+import { Transition } from "../../layout/Transition/Transition";
 import styles from "./dropdown.module.scss";
 
 // Context to share state between components
@@ -26,234 +28,274 @@ const DropdownContext = React.createContext<{
   containerRef: { current: null },
 });
 
-export type DropdownProps = {
+export interface DropdownProps extends React.ComponentPropsWithoutRef<"div"> {
   children: ReactNode;
-  className?: string;
-};
+  asChild?: boolean;
+}
 
-export const Dropdown = ({ children, className }: DropdownProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [focusedIndex, setFocusedIndex] = useState(-1);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const itemCountRef = useRef(0);
+export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
+  ({ children, className, asChild = false, ...props }, ref) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [focusedIndex, setFocusedIndex] = useState(-1);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const itemCountRef = useRef(0);
 
-  useEffect(() => {
-    itemCountRef.current = 0;
-  });
-
-  const registerItem = () => {
-    const index = itemCountRef.current;
-    itemCountRef.current += 1;
-    return index;
-  };
-
-  const generatedId = useId();
-  const menuId = `wim-dropdown-menu-${generatedId}`;
-  const triggerId = `wim-dropdown-trigger-${generatedId}`;
-
-  const toggle = () => {
-    const nextOpen = !isOpen;
-    setIsOpen(nextOpen);
-    if (nextOpen) {
-      setFocusedIndex(0);
-    } else {
-      setFocusedIndex(-1);
-    }
-  };
-  const close = () => {
-    setIsOpen(false);
-    setFocusedIndex(-1);
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
-        close();
+    // Combine refs
+    const combinedRef = (node: HTMLDivElement) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (containerRef as any).current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (ref as any).current = node;
       }
     };
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        close();
-      }
+    useEffect(() => {
+      itemCountRef.current = 0;
+    });
+
+    const registerItem = () => {
+      const index = itemCountRef.current;
+      itemCountRef.current += 1;
+      return index;
     };
 
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("keydown", handleKeyDown);
-    }
+    const generatedId = useId();
+    const menuId = `wim-dropdown-menu-${generatedId}`;
+    const triggerId = `wim-dropdown-trigger-${generatedId}`;
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isOpen]);
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!isOpen) return;
-
-    const items = Array.from(
-      containerRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
-    ) as HTMLElement[];
-
-    switch (e.key) {
-      case "ArrowDown":
-        e.preventDefault();
-        setFocusedIndex((prev) => (prev < items.length - 1 ? prev + 1 : 0));
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        setFocusedIndex((prev) => (prev > 0 ? prev - 1 : items.length - 1));
-        break;
-      case "Home":
-        e.preventDefault();
+    const toggle = () => {
+      const nextOpen = !isOpen;
+      setIsOpen(nextOpen);
+      if (nextOpen) {
         setFocusedIndex(0);
-        break;
-      case "End":
-        e.preventDefault();
-        setFocusedIndex(items.length - 1);
-        break;
-      case "Tab":
-        close();
-        break;
-    }
-  };
+      } else {
+        setFocusedIndex(-1);
+      }
+    };
+    const close = () => {
+      setIsOpen(false);
+      setFocusedIndex(-1);
+    };
 
-  useEffect(() => {
-    if (isOpen && focusedIndex >= 0) {
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          containerRef.current &&
+          !containerRef.current.contains(event.target as Node)
+        ) {
+          close();
+        }
+      };
+
+      const handleKeyDownGlobal = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          close();
+        }
+      };
+
+      if (isOpen) {
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("keydown", handleKeyDownGlobal);
+      }
+
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener("keydown", handleKeyDownGlobal);
+      };
+    }, [isOpen]);
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (!isOpen) return;
+
       const items = Array.from(
         containerRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
       ) as HTMLElement[];
-      items[focusedIndex]?.focus();
-    }
-  }, [focusedIndex, isOpen]);
 
-  return (
-    <DropdownContext.Provider
-      value={{ isOpen, toggle, close, menuId, triggerId, focusedIndex, setFocusedIndex, registerItem, containerRef }}
-    >
-      <div role="none" className={classNames(styles.root, className)} ref={containerRef} onKeyDown={handleKeyDown}>
-        {children}
-      </div>
-    </DropdownContext.Provider>
-  );
-};
-
-export type DropdownTriggerProps = {
-  children: ReactNode;
-  className?: string;
-};
-
-export const DropdownTrigger = ({
-  children,
-  className,
-}: DropdownTriggerProps) => {
-  const { toggle, isOpen, menuId, triggerId } =
-    React.useContext(DropdownContext);
-
-  return (
-    <div
-      id={triggerId}
-      className={classNames(styles.trigger, className)}
-      onClick={toggle}
-      aria-haspopup="menu"
-      aria-expanded={isOpen}
-      aria-controls={isOpen ? menuId : undefined}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
+      switch (e.key) {
+        case "ArrowDown":
           e.preventDefault();
-          toggle();
-        }
-      }}
-    >
-      {children}
-    </div>
-  );
-};
+          setFocusedIndex((prev) => (prev < items.length - 1 ? prev + 1 : 0));
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          setFocusedIndex((prev) => (prev > 0 ? prev - 1 : items.length - 1));
+          break;
+        case "Home":
+          e.preventDefault();
+          setFocusedIndex(0);
+          break;
+        case "End":
+          e.preventDefault();
+          setFocusedIndex(items.length - 1);
+          break;
+        case "Tab":
+          close();
+          break;
+      }
+    };
 
-export type DropdownMenuProps = {
+    useEffect(() => {
+      if (isOpen && focusedIndex >= 0) {
+        const items = Array.from(
+          containerRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
+        ) as HTMLElement[];
+        items[focusedIndex]?.focus();
+      }
+    }, [focusedIndex, isOpen]);
+
+    const Component = asChild ? Slot : "div";
+
+    return (
+      <DropdownContext.Provider
+        value={{ isOpen, toggle, close, menuId, triggerId, focusedIndex, setFocusedIndex, registerItem, containerRef }}
+      >
+        <Component
+          {...props}
+          role="none"
+          className={classNames(styles.root, className)}
+          ref={combinedRef}
+          onKeyDown={handleKeyDown}
+        >
+          <Slottable>{children}</Slottable>
+        </Component>
+      </DropdownContext.Provider>
+    );
+  }
+);
+
+export interface DropdownTriggerProps extends React.ComponentPropsWithoutRef<"div"> {
   children: ReactNode;
-  className?: string;
+  asChild?: boolean;
+}
+
+export const DropdownTrigger = forwardRef<HTMLDivElement, DropdownTriggerProps>(
+  ({ children, className, asChild = false, ...props }, ref) => {
+    const { toggle, isOpen, menuId, triggerId } = React.useContext(DropdownContext);
+
+    const Component = asChild ? Slot : "div";
+
+    return (
+      <Component
+        {...props}
+        ref={ref}
+        id={triggerId}
+        className={classNames(styles.trigger, className)}
+        onClick={toggle}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+        aria-controls={isOpen ? menuId : undefined}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggle();
+          }
+        }}
+      >
+        <Slottable>{children}</Slottable>
+      </Component>
+    );
+  }
+);
+
+// We Omit 'show' because it's managed via context
+export interface DropdownMenuProps extends Omit<React.ComponentPropsWithoutRef<typeof Transition>, "show"> {
+  children: ReactNode;
   align?: "left" | "right";
-};
+  show?: boolean; // Re-add optional show just in case someone wants to force it
+}
 
-import { Transition } from "../../layout/Transition/Transition";
+export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
+  ({ children, className, align = "left", show: forceShow, ...props }, ref) => {
+    const { isOpen, menuId, triggerId } = React.useContext(DropdownContext);
+    const alignClass = align === "left" ? styles.alignLeft : styles.alignRight;
 
-export const DropdownMenu = ({
-  children,
-  className,
-  align = "left",
-}: DropdownMenuProps) => {
-  const { isOpen, menuId, triggerId } = React.useContext(DropdownContext);
-  const alignClass = align === "left" ? styles.alignLeft : styles.alignRight;
+    return (
+      <Transition
+        {...props}
+        ref={ref}
+        show={forceShow !== undefined ? forceShow : isOpen}
+        preset="fade"
+        id={menuId}
+        className={classNames(
+          styles.menu,
+          alignClass,
+          className,
+        )}
+        role="menu"
+        aria-labelledby={triggerId}
+      >
+        {children}
+      </Transition>
+    );
+  }
+);
 
-  return (
-    <Transition
-      show={isOpen}
-      preset="fade"
-      id={menuId}
-
-      className={classNames(
-        styles.menu,
-        alignClass,
-        className,
-      )}
-      role="menu"
-      aria-labelledby={triggerId}
-    >
-      {children}
-    </Transition>
-  );
-};
-
-export type DropdownItemProps = {
+export interface DropdownItemProps extends React.ComponentPropsWithoutRef<typeof BaseListItem> {
   children: ReactNode;
   onClick?: () => void;
-  disabled?: boolean;
-  className?: string;
+}
+
+export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
+  ({ children, onClick, disabled = false, className, ...props }, ref) => {
+    const { close, focusedIndex, setFocusedIndex, registerItem } = React.useContext(DropdownContext);
+    const [index] = useState(() => registerItem());
+    const isFocused = focusedIndex === index;
+
+    const handleClick = (e: React.SyntheticEvent) => {
+      if (disabled) return;
+      
+      // Prevent event bubbling to trigger
+      e.stopPropagation();
+
+      if (onClick) {
+        onClick();
+      }
+      close();
+    };
+
+    return (
+      <BaseListItem
+        {...props}
+        ref={ref}
+        className={classNames(styles.item, className)}
+        onClick={handleClick}
+        onFocus={() => setFocusedIndex(index)}
+        disabled={disabled}
+        role="menuitem"
+        tabIndex={isFocused ? 0 : -1}
+        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+          if (!disabled && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            handleClick(e);
+          }
+        }}
+      >
+        {children}
+      </BaseListItem>
+    );
+  }
+);
+
+// Assign sub-components
+export const DropdownRoot = Dropdown as typeof Dropdown & {
+  Trigger: typeof DropdownTrigger;
+  Menu: typeof DropdownMenu;
+  Item: typeof DropdownItem;
 };
 
-export const DropdownItem = ({
-  children,
-  onClick,
-  disabled = false,
-  className,
-}: DropdownItemProps) => {
-  const { close, focusedIndex, setFocusedIndex, registerItem } = React.useContext(DropdownContext);
-  const [index] = useState(() => registerItem());
-  const isFocused = focusedIndex === index;
+DropdownRoot.Trigger = DropdownTrigger;
+DropdownRoot.Menu = DropdownMenu;
+DropdownRoot.Item = DropdownItem;
 
-  const handleClick = (_e: React.SyntheticEvent) => {
-    if (disabled) return;
+Dropdown.displayName = "Dropdown";
+DropdownRoot.displayName = "DropdownRoot";
+DropdownTrigger.displayName = "Dropdown.Trigger";
+DropdownMenu.displayName = "Dropdown.Menu";
+DropdownItem.displayName = "Dropdown.Item";
 
-    if (onClick) {
-      onClick();
-    }
-    close();
-  };
-
-  return (
-    <BaseListItem
-      className={classNames(styles.item, className)}
-      onClick={handleClick}
-      onFocus={() => setFocusedIndex(index)}
-      disabled={disabled}
-      role="menuitem"
-      tabIndex={isFocused ? 0 : -1}
-      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (!disabled && (e.key === "Enter" || e.key === " ")) {
-          e.preventDefault();
-          handleClick(e);
-        }
-      }}
-    >
-      {children}
-    </BaseListItem>
-  );
-};
-
+export default DropdownRoot;

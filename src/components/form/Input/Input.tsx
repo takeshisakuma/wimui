@@ -1,14 +1,15 @@
-import React, { useId } from "react";
+import React, { useId, forwardRef, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
-import styles from "./input.module.scss";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { Icon } from "../../media/Icon/Icon";
 import { InputBase, InputBaseIcon } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
+import styles from "./input.module.scss";
 
-export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
+export interface InputProps extends Omit<React.ComponentPropsWithoutRef<"input">, "prefix"> {
   intent?: FieldIntent;
   variant?: FieldVariant;
   fullWidth?: boolean;
@@ -32,12 +33,13 @@ export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
   hidePasswordAriaLabel?: string;
   rightIconAriaLabel?: string;
   styles?: React.ComponentProps<typeof InputBase>["styles"];
-};
+  asChild?: boolean;
+}
 
 /**
  * ユーザーからの入力を受け付けるための基本コンポーネント。
  */
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       intent = "default",
@@ -70,6 +72,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       hidePasswordAriaLabel,
       rightIconAriaLabel,
       styles: stylesProp,
+      asChild = false,
+      children,
       ...props
     },
     ref,
@@ -79,11 +83,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const resolvedHidePasswordAriaLabel = hidePasswordAriaLabel ?? t("a11y.hide_password");
     const resolvedRightIconAriaLabel = rightIconAriaLabel ?? t("a11y.right_icon_action");
 
-    const [internalValue, setInternalValue] = React.useState(
+    const [internalValue, setInternalValue] = useState(
       defaultValue ?? "",
     );
-    const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
-    const inputRef = React.useRef<HTMLInputElement>(null);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
     const mergedRef = useMergedRef(ref, inputRef);
 
     const isControlled = value !== undefined;
@@ -159,6 +163,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const errorId = error ? `${id}-error` : undefined;
     const labelId = label ? `${id}-label` : undefined;
 
+    const Component = asChild ? Slot : "input";
+
     return (
       <FieldTemplate
         label={label}
@@ -184,7 +190,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onClear={handleClear}
           styles={stylesProp}
         >
-          <input
+          <Component
             id={id}
             ref={mergedRef}
             className={classNames(
@@ -205,7 +211,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {...props}
             placeholder={props.placeholder}
             aria-label={props["aria-label"]}
-          />
+          >
+            <Slottable>{children}</Slottable>
+          </Component>
         </InputBase>
       </FieldTemplate>
     );
@@ -213,3 +221,5 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 Input.displayName = "Input";
+
+export default Input;

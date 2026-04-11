@@ -1,29 +1,23 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  useId,
-} from "react";
-import { useTranslation } from "react-i18next";
+import React, { createContext, useContext, useId, useState } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { OverlayBase } from "../../_internal/OverlayBase";
 import styles from "./dialog.module.scss";
 
 // --- Dialog Context ---
 type DialogContextType = {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
   titleId: string;
   descriptionId: string;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 };
 
 const DialogContext = createContext<DialogContextType | undefined>(undefined);
 
-const useDialog = () => {
+export const useDialog = () => {
   const context = useContext(DialogContext);
   if (!context) {
-    throw new Error("useDialog must be used within a Dialog provider");
+    throw new Error("Dialog sub-components must be used within Dialog");
   }
   return context;
 };
@@ -32,183 +26,138 @@ const useDialog = () => {
 export interface DialogProps {
   children: React.ReactNode;
   open?: boolean;
-  defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
+  defaultOpen?: boolean;
+  className?: string;
 }
 
 export const Dialog = ({
   children,
   open: controlledOpen,
-  defaultOpen = false,
   onOpenChange,
+  defaultOpen = false,
+  className,
 }: DialogProps) => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : uncontrolledOpen;
-  const titleId = useId();
-  const descriptionId = useId();
 
-  const handleOpenChange = useCallback(
-    (newOpen: boolean) => {
-      if (!isControlled) {
-        setUncontrolledOpen(newOpen);
-      }
-      onOpenChange?.(newOpen);
-    },
-    [isControlled, onOpenChange],
-  );
+  const handleOpenChange = (newOpen: boolean) => {
+    if (!isControlled) {
+      setUncontrolledOpen(newOpen);
+    }
+    onOpenChange?.(newOpen);
+  };
+
+  const generatedId = useId();
+  const id = `wim-dialog-${generatedId}`;
+  const titleId = `${id}-title`;
+  const descriptionId = `${id}-description`;
 
   return (
-    <DialogContext.Provider
-      value={{ open, onOpenChange: handleOpenChange, titleId, descriptionId }}
-    >
-      {children}
+    <DialogContext.Provider value={{ titleId, descriptionId, open, onOpenChange: handleOpenChange }}>
+      <OverlayBase
+        open={open}
+        onOpenChange={handleOpenChange}
+        className={classNames(styles.root, className)}
+        role="dialog"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
+      >
+        {children}
+      </OverlayBase>
     </DialogContext.Provider>
   );
 };
 
+Dialog.displayName = "Dialog";
+
 // --- Dialog Trigger ---
-export interface DialogTriggerProps {
-  children: React.ReactNode;
+export interface DialogTriggerProps extends React.ComponentPropsWithoutRef<"button"> {
   asChild?: boolean;
-  className?: string;
 }
 
 export const DialogTrigger = ({
   children,
-  asChild,
   className,
+  onClick,
+  asChild = false,
+  ...props
 }: DialogTriggerProps) => {
   const { onOpenChange } = useDialog();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick?.(e);
     onOpenChange(true);
   };
 
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(
-      children as React.ReactElement<{
-        onClick?: React.MouseEventHandler;
-        className?: string;
-      }>,
-      {
-        onClick: (e: React.MouseEvent) => {
-          const child = children as React.ReactElement<{
-            onClick?: React.MouseEventHandler;
-          }>;
-          child.props.onClick?.(e);
-          handleClick();
-        },
-        className: classNames(
-          className,
-          (children as React.ReactElement<{ className?: string }>).props
-            .className,
-        ),
-      },
-    );
-  }
+  const Component = asChild ? Slot : "button";
 
   return (
-    <button
+    <Component
+      type="button"
       className={classNames(styles.trigger, className)}
       onClick={handleClick}
+      {...props}
     >
-      {children}
-    </button>
+      <Slottable>{children}</Slottable>
+    </Component>
   );
 };
 
+DialogTrigger.displayName = "Dialog.Trigger";
+
 // --- Dialog Close ---
-export interface DialogCloseProps {
-  children: React.ReactNode;
+export interface DialogCloseProps extends React.ComponentPropsWithoutRef<"button"> {
   asChild?: boolean;
-  className?: string;
-  ariaLabel?: string;
 }
 
 export const DialogClose = ({
   children,
   className,
-  asChild,
-  ariaLabel,
+  onClick,
+  asChild = false,
+  ...props
 }: DialogCloseProps) => {
-  const { t } = useTranslation("common");
-  const resolvedAriaLabel = ariaLabel ?? t("a11y.close");
   const { onOpenChange } = useDialog();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick?.(e);
     onOpenChange(false);
   };
 
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(
-      children as React.ReactElement<{
-        onClick?: React.MouseEventHandler;
-        className?: string;
-      }>,
-      {
-        onClick: (e: React.MouseEvent) => {
-          const child = children as React.ReactElement<{
-            onClick?: React.MouseEventHandler;
-          }>;
-          child.props.onClick?.(e);
-          handleClick();
-        },
-        className: classNames(
-          className,
-          (children as React.ReactElement<{ className?: string }>).props
-            .className,
-        ),
-      },
-    );
-  }
+  const Component = asChild ? Slot : "button";
 
   return (
-    <button
+    <Component
       type="button"
-      className={classNames(styles.closeButton, className)}
+      className={classNames(styles.close, className)}
       onClick={handleClick}
-      aria-label={resolvedAriaLabel}
+      {...props}
     >
-      {children}
-    </button>
+      <Slottable>{children}</Slottable>
+    </Component>
   );
 };
+
+DialogClose.displayName = "Dialog.Close";
 
 // --- Dialog Content ---
-export interface DialogContentProps {
+export const DialogContent = ({
+  children,
+  className,
+}: {
   children: React.ReactNode;
   className?: string;
-  /**
-   * Called when the dialog is closed via Escape key or overlay click.
-   */
-  onCloseAutoFocus?: (e: Event) => void;
-}
-
-export const DialogContent = ({ children, className }: DialogContentProps) => {
-  const { open, onOpenChange, titleId, descriptionId } = useDialog();
-
+}) => {
   return (
-    <OverlayBase
-      open={open}
-      onOpenChange={onOpenChange}
-      overlayClassName={styles.overlay}
-      contentClassName={classNames(styles.content, className)}
-      role="dialog"
-      transitionProps={{
-        preset: "scale",
-      }}
-    >
-      <div
-        aria-labelledby={titleId}
-        aria-describedby={descriptionId}
-        className={styles.contentInner}
-      >
-        {children}
-      </div>
-    </OverlayBase>
+    <div className={classNames(styles.content, className)}>
+      {children}
+    </div>
   );
 };
+
+DialogContent.displayName = "Dialog.Content";
 
 // --- Dialog Sections ---
 export const DialogHeader = ({
@@ -221,6 +170,8 @@ export const DialogHeader = ({
   <div className={classNames(styles.header, className)} data-testid="dialog-header">{children}</div>
 );
 
+DialogHeader.displayName = "Dialog.Header";
+
 export const DialogFooter = ({
   children,
   className,
@@ -230,6 +181,8 @@ export const DialogFooter = ({
 }) => (
   <div className={classNames(styles.footer, className)} data-testid="dialog-footer">{children}</div>
 );
+
+DialogFooter.displayName = "Dialog.Footer";
 
 export const DialogTitle = ({
   children,
@@ -245,6 +198,8 @@ export const DialogTitle = ({
     </h2>
   );
 };
+
+DialogTitle.displayName = "Dialog.Title";
 
 export const DialogDescription = ({
   children,
@@ -265,3 +220,25 @@ export const DialogDescription = ({
   );
 };
 
+DialogDescription.displayName = "Dialog.Description";
+
+// --- Compound Export ---
+export const DialogRoot = Dialog as typeof Dialog & {
+  Trigger: typeof DialogTrigger;
+  Content: typeof DialogContent;
+  Close: typeof DialogClose;
+  Header: typeof DialogHeader;
+  Footer: typeof DialogFooter;
+  Title: typeof DialogTitle;
+  Description: typeof DialogDescription;
+};
+
+DialogRoot.Trigger = DialogTrigger;
+DialogRoot.Content = DialogContent;
+DialogRoot.Close = DialogClose;
+DialogRoot.Header = DialogHeader;
+DialogRoot.Footer = DialogFooter;
+DialogRoot.Title = DialogTitle;
+DialogRoot.Description = DialogDescription;
+
+export default DialogRoot;

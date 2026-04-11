@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect, useId } from "react";
+import React, { useState, useRef, useEffect, useId, forwardRef } from "react";
 import classNames from "classnames";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Calendar } from "../../data-display/Calendar/Calendar";
 import { InputBase } from "../InputBase";
 import { Transition } from "../../layout/Transition/Transition";
@@ -13,10 +14,10 @@ export type DatePickerLabels = {
   placeholder?: string;
 };
 
-type DatePickerProps = Omit<
+export interface DatePickerProps extends Omit<
   React.ComponentPropsWithoutRef<"input">,
   "value" | "defaultValue" | "onChange"
-> & {
+> {
   intent?: FieldIntent;
   variant?: FieldVariant;
   fullWidth?: boolean;
@@ -45,7 +46,9 @@ type DatePickerProps = Omit<
   /** 手動翻訳用のラベル */
   labels?: DatePickerLabels;
   width?: FieldWidth | string | number;
-};
+  /** Whether to render as a child element. */
+  asChild?: boolean;
+}
 
 const DEFAULT_LABELS: Required<DatePickerLabels> = {
   placeholder: "Select date",
@@ -54,223 +57,258 @@ const DEFAULT_LABELS: Required<DatePickerLabels> = {
 /**
  * ユーザーが日付を選択するためのコンポーネント。
  */
-export const DatePicker = ({
-  intent = "default",
-  variant = "outline",
-  fullWidth = false,
-  className,
-  disabled,
-  value,
-  defaultValue,
-  onChange,
-  format = "YYYY-MM-DD",
-  clearable = true,
-  placeholder,
-  minDate: _minDate,
-  maxDate: _maxDate,
-  disabledDates: _disabledDates,
-  label,
-  error,
-  required,
-  layout,
-  id: customId,
-  labels,
-  width,
-  ...props
-}: DatePickerProps) => {
-  const mergedLabels = { ...DEFAULT_LABELS, ...labels };
+export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
+  (
+    {
+      intent = "default",
+      variant = "outline",
+      fullWidth = false,
+      className,
+      disabled,
+      value,
+      defaultValue,
+      onChange,
+      format = "YYYY-MM-DD",
+      clearable = true,
+      placeholder,
+      minDate: _minDate,
+      maxDate: _maxDate,
+      disabledDates: _disabledDates,
+      label,
+      error,
+      required,
+      layout,
+      id: customId,
+      labels,
+      width,
+      asChild = false,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const mergedLabels = { ...DEFAULT_LABELS, ...labels };
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [internalValue, setInternalValue] = useState<Date | null>(
-    defaultValue || null,
-  );
-  const containerRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const generatedId = useId();
-  const id = customId || `wim-datepicker-${generatedId}`;
-  const dropdownId = `${id}-dropdown`;
-  const labelId = label ? `${id}-label` : undefined;
-  const errorId = error ? `${id}-error` : undefined;
+    const [isOpen, setIsOpen] = useState(false);
+    const [internalValue, setInternalValue] = useState<Date | null>(
+      defaultValue || null,
+    );
+    const containerRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-  const isControlled = value !== undefined;
-  const currentValue = isControlled ? value : internalValue;
-
-  const actualPlaceholder = placeholder ?? mergedLabels.placeholder;
-  const isDisabled = disabled;
-  const currentIntent = error ? "error" : intent;
-
-  // Close calendar when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Handle Escape key globally when open
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        setIsOpen(false);
-        inputRef.current?.focus();
+    // Combine multiple refs for the root
+    const combinedRef = (node: HTMLDivElement) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (containerRef as any).current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (ref as any).current = node;
       }
     };
 
-    if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+    const generatedId = useId();
+    const id = customId || `wim-datepicker-${generatedId}`;
+    const dropdownId = `${id}-dropdown`;
+    const labelId = label ? `${id}-label` : undefined;
+    const errorId = error ? `${id}-error` : undefined;
 
-  const formatDate = (date: Date | null): string => {
-    if (!date) return "";
+    const isControlled = value !== undefined;
+    const currentValue = isControlled ? value : internalValue;
 
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
+    const actualPlaceholder = placeholder ?? mergedLabels.placeholder;
+    const isDisabled = disabled;
+    const currentIntent = error ? "error" : intent;
 
-    return format
-      .replace("YYYY", String(year))
-      .replace("MM", month)
-      .replace("DD", day);
-  };
+    // Close calendar when clicking outside
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          containerRef.current &&
+          !containerRef.current.contains(event.target as Node)
+        ) {
+          setIsOpen(false);
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
-  const handleDateChange = (date: Date) => {
-    if (!isControlled) {
-      setInternalValue(date);
-    }
-    onChange?.(date);
-    setIsOpen(false);
-    inputRef.current?.focus();
-  };
+    // Handle Escape key globally when open
+    useEffect(() => {
+      const handleEscapeKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape" && isOpen) {
+          setIsOpen(false);
+          inputRef.current?.focus();
+        }
+      };
 
-  const handleClear = (e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    if (!isDisabled) {
+      if (isOpen) {
+        document.addEventListener("keydown", handleEscapeKey);
+      }
+      return () => document.removeEventListener("keydown", handleEscapeKey);
+    }, [isOpen]);
+
+    const formatDate = (date: Date | null): string => {
+      if (!date) return "";
+
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+
+      return format
+        .replace("YYYY", String(year))
+        .replace("MM", month)
+        .replace("DD", day);
+    };
+
+    const handleDateChange = (date: Date) => {
       if (!isControlled) {
-        setInternalValue(null);
+        setInternalValue(date);
       }
-      onChange?.(null);
-    }
-  };
-
-  const handleInputClick = () => {
-    if (!isDisabled) {
-      setIsOpen(!isOpen);
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (isDisabled) return;
-
-    if (e.key === "Escape") {
+      onChange?.(date);
       setIsOpen(false);
       inputRef.current?.focus();
-    } else if (
-      e.key === "Enter" ||
-      e.key === " " ||
-      (e.key === "ArrowDown" && (e.altKey || !isOpen))
-    ) {
-      e.preventDefault();
-      setIsOpen(!isOpen);
-    }
-  };
+    };
 
-  // Focus management when opening
-  useEffect(() => {
-    if (isOpen) {
-      const timer = setTimeout(() => {
-        const focusedDay = containerRef.current?.querySelector<HTMLButtonElement>(
-          '[data-calendar-day][data-selected]:not(:disabled), [data-calendar-day]:focus',
-        );
-        if (focusedDay) {
-          focusedDay.focus();
-        } else {
-          containerRef.current?.querySelector<HTMLButtonElement>(
-            '[data-calendar-day]:not([data-other-month]):not(:disabled)',
-          )?.focus();
+    const handleClear = (e?: React.MouseEvent) => {
+      e?.stopPropagation();
+      if (!isDisabled) {
+        if (!isControlled) {
+          setInternalValue(null);
         }
-      }, 50);
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
+        onChange?.(null);
+      }
+    };
 
-  return (
-    <FieldTemplate
-      label={label}
-      error={error}
-      required={required}
-      layout={layout}
-      labelId={labelId}
-      errorId={errorId}
-      className={className}
-    >
-      <div
-        ref={containerRef}
-        className={classNames(
-          styles.root,
-          fullWidth && styles.fullWidth,
-        )}
+    const handleInputClick = () => {
+      if (!isDisabled) {
+        setIsOpen(!isOpen);
+      }
+    };
+
+    const handleInputKeyDown = (e: React.KeyboardEvent) => {
+      if (isDisabled) return;
+
+      if (e.key === "Escape") {
+        setIsOpen(false);
+        inputRef.current?.focus();
+      } else if (
+        e.key === "Enter" ||
+        e.key === " " ||
+        (e.key === "ArrowDown" && (e.altKey || !isOpen))
+      ) {
+        e.preventDefault();
+        setIsOpen(!isOpen);
+      }
+    };
+
+    // Focus management when opening
+    useEffect(() => {
+      if (isOpen) {
+        const timer = setTimeout(() => {
+          const focusedDay = containerRef.current?.querySelector<HTMLButtonElement>(
+            '[data-calendar-day][data-selected]:not(:disabled), [data-calendar-day]:focus',
+          );
+          if (focusedDay) {
+            focusedDay.focus();
+          } else {
+            containerRef.current?.querySelector<HTMLButtonElement>(
+              '[data-calendar-day]:not([data-other-month]):not(:disabled)',
+            )?.focus();
+          }
+        }, 50);
+        return () => clearTimeout(timer);
+      }
+    }, [isOpen]);
+
+    const RootComponent = asChild ? Slot : "div";
+
+    return (
+      <FieldTemplate
+        label={label}
+        error={error}
+        required={required}
+        layout={layout}
+        labelId={labelId}
+        errorId={errorId}
+        className={className}
       >
-        <InputBase
-          intent={currentIntent}
-          variant={variant}
-          width={width}
-          fullWidth={fullWidth}
-          disabled={isDisabled}
-          allowClear={clearable}
-          hasValue={!!currentValue}
-          onClear={handleClear}
-          rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen, onClick: handleInputClick }]}
+        <RootComponent
+          ref={combinedRef}
+          className={classNames(
+            styles.root,
+            fullWidth && styles.fullWidth,
+          )}
         >
-          <input
-            id={id}
-            ref={inputRef}
-            type="text"
-            readOnly
-            role="combobox"
-            className={classNames(
-              inputStyles.input,
-              styles.input,
-              fullWidth && inputStyles.fullWidth,
-            )}
-            value={formatDate(currentValue || null)}
-            placeholder={actualPlaceholder}
-            disabled={isDisabled}
-            onClick={handleInputClick}
-            onKeyDown={handleKeyDown}
-            aria-haspopup="dialog"
-            aria-expanded={isOpen}
-            aria-controls={isOpen ? dropdownId : undefined}
-            aria-invalid={currentIntent === "error"}
-            aria-describedby={errorId}
-            aria-labelledby={labelId}
-            aria-required={required}
-            {...props}
-          />
-        </InputBase>
-        <Transition
-          show={isOpen && !disabled}
-          preset="fade"
-          id={dropdownId}
-          className={styles.dropdown}
-        >
-          <FocusTrap active={isOpen} initialFocus={false}>
-            <div role="dialog" aria-modal="true" aria-labelledby={labelId}>
-              <Calendar
-                value={currentValue || undefined}
-                onChange={handleDateChange}
+          <Slottable>
+            <InputBase
+              intent={currentIntent}
+              variant={variant}
+              width={width}
+              fullWidth={fullWidth}
+              disabled={isDisabled}
+              allowClear={clearable}
+              hasValue={!!currentValue}
+              onClear={handleClear}
+              rightIcons={[
+                {
+                  name: "ChevronDownIcon",
+                  rotated: isOpen,
+                  onClick: handleInputClick,
+                },
+              ]}
+            >
+              <input
+                id={id}
+                ref={inputRef}
+                type="text"
+                readOnly
+                role="combobox"
+                className={classNames(
+                  inputStyles.input,
+                  styles.input,
+                  fullWidth && inputStyles.fullWidth,
+                )}
+                value={formatDate(currentValue || null)}
+                placeholder={actualPlaceholder}
+                disabled={isDisabled}
+                onClick={handleInputClick}
+                onKeyDown={handleInputKeyDown}
+                aria-haspopup="dialog"
+                aria-expanded={isOpen}
+                aria-controls={isOpen ? dropdownId : undefined}
+                aria-invalid={currentIntent === "error"}
+                aria-describedby={errorId}
+                aria-labelledby={labelId}
+                aria-required={required}
+                {...props}
               />
-            </div>
-          </FocusTrap>
-        </Transition>
-      </div>
-    </FieldTemplate>
-  );
-};
+            </InputBase>
+            <Transition
+              show={isOpen && !disabled}
+              preset="fade"
+              id={dropdownId}
+              className={styles.dropdown}
+            >
+              <FocusTrap active={isOpen} initialFocus={false}>
+                <div role="dialog" aria-modal="true" aria-labelledby={labelId}>
+                  <Calendar
+                    value={currentValue || undefined}
+                    onChange={handleDateChange}
+                  />
+                </div>
+              </FocusTrap>
+            </Transition>
+          </Slottable>
+          {children}
+        </RootComponent>
+      </FieldTemplate>
+    );
+  },
+);
+
+DatePicker.displayName = "DatePicker";
+
+export default DatePicker;

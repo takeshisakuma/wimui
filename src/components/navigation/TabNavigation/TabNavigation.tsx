@@ -83,10 +83,11 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
         )}
         {...props}
       >
-        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
+        { }
         <div
           className={styles.list}
           role="tablist"
+          tabIndex={0}
           onKeyDown={handleTablistKeyDown}
         >
           <div
