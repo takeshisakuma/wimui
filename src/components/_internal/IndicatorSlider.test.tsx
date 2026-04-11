@@ -78,7 +78,7 @@ describe("IndicatorSlider", () => {
     const slider = screen.getByTestId("indicator-slider");
     
     expect(slider.style.opacity).toBe("0.8");
-    expect(slider.style.transition).toContain("cubic-bezier");
+    expect(slider.style.transition).toContain("var(--wim-easing-standard)");
   });
 });
 
