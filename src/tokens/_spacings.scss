@@ -11,16 +11,3 @@
   /* ベースフォントサイズ */
   font-size: 100%;
 }
-
-/* PC用ブレイクポイントでのフォントサイズ調整 */
-@media (width >= 769px) {
-  :root {
-    font-size: 112.5%; /* 18px 相当 */
-  }
-}
-
-@media (width >= 1200px) {
-  :root {
-    font-size: 125%; /* 20px 相当 */
-  }
-}
