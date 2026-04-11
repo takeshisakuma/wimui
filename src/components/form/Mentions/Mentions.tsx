@@ -161,6 +161,8 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
       defaultValue: _unusedDefaultValue,
       /* eslint-enable @typescript-eslint/no-unused-vars */
       ...divProps
+      // MentionsProps は Textarea の props を継承した複合型のため、TypeScript がデストラクチャ後の残余型を
+      // 正確に推論できない。`as any` はその型推論の限界を回避するためのもので、実行時の安全性に影響しない。
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } = props as any;
 
