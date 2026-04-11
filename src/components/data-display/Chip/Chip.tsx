@@ -89,26 +89,18 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
           <Slottable>{children}</Slottable>
         </span>
         {onDelete && !disabled && (
-          <span
+          <button
+            type="button"
             className={styles.delete}
             data-chip-delete
             onClick={(e) => {
               e.stopPropagation();
               onDelete(e);
             }}
-            role="button"
             aria-label={resolvedDeleteAriaLabel}
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                e.stopPropagation();
-                onDelete(e);
-              }
-            }}
           >
             <Icon name="CloseIcon" size="sm" />
-          </span>
+          </button>
         )}
       </Component>
     );
