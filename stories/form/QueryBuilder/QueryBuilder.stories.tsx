@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { QueryBuilder, type QueryField, type QueryGroup } from "../../../src/components/form/QueryBuilder/QueryBuilder";
 import { useTranslation } from "react-i18next";
+import { expect, userEvent, within } from "storybook/test";
 
 const fields: QueryField[] = [
   { name: "firstName", label: "query.builder.field_first_name", type: "string" },
@@ -38,6 +39,24 @@ export const Default: Story = {
         </div>
       </div>
     );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Click "Add Rule"
+    const addRuleButton = canvas.getByRole("button", { name: /add rule/i });
+    await userEvent.click(addRuleButton);
+
+    // Check if a rule is added (field select is visible)
+    await expect(canvas.getByRole("combobox")).toBeVisible();
+
+    // Click "Add Group"
+    const addGroupButton = canvas.getByRole("button", { name: /add group/i });
+    await userEvent.click(addGroupButton);
+
+    // Check if a nested group is added
+    const groups = canvas.getAllByRole("group");
+    await expect(groups.length).toBeGreaterThan(1);
   },
 };
 

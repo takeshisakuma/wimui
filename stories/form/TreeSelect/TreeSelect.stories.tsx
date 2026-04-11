@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
+import { expect, userEvent, within } from "storybook/test";
 import {
   TreeSelect,
   TreeSelectNode,
@@ -67,6 +68,17 @@ export const Default: Story = {
         placeholder={t("story.treeselect_placeholder")}
       />
     );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("combobox");
+
+    // Click to open
+    await userEvent.click(trigger);
+    
+    // Check if tree dropdown is open
+    const tree = await canvas.findByRole("tree");
+    await expect(tree).toBeVisible();
   },
 };
 

@@ -10,13 +10,13 @@ const dirname =
 
 export default [
   {
+    name: "storybook",
     plugins: [
       storybookTest({
         configDir: path.join(dirname, ".storybook"),
       }),
     ],
     test: {
-      name: "storybook",
       browser: {
         enabled: true,
         name: "chromium",
@@ -24,6 +24,7 @@ export default [
         provider: playwright(),
       },
       setupFiles: [".storybook/vitest.setup.ts"],
+      include: ["**/*.stories.tsx"],
     },
   },
 ];
