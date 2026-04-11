@@ -19,24 +19,25 @@
 
       &:not(:first-child) {
         margin-left: -1px; // Standard overlap for 1px borders
-        border-top-left-radius: 0 !important;
-        border-bottom-left-radius: 0 !important;
 
-        // Reset radius for nested wrapper elements
+        --wim-field-radius-tl: 0;
+        --wim-field-radius-bl: 0;
+
+        // Reset radius for nested wrapper elements via variables
         * {
-          border-top-left-radius: 0 !important;
-          border-bottom-left-radius: 0 !important;
+          --wim-field-radius-tl: 0;
+          --wim-field-radius-bl: 0;
         }
       }
 
       &:not(:last-child) {
-        border-top-right-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
+        --wim-field-radius-tr: 0;
+        --wim-field-radius-br: 0;
 
-        // Reset radius for nested wrapper elements
+        // Reset radius for nested wrapper elements via variables
         * {
-          border-top-right-radius: 0 !important;
-          border-bottom-right-radius: 0 !important;
+          --wim-field-radius-tr: 0;
+          --wim-field-radius-br: 0;
         }
       }
 

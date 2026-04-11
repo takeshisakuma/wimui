@@ -7,7 +7,7 @@ describe("Progress", () => {
   it("renders with percentage width", () => {
     const { container } = render(<Progress value={50} max={100} />);
     const progressBar = container.querySelector(`.${styles.bar}`) as HTMLElement;
-    expect(progressBar.style.width).toBe("50%");
+    expect(progressBar.style.getPropertyValue("--wim-progress-width")).toBe("50%");
   });
 
   it("renders label and percentage text", () => {
@@ -27,6 +27,6 @@ describe("Progress", () => {
     const progress = screen.getByRole("progressbar");
     expect(progress).toHaveClass(styles.indeterminate);
     const progressBar = progress.querySelector(`.${styles.bar}`) as HTMLElement;
-    expect(progressBar.style.width).toBe("100%");
+    expect(progressBar.style.getPropertyValue("--wim-progress-width")).toBe("");
   });
 });

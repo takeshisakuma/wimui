@@ -18,7 +18,10 @@
     resize: vertical;
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-md)))
+                   var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-md)))
+                   var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-md)))
+                   var(--wim-field-radius-bl, var(--wim-field-radius, var(--wim-radius-md)));
     transition: var(--wim-transition-base);
 
     &::placeholder {
@@ -69,8 +72,9 @@
     }
 
     &.fullWidth {
-      width: 100% !important;
-      max-width: none !important;
+      --wim-input-width: 100%;
+
+      max-width: none;
     }
 
     // Semantic widths

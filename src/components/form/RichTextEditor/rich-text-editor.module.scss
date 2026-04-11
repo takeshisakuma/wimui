@@ -78,8 +78,9 @@
     }
   
     &.fullWidth {
-      width: 100% !important;
-      max-width: none !important;
+      --wim-input-width: 100%;
+
+      max-width: none;
     }
 
     // Semantic widths

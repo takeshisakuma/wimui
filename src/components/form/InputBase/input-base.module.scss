@@ -14,8 +14,11 @@
     max-width: var(--wim-input-width, 280px);
     min-height: var(--wim-height-md);
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-secondary);
-    border-radius: var(--wim-radius-md);
+    border: var(--wim-input-base-border, 1px solid var(--wim-color-secondary));
+    border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-md)))
+                   var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-md)))
+                   var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-md)))
+                   var(--wim-field-radius-bl, var(--wim-field-radius, var(--wim-radius-md)));
     transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 
     &.ghost {
@@ -99,8 +102,9 @@
     }
 
     &.fullWidth {
-      width: 100% !important;
-      max-width: none !important;
+      --wim-input-width: 100%;
+
+      max-width: none;
     }
   }
 
@@ -179,17 +183,22 @@
 
   // Make sure children (inputs, triggers) don't have their own borders
   .inner {
-      box-sizing: border-box !important;
-      width: 100%;
-      min-width: 0 !important;
-      height: 100%;
-      padding-top: var(--wim-spacing-sm);
-      padding-right: var(--wim-input-offset-right) !important;
-      padding-bottom: var(--wim-spacing-sm);
-      padding-left: var(--wim-input-offset-left) !important;
-      outline: none !important;
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
+    --wim-field-border: none;
+    --wim-field-shadow: none;
+    --wim-field-bg: transparent;
+    --wim-field-outline: none;
+    --wim-field-padding-v: var(--wim-spacing-sm);
+    --wim-field-padding-left: var(--wim-input-offset-left);
+    --wim-field-padding-right: var(--wim-input-offset-right);
+
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    padding: var(--wim-field-padding-v) var(--wim-field-padding-right) var(--wim-field-padding-v) var(--wim-field-padding-left);
+    outline: var(--wim-field-outline);
+    background: var(--wim-field-bg);
+    border: var(--wim-field-border);
+    box-shadow: var(--wim-field-shadow);
   }
 }

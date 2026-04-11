@@ -171,6 +171,25 @@
   .wim-parent { --wim-child-color: red; }
   ```
 
+- **[推奨パターン] 角丸やパディングの動的な上書き**: 子要素の角丸やパディングの一部を親（InputGroup など）がリセットしたい場合は、以下のように「4角個別の変数」や「パディング変数」を用意してください。
+
+  ```scss
+  // 子要素（Button, Input など）側の定義
+  .root {
+    border-radius:
+      var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-md)))
+      var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-md)))
+      var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-md)))
+      var(--wim-field-radius-bl, var(--wim-field-radius, var(--wim-radius-md)));
+  }
+
+  // 親要素（InputGroup など）側の定義
+  .root > *:not(:first-child) {
+    --wim-field-radius-tl: 0;
+    --wim-field-radius-bl: 0;
+  }
+  ```
+
 ## CSS カスケードレイヤー（@layer）
 
 ### 方針

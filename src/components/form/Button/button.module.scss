@@ -14,10 +14,13 @@
     white-space: nowrap;
     cursor: pointer;
     background-color: transparent;
-    border: var(--wim-border-width-thick) solid transparent;
-    border-radius: var(--wim-radius-md);
+    border: var(--wim-button-border, var(--wim-border-width-thick) solid transparent);
+    border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-md)))
+                   var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-md)))
+                   var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-md)))
+                   var(--wim-field-radius-bl, var(--wim-field-radius, var(--wim-radius-md)));
     opacity: 1;
-    transform: translateZ(0);
+    transform: var(--wim-button-transform, translateZ(0));
     backface-visibility: hidden;
     transition: var(--wim-transition-base);
 
@@ -30,7 +33,7 @@
     }
 
     &:active:not(:disabled) {
-      transform: scale(var(--wim-scale-active)) translateZ(0);
+      transform: var(--wim-button-transform-active, scale(var(--wim-scale-active)) translateZ(0));
       transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
     }
   }
@@ -63,9 +66,9 @@
 
   /* Sizes */
   .lg {
-    --wim-button-v-padding-base: var(--wim-spacing-xl);
+    --wim-button-v-padding-base: var(--wim-spacing-lg);
     --wim-button-v-padding: var(--wim-button-v-padding-base);
-    --wim-button-h-padding: var(--wim-spacing-2xl);
+    --wim-button-h-padding: var(--wim-spacing-3xl);
     --wim-button-height: var(--wim-height-lg);
 
     max-width: 100%;
