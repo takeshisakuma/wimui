@@ -195,35 +195,42 @@
   }
 
   .noScrollbar {
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
+    --wim-table-scrollbar-width: none;
+
+    scrollbar-width: var(--wim-table-scrollbar-width);
+    -ms-overflow-style: var(--wim-table-scrollbar-width);
 
     &::-webkit-scrollbar {
-      display: none !important;
+      display: none;
     }
   }
 
   .subtleScrollbar {
-    scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track) !important;
-    scrollbar-width: thin !important;
+    --wim-table-scrollbar-color: var(--wim-color-scrollbar-thumb) var(--wim-color-scrollbar-track);
+    --wim-table-scrollbar-width: thin;
+    --wim-table-scrollbar-track-bg: var(--wim-color-scrollbar-track);
+    --wim-table-scrollbar-thumb-bg: var(--wim-color-scrollbar-thumb);
+
+    scrollbar-color: var(--wim-table-scrollbar-color);
+    scrollbar-width: var(--wim-table-scrollbar-width);
 
     &::-webkit-scrollbar {
-      width: var(--wim-spacing-lg) !important;
-      height: var(--wim-spacing-lg) !important;
+      width: var(--wim-spacing-lg);
+      height: var(--wim-spacing-lg);
     }
 
     &::-webkit-scrollbar-track {
-      background: var(--wim-color-scrollbar-track) !important;
+      background: var(--wim-table-scrollbar-track-bg);
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: var(--wim-color-scrollbar-thumb) !important;
-      background-clip: content-box !important;
-      border: 1px solid transparent !important;
-      border-radius: var(--wim-radius-lg) !important;
+      background-color: var(--wim-table-scrollbar-thumb-bg);
+      background-clip: content-box;
+      border: 1px solid transparent;
+      border-radius: var(--wim-radius-lg);
 
       &:hover {
-        background-color: var(--wim-color-scrollbar-thumb) !important;
+        background-color: var(--wim-table-scrollbar-thumb-bg);
         filter: brightness(0.9);
       }
     }

@@ -58,7 +58,7 @@ export const Progress = ({
       <div className={styles.track}>
         <div
           className={styles.bar}
-          style={{ width: indeterminate ? "100%" : `${percentage}%` }}
+          style={!indeterminate ? ({ "--wim-progress-width": `${percentage}%` } as React.CSSProperties) : undefined}
         />
       </div>
     </div>

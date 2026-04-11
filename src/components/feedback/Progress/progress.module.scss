@@ -23,6 +23,7 @@
   }
 
   .bar {
+    width: var(--wim-progress-width, 0%);
     height: 100%;
     border-radius: var(--wim-radius-full);
     transition: width var(--wim-duration-base) var(--wim-easing-standard);
@@ -81,7 +82,7 @@
     .bar {
       position: absolute;
       left: -30%;
-      width: 30% !important;
+      width: 30%;
       animation: progress-indeterminate 1.5s infinite linear;
     }
   }
