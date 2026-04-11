@@ -4,9 +4,9 @@
     box-sizing: border-box;
     display: table;
     width: 100%;
-    padding: 0 4px;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
+    padding: 0 var(--wim-spacing-xs, 4px);
+    margin-bottom: var(--wim-spacing-md, 8px);
+    font-size: var(--wim-font-size-md);
     font-weight: bold;
     color: var(--wim-color-text-primary);
   }

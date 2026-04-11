@@ -9,7 +9,7 @@
     padding: var(--wim-button-v-padding, 0) var(--wim-button-h-padding, 0);
     font: inherit;
     font-weight: var(--wim-font-weight-medium);
-    line-height: 1.2;
+    line-height: var(--wim-line-height-tight, 1.2);
     color: inherit;
     white-space: nowrap;
     cursor: pointer;
@@ -59,7 +59,7 @@
     padding: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.2;
+    line-height: var(--wim-line-height-tight, 1.2);
     white-space: inherit;
   }
 
@@ -100,7 +100,7 @@
 
   /* Variants */
   .solid {
-    --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
+    --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - var(--wim-border-width-thick, 2px));
 
     background-image: var(--wim-glass-gradient);
     box-shadow: var(--wim-shadow-sm), var(--wim-inner-highlight);
@@ -128,7 +128,7 @@
     }
 
     &:hover:not(:disabled) {
-      box-shadow: 0 8px 18px rgb(0 0 0 / 0.12), var(--wim-inner-highlight);
+      box-shadow: var(--wim-button-shadow-hover, 0 8px 18px rgb(0 0 0 / 0.12)), var(--wim-inner-highlight);
       transform: translateY(var(--wim-lift-md)) translateZ(0);
       transition:
         box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
@@ -144,7 +144,7 @@
   }
 
   .outline {
-    --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
+    --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - var(--wim-border-width-thick, 2px));
 
     &.default {
       color: var(--wim-color-control-default-fg);
@@ -181,12 +181,12 @@
     &:active:not(:disabled) {
       box-shadow: var(--wim-shadow-inset);
       transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
-      transition: transform 0.1s var(--wim-easing-base);
+      transition: transform var(--wim-duration-instant) var(--wim-easing-base);
     }
   }
 
   .ghost {
-    --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - 0.125rem);
+    --wim-button-v-padding: calc(var(--wim-button-v-padding-base) - var(--wim-border-width-thick, 2px));
 
     background-color: var(--wim-color-ghost-bg);
     border-color: var(--wim-color-ghost-border);
@@ -226,7 +226,7 @@
       border-color: var(--wim-color-ghost-border-active);
       box-shadow: var(--wim-shadow-inset);
       transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
-      transition: transform 0.1s var(--wim-easing-base);
+      transition: transform var(--wim-duration-instant) var(--wim-easing-base);
     }
   }
 

@@ -22,28 +22,25 @@
     z-index: 10;
     display: inline-block;
     flex-shrink: 0;
-    width: 10px;
-    height: 10px;
+    width: var(--indicator-size, 10px);
+    height: var(--indicator-size, 10px);
     background-color: var(--wim-color-secondary);
-    border: 2px solid var(--wim-color-bg-component);
+    border: var(--indicator-border-width, 2px) solid var(--wim-color-bg-component);
     border-radius: var(--wim-radius-full);
 
     &.sm {
-      width: 8px;
-      height: 8px;
-      border-width: 1.5px;
+      --indicator-size: 8px;
+      --indicator-border-width: 1.5px;
     }
 
     &.md {
-      width: 10px;
-      height: 10px;
-      border-width: 2px;
+      --indicator-size: 10px;
+      --indicator-border-width: var(--wim-border-width-thick);
     }
 
     &.lg {
-      width: 12px;
-      height: 12px;
-      border-width: 2.5px;
+      --indicator-size: 12px;
+      --indicator-border-width: 2.5px;
     }
 
     // Colors
@@ -96,20 +93,20 @@
     &.pulse {
       &::after {
         position: absolute;
-        inset: -2px;
+        inset: calc(-1 * var(--indicator-pulse-offset, 2px));
         z-index: -1;
         content: "";
         background-color: inherit;
         border-radius: var(--wim-radius-full);
-        opacity: 0.4;
-        animation: wim-indicator-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        opacity: var(--indicator-pulse-opacity, 0.4);
+        animation: wim-indicator-pulse var(--indicator-pulse-duration, 2s) cubic-bezier(0.4, 0, 0.6, 1) infinite;
       }
     }
   }
 
   @keyframes wim-indicator-pulse {
     0% {
-      opacity: 0.4;
+      opacity: var(--indicator-pulse-opacity, 0.4);
       transform: scale(1);
     }
 

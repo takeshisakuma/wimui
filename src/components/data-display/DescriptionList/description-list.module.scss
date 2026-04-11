@@ -24,10 +24,10 @@
     // Layouts
     &.horizontal {
       .term {
-        width: 30%;
-        padding-right: var(--wim-spacing-2xl, 1rem);
+        width: var(--wim-dl-term-width, 30%);
+        padding-right: var(--wim-spacing-2xl);
   
-        @container (max-width: 600px) {
+        @container (max-width: var(--wim-dl-breakpoint, 600px)) {
           width: 100%;
           padding-right: 0;
         }
@@ -47,14 +47,14 @@
   
     &.compact {
       .item {
-        padding: var(--wim-spacing-md, 0.5rem) var(--wim-spacing-2xl, 1rem);
+        padding: var(--wim-spacing-md) var(--wim-spacing-2xl);
       }
   
       .term {
-        width: 20%;
-        padding-right: var(--wim-spacing-2xl, 1rem);
+        width: var(--wim-dl-compact-term-width, 20%);
+        padding-right: var(--wim-spacing-2xl);
   
-        @container (max-width: 600px) {
+        @container (max-width: var(--wim-dl-breakpoint, 600px)) {
           width: 100%;
           padding-right: 0;
         }
@@ -77,11 +77,11 @@
 
   .item {
     display: flex;
-    padding: var(--wim-spacing-2xl, 1rem);
+    padding: var(--wim-spacing-2xl);
 
-    @container (max-width: 600px) {
+    @container (max-width: var(--wim-dl-breakpoint, 600px)) {
       flex-direction: column;
-      gap: var(--wim-spacing-sm, 0.4rem);
+      gap: var(--wim-spacing-sm);
     }
   }
 

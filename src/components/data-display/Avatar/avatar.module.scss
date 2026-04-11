@@ -23,26 +23,26 @@
   }
 
   .rounded {
-    border-radius: 8px;
+    border-radius: var(--wim-radius-md, 8px);
   }
 
   // Sizes
   .sm {
-    width: 32px;
-    height: 32px;
-    font-size: 0.75rem;
+    width: var(--wim-avatar-size-sm, var(--wim-spacing-5xl, 32px));
+    height: var(--wim-avatar-size-sm, var(--wim-spacing-5xl, 32px));
+    font-size: var(--wim-font-size-xs);
   }
 
   .md {
-    width: 40px;
-    height: 40px;
-    font-size: 0.875rem;
+    width: var(--wim-avatar-size-md, 40px);
+    height: var(--wim-avatar-size-md, 40px);
+    font-size: var(--wim-font-size-sm);
   }
 
   .lg {
-    width: 48px;
-    height: 48px;
-    font-size: 1.125rem;
+    width: var(--wim-avatar-size-lg, 48px);
+    height: var(--wim-avatar-size-lg, 48px);
+    font-size: var(--wim-font-size-lg);
   }
 
   // Colors / Intents

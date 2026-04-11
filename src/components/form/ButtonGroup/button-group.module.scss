@@ -20,7 +20,7 @@
       --wim-field-radius-br: 0;
 
       &:not(:first-child) {
-        margin-left: -2px;
+        margin-left: calc(var(--wim-border-width-thick, 2px) * -1);
       }
 
       &:first-child {
@@ -50,7 +50,7 @@
         flex: 1 1 100%;
 
         &:not(:first-child) {
-          margin-top: -2px;
+          margin-top: calc(var(--wim-border-width-thick, 2px) * -1);
           margin-left: 0;
         }
 

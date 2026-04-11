@@ -1,33 +1,32 @@
 @layer component {
   .container {
     display: inline-flex;
-    gap: 8px;
+    gap: var(--wim-spacing-md);
     align-items: center;
 
     &.label-bottom {
       flex-direction: column;
-      gap: 12px;
+      gap: var(--wim-spacing-lg);
       justify-content: center;
     }
   }
 
   .root {
     display: block;
-    animation: wim-spinner-rotate 2s linear infinite;
+    width: var(--spinner-size, var(--wim-spacing-3xl, 24px));
+    height: var(--spinner-size, var(--wim-spacing-3xl, 24px));
+    animation: wim-spinner-rotate var(--spinner-rotate-duration, 2s) linear infinite;
 
     &.sm {
-      width: 16px;
-      height: 16px;
+      --spinner-size: var(--wim-spacing-2xl, 16px);
     }
 
     &.md {
-      width: 24px;
-      height: 24px;
+      --spinner-size: var(--wim-spacing-3xl, 24px);
     }
 
     &.lg {
-      width: 48px;
-      height: 48px;
+      --spinner-size: 48px;
     }
 
     // Colors
@@ -65,11 +64,11 @@
   }
 
   .head {
-    animation: wim-spinner-dash 1.5s ease-in-out infinite;
+    animation: wim-spinner-dash var(--spinner-dash-duration, 1.5s) ease-in-out infinite;
   }
 
   .label {
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-secondary);
   }
 

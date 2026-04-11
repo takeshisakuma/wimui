@@ -24,15 +24,15 @@
 
       .list {
         flex-direction: column;
-        width: 200px;
+        width: var(--wim-tabs-vertical-width, 200px);
         background-color: var(--wim-color-primary-subtle);
         border-right: 1px solid var(--wim-color-border-secondary);
         border-bottom: none;
         border-radius: 0;
         mask-image: linear-gradient(to bottom,
             transparent,
-            black 15px,
-            black calc(100% - 15px),
+            var(--wim-tabs-mask-size, 15px) black,
+            black calc(100% - var(--wim-tabs-mask-size, 15px)),
             transparent);
 
         @include breakpoints.container-down(md) {
@@ -43,8 +43,8 @@
           border-bottom: 1px solid var(--wim-color-border-secondary);
           mask-image: linear-gradient(to right,
               transparent,
-              black 15px,
-              black calc(100% - 15px),
+              var(--wim-tabs-mask-size, 15px) black,
+              black calc(100% - var(--wim-tabs-mask-size, 15px)),
               transparent);
         }
       }
@@ -78,7 +78,7 @@
 
       .content {
         flex-grow: 1;
-        padding: 1rem;
+        padding: var(--wim-spacing-2xl);
       }
     }
 
@@ -88,7 +88,7 @@
       flex-shrink: 0;
       gap: var(--wim-spacing-xs);
       width: 100%;
-      padding: 4px 4px 0;
+      padding: var(--wim-spacing-2xs) var(--wim-spacing-2xs) 0;
       overflow-x: auto;
       cursor: grab;
       user-select: none;
@@ -104,8 +104,8 @@
       /* スクロール可能であることを示すマスク */
       mask-image: linear-gradient(to right,
           transparent,
-          black 15px,
-          black calc(100% - 15px),
+          var(--wim-tabs-mask-size, 15px) black,
+          black calc(100% - var(--wim-tabs-mask-size, 15px)),
           transparent);
       -ms-overflow-style: none;
 
@@ -135,7 +135,7 @@
         top: 0;
         right: 0;
         bottom: auto;
-        width: 2px;
+        width: var(--wim-border-width-thick, 2px);
         border-radius: 0;
       }
     }
@@ -183,7 +183,7 @@
 
     .content {
       flex-grow: 1;
-      padding: 1rem;
+      padding: var(--wim-spacing-2xl);
 
       &:focus-visible {
         z-index: 1;

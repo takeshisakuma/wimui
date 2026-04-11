@@ -35,14 +35,14 @@
 
     // Bars variant
     &.bars {
-      gap: 4px;
+      gap: var(--wim-spacing-xs);
 
       .item {
-        width: 4px;
-        height: 16px;
+        width: var(--wim-spacing-xs);
+        height: var(--wim-spacing-2xl);
         background-color: currentcolor;
-        border-radius: 2px;
-        animation: wim-loader-bars 1.2s ease-in-out infinite;
+        border-radius: var(--wim-radius-sm);
+        animation: wim-loader-bars var(--wim-loader-duration, 1.2s) ease-in-out infinite;
 
         &:nth-child(2) {
           animation-delay: 0.15s;
@@ -54,7 +54,7 @@
       }
 
       &.sm {
-        gap: 2px;
+        gap: var(--wim-spacing-2xs);
 
         .item {
           width: 3px;
@@ -63,7 +63,7 @@
       }
 
       &.md {
-        gap: 4px;
+        gap: var(--wim-spacing-xs);
 
         .item {
           width: 4px;
@@ -72,7 +72,7 @@
       }
 
       &.lg {
-        gap: 8px;
+        gap: var(--wim-spacing-md);
 
         .item {
           width: 8px;
@@ -83,14 +83,14 @@
 
     // Dots variant
     &.dots {
-      gap: 6px;
+      gap: var(--wim-loader-dot-gap, 6px);
 
       .item {
-        width: 8px;
-        height: 8px;
+        width: var(--wim-spacing-md);
+        height: var(--wim-spacing-md);
         background-color: currentcolor;
         border-radius: var(--wim-radius-full);
-        animation: wim-loader-dots 1s ease-in-out infinite;
+        animation: wim-loader-dots var(--wim-loader-duration, 1s) ease-in-out infinite;
 
         &:nth-child(2) {
           animation-delay: 0.2s;
@@ -102,7 +102,7 @@
       }
 
       &.sm {
-        gap: 4px;
+        gap: var(--wim-spacing-xs);
 
         .item {
           width: 4px;
@@ -111,7 +111,7 @@
       }
 
       &.md {
-        gap: 6px;
+        gap: var(--wim-loader-dot-gap, 6px);
 
         .item {
           width: 8px;
@@ -120,7 +120,7 @@
       }
 
       &.lg {
-        gap: 10px;
+        gap: var(--wim-spacing-lg);
 
         .item {
           width: 16px;
@@ -150,13 +150,13 @@
       }
 
       &.sm {
-        width: 16px;
-        height: 16px;
+        width: var(--wim-spacing-2xl);
+        height: var(--wim-spacing-2xl);
       }
 
       &.md {
-        width: 24px;
-        height: 24px;
+        width: var(--wim-spacing-3xl);
+        height: var(--wim-spacing-3xl);
       }
 
       &.lg {

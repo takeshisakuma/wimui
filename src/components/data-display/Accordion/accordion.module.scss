@@ -28,10 +28,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem;
+    padding: var(--wim-spacing-2xl);
     margin: 0;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: var(--wim-font-size-md);
     font-weight: 500;
     color: inherit;
     text-align: left;
@@ -62,11 +62,11 @@
   }
 
   .chevron {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-left: 1rem;
+    width: var(--wim-accordion-chevron-size, 1.25rem);
+    height: var(--wim-accordion-chevron-size, 1.25rem);
+    margin-left: var(--wim-spacing-2xl);
     color: var(--wim-color-text-secondary);
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform var(--wim-duration-base) var(--wim-easing-standard);
     will-change: transform;
 
     &.open {
@@ -79,9 +79,9 @@
     grid-template-rows: 0fr;
     margin: 0;
     overflow: hidden;
-    font-size: 0.875rem;
-    line-height: 1.6;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: var(--wim-font-size-sm);
+    line-height: var(--wim-line-height-relaxed, 1.6);
+    transition: all var(--wim-duration-base) var(--wim-easing-standard);
     will-change: grid-template-rows;
 
     &.open {
@@ -94,6 +94,6 @@
   }
 
   .contentBody {
-    padding: 1rem;
+    padding: var(--wim-spacing-2xl);
   }
 }

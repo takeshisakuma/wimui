@@ -45,7 +45,7 @@
       thead th {
         position: sticky;
         top: 0;
-        z-index: 10;
+        z-index: var(--wim-z-index-sticky, 10);
         background-color: var(--wim-color-bg-component);
         box-shadow: 0 1px 0 var(--wim-color-border);
       }
@@ -118,7 +118,7 @@
     font-weight: 600;
     text-align: left;
     white-space: nowrap;
-    border-bottom: 2px solid var(--wim-color-border);
+    border-bottom: var(--wim-border-width-thick) solid var(--wim-color-border);
   
     &.sortable {
       cursor: pointer;
@@ -130,20 +130,20 @@
     }
   
     &.selection {
-      width: 48px;
+      width: var(--wim-table-selection-width, 48px);
       text-align: center;
     }
   
     &.stickyLeft {
       position: sticky;
-      z-index: 20;
+      z-index: var(--wim-z-index-sticky-column, 20);
       background-color: inherit;
       box-shadow: 1px 0 0 var(--wim-color-border);
     }
   
     &.stickyRight {
       position: sticky;
-      z-index: 20;
+      z-index: var(--wim-z-index-sticky-column, 20);
       background-color: inherit;
       box-shadow: -1px 0 0 var(--wim-color-border);
     }
@@ -154,20 +154,20 @@
     vertical-align: middle;
   
     &.selection {
-      width: 48px;
+      width: var(--wim-table-selection-width, 48px);
       text-align: center;
     }
   
     &.stickyLeft {
       position: sticky;
-      z-index: 10;
+      z-index: var(--wim-z-index-sticky, 10);
       background-color: inherit;
       box-shadow: 1px 0 0 var(--wim-color-border);
     }
   
     &.stickyRight {
       position: sticky;
-      z-index: 10;
+      z-index: var(--wim-z-index-sticky, 10);
       background-color: inherit;
       box-shadow: -1px 0 0 var(--wim-color-border);
     }
@@ -182,7 +182,7 @@
   .sortIcon {
     display: inline-flex;
     color: var(--wim-color-text-tertiary);
-    transition: transform 0.2s;
+    transition: transform var(--wim-duration-base);
   
     &.asc {
       color: var(--wim-color-primary);

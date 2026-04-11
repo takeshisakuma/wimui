@@ -2,7 +2,7 @@
   .root {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--wim-spacing-md);
     width: 100%;
   }
 
@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 0.875rem;
+    font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-secondary);
   }
 
@@ -32,19 +32,19 @@
   // Sizes
   .sm {
     .track {
-      height: 4px;
+      height: var(--progress-height-sm, 4px);
     }
   }
 
   .md {
     .track {
-      height: 8px;
+      height: var(--progress-height-md, 8px);
     }
   }
 
   .lg {
     .track {
-      height: 12px;
+      height: var(--progress-height-lg, 12px);
     }
   }
 
@@ -83,7 +83,7 @@
       position: absolute;
       left: calc(-1 * var(--progress-indeterminate-width, 30%));
       width: var(--progress-indeterminate-width, 30%);
-      animation: progress-indeterminate 1.5s infinite linear;
+      animation: progress-indeterminate var(--progress-indeterminate-duration, 1.5s) infinite linear;
     }
   }
 }

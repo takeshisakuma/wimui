@@ -16,10 +16,8 @@
     background: var(--wim-color-surface-glass);
     border: 1px solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-lg);
-    box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.1),
-      0 2px 4px -1px rgb(0 0 0 / 0.06);
-    backdrop-filter: blur(8px);
+    box-shadow: var(--wim-shadow-md);
+    backdrop-filter: blur(var(--wim-tree-blur, 8px));
   
     &.data-driven > .item {
       animation: enter 0.2s cubic-bezier(0.4, 0, 0.2, 1) both;
@@ -33,13 +31,13 @@
   .searchInput {
     width: 100%;
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
-    font-size: 14px;
+    font-size: var(--wim-font-size-sm);
     outline: none;
     border: 1px solid var(--wim-color-border-secondary);
     border-radius: var(--wim-radius-md);
     transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
+      border-color var(--wim-duration-base) var(--wim-easing-standard),
+      box-shadow var(--wim-duration-base) var(--wim-easing-standard);
 
     &:focus {
       border-color: var(--wim-color-primary);
@@ -127,19 +125,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: var(--wim-tree-icon-size, var(--wim-spacing-3xl, 24px));
+    height: var(--wim-tree-icon-size, var(--wim-spacing-3xl, 24px));
     padding: 0;
     color: var(--wim-color-text-tertiary);
     cursor: pointer;
     outline: none;
     background: transparent;
     border: none;
-    border-radius: 4px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--wim-radius-sm, 4px);
+    transition: all var(--wim-duration-slow) var(--wim-easing-standard);
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px var(--wim-color-primary);
+      box-shadow: var(--wim-shadow-focus);
     }
 
     &:hover:not(:disabled) {
@@ -176,8 +174,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: var(--wim-tree-icon-size, var(--wim-spacing-3xl, 24px));
+    height: var(--wim-tree-icon-size, var(--wim-spacing-3xl, 24px));
     color: var(--wim-color-text-secondary);
   }
 
@@ -203,16 +201,16 @@
   .childrenInner {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--wim-spacing-3xs, 2px);
     min-width: 0;
     min-height: 0;
-    padding: 4px 0 4px 20px;
-    margin-top: 2px;
+    padding: var(--wim-spacing-2xs, 4px) 0 var(--wim-spacing-2xs, 4px) var(--wim-tree-indent, 20px);
+    margin-top: var(--wim-spacing-3xs, 2px);
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translateX(calc(-1 * var(--wim-spacing-md, 8px)));
     transition:
-      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.3s ease;
+      transform var(--wim-duration-slow) var(--wim-easing-standard),
+      opacity var(--wim-duration-slow) ease;
 
     @container (width <= 480px) {
       padding-left: 12px;

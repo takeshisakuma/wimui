@@ -14,13 +14,13 @@
     &.sm {
       min-width: 1.25em;
       height: 1.25em;
-      padding: 2px 6px;
-      font-size: 0.65rem;
+      padding: var(--wim-spacing-3xs, 2px) var(--wim-spacing-xs, 6px);
+      font-size: var(--wim-font-size-xs, 0.75rem);
 
       &.iconOnly {
-        width: 8px;
+        width: var(--wim-badge-dot-sm, 8px);
         min-width: 0;
-        height: 8px;
+        height: var(--wim-badge-dot-sm, 8px);
         padding: 0;
       }
     }
@@ -28,13 +28,13 @@
     &.md {
       min-width: 1.5em;
       height: 1.5em;
-      padding: 4px 8px;
-      font-size: 0.75rem;
+      padding: var(--wim-spacing-2xs, 4px) var(--wim-spacing-md, 8px);
+      font-size: var(--wim-font-size-xs, 0.75rem);
 
       &.iconOnly {
-        width: 10px;
+        width: var(--wim-badge-dot-md, 10px);
         min-width: 0;
-        height: 10px;
+        height: var(--wim-badge-dot-md, 10px);
         padding: 0;
       }
     }
@@ -42,13 +42,13 @@
     &.lg {
       min-width: 1.75em;
       height: 1.75em;
-      padding: 6px 10px;
-      font-size: 0.875rem;
+      padding: var(--wim-spacing-xs, 6px) var(--wim-spacing-lg, 10px);
+      font-size: var(--wim-font-size-sm, 0.875rem);
 
       &.iconOnly {
-        width: 12px;
+        width: var(--wim-badge-dot-lg, 12px);
         min-width: 0;
-        height: 12px;
+        height: var(--wim-badge-dot-lg, 12px);
         padding: 0;
       }
     }

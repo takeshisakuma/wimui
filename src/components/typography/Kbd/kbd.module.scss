@@ -11,30 +11,30 @@
     user-select: none;
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
-    border-bottom-width: 3px;
+    border-bottom-width: var(--wim-kbd-border-bottom-width, 3px);
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-xs);
 
     // Sizes
     &.sm {
-      min-width: 1.5rem;
-      height: 1.5rem;
+      min-width: var(--wim-kbd-min-width-sm, 1.5rem);
+      height: var(--wim-kbd-height-sm, 1.5rem);
       padding: 0 var(--wim-spacing-xs);
-      font-size: 0.75rem;
+      font-size: var(--wim-font-size-xs);
     }
 
     &.md {
-      min-width: 2rem;
-      height: 2rem;
+      min-width: var(--wim-kbd-min-width-md, 2rem);
+      height: var(--wim-kbd-height-md, 2rem);
       padding: 0 var(--wim-spacing-sm);
-      font-size: 0.875rem;
+      font-size: var(--wim-font-size-sm);
     }
 
     &.lg {
-      min-width: 2.5rem;
-      height: 2.5rem;
+      min-width: var(--wim-kbd-min-width-lg, 2.5rem);
+      height: var(--wim-kbd-height-lg, 2.5rem);
       padding: 0 var(--wim-spacing-md);
-      font-size: 1rem;
+      font-size: var(--wim-font-size-md);
     }
 
     // Interactive feel (though typically static)

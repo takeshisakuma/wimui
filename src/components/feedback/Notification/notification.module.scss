@@ -1,13 +1,13 @@
 @layer component {
   .root {
     position: relative;
-    width: 384px;
-    max-width: calc(100vw - 32px);
+    width: var(--wim-notification-width, 384px);
+    max-width: calc(100vw - var(--wim-spacing-4xl));
     padding: var(--wim-spacing-lg) var(--wim-spacing-md);
     margin-bottom: var(--wim-spacing-md);
     overflow: hidden;
     background-color: var(--wim-color-bg-component);
-    border: 1px solid var(--wim-color-secondary);
+    border: 1px solid var(--wim-color-border-secondary);
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-md);
   }
@@ -63,19 +63,19 @@
 
   // Variants
   .success {
-    border-left: 4px solid var(--wim-color-positive);
+    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-positive);
   }
 
   .info {
-    border-left: 4px solid var(--wim-color-informative);
+    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-informative);
   }
 
   .warning {
-    border-left: 4px solid var(--wim-color-caution);
+    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-caution);
   }
 
   .error {
-    border-left: 4px solid var(--wim-color-destructive);
+    border-left: var(--wim-notification-border-accent-width, 4px) solid var(--wim-color-destructive);
   }
 
   .container {

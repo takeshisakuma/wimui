@@ -21,14 +21,13 @@
   .bubble {
     position: fixed;
     z-index: var(--wim-z-overlay-step);
-    width: 300px;
-    max-width: calc(100vw - 32px);
+    width: var(--wim-tour-bubble-width, 300px);
+    max-width: calc(100vw - var(--wim-spacing-4xl));
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
-    border-radius: var(--wim-radius-lg, 8px);
-    box-shadow: var(--wim-shadow-lg, 0 5px 10px rgb(0 0 0 / 0.18));
+    border-radius: var(--wim-radius-lg);
+    box-shadow: var(--wim-shadow-lg);
     transition: var(--wim-transition-base);
-
   }
 
   .inner {
@@ -36,14 +35,14 @@
   }
 
   .title {
-    margin: 0 0 var(--wim-spacing-md, 0.5rem) 0;
-    font-size: 1.1rem;
+    margin: 0 0 var(--wim-spacing-md) 0;
+    font-size: var(--wim-font-size-lg);
     font-weight: 600;
   }
 
   .description {
-    margin: 0 0 var(--wim-spacing-2xl, 1rem) 0;
-    font-size: 0.9rem;
+    margin: 0 0 var(--wim-spacing-2xl) 0;
+    font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-secondary);
   }
 
@@ -54,7 +53,7 @@
   }
 
   .progress {
-    font-size: 0.8rem;
+    font-size: var(--wim-font-size-xs);
     color: var(--wim-color-text-tertiary);
   }
 

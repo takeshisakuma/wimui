@@ -1,7 +1,7 @@
 @layer component {
   .root {
     width: 100%;
-    max-width: 340px;
+    max-width: var(--wim-calendar-width, 340px);
     padding: var(--wim-spacing-md);
     font-family: var(--wim-font-family-default);
     user-select: none;
@@ -24,7 +24,7 @@
   }
   
   .title {
-    font-size: 1rem;
+    font-size: var(--wim-font-size-md);
     font-weight: 600;
     color: var(--wim-color-text-primary);
   }
@@ -33,8 +33,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: var(--wim-calendar-nav-size, var(--wim-spacing-4xl, 32px));
+    height: var(--wim-calendar-nav-size, var(--wim-spacing-4xl, 32px));
     padding: 0;
     color: var(--wim-color-text-secondary);
     cursor: pointer;
@@ -42,8 +42,8 @@
     border: 1px solid transparent;
     border-radius: var(--wim-radius-sm);
     transition:
-      background-color 0.2s,
-      color 0.2s;
+      background-color var(--wim-duration-base) var(--wim-easing-standard),
+      color var(--wim-duration-base) var(--wim-easing-standard);
   
     &:hover:not(:disabled) {
       color: var(--wim-color-text-primary);
@@ -69,8 +69,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 32px;
-    font-size: 0.8rem;
+    height: var(--wim-calendar-weekday-height, 32px);
+    font-size: var(--wim-font-size-xs);
     font-weight: 600;
     color: var(--wim-color-text-tertiary);
     white-space: nowrap;
@@ -88,18 +88,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 30px;
+    height: var(--wim-calendar-day-height, 30px);
     padding: 0;
-    font-size: 1rem;
+    font-size: var(--wim-font-size-md);
     color: var(--wim-color-text-primary);
     cursor: pointer;
     background: transparent;
     border: 1px solid transparent;
     border-radius: var(--wim-radius-sm);
     transition:
-      background-color 0.2s,
-      border-color 0.2s,
-      color 0.2s;
+      background-color var(--wim-duration-base) var(--wim-easing-standard),
+      border-color var(--wim-duration-base) var(--wim-easing-standard),
+      color var(--wim-duration-base) var(--wim-easing-standard);
   
     &:hover:not(:disabled, .selected) {
       background-color: var(--wim-color-bg-hover);

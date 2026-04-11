@@ -5,9 +5,9 @@
   }
 
   .mark {
-    padding: 0 2px;
+    padding: 0 var(--wim-spacing-3xs, 2px);
     color: inherit;
     background-color: var(--wim-decoration-highlight-color);
-    border-radius: 2px;
+    border-radius: var(--wim-radius-xs, 2px);
   }
 }

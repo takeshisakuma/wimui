@@ -3,7 +3,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    line-height: 1.5;
+    line-height: var(--wim-line-height-normal, 1.5);
     cursor: pointer;
     user-select: none;
 
@@ -18,25 +18,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: var(--wim-radio-size, 20px);
+    height: var(--wim-radio-size, 20px);
     margin: 0 var(--wim-spacing-sm) 0 0;
     appearance: none;
     cursor: pointer;
-    background-color: var(--wim-color-bg-component);
-    border: 2px solid var(--wim-color-text-tertiary);
+    border: var(--wim-border-width-thick, 2px) solid var(--wim-color-text-tertiary);
     border-radius: var(--wim-radius-full);
-    transition: all 0.2s ease-in-out;
+    transition: all var(--wim-duration-base) var(--wim-easing-standard);
 
     &::after {
-      width: 10px;
-      height: 10px;
+      width: var(--wim-radio-dot-size, 10px);
+      height: var(--wim-radio-dot-size, 10px);
       content: "";
       background-color: var(--wim-color-primary);
       border-radius: var(--wim-radius-full);
       opacity: 0;
       transform: scale(0);
-      transition: all 0.2s ease-in-out;
+      transition: all var(--wim-duration-base) var(--wim-easing-standard);
     }
 
     // Checked state
@@ -51,8 +50,8 @@
 
     // Focus state
     &:focus-visible {
-      outline: 2px solid var(--wim-color-primary);
-      outline-offset: 2px;
+      outline: var(--wim-border-width-thick, 2px) solid var(--wim-color-primary);
+      outline-offset: var(--wim-border-width-thick, 2px);
       box-shadow: var(--wim-shadow-focus);
     }
 
@@ -69,8 +68,8 @@
   }
 
   .label {
-    font-family: var(--font-sans);
-    font-size: 1rem;
+    font-family: var(--wim-font-family-default, var(--font-sans));
+    font-size: var(--wim-font-size-md);
     color: var(--wim-color-text-primary);
   }
 }

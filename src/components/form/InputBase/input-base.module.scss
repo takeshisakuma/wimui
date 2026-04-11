@@ -19,7 +19,10 @@
                    var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-md)))
                    var(--wim-field-radius-br, var(--wim-field-radius, var(--wim-radius-md)))
                    var(--wim-field-radius-bl, var(--wim-field-radius, var(--wim-radius-md)));
-    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    transition:
+      border-color var(--wim-duration-base) var(--wim-easing-standard),
+      box-shadow var(--wim-duration-base) var(--wim-easing-standard),
+      background-color var(--wim-duration-base) var(--wim-easing-standard);
 
     &.ghost {
       background-color: transparent;
@@ -77,15 +80,15 @@
 
     // Icons padding
     &.hasLeftIcon {
-      --wim-input-offset-left: calc(var(--wim-spacing-2xl) + 1.5rem);
+      --wim-input-offset-left: calc(var(--wim-spacing-2xl) + var(--wim-spacing-3xl, 24px));
     }
 
     &.hasRightIcon {
-      --wim-input-offset-right: calc(var(--wim-spacing-2xl) + 1.5rem);
+      --wim-input-offset-right: calc(var(--wim-spacing-2xl) + var(--wim-spacing-3xl, 24px));
     }
 
     &.hasMultipleRightIcons {
-      --wim-input-offset-right: calc(var(--wim-spacing-md) + 3rem + var(--wim-spacing-sm) + 8px);
+      --wim-input-offset-right: calc(var(--wim-spacing-md) + var(--wim-spacing-4xl, 32px) + var(--wim-spacing-sm) + var(--wim-spacing-md, 8px));
     }
 
     // Semantic sizes
@@ -138,7 +141,7 @@
     align-items: center;
     pointer-events: none;
     transform: translateY(-50%);
-    transition: color 0.3s ease-in-out;
+    transition: color var(--wim-duration-slow) var(--wim-easing-standard);
 
     &.right {
       right: var(--wim-spacing-sm);

@@ -2,7 +2,7 @@
   .root {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--wim-spacing-4xl);
     align-items: center;
     padding: var(--wim-spacing-4xl) var(--wim-spacing-md);
     text-align: center;
@@ -23,9 +23,9 @@
         margin-bottom: 0;
   
         svg {
-          width: 32px;
-          height: 32px;
-          font-size: 32px;
+          width: var(--wim-status-icon-size-sm, var(--wim-spacing-5xl, 32px));
+          height: var(--wim-status-icon-size-sm, var(--wim-spacing-5xl, 32px));
+          font-size: var(--wim-status-icon-size-sm, var(--wim-spacing-5xl, 32px));
         }
       }
   
@@ -63,9 +63,9 @@
     margin-bottom: var(--wim-spacing-sm);
 
     svg {
-      width: 80px;
-      height: 80px;
-      font-size: 80px;
+      width: var(--wim-status-icon-size, 80px);
+      height: var(--wim-status-icon-size, 80px);
+      font-size: var(--wim-status-icon-size, 80px);
     }
   }
 
@@ -77,7 +77,7 @@
   }
 
   .description {
-    max-width: 600px;
+    max-width: var(--wim-status-desc-max-width, 600px);
     font-size: var(--wim-font-size-md);
     line-height: var(--wim-line-height-normal-jp);
     color: var(--wim-color-text-secondary);
@@ -92,7 +92,7 @@
 
   .body {
     width: 100%;
-    max-width: 800px;
+    max-width: var(--wim-status-body-max-width, 800px);
     padding: var(--wim-spacing-md);
     margin-top: var(--wim-spacing-lg);
     text-align: left;
