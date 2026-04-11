@@ -81,8 +81,8 @@
   .indeterminate {
     .bar {
       position: absolute;
-      left: -30%;
-      width: 30%;
+      left: calc(-1 * var(--progress-indeterminate-width, 30%));
+      width: var(--progress-indeterminate-width, 30%);
       animation: progress-indeterminate 1.5s infinite linear;
     }
   }
@@ -90,7 +90,7 @@
 
 @keyframes progress-indeterminate {
   0% {
-    left: -30%;
+    left: calc(-1 * var(--progress-indeterminate-width, 30%));
   }
 
   100% {
