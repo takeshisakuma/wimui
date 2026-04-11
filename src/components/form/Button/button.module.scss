@@ -128,7 +128,7 @@
     }
 
     &:hover:not(:disabled) {
-      box-shadow: var(--wim-button-shadow-hover, 0 8px 18px rgb(0 0 0 / 0.12)), var(--wim-inner-highlight);
+      box-shadow: var(--wim-button-shadow-hover, 0 8px 18px color-mix(in srgb, var(--wim-color-bg-void) 12%, transparent)), var(--wim-inner-highlight);
       transform: translateY(var(--wim-lift-md)) translateZ(0);
       transition:
         box-shadow var(--wim-duration-fast) var(--wim-easing-standard),

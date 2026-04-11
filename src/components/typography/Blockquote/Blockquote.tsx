@@ -33,19 +33,11 @@ export const Blockquote = React.forwardRef<HTMLQuoteElement, BlockquoteProps>(
 
     return (
       <Component
-        className={classNames(
-          styles.root,
-          styles[size],
-          styles[color],
-          border && styles.border,
-          className,
-        )}
+        className={classNames(styles.root, styles[size], styles[color], border && styles.border, className)}
         ref={ref}
         {...props}
       >
-        <div className={styles.content}>
-          <Slottable>{finalContent}</Slottable>
-        </div>
+        <Slottable>{finalContent}</Slottable>
         {cite && <cite className={styles.cite}>{cite}</cite>}
       </Component>
     );

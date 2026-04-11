@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Blockquote } from "./Blockquote";
@@ -26,6 +27,29 @@ describe("Blockquote", () => {
     render(<Blockquote border={false}>Quote</Blockquote>);
     const element = screen.getByRole("blockquote");
     expect(element).not.toHaveClass(styles.border);
+  });
+
+  it("supports asChild prop", () => {
+    render(
+      <Blockquote asChild>
+        <section data-testid="custom">Custom Blockquote</section>
+      </Blockquote>,
+    );
+    const element = screen.getByTestId("custom");
+    expect(element.tagName).toBe("SECTION");
+    expect(element).toHaveClass(styles.root);
+  });
+
+  it("forwards ref to the element", () => {
+    const ref = React.createRef<HTMLQuoteElement>();
+    render(<Blockquote ref={ref}>Ref test</Blockquote>);
+    expect(ref.current).toBeInstanceOf(HTMLQuoteElement);
+  });
+
+  it("applies custom className", () => {
+    render(<Blockquote className="custom-class">Custom</Blockquote>);
+    const element = screen.getByRole("blockquote");
+    expect(element).toHaveClass("custom-class");
   });
 });
 

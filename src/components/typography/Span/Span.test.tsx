@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Span } from "./Span";
@@ -75,6 +76,17 @@ describe("Span", () => {
     const element = screen.getByTestId("inner-strong");
     expect(element.tagName).toBe("STRONG");
     expect(element).toHaveClass(styles.root);
+  });
+
+  it("forwards ref to the element", () => {
+    const ref = React.createRef<HTMLSpanElement>();
+    render(<Span ref={ref}>Ref</Span>);
+    expect(ref.current).toBeInstanceOf(HTMLSpanElement);
+  });
+
+  it("applies custom className", () => {
+    const { container } = render(<Span className="custom-class" />);
+    expect(container.firstChild).toHaveClass("custom-class");
   });
 });
 

@@ -196,7 +196,7 @@ export const MenuItem = ({
       icon={icon}
       role="menuitem"
       tabIndex={isFocused ? 0 : -1}
-      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+      onKeyDown={(e: React.KeyboardEvent<HTMLLIElement>) => {
         if (!disabled && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           handleClick(e);

@@ -3,7 +3,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  z-index: 1500;
+  z-index: var(--wim-z-mask);
   background-color: var(--wim-color-overlay-bg-sidebar);
   backdrop-filter: blur(2px);
 }
@@ -21,7 +21,7 @@
     top: 0;
     bottom: 0;
     left: 0;
-    z-index: 1000;
+    z-index: var(--wim-z-sidebar);
   }
 
   &.collapsed {
@@ -42,7 +42,7 @@
       top: 0;
       bottom: 0;
       left: calc(-1 * var(--wim-sidebar-width));
-      z-index: 2000;
+      z-index: var(--wim-z-drawer);
 
       &.mobile-open {
         left: 0;

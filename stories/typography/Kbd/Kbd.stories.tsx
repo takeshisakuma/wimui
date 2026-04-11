@@ -50,3 +50,10 @@ export const KeyboardSymbols: Story = {
     </div>
   ),
 };
+
+export const AsChild: Story = {
+  args: {
+    asChild: true,
+    children: <button type="button">Esc</button>,
+  },
+};

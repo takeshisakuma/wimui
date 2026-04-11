@@ -89,8 +89,6 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
       const data = e.dataTransfer.getData("text/plain");
       const [fromColumnId, itemId] = data.split(":");
 
-      if (fromColumnId === toColumnId) return;
-
       handleMove?.(itemId, fromColumnId, toColumnId);
       setDraggedItem(null);
     };

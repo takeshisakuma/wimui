@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { Highlight } from "./Highlight";
+import styles from "./highlight.module.scss";
 
 describe("Highlight", () => {
   it("renders children correctly when no highlight is provided", () => {
@@ -55,6 +56,39 @@ describe("Highlight", () => {
     // Check for the rendered div
     const div = container.querySelector("div");
     expect(div).toBeDefined();
-    expect(div?.className).toContain("root");
+    expect(div?.className).toContain(styles.root);
+  });
+
+  it("supports asChild prop", () => {
+    render(
+      <Highlight highlight="test" asChild>
+        <div data-testid="custom">test</div>
+      </Highlight>,
+    );
+    const element = screen.getByTestId("custom");
+    expect(element.tagName).toBe("DIV");
+    expect(element).toHaveClass(styles.root);
+  });
+
+  it("forwards ref to the element", () => {
+    const ref = React.createRef<HTMLElement>();
+    render(<Highlight highlight="test" ref={ref}>test</Highlight>);
+    expect(ref.current).toBeInstanceOf(HTMLElement);
+  });
+
+  it("applies highlightClassName to mark", () => {
+    const { container } = render(
+      <Highlight highlight="test" highlightClassName="custom-highlight">test text</Highlight>
+    );
+    const mark = container.querySelector("mark");
+    expect(mark).toHaveClass("custom-highlight");
+  });
+
+  it("applies highlightStyles to mark", () => {
+    const { container } = render(
+      <Highlight highlight="test" highlightStyles={{ color: "red" }}>test text</Highlight>
+    );
+    const mark = container.querySelector("mark") as HTMLElement;
+    expect(mark.style.color).toBe("red");
   });
 });

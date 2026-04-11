@@ -163,7 +163,20 @@ export const HighlightSpan = {
     return <Span {...args} content={t('story.span_medium')} />;
   },
   args: {
-    size: "md",
     decoration: "highlight",
   }
+};
+
+export const AsChild = {
+  render: (args: Parameters<typeof Span>[0]) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Span {...args} asChild>
+        <a href="/" style={{ color: "var(--wim-color-primary)", fontWeight: "bold" }}>
+          {t('story.span_medium')}
+        </a>
+      </Span>
+    );
+  },
+  args: {}
 };

@@ -81,3 +81,17 @@ export const VariousColors = {
     );
   }
 };
+
+export const AsChild = {
+  render: (args: React.ComponentProps<typeof Blockquote>) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Blockquote {...args} content={t('story.quote_default')} asChild>
+        <div style={{ padding: "20px", background: "var(--wim-color-surface-variant)" }}>
+          {t('story.quote_default')}
+        </div>
+      </Blockquote>
+    );
+  },
+  args: {}
+};

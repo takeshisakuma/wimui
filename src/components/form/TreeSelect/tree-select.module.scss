@@ -108,7 +108,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 1000;
+    z-index: var(--wim-z-overlay);
     width: max-content;
     min-width: 100%;
     max-width: min(480px, calc(100vw - 32px));

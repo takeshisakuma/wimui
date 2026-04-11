@@ -5,7 +5,7 @@ import styles from "./highlight.module.scss";
 
 export interface HighlightProps extends React.HTMLAttributes<HTMLElement> {
   /** The full text to highlight substrings in. */
-  children: string;
+  children: React.ReactNode;
   /** Substring(s) to highlight. */
   highlight: string | string[];
   /** Custom class name for the highlighted `<mark>` element. */

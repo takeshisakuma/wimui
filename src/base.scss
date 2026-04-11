@@ -219,8 +219,8 @@
   line-height: 1;
   vertical-align: middle;
   color: var(--wim-color-text-primary) !important;
-  background-color: rgb(0 0 0 / 0.01);
-  border: 1px solid rgb(0 0 0 / 0.05);
+  background-color: color-mix(in srgb, var(--wim-color-text-primary) 1%, transparent);
+  border: 1px solid color-mix(in srgb, var(--wim-color-text-primary) 5%, transparent);
   border-radius: 3px;
 }
 

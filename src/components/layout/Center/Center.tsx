@@ -13,11 +13,15 @@ export type CenterProps<C extends React.ElementType = "div"> = BoxProps<C> & {
  */
 export const Center = React.forwardRef(
   <C extends React.ElementType = "div">(
-    { inline = false, style, className, children, ...props }: CenterProps<C>,
-    ref: React.Ref<HTMLElement>,
+    { as, inline = false, style, className, children, ...props }: CenterProps<C>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ref: React.Ref<any>,
   ) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const BoxComponent = Box as any;
     return (
-      <Box
+      <BoxComponent
+        as={as}
         ref={ref}
         display={inline ? "inline-flex" : "flex"}
         className={classNames(styles.root, className)}
@@ -30,7 +34,7 @@ export const Center = React.forwardRef(
         {...props}
       >
         {children}
-      </Box>
+      </BoxComponent>
     );
   },
 );

@@ -48,7 +48,8 @@ const CardInner = <C extends React.ElementType = "div">(
     children,
     ...props
   }: CardProps<C>,
-  ref: React.Ref<React.ComponentRef<C>>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref: React.ForwardedRef<any>,
 ) => {
   const Component = (asChild ? Slot : (as || "div")) as React.ElementType;
   return (
@@ -71,8 +72,7 @@ const CardInner = <C extends React.ElementType = "div">(
 /**
  * `Card` はコンテンツをグループ化して表示するためのコンテナコンポーネントです。
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Card = React.forwardRef(CardInner as any) as unknown as CardComponent;
+export const Card = React.forwardRef(CardInner) as unknown as CardComponent;
 
 Card.displayName = "Card";
 

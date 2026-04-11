@@ -345,7 +345,7 @@
         "name": "DataGrid",
         "descKey": "doc.dataGrid_desc",
         "pc": true,
-        "mobile": false
+        "mobile": true
       },
       {
         "name": "QueryBuilder",
@@ -405,13 +405,13 @@
         "name": "Kanban",
         "descKey": "doc.kanban_desc",
         "pc": true,
-        "mobile": false
+        "mobile": true
       },
       {
         "name": "GanttChart",
         "descKey": "doc.ganttchart_desc",
         "pc": true,
-        "mobile": false
+        "mobile": true
       }
     ]
   },

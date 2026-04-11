@@ -8,13 +8,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: var(--wim-z-header);
   }
 
   &.sticky {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: var(--wim-z-header);
   }
 
   &.bordered {
@@ -22,7 +22,7 @@
   }
 
   &.glass {
-    background-color: rgba(var(--wim-color-bg-primary-rgb), 0.8);
+    background-color: color-mix(in srgb, var(--wim-color-bg-primary) 80%, transparent);
     backdrop-filter: blur(8px);
   }
 

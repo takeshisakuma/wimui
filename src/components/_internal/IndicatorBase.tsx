@@ -80,7 +80,8 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
     className,
     ...props
   }: IndicatorBaseProps<C>,
-  ref: React.Ref<React.ComponentRef<C>>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref: React.ForwardedRef<any>,
 ) => {
   const Component = (asChild ? Slot : (as || "span")) as React.ElementType;
 
@@ -106,8 +107,7 @@ const IndicatorBaseInner = <C extends React.ElementType = "span">(
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const IndicatorBase = React.forwardRef(IndicatorBaseInner as any) as unknown as IndicatorBaseComponent;
+export const IndicatorBase = React.forwardRef(IndicatorBaseInner) as IndicatorBaseComponent;
 
 IndicatorBase.displayName = "IndicatorBase";
 

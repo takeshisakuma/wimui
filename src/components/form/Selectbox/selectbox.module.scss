@@ -105,7 +105,7 @@
     top: calc(100% + var(--wim-spacing-xs));
     right: 0;
     left: 0;
-    z-index: 1000;
+    z-index: var(--wim-z-overlay);
     background-color: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-md);

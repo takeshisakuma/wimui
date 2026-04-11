@@ -72,6 +72,14 @@ export type BoxProps<C extends React.ElementType = "div"> = {
  * Box is the most basic layout component.
  * It provides a way to style a div (or any other element) with common CSS properties as props.
  */
+export interface BoxComponent {
+  <C extends React.ElementType = "div">(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    props: BoxProps<C> & { ref?: React.Ref<any> },
+  ): React.ReactElement | null;
+  displayName?: string;
+}
+
 export const Box = React.forwardRef(
   <C extends React.ElementType = "div">(
     {
@@ -103,7 +111,8 @@ export const Box = React.forwardRef(
       children,
       ...props
     }: BoxProps<C>,
-    ref: React.Ref<HTMLElement>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ref: React.Ref<any>,
   ) => {
     const Component = asChild ? Slot : (as || "div");
 
@@ -139,7 +148,7 @@ export const Box = React.forwardRef(
 
     return (
       <Component
-        ref={ref as React.Ref<HTMLDivElement>}
+        ref={ref}
         className={classNames(styles.root, className)}
         style={boxStyle}
         {...props}
@@ -149,6 +158,6 @@ export const Box = React.forwardRef(
       </Component>
     );
   },
-);
+) as BoxComponent;
 
 Box.displayName = "Box";

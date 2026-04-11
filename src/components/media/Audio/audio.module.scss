@@ -172,7 +172,7 @@
     height: 48px;
     object-fit: cover;
     border-radius: var(--wim-radius-sm);
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--wim-color-bg-void) 30%, transparent);
   }
 
   .info {
@@ -351,7 +351,7 @@
       content: "";
       background-color: var(--wim-color-text-white);
       border-radius: var(--wim-radius-full);
-      box-shadow: 0 0 4px rgb(0 0 0 / 0.3);
+      box-shadow: 0 0 4px color-mix(in srgb, var(--wim-color-bg-void) 30%, transparent);
       transform: translateY(-50%);
     }
   }

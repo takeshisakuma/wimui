@@ -3,15 +3,12 @@
     padding: var(--wim-spacing-md) 0 var(--wim-spacing-md) var(--wim-spacing-2xl);
     margin: var(--wim-spacing-2xl) 0;
     font-family: inherit;
+    font-weight: var(--wim-font-weight-normal);
+    line-height: var(--wim-line-height-normal);
     transition: var(--wim-transition-fast);
 
     &.border {
       border-left: 4px solid var(--wim-color-text-secondary);
-    }
-
-    .content {
-      font-weight: var(--wim-font-weight-normal);
-      line-height: var(--wim-line-height-normal);
     }
 
     .cite {

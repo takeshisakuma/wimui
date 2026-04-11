@@ -25,6 +25,7 @@ const SIZES = {
 export const Container = React.forwardRef(
   <C extends React.ElementType = "div">(
     {
+      as,
       size = "lg",
       fluid = false,
       style,
@@ -32,15 +33,19 @@ export const Container = React.forwardRef(
       children,
       ...props
     }: ContainerProps<C>,
-    ref: React.Ref<HTMLElement>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ref: React.Ref<any>,
   ) => {
     const maxWidth = fluid
       ? "100%"
       : SIZES[size as keyof typeof SIZES] ||
         (typeof size === "number" ? `${size}px` : size);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const BoxComponent = Box as any;
     return (
-      <Box
+      <BoxComponent
+        as={as}
         ref={ref}
         className={classNames(styles.root, className)}
         mx="auto"
@@ -49,7 +54,7 @@ export const Container = React.forwardRef(
         {...props}
       >
         {children}
-      </Box>
+      </BoxComponent>
     );
   },
 );

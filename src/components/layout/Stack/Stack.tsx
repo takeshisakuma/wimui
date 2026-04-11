@@ -51,9 +51,18 @@ const mapJustify = (val?: string) => {
 /**
  * Stack component is used to distribute space between elements in a vertical or horizontal layout.
  */
+export interface StackComponent {
+  <C extends React.ElementType = "div">(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    props: StackProps<C> & { ref?: React.Ref<any> },
+  ): React.ReactElement | null;
+  displayName?: string;
+}
+
 export const Stack = React.forwardRef(
   <C extends React.ElementType = "div">(
     {
+      as,
       asChild = false,
       direction = "column",
       gap = "md",
@@ -64,7 +73,8 @@ export const Stack = React.forwardRef(
       children,
       ...props
     }: StackProps<C>,
-    ref: React.Ref<HTMLElement>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ref: React.Ref<any>,
   ) => {
     const getGapValue = (val?: number | string) => {
       if (typeof val === "number") return `${val}px`;
@@ -107,8 +117,11 @@ export const Stack = React.forwardRef(
 
     const responsiveStyles = generateResponsiveDirection(direction);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const BoxComponent = Box as any;
     return (
-      <Box
+      <BoxComponent
+        as={as}
         asChild={asChild}
         ref={ref}
         display="flex"
@@ -125,9 +138,9 @@ export const Stack = React.forwardRef(
         {...props}
       >
         {children}
-      </Box>
+      </BoxComponent>
     );
   },
-);
+) as StackComponent;
 
 Stack.displayName = "Stack";

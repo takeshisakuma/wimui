@@ -2,9 +2,13 @@
   "wim": {
     "z": {
       "sidebar": { "value": "900" },
+      "header": { "value": "1000" },
       "overlay": { "value": "1000" },
       "overlay-panel": { "value": "1001" },
       "overlay-step": { "value": "1002" },
+      "navbar": { "value": "1020" },
+      "mask": { "value": "1500" },
+      "drawer": { "value": "2000" },
       "toast": { "value": "9999" }
     },
     "opacity": {
@@ -14,13 +18,13 @@
     },
     "shadow": {
       "none": { "value": "none" },
-      "xs": { "value": "0 1px 2px rgb(0 0 0 / 0.08), 0 1px 1px rgb(0 0 0 / 0.05)" },
-      "sm": { "value": "0 2px 4px rgb(0 0 0 / 0.08), 0 1px 2px rgb(0 0 0 / 0.12)" },
-      "md": { "value": "0 4px 12px rgb(0 0 0 / 0.08), 0 2px 4px rgb(0 0 0 / 0.12)" },
-      "lg": { "value": "0 12px 24px rgb(0 0 0 / 0.12), 0 8px 16px rgb(0 0 0 / 0.18)" },
-      "inset": { "value": "inset 0 2px 4px rgba(0, 0, 0, 0.1)" },
-      "focus": { "value": "0 0 0 2px #ffffff, 0 0 0 4px rgba(2, 136, 209, 0.5)" },
-      "field-focus": { "value": "0 0 0 2px rgba(2, 136, 209, 0.2)" }
+      "xs": { "value": "0 1px 2px color-mix(in srgb, {pccs.bk} 8%, transparent), 0 1px 1px color-mix(in srgb, {pccs.bk} 5%, transparent)" },
+      "sm": { "value": "0 2px 4px color-mix(in srgb, {pccs.bk} 8%, transparent), 0 1px 2px color-mix(in srgb, {pccs.bk} 12%, transparent)" },
+      "md": { "value": "0 4px 12px color-mix(in srgb, {pccs.bk} 8%, transparent), 0 2px 4px color-mix(in srgb, {pccs.bk} 12%, transparent)" },
+      "lg": { "value": "0 12px 24px color-mix(in srgb, {pccs.bk} 12%, transparent), 0 8px 16px color-mix(in srgb, {pccs.bk} 18%, transparent)" },
+      "inset": { "value": "inset 0 2px 4px color-mix(in srgb, {pccs.bk} 10%, transparent)" },
+      "focus": { "value": "0 0 0 2px {pccs.w}, 0 0 0 4px color-mix(in srgb, {wim.color.primary} 50%, transparent)" },
+      "field-focus": { "value": "0 0 0 2px color-mix(in srgb, {wim.color.primary} 20%, transparent)" }
     },
     "duration": {
       "extra-fast": { "value": "0.1s" },

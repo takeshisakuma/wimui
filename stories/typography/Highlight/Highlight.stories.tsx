@@ -54,3 +54,18 @@ export const CustomComponent: Story = {
     style: { fontSize: "20px", color: "var(--wim-color-text-secondary)" },
   },
 };
+
+export const AsChild: Story = {
+  args: {
+    highlight: "link",
+    asChild: true,
+    children: "This is a string that will be wrapped in a custom element",
+  },
+  render: (args) => (
+    <Highlight {...args} asChild>
+      <a href="/" style={{ color: "var(--wim-color-primary)", textDecoration: "underline" }}>
+        {args.children}
+      </a>
+    </Highlight>
+  ),
+};

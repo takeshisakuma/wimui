@@ -3,7 +3,7 @@
     position: fixed;
     right: 40px;
     bottom: 40px;
-    z-index: 1000;
+    z-index: var(--wim-z-overlay);
     width: 40px;
     height: 40px;
     cursor: pointer;

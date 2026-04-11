@@ -46,10 +46,10 @@
 
   .root {
     /* Component-scoped tokens: Snackbar is always a dark surface */
-    --wim-snackbar-bg: rgb(33 33 33 / 0.9);
-    --wim-snackbar-border: rgb(255 255 255 / 0.1);
-    --wim-snackbar-close-idle: rgb(255 255 255 / 0.7);
-    --wim-snackbar-close-hover: rgb(255 255 255 / 0.1);
+    --wim-snackbar-bg: color-mix(in srgb, var(--wim-color-bg-inverted) 90%, transparent);
+    --wim-snackbar-border: color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
+    --wim-snackbar-close-idle: color-mix(in srgb, var(--wim-color-text-white) 70%, transparent);
+    --wim-snackbar-close-hover: color-mix(in srgb, var(--wim-color-text-white) 10%, transparent);
     --wim-snackbar-action: color-mix(in srgb, var(--wim-color-informative) 70%, white);
     --wim-snackbar-action-hover: color-mix(in srgb, var(--wim-color-informative) 15%, transparent);
 

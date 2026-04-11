@@ -50,6 +50,14 @@ export type BaseListItemProps<C extends React.ElementType = "div"> = {
  * 
  * This component is intended for internal use by components like Select, Menu, and Dropdown.
  */
+export interface BaseListItemComponent {
+    <C extends React.ElementType = "div">(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        props: BaseListItemProps<C> & { ref?: React.Ref<any> },
+    ): React.ReactElement | null;
+    displayName?: string;
+}
+
 export const BaseListItem = React.forwardRef(
     <C extends React.ElementType = "div">(
         {
@@ -63,12 +71,13 @@ export const BaseListItem = React.forwardRef(
             className,
             ...props
         }: BaseListItemProps<C>,
-        ref: React.Ref<HTMLElement>,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref: React.Ref<any>,
     ) => {
         const Component = as || "div";
         return (
             <Component
-                ref={ref as React.Ref<HTMLDivElement>}
+                ref={ref}
                 className={classNames(
                     styles.root,
                     active && styles.active,
@@ -89,7 +98,7 @@ export const BaseListItem = React.forwardRef(
             </Component>
         );
     },
-);
+) as BaseListItemComponent;
 
 
 BaseListItem.displayName = "BaseListItem";

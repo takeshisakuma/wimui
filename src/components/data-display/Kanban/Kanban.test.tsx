@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { KanbanBoard } from "./Kanban";
@@ -75,7 +76,7 @@ describe("KanbanBoard", () => {
     expect(onCardMove).toHaveBeenCalledWith("card-1", "todo", "done");
   });
 
-  it("does not call onCardMove when dropped on same column", () => {
+  it("calls onCardMove when dropped on same column (reordering)", () => {
     const onCardMove = vi.fn();
     const { container } = render(<DefaultBoard onCardMove={onCardMove} />);
 
@@ -92,7 +93,7 @@ describe("KanbanBoard", () => {
     fireEvent.dragOver(todoColumn);
     fireEvent.drop(todoColumn, { dataTransfer });
 
-    expect(onCardMove).not.toHaveBeenCalled();
+    expect(onCardMove).toHaveBeenCalledWith("card-1", "todo", "todo");
   });
 
   it("disabled card is not draggable", () => {
@@ -152,5 +153,82 @@ describe("KanbanBoard", () => {
 
     fireEvent.click(screen.getByRole("option", { name: "Done" }));
     expect(onCardMove).toHaveBeenCalledWith("card-1", "todo", "done");
+  });
+
+  it("renders columns and cards via columns prop (prop-driven)", () => {
+    const columnsWithItems = [
+      {
+        id: "c1",
+        title: "Col 1",
+        items: [{ id: "i1", content: "Item 1" }],
+      },
+    ];
+    render(<KanbanBoard columns={columnsWithItems} />);
+    expect(screen.getByText("Col 1")).toBeInTheDocument();
+    expect(screen.getByText("Item 1")).toBeInTheDocument();
+  });
+
+  it("supports asChild prop", () => {
+    render(
+      <KanbanBoard asChild>
+        <section data-testid="kanban-section">
+          <KanbanBoard.Column id="c1" title="Col 1" />
+        </section>
+      </KanbanBoard>,
+    );
+    const element = screen.getByTestId("kanban-section");
+    expect(element.tagName).toBe("SECTION");
+    expect(element).toHaveClass(styles.root);
+  });
+
+  it("forwards ref to the board element", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    render(
+      <KanbanBoard ref={ref}>
+        <KanbanBoard.Column id="c" title="T" />
+      </KanbanBoard>,
+    );
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("applies touch class when forceMobileUI is true", () => {
+    const { container } = render(
+      <KanbanBoard forceMobileUI>
+        <KanbanBoard.Column id="todo" title="To Do" />
+      </KanbanBoard>,
+    );
+    expect(container.firstChild).toHaveClass(styles.touch);
+  });
+
+  it("calls onMove when provided instead of onCardMove", () => {
+    const onMove = vi.fn();
+    const { container } = render(
+      <KanbanBoard
+        onMove={onMove}
+        columns={[
+          { id: "todo", title: "To Do", items: [{ id: "card-1", content: "C1" }] },
+          { id: "done", title: "Done", items: [] },
+        ]}
+      >
+        <KanbanBoard.Column id="todo" title="To Do">
+          <KanbanBoard.Card id="card-1">C1</KanbanBoard.Card>
+        </KanbanBoard.Column>
+        <KanbanBoard.Column id="done" title="Done" />
+      </KanbanBoard>,
+    );
+
+    const card = container.querySelector(`.${styles.card}`)!;
+    const doneColumn = container.querySelectorAll(`.${styles.column}`)[1]!;
+
+    const dataTransfer = {
+      setData: vi.fn(),
+      getData: vi.fn(() => "todo:card-1"),
+      effectAllowed: "",
+    };
+
+    fireEvent.dragStart(card, { dataTransfer });
+    fireEvent.drop(doneColumn, { dataTransfer });
+
+    expect(onMove).toHaveBeenCalledWith("card-1", "todo", "done");
   });
 });

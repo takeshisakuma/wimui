@@ -88,7 +88,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 1000;
+    z-index: var(--wim-z-overlay);
     display: flex;
     margin-top: 4px;
     overflow: hidden;

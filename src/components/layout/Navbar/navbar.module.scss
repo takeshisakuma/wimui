@@ -3,7 +3,7 @@
 @layer component {
   .root {
     position: relative;
-    z-index: 1020;
+    z-index: var(--wim-z-navbar);
     display: flex;
     align-items: center;
     width: 100%;

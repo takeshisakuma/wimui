@@ -2,7 +2,7 @@
   .root {
     position: absolute;
     inset: 0;
-    z-index: var(--wim-z-index-overlay, 1000);
+    z-index: var(--wim-z-overlay);
     display: flex;
     align-items: center;
     justify-content: center;

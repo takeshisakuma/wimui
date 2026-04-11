@@ -101,7 +101,7 @@ export const OverflowEscape: Story = {
                     style={{ margin: 0, fontSize: "14px", lineHeight: "1.5" }}
                     dangerouslySetInnerHTML={{ __html: t("story.portal_power_desc") }}
                   />
-                  <Box mt="md" textAlign="right">
+                  <Box mt="md" style={{ textAlign: "right" }}>
                     <Button
                       size="sm"
                       onClick={() => setShow(false)}
@@ -166,7 +166,7 @@ export const CustomContainer: Story = {
           >
             {/* ここに Portal の 中身が表示される */}
             {!container && (
-              <Box textAlign="center" color="primary">
+              <Box style={{ textAlign: "center", color: "var(--wim-color-primary)" }}>
                 {t("story.portal_loading")}
               </Box>
             )}

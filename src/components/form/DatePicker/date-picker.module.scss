@@ -69,7 +69,7 @@
   position: absolute;
   top: calc(100% + var(--wim-spacing-xs));
   left: 0;
-  z-index: 1000;
+  z-index: var(--wim-z-overlay);
   min-width: 100%;
   padding: var(--wim-spacing-sm);
   background-color: var(--wim-color-bg-component);
