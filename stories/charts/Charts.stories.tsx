@@ -4,7 +4,7 @@ import { BarChart } from "@/components/charts/BarChart/BarChart";
 import { LineChart } from "@/components/charts/LineChart/LineChart";
 import { PieChart } from "@/components/charts/PieChart/PieChart";
 import { Stack } from "@/components/layout/Stack/Stack";
-import { Heading } from "@/components/typography/Heading/Heading";
+import { Title } from "@/components/typography/Title/Title";
 
 const meta: Meta = {
   title: "Components/Visualization/Charts",
@@ -21,7 +21,7 @@ const data = [
 export const Dashboard: StoryObj = {
   render: () => (
     <Stack gap="lg">
-      <Heading tag="h3" size="lg">Visualization Suite Overview</Heading>
+      <Title tag="h3" size="lg">Visualization Suite Overview</Title>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
         <BarChart title="Sales by Month" data={data} xAxisKey="name" keys={["sales"]} />
         <LineChart title="Profit Trend" data={data} xAxisKey="name" keys={["profit"]} />

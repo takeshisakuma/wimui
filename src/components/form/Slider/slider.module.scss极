@@ -1,7 +1,0 @@
-@use "slider-base";
-
-@layer component {
-  .wim-slider {
-    @include slider-base.slider-base;
-  }
-}
