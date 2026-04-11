@@ -11,12 +11,12 @@
     transform-style: preserve-3d;
 
     // Smooth return when mouse leaves
-    transition: transform 0.5s var(--wim-easing-base, ease);
+    transition: transform var(--wim-duration-extra-slow) var(--wim-easing-standard);
     will-change: transform;
 
     // Smooth follow when active (a bit faster than return)
     &:hover {
-      transition: transform 0.1s ease-out;
+      transition: transform var(--wim-duration-extra-fast) var(--wim-easing-entrance);
     }
   }
 
@@ -50,7 +50,7 @@
 
     &.shadow {
       box-shadow: var(--wim-shadow-md);
-      transition: box-shadow 0.6s ease;
+      transition: box-shadow var(--wim-duration-ultra-slow) var(--wim-easing-standard);
 
       &.loading {
         box-shadow: none;
@@ -65,7 +65,7 @@
     &.fadeIn {
       .image {
         opacity: 0;
-        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: opacity var(--wim-duration-ultra-slow) var(--wim-easing-standard);
       }
 
       &.isLoaded {
@@ -90,7 +90,7 @@
       );
       background-size: 200% 100%;
       opacity: 0;
-      transition: opacity 0.4s ease-out;
+      transition: opacity var(--wim-duration-slow) var(--wim-easing-entrance);
       animation: skeleton-loading 1.5s infinite;
     }
 
@@ -101,7 +101,7 @@
     // Backdrop Filter
     &.hasBackdrop {
       backdrop-filter: var(--wim-image-backdrop, none);
-      transition: backdrop-filter var(--wim-image-transition-duration, 0.3s) ease;
+      transition: backdrop-filter var(--wim-image-transition-duration, var(--wim-duration-base)) var(--wim-easing-standard);
     }
 
     .root:hover &.hasBackdrop {
@@ -129,7 +129,7 @@
       background: var(--wim-image-overlay-color, transparent);
       mix-blend-mode: var(--wim-image-overlay-blend, normal);
       opacity: var(--wim-image-overlay-opacity, 0);
-      transition: opacity var(--wim-image-transition-duration, 0.3s) ease;
+      transition: opacity var(--wim-image-transition-duration, var(--wim-transition-base));
     }
 
     .root:hover &.hasOverlay::before {
@@ -148,8 +148,8 @@
     // Zoom
     .zoomable & {
       transition:
-        transform var(--wim-image-transition-duration, 0.3s) cubic-bezier(0.34, 1.56, 0.64, 1), // Spring-like feel
-        filter var(--wim-image-transition-duration, 0.3s) ease;
+        transform var(--wim-image-transition-duration, var(--wim-transition-spring)),
+        filter var(--wim-image-transition-duration, var(--wim-transition-base));
     }
 
     .root:hover .zoomable & {
@@ -159,7 +159,7 @@
     // Image Filter
     &.hasFilter {
       filter: var(--wim-image-filter, none);
-      transition: filter var(--wim-image-transition-duration, 0.3s) ease;
+      transition: filter var(--wim-image-transition-duration, var(--wim-transition-base));
     }
 
     .root:hover &.hasFilter {

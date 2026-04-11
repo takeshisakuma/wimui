@@ -19,7 +19,7 @@
       background-color: currentcolor;
       transform: scaleX(0);
       transform-origin: right;
-      transition: transform 0.3s ease;
+      transition: transform var(--wim-transition-base);
     }
 
     &:hover {

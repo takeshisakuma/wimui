@@ -51,8 +51,8 @@
     box-shadow: var(--wim-shadow-sm);
     transform: translate(-50%, -50%);
     transition:
-      box-shadow 0.2s,
-      transform 0.1s,
+      box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
+      transform var(--wim-duration-extra-fast) var(--wim-easing-standard),
       z-index 0s;
     will-change: left;
 

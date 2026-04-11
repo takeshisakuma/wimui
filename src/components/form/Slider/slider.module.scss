@@ -49,7 +49,7 @@
     border-radius: var(--wim-radius-full);
     box-shadow: var(--wim-shadow-sm);
     transform: translate(-50%, -50%);
-    transition: box-shadow 0.2s;
+    transition: box-shadow var(--wim-transition-fast);
     will-change: left;
 
     &:hover {

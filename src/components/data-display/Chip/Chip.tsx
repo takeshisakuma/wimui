@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import { ComponentSize, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
 import styles from "./chip.module.scss";
 
@@ -66,8 +67,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
     
     return (
       <Component
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={mergeRefs(ref)}
         className={classNames(
           styles.root,
           styles[intent],

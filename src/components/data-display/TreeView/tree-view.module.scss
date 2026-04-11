@@ -20,7 +20,7 @@
     backdrop-filter: blur(var(--wim-tree-blur, 8px));
   
     &.data-driven > .item {
-      animation: enter 0.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+      animation: enter var(--wim-duration-fast) var(--wim-easing-standard) both;
     }
   }
 
@@ -191,7 +191,7 @@
     display: grid;
     grid-template-rows: 0fr;
     overflow: hidden;
-    transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: grid-template-rows var(--wim-duration-base) var(--wim-easing-standard);
 
     &.expanded {
       grid-template-rows: 1fr;
@@ -210,7 +210,7 @@
     transform: translateX(calc(-1 * var(--wim-spacing-md, 8px)));
     transition:
       transform var(--wim-duration-slow) var(--wim-easing-standard),
-      opacity var(--wim-duration-slow) ease;
+      opacity var(--wim-duration-slow) var(--wim-easing-standard);
 
     @container (width <= 480px) {
       padding-left: 12px;

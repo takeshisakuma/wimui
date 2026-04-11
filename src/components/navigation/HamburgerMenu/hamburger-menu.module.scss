@@ -21,7 +21,7 @@ $hamburger-active-hover-opacity: 1 !default;
     background-color: transparent;
     border: none;
     transition-timing-function: linear;
-    transition-duration: 0.15s;
+    transition-duration: var(--wim-duration-short);
     transition-property: opacity, filter;
 
     &:hover {
@@ -39,10 +39,10 @@ $hamburger-active-hover-opacity: 1 !default;
       top: 50%;
       display: block;
       margin-top: $hamburger-layer-height * -0.5;
-      transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      transition-timing-function: var(--wim-easing-sharp);
 
       // Default state animation logic
-      transition-duration: 0.1s;
+      transition-duration: var(--wim-duration-extra-fast);
 
       &,
       &::before,
@@ -53,7 +53,7 @@ $hamburger-active-hover-opacity: 1 !default;
         background-color: var(--wim-hamburger-color, #{$hamburger-layer-color});
         border-radius: $hamburger-layer-border-radius;
         transition-timing-function: ease;
-        transition-duration: 0.15s;
+        transition-duration: var(--wim-duration-short);
         transition-property: transform;
       }
 
@@ -66,15 +66,15 @@ $hamburger-active-hover-opacity: 1 !default;
       &::before {
         top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
         transition:
-          top 0.1s 0.14s ease-in,
-          opacity 0.1s ease-in;
+          top var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-exit),
+          opacity var(--wim-duration-extra-fast) var(--wim-easing-exit);
       }
 
       &::after {
         top: ($hamburger-layer-spacing + $hamburger-layer-height);
         transition:
-          top 0.1s 0.14s ease-in,
-          transform 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          top var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-exit),
+          transform var(--wim-duration-extra-fast) var(--wim-easing-sharp);
       }
 
       // When open, we override the transitions in the --open block above
@@ -139,23 +139,23 @@ $hamburger-active-hover-opacity: 1 !default;
 
       .inner {
         transform: rotate(-45deg);
-        transition-delay: 0.14s;
-        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        transition-delay: var(--wim-duration-short);
+        transition-timing-function: var(--wim-easing-standard);
 
         &::before {
           top: 0;
           opacity: 0;
           transition:
-            top 0.1s ease-out,
-            opacity 0.1s 0.14s ease-out;
+            top var(--wim-duration-extra-fast) var(--wim-easing-entrance),
+            opacity var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-entrance);
         }
 
         &::after {
           top: 0;
           transform: rotate(-90deg);
           transition:
-            top 0.1s ease-out,
-            transform 0.1s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
+            top var(--wim-duration-extra-fast) var(--wim-easing-entrance),
+            transform var(--wim-duration-extra-fast) var(--wim-duration-short) var(--wim-easing-standard);
         }
       }
     }

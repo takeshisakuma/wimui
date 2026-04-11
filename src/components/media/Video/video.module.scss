@@ -38,7 +38,7 @@
   
     &.shadow {
       box-shadow: var(--wim-shadow-md);
-      transition: box-shadow 0.6s ease;
+      transition: box-shadow var(--wim-duration-ultra-slow) var(--wim-easing-standard);
   
       &.loading {
         box-shadow: none;
@@ -52,8 +52,7 @@
     // Fade-in state
     &.fadeIn {
       .video {
-        opacity: 0;
-        transition: opacity 0.6s ease-out;
+        transition: opacity var(--wim-duration-ultra-slow) var(--wim-easing-entrance);
       }
   
       &.isLoaded {
@@ -78,7 +77,7 @@
       );
       background-size: 200% 100%;
       opacity: 0;
-      transition: opacity 0.4s ease-out;
+      transition: opacity var(--wim-duration-slow) var(--wim-easing-entrance);
       animation: skeleton-loading 1.5s infinite;
     }
   
@@ -126,7 +125,7 @@
     padding: var(--wim-spacing-md);
     background: linear-gradient(to top, var(--wim-color-overlay-bg-dark) 0%, transparent 100%);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--wim-transition-base);
   }
   
   .controlsBottom {
@@ -156,8 +155,8 @@
     border: none;
     border-radius: var(--wim-radius-full);
     transition:
-      background-color 0.2s,
-      color 0.2s;
+      background-color var(--wim-transition-fast),
+      color var(--wim-transition-fast);
 
     &:hover {
       background-color: var(--wim-color-overlay-control-hover);
@@ -262,8 +261,8 @@
     border-radius: 2px;
     opacity: 0;
     transition:
-      width 0.3s,
-      opacity 0.3s;
+      width var(--wim-transition-base),
+      opacity var(--wim-transition-base);
 
     &:focus-visible {
       box-shadow: 0 0 0 2px var(--wim-color-primary);
@@ -364,7 +363,7 @@
       background: transparent;
       border: none;
       border-radius: var(--wim-radius-sm);
-      transition: background 0.2s;
+      transition: background var(--wim-transition-fast);
 
       &:hover {
         background: var(--wim-color-overlay-item-hover);
@@ -394,7 +393,7 @@
     background: var(--wim-color-overlay-bg);
     border-radius: var(--wim-radius-full);
     transform: translate(-50%, -50%);
-    animation: skipFadeIn 0.5s ease-out forwards;
+    animation: skipFadeIn var(--wim-duration-extra-slow) var(--wim-easing-entrance) forwards;
   
     svg {
       margin: 0 -4px; // アイコン同士を寄せる

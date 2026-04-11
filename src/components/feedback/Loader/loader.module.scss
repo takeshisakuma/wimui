@@ -42,14 +42,14 @@
         height: var(--wim-spacing-2xl);
         background-color: currentcolor;
         border-radius: var(--wim-radius-sm);
-        animation: wim-loader-bars var(--wim-loader-duration, 1.2s) ease-in-out infinite;
+        animation: wim-loader-bars var(--wim-loader-duration, var(--wim-duration-circle)) ease-in-out infinite;
 
         &:nth-child(2) {
-          animation-delay: 0.15s;
+          animation-delay: var(--wim-duration-short);
         }
 
         &:nth-child(3) {
-          animation-delay: 0.3s;
+          animation-delay: var(--wim-duration-base);
         }
       }
 
@@ -90,14 +90,14 @@
         height: var(--wim-spacing-md);
         background-color: currentcolor;
         border-radius: var(--wim-radius-full);
-        animation: wim-loader-dots var(--wim-loader-duration, 1s) ease-in-out infinite;
+        animation: wim-loader-dots var(--wim-loader-duration, var(--wim-duration-slowest)) ease-in-out infinite;
 
         &:nth-child(2) {
-          animation-delay: 0.2s;
+          animation-delay: var(--wim-duration-fast);
         }
 
         &:nth-child(3) {
-          animation-delay: 0.4s;
+          animation-delay: var(--wim-duration-slow);
         }
       }
 
@@ -138,10 +138,10 @@
         background-color: currentcolor;
         border-radius: var(--wim-radius-full);
         opacity: var(--wim-opacity-disabled);
-        animation: wim-loader-pulse 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        animation: wim-loader-pulse var(--wim-duration-circle) var(--wim-easing-standard) infinite;
 
         &:nth-child(2) {
-          animation-delay: -0.6s;
+          animation-delay: calc(-1 * var(--wim-duration-ultra-slow));
         }
 
         &:nth-child(3) {

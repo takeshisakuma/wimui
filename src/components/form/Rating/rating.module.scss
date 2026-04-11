@@ -40,7 +40,7 @@
     width: var(--wim-rating-star-size);
     height: var(--wim-rating-star-size);
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform var(--wim-transition-fast);
 
     &:hover {
       transform: scale(1.1);
@@ -76,7 +76,7 @@
     color: var(--wim-color-caution);
     white-space: nowrap;
     pointer-events: none;
-    transition: width 0.2s ease;
+    transition: width var(--wim-transition-fast);
 
     .icon {
       display: block;

@@ -21,9 +21,9 @@
           top: 0;
           height: 2px;
           transition:
-            left 0.3s ease-in-out,
-            width 0.3s ease-in-out,
-            opacity 0.3s ease;
+            left var(--wim-transition-base),
+            width var(--wim-transition-base),
+            opacity var(--wim-transition-base);
         }
       }
     }
@@ -45,9 +45,9 @@
         background-color: var(--wim-color-primary);
         opacity: 0;
         transition:
-          top 0.3s ease-in-out,
-          height 0.3s ease-in-out,
-          opacity 0.3s ease;
+          top var(--wim-transition-base),
+          height var(--wim-transition-base),
+          opacity var(--wim-transition-base);
       }
     }
 
@@ -108,7 +108,7 @@
       overflow-wrap: normal;
       white-space: nowrap;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: color var(--wim-transition-base);
 
       &:hover {
         color: var(--wim-color-primary);

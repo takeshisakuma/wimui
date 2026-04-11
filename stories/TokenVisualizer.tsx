@@ -51,7 +51,7 @@ export const SpacingSwatch = ({
           style={{
             height: "24px",
             width: size,
-            backgroundColor: "var(--wim-color-primary, #007aff)",
+            backgroundColor: "var(--wim-color-primary)",
             borderRadius: "2px",
             opacity: 0.7,
           }}
@@ -88,7 +88,7 @@ export const RadiusSwatch = ({
           width: "100%",
           height: "80px",
           backgroundColor: "var(--wim-color-surface)",
-          border: "2px solid", borderColor: "var(--wim-color-primary, #007aff)",
+          border: "2px solid", borderColor: "var(--wim-color-primary)",
           borderRadius: radius,
         }}
       ></div>
@@ -132,8 +132,8 @@ export const ShadowSwatch = ({
   value: string;
   shadow: string;
 }) => {
-  // To compare shadow differences purely, the color of the lifted elements is all unified to white (#ffffff)
-  const boxColor = name === "Inset" ? "#f8f9fa" : "#ffffff";
+  // To compare shadow differences purely, the color of the lifted elements is all unified to a surface token
+  const boxColor = name === "Inset" ? "var(--wim-color-surface-variant)" : "var(--wim-color-surface)";
 
   return (
     <div
@@ -374,7 +374,7 @@ export const FontWeightVisualizer = ({
             marginLeft: "12px",
             fontSize: "13px",
             color: "var(--wim-color-text-secondary)",
-            background: "rgba(0, 0, 0, 0.05)",
+            background: "var(--wim-color-surface-variant-alpha)",
             padding: "4px 8px",
             borderRadius: "4px",
             fontWeight: "normal",
@@ -428,7 +428,7 @@ export const DecorationVisualizer = ({
             marginLeft: "12px",
             fontSize: "13px",
             color: "var(--wim-color-text-secondary)",
-            background: "rgba(0, 0, 0, 0.05)",
+            background: "var(--wim-color-surface-variant-alpha)",
             padding: "4px 8px",
             borderRadius: "4px",
             fontWeight: "normal",
@@ -443,7 +443,7 @@ export const DecorationVisualizer = ({
           padding: "20px",
           backgroundColor: "var(--wim-color-surface)",
           borderRadius: "8px",
-          border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
+          border: "1px solid", borderColor: "var(--wim-color-border)",
           color: "var(--wim-color-text-primary)",
         }}
       >
@@ -472,18 +472,18 @@ export const FocusOutlineSwatch = () => {
         padding: "24px",
         backgroundColor: "var(--wim-color-surface)",
         borderRadius: "12px",
-        border: "1px solid", borderColor: "var(--wim-color-border, #eee)",
+        border: "1px solid", borderColor: "var(--wim-color-border)",
       }}
     >
       <div
         style={{
           width: "100px",
           height: "40px",
-          backgroundColor: "var(--wim-color-primary, #007aff)",
+          backgroundColor: "var(--wim-color-primary)",
           borderRadius: "var(--wim-radius-md)",
-          outline: "var(--wim-focus-outline-width) solid rgba(0, 122, 255, 0.5)",
+          outline: "var(--wim-focus-outline-width) solid var(--wim-color-focus-outline)",
           outlineOffset: "var(--wim-focus-outline-offset)",
-          color: "white",
+          color: "var(--wim-color-text-on-primary)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -496,8 +496,8 @@ export const FocusOutlineSwatch = () => {
       <div style={{ textAlign: "center", marginTop: "8px" }}>
         <div style={{ fontSize: "14px", fontWeight: 600 }}>Focus Ring</div>
         <div style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)", marginTop: "4px" }}>
-          <code style={{ background: "rgba(0,0,0,0.05)", padding: "2px 4px", borderRadius: "4px" }}>--wim-focus-outline-width</code> (2px)<br />
-          <code style={{ background: "rgba(0,0,0,0.05)", padding: "2px 4px", borderRadius: "4px", marginTop: "4px", display: "inline-block" }}>--wim-focus-outline-offset</code> (2px)
+          <code style={{ background: "var(--wim-color-surface-variant-alpha)", padding: "2px 4px", borderRadius: "4px" }}>--wim-focus-outline-width</code> (2px)<br />
+          <code style={{ background: "var(--wim-color-surface-variant-alpha)", padding: "2px 4px", borderRadius: "4px", marginTop: "4px", display: "inline-block" }}>--wim-focus-outline-offset</code> (2px)
         </div>
       </div>
     </div>
@@ -548,7 +548,7 @@ export const InteractiveSwatch = ({
           width: "120px",
           height: "60px",
           backgroundColor: "var(--wim-color-surface)",
-          border: "1px solid", borderColor: "var(--wim-color-border, #ccc)",
+          border: "1px solid", borderColor: "var(--wim-color-border)",
           borderRadius: "var(--wim-radius-md)",
           display: "flex",
           alignItems: "center",
@@ -566,7 +566,7 @@ export const InteractiveSwatch = ({
       <div style={{ textAlign: "center" }}>
         <div style={{ fontSize: "14px", fontWeight: 600 }}>{name}</div>
         <div style={{ fontSize: "12px", color: "var(--wim-color-text-secondary)", marginTop: "4px" }}>
-          <code style={{ background: "rgba(0,0,0,0.05)", padding: "2px 4px", borderRadius: "4px" }}>{tokenName}</code><br />
+          <code style={{ background: "var(--wim-color-surface-variant-alpha)", padding: "2px 4px", borderRadius: "4px" }}>{tokenName}</code><br />
           <span style={{ display: "inline-block", marginTop: "4px" }}>({tokenValue})</span>
         </div>
       </div>

@@ -132,16 +132,35 @@ export type WimShadowKey =
 
 export type WimDurationKey = 
   | "base"
+  | "breathe"
+  | "circle"
+  | "extra-fast"
+  | "extra-slow"
   | "fast"
   | "instant"
-  | "slow";
+  | "short"
+  | "slow"
+  | "slower"
+  | "slowest"
+  | "ultra-slow";
 
 export type WimEasingKey = 
   | "entrance"
   | "exit"
+  | "gentle"
   | "out-back"
+  | "sharp"
+  | "smooth"
+  | "snap"
   | "spring"
   | "standard";
+
+export type WimTransitionKey = 
+  | "base"
+  | "fast"
+  | "slow"
+  | "smooth"
+  | "spring";
 
 export type WimLiftKey = 
   | "lg"

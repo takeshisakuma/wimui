@@ -34,15 +34,15 @@
   z-index: 10;
   flex: 0 0 auto;
   background-color: transparent;
-  transition: background-color 0.2s;
+  transition: background-color var(--wim-transition-fast);
 
   &::after {
     position: absolute;
     content: "";
     background-color: var(--wim-splitter-handle-color, var(--wim-color-border));
     transition:
-      background-color 0.2s,
-      transform 0.2s;
+      background-color var(--wim-transition-fast),
+      transform var(--wim-transition-fast);
   }
 
   &:hover,

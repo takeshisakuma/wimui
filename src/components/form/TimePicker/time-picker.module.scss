@@ -5,7 +5,7 @@
       padding: var(--wim-spacing-xs);
       cursor: pointer;
       border-radius: var(--wim-radius-sm);
-      transition: background-color 0.2s;
+      transition: background-color var(--wim-transition-fast);
   
       &:hover {
         background-color: var(--wim-color-surface-hover);

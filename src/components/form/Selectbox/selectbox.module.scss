@@ -29,8 +29,8 @@
     border: none;
     border-radius: 0;
     transition:
-      border-color 0.2s ease-in-out,
-      box-shadow 0.2s ease-in-out;
+      border-color var(--wim-transition-fast),
+      box-shadow var(--wim-transition-fast);
 
     &:hover:not(.disabled) {
       background-color: var(--wim-color-bg-hover);
@@ -124,7 +124,7 @@
     outline: none;
     border: 1px solid var(--wim-color-secondary);
     border-radius: var(--wim-radius-sm);
-    transition: border-color 0.2s ease-in-out;
+    transition: border-color var(--wim-transition-fast);
 
     &:focus {
       border-color: var(--wim-color-primary);
@@ -206,8 +206,8 @@
       border: 1px solid var(--wim-color-secondary);
       border-radius: var(--wim-radius-md);
       transition:
-        border-color 0.2s ease-in-out,
-        box-shadow 0.2s ease-in-out;
+        border-color var(--wim-transition-fast),
+        box-shadow var(--wim-transition-fast);
 
       &:hover:not(:disabled) {
         border-color: var(--wim-color-primary);

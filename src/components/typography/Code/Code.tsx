@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import styles from "./code.module.scss";
 
 export interface CodeProps extends Omit<React.HTMLAttributes<HTMLElement>, "content"> {
@@ -23,8 +24,7 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(
           language && `language-${language}`,
           className,
         )}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={mergeRefs(ref)}
         {...props}
       >
         {block ? (

@@ -7,13 +7,13 @@
     .inputBase {
       .inputIcon,
       .inputIcons {
-        --color-input-icon: #fff;
+        --color-input-icon: var(--wim-color-text-white);
       }
 
       &[class*="error"] {
         .inputIcon,
         .inputIcons {
-          --color-input-icon: #fff;
+          --color-input-icon: var(--wim-color-text-white);
         }
       }
     }

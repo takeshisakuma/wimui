@@ -5,7 +5,7 @@
 
 .fadeEnterTo {
   opacity: 1;
-  transition: opacity var(--wim-transition-base, 200ms ease);
+  transition: opacity var(--wim-transition-base);
 }
 
 .fadeLeave {
@@ -14,7 +14,7 @@
 
 .fadeLeaveTo {
   opacity: 0;
-  transition: opacity var(--wim-transition-base, 200ms ease);
+  transition: opacity var(--wim-transition-base);
 }
 
 .scaleEnter {
@@ -25,7 +25,7 @@
 .scaleEnterTo {
   opacity: 1;
   transform: scale(1);
-  transition: all var(--wim-transition-base, 200ms ease);
+  transition: all var(--wim-transition-base);
 }
 
 .scaleLeave {
@@ -36,7 +36,7 @@
 .scaleLeaveTo {
   opacity: 0;
   transform: scale(0.95);
-  transition: all var(--wim-transition-base, 200ms ease);
+  transition: all var(--wim-transition-base);
 }
 
 .hidden {

@@ -1,6 +1,7 @@
 import React, { createContext, useContext } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import styles from "./list.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSize } from "../../../types/tokens";
@@ -30,8 +31,7 @@ export const List = React.forwardRef<HTMLElement, ListProps>(
             styles[`spacing-${spacing}`],
             className
           )}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ref={ref as any}
+          ref={mergeRefs(ref)}
           {...props}
         >
           <Slottable>{children}</Slottable>

@@ -128,8 +128,8 @@
   background-color: var(--wim-color-bg-app);
   border-radius: 12px;
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color var(--wim-duration-base) var(--wim-easing-standard),
+    color var(--wim-duration-base) var(--wim-easing-standard);
 
   h1,
   h2,

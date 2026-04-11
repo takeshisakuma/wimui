@@ -37,10 +37,7 @@
       var(--wim-transition-timing-ease-out, ease-out);
 
     &.light {
-      background-color: var(
-        --wim-color-overlay-bg-light,
-        rgb(255 255 255 / 0.8)
-      );
+      background-color: var(--wim-color-overlay-bg-light);
     }
 
     &.dark {

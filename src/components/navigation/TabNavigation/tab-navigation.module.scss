@@ -138,7 +138,7 @@
         @include indicator.indicator-slider-contained($radius: 99px, $bg: var(--wim-color-primary), $shadow: none, $offset: 0);
 
         z-index: -1;
-        transition: background-color var(--wim-duration-fast) var(--wim-easing-base);
+        transition: background-color var(--wim-duration-fast) var(--wim-easing-standard);
       }
 
       .list:has(.item.active:hover:not(.disabled)) .slider {
@@ -146,10 +146,10 @@
       }
 
       &.ready .slider {
-        transition:
-          transform 0.2s cubic-bezier(0.2, 0, 0, 1),
-          width 0.2s cubic-bezier(0.2, 0, 0, 1),
-          background-color var(--wim-duration-fast) var(--wim-easing-base);
+          transition:
+            transform var(--wim-transition-smooth),
+            width var(--wim-transition-smooth),
+            background-color var(--wim-duration-fast) var(--wim-easing-standard);
       }
 
       .item {

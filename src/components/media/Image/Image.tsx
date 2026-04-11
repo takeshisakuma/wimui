@@ -312,7 +312,7 @@ export const Image = ({
     if (bgColor) stylesMap["--wim-image-bg-color"] = bgColor;
 
     // Transition duration
-    const durations = { none: "0s", fast: "0.2s", normal: "0.3s", slow: "0.5s" };
+    const durations = { none: "0s", fast: "var(--wim-duration-fast)", normal: "var(--wim-duration-base)", slow: "var(--wim-duration-extra-slow)" };
     stylesMap["--wim-image-transition-duration"] = durations[transition];
 
     return stylesMap;

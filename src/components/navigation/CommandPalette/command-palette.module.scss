@@ -27,7 +27,7 @@
     border: 1px solid var(--wim-color-glass-border);
     border-radius: var(--wim-radius-lg);
     box-shadow: var(--wim-shadow-lg);
-    animation: slideIn 0.2s ease-out;
+    animation: slideIn var(--wim-duration-fast) var(--wim-easing-entrance);
 
     // Mobile: full width and no border radius at top
     @media (width <= 640px) {
@@ -63,7 +63,7 @@
     svg {
       margin-right: var(--wim-spacing-sm);
       color: var(--wim-color-text-tertiary);
-      transition: color 0.2s ease;
+      transition: color var(--wim-transition-fast);
     }
   
     &:focus-within {
@@ -196,7 +196,7 @@
     background: var(--wim-color-bg-component);
     border: 1px solid var(--wim-color-border);
     border-radius: var(--wim-radius-md);
-    transition: all 0.2s;
+    transition: all var(--wim-transition-fast);
   
     &:hover {
       color: var(--wim-color-text-primary);

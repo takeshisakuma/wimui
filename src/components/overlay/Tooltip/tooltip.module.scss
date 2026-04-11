@@ -23,7 +23,7 @@
     border-radius: var(--wim-radius-md);
     box-shadow: var(--wim-shadow-md);
     opacity: 0;
-    animation: fadeIn 0.2s forwards;
+    animation: fadeIn var(--wim-duration-fast) forwards;
     will-change: opacity;
   
     @keyframes fadeIn {

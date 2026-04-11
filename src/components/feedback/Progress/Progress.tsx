@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import { ComponentSize, IndicatorIntent } from "../../../types/tokens";
 import styles from "./progress.module.scss";
 
@@ -35,8 +36,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
 
     return (
       <div
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={mergeRefs(ref)}
         className={classNames(
           styles.root,
           styles[size],

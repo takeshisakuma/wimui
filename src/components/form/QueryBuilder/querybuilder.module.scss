@@ -137,7 +137,7 @@
   background-color: var(--wim-color-bg-component);
   border: 1px solid var(--wim-color-border);
   border-radius: var(--wim-radius-lg);
-  animation: slideIn 0.2s ease-out;
+  animation: slideIn var(--wim-duration-fast) var(--wim-easing-entrance);
 
   &:hover {
     background-color: var(--wim-color-bg-hover);
@@ -201,7 +201,7 @@
       padding-top: 0;
       padding-bottom: 0;
       line-height: var(--wim-height-md);
-      transition: background-color 0.3s ease;
+      transition: background-color var(--wim-duration-base) var(--wim-easing-standard);
     }
   }
 

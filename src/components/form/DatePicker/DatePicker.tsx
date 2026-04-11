@@ -4,6 +4,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Calendar } from "../../data-display/Calendar/Calendar";
 import { InputBase } from "../InputBase";
 import { Transition } from "../../layout/Transition/Transition";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
@@ -97,16 +98,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const inputRef = useRef<HTMLInputElement>(null);
 
     // Combine multiple refs for the root
-    const combinedRef = (node: HTMLDivElement) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (containerRef as any).current = node;
-      if (typeof ref === "function") {
-        ref(node);
-      } else if (ref) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (ref as any).current = node;
-      }
-    };
+    const combinedRef = mergeRefs(containerRef, ref);
 
     const generatedId = useId();
     const id = customId || `wim-datepicker-${generatedId}`;

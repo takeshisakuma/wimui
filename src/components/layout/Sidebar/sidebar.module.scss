@@ -79,7 +79,7 @@
   padding: var(--wim-spacing-sm) var(--wim-spacing-md);
   color: var(--wim-color-text-primary);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color var(--wim-transition-fast);
 
   &:hover {
     background-color: var(--wim-color-bg-hover);

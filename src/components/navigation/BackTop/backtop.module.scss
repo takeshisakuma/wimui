@@ -7,7 +7,7 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all var(--wim-transition-base);
 
     &.hidden {
       pointer-events: none;
@@ -26,8 +26,8 @@
       border-radius: var(--wim-radius-full);
       box-shadow: var(--wim-shadow-lg);
       transition:
-        background-color 0.3s,
-        transform 0.3s;
+        background-color var(--wim-transition-base),
+        transform var(--wim-transition-base);
 
       &:hover {
         background-color: var(

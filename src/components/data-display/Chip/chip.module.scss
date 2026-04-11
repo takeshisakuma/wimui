@@ -11,7 +11,7 @@
     cursor: default;
     user-select: none;
     border-radius: var(--wim-radius-full);
-    transition: all 0.2s ease-in-out;
+    transition: all var(--wim-transition-fast);
   
     &.md {
       height: 2rem;
@@ -83,7 +83,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: rgb(0 0 0 / 0.1);
+    background: var(--wim-color-skeleton-bg);
     border-radius: var(--wim-radius-full);
 
     img {
@@ -113,7 +113,7 @@
     cursor: pointer;
     border-radius: var(--wim-radius-full);
     opacity: var(--wim-opacity-disabled);
-    transition: opacity 0.2s;
+    transition: opacity var(--wim-transition-fast);
 
     &:hover {
       background-color: var(--wim-color-ghost-bg-active);

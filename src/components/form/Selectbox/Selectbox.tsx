@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import { FieldTemplate } from "../FieldTemplate";
 import { InputBase } from "../InputBase";
 import localStyles from "./selectbox.module.scss";
@@ -144,16 +145,7 @@ export const Selectbox = forwardRef<HTMLDivElement, SelectboxProps>(
     });
 
     // Combine refs for the container
-    const combinedRef = (node: HTMLDivElement) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (containerRef as any).current = node;
-      if (typeof ref === "function") {
-        ref(node);
-      } else if (ref) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (ref as any).current = node;
-      }
-    };
+    const combinedRef = mergeRefs(containerRef, ref);
 
     const renderOptions = () => {
       let flatIndex = 0;

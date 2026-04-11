@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { WimColor, ComponentSize } from "../../../types/tokens";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import { getColorValue } from "../../../utilities/style-utils";
 import styles from "./indicator.module.scss";
 
@@ -38,8 +39,7 @@ export const Indicator = React.forwardRef<HTMLSpanElement, IndicatorProps>(
 
     return (
       <span
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
+        ref={mergeRefs(ref)}
         className={classNames(styles.root, inline && styles.inlineRoot, className)}
         style={style}
         {...props}

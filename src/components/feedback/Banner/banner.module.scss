@@ -83,7 +83,7 @@
     border: none;
     border-radius: var(--wim-radius-sm);
     opacity: var(--wim-opacity-disabled);
-    transition: opacity 0.2s ease;
+    transition: opacity var(--wim-transition-fast);
 
     &:hover {
       background: var(--wim-color-close-hover);

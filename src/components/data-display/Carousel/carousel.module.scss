@@ -20,7 +20,7 @@
     will-change: transform;
 
     &.transition {
-      transition: transform 0.5s ease;
+      transition: transform var(--wim-duration-extra-slow) var(--wim-easing-standard);
     }
   }
 
@@ -63,7 +63,7 @@
     border: none;
     border-radius: 50%;
     transform: translateY(-50%);
-    transition: background-color 0.2s;
+    transition: background-color var(--wim-transition-fast);
   
     &:hover:not(:disabled) {
       background-color: var(--wim-carousel-control-hover-bg);
@@ -103,8 +103,8 @@
     border: none;
     border-radius: 50%;
     transition:
-      background-color 0.2s,
-      width 0.2s;
+      background-color var(--wim-transition-fast),
+      width var(--wim-transition-fast);
   
     &.active {
       width: 24px;

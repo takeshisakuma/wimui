@@ -2,6 +2,7 @@ import React, { useState, useRef, forwardRef } from "react";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Textarea } from "../../form/Textarea/Textarea";
 import { BaseListItem } from "../../_internal/BaseListItem";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import styles from "./mentions.module.scss";
 
 type MentionOption = {
@@ -48,16 +49,7 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Combine refs
-    const combinedRef = (node: HTMLDivElement) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (containerRef as any).current = node;
-      if (typeof ref === "function") {
-        ref(node);
-      } else if (ref) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (ref as any).current = node;
-      }
-    };
+    const combinedRef = mergeRefs(containerRef, ref);
 
     const filteredOptions = options.filter((opt) =>
       opt.display.toLowerCase().includes(query.toLowerCase()),

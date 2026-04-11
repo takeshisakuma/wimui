@@ -174,14 +174,14 @@
       box-shadow: var(--wim-shadow-md);
       transform: translateY(var(--wim-lift-sm)) translateZ(0);
       transition:
-        box-shadow var(--wim-duration-fast) var(--wim-easing-base),
+        box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
         transform var(--wim-duration-fast) var(--wim-easing-out-back);
     }
 
     &:active:not(:disabled) {
       box-shadow: var(--wim-shadow-inset);
       transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
-      transition: transform var(--wim-duration-instant) var(--wim-easing-base);
+      transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
     }
   }
 
@@ -215,9 +215,9 @@
       box-shadow: var(--wim-shadow-sm);
       transform: translateY(var(--wim-lift-sm)) translateZ(0);
       transition:
-        background-color var(--wim-duration-fast) var(--wim-easing-base),
-        border-color var(--wim-duration-fast) var(--wim-easing-base),
-        box-shadow var(--wim-duration-fast) var(--wim-easing-base),
+        background-color var(--wim-duration-fast) var(--wim-easing-standard),
+        border-color var(--wim-duration-fast) var(--wim-easing-standard),
+        box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
         transform var(--wim-duration-fast) var(--wim-easing-out-back);
     }
 
@@ -226,7 +226,7 @@
       border-color: var(--wim-color-ghost-border-active);
       box-shadow: var(--wim-shadow-inset);
       transform: translateY(var(--wim-lift-none)) scale(var(--wim-scale-active)) translateZ(0);
-      transition: transform var(--wim-duration-instant) var(--wim-easing-base);
+      transition: transform var(--wim-duration-instant) var(--wim-easing-standard);
     }
   }
 
@@ -249,10 +249,10 @@
 
   .animatedWidth {
     transition:
-      width var(--wim-duration-base) var(--wim-easing-base),
-      background-color var(--wim-duration-fast) var(--wim-easing-base),
-      border-color var(--wim-duration-fast) var(--wim-easing-base),
-      box-shadow var(--wim-duration-fast) var(--wim-easing-base),
+      width var(--wim-duration-base) var(--wim-easing-standard),
+      background-color var(--wim-duration-fast) var(--wim-easing-standard),
+      border-color var(--wim-duration-fast) var(--wim-easing-standard),
+      box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
       transform var(--wim-duration-fast) var(--wim-easing-out-back);
   }
 }

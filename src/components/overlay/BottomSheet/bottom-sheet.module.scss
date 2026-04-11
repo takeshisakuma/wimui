@@ -8,7 +8,7 @@
     justify-content: center;
     background-color: var(--wim-color-overlay-bg);
     backdrop-filter: blur(2px);
-    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    animation: overlayShow var(--wim-duration-short) var(--wim-easing-snap);
   }
   
   .content {
@@ -26,7 +26,7 @@
     background-color: var(--wim-color-bg-component);
     border-radius: var(--wim-radius-xl) var(--wim-radius-xl) 0 0;
     box-shadow: var(--wim-shadow-lg);
-    animation: slideUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    animation: slideUp var(--wim-duration-base) var(--wim-easing-snap);
     will-change: transform;
   
     &:focus {
@@ -39,7 +39,7 @@
       width: 448px;
       margin: 0 auto;
       transform: translateX(-50%);
-      animation: slideUpCenter 300ms cubic-bezier(0.16, 1, 0.3, 1);
+      animation: slideUpCenter var(--wim-duration-base) var(--wim-easing-snap);
     }
   }
   

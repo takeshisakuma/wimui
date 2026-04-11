@@ -145,8 +145,8 @@ export const Button = React.forwardRef<
                 transitionProperty:
                   props.style?.transitionProperty ||
                   "width, background-color, border-color, box-shadow, transform",
-                transitionDuration: props.style?.transitionDuration || "0.3s",
-                transitionTimingFunction: props.style?.transitionTimingFunction || "ease",
+                transitionDuration: props.style?.transitionDuration || "var(--wim-duration-base)",
+                transitionTimingFunction: props.style?.transitionTimingFunction || "var(--wim-easing-standard)",
                 overflow: "hidden",
                 whiteSpace: "nowrap",
                 textOverflow: "clip",

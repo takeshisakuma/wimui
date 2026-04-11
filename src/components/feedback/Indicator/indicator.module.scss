@@ -99,7 +99,7 @@
         background-color: inherit;
         border-radius: var(--wim-radius-full);
         opacity: var(--indicator-pulse-opacity, 0.4);
-        animation: wim-indicator-pulse var(--indicator-pulse-duration, 2s) cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        animation: wim-indicator-pulse var(--indicator-pulse-duration, var(--wim-duration-breathe)) var(--wim-easing-gentle) infinite;
       }
     }
   }

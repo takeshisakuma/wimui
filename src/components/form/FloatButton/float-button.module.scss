@@ -10,11 +10,11 @@
     border: none;
     box-shadow: var(--wim-shadow-md);
     transition:
-      background-color var(--wim-duration-fast) var(--wim-easing-base),
-      box-shadow var(--wim-duration-fast) var(--wim-easing-base),
-      transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-      width 0.3s ease,
-      padding 0.3s ease;
+      background-color var(--wim-transition-fast),
+      box-shadow var(--wim-transition-fast),
+      transform var(--wim-transition-spring),
+      width var(--wim-transition-base),
+      padding var(--wim-transition-base);
 
     &.iconBacktop {
       .icon {
@@ -29,7 +29,7 @@
       justify-content: center;
       width: 100%;
       height: 100%;
-      transition: gap 0.3s ease;
+      transition: gap var(--wim-transition-base);
     }
 
     .labelWrapper {
@@ -39,9 +39,9 @@
       overflow: hidden;
       vertical-align: middle;
       transition:
-        max-width 0.3s ease,
-        opacity 0.2s ease,
-        visibility 0.2s ease;
+        max-width var(--wim-transition-base),
+        opacity var(--wim-transition-fast),
+        visibility var(--wim-transition-fast);
     }
 
     .label {
@@ -51,8 +51,8 @@
       white-space: nowrap;
       opacity: 1;
       transition:
-        opacity 0.2s ease,
-        transform 0.2s ease;
+        opacity var(--wim-transition-fast),
+        transform var(--wim-transition-fast);
     }
 
     // Sizes
@@ -241,7 +241,7 @@
       background-color: var(--wim-color-overlay-bg-dark);
       border-radius: 4px;
       opacity: 0;
-      transition: opacity 0.2s;
+      transition: opacity var(--wim-transition-fast);
     }
 
     &:hover .description {

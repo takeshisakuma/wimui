@@ -23,17 +23,36 @@
       "field-focus": { "value": "0 0 0 2px rgba(2, 136, 209, 0.2)" }
     },
     "duration": {
+      "extra-fast": { "value": "0.1s" },
+      "short": { "value": "0.15s" },
       "instant": { "value": "0.083s" },
       "fast": { "value": "0.167s" },
       "base": { "value": "0.25s" },
-      "slow": { "value": "0.333s" }
+      "slow": { "value": "0.333s" },
+      "extra-slow": { "value": "0.5s" },
+      "ultra-slow": { "value": "0.667s" },
+      "slower": { "value": "0.8s" },
+      "slowest": { "value": "1s" },
+      "circle": { "value": "1.2s" },
+      "breathe": { "value": "2s" }
     },
     "easing": {
       "standard": { "value": "cubic-bezier(0.55, 0, 0.1, 1)" },
       "entrance": { "value": "cubic-bezier(0, 0, 0, 1)" },
       "exit": { "value": "cubic-bezier(1, 0, 1, 1)" },
       "spring": { "value": "cubic-bezier(0.34, 1.56, 0.64, 1)" },
-      "out-back": { "value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)" }
+      "out-back": { "value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)" },
+      "smooth": { "value": "cubic-bezier(0.2, 0, 0, 1)" },
+      "snap": { "value": "cubic-bezier(0.16, 1, 0.3, 1)" },
+      "sharp": { "value": "cubic-bezier(0.55, 0.055, 0.675, 0.19)" },
+      "gentle": { "value": "cubic-bezier(0.4, 0, 0.6, 1)" }
+    },
+    "transition": {
+      "fast": { "value": "{wim.duration.fast} {wim.easing.standard}" },
+      "base": { "value": "{wim.duration.base} {wim.easing.standard}" },
+      "slow": { "value": "{wim.duration.slow} {wim.easing.standard}" },
+      "smooth": { "value": "{wim.duration.fast} {wim.easing.smooth}" },
+      "spring": { "value": "{wim.duration.base} {wim.easing.spring}" }
     },
     "lift": {
       "sm": { "value": "-1px" },
