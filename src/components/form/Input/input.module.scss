@@ -1,18 +1,21 @@
 @layer component {
   .root {
-    &:not([type="color"]) {
-      all: unset;
-    }
-
     box-sizing: border-box;
     display: block;
     width: 100%;
     min-height: var(--wim-height-md);
+    padding: 0;
     padding: var(--wim-field-padding-v, var(--wim-spacing-sm)) var(--wim-field-padding-right, var(--wim-input-offset-right, var(--wim-spacing-md))) var(--wim-field-padding-v, var(--wim-spacing-sm)) var(--wim-field-padding-left, var(--wim-input-offset-left, var(--wim-spacing-md)));
+    margin: 0;
+    font: inherit;
     font-size: var(--wim-font-size-md);
+    color: inherit;
     color: var(--wim-color-text-primary);
+    appearance: none;
     outline: var(--wim-field-outline, none);
+    background: none;
     background-color: var(--wim-field-bg, var(--wim-color-bg-component));
+    border: none;
     border: var(--wim-field-border, var(--wim-border-width-thin) solid var(--wim-color-secondary));
     border-radius: var(--wim-field-radius-tl, var(--wim-field-radius, var(--wim-radius-md)))
                    var(--wim-field-radius-tr, var(--wim-field-radius, var(--wim-radius-md)))

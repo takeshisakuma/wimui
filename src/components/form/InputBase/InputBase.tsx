@@ -123,8 +123,8 @@ export const InputBase = ({
         effectiveHasCustomWidth && localStyles.hasCustomWidth,
         widthClassName,
         leftIcon && localStyles.hasLeftIcon,
-        finalRightIcons.length > 0 && localStyles.hasRightIcon,
-        finalRightIcons.length >= 2 && localStyles.hasMultipleRightIcons,
+        (finalRightIcons.length > 0 || allowClear) && localStyles.hasRightIcon,
+        (finalRightIcons.length >= 2 || (rightIcons.length >= 1 && allowClear)) && localStyles.hasMultipleRightIcons,
         className,
         stylesProp?.root,
       )}
