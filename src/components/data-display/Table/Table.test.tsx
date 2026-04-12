@@ -258,6 +258,8 @@ describe("Table", () => {
   });
 
   it("supports asChild on Table", () => {
+    // asChild intentionally renders a non-semantic element; suppress expected hydration warnings
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     render(
       <Table asChild>
         <div data-testid="table-slot">
@@ -269,12 +271,15 @@ describe("Table", () => {
         </div>
       </Table>
     );
+    spy.mockRestore();
     const tableElement = screen.getByTestId("table-slot");
     expect(tableElement.tagName).toBe("DIV");
     expect(tableElement).toHaveClass(styles.root);
   });
 
   it("supports asChild on TableRow", () => {
+    // asChild intentionally renders a non-semantic element; suppress expected hydration warnings
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     render(
       <Table>
         <Table.Body>
@@ -286,12 +291,15 @@ describe("Table", () => {
         </Table.Body>
       </Table>
     );
+    spy.mockRestore();
     const rowElement = screen.getByTestId("row-slot");
     expect(rowElement.tagName).toBe("DIV");
     expect(rowElement).toHaveClass(styles.row);
   });
 
   it("supports asChild on TableCell", () => {
+    // asChild intentionally renders a non-semantic element; suppress expected hydration warnings
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     render(
       <Table>
         <Table.Body>
@@ -303,6 +311,7 @@ describe("Table", () => {
         </Table.Body>
       </Table>
     );
+    spy.mockRestore();
     const cellElement = screen.getByTestId("cell-slot");
     expect(cellElement.tagName).toBe("DIV");
     expect(cellElement).toHaveClass(styles.cell);
