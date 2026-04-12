@@ -120,6 +120,7 @@
     "check:hierarchy": "node scripts/check_hierarchy.js",
     "check:stories": "node scripts/check_stories_keys.js",
     "check:casing": "node scripts/check-git-casing.cjs",
+    "check:links": "node scripts/check-mdx-links.js",
     "tokens:build": "node style-dictionary.config.js",
     "prepare": "husky"
   },
@@ -216,8 +217,9 @@
     "{src,stories}/**/*.{css,scss}": [
       "stylelint --fix --max-warnings=0"
     ],
-    "docs/**/*.mdx": [
-      "node scripts/check-i18n-components.js"
+    "**/*.mdx": [
+      "node scripts/check-i18n-components.js",
+      "node scripts/check-mdx-links.js"
     ],
     "public/locales/**/*.json": [
       "npm run i18n:check"
