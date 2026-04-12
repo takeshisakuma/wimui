@@ -1,5 +1,6 @@
 {
   "voiceandtone": {
+    "title": "コミュニケーションの指針 (Voice & Tone)",
     "calm": "落ち着きがあり、客観的で協力的。",
     "clear": "明確で簡潔 (Clear & Concise)",
     "empth": "役に立ち、共感的 (Helpful & Empathetic)",
@@ -34,6 +35,7 @@
     "voice_honest_desc": "誇張や飾り立てた言葉を避け、事実を正確に伝えます。",
     "voice_reliable_desc": "言葉遣いの一貫性を保つことで、信頼感を醸成します。",
     "voice_supportive_desc": "常にユーザーの目的をサポートする姿勢を保ちます。",
-    "voice_title": "ボイス（システムの人格）"
+    "voice_title": "ボイス（システムの人格）",
+    "responsive_desc": "グローバルなブレークポイント仕様に従った、標準的なレスポンシブ動作を提供します。"
   }
 }

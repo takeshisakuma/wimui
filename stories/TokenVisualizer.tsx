@@ -132,8 +132,8 @@ export const ShadowSwatch = ({
   value: string;
   shadow: string;
 }) => {
-  // To compare shadow differences purely, the color of the lifted elements is all unified to a surface token
-  const boxColor = name === "Inset" ? "var(--wim-color-surface-variant)" : "var(--wim-color-surface)";
+  // To compare shadow differences purely, the color of the lifted elements is all unified to a fixed light color
+  const boxColor = name === "Inset" ? "#f5f5f7" : "#ffffff";
 
   return (
     <div
@@ -143,10 +143,11 @@ export const ShadowSwatch = ({
         alignItems: "center",
         gap: "var(--wim-spacing-xl)",
         padding: "var(--wim-spacing-4xl) var(--wim-spacing-xl)",
-        background: "var(--wim-color-bg-primary)",
+        background: "#ffffff",
         borderRadius: "var(--wim-radius-xl)",
-        border: "1px solid", borderColor: "var(--wim-color-border)",
+        border: "1px solid #e1e4e8",
         textAlign: "center",
+        color: "#1a1a1a",
       }}
     >
       <div
@@ -160,10 +161,10 @@ export const ShadowSwatch = ({
           alignItems: "center",
           justifyContent: "center",
           fontSize: "12px",
-          color: "var(--wim-color-text-primary)",
+          color: "#1a1a1a",
           fontWeight: 800,
           // Very thin border to make the white box shape recognizable on the white background
-          border: name === "Inset" ? "none" : "1px solid var(--wim-color-surface-variant-alpha)",
+          border: name === "Inset" ? "none" : "1px solid #e1e4e8",
         }}
       >
         {name}
@@ -180,7 +181,7 @@ export const ShadowSwatch = ({
           style={{
             fontSize: "14px",
             fontWeight: 700,
-            color: "var(--wim-color-text-primary)",
+            color: "#1a1a1a",
           }}
         >
           {name} Level
@@ -189,8 +190,8 @@ export const ShadowSwatch = ({
           style={{
             fontFamily: "monospace",
             fontSize: "11px",
-            color: "var(--wim-color-text-secondary)",
-            backgroundColor: "var(--wim-color-surface)",
+            color: "#666666",
+            backgroundColor: "#f5f5f7",
             padding: "2px 8px",
             borderRadius: "4px",
             marginTop: "4px",

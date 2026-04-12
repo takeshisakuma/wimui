@@ -1,5 +1,6 @@
 {
   "voiceandtone": {
+    "title": "Voz e Tom",
     "calm": "Calmo, objetivo e cooperativo.",
     "clear": "Limpo e Conciso",
     "empth": "Prestativo e Empático",
@@ -34,6 +35,7 @@
     "voice_honest_desc": "Evite exageros ou palavras excessivamente decoradas; transmita fatos com precisão.",
     "voice_reliable_desc": "Promova a confiança mantendo uma redação consistente.",
     "voice_supportive_desc": "Mantenha uma atitude de sempre apoiar os objetivos do usuário.",
-    "voice_title": "Voz (Personalidade do Sistema)"
+    "voice_title": "Voz (Personalidade do Sistema)",
+    "responsive_desc": "O comportamento responsivo padrão segue as especificações globais de breakpoint."
   }
 }

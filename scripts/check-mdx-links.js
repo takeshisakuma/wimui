@@ -13,10 +13,10 @@ import { globSync } from 'glob';
 const filesFromArgs = process.argv.slice(2).filter(f => f.endsWith('.mdx'));
 const files = filesFromArgs.length > 0
   ? filesFromArgs
-  : globSync('**/*.mdx', { 
-      posix: true,
-      ignore: ['node_modules/**', 'dist/**']
-    });
+  : [
+      ...globSync('**/*.mdx', { posix: true, ignore: ['node_modules/**', 'dist/**'] }),
+      ...globSync('public/locales/**/*.json', { posix: true })
+    ];
 
 let allPass = true;
 
@@ -37,14 +37,14 @@ files.forEach(file => {
     }
 
     // Rule 2 & 3: Check <a> tags for internal links
-    const aTagRegex = /<a\s+[^>]*href=["']([^"']+)["'][^>]*>/g;
+    const aTagRegex = /<a\s+[^>]*href=["\\]*["']([^"'\\]+)["\\]*["'][^>]*>/g;
     while ((match = aTagRegex.exec(line)) !== null) {
       const href = match[1];
       const fullTag = match[0];
       
       if (href.includes('?path=')) {
-        // Must have target="_top"
-        if (!fullTag.includes('target="_top"') && !fullTag.includes("target='_top'")) {
+        const hasTargetTop = /target=["\\]*["']_top["\\]*["']/.test(fullTag);
+        if (!hasTargetTop) {
           console.log(`[FAIL] ${file}:${lineNum} - Internal link missing target="_top": "${fullTag}". This will cause a blank page (iframe.html issue).`);
           allPass = false;
         }

@@ -1,5 +1,6 @@
 {
   "philosophy": {
+    "title": "Filosofia",
     "a11y": "Acessibilidade",
     "aria_support": "Utiliza WAI-ARIA para reforçar o suporte a tecnologias assistivas.",
     "feedback_desc": "Fornece feedback rápido e natural para as operações do usuário, oferecendo uma experiência \"tangível\" confortável.",
@@ -8,7 +9,15 @@
     "kb_a11y": "Suporta operações de teclado para que todos os usuários possam usá-lo.",
     "tangible_ui": "Buscando uma UI Tangível",
     "standard_overview_title": "Visão Geral de Padronização",
-    "standard_overview_desc": "Para uma visão de alto nível de nossos padrões de design e implementação, consulte a <a href=\"?path=/docs/architecture-standardization-overview--docs\">Visão Geral de Padronização</a>."
+    "standard_overview_desc": "Para uma visão de alto nível de nossos padrões de design e implementação, consulte a <a href=\"./?path=/docs/architecture-standardization-overview--docs\" target=\"_top\">Visão Geral de Padronização</a>.",
+    "choice_matrix_desc": "Base para todos os componentes do WIM UI e sistemas de design.",
+    "anatomy_desc": "Princípios fundamentais: A11y, Interação, Feedback.",
+    "scenarios_desc": "Fornecendo uma interface tangível para todas as aplicações.",
+    "best_practices_desc": "Consistência, Acessibilidade e Previsibilidade.",
+    "tokens_desc": "Base para todos os componentes do WIM UI e sistemas de design.",
+    "responsive_desc": "O comportamento responsivo padrão segue as especificações globais de breakpoint.",
+    "keyboard_nav_desc": "Gerenciamento de foco e atalhos de teclado em todos os elementos interativos.",
+    "i18n_desc": "Suporte a vários idiomas para acessibilidade global."
   },
   "internal": {
     "philosophy_desc": "Diretrizes para consistência e encapsulamento de design interno que devem ser seguidas ao estender o WIM UI ou adicionar novos componentes.",

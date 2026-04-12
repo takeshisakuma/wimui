@@ -1,5 +1,6 @@
 {
   "voiceandtone": {
+    "title": "Voice & Tone",
     "calm": "Calm, objective, and cooperative.",
     "clear": "Clear & Concise",
     "empth": "Helpful & Empathetic",
@@ -34,6 +35,7 @@
     "voice_honest_desc": "Avoid exaggeration or overly decorated words; convey facts accurately.",
     "voice_reliable_desc": "Foster trust by maintaining consistent wording.",
     "voice_supportive_desc": "Maintain an attitude of always supporting user goals.",
-    "voice_title": "Voice (System Personality)"
+    "voice_title": "Voice (System Personality)",
+    "responsive_desc": "Standard responsive behavior follows the global breakpoint specifications."
   }
 }

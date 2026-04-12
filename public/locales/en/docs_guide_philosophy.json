@@ -1,5 +1,6 @@
 {
   "philosophy": {
+    "title": "Philosophy",
     "a11y": "Accessibility",
     "aria_support": "Leverages WAI-ARIA to enhance support for assistive technologies.",
     "feedback_desc": "Provides rapid and natural feedback for user operations, offering a comfortable \"tangible\" experience.",
@@ -8,7 +9,15 @@
     "kb_a11y": "Supports keyboard operations so all users can use it.",
     "tangible_ui": "Pursuing a Tangible UI",
     "standard_overview_title": "Standard Overview",
-    "standard_overview_desc": "For a high-level view of our design and implementation standards, please refer to the <a href=\"?path=/docs/architecture-standardization-overview--docs\">Standardization Overview</a>."
+    "standard_overview_desc": "For a high-level view of our design and implementation standards, please refer to the <a href=\"./?path=/docs/architecture-standardization-overview--docs\" target=\"_top\">Standardization Overview</a>.",
+    "choice_matrix_desc": "Foundation for all WIM UI components and design systems.",
+    "anatomy_desc": "Core principles: A11y, Interaction, Feedback.",
+    "scenarios_desc": "Providing a tangible UI for all applications.",
+    "best_practices_desc": "Consistency, Accessibility, and Predictability.",
+    "tokens_desc": "Foundation for all WIM UI components and design systems.",
+    "responsive_desc": "Standard responsive behavior follows the global breakpoint specifications.",
+    "keyboard_nav_desc": "Focus management and keyboard shortcuts across all interactive elements.",
+    "i18n_desc": "Multi-language support for global accessibility."
   },
   "internal": {
     "philosophy_desc": "Guidelines for internal design consistency and encapsulation that should be followed when extending WIM UI or adding new components.",

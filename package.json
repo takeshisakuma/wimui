@@ -116,6 +116,7 @@
     "i18n:check": "node scripts/check-i18n.js",
     "i18n:check:components": "node scripts/check-i18n-components.js",
     "i18n:missing": "node scripts/find_missing_keys.js",
+    "i18n:check:mdx": "node scripts/check-mdx-hardcoded.js",
     "check:consistency": "node scripts/check_consistency.js",
     "check:hierarchy": "node scripts/check_hierarchy.js",
     "check:stories": "node scripts/check_stories_keys.js",
@@ -218,6 +219,7 @@
       "stylelint --fix --max-warnings=0"
     ],
     "**/*.mdx": [
+      "npm run i18n:check:mdx",
       "node scripts/check-i18n-components.js",
       "node scripts/check-mdx-links.js"
     ],
