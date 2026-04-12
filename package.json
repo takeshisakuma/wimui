@@ -219,12 +219,12 @@
       "stylelint --fix --max-warnings=0"
     ],
     "**/*.mdx": [
-      "npm run i18n:check:mdx",
+      "node scripts/check-mdx-hardcoded.js",
       "node scripts/check-i18n-components.js",
       "node scripts/check-mdx-links.js"
     ],
     "public/locales/**/*.json": [
-      "npm run i18n:check"
+      "node scripts/check-i18n.js"
     ],
     "src/icon/*.svg": [
       "npm run generate:icons",
