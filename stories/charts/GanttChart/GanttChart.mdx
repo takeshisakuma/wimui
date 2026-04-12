@@ -1,11 +1,13 @@
 import {
   Meta,
   Title,
-  Controls,
   Canvas,
+  Primary,
+  Stories,
 } from "@storybook/addon-docs/blocks";
 import * as GanttChartStories from "./GanttChart.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={GanttChartStories} />
 
@@ -15,7 +17,7 @@ import { T } from "../../T";
     margin: "0 0 16px 0",
     fontSize: "18px",
     lineHeight: "28px",
-    color: "#6c757d",
+    color: "var(--wim-color-text-secondary)",
   }}
 >
   <T k="doc.ganttchart_long_desc" />
@@ -53,33 +55,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>Label Panel</b></td>
-      <td><T k="doc.ganttchart_anatomy_label_panel" /></td>
-    </tr>
-    <tr>
-      <td><b>Header</b></td>
-      <td><T k="doc.ganttchart_anatomy_header" /></td>
-    </tr>
-    <tr>
-      <td><b>Task Bar</b></td>
-      <td><T k="doc.ganttchart_anatomy_bar" /></td>
-    </tr>
-    <tr>
-      <td><b>Progress</b></td>
-      <td><T k="doc.ganttchart_anatomy_progress" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="GanttChart" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -150,47 +126,16 @@ import { T } from "../../T";
   <li><T k="doc.ganttchart_best_practice_3" /></li>
 </ul>
 
-## <T k="doc.design_tokens_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.token" /></th>
-      <th><T k="doc.usage" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>--wim-color-primary</code></td>
-      <td><T k="doc.ganttchart_token_primary" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-color-border</code></td>
-      <td><T k="doc.ganttchart_token_border" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-color-bg</code></td>
-      <td><T k="doc.ganttchart_token_bg" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-color-text-primary</code></td>
-      <td><T k="doc.ganttchart_token_text" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-font-size-sm / --wim-font-size-xs</code></td>
-      <td><T k="doc.ganttchart_token_font" /></td>
-    </tr>
-    <tr>
-      <td><code>--wim-duration-fast</code></td>
-      <td><T k="doc.ganttchart_token_duration" /></td>
-    </tr>
-  </tbody>
-</table>
+<Primary />
+
+<Docgen componentName="GanttChart" section="props" />
+
+<Stories />
+
+<Docgen componentName="GanttChart" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.ganttchart_responsive_desc" /></p>
-
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
 
 ## <T k="doc.keyboard_nav_title" />
 <p><T k="doc.ganttchart_keyboard_desc" /></p>
@@ -214,5 +159,3 @@ npm run test -- GanttChart
 
 <h3><T k="doc.ganttchart_with_click" /></h3>
 <Canvas of={GanttChartStories.WithClickHandler} />
-
-<Controls />

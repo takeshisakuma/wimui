@@ -1,13 +1,13 @@
 import {
   Canvas,
   Meta,
-  Controls,
   Title,
   Primary,
   Stories,
 } from "@storybook/addon-docs/blocks";
 import * as HeatmapStories from "./Heatmap.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={HeatmapStories} />
 
@@ -17,7 +17,7 @@ import { T } from "../../T";
     margin: "0 0 16px 0",
     fontSize: "18px",
     lineHeight: "28px",
-    color: "#6c757d",
+    color: "var(--wim-color-text-secondary)",
   }}
 >
   <T k="doc.heatmap_desc" />
@@ -50,25 +50,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.heatmap_anatomy_root_label" /></b></td>
-      <td><T k="doc.heatmap_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.heatmap_anatomy_content_label" /></b></td>
-      <td><T k="doc.heatmap_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="Heatmap" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -109,12 +91,9 @@ import { T } from "../../T";
 
 <Primary />
 
-## Props
+<Docgen componentName="Heatmap" section="props" />
 
-<Controls />
-
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="Heatmap" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>

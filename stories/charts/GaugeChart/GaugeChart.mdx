@@ -1,17 +1,17 @@
 import {
   Canvas,
   Meta,
-  Controls,
   Title,
   Primary,
   Stories,
 } from "@storybook/addon-docs/blocks";
 import * as GaugeChartStories from "./GaugeChart.stories";
 import { T } from "../../T";
+import { Docgen } from "../../Docgen";
 
 <Meta of={GaugeChartStories} />
 
-# GaugeChart
+<Title />
 
 <p><T k="doc.gaugechart_long_desc" /></p>
 
@@ -40,25 +40,7 @@ import { T } from "../../T";
   </tbody>
 </table>
 
-## <T k="doc.anatomy_title" />
-<table>
-  <thead>
-    <tr>
-      <th><T k="doc.component" /></th>
-      <th><T k="doc.description" /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b><T k="doc.gaugechart_anatomy_root_label" /></b></td>
-      <td><T k="doc.gaugechart_anatomy_root" /></td>
-    </tr>
-    <tr>
-      <td><b><T k="doc.gaugechart_anatomy_content_label" /></b></td>
-      <td><T k="doc.gaugechart_anatomy_content" /></td>
-    </tr>
-  </tbody>
-</table>
+<Docgen componentName="GaugeChart" section="anatomy" />
 
 ## <T k="doc.content_guidelines_title" />
 <ul>
@@ -99,14 +81,11 @@ import { T } from "../../T";
 
 <Primary />
 
-## Props
-
-<Controls />
+<Docgen componentName="GaugeChart" section="props" />
 
 <Stories />
 
-## <T k="doc.tokens_title" />
-<p><T k="doc.tokens_desc" /></p>
+<Docgen componentName="GaugeChart" section="tokens" />
 
 ## <T k="doc.responsive_title" />
 <p><T k="doc.responsive_desc" /></p>
@@ -121,4 +100,3 @@ import { T } from "../../T";
 ```bash
 npm run test -- GaugeChart
 ```
-
