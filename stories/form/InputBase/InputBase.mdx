@@ -1,9 +1,9 @@
 import { Meta, Canvas, Title, Primary, Stories } from "@storybook/addon-docs/blocks";
 import { T } from "../../T";
-import * as Stories from "./InputBase.stories";
+import * as InputBaseStories from "./InputBase.stories";
 import { Docgen } from "../../Docgen";
 
-<Meta of={Stories} />
+<Meta of={InputBaseStories} />
 
 <Title />
 
@@ -83,7 +83,7 @@ import { Docgen } from "../../Docgen";
 ## <T k="doc.usage" />
 <p><T k="doc.inputBase_usage_desc" /></p>
 
-<Canvas of={Stories.Default} />
+<Canvas of={InputBaseStories.Default} />
 
 <Docgen componentName="InputBase" section="props" />
 
@@ -92,22 +92,22 @@ import { Docgen } from "../../Docgen";
 ## <T k="doc.stories" />
 
 ### <T k="doc.story_default" />
-<Canvas of={Stories.Default} />
+<Canvas of={InputBaseStories.Default} />
 
 ### <T k="doc.story_with_icons" />
-<Canvas of={Stories.WithIcons} />
+<Canvas of={InputBaseStories.WithIcons} />
 
 ### <T k="doc.story_error" />
-<Canvas of={Stories.Error} />
+<Canvas of={InputBaseStories.Error} />
 
 ### <T k="doc.story_disabled" />
-<Canvas of={Stories.Disabled} />
+<Canvas of={InputBaseStories.Disabled} />
 
 ### <T k="doc.story_ghost" />
-<Canvas of={Stories.Ghost} />
+<Canvas of={InputBaseStories.Ghost} />
 
 ### <T k="doc.story_multiple_icons" />
-<Canvas of={Stories.MultipleRightIcons} />
+<Canvas of={InputBaseStories.MultipleRightIcons} />
 
 ---
 
